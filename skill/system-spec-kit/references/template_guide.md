@@ -633,6 +633,88 @@ node .opencode/scripts/generate-context.js specs/###-name
 
 ---
 
+### debug-delegation.md - Debug Task Delegation
+
+**Purpose:** Structured handoff document for delegating debugging tasks to a specialized sub-agent.
+
+**Created By:** `/spec_kit:debug` command (or manually)
+
+**Location:** Spec folder root (preserved for reference)
+
+**When to Use:**
+- Stuck on same error after 3+ fix attempts
+- Complex multi-file debugging
+- Need fresh perspective on persistent issue
+- Architectural or logic-heavy debugging
+
+**Workflow:**
+
+```
+1. TRIGGER
+   ├── Manual: Run /spec_kit:debug
+   └── Auto-suggested: After repeated failures or frustration keywords
+
+2. MODEL SELECTION (MANDATORY)
+   ├── Claude - Anthropic (Sonnet/Opus)
+   ├── Gemini - Google (Pro/Ultra)
+   ├── Codex - OpenAI (GPT-4/o1)
+   └── Other - User specified
+
+3. REPORT GENERATION
+   ├── Error details captured
+   ├── Previous attempts documented
+   ├── Relevant code extracted
+   └── Hypothesis recorded
+
+4. SUB-AGENT DISPATCH
+   ├── Task tool invoked
+   ├── Full context passed
+   └── Parallel execution
+
+5. INTEGRATION
+   ├── Findings presented
+   ├── Fix proposed
+   └── User decides: Apply/Iterate/Manual
+```
+
+**Template Sections:**
+
+| Section | Purpose |
+|---------|---------|
+| Problem Summary | Error category, message, affected files |
+| Attempted Fixes | Document what was tried and why it failed |
+| Context for Specialist | Code snippets, docs, hypothesis |
+| Recommended Next Steps | Suggestions for the debugging agent |
+| Handoff Checklist | Verification that context is complete |
+
+**Model Selection Guidance:**
+
+| Scenario | Recommended Model |
+|----------|-------------------|
+| Common error patterns | Claude |
+| Type errors, syntax issues | Claude |
+| Architectural problems | Claude |
+| Complex state management | Claude |
+| Logic puzzles, algorithms | Codex |
+| Large codebase context | Gemini |
+
+**Example Usage:**
+
+```bash
+# Manual trigger
+/spec_kit:debug specs/007-feature/
+
+# Auto-suggested after repeated failures
+💡 Debug Delegation Suggested - Run: /spec_kit:debug
+```
+
+**Integration with SpecKit:**
+- Saved to spec folder root for reference
+- Can be loaded in future sessions via memory
+- Documents debugging history for the feature
+
+---
+
 ## 7. ✅ QUALITY STANDARDS
 
 ### Adherence Rules
@@ -1007,6 +1089,7 @@ See each sub-folder's README.md for details.
 **Session Management Templates:**
 - [handover.md](../templates/handover.md) - Full session handover document (~100-150 lines)
 - [quick-continue.md](../templates/quick-continue.md) - Minimal continuation document (~15 lines)
+- [debug-delegation.md](../templates/debug-delegation.md) - Debug task delegation for sub-agents
 - scratch-notes.md - Temporary workspace notes (informal, in `scratch/` folder)
 - memory-context.md - Context preservation (auto-generated via `generate-context.js`)
 

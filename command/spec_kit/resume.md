@@ -83,7 +83,6 @@ EXECUTE AFTER PHASE 1 PASSES:
    
    Optional (check for fast-resume context):
    - quick-continue.md (if present, load as primary context source)
-   - STATE.md (if present, load for real-time state tracking)
 
 2. CHECK command invocation for mode suffix:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
@@ -329,12 +328,12 @@ call_tool_chain(`memory.memory_search(...)`)  // NO - not through Code Mode
 
 ### Context Loading Priority
 
-1. quick-continue.md (if exists) - **Phase 1 MVP fast-resume**
-2. STATE.md (if exists) - **Phase 2 real-time state tracking**
-3. handover.md (if exists, <24h old)
-4. Recent memory/*.md files
+1. quick-continue.md (if exists) - fast-resume handover
+2. handover.md (if exists, <24h old)
+3. Recent memory/*.md files
+4. checklist.md for progress state
 
-**Note:** Stateless architecture - no `.spec-active` marker file used. If both quick-continue.md AND STATE.md exist, load both (quick-continue for handoff context, STATE for detailed file progress and session history).
+**Note:** Stateless architecture - no `.spec-active` marker file used.
 
 ---
 

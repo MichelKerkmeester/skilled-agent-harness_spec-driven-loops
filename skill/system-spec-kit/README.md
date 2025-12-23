@@ -12,7 +12,7 @@
 - [4. 📊 DOCUMENTATION LEVELS (1-3)](#4--documentation-levels-1-3)
 - [5. 📝 TEMPLATES (10 TOTAL)](#5--templates-10-total)
 - [6. ⚙️ SCRIPTS](#6--scripts)
-- [7. 🎯 COMMANDS (6 TOTAL)](#7--commands-6-total)
+- [7. 🎯 COMMANDS (7 TOTAL)](#7--commands-7-total)
 - [8. 🔄 HOW IT WORKS](#8--how-it-works)
 - [9. 🔌 INTEGRATION POINTS](#9--integration-points)
 - [10. 💡 USAGE EXAMPLES](#10--usage-examples)
@@ -37,7 +37,7 @@
 | References | 5      | Detailed workflow documentation                                           |
 | Checklists | 4      | Phase-specific checklists (research, planning, implementation, review)    |
 | **Total**  | **28** | Complete bundled resource set                                             |
-| Commands   | 6      | Slash commands (external: `.opencode/command/spec_kit/`)                  |
+| Commands   | 7      | Slash commands (external: `.opencode/command/spec_kit/`)                  |
 
 ### Key Features
 
@@ -711,9 +711,9 @@ Archive Summary:
 
 ---
 
-## 7. 🎯 COMMANDS (6 TOTAL)
+## 7. 🎯 COMMANDS (7 TOTAL)
 
-Six SpecKit commands available in OpenCode.
+Seven SpecKit commands available in OpenCode.
 
 ### Command Overview
 
@@ -725,8 +725,9 @@ Six SpecKit commands available in OpenCode.
 | `/spec_kit:research`  | 9     | Technical investigation           | research, research-spike, decision-record |
 | `/spec_kit:resume`    | 4-5   | Resume previous session           | Loads memory/                             |
 | `/spec_kit:handover`  | 4-5   | Create session handover document  | quick-continue.md or handover.md          |
+| `/spec_kit:debug`     | 4-5   | Delegate debugging to sub-agent   | debug-delegation.md                       |
 
-### Core Commands (5)
+### Core Commands (6)
 
 #### `/spec_kit:complete` - Full Workflow
 
@@ -802,6 +803,34 @@ Create session handover document for continuing work in new conversations.
 3. Create handover document
 4. Display continuation instructions
 5. (Full only) Analyze session via Sonnet agent
+
+#### `/spec_kit:debug` - Debug Delegation
+
+Delegates debugging tasks to a specialized sub-agent with full context handoff.
+
+**Key Features:**
+- **Always asks** which AI model to use (Sonnet/Opus/o1/Other)
+- **Generates** structured debug report using `debug-delegation.md` template
+- **Dispatches** parallel sub-agent via Task tool
+- **Returns** root cause analysis, proposed fix, and verification steps
+
+**Auto-Suggestion:**
+The AI will suggest running this command when:
+- Same error occurs 3+ times after fix attempts
+- Frustration keywords detected ("stuck", "can't fix", "tried everything")
+- Extended debugging session without resolution
+
+**Usage:**
+```bash
+/spec_kit:debug [spec-folder-path]
+```
+
+**Steps (4-5)**:
+1. Validate/detect spec folder
+2. Ask user which AI model to use
+3. Generate debug-delegation.md with context
+4. Dispatch sub-agent via Task tool
+5. Return results with root cause and fix proposal
 
 ### Utility Commands (1)
 

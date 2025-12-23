@@ -53,9 +53,12 @@ Utility templates (`handover.md`, `debug-delegation.md`) are available at ANY do
 - **Multi-session work**: "multi-session", "ongoing work", "long-running"
 
 **Debug Delegation (`debug-delegation.md`)** - Auto-suggest when detecting:
-- **Delegation requests**: "delegate debug", "sub-agent debug", "parallel debug", "multi-file debug"
+- **Frustration indicators**: "stuck", "can't fix", "tried everything", "not working still", "same error", "still failing", "keeps happening", "hours on this"
+- **Help requests**: "need help debugging", "fresh eyes", "second opinion", "another approach"
+- **Repeated failures**: Same error appears 3+ times after fix attempts
+- **Explicit delegation**: "delegate debug", "sub-agent debug", "parallel debug"
 
-**Rule:** When ANY of these keywords are detected, automatically suggest the corresponding utility template and offer to create it in the active spec folder.
+**Rule:** When ANY of these are detected, suggest running `/spec_kit:debug` command.
 
 ---
 
@@ -70,7 +73,8 @@ Utility templates (`handover.md`, `debug-delegation.md`) are available at ANY do
 | `/spec_kit:implement` | 8     | Execute pre-planned work (requires existing plan.md)      |
 | `/spec_kit:research`  | 9     | Technical investigation and documentation                 |
 | `/spec_kit:resume`    | 5/4   | Resume previous session (5 steps confirm, 4 steps auto)   |
-| `/spec_kit:handover`  | 4/5   | Create session handover (:quick default, :full for comprehensive) |
+| `/spec_kit:handover`  | 4/5   | Create session handover (:quick default, :full)           |
+| `/spec_kit:debug`     | 5     | Delegate debugging to sub-agent (always asks model first) |
 
 **Mode Suffixes:** Add `:auto` or `:confirm` to any command except resume.
 - `:auto` - Autonomous execution with self-validation
@@ -175,10 +179,14 @@ def route_conversation_resources(task):
     if task.is_multi_session or any(kw in user_message.lower() for kw in handover_keywords):
         suggest("templates/handover.md")           # Session continuity
 
-    # Debug delegation detection
-    debug_keywords = ["delegate debug", "sub-agent debug", "parallel debug", "multi-file debug"]
+    # Debug delegation detection - expanded natural language triggers
+    frustration_keywords = ["stuck", "can't fix", "tried everything", "not working still", 
+                            "same error", "still failing", "keeps happening", "hours on this"]
+    help_keywords = ["need help debugging", "fresh eyes", "second opinion", "another approach"]
+    explicit_keywords = ["delegate debug", "sub-agent debug", "parallel debug"]
+    debug_keywords = frustration_keywords + help_keywords + explicit_keywords
     if task.needs_debug_delegation or any(kw in user_message.lower() for kw in debug_keywords):
-        suggest("templates/debug-delegation.md")   # Sub-agent debugging
+        suggest("/spec_kit:debug")                 # Sub-agent debugging command
 
     # ═══════════════════════════════════════════════════════════════════════════
     # ASSETS (3 files in ./assets/) - Decision support tools
@@ -503,7 +511,89 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 ---
 
-## 6. 📋 RULES
+## 6. 🐛 DEBUG DELEGATION WORKFLOW
+
+### When to Trigger Debug Delegation
+
+Debug delegation should be triggered in two ways:
+
+**1. Manual Trigger:**
+- User runs `/spec_kit:debug` command
+- Explicit request: "delegate this to a debug agent"
+
+**2. Auto-Suggestion (Proactive):**
+The AI should SUGGEST debug delegation when detecting:
+
+```python
+# Trigger conditions (ANY of these)
+debug_triggers = {
+    "repeated_errors": error_count >= 3,  # Same error 3+ times
+    "frustration_keywords": any([
+        "stuck", "can't fix", "tried everything", "not working still",
+        "same error", "still failing", "keeps happening", "hours on this",
+        "multiple attempts", "tried that already", "doesn't work",
+        "need help debugging", "fresh eyes", "second opinion"
+    ]),
+    "extended_session": debugging_time > 15_minutes and fix_attempts >= 2
+}
+```
+
+**Auto-Suggestion Display:**
+```
+💡 **Debug Delegation Suggested**
+
+You've been working on this issue for a while. Would you like to delegate 
+to a debugging sub-agent for a fresh perspective?
+
+Run: `/spec_kit:debug`
+
+This will:
+1. Ask which AI model to use (Claude/Gemini/Codex)
+2. Generate a debug report with full context
+3. Dispatch a parallel sub-agent to investigate
+4. Return findings for your review
+```
+
+### Model Selection (MANDATORY)
+
+The `/spec_kit:debug` command ALWAYS asks the user which model to use:
+
+| Model | Best For | Characteristics |
+|-------|----------|-----------------|
+| **Claude** | General debugging, code analysis | Anthropic models (Sonnet/Opus) |
+| **Gemini** | Multi-modal, large context | Google models (Pro/Ultra) |
+| **Codex** | Code generation, reasoning | OpenAI models (GPT-4/o1) |
+| **Other** | User-specified model | Custom selection |
+
+**Rule:** Never skip model selection. Always ask, even if you have a recommendation.
+
+### Debug Report Generation
+
+The command generates `debug-delegation.md` in the spec folder root containing:
+- Error category and full message
+- Affected files list
+- Previous fix attempts documented
+- Relevant code snippets
+- Hypothesis about root cause
+- Recommended next steps
+
+### Sub-Agent Dispatch
+
+Uses the Task tool to dispatch a parallel debugging agent:
+- Passes full debug report as context
+- Instructs agent to: analyze → propose fix → verify steps → prevention
+- Receives structured response with root cause, fix, and verification
+
+### Integration of Results
+
+After sub-agent returns:
+1. Present findings to user
+2. Offer options: Apply fix / Iterate / Manual review
+3. Update debug-delegation.md with resolution
+
+---
+
+## 7. 📋 RULES
 
 ### ✅ ALWAYS 
 
@@ -624,7 +714,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 ---
 
-## 7. ✅ SUCCESS CRITERIA
+## 8. ✅ SUCCESS CRITERIA
 
 ### Documentation Created
 
@@ -678,7 +768,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 ---
 
-## 8. 🔗 INTEGRATION POINTS
+## 9. 🔗 INTEGRATION POINTS
 
 ### Enforcement Priority System
 

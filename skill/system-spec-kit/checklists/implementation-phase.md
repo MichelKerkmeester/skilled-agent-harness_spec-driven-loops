@@ -22,6 +22,10 @@ Phase-specific validation checklist for the implementation/coding phase.
 - [ ] Edge cases covered
 - [ ] Browser verification completed (frontend changes)
 
+### Debug Escalation
+- [ ] If stuck on same error 3+ times, run `/spec_kit:debug`
+- [ ] If debugging > 15 minutes without progress, consider delegation
+
 ## P2 - Medium Priority
 
 - [ ] Code comments added where non-obvious
@@ -45,6 +49,26 @@ Phase-specific validation checklist for the implementation/coding phase.
 - [ ] All P0 items verified with evidence
 - [ ] Browser tested if frontend (Gate 6 requirement)
 - [ ] Save context if significant progress: `node .opencode/scripts/generate-context.js [spec-folder]`
+
+## Debug Escalation Protocol
+
+When debugging becomes prolonged or repetitive:
+
+**Trigger Conditions:**
+- Same error after 3+ fix attempts
+- Debugging session > 15 minutes without resolution
+- Frustration indicators ("stuck", "tried everything")
+
+**Action:**
+1. Run `/spec_kit:debug` command
+2. Select AI model when prompted (Claude/Gemini/Codex)
+3. Review sub-agent findings
+4. Apply fix or iterate
+
+**Benefits:**
+- Fresh perspective from parallel agent
+- Structured context handoff
+- Documented debugging history
 
 ## References
 

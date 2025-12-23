@@ -574,7 +574,7 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
    - Sequential Thinking, LEANN, Semantic Memory, Code Context, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - Webflow, Figma, ClickUp, Chrome DevTools, etc.
+   - Webflow, Figma, Github, ClickUp, Chrome DevTools, etc.
    - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
   
