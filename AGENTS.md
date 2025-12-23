@@ -34,6 +34,7 @@
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                   |
 | **Save context**         | Execute `generate-context.js` → Verify ANCHOR format → Auto-indexed                                                |
 | **Claim completion**     | Load `checklist.md` → Verify ALL items → Mark with evidence                                                        |
+| **Debug delegation**     | `/spec_kit:debug` → Model selection → Sub-agent dispatch via Task tool                                             |
 
 ---
 
@@ -154,8 +155,8 @@
 │ EXECUTION:                                                                  │
 │   Action:  MUST use generate-context.js → Verify ANCHOR format → Auto-index │
 │   Rules:   MUST pass spec folder as argument: `generate-context.js [path]`  │
-│   Block:   HARD - Cannot create memory files manually (Write/Edit prohibited)│
-│   Violation: If Write tool used on memory/ path → DELETE and re-run via script│
+│   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked). │
+│   Violation: If Write tool used on memory/ path → DELETE & re-run via script│
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
                                     ↓ DONE?
@@ -171,7 +172,7 @@
 │ GATE 7: CONTEXT HEALTH MONITOR [PROGRESSIVE]                                │
 │ Trigger: Self-assessment before complex multi-step actions                  │
 │                                                                             │
-│ HEURISTIC ASSESSMENT (Claude is stateless - use observable signals):        │
+│ HEURISTIC ASSESSMENT (AI is stateless - use observable signals):            │
 │   Tier 1 signals (~15 exchanges equivalent):                                │
 │     - 10+ tool calls visible in conversation                                │
 │     - 3+ unique files modified                                              │
@@ -192,23 +193,23 @@
 │ PROGRESSIVE RESPONSE:                                                       │
 │                                                                             │
 │   TIER 1 (Soft Warning):                                                    │
-│     "⚠️ Extended session detected. Consider /spec_kit:handover soon."      │
+│     "⚠️ Extended session detected. Consider /spec_kit:handover soon."       │
 │     Action: Display only, continue work                                     │
 │                                                                             │
 │   TIER 2 (Firm Recommendation):                                             │
-│     "📋 Long session detected. Recommend /spec_kit:handover now."          │
+│     "📋 Long session detected. Recommend /spec_kit:handover now."           │
 │     Options: A) Create handover B) Continue C) Disable for session          │
 │     Action: Wait for user choice                                            │
 │                                                                             │
 │   TIER 3 (Strong Suggestion):                                               │
-│     "🛑 Very long session. Handover strongly recommended."                 │
+│     "🛑 Very long session. Handover strongly recommended."                  │
 │     Options: A) Create handover B) Decline with reason                      │
 │     Action: Wait for user choice, log if declined                           │
 │                                                                             │
 │ KEYWORD TRIGGERS (proactive, any tier):                                     │
 │   Session ending: "stopping", "done", "finished", "break", "later"          │
 │   Context concern: "forgetting", "remember", "context", "losing track"      │
-│   → Suggest: "Would you like to run /spec_kit:handover before ending?"     │
+│   → Suggest: "Would you like to run /spec_kit:handover before ending?"      │
 │                                                                             │
 │ Note: User can always decline. This is guidance, not enforcement.           │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -342,20 +343,6 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 | **spec folder** | Permanent documentation      | spec.md, plan.md, final implementation |
 
 **MANDATORY:** All temp files in `scratch/`, NEVER in project root or spec folder root. Clean up when done.
-
-### SpecKit Commands
-
-| Command               | Description                      |
-| --------------------- | -------------------------------- |
-| `/spec_kit:complete`  | Full end-to-end workflow         |
-| `/spec_kit:plan`      | Planning only, no implementation |
-| `/spec_kit:implement` | Execute pre-planned work         |
-| `/spec_kit:research`  | Technical investigation          |
-| `/spec_kit:resume`    | Resume previous session          |
-| `/spec_kit:handover`  | Create session handover document |
-
-**Mode Suffixes:** `:auto` or `:confirm` (e.g., `/spec_kit:complete:auto`)
-**Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
 
 ---
 
@@ -535,13 +522,20 @@ Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP - OP
 Browser debugging? → workflows-chrome-devtools skill
 External MCP tools? → call_tool_chain() [Code Mode - Webflow, Figma, ClickUp, etc.]
 Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
+Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 ```
+
+**Debug Delegation:**
+- Trigger: Stuck on error 3+ times, frustration keywords, extended debugging
+- Command: `/spec_kit:debug`
+- Action: Asks for model selection, dispatches parallel sub-agent
+- Always uses Task tool for sub-agent dispatch
 
 ### Two "Semantic" Systems (DO NOT CONFUSE)
 
-| System              | MCP Name          | Database Location                                             | Purpose                               |
-| ------------------- | ----------------- | ------------------------------------------------------------- | ------------------------------------- |
-| **LEANN**           | `leann`           | `~/.leann/indexes/`                                           | **Code** semantic search              |
+| System              | MCP Name          | Database Location                                            | Purpose                               |
+| ------------------- | ----------------- | ------------------------------------------------------------ | ------------------------------------- |
+| **LEANN**           | `leann`           | `~/.leann/indexes/`                                          | **Code** semantic search              |
 | **Semantic Memory** | `semantic_memory` | `.opencode/skill/system-memory/database/memory-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**
@@ -583,77 +577,7 @@ Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
    - Webflow, Figma, ClickUp, Chrome DevTools, etc.
    - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
-
-### Native MCP Tools Reference
-
-```
-LEANN (semantic code search):
-  leann_search()   # Semantic similarity search
-  leann_list()     # Show available indexes
-  leann_ask()      # RAG Q&A [CLI: bash("leann ask ...")]
-  leann_build()    # Build index [CLI: bash("leann build ...")]
-  leann_remove()   # Remove index
-
-SEMANTIC MEMORY (context/research):
-  memory_search()         # Hybrid search, tier/type filters
-  memory_load()           # Load by spec folder/anchor
-  memory_match_triggers() # Fast trigger matching <50ms
-  memory_list()           # Browse memories, pagination
-  memory_update()         # Update importance/metadata
-  memory_delete()         # Delete by ID or spec folder
-  memory_validate()       # Validate accuracy, build confidence
-  memory_stats()          # System statistics
-  memory_save()           # Index single memory file
-  memory_index_scan()     # Bulk scan and index workspace
-  checkpoint_create/list/restore/delete()  # Checkpoint management
-
-SEQUENTIAL THINKING (optional):
-  sequential_thinking_sequentialthinking()
   
-  When to Use:
-    - Multi-step debugging where standard approaches failed
-    - Architectural decisions with significant trade-offs
-    - Complex refactoring spanning 3+ files
-    - User explicitly requests ("think hard", "ultrathink")
-  
-  When to Skip:
-    - Simple fixes or single-file changes
-    - Straightforward tasks with obvious solutions
-    - Already near context limit
-    - Speed matters more than thoroughness
-  
-  Token cost: ~1,500-2,500 tokens per session
-
-CODE CONTEXT (structural code analysis):
-  code_context_get_code_context()   # Get symbols, functions, classes from file/folder
-  
-  Parameters:
-    absolutePath: string   # Absolute path to file or folder (REQUIRED)
-    maxDepth?: number      # Folder recursion depth (default: 5)
-    analyzeJs?: boolean    # Analyze JS/TS/Python files (default: false)
-    includeSymbols?: boolean  # Include code symbols (default: false)
-    symbolType?: string    # Filter: "functions"|"variables"|"classes"|"imports"|"exports"|"all"
-  
-  Access pattern (NATIVE - call directly):
-    code_context_get_code_context({ absolutePath: "/path/to/src" })
-```
-
-**Skill references:** mcp-leann, mcp-code-context, mcp-code-mode, system-memory
-
-### Code Mode Tools Reference
-
-External tools accessed via `call_tool_chain()`:
-
-```
-WEBFLOW, FIGMA, CLICKUP, CHROME DEVTOOLS:
-  Access pattern:
-    call_tool_chain(`webflow.webflow_sites_list({})`)
-    call_tool_chain(`figma.figma_get_file({ file_key: "..." })`)
-    call_tool_chain(`clickup.clickup_get_tasks({ list_id: "..." })`)
-```
-
-**Discovery:** `search_tools()`, `list_tools()`, or read `.utcp_config.json`
-
 ---
 
 ## 7. 🧩 SKILLS SYSTEM

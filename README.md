@@ -287,17 +287,19 @@ Here's the complete workflow from your first message to documented completion:
 
 #### Mandatory Gates System
 
-A 7-gate workflow (Gates 0-6) ensures nothing slips through the cracks:
+A comprehensive gate workflow (Gates 0–7) ensures nothing slips through the cracks:
 
-| Gate       | Name                    | Purpose                                                          |
-| ---------- | ----------------------- | ---------------------------------------------------------------- |
-| **Gate 0** | Compaction Check        | Detects context loss, pauses for user confirmation               |
-| **Gate 1** | Understanding Check     | Requires 80%+ confidence, surfaces memories via trigger matching |
-| **Gate 2** | Skill Routing           | Routes to appropriate skill via skill_advisor.py                 |
-| **Gate 3** | Spec Folder Question    | Asks spec folder choice (A/B/C/D) before file modifications      |
-| **Gate 4** | Memory Loading          | Offers to load relevant memories when using existing spec        |
-| **Gate 5** | Memory Save Validation  | **MANDATORY** generate-context.js for all memory saves           |
-| **Gate 6** | Completion Verification | Enforces checklist completion before claiming "done"             |
+| Gate         | Name                    | Purpose                                                          |
+| ------------ | ----------------------- | ---------------------------------------------------------------- |
+| **Gate 0**   | Compaction Check        | Detects context loss, pauses for user confirmation               |
+| **Gate 0.5** | Continuation Validation | Validates handoff state against memory files on resume           |
+| **Gate 1**   | Understanding Check     | Requires 80%+ confidence, surfaces memories via trigger matching |
+| **Gate 2**   | Skill Routing           | Routes to appropriate skill via skill_advisor.py                 |
+| **Gate 3**   | Spec Folder Question    | Asks spec folder choice (A/B/C/D) before file modifications      |
+| **Gate 4**   | Memory Loading          | Offers to load relevant memories when using existing spec        |
+| **Gate 5**   | Memory Save Validation  | **MANDATORY** generate-context.js for all memory saves           |
+| **Gate 6**   | Completion Verification | Enforces checklist completion before claiming "done"             |
+| **Gate 7**   | Context Health Monitor  | Progressive warnings (Tier 1/2/3) for long sessions              |
 
 #### Spec Folder Discipline
 
@@ -387,10 +389,15 @@ specs/042-add-user-authentication/
 | `/spec_kit:implement` | Execute existing plan |
 | `/spec_kit:research` | Technical investigation |
 | `/spec_kit:resume` | Continue previous session |
+| `/spec_kit:handover` | Create session handover document |
+| `/spec_kit:debug` | Delegate debugging to sub-agent |
 
-### Templates (11 Total)
+**Mode Suffixes:** Add `:auto` or `:confirm` to commands (e.g., `/spec_kit:complete:auto`)
+**Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
 
-All templates live in `.opencode/skill/system-spec-kit/templates/`:
+### Templates (10 Total)
+
+All templates live in `skill/system-spec-kit/templates/` (or `.opencode/skill/` in deployed projects):
 
 | Template | Purpose |
 |----------|---------|
@@ -404,9 +411,10 @@ All templates live in `.opencode/skill/system-spec-kit/templates/`:
 | `handover.md` | Session continuity for multi-session work |
 | `debug-delegation.md` | Sub-agent debugging tasks |
 | `quick-continue.md` | Minimal handoff for session branching |
-| `state.md` | Real-time project state tracking |
 
-For detailed template documentation, see the [system-spec-kit skill](.opencode/skill/system-spec-kit/SKILL.md).
+> **Note:** Project state is now embedded in memory files (V13.0 stateless architecture). No separate state.md template.
+
+For detailed template documentation, see the [system-spec-kit skill](skill/system-spec-kit/SKILL.md).
 
 ---
 
@@ -416,12 +424,14 @@ For detailed template documentation, see the [system-spec-kit skill](.opencode/s
 
 **The Solution:** Semantic memory that persists across sessions, models, and projects.
 
+> **CRITICAL (V13.0):** Memory saves MUST use `generate-context.js`—never manually create memory files. This is enforced by Gate 5.
+
 ### How It Works
 
 ```
-Conversation → Save Context → Vector Embeddings → SQLite Database
-                                    ↓
-Future Session → Query → Hybrid Search → Relevant Context Loaded
+Conversation → generate-context.js → ANCHOR Format → Vector Embeddings → SQLite
+                                           ↓
+Future Session → Query → Hybrid Search → Anchor-Based Section Loading
 ```
 
 ### Key Features
@@ -430,8 +440,9 @@ Future Session → Query → Hybrid Search → Relevant Context Loaded
 |---------|--------------|----------------|
 | **6-Tier Importance** | Constitutional → Critical → Important → Normal → Temporary → Deprecated | Right context at the right time |
 | **Hybrid Search** | Vector similarity + full-text keywords + RRF fusion | Finds what you mean, not just what you typed |
-| **93% Token Savings** | Anchor-based section loading | Load specific decisions, not entire files |
+| **ANCHOR Format** | `<!-- ANCHOR: section-id -->` markers enable section loading | 93% token savings—load specific decisions, not entire files |
 | **90-Day Decay** | Old memories fade, recent ones surface | Stays relevant without manual cleanup |
+| **Auto-Indexing** | `memory_save()` and `memory_index_scan()` MCP tools | New memories indexed automatically |
 | **Checkpoints** | Save/restore database state | Experiment safely, rollback if needed |
 
 ### The Six Importance Tiers
@@ -449,9 +460,11 @@ Future Session → Query → Hybrid Search → Relevant Context Loaded
 
 | Command | What It Does |
 |---------|--------------|
-| `/memory:save` | Save current conversation context |
-| `/memory:search <query>` | Find relevant past context |
+| `/memory:save [spec-folder]` | Save context via generate-context.js (folder required or prompted) |
+| `/memory:search` | Dashboard: stats + recent + suggested actions |
+| `/memory:search <query>` | Semantic search with tier/type filters |
 | `/memory:search cleanup` | Interactive cleanup of old memories |
+| `/memory:search triggers` | View and manage trigger phrases |
 | `/memory:checkpoint create` | Snapshot current state |
 
 **Example:**
@@ -462,7 +475,22 @@ Found 3 memories:
 1. [critical] JWT token refresh implementation (2 days ago) - 94% match
 2. [important] OAuth2 provider setup (5 days ago) - 87% match  
 3. [normal] Login form validation (12 days ago) - 72% match
+
+Load: [1] [2] [3] [all] [skip]
 ```
+
+### ANCHOR Format (93% Token Savings)
+
+Memory files use ANCHOR markers for section-level retrieval:
+
+```markdown
+<!-- ANCHOR: decision-auth-flow -->
+## Authentication Decision
+We chose JWT with refresh tokens because...
+<!-- ANCHOR_END: decision-auth-flow -->
+```
+
+This enables `memory_load({ specFolder: "042-auth", anchorId: "decision-auth-flow" })` to load just that section instead of the entire file.
 
 ### Privacy First
 
@@ -471,7 +499,7 @@ All processing happens locally:
 - **Storage:** SQLite with sqlite-vec extension
 - **No external API calls** for memory operations
 
-The Semantic Memory MCP server enables AI assistants to search and load memories directly. See [`.opencode/skill/system-memory/`](.opencode/skill/system-memory/) for implementation details and [`install_guides/MCP/MCP - Semantic Memory.md`](install_guides/MCP/MCP%20-%20Semantic%20Memory.md) for setup.
+The Semantic Memory MCP server enables AI assistants to search and load memories directly. See [`skill/system-memory/`](skill/system-memory/) for implementation details and [`install_guides/MCP/MCP - Semantic Memory.md`](install_guides/MCP/MCP%20-%20Semantic%20Memory.md) for setup.
 
 ---
 
@@ -491,9 +519,9 @@ Your Request → skill_advisor.py analyzes keywords
               AI follows skill guidance
 ```
 
-**Native Discovery:** OpenCode v1.0.190+ automatically finds skills in `.opencode/skill/*/SKILL.md`. No plugin required.
+**Native Discovery:** OpenCode v1.0.190+ automatically finds skills in `skill/*/SKILL.md` (or `.opencode/skill/` in deployed projects). No plugin required.
 
-### Available Skills (8 Total)
+### Available Skills (9 Total)
 
 | Skill | What It Does | Trigger Examples |
 |-------|--------------|------------------|
@@ -503,6 +531,7 @@ Your Request → skill_advisor.py analyzes keywords
 | **system-memory** | Context preservation across sessions | "Save this context", "What did we decide about X?" |
 | **system-spec-kit** | Documentation enforcement and templates | "Create spec for feature", "Start new task" |
 | **workflows-code** | Implementation lifecycle (plan → code → verify) | "Implement this feature", "Debug this error" |
+| **workflows-documentation** | Document quality, skill creation, ASCII flowcharts | "Create install guide", "Validate markdown" |
 | **workflows-git** | Git workflows (commits, branches, PRs) | "Commit these changes", "Create PR" |
 | **workflows-chrome-devtools** | Browser automation and debugging | "Take screenshot", "Check console errors" |
 
@@ -538,7 +567,7 @@ Returns:
 
 ```bash
 # Initialize skill structure
-python .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill
+python skill/workflows-documentation/scripts/init_skill.py my-skill
 
 # Required SKILL.md sections:
 # - WHEN TO USE (triggers)
@@ -573,14 +602,16 @@ Commands in [`command/`](command/) are structured entry points that chain steps,
 
 ### Available Commands
 
-| Folder      | Commands                                                                                                            |
-| ----------- | ------------------------------------------------------------------------------------------------------------------- |
-| `spec_kit/` | `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`             |
-| `memory/`   | `/memory:save`, `/memory:search`, `/memory:checkpoint`                                                              |
-| `create/`   | `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide` |
-| `codebase/` | Semantic code search and index management                                                                           |
-| `cli/`      | `/cli:codex`, `/cli:codex_quick`, `/cli:gemini`, `/cli:gemini_quick`                                                |
-| `prompt/`   | Prompt refinement helpers                                                                                           |
+| Folder      | Commands                                                                                                                              |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `spec_kit/` | `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:handover`, `/spec_kit:debug` |
+| `memory/`   | `/memory:save`, `/memory:search`, `/memory:checkpoint`                                                                                |
+| `create/`   | `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`                   |
+| `search/`   | `/search:code`, `/search:index` (semantic code search and index management)                                                           |
+| `prompt/`   | `/prompt:improve` (prompt refinement)                                                                                                 |
+
+**Mode Suffixes for spec_kit:** `:auto` or `:confirm` (e.g., `/spec_kit:complete:auto`)
+**Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
 
 
 ---
@@ -594,8 +625,8 @@ Everything you need at a glance. This section provides quick links to configurat
 | **Master Install Guide**       | [`install_guides/README.md`](install_guides/README.md)       |
 | OpenCode config                | [`opencode.json`](opencode.json)                             |
 | Agent guardrails               | [`AGENTS.md`](AGENTS.md)                                     |
-| Skills library                 | [`.opencode/skill/`](.opencode/skill/)                       |
-| Commands                       | [`.opencode/command/`](.opencode/command/)                   |
+| Skills library                 | [`skill/`](skill/)                                           |
+| Commands                       | [`command/`](command/)                                       |
 | MCP guides                     | [`install_guides/MCP/`](install_guides/MCP/)                 |
 | Plugin guides                  | [`install_guides/PLUGIN/`](install_guides/PLUGIN/)           |
 | Setup guides                   | [`install_guides/SET-UP - *.md`](install_guides/)            |
