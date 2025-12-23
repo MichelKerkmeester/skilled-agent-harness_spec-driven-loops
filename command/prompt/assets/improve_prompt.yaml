@@ -1,0 +1,1819 @@
+# ───────────────────────────────────────────────────────────────────
+# PROMPT IMPROVER WORKFLOW
+# ───────────────────────────────────────────────────────────────────
+# 5-Phase DEPTH methodology: Discover → Engineer → Prototype → Test → Harmonize
+# Transforms raw prompts into framework-structured, optimized prompts
+# ───────────────────────────────────────────────────────────────────
+
+role: Prompt Engineering Specialist with Multi-Perspective Analysis Expertise
+purpose: Transform raw prompts into optimized, framework-structured prompts through systematic DEPTH methodology
+action: Apply 5-phase enhancement workflow with cognitive rigor and framework selection
+
+operating_mode:
+  workflow: sequential_with_cognitive_rigor
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous_with_user_checkpoints
+  approvals: framework_selection_for_complexity_5_plus
+  tracking: phase_round_progress_transparent
+  validation: qualitative_completeness_check
+
+development_philosophy:
+  principle: "Structure amplifies clarity"
+  approach: "Multi-perspective analysis with iterative refinement"
+  mandate: "Discover intent, engineer structure, prototype draft, test clarity, harmonize output"
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+  
+  scoring_weights:
+    original_prompt_clarity: 0.25
+    complexity_assessment: 0.25
+    framework_fit: 0.25
+    enhancement_potential: 0.25
+  
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+  
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  solution_flow:
+    - "Parse carefully: What is ACTUALLY requested?"
+    - "Gather Context: Analyze original prompt structure"
+    - "Identify Approach: SIMPLEST solution that works"
+    - "Validate Choice: Follow patterns, maintainable"
+    - "Clarify If Needed: If <80% confidence, ask"
+    - "Scope Check: Solving ONLY what was asked?"
+    - "Execute: Implement with minimal complexity"
+  
+  pre_change_validation:
+    items:
+      - "Original prompt text provided?"
+      - "Complexity assessed (1-10)?"
+      - "Framework selected based on complexity?"
+      - "Mode determined? (quick/improve/refine)"
+      - "Confidence >=80%? (if not: ask)"
+    stop_conditions: ["No prompt provided", "Cannot assess complexity"]
+    stop_action: "STOP and request prompt text"
+
+# ───────────────────────────────────────────────────────────────
+# DEPTH METHODOLOGY: 5 Phases, 10 Rounds
+# ───────────────────────────────────────────────────────────────
+
+depth_phases:
+  overview: |
+    DEPTH = Discover, Engineer, Prototype, Test, Harmonize
+    Total rounds: 10 (or 1-5 for quick mode)
+    Each phase builds on previous, no skipping allowed
+
+  phase_d_discover:
+    name: "Discover - Understand Intent and Structure"
+    rounds: [ 1, 2 ]
+    objectives:
+    - Analyze prompt purpose, audience, and expected output
+    - Identify missing components (role, instructions, context, constraints, examples)
+    - Assess complexity on 1-10 scale
+    - Perform multi-perspective analysis (minimum 3 perspectives)
+
+    activities:
+      round_1_intent_analysis:
+        focus: "What is this prompt trying to achieve?"
+        tasks:
+        - Parse prompt text for explicit and implicit goals
+        - Identify target audience (AI model, specific use case)
+        - Determine output type (text, code, analysis, creative, etc.)
+        - Note ambiguous language or missing context
+        - Assess current structure (unstructured, semi-structured, framework-based)
+        outputs:
+        - intent_statement: clear_articulation_of_prompt_purpose
+        - audience_profile: target_user_and_ai_model_characteristics
+        - output_type: expected_deliverable_format
+        - ambiguities_list: unclear_or_missing_elements
+
+      round_2_component_gap_analysis:
+        focus: "What components are missing or weak?"
+        tasks:
+        - Check for Role definition (persona, expertise level)
+        - Check for Instructions clarity (unambiguous steps)
+        - Check for Context provision (relevant background)
+        - Check for Constraints specification (boundaries, requirements)
+        - Check for Examples inclusion (concrete demonstrations)
+        - Assess complexity (1-10 scale using complexity_assessment formula)
+        - Perform multi-perspective analysis (3-5 perspectives)
+        outputs:
+        - component_gaps: list_of_missing_or_weak_components
+        - complexity_score: 1_to_10_scale
+        - perspectives_analyzed: [ prompt_engineering, ai_interpretation, user_clarity, domain_expertise, usability ]
+
+  phase_e_engineer:
+    name: "Engineer - Apply Framework and Cognitive Rigor"
+    rounds: [ 3, 4, 5 ]
+    objectives:
+    - Select appropriate framework based on complexity
+    - Apply cognitive rigor techniques to challenge assumptions
+    - Restructure prompt using selected framework
+    - Enhance clarity, specificity, and completeness
+
+    activities:
+      round_3_framework_selection:
+        focus: "Which framework best suits this prompt's complexity?"
+        tasks:
+        - Apply framework_selection_algorithm based on complexity_score
+        - For complexity 5-6: Prepare user choice (RCAF, COSTAR, TIDD-EC)
+        - For complexity 7: Prepare simplification choice (RCAF streamlined vs CRAFT comprehensive)
+        - For complexity 8-10: Auto-select CRAFT, note TIDD-EC alternative
+        - Document framework selection rationale
+        outputs:
+        - selected_framework: framework_name_with_rationale
+        - framework_structure: component_list_for_selected_framework
+        - user_interaction_required: yes_no_with_options_if_yes
+
+      round_4_cognitive_rigor:
+        focus: "Apply rigorous thinking techniques to enhance prompt"
+        tasks:
+        - Perspective Inversion (2-3 min): How will the AI interpret this? What assumptions might it make?
+        - Constraint Reversal (1-2 min): What if we removed this constraint? Is it necessary?
+        - Assumption Audit (2 min): What unstated assumptions exist? What domain knowledge is assumed?
+        - Mechanism First (3-4 min): How will the AI process this step-by-step? What's the reasoning chain?
+        outputs:
+        - perspective_inversion_insights: key_revelations_from_ai_viewpoint
+        - constraint_reversal_insights: unnecessary_or_missing_constraints
+        - assumption_audit_insights: unstated_assumptions_to_make_explicit
+        - mechanism_first_insights: ai_processing_logic_improvements
+
+      round_5_restructuring:
+        focus: "Restructure prompt using selected framework"
+        tasks:
+        - Map original prompt elements to framework components
+        - Fill missing components identified in Discovery phase
+        - Enhance clarity using cognitive rigor insights
+        - Add specific instructions, context, and constraints
+        - Incorporate domain-specific terminology where appropriate
+        outputs:
+        - restructured_prompt_draft: prompt_following_framework_structure
+        - component_mapping: original_elements_to_framework_mapping
+        - enhancements_applied: list_of_improvements_with_rationale
+
+  phase_p_prototype:
+    name: "Prototype - Generate and Validate Enhanced Version"
+    rounds: [ 6, 7 ]
+    objectives:
+    - Generate complete enhanced prompt draft
+    - Validate completeness of all components
+    - Refine language for maximum clarity and precision
+    - Ensure all framework components are properly populated
+
+    activities:
+      round_6_draft_generation:
+        focus: "Create complete enhanced prompt following framework"
+        tasks:
+        - Generate full prompt text with framework structure clearly visible
+        - Ensure each framework component is substantive (not placeholder text)
+        - Add concrete examples where applicable
+        - Use precise language (avoid vague terms like "good", "better", "thorough")
+        - Include measurable criteria where possible
+        outputs:
+        - enhanced_prompt_draft: complete_prompt_text
+        - framework_compliance: verification_all_components_present
+
+      round_7_component_validation:
+        focus: "Validate completeness and quality of all components"
+        tasks:
+        - Role check: Is persona/expertise clearly defined? Is it appropriate for the task?
+        - Instructions check: Are steps unambiguous? Can they be followed without guessing?
+        - Context check: Is background info sufficient? Are assumptions made explicit?
+        - Constraints check: Are boundaries clear? Are requirements specific and measurable?
+        - Examples check: Are examples concrete? Do they demonstrate expected format/quality?
+        outputs:
+        - validation_results:
+            role: present_or_missing
+            instructions: clear_or_ambiguous
+            context: sufficient_or_incomplete
+            constraints: explicit_or_vague
+            examples: concrete_or_na
+        - refinement_needs: list_of_improvements_needed
+
+  phase_t_test:
+    name: "Test - Validate Quality and Compare"
+    rounds: [ 8, 9 ]
+    objectives:
+    - Compare original and enhanced prompts qualitatively
+    - Verify all components are complete and actionable
+    - Identify remaining weaknesses for harmonization phase
+
+    activities:
+      round_8_quality_comparison:
+        focus: "Compare original vs enhanced on key dimensions"
+        tasks:
+        - Check clarity: Is the enhanced prompt clearer than original?
+        - Check completeness: Are all framework components filled?
+        - Check actionability: Can instructions be followed without guessing?
+        - Check specificity: Are vague terms replaced with concrete language?
+        - Document improvements made
+        outputs:
+        - clarity_improvement: better_same_worse
+        - completeness_status: complete_or_gaps_remaining
+        - actionability_status: actionable_or_ambiguous
+        - specificity_status: specific_or_vague
+
+      round_9_weakness_identification:
+        focus: "Identify remaining gaps and prioritize final improvements"
+        tasks:
+        - Compare against similar high-quality prompts (if available)
+        - Note any lingering ambiguities or vague language
+        - Identify opportunities for better examples or constraints
+        - List remaining issues for harmonization
+        outputs:
+        - improvement_priorities: ranked_list_of_changes_for_harmonization
+        - comparison_insights: learnings_from_similar_prompts
+        - final_gaps: list_of_remaining_issues
+
+  phase_h_harmonize:
+    name: "Harmonize - Final Polish and Consistency"
+    rounds: [ 10 ]
+    objectives:
+    - Apply final improvements targeting weak areas
+    - Ensure internal consistency across all framework components
+    - Verify all components are present and substantive
+    - Produce final polished version ready for use
+
+    activities:
+      round_10_final_polish:
+        focus: "Final refinements and quality confirmation"
+        tasks:
+        - Apply prioritized improvements from Test phase
+        - Remove any remaining vague language ("good", "better", "properly", "carefully")
+        - Ensure consistency: terminology, tone, specificity level
+        - Verify examples align with instructions and constraints
+        - Final component check (all parts present and substantive)
+        - Generate improvement summary (key changes, rationale)
+        outputs:
+        - final_enhanced_prompt: polished_production_ready_prompt
+        - component_status: all_components_verified_present
+        - improvement_summary: key_changes_and_rationale
+        - quality_status: complete_or_needs_review
+        - clipboard_action: copy_to_clipboard_if_terminal_supports
+
+        post_completion_actions:
+        - "Display enhanced prompt text"
+        - "Show file save location"
+        - "Offer clipboard copy: 'Enhanced prompt copied to clipboard (ready to paste)'"
+        - "Present iteration menu (if not quick mode)"
+        - "Provide usage suggestions"
+
+  phase_i_iterate:
+    name: "Iterate - Post-Enhancement Refinement"
+    optional: true
+    trigger: "User requests further refinement after completion"
+
+    objectives:
+    - Present refinement options after enhancement completes
+    - Allow dimension-specific improvements
+    - Enable framework switching
+    - Support side-by-side comparison
+    - Quick clipboard/file operations
+
+    activities:
+      iteration_menu:
+        focus: "What would you like to do next?"
+        tasks:
+        - Display enhanced prompt summary
+        - Show improvement areas
+        - Present action menu via user prompt
+        options:
+          option_1_use_prompt:
+            label: "Use enhanced prompt"
+            description: "Copy to clipboard or apply to conversation"
+            action: "Copy prompt text, mark as ready for use"
+
+          option_2_refine_area:
+            label: "Refine specific area"
+            description: "Target improvements to weak areas"
+            action: "Ask which area (clarity, structure, specificity, etc.)"
+            follow_up: "Apply targeted improvements"
+
+          option_3_try_framework:
+            label: "Try different framework"
+            description: "Re-run with COSTAR, CRAFT, etc."
+            action: "Show framework options, re-run Engineer phase"
+
+          option_4_compare:
+            label: "Compare frameworks side-by-side"
+            description: "Generate with 2-3 frameworks, pick best"
+            action: "Run parallel enhancements, show comparison table"
+
+          option_5_save:
+            label: "Save and exit"
+            description: "Save current version, complete workflow"
+            action: "Write to file, return STATUS=OK"
+
+        outputs:
+        - user_choice: selected_option_1_through_5
+        - iteration_action: next_workflow_step
+
+# ───────────────────────────────────────────────────────────────
+# FRAMEWORK SELECTION ALGORITHM
+# ───────────────────────────────────────────────────────────────
+
+framework_selection_algorithm:
+  purpose: Select optimal prompt engineering framework based on complexity assessment
+
+  complexity_assessment:
+    formula: |
+      Complexity Score (1-10) = weighted_sum of:
+        - Task ambiguity (30%): 1=clear single task, 10=multiple ambiguous goals
+        - Domain expertise required (25%): 1=general knowledge, 10=specialized expertise
+        - Output complexity (20%): 1=simple text, 10=multi-format structured output
+        - Stakeholder diversity (15%): 1=single audience, 10=multiple audiences with different needs
+        - Constraint density (10%): 1=minimal constraints, 10=many specific requirements
+
+    scoring_guidance:
+      1_to_2_trivial: "Single clear task, common knowledge, simple output"
+      3_to_4_simple: "Clear task, general domain, straightforward output"
+      5_to_6_moderate: "Some ambiguity, specialized knowledge, structured output"
+      7_moderate_high: "Multiple objectives, expert domain, or diverse stakeholders"
+      8_to_10_complex: "Highly ambiguous, deep expertise, multi-stakeholder, many constraints"
+
+  selection_rules:
+    complexity_1_to_4:
+      framework: RCAF
+      rationale: "Simple to moderate complexity - RCAF provides clear structure"
+      user_interaction: auto_with_explanation
+      alternative_frameworks: []
+      display_message: |
+        🔧 Selected RCAF framework (complexity: {complexity}/10)
+           Why: {rationale}
+           Alternatives: None - best choice for this complexity
+           Override: Re-run with different mode if framework doesn't fit your needs
+
+    complexity_5_to_6:
+      framework: RCAF
+      rationale: "Moderate complexity - RCAF balances clarity and structure"
+      user_interaction: auto_with_explanation
+      alternative_frameworks:
+      - name: COSTAR
+        note: "communication focus"
+      - name: TIDD-EC
+        note: "technical specs"
+      display_message: |
+        🔧 Selected RCAF framework (complexity: {complexity}/10)
+           Why: {rationale}
+           Alternatives: COSTAR (communication focus), TIDD-EC (technical specs)
+           Override: Re-run with different mode if framework doesn't fit your needs
+
+    complexity_7:
+      framework: CRAFT
+      rationale: "High complexity - CRAFT provides comprehensive structure"
+      user_interaction: auto_with_explanation
+      alternative_frameworks:
+      - name: RCAF
+        note: "simplified approach"
+      display_message: |
+        🔧 Selected CRAFT framework (complexity: {complexity}/10)
+           Why: {rationale}
+           Alternatives: RCAF (simplified approach)
+           Override: Re-run with different mode if framework doesn't fit your needs
+
+    complexity_8_to_10:
+      framework: CRAFT
+      rationale: "Very high complexity - CRAFT handles multi-stakeholder needs"
+      user_interaction: auto_with_explanation
+      alternative_frameworks:
+      - name: TIDD-EC
+        note: "technical alternative"
+      display_message: |
+        🔧 Selected CRAFT framework (complexity: {complexity}/10)
+           Why: {rationale}
+           Alternatives: TIDD-EC (technical alternative)
+           Override: Re-run with different mode if framework doesn't fit your needs
+
+  framework_definitions:
+    RCAF:
+      name: "Role-Context-Action-Format"
+      components: [ role, context, action, format ]
+      best_for: "General-purpose prompts, clear instructions, moderate complexity"
+      structure: |
+        Role: [Who is the AI? What expertise?]
+        Context: [What background information is relevant?]
+        Action: [What specific task should be performed?]
+        Format: [What output structure is expected?]
+
+    COSTAR:
+      name: "Context-Objective-Style-Tone-Audience-Response"
+      components: [ context, objective, style, tone, audience, response ]
+      best_for: "Communication-focused prompts, content generation, audience-specific output"
+      structure: |
+        Context: [Background and setting]
+        Objective: [What to achieve]
+        Style: [Writing style, approach]
+        Tone: [Formal, casual, technical, etc.]
+        Audience: [Who is the output for?]
+        Response: [Expected output format and length]
+
+    RACE:
+      name: "Role-Action-Context-Examples"
+      components: [ role, action, context, examples ]
+      best_for: "Rapid prototyping, learning prompts, example-driven tasks"
+      structure: |
+        Role: [AI persona]
+        Action: [Task to perform]
+        Context: [Necessary background]
+        Examples: [Concrete demonstrations]
+
+    CIDI:
+      name: "Context-Instructions-Details-Input"
+      components: [ context, instructions, details, input ]
+      best_for: "Creative prompts, ideation, open-ended exploration"
+      structure: |
+        Context: [Creative brief or background]
+        Instructions: [What to create or explore]
+        Details: [Specific requirements or constraints]
+        Input: [Starting point or stimulus]
+
+    TIDD_EC:
+      name: "Task-Instructions-Details-Deliverables-Examples-Constraints"
+      components: [ task, instructions, details, deliverables, examples, constraints ]
+      best_for: "Technical prompts, detailed specifications, complex tasks"
+      structure: |
+        Task: [High-level objective]
+        Instructions: [Step-by-step guidance]
+        Details: [Technical specifics]
+        Deliverables: [Expected outputs]
+        Examples: [Concrete demonstrations]
+        Constraints: [Boundaries and requirements]
+
+    CRISPE:
+      name: "Capacity-Role-Insight-Statement-Personality-Experiment"
+      components: [ capacity, role, insight, statement, personality, experiment ]
+      best_for: "System prompts, AI personas, conversational agents"
+      structure: |
+        Capacity: [AI's capabilities]
+        Role: [Persona and expertise]
+        Insight: [Background context]
+        Statement: [Task or objective]
+        Personality: [Tone and style]
+        Experiment: [Constraints or guidelines]
+
+    CRAFT:
+      name: "Context-Role-Action-Format-Target"
+      components: [ context, role, action, format, target ]
+      best_for: "Complex multi-stakeholder prompts, high-stakes applications"
+      structure: |
+        Context: [Comprehensive background, business goals, constraints]
+        Role: [Detailed persona with expertise areas]
+        Action: [Multi-step task breakdown with clear objectives]
+        Format: [Structured output with sections, examples, and templates]
+        Target: [Specific audiences, success criteria, measurable outcomes]
+
+# ───────────────────────────────────────────────────────────────
+# COGNITIVE RIGOR TECHNIQUES
+# ───────────────────────────────────────────────────────────────
+
+cognitive_rigor_techniques:
+  purpose: Apply structured thinking methods to challenge assumptions and enhance quality
+  timing: "Applied during Phase E (Engineer), Round 4"
+  total_time: "8-11 minutes of focused analysis"
+
+  technique_1_perspective_inversion:
+    duration: "2-3 minutes"
+    focus: "View prompt from AI's interpretation angle"
+    questions:
+    - "How will the AI parse this instruction? What's ambiguous from its perspective?"
+    - "What assumptions might the AI make that differ from my intent?"
+    - "Where could the AI reasonably interpret this in multiple ways?"
+    - "What information is implicit to me but unknown to the AI?"
+    outputs:
+    - "List of potential misinterpretations"
+    - "Ambiguous phrases needing clarification"
+    - "Implicit assumptions to make explicit"
+
+  technique_2_constraint_reversal:
+    duration: "1-2 minutes"
+    focus: "Question assumed constraints and requirements"
+    questions:
+    - "What if we removed this constraint? Is it truly necessary?"
+    - "What constraints are missing that should be present?"
+    - "Are any constraints contradictory or mutually exclusive?"
+    - "What happens if constraints are violated? Are boundaries clear?"
+    outputs:
+    - "Unnecessary constraints to remove"
+    - "Missing constraints to add"
+    - "Contradictions to resolve"
+
+  technique_3_assumption_audit:
+    duration: "2 minutes"
+    focus: "Challenge unstated assumptions and domain knowledge"
+    questions:
+    - "What domain knowledge am I assuming the AI has?"
+    - "What unstated assumptions exist about context or process?"
+    - "What would a complete novice need to know to follow this?"
+    - "What cultural, technical, or domain-specific context is implicit?"
+    outputs:
+    - "Implicit assumptions to make explicit"
+    - "Domain knowledge to include in context"
+    - "Unstated prerequisites to clarify"
+
+  technique_4_mechanism_first:
+    duration: "3-4 minutes"
+    focus: "Map AI's processing logic step-by-step"
+    questions:
+    - "What is the first thing the AI will process?"
+    - "What information does it need at each step?"
+    - "Where might processing get stuck or confused?"
+    - "What's the reasoning chain from input to output?"
+    outputs:
+    - "Processing bottlenecks identified"
+    - "Information dependencies mapped"
+    - "Reasoning chain made explicit in prompt structure"
+
+  application_process:
+    when_to_apply: "During Engineer phase (Round 4), after framework selection, before restructuring"
+    how_to_apply:
+    - "Set timer for each technique (stay time-boxed)"
+    - "Work through questions methodically"
+    - "Document all insights (even if seemingly minor)"
+    - "Prioritize insights by impact on clarity and specificity"
+    - "Incorporate findings into Round 5 restructuring"
+    output_format: |
+      Cognitive Rigor Summary:
+      - Perspective Inversion: [Key insight 1-2 sentences]
+      - Constraint Reversal: [Key insight 1-2 sentences]
+      - Assumption Audit: [Key insight 1-2 sentences]
+      - Mechanism First: [Key insight 1-2 sentences]
+
+# ───────────────────────────────────────────────────────────────
+# MULTI-PERSPECTIVE ANALYSIS
+# ───────────────────────────────────────────────────────────────
+
+multi_perspective_analysis:
+  purpose: Examine prompt from multiple viewpoints to identify blind spots
+  minimum_perspectives: 3
+  target_perspectives: 5
+  timing: "Applied during Phase D (Discover), Round 2"
+
+  core_perspectives:
+    perspective_1_prompt_engineering:
+      focus: "Technical quality of prompt construction"
+      questions:
+      - "Does this follow prompt engineering best practices?"
+      - "Is the structure optimal for this task type?"
+      - "Are there proven patterns we should apply?"
+      outputs: "Framework recommendations, structural improvements"
+
+    perspective_2_ai_interpretation:
+      focus: "How AI models will parse and process this"
+      questions:
+      - "What tokens or patterns will the model focus on?"
+      - "Where might attention mechanisms struggle?"
+      - "What's the likely reasoning path?"
+      outputs: "Ambiguity identification, processing concerns"
+
+    perspective_3_user_clarity:
+      focus: "Readability and understandability for humans"
+      questions:
+      - "Can a non-expert understand what's being asked?"
+      - "Is the language clear and professional?"
+      - "Would I understand this if I saw it in 6 months?"
+      outputs: "Clarity improvements, jargon reduction"
+
+  additional_perspectives:
+    perspective_4_domain_expertise:
+      focus: "Technical accuracy and domain appropriateness"
+      questions:
+      - "Is domain terminology used correctly?"
+      - "Are domain-specific requirements captured?"
+      - "What domain knowledge is assumed vs explicit?"
+      outputs: "Technical corrections, domain context additions"
+
+    perspective_5_usability:
+      focus: "Practical effectiveness for intended use case"
+      questions:
+      - "Will this actually solve the user's problem?"
+      - "Is this practical to implement/execute?"
+      - "What edge cases or failure modes exist?"
+      outputs: "Practical improvements, edge case handling"
+
+  analysis_process:
+    step_1_select_perspectives:
+    - "Always include: Prompt Engineering, AI Interpretation, User Clarity"
+    - "Add 1-2 more based on prompt complexity and domain"
+
+    step_2_systematic_examination:
+    - "Work through each perspective's questions"
+    - "Document findings specific to that viewpoint"
+    - "Note contradictions between perspectives"
+
+    step_3_synthesize_insights:
+    - "Identify patterns across perspectives"
+    - "Prioritize findings by impact and frequency"
+    - "Resolve contradictions with reasoned tradeoffs"
+
+    output_format: |
+      Multi-Perspective Analysis:
+      - Prompt Engineering: [Finding]
+      - AI Interpretation: [Finding]
+      - User Clarity: [Finding]
+      - [Optional 4th]: [Finding]
+      - [Optional 5th]: [Finding]
+
+      Cross-cutting insights: [Synthesis]
+      Priority improvements: [Top 3]
+
+# ───────────────────────────────────────────────────────────────
+# QUALITY STANDARDS
+# ───────────────────────────────────────────────────────────────
+
+quality_standards:
+  overall_targets:
+  - component_completeness: all_framework_components_filled
+  - clarity: no_vague_or_ambiguous_language
+  - actionability: instructions_can_be_followed_without_guessing
+  - specificity: concrete_language_with_measurable_criteria
+
+  quick_mode_targets:
+  - component_completeness: core_components_present
+  - basic_clarity: major_ambiguities_resolved
+  - processing_time: under_10_seconds
+
+  validation_gates:
+    gate_1_completeness:
+      check: "All framework components present and substantive"
+      action_if_fail: "Identify missing components, add in Harmonize phase"
+
+    gate_2_clarity:
+      check: "No vague terms (good, better, properly, carefully)"
+      action_if_fail: "Find and replace vague terms with specific language"
+
+    gate_3_actionability:
+      check: "Instructions can be followed without guessing"
+      action_if_fail: "Add specificity, examples, or step breakdowns"
+
+    gate_4_structure:
+      check: "Well-organized with clear sections and hierarchy"
+      action_if_fail: "Reorganize content, add headers, improve flow"
+
+  fail_handling:
+    if_gates_fail_after_harmonize:
+    - "Document which gates failed and why"
+    - "Present user with options: (A) one more refinement round, (B) accept current, (C) cancel"
+    - "If user chooses A: Focus on failed gates only, apply targeted fixes"
+    - "If user chooses B: Proceed with current version, note limitations in output"
+    - "If user chooses C: Return STATUS=CANCELLED with summary of attempts"
+
+# ───────────────────────────────────────────────────────────────
+# TWO-LAYER TRANSPARENCY MODEL
+# ───────────────────────────────────────────────────────────────
+
+two_layer_transparency:
+  purpose: "Balance complete analysis rigor with user-friendly progress updates"
+
+  internal_layer:
+    description: "Full DEPTH rigor, detailed analysis"
+    contents:
+    - "Complete 10-round DEPTH execution"
+    - "Multi-perspective analysis (3-5 perspectives)"
+    - "Cognitive rigor technique application (4 techniques, 8-11 min)"
+    - "Component validation"
+    - "Framework selection rationale with alternatives considered"
+    - "Assumption audits and mechanism mapping"
+    visibility: "Executed fully, documented internally, included in final output report"
+
+  external_layer:
+    description: "Concise progress updates showing key decisions and phase completion"
+    contents:
+    - "Phase progress indicators (Phase D: Rounds 1-2/10)"
+    - "Key decisions (Complexity: 7/10 → Framework: CRAFT)"
+    - "Quality checkpoints"
+    - "Major insights from cognitive rigor (1-2 sentences per technique)"
+    - "Framework selection with brief rationale"
+    visibility: "Shown to user in real-time during processing"
+    format: |
+      🔍 Phase D: Discovering prompt structure... [Rounds 1-2/10]
+         Complexity: [X]/10 | Perspectives: [N]
+
+      🔧 Phase E: Engineering framework ([Framework])... [Rounds 3-5/10]
+         Cognitive rigor applied | [Key insight]
+
+      📝 Phase P: Prototyping enhanced prompt... [Rounds 6-7/10]
+         Components: [X]/5 validated
+
+      ✅ Phase T: Validating quality... [Rounds 8-9/10]
+         Quality: [complete ✓ | needs refinement]
+
+      🎯 Phase H: Harmonizing final version... [Round 10/10]
+         Final polish applied
+
+  balance_principle: "Do ALL the rigorous work internally, show CONCISE progress externally"
+
+# ───────────────────────────────────────────────────────────────
+# MODE-SPECIFIC ADAPTATIONS
+# ───────────────────────────────────────────────────────────────
+
+mode_adaptations:
+  auto_mode:
+    description: "Automatic mode detection based on prompt quality assessment"
+    detection_algorithm:
+      step_1_assess: "Assess original prompt structure and completeness"
+      step_2_mode_selection: |
+        If minimal structure, missing components: mode = "quick"
+        If some structure, needs enhancement: mode = "improve"
+        If good structure, needs polish: mode = "refine"
+      step_3_user_notification: |
+        Display: "📊 Auto-selected '{mode}' mode (assessment: {quality_level})"
+        Include: Rationale for selection
+        Offer: Override instructions for manual mode selection
+    quality_levels:
+      poor: "Minimal structure, missing key components → quick mode"
+      fair: "Some structure, needs enhancement → improve mode"
+      good: "Good structure, needs polish → refine mode"
+
+  quick_mode:
+    modifications:
+    - rounds: "1-5 (adaptive based on complexity)"
+    - framework_selection: "automatic (no user prompts)"
+    - cognitive_rigor: "abbreviated (1-2 techniques, 2-3 min total)"
+    - multi_perspective: "minimum only (3 perspectives)"
+    - validation: "basic completeness check"
+    - iteration_menu: "skip (no Phase I - direct completion)"
+    targets:
+    - processing_time: "under 10 seconds"
+    - quality: "any improvement acceptable"
+    use_case: "Rapid iteration, testing, simple prompts, or poor baseline"
+
+  improve_mode:
+    modifications:
+    - rounds: "full 10 rounds"
+    - framework_selection: "automatic_with_explanation (no user prompts)"
+    - cognitive_rigor: "full (4 techniques, 8-11 min)"
+    - multi_perspective: "target 5 perspectives"
+    - validation: "comprehensive"
+    targets:
+    - processing_time: "under 30 seconds"
+    - quality: "complete and actionable"
+    use_case: "Standard enhancement workflow, moderate baseline quality"
+
+  refine_mode:
+    modifications:
+    - rounds: "full 10 rounds"
+    - framework_selection: "preserve existing (no change)"
+    - cognitive_rigor: "focused on language precision"
+    - focus_areas: "Clarity, Specificity, Language precision"
+    - multi_perspective: "User Clarity + AI Interpretation primary"
+    targets:
+    - processing_time: "under 30 seconds"
+    - quality: "polished and professional"
+    use_case: "Polish existing good prompts that already have structure"
+
+  area_refinement_mode:
+    trigger: "User selects 'Refine specific area' from iteration menu"
+    modifications:
+    - rounds: "3-5 focused rounds"
+    - target_area: "user_selected (clarity, structure, specificity, etc.)"
+    - framework_selection: "preserve existing"
+    - focus: "narrow to single improvement area"
+
+    workflow:
+      step_1_identify_weakness:
+      - "Show current issues in target area"
+      - "Explain why area needs improvement"
+      - "Identify specific issues (vague language, poor structure, etc.)"
+
+      step_2_targeted_improvement:
+      - "Apply area-specific techniques"
+      - "Clarity: Remove vague terms, increase specificity"
+      - "Structure: Improve organization, clarify flow"
+      - "Specificity: Make components more concrete"
+      - "Accuracy: Fix terminology, validate accuracy"
+      - "Organization: Reorganize sections, improve hierarchy"
+
+      step_3_validate_improvement:
+      - "Compare before/after on target area"
+      - "Show specific changes made"
+      - "Return to iteration menu or exit"
+
+    targets:
+    - improvement: "measurable improvement in target area"
+    - processing_time: "under 15 seconds"
+    - preservation: "other areas unchanged"
+
+  comparison_mode:
+    trigger: ":compare flag in arguments OR 'Compare frameworks' from iteration menu"
+    modifications:
+    - rounds: "10 rounds per framework"
+    - frameworks: "3 frameworks (RCAF, COSTAR, CRAFT)"
+    - parallel_execution: "true (if resources allow)"
+    - output_format: "comparison_table"
+
+    workflow:
+      step_1_select_frameworks:
+      - "Auto-select 3 frameworks based on complexity"
+      - "Low (1-4): RCAF, RACE, CIDI"
+      - "Medium (5-6): RCAF, COSTAR, TIDD-EC"
+      - "High (7-10): RCAF, COSTAR, CRAFT"
+
+      step_2_parallel_enhancement:
+      - "Run DEPTH framework for each"
+      - "Assess quality independently"
+      - "Generate 3 complete enhanced prompts"
+
+      step_3_comparison_table:
+      - "Show side-by-side comparison"
+      - "Structure, length, preview"
+      - "Best-for descriptions"
+      - "Recommendation based on completeness and clarity"
+
+      step_4_user_selection:
+      - "Ask user to select framework"
+      - "Return selected enhanced prompt"
+      - "Save to file with framework name"
+
+    targets:
+    - processing_time: "under 60 seconds total"
+    - frameworks_compared: "3"
+    - recommendation: "based on best structure and clarity"
+
+  learning_mode:
+    trigger: ":explain flag in arguments"
+    modifications:
+    - rounds: "2 rounds only (Discovery phase)"
+    - enhancement: "false (analysis only, no changes)"
+    - educational_output: "true (explain what's wrong)"
+    - user_interaction: "full explanation then ask to proceed"
+
+    workflow:
+      step_1_analyze_prompt:
+      - "Perform Discovery phase (component analysis)"
+      - "Assess baseline structure and completeness"
+      - "Identify all gaps and weaknesses"
+
+      step_2_explain_issues:
+      - "Show what's missing (component checklist)"
+      - "Explain why each missing component matters"
+      - "Show how AI might misinterpret current prompt"
+      - "Estimate impact of each gap (high/medium/low)"
+
+      step_3_offer_enhancement:
+      - "Ask: 'Ready to enhance? [y/n]'"
+      - "If yes: Proceed with full DEPTH workflow"
+      - "If no: Save analysis to file, exit"
+
+    outputs:
+    - analysis_report: "Educational breakdown of issues"
+    - component_gaps: "Missing components with explanations"
+    - improvement_suggestions: "What would improve each area"
+
+  test_mode:
+    trigger: ":test flag with --sample argument"
+    modifications:
+    - rounds: "full 10 rounds (enhance first)"
+    - testing: "true (run sample through both prompts)"
+    - comparison: "original_output vs enhanced_output"
+    - user_interaction: "show results, ask to proceed or retry"
+
+    workflow:
+      step_1_enhance_prompt:
+      - "Run full DEPTH enhancement workflow"
+      - "Generate enhanced prompt"
+
+      step_2_extract_sample:
+      - "Parse --sample argument from command"
+      - "If no sample: Ask user for sample input"
+      - "Validate sample is appropriate for prompt type"
+
+      step_3_test_original:
+      - "Create test context with original prompt"
+      - "Process sample input"
+      - "Capture output (simulated or actual)"
+      - "Note: May require using Task tool with sample"
+
+      step_4_test_enhanced:
+      - "Create test context with enhanced prompt"
+      - "Process same sample input"
+      - "Capture output"
+
+      step_5_compare_outputs:
+      - "Show side-by-side: original output vs enhanced output"
+      - "Highlight differences in quality"
+      - "Explain why enhanced is better (specificity, structure, etc.)"
+
+      step_6_user_decision:
+      - "Ask: Save enhanced prompt? [y/n]"
+      - "If yes: Save and exit"
+      - "If no: Offer to refine further"
+
+    outputs:
+    - test_results_comparison: "side_by_side_output_quality"
+    - user_verdict: "proceed_or_retry"
+
+  audit_mode:
+    trigger: ":audit flag (no prompt text required)"
+    modifications:
+    - scanning: "true (scan .opencode/command/ and .opencode/command/*/assets/)"
+    - analysis: "assess quality for all prompts"
+    - recommendations: "prioritize by completeness (least complete first)"
+    - user_interaction: "show results, offer batch enhancement"
+
+    workflow:
+      step_1_scan_directories:
+      - "Glob search: .opencode/command/*.md"
+      - "Glob search: .opencode/command/*/assets/*.yaml"
+      - "Glob search: .opencode/command/**/*.md"
+      - "Extract prompt content from each file"
+
+      step_2_analyze_prompts:
+      - "For each prompt: Assess baseline structure and completeness"
+      - "Categorize: Poor (minimal structure), Fair (partial), Good (complete), Excellent (polished)"
+      - "Identify missing components"
+      - "Estimate enhancement potential"
+
+      step_3_generate_report:
+      - "Group by quality category"
+      - "Sort by completeness (least complete first = highest priority)"
+      - "Show file path, current status, issues, recommended action"
+
+      step_4_offer_batch_enhancement:
+      - "Ask: Enhance all low-quality prompts? [y/n/select]"
+      - "If yes: Queue all Poor + Fair prompts for enhancement"
+      - "If select: Let user pick which to enhance"
+      - "Process sequentially with progress updates"
+
+    outputs:
+    - audit_report: "quality_breakdown_by_file"
+    - priority_list: "sorted_by_completeness"
+    - batch_enhancement_queue: "if_user_accepts"
+
+# ───────────────────────────────────────────────────────────────
+# RULES
+# ───────────────────────────────────────────────────────────────
+
+rules:
+  ALWAYS:
+  - Execute all 10 DEPTH rounds unless quick mode (no skipping)
+  - Validate all framework components are complete and substantive
+  - Verify prompt has clear role, context, and actionable instructions
+  - Apply framework selection algorithm based on complexity
+  - Use cognitive rigor techniques during Engineer phase
+  - Perform multi-perspective analysis (minimum 3 perspectives)
+  - Document framework selection rationale
+  - Show two-layer transparency (internal rigor, external conciseness)
+  - Remove vague language (good, better, properly, carefully, thoroughly)
+  - Make implicit assumptions explicit
+  - Include concrete examples where applicable
+  - Use specific, measurable, actionable language
+
+  NEVER:
+  - Skip DEPTH phases or rounds (except in quick mode)
+  - Claim quality without verification (validate thoroughly)
+  - Use vague adjectives in enhanced prompts
+  - Leave ambiguous instructions or constraints
+  - Skip component completeness validation
+  - Ignore cognitive rigor insights
+  - Proceed with incomplete prompts without user confirmation
+  - Change framework mid-process without rationale
+  - Leave assumptions implicit
+  - Use placeholder text in final enhanced prompt
+
+  PREFER:
+  - Specific over vague (250 words → not "brief")
+  - Measurable over subjective (all components filled → not "good quality")
+  - Explicit over implicit (make assumptions visible)
+  - Structured over unstructured (framework application)
+  - Concrete over abstract (examples and demonstrations)
+  - Simple over complex (RCAF over CRAFT when complexity allows)
+  - Active voice over passive (the AI will X → X will be done)
+  - Short sentences over long (readability)
+
+# ───────────────────────────────────────────────────────────────
+# ERROR HANDLING
+# ───────────────────────────────────────────────────────────────
+
+error_handling:
+  scenario_1_complexity_assessment_fails:
+    detection: "Unable to calculate complexity score (missing information)"
+    recovery:
+    - "Default to complexity 5 (moderate)"
+    - "Use RCAF framework (safest choice)"
+    - "Note assumption in output"
+    - "Continue processing"
+
+  scenario_2_framework_selection_timeout:
+    detection: "User doesn't respond to framework choice prompt within reasonable time"
+    recovery:
+    - "Default to RCAF (most versatile)"
+    - "Notify user of fallback decision"
+    - "Continue processing"
+    - "Note in output: Framework chosen by default"
+
+  scenario_3_quality_assessment_unclear:
+    detection: "Unable to determine if enhancement improves original"
+    recovery:
+    - "Compare against framework component checklist"
+    - "Document areas of uncertainty"
+    - "Apply conservative judgment (err on side of clarity)"
+    - "Continue processing"
+
+  scenario_4_component_not_applicable:
+    detection: "Framework component truly not applicable (e.g., examples for simple Q&A)"
+    recovery:
+    - "Mark component as N/A with justification"
+    - "Ensure other components are complete and substantive"
+    - "Note in validation results"
+    - "Continue processing"
+
+  scenario_5_enhancement_degraded:
+    detection: "Enhanced prompt is less clear or complete than original"
+    recovery:
+    - "Re-run Harmonize phase (Round 10)"
+    - "Focus on areas that degraded"
+    - "Apply constraint reversal (removed necessary element?)"
+    - "If still worse: Return original with analysis of why enhancement failed"
+
+  scenario_6_processing_timeout:
+    detection: "DEPTH processing exceeds 30 seconds (or 10s for quick mode)"
+    recovery:
+    - "Complete current round, skip remaining rounds"
+    - "Use partial results to generate enhanced prompt"
+    - "Note incomplete processing in output"
+    - "Offer to retry with :quick mode"
+
+# ───────────────────────────────────────────────────────────────
+# OUTPUT SPECIFICATIONS
+# ───────────────────────────────────────────────────────────────
+
+output_specifications:
+  dual_output_system:
+    purpose: "Generate both SpecKit spec and pure YAML prompt for comprehensive documentation"
+    rationale: |
+      - spec.md = SpecKit-compliant specification following standard template
+      - enhanced_prompt.yaml = Pure prompt YAML with NO metadata (direct use)
+      - Both files stored in user-selected spec folder
+
+    file_1_spec_md:
+      filename: "spec.md"
+      purpose: "SpecKit specification following standard spec template structure"
+      format: "Markdown following SpecKit spec.md template (OBJECTIVE, SCOPE, USERS & STORIES, etc.)"
+      use_case: "Documentation, team collaboration, implementation planning"
+      location: "{spec_folder_path}/spec.md"
+
+    file_2_yaml:
+      filename: "enhanced_prompt.yaml"
+      purpose: "Pure enhanced prompt YAML - NO metadata, just the prompt content"
+      format: "YAML with framework components at top-level (NO metadata wrapper)"
+      use_case: "Direct use in AI workflows - copy/paste ready"
+      location: "{spec_folder_path}/enhanced_prompt.yaml"
+
+  enhanced_prompt_yaml:
+    format: "Pure YAML - framework components only, NO metadata"
+    critical_rule: |
+      IMPORTANT: The enhanced_prompt.yaml file contains ONLY the enhanced prompt itself.
+      - NO metadata section
+      - NO timestamps
+      - NO complexity scores
+      - NO usage examples
+      - JUST the prompt content in YAML format
+
+      This allows direct copy/paste into AI workflows without stripping metadata.
+
+    structure: |
+      # ───────────────────────────────────────────────────────────────────
+      # [PROMPT_TITLE]
+      # ───────────────────────────────────────────────────────────────────
+      # Framework: [RCAF|COSTAR|CRAFT|etc.]
+
+      [FRAMEWORK_COMPONENT_1]: |
+        [Actual content for this component]
+
+      [FRAMEWORK_COMPONENT_2]: |
+        [Actual content for this component]
+
+      [FRAMEWORK_COMPONENT_3]: |
+        [Actual content for this component]
+
+      # ... remaining framework components ...
+
+    framework_structures:
+      RCAF:
+        structure: |
+          # ───────────────────────────────────────────────────────────────────
+          # [PROMPT_TITLE]
+          # ───────────────────────────────────────────────────────────────────
+          # Framework: RCAF (Role-Context-Action-Format)
+
+          role: |
+            [Actual role definition - who the AI should be, expertise level]
+
+          context: |
+            [Actual context - background information, relevant details]
+
+          action: |
+            [Actual action - specific task to perform, clear instructions]
+
+          format: |
+            [Actual format - expected output structure, formatting requirements]
+
+      COSTAR:
+        structure: |
+          # ───────────────────────────────────────────────────────────────────
+          # [PROMPT_TITLE]
+          # ───────────────────────────────────────────────────────────────────
+          # Framework: COSTAR (Context-Objective-Style-Tone-Audience-Response)
+
+          context: |
+            [Actual context - background and setting]
+
+          objective: |
+            [Actual objective - what to achieve]
+
+          style: |
+            [Actual style - writing style, approach]
+
+          tone: |
+            [Actual tone - formal, casual, technical, etc.]
+
+          audience: |
+            [Actual audience - who is the output for]
+
+          response: |
+            [Actual response format - expected output format and length]
+
+      RACE:
+        structure: |
+          # ───────────────────────────────────────────────────────────────────
+          # [PROMPT_TITLE]
+          # ───────────────────────────────────────────────────────────────────
+          # Framework: RACE (Role-Action-Context-Examples)
+
+          role: |
+            [Actual role - AI persona]
+
+          action: |
+            [Actual action - task to perform]
+
+          context: |
+            [Actual context - necessary background]
+
+          examples: |
+            [Actual examples - concrete demonstrations]
+
+      CIDI:
+        structure: |
+          # ───────────────────────────────────────────────────────────────────
+          # [PROMPT_TITLE]
+          # ───────────────────────────────────────────────────────────────────
+          # Framework: CIDI (Context-Instructions-Details-Input)
+
+          context: |
+            [Actual context - creative brief or background]
+
+          instructions: |
+            [Actual instructions - what to create or explore]
+
+          details: |
+            [Actual details - specific requirements or constraints]
+
+          input: |
+            [Actual input - starting point or stimulus]
+
+      TIDD_EC:
+        structure: |
+          # ───────────────────────────────────────────────────────────────────
+          # [PROMPT_TITLE]
+          # ───────────────────────────────────────────────────────────────────
+          # Framework: TIDD-EC (Task-Instructions-Details-Deliverables-Examples-Constraints)
+
+          task: |
+            [Actual task - high-level objective]
+
+          instructions: |
+            [Actual instructions - step-by-step guidance]
+
+          details: |
+            [Actual details - technical specifics]
+
+          deliverables: |
+            [Actual deliverables - expected outputs]
+
+          examples: |
+            [Actual examples - concrete demonstrations]
+
+          constraints: |
+            [Actual constraints - boundaries and requirements]
+
+      CRISPE:
+        structure: |
+          # ───────────────────────────────────────────────────────────────────
+          # [PROMPT_TITLE]
+          # ───────────────────────────────────────────────────────────────────
+          # Framework: CRISPE (Capacity-Role-Insight-Statement-Personality-Experiment)
+
+          capacity: |
+            [Actual capacity - AI's capabilities]
+
+          role: |
+            [Actual role - persona and expertise]
+
+          insight: |
+            [Actual insight - background context]
+
+          statement: |
+            [Actual statement - task or objective]
+
+          personality: |
+            [Actual personality - tone and style]
+
+          experiment: |
+            [Actual experiment - constraints or guidelines]
+
+      CRAFT:
+        structure: |
+          # ───────────────────────────────────────────────────────────────────
+          # [PROMPT_TITLE]
+          # ───────────────────────────────────────────────────────────────────
+          # Framework: CRAFT (Context-Role-Action-Format-Target)
+
+          context: |
+            [Actual context - comprehensive background, business goals, constraints]
+
+          role: |
+            [Actual role - detailed persona with expertise areas]
+
+          action: |
+            [Actual action - multi-step task breakdown with clear objectives]
+
+          format: |
+            [Actual format - structured output with sections, examples, templates]
+
+          target: |
+            [Actual target - specific audiences, success criteria, measurable outcomes]
+
+  file_locations:
+    spec_folder_from_phase_1:
+      source: "User selected in Phase 1 step 3 (A/B/C/D)"
+      options:
+        A: "Use existing spec folder (CLI argument required)"
+        B: "Create new spec folder: specs/[###]-enhanced-prompt/"
+        C: "Update related spec folder"
+        D: "Skip documentation (fallback to /export/)"
+
+    naming_convention:
+      always_both_files:
+        file_1: "spec.md"
+        file_2: "enhanced_prompt.yaml"
+
+    output_paths:
+      if_user_selected_A_B_C:
+        spec_md: "{spec_folder_path}/spec.md"
+        yaml: "{spec_folder_path}/enhanced_prompt.yaml"
+      if_user_selected_D_skip:
+        spec_md: "/export/[###]-enhanced-prompt-[timestamp]/spec.md"
+        yaml: "/export/[###]-enhanced-prompt-[timestamp]/enhanced_prompt.yaml"
+
+  metadata:
+    include:
+    - "Processing timestamp (ISO 8601)"
+    - "Mode used (quick, improve, refine, interactive)"
+    - "Framework selected (RCAF, COSTAR, CRAFT, etc.)"
+    - "Complexity score (1-10)"
+    - "DEPTH rounds completed (1-10)"
+    - "Processing time (seconds)"
+    - "Original prompt (for reference)"
+    - "Character count (original vs enhanced)"
+    - "Framework components completed"
+    - "Enhancement summary (key improvements)"
+
+    contextual_interpretation_guidelines:
+    - "Verify all framework components are complete and substantive"
+    - "Document key improvements between original and enhanced"
+    - "Identify strong areas based on clarity and specificity"
+    - "Identify areas that may need further refinement"
+    - "Write plain language explanation covering:"
+    - "  - What improvements were made in practical terms"
+    - "  - What changed between original and enhanced"
+    - "  - Why those changes matter for AI interpretation"
+    - "  - What the user can expect from the enhanced prompt"
+
+# ───────────────────────────────────────────────────────────────
+# WORKFLOW EXECUTION NOTES
+# ───────────────────────────────────────────────────────────────
+
+execution_notes:
+  spec_folder_selection:
+  - "Ask user for spec folder choice in Phase 1 step 3 (A/B/C/D pattern)"
+  - "A: Use existing spec folder | B: Create new | C: Update related | D: Skip (fallback)"
+  - "Store spec_folder_path for use in Phase 6"
+  - "Follows standard SpecKit workflow from AGENTS.md"
+
+  dual_output_generation:
+  - "Generate BOTH files - spec.md and enhanced_prompt.yaml"
+  - "File 1: spec.md (SpecKit specification with Problem, Solution, Enhanced Prompt, Success Criteria)"
+  - "File 2: enhanced_prompt.yaml (machine-readable with metadata and framework components)"
+  - "Both files go to same spec folder selected in Phase 1"
+  - "Write files sequentially: spec.md first, then YAML"
+  - "Both files required for STATUS=OK (fail if either write fails)"
+
+  phase_progression:
+  - "Phases MUST execute sequentially (D → E → P → T → H)"
+  - "Rounds within phases execute in order (no skipping)"
+  - "Each phase builds on previous phase outputs"
+  - "User interactions block progress until response received"
+
+  cognitive_rigor_timing:
+  - "Total time budget: 8-11 minutes"
+  - "Stay within time boxes (focus on insights, not perfection)"
+  - "Document all insights even if minor"
+  - "Apply insights during Round 5 restructuring"
+
+  quality_validation:
+  - "Validate completeness after Round 8 (Test phase)"
+  - "If components incomplete: Prepare targeted improvements for Round 10"
+  - "If still incomplete after Round 10: Prompt user for decision"
+  - "Never proceed to output with incomplete prompts without user confirmation"
+
+  transparency_delivery:
+  - "Show external layer updates in real-time"
+  - "Keep updates concise (1-2 lines per phase)"
+  - "Include key metrics (complexity, framework, rounds)"
+  - "Internal analysis happens silently, only key results shown"
+
+  framework_application:
+  - "Apply framework structure explicitly (visible headers/sections)"
+  - "Ensure each component is substantive (not placeholder)"
+  - "Use framework terminology in enhanced prompt"
+  - "Make structure self-documenting"
+
+# ───────────────────────────────────────────────────────────────
+# PHASE 6: OUTPUT GENERATION (File Creation Workflow)
+# ───────────────────────────────────────────────────────────────
+
+phase_6_output_generation:
+  phase_name: "Dual Output Generation"
+  emoji: "📄"
+  purpose: "Create BOTH output files (spec.md and enhanced_prompt.yaml) in user-selected spec folder"
+  trigger: "After Phase H (Harmonize) completes successfully"
+
+  steps:
+    step_13_determine_output_location:
+      action: "Use spec folder from Phase 1 step 3 (user already selected A/B/C/D)"
+
+      spec_folder_source:
+        from_phase_1: "User selected spec folder via user prompt (A/B/C/D pattern)"
+        options_recap:
+          A: "Use existing spec folder (CLI argument required)"
+          B: "Create new spec folder: specs/[###]-enhanced-prompt/"
+          C: "Update related spec folder"
+          D: "Skip documentation (fallback to /export/)"
+
+      output_location_logic:
+        if_user_selected_A_B_or_C:
+          base_path: "{spec_folder_path from Phase 1}"
+          file_1: "{base_path}/spec.md"
+          file_2: "{base_path}/enhanced_prompt.yaml"
+
+        if_user_selected_D_skip:
+          base_path: "/export/[###]-enhanced-prompt-[timestamp]/"
+          file_1: "{base_path}/spec.md"
+          file_2: "{base_path}/enhanced_prompt.yaml"
+          warning: "User skipped documentation - saving to /export/ fallback"
+
+      outputs:
+      - spec_folder_path: "Full path to spec folder (from Phase 1)"
+      - spec_md_path: "{spec_folder_path}/spec.md"
+      - yaml_path: "{spec_folder_path}/enhanced_prompt.yaml"
+
+    step_14_assemble_both_outputs:
+      action: "Assemble BOTH spec.md and enhanced_prompt.yaml content"
+      tool: "Construct in memory (Write tool in step 16)"
+      note: "Both files are ALWAYS generated - dual output system"
+
+      parallel_assembly:
+        execute_both:
+        - "step_14a_assemble_speckit_content"
+        - "step_14b_assemble_yaml_content"
+
+    step_14a_assemble_speckit_content:
+      action: "Assemble spec.md content - simplified format with Purpose, Original Prompt, and numbered prompt sections"
+      tool: "Construct in memory (Write tool in step 16)"
+      note: "SIMPLIFIED spec.md - NO metadata, scope, framework components, success criteria, usage, or appendix sections"
+
+      content_structure:
+        header:
+        - "# Feature Specification: Enhanced Prompt - {prompt_title}"
+        - ""
+        - "Complete specification for the enhanced prompt using {framework_name} framework."
+        - ""
+
+        purpose_section:
+        - "### Purpose"
+        - "{enhanced_prompt_purpose_statement}"
+        - ""
+
+        original_prompt_section:
+        - "### Original Prompt"
+        - "```"
+        - "{original_prompt_text}"
+        - "```"
+        - ""
+        - "---"
+        - ""
+
+        enhanced_prompt_numbered_sections:
+        - "## 1. {FRAMEWORK_COMPONENT_1_HEADER}"
+        - "{framework_component_1_content}"
+        - ""
+        - "## 2. {FRAMEWORK_COMPONENT_2_HEADER}"
+        - "{framework_component_2_content}"
+        - ""
+        - "## ... continue for all framework components ..."
+
+      framework_section_mapping:
+        note: "Each framework generates numbered sections from its components"
+        RCAF:
+          sections:
+          - "## 1. ROLE"
+          - "## 2. CONTEXT"
+          - "## 3. ACTION"
+          - "## 4. FORMAT"
+        COSTAR:
+          sections:
+          - "## 1. CONTEXT"
+          - "## 2. OBJECTIVE"
+          - "## 3. STYLE"
+          - "## 4. TONE"
+          - "## 5. AUDIENCE"
+          - "## 6. RESPONSE"
+        RACE:
+          sections:
+          - "## 1. ROLE"
+          - "## 2. ACTION"
+          - "## 3. CONTEXT"
+          - "## 4. EXAMPLES"
+        CIDI:
+          sections:
+          - "## 1. CONTEXT"
+          - "## 2. INSTRUCTIONS"
+          - "## 3. DETAILS"
+          - "## 4. INPUT"
+        TIDD_EC:
+          sections:
+          - "## 1. TASK"
+          - "## 2. INSTRUCTIONS"
+          - "## 3. DETAILS"
+          - "## 4. DELIVERABLES"
+          - "## 5. EXAMPLES"
+          - "## 6. CONSTRAINTS"
+        CRISPE:
+          sections:
+          - "## 1. CAPACITY"
+          - "## 2. ROLE"
+          - "## 3. INSIGHT"
+          - "## 4. STATEMENT"
+          - "## 5. PERSONALITY"
+          - "## 6. EXPERIMENT"
+        CRAFT:
+          sections:
+          - "## 1. CONTEXT"
+          - "## 2. ROLE"
+          - "## 3. ACTION"
+          - "## 4. FORMAT"
+          - "## 5. TARGET"
+
+      output_example: |
+        # Feature Specification: Enhanced Prompt - API Endpoint Security Audit
+
+        Complete specification for the enhanced prompt using TIDD-EC framework.
+
+        ### Purpose
+        Transform a vague API analysis request into a structured, actionable prompt that guides systematic code review, vulnerability detection, and testing of REST API endpoints with clear deliverables and success criteria.
+
+        ### Original Prompt
+        ```
+        Analyze all API endpoints and do a thorough security scan and test every single endpoint
+        ```
+
+        ---
+
+        ## 1. TASK
+        Perform a comprehensive security and quality audit of all REST API endpoints in the `src/api/` directory, identifying vulnerabilities, anti-patterns, and potential failures, then validate each endpoint's functionality through static analysis and request testing.
+
+        ## 2. INSTRUCTIONS
+        1. **Discovery Phase**
+           - List all route files: `routes/auth.js`, `routes/users.js`, `routes/products.js`, etc.
+           - Catalog every endpoint (GET, POST, PUT, DELETE) in each file
+           ...
+
+        ## 3. DETAILS
+        - **API Location:** `src/api/routes/` directory structure
+        - **File Types:** JavaScript/TypeScript route handlers (`.js`, `.ts`)
+        - **Severity Levels:**
+          - P0 (Critical): SQL injection, authentication bypass, data exposure
+          ...
+
+        ## 4. DELIVERABLES
+        1. **Endpoint Inventory Table**
+           | Route File | Method | Path | Auth Required | Rate Limited |
+           ...
+
+        ## 5. EXAMPLES
+        Example vulnerability report entry:
+        ```
+        Endpoint: POST /api/users/login
+        File: routes/auth.js:45
+        Severity: P1 (High)
+        ...
+        ```
+
+        ## 6. CONSTRAINTS
+        - Do NOT modify any route files during analysis
+        - Do NOT execute requests that could have side effects
+        - Report ALL findings regardless of severity
+        ...
+
+      validation:
+      - "Verify all placeholders replaced with actual values"
+      - "Ensure markdown formatting is correct"
+      - "Confirm enhanced prompt sections are numbered (## 1., ## 2., etc.)"
+      - "NO metadata, scope, success criteria, usage, or appendix sections"
+
+    step_14b_assemble_yaml_content:
+      action: "Assemble enhanced_prompt.yaml - PURE prompt content, NO metadata"
+      tool: "Construct in memory (Write tool in step 16)"
+      critical_note: |
+        YAML OUTPUT MUST BE PURE PROMPT CONTENT ONLY:
+        - NO metadata: section
+        - NO timestamps
+        - NO complexity scores
+        - NO usage examples
+        - NO prompt: wrapper
+        - JUST the framework components at top-level
+
+      content_structure:
+        header_comment_only:
+        - "# ───────────────────────────────────────────────────────────────────"
+        - "# {prompt_title}"
+        - "# ───────────────────────────────────────────────────────────────────"
+        - "# Framework: {framework_name}"
+        - ""
+
+        framework_components_at_top_level:
+        - "{framework_component_1}: |"
+        - "  {actual_content_for_component_1}"
+        - ""
+        - "{framework_component_2}: |"
+        - "  {actual_content_for_component_2}"
+        - ""
+        - "# ... remaining components ..."
+
+      framework_specific_output:
+        RCAF:
+          output: |
+            # ───────────────────────────────────────────────────────────────────
+            # {prompt_title}
+            # ───────────────────────────────────────────────────────────────────
+            # Framework: RCAF (Role-Context-Action-Format)
+
+            role: |
+              {ACTUAL_ROLE_CONTENT}
+
+            context: |
+              {ACTUAL_CONTEXT_CONTENT}
+
+            action: |
+              {ACTUAL_ACTION_CONTENT}
+
+            format: |
+              {ACTUAL_FORMAT_CONTENT}
+
+        COSTAR:
+          output: |
+            # ───────────────────────────────────────────────────────────────────
+            # {prompt_title}
+            # ───────────────────────────────────────────────────────────────────
+            # Framework: COSTAR (Context-Objective-Style-Tone-Audience-Response)
+
+            context: |
+              {ACTUAL_CONTEXT_CONTENT}
+
+            objective: |
+              {ACTUAL_OBJECTIVE_CONTENT}
+
+            style: |
+              {ACTUAL_STYLE_CONTENT}
+
+            tone: |
+              {ACTUAL_TONE_CONTENT}
+
+            audience: |
+              {ACTUAL_AUDIENCE_CONTENT}
+
+            response: |
+              {ACTUAL_RESPONSE_CONTENT}
+
+        RACE:
+          output: |
+            # ───────────────────────────────────────────────────────────────────
+            # {prompt_title}
+            # ───────────────────────────────────────────────────────────────────
+            # Framework: RACE (Role-Action-Context-Examples)
+
+            role: |
+              {ACTUAL_ROLE_CONTENT}
+
+            action: |
+              {ACTUAL_ACTION_CONTENT}
+
+            context: |
+              {ACTUAL_CONTEXT_CONTENT}
+
+            examples: |
+              {ACTUAL_EXAMPLES_CONTENT}
+
+        CIDI:
+          output: |
+            # ───────────────────────────────────────────────────────────────────
+            # {prompt_title}
+            # ───────────────────────────────────────────────────────────────────
+            # Framework: CIDI (Context-Instructions-Details-Input)
+
+            context: |
+              {ACTUAL_CONTEXT_CONTENT}
+
+            instructions: |
+              {ACTUAL_INSTRUCTIONS_CONTENT}
+
+            details: |
+              {ACTUAL_DETAILS_CONTENT}
+
+            input: |
+              {ACTUAL_INPUT_CONTENT}
+
+        TIDD_EC:
+          output: |
+            # ───────────────────────────────────────────────────────────────────
+            # {prompt_title}
+            # ───────────────────────────────────────────────────────────────────
+            # Framework: TIDD-EC (Task-Instructions-Details-Deliverables-Examples-Constraints)
+
+            task: |
+              {ACTUAL_TASK_CONTENT}
+
+            instructions: |
+              {ACTUAL_INSTRUCTIONS_CONTENT}
+
+            details: |
+              {ACTUAL_DETAILS_CONTENT}
+
+            deliverables: |
+              {ACTUAL_DELIVERABLES_CONTENT}
+
+            examples: |
+              {ACTUAL_EXAMPLES_CONTENT}
+
+            constraints: |
+              {ACTUAL_CONSTRAINTS_CONTENT}
+
+        CRISPE:
+          output: |
+            # ───────────────────────────────────────────────────────────────────
+            # {prompt_title}
+            # ───────────────────────────────────────────────────────────────────
+            # Framework: CRISPE (Capacity-Role-Insight-Statement-Personality-Experiment)
+
+            capacity: |
+              {ACTUAL_CAPACITY_CONTENT}
+
+            role: |
+              {ACTUAL_ROLE_CONTENT}
+
+            insight: |
+              {ACTUAL_INSIGHT_CONTENT}
+
+            statement: |
+              {ACTUAL_STATEMENT_CONTENT}
+
+            personality: |
+              {ACTUAL_PERSONALITY_CONTENT}
+
+            experiment: |
+              {ACTUAL_EXPERIMENT_CONTENT}
+
+        CRAFT:
+          output: |
+            # ───────────────────────────────────────────────────────────────────
+            # {prompt_title}
+            # ───────────────────────────────────────────────────────────────────
+            # Framework: CRAFT (Context-Role-Action-Format-Target)
+
+            context: |
+              {ACTUAL_CONTEXT_CONTENT}
+
+            role: |
+              {ACTUAL_ROLE_CONTENT}
+
+            action: |
+              {ACTUAL_ACTION_CONTENT}
+
+            format: |
+              {ACTUAL_FORMAT_CONTENT}
+
+            target: |
+              {ACTUAL_TARGET_CONTENT}
+
+      critical_instructions:
+      - "NEVER include metadata: section"
+      - "NEVER include timestamps or complexity scores"
+      - "NEVER include usage examples"
+      - "NEVER wrap components in prompt: section"
+      - "Framework components go directly at top-level"
+      - "Only header comment identifies the prompt and framework"
+      - "Replace ALL {ACTUAL_*_CONTENT} with actual enhanced prompt content"
+      - "Ensure multi-line strings use | (pipe) operator"
+      - "Validate YAML syntax before writing"
+
+      validation:
+      - "Verify NO metadata section exists"
+      - "Verify NO prompt wrapper exists"
+      - "Verify all {ACTUAL_*_CONTENT} placeholders are replaced"
+      - "Confirm YAML is valid (proper indentation)"
+      - "Test parsability: yaml.safe_load() should return framework components directly"
+
+    step_16_write_both_files:
+      action: "Write BOTH files to spec folder"
+      tool: "Write tool (two separate invocations)"
+      sequence: "sequential (write spec.md first, then YAML)"
+
+      write_sequence:
+        1_write_spec_md:
+          tool: "Write"
+          file_path: "{spec_md_path from step_13}"
+          content: "{assembled_speckit_content_from_step_14a}"
+          verification: "Check Write tool returns success"
+
+        2_write_yaml:
+          tool: "Write"
+          file_path: "{yaml_path from step_13}"
+          content: "{assembled_yaml_content_from_step_14b}"
+          verification: "Check Write tool returns success"
+
+      error_handling:
+        if_spec_write_fails:
+        - "Log error: spec.md file write failed"
+        - "Do NOT write YAML file"
+        - "Return STATUS=ERROR with message"
+        - "Do NOT proceed to step 17"
+
+        if_yaml_write_fails_after_spec_succeeds:
+        - "Log error: YAML file write failed"
+        - "Consider spec.md file orphaned"
+        - "Return STATUS=ERROR with message"
+        - "Note: spec.md exists but YAML is missing"
+        - "User may need to manually delete spec.md or retry"
+
+        atomic_write_guarantee:
+        - "Both files MUST write successfully for STATUS=OK"
+        - "If either fails, entire operation considered failed"
+        - "No partial success state"
+
+    step_17_report_success:
+      action: "Report successful dual-output generation to user"
+
+      display_format: |
+        ✅ Enhanced prompt created successfully!
+
+        📁 **Spec folder:** {spec_folder_path}
+        📄 **Files created:**
+        - spec.md (SpecKit specification)
+        - enhanced_prompt.yaml (machine-readable)
+
+        🔧 **Framework:** {framework_name}
+        📐 **Complexity:** {complexity_score}/10
+
+        💡 **Next steps:**
+        - Review spec: `cat {spec_folder_path}/spec.md`
+        - Import YAML: `import yaml; prompt = yaml.safe_load(open('{spec_folder_path}/enhanced_prompt.yaml'))`
+        - Use enhanced prompt in your AI workflows
+
+      status_return:
+      - "STATUS=OK"
+      - "SPEC={spec_folder_path}"
+      - "FILES=spec.md,enhanced_prompt.yaml"
+
+      optional_actions:
+        if_not_quick_mode:
+        - "Present iteration menu (Phase I options)"
+        if_quick_mode:
+        - "Skip iteration menu, complete workflow"

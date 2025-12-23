@@ -1,0 +1,38 @@
+{
+  "name": "semantic-memory-mcp",
+  "version": "12.1.0",
+  "description": "Semantic Memory MCP Server - provides 14 tools for semantic search, memory management, validation, checkpoints, and auto-indexing",
+  "main": "semantic-memory.js",
+  "bin": {
+    "semantic-memory": "./semantic-memory.js",
+    "memory-index": "./scripts/index-cli.js",
+    "memory-watch": "./file-watcher.js"
+  },
+  "scripts": {
+    "start": "node semantic-memory.js",
+    "index": "node scripts/index-cli.js",
+    "watch": "node file-watcher.js",
+    "test": "node -e \"require('./semantic-memory.js')\""
+  },
+  "keywords": [
+    "mcp",
+    "claude",
+    "semantic-memory",
+    "vector-search",
+    "auto-indexing"
+  ],
+  "author": "Michel Kerkmeester",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.0.0",
+    "@modelcontextprotocol/sdk": "^1.24.3",
+    "better-sqlite3": "^11.0.0",
+    "chokidar": "^3.6.0",
+    "lru-cache": "^11.2.4",
+    "sqlite-vec": "^0.1.0"
+  },
+  "note": "This is the canonical node_modules location. Project scripts in .opencode/memory/scripts symlink to this folder."
+}

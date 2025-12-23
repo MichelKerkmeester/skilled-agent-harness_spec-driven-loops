@@ -1,0 +1,415 @@
+{
+  // ─────────────────────────────────────────────────────────────
+  // LEGACY CONFIGURATION (v9.x and earlier)
+  // ─────────────────────────────────────────────────────────────
+  "maxResultPreview": 500,
+  "maxConversationMessages": 100,
+  "maxToolOutputLines": 100,
+  "messageTimeWindow": 300000,
+  "contextPreviewHeadLines": 50,
+  "contextPreviewTailLines": 20,
+  "timezoneOffsetHours": 1,
+
+  // ─────────────────────────────────────────────────────────────
+  // v10.0 SEMANTIC SEARCH CONFIGURATION
+  // ─────────────────────────────────────────────────────────────
+  "semanticSearch": {
+    "enabled": true,
+    "minSimilarityScore": 50,
+    "maxResults": 10,
+    "embeddingModel": "nomic-embed-text-v1.5"
+  },
+
+  "memoryIndex": {
+    "databasePath": ".opencode/skills/system-memory/database/memory-index.sqlite",
+    "autoRebuildOnSave": true,
+    "verifyOnStartup": false
+  },
+
+  "triggerSurfacing": {
+    "enabled": true,
+    "minSimilarity": 70,
+    "maxResults": 3,
+    "performanceTargetMs": 50
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // v11.0 MEMORY UPGRADE FEATURES
+  // ─────────────────────────────────────────────────────────────
+
+  // Memory Decay Configuration
+  // Applies time-based decay to memory relevance scores
+  "memoryDecay": {
+    "enabled": true,                    // Enable time-based decay for memory relevance
+    "halfLifeDays": 90,                 // Days until memory relevance halves (90 = 3 months)
+    "decayWeight": 0.3,                 // How much decay affects final score (0-1)
+    "exemptTiers": ["constitutional", "critical", "important"]  // Tiers that never decay
+  },
+
+  // Importance Tier Configuration
+  // Defines behavior for each memory importance level
+  "importanceTiers": {
+    "constitutional": {
+      "searchBoost": 3.0,               // 3x boost - always surfaces
+      "decayExempt": true,              // Never loses relevance over time
+      "autoExpireDays": null,           // Never auto-expires
+      "alwaysSurface": true             // Always included in context
+    },
+    "critical": {
+      "searchBoost": 2.0,               // 2x boost in search ranking
+      "decayExempt": true,              // Never loses relevance over time
+      "autoExpireDays": null            // Never auto-expires
+    },
+    "important": {
+      "searchBoost": 1.5,               // 1.5x boost in search ranking
+      "decayExempt": true,              // Never loses relevance over time
+      "autoExpireDays": null            // Never auto-expires
+    },
+    "normal": {
+      "searchBoost": 1.0,               // Standard search ranking
+      "decayExempt": false,             // Subject to time-based decay
+      "autoExpireDays": null            // Never auto-expires
+    },
+    "temporary": {
+      "searchBoost": 0.5,               // 0.5x penalty in search ranking
+      "decayExempt": false,             // Subject to time-based decay
+      "autoExpireDays": 7               // Auto-deletes after 7 days
+    },
+    "deprecated": {
+      "searchBoost": 0.25,              // 0.25x boost (lowest priority)
+      "decayExempt": false,             // Subject to decay
+      "excludeFromSearch": false        // Still searchable but low priority
+    }
+  },
+
+  // Hybrid Search Configuration
+  // Combines full-text search (FTS) with vector similarity search
+  "hybridSearch": {
+    "enabled": true,                    // Enable hybrid FTS + vector search
+    "ftsWeight": 0.4,                   // Weight for full-text search results (40%)
+    "vectorWeight": 0.6,                // Weight for vector similarity results (60%)
+    "rrfK": 60,                         // Reciprocal Rank Fusion constant (higher = more balanced)
+    "fallbackEnabled": true             // Fall back to vector-only if FTS fails
+  },
+
+  // Context Type Auto-Detection
+  // Automatically categorizes conversation context based on tool usage patterns
+  "contextTypeDetection": {
+    "enabled": true,                    // Enable automatic context type detection
+    "rules": {
+      "research": {
+        "readToolsThreshold": 0.5,      // 50%+ read tools = research context
+        "writeToolsMax": 0.1            // Max 10% write tools allowed
+      },
+      "implementation": {
+        "writeToolsThreshold": 0.3      // 30%+ write tools = implementation context
+      },
+      "decision": {
+        "requiresAskUser": true         // Requires user interaction = decision context
+      },
+      "discovery": {
+        "webToolsThreshold": 0.3        // 30%+ web tools = discovery context
+      }
+    },
+    "defaultType": "general"            // Fallback when no pattern matches
+  },
+
+  // Access Tracking Configuration
+  // Boosts frequently accessed memories in search results
+  "accessTracking": {
+    "enabled": true,                    // Enable access count tracking
+    "popularityBoost": 0.1,             // Boost per access (10% per access)
+    "popularityThreshold": 5            // Minimum accesses to apply boost
+  },
+
+  // Checkpoint Configuration
+  // Allows saving and restoring memory states
+  "checkpoints": {
+    "enabled": true,                    // Enable checkpoint functionality
+    "maxCheckpoints": 10,               // Maximum checkpoints to retain
+    "autoCleanupDays": 30               // Delete checkpoints older than 30 days
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // v11.1 ELF-INSPIRED FEATURES
+  // ─────────────────────────────────────────────────────────────
+
+  // Constitutional Tier Configuration
+  // Memories that are ALWAYS surfaced at session start, regardless of query
+  "constitutionalTier": {
+    "enabled": true,                    // Enable constitutional memory surfacing
+    "maxTokens": 500,                   // Maximum tokens for constitutional context
+    "alwaysSurface": true               // Always include in context, no query needed
+  },
+
+  // Confidence Tracking Configuration
+  // Track validation success rate and promote high-confidence memories
+  "confidenceTracking": {
+    "enabled": true,                    // Enable confidence scoring and tracking
+    "promotionThreshold": 0.9,          // Promote to higher tier at 90% confidence
+    "minValidations": 5                 // Minimum validations before promotion eligible
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// CONFIGURATION DOCUMENTATION
+// ─────────────────────────────────────────────────────────────
+
+// → semanticSearch (object)
+// ─────────────────────────────────────────────────────────────
+// Configuration for semantic vector search functionality.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable semantic search features
+//
+// • minSimilarityScore (number, default: 50)
+//   Minimum similarity score (0-100) for search results
+//   Lower = more results, higher = stricter matching
+//
+// • maxResults (number, default: 10)
+//   Maximum number of results to return from vector search
+//
+// • embeddingModel (string, default: "nomic-embed-text-v1.5")
+//   Embedding model to use. Options:
+//   - "nomic-embed-text-v1.5": 768 dimensions, 8k context, excellent quality
+//   - Upgrade from minilm-l6-v2 (384 dim) requires migration
+
+// → memoryIndex (object)
+// ─────────────────────────────────────────────────────────────
+// Configuration for the SQLite vector database.
+//
+// • databasePath (string, default: ".opencode/skills/system-memory/database/memory-index.sqlite")
+//   Location of the sqlite-vec database file (project-local)
+//   Relative to project root
+//
+// • autoRebuildOnSave (boolean, default: true)
+//   Automatically update embeddings when context is saved
+//   Set to false if you prefer manual rebuilds
+//
+// • verifyOnStartup (boolean, default: false)
+//   Run integrity check on database when the agent starts
+//   Useful for debugging, adds ~100ms startup time
+
+// → triggerSurfacing (object)
+// ─────────────────────────────────────────────────────────────
+// Configuration for automatic memory surfacing via hooks.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable automatic trigger phrase detection
+//
+// • minSimilarity (number, default: 70)
+//   Minimum similarity score for surfaced results
+//   Higher than search default for quality over quantity
+//
+// • maxResults (number, default: 3)
+//   Maximum context snippets to surface per prompt
+//   Keep low to avoid overwhelming responses
+//
+// • performanceTargetMs (number, default: 50)
+//   Target execution time in milliseconds
+//   Hook will optimize to meet this target
+
+// → memoryDecay (object) [v11.0]
+// ─────────────────────────────────────────────────────────────
+// Time-based relevance decay for memories.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable time-based decay calculation
+//
+// • halfLifeDays (number, default: 90)
+//   Number of days for memory relevance to halve
+//   90 days = memories lose 50% relevance after 3 months
+//
+// • decayWeight (number, default: 0.3)
+//   How much decay affects final ranking score (0-1)
+//   0.3 = decay contributes 30% to final score calculation
+//
+// • exemptTiers (array, default: ["critical", "important"])
+//   Importance tiers that are exempt from decay
+//   These memories maintain full relevance indefinitely
+
+// → importanceTiers (object) [v11.0]
+// ─────────────────────────────────────────────────────────────
+// Defines behavior for each memory importance level.
+//
+// • searchBoost (number): Multiplier for search ranking
+//   2.0 = double priority, 0.5 = half priority
+//
+// • decayExempt (boolean): Whether tier is exempt from time decay
+//
+// • autoExpireDays (number|null): Auto-delete after N days
+//   null = never auto-expire
+//
+// • excludeFromSearch (boolean): Completely hide from search results
+//   Only applicable to deprecated tier
+
+// → hybridSearch (object) [v11.0]
+// ─────────────────────────────────────────────────────────────
+// Combines full-text search with vector similarity for better results.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable hybrid search mode
+//
+// • ftsWeight (number, default: 0.4)
+//   Weight for full-text search component (0-1)
+//   Higher = exact matches weighted more
+//
+// • vectorWeight (number, default: 0.6)
+//   Weight for vector similarity component (0-1)
+//   Higher = semantic similarity weighted more
+//
+// • rrfK (number, default: 60)
+//   Reciprocal Rank Fusion constant for combining results
+//   Higher values create more balanced merging
+//
+// • fallbackEnabled (boolean, default: true)
+//   Fall back to vector-only search if FTS fails
+
+// → contextTypeDetection (object) [v11.0]
+// ─────────────────────────────────────────────────────────────
+// Automatically detects conversation context type from tool usage.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable automatic detection
+//
+// • rules (object): Detection patterns for each context type
+//   - research: High read tools, low write tools
+//   - implementation: High write tools
+//   - decision: Requires user interaction
+//   - discovery: High web tool usage
+//
+// • defaultType (string, default: "general")
+//   Fallback type when no pattern matches
+
+// → accessTracking (object) [v11.0]
+// ─────────────────────────────────────────────────────────────
+// Tracks memory access patterns to boost frequently used memories.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable access counting
+//
+// • popularityBoost (number, default: 0.1)
+//   Score boost per access (0.1 = 10% boost per access)
+//
+// • popularityThreshold (number, default: 5)
+//   Minimum accesses before boost is applied
+
+// → checkpoints (object) [v11.0]
+// ─────────────────────────────────────────────────────────────
+// Save and restore memory database states.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable checkpoint functionality
+//
+// • maxCheckpoints (number, default: 10)
+//   Maximum number of checkpoints to retain
+//   Older checkpoints are deleted when limit exceeded
+//
+// • autoCleanupDays (number, default: 30)
+//   Delete checkpoints older than this many days
+
+// → constitutionalTier (object) [v11.1]
+// ─────────────────────────────────────────────────────────────
+// ELF-inspired constitutional memories that are ALWAYS surfaced.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable constitutional memory surfacing
+//
+// • maxTokens (number, default: 500)
+//   Maximum tokens for constitutional context per session
+//   Prevents overwhelming the context window
+//
+// • alwaysSurface (boolean, default: true)
+//   Always include in context regardless of query
+//   Constitutional memories represent core project knowledge
+
+// → confidenceTracking (object) [v11.1]
+// ─────────────────────────────────────────────────────────────
+// Track memory validation success and enable confidence-based promotion.
+//
+// • enabled (boolean, default: true)
+//   Enable/disable confidence scoring for memories
+//
+// • promotionThreshold (number, default: 0.9)
+//   Confidence threshold (0-1) for automatic tier promotion
+//   Memories reaching 90% confidence become candidates for upgrade
+//
+// • minValidations (number, default: 5)
+//   Minimum validation count before promotion eligibility
+//   Prevents premature promotion based on small sample size
+
+// ─────────────────────────────────────────────────────────────
+// LEGACY CONFIGURATION DOCUMENTATION
+// ─────────────────────────────────────────────────────────────
+
+// → maxResultPreview (number, default: 500)
+// ─────────────────────────────────────────────────────────────
+// Maximum characters to show when previewing tool results/outputs
+// in the context documentation.
+//
+// • Higher values = more detail but larger files
+// • Lower values = more concise but less context
+// • Affects: Tool call previews, bash output, file reads
+
+// → maxConversationMessages (number, default: 100)
+// ─────────────────────────────────────────────────────────────
+// Maximum number of conversation messages to include in the full
+// conversation section. Prevents extremely long conversations from
+// creating massive documentation files.
+//
+// • Messages beyond this limit are truncated
+// • Most recent messages are always kept
+// • Affects: Size of generated markdown files
+
+// → maxToolOutputLines (number, default: 100)
+// ─────────────────────────────────────────────────────────────
+// Maximum lines to show from tool output (like bash commands,
+// file reads, grep results, etc.). Long outputs are truncated to
+// this many lines to keep documentation readable.
+//
+// • Prevents huge code dumps in documentation
+// • Shows beginning of output
+// • Adds "... truncated" message when limit exceeded
+
+// → messageTimeWindow (number, default: 300000)
+// ─────────────────────────────────────────────────────────────
+// Time window in milliseconds for grouping related messages into
+// conversation phases. Messages within this time window are
+// considered part of the same workflow step.
+//
+// • 300000ms = 5 minutes
+// • Gaps longer than this create new phases in workflow diagram
+// • Affects: How conversation is structured in phases
+// • Lower values = more granular phases
+// • Higher values = fewer, broader phases
+
+// → contextPreviewHeadLines (number, default: 50)
+// ─────────────────────────────────────────────────────────────
+// Number of lines to show from the HEAD (beginning) of truncated
+// file content. When files are too long, show this many lines from
+// the start.
+//
+// • Used for file preview truncation
+// • Shows the beginning of long files
+// • Works together with contextPreviewTailLines
+
+// → contextPreviewTailLines (number, default: 20)
+// ─────────────────────────────────────────────────────────────
+// Number of lines to show from the TAIL (end) of truncated file
+// content. When files are too long, show this many lines from the end.
+//
+// • Used for file preview truncation
+// • Shows the ending of long files
+// • Combined with HEAD lines gives context from both ends
+
+// → timezoneOffsetHours (number, default: 0)
+// ─────────────────────────────────────────────────────────────
+// Timezone offset in hours to add to UTC timestamps.
+// Adjusts all generated timestamps to match your local timezone.
+//
+// • Positive values = ahead of UTC (e.g., +1 for CET)
+// • Negative values = behind UTC (e.g., -5 for EST)
+// • 0 = UTC (no adjustment)
+// • Affects: All timestamps in generated documentation
+
+// ─────────────────────────────────────────────────────────────

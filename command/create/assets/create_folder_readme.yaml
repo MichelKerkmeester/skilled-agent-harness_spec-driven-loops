@@ -1,0 +1,741 @@
+# ───────────────────────────────────────────────────────────────────
+# DOCUMENTATION: README CREATION WORKFLOW
+# ───────────────────────────────────────────────────────────────────
+role: Expert README Creator using workflows-documentation skill
+purpose: Create comprehensive README files with proper structure and AI-optimization
+action: Generate scannable, well-organized README with table of contents
+
+operating_mode:
+  workflow: sequential_5_step
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: step_by_step
+
+development_philosophy:
+  principle: "Question-answering format maximizes AI usefulness"
+  approach: "Discover → Structure → Generate → Validate"
+  mandate: "Progressive disclosure - Quick Start first, details follow"
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+  
+  scoring_weights:
+    scope_clarity: 0.30
+    content_completeness: 0.25
+    structure_adherence: 0.25
+    audience_fit: 0.20
+  
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+  
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  solution_flow:
+    - "Parse carefully: What is ACTUALLY requested?"
+    - "Gather Context: Scan directory structure"
+    - "Identify Approach: SIMPLEST solution that works"
+    - "Validate Choice: Follow patterns, maintainable"
+    - "Clarify If Needed: If <80% confidence, ask"
+    - "Scope Check: Solving ONLY what was asked?"
+    - "Execute: Implement with minimal complexity"
+  
+  pre_change_validation:
+    items:
+      - "Target path confirmed?"
+      - "README type determined? (project/component/feature/skill)"
+      - "Key features identified?"
+      - "Structure template selected?"
+      - "Confidence >=80%? (if not: ask)"
+    stop_conditions: ["Any item unchecked", "Path not found"]
+    stop_action: "STOP and address before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS (From gate outputs)
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  target_path: |
+    [TARGET_PATH]
+    Where to create README.
+    FROM GATE 0 OUTPUT.
+
+  readme_type: |
+    [README_TYPE]
+    Type: project | component | feature | skill
+    FROM GATE 0 OUTPUT.
+
+  path_verified: |
+    [PATH_VERIFIED]
+    Whether target path exists.
+    FROM GATE 1 OUTPUT.
+
+  existing_readme: |
+    [EXISTING_README]
+    Whether README.md already exists at path.
+    FROM GATE 1 OUTPUT.
+
+# ─────────────────────────────────────────────────────────────────
+# README TYPES
+# ─────────────────────────────────────────────────────────────────
+readme_types:
+  project:
+    scope: "Entire project"
+    sections:
+    - "🚀 GETTING STARTED"
+    - "🔌 INSTALLATION"
+    - "⚙️ CONFIGURATION"
+    - "📁 DIRECTORY STRUCTURE"
+    - "🎯 KEY FEATURES"
+    - "⚡ COMMANDS"
+    - "🔧 TROUBLESHOOTING"
+    - "🏎️ QUICK REFERENCE"
+    key_questions:
+    - "What is this?"
+    - "How do I install it?"
+    - "How do I use it?"
+    - "How do I contribute?"
+
+  component:
+    scope: "Module or package"
+    sections:
+    - "📖 OVERVIEW"
+    - "🚀 QUICK START"
+    - "⚡ COMMANDS / API"
+    - "🏗️ ARCHITECTURE"
+    - "⚙️ CONFIGURATION"
+    - "🧪 TESTING"
+    - "🛠️ TROUBLESHOOTING"
+    - "❓ FAQ"
+    - "📚 RELATED DOCUMENTS"
+    key_questions:
+    - "What does this component do?"
+    - "How do I use the API?"
+    - "How do I integrate it?"
+
+  feature:
+    scope: "Specific feature"
+    sections:
+    - "📖 OVERVIEW"
+    - "🚀 QUICK START"
+    - "⚙️ CONFIGURATION"
+    - "💡 EXAMPLES"
+    - "🛠️ TROUBLESHOOTING"
+    key_questions:
+    - "What does this feature do?"
+    - "How do I enable it?"
+    - "How do I configure it?"
+
+  skill:
+    scope: "OpenCode skill"
+    sections:
+    - "📖 OVERVIEW"
+    - "🚀 QUICK START"
+    - "🎯 TRIGGER PHRASES"
+    - "⚡ COMMANDS / API"
+    - "🔧 MCP TOOLS"
+    - "🏗️ ARCHITECTURE"
+    - "💾 DATA STRUCTURE"
+    - "📊 PERFORMANCE"
+    - "⚙️ CONFIGURATION"
+    - "🧪 TESTING"
+    - "🛠️ TROUBLESHOOTING"
+    - "❓ FAQ"
+    - "📚 RELATED DOCUMENTS"
+    key_questions:
+    - "When does this skill activate?"
+    - "What commands are available?"
+    - "What MCP tools does it use?"
+
+# ─────────────────────────────────────────────────────────────────
+# AI OPTIMIZATION PRINCIPLES
+# ─────────────────────────────────────────────────────────────────
+ai_optimization:
+  question_answering:
+    description: "Structure to answer common questions"
+    examples:
+    - question: "How do I install?"
+      maps_to: "Installation section"
+    - question: "How do I configure?"
+      maps_to: "Configuration section"
+
+  scannable_structure:
+    description: "Easy to scan and find information"
+    techniques:
+    - "Clear headings with emojis"
+    - "Code examples for every feature"
+    - "Tables for options"
+    - "ASCII diagrams for architecture"
+
+  progressive_disclosure:
+    description: "Quick Start first, details follow"
+    order:
+    - "Quick Start (get running fast)"
+    - "Details (deep configuration)"
+    - "Reference (complete API)"
+
+# ─────────────────────────────────────────────────────────────────
+# REFERENCE TEMPLATES
+# ─────────────────────────────────────────────────────────────────
+reference_templates:
+  readme_template: .opencode/skills/workflows-documentation/assets/readme_template.md
+  speckit_readme: .opencode/skills/system-spec-kit/README.md
+  memory_readme: .opencode/skills/system-memory/README.md
+  core_standards: .opencode/skills/workflows-documentation/references/core_standards.md
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (5 STEPS WITH CHECKPOINTS)
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_request_analysis:
+    purpose: Determine scope and location (from gate outputs)
+    activities:
+    - Confirm target_path from GATE 0
+    - Confirm readme_type from GATE 0
+    - Confirm path_verified from GATE 1
+    - Confirm existing_readme handling from GATE 1
+    - Validate readme_type is one of: project, component, feature, skill
+    type_reference:
+      project: "Entire project - overview, installation, configuration, usage"
+      component: "Module/package - purpose, API, usage examples, integration"
+      feature: "Specific feature - what it does, how it works, configuration"
+      skill: "OpenCode skill - triggers, commands, MCP tools, architecture"
+    outputs:
+    - target_confirmed
+    - type_confirmed
+    - scope_defined
+    checkpoint:
+      question: "Create [type] README at [path]. Proceed?"
+      options:
+      - label: "A) Proceed"
+        description: "Create README with these settings"
+      - label: "B) Change type"
+        description: "Select different README type"
+      - label: "C) Change location"
+        description: "Use different target path"
+
+  step_2_content_discovery:
+    purpose: Gather project information based on type
+    activities:
+    - Scan for project metadata
+    - Identify main features and capabilities
+    - Find existing documentation to reference
+    - Check for configuration options
+    scan_targets:
+      project:
+      - "package.json / pyproject.toml for metadata"
+      - "Main entry points and configuration files"
+      - "Key features and capabilities"
+      - "Existing documentation"
+      component:
+      - "Component purpose and scope"
+      - "Exported APIs and interfaces"
+      - "Usage examples in codebase"
+      - "Dependencies and integration points"
+      feature_or_skill:
+      - "Feature scope and capabilities"
+      - "Commands, triggers, or APIs"
+      - "Configuration options"
+      - "Architecture if applicable"
+    questions:
+    - "What are the key aspects to document?"
+    - "Main purpose/value proposition?"
+    - "Key features (3-5)?"
+    - "Target audience?"
+    - "Prerequisites/dependencies?"
+    prompt_template: |
+      ┌────────────────────────────────────────────────────────────┐
+      │ "What are the key aspects to document?"                    │
+      │                                                            │
+      │ - Main purpose/value proposition?                          │
+      │ - Key features (3-5)?                                      │
+      │ - Target audience?                                         │
+      │ - Prerequisites/dependencies?                              │
+      └────────────────────────────────────────────────────────────┘
+    outputs:
+    - features_identified
+    - metadata_gathered
+    - structure_understood
+    checkpoint:
+      question: "Key features identified. Review?"
+      options: checkpoint_options.standard
+
+  step_3_structure_selection:
+    purpose: Choose appropriate template based on type
+    activities:
+    - Select section structure based on readme_type
+    - Adapt sections to specific project needs
+    - Plan content for each section
+    - Identify which optional sections to include
+    core_pattern:
+      all_types:
+      - "Title + Tagline (one-liner description)"
+      - "TABLE OF CONTENTS (numbered, linked)"
+      - "Numbered sections with emoji prefixes"
+      - "Tables for structured data"
+      - "Code blocks with language tags"
+      - "Horizontal rules between major sections"
+    emoji_conventions:
+      overview: "📖"
+      getting_started: "🚀"
+      features: "🎯"
+      commands: "⚡"
+      tools: "🔧"
+      architecture: "🏗️"
+      data: "💾"
+      performance: "📊"
+      configuration: "⚙️"
+      testing: "🧪"
+      troubleshooting: "🛠️"
+      faq: "❓"
+      resources: "📚"
+      quick_reference: "🏎️"
+      installation: "🔌"
+      directory: "📁"
+    outputs:
+    - template_selected
+    - sections_planned
+    - content_outline
+    checkpoint:
+      question: "Structure selected. Proceed to generation?"
+      options: checkpoint_options.standard
+
+  step_4_content_generation:
+    purpose: Write comprehensive README following selected structure
+    activities:
+    - Write Title + Tagline (concise, clear value proposition)
+    - Generate TABLE OF CONTENTS (numbered, linked to sections)
+    - Write each section with emoji prefix
+    - Create tables for structured data (features, commands, config)
+    - Add code blocks with language tags
+    - Create ASCII diagrams for architecture/flow visualization
+    - Add horizontal rules between major sections
+    - Write to target_path
+    quality_requirements:
+      title: "Clear, concise value proposition"
+      toc: "Numbered, linked to actual sections"
+      sections: "Emoji prefixes (📖 🚀 🎯 ⚡ 🔧 🏗️ 💾 📊 ⚙️ 🧪 🛠️ ❓ 📚)"
+      tables: "For structured data (features, commands, config)"
+      code_blocks: "Always specify language"
+      diagrams: "ASCII for architecture/flow"
+      separators: "Horizontal rules between major sections"
+    outputs:
+    - readme_file: created
+    - sections_count: number
+    - tables_count: number
+    - code_blocks_count: number
+    checkpoint:
+      question: "README generated. Review?"
+      options:
+      - label: "A) Show full content"
+        description: "Display complete README"
+      - label: "B) Show TABLE OF CONTENTS"
+        description: "Display section structure"
+      - label: "C) Proceed"
+        description: "Continue to validation"
+
+  step_5_validation:
+    purpose: Verify README quality and completeness
+    activities:
+    - Structure check (title, TOC, sections, separators)
+    - Content check (code blocks, tables, no placeholders, valid links)
+    - Completeness check (Quick Start, Troubleshooting, FAQ for component/skill)
+    - DQI check if script available
+    validation_checklist:
+      structure:
+      - "Title + one-liner tagline present"
+      - "TABLE OF CONTENTS present and linked"
+      - "All sections numbered with emojis"
+      - "Horizontal rules between sections"
+      content:
+      - "All code blocks have language tags"
+      - "Tables are properly formatted"
+      - "No placeholder text remaining"
+      - "Links are valid"
+      completeness:
+      - "Quick Start section present"
+      - "Troubleshooting section present"
+      - "FAQ section present (for component/skill)"
+    quality_gates:
+      dqi_minimum: 70
+      dqi_band: "Acceptable"
+      enforcement: "Flexible"
+    outputs:
+    - validation_passed: boolean
+    - checklist_results: object
+    - dqi_score: number (optional)
+    checkpoint:
+      question: "Validation complete. README ready?"
+      options:
+      - label: "Proceed"
+        description: "Continue to save context"
+      - label: "Fix issues"
+        description: "Address validation failures"
+      - label: "View summary"
+        description: "Show final summary"
+
+  step_6_save_context:
+    purpose: Preserve workflow decisions and context
+    activities:
+    - Invoke system-memory skill
+    - Document README creation decisions
+    - Record structure choices and rationale
+    - Save validation results
+    - Create memory file with timestamp
+    - Index memory file for immediate search availability
+    tool_invocation:
+      command: "openskills read system-memory"
+      note: "Activate context saving via memory skill"
+    memory_content:
+      include:
+      - README type and target path
+      - Structure decisions made
+      - Content sources and references
+      - Validation results
+      - Any challenges or decisions made
+    outputs:
+    - memory_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__readme_creation_session.md"
+    validation: context_saved
+    checkpoint:
+      question: "Context saved. README creation complete!"
+      options:
+      - label: "Done"
+        description: "Complete workflow"
+      - label: "View summary"
+        description: "Show final summary"
+
+    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    post_save_indexing:
+      purpose: "Index memory file immediately for search availability"
+      mcp_tool: memory_save
+      invocation: |
+        mcp__semantic_memory__memory_save({
+          filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__readme_creation_session.md"
+        })
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
+      when: "Immediately after memory file is written to disk"
+
+    anchor_requirements:
+      enforcement: MANDATORY
+      minimum_anchors: 2
+      pattern: "[context-type]-[keywords]-[spec-number]"
+      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
+      case: "UPPERCASE recommended for visibility"
+      required_sections:
+        - context_type: "general"
+          section: "Session summary with README creation outcomes"
+          example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
+          example: |
+            <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+            ## Session Summary
+            Created [type] README at [path]...
+            <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+        - context_type: "decision"
+          section: "Key decisions made during README creation"
+          example_id: "DECISION-README-STRUCTURE-{spec#}"
+          example: |
+            <!-- ANCHOR:DECISION-README-STRUCTURE-{spec#} -->
+            ## Key Decisions
+            - Chose structure X because...
+            <!-- /ANCHOR:DECISION-README-STRUCTURE-{spec#} -->
+      optional_sections:
+        - context_type: "implementation"
+          section: "Structure and sections chosen"
+          example_id: "IMPLEMENTATION-STRUCTURE-{spec#}"
+        - context_type: "research"
+          section: "Content sources and references"
+          example_id: "RESEARCH-SOURCES-{spec#}"
+      benefit: "93% token savings on anchor-based retrieval"
+      reference: "See /memory:save Step 3 for full anchor documentation"
+
+    importance_tier:
+      assign: normal
+      rationale: "README creation is standard documentation task"
+      promotion_note: "Use memory_update() to promote to 'important' if README becomes a key reference"
+      tier_reference: |
+        constitutional: Core project rules (auto-surface always)
+        critical: Foundational decisions (high priority in search)
+        important: Significant work like implementations
+        normal: Standard context like documentation tasks (this workflow)
+        temporary: Short-term notes
+        deprecated: Outdated but retained
+
+# ─────────────────────────────────────────────────────────────────
+# PROJECT README TEMPLATE
+# ─────────────────────────────────────────────────────────────────
+templates:
+  project_readme: |
+    # [Project Name]
+    
+    > [One-line tagline capturing the value proposition]
+    
+    [2-3 sentences explaining what this is, why it matters, and who it's for]
+    
+    For detailed documentation on [component 1] and [component 2]:
+    - [Component 1]: [`path/to/docs`](path/to/docs)
+    - [Component 2]: [`path/to/docs`](path/to/docs)
+    
+    ---
+    
+    ## TABLE OF CONTENTS
+    
+    - [1. 🚀 GETTING STARTED](#1--getting-started)
+    - [2. 🔌 INSTALLATION](#2--installation)
+    - [3. ⚙️ CONFIGURATION](#3-️-configuration)
+    - [4. 📁 DIRECTORY STRUCTURE](#4--directory-structure)
+    - [5. 🎯 KEY FEATURES](#5--key-features)
+    - [6. ⚡ COMMANDS](#6--commands)
+    - [7. 🔧 TROUBLESHOOTING](#7--troubleshooting)
+    - [8. 🏎️ QUICK REFERENCE](#8-️-quick-reference)
+    
+    ---
+    
+    ## 1. 🚀 GETTING STARTED
+    
+    ### What is [Project Name]?
+    
+    [Detailed explanation of what this project does]
+    
+    ### Why You Need This
+    
+    [Problem statement and how this solves it]
+    
+    ---
+    
+    ## 2. 🔌 INSTALLATION
+    
+    ### Prerequisites
+    
+    | Requirement | Minimum | Recommended |
+    |-------------|---------|-------------|
+    | [Runtime]   | [ver]   | [ver]       |
+    
+    ### Quick Install
+    
+    ```bash
+    # Step 1
+    [command]
+    
+    # Step 2
+    [command]
+    ```
+    
+    ---
+    
+    ## 3. ⚙️ CONFIGURATION
+    
+    ### Configuration File
+    
+    ```json
+    {
+      "key": "value"
+    }
+    ```
+    
+    ### Environment Variables
+    
+    | Variable | Default | Description |
+    |----------|---------|-------------|
+    | `VAR_1`  | [value] | [purpose]   |
+    
+    ---
+    
+    ## 4. 📁 DIRECTORY STRUCTURE
+    
+    ```
+    project/
+    ├── folder1/          # Description
+    │   └── subfolder/
+    ├── folder2/          # Description
+    └── config.json       # Description
+    ```
+    
+    ---
+    
+    ## 5. 🎯 KEY FEATURES
+    
+    ### Feature 1
+    
+    [Description with table if applicable]
+    
+    | Capability | Description |
+    |------------|-------------|
+    | [Cap 1]    | [Desc]      |
+    
+    ---
+    
+    ## 6. ⚡ COMMANDS
+    
+    | Command | What It Does | Example |
+    |---------|--------------|---------|
+    | `cmd1`  | [action]     | `cmd1 arg` |
+    
+    ---
+    
+    ## 7. 🔧 TROUBLESHOOTING
+    
+    ### Common Issues
+    
+    #### Issue: [Problem]
+    
+    **Symptom**: [What you see]
+    
+    **Solution**:
+    ```bash
+    [fix command]
+    ```
+    
+    ---
+    
+    ## 8. 🏎️ QUICK REFERENCE
+    
+    | Resource | Location |
+    |----------|----------|
+    | [Res 1]  | [`path`](path) |
+
+  component_readme: |
+    # [Component/Skill Name]
+    
+    [One-liner description of what this provides]
+    
+    ---
+    
+    ## TABLE OF CONTENTS
+    
+    - [1. 📖 OVERVIEW](#1--overview)
+    - [2. 🚀 QUICK START](#2--quick-start)
+    - [3. 🎯 TRIGGER PHRASES](#3--trigger-phrases)
+    - [4. ⚡ COMMANDS / API](#4--commands--api)
+    - [5. 🔧 MCP TOOLS](#5--mcp-tools)
+    - [6. 🏗️ ARCHITECTURE](#6-️-architecture)
+    - [7. 💾 DATA STRUCTURE](#7--data-structure)
+    - [8. 📊 PERFORMANCE](#8--performance)
+    - [9. ⚙️ CONFIGURATION](#9-️-configuration)
+    - [10. 🧪 TESTING](#10--testing)
+    - [11. 🛠️ TROUBLESHOOTING](#11-️-troubleshooting)
+    - [12. ❓ FAQ](#12--faq)
+    - [13. 📚 RELATED DOCUMENTS](#13--related-documents)
+    
+    ---
+    
+    ## 1. 📖 OVERVIEW
+    
+    ### Key Capabilities
+    
+    | Feature | Description |
+    |---------|-------------|
+    | **[Feature 1]** | [Description] |
+    
+    ### What Is [Component Name]?
+    
+    [2-3 paragraphs explaining the component]
+    
+    ---
+    
+    ## 2. 🚀 QUICK START
+    
+    ```bash
+    # 1. [First step]
+    [command]
+    
+    # 2. [Second step]
+    [command]
+    ```
+    
+    That's it! [Brief explanation of what's now working]
+    
+    ---
+    
+    [Continue with remaining sections...]
+
+# ─────────────────────────────────────────────────────────────────
+# COMPLETION REPORT TEMPLATE
+# ─────────────────────────────────────────────────────────────────
+completion_report:
+  template: |
+    ✅ README Created
+    
+    Location: [path]
+    Type: [project|component|feature|skill]
+    
+    Structure:
+    - Title + Tagline: ✅
+    - TABLE OF CONTENTS: ✅
+    - Sections: [N] numbered with emojis
+    - Tables: [N]
+    - Code blocks: [N]
+    - ASCII diagrams: [N]
+    
+    Quality:
+    - All sections linked: ✅
+    - No placeholders: ✅
+    - Horizontal rules: ✅
+    
+    Next Steps:
+    - Review for accuracy
+    - Add screenshots if applicable
+    - Test all code examples
+    
+    STATUS=OK PATH=[readme-path]
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  path_not_exist:
+    action: "Create directory or choose different path"
+    options: ["Create directory", "Choose different path", "Cancel"]
+  readme_exists:
+    action: "Offer update, backup, or new location"
+    options: ["Overwrite", "Backup and overwrite", "Merge", "Cancel"]
+  no_project_info:
+    action: "Prompt for manual input"
+    questions: ["Project name?", "Key features?", "Target audience?"]
+  validation_fails:
+    action: "Show which sections need content, guide fixes"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - include_quick_start_section
+  - use_code_examples_with_language_tags
+  - create_table_of_contents_with_links
+  - use_emoji_prefixes_for_sections
+  - add_horizontal_rules_between_sections
+  - answer_common_questions_in_structure
+  - validate_before_claiming_complete
+
+  NEVER:
+  - skip_installation_section
+  - leave_broken_links
+  - use_placeholder_examples
+  - omit_troubleshooting_section
+  - create_without_user_confirmed_path

@@ -1,0 +1,13 @@
+{
+  "name": "system-memory-scripts",
+  "version": "10.0.0",
+  "description": "Semantic memory scripts for system-memory skill",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "@huggingface/transformers": "^3.0.0",
+    "@modelcontextprotocol/sdk": "^1.24.3",
+    "better-sqlite3": "^11.10.0",
+    "sqlite-vec": "^0.1.0"
+  }
+}

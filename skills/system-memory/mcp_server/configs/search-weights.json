@@ -1,0 +1,64 @@
+{
+  "_comment": "Search weight configuration for semantic memory v11",
+  "_version": "11.0.0",
+
+  "hybridSearch": {
+    "enabled": true,
+    "vectorWeight": 0.6,
+    "ftsWeight": 0.4,
+    "rrfK": 60,
+    "convergenceBonus": 0.1
+  },
+
+  "memoryDecay": {
+    "enabled": true,
+    "decayWeight": 0.3,
+    "scaleDays": 90,
+    "halfLifeDays": 90
+  },
+
+  "compositeScoring": {
+    "enabled": true,
+    "weights": {
+      "similarity": 0.35,
+      "importance": 0.25,
+      "recency": 0.20,
+      "popularity": 0.10,
+      "tierBoost": 0.10
+    },
+    "recencyHalfLifeDays": 30
+  },
+
+  "importanceTiers": {
+    "critical": { "searchBoost": 2.0, "decayExempt": true },
+    "important": { "searchBoost": 1.5, "decayExempt": true },
+    "normal": { "searchBoost": 1.0, "decayExempt": false },
+    "temporary": { "searchBoost": 0.5, "autoExpireDays": 7 },
+    "deprecated": { "searchBoost": 0.0, "excludeFromSearch": true }
+  },
+
+  "accessTracking": {
+    "enabled": true,
+    "accumulatorThreshold": 0.5,
+    "incrementValue": 0.1
+  },
+
+  "tokenBudget": {
+    "maxTokens": 25000,
+    "safetyBuffer": 0.8,
+    "charsPerToken": 3.5,
+    "minItems": 1
+  },
+
+  "contiguity": {
+    "enabled": true,
+    "defaultWindow": 2,
+    "maxWindow": 10
+  },
+
+  "performance": {
+    "triggerMatchMaxMs": 50,
+    "hybridSearchMaxMs": 300,
+    "ftsSearchMaxMs": 100
+  }
+}

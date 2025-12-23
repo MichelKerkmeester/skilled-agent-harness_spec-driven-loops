@@ -1,0 +1,576 @@
+# ───────────────────────────────────────────────────────────────────
+# DOCUMENTATION: REFERENCE FILE CREATION WORKFLOW
+# ───────────────────────────────────────────────────────────────────
+role: Expert Reference Creator using workflows-documentation skill
+purpose: Create reference files for existing skills (Level 3 progressive disclosure)
+action: Generate workflow, patterns, debugging, or tool integration documentation
+
+operating_mode:
+  workflow: sequential_5_step
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: step_by_step
+  chained_support: true  # Can be invoked from parent workflows (skill.md Step 8)
+
+development_philosophy:
+  principle: "Reference files provide deep technical guidance loaded on-demand"
+  approach: "Analyze → Plan → Load → Create → Validate"
+  mandate: "Every reference must include explicit reasoning and named validation checkpoints"
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+  
+  scoring_weights:
+    task_purpose_clarity: 0.30
+    content_planning: 0.25
+    template_adherence: 0.25
+    validation_readiness: 0.20
+  
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+  
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  solution_flow:
+    - "Parse carefully: What is ACTUALLY requested?"
+    - "Gather Context: Read files, check skills folder"
+    - "Identify Approach: SIMPLEST solution that works"
+    - "Validate Choice: Follow patterns, maintainable"
+    - "Clarify If Needed: If <80% confidence, ask"
+    - "Scope Check: Solving ONLY what was asked?"
+    - "Execute: Implement with minimal complexity"
+  
+  pre_change_validation:
+    items:
+      - "Skill exists and has SKILL.md?"
+      - "Reference type valid? (workflow/patterns/debugging/tools/quick_ref)"
+      - "Content scope defined?"
+      - "Template patterns identified?"
+      - "Confidence >=80%? (if not: ask)"
+    stop_conditions: ["Any item unchecked", "Skill not found"]
+    stop_action: "STOP and address before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS (From gate outputs)
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  skill_name: |
+    [SKILL_NAME]
+    Target skill to add reference to.
+    FROM GATE 0 OUTPUT.
+
+  reference_type: |
+    [REFERENCE_TYPE]
+    Type: workflow | patterns | debugging | tools | quick_ref
+    FROM GATE 0 OUTPUT.
+
+  skill_path: |
+    [SKILL_PATH]
+    Verified path to the skill.
+    FROM GATE 1 OUTPUT.
+
+  skill_verified: |
+    [SKILL_VERIFIED]
+    Whether skill exists and has SKILL.md.
+    FROM GATE 1 OUTPUT.
+
+# ─────────────────────────────────────────────────────────────────
+# REFERENCE TYPES
+# ─────────────────────────────────────────────────────────────────
+reference_types:
+  workflow:
+    directory: "references/"
+    naming: "[workflow_name].md"
+    purpose: "Multi-phase processes with validation checkpoints"
+    size_target: "500-1500 lines"
+    key_features:
+    - "Core Principle statement"
+    - "Phased structure with checkpoints"
+    - "Named validation gates"
+    - "Sequential dependencies"
+    structure:
+    - "Introduction & Purpose with Core Principle"
+    - "Phase overview (N phases listed)"
+    - "Each phase: Purpose, Actions, Validation checkpoint"
+    - "Quick Reference summary"
+
+  patterns:
+    directory: "references/"
+    naming: "[topic]_patterns.md"
+    purpose: "Code patterns with before/after examples"
+    size_target: "300-800 lines"
+    key_features:
+    - "Before/after with emojis (❌/✅)"
+    - "'Why better' explanations"
+    - "Pattern comparison tables"
+    structure:
+    - "Introduction with purpose"
+    - "Each pattern: ❌ BEFORE, ✅ AFTER, Why better"
+    - "Quick lookup table"
+
+  debugging:
+    directory: "references/"
+    naming: "[topic]_debugging.md"
+    purpose: "Systematic troubleshooting guides"
+    size_target: "600-1200 lines"
+    key_features:
+    - "Root cause analysis flow"
+    - "Common error patterns"
+    - "Step-by-step diagnosis"
+    structure:
+    - "Symptom categories"
+    - "Diagnostic decision tree"
+    - "Fix procedures for each error"
+    - "Prevention checklist"
+
+  tools:
+    directory: "references/"
+    naming: "[tool]_guide.md"
+    purpose: "External tool integration (MCP, CLI)"
+    size_target: "200-600 lines"
+    key_features:
+    - "Tool usage patterns"
+    - "Expected outputs"
+    - "Common commands"
+    structure:
+    - "Tool overview"
+    - "Configuration"
+    - "Usage patterns with examples"
+    - "Error handling"
+
+  quick_ref:
+    directory: "references/"
+    naming: "quick_reference.md"
+    purpose: "Commands, shortcuts, checklists"
+    size_target: "200-400 lines"
+    key_features:
+    - "Table format"
+    - "Checklists"
+    - "Command reference"
+    structure:
+    - "Quick lookup tables"
+    - "Command cheatsheet"
+    - "Common tasks checklist"
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve and continue to next step"
+  - label: "Review"
+    description: "Show more details"
+  - label: "Modify"
+    description: "Make changes before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (5 STEPS WITH CHECKPOINTS)
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_request_analysis:
+    purpose: Verify gate outputs and confirm reference creation
+    activities:
+    - Confirm skill_name from GATE 0
+    - Confirm reference_type from GATE 0
+    - Confirm skill_path from GATE 1
+    - Confirm skill_verified from GATE 1
+    - Validate reference_type is one of: workflow, patterns, debugging, tools, quick_ref
+    type_reference:
+      workflow: "Multi-phase processes - 500-1500 lines - Phased steps, checkpoints"
+      patterns: "Code patterns library - 300-800 lines - Before/after examples"
+      debugging: "Troubleshooting guide - 600-1200 lines - Root cause analysis"
+      tools: "External tool integration - 200-600 lines - MCP/CLI usage"
+      quick_ref: "Commands/shortcuts - 200-400 lines - Checklists, tables"
+    outputs:
+    - skill_confirmed
+    - type_confirmed
+    - path_confirmed
+    checkpoint:
+      question: "Adding [reference-type] reference to '[skill-name]'. Proceed?"
+      options:
+      - label: "A) Proceed"
+        description: "Create reference with these settings"
+      - label: "B) Change skill"
+        description: "Select different skill"
+      - label: "C) Change reference type"
+        description: "Use different reference type"
+
+  step_2_reference_planning:
+    purpose: Define reference content and structure
+    activities:
+    - Ask what technical guidance this reference should provide
+    - Determine content scope (workflows, patterns, troubleshooting)
+    - Plan sections based on reference type
+    - Identify if phased workflows, code examples, or checkpoints needed
+    questions:
+    - "What technical guidance should this reference provide?"
+    - "What workflows or processes?"
+    - "What patterns or examples?"
+    - "What troubleshooting scenarios?"
+    prompt_template: |
+      ┌────────────────────────────────────────────────────────────┐
+      │ "What technical guidance should this reference provide?"   │
+      │                                                            │
+      │ - What workflows or processes?                             │
+      │ - What patterns or examples?                               │
+      │ - What troubleshooting scenarios?                          │
+      └────────────────────────────────────────────────────────────┘
+    reference_spec_format:
+      filename: "[topic]_[type].md"
+      purpose: "[what this reference provides]"
+      key_sections:
+      - "[Section with purpose]"
+      phased_workflows: "[yes/no]"
+      code_examples: "[yes/no]"
+      validation_checkpoints: "[yes/no]"
+    outputs:
+    - spec_defined
+    - sections_planned
+    - features_identified
+    checkpoint:
+      question: "Reference plan complete. Review?"
+      options:
+      - label: "A) Approve plan"
+        description: "Proceed with this plan"
+      - label: "B) Add sections"
+        description: "Add more sections"
+      - label: "C) Modify scope"
+        description: "Change the scope"
+
+  step_3_template_loading:
+    purpose: Load skill_reference_template.md and extract type-specific patterns
+    activities:
+    - Read skill_reference_template.md from workflows-documentation skill
+    - Extract patterns based on reference_type
+    - Note formatting requirements (emojis, checkpoints, code blocks)
+    template_path: .opencode/skills/workflows-documentation/assets/skill_reference_template.md
+    type_specific_patterns:
+      workflow:
+      - "Core Principle Statements"
+      - "Phased Workflows with Validation"
+      - "Named validation checkpoints"
+      patterns:
+      - "Before/After Code Examples"
+      - "❌/✅ emoji markers"
+      - "'Why better' explanations"
+      debugging:
+      - "Root cause analysis flow"
+      - "Common error patterns"
+      - "Fix procedures"
+    structure_requirements:
+    - "Explicit reasoning throughout"
+    - "Named validation checkpoints"
+    - "Before/after with ❌/✅ emojis"
+    - "Links to scripts and assets"
+    outputs:
+    - template_loaded
+    - patterns_extracted
+    - requirements_noted
+
+  step_4_content_creation:
+    purpose: Generate reference file based on type
+    activities:
+    - Apply type-specific template structure
+    - Write core principle (for workflows)
+    - Create phased structure with checkpoints (for workflows)
+    - Write before/after examples with emojis (for patterns)
+    - Create diagnostic flows (for debugging)
+    - Include explicit reasoning throughout
+    - Add named validation checkpoints
+    - Write to skill's references directory
+    type_templates:
+      workflow: |
+        # [Workflow Name]
+        
+        [One-line description]
+        
+        **Prerequisites:** [Required standards/context]
+        
+        ---
+        
+        ## 1. 📖 INTRODUCTION & PURPOSE
+        
+        ### Core Principle
+        
+        [Single powerful statement capturing essence]
+        
+        ### The [N] Phases
+        
+        You MUST complete each phase before proceeding to the next.
+        
+        ---
+        
+        ## 2. 🔄 PHASE 1: [PHASE NAME]
+        
+        **Purpose**: [What this phase accomplishes]
+        
+        **Actions**:
+        1. [Action 1]
+        2. [Action 2]
+        
+        **Validation**: `checkpoint_name`
+        - [Validation question 1]
+        - [Validation question 2]
+        
+        ---
+        
+        ## N. 📋 QUICK REFERENCE
+        
+        [Summary checklist]
+      
+      patterns: |
+        # [Pattern Library Name]
+        
+        ---
+        
+        ## 1. 📖 INTRODUCTION
+        
+        ### Purpose
+        
+        [What patterns this file provides]
+        
+        ---
+        
+        ## 2. 🔧 PATTERN: [NAME]
+        
+        ❌ **BEFORE**: [Problem]
+        ```[language]
+        // Bad code
+        ```
+        
+        ✅ **AFTER**: [Solution]
+        ```[language]
+        // Good code
+        ```
+        
+        **Why better**: [Explanation]
+        
+        ---
+    output_path: "[skill-path]/references/[filename].md"
+    outputs:
+    - reference_file_created
+    - sections_count: number
+    - checkpoints_count: number
+    - examples_count: number
+    checkpoint:
+      question: "Reference file created. Review?"
+      options:
+      - label: "A) Show full content"
+        description: "Display complete reference file"
+      - label: "B) Proceed to validation"
+        description: "Continue to validation step"
+      - label: "C) Edit sections"
+        description: "Make changes to sections"
+
+  step_5_validation:
+    purpose: Quality check and SKILL.md integration
+    activities:
+    - Structure validation (core principle, phases, checkpoints, emojis)
+    - Content validation (explicit reasoning, named checkpoints, links)
+    - Integration (update SKILL.md Navigation Guide, SMART ROUTING)
+    validation_checklist:
+      structure:
+      - "Core principle present (for workflows)"
+      - "Phased structure with checkpoints"
+      - "Before/after examples have ❌/✅ emojis"
+      - "All code blocks specify language"
+      content:
+      - "Explicit reasoning throughout"
+      - "Named checkpoints referenced"
+      - "Links to related resources work"
+      integration:
+      - "Reference added to Navigation Guide"
+      - "SMART ROUTING section updated"
+      - "Referenced from HOW IT WORKS if relevant"
+    quality_gates:
+      structure_complete: true
+      checkpoints_named: true
+      skill_md_updated: true
+    outputs:
+    - validation_passed: boolean
+    - checklist_results: object
+    - skill_md_updated: boolean
+    checkpoint:
+      question: "Validation complete. Reference ready?"
+      options:
+      - label: "Proceed"
+        description: "Continue to save context"
+      - label: "Fix issues"
+        description: "Address validation failures"
+      - label: "View summary"
+        description: "Show final summary"
+
+  step_6_save_context:
+    purpose: Preserve workflow decisions and context
+    activities:
+    - Invoke system-memory skill
+    - Document reference creation decisions
+    - Record technical guidance and patterns
+    - Save validation results
+    - Create memory file with timestamp
+    - Index memory file for immediate search availability
+    tool_invocation:
+      command: "openskills read system-memory"
+      note: "Activate context saving via memory skill"
+    memory_content:
+      include:
+      - Skill name and reference type
+      - Technical guidance captured
+      - Patterns or workflows documented
+      - SKILL.md integration updates
+      - Any challenges or decisions made
+    outputs:
+    - memory_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__reference_creation_session.md"
+    validation: context_saved
+    checkpoint:
+      question: "Context saved. Reference creation complete!"
+      options:
+      - label: "Done"
+        description: "Complete workflow"
+      - label: "View summary"
+        description: "Show final summary"
+
+    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    post_save_indexing:
+      purpose: "Index memory file immediately for search availability"
+      mcp_tool: memory_save
+      invocation: |
+        mcp__semantic_memory__memory_save({
+          filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__reference_creation_session.md"
+        })
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
+      when: "Immediately after memory file is written to disk"
+
+    anchor_requirements:
+      enforcement: MANDATORY
+      minimum_anchors: 2
+      pattern: "[context-type]-[keywords]-[spec-number]"
+      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
+      case: "UPPERCASE recommended for visibility"
+      required_sections:
+        - context_type: "general"
+          section: "Session summary with reference creation outcomes"
+          example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
+          example: |
+            <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+            ## Session Summary
+            Created [type] reference for [skill]...
+            <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+        - context_type: "decision"
+          section: "Key decisions made during reference creation"
+          example_id: "DECISION-REFERENCE-STRUCTURE-{spec#}"
+          example: |
+            <!-- ANCHOR:DECISION-REFERENCE-STRUCTURE-{spec#} -->
+            ## Key Decisions
+            - Chose workflow structure because...
+            <!-- /ANCHOR:DECISION-REFERENCE-STRUCTURE-{spec#} -->
+      optional_sections:
+        - context_type: "implementation"
+          section: "Patterns or workflows documented"
+          example_id: "IMPLEMENTATION-PATTERNS-{spec#}"
+        - context_type: "implementation"
+          section: "SKILL.md integration changes"
+          example_id: "IMPLEMENTATION-INTEGRATION-{spec#}"
+      benefit: "93% token savings on anchor-based retrieval"
+      reference: "See /memory:save Step 3 for full anchor documentation"
+
+    importance_tier:
+      assign: important
+      rationale: "Technical references are high-value documentation that informs future decisions"
+      promotion_note: "Use memory_update() to promote to 'critical' if reference becomes foundational"
+      tier_reference: |
+        constitutional: Core project rules (auto-surface always)
+        critical: Foundational decisions (high priority in search)
+        important: Significant work like technical references (this workflow)
+        normal: Standard context (default)
+        temporary: Short-term notes
+        deprecated: Outdated but retained
+
+# ─────────────────────────────────────────────────────────────────
+# COMPLETION REPORT TEMPLATE
+# ─────────────────────────────────────────────────────────────────
+completion_report:
+  template: |
+    ✅ Reference Created
+    
+    Skill: [skill-name]
+    Reference: [filename]
+    Location: [full-path]
+    Type: [workflow|patterns|debugging|tools|quick_ref]
+    
+    Content:
+    - Sections: [N]
+    - Phased Workflows: [Y/N]
+    - Code Examples: [N pairs]
+    - Checkpoints: [N named]
+    
+    SKILL.md Updated:
+    - Navigation Guide: [Y/N]
+    - SMART ROUTING: [Y/N]
+    
+    Next Steps:
+    - Test reference in skill context
+    - Add more examples if needed
+    - Validate skill: quick_validate.py [skill-path]
+    
+    STATUS=OK PATH=[reference-path]
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  skill_not_found:
+    action: "List available skills, prompt for selection"
+    options: ["List skills", "Provide path", "Cancel"]
+  invalid_reference_type:
+    action: "Show valid types"
+    options: ["workflow", "patterns", "debugging", "tools", "quick_ref"]
+  reference_exists:
+    action: "Offer to update or rename"
+    options: ["Update existing", "Create with new name", "Cancel"]
+  no_references_dir:
+    action: "Create directory automatically"
+    command: "mkdir -p [skill-path]/references/"
+
+# ─────────────────────────────────────────────────────────────────
+# REFERENCE TEMPLATES
+# ─────────────────────────────────────────────────────────────────
+reference_templates:
+  skill_reference: .opencode/skills/workflows-documentation/assets/skill_reference_template.md
+  core_standards: .opencode/skills/workflows-documentation/references/core_standards.md
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - use_skill_reference_template
+  - include_explicit_reasoning
+  - name_validation_checkpoints
+  - use_before_after_emojis
+  - update_skill_md_routing
+  - validate_before_claiming_complete
+
+  NEVER:
+  - skip_core_principle
+  - create_without_examples
+  - leave_unnamed_checkpoints
+  - omit_language_in_code_blocks
+  - create_for_nonexistent_skill

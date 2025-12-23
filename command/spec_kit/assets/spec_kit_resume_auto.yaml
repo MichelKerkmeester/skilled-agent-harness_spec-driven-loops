@@ -1,0 +1,222 @@
+# ───────────────────────────────────────────────────────────────────
+# SMART SPECKIT: RESUME WORKFLOW (AUTONOMOUS MODE)
+# ───────────────────────────────────────────────────────────────────
+role: Expert Developer using Smart SpecKit for autonomous session resume
+purpose: Resume previous work session with automatic context loading
+action: Detect session, load context, and present continuation options
+
+operating_mode:
+  workflow: utility
+  workflow_compliance: OPTIONAL
+  workflow_execution: autonomous
+  approvals: none
+  tracking: session_state_detection
+  validation: context_loaded
+
+resume_philosophy:
+  principle: "Context continuity, minimal friction"
+  approach: "Auto-detect, auto-load, fast resume"
+  mandate: "Restore context quickly and accurately"
+
+# ───────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ───────────────────────────────────────────────────────────────────
+user_inputs:
+  spec_folder: |
+    [SPEC_FOLDER]
+    Optional spec folder path. If empty, auto-detect from:
+    1. Most recent memory file in specs/*/memory/
+
+# ─────────────────────────────────────────────────────────────────
+# SESSION DETECTION (Stateless - no .spec-active marker)
+# ─────────────────────────────────────────────────────────────────
+session_detection:
+  priority_order:
+    1: "CLI argument (explicit path provided)"
+    2: "Find most recent memory file in specs/*/memory/"
+  
+  note: "Stateless architecture - no .spec-active marker file used"
+  
+  fallback:
+    on_no_memory: "Report no active session, suggest /spec_kit:complete"
+
+# ─────────────────────────────────────────────────────────────────
+# MEMORY LOADING (AUTONOMOUS - auto-load most recent)
+# ─────────────────────────────────────────────────────────────────
+memory_loading:
+  mode: automatic
+  behavior: |
+    In autonomous mode, automatically load the most recent memory file
+    without prompting the user for selection.
+  
+  selection: most_recent
+  max_files: 1
+  
+  mcp_integration:
+    tool: memory_search
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    query_pattern: "Load context for {spec_folder_name}"
+
+# ─────────────────────────────────────────────────────────────────
+# STALE SESSION DETECTION (Part of Memory Loading)
+# ─────────────────────────────────────────────────────────────────
+stale_session_detection:
+  check: "last_modified > 7 days"
+  action: "Flag as stale but proceed anyway in auto mode"
+  
+  autonomous_behavior:
+    action: "Warn about stale context but continue"
+    note: "In auto mode, proceed with warning instead of blocking"
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE FRAMEWORK - Simplified for Resume
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  purpose: "Ensure session context is valid before resuming work"
+  note: "Resume workflow uses simplified confidence checks focused on context validity"
+  
+  thresholds:
+    high:
+      range: "80-100%"
+      action: "Proceed with context loading and resume"
+    medium:
+      range: "40-79%"
+      action: "Proceed but warn about potential context staleness"
+    low:
+      range: "0-39%"
+      action: "Warn user about context reliability issues"
+  
+  context_validation_scoring:
+    factors:
+      session_recency:
+        weight: 0.40
+        description: "How recent is the last session? (<7 days = high, >7 days = low)"
+      artifact_completeness:
+        weight: 0.30
+        description: "Are required artifacts present and valid?"
+      memory_availability:
+        weight: 0.20
+        description: "Are memory files available for context loading?"
+      codebase_changes:
+        weight: 0.10
+        description: "Have relevant files changed since last session?"
+  
+  key_checkpoints:
+    - step: 1
+      check: "Spec folder path valid and accessible?"
+    - step: 2
+      check: "Memory file loadable and not corrupted?"
+    - step: 3
+      check: "Progress calculation accurate?"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (UTILITY - 4 STEPS)
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_session_detection:
+    purpose: Detect active session from CLI argument or memory files
+    activities:
+    - Check if spec folder provided via CLI argument
+    - If no argument, find most recent memory file
+    - Validate spec folder exists
+    outputs:
+    - spec_folder: detected_path
+    - detection_method: argument_or_memory
+    validation: session_detected
+
+  step_2_load_memory:
+    purpose: Automatically load most recent memory context
+    activities:
+    - List memory files in spec_folder/memory/
+    - Select most recent by timestamp
+    - Read and parse memory file
+    - Extract key context (decisions, pending work, next actions)
+    mcp_tool:
+      name: memory_load
+      note: "Call directly - NEVER through Code Mode"
+    outputs:
+    - memory_loaded: true
+    - context_summary: extracted_context
+    validation: context_loaded
+
+  step_3_calculate_progress:
+    purpose: Calculate task and checklist progress
+    activities:
+    - Parse tasks.md for completion status
+    - Parse checklist.md for verification status
+    - Calculate percentages
+    - Identify pending items
+    outputs:
+    - tasks_progress: percentage
+    - checklist_progress: percentage
+    - pending_items: list
+    validation: progress_calculated
+
+  step_4_present_resume:
+    purpose: Display resume summary and continue work
+    activities:
+    - Display spec folder and last activity
+    - Show progress bars for tasks and checklist
+    - List artifacts status
+    - Show pending work summary
+    - Show next actions
+    - Proceed directly to continue work
+    outputs:
+    - resume_summary: displayed
+    - continuation_mode: ready
+    validation: resume_complete
+
+# ─────────────────────────────────────────────────────────────────
+# STALE SESSION HANDLING
+# ─────────────────────────────────────────────────────────────────
+stale_session:
+  threshold_days: 7
+  
+  detection:
+    check: "last_modified > 7 days"
+    action: "Flag as stale but proceed anyway in auto mode"
+  
+  autonomous_behavior:
+    action: "Warn about stale context but continue"
+    note: "In auto mode, proceed with warning instead of blocking"
+
+# ─────────────────────────────────────────────────────────────────
+# TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: 4
+  message: "Session resumed successfully. Ready to continue work."
+  next_steps:
+  - Continue from pending work
+  - Review implementation summary
+  - Run /spec_kit:implement if tasks remain
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  no_active_session:
+    action: "Report no session found, suggest /spec_kit:complete to start"
+  spec_folder_missing:
+    action: "Report folder not found, ask user to specify or create"
+  memory_load_failed:
+    action: "Proceed without context, note limitation"
+  stale_session_detected:
+    action: "Warn user, proceed with caution, suggest review"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - detect_session_before_loading
+  - load_most_recent_memory_automatically
+  - calculate_progress_from_artifacts
+  - display_clear_summary
+  - use_mcp_tools_directly
+
+  NEVER:
+  - prompt_for_memory_selection_in_auto_mode
+  - block_on_stale_session
+  - proceed_without_valid_spec_folder
+  - call_mcp_through_code_mode

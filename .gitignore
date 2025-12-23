@@ -1,0 +1,15 @@
+# Git Ignore Configuration
+# Specifies intentionally untracked files that Git should ignore
+
+.DS_Store
+
+# Development
+node_modules/
+
+# Database files (contain personal memory/session data)
+memory/database/*.sqlite
+memory/database/*.sqlite-shm
+memory/database/*.sqlite-wal
+
+# Archive folder (root level only)
+/z — Archive/

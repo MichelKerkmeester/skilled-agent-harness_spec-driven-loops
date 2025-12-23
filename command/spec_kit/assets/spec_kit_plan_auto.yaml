@@ -1,0 +1,773 @@
+# ───────────────────────────────────────────────────────────────────
+# SMART SPECKIT: PLAN WORKFLOW (AUTONOMOUS MODE)
+# ───────────────────────────────────────────────────────────────────
+role: Expert Developer using Smart SpecKit for autonomous planning
+purpose: Spec-driven planning with autonomous execution through step 7
+action: Run SpecKit from spec to planning with continuous self-validation
+
+operating_mode:
+  workflow: sequential
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  tracking: progressive_task_checklists
+  validation: continuous_self_validation
+
+planning_philosophy:
+  principle: "Clarity first, completeness second"
+  approach: "Thorough analysis with iterative refinement"
+  mandate: "Define requirements, validate assumptions, plan incrementally, execute autonomously"
+
+# ───────────────────────────────────────────────────────────────────
+# USER INPUTS (Transformed from raw text)
+# ───────────────────────────────────────────────────────────────────
+user_inputs:
+  git_branch: |
+    [GIT_BRANCH]
+    Git branch name for the work. Leave empty to auto-create as feature-{NNN}.
+
+  spec_folder: |
+    [SPEC_FOLDER]
+    Spec folder path. Leave empty to auto-create next available spec number.
+
+  context: |
+    [CONTEXT]
+    Background information, constraints, or existing documentation.
+
+  issues: |
+    [ISSUES]
+    Known issues, problems, or concerns to address.
+
+  request: |
+    [REQUEST]
+    Feature or improvement to plan. REQUIRED.
+
+  environment: |
+    [STAGING LINK]
+    Staging or production URL for browser testing.
+
+  scope: |
+    [FILES]
+    Files or folders to focus on.
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  spec_id:
+    derive_from: "spec_folder path using pattern specs/{NNN} or specs/{NNN-name}"
+    fallback: "Extract numeric portion or use timestamp if extraction fails"
+
+  defaults:
+    git_branch_empty: "Auto-create feature-{NNN} from highest +001"
+    spec_folder_empty: "Auto-create specs/{NNN} from highest +001"
+    context_empty: "Infer from [REQUEST], [STAGING LINK], and codebase exploration"
+    issues_empty: "Investigate and discover during workflow"
+    environment_empty: "Skip browser testing steps"
+    scope_empty: "Use scope_policy.default"
+
+  scope_policy:
+    default: "specs/**"
+    rule: "Limit file operations to scope when provided"
+
+# ─────────────────────────────────────────────────────────────────
+# DOCUMENTATION LEVELS (Progressive Enhancement)
+# ─────────────────────────────────────────────────────────────────
+documentation_levels:
+  level_1_baseline:
+    name: "Level 1 (Baseline)"
+    required_files:
+    - spec.md
+    - plan.md
+    - tasks.md
+    loc_guidance: "<100 LOC"
+    use_case: "Simple changes, bug fixes, minor features"
+
+  level_2_verification:
+    name: "Level 2 (Verification)"
+    required_files:
+    - spec.md
+    - plan.md
+    - tasks.md
+    - checklist.md
+    loc_guidance: "100-499 LOC"
+    use_case: "Medium features, refactoring, multi-file changes"
+
+  level_3_full:
+    name: "Level 3 (Full)"
+    required_files:
+    - spec.md
+    - plan.md
+    - tasks.md
+    - checklist.md
+    - decision-record.md
+    optional_files:
+    - research-spike.md
+    loc_guidance: ">=500 LOC"
+    use_case: "Complex features, architecture changes, high-risk modifications"
+
+  level_selection:
+    note: "LOC thresholds are SOFT GUIDANCE - choose level based on complexity and risk"
+    default: "Level 1 for simple tasks, escalate based on analysis"
+
+# ─────────────────────────────────────────────────────────────────
+# AVAILABLE TEMPLATES
+# ─────────────────────────────────────────────────────────────────
+available_templates:
+  # Level 1+ (Baseline - required at all levels)
+  spec: .opencode/skills/system-spec-kit/templates/spec.md
+  plan: .opencode/skills/system-spec-kit/templates/plan.md
+  tasks: .opencode/skills/system-spec-kit/templates/tasks.md
+  # Level 2+ (Verification)
+  checklist: .opencode/skills/system-spec-kit/templates/checklist.md
+  # Level 3 (Full)
+  decision_record: .opencode/skills/system-spec-kit/templates/decision-record.md
+  # Optional (any level)
+  research: .opencode/skills/system-spec-kit/templates/research.md
+  research_spike: .opencode/skills/system-spec-kit/templates/research-spike.md
+  # Utility (any level)
+  handover: .opencode/skills/system-spec-kit/templates/handover.md
+  debug_delegation: .opencode/skills/system-spec-kit/templates/debug-delegation.md
+
+# ─────────────────────────────────────────────────────────────────
+# PARALLEL DISPATCH CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+# Smart parallel sub-agent dispatch for eligible workflow phases.
+# Uses 5-dimension complexity scoring algorithm.
+# Always ask before parallel dispatch (no auto-dispatch)
+# Exception: Step 6 Planning exploration is automatic (core planning feature)
+parallel_dispatch_config:
+  enabled: true
+
+  complexity_scoring:
+    domain_count:
+      weight: 0.35
+      domains: [code, analysis, docs, git, testing, devops]
+      scoring: "1=0.0, 2=0.5, 3+=1.0"
+    file_count:
+      weight: 0.25
+      scoring: "1-2=0.0, 3-5=0.5, 6+=1.0"
+    loc_estimate:
+      weight: 0.15
+      scoring: "<50=0.0, 50-200=0.5, >200=1.0"
+    parallel_opportunity:
+      weight: 0.20
+      scoring: "sequential=0.0, some=0.5, high=1.0"
+    task_type:
+      weight: 0.05
+      scoring: "trivial=0.0, moderate=0.5, complex=1.0"
+
+  # Decision thresholds (no auto-dispatch)
+  thresholds:
+    direct_max: 20
+    ask_min: 20
+    min_domains_for_ask: 2
+    # NOTE: No auto-dispatch - always ask before parallel dispatch
+    # Always ask user before parallel dispatch (except Step 6 Planning)
+
+  session_preference:
+    persist_duration_seconds: 3600
+
+  override_phrases:
+    direct: ["proceed directly", "handle directly", "skip parallel", "skip agents"]
+    parallel: ["use parallel", "dispatch agents", "parallelize", "use agents"]
+    auto: ["auto-decide", "auto mode", "decide for me"]
+
+  question_template:
+    method: present_options_to_user
+    header: "Parallel Dispatch"
+    format: |
+      **Phase: {phase_name}**
+      Complexity: {complexity_score}% | Domains: {domain_count} ({domains_list})
+
+      This phase may benefit from parallel sub-agents for faster execution.
+    options:
+      - id: A
+        label: "Handle directly"
+        description: "Execute phase sequentially without parallel agents"
+      - id: B
+        label: "Use parallel agents"
+        description: "Dispatch specialized agents for faster parallel execution"
+      - id: C
+        label: "Auto-decide for session"
+        description: "Let system decide based on complexity thresholds (1 hour)"
+
+  eligible_phases:
+    - step_3_specification
+    - step_6_planning  # Has inline_parallel_exploration - 4 agents dispatched directly
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+  
+  scoring_weights:
+    requirements_clarity: 0.30
+    technical_approach: 0.25
+    pattern_alignment: 0.25
+    risk_awareness: 0.20
+  
+  # Standard reply format for confidence checkpoints
+  reply_format:
+    required_fields:
+      - "Confidence: NN%"
+      - "Top factors: 2-3 bullets"
+      - "Next action: proceed | proceed with caution | ask for clarification"
+    conditional_fields:
+      if_asking: "Include one multiple-choice question with A/B/C options"
+      uncertainty: "Brief note of unknowns (or 'UNKNOWN' if data is missing)"
+      sources: "Files/lines or URLs used (name evidence when relied upon)"
+    optional_json_block:
+      when: "Fact-checking required"
+      format: |
+        {
+          "label": "TRUE | FALSE | UNKNOWN",
+          "truth_score": 0.0-1.0,
+          "uncertainty": 0.0-1.0,
+          "citations": ["..."],
+          "audit_hash": "sha256(...)"
+        }
+  
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+  
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# ─────────────────────────────────────────────────────────────────
+# REQUEST ANALYSIS FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+request_analysis_framework:
+  solution_flow:
+    - "Parse carefully: What is ACTUALLY requested?"
+    - "Gather Context: Read files, check skills folder"
+    - "Identify Approach: SIMPLEST solution that works"
+    - "Validate Choice: Follow patterns, maintainable"
+    - "Clarify If Needed: If <80% confidence, ask"
+    - "Scope Check: Solving ONLY what was asked?"
+    - "Execute: Implement with minimal complexity"
+  
+  pre_change_validation:
+    items:
+      - "Simplest solution? (existing patterns)"
+      - "Scope discipline? (ONLY stated problem)"
+      - "Spec folder created?"
+      - "Confidence >=80%? (if not: ask)"
+      - "Sources cited?"
+    stop_conditions: ["Any item unchecked", "No spec folder"]
+    stop_action: "STOP and address before proceeding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+  
+  planning_gate:
+    location: "After Step 6"
+    purpose: "Verify all planning artifacts complete before context save"
+    requirements:
+      - "spec.md exists and has no [NEEDS CLARIFICATION] markers"
+      - "plan.md exists with technical approach"
+    action_if_failed: "STOP and return to incomplete step"
+  
+  step_completion_rule: |
+    FOR EACH STEP:
+    1. Execute ALL activities listed
+    2. Verify ALL outputs exist
+    3. Mark step ✅ in tracking
+    4. ONLY THEN proceed to next step
+    
+    ⛔ NEVER skip a step
+    ⛔ NEVER proceed without marking previous step complete
+    ⛔ NEVER proceed to implementation without running /spec_kit:implement
+
+  critical_steps:
+    step_3_specification:
+      enforcement: "MUST create spec.md with all required sections"
+      verification: "File exists and contains acceptance criteria"
+    step_6_planning:
+      enforcement: "MUST create plan.md with technical approach"
+      verification: "File exists and contains implementation phases"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (7 STEPS)
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_request_analysis:
+    purpose: Analyze inputs and define planning scope
+    activities:
+    - Analyze all user inputs thoroughly
+    - Define development scope for the spec folder
+    - Verify or create spec folder structure
+    - Check for existing artifacts
+    - Establish planning scope
+    deep_analysis:
+      focus: comprehensive_requirement_analysis
+      outputs:
+      - requirement_summary
+      - approach_overview
+      - complexity_assessment
+      - key_objectives
+      - success_criteria
+    
+    # CONFIDENCE CHECKPOINT
+    confidence_checkpoint:
+      evaluate_at: "After analyzing all inputs"
+      scoring_factors:
+        - factor: "Requirements clarity"
+          weight: 0.40
+          assess: "Is the request unambiguous? Are goals clear?"
+        - factor: "Scope definition"
+          weight: 0.30
+          assess: "Is scope well-bounded? Are constraints identified?"
+        - factor: "Context availability"
+          weight: 0.30
+          assess: "Is sufficient context provided or discoverable?"
+      thresholds:
+        high_80_plus:
+          action: "Proceed to Step 2"
+          log: "Confidence: [NN%] - Requirements clear, proceeding"
+        medium_40_79:
+          action: "Proceed with caution"
+          log: "Confidence: [NN%] - [uncertainty notes] - proceeding with assumptions documented"
+          requirement: "Document assumptions in spec.md Assumptions section"
+        low_below_40:
+          action: "STOP - Ask clarification"
+          format: |
+            "I need clarity (confidence: [NN%]). Please clarify:
+            - A) [first interpretation with rationale]
+            - B) [second interpretation with rationale]
+            - C) [third interpretation with rationale]"
+          wait_for: "User response before proceeding"
+    
+    validation: understanding_confirmed
+
+  step_2_pre_work_review:
+    purpose: Review skills folder and project standards
+    activities:
+    - Read and review AGENTS.md
+    - Check skills folder (.opencode/skills/) for relevant coding standards
+    - Extract coding standards summary
+    - Identify architectural patterns
+    - Document project conventions
+    required_documents:
+    - AGENTS.md
+    - Skills folder (if available)
+    verification: MUST_REVIEW
+    validation: principles_established
+
+  step_3_specification:
+    purpose: Create comprehensive feature specification
+
+    # PRE-PHASE: Smart parallel dispatch check
+    pre_phase_parallel_check:
+      enabled: true
+      phase_domains: [code, docs]
+      complexity_boost: 0
+      decision_logic: |
+        BEFORE starting this phase, evaluate parallel dispatch:
+        1. Check for override phrases in user request
+        2. Check for session preference (from previous "Auto-decide" selection)
+        3. Check for sequential dependencies (skip if detected)
+        4. Calculate phase complexity using parallel_dispatch_config
+        5. Apply thresholds:
+           - <20% → proceed directly (no parallel agents)
+           - ≥20% + 2 domains → ALWAYS ask user
+           NOTE: No auto-dispatch - always ask before parallel dispatch
+      on_parallel_dispatch:
+        agents:
+          - name: "spec_explorer"
+            focus: "Existing specifications and patterns in codebase"
+            model: "sonnet"
+          - name: "requirement_analyzer"
+            focus: "Similar features and their requirements"
+            model: "sonnet"
+        dispatch_note: "Spawn agents in SINGLE message for parallel execution"
+      fallback: "Proceed with activities below if dispatch fails or user chooses direct"
+
+    activities:
+    - Generate concise short name for branch
+    - Check for existing branches
+    - Run create-spec-folder.sh script
+    - Estimate complexity and select documentation level using progressive enhancement:
+      - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
+      - "Level 2 (Verification): 100-499 LOC - Level 1 + checklist.md"
+      - "Level 3 (Full): >=500 LOC - Level 2 + decision-record.md"
+    - Load and fill spec.md
+    - Generate functional requirements
+    - Define success criteria
+    outputs:
+    - feature_branch: created
+    - spec.md: acceptance_criteria
+    template: .opencode/skills/system-spec-kit/templates/spec.md
+    
+    # CONFIDENCE CHECKPOINT
+    confidence_checkpoint:
+      evaluate_at: "After drafting spec.md content"
+      scoring_factors:
+        - factor: "Requirements completeness"
+          weight: 0.35
+          assess: "Are all functional requirements identified and testable?"
+        - factor: "Acceptance criteria clarity"
+          weight: 0.35
+          assess: "Are success criteria measurable and unambiguous?"
+        - factor: "Technical feasibility"
+          weight: 0.30
+          assess: "Is the approach technically sound? Dependencies identified?"
+      thresholds:
+        high_80_plus:
+          action: "Finalize spec.md and proceed to Step 4"
+          log: "Confidence: [NN%] - Specification complete"
+        medium_40_79:
+          action: "Add [NEEDS CLARIFICATION] markers to uncertain sections"
+          log: "Confidence: [NN%] - Proceeding with marked uncertainties"
+          requirement: "Mark uncertain sections for Step 4 resolution"
+        low_below_40:
+          action: "STOP - Ask clarification before finalizing spec"
+          format: |
+            "Specification confidence low ([NN%]). Need clarity on:
+            - A) [critical ambiguity 1 with options]
+            - B) [critical ambiguity 2 with options]
+            - C) [suggest research spike if technical uncertainty]"
+          wait_for: "User response before finalizing spec.md"
+      citation_requirement: |
+        All technical decisions must cite sources:
+        - Format: [SOURCE: file.md:lines] for code patterns
+        - Format: [CITATION: URL] for external references
+        - Use [CITATION: NONE] if based on general knowledge
+    
+    validation: spec_complete
+
+  step_4_clarification:
+    purpose: Resolve ambiguities and clarify requirements
+    activities:
+    - Extract [NEEDS CLARIFICATION] markers (max 3)
+    - Research codebase for patterns
+    - Resolve ambiguities through investigation
+    - Update spec.md with clarifications
+    - Document assumptions
+    outputs:
+    - resolved_ambiguities
+    - clarified_requirements
+    - updated_spec
+    validation: requirements_clear
+
+  step_5_quality_checklist:
+    purpose: Generate validation checklist (Level 2+ requirement)
+    level_requirement: "Level 2+ (Verification and Full)"
+    activities:
+    - Check documentation level - skip for Level 1, required for Level 2+
+    - Load checklist.md template
+    - Generate domain-specific validation items
+    - Create checklist file
+    - Run validation check
+    outputs:
+    - quality_checklist: generated
+    template: .opencode/skills/system-spec-kit/templates/checklist.md
+    validation: checklist_generated
+
+  step_6_planning:
+    purpose: Create technical plan with implementation approach
+
+    # ── CODEBASE EXPLORATION ────────────────────────────────────────
+    # Tool selection delegated to AGENTS.md Section 6 - no duplication here
+    # - Semantic search (LEANN): "how does X work", intent-based discovery
+    # - Structural search (Code Context): list functions, classes, outline
+    # - Lexical search (Grep): exact text patterns
+
+    # INLINE 4-AGENT PARALLEL EXPLORATION
+    # Self-contained exploration - no external skill dependency
+    parallel_dispatch_note: |
+      This phase dispatches 4 parallel Sonnet agents directly via Task tool.
+      Agents: Architecture Explorer, Feature Explorer, Dependency Explorer, Test Explorer.
+      No additional question is asked because parallel dispatch is integral to this phase.
+
+    # 4-Agent Parallel Exploration Configuration
+    inline_parallel_exploration:
+      description: "4-agent parallel exploration for verified planning"
+      purpose: "Spawn 4 Explore agents to discover codebase patterns before planning"
+
+      execution:
+        tool: Task
+        subagent_type: explore
+        model: sonnet  # Fast, cost-effective exploration
+        parallel: true  # All 4 agents spawn in single message
+
+      agents:
+        architecture_explorer:
+          focus: "Project structure, entry points, component connections"
+          purpose: "Understand system architecture"
+          prompt: |
+            Explore the codebase to find how the system architecture works for: {task_description}
+
+            Return:
+            1. Your hypothesis about the architecture
+            2. Full paths to all relevant files (e.g., /path/to/file.ts:lineNumber)
+            3. Any patterns you noticed (component structure, module organization, etc.)
+
+            Do NOT draw conclusions - just report findings. The main agent will verify.
+
+        feature_explorer:
+          focus: "Similar features, related patterns"
+          purpose: "Find reusable patterns"
+          prompt: |
+            Explore the codebase to find similar features or related patterns for: {task_description}
+
+            Return:
+            1. Your hypothesis about existing similar features
+            2. Full paths to all relevant files
+            3. Any patterns you noticed (naming conventions, implementation patterns, etc.)
+
+            Do NOT draw conclusions - just report findings.
+
+        dependency_explorer:
+          focus: "Imports, modules, affected areas"
+          purpose: "Identify integration points"
+          prompt: |
+            Explore the codebase to find dependencies and integration points for: {task_description}
+
+            Return:
+            1. Your hypothesis about which modules/files will be affected
+            2. Full paths to all relevant files
+            3. Any patterns you noticed (dependency chains, coupling points, etc.)
+
+            Do NOT draw conclusions - just report findings.
+
+        test_explorer:
+          focus: "Test patterns, testing infrastructure"
+          purpose: "Understand verification approach"
+          prompt: |
+            Explore the codebase to find test patterns and testing infrastructure.
+
+            Return:
+            1. Your hypothesis about how testing works in this project
+            2. Full paths to all relevant test files
+            3. Any patterns you noticed (test frameworks, mocking patterns, coverage expectations, etc.)
+
+            Do NOT draw conclusions - just report findings.
+
+      verification:
+        description: "After agents return, verify hypotheses by reading identified files"
+        approach:
+          - "Read each file identified by Explore agents"
+          - "Verify or refute each hypothesis"
+          - "Cross-reference findings across agents for consistency"
+          - "Build complete mental model of architecture, affected components, integration points, risks"
+          - "Resolve conflicting hypotheses by reading additional files"
+
+      outputs:
+        - architecture_findings
+        - feature_findings
+        - dependency_findings
+        - test_findings
+        - verified_mental_model
+
+      fallback:
+        on_failure: "Use inline planning activities below"
+        reason: "Graceful degradation if agents unavailable"
+
+    # FALLBACK: Inline planning if exploration fails
+    activities:
+    - Run check-prerequisites.sh --json --paths-only
+    - Load plan.md
+    - Fill Technical Context
+    - Fill Constitution Check section
+    - Phase 0: Generate research.md to resolve unknowns
+    - Phase 1: Generate data-model.md, contracts/
+    - Generate Testing Strategy
+    - Generate Success Metrics
+    - Import Risk Matrix from spec
+    - Generate Dependencies Tables
+    - Generate Phase 2-4 outlines
+    - Create planning-summary.md
+    outputs:
+    - plan.md: technical_approach
+    - planning-summary.md: overview
+    - research.md: resolved_unknowns
+    template: .opencode/skills/system-spec-kit/templates/plan.md
+    
+    # CONFIDENCE CHECKPOINT
+    confidence_checkpoint:
+      evaluate_at: "After drafting plan.md content"
+      scoring_factors:
+        - factor: "Technical approach clarity"
+          weight: 0.30
+          assess: "Is the implementation strategy well-defined?"
+        - factor: "Risk identification"
+          weight: 0.25
+          assess: "Are risks identified with mitigation strategies?"
+        - factor: "Dependency mapping"
+          weight: 0.25
+          assess: "Are all dependencies and integration points documented?"
+        - factor: "Existing pattern alignment"
+          weight: 0.20
+          assess: "Does approach follow existing codebase patterns?"
+      thresholds:
+        high_80_plus:
+          action: "Finalize plan.md and proceed to Step 7"
+          log: "Confidence: [NN%] - Technical plan complete"
+          cite: "Document key sources in plan.md Technical Context"
+        medium_40_79:
+          action: "Proceed but flag uncertainties"
+          log: "Confidence: [NN%] - Plan has noted uncertainties"
+          requirement: "Add RISK markers for uncertain technical decisions"
+        low_below_40:
+          action: "STOP - Request research spike or clarification"
+          format: |
+            "Technical planning confidence low ([NN%]). Options:
+            - A) Research spike: [specific technical question to investigate]
+            - B) Simplify scope: [reduce to well-understood approach]
+            - C) Clarify requirements: [specific question for user]"
+          wait_for: "User decision before finalizing plan.md"
+      escalation:
+        trigger: "2 failed verification attempts OR 10 minutes elapsed"
+        action: "Present options to user with current findings"
+    
+    validation: approach_defined
+
+  step_7_save_context:
+    purpose: Save conversation context for planning documentation
+    activities:
+    - Invoke system-memory skill
+    - Preserve requirements analysis and clarifications
+    - Preserve technical approach decisions
+    - Preserve architecture discussions
+    - Index memory file for immediate search availability
+    tool_invocation:
+      command: openskills read system-memory
+      note: "Use command: openskills read system-memory to activate context saving"
+    outputs:
+    - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__planning_session.md"
+    validation: context_saved_successfully
+
+    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    post_save_indexing:
+      purpose: "Index memory file immediately for search availability"
+      mcp_tool: memory_save
+      invocation: |
+        mcp__semantic_memory__memory_save({
+          filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__planning_session.md"
+        })
+      critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
+      when: "Immediately after memory file is written to disk"
+
+    anchor_requirements:
+      enforcement: MANDATORY
+      minimum_anchors: 2
+      pattern: "[context-type]-[keywords]-[spec-number]"
+      format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
+      case: "UPPERCASE recommended for visibility"
+      required_sections:
+        - context_type: "general"
+          section: "Session summary with key outcomes"
+          example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
+          example: |
+            <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+            ## Session Summary
+            Planned X, decided Y...
+            <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+        - context_type: "decision"
+          section: "Key decisions made during session"
+          example_id: "DECISION-{topic}-{spec#}"
+          example: |
+            <!-- ANCHOR:DECISION-{topic}-{spec#} -->
+            ## Key Decisions
+            - Chose approach A because...
+            <!-- /ANCHOR:DECISION-{topic}-{spec#} -->
+      optional_sections:
+        - context_type: "research"
+          section: "Research findings or analysis"
+          example_id: "RESEARCH-{topic}-{spec#}"
+        - context_type: "files"
+          section: "Files to be modified"
+          example_id: "FILES-{spec#}"
+      benefit: "93% token savings on anchor-based retrieval"
+      reference: "See /memory:save Step 3 for full anchor documentation"
+
+    importance_tier:
+      assign: normal
+      rationale: "Planning sessions are standard context; promote to important if significant decisions made"
+      promotion_note: "Use memory_update() to promote to 'important' or 'critical' if warranted"
+      tier_reference: |
+        constitutional: Core project rules (auto-surface always)
+        critical: Foundational decisions (high priority in search)
+        important: Significant work like implementations
+        normal: Standard context like planning sessions (this workflow)
+        temporary: Short-term notes
+        deprecated: Outdated but retained
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: 7
+  message: "Planning phase completed successfully. Workflow terminated after step 7 (save context)."
+  next_steps:
+  - Review planning documentation
+  - Validate technical approach
+  - Use /spec_kit:implement:auto or /spec_kit:implement:confirm for implementation
+
+# ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION GUIDANCE
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "Execute planning workflow autonomously with self-validation at each step"
+
+  decision_making:
+  - Analyze requirements thoroughly from user inputs
+  - Explore codebase to understand context
+  - Make informed planning decisions
+  - Document reasoning and alternatives
+  - Proceed with best judgment
+
+  validation_approach:
+  - Self-validate after each planning step
+  - Verify spec completeness and clarity
+  - Ensure technical approach is sound
+  - Validate against quality standards
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  step_validation_fails:
+    action: "Review requirements, ask clarifying questions, retry step"
+  spec_ambiguity_persists:
+    action: "Document as assumption, add to risk matrix"
+  environment_unavailable:
+    action: "Skip browser testing, document limitation"
+  unexpected_error:
+    action: "Log error, document state, attempt graceful recovery"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - follow_workflow_sequence
+  - document_all_decisions
+  - validate_before_completion
+  - self_validate_and_proceed
+  - do_not_prompt_for_user_approval
+  - use_checklist_for_verification_level_2_plus
+  - mark_checklist_items_with_evidence
+  - complete_all_p0_items_before_done
+  - get_user_approval_for_p1_deferrals
+
+  NEVER:
+  - skip_workflow_steps
+  - proceed_beyond_planning
+  - make_unsupported_assumptions
+  - proceed_without_self_validation

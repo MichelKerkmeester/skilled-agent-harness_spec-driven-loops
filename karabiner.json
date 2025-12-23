@@ -1,0 +1,105 @@
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Shortcuts for AI workflows",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "1",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "osascript -e 'set the clipboard to \"Think really hard about this... Use Sequantial Thinking MCP\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "osascript -e 'set the clipboard to \"( ultrathink )\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "osascript -e 'set the clipboard to \"Delegate simultaneously to up to\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "4",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "osascript -e 'set the clipboard to \"Before diving in, use a parallel sub-agent to scan all available skills and identify which ones are relevant to completing this task. Apply these skills directly in your approach rather than relying on general reasoning alone.\" & return & return & \"After completing the task, report which skills you utilized and how each one contributed to the outcome.\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command",
+                                            "left_control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "osascript -e 'set the clipboard to \"Before diving in, use a parallel sub-agent to scan all available commands and identify which ones are relevant to completing this task.\" & return & return & \"Treat these commands as reference patterns rather than literal instructions. Extract their underlying logic, sequencing, or workflow structure and adapt what'\\''s useful to build an approach tailored to this specific task. Only apply a command directly as-is when it'\\''s 80% or more relevant to what you'\\''re trying to accomplish.\" & return & return & \"After completing the task, report which commands you referenced or applied and how each one contributed to the outcome.\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": {
+                "keyboard_type_v2": "iso"
+            }
+        }
+    ]
+}

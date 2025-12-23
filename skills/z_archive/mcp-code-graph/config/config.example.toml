@@ -1,0 +1,84 @@
+# CodeGraph Configuration
+# Location: ~/.codegraph/config.toml
+
+# =============================================================================
+# EMBEDDING CONFIGURATION
+# =============================================================================
+[embedding]
+# Provider: ollama (local), jina (cloud), openai (cloud)
+provider = "ollama"
+
+# Model for generating embeddings
+# Ollama: nomic-embed-text, mxbai-embed-large, all-minilm
+# Jina: jina-embeddings-v3
+# OpenAI: text-embedding-3-small, text-embedding-3-large
+model = "nomic-embed-text"
+
+# Vector dimensions (must match model output)
+# nomic-embed-text: 768
+# mxbai-embed-large: 1024
+# text-embedding-3-small: 1536
+dimension = 768
+
+# =============================================================================
+# LLM CONFIGURATION (for agentic reasoning)
+# =============================================================================
+[llm]
+enabled = true
+
+# Provider: anthropic, openai, xai, ollama, lmstudio
+# Use "ollama" for fully local operation (no API key needed)
+provider = "ollama"
+
+# Model for agentic reasoning
+# Anthropic: claude-sonnet-4, claude-3-5-sonnet-20241022
+# OpenAI: gpt-4o, gpt-4-turbo
+# Ollama: qwen2.5-coder:3b (recommended), llama3.2, mistral
+model = "qwen2.5-coder:3b"
+
+# =============================================================================
+# DATABASE CONFIGURATION (SurrealDB)
+# =============================================================================
+[surrealdb]
+url = "ws://localhost:3004"
+namespace = "codegraph"
+database = "main"
+username = "root"
+password = "root"
+
+# =============================================================================
+# INDEXING CONFIGURATION
+# =============================================================================
+[indexing]
+# Tier: fast (AST only), balanced (+ LSP), full (all analyzers)
+tier = "fast"
+
+# Languages to index
+languages = ["javascript", "typescript", "css", "html", "markdown", "json"]
+
+# Patterns to ignore during indexing
+ignore_patterns = [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.git/**",
+    "**/vendor/**",
+    "**/*.min.js",
+    "**/*.min.css"
+]
+
+# =============================================================================
+# AGENT CONFIGURATION
+# =============================================================================
+[agent]
+# Architecture: rig (recommended), react, lats
+architecture = "rig"
+
+# Context window size (affects reasoning depth)
+# Adjust based on your LLM's context limit
+# qwen2.5-coder:3b has 32K context window
+context_window = 32000
+
+# Maximum agent reasoning steps
+# Reduced for smaller context window
+max_steps = 4

@@ -1,0 +1,658 @@
+#!/usr/bin/env bash
+#
+# create-spec-folder.sh - SpecKit Spec Folder & Documentation Creation Script
+#
+# Creates a new spec folder with appropriate templates based on documentation level.
+# Aligns with system-spec-kit SKILL.md progressive enhancement model:
+#   - Level 1 (Baseline):     spec.md + plan.md + tasks.md
+#   - Level 2 (Verification): Level 1 + checklist.md
+#   - Level 3 (Full):         Level 2 + decision-record.md
+#
+# Also creates:
+#   - scratch/  : Temporary working files (git-ignored except .gitkeep)
+#   - memory/   : Context preservation folder (populated by auto-save workflow)
+#
+# VERSION: 2.0.0
+# UPDATED: 2025-12-10
+#
+
+set -euo pipefail
+
+JSON_MODE=false
+SHORT_NAME=""
+BRANCH_NUMBER=""
+DOC_LEVEL=1  # Default to Level 1 (Baseline)
+SKIP_BRANCH=false
+SHARDED=false  # Enable sharded spec sections for Level 3
+ARGS=()
+i=1
+while [ $i -le $# ]; do
+    arg="${!i}"
+    case "$arg" in
+        --json)
+            JSON_MODE=true
+            ;;
+        --level)
+            if [ $((i + 1)) -gt $# ]; then
+                echo 'Error: --level requires a value (1, 2, or 3)' >&2
+                exit 1
+            fi
+            i=$((i + 1))
+            next_arg="${!i}"
+            if [[ "$next_arg" == --* ]]; then
+                echo 'Error: --level requires a value (1, 2, or 3)' >&2
+                exit 1
+            fi
+            if [[ ! "$next_arg" =~ ^[123]$ ]]; then
+                echo 'Error: --level must be 1, 2, or 3' >&2
+                exit 1
+            fi
+            DOC_LEVEL="$next_arg"
+            ;;
+        --skip-branch)
+            SKIP_BRANCH=true
+            ;;
+        --sharded)
+            SHARDED=true
+            ;;
+        --short-name)
+            if [ $((i + 1)) -gt $# ]; then
+                echo 'Error: --short-name requires a value' >&2
+                exit 1
+            fi
+            i=$((i + 1))
+            next_arg="${!i}"
+            # Check if the next argument is another option (starts with --)
+            if [[ "$next_arg" == --* ]]; then
+                echo 'Error: --short-name requires a value' >&2
+                exit 1
+            fi
+            SHORT_NAME="$next_arg"
+            ;;
+        --number)
+            if [ $((i + 1)) -gt $# ]; then
+                echo 'Error: --number requires a value' >&2
+                exit 1
+            fi
+            i=$((i + 1))
+            next_arg="${!i}"
+            if [[ "$next_arg" == --* ]]; then
+                echo 'Error: --number requires a value' >&2
+                exit 1
+            fi
+            BRANCH_NUMBER="$next_arg"
+            ;;
+        --help|-h)
+            echo "Usage: $0 [options] <feature_description>"
+            echo ""
+            echo "Creates a new spec folder with templates based on documentation level."
+            echo ""
+            echo "Options:"
+            echo "  --json              Output in JSON format"
+            echo "  --level N           Documentation level: 1 (baseline), 2 (verification), 3 (full)"
+            echo "                      Default: 1"
+            echo "  --sharded           Create sharded spec sections (Level 3 only)"
+            echo "                      Creates spec-sections/ with modular documentation"
+            echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
+            echo "  --number N          Specify branch number manually (overrides auto-detection)"
+            echo "  --skip-branch       Create spec folder only, don't create git branch"
+            echo "  --help, -h          Show this help message"
+            echo ""
+            echo "Documentation Levels:"
+            echo "  Level 1 (Baseline):     spec.md + plan.md + tasks.md"
+            echo "  Level 2 (Verification): Level 1 + checklist.md"
+            echo "  Level 3 (Full):         Level 2 + decision-record.md"
+            echo ""
+            echo "All levels include: scratch/ (git-ignored) + memory/ (context preservation)"
+            echo ""
+            echo "Examples:"
+            echo "  $0 'Add user authentication system' --short-name 'user-auth'"
+            echo "  $0 'Implement complex OAuth2 flow' --level 2"
+            echo "  $0 'Major architecture redesign' --level 3 --number 50"
+            echo "  $0 'Large platform migration' --level 3 --sharded"
+            exit 0
+            ;;
+        *)
+            ARGS+=("$arg")
+            ;;
+    esac
+    i=$((i + 1))
+done
+
+FEATURE_DESCRIPTION="${ARGS[*]:-}"
+if [ -z "$FEATURE_DESCRIPTION" ]; then
+    echo "Usage: $0 [--json] [--short-name <name>] [--number N] <feature_description>" >&2
+    exit 1
+fi
+
+# Function to find the repository root by searching for existing project markers
+find_repo_root() {
+    local dir="$1"
+    while [ "$dir" != "/" ]; do
+        if [ -d "$dir/.git" ] || [ -d "$dir/.specify" ]; then
+            echo "$dir"
+            return 0
+        fi
+        dir="$(dirname "$dir")"
+    done
+    return 1
+}
+
+# Function to check existing branches (local and remote) and return next available number
+check_existing_branches() {
+    local short_name="$1"
+
+    # Fetch all remotes to get latest branch info
+    if ! git fetch --all --prune 2>/dev/null; then
+        echo "Warning: Could not fetch from remote (continuing with local branches only)" >&2
+    fi
+
+    # Find all branches matching the pattern using git ls-remote (more reliable)
+    # Only check remote if origin exists
+    local remote_branches=""
+    if git remote | grep -q '^origin$'; then
+        remote_branches=$(git ls-remote --heads origin 2>/dev/null | grep -E "refs/heads/[0-9]+-${short_name}$" | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n)
+    fi
+    
+    # Also check local branches
+    local local_branches=$(git branch 2>/dev/null | grep -E "^[* ]*[0-9]+-${short_name}$" | sed 's/^[* ]*//' | sed 's/-.*//' | sort -n)
+    
+    # Check specs directory as well
+    local spec_dirs=""
+    if [ -d "$SPECS_DIR" ]; then
+        spec_dirs=$(find "$SPECS_DIR" -maxdepth 1 -type d -name "[0-9]*-${short_name}" 2>/dev/null | xargs -n1 basename 2>/dev/null | sed 's/-.*//' | sort -n)
+    fi
+    
+    # Combine all sources and get the highest number
+    local max_num=0
+    for num in $remote_branches $local_branches $spec_dirs; do
+        if [ "$num" -gt "$max_num" ]; then
+            max_num=$num
+        fi
+    done
+    
+    # Return next number
+    echo $((max_num + 1))
+}
+
+# Resolve repository root. Prefer git information when available, but fall back
+# to searching for repository markers so the workflow still functions in repositories that
+# were initialised with --no-git.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if git rev-parse --show-toplevel >/dev/null 2>&1; then
+    REPO_ROOT=$(git rev-parse --show-toplevel)
+    HAS_GIT=true
+else
+    REPO_ROOT="$(find_repo_root "$SCRIPT_DIR")"
+    if [ -z "$REPO_ROOT" ]; then
+        echo "Error: Could not determine repository root. Please run this script from within the repository." >&2
+        exit 1
+    fi
+    HAS_GIT=false
+fi
+
+cd "$REPO_ROOT"
+
+SPECS_DIR="$REPO_ROOT/specs"
+mkdir -p "$SPECS_DIR"
+
+# Function to generate branch name with stop word filtering and length filtering
+generate_branch_name() {
+    local description="$1"
+    
+    # Common stop words to filter out
+    local stop_words="^(i|a|an|the|to|for|of|in|on|at|by|with|from|is|are|was|were|be|been|being|have|has|had|do|does|did|will|would|should|could|can|may|might|must|shall|this|that|these|those|my|your|our|their|want|need|add|get|set)$"
+    
+    # Convert to lowercase and split into words
+    local clean_name=$(echo "$description" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/ /g')
+    
+    # Filter words: remove stop words and words shorter than 3 chars (unless they're uppercase acronyms in original)
+    local meaningful_words=()
+    for word in $clean_name; do
+        # Skip empty words
+        [ -z "$word" ] && continue
+        
+        # Keep words that are NOT stop words AND (length >= 3 OR are potential acronyms)
+        if ! echo "$word" | grep -qiE "$stop_words"; then
+            if [ ${#word} -ge 3 ]; then
+                meaningful_words+=("$word")
+            else
+                # Check if word appears as uppercase in original (likely acronym)
+                # Use tr for bash 3.2 compatibility (macOS default) instead of ${word^^}
+                local word_upper
+                word_upper=$(echo "$word" | tr '[:lower:]' '[:upper:]')
+                if echo "$description" | grep -q "\b${word_upper}\b"; then
+                    # Keep short words if they appear as uppercase in original (likely acronyms)
+                    meaningful_words+=("$word")
+                fi
+            fi
+        fi
+    done
+    
+    # If we have meaningful words, use first 3-4 of them
+    if [ ${#meaningful_words[@]} -gt 0 ]; then
+        local max_words=3
+        if [ ${#meaningful_words[@]} -eq 4 ]; then max_words=4; fi
+        
+        local result=""
+        local count=0
+        for word in "${meaningful_words[@]}"; do
+            if [ $count -ge $max_words ]; then break; fi
+            if [ -n "$result" ]; then result="$result-"; fi
+            result="$result$word"
+            count=$((count + 1))
+        done
+        echo "$result"
+    else
+        # Fallback to original logic if no meaningful words found
+        echo "$description" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//' | tr '-' '\n' | grep -v '^$' | head -3 | tr '\n' '-' | sed 's/-$//'
+    fi
+}
+
+# Generate branch name
+if [ -n "$SHORT_NAME" ]; then
+    # Use provided short name, just clean it up
+    BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//')
+else
+    # Generate from description with smart filtering
+    BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
+fi
+
+# Determine branch number
+if [ -z "$BRANCH_NUMBER" ]; then
+    if [ "$HAS_GIT" = true ]; then
+        # Check existing branches on remotes
+        BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")
+    else
+        # Fall back to local directory check
+        HIGHEST=0
+        if [ -d "$SPECS_DIR" ]; then
+            for dir in "$SPECS_DIR"/*; do
+                [ -d "$dir" ] || continue
+                dirname=$(basename "$dir")
+                number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
+                number=$((10#$number))
+                if [ "$number" -gt "$HIGHEST" ]; then HIGHEST=$number; fi
+            done
+        fi
+        BRANCH_NUMBER=$((HIGHEST + 1))
+    fi
+fi
+
+# Force base-10 interpretation (prevents octal issues with leading zeros like 053)
+FEATURE_NUM=$(printf "%03d" "$((10#$BRANCH_NUMBER))")
+BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
+
+# GitHub enforces a 244-byte limit on branch names
+# Validate and truncate if necessary
+MAX_BRANCH_LENGTH=244
+if [ ${#BRANCH_NAME} -gt $MAX_BRANCH_LENGTH ]; then
+    # Calculate how much we need to trim from suffix
+    # Account for: feature number (3) + hyphen (1) = 4 chars
+    MAX_SUFFIX_LENGTH=$((MAX_BRANCH_LENGTH - 4))
+    
+    # Truncate suffix at word boundary if possible
+    TRUNCATED_SUFFIX=$(echo "$BRANCH_SUFFIX" | cut -c1-$MAX_SUFFIX_LENGTH)
+    # Remove trailing hyphen if truncation created one
+    TRUNCATED_SUFFIX=$(echo "$TRUNCATED_SUFFIX" | sed 's/-$//')
+    
+    ORIGINAL_BRANCH_NAME="$BRANCH_NAME"
+    BRANCH_NAME="${FEATURE_NUM}-${TRUNCATED_SUFFIX}"
+    
+    >&2 echo "[specify] Warning: Branch name exceeded GitHub's 244-byte limit"
+    >&2 echo "[specify] Original: $ORIGINAL_BRANCH_NAME (${#ORIGINAL_BRANCH_NAME} bytes)"
+    >&2 echo "[specify] Truncated to: $BRANCH_NAME (${#BRANCH_NAME} bytes)"
+fi
+
+# Create git branch (unless skipped or no git)
+if [ "$SKIP_BRANCH" = true ]; then
+    >&2 echo "[speckit] Skipping branch creation (--skip-branch)"
+elif [ "$HAS_GIT" = true ]; then
+    git checkout -b "$BRANCH_NAME"
+else
+    >&2 echo "[speckit] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
+fi
+
+# ============================================================================
+# CREATE SPEC FOLDER STRUCTURE
+# ============================================================================
+FEATURE_DIR="$SPECS_DIR/$BRANCH_NAME"
+TEMPLATES_DIR="$REPO_ROOT/.opencode/skills/system-spec-kit/templates"
+CREATED_FILES=()
+
+# Validate templates directory exists
+if [ ! -d "$TEMPLATES_DIR" ]; then
+    echo "Error: Templates directory not found at $TEMPLATES_DIR" >&2
+    echo "Please ensure SpecKit is properly installed." >&2
+    exit 1
+fi
+
+# Create directories
+mkdir -p "$FEATURE_DIR"
+mkdir -p "$FEATURE_DIR/scratch"
+mkdir -p "$FEATURE_DIR/memory"
+touch "$FEATURE_DIR/scratch/.gitkeep"
+touch "$FEATURE_DIR/memory/.gitkeep"
+
+# ============================================================================
+# COPY TEMPLATES BASED ON DOCUMENTATION LEVEL
+# Progressive Enhancement: Each level includes all files from previous levels
+# ============================================================================
+
+# Helper function to copy template
+copy_template() {
+    local template_name="$1"
+    local dest_name="${2:-$template_name}"  # Use template name if dest not specified
+    local template_path="$TEMPLATES_DIR/$template_name"
+    local dest_path="$FEATURE_DIR/$dest_name"
+
+    if [ -f "$template_path" ]; then
+        cp "$template_path" "$dest_path"
+        CREATED_FILES+=("$dest_name")
+    else
+        touch "$dest_path"
+        CREATED_FILES+=("$dest_name (empty - template not found)")
+    fi
+}
+
+# Level 1 (Baseline): spec.md + plan.md + tasks.md
+copy_template "spec.md"
+copy_template "plan.md"
+copy_template "tasks.md"
+
+# Level 2 (Verification): Level 1 + checklist.md
+if [ "$DOC_LEVEL" -ge 2 ]; then
+    copy_template "checklist.md"
+fi
+
+# Level 3 (Full): Level 2 + decision-record.md
+if [ "$DOC_LEVEL" -ge 3 ]; then
+    copy_template "decision-record.md"
+fi
+
+# ============================================================================
+# SHARDED SPEC SECTIONS (Level 3 with --sharded flag)
+# Creates modular spec-sections/ for large projects to reduce token usage
+# ============================================================================
+if [ "$SHARDED" = true ] && [ "$DOC_LEVEL" -ge 3 ]; then
+    # Create spec-sections directory
+    mkdir -p "$FEATURE_DIR/spec-sections"
+    CREATED_FILES+=("spec-sections/")
+
+    # Create index spec.md (overwrites the standard spec.md)
+    cat > "$FEATURE_DIR/spec.md" << 'EOF'
+# [Feature Name] - Specification Index
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-sharded | v1.0 -->
+
+## Document Structure
+
+This specification uses sharded documents for token efficiency.
+Load only the sections needed for your current task.
+
+| Section | File | Description |
+|---------|------|-------------|
+| Overview | [01-overview.md](spec-sections/01-overview.md) | High-level summary and goals |
+| Requirements | [02-requirements.md](spec-sections/02-requirements.md) | Functional & non-functional requirements |
+| Architecture | [03-architecture.md](spec-sections/03-architecture.md) | Technical design and structure |
+| Testing | [04-testing.md](spec-sections/04-testing.md) | Test strategy and acceptance criteria |
+
+## Quick Summary
+
+<!-- 2-3 sentence overview - load full sections as needed -->
+
+[Brief description of the feature/project]
+
+## Status
+
+- [ ] Overview complete
+- [ ] Requirements defined
+- [ ] Architecture designed
+- [ ] Testing strategy documented
+EOF
+
+    # Create section templates
+    cat > "$FEATURE_DIR/spec-sections/01-overview.md" << 'EOF'
+# Overview
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-section-overview | v1.0 -->
+
+## Purpose
+
+[What problem does this solve?]
+
+## Goals
+
+- [ ] Goal 1
+- [ ] Goal 2
+- [ ] Goal 3
+
+## Scope
+
+### In Scope
+
+- Item 1
+- Item 2
+
+### Out of Scope
+
+- Item 1
+- Item 2
+
+## Success Criteria
+
+- [ ] Criterion 1
+- [ ] Criterion 2
+EOF
+    CREATED_FILES+=("spec-sections/01-overview.md")
+
+    cat > "$FEATURE_DIR/spec-sections/02-requirements.md" << 'EOF'
+# Requirements
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-section-requirements | v1.0 -->
+
+## Functional Requirements
+
+### FR-001: [Requirement Name]
+
+- **Priority:** High | Medium | Low
+- **Description:** [What the system must do]
+- **Acceptance Criteria:**
+  - [ ] Criterion 1
+  - [ ] Criterion 2
+
+### FR-002: [Requirement Name]
+
+- **Priority:** High | Medium | Low
+- **Description:** [What the system must do]
+- **Acceptance Criteria:**
+  - [ ] Criterion 1
+  - [ ] Criterion 2
+
+## Non-Functional Requirements
+
+### NFR-001: Performance
+
+- **Description:** [Performance expectations]
+- **Metrics:** [Measurable targets]
+
+### NFR-002: Security
+
+- **Description:** [Security requirements]
+- **Standards:** [Compliance requirements]
+
+## Constraints
+
+- Constraint 1
+- Constraint 2
+
+## Dependencies
+
+- Dependency 1
+- Dependency 2
+EOF
+    CREATED_FILES+=("spec-sections/02-requirements.md")
+
+    cat > "$FEATURE_DIR/spec-sections/03-architecture.md" << 'EOF'
+# Architecture
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-section-architecture | v1.0 -->
+
+## System Overview
+
+[High-level architecture description]
+
+## Components
+
+### Component 1
+
+- **Purpose:** [What it does]
+- **Responsibilities:**
+  - Responsibility 1
+  - Responsibility 2
+- **Interfaces:** [How it connects to other components]
+
+### Component 2
+
+- **Purpose:** [What it does]
+- **Responsibilities:**
+  - Responsibility 1
+  - Responsibility 2
+- **Interfaces:** [How it connects to other components]
+
+## Data Flow
+
+[Describe how data moves through the system]
+
+## Technology Stack
+
+| Layer | Technology | Rationale |
+|-------|------------|-----------|
+| Frontend | | |
+| Backend | | |
+| Database | | |
+| Infrastructure | | |
+
+## Integration Points
+
+- Integration 1: [Description]
+- Integration 2: [Description]
+
+## Security Architecture
+
+[Security considerations and implementation]
+EOF
+    CREATED_FILES+=("spec-sections/03-architecture.md")
+
+    cat > "$FEATURE_DIR/spec-sections/04-testing.md" << 'EOF'
+# Testing Strategy
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-section-testing | v1.0 -->
+
+## Test Levels
+
+### Unit Tests
+
+- **Coverage Target:** [e.g., 80%]
+- **Focus Areas:**
+  - Area 1
+  - Area 2
+
+### Integration Tests
+
+- **Scope:** [What integrations to test]
+- **Approach:** [How to test them]
+
+### End-to-End Tests
+
+- **Critical Paths:**
+  - Path 1
+  - Path 2
+- **Tools:** [Testing tools/frameworks]
+
+## Acceptance Criteria
+
+| ID | Criterion | Test Method | Status |
+|----|-----------|-------------|--------|
+| AC-001 | [Criterion] | [Method] | [ ] |
+| AC-002 | [Criterion] | [Method] | [ ] |
+
+## Test Environments
+
+| Environment | Purpose | Configuration |
+|-------------|---------|---------------|
+| Development | | |
+| Staging | | |
+| Production | | |
+
+## Performance Testing
+
+- **Load Testing:** [Approach]
+- **Stress Testing:** [Approach]
+- **Benchmarks:** [Target metrics]
+
+## Security Testing
+
+- [ ] Vulnerability scanning
+- [ ] Penetration testing
+- [ ] Code security review
+EOF
+    CREATED_FILES+=("spec-sections/04-testing.md")
+
+elif [ "$SHARDED" = true ] && [ "$DOC_LEVEL" -lt 3 ]; then
+    echo "Warning: --sharded flag is only supported with --level 3. Ignoring --sharded." >&2
+fi
+
+# Set paths for output
+SPEC_FILE="$FEATURE_DIR/spec.md"
+
+# Set the SPECIFY_FEATURE environment variable for the current session
+export SPECIFY_FEATURE="$BRANCH_NAME"
+
+# ============================================================================
+# OUTPUT
+# ============================================================================
+if $JSON_MODE; then
+    # Build JSON array of created files
+    files_json=$(printf '"%s",' "${CREATED_FILES[@]}" | sed 's/,$//')
+    printf '{"BRANCH_NAME":"%s","SPEC_FILE":"%s","FEATURE_NUM":"%s","DOC_LEVEL":%d,"SHARDED":%s,"CREATED_FILES":[%s]}\n' \
+        "$BRANCH_NAME" "$SPEC_FILE" "$FEATURE_NUM" "$DOC_LEVEL" "$SHARDED" "$files_json"
+else
+    echo ""
+    echo "═══════════════════════════════════════════════════════════════════"
+    echo "  SpecKit: Spec Folder Created Successfully"
+    echo "═══════════════════════════════════════════════════════════════════"
+    echo ""
+    echo "  BRANCH_NAME:  $BRANCH_NAME"
+    echo "  FEATURE_NUM:  $FEATURE_NUM"
+    echo "  DOC_LEVEL:    Level $DOC_LEVEL"
+    echo "  SPEC_FOLDER:  $FEATURE_DIR"
+    echo ""
+    echo "  Created Structure:"
+    echo "  └── $BRANCH_NAME/"
+    for file in "${CREATED_FILES[@]}"; do
+        echo "      ├── $file"
+    done
+    echo "      ├── scratch/          (git-ignored working files)"
+    echo "      │   └── .gitkeep"
+    echo "      └── memory/           (context preservation)"
+    echo "          └── .gitkeep"
+    echo ""
+    echo "  Level $DOC_LEVEL Documentation:"
+    case $DOC_LEVEL in
+        1) echo "    ✓ Baseline: spec.md + plan.md + tasks.md" ;;
+        2) echo "    ✓ Baseline: spec.md + plan.md + tasks.md"
+           echo "    ✓ Verification: checklist.md" ;;
+        3) echo "    ✓ Baseline: spec.md + plan.md + tasks.md"
+           echo "    ✓ Verification: checklist.md"
+           echo "    ✓ Full: decision-record.md"
+           if [ "$SHARDED" = true ]; then
+               echo "    ✓ Sharded: spec-sections/ (modular documentation)"
+           fi ;;
+    esac
+    echo ""
+    echo "  Next steps:"
+    echo "    1. Fill out spec.md with requirements"
+    echo "    2. Create implementation plan in plan.md"
+    echo "    3. Break down tasks in tasks.md"
+    [ "$DOC_LEVEL" -ge 2 ] && echo "    4. Add verification items to checklist.md"
+    [ "$DOC_LEVEL" -ge 3 ] && echo "    5. Document decisions in decision-record.md"
+    echo ""
+    echo "═══════════════════════════════════════════════════════════════════"
+fi
