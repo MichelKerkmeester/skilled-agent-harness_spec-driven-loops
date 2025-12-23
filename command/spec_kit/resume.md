@@ -80,6 +80,10 @@ EXECUTE AFTER PHASE 1 PASSES:
    Required (at least ONE must exist):
    - spec.md
    - plan.md OR tasks.md
+   
+   Optional (check for fast-resume context):
+   - quick-continue.md (if present, load as primary context source)
+   - STATE.md (if present, load for real-time state tracking)
 
 2. CHECK command invocation for mode suffix:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
@@ -323,7 +327,14 @@ call_tool_chain(`memory.memory_search(...)`)  // NO - not through Code Mode
 1. CLI argument (explicit path provided)
 2. Most recent memory file in `specs/*/memory/`
 
-**Note:** Stateless architecture - no `.spec-active` marker file used.
+### Context Loading Priority
+
+1. quick-continue.md (if exists) - **Phase 1 MVP fast-resume**
+2. STATE.md (if exists) - **Phase 2 real-time state tracking**
+3. handover.md (if exists, <24h old)
+4. Recent memory/*.md files
+
+**Note:** Stateless architecture - no `.spec-active` marker file used. If both quick-continue.md AND STATE.md exist, load both (quick-continue for handoff context, STATE for detailed file progress and session history).
 
 ---
 

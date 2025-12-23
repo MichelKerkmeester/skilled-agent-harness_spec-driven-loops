@@ -37,7 +37,7 @@ Skill Advisor is a Python script that analyzes user requests and recommends the 
 
 | Feature                     | Description                                                  |
 | --------------------------- | ------------------------------------------------------------ |
-| **Dynamic Skill Discovery** | Automatically scans `.opencode/skills/` for available skills |
+| **Dynamic Skill Discovery** | Automatically scans `.opencode/skill/` for available skills |
 | **Synonym Expansion**       | Maps user language to technical terms                        |
 | **Intent Boosting**         | High-confidence keywords directly map to specific skills     |
 | **Confidence Scoring**      | Returns 0-0.95 confidence score for each recommendation      |
@@ -83,7 +83,7 @@ Skill Advisor is a Python script that analyzes user requests and recommends the 
 ### Prerequisites
 
 - Python 3.6+
-- Project with `.opencode/skills/` directory containing SKILL.md files
+- Project with `.opencode/skill/` directory containing SKILL.md files
 
 ### Basic Usage
 
@@ -171,7 +171,7 @@ fi
 │  ┌──────────────────────────────────────────────────────────────┐ │
 │  │                    get_skills()                              │ │
 │  │                                                              │ │
-│  │  • Scans .opencode/skills/*/SKILL.md                         │ │
+│  │  • Scans .opencode/skill/*/SKILL.md                         │ │
 │  │  • Parses YAML frontmatter (name, description)               │ │
 │  │  • Adds hardcoded command bridges                            │ │
 │  └──────────────────────────────────────────────────────────────┘ │
@@ -290,7 +290,7 @@ User Input: "help me fix the authentication bug"
 
 ### Dynamic Skill Discovery
 
-The script automatically discovers skills by scanning the `.opencode/skills/` directory:
+The script automatically discovers skills by scanning the `.opencode/skill/` directory:
 
 ```python
 for skill_file in glob.glob(os.path.join(SKILLS_DIR, "*/SKILL.md")):
@@ -410,7 +410,7 @@ The script requires customization for each project. See [SET-UP_GUIDE.md](./SET-
 ```python
 # Default: relative to current working directory
 PROJECT_ROOT = os.getcwd()
-SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skills")
+SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skill")
 ```
 
 **Note:** The script expects to be run from the project root directory.
@@ -529,7 +529,7 @@ $ python skill_advisor.py "hello"
 
 | User Intent        | Expected Skill            | Key Terms                                 |
 | ------------------ | ------------------------- | ----------------------------------------- |
-| Git operations     | workflows-git             | commit, push, branch, merge, worktree     |
+| Git operations     | workflows-git             | commit, push, branch, merge, worktree, github, pr, issue |
 | Browser debugging  | workflows-chrome-devtools | devtools, chrome, browser, debug, console |
 | Documentation      | workflows-documentation   | markdown, flowchart, diagram, readme      |
 | Code search        | mcp-leann                 | search, find, semantic, embeddings        |
@@ -562,13 +562,13 @@ python skill_advisor.py "call figma api"
 **Solutions:**
 ```bash
 # Check SKILLS_DIR exists
-ls -la .opencode/skills/
+ls -la .opencode/skill/
 
 # Verify SKILL.md files exist
-find .opencode/skills -name "SKILL.md"
+find .opencode/skill -name "SKILL.md"
 
 # Check frontmatter format
-head -10 .opencode/skills/workflows-git/SKILL.md
+head -10 .opencode/skill/workflows-git/SKILL.md
 # Should show:
 # ---
 # name: workflows-git
@@ -645,7 +645,7 @@ A: Yes, the script returns all matching skills sorted by confidence. The AI agen
 
 **Q: How do I add a new skill?**
 
-A: Create a new folder in `.opencode/skills/` with a SKILL.md file containing proper frontmatter. The script will automatically discover it.
+A: Create a new folder in `.opencode/skill/` with a SKILL.md file containing proper frontmatter. The script will automatically discover it.
 
 ---
 

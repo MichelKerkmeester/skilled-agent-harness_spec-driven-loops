@@ -402,7 +402,7 @@ workflow:
     - Create memory file with timestamp
     - Index memory file for immediate search availability
     tool_invocation:
-      command: "openskills read system-memory"
+      command: "Read(".opencode/skill/system-memory/SKILL.md")"
       note: "Activate context saving via memory skill"
     memory_content:
       include:
@@ -850,10 +850,10 @@ error_recovery:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  install_guide_template: .opencode/skills/workflows-documentation/assets/install_guide_template.md
+  install_guide_template: .opencode/skill/workflows-documentation/assets/install_guide_template.md
   mcp_guide: .opencode/install_guides/MCP - Code Mode.md
   cli_guide: .opencode/install_guides/MCP - Chrome Dev Tools.md
-  core_standards: .opencode/skills/workflows-documentation/references/core_standards.md
+  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

@@ -468,4 +468,4 @@ These defaults are enforced by the semantic memory MCP server and cannot be over
 ## 15. 📚 FULL DOCUMENTATION
 
 For comprehensive memory system documentation:
-`.opencode/skills/system-memory/SKILL.md`
+`.opencode/skill/system-memory/SKILL.md`

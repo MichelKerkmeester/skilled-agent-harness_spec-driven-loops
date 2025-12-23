@@ -1,35 +1,78 @@
 # OpenCode Dev Environment
 
-> - 99.999% of people won't try these systems. Beat the odds?
-> - Don't reward me with unwanted coffee: https://buymeacoffee.com/michelkerkmeester
+> **Stop re-explaining your codebase to AI every session.**
 
-A practical AI-assisted coding setup: structured docs, semantic memory, and reusable skills so you spend less time re-explaining context and more time shipping. If you use AI in your terminal or editor every day, this system is meant to make those sessions more consistent, more recoverable, and easier to scale across projects.
+Your AI assistant forgets everything between conversations. This environment fixes that with:
 
-For the full, detailed documentation on SpecKit and the Memory system:
-- SpecKit (levels, templates, scripts, commands): [`speckit/README.md`](speckit/README.md)
-- Memory (setup, search, MCP tools, troubleshooting): [`memory/README.md`](memory/README.md)
+- **🧠 Semantic Memory** — Pick up where you left off, even days later
+- **📋 Structured Documentation** — Every change tracked, nothing lost
+- **🎯 Reusable Skills** — Domain expertise that loads on demand
+- **🔒 Local-First** — Your code stays on your machine
 
----
-
-## TABLE OF CONTENTS
-
-- [1. 🚀 INSTALLING OPENCODE](#1--installing-opencode)
-- [2. 🔌 CONNECTING PROVIDERS](#2--connecting-providers)
-- [3. 🧩 MCP SERVER SETUP](#3--mcp-server-setup)
-- [4. 🤖 AGENTS.MD FRAMEWORK](#4--agentsmd-framework)
-- [5. 🗂️ SPECKIT: DOCUMENTATION FRAMEWORK](#5--speckit--documentation-framework)
-- [6. 🧠 MEMORY SYSTEM](#6--memory-system)
-- [7. 🎛️ SKILLS LIBRARY](#7--skills-library)
-- [8. ⚡ COMMANDS](#8--commands)
-- [9. 🏎️ QUICK REFERENCE](#9--quick-reference)
+Works with Claude, GPT, Gemini, and any OpenCode-compatible model.
 
 ---
 
-## 1. 🚀 INSTALLING OPENCODE
+## 📑 Table of Contents
+
+- [Quick Start](#-quick-start-5-minutes)
+- [1. Installing OpenCode](#1--installing-opencode)
+- [2. Connecting Providers](#2--connecting-providers)
+- [3. MCP Server Setup](#3--mcp-server-setup)
+- [4. AGENTS.MD Framework](#4--agentsmd-framework)
+- [5. SpecKit: Documentation Framework](#5--speckit-documentation-framework)
+- [6. Memory System](#6--memory-system)
+- [7. Skills Library](#7--skills-library)
+- [8. Commands](#8--commands)
+- [9. Quick Reference](#9--quick-reference)
+- [10. What's Next?](#10--whats-next)
+
+---
+
+## 🚀 Quick Start (5 Minutes)
+
+Get up and running in under 5 minutes. This section covers the bare minimum to start using OpenCode with AI assistance. Once you complete these steps, you'll have a working environment ready for your first documented feature.
+
+### Prerequisites
+
+- **macOS or Linux** (Windows via WSL2)
+- **Node.js 18+** and npm
+- **Ollama** running locally (for embeddings)
+
+### Get Running
+
+```bash
+# 1. Install OpenCode
+brew install opencode-ai/tap/opencode
+
+# 2. Pull the embedding model
+ollama pull nomic-embed-text
+
+# 3. Start in your project
+cd your-project
+opencode
+```
+
+### Your First Win
+
+Try this in OpenCode:
+```
+/spec_kit:complete add-user-login
+```
+
+This creates a documented feature spec, implementation plan, and checklist—all tracked for future sessions.
+
+**Next:** Connect a provider (Section 2) for full AI capabilities.
+
+---
+
+## 1. 🚀 Installing OpenCode
+
+OpenCode is the CLI that powers this entire environment. It connects your AI models, loads your skills, and manages your conversation sessions. Installation takes about 2 minutes via Homebrew or Go.
 
 ### What is OpenCode?
 
-[OpenCode](https://github.com/opencodeco/opencode) is a terminal-based AI coding assistant. It can connect to multiple model providers, talk to MCP servers, and load a skills/plugin system so your workflow is more than just “chat + paste”.
+[OpenCode](https://github.com/sst/opencode) is a terminal-based AI coding assistant. It can connect to multiple model providers, talk to MCP servers, and load a skills/plugin system so your workflow is more than just “chat + paste”.
 
 ### Installation
 
@@ -62,7 +105,9 @@ Then update paths for your MCP server locations.
 
 ---
 
-## 2. 🔌 CONNECTING PROVIDERS
+## 2. 🔌 Connecting Providers
+
+Providers give OpenCode access to AI models like Claude, GPT, and Gemini. You can connect multiple providers and switch between them mid-conversation. Each provider has different strengths—Claude for reasoning, GPT for speed, Gemini for large contexts.
 
 OpenCode supports multiple LLM providers. Here are the most common setups:
 
@@ -95,22 +140,22 @@ OpenRouter is ideal when you want model flexibility or pay-per-use pricing.
 
 ---
 
-## 3. 🧩 MCP SERVER SETUP
+## 3. 🧩 MCP Server Setup
 
-MCP (Model Context Protocol) servers give your assistant extra capabilities (search, memory, browser automation, and more). This environment includes several pre-configured servers.
+MCP (Model Context Protocol) servers extend your AI assistant with specialized capabilities—semantic search, browser automation, external tool integration, and more. Think of them as plugins that give your AI superpowers it doesn't have out of the box. This environment includes 6 pre-configured servers ready to use.
 
-**📚 Detailed installation guides:** [`install guides/`](install%20guides/)
+**📚 Detailed installation guides:** [`install_guides/README.md`](install_guides/README.md) (master guide with pre-flight checks, component matrix, and step-by-step setup)
 
 ### Available Servers
 
-| Server                  | What It Does                                        | Guide                                                                                                   |
-| ----------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| **Code Mode**           | TypeScript tool orchestration, multi-tool workflows | [MCP - Code Mode.md](install%20guides/MCP%20-%20Code%20Mode.md)                                         |
-| **LEANN**               | Semantic code search (97% storage savings)          | [MCP - LEANN.md](install%20guides/MCP%20-%20LEANN.md)                                                   |
-| **Code Context**        | Structural code analysis via Tree-sitter AST        | [MCP - Code Context.md](install%20guides/MCP%20-%20Code%20Context.md)                                   |
-| **Semantic Memory**     | Local vector-based conversation memory              | [MCP - Semantic Memory.md](install%20guides/MCP%20-%20Semantic%20Memory.md)                             |
-| **Sequential Thinking** | Structured multi-step reasoning                     | [MCP - Sequential Thinking.md](install%20guides/MCP%20-%20Sequantial%20Thinking%20(Python%20Server).md) |
-| **Chrome DevTools**     | Browser automation and debugging                    | [MCP - Chrome Dev Tools.md](install%20guides/MCP%20-%20Chrome%20Dev%20Tools.md)                         |
+| Server                  | What It Does                                        | Guide                                                                                     |
+| ----------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Code Mode**           | TypeScript tool orchestration, multi-tool workflows | [MCP - Code Mode.md](install_guides/MCP/MCP%20-%20Code%20Mode.md)                         |
+| **LEANN**               | Semantic code search (97% storage savings)          | [MCP - LEANN.md](install_guides/MCP/MCP%20-%20LEANN.md)                                   |
+| **Code Context**        | Structural code analysis via Tree-sitter AST        | [MCP - Code Context.md](install_guides/MCP/MCP%20-%20Code%20Context.md)                   |
+| **Semantic Memory**     | Local vector-based conversation memory              | [MCP - Semantic Memory.md](install_guides/MCP/MCP%20-%20Semantic%20Memory.md)             |
+| **Sequential Thinking** | Structured multi-step reasoning                     | [MCP - Sequential Thinking.md](install_guides/MCP/MCP%20-%20Sequential%20Thinking.md)     |
+| **Chrome DevTools**     | Browser automation and debugging                    | [MCP - Chrome Dev Tools.md](install_guides/MCP/MCP%20-%20Chrome%20Dev%20Tools.md)         |
 
 ### Code Search Tools (Complementary - Not Competing)
 
@@ -135,15 +180,30 @@ Use these three tools together for comprehensive code discovery:
    cp opencode.json /path/to/your-project/
    ```
 
-### OpenCode Skills Plugin
+### Native Skills (OpenCode v1.0.190+)
 
-Enable the skills system by adding to your `opencode.json`.
+Skills are **natively supported** in OpenCode v1.0.190+. No plugin required.
 
-**Full setup guide:** [PLUGIN - Opencode Skills.md](install%20guides/PLUGIN%20-%20Opencode%20Skills.md)
+Skills are auto-discovered from `.opencode/skill/*/SKILL.md` and exposed as `skills_*` functions.
+
+**Setup guides:**
+| Guide | Purpose |
+|-------|---------|
+| [SET-UP - AGENTS.md](install_guides/SET-UP%20-%20AGENTS.md) | Configure AI agent guardrails |
+| [SET-UP - Skill Advisor.md](install_guides/SET-UP%20-%20Skill%20Advisor.md) | Configure intelligent skill routing |
+| [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) | Create custom skills |
+
+**Auth Plugins:**
+| Plugin | Guide |
+|--------|-------|
+| Antigravity Auth (Google OAuth) | [PLUGIN - Antigravity Auth.md](install_guides/PLUGIN/PLUGIN%20-%20Antigravity%20Auth.md) |
+| OpenAI Codex Auth | [PLUGIN - OpenAI Codex Auth.md](install_guides/PLUGIN/PLUGIN%20-%20OpenAI%20Codex%20Auth.md) |
 
 ---
 
-## 4. 🤖 AGENTS.MD FRAMEWORK
+## 4. 🤖 AGENTS.MD Framework
+
+The AGENTS.md file is the brain of your AI assistant's behavior. It defines 7 mandatory gates that every request passes through, preventing common failures like hallucination, scope creep, and forgotten context. Without these guardrails, AI assistants make assumptions, skip documentation, and lose track of multi-step tasks.
 
 The [`AGENTS.md`](AGENTS.md) file defines the guardrails: the rules that keep an AI assistant consistent, careful, and predictable across long-running work.
 
@@ -276,329 +336,223 @@ Enforced standards:
 
 ---
 
-## 5. 🗂️ SPECKIT: DOCUMENTATION FRAMEWORK
+## 5. 📋 SpecKit: Documentation Framework
 
-**Make work recoverable and repeatable.**
-
-A custom fork of the SpecKit spec-driven development framework: dramatically more manageable than the original through smart folder organization, sub-folder versioning, and active recall of previous work within the same feature.
-
-**Full documentation:** [`speckit/README.md`](speckit/README.md)
-
-If you want the step-by-step workflow (quick start, levels, templates, and commands), start with the SpecKit README above.
-
-### Why This Fork Is Different
-
-**A practical fork with automation and memory built-in.**
-
-The original SpecKit introduced spec-driven development but still required you to run most of the workflow manually. This fork pushes more of that into repeatable commands and keeps the results easy to find later.
-
----
-
-### Templates
-
-9 enhanced templates with context-aware prompts and built-in evidence stubs.
-
-| Original SpecKit     | This Fork                     |
-| -------------------- | ----------------------------- |
-| Basic templates      | 9 enhanced templates          |
-| Generic placeholders | Context-aware prompts         |
-| No QA integration    | Built-in evidence stubs       |
-| —                    | + `debug-delegation.md` (new) |
-| —                    | + `research-spike.md` (new)   |
-
-- **Context-aware prompts**: Templates ask the right questions for each doc type
-- **Evidence stubs**: Checklists include placeholders for screenshots, test results
-- **New templates**: `debug-delegation.md` for handoffs, `research-spike.md` for exploration
-
-#### What's Included
-
-| Category        | Contents                                                                                                                                         |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **9 Templates** | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `research.md`, `research-spike.md`, `handover.md`, `debug-delegation.md` |
-| **6 Scripts**   | `create-spec-folder.sh`, `check-prerequisites.sh`, `calculate-completeness.sh`, `recommend-level.sh`, `archive-spec.sh`, `common.sh`             |
-| **Checklists**  | QA validation checklists with evidence stubs                                                                                                     |
-
-#### Documentation Levels
-
-| Level       | What's Required           | Best For                   |
-| ----------- | ------------------------- | -------------------------- |
-| **Level 1** | spec + plan + tasks       | Bug fixes, small changes   |
-| **Level 2** | Level 1 + checklist       | Features requiring QA      |
-| **Level 3** | Level 2 + decision-record | Architecture, complex work |
-
----
-
-### Folder Structure
-
-Hierarchical organization with auto-numbered specs and sub-folder versioning.
-
-| Original SpecKit      | This Fork                               |
-| --------------------- | --------------------------------------- |
-| Flat `specs/` folder  | Hierarchical + versioned                |
-| Manual naming         | Auto-numbered (`###-name`)              |
-| No iteration tracking | Sub-folder versioning (`001`, `002`...) |
-
-```
-specs/
-├── 122-user-authentication/
-│   ├── 001-initial-design/     ← Original work (auto-archived)
-│   │   ├── spec.md
-│   │   ├── plan.md
-│   │   └── memory/
-│   ├── 002-oauth-addition/     ← Follow-up work
-│   │   ├── spec.md
-│   │   ├── plan.md
-│   │   └── memory/             ← Has access to 001's context
-│   └── 003-bug-fixes/          ← Latest iteration
-│       ├── spec.md
-│       └── memory/             ← Recalls all previous decisions
-```
-
-- **Active recall**: When working in `003-bug-fixes`, the AI can search memories from `001` and `002`
-- **Auto-archiving**: Previous work moves to numbered sub-folders, keeping root clean
-- **Feature continuity**: All related work stays together, building institutional knowledge
-
----
-
-### Automation
-
-Commands replace manual workflows: one prompt triggers folder creation, template copying, implementation, and memory saves automatically.
-
-| Original SpecKit        | This Fork                       |
-| ----------------------- | ------------------------------- |
-| Manual execution        | Commands automate 12+ steps     |
-| Copy templates yourself | AI copies & fills automatically |
-| Remember the workflow   | AGENTS.md enforces it           |
-| No enforcement          | Gate system prevents skipping   |
-
-**One command. Twelve steps. Less babysitting.**
-
-```
-/spec_kit:complete authentication
-                │
-                ▼
-┌─────────────────────────────────────────────────────────────┐
-│  AUTOMATED 12-STEP WORKFLOW                                 │
-│                                                             │
-│  ✓ Step 1:  Create specs/###-authentication/ folder         │
-│  ✓ Step 2:  Auto-number based on existing specs             │
-│  ✓ Step 3:  Copy spec.md template                           │
-│  ✓ Step 4:  Copy plan.md template                           │
-│  ✓ Step 5:  Copy tasks.md template                          │
-│  ✓ Step 6:  Fill spec from conversation context             │
-│  ✓ Step 7:  Generate implementation plan                    │
-│  ✓ Step 8:  Break into actionable tasks                     │
-│  ✓ Step 9:  Execute tasks with quality checks               │
-│  ✓ Step 10: Run verification (browser if UI)                │
-│  ✓ Step 11: Complete checklist with evidence                │
-│  ✓ Step 12: Save to memory system                           │
-│                                                             │
-│  YOU: One prompt │ AI: Twelve coordinated steps             │
-└─────────────────────────────────────────────────────────────┘
-```
-
-#### Commands
-
-| Command                        | What It Does                                    | Steps |
-| ------------------------------ | ----------------------------------------------- | ----- |
-| `/spec_kit:complete [feature]` | Full workflow: spec → plan → implement → verify | 12    |
-| `/spec_kit:plan [feature]`     | Planning-focused: spec → plan → tasks           | 6     |
-| `/spec_kit:implement`          | Execute existing plan                           | 4     |
-| `/spec_kit:research [topic]`   | Research-first approach                         | 5     |
-| `/spec_kit:resume`             | Resume previous session from spec folder        | -     |
-
-#### Why Automation Matters
-
-- **Enforce without hooks**: Opencode doesn't support hooks (yet), so automation is baked into the command itself
-- **Eliminate repetitive prompting**: One command replaces 12 separate "now do this" prompts
-- **Consistent output**: Same structure every time, regardless of who runs it or when
-- **Save your quota**: On Copilot Pro+, fewer prompts = less usage
-
----
-
-### Memory Integration
-
-Every spec automatically saves to the semantic memory system for future recall.
-
-| Original SpecKit        | This Fork                  |
-| ----------------------- | -------------------------- |
-| Sessions are ephemeral  | Every spec saves to memory |
-| Start fresh each time   | Recalls previous decisions |
-| Context lost on close   | Searchable months later    |
-| No cross-spec awareness | AI searches related specs  |
-
-- **Persistent context**: Pick up any project exactly where you left off
-- **Cross-spec search**: AI finds relevant decisions from related specs
-- **Automatic saves**: Memory system integrated into completion workflow
-
----
-
-## 6. 🧠 MEMORY SYSTEM
-
-**Your AI assistant finally remembers.**
-
-The semantic memory system preserves conversation insights across sessions using local vector embeddings. Ask about something you discussed weeks ago and get the relevant context back.
-
-**Full documentation:** [`memory/README.md`](memory/README.md)
-
-For installation details, command reference, and troubleshooting, the Memory README is the canonical guide.
+Every file change gets documented—not because bureaucracy is fun, but because future-you (and future-AI) will thank you. SpecKit enforces a simple rule: no code without a spec folder. This means every feature, bug fix, and refactor has traceable context that persists across sessions and team members.
 
 ### Why This Matters
 
-Without memory, every AI session feels like it starts from zero. With semantic memory:
+Without documentation:
+- AI forgets what you built last week
+- You forget why you made that decision
+- Handoffs become archaeology projects
 
-- **Instant context recovery**: "What did we decide about the auth flow?" actually works
-- **Cross-project learning**: Solutions from one project inform another
-- **Trigger-based preservation**: Say "save context" or use `/memory:save` at key moments
-- **Smart retrieval**: Find by meaning, not just keywords
+With SpecKit:
+- Every change has a spec folder
+- Context persists across sessions
+- Decisions are traceable
 
-### Key Capabilities
+### Three Documentation Levels
 
-| Feature                | What It Does                                                            |
-| ---------------------- | ----------------------------------------------------------------------- |
-| **Semantic Search**    | Find memories by meaning, not just keywords                             |
-| **Hybrid Search**      | SQLite FTS5 + vector search combined                                    |
-| **Memory Decay**       | 90-day half-life prioritizes recent context                             |
-| **6 Importance Tiers** | constitutional → critical → important → normal → temporary → deprecated |
-| **Checkpoint System**  | Save/restore memory states                                              |
-| **100% Local**         | All processing on your machine: no external APIs                        |
+| Level | Files Required | When to Use |
+|-------|----------------|-------------|
+| **Level 1** | spec.md, plan.md, tasks.md | Bug fixes, small features (<100 LOC) |
+| **Level 2** | Level 1 + checklist.md | Features needing QA (100-499 LOC) |
+| **Level 3** | Level 2 + decision-record.md | Architecture changes (500+ LOC) |
 
-### Memory Save Process (MANDATORY)
+**Rule of thumb:** When in doubt, go one level higher.
 
-All memory saves MUST use the `generate-context.js` script - manual file creation is prohibited:
+### Quick Start
 
 ```bash
-# Correct: Use the script with spec folder argument
-node .opencode/skills/system-memory/scripts/generate-context.js specs/007-feature-name/
+# Create a new spec folder
+/spec_kit:complete "add user authentication"
 
-# Wrong: Never manually create memory files with Write/Edit tools
+# This creates:
+specs/042-add-user-authentication/
+├── spec.md          # What we're building
+├── plan.md          # How we'll build it
+├── tasks.md         # Step-by-step breakdown
+├── checklist.md     # QA verification (Level 2+)
+├── scratch/         # Temporary files (git-ignored)
+└── memory/          # Session context (persisted)
 ```
 
-**Gate 5 Enforcement:**
-1. If no folder argument → HARD BLOCK until user selects spec folder
-2. If folder provided → Validate alignment with conversation topic
-3. If mismatch detected → WARN user + suggest alternatives
-4. Script generates proper ANCHOR format and auto-indexes
+### SpecKit Commands
 
-### Commands
+| Command | What It Does |
+|---------|--------------|
+| `/spec_kit:complete` | Full workflow: spec → plan → implement |
+| `/spec_kit:plan` | Planning only, no implementation |
+| `/spec_kit:implement` | Execute existing plan |
+| `/spec_kit:research` | Technical investigation |
+| `/spec_kit:resume` | Continue previous session |
 
-| Command                       | What It Does                                         |
-| ----------------------------- | ---------------------------------------------------- |
-| `/memory:save [spec-folder]`  | Save conversation with semantic indexing             |
-| `/memory:search`              | Dashboard: stats, recent memories, suggested actions |
-| `/memory:search "query"`      | Find memories across all projects                    |
-| `/memory:search cleanup`      | Interactive cleanup of old/unused memories           |
-| `/memory:search triggers`     | View and manage trigger phrases                      |
-| `/memory:checkpoint [action]` | Create, list, restore, or delete memory checkpoints  |
+### Templates (11 Total)
 
-### Related Skill
+All templates live in `.opencode/skill/system-spec-kit/templates/`:
 
-**`system-memory`**: handles semantic context preservation, automatic triggers, and search patterns. Located in your project's `.opencode/skills/system-memory/` directory.
+| Template | Purpose |
+|----------|---------|
+| `spec.md` | Feature specification with acceptance criteria |
+| `plan.md` | Technical implementation plan |
+| `tasks.md` | Task breakdown by user story |
+| `checklist.md` | QA validation with P0/P1/P2 priorities |
+| `decision-record.md` | Architecture Decision Records (ADRs) |
+| `research.md` | Comprehensive technical research |
+| `research-spike.md` | Time-boxed proof of concept |
+| `handover.md` | Session continuity for multi-session work |
+| `debug-delegation.md` | Sub-agent debugging tasks |
+| `quick-continue.md` | Minimal handoff for session branching |
+| `state.md` | Real-time project state tracking |
 
-### MCP Server
-
-The Semantic Memory MCP server enables AI assistants to search and load memories directly. See [`skills/workflows-memory/mcp_server/`](skills/workflows-memory/mcp_server/) for the server code and [`install guides/MCP - Semantic Memory.md`](install%20guides/MCP%20-%20Semantic%20Memory.md) for installation.
+For detailed template documentation, see the [system-spec-kit skill](.opencode/skill/system-spec-kit/SKILL.md).
 
 ---
 
-## 7. 🎛️ SKILLS LIBRARY
+## 6. 🧠 Memory System
 
-**Domain expertise, on demand.**
+**The Problem:** Every AI conversation starts fresh. You explain your auth system on Monday, and by Wednesday the AI has no idea what you're talking about.
 
-Skills are reusable, on-demand capabilities that extend any AI assistant with specialized knowledge. Unlike passive documentation that sits in context, skills are actively loaded when needed: keeping your context window lean while providing deep expertise exactly when it matters.
+**The Solution:** Semantic memory that persists across sessions, models, and projects.
 
-**Location:** [`skills/`](skills/)
-
-### The Router Pattern
-
-Most skills here aren't simple single-purpose tools: they're **intelligent routers** that direct the AI to the right knowledge OR capability within a domain. This architecture has key advantages:
-
-- **Fewer skills needed**: One `workflows-code` skill handles implementation, debugging, AND verification
-- **No separate knowledge base**: Reference docs live inside the skill as bundled resources
-- **Context-aware routing**: The skill decides what sub-capability to invoke based on your task
-- **Progressive loading**: Load the router, then only the specific reference you need
+### How It Works
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  workflows-code (Router Skill)                                  │
-│                                                                 │
-│  SKILL.md ──► Routes to:                                        │
-│               ├── references/implementation.md                  │
-│               ├── references/debugging.md                       │
-│               ├── references/verification.md                    │
-│               └── scripts/quality-check.sh                      │
-│                                                                 │
-│  One skill = multiple capabilities + embedded knowledge         │
-└─────────────────────────────────────────────────────────────────┘
+Conversation → Save Context → Vector Embeddings → SQLite Database
+                                    ↓
+Future Session → Query → Hybrid Search → Relevant Context Loaded
 ```
 
-### Why Skills Beat Static Documentation
+### Key Features
 
-| Static Docs                       | Skills                    |
-| --------------------------------- | ------------------------- |
-| Always in context (wastes tokens) | Loaded on-demand          |
-| Generic guidance                  | Task-specific workflows   |
-| You remember to reference them    | Auto-matched to your task |
-| No enforcement                    | Built-in quality gates    |
-| Separate knowledge base needed    | Knowledge bundled inside  |
+| Feature | What It Does | Why It Matters |
+|---------|--------------|----------------|
+| **6-Tier Importance** | Constitutional → Critical → Important → Normal → Temporary → Deprecated | Right context at the right time |
+| **Hybrid Search** | Vector similarity + full-text keywords + RRF fusion | Finds what you mean, not just what you typed |
+| **93% Token Savings** | Anchor-based section loading | Load specific decisions, not entire files |
+| **90-Day Decay** | Old memories fade, recent ones surface | Stays relevant without manual cleanup |
+| **Checkpoints** | Save/restore database state | Experiment safely, rollback if needed |
 
-### Available Skills
+### The Six Importance Tiers
 
-| Skill                         | What It Does                                         |
-| ----------------------------- | ---------------------------------------------------- |
-| **mcp-code-mode**             | TypeScript tool orchestration, multi-tool workflows  |
-| **mcp-code-context**          | Structural code analysis via Tree-sitter AST         |
-| **mcp-leann**                 | Semantic code search with 97% storage savings        |
-| **system-memory**             | Semantic context preservation with 6-tier importance |
-| **system-spec-kit**           | Spec folder + template enforcement                   |
-| **workflows-code**            | 3-phase implementation lifecycle                     |
-| **workflows-git**             | Branch management, clean commits                     |
-| **workflows-chrome-devtools** | Browser automation via DevTools                      |
-| **workflows-documentation**   | Document creation + skill scaffolding                |
+| Tier | Boost | Decay | Use For |
+|------|-------|-------|---------|
+| `constitutional` | 3.0x | Never | Project rules, always-on context (~500 tokens) |
+| `critical` | 2.0x | Never | Architecture decisions, breaking changes |
+| `important` | 1.5x | Never | Key implementations, major features |
+| `normal` | 1.0x | 90-day | Standard development context |
+| `temporary` | 0.5x | 7-day | Debug sessions, experiments |
+| `deprecated` | 0.0x | — | Excluded from search |
+
+### Memory Commands
+
+| Command | What It Does |
+|---------|--------------|
+| `/memory:save` | Save current conversation context |
+| `/memory:search <query>` | Find relevant past context |
+| `/memory:search cleanup` | Interactive cleanup of old memories |
+| `/memory:checkpoint create` | Snapshot current state |
+
+**Example:**
+```
+> /memory:search "authentication flow"
+
+Found 3 memories:
+1. [critical] JWT token refresh implementation (2 days ago) - 94% match
+2. [important] OAuth2 provider setup (5 days ago) - 87% match  
+3. [normal] Login form validation (12 days ago) - 72% match
+```
+
+### Privacy First
+
+All processing happens locally:
+- **Embeddings:** `nomic-embed-text-v1.5` via Ollama (768-dim vectors)
+- **Storage:** SQLite with sqlite-vec extension
+- **No external API calls** for memory operations
+
+The Semantic Memory MCP server enables AI assistants to search and load memories directly. See [`.opencode/skill/system-memory/`](.opencode/skill/system-memory/) for implementation details and [`install_guides/MCP/MCP - Semantic Memory.md`](install_guides/MCP/MCP%20-%20Semantic%20Memory.md) for setup.
+
+---
+
+## 7. 🧩 Skills Library
+
+Skills are domain expertise on demand. Instead of explaining "how to do git commits properly" every session, the AI loads the workflows-git skill and already knows your conventions. Skills are automatically discovered and loaded based on what you're trying to do—no manual invocation required for common tasks.
 
 ### How Skills Work
 
 ```
-Task Received → Agent scans available skills
-                    ↓
-         Match Found → Load skill via CLI
-                    ↓
-    Instructions Load → SKILL.md + bundled resources
-                    ↓
-      Agent Executes → Complete task using skill guidance
+Your Request → skill_advisor.py analyzes keywords
+                        ↓
+              Confidence > 80%? → Load skill automatically
+                        ↓
+              SKILL.md + bundled resources loaded
+                        ↓
+              AI follows skill guidance
 ```
 
-### Intelligent Routing: skill_advisor.py vs. Plugin
+**Native Discovery:** OpenCode v1.0.190+ automatically finds skills in `.opencode/skill/*/SKILL.md`. No plugin required.
 
-The skills system relies on two components working in tandem:
+### Available Skills (8 Total)
 
-1.  **The Plugin (Muscle):** The `opencode-skills` plugin enables the `openskills` command, which physically loads the skill content and assets into the context window.
-2.  **The Advisor (Brain):** The `skill_advisor.py` script acts as Gate 2. It analyzes your natural language request, calculates a confidence score, and determines *which* skill (if any) is required.
+| Skill | What It Does | Trigger Examples |
+|-------|--------------|------------------|
+| **mcp-leann** | Semantic code search—finds code by *meaning*, not just text | "How does auth work?", "Explain the login flow" |
+| **mcp-code-context** | Structural analysis—lists functions, classes, symbols | "What functions are in auth.ts?", "Show class hierarchy" |
+| **mcp-code-mode** | External tool orchestration (Webflow, Figma, ClickUp) | "Update Webflow site", "Get Figma components" |
+| **system-memory** | Context preservation across sessions | "Save this context", "What did we decide about X?" |
+| **system-spec-kit** | Documentation enforcement and templates | "Create spec for feature", "Start new task" |
+| **workflows-code** | Implementation lifecycle (plan → code → verify) | "Implement this feature", "Debug this error" |
+| **workflows-git** | Git workflows (commits, branches, PRs) | "Commit these changes", "Create PR" |
+| **workflows-chrome-devtools** | Browser automation and debugging | "Take screenshot", "Check console errors" |
 
-**The Integration Flow:**
+### Skills vs Commands
+
+| Aspect | Skills | Commands |
+|--------|--------|----------|
+| **Invocation** | Automatic (keyword-triggered) | Explicit (`/command:name`) |
+| **Routing** | skill_advisor.py with confidence scoring | Direct user request |
+| **Style** | Flexible guidance—AI adapts | Rigid workflow—strict steps |
+| **Example** | "How does auth work?" → mcp-leann | `/spec_kit:complete auth` → 12-step workflow |
+
+### Skill Routing (Gate 2)
+
+Every request passes through the skill advisor:
 
 ```bash
-User Request ──► skill_advisor.py (Analysis)
-                      │
-                      ▼
-              Confidence > 0.8?
-              ├── NO: Proceed with manual tool selection
-              └── YES: Advisor outputs "Suggested Skill: workflows-code"
-                      │
-                      ▼
-              Agent executes: openskills read workflows-code
-                      │
-                      ▼
-              Plugin loads SKILL.md + Resources
+python .opencode/scripts/skill_advisor.py "your request"
 ```
 
-This separation ensures skills are only loaded when actually needed, keeping your context clean while ensuring expert capabilities are available instantly for complex tasks.
+Returns:
+```json
+{
+  "skill": "mcp-leann",
+  "confidence": 0.92,
+  "reason": "Matched: !how, !authentication, !work"
+}
+```
+
+**Confidence > 0.8 = mandatory skill invocation.** The AI must load and follow the skill.
+
+### Creating Custom Skills
+
+```bash
+# Initialize skill structure
+python .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill
+
+# Required SKILL.md sections:
+# - WHEN TO USE (triggers)
+# - HOW IT WORKS (patterns)  
+# - RULES (✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF)
+```
+
+See [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) for the full guide.
 
 ---
 
-## 8. ⚡ COMMANDS
+## 8. ⚡ Commands
 
-**Automate workflows with a single prompt.**
+Commands are explicit, user-invoked workflows with structured steps. Unlike skills (which load automatically), commands are triggered with a /slash syntax when you want a specific multi-step process. They're perfect for repeatable workflows like creating specs, saving context, or searching code.
 
 Commands in [`command/`](command/) are structured entry points that chain steps, load the right skills, and enforce quality gates without you having to re-prompt every step.
 
@@ -631,19 +585,60 @@ Commands in [`command/`](command/) are structured entry points that chain steps,
 
 ---
 
-## 9. 🏎️ QUICK REFERENCE
+## 9. 🏎️ Quick Reference
 
-**Getting started:** Install OpenCode, copy the config templates, and wire up the providers/servers you want.
+Everything you need at a glance. This section provides quick links to configuration files, documentation, and common resources. Bookmark this section—you'll come back to it often when you need to find where something lives.
 
-| Resource                       | Location                                 |
-| ------------------------------ | ---------------------------------------- |
-| OpenCode config                | [`opencode.json`](opencode.json)         |
-| MCP config (Claude Code, etc.) | [`mcp.json`](mcp.json)                   |
-| Agent guardrails               | [`AGENTS.md`](AGENTS.md)                 |
-| SpecKit framework              | [`speckit/`](speckit/)                   |
-| SpecKit docs (detailed)        | [`speckit/README.md`](speckit/README.md) |
-| Memory system                  | [`memory/`](memory/)                     |
-| Memory docs (detailed)         | [`memory/README.md`](memory/README.md)   |
-| Skills library                 | [`skills/`](skills/)                     |
-| Commands                       | [`command/`](command/)                   |
-| MCP install guides             | [`install guides/`](install%20guides/)   |
+| Resource                       | Location                                                     |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Master Install Guide**       | [`install_guides/README.md`](install_guides/README.md)       |
+| OpenCode config                | [`opencode.json`](opencode.json)                             |
+| Agent guardrails               | [`AGENTS.md`](AGENTS.md)                                     |
+| Skills library                 | [`.opencode/skill/`](.opencode/skill/)                       |
+| Commands                       | [`.opencode/command/`](.opencode/command/)                   |
+| MCP guides                     | [`install_guides/MCP/`](install_guides/MCP/)                 |
+| Plugin guides                  | [`install_guides/PLUGIN/`](install_guides/PLUGIN/)           |
+| Setup guides                   | [`install_guides/SET-UP - *.md`](install_guides/)            |
+
+---
+
+## 10. 🎯 What's Next?
+
+You've got the environment set up—now what? This section provides a first-session checklist to validate everything works, links to deeper documentation, and troubleshooting tips for common issues. Complete the checklist to confirm your setup is production-ready.
+
+### First Session Checklist
+
+- [ ] Run `opencode` in your project
+- [ ] Try `/spec_kit:complete add-login` to create your first documented feature
+- [ ] Use `/memory:save` at the end of your session
+- [ ] Start a new session and try `/memory:search "login"` to see persistence
+
+### Going Deeper
+
+| Topic | Resource |
+|-------|----------|
+| Full installation | [install_guides/README.md](install_guides/README.md) |
+| MCP server setup | [install_guides/MCP/](install_guides/MCP/) |
+| Creating skills | [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) |
+| Agent configuration | [SET-UP - AGENTS.md](install_guides/SET-UP%20-%20AGENTS.md) |
+
+### Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| MCP server won't connect | Check `opencode.json` paths, restart OpenCode |
+| Memory search returns nothing | Run `/memory:search cleanup` to reindex |
+| Skill not loading | Verify SKILL.md frontmatter has valid `name` field |
+| Embeddings failing | Ensure Ollama is running: `ollama serve` |
+
+### Get Help
+
+- **GitHub Issues:** Report bugs and request features
+- **AGENTS.md:** Check the gate system for workflow questions
+- **Skill READMEs:** Each skill has detailed documentation
+
+---
+
+<p align="center">
+  <sub>Found this useful? <a href="https://buymeacoffee.com/michelkerkmeester">Buy me a coffee</a> ☕</sub>
+</p>

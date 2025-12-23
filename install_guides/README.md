@@ -1,0 +1,1378 @@
+# OpenCode Installation Guide
+
+AI-executable guide for the OpenCode dev environment. Installs 5 MCP servers, 7 native skills, and optional CLI tools. Execute phases sequentially—each includes validation checkpoints.
+
+---
+
+## 🤖 AI-FIRST INSTALL GUIDE
+
+Copy this prompt to your AI assistant:
+
+```
+I need to install OpenCode components. Please guide me using .opencode/install_guides/README.md
+
+My environment:
+- Platform: [macOS / Linux / Windows WSL]
+- LLM Provider: [Claude / GitHub Copilot / OpenAI / Gemini / Ollama]
+- Install Mode: [Full / Minimal / Missing only / Custom]
+- Components (if custom): [Code Mode, LEANN, Code Context, Semantic Memory, Sequential Thinking, Chrome DevTools CLI]
+
+Start with Pre-Flight Check to detect what's already installed, then guide me through each phase.
+```
+
+---
+
+## 📋 TABLE OF CONTENTS
+
+0. [🤖 AI-FIRST INSTALL GUIDE](#-ai-first-install-guide)
+1. [🔎 PRE-FLIGHT CHECK](#1--pre-flight-check)
+2. [🔍 ENVIRONMENT DETECTION](#2--environment-detection)
+3. [📋 VERSION COMPATIBILITY & RESOURCES](#3--version-compatibility--resources)
+4. [🧩 COMPONENT MATRIX](#4--component-matrix)
+5. [📥 PHASE 1: PREREQUISITES](#5--phase-1-prerequisites)
+6. [🤖 PHASE 2: OLLAMA & MODELS](#6--phase-2-ollama--models)
+7. [⚙️ PHASE 3: MCP SERVERS](#7--phase-3-mcp-servers)
+8. [🔌 PHASE 4: PLUGINS](#8--phase-4-plugins)
+9. [📝 CONFIGURATION TEMPLATES](#9--configuration-templates)
+10. [✅ FINAL VERIFICATION](#10--final-verification)
+11. [🚨 DISASTER RECOVERY](#11--disaster-recovery)
+12. [⚙️ POST-INSTALLATION CONFIGURATION](#12--post-installation-configuration)
+13. [🚀 WHAT'S NEXT?](#13--whats-next)
+14. [🔧 TROUBLESHOOTING](#14--troubleshooting)
+15. [📖 QUICK REFERENCE](#15--quick-reference)
+
+
+---
+
+## 1. 🔎 PRE-FLIGHT CHECK
+
+Run this command to detect what's already installed:
+
+```bash
+echo ""
+echo "    ┌─────────────────────────────────────────────────────────┐"
+echo "    │            ⚡ OPENCODE PRE-FLIGHT CHECK ⚡                │"
+echo "    ├─────────────────────────┬───────────────────────────────┤"
+echo "    │ Component               │ Status                        │"
+echo "    ├─────────────────────────┼───────────────────────────────┤"
+printf "  │ %-23s │ %-29s │\n" "Node.js 18+" "$(node -v 2>/dev/null | grep -qE '^v(1[89]|2)' && echo '✅ '$(node -v) || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "Python 3.10+" "$(python3 -V 2>&1 | grep -qE '3\.(1[0-9]|[2-9][0-9])' && echo '✅ '$(python3 -V 2>&1 | cut -d' ' -f2) || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "uv" "$(command -v uv >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "Ollama" "$(command -v ollama >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "nomic-embed-text" "$(ollama list 2>/dev/null | grep -q nomic && echo '✅ Pulled' || echo '❌ Not pulled')"
+printf "  │ %-23s │ %-29s │\n" "LEANN CLI" "$(command -v leann >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "Chrome DevTools (bdg)" "$(command -v bdg >/dev/null && echo '✅ Installed' || echo '⚪ Optional')"
+echo "    ├─────────────────────────┼───────────────────────────────┤"
+printf "  │ %-23s │ %-29s │\n" "opencode.json" "$(test -f opencode.json && echo '✅ Exists' || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" ".utcp_config.json" "$(test -f .utcp_config.json && echo '✅ Exists' || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "Skills directory" "$(test -d .opencode/skill && echo '✅ '$(ls .opencode/skill 2>/dev/null | wc -l | tr -d ' ')' skills'     || echo '❌ Missing')"
+echo "    └─────────────────────────┴───────────────────────────────┘"
+echo ""
+```
+
+### Installation Modes
+
+| Mode             | Description                                 | Use When                       |
+| ---------------- | ------------------------------------------- | ------------------------------ |
+| **Full**         | Install all components, reinstall if exists | Fresh setup or reset           |
+| **Minimal**      | Code Mode + Semantic Memory only            | Quick start, limited resources |
+| **Missing only** | Skip already-installed components           | Recommended for most cases     |
+| **Custom**       | Select specific components                  | Targeted installation          |
+
+**AI Logic:** Based on pre-flight results:
+- All ✅ → Installation complete, verify only
+- Mix of ✅/❌ → Use "Missing only" mode to install ❌ items
+- All ❌ → Use "Full" mode
+
+---
+
+## 2. 🔍 ENVIRONMENT DETECTION
+
+Answer these questions to configure your installation:
+
+### Q1: Platform
+- **macOS** → Full support, Homebrew for dependencies
+- **Linux** → Full support, apt/dnf for dependencies
+- **Windows WSL** → Full support via WSL2, follow Linux instructions
+
+### Q2: Installation Scope
+- **Project-specific** (recommended) → Install in `.opencode/` directory
+- **Global** → Install in user home directory
+
+### Q3: LLM Provider
+- **Claude (Anthropic)** → Requires `ANTHROPIC_API_KEY`
+- **GitHub Copilot** → Requires GitHub authentication
+- **OpenAI / Codex** → Requires `OPENAI_API_KEY`
+- **Gemini (Google)** → Requires `GEMINI_API_KEY`
+- **Ollama (Local)** → For embeddings; optionally for local inference
+
+> **Note:** Ollama with `nomic-embed-text` is required for LEANN and Semantic Memory embeddings regardless of your main LLM provider.
+
+### Q4: Component Bundle
+- **Full** → All components (5 MCP servers + CLI tools + plugins)
+- **Minimal** → Code Mode + Semantic Memory (Skills are built-in)
+- **Custom** → Select specific components from matrix below
+
+---
+
+## 3. 📋 VERSION COMPATIBILITY & RESOURCES
+
+### 3.1 Version Compatibility Matrix
+
+| OpenCode | Node.js | Python | Ollama | Key Components                     |
+| -------- | ------- | ------ | ------ | ---------------------------------- |
+| 25.x+    | 18-22   | 3.10+  | 0.3+   | All MCP servers, native skills     |
+| 24.x     | 18-20   | 3.10+  | 0.2+   | Most MCP servers (no Code Context) |
+| 23.x     | 18-20   | 3.9+   | 0.1+   | Basic MCP servers only             |
+
+**Notes:**
+- Node.js 22+ recommended for best performance
+- Python 3.12 recommended for LEANN and Sequential Thinking
+- Ollama 0.3+ required for nomic-embed-text model
+
+### 3.2 Resource Requirements
+
+| Bundle   | RAM  | Disk | Network  | Components                                   |
+| -------- | ---- | ---- | -------- | -------------------------------------------- |
+| Minimal  | 4GB  | 2GB  | Optional | Code Mode + Semantic Memory                  |
+| Standard | 8GB  | 5GB  | Required | + LEANN + Code Context + Sequential Thinking |
+| Full     | 16GB | 10GB | Required | All + Ollama models + Chrome DevTools CLI    |
+
+**Disk breakdown:**
+- MCP servers: ~500MB
+- Ollama base: ~1GB
+- nomic-embed-text model: ~300MB
+- llama3.2 model (optional): ~4GB
+- LEANN indexes: varies by codebase (~100MB per 10K files)
+- Semantic Memory database: ~50MB typical
+
+### Validation: `environment_check`
+
+- [ ] Confirmed platform (macOS/Linux/WSL)
+- [ ] Selected installation scope
+- [ ] Verified LLM provider access
+- [ ] Selected component bundle
+
+**Quick Verification:**
+```bash
+# Single command to verify this checkpoint
+uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - clarify requirements before proceeding
+
+---
+
+## 4. 🧩 COMPONENT MATRIX
+
+### 4.1 Component Overview
+
+| Component           | Type       | Purpose                                               | Dependencies                            |
+| ------------------- | ---------- | ----------------------------------------------------- | --------------------------------------- |
+| Code Mode           | MCP Server | External tool orchestration (Webflow, Figma, ClickUp) | Node.js 18+                             |
+| LEANN               | MCP Server | Semantic code search                                  | Python 3.10+, uv, Homebrew deps, Ollama |
+| Code Context        | MCP Server | Structural code analysis (AST)                        | Node.js 18+                             |
+| Semantic Memory     | MCP Server | Conversation context preservation                     | Node.js 18+, Ollama (optional)          |
+| Sequential Thinking | MCP Server | Complex reasoning chains                              | npx (Node.js 18+)                       |
+| Native Skills       | Built-in   | Skill discovery from .opencode/skill/                 | None (OpenCode v1.0.190+)               |
+| Chrome DevTools CLI | CLI Tool   | Browser debugging & automation                        | Node.js 18+                             |
+| Antigravity Auth    | Plugin     | Google OAuth for Claude                               | Node.js 18+                             |
+| OpenAI Codex Auth   | Plugin     | ChatGPT OAuth                                         | Node.js 18+                             |
+
+### 4.2 Dependency Graph
+
+```
+                    ┌─────────────────────────────────────────┐
+                    │           PREREQUISITES                  │
+                    │  Node.js 18+ │ Python 3.10+ │ uv │ brew │
+                    └─────────────────────────────────────────┘
+                                       │
+          ┌────────────────────────────┼────────────────────────────┐
+          ▼                            ▼                            ▼
+    ┌──────────┐                ┌───────────┐                ┌───────────┐
+    │  Ollama  │                │ Homebrew  │                │    uv     │
+    │  Models  │                │   Deps    │                │  (Python) │
+    └────┬─────┘                └─────┬─────┘                └─────┬─────┘
+         │                            │                            │
+         ▼                            ▼                            ▼
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │                     5 NATIVE MCP SERVERS                             │
+    │                   (configured in opencode.json)                      │
+    └─────────────────────────────────────────────────────────────────────┘
+                                       │
+         ┌─────────────┬───────────────┼───────────────┬─────────────┐
+         ▼             ▼               ▼               ▼             ▼
+   ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐
+   │   Code    │ │   LEANN   │ │   Code    │ │ Semantic  │ │Sequential │
+   │   Mode    │ │ (search)  │ │  Context  │ │  Memory   │ │ Thinking  │
+   └─────┬─────┘ └───────────┘ └───────────┘ └───────────┘ └───────────┘
+         │
+         ▼
+   ┌───────────────────────────────────────┐
+   │         EXTERNAL TOOLS                 │
+   │  (via Code Mode + .utcp_config.json)   │
+   └───────────────────────────────────────┘
+
+   NATIVE SKILLS: 9 skills auto-discovered from .opencode/skill/*/SKILL.md
+   OPTIONAL: Chrome DevTools CLI (bdg), Auth Plugins
+```
+
+### 4.3 Installation Bundles
+
+**Full Bundle** (all components):
+```
+Prerequisites → Ollama → Code Mode → LEANN → Code Context → 
+Semantic Memory → Sequential Thinking → Chrome DevTools CLI → 
+Antigravity Auth → OpenAI Codex Auth
+```
+
+**Minimal Bundle** (essential only):
+```
+Prerequisites → Code Mode → Semantic Memory
+```
+
+**Custom Bundle** - Select from:
+- [ ] Code Mode (foundation for external tools)
+- [ ] LEANN (semantic code search)
+- [ ] Code Context (structural analysis)
+- [ ] Semantic Memory (context preservation)
+- [ ] Sequential Thinking (complex reasoning)
+- [ ] Chrome DevTools CLI (browser debugging)
+- [ ] Antigravity Auth (Google OAuth)
+- [ ] OpenAI Codex Auth (ChatGPT OAuth)
+
+**Note:** Native Skills are built-in to OpenCode v1.0.190+ and require no installation. Skills are auto-discovered from `.opencode/skill/*/SKILL.md`.
+
+---
+
+## 5. 📥 PHASE 1: PREREQUISITES
+
+> **Skip Check:** Run `node -v && python3 -V && uv -V` — if all return versions, skip to Phase 2.
+
+### 5.1 Node.js 18+
+
+**Check:** `node -v` → If v18+ shown, skip to 5.2
+
+**Install if missing:**
+
+<details>
+<summary>macOS</summary>
+
+```bash
+# Using Homebrew
+brew install node@20
+
+# Or using nvm (recommended for version management)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm install 20
+nvm use 20
+```
+</details>
+
+<details>
+<summary>Linux (Ubuntu/Debian)</summary>
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+</details>
+
+<details>
+<summary>Windows WSL</summary>
+
+```bash
+# In WSL terminal
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+</details>
+
+### 5.2 Python 3.10+ (for LEANN)
+
+**Check version:**
+```bash
+python3 --version  # Should be 3.10.0 or higher
+```
+
+**Install if needed:**
+
+<details>
+<summary>macOS</summary>
+
+```bash
+brew install python@3.12
+```
+</details>
+
+<details>
+<summary>Linux (Ubuntu/Debian)</summary>
+
+```bash
+sudo apt update
+sudo apt install python3.12 python3.12-venv
+```
+</details>
+
+### 5.3 uv Package Manager (for LEANN)
+
+**Install:**
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+**Verify:**
+```bash
+uv --version
+```
+
+### 5.4 Homebrew Dependencies (macOS only, for LEANN)
+
+```bash
+brew install libomp boost protobuf zeromq pkgconf
+```
+
+**Verify installation:**
+```bash
+brew list | grep -E "libomp|boost|protobuf|zeromq|pkgconf"
+```
+
+### Validation: `prerequisites_check`
+
+- [ ] Node.js version is 18.x or higher
+- [ ] Python version is 3.10.x or higher
+- [ ] uv package manager installed and responds to `uv --version`
+- [ ] (macOS) Homebrew dependencies installed
+
+**Quick Verification:**
+```bash
+node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(1[0-9]|[2-9][0-9])" && uv --version && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - install missing prerequisites before continuing
+
+---
+
+## 6. 🤖 PHASE 2: OLLAMA & MODELS
+
+Ollama provides local LLM inference and embeddings. Required for LEANN and Semantic Memory.
+
+> **Skip Check:** Run `ollama list | grep nomic` — if nomic-embed-text shown, skip to Phase 3.
+
+### 6.1 Install Ollama
+
+**Check:** `command -v ollama` → If path shown, skip to 6.2
+
+<details>
+<summary>macOS</summary>
+
+```bash
+brew install ollama
+```
+</details>
+
+<details>
+<summary>Linux</summary>
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+</details>
+
+### 6.2 Start Ollama Service
+
+```bash
+# Start in background
+ollama serve &
+
+# Or start as service (macOS)
+brew services start ollama
+```
+
+### 6.3 Pull Required Models
+
+```bash
+# Embedding model (required for LEANN and Semantic Memory)
+ollama pull nomic-embed-text
+
+# Optional: Reasoning model for local inference
+ollama pull llama3.2
+```
+
+### Validation: `ollama_check`
+
+- [ ] Ollama service is running
+- [ ] nomic-embed-text model is available
+- [ ] (Optional) llama3.2 model is available
+
+**Quick Verification:**
+```bash
+ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - Ollama must be running for LEANN and Semantic Memory
+
+---
+
+## 7. ⚙️ PHASE 3: MCP SERVERS
+
+> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"leann"' opencode.json && grep -q '"semantic_memory"' opencode.json && echo "✅ All configured"` — if all configured, skip to Phase 4.
+
+### Installation Order (Important!)
+
+1. **Code Mode** (foundation - install FIRST)
+2. LEANN (semantic code search)
+3. Code Context (structural analysis)
+4. Semantic Memory (context preservation)
+5. Sequential Thinking (complex reasoning)
+
+---
+
+### 7.1 Code Mode (Foundation)
+
+Code Mode provides TypeScript execution environment for all external MCP tools.
+
+**Check:** `npx utcp-mcp --help >/dev/null 2>&1 && echo "Installed"` → If "Installed" shown, skip to config or 7.2
+
+**Install if missing:**
+```bash
+# Global install for CLI access
+npm install -g utcp-mcp
+```
+
+**Configure in `opencode.json`:**
+```json
+{
+  "mcp": {
+    "code_mode": {
+      "command": "npx",
+      "args": ["utcp-mcp"],
+      "env": {}
+    }
+  }
+}
+```
+
+**Create `.utcp_config.json` in project root:**
+```json
+{
+  "manuals": []
+}
+```
+
+### Validation: `code_mode_check`
+
+- [ ] npx utcp-mcp responds to --help
+- [ ] .utcp_config.json exists in project root
+
+**Quick Verification:**
+```bash
+npx utcp-mcp --help >/dev/null 2>&1 && test -f .utcp_config.json && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - Code Mode is required for external tools
+
+---
+
+### 7.2 LEANN (Semantic Code Search)
+
+LEANN provides semantic search over codebases using vector embeddings.
+
+**Check:** `command -v leann` → If path shown, skip to config
+
+**Prerequisites:** Python 3.10+, uv, Homebrew deps (macOS), Ollama with nomic-embed-text
+
+**Install if missing:**
+```bash
+uv tool install leann-core --with leann
+```
+
+**Configure in `opencode.json`:**
+```json
+{
+  "mcp": {
+    "leann": {
+      "command": "leann",
+      "args": ["mcp"],
+      "env": {}
+    }
+  }
+}
+```
+
+**Build index for your project:**
+```bash
+# Navigate to project root
+cd /path/to/your/project
+
+# Build index (creates .leann/ directory)
+leann build --name myproject --path . --include "**/*.{js,ts,py,md}"
+```
+
+### Validation: `leann_check`
+
+- [ ] leann command responds to --version
+- [ ] At least one index exists (after building)
+- [ ] Search returns results
+
+**Quick Verification:**
+```bash
+leann --version >/dev/null 2>&1 && grep -q '"leann"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - check Ollama is running and models are pulled
+
+<details>
+<summary>Troubleshooting: libomp errors on macOS</summary>
+
+```bash
+# If you see "libomp not found" errors
+brew reinstall libomp
+export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH
+
+# Add to ~/.zshrc for persistence
+echo 'export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH' >> ~/.zshrc
+```
+</details>
+
+---
+
+### 7.3 Code Context (Structural Analysis)
+
+Code Context provides AST-based structural queries using Tree-sitter.
+
+**Configure in `opencode.json`:**
+```json
+{
+  "mcp": {
+    "code_context": {
+      "command": "npx",
+      "args": ["code-context-provider-mcp"],
+      "env": {}
+    }
+  }
+}
+```
+
+### Validation: `code_context_check`
+
+- [ ] npx code-context-provider-mcp responds
+- [ ] Configuration added to opencode.json
+
+**Quick Verification:**
+```bash
+grep -q '"code_context"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - verify Node.js version and npm access
+
+---
+
+### 7.4 Semantic Memory (Context Preservation)
+
+Semantic Memory provides conversation context preservation with vector search.
+
+**Location:** Bundled in project at `.opencode/skill/system-memory/`
+
+**Configure in `opencode.json`:**
+```json
+{
+  "mcp": {
+    "semantic_memory": {
+      "command": "node",
+      "args": [".opencode/skill/system-memory/mcp_server/semantic-memory.js"],
+      "env": {
+        "MEMORY_DB_PATH": ".opencode/skill/system-memory/database/memory-index.sqlite",
+        "OLLAMA_BASE_URL": "http://localhost:11434"
+      }
+    }
+  }
+}
+```
+
+**Initialize database:**
+```bash
+# The database is created automatically on first run
+# Verify the directory exists
+ls -la .opencode/skill/system-memory/database/
+```
+
+### Validation: `semantic_memory_check`
+
+- [ ] Semantic memory JS file exists
+- [ ] Database directory exists (or will be created)
+- [ ] (Optional) Ollama running for embeddings
+
+**Quick Verification:**
+```bash
+test -f .opencode/skill/system-memory/mcp_server/semantic-memory.js && grep -q '"semantic_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - verify file paths and Node.js installation
+
+---
+
+### 7.5 Sequential Thinking (Complex Reasoning)
+
+Sequential Thinking provides structured reasoning chains for complex problems.
+
+**Configure in `opencode.json`:**
+```json
+{
+  "mcp": {
+    "sequential_thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "env": {}
+    }
+  }
+}
+```
+
+### Validation: `sequential_thinking_check`
+
+- [ ] npx can download and run the package
+- [ ] Configuration added to opencode.json
+
+**Quick Verification:**
+```bash
+grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - verify npm/npx access
+
+---
+
+### 7.6 Chrome DevTools CLI (Optional)
+
+Chrome DevTools provides browser automation and debugging via CLI.
+
+**Install:**
+```bash
+npm install -g browser-debugger-cli@alpha
+```
+
+**Usage (CLI-first approach):**
+```bash
+# List available commands
+bdg --list
+
+# Describe a specific command
+bdg --describe screenshot
+
+# Take screenshot
+bdg screenshot --url https://example.com --output screenshot.png
+```
+
+### Validation: `chrome_devtools_check`
+
+- [ ] bdg command responds to --list
+- [ ] bdg --version shows version number
+
+**Quick Verification:**
+```bash
+bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - verify npm global install path is in PATH
+
+---
+
+### Phase 3 Complete Validation: `mcp_servers_check`
+
+- [ ] Code Mode: npx utcp-mcp --version responds
+- [ ] LEANN: leann --version responds
+- [ ] Code Context: configured in opencode.json
+- [ ] Semantic Memory: configured in opencode.json
+- [ ] Sequential Thinking: configured in opencode.json
+- [ ] (Optional) Chrome DevTools: bdg --version responds
+
+**Quick Verification:**
+```bash
+grep -q '"code_mode"' opencode.json && grep -q '"leann"' opencode.json && grep -q '"semantic_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if any required server fails - review individual server troubleshooting
+
+---
+
+## 8. 🔌 PHASE 4: PLUGINS
+
+### 8.1 Native Skills (Built-in)
+
+OpenCode v1.0.190+ has **native skill support** built-in. No plugin installation required.
+
+Skills are automatically discovered from:
+- `.opencode/skill/<name>/SKILL.md` (project-level)
+- `~/.opencode/skill/<name>/SKILL.md` (global)
+- `.claude/skills/<name>/SKILL.md` (Claude-compatible)
+
+**Current Skills (8 total):**
+| Skill                     | Version | Purpose                       |
+| ------------------------- | ------- | ----------------------------- |
+| mcp-code-context          | v1.1.0  | Structural AST analysis       |
+| mcp-code-mode             | v1.2.0  | External tool orchestration   |
+| mcp-leann                 | v1.1.0  | Semantic code search          |
+| system-memory             | v12.4.0 | Context preservation          |
+| system-spec-kit           | v2.0.0  | Spec folder + template system |
+| workflows-chrome-devtools | v2.1.0  | Browser debugging             |
+| workflows-code            | v2.0.0  | Implementation orchestrator   |
+| workflows-git             | v1.5.0  | Git workflow orchestrator     |
+
+**How it works:**
+- OpenCode scans skill folders on startup
+- Skills are surfaced as `skills_*` functions (e.g., `skills_mcp_leann`)
+- Agents read `SKILL.md` files directly when a task matches
+
+**No configuration needed** - skills in `.opencode/skill/` are automatically available.
+
+### Validation: `native_skills_check`
+
+- [ ] Skills directory exists
+- [ ] At least one SKILL.md file present
+- [ ] SKILL.md has required frontmatter (name, description)
+
+**Quick Verification:**
+```bash
+test -d .opencode/skill && ls .opencode/skill/*/SKILL.md >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - verify .opencode/skill/ directory structure
+
+---
+
+### 8.2 Antigravity Auth (Google OAuth)
+
+Enables Google OAuth authentication for Claude.
+
+**Configure in `opencode.json`:**
+```json
+{
+  "plugins": [
+    "opencode-antigravity-auth@1.2.2"
+  ]
+}
+```
+
+**Usage:**
+- Plugin activates automatically when OpenCode starts
+- Follow OAuth prompts in terminal when authentication is needed
+
+---
+
+### 8.3 OpenAI Codex Auth (ChatGPT OAuth)
+
+Enables ChatGPT OAuth authentication for OpenAI models.
+
+**Configure in `opencode.json`:**
+```json
+{
+  "plugins": [
+    "opencode-openai-codex-auth@4.1.1"
+  ]
+}
+```
+
+**Environment variables (optional):**
+```bash
+export OPENAI_API_KEY="your-api-key"
+```
+
+---
+
+### Phase 4 Complete Validation: `plugins_check`
+
+- [ ] Skills directory exists and contains skills
+- [ ] (Optional) Auth plugins configured in opencode.json
+
+**Quick Verification:**
+```bash
+test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - skills are required for full functionality
+
+---
+
+## 9. 📝 CONFIGURATION TEMPLATES
+
+### 9.1 Complete `opencode.json` (Full Bundle)
+
+```json
+{
+  "$schema": "https://opencode.ai/config.schema.json",
+  "mcp": {
+    "code_mode": {
+      "command": "npx",
+      "args": ["utcp-mcp"],
+      "env": {}
+    },
+    "leann": {
+      "command": "leann",
+      "args": ["mcp"],
+      "env": {}
+    },
+    "code_context": {
+      "command": "npx",
+      "args": ["code-context-provider-mcp"],
+      "env": {}
+    },
+    "semantic_memory": {
+      "command": "node",
+      "args": [".opencode/skill/system-memory/mcp_server/semantic-memory.js"],
+      "env": {
+        "MEMORY_DB_PATH": ".opencode/skill/system-memory/database/memory-index.sqlite",
+        "OLLAMA_BASE_URL": "http://localhost:11434"
+      }
+    },
+    "sequential_thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "env": {}
+    }
+  },
+  "plugins": [
+    "opencode-antigravity-auth@1.2.2",
+    "opencode-openai-codex-auth@4.1.1"
+  ]
+}
+```
+
+### 9.2 Complete `.utcp_config.json`
+
+```json
+{
+  "manuals": []
+}
+```
+
+**Note:** External tools (Webflow, Figma, ClickUp) are added to manuals array as needed. See Code Mode skill documentation for configuration examples.
+
+### 9.3 Minimal Bundle Configuration
+
+**`opencode.json`:**
+```json
+{
+  "$schema": "https://opencode.ai/config.schema.json",
+  "mcp": {
+    "code_mode": {
+      "command": "npx",
+      "args": ["utcp-mcp"],
+      "env": {}
+    },
+    "semantic_memory": {
+      "command": "node",
+      "args": [".opencode/skill/system-memory/mcp_server/semantic-memory.js"],
+      "env": {
+        "MEMORY_DB_PATH": ".opencode/skill/system-memory/database/memory-index.sqlite"
+      }
+    }
+  },
+  "plugins": []
+}
+```
+
+**`.utcp_config.json`:**
+```json
+{
+  "manuals": []
+}
+```
+
+---
+
+## 10. ✅ FINAL VERIFICATION
+
+### Checklist
+
+- [ ] Prerequisites: Node.js 18+, Python 3.10+, uv
+- [ ] Ollama running with nomic-embed-text model
+- [ ] All 5 MCP servers configured in opencode.json
+- [ ] Skills directory exists with 9 skills
+- [ ] Configuration files exist and are valid JSON
+
+### Quick Verification
+
+```bash
+# Full verification one-liner
+node --version | grep -E "^v(1[89]|2[0-9])" && \
+python3 --version | grep -E "3\.(1[0-9]|[2-9][0-9])" && \
+test -f opencode.json && \
+test -d .opencode/skill && \
+ollama list | grep -q "nomic-embed-text" && \
+echo "✅ INSTALLATION COMPLETE" || echo "❌ VERIFICATION FAILED"
+```
+
+### Test Commands
+
+```bash
+npx utcp-mcp --list-tools          # Code Mode
+leann list                          # LEANN indexes
+ls .opencode/skill/                 # Skills
+cat opencode.json | jq '.mcp | keys'  # MCP servers
+```
+
+❌ If verification fails, review Phase-specific troubleshooting (Section 13)
+
+---
+
+## 11. 🚨 DISASTER RECOVERY
+
+Emergency procedures for backup, recovery, and clean uninstallation of OpenCode components. Use this section when things go wrong or when performing maintenance.
+
+### Quick Reference
+
+| Problem                    | Solution         | Section                                  |
+| -------------------------- | ---------------- | ---------------------------------------- |
+| **Want to start fresh**    | Clean Uninstall  | [§10.2](#102-clean-uninstall-procedures) |
+| **Installation failed**    | Rollback         | [§10.3](#103-rollback-procedures)        |
+| **MCP server stuck**       | Kill processes   | [§10.4](#104-emergency-recovery)         |
+| **Database corrupted**     | Rebuild database | [§10.4](#database-corruption)            |
+| **Not sure what's broken** | Run health check | [§10.5](#105-health-check)               |
+| **About to make changes**  | Backup first     | [§10.1](#101-backup-procedures)          |
+
+---
+
+### 11.1 Backup & Restore
+
+**Quick Commands:**
+
+```bash
+# Backup
+BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && cp -r .opencode/skill/system-memory/database "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
+
+# List backups
+ls -lhd ~/.opencode-backup-* 2>/dev/null || echo "No backups found"
+
+# Restore (replace BACKUP path)
+BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$BACKUP/.utcp_config.json" ./ 2>/dev/null && cp -r "$BACKUP/database" .opencode/skill/system-memory/ 2>/dev/null && echo "✅ Restored"
+```
+
+---
+
+### 11.2 Uninstall Commands
+
+| Component                | Uninstall Command                                    | Notes                                                |
+| ------------------------ | ---------------------------------------------------- | ---------------------------------------------------- |
+| **Code Mode**            | `npm uninstall -g utcp-mcp`                          | Remove from opencode.json + delete .utcp_config.json |
+| **LEANN CLI**            | `uv tool uninstall leann-core`                       | Indexes remain until manually deleted                |
+| **LEANN (single index)** | `leann remove <index-name>`                          | List indexes: `leann list`                           |
+| **LEANN (all indexes)**  | `rm -rf ~/.leann/indexes/`                           | Removes all indexed codebases                        |
+| **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`              |                                                      |
+| **Semantic Memory**      | `rm .opencode/skill/system-memory/database/*.sqlite` | Database will be recreated                           |
+| **Sequential Thinking**  | Remove from `opencode.json`                          | No files to delete                                   |
+| **Code Context**         | Remove from `opencode.json`                          | No files to delete                                   |
+| **Skills**               | `rm -rf .opencode/skill/<skill-name>/`               | Remove specific skill folder                         |
+| **All Skills**           | `rm -rf .opencode/skill/`                            | Removes all skills                                   |
+
+**To remove MCP server:** Edit `opencode.json` and delete the corresponding entry from the `mcp` object.
+
+---
+
+### 11.3 Rollback
+
+```bash
+# Quick rollback to latest backup
+BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] && cp "$BACKUP/opencode.json" "$BACKUP/.utcp_config.json" ./ 2>/dev/null && echo "✅ Rolled back to $BACKUP" || echo "❌ No backup found"
+```
+
+---
+
+### 11.4 Emergency Recovery Commands
+
+| Symptom                      | Recovery Command                                           |
+| ---------------------------- | ---------------------------------------------------------- |
+| MCP server hangs             | `pkill -f "server-name" && opencode`                       |
+| Ollama not responding        | `pkill ollama && ollama serve &`                           |
+| Database corruption (Memory) | `rm -rf .opencode/skill/system-memory/database/`           |
+| Index corruption (LEANN)     | `leann remove <index-name> && leann build ...`             |
+| Config invalid JSON          | Restore from backup or regenerate from Section 8 templates |
+| npm packages broken          | `npm cache clean --force && npm install -g <package>`      |
+| Python/uv issues             | `uv cache clean && uv tool install <tool> --force`         |
+| Skills not loading           | Restart OpenCode; verify SKILL.md frontmatter              |
+| All else fails               | Complete clean uninstall (§10.2) then reinstall            |
+
+---
+
+### 11.5 Health Check
+
+```bash
+# Quick health check one-liner
+node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skill ] && echo "✅ Core components OK" || echo "❌ Check failed"
+
+# Detailed checks
+leann list                    # LEANN indexes
+ls .opencode/skill/           # Skills installed
+cat opencode.json | jq '.mcp | keys'  # MCP servers configured
+```
+
+---
+
+### 11.6 Troubleshooting Matrix
+
+| Symptom                       | Likely Cause        | Solution                        |
+| ----------------------------- | ------------------- | ------------------------------- |
+| `leann: command not found`    | LEANN not in PATH   | Reinstall LEANN, check PATH     |
+| `Error: ENOENT opencode.json` | Config missing      | Restore from backup or recreate |
+| `MCP server timeout`          | Process stuck       | Kill processes (§10.4)          |
+| `Database locked`             | Multiple processes  | Kill processes, restart         |
+| `SQLITE_CORRUPT`              | Database corruption | Delete and rebuild (§10.4)      |
+| `JSON parse error`            | Invalid config      | Validate with `jq`, fix syntax  |
+| `Port already in use`         | Port conflict       | Kill conflicting process        |
+| `Permission denied`           | File permissions    | Check ownership, run `chmod`    |
+| `Memory not found`            | DB not indexed      | Run `memory_index_scan()`       |
+| `LEANN search empty`          | Index missing       | Run `leann build`               |
+
+---
+
+### 11.7 Best Practices
+
+1. **Before changes:** Run backup command (§10.1)
+2. **After failure:** Run rollback (§10.3), restart OpenCode
+3. **Monthly:** Clean old backups: `ls -td ~/.opencode-backup-* | tail -n +6 | xargs rm -rf`
+
+---
+
+## 12. ⚙️ POST-INSTALLATION CONFIGURATION
+
+After installing OpenCode components, customize the AI agent configuration for your project.
+
+### 12.1 AGENTS.md Customization
+
+The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize it for your project:
+
+1. **Rename the file**: `AGENTS (Universal).md` → `AGENTS.md`
+2. **Choose project type**: Front-end, Back-end, or Full-stack
+3. **Align with installed tools**: Update tool references to match your MCP configuration
+4. **Align with available skills**: Update skills table to match `.opencode/skill/`
+
+**Quick customization for project types:**
+
+| Project Type | Primary Tools                   | Primary Skills                           | Remove/De-emphasize           |
+| ------------ | ------------------------------- | ---------------------------------------- | ----------------------------- |
+| Front-end    | Chrome DevTools, Webflow, Figma | workflows-chrome-devtools, mcp-code-mode | Database tools, API patterns  |
+| Back-end     | API testing, Database tools     | workflows-code, mcp-leann                | Browser tools, Webflow, Figma |
+| Full-stack   | All tools                       | All skills                               | Nothing                       |
+
+📖 **Detailed Guide**: [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md)
+
+### 12.2 Skill Advisor Setup
+
+The Skill Advisor (`skill_advisor.py`) powers Gate 2 in AGENTS.md, routing requests to appropriate skills:
+
+```bash
+# Verify skill advisor
+python .opencode/scripts/skill_advisor.py "help me write documentation"
+```
+
+If confidence > 0.8, the AI agent MUST use the recommended skill.
+
+📖 **Detailed Guide**: [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md)
+
+### 12.3 Skill Creation
+
+Create custom skills to extend AI agent capabilities:
+
+```bash
+# Initialize new skill
+python .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill --path .opencode/skill
+
+# Validate skill
+python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill
+```
+
+📖 **Detailed Guide**: [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md)
+
+**Quick Verification:**
+```bash
+test -f AGENTS.md && test -d .opencode/skill && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+❌ STOP if validation fails - AGENTS.md and skills are required for full AI agent functionality
+
+---
+
+## 13. 🚀 WHAT'S NEXT?
+
+Congratulations on completing the installation! Here's your roadmap for getting started.
+
+### 13.1 First Steps (Day 1)
+
+| Step | Action                 | Command/Location                                                 |
+| ---- | ---------------------- | ---------------------------------------------------------------- |
+| 1    | Verify installation    | Run health check script from Section 10.5                        |
+| 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
+| 3    | Build your first index | `leann build --name myproject --path . --include "**/*.{js,ts}"` |
+| 4    | Test skill invocation  | `python .opencode/scripts/skill_advisor.py "your task"`          |
+| 5    | Save first memory      | Use `/memory:save` or "save context" in conversation             |
+
+### 13.2 Common Workflows
+
+| Workflow                 | Tools/Commands                | Example                                                   |
+| ------------------------ | ----------------------------- | --------------------------------------------------------- |
+| **Code Exploration**     | LEANN, Code Context           | `leann search --index proj --query "authentication flow"` |
+| **Context Preservation** | Semantic Memory               | `/memory:save`, `memory_search()`                         |
+| **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
+| **Documentation**        | workflows-documentation skill | Invoke skill for doc structure                            |
+| **Git Operations**       | workflows-git skill           | Commit, PR creation workflows                             |
+| **Implementation**       | workflows-code skill          | 3-phase implementation lifecycle                          |
+
+### 13.3 Available Commands (16 total)
+
+| Category | Commands                                                                                                |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| Create   | `/create:skill`, `/create:spec`                                                                         |
+| Memory   | `/memory:save`, `/memory:search`, `/memory:load`                                                        |
+| Prompt   | `/prompt:improve`                                                                                       |
+| Search   | `/search:code`, `/search:files`                                                                         |
+| SpecKit  | `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume` |
+
+### 13.4 Learning Resources
+
+| Resource      | Location                                  | Description                 |
+| ------------- | ----------------------------------------- | --------------------------- |
+| OpenCode Docs | https://opencode.ai/docs                  | Official documentation      |
+| LEANN Skill   | `.opencode/skill/mcp-leann/SKILL.md`      | Semantic search usage       |
+| Memory Skill  | `.opencode/skill/system-memory/SKILL.md`  | Context preservation        |
+| Code Skill    | `.opencode/skill/workflows-code/SKILL.md` | Implementation patterns     |
+| Git Skill     | `.opencode/skill/workflows-git/SKILL.md`  | Git workflows               |
+| AGENTS.md     | `AGENTS.md`                               | AI agent behavior reference |
+
+### 13.5 Next Level (Week 1)
+
+- [ ] Configure external tools in `.utcp_config.json` (Webflow, Figma, ClickUp)
+- [ ] Create project-specific skills for repeated workflows
+- [ ] Set up backup schedule for configurations
+- [ ] Explore advanced LEANN queries and index management
+- [ ] Practice spec folder workflow for all file modifications
+
+---
+
+## 14. 🔧 TROUBLESHOOTING
+
+<details>
+<summary><strong>Code Mode Issues</strong></summary>
+
+### npx utcp-mcp not found
+```bash
+# Reinstall globally
+npm install -g utcp-mcp
+
+# Or use local installation
+npm install utcp-mcp
+npx utcp-mcp
+```
+
+### Tool not appearing in Code Mode
+1. Check `.utcp_config.json` syntax (valid JSON)
+2. Restart OpenCode after config changes
+3. Verify tool command works standalone
+
+</details>
+
+<details>
+<summary><strong>LEANN Issues</strong></summary>
+
+### uv tool install fails
+```bash
+# Ensure uv is up to date
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Try with verbose output
+uv tool install leann-core --with leann -v
+```
+
+### libomp not found (macOS)
+```bash
+brew reinstall libomp
+export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH
+
+# Add to shell profile
+echo 'export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH' >> ~/.zshrc
+source ~/.zshrc
+```
+
+### Index build fails
+```bash
+# Check Ollama is running
+ollama list
+
+# Verify nomic-embed-text model
+ollama pull nomic-embed-text
+
+# Try smaller index first
+leann build --name test --path . --include "*.md"
+```
+
+### Search returns no results
+```bash
+# Verify index exists
+leann list
+
+# Check index has documents
+ls -la .leann/indexes/<index-name>/
+```
+
+</details>
+
+<details>
+<summary><strong>Code Context Issues</strong></summary>
+
+### Tool not found
+1. Ensure configuration is in opencode.json (not .utcp_config.json)
+2. Verify npx can run the package
+3. Restart OpenCode
+
+### Tree-sitter parsing errors
+```bash
+# Update to latest version
+npm cache clean --force
+```
+
+</details>
+
+<details>
+<summary><strong>Semantic Memory Issues</strong></summary>
+
+### Database not found
+```bash
+# Create directory if missing
+mkdir -p .opencode/skill/system-memory/database
+
+# Database is created on first run
+node .opencode/skill/system-memory/mcp_server/semantic-memory.js
+```
+
+### Embeddings not working
+1. Verify Ollama is running: `ollama list`
+2. Check nomic-embed-text model: `ollama pull nomic-embed-text`
+3. Verify OLLAMA_BASE_URL in config
+
+### Memory search returns empty
+```bash
+# Check database has content
+sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT(*) FROM memories;"
+```
+
+</details>
+
+<details>
+<summary><strong>Sequential Thinking Issues</strong></summary>
+
+### Package not found
+```bash
+# Clear npm cache and retry
+npm cache clean --force
+npx -y @modelcontextprotocol/server-sequential-thinking --help
+```
+
+### Timeout errors
+- Sequential thinking is resource-intensive
+- Ensure adequate RAM (8GB+ recommended)
+- Consider using for complex tasks only
+
+</details>
+
+<details>
+<summary><strong>Chrome DevTools Issues</strong></summary>
+
+### bdg command not found
+```bash
+# Reinstall
+npm install -g browser-debugger-cli@alpha
+```
+
+### Chrome not launching
+1. Ensure Chrome/Chromium is installed
+2. Check for running Chrome instances
+3. Try with explicit Chrome path:
+```bash
+bdg screenshot --chrome-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+```
+
+</details>
+
+<details>
+<summary><strong>Plugin Issues</strong></summary>
+
+### Skills not loading (Native Skills)
+1. Verify skill folder exists: `ls -la .opencode/skill/`
+2. Check SKILL.md frontmatter has required `name` and `description` fields
+3. Ensure `name` matches folder name exactly
+4. Restart OpenCode after adding skills
+
+### Auth plugins not working
+1. Check plugin version matches config
+2. Restart OpenCode after adding plugin
+3. Check for error messages in OpenCode output
+
+</details>
+
+<details>
+<summary><strong>General Issues</strong></summary>
+
+### OpenCode doesn't recognize MCP servers
+1. Verify `opencode.json` syntax (valid JSON)
+2. Check file is in project root
+3. Restart OpenCode completely
+
+### Configuration changes not taking effect
+```bash
+# Kill any running OpenCode processes
+pkill -f opencode
+
+# Clear npm cache if needed
+npm cache clean --force
+
+# Restart OpenCode
+opencode
+```
+
+### Permission errors
+```bash
+# Fix npm permissions (macOS/Linux)
+sudo chown -R $(whoami) ~/.npm
+sudo chown -R $(whoami) /usr/local/lib/node_modules
+```
+
+</details>
+
+---
+
+## 15. 📖 QUICK REFERENCE
+
+### Essential Commands
+
+| Task                 | Command                                                     |
+| -------------------- | ----------------------------------------------------------- |
+| Check prerequisites  | `node -v && python3 -V && uv -V`                            |
+| Start Ollama         | `ollama serve`                                              |
+| Pull embedding model | `ollama pull nomic-embed-text`                              |
+| Build LEANN index    | `leann build --name proj --path . --include "**/*.{js,ts}"` |
+| Search code          | `leann search --index proj --query "your query"`            |
+| List skills          | `ls .opencode/skill/`                                       |
+| Read skill           | `cat .opencode/skill/<skill-name>/SKILL.md`                 |
+| Browser screenshot   | `bdg screenshot --url <url> --output out.png`               |
+| Run health check     | `bash health-check.sh`                                      |
+
+### File Locations
+
+| File                        | Purpose                                       |
+| --------------------------- | --------------------------------------------- |
+| `opencode.json`             | OpenCode MCP server config (5 native servers) |
+| `.utcp_config.json`         | Code Mode external tools config               |
+| `.opencode/skill/`          | Skill definitions (9 skills)                  |
+| `.opencode/install_guides/` | Installation documentation                    |
+| `.leann/indexes/`           | LEANN search indexes                          |
+| `~/.opencode-backup/`       | Configuration backups                         |
+| `AGENTS.md`                 | AI agent behavior configuration               |
+
+### Component Summary
+
+| Category           | Count | Items                                                                                                                              |
+| ------------------ | ----- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Native MCP Servers | 5     | code_mode, leann, code_context, semantic_memory, sequential_thinking                                                               |
+| Skills             | 8     | mcp-code-context, mcp-code-mode, mcp-leann, system-memory, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-git |
+| Commands           | 16    | /create:*, /memory:*, /prompt:improve, /search:*, /spec_kit:*                                                                      |
+| CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                              |
+| Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                                |

@@ -224,7 +224,7 @@ workflow:
     - Read skill_asset_template.md from workflows-documentation skill
     - Extract structure patterns for asset type
     - Note formatting requirements
-    template_path: .opencode/skills/workflows-documentation/assets/skill_asset_template.md
+    template_path: .opencode/skill/workflows-documentation/assets/skill_asset_template.md
     key_structure_elements:
     - "Title with emoji and descriptive subtitle"
     - "Introduction paragraph (1-2 sentences)"
@@ -315,7 +315,7 @@ workflow:
     - Create memory file with timestamp
     - Index memory file for immediate search availability
     tool_invocation:
-      command: "openskills read system-memory"
+      command: "Read(".opencode/skill/system-memory/SKILL.md")"
       note: "Activate context saving via memory skill"
     memory_content:
       include:
@@ -470,8 +470,8 @@ error_recovery:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  skill_asset: .opencode/skills/workflows-documentation/assets/skill_asset_template.md
-  core_standards: .opencode/skills/workflows-documentation/references/core_standards.md
+  skill_asset: .opencode/skill/workflows-documentation/assets/skill_asset_template.md
+  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

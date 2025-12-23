@@ -4,6 +4,22 @@ argument-hint: "<skill-name> <reference-type> [--chained]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
+<!-- 
+REFERENCE FILE REQUIREMENTS:
+- Location: .opencode/skill/[skill-name]/references/
+- Naming: snake_case only (e.g., implementation_workflows.md, tool_catalog.md)
+- Extension: .md only
+- Purpose: Deep-dive documentation loaded as needed (Level 3 progressive disclosure)
+
+WHEN TO CREATE:
+- Multi-phase workflows with validation checkpoints
+- Decision trees with multiple branches  
+- Pattern libraries with 5+ variations
+- Systematic debugging procedures
+- Tool integration details
+- Content exceeds 200 lines
+-->
+
 # 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
 
 **These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
@@ -105,12 +121,11 @@ EXECUTE THIS CHECK FIRST:
 ```
 EXECUTE AFTER PHASE 1 PASSES:
 
-1. Check if skill exists at expected paths:
-   ├─ .opencode/skills/[skill-name]/
-   └─ [current-dir]/[skill-name]/
+1. Check if skill exists at expected path:
+   └─ .opencode/skill/[skill-name]/
 
 2. Run verification:
-   $ ls -d .opencode/skills/[skill-name] 2>/dev/null || ls -d ./[skill-name] 2>/dev/null
+   $ ls -d .opencode/skill/[skill-name] 2>/dev/null
 
 3. Process result:
    ├─ IF skill found:
@@ -231,6 +246,15 @@ STEP 5 (Validation) REQUIREMENTS:
 
 Create a technical reference file for an existing skill following the `skill_reference_template.md` structure. Reference files provide Level 3 progressive disclosure - deep technical guidance loaded when needed.
 
+**Reference File Location:** `.opencode/skill/[skill-name]/references/`
+
+**Naming Convention:** snake_case with `.md` extension
+- ✅ `implementation_workflows.md`
+- ✅ `tool_catalog.md`
+- ✅ `debugging_guide.md`
+- ❌ `ImplementationWorkflows.md` (no PascalCase)
+- ❌ `implementation-workflows.md` (no kebab-case)
+
 ---
 
 ```yaml
@@ -251,6 +275,8 @@ operating_mode:
 ## 1. 🎯 PURPOSE
 
 Create a technical reference file for an existing skill following the `skill_reference_template.md` structure. Reference files provide Level 3 progressive disclosure - deep technical guidance loaded when needed for complex operations.
+
+**Template Location:** `.opencode/skill/workflows-documentation/assets/skill_reference_template.md`
 
 ---
 

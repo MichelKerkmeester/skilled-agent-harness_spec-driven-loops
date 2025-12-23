@@ -146,19 +146,19 @@ documentation_levels:
 # ─────────────────────────────────────────────────────────────────
 available_templates:
   # Level 1+ (Baseline - required at all levels)
-  spec: .opencode/skills/system-spec-kit/templates/spec.md
-  plan: .opencode/skills/system-spec-kit/templates/plan.md
-  tasks: .opencode/skills/system-spec-kit/templates/tasks.md
+  spec: .opencode/skill/system-spec-kit/templates/spec.md
+  plan: .opencode/skill/system-spec-kit/templates/plan.md
+  tasks: .opencode/skill/system-spec-kit/templates/tasks.md
   # Level 2+ (Verification)
-  checklist: .opencode/skills/system-spec-kit/templates/checklist.md
+  checklist: .opencode/skill/system-spec-kit/templates/checklist.md
   # Level 3 (Full)
-  decision_record: .opencode/skills/system-spec-kit/templates/decision-record.md
+  decision_record: .opencode/skill/system-spec-kit/templates/decision-record.md
   # Optional (any level)
-  research: .opencode/skills/system-spec-kit/templates/research.md
-  research_spike: .opencode/skills/system-spec-kit/templates/research-spike.md
+  research: .opencode/skill/system-spec-kit/templates/research.md
+  research_spike: .opencode/skill/system-spec-kit/templates/research-spike.md
   # Utility (any level)
-  handover: .opencode/skills/system-spec-kit/templates/handover.md
-  debug_delegation: .opencode/skills/system-spec-kit/templates/debug-delegation.md
+  handover: .opencode/skill/system-spec-kit/templates/handover.md
+  debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
 
 # ─────────────────────────────────────────────────────────────────
 # PARALLEL DISPATCH CONFIGURATION
@@ -514,7 +514,7 @@ workflow:
     purpose: Review skills folder and project standards
     activities:
     - Read and review AGENTS.md (project principles)
-    - Check skills folder (.opencode/skills/) for relevant coding standards
+    - Check skills folder (.opencode/skill/) for relevant coding standards
     - Extract coding standards summary
     - Identify architectural patterns
     - Document project conventions
@@ -634,7 +634,7 @@ workflow:
     optional_documents:
     - research-spike-[name].md: "Time-boxed research BEFORE implementation"
     - decision-record-[name].md: "Architecture Decision Records"
-    template: .opencode/skills/system-spec-kit/templates/spec.md
+    template: .opencode/skill/system-spec-kit/templates/spec.md
     deep_analysis:
       focus: comprehensive_specification
       approach: rigorous_requirements_definition
@@ -665,7 +665,7 @@ workflow:
     - updated_spec
     spike_option:
       when: technical_uncertainty_requires_investigation
-      template: .opencode/skills/system-spec-kit/templates/research-spike.md
+      template: .opencode/skill/system-spec-kit/templates/research-spike.md
       note: "Use for time-boxed research before committing to approach"
     deep_analysis:
       focus: ambiguity_resolution
@@ -707,7 +707,7 @@ workflow:
     - verified_items_count: "X/Y items verified"
     - p0_status: "all_complete or blocked"
     - deferred_items: list_of_deferred_p2_items
-    template: .opencode/skills/system-spec-kit/templates/checklist.md
+    template: .opencode/skill/system-spec-kit/templates/checklist.md
     deep_analysis:
       focus: quality_validation_preparation
       approach: comprehensive_checklist_design
@@ -851,9 +851,9 @@ workflow:
     - decision-record.md: "Architecture Decision Records (required at Level 3)"
     decision_records:
       when: significant_technical_decision_needs_documentation
-      template: .opencode/skills/system-spec-kit/templates/decision-record.md
+      template: .opencode/skill/system-spec-kit/templates/decision-record.md
       note: "Document architecture decisions with full context"
-    template: .opencode/skills/system-spec-kit/templates/plan.md
+    template: .opencode/skill/system-spec-kit/templates/plan.md
     
     # CONFIDENCE CHECKPOINT
     confidence_checkpoint:
@@ -913,7 +913,7 @@ workflow:
     - Record progress up to planning milestone for session recovery
     - Preserve planning decisions, exploration findings, and technical approach
     tool_invocation:
-      command: openskills read system-memory
+      command: Read(".opencode/skill/system-memory/SKILL.md")
       note: "Intermediate checkpoint - planning phase complete"
     outputs:
     - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__planning_complete.md"
@@ -940,7 +940,7 @@ workflow:
     - task_phases: defined
     - dependencies: mapped
     - parallel_markers: assigned
-    template: .opencode/skills/system-spec-kit/templates/tasks.md
+    template: .opencode/skill/system-spec-kit/templates/tasks.md
     deep_analysis:
       focus: implementation_task_design
       approach: systematic_breakdown
@@ -1184,7 +1184,7 @@ workflow:
     - Record progress up to development milestone for session recovery
     - Preserve implementation decisions, code changes, and debugging insights
     tool_invocation:
-      command: openskills read system-memory
+      command: Read(".opencode/skill/system-memory/SKILL.md")
       note: "Intermediate checkpoint - development phase complete"
     outputs:
     - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__development_complete.md"
@@ -1268,8 +1268,8 @@ workflow:
     - Preserve file changes and implementation details
     - Index memory file for immediate search availability
     tool_invocation:
-      command: openskills read system-memory
-      note: "Use command: openskills read system-memory to activate context saving"
+      command: Read(".opencode/skill/system-memory/SKILL.md")
+      note: "Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving"
     description: |
       Preserve comprehensive conversation context including:
       - Session metadata and timeline

@@ -164,7 +164,7 @@ operating_mode:
 
 **Script Location:**
 ```
-.opencode/skills/system-memory/scripts/generate-context.js
+.opencode/skill/system-memory/scripts/generate-context.js
 ```
 
 > **Tool Restriction:** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags (with opening AND closing markers), SESSION SUMMARY table, and MEMORY METADATA YAML block. Direct file creation bypasses these critical formatting features and will cause `memory_load(anchorId)` failures.
@@ -306,7 +306,7 @@ memory_load({ specFolder: "049-auth", anchorId: "decision-jwt-049" })
     "Decision 2: Selected A over B due to performance considerations"
   ],
   "filesModified": [
-    ".opencode/skills/system-memory/scripts/generate-context.js",
+    ".opencode/skill/system-memory/scripts/generate-context.js",
     "specs/005-memory/010-feature-name/spec.md"
   ],
   "triggerPhrases": [
@@ -347,7 +347,7 @@ cat > /tmp/save-context-data.json << 'EOF'
 EOF
 
 # 2. Execute the script with the JSON file
-node .opencode/skills/system-memory/scripts/generate-context.js /tmp/save-context-data.json
+node .opencode/skill/system-memory/scripts/generate-context.js /tmp/save-context-data.json
 
 # 3. Clean up temp file
 rm /tmp/save-context-data.json
@@ -516,4 +516,4 @@ mcp__semantic_memory__memory_index_scan({
 ## 12. 📚 FULL DOCUMENTATION
 
 For comprehensive documentation:
-`.opencode/skills/system-memory/SKILL.md`
+`.opencode/skill/system-memory/SKILL.md`

@@ -115,17 +115,17 @@ documentation_levels:
 # ─────────────────────────────────────────────────────────────────
 available_templates:
   # Research workflow primary outputs
-  research: .opencode/skills/system-spec-kit/templates/research.md
-  research_spike: .opencode/skills/system-spec-kit/templates/research-spike.md
+  research: .opencode/skill/system-spec-kit/templates/research.md
+  research_spike: .opencode/skill/system-spec-kit/templates/research-spike.md
   # Level 3 (Full)
-  decision_record: .opencode/skills/system-spec-kit/templates/decision-record.md
+  decision_record: .opencode/skill/system-spec-kit/templates/decision-record.md
   # Level 2+ (Verification)
-  checklist: .opencode/skills/system-spec-kit/templates/checklist.md
+  checklist: .opencode/skill/system-spec-kit/templates/checklist.md
   # Level 1+ (Baseline)
-  spec: .opencode/skills/system-spec-kit/templates/spec.md
+  spec: .opencode/skill/system-spec-kit/templates/spec.md
   # Utility (any level)
-  handover: .opencode/skills/system-spec-kit/templates/handover.md
-  debug_delegation: .opencode/skills/system-spec-kit/templates/debug-delegation.md
+  handover: .opencode/skill/system-spec-kit/templates/handover.md
+  debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
 
 # ─────────────────────────────────────────────────────────────────
 # PARALLEL DISPATCH CONFIGURATION
@@ -428,7 +428,7 @@ workflow:
     purpose: Review skills folder and project standards
     activities:
     - Read and review AGENTS.md
-    - Check skills folder (.opencode/skills/) for relevant coding standards
+    - Check skills folder (.opencode/skill/) for relevant coding standards
     - Extract relevant coding standards
     - Identify architectural patterns
     - Document project conventions
@@ -631,7 +631,7 @@ workflow:
     - Record progress up to technical analysis milestone for session recovery
     - Preserve research findings, feasibility assessment, and technical specifications
     tool_invocation:
-      command: openskills read system-memory
+      command: Read(".opencode/skill/system-memory/SKILL.md")
       note: "Intermediate checkpoint - technical analysis complete"
     outputs:
     - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__analysis_complete.md"
@@ -649,7 +649,7 @@ workflow:
     - Include documentation quality checks
     outputs:
     - quality_checklist: generated
-    template: .opencode/skills/system-spec-kit/templates/checklist.md
+    template: .opencode/skill/system-spec-kit/templates/checklist.md
     validation: checklist_generated
     
     # CONFIDENCE CHECKPOINT
@@ -696,7 +696,7 @@ workflow:
     - decision_rationale
     level_3_documents:
     - decision-record-[name].md: "For significant architecture decisions (Level 3 requirement)"
-    template: .opencode/skills/system-spec-kit/templates/decision-record.md
+    template: .opencode/skill/system-spec-kit/templates/decision-record.md
     validation: solution_designed
     checkpoint:
       question: "Step 7 Complete: Solution designed. Review architecture?"
@@ -730,7 +730,7 @@ workflow:
     - Add appendix and changelog
     outputs:
     - research.md: comprehensive_technical_documentation
-    template: .opencode/skills/system-spec-kit/templates/research.md
+    template: .opencode/skill/system-spec-kit/templates/research.md
     validation: research_documented
     checkpoint:
       question: "Step 8 Complete: Research compiled. Review research.md?"
@@ -752,8 +752,8 @@ workflow:
     - Preserve code analysis results
     - Index memory file for immediate search availability
     tool_invocation:
-      command: openskills read system-memory
-      note: "Use command: openskills read system-memory to activate context saving"
+      command: Read(".opencode/skill/system-memory/SKILL.md")
+      note: "Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving"
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__research_session.md"
     validation: context_saved_successfully

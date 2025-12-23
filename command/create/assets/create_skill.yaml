@@ -79,7 +79,7 @@ user_inputs:
 
   skill_path: |
     [SKILL_PATH]
-    Output directory. Default: .opencode/skills/
+    Output directory. Default: .opencode/skill/
     FROM GATE 0 OUTPUT.
 
   spec_path: |
@@ -101,7 +101,7 @@ field_handling:
     required: true
 
   defaults:
-    skill_path_empty: ".opencode/skills/"
+    skill_path_empty: ".opencode/skill/"
     spec_path_from_gate: "FROM USER CHOICE IN GATE 1"
 
 # ─────────────────────────────────────────────────────────────────
@@ -119,20 +119,20 @@ documentation_level:
 # SKILL CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 skill_templates:
-  skill_md: .opencode/skills/workflows-documentation/assets/skill_md_template.md
-  skill_asset: .opencode/skills/workflows-documentation/assets/skill_asset_template.md
-  skill_reference: .opencode/skills/workflows-documentation/assets/skill_reference_template.md
+  skill_md: .opencode/skill/workflows-documentation/assets/skill_md_template.md
+  skill_asset: .opencode/skill/workflows-documentation/assets/skill_asset_template.md
+  skill_reference: .opencode/skill/workflows-documentation/assets/skill_reference_template.md
 
 skill_scripts:
-  init_skill: .opencode/skills/workflows-documentation/scripts/init_skill.py
-  quick_validate: .opencode/skills/workflows-documentation/scripts/quick_validate.py
-  extract_structure: .opencode/skills/workflows-documentation/scripts/extract_structure.py
-  package_skill: .opencode/skills/workflows-documentation/scripts/package_skill.py
+  init_skill: .opencode/skill/workflows-documentation/scripts/init_skill.py
+  quick_validate: .opencode/skill/workflows-documentation/scripts/quick_validate.py
+  extract_structure: .opencode/skill/workflows-documentation/scripts/extract_structure.py
+  package_skill: .opencode/skill/workflows-documentation/scripts/package_skill.py
 
 skill_references:
-  skill_creation: .opencode/skills/workflows-documentation/references/skill_creation.md
-  core_standards: .opencode/skills/workflows-documentation/references/core_standards.md
-  validation: .opencode/skills/workflows-documentation/references/validation.md
+  skill_creation: .opencode/skill/workflows-documentation/references/skill_creation.md
+  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
+  validation: .opencode/skill/workflows-documentation/references/validation.md
 
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
@@ -192,7 +192,7 @@ workflow:
     purpose: Parse inputs and validate skill name (from gate outputs)
     activities:
     - Confirm skill_name from GATE 0
-    - Confirm skill_path from GATE 0 (default: .opencode/skills/)
+    - Confirm skill_path from GATE 0 (default: .opencode/skill/)
     - Confirm spec_path from GATE 1 (user choice A/B/C/D)
     - Confirm memory_loaded from GATE 2
     - Verify skill name format (hyphen-case, 2-4 words)
@@ -277,8 +277,8 @@ workflow:
     - Initialize spec.md with skill creation context
     - Create plan.md with approach
     templates:
-    - .opencode/skills/system-spec-kit/templates/spec.md
-    - .opencode/skills/system-spec-kit/templates/plan.md
+    - .opencode/skill/system-spec-kit/templates/spec.md
+    - .opencode/skill/system-spec-kit/templates/plan.md
     outputs:
     - spec.md: created_with_context
     - plan.md: created_with_approach
@@ -402,7 +402,7 @@ workflow:
     - Check SKILL.md template exists
     - Verify resource directories exist (scripts/, references/, assets/)
     script_execution:
-      command: "python3 .opencode/skills/workflows-documentation/scripts/init_skill.py [skill-name] --path [skill_path]"
+      command: "python3 .opencode/skill/workflows-documentation/scripts/init_skill.py [skill-name] --path [skill_path]"
       fallback: "Create directories manually if script fails"
     expected_outputs:
     - "[skill-name]/SKILL.md"
@@ -497,10 +497,10 @@ workflow:
     - Repeat until passing
     script_executions:
       quick_validate:
-        command: "python3 .opencode/skills/workflows-documentation/scripts/quick_validate.py [skill-path] --json"
+        command: "python3 .opencode/skill/workflows-documentation/scripts/quick_validate.py [skill-path] --json"
         expect: "Validation passed"
       extract_structure:
-        command: "python3 .opencode/skills/workflows-documentation/scripts/extract_structure.py [skill-path]/SKILL.md"
+        command: "python3 .opencode/skill/workflows-documentation/scripts/extract_structure.py [skill-path]/SKILL.md"
         expect: "DQI >= 75"
     quality_gates:
       quick_validate: "must pass (no errors)"
@@ -635,7 +635,7 @@ workflow:
     - Create memory file with timestamp
     - Index memory file for immediate search availability
     tool_invocation:
-      command: "openskills read system-memory"
+      command: "Read(".opencode/skill/system-memory/SKILL.md")"
       note: "Activate context saving via memory skill"
     memory_content:
       include:

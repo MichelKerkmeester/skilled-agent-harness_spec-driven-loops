@@ -115,19 +115,19 @@ documentation_levels:
 # ─────────────────────────────────────────────────────────────────
 available_templates:
   # Level 1+ (Baseline - required at all levels)
-  spec: .opencode/skills/system-spec-kit/templates/spec.md
-  plan: .opencode/skills/system-spec-kit/templates/plan.md
-  tasks: .opencode/skills/system-spec-kit/templates/tasks.md
+  spec: .opencode/skill/system-spec-kit/templates/spec.md
+  plan: .opencode/skill/system-spec-kit/templates/plan.md
+  tasks: .opencode/skill/system-spec-kit/templates/tasks.md
   # Level 2+ (Verification)
-  checklist: .opencode/skills/system-spec-kit/templates/checklist.md
+  checklist: .opencode/skill/system-spec-kit/templates/checklist.md
   # Level 3 (Full)
-  decision_record: .opencode/skills/system-spec-kit/templates/decision-record.md
+  decision_record: .opencode/skill/system-spec-kit/templates/decision-record.md
   # Optional (any level)
-  research: .opencode/skills/system-spec-kit/templates/research.md
-  research_spike: .opencode/skills/system-spec-kit/templates/research-spike.md
+  research: .opencode/skill/system-spec-kit/templates/research.md
+  research_spike: .opencode/skill/system-spec-kit/templates/research-spike.md
   # Utility (any level)
-  handover: .opencode/skills/system-spec-kit/templates/handover.md
-  debug_delegation: .opencode/skills/system-spec-kit/templates/debug-delegation.md
+  handover: .opencode/skill/system-spec-kit/templates/handover.md
+  debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
 
 # ─────────────────────────────────────────────────────────────────
 # PARALLEL DISPATCH CONFIGURATION
@@ -358,7 +358,7 @@ workflow:
     purpose: Review skills folder and project standards
     activities:
     - Read and review AGENTS.md
-    - Check skills folder (.opencode/skills/) for relevant coding standards
+    - Check skills folder (.opencode/skill/) for relevant coding standards
     - Extract coding standards summary
     - Identify architectural patterns
     - Document project conventions
@@ -411,7 +411,7 @@ workflow:
     outputs:
     - feature_branch: created
     - spec.md: acceptance_criteria
-    template: .opencode/skills/system-spec-kit/templates/spec.md
+    template: .opencode/skill/system-spec-kit/templates/spec.md
     
     # CONFIDENCE CHECKPOINT
     confidence_checkpoint:
@@ -475,7 +475,7 @@ workflow:
     - Run validation check
     outputs:
     - quality_checklist: generated
-    template: .opencode/skills/system-spec-kit/templates/checklist.md
+    template: .opencode/skill/system-spec-kit/templates/checklist.md
     validation: checklist_generated
 
   step_6_planning:
@@ -596,7 +596,7 @@ workflow:
     - plan.md: technical_approach
     - planning-summary.md: overview
     - research.md: resolved_unknowns
-    template: .opencode/skills/system-spec-kit/templates/plan.md
+    template: .opencode/skill/system-spec-kit/templates/plan.md
     
     # CONFIDENCE CHECKPOINT
     confidence_checkpoint:
@@ -646,8 +646,8 @@ workflow:
     - Preserve architecture discussions
     - Index memory file for immediate search availability
     tool_invocation:
-      command: openskills read system-memory
-      note: "Use command: openskills read system-memory to activate context saving"
+      command: Read(".opencode/skill/system-memory/SKILL.md")
+      note: "Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving"
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__planning_session.md"
     validation: context_saved_successfully

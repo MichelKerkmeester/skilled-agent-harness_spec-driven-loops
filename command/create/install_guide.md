@@ -272,9 +272,9 @@ Execute all 5 steps in sequence following the workflow definition.
 | Completion Report   | `completion_report_template`    |
 
 **Reference Guides:**
-- `.opencode/install_guides/MCP - Code Mode.md`
-- `.opencode/install_guides/MCP - Semantic Search.md`
-- `.opencode/install_guides/MCP - Chrome Dev Tools.md`
+- `.opencode/install_guides/MCP/MCP - Code Mode.md`
+- `.opencode/install_guides/MCP/MCP - Semantic Memory.md`
+- `.opencode/install_guides/MCP/MCP - Chrome Dev Tools.md`
 
 ---
 
@@ -284,7 +284,7 @@ Execute all 5 steps in sequence following the workflow definition.
 ```
 /documentation:create_install_guide semantic-search-mcp
 ```
-→ Creates `install_guides/MCP - Semantic Search.md`
+→ Creates `install_guides/MCP/MCP - Semantic Search.md`
 
 **Example 2: CLI Tool Guide**
 ```
@@ -294,6 +294,6 @@ Execute all 5 steps in sequence following the workflow definition.
 
 **Example 3: Plugin Guide**
 ```
-/documentation:create_install_guide opencode-skills
+/documentation:create_install_guide antigravity-auth
 ```
-→ Creates `install_guides/PLUGIN - Opencode Skills.md`
+→ Creates `install_guides/PLUGIN - Antigravity Auth.md`

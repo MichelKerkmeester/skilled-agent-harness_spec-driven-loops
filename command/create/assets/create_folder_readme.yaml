@@ -192,10 +192,10 @@ ai_optimization:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  readme_template: .opencode/skills/workflows-documentation/assets/readme_template.md
-  speckit_readme: .opencode/skills/system-spec-kit/README.md
-  memory_readme: .opencode/skills/system-memory/README.md
-  core_standards: .opencode/skills/workflows-documentation/references/core_standards.md
+  readme_template: .opencode/skill/workflows-documentation/assets/readme_template.md
+  speckit_readme: .opencode/skill/system-spec-kit/README.md
+  memory_readme: .opencode/skill/system-memory/README.md
+  core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
@@ -410,7 +410,7 @@ workflow:
     - Create memory file with timestamp
     - Index memory file for immediate search availability
     tool_invocation:
-      command: "openskills read system-memory"
+      command: "Read(".opencode/skill/system-memory/SKILL.md")"
       note: "Activate context saving via memory skill"
     memory_content:
       include:

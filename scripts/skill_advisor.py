@@ -12,91 +12,64 @@ import os
 import re
 import glob
 
-# Path to skills directory (relative to project root)
+# Path to skill directory (relative to project root)
+# Note: OpenCode native skills use singular "skill" folder
 PROJECT_ROOT = os.getcwd()
-SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skills")
+SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skill")
 
 # Comprehensive stop words - filtered from BOTH query AND corpus
 # These words have no semantic meaning for skill matching
 STOP_WORDS = {
-    # Articles & pronouns
-    'the', 'a', 'an', 'i', 'me', 'my', 'you', 'your', 'we', 'our', 'it', 'its',
-    'he', 'she', 'they', 'them', 'him', 'her', 'us',
-    # Prepositions
-    'to', 'in', 'on', 'at', 'for', 'with', 'from', 'into', 'of', 'by', 'about',
-    # Conjunctions
-    'and', 'or', 'but', 'so', 'if', 'then', 'as',
-    # Common auxiliary/modal verbs
-    'is', 'are', 'was', 'were', 'be', 'been', 'being',
-    'have', 'has', 'had', 'do', 'does', 'did',
-    'can', 'could', 'will', 'would', 'should', 'may', 'might', 'must',
-    # Non-semantic action words (requests/helpers)
-    'want', 'need', 'help', 'please', 'let', 'get', 'try', 'go', 'going',
-    # Demonstratives
-    'this', 'that', 'these', 'those',
-    # Quantifiers
-    'some', 'any', 'all', 'no', 'not', 'more', 'most', 'other',
-    # Question words (usually context, not intent)
-    'how', 'what', 'when', 'where', 'which', 'who', 'why',
-    # Fillers
-    'just', 'also', 'very', 'really', 'actually', 'only', 'even', 'now',
-    # Generic terms
-    'use', 'using', 'used', 'like', 'thing', 'things', 'way', 'work',
-    # Agent/tool noise
-    'skill', 'agent', 'tool', 'run', 'show', 'tell', 'give', 'able'
+    'a', 'about', 'able', 'actually', 'agent', 'all', 'also', 'an', 'and', 'any', 
+    'are', 'as', 'at', 'be', 'been', 'being', 'but', 'by', 'can', 'could', 'did', 
+    'do', 'does', 'even', 'for', 'from', 'get', 'give', 'go', 'going', 'had', 
+    'has', 'have', 'he', 'help', 'her', 'him', 'how', 'i', 'if', 'in', 'into', 
+    'is', 'it', 'its', 'just', 'let', 'like', 'may', 'me', 'might', 'more', 
+    'most', 'must', 'my', 'need', 'no', 'not', 'now', 'of', 'on', 'only', 'or', 
+    'other', 'our', 'please', 'really', 'run', 'she', 'should', 'show', 'skill', 
+    'so', 'some', 'tell', 'that', 'the', 'them', 'then', 'these', 'they', 
+    'thing', 'things', 'this', 'those', 'to', 'tool', 'try', 'us', 'use', 
+    'used', 'using', 'very', 'want', 'was', 'way', 'we', 'were', 'what', 'when', 
+    'where', 'which', 'who', 'why', 'will', 'with', 'work', 'would', 'you', 'your'
 }
 
 # Synonym expansion - maps user intent to technical terms in SKILL.md
 SYNONYM_MAP = {
-    # Debugging/fixing
-    "fix": ["debug", "correct", "resolve", "code", "implementation"],
+    "ast": ["treesitter", "syntax", "parse", "structure"],
+    "branch": ["git", "commit", "merge", "checkout"],
     "bug": ["debug", "error", "issue", "defect", "verification"],
-    # Creation
-    "create": ["implement", "build", "generate", "new", "add", "scaffold"],
-    "make": ["implement", "build", "generate", "create"],
-    "new": ["create", "implement", "scaffold", "generate"],
-    # Testing/verification
-    "test": ["verify", "validate", "check", "spec", "quality"],
     "check": ["verify", "validate", "test"],
-    # Refactoring
-    "refactor": ["structure", "organize", "clean", "improve", "code"],
-    # Documentation
+    "commit": ["git", "version", "push", "branch", "changes"],
+    "console": ["chrome", "browser", "debug", "log"],
+    "context": ["memory", "session", "save"],
+    "create": ["implement", "build", "generate", "new", "add", "scaffold"],
+    "devtools": ["chrome", "browser", "debug", "inspect"],
     "doc": ["documentation", "explain", "describe", "markdown"],
     "docs": ["documentation", "explain", "describe", "markdown"],
     "document": ["documentation", "markdown", "write"],
-    "write": ["documentation", "create", "generate"],
-    # Search/exploration
-    "search": ["find", "locate", "explore", "query", "lookup"],
     "find": ["search", "locate", "explore", "lookup"],
-    # Planning
-    "plan": ["spec", "architect", "design", "roadmap", "breakdown"],
-    # Git operations - expanded for better git skill matching
-    "commit": ["git", "version", "push", "branch", "changes"],
-    "push": ["git", "commit", "remote", "branch"],
-    "branch": ["git", "commit", "merge", "checkout"],
-    "merge": ["git", "branch", "commit", "rebase"],
+    "fix": ["debug", "correct", "resolve", "code", "implementation"],
     "git": ["commit", "branch", "version", "push", "merge", "worktree"],
-    # Memory/context
-    "save": ["context", "memory", "preserve", "store"],
-    "remember": ["memory", "context", "save", "store"],
-    "context": ["memory", "session", "save"],
-    # Reverse mappings - domain-specific terms expand to parent domain
-    "worktree": ["git", "branch", "workspace", "isolation"],
-    "rebase": ["git", "branch", "commit", "history"],
-    "stash": ["git", "changes", "temporary"],
-    # DevTools reverse mappings
-    "devtools": ["chrome", "browser", "debug", "inspect"],
-    "console": ["chrome", "browser", "debug", "log"],
-    "network": ["chrome", "browser", "requests", "debug"],
-    # Code analysis reverse mappings
-    "ast": ["treesitter", "syntax", "parse", "structure"],
-    # Natural language to technical terms
+    "help": ["guide", "assist", "documentation", "explain"],
     "how": ["understand", "explain", "works", "meaning"],
+    "make": ["create", "implement", "build", "generate"],
+    "merge": ["git", "branch", "commit", "rebase"],
+    "network": ["chrome", "browser", "requests", "debug"],
+    "new": ["create", "implement", "scaffold", "generate"],
+    "plan": ["spec", "architect", "design", "roadmap", "breakdown"],
+    "push": ["git", "commit", "remote", "branch"],
+    "rebase": ["git", "branch", "commit", "history"],
+    "refactor": ["structure", "organize", "clean", "improve", "code"],
+    "remember": ["memory", "context", "save", "store"],
+    "save": ["context", "memory", "preserve", "store"],
+    "search": ["find", "locate", "explore", "query", "lookup"],
+    "show": ["list", "display", "outline", "tree"],
+    "stash": ["git", "changes", "temporary"],
+    "test": ["verify", "validate", "check", "spec", "quality"],
     "what": ["definition", "structure", "outline", "list"],
     "where": ["find", "search", "locate", "navigate"],
-    "show": ["list", "display", "outline", "tree"],
-    "make": ["create", "implement", "build", "generate"],
-    "help": ["guide", "assist", "documentation", "explain"],
+    "worktree": ["git", "branch", "workspace", "isolation"],
+    "write": ["documentation", "create", "generate"],
 }
 
 # Intent boosters - High-confidence keyword → skill direct mapping
@@ -108,166 +81,124 @@ SYNONYM_MAP = {
 #   - Without intent boost: confidence = min(0.25 + score * 0.15, 0.95)
 # To reach 0.8 threshold with intent boost: need score >= 2.0
 INTENT_BOOSTERS = {
-    # Question word patterns - semantic search signals (checked before stop word filtering)
-    # Combined "how does X work" pattern: 1.2 + 0.6 + 1.0 = 2.8 → 0.72 confidence
-    # With "codebase" multi-boost: +0.4 → 3.2 → 0.78 confidence  
-    "how": ("mcp-leann", 1.2),      # "how does X work" = strong semantic signal
-    "why": ("mcp-leann", 1.5),      # "why is X happening" = strong semantic signal (often standalone)
-    "what": ("mcp-leann", 1.0),     # "what does X do" = semantic query
-    "explain": ("mcp-leann", 3.5),  # explicit explanation request - single word should route (3.5 * 0.15 + 0.3 = 0.825)
-    "understand": ("mcp-leann", 1.5),
-    "work": ("mcp-leann", 1.0),     # "how does X work" pattern - key word
-    "works": ("mcp-leann", 1.0),    # same pattern
-    "does": ("mcp-leann", 0.6),     # auxiliary in "how does X work"
-    
-    # Git workflow - very specific terms
-    "commit": ("workflows-git", 0.5),
-    "push": ("workflows-git", 0.5),
-    "pull": ("workflows-git", 0.5),
-    "branch": ("workflows-git", 0.4),
-    "merge": ("workflows-git", 0.5),
-    "rebase": ("workflows-git", 0.8),
-    "worktree": ("workflows-git", 1.2),
-    "stash": ("workflows-git", 0.5),
-    "checkout": ("workflows-git", 0.5),
-    
-    # Documentation - specific terms
-    "markdown": ("workflows-documentation", 0.5),
-    "flowchart": ("workflows-documentation", 0.7),
     "ascii": ("workflows-documentation", 0.4),
-    "diagram": ("workflows-documentation", 0.4),
-    
-    # Memory system - specific terms
-    "checkpoint": ("system-memory", 0.6),
-    "remember": ("system-memory", 0.5),
-    "session": ("system-memory", 0.4),
-    "restore": ("system-memory", 0.4),
-    
-    # Code search - specific terms  
-    "semantic": ("mcp-leann", 0.5),
-    "embeddings": ("mcp-leann", 0.7),
-    "vector": ("mcp-leann", 0.6),
-    "rag": ("mcp-leann", 0.6),
-    
-    # Chrome DevTools - specific terms
-    "devtools": ("workflows-chrome-devtools", 1.2),
-    "chrome": ("workflows-chrome-devtools", 1.0),
-    "browser": ("workflows-chrome-devtools", 1.2),
-    "debugger": ("workflows-chrome-devtools", 1.0),
-    "debug": ("workflows-chrome-devtools", 1.0),
-    "network": ("workflows-chrome-devtools", 0.8),
-    "console": ("workflows-chrome-devtools", 1.0),
-    "inspect": ("workflows-chrome-devtools", 1.0),
-    
-    # Spec kit - specific terms
-    "checklist": ("system-spec-kit", 0.5),
-    "specification": ("system-spec-kit", 0.5),
-    
-    # Code context - specific terms
-    "symbols": ("mcp-code-context", 0.5),
-    "definitions": ("mcp-code-context", 0.5),
-    "treesitter": ("mcp-code-context", 0.7),
-    "ast": ("mcp-code-context", 0.6),
-    "functions": ("mcp-code-context", 0.4),
-    "classes": ("mcp-code-context", 0.4),
-    
-    # mcp-leann - Additional terms
-    "leann": ("mcp-leann", 1.0),
-    "index": ("mcp-leann", 0.3),
     "ask": ("mcp-leann", 0.4),
-    "query": ("mcp-leann", 0.4),
-    
-    # Semantic search keywords - authentication/auth is semantic understanding
-    "auth": ("mcp-leann", 1.8),           # Authentication is semantic search
+    "ast": ("mcp-code-context", 0.6),
+    "auth": ("mcp-leann", 1.8),
     "authentication": ("mcp-leann", 1.8),
+    "bdg": ("workflows-chrome-devtools", 1.0),
+    "branch": ("workflows-git", 0.4),
+    "browser": ("workflows-chrome-devtools", 1.2),
+    "bug": ("workflows-code", 0.5),
+    "checklist": ("system-spec-kit", 0.5),
+    "checkpoint": ("system-memory", 0.6),
+    "checkout": ("workflows-git", 0.5),
+    "chrome": ("workflows-chrome-devtools", 1.0),
+    "classes": ("mcp-code-context", 0.4),
+    "clickup": ("mcp-code-mode", 2.5),
+    "cms": ("mcp-code-mode", 0.5),
+    "commit": ("workflows-git", 0.5),
+    "component": ("mcp-code-mode", 0.4),
+    "console": ("workflows-chrome-devtools", 1.0),
+    "css": ("workflows-chrome-devtools", 0.4),
+    "debug": ("workflows-chrome-devtools", 1.0),
+    "debugger": ("workflows-chrome-devtools", 1.0),
+    "definitions": ("mcp-code-context", 0.5),
+    "devtools": ("workflows-chrome-devtools", 1.2),
+    "diagram": ("workflows-documentation", 0.4),
+    "diff": ("workflows-git", 0.5),
+    "does": ("mcp-leann", 0.6),
+    "dom": ("workflows-chrome-devtools", 0.5),
+    "document": ("workflows-documentation", 0.5),
+    "embeddings": ("mcp-leann", 0.7),
+    "explain": ("mcp-leann", 3.5),
+    "exports": ("mcp-code-context", 0.4),
+    "external": ("mcp-code-mode", 0.4),
+    "figma": ("mcp-code-mode", 2.5),
+    "flowchart": ("workflows-documentation", 0.7),
+    "folder": ("system-spec-kit", 0.4),
+    "functions": ("mcp-code-context", 0.4),
+    "gh": ("workflows-git", 1.5),
+    "github": ("workflows-git", 2.0),
+    "history": ("system-memory", 0.4),
+    "how": ("mcp-leann", 1.2),
+    "implement": ("workflows-code", 0.6),
+    "imports": ("mcp-code-context", 0.4),
+    "index": ("mcp-leann", 0.3),
+    "inspect": ("workflows-chrome-devtools", 1.0),
+    "issue": ("workflows-git", 0.8),
+    "leann": ("mcp-leann", 1.0),
+    "list": ("mcp-code-context", 0.3),
+    "log": ("workflows-git", 0.4),
     "login": ("mcp-leann", 0.8),
     "logout": ("mcp-leann", 0.6),
-    "user": ("mcp-leann", 0.4),           # Often part of auth queries
-    "password": ("mcp-leann", 0.5),
-    "session": ("mcp-leann", 0.4),        # Auth-related (also in system-memory)
-    
-    # Natural language code search - structural (mcp-code-context)
-    "structure": ("mcp-code-context", 0.5),
-    "outline": ("mcp-code-context", 0.6),
-    "tree": ("mcp-code-context", 0.5),
+    "markdown": ("workflows-documentation", 0.5),
+    "memory": ("system-memory", 0.6),
+    "merge": ("workflows-git", 0.5),
+    "methods": ("mcp-code-context", 0.4),
     "navigate": ("mcp-code-context", 0.4),
-    "list": ("mcp-code-context", 0.3),
-    
-    # mcp-code-mode - External MCP tools (Webflow, Figma, ClickUp, etc.)
-    # High boost values because these are strong domain signals
-    "webflow": ("mcp-code-mode", 2.5),    # Strong signal - single word routes
-    "figma": ("mcp-code-mode", 2.5),      # Strong signal
-    "clickup": ("mcp-code-mode", 2.5),    # Strong signal
-    "notion": ("mcp-code-mode", 2.5),     # Strong signal
-    "external": ("mcp-code-mode", 0.4),
-    "typescript": ("mcp-code-mode", 0.4),
-    "utcp": ("mcp-code-mode", 0.8),
-    "site": ("mcp-code-mode", 0.6),       # Webflow context
-    "sites": ("mcp-code-mode", 0.6),
+    "network": ("workflows-chrome-devtools", 0.8),
+    "notion": ("mcp-code-mode", 2.5),
+    "outline": ("mcp-code-context", 0.6),
     "page": ("mcp-code-mode", 0.4),
     "pages": ("mcp-code-mode", 0.4),
-    "component": ("mcp-code-mode", 0.4),
-    "cms": ("mcp-code-mode", 0.5),        # Webflow CMS
-    
-    # workflows-code - Implementation and debugging
-    "implement": ("workflows-code", 0.6),
-    "bug": ("workflows-code", 0.5),
-    "refactor": ("workflows-code", 0.6),
-    "verification": ("workflows-code", 0.5),
-    
-    # system-spec-kit - Additional terms
-    "spec": ("system-spec-kit", 0.6),
-    "folder": ("system-spec-kit", 0.4),
-    
-    # system-memory - Additional terms
-    "memory": ("system-memory", 0.6),
-    "recall": ("system-memory", 0.5),
-    "history": ("system-memory", 0.4),
-    
-    # workflows-git - Additional terms
-    "pr": ("workflows-git", 0.6),
-    "diff": ("workflows-git", 0.5),
-    "log": ("workflows-git", 0.4),
-    
-    # mcp-leann - Additional terms
-    "ask": ("mcp-leann", 0.4),
+    "password": ("mcp-leann", 0.5),
+    "pr": ("workflows-git", 0.8),
+    "pull": ("workflows-git", 0.5),
+    "push": ("workflows-git", 0.5),
     "query": ("mcp-leann", 0.4),
-    
-    # mcp-code-context - Additional terms
-    "methods": ("mcp-code-context", 0.4),
-    "exports": ("mcp-code-context", 0.4),
-    "imports": ("mcp-code-context", 0.4),
-    
-    # workflows-chrome-devtools - Additional terms
-    "bdg": ("workflows-chrome-devtools", 1.0),
-    "screenshot": ("workflows-chrome-devtools", 0.5),
-    "dom": ("workflows-chrome-devtools", 0.5),
-    "css": ("workflows-chrome-devtools", 0.4),
-    
-    # workflows-documentation - Additional terms
-    "document": ("workflows-documentation", 0.5),
+    "rag": ("mcp-leann", 0.6),
     "readme": ("workflows-documentation", 0.5),
+    "rebase": ("workflows-git", 0.8),
+    "recall": ("system-memory", 0.5),
+    "refactor": ("workflows-code", 0.6),
+    "remember": ("system-memory", 0.5),
+    "repo": ("workflows-git", 0.6),
+    "restore": ("system-memory", 0.4),
+    "review": ("workflows-git", 0.8),
+    "screenshot": ("workflows-chrome-devtools", 0.5),
+    "semantic": ("mcp-leann", 0.5),
+    "site": ("mcp-code-mode", 0.6),
+    "sites": ("mcp-code-mode", 0.6),
+    "spec": ("system-spec-kit", 0.6),
+    "specification": ("system-spec-kit", 0.5),
+    "stash": ("workflows-git", 0.5),
+    "structure": ("mcp-code-context", 0.5),
+    "symbols": ("mcp-code-context", 0.5),
     "template": ("workflows-documentation", 0.4),
-    "flowchart": ("workflows-documentation", 0.6),
+    "tree": ("mcp-code-context", 0.5),
+    "treesitter": ("mcp-code-context", 0.7),
+    "typescript": ("mcp-code-mode", 0.4),
+    "understand": ("mcp-leann", 1.5),
+    "user": ("mcp-leann", 0.4),
+    "utcp": ("mcp-code-mode", 0.8),
+    "vector": ("mcp-leann", 0.6),
+    "verification": ("workflows-code", 0.5),
+    "webflow": ("mcp-code-mode", 2.5),
+    "what": ("mcp-leann", 1.0),
+    "why": ("mcp-leann", 1.5),
+    "work": ("mcp-leann", 1.0),
+    "works": ("mcp-leann", 1.0),
+    "worktree": ("workflows-git", 1.2),
 }
 
 # Ambiguous keywords that should boost MULTIPLE skills
 # Format: keyword -> list of (skill_name, boost_amount)
 MULTI_SKILL_BOOSTERS = {
-    "codebase": [("mcp-leann", 0.2), ("mcp-code-context", 0.2)],
-    "search": [("mcp-leann", 0.2), ("mcp-code-context", 0.2)],
+    "api": [("mcp-code-mode", 0.3), ("mcp-leann", 0.2)],
+    "changes": [("workflows-git", 0.4), ("system-memory", 0.2)],
     "code": [("workflows-code", 0.2), ("mcp-code-context", 0.15), ("mcp-leann", 0.1)],
+    "codebase": [("mcp-leann", 0.2), ("mcp-code-context", 0.2)],
+    "context": [("system-memory", 0.3), ("mcp-code-context", 0.2)],
     "find": [("mcp-leann", 0.2), ("mcp-code-context", 0.2)],
     "fix": [("workflows-code", 0.3), ("workflows-git", 0.1)],
-    "test": [("workflows-code", 0.3), ("workflows-chrome-devtools", 0.2)],
-    "save": [("system-memory", 0.3), ("workflows-git", 0.2)],
-    "context": [("system-memory", 0.3), ("mcp-code-context", 0.2)],
-    "plan": [("system-spec-kit", 0.3), ("workflows-code", 0.2)],
-    "api": [("mcp-code-mode", 0.3), ("mcp-leann", 0.2)],
     "mcp": [("mcp-code-mode", 0.3), ("mcp-leann", 0.2), ("mcp-code-context", 0.2)],
-    # Common action words
+    "plan": [("system-spec-kit", 0.3), ("workflows-code", 0.2)],
+    "save": [("system-memory", 0.3), ("workflows-git", 0.2)],
+    "search": [("mcp-leann", 0.2), ("mcp-code-context", 0.2)],
+    "session": [("system-memory", 0.4), ("mcp-leann", 0.4)],
+    "test": [("workflows-code", 0.3), ("workflows-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("workflows-git", 0.2), ("workflows-code", 0.2)],
-    "changes": [("workflows-git", 0.4), ("system-memory", 0.2)],
 }
 
 
@@ -276,11 +207,11 @@ def parse_frontmatter(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            match = re.search(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
+            match = re.search(r'^---\s*\\n(.*?)\\n---', content, re.DOTALL)
             if match:
                 yaml_block = match.group(1)
                 data = {}
-                for line in yaml_block.split('\n'):
+                for line in yaml_block.split('\\n'):
                     if ':' in line:
                         key, val = line.split(':', 1)
                         data[key.strip()] = val.strip().strip('"').strip("'")
@@ -334,7 +265,7 @@ def analyze_request(prompt):
     prompt_lower = prompt.lower()
     
     # Tokenize: extract words
-    all_tokens = re.findall(r'\b\w+\b', prompt_lower)
+    all_tokens = re.findall(r'\\b\\w+\\b', prompt_lower)
     
     # Pre-calculate intent boosts from ALL original tokens BEFORE stop word filtering
     # This is critical because question words (how, why, what) and "work/does" are
@@ -379,7 +310,7 @@ def analyze_request(prompt):
         
         # Prepare skill keywords from name and description
         name_parts = name.replace('-', ' ').split()
-        desc_parts = re.findall(r'\b\w+\b', config['description'].lower())
+        desc_parts = re.findall(r'\\b\\w+\\b', config['description'].lower())
         
         # Build corpus (description terms only, name checked separately)
         corpus = set(desc_parts)

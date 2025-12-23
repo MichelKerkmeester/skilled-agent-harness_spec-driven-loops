@@ -172,10 +172,10 @@
       "type": "local",
       "command": [
         "node",
-        "/.opencode/skills/system-memory/mcp_server/semantic-memory.js"
+        "/.opencode/skill/system-memory/mcp_server/semantic-memory.js"
       ],
       "environment": {
-        "_NOTE_DATABASE": "Stores vectors in: /.opencode/skills/system-memory/database/memory-index.sqlite",
+        "_NOTE_DATABASE": "Stores vectors in: /.opencode/skill/system-memory/database/memory-index.sqlite",
         "_NOTE_MODEL": "Uses nomic-embed-text-v1.5 (768-dim embeddings)",
         "_NOTE_NEW_PROJECT": "When copying to new project, update this path to match new project location"
       },

@@ -103,12 +103,11 @@ EXECUTE THIS CHECK FIRST:
 ```
 EXECUTE AFTER PHASE 1 PASSES:
 
-1. Check if skill exists at expected paths:
-   ├─ .opencode/skills/[skill-name]/
-   └─ [current-dir]/[skill-name]/
+1. Check if skill exists at expected path:
+   └─ .opencode/skill/[skill-name]/
 
 2. Run verification:
-   $ ls -d .opencode/skills/[skill-name] 2>/dev/null || ls -d ./[skill-name] 2>/dev/null
+   $ ls -d .opencode/skill/[skill-name] 2>/dev/null
 
 3. Process result:
    ├─ IF skill found:
@@ -295,7 +294,34 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 4. 📚 REFERENCE (See YAML for Details)
+## 4. 📚 REFERENCE
+
+### Asset Location
+- **Path**: `.opencode/skill/[skill-name]/assets/`
+- **Naming**: snake_case (e.g., `frontmatter_templates.md`, `config_examples.yaml`)
+
+### Asset Types & Naming Conventions
+
+| Type      | Naming Pattern           | Example                    | Purpose                        |
+| --------- | ------------------------ | -------------------------- | ------------------------------ |
+| Template  | `[content]_templates.md` | `frontmatter_templates.md` | Copy-paste starting points     |
+| Reference | `[topic]_reference.md`   | `emoji_reference.md`       | Lookup tables, decisions       |
+| Example   | `[topic]_examples.md`    | `optimization_examples.md` | Working code examples          |
+| Guide     | `[process]_guide.md`     | `packaging_guide.md`       | Step-by-step how-tos           |
+
+### When to Create Assets
+- Templates users apply repeatedly
+- Reference data >50 lines
+- Multiple examples of same pattern
+- Lookup tables or decision matrices
+- Template variations for different scenarios
+
+### Keep in SKILL.md When
+- Content <30 lines
+- Tightly coupled to workflow logic
+- Part of core instructions (RULES, WORKFLOW)
+
+### Workflow Details (See YAML)
 
 | Section              | Location in YAML                    |
 | -------------------- | ----------------------------------- |
@@ -306,6 +332,9 @@ Execute all 5 steps in sequence following the workflow definition.
 | Failure Recovery     | `failure_recovery`                  |
 | Completion Report    | `completion_report_template`        |
 
+### Template Reference
+- **Template location**: `.opencode/skill/workflows-documentation/assets/skill_asset_template.md`
+
 ---
 
 ## 5. 💡 EXAMPLES
@@ -314,16 +343,22 @@ Execute all 5 steps in sequence following the workflow definition.
 ```
 /documentation:create_asset workflows-git template
 ```
-→ Prompts for template details, creates `[name]_templates.md`
+→ Creates `.opencode/skill/workflows-git/assets/[name]_templates.md`
 
 **Example 2: Create lookup asset**
 ```
 /documentation:create_asset workflows-documentation lookup
 ```
-→ Creates lookup file with tables and decisions
+→ Creates `.opencode/skill/workflows-documentation/assets/[name]_reference.md`
 
 **Example 3: Create example asset**
 ```
 /documentation:create_asset my-skill example
 ```
-→ Creates examples file with before/after patterns
+→ Creates `.opencode/skill/my-skill/assets/[name]_examples.md`
+
+**Example 4: Create guide asset**
+```
+/documentation:create_asset system-memory guide
+```
+→ Creates `.opencode/skill/system-memory/assets/[name]_guide.md`

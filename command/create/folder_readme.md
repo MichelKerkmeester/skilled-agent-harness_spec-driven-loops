@@ -284,8 +284,8 @@ Execute all 5 steps in sequence following the workflow definition.
 | Completion Report    | `completion_report_template`        |
 
 **Reference READMEs:**
-- `.opencode/skills/system-spec-kit/README.md` (SpecKit pattern)
-- `.opencode/skills/system-memory/README.md` (Skill pattern)
+- `.opencode/skill/system-spec-kit/README.md` (SpecKit pattern)
+- `.opencode/skill/system-memory/README.md` (Skill pattern)
 
 ---
 
@@ -299,7 +299,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 **Example 2: Skill README**
 ```
-/documentation:create_readme .opencode/skills/my-skill --type skill
+/documentation:create_readme .opencode/skill/my-skill --type skill
 ```
 → Creates skill documentation with triggers, commands, MCP tools
 

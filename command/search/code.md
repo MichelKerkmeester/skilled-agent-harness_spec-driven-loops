@@ -1,7 +1,7 @@
 ---
 description: Unified code search - route structural, semantic, and lexical queries with smart multi-tool fusion
 argument-hint: "[query] [--index:<name>] [--path:<dir>] [--type:<ext>] [--limit:<N>]"
-allowed-tools: Bash, Read, Grep, Glob, leann_search, leann_ask, leann_list, code_context_get_code_context, openskills
+allowed-tools: Bash, Read, Grep, Glob, leann_search, leann_ask, leann_list, code_context_get_code_context
 ---
 
 # 🔍 PRE-SEARCH VALIDATION (LIGHT)

@@ -39,7 +39,7 @@
 
 ## 2. ⛔ MANDATORY GATES - STOP BEFORE ACTING
 
-**⚠️ BEFORE using ANY tool (except Gate Actions: memory_match_triggers, skill_advisor.py, openskills), you MUST pass all applicable gates below.**
+**⚠️ BEFORE using ANY tool (except Gate Actions: memory_match_triggers, skill_advisor.py), you MUST pass all applicable gates below.**
 
 ### 🔒 PRE-EXECUTION GATES (Pass before ANY tool use)
 
@@ -47,8 +47,48 @@
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 0: COMPACTION CHECK [HARD BLOCK]                                       │
 │ Trigger: "Please continue the conversation from where we left it off..."    │
-│ Action:  STOP → "Context compaction detected" → Await user instruction      │
+│ Action:  STOP → Display branch protocol:                                    │
+│                                                                             │
+│ "⚠️ CONTEXT COMPACTION DETECTED                                             │
+│                                                                             │
+│ To continue efficiently, start a new conversation with this handoff:        │
+│                                                                             │
+│ CONTINUATION - Attempt [N]                                                  │
+│ Spec: [CURRENT_SPEC_PATH]                                                   │
+│ Last: [MOST_RECENT_COMPLETED_TASK]                                          │
+│ Next: [NEXT_PENDING_TASK]                                                   │
+│                                                                             │
+│ Run /spec_kit:handover to save quick-continue.md, then in new session:      │
+│ /spec_kit:resume [spec-path]"                                               │
+│                                                                             │
 │ Block:   HARD - Cannot proceed until user explicitly confirms               │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    ↓ PASS
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ GATE 0.5: CONTINUATION VALIDATION [SOFT BLOCK]                              │
+│ Trigger: User message contains "CONTINUATION - Attempt" pattern             │
+│                                                                             │
+│ Action:                                                                     │
+│   1. Parse handoff message:                                                 │
+│      - Extract: Spec folder path                                            │
+│      - Extract: Last completed task                                         │
+│      - Extract: Next pending task                                           │
+│                                                                             │
+│   2. Validate against most recent memory file (if exists):                  │
+│      - Read latest memory/*.md from spec folder                             │
+│      - Check "Project State Snapshot" section for Phase, Last/Next Action   │
+│      - Compare claimed progress with actual progress                        │
+│                                                                             │
+│   3. IF mismatch detected:                                                  │
+│      - Report: "⚠️ State mismatch detected"                                 │
+│      - Show: Claimed vs Actual                                              │
+│      - Ask: "Which is correct? A) Handoff B) Memory file C) Investigate"    │
+│                                                                             │
+│   4. IF validated OR no memory files:                                       │
+│      - Proceed with handoff context                                         │
+│      - Display: "✅ Continuation validated"                                 │
+│                                                                             │
+│ Block: SOFT - Can proceed after acknowledgment                              │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -63,7 +103,7 @@
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 2: SKILL ROUTING [MANDATORY]                                           │
 │ Action:  Run python .opencode/scripts/skill_advisor.py "$USER_REQUEST"      │
-│ Logic:   IF confidence > 0.8 → MUST invoke skill (via openskills read)      │
+│ Logic:   IF confidence > 0.8 → MUST invoke skill (read SKILL.md directly)   │
 │          ELSE → Proceed with manual tool selection                          │
 │ Note:    Do not guess. Use the advisor's output to determine the path.      │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -125,6 +165,52 @@
 │ Action:  Load checklist.md → Verify ALL items → Mark [x] with evidence      │
 │ Block:   HARD - Cannot claim completion without checklist verification      │
 │ Skip:    Level 1 tasks (no checklist.md required)                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    ↓ PASS
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ GATE 7: CONTEXT HEALTH MONITOR [PROGRESSIVE]                                │
+│ Trigger: Self-assessment before complex multi-step actions                  │
+│                                                                             │
+│ HEURISTIC ASSESSMENT (Claude is stateless - use observable signals):        │
+│   Tier 1 signals (~15 exchanges equivalent):                                │
+│     - 10+ tool calls visible in conversation                                │
+│     - 3+ unique files modified                                              │
+│     - Session keyword: "been working on this"                               │
+│                                                                             │
+│   Tier 2 signals (~25 exchanges equivalent):                                │
+│     - 15+ tool calls visible                                                │
+│     - 5+ unique files modified                                              │
+│     - Multiple phases completed                                             │
+│     - User mentions: "long session", "context"                              │
+│                                                                             │
+│   Tier 3 signals (~35 exchanges equivalent):                                │
+│     - 20+ tool calls visible                                                │
+│     - 7+ unique files modified                                              │
+│     - Frustration keywords: "already said", "repeat", "told you"            │
+│     - Complexity keywords: "complicated", "many files"                      │
+│                                                                             │
+│ PROGRESSIVE RESPONSE:                                                       │
+│                                                                             │
+│   TIER 1 (Soft Warning):                                                    │
+│     "⚠️ Extended session detected. Consider /spec_kit:handover soon."      │
+│     Action: Display only, continue work                                     │
+│                                                                             │
+│   TIER 2 (Firm Recommendation):                                             │
+│     "📋 Long session detected. Recommend /spec_kit:handover now."          │
+│     Options: A) Create handover B) Continue C) Disable for session          │
+│     Action: Wait for user choice                                            │
+│                                                                             │
+│   TIER 3 (Strong Suggestion):                                               │
+│     "🛑 Very long session. Handover strongly recommended."                 │
+│     Options: A) Create handover B) Decline with reason                      │
+│     Action: Wait for user choice, log if declined                           │
+│                                                                             │
+│ KEYWORD TRIGGERS (proactive, any tier):                                     │
+│   Session ending: "stopping", "done", "finished", "break", "later"          │
+│   Context concern: "forgetting", "remember", "context", "losing track"      │
+│   → Suggest: "Would you like to run /spec_kit:handover before ending?"     │
+│                                                                             │
+│ Note: User can always decline. This is guidance, not enforcement.           │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
                               ✅ CLAIM COMPLETION
@@ -228,7 +314,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 ### Spec Folder Structure
 **Path:** `/specs/[###-short-name]/` (e.g., `007-add-auth`)
-**Templates:** `.opencode/skills/system-spec-kit/templates/`
+**Templates:** `.opencode/skill/system-spec-kit/templates/`
 
 | Folder     | Purpose                     | Examples                               |
 | ---------- | --------------------------- | -------------------------------------- |
@@ -266,8 +352,10 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 | `/spec_kit:implement` | Execute pre-planned work         |
 | `/spec_kit:research`  | Technical investigation          |
 | `/spec_kit:resume`    | Resume previous session          |
+| `/spec_kit:handover`  | Create session handover document |
 
 **Mode Suffixes:** `:auto` or `:confirm` (e.g., `/spec_kit:complete:auto`)
+**Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
 
 ---
 
@@ -446,7 +534,7 @@ File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP - OPTIONAL]
 Browser debugging? → workflows-chrome-devtools skill
 External MCP tools? → call_tool_chain() [Code Mode - Webflow, Figma, ClickUp, etc.]
-Multi-step workflow? → openskills read [see §7 Skills]
+Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 ```
 
 ### Two "Semantic" Systems (DO NOT CONFUSE)
@@ -454,7 +542,7 @@ Multi-step workflow? → openskills read [see §7 Skills]
 | System              | MCP Name          | Database Location                                             | Purpose                               |
 | ------------------- | ----------------- | ------------------------------------------------------------- | ------------------------------------- |
 | **LEANN**           | `leann`           | `~/.leann/indexes/`                                           | **Code** semantic search              |
-| **Semantic Memory** | `semantic_memory` | `.opencode/skills/system-memory/database/memory-index.sqlite` | **Conversation** context preservation |
+| **Semantic Memory** | `semantic_memory` | `.opencode/skill/system-memory/database/memory-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**
 - Both use vector embeddings for semantic search
@@ -463,7 +551,7 @@ Multi-step workflow? → openskills read [see §7 Skills]
 
 **When cleaning/resetting databases:**
 - Code search issues → Delete `~/.leann/indexes/` or use `leann remove <index-name>`
-- Memory issues → Delete `.opencode/skills/system-memory/database/memory-index.sqlite`
+- Memory issues → Delete `.opencode/skill/system-memory/database/memory-index.sqlite`
 - **IMPORTANT**: After deletion, restart OpenCode to clear the MCP server's in-memory cache
 
 ### Code Search Tools (COMPLEMENTARY - NOT COMPETING)
@@ -579,7 +667,7 @@ Task Received → Gate 2: Run skill_advisor.py
                     ↓
     Confidence > 0.8 → MUST invoke recommended skill
                     ↓
-     Invoke Skill → openskills read <skill-name>
+     Invoke Skill → Read(".opencode/skill/<skill-name>/SKILL.md")
                     ↓
     Instructions Load → SKILL.md content + resource paths
                     ↓
@@ -587,8 +675,8 @@ Task Received → Gate 2: Run skill_advisor.py
 ```
 
 **Invocation Methods:**
-- **CLI**: `openskills read <skill-name>` command
-- **Direct**: Read `SKILL.md` from `.opencode/skills/<skill-name>/` folder
+- **Native**: OpenCode v1.0.190+ auto-discovers skills and exposes them as `skills_*` functions (e.g., `skills_mcp_leann`, `skills_system_memory`)
+- **Direct**: Read `SKILL.md` from `.opencode/skill/<skill-name>/` folder
 
 ### Skill Loading Protocol
 
@@ -600,7 +688,7 @@ Task Received → Gate 2: Run skill_advisor.py
 
 ### Skill Maintenance 
 
-Skills are located in `.opencode/skills/`.
+Skills are located in `.opencode/skill/`.
 
 When creating or editing skills:
 - Validate skill structure matches template in `workflows-documentation/references/skill_creation.md`
@@ -608,82 +696,17 @@ When creating or editing skills:
 - Ensure all bundled resources are referenced with relative paths
 - Test skill invocation before committing
 
-<skills_system priority="1">
+### Skill Routing (Gate 2)
 
-### Available Skills
-
-<!-- SKILLS_TABLE_START -->
-<usage>
 Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you MUST invoke the recommended skill.
 
-How to use skills:
-- Bash("openskills read <skill-name>")
-- The skill content will load with detailed instructions on how to complete the task
-- Base directory provided in output for resolving bundled resources (references/, scripts/, assets/)
+**How to use skills:**
+- OpenCode v1.0.190+ auto-discovers skills from `.opencode/skill/*/SKILL.md` frontmatter
+- Skills appear as `skills_*` functions in your available tools (e.g., `skills_mcp_leann`, `skills_system_memory`)
+- When a task matches a skill, read the SKILL.md directly: `Read(".opencode/skill/<skill-name>/SKILL.md")`
+- Base directory provided for resolving bundled resources (`references/`, `scripts/`, `assets/`)
 
-Usage notes:
-- Only use skills listed in <available_skills> below
+**Usage notes:**
 - Do not invoke a skill that is already loaded in your context
 - Each skill invocation is stateless
-</usage>
-
-<available_skills>
-
-<skill>
-<name>mcp-code-mode</name>
-<description>MCP orchestration via TypeScript execution for efficient multi-tool workflows. Use Code Mode for ALL MCP tool calls (ClickUp, Figma, Webflow, Chrome DevTools, etc.). Provides 98.7% context reduction, 60% faster execution, and type-safe invocation. Mandatory for external tool integration.</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>mcp-code-context</name>
-<description>Structural intelligence for codebases using Tree-sitter AST analysis. Provides precise structural queries (list functions, classes, definitions), bridging lexical search (Grep) and semantic search (LEANN). Use for structural exploration, symbol navigation, and codebase mapping. Native MCP tool - call directly.</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>mcp-leann</name>
-<description>Lightweight vector database providing semantic code search with 97% storage savings. Uses graph-based selective recomputation for efficient RAG on codebases, documents, and any text content. Provides build, search, and ask commands via MCP integration.</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>system-memory</name>
-<description>Context preservation with semantic memory: six-tier importance system (constitutional/critical/important/normal/temporary/deprecated), hybrid search (FTS5 + vector), 90-day half-life decay for recency boosting, checkpoint save/restore for context safety, constitutional memories (always surfaced), confidence-based promotion (90% threshold), session validation logging, context type filtering (research/implementation/decision/discovery/general), auto-indexing (memory_save/memory_index_scan). Manual trigger via keywords or /memory:save command.</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>system-spec-kit</name>
-<description>Mandatory spec folder workflow orchestrating documentation level selection (1-3), template selection, and folder creation for all file modifications through documentation enforcement.</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>workflows-chrome-devtools</name>
-<description>Direct Chrome DevTools Protocol access via browser-debugger-cli (bdg) terminal commands. Lightweight alternative to MCP servers for browser debugging, automation, and testing with significant token efficiency through self-documenting tool discovery (--list, --describe, --search).</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>workflows-code</name>
-<description>Orchestrator guiding developers through implementation, debugging, and verification phases across specialized code quality skills (project)</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>workflows-documentation</name>
-<description>Unified markdown and skill management specialist providing document quality enforcement (structure, DQI scoring, style), content optimization for AI assistants, complete skill creation workflow (scaffolding, validation, packaging), and ASCII flowchart creation for visualizing complex workflows, user journeys, and decision trees.</description>
-<location>project</location>
-</skill>
-
-<skill>
-<name>workflows-git</name>
-<description>Git workflow orchestrator guiding developers through workspace setup, clean commits, and work completion across git-worktrees, git-commit, and git-finish skills</description>
-<location>project</location>
-</skill>
-
-</available_skills>
-<!-- SKILLS_TABLE_END -->
-
-</skills_system>
+- Skills are auto-indexed from SKILL.md frontmatter - no manual list maintenance required

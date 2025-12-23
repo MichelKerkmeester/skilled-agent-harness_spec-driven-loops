@@ -1,7 +1,7 @@
 ---
 description: Create a complete OpenCode skill with 9-step workflow including resource planning - supports interactive execution
-argument-hint: "<skill-name> [--path <output-dir>]"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task, TodoWrite
+argument-hint: "skill-name [--path output-dir]"
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task, TodoWrite]
 ---
 
 # 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
@@ -38,9 +38,9 @@ EXECUTE THIS CHECK FIRST:
     ├─ Extract skill name (first argument)
     ├─ Extract --path flag if present (optional)
     ├─ VALIDATE skill name format:
-    │   ├─ Must be hyphen-case (lowercase with hyphens)
-    │   ├─ Must be 2-4 words
-    │   ├─ No uppercase, underscores, or special characters
+│   ├─ Must be hyphen-case (lowercase, hyphens, digits only)
+│   ├─ Must match folder name exactly
+│   ├─ No uppercase, underscores, or special characters
     │   │
     │   ├─ IF invalid format:
     │   │   ├─ SHOW: "Invalid skill name format. Expected: hyphen-case-name"
@@ -50,7 +50,7 @@ EXECUTE THIS CHECK FIRST:
     │   └─ IF valid:
     │       └─ Store as: skill_name
     │
-    ├─ Store output path as: skill_path (default: .opencode/skills/)
+    ├─ Store output path as: skill_path (default: .opencode/skill/)
     └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
 
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
@@ -231,7 +231,7 @@ FOR WORKFLOW VIOLATIONS:
 | 4    | Planning         | ☐      | Scripts, references, assets | Resources identified           |
 | 5    | Initialization   | ☐      | SKILL.md template, dirs     | Structure scaffolded           |
 | 6    | Content          | ☐      | SKILL.md, resources         | Files populated                |
-| 7    | Validation       | ☐      | DQI score, results          | DQI ≥ 75                       |
+| 7    | Validation       | ☐      | package_skill.py results    | All checks pass                |
 | 8    | Resource Routing | ☐      | references/, assets/ files  | User chose, resources created  |
 | 9    | Save Context     | ☐      | memory/*.md                 | Context preserved              |
 
@@ -251,15 +251,21 @@ STEP 6 (Content) REQUIREMENTS:
 ├─ MUST create bundled resources identified in Step 4
 ├─ MUST follow template structure from assets/
 ├─ MUST NOT leave placeholder text
+├─ MUST include required sections: WHEN TO USE, HOW IT WORKS, RULES
+├─ RULES section MUST have subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
 ├─ SECTION BOUNDARIES (CRITICAL):
 │   ├─ "WHEN TO USE" = ONLY activation triggers, use cases, exclusions
 │   │   └─ NO file references, NO navigation guides
 │   └─ "SMART ROUTING" = Navigation Guide + Phase Detection + Resource Router
 │       └─ ALL file/resource references go here
+├─ SIZE CONSTRAINTS:
+│   ├─ Max 5000 words (3000 recommended)
+│   └─ Max 3000 lines
 
 STEP 7 (Validation) REQUIREMENTS:
-├─ MUST run quick_validate.py before claiming complete
-├─ MUST achieve DQI score ≥ 75 (Good band)
+├─ MUST run package_skill.py --check before claiming complete
+│   └─ Command: python .opencode/skill/workflows-documentation/scripts/package_skill.py <skill-path> --check
+├─ MUST pass all validation checks (frontmatter, sections, size)
 ├─ MUST NOT claim "complete" without validation pass
 └─ MUST fix issues if validation fails
 
@@ -322,7 +328,7 @@ $ARGUMENTS
 
 Confirm you have these values from the phases:
 - `skill_name` from PHASE 1
-- `skill_path` from PHASE 1 (default: .opencode/skills/)
+- `skill_path` from PHASE 1 (default: .opencode/skill/)
 - `spec_choice` and `spec_path` from PHASE 2
 - `memory_loaded` status from PHASE 3
 
@@ -370,7 +376,9 @@ Execute all 9 steps in sequence following the workflow definition.
 ```
 /documentation:create_skill pdf-editor
 ```
-→ Creates skill at `.opencode/skills/pdf-editor/`
+→ Creates skill at `.opencode/skill/pdf-editor/`
+→ Skills auto-discovered from SKILL.md frontmatter
+→ Appears as `skills_pdf_editor` function in OpenCode
 
 **Example 2: Custom path**
 ```
@@ -383,3 +391,8 @@ Execute all 9 steps in sequence following the workflow definition.
 /documentation:create_skill
 ```
 → Prompts: "What skill would you like to create?"
+
+**Validation** (run after creation):
+```bash
+python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/pdf-editor --check
+```
