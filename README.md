@@ -213,7 +213,7 @@ Here's the complete workflow from your first message to documented completion:
                  │
                  ▼
 ┌─────────────────────────────────────┐
-│  ⚡ EXECUTION                        │
+│  ⚡ EXECUTION                       │
 │                                     │
 │  • Creates spec folder (###-name)   │
 │  • Copies templates (spec/plan/     │
@@ -566,7 +566,7 @@ Commands in [`command/`](command/) are structured entry points that chain steps,
 
 | Folder      | Commands                                                                                                                              |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `spec_kit/` | `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:handover`, `/spec_kit:debug` |
+| `spec_kit/` | `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:debug`, `/spec_kit:handover` |
 | `memory/`   | `/memory:save`, `/memory:search`, `/memory:checkpoint`                                                                                |
 | `create/`   | `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`                   |
 | `search/`   | `/search:code`, `/search:index` (semantic code search and index management)                                                           |
