@@ -15,7 +15,6 @@ Works with Claude, GPT, Gemini, and any OpenCode-compatible model.
 
 ## 📑 Table of Contents
 
-- [Quick Start](#-quick-start-5-minutes)
 - [1. Installing OpenCode](#1--installing-opencode)
 - [2. Connecting Providers](#2--connecting-providers)
 - [3. MCP Server Setup](#3--mcp-server-setup)
@@ -26,43 +25,6 @@ Works with Claude, GPT, Gemini, and any OpenCode-compatible model.
 - [8. Commands](#8--commands)
 - [9. Quick Reference](#9--quick-reference)
 - [10. What's Next?](#10--whats-next)
-
----
-
-## 🚀 Quick Start (5 Minutes)
-
-Get up and running in under 5 minutes. This section covers the bare minimum to start using OpenCode with AI assistance. Once you complete these steps, you'll have a working environment ready for your first documented feature.
-
-### Prerequisites
-
-- **macOS or Linux** (Windows via WSL2)
-- **Node.js 18+** and npm
-- **Ollama** running locally (for embeddings)
-
-### Get Running
-
-```bash
-# 1. Install OpenCode
-brew install opencode-ai/tap/opencode
-
-# 2. Pull the embedding model
-ollama pull nomic-embed-text
-
-# 3. Start in your project
-cd your-project
-opencode
-```
-
-### Your First Win
-
-Try this in OpenCode:
-```
-/spec_kit:complete add-user-login
-```
-
-This creates a documented feature spec, implementation plan, and checklist—all tracked for future sessions.
-
-**Next:** Connect a provider (Section 2) for full AI capabilities.
 
 ---
 
