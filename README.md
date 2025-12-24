@@ -5,6 +5,8 @@
 > - Don't reward me with unwanted coffee:
 > - https://buymeacoffee.com/michelkerkmeester
 
+---
+
 Your AI assistant forgets everything between conversations. This environment fixes that with:
 
 - **🧠 Semantic Memory** — Pick up where you left off, even days later
