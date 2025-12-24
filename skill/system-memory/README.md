@@ -2,7 +2,7 @@
 
 > **Remember everything. Surface what matters. Keep it private.**
 
-Your AI assistant forgets everything between sessions. You explain your auth system Monday, by Wednesday, it's a blank slate. This memory system fixes that with semantic search that understands *meaning*, importance tiers that prioritize *what matters*, and local-first architecture that keeps *your code yours*.
+Your AI assistant forgets everything between sessions. You explain your auth system Monday, by Wednesday it's a blank slate. This memory system fixes that with semantic search that understands *meaning*, importance tiers that prioritize *what matters*, and local-first architecture that keeps *your code yours*.
 
 No cloud. No external APIs. Just intelligent context preservation that makes AI-assisted development actually work.
 
