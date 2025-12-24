@@ -1,6 +1,7 @@
 # OpenCode Dev Environment
 
-> **Stop re-explaining your codebase to AI every session.**
+> - 99.999% of people will keep blaming AI for not being good enough for advanced coding. 
+> - Beat the odds with this system? Don't reward me with unwanted coffee: https://buymeacoffee.com/michelkerkmeester
 
 Your AI assistant forgets everything between conversations. This environment fixes that with:
 
@@ -629,9 +630,3 @@ You've got the environment set up—now what? This section provides a first-sess
 - **GitHub Issues:** Report bugs and request features
 - **AGENTS.md:** Check the gate system for workflow questions
 - **Skill READMEs:** Each skill has detailed documentation
-
----
-
-<p align="center">
-  <sub>Found this useful? <a href="https://buymeacoffee.com/michelkerkmeester">Buy me a coffee</a> ☕</sub>
-</p>
