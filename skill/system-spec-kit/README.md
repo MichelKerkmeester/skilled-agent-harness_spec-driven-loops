@@ -6,7 +6,7 @@ Every feature you build should leave a trail. Not for bureaucracy, for your futu
 
 The result? Six months from now, you'll know exactly why you made that architectural decision. Your AI assistant will pick up where you left off. And onboarding new developers takes hours instead of weeks.
 
-**This isn't your basic Spec Kit.** This is a battle-tested, automation-first fork that treats documentation as a first-class citizen—not an afterthought.
+**This isn't your basic Spec Kit.** This is a battle-tested, automation-first fork that treats documentation as a first-class citizen, not an afterthought.
 
 ## Why This Fork Exists
 
