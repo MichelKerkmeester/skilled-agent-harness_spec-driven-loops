@@ -2,7 +2,8 @@
 
 > - 99.999% of people will keep blaming AI for not being good enough for advanced coding. 
 > - Beat the odds with this system? 
-> - Don't reward me with unwanted coffee: https://buymeacoffee.com/michelkerkmeester
+> - Don't reward me with unwanted coffee:
+> - https://buymeacoffee.com/michelkerkmeester
 
 Your AI assistant forgets everything between conversations. This environment fixes that with:
 
