@@ -132,8 +132,6 @@ documentation_levels:
     - tasks.md
     - checklist.md
     - decision-record.md
-    optional_files:
-    - research-spike.md
     loc_guidance: ">=500 LOC"
     use_case: "Complex features, architecture changes, high-risk modifications"
 
@@ -155,7 +153,6 @@ available_templates:
   decision_record: .opencode/skill/system-spec-kit/templates/decision-record.md
   # Optional (any level)
   research: .opencode/skill/system-spec-kit/templates/research.md
-  research_spike: .opencode/skill/system-spec-kit/templates/research-spike.md
   # Utility (any level)
   handover: .opencode/skill/system-spec-kit/templates/handover.md
   debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
@@ -632,7 +629,6 @@ workflow:
     - spec.md: acceptance_criteria
     - location: "[SPEC_FOLDER]/spec.md"
     optional_documents:
-    - research-spike-[name].md: "Time-boxed research BEFORE implementation"
     - decision-record-[name].md: "Architecture Decision Records"
     template: .opencode/skill/system-spec-kit/templates/spec.md
     deep_analysis:
@@ -663,10 +659,6 @@ workflow:
     - resolved_ambiguities
     - clarified_requirements
     - updated_spec
-    spike_option:
-      when: technical_uncertainty_requires_investigation
-      template: .opencode/skill/system-spec-kit/templates/research-spike.md
-      note: "Use for time-boxed research before committing to approach"
     deep_analysis:
       focus: ambiguity_resolution
       approach: systematic_clarification

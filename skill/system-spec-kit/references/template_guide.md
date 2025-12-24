@@ -8,7 +8,7 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research-spike.md
+Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 ```
 
 ---
@@ -139,7 +139,6 @@ cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/d
 
 **Optional Templates:**
 ```bash
-cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/research-spike-[topic].md
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```
 
@@ -158,13 +157,6 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research
 - Decision made
 - Rationale
 - Consequences and trade-offs
-
-**research-spike-[topic].md (if used):**
-- Research question
-- Approach and experiments
-- Findings and recommendations
-- Decision (go/no-go)
-- Time-boxed (1-3 days typically)
 
 **Adaptation tips:**
 - All Level 2 tips apply
@@ -305,7 +297,7 @@ cp .opencode/skill/system-spec-kit/templates/[template].md specs/###-name/[targe
 **Step 6: Cross-Reference Sibling Docs**
 - Link spec.md ↔ plan.md
 - Link plan.md ↔ tasks.md
-- Link to decision records and research-spikes
+- Link to decision records and research documents
 - Create navigation between documents
 
 **Step 7: Delete Instructional Content**
@@ -356,14 +348,9 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research
 
 **Adaptation tips:**
 - Use for larger research efforts spanning multiple areas
-- More structured and comprehensive than research-spike documents
 - Serves as authoritative reference during implementation
 - Remove N/A sections or mark clearly as not applicable
 - Consider creating decision-record-*.md for significant technical choices discovered during research
-
-**When to use research vs research-spike:**
-- **Research template:** Comprehensive feature investigation, multiple integration points, strategic technical questions, authoritative reference needed
-- **Research-spike template:** Time-boxed experiment, specific technical question, POC/feasibility validation
 
 ---
 
@@ -417,37 +404,6 @@ cp .opencode/skill/system-spec-kit/templates/checklist.md specs/###-name/checkli
 - Include edge cases and error scenarios
 - Add security checks if relevant
 - Include rollback verification
-
----
-
-### research-spike-[name].md - Research Spike
-
-**When to use:** Before uncertain work - research, POC, feasibility
-
-**Purpose:** Time-boxed exploration to inform decisions
-
-**Template:** `research-spike.md`
-
-**Copy command:**
-```bash
-cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/research-spike-[topic].md
-```
-
-**Use descriptive name:** `research-spike-performance.md`, `research-spike-library-comparison.md`
-
-**Sections to fill:**
-- Research question
-- Approach and experiments
-- Findings and data
-- Recommendation (go/no-go)
-- Time-box (1-3 days typical)
-
-**Adaptation tips:**
-- Clear research question upfront
-- Document all experiments (even failed ones)
-- Data-driven findings (not opinions)
-- Clear recommendation with rationale
-- Actually time-box (don't let research-spike become implementation)
 
 ---
 
@@ -525,37 +481,6 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/handover
 - Include links to relevant files and line numbers
 
 **Size:** ~100-150 lines (comprehensive)
-
----
-
-### quick-continue.md - Minimal Continuation Document
-
-**When to use:** Quick handoffs for simple, focused work
-
-**Purpose:** Minimal context for fast session continuation
-
-**Created by:** `/spec_kit:handover:quick` command (default)
-
-**Location:** Spec folder root
-
-**Copy command:**
-```bash
-cp .opencode/skill/system-spec-kit/templates/quick-continue.md specs/###-name/quick-continue.md
-```
-
-**Sections to fill:**
-- Spec path (current spec folder)
-- Last completed task
-- Next pending task
-- Key files (2-3 most relevant)
-
-**Adaptation tips:**
-- Keep it minimal - this is for quick context recovery
-- Focus on "where was I?" not "what happened?"
-- List only the most critical files
-- One sentence per section is ideal
-
-**Size:** ~15 lines (minimal)
 
 ---
 
@@ -733,7 +658,7 @@ Before presenting documentation to user, verify:
 - [ ] Cross-references to sibling documents working
 - [ ] Numbering and emojis preserved
 - [ ] Structure matches template
-- [ ] Descriptive filenames used (for decision records and research-spikes)
+- [ ] Descriptive filenames used (for decision records)
 
 **If ANY unchecked → Fix before presenting to user**
 
@@ -809,16 +734,14 @@ N/A - Single file change, no scope considerations
 **Wrong:**
 ```bash
 decision-record-final.md
-research-spike-research.md
 ```
 
 **Right:**
 ```bash
 decision-record-database-choice.md
-research-spike-animation-performance.md
 ```
 
-**Why wrong:** Not descriptive, unclear what decision/research-spike is about
+**Why wrong:** Not descriptive, unclear what decision is about
 
 ---
 
@@ -847,7 +770,7 @@ spec.md and plan.md exist but don't reference each other
 **Solutions:**
 - If truly not applicable → Mark "N/A" with brief reason
 - If uncertain → Flag `[NEEDS CLARIFICATION: ...]` and ask user
-- If blocked → Create research-spike to research and inform decision
+- If blocked → Create research document to research and inform decision
 
 ### "Template doesn't fit my feature"
 
@@ -1071,12 +994,11 @@ See each sub-folder's README.md for details.
 - [tasks.md](../templates/tasks.md) - Task breakdown template
 - [checklist.md](../templates/checklist.md) - Validation checklist template (Level 2+)
 - [decision-record.md](../templates/decision-record.md) - Architecture Decision Records template (Level 3)
-- [research-spike.md](../templates/research-spike.md) - Time-boxed research template (Level 3 optional)
+
 - [research.md](../templates/research.md) - Comprehensive research template (Level 3 optional)
 
 **Session Management Templates:**
 - [handover.md](../templates/handover.md) - Full session handover document (~100-150 lines)
-- [quick-continue.md](../templates/quick-continue.md) - Minimal continuation document (~15 lines)
 - [debug-delegation.md](../templates/debug-delegation.md) - Debug task delegation for sub-agents
 
 **Summary Templates:**

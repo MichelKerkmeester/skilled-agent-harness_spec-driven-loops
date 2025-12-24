@@ -170,7 +170,7 @@ log_info() {
     ! $JSON_MODE && ! $QUIET_MODE && $VERBOSE && printf "${BLUE}ℹ${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
     [[ -n "$RESULTS" ]] && RESULTS+=","; RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"info\",\"message\":\"$(_json_escape "$2")\"}"
 }
-log_detail() { ! $JSON_MODE && ! $QUIET_MODE && printf "    - %s\n" "$1"; }
+log_detail() { ! $JSON_MODE && ! $QUIET_MODE && printf "    - %s\n" "$1"; true; }
 
 get_rule_severity() { local v="RULE_SEVERITY_$1"; eval "echo \"\${$v:-error}\""; }
 should_run_rule() { [[ "$(get_rule_severity "$1")" != "skip" ]]; }
@@ -280,9 +280,7 @@ generate_json() {
     [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && passed="false"
     local cfg="null"; [[ -n "$CONFIG_FILE_PATH" ]] && cfg="\"$(_json_escape "$CONFIG_FILE_PATH")\""
     local folder_escaped="$(_json_escape "$FOLDER_PATH")"
-    cat << EOF
-{"version":"$VERSION","folder":"$folder_escaped","level":$DETECTED_LEVEL,"levelMethod":"$LEVEL_METHOD","config":$cfg,"results":[$RESULTS],"summary":{"errors":$ERRORS,"warnings":$WARNINGS,"info":$INFOS},"passed":$passed,"strict":$STRICT_MODE}
-EOF
+    echo "{\"version\":\"$VERSION\",\"folder\":\"$folder_escaped\",\"level\":$DETECTED_LEVEL,\"levelMethod\":\"$LEVEL_METHOD\",\"config\":$cfg,\"results\":[$RESULTS],\"summary\":{\"errors\":$ERRORS,\"warnings\":$WARNINGS,\"info\":$INFOS},\"passed\":$passed,\"strict\":$STRICT_MODE}"
 }
 
 main() {

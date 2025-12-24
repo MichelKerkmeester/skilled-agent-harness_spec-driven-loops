@@ -19,7 +19,7 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research-spike.md
+Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 ```
 
 | Level               | Required Files                     | Adds To Previous        | Copy Commands              |
@@ -46,7 +46,7 @@ cp .opencode/skill/system-spec-kit/templates/checklist.md specs/###-name/checkli
 # First copy all Level 2 files, then add:
 cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/decision-record-[topic].md
 # Optional:
-cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/research-spike-[topic].md
+cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```
 
 ---
@@ -55,14 +55,11 @@ cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/re
 
 These templates are OPTIONAL and only apply to Level 3 documentation:
 
-| Template File       | Copy As                     | When to Use                                   | Copy Command                                                                                                   |
-| ------------------- | --------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `research-spike.md` | `research-spike-[topic].md` | Time-boxed research, POC, feasibility testing | `cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/research-spike-performance.md` |
-| `research.md`       | `research.md`               | Comprehensive research documentation          | `cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md`                         |
+| Template File  | Copy As       | When to Use                          | Copy Command                                                                          |
+| -------------- | ------------- | ------------------------------------ | ------------------------------------------------------------------------------------- |
+| `research.md`  | `research.md` | Comprehensive research documentation | `cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md` |
 
 **Notes:**
-- Use descriptive names for research-spikes (not generic "final" or "new")
-- Multiple research-spikes can exist per spec folder
 - These are OPTIONAL - only copy when research is needed
 - `decision-record.md` is REQUIRED at Level 3, not optional
 
@@ -118,7 +115,6 @@ specs/045-user-dashboard/
 ├── tasks.md                     (REQUIRED - from Level 2)
 ├── checklist.md                 (REQUIRED - from Level 2)
 ├── decision-record-[topic].md   (REQUIRED - architecture decisions)
-├── research-spike-[topic].md    (OPTIONAL - if research needed)
 ├── research.md                  (OPTIONAL - comprehensive research)
 └── memory/                      (OPTIONAL - context preservation)
     └── *.md                     (auto-generated via generate-context.js)
@@ -259,9 +255,6 @@ cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/d
 ### Step 5: Copy Optional Templates (Level 3 Only - If Needed)
 
 ```bash
-# Research-Spike (use descriptive name)
-cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/research-spike-performance.md
-
 # Comprehensive Research
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```

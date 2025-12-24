@@ -102,8 +102,6 @@ documentation_levels:
     - tasks.md
     - checklist.md
     - decision-record.md
-    optional_files:
-    - research-spike.md
     loc_guidance: ">=500 LOC"
     use_case: "Complex features, architecture changes, high-risk modifications"
 
@@ -125,7 +123,6 @@ available_templates:
   decision_record: .opencode/skill/system-spec-kit/templates/decision-record.md
   # Optional (any level)
   research: .opencode/skill/system-spec-kit/templates/research.md
-  research_spike: .opencode/skill/system-spec-kit/templates/research-spike.md
   # Utility (any level)
   handover: .opencode/skill/system-spec-kit/templates/handover.md
   debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md

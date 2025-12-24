@@ -41,28 +41,14 @@ session_detection:
     on_no_memory: "Report no active session, suggest /spec_kit:complete"
 
 # ─────────────────────────────────────────────────────────────────
-# CONTEXT LOADING PRIORITY (V13.0 - Simplified, STATE.md embedded in memory)
+# CONTEXT LOADING PRIORITY (V14.0 - Simplified)
 # ─────────────────────────────────────────────────────────────────
 context_loading_priority:
   order:
-    1: "quick-continue.md (if exists) - MVP fast-resume"
-    2: "handover.md (if exists, <24h old)"
-    3: "Recent memory/*.md files (contain embedded Project State Snapshot)"
+    1: "handover.md (if exists, <24h old)"
+    2: "Recent memory/*.md files (contain embedded Project State Snapshot)"
   
-  note: "V13.0: STATE.md removed - state is now embedded in memory files as 'Project State Snapshot' section"
-  
-  quick_continue:
-    check: "ls [spec_folder]/quick-continue.md 2>/dev/null"
-    if_exists:
-      action: "Load as primary context source"
-      display: "⚡ Loaded from quick-continue.md"
-      extract:
-        - "Last Completed"
-        - "Next Action"
-        - "Blockers"
-      note: "In interactive mode, still show user what was loaded"
-    if_not_exists:
-      action: "Continue to next priority (handover.md, memory/*.md)"
+  note: "Use handover.md for fast resume"
 
 # ─────────────────────────────────────────────────────────────────
 # MEMORY LOADING (INTERACTIVE - prompt for selection)
@@ -70,7 +56,7 @@ context_loading_priority:
 memory_loading:
   mode: interactive
   behavior: |
-    In interactive mode, first check for quick-continue.md.
+    In interactive mode, first check for handover.md (<24h old).
     If present, load it first and show contents to user.
     Then prompt the user to select additional memory files
     for context recovery if needed.
@@ -214,28 +200,26 @@ workflow:
         description: "Cancel resume operation"
 
   step_2_memory_selection:
-    purpose: Check for quick-continue.md first, then present memory options
+    purpose: Check for handover.md first, then present memory options
     activities:
-    - Check for quick-continue.md in spec_folder
-    - If exists, load and display "⚡ Loaded from quick-continue.md"
-    - Extract Last Completed, Next Action, Blockers from quick-continue.md
-    - Check for handover.md (<24h old)
+    - Check for handover.md in spec_folder (<24h old)
+    - If exists, load and display "⚡ Loaded from handover.md"
+    - Extract Last Completed, Next Action, Blockers from handover.md
     - Then list memory files in spec_folder/memory/
     - Sort by modification time (most recent first)
     - Memory files contain embedded Project State Snapshot (Phase, Active File, etc.)
     - Present numbered options to user for additional context
     - Wait for user selection
     context_priority:
-      1: quick-continue.md
-      2: handover.md
-      3: memory/*.md (contains Project State Snapshot)
+      1: handover.md
+      2: memory/*.md (contains Project State Snapshot)
     outputs:
-    - quick_continue_loaded: true|false
+    - handover_loaded: true|false
     - selected_memory: user_choice
     - load_count: number_of_files
     checkpoint:
       question: "Load additional context?"
-      note: "If quick-continue.md was loaded, user may skip additional memory loading"
+      note: "If handover.md was loaded, user may skip additional memory loading"
       use: present_options_to_user
       options:
       - label: "A) Load most recent memory file"
@@ -248,10 +232,10 @@ workflow:
         description: "Continue with current context only"
 
   step_3_load_memory:
-    purpose: Load selected memory files (in addition to quick-continue.md if loaded)
+    purpose: Load selected memory files (in addition to handover.md if loaded)
     activities:
     - Read selected memory file(s) from step 2
-    - Merge with quick-continue.md context if already loaded
+    - Merge with handover.md context if already loaded
     - Extract Project State Snapshot (Phase, Active File, Last/Next Action, Blockers)
     - Extract key context (decisions, pending work, next actions)
     - Parse and summarize combined context
@@ -260,7 +244,7 @@ workflow:
       note: "Call directly - NEVER through Code Mode"
     outputs:
     - memory_loaded: true
-    - context_source: quick-continue|handover|memory|combined
+    - context_source: handover|memory|combined
     - context_summary: extracted_context
     validation: context_loaded
 

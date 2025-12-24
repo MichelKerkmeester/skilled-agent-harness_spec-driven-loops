@@ -35,7 +35,7 @@ run_check() {
     
     # Process checklist line by line
     while IFS= read -r line || [[ -n "$line" ]]; do
-        ((line_number++))
+        ((line_number++)) || true
         
         # Check for priority section headers
         # Matches: ## P0, ## P0 - Blockers, ### P0:, ## P1, etc.
@@ -49,7 +49,7 @@ run_check() {
             # Validate item format: must have space after ] and description text
             if [[ ! "$line" =~ ^[[:space:]]*-[[:space:]]\[[[:space:]xX]\][[:space:]]+.+ ]]; then
                 RULE_DETAILS+=("Line $line_number: Invalid format (missing space or description)")
-                ((items_without_priority++))
+                ((items_without_priority++)) || true
                 continue
             fi
             
@@ -73,7 +73,7 @@ run_check() {
                 desc="${desc:0:50}"
                 [[ ${#desc} -eq 50 ]] && desc="${desc}..."
                 RULE_DETAILS+=("Line $line_number: $desc")
-                ((items_without_priority++))
+                ((items_without_priority++)) || true
             fi
         fi
     done < "$checklist"

@@ -513,9 +513,20 @@ function buildExchanges(prompts, messages, responses, limit) {
       return responseMsg?.parentId === userMsg.id;
     });
 
+    // Build meaningful exchange with proper fallbacks
+    // Avoid placeholder values like '[response]' that pollute memory files
+    const userInput = prompt?.input || userMsg.summary?.title || null;
+    const assistantResponse = response?.content?.substring(0, 500) || null;
+    
+    // Only include exchanges that have meaningful content
+    // Skip exchanges where both user and assistant content are missing
+    if (!userInput && !assistantResponse) {
+      continue; // Skip empty exchanges
+    }
+    
     exchanges.unshift({
-      userInput: prompt?.input || userMsg.summary?.title || '[user message]',
-      assistantResponse: response?.content?.substring(0, 500) || '[response]',
+      userInput: userInput || 'User initiated conversation',
+      assistantResponse: assistantResponse || 'Assistant processed request', 
       timestamp: userMsg.created,
       userMessageId: userMsg.id,
       assistantMessageId: response?.messageId || null,

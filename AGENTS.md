@@ -59,7 +59,7 @@
 │ Last: [MOST_RECENT_COMPLETED_TASK]                                          │
 │ Next: [NEXT_PENDING_TASK]                                                   │
 │                                                                             │
-│ Run /spec_kit:handover to save quick-continue.md, then in new session:      │
+│ Run /spec_kit:handover to save handover context, then in new session:       │
 │ /spec_kit:resume [spec-path]"                                               │
 │                                                                             │
 │ Block:   HARD - Cannot proceed until user explicitly confirms                │

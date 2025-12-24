@@ -21,7 +21,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research
 |-----------|-------|-------------------|-------------------|
 | Any task (baseline) | 1 | spec.md + plan.md + tasks.md | None |
 | Needs QA validation | 2 | L1 + checklist.md | None |
-| Complex/architectural | 3 | L2 + decision-record.md | research-spike.md, research.md |
+| Complex/architectural | 3 | L2 + decision-record.md | research.md |
 
 **LOC as soft guidance:**
 - <100 LOC suggests Level 1
@@ -57,9 +57,6 @@ cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/d
 ### Optional Templates (Level 3 Only)
 
 ```bash
-## Research-Spike (use descriptive name):
-cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/research-spike-performance.md
-
 ## Comprehensive Research:
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```
@@ -202,7 +199,7 @@ If scope grows during implementation, add the required files:
 | From | To | Files to Add |
 |------|----|--------------|
 | 1 → 2 | Add verification | checklist.md |
-| 2 → 3 | Add decision documentation | decision-record.md (+ optional research-spike.md) |
+| 2 → 3 | Add decision documentation | decision-record.md (+ optional research.md) |
 
 **Always:**
 - Update `level:` field in metadata
@@ -284,20 +281,6 @@ If scope grows during implementation, add the required files:
 
 ---
 
-### "When do I create a research-spike?"
-
-**Create `research-spike-*.md` BEFORE implementation when:**
-- Technical feasibility unknown
-- Need to evaluate multiple approaches
-- Research required (performance, POC)
-- Time-boxed exploration needed (1-3 days)
-
-**Research-spike results inform spec and plan documents.**
-
-**Format:** Use descriptive name (e.g., `research-spike-animation-performance.md`)
-
----
-
 ## 11. 📋 WHAT REQUIRES SPEC FOLDERS
 
 | File Type | Requires Spec | Examples |
@@ -364,7 +347,7 @@ Before presenting documentation to user:
 - [ ] Cross-references to sibling documents working
 - [ ] Numbering and emojis preserved
 - [ ] Structure matches template
-- [ ] Descriptive filenames used (for decision records and research-spikes)
+- [ ] Descriptive filenames used (for decision records)
 
 **If ANY unchecked → Fix before user presentation**
 **If required template missing → Cannot claim completion**
@@ -405,8 +388,6 @@ node .opencode/skill/system-memory/scripts/generate-context.js specs/###-folder/
 - `/spec_kit:handover:full` - Comprehensive handover with full context
 
 **Purpose:** Creates a continuation document for seamless session transitions.
-
-**Output location:** `specs/###-folder/memory/quick-continue.md`
 
 **Use when:**
 - Ending a long session
@@ -559,11 +540,9 @@ When in doubt:
 - [decision-record.md](../templates/decision-record.md) - Architecture Decision Records template (Level 3)
 
 **Research Templates (Level 3 optional):**
-- [research-spike.md](../templates/research-spike.md) - Time-boxed research template
 - [research.md](../templates/research.md) - Comprehensive research template
 
 **Session Management Templates:**
-- [quick-continue.md](../templates/quick-continue.md) - Minimal handover for session continuation
 - [handover.md](../templates/handover.md) - Full session handover document
 - [debug-delegation.md](../templates/debug-delegation.md) - Debug task delegation template
 

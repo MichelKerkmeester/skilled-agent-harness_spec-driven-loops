@@ -18,7 +18,7 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research-spike.md
+Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 ```
 
 ---
@@ -155,24 +155,7 @@ Completed checklist items MUST include verification evidence:
 
 ---
 
-## 5.2 📚 RESEARCH VS SPIKE TEMPLATES
-
-**When to use which:**
-
-| Template              | Use When                                                                   | Time Investment | Output                           |
-| --------------------- | -------------------------------------------------------------------------- | --------------- | -------------------------------- |
-| **research.md**       | Deep technical investigation spanning multiple areas BEFORE implementation | 1-2 days        | Comprehensive findings document  |
-| **research-spike.md** | Time-boxed experimentation to answer specific technical questions          | 1-3 hours       | Go/no-go decision with rationale |
-
-**Decision logic:**
-- **Need to explore multiple approaches?** → Use spike (compare options quickly)
-- **Need deep understanding of unfamiliar area?** → Use research (thorough investigation)
-- **Feasibility unknown?** → Use spike (quick validation)
-- **Complex feature requiring architecture decisions?** → Use research first, then spike for unknowns
-
----
-
-## 5.3 ✅ VALIDATION RULES REFERENCE
+## 5.2 ✅ VALIDATION RULES REFERENCE
 
 The spec validation system (`validate-spec.sh`) checks documentation quality using these rules:
 
@@ -235,7 +218,7 @@ If scope grows during implementation, escalate by adding the required files:
 | From Level | To Level                   | Action                                                | Files to Add |
 | ---------- | -------------------------- | ----------------------------------------------------- | ------------ |
 | 1 → 2      | Add verification           | `checklist.md`                                        |
-| 2 → 3      | Add decision documentation | `decision-record.md` (+ optional `research-spike.md`) |
+| 2 → 3      | Add decision documentation | `decision-record.md` (+ optional `research.md`) |
 
 **Changelog example:**
 ```markdown

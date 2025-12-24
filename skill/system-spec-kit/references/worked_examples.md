@@ -93,7 +93,7 @@ Migrate to GraphQL with Apollo Server...
 **Output:**
 ```
 AI: Loading context for specs/009-notification-system/
-    Found: quick-continue.md (from 2 hours ago)
+    Found: handover.md (from 2 hours ago)
     
     CONTINUATION - Attempt 2
     Last: Completed notification component

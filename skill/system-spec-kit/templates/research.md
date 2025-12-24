@@ -16,10 +16,8 @@ Complete research documentation providing in-depth technical analysis, architect
 - Investigation covers 3+ major technical domains (APIs, data models, integrations, etc.)
 
 **Do NOT use when:**
-- Time-boxed experiments (use research-spike.md instead)
 - Simple feature specifications (use spec.md)
 - Architecture decisions only (use decision-record.md or include in this doc)
-- Quick proof-of-concept work (use research-spike.md)
 
 **This template is designed for comprehensive feature research that will guide implementation.**
 

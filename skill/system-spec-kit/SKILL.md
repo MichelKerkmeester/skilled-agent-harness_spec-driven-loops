@@ -95,11 +95,11 @@ User Request
 | Command               | Primary Resources                                 | Templates Used                 |
 | --------------------- | ------------------------------------------------- | ------------------------------ |
 | `/spec_kit:plan`      | level_specifications.md, level_decision_matrix.md | spec.md, plan.md               |
-| `/spec_kit:research`  | quick_reference.md                                | research.md, research-spike.md |
+| `/spec_kit:research`  | quick_reference.md                                | research.md                    |
 | `/spec_kit:implement` | validation_rules.md, template_guide.md            | tasks.md, checklist.md         |
 | `/spec_kit:debug`     | quick_reference.md, parallel_dispatch_config.md   | debug-delegation.md            |
 | `/spec_kit:complete`  | validation_rules.md                               | —                              |
-| `/spec_kit:handover`  | quick_reference.md                                | handover.md, quick-continue.md |
+| `/spec_kit:handover`  | quick_reference.md                                | handover.md                    |
 | `/spec_kit:resume`    | quick_reference.md                                | —                              |
 
 ### Resource Inventory
@@ -110,8 +110,8 @@ User Request
 | ----- | ---------------------------- | --------------------------------------------------- |
 | 1     | spec.md, plan.md, tasks.md   | —                                                   |
 | 2     | Level 1 + checklist.md       | —                                                   |
-| 3     | Level 2 + decision-record.md | research.md, research-spike.md                      |
-| Any   | —                            | handover.md, debug-delegation.md, quick-continue.md |
+| 3     | Level 2 + decision-record.md | research.md                                         |
+| Any   | —                            | handover.md, debug-delegation.md                    |
 
 **References (`references/`):**
 | File                     | Purpose                  | When to Load               |

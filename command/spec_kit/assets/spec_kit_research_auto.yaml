@@ -101,8 +101,6 @@ documentation_levels:
     - tasks.md
     - checklist.md
     - decision-record.md
-    optional_files:
-    - research-spike.md
     loc_guidance: ">=500 LOC"
     use_case: "Complex features, architecture changes, high-risk modifications"
 
@@ -116,7 +114,6 @@ documentation_levels:
 available_templates:
   # Research workflow primary outputs
   research: .opencode/skill/system-spec-kit/templates/research.md
-  research_spike: .opencode/skill/system-spec-kit/templates/research-spike.md
   # Level 3 (Full)
   decision_record: .opencode/skill/system-spec-kit/templates/decision-record.md
   # Level 2+ (Verification)

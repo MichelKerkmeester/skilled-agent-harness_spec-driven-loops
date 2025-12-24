@@ -47,6 +47,7 @@ const STOP_WORDS_ENGLISH = new Set([
 
 /**
  * Tech stop words - common programming terms with low discriminative value
+ * Also includes placeholder terms that indicate poor quality extraction
  */
 const STOP_WORDS_TECH = new Set([
   'function', 'variable', 'const', 'let', 'var', 'class', 'method',
@@ -59,7 +60,10 @@ const STOP_WORDS_TECH = new Set([
   'new', 'delete', 'typeof', 'instanceof', 'try', 'catch', 'throw',
   'finally', 'break', 'continue', 'switch', 'case', 'else', 'error',
   'data', 'result', 'response', 'request', 'input', 'output', 'path',
-  'name', 'index', 'item', 'list', 'node', 'element', 'component'
+  'name', 'index', 'item', 'list', 'node', 'element', 'component',
+  // Placeholder and fallback terms (indicate extraction from poor quality data)
+  'placeholder', 'simulation', 'simulated', 'fallback', 'unknown',
+  'message', 'user', 'assistant', 'processed', 'initiated', 'conversation'
 ]);
 
 /**
@@ -646,6 +650,25 @@ function extractTriggerPhrases(text) {
   }
 
   if (text.length < CONFIG.MIN_CONTENT_LENGTH) {
+    return [];
+  }
+  
+  // Pre-filter: Check if content is mostly placeholder/simulation data
+  // If so, return empty to avoid extracting meaningless triggers
+  const lowerText = text.toLowerCase();
+  const placeholderIndicators = [
+    'simulation mode',
+    '[response]',
+    'placeholder data',
+    'fallback data',
+    'no real conversation data',
+    'simulated user message',
+    'simulated assistant response'
+  ];
+  
+  const placeholderCount = placeholderIndicators.filter(p => lowerText.includes(p)).length;
+  if (placeholderCount >= 2) {
+    // Content is primarily placeholder/simulation - don't extract triggers
     return [];
   }
 

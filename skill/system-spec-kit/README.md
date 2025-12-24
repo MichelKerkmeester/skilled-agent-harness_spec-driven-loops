@@ -13,7 +13,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | Pain Point             | Original Spec Kit | This Enhanced Fork                               |
 | ---------------------- | ----------------- | ------------------------------------------------ |
 | **Context Loss**       | Manual recovery   | Auto-saved with ANCHOR format                    |
-| **Templates**          | ~5 basic files    | 12 purpose-built templates                       |
+| **Templates**          | ~5 basic files    | 10 purpose-built templates                       |
 | **Commands**           | Manual workflow   | 7 slash commands with `:auto`/`:confirm` modes   |
 | **Memory Integration** | None              | Deep integration via `generate-context.js`       |
 | **Quality Gates**      | None              | 8 gates enforce nothing slips through            |
@@ -23,7 +23,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | **Folder Versioning**  | Overwrite         | Sub-folder patterns                   |
 | **Automation**         | None              | 7 scripts handle the boring work                 |
 
-> **The bottom line:** 12 templates, 7 commands, 7 scripts, 0 excuses for losing context.
+> **The bottom line:** 10 templates, 7 commands, 7 scripts, 0 excuses for losing context.
 
 ---
 
@@ -32,7 +32,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 DIRECTORY STRUCTURE](#2--directory-structure)
 - [3. 📊 DOCUMENTATION LEVELS (1-3)](#3--documentation-levels-1-3)
-- [4. 📝 TEMPLATES (12 TOTAL)](#4--templates-12-total)
+- [4. 📝 TEMPLATES (10 TOTAL)](#4--templates-10-total)
 - [5. ⚙️ SCRIPTS](#5--scripts)
 - [6. 🎯 COMMANDS (7 TOTAL)](#6--commands-7-total)
 - [7. 🔄 HOW IT WORKS](#7--how-it-works)
@@ -60,7 +60,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 
 | Category   | Count  | Details                                                                  |
 | ---------- | ------ | ------------------------------------------------------------------------ |
-| Templates  | 12     | Markdown templates for specs, plans, research, decisions, handover       |
+| Templates  | 10     | Markdown templates for specs, plans, research, decisions, handover       |
 | Scripts    | 7      | Shell scripts for automation and validation                              |
 | Assets     | 3      | Decision support tools (level matrix, template mapping, parallel config) |
 | References | 5      | Detailed workflow documentation                                          |
@@ -118,9 +118,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   ├── checklist.md        # QA validation (Level 2+)
 │   ├── decision-record.md  # Architecture decisions (Level 3)
 │   ├── research.md         # Comprehensive research (Level 3 optional)
-│   ├── research-spike.md   # Time-boxed PoC (Level 3 optional)
 │   ├── handover.md         # Full session continuity (utility)
-│   ├── quick-continue.md   # Minimal session handoff (utility)
 │   └── debug-delegation.md # Sub-agent debugging (utility)
 └── scripts/                # Modular validation architecture
     ├── lib/                    # Shared libraries
@@ -289,7 +287,7 @@ Utility (any level):    handover.md, debug-delegation.md
 ### Level 3: Full Documentation
 
 - **Required Files**: Level 2 + `decision-record.md`
-- **Optional Files**: `research.md`, `research-spike.md`
+- **Optional Files**: `research.md`
 - **Use When**: Complex features, architecture changes, major decisions
 - **Examples**: Major feature, system redesign, multi-team projects
 
@@ -318,7 +316,7 @@ These factors can override LOC and push to a higher level:
 
 ---
 
-## 4. 📝 TEMPLATES (12 TOTAL)
+## 4. 📝 TEMPLATES (10 TOTAL)
 
 All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEVER create documentation from scratch** - always copy from templates and fill placeholders.
 
@@ -332,9 +330,7 @@ All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEV
 | `checklist.md`        | 2+    | Required | ~100  | Validation/QA checklists (P0/P1/P2)     |
 | `decision-record.md`  | 3     | Required | ~90   | Architecture Decision Records (ADR)     |
 | `research.md`         | 3     | Optional | ~878  | Comprehensive multi-domain research     |
-| `research-spike.md`   | 3     | Optional | ~100  | Time-boxed research/PoC                 |
 | `handover.md`             | Any   | Utility  | ~100  | Full session continuity (7 sections)    |
-| `quick-continue.md`       | Any   | Utility  | ~15   | Minimal session handoff for branching   |
 | `debug-delegation.md`     | Any   | Utility  | ~64   | Sub-agent debugging delegation          |
 | `implementation-summary.md` | Any | Utility  | ~50   | Implementation completion summary       |
 | `planning-summary.md`     | Any   | Utility  | ~50   | Planning phase summary                  |
@@ -449,27 +445,6 @@ cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/d
 **Copy Command**:
 ```bash
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
-```
-
-#### `research-spike.md` - Time-Boxed Research
-
-**Purpose**: Time-boxed technical investigation to answer specific questions or validate approaches
-
-**Key Sections**:
-- Research question & hypothesis
-- Time box (recommended: 2-4 hours)
-- Experiment design & success criteria
-- Findings & recommendations
-- Decision: proceed, pivot, or abandon
-
-**When to Use**:
-- Proof-of-concept validation
-- Evaluating specific library or API
-- Answering targeted technical questions
-
-**Copy Command**:
-```bash
-cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/research-spike-[topic].md
 ```
 
 ### Utility Templates
@@ -1008,9 +983,9 @@ Seven Spec Kit commands transform multi-step workflows into single invocations.
 | `/spec_kit:complete`  | 12    | Full end-to-end workflow          | All templates                             |
 | `/spec_kit:plan`      | 7     | Planning only (no implementation) | spec, plan, checklist                     |
 | `/spec_kit:implement` | 8     | Execute pre-planned work          | tasks, checklist                          |
-| `/spec_kit:research`  | 9     | Technical investigation           | research, research-spike, decision-record |
+| `/spec_kit:research`  | 9     | Technical investigation           | research, decision-record                 |
 | `/spec_kit:resume`    | 4-5   | Resume previous session           | Loads memory/                             |
-| `/spec_kit:handover`  | 4-5   | Create session handover document  | quick-continue.md or handover.md          |
+| `/spec_kit:handover`  | 4-5   | Create session handover document  | handover.md                               |
 | `/spec_kit:debug`     | 4-5   | Delegate debugging to sub-agent   | debug-delegation.md                       |
 
 ### Core Commands (6)
@@ -1066,7 +1041,7 @@ Comprehensive technical research workflow.
 
 **Steps (9)**:
 1. Define research scope
-2. Create research.md or research-spike.md
+2. Create research.md
 3. Conduct investigation
 4. Document findings
 5. Evaluate options
@@ -1079,16 +1054,12 @@ Comprehensive technical research workflow.
 
 Create session handover document for continuing work in new conversations.
 
-**Variants**:
-- `:quick` (default) - Creates minimal `quick-continue.md` (~15 lines)
-- `:full` - Creates comprehensive `handover.md` via Sonnet agent (~100-150 lines)
-
 **Steps (4-5)**:
 1. Validate/detect spec folder
 2. Gather session context
-3. Create handover document
+3. Create handover.md document
 4. Display continuation instructions
-5. (Full only) Analyze session via Sonnet agent
+5. Analyze session via Sonnet agent (optional)
 
 #### `/spec_kit:debug` - Debug Delegation
 
@@ -1141,22 +1112,6 @@ Each core command supports two execution modes:
 ```bash
 /spec_kit:complete add user authentication :auto
 /spec_kit:plan refactor database layer :confirm
-```
-
-### Handover Variants
-
-The `/spec_kit:handover` command supports two variants:
-
-| Suffix   | Variant | Output File       | Description                             |
-| -------- | ------- | ----------------- | --------------------------------------- |
-| `:quick` | Quick   | quick-continue.md | Minimal handoff (~15 lines) - default   |
-| `:full`  | Full    | handover.md       | Comprehensive handover (~100-150 lines) |
-
-**Examples**:
-```bash
-/spec_kit:handover                    # Quick (default)
-/spec_kit:handover:quick              # Quick (explicit)
-/spec_kit:handover:full specs/014-*/  # Full with spec path
 ```
 
 ### Workflow Decision Guide
@@ -1373,7 +1328,6 @@ cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/042-featur
 
 # Optional research
 cp .opencode/skill/system-spec-kit/templates/research.md specs/042-feature/research.md
-cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/042-feature/research-spike-auth-library.md
 
 # Utility templates
 cp .opencode/skill/system-spec-kit/templates/handover.md specs/042-feature/handover.md
@@ -1687,14 +1641,6 @@ A: Yes, if the change modifies files (code, docs, config). For truly trivial cha
 
 ---
 
-**Q: What's the difference between `research.md` and `research-spike.md`?**
-
-A:
-- **`research.md`**: Comprehensive multi-domain research (architecture, security, performance). Use for deep investigations before major features. (~878 lines, 17 sections)
-- **`research-spike.md`**: Time-boxed experiments (2-4 hours). Use for quick proof-of-concept validation or answering specific technical questions.
-
----
-
 **Q: Which command should I start with?**
 
 A: Use this decision tree:
@@ -1728,7 +1674,7 @@ A: Yes. When the workflow detects existing content, it offers sub-folder version
 
 ---
 
-**Q: What are the 12 templates?**
+**Q: What are the 10 templates?**
 
 A:
 1. `spec.md` - Feature specification (Level 1+)
@@ -1737,12 +1683,10 @@ A:
 4. `checklist.md` - QA validation (Level 2+)
 5. `decision-record.md` - Architecture decisions (Level 3)
 6. `research.md` - Comprehensive research (Level 3 optional)
-7. `research-spike.md` - Time-boxed PoC (Level 3 optional)
-8. `handover.md` - Full session continuity (utility, ~100-150 lines)
-9. `quick-continue.md` - Minimal session handoff (utility, ~15 lines)
-10. `debug-delegation.md` - Sub-agent debugging (utility)
-11. `implementation-summary.md` - Implementation completion summary (utility)
-12. `planning-summary.md` - Planning phase summary (utility)
+7. `handover.md` - Full session continuity (utility, ~100-150 lines)
+8. `debug-delegation.md` - Sub-agent debugging (utility)
+9. `implementation-summary.md` - Implementation completion summary (utility)
+10. `planning-summary.md` - Planning phase summary (utility)
 
 ---
 
@@ -1773,7 +1717,7 @@ A: The original Spec Kit is a concept. This fork is a complete system:
 
 | What You Get       | Original | This Fork                           |
 | ------------------ | -------- | ----------------------------------- |
-| Templates          | Basic    | 12 production-ready                 |
+| Templates          | Basic    | 10 production-ready                 |
 | Automation         | None     | 7 scripts                           |
 | Commands           | None     | 7 with mode variants                |
 | Memory Integration | None     | Semantic search across sessions     |

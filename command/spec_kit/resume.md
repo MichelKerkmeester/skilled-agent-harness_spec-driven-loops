@@ -132,9 +132,6 @@ EXECUTE AFTER PHASE 1 PASSES:
    Required (at least ONE must exist):
    - spec.md
    - plan.md OR tasks.md
-   
-   Optional (check for fast-resume context):
-   - quick-continue.md (if present, load as primary context source)
 
 2. CHECK command invocation for mode suffix:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
@@ -382,22 +379,9 @@ mcp__semantic_memory__memory_search(...)      // NO - wrong prefix syntax
 
 ### Context Loading Priority
 
-1. quick-continue.md (if exists) - fast-resume handover
-2. handover.md (if exists, <24h old)
-3. Recent memory/*.md files
-4. checklist.md for progress state
-
-### Context Validation (quick-continue.md)
-
-When loading quick-continue.md, validate it contains required fields:
-- "CONTINUATION - Attempt" header
-- "Last Completed" field  
-- "Next Action" field
-
-If validation fails (missing required fields), fall back to:
-1. handover.md (if exists and <24h old)
-2. Most recent memory/*.md file
-3. checklist.md for progress state only
+1. handover.md (if exists, <24h old)
+2. Recent memory/*.md files
+3. checklist.md for progress state
 
 **Note:** Stateless architecture - no `.spec-active` marker file used.
 

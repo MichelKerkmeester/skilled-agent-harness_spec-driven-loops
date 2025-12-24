@@ -144,7 +144,6 @@ prerequisites:
   optional_artifacts:
   - "[SPEC_FOLDER]/planning-summary.md"
   - "[SPEC_FOLDER]/research.md"
-  - "[SPEC_FOLDER]/research-spike-*.md"
   verification: MUST EXIST BEFORE PROCEEDING
   note: This workflow assumes planning completed via /spec_kit:plan
 
@@ -342,7 +341,6 @@ workflow:
     optional_documents:
     - planning-summary.md
     - research.md
-    - research-spike-*.md
     - decision-record-*.md
     deep_analysis:
       focus: comprehensive_plan_review

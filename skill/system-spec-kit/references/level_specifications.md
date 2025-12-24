@@ -8,7 +8,7 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research-spike.md
+Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 ```
 
 **Key Points:**
@@ -226,7 +226,6 @@ specs/012-user-profile-api/
 
 ### Optional Files
 
-- `research-spike.md` - Time-boxed research/PoC (prefix with topic)
 - `research.md` - Comprehensive research documentation
 
 ### Content Expectations
@@ -239,13 +238,6 @@ specs/012-user-profile-api/
 - Decision made
 - Rationale
 - Consequences and trade-offs
-
-**research-spike-[name].md (if used):**
-- Research question
-- Approach and experiments
-- Findings and recommendations
-- Decision (go/no-go)
-- Time-boxed (1-3 days typically)
 
 **Enforcement:** Hard block if `decision-record.md` missing
 
@@ -268,7 +260,6 @@ specs/012-user-profile-api/
 - `.opencode/skill/system-spec-kit/templates/tasks.md`
 - `.opencode/skill/system-spec-kit/templates/checklist.md`
 - `.opencode/skill/system-spec-kit/templates/decision-record.md`
-- `.opencode/skill/system-spec-kit/templates/research-spike.md` (optional)
 - `.opencode/skill/system-spec-kit/templates/research.md` (optional)
 
 ### Template Adaptation
@@ -285,15 +276,6 @@ specs/012-user-profile-api/
 7. Use descriptive filename (e.g., `decision-record-database-choice.md`)
 8. Remove all sample content
 
-**research-spike-[topic].md (if used):**
-1. State clear research question upfront
-2. Document approach and experiments
-3. Provide data-driven findings (not opinions)
-4. Make clear recommendation with rationale
-5. Time-box appropriately (don't let spike become implementation)
-6. Use descriptive filename
-7. Remove all sample content
-
 ---
 
 ## 4. 🔄 LEVEL MIGRATION
@@ -305,7 +287,7 @@ If you discover mid-work that scope is larger than anticipated, escalate by addi
 | From  | To                         | Action                                                | Files to Add |
 | ----- | -------------------------- | ----------------------------------------------------- | ------------ |
 | 1 → 2 | Add verification           | `checklist.md`                                        |
-| 2 → 3 | Add decision documentation | `decision-record.md` (+ optional `research-spike.md`) |
+| 2 → 3 | Add decision documentation | `decision-record.md` (+ optional `research.md`) |
 
 **Changelog example:**
 
@@ -466,7 +448,7 @@ Search existing specs (folder names, titles)
 - [tasks.md](../templates/tasks.md) - Task breakdown template
 - [checklist.md](../templates/checklist.md) - Validation checklist template (Level 2+)
 - [decision-record.md](../templates/decision-record.md) - Architecture Decision Records template (Level 3)
-- [research-spike.md](../templates/research-spike.md) - Time-boxed research template (Level 3 optional)
+
 - [research.md](../templates/research.md) - Comprehensive research template (Level 3 optional)
 
 ### Related Skills

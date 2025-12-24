@@ -2,12 +2,12 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: planning-summary | v1.0 -->
 
 ## Metadata
-| Field | Value |
-|-------|-------|
-| **Spec Folder** | [YOUR_VALUE_HERE: ###-feature-name] |
-| **Planning Completed** | [FORMAT: YYYY-MM-DD] |
-| **Level** | [FORMAT: 1 | 2 | 3] |
-| **Ready for Implementation** | [FORMAT: Yes | No | Needs Review] |
+| Field                        | Value                               |
+| ---------------------------- | ----------------------------------- |
+| **Spec Folder**              | [YOUR_VALUE_HERE: ###-feature-name] |
+| **Planning Completed**       | [FORMAT: YYYY-MM-DD]                |
+| **Level**                    | [FORMAT: 1                          | 2  | 3]            |
+| **Ready for Implementation** | [FORMAT: Yes                        | No | Needs Review] |
 
 ## 1. Planning Outcome
 
@@ -15,17 +15,17 @@
 
 ## 2. Documents Created
 
-| Document | Status | Notes |
-|----------|--------|-------|
-| spec.md | [✅ Complete / 🔄 Draft] | [Notes] |
-| plan.md | [✅ Complete / 🔄 Draft] | [Notes] |
-| checklist.md | [✅ Complete / ⏭️ N/A (L1)] | [Notes] |
+| Document           | Status                       | Notes   |
+| ------------------ | ---------------------------- | ------- |
+| spec.md            | [✅ Complete / 🔄 Draft]       | [Notes] |
+| plan.md            | [✅ Complete / 🔄 Draft]       | [Notes] |
+| checklist.md       | [✅ Complete / ⏭️ N/A (L1)]    | [Notes] |
 | decision-record.md | [✅ Complete / ⏭️ N/A (L1/L2)] | [Notes] |
 
 ## 3. Key Planning Decisions
 
-| Decision | Rationale |
-|----------|-----------|
+| Decision                    | Rationale         |
+| --------------------------- | ----------------- |
 | [YOUR_VALUE_HERE: decision] | [Why this choice] |
 
 ## 4. Scope Definition
@@ -38,8 +38,8 @@
 
 ## 5. Risk Assessment
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|------------|--------|------------|
+| Risk                    | Likelihood     | Impact         | Mitigation            |
+| ----------------------- | -------------- | -------------- | --------------------- |
 | [YOUR_VALUE_HERE: risk] | [High/Med/Low] | [High/Med/Low] | [Mitigation strategy] |
 
 ## 6. Implementation Readiness

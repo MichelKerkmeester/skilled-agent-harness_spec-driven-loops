@@ -183,11 +183,6 @@ if [[ -d "$DECISIONS_DIR" ]] && [[ -n "$(ls -A "$DECISIONS_DIR" 2>/dev/null)" ]]
     docs+=("decisions/")
 fi
 
-# Check research-spikes directory (only if it exists and has files)
-if [[ -d "$RESEARCH_SPIKES_DIR" ]] && [[ -n "$(ls -A "$RESEARCH_SPIKES_DIR" 2>/dev/null)" ]]; then
-    docs+=("research-spikes/")
-fi
-
 # Include tasks.md if requested and it exists
 if $INCLUDE_TASKS && [[ -f "$TASKS" ]]; then
     docs+=("tasks.md")
@@ -216,7 +211,6 @@ else
     check_file "$QUICKSTART" "quickstart.md"
     check_dir "$CHECKLISTS_DIR" "checklists/"
     check_dir "$DECISIONS_DIR" "decisions/"
-    check_dir "$RESEARCH_SPIKES_DIR" "research-spikes/"
     
     if $INCLUDE_TASKS; then
         check_file "$TASKS" "tasks.md"

@@ -54,7 +54,6 @@ declare -a TEMPLATE_FILES=(
   'tasks.md'
   'checklist.md'
   'research.md'
-  'research-spike-*.md'
   'decision-record-*.md'
 )
 
@@ -181,7 +180,7 @@ get_min_words_for_file() {
     checklist)
       echo "$MIN_WORDS_CHECKLIST"
       ;;
-    research|research-spike-*)
+    research)
       echo "$MIN_WORDS_RESEARCH"
       ;;
     *)
@@ -264,7 +263,7 @@ check_required_sections() {
         "\- \[ \]"
       )
       ;;
-    research|research-spike-*)
+    research)
       required_sections=(
         "## "
         "Finding"

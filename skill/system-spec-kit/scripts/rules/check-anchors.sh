@@ -38,7 +38,7 @@ run_check() {
     local file_count=0
     
     for file in "${memory_files[@]}"; do
-        ((file_count++))
+        ((file_count++)) || true
         local filename
         filename=$(basename "$file")
         

@@ -34,7 +34,7 @@ run_check() {
     local missing_count=0
     
     while IFS= read -r line || [[ -n "$line" ]]; do
-        ((line_num++))
+        ((line_num++)) || true
         
         # Detect priority section headers (## P0, ## P1, ## P2)
         if [[ "$line" =~ ^##[[:space:]]+(P[0-2]) ]]; then
@@ -74,7 +74,7 @@ run_check() {
             [[ "$line_lower" == *"[deferred:"* ]] && has_evidence=true
             
             if [[ "$has_evidence" == "false" ]]; then
-                ((missing_count++))
+                ((missing_count++)) || true
                 # Truncate long task descriptions for display
                 local display_task="$task_text"
                 if [[ ${#display_task} -gt 50 ]]; then

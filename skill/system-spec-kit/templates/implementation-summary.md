@@ -2,26 +2,26 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v1.0 -->
 
 ## Metadata
-| Field | Value |
-|-------|-------|
-| **Spec Folder** | [YOUR_VALUE_HERE: ###-feature-name] |
-| **Completed** | [FORMAT: YYYY-MM-DD] |
-| **Duration** | [YOUR_VALUE_HERE: time from start to completion] |
-| **Level** | [FORMAT: 1 | 2 | 3] |
+| Field           | Value                                            |
+| --------------- | ------------------------------------------------ |
+| **Spec Folder** | [YOUR_VALUE_HERE: ###-feature-name]              |
+| **Completed**   | [FORMAT: YYYY-MM-DD]                             |
+| **Duration**    | [YOUR_VALUE_HERE: time from start to completion] |
+| **Level**       | [FORMAT: 1                                       | 2 | 3] |
 
 ## 1. What Was Built
 
 [YOUR_VALUE_HERE: 2-3 sentence summary of what was implemented]
 
 ### Files Created/Modified
-| File | Action | Purpose |
-|------|--------|---------|
+| File                    | Action                     | Purpose         |
+| ----------------------- | -------------------------- | --------------- |
 | [YOUR_VALUE_HERE: path] | [Created/Modified/Deleted] | [Brief purpose] |
 
 ## 2. Key Decisions Made
 
-| Decision | Rationale | Alternatives Considered |
-|----------|-----------|------------------------|
+| Decision                    | Rationale         | Alternatives Considered    |
+| --------------------------- | ----------------- | -------------------------- |
 | [YOUR_VALUE_HERE: decision] | [Why this choice] | [What else was considered] |
 
 ## 3. Technical Details
@@ -37,11 +37,11 @@
 
 ## 4. Testing & Verification
 
-| Test Type | Status | Notes |
-|-----------|--------|-------|
-| Unit Tests | [✅ Pass / ❌ Fail / ⏭️ Skipped] | [Notes] |
+| Test Type   | Status                        | Notes   |
+| ----------- | ----------------------------- | ------- |
+| Unit Tests  | [✅ Pass / ❌ Fail / ⏭️ Skipped] | [Notes] |
 | Integration | [✅ Pass / ❌ Fail / ⏭️ Skipped] | [Notes] |
-| Browser | [✅ Pass / ❌ Fail / ⏭️ Skipped] | [Notes] |
+| Browser     | [✅ Pass / ❌ Fail / ⏭️ Skipped] | [Notes] |
 
 ## 5. Known Limitations
 

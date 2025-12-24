@@ -233,7 +233,6 @@ async function detectRelatedDocs(specFolderPath) {
     { name: 'checklist.md', role: 'QA checklist' },
     { name: 'decision-record.md', role: 'Architecture decisions' },
     { name: 'research.md', role: 'Research findings' },
-    { name: 'research-spike.md', role: 'Time-boxed research/PoC' },
     { name: 'handover.md', role: 'Session handover notes' },
     { name: 'debug-delegation.md', role: 'Debug task delegation' }
   ];
@@ -295,8 +294,9 @@ async function detectRelatedDocs(specFolderPath) {
 function extractKeyTopics(summary, decisions = []) {
   const topics = new Set();
   
-  // Stopwords to filter out
+  // Stopwords to filter out - expanded to include common placeholders and generic terms
   const stopwords = new Set([
+    // Common English stopwords
     'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
     'of', 'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'been',
     'be', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',
@@ -305,13 +305,28 @@ function extractKeyTopics(summary, decisions = []) {
     'we', 'they', 'what', 'which', 'who', 'whom', 'when', 'where', 'why', 'how',
     'all', 'each', 'every', 'both', 'few', 'more', 'most', 'other', 'some',
     'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too',
-    'very', 'just', 'also', 'now', 'here', 'there', 'then', 'once', 'file',
-    'files', 'code', 'update', 'updated', 'add', 'added', 'remove', 'removed',
-    'change', 'changed', 'fix', 'fixed', 'new', 'session', 'using', 'used'
+    'very', 'just', 'also', 'now', 'here', 'there', 'then', 'once',
+    // Generic development terms
+    'file', 'files', 'code', 'update', 'updated', 'add', 'added', 'remove', 'removed',
+    'change', 'changed', 'fix', 'fixed', 'new', 'session', 'using', 'used',
+    // Placeholder and fallback terms (these indicate poor quality data)
+    'response', 'request', 'message', 'user', 'assistant', 'processed',
+    'initiated', 'conversation', 'unknown', 'placeholder', 'simulation',
+    'simulated', 'fallback', 'default', 'undefined', 'null', 'empty',
+    // Generic action words
+    'get', 'set', 'run', 'make', 'made', 'create', 'created', 'delete', 'deleted',
+    'start', 'started', 'stop', 'stopped', 'done', 'complete', 'completed'
   ]);
   
+  // Skip extraction if summary looks like placeholder/fallback data
+  const isPlaceholderSummary = !summary || 
+    summary.includes('SIMULATION MODE') ||
+    summary.includes('[response]') ||
+    summary.includes('placeholder') ||
+    summary.length < 20;
+  
   // Extract words from summary (3+ chars, alphanumeric)
-  if (summary) {
+  if (summary && !isPlaceholderSummary) {
     const words = summary.toLowerCase().match(/\b[a-z][a-z0-9]{2,}\b/g) || [];
     words.forEach(word => {
       if (!stopwords.has(word) && word.length >= 3) {
@@ -1305,16 +1320,29 @@ function transformOpenCodeCapture(capture) {
   const observations = [];
   
   // Create observations from assistant responses
+  // Filter out placeholder responses that don't contain meaningful content
+  const placeholderPatterns = [
+    '[response]',
+    'Assistant processed request',
+    'placeholder',
+    'simulation mode'
+  ];
+  
   for (const ex of exchanges) {
-    if (ex.assistantResponse && ex.assistantResponse !== '[response]') {
-      observations.push({
-        type: 'feature',
-        title: ex.assistantResponse.substring(0, 80),
-        narrative: ex.assistantResponse,
-        timestamp: ex.timestamp ? new Date(ex.timestamp).toISOString() : new Date().toISOString(),
-        facts: [],
-        files: []
-      });
+    if (ex.assistantResponse) {
+      const lowerResponse = ex.assistantResponse.toLowerCase();
+      const isPlaceholder = placeholderPatterns.some(p => lowerResponse.includes(p.toLowerCase()));
+      
+      if (!isPlaceholder && ex.assistantResponse.length > 20) {
+        observations.push({
+          type: 'feature',
+          title: ex.assistantResponse.substring(0, 80),
+          narrative: ex.assistantResponse,
+          timestamp: ex.timestamp ? new Date(ex.timestamp).toISOString() : new Date().toISOString(),
+          facts: [],
+          files: []
+        });
+      }
     }
   }
 

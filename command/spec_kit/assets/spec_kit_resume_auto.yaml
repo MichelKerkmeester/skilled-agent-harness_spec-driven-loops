@@ -41,27 +41,14 @@ session_detection:
     on_no_memory: "Report no active session, suggest /spec_kit:complete"
 
 # ─────────────────────────────────────────────────────────────────
-# CONTEXT LOADING PRIORITY (V13.0 - Simplified, STATE.md embedded in memory)
+# CONTEXT LOADING PRIORITY (V14.0 - Simplified)
 # ─────────────────────────────────────────────────────────────────
 context_loading_priority:
   order:
-    1: "quick-continue.md (if exists) - MVP fast-resume"
-    2: "handover.md (if exists, <24h old)"
-    3: "Recent memory/*.md files (contain embedded Project State Snapshot)"
+    1: "handover.md (if exists, <24h old)"
+    2: "Recent memory/*.md files (contain embedded Project State Snapshot)"
   
-  note: "V13.0: STATE.md removed - state is now embedded in memory files as 'Project State Snapshot' section"
-  
-  quick_continue:
-    check: "ls [spec_folder]/quick-continue.md 2>/dev/null"
-    if_exists:
-      action: "Load as primary context source"
-      display: "⚡ Loaded from quick-continue.md"
-      extract:
-        - "Last Completed"
-        - "Next Action"
-        - "Blockers"
-    if_not_exists:
-      action: "Continue to next priority (handover.md, memory/*.md)"
+  note: "Use handover.md for fast resume"
 
 # ─────────────────────────────────────────────────────────────────
 # MEMORY LOADING (AUTONOMOUS - auto-load most recent)
@@ -69,7 +56,7 @@ context_loading_priority:
 memory_loading:
   mode: automatic
   behavior: |
-    In autonomous mode, first check for quick-continue.md.
+    In autonomous mode, first check for handover.md (<24h old).
     If not present, automatically load the most recent memory file
     without prompting the user for selection.
   
@@ -149,25 +136,23 @@ workflow:
     validation: session_detected
 
   step_2_load_memory:
-    purpose: Load context using priority order (quick-continue.md first, then handover.md, then memory)
+    purpose: Load context using priority order (handover.md first, then memory)
     activities:
-    - Check for quick-continue.md in spec_folder
-    - If exists, load as primary context (display "⚡ Loaded from quick-continue.md")
-    - If not exists, check for handover.md (<24h old)
+    - Check for handover.md in spec_folder (<24h old)
+    - If exists, load as primary context (display "⚡ Loaded from handover.md")
     - If not exists, list memory files in spec_folder/memory/
     - Select most recent by timestamp
     - Read and parse memory/context file (contains embedded Project State Snapshot)
     - Extract key context (phase, decisions, pending work, next actions from state section)
     context_priority:
-      1: quick-continue.md
-      2: handover.md
-      3: memory/*.md (contains Project State Snapshot)
+      1: handover.md
+      2: memory/*.md (contains Project State Snapshot)
     mcp_tool:
       name: memory_load
       note: "Call directly - NEVER through Code Mode"
     outputs:
     - memory_loaded: true
-    - context_source: quick-continue|handover|memory
+    - context_source: handover|memory
     - context_summary: extracted_context
     validation: context_loaded
 

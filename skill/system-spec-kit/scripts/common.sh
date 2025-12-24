@@ -212,7 +212,7 @@ get_feature_paths() {
     printf 'CONTRACTS_DIR=%q\n' "$feature_dir/contracts"
     printf 'CHECKLISTS_DIR=%q\n' "$feature_dir/checklists"
     printf 'DECISIONS_DIR=%q\n' "$feature_dir/decisions"
-    printf 'RESEARCH_SPIKES_DIR=%q\n' "$feature_dir/research-spikes"
+
 }
 
 # ============================================================================
