@@ -207,6 +207,43 @@ Constitutional memories are **always surfaced** at session start without needing
 - Critical constraints that apply to all work
 - Lessons learned that prevent repeated mistakes
 
+### Gate 3 Enforcement Example
+
+Constitutional tier is used to enforce critical workflow rules. The Gate 3 enforcement memory demonstrates this pattern:
+
+**Memory #132 - Gate 3 Spec Folder Enforcement:**
+
+| Attribute | Value |
+|-----------|-------|
+| `importanceTier` | `constitutional` |
+| `isConstitutional` | `true` |
+| `similarity` | `100` (always surfaces at top) |
+| `triggerCount` | 33 phrases |
+
+**Trigger Phrase Categories:**
+
+| Category | Phrases |
+|----------|---------|
+| **Create** | `create`, `add`, `generate`, `build`, `implement`, `write` |
+| **Modify** | `modify`, `edit`, `update`, `change`, `refactor`, `fix` |
+| **Delete** | `delete`, `remove`, `cleanup` |
+| **Move** | `rename`, `move`, `migrate` |
+| **Scale** | `comprehensive`, `all bugs`, `multiple files`, `codebase`, `entire`, `everything` |
+| **Agents** | `parallel agents`, `15 agents`, `10 agents`, `dispatch agents` |
+| **Compound** | `analyze and fix`, `find and fix`, `fix all`, `update all`, `modify all` |
+
+**Response Behavior:**
+
+When `includeConstitutional: true` (default), constitutional memories:
+- Always appear at top of search results
+- Return `similarity: 100` regardless of query
+- Include `isConstitutional: true` flag in response
+- Limited to ~500 tokens total budget
+
+This ensures AI agents always see reminders about critical rules like asking for spec folder selection before file modifications.
+
+**Reference:** See `specs/005-memory/018-gate3-enforcement/` for complete implementation.
+
 ### Memory Decay Formula
 
 Time-based decay uses a 90-day half-life model, only applied to decay-enabled tiers (normal, temporary):

@@ -4,6 +4,24 @@ argument-hint: "<spec-folder> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
+## ⛔ GATE 3 COMPLIANCE
+
+This command involves FILE MODIFICATIONS. Per AGENTS.md Section 2, Gate 3 MUST be satisfied before implementation.
+
+**Standard Gate 3 Question Format:**
+> **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
+
+**First Message Protocol:** If this command is invoked as the user's FIRST message requesting file modifications, the spec folder question is your FIRST response. No analysis first, no tool calls first.
+
+**Failure Pattern #19 Warning:**
+> "Skip Gate 3 on exciting tasks" - Triggers: "comprehensive", "fix all", "15 agents"
+> Even exciting implementation requests MUST complete Phase 1-3 blocking gates.
+
+**Self-Verification:** Before proceeding to workflow:
+> □ STOP. File modification detected? Did I ask spec folder question? If NO → Ask NOW.
+
+---
+
 # 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
 
 **These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
@@ -75,17 +93,17 @@ EXECUTE AFTER PHASE 1 PASSES:
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
    │                                                                │
-   │ **1. Confirm Spec Folder** (required):                         │
+   │ **1. Confirm Spec Folder** (required):                          │
    │    Folder: [spec_folder_input]                                 │
    │    ├─ spec.md ✓                                                │
    │    ├─ plan.md ✓                                                │
-   │    └─ [other files status]                                     │
+   │    └─ [other files status]                                      │
    │                                                                │
    │    A) Yes, implement this spec folder                          │
    │    B) No, select a different spec folder                       │
-   │    C) Cancel - I need to plan first                            │
+   │    C) Cancel - I need to plan first                             │
    │                                                                │
-   │ **2. Execution Mode** (if no :auto/:confirm suffix):           │
+   │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
    │    A) Autonomous - Execute all 8 steps without approval        │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
@@ -132,9 +150,9 @@ EXECUTE AFTER PHASE 2 PASSES:
     │   ┌────────────────────────────────────────────────────┐
     │   │ "Load previous context from this spec folder?"     │
     │   │                                                    │
-    │   │ A) Load most recent memory file (quick refresh)    │
-    │   │ B) Load all recent files, up to 3 (comprehensive)  │
-    │   │ C) List all files and select specific              │
+    │   │ A) Load most recent memory file (quick refresh)     │
+    │   │ B) Load all recent files, up to 3 (comprehensive)   │
+    │   │ C) List all files and select specific                │
     │   │ D) Skip (start fresh, no context)                  │
     │   └────────────────────────────────────────────────────┘
     │
@@ -296,12 +314,12 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ### Complexity Scoring Algorithm (5 dimensions)
 
-| Dimension            | Weight | Scoring                           |
-| -------------------- | ------ | --------------------------------- |
-| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0              |
-| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0          |
-| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0     |
-| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0|
+| Dimension            | Weight | Scoring                                |
+| -------------------- | ------ | -------------------------------------- |
+| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0                   |
+| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0               |
+| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0          |
+| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0     |
 | Task Type            | 5%     | trivial=0.0, moderate=0.5, complex=1.0 |
 
 ### Decision Thresholds
@@ -329,7 +347,26 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ---
 
-## 7. 🔍 EXAMPLES
+## 7. ✅ VALIDATION DURING IMPLEMENTATION
+
+Run validation to catch issues early:
+
+```bash
+# Standard validation
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
+
+# With prerequisites check
+.opencode/skill/system-spec-kit/scripts/check-prerequisites.sh --validate <spec-folder>
+```
+
+Key rules for implementation phase:
+- **PLACEHOLDER_FILLED** - Replace all `[PLACEHOLDER]` markers
+- **PRIORITY_TAGS** - Add P0/P1/P2 to checklist items
+- **EVIDENCE_CITED** - Add `[SOURCE:]` citations for claims
+
+---
+
+## 8. 🔍 EXAMPLES
 
 **Example 1: Execute Existing Plan (autonomous)**
 ```

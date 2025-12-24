@@ -4,6 +4,18 @@ argument-hint: "<target-path> [--type <project|component|feature|skill>]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
+## ⚡ GATE 3 STATUS: EXEMPT (Self-Documenting Artifact)
+
+**This command creates documentation files that ARE the documentation artifact.**
+
+| Property | Value |
+|----------|-------|
+| **Location** | User-specified path (`install_guides/` or target directory) |
+| **Reason** | The created file IS the documentation |
+| **Spec Folder** | Not required - the guide/README serves as its own spec |
+
+---
+
 # 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
 
 **These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**

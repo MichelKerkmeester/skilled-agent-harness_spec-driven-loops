@@ -3,7 +3,7 @@
 The Skill Advisor is a Python script that analyzes user requests and recommends appropriate skills with confidence scores. It powers Gate 2 in AGENTS.md, enabling intelligent skill routing.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
-> 
+
 ---
 
 ## TABLE OF CONTENTS

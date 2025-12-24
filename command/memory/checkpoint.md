@@ -469,3 +469,30 @@ These defaults are enforced by the semantic memory MCP server and cannot be over
 
 For comprehensive memory system documentation:
 `.opencode/skill/system-memory/SKILL.md`
+
+---
+
+## 16. 🏛️ CONSTITUTIONAL TIER HANDLING
+
+**IMPORTANT:** Constitutional tier memories receive special treatment during checkpoint operations:
+
+### Create
+- Constitutional memories ARE included in checkpoints
+- They are marked with `tier: constitutional` in the checkpoint metadata
+
+### Restore
+- Constitutional memories from the checkpoint are restored normally
+- **Warning:** If constitutional memories were added AFTER the checkpoint, they will be removed on restore
+- Consider: Constitutional memories often contain critical rules - verify before restoring older checkpoints
+
+### Best Practice
+Before restoring a checkpoint that predates constitutional memory additions:
+1. Review current constitutional memories: `memory_search({ tier: "constitutional" })`
+2. Note any that should be preserved
+3. After restore, manually re-promote critical rules if needed:
+   ```typescript
+   memory_update({ id: <id>, importanceTier: "constitutional" })
+   ```
+
+### Example: Gate 3 Enforcement Memory
+Memory #132 is a constitutional memory for Gate 3 enforcement. If restoring a checkpoint from before this was created, you would need to re-create it after restore.

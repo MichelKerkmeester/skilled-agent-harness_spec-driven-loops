@@ -108,6 +108,49 @@ since quick handover covers most use cases with minimal friction.
 
 ---
 
+## 🔒 PHASE 3: PRE-HANDOVER VALIDATION
+
+**STATUS: ☐ BLOCKED**
+
+Before creating handover, validate the spec folder to ensure clean state:
+
+```bash
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh --strict <spec-folder>
+```
+
+Use `--strict` to ensure no warnings are passed to the next session.
+
+**Key checks before handover:**
+- **ANCHORS_VALID** - Memory files have balanced anchors
+- **PRIORITY_TAGS** - Remaining tasks are prioritized  
+- **PLACEHOLDER_FILLED** - No incomplete placeholders
+
+```
+EXECUTE AFTER PHASE 2 PASSES:
+
+1. Run validation:
+   $ .opencode/skill/system-spec-kit/scripts/validate-spec.sh --strict [spec_path]
+
+2. IF validation passes (exit 0):
+   └─ SET STATUS: ✅ PASSED → Proceed to workflow
+
+3. IF validation fails (exit 1 or 2):
+   ├─ SHOW: Validation warnings/errors
+   ├─ ASK: "Would you like to:"
+   │   ┌────────────────────────────────────────────────────────────┐
+   │   │ A) Fix issues before handover                              │
+   │   │ B) Proceed anyway (warnings will transfer to next session) │
+   │   │ C) Cancel                                                  │
+   │   └────────────────────────────────────────────────────────────┘
+   └─ WAIT for user response
+
+⛔ HARD STOP: DO NOT proceed until validation is complete or user confirms bypass
+```
+
+**Phase 3 Output:** `validation = [PASSED/BYPASSED/FIXED]`
+
+---
+
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL phases:**
@@ -116,6 +159,7 @@ since quick handover covers most use cases with minimal friction.
 | -------------------------- | --------------- | ----------- | -------------------------------------- |
 | PHASE 1: INPUT & SPEC      | ✅ PASSED        | ______      | spec_path: ______ / method: ______     |
 | PHASE 2: VARIANT SELECTION | ✅ PASSED        | ______      | variant: ______ / context: ______      |
+| PHASE 3: VALIDATION        | ✅ PASSED        | ______      | validation: ______                     |
 
 ```
 VERIFICATION CHECK:
@@ -133,6 +177,7 @@ VERIFICATION CHECK:
 - Assumed a spec folder without user confirmation when path was invalid
 - Proceeded without validating spec path exists (Phase 1)
 - Did not default to QUICK variant when no suffix provided
+- Skipped pre-handover validation (Phase 3)
 - Created handover without gathering context first
 - Did not display the created file path and continuation instructions
 
@@ -316,7 +361,9 @@ The agent generates comprehensive handover.md with 7 sections:
 
 These files are created in the spec folder root, NOT in memory/.
 
-> **💡 Tip:** After creating the handover file, consider also running `/memory:save` to preserve full semantic context for future searches. Handover files are for quick continuation; memory files are for semantic retrieval.
+> **💡 Tip:** After creating the handover file, consider running:
+> `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]`
+> to preserve full semantic context for future searches. Handover files are for quick continuation; memory files are for semantic retrieval.
 
 ### Quick Handover Success
 

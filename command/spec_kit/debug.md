@@ -12,6 +12,19 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 ---
 
+## ⚡ GATE 3 CLARIFICATION
+
+**When Gate 3 applies:** When debugging leads to file modifications (Step 5, Option A "Apply the fix").
+
+- If a spec folder was established in Phase 1 → Gate 3 is satisfied
+- If ad-hoc mode was selected → Gate 3 MUST be asked before applying fixes:
+  > **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
+
+**Self-Verification:** Before applying any fix:
+> □ STOP. File modification detected? Did I ask spec folder question? If NO → Ask NOW.
+
+---
+
 ## 🔒 PHASE 1: CONTEXT DETECTION
 
 **STATUS: ☐ BLOCKED**
@@ -77,8 +90,8 @@ EXECUTE THIS CHECK FIRST:
 └─ IF no error context found in conversation:
     ├─ ASK: "What error are you debugging? Please provide:"
     │   ┌────────────────────────────────────────────────────────────┐
-    │   │ • The error message or unexpected behavior                  │
-    │   │ • Which file(s) are affected                               │
+    │   │ • The error message or unexpected behavior                 │
+    │   │ • Which file(s) are affected                                │
     │   │ • What you've already tried (if anything)                  │
     │   └────────────────────────────────────────────────────────────┘
     └─ WAIT for user response
@@ -136,10 +149,10 @@ Store: selected_model = ________________
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                    | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                              |
-| ------------------------ | --------------- | ----------- | ----------------------------------------- |
-| PHASE 1: CONTEXT         | ✅ PASSED        | ______      | spec_path: ______ / error: ______         |
-| PHASE 2: MODEL SELECTION | ✅ PASSED        | ______      | selected_model: ______                    |
+| PHASE                    | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                      |
+| ------------------------ | --------------- | ----------- | --------------------------------- |
+| PHASE 1: CONTEXT         | ✅ PASSED        | ______      | spec_path: ______ / error: ______ |
+| PHASE 2: MODEL SELECTION | ✅ PASSED        | ______      | selected_model: ______            |
 
 ```
 VERIFICATION CHECK:
@@ -179,13 +192,13 @@ VERIFICATION CHECK:
 
 ## Workflow Steps (5 steps)
 
-| STEP | NAME                | STATUS | REQUIRED OUTPUT          | VERIFICATION                    |
-| ---- | ------------------- | ------ | ------------------------ | ------------------------------- |
-| 1    | Validate Context    | ☐      | context_confirmed        | Spec path + error context valid |
-| 2    | Generate Report     | ☐      | debug-delegation.md      | File created in spec folder     |
-| 3    | Dispatch Sub-Agent  | ☐      | sub_agent_dispatched     | Task tool invoked               |
-| 4    | Receive Findings    | ☐      | findings_received        | Sub-agent response captured     |
-| 5    | Integration         | ☐      | resolution_complete      | User chose action, applied      |
+| STEP | NAME               | STATUS | REQUIRED OUTPUT      | VERIFICATION                    |
+| ---- | ------------------ | ------ | -------------------- | ------------------------------- |
+| 1    | Validate Context   | ☐      | context_confirmed    | Spec path + error context valid |
+| 2    | Generate Report    | ☐      | debug-delegation.md  | File created in spec folder     |
+| 3    | Dispatch Sub-Agent | ☐      | sub_agent_dispatched | Task tool invoked               |
+| 4    | Receive Findings   | ☐      | findings_received    | Sub-agent response captured     |
+| 5    | Integration        | ☐      | resolution_complete  | User chose action, applied      |
 
 ---
 
@@ -411,15 +424,15 @@ PRESENT findings to user:
 │ Root Cause: [summary from sub-agent]                           │
 │                                                                │
 │ Proposed Fix:                                                  │
-│ [code snippet preview - first 10 lines]                        │
+│ [code snippet preview - first 10 lines]                         │
 │                                                                │
-│ Confidence: [HIGH/MEDIUM/LOW based on sub-agent analysis]      │
+│ Confidence: [HIGH/MEDIUM/LOW based on sub-agent analysis]       │
 └────────────────────────────────────────────────────────────────┘
 
 ASK: "How would you like to proceed?"
 
 ┌────────────────────────────────────────────────────────────────┐
-│ A) Apply the fix - I'll make the code changes now              │
+│ A) Apply the fix - I'll make the code changes now               │
 │ B) Show full details - Let me review before deciding           │
 │ C) Request more investigation - This needs deeper analysis     │
 │ D) Manual review - I'll handle it myself                       │
@@ -493,7 +506,7 @@ Append to file:
 │ Report: specs/014-auth-feature/debug-delegation.md              │
 ├─────────────────────────────────────────────────────────────────┤
 │ Findings documented. User chose manual review.                  │
-│ Proposed fix available in debug-delegation.md                   │
+│ Proposed fix available in debug-delegation.md                    │
 │ Status: NEEDS_REVIEW                                            │
 ╰─────────────────────────────────────────────────────────────────╯
 ```
@@ -509,7 +522,7 @@ Append to file:
 ├─────────────────────────────────────────────────────────────────┤
 │ RECOMMENDED:                                                    │
 │   • Try /spec_kit:debug with Opus model                         │
-│   • Review debug-delegation.md for all attempted fixes          │
+│   • Review debug-delegation.md for all attempted fixes           │
 │   • Consider breaking problem into smaller parts                │
 │ Status: ESCALATE                                                │
 ╰─────────────────────────────────────────────────────────────────╯
@@ -521,15 +534,36 @@ Append to file:
 
 ### Error Categories
 
-| Category       | Indicators                                    |
-| -------------- | --------------------------------------------- |
-| syntax_error   | Parse errors, unexpected tokens, brackets     |
-| type_error     | Type mismatch, undefined properties, TS errors|
-| runtime_error  | Exceptions during execution, crashes          |
-| test_failure   | Assertion failures, test timeouts             |
-| build_error    | Compilation failures, bundling errors         |
-| lint_error     | ESLint, Prettier, style violations            |
-| unknown        | Cannot classify from error message            |
+| Category      | Indicators                                     |
+| ------------- | ---------------------------------------------- |
+| syntax_error  | Parse errors, unexpected tokens, brackets      |
+| type_error    | Type mismatch, undefined properties, TS errors |
+| runtime_error | Exceptions during execution, crashes           |
+| test_failure  | Assertion failures, test timeouts              |
+| build_error   | Compilation failures, bundling errors          |
+| lint_error    | ESLint, Prettier, style violations             |
+| unknown       | Cannot classify from error message             |
+
+### Validation Integration
+
+Before or during debugging, run validation to catch common issues:
+
+```bash
+# Quick validation check
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
+
+# Verbose mode with timing
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh --verbose <spec-folder>
+
+# Strict mode (warnings become errors)
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh --strict <spec-folder>
+```
+
+Common validation issues that cause debugging sessions:
+- Missing required files (FILE_EXISTS)
+- Unfilled placeholders (PLACEHOLDER_FILLED)
+- Missing priority tags in checklist (PRIORITY_TAGS)
+- Broken memory anchors (ANCHORS_VALID)
 
 ### Related Templates
 
@@ -577,11 +611,11 @@ Agent: Let me delegate this to a fresh debugging agent...
 
 ## 8. 🔗 RELATED COMMANDS
 
-| Command              | Relationship                                         |
-| -------------------- | ---------------------------------------------------- |
-| `/spec_kit:complete` | Start feature work (debug when issues arise)         |
-| `/spec_kit:handover` | Create handover (debug documents issue context)      |
-| `/spec_kit:resume`   | Resume work (may need debug after resuming)          |
+| Command              | Relationship                                    |
+| -------------------- | ----------------------------------------------- |
+| `/spec_kit:complete` | Start feature work (debug when issues arise)    |
+| `/spec_kit:handover` | Create handover (debug documents issue context) |
+| `/spec_kit:resume`   | Resume work (may need debug after resuming)     |
 
 ---
 

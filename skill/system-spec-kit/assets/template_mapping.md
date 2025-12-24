@@ -76,7 +76,9 @@ These templates are OPTIONAL and only apply to Level 3 documentation:
 specs/043-add-email-validation/
 ├── spec.md                      (REQUIRED - from spec.md)
 ├── plan.md                      (REQUIRED - from plan.md)
-└── tasks.md                     (REQUIRED - from tasks.md)
+├── tasks.md                     (REQUIRED - from tasks.md)
+└── memory/                      (OPTIONAL - context preservation)
+    └── *.md                     (auto-generated via generate-context.js)
 ```
 
 **Content expectations:**
@@ -95,7 +97,9 @@ specs/044-modal-component/
 ├── spec.md                      (REQUIRED - from Level 1)
 ├── plan.md                      (REQUIRED - from Level 1)
 ├── tasks.md                     (REQUIRED - from Level 1)
-└── checklist.md                 (REQUIRED - adds QA validation)
+├── checklist.md                 (REQUIRED - adds QA validation)
+└── memory/                      (OPTIONAL - context preservation)
+    └── *.md                     (auto-generated via generate-context.js)
 ```
 
 **Additional expectations:**
@@ -115,7 +119,9 @@ specs/045-user-dashboard/
 ├── checklist.md                 (REQUIRED - from Level 2)
 ├── decision-record-[topic].md   (REQUIRED - architecture decisions)
 ├── research-spike-[topic].md    (OPTIONAL - if research needed)
-└── research.md                  (OPTIONAL - comprehensive research)
+├── research.md                  (OPTIONAL - comprehensive research)
+└── memory/                      (OPTIONAL - context preservation)
+    └── *.md                     (auto-generated via generate-context.js)
 ```
 
 **Additional expectations:**
@@ -166,6 +172,32 @@ Accountability reminder (remove after filling):
 -->
 ```
 
+### 5. Memory File Anchors
+
+Memory files in `memory/` folders MUST use paired anchors for semantic indexing:
+
+**Required Format:**
+```markdown
+<!-- ANCHOR:section-name -->
+Content that will be indexed...
+<!-- /ANCHOR:section-name -->
+```
+
+**Rules:**
+- Every opening `<!-- ANCHOR:name -->` MUST have a closing `<!-- /ANCHOR:name -->`
+- Anchor names must match exactly (case-sensitive)
+- Content between anchors is indexed for semantic search
+- Orphaned anchors (missing pair) will cause validation errors
+
+**Common Anchor Names:**
+- `summary` - Executive summary of the memory
+- `decisions` - Key decisions made
+- `blockers` - Current blockers or issues
+- `next-steps` - Planned next actions
+- `context` - Background context
+
+**Generation:** Use `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` to auto-generate properly formatted memory files.
+
 ---
 
 ## 6. ✅ TEMPLATE ADHERENCE RULES
@@ -182,6 +214,8 @@ Accountability reminder (remove after filling):
 8. **Document level changes** - Note upgrades/downgrades in changelog
 9. **Keep history immutable** - Append to history, don't rewrite
 10. **Validate before coding** - Complete pre-implementation checklist first
+11. **Organize by priority** - Use P0/P1/P2 priority markers in checklists (P0=blocker, P1=must-do, P2=can-defer)
+12. **Cite evidence** - Mark completed items with verification evidence (e.g., `[x] Item - verified via grep/test output`)
 
 ---
 

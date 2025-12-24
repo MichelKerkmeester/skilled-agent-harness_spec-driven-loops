@@ -64,7 +64,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │    C) Update related spec: [if partial match found]            │
    │    D) Skip documentation                                       │
    │                                                                │
-   │ **2. Execution Mode** (if no :auto/:confirm suffix):           │
+   │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
    │    A) Autonomous - Execute all 12 steps without approval       │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
@@ -119,9 +119,9 @@ CHECK spec_choice value from Phase 2:
         │   ┌────────────────────────────────────────────────────┐
         │   │ "Load previous context from this spec folder?"     │
         │   │                                                    │
-        │   │ A) Load most recent memory file (quick refresh)    │
-        │   │ B) Load all recent files, up to 3 (comprehensive)  │
-        │   │ C) List all files and select specific              │
+        │   │ A) Load most recent memory file (quick refresh)     │
+        │   │ B) Load all recent files, up to 3 (comprehensive).  │
+        │   │ C) List all files and select specific                │
         │   │ D) Skip (start fresh, no context)                  │
         │   └────────────────────────────────────────────────────┘
         │
@@ -141,11 +141,11 @@ CHECK spec_choice value from Phase 2:
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                       | REQUIRED STATUS    | YOUR STATUS | OUTPUT VALUE                                    |
-| --------------------------- | ------------------ | ----------- | ----------------------------------------------- |
-| PHASE 1: INPUT              | ✅ PASSED          | ______      | feature_description: ______                     |
-| PHASE 2: SETUP (Spec+Mode)  | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___   |
-| PHASE 3: MEMORY             | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                           |
+| PHASE                      | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                                  |
+| -------------------------- | ----------------- | ----------- | --------------------------------------------- |
+| PHASE 1: INPUT             | ✅ PASSED          | ______      | feature_description: ______                   |
+| PHASE 2: SETUP (Spec+Mode) | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
+| PHASE 3: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
 
 ```
 VERIFICATION CHECK:
@@ -306,6 +306,13 @@ STEP 10.5 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
 └─ ⛔ HARD BLOCK: Cannot proceed to Step 11 if any P0 items are unchecked
 
 STEP 11 (Completion) REQUIREMENTS:
+├─ MUST run validation on spec folder first:
+│   ```
+│   .opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
+│   ```
+│   ├─ Exit 0 = pass → continue
+│   ├─ Exit 1 = warnings → continue with caution
+│   └─ Exit 2 = errors → STOP and fix before proceeding
 ├─ MUST verify all tasks in tasks.md show [x]
 ├─ MUST create implementation-summary.md with:
 │   ├─ Files modified/created
@@ -433,18 +440,49 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 6. 🔀 PARALLEL DISPATCH
+## 6. ✅ VALIDATION TOOLS
+
+Before marking complete, validate the spec folder:
+
+```bash
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
+```
+
+### CLI Options
+
+| Option      | Description                      |
+| ----------- | -------------------------------- |
+| `--json`    | Output results in JSON format    |
+| `--strict`  | Treat warnings as errors         |
+| `--quiet`   | Suppress output except errors    |
+| `--verbose` | Show detailed output with timing |
+
+### Validation Rules (7 total)
+
+1. **FILE_EXISTS** - Required files present for documentation level
+2. **PLACEHOLDER_FILLED** - No unfilled `[PLACEHOLDER]` markers
+3. **SECTIONS_PRESENT** - Required markdown sections exist
+4. **LEVEL_DECLARED** - Documentation level declared in spec.md
+5. **PRIORITY_TAGS** - Checklist items have P0/P1/P2 tags
+6. **EVIDENCE_CITED** - Claims have `[SOURCE:]` citations
+7. **ANCHORS_VALID** - Memory file ANCHOR pairs are balanced
+
+**Exit codes:** 0 = pass, 1 = warnings, 2 = errors (must fix)
+
+---
+
+## 7. 🔀 PARALLEL DISPATCH
 
 This workflow supports smart parallel sub-agent dispatch for eligible phases using a 5-dimension complexity scoring algorithm.
 
 ### Complexity Scoring Algorithm (5 Dimensions)
 
-| Dimension            | Weight | Scoring                          |
-| -------------------- | ------ | -------------------------------- |
-| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0             |
-| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0         |
-| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0    |
-| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0 |
+| Dimension            | Weight | Scoring                                |
+| -------------------- | ------ | -------------------------------------- |
+| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0                   |
+| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0               |
+| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0          |
+| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0     |
 | Task Type            | 5%     | trivial=0.0, moderate=0.5, complex=1.0 |
 
 ### Decision Thresholds

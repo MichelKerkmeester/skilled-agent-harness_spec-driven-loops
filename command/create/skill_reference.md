@@ -4,6 +4,18 @@ argument-hint: "<skill-name> <reference-type> [--chained]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
+## ⚡ GATE 3 STATUS: EXEMPT (Predefined Location)
+
+**This command creates files at a predefined location and is EXEMPT from the spec folder question.**
+
+| Property | Value |
+|----------|-------|
+| **Location** | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
+| **Reason** | Skill-internal files, not project documentation |
+| **Alternative** | Use `/create:skill` for full skill creation with spec folder |
+
+---
+
 <!-- 
 REFERENCE FILE REQUIREMENTS:
 - Location: .opencode/skill/[skill-name]/references/

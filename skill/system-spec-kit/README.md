@@ -22,9 +22,9 @@ The result? Six months from now, you'll know exactly why you made that architect
 | **Quality Metrics**    | Guesswork         | Completeness scoring (0-100%)                    |
 | **Folder Versioning**  | Overwrite         | 001/002/003 sub-folder pattern                   |
 | **State Tracking**     | Manual markers    | V13.0 Stateless architecture                     |
-| **Automation**         | None              | 6 scripts handle the boring work                 |
+| **Automation**         | None              | 7 scripts handle the boring work                 |
 
-> **The bottom line:** 12 templates, 7 commands, 6 scripts, 0 excuses for losing context.
+> **The bottom line:** 12 templates, 7 commands, 7 scripts, 0 excuses for losing context.
 
 ---
 
@@ -63,7 +63,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | Category   | Count  | Details                                                                  |
 | ---------- | ------ | ------------------------------------------------------------------------ |
 | Templates  | 12     | Markdown templates for specs, plans, research, decisions, handover       |
-| Scripts    | 6      | Shell scripts for automation and validation                              |
+| Scripts    | 7      | Shell scripts for automation and validation                              |
 | Assets     | 3      | Decision support tools (level matrix, template mapping, parallel config) |
 | References | 5      | Detailed workflow documentation                                          |
 | Checklists | 4      | Phase-specific checklists (research, planning, implementation, review)   |
@@ -124,13 +124,33 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   ├── handover.md         # Full session continuity (utility)
 │   ├── quick-continue.md   # Minimal session handoff (utility)
 │   └── debug-delegation.md # Sub-agent debugging (utility)
-└── scripts/                # 6 shell scripts
-    ├── common.sh              # Shared utility functions
-    ├── create-spec-folder.sh # Create feature branch & spec folder
+└── scripts/                # Modular validation architecture
+    ├── lib/                    # Shared libraries
+    │   ├── common.sh           # Core utilities (logging, helpers)
+    │   ├── config.sh           # Configuration loading (.speckit.yaml)
+    │   └── output.sh           # Output formatting (text/JSON)
+    ├── rules/                  # Individual validation rules
+    │   ├── check-anchors.sh    # ANCHOR tag validation
+    │   ├── check-evidence.sh   # Evidence citation validation
+    │   ├── check-files.sh      # Required files per level
+    │   ├── check-level.sh      # Level detection/validation
+    │   ├── check-placeholders.sh # Unfilled placeholder detection
+    │   ├── check-priority-tags.sh # P0/P1/P2 tag validation
+    │   └── check-sections.sh   # Required section validation
+    ├── test-fixtures/          # Test cases for validation rules
+    │   ├── valid-level1/       # Valid Level 1 spec folder
+    │   ├── valid-level3/       # Valid Level 3 spec folder
+    │   ├── missing-plan/       # Missing required file test
+    │   ├── unfilled-placeholders/ # Placeholder detection test
+    │   └── ...                 # 51 test fixtures (55 tests across 10 categories)
+    ├── common.sh               # Legacy compatibility (sources lib/)
+    ├── create-spec-folder.sh   # Create feature branch & spec folder
     ├── check-prerequisites.sh  # Validate spec folder structure
     ├── calculate-completeness.sh # Calculate completeness percentage
-    ├── recommend-level.sh     # Recommend documentation level (1-3)
-    └── archive-spec.sh        # Archive completed spec folders
+    ├── recommend-level.sh      # Recommend documentation level (1-3)
+    ├── archive-spec.sh         # Archive completed spec folders
+    ├── validate-spec.sh        # Validation orchestrator (v2.0)
+    └── test-validation.sh      # Test runner for validation rules
 ```
 
 ### Skill Resources (system-spec-kit)
@@ -516,9 +536,9 @@ cp .opencode/skill/system-spec-kit/templates/debug-delegation.md specs/###-name/
 
 ## 5. ⚙️ SCRIPTS
 
-> **Fork Exclusive**: The original Spec Kit has zero automation scripts. This fork has six.
+> **Fork Exclusive**: The original Spec Kit has zero automation scripts. This fork has seven.
 
-Six automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle the tedious work so you can focus on building.
+Seven automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle the tedious work so you can focus on building.
 
 ### Script Overview
 
@@ -530,6 +550,7 @@ Six automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle the 
 | `calculate-completeness.sh` | Calculate completeness percentage   | Eliminates guesswork |
 | `recommend-level.sh`        | Recommend documentation level (1-3) | ~30 sec/decision     |
 | `archive-spec.sh`           | Archive completed spec folders      | ~1 min/archive       |
+| `validate-spec.sh`          | Validate spec folder quality        | Catches issues early |
 
 > **Automation Win**: These scripts execute in <200ms each. The time saved is in *not having to think* about folder naming, file structure, or "is this spec complete enough?"
 
@@ -710,6 +731,269 @@ Archive Summary:
 ```
 
 **Exit Codes**: `0` = Success | `1` = Invalid arguments | `2` = Folder not found
+
+### `validate-spec.sh` - Quality Validation
+
+**Purpose**: Validate spec folder contents against quality requirements based on documentation level. Checks for required files, unfilled placeholders, and proper markdown structure.
+
+> **Gate 6 Integration**: This script is invoked by Gate 6 (Completion Verification) before claiming any work as "done".
+
+**Options**:
+| Flag            | Description                            | Default |
+| --------------- | -------------------------------------- | ------- |
+| `--json`        | Output in JSON format (for tooling)    | false   |
+| `--strict`      | Treat warnings as errors               | false   |
+| `--verbose`     | Show detailed validation output        | false   |
+| `--quiet`, `-q` | Results only (suppress decorative output) | false   |
+| `--help`, `-h`  | Show help message                      | -       |
+| `--version`, `-v` | Show version number                  | -       |
+
+**Environment Variables**:
+| Variable            | Effect                           |
+| ------------------- | -------------------------------- |
+| `SPECKIT_VALIDATION=false` | Disable validation entirely |
+| `SPECKIT_STRICT=true`      | Enable strict mode          |
+| `SPECKIT_JSON=true`        | Force JSON output           |
+| `SPECKIT_VERBOSE=true`     | Enable verbose output       |
+| `SPECKIT_QUIET=true`       | Enable quiet mode           |
+
+**Validation Rules** (7 total):
+| Rule                | Severity | Description                                           |
+| ------------------- | -------- | ----------------------------------------------------- |
+| `FILE_EXISTS`       | error    | Required files present for documentation level        |
+| `PLACEHOLDER_FILLED`| error    | No unfilled `[YOUR_VALUE_HERE:]` placeholders         |
+| `SECTIONS_PRESENT`  | warn     | Required markdown sections exist                      |
+| `LEVEL_DECLARED`    | info     | Level explicitly declared in spec.md                  |
+| `PRIORITY_TAGS`     | warn     | P0/P1/P2 tags properly formatted in checklist.md      |
+| `EVIDENCE_CITED`    | warn     | Completed P0/P1 items have evidence citations         |
+| `ANCHORS_VALID`     | error    | ANCHOR tags in memory files have matching pairs       |
+
+**Level Detection**:
+1. **Explicit**: Reads `| **Level** | N |` from spec.md metadata table
+2. **Inferred**: Falls back to file presence (decision-record.md → L3, checklist.md → L2, else L1)
+
+**Example**:
+```bash
+$ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth
+
+═══════════════════════════════════════════════════════════════
+  Spec Folder Validation
+═══════════════════════════════════════════════════════════════
+
+  Folder: specs/042-user-auth
+  Level:  2 (explicit)
+
+───────────────────────────────────────────────────────────────
+
+✓ FILE_EXISTS: All required files present for Level 2
+✓ PLACEHOLDER_FILLED: No unfilled placeholders found
+✓ SECTIONS_PRESENT: All required sections found
+
+───────────────────────────────────────────────────────────────
+
+  Summary:
+    Errors:   0
+    Warnings: 0
+    Info:     0
+
+  RESULT: PASSED
+```
+
+**JSON Output** (for CI/tooling):
+```bash
+$ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth --json
+
+{
+  "folder": "specs/042-user-auth",
+  "level": 2,
+  "levelMethod": "explicit",
+  "results": [...],
+  "summary": { "errors": 0, "warnings": 0, "info": 0 },
+  "details": {
+    "missingFiles": [],
+    "unfilledPlaceholders": [],
+    "missingSections": []
+  },
+  "passed": true,
+  "strict": false
+}
+```
+
+**Strict Mode** (for CI pipelines):
+```bash
+# Warnings become errors in strict mode
+$ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth --strict
+```
+
+**Exit Codes**: `0` = Passed | `1` = Passed with warnings | `2` = Failed (errors found)
+
+### 5.8 Modular Validation Architecture
+
+> **v2.0 Architecture**: The validation system uses a modular design for maintainability, testability, and extensibility.
+
+**Architecture Overview**:
+```
+validate-spec.sh (orchestrator)
+    │
+    ├── lib/common.sh    ─── Core utilities (logging, path resolution)
+    ├── lib/config.sh    ─── Configuration loading (.speckit.yaml)
+    ├── lib/output.sh    ─── Output formatting (text/JSON modes)
+    │
+    └── rules/           ─── Individual validation rules
+        ├── check-files.sh        → FILE_EXISTS
+        ├── check-placeholders.sh → PLACEHOLDER_FILLED
+        ├── check-sections.sh     → SECTIONS_PRESENT
+        ├── check-level.sh        → LEVEL_DECLARED
+        ├── check-priority-tags.sh → PRIORITY_TAGS
+        ├── check-evidence.sh     → EVIDENCE_CITED
+        └── check-anchors.sh      → ANCHORS_VALID
+```
+
+**Design Principles**:
+1. **Single Responsibility** - Each rule file handles one validation concern
+2. **Consistent Interface** - All rules export `run_check()` function
+3. **Configurable Severity** - Rules respect `.speckit.yaml` severity overrides
+4. **Testable** - Each rule can be tested in isolation via test-fixtures/
+
+**Adding New Rules**:
+```bash
+# 1. Create rule file in rules/
+cp rules/check-files.sh rules/check-custom.sh
+
+# 2. Implement run_check() function
+# Function receives: FOLDER_PATH, DETECTED_LEVEL, exports RESULT, SEVERITY, MESSAGE
+
+# 3. Register in validate-spec.sh orchestrator
+# Add to RULES array and call in main loop
+
+# 4. Add test fixtures
+mkdir -p test-fixtures/custom-valid test-fixtures/custom-invalid
+```
+
+### 5.9 Configuration (.speckit.yaml)
+
+> **Fork Exclusive**: Override default validation behavior per-project or per-folder.
+
+The validation system supports optional `.speckit.yaml` configuration files for customizing validation behavior.
+
+**Config File Locations** (checked in order):
+1. `<spec-folder>/.speckit.yaml` - Folder-specific overrides
+2. `<repo-root>/.speckit.yaml` - Project-wide defaults
+
+**Configuration Options**:
+```yaml
+# .speckit.yaml - Validation configuration
+validation:
+  # Override rule severities (error | warn | info | skip)
+  rules:
+    FILE_EXISTS: error        # Required files must exist (default: error)
+    PLACEHOLDER_FILLED: error # No unfilled placeholders (default: error)
+    SECTIONS_PRESENT: warn    # Required sections (default: warn)
+    LEVEL_DECLARED: info      # Explicit level in spec.md (default: info)
+    PRIORITY_TAGS: warn       # P0/P1/P2 formatting (default: warn)
+    EVIDENCE_CITED: warn      # Evidence for completed items (default: warn)
+    ANCHORS_VALID: error      # ANCHOR tag pairs valid (default: error)
+  
+  # Global settings
+  strict: false               # Treat warnings as errors
+  verbose: false              # Show detailed output
+```
+
+**Severity Levels**:
+| Severity | Exit Code Impact | Description                    |
+| -------- | ---------------- | ------------------------------ |
+| `error`  | Exit 2           | Validation fails               |
+| `warn`   | Exit 1           | Validation passes with warning |
+| `info`   | Exit 0           | Informational only             |
+| `skip`   | N/A              | Rule disabled entirely         |
+
+**Example Use Cases**:
+```yaml
+# Disable placeholder checking during early drafts
+validation:
+  rules:
+    PLACEHOLDER_FILLED: skip
+
+# Strict mode for CI pipelines
+validation:
+  strict: true
+  rules:
+    SECTIONS_PRESENT: error
+```
+
+### 5.10 Test Suite
+
+> **Quality Assurance**: 51 test fixtures (55 tests across 10 categories) ensure validation rules work correctly.
+
+The test suite validates that all rules correctly detect issues and pass valid specs.
+
+**Running Tests**:
+```bash
+# Run all validation tests
+.opencode/skill/system-spec-kit/scripts/test-validation.sh
+
+# Run with verbose output
+.opencode/skill/system-spec-kit/scripts/test-validation.sh --verbose
+```
+
+**Test Fixture Structure**:
+```
+test-fixtures/
+├── valid-level1/           # Should pass - valid Level 1 spec
+├── valid-level3/           # Should pass - valid Level 3 spec
+├── valid-sections/         # Should pass - all required sections
+├── valid-priority-tags/    # Should pass - proper P0/P1/P2 format
+├── valid-evidence/         # Should pass - evidence citations present
+├── missing-plan/           # Should fail - FILE_EXISTS
+├── missing-required-files/ # Should fail - FILE_EXISTS
+├── unfilled-placeholders/  # Should fail - PLACEHOLDER_FILLED
+├── missing-plan-sections/  # Should warn - SECTIONS_PRESENT
+├── invalid-priority-tags/  # Should warn - PRIORITY_TAGS
+├── missing-evidence/       # Should warn - EVIDENCE_CITED
+├── invalid-anchors/        # Should fail - ANCHORS_VALID
+├── level-explicit/         # Level detection from metadata
+├── level-inferred/         # Level detection from file presence
+├── placeholder-in-codeblock/  # Placeholders in code blocks (allowed)
+├── placeholder-in-inline-code/ # Placeholders in inline code (allowed)
+├── with-config/            # Config file loading test
+├── with-scratch/           # Scratch folder handling
+└── README.md               # Test fixture documentation
+```
+
+**Adding Test Fixtures**:
+```bash
+# 1. Create fixture directory
+mkdir test-fixtures/my-test-case
+
+# 2. Add minimum required files
+cp templates/spec.md test-fixtures/my-test-case/
+cp templates/plan.md test-fixtures/my-test-case/
+cp templates/tasks.md test-fixtures/my-test-case/
+
+# 3. Modify to create test condition
+# (e.g., leave placeholder unfilled, remove required section)
+
+# 4. Add expected outcome to test-validation.sh
+```
+
+**Test Output Example**:
+```bash
+$ ./test-validation.sh
+
+═══════════════════════════════════════════════════════════════
+  Spec Kit Validation Test Suite
+═══════════════════════════════════════════════════════════════
+
+Testing: valid-level1 .......................... PASS
+Testing: valid-level3 .......................... PASS
+Testing: missing-plan .......................... PASS (expected fail)
+Testing: unfilled-placeholders ................. PASS (expected fail)
+Testing: invalid-anchors ....................... PASS (expected fail)
+
+───────────────────────────────────────────────────────────────
+  Results: 55/55 passed (51 fixtures, 10 categories)
+───────────────────────────────────────────────────────────────
+```
 
 ---
 
@@ -933,7 +1217,7 @@ The `/spec_kit:handover` command supports two variants:
 
 ## 7. 🔄 HOW IT WORKS
 
-### 8.1 Spec Folder Question Flow (A/B/C/D Options)
+### 7.1 Spec Folder Question Flow (A/B/C/D Options)
 
 When file modification intent is detected, the system presents four options:
 
@@ -946,7 +1230,7 @@ When file modification intent is detected, the system presents four options:
 
 **AI Agent Protocol**: Present options, wait for explicit user selection, never decide autonomously.
 
-### 8.2 Memory File Loading (Auto-Load with Opt-Out)
+### 7.2 Memory File Loading (Auto-Load with Opt-Out)
 
 When selecting Option A or C with existing memory files:
 
@@ -961,7 +1245,7 @@ When selecting Option A or C with existing memory files:
 
 **Memory File Naming Format**: `DD-MM-YY_HH-MM__short-description.md`
 
-### 8.3 Sub-Folder Versioning (001, 002, 003 Pattern)
+### 7.3 Sub-Folder Versioning (001, 002, 003 Pattern)
 
 > **Fork Exclusive**: Original Spec Kit overwrites existing specs. This fork versions them.
 
@@ -987,7 +1271,7 @@ specs/122-skill-standardization/
         └── 07-12-25_14-30__context.md
 ```
 
-### 8.4 Context Save (V13.0 Architecture)
+### 7.4 Context Save (V13.0 Architecture)
 
 > **V13.0 Change**: Memory saves MUST use `generate-context.js`. Manual file creation is blocked by Gate 5.
 
@@ -997,7 +1281,7 @@ Context preservation uses the `/memory:save` command or "save context" trigger p
 3. Auto-indexes into semantic memory database
 4. Embeds project state directly in memory file (no separate STATE.md)
 
-### 8.5 Folder Naming Convention
+### 7.5 Folder Naming Convention
 
 **Format**: `/specs/###-short-name/`
 
@@ -1011,7 +1295,7 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 - Lowercase, hyphen-separated
 - Action-noun structure preferred (e.g., `add-auth`, `fix-validation`)
 
-### 8.7 Architecture (2-Tier System)
+### 7.6 Architecture (2-Tier System)
 
 > **Fork Exclusive**: This command/prompt separation enables mode variants (`:auto`/`:confirm`) without code duplication.
 
@@ -1322,6 +1606,77 @@ cat specs/###-folder/memory/DD-MM-YY_HH-MM__description.md
 | `check-prerequisites.sh`    | <50ms         |
 | `calculate-completeness.sh` | <200ms        |
 
+### ANCHORS_VALID Failures
+
+**Symptom**: "Unmatched ANCHOR_START" or "Unmatched ANCHOR_END" validation error
+
+**Cause**: Memory file has incomplete anchor pairs - an `ANCHOR_START` without a matching `ANCHOR_END` or vice versa.
+
+**Solutions**:
+```bash
+# Find unmatched anchors in memory files
+grep -n "ANCHOR_START\|ANCHOR_END" specs/###-folder/memory/*.md
+
+# Verify each ANCHOR_START has matching ANCHOR_END with same ID
+# Example of correct format:
+# <!-- ANCHOR_START: decisions -->
+# Content here...
+# <!-- ANCHOR_END: decisions -->
+```
+
+**Prevention**: Use `generate-context.js` script instead of manual memory file creation. Gate 5 enforces this.
+
+```bash
+# Correct way to create memory files
+node .opencode/skill/system-memory/scripts/generate-context.js specs/###-folder/
+```
+
+### EVIDENCE_CITED Failures
+
+**Symptom**: "Missing evidence citation" validation warning
+
+**Cause**: Completed checklist items (marked `[x]`) lack `[SOURCE:]` markers to verify the claim.
+
+**Note**: This rule only applies to **Level 3** spec folders.
+
+**Solutions**:
+```bash
+# Find completed items missing evidence
+grep -n "\[x\]" specs/###-folder/checklist.md | grep -v "\[SOURCE:"
+
+# Add evidence citation after factual claims:
+# Before: - [x] P0: Authentication flow tested
+# After:  - [x] P0: Authentication flow tested [SOURCE: tests/auth.test.js:45-89]
+```
+
+**Evidence Format**:
+- File reference: `[SOURCE: path/to/file.md:lines]`
+- URL reference: `[SOURCE: https://example.com/doc]`
+- Verbal confirmation: `[SOURCE: Confirmed by @username on DATE]`
+
+### PRIORITY_TAGS Failures
+
+**Symptom**: "Missing priority tag" validation warning
+
+**Cause**: Checklist items don't have P0/P1/P2 priority markers.
+
+**Solutions**:
+```bash
+# Find checklist items without priority tags
+grep -n "^\- \[" specs/###-folder/checklist.md | grep -v "P0:\|P1:\|P2:"
+
+# Add priority tag to each item:
+# Before: - [ ] Task description
+# After:  - [ ] P0: Task description
+```
+
+**Priority Levels**:
+| Tag  | Meaning  | Requirement                          |
+| ---- | -------- | ------------------------------------ |
+| `P0` | Blocker  | MUST pass - work incomplete without  |
+| `P1` | Required | MUST pass for production readiness   |
+| `P2` | Optional | Can defer with documented reason     |
+
 ---
 
 ## 12. ❓ FAQ
@@ -1421,7 +1776,7 @@ A: The original Spec Kit is a concept. This fork is a complete system:
 | What You Get       | Original | This Fork                           |
 | ------------------ | -------- | ----------------------------------- |
 | Templates          | Basic    | 12 production-ready                 |
-| Automation         | None     | 6 scripts                           |
+| Automation         | None     | 7 scripts                           |
 | Commands           | None     | 7 with mode variants                |
 | Memory Integration | None     | Semantic search across sessions     |
 | Debug Help         | None     | AI-detected frustration → sub-agent |

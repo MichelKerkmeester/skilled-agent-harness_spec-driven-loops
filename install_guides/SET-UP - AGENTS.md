@@ -1063,9 +1063,9 @@ ls .opencode/commands/
 
 ### Current Installation Summary
 
-| Category        | Count | Items                                                                                                               |
-| --------------- | ----- | ------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 7     | mcp-code-context, mcp-code-mode, mcp-leann, system-memory, workflows-chrome-devtools, workflows-code, workflows-git |
+| Category        | Count | Items                                                                                                                                                    |
+| --------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Skills**      | 9     | mcp-code-context, mcp-code-mode, mcp-leann, system-memory, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
 | **MCP Servers** | 5     | sequential-thinking, leann, code-context, semantic-memory, code-mode                                                |
 | **Commands**    | 16    | /create:* (5), /memory:* (3), /prompt:improve (1), /search:* (2), /spec_kit:* (5)                                   |
 | **Gates**       | 7     | Gate 0-6 (Compaction, Understanding, Routing, Spec, Memory Load, Memory Save, Completion)                           |

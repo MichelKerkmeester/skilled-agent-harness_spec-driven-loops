@@ -25,14 +25,16 @@ This reference defines standards for install guide documentation. Install guides
 ```
 Phase 1: Prerequisites    → Validate: Tools exist
     ↓
-Phase 2: Installation     → Validate: Package installed
+Phase 2: Installation     → Validate: Binaries installed
     ↓
-Phase 3: Configuration    → Validate: Config files created
+Phase 3: Initialization   → Validate: Index/database initialized (if applicable)
     ↓
-Phase 4: Verification     → Validate: System works end-to-end
+Phase 4: Configuration    → Validate: Config files created
     ↓
-Phase 5: Troubleshooting  → Reference: When validation fails
+Phase 5: Verification     → Validate: System works end-to-end
 ```
+
+**Note:** Troubleshooting is a reference section, not a phase.
 
 ### Key Rules
 
@@ -130,12 +132,13 @@ $env:MCP_PATH = "$HOME\.mcp"
 ```json
 {
   "mcp": {
-    "servers": {
-      "server-name": {
-        "type": "stdio",
-        "command": "npx",
-        "args": ["-y", "@example/server"]
-      }
+    "server-name": {
+      "type": "local",
+      "command": ["/path/to/binary"],
+      "environment": {
+        "_NOTE_TOOLS": "Description of what this provides"
+      },
+      "enabled": true
     }
   }
 }

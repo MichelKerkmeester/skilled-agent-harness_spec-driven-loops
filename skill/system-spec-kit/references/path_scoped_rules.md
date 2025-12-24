@@ -1,22 +1,15 @@
-# Path-Scoped Rules
+# Path-Scoped Validation Rules
 
-> ⚠️ **DESIGN DOCUMENT - NOT YET IMPLEMENTED**
+> ✅ **IMPLEMENTED** - v1.0.0 (2024-12-24)
 > 
-> This document describes a planned feature for path-scoped rules.
-> The functionality described below is not currently active.
-> See SKILL.md for current capabilities.
-
----
-
-> **STATUS: NOT YET IMPLEMENTED**
-> This document describes a FUTURE capability for context-aware rule enforcement.
-> Currently, rules are applied uniformly. This serves as a design document.
+> This document describes the path-scoped validation system.
+> See `validate-spec.sh` for the implementation.
 
 ---
 
 ## 1. 📖 Overview
 
-Path-scoped rules would enable differentiated enforcement based on:
+Path-scoped rules enable differentiated validation based on:
 - File location (scratch/, memory/, templates/)
 - Documentation level (1/2/3)
 - File type (spec.md, decision-record.md, etc.)
@@ -25,13 +18,13 @@ Path-scoped rules would enable differentiated enforcement based on:
 
 | Scenario                | Without Scoping        | With Scoping                   |
 | ----------------------- | ---------------------- | ------------------------------ |
-| scratch/ prototypes     | Full validation blocks | Minimal validation             |
+| scratch/ prototypes     | Full validation blocks | Skipped entirely               |
 | Level 3 decision record | Same as notes          | ADR-specific checks            |
 | Template files          | Placeholder errors     | Exempt from content validation |
 
 ---
 
-## 2. 🏗️ Proposed Rule Hierarchy
+## 2. 🏗️ Rule Hierarchy
 
 ```
 GLOBAL RULES (always apply)
@@ -40,80 +33,132 @@ LEVEL RULES (by documentation level)
     ↓
 PATH RULES (by file pattern)
     ↓
-OVERRIDE RULES (explicit exemptions)
+ENVIRONMENT OVERRIDES (runtime control)
 ```
 
 ---
 
-## 3. 📂 Proposed Path Patterns
+## 3. 📂 Path Patterns
 
 ### By Directory
 
-| Pattern                                         | Proposed Behavior            |
+| Pattern                                         | Behavior                     |
 | ----------------------------------------------- | ---------------------------- |
 | `**/scratch/**`                                 | Skip all validation          |
-| `**/memory/**`                                  | Minimal validation           |
+| `**/memory/**`                                  | Minimal validation (planned) |
 | `.opencode/skill/system-spec-kit/templates/**` | Skip content validation      |
-| `specs/*/spec.md`                               | Level-appropriate validation |
+| `specs/*/`                                      | Level-appropriate validation |
 
 ### By Level
 
-| Level | Proposed Checks                                |
-| ----- | ---------------------------------------------- |
-| 1     | Basic placeholder check, core sections         |
-| 2     | + Priority tags required, verification items   |
-| 3     | + Alternatives analysis, methodology, evidence |
+| Level | Required Files                                      | Checks Applied                              |
+| ----- | --------------------------------------------------- | ------------------------------------------- |
+| 1     | spec.md, plan.md, tasks.md                          | FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS   |
+| 2     | Level 1 + checklist.md                              | + P0/P1 section headers                     |
+| 3     | Level 2 + decision-record.md                        | + Context/Decision/Consequences sections    |
 
 ---
 
-## 4. 🔧 Current Workarounds
+## 4. ✅ Validation Rules
 
-Until implemented, use:
+### Implemented Rules
 
-**Manual selection:**
-```markdown
-<!-- Agent instruction -->
-When editing scratch/ files, skip validation.
-```
+| Rule ID            | Severity | Description                                      |
+| ------------------ | -------- | ------------------------------------------------ |
+| `FILE_EXISTS`      | ERROR    | Required files present for documentation level   |
+| `PLACEHOLDER_FILLED` | ERROR  | No unfilled `[YOUR_VALUE_HERE:]` placeholders    |
+| `SECTIONS_PRESENT` | WARNING  | Required markdown sections exist                 |
+| `LEVEL_DECLARED`   | INFO     | Level explicitly stated in spec.md metadata      |
 
-**Environment variable:**
+### Placeholder Patterns Detected
+
+- `[YOUR_VALUE_HERE: ...]` - Template placeholder, must be filled
+- `[NEEDS CLARIFICATION: ...]` - Ambiguity marker, must be resolved
+- `[OPTIONAL: ...]` - NOT flagged (intentionally optional content)
+
+### Section Requirements
+
+| File                | Required Sections                          |
+| ------------------- | ------------------------------------------ |
+| spec.md             | Problem Statement, Requirements, Scope     |
+| plan.md             | Technical Context, Architecture, Implementation |
+| checklist.md        | P0, P1 headers                             |
+| decision-record.md  | Context, Decision, Consequences            |
+
+---
+
+## 5. 🔧 Usage
+
+### Basic Validation
+
 ```bash
-SPECKIT_SKIP_VALIDATION=true ./script.sh
+# Validate a spec folder
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/
+
+# JSON output for tooling
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/ --json
+
+# Strict mode (warnings become errors)
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/ --strict
 ```
+
+### Environment Variables
+
+| Variable           | Default | Description                          |
+| ------------------ | ------- | ------------------------------------ |
+| `SPECKIT_VALIDATION` | true  | Set to `false` to disable validation |
+| `SPECKIT_STRICT`   | false   | Set to `true` for strict mode        |
+| `SPECKIT_JSON`     | false   | Set to `true` for JSON output        |
+| `SPECKIT_VERBOSE`  | false   | Set to `true` for verbose output     |
+
+### Exit Codes
+
+| Code | Meaning                              |
+| ---- | ------------------------------------ |
+| 0    | Validation passed                    |
+| 1    | Validation passed with warnings      |
+| 2    | Validation failed (errors found)     |
 
 ---
 
-## 5. 🚀 Future Implementation
+## 6. 🔗 Integration Points
 
-When implemented, would support:
+### AGENTS.md Gate 6
 
-1. **Real-time validation** - IDE integration
-2. **Rule cascade** - Inherit from parent paths
-3. **Custom severity** - Project overrides
-4. **Autofix** - Automatic corrections
+Gate 6 (Completion Verification) requires running validation before claiming completion:
 
-### Proposed Configuration
-
-```yaml
-# Future .speckit.yaml
-path_rules:
-  enabled: true
-  patterns:
-    - path: "**/scratch/**"
-      rules: none
-    - path: "specs/*/decision-record*.md"
-      rules: level3_strict
+```bash
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
 ```
+
+### /spec_kit:complete Step 11
+
+Step 11 (Completion) runs validation as the first action.
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 7. 🚀 Future Enhancements
+
+Planned but not yet implemented:
+
+1. **ANCHORS_VALID** - Validate `<!-- ANCHOR:id -->` pairs in memory files
+2. **PRIORITY_TAGS** - Validate P0/P1/P2 format in checklists
+3. **EVIDENCE_CITED** - Verify `[EVIDENCE:]` on completed P0/P1 items
+4. **.speckit.yaml** - Project-level configuration file
+5. **Autofix** - Automatic correction of common issues
+
+---
+
+## 8. 🔗 Related Resources
 
 ### Reference Files
-- [level_specifications.md](./level_specifications.md) - Complete Level 1-3 requirements and migration
-- [quick_reference.md](./quick_reference.md) - Commands, checklists, and troubleshooting
-- [template_guide.md](./template_guide.md) - Template selection, adaptation, and quality standards
+- [validation_rules.md](./validation_rules.md) - Detailed rule reference
+- [level_specifications.md](./level_specifications.md) - Complete Level 1-3 requirements
+- [quick_reference.md](./quick_reference.md) - Commands and troubleshooting
+
+### Scripts
+- `validate-spec.sh` - Main validation script
+- `test-validation.sh` - Test suite for validation
 
 ### Related Skills
-- `workflows-code` - Implementation, debugging, and verification lifecycle
 - `system-spec-kit` - Spec folder workflow orchestrator

@@ -13,7 +13,7 @@ A comprehensive guide to installing, configuring, and using the Semantic Memory 
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
+4. [⚙️ CONFIGURATION](#4--configuration)
 5. [✅ VERIFICATION](#5--verification)
 6. [💾 DATABASE BACKUP AND RESTORE](#6--database-backup-and-restore)
 7. [🚀 USAGE](#7--usage)
@@ -37,8 +37,8 @@ Not working? Jump to [Troubleshooting](#9--troubleshooting).
 ---
 
 > **Related Documentation:**
-> - [Skill README](../README.md) - Overview and workflow details
-> - [SKILL.md](../SKILL.md) - AI agent instructions for memory operations
+> - [Skill README](../../skill/system-memory/README.md) - Overview and workflow details
+> - [SKILL.md](../../skill/system-memory/SKILL.md) - AI agent instructions for memory operations
 > - `/memory:save` and `/memory:search` commands - Command reference
 
 ---
@@ -305,7 +305,7 @@ node .opencode/skill/system-memory/mcp_server/semantic-memory.js
 
 ### Step 3: Configure Your MCP Client
 
-See [Section 4: Configuration](#4-️-configuration) for client-specific setup.
+See [Section 4: Configuration](#4--configuration) for client-specific setup.
 
 ### Validation: `prerequisites_complete`
 
@@ -498,6 +498,8 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT
 ls .opencode/skill/system-memory/mcp_server/semantic-memory.js && python3 -m json.tool < .mcp.json > /dev/null && sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite ".tables" 2>/dev/null | grep -q "memory_index" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
+> **Note:** This command checks `.mcp.json` (Claude Code). For OpenCode, verify `opencode.json` instead: `python3 -m json.tool < opencode.json`
+
 ❌ **STOP if validation fails** - Fix before continuing.
 
 ---
@@ -643,6 +645,47 @@ When you know exactly what you need:
   "anchorId": "decisions"
 }
 ```
+
+### Pattern 4: Creating and Managing Memories
+
+#### Creating a Memory File
+
+Use the `generate-context.js` script to create properly formatted memory files:
+
+```bash
+node .opencode/skill/system-memory/scripts/generate-context.js specs/[###-name]/
+```
+
+The script:
+1. Prompts for session context interactively
+2. Generates a timestamped memory file in the spec's `memory/` folder
+3. Uses ANCHOR format for searchable sections
+4. Auto-indexes the file into the vector database
+
+**Example:**
+
+```bash
+# After completing auth implementation work
+node .opencode/skill/system-memory/scripts/generate-context.js specs/049-auth-system/
+
+# Creates: specs/049-auth-system/memory/24-12-25_14-30__auth.md
+# Auto-indexed with extracted trigger phrases
+```
+
+**Important:** This is the ONLY sanctioned method for creating memory files (per AGENTS.md Gate 5). Do NOT manually create memory files with the Write tool.
+
+#### Setting Importance Tier
+
+After creating a memory, you can adjust its importance tier:
+
+```typescript
+memory_update({ 
+  id: 42, 
+  importanceTier: "critical" 
+})
+```
+
+For core project rules that should ALWAYS surface, use constitutional tier (see §8.16).
 
 ### Tool Selection Guide
 
@@ -1103,6 +1146,65 @@ Memories are classified into six importance tiers that affect search ranking, de
 }
 ```
 
+### 8.16 Creating Constitutional Memories
+
+Constitutional memories are special memories that ALWAYS appear at the top of search results, regardless of query. Use them for:
+
+- Gate enforcement reminders (like Gate 3 spec folder question)
+- Project-wide architectural decisions that must never be forgotten
+- Core workflow rules that apply to every session
+
+**Creation Workflow:**
+
+1. **Create memory content** - Write content with clear, actionable reminders
+
+2. **Generate memory file:**
+   ```bash
+   node .opencode/skill/system-memory/scripts/generate-context.js specs/[folder]/
+   ```
+
+3. **Index the memory** (if not auto-indexed):
+   ```typescript
+   memory_save({ filePath: "/path/to/memory/file.md" })
+   // Note the returned memoryId
+   ```
+
+4. **Promote to constitutional tier:**
+   ```typescript
+   memory_update({
+     id: <memoryId>,
+     importanceTier: "constitutional",
+     triggerPhrases: [
+       // 20-40 phrases for broad coverage
+       "fix", "implement", "create", "modify", "update",
+       "refactor", "comprehensive", "all bugs", "15 agents"
+     ]
+   })
+   ```
+
+5. **Verify enforcement:**
+   ```typescript
+   // Test trigger matching
+   memory_match_triggers({ prompt: "fix all bugs in codebase" })
+   // Should return your constitutional memory with matchedPhrases
+   
+   // Test search surfacing
+   memory_search({ query: "unrelated topic" })
+   // Constitutional memory should appear FIRST with similarity: 100
+   ```
+
+**Example - Gate 3 Enforcement Memory:**
+
+See `specs/005-memory/018-gate3-enforcement/` for a complete example:
+- Memory file with reminder content (~320 tokens)
+- 33 trigger phrases covering action words + scale indicators
+- Constitutional tier promotion via `memory_update()`
+- Validation via `memory_match_triggers()` testing
+
+**Token Budget:** Keep constitutional memories under 500 tokens to ensure they don't overwhelm search results.
+
+**Limit:** Maximum 3 constitutional memories recommended to maintain focus.
+
 ---
 
 ## 9. 🔧 TROUBLESHOOTING
@@ -1483,9 +1585,7 @@ Slow operations are logged automatically:
 
 ---
 
-### Quick Reference
-
-### Complete Tool Summary (14 Tools)
+### Quick Reference: Complete Tool Summary (14 Tools)
 
 **Core Search Tools:**
 

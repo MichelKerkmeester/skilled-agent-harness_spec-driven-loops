@@ -33,10 +33,11 @@
 | **Code search**          | `leann_search()` for semantic (meaning), `get_code_context()` for structural (symbols), `Grep()` for text patterns |
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                   |
 | **Save context**         | Execute `generate-context.js` → Verify ANCHOR format → Auto-indexed                                                |
-| **Claim completion**     | Load `checklist.md` → Verify ALL items → Mark with evidence                                                        |
+| **Claim completion**     | Run validate-spec.sh → Load `checklist.md` → Verify ALL items → Mark with evidence                                 |
 | **Debug delegation**     | `/spec_kit:debug` → Model selection → Sub-agent dispatch via Task tool                                             |
 
 ---
+
 
 ## 2. ⛔ MANDATORY GATES - STOP BEFORE ACTING
 
@@ -52,7 +53,7 @@
 │                                                                             │
 │ "⚠️ CONTEXT COMPACTION DETECTED                                             │
 │                                                                             │
-│ To continue efficiently, start a new conversation with this handoff:        │
+│ To continue efficiently, start a new conversation with this handoff:         │
 │                                                                             │
 │ CONTINUATION - Attempt [N]                                                  │
 │ Spec: [CURRENT_SPEC_PATH]                                                   │
@@ -62,7 +63,7 @@
 │ Run /spec_kit:handover to save quick-continue.md, then in new session:      │
 │ /spec_kit:resume [spec-path]"                                               │
 │                                                                             │
-│ Block:   HARD - Cannot proceed until user explicitly confirms               │
+│ Block:   HARD - Cannot proceed until user explicitly confirms                │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -75,7 +76,7 @@
 │      - Extract: Last completed task                                         │
 │      - Extract: Next pending task                                           │
 │                                                                             │
-│   2. Validate against most recent memory file (if exists):                  │
+│   2. Validate against most recent memory file (if exists):                   │
 │      - Read latest memory/*.md from spec folder                             │
 │      - Check "Project State Snapshot" section for Phase, Last/Next Action   │
 │      - Compare claimed progress with actual progress                        │
@@ -83,9 +84,9 @@
 │   3. IF mismatch detected:                                                  │
 │      - Report: "⚠️ State mismatch detected"                                 │
 │      - Show: Claimed vs Actual                                              │
-│      - Ask: "Which is correct? A) Handoff B) Memory file C) Investigate"    │
+│      - Ask: "Which is correct? A) Handoff B) Memory file C) Investigate"     │
 │                                                                             │
-│   4. IF validated OR no memory files:                                       │
+│   4. IF validated OR no memory files:                                        │
 │      - Proceed with handoff context                                         │
 │      - Display: "✅ Continuation validated"                                 │
 │                                                                             │
@@ -97,14 +98,14 @@
 │ Trigger: EACH new user message (re-evaluate even in ongoing conversations)  │
 │ Action:  1a. Call memory_match_triggers(prompt) → Surface relevant context  │
 │          1b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
-│          1c. Parse request → Check confidence (see §4)                      │
+│          1c. Parse request → Check confidence (see §4)                       │
 │          1d. If <40%: ASK | 40-79%: PROCEED WITH CAUTION | ≥80%: PASS       │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 2: SKILL ROUTING [MANDATORY]                                           │
 │ Action:  Run python .opencode/scripts/skill_advisor.py "$USER_REQUEST"      │
-│ Logic:   IF confidence > 0.8 → MUST invoke skill (read SKILL.md directly)   │
+│ Logic:   IF confidence > 0.8 → MUST invoke skill (read SKILL.md directly)    │
 │          ELSE → Proceed with manual tool selection                          │
 │ Note:    Do not guess. Use the advisor's output to determine the path.      │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -114,21 +115,36 @@
 │                                                                             │
 │ FILE MODIFICATION TRIGGERS (if ANY match → Q1 REQUIRED):                    │
 │   □ "rename", "move", "delete", "create", "add", "remove"                   │
-│   □ "update", "change", "modify", "edit", "fix", "refactor"                 │
-│   □ "implement", "build", "write", "generate", "configure", "analyze"       │
-│   □ Any task that will result in file changes                               │
+│   □ "update", "change", "modify", "edit", "fix", "refactor"                  │
+│   □ "implement", "build", "write", "generate", "configure", "analyze"        │
+│   □ Any task that will result in file changes                                │
 │                                                                             │
-│ Q1: SPEC FOLDER - If file modification triggers detected                    │
+│ Q1: SPEC FOLDER - If file modification triggers detected                      │
 │     Options: A) Existing | B) New | C) Update related | D) Skip             │
 │     ❌ DO NOT use Read/Edit/Write/Bash (except Gate Actions) before asking  │
 │     ✅ ASK FIRST, wait for A/B/C/D response, THEN proceed                   │
 │                                                                             │
 │ Block: HARD - Cannot use tools without answer                               │
 └─────────────────────────────────────────────────────────────────────────────┘
+
+### First Message Protocol
+
+**RULE**: If the user's FIRST message requests file modifications:
+1. Gate 3 question is your FIRST response
+2. No analysis first ("let me understand the scope")
+3. No tool calls first ("let me check what exists")
+4. Ask immediately:
+
+   **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
+
+5. Wait for answer, THEN proceed
+
+**Why**: Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
+
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 4: MEMORY LOADING [SOFT BLOCK]                                         │
-│ Trigger: User selected A or C in Gate 3 AND memory files exist              │
+│ Trigger: User selected A or C in Gate 3 AND memory files exist               │
 │ Action:  Display [1] [2] [3] [all] [skip] → Wait for user choice            │
 │ Block:   SOFT - User can [skip] to proceed immediately                      │
 │ Note:    Display memory options after user responds to Gate 3               │
@@ -143,9 +159,9 @@
                                     ↓ SAVING CONTEXT?
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 5: MEMORY SAVE VALIDATION [HARD BLOCK]                                 │
-│ Trigger: "save context", "save memory", /memory:save, memory file creation  │
+│ Trigger: "save context", "save memory", /memory:save, memory file creation   │
 │                                                                             │
-│ PRE-SAVE VALIDATION (before invoking generate-context.js):                  │
+│ PRE-SAVE VALIDATION (before invoking the script):                           │
 │   1. If NO folder argument provided → HARD BLOCK                            │
 │      Action: List recent/related spec folders → Ask user to select          │
 │   2. If folder argument provided → Validate alignment                       │
@@ -153,19 +169,27 @@
 │      If mismatch detected → WARN user + suggest alternatives                │
 │                                                                             │
 │ EXECUTION:                                                                  │
-│   Action:  MUST use generate-context.js → Verify ANCHOR format → Auto-index │
-│   Rules:   MUST pass spec folder as argument: `generate-context.js [path]`  │
-│   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked). │
+│   Action:  MUST use `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` │
+│            → Verify ANCHOR format → Auto-index                              │
+│   Rules:   MUST pass spec folder as argument:                               │
+│            `node .opencode/skill/system-memory/scripts/generate-context.js [path]` │
+│   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked).  │
 │   Violation: If Write tool used on memory/ path → DELETE & re-run via script│
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
                                     ↓ DONE?
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 6: COMPLETION VERIFICATION [HARD BLOCK]                                │
-│ Trigger: Claiming "done", "complete", "finished", "works"                   │
-│ Action:  Load checklist.md → Verify ALL items → Mark [x] with evidence      │
-│ Block:   HARD - Cannot claim completion without checklist verification      │
+│ Trigger: Claiming "done", "complete", "finished", "works"                    │
+│ Action:  1. Run validate-spec.sh on spec folder (if exists)                 │
+│          2. Load checklist.md → Verify ALL items → Mark [x] with evidence   │
+│ Block:   HARD - Cannot claim completion without verification                 │
 │ Skip:    Level 1 tasks (no checklist.md required)                           │
+│                                                                             │
+│ Validation command:                                                         │
+│   .opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>    │
+│   Exit 0 = pass, Exit 1 = warnings, Exit 2 = errors (must fix)               │
+│   Use --strict for completion (treats warnings as errors)                   │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -175,20 +199,20 @@
 │ HEURISTIC ASSESSMENT (AI is stateless - use observable signals):            │
 │   Tier 1 signals (~15 exchanges equivalent):                                │
 │     - 10+ tool calls visible in conversation                                │
-│     - 3+ unique files modified                                              │
+│     - 3+ unique files modified                                                │
 │     - Session keyword: "been working on this"                               │
 │                                                                             │
 │   Tier 2 signals (~25 exchanges equivalent):                                │
 │     - 15+ tool calls visible                                                │
-│     - 5+ unique files modified                                              │
+│     - 5+ unique files modified                                                │
 │     - Multiple phases completed                                             │
 │     - User mentions: "long session", "context"                              │
 │                                                                             │
 │   Tier 3 signals (~35 exchanges equivalent):                                │
 │     - 20+ tool calls visible                                                │
-│     - 7+ unique files modified                                              │
+│     - 7+ unique files modified                                                │
 │     - Frustration keywords: "already said", "repeat", "told you"            │
-│     - Complexity keywords: "complicated", "many files"                      │
+│     - Complexity keywords: "complicated", "many files"                       │
 │                                                                             │
 │ PROGRESSIVE RESPONSE:                                                       │
 │                                                                             │
@@ -207,7 +231,7 @@
 │     Action: Wait for user choice, log if declined                           │
 │                                                                             │
 │ KEYWORD TRIGGERS (proactive, any tier):                                     │
-│   Session ending: "stopping", "done", "finished", "break", "later"          │
+│   Session ending: "stopping", "done", "finished", "break", "later"           │
 │   Context concern: "forgetting", "remember", "context", "losing track"      │
 │   → Suggest: "Would you like to run /spec_kit:handover before ending?"      │
 │                                                                             │
@@ -223,6 +247,7 @@
 □ Is this a NEW user message? → Re-run gate trigger detection from scratch
 □ Did I call memory_match_triggers() first? → Surface relevant context before proceeding
 □ Did I detect file modification intent? → If YES, did I ask Q1 BEFORE using project tools?
+□ STOP. File modification detected? Did I ask spec folder question? If NO → Ask NOW. Do not proceed.
 □ Did I wait for user's A/B/C/D response before Read/Edit/Write/Bash (except Gate Actions)?
 □ Am I about to use a project tool without having asked? → STOP, ask first
 □ Am I saving memory/context? → See Gate 5 (generate-context.js required)
@@ -270,26 +295,27 @@ File modification planned? → Include Q1 (Spec Folder)
 
 #### ⚡ Common Failure Patterns 
 
-| #   | Stage          | Pattern                | Trigger Phrase           | Response Action                                              |
-| --- | -------------- | ---------------------- | ------------------------ | ------------------------------------------------------------ |
-| 1   | Understanding  | Task Misinterpretation | N/A                      | Parse request, confirm scope                                 |
-| 2   | Understanding  | Assumptions            | N/A                      | Read existing code first                                     |
-| 3   | Understanding  | Skip Memory            | "research", "explore"    | `memory_search()` FIRST                                      |
-| 4   | Understanding  | Skip Trigger Match     | New user message         | Call memory_match_triggers() FIRST                           |
-| 5   | Planning       | Rush to Code           | "straightforward"        | Analyze → Verify → Simplest                                  |
-| 6   | Planning       | Over-Engineering       | N/A                      | YAGNI - solve only stated                                    |
-| 7   | Planning       | Skip Process           | "I already know"         | Follow checklist anyway                                      |
-| 8   | Implementation | Clever > Clear         | N/A                      | Obvious code wins                                            |
-| 9   | Implementation | Fabrication            | "obvious" w/o verify     | Output "UNKNOWN", verify first                               |
-| 10  | Implementation | Cascading Breaks       | N/A                      | Reproduce before fixing                                      |
-| 11  | Implementation | Root Folder Pollution  | Creating temp file       | STOP → Move to scratch/ → Verify                             |
-| 12  | Review         | Skip Verification      | "trivial edit"           | Run ALL tests, no exceptions                                 |
-| 13  | Review         | Retain Legacy          | "just in case"           | Remove unused, ask if unsure                                 |
-| 14  | Completion     | No Verification        | "works", "done"          | Verify in target environment first                           |
-| 15  | Completion     | Skip Checklist         | "complete" (L2+)         | Load checklist.md, verify all                                |
-| 16  | Completion     | Skip Anchor Format     | "save context"           | HARD BLOCK: Execute generate-context.js, verify ANCHOR pairs |
-| 17  | Any            | Internal Contradiction | Conflicting requirements | HALT → State conflict explicitly → Request resolution        |
-| 18  | Understanding  | Wrong Search Tool      | "find", "search", "list" | LEANN for meaning, Code Context for structure, Grep for text |
+| #   | Stage          | Pattern                       | Trigger Phrase                          | Response Action                                              |
+| --- | -------------- | ----------------------------- | --------------------------------------- | ------------------------------------------------------------ |
+| 1   | Understanding  | Task Misinterpretation        | N/A                                     | Parse request, confirm scope                                 |
+| 2   | Understanding  | Assumptions                   | N/A                                     | Read existing code first                                     |
+| 3   | Understanding  | Skip Memory                   | "research", "explore"                   | `memory_search()` FIRST                                      |
+| 4   | Understanding  | Skip Trigger Match            | New user message                        | Call memory_match_triggers() FIRST                           |
+| 5   | Planning       | Rush to Code                  | "straightforward"                       | Analyze → Verify → Simplest                                  |
+| 6   | Planning       | Over-Engineering              | N/A                                     | YAGNI - solve only stated                                    |
+| 7   | Planning       | Skip Process                  | "I already know"                        | Follow checklist anyway                                      |
+| 8   | Implementation | Clever > Clear                | N/A                                     | Obvious code wins                                            |
+| 9   | Implementation | Fabrication                   | "obvious" w/o verify                    | Output "UNKNOWN", verify first                               |
+| 10  | Implementation | Cascading Breaks              | N/A                                     | Reproduce before fixing                                      |
+| 11  | Implementation | Root Folder Pollution         | Creating temp file                      | STOP → Move to scratch/ → Verify                             |
+| 12  | Review         | Skip Verification             | "trivial edit"                          | Run ALL tests, no exceptions                                 |
+| 13  | Review         | Retain Legacy                 | "just in case"                          | Remove unused, ask if unsure                                 |
+| 14  | Completion     | No Verification               | "works", "done"                         | Verify in target environment first                           |
+| 15  | Completion     | Skip Checklist                | "complete" (L2+)                        | Load checklist.md, verify all                                |
+| 16  | Completion     | Skip Anchor Format            | "save context"                          | HARD BLOCK: Execute generate-context.js, verify ANCHOR pairs |
+| 17  | Any            | Internal Contradiction        | Conflicting requirements                | HALT → State conflict explicitly → Request resolution        |
+| 18  | Understanding  | Wrong Search Tool             | "find", "search", "list"                | LEANN for meaning, Code Context for structure, Grep for text |
+| 19  | Any            | Skip Gate 3 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder question → Wait for A/B/C/D           |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
 

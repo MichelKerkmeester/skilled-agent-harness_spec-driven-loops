@@ -2,7 +2,7 @@
 
 A comprehensive guide to installing, configuring, and using the LEANN (Lean ANNs) MCP server for ultra-efficient semantic code and document search with 97% storage savings.
 
-> **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
+> **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Binary**: `~/.local/bin/leann_mcp` | **Dependencies**: Ollama + nomic-embed-text
 
 ---
@@ -13,7 +13,7 @@ A comprehensive guide to installing, configuring, and using the LEANN (Lean ANNs
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
+4. [⚙️ CONFIGURATION](#4-configuration)
 5. [✅ VERIFICATION](#5--verification)
 6. [🚀 USAGE](#6--usage)
 7. [🎯 FEATURES](#7--features)
@@ -222,7 +222,7 @@ export OPENAI_API_KEY="sk-..."
 
 **Quick Verification:**
 ```bash
-python3 --version && uv --version && brew list libomp boost protobuf zeromq pkgconf 2>/dev/null | wc -l | grep -q 5 && echo "✅ PASS" || echo "❌ FAIL"
+python3 --version && uv --version && brew list libomp boost protobuf zeromq pkgconf >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 **Ollama Verification (if using local embeddings):**

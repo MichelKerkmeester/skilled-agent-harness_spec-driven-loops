@@ -64,6 +64,30 @@
   - User explicitly marks importance in conversation
 -->
 
+<!-- Constitutional Tier Promotion:
+  To promote a memory to constitutional tier (always surfaced):
+  
+  1. Via MCP tool after indexing:
+     memory_update({ id: <memory_id>, importanceTier: 'constitutional' })
+  
+  2. Criteria for constitutional:
+     - Applies to ALL future conversations (not project-specific)
+     - Core constraints/rules that should NEVER be forgotten
+     - ~500 token budget total for constitutional tier
+     
+  3. Add trigger phrases for proactive surfacing:
+     memory_update({ 
+       id: <memory_id>, 
+       importanceTier: 'constitutional',
+       triggerPhrases: ['fix', 'implement', 'create', 'modify', ...]
+     })
+     
+  4. Examples of constitutional content:
+     - "Always ask Gate 3 spec folder question before file modifications"
+     - "Never modify production data directly"
+     - "Memory files MUST use generate-context.js script"
+-->
+
 <!-- Channel/Branch Association:
   The channel field captures the git branch at session creation time.
   This enables filtering memories by feature work and tracking
@@ -464,6 +488,13 @@ relevance_boost: {{RELEVANCE_BOOST}}  # 1.0 default, increased by access pattern
 key_topics:
 {{#TOPICS}}  - "{{.}}"
 {{/TOPICS}}
+
+# Trigger Phrases (auto-extracted for fast <50ms matching)
+trigger_phrases:
+{{#TRIGGER_PHRASES}}  - "{{.}}"
+{{/TRIGGER_PHRASES}}
+{{^TRIGGER_PHRASES}}  []
+{{/TRIGGER_PHRASES}}
 
 key_files:
 {{#KEY_FILES}}  - "{{FILE_PATH}}"

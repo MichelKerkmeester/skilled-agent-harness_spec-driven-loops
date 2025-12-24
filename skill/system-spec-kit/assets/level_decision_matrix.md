@@ -98,7 +98,64 @@ These factors can push you to a higher level even if LOC suggests lower:
 
 ---
 
-## 5.1 📚 RESEARCH VS SPIKE TEMPLATES
+## 5.1 📋 CHECKLIST QUALITY REQUIREMENTS
+
+Level 2+ documentation requires `checklist.md` with specific quality standards:
+
+### Priority Organization (P0/P1/P2)
+
+All checklist items MUST be tagged with priority markers:
+
+| Priority | Meaning        | Action Required                           |
+| -------- | -------------- | ----------------------------------------- |
+| **P0**   | HARD BLOCKER   | Must complete before ANY other work       |
+| **P1**   | Must complete  | Required for completion OR user-approved deferral |
+| **P2**   | Can defer      | Nice-to-have, can defer without approval  |
+
+**Format Example:**
+```markdown
+## Implementation Checklist
+
+### P0 - Blockers
+- [ ] Fix breaking test before proceeding
+- [ ] Resolve merge conflict in main.js
+
+### P1 - Required
+- [ ] Implement core validation logic
+- [ ] Add unit tests for new functions
+- [ ] Update documentation
+
+### P2 - Enhancements
+- [ ] Add performance optimization
+- [ ] Refactor legacy helper functions
+```
+
+### Evidence Citation Requirements
+
+Completed checklist items MUST include verification evidence:
+
+**Format:** `[x] Item description - [evidence type: details]`
+
+**Evidence Types:**
+- `[verified: grep output]` - Text search confirmation
+- `[verified: test pass]` - Test suite confirmation
+- `[verified: browser check]` - Manual browser verification
+- `[verified: file exists]` - File presence confirmation
+- `[verified: review]` - Code review confirmation
+
+**Examples:**
+```markdown
+- [x] Remove deprecated function - [verified: grep shows 0 matches for 'oldFunction']
+- [x] All tests pass - [verified: test pass - 47/47 tests green]
+- [x] Modal displays correctly - [verified: browser check - Chrome/Firefox/Safari]
+- [x] Config file created - [verified: file exists at config/settings.json]
+```
+
+**Validation:** Completion claims are BLOCKED without evidence citations on P0/P1 items.
+
+---
+
+## 5.2 📚 RESEARCH VS SPIKE TEMPLATES
 
 **When to use which:**
 
@@ -112,6 +169,62 @@ These factors can push you to a higher level even if LOC suggests lower:
 - **Need deep understanding of unfamiliar area?** → Use research (thorough investigation)
 - **Feasibility unknown?** → Use spike (quick validation)
 - **Complex feature requiring architecture decisions?** → Use research first, then spike for unknowns
+
+---
+
+## 5.3 ✅ VALIDATION RULES REFERENCE
+
+The spec validation system (`validate-spec.sh`) checks documentation quality using these rules:
+
+### Rules by Applicability
+
+| Rule                 | Level 1 | Level 2 | Level 3 | Severity | Description                                      |
+| -------------------- | ------- | ------- | ------- | -------- | ------------------------------------------------ |
+| **FILE_EXISTS**      | ✓       | ✓       | ✓       | error    | Required files must exist for the level          |
+| **PLACEHOLDER_FILLED** | ✓     | ✓       | ✓       | warning  | Template placeholders must be replaced           |
+| **ANCHORS_VALID**    | ✓       | ✓       | ✓       | warning  | Memory files must have balanced anchor pairs     |
+| **CHECKLIST_HAS_ITEMS** | —    | ✓       | ✓       | warning  | checklist.md must contain actionable items       |
+| **DECISION_RECORDED** | —      | —       | ✓       | warning  | decision-record.md must document key decisions   |
+
+### Rule Details
+
+**FILE_EXISTS**
+- Purpose: Ensures all required files for the documentation level are present
+- Applies to: All levels (checks level-specific required files)
+- Severity: error (blocks completion)
+- Details: Level 1 requires `spec.md`, `plan.md`, `tasks.md`; Level 2 adds `checklist.md`; Level 3 adds `decision-record.md`
+
+**PLACEHOLDER_FILLED**
+- Purpose: Detects unfilled template placeholders that indicate incomplete documentation
+- Applies to: All levels
+- Severity: warning (default)
+- Details: Searches for patterns like `[PROJECT_NAME]`, `[DESCRIPTION]`, `{{placeholder}}`, etc.
+
+**ANCHORS_VALID**
+- Purpose: Validates that memory files have balanced ANCHOR_START/ANCHOR_END pairs
+- Applies to: All levels with `memory/` folders
+- Severity: warning (default)
+- Details: Each `<!-- ANCHOR_START: id -->` must have matching `<!-- ANCHOR_END: id -->`. Unbalanced anchors break semantic memory indexing.
+
+**CHECKLIST_HAS_ITEMS**
+- Purpose: Ensures checklist.md contains actual checklist items, not just template structure
+- Applies to: Level 2+ only
+- Severity: warning (default)
+- Details: Looks for `- [ ]` or `- [x]` patterns indicating actionable items
+
+**DECISION_RECORDED**
+- Purpose: Verifies that architectural decisions are documented with rationale
+- Applies to: Level 3 only
+- Severity: warning (default)
+- Details: Checks decision-record.md for decision entries with status and rationale
+
+### Severity Levels
+
+| Severity  | Meaning                                    | Action Required              |
+| --------- | ------------------------------------------ | ---------------------------- |
+| **error** | Validation fails, blocks completion claims | Must fix before proceeding   |
+| **warning** | Issue detected, should address           | Address or acknowledge       |
+| **info**  | Informational, no action required          | Optional improvement         |
 
 ---
 

@@ -31,6 +31,9 @@ JSON_MODE=false
 REQUIRE_TASKS=false
 INCLUDE_TASKS=false
 PATHS_ONLY=false
+VALIDATE_MODE=false
+VALIDATE_STRICT=false
+VALIDATE_VERBOSE=false
 
 for arg in "$@"; do
     case "$arg" in
@@ -46,6 +49,17 @@ for arg in "$@"; do
         --paths-only)
             PATHS_ONLY=true
             ;;
+        --validate|-V)
+            VALIDATE_MODE=true
+            ;;
+        --validate-strict)
+            VALIDATE_MODE=true
+            VALIDATE_STRICT=true
+            ;;
+        --validate-verbose)
+            VALIDATE_MODE=true
+            VALIDATE_VERBOSE=true
+            ;;
         --help|-h)
             cat << 'EOF'
 Usage: check-prerequisites.sh [OPTIONS]
@@ -57,6 +71,9 @@ OPTIONS:
   --require-tasks     Require tasks.md to exist (for implementation phase)
   --include-tasks     Include tasks.md in AVAILABLE_DOCS list
   --paths-only        Only output path variables (no prerequisite validation)
+  --validate, -V      Run validation on the spec folder (calls validate-spec.sh)
+  --validate-strict   Run validation in strict mode (warnings as errors)
+  --validate-verbose  Run validation with verbose output
   --help, -h          Show this help message
 
 EXAMPLES:
@@ -68,6 +85,12 @@ EXAMPLES:
   
   # Get feature paths only (no validation)
   ./check-prerequisites.sh --paths-only
+  
+  # Run full validation on spec folder
+  ./check-prerequisites.sh --validate
+  
+  # Run strict validation (warnings become errors)
+  ./check-prerequisites.sh --validate-strict
   
 EOF
             exit 0
@@ -109,6 +132,17 @@ if [[ ! -d "$FEATURE_DIR" ]]; then
     echo "ERROR: Feature directory not found: $FEATURE_DIR" >&2
     echo "Run /spec_kit:complete or /spec_kit:plan first to create the feature structure." >&2
     exit 1
+fi
+
+# If validation mode, run validate-spec.sh and exit
+if $VALIDATE_MODE; then
+    VALIDATE_ARGS=()
+    $JSON_MODE && VALIDATE_ARGS+=(--json)
+    $VALIDATE_STRICT && VALIDATE_ARGS+=(--strict)
+    $VALIDATE_VERBOSE && VALIDATE_ARGS+=(--verbose)
+    
+    "$SCRIPT_DIR/validate-spec.sh" "${VALIDATE_ARGS[@]}" "$FEATURE_DIR"
+    exit $?
 fi
 
 if [[ ! -f "$IMPL_PLAN" ]]; then

@@ -289,18 +289,27 @@ def select_memory_tool(user_request):
 **Example Response**:
 ```json
 {
-  "searchType": "vector",
-  "count": 2,
+  "searchType": "hybrid",
+  "count": 3,
+  "constitutionalCount": 1,
   "results": [
+    {
+      "id": 132,
+      "specFolder": "005-memory/018-gate3-enforcement",
+      "title": "GATE 3 ENFORCEMENT - ASK SPEC FOLDER FIRST",
+      "similarity": 100,
+      "isConstitutional": true,
+      "importanceTier": "constitutional",
+      "triggerPhrases": ["fix", "implement", "create", "modify", "..."]
+    },
     {
       "id": 42,
       "specFolder": "049-auth-system",
       "filePath": "specs/049-auth-system/memory/28-11-25_14-30__oauth.md",
       "title": "OAuth Implementation Session",
-      "similarity": 0.89,
-      "triggerPhrases": ["oauth", "jwt", "authentication"],
-      "importanceTier": "important",
-      "createdAt": "2025-11-28T14:30:00Z"
+      "similarity": 89.5,
+      "isConstitutional": false,
+      "importanceTier": "important"
     }
   ]
 }
@@ -1139,7 +1148,29 @@ decay_score = base_score * (0.5 ^ (days_since_creation / 90))
 
 ### Importance Tiers
 
-> **Constitutional Tier**: These memories surface in EVERY session. Use for project rules, coding standards, and critical architectural decisions that should never be forgotten.
+> **Constitutional Tier**: These memories surface in EVERY session. Use for project rules, coding standards, critical architectural decisions, and **gate enforcement rules** that should never be forgotten.
+
+#### Constitutional Tier for Gate Enforcement
+
+The constitutional tier can be used to create memories that **always surface** at the top of every search, regardless of query relevance. This is critical for enforcement rules like Gate 3 (spec folder question).
+
+**How it works:**
+- Memories with `importanceTier: "constitutional"` bypass relevance filtering
+- They appear first in search results (~500 token budget)
+- Trigger phrases ensure they surface via `memory_match_triggers()`
+
+**Example: Gate 3 Enforcement Memory**
+A constitutional memory reminds the AI to always ask the spec folder question before file modifications. See `specs/005-memory/018-gate3-enforcement/` for implementation details.
+
+**Create via:** `memory_update({ id: X, importanceTier: "constitutional" })`
+
+**Response Behavior:**
+
+When constitutional memories are included in search results:
+- `similarity: 100` - Always maximum score, regardless of query relevance
+- `isConstitutional: true` - Flag for UI/logic differentiation
+- `constitutionalCount` - Number of constitutional memories in response
+- Always appear at top of results before other memories
 
 Six-level classification system for memory prioritization:
 

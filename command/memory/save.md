@@ -167,7 +167,7 @@ operating_mode:
 .opencode/skill/system-memory/scripts/generate-context.js
 ```
 
-> **Tool Restriction:** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags (with opening AND closing markers), SESSION SUMMARY table, and MEMORY METADATA YAML block. Direct file creation bypasses these critical formatting features and will cause `memory_load(anchorId)` failures.
+> **Tool Restriction (Gate 5 HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags (with opening AND closing markers), SESSION SUMMARY table, and MEMORY METADATA YAML block. Direct file creation bypasses these critical formatting features and will cause `memory_load(anchorId)` failures. See AGENTS.md Gate 5 for enforcement details.
 
 **Auto-Indexing:** Memory files created in `specs/*/memory/` are automatically indexed when the semantic memory MCP server starts. For immediate indexing after creating a file, use `memory_save`:
 

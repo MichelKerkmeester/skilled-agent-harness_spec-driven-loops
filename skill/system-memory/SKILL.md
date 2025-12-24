@@ -573,6 +573,71 @@ memory_index_scan({ specFolder: "005-memory", force: false })
 | `temporary`      | 0.5x  | 90-day | Debug sessions, experiments (auto-expire 7 days) |
 | `deprecated`     | 0.0x  | N/A    | Excluded from search, accessible via memory_load |
 
+### Constitutional Tier Usage
+
+The `constitutional` tier is reserved for memories that must ALWAYS surface:
+- **Gate enforcement rules** (e.g., Gate 3 spec folder question)
+- **Project-wide constraints** and coding standards
+- **Critical workflow reminders** that prevent process violations
+
+**Create via:** `memory_update({ id: X, importanceTier: "constitutional" })`
+
+Constitutional memories appear at the top of every `memory_search()` result, ensuring critical context is never missed. See `specs/005-memory/018-gate3-enforcement/` for an example implementation.
+
+### Constitutional Tier Trigger Phrases
+
+Constitutional memories can include **extensive trigger phrases** for proactive surfacing via `memory_match_triggers()`. Unlike normal memories (5-10 triggers), constitutional memories may have 20-40+ triggers to ensure they surface on common violation patterns.
+
+**Example - Gate 3 Enforcement Memory (#132):**
+
+```typescript
+// 33 trigger phrases covering:
+// - Action words: "fix", "implement", "create", "modify", "update", "refactor"
+// - Scale indicators: "comprehensive", "all bugs", "multiple files", "entire"
+// - Agent dispatching: "parallel agents", "15 agents", "dispatch agents"
+// - Gate keywords: "spec folder", "gate 3", "file modification"
+
+memory_match_triggers({ prompt: "Let me implement the fix" })
+// → Returns Memory #132 with Gate 3 reminder
+// → matchedPhrases: ["implement", "fix"]
+```
+
+**Trigger Design Guidelines for Constitutional Memories:**
+
+| Guideline | Description |
+|-----------|-------------|
+| **Cover action verbs** | All verbs indicating file modification intent |
+| **Include scale words** | "comprehensive", "all", "entire", "everything" |
+| **Add compound phrases** | "fix all", "analyze and fix", "update all" |
+| **Domain-specific terms** | Terms specific to your enforcement use case |
+| **Test with real prompts** | Verify triggers match common user phrases |
+
+**Creating Constitutional Memory with Triggers:**
+
+```typescript
+// Step 1: Create and index memory file
+memory_save({ filePath: "/path/to/enforcement-memory.md" })
+// Returns: { memoryId: 132 }
+
+// Step 2: Promote to constitutional with triggers
+memory_update({
+  id: 132,
+  importanceTier: "constitutional",
+  triggerPhrases: [
+    "fix", "implement", "create", "modify", "update", "refactor",
+    "change", "edit", "write", "add", "remove", "delete",
+    "comprehensive", "all bugs", "multiple files", "codebase",
+    "parallel agents", "15 agents", "fix all", "spec folder"
+  ]
+})
+
+// Step 3: Verify trigger matching
+memory_match_triggers({ prompt: "fix all bugs" })
+// → Returns Memory #132 with matchedPhrases: ["fix", "all bugs", "fix all"]
+```
+
+**Reference:** See `specs/005-memory/018-gate3-enforcement/` for complete implementation.
+
 ### Plugin Dashboard Injection (OPTIONAL)
 
 > **Note**: The plugin is an **optional enhancement**. All memory functionality (14 MCP tools) works without the plugin. The plugin only adds automatic dashboard injection.

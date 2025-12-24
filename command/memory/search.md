@@ -180,7 +180,7 @@ $ARGUMENTS
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
 │ TRIGGERS VIEW   │ memory_list                                             │ SINGLE   │ Show error msg  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ CLEANUP         │ memory_list → [confirm] → memory_delete                 │ SEQUENCE │ Abort operation │
+│ CLEANUP         │ memory_list → [confirm] → memory_delete                  │ SEQUENCE │ Abort operation │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
 │ TIER CHANGE     │ memory_update                                           │ SINGLE   │ Show error msg  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
@@ -326,6 +326,24 @@ Filters: tier=<all|tier> | type=<all|type> | decay=<on|off>
 | f     | Show filter menu (tier/type/decay toggles) |
 | b     | Back to DASHBOARD                          |
 | q     | Exit                                       |
+
+---
+
+## 🏛️ CONSTITUTIONAL MEMORY BEHAVIOR
+
+Constitutional tier memories receive special handling in search results:
+
+| Behavior             | Description                                                  |
+| -------------------- | ------------------------------------------------------------ |
+| **Always surfaces**  | Constitutional memories appear at TOP of every search result |
+| **Fixed similarity** | Returns `similarity: 100` regardless of query relevance      |
+| **Response flag**    | `isConstitutional: true` in search results                   |
+| **Token budget**     | ~500 tokens max for constitutional memories                  |
+| **Default enabled**  | `includeConstitutional: true` is the default                 |
+
+**Parameter:** Use `--include-constitutional:false` to suppress (rare use case).
+
+**Example:** Memory #132 (Gate 3 enforcement) always surfaces to remind about spec folder question.
 
 ---
 

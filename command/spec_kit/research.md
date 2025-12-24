@@ -64,7 +64,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │    C) Update related spec: [if partial match found]            │
    │    D) Skip documentation (research only, no artifacts)         │
    │                                                                │
-   │ **2. Execution Mode** (if no :auto/:confirm suffix):           │
+   │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
    │    A) Autonomous - Execute all 9 steps without approval        │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
@@ -90,6 +90,34 @@ EXECUTE AFTER PHASE 1 PASSES:
 ```
 
 **Phase 2 Output:** `spec_choice = ___` | `spec_path = ________________` | `execution_mode = ________________`
+
+---
+
+## 🔒 PHASE 2.5: PRIOR WORK SEARCH (Conditional)
+
+**STATUS: ☐ AUTO-EXECUTE**
+
+```
+EXECUTE AFTER PHASE 2 PASSES:
+
+1. Call memory_match_triggers(prompt=research_topic) for fast keyword match
+2. Call memory_search(query=research_topic, includeConstitutional=true) for semantic search
+3. IF matches found:
+   ├─ Display: "Found [N] related memories from prior research"
+   ├─ ASK user:
+   │   ┌────────────────────────────────────────────────────┐
+   │   │ "Load related prior work?"                         │
+   │   │                                                    │
+   │   │ A) Load all matches (comprehensive context)        │
+   │   │ B) Load constitutional only (foundational rules)   │
+   │   │ C) Skip (start fresh)                              │
+   │   └────────────────────────────────────────────────────┘
+   └─ SET STATUS: ✅ PASSED
+4. IF no matches found:
+   └─ SET STATUS: ⏭️ N/A (no prior work)
+
+⛔ Constitutional tier memories are ALWAYS loaded regardless of choice (they surface automatically with similarity: 100)
+```
 
 ---
 
@@ -121,9 +149,9 @@ CHECK spec_choice value from Phase 2:
         │   ┌────────────────────────────────────────────────────┐
         │   │ "Load previous context from this spec folder?"     │
         │   │                                                    │
-        │   │ A) Load most recent memory file (quick refresh)    │
-        │   │ B) Load all recent files, up to 3 (comprehensive)  │
-        │   │ C) List all files and select specific              │
+        │   │ A) Load most recent memory file (quick refresh)     │
+        │   │ B) Load all recent files, up to 3 (comprehensive)   │
+        │   │ C) List all files and select specific                │
         │   │ D) Skip (start fresh, no context)                  │
         │   └────────────────────────────────────────────────────┘
         │
@@ -295,12 +323,12 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ### Complexity Scoring Algorithm (5 dimensions)
 
-| Dimension            | Weight | Scoring                           |
-| -------------------- | ------ | --------------------------------- |
-| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0              |
-| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0          |
-| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0     |
-| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0|
+| Dimension            | Weight | Scoring                                |
+| -------------------- | ------ | -------------------------------------- |
+| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0                   |
+| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0               |
+| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0          |
+| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0     |
 | Task Type            | 5%     | trivial=0.0, moderate=0.5, complex=1.0 |
 
 ### Decision Thresholds

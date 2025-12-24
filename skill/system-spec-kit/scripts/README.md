@@ -6,12 +6,14 @@ This directory contains shell scripts for spec folder management and validation.
 
 | Script | Purpose | Usage |
 |--------|---------|-------|
+| `validate-spec.sh` | **Validate spec folder contents** | `./validate-spec.sh specs/007-feature/` |
 | `create-spec-folder.sh` | Create new spec folders with templates | `./create-spec-folder.sh --name feature --level 2` |
 | `check-prerequisites.sh` | Validate spec folder has required files | `./check-prerequisites.sh specs/007-feature/` |
 | `calculate-completeness.sh` | Calculate checklist completion percentage | `./calculate-completeness.sh specs/007-feature/` |
 | `recommend-level.sh` | Recommend documentation level based on LOC | `./recommend-level.sh --loc 250 --files 5` |
 | `archive-spec.sh` | Archive completed spec folders | `./archive-spec.sh specs/007-feature/` |
 | `common.sh` | Shared utility functions | Sourced by other scripts |
+| `test-validation.sh` | Test suite for validate-spec.sh | `./test-validation.sh` |
 
 ## Dependencies
 
@@ -20,6 +22,53 @@ This directory contains shell scripts for spec folder management and validation.
 - **git** - Optional, for branch detection and git-aware features
 
 ## Script Details
+
+### validate-spec.sh
+
+**NEW in v1.0.0** - Validates spec folder contents against documentation level requirements.
+
+**Arguments:**
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `[path]` | Yes | Path to spec folder |
+| `--json` | No | Output in JSON format |
+| `--strict` | No | Treat warnings as errors |
+| `--verbose` | No | Enable verbose output |
+| `--help` | No | Show help message |
+
+**Validation Rules:**
+- `FILE_EXISTS` - Required files present for level (ERROR)
+- `PLACEHOLDER_FILLED` - No unfilled `[YOUR_VALUE_HERE:]` placeholders (ERROR)
+- `SECTIONS_PRESENT` - Required markdown sections exist (WARNING)
+- `LEVEL_DECLARED` - Level explicitly stated in spec.md (INFO)
+
+**Examples:**
+```bash
+# Basic validation
+./validate-spec.sh specs/007-feature/
+
+# JSON output for CI/tooling
+./validate-spec.sh specs/007-feature/ --json
+
+# Strict mode (warnings become errors)
+./validate-spec.sh specs/007-feature/ --strict
+
+# Disable validation via environment
+SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
+```
+
+**Exit Codes:**
+- `0` - Validation passed
+- `1` - Passed with warnings
+- `2` - Validation failed (errors found)
+
+**Environment Variables:**
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `SPECKIT_VALIDATION` | `true` | Set to `false` to skip validation |
+| `SPECKIT_STRICT` | `false` | Set to `true` for strict mode |
+| `SPECKIT_JSON` | `false` | Set to `true` for JSON output |
+| `SPECKIT_VERBOSE` | `false` | Set to `true` for verbose output |
 
 ### create-spec-folder.sh
 

@@ -182,11 +182,13 @@ Done! OpenCode auto-installs the plugin when you restart.
 
 **OpenCode does NOT auto-update plugins.** Always pin versions for reliable updates:
 
+**Correct** - pinned version:
 ```json
-// Correct - pinned version
 "plugin": ["opencode-openai-codex-auth@4.1.1"]
+```
 
-// Wrong - won't auto-update
+**Wrong** - won't auto-update:
+```json
 "plugin": ["opencode-openai-codex-auth"]
 ```
 
@@ -199,11 +201,13 @@ npm view opencode-openai-codex-auth version
 
 Simply change the version in your config and restart OpenCode:
 
+**Change from:**
 ```json
-// Change from:
 "plugin": ["opencode-openai-codex-auth@4.0.0"]
+```
 
-// To:
+**To:**
+```json
 "plugin": ["opencode-openai-codex-auth@4.1.1"]
 ```
 

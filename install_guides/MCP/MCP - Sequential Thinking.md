@@ -7,7 +7,7 @@ A comprehensive guide to installing, configuring, and using the Sequential Think
 
 ---
 
-## TABLE OF CONTENTS
+#### TABLE OF CONTENTS
 
 0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
 1. [📖 OVERVIEW](#1--overview)
@@ -169,6 +169,7 @@ Add to `claude_desktop_config.json`:
 **Location**:
 - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+- Linux: `~/.config/Claude/claude_desktop_config.json`
 
 ```json
 {

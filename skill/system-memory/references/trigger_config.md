@@ -91,6 +91,51 @@ const result = await mcp__semantic_memory__memory_match_triggers({
 - Proactive memory surfacing during conversation
 - Fallback when semantic search is unavailable
 
+### Gate 3 Enforcement Triggers
+
+The constitutional memory for Gate 3 enforcement (Memory #132) uses 33 trigger phrases to detect file modification intent:
+
+| Category | Trigger Phrases |
+|----------|-----------------|
+| **Create** | `create`, `add`, `generate`, `build`, `implement`, `write` |
+| **Modify** | `modify`, `edit`, `update`, `change`, `refactor`, `fix` |
+| **Delete** | `delete`, `remove`, `cleanup` |
+| **Move** | `rename`, `move`, `migrate` |
+| **Scale Indicators** | `comprehensive`, `all bugs`, `multiple files`, `codebase`, `entire`, `full`, `everything` |
+| **Agent Patterns** | `parallel agents`, `15 agents`, `10 agents`, `dispatch agents`, `opus agents` |
+| **Compound Actions** | `analyze and fix`, `find and fix`, `fix all`, `update all`, `modify all`, `check and fix` |
+| **Gate Keywords** | `spec folder`, `gate 3`, `file modification` |
+
+**How Gate 3 Trigger Matching Works:**
+
+1. AI calls `memory_match_triggers({ prompt: "user message" })`
+2. If prompt matches any Gate 3 trigger, constitutional memory surfaces
+3. AI sees reminder to ask spec folder question before file modifications
+
+**Example:**
+
+```typescript
+// User says: "refactor the authentication module"
+const matches = await memory_match_triggers({
+  prompt: "refactor the authentication module"
+});
+// Returns: Memory #132 (Gate 3 enforcement) 
+// matchedPhrases: ["refactor"]
+// AI then asks: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
+```
+
+**Trigger Design Guidelines for Constitutional Memories:**
+
+| Guideline | Description |
+|-----------|-------------|
+| **Cover action verbs** | Include all verbs that indicate file modification intent |
+| **Include scale words** | Words like "comprehensive", "all", "entire" suggest large changes |
+| **Add domain terms** | Include project-specific terms for your enforcement use case |
+| **Test coverage** | Verify triggers match common user phrases |
+| **Limit count** | 20-40 triggers recommended for constitutional memories |
+
+**Reference:** See `specs/005-memory/018-gate3-enforcement/` for complete implementation.
+
 ---
 
 ## 3. 💾 MANUAL SAVE METHODS

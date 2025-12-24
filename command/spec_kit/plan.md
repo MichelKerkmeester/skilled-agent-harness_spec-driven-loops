@@ -40,6 +40,8 @@ EXECUTE THIS CHECK FIRST:
 
 ## 🔒 PHASE 2: CONSOLIDATED SETUP (Spec Folder + Execution Mode)
 
+**⚠️ FIRST MESSAGE PROTOCOL**: This phase MUST be your FIRST response if the command is invoked. No analysis, no tool calls - ask the consolidated question immediately, then wait.
+
 **STATUS: ☐ BLOCKED**
 
 ```
@@ -64,7 +66,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │    C) Update related spec: [if partial match found]            │
    │    D) Skip documentation                                       │
    │                                                                │
-   │ **2. Execution Mode** (if no :auto/:confirm suffix):           │
+   │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
    │    A) Autonomous - Execute all 7 steps without approval        │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
@@ -117,9 +119,9 @@ CHECK spec_choice value from Phase 2:
         │   ┌────────────────────────────────────────────────────┐
         │   │ "Load previous context from this spec folder?"     │
         │   │                                                    │
-        │   │ A) Load most recent memory file (quick refresh)    │
-        │   │ B) Load all recent files, up to 3 (comprehensive)  │
-        │   │ C) List all files and select specific              │
+        │   │ A) Load most recent memory file (quick refresh)     │
+        │   │ B) Load all recent files, up to 3 (comprehensive)   │
+        │   │ C) List all files and select specific                │
         │   │ D) Skip (start fresh, no context)                  │
         │   └────────────────────────────────────────────────────┘
         │
@@ -139,11 +141,11 @@ CHECK spec_choice value from Phase 2:
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                       | REQUIRED STATUS    | YOUR STATUS | OUTPUT VALUE                                    |
-| --------------------------- | ------------------ | ----------- | ----------------------------------------------- |
-| PHASE 1: INPUT              | ✅ PASSED          | ______      | feature_description: ______                     |
-| PHASE 2: SETUP (Spec+Mode)  | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___   |
-| PHASE 3: MEMORY             | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                           |
+| PHASE                      | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                                  |
+| -------------------------- | ----------------- | ----------- | --------------------------------------------- |
+| PHASE 1: INPUT             | ✅ PASSED          | ______      | feature_description: ______                   |
+| PHASE 2: SETUP (Spec+Mode) | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
+| PHASE 3: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
 
 ```
 VERIFICATION CHECK:
@@ -173,6 +175,8 @@ VERIFICATION CHECK:
 4. COMPLETE the phase properly (ask user, wait for response)
 5. RESUME only after all phases pass verification
 ```
+
+> **Cross-reference**: These mandatory phases implement AGENTS.md Section 2 "Gate 3: Spec Folder Question" and "First Message Protocol". The canonical gate definitions are in AGENTS.md.
 
 ---
 
@@ -276,12 +280,12 @@ This workflow supports smart parallel sub-agent dispatch for eligible phases usi
 
 ### Complexity Scoring Algorithm (5 Dimensions)
 
-| Dimension            | Weight | Scoring                          |
-| -------------------- | ------ | -------------------------------- |
-| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0             |
-| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0         |
-| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0    |
-| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0 |
+| Dimension            | Weight | Scoring                                |
+| -------------------- | ------ | -------------------------------------- |
+| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0                   |
+| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0               |
+| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0          |
+| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0     |
 | Task Type            | 5%     | trivial=0.0, moderate=0.5, complex=1.0 |
 
 ### Decision Thresholds

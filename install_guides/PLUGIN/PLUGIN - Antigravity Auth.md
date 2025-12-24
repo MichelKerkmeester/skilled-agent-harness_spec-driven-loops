@@ -650,8 +650,6 @@ rm antigravity-debug-*.log
 
 ### Quick Reference
 
-### Essential Setup
-
 ```json
 {
   "plugin": ["opencode-antigravity-auth@1.0.7"],

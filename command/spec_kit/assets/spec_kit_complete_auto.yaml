@@ -1267,9 +1267,27 @@ workflow:
     - Auto-generate workflow flowcharts
     - Preserve file changes and implementation details
     - Index memory file for immediate search availability
+
+    # ── MANDATORY MEMORY CREATION (Gate 5 Enforcement) ──────────────
+    memory_creation:
+      enforcement: HARD_BLOCK
+      method: "MUST use generate-context.js script"
+      command: |
+        node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]
+      forbidden:
+        tools: [Write, Edit]
+        action: "NEVER manually create memory files"
+        paths: ["*/memory/*.md", "specs/*/memory/*"]
+      violation_recovery: |
+        IF Write/Edit tool used on memory/ path:
+        1. DELETE the manually created file
+        2. Execute generate-context.js with spec-folder-path
+        3. Verify ANCHOR format in generated file
+        4. Index via memory_save MCP tool
+
     tool_invocation:
-      command: Read(".opencode/skill/system-memory/SKILL.md")
-      note: "Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving"
+      command: 'Read(".opencode/skill/system-memory/SKILL.md")'
+      note: 'Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving'
     description: |
       Preserve comprehensive conversation context including:
       - Session metadata and timeline

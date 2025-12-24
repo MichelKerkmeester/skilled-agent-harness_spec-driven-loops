@@ -1,6 +1,6 @@
 # OpenCode Installation Guide
 
-AI-executable guide for the OpenCode dev environment. Installs 5 MCP servers, 7 native skills, and optional CLI tools. Execute phases sequentially—each includes validation checkpoints.
+AI-executable guide for the OpenCode dev environment. Installs 5 MCP servers, 9 native skills, and optional CLI tools. Execute phases sequentially—each includes validation checkpoints.
 
 ---
 
@@ -707,17 +707,18 @@ Skills are automatically discovered from:
 - `~/.opencode/skill/<name>/SKILL.md` (global)
 - `.claude/skills/<name>/SKILL.md` (Claude-compatible)
 
-**Current Skills (8 total):**
-| Skill                     | Version | Purpose                       |
-| ------------------------- | ------- | ----------------------------- |
-| mcp-code-context          | v1.1.0  | Structural AST analysis       |
-| mcp-code-mode             | v1.2.0  | External tool orchestration   |
-| mcp-leann                 | v1.1.0  | Semantic code search          |
-| system-memory             | v12.4.0 | Context preservation          |
-| system-spec-kit           | v2.0.0  | Spec folder + template system |
-| workflows-chrome-devtools | v2.1.0  | Browser debugging             |
-| workflows-code            | v2.0.0  | Implementation orchestrator   |
-| workflows-git             | v1.5.0  | Git workflow orchestrator     |
+**Current Skills (9 total):**
+| Skill                     | Version | Purpose                                       |
+| ------------------------- | ------- | --------------------------------------------- |
+| mcp-code-context          | v1.1.0  | Structural AST analysis                       |
+| mcp-code-mode             | v1.2.0  | External tool orchestration                   |
+| mcp-leann                 | v1.1.0  | Semantic code search                          |
+| system-memory             | v12.4.0 | Context preservation                          |
+| system-spec-kit           | v2.0.0  | Spec folder + template system                 |
+| workflows-chrome-devtools | v2.1.0  | Browser debugging                             |
+| workflows-code            | v2.0.0  | Implementation orchestrator                   |
+| workflows-documentation   | v1.0.0  | Unified markdown and skill management         |
+| workflows-git             | v1.5.0  | Git workflow orchestrator                     |
 
 **How it works:**
 - OpenCode scans skill folders on startup
@@ -1372,7 +1373,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Category           | Count | Items                                                                                                                                |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 5     | code_mode, leann, code_context, semantic_memory, sequential_thinking                                                                 |
-| Skills             | 8     | mcp-code-context, mcp-code-mode, mcp-leann, system-memory, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-git |
+| Skills             | 9     | mcp-code-context, mcp-code-mode, mcp-leann, system-memory, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
 | Commands           | 16    | /create:*, /memory:*, /prompt:improve, /search:*, /spec_kit:*                                                                        |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                                |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                                  |

@@ -7,7 +7,7 @@ Browser debugging and automation for AI agents through CLI (primary) and MCP (fa
 
 ---
 
-## TABLE OF CONTENTS
+#### TABLE OF CONTENTS
 
 0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
 1. [📖 OVERVIEW](#1--overview)
@@ -287,7 +287,7 @@ source ~/.zshrc
 
 ### Step 1: Verify Code Mode
 
-Ensure Code Mode is configured in your MCP settings (`.mcp.json` or `opencode.json`):
+Ensure Code Mode is configured in your MCP settings (`.mcp.json` for Claude Code, or `opencode.json` for OpenCode):
 
 ```json
 {
@@ -296,7 +296,7 @@ Ensure Code Mode is configured in your MCP settings (`.mcp.json` or `opencode.js
       "command": "node",
       "args": ["/path/to/code-mode-mcp/dist/index.js"],
       "env": {
-        "UTCP_CONFIG_FILE": "/path/to/project/.utcp_config.json"
+        "UTCP_CONFIG_PATH": "/path/to/project/.utcp_config.json"
       }
     }
   }
@@ -858,4 +858,4 @@ export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 **Protocol:** Chrome DevTools Protocol (CDP)  
 **Status:** Production Ready
 
-**Need help?** See [Troubleshooting](#9-troubleshooting) or load the `workflows-chrome-devtools` skill for detailed workflows.
+**Need help?** See [Troubleshooting](#9--troubleshooting) or load the `workflows-chrome-devtools` skill for detailed workflows.

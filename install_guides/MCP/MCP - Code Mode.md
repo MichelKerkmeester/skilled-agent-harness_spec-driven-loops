@@ -13,7 +13,7 @@ A comprehensive guide to installing, configuring, and using the Code Mode MCP se
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
+4. [⚙️ CONFIGURATION](#4-%EF%B8%8F-configuration)
 5. [✅ VERIFICATION](#5--verification)
 6. [🚀 USAGE](#6--usage)
 7. [⏱️ TIMEOUT CALCULATION](#7-️-timeout-calculation)
@@ -291,7 +291,7 @@ ls -la .utcp_config.json .env
 
 **Checklist:**
 - [ ] code_mode entry in opencode.json
-- [ ] UTCP_CONFIG_FILE env var set
+- [ ] UTCP_CONFIG_PATH env var set
 - [ ] code-mode-mcp accessible
 
 **Quick Verification:**

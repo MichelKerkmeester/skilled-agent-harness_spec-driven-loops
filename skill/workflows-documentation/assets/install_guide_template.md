@@ -100,21 +100,21 @@ Simple one-liner install? → Just document the command inline
 
 ## 4. 🏗️ STANDARD INSTALL GUIDE STRUCTURE
 
-Every install guide follows a 10-section structure:
+Every install guide follows an 11-section structure (sections 0-10), with 9 required and 2 optional:
 
 | # | Section | Purpose | Required |
 |---|---------|---------|----------|
-| 1 | **AI-First Install Guide** | Copy-paste prompt for AI-assisted install | ✅ Yes |
-| 2 | **Overview** | What it does, key features, architecture | ✅ Yes |
-| 3 | **Prerequisites** | Required tools, versions, Phase 1 validation | ✅ Yes |
-| 4 | **Installation** | Step-by-step commands, Phase 2-3 validation | ✅ Yes |
-| 5 | **Configuration** | Platform configs, env vars, Phase 4 validation | ✅ Yes |
-| 6 | **Verification** | End-to-end test, Phase 5 success criteria | ✅ Yes |
-| 7 | **Usage** | Daily workflow, common operations | ✅ Yes |
-| 8 | **Features** | Detailed tool/command documentation | ⚠️ Optional |
-| 9 | **Examples** | Real-world usage scenarios | ⚠️ Optional |
-| 10 | **Troubleshooting** | Common errors with fixes | ✅ Yes |
-| 11 | **Resources** | File locations, command reference, links | ✅ Yes |
+| 0 | **AI-First Install Guide** | Copy-paste prompt for AI-assisted install | ✅ Yes |
+| 1 | **Overview** | What it does, key features, architecture | ✅ Yes |
+| 2 | **Prerequisites** | Required tools, versions, Phase 1 validation | ✅ Yes |
+| 3 | **Installation** | Step-by-step commands, Phase 2-3 validation | ✅ Yes |
+| 4 | **Configuration** | Platform configs, env vars, Phase 4 validation | ✅ Yes |
+| 5 | **Verification** | End-to-end test, Phase 5 success criteria | ✅ Yes |
+| 6 | **Usage** | Daily workflow, common operations | ✅ Yes |
+| 7 | **Features** | Detailed tool/command documentation | ⚠️ Optional |
+| 8 | **Examples** | Real-world usage scenarios | ⚠️ Optional |
+| 9 | **Troubleshooting** | Common errors with fixes | ✅ Yes |
+| 10 | **Resources** | File locations, command reference, links | ✅ Yes |
 
 **Section Purposes**:
 
@@ -405,7 +405,7 @@ Before publishing an install guide, verify:
 ```markdown
 Structure:
 □ AI-First Install Guide section at top
-□ All 10 required sections present
+□ All 11 sections present (9 required + 2 optional)
 □ Table of contents with anchor links
 □ Horizontal rules (---) between major sections
 
@@ -598,14 +598,17 @@ Guide me through each step with the exact commands I need to run.
 
 ## 📋 TABLE OF CONTENTS
 
+0. [🤖 AI-FIRST INSTALL GUIDE](#-ai-first-install-guide)
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
 4. [⚙️ CONFIGURATION](#4-️-configuration)
 5. [✅ VERIFICATION](#5--verification)
 6. [🚀 USAGE](#6--usage)
-7. [🔧 TROUBLESHOOTING](#7--troubleshooting)
-8. [📚 RESOURCES](#8--resources)
+7. [🔧 FEATURES](#7--features) *(optional)*
+8. [💡 EXAMPLES](#8--examples) *(optional)*
+9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
+10. [📚 RESOURCES](#10--resources)
 
 ---
 

@@ -2,10 +2,10 @@
 name: system-spec-kit
 description: "Mandatory spec folder workflow orchestrating documentation level selection (1-3), template selection, and folder creation for all file modifications through documentation enforcement."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
-version: 13.0.0
+version: 14.0.0
 ---
 
-<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation -->
+<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation -->
 
 # 🗂️ Conversation Documentation Workflow - Mandatory Spec Folder System & Template Enforcement
 
@@ -75,6 +75,7 @@ Utility templates (`handover.md`, `debug-delegation.md`) are available at ANY do
 | `/spec_kit:resume`    | 5/4   | Resume previous session (5 steps confirm, 4 steps auto)   |
 | `/spec_kit:handover`  | 4/5   | Create session handover (:quick default, :full)           |
 | `/spec_kit:debug`     | 5     | Delegate debugging to sub-agent (always asks model first) |
+| `/spec_kit:validate`  | 1     | Validate spec folder contents (runs validate-spec.sh)     |
 
 **Mode Suffixes:** Add `:auto` or `:confirm` to any command except resume.
 - `:auto` - Autonomous execution with self-validation
@@ -113,6 +114,7 @@ TASK CONTEXT
     │   └─► PHASE 5: Verification
     │       └─► Load: checklist.md, quick_reference.md
     │       └─► Action: Mark [x] items with evidence
+    │       └─► Run: validate-spec.sh for automated validation
     │       └─► ⚠️ P0/P1 items MUST pass before claiming done
     │
     └─► Quick reference needed
@@ -197,25 +199,40 @@ def route_conversation_resources(task):
     load("assets/parallel_dispatch_config.md") # Complexity scoring, agent dispatch config
 
     # ═══════════════════════════════════════════════════════════════════════════
-    # REFERENCES (5 files in ./references/) - Detailed documentation
+    # REFERENCES (6 files in ./references/) - Detailed documentation
     # ═══════════════════════════════════════════════════════════════════════════
 
     load("references/level_specifications.md")   # Complete Level 1-3 specifications
     load("references/template_guide.md")         # Template selection & adaptation rules
     load("references/quick_reference.md")        # Commands, checklists, troubleshooting
     load("references/path_scoped_rules.md")      # Path-scoped rule documentation
+    load("references/validation_rules.md")       # Validation rules reference
 
     # ═══════════════════════════════════════════════════════════════════════════
-    # SCRIPTS (6 files in ./scripts/) - Automation tools
+    # SCRIPTS (./scripts/) - Automation tools with modular architecture
     # ═══════════════════════════════════════════════════════════════════════════
 
-    # 6 script files (5 standalone + 1 shared library):
-    # - create-spec-folder.sh (standalone)
-    # - check-prerequisites.sh (standalone)
-    # - calculate-completeness.sh (standalone)
-    # - recommend-level.sh (standalone)
-    # - archive-spec.sh (standalone)
-    # - common.sh (shared library, sourced by other scripts)
+    # Standalone scripts (6 files):
+    # - create-spec-folder.sh     Create new spec folders with templates
+    # - check-prerequisites.sh    Verify system requirements
+    # - calculate-completeness.sh Calculate documentation completeness %
+    # - recommend-level.sh        Suggest documentation level based on task
+    # - archive-spec.sh           Archive completed spec folders
+    # - validate-spec.sh          Orchestrator: validates spec folder contents
+    #
+    # Shared libraries (lib/, 3 files):
+    # - lib/common.sh             Colors, logging, result tracking
+    # - lib/config.sh             Configuration loading, glob matching
+    # - lib/output.sh             Header/summary printing, JSON generation
+    #
+    # Validation rules (rules/, 7 files):
+    # - rules/check-files.sh        FILE_EXISTS rule
+    # - rules/check-placeholders.sh PLACEHOLDER_FILLED rule
+    # - rules/check-sections.sh     SECTIONS_PRESENT rule
+    # - rules/check-level.sh        LEVEL_DECLARED rule
+    # - rules/check-priority-tags.sh PRIORITY_TAGS rule
+    # - rules/check-evidence.sh     EVIDENCE_CITED rule
+    # - rules/check-anchors.sh      ANCHORS_VALID rule
 
     # ═══════════════════════════════════════════════════════════════════════════
     # CHECKLISTS (4 files in ./checklists/) - Phase verification checklists
@@ -238,11 +255,11 @@ def route_conversation_resources(task):
     # Enforcement: AGENTS.md discipline - verification required before commits
     # Rule: When in doubt → choose higher level
 
-# SUMMARY: 30 total resources
+# SUMMARY: 38 total resources
 # - 12 templates in: .opencode/skill/system-spec-kit/templates/
 # - 3 assets in:     ./assets/
-# - 5 references in: ./references/
-# - 6 scripts in:    ./scripts/
+# - 6 references in: ./references/
+# - 6 standalone scripts + 3 lib files + 7 rule files = 16 in ./scripts/
 # - 4 checklists in: ./checklists/
 ```
 
@@ -275,6 +292,19 @@ When file modification triggers are detected (rename, create, update, fix, imple
 4. **RESPECT** the user's choice throughout the workflow
 5. If user selects D (skip), warn about technical debt implications
 
+#### First Message Protocol (Gate 3)
+
+When a user's FIRST message requests file modifications:
+1. Gate 3 question is your FIRST response
+2. No analysis first ("let me understand the scope")
+3. No tool calls first ("let me check what exists")
+4. Ask immediately: `**Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip`
+5. Wait for answer, THEN proceed
+
+**Why:** Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
+
+This is enforced by a constitutional-tier memory that surfaces automatically via `memory_match_triggers()`. See `specs/005-memory/018-gate3-enforcement/` for implementation details.
+
 #### Gate Alignment (AGENTS.md V13.0)
 
 This skill enforces and is enforced by these gates:
@@ -283,7 +313,7 @@ This skill enforces and is enforced by these gates:
 - **Gate 3**: Spec folder question - HARD BLOCK before file modifications
 - **Gate 4**: Memory loading - conditional on spec folder selection
 - **Gate 5**: Memory save validation - MUST use `.opencode/skill/system-memory/scripts/generate-context.js`
-- **Gate 6**: Completion verification - verify checklist.md items
+- **Gate 6**: Completion verification - verify checklist.md items AND run validate-spec.sh
 - **Gate 7**: Context health monitor - suggest handover at session milestones
 
 #### Trigger Keywords
@@ -663,6 +693,11 @@ After sub-agent returns:
     - Copy from `.opencode/skill/system-spec-kit/templates/handover.md`
     - Fill all 5 sections: Summary, Context Transfer, Next Steps, Validation, Notes
 
+12. **ALWAYS run validate-spec.sh before claiming completion (Gate 6)**
+    - Command: `.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>`
+    - Exit 0 = pass, Exit 1 = warnings (ok), Exit 2 = errors (must fix)
+    - Fix all ERROR-level issues before claiming done
+
 ### ❌ NEVER 
 
 1. **NEVER create documentation files from scratch** - Always copy from `.opencode/skill/system-spec-kit/templates/`
@@ -695,6 +730,11 @@ After sub-agent returns:
    - Wait for explicit selection
    - Document choice in spec folder
 
+8. **NEVER skip validation before claiming completion**
+   - Must run validate-spec.sh for automated checks
+   - Must fix ERROR-level validation failures
+   - Warning-level issues should be addressed or documented
+
 ### ⚠️ ESCALATE IF
 
 1. **Scope grows during implementation**
@@ -720,9 +760,413 @@ After sub-agent returns:
    - Confirm explicit consent
    - Log skip event for audit trail
 
+5. **Validation fails with errors**
+   - Report specific validation failures to user
+   - Provide guidance on how to fix each issue
+   - Re-run validation after fixes
+   - Do not proceed until validation passes
+
 ---
 
-## 5. ✅ SUCCESS CRITERIA
+## 5. 🔍 SPEC FOLDER VALIDATION
+
+### Overview
+
+The `validate-spec.sh` script provides automated validation of spec folder contents. It checks that documentation meets quality requirements based on the detected documentation level.
+
+**Location:** `.opencode/skill/system-spec-kit/scripts/validate-spec.sh`
+
+### Usage
+
+```bash
+# Basic validation
+./validate-spec.sh <folder-path>
+
+# Examples
+./validate-spec.sh specs/007-auth-feature/
+./validate-spec.sh specs/007-auth-feature/ --json
+./validate-spec.sh specs/007-auth-feature/ --strict
+./validate-spec.sh specs/007-auth-feature/ --verbose
+```
+
+### Command Options
+
+| Option      | Description                                            |
+| ----------- | ------------------------------------------------------ |
+| `--json`    | Output results in JSON format (for tooling)            |
+| `--strict`  | Treat warnings as errors (exit 2 instead of 1)         |
+| `--quiet`   | Suppress all output except errors (exit code only)     |
+| `--verbose` | Show detailed validation output with per-rule timing   |
+| `--help`    | Show help message                                      |
+| `--version` | Show version number                                    |
+
+### Validation Rules
+
+The script enforces seven validation rules:
+
+| Rule ID              | Severity | Description                                    |
+| -------------------- | -------- | ---------------------------------------------- |
+| `FILE_EXISTS`        | ERROR    | Required files present for documentation level |
+| `PLACEHOLDER_FILLED` | ERROR    | No unfilled template placeholders              |
+| `SECTIONS_PRESENT`   | WARNING  | Required markdown sections exist               |
+| `LEVEL_DECLARED`     | INFO     | Level explicitly stated in metadata            |
+| `PRIORITY_TAGS`      | WARNING  | Checklist items have P0/P1/P2 priority context |
+| `EVIDENCE_CITED`     | WARNING  | Completed P0/P1 items cite evidence            |
+| `ANCHORS_VALID`      | ERROR    | Memory file anchor pairs are properly matched  |
+
+#### FILE_EXISTS (ERROR)
+
+Validates that all required files exist for the detected documentation level.
+
+**Required Files by Level:**
+
+| Level | Required Files                                 |
+| ----- | ---------------------------------------------- |
+| 1     | `spec.md`, `plan.md`, `tasks.md`               |
+| 2     | Level 1 + `checklist.md`                       |
+| 3     | Level 2 + `decision-record.md`                 |
+
+**How to Fix:** Create missing files using templates:
+```bash
+cp .opencode/skill/system-spec-kit/templates/spec.md specs/007-feature/
+```
+
+#### PLACEHOLDER_FILLED (ERROR)
+
+Detects unfilled template placeholders that should be replaced with actual content.
+
+**Patterns Detected:**
+- `[YOUR_VALUE_HERE: ...]` - Must be replaced with actual value
+- `[NEEDS CLARIFICATION: ...]` - Must be resolved and replaced
+
+**Patterns Ignored:**
+- `[OPTIONAL: ...]` - Optional content, not flagged
+- Content inside fenced code blocks (``` ... ```)
+- Content inside inline backticks
+- Files in `scratch/` directories
+
+**How to Fix:** Replace placeholder text with actual content:
+```markdown
+# Before
+| **Type** | [YOUR_VALUE_HERE: Feature type] |
+
+# After  
+| **Type** | Feature |
+```
+
+#### SECTIONS_PRESENT (WARNING)
+
+Validates that required markdown sections exist in each file type.
+
+**Required Sections:**
+
+| File                  | Required Sections                               |
+| --------------------- | ----------------------------------------------- |
+| `spec.md`             | Problem Statement, Requirements, Scope          |
+| `plan.md`             | Technical Context, Architecture, Implementation |
+| `checklist.md`        | P0, P1 (section headers)                        |
+| `decision-record.md`  | Context, Decision, Consequences                 |
+
+**Matching Rules:**
+- Case-insensitive matching
+- Partial match (e.g., "Implementation Phases" matches "Implementation")
+- Matches `##` or `###` headers
+
+#### LEVEL_DECLARED (INFO)
+
+Checks if the documentation level is explicitly declared in spec.md metadata.
+
+**Detection Method:**
+1. **Explicit (preferred):** Look for `| **Level** | N |` in spec.md metadata table
+2. **Inferred (fallback):** Based on file presence
+
+**How to Fix:** Add Level field to spec.md:
+```markdown
+| **Level** | 2 |
+```
+
+#### PRIORITY_TAGS (WARNING)
+
+Validates that checklist items have priority context (P0/P1/P2 headers or inline tags). Only runs for Level 2+ when checklist.md exists.
+
+**Valid Priority Contexts:**
+- **Section headers:** `## P0`, `## P1 - Required`, `### P2:`
+- **Inline tags:** `[P0]`, `[P1]`, `[P2]` anywhere in the item
+
+**How to Fix:** Either organize items under priority headers or add inline tags:
+```markdown
+## P0 - Blockers
+- [ ] Critical security check
+
+## P1 - Required  
+- [ ] Unit tests passing
+
+# OR use inline tags:
+- [ ] [P0] Critical security check
+- [ ] [P1] Unit tests passing
+```
+
+#### EVIDENCE_CITED (WARNING)
+
+Checks that completed P0/P1 checklist items have evidence citations. P2 items are exempt from evidence requirements.
+
+**Recognized Evidence Patterns:**
+- `[EVIDENCE: description]` or `[Evidence: ...]`
+- `| Evidence: description` (pipe-separated)
+- `✓` or `✔` with description after
+- `(verified)`, `(tested)`, `(confirmed)` at end
+- `[DEFERRED: reason]` (counts as explained)
+
+**How to Fix:** Add evidence to completed items:
+```markdown
+## P0
+- [x] Security audit complete [EVIDENCE: audit-report.pdf attached]
+- [x] All tests passing | Evidence: CI build #1234 green
+
+## P1
+- [x] Code review done (verified by @teammate)
+- [x] Documentation updated ✓ Added to README.md
+```
+
+#### ANCHORS_VALID (ERROR)
+
+Validates that anchor pairs in memory files are properly matched. Each `<!-- ANCHOR:id -->` must have a corresponding `<!-- /ANCHOR:id -->`.
+
+**Detection:**
+- Scans all `.md` files in the `memory/` directory
+- Reports unclosed anchors (opening without closing)
+- Reports orphaned anchors (closing without opening)
+
+**How to Fix:** Ensure all anchors are properly paired:
+```markdown
+<!-- ANCHOR:decision-context -->
+This section contains important context that should be preserved.
+<!-- /ANCHOR:decision-context -->
+```
+
+**Common Issues:**
+- Typos in anchor IDs between opening/closing tags
+- Deleted content that removed one half of a pair
+- Copy-paste errors leaving duplicate anchors
+
+### Exit Codes
+
+| Code | Meaning                                          |
+| ---- | ------------------------------------------------ |
+| 0    | Validation passed (no errors, no warnings)       |
+| 1    | Validation passed with warnings                  |
+| 2    | Validation failed (errors found, or warnings in strict mode) |
+
+### Environment Variables
+
+Override default behavior with environment variables:
+
+| Variable             | Default | Description                           |
+| -------------------- | ------- | ------------------------------------- |
+| `SPECKIT_VALIDATION` | true    | Set to `false` to skip validation     |
+| `SPECKIT_STRICT`     | false   | Set to `true` to fail on warnings     |
+| `SPECKIT_JSON`       | false   | Set to `true` for JSON output         |
+| `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output      |
+
+**Example:**
+```bash
+# Disable validation
+SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
+
+# Enable strict mode via environment
+SPECKIT_STRICT=true ./validate-spec.sh specs/007-feature/
+```
+
+### JSON Output Format
+
+When using `--json`, output follows this structure:
+
+```json
+{
+  "folder": "specs/007-feature",
+  "level": 2,
+  "levelMethod": "explicit",
+  "results": [
+    {"rule": "FILE_EXISTS", "status": "pass", "message": "All required files present for Level 2"},
+    {"rule": "PLACEHOLDER_FILLED", "status": "fail", "message": "Found 2 unfilled placeholder(s)"}
+  ],
+  "summary": {
+    "errors": 1,
+    "warnings": 0,
+    "info": 0
+  },
+  "details": {
+    "missingFiles": [],
+    "unfilledPlaceholders": ["spec.md:15", "plan.md:23"],
+    "missingSections": []
+  },
+  "passed": false,
+  "strict": false
+}
+```
+
+### Integration with Gate 6
+
+Validation is integrated with AGENTS.md Gate 6 (Completion Verification):
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ GATE 6: COMPLETION VERIFICATION [HARD BLOCK]                                │
+│ Trigger: Claiming "done", "complete", "finished", "works"                    │
+│ Action:  1. Run validate-spec.sh on spec folder (if exists)                 │
+│          2. Load checklist.md → Verify ALL items → Mark [x] with evidence   │
+│ Block:   HARD - Cannot claim completion without verification                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+**AI Workflow:**
+1. Before claiming "done", run: `.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>`
+2. If exit code is 2 (errors), FIX the issues
+3. If exit code is 1 (warnings), ADDRESS or DOCUMENT the warnings
+4. If exit code is 0 (pass), proceed with completion claim
+5. Also verify checklist.md items manually
+
+### Integration with /spec_kit:complete
+
+The `/spec_kit:complete` command includes validation as a final step:
+
+1. Implementation complete
+2. Run `validate-spec.sh` on spec folder
+3. If errors exist, report and prompt for fixes
+4. If warnings exist, report and ask to proceed or fix
+5. If passed, mark task as complete
+
+### Configuration Options
+
+The validator supports a `.speckit.yaml` configuration file for customizing validation behavior. The file is searched in two locations (in priority order):
+
+1. **Spec folder:** `specs/###-feature/.speckit.yaml`
+2. **Project root:** `.speckit.yaml` (applies to all specs)
+
+```yaml
+# .speckit.yaml - SpecKit Validation Configuration
+validation:
+  # Rule severity overrides: error | warn | info | skip
+  rules:
+    FILE_EXISTS: error        # Required files for level (default: error)
+    PLACEHOLDER_FILLED: error # Unfilled placeholders (default: error)
+    SECTIONS_PRESENT: warn    # Required markdown sections (default: warn)
+    LEVEL_DECLARED: info      # Explicit level in metadata (default: info)
+    PRIORITY_TAGS: warn       # P0/P1/P2 on checklist items (default: warn)
+    EVIDENCE_CITED: warn      # Evidence on completed P0/P1 (default: warn)
+    ANCHORS_VALID: error      # Matched anchor pairs (default: error)
+  
+  # Paths to skip during validation (glob patterns)
+  skip:
+    - "**/scratch/**"    # Scratch directories (default)
+    - "**/memory/**"     # Memory files (default)
+    - "**/templates/**"  # Template files (default)
+  
+  # Custom rule execution order (optional)
+  # Rules not listed run after these in default order
+  rule_order:
+    - FILE_EXISTS
+    - LEVEL_DECLARED
+    - SECTIONS_PRESENT
+    - PLACEHOLDER_FILLED
+    - PRIORITY_TAGS
+    - EVIDENCE_CITED
+    - ANCHORS_VALID
+```
+
+**Configuration Priority:** CLI args > Environment vars > Config file > Defaults
+
+**Parsing:** Uses `yq` if available for YAML parsing, falls back to grep/awk for basic support without dependencies.
+
+### Modular Architecture
+
+The validation system uses a modular plugin architecture that separates concerns and enables easy extension:
+
+```
+scripts/
+├── validate-spec.sh          # Orchestrator - discovers and runs rules
+├── lib/                      # Shared libraries
+│   ├── common.sh             # Colors, logging, result tracking
+│   ├── config.sh             # Configuration loading, glob matching
+│   └── output.sh             # Header/summary printing, JSON generation
+└── rules/                    # Individual validation rules (plugins)
+    ├── check-files.sh        # FILE_EXISTS rule
+    ├── check-placeholders.sh # PLACEHOLDER_FILLED rule
+    ├── check-sections.sh     # SECTIONS_PRESENT rule
+    ├── check-level.sh        # LEVEL_DECLARED rule
+    ├── check-priority-tags.sh# PRIORITY_TAGS rule
+    ├── check-evidence.sh     # EVIDENCE_CITED rule
+    └── check-anchors.sh      # ANCHORS_VALID rule
+```
+
+**Shared Libraries (`lib/`):**
+
+| File          | Purpose                                                    |
+| ------------- | ---------------------------------------------------------- |
+| `common.sh`   | Color definitions, `log_pass/warn/error/info`, JSON escape |
+| `config.sh`   | `.speckit.yaml` loading, glob-to-regex, path filtering     |
+| `output.sh`   | `print_header`, `print_summary`, `generate_json`           |
+
+**Rule Plugin Interface:**
+
+Each rule in `rules/` follows a standard interface:
+
+```bash
+#!/usr/bin/env bash
+# Rule: RULE_NAME
+# Description of what this rule validates
+
+run_check() {
+    local folder="$1"   # Spec folder path
+    local level="$2"    # Detected level (1, 2, or 3)
+    
+    # Set these variables before returning:
+    RULE_NAME="RULE_NAME"           # Rule identifier
+    RULE_STATUS="pass|fail|warn|info|skip"  # Result status
+    RULE_MESSAGE="Human-readable result"    # Summary message
+    RULE_DETAILS=()                 # Array of detail lines
+    RULE_REMEDIATION="How to fix"   # Fix instructions
+}
+```
+
+**Adding Custom Rules:**
+
+1. Create `scripts/rules/check-{name}.sh` following the interface above
+2. The orchestrator auto-discovers and runs all `check-*.sh` files
+3. Set default severity in `lib/config.sh` `CONFIG_RULES` array
+4. Add to `.speckit.yaml` for per-project severity overrides
+
+**Orchestration Flow:**
+1. `validate-spec.sh` parses args and loads config
+2. Detects documentation level from `spec.md` or file presence
+3. Sources each `rules/check-*.sh` and calls `run_check()`
+4. Maps `RULE_STATUS` to severity from config
+5. Aggregates results and outputs summary/JSON
+
+### Troubleshooting
+
+**Common Issues:**
+
+1. **"Folder not found" error**
+   - Ensure path is correct and folder exists
+   - Use absolute or relative path from current directory
+
+2. **False positives for placeholders**
+   - Ensure placeholder is inside code block or backticks
+   - Move example placeholders to `scratch/` directory
+
+3. **Missing sections warning when sections exist**
+   - Check section header matches expected pattern
+   - Ensure using `##` or `###` header level
+   - Section names are case-insensitive but must contain keywords
+
+4. **Level detection incorrect**
+   - Add explicit Level field to spec.md metadata table
+   - Format: `| **Level** | N |` where N is 1, 2, or 3
+
+---
+
+## 6. ✅ SUCCESS CRITERIA
 
 ### Documentation Created
 
@@ -774,9 +1218,17 @@ After sub-agent returns:
 - [ ] Updated `checklist.md` with verification timestamps
 - [ ] No unchecked P0/P1 items remain
 
+### Validation Passed
+
+- [ ] Ran `validate-spec.sh` on spec folder
+- [ ] Exit code is 0 (pass) or 1 (warnings only)
+- [ ] All ERROR-level issues resolved
+- [ ] WARNING-level issues addressed or documented
+- [ ] JSON output saved if needed for tooling
+
 ---
 
-## 6. 🔗 INTEGRATION POINTS
+## 7. 🔗 INTEGRATION POINTS
 
 ### Enforcement Priority System
 
@@ -786,15 +1238,19 @@ SpecKit uses a priority system for validation and enforcement through AGENTS.md 
 - **P0 (Blocker)**: Cannot proceed without resolution
   - Missing required templates for level (e.g., no `checklist.md` for Level 2)
   - Unresolved placeholders in templates (`[PLACEHOLDER]`)
+  - ERROR-level validation failures
 - **P1 (Warning)**: Must address or explicitly defer with user approval
   - Incomplete checklist items before completion claims
   - Missing optional templates for level
+  - WARNING-level validation issues
 - **P2 (Optional)**: Can defer without approval
   - Documentation enhancements
   - Additional context preservation
+  - INFO-level validation messages
 
 **Validation Triggers:**
 - AGENTS.md Gate 3 → Validates spec folder existence and template completeness
+- AGENTS.md Gate 6 → Runs validate-spec.sh before completion claims
 - Manual `/save_context` → Context preservation on demand
 - Template validation → Checks placeholder removal and required field completion
 
@@ -822,12 +1278,20 @@ SpecKit uses a priority system for validation and enforcement through AGENTS.md 
 2. `workflows-documentation` validates structure and quality scores
 3. Feedback loop: Iterate on documentation if scores <90
 
+**Validation Workflow:**
+1. Implementation complete
+2. `validate-spec.sh` runs automated checks
+3. Fix ERROR-level issues
+4. Address WARNING-level issues
+5. Claim completion with confidence
+
 ### External Dependencies
 
 - `.opencode/skill/system-spec-kit/templates/` - All template files
+- `.opencode/skill/system-spec-kit/scripts/validate-spec.sh` - Validation script
 - `AGENTS.md` - Section 2 defines mandatory documentation requirements
 - `/spec_kit:complete` - Level 3 auto-generation command
 
 ---
 
-**Remember**: This skill operates as the foundational documentation orchestrator. It enforces structure, template usage, and context preservation for all file modifications.
+**Remember**: This skill operates as the foundational documentation orchestrator. It enforces structure, template usage, context preservation, and validation for all file modifications.

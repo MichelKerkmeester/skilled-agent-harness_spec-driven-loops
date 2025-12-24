@@ -4,6 +4,18 @@ argument-hint: "<project-name> [--platforms <list>]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
+## ⚡ GATE 3 STATUS: EXEMPT (Self-Documenting Artifact)
+
+**This command creates documentation files that ARE the documentation artifact.**
+
+| Property | Value |
+|----------|-------|
+| **Location** | User-specified path (`install_guides/` or target directory) |
+| **Reason** | The created file IS the documentation |
+| **Spec Folder** | Not required - the guide/README serves as its own spec |
+
+---
+
 # 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
 
 **These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
@@ -131,7 +143,7 @@ VERIFICATION CHECK:
 **Workflow Violations (Steps 1-5):**
 - Skipped requirements discovery and jumped to generation
 - Generated guide without AI-First section
-- Did not include all 10 required sections
+- Did not include all 11 sections (9 required + 2 optional)
 - Claimed "complete" without validation checklist
 
 **VIOLATION RECOVERY PROTOCOL:**
@@ -158,7 +170,7 @@ VERIFICATION CHECK:
 | 1    | Analysis   | ☐      | Scope defined     | Project/platforms confirmed |
 | 2    | Discovery  | ☐      | Requirements list | Prerequisites identified    |
 | 3    | Steps      | ☐      | Step-by-step plan | Installation steps defined  |
-| 4    | Generation | ☐      | Complete guide    | All 10 sections included    |
+| 4    | Generation | ☐      | Complete guide    | All 11 sections included    |
 | 5    | Validation | ☐      | Validated guide   | Commands verified           |
 
 ---
@@ -174,7 +186,7 @@ STEP 2 (Discovery) REQUIREMENTS:
 
 STEP 4 (Generation) REQUIREMENTS:
 ├─ MUST include AI-First prompt section
-├─ MUST include ALL 10 required sections
+├─ MUST include ALL 11 sections (9 required + 2 optional)
 ├─ MUST add platform-specific configuration
 ├─ MUST include troubleshooting section
 └─ MUST NOT skip any required section

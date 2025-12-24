@@ -151,39 +151,53 @@ platforms:
       bin: "/app/"
 
 # ─────────────────────────────────────────────────────────────────
-# REQUIRED SECTIONS (10 sections)
+# REQUIRED SECTIONS (11 sections: 0-10, with 7-8 optional)
 # ─────────────────────────────────────────────────────────────────
 required_sections:
+  - number: 0
+    name: "🤖 AI-FIRST INSTALL GUIDE"
+    purpose: "Copy-paste prompt for AI-assisted install"
+    required: true
   - number: 1
     name: "📖 OVERVIEW"
     purpose: "What it is, why use it"
+    required: true
   - number: 2
     name: "📋 PREREQUISITES"
     purpose: "What's needed before install"
+    required: true
   - number: 3
     name: "📥 INSTALLATION"
     purpose: "Step-by-step commands"
+    required: true
   - number: 4
     name: "⚙️ CONFIGURATION"
     purpose: "Platform-specific config"
+    required: true
   - number: 5
     name: "✅ VERIFICATION"
     purpose: "How to test it works"
+    required: true
   - number: 6
     name: "🚀 USAGE"
     purpose: "How to use it"
+    required: true
   - number: 7
     name: "🎯 FEATURES"
     purpose: "Detailed feature docs"
+    required: false  # Optional
   - number: 8
     name: "💡 EXAMPLES"
     purpose: "Practical use cases"
+    required: false  # Optional
   - number: 9
     name: "🔧 TROUBLESHOOTING"
     purpose: "Common problems + fixes"
+    required: true
   - number: 10
     name: "📚 RESOURCES"
     purpose: "Links, references"
+    required: true
 
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
@@ -322,20 +336,20 @@ workflow:
     - Write AI-First prompt section (copy-paste prompt)
     - Write title and overview with architecture diagram
     - Create TABLE OF CONTENTS with links
-    - Write all 10 required sections
+    - Write all 11 sections (9 required + 2 optional)
     - Add platform-specific configuration (Claude Code, OpenCode)
     - Create Quick Reference at end
     - Write to output_path
     quality_requirements:
       ai_first_section: "Copy-paste prompt with placeholders, 'What AI will do' list"
-      sections: "All 10 sections with emoji prefixes"
+      sections: "All 11 sections (0-10) with emoji prefixes"
       tables: "For prerequisites, features, comparisons"
       code_blocks: "Always specify language"
       diagrams: "ASCII for architecture/flow"
       separators: "Horizontal rules between major sections"
     outputs:
     - install_guide_file: created
-    - sections_count: 10
+    - sections_count: 11
     - ai_first_prompt: complete
     checkpoint:
       question: "Installation guide generated. Review?"
@@ -351,7 +365,7 @@ workflow:
     purpose: Verify guide quality and completeness
     activities:
     - AI-First section check (prompt complete, placeholders marked, AI actions listed)
-    - Structure check (all 10 sections, TOC links, ASCII diagram, comparison table)
+    - Structure check (all 11 sections, TOC links, ASCII diagram, comparison table)
     - Command verification (syntax correct, versions accurate, platform-specific)
     - Completeness check (all platforms covered, 5+ troubleshooting issues, practical examples)
     - DQI check if script available
@@ -362,7 +376,7 @@ workflow:
       - "'What the AI will do' lists 5-8 specific actions"
       - "Expected setup time is realistic"
       structure:
-      - "All 10 sections present"
+      - "All 11 sections present (0-10)"
       - "TABLE OF CONTENTS links work"
       - "ASCII diagram in Overview"
       - "Comparison table included"
@@ -402,7 +416,7 @@ workflow:
     - Create memory file with timestamp
     - Index memory file for immediate search availability
     tool_invocation:
-      command: "Read(".opencode/skill/system-memory/SKILL.md")"
+      command: 'Read(".opencode/skill/system-memory/SKILL.md")'
       note: "Activate context saving via memory skill"
     memory_content:
       include:
@@ -810,7 +824,7 @@ completion_report:
     
     Content:
     - AI-First Prompt: ✅
-    - Sections: 10/10
+    - Sections: 11/11 (9 required + 2 optional)
     - Prerequisites: [N items]
     - Installation Steps: [N steps]
     - Configuration Options: [N platforms]
@@ -861,7 +875,7 @@ reference_templates:
 rules:
   ALWAYS:
   - include_ai_first_section
-  - include_all_10_sections
+  - include_all_11_sections
   - provide_quick_install_option
   - include_verification_commands
   - add_troubleshooting_section

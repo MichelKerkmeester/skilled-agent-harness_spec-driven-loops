@@ -62,7 +62,7 @@ EXECUTE THIS CHECK FIRST:
         ├─ ASK: "Would you like to:"
         │   ┌────────────────────────────────────────────────────────────┐
         │   │ A) List available spec folders and select one              │
-        │   │ B) Start new workflow with /spec_kit:complete              │
+        │   │ B) Start new workflow with /spec_kit:complete               │
         │   │ C) Cancel                                                  │
         │   └────────────────────────────────────────────────────────────┘
         └─ WAIT for user response
@@ -71,6 +71,51 @@ EXECUTE THIS CHECK FIRST:
 ```
 
 **Phase 1 Output:** `spec_path = ________________` | `detection_method = [recent/provided]`
+
+---
+
+## 🔒 PHASE 1.5: CONTINUATION VALIDATION (Gate 0.5)
+
+**STATUS: ☐ CONDITIONAL**
+
+```
+EXECUTE IF handoff pattern detected in $ARGUMENTS or recent user messages:
+
+1. CHECK for "CONTINUATION - Attempt" pattern:
+   ├─ IF detected:
+   │   ├─ Parse: Spec folder path, Last Completed, Next Action
+   │   │
+   │   ├─ VALIDATE against most recent memory file:
+   │   │   $ find [spec_path]/memory -name "*.md" -type f | xargs ls -t | head -1
+   │   │   $ Read memory file → Extract "Project State Snapshot" section
+   │   │
+   │   ├─ COMPARE claimed progress vs actual progress:
+   │   │   - Claimed "Last Completed" matches memory "Last Action"?
+   │   │   - Claimed "Next Action" matches memory "Next Action"?
+   │   │
+   │   ├─ IF mismatch:
+   │   │   ├─ SHOW: "⚠️ State mismatch detected"
+   │   │   │   Claimed: Last=[X], Next=[Y]
+   │   │   │   Memory:  Last=[A], Next=[B]
+   │   │   ├─ ASK: "Which is correct?"
+   │   │   │   ┌──────────────────────────────────────────────────┐
+   │   │   │   │ A) Use handoff claims                            │
+   │   │   │   │ B) Use memory file state                          │
+   │   │   │   │ C) Investigate first                              │
+   │   │   │   └──────────────────────────────────────────────────┘
+   │   │   └─ WAIT for user response
+   │   │
+   │   └─ IF validated OR no memory files:
+   │       ├─ SHOW: "✅ Continuation validated"
+   │       └─ SET STATUS: ✅ PASSED
+   │
+   └─ IF NO handoff pattern:
+       └─ SET STATUS: ⏭️ N/A (not a continuation)
+
+⛔ SOFT STOP: Can proceed after acknowledgment
+```
+
+> **Gate 3 Note:** The resume command inherently satisfies Gate 3 because it REQUIRES a spec folder (either provided or detected). No separate Gate 3 question needed.
 
 ---
 
@@ -125,14 +170,15 @@ since it's a context-recovery operation where user review is beneficial.
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                     | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                       |
-| ------------------------- | --------------- | ----------- | ---------------------------------- |
-| PHASE 1: INPUT & SESSION  | ✅ PASSED        | ______      | spec_path: ______ / method: ______ |
-| PHASE 2: ARTIFACTS & MODE | ✅ PASSED        | ______      | artifacts: ______ / mode: ______   |
+| PHASE                         | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                       |
+| ----------------------------- | ----------------- | ----------- | ---------------------------------- |
+| PHASE 1: INPUT & SESSION      | ✅ PASSED          | ______      | spec_path: ______ / method: ______ |
+| PHASE 1.5: CONTINUATION CHECK | ✅ PASSED or ⏭️ N/A | ______      | validated: ______ / source: ______ |
+| PHASE 2: ARTIFACTS & MODE     | ✅ PASSED          | ______      | artifacts: ______ / mode: ______   |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED?
+├─ ALL phases show ✅ PASSED or ⏭️ N/A?
 │   ├─ YES → Proceed to "# SpecKit Resume" section below
 │   └─ NO  → STOP and complete the blocked phase
 ```
@@ -264,7 +310,7 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 │ No recent spec folders with incomplete tasks.               │
 ├─────────────────────────────────────────────────────────────┤
 │ OPTIONS                                                     │
-│   • Run /spec_kit:complete to start a new workflow          │
+│   • Run /spec_kit:complete to start a new workflow           │
 │   • Specify folder: /spec_kit:resume specs/014-*/           │
 ╰─────────────────────────────────────────────────────────────╯
 ```
@@ -281,8 +327,8 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 ├─────────────────────────────────────────────────────────────┤
 │ OPTIONS                                                     │
 │   A) Resume anyway - Load context and continue              │
-│   B) Fresh start - Keep artifacts, restart workflow         │
-│   C) Review first - Show me what changed                    │
+│   B) Fresh start - Keep artifacts, restart workflow          │
+│   C) Review first - Show me what changed                     │
 │   D) Cancel                                                 │
 ╰─────────────────────────────────────────────────────────────╯
 ```
@@ -310,12 +356,12 @@ The resume workflow uses semantic memory MCP tools directly for context loading.
 
 ### Memory Tools
 
-| Tool                    | Purpose                                      | Usage                                    |
-| ----------------------- | -------------------------------------------- | ---------------------------------------- |
-| `memory_search`         | Find relevant context from semantic memory   | Query: "Load context for {spec_folder}"  |
-| `memory_load`           | Load specific memory by spec folder/anchor   | Direct load from spec folder path        |
-| `memory_match_triggers` | Fast trigger phrase matching (<50ms)         | Quick session detection by keywords      |
-| `memory_stats`          | Get memory system statistics                 | Show resume status and counts            |
+| Tool                    | Purpose                                    | Usage                                   |
+| ----------------------- | ------------------------------------------ | --------------------------------------- |
+| `memory_search`         | Find relevant context from semantic memory | Query: "Load context for {spec_folder}" |
+| `memory_load`           | Load specific memory by spec folder/anchor | Direct load from spec folder path       |
+| `memory_match_triggers` | Fast trigger phrase matching (<50ms)       | Quick session detection by keywords     |
+| `memory_stats`          | Get memory system statistics               | Show resume status and counts           |
 
 ### Example Invocations
 
@@ -354,6 +400,19 @@ If validation fails (missing required fields), fall back to:
 3. checklist.md for progress state only
 
 **Note:** Stateless architecture - no `.spec-active` marker file used.
+
+### Validation on Resume
+
+After loading context, validate the spec folder state:
+
+```bash
+.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
+```
+
+This catches:
+- Missing files that may have been deleted
+- Broken memory anchors from incomplete saves
+- Unfilled placeholders from previous session
 
 ---
 

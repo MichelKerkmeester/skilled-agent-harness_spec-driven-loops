@@ -15,7 +15,7 @@ A comprehensive guide to installing, configuring, and using the Code Context MCP
 3. [🔍 UNIFIED SEARCH](#3--unified-search-searchcode)
 4. [📋 PREREQUISITES](#4--prerequisites)
 5. [📥 INSTALLATION](#5--installation)
-6. [⚙️ CONFIGURATION](#6-️-configuration)
+6. [⚙️ CONFIGURATION](#6--configuration)
 7. [✅ VERIFICATION](#7--verification)
 8. [🚀 USAGE PATTERNS](#8--usage-patterns)
 9. [🎯 FEATURES](#9--features)
@@ -67,7 +67,7 @@ Code Context MCP is a structural code intelligence tool that uses Tree-sitter AS
 | Property          | Value                                                                                |
 | ----------------- | ------------------------------------------------------------------------------------ |
 | **npm**           | [code-context-provider-mcp](https://www.npmjs.com/package/code-context-provider-mcp) |
-| **Version**       | 1.1.0                                                                                |
+| **Version**       | 1.0.11                                                                               |
 | **License**       | MIT                                                                                  |
 | **Access Method** | **NATIVE MCP** (direct call)                                                         |
 | **Tool Name**     | `code_context_get_code_context`                                                      |

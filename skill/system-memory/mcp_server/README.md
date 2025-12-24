@@ -40,6 +40,25 @@ The `mcp_server/` folder is the standalone MCP server implementation for semanti
 | **Checkpoints**          | Save/restore memory state for safety                          |
 | **Auto-Indexing**        | Startup scan + file watcher for automatic indexing            |
 
+### Constitutional Tier
+
+The **constitutional** tier is the highest importance level, designed for operational rules and critical context that must ALWAYS be visible to the AI agent.
+
+| Behavior | Description |
+|----------|-------------|
+| **Always surfaces** | Included at top of every `memory_search` result by default |
+| **Fixed similarity** | Returns `similarity: 100` regardless of query relevance |
+| **Response flag** | `isConstitutional: true` in search results |
+| **Token budget** | ~500 tokens max for constitutional memories per search |
+| **Control** | Set `includeConstitutional: false` to disable |
+
+**Use cases:**
+- Gate enforcement rules (e.g., Gate 3 spec folder question)
+- Safety constraints and hard blockers
+- User preferences that apply globally
+
+**Reference:** See `specs/005-memory/018-gate3-enforcement/` for implementation example.
+
 ### Architecture
 
 ```
@@ -94,6 +113,81 @@ file-watcher.js ─────────────────────�
 | `checkpoint_list`    | List available checkpoints  | <50ms   |
 | `checkpoint_restore` | Restore from checkpoint     | varies  |
 | `checkpoint_delete`  | Delete a checkpoint         | <50ms   |
+
+### Tool Parameters Reference
+
+#### memory_search
+
+Search memories semantically using vector similarity.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `query` | string | - | Natural language search query |
+| `limit` | number | 10 | Maximum results to return (1-20) |
+| `tier` | string | - | Filter by importance tier |
+| `contextType` | string | - | Filter by context type |
+| `specFolder` | string | - | Limit search to specific spec folder |
+| `concepts` | string[] | - | Multi-concept AND search (2-5 concepts) |
+| `includeConstitutional` | boolean | **true** | Include constitutional tier at top of results |
+| `includeContiguity` | boolean | false | Include adjacent/contiguous memories |
+| `useDecay` | boolean | true | Apply temporal decay scoring |
+
+**Response Fields:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | number | Memory ID |
+| `title` | string | Memory title |
+| `similarity` | number | 0-100 relevance score |
+| `isConstitutional` | boolean | `true` if constitutional tier (always surfaces first) |
+| `importanceTier` | string | One of 6 tiers |
+| `specFolder` | string | Source spec folder |
+| `triggerPhrases` | string[] | Trigger phrases for fast matching |
+
+#### memory_update
+
+Update an existing memory's metadata.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `id` | number | **Yes** | Memory ID to update |
+| `title` | string | No | New title (triggers re-embedding) |
+| `importanceTier` | string | No | One of: `constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated` |
+| `importanceWeight` | number | No | Weight 0-1 within tier |
+| `triggerPhrases` | string[] | No | Updated trigger phrases for fast matching |
+
+**Tier Promotion Example:**
+```typescript
+// Promote memory to constitutional tier for Gate 3 enforcement
+memory_update({ 
+  id: 132, 
+  importanceTier: "constitutional",
+  triggerPhrases: ["fix", "implement", "create", "modify", "update", "refactor"]
+})
+```
+
+#### memory_list
+
+Browse stored memories with pagination and filtering.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `limit` | number | 20 | Results per page (max 100) |
+| `offset` | number | 0 | Skip N results for pagination |
+| `tier` | string | - | Filter by importance tier (e.g., `constitutional`, `critical`) |
+| `specFolder` | string | - | Filter by spec folder |
+| `sortBy` | string | `created_at` | Sort order: `created_at`, `updated_at`, `importance_weight` |
+
+#### memory_match_triggers
+
+Fast trigger phrase matching (<50ms) without embeddings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `prompt` | string | **Required** | User prompt to match against trigger phrases |
+| `limit` | number | 3 | Maximum matching memories to return |
+
+**Response includes:** `memoryId`, `matchedPhrases[]`, `title`, `importanceWeight`
 
 ---
 
