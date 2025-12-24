@@ -50,7 +50,6 @@ The result? Six months from now, you'll know exactly why you made that architect
 
 **Spec Kit** is an automation-first documentation framework that makes AI assistants *actually useful* across sessions. While the original Spec Kit concept provides basic structure, this enhanced fork transforms it into a complete system with:
 
-- **Stateless V13.0 Architecture** — No bloated STATE.md files or marker files cluttering your repo
 - **Deep Memory Integration** — Context auto-saves to semantic memory, searchable across sessions
 - **Gate Enforcement** — 8 mandatory gates prevent skipped steps, lost context, and incomplete work
 - **Debug Intelligence** — AI detects when you're stuck and offers to dispatch a specialist sub-agent
