@@ -20,8 +20,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | **Debug Assistance**   | None              | AI detects frustration → auto-suggests sub-agent |
 | **Session Handover**   | None              | `:quick` (15 lines) or `:full` (150 lines)       |
 | **Quality Metrics**    | Guesswork         | Completeness scoring (0-100%)                    |
-| **Folder Versioning**  | Overwrite         | 001/002/003 sub-folder pattern                   |
-| **State Tracking**     | Manual markers    | V13.0 Stateless architecture                     |
+| **Folder Versioning**  | Overwrite         | Sub-folder patterns                   |
 | **Automation**         | None              | 7 scripts handle the boring work                 |
 
 > **The bottom line:** 12 templates, 7 commands, 7 scripts, 0 excuses for losing context.
