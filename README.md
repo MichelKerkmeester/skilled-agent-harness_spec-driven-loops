@@ -462,35 +462,7 @@ Without guardrails, AI assistants:
 
 #### The Gate System
 
-**Gate 0: Compaction Check**  
-Detects context loss and pauses for user confirmation.
-
-**Gate 0.5: Continuation Validation**  
-Validates handoff state against memory files on resume.
-
-**Gate 1: Understanding Check**  
-Requires 80%+ confidence and surfaces memories via trigger matching.
-
-**Gate 2: Skill Routing**  
-Routes to the appropriate skill using `skill_advisor.py`.
-
-**Gate 3: Spec Folder Question**  
-Asks for spec folder choice (A/B/C/D) before file modifications.
-
-**Gate 4: Memory Loading**  
-Offers to load relevant memories when using an existing spec.
-
-**Gate 5: Memory Save Validation**  
-Uses `generate-context.js` for all memory saves.
-
-**Gate 6: Completion Verification**  
-Enforces checklist completion before claiming "done".
-
-**Gate 7: Context Health Monitor**  
-Issues progressive warnings (Tier 1/2/3) for long sessions.
-
-
-
+The gate system is a series of automated checks that every request passes through to ensure quality, context retention, and workflow integrity. Each gate enforces a specific rule—such as verifying understanding, routing to the right skill, requiring documentation, validating memory saves, and confirming completion—so that nothing falls through the cracks. This layered approach prevents common issues like context loss, incomplete documentation, and unverified work, making the development process more reliable and efficient.
 
 ---
 
