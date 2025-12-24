@@ -13,6 +13,8 @@ Structural code analysis via AST (Abstract Syntax Tree) parsing, enabling precis
 
 **Key Differentiator**: When you need to know "what symbols exist in this file" rather than "find text X" or "understand how Y works".
 
+> **Important:** The `absolutePath` parameter must be a **directory path**, not a file path. To analyze a single file, provide its parent directory and use `maxDepth: 1`.
+
 ---
 
 ## 1. 🎯 WHEN TO USE
@@ -212,14 +214,16 @@ STEP 4: Present Results
 
 ### Key Capabilities
 
+> **Note:** Symbol extraction (`analyzeJs: true`) returns structural information. The exact output format may vary - some installations return JSON with symbol arrays, others return ASCII tree format. Check your specific installation's behavior.
+
 **1. File Outline**
 Extracts functions, classes, methods, and variables from source files.
 
 ```javascript
-// Input: get_code_context with analyzeJs: true, symbolType: "functions"
+// Input: code_context_get_code_context with analyzeJs: true, symbolType: "functions"
 // Output: List of function names with line numbers
 
-// Example output structure:
+// Example output structure (format may vary by installation):
 {
   "symbols": [
     { "name": "handleLogin", "type": "function", "line": 45 },
@@ -233,22 +237,28 @@ Extracts functions, classes, methods, and variables from source files.
 Visualizes folder hierarchy, respecting .gitignore patterns.
 
 ```javascript
-// Input: get_code_context with analyzeJs: false
+// Input: code_context_get_code_context with analyzeJs: false
 // Output: Tree structure of directory
-
-// Example output:
-src/
-├── components/
-│   ├── Button.tsx
-│   ├── Modal.tsx
-│   └── Form/
-│       ├── Input.tsx
-│       └── Select.tsx
-├── utils/
-│   ├── api.ts
-│   └── helpers.ts
-└── index.ts
 ```
+
+### Output Format
+
+The tool returns directory structure in ASCII tree format:
+```
+Directory structure for: /path/to/dir
+├── components/
+│   ├── Button.tsx (2 KB)
+│   ├── Modal.tsx (3 KB)
+│   └── Form/
+│       ├── Input.tsx (1 KB)
+│       └── Select.tsx (2 KB)
+├── utils/
+│   ├── api.ts (4 KB)
+│   └── helpers.ts (1 KB)
+└── index.ts (1 KB)
+```
+
+When `analyzeJs: true` and `includeSymbols: true`, additional symbol information may be included depending on the tool version.
 
 **3. Symbol Filtering**
 Filter symbols by type to reduce noise.
@@ -278,11 +288,13 @@ Tree-sitter provides parsers for many languages. Primary support:
 
 ### Tool Invocation
 
+> **Important:** The `absolutePath` parameter must be a **directory path**, not a file path. To analyze a single file, provide its parent directory and use `maxDepth: 1`.
+
 **Native MCP (Direct Call)**:
 ```typescript
 // Call directly - Code Context is a NATIVE MCP tool in opencode.json
 code_context_get_code_context({
-  absolutePath: "/absolute/path/to/directory",
+  absolutePath: "/absolute/path/to/directory",  // Must be a directory, not a file
   analyzeJs: true,
   includeSymbols: true,
   symbolType: "functions",
@@ -294,7 +306,7 @@ code_context_get_code_context({
 ```bash
 # Using the MCP CLI directly
 npx code-context-provider-mcp get_code_context \
-  --absolutePath "/absolute/path" \
+  --absolutePath "/absolute/path/to/directory" \
   --analyzeJs true
 ```
 
@@ -382,6 +394,20 @@ npx code-context-provider-mcp get_code_context \
 4. **ESCALATE IF Output is Empty**
    - **Why**: May indicate wrong path, wrong file type, or parsing error
    - **Action**: Verify path, check file extension, offer alternatives
+
+### Troubleshooting
+
+**ENOTDIR error**: You provided a file path instead of a directory. Use the parent directory instead.
+```typescript
+// Wrong: absolutePath: "/path/to/file.js"
+// Right: absolutePath: "/path/to" with maxDepth: 1
+```
+
+**Empty symbol output**: Symbol extraction may not be available for all file types or tool versions. Use `Grep` for text-based symbol search as fallback.
+
+**Timeout on large directories**: Reduce `maxDepth` to 2 or 3 for initial exploration.
+
+**Unexpected output format**: The tool may return ASCII tree format instead of JSON. Parse the output accordingly or use the raw text for display.
 
 ---
 
@@ -511,14 +537,14 @@ code_context_get_code_context({
 
 ```typescript
 // Directory tree (structure only)
-get_code_context({
+code_context_get_code_context({
   absolutePath: "/path/to/dir",
   analyzeJs: false,
   maxDepth: 2
 })
 
 // File outline (all symbols)
-get_code_context({
+code_context_get_code_context({
   absolutePath: "/path/to/dir",
   analyzeJs: true,
   includeSymbols: true,
@@ -526,7 +552,7 @@ get_code_context({
 })
 
 // Functions only
-get_code_context({
+code_context_get_code_context({
   absolutePath: "/path/to/dir",
   analyzeJs: true,
   includeSymbols: true,
@@ -534,11 +560,19 @@ get_code_context({
 })
 
 // Classes only
-get_code_context({
+code_context_get_code_context({
   absolutePath: "/path/to/dir",
   analyzeJs: true,
   includeSymbols: true,
   symbolType: "classes"
+})
+
+// Single file analysis (use parent directory)
+code_context_get_code_context({
+  absolutePath: "/path/to/parent/dir",  // NOT the file path
+  analyzeJs: true,
+  includeSymbols: true,
+  maxDepth: 1
 })
 ```
 
@@ -548,16 +582,19 @@ get_code_context({
 What do you need?
     │
     ├─► Directory structure visualization
-    │   └─► get_code_context { analyzeJs: false, maxDepth: 2 }
+    │   └─► code_context_get_code_context { analyzeJs: false, maxDepth: 2 }
     │
     ├─► List all functions in a file/folder
-    │   └─► get_code_context { analyzeJs: true, symbolType: "functions" }
+    │   └─► code_context_get_code_context { analyzeJs: true, symbolType: "functions" }
     │
     ├─► List all classes
-    │   └─► get_code_context { analyzeJs: true, symbolType: "classes" }
+    │   └─► code_context_get_code_context { analyzeJs: true, symbolType: "classes" }
     │
     ├─► Complete symbol overview
-    │   └─► get_code_context { analyzeJs: true, symbolType: "all" }
+    │   └─► code_context_get_code_context { analyzeJs: true, symbolType: "all" }
+    │
+    ├─► Analyze a single file
+    │   └─► code_context_get_code_context { absolutePath: "parent/dir", maxDepth: 1 }
     │
     ├─► Find text pattern
     │   └─► Use Grep instead (not Code Context)
@@ -570,7 +607,7 @@ What do you need?
 
 | Parameter | Type | Default | Purpose |
 |-----------|------|---------|---------|
-| `absolutePath` | string | *required* | Absolute path to analyze |
+| `absolutePath` | string | *required* | Absolute path to **directory** (not file) |
 | `analyzeJs` | boolean | `false` | Enable AST symbol extraction |
 | `includeSymbols` | boolean | `false` | Include symbols in response |
 | `symbolType` | string | `"all"` | Filter: functions/classes/variables/imports/exports/all |

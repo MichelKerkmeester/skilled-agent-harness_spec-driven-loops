@@ -246,7 +246,32 @@ Create quick-continue.md directly using the template:
 
 **Template**: `.opencode/skill/system-spec-kit/templates/quick-continue.md`
 
-**Content structure:**
+> **Template Source:** Use the template at `.opencode/skill/system-spec-kit/templates/quick-continue.md` as the authoritative source. The inline example below is for reference only.
+
+### Attempt Counter Logic
+
+Before creating quick-continue.md, determine the attempt number:
+
+1. Check if quick-continue.md already exists in the spec folder
+2. If exists, read the current attempt number from the file
+3. Increment by 1 for the new handover
+4. If no existing file, start at Attempt 1
+
+**Implementation:**
+```
+IF quick-continue.md exists in [spec_folder]:
+  Extract current [N] from "CONTINUATION - Attempt [N]"
+  New attempt = N + 1
+ELSE:
+  New attempt = 1
+```
+
+**Output format:**
+```
+**CONTINUATION - Attempt [calculated_number]**
+```
+
+**Content structure (reference only):**
 ```markdown
 # Quick Continue: [FEATURE_NAME]
 
@@ -284,6 +309,14 @@ The agent generates comprehensive handover.md with 7 sections:
 ---
 
 ## 5. 📊 OUTPUT FORMATS
+
+**Output Location:** 
+- Quick variant: `[spec_folder]/quick-continue.md`
+- Full variant: `[spec_folder]/handover.md`
+
+These files are created in the spec folder root, NOT in memory/.
+
+> **💡 Tip:** After creating the handover file, consider also running `/memory:save` to preserve full semantic context for future searches. Handover files are for quick continuation; memory files are for semantic retrieval.
 
 ### Quick Handover Success
 

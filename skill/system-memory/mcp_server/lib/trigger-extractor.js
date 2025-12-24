@@ -80,6 +80,7 @@ const CONFIG = {
   MIN_WORD_LENGTH: 3,       // Minimum word length to consider
   MIN_CONTENT_LENGTH: 50,   // Minimum content length to process
   MIN_FREQUENCY: 2,         // Minimum frequency for a phrase to be considered
+  MIN_TOKEN_COUNT: 1,       // Minimum tokens required after filtering
   LENGTH_BONUS: {
     UNIGRAM: 1.0,
     BIGRAM: 1.5,
@@ -133,7 +134,7 @@ function tokenize(text) {
     .filter(token =>
       token.length >= CONFIG.MIN_WORD_LENGTH &&
       !/^\d+$/.test(token) &&
-      !/^[^a-z\u00C0-\u024F\u1E00-\u1EFF]+$/i.test(token)  // Skip tokens with no Latin letters (including accented)
+      !/^[^a-zA-Z\u00C0-\u024F\u1E00-\u1EFF]+$/.test(token)  // Skip tokens with no Latin letters (including accented)
     );
 }
 
@@ -298,8 +299,9 @@ function filterTechStopWords(candidates) {
  * Performance: <100ms for typical content (<10KB) per FR-012b
  */
 function extractTriggerPhrases(text) {
-  // Validation
-  if (!text || typeof text !== 'string' || text.constructor !== String) {
+  // Validation with logging for debugging
+  if (typeof text !== 'string') {
+    console.warn('[trigger-extractor] Invalid input: expected string, got', typeof text);
     return [];
   }
 
@@ -312,7 +314,8 @@ function extractTriggerPhrases(text) {
   const tokens = tokenize(cleaned);
   const filtered = filterStopWords(tokens);
 
-  if (filtered.length < CONFIG.MIN_WORD_LENGTH) {
+  // Check against MIN_TOKEN_COUNT (not MIN_WORD_LENGTH which is for character length)
+  if (filtered.length < CONFIG.MIN_TOKEN_COUNT) {
     return [];
   }
 

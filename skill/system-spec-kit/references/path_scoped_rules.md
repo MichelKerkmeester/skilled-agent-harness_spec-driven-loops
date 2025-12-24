@@ -1,5 +1,13 @@
 # Path-Scoped Rules
 
+> ⚠️ **DESIGN DOCUMENT - NOT YET IMPLEMENTED**
+> 
+> This document describes a planned feature for path-scoped rules.
+> The functionality described below is not currently active.
+> See SKILL.md for current capabilities.
+
+---
+
 > **STATUS: NOT YET IMPLEMENTED**
 > This document describes a FUTURE capability for context-aware rule enforcement.
 > Currently, rules are applied uniformly. This serves as a design document.

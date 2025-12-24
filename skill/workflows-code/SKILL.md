@@ -95,6 +95,8 @@ TASK CONTEXT
 | Webflow collection lists, platform limits, ID duplication | [webflow_patterns.md](./references/webflow_patterns.md) |
 | Animation/video/asset optimization | [performance_patterns.md](./references/performance_patterns.md) |
 | XSS, CSRF, injection prevention | [security_patterns.md](./references/security_patterns.md) |
+| Third-party library integration, CDN loading, HLS.js | [third_party_integrations.md](./references/third_party_integrations.md) |
+| MutationObserver, IntersectionObserver, DOM watching | [observer_patterns.md](./references/observer_patterns.md) |
 
 **Phase 2: Debugging**
 
@@ -104,7 +106,7 @@ TASK CONTEXT
 | Deep call stack, mysterious failures, corrupted data | [debugging_workflows.md#2-🔎-root-cause-tracing](./references/debugging_workflows.md#2-🔎-root-cause-tracing) |
 | Slow page, janky animations, memory leaks | [debugging_workflows.md#3-🔍-performance-debugging](./references/debugging_workflows.md#3-🔍-performance-debugging) |
 | Collection list not rendering, event listeners failing | [webflow_patterns.md](./references/webflow_patterns.md) |
-| Motion.dev not loading, layout jumps, jank | [animation_workflows.md#6-🐛-common-issues-and-solutions](./references/animation_workflows.md#6-🐛-common-issues-and-solutions) |
+| Motion.dev not loading, layout jumps, jank | [animation_workflows.md#7-🐛-common-issues-and-solutions](./references/animation_workflows.md#7-🐛-common-issues-and-solutions) |
 
 **Phase 3: Verification**
 
@@ -517,7 +519,7 @@ Platform limits enforced by Webflow that affect architecture decisions:
 
 **Complete reference:** [webflow_patterns.md](./references/webflow_patterns.md) - Platform limits, collection list patterns, async rendering solutions, validation scripts, and constraints
 
-**Quick Integration:** See [code_quality_standards.md Section 6](./references/code_quality_standards.md#6-integration-with-workflows-code) for phase-by-phase integration guide.
+**Quick Integration:** See Section 8 of [code_quality_standards.md](./references/code_quality_standards.md#8-✅-quick-reference-checklist) for the pre-deployment checklist covering naming, structure, initialization, animation, and comment standards.
 
 ### Tool Usage Guidelines
 
@@ -668,6 +670,20 @@ If you're unsure which phase you're in, use this self-assessment:
 **"Tests pass but feature incomplete"** → Return to Phase 1, more implementation needed
 
 **"Feature works but tests fail"** → Phase 2, debug test failures
+
+### Phase Transitions
+
+Understanding when and how to move between phases:
+
+| Transition | Trigger | Action |
+|------------|---------|--------|
+| **Phase 1 → Phase 2** | Implementation reveals unexpected behavior or bugs | Stop implementing, switch to debugging workflow |
+| **Phase 2 → Phase 1** | Debugging reveals missing implementation | Return to implementation to add missing code |
+| **Phase 2 → Phase 3** | All identified bugs are fixed | Proceed to browser verification |
+| **Phase 3 → Phase 1** | Verification reveals new requirements | Return to implementation for additional work |
+| **Phase 3 → Phase 2** | Verification reveals bugs not caught during debugging | Return to debugging workflow |
+
+**Key principle:** Phases are not strictly linear. Move freely between phases as needed, but always end with Phase 3 (Verification) before claiming completion.
 
 ---
 

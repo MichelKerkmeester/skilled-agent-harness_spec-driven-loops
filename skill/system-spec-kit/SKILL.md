@@ -1,7 +1,7 @@
 ---
 name: system-spec-kit
 description: "Mandatory spec folder workflow orchestrating documentation level selection (1-3), template selection, and folder creation for all file modifications through documentation enforcement."
-allowed-tools: ["*"]
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
 version: 13.0.0
 ---
 
@@ -80,7 +80,7 @@ Utility templates (`handover.md`, `debug-delegation.md`) are available at ANY do
 - `:auto` - Autonomous execution with self-validation
 - `:confirm` - Interactive with user approval checkpoints
 
-### Phase Detection
+### Activation Detection
 
 ```
 TASK CONTEXT
@@ -144,7 +144,7 @@ def route_conversation_resources(task):
     """
 
     # ═══════════════════════════════════════════════════════════════════════════
-    # TEMPLATES (10 files in .opencode/skill/system-spec-kit/templates/)
+    # TEMPLATES (12 files in .opencode/skill/system-spec-kit/templates/)
     # ═══════════════════════════════════════════════════════════════════════════
 
     # Level 1: Baseline (all tasks start here)
@@ -209,13 +209,23 @@ def route_conversation_resources(task):
     # SCRIPTS (6 files in ./scripts/) - Automation tools
     # ═══════════════════════════════════════════════════════════════════════════
 
-    # Available scripts (invoke via bash):
-    # bash("scripts/create-spec-folder.sh", name, level)  # Create spec folder with templates
-    # bash("scripts/check-prerequisites.sh")              # Validate spec folder structure
-    # bash("scripts/calculate-completeness.sh", path)     # Calculate placeholder completion %
-    # bash("scripts/recommend-level.sh", loc, files)      # Recommend documentation level
-    # bash("scripts/archive-spec.sh", path)               # Archive completed spec folders
-    # Note: common.sh is sourced by other scripts (not invoked directly)
+    # 6 script files (5 standalone + 1 shared library):
+    # - create-spec-folder.sh (standalone)
+    # - check-prerequisites.sh (standalone)
+    # - calculate-completeness.sh (standalone)
+    # - recommend-level.sh (standalone)
+    # - archive-spec.sh (standalone)
+    # - common.sh (shared library, sourced by other scripts)
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # CHECKLISTS (4 files in ./checklists/) - Phase verification checklists
+    # ═══════════════════════════════════════════════════════════════════════════
+
+    # Phase-specific verification checklists (load during respective phases):
+    # - planning-phase.md    → During /spec_kit:plan
+    # - implementation-phase.md → During /spec_kit:implement
+    # - research-phase.md    → During /spec_kit:research
+    # - review-phase.md      → Before claiming done
 
     # ═══════════════════════════════════════════════════════════════════════════
     # CONDITIONAL RESOURCES (loaded when specific features needed)
@@ -228,20 +238,23 @@ def route_conversation_resources(task):
     # Enforcement: AGENTS.md discipline - verification required before commits
     # Rule: When in doubt → choose higher level
 
-# SUMMARY: 24 total resources
-# - 10 templates in: .opencode/skill/system-spec-kit/templates/
-# - 3 assets in:    ./assets/
+# SUMMARY: 30 total resources
+# - 12 templates in: .opencode/skill/system-spec-kit/templates/
+# - 3 assets in:     ./assets/
 # - 5 references in: ./references/
-# - 6 scripts in:   ./scripts/
+# - 6 scripts in:    ./scripts/
+# - 4 checklists in: ./checklists/
 ```
 
 ---
 
-## 3. 🚨 SPEC FOLDER CHOICE ENFORCEMENT
+## 3. ⚙️ HOW IT WORKS
+
+### Spec Folder Choice Enforcement
 
 **MANDATORY**: The AI must NEVER autonomously decide whether to use an existing spec folder, create a new one, or skip documentation. This is defined in **AGENTS.md Gates 0, 0.5, 3, 5, 6, 7** - see AGENTS.md Section 2 for complete gate definitions.
 
-### Enforcement (Manual)
+#### Enforcement (Manual)
 
 The AI must follow this workflow manually and ask the user before proceeding with any file modifications.
 
@@ -254,7 +267,7 @@ When file modification triggers are detected (rename, create, update, fix, imple
 | **C) Update related**     | Update documentation in related folder   | Extending existing documentation    |
 | **D) Skip documentation** | Proceed without spec folder              | Trivial changes (creates tech debt) |
 
-### AI Behavior Requirements
+#### AI Behavior Requirements
 
 1. **ASK** user for spec folder choice before proceeding with file modifications
 2. **WAIT** for explicit user selection (A/B/C/D)
@@ -262,17 +275,18 @@ When file modification triggers are detected (rename, create, update, fix, imple
 4. **RESPECT** the user's choice throughout the workflow
 5. If user selects D (skip), warn about technical debt implications
 
-### Gate Alignment (AGENTS.md V13.0)
+#### Gate Alignment (AGENTS.md V13.0)
 
 This skill enforces and is enforced by these gates:
-- **Gate 0**: Compaction check - detect context loss, trigger handover
-- **Gate 0.5**: Continuation validation - verify handoff state against memory
+- **Gate 1**: Understanding + Context Surfacing - memory_match_triggers() call
+- **Gate 2**: Skill Routing - skill_advisor.py determines if this skill applies
 - **Gate 3**: Spec folder question - HARD BLOCK before file modifications
-- **Gate 5**: Memory save validation - MUST use generate-context.js
+- **Gate 4**: Memory loading - conditional on spec folder selection
+- **Gate 5**: Memory save validation - MUST use `.opencode/skill/system-memory/scripts/generate-context.js`
 - **Gate 6**: Completion verification - verify checklist.md items
 - **Gate 7**: Context health monitor - suggest handover at session milestones
 
-### Trigger Keywords
+#### Trigger Keywords
 
 The AI MUST detect these keywords and ask Q1:
 - **Create/Add**: "create", "add", "implement", "build", "write", "generate"
@@ -280,7 +294,7 @@ The AI MUST detect these keywords and ask Q1:
 - **Remove**: "delete", "remove", "rename", "move"
 - **Configure**: "configure", "analyze" (when file changes expected)
 
-### Example Prompt
+#### Example Prompt
 
 ```
 🔴 MANDATORY_USER_QUESTION
@@ -290,10 +304,6 @@ The AI MUST detect these keywords and ask Q1:
   C) Update related spec folder (add to existing documentation)
   D) Skip documentation (creates technical debt - use sparingly)
 ```
-
----
-
-## 4. ⚙️ HOW IT WORKS
 
 ### 3-Level Progressive Enhancement Framework
 
@@ -330,7 +340,7 @@ Utility (any level):    handover.md, debug-delegation.md
 > - An evidence-based completion gate (must mark items with proof)
 > - A priority-driven blocker (P0/P1 items MUST pass before done)
 >
-> See Section 6 (RULES) for mandatory checklist verification requirements.
+> See Section 4 (RULES) for mandatory checklist verification requirements.
 
 **Level 3: Full Documentation** (LOC guidance: ≥500)
 - **Required Files**: Level 2 + `decision-record.md`
@@ -358,7 +368,7 @@ LOC thresholds are **SOFT GUIDANCE** - these factors can push to higher level:
 
 ### Template System (Progressive Enhancement)
 
-**All 10 templates located in**: `.opencode/skill/system-spec-kit/templates/`
+**All 12 templates located in**: `.opencode/skill/system-spec-kit/templates/`
 
 **Required templates by level (progressive):**
 - Level 1: `spec.md` + `plan.md` + `tasks.md` (baseline)
@@ -374,7 +384,7 @@ LOC thresholds are **SOFT GUIDANCE** - these factors can push to higher level:
 - `debug-delegation.md` → Sub-agent debugging task delegation
 - `quick-continue.md` → Minimal handoff for session branching (~10-15 lines, created by /handover or manually)
 
-> **Note (V13.0)**: Project state is now embedded in memory files as "Project State Snapshot" section, automatically generated by `generate-context.js`. Separate STATE.md is no longer used. Memory files MUST be created via `generate-context.js [spec-folder-path]` - manual Write/Edit of memory files is prohibited (AGENTS.md Gate 5).
+> **Note (V13.0)**: Project state is now embedded in memory files as "Project State Snapshot" section, automatically generated by `.opencode/skill/system-memory/scripts/generate-context.js`. Separate STATE.md is no longer used. Memory files MUST be created via `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` - manual Write/Edit of memory files is prohibited (AGENTS.md Gate 5).
 
 
 ### Folder Naming Convention
@@ -397,7 +407,7 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 
 ### Mandatory Documentation Workflow
 
-**AI agent behavior (AGENTS.md Phase 1 - Gate 2):**
+**AI agent behavior (AGENTS.md Gate 3):**
 
 **Start of conversation** (file modification detected):
 - Detects modification keywords (add, implement, fix, etc.)
@@ -420,7 +430,7 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 
 **Manual context save (V13.0 - MANDATORY WORKFLOW):**
 - Trigger: `/memory:save` command, "save context", or "save memory"
-- **MUST use**: `generate-context.js [spec-folder-path]` script
+- **MUST use**: `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]`
 - **NEVER**: Create memory files manually via Write/Edit tools (AGENTS.md Gate 5)
 - Save location: `specs/###-folder/memory/` or sub-folder memory/ if active
 - Filename format: `DD-MM-YY_HH-MM__topic.md` (auto-generated by script)
@@ -466,6 +476,8 @@ When returning to an active spec folder, the AI asks two sequential questions:
 - Stage 1 "D" = Skip documentation entirely
 - Stage 2 "D" = Skip memory loading (stay in spec folder)
 
+> **Note:** The A/B/C/D options here correspond to AGENTS.md Gate 4's `[1] [2] [3] [all] [skip]` pattern. Both achieve the same goal of user-controlled memory loading.
+
 **AI Actions by Stage 2 Choice:**
 - **A:** Read most recent memory file
 - **B:** Read 3 most recent files (parallel)
@@ -484,9 +496,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 **Full configuration:** See [parallel_dispatch_config.md](./assets/parallel_dispatch_config.md) for scoring algorithm, thresholds, and override phrases.
 
----
-
-## 5. 🧠 COMMAND PATTERN REFERENCE PROTOCOL
+### Command Pattern Reference Protocol
 
 **Philosophy**: Commands (`.opencode/command/**/*.yaml`) are high-value "Reference Patterns" containing optimized logic, not rigid laws for manual execution.
 
@@ -509,11 +519,9 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
     *   Which commands were referenced.
     *   How they contributed to the outcome.
 
----
+### Debug Delegation Workflow
 
-## 6. 🐛 DEBUG DELEGATION WORKFLOW
-
-### When to Trigger Debug Delegation
+#### When to Trigger Debug Delegation
 
 Debug delegation should be triggered in two ways:
 
@@ -554,7 +562,7 @@ This will:
 4. Return findings for your review
 ```
 
-### Model Selection (MANDATORY)
+#### Model Selection (MANDATORY)
 
 The `/spec_kit:debug` command ALWAYS asks the user which model to use:
 
@@ -567,7 +575,7 @@ The `/spec_kit:debug` command ALWAYS asks the user which model to use:
 
 **Rule:** Never skip model selection. Always ask, even if you have a recommendation.
 
-### Debug Report Generation
+#### Debug Report Generation
 
 The command generates `debug-delegation.md` in the spec folder root containing:
 - Error category and full message
@@ -577,14 +585,14 @@ The command generates `debug-delegation.md` in the spec folder root containing:
 - Hypothesis about root cause
 - Recommended next steps
 
-### Sub-Agent Dispatch
+#### Sub-Agent Dispatch
 
 Uses the Task tool to dispatch a parallel debugging agent:
 - Passes full debug report as context
 - Instructs agent to: analyze → propose fix → verify steps → prevention
 - Receives structured response with root cause, fix, and verification
 
-### Integration of Results
+#### Integration of Results
 
 After sub-agent returns:
 1. Present findings to user
@@ -593,7 +601,7 @@ After sub-agent returns:
 
 ---
 
-## 7. 📋 RULES
+## 4. 📋 RULES
 
 ### ✅ ALWAYS 
 
@@ -714,7 +722,7 @@ After sub-agent returns:
 
 ---
 
-## 8. ✅ SUCCESS CRITERIA
+## 5. ✅ SUCCESS CRITERIA
 
 ### Documentation Created
 
@@ -750,7 +758,7 @@ After sub-agent returns:
 
 ### Context Preservation
 
-- [ ] Context saved via `generate-context.js [spec-folder-path]` (NEVER manual Write/Edit)
+- [ ] Context saved via `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` (NEVER manual Write/Edit)
 - [ ] Manual saves triggered via `/memory:save` or "save context" keywords
 - [ ] Memory files contain PROJECT STATE SNAPSHOT section
 - [ ] Conversation history preserved for debugging
@@ -768,7 +776,7 @@ After sub-agent returns:
 
 ---
 
-## 9. 🔗 INTEGRATION POINTS
+## 6. 🔗 INTEGRATION POINTS
 
 ### Enforcement Priority System
 
@@ -786,7 +794,7 @@ SpecKit uses a priority system for validation and enforcement through AGENTS.md 
   - Additional context preservation
 
 **Validation Triggers:**
-- AGENTS.md Phase 1 Gate 2 → Validates spec folder existence and template completeness
+- AGENTS.md Gate 3 → Validates spec folder existence and template completeness
 - Manual `/save_context` → Context preservation on demand
 - Template validation → Checks placeholder removal and required field completion
 

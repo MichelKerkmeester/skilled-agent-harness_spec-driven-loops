@@ -261,6 +261,8 @@ Create debug-delegation.md using the template:
 
 **Template:** `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
 
+> **Note:** The debug-delegation.md template may not have a "6. RESOLUTION" section. Create this section when documenting the fix outcome.
+
 ```
 GENERATE debug-delegation.md:
 
@@ -296,20 +298,30 @@ GENERATE debug-delegation.md:
 
 ### Step 3: Dispatch Sub-Agent
 
-Use the Task tool to dispatch a debugging sub-agent:
+**Sub-Agent Dispatch:**
 
+Use the Task tool with these parameters:
+- **description**: "Debug: [brief error summary - max 50 chars]"
+- **prompt**: [Full debug context including error, attempts, code snippets]
+- **subagent_type**: "general"
+
+Example invocation:
 ```
-DISPATCH using Task tool:
+Task tool parameters:
+- description: "Debug: TypeError in auth module"
+- prompt: "DEBUGGING TASK: [full context here]"
+- subagent_type: general
+```
 
-Task({
-  description: "Debug: [brief error summary - max 50 chars]",
-  prompt: `
+**Prompt Template for Sub-Agent:**
+
+```markdown
 # Debug Task Delegation
 
 You are a specialized debugging agent. A primary agent has encountered a persistent issue and is delegating to you for fresh analysis.
 
 ## Selected Model
-${selected_model} - chosen for this debugging task.
+[selected_model] - chosen for this debugging task.
 
 ## Your Task
 Analyze the following debug report and provide:
@@ -350,12 +362,9 @@ Analyze the following debug report and provide:
 
 ### ⚠️ Caveats
 [Any assumptions made or areas of uncertainty]
-`,
-  subagent_type: "general"
-})
 ```
 
-**Model Hint:** The `selected_model` is passed as context to help route to appropriate capabilities. The Task tool will use the best available model.
+> **Note:** Model selection is advisory context only. The Task tool uses the model configured in your OpenCode environment. The selected model name is passed in the prompt to help the sub-agent understand the intended capability level, but does not change which model processes the request.
 
 **Timeout:** Sub-agent has standard timeout (2 minutes). If no response, report back to user with partial findings if available.
 
@@ -385,6 +394,8 @@ RECEIVE sub-agent response:
     ├─ Display what context is needed
     ├─ Gather additional context
     └─ Re-dispatch sub-agent with enhanced report
+
+**Retry Limit:** Maximum 3 re-dispatch attempts before forcing escalation to user.
 ```
 
 ### Step 5: Integration

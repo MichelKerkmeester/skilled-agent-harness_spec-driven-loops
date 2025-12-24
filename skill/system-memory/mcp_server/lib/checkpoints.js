@@ -46,12 +46,6 @@ function getGitBranch() {
 function createCheckpoint(name, options = {}) {
   const { specFolder = null, metadata = {} } = options;
 
-  // Check for duplicate name
-  const existing = db.prepare('SELECT id FROM checkpoints WHERE name = ?').get(name);
-  if (existing) {
-    throw new Error(`Checkpoint already exists: ${name}`);
-  }
-
   // Get memories to snapshot
   const memorySql = specFolder
     ? 'SELECT * FROM memory_index WHERE spec_folder = ?'
@@ -60,11 +54,19 @@ function createCheckpoint(name, options = {}) {
     ? db.prepare(memorySql).all(specFolder)
     : db.prepare(memorySql).all();
 
-  // Compress memory snapshot
-  const memorySnapshot = zlib.gzipSync(JSON.stringify(memories));
+  // Size validation before compression
+  const MAX_CHECKPOINT_SIZE = 100 * 1024 * 1024; // 100MB limit
+  const jsonData = JSON.stringify(memories);
+  if (jsonData.length > MAX_CHECKPOINT_SIZE) {
+    throw new Error(`Checkpoint data too large (${Math.round(jsonData.length / 1024 / 1024)}MB). Maximum is ${MAX_CHECKPOINT_SIZE / 1024 / 1024}MB.`);
+  }
 
+  // Compress memory snapshot
+  const memorySnapshot = zlib.gzipSync(jsonData);
+
+  // Atomic insert with race condition protection
   const result = db.prepare(`
-    INSERT INTO checkpoints (name, created_at, spec_folder, git_branch, memory_snapshot, metadata)
+    INSERT OR IGNORE INTO checkpoints (name, created_at, spec_folder, git_branch, memory_snapshot, metadata)
     VALUES (?, ?, ?, ?, ?, ?)
   `).run(
     name,
@@ -74,6 +76,10 @@ function createCheckpoint(name, options = {}) {
     memorySnapshot,
     JSON.stringify(metadata)
   );
+
+  if (result.changes === 0) {
+    throw new Error(`Checkpoint already exists: ${name}`);
+  }
 
   return result.lastInsertRowid;
 }
@@ -116,7 +122,14 @@ function getCheckpoint(name) {
   const row = db.prepare('SELECT * FROM checkpoints WHERE name = ?').get(name);
   if (!row) return null;
 
-  const memories = JSON.parse(zlib.gunzipSync(row.memory_snapshot));
+  // Safe decompression with error handling
+  let decompressed;
+  try {
+    decompressed = zlib.gunzipSync(row.memory_snapshot);
+  } catch (err) {
+    throw new Error(`Failed to decompress checkpoint data: ${err.message}. The checkpoint may be corrupted.`);
+  }
+  const memories = JSON.parse(decompressed);
 
   return {
     id: row.id,
@@ -145,7 +158,14 @@ function restoreCheckpoint(name, options = {}) {
     throw new Error(`Checkpoint not found: ${name}`);
   }
 
-  const memories = JSON.parse(zlib.gunzipSync(checkpoint.memory_snapshot));
+  // Safe decompression with error handling
+  let decompressed;
+  try {
+    decompressed = zlib.gunzipSync(checkpoint.memory_snapshot);
+  } catch (err) {
+    throw new Error(`Failed to decompress checkpoint data: ${err.message}. The checkpoint may be corrupted.`);
+  }
+  const memories = JSON.parse(decompressed);
 
   const result = db.transaction(() => {
     let cleared = 0;
@@ -161,12 +181,12 @@ function restoreCheckpoint(name, options = {}) {
         `).all(checkpoint.spec_folder).map(r => r.id);
 
         if (existingIds.length > 0) {
-          for (const id of existingIds) {
-            try {
-              db.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(id);
-            } catch (e) {
-              // vec_memories may not have this entry, ignore
-            }
+          // Batch delete using single query with IN clause
+          const placeholders = existingIds.map(() => '?').join(',');
+          try {
+            db.prepare(`DELETE FROM vec_memories WHERE rowid IN (${placeholders})`).run(...existingIds);
+          } catch (e) {
+            // vec_memories may not have these entries, ignore
           }
         }
 

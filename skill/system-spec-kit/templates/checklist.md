@@ -11,7 +11,7 @@ Custom checklist for feature validation, testing, or review purposes generated b
 ### Metadata
 - **Category**: Checklist
 - **Tags**: [YOUR_VALUE_HERE: feature-name], [YOUR_VALUE_HERE: area]
-- **Priority**: [NEEDS CLARIFICATION: What is the checklist priority? (a) P0-critical - blocks deployment (b) P1-high - essential quality gate (c) P2-medium - important validation (d) P3-low - nice to verify]
+- **Priority**: [NEEDS CLARIFICATION: What is the checklist priority? (a) P0-critical - blocks deployment (b) P1-high - essential quality gate (c) P2-medium - important validation]
 - **Type**: [NEEDS CLARIFICATION: What type of checklist is this? (a) Pre-Implementation - readiness checks (b) Testing & QA - validation during/after implementation (c) Security Review - security-specific validation (d) Performance Review - benchmarks and targets (e) Pre-Deployment - final checks before release]
 
 ### Purpose
@@ -163,8 +163,8 @@ At completion, document verification status:
 
 ### Priority Tags
 - **[P0]**: Critical - blocks launch/deployment
-- **[P1]**: High - needed for quality but not blocking
-- **[P2]**: Medium - nice to have, can be deferred
+- **[P1]**: High - required OR user-approved deferral
+- **[P2]**: Medium - can defer without approval
 
 ### Optional Fields
 - **Owner**: [Name] - Who is responsible for this item

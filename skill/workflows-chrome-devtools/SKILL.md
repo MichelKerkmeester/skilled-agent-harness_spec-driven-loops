@@ -1,7 +1,7 @@
 ---
 name: workflows-chrome-devtools
 description: "Chrome DevTools orchestrator providing intelligent routing between CLI (bdg) and MCP (Code Mode) approaches. CLI prioritized for speed and token efficiency; MCP fallback for multi-tool integration scenarios."
-allowed-tools: [Bash, Read, Write, Edit, Grep, Glob]
+allowed-tools: [Bash, Read, Write, Edit, Grep, Glob, mcp-code-mode]
 version: 2.1.0
 ---
 
@@ -396,8 +396,19 @@ await call_tool_chain({
 | `take_screenshot`       | Capture screenshot | `bdg screenshot`   |
 | `list_console_messages` | Get console logs   | `bdg console logs` |
 | `resize_page`           | Set viewport size  | N/A (use cdp)      |
+| `click`                 | Click on element   | `bdg cdp Input.dispatchMouseEvent` |
+| `fill`                  | Fill form field    | `bdg js "document.querySelector(...).value = ..."` |
+| `hover`                 | Hover over element | `bdg cdp Input.dispatchMouseEvent` |
+| `press_key`             | Press keyboard key | `bdg cdp Input.dispatchKeyEvent` |
+| `wait_for`              | Wait for condition | N/A (scripting)    |
+| `new_page`              | Open new page      | N/A                |
+| `close_page`            | Close page         | `bdg stop`         |
+| `select_page`           | Switch to page     | N/A                |
 
 **Note**: Tool names use underscores (e.g., `take_screenshot`) not camelCase.
+
+**Full invocation pattern**: `{manual_name}.{manual_name}_{tool_name}()`
+- Example: `chrome_devtools_1.chrome_devtools_1_take_screenshot({})`
 
 #### When to Prefer MCP
 
@@ -413,6 +424,46 @@ await call_tool_chain({
 - Requires Code Mode infrastructure
 - Subset of CDP methods (CLI has full 644 methods)
 - Less self-documenting than CLI's `--list`, `--describe`
+
+### MCP Session Cleanup
+
+**Important**: Always close browser instances when done to prevent resource leaks.
+
+```typescript
+// Cleanup pattern for MCP sessions
+await call_tool_chain({
+  code: `
+    try {
+      // Your browser operations
+      await chrome_devtools_1.chrome_devtools_1_navigate_page({
+        url: "https://example.com"
+      });
+      const screenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+      return screenshot;
+    } finally {
+      // Always close the page when done
+      await chrome_devtools_1.chrome_devtools_1_close_page({});
+    }
+  `,
+  timeout: 30000
+});
+
+// For multi-instance cleanup
+await call_tool_chain({
+  code: `
+    try {
+      // Operations on multiple instances...
+    } finally {
+      // Close all instances
+      await chrome_devtools_1.chrome_devtools_1_close_page({});
+      await chrome_devtools_2.chrome_devtools_2_close_page({});
+    }
+  `,
+  timeout: 30000
+});
+```
+
+**Best Practice**: Wrap browser operations in try/finally to ensure cleanup even on errors.
 
 ---
 

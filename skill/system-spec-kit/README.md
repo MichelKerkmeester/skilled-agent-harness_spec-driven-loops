@@ -13,7 +13,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | Pain Point             | Original Spec Kit | This Enhanced Fork                               |
 | ---------------------- | ----------------- | ------------------------------------------------ |
 | **Context Loss**       | Manual recovery   | Auto-saved with ANCHOR format                    |
-| **Templates**          | ~3 basic files    | 10 purpose-built templates                       |
+| **Templates**          | ~3 basic files    | 12 purpose-built templates                       |
 | **Commands**           | Manual workflow   | 7 slash commands with `:auto`/`:confirm` modes   |
 | **Memory Integration** | None              | Deep integration via `generate-context.js`       |
 | **Quality Gates**      | None              | 8 gates enforce nothing slips through            |
@@ -24,7 +24,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | **State Tracking**     | Manual markers    | V13.0 Stateless architecture                     |
 | **Automation**         | None              | 6 scripts handle the boring work                 |
 
-> **The bottom line:** 10 templates, 7 commands, 6 scripts, 0 excuses for losing context.
+> **The bottom line:** 12 templates, 7 commands, 6 scripts, 0 excuses for losing context.
 
 ---
 
@@ -33,7 +33,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 DIRECTORY STRUCTURE](#2--directory-structure)
 - [3. 📊 DOCUMENTATION LEVELS (1-3)](#3--documentation-levels-1-3)
-- [4. 📝 TEMPLATES (10 TOTAL)](#4--templates-10-total)
+- [4. 📝 TEMPLATES (12 TOTAL)](#4--templates-12-total)
 - [5. ⚙️ SCRIPTS](#5--scripts)
 - [6. 🎯 COMMANDS (7 TOTAL)](#6--commands-7-total)
 - [7. 🔄 HOW IT WORKS](#7--how-it-works)
@@ -62,7 +62,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 
 | Category   | Count  | Details                                                                  |
 | ---------- | ------ | ------------------------------------------------------------------------ |
-| Templates  | 10     | Markdown templates for specs, plans, research, decisions, handover       |
+| Templates  | 12     | Markdown templates for specs, plans, research, decisions, handover       |
 | Scripts    | 6      | Shell scripts for automation and validation                              |
 | Assets     | 3      | Decision support tools (level matrix, template mapping, parallel config) |
 | References | 5      | Detailed workflow documentation                                          |
@@ -75,7 +75,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 ### Key Features
 
 **Template Management**:
-- 10 structured templates for documentation levels 1-3
+- 12 structured templates for documentation levels 1-3
 - Placeholder system with validation enforcement
 - Template source markers for traceability
 
@@ -113,7 +113,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 ```
 .opencode/skill/system-spec-kit/
 ├── README.md               # This file (comprehensive documentation)
-├── templates/              # 10 markdown templates
+├── templates/              # 12 markdown templates
 │   ├── spec.md             # Feature specification (Level 1+)
 │   ├── plan.md             # Implementation plan (Level 1+)
 │   ├── tasks.md            # Task breakdown (Level 1+)
@@ -300,7 +300,7 @@ These factors can override LOC and push to a higher level:
 
 ---
 
-## 4. 📝 TEMPLATES (10 TOTAL)
+## 4. 📝 TEMPLATES (12 TOTAL)
 
 All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEVER create documentation from scratch** - always copy from templates and fill placeholders.
 
@@ -315,9 +315,11 @@ All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEV
 | `decision-record.md`  | 3     | Required | ~90   | Architecture Decision Records (ADR)     |
 | `research.md`         | 3     | Optional | ~878  | Comprehensive multi-domain research     |
 | `research-spike.md`   | 3     | Optional | ~100  | Time-boxed research/PoC                 |
-| `handover.md`         | Any   | Utility  | ~100  | Full session continuity (7 sections)    |
-| `quick-continue.md`   | Any   | Utility  | ~15   | Minimal session handoff for branching   |
-| `debug-delegation.md` | Any   | Utility  | ~64   | Sub-agent debugging delegation          |
+| `handover.md`             | Any   | Utility  | ~100  | Full session continuity (7 sections)    |
+| `quick-continue.md`       | Any   | Utility  | ~15   | Minimal session handoff for branching   |
+| `debug-delegation.md`     | Any   | Utility  | ~64   | Sub-agent debugging delegation          |
+| `implementation-summary.md` | Any | Utility  | ~50   | Implementation completion summary       |
+| `planning-summary.md`     | Any   | Utility  | ~50   | Planning phase summary                  |
 
 ### Level 1: Baseline Templates
 
@@ -1045,7 +1047,7 @@ Spec Kit uses a 2-tier architecture:
 
 ### External Dependencies
 
-- `.opencode/skill/system-spec-kit/templates/*.md` - All 9 templates
+- `.opencode/skill/system-spec-kit/templates/*.md` - All 12 templates
 - `.opencode/skill/system-spec-kit/SKILL.md` - Main skill
 - `AGENTS.md` - Section 2 defines requirements
 - `specs/` - Directory for all spec folders
@@ -1373,7 +1375,7 @@ A: Yes. When the workflow detects existing content, it offers sub-folder version
 
 ---
 
-**Q: What are the 10 templates?**
+**Q: What are the 12 templates?**
 
 A:
 1. `spec.md` - Feature specification (Level 1+)
@@ -1386,6 +1388,8 @@ A:
 8. `handover.md` - Full session continuity (utility, ~100-150 lines)
 9. `quick-continue.md` - Minimal session handoff (utility, ~15 lines)
 10. `debug-delegation.md` - Sub-agent debugging (utility)
+11. `implementation-summary.md` - Implementation completion summary (utility)
+12. `planning-summary.md` - Planning phase summary (utility)
 
 ---
 
@@ -1416,7 +1420,7 @@ A: The original Spec Kit is a concept. This fork is a complete system:
 
 | What You Get       | Original | This Fork                           |
 | ------------------ | -------- | ----------------------------------- |
-| Templates          | Basic    | 10 production-ready                 |
+| Templates          | Basic    | 12 production-ready                 |
 | Automation         | None     | 6 scripts                           |
 | Commands           | None     | 7 with mode variants                |
 | Memory Integration | None     | Semantic search across sessions     |

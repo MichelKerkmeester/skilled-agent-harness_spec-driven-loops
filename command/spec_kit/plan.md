@@ -207,7 +207,18 @@ Run the 7-step planning workflow: specification, clarification, quality checklis
 ## 2. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Feature description with optional parameters (branch, scope, context)
-**Outputs:** Spec folder with planning artifacts (spec.md, plan.md, checklist.md [Level 2+], planning-summary.md) + memory context file. Note: tasks.md is created by `/spec_kit:implement`.
+**Outputs:** Spec folder with planning artifacts:
+- spec.md ✓
+- plan.md ✓
+- checklist.md (Level 2+ only) ✓
+- planning-summary.md ✓
+- memory/*.md ✓
+
+> **⚠️ Level 1 Note:** The /spec_kit:plan command creates spec.md and plan.md but NOT tasks.md. For complete Level 1 baseline documentation, either:
+> - A) Run /spec_kit:implement after planning to create tasks.md
+> - B) Run /spec_kit:complete instead for full workflow
+> 
+> Level 1 baseline (spec.md + plan.md + tasks.md) is only complete after implementation planning.
 
 ### User Input
 
@@ -302,7 +313,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 6. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 7. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Terminates after planning** - Does not include task breakdown, analysis, or implementation
 - **Outputs planning-summary.md** instead of implementation-summary.md
@@ -311,7 +322,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 7. 🔍 EXAMPLES
+## 8. 🔍 EXAMPLES
 
 **Example 1: Simple Planning (autonomous)**
 ```

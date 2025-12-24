@@ -93,6 +93,8 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 **STATUS: ☐ BLOCKED / ☐ N/A**
 
+> **Gate 4 Integration:** This phase implements AGENTS.md Gate 4 (Memory Loading). See Gate 4 for the `[1] [2] [3] [all] [skip]` selection format.
+
 ```
 EXECUTE AFTER PHASE 2 PASSES:
 
@@ -277,6 +279,7 @@ WHEN all artifacts verified:
 | 8    | Analysis             | ☐      | consistency_report                | Artifacts cross-checked                   |
 | 9    | Implementation Check | ☐      | prerequisites_verified            | Ready to implement                        |
 | 10   | Development          | ☐      | code changes + tasks marked `[x]` | **ALL tasks in tasks.md marked complete** |
+| 10.5 | Checklist Verify     | ☐      | All P0/P1 verified                | **Level 2+ ONLY - BLOCKING**              |
 | 11   | Completion           | ☐      | `implementation-summary.md`       | **Summary file created**                  |
 | 12   | Save Context         | ☐      | `memory/*.md`                     | Context preserved                         |
 
@@ -291,6 +294,17 @@ STEP 10 (Development) REQUIREMENTS:
 ├─ MUST NOT claim "development complete" until ALL tasks marked [x]
 └─ MUST test code changes before marking complete
 
+STEP 10.5 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
+├─ ⛔ BLOCKING: This step is REQUIRED for Level 2+ before claiming completion
+├─ Load checklist.md from spec folder
+├─ Verify ALL P0 items are marked [x] with evidence
+├─ Verify ALL P1 items are either:
+│   ├─ Marked [x] with evidence, OR
+│   └─ Have documented user approval to defer
+├─ P2 items may be deferred without approval
+├─ Evidence format: "- [x] Task description [EVIDENCE: file.js:45-67 - implementation verified]"
+└─ ⛔ HARD BLOCK: Cannot proceed to Step 11 if any P0 items are unchecked
+
 STEP 11 (Completion) REQUIREMENTS:
 ├─ MUST verify all tasks in tasks.md show [x]
 ├─ MUST create implementation-summary.md with:
@@ -302,7 +316,12 @@ STEP 11 (Completion) REQUIREMENTS:
 
 STEP 12 (Save Context) REQUIREMENTS:
 ├─ MUST save session context to memory/ folder
-└─ MUST include decisions made and implementation details
+├─ MUST include decisions made and implementation details
+├─ **MANDATORY:** Use generate-context.js for memory save:
+│   ```
+│   node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]
+│   ```
+└─ ❌ DO NOT use Write/Edit tools to create memory files directly
 ```
 
 ---

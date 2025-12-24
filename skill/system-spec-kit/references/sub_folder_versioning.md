@@ -93,21 +93,51 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ## 6. 💡 EXAMPLE USE CASE
 
-```
-Scenario: Working on skill standardization across multiple skills
+### Correct Versioning Flow
 
-Initial work: specs/122-skill-standardization/
-  └── (root files: spec.md, plan.md, etc.)
+**Scenario:** User selects Option A for existing spec folder with content
 
-User: "Work on cli-codex alignment"
-System: Creates → 001-cli-codex-alignment/ sub-folder
+1. **Initial State:**
+   ```
+   specs/007-auth-system/
+   ├── spec.md
+   ├── plan.md
+   └── memory/
+   ```
 
-User: "Now work on system-spec-kit alignment"
-System: Archives to 002-cli-codex-alignment/
-System: Creates → 003-system-spec-kit-alignment/ sub-folder
+2. **After Option A + Archive:**
+   ```
+   specs/007-auth-system/
+   ├── 001-initial-implementation/    # Archived original content
+   │   ├── spec.md
+   │   ├── plan.md
+   │   └── memory/
+   └── 002-oauth-addition/            # New work
+       ├── spec.md
+       ├── plan.md
+       └── memory/
+   ```
 
-Result: Clean separation of work, independent memory contexts
-```
+**Key Points:**
+- Original content moves to `001-{descriptive-name}/`
+- New work goes in `002-{new-topic}/`
+- Each sub-folder has independent memory/ context
+- Numbering is sequential within the spec folder
+
+### Step-by-Step Walkthrough
+
+1. User runs `/spec_kit:complete` or similar
+2. Gate 3 asks: "Spec folder?" → User selects **A) Existing**
+3. User selects `specs/007-auth-system/`
+4. System detects root-level content (spec.md exists)
+5. System prompts: "Archive existing content? [Y/n]"
+6. If Y: 
+   - Prompt for archive name: "001-initial-implementation"
+   - Move root files to `001-initial-implementation/`
+   - Prompt for new sub-folder name: "002-oauth-addition"
+   - Create new sub-folder with fresh templates
+7. If N:
+   - Continue working in root (not recommended for distinct features)
 
 ---
 

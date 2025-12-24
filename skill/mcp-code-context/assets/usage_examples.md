@@ -19,7 +19,7 @@ Common patterns and examples for using `get_code_context` effectively. This asse
 ### Template
 
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/absolute/path/to/directory",
   analyzeJs: true,
   includeSymbols: true,
@@ -35,7 +35,7 @@ await code_context.get_code_context({
 
 **Query**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src/utils",
   analyzeJs: true,
   includeSymbols: true,
@@ -64,7 +64,7 @@ await code_context.get_code_context({
 
 **Query**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src/models",
   analyzeJs: true,
   includeSymbols: true,
@@ -91,8 +91,8 @@ await code_context.get_code_context({
 
 **Query**:
 ```typescript
-await code_context.get_code_context({
-  absolutePath: "/Users/dev/project/src/utils/index.ts",
+code_context_get_code_context({
+  absolutePath: "/Users/dev/project/src/utils",  // Note: Must be directory, not file
   analyzeJs: true,
   includeSymbols: true,
   symbolType: "exports"
@@ -114,7 +114,7 @@ await code_context.get_code_context({
 ### Template
 
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/absolute/path/to/folder",
   analyzeJs: false,
   maxDepth: 2
@@ -129,7 +129,7 @@ await code_context.get_code_context({
 
 **Query**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src/components",
   analyzeJs: false,
   maxDepth: 2
@@ -161,7 +161,7 @@ components/
 
 **Query**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/lib",
   analyzeJs: false,
   maxDepth: 3
@@ -183,7 +183,7 @@ await code_context.get_code_context({
 ### Template
 
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/absolute/path/to/project",
   analyzeJs: false,
   maxDepth: 2
@@ -198,7 +198,7 @@ await code_context.get_code_context({
 
 **Query**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project",
   analyzeJs: false,
   maxDepth: 2
@@ -233,7 +233,7 @@ project/
 
 **Query**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/monorepo",
   analyzeJs: false,
   maxDepth: 1  // Very shallow for monorepo root
@@ -251,7 +251,7 @@ await code_context.get_code_context({
 **Step 1**: Use Code Context to find symbols
 ```typescript
 // Find the function
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src/auth",
   analyzeJs: true,
   includeSymbols: true,
@@ -276,7 +276,7 @@ leann ask project "How does the handleLogin function work?"
 
 **Step 1**: Get directory structure
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src",
   analyzeJs: false,
   maxDepth: 2
@@ -285,7 +285,7 @@ await code_context.get_code_context({
 
 **Step 2**: Get symbols for interesting directory
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src/auth",
   analyzeJs: true,
   includeSymbols: true,
@@ -295,7 +295,7 @@ await code_context.get_code_context({
 
 **Step 3**: Check imports for dependencies
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src/auth",
   analyzeJs: true,
   includeSymbols: true,
@@ -313,7 +313,7 @@ await code_context.get_code_context({
 
 ❌ **Wrong**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "./src/components",  // Relative path!
   analyzeJs: true
 });
@@ -321,7 +321,7 @@ await code_context.get_code_context({
 
 ✅ **Correct**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src/components",  // Absolute path
   analyzeJs: true
 });
@@ -333,7 +333,7 @@ await code_context.get_code_context({
 
 ❌ **Wrong**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/huge-monorepo",
   analyzeJs: true,
   maxDepth: 10  // Will timeout!
@@ -343,14 +343,14 @@ await code_context.get_code_context({
 ✅ **Correct**:
 ```typescript
 // Start shallow
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/huge-monorepo",
   analyzeJs: false,
   maxDepth: 2
 });
 
 // Then drill into specific area
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/huge-monorepo/packages/auth",
   analyzeJs: true,
   maxDepth: 5
@@ -382,7 +382,7 @@ User: "What functions handle authentication?"
 
 ❌ **Wrong** (no symbols returned):
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src",
   includeSymbols: true,  // This alone doesn't enable parsing!
   symbolType: "functions"
@@ -391,7 +391,7 @@ await code_context.get_code_context({
 
 ✅ **Correct**:
 ```typescript
-await code_context.get_code_context({
+code_context_get_code_context({
   absolutePath: "/Users/dev/project/src",
   analyzeJs: true,  // REQUIRED for symbol extraction
   includeSymbols: true,

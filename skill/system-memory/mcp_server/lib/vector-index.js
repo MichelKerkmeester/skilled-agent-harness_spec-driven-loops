@@ -23,6 +23,32 @@ const fs = require('fs');
 
 const EMBEDDING_DIM = 768;
 const MODEL_NAME = 'nomic-ai/nomic-embed-text-v1.5';
+
+/**
+ * Convert various embedding types to Buffer for sqlite-vec
+ * Handles Float32Array, Buffer, plain arrays, and other TypedArrays
+ * 
+ * @param {Float32Array|Buffer|Array|TypedArray} embedding - Input embedding
+ * @returns {Buffer|null} Buffer suitable for sqlite-vec, or null if invalid
+ * @throws {Error} If embedding type is not recognized
+ */
+function toEmbeddingBuffer(embedding) {
+  if (!embedding) return null;
+  if (Buffer.isBuffer(embedding)) {
+    return embedding;
+  }
+  if (embedding instanceof Float32Array) {
+    return Buffer.from(embedding.buffer);
+  }
+  if (Array.isArray(embedding)) {
+    return Buffer.from(new Float32Array(embedding).buffer);
+  }
+  // If it has a buffer property (TypedArray)
+  if (embedding.buffer) {
+    return Buffer.from(embedding.buffer);
+  }
+  throw new Error('Invalid embedding type: expected Float32Array, Buffer, Array, or TypedArray');
+}
 // Project-local database - works for both Claude Code and Opencode
 // V12.1: Support MEMORY_DB_PATH environment variable for custom database locations
 // Default: {cwd}/.opencode/skill/system-memory/database/memory-index.sqlite
@@ -403,13 +429,19 @@ function indexMemory(params) {
     embedding
   } = params;
 
-  if (!embedding || embedding.length !== EMBEDDING_DIM) {
-    throw new Error(`Embedding must be ${EMBEDDING_DIM} dimensions`);
+  if (!embedding) {
+    throw new Error('Embedding is required');
+  }
+  
+  // Validate embedding dimension
+  if (embedding.length !== EMBEDDING_DIM) {
+    console.warn(`[vector-index] Embedding dimension mismatch: expected ${EMBEDDING_DIM}, got ${embedding.length}`);
+    throw new Error(`Embedding must be ${EMBEDDING_DIM} dimensions, got ${embedding.length}`);
   }
 
   const now = new Date().toISOString();
   const triggersJson = JSON.stringify(triggerPhrases);
-  const embeddingBuffer = Buffer.from(embedding.buffer);
+  const embeddingBuffer = toEmbeddingBuffer(embedding);
 
   // Check for existing entry
   const existing = database.prepare(`
@@ -516,7 +548,13 @@ function updateMemory(params) {
 
     // Update embedding if provided (only if sqlite-vec available)
     if (embedding && sqliteVecAvailable) {
-      const embeddingBuffer = Buffer.from(embedding.buffer);
+      // Validate embedding dimension before processing
+      if (embedding.length !== EMBEDDING_DIM) {
+        console.warn(`[vector-index] Embedding dimension mismatch in update: expected ${EMBEDDING_DIM}, got ${embedding.length}`);
+        throw new Error(`Embedding must be ${EMBEDDING_DIM} dimensions, got ${embedding.length}`);
+      }
+      
+      const embeddingBuffer = toEmbeddingBuffer(embedding);
 
       // Delete old vector (BigInt for vec_memories rowid)
       database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
@@ -1149,6 +1187,7 @@ function isVectorSearchAvailable() {
  * @returns {boolean} True if FTS5 is available and memory_fts table exists
  */
 function isFtsAvailable() {
+  if (!db) return false;
   try {
     db.prepare("SELECT 1 FROM memory_fts LIMIT 1").get();
     return true;

@@ -125,13 +125,13 @@ POST /auth/refresh → Exchanges refresh token for new access + refresh tokens
 
 ### Comparison Matrix
 
-| Criterion | Weight | Option 1 | Option 2 | Option 3 |
+| Criterion | Weight | [YOUR_VALUE_HERE: Option A] | [YOUR_VALUE_HERE: Option B] | [YOUR_VALUE_HERE: Option C] |
 |-----------|--------|----------|----------|----------|
-| Performance | High | Excellent | Moderate | Poor |
-| Maintainability | High | Good | Good | Moderate |
-| Cost | Medium | Low | Medium | High |
-| Time to implement | Medium | Fast | Moderate | Slow |
-| Scalability | High | Excellent | Moderate | Good |
+| [YOUR_VALUE_HERE: Criterion 1] | [X/10] | [X/10] | [X/10] | [X/10] |
+| [YOUR_VALUE_HERE: Criterion 2] | [X/10] | [X/10] | [X/10] | [X/10] |
+| [YOUR_VALUE_HERE: Criterion 3] | [X/10] | [X/10] | [X/10] | [X/10] |
+| [YOUR_VALUE_HERE: Criterion 4] | [X/10] | [X/10] | [X/10] | [X/10] |
+| [YOUR_VALUE_HERE: Criterion 5] | [X/10] | [X/10] | [X/10] | [X/10] |
 | **Weighted Score** | - | **[X/10]** | [Y/10] | [Z/10] |
 
 ---
@@ -161,7 +161,16 @@ POST /auth/refresh → Exchanges refresh token for new access + refresh tokens
 
 ---
 
-## 6. IMPACT ASSESSMENT
+## 6. IMPLEMENTATION NOTES
+
+> **Parallel Work:** Use `[P]` prefix for tasks that can be done in parallel:
+> - [P] Task A - can run simultaneously with Task B
+> - [P] Task B - can run simultaneously with Task A
+> - Task C - depends on A and B (no [P] prefix)
+
+---
+
+## 7. IMPACT ASSESSMENT
 
 ### Systems Affected
 - [System/component 1] - [How it's affected]
@@ -183,7 +192,7 @@ POST /auth/refresh → Exchanges refresh token for new access + refresh tokens
 
 ---
 
-## 7. TIMELINE
+## 8. TIMELINE
 
 - **Decision Made**: [FORMAT: YYYY-MM-DD]
 - **Implementation Start**: [FORMAT: YYYY-MM-DD] [OPTIONAL: empty if not started]
@@ -192,7 +201,7 @@ POST /auth/refresh → Exchanges refresh token for new access + refresh tokens
 
 ---
 
-## 8. REFERENCES
+## 9. REFERENCES
 
 ### Related Documents
 - **Feature Specification**: [OPTIONAL: link to spec.md]
@@ -213,7 +222,7 @@ POST /auth/refresh → Exchanges refresh token for new access + refresh tokens
 
 ---
 
-## 9. APPROVAL & SIGN-OFF
+## 10. APPROVAL & SIGN-OFF
 
 ### Approvers
 
@@ -232,7 +241,7 @@ POST /auth/refresh → Exchanges refresh token for new access + refresh tokens
 
 ---
 
-## 10. UPDATES & AMENDMENTS
+## 11. UPDATES & AMENDMENTS
 
 ### Amendment History
 

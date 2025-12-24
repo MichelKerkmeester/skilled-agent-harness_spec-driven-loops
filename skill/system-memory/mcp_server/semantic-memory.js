@@ -11,7 +11,7 @@
  * - memory_load: Load specific memory by spec folder and anchor ID
  * - checkpoint_create/list/restore/delete: Memory state checkpointing
  *
- * @version 12.1.0
+ * @version 12.4.0
  * @module semantic-memory/memory-server
  */
 
@@ -93,6 +93,32 @@ async function processBatches(items, processor, batchSize = BATCH_SIZE, delayMs 
 }
 
 // ───────────────────────────────────────────────────────────────
+// SAFE JSON PARSING
+// ───────────────────────────────────────────────────────────────
+
+/**
+ * Safely parse JSON with fallback value
+ * @param {string} str - JSON string to parse
+ * @param {*} fallback - Fallback value if parsing fails (default: [])
+ * @returns {*} Parsed value or fallback
+ */
+function safeJsonParse(str, fallback = []) {
+  if (!str) return fallback;
+  try {
+    return JSON.parse(str);
+  } catch {
+    return fallback;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────
+// DEFAULT PATHS
+// ───────────────────────────────────────────────────────────────
+
+// Default base path - use environment variable or current working directory
+const DEFAULT_BASE_PATH = process.env.MEMORY_BASE_PATH || process.cwd();
+
+// ───────────────────────────────────────────────────────────────
 // PATH VALIDATION
 // ───────────────────────────────────────────────────────────────
 
@@ -110,8 +136,8 @@ function validateFilePath(filePath) {
   const homeDir = os.homedir();
   const allowedBases = [
     path.join(homeDir, '.claude'),
-    path.join(homeDir, 'specs'),
-    '/Users' // Allow paths under /Users for project files
+    DEFAULT_BASE_PATH, // Use workspace root
+    process.cwd() // Current working directory
   ];
 
   // Check if path is under an allowed directory
@@ -136,7 +162,7 @@ function validateFilePath(filePath) {
 const server = new Server(
   {
     name: 'memory-server',
-    version: '12.1.0'
+    version: '12.4.0'
   },
   {
     capabilities: {
@@ -655,7 +681,7 @@ function formatSearchResults(results, searchType) {
     isConstitutional: r.isConstitutional || false,
     importanceTier: r.importance_tier,
     triggerPhrases: Array.isArray(r.trigger_phrases) ? r.trigger_phrases :
-                    (r.trigger_phrases ? JSON.parse(r.trigger_phrases) : []),
+                    safeJsonParse(r.trigger_phrases, []),
     createdAt: r.created_at
   }));
 
@@ -986,7 +1012,11 @@ async function handleMemoryUpdate(args) {
  * Handle memory_list tool - paginated memory browsing
  */
 async function handleMemoryList(args) {
-  const { limit = 20, offset = 0, specFolder, sortBy = 'created_at' } = args;
+  const { limit: rawLimit = 20, offset: rawOffset = 0, specFolder, sortBy = 'created_at' } = args;
+
+  // Validate limit and offset to prevent negative values
+  const safeLimit = Math.max(1, Math.min(rawLimit || 20, 100));
+  const safeOffset = Math.max(0, rawOffset || 0);
 
   const database = vectorIndex.getDb();
 
@@ -1013,10 +1043,9 @@ async function handleMemoryList(args) {
     LIMIT ? OFFSET ?
   `;
 
-  const effectiveLimit = Math.min(limit, 100);
   const params = specFolder
-    ? [specFolder, effectiveLimit, offset]
-    : [effectiveLimit, offset];
+    ? [specFolder, safeLimit, safeOffset]
+    : [safeLimit, safeOffset];
 
   const rows = database.prepare(sql).all(...params);
 
@@ -1027,7 +1056,7 @@ async function handleMemoryList(args) {
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     importanceWeight: row.importance_weight,
-    triggerCount: row.trigger_phrases ? JSON.parse(row.trigger_phrases).length : 0,
+    triggerCount: safeJsonParse(row.trigger_phrases, []).length,
     filePath: row.file_path
   }));
 
@@ -1036,8 +1065,8 @@ async function handleMemoryList(args) {
       type: 'text',
       text: JSON.stringify({
         total,
-        offset,
-        limit: effectiveLimit,
+        offset: safeOffset,
+        limit: safeLimit,
         count: memories.length,
         memories
       }, null, 2)
@@ -1562,11 +1591,28 @@ process.on('SIGINT', () => {
 });
 
 // ───────────────────────────────────────────────────────────────
-// MAIN
+// GLOBAL ERROR HANDLERS
 // ───────────────────────────────────────────────────────────────
 
-// Default base path - use environment variable or current working directory
-const DEFAULT_BASE_PATH = process.env.MEMORY_BASE_PATH || process.cwd();
+process.on('uncaughtException', (err) => {
+  console.error('[memory-server] Uncaught exception:', err);
+  // Attempt graceful cleanup
+  try {
+    accessTracker.flushAccessCounts();
+    vectorIndex.closeDb();
+  } catch (e) {
+    console.error('[memory-server] Cleanup failed:', e);
+  }
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('[memory-server] Unhandled rejection at:', promise, 'reason:', reason);
+});
+
+// ───────────────────────────────────────────────────────────────
+// MAIN
+// ───────────────────────────────────────────────────────────────
 
 async function main() {
   // ─────────────────────────────────────────────────────────────────

@@ -162,7 +162,8 @@ function adjustScoreWithDecay(similarity, createdAt, options = {}) {
 
   // Apply boost to similarity score
   // Boost is already on 0-1 scale (as percentage), so we multiply by 100 for the 0-100 scale
-  const adjustedScore = validSimilarity + (boost * 100);
+  // Cap at 100 to prevent score overflow
+  const adjustedScore = Math.min(100, validSimilarity + (boost * 100));
 
   return adjustedScore;
 }

@@ -20,7 +20,7 @@
 - **Truth over agreement** - correct user misconceptions with evidence; do not agree for conversational flow
 
 **MANDATORY TOOLS:**
-- **Semantic Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use generate-context.js** - NEVER manually create memory files.
+- **Semantic Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
 - **LEANN MCP** for semantic code search - finds code by MEANING ("How does auth work?"). See §6 for tool list.
 - **Code Context MCP** for structural code queries - finds code by STRUCTURE ("List functions in auth.ts"). Complements LEANN: use LEANN for understanding intent, Code Context for symbol navigation.
 
@@ -32,7 +32,7 @@
 | **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_search()` → Document findings                               |
 | **Code search**          | `leann_search()` for semantic (meaning), `get_code_context()` for structural (symbols), `Grep()` for text patterns |
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                   |
-| **Save context**         | Execute `generate-context.js` → Verify ANCHOR format → Auto-indexed                                                |
+| **Save context**         | Execute `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
 | **Claim completion**     | Load `checklist.md` → Verify ALL items → Mark with evidence                                                        |
 | **Debug delegation**     | `/spec_kit:debug` → Model selection → Sub-agent dispatch via Task tool                                             |
 
@@ -145,7 +145,7 @@
 │ GATE 5: MEMORY SAVE VALIDATION [HARD BLOCK]                                 │
 │ Trigger: "save context", "save memory", /memory:save, memory file creation  │
 │                                                                             │
-│ PRE-SAVE VALIDATION (before invoking generate-context.js):                  │
+│ PRE-SAVE VALIDATION (before invoking the script):                           │
 │   1. If NO folder argument provided → HARD BLOCK                            │
 │      Action: List recent/related spec folders → Ask user to select          │
 │   2. If folder argument provided → Validate alignment                       │
@@ -153,8 +153,10 @@
 │      If mismatch detected → WARN user + suggest alternatives                │
 │                                                                             │
 │ EXECUTION:                                                                  │
-│   Action:  MUST use generate-context.js → Verify ANCHOR format → Auto-index │
-│   Rules:   MUST pass spec folder as argument: `generate-context.js [path]`  │
+│   Action:  MUST use `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` │
+│            → Verify ANCHOR format → Auto-index                              │
+│   Rules:   MUST pass spec folder as argument:                               │
+│            `node .opencode/skill/system-memory/scripts/generate-context.js [path]` │
 │   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked). │
 │   Violation: If Write tool used on memory/ path → DELETE & re-run via script│
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -225,7 +227,7 @@
 □ Did I detect file modification intent? → If YES, did I ask Q1 BEFORE using project tools?
 □ Did I wait for user's A/B/C/D response before Read/Edit/Write/Bash (except Gate Actions)?
 □ Am I about to use a project tool without having asked? → STOP, ask first
-□ Am I saving memory/context? → See Gate 5 (generate-context.js required)
+□ Am I saving memory/context? → See Gate 5 (`node .opencode/skill/system-memory/scripts/generate-context.js` required)
 □ Aligned with ORIGINAL request? → Check for scope drift from Turn 1 intent
 ```
 
@@ -291,7 +293,7 @@ File modification planned? → Include Q1 (Spec Folder)
 | 13  | Review         | Retain Legacy          | "just in case"           | Remove unused, ask if unsure                                 |
 | 14  | Completion     | No Browser Test        | "works", "done"          | Browser verify first                                         |
 | 15  | Completion     | Skip Checklist         | "complete" (L2+)         | Load checklist.md, verify all                                |
-| 16  | Completion     | Skip Anchor Format     | "save context"           | HARD BLOCK: Execute generate-context.js, verify ANCHOR pairs |
+| 16  | Completion     | Skip Anchor Format     | "save context"           | HARD BLOCK: Execute `node .opencode/skill/system-memory/scripts/generate-context.js`, verify ANCHOR pairs |
 | 17  | Any            | Internal Contradiction | Conflicting requirements | HALT → State conflict explicitly → Request resolution        |
 | 18  | Understanding  | Wrong Search Tool      | "find", "search", "list" | LEANN for meaning, Code Context for structure, Grep for text |
 

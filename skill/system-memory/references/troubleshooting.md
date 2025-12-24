@@ -73,7 +73,7 @@ call_tool_chain(`semantic_memory.memory_search({ query: "test" })`)
 ✅ **Correct approach:**
 ```javascript
 // Direct MCP call (native, faster)
-mcp__semantic_memory__memory_search({ query: "test" })
+memory_search({ query: "test" })
 ```
 
 ---
@@ -95,7 +95,7 @@ mcp__semantic_memory__memory_search({ query: "test" })
 |-------|------------|------------|
 | `Tool timeout after 30s` | Server overloaded or hung | Restart MCP server; reduce concurrent calls |
 | `Connection refused` | Server not running | Start server: check `.mcp.json` configuration |
-| `Invalid tool name` | Wrong call syntax | Use `mcp__semantic_memory__*` prefix |
+| `Invalid tool name` | Wrong call syntax | Use native MCP syntax: `memory_search()`, `memory_load()`, etc. |
 | `Authentication failed` | Invalid or expired credentials | Refresh API keys in environment |
 
 **Connection Recovery Protocol:**

@@ -133,7 +133,7 @@ function getTierConfig(tierName) {
  * applyTierBoost(0.8, 'deprecated');// Returns: 0.0 (0.8 * 0.0)
  */
 function applyTierBoost(score, tier) {
-  if (typeof score !== 'number' || isNaN(score)) {
+  if (typeof score !== 'number' || isNaN(score) || !isFinite(score)) {
     return 0;
   }
   const config = getTierConfig(tier);

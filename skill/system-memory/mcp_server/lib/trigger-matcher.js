@@ -90,6 +90,12 @@ function loadTriggerCache() {
     vectorIndex.initializeDb();
     const db = vectorIndex.getDb();
 
+    // Null check for database
+    if (!db) {
+      console.warn('[trigger-matcher] Database not initialized');
+      return [];
+    }
+
     const rows = db.prepare(`
       SELECT id, spec_folder, file_path, title, trigger_phrases, importance_weight
       FROM memory_index
@@ -116,8 +122,10 @@ function loadTriggerCache() {
           continue;
         }
 
+        const phraseLower = phrase.toLowerCase();
         triggerCache.push({
-          phrase: phrase.toLowerCase(), // Pre-lowercase for fast comparison
+          phrase: phraseLower, // Pre-lowercase for fast comparison
+          regex: new RegExp(`\\b${escapeRegex(phraseLower)}\\b`, 'i'), // Pre-compiled regex
           memoryId: row.id,
           specFolder: row.spec_folder,
           filePath: row.file_path,
@@ -173,11 +181,15 @@ function escapeRegex(str) {
  * Check if a phrase exists in text with word boundaries
  * @param {string} text - Text to search in (lowercase)
  * @param {string} phrase - Phrase to find (lowercase)
+ * @param {RegExp} [precompiledRegex] - Optional pre-compiled regex for performance
  * @returns {boolean} - True if phrase found at word boundary
  */
-function matchPhraseWithBoundary(text, phrase) {
-  // For single words, use word boundary
-  // For multi-word phrases, check for whole phrase
+function matchPhraseWithBoundary(text, phrase, precompiledRegex = null) {
+  // Use pre-compiled regex if available (from cache), otherwise compile on-the-fly
+  if (precompiledRegex) {
+    return precompiledRegex.test(text);
+  }
+  // Fallback for direct calls without pre-compiled regex
   const escaped = escapeRegex(phrase);
   const regex = new RegExp(`\\b${escaped}\\b`, 'i');
   return regex.test(text);
@@ -224,7 +236,7 @@ function matchTriggerPhrases(userPrompt, limit = CONFIG.DEFAULT_LIMIT) {
   const matchesByMemory = new Map();
 
   for (const entry of cache) {
-    if (matchPhraseWithBoundary(promptLower, entry.phrase)) {
+    if (matchPhraseWithBoundary(promptLower, entry.phrase, entry.regex)) {
       const key = entry.memoryId;
 
       if (!matchesByMemory.has(key)) {

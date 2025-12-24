@@ -10,6 +10,7 @@ Complete feature specification defining requirements, user stories, and success 
 
 ### Metadata
 - **Category**: [FORMAT: Spec | Feature | Enhancement | Fix]
+- **Level**: [FORMAT: 1 | 2 | 3]
 - **Tags**: [YOUR_VALUE_HERE: feature-area], [YOUR_VALUE_HERE: component]
 - **Priority**: [FORMAT: P0 | P1 | P2 | P3]
 - **Feature Branch**: `[FORMAT: ###-feature-name]`
@@ -375,7 +376,7 @@ For more complex features:
 
 ---
 
-## 12. CHANGELOG
+## 13. CHANGELOG
 
 Track specification changes over time using delta notation.
 

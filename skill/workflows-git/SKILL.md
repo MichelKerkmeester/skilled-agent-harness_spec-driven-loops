@@ -60,7 +60,7 @@ Use this orchestrator when:
 
 | Category | Tools | Description |
 | :--- | :--- | :--- |
-| **Pull Requests** | `github_create_pull_request`<br>`github_list_pull_requests`<br>`github_get_pull_request`<br>`github_merge_pull_request`<br>`github_create_pull_request_review`<br>`github_add_pull_request_review_comment` | Create, list, merge PRs; add reviews and comments |
+| **Pull Requests** | `github_create_pull_request`<br>`github_list_pull_requests`<br>`github_get_pull_request`<br>`github_merge_pull_request`<br>`github_create_pull_request_review`<br>`github_add_pull_request_review_comment`<br>`github_get_pull_request_files`<br>`github_get_pull_request_status`<br>`github_update_pull_request_branch`<br>`github_get_pull_request_comments`<br>`github_get_pull_request_reviews` | Create, list, merge PRs; add reviews and comments; get files, status, and reviews |
 | **Issues** | `github_create_issue`<br>`github_get_issue`<br>`github_list_issues`<br>`github_search_issues`<br>`github_add_issue_comment`<br>`github_update_issue` | Full issue lifecycle management |
 | **Repository** | `github_get_file_contents`<br>`github_create_branch`<br>`github_list_branches`<br>`github_search_repositories`<br>`github_list_commits` | Read files, manage branches, search |
 | **CI/CD** | `github_list_workflow_runs`<br>`github_get_workflow_run`<br>`github_get_job_logs` | Monitor CI status, debug failures |
@@ -109,9 +109,70 @@ call_tool_chain(`github.github_add_pull_request_review_comment({
   path: 'src/auth.js',
   line: 25
 })`)
+
+// Get files changed in PR
+call_tool_chain(`github.github_get_pull_request_files({
+  owner: 'owner',
+  repo: 'repo',
+  pull_number: 42
+})`)
+
+// Get PR status checks
+call_tool_chain(`github.github_get_pull_request_status({
+  owner: 'owner',
+  repo: 'repo',
+  pull_number: 42
+})`)
 ```
 
 **Best Practice**: Prefer local `git` commands for local operations (faster, offline-capable). Use GitHub MCP for remote state queries and collaboration features.
+
+### Error Handling
+
+#### Failed PR Creation
+
+```javascript
+// Handle PR creation failures
+try {
+  const result = await call_tool_chain(`github.github_create_pull_request({
+    owner: 'owner',
+    repo: 'repo',
+    title: 'feat: new feature',
+    head: 'feature-branch',
+    base: 'main',
+    body: 'Description'
+  })`);
+} catch (error) {
+  // Common errors:
+  // - 422: Branch doesn't exist or no commits between branches
+  // - 403: Insufficient permissions
+  // - 404: Repository not found
+  console.error('PR creation failed:', error.message);
+}
+```
+
+#### Merge Conflicts
+
+```javascript
+// Check for merge conflicts before merging
+const pr = await call_tool_chain(`github.github_get_pull_request({
+  owner: 'owner',
+  repo: 'repo',
+  pull_number: 42
+})`);
+
+if (pr.mergeable === false) {
+  console.log('Merge conflict detected. Resolve before merging.');
+  // Option 1: Update branch from base
+  await call_tool_chain(`github.github_update_pull_request_branch({
+    owner: 'owner',
+    repo: 'repo',
+    pull_number: 42
+  })`);
+  // Option 2: Resolve conflicts locally
+  // git fetch origin main && git merge origin/main
+}
+```
 
 ---
 

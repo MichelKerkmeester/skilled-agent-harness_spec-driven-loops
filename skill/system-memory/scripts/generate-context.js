@@ -334,7 +334,7 @@ function extractKeyTopics(summary, decisions = []) {
  * @returns {string} Unique session identifier
  */
 function generateSessionId() {
-  return `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  return `session-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
 }
 
 /**
@@ -2547,11 +2547,12 @@ async function detectSpecFolder(collectedData = null) {
     }
   }
 
-  // Check if we're in a spec folder
-  if (cwd.includes('/specs/')) {
-    const match = cwd.match(/(.*\/specs\/[^\/]+)/);
+  // Check if we're in a spec folder (cross-platform path handling)
+  // Handle both Unix (/) and Windows (\) path separators
+  if (cwd.includes('/specs/') || cwd.includes('\\specs\\')) {
+    const match = cwd.match(/(.*[\/\\]specs[\/\\][^\/\\]+)/);
     if (match) {
-      return match[1];
+      return path.normalize(match[1]);
     }
   }
 
@@ -2864,6 +2865,7 @@ async function promptUserChoice(question, maxChoice, maxAttempts = 3) {
 
 /**
  * Prompt user for input in terminal
+ * Ensures readline interface is always closed, even on errors
  */
 function promptUser(question) {
   // Safety check: don't create readline interface if no TTY available
@@ -2876,10 +2878,22 @@ function promptUser(question) {
     output: process.stdout
   });
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     rl.question(question, (answer) => {
       rl.close();
       resolve(answer.trim());
+    });
+    
+    // Handle readline errors and ensure cleanup
+    rl.on('error', (err) => {
+      rl.close();
+      reject(err);
+    });
+    
+    // Handle SIGINT (Ctrl+C) gracefully
+    rl.on('SIGINT', () => {
+      rl.close();
+      reject(new Error('User interrupted input'));
     });
   });
 }

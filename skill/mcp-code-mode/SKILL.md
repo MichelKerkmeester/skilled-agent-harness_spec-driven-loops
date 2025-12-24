@@ -38,10 +38,12 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 - ❌ Text searching (use Grep tool)
 - ❌ File discovery (use Glob tool)
 - ❌ Bash commands (use Bash tool)
-- ❌ Semantic code search (use LEANN - **NATIVE MCP**, call `leann_search()` directly)
-- ❌ Structural code analysis (use Code Context - **NATIVE MCP**, call `code_context_get_code_context()` directly)
-- ❌ Semantic code search (use mcp-leann - **NATIVE MCP**, call `leann_search()` directly)
+- ❌ Semantic code search (use `leann_leann_search()` - **NATIVE MCP**)
+- ❌ Structural code analysis (use `code_context_get_code_context()` - **NATIVE MCP**)
+- ❌ Conversation memory (use `semantic_memory_memory_search()` - **NATIVE MCP**)
 - ❌ Sequential Thinking (call `sequential_thinking_sequentialthinking()` directly - **NATIVE MCP**)
+
+> See Section 4 for details on Native MCP vs Code Mode distinction.
 
 ### Common Use Cases
 
@@ -167,6 +169,22 @@ await clickup.create_task({...});    // Error: Tool not found
 **See [references/naming_convention.md](references/naming_convention.md) for complete guide with troubleshooting.**
 
 
+### Context Parameter
+
+Many Code Mode tools require a `context` parameter (15-25 words) for analytics:
+
+```typescript
+await webflow.webflow_sites_list({ 
+  context: "Listing sites to identify collection structure for CMS update" 
+});
+```
+
+This helps with usage tracking and debugging.
+
+### Tool Name Translation
+
+> **Note:** `list_tools()` returns names in `a.b.c` format (e.g., `webflow.webflow.sites_list`). To call the tool, use underscore format: `webflow.webflow_sites_list()`. The `tool_info()` function shows the correct calling syntax.
+
 ### Basic Workflow
 
 **Step 1: Discover Tools**
@@ -246,9 +264,9 @@ call_tool_chain({
 
 **1. Native MCP** (`opencode.json`) - Direct tools (call directly, NOT through Code Mode):
 - **Sequential Thinking**: `sequential_thinking_sequentialthinking()`
-- **LEANN**: `leann_search()`, `leann_list()`, `leann_ask()`
+- **LEANN**: `leann_leann_search()`, `leann_leann_list()`, `leann_leann_ask()`
 - **Code Context**: `code_context_get_code_context()` - Structural code analysis via Tree-sitter AST
-- **Semantic Memory**: `memory_search()`, `memory_save()`, etc.
+- **Semantic Memory**: `semantic_memory_memory_search()`, `semantic_memory_memory_save()`, etc.
 - **Code Mode server**: The Code Mode tool itself
 - **Note**: Some AI environments have built-in extended thinking capabilities that may supersede Sequential Thinking MCP.
 

@@ -2,7 +2,18 @@
 
 Task list template for feature implementation with user story organization and independent testing.
 
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks | v1.1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks | v1.0 -->
+
+---
+
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending task |
+| `[x]` | Completed task |
+| `[P]` | Can be done in parallel with other [P] tasks |
+| `[B]` | Blocked - waiting on dependency |
 
 ---
 

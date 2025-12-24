@@ -18,21 +18,21 @@ const DEFAULT_WEIGHTS = {
   tierBoost: 0.10
 };
 
-// Recency half-life in days
-const RECENCY_HALF_LIFE_DAYS = 30;
+// Recency scale factor in days (controls decay rate, not half-life)
+const RECENCY_SCALE_DAYS = 30;
 
 /**
  * Calculate recency score using exponential decay
  * @param {string|number} timestamp - Created/updated timestamp
- * @param {number} [halfLifeDays=30] - Half-life in days
+ * @param {number} [scaleDays=30] - Scale factor in days (controls decay rate)
  * @returns {number} Score 0-1
  */
-function calculateRecencyScore(timestamp, halfLifeDays = RECENCY_HALF_LIFE_DAYS) {
+function calculateRecencyScore(timestamp, scaleDays = RECENCY_SCALE_DAYS) {
   const ts = typeof timestamp === 'string' ? new Date(timestamp).getTime() : timestamp;
   const ageMs = Date.now() - ts;
   const ageDays = ageMs / (1000 * 60 * 60 * 24);
 
-  return Math.exp(-ageDays / halfLifeDays);
+  return Math.exp(-ageDays / scaleDays);
 }
 
 /**
@@ -42,6 +42,7 @@ function calculateRecencyScore(timestamp, halfLifeDays = RECENCY_HALF_LIFE_DAYS)
  */
 function getTierBoost(tier) {
   const boosts = {
+    constitutional: 1.0,  // Highest tier - always surface
     critical: 1.0,
     important: 0.8,
     normal: 0.5,
@@ -141,7 +142,7 @@ function getScoreBreakdown(row, options = {}) {
 
 module.exports = {
   DEFAULT_WEIGHTS,
-  RECENCY_HALF_LIFE_DAYS,
+  RECENCY_SCALE_DAYS,
   calculateRecencyScore,
   getTierBoost,
   calculateCompositeScore,

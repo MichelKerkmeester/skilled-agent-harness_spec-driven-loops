@@ -14,7 +14,8 @@ import glob
 
 # Path to skill directory (relative to project root)
 # Note: OpenCode native skills use singular "skill" folder
-PROJECT_ROOT = os.getcwd()
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))  # Go up from scripts/ to .opencode/ to project root
 SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skill")
 
 # Comprehensive stop words - filtered from BOTH query AND corpus
@@ -207,16 +208,17 @@ def parse_frontmatter(file_path):
     try:
         with open(file_path, 'r') as f:
             content = f.read()
-            match = re.search(r'^---\s*\\n(.*?)\\n---', content, re.DOTALL)
+            match = re.search(r'^---\s*\n(.*?)\n---', content, re.DOTALL)
             if match:
                 yaml_block = match.group(1)
                 data = {}
-                for line in yaml_block.split('\\n'):
+                for line in yaml_block.split('\n'):
                     if ':' in line:
                         key, val = line.split(':', 1)
                         data[key.strip()] = val.strip().strip('"').strip("'")
                 return data
-    except Exception:
+    except Exception as e:
+        print(f"Warning: Failed to parse frontmatter from {file_path}: {e}", file=sys.stderr)
         return None
     return None
 
@@ -265,7 +267,7 @@ def analyze_request(prompt):
     prompt_lower = prompt.lower()
     
     # Tokenize: extract words
-    all_tokens = re.findall(r'\\b\\w+\\b', prompt_lower)
+    all_tokens = re.findall(r'\b\w+\b', prompt_lower)
     
     # Pre-calculate intent boosts from ALL original tokens BEFORE stop word filtering
     # This is critical because question words (how, why, what) and "work/does" are
@@ -310,7 +312,7 @@ def analyze_request(prompt):
         
         # Prepare skill keywords from name and description
         name_parts = name.replace('-', ' ').split()
-        desc_parts = re.findall(r'\\b\\w+\\b', config['description'].lower())
+        desc_parts = re.findall(r'\b\w+\b', config['description'].lower())
         
         # Build corpus (description terms only, name checked separately)
         corpus = set(desc_parts)
@@ -363,7 +365,34 @@ def analyze_request(prompt):
     return sorted(recommendations, key=lambda x: x['confidence'], reverse=True)
 
 
+def load_all_skills():
+    """Load all skills for diagnostics."""
+    skills = []
+    if os.path.exists(SKILLS_DIR):
+        for skill_file in glob.glob(os.path.join(SKILLS_DIR, "*/SKILL.md")):
+            meta = parse_frontmatter(skill_file)
+            if meta:
+                skills.append(meta)
+    return skills
+
+
+def health_check():
+    """Return skill count and status for diagnostics."""
+    skills = load_all_skills()
+    return {
+        "status": "ok" if skills else "error",
+        "skills_found": len(skills),
+        "skill_names": [s.get('name', 'unknown') for s in skills],
+        "skills_dir": SKILLS_DIR,
+        "skills_dir_exists": os.path.exists(SKILLS_DIR)
+    }
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "--health":
+        print(json.dumps(health_check(), indent=2))
+        sys.exit(0)
+    
     if len(sys.argv) < 2:
         print(json.dumps([]))
         sys.exit(0)

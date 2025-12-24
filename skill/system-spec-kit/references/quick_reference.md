@@ -97,7 +97,14 @@ Trigger manual context save:
 Say: "save context" or "save conversation"
 ```
 
+**Required Argument:** Spec folder path is MANDATORY
+```
+node .opencode/skill/system-memory/scripts/generate-context.js specs/007-feature/
+```
+
 Context saved to `specs/###-folder/memory/` or `memory/` (fallback).
+
+❌ DO NOT use Write/Edit tools to create memory files directly.
 
 ---
 
@@ -374,6 +381,15 @@ Before presenting documentation to user:
 
 **Note:** OpenCode does not support automatic interval-based saves (no hooks system).
 
+**MANDATORY:** Use generate-context.js for memory save:
+```
+node .opencode/skill/system-memory/scripts/generate-context.js specs/###-folder/
+```
+
+❌ DO NOT use Write/Edit tools to create memory files directly.
+
+> **Gate 4 Integration:** Memory loading implements AGENTS.md Gate 4. When resuming work on an existing spec folder with memory files, display options: `[1] [2] [3] [all] [skip]` for memory selection.
+
 **Save location:**
 - Primary: `specs/###-folder/memory/`
 - Fallback: `memory/` (workspace root)
@@ -533,7 +549,7 @@ When in doubt:
 - [level_specifications.md](./level_specifications.md) - Complete Level 1-3 requirements and migration
 - [path_scoped_rules.md](./path_scoped_rules.md) - Future path-based validation (design document)
 
-### Templates (10 total)
+### Templates (12 total)
 
 **Core Templates (Level 1-3):**
 - [spec.md](../templates/spec.md) - Requirements and user stories template
@@ -550,6 +566,10 @@ When in doubt:
 - [quick-continue.md](../templates/quick-continue.md) - Minimal handover for session continuation
 - [handover.md](../templates/handover.md) - Full session handover document
 - [debug-delegation.md](../templates/debug-delegation.md) - Debug task delegation template
+
+**Summary Templates:**
+- [implementation-summary.md](../templates/implementation-summary.md) - Step 11 completion summary
+- [planning-summary.md](../templates/planning-summary.md) - Planning phase summary
 
 ### Related Skills
 - `workflows-code` - Implementation, debugging, and verification lifecycle

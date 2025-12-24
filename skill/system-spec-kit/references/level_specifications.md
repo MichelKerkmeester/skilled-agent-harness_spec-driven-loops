@@ -32,9 +32,9 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research-spike.m
 
 ### Required Files (Baseline)
 
-- `spec.md` (from `spec.md`) - Requirements and user stories
-- `plan.md` (from `plan.md`) - Technical implementation plan
-- `tasks.md` (from `tasks.md`) - Task breakdown by user story
+- `spec.md` - Requirements and user stories (copy template from `templates/spec.md`)
+- `plan.md` - Technical implementation plan (copy template from `templates/plan.md`)
+- `tasks.md` - Task breakdown by user story (copy template from `templates/tasks.md`)
 
 ### Optional Files
 
@@ -171,6 +171,37 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research-spike.m
 4. Include deployment verification steps
 5. Add security checks if applicable
 6. Remove all sample content
+
+### Level 2 Example: API Endpoint Feature
+
+**Scenario:** Adding a new REST API endpoint (~200 LOC)
+
+**Folder Structure:**
+```
+specs/012-user-profile-api/
+├── spec.md          # Requirements and scope
+├── plan.md          # Technical approach
+├── tasks.md         # Implementation tasks
+├── checklist.md     # Verification checklist
+├── memory/          # Session context
+└── scratch/         # Temporary files
+```
+
+**Checklist Example:**
+```markdown
+## Implementation Checklist
+
+### P0 - Blockers
+- [x] API endpoint responds to GET /users/:id [EVIDENCE: api.test.js:45-67]
+- [x] Authentication middleware applied [EVIDENCE: routes/users.js:12]
+
+### P1 - Required
+- [x] Input validation implemented [EVIDENCE: validators/user.js]
+- [x] Error responses follow API standard [EVIDENCE: manual test]
+
+### P2 - Nice to Have
+- [ ] Rate limiting (deferred to next sprint)
+```
 
 ---
 

@@ -633,7 +633,7 @@ leann build my-index --docs ./src --compact
 4. Use `--use-ast-chunking` for code projects
 5. Verify index exists with `leann list` before searching
 
-**Remember:** LEANN is a **NATIVE MCP tool**. Call `leann_build()`, `leann_search()`, `leann_ask()` directly - do NOT use Code Mode's `call_tool_chain()`.
+**Remember:** LEANN is a **NATIVE MCP tool**. Call `leann_leann_build()`, `leann_leann_search()`, `leann_leann_ask()`, `leann_leann_list()`, `leann_leann_remove()` directly - do NOT use Code Mode's `call_tool_chain()`.
 
 ---
 

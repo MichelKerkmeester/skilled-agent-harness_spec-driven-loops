@@ -50,7 +50,7 @@ function ftsSearch(queryText, options = {}) {
   // Escape FTS5 special characters
   const escapedQuery = queryText
     .replace(/"/g, '""')
-    .replace(/[*:()]/g, ' ')
+    .replace(/[*:()^{}[\]]/g, ' ')
     .trim();
 
   if (!escapedQuery) return [];
@@ -90,19 +90,40 @@ function ftsSearch(queryText, options = {}) {
  * @returns {Array} Fused results
  */
 function hybridSearch(queryEmbedding, queryText, options = {}) {
+  if (!db) {
+    console.warn('[hybrid-search] Database not initialized. Call init() first.');
+    return [];
+  }
+
   const { limit = 10, specFolder = null, useDecay = true } = options;
 
   // Get vector results (2x limit for fusion headroom)
   const vectorResults = vectorSearchFn ?
-    vectorSearchFn(queryEmbedding, { limit: limit * 2, specFolder }) : [];
+    vectorSearchFn(queryEmbedding, { limit: limit * 2, specFolder, useDecay }) : [];
 
   // Get FTS5 results if available
   const ftsResults = isFtsAvailable() ?
     ftsSearch(queryText, { limit: limit * 2, specFolder }) : [];
 
-  // If only one source has results, return those
-  if (vectorResults.length === 0) return ftsResults.slice(0, limit);
-  if (ftsResults.length === 0) return vectorResults.slice(0, limit);
+  // If only one source has results, return those with RRF metadata for consistent shape
+  if (vectorResults.length === 0) {
+    return ftsResults.slice(0, limit).map((r, i) => ({
+      ...r,
+      rrfScore: 1 / (60 + i + 1), // RRF score based on rank position
+      inVector: false,
+      inFts: true,
+      searchMethod: 'fts_only'
+    }));
+  }
+  if (ftsResults.length === 0) {
+    return vectorResults.slice(0, limit).map((r, i) => ({
+      ...r,
+      rrfScore: 1 / (60 + i + 1), // RRF score based on rank position
+      inVector: true,
+      inFts: false,
+      searchMethod: 'vector_only'
+    }));
+  }
 
   // Fuse results using RRF
   return fuseResults(vectorResults, ftsResults, { limit });

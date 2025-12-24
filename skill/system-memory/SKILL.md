@@ -39,7 +39,7 @@ Saves expanded conversation context with full dialogue, decision rationale, visu
 
 ```bash
 # Semantic search (use MCP tool directly - MANDATORY)
-mcp__semantic_memory__memory_search({ query: "your search query", specFolder: "###-name" })
+memory_search({ query: "your search query", specFolder: "###-name" })
 
 # Or use command
 /memory:search "your search query"
@@ -220,7 +220,7 @@ def route_memory_resources(task):
 
 ## 3. 🚨 MEMORY LOADING CHOICE ENFORCEMENT
 
-**MANDATORY**: The AI must NEVER autonomously decide whether to load memory files, which ones to load, or skip loading entirely. This is defined in **AGENTS.md Phase 2, Gate 3**.
+**MANDATORY**: The AI must NEVER autonomously decide whether to load memory files, which ones to load, or skip loading entirely. This is defined in **AGENTS.md Gate 4**.
 
 ### Enforcement (Manual)
 
@@ -230,7 +230,7 @@ The AI must follow this workflow manually and ask the user before loading any me
 
 Memory loading choice is **CONDITIONAL** - it only triggers when ALL of these conditions are met:
 
-1. **Phase 1 completed** - User already answered Q1 (Spec Folder choice)
+1. **Gate 3 completed** - User already answered Q1 (Spec Folder choice)
 2. **User selected Option A or C** - Working in existing or related spec folder
 3. **Memory files exist** - The spec folder has files in `memory/` directory
 
@@ -257,19 +257,19 @@ When triggered, the AI **MUST ask** the user to explicitly choose:
 
 ### AGENTS.md Cross-Reference
 
-This enforcement is defined in **AGENTS.md Section 1: MANDATORY GATES - Phase 2**:
+This enforcement is defined in **AGENTS.md Section 2: MANDATORY GATES - Gate 4**:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ PHASE 2: MEMORY LOADING (Gate 3) - Conditional                              │
-│ Trigger: User selected A or C in Q1 AND memory files exist                  │
+│ GATE 4: MEMORY LOADING [SOFT BLOCK]                                         │
+│ Trigger: User selected A or C in Gate 3 AND memory files exist              │
 │ Action:  Display [1] [2] [3] [all] [skip] → Wait for user choice            │
 │ Block:   SOFT - User can [skip] to proceed immediately                      │
-│ Note:    Display memory options manually after Phase 1                      │
+│ Note:    Display memory options after user responds to Gate 3               │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-**Soft Block**: Unlike Phase 1 (hard block), Phase 2 allows `[skip]` for instant continuation. Memory loading NEVER blocks task execution if user chooses to skip.
+**Soft Block**: Unlike Gate 3 (hard block), Gate 4 allows `[skip]` for instant continuation. Memory loading NEVER blocks task execution if user chooses to skip.
 
 ### Override Phrases (Power Users)
 
@@ -287,11 +287,11 @@ Once user sets a preference, reuse it for the session (~1 hour) unless:
 - User explicitly requests a different option
 - User uses a different override phrase
 - New conversation begins
-- User changes spec folder (new Phase 1 selection)
+- User changes spec folder (new Gate 3 selection)
 
 ### Question Format
 
-Present the question clearly after Phase 1 completion:
+Present the question clearly after Gate 3 completion:
 
 ```markdown
 🧠 **Memory files found in [spec-folder-name]/memory/**
@@ -309,23 +309,23 @@ Found N previous session file(s):
 Reply with number, "all", or "skip".
 ```
 
-### Integration with Phase 1 (Spec Folder Choice)
+### Integration with Gate 3 (Spec Folder Choice)
 
 Memory loading is the **second stage** of context setup:
 
 ```
-Phase 1 (Q1): Spec Folder Choice
+Gate 3 (Q1): Spec Folder Choice
     │
     ├─► Option A (Use existing) ──────┐
     │                                  │
-    ├─► Option B (Create new) ────────┼──► Skip Phase 2 (no memories yet)
+    ├─► Option B (Create new) ────────┼──► Skip Gate 4 (no memories yet)
     │                                  │
     ├─► Option C (Update related) ────┤
     │                                  │
-    └─► Option D (Skip) ──────────────┴──► Skip Phase 2 (no spec folder)
+    └─► Option D (Skip) ──────────────┴──► Skip Gate 4 (no spec folder)
                                        │
                                        ▼
-Phase 2 (Gate 3): Memory Loading Choice
+Gate 4: Memory Loading Choice
     │
     ├─► [1] [2] [3] - Load specific ──► Read selected file(s)
     │
@@ -525,7 +525,7 @@ memory_load({ specFolder: "049-auth" })
 memory_load({ specFolder: "049-auth", anchorId: "decision-jwt-049" })
 ```
 
-*Note: `memory_load` requires `specFolder` OR `memoryId`*
+*Note: `memory_load` requires `specFolder` (always required). `memoryId` is optional for direct ID access.*
 
 **Key `memory_search` Parameters:**
 
@@ -540,6 +540,12 @@ memory_load({ specFolder: "049-auth", anchorId: "decision-jwt-049" })
 | `useDecay`              | boolean | true    | Apply 90-day half-life decay to scores                                                 |
 | `includeContiguity`     | boolean | false   | Include adjacent/contiguous memories                                                   |
 | `includeConstitutional` | boolean | true    | Always include constitutional tier at top                                              |
+
+**Parameter Details:**
+
+- **`includeContiguity`**: When enabled, returns memories that were created in temporal proximity (within the same session or close timestamps). Useful for recovering full session context when you find one relevant memory but need its surrounding context.
+
+- **`includeConstitutional`**: Constitutional tier memories are always surfaced at the top of search results (max ~500 tokens). These are "always-on" memories that provide critical project context regardless of the search query.
 
 ### Auto-Indexing
 
@@ -662,7 +668,7 @@ See [semantic_memory.md](./references/semantic_memory.md) for complete documenta
    - Extract trigger phrases for fast matching
 
 5. **ALWAYS call MCP tools directly (NEVER through Code Mode)**
-   - `mcp__semantic_memory__memory_search()` - correct
+   - `memory_search()` - correct
    - `call_tool_chain(semantic_memory...)` - WRONG
 
 ### ❌ NEVER
@@ -778,5 +784,29 @@ Conversation → AI Analysis → JSON → Script → Markdown + Embeddings
 1. **Missing spec folder**: `mkdir -p specs/###-feature/memory/`
 2. **Vector search empty**: Run `memory_index_scan()` or restart MCP server
 3. **Decay hiding old results**: Use `use_decay: false` parameter
+
+### Database Reset/Rebuild Procedure
+
+When the memory index becomes corrupted or needs a fresh start:
+
+```bash
+# 1. Stop OpenCode/MCP server
+
+# 2. Delete the database file
+rm .opencode/skill/system-memory/database/memory-index.sqlite
+
+# 3. Restart OpenCode (this clears the MCP server's in-memory cache)
+
+# 4. Re-index all memory files
+memory_index_scan({ force: true })
+```
+
+**When to reset:**
+- Search returns stale/incorrect results after server restart
+- Embedding generation failures persist
+- Database file becomes corrupted
+- After major memory file reorganization
+
+**Note:** Deleting the database removes all indexed memories. The files in `specs/*/memory/` remain intact and will be re-indexed by `memory_index_scan()`.
 
 See [troubleshooting.md](./references/troubleshooting.md) for detailed issue resolution.

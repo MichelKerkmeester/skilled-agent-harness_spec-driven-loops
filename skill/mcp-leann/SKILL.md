@@ -1,7 +1,7 @@
 ---
 name: mcp-leann
 description: "Lightweight vector database providing semantic code search with 97% storage savings. Uses graph-based selective recomputation for efficient RAG on codebases, documents, and any text content. Provides build, search, and ask commands via MCP integration."
-allowed-tools: [leann_build, leann_search, leann_ask, leann_list, leann_remove]
+allowed-tools: [leann_leann_build, leann_leann_search, leann_leann_ask, leann_leann_list, leann_leann_remove]
 version: 1.1.0
 ---
 
@@ -44,11 +44,11 @@ Lightweight vector database for semantic code and document search. Unlike tradit
 
 | Scenario                     | LEANN Approach                                  | Benefit                       |
 | ---------------------------- | ----------------------------------------------- | ----------------------------- |
-| **Find authentication code** | `leann search "user login handling"`            | Intent-based, not keyword     |
-| **Understand a codebase**    | `leann ask "How does payment processing work?"` | RAG-powered explanation       |
-| **Index new project**        | `leann build my-project --docs ./src`           | Fast semantic search ready    |
-| **Search documentation**     | `leann search "deployment requirements"`        | Find by meaning, not filename |
-| **Code exploration**         | `leann ask "What are the main API endpoints?"`  | Structured codebase discovery |
+| **Find authentication code** | `leann_leann_search({ query: "user login handling" })`            | Intent-based, not keyword     |
+| **Understand a codebase**    | `leann_leann_ask({ question: "How does payment processing work?" })` | RAG-powered explanation       |
+| **Index new project**        | `leann_leann_build({ index_name: "my-project", docs: "./src" })`           | Fast semantic search ready    |
+| **Search documentation**     | `leann_leann_search({ query: "deployment requirements" })`        | Find by meaning, not filename |
+| **Code exploration**         | `leann_leann_ask({ question: "What are the main API endpoints?" })`  | Structured codebase discovery |
 
 ---
 
@@ -175,31 +175,33 @@ On Query:      Recompute E2, E4, E5 only when needed
 
 ### The 5 LEANN Commands
 
-| Command        | Purpose                 | Input                    |
-| -------------- | ----------------------- | ------------------------ |
-| `leann_build`  | Create searchable index | Directory path, options  |
-| `leann_search` | Semantic similarity     | Query string, index name |
-| `leann_ask`    | RAG Q&A with LLM        | Question, index name     |
-| `leann_list`   | Show available indexes  | None                     |
-| `leann_remove` | Delete an index         | Index name               |
+> **Note:** LEANN MCP tools use the pattern `leann_leann_{command}` where the first `leann` is the MCP server name and the second is the tool namespace. This is standard MCP naming convention.
+
+| Command              | Purpose                 | Input                    |
+| -------------------- | ----------------------- | ------------------------ |
+| `leann_leann_build`  | Create searchable index | Directory path, options  |
+| `leann_leann_search` | Semantic similarity     | Query string, index name |
+| `leann_leann_ask`    | RAG Q&A with LLM        | Question, index name     |
+| `leann_leann_list`   | Show available indexes  | None                     |
+| `leann_leann_remove` | Delete an index         | Index name               |
 
 ### Quick Examples
 
-```bash
-# Build index for source directory
-leann build my-project --docs ./src
+```javascript
+// Build index for source directory
+leann_leann_build({ index_name: "my-project", docs: "./src" })
 
-# Search for code by intent
-leann search my-project "error handling logic"
+// Search for code by intent
+leann_leann_search({ index_name: "my-project", query: "error handling logic" })
 
-# Ask questions about the codebase
-leann ask my-project "How does authentication work?"
+// Ask questions about the codebase
+leann_leann_ask({ index_name: "my-project", question: "How does authentication work?" })
 
-# List all indexes
-leann list
+// List all indexes
+leann_leann_list()
 
-# Remove an index
-leann remove my-project
+// Remove an index
+leann_leann_remove({ index_name: "my-project" })
 ```
 
 ### Storage Comparison
@@ -252,12 +254,14 @@ This is the same pattern as Sequential Thinking MCP:
 leann --help
 
 # Check MCP server is running (in OpenCode)
-# The leann_* tools should appear in available tools
+# The leann_leann_* tools should appear in available tools
+```
 
-# Quick verification test
-leann build test-index --docs ./README.md
-leann search test-index "test query"
-leann remove test-index
+```javascript
+// Quick verification test (MCP function calls)
+leann_leann_build({ index_name: "test-index", docs: "./README.md" })
+leann_leann_search({ index_name: "test-index", query: "test query" })
+leann_leann_remove({ index_name: "test-index" })
 ```
 
 ### Environment Variables
@@ -351,15 +355,15 @@ leann remove test-index
 - Different purposes: memory = conversations, LEANN = codebase
 
 **Workflow example**:
-```bash
-# 1. Find relevant code using LEANN
-leann search my-project "authentication flow"
+```javascript
+// 1. Find relevant code using LEANN
+leann_leann_search({ index_name: "my-project", query: "authentication flow" })
 
-# 2. Read the full files found
-Read tool on identified files
+// 2. Read the full files found
+// Use Read tool on identified files
 
-# 3. Analyze code structure using mcp-code-context
-code_context_get_code_context({ absolutePath: "src/auth/" })  # List symbols
+// 3. Analyze code structure using mcp-code-context
+code_context_get_code_context({ absolutePath: "src/auth/" })  // List symbols
 ```
 
 ### Triggers
@@ -385,24 +389,24 @@ code_context_get_code_context({ absolutePath: "src/auth/" })  # List symbols
 
 ### Essential Commands
 
-```bash
-# Build index from source code
-leann build my-code --docs ./src --use-ast-chunking
+```javascript
+// Build index from source code
+leann_leann_build({ index_name: "my-code", docs: "./src", use_ast_chunking: true })
 
-# Search for code by intent
-leann search my-code "authentication logic"
+// Search for code by intent
+leann_leann_search({ index_name: "my-code", query: "authentication logic" })
 
-# Ask questions with RAG
-leann ask my-code "How does error handling work?"
+// Ask questions with RAG
+leann_leann_ask({ index_name: "my-code", question: "How does error handling work?" })
 
-# Interactive Q&A session
-leann ask my-code --interactive
+// Interactive Q&A session
+leann_leann_ask({ index_name: "my-code", interactive: true })
 
-# List all indexes
-leann list
+// List all indexes
+leann_leann_list()
 
-# Remove an index
-leann remove old-index
+// Remove an index
+leann_leann_remove({ index_name: "old-index" })
 ```
 
 ### Command Decision Tree
@@ -411,19 +415,19 @@ leann remove old-index
 What do you need?
     │
     ├─► Create/rebuild searchable index
-    │   └─► leann build <name> --docs <path>
+    │   └─► leann_leann_build({ index_name: "<name>", docs: "<path>" })
     │
     ├─► Find code/content by meaning
-    │   └─► leann search <index> "query"
+    │   └─► leann_leann_search({ index_name: "<index>", query: "<query>" })
     │
     ├─► Answer question about codebase
-    │   └─► leann ask <index> "question"
+    │   └─► leann_leann_ask({ index_name: "<index>", question: "<question>" })
     │
     ├─► See what indexes exist
-    │   └─► leann list
+    │   └─► leann_leann_list()
     │
     └─► Delete an index
-        └─► leann remove <name>
+        └─► leann_leann_remove({ index_name: "<name>" })
 ```
 
 ### Backend Options
@@ -471,4 +475,4 @@ Detailed documentation for all 5 LEANN commands with parameters, examples, troub
 
 ---
 
-**Remember**: LEANN is a **NATIVE MCP tool**. Call `leann_build()`, `leann_search()`, `leann_ask()` directly - do NOT use Code Mode's `call_tool_chain()`. LEANN provides efficient semantic search with 97% storage savings through graph-based selective recomputation.
+**Remember**: LEANN is a **NATIVE MCP tool**. Call `leann_leann_build()`, `leann_leann_search()`, `leann_leann_ask()`, `leann_leann_list()`, `leann_leann_remove()` directly - do NOT use Code Mode's `call_tool_chain()`. LEANN provides efficient semantic search with 97% storage savings through graph-based selective recomputation.

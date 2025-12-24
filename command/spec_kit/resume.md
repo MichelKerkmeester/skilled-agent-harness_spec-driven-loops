@@ -4,6 +4,13 @@ argument-hint: "[spec-folder-path] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
+> **Argument Format:** `/spec_kit:resume [spec-folder-path] [:auto|:confirm]`
+> 
+> Examples:
+> - `/spec_kit:resume specs/007-feature/` - Interactive mode (default)
+> - `/spec_kit:resume specs/007-feature/ :auto` - Auto mode
+> - `/spec_kit:resume:auto specs/007-feature/` - Also valid (mode as suffix)
+
 # 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
 
 **These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
@@ -269,7 +276,7 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 │ ⚠️  STALE SESSION DETECTED                                  │
 ├─────────────────────────────────────────────────────────────┤
 │ Spec: specs/014-context-aware-permission-system/            │
-│ Last Activity: 12 days ago                                  │
+│ Last Activity: 8 days ago                                   │
 │ Context may be outdated. Codebase changes likely.           │
 ├─────────────────────────────────────────────────────────────┤
 │ OPTIONS                                                     │
@@ -313,12 +320,13 @@ The resume workflow uses semantic memory MCP tools directly for context loading.
 ### Example Invocations
 
 ```typescript
-// Direct MCP call (CORRECT)
-mcp__semantic_memory__memory_search({ query: "context for 014-auth-system" })
-mcp__semantic_memory__memory_match_triggers({ prompt: "auth system work" })
+// Direct MCP call (CORRECT - OpenCode native syntax)
+semantic_memory_memory_search({ query: "context for 014-auth-system" })
+semantic_memory_memory_match_triggers({ prompt: "auth system work" })
 
 // NEVER do this (WRONG)
 call_tool_chain(`memory.memory_search(...)`)  // NO - not through Code Mode
+mcp__semantic_memory__memory_search(...)      // NO - wrong prefix syntax
 ```
 
 ### Session Detection Priority
@@ -332,6 +340,18 @@ call_tool_chain(`memory.memory_search(...)`)  // NO - not through Code Mode
 2. handover.md (if exists, <24h old)
 3. Recent memory/*.md files
 4. checklist.md for progress state
+
+### Context Validation (quick-continue.md)
+
+When loading quick-continue.md, validate it contains required fields:
+- "CONTINUATION - Attempt" header
+- "Last Completed" field  
+- "Next Action" field
+
+If validation fails (missing required fields), fall back to:
+1. handover.md (if exists and <24h old)
+2. Most recent memory/*.md file
+3. checklist.md for progress state only
 
 **Note:** Stateless architecture - no `.spec-active` marker file used.
 
