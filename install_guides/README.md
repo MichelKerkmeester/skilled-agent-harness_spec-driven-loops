@@ -4,7 +4,7 @@ AI-executable guide for the OpenCode dev environment. Installs 5 MCP servers, 7 
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+## 0. 🤖 AI-FIRST INSTALL GUIDE
 
 Copy this prompt to your AI assistant:
 
@@ -22,7 +22,7 @@ Start with Pre-Flight Check to detect what's already installed, then guide me th
 
 ---
 
-## 📋 TABLE OF CONTENTS
+## TABLE OF CONTENTS
 
 0. [🤖 AI-FIRST INSTALL GUIDE](#-ai-first-install-guide)
 1. [🔎 PRE-FLIGHT CHECK](#1--pre-flight-check)
@@ -1369,10 +1369,10 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 
 ### Component Summary
 
-| Category           | Count | Items                                                                                                                              |
-| ------------------ | ----- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Native MCP Servers | 5     | code_mode, leann, code_context, semantic_memory, sequential_thinking                                                               |
+| Category           | Count | Items                                                                                                                                |
+| ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Native MCP Servers | 5     | code_mode, leann, code_context, semantic_memory, sequential_thinking                                                                 |
 | Skills             | 8     | mcp-code-context, mcp-code-mode, mcp-leann, system-memory, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-git |
-| Commands           | 16    | /create:*, /memory:*, /prompt:improve, /search:*, /spec_kit:*                                                                      |
-| CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                              |
-| Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                                |
+| Commands           | 16    | /create:*, /memory:*, /prompt:improve, /search:*, /spec_kit:*                                                                        |
+| CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                                |
+| Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                                  |

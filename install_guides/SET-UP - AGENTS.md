@@ -7,7 +7,7 @@ Comprehensive guide for customizing the AI agent configuration file (AGENTS.md) 
 
 ---
 
-## 📋 TABLE OF CONTENTS
+## TABLE OF CONTENTS
 
 0. [🤖 AI-FIRST CUSTOMIZATION GUIDE](#-ai-first-customization-guide)
 1. [📖 OVERVIEW](#1--overview)
@@ -22,7 +22,7 @@ Comprehensive guide for customizing the AI agent configuration file (AGENTS.md) 
 
 ---
 
-## 🤖 AI-FIRST CUSTOMIZATION GUIDE
+## 0. 🤖 AI-FIRST CUSTOMIZATION GUIDE
 
 **Copy and paste this prompt for interactive AGENTS.md customization:**
 

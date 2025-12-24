@@ -7,7 +7,24 @@ A comprehensive guide to installing, configuring, and using the Code Mode MCP se
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+#### TABLE OF CONTENTS
+
+0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 PREREQUISITES](#2--prerequisites)
+3. [📥 INSTALLATION](#3--installation)
+4. [⚙️ CONFIGURATION](#4-️-configuration)
+5. [✅ VERIFICATION](#5--verification)
+6. [🚀 USAGE](#6--usage)
+7. [⏱️ TIMEOUT CALCULATION](#7-️-timeout-calculation)
+8. [🎯 FEATURES](#8--features)
+9. [💡 EXAMPLES](#9--examples)
+10. [🔧 TROUBLESHOOTING](#10--troubleshooting)
+11. [📚 RESOURCES](#11--resources)
+
+---
+
+## 0. 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -39,22 +56,6 @@ Guide me through each step with the exact commands and configuration needed.
 - Demonstrate progressive tool discovery
 
 **Expected setup time:** 10-15 minutes
-
----
-
-#### 📋 TABLE OF CONTENTS
-
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [🚀 USAGE](#6--usage)
-7. [⏱️ TIMEOUT CALCULATION](#7-️-timeout-calculation)
-8. [🎯 FEATURES](#8--features)
-9. [💡 EXAMPLES](#9--examples)
-10. [🔧 TROUBLESHOOTING](#10--troubleshooting)
-11. [📚 RESOURCES](#11--resources)
 
 ---
 

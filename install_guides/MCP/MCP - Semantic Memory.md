@@ -7,7 +7,23 @@ A comprehensive guide to installing, configuring, and using the Semantic Memory 
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+#### TABLE OF CONTENTS
+
+0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 PREREQUISITES](#2--prerequisites)
+3. [📥 INSTALLATION](#3--installation)
+4. [⚙️ CONFIGURATION](#4-️-configuration)
+5. [✅ VERIFICATION](#5--verification)
+6. [💾 DATABASE BACKUP AND RESTORE](#6--database-backup-and-restore)
+7. [🚀 USAGE](#7--usage)
+8. [🎯 FEATURES](#8--features)
+9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
+10. [📚 RESOURCES](#10--resources)
+
+---
+
+## 0. 🤖 AI INSTALL GUIDE
 
 ### Verify Success (30 seconds)
 
@@ -55,21 +71,6 @@ Guide me through each step with the exact commands and configuration needed.
 - Test all tools: `memory_search`, `memory_load`, `memory_match_triggers`
 
 **Expected setup time:** 5-10 minutes
-
----
-
-#### 📋 TABLE OF CONTENTS
-
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [💾 DATABASE BACKUP AND RESTORE](#6--database-backup-and-restore)
-7. [🚀 USAGE](#7--usage)
-8. [🎯 FEATURES](#8--features)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
 
 ---
 

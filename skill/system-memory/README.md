@@ -1,35 +1,69 @@
 # Semantic Memory MCP Server
 
-A Model Context Protocol server providing semantic search, memory loading, **auto-indexing**, and fast trigger phrase matching for conversation context retrieval.
+> **Remember everything. Surface what matters. Keep it private.**
 
-> **Navigation**:
-> - New to semantic memory? Start with [Quick Start](#2--quick-start)
-> - Need tool guidance? See [Tool Selection Guide](#3--tool-selection-guide)
-> - Quick command lookup? See [Slash Commands](#5--slash-commands)
-> - Workflow integration? See [SKILL.md](../SKILL.md)
+Your AI assistant forgets everything between sessions. You explain your auth system Monday—by Wednesday, it's a blank slate. This memory system fixes that with semantic search that understands *meaning*, importance tiers that prioritize *what matters*, and local-first architecture that keeps *your code yours*.
+
+No cloud. No external APIs. Just intelligent context preservation that makes AI-assisted development actually work.
+
+This memory system doesn't just remember. It *understands*. It knows which memories matter most. It surfaces context before you ask. And it does it all locally—your code never leaves your machine.
+
+## Why This Memory System is Different
+
+| Capability               | Basic Chat Logs    | This Memory System                                      |
+| ------------------------ | ------------------ | ------------------------------------------------------- |
+| **Search**               | Ctrl+F (text only) | Hybrid semantic + keyword (RRF fusion)                  |
+| **Prioritization**       | None               | 6-tier importance (constitutional → deprecated)         |
+| **Relevance**            | All memories equal | 90-day decay keeps recent memories on top               |
+| **Privacy**              | Often cloud-stored | 100% local (nomic-embed runs on YOUR machine)           |
+| **Token Efficiency**     | Load everything    | ANCHOR format (93% savings)                             |
+| **Spec Kit Integration** | None               | Deep (Gate 5 enforced, lives in spec folders)           |
+| **Proactive Surfacing**  | None               | <50ms trigger matching                                  |
+| **Recovery**             | Hope you backed up | Checkpoints (undo button for your index)                |
+| **Promotion**            | Manual             | Confidence-based (validated memories earn higher tiers) |
+
+> **The bottom line:** 14 MCP tools, 6 importance tiers, <50ms trigger matching, 93% token savings, 0 data sent externally.
+
+## Spec Kit Integration
+
+> **Deep Integration**: Memory and Spec Kit are designed to work together.
+
+| Integration Point         | How It Works                                                      |
+| ------------------------- | ----------------------------------------------------------------- |
+| **Memory Location**       | Files live IN spec folders: `specs/###-feature/memory/`           |
+| **Gate 5 Enforcement**    | Memory saves MUST use `generate-context.js` (no orphaned context) |
+| **Sub-folder Versioning** | Each 001/002/003 sub-folder has independent memory context        |
+| **Session Continuity**    | `/spec_kit:resume` auto-loads relevant memories                   |
+| **V13.0 Stateless**       | Project state embedded in memory files (no separate STATE.md)     |
+
+When you save context, it goes to the right spec folder. When you resume work, memories load automatically. When you version your specs, memories version with them.
 
 ---
 
 ## TABLE OF CONTENTS
 
 1. [📖 OVERVIEW](#1--overview)
-2. [🚀 QUICK START](#2--quick-start)
-3. [🎯 TOOL SELECTION GUIDE](#3--tool-selection-guide)
-4. [🔧 MCP TOOLS](#4--mcp-tools) (14 tools)
-5. [⌨️ SLASH COMMANDS](#5--slash-commands) (3 commands)
-6. [💬 TRIGGER PHRASES](#6--trigger-phrases)
-7. [🔍 SEMANTIC SEARCH](#7--semantic-search)
-8. [🔀 HYBRID SEARCH](#8--hybrid-search)
-9. [🏗️ ARCHITECTURE](#9-️-architecture)
-10. [💾 DATABASE SCHEMA](#10--database-schema)
-11. [🔄 AUTO-INDEXING](#11--auto-indexing)
-12. [📸 CHECKPOINTS](#12--checkpoints)
-13. [📊 PERFORMANCE](#13--performance)
-14. [⚙️ CONFIGURATION](#14-️-configuration)
-15. [🧪 TESTING](#15--testing)
-16. [🛠️ TROUBLESHOOTING](#16-️-troubleshooting)
-17. [❓ FAQ](#17--faq)
-18. [📚 RESOURCES](#18--resources)
+2. [🎯 TOOL SELECTION GUIDE](#2--tool-selection-guide)
+3. [🔧 MCP TOOLS](#3--mcp-tools) (14 tools)
+4. [⌨️ SLASH COMMANDS](#4--slash-commands) (3 commands)
+5. [💬 TRIGGER PHRASES](#5--trigger-phrases)
+6. [🔍 SEMANTIC SEARCH](#6--semantic-search)
+7. [🔀 HYBRID SEARCH](#7--hybrid-search)
+8. [🏗️ ARCHITECTURE](#8-️-architecture)
+9. [💾 DATABASE SCHEMA](#9--database-schema)
+10. [🔄 AUTO-INDEXING](#10--auto-indexing)
+11. [📸 CHECKPOINTS](#11--checkpoints)
+12. [📊 PERFORMANCE](#12--performance)
+13. [🚀 INSTALLATION & SETUP](#13--installation--setup)
+14. [🛠️ TROUBLESHOOTING](#14-️-troubleshooting)
+15. [❓ FAQ](#15--faq)
+16. [📚 RESOURCES](#16--resources)
+
+> **Navigation**:
+> - New to semantic memory? Start with [Installation & Setup](#13--installation--setup)
+> - Need tool guidance? See [Tool Selection Guide](#2--tool-selection-guide)
+> - Quick command lookup? See [Slash Commands](#4--slash-commands)
+> - Workflow integration? See [SKILL.md](../SKILL.md)
 
 ---
 
@@ -37,50 +71,57 @@ A Model Context Protocol server providing semantic search, memory loading, **aut
 
 ### What It Does
 
-The Semantic Memory MCP Server exposes conversation memory operations as standard MCP tools. It enables AI assistants to:
+> **Local-First**: All processing happens on your machine. No data sent to external APIs. Ever.
 
-- **Search memories semantically** using vector embeddings
-- **Load memory content** by spec folder or anchor ID
-- **Match trigger phrases** for fast keyword-based retrieval
-- **Manage memory lifecycle** with validation, updates, and checkpoints
+The Semantic Memory MCP Server transforms your AI assistant from amnesiac to elephant. It enables AI assistants to:
+
+- **Search memories semantically** — Find context by meaning, not just keywords
+- **Load memory content** — By spec folder, anchor ID, or memory ID (93% token savings with anchors)
+- **Match trigger phrases** — <50ms proactive surfacing before you even ask
+- **Manage memory lifecycle** — Validation, tier promotion, decay, and checkpoints
 
 ### Key Capabilities
 
-| Feature | Description |
-|---------|-------------|
-| **Hybrid Search** | FTS5 keyword + vector semantic fusion via RRF (falls back to vector-only if needed) |
-| **Six Importance Tiers** | constitutional → deprecated with boost multipliers |
-| **Time-Based Decay** | 90-day half-life with tier-specific rates |
-| **Checkpoints** | Save/restore memory state for safety |
-| **Constitutional Tier** | Always-surfaced memories via compact dashboard (~500-800 tokens) |
-| **Confidence Promotion** | Auto-promote validated memories to critical |
-| **Local Embeddings** | Uses `nomic-embed-text-v1.5` (768 dimensions) - no external API calls |
-| **Fast Trigger Matching** | Sub-50ms phrase matching for proactive surfacing |
-| **Multi-Concept Search** | Find memories matching ALL specified concepts |
-| **Graceful Degradation** | Falls back to vector-only or anchor-only mode as needed |
-| **Access Tracking** | Frequently-used memories boosted |
-| **Auto Embedding Regen** | Title changes in `memory_update` trigger embedding regeneration |
-| **Batch Processing** | Index scans use concurrent processing (5 files, 100ms delay) |
+| Feature                   | Why It Matters                                                               |
+| ------------------------- | ---------------------------------------------------------------------------- |
+| **Hybrid Search**         | FTS5 + vector + RRF fusion = finds what you mean AND what you typed          |
+| **Six Importance Tiers**  | Constitutional memories ALWAYS surface; deprecated ones stay hidden          |
+| **Time-Based Decay**      | 90-day half-life keeps recent memories relevant without manual cleanup       |
+| **Checkpoints**           | Your undo button—experiment freely, restore if needed                        |
+| **Constitutional Tier**   | Project rules in every session (~500-800 tokens, always visible)             |
+| **Confidence Promotion**  | Validated memories earn their tier (90%+ confidence → auto-suggest critical) |
+| **Local Embeddings**      | nomic-embed-text-v1.5 runs on YOUR machine—complete privacy                  |
+| **Fast Trigger Matching** | <50ms proactive surfacing—context appears before you ask                     |
+| **Multi-Concept Search**  | AND search across 2-5 concepts for precise recall                            |
+| **Graceful Degradation**  | Falls back gracefully: hybrid → vector-only → anchor-only                    |
+| **Access Tracking**       | Frequently-used memories rank higher automatically                           |
+| **Auto Embedding Regen**  | Title changes trigger re-embedding for search accuracy                       |
+| **Batch Processing**      | 5 concurrent files, 100ms delay—won't overwhelm your machine                 |
+
+> **Spec Kit Connection**: Memory files live in `specs/###-feature/memory/` and are version-controlled with your spec folders.
 
 ### Privacy-First Design
 
+> **Your Code Stays Yours**: Not a feature—a fundamental design principle.
+
 **All processing happens locally:**
-- Embedding model runs on your machine
-- Vector database stored locally
-- No data sent to external APIs
-- No cloud dependencies
+- Embedding model runs on YOUR machine (nomic-embed-text-v1.5)
+- Vector database stored in YOUR project (`.opencode/skill/system-memory/database/`)
+- Memory files stored in YOUR spec folders (`specs/*/memory/`)
+- No data sent to external APIs—ever
+- No cloud dependencies—works offline
 
 ### Embedding Model
 
 > **Model**: `nomic-ai/nomic-embed-text-v1.5` (768 dimensions)
 
-| Specification | Value |
-|---------------|-------|
-| **Model Name** | `nomic-ai/nomic-embed-text-v1.5` |
-| **Dimensions** | 768 |
-| **Context Window** | 8,192 tokens |
-| **Inference** | Local (HuggingFace Transformers) |
-| **Storage** | sqlite-vec (`FLOAT[768]`) |
+| Specification      | Value                            |
+| ------------------ | -------------------------------- |
+| **Model Name**     | `nomic-ai/nomic-embed-text-v1.5` |
+| **Dimensions**     | 768                              |
+| **Context Window** | 8,192 tokens                     |
+| **Inference**      | Local (HuggingFace Transformers) |
+| **Storage**        | sqlite-vec (`FLOAT[768]`)        |
 
 **Why nomic-embed-text-v1.5?**
 - 2x larger context window than alternatives (8K vs 512 tokens)
@@ -89,66 +130,26 @@ The Semantic Memory MCP Server exposes conversation memory operations as standar
 
 ---
 
-## 2. 🚀 QUICK START
-
-### System Requirements
-
-| Component | Minimum | Recommended |
-|-----------|---------|-------------|
-| **Node.js** | 18.0.0 | 20.x LTS |
-| **npm** | 8.x | 10.x |
-| **Disk Space** | 200MB | 500MB |
-| **RAM** | 512MB free | 2GB free |
-
-### Dependencies
-
-| Dependency | Version | Purpose |
-|------------|---------|---------|
-| `@huggingface/transformers` | ^3.0.0 | Embedding generation |
-| `better-sqlite3` | ^9.0.0 | SQLite database |
-| `sqlite-vec` | Latest | Vector similarity search |
-
-### Installation
-
-```bash
-# 1. Install sqlite-vec (macOS)
-brew install sqlite-vec
-
-# 2. Install Node.js dependencies
-cd /path/to/semantic-memory && npm install
-
-# 3. Save context - interactive folder detection
-/memory/save
-
-# 4. Search your memories semantically
-/memory/search "how did we implement authentication"
-
-# 5. Rebuild index for existing memories
-/memory/search rebuild
-```
-
----
-
-## 3. 🎯 TOOL SELECTION GUIDE
+## 2. 🎯 TOOL SELECTION GUIDE
 
 ### Tools at a Glance
 
-| Tool | Purpose | Speed | Use When |
-|------|---------|-------|----------|
-| `memory_search` | Semantic vector search | ~500ms | Need meaning-based retrieval |
-| `memory_load` | Load memory content | <10ms | Know exact spec folder/ID |
-| `memory_match_triggers` | Fast phrase matching | <50ms | Quick keyword lookup first |
-| `memory_list` | Browse memories | <50ms | Explore what's indexed |
-| `memory_stats` | System statistics | <10ms | Check system health |
-| `memory_update` | Update metadata | <50ms* | Change tier/triggers (*+~400ms if title changed) |
-| `memory_delete` | Delete memories | <50ms | Remove outdated content |
-| `memory_validate` | Record feedback | <50ms | Build confidence scores |
-| `memory_save` | Index single file | ~1s | Manual file indexing |
-| `memory_index_scan` | Bulk scan & index | varies | After creating many files |
-| `checkpoint_create` | Save state | <100ms | Before major changes |
-| `checkpoint_list` | List checkpoints | <50ms | See available snapshots |
-| `checkpoint_restore` | Restore state | varies | Recover from issues |
-| `checkpoint_delete` | Delete checkpoint | <50ms | Clean up old snapshots |
+| Tool                    | Purpose                | Speed  | Use When                                         |
+| ----------------------- | ---------------------- | ------ | ------------------------------------------------ |
+| `memory_search`         | Semantic vector search | ~500ms | Need meaning-based retrieval                     |
+| `memory_load`           | Load memory content    | <10ms  | Know exact spec folder/ID                        |
+| `memory_match_triggers` | Fast phrase matching   | <50ms  | Quick keyword lookup first                       |
+| `memory_list`           | Browse memories        | <50ms  | Explore what's indexed                           |
+| `memory_stats`          | System statistics      | <10ms  | Check system health                              |
+| `memory_update`         | Update metadata        | <50ms* | Change tier/triggers (*+~400ms if title changed) |
+| `memory_delete`         | Delete memories        | <50ms  | Remove outdated content                          |
+| `memory_validate`       | Record feedback        | <50ms  | Build confidence scores                          |
+| `memory_save`           | Index single file      | ~1s    | Manual file indexing                             |
+| `memory_index_scan`     | Bulk scan & index      | varies | After creating many files                        |
+| `checkpoint_create`     | Save state             | <100ms | Before major changes                             |
+| `checkpoint_list`       | List checkpoints       | <50ms  | See available snapshots                          |
+| `checkpoint_restore`    | Restore state          | varies | Recover from issues                              |
+| `checkpoint_delete`     | Delete checkpoint      | <50ms  | Clean up old snapshots                           |
 
 ### Tool Selection Flowchart
 
@@ -255,24 +256,26 @@ def select_memory_tool(user_request):
 
 ---
 
-## 4. 🔧 MCP TOOLS
+## 3. 🔧 MCP TOOLS
 
-### 4.1 memory_search
+> **14 Tools Total**: Complete memory lifecycle management via MCP protocol.
+
+### 3.1 memory_search
 
 **Purpose**: Search conversation memories semantically using vector similarity with hybrid FTS5 fusion.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `query` | string | Yes | - | Natural language search query |
-| `concepts` | array | No | - | 2-5 concepts for AND search |
-| `specFolder` | string | No | - | Limit to specific spec folder |
-| `tier` | string | No | - | Filter by importance tier |
-| `contextType` | string | No | - | Filter by context type |
-| `limit` | number | No | 10 | Maximum results |
-| `useDecay` | boolean | No | true | Apply time-based decay |
-| `includeConstitutional` | boolean | No | true | Include constitutional tier |
+| Parameter               | Type    | Required | Default | Description                   |
+| ----------------------- | ------- | -------- | ------- | ----------------------------- |
+| `query`                 | string  | Yes      | -       | Natural language search query |
+| `concepts`              | array   | No       | -       | 2-5 concepts for AND search   |
+| `specFolder`            | string  | No       | -       | Limit to specific spec folder |
+| `tier`                  | string  | No       | -       | Filter by importance tier     |
+| `contextType`           | string  | No       | -       | Filter by context type        |
+| `limit`                 | number  | No       | 10      | Maximum results               |
+| `useDecay`              | boolean | No       | true    | Apply time-based decay        |
+| `includeConstitutional` | boolean | No       | true    | Include constitutional tier   |
 
 **Example Request**:
 ```json
@@ -305,17 +308,19 @@ def select_memory_tool(user_request):
 
 ---
 
-### 4.2 memory_load
+### 3.2 memory_load
 
-**Purpose**: Load memory content by spec folder, anchor ID, or memory ID. Supports section-specific loading for 93% token savings.
+> **93% Token Savings**: Load just the section you need, not the entire file.
+
+**Purpose**: Load memory content by spec folder, anchor ID, or memory ID. Supports section-specific loading for massive token savings.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `specFolder` | string | Yes* | - | Spec folder identifier |
-| `anchorId` | string | No | - | Load specific section (93% token savings) |
-| `memoryId` | number | No | - | Direct memory ID access |
+| Parameter    | Type   | Required | Default | Description                               |
+| ------------ | ------ | -------- | ------- | ----------------------------------------- |
+| `specFolder` | string | Yes*     | -       | Spec folder identifier                    |
+| `anchorId`   | string | No       | -       | Load specific section (93% token savings) |
+| `memoryId`   | number | No       | -       | Direct memory ID access                   |
 
 *Either `specFolder` or `memoryId` required
 
@@ -338,13 +343,13 @@ Content here...
 
 **Anchor ID Pattern**: `[context-type]-[keywords]-[spec-number]`
 
-| Context Type | Use For | Example |
-|--------------|---------|---------|
-| `implementation` | Code patterns | `implementation-oauth-callback-049` |
-| `decision` | Architecture choices | `decision-database-schema-005` |
-| `research` | Investigation | `research-lenis-scroll-006` |
-| `discovery` | Learnings | `discovery-api-limits-011` |
-| `general` | Mixed content | `general-session-summary-049` |
+| Context Type     | Use For              | Example                             |
+| ---------------- | -------------------- | ----------------------------------- |
+| `implementation` | Code patterns        | `implementation-oauth-callback-049` |
+| `decision`       | Architecture choices | `decision-database-schema-005`      |
+| `research`       | Investigation        | `research-lenis-scroll-006`         |
+| `discovery`      | Learnings            | `discovery-api-limits-011`          |
+| `general`        | Mixed content        | `general-session-summary-049`       |
 
 **Example Request (Full File)**:
 ```json
@@ -375,16 +380,18 @@ Content here...
 
 ---
 
-### 4.3 memory_match_triggers
+### 3.3 memory_match_triggers
 
-**Purpose**: Fast trigger phrase matching without embeddings (<50ms). Use for quick keyword-based lookups.
+> **<50ms Response**: Context surfaces before you finish typing.
+
+**Purpose**: Fast trigger phrase matching without embeddings. Use for quick keyword-based lookups that don't need semantic understanding.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `prompt` | string | Yes | - | Text to match against triggers |
-| `limit` | number | No | 3 | Maximum results |
+| Parameter | Type   | Required | Default | Description                    |
+| --------- | ------ | -------- | ------- | ------------------------------ |
+| `prompt`  | string | Yes      | -       | Text to match against triggers |
+| `limit`   | number | No       | 3       | Maximum results                |
 
 **Example Request**:
 ```json
@@ -414,18 +421,18 @@ Content here...
 
 ---
 
-### 4.4 memory_list
+### 3.4 memory_list
 
 **Purpose**: Browse stored memories with pagination.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `specFolder` | string | No | - | Filter by spec folder |
-| `limit` | number | No | 20 | Maximum results (max 100) |
-| `offset` | number | No | 0 | Pagination offset |
-| `sortBy` | string | No | created_at | Sort order: created_at, updated_at, importance_weight |
+| Parameter    | Type   | Required | Default    | Description                                           |
+| ------------ | ------ | -------- | ---------- | ----------------------------------------------------- |
+| `specFolder` | string | No       | -          | Filter by spec folder                                 |
+| `limit`      | number | No       | 20         | Maximum results (max 100)                             |
+| `offset`     | number | No       | 0          | Pagination offset                                     |
+| `sortBy`     | string | No       | created_at | Sort order: created_at, updated_at, importance_weight |
 
 **Example Request**:
 ```json
@@ -438,19 +445,19 @@ Content here...
 
 ---
 
-### 4.5 memory_update
+### 3.5 memory_update
 
 **Purpose**: Update memory metadata, importance tier, or trigger phrases.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `id` | number | Yes | - | Memory ID to update |
-| `title` | string | No | - | New title |
-| `triggerPhrases` | array | No | - | Updated trigger phrases |
-| `importanceWeight` | number | No | - | Weight 0-1 |
-| `importanceTier` | string | No | - | Tier: constitutional, critical, important, normal, temporary, deprecated |
+| Parameter          | Type   | Required | Default | Description                                                              |
+| ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------ |
+| `id`               | number | Yes      | -       | Memory ID to update                                                      |
+| `title`            | string | No       | -       | New title                                                                |
+| `triggerPhrases`   | array  | No       | -       | Updated trigger phrases                                                  |
+| `importanceWeight` | number | No       | -       | Weight 0-1                                                               |
+| `importanceTier`   | string | No       | -       | Tier: constitutional, critical, important, normal, temporary, deprecated |
 
 **Embedding Regeneration**: When updating a memory's `title`, the embedding is automatically regenerated to maintain search accuracy. The response includes `embeddingRegenerated: true/false` to indicate whether regeneration occurred.
 
@@ -475,17 +482,17 @@ Content here...
 
 ---
 
-### 4.6 memory_delete
+### 3.6 memory_delete
 
 **Purpose**: Delete memories by ID or spec folder.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `id` | number | No | - | Memory ID to delete |
-| `specFolder` | string | No | - | Delete all in spec folder |
-| `confirm` | boolean | No | - | Required for bulk delete |
+| Parameter    | Type    | Required | Default | Description               |
+| ------------ | ------- | -------- | ------- | ------------------------- |
+| `id`         | number  | No       | -       | Memory ID to delete       |
+| `specFolder` | string  | No       | -       | Delete all in spec folder |
+| `confirm`    | boolean | No       | -       | Required for bulk delete  |
 
 **Example Request**:
 ```json
@@ -496,16 +503,16 @@ Content here...
 
 ---
 
-### 4.7 memory_validate
+### 3.7 memory_validate
 
 **Purpose**: Record validation feedback for a memory. Builds confidence scores and can trigger tier promotion.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `id` | number | Yes | - | Memory ID to validate |
-| `wasUseful` | boolean | Yes | - | Whether the memory was useful |
+| Parameter   | Type    | Required | Default | Description                   |
+| ----------- | ------- | -------- | ------- | ----------------------------- |
+| `id`        | number  | Yes      | -       | Memory ID to validate         |
+| `wasUseful` | boolean | Yes      | -       | Whether the memory was useful |
 
 **Example Request**:
 ```json
@@ -533,7 +540,7 @@ Content here...
 
 ---
 
-### 4.8 memory_stats
+### 3.8 memory_stats
 
 **Purpose**: Get memory system statistics.
 
@@ -561,16 +568,18 @@ Content here...
 
 ---
 
-### 4.9 memory_save
+### 3.9 memory_save
 
-**Purpose**: Index a single memory file (auto-indexing).
+> **Spec Kit Gate 5**: In the enhanced Spec Kit fork, this is called via `generate-context.js`—never manually.
+
+**Purpose**: Index a single memory file into the semantic database.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `filePath` | string | Yes | - | Absolute path to memory file |
-| `force` | boolean | No | false | Re-index even if content unchanged |
+| Parameter  | Type    | Required | Default | Description                        |
+| ---------- | ------- | -------- | ------- | ---------------------------------- |
+| `filePath` | string  | Yes      | -       | Absolute path to memory file       |
+| `force`    | boolean | No       | false   | Re-index even if content unchanged |
 
 **Example Request**:
 ```json
@@ -594,16 +603,16 @@ Content here...
 
 ---
 
-### 4.10 memory_index_scan
+### 3.10 memory_index_scan
 
 **Purpose**: Scan workspace for new/changed memory files and index them.
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `specFolder` | string | No | - | Limit scan to specific spec folder |
-| `force` | boolean | No | false | Re-index all files (ignore hash) |
+| Parameter    | Type    | Required | Default | Description                        |
+| ------------ | ------- | -------- | ------- | ---------------------------------- |
+| `specFolder` | string  | No       | -       | Limit scan to specific spec folder |
+| `force`      | boolean | No       | false   | Re-index all files (ignore hash)   |
 
 **Performance**: Uses batch processing to prevent resource exhaustion during bulk indexing:
 - **Concurrent processing**: 5 files at a time
@@ -635,7 +644,7 @@ Content here...
 
 ---
 
-### 4.11-4.14 Checkpoint Tools
+### 3.11-3.14 Checkpoint Tools
 
 #### checkpoint_create
 
@@ -710,18 +719,18 @@ Delete a checkpoint.
 
 ---
 
-## 5. ⌨️ SLASH COMMANDS
+## 4. ⌨️ SLASH COMMANDS
 
 ### Command Reference
 
-| Command | Purpose |
-|---------|---------|
-| `/memory/save` | Save current context with interactive folder detection |
-| `/memory/search` | Search, manage index, view recent, rebuild, verify |
-| `/memory/cleanup` | Interactive cleanup of old memories |
-| `/memory/triggers` | View and manage learned trigger phrases |
-| `/memory/status` | Quick health check and statistics |
-| `/memory/checkpoint` | Create, restore, list, delete checkpoints |
+| Command              | Purpose                                                |
+| -------------------- | ------------------------------------------------------ |
+| `/memory/save`       | Save current context with interactive folder detection |
+| `/memory/search`     | Search, manage index, view recent, rebuild, verify     |
+| `/memory/cleanup`    | Interactive cleanup of old memories                    |
+| `/memory/triggers`   | View and manage learned trigger phrases                |
+| `/memory/status`     | Quick health check and statistics                      |
+| `/memory/checkpoint` | Create, restore, list, delete checkpoints              |
 
 ### /memory/save
 
@@ -734,27 +743,27 @@ Simple save with spec folder detection:
 
 All search and index management operations:
 
-| Subcommand | Purpose |
-|------------|---------|
-| `/memory/search "query"` | Semantic search |
-| `/memory/search multi "term1" "term2"` | Multi-concept AND search |
-| `/memory/search recent` | View recent memories |
-| `/memory/search verify` | Check index health |
-| `/memory/search rebuild` | Regenerate all embeddings |
-| `/memory/search retry` | Retry failed embeddings |
-| `/memory/search list-failed` | List failed embeddings |
-| `/memory/search resume` | Resume search session |
+| Subcommand                             | Purpose                   |
+| -------------------------------------- | ------------------------- |
+| `/memory/search "query"`               | Semantic search           |
+| `/memory/search multi "term1" "term2"` | Multi-concept AND search  |
+| `/memory/search recent`                | View recent memories      |
+| `/memory/search verify`                | Check index health        |
+| `/memory/search rebuild`               | Regenerate all embeddings |
+| `/memory/search retry`                 | Retry failed embeddings   |
+| `/memory/search list-failed`           | List failed embeddings    |
+| `/memory/search resume`                | Resume search session     |
 
 ### /memory/cleanup
 
 Interactive cleanup of old, unused, or low-relevance memories:
 
-| Feature | Description |
-|---------|-------------|
-| **Zero flags required** | Works without parameters - uses smart defaults |
-| **Interactive preview** | Shows candidates before any deletion |
-| **Review mode** | Step through each memory with [y/n/v]iew options |
-| **Smart defaults** | 90 days old, <3 accesses, <0.4 confidence |
+| Feature                 | Description                                      |
+| ----------------------- | ------------------------------------------------ |
+| **Zero flags required** | Works without parameters - uses smart defaults   |
+| **Interactive preview** | Shows candidates before any deletion             |
+| **Review mode**         | Step through each memory with [y/n/v]iew options |
+| **Smart defaults**      | 90 days old, <3 accesses, <0.4 confidence        |
 
 **Usage:**
 ```
@@ -768,12 +777,12 @@ Interactive cleanup of old, unused, or low-relevance memories:
 
 View and manage learned trigger phrases:
 
-| Feature | Description |
-|---------|-------------|
-| **Transparency** | See what phrases the system learned from your searches |
-| **Add/Remove** | Manually associate or disassociate phrases with memories |
-| **Search by trigger** | Find memories matching a specific trigger phrase |
-| **Clear all** | Reset all learned triggers (with confirmation) |
+| Feature               | Description                                              |
+| --------------------- | -------------------------------------------------------- |
+| **Transparency**      | See what phrases the system learned from your searches   |
+| **Add/Remove**        | Manually associate or disassociate phrases with memories |
+| **Search by trigger** | Find memories matching a specific trigger phrase         |
+| **Clear all**         | Reset all learned triggers (with confirmation)           |
 
 **Usage:**
 ```
@@ -786,13 +795,13 @@ View and manage learned trigger phrases:
 
 Quick health check and system statistics:
 
-| Metric | Description |
-|--------|-------------|
-| **Memories** | Total indexed count |
-| **Health** | System status (OK/Degraded/Error) |
-| **Last save** | When context was last saved |
-| **Storage** | Database size in MB |
-| **Performance** | Vector search availability |
+| Metric          | Description                       |
+| --------------- | --------------------------------- |
+| **Memories**    | Total indexed count               |
+| **Health**      | System status (OK/Degraded/Error) |
+| **Last save**   | When context was last saved       |
+| **Storage**     | Database size in MB               |
+| **Performance** | Vector search availability        |
 
 **Usage:**
 ```
@@ -809,12 +818,12 @@ Quick health check and system statistics:
 
 Create and manage memory state checkpoints:
 
-| Subcommand | Purpose |
-|------------|---------|
-| `/memory/checkpoint create "name"` | Create named checkpoint |
-| `/memory/checkpoint list` | List all checkpoints |
+| Subcommand                          | Purpose                     |
+| ----------------------------------- | --------------------------- |
+| `/memory/checkpoint create "name"`  | Create named checkpoint     |
+| `/memory/checkpoint list`           | List all checkpoints        |
 | `/memory/checkpoint restore "name"` | Restore to checkpoint state |
-| `/memory/checkpoint delete "name"` | Delete a checkpoint |
+| `/memory/checkpoint delete "name"`  | Delete a checkpoint         |
 
 **Usage:**
 ```
@@ -833,15 +842,15 @@ Create and manage memory state checkpoints:
 
 ---
 
-## 6. 💬 TRIGGER PHRASES
+## 5. 💬 TRIGGER PHRASES
 
 ### Save Context Triggers
 
-| Phrase | Also Works |
-|--------|------------|
-| "save context" | "save conversation" |
-| "document this" | "preserve context" |
-| "save session" | "save this discussion" |
+| Phrase          | Also Works             |
+| --------------- | ---------------------- |
+| "save context"  | "save conversation"    |
+| "document this" | "preserve context"     |
+| "save session"  | "save this discussion" |
 
 ### Manual Save
 
@@ -849,16 +858,16 @@ Save context manually using `/memory/save` command or trigger phrases like "save
 
 ### When to Save
 
-| Scenario | Example |
-|----------|---------|
-| Feature complete | "Just finished the payment integration" |
+| Scenario           | Example                                  |
+| ------------------ | ---------------------------------------- |
+| Feature complete   | "Just finished the payment integration"  |
 | Complex discussion | "We made 5 architecture decisions today" |
-| Team sharing | "Need to document this for the team" |
-| Session ending | "Wrapping up for the day" |
+| Team sharing       | "Need to document this for the team"     |
+| Session ending     | "Wrapping up for the day"                |
 
 ---
 
-## 7. 🔍 SEMANTIC SEARCH
+## 6. 🔍 SEMANTIC SEARCH
 
 ### Basic Search
 
@@ -918,16 +927,16 @@ Actions: [v]iew #n | [l]oad #n | [f]ilter | [c]luster | [n]ext | [q]uit
 
 #### Interactive Actions
 
-| Action | Purpose | Example |
-|--------|---------|---------|
-| `v#` or `view #` | Preview memory before loading | `v1` |
-| `l#` or `load #` | Load memory into context | `l1` |
-| `f <filter>` | Filter results | `f folder:auth date:>2025-12-01` |
-| `c` | Cluster by spec folder | `c` |
-| `n` / `p` | Next/previous page | `n` |
-| `e <anchor>` | Extract specific section | `e decisions` |
-| `b` | Back to previous view | `b` |
-| `?` | Show help | `?` |
+| Action           | Purpose                       | Example                          |
+| ---------------- | ----------------------------- | -------------------------------- |
+| `v#` or `view #` | Preview memory before loading | `v1`                             |
+| `l#` or `load #` | Load memory into context      | `l1`                             |
+| `f <filter>`     | Filter results                | `f folder:auth date:>2025-12-01` |
+| `c`              | Cluster by spec folder        | `c`                              |
+| `n` / `p`        | Next/previous page            | `n`                              |
+| `e <anchor>`     | Extract specific section      | `e decisions`                    |
+| `b`              | Back to previous view         | `b`                              |
+| `?`              | Show help                     | `?`                              |
 
 #### Filter Syntax
 
@@ -948,20 +957,22 @@ Search sessions persist for 1 hour:
 
 ### Relevance Scoring
 
-| Factor | Weight | Description |
-|--------|--------|-------------|
-| Category Match | 35% | decision > implementation > guide > architecture |
-| Keyword Overlap | 30% | Number of query keywords in anchor ID |
-| Recency Factor | 20% | Newer files rank higher |
-| Spec Proximity | 15% | Same spec=1.0, parent=0.8, other=0.3 |
+| Factor          | Weight | Description                                      |
+| --------------- | ------ | ------------------------------------------------ |
+| Category Match  | 35%    | decision > implementation > guide > architecture |
+| Keyword Overlap | 30%    | Number of query keywords in anchor ID            |
+| Recency Factor  | 20%    | Newer files rank higher                          |
+| Spec Proximity  | 15%    | Same spec=1.0, parent=0.8, other=0.3             |
 
 ---
 
-## 8. 🔀 HYBRID SEARCH
+## 7. 🔀 HYBRID SEARCH
+
+> **Best of Both Worlds**: Keywords bubble up exact matches. Vectors catch semantic similarity. RRF fusion balances them.
 
 ### How It Works
 
-The memory system uses hybrid search combining FTS5 full-text search with vector similarity for optimal results.
+Most search systems force you to choose: keyword search (fast but literal) or vector search (semantic but misses exact matches). This system does both simultaneously, then fuses the results using Reciprocal Rank Fusion (RRF).
 
 ```
 ┌────────────────────────────────────────────────────────────┐
@@ -1001,6 +1012,8 @@ The memory system uses hybrid search combining FTS5 full-text search with vector
 
 ### RRF Score Fusion
 
+> **Why RRF Matters**: You search for "OAuth error handling". FTS5 finds files containing "OAuth". Vector search finds files about "authentication failure recovery". RRF gives you BOTH, ranked intelligently.
+
 Reciprocal Rank Fusion (RRF) combines results from both search methods:
 
 ```javascript
@@ -1011,20 +1024,23 @@ rrf_score = (1 / (k + fts_rank)) + (1 / (k + vector_rank))
 Benefits:
 - Exact keyword matches bubble up (FTS5 strength)
 - Semantic similarity still influences ranking (vector strength)
-- Neither method dominates - balanced results
+- Neither method dominates—balanced results
+- Graceful degradation if one method fails
 
 ### Fallback Behavior
 
-| Scenario | Behavior |
-|----------|----------|
-| FTS5 available + Vector available | Full hybrid search |
-| FTS5 available + Vector unavailable | FTS5-only mode |
-| FTS5 unavailable + Vector available | Vector-only mode |
-| Both unavailable | Anchor-based fallback |
+| Scenario                            | Behavior              |
+| ----------------------------------- | --------------------- |
+| FTS5 available + Vector available   | Full hybrid search    |
+| FTS5 available + Vector unavailable | FTS5-only mode        |
+| FTS5 unavailable + Vector available | Vector-only mode      |
+| Both unavailable                    | Anchor-based fallback |
 
 ---
 
-## 9. 🏗️ ARCHITECTURE
+## 8. 🏗️ ARCHITECTURE
+
+> **Spec Kit Integration**: Memory files live IN your spec folders, version-controlled alongside your documentation.
 
 ### System Overview
 
@@ -1104,14 +1120,14 @@ Trigger Flow:
 
 ### Storage Architecture
 
-| Data Type | Location | Purpose |
-|-----------|----------|---------|
-| Memory content | `specs/*/memory/*.md` | Human-readable, version controlled |
-| Metadata | `specs/*/memory/metadata.json` | Session info, embedding status |
+| Data Type         | Location                                                     | Purpose                              |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------ |
+| Memory content    | `specs/*/memory/*.md`                                        | Human-readable, version controlled   |
+| Metadata          | `specs/*/memory/metadata.json`                               | Session info, embedding status       |
 | Vector embeddings | `.opencode/skill/system-memory/database/memory-index.sqlite` | Fast semantic search (project-local) |
-| FTS5 index | `.opencode/skill/system-memory/database/memory-index.sqlite` | Full-text keyword search |
-| Checkpoints | `.opencode/skill/system-memory/database/memory-index.sqlite` | State snapshots |
-| Trigger cache | In-memory | <50ms trigger execution |
+| FTS5 index        | `.opencode/skill/system-memory/database/memory-index.sqlite` | Full-text keyword search             |
+| Checkpoints       | `.opencode/skill/system-memory/database/memory-index.sqlite` | State snapshots                      |
+| Trigger cache     | In-memory                                                    | <50ms trigger execution              |
 
 ### Memory Decay
 
@@ -1123,18 +1139,24 @@ decay_score = base_score * (0.5 ^ (days_since_creation / 90))
 
 ### Importance Tiers
 
+> **Constitutional Tier**: These memories surface in EVERY session. Use for project rules, coding standards, and critical architectural decisions that should never be forgotten.
+
 Six-level classification system for memory prioritization:
 
-| Tier | Boost | Use Case |
-|------|-------|----------|
-| `constitutional` | 3.0x | Universal rules, always-surfaced via dashboard (~500-800 tokens) |
-| `critical` | 2.0x | Architecture decisions, security patterns |
-| `important` | 1.5x | Feature implementations, key decisions |
-| `normal` | 1.0x | General discussions, explorations |
-| `temporary` | 0.5x | Debugging notes, experiments (auto-expire 7 days) |
-| `deprecated` | 0.0x | Excluded from search, accessible via memory_load only |
+| Tier             | Boost | Use Case                                        | Examples                                            |
+| ---------------- | ----- | ----------------------------------------------- | --------------------------------------------------- |
+| `constitutional` | 3.0x  | Always-surfaced rules (~500-800 tokens)         | Agent framework, coding standards                   |
+| `critical`       | 2.0x  | Architecture decisions, security patterns       | Auth design, database schema choices                |
+| `important`      | 1.5x  | Feature implementations, key decisions          | API patterns, integration approaches                |
+| `normal`         | 1.0x  | General discussions, explorations               | Session summaries, research notes                   |
+| `temporary`      | 0.5x  | Debugging notes, experiments (7-day auto-decay) | Debug sessions, throwaway experiments               |
+| `deprecated`     | 0.0x  | Excluded from search                            | Outdated content (still accessible via direct load) |
 
-> **Note**: Constitutional memories are always surfaced at session start via the Memory Dashboard plugin. The dashboard displays memory IDs for on-demand loading via `memory_load({ memoryId: # })`. Use constitutional tier sparingly (~500-800 tokens total for dashboard).
+**Why This Matters:**
+- Constitutional memories appear in the dashboard EVERY session—no need to search
+- Critical/important memories rank higher without needing exact keyword matches
+- Temporary memories fade naturally—no manual cleanup required
+- Deprecated memories don't pollute search results but aren't deleted
 
 ### Access Tracking
 
@@ -1146,11 +1168,11 @@ access_boost = min(1.0, 0.1 * log(access_count + 1))
 
 ### Cache Behavior
 
-| Cache | TTL | Purpose |
-|-------|-----|---------|
-| Trigger phrases | 60s | In-memory cache for fast matching |
-| Embedding model | Session | Singleton pattern, loaded once |
-| Database connection | Session | WAL mode for concurrent access |
+| Cache               | TTL     | Purpose                           |
+| ------------------- | ------- | --------------------------------- |
+| Trigger phrases     | 60s     | In-memory cache for fast matching |
+| Embedding model     | Session | Singleton pattern, loaded once    |
+| Database connection | Session | WAL mode for concurrent access    |
 
 ### Plugin Integration (Memory Dashboard) - OPTIONAL
 
@@ -1186,12 +1208,12 @@ The Memory Context Plugin automatically injects a compact ASCII dashboard at ses
 
 #### Dashboard Specifications
 
-| Specification | Value |
-|---------------|-------|
-| **Token Budget** | ~500-800 tokens (was 2,000-5,000 with full content) |
-| **Max Entries** | 14 total (3 constitutional + 3 critical + 3 important + 5 recent) |
-| **Empty Sections** | Hidden automatically |
-| **Tier Icons** | ★ Constitutional, ◆ Critical, ◇ Important, ○ Recent |
+| Specification      | Value                                                             |
+| ------------------ | ----------------------------------------------------------------- |
+| **Token Budget**   | ~500-800 tokens (was 2,000-5,000 with full content)               |
+| **Max Entries**    | 14 total (3 constitutional + 3 critical + 3 important + 5 recent) |
+| **Empty Sections** | Hidden automatically                                              |
+| **Tier Icons**     | ★ Constitutional, ◆ Critical, ◇ Important, ○ Recent               |
 
 #### On-Demand Loading
 
@@ -1216,7 +1238,7 @@ The plugin hooks into OpenCode's session initialization to query the memory data
 
 ---
 
-## 10. 💾 DATABASE SCHEMA
+## 9. 💾 DATABASE SCHEMA
 
 ### memory_index Table
 
@@ -1325,26 +1347,28 @@ CREATE INDEX idx_checkpoint_name ON checkpoints(name);
 
 #### Embedding Status
 
-| Status | Description |
-|--------|-------------|
-| `pending` | Embedding generation scheduled |
-| `success` | Embedding generated and indexed |
-| `retry` | Failed, will retry (retry_count < 3) |
-| `failed` | Permanently failed (retry_count >= 3) |
+| Status    | Description                           |
+| --------- | ------------------------------------- |
+| `pending` | Embedding generation scheduled        |
+| `success` | Embedding generated and indexed       |
+| `retry`   | Failed, will retry (retry_count < 3)  |
+| `failed`  | Permanently failed (retry_count >= 3) |
 
 #### Context Types
 
-| Type | Description |
-|------|-------------|
-| `decision` | Architecture/design decisions |
-| `implementation` | Code implementation details |
-| `debug` | Debugging sessions |
-| `research` | Research and exploration |
-| `discussion` | General conversation |
+| Type             | Description                   |
+| ---------------- | ----------------------------- |
+| `decision`       | Architecture/design decisions |
+| `implementation` | Code implementation details   |
+| `debug`          | Debugging sessions            |
+| `research`       | Research and exploration      |
+| `discussion`     | General conversation          |
 
 ---
 
-## 11. 🔄 AUTO-INDEXING
+## 10. 🔄 AUTO-INDEXING
+
+> **Automation Win**: Create a memory file, it gets indexed. Change a memory file, it gets re-indexed. No manual steps required.
 
 The system provides automatic memory file indexing with 4 complementary approaches.
 
@@ -1378,12 +1402,12 @@ Memory File Created/Changed
 
 ### Indexing Methods
 
-| Method | How to Use | When |
-|--------|------------|------|
-| **Startup Scan** | Automatic on MCP server start | Always (default) |
-| **File Watcher** | `npm run watch` in semantic-memory dir | Development sessions |
-| **CLI Indexer** | `npm run index` in semantic-memory dir | Manual/cron jobs |
-| **MCP Tools** | `memory_save()` or `memory_index_scan()` | AI agent control |
+| Method           | How to Use                               | When                 |
+| ---------------- | ---------------------------------------- | -------------------- |
+| **Startup Scan** | Automatic on MCP server start            | Always (default)     |
+| **File Watcher** | `npm run watch` in semantic-memory dir   | Development sessions |
+| **CLI Indexer**  | `npm run index` in semantic-memory dir   | Manual/cron jobs     |
+| **MCP Tools**    | `memory_save()` or `memory_index_scan()` | AI agent control     |
 
 ### CLI Indexer
 
@@ -1395,13 +1419,13 @@ npm run index [options]
 
 **Options:**
 
-| Option | Description |
-|--------|-------------|
-| `--dry-run` | Show what would be indexed without doing |
-| `--force` | Re-index all files (ignore hash) |
-| `--folder NAME` | Limit to specific spec folder |
-| `--cleanup` | Remove orphaned index entries |
-| `--verbose` | Show detailed output |
+| Option          | Description                              |
+| --------------- | ---------------------------------------- |
+| `--dry-run`     | Show what would be indexed without doing |
+| `--force`       | Re-index all files (ignore hash)         |
+| `--folder NAME` | Limit to specific spec folder            |
+| `--cleanup`     | Remove orphaned index entries            |
+| `--verbose`     | Show detailed output                     |
 
 **Examples:**
 ```bash
@@ -1434,11 +1458,11 @@ npm run watch
 
 **Environment Variables:**
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `MEMORY_WATCH_PATH` | Current working directory | Base path to watch |
-| `MEMORY_DEBOUNCE_MS` | 500 | Debounce delay in ms |
-| `MEMORY_SKIP_STARTUP_SCAN` | (unset) | Set to `1` to disable startup scan |
+| Variable                   | Default                   | Description                        |
+| -------------------------- | ------------------------- | ---------------------------------- |
+| `MEMORY_WATCH_PATH`        | Current working directory | Base path to watch                 |
+| `MEMORY_DEBOUNCE_MS`       | 500                       | Debounce delay in ms               |
+| `MEMORY_SKIP_STARTUP_SCAN` | (unset)                   | Set to `1` to disable startup scan |
 
 ### Content Hash Deduplication
 
@@ -1467,7 +1491,9 @@ The parser extracts from each memory file:
 
 ---
 
-## 12. 📸 CHECKPOINTS
+## 11. 📸 CHECKPOINTS
+
+> **Your Undo Button**: Experiment with tier changes, bulk cleanup, or reorganization. Restore in seconds if unhappy.
 
 Checkpoints provide a safety net for memory state management, allowing you to save and restore memory index snapshots.
 
@@ -1481,13 +1507,13 @@ Checkpoints capture the current state of all indexed memories (metadata only, no
 
 ### Use Cases
 
-| Scenario | Example |
-|----------|---------|
-| **Before refactoring** | Save state before reorganizing spec folders |
-| **Context switching** | Checkpoint "feature-A" before pivoting to "feature-B" |
-| **Experimentation** | Test new importance tiers, restore if unhappy |
-| **Bulk operations** | Before running cleanup or mass tier updates |
-| **Version milestones** | Checkpoint at v1.0 release for reference |
+| Scenario               | Example                                               |
+| ---------------------- | ----------------------------------------------------- |
+| **Before refactoring** | Save state before reorganizing spec folders           |
+| **Context switching**  | Checkpoint "feature-A" before pivoting to "feature-B" |
+| **Experimentation**    | Test new importance tiers, restore if unhappy         |
+| **Bulk operations**    | Before running cleanup or mass tier updates           |
+| **Version milestones** | Checkpoint at v1.0 release for reference              |
 
 ### Checkpoint Tools
 
@@ -1497,11 +1523,11 @@ Create a named snapshot of current memory state.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `name` | string | Yes | - | Unique checkpoint name |
-| `specFolder` | string | No | - | Limit to specific spec folder |
-| `metadata` | object | No | - | Additional metadata to store |
+| Parameter    | Type   | Required | Default | Description                   |
+| ------------ | ------ | -------- | ------- | ----------------------------- |
+| `name`       | string | Yes      | -       | Unique checkpoint name        |
+| `specFolder` | string | No       | -       | Limit to specific spec folder |
+| `metadata`   | object | No       | -       | Additional metadata to store  |
 
 **Example Request:**
 ```json
@@ -1532,10 +1558,10 @@ List all available checkpoints with optional filtering.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `specFolder` | string | No | - | Filter by spec folder |
-| `limit` | number | No | 50 | Maximum results |
+| Parameter    | Type   | Required | Default | Description           |
+| ------------ | ------ | -------- | ------- | --------------------- |
+| `specFolder` | string | No       | -       | Filter by spec folder |
+| `limit`      | number | No       | 50      | Maximum results       |
 
 **Example Request:**
 ```json
@@ -1574,10 +1600,10 @@ Restore memory state from a checkpoint.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `name` | string | Yes | - | Checkpoint name to restore |
-| `clearExisting` | boolean | No | false | Clear current memories before restore |
+| Parameter       | Type    | Required | Default | Description                           |
+| --------------- | ------- | -------- | ------- | ------------------------------------- |
+| `name`          | string  | Yes      | -       | Checkpoint name to restore            |
+| `clearExisting` | boolean | No       | false   | Clear current memories before restore |
 
 **Example Request:**
 ```json
@@ -1607,9 +1633,9 @@ Delete a checkpoint that's no longer needed.
 
 **Parameters:**
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `name` | string | Yes | - | Checkpoint name to delete |
+| Parameter | Type   | Required | Default | Description               |
+| --------- | ------ | -------- | ------- | ------------------------- |
+| `name`    | string | Yes      | -       | Checkpoint name to delete |
 
 **Example Request:**
 ```json
@@ -1671,12 +1697,12 @@ CREATE INDEX idx_checkpoint_name ON checkpoints(name);
 
 ### Limitations
 
-| Limitation | Details |
-|------------|---------|
-| **Metadata only** | Checkpoints store index metadata, not original file content |
-| **No auto-checkpoints** | Must be created manually (or via slash command) |
-| **Storage overhead** | Each checkpoint stores full snapshot (~1KB per memory) |
-| **Max checkpoints** | Default limit of 10 (configurable in config.jsonc) |
+| Limitation              | Details                                                     |
+| ----------------------- | ----------------------------------------------------------- |
+| **Metadata only**       | Checkpoints store index metadata, not original file content |
+| **No auto-checkpoints** | Must be created manually (or via slash command)             |
+| **Storage overhead**    | Each checkpoint stores full snapshot (~1KB per memory)      |
+| **Max checkpoints**     | Default limit of 10 (configurable in config.jsonc)          |
 
 ### Configuration
 
@@ -1692,36 +1718,36 @@ CREATE INDEX idx_checkpoint_name ON checkpoints(name);
 
 ---
 
-## 13. 📊 PERFORMANCE
+## 12. 📊 PERFORMANCE
 
 ### Target Metrics
 
-| Operation | Target | Typical |
-|-----------|--------|---------|
-| Manual save | 2-3s | ~2.5s |
-| Auto-save | 3-5s | ~4s |
-| Embedding generation | <500ms | ~400ms |
-| Semantic search | <100ms | ~80ms |
-| Hybrid search | <150ms | ~120ms |
-| Multi-concept search | <200ms | ~150ms |
-| Trigger matching | <50ms | ~35ms |
-| Vector search | <500ms | ~450ms |
-| FTS5 search | <50ms | ~30ms |
-| Memory load | <10ms | ~5ms |
-| Memory update (metadata) | <50ms | ~30ms |
-| Memory update (with title) | <500ms | ~430ms |
-| Batch index (per file) | ~1s | ~800ms |
-| Batch index (100 files) | ~25s | ~20s |
+| Operation                  | Target | Typical |
+| -------------------------- | ------ | ------- |
+| Manual save                | 2-3s   | ~2.5s   |
+| Auto-save                  | 3-5s   | ~4s     |
+| Embedding generation       | <500ms | ~400ms  |
+| Semantic search            | <100ms | ~80ms   |
+| Hybrid search              | <150ms | ~120ms  |
+| Multi-concept search       | <200ms | ~150ms  |
+| Trigger matching           | <50ms  | ~35ms   |
+| Vector search              | <500ms | ~450ms  |
+| FTS5 search                | <50ms  | ~30ms   |
+| Memory load                | <10ms  | ~5ms    |
+| Memory update (metadata)   | <50ms  | ~30ms   |
+| Memory update (with title) | <500ms | ~430ms  |
+| Batch index (per file)     | ~1s    | ~800ms  |
+| Batch index (100 files)    | ~25s   | ~20s    |
 
 ### Memory Usage
 
-| Component | Memory |
-|-----------|--------|
-| Embedding model | ~200MB |
-| Trigger cache (1000 memories) | ~50KB |
-| SQLite connection | ~10MB |
-| Per embedding | ~1.5KB |
-| FTS5 index overhead | ~20% |
+| Component                     | Memory |
+| ----------------------------- | ------ |
+| Embedding model               | ~200MB |
+| Trigger cache (1000 memories) | ~50KB  |
+| SQLite connection             | ~10MB  |
+| Per embedding                 | ~1.5KB |
+| FTS5 index overhead           | ~20%   |
 
 ### Optimization Tips
 
@@ -1732,19 +1758,55 @@ CREATE INDEX idx_checkpoint_name ON checkpoints(name);
 
 ---
 
-## 14. ⚙️ CONFIGURATION
+## 13. 🚀 INSTALLATION & SETUP
+
+### System Requirements
+
+| Component      | Minimum    | Recommended |
+| -------------- | ---------- | ----------- |
+| **Node.js**    | 18.0.0     | 20.x LTS    |
+| **npm**        | 8.x        | 10.x        |
+| **Disk Space** | 200MB      | 500MB       |
+| **RAM**        | 512MB free | 2GB free    |
+
+### Dependencies
+
+| Dependency                  | Version | Purpose                  |
+| --------------------------- | ------- | ------------------------ |
+| `@huggingface/transformers` | ^3.0.0  | Embedding generation     |
+| `better-sqlite3`            | ^9.0.0  | SQLite database          |
+| `sqlite-vec`                | Latest  | Vector similarity search |
+
+### Quick Start
+
+```bash
+# 1. Install sqlite-vec (macOS)
+brew install sqlite-vec
+
+# 2. Install Node.js dependencies
+cd /path/to/semantic-memory && npm install
+
+# 3. Save context - interactive folder detection
+/memory/save
+
+# 4. Search your memories semantically
+/memory/search "how did we implement authentication"
+
+# 5. Rebuild index for existing memories
+/memory/search rebuild
+```
 
 ### Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `MEMORY_INDEX_PATH` | `.opencode/skill/system-memory/database/memory-index.sqlite` | Vector index location |
-| `HUGGINGFACE_CACHE` | `~/.cache/huggingface/` | Model cache directory |
-| `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger logs |
-| `MEMORY_SURFACING_LIMIT` | `3` | Max memories surfaced per prompt |
-| `MEMORY_WATCH_PATH` | CWD | Base path for file watcher |
-| `MEMORY_DEBOUNCE_MS` | `500` | Debounce delay for watcher |
-| `MEMORY_SKIP_STARTUP_SCAN` | (unset) | Set to `1` to disable startup scan |
+| Variable                   | Default                                                      | Description                        |
+| -------------------------- | ------------------------------------------------------------ | ---------------------------------- |
+| `MEMORY_INDEX_PATH`        | `.opencode/skill/system-memory/database/memory-index.sqlite` | Vector index location              |
+| `HUGGINGFACE_CACHE`        | `~/.cache/huggingface/`                                      | Model cache directory              |
+| `DEBUG_TRIGGER_MATCHER`    | `false`                                                      | Enable verbose trigger logs        |
+| `MEMORY_SURFACING_LIMIT`   | `3`                                                          | Max memories surfaced per prompt   |
+| `MEMORY_WATCH_PATH`        | CWD                                                          | Base path for file watcher         |
+| `MEMORY_DEBOUNCE_MS`       | `500`                                                        | Debounce delay for watcher         |
+| `MEMORY_SKIP_STARTUP_SCAN` | (unset)                                                      | Set to `1` to disable startup scan |
 
 ### config.jsonc
 
@@ -1854,17 +1916,13 @@ CREATE INDEX idx_checkpoint_name ON checkpoints(name);
 
 ### File Locations
 
-| File | Location | Purpose |
-|------|----------|---------|
-| Vector Index | `.opencode/skill/system-memory/database/memory-index.sqlite` | Embeddings + metadata |
-| Memory Content | `specs/*/memory/*.md` | Human-readable markdown |
-| Metadata | `specs/*/memory/metadata.json` | Session metadata |
+| File           | Location                                                     | Purpose                 |
+| -------------- | ------------------------------------------------------------ | ----------------------- |
+| Vector Index   | `.opencode/skill/system-memory/database/memory-index.sqlite` | Embeddings + metadata   |
+| Memory Content | `specs/*/memory/*.md`                                        | Human-readable markdown |
+| Metadata       | `specs/*/memory/metadata.json`                               | Session metadata        |
 
----
-
-## 15. 🧪 TESTING
-
-### Run Tests
+### Testing
 
 ```bash
 cd .opencode/skill/system-memory
@@ -1888,13 +1946,13 @@ node scripts/tests/performance/latency.perf.test.js
 
 ### Test Coverage
 
-| Module | Tests | Coverage |
-|--------|-------|----------|
-| embeddings.js | Unit | Generation, normalization, Unicode |
-| vector-index.js | Unit + Integration | CRUD, search, multi-concept |
-| trigger-extractor.js | Unit | Extraction, stop words, dedup |
-| trigger-matcher.js | Unit + Integration | Matching, cache, performance |
-| MCP Server | Integration | Tools, error handling |
+| Module               | Tests              | Coverage                           |
+| -------------------- | ------------------ | ---------------------------------- |
+| embeddings.js        | Unit               | Generation, normalization, Unicode |
+| vector-index.js      | Unit + Integration | CRUD, search, multi-concept        |
+| trigger-extractor.js | Unit               | Extraction, stop words, dedup      |
+| trigger-matcher.js   | Unit + Integration | Matching, cache, performance       |
+| MCP Server           | Integration        | Tools, error handling              |
 
 ### Manual Testing
 
@@ -1911,7 +1969,7 @@ node scripts/tests/performance/latency.perf.test.js
 
 ---
 
-## 16. 🛠️ TROUBLESHOOTING
+## 14. 🛠️ TROUBLESHOOTING
 
 ### Server Won't Start
 
@@ -2024,15 +2082,15 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "PRAGMA journ
 
 ### Log Locations
 
-| Log | Location |
-|-----|----------|
-| Hook performance | `.opencode/memory/logs/performance.log` |
+| Log              | Location                                            |
+| ---------------- | --------------------------------------------------- |
+| Hook performance | `.opencode/memory/logs/performance.log`             |
 | Trigger matching | `.opencode/memory/logs/suggest-semantic-search.log` |
-| Memory | `.opencode/memory/logs/system-memory-trigger.log` |
+| Memory           | `.opencode/memory/logs/system-memory-trigger.log`   |
 
 ---
 
-## 17. ❓ FAQ
+## 15. ❓ FAQ
 
 ### General
 
@@ -2088,7 +2146,51 @@ A: The dashboard shows IDs only. Load specific memories on-demand using `memory_
 
 ---
 
-## 18. 📚 RESOURCES
+## The Philosophy
+
+This memory system exists because context is the most valuable asset in AI-assisted development—and the most fragile.
+
+### Privacy as a Feature
+
+Privacy isn't a checkbox or a compliance requirement. It's a fundamental design principle. Every architectural decision starts with: "How do we do this without your data leaving your machine?"
+
+- Embeddings generated locally (nomic-embed-text-v1.5)
+- Vector database stored in your project
+- Memory files version-controlled in your spec folders
+- No external API calls—works fully offline
+
+### Context as Living Infrastructure
+
+Memory files aren't dead archives. They're living documents that:
+- Decay over time (90-day half-life keeps relevance without manual cleanup)
+- Earn their importance (confidence-based tier promotion)
+- Surface proactively (<50ms trigger matching)
+- Integrate deeply with your workflow (Spec Kit Gate 5 enforcement)
+
+### Deep Spec Kit Integration
+
+This isn't a standalone tool bolted onto your workflow. It's woven into the fabric of how you document and resume work:
+
+- **Memory files live in spec folders** — `specs/###-feature/memory/`
+- **Gate 5 enforces generate-context.js** — No orphaned context files
+- **Sub-folder versioning works naturally** — Each 001/002/003 has independent memory
+- **Session resume loads memories automatically** — `/spec_kit:resume` knows what you need
+
+### Automation Over Discipline
+
+Humans forget to document. Humans forget to save context. Humans forget to clean up old memories.
+
+This system doesn't rely on human discipline:
+- Auto-indexing catches new files on startup and via file watcher
+- Memory decay handles cleanup automatically
+- Confidence promotion happens through natural usage
+- Checkpoints provide easy recovery from experiments
+
+**The goal:** Make context preservation invisible infrastructure that pays dividends when you need it most.
+
+---
+
+## 16. 📚 RESOURCES
 
 ### File Structure
 
@@ -2112,14 +2214,14 @@ semantic-memory/
 
 ### Related Documentation
 
-| Document | Location | Purpose |
-|----------|----------|---------|
-| Install Guide | `Install Guides/MCP - Semantic Memory.md` | Step-by-step installation |
-| Spec 011 | `specs/011-semantic-memory-upgrade/` | Full specification |
-| Skills SKILL.md | `.opencode/skill/system-memory/SKILL.md` | Memory workflow |
-| Command: save | `.opencode/command/memory/save.md` | Save command reference |
-| Command: search | `.opencode/command/memory/search.md` | Search command reference |
-| Memory Plugin | `.opencode/plugin/memory-context.js` | Dashboard injection at session start |
+| Document        | Location                                  | Purpose                              |
+| --------------- | ----------------------------------------- | ------------------------------------ |
+| Install Guide   | `Install Guides/MCP - Semantic Memory.md` | Step-by-step installation            |
+| Spec 011        | `specs/011-semantic-memory-upgrade/`      | Full specification                   |
+| Skills SKILL.md | `.opencode/skill/system-memory/SKILL.md`  | Memory workflow                      |
+| Command: save   | `.opencode/command/memory/save.md`        | Save command reference               |
+| Command: search | `.opencode/command/memory/search.md`      | Search command reference             |
+| Memory Plugin   | `.opencode/plugin/memory-context.js`      | Dashboard injection at session start |
 
 ### Verification Commands
 

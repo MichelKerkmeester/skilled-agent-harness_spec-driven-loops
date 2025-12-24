@@ -5,10 +5,25 @@ A comprehensive guide to installing, configuring, and using the Sequential Think
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Package**: `@modelcontextprotocol/server-sequential-thinking` | **Dependencies**: Node.js 18+
 
+---
+
+## TABLE OF CONTENTS
+
+0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 PREREQUISITES](#2--prerequisites)
+3. [⚙️ CONFIGURATION](#3-️-configuration)
+4. [✅ VERIFICATION](#4--verification)
+5. [🎯 WHEN TO USE](#5--when-to-use)
+6. [🚀 USAGE](#6--usage)
+7. [📝 PARAMETERS](#7--parameters)
+8. [💡 EXAMPLES](#8--examples)
+9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
+10. [📚 RESOURCES](#10--resources)
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+## 0. 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -33,32 +48,17 @@ This is an npx package - no manual installation needed. Guide me through the con
 
 ---
 
-## 📋 TABLE OF CONTENTS
-
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [⚙️ CONFIGURATION](#3-️-configuration)
-4. [✅ VERIFICATION](#4--verification)
-5. [🎯 WHEN TO USE](#5--when-to-use)
-6. [🚀 USAGE](#6--usage)
-7. [📝 PARAMETERS](#7--parameters)
-8. [💡 EXAMPLES](#8--examples)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
-
----
-
 ## 1. 📖 OVERVIEW
 
 Sequential Thinking is an official Model Context Protocol (MCP) server that enables dynamic, reflective problem-solving through structured thought sequences. Unlike rigid frameworks, it allows flexible thinking that can adapt and evolve as understanding deepens.
 
 ### Source Repository
 
-| Property    | Value                                                                                                                                       |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| **GitHub**  | [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking)                            |
-| **npm**     | [@modelcontextprotocol/server-sequential-thinking](https://www.npmjs.com/package/@modelcontextprotocol/server-sequential-thinking)          |
-| **License** | MIT                                                                                                                                         |
+| Property    | Value                                                                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **GitHub**  | [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking)                   |
+| **npm**     | [@modelcontextprotocol/server-sequential-thinking](https://www.npmjs.com/package/@modelcontextprotocol/server-sequential-thinking) |
+| **License** | MIT                                                                                                                                |
 
 > **Note**: This is an official MCP server maintained by the Model Context Protocol organization.
 

@@ -7,36 +7,23 @@ Browser debugging and automation for AI agents through CLI (primary) and MCP (fa
 
 ---
 
-## Two Approaches
+## TABLE OF CONTENTS
 
-| Approach            | Package                      | When to Use                             | Token Cost |
-| ------------------- | ---------------------------- | --------------------------------------- | ---------- |
-| **CLI (bdg)**       | `browser-debugger-cli@alpha` | Single browser, quick tasks, debugging  | **Lowest** |
-| **MCP (Code Mode)** | `chrome-devtools-mcp@latest` | Multi-tool workflows, parallel browsers | Higher     |
-
-> **Default to CLI.** Use MCP only when CLI is insufficient.
-
-**Decision flowchart:**
-```
-Task received → Is bdg CLI available? (command -v bdg)
-                      │
-              ┌───────┴───────┐
-             YES              NO
-              │               │
-              ▼               ▼
-        Use CLI          Is Code Mode configured?
-        (fastest)               │
-                        ┌───────┴───────┐
-                       YES              NO
-                        │               │
-                        ▼               ▼
-                   Use MCP         Install CLI:
-                   (fallback)      npm i -g browser-debugger-cli@alpha
-```
+0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 PREREQUISITES](#2--prerequisites)
+3. [📥 CLI INSTALLATION](#3--cli-installation)
+4. [⚙️ MCP CONFIGURATION](#4-️-mcp-configuration)
+5. [✅ VERIFICATION](#5--verification)
+6. [🚀 USAGE PATTERNS](#6--usage-patterns)
+7. [🎯 BDG COMMAND REFERENCE](#7--bdg-command-reference)
+8. [🛡️ SECURITY CONSIDERATIONS](#8-️-security-considerations)
+9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
+10. [📚 RESOURCES](#10--resources)
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+## 0. 🤖 AI INSTALL GUIDE
 
 ### Verify Success (30 seconds)
 
@@ -79,21 +66,6 @@ Guide me through each step with the exact commands needed.
 
 ---
 
-#### 📋 TABLE OF CONTENTS
-
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 CLI INSTALLATION](#3--cli-installation)
-4. [⚙️ MCP CONFIGURATION](#4-️-mcp-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [🚀 USAGE PATTERNS](#6--usage-patterns)
-7. [🎯 BDG COMMAND REFERENCE](#7--bdg-command-reference)
-8. [🛡️ SECURITY CONSIDERATIONS](#8-️-security-considerations)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
-
----
-
 ## 1. 📖 OVERVIEW
 
 The Chrome DevTools tools provide AI assistants with browser debugging capabilities through two complementary approaches.
@@ -107,6 +79,33 @@ The Chrome DevTools tools provide AI assistants with browser debugging capabilit
 | **npm (CLI)**    | `browser-debugger-cli@alpha`                                                                |
 | **npm (MCP)**    | `chrome-devtools-mcp@latest`                                                                |
 | **License**      | MIT / Apache-2.0                                                                            |
+
+## Two Approaches
+
+| Approach            | Package                      | When to Use                             | Token Cost |
+| ------------------- | ---------------------------- | --------------------------------------- | ---------- |
+| **CLI (bdg)**       | `browser-debugger-cli@alpha` | Single browser, quick tasks, debugging  | **Lowest** |
+| **MCP (Code Mode)** | `chrome-devtools-mcp@latest` | Multi-tool workflows, parallel browsers | Higher     |
+
+> **Default to CLI.** Use MCP only when CLI is insufficient.
+
+**Decision flowchart:**
+```
+Task received → Is bdg CLI available? (command -v bdg)
+                      │
+              ┌───────┴───────┐
+             YES              NO
+              │               │
+              ▼               ▼
+        Use CLI          Is Code Mode configured?
+        (fastest)               │
+                        ┌───────┴───────┐
+                       YES              NO
+                        │               │
+                        ▼               ▼
+                   Use MCP         Install CLI:
+                   (fallback)      npm i -g browser-debugger-cli@alpha
+```
 
 ### Key Features
 

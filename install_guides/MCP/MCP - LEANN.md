@@ -7,7 +7,23 @@ A comprehensive guide to installing, configuring, and using the LEANN (Lean ANNs
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+#### TABLE OF CONTENTS
+
+0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 PREREQUISITES](#2--prerequisites)
+3. [📥 INSTALLATION](#3--installation)
+4. [⚙️ CONFIGURATION](#4-️-configuration)
+5. [✅ VERIFICATION](#5--verification)
+6. [🚀 USAGE](#6--usage)
+7. [🎯 FEATURES](#7--features)
+8. [💡 EXAMPLES](#8--examples)
+9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
+10. [📚 RESOURCES](#10--resources)
+
+---
+
+## 0. 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -44,33 +60,18 @@ Guide me through each step with the exact commands I need to run.
 
 ---
 
-#### 📋 TABLE OF CONTENTS
-
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [🚀 USAGE](#6--usage)
-7. [🎯 FEATURES](#7--features)
-8. [💡 EXAMPLES](#8--examples)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
-
----
-
 ## 1. 📖 OVERVIEW
 
 LEANN (Lean ANNs) is an ultra-efficient MCP server for semantic search that achieves **97% storage savings** compared to traditional vector databases. It provides AI assistants with semantic code search and document RAG capabilities using state-of-the-art approximate nearest neighbor algorithms.
 
 ### Source Repository
 
-| Property    | Value                                                           |
-| ----------- | --------------------------------------------------------------- |
-| **GitHub**  | [yichuan-w/LEANN](https://github.com/yichuan-w/LEANN)           |
-| **PyPI**    | `leann-core`                                                    |
-| **Binary**  | `~/.local/bin/leann` and `~/.local/bin/leann_mcp`               |
-| **License** | MIT                                                             |
+| Property    | Value                                                 |
+| ----------- | ----------------------------------------------------- |
+| **GitHub**  | [yichuan-w/LEANN](https://github.com/yichuan-w/LEANN) |
+| **PyPI**    | `leann-core`                                          |
+| **Binary**  | `~/.local/bin/leann` and `~/.local/bin/leann_mcp`     |
+| **License** | MIT                                                   |
 
 ### Core Principle
 
@@ -93,7 +94,7 @@ LEANN (Lean ANNs) is an ultra-efficient MCP server for semantic search that achi
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CLI AI Agents (OpenCode)                     │
-└─────────────────────────────┬───────────────────────────────────┘
+└─────────────────────────────────────────────────────────────────┘
                               │ MCP Protocol
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐

@@ -7,7 +7,24 @@ A comprehensive guide to installing, configuring, and using the OpenCode OpenAI 
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+## TABLE OF CONTENTS
+
+0. [🤖 AI Install Guide](#0--ai-install-guide)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 PREREQUISITES](#2--prerequisites)
+3. [📥 INSTALLATION](#3--installation)
+4. [⚙️ CONFIGURATION](#4-️-configuration)
+5. [🔐 AUTHENTICATION](#5--authentication)
+6. [✅ VERIFICATION](#6--verification)
+7. [🚀 USAGE](#7--usage)
+8. [🎯 FEATURES](#8--features)
+9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
+10. [📚 RESOURCES](#10--resources)
+11. [⚠️ TERMS OF SERVICE](#11-️-terms-of-service)
+
+---
+
+## 0. 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -38,22 +55,6 @@ Guide me through each step with the exact commands and configuration needed.
 - Show you model selection syntax and usage patterns
 
 **Expected setup time:** 5-10 minutes
-
----
-
-#### 📋 TABLE OF CONTENTS
-
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [📥 INSTALLATION](#3--installation)
-4. [⚙️ CONFIGURATION](#4-️-configuration)
-5. [🔐 AUTHENTICATION](#5--authentication)
-6. [✅ VERIFICATION](#6--verification)
-7. [🚀 USAGE](#7--usage)
-8. [🎯 FEATURES](#8--features)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
-11. [⚠️ TERMS OF SERVICE](#11-️-terms-of-service)
 
 ---
 

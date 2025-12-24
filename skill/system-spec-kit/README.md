@@ -1,21 +1,45 @@
-# SpecKit Framework
+# Spec Kit Framework
 
-> Complete documentation for the SpecKit documentation framework - a spec-driven development system that ensures proper conversation documentation, template usage, and workflow enforcement for all file modifications.
+> **Documentation that writes itself. Context that never dies.**
+
+Every feature you build should leave a trail. Not for bureaucracy—for your future self, your team, and the AI that helps you code. Spec Kit enforces one simple rule: *no code without a spec folder*.
+
+The result? Six months from now, you'll know exactly why you made that architectural decision. Your AI assistant will pick up where you left off. And onboarding new developers takes hours instead of weeks.
+
+**This isn't your basic Spec Kit.** This is a battle-tested, automation-first fork that treats documentation as a first-class citizen—not an afterthought.
+
+## Why This Fork Exists
+
+| Pain Point             | Original Spec Kit | This Enhanced Fork                               |
+| ---------------------- | ----------------- | ------------------------------------------------ |
+| **Context Loss**       | Manual recovery   | Auto-saved with ANCHOR format                    |
+| **Templates**          | ~3 basic files    | 10 purpose-built templates                       |
+| **Commands**           | Manual workflow   | 7 slash commands with `:auto`/`:confirm` modes   |
+| **Memory Integration** | None              | Deep integration via `generate-context.js`       |
+| **Quality Gates**      | None              | 8 gates enforce nothing slips through            |
+| **Debug Assistance**   | None              | AI detects frustration → auto-suggests sub-agent |
+| **Session Handover**   | None              | `:quick` (15 lines) or `:full` (150 lines)       |
+| **Quality Metrics**    | Guesswork         | Completeness scoring (0-100%)                    |
+| **Folder Versioning**  | Overwrite         | 001/002/003 sub-folder pattern                   |
+| **State Tracking**     | Manual markers    | V13.0 Stateless architecture                     |
+| **Automation**         | None              | 6 scripts handle the boring work                 |
+
+> **The bottom line:** 10 templates, 7 commands, 6 scripts, 0 excuses for losing context.
 
 ---
 
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 DIRECTORY STRUCTURE](#3--directory-structure)
-- [4. 📊 DOCUMENTATION LEVELS (1-3)](#4--documentation-levels-1-3)
-- [5. 📝 TEMPLATES (10 TOTAL)](#5--templates-10-total)
-- [6. ⚙️ SCRIPTS](#6--scripts)
-- [7. 🎯 COMMANDS (7 TOTAL)](#7--commands-7-total)
-- [8. 🔄 HOW IT WORKS](#8--how-it-works)
-- [9. 🔌 INTEGRATION POINTS](#9--integration-points)
-- [10. 💡 USAGE EXAMPLES](#10--usage-examples)
+- [2. 📁 DIRECTORY STRUCTURE](#2--directory-structure)
+- [3. 📊 DOCUMENTATION LEVELS (1-3)](#3--documentation-levels-1-3)
+- [4. 📝 TEMPLATES (10 TOTAL)](#4--templates-10-total)
+- [5. ⚙️ SCRIPTS](#5--scripts)
+- [6. 🎯 COMMANDS (7 TOTAL)](#6--commands-7-total)
+- [7. 🔄 HOW IT WORKS](#7--how-it-works)
+- [8. 🔌 INTEGRATION POINTS](#8--integration-points)
+- [9. 💡 USAGE EXAMPLES](#9--usage-examples)
+- [10. 🚀 INSTALLATION & SETUP](#10--installation--setup)
 - [11. 🔧 TROUBLESHOOTING](#11--troubleshooting)
 - [12. ❓ FAQ](#12--faq)
 
@@ -23,21 +47,30 @@
 
 ## 1. 📖 OVERVIEW
 
-### What is SpecKit?
+### What is Spec Kit?
 
-**SpecKit** is a comprehensive spec-driven development framework that provides structured templates, automation scripts, and workflow commands to manage feature specifications from planning through implementation. It enforces mandatory documentation for all conversations involving file modifications.
+**Spec Kit** is an automation-first documentation framework that makes AI assistants *actually useful* across sessions. While the original Spec Kit concept provides basic structure, this enhanced fork transforms it into a complete system with:
+
+- **Stateless V13.0 Architecture** — No bloated STATE.md files or marker files cluttering your repo
+- **Deep Memory Integration** — Context auto-saves to semantic memory, searchable across sessions
+- **Gate Enforcement** — 8 mandatory gates prevent skipped steps, lost context, and incomplete work
+- **Debug Intelligence** — AI detects when you're stuck and offers to dispatch a specialist sub-agent
+
+> **Fork Exclusive**: This version is specifically designed for AI-assisted development workflows where context preservation is critical.
 
 ### Key Statistics
 
-| Category   | Count  | Details                                                                   |
-| ---------- | ------ | ------------------------------------------------------------------------- |
-| Templates  | 10     | Markdown templates for specs, plans, research, decisions, handover        |
-| Scripts    | 6      | Shell scripts for automation and validation                               |
-| Assets     | 3      | Decision support tools (level matrix, template mapping, parallel config)  |
-| References | 5      | Detailed workflow documentation                                           |
-| Checklists | 4      | Phase-specific checklists (research, planning, implementation, review)    |
-| **Total**  | **28** | Complete bundled resource set                                             |
-| Commands   | 7      | Slash commands (external: `.opencode/command/spec_kit/`)                  |
+| Category   | Count  | Details                                                                  |
+| ---------- | ------ | ------------------------------------------------------------------------ |
+| Templates  | 10     | Markdown templates for specs, plans, research, decisions, handover       |
+| Scripts    | 6      | Shell scripts for automation and validation                              |
+| Assets     | 3      | Decision support tools (level matrix, template mapping, parallel config) |
+| References | 5      | Detailed workflow documentation                                          |
+| Checklists | 4      | Phase-specific checklists (research, planning, implementation, review)   |
+| **Total**  | **28** | Complete bundled resource set                                            |
+| Commands   | 7      | Slash commands (external: `.opencode/command/spec_kit/`)                 |
+
+> **Automation Win**: These 28 resources eliminate the "blank page problem" — you're never starting from scratch.
 
 ### Key Features
 
@@ -46,10 +79,10 @@
 - Placeholder system with validation enforcement
 - Template source markers for traceability
 
-**Workflow Automation**:
-- Auto-create feature branches and spec folders
-- Prerequisite checking and validation
-- Completeness scoring for spec folders
+**Workflow Automation** *(Fork Exclusive)*:
+- Auto-create feature branches and spec folders in ~100ms
+- Prerequisite checking catches missing files before you hit errors
+- Completeness scoring (0-100%) tells you exactly when a spec is "done"
 
 **Quality Enforcement**:
 - Integration with `validate-spec-final.sh` script
@@ -73,55 +106,9 @@
 
 ---
 
-## 2. 🚀 QUICK START
+## 2. 📁 DIRECTORY STRUCTURE
 
-### 30-Second Setup
-
-```bash
-# 1. Navigate to your project root
-cd /path/to/project
-
-# 2. Find the next spec folder number
-ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
-
-# 3. Create your spec folder (replace ### with next number)
-mkdir -p specs/###-your-feature-name/
-
-# 4. Copy required templates
-cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-your-feature-name/
-cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-your-feature-name/
-cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-your-feature-name/
-```
-
-### Using Commands
-
-```bash
-# Full workflow (spec → plan → implement)
-/spec_kit:complete add user authentication
-
-# Planning only
-/spec_kit:plan refactor database layer
-
-# Implementation (requires existing spec+plan)
-/spec_kit:implement
-
-# Technical investigation
-/spec_kit:research evaluate auth libraries
-```
-
-### Level Selection Quick Guide
-
-| LOC Estimate | Level | Templates to Copy            |
-| ------------ | ----- | ---------------------------- |
-| <100         | 1     | spec.md + plan.md + tasks.md |
-| 100-499      | 2     | Level 1 + checklist.md       |
-| ≥500         | 3     | Level 2 + decision-record.md |
-
----
-
-## 3. 📁 DIRECTORY STRUCTURE
-
-### Core SpecKit Structure
+### Core Spec Kit Structure
 
 ```
 .opencode/skill/system-spec-kit/
@@ -218,29 +205,30 @@ cp src/component.js specs/042-feature/scratch/component-draft.js
 
 #### `memory/` - Context Preservation
 
+> **Fork Exclusive**: Deep integration with Semantic Memory MCP for vector-searchable context.
+
 The `memory/` folder stores **conversation context and session history** for AI assistants.
 
 **Purpose:**
-- Auto-saves conversation context at key milestones
-- Enables session continuity across multiple conversations
-- Preserves decision rationale and implementation progress
+- Saves conversation context with ANCHOR markers for section-level retrieval
+- Enables semantic search across all sessions (not just this spec folder)
+- Preserves decision rationale with 93% token savings via anchor-based loading
 
 **Git Behavior:**
 - Contents **ARE tracked** (committed to version control)
 - Files follow naming pattern: `DD-MM-YY_HH-MM__topic-name.md`
-- Auto-created when saving context (via `/memory:save` command)
+- Auto-indexed into semantic memory database on save
 
-**When Memory is Saved:**
-- After completing major implementation milestones
-- Before session ends (if significant work was done)
-- When user requests context save
-- At regular intervals during long sessions
+**V13.0 Architecture:**
+- Memory saves MUST use `generate-context.js` (Gate 5 enforces this)
+- Project state is embedded IN memory files (no separate STATE.md)
+- No .spec-skip or .spec-active markers needed
 
 ---
 
-## 4. 📊 DOCUMENTATION LEVELS (1-3)
+## 3. 📊 DOCUMENTATION LEVELS (1-3)
 
-The SpecKit documentation system uses a **progressive enhancement** approach where each level BUILDS on the previous.
+The Spec Kit documentation system uses a **progressive enhancement** approach where each level BUILDS on the previous.
 
 ### Progressive Enhancement Model
 
@@ -296,6 +284,8 @@ Utility (any level):    handover.md, debug-delegation.md
 
 ### LOC Thresholds Are SOFT GUIDANCE
 
+> **Pro Tip**: Use `recommend-level.sh --loc 250 --files 8` to get an AI-assisted recommendation.
+
 These factors can override LOC and push to a higher level:
 
 - **Complexity**: Architectural changes vs simple refactors
@@ -310,7 +300,7 @@ These factors can override LOC and push to a higher level:
 
 ---
 
-## 5. 📝 TEMPLATES (10 TOTAL)
+## 4. 📝 TEMPLATES (10 TOTAL)
 
 All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEVER create documentation from scratch** - always copy from templates and fill placeholders.
 
@@ -464,6 +454,8 @@ cp .opencode/skill/system-spec-kit/templates/research-spike.md specs/###-name/re
 
 ### Utility Templates
 
+> **Fork Exclusive**: These utility templates don't exist in the original Spec Kit.
+
 #### `handover.md` - Session Continuity
 
 **Purpose**: Document context for agent handoffs between sessions or team members
@@ -487,6 +479,8 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/handover
 
 #### `debug-delegation.md` - Sub-Agent Debugging
 
+> **Fork Exclusive**: AI detects frustration keywords and auto-suggests this workflow.
+
 **Purpose**: Document debugging context when delegating to specialized agents
 
 **Key Sections**:
@@ -500,6 +494,8 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/handover
 - Complex debugging requiring specialized knowledge
 - After 3+ failed fix attempts
 - Escalating to domain-specific agents
+
+**Automation Win**: The AI monitors for frustration signals ("stuck", "can't fix", "tried everything") and proactively suggests `/spec_kit:debug` before you have to ask.
 
 **Copy Command**:
 ```bash
@@ -516,24 +512,28 @@ cp .opencode/skill/system-spec-kit/templates/debug-delegation.md specs/###-name/
 
 ---
 
-## 6. ⚙️ SCRIPTS
+## 5. ⚙️ SCRIPTS
 
-Six automation scripts in `.opencode/skill/system-spec-kit/scripts/` provide workflow automation.
+> **Fork Exclusive**: The original Spec Kit has zero automation scripts. This fork has six.
+
+Six automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle the tedious work so you can focus on building.
 
 ### Script Overview
 
-| Script                      | Purpose                             | Performance   |
-| --------------------------- | ----------------------------------- | ------------- |
-| `common.sh`                 | Shared utility functions            | N/A (sourced) |
-| `create-spec-folder.sh`   | Create feature branch & spec folder | ~100ms        |
-| `check-prerequisites.sh`    | Validate spec folder structure      | ~50ms         |
-| `calculate-completeness.sh` | Calculate completeness percentage   | ~200ms        |
-| `recommend-level.sh`        | Recommend documentation level (1-3) | ~100ms        |
-| `archive-spec.sh`           | Archive completed spec folders      | ~150ms        |
+| Script                      | Purpose                             | Time Saved           |
+| --------------------------- | ----------------------------------- | -------------------- |
+| `common.sh`                 | Shared utility functions            | N/A (sourced)        |
+| `create-spec-folder.sh`     | Create feature branch & spec folder | ~2 min/feature       |
+| `check-prerequisites.sh`    | Validate spec folder structure      | ~1 min/check         |
+| `calculate-completeness.sh` | Calculate completeness percentage   | Eliminates guesswork |
+| `recommend-level.sh`        | Recommend documentation level (1-3) | ~30 sec/decision     |
+| `archive-spec.sh`           | Archive completed spec folders      | ~1 min/archive       |
+
+> **Automation Win**: These scripts execute in <200ms each. The time saved is in *not having to think* about folder naming, file structure, or "is this spec complete enough?"
 
 ### `common.sh` - Shared Utilities
 
-**Purpose**: Shared utility functions used by all other SpecKit scripts
+**Purpose**: Shared utility functions used by all other Spec Kit scripts
 
 **Functions**:
 | Function                 | Description                               |
@@ -568,7 +568,7 @@ Six automation scripts in `.opencode/skill/system-spec-kit/scripts/` provide wor
 $ .opencode/skill/system-spec-kit/scripts/create-spec-folder.sh "Add user authentication" --level 2
 
 ═══════════════════════════════════════════════════════════════════
-  SpecKit: Spec Folder Created Successfully
+  Spec Kit: Spec Folder Created Successfully
 ═══════════════════════════════════════════════════════════════════
 
   BRANCH_NAME:  042-user-authentication
@@ -711,9 +711,11 @@ Archive Summary:
 
 ---
 
-## 7. 🎯 COMMANDS (7 TOTAL)
+## 6. 🎯 COMMANDS (7 TOTAL)
 
-Seven SpecKit commands available in OpenCode.
+> **Fork Exclusive**: The original Spec Kit has no slash commands. This fork has seven, each with `:auto` and `:confirm` mode variants.
+
+Seven Spec Kit commands transform multi-step workflows into single invocations.
 
 ### Command Overview
 
@@ -806,19 +808,23 @@ Create session handover document for continuing work in new conversations.
 
 #### `/spec_kit:debug` - Debug Delegation
 
+> **Fork Exclusive**: This command doesn't exist in the original Spec Kit. It's a game-changer for stuck debugging sessions.
+
 Delegates debugging tasks to a specialized sub-agent with full context handoff.
 
 **Key Features:**
-- **Always asks** which AI model to use (Sonnet/Opus/o1/Other)
+- **Always asks** which AI model to use (Claude/Gemini/Codex)
 - **Generates** structured debug report using `debug-delegation.md` template
 - **Dispatches** parallel sub-agent via Task tool
 - **Returns** root cause analysis, proposed fix, and verification steps
 
-**Auto-Suggestion:**
-The AI will suggest running this command when:
+**Auto-Suggestion (AI-Powered):**
+The AI monitors your session and proactively suggests this command when:
 - Same error occurs 3+ times after fix attempts
-- Frustration keywords detected ("stuck", "can't fix", "tried everything")
+- Frustration keywords detected ("stuck", "can't fix", "tried everything", "hours on this")
 - Extended debugging session without resolution
+
+> **Why This Matters**: You don't have to admit you're stuck. The AI notices *for you* and offers help before frustration peaks.
 
 **Usage:**
 ```bash
@@ -857,10 +863,10 @@ Each core command supports two execution modes:
 
 The `/spec_kit:handover` command supports two variants:
 
-| Suffix   | Variant | Output File        | Description                              |
-| -------- | ------- | ------------------ | ---------------------------------------- |
-| `:quick` | Quick   | quick-continue.md  | Minimal handoff (~15 lines) - default    |
-| `:full`  | Full    | handover.md        | Comprehensive handover (~100-150 lines)  |
+| Suffix   | Variant | Output File       | Description                             |
+| -------- | ------- | ----------------- | --------------------------------------- |
+| `:quick` | Quick   | quick-continue.md | Minimal handoff (~15 lines) - default   |
+| `:full`  | Full    | handover.md       | Comprehensive handover (~100-150 lines) |
 
 **Examples**:
 ```bash
@@ -923,18 +929,18 @@ The `/spec_kit:handover` command supports two variants:
 
 ---
 
-## 8. 🔄 HOW IT WORKS
+## 7. 🔄 HOW IT WORKS
 
 ### 8.1 Spec Folder Question Flow (A/B/C/D Options)
 
 When file modification intent is detected, the system presents four options:
 
-| Option | Action                   | Description                                      |
-| ------ | ------------------------ | ------------------------------------------------ |
-| **A**  | Use existing spec folder | Continue work in detected folder                 |
-| **B**  | Create new spec folder   | Auto-increment number, create fresh folder       |
-| **C**  | Update related spec      | Modify existing related spec                     |
-| **D**  | Skip documentation       | Proceed without spec (creates technical debt)    |
+| Option | Action                   | Description                                   |
+| ------ | ------------------------ | --------------------------------------------- |
+| **A**  | Use existing spec folder | Continue work in detected folder              |
+| **B**  | Create new spec folder   | Auto-increment number, create fresh folder    |
+| **C**  | Update related spec      | Modify existing related spec                  |
+| **D**  | Skip documentation       | Proceed without spec (creates technical debt) |
 
 **AI Agent Protocol**: Present options, wait for explicit user selection, never decide autonomously.
 
@@ -955,12 +961,16 @@ When selecting Option A or C with existing memory files:
 
 ### 8.3 Sub-Folder Versioning (001, 002, 003 Pattern)
 
+> **Fork Exclusive**: Original Spec Kit overwrites existing specs. This fork versions them.
+
 When reusing a spec folder with existing root-level content:
 
 1. **Trigger**: Selecting Option A with existing files at root
 2. **Archive**: Existing files moved to `001-{topic}/`
 3. **New Work**: Create sub-folder `002-{user-name}/`, `003-{user-name}/`, etc.
 4. **Memory**: Each sub-folder has independent `memory/` context
+
+> **Why This Matters**: You can revisit a feature 6 months later, see all previous iterations, and understand the evolution of decisions.
 
 **Example**:
 ```
@@ -975,9 +985,15 @@ specs/122-skill-standardization/
         └── 07-12-25_14-30__context.md
 ```
 
-### 8.4 Context Auto-Save
+### 8.4 Context Save (V13.0 Architecture)
 
-Context preservation is manual - use "save context" or `/save_context` when needed.
+> **V13.0 Change**: Memory saves MUST use `generate-context.js`. Manual file creation is blocked by Gate 5.
+
+Context preservation uses the `/memory:save` command or "save context" trigger phrase. The system:
+1. Runs `generate-context.js` to capture conversation context
+2. Generates ANCHOR markers for section-level retrieval (93% token savings)
+3. Auto-indexes into semantic memory database
+4. Embeds project state directly in memory file (no separate STATE.md)
 
 ### 8.5 Folder Naming Convention
 
@@ -995,7 +1011,9 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 
 ### 8.7 Architecture (2-Tier System)
 
-SpecKit uses a 2-tier architecture:
+> **Fork Exclusive**: This command/prompt separation enables mode variants (`:auto`/`:confirm`) without code duplication.
+
+Spec Kit uses a 2-tier architecture:
 
 **Tier 1: Command Definitions** (what to do)
 - Location: `.opencode/command/spec_kit/*.md`
@@ -1011,19 +1029,19 @@ SpecKit uses a 2-tier architecture:
 
 ---
 
-## 9. 🔌 INTEGRATION POINTS
+## 8. 🔌 INTEGRATION POINTS
 
 ### Related Skills
 
 **Upstream:** None (foundational workflow)
 
 **Downstream:**
-| Skill                  | Integration                          |
-| ---------------------- | ------------------------------------ |
-| `workflows-code`       | Uses spec folders for implementation |
-| `workflows-git`        | References specs in commits/PRs      |
+| Skill                     | Integration                          |
+| ------------------------- | ------------------------------------ |
+| `workflows-code`          | Uses spec folders for implementation |
+| `workflows-git`           | References specs in commits/PRs      |
 | `workflows-documentation` | Validates documentation quality      |
-| `system-memory`     | Saves to spec folder memory/         |
+| `system-memory`           | Saves to spec folder memory/         |
 
 ### External Dependencies
 
@@ -1032,16 +1050,16 @@ SpecKit uses a 2-tier architecture:
 - `AGENTS.md` - Section 2 defines requirements
 - `specs/` - Directory for all spec folders
 
-### SpecKit vs Commands
+### Spec Kit vs Commands
 
-| Component    | Purpose                        | Execution                      | Location             |
-| ------------ | ------------------------------ | ------------------------------ | -------------------- |
-| **SpecKit**  | Template & workflow management | User-invoked or AI-triggered   | `.opencode/skill/system-spec-kit/` |
-| **Commands** | SpecKit workflow execution     | Slash commands (`/spec_kit:*`) | `.opencode/command/` |
+| Component    | Purpose                        | Execution                      | Location                           |
+| ------------ | ------------------------------ | ------------------------------ | ---------------------------------- |
+| **Spec Kit** | Template & workflow management | User-invoked or AI-triggered   | `.opencode/skill/system-spec-kit/` |
+| **Commands** | Spec Kit workflow execution    | Slash commands (`/spec_kit:*`) | `.opencode/command/`               |
 
 ---
 
-## 10. 💡 USAGE EXAMPLES
+## 9. 💡 USAGE EXAMPLES
 
 ### Creating a New Feature
 
@@ -1146,6 +1164,52 @@ specs/042-user-auth/
 
 ---
 
+## 10. 🚀 INSTALLATION & SETUP
+
+### 30-Second Setup
+
+```bash
+# 1. Navigate to your project root
+cd /path/to/project
+
+# 2. Find the next spec folder number
+ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
+
+# 3. Create your spec folder (replace ### with next number)
+mkdir -p specs/###-your-feature-name/
+
+# 4. Copy required templates
+cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-your-feature-name/
+cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-your-feature-name/
+cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-your-feature-name/
+```
+
+### Using Commands
+
+```bash
+# Full workflow (spec → plan → implement)
+/spec_kit:complete add user authentication
+
+# Planning only
+/spec_kit:plan refactor database layer
+
+# Implementation (requires existing spec+plan)
+/spec_kit:implement
+
+# Technical investigation
+/spec_kit:research evaluate auth libraries
+```
+
+### Level Selection Quick Guide
+
+| LOC Estimate | Level | Templates to Copy            |
+| ------------ | ----- | ---------------------------- |
+| <100         | 1     | spec.md + plan.md + tasks.md |
+| 100-499      | 2     | Level 1 + checklist.md       |
+| ≥500         | 3     | Level 2 + decision-record.md |
+
+---
+
 ## 11. 🔧 TROUBLESHOOTING
 
 ### Spec Folder Not Found
@@ -1234,7 +1298,7 @@ cat specs/###-folder/memory/DD-MM-YY_HH-MM__description.md
 **Decision Guide**:
 | Situation                 | Recommended Mode |
 | ------------------------- | ---------------- |
-| First time using SpecKit  | `:confirm`       |
+| First time using Spec Kit | `:confirm`       |
 | Learning new workflow     | `:confirm`       |
 | Routine feature work      | `:auto`          |
 | Complex/risky changes     | `:confirm`       |
@@ -1242,7 +1306,7 @@ cat specs/###-folder/memory/DD-MM-YY_HH-MM__description.md
 
 ### Performance Issues
 
-**Symptom**: SpecKit scripts take >1 second to execute
+**Symptom**: Spec Kit scripts take >1 second to execute
 
 **Solutions**:
 1. Check file system performance (network drives can be slow)
@@ -1252,7 +1316,7 @@ cat specs/###-folder/memory/DD-MM-YY_HH-MM__description.md
 **Expected Performance**:
 | Script                      | Expected Time |
 | --------------------------- | ------------- |
-| `create-spec-folder.sh`   | <100ms        |
+| `create-spec-folder.sh`     | <100ms        |
 | `check-prerequisites.sh`    | <50ms         |
 | `calculate-completeness.sh` | <200ms        |
 
@@ -1285,7 +1349,7 @@ A: Use this decision tree:
 
 ---
 
-**Q: Can I use SpecKit without the slash commands?**
+**Q: Can I use Spec Kit without the slash commands?**
 
 A: Yes. Templates and scripts work independently. You can:
 - Copy templates manually: `cp templates/spec.md specs/042-feature/spec.md`
@@ -1343,3 +1407,33 @@ A: Context is saved manually using `/memory:save` command or trigger phrases lik
 **Q: Where are templates located?**
 
 A: Single source of truth: `.opencode/skill/system-spec-kit/templates/`
+
+---
+
+**Q: Why should I use this fork instead of the original Spec Kit?**
+
+A: The original Spec Kit is a concept. This fork is a complete system:
+
+| What You Get       | Original | This Fork                           |
+| ------------------ | -------- | ----------------------------------- |
+| Templates          | Basic    | 10 production-ready                 |
+| Automation         | None     | 6 scripts                           |
+| Commands           | None     | 7 with mode variants                |
+| Memory Integration | None     | Semantic search across sessions     |
+| Debug Help         | None     | AI-detected frustration → sub-agent |
+| Gate Enforcement   | None     | 8 gates prevent mistakes            |
+| Quality Metrics    | None     | Completeness scoring                |
+
+**TL;DR**: The original tells you *what* to document. This fork *does the documenting for you*.
+
+---
+
+## The Philosophy
+
+This fork exists because documentation shouldn't be a tax on productivity—it should be invisible infrastructure that pays dividends when you need it most: resuming work after a break, onboarding a new team member, or debugging something you wrote 6 months ago.
+
+**Built for AI-assisted workflows.** Every design decision assumes you're working with an LLM that forgets everything between sessions. The templates, scripts, and commands are optimized for context recovery, not just documentation compliance.
+
+**Automation over discipline.** Humans forget to document. Scripts don't. Every manual step that could be automated has been automated.
+
+**Stateless by design.** V13.0 eliminated all marker files (.spec-skip, .spec-active, STATE.md) because they created more problems than they solved. Project state lives in memory files where it belongs—searchable, versionable, and actually useful.

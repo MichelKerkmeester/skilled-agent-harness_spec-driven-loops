@@ -7,7 +7,27 @@ A comprehensive guide to installing, configuring, and using the OpenCode Antigra
 > 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+## TABLE OF CONTENTS
+
+- [0. 🤖 AI Install Guide](#0--ai-install-guide)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📋 PREREQUISITES](#2--prerequisites)
+- [3. 📦 INSTALLATION](#3--installation)
+- [4. ⚙️ CONFIGURATION](#4-️-configuration)
+- [5. 🔐 AUTHENTICATION](#5--authentication)
+- [6. 🔑 TOKEN STORAGE](#6--token-storage)
+- [7. ✅ VERIFICATION](#7--verification)
+- [8. 🚀 USAGE](#8--usage)
+- [9. 🤖 AVAILABLE MODELS](#9--available-models)
+- [10. 🐛 DEBUG LOGGING](#10--debug-logging)
+- [11. 🛡️ SECURITY CONSIDERATIONS](#11-️-security-considerations)
+- [12. 🔧 TROUBLESHOOTING](#12--troubleshooting)
+- [13. 📚 RESOURCES](#13--resources)
+- [14. ⚠️ TERMS OF SERVICE](#14-️-terms-of-service)
+
+---
+
+## 0. 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -30,24 +50,6 @@ Guide me through each step and show me what to add.
 - Configure the Google provider with available Antigravity models
 - Guide you through OAuth authentication with Google
 - Help you test model access
-
----
-
-#### 📋 TABLE OF CONTENTS
-
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📋 PREREQUISITES](#2--prerequisites)
-- [3. 📦 INSTALLATION](#3--installation)
-- [4. ⚙️ CONFIGURATION](#4-️-configuration)
-- [5. 🔐 AUTHENTICATION](#5--authentication)
-- [6. 🔑 TOKEN STORAGE](#6--token-storage)
-- [7. ✅ VERIFICATION](#7--verification)
-- [8. 🚀 USAGE](#8--usage)
-- [9. 🤖 AVAILABLE MODELS](#9--available-models)
-- [10. 🐛 DEBUG LOGGING](#10--debug-logging)
-- [11. 🛡️ SECURITY CONSIDERATIONS](#11-️-security-considerations)
-- [12. 🔧 TROUBLESHOOTING](#12--troubleshooting)
-- [13. 📚 RESOURCES](#13--resources)
 
 ---
 
@@ -686,3 +688,50 @@ export OPENCODE_ANTIGRAVITY_DEBUG=1
 You now have the Antigravity Auth plugin installed and configured. Access premium AI models through your Google credentials by selecting them in OpenCode or using the `--model` flag.
 
 For more information, see the [plugin repository](https://github.com/NoeFabris/opencode-antigravity-auth).
+
+---
+
+## 14. ⚠️ TERMS OF SERVICE
+
+### Acknowledgement
+
+By using this plugin, you acknowledge:
+
+- This plugin uses **Google's OAuth authentication** to access Antigravity services
+- You are responsible for ensuring compliance with the Terms of Service of all underlying model providers
+- Your usage should align with your Google Workspace account's intended purpose and quotas
+
+### Relevant Terms
+
+Review the terms of service for the models you access through Antigravity:
+
+| Provider     | Terms Link                                              |
+| ------------ | ------------------------------------------------------- |
+| **Google**   | https://policies.google.com/terms                       |
+| **Anthropic** | https://www.anthropic.com/legal/consumer-terms         |
+| **OpenAI**   | https://openai.com/policies/terms-of-use               |
+
+### Intended Use
+
+- **Personal development** and coding assistance
+- **Internal testing** within your organization
+- **Learning and experimentation** with AI models
+- Respecting provider rate limits and usage policies
+
+### Not Suitable For
+
+- Commercial API resale or white-labeling
+- High-volume automated extraction beyond personal/internal use
+- Applications serving external users through your credentials
+- Any use that violates the acceptable use policies of Google, Anthropic, or OpenAI
+
+**For production applications or commercial use, obtain API access directly from the respective providers.**
+
+### Rate Limits
+
+Rate limits are determined by:
+- Your Google Workspace account's Antigravity quota
+- Enforced server-side through OAuth tokens
+- The plugin cannot and does not bypass these limits
+
+**Use at your own risk and responsibility.**

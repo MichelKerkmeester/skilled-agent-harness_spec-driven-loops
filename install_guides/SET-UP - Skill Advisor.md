@@ -3,11 +3,27 @@
 The Skill Advisor is a Python script that analyzes user requests and recommends appropriate skills with confidence scores. It powers Gate 2 in AGENTS.md, enabling intelligent skill routing.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
-> **Script**: `skill_advisor.py` | **Dependencies**: Python 3.10+
 > 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+## TABLE OF CONTENTS
+
+0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 PREREQUISITES](#2--prerequisites)
+3. [✅ INSTALLATION VERIFICATION](#3--installation-verification)
+4. [⚙️ HOW IT WORKS](#4--how-it-works)
+5. [🎯 CURRENT SKILLS REFERENCE](#5--current-skills-reference)
+6. [📊 THRESHOLD TUNING GUIDE](#6--threshold-tuning-guide)
+7. [🧮 EXAMPLE CALCULATIONS](#7--example-calculations)
+8. [🔧 CUSTOMIZATION](#8--customization)
+9. [🧪 TESTING](#9--testing)
+10. [🐛 DEBUGGING](#10--debugging)
+11. [🔧 TROUBLESHOOTING](#11--troubleshooting)
+
+---
+
+## 0. 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant:**
 
@@ -33,22 +49,6 @@ Guide me through each step.
 - Validate confidence thresholds
 
 **Expected setup time:** 5-10 minutes
-
----
-
-## 📋 TABLE OF CONTENTS
-
-1. [📖 OVERVIEW](#1--overview)
-2. [📋 PREREQUISITES](#2--prerequisites)
-3. [✅ INSTALLATION VERIFICATION](#3--installation-verification)
-4. [⚙️ HOW IT WORKS](#4--how-it-works)
-5. [🎯 CURRENT SKILLS REFERENCE](#5--current-skills-reference)
-6. [📊 THRESHOLD TUNING GUIDE](#6--threshold-tuning-guide)
-7. [🧮 EXAMPLE CALCULATIONS](#7--example-calculations)
-8. [🔧 CUSTOMIZATION](#8--customization)
-9. [🧪 TESTING](#9--testing)
-10. [🐛 DEBUGGING](#10--debugging)
-11. [🔧 TROUBLESHOOTING](#11--troubleshooting)
 
 ---
 

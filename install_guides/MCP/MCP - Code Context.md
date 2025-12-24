@@ -7,7 +7,25 @@ A comprehensive guide to installing, configuring, and using the Code Context MCP
 
 ---
 
-## 🤖 AI-FIRST INSTALL GUIDE
+#### TABLE OF CONTENTS
+
+0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
+1. [📖 OVERVIEW](#1--overview)
+2. [🎯 TOOL SELECTION DECISION TREE](#2--tool-selection-decision-tree)
+3. [🔍 UNIFIED SEARCH](#3--unified-search-searchcode)
+4. [📋 PREREQUISITES](#4--prerequisites)
+5. [📥 INSTALLATION](#5--installation)
+6. [⚙️ CONFIGURATION](#6-️-configuration)
+7. [✅ VERIFICATION](#7--verification)
+8. [🚀 USAGE PATTERNS](#8--usage-patterns)
+9. [🎯 FEATURES](#9--features)
+10. [💡 EXAMPLES](#10--examples)
+11. [🔧 TROUBLESHOOTING](#11--troubleshooting)
+12. [📚 RESOURCES](#12--resources)
+
+---
+
+## 0. 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -37,23 +55,6 @@ Guide me through each step with the exact commands and configuration needed.
 - Demonstrate the tool selection matrix (Code Context vs LEANN vs Grep)
 
 **Expected setup time:** 5 minutes
-
----
-
-#### 📋 TABLE OF CONTENTS
-
-1. [📖 OVERVIEW](#1--overview)
-2. [🎯 TOOL SELECTION DECISION TREE](#2--tool-selection-decision-tree)
-3. [🔍 UNIFIED SEARCH](#3--unified-search-searchcode)
-4. [📋 PREREQUISITES](#4--prerequisites)
-5. [📥 INSTALLATION](#5--installation)
-6. [⚙️ CONFIGURATION](#6-️-configuration)
-7. [✅ VERIFICATION](#7--verification)
-8. [🚀 USAGE PATTERNS](#8--usage-patterns)
-9. [🎯 FEATURES](#9--features)
-10. [💡 EXAMPLES](#10--examples)
-11. [🔧 TROUBLESHOOTING](#11--troubleshooting)
-12. [📚 RESOURCES](#12--resources)
 
 ---
 

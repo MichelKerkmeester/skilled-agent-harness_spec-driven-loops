@@ -7,186 +7,104 @@
 
 ## Summary
 
-Your AI assistant forgets everything between conversations. This environment fixes that with:
+**Context Engineering for a [OpenCode](https://github.com/sst/opencode)** development environment. Featuring modular Skills, Semantic Memory, and a custom Spec Kit system you won’t find anywhere else. Everything is designed from the ground up for seamless context retention, automated documentation, and on-demand expertise.
 
-- **🧠 Semantic Memory** — Pick up where you left off, even days later
-- **📋 Structured Documentation** — Every change tracked, nothing lost
-- **🎯 Reusable Skills** — Domain expertise that loads on demand
-- **🔒 Local-First** — Your code stays on your machine
+- **🎯 9 Skills** — Domain expertise that loads on demand. Auto-routing via skill_advisor.py, confidence-based invocation, workflows for code/git/docs/browser.
 
-Works with Claude, GPT, Gemini, and any OpenCode-compatible model.
+- **🧠 Semantic Memory** — Pick up where you left off, even days later. Hybrid search (vector + FTS5 + RRF fusion), 6 importance tiers, 93% token savings with ANCHOR format, <50ms proactive surfacing. Custom MCP server with 14 tools.
 
----
+- **📋 Custom Spec Kit** — Every change documented automatically, enforced by gates. 10 templates, 7 slash commands, sub-folder versioning (001/002/003), debug delegation to sub-agents. Memory files live *inside* spec folders.
 
-## 📑 Table of Contents
+## TABLE OF CONTENTS
 
-- [1. Installing OpenCode](#1--installing-opencode)
-- [2. Connecting Providers](#2--connecting-providers)
-- [3. MCP Server Setup](#3--mcp-server-setup)
-- [4. AGENTS.MD Framework](#4--agentsmd-framework)
-- [5. SpecKit: Documentation Framework](#5--speckit-documentation-framework)
-- [6. Memory System](#6--memory-system)
-- [7. Skills Library](#7--skills-library)
-- [8. Commands](#8--commands)
-- [9. Quick Reference](#9--quick-reference)
-- [10. What's Next?](#10--whats-next)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 SPEC KIT FRAMEWORK](#2--spec-kit-framework)
+3. [🧠 MEMORY SYSTEM](#3--memory-system)
+4. [🤖 AGENTS.MD FRAMEWORK](#4--agentsmd-framework)
+5. [🧩 SKILLS LIBRARY](#5--skills-library)
+6. [⚡ COMMANDS](#6--commands)
+7. [🚀 INSTALLATION & SETUP](#7--installation--setup)
+8.  [🚀 WHAT'S NEXT?](#8--whats-next)
 
 ---
 
-## 1. 🚀 Installing OpenCode
+## 1. 📖 OVERVIEW
 
-OpenCode is the CLI that powers this entire environment. It connects your AI models, loads your skills, and manages your conversation sessions. Installation takes about 2 minutes via Homebrew or Go.
+> **Context that persists. Documentation that writes itself.**
 
-### What is OpenCode?
+### Why This System?
 
-[OpenCode](https://github.com/sst/opencode) is a terminal-based AI coding assistant. It can connect to multiple model providers, talk to MCP servers, and load a skills/plugin system so your workflow is more than just “chat + paste”.
+AI coding assistants are powerful but stateless. Every session starts from zero. This environment adds the missing layers: persistent memory, enforced documentation, and automated workflows that make AI-assisted development sustainable for real projects.
 
-### Installation
+| The Pain               | Without This                          | With This Environment                             |
+| ---------------------- | ------------------------------------- | ------------------------------------------------- |
+| **Context**            | Re-explain everything every session   | Memory persists across sessions, models, projects |
+| **Documentation**      | "I'll document later" (never happens) | Gate 3 enforces spec folders on every change      |
+| **Decisions**          | Lost in chat history                  | ADRs in decision-record.md, searchable forever    |
+| **Handoffs**           | 2-hour "what did you do" meetings     | `/spec_kit:handover` → 15-line summary            |
+| **Debugging**          | Copy-paste error → AI guesses         | `/spec_kit:debug` → sub-agent with full context   |
+| **Code search**        | grep + hope                           | Semantic search by *meaning*, not text            |
+| **Quality gates**      | Trust the AI did it right             | 8 mandatory gates verify completion               |
+| **Tool orchestration** | Manual juggling                       | 9 skills load automatically based on task         |
 
-```bash
-# macOS (Homebrew): recommended
-brew install opencode-ai/tap/opencode
+> **The bottom line:** 14 MCP tools, 9 skills, 10 templates, 8 quality gates, 93% token savings—zero re-explanation.
 
-# Or via Go
-go install github.com/opencodeco/opencode@latest
-```
 
-### First Run
+### 🧠 Semantic Memory — *Built from scratch*
 
-```bash
-cd /path/to/your-project
-opencode
-```
+A custom MCP server that gives your AI assistant persistent, searchable memory across sessions. Not a wrapper around existing tools—this is purpose-built for AI-assisted development with hybrid search, importance tiers, and proactive context surfacing.
 
-On first launch, OpenCode guides you through provider configuration (see Section 2).
+| What Others Have           | What This System Has                       |
+| -------------------------- | ------------------------------------------ |
+| No memory between sessions | Hybrid search (vector + FTS5 + RRF fusion) |
+| Manual context management  | 6 importance tiers with auto-decay         |
+| Cloud-dependent solutions  | 100% local (nomic-embed on YOUR machine)   |
+| Load entire files          | ANCHOR format = 93% token savings          |
+| Hope you remember          | <50ms proactive surfacing before you ask   |
+| No recovery options        | Checkpoints = undo button for your index   |
 
-### Configuration File
+**→ 14 MCP tools | 6 importance tiers | Constitutional memories always surface | Works offline**
 
-OpenCode reads `opencode.json` from your project root. Use the template in this folder:
 
-```bash
-cp "Code Environment/opencode.json" /path/to/your-project/opencode.json
-```
+### 📋 Spec Kit — What Sets This Apart
 
-Then update paths for your MCP server locations.
+Originally inspired by [GitHub Spec Kit](https://github.com/github/spec-kit), this system takes the concept far beyond basic templates. The original offers a starting point for documentation; this version transforms it into a fully automated, self-enforcing workflow. 
 
----
+Key enhancements include automated through gate enforcement, slash commands for every workflow, deep memory integration, sub-folder versioning for historical traceability, delegated debugging, and a stateless architecture. Here, documentation isn’t just a suggestion—it’s a requirement, enforced by design.
 
-## 2. 🔌 Connecting Providers
+| Original Spec Kit      | This System                                      |
+| ---------------------- | ------------------------------------------------ |
+| ~3 basic templates     | 10 purpose-built templates                       |
+| Optional documentation | Gate 3 blocks code without spec folder           |
+| No commands            | 7 slash commands with `:auto`/`:confirm` modes   |
+| No memory integration  | Memory lives IN spec folders (deep integration)  |
+| Overwrite old work     | 001/002/003 sub-folder versioning                |
+| No automation          | 6 scripts handle the boring work                 |
+| Debug alone            | AI detects frustration → auto-suggests sub-agent |
+| Manual state tracking  | V13.0 stateless architecture (no STATE.md)       |
+| "Is this done?"        | Completeness scoring (0-100%)                    |
 
-Providers give OpenCode access to AI models like Claude, GPT, and Gemini. You can connect multiple providers and switch between them mid-conversation. Each provider has different strengths—Claude for reasoning, GPT for speed, Gemini for large contexts.
+**→ 10 templates | 7 commands | 6 scripts | V13.0 stateless architecture**
 
-OpenCode supports multiple LLM providers. Here are the most common setups:
+### 🔗 The Integration Nobody Else Has
 
-### GitHub Copilot Pro+ (Best Value)
+These systems aren't just bundled—they're *woven together*:
+- Memory files live inside spec folders (`specs/###-feature/memory/`)
+- Gate 5 enforces `generate-context.js` for every save
+- `/spec_kit:resume` auto-loads relevant memories
+- Sub-folder versioning preserves independent memory per version
 
-**The most cost-effective way to access premium models with CLI capabilities.** Copilot Pro+ gives you generous usage of Claude Opus, GPT-5.2, and other top-tier models: all with agentic coding features similar to Claude Code.
+### What's Inside
 
-1. Subscribe to [GitHub Copilot Pro+](https://github.com/features/copilot)
-2. Install the GitHub CLI: `brew install gh`
-3. Authenticate: `gh auth login`
-4. OpenCode auto-detects your Copilot subscription
-
-### Claude Code (Subscription-Based)
-
-If you already have a Claude subscription, Claude Code is a smooth option (no API keys required):
-
-1. Install [Claude Code](https://claude.ai/code) 
-2. Sign in with your Anthropic account
-3. OpenCode auto-detects and uses your subscription
-
-### OpenRouter (API Key: Multi-Model Access)
-
-For flexible pay-per-use access to many models through a single API:
-
-```bash
-export OPENROUTER_API_KEY="your-api-key"
-```
-
-OpenRouter is ideal when you want model flexibility or pay-per-use pricing.
-
----
-
-## 3. 🧩 MCP Server Setup
-
-MCP (Model Context Protocol) servers extend your AI assistant with specialized capabilities—semantic search, browser automation, external tool integration, and more. Think of them as plugins that give your AI superpowers it doesn't have out of the box. This environment includes 6 pre-configured servers ready to use.
-
-**📚 Detailed installation guides:** [`install_guides/README.md`](install_guides/README.md) (master guide with pre-flight checks, component matrix, and step-by-step setup)
-
-### Available Servers
-
-| Server                  | What It Does                                        | Guide                                                                                     |
-| ----------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| **Code Mode**           | TypeScript tool orchestration, multi-tool workflows | [MCP - Code Mode.md](install_guides/MCP/MCP%20-%20Code%20Mode.md)                         |
-| **LEANN**               | Semantic code search (97% storage savings)          | [MCP - LEANN.md](install_guides/MCP/MCP%20-%20LEANN.md)                                   |
-| **Code Context**        | Structural code analysis via Tree-sitter AST        | [MCP - Code Context.md](install_guides/MCP/MCP%20-%20Code%20Context.md)                   |
-| **Semantic Memory**     | Local vector-based conversation memory              | [MCP - Semantic Memory.md](install_guides/MCP/MCP%20-%20Semantic%20Memory.md)             |
-| **Sequential Thinking** | Structured multi-step reasoning                     | [MCP - Sequential Thinking.md](install_guides/MCP/MCP%20-%20Sequential%20Thinking.md)     |
-| **Chrome DevTools**     | Browser automation and debugging                    | [MCP - Chrome Dev Tools.md](install_guides/MCP/MCP%20-%20Chrome%20Dev%20Tools.md)         |
-
-### Code Search Tools (Complementary - Not Competing)
-
-Use these three tools together for comprehensive code discovery:
-
-| Tool             | Type       | Query Example               | Returns                |
-| ---------------- | ---------- | --------------------------- | ---------------------- |
-| **LEANN**        | Semantic   | "How does auth work?"       | Code by meaning/intent |
-| **Code Context** | Structural | "List functions in auth.ts" | Symbols/definitions    |
-| **Grep**         | Lexical    | "Find 'TODO' comments"      | Text pattern matches   |
-
-**Decision Logic:**
-- Need to UNDERSTAND code? → LEANN (semantic)
-- Need to MAP code structure? → Code Context (structural)
-- Need to FIND text patterns? → Grep (lexical)
-
-### Quick Setup
-
-1. **Install dependencies**: follow each server's guide
-2. **Copy the config template:**
-   ```bash
-   cp opencode.json /path/to/your-project/
-   ```
-
-### Native Skills (OpenCode v1.0.190+)
-
-Skills are **natively supported** in OpenCode v1.0.190+. No plugin required.
-
-Skills are auto-discovered from `.opencode/skill/*/SKILL.md` and exposed as `skills_*` functions.
-
-**Setup guides:**
-| Guide | Purpose |
-|-------|---------|
-| [SET-UP - AGENTS.md](install_guides/SET-UP%20-%20AGENTS.md) | Configure AI agent guardrails |
-| [SET-UP - Skill Advisor.md](install_guides/SET-UP%20-%20Skill%20Advisor.md) | Configure intelligent skill routing |
-| [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) | Create custom skills |
-
-**Auth Plugins:**
-| Plugin | Guide |
-|--------|-------|
-| Antigravity Auth (Google OAuth) | [PLUGIN - Antigravity Auth.md](install_guides/PLUGIN/PLUGIN%20-%20Antigravity%20Auth.md) |
-| OpenAI Codex Auth | [PLUGIN - OpenAI Codex Auth.md](install_guides/PLUGIN/PLUGIN%20-%20OpenAI%20Codex%20Auth.md) |
-
----
-
-## 4. 🤖 AGENTS.MD Framework
-
-The AGENTS.md file is the brain of your AI assistant's behavior. It defines 7 mandatory gates that every request passes through, preventing common failures like hallucination, scope creep, and forgotten context. Without these guardrails, AI assistants make assumptions, skip documentation, and lose track of multi-step tasks.
-
-The [`AGENTS.md`](AGENTS.md) file defines the guardrails: the rules that keep an AI assistant consistent, careful, and predictable across long-running work.
-
-### Why You Need This
-
-Without guardrails, AI assistants:
-- Make assumptions instead of asking clarifying questions
-- Skip documentation and lose context between sessions
-- Claim completion without proper verification
-- Create technical debt through inconsistent approaches
-
-**AGENTS.md prevents all of this.**
+| Component          | What It Provides                                                        |
+| ------------------ | ----------------------------------------------------------------------- |
+| **Spec Kit**       | 10 templates, 7 commands, 6 scripts—documentation on autopilot          |
+| **Memory System**  | 14 MCP tools, 6 importance tiers, hybrid search—context that persists   |
+| **AGENTS.md**      | 8 gates, confidence framework, quality enforcement—guardrails that work |
+| **Skills Library** | 9 domain experts that load automatically based on your task             |
+| **Commands**       | 20+ slash commands for repeatable multi-step workflows                  |
 
 ### How It All Works Together
-
-Here's the complete workflow from your first message to documented completion:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -202,7 +120,7 @@ Here's the complete workflow from your first message to documented completion:
 ┌─────────────────────────────────────┐
 │  🚦 GATE SYSTEM ACTIVATES           │
 │                                     │
-│  • Confidence check (≥80%?)         │
+│  • Confidence check (≥80%?)          │
 │  • Asks: Spec folder? Git branch?   │
 │  • Loads relevant memories          │
 └────────────────┬────────────────────┘
@@ -212,13 +130,13 @@ Here's the complete workflow from your first message to documented completion:
 │  🧩 SKILL MATCHING                  │
 │                                     │
 │  Agent scans <available_skills>     │
-│  Loads: workflows-code, spec-kit,   │
+│  Loads: workflows-code, spec-kit,    │
 │         memory, git, etc.           │
 └────────────────┬────────────────────┘
                  │
                  ▼
 ┌─────────────────────────────────────┐
-│  ⚡ EXECUTION                       │
+│  ⚡ EXECUTION                        │
 │                                     │
 │  • Creates spec folder (###-name)   │
 │  • Copies templates (spec/plan/     │
@@ -239,8 +157,8 @@ Here's the complete workflow from your first message to documented completion:
 ┌─────────────────────────────────────┐
 │  ✅ COMPLETION                      │
 │                                     │
-│  • Checklist verification (L2+)     │
-│  • Browser testing confirmed        │
+│  • Checklist verification (L2+)      │
+│  • Browser testing confirmed         │
 │  • Documentation complete           │
 └─────────────────────────────────────┘
 
@@ -250,88 +168,42 @@ Here's the complete workflow from your first message to documented completion:
      └── 🔄 Recoverable in future sessions
 ```
 
-### Core Framework Components
-
-#### Mandatory Gates System
-
-A comprehensive gate workflow (Gates 0–7) ensures nothing slips through the cracks:
-
-| Gate         | Name                    | Purpose                                                          |
-| ------------ | ----------------------- | ---------------------------------------------------------------- |
-| **Gate 0**   | Compaction Check        | Detects context loss, pauses for user confirmation               |
-| **Gate 0.5** | Continuation Validation | Validates handoff state against memory files on resume           |
-| **Gate 1**   | Understanding Check     | Requires 80%+ confidence, surfaces memories via trigger matching |
-| **Gate 2**   | Skill Routing           | Routes to appropriate skill via skill_advisor.py                 |
-| **Gate 3**   | Spec Folder Question    | Asks spec folder choice (A/B/C/D) before file modifications      |
-| **Gate 4**   | Memory Loading          | Offers to load relevant memories when using existing spec        |
-| **Gate 5**   | Memory Save Validation  | **MANDATORY** generate-context.js for all memory saves           |
-| **Gate 6**   | Completion Verification | Enforces checklist completion before claiming "done"             |
-| **Gate 7**   | Context Health Monitor  | Progressive warnings (Tier 1/2/3) for long sessions              |
-
-#### Spec Folder Discipline
-
-Every file modification gets documented: no exceptions:
-- Automatic spec folder creation with numbered naming
-- Three documentation levels (baseline → verified → full)
-- Template-driven consistency across all projects
-
-#### Confidence & Clarification Framework
-
-Built-in uncertainty handling:
-- Explicit confidence scoring (0-100%)
-- Mandatory clarification when confidence < 80%
-- Multiple-choice questions for ambiguous requests
-- Never fabricates: outputs "UNKNOWN" when unverifiable
-
-#### Tool Selection & Routing
-
-Smart tool dispatch based on task type:
-- Semantic search for code discovery
-- Sequential thinking for complex reasoning
-- Parallel agent dispatch for multi-domain tasks
-- Chrome DevTools integration for browser verification
-
-#### Quality Principles
-
-Enforced standards:
-- Simplicity first (KISS)
-- Evidence-based decisions with citations
-- Scope discipline: solves only what's asked
-- Browser verification before completion claims
-
-### Codebase-Agnostic Version
-
-[`AGENTS (Universal).md`](AGENTS%20(Universal).md): a version without project-specific references, ready to drop into any codebase.
-
 ---
 
-## 5. 📋 SpecKit: Documentation Framework
+## 2. 📋 SPEC KIT FRAMEWORK
 
-Every file change gets documented—not because bureaucracy is fun, but because future-you (and future-AI) will thank you. SpecKit enforces a simple rule: no code without a spec folder. This means every feature, bug fix, and refactor has traceable context that persists across sessions and team members.
+> **Documentation that writes itself. Context that never dies.**
 
-### Why This Matters
+Every feature you build should leave a trail. Not for bureaucracy—for your future self, your team, and the AI that helps you code. Spec Kit enforces one simple rule: *no code without a spec folder*.
 
-Without documentation:
-- AI forgets what you built last week
-- You forget why you made that decision
-- Handoffs become archaeology projects
+The result? Six months from now, you'll know exactly why you made that architectural decision. Your AI assistant will pick up where you left off. And onboarding new developers takes hours instead of weeks.
 
-With SpecKit:
-- Every change has a spec folder
-- Context persists across sessions
-- Decisions are traceable
+### What Makes This Different
+
+| Capability             | Basic Documentation | This Spec Kit                                    |
+| ---------------------- | ------------------- | ------------------------------------------------ |
+| **Enforcement**        | Hope you remember   | Gate 3 blocks file changes without spec folder   |
+| **Templates**          | Start from scratch  | 10 purpose-built templates ready to copy         |
+| **Commands**           | Manual workflow     | 7 slash commands with `:auto`/`:confirm` modes   |
+| **Memory Integration** | None                | Deep integration—memories live IN spec folders   |
+| **Session Handover**   | Screenshot + pray   | `:quick` (15 lines) or `:full` (150 lines)       |
+| **Debug Assistance**   | None                | AI detects frustration → auto-suggests sub-agent |
+| **Quality Metrics**    | Guesswork           | Completeness scoring (0-100%)                    |
+| **Folder Versioning**  | Overwrite old work  | 001/002/003 sub-folder pattern preserves history |
+
+> **The bottom line:** 10 templates, 7 commands, 6 scripts, 0 excuses for losing context.
 
 ### Three Documentation Levels
 
-| Level | Files Required | When to Use |
-|-------|----------------|-------------|
-| **Level 1** | spec.md, plan.md, tasks.md | Bug fixes, small features (<100 LOC) |
-| **Level 2** | Level 1 + checklist.md | Features needing QA (100-499 LOC) |
-| **Level 3** | Level 2 + decision-record.md | Architecture changes (500+ LOC) |
+| Level       | Files Required               | When to Use                          |
+| ----------- | ---------------------------- | ------------------------------------ |
+| **Level 1** | spec.md, plan.md, tasks.md   | Bug fixes, small features (<100 LOC) |
+| **Level 2** | Level 1 + checklist.md       | Features needing QA (100-499 LOC)    |
+| **Level 3** | Level 2 + decision-record.md | Architecture changes (500+ LOC)      |
 
 **Rule of thumb:** When in doubt, go one level higher.
 
-### Quick Start
+### Quick Example
 
 ```bash
 # Create a new spec folder
@@ -347,92 +219,100 @@ specs/042-add-user-authentication/
 └── memory/          # Session context (persisted)
 ```
 
-### SpecKit Commands
+### Spec Kit Commands
 
-| Command | What It Does |
-|---------|--------------|
-| `/spec_kit:complete` | Full workflow: spec → plan → implement |
-| `/spec_kit:plan` | Planning only, no implementation |
-| `/spec_kit:implement` | Execute existing plan |
-| `/spec_kit:research` | Technical investigation |
-| `/spec_kit:resume` | Continue previous session |
-| `/spec_kit:handover` | Create session handover document |
-| `/spec_kit:debug` | Delegate debugging to sub-agent |
+| Command               | What It Does                           |
+| --------------------- | -------------------------------------- |
+| `/spec_kit:complete`  | Full workflow: spec → plan → implement |
+| `/spec_kit:plan`      | Planning only, no implementation       |
+| `/spec_kit:implement` | Execute existing plan                  |
+| `/spec_kit:research`  | Technical investigation                |
+| `/spec_kit:resume`    | Continue previous session              |
+| `/spec_kit:handover`  | Create session handover document       |
+| `/spec_kit:debug`     | Delegate debugging to sub-agent        |
 
-**Mode Suffixes:** Add `:auto` or `:confirm` to commands (e.g., `/spec_kit:complete:auto`)
+**Mode Suffixes:** Add `:auto` or `:confirm` (e.g., `/spec_kit:complete:auto`)
 **Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
 
 ### Templates (10 Total)
 
-All templates live in `skill/system-spec-kit/templates/` (or `.opencode/skill/` in deployed projects):
+| Template              | Purpose                                        |
+| --------------------- | ---------------------------------------------- |
+| `spec.md`             | Feature specification with acceptance criteria |
+| `plan.md`             | Technical implementation plan                  |
+| `tasks.md`            | Task breakdown by user story                   |
+| `checklist.md`        | QA validation with P0/P1/P2 priorities         |
+| `decision-record.md`  | Architecture Decision Records (ADRs)           |
+| `research.md`         | Comprehensive technical research               |
+| `research-spike.md`   | Time-boxed proof of concept                    |
+| `handover.md`         | Session continuity for multi-session work      |
+| `debug-delegation.md` | Sub-agent debugging tasks                      |
+| `quick-continue.md`   | Minimal handoff for session branching          |
 
-| Template | Purpose |
-|----------|---------|
-| `spec.md` | Feature specification with acceptance criteria |
-| `plan.md` | Technical implementation plan |
-| `tasks.md` | Task breakdown by user story |
-| `checklist.md` | QA validation with P0/P1/P2 priorities |
-| `decision-record.md` | Architecture Decision Records (ADRs) |
-| `research.md` | Comprehensive technical research |
-| `research-spike.md` | Time-boxed proof of concept |
-| `handover.md` | Session continuity for multi-session work |
-| `debug-delegation.md` | Sub-agent debugging tasks |
-| `quick-continue.md` | Minimal handoff for session branching |
+> **V13.0 Architecture:** Project state is embedded in memory files (no separate state.md). This means no bloated marker files cluttering your repo.
 
-> **Note:** Project state is now embedded in memory files (V13.0 stateless architecture). No separate state.md template.
-
-For detailed template documentation, see the [system-spec-kit skill](skill/system-spec-kit/SKILL.md).
+For detailed documentation, see the [system-spec-kit skill](skill/system-spec-kit/SKILL.md).
 
 ---
 
-## 6. 🧠 Memory System
+## 3. 🧠 MEMORY SYSTEM
 
-**The Problem:** Every AI conversation starts fresh. You explain your auth system on Monday, and by Wednesday the AI has no idea what you're talking about.
+> **Remember everything. Surface what matters. Keep it private.**
 
-**The Solution:** Semantic memory that persists across sessions, models, and projects.
+Your AI assistant forgets everything between sessions. You explain your auth system Monday—by Wednesday, it's a blank slate. This memory system fixes that with semantic search that understands *meaning*, importance tiers that prioritize *what matters*, and local-first architecture that keeps *your code yours*.
 
-> **CRITICAL (V13.0):** Memory saves MUST use `generate-context.js`—never manually create memory files. This is enforced by Gate 5.
+No cloud. No external APIs. Just intelligent context preservation that makes AI-assisted development actually work.
 
-### How It Works
+### What Makes This Different
 
-```
-Conversation → generate-context.js → ANCHOR Format → Vector Embeddings → SQLite
-                                           ↓
-Future Session → Query → Hybrid Search → Anchor-Based Section Loading
-```
+| Capability               | Basic Chat Logs    | This Memory System                              |
+| ------------------------ | ------------------ | ----------------------------------------------- |
+| **Search**               | Ctrl+F (text only) | Hybrid semantic + keyword (RRF fusion)          |
+| **Prioritization**       | None               | 6-tier importance (constitutional → deprecated) |
+| **Relevance**            | All memories equal | 90-day decay keeps recent memories on top       |
+| **Privacy**              | Often cloud-stored | 100% local (nomic-embed runs on YOUR machine)   |
+| **Token Efficiency**     | Load everything    | ANCHOR format (93% savings)                     |
+| **Spec Kit Integration** | None               | Deep (Gate 5 enforced, lives in spec folders)   |
+| **Proactive Surfacing**  | None               | <50ms trigger matching                          |
+| **Recovery**             | Hope you backed up | Checkpoints (undo button for your index)        |
 
-### Key Features
+> **The bottom line:** 14 MCP tools, 6 importance tiers, <50ms trigger matching, 93% token savings, 0 data sent externally.
 
-| Feature | What It Does | Why It Matters |
-|---------|--------------|----------------|
-| **6-Tier Importance** | Constitutional → Critical → Important → Normal → Temporary → Deprecated | Right context at the right time |
-| **Hybrid Search** | Vector similarity + full-text keywords + RRF fusion | Finds what you mean, not just what you typed |
-| **ANCHOR Format** | `<!-- ANCHOR: section-id -->` markers enable section loading | 93% token savings—load specific decisions, not entire files |
-| **90-Day Decay** | Old memories fade, recent ones surface | Stays relevant without manual cleanup |
-| **Auto-Indexing** | `memory_save()` and `memory_index_scan()` MCP tools | New memories indexed automatically |
-| **Checkpoints** | Save/restore database state | Experiment safely, rollback if needed |
+### Deep Spec Kit Integration
+
+Memory and Spec Kit are designed to work together:
+
+| Integration Point         | How It Works                                                      |
+| ------------------------- | ----------------------------------------------------------------- |
+| **Memory Location**       | Files live IN spec folders: `specs/###-feature/memory/`           |
+| **Gate 5 Enforcement**    | Memory saves MUST use `generate-context.js` (no orphaned context) |
+| **Sub-folder Versioning** | Each 001/002/003 sub-folder has independent memory context        |
+| **Session Continuity**    | `/spec_kit:resume` auto-loads relevant memories                   |
+| **V13.0 Stateless**       | Project state embedded in memory files (no separate STATE.md)     |
+
+When you save context, it goes to the right spec folder. When you resume work, memories load automatically. When you version your specs, memories version with them.
 
 ### The Six Importance Tiers
 
-| Tier | Boost | Decay | Use For |
-|------|-------|-------|---------|
-| `constitutional` | 3.0x | Never | Project rules, always-on context (~500 tokens) |
-| `critical` | 2.0x | Never | Architecture decisions, breaking changes |
-| `important` | 1.5x | Never | Key implementations, major features |
-| `normal` | 1.0x | 90-day | Standard development context |
-| `temporary` | 0.5x | 7-day | Debug sessions, experiments |
-| `deprecated` | 0.0x | — | Excluded from search |
+| Tier             | Boost | Decay  | Use For                                        |
+| ---------------- | ----- | ------ | ---------------------------------------------- |
+| `constitutional` | 3.0x  | Never  | Project rules, always-on context (~500 tokens) |
+| `critical`       | 2.0x  | Never  | Architecture decisions, breaking changes       |
+| `important`      | 1.5x  | Never  | Key implementations, major features            |
+| `normal`         | 1.0x  | 90-day | Standard development context                   |
+| `temporary`      | 0.5x  | 7-day  | Debug sessions, experiments                    |
+| `deprecated`     | 0.0x  | —      | Excluded from search                           |
 
 ### Memory Commands
 
-| Command | What It Does |
-|---------|--------------|
-| `/memory:save [spec-folder]` | Save context via generate-context.js (folder required or prompted) |
-| `/memory:search` | Dashboard: stats + recent + suggested actions |
-| `/memory:search <query>` | Semantic search with tier/type filters |
-| `/memory:search cleanup` | Interactive cleanup of old memories |
-| `/memory:search triggers` | View and manage trigger phrases |
-| `/memory:checkpoint create` | Snapshot current state |
+| Command                      | What It Does                                  |
+| ---------------------------- | --------------------------------------------- |
+| `/memory:save [spec-folder]` | Save context via generate-context.js          |
+| `/memory:search`             | Dashboard: stats + recent + suggested actions |
+| `/memory:search <query>`     | Semantic search with tier/type filters        |
+| `/memory:search cleanup`     | Interactive cleanup of old memories           |
+| `/memory:search triggers`    | View and manage trigger phrases               |
+| `/memory:checkpoint create`  | Snapshot current state                        |
 
 **Example:**
 ```
@@ -461,18 +341,67 @@ This enables `memory_load({ specFolder: "042-auth", anchorId: "decision-auth-flo
 
 ### Privacy First
 
-All processing happens locally:
-- **Embeddings:** `nomic-embed-text-v1.5` via Ollama (768-dim vectors)
-- **Storage:** SQLite with sqlite-vec extension
-- **No external API calls** for memory operations
+> **Your Code Never Leaves Your Machine**
 
-The Semantic Memory MCP server enables AI assistants to search and load memories directly. See [`skill/system-memory/`](skill/system-memory/) for implementation details and [`install_guides/MCP/MCP - Semantic Memory.md`](install_guides/MCP/MCP%20-%20Semantic%20Memory.md) for setup.
+All processing happens locally:
+- **Embeddings:** `nomic-embed-text-v1.5` runs on YOUR machine (768-dim vectors)
+- **Storage:** SQLite with sqlite-vec extension in YOUR project
+- **No external API calls** for memory operations
+- Works fully offline
+
+See [`skill/system-memory/`](skill/system-memory/) for implementation details and [`install_guides/MCP/MCP - Semantic Memory.md`](install_guides/MCP/MCP%20-%20Semantic%20Memory.md) for setup.
 
 ---
 
-## 7. 🧩 Skills Library
+## 4. 🤖 AGENTS.MD FRAMEWORK
 
-Skills are domain expertise on demand. Instead of explaining "how to do git commits properly" every session, the AI loads the workflows-git skill and already knows your conventions. Skills are automatically discovered and loaded based on what you're trying to do—no manual invocation required for common tasks.
+The [`AGENTS.md`](AGENTS.md) file is the brain of your AI assistant's behavior. It defines 8 mandatory gates that every request passes through, preventing common failures like hallucination, scope creep, and forgotten context.
+
+### Why You Need This
+
+Without guardrails, AI assistants:
+- Make assumptions instead of asking clarifying questions
+- Skip documentation and lose context between sessions
+- Claim completion without proper verification
+- Create technical debt through inconsistent approaches
+
+**AGENTS.md prevents all of this.**
+
+### The 8-Gate System
+
+| Gate         | Name                    | Purpose                                                          |
+| ------------ | ----------------------- | ---------------------------------------------------------------- |
+| **Gate 0**   | Compaction Check        | Detects context loss, pauses for user confirmation               |
+| **Gate 0.5** | Continuation Validation | Validates handoff state against memory files on resume           |
+| **Gate 1**   | Understanding Check     | Requires 80%+ confidence, surfaces memories via trigger matching |
+| **Gate 2**   | Skill Routing           | Routes to appropriate skill via skill_advisor.py                 |
+| **Gate 3**   | Spec Folder Question    | Asks spec folder choice (A/B/C/D) before file modifications      |
+| **Gate 4**   | Memory Loading          | Offers to load relevant memories when using existing spec        |
+| **Gate 5**   | Memory Save Validation  | **MANDATORY** generate-context.js for all memory saves           |
+| **Gate 6**   | Completion Verification | Enforces checklist completion before claiming "done"             |
+| **Gate 7**   | Context Health Monitor  | Progressive warnings (Tier 1/2/3) for long sessions              |
+
+### Core Framework Components
+
+**Confidence & Clarification Framework:**
+- Explicit confidence scoring (0-100%)
+- Mandatory clarification when confidence < 80%
+- Multiple-choice questions for ambiguous requests
+- Never fabricates: outputs "UNKNOWN" when unverifiable
+
+**Quality Principles:**
+- Simplicity first (KISS)
+- Evidence-based decisions with citations
+- Scope discipline: solves only what's asked
+- Browser verification before completion claims
+
+**Codebase-Agnostic Version:** [`AGENTS (Universal).md`](AGENTS%20(Universal).md)—ready to drop into any codebase.
+
+---
+
+## 5. 🧩 SKILLS LIBRARY
+
+Skills are domain expertise on demand. Instead of explaining "how to do git commits properly" every session, the AI loads the workflows-git skill and already knows your conventions.
 
 ### How Skills Work
 
@@ -486,71 +415,45 @@ Your Request → skill_advisor.py analyzes keywords
               AI follows skill guidance
 ```
 
-**Native Discovery:** OpenCode v1.0.190+ automatically finds skills in `skill/*/SKILL.md` (or `.opencode/skill/` in deployed projects). No plugin required.
+**Native Discovery:** OpenCode v1.0.190+ automatically finds skills in `skill/*/SKILL.md`. No plugin required.
 
 ### Available Skills (9 Total)
 
-| Skill | What It Does | Trigger Examples |
-|-------|--------------|------------------|
-| **mcp-leann** | Semantic code search—finds code by *meaning*, not just text | "How does auth work?", "Explain the login flow" |
-| **mcp-code-context** | Structural analysis—lists functions, classes, symbols | "What functions are in auth.ts?", "Show class hierarchy" |
-| **mcp-code-mode** | External tool orchestration (Webflow, Figma, ClickUp) | "Update Webflow site", "Get Figma components" |
-| **system-memory** | Context preservation across sessions | "Save this context", "What did we decide about X?" |
-| **system-spec-kit** | Documentation enforcement and templates | "Create spec for feature", "Start new task" |
-| **workflows-code** | Implementation lifecycle (plan → code → verify) | "Implement this feature", "Debug this error" |
-| **workflows-documentation** | Document quality, skill creation, ASCII flowcharts | "Create install guide", "Validate markdown" |
-| **workflows-git** | Git workflows (commits, branches, PRs) | "Commit these changes", "Create PR" |
-| **workflows-chrome-devtools** | Browser automation and debugging | "Take screenshot", "Check console errors" |
+| Skill                         | What It Does                                    | Trigger Examples                 |
+| ----------------------------- | ----------------------------------------------- | -------------------------------- |
+| **mcp-leann**                 | Semantic code search—finds code by *meaning*    | "How does auth work?"            |
+| **mcp-code-context**          | Structural analysis—lists functions, classes    | "What functions are in auth.ts?" |
+| **mcp-code-mode**             | External tool orchestration (Webflow, Figma)    | "Update Webflow site"            |
+| **system-memory**             | Context preservation across sessions            | "Save this context"              |
+| **system-spec-kit**           | Documentation enforcement and templates         | "Create spec for feature"        |
+| **workflows-code**            | Implementation lifecycle (plan → code → verify) | "Implement this feature"         |
+| **workflows-documentation**   | Document quality, skill creation                | "Create install guide"           |
+| **workflows-git**             | Git workflows (commits, branches, PRs)          | "Commit these changes"           |
+| **workflows-chrome-devtools** | Browser automation and debugging                | "Take screenshot"                |
 
 ### Skills vs Commands
 
-| Aspect | Skills | Commands |
-|--------|--------|----------|
-| **Invocation** | Automatic (keyword-triggered) | Explicit (`/command:name`) |
-| **Routing** | skill_advisor.py with confidence scoring | Direct user request |
-| **Style** | Flexible guidance—AI adapts | Rigid workflow—strict steps |
-| **Example** | "How does auth work?" → mcp-leann | `/spec_kit:complete auth` → 12-step workflow |
-
-### Skill Routing (Gate 2)
-
-Every request passes through the skill advisor:
-
-```bash
-python .opencode/scripts/skill_advisor.py "your request"
-```
-
-Returns:
-```json
-{
-  "skill": "mcp-leann",
-  "confidence": 0.92,
-  "reason": "Matched: !how, !authentication, !work"
-}
-```
+| Aspect         | Skills                                   | Commands                    |
+| -------------- | ---------------------------------------- | --------------------------- |
+| **Invocation** | Automatic (keyword-triggered)            | Explicit (`/command:name`)  |
+| **Routing**    | skill_advisor.py with confidence scoring | Direct user request         |
+| **Style**      | Flexible guidance—AI adapts              | Rigid workflow—strict steps |
 
 **Confidence > 0.8 = mandatory skill invocation.** The AI must load and follow the skill.
 
 ### Creating Custom Skills
 
 ```bash
-# Initialize skill structure
 python skill/workflows-documentation/scripts/init_skill.py my-skill
-
-# Required SKILL.md sections:
-# - WHEN TO USE (triggers)
-# - HOW IT WORKS (patterns)  
-# - RULES (✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF)
 ```
 
 See [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) for the full guide.
 
 ---
 
-## 8. ⚡ Commands
+## 6. ⚡ COMMANDS
 
-Commands are explicit, user-invoked workflows with structured steps. Unlike skills (which load automatically), commands are triggered with a /slash syntax when you want a specific multi-step process. They're perfect for repeatable workflows like creating specs, saving context, or searching code.
-
-Commands in [`command/`](command/) are structured entry points that chain steps, load the right skills, and enforce quality gates without you having to re-prompt every step.
+Commands are explicit, user-invoked workflows with structured steps. Unlike skills (which load automatically), commands are triggered with a /slash syntax for repeatable multi-step processes.
 
 ### Why Commands Beat Free-Form Prompts
 
@@ -562,47 +465,114 @@ Commands in [`command/`](command/) are structured entry points that chain steps,
 | Manual skill loading    | Auto-loads what's needed |
 | High quota usage        | Minimal quota cost       |
 
-- **Enforce without hooks**: Commands embed enforcement directly into the workflow
-- **Chain long workflows**: One command triggers 12+ sequential steps without re-prompting
-- **Save your quota**: On Copilot Pro+, one 12-step command costs a fraction of 12 separate requests
-- **Auto-load skills**: Commands pull in the domain expertise they need automatically
-
 ### Available Commands
 
-| Folder      | Commands                                                                                                                              |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Folder      | Commands                                                                                                                                         |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `spec_kit/` | `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:debug`, `/spec_kit:handover` |
-| `memory/`   | `/memory:save`, `/memory:search`, `/memory:checkpoint`                                                                                |
-| `create/`   | `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`                   |
-| `search/`   | `/search:code`, `/search:index` (semantic code search and index management)                                                           |
-| `prompt/`   | `/prompt:improve` (prompt refinement)                                                                                                 |
-
-**Mode Suffixes for spec_kit:** `:auto` or `:confirm` (e.g., `/spec_kit:complete:auto`)
-**Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
-
+| `memory/`   | `/memory:save`, `/memory:search`, `/memory:checkpoint`                                                                                           |
+| `create/`   | `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`                              |
+| `search/`   | `/search:code`, `/search:index`                                                                                                                  |
+| `prompt/`   | `/prompt:improve`                                                                                                                                |
 
 ---
 
-## 9. 🏎️ Quick Reference
+## 7. 🚀 INSTALLATION & SETUP
 
-Everything you need at a glance. This section provides quick links to configuration files, documentation, and common resources. Bookmark this section—you'll come back to it often when you need to find where something lives.
+> - 📚 Master install guide:** [`install_guides/README.md`](install_guides/README.md)
 
-| Resource                       | Location                                                     |
-| ------------------------------ | ------------------------------------------------------------ |
-| **Master Install Guide**       | [`install_guides/README.md`](install_guides/README.md)       |
-| OpenCode config                | [`opencode.json`](opencode.json)                             |
-| Agent guardrails               | [`AGENTS.md`](AGENTS.md)                                     |
-| Skills library                 | [`skill/`](skill/)                                           |
-| Commands                       | [`command/`](command/)                                       |
-| MCP guides                     | [`install_guides/MCP/`](install_guides/MCP/)                 |
-| Plugin guides                  | [`install_guides/PLUGIN/`](install_guides/PLUGIN/)           |
-| Setup guides                   | [`install_guides/SET-UP - *.md`](install_guides/)            |
+### Installing OpenCode
+
+[OpenCode](https://github.com/sst/opencode) is a terminal-based AI coding assistant that powers this entire environment.
+
+```bash
+# macOS (Homebrew): recommended
+brew install opencode-ai/tap/opencode
+
+# Or via Go
+go install github.com/opencodeco/opencode@latest
+```
+
+### First Run
+
+```bash
+cd /path/to/your-project
+opencode
+```
+
+On first launch, OpenCode guides you through provider configuration.
+
+### Configuration File
+
+Copy the template to your project:
+
+```bash
+cp "Code Environment/opencode.json" /path/to/your-project/opencode.json
+```
+
+### Connecting Providers
+
+OpenCode supports multiple LLM providers:
+
+**GitHub Copilot Pro+ (Best Value):**
+1. Subscribe to [GitHub Copilot Pro+](https://github.com/features/copilot)
+2. Install GitHub CLI: `brew install gh`
+3. Authenticate: `gh auth login`
+4. OpenCode auto-detects your subscription
+
+**Claude Code (Subscription-Based):**
+1. Install [Claude Code](https://claude.ai/code)
+2. Sign in with your Anthropic account
+3. OpenCode auto-detects and uses your subscription
+
+**OpenRouter (API Key):**
+```bash
+export OPENROUTER_API_KEY="your-api-key"
+```
+
+### MCP Server Setup
+
+MCP servers extend your AI with specialized capabilities. This environment includes 6 pre-configured servers:
+
+| Server                  | What It Does                               | Guide                                                          |
+| ----------------------- | ------------------------------------------ | -------------------------------------------------------------- |
+| **Code Mode**           | TypeScript tool orchestration              | [Guide](install_guides/MCP/MCP%20-%20Code%20Mode.md)           |
+| **LEANN**               | Semantic code search (97% storage savings) | [Guide](install_guides/MCP/MCP%20-%20LEANN.md)                 |
+| **Code Context**        | Structural code analysis via Tree-sitter   | [Guide](install_guides/MCP/MCP%20-%20Code%20Context.md)        |
+| **Semantic Memory**     | Local vector-based conversation memory     | [Guide](install_guides/MCP/MCP%20-%20Semantic%20Memory.md)     |
+| **Sequential Thinking** | Structured multi-step reasoning            | [Guide](install_guides/MCP/MCP%20-%20Sequential%20Thinking.md) |
+| **Chrome DevTools**     | Browser automation and debugging           | [Guide](install_guides/MCP/MCP%20-%20Chrome%20Dev%20Tools.md)  |
+
+### Code Search Tools (Complementary)
+
+Use these three tools together:
+
+| Tool             | Type       | Query Example               | Returns              |
+| ---------------- | ---------- | --------------------------- | -------------------- |
+| **LEANN**        | Semantic   | "How does auth work?"       | Code by meaning      |
+| **Code Context** | Structural | "List functions in auth.ts" | Symbols/definitions  |
+| **Grep**         | Lexical    | "Find 'TODO' comments"      | Text pattern matches |
+
+### Native Skills Setup
+
+Skills are **natively supported** in OpenCode v1.0.190+. Auto-discovered from `skill/*/SKILL.md`.
+
+| Guide                                                                         | Purpose                             |
+| ----------------------------------------------------------------------------- | ----------------------------------- |
+| [SET-UP - AGENTS.md](install_guides/SET-UP%20-%20AGENTS.md)                   | Configure AI agent guardrails       |
+| [SET-UP - Skill Advisor.md](install_guides/SET-UP%20-%20Skill%20Advisor.md)   | Configure intelligent skill routing |
+| [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) | Create custom skills                |
+
+### Auth Plugins
+
+| Plugin                          | Guide                                                                                        |
+| ------------------------------- | -------------------------------------------------------------------------------------------- |
+| Antigravity Auth (Google OAuth) | [PLUGIN - Antigravity Auth.md](install_guides/PLUGIN/PLUGIN%20-%20Antigravity%20Auth.md)     |
+| OpenAI Codex Auth               | [PLUGIN - OpenAI Codex Auth.md](install_guides/PLUGIN/PLUGIN%20-%20OpenAI%20Codex%20Auth.md) |
 
 ---
 
-## 10. 🎯 What's Next?
-
-You've got the environment set up—now what? This section provides a first-session checklist to validate everything works, links to deeper documentation, and troubleshooting tips for common issues. Complete the checklist to confirm your setup is production-ready.
+## 8. 🚀 WHAT'S NEXT?
 
 ### First Session Checklist
 
@@ -613,24 +583,31 @@ You've got the environment set up—now what? This section provides a first-sess
 
 ### Going Deeper
 
-| Topic | Resource |
-|-------|----------|
-| Full installation | [install_guides/README.md](install_guides/README.md) |
-| MCP server setup | [install_guides/MCP/](install_guides/MCP/) |
-| Creating skills | [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) |
-| Agent configuration | [SET-UP - AGENTS.md](install_guides/SET-UP%20-%20AGENTS.md) |
-
-### Troubleshooting
-
-| Problem | Solution |
-|---------|----------|
-| MCP server won't connect | Check `opencode.json` paths, restart OpenCode |
-| Memory search returns nothing | Run `/memory:search cleanup` to reindex |
-| Skill not loading | Verify SKILL.md frontmatter has valid `name` field |
-| Embeddings failing | Ensure Ollama is running: `ollama serve` |
+| Topic               | Resource                                                                      |
+| ------------------- | ----------------------------------------------------------------------------- |
+| Full installation   | [install_guides/README.md](install_guides/README.md)                          |
+| MCP server setup    | [install_guides/MCP/](install_guides/MCP/)                                    |
+| Creating skills     | [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) |
+| Agent configuration | [SET-UP - AGENTS.md](install_guides/SET-UP%20-%20AGENTS.md)                   |
 
 ### Get Help
 
 - **GitHub Issues:** Report bugs and request features
 - **AGENTS.md:** Check the gate system for workflow questions
 - **Skill READMEs:** Each skill has detailed documentation
+
+## The Philosophy
+
+This environment exists because documentation shouldn't be a tax on productivity—it should be invisible infrastructure that pays dividends when you need it most.
+
+### Documentation as Infrastructure
+
+Every feature leaves a trail. Not for bureaucracy—for your future self, your team, and the AI that helps you code. Gates enforce what humans forget.
+
+### Memory as First-Class Citizen
+
+Context is the most valuable asset in AI-assisted development—and the most fragile. This system treats memory preservation as essential, not optional.
+
+### Automation Over Discipline
+
+Humans forget to document. Humans forget to save context. Humans forget to clean up old memories. This system doesn't rely on human discipline—it automates what matters.

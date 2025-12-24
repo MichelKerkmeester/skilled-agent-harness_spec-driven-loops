@@ -1,4 +1,4 @@
-# Skill Creation Guide
+# SET-UP - Skill Creation
 
 > Create AI agent skills with native OpenCode discovery. Complete workflow from concept to deployment.
 
@@ -6,40 +6,28 @@
 
 ---
 
-## 1. 🚀 QUICK START
+## TABLE OF CONTENTS
 
-**Time estimate: 20-30 minutes**
-
-```bash
-# Step 1: Initialize skill structure (~2 min)
-python .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill --path .opencode/skill
-
-# Step 2: Edit SKILL.md with your content (~15 min)
-# Required: name (must match folder), description
-# Recommended: allowed-tools, version
-# Required sections: WHEN TO USE, HOW IT WORKS (or HOW TO USE), RULES
-
-# Step 3: Add bundled resources as needed (~5 min)
-# scripts/ → automation, references/ → documentation, assets/ → templates
-
-# Step 4: Validate (~1 min)
-python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill --check
-
-# Step 5: Package (~1 min)
-python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill
-
-# Step 6: Test - restart OpenCode, skill appears as skills_my_skill
-```
-
-**Result:** Skill auto-discovered by OpenCode v1.0.190+ as `skills_my_skill()` function.
+- [0. 🤖 AI INSTALL GUIDE](#0--ai-install-guide)
+- [1. 🚀 QUICK START](#1--quick-start)
+- [2. 📋 PREREQUISITES](#2--prerequisites)
+- [3. 🔄 THE 6-STEP WORKFLOW](#3--the-6-step-workflow)
+- [4. 📝 SKILL.MD REFERENCE](#4--skillmd-reference)
+- [5. 📦 BUNDLED RESOURCES](#5--bundled-resources)
+- [6. ✅ VALIDATION AND TESTING](#6--validation-and-testing)
+- [7. 💡 EXAMPLES](#7--examples)
+- [8. 🛠️ TROUBLESHOOTING](#8--troubleshooting)
+- [9. 🔧 DISCOVERY MECHANICS](#9--discovery-mechanics)
+- [10. 📚 RESOURCES](#10--resources)
+- [11. ✅ FINAL CHECKLIST](#11--final-checklist)
 
 ---
 
-## 2. 🤖 AI-FIRST CREATION PROMPT
+## 0. 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt for interactive skill creation:**
 
-```
+```text
 I want to create a new skill for OpenCode. Please guide me through the process interactively by asking me questions one at a time.
 
 **Questions to ask me (one at a time, wait for my answer):**
@@ -91,23 +79,52 @@ My project is at: [your project path]
 
 ---
 
-## 3. 📋 PREREQUISITES
+## 1. 🚀 QUICK START
+
+**Time estimate: 20-30 minutes**
+
+```bash
+# Step 1: Initialize skill structure (~2 min)
+python .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill --path .opencode/skill
+
+# Step 2: Edit SKILL.md with your content (~15 min)
+# Required: name (must match folder), description
+# Recommended: allowed-tools, version
+# Required sections: WHEN TO USE, HOW IT WORKS (or HOW TO USE), RULES
+
+# Step 3: Add bundled resources as needed (~5 min)
+# scripts/ → automation, references/ → documentation, assets/ → templates
+
+# Step 4: Validate (~1 min)
+python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill --check
+
+# Step 5: Package (~1 min)
+python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/my-skill
+
+# Step 6: Test - restart OpenCode, skill appears as skills_my_skill
+```
+
+**Result:** Skill auto-discovered by OpenCode v1.0.190+ as `skills_my_skill()` function.
+
+---
+
+## 2. 📋 PREREQUISITES
 
 ### Required Software
 
-| Software | Version | Verification Command |
-|----------|---------|---------------------|
-| Python | 3.10+ | `python3 --version` |
-| workflows-documentation skill | Latest | `ls .opencode/skill/workflows-documentation/` |
-| OpenCode | v1.0.190+ | Native skill discovery built-in |
+| Software                      | Version   | Verification Command                          |
+| ----------------------------- | --------- | --------------------------------------------- |
+| Python                        | 3.10+     | `python3 --version`                           |
+| workflows-documentation skill | Latest    | `ls .opencode/skill/workflows-documentation/` |
+| OpenCode                      | v1.0.190+ | Native skill discovery built-in               |
 
 ### Required Files
 
-| File | Purpose |
-|------|---------|
-| `scripts/init_skill.py` | Initialize new skill structure |
-| `scripts/package_skill.py` | Validate and package skill |
-| `assets/skill_md_template.md` | SKILL.md template |
+| File                          | Purpose                        |
+| ----------------------------- | ------------------------------ |
+| `scripts/init_skill.py`       | Initialize new skill structure |
+| `scripts/package_skill.py`    | Validate and package skill     |
+| `assets/skill_md_template.md` | SKILL.md template              |
 
 ### Validation: `phase_1_complete`
 
@@ -126,11 +143,11 @@ echo "Prerequisites OK"
 
 ---
 
-## 4. 🔄 THE 6-STEP WORKFLOW
+## 3. 🔄 THE 6-STEP WORKFLOW
 
 ### Workflow Overview
 
-```
+```text
 Step 1: UNDERSTANDING (~5 min)
     └─► Define purpose, use cases, trigger conditions
             ↓
@@ -158,11 +175,11 @@ Step 6: ITERATING (ongoing)
 
 **Questions to answer:**
 
-| Question | Purpose |
-|----------|---------|
-| What problem does this skill solve? | Core value |
-| When would an AI agent need this? | Trigger conditions |
-| What are 2-3 specific use cases? | Grounds in reality |
+| Question                                      | Purpose              |
+| --------------------------------------------- | -------------------- |
+| What problem does this skill solve?           | Core value           |
+| When would an AI agent need this?             | Trigger conditions   |
+| What are 2-3 specific use cases?              | Grounds in reality   |
 | What distinguishes this from existing skills? | Prevents duplication |
 
 **Example:**
@@ -185,12 +202,12 @@ Triggers: "flowchart", "diagram", "visualize", "ASCII art"
 
 **Resource Decision Matrix:**
 
-| Need | Resource Type | When to Include |
-|------|--------------|-----------------|
-| Automation | `scripts/` | Repetitive tasks, validation, scaffolding |
-| Deep docs | `references/` | Content > 500 words, API details |
-| Templates | `assets/` | Reusable patterns, examples |
-| Data files | `assets/` | Static data, configurations |
+| Need       | Resource Type | When to Include                           |
+| ---------- | ------------- | ----------------------------------------- |
+| Automation | `scripts/`    | Repetitive tasks, validation, scaffolding |
+| Deep docs  | `references/` | Content > 500 words, API details          |
+| Templates  | `assets/`     | Reusable patterns, examples               |
+| Data files | `assets/`     | Static data, configurations               |
 
 **Planning Checklist:**
 - [ ] Does the skill need automation scripts?
@@ -215,7 +232,7 @@ python .opencode/skill/workflows-documentation/scripts/init_skill.py my-flowchar
 ```
 
 **Expected Output:**
-```
+```text
 Creating skill: my-flowchart-skill
 Location: .opencode/skill/my-flowchart-skill/
 
@@ -227,7 +244,7 @@ Created:
 ```
 
 **Resulting Structure:**
-```
+```text
 .opencode/skill/my-flowchart-skill/
 ├── SKILL.md          # Main orchestrator (template)
 ├── references/       # Detailed documentation
@@ -267,7 +284,7 @@ Created:
 - [ ] SUCCESS CRITERIA - completion checklists
 - [ ] INTEGRATION POINTS - related skills
 
-See [Section 5: SKILL.MD REFERENCE](#5--skillmd-reference) for the canonical template.
+See [Section 4: SKILL.md Reference](#4--skillmd-reference) for the canonical template.
 
 ---
 
@@ -286,7 +303,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 ```
 
 **Expected Output (Success):**
-```
+```text
 Validating skill: my-skill
 
 Checks:
@@ -303,7 +320,7 @@ DQI Score: 82/100 (Good)
 ```
 
 **Expected Output (Failure):**
-```
+```text
 Validating skill: my-skill
 
 Checks:
@@ -339,7 +356,7 @@ Fix the errors above and re-run validation.
 
 ---
 
-## 5. 📝 SKILL.MD REFERENCE
+## 4. 📝 SKILL.MD REFERENCE
 
 > **CRITICAL:** The `name` field in frontmatter **MUST match the folder name exactly** (case-sensitive, hyphen-case). This is the #1 cause of discovery failures.
 
@@ -402,10 +419,10 @@ Step-by-step execution patterns:
 
 ## SMART ROUTING
 
-| Resource | Path | Purpose |
-|----------|------|---------|
-| Guide | [guide.md](./references/guide.md) | Detailed docs |
-| Script | `scripts/main.py` | Automation |
+| Resource | Path                              | Purpose       |
+| -------- | --------------------------------- | ------------- |
+| Guide    | [guide.md](./references/guide.md) | Detailed docs |
+| Script   | `scripts/main.py`                 | Automation    |
 
 ---
 
@@ -417,51 +434,51 @@ Step-by-step execution patterns:
 
 ### Frontmatter Field Reference
 
-| Field | Required | Format | Notes |
-|-------|----------|--------|-------|
-| `name` | **Yes** | `hyphen-case` | **Must match folder name exactly** |
-| `description` | **Yes** | Single line | No `<>` characters, no multi-line |
-| `allowed-tools` | Recommended | Array | Valid: Read, Write, Edit, Bash, Glob, Grep, Task, WebFetch |
-| `version` | Recommended | Semver | e.g., `1.0.0`, `2.1.3` |
-| `triggers` | Optional | Array | Keywords that activate the skill |
+| Field           | Required    | Format        | Notes                                                      |
+| --------------- | ----------- | ------------- | ---------------------------------------------------------- |
+| `name`          | **Yes**     | `hyphen-case` | **Must match folder name exactly**                         |
+| `description`   | **Yes**     | Single line   | No `<>` characters, no multi-line                          |
+| `allowed-tools` | Recommended | Array         | Valid: Read, Write, Edit, Bash, Glob, Grep, Task, WebFetch |
+| `version`       | Recommended | Semver        | e.g., `1.0.0`, `2.1.3`                                     |
+| `triggers`      | Optional    | Array         | Keywords that activate the skill                           |
 
 ### Section Requirements
 
 **Required Sections (must have):**
 
-| Section | Required Content |
-|---------|-----------------|
-| WHEN TO USE | Trigger conditions and use cases |
+| Section                    | Required Content                                          |
+| -------------------------- | --------------------------------------------------------- |
+| WHEN TO USE                | Trigger conditions and use cases                          |
 | HOW IT WORKS or HOW TO USE | Step-by-step execution patterns (either heading accepted) |
-| RULES | Must have ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF subsections |
+| RULES                      | Must have ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF subsections    |
 
 **Recommended Sections:**
 
-| Section | Purpose |
-|---------|---------|
-| SMART ROUTING | Resource router tables and file references |
-| SUCCESS CRITERIA | Completion checklists and verification steps |
-| INTEGRATION POINTS | Related skills and tools |
+| Section            | Purpose                                      |
+| ------------------ | -------------------------------------------- |
+| SMART ROUTING      | Resource router tables and file references   |
+| SUCCESS CRITERIA   | Completion checklists and verification steps |
+| INTEGRATION POINTS | Related skills and tools                     |
 
 ### Size Constraints
 
-| Location | Limit | Recommendation |
-|----------|-------|----------------|
-| Description | Single line | Keep concise for skill routing |
-| SKILL.md total | Max 5,000 words | 3,000 words recommended |
-| Line count | Max 3,000 lines | Move excess to references/ |
+| Location       | Limit           | Recommendation                 |
+| -------------- | --------------- | ------------------------------ |
+| Description    | Single line     | Keep concise for skill routing |
+| SKILL.md total | Max 5,000 words | 3,000 words recommended        |
+| Line count     | Max 3,000 lines | Move excess to references/     |
 
 ---
 
-## 6. 📦 BUNDLED RESOURCES
+## 5. 📦 BUNDLED RESOURCES
 
 ### When to Create Each Type
 
-| Type | Create When | Examples |
-|------|-------------|----------|
-| **scripts/** | Same code rewritten repeatedly, deterministic reliability needed | `validate.py`, `init.sh` |
-| **references/** | Documentation > 500 words, API specs, detailed guides | `workflow.md`, `api.md` |
-| **assets/** | Templates for output, reusable patterns, examples | `template.md`, `example.md` |
+| Type            | Create When                                                      | Examples                    |
+| --------------- | ---------------------------------------------------------------- | --------------------------- |
+| **scripts/**    | Same code rewritten repeatedly, deterministic reliability needed | `validate.py`, `init.sh`    |
+| **references/** | Documentation > 500 words, API specs, detailed guides            | `workflow.md`, `api.md`     |
+| **assets/**     | Templates for output, reusable patterns, examples                | `template.md`, `example.md` |
 
 ### scripts/
 
@@ -519,45 +536,45 @@ if __name__ == "__main__":
 ```markdown
 ## SMART ROUTING
 
-| Resource | Path | Purpose |
-|----------|------|---------|
-| Detailed Guide | [guide.md](./references/guide.md) | Full documentation |
-| Template | [template.md](./assets/template.md) | Starting point |
-| Script | `scripts/main.py` | Automation |
+| Resource       | Path                                | Purpose            |
+| -------------- | ----------------------------------- | ------------------ |
+| Detailed Guide | [guide.md](./references/guide.md)   | Full documentation |
+| Template       | [template.md](./assets/template.md) | Starting point     |
+| Script         | `scripts/main.py`                   | Automation         |
 ```
 
 ---
 
-## 7. ✅ VALIDATION AND TESTING
+## 6. ✅ VALIDATION AND TESTING
 
 ### Validation Commands
 
-| Command | Purpose | When to Use |
-|---------|---------|-------------|
-| `package_skill.py --check` | Validation only | During development |
-| `package_skill.py` | Full validation + packaging | Before distribution |
-| `extract_structure.py` | DQI scoring | Quality assessment |
+| Command                    | Purpose                     | When to Use         |
+| -------------------------- | --------------------------- | ------------------- |
+| `package_skill.py --check` | Validation only             | During development  |
+| `package_skill.py`         | Full validation + packaging | Before distribution |
+| `extract_structure.py`     | DQI scoring                 | Quality assessment  |
 
 ### DQI Score Interpretation
 
-| Score | Rating | Action |
-|-------|--------|--------|
-| 90-100 | Excellent | Production ready |
-| 75-89 | Good | Minor improvements |
-| 60-74 | Fair | Needs work |
-| <60 | Poor | Significant revision needed |
+| Score  | Rating    | Action                      |
+| ------ | --------- | --------------------------- |
+| 90-100 | Excellent | Production ready            |
+| 75-89  | Good      | Minor improvements          |
+| 60-74  | Fair      | Needs work                  |
+| <60    | Poor      | Significant revision needed |
 
 **Target: DQI >= 75 (Good)**
 
 ### Test Matrix
 
-| Test | Command/Action | Expected Result |
-|------|----------------|-----------------|
-| Frontmatter valid | `head -10 SKILL.md` | Valid YAML with `---` delimiters |
-| Name matches folder | `grep "^name:" SKILL.md` | Matches folder name exactly |
-| Skill discoverable | Restart OpenCode | `skills_my_skill` in available tools |
-| Triggers correctly | Request matching description | Skill invokes |
-| Resources accessible | Follow SMART ROUTING links | All paths resolve |
+| Test                 | Command/Action               | Expected Result                      |
+| -------------------- | ---------------------------- | ------------------------------------ |
+| Frontmatter valid    | `head -10 SKILL.md`          | Valid YAML with `---` delimiters     |
+| Name matches folder  | `grep "^name:" SKILL.md`     | Matches folder name exactly          |
+| Skill discoverable   | Restart OpenCode             | `skills_my_skill` in available tools |
+| Triggers correctly   | Request matching description | Skill invokes                        |
+| Resources accessible | Follow SMART ROUTING links   | All paths resolve                    |
 
 ### Complete Validation Checklist
 
@@ -578,15 +595,17 @@ if __name__ == "__main__":
 - [ ] Relative paths are correct
 - [ ] Scripts are executable
 
+❌ **STOP if validation fails** - Fix errors before proceeding to testing.
+
 ---
 
-## 8. 💡 EXAMPLES
+## 7. 💡 EXAMPLES
 
 ### Example 1: Minimal Skill (Complete)
 
 A simple skill with no bundled resources:
 
-```
+```text
 .opencode/skill/greeting-formatter/
 └── SKILL.md
 ```
@@ -651,9 +670,9 @@ Keywords: greeting, salutation, welcome, email opening
 
 For comprehensive real-world examples, examine these production skills:
 
-| Skill | Path | Highlights |
-|-------|------|------------|
-| **mcp-leann** | `.opencode/skill/mcp-leann/SKILL.md` | Native MCP tool integration, semantic search, SMART ROUTING with Resource Router |
+| Skill             | Path                                     | Highlights                                                                       |
+| ----------------- | ---------------------------------------- | -------------------------------------------------------------------------------- |
+| **mcp-leann**     | `.opencode/skill/mcp-leann/SKILL.md`     | Native MCP tool integration, semantic search, SMART ROUTING with Resource Router |
 | **system-memory** | `.opencode/skill/system-memory/SKILL.md` | Complex skill with multiple references, checkpoint system, tier-based importance |
 
 **To examine:**
@@ -664,18 +683,18 @@ cat .opencode/skill/system-memory/SKILL.md | head -100
 
 ---
 
-## 9. 🛠️ TROUBLESHOOTING
+## 8. 🛠️ TROUBLESHOOTING
 
 ### Common Errors and Fixes
 
 **"Skill not found" / Not appearing in tools**
 
-| Cause | Fix |
-|-------|-----|
-| Name doesn't match folder | Ensure `name:` field exactly matches folder name (case-sensitive) |
-| Invalid YAML frontmatter | Check `---` delimiters, use spaces not tabs |
-| OpenCode not restarted | Restart OpenCode to trigger discovery scan |
-| Description has `<>` chars | Remove angle brackets from description |
+| Cause                      | Fix                                                               |
+| -------------------------- | ----------------------------------------------------------------- |
+| Name doesn't match folder  | Ensure `name:` field exactly matches folder name (case-sensitive) |
+| Invalid YAML frontmatter   | Check `---` delimiters, use spaces not tabs                       |
+| OpenCode not restarted     | Restart OpenCode to trigger discovery scan                        |
+| Description has `<>` chars | Remove angle brackets from description                            |
 
 **Verification:**
 ```bash
@@ -693,10 +712,10 @@ grep "^name:" .opencode/skill/my-skill/SKILL.md
 
 **"YAML frontmatter invalid"**
 
-| Cause | Fix |
-|-------|-----|
-| Missing `---` delimiters | Add `---` at start and after frontmatter |
-| Tabs instead of spaces | YAML requires spaces for indentation |
+| Cause                       | Fix                                        |
+| --------------------------- | ------------------------------------------ |
+| Missing `---` delimiters    | Add `---` at start and after frontmatter   |
+| Tabs instead of spaces      | YAML requires spaces for indentation       |
 | Unquoted special characters | Quote strings with colons or special chars |
 
 **Invalid:**
@@ -719,20 +738,22 @@ description: "Use when things happen. Provides X."
 
 **"Missing required section"**
 
-| Section | Required Content |
-|---------|-----------------|
-| WHEN TO USE | Trigger conditions |
+| Section                    | Required Content                                 |
+| -------------------------- | ------------------------------------------------ |
+| WHEN TO USE                | Trigger conditions                               |
 | HOW IT WORKS or HOW TO USE | Step-by-step execution (either heading accepted) |
-| RULES | Must have ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF |
+| RULES                      | Must have ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF       |
+
+❌ **STOP** - Add all required sections before re-validating.
 
 ---
 
 **"Description invalid"**
 
-| Cause | Fix |
-|-------|-----|
-| Contains `<>` characters | Remove angle brackets |
-| Multi-line format | Convert to single line |
+| Cause                    | Fix                    |
+| ------------------------ | ---------------------- |
+| Contains `<>` characters | Remove angle brackets  |
+| Multi-line format        | Convert to single line |
 
 **Invalid:**
 ```yaml
@@ -750,9 +771,9 @@ description: "Use when generating reports. Provides automated analysis."
 
 **"Skill not triggering"**
 
-| Cause | Fix |
-|-------|-----|
-| Description too generic | Add specific keywords and use cases |
+| Cause                    | Fix                                   |
+| ------------------------ | ------------------------------------- |
+| Description too generic  | Add specific keywords and use cases   |
 | Missing trigger keywords | Include relevant terms in description |
 
 **Before (generic):**
@@ -769,10 +790,10 @@ description: "Create ASCII flowcharts and diagrams. Use when visualizing workflo
 
 **"Resource not found"**
 
-| Cause | Fix |
-|-------|-----|
-| Incorrect path | Use relative paths from SKILL.md location |
-| Missing `./` prefix | Add `./` for relative paths |
+| Cause               | Fix                                       |
+| ------------------- | ----------------------------------------- |
+| Incorrect path      | Use relative paths from SKILL.md location |
+| Missing `./` prefix | Add `./` for relative paths               |
 
 **Invalid:**
 ```markdown
@@ -802,7 +823,7 @@ python .opencode/skill/workflows-documentation/scripts/extract_structure.py \
 
 ---
 
-## 10. 📚 APPENDIX: DISCOVERY MECHANICS
+## 9. 🔧 DISCOVERY MECHANICS
 
 > This section explains internal mechanics for advanced users. Not required for basic skill creation.
 
@@ -812,7 +833,7 @@ OpenCode has built-in skill discovery - **no plugin required**. Skills are auto-
 
 ### Discovery Process
 
-```
+```text
 Step 1: STARTUP SCAN
     └─► OpenCode scans .opencode/skill/*/SKILL.md
             ↓
@@ -832,16 +853,16 @@ Step 4: AVAILABILITY
 
 ### Discovery Requirements
 
-| Requirement | Details | Failure Mode |
-|-------------|---------|--------------|
-| Valid YAML frontmatter | Opening and closing `---` | Skill not found |
-| `name` field present | Must match folder name exactly | Skill not found |
-| `description` field | Single line, no `<>` characters | Parse error |
-| `allowed-tools` array (recommended) | Bracket format `[Read, Write]` | Validation warning (non-blocking) |
+| Requirement                         | Details                         | Failure Mode                      |
+| ----------------------------------- | ------------------------------- | --------------------------------- |
+| Valid YAML frontmatter              | Opening and closing `---`       | Skill not found                   |
+| `name` field present                | Must match folder name exactly  | Skill not found                   |
+| `description` field                 | Single line, no `<>` characters | Parse error                       |
+| `allowed-tools` array (recommended) | Bracket format `[Read, Write]`  | Validation warning (non-blocking) |
 
 ### Function Naming
 
-```
+```text
 Folder: .opencode/skill/mcp-leann/
     → Function: skills_mcp_leann()
 
@@ -865,16 +886,16 @@ head -10 .opencode/skill/my-skill/SKILL.md
 
 ---
 
-## 11. 📋 RESOURCES
+## 10. 📚 RESOURCES
 
 ### File Locations
 
-| Path | Purpose |
-|------|---------|
-| `.opencode/skill/` | Skills directory |
-| `.opencode/skill/workflows-documentation/scripts/init_skill.py` | Initialize skill |
-| `.opencode/skill/workflows-documentation/scripts/package_skill.py` | Validate and package |
-| `.opencode/skill/workflows-documentation/assets/skill_md_template.md` | SKILL.md template |
+| Path                                                                  | Purpose              |
+| --------------------------------------------------------------------- | -------------------- |
+| `.opencode/skill/`                                                    | Skills directory     |
+| `.opencode/skill/workflows-documentation/scripts/init_skill.py`       | Initialize skill     |
+| `.opencode/skill/workflows-documentation/scripts/package_skill.py`    | Validate and package |
+| `.opencode/skill/workflows-documentation/assets/skill_md_template.md` | SKILL.md template    |
 
 ### Scripts Reference
 
@@ -894,21 +915,21 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py \
 
 ### Related Guides
 
-| Guide | Purpose |
-|-------|---------|
+| Guide                                          | Purpose                    |
+| ---------------------------------------------- | -------------------------- |
 | [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Add skills to agent config |
-| [Master Installation Guide](./README.md) | OpenCode setup overview |
+| [Master Installation Guide](./README.md)       | OpenCode setup overview    |
 
 ### External Resources
 
-| Resource | URL |
-|----------|-----|
-| OpenCode Documentation | https://opencode.ai/docs |
-| OpenCode Skills Docs | https://opencode.ai/docs/skills |
+| Resource               | URL                             |
+| ---------------------- | ------------------------------- |
+| OpenCode Documentation | https://opencode.ai/docs        |
+| OpenCode Skills Docs   | https://opencode.ai/docs/skills |
 
 ---
 
-## 12. ✅ FINAL CHECKLIST
+## 11. ✅ FINAL CHECKLIST
 
 - [ ] **Step 1:** Purpose and use cases defined
 - [ ] **Step 2:** Resource plan documented (scripts/references/assets needed)
