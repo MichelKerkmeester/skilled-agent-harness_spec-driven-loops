@@ -5,7 +5,7 @@
 > - Don't reward me with unwanted coffee:
 > - https://buymeacoffee.com/michelkerkmeester
 
----
+## Summary
 
 Your AI assistant forgets everything between conversations. This environment fixes that with:
 
