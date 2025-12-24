@@ -2,7 +2,7 @@
 
 > **Documentation that writes itself. Context that never dies.**
 
-Every feature you build should leave a trail. Not for bureaucracy—for your future self, your team, and the AI that helps you code. Spec Kit enforces one simple rule: *no code without a spec folder*.
+Every feature you build should leave a trail. Not for bureaucracy, for your future self, your team, and the AI that helps you code. Spec Kit enforces one simple rule: *no code without a spec folder*.
 
 The result? Six months from now, you'll know exactly why you made that architectural decision. Your AI assistant will pick up where you left off. And onboarding new developers takes hours instead of weeks.
 
