@@ -13,7 +13,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | Pain Point             | Original Spec Kit | This Enhanced Fork                               |
 | ---------------------- | ----------------- | ------------------------------------------------ |
 | **Context Loss**       | Manual recovery   | Auto-saved with ANCHOR format                    |
-| **Templates**          | ~3 basic files    | 12 purpose-built templates                       |
+| **Templates**          | ~5 basic files    | 12 purpose-built templates                       |
 | **Commands**           | Manual workflow   | 7 slash commands with `:auto`/`:confirm` modes   |
 | **Memory Integration** | None              | Deep integration via `generate-context.js`       |
 | **Quality Gates**      | None              | 8 gates enforce nothing slips through            |
