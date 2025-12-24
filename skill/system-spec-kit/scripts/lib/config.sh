@@ -14,6 +14,17 @@
 #
 
 # ============================================================================
+# BASH VERSION CHECK
+# ============================================================================
+
+if ((BASH_VERSINFO[0] < 4)); then
+    echo "ERROR: config.sh requires Bash 4.0 or higher" >&2
+    echo "Current version: $BASH_VERSION" >&2
+    echo "macOS users: Install modern bash with 'brew install bash'" >&2
+    exit 1
+fi
+
+# ============================================================================
 # DEFAULT CONFIGURATION
 # ============================================================================
 

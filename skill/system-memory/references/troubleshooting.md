@@ -8,7 +8,7 @@
 
 **Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
 
-This reference provides structured troubleshooting for the semantic memory system v12.0.0, covering:
+This reference provides structured troubleshooting for the semantic memory system v12.4.0, covering:
 
 - **Context retrieval failures** - Memory search returning no/wrong results
 - **Vector index issues** - Embedding generation and search problems
@@ -44,7 +44,7 @@ Issue Detected
 |-------|---------|----------|
 | Missing spec folder | `Folder not found` | `mkdir -p specs/###-feature/memory/` |
 | Vector search empty | No results from `memory_search()` | Run `memory_stats()` to check index health |
-| MCP server not responding | Tool timeout errors | Restart MCP server, check `.mcp.json` config |
+| MCP server not responding | Tool timeout errors | Restart MCP server, check `opencode.json` config |
 | Wrong script path | `File not found` | Use `.opencode/skill/system-memory/` |
 | Arg format error | Invalid parameter | Use full folder name: `122-skill-standardization` |
 | Decay not applying | Old memories ranked high | Check `useDecay: true` in search params |
@@ -101,7 +101,7 @@ memory_search({ query: "test" })
 **Connection Recovery Protocol:**
 
 1. Check server status: `ps aux | grep semantic-memory`
-2. Verify config: `cat .mcp.json | jq '.mcpServers["semantic-memory"]'`
+2. Verify config: `cat opencode.json | jq '.mcpServers["semantic-memory"]'`
 3. Test basic call: `memory_stats()`
 4. If still failing: restart server and wait 10s
 

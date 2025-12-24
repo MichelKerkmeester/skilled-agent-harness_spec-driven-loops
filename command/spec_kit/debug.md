@@ -56,7 +56,7 @@ EXECUTE THIS CHECK FIRST:
 └─ IF $ARGUMENTS is empty (auto-detect mode):
     │
     ├─ Find most recent memory file:
-    │   $ find specs -path "*/memory/*.md" -type f 2>/dev/null | xargs ls -t 2>/dev/null | head -1
+    │   Glob("specs/**/memory/*.md") → Results sorted by modification time, take first
     │
     ├─ IF session found:
     │   ├─ Store as: spec_path (extract from memory file path)
@@ -377,7 +377,7 @@ Analyze the following debug report and provide:
 [Any assumptions made or areas of uncertainty]
 ```
 
-> **Note:** Model selection is advisory context only. The Task tool uses the model configured in your OpenCode environment. The selected model name is passed in the prompt to help the sub-agent understand the intended capability level, but does not change which model processes the request.
+> **Note:** Model selection (Phase 2) is mandatory—the user must always be asked to select a model. The Task tool uses the model configured in your OpenCode environment, so the selected model name is passed in the prompt to provide capability-level context to the sub-agent. This context is valuable for the sub-agent's self-understanding, even though it does not change which model processes the request.
 
 **Timeout:** Sub-agent has standard timeout (2 minutes). If no response, report back to user with partial findings if available.
 
@@ -546,18 +546,7 @@ Append to file:
 
 ### Validation Integration
 
-Before or during debugging, run validation to catch common issues:
-
-```bash
-# Quick validation check
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
-
-# Verbose mode with timing
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh --verbose <spec-folder>
-
-# Strict mode (warnings become errors)
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh --strict <spec-folder>
-```
+Before or during debugging, validation runs automatically to catch common issues.
 
 Common validation issues that cause debugging sessions:
 - Missing required files (FILE_EXISTS)

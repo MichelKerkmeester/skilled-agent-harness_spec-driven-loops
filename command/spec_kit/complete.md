@@ -306,13 +306,10 @@ STEP 10.5 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
 └─ ⛔ HARD BLOCK: Cannot proceed to Step 11 if any P0 items are unchecked
 
 STEP 11 (Completion) REQUIREMENTS:
-├─ MUST run validation on spec folder first:
-│   ```
-│   .opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
-│   ```
-│   ├─ Exit 0 = pass → continue
-│   ├─ Exit 1 = warnings → continue with caution
-│   └─ Exit 2 = errors → STOP and fix before proceeding
+├─ Validation runs automatically on spec folder first
+│   ├─ Pass → continue
+│   ├─ Warnings → continue with caution
+│   └─ Errors → STOP and fix before proceeding
 ├─ MUST verify all tasks in tasks.md show [x]
 ├─ MUST create implementation-summary.md with:
 │   ├─ Files modified/created
@@ -440,15 +437,11 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 6. ✅ VALIDATION TOOLS
+## 6. ✅ VALIDATION
 
-Before marking complete, validate the spec folder:
+Before marking complete, validation runs automatically on the spec folder.
 
-```bash
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
-```
-
-### CLI Options
+### Validation Modes
 
 | Option      | Description                      |
 | ----------- | -------------------------------- |

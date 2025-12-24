@@ -1,6 +1,4 @@
 # Debug Delegation Report
-
-<!-- Template: debug-delegation v1.0 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: debug-delegation | v1.0 -->
 
 **Date:** [AUTO: timestamp]

@@ -173,8 +173,7 @@ operating_mode:
 
 ```
 mcp__semantic_memory__memory_save({
-  filePath: "specs/<folder>/memory/<filename>.md",
-  specFolder: "<folder>"
+  filePath: "specs/<folder>/memory/<filename>.md"
 })
 ```
 
@@ -416,11 +415,11 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 
 ## 8. 🔍 QUICK REFERENCE
 
-| Usage                                                  | Behavior                              |
-| ------------------------------------------------------ | ------------------------------------- |
-| `/memory/save`                                         | Auto-detect spec folder, save context |
-| `/memory/save 011-memory`                              | Save to specific spec folder          |
-| `/memory/save specs/006-semantic-memory/003-debugging` | Save to nested spec folder            |
+| Usage                                                   | Behavior                              |
+| ------------------------------------------------------- | ------------------------------------- |
+| `/memory:save`                                          | Auto-detect spec folder, save context |
+| `/memory:save 011-memory`                               | Save to specific spec folder          |
+| `/memory:save specs/006-semantic-memory/003-debugging`  | Save to nested spec folder            |
 
 ---
 
@@ -499,8 +498,7 @@ Memory files can be indexed in multiple ways:
 **For manual file creation**, use `memory_save` for immediate indexing:
 ```
 mcp__semantic_memory__memory_save({
-  filePath: "specs/011-memory/memory/context.md",
-  specFolder: "011-memory"
+  filePath: "specs/011-memory/memory/context.md"
 })
 ```
 

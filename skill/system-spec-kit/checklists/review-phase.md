@@ -9,7 +9,7 @@ Phase-specific validation checklist for the review/completion phase.
 - [ ] All tests passing
 - [ ] Code reviewed
 - [ ] No blockers remaining
-- [ ] Memory context saved (via generate-context.js)
+- [ ] Memory context saved: `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder]`
 
 ## P1 - High Priority
 

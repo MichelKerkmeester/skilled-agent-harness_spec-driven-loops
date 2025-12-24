@@ -69,6 +69,17 @@ Feature specification from `/specs/[###-feature-name]/spec.md`
 
 ## 3. PROJECT STRUCTURE
 
+### Architecture Overview
+
+[YOUR_VALUE_HERE: High-level architecture description - example: Event-driven microservices with API gateway, or Monolithic MVC with service layer]
+
+**Key Architectural Decisions:**
+- **Pattern**: [YOUR_VALUE_HERE: MVC | MVVM | Clean Architecture | Microservices | Monolith | Serverless]
+- **Data Flow**: [YOUR_VALUE_HERE: Request-response | Event-driven | Streaming | Batch]
+- **State Management**: [YOUR_VALUE_HERE: Stateless | Session-based | Distributed cache | Database-backed]
+
+[OPTIONAL: Include ASCII diagram or link to architecture diagram]
+
 ### Documentation (This Feature)
 
 ```

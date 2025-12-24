@@ -33,7 +33,7 @@
 | **Code search**          | `leann_search()` for semantic (meaning), `get_code_context()` for structural (symbols), `Grep()` for text patterns                |
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                  |
 | **Save context**         | Execute `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
-| **Claim completion**     | Run validate-spec.sh → Load `checklist.md` → Verify ALL items → Mark with evidence                                                |
+| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                       |
 | **Debug delegation**     | `/spec_kit:debug` → Model selection → Sub-agent dispatch via Task tool                                                            |
 
 ---
@@ -144,8 +144,8 @@
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 4: MEMORY LOADING [SOFT BLOCK]                                         │
 │ Trigger: User selected A or C in Gate 3 AND memory files exist               │
-│ Action:  Display [1] [2] [3] [all] [skip] → Wait for user choice            │
-│ Block:   SOFT - User can [skip] to proceed immediately                      │
+│ Action:  A) Recent | B) All (1-3) | C) Select | D) Skip → Wait for choice   │
+│ Block:   SOFT - User can skip (D) to proceed immediately                    │
 │ Note:    Display memory options after user responds to Gate 3               │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
@@ -180,15 +180,15 @@
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 6: COMPLETION VERIFICATION [HARD BLOCK]                                │
 │ Trigger: Claiming "done", "complete", "finished", "works"                    │
-│ Action:  1. Run validate-spec.sh on spec folder (if exists)                 │
+│ Action:  1. Validation runs automatically on spec folder (if exists)        │
 │          2. Load checklist.md → Verify ALL items → Mark [x] with evidence   │
 │ Block:   HARD - Cannot claim completion without verification                 │
 │ Skip:    Level 1 tasks (no checklist.md required)                           │
 │                                                                             │
-│ Validation command:                                                         │
-│   .opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>    │
+│ Validation behavior:                                                        │
+│   Automatic validation checks spec folder structure and required files       │
 │   Exit 0 = pass, Exit 1 = warnings, Exit 2 = errors (must fix)               │
-│   Use --strict for completion (treats warnings as errors)                   │
+│   Strict mode for completion (treats warnings as errors)                    │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -278,7 +278,7 @@ File modification planned? → Include Q1 (Spec Folder)
 ```
 
 **Gate Bypass Phrases** (user can skip specific gates):
-- Gate 4: "auto-load memories", "fresh start", "skip memory", [skip]
+- Gate 4: "auto-load memories", "fresh start", "skip memory", "D", [skip]
 - Gate 6: Level 1 tasks (no checklist.md required)
 
 #### ⚡ Code Quality Standards Compliance

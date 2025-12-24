@@ -43,7 +43,7 @@ EXECUTE THIS CHECK FIRST:
 └─ IF $ARGUMENTS is empty (auto-detect mode):
     │
     ├─ Find most recent memory file (Stateless - no .spec-active marker)
-    │   $ find specs -path "*/memory/*.md" -type f 2>/dev/null | xargs ls -t 2>/dev/null | head -1
+    │   Glob("specs/**/memory/*.md") → Results sorted by modification time, take first
     │
     ├─ IF session found:
     │   ├─ Store as: spec_path (extract from memory file path)
@@ -112,13 +112,9 @@ since quick handover covers most use cases with minimal friction.
 
 **STATUS: ☐ BLOCKED**
 
-Before creating handover, validate the spec folder to ensure clean state:
+Before creating handover, validation runs automatically to ensure clean state.
 
-```bash
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh --strict <spec-folder>
-```
-
-Use `--strict` to ensure no warnings are passed to the next session.
+Strict mode is used to ensure no warnings are passed to the next session.
 
 **Key checks before handover:**
 - **ANCHORS_VALID** - Memory files have balanced anchors
@@ -128,10 +124,9 @@ Use `--strict` to ensure no warnings are passed to the next session.
 ```
 EXECUTE AFTER PHASE 2 PASSES:
 
-1. Run validation:
-   $ .opencode/skill/system-spec-kit/scripts/validate-spec.sh --strict [spec_path]
+1. Validation runs automatically (strict mode)
 
-2. IF validation passes (exit 0):
+2. IF validation passes:
    └─ SET STATUS: ✅ PASSED → Proceed to workflow
 
 3. IF validation fails (exit 1 or 2):

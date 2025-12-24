@@ -9,16 +9,24 @@
 const crypto = require('crypto');
 
 // Prepared statement cache for performance (P1 optimization)
+// P2-007: Track db instance to handle db changes and prevent cache leak
 const stmtCache = new Map();
+let cachedDb = null;
 
 /**
  * Get or create a cached prepared statement
+ * Clears cache when db instance changes to prevent statement leaks (P2-007)
  * @param {Object} db - Database instance
  * @param {string} key - Cache key
  * @param {string} sql - SQL to prepare
  * @returns {Object} Prepared statement
  */
 function getStmt(db, key, sql) {
+  // Clear cache if db instance changed (P2-007: Fix statement cache leak)
+  if (cachedDb !== db) {
+    stmtCache.clear();
+    cachedDb = db;
+  }
   if (!stmtCache.has(key)) {
     stmtCache.set(key, db.prepare(sql));
   }
@@ -197,6 +205,7 @@ function getRecentHistory(db, options = {}) {
 
 /**
  * Undo the last change to a memory
+ * Wrapped in transaction for atomicity (P1-009)
  * @param {Object} db - Database instance
  * @param {number} memoryId - Memory row ID
  * @returns {Object} Result with restored state and metadata
@@ -207,113 +216,123 @@ function undoLastChange(db, memoryId) {
     throw new Error('memoryId is required and must be a number');
   }
 
-  // Get the last history entry for this memory
-  const lastEntryStmt = db.prepare(`
-    SELECT id, memory_id, prev_value, new_value, event, actor, timestamp
-    FROM memory_history
-    WHERE memory_id = ?
-    ORDER BY timestamp DESC
-    LIMIT 1
-  `);
+  // P1-009: Wrap entire undo operation in transaction for atomicity
+  return db.transaction(() => {
+    // Get the last history entry for this memory
+    const lastEntryStmt = db.prepare(`
+      SELECT id, memory_id, prev_value, new_value, event, actor, timestamp
+      FROM memory_history
+      WHERE memory_id = ?
+      ORDER BY timestamp DESC
+      LIMIT 1
+    `);
 
-  const lastEntry = lastEntryStmt.get(memoryId);
+    const lastEntry = lastEntryStmt.get(memoryId);
 
-  if (!lastEntry) {
-    throw new Error(`No history found for memory ${memoryId}`);
-  }
+    if (!lastEntry) {
+      throw new Error(`No history found for memory ${memoryId}`);
+    }
 
-  const prevValue = lastEntry.prev_value ? JSON.parse(lastEntry.prev_value) : null;
-  const newValue = lastEntry.new_value ? JSON.parse(lastEntry.new_value) : null;
+    const prevValue = lastEntry.prev_value ? JSON.parse(lastEntry.prev_value) : null;
+    const newValue = lastEntry.new_value ? JSON.parse(lastEntry.new_value) : null;
 
-  // Handle based on event type
-  let restoredState;
-  let undoAction;
+    // Handle based on event type
+    let restoredState;
+    let undoAction;
 
-  switch (lastEntry.event) {
-    case 'ADD':
-      // Undo ADD = DELETE the memory
-      undoAction = 'DELETE';
-      restoredState = null;
+    switch (lastEntry.event) {
+      case 'ADD':
+        // Undo ADD = DELETE the memory
+        undoAction = 'DELETE';
+        restoredState = null;
 
-      // Mark memory as deleted (soft delete) or remove
-      const deleteStmt = db.prepare(`
-        UPDATE memory_index
-        SET importance_tier = 'deprecated', updated_at = datetime('now')
-        WHERE id = ?
-      `);
-      deleteStmt.run(memoryId);
-      break;
+        // Mark memory as deleted (soft delete) or remove
+        const deleteStmt = db.prepare(`
+          UPDATE memory_index
+          SET importance_tier = 'deprecated', updated_at = datetime('now')
+          WHERE id = ?
+        `);
+        deleteStmt.run(memoryId);
+        break;
 
-    case 'UPDATE':
-      // Undo UPDATE = restore previous value
-      if (!prevValue) {
-        throw new Error('Cannot undo UPDATE: no previous value recorded');
-      }
-      undoAction = 'UPDATE';
-      restoredState = prevValue;
+      case 'UPDATE':
+        // Undo UPDATE = restore previous value
+        if (!prevValue) {
+          throw new Error('Cannot undo UPDATE: no previous value recorded');
+        }
+        undoAction = 'UPDATE';
+        restoredState = prevValue;
 
-      // Restore the previous state
-      const updateStmt = db.prepare(`
-        UPDATE memory_index
-        SET title = ?,
-            importance_weight = ?,
-            updated_at = datetime('now')
-        WHERE id = ?
-      `);
-      updateStmt.run(
-        prevValue.title || null,
-        prevValue.importanceWeight || prevValue.importance_weight || 0.5,
-        memoryId
-      );
-      break;
+        // P2-005: Normalize property names to handle both camelCase and snake_case
+        const weight = prevValue.importance_weight ?? prevValue.importanceWeight ?? 0.5;
 
-    case 'DELETE':
-      // Undo DELETE = restore the memory
-      if (!prevValue) {
-        throw new Error('Cannot undo DELETE: no previous value recorded');
-      }
-      undoAction = 'RESTORE';
-      restoredState = prevValue;
+        // Restore the previous state
+        const updateStmt = db.prepare(`
+          UPDATE memory_index
+          SET title = ?,
+              importance_weight = ?,
+              updated_at = datetime('now')
+          WHERE id = ?
+        `);
+        updateStmt.run(
+          prevValue.title || null,
+          weight,
+          memoryId
+        );
+        break;
 
-      // Restore the memory (change tier back from deprecated)
-      const restoreStmt = db.prepare(`
-        UPDATE memory_index
-        SET importance_tier = COALESCE(?, 'normal'),
-            title = ?,
-            importance_weight = ?,
-            updated_at = datetime('now')
-        WHERE id = ?
-      `);
-      restoreStmt.run(
-        prevValue.importanceTier || prevValue.importance_tier || 'normal',
-        prevValue.title || null,
-        prevValue.importanceWeight || prevValue.importance_weight || 0.5,
-        memoryId
-      );
-      break;
+      case 'DELETE':
+        // Undo DELETE = restore the memory
+        if (!prevValue) {
+          throw new Error('Cannot undo DELETE: no previous value recorded');
+        }
+        undoAction = 'RESTORE';
+        restoredState = prevValue;
 
-    default:
-      throw new Error(`Unknown event type: ${lastEntry.event}`);
-  }
+        // P2-005: Normalize property names to handle both camelCase and snake_case
+        const restoreWeight = prevValue.importance_weight ?? prevValue.importanceWeight ?? 0.5;
+        const restoreTier = prevValue.importance_tier ?? prevValue.importanceTier ?? 'normal';
 
-  // Record the undo operation in history
-  const undoHistoryId = recordHistory(db, {
-    memoryId,
-    prevValue: newValue,
-    newValue: restoredState,
-    event: undoAction === 'DELETE' ? 'DELETE' : 'UPDATE',
-    actor: 'system'
-  });
+        // Restore the memory (change tier back from deprecated)
+        const restoreStmt = db.prepare(`
+          UPDATE memory_index
+          SET importance_tier = COALESCE(?, 'normal'),
+              title = ?,
+              importance_weight = ?,
+              updated_at = datetime('now')
+          WHERE id = ?
+        `);
+        restoreStmt.run(
+          restoreTier,
+          prevValue.title || null,
+          restoreWeight,
+          memoryId
+        );
+        break;
 
-  return {
-    success: true,
-    undoHistoryId,
-    originalEvent: lastEntry.event,
-    undoAction,
-    restoredState,
-    undoneEntryId: lastEntry.id,
-    timestamp: new Date().toISOString()
-  };
+      default:
+        throw new Error(`Unknown event type: ${lastEntry.event}`);
+    }
+
+    // Record the undo operation in history
+    const undoHistoryId = recordHistory(db, {
+      memoryId,
+      prevValue: newValue,
+      newValue: restoredState,
+      event: undoAction === 'DELETE' ? 'DELETE' : 'UPDATE',
+      actor: 'system'
+    });
+
+    return {
+      success: true,
+      undoHistoryId,
+      originalEvent: lastEntry.event,
+      undoAction,
+      restoredState,
+      undoneEntryId: lastEntry.id,
+      timestamp: new Date().toISOString()
+    };
+  })();
 }
 
 /**

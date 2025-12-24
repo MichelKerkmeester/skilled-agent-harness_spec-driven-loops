@@ -39,46 +39,53 @@
 
   // Memory Decay Configuration
   // Applies time-based decay to memory relevance scores
+  // NOTE: Decay exemption is determined by `decay: false` in importance-tiers.js,
+  // NOT by config. Constitutional, critical, and important tiers are hardcoded
+  // as decay-exempt. The per-tier `decayExempt` below is for documentation only.
   "memoryDecay": {
     "enabled": true,                    // Enable time-based decay for memory relevance
-    "halfLifeDays": 90,                 // Days until memory relevance halves (90 = 3 months)
-    "decayWeight": 0.3,                 // How much decay affects final score (0-1)
-    "exemptTiers": ["constitutional", "critical", "important"]  // Tiers that never decay
+    // Decay time constant in days (time to reach ~37% of initial value)
+    // Note: This is NOT half-life. Actual half-life = scaleDays * ln(2) ≈ scaleDays * 0.693
+    // With scaleDays=90, actual half-life ≈ 62 days
+    "scaleDays": 90,
+    "decayWeight": 0.3                  // How much decay affects final score (0-1)
   },
 
-  // Importance Tier Configuration
-  // Defines behavior for each memory importance level
+  // Importance Tier Configuration (DOCUMENTATION ONLY)
+  // Actual tier behavior is hardcoded in mcp_server/lib/importance-tiers.js
+  // This section documents the current tier settings for reference.
+  // To modify tier behavior, edit IMPORTANCE_TIERS in importance-tiers.js
   "importanceTiers": {
     "constitutional": {
       "searchBoost": 3.0,               // 3x boost - always surfaces
-      "decayExempt": true,              // Never loses relevance over time
+      "decay": false,                   // Never loses relevance (hardcoded)
       "autoExpireDays": null,           // Never auto-expires
       "alwaysSurface": true             // Always included in context
     },
     "critical": {
       "searchBoost": 2.0,               // 2x boost in search ranking
-      "decayExempt": true,              // Never loses relevance over time
+      "decay": false,                   // Never loses relevance (hardcoded)
       "autoExpireDays": null            // Never auto-expires
     },
     "important": {
       "searchBoost": 1.5,               // 1.5x boost in search ranking
-      "decayExempt": true,              // Never loses relevance over time
+      "decay": false,                   // Never loses relevance (hardcoded)
       "autoExpireDays": null            // Never auto-expires
     },
     "normal": {
       "searchBoost": 1.0,               // Standard search ranking
-      "decayExempt": false,             // Subject to time-based decay
+      "decay": true,                    // Subject to time-based decay (hardcoded)
       "autoExpireDays": null            // Never auto-expires
     },
     "temporary": {
       "searchBoost": 0.5,               // 0.5x penalty in search ranking
-      "decayExempt": false,             // Subject to time-based decay
+      "decay": true,                    // Subject to time-based decay (hardcoded)
       "autoExpireDays": 7               // Auto-deletes after 7 days
     },
     "deprecated": {
-      "searchBoost": 0.25,              // 0.25x boost (lowest priority)
-      "decayExempt": false,             // Subject to decay
-      "excludeFromSearch": false        // Still searchable but low priority
+      "searchBoost": 0.0,               // Excluded from search (searchBoost=0)
+      "decay": false,                   // N/A - excluded from search
+      "excludeFromSearch": true         // Hidden from search results
     }
   },
 
@@ -88,6 +95,7 @@
     "enabled": true,                    // Enable hybrid FTS + vector search
     "ftsWeight": 0.4,                   // Weight for full-text search results (40%)
     "vectorWeight": 0.6,                // Weight for vector similarity results (60%)
+    // Note: rrfK is also defined in mcp_server/configs/search-weights.json - keep in sync
     "rrfK": 60,                         // Reciprocal Rank Fusion constant (higher = more balanced)
     "fallbackEnabled": true             // Fall back to vector-only if FTS fails
   },
@@ -114,16 +122,25 @@
     "defaultType": "general"            // Fallback when no pattern matches
   },
 
+  // ============================================================
+  // DOCUMENTATION ONLY - These values are NOT loaded by the MCP server
+  // To change behavior, edit the corresponding .js files directly
+  // or update search-weights.json for search-related settings
+  // ============================================================
+
   // Access Tracking Configuration
   // Boosts frequently accessed memories in search results
+  // NOTE: Actual values loaded from search-weights.json
   "accessTracking": {
     "enabled": true,                    // Enable access count tracking
-    "popularityBoost": 0.1,             // Boost per access (10% per access)
-    "popularityThreshold": 5            // Minimum accesses to apply boost
+    "boostPerAccess": 0.1,              // Boost per access (10% per access)
+    "maxBoost": 0.5,                    // Maximum cumulative boost
+    "threshold": 5                      // Minimum accesses to apply boost
   },
 
   // Checkpoint Configuration
   // Allows saving and restoring memory states
+  // NOTE: Behavior hardcoded in checkpoint.js
   "checkpoints": {
     "enabled": true,                    // Enable checkpoint functionality
     "maxCheckpoints": 10,               // Maximum checkpoints to retain
@@ -144,11 +161,16 @@
 
   // Confidence Tracking Configuration
   // Track validation success rate and promote high-confidence memories
+  // NOTE: Behavior hardcoded in validation.js
   "confidenceTracking": {
     "enabled": true,                    // Enable confidence scoring and tracking
     "promotionThreshold": 0.9,          // Promote to higher tier at 90% confidence
     "minValidations": 5                 // Minimum validations before promotion eligible
   }
+
+  // ============================================================
+  // END DOCUMENTATION ONLY SECTION
+  // ============================================================
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -216,32 +238,42 @@
 // • enabled (boolean, default: true)
 //   Enable/disable time-based decay calculation
 //
-// • halfLifeDays (number, default: 90)
-//   Number of days for memory relevance to halve
-//   90 days = memories lose 50% relevance after 3 months
+// • scaleDays (number, default: 90)
+//   Decay time constant in days (time to reach ~37% of initial value)
+//   This is NOT half-life. Actual half-life = scaleDays * ln(2) ≈ scaleDays * 0.693
+//   With scaleDays=90, actual half-life ≈ 62 days (not 90)
+//   Formula: boost = decayWeight * e^(-age_days / scaleDays)
 //
 // • decayWeight (number, default: 0.3)
 //   How much decay affects final ranking score (0-1)
 //   0.3 = decay contributes 30% to final score calculation
 //
-// • exemptTiers (array, default: ["critical", "important"])
-//   Importance tiers that are exempt from decay
-//   These memories maintain full relevance indefinitely
+// NOTE: Decay exemption is controlled by the `decay` property in
+// IMPORTANCE_TIERS (mcp_server/lib/importance-tiers.js), not by config.
+// Constitutional, critical, and important tiers have decay=false (exempt).
+// Normal and temporary tiers have decay=true (subject to decay).
 
-// → importanceTiers (object) [v11.0]
+// → importanceTiers (object) [v11.0] - DOCUMENTATION ONLY
 // ─────────────────────────────────────────────────────────────
-// Defines behavior for each memory importance level.
+// Documents the behavior of each memory importance level.
+// IMPORTANT: Actual tier behavior is hardcoded in:
+//   mcp_server/lib/importance-tiers.js (IMPORTANCE_TIERS constant)
+// This config section is for reference only - changes here have no effect.
 //
+// Properties (as defined in importance-tiers.js):
 // • searchBoost (number): Multiplier for search ranking
-//   2.0 = double priority, 0.5 = half priority
+//   3.0 = constitutional, 2.0 = critical, 1.5 = important, 1.0 = normal, 0.5 = temporary, 0.0 = deprecated
 //
-// • decayExempt (boolean): Whether tier is exempt from time decay
+// • decay (boolean): Whether tier is subject to time decay
+//   false = constitutional/critical/important (exempt)
+//   true = normal/temporary (subject to decay)
 //
 // • autoExpireDays (number|null): Auto-delete after N days
-//   null = never auto-expire
+//   null = never auto-expire (all except temporary)
+//   7 = temporary tier only
 //
 // • excludeFromSearch (boolean): Completely hide from search results
-//   Only applicable to deprecated tier
+//   true = deprecated tier only
 
 // → hybridSearch (object) [v11.0]
 // ─────────────────────────────────────────────────────────────
@@ -288,10 +320,13 @@
 // • enabled (boolean, default: true)
 //   Enable/disable access counting
 //
-// • popularityBoost (number, default: 0.1)
+// • boostPerAccess (number, default: 0.1)
 //   Score boost per access (0.1 = 10% boost per access)
 //
-// • popularityThreshold (number, default: 5)
+// • maxBoost (number, default: 0.5)
+//   Maximum cumulative boost from access tracking (50%)
+//
+// • threshold (number, default: 5)
 //   Minimum accesses before boost is applied
 
 // → checkpoints (object) [v11.0]

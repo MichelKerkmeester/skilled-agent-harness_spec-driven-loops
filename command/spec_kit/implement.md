@@ -349,15 +349,7 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ## 7. ✅ VALIDATION DURING IMPLEMENTATION
 
-Run validation to catch issues early:
-
-```bash
-# Standard validation
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
-
-# With prerequisites check
-.opencode/skill/system-spec-kit/scripts/check-prerequisites.sh --validate <spec-folder>
-```
+Validation runs automatically to catch issues early.
 
 Key rules for implementation phase:
 - **PLACEHOLDER_FILLED** - Replace all `[PLACEHOLDER]` markers

@@ -145,8 +145,8 @@
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 4: MEMORY LOADING [SOFT BLOCK]                                         │
 │ Trigger: User selected A or C in Gate 3 AND memory files exist               │
-│ Action:  Display [1] [2] [3] [all] [skip] → Wait for user choice            │
-│ Block:   SOFT - User can [skip] to proceed immediately                      │
+│ Action:  A) Recent | B) All (1-3) | C) Select | D) Skip → Wait for choice   │
+│ Block:   SOFT - User can skip (D) to proceed immediately                    │
 │ Note:    Display memory options after user responds to Gate 3               │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
@@ -279,7 +279,7 @@ File modification planned? → Include Q1 (Spec Folder)
 ```
 
 **Gate Bypass Phrases** (user can skip specific gates):
-- Gate 4: "auto-load memories", "fresh start", "skip memory", [skip]
+- Gate 4: "auto-load memories", "fresh start", "skip memory", "D", [skip]
 - Gate 6: Level 1 tasks (no checklist.md required)
 
 #### ⚡ Compliance Checkpoints

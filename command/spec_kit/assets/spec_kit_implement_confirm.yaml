@@ -603,11 +603,11 @@ workflow:
     - Update all task status
     pre_completion_validation:
       enforcement: MANDATORY
-      command: ".opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>"
-      exit_codes:
-        0: "pass → continue"
-        1: "warnings → continue with caution"
-        2: "errors → STOP and fix before proceeding"
+      behavior: "Validation runs automatically"
+      outcomes:
+        pass: "continue"
+        warnings: "continue with caution"
+        errors: "STOP and fix before proceeding"
     summary_document:
       location: "[SPEC_FOLDER]/implementation-summary.md"
       required_sections:
@@ -665,7 +665,7 @@ workflow:
     - Index memory file for immediate search availability
     tool_invocation:
       command: Read(".opencode/skill/system-memory/SKILL.md")
-      note: "Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving"
+      note: 'Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving'
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__implementation_session.md"
     validation: context_saved_successfully

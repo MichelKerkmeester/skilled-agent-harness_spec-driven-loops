@@ -458,7 +458,7 @@ Search existing specs (folder names, titles)
 ### Reference Files
 - [quick_reference.md](./quick_reference.md) - Commands, checklists, and troubleshooting
 - [template_guide.md](./template_guide.md) - Template selection, adaptation, and quality standards
-- [path_scoped_rules.md](./path_scoped_rules.md) - Future path-based validation (design document)
+- [path_scoped_rules.md](./path_scoped_rules.md) - Path-scoped validation rules reference
 
 ### Templates
 - [spec.md](../templates/spec.md) - Requirements and user stories template

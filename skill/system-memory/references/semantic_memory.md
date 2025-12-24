@@ -55,7 +55,8 @@ memory_search({
   tier?: string,           // Filter by importance tier
   contextType?: string,    // Filter by context type
   useDecay?: boolean,      // Apply time-based decay (default: true)
-  includeConstitutional?: boolean  // Include constitutional tier (default: true)
+  includeConstitutional?: boolean,  // Include constitutional tier (default: true)
+  includeContiguity?: boolean       // Include adjacent/contiguous memories (default: false)
 })
 ```
 
@@ -94,12 +95,14 @@ memory_save({
 **Response:**
 ```json
 {
-  "success": true,
-  "action": "indexed",
-  "memoryId": 42,
+  "status": "indexed",
+  "id": 42,
   "specFolder": "005-memory",
   "title": "Session Context",
-  "triggerPhrases": ["memory", "indexing"]
+  "triggerPhrases": ["memory", "indexing"],
+  "contextType": "implementation",
+  "importanceTier": "normal",
+  "message": "Memory indexed successfully"
 }
 ```
 
@@ -115,12 +118,23 @@ memory_index_scan({
 **Response:**
 ```json
 {
-  "success": true,
+  "status": "complete",
+  "batchSize": 5,
   "scanned": 15,
   "indexed": 3,
-  "skipped": 12,
-  "errors": 0
+  "updated": 1,
+  "unchanged": 10,
+  "failed": 1,
+  "message": "Scan complete: 3 indexed, 1 updated, 10 unchanged, 1 failed"
 }
+---
+
+## 3. 🔀 HYBRID SEARCH
+
+Hybrid search combines FTS5 keyword search with vector semantic search using Reciprocal Rank Fusion (RRF).
+
+### RRF Formula
+
 ```
 RRF_score(d) = sum( 1 / (k + rank_i(d)) ) for each ranking system i
 
@@ -566,10 +580,16 @@ const results = await memory_search({
 ### Checkpoint Operations
 
 ```typescript
+checkpoint_create({
+  name: string,          // Unique checkpoint name (required)
+  specFolder?: string,   // Limit to specific spec folder
+  metadata?: object      // Additional metadata
+})
+
 // Create checkpoint before major changes
 await checkpoint_create({
   name: "pre-refactor-v2",
-  description: "Before major auth system refactor"
+  metadata: { reason: "Before major auth system refactor" }
 });
 
 // List available checkpoints
@@ -592,6 +612,11 @@ await memory_validate({ id: 123, wasUseful: true });
 ### Trigger Phrase Matching
 
 ```typescript
+memory_match_triggers({
+  prompt: string,        // User prompt to match (required)
+  limit?: number         // Max results (default: 3)
+})
+
 // Fast trigger detection (<50ms)
 const trigger = await memory_match_triggers({
   prompt: "save context for the auth work"

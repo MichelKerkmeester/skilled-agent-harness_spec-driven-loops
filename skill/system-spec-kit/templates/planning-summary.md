@@ -1,5 +1,5 @@
 # Planning Summary
-<!-- SPECKIT_TEMPLATE_SOURCE: planning-summary.md | v1.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: planning-summary | v1.0 -->
 
 ## Metadata
 | Field | Value |

@@ -63,12 +63,15 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ### Implemented Rules
 
-| Rule ID            | Severity | Description                                      |
-| ------------------ | -------- | ------------------------------------------------ |
-| `FILE_EXISTS`      | ERROR    | Required files present for documentation level   |
-| `PLACEHOLDER_FILLED` | ERROR  | No unfilled `[YOUR_VALUE_HERE:]` placeholders    |
-| `SECTIONS_PRESENT` | WARNING  | Required markdown sections exist                 |
-| `LEVEL_DECLARED`   | INFO     | Level explicitly stated in spec.md metadata      |
+| Rule ID              | Severity | Description                                      |
+| -------------------- | -------- | ------------------------------------------------ |
+| `FILE_EXISTS`        | ERROR    | Required files present for documentation level   |
+| `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` placeholders    |
+| `SECTIONS_PRESENT`   | WARNING  | Required markdown sections exist                 |
+| `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata      |
+| `PRIORITY_TAGS`      | WARNING  | Validate P0/P1/P2 format in checklists           |
+| `EVIDENCE_CITED`     | WARNING  | Verify `[EVIDENCE:]` on completed P0/P1 items    |
+| `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in memory files |
 
 ### Placeholder Patterns Detected
 
@@ -141,11 +144,7 @@ Step 11 (Completion) runs validation as the first action.
 
 Planned but not yet implemented:
 
-1. **ANCHORS_VALID** - Validate `<!-- ANCHOR:id -->` pairs in memory files
-2. **PRIORITY_TAGS** - Validate P0/P1/P2 format in checklists
-3. **EVIDENCE_CITED** - Verify `[EVIDENCE:]` on completed P0/P1 items
-4. **.speckit.yaml** - Project-level configuration file
-5. **Autofix** - Automatic correction of common issues
+1. **Autofix** - Automatic correction of common issues
 
 ---
 

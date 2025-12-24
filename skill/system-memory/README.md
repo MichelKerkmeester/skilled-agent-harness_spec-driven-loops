@@ -733,36 +733,38 @@ Delete a checkpoint.
 
 | Command              | Purpose                                                |
 | -------------------- | ------------------------------------------------------ |
-| `/memory/save`       | Save current context with interactive folder detection |
-| `/memory/search`     | Search, manage index, view recent, rebuild, verify     |
-| `/memory/cleanup`    | Interactive cleanup of old memories                    |
-| `/memory/triggers`   | View and manage learned trigger phrases                |
-| `/memory/status`     | Quick health check and statistics                      |
-| `/memory/checkpoint` | Create, restore, list, delete checkpoints              |
+| `/memory:save`       | Save current context with interactive folder detection |
+| `/memory:search`     | Search, manage index, view recent, rebuild, verify     |
+| `/memory:cleanup`    | Interactive cleanup of old memories (NOT YET IMPLEMENTED) |
+| `/memory:triggers`   | View and manage learned trigger phrases (NOT YET IMPLEMENTED) |
+| `/memory:status`     | Quick health check and statistics (NOT YET IMPLEMENTED) |
+| `/memory:checkpoint` | Create, restore, list, delete checkpoints              |
 
-### /memory/save
+### /memory:save
 
 Simple save with spec folder detection:
 - Spec folder passed as CLI argument (stateless)
 - Prompts for confirmation or manual selection
 - Generates memory file with embeddings
 
-### /memory/search
+### /memory:search
 
 All search and index management operations:
 
-| Subcommand                             | Purpose                   |
-| -------------------------------------- | ------------------------- |
-| `/memory/search "query"`               | Semantic search           |
-| `/memory/search multi "term1" "term2"` | Multi-concept AND search  |
-| `/memory/search recent`                | View recent memories      |
-| `/memory/search verify`                | Check index health        |
-| `/memory/search rebuild`               | Regenerate all embeddings |
-| `/memory/search retry`                 | Retry failed embeddings   |
-| `/memory/search list-failed`           | List failed embeddings    |
-| `/memory/search resume`                | Resume search session     |
+| Subcommand                              | Purpose                   |
+| --------------------------------------- | ------------------------- |
+| `/memory:search "query"`                | Semantic search           |
+| `/memory:search multi "term1" "term2"`  | Multi-concept AND search  |
+| `/memory:search recent`                 | View recent memories      |
+| `/memory:search verify`                 | Check index health        |
+| `/memory:search rebuild`                | Regenerate all embeddings |
+| `/memory:search retry`                  | Retry failed embeddings   |
+| `/memory:search list-failed`            | List failed embeddings    |
+| `/memory:search resume`                 | Resume search session     |
 
-### /memory/cleanup
+### /memory:cleanup (NOT YET IMPLEMENTED)
+
+> **Note**: This command is planned but not yet implemented. Use `memory_delete()` MCP tool for manual cleanup.
 
 Interactive cleanup of old, unused, or low-relevance memories:
 
@@ -773,15 +775,17 @@ Interactive cleanup of old, unused, or low-relevance memories:
 | **Review mode**         | Step through each memory with [y/n/v]iew options |
 | **Smart defaults**      | 90 days old, <3 accesses, <0.4 confidence        |
 
-**Usage:**
+**Planned Usage:**
 ```
-/memory/cleanup
+/memory:cleanup
 
 # Shows: "Found 5 memories that may be outdated"
 # Actions: [a]ll, [r]eview each, [n]one, [c]ancel
 ```
 
-### /memory/triggers
+### /memory:triggers (NOT YET IMPLEMENTED)
+
+> **Note**: This command is planned but not yet implemented. Use `memory_match_triggers()` MCP tool to check trigger phrases.
 
 View and manage learned trigger phrases:
 
@@ -792,14 +796,16 @@ View and manage learned trigger phrases:
 | **Search by trigger** | Find memories matching a specific trigger phrase         |
 | **Clear all**         | Reset all learned triggers (with confirmation)           |
 
-**Usage:**
+**Planned Usage:**
 ```
-/memory/triggers              # Interactive menu
-/memory/triggers search oauth # Find memories with "oauth" trigger
-/memory/triggers clear        # Reset all triggers
+/memory:triggers              # Interactive menu
+/memory:triggers search oauth # Find memories with "oauth" trigger
+/memory:triggers clear        # Reset all triggers
 ```
 
-### /memory/status
+### /memory:status (NOT YET IMPLEMENTED)
+
+> **Note**: This command is planned but not yet implemented. Use `memory_stats()` MCP tool to get system statistics.
 
 Quick health check and system statistics:
 
@@ -811,9 +817,9 @@ Quick health check and system statistics:
 | **Storage**     | Database size in MB               |
 | **Performance** | Vector search availability        |
 
-**Usage:**
+**Planned Usage:**
 ```
-/memory/status
+/memory:status
 
 # Output:
 # Memories:     47 indexed
@@ -822,30 +828,30 @@ Quick health check and system statistics:
 # Quick actions: [s]earch [c]leanup [r]ebuild index
 ```
 
-### /memory/checkpoint
+### /memory:checkpoint
 
 Create and manage memory state checkpoints:
 
-| Subcommand                          | Purpose                     |
-| ----------------------------------- | --------------------------- |
-| `/memory/checkpoint create "name"`  | Create named checkpoint     |
-| `/memory/checkpoint list`           | List all checkpoints        |
-| `/memory/checkpoint restore "name"` | Restore to checkpoint state |
-| `/memory/checkpoint delete "name"`  | Delete a checkpoint         |
+| Subcommand                           | Purpose                     |
+| ------------------------------------ | --------------------------- |
+| `/memory:checkpoint create "name"`   | Create named checkpoint     |
+| `/memory:checkpoint list`            | List all checkpoints        |
+| `/memory:checkpoint restore "name"`  | Restore to checkpoint state |
+| `/memory:checkpoint delete "name"`   | Delete a checkpoint         |
 
 **Usage:**
 ```
 # Before major changes
-/memory/checkpoint create "pre-refactor"
+/memory:checkpoint create "pre-refactor"
 
 # List available checkpoints
-/memory/checkpoint list
+/memory:checkpoint list
 # Output:
 # - pre-refactor (Dec 10, 47 memories)
 # - v1-release (Dec 5, 42 memories)
 
 # Restore if needed
-/memory/checkpoint restore "pre-refactor"
+/memory:checkpoint restore "pre-refactor"
 ```
 
 ---
@@ -862,7 +868,7 @@ Create and manage memory state checkpoints:
 
 ### Manual Save
 
-Save context manually using `/memory/save` command or trigger phrases like "save context". No automatic interval-based saving in OpenCode.
+Save context manually using `/memory:save` command or trigger phrases like "save context". No automatic interval-based saving in OpenCode.
 
 ### When to Save
 
@@ -880,9 +886,9 @@ Save context manually using `/memory/save` command or trigger phrases like "save
 ### Basic Search
 
 ```bash
-/memory/search "how did we implement OAuth authentication"
-/memory/search "database schema design decisions"
-/memory/search "error handling patterns"
+/memory:search "how did we implement OAuth authentication"
+/memory:search "database schema design decisions"
+/memory:search "error handling patterns"
 ```
 
 **Output:**
@@ -902,8 +908,8 @@ Found 3 relevant memories
 ### Multi-Concept AND Search
 
 ```bash
-/memory/search multi "oauth" "error handling"
-/memory/search multi "database" "performance" "queries"
+/memory:search multi "oauth" "error handling"
+/memory:search multi "database" "performance" "queries"
 ```
 
 Returns only memories matching **ALL** concepts (2-5 concepts supported).
@@ -913,7 +919,7 @@ Returns only memories matching **ALL** concepts (2-5 concepts supported).
 Rich interactive search with preview, filtering, and session persistence:
 
 ```
-/memory/search "oauth implementation"
+/memory:search "oauth implementation"
 
 Memory Search Results                              Page 1/3
 ============================================================
@@ -959,7 +965,7 @@ f folder:auth tag:jwt  # Multiple filters (AND)
 #### Session Persistence
 
 Search sessions persist for 1 hour:
-- Resume with `/memory/search resume`
+- Resume with `/memory:search resume`
 - Auto-saves on every action
 - Preserves filters, pagination, and state
 
@@ -1682,22 +1688,22 @@ Delete a checkpoint that's no longer needed.
 }
 ```
 
-### Slash Command: /memory/checkpoint
+### Slash Command: /memory:checkpoint
 
 Interactive checkpoint management via slash command:
 
 ```bash
 # Create a checkpoint
-/memory/checkpoint create "pre-refactor"
+/memory:checkpoint create "pre-refactor"
 
 # List all checkpoints
-/memory/checkpoint list
+/memory:checkpoint list
 
 # Restore a checkpoint
-/memory/checkpoint restore "pre-refactor"
+/memory:checkpoint restore "pre-refactor"
 
 # Delete a checkpoint
-/memory/checkpoint delete "old-checkpoint"
+/memory:checkpoint delete "old-checkpoint"
 ```
 
 ### Database Schema
@@ -1817,13 +1823,13 @@ brew install sqlite-vec
 cd /path/to/semantic-memory && npm install
 
 # 3. Save context - interactive folder detection
-/memory/save
+/memory:save
 
 # 4. Search your memories semantically
-/memory/search "how did we implement authentication"
+/memory:search "how did we implement authentication"
 
 # 5. Rebuild index for existing memories
-/memory/search rebuild
+/memory:search rebuild
 ```
 
 ### Environment Variables
@@ -1988,13 +1994,13 @@ node scripts/tests/performance/latency.perf.test.js
 
 ```bash
 # 1. Save a test context
-/memory/save
+/memory:save
 
 # 2. Verify it was indexed
-/memory/search verify
+/memory:search verify
 
 # 3. Search for it
-/memory/search "your test topic"
+/memory:search "your test topic"
 ```
 
 ---
@@ -2015,7 +2021,7 @@ node scripts/tests/performance/latency.perf.test.js
 2. Reinstall if broken:
    ```bash
    rm node_modules
-   ln -s /path/to/.opencode/memory/node_modules .
+   ln -s /path/to/.opencode/skill/system-memory/node_modules .
    ```
 
 ### sqlite-vec Not Loading
@@ -2050,26 +2056,26 @@ export HUGGINGFACE_HUB_CACHE=/path/to/cache
 
 ```bash
 # Check status
-/memory/search list-failed
+/memory:search list-failed
 
 # Retry
-/memory/search retry
+/memory:search retry
 
 # If persistent, rebuild
-/memory/search rebuild
+/memory:search rebuild
 ```
 
 ### Search Returns No Results
 
-1. Verify index exists: `/memory/search verify`
-2. Rebuild index: `/memory/search rebuild`
+1. Verify index exists: `/memory:search verify`
+2. Rebuild index: `/memory:search rebuild`
 3. Check query is meaningful (avoid single words)
 4. Lower similarity threshold in config
 
 ### Batch Indexing
 
 ```bash
-cd .opencode/memory/scripts
+cd .opencode/skill/system-memory/scripts
 
 # Auto-scan all memory files (recursive - supports nested specs)
 node index-all.js --scan /path/to/project
@@ -2088,7 +2094,7 @@ node index-all.js /tmp/manifest.txt
 
 ```bash
 # System status
-/memory/search verify
+/memory:search verify
 
 # Index statistics
 sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite \
@@ -2096,14 +2102,14 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite \
 
 # Test embedding
 node -e "
-require('.opencode/memory/scripts/lib/embeddings')
+require('.opencode/skill/system-memory/mcp_server/lib/embeddings')
   .generateEmbedding('test')
   .then(e => console.log('OK:', e.length, 'dimensions'))
   .catch(e => console.error('ERROR:', e.message))
 "
 
 # Batch reindex all memories
-node .opencode/memory/scripts/index-all.js --scan .
+node .opencode/skill/system-memory/scripts/index-all.js --scan .
 
 # Check WAL mode
 sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "PRAGMA journal_mode"
@@ -2112,11 +2118,11 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "PRAGMA journ
 
 ### Log Locations
 
-| Log              | Location                                            |
-| ---------------- | --------------------------------------------------- |
-| Hook performance | `.opencode/memory/logs/performance.log`             |
-| Trigger matching | `.opencode/memory/logs/suggest-semantic-search.log` |
-| Memory           | `.opencode/memory/logs/system-memory-trigger.log`   |
+| Log              | Location                                                        |
+| ---------------- | --------------------------------------------------------------- |
+| Hook performance | `.opencode/skill/system-memory/logs/performance.log`             |
+| Trigger matching | `.opencode/skill/system-memory/logs/suggest-semantic-search.log` |
+| Memory           | `.opencode/skill/system-memory/logs/system-memory-trigger.log`   |
 
 ---
 
@@ -2139,7 +2145,7 @@ A: No. Embedding generation is async and doesn't block saves. Trigger matching i
 A: The system uses hybrid search combining FTS5 (keywords) and vector (semantic) search with RRF fusion. This gives you the best of both worlds - exact keyword matches bubble up while semantically related content is also included. If hybrid search fails, it falls back to vector-only mode.
 
 **Q: How do I search only one spec folder?**
-A: Use `--spec` flag: `/memory/search "query" --spec 049-auth-system`
+A: Use `--spec` flag: `/memory:search "query" --spec 049-auth-system`
 
 ### Compatibility
 
@@ -2155,7 +2161,7 @@ A: System falls back to anchor-only mode with a warning. Core functionality pres
 A: Old memories remain searchable but rank lower. The 90-day half-life means a 90-day-old memory has 50% of its original score. Memories marked `critical` or `constitutional` bypass decay.
 
 **Q: Can I restore accidentally deleted memories?**
-A: If you created a checkpoint before deletion, yes. Use `/memory/checkpoint restore "name"`.
+A: If you created a checkpoint before deletion, yes. Use `/memory:checkpoint restore "name"`.
 
 **Q: How does confidence promotion work?**
 A: After 5+ validations with 90%+ confidence score, the system suggests promoting the memory to `critical` tier.

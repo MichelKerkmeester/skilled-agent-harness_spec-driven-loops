@@ -387,12 +387,12 @@ Restore is a **destructive operation**:
 
 ## 10. 🔍 QUICK REFERENCE
 
-| Command                             | Description                                    |
-| ----------------------------------- | ---------------------------------------------- |
-| `/memory/checkpoint create "name"`  | Save current memory state                      |
-| `/memory/checkpoint restore "name"` | Restore to saved state (requires confirmation) |
-| `/memory/checkpoint list`           | Show all checkpoints                           |
-| `/memory/checkpoint delete "name"`  | Remove checkpoint (requires confirmation)      |
+| Command                              | Description                                    |
+| ------------------------------------ | ---------------------------------------------- |
+| `/memory:checkpoint create "name"`   | Save current memory state                      |
+| `/memory:checkpoint restore "name"`  | Restore to saved state (requires confirmation) |
+| `/memory:checkpoint list`            | Show all checkpoints                           |
+| `/memory:checkpoint delete "name"`   | Remove checkpoint (requires confirmation)      |
 
 ---
 

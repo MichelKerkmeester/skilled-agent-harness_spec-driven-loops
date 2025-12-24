@@ -178,6 +178,10 @@ find_feature_dir_by_prefix() {
 # Export all feature-related paths as eval-able shell variables.
 # Usage: eval "$(get_feature_paths)"
 # Sets: REPO_ROOT, CURRENT_BRANCH, HAS_GIT, FEATURE_DIR, FEATURE_SPEC, IMPL_PLAN, etc.
+#
+# SECURITY: Uses printf %q for shell-safe quoting to prevent injection attacks.
+# This protects against malicious directory names or branch names containing
+# shell metacharacters (quotes, $(), backticks, semicolons, etc.).
 get_feature_paths() {
     local repo_root
     repo_root="$(get_repo_root)"
@@ -193,22 +197,22 @@ get_feature_paths() {
     local feature_dir
     feature_dir="$(find_feature_dir_by_prefix "$repo_root" "$current_branch")"
 
-    cat <<EOF
-REPO_ROOT='$repo_root'
-CURRENT_BRANCH='$current_branch'
-HAS_GIT='$has_git_repo'
-FEATURE_DIR='$feature_dir'
-FEATURE_SPEC='$feature_dir/spec.md'
-IMPL_PLAN='$feature_dir/plan.md'
-TASKS='$feature_dir/tasks.md'
-RESEARCH='$feature_dir/research.md'
-DATA_MODEL='$feature_dir/data-model.md'
-QUICKSTART='$feature_dir/quickstart.md'
-CONTRACTS_DIR='$feature_dir/contracts'
-CHECKLISTS_DIR='$feature_dir/checklists'
-DECISIONS_DIR='$feature_dir/decisions'
-RESEARCH_SPIKES_DIR='$feature_dir/research-spikes'
-EOF
+    # SECURITY: printf %q escapes all shell metacharacters, preventing injection
+    # when this output is passed to eval. Never use simple quoting here.
+    printf 'REPO_ROOT=%q\n' "$repo_root"
+    printf 'CURRENT_BRANCH=%q\n' "$current_branch"
+    printf 'HAS_GIT=%q\n' "$has_git_repo"
+    printf 'FEATURE_DIR=%q\n' "$feature_dir"
+    printf 'FEATURE_SPEC=%q\n' "$feature_dir/spec.md"
+    printf 'IMPL_PLAN=%q\n' "$feature_dir/plan.md"
+    printf 'TASKS=%q\n' "$feature_dir/tasks.md"
+    printf 'RESEARCH=%q\n' "$feature_dir/research.md"
+    printf 'DATA_MODEL=%q\n' "$feature_dir/data-model.md"
+    printf 'QUICKSTART=%q\n' "$feature_dir/quickstart.md"
+    printf 'CONTRACTS_DIR=%q\n' "$feature_dir/contracts"
+    printf 'CHECKLISTS_DIR=%q\n' "$feature_dir/checklists"
+    printf 'DECISIONS_DIR=%q\n' "$feature_dir/decisions"
+    printf 'RESEARCH_SPIKES_DIR=%q\n' "$feature_dir/research-spikes"
 }
 
 # ============================================================================

@@ -38,14 +38,14 @@ function toEmbeddingBuffer(embedding) {
     return embedding;
   }
   if (embedding instanceof Float32Array) {
-    return Buffer.from(embedding.buffer);
+    return Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
   }
   if (Array.isArray(embedding)) {
     return Buffer.from(new Float32Array(embedding).buffer);
   }
-  // If it has a buffer property (TypedArray)
-  if (embedding.buffer) {
-    return Buffer.from(embedding.buffer);
+  // If it has a buffer property (TypedArray) - handle byteOffset for views
+  if (embedding.buffer && embedding.byteOffset !== undefined) {
+    return Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
   }
   throw new Error('Invalid embedding type: expected Float32Array, Buffer, Array, or TypedArray');
 }
@@ -102,6 +102,9 @@ function initializeDb(customPath = null) {
   // Enable WAL mode for concurrent access (FR-010b)
   db.pragma('journal_mode = WAL');
 
+  // Enable foreign key enforcement (P0-004: Database integrity)
+  db.pragma('foreign_keys = ON');
+
   // Performance pragmas (P1 optimization - 20-50% faster queries/writes)
   db.pragma('cache_size = -64000');       // 64MB cache (negative = KB)
   db.pragma('mmap_size = 268435456');     // 256MB memory-mapped I/O
@@ -126,6 +129,7 @@ function initializeDb(customPath = null) {
 
 /**
  * Migrate existing database to add confidence tracking columns
+ * Wraps ALTER TABLE in try-catch to handle concurrent migrations (P1-010)
  * @param {Object} database - better-sqlite3 instance
  */
 function migrateConfidenceColumns(database) {
@@ -133,20 +137,33 @@ function migrateConfidenceColumns(database) {
   const columns = database.prepare(`PRAGMA table_info(memory_index)`).all();
   const columnNames = columns.map(c => c.name);
 
+  // P1-010: Wrap each ALTER TABLE in try-catch to handle concurrent migrations
   if (!columnNames.includes('confidence')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
-    console.warn('[vector-index] Migration: Added confidence column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN confidence REAL DEFAULT 0.5`);
+      console.warn('[vector-index] Migration: Added confidence column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   if (!columnNames.includes('validation_count')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN validation_count INTEGER DEFAULT 0`);
-    console.warn('[vector-index] Migration: Added validation_count column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN validation_count INTEGER DEFAULT 0`);
+      console.warn('[vector-index] Migration: Added validation_count column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   // Add importance_tier column if missing (v11.1 feature)
   if (!columnNames.includes('importance_tier')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN importance_tier TEXT DEFAULT 'normal'`);
-    console.warn('[vector-index] Migration: Added importance_tier column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN importance_tier TEXT DEFAULT 'normal'`);
+      console.warn('[vector-index] Migration: Added importance_tier column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
     // Create index for efficient tier-based queries
     try {
       database.exec(`CREATE INDEX IF NOT EXISTS idx_importance_tier ON memory_index(importance_tier)`);
@@ -158,52 +175,88 @@ function migrateConfidenceColumns(database) {
 
   // Add context_type column if missing
   if (!columnNames.includes('context_type')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN context_type TEXT DEFAULT 'general'`);
-    console.warn('[vector-index] Migration: Added context_type column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN context_type TEXT DEFAULT 'general'`);
+      console.warn('[vector-index] Migration: Added context_type column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   // Add content_hash column if missing (for change detection)
   if (!columnNames.includes('content_hash')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN content_hash TEXT`);
-    console.warn('[vector-index] Migration: Added content_hash column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN content_hash TEXT`);
+      console.warn('[vector-index] Migration: Added content_hash column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   // Add channel column if missing
   if (!columnNames.includes('channel')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN channel TEXT DEFAULT 'default'`);
-    console.warn('[vector-index] Migration: Added channel column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN channel TEXT DEFAULT 'default'`);
+      console.warn('[vector-index] Migration: Added channel column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   // Add session_id column if missing
   if (!columnNames.includes('session_id')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN session_id TEXT`);
-    console.warn('[vector-index] Migration: Added session_id column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN session_id TEXT`);
+      console.warn('[vector-index] Migration: Added session_id column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   // Add decay-related columns if missing
   if (!columnNames.includes('base_importance')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN base_importance REAL DEFAULT 0.5`);
-    console.warn('[vector-index] Migration: Added base_importance column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN base_importance REAL DEFAULT 0.5`);
+      console.warn('[vector-index] Migration: Added base_importance column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   if (!columnNames.includes('decay_half_life_days')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN decay_half_life_days REAL DEFAULT 90.0`);
-    console.warn('[vector-index] Migration: Added decay_half_life_days column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN decay_half_life_days REAL DEFAULT 90.0`);
+      console.warn('[vector-index] Migration: Added decay_half_life_days column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   if (!columnNames.includes('is_pinned')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN is_pinned INTEGER DEFAULT 0`);
-    console.warn('[vector-index] Migration: Added is_pinned column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN is_pinned INTEGER DEFAULT 0`);
+      console.warn('[vector-index] Migration: Added is_pinned column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   if (!columnNames.includes('last_accessed')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN last_accessed INTEGER DEFAULT 0`);
-    console.warn('[vector-index] Migration: Added last_accessed column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN last_accessed INTEGER DEFAULT 0`);
+      console.warn('[vector-index] Migration: Added last_accessed column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 
   if (!columnNames.includes('expires_at')) {
-    database.exec(`ALTER TABLE memory_index ADD COLUMN expires_at DATETIME`);
-    console.warn('[vector-index] Migration: Added expires_at column');
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN expires_at DATETIME`);
+      console.warn('[vector-index] Migration: Added expires_at column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
   }
 }
 
@@ -318,6 +371,9 @@ function createSchema(database) {
   }
 
   // Create FTS5 virtual table
+  // NOTE: FTS5 indexes title, trigger_phrases, file_path only.
+  // context_type and channel are NOT included in full-text search.
+  // Use SQL filters for those columns.
   database.exec(`
     CREATE VIRTUAL TABLE IF NOT EXISTS memory_fts USING fts5(
       title, trigger_phrases, file_path,
@@ -393,6 +449,7 @@ function createSchema(database) {
     CREATE INDEX IF NOT EXISTS idx_memories_scope ON memory_index(spec_folder, session_id, context_type);
     CREATE INDEX IF NOT EXISTS idx_channel ON memory_index(channel);
     CREATE INDEX IF NOT EXISTS idx_history_memory ON memory_history(memory_id, timestamp);
+    CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC);
     CREATE INDEX IF NOT EXISTS idx_checkpoints_spec ON checkpoints(spec_folder);
   `);
 
@@ -744,10 +801,8 @@ function vectorSearch(queryEmbedding, options = {}) {
     includeConstitutional = true
   } = options;
 
-  // Convert to Buffer if Float32Array
-  const queryBuffer = queryEmbedding instanceof Buffer
-    ? queryEmbedding
-    : Buffer.from(queryEmbedding.buffer);
+  // Convert to Buffer using toEmbeddingBuffer for proper byteOffset handling
+  const queryBuffer = toEmbeddingBuffer(queryEmbedding);
 
   // Convert minSimilarity (0-100) to max distance (0-2 for cosine)
   // similarity = (1 - distance/2) * 100, so distance = 2 * (1 - similarity/100)
@@ -755,9 +810,10 @@ function vectorSearch(queryEmbedding, options = {}) {
 
   // Build decay expression: importance * (0.5 ^ (days_since_update / half_life))
   // For pinned items, decay is disabled (multiplier = 1.0)
+  // NULLIF prevents division by zero when decay_half_life_days is 0
   const decayExpr = useDecay
     ? `CASE WHEN m.is_pinned = 1 THEN m.importance_weight
-        ELSE m.importance_weight * POWER(0.5, (julianday('now') - julianday(m.updated_at)) / COALESCE(m.decay_half_life_days, 90.0))
+        ELSE m.importance_weight * POWER(0.5, (julianday('now') - julianday(m.updated_at)) / COALESCE(NULLIF(m.decay_half_life_days, 0), 90.0))
        END`
     : 'm.importance_weight';
 
@@ -766,8 +822,8 @@ function vectorSearch(queryEmbedding, options = {}) {
   // ─────────────────────────────────────────────────────────────────
   let constitutionalResults = [];
 
-  // Only fetch constitutional if not filtering by a specific tier and includeConstitutional is true
-  if (includeConstitutional && !tier) {
+  // Only fetch constitutional if not filtering by constitutional tier specifically and includeConstitutional is true
+  if (includeConstitutional && tier !== 'constitutional') {
     const constitutionalSql = `
       SELECT m.*, 100.0 as similarity, 1.0 as effective_importance,
              'constitutional' as source_type
@@ -782,9 +838,13 @@ function vectorSearch(queryEmbedding, options = {}) {
     constitutionalResults = database.prepare(constitutionalSql).all(...constitutionalParams);
 
     // Limit constitutional results to ~500 tokens (~2000 chars, ~5 memories avg)
-    // Rough estimate: each memory title + metadata ~ 100 tokens
+    // LIMITATION: This uses a fixed estimate of ~100 tokens per memory.
+    // For more accurate token counting, consider implementing dynamic calculation
+    // based on actual content length (title + trigger_phrases). Current approach
+    // prioritizes performance over precision - acceptable for constitutional tier
+    // which typically has few, high-importance entries.
     const MAX_CONSTITUTIONAL_TOKENS = 500;
-    const TOKENS_PER_MEMORY = 100; // Conservative estimate
+    const TOKENS_PER_MEMORY = 100; // Conservative fixed estimate (~4 chars/token)
     const maxConstitutionalCount = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
     constitutionalResults = constitutionalResults.slice(0, maxConstitutionalCount);
 
@@ -804,6 +864,9 @@ function vectorSearch(queryEmbedding, options = {}) {
   // Build dynamic WHERE clauses for tier and contextType filtering
   const whereClauses = ['m.embedding_status = \'success\''];
   const params = [queryBuffer];
+
+  // P2-006: Filter out expired memories
+  whereClauses.push('(m.expires_at IS NULL OR m.expires_at > datetime(\'now\'))');
 
   // Exclude deprecated and constitutional tier from regular search (constitutional already surfaced)
   if (tier === 'deprecated') {
@@ -846,7 +909,7 @@ function vectorSearch(queryEmbedding, options = {}) {
       WHERE ${whereClauses.join(' AND ')}
     ) sub
     WHERE sub.distance <= ?
-    ORDER BY sub.distance ASC
+    ORDER BY (sub.distance - (sub.effective_importance * 0.1)) ASC
     LIMIT ?
   `;
 
@@ -930,12 +993,17 @@ function multiConceptSearch(conceptEmbeddings, options = {}) {
     throw new Error('Multi-concept search requires 2-5 concepts');
   }
 
+  // Validate embedding dimensions before search
+  for (const emb of concepts) {
+    if (!emb || emb.length !== EMBEDDING_DIM) {
+      throw new Error(`Invalid embedding dimension: expected ${EMBEDDING_DIM}, got ${emb?.length}`);
+    }
+  }
+
   const { limit = 10, specFolder = null, minSimilarity = 50 } = options;
 
-  // Convert to Buffers
-  const conceptBuffers = concepts.map(c =>
-    c instanceof Buffer ? c : Buffer.from(c.buffer)
-  );
+  // Convert to Buffers using toEmbeddingBuffer for proper byteOffset handling
+  const conceptBuffers = concepts.map(c => toEmbeddingBuffer(c));
 
   // Convert minSimilarity to max distance
   const maxDistance = 2 * (1 - minSimilarity / 100);
@@ -1140,7 +1208,7 @@ function cleanupOrphans(basePath) {
     return { removed: 0, before: report.total, after: report.total, message: 'No orphaned entries found' };
   }
 
-  console.warn(`[vector-index] Found ${report.orphanedCount} orphaned entries, starting cleanup...`);
+   console.error(`[vector-index] Found ${report.orphanedCount} orphaned entries, starting cleanup...`);
 
   // Cleanup in transaction
   const cleanupTx = database.transaction(() => {
@@ -1159,8 +1227,8 @@ function cleanupOrphans(basePath) {
 
   const removed = cleanupTx();
 
-  console.warn(`[vector-index] Cleanup complete: removed ${removed} orphaned entries`);
-  console.warn(`[vector-index] Database: ${report.total} -> ${report.total - removed} entries`);
+  console.error(`[vector-index] Cleanup complete: removed ${removed} orphaned entries`);
+  console.error(`[vector-index] Database: ${report.total} -> ${report.total - removed} entries`);
 
   return {
     removed,
@@ -1191,7 +1259,11 @@ function isFtsAvailable() {
   try {
     db.prepare("SELECT 1 FROM memory_fts LIMIT 1").get();
     return true;
-  } catch {
+  } catch (e) {
+    if (e.message && e.message.includes('no such table')) {
+      return false;
+    }
+    console.error('[vector-index] FTS check error:', e.message);
     return false;
   }
 }

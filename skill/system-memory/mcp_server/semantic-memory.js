@@ -13,6 +13,11 @@
  *
  * @version 12.4.0
  * @module semantic-memory/memory-server
+ * 
+ * Logging conventions:
+ * - console.error() - Errors and important status (goes to MCP stderr)
+ * - console.warn() - Warnings for recoverable issues  
+ * - console.log() - Debug info (usually disabled in production)
  */
 
 'use strict';
@@ -56,19 +61,64 @@ const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
 const BATCH_SIZE = 5;       // Process 5 files concurrently
 const BATCH_DELAY_MS = 100; // Small delay between batches to prevent resource exhaustion
 
+// Embedding model readiness flag - set after successful warmup
+let embeddingModelReady = false;
+
+/**
+ * Check if the embedding model has been warmed up and is ready
+ * @returns {boolean} True if embedding model is ready for use
+ */
+function isEmbeddingModelReady() {
+  return embeddingModelReady;
+}
+
 // ───────────────────────────────────────────────────────────────
 // BATCH PROCESSING UTILITIES
 // ───────────────────────────────────────────────────────────────
 
+// Load error utilities
+const { isTransientError, userFriendlyError, withTimeout, ErrorCodes, MemoryError } = require(path.join(LIB_DIR, 'errors.js'));
+
 /**
- * Process items in batches with concurrency control
+ * Process a single item with retry logic for transient failures
+ * @param {*} item - Item to process
+ * @param {Function} processor - Async function to process the item
+ * @param {Object} options - Retry options
+ * @returns {Promise<*>} Result or error object
+ */
+async function processWithRetry(item, processor, options = {}) {
+  const { maxRetries = 2, retryDelay = 1000 } = options;
+  let lastError;
+  
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await processor(item);
+    } catch (err) {
+      lastError = err;
+      // Only retry transient errors
+      if (attempt < maxRetries && isTransientError(err)) {
+        const delay = retryDelay * (attempt + 1); // Exponential backoff
+        console.error(`[batch-retry] Attempt ${attempt + 1}/${maxRetries + 1} failed, retrying in ${delay}ms: ${err.message}`);
+        await new Promise(r => setTimeout(r, delay));
+      } else if (attempt < maxRetries) {
+        // Non-transient error, don't retry
+        break;
+      }
+    }
+  }
+  return { error: userFriendlyError(lastError), item, retriesFailed: true };
+}
+
+/**
+ * Process items in batches with concurrency control and retry logic
  * @param {Array} items - Items to process
  * @param {Function} processor - Async function to process each item
  * @param {number} batchSize - Number of concurrent operations
  * @param {number} delayMs - Delay between batches
+ * @param {Object} retryOptions - Retry options { maxRetries, retryDelay }
  * @returns {Promise<Array>} Results from all processors
  */
-async function processBatches(items, processor, batchSize = BATCH_SIZE, delayMs = BATCH_DELAY_MS) {
+async function processBatches(items, processor, batchSize = BATCH_SIZE, delayMs = BATCH_DELAY_MS, retryOptions = {}) {
   const results = [];
   const totalBatches = Math.ceil(items.length / batchSize);
   let currentBatch = 0;
@@ -79,7 +129,7 @@ async function processBatches(items, processor, batchSize = BATCH_SIZE, delayMs 
 
     const batch = items.slice(i, i + batchSize);
     const batchResults = await Promise.all(
-      batch.map(item => processor(item).catch(err => ({ error: err.message })))
+      batch.map(item => processWithRetry(item, processor, retryOptions))
     );
     results.push(...batchResults);
 
@@ -182,7 +232,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
     {
       name: 'memory_search',
-      description: 'Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~500 tokens max), regardless of query.',
+      description: 'Search conversation memories semantically using vector similarity. Returns ranked results with similarity scores. Constitutional tier memories are ALWAYS included at the top of results (~500 tokens max), regardless of query. Requires either query (string) OR concepts (array of 2-5 strings) for multi-concept AND search.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -250,7 +300,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
             description: 'Optional memory ID from search results for direct access'
           }
         },
-        required: ['specFolder']
+        required: []
       }
     },
     {
@@ -596,12 +646,18 @@ async function handleMemorySearch(args) {
     throw new Error('Failed to generate embedding for query');
   }
 
+  // Validate embedding dimension
+  if (queryEmbedding.length !== 768) {
+    throw new Error(`Invalid embedding dimension: expected 768, got ${queryEmbedding.length}`);
+  }
+
   // Try hybrid search first (combines FTS5 + vector search via RRF fusion)
   try {
     const hybridResults = hybridSearch.searchWithFallback(queryEmbedding, query, {
       limit,
       specFolder,
-      useDecay
+      useDecay,
+      includeContiguity
     });
     
     if (hybridResults && hybridResults.length > 0) {
@@ -916,6 +972,11 @@ async function handleMemoryDelete(args) {
     throw new Error('Either id or specFolder is required');
   }
 
+  // Validate specFolder parameter
+  if (specFolder !== undefined && typeof specFolder !== 'string') {
+    throw new Error('specFolder must be a string');
+  }
+
   if (specFolder && !id && !confirm) {
     throw new Error('Bulk delete requires confirm: true');
   }
@@ -960,6 +1021,13 @@ async function handleMemoryUpdate(args) {
     throw new Error('id is required');
   }
 
+  // Validate importanceWeight
+  if (importanceWeight !== undefined) {
+    if (typeof importanceWeight !== 'number' || importanceWeight < 0 || importanceWeight > 1) {
+      throw new Error('importanceWeight must be a number between 0 and 1');
+    }
+  }
+
   // Get existing memory
   const existing = vectorIndex.getMemory(id);
   if (!existing) {
@@ -974,8 +1042,10 @@ async function handleMemoryUpdate(args) {
   if (importanceWeight !== undefined) updateParams.importanceWeight = importanceWeight;
   if (importanceTier !== undefined) updateParams.importanceTier = importanceTier;
 
-  // Track whether embedding was regenerated
+  // Track whether embedding was regenerated and any failures
   let embeddingRegenerated = false;
+  let embeddingFailed = false;
+  let embeddingError = null;
 
   // If title is changing, regenerate embedding for accurate search results
   if (title !== undefined && title !== existing.title) {
@@ -988,12 +1058,32 @@ async function handleMemoryUpdate(args) {
       }
     } catch (err) {
       console.error(`[memory-update] Failed to regenerate embedding: ${err.message}`);
-      // Continue with metadata update even if embedding fails
+      embeddingFailed = true;
+      embeddingError = err.message;
+      // Continue with metadata update but report failure status
     }
   }
 
   // Execute update
   vectorIndex.updateMemory(updateParams);
+
+  // If embedding failed, return explicit failure status so caller is aware
+  if (embeddingFailed) {
+    return {
+      content: [{
+        type: 'text',
+        text: JSON.stringify({
+          success: true,
+          updated: id,
+          metadataUpdated: true,
+          embeddingFailed: true,
+          embeddingError: embeddingError,
+          warning: 'Memory metadata updated but embedding regeneration failed. Search may return stale results.',
+          fields: Object.keys(updateParams).filter(k => k !== 'id' && k !== 'embedding')
+        }, null, 2)
+      }]
+    };
+  }
 
   return {
     content: [{
@@ -1013,6 +1103,11 @@ async function handleMemoryUpdate(args) {
  */
 async function handleMemoryList(args) {
   const { limit: rawLimit = 20, offset: rawOffset = 0, specFolder, sortBy = 'created_at' } = args;
+
+  // Validate specFolder parameter
+  if (specFolder !== undefined && typeof specFolder !== 'string') {
+    throw new Error('specFolder must be a string');
+  }
 
   // Validate limit and offset to prevent negative values
   const safeLimit = Math.max(1, Math.min(rawLimit || 20, 100));
@@ -1068,7 +1163,7 @@ async function handleMemoryList(args) {
         offset: safeOffset,
         limit: safeLimit,
         count: memories.length,
-        memories
+        results: memories
       }, null, 2)
     }]
   };
@@ -1120,7 +1215,9 @@ async function handleMemoryStats(args) {
         oldestMemory: dates.oldest || null,
         newestMemory: dates.newest || null,
         topFolders: topFolders.map(f => ({ folder: f.spec_folder, count: f.count })),
-        totalTriggerPhrases: triggerCount
+        totalTriggerPhrases: triggerCount,
+        sqliteVecAvailable: vectorIndex.isVectorSearchAvailable(),
+        vectorSearchEnabled: vectorIndex.isVectorSearchAvailable()
       }, null, 2)
     }]
   };
@@ -1138,6 +1235,11 @@ async function handleCheckpointCreate(args) {
 
   if (!name || typeof name !== 'string') {
     throw new Error('name is required and must be a string');
+  }
+
+  // Validate specFolder parameter
+  if (specFolder !== undefined && typeof specFolder !== 'string') {
+    throw new Error('specFolder must be a string');
   }
 
   const result = checkpoints.createCheckpoint(name, { specFolder, metadata });
@@ -1159,6 +1261,11 @@ async function handleCheckpointCreate(args) {
  */
 async function handleCheckpointList(args) {
   const { specFolder, limit = 50 } = args;
+
+  // Validate specFolder parameter
+  if (specFolder !== undefined && typeof specFolder !== 'string') {
+    throw new Error('specFolder must be a string');
+  }
 
   const results = checkpoints.listCheckpoints({ specFolder, limit });
 
@@ -1524,10 +1631,22 @@ async function indexSingleFile(filePath, force = false) {
 // STARTUP SCAN (Option 4: Background indexing on server start)
 // ───────────────────────────────────────────────────────────────
 
+// Mutex flag to prevent tool calls during startup scan
+let startupScanInProgress = false;
+
+/**
+ * Check if startup scan is currently in progress
+ * @returns {boolean} True if startup scan is running
+ */
+function isStartupScanInProgress() {
+  return startupScanInProgress;
+}
+
 /**
  * Scan for new/changed memory files on startup (non-blocking)
  */
 async function startupScan(basePath) {
+  startupScanInProgress = true;
   try {
     console.error('[memory-server] Starting background scan for new memory files...');
 
@@ -1563,6 +1682,8 @@ async function startupScan(basePath) {
     }
   } catch (error) {
     console.error(`[memory-server] Startup scan error: ${error.message}`);
+  } finally {
+    startupScanInProgress = false;
   }
 }
 
@@ -1627,9 +1748,12 @@ async function main() {
   // Pre-warm embedding model by generating a dummy embedding
   // Don't await - let server start while model loads
   embeddings.generateEmbedding('warmup').then(() => {
+    embeddingModelReady = true;
     console.error('[memory-server] Embedding model ready');
   }).catch(err => {
+    embeddingModelReady = false;
     console.error('[memory-server] Embedding model pre-warm failed:', err.message);
+    console.warn('[memory-server] Semantic search may be unavailable until model loads');
   });
 
   // Run integrity check on startup (non-blocking)

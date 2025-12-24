@@ -48,7 +48,7 @@ Phase-specific validation checklist for the implementation/coding phase.
 ### Before Claiming Complete
 - [ ] All P0 items verified with evidence
 - [ ] Browser tested if frontend (Gate 6 requirement)
-- [ ] Save context if significant progress: `node .opencode/scripts/generate-context.js [spec-folder]`
+- [ ] Save context if significant progress: `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder]`
 
 ## Debug Escalation Protocol
 

@@ -547,7 +547,7 @@ When in doubt:
 ### Reference Files
 - [template_guide.md](./template_guide.md) - Template selection, adaptation, and quality standards
 - [level_specifications.md](./level_specifications.md) - Complete Level 1-3 requirements and migration
-- [path_scoped_rules.md](./path_scoped_rules.md) - Future path-based validation (design document)
+- [path_scoped_rules.md](./path_scoped_rules.md) - Path-scoped validation rules reference
 
 ### Templates (12 total)
 

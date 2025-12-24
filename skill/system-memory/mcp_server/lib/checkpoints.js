@@ -12,6 +12,10 @@ const { execSync } = require('child_process');
 // Database reference
 let db = null;
 
+// Checkpoint limits
+const MAX_CHECKPOINTS = 10;
+const CHECKPOINT_TTL_DAYS = 30;
+
 /**
  * Initialize checkpoints with database reference
  * @param {Object} database - better-sqlite3 instance
@@ -81,6 +85,37 @@ function createCheckpoint(name, options = {}) {
     throw new Error(`Checkpoint already exists: ${name}`);
   }
 
+  // Enforce checkpoint limit and TTL cleanup atomically
+  db.transaction(() => {
+    const existingCheckpoints = listCheckpoints({ specFolder, limit: 100 });
+    const deletedNames = new Set();
+    
+    // Delete oldest if over max
+    if (existingCheckpoints.length > MAX_CHECKPOINTS) {
+      // Sort by created_at ascending (oldest first)
+      const sortedByAge = existingCheckpoints.sort((a, b) => 
+        new Date(a.created_at) - new Date(b.created_at)
+      );
+      // Delete oldest checkpoint(s) to stay at max
+      const toDelete = sortedByAge.slice(0, existingCheckpoints.length - MAX_CHECKPOINTS);
+      for (const cp of toDelete) {
+        deleteCheckpoint(cp.name);
+        deletedNames.add(cp.name);
+      }
+    }
+
+    // Clean up expired checkpoints (older than TTL), excluding already deleted
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - CHECKPOINT_TTL_DAYS);
+    const remainingCheckpoints = existingCheckpoints.filter(cp => !deletedNames.has(cp.name));
+    const expiredCheckpoints = remainingCheckpoints.filter(cp => 
+      new Date(cp.created_at) < cutoffDate
+    );
+    for (const cp of expiredCheckpoints) {
+      deleteCheckpoint(cp.name);
+    }
+  })();
+
   return result.lastInsertRowid;
 }
 
@@ -129,7 +164,13 @@ function getCheckpoint(name) {
   } catch (err) {
     throw new Error(`Failed to decompress checkpoint data: ${err.message}. The checkpoint may be corrupted.`);
   }
-  const memories = JSON.parse(decompressed);
+  
+  let memories;
+  try {
+    memories = JSON.parse(decompressed);
+  } catch (parseError) {
+    throw new Error(`Checkpoint data corrupted: ${parseError.message}`);
+  }
 
   return {
     id: row.id,
@@ -165,43 +206,57 @@ function restoreCheckpoint(name, options = {}) {
   } catch (err) {
     throw new Error(`Failed to decompress checkpoint data: ${err.message}. The checkpoint may be corrupted.`);
   }
-  const memories = JSON.parse(decompressed);
+  
+  let memories;
+  try {
+    memories = JSON.parse(decompressed);
+  } catch (parseError) {
+    throw new Error(`Checkpoint data corrupted: ${parseError.message}`);
+  }
 
   const result = db.transaction(() => {
     let cleared = 0;
     let inserted = 0;
+    let skipped = 0;
     let deprecated = 0;
 
-    // Step 1: Clear or deprecate existing memories in the spec folder
-    if (checkpoint.spec_folder) {
-      if (clearExisting) {
-        // Also delete from vec_memories (virtual table linked by rowid)
-        const existingIds = db.prepare(`
-          SELECT id FROM memory_index WHERE spec_folder = ?
-        `).all(checkpoint.spec_folder).map(r => r.id);
+    // Step 1: Clear or deprecate existing memories
+    if (clearExisting) {
+      // Get IDs to delete (scoped to spec_folder if present, otherwise ALL)
+      const existingIds = checkpoint.spec_folder
+        ? db.prepare('SELECT id FROM memory_index WHERE spec_folder = ?').all(checkpoint.spec_folder).map(r => r.id)
+        : db.prepare('SELECT id FROM memory_index').all().map(r => r.id);
 
-        if (existingIds.length > 0) {
-          // Batch delete using single query with IN clause
-          const placeholders = existingIds.map(() => '?').join(',');
+      if (existingIds.length > 0) {
+        // Batch delete from vec_memories to avoid SQLite parameter limits
+        const BATCH_SIZE = 500;
+        for (let i = 0; i < existingIds.length; i += BATCH_SIZE) {
+          const batch = existingIds.slice(i, i + BATCH_SIZE);
+          const placeholders = batch.map(() => '?').join(',');
           try {
-            db.prepare(`DELETE FROM vec_memories WHERE rowid IN (${placeholders})`).run(...existingIds);
+            db.prepare(`DELETE FROM vec_memories WHERE rowid IN (${placeholders})`).run(...batch);
           } catch (e) {
-            // vec_memories may not have these entries, ignore
+            // Only ignore expected errors (table doesn't exist or busy)
+            if (!e.message.includes('no such table') && !e.message.includes('SQLITE_BUSY')) {
+              throw e;
+            }
           }
         }
-
-        const deleteResult = db.prepare(`
-          DELETE FROM memory_index WHERE spec_folder = ?
-        `).run(checkpoint.spec_folder);
-        cleared = deleteResult.changes;
-      } else {
-        const deprecateResult = db.prepare(`
-          UPDATE memory_index
-          SET importance_tier = 'deprecated'
-          WHERE spec_folder = ?
-        `).run(checkpoint.spec_folder);
-        deprecated = deprecateResult.changes;
       }
+
+      // Delete from memory_index
+      const deleteResult = checkpoint.spec_folder
+        ? db.prepare('DELETE FROM memory_index WHERE spec_folder = ?').run(checkpoint.spec_folder)
+        : db.prepare('DELETE FROM memory_index').run();
+      cleared = deleteResult.changes;
+    } else if (checkpoint.spec_folder) {
+      // Deprecate only works for scoped checkpoints
+      const deprecateResult = db.prepare(`
+        UPDATE memory_index
+        SET importance_tier = 'deprecated'
+        WHERE spec_folder = ?
+      `).run(checkpoint.spec_folder);
+      deprecated = deprecateResult.changes;
     }
 
     // Step 2: Re-insert memories from snapshot (with new IDs, embeddings pending)
@@ -232,26 +287,35 @@ function restoreCheckpoint(name, options = {}) {
           inserted++;
         } catch (e) {
           // Skip duplicates (UNIQUE constraint)
-          if (!e.message.includes('UNIQUE constraint failed')) {
+          if (e.message.includes('UNIQUE constraint failed')) {
+            skipped++;
+          } else {
             throw e;
           }
         }
       }
     }
 
-    return { cleared, deprecated, inserted, memoryCount: memories.length };
+    return { cleared, deprecated, inserted, skipped, memoryCount: memories.length };
   })();
+
+  // Warn about embedding regeneration if memories were restored
+  if (result.inserted > 0) {
+    console.warn(`[checkpoints] Restored ${result.inserted} memories. Embeddings need regeneration - run memory_index_scan.`);
+  }
 
   return {
     restored: result.inserted,
+    skipped: result.skipped,
     cleared: result.cleared,
     deprecated: result.deprecated,
     totalInSnapshot: result.memoryCount,
     specFolder: checkpoint.spec_folder,
     gitBranch: checkpoint.git_branch,
     createdAt: checkpoint.created_at,
+    embeddingsNeedRegeneration: result.inserted > 0,
     note: result.inserted > 0
-      ? 'Memories restored with embedding_status=pending. Run index refresh to regenerate embeddings.'
+      ? 'Memories restored with embedding_status=pending. Run memory_index_scan to regenerate embeddings.'
       : 'No memories were inserted (duplicates or empty snapshot).'
   };
 }

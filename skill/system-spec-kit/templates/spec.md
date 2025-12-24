@@ -21,6 +21,11 @@ Complete feature specification defining requirements, user stories, and success 
 ### Stakeholders
 - [YOUR_VALUE_HERE: List key stakeholders/roles - Product, Engineering, Design, QA, etc.]
 
+### Problem Statement
+[YOUR_VALUE_HERE: Describe the specific problem, pain point, or gap that this feature addresses. What is broken, missing, or inefficient today?]
+
+[example: Users currently have no visibility into their usage patterns, leading to unexpected overages and inability to optimize their consumption]
+
 ### Purpose
 [YOUR_VALUE_HERE: One-sentence outcome statement describing what this achieves. Keep technology-agnostic and focus on user/business value.]
 

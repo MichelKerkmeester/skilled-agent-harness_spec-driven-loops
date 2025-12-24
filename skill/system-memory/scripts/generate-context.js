@@ -127,6 +127,12 @@ function loadConfig() {
         }
       }
 
+      // P1-026: Handle empty file and only-comments file
+      if (!jsonLines.length || !jsonLines.join('').trim()) {
+        console.warn('⚠️  Config file is empty or contains only comments. Using defaults.');
+        return defaultConfig;
+      }
+
       const jsonContent = jsonLines.join('\n').trim();
       const userConfig = JSON.parse(jsonContent);
       return { ...defaultConfig, ...userConfig };
@@ -142,7 +148,7 @@ function loadConfig() {
 const userConfig = loadConfig();
 
 const CONFIG = {
-  SKILL_VERSION: '11.2.0',
+  SKILL_VERSION: '12.5.0',
   MESSAGE_COUNT_TRIGGER: 20, // Auto-save every 20 messages
   MAX_RESULT_PREVIEW: userConfig.maxResultPreview,
   MAX_CONVERSATION_MESSAGES: userConfig.maxConversationMessages,
@@ -158,7 +164,12 @@ const CONFIG = {
   // PROJECT_ROOT = 4 levels up from __dirname (since we're in skills/system-memory/scripts/)
   PROJECT_ROOT: path.resolve(__dirname, '..', '..', '..', '..'),
   DATA_FILE: null,       // Will be set by parseArguments
-  SPEC_FOLDER_ARG: null  // Will be set by parseArguments
+  SPEC_FOLDER_ARG: null, // Will be set by parseArguments
+  // P2-024: Magic numbers extracted to CONFIG
+  MAX_FILES_IN_MEMORY: 10,
+  MAX_OBSERVATIONS: 3,
+  MIN_PROMPT_LENGTH: 60,
+  MAX_CONTENT_PREVIEW: 500
 };
 
 // ───────────────────────────────────────────────────────────────
@@ -2100,17 +2111,13 @@ async function main() {
         throw new Error(`❌ Malformed placeholder in ${filename}`);
       }
 
+      // P2-027: Re-enable template placeholder validation with warning (not error)
       // Check for unclosed conditional blocks (both {{#...}} and {{^...}} need {{/...}})
-      // NOTE: Temporarily disabled to allow memory to work while template
-      // population logic is being fixed. The template processor doesn't yet handle
-      // all conditional blocks properly, leaving some unpopulated.
-      // TODO: Fix template population to handle all {{#...}} {{^...}} {{/...}} blocks
-      // const openBlocks = (content.match(/\{\{[#^][A-Z_]+\}\}/g) || []).length;
-      // const closeBlocks = (content.match(/\{\{\/[A-Z_]+\}\}/g) || []).length;
-      // if (openBlocks > 0 || closeBlocks > 0) {
-      //   console.warn(`⚠️  Leaked conditional blocks in ${filename}: ${openBlocks} open, ${closeBlocks} closed`);
-      //   throw new Error(`❌ Template syntax not fully populated in ${filename}: found ${openBlocks + closeBlocks} template tags`);
-      // }
+      const openBlocks = (content.match(/\{\{[#^][A-Z_]+\}\}/g) || []);
+      const closeBlocks = (content.match(/\{\{\/[A-Z_]+\}\}/g) || []);
+      if (openBlocks.length !== closeBlocks.length) {
+        console.warn(`⚠️  Template has ${openBlocks.length} open blocks but ${closeBlocks.length} close blocks`);
+      }
     }
 
     const writtenFiles = [];
@@ -2439,6 +2446,21 @@ async function detectSpecFolder(collectedData = null) {
     try {
       await fs.access(specFolderPath);
       console.log(`   ✓ Using spec folder from CLI argument: ${path.basename(specFolderPath)}`);
+      
+      // V14.0: Phase 1B Content Alignment Check (MANDATORY per save.md)
+      // Run alignment validation when spec folder is provided via CLI
+      // This ensures conversation content matches the target folder
+      if (collectedData) {
+        const folderName = path.basename(specFolderPath);
+        const alignmentResult = await validateContentAlignment(collectedData, folderName, specsDir);
+        
+        if (alignmentResult.useAlternative && alignmentResult.selectedFolder) {
+          // User selected an alternative folder
+          return path.join(specsDir, alignmentResult.selectedFolder);
+        }
+        // If alignmentResult.proceed is false, we still continue (alignment is warn-only, not blocking)
+      }
+      
       return specFolderPath;
     } catch {
       // Provide detailed error with available options
@@ -2470,6 +2492,7 @@ async function detectSpecFolder(collectedData = null) {
   }
 
   // V6.1: Check if spec folder was provided in JSON data
+  // P0-013: Only runs if CONFIG.SPEC_FOLDER_ARG was NOT already handled above
   if (collectedData && collectedData.SPEC_FOLDER) {
     const specFolderFromData = collectedData.SPEC_FOLDER;
     const specFolderPath = path.join(specsDir, specFolderFromData);
@@ -2485,67 +2508,14 @@ async function detectSpecFolder(collectedData = null) {
       }
       // User chose to abort - will fall through to prompt
     } catch {
-      console.warn(`   ⚠️  Spec folder from data not found: ${specFolderFromData}, trying CLI arg...`);
-      // Fall through to CLI arg check
+      console.warn(`   ⚠️  Spec folder from data not found: ${specFolderFromData}`);
+      // Fall through to auto-detection
     }
   }
 
-  // Check if spec folder was provided as command-line argument
-  if (CONFIG.SPEC_FOLDER_ARG) {
-    const specFolderPath = path.join(specsDir, CONFIG.SPEC_FOLDER_ARG);
-
-    // Verify the folder exists
-    try {
-      await fs.access(specFolderPath);
-      // V6.2: ALWAYS run alignment check, even when folder explicitly provided
-      const alignmentResult = await validateFolderAlignment(collectedData, CONFIG.SPEC_FOLDER_ARG, specsDir);
-      if (alignmentResult.proceed) {
-        return alignmentResult.useAlternative ? path.join(specsDir, alignmentResult.selectedFolder) : specFolderPath;
-      }
-      // User chose to abort - will fall through to auto-detection
-    } catch {
-      // Provide detailed error with available options
-      console.error(`\n❌ Specified spec folder not found: ${CONFIG.SPEC_FOLDER_ARG}\n`);
-      console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
-
-      // Show available spec folders
-      try {
-        const entries = await fs.readdir(specsDir);
-        const available = entries
-          .filter(name => /^\d{3}-/.test(name))
-          .filter(name => !name.match(/^(z_|.*archive.*|.*old.*|.*\.archived.*)/i))
-          .sort()
-          .reverse();
-
-        if (available.length > 0) {
-          console.error('Available spec folders:');
-          available.slice(0, 10).forEach(folder => {
-            console.error(`  - ${folder}`);
-          });
-          if (available.length > 10) {
-            console.error(`  ... and ${available.length - 10} more\n`);
-          } else {
-            console.error('');
-          }
-        }
-
-        // Check if argument might be a partial match
-        const partialMatches = available.filter(name =>
-          name.includes(CONFIG.SPEC_FOLDER_ARG)
-        );
-        if (partialMatches.length > 0) {
-          console.error('Did you mean one of these?');
-          partialMatches.forEach(match => console.error(`  - ${match}`));
-          console.error('');
-        }
-      } catch {
-        // Silently ignore if we can't read specs directory
-      }
-
-      console.error('Usage: node generate-context.js <data-file> [spec-folder-name]\n');
-      process.exit(1);
-    }
-  }
+  // P0-013: REMOVED duplicate CONFIG.SPEC_FOLDER_ARG check that was here
+  // The first check (lines 2437-2491) already handles CLI arguments comprehensively
+  // This duplicate was causing validation to run twice
 
   // Check if we're in a spec folder (cross-platform path handling)
   // Handle both Unix (/) and Windows (\) path separators
@@ -2662,6 +2632,153 @@ const ALIGNMENT_CONFIG = {
   ARCHIVE_PATTERNS: ['z_', 'archive', 'old', '.archived'],
   STOPWORDS: ['the', 'this', 'that', 'with', 'for', 'and', 'from', 'fix', 'update', 'add', 'remove']
 };
+
+/**
+ * V14.0: Phase 1B Content Alignment Check (per save.md specification)
+ * 
+ * Validates that conversation content matches the target spec folder.
+ * This is a LIGHTWEIGHT heuristic check that:
+ * - Extracts conversation topic/keywords from session data
+ * - Compares against spec folder name
+ * - Warns if mismatch detected (does NOT block save)
+ * - Suggests alternatives if better matches exist
+ * 
+ * @param {Object} collectedData - Conversation data with observations, prompts, etc.
+ * @param {string} specFolderName - Target folder name (e.g., "015-auth-system")
+ * @param {string} specsDir - Base specs directory path
+ * @returns {Promise<{proceed: boolean, useAlternative: boolean, selectedFolder?: string}>}
+ */
+async function validateContentAlignment(collectedData, specFolderName, specsDir) {
+  // Extract conversation topics from session data
+  const conversationTopics = extractConversationTopics(collectedData);
+  const alignmentScore = calculateAlignmentScore(conversationTopics, specFolderName);
+  
+  // Also extract keywords from observations for richer context
+  const observationKeywords = extractObservationKeywords(collectedData);
+  const combinedTopics = [...new Set([...conversationTopics, ...observationKeywords])];
+  const enrichedScore = calculateAlignmentScore(combinedTopics, specFolderName);
+  
+  // Use the better of the two scores
+  const finalScore = Math.max(alignmentScore, enrichedScore);
+  
+  console.log(`   📊 Phase 1B Alignment: ${specFolderName} (${finalScore}% match)`);
+  
+  // HIGH alignment (≥70%) - proceed silently
+  if (finalScore >= ALIGNMENT_CONFIG.THRESHOLD) {
+    console.log(`   ✓ Content aligns with target folder`);
+    return { proceed: true, useAlternative: false };
+  }
+  
+  // MEDIUM alignment (50-69%) - warn but proceed
+  if (finalScore >= ALIGNMENT_CONFIG.WARNING_THRESHOLD) {
+    console.log(`   ⚠️  Moderate alignment (${finalScore}%) - proceeding with caution`);
+    return { proceed: true, useAlternative: false };
+  }
+  
+  // LOW alignment (<50%) - warn and suggest alternatives
+  console.log(`\n   ⚠️  ALIGNMENT WARNING: Content may not match target folder`);
+  console.log(`   Conversation topics: ${combinedTopics.slice(0, 5).join(', ')}`);
+  console.log(`   Target folder: ${specFolderName} (${finalScore}% match)\n`);
+  
+  // Find better alternatives
+  try {
+    const entries = await fs.readdir(specsDir);
+    const specFolders = entries
+      .filter(name => /^\d{3}-/.test(name))
+      .filter(name => !name.match(/^(z_|.*archive.*|.*old.*|.*\.archived.*)/i))
+      .sort()
+      .reverse();
+    
+    const alternatives = specFolders
+      .map(folder => ({
+        folder,
+        score: calculateAlignmentScore(combinedTopics, folder)
+      }))
+      .filter(alt => alt.folder !== specFolderName && alt.score > finalScore)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3);
+    
+    if (alternatives.length > 0) {
+      console.log('   Better matching folders found:');
+      alternatives.forEach((alt, i) => {
+        console.log(`   ${i + 1}. ${alt.folder} (${alt.score}% match)`);
+      });
+      console.log(`   ${alternatives.length + 1}. Continue with "${specFolderName}" anyway\n`);
+      
+      // Check for interactive mode
+      if (!process.stdout.isTTY || !process.stdin.isTTY) {
+        console.log(`   ⚠️  Non-interactive mode - proceeding with specified folder`);
+        return { proceed: true, useAlternative: false };
+      }
+      
+      try {
+        const choice = await promptUserChoice(
+          `   Select option (1-${alternatives.length + 1}): `,
+          alternatives.length + 1
+        );
+        
+        if (choice <= alternatives.length) {
+          console.log(`   ✓ Switching to: ${alternatives[choice - 1].folder}`);
+          return { proceed: true, useAlternative: true, selectedFolder: alternatives[choice - 1].folder };
+        }
+        
+        console.log(`   ✓ Continuing with "${specFolderName}" as requested`);
+        return { proceed: true, useAlternative: false };
+      } catch (promptError) {
+        // User cancelled or error - proceed with original
+        console.log(`   ⚠️  Proceeding with "${specFolderName}"`);
+        return { proceed: true, useAlternative: false };
+      }
+    }
+  } catch {
+    // Could not read alternatives - proceed with warning
+  }
+  
+  // No better alternatives or couldn't check - proceed with warning
+  console.log(`   ⚠️  No better alternatives found - proceeding with "${specFolderName}"`);
+  return { proceed: true, useAlternative: false };
+}
+
+/**
+ * Extract keywords from observation titles and narratives
+ * Provides richer context beyond just user prompts
+ * @param {Object} collectedData - Conversation data
+ * @returns {Array<string>} Array of extracted keywords
+ */
+function extractObservationKeywords(collectedData) {
+  const keywords = new Set();
+  
+  if (!collectedData?.observations) return [];
+  
+  for (const obs of collectedData.observations.slice(0, 10)) {
+    // Extract from title
+    if (obs.title) {
+      const titleWords = obs.title.match(/\b[a-z]{3,}\b/gi) || [];
+      titleWords.forEach(w => keywords.add(w.toLowerCase()));
+    }
+    
+    // Extract from narrative (first 200 chars to avoid noise)
+    if (obs.narrative) {
+      const narrativeSnippet = obs.narrative.substring(0, 200);
+      const narrativeWords = narrativeSnippet.match(/\b[a-z]{3,}\b/gi) || [];
+      narrativeWords.forEach(w => keywords.add(w.toLowerCase()));
+    }
+    
+    // Extract from files modified (filename parts)
+    if (obs.files) {
+      for (const file of obs.files) {
+        const filename = path.basename(file).replace(/\.[^.]+$/, '');
+        const fileWords = filename.split(/[-_.]/).filter(w => w.length >= 3);
+        fileWords.forEach(w => keywords.add(w.toLowerCase()));
+      }
+    }
+  }
+  
+  // Filter stopwords
+  return Array.from(keywords).filter(k => 
+    !ALIGNMENT_CONFIG.STOPWORDS.includes(k) && k.length >= 3
+  );
+}
 
 /**
  * V6.2: Validate alignment between conversation content and selected spec folder
@@ -2950,11 +3067,17 @@ async function collectSessionData(collectedData, specFolderName = null) {
     console.log(`\n   📊 Context Budget: ${messageCount} messages reached. Auto-saving context...\n`);
   }
 
+  // P2-026: Safe date parsing with validation
+  function safeParseDate(dateStr, fallback) {
+    const parsed = new Date(dateStr);
+    return isNaN(parsed.getTime()) ? fallback : parsed;
+  }
+
   // Calculate duration
   let duration = 'N/A';
   if (userPrompts.length > 0) {
-    const firstTimestamp = new Date(userPrompts[0].timestamp || now);
-    const lastTimestamp = new Date(userPrompts[userPrompts.length - 1].timestamp || now);
+    const firstTimestamp = safeParseDate(userPrompts[0]?.timestamp, now);
+    const lastTimestamp = safeParseDate(userPrompts[userPrompts.length - 1]?.timestamp, now);
     const durationMs = lastTimestamp - firstTimestamp;
     const minutes = Math.floor(durationMs / 60000);
     const hours = Math.floor(minutes / 60);
@@ -3023,8 +3146,13 @@ async function collectSessionData(collectedData, specFolderName = null) {
   const withValidDesc = filesEntries.filter(([_, desc]) => isDescriptionValid(desc));
   const withFallback = filesEntries.filter(([_, desc]) => !isDescriptionValid(desc));
 
-  const FILES = [...withValidDesc, ...withFallback]
-    .slice(0, 10)
+  // P1-025: Add truncation warning when files are limited
+  const allFiles = [...withValidDesc, ...withFallback];
+  if (allFiles.length > CONFIG.MAX_FILES_IN_MEMORY) {
+    console.warn(`⚠️  Truncating files list from ${allFiles.length} to ${CONFIG.MAX_FILES_IN_MEMORY}. Some files will not be included in memory.`);
+  }
+  const FILES = allFiles
+    .slice(0, CONFIG.MAX_FILES_IN_MEMORY)
     .map(([filePath, description]) => ({
       FILE_PATH: filePath,
       DESCRIPTION: description
@@ -3074,7 +3202,10 @@ async function collectSessionData(collectedData, specFolderName = null) {
   const usedAnchorIds = []; // Track anchors to ensure uniqueness across observations
   const specNumber = extractSpecNumber(collectedData.SPEC_FOLDER || folderName);
 
-  const OBSERVATIONS_DETAILED = observations.map(obs => {
+  // P2-025: Add null check in observation processing
+  const OBSERVATIONS_DETAILED = (observations || [])
+    .filter(obs => obs != null)
+    .map(obs => {
     // Step 1: Auto-categorize observation based on title and content
     // Categories: implementation, decision, guide, architecture, files, discovery, integration
     const category = categorizeSection(

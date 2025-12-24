@@ -31,12 +31,38 @@ const CONTEXT_TYPE_MAP = {
   'general': 'general',
   'debug': 'implementation',
   'analysis': 'research',
-  'planning': 'decision'
+  'planning': 'decision',
+  // Additional mappings
+  'bug': 'discovery',
+  'fix': 'implementation',
+  'refactor': 'implementation',
+  'feature': 'implementation',
+  'architecture': 'decision',
+  'review': 'research',
+  'test': 'implementation'
 };
 
 // ───────────────────────────────────────────────────────────────
 // CORE PARSING FUNCTIONS
 // ───────────────────────────────────────────────────────────────
+
+/**
+ * Read file with BOM detection for UTF-16 support
+ *
+ * @param {string} filePath - Path to file
+ * @returns {string} File content as string
+ */
+function readFileWithEncoding(filePath) {
+  const buffer = fs.readFileSync(filePath);
+  // Check for BOM
+  if (buffer[0] === 0xFF && buffer[1] === 0xFE) {
+    return buffer.toString('utf16le').slice(1); // UTF-16 LE
+  }
+  if (buffer[0] === 0xFE && buffer[1] === 0xFF) {
+    return buffer.toString('utf16be').slice(1); // UTF-16 BE
+  }
+  return buffer.toString('utf-8');
+}
 
 /**
  * Parse a memory file and extract all metadata
@@ -50,7 +76,7 @@ function parseMemoryFile(filePath) {
     throw new Error(`Memory file not found: ${filePath}`);
   }
 
-  const content = fs.readFileSync(filePath, 'utf-8');
+  const content = readFileWithEncoding(filePath);
   const specFolder = extractSpecFolder(filePath);
   const title = extractTitle(content);
   const triggerPhrases = extractTriggerPhrases(content);
@@ -79,8 +105,14 @@ function parseMemoryFile(filePath) {
  * @returns {string} Spec folder name (e.g., "005-memory/001-task")
  */
 function extractSpecFolder(filePath) {
+  // Handle UNC paths (\\server\share or //server/share)
+  let normalizedPath = filePath;
+  if (normalizedPath.startsWith('\\\\') || normalizedPath.startsWith('//')) {
+    // Remove UNC prefix for pattern matching
+    normalizedPath = normalizedPath.replace(/^(\\\\|\/\/)[^/\\]+[/\\][^/\\]+/, '');
+  }
   // Normalize path separators
-  const normalizedPath = filePath.replace(/\\/g, '/');
+  normalizedPath = normalizedPath.replace(/\\/g, '/');
 
   // Match specs/XXX-name/.../memory/ pattern
   const match = normalizedPath.match(/specs\/([^/]+(?:\/[^/]+)*?)\/memory\//);
@@ -112,8 +144,13 @@ function extractSpecFolder(filePath) {
  * @returns {string|null} Title or null if not found
  */
 function extractTitle(content) {
-  // Match first # heading (not ##, ###, etc.)
-  const match = content.match(/^#\s+(.+)$/m);
+  // Check YAML frontmatter first
+  const yamlMatch = content.match(/^---[\s\S]*?title:\s*["']?([^"'\n]+)["']?[\s\S]*?---/m);
+  if (yamlMatch) return yamlMatch[1].trim();
+  
+  // Fall back to first # heading (skip frontmatter)
+  const withoutFrontmatter = content.replace(/^---[\s\S]*?---\n?/, '');
+  const match = withoutFrontmatter.match(/^#\s+(.+)$/m);
   return match ? match[1].trim() : null;
 }
 
@@ -130,18 +167,38 @@ function extractTitle(content) {
 function extractTriggerPhrases(content) {
   const triggers = [];
 
-  // Method 1: Check YAML frontmatter (HTML comment style or standard)
+  // Method 1a: Check YAML frontmatter inline format
   // Pattern: trigger_phrases: ["phrase1", "phrase2", ...]
-  const yamlMatch = content.match(/trigger_phrases:\s*\[([^\]]+)\]/i);
-  if (yamlMatch) {
+  const inlineMatch = content.match(/trigger_phrases:\s*\[([^\]]+)\]/i);
+  if (inlineMatch) {
     // Parse the array content - handle both "phrase" and 'phrase' and unquoted
-    const arrayContent = yamlMatch[1];
+    const arrayContent = inlineMatch[1];
     const phrases = arrayContent.match(/["']([^"']+)["']/g);
     if (phrases) {
       phrases.forEach(p => {
         const cleaned = p.replace(/^["']|["']$/g, '').trim();
         if (cleaned.length > 0 && cleaned.length < 100) {
           triggers.push(cleaned);
+        }
+      });
+    }
+  }
+
+  // Method 1b: Check YAML frontmatter multi-line format
+  // Pattern:
+  // trigger_phrases:
+  //   - "phrase one"
+  //   - "phrase two"
+  if (triggers.length === 0) {
+    const multiLineMatch = content.match(/trigger_phrases:\s*\n((?:\s+-\s+["']?[^"'\n]+["']?\n?)+)/i);
+    if (multiLineMatch) {
+      const multiLinePhrases = multiLineMatch[1]
+        .split('\n')
+        .map(line => line.replace(/^\s+-\s+/, '').trim().replace(/^["']|["']$/g, ''))
+        .filter(Boolean);
+      multiLinePhrases.forEach(phrase => {
+        if (phrase.length > 0 && phrase.length < 100 && !triggers.includes(phrase)) {
+          triggers.push(phrase);
         }
       });
     }
@@ -271,9 +328,17 @@ function validateAnchors(content) {
   // Pattern: <!-- ANCHOR:id --> or <!-- anchor:id --> or <!-- ANCHOR: id -->
   const openingPattern = /<!--\s*(?:ANCHOR|anchor):\s*([^>\s]+)\s*-->/gi;
   
+  // Valid anchor ID pattern: alphanumeric and hyphens, must start with alphanumeric
+  const VALID_ANCHOR_PATTERN = /^[a-zA-Z0-9][-a-zA-Z0-9]*$/;
+  
   let match;
   while ((match = openingPattern.exec(content)) !== null) {
     const anchorId = match[1].trim();
+    
+    // Validate anchor ID format
+    if (!VALID_ANCHOR_PATTERN.test(anchorId)) {
+      warnings.push(`Invalid anchor ID "${anchorId}" - should contain only alphanumeric and hyphens, start with alphanumeric`);
+    }
     
     // Check if corresponding closing tag exists
     // Pattern: <!-- /ANCHOR:id --> or <!-- /anchor:id -->
@@ -313,13 +378,14 @@ function escapeRegex(str) {
 function validateParsedMemory(parsed) {
   const errors = [];
   const warnings = [];
+  const MIN_CONTENT_LENGTH = 5; // Allow minimal files
 
   if (!parsed.specFolder) {
     errors.push('Missing spec folder');
   }
 
-  if (!parsed.content || parsed.content.length < 10) {
-    errors.push('Content too short (min 10 chars)');
+  if (!parsed.content || parsed.content.length < MIN_CONTENT_LENGTH) {
+    errors.push(`Content too short (min ${MIN_CONTENT_LENGTH} chars)`);
   }
 
   if (parsed.content && parsed.content.length > 100000) {
@@ -409,6 +475,7 @@ function findMemoryFiles(workspacePath, options = {}) {
 module.exports = {
   // Core parsing
   parseMemoryFile,
+  readFileWithEncoding,
   extractSpecFolder,
   extractTitle,
   extractTriggerPhrases,

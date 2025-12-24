@@ -1,7 +1,7 @@
 ---
 description: Unified memory dashboard - search, browse, manage triggers, cleanup, and validate memories
 argument-hint: "[query] [--tier:<tier>] [--type:<type>] [cleanup] [triggers]"
-allowed-tools: Read, Bash, mcp__semantic_memory__memory_search, mcp__semantic_memory__memory_load, mcp__semantic_memory__memory_match_triggers, mcp__semantic_memory__memory_list, mcp__semantic_memory__memory_stats, mcp__semantic_memory__memory_validate, mcp__semantic_memory__memory_update, mcp__semantic_memory__memory_delete, mcp__semantic_memory__memory_dashboard
+allowed-tools: Read, Bash, mcp__semantic_memory__memory_search, mcp__semantic_memory__memory_load, mcp__semantic_memory__memory_match_triggers, mcp__semantic_memory__memory_list, mcp__semantic_memory__memory_stats, mcp__semantic_memory__memory_validate, mcp__semantic_memory__memory_update, mcp__semantic_memory__memory_delete
 ---
 
 # 🚨 CONDITIONAL GATE - DESTRUCTIVE OPERATION ENFORCEMENT
@@ -219,8 +219,8 @@ mcp__semantic_memory__memory_load({ specFolder: "049-auth", anchorId: "decision-
 ### Step 1: Gather Data (Parallel MCP Calls)
 
 ```javascript
-mcp__semantic_memory__memory_dashboard({ maxTokens: 800, includeRecent: true })
 mcp__semantic_memory__memory_stats({})
+mcp__semantic_memory__memory_list({ limit: 20, sortBy: "updated_at" })
 ```
 
 ### Step 2: Display Dashboard
@@ -254,7 +254,7 @@ mcp__semantic_memory__memory_stats({})
 - Limits: 3 constitutional + 3 critical + 3 important + 5 recent = 14 max entries
 - Constitutional tier always surfaces at top (if any exist)
 - Entry count `[N entries]` shows total memories in system
-- Use `memory_dashboard()` output directly for tier grouping
+- Use `memory_list()` output to build tier grouping
 
 **Tier Symbols:**
 | Symbol | Tier           | Description                                      |
@@ -590,14 +590,14 @@ Select new tier:
 
 ## 12. 📌 QUICK REFERENCE
 
-| Command                              | Result                         |
-| ------------------------------------ | ------------------------------ |
-| `/memory/search`                     | Dashboard                      |
-| `/memory/search <query>`             | Search                         |
-| `/memory/search cleanup`             | Cleanup mode (Gate 1 required) |
-| `/memory/search triggers`            | Global triggers view           |
-| `/memory/search <q> --tier:critical` | Filtered search                |
-| `/memory/search --concepts:a,b,c`    | AND search                     |
+| Command                               | Result                         |
+| ------------------------------------- | ------------------------------ |
+| `/memory:search`                      | Dashboard                      |
+| `/memory:search <query>`              | Search                         |
+| `/memory:search cleanup`              | Cleanup mode (Gate 1 required) |
+| `/memory:search triggers`             | Global triggers view           |
+| `/memory:search <q> --tier:critical`  | Filtered search                |
+| `/memory:search --concepts:a,b,c`     | AND search                     |
 
 ---
 

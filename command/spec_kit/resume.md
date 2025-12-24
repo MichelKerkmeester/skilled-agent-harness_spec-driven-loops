@@ -50,7 +50,7 @@ EXECUTE THIS CHECK FIRST:
 └─ IF $ARGUMENTS is empty (auto-detect mode):
     │
     ├─ Find most recent memory file (Stateless - no .spec-active marker)
-    │   $ find specs -path "*/memory/*.md" -type f 2>/dev/null | xargs ls -t 2>/dev/null | head -1
+    │   Glob("specs/**/memory/*.md") → Results sorted by modification time, take first
     │
     ├─ IF session found:
     │   ├─ Store as: spec_path (extract from memory file path)
@@ -85,8 +85,8 @@ EXECUTE IF handoff pattern detected in $ARGUMENTS or recent user messages:
    ├─ IF detected:
    │   ├─ Parse: Spec folder path, Last Completed, Next Action
    │   │
-   │   ├─ VALIDATE against most recent memory file:
-   │   │   $ find [spec_path]/memory -name "*.md" -type f | xargs ls -t | head -1
+│   ├─ VALIDATE against most recent memory file:
+│   │   Glob("[spec_path]/memory/*.md") → Results sorted by modification time, take first
    │   │   $ Read memory file → Extract "Project State Snapshot" section
    │   │
    │   ├─ COMPARE claimed progress vs actual progress:
@@ -403,11 +403,7 @@ If validation fails (missing required fields), fall back to:
 
 ### Validation on Resume
 
-After loading context, validate the spec folder state:
-
-```bash
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
-```
+After loading context, validation runs automatically to check the spec folder state.
 
 This catches:
 - Missing files that may have been deleted

@@ -753,7 +753,7 @@ workflow:
     - Index memory file for immediate search availability
     tool_invocation:
       command: Read(".opencode/skill/system-memory/SKILL.md")
-      note: "Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving"
+      note: 'Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving'
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__research_session.md"
     validation: context_saved_successfully

@@ -1,5 +1,5 @@
 # Implementation Summary
-<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary.md | v1.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v1.0 -->
 
 ## Metadata
 | Field | Value |

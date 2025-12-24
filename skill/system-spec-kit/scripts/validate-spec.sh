@@ -27,6 +27,18 @@ get_time_ms() {
     fi
 }
 
+# JSON string escape - handles special characters for safe JSON embedding
+_json_escape() {
+    local str="$1"
+    # Order matters: backslash first, then other escapes
+    str="${str//\\/\\\\}"   # Backslash
+    str="${str//\"/\\\"}"   # Double quote
+    str="${str//$'\n'/\\n}" # Newline
+    str="${str//$'\r'/\\r}" # Carriage return
+    str="${str//$'\t'/\\t}" # Tab
+    printf '%s' "$str"
+}
+
 # Colors (disabled for non-TTY)
 if [[ -t 1 ]]; then
     RED='\033[0;31m' GREEN='\033[0;32m' YELLOW='\033[1;33m' BLUE='\033[0;34m' BOLD='\033[1m' NC='\033[0m'
@@ -137,8 +149,6 @@ detect_level() {
     [[ -f "$folder/checklist.md" ]] && { DETECTED_LEVEL=2; LEVEL_METHOD="inferred"; return; }
     DETECTED_LEVEL=1; LEVEL_METHOD="inferred"
 }
-
-_json_escape() { local s="$1"; s="${s//\\/\\\\}"; s="${s//\"/\\\"}"; printf '%s' "$s"; }
 
 log_pass() {
     ! $JSON_MODE && ! $QUIET_MODE && printf "${GREEN}✓${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
@@ -268,9 +278,10 @@ generate_json() {
     local passed="true"
     [[ $ERRORS -gt 0 ]] && passed="false"
     [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && passed="false"
-    local cfg="null"; [[ -n "$CONFIG_FILE_PATH" ]] && cfg="\"$CONFIG_FILE_PATH\""
+    local cfg="null"; [[ -n "$CONFIG_FILE_PATH" ]] && cfg="\"$(_json_escape "$CONFIG_FILE_PATH")\""
+    local folder_escaped="$(_json_escape "$FOLDER_PATH")"
     cat << EOF
-{"version":"$VERSION","folder":"$FOLDER_PATH","level":$DETECTED_LEVEL,"levelMethod":"$LEVEL_METHOD","config":$cfg,"results":[$RESULTS],"summary":{"errors":$ERRORS,"warnings":$WARNINGS,"info":$INFOS},"passed":$passed,"strict":$STRICT_MODE}
+{"version":"$VERSION","folder":"$folder_escaped","level":$DETECTED_LEVEL,"levelMethod":"$LEVEL_METHOD","config":$cfg,"results":[$RESULTS],"summary":{"errors":$ERRORS,"warnings":$WARNINGS,"info":$INFOS},"passed":$passed,"strict":$STRICT_MODE}
 EOF
 }
 

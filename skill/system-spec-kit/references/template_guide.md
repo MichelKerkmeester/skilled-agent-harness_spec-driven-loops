@@ -1061,7 +1061,7 @@ See each sub-folder's README.md for details.
 ### Reference Files
 - [quick_reference.md](./quick_reference.md) - Commands, checklists, and troubleshooting
 - [level_specifications.md](./level_specifications.md) - Complete Level 1-3 requirements and migration
-- [path_scoped_rules.md](./path_scoped_rules.md) - Future path-based validation (design document)
+- [path_scoped_rules.md](./path_scoped_rules.md) - Path-scoped validation rules reference
 
 ### Templates
 

@@ -249,6 +249,64 @@ function batchAdjustScores(memories, options = {}) {
   }));
 }
 
+/**
+ * Validate configuration object for scoring/search settings
+ *
+ * Checks that configuration values are valid and internally consistent.
+ * Logs errors but does not throw - allows graceful degradation.
+ *
+ * @param {Object} config - Configuration object to validate
+ * @param {Object} [config.hybridSearch] - Hybrid search settings
+ * @param {Object} [config.memoryDecay] - Memory decay settings
+ * @returns {boolean} True if config is valid, false otherwise
+ *
+ * @example
+ * const config = require('./configs/search-weights.json');
+ * if (!validateConfig(config)) {
+ *   console.warn('Using defaults due to config errors');
+ * }
+ */
+function validateConfig(config) {
+  const errors = [];
+
+  // Validate hybrid search weights sum to 1.0
+  if (config.hybridSearch) {
+    const { ftsWeight, vectorWeight } = config.hybridSearch;
+    if (typeof ftsWeight === 'number' && typeof vectorWeight === 'number') {
+      if (Math.abs((ftsWeight + vectorWeight) - 1.0) > 0.01) {
+        errors.push('hybridSearch: ftsWeight + vectorWeight must equal 1.0');
+      }
+    }
+  }
+
+  // Validate memory decay settings
+  if (config.memoryDecay) {
+    const { scaleDays, decayWeight } = config.memoryDecay;
+    if (typeof scaleDays === 'number' && scaleDays <= 0) {
+      errors.push('memoryDecay.scaleDays must be positive');
+    }
+    if (typeof decayWeight === 'number' && (decayWeight < 0 || decayWeight > 1)) {
+      errors.push('memoryDecay.decayWeight must be between 0 and 1');
+    }
+  }
+
+  // Validate composite scoring weights sum to 1.0
+  if (config.compositeScoring?.weights) {
+    const weights = Object.values(config.compositeScoring.weights);
+    const sum = weights.reduce((a, b) => a + b, 0);
+    if (Math.abs(sum - 1.0) > 0.01) {
+      errors.push('compositeScoring.weights must sum to 1.0');
+    }
+  }
+
+  // Log errors if any
+  if (errors.length > 0) {
+    console.error('[scoring] Config validation errors:', errors);
+  }
+
+  return errors.length === 0;
+}
+
 module.exports = {
   // Core functions
   calculateDecayBoost,
@@ -258,6 +316,7 @@ module.exports = {
   // Utility functions
   getHalfLife,
   batchAdjustScores,
+  validateConfig,
 
   // Configuration
   DECAY_CONFIG

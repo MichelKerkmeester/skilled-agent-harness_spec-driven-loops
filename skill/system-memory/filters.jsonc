@@ -55,15 +55,17 @@
 // • Hook output noise
 // • Single characters and whitespace-only content
 //
-// → noise.minContentLength (number, default: 5)
+// → noise.minContentLength (number, default: 15)
 // ─────────────────────────────────────────────────────────────
 // Minimum character length after trimming.
 // Content shorter than this is filtered out.
+// Note: Actual value in this file is 15, not 5
 //
-// → noise.minUniqueWords (number, default: 2)
+// → noise.minUniqueWords (number, default: 3)
 // ─────────────────────────────────────────────────────────────
 // Minimum number of unique words required.
 // Prevents content like "ok ok ok" from being saved.
+// Note: Actual value in this file is 3, not 2
 //
 // → dedupe.enabled (boolean, default: true)
 // ─────────────────────────────────────────────────────────────
@@ -77,14 +79,15 @@
 // Lower values = faster but may miss subtle differences.
 // V5.4: Increased from 200 to 300 to match transform-transcript.js
 //
-// → dedupe.similarityThreshold (number, default: 0.85)
+// → dedupe.similarityThreshold (number, default: 0.70)
 // ─────────────────────────────────────────────────────────────
 // Similarity ratio (0-1) above which content is considered
 // a duplicate. Messages with similarity >= this value are
 // filtered as duplicates.
 // • 1.0 = Only exact matches
-// • 0.85 = 85% similar content counts as duplicate
+// • 0.70 = 70% similar content counts as duplicate (actual value in this file)
 // • 0.5 = Very aggressive deduplication
+// Note: Actual value in this file is 0.70, not 0.85
 //
 // → quality.enabled (boolean, default: true)
 // ─────────────────────────────────────────────────────────────
