@@ -6,7 +6,7 @@ Your AI assistant forgets everything between sessions. You explain your auth sys
 
 No cloud. No external APIs. Just intelligent context preservation that makes AI-assisted development actually work.
 
-This memory system doesn't just remember. It *understands*. It knows which memories matter most. It surfaces context before you ask. And it does it all locally—your code never leaves your machine.
+This memory system doesn't just remember. It *understands*. It knows which memories matter most. It surfaces context before you ask. And it does it all locally, your code never leaves your machine.
 
 ## Why This Memory System is Different
 
