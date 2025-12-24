@@ -1,5 +1,10 @@
 # OpenCode Dev Environment
 
+> - 99.999% of people will keep blaming AI for not being good enough for advanced coding.
+> - Beat the odds with this system?
+> - Don't reward me with unwanted coffee:
+> - https://buymeacoffee.com/michelkerkmeester
+
 A development environment for [OpenCode](https://github.com/sst/opencode) featuring three custom-built systems you won't find anywhere else:
 
 - **🧠 Semantic Memory**: A purpose-built memory system with hybrid search, importance tiers, and local-first architecture. Your AI remembers context across sessions, days, even weeks later.
@@ -7,11 +12,6 @@ A development environment for [OpenCode](https://github.com/sst/opencode) featur
 - **📋 Spec Kit** (custom fork): Originally inspired by GitHub's spec-kit, this version adds automation, slash commands, deep memory integration, and sub-folder versioning. Documentation writes itself and is enforced by design.
 
 - **🎯 Skills** (custom framework): 9 domain-specific skills that auto-load based on your task. Designed for efficiency: fewer, smarter skills replace the typical sprawl of dozens of fragmented prompts.
-
-> - 99.999% of people will keep blaming AI for not being good enough for advanced coding.
-> - Beat the odds with this system?
-> - Don't reward me with unwanted coffee:
-> - https://buymeacoffee.com/michelkerkmeester
 
 #### Table of Contents
 
