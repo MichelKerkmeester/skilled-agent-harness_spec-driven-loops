@@ -32,9 +32,8 @@ This memory system doesn't just remember. It *understands*. It knows which memor
 | ------------------------- | ----------------------------------------------------------------- |
 | **Memory Location**       | Files live IN spec folders: `specs/###-feature/memory/`           |
 | **Gate 5 Enforcement**    | Memory saves MUST use `generate-context.js` (no orphaned context) |
-| **Sub-folder Versioning** | Each 001/002/003 sub-folder has independent memory context        |
+| **Sub-folder Versioning** | Each sub-folder has independent memory context        |
 | **Session Continuity**    | `/spec_kit:resume` auto-loads relevant memories                   |
-| **V13.0 Stateless**       | Project state embedded in memory files (no separate STATE.md)     |
 
 When you save context, it goes to the right spec folder. When you resume work, memories load automatically. When you version your specs, memories version with them.
 
