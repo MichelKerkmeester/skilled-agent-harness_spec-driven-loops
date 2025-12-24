@@ -5,6 +5,8 @@
 > - Don't reward me with unwanted coffee:
 > - https://buymeacoffee.com/michelkerkmeester
 
+#### Summary
+
 A development environment for [OpenCode](https://github.com/sst/opencode) featuring three custom-built systems you won't find anywhere else:
 
 - **🧠 Semantic Memory**: A purpose-built memory system with hybrid search, importance tiers, and local-first architecture. Your AI remembers context across sessions, days, even weeks later.
