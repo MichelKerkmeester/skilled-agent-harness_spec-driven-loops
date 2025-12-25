@@ -120,10 +120,9 @@ chmod +x .opencode/scripts/skill_advisor.py
 ├── scripts/
 │   └── skill_advisor.py    # This script
 ├── skill/                   # Skills to match against
-│   ├── mcp-code-context/
+│   ├── mcp-narsil/
 │   ├── mcp-code-mode/
 │   ├── mcp-leann/
-│   ├── system-memory/
 │   ├── system-spec-kit/
 │   ├── workflows-chrome-devtools/
 │   ├── workflows-code/
@@ -321,9 +320,9 @@ Some keywords are ambiguous and boost multiple skills:
 
 | Keyword   | Skills Boosted                                                    |
 | --------- | ----------------------------------------------------------------- |
-| `code`    | workflows-code (+0.2), mcp-code-context (+0.15), mcp-leann (+0.1) |
-| `context` | system-memory (+0.3), mcp-code-context (+0.2)                     |
-| `search`  | mcp-leann (+0.2), mcp-code-context (+0.2)                         |
+| `code`    | workflows-code (+0.2), mcp-narsil (+0.15), mcp-leann (+0.1) |
+| `context` | system-spec-kit (+0.3), mcp-narsil (+0.2)                     |
+| `search`  | mcp-leann (+0.2), mcp-narsil (+0.2)                         |
 | `api`     | mcp-code-mode (+0.3), mcp-leann (+0.2)                            |
 | `plan`    | system-spec-kit (+0.3), workflows-code (+0.2)                     |
 
@@ -333,20 +332,24 @@ Some keywords are ambiguous and boost multiple skills:
 
 The Skill Advisor routes to these 9 skills based on trigger keywords:
 
-### 5.1 mcp-code-context
+### 5.1 mcp-narsil
 
-**Purpose**: Structural code queries using Tree-sitter AST analysis
+**Purpose**: Structural code queries, security scanning, and call graph analysis via Narsil MCP
 
 **Trigger Keywords** (Intent Boosters):
 ```
-ast, classes, definitions, exports, functions, imports, list,
-methods, navigate, outline, structure, symbols, tree, treesitter
+ast, callers, callees, call-graph, cfg, classes, cwe, definitions, 
+dfg, exports, functions, imports, list, methods, navigate, outline, 
+owasp, sbom, security, structure, symbols, taint, tree, treesitter, 
+vulnerability
 ```
 
 **Example Queries**:
 - "list all functions in this file"
 - "show the class structure"
 - "what symbols are exported"
+- "scan for security vulnerabilities"
+- "show the call graph for this function"
 
 ---
 
@@ -385,19 +388,20 @@ vector, what, why, work, works
 
 ---
 
-### 5.4 system-memory
+### 5.4 system-spec-kit
 
-**Purpose**: Context preservation and semantic memory search
+**Purpose**: Spec folder management, context preservation and semantic memory search
 
 **Trigger Keywords** (Intent Boosters):
 ```
-checkpoint, history, memory, recall, remember, restore
+checkpoint, history, memory, recall, remember, restore, spec, template
 ```
 
 **Example Queries**:
 - "save this context to memory"
 - "recall what we discussed about auth"
 - "restore the previous checkpoint"
+- "create a spec folder for this feature"
 
 ---
 
@@ -635,7 +639,7 @@ Tokens: ["create", "a", "pull", "request", "for", "my", "changes"]
 "pull" → workflows-git +0.5
 "changes" → MULTI_SKILL_BOOSTERS:
   - workflows-git +0.4
-  - system-memory +0.2
+  - system-spec-kit +0.2
 ─────────────────────────────
 workflows-git total: 0.9
 ```
@@ -749,7 +753,7 @@ Boost certain skills based on project type:
 Run these commands to verify each skill routes correctly:
 
 ```bash
-# mcp-code-context - should return > 0.8
+# mcp-narsil - should return > 0.8
 python .opencode/scripts/skill_advisor.py "list all functions in the file"
 python .opencode/scripts/skill_advisor.py "show the class structure"
 
@@ -761,7 +765,7 @@ python .opencode/scripts/skill_advisor.py "fetch the Figma design"
 python .opencode/scripts/skill_advisor.py "how does authentication work"
 python .opencode/scripts/skill_advisor.py "explain the login flow"
 
-# system-memory - should return > 0.8
+# system-spec-kit - should return > 0.8
 python .opencode/scripts/skill_advisor.py "save this context to memory"
 python .opencode/scripts/skill_advisor.py "restore the previous checkpoint"
 
@@ -794,9 +798,9 @@ python .opencode/scripts/skill_advisor.py "hello world"
 SCRIPT=".opencode/scripts/skill_advisor.py"
 TESTS=(
     "how does authentication work|mcp-leann"
-    "list all functions|mcp-code-context"
+    "list all functions|mcp-narsil"
     "get webflow sites|mcp-code-mode"
-    "save context to memory|system-memory"
+    "save context to memory|system-spec-kit"
     "debug in chrome|workflows-chrome-devtools"
     "implement the feature|workflows-code"
     "create pull request github|workflows-git"

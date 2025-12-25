@@ -121,7 +121,7 @@ User Request
 | **Research**       | "investigate", "explore", "analyze"   | quick_reference.md, worked_examples.md     | /spec_kit:research  |
 | **Implementation** | "implement", "build", "code"          | validation_rules.md, template_guide.md     | /spec_kit:implement |
 | **Debugging**      | "stuck", "error", "not working"       | quick_reference.md, troubleshooting        | /spec_kit:debug     |
-| **Completion**     | "done", "finished", "complete"        | validation_rules.md, checklists/           | /spec_kit:complete  |
+| **Completion**     | "done", "finished", "complete"        | validation_rules.md, phase_checklists.md   | /spec_kit:complete  |
 | **Handover**       | "stopping", "break", "continue later" | quick_reference.md                         | /spec_kit:handover  |
 | **Resume**         | "continue", "pick up", "resume"       | quick_reference.md                         | /spec_kit:resume    |
 
@@ -136,16 +136,19 @@ User Request
 | 3     | Level 2 + decision-record.md | research.md                      |
 | Any   | —                            | handover.md, debug-delegation.md |
 
-**Specialized Templates:**
+**Summary Templates (Any Level):**
 
 | Template                    | Purpose                               | When to Use                          |
 | --------------------------- | ------------------------------------- | ------------------------------------ |
-| `quickstart.md`             | Rapid setup for simple tasks          | Level 1 tasks, fast iterations       |
-| `spike.md`                  | Technical investigation/exploration   | Proof of concepts, feasibility tests |
-| `data-model.md`             | Database/data structure documentation | Schema changes, data migrations      |
-| `planning-summary.md`       | High-level planning overview          | Complex multi-phase projects         |
+| `planning-summary.md`       | High-level planning overview          | After planning phase complete        |
 | `implementation-summary.md` | Post-implementation documentation     | Recording what was actually built    |
-| `contracts/api-contract.md` | API endpoint specifications           | REST/GraphQL API development         |
+
+**Auto-Generated Folders (Not Templates):**
+
+| Folder     | Purpose                             | Creation Method                      |
+| ---------- | ----------------------------------- | ------------------------------------ |
+| `memory/`  | Session context preservation        | `generate-context.js` via `/memory:save` |
+| `scratch/` | Temporary workspace (disposable)    | Manual creation (no template)        |
 
 **References (`references/`):**
 | File                     | Purpose                  | When to Load               |

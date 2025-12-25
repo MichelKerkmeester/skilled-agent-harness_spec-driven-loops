@@ -333,7 +333,7 @@ Include all tool types with contextual routing:
 ### Tool Routing by Layer
 - **Frontend work** → Chrome DevTools, Webflow, Figma
 - **Backend work** → Database tools, API testing
-- **Both** → LEANN, Memory, Code Context
+- **Both** → LEANN, Memory, Narsil
 ```
 
 #### Balanced Weight Distribution
@@ -369,14 +369,14 @@ Concrete examples showing how to customize from Universal to project-specific.
 
 | Component             | Status | Items                     | Reason                          |
 | --------------------- | ------ | ------------------------- | ------------------------------- |
-| **Skills - Keep**     | ✅      | system-memory             | Context preservation needed     |
+| **Skills - Keep**     | ✅      | system-spec-kit           | Context preservation needed     |
 |                       | ✅      | workflows-chrome-devtools | Browser debugging essential     |
 |                       | ✅      | workflows-code            | Implementation workflow         |
 |                       | ✅      | mcp-code-mode             | Webflow/Figma integration       |
 | **Skills - Remove**   | ❌      | mcp-leann                 | Small codebase, grep sufficient |
-|                       | ❌      | mcp-code-context          | Minimal JS complexity           |
+|                       | ❌      | mcp-narsil                | Minimal JS complexity           |
 |                       | ❌      | workflows-git             | Optional for solo projects      |
-| **MCP - Keep**        | ✅      | semantic_memory           | Required for memory skill       |
+| **MCP - Keep**        | ✅      | semantic_memory           | Required for spec-kit skill     |
 |                       | ✅      | code_mode                 | External tool access            |
 | **MCP - Remove**      | ❌      | leann                     | Not using semantic search       |
 |                       | ❌      | sequential_thinking       | Overkill for frontend           |
@@ -395,14 +395,14 @@ Concrete examples showing how to customize from Universal to project-specific.
 | Component           | Status | Items                     | Reason                        |
 | ------------------- | ------ | ------------------------- | ----------------------------- |
 | **Skills - Keep**   | ✅      | mcp-leann                 | Semantic code understanding   |
-|                     | ✅      | mcp-code-context          | Function/class navigation     |
-|                     | ✅      | system-memory             | Research context preservation |
+|                     | ✅      | mcp-narsil                | Function/class navigation, security |
+|                     | ✅      | system-spec-kit           | Research context preservation |
 |                     | ✅      | workflows-code            | Implementation lifecycle      |
 |                     | ✅      | workflows-git             | PR/commit workflows           |
 | **Skills - Remove** | ❌      | workflows-chrome-devtools | No browser UI                 |
 |                     | ❌      | mcp-code-mode             | No Webflow/Figma needed       |
 | **MCP - Keep**      | ✅      | leann                     | Semantic search essential     |
-|                     | ✅      | code_context              | Structure navigation          |
+|                     | ✅      | narsil                    | Structure navigation, security |
 |                     | ✅      | semantic_memory           | Context preservation          |
 |                     | ✅      | sequential_thinking       | Complex reasoning             |
 | **MCP - Remove**    | ❌      | code_mode                 | No external design tools      |
@@ -428,7 +428,7 @@ cat opencode.json | jq '.mcp'
 #     "sequential-thinking": { ... },
 #     "leann": { ... },
 #     "semantic-memory": { ... },
-#     "code-context": { ... },
+#     "narsil": { ... },
 #     "code-mode": { ... }
 #   }
 # }
@@ -447,10 +447,10 @@ cat .utcp_config.json | jq '.manuals'
 ls -la .opencode/skill/
 
 # Example output:
-# mcp-code-context/
+# mcp-narsil/
 # mcp-code-mode/
 # mcp-leann/
-# system-memory/
+# system-spec-kit/
 # workflows-chrome-devtools/
 # workflows-code/
 # workflows-git/
@@ -462,13 +462,13 @@ ls -la .opencode/skill/
 
 **Current Installation (5 servers):**
 
-| Server                | Tool Prefix             | Purpose                      |
-| --------------------- | ----------------------- | ---------------------------- |
-| `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning |
-| `leann`               | `leann_*`               | Semantic code search         |
-| `code-context`        | `code_context_*`        | Structural AST analysis      |
-| `semantic-memory`     | `memory_*`              | Context preservation         |
-| `code-mode`           | `call_tool_chain()`     | External tool orchestration  |
+| Server                | Tool Prefix             | Purpose                                          |
+| --------------------- | ----------------------- | ------------------------------------------------ |
+| `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning                     |
+| `leann`               | `leann_*`               | Semantic code search                             |
+| `narsil`              | `narsil_*`              | Structural analysis, security scanning, call graphs |
+| `semantic-memory`     | `memory_*`              | Context preservation                             |
+| `code-mode`           | `call_tool_chain()`     | External tool orchestration                      |
 
 ### 5.3 Update Tool Routing Decision Tree
 
@@ -483,7 +483,8 @@ Remove lines for tools you haven't installed:
 Known file path? → Read()
 Know what code DOES? → leann_search() [NATIVE MCP]
 Research/prior work? → memory_search() [NATIVE MCP]
-Code structure/symbols? → code_context_get_code_context() [NATIVE MCP]
+Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE]
+Security scan? → narsil.narsil_scan_security() [CODE MODE]
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP]
@@ -502,7 +503,7 @@ Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 
 Known file path? → Read()
 Research/prior work? → memory_search() [NATIVE MCP]
-Code structure/symbols? → code_context_get_code_context() [NATIVE MCP]
+Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE]
 Text pattern? → Grep()
 File structure? → Glob()
 Browser debugging? → workflows-chrome-devtools skill
@@ -521,7 +522,8 @@ Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 Known file path? → Read()
 Know what code DOES? → leann_search() [NATIVE MCP]
 Research/prior work? → memory_search() [NATIVE MCP]
-Code structure/symbols? → code_context_get_code_context() [NATIVE MCP]
+Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE]
+Security scan? → narsil.narsil_scan_security() [CODE MODE]
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP]
@@ -548,8 +550,7 @@ LEANN (semantic code search):
   leann_remove()   # Remove index
 
 SEMANTIC MEMORY (context/research):
-  memory_search()         # Hybrid search
-  memory_load()           # Load by spec folder
+  memory_search()         # Hybrid search (use includeContent: true for full content)
   memory_match_triggers() # Fast trigger matching
   memory_list()           # Browse memories
   memory_save()           # Index memory file
@@ -558,8 +559,10 @@ SEMANTIC MEMORY (context/research):
 SEQUENTIAL THINKING (optional):
   sequential_thinking_sequentialthinking()
 
-CODE CONTEXT (structural analysis):
-  code_context_get_code_context()
+NARSIL (structural analysis + security, via Code Mode):
+  narsil.narsil_find_symbols()      # List functions, classes, definitions
+  narsil.narsil_scan_security()     # Security vulnerability scanning
+  narsil.narsil_call_graph()        # Call graph analysis
 ```
 
 </details>
@@ -571,8 +574,7 @@ CODE CONTEXT (structural analysis):
 ### Native MCP Tools Reference
 
 SEMANTIC MEMORY (context/research):
-  memory_search()         # Hybrid search
-  memory_load()           # Load by spec folder
+  memory_search()         # Hybrid search (use includeContent: true for full content)
   memory_match_triggers() # Fast trigger matching
   memory_list()           # Browse memories
   memory_save()           # Index memory file
@@ -633,11 +635,10 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 
 | Skill                       | Version | Primary Triggers                                       | Purpose                                   |
 | --------------------------- | ------- | ------------------------------------------------------ | ----------------------------------------- |
-| `mcp-code-context`          | v1.1.0  | "list functions", "show structure", "what classes"     | Structural AST analysis using Tree-sitter |
+| `mcp-narsil`                | v1.0.0  | "list functions", "show structure", "security scan"    | Structural analysis, security scanning, call graphs |
 | `mcp-code-mode`             | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"         | MCP orchestration for external tools      |
 | `mcp-leann`                 | v1.1.0  | "find code that", "how does X work", "semantic search" | Semantic code search by meaning           |
-| `system-memory`             | v12.4.0 | "save context", "/memory:save", "remember this"        | Context preservation across sessions      |
-| `system-spec-kit`           | v1.0.0  | "spec folder", "create spec", "plan", "checklist"      | Specification and planning workflow       |
+| `system-spec-kit`           | v12.4.0 | "save context", "/memory:save", "spec folder", "plan"  | Context preservation and spec workflow    |
 | `workflows-chrome-devtools` | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"            | Chrome DevTools Protocol debugging        |
 | `workflows-code`            | v2.0.0  | "implement", "debug", "verify", "refactor"             | Implementation lifecycle orchestrator     |
 | `workflows-documentation`   | v1.0.0  | "skill", "markdown", "flowchart", "documentation"      | Unified markdown and skill management     |
@@ -649,15 +650,15 @@ When Gate 2 runs `skill_advisor.py`, it maps user intent to skills:
 
 | User Says                         | Skill Triggered           | Confidence |
 | --------------------------------- | ------------------------- | ---------- |
-| "list functions in auth.ts"       | mcp-code-context          | 0.95       |
-| "show class structure"            | mcp-code-context          | 0.90       |
-| "what methods are in UserService" | mcp-code-context          | 0.88       |
+| "list functions in auth.ts"       | mcp-narsil                | 0.95       |
+| "show class structure"            | mcp-narsil                | 0.90       |
+| "what methods are in UserService" | mcp-narsil                | 0.88       |
 | "how does authentication work"    | mcp-leann                 | 0.92       |
 | "find code that handles payments" | mcp-leann                 | 0.88       |
 | "where is error handling done"    | mcp-leann                 | 0.85       |
-| "save this context"               | system-memory             | 0.95       |
-| "/memory:save"                    | system-memory             | 0.98       |
-| "remember this decision"          | system-memory             | 0.85       |
+| "save this context"               | system-spec-kit           | 0.95       |
+| "/memory:save"                    | system-spec-kit           | 0.98       |
+| "remember this decision"          | system-spec-kit           | 0.85       |
 | "take a screenshot"               | workflows-chrome-devtools | 0.95       |
 | "debug in browser"                | workflows-chrome-devtools | 0.88       |
 | "check the DOM"                   | workflows-chrome-devtools | 0.82       |
@@ -719,11 +720,11 @@ For a front-end project, you would typically have these skills in `.opencode/ski
 | --------------------------- | --------------------------------------------------- |
 | `mcp-code-mode`             | MCP orchestration for Webflow and Figma integration |
 | `workflows-chrome-devtools` | Browser debugging via Chrome DevTools Protocol      |
-| `system-memory`             | Context preservation across sessions                |
+| `system-spec-kit`           | Context preservation across sessions                |
 
 **Skills to consider removing:**
 - `mcp-leann` - Overkill for small frontend codebases
-- `mcp-code-context` - Simple file structure doesn't need AST analysis
+- `mcp-narsil` - Simple file structure doesn't need structural analysis
 - `workflows-git` - Optional for solo/simple projects
 
 **Verify your skills:**
@@ -745,9 +746,9 @@ For a backend/API project, you would typically have these skills in `.opencode/s
 | Skill              | Purpose                                                                                        |
 | ------------------ | ---------------------------------------------------------------------------------------------- |
 | `mcp-leann`        | Semantic code search for understanding API patterns, finding related implementations           |
-| `mcp-code-context` | Structural code analysis using Tree-sitter AST for listing functions, classes, and definitions |
+| `mcp-narsil`       | Structural code analysis, security scanning, call graphs for listing functions, classes, defs  |
 | `workflows-code`   | Implementation lifecycle orchestrator for complex multi-file changes and refactoring           |
-| `system-memory`    | Context preservation for research tasks and finding prior architectural decisions              |
+| `system-spec-kit`  | Context preservation for research tasks and finding prior architectural decisions              |
 | `workflows-git`    | Git workflow for PRs, commits, branches                                                        |
 
 **Skills to consider removing:**
@@ -1065,8 +1066,8 @@ ls .opencode/commands/
 
 | Category        | Count | Items                                                                                                                                                    |
 | --------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 9     | mcp-code-context, mcp-code-mode, mcp-leann, system-memory, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
-| **MCP Servers** | 5     | sequential-thinking, leann, code-context, semantic-memory, code-mode                                                |
+| **Skills**      | 8     | mcp-narsil, mcp-code-mode, mcp-leann, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
+| **MCP Servers** | 5     | sequential-thinking, leann, narsil, semantic-memory, code-mode                                                      |
 | **Commands**    | 16    | /create:* (5), /memory:* (3), /prompt:improve (1), /search:* (2), /spec_kit:* (5)                                   |
 | **Gates**       | 7     | Gate 0-6 (Compaction, Understanding, Routing, Spec, Memory Load, Memory Save, Completion)                           |
 

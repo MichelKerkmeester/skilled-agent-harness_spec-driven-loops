@@ -37,7 +37,7 @@ The `mcp_server/` folder is the standalone MCP server implementation for semanti
 
 | File                 | Purpose           | How to Run                            |
 | -------------------- | ----------------- | ------------------------------------- |
-| `semantic-memory.js` | Main MCP server   | `node semantic-memory.js` (via stdio) |
+| `context-server.js` | Main MCP server   | `node context-server.js` (via stdio) |
 | `file-watcher.js`    | Auto-index daemon | `npm run watch`                       |
 
 ### Key Features
@@ -76,7 +76,7 @@ The **constitutional** tier is the highest importance level, designed for operat
 MCP Client (Claude/OpenCode)
          │ stdio
          ▼
-semantic-memory.js  ──────────────────────────────────────┐
+context-server.js  ───────────────────────────────────────┐
   │                                                       │
   ├─ lib/embeddings.js      Local embedding generation    │
   ├─ lib/vector-index.js    SQLite + sqlite-vec storage   │

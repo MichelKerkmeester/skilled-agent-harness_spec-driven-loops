@@ -123,12 +123,12 @@ WAIT for user's answer. THEN proceed.
 ONLY use this command to save context:
 
 ```bash
-node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]
+node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]
 ```
 
 Or with JSON input for rich context:
 ```bash
-node .opencode/skill/system-memory/scripts/generate-context.js /tmp/save-context-data.json
+node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/save-context-data.json
 ```
 
 ### VIOLATION = HARD BLOCK
@@ -217,4 +217,4 @@ Read("/path/to/memory.md")
 ---
 
 *Constitutional Memory - Always surfaces at top of search results*
-*Location: .opencode/skill/system-memory/constitutional/*
+*Location: .opencode/skill/system-spec-kit/constitutional/*

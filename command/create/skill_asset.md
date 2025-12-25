@@ -371,6 +371,6 @@ Execute all 5 steps in sequence following the workflow definition.
 
 **Example 4: Create guide asset**
 ```
-/documentation:create_asset system-memory guide
+/documentation:create_asset system-spec-kit guide
 ```
-→ Creates `.opencode/skill/system-memory/assets/[name]_guide.md`
+→ Creates `.opencode/skill/system-spec-kit/assets/[name]_guide.md`

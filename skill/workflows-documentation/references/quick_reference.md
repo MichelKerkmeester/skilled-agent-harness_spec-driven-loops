@@ -262,8 +262,7 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ### Related Skills
 - `git-commit` - Git commit workflows
-- `system-memory` - Context preservation
-- `system-spec-kit` - Spec folder management
+- `system-spec-kit` - Context preservation and spec folder management
 
 ### External Resources
 - [llms.txt specification](https://llmstxt.org/) - Official llms.txt spec

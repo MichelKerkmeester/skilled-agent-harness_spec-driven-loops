@@ -213,9 +213,6 @@ get_feature_paths() {
     printf 'IMPL_PLAN=%q\n' "$feature_dir/plan.md"
     printf 'TASKS=%q\n' "$feature_dir/tasks.md"
     printf 'RESEARCH=%q\n' "$feature_dir/research.md"
-    printf 'DATA_MODEL=%q\n' "$feature_dir/data-model.md"
-    printf 'QUICKSTART=%q\n' "$feature_dir/quickstart.md"
-    printf 'CONTRACTS_DIR=%q\n' "$feature_dir/contracts"
     printf 'CHECKLISTS_DIR=%q\n' "$feature_dir/checklists"
     printf 'DECISIONS_DIR=%q\n' "$feature_dir/decisions"
 

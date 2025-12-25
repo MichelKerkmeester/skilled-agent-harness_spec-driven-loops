@@ -625,7 +625,7 @@ workflow:
     - Fill Technical Context
     - Fill Constitution Check section
     - Phase 0: Generate research.md to resolve unknowns
-    - Phase 1: Generate data-model.md, contracts/
+    - Phase 1: Define component structure and interfaces
     - Generate Testing Strategy
     - Generate Success Metrics
     - Import Risk Matrix from spec

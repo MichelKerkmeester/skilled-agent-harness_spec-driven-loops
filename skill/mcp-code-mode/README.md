@@ -673,7 +673,7 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 | Skill | Purpose | MCP Type |
 |-------|---------|----------|
 | **[mcp-leann](../mcp-leann/README.md)** | Semantic code search | Native MCP |
-| **[system-memory](../system-memory/README.md)** | Context preservation | Native MCP |
+| **[system-spec-kit](../system-spec-kit/README.md)** | Context preservation | Native MCP |
 
 ### Cross-Skill Workflow
 

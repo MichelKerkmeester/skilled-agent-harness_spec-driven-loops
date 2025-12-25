@@ -506,8 +506,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 | Skill               | Integration                                           |
 | ------------------- | ----------------------------------------------------- |
-| **system-memory**   | Context files can be optimized (flexible enforcement) |
-| **system-spec-kit** | Validates spec folder documentation structure         |
+| **system-spec-kit** | Context files can be optimized; validates spec folder documentation structure |
 | **workflows-git**   | Uses documentation quality for commit/PR descriptions |
 
 ### Workflow Integration

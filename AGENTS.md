@@ -26,15 +26,15 @@
 
 ### Quick Reference: Common Workflows
 
-| Task                     | Flow                                                                                                                               |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Create/select spec → Execute                                                          |
-| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_search()` → Document findings                                               |
-| **Code search**          | `leann_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text patterns |
-| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                   |
-| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed  |
-| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
-| **Debug delegation**     | `/spec_kit:debug` → Model selection → Sub-agent dispatch via Task tool                                                             |
+| Task                     | Flow                                                                                                                                |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Create/select spec → Execute                                                           |
+| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_search()` → Document findings                                                |
+| **Code search**          | `leann_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text patterns  |
+| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                    |
+| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
+| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                         |
+| **Debug delegation**     | `/spec_kit:debug` → Model selection → Sub-agent dispatch via Task tool                                                              |
 
 ---
 
@@ -100,7 +100,7 @@
 │          1c. Parse request → Check confidence (see §4)                       │
 │          1d. If <40%: ASK | 40-79%: PROCEED WITH CAUTION | ≥80%: PASS       │
 │                                                                             │
-│ ⚠️ PRIORITY NOTE: Gate 1 is SOFT - if file modification detected, Gate 3    │
+│ ⚠️ PRIORITY NOTE: Gate 1 is SOFT - if file modification detected, Gate 3      │
 │    (HARD BLOCK) takes precedence. Ask spec folder question BEFORE analysis. │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
@@ -178,13 +178,13 @@
 │      If mismatch detected → WARN user + suggest alternatives                │
 │                                                                             │
 │ EXECUTION (TWO MODES):                                                      │
-│   Mode 1 (JSON file): AI writes JSON to /tmp/data.json, passes as argument  │
+│   Mode 1 (JSON file): AI writes JSON to /tmp/data.json, passes as argument   │
 │            `node generate-context.js /tmp/save-context-data.json`           │
 │            JSON MUST contain: { specFolder, sessionSummary, keyDecisions }  │
 │   Mode 2 (Direct): Pass spec folder path directly (minimal/placeholder)     │
 │            `node generate-context.js specs/005-memory`                      │
 │   Recommended: Mode 1 (JSON) for rich context preservation                  │
-│   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked). │
+│   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked).  │
 │   Violation: If Write tool used on memory/ path → DELETE & re-run via script│
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
@@ -310,27 +310,27 @@ File modification planned? → Include Q1 (Spec Folder)
 
 #### ⚡ Common Failure Patterns 
 
-| #   | Stage          | Pattern                       | Trigger Phrase                          | Response Action                                                                                           |
-| --- | -------------- | ----------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| 1   | Understanding  | Task Misinterpretation        | N/A                                     | Parse request, confirm scope                                                                              |
-| 2   | Understanding  | Assumptions                   | N/A                                     | Read existing code first                                                                                  |
-| 3   | Understanding  | Skip Memory                   | "research", "explore"                   | `memory_search()` FIRST                                                                                   |
-| 4   | Understanding  | Skip Trigger Match            | New user message                        | Call memory_match_triggers() FIRST                                                                        |
-| 5   | Planning       | Rush to Code                  | "straightforward"                       | Analyze → Verify → Simplest                                                                               |
-| 6   | Planning       | Over-Engineering              | N/A                                     | YAGNI - solve only stated                                                                                 |
-| 7   | Planning       | Skip Process                  | "I already know"                        | Follow checklist anyway                                                                                   |
-| 8   | Implementation | Clever > Clear                | N/A                                     | Obvious code wins                                                                                         |
-| 9   | Implementation | Fabrication                   | "obvious" w/o verify                    | Output "UNKNOWN", verify first                                                                            |
-| 10  | Implementation | Cascading Breaks              | N/A                                     | Reproduce before fixing                                                                                   |
-| 11  | Implementation | Root Folder Pollution         | Creating temp file                      | STOP → Move to scratch/ → Verify                                                                          |
-| 12  | Review         | Skip Verification             | "trivial edit"                          | Run ALL tests, no exceptions                                                                              |
-| 13  | Review         | Retain Legacy                 | "just in case"                          | Remove unused, ask if unsure                                                                              |
-| 14  | Completion     | No Browser Test               | "works", "done"                         | Browser verify first                                                                                      |
-| 15  | Completion     | Skip Checklist                | "complete" (L2+)                        | Load checklist.md, verify all                                                                             |
+| #   | Stage          | Pattern                       | Trigger Phrase                          | Response Action                                                                                             |
+| --- | -------------- | ----------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| 1   | Understanding  | Task Misinterpretation        | N/A                                     | Parse request, confirm scope                                                                                |
+| 2   | Understanding  | Assumptions                   | N/A                                     | Read existing code first                                                                                    |
+| 3   | Understanding  | Skip Memory                   | "research", "explore"                   | `memory_search()` FIRST                                                                                     |
+| 4   | Understanding  | Skip Trigger Match            | New user message                        | Call memory_match_triggers() FIRST                                                                          |
+| 5   | Planning       | Rush to Code                  | "straightforward"                       | Analyze → Verify → Simplest                                                                                 |
+| 6   | Planning       | Over-Engineering              | N/A                                     | YAGNI - solve only stated                                                                                   |
+| 7   | Planning       | Skip Process                  | "I already know"                        | Follow checklist anyway                                                                                     |
+| 8   | Implementation | Clever > Clear                | N/A                                     | Obvious code wins                                                                                           |
+| 9   | Implementation | Fabrication                   | "obvious" w/o verify                    | Output "UNKNOWN", verify first                                                                              |
+| 10  | Implementation | Cascading Breaks              | N/A                                     | Reproduce before fixing                                                                                     |
+| 11  | Implementation | Root Folder Pollution         | Creating temp file                      | STOP → Move to scratch/ → Verify                                                                            |
+| 12  | Review         | Skip Verification             | "trivial edit"                          | Run ALL tests, no exceptions                                                                                |
+| 13  | Review         | Retain Legacy                 | "just in case"                          | Remove unused, ask if unsure                                                                                |
+| 14  | Completion     | No Browser Test               | "works", "done"                         | Browser verify first                                                                                        |
+| 15  | Completion     | Skip Checklist                | "complete" (L2+)                        | Load checklist.md, verify all                                                                               |
 | 16  | Completion     | Skip Anchor Format            | "save context"                          | HARD BLOCK: Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js`, verify ANCHOR pairs |
-| 17  | Any            | Internal Contradiction        | Conflicting requirements                | HALT → State conflict explicitly → Request resolution                                                     |
-| 18  | Understanding  | Wrong Search Tool             | "find", "search", "list"                | LEANN for meaning, Narsil for structure, Grep for text                                                    |
-| 19  | Any            | Skip Gate 3 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder question → Wait for A/B/C/D                                                        |
+| 17  | Any            | Internal Contradiction        | Conflicting requirements                | HALT → State conflict explicitly → Request resolution                                                       |
+| 18  | Understanding  | Wrong Search Tool             | "find", "search", "list"                | LEANN for meaning, Narsil for structure, Grep for text                                                      |
+| 19  | Any            | Skip Gate 3 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder question → Wait for A/B/C/D                                                          |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
 
@@ -572,9 +572,9 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 
 ### Two "Semantic" Systems (DO NOT CONFUSE)
 
-| System              | MCP Name          | Database Location                                            | Purpose                               |
-| ------------------- | ----------------- | ------------------------------------------------------------ | ------------------------------------- |
-| **LEANN**           | `leann`           | `~/.leann/indexes/`                                          | **Code** semantic search              |
+| System              | MCP Name          | Database Location                                               | Purpose                               |
+| ------------------- | ----------------- | --------------------------------------------------------------- | ------------------------------------- |
+| **LEANN**           | `leann`           | `~/.leann/indexes/`                                             | **Code** semantic search              |
 | **Semantic Memory** | `semantic_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**

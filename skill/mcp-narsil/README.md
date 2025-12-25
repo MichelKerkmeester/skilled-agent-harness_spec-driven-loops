@@ -825,4 +825,4 @@ A: Narsil uses data flow analysis to track type flow through variables, analyzin
 | ------------------------------------------- | -------------------------------------------- |
 | [mcp-leann](../mcp-leann/README.md)         | Semantic code search (meaning-based queries) |
 | [mcp-code-mode](../mcp-code-mode/README.md) | Tool orchestration via TypeScript execution  |
-| [system-memory](../system-memory/README.md) | Context preservation across sessions         |
+| [system-spec-kit](../system-spec-kit/README.md) | Context preservation across sessions         |

@@ -160,4 +160,4 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator
-- `system-memory` - Context preservation with semantic memory
+- `system-spec-kit` - Context preservation with semantic memory

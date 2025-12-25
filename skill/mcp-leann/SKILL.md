@@ -459,7 +459,7 @@ What do you need?
 ### Related Skills
 
 - **[mcp-narsil](../mcp-narsil/SKILL.md)** - Structural code queries for symbol navigation (via Code Mode)
-- **[system-memory](../system-memory/SKILL.md)** - Conversation context preservation (NATIVE MCP)
+- **[system-spec-kit](../system-spec-kit/SKILL.md)** - Conversation context preservation (NATIVE MCP)
 - **[mcp-code-mode](../mcp-code-mode/SKILL.md)** - TypeScript execution for external MCP tools (Code Mode)
 
 ---

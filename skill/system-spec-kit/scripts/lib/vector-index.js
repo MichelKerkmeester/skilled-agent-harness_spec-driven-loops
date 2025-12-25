@@ -49,6 +49,128 @@ const DEFAULT_DB_PATH = process.env.MEMORY_DB_PATH ||
 const DB_PERMISSIONS = 0o600; // Owner read/write only
 
 // ───────────────────────────────────────────────────────────────
+// SECURITY HELPERS (CWE-22, CWE-502 mitigations)
+// ───────────────────────────────────────────────────────────────
+
+/**
+ * Allowed base directories for file reads
+ * Paths from DB must resolve within one of these directories
+ * @constant {string[]}
+ */
+const ALLOWED_BASE_PATHS = [
+  path.join(process.cwd(), 'specs'),
+  path.join(process.cwd(), '.opencode'),
+  // Support explicit MEMORY_ALLOWED_PATHS env var for testing/extension
+  ...(process.env.MEMORY_ALLOWED_PATHS ? process.env.MEMORY_ALLOWED_PATHS.split(':') : [])
+].filter(Boolean);
+
+/**
+ * Validate file path is within allowed directories (CWE-22: Path Traversal mitigation)
+ * 
+ * Prevents directory traversal attacks by ensuring resolved paths
+ * stay within allowed base directories.
+ * 
+ * @param {string} filePath - Path to validate (from database)
+ * @returns {string|null} Validated absolute path or null if invalid
+ */
+function validateFilePath(filePath) {
+  if (!filePath || typeof filePath !== 'string') {
+    return null;
+  }
+
+  try {
+    // Resolve to absolute path (handles .., symlinks, etc.)
+    const resolved = path.resolve(filePath);
+    
+    // Check if path is within any allowed base directory
+    const isAllowed = ALLOWED_BASE_PATHS.some(basePath => {
+      const normalizedBase = path.resolve(basePath);
+      return resolved.startsWith(normalizedBase + path.sep) || resolved === normalizedBase;
+    });
+
+    if (!isAllowed) {
+      console.warn(`[vector-index] Path traversal blocked: ${filePath} -> ${resolved}`);
+      return null;
+    }
+
+    return resolved;
+  } catch (err) {
+    console.warn(`[vector-index] Path validation error: ${err.message}`);
+    return null;
+  }
+}
+
+/**
+ * Safely read file content with path validation
+ * 
+ * Combines path validation with file reading. Returns empty string
+ * for invalid paths or read errors (fail-safe default).
+ * 
+ * @param {string} filePath - Path from database
+ * @returns {string} File content or empty string
+ */
+function safeReadFile(filePath) {
+  const validPath = validateFilePath(filePath);
+  if (!validPath) {
+    return '';
+  }
+
+  try {
+    if (fs.existsSync(validPath)) {
+      return fs.readFileSync(validPath, 'utf-8');
+    }
+  } catch (err) {
+    console.warn(`[vector-index] Could not read file ${validPath}: ${err.message}`);
+  }
+  return '';
+}
+
+/**
+ * Safely parse JSON with validation (CWE-502: Deserialization mitigation)
+ * 
+ * Validates JSON structure before parsing to prevent prototype pollution
+ * or unexpected object shapes from corrupted data.
+ * 
+ * @param {string} jsonString - JSON string to parse
+ * @param {*} [defaultValue=[]] - Default value if parsing fails
+ * @returns {*} Parsed value or default
+ */
+function safeParseJSON(jsonString, defaultValue = []) {
+  if (!jsonString || typeof jsonString !== 'string') {
+    return defaultValue;
+  }
+
+  try {
+    const parsed = JSON.parse(jsonString);
+    
+    // For related_memories, expect array of objects with id and similarity
+    if (Array.isArray(parsed)) {
+      return parsed.filter(item => 
+        item && typeof item === 'object' && 
+        !Array.isArray(item) &&
+        // Reject any __proto__ or constructor pollution attempts
+        !('__proto__' in item) && 
+        !('constructor' in item) &&
+        !('prototype' in item)
+      );
+    }
+    
+    // For non-array, return default if object has dangerous keys
+    if (typeof parsed === 'object' && parsed !== null) {
+      if ('__proto__' in parsed || 'constructor' in parsed || 'prototype' in parsed) {
+        console.warn('[vector-index] Blocked potential prototype pollution in JSON');
+        return defaultValue;
+      }
+    }
+    
+    return parsed;
+  } catch (err) {
+    console.warn(`[vector-index] JSON parse error: ${err.message}`);
+    return defaultValue;
+  }
+}
+
+// ───────────────────────────────────────────────────────────────
 // DATABASE SINGLETON
 // ───────────────────────────────────────────────────────────────
 
@@ -1094,15 +1216,8 @@ async function vectorSearchEnriched(query, limit = 20, options = {}) {
   for (let i = 0; i < rawResults.length; i++) {
     const row = rawResults[i];
 
-    // Read file content for extraction
-    let content = '';
-    try {
-      if (row.file_path && fs.existsSync(row.file_path)) {
-        content = fs.readFileSync(row.file_path, 'utf-8');
-      }
-    } catch (err) {
-      console.warn(`[vector-index] Could not read file ${row.file_path}: ${err.message}`);
-    }
+    // Read file content for extraction (with path validation - CWE-22)
+    const content = safeReadFile(row.file_path);
 
     // Extract metadata from content
     const title = row.title || extractTitle(content, row.file_path);
@@ -1214,15 +1329,8 @@ async function multiConceptSearchEnriched(concepts, limit = 20, options = {}) {
   for (let i = 0; i < rawResults.length; i++) {
     const row = rawResults[i];
 
-    // Read file content
-    let content = '';
-    try {
-      if (row.file_path && fs.existsSync(row.file_path)) {
-        content = fs.readFileSync(row.file_path, 'utf-8');
-      }
-    } catch (err) {
-      // Ignore file read errors
-    }
+    // Read file content (with path validation - CWE-22)
+    const content = safeReadFile(row.file_path);
 
     const title = row.title || extractTitle(content, row.file_path);
     const snippet = extractSnippet(content);
@@ -1301,14 +1409,8 @@ function multiConceptKeywordSearch(concepts, limit = 20, options = {}) {
     const id = matchingIds[i];
     const row = idToRow.get(id);
 
-    let content = '';
-    try {
-      if (row.file_path && fs.existsSync(row.file_path)) {
-        content = fs.readFileSync(row.file_path, 'utf-8');
-      }
-    } catch (err) {
-      // Ignore
-    }
+    // Read file content (with path validation - CWE-22)
+    const content = safeReadFile(row.file_path);
 
     const title = row.title || extractTitle(content, row.file_path);
     const snippet = extractSnippet(content);
@@ -1798,7 +1900,7 @@ function getRelatedMemories(memoryId) {
       return [];
     }
 
-    const related = JSON.parse(memory.related_memories);
+    const related = safeParseJSON(memory.related_memories, []);
 
     // Fetch full metadata for each related memory
     return related.map(rel => {

@@ -183,7 +183,7 @@ cat > /tmp/test-save-context.json << 'EOF'
 EOF
 
 # Execute script directly
-node .opencode/skill/system-memory/scripts/generate-context.js \
+node .opencode/skill/system-spec-kit/scripts/generate-context.js \
   /tmp/test-save-context.json \
   "049-anchor-context-retrieval"
 ```
@@ -202,7 +202,7 @@ node .opencode/skill/system-memory/scripts/generate-context.js \
 | Checkpoint         | Verification                                           | Action on Failure        |
 | ------------------ | ------------------------------------------------------ | ------------------------ |
 | Node.js installed  | `node --version`                                       | Install Node.js          |
-| Script exists      | `test -f .opencode/skill/system-memory/scripts/generate-context.js` | Check skill installation |
+| Script exists      | `test -f .opencode/skill/system-spec-kit/scripts/generate-context.js` | Check skill installation |
 | JSON valid         | `jq . < input.json`                                    | Fix JSON syntax          |
 | Spec folder exists | `test -d specs/###/`                                   | Create spec folder       |
 
@@ -503,7 +503,7 @@ sed -n '/<!-- ANCHOR:decision-auth-049 -->/,/<!-- \/ANCHOR:decision-auth-049 -->
 
 ```bash
 # Verify memory system installation
-ls -la .opencode/skill/system-memory/scripts/
+ls -la .opencode/skill/system-spec-kit/scripts/
 
 # Check spec folder structure
 tree specs/###-name/
@@ -512,7 +512,7 @@ tree specs/###-name/
 cat input.json | jq .
 
 # Test script execution
-node .opencode/skill/system-memory/scripts/generate-context.js --help
+node .opencode/skill/system-spec-kit/scripts/generate-context.js --help
 ```
 
 ---

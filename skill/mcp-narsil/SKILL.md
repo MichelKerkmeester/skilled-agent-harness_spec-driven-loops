@@ -358,7 +358,7 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 | ----------------- | ------------------------------------------------------------------------ |
 | **mcp-leann**     | Semantic search complement - use LEANN for meaning, Narsil for structure |
 | **mcp-code-mode** | Tool orchestration - Narsil accessed via Code Mode's `call_tool_chain()` |
-| **system-memory** | Context preservation - save security findings for future sessions        |
+| **system-spec-kit** | Context preservation - save security findings for future sessions        |
 
 ### Tool Usage Guidelines
 

@@ -175,7 +175,7 @@ Is this document invoked programmatically?
 # GOOD
 name: document-style-validator
 name: git-commit
-name: system-memory
+name: system-spec-kit
 
 # BAD
 name: DocumentStyleValidator  # No uppercase

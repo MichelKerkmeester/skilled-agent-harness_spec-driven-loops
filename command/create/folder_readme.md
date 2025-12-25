@@ -296,8 +296,7 @@ Execute all 5 steps in sequence following the workflow definition.
 | Completion Report    | `completion_report_template`        |
 
 **Reference READMEs:**
-- `.opencode/skill/system-spec-kit/README.md` (SpecKit pattern)
-- `.opencode/skill/system-memory/README.md` (Skill pattern)
+- `.opencode/skill/system-spec-kit/README.md` (SpecKit + Memory pattern)
 
 ---
 

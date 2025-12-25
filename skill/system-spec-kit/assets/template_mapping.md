@@ -192,7 +192,7 @@ Content that will be indexed...
 - `next-steps` - Planned next actions
 - `context` - Background context
 
-**Generation:** Use `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` to auto-generate properly formatted memory files.
+**Generation:** Use `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` to auto-generate properly formatted memory files.
 
 ---
 

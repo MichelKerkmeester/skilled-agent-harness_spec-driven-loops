@@ -20,7 +20,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | **Debug Assistance**   | None              | AI detects frustration → auto-suggests sub-agent |
 | **Session Handover**   | None              | `:quick` (15 lines) or `:full` (150 lines)       |
 | **Quality Metrics**    | Guesswork         | Completeness scoring (0-100%)                    |
-| **Folder Versioning**  | Overwrite         | Sub-folder patterns                   |
+| **Folder Versioning**  | Overwrite         | Sub-folder patterns                              |
 | **Automation**         | None              | 7 scripts handle the boring work                 |
 
 > **The bottom line:** 10 templates, 7 commands, 7 scripts, 0 excuses for losing context.
@@ -254,12 +254,12 @@ The `memory/` folder stores **conversation context and session history** for AI 
 - Semantic Memory MCP is now integrated into this skill (was separate `system-memory`)
 
 **Integrated Components:**
-| Component | Location | Purpose |
-|-----------|----------|---------|
-| MCP Server | `mcp_server/context-server.js` | Semantic memory with vector search |
-| Database | `database/context-index.sqlite` | SQLite + FTS5 + embeddings |
-| Constitutional | `constitutional/` | Always-surface rules |
-| Scripts | `scripts/generate-context.js` | Memory file generation |
+| Component      | Location                        | Purpose                            |
+| -------------- | ------------------------------- | ---------------------------------- |
+| MCP Server     | `mcp_server/context-server.js`  | Semantic memory with vector search |
+| Database       | `database/context-index.sqlite` | SQLite + FTS5 + embeddings         |
+| Constitutional | `constitutional/`               | Always-surface rules               |
+| Scripts        | `scripts/generate-context.js`   | Memory file generation             |
 
 **Memory MCP Tools:**
 - `memory_search()` - Semantic search with vector similarity
@@ -286,7 +286,7 @@ Level 2 (Verification): Level 1 + checklist.md
 Level 3 (Full):         Level 2 + decision-record.md + optional research
 
 Utility (any level):    handover.md, debug-delegation.md
-```
+``` 
 
 ### Level Specifications
 
@@ -350,18 +350,18 @@ All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEV
 
 ### Template Summary Table
 
-| Template              | Level | Type     | Lines | Description                             |
-| --------------------- | ----- | -------- | ----- | --------------------------------------- |
-| `spec.md`             | 1+    | Required | ~150  | Feature specification with user stories |
-| `plan.md`             | 1+    | Required | ~120  | Implementation plan with architecture   |
-| `tasks.md`            | 1+    | Required | ~80   | Task breakdown by user story            |
-| `checklist.md`        | 2+    | Required | ~100  | Validation/QA checklists (P0/P1/P2)     |
-| `decision-record.md`  | 3     | Required | ~90   | Architecture Decision Records (ADR)     |
-| `research.md`         | 3     | Optional | ~878  | Comprehensive multi-domain research     |
-| `handover.md`             | Any   | Utility  | ~100  | Full session continuity (7 sections)    |
-| `debug-delegation.md`     | Any   | Utility  | ~64   | Sub-agent debugging delegation          |
-| `implementation-summary.md` | Any | Utility  | ~50   | Implementation completion summary       |
-| `planning-summary.md`     | Any   | Utility  | ~50   | Planning phase summary                  |
+| Template                    | Level | Type     | Lines | Description                             |
+| --------------------------- | ----- | -------- | ----- | --------------------------------------- |
+| `spec.md`                   | 1+    | Required | ~150  | Feature specification with user stories |
+| `plan.md`                   | 1+    | Required | ~120  | Implementation plan with architecture   |
+| `tasks.md`                  | 1+    | Required | ~80   | Task breakdown by user story            |
+| `checklist.md`              | 2+    | Required | ~100  | Validation/QA checklists (P0/P1/P2)     |
+| `decision-record.md`        | 3     | Required | ~90   | Architecture Decision Records (ADR)     |
+| `research.md`               | 3     | Optional | ~878  | Comprehensive multi-domain research     |
+| `handover.md`               | Any   | Utility  | ~100  | Full session continuity (7 sections)    |
+| `debug-delegation.md`       | Any   | Utility  | ~64   | Sub-agent debugging delegation          |
+| `implementation-summary.md` | Any   | Utility  | ~50   | Implementation completion summary       |
+| `planning-summary.md`       | Any   | Utility  | ~50   | Planning phase summary                  |
 
 ### Level 1: Baseline Templates
 
@@ -740,18 +740,18 @@ Archive Summary:
 > **Gate 6 Integration**: This script is invoked by Gate 6 (Completion Verification) before claiming any work as "done".
 
 **Options**:
-| Flag            | Description                            | Default |
-| --------------- | -------------------------------------- | ------- |
-| `--json`        | Output in JSON format (for tooling)    | false   |
-| `--strict`      | Treat warnings as errors               | false   |
-| `--verbose`     | Show detailed validation output        | false   |
-| `--quiet`, `-q` | Results only (suppress decorative output) | false   |
-| `--help`, `-h`  | Show help message                      | -       |
-| `--version`, `-v` | Show version number                  | -       |
+| Flag              | Description                               | Default |
+| ----------------- | ----------------------------------------- | ------- |
+| `--json`          | Output in JSON format (for tooling)       | false   |
+| `--strict`        | Treat warnings as errors                  | false   |
+| `--verbose`       | Show detailed validation output           | false   |
+| `--quiet`, `-q`   | Results only (suppress decorative output) | false   |
+| `--help`, `-h`    | Show help message                         | -       |
+| `--version`, `-v` | Show version number                       | -       |
 
 **Environment Variables**:
-| Variable            | Effect                           |
-| ------------------- | -------------------------------- |
+| Variable                   | Effect                      |
+| -------------------------- | --------------------------- |
 | `SPECKIT_VALIDATION=false` | Disable validation entirely |
 | `SPECKIT_STRICT=true`      | Enable strict mode          |
 | `SPECKIT_JSON=true`        | Force JSON output           |
@@ -759,15 +759,15 @@ Archive Summary:
 | `SPECKIT_QUIET=true`       | Enable quiet mode           |
 
 **Validation Rules** (7 total):
-| Rule                | Severity | Description                                           |
-| ------------------- | -------- | ----------------------------------------------------- |
-| `FILE_EXISTS`       | error    | Required files present for documentation level        |
-| `PLACEHOLDER_FILLED`| error    | No unfilled `[YOUR_VALUE_HERE:]` placeholders         |
-| `SECTIONS_PRESENT`  | warn     | Required markdown sections exist                      |
-| `LEVEL_DECLARED`    | info     | Level explicitly declared in spec.md                  |
-| `PRIORITY_TAGS`     | warn     | P0/P1/P2 tags properly formatted in checklist.md      |
-| `EVIDENCE_CITED`    | warn     | Completed P0/P1 items have evidence citations         |
-| `ANCHORS_VALID`     | error    | ANCHOR tags in memory files have matching pairs       |
+| Rule                 | Severity | Description                                      |
+| -------------------- | -------- | ------------------------------------------------ |
+| `FILE_EXISTS`        | error    | Required files present for documentation level   |
+| `PLACEHOLDER_FILLED` | error    | No unfilled `[YOUR_VALUE_HERE:]` placeholders    |
+| `SECTIONS_PRESENT`   | warn     | Required markdown sections exist                 |
+| `LEVEL_DECLARED`     | info     | Level explicitly declared in spec.md             |
+| `PRIORITY_TAGS`      | warn     | P0/P1/P2 tags properly formatted in checklist.md |
+| `EVIDENCE_CITED`     | warn     | Completed P0/P1 items have evidence citations    |
+| `ANCHORS_VALID`      | error    | ANCHOR tags in memory files have matching pairs  |
 
 **Level Detection**:
 1. **Explicit**: Reads `| **Level** | N |` from spec.md metadata table
@@ -1006,15 +1006,15 @@ Seven Spec Kit commands transform multi-step workflows into single invocations.
 
 ### Command Overview
 
-| Command               | Steps | Purpose                           | Key Templates                             |
-| --------------------- | ----- | --------------------------------- | ----------------------------------------- |
-| `/spec_kit:complete`  | 12    | Full end-to-end workflow          | All templates                             |
-| `/spec_kit:plan`      | 7     | Planning only (no implementation) | spec, plan, checklist                     |
-| `/spec_kit:implement` | 8     | Execute pre-planned work          | tasks, checklist                          |
-| `/spec_kit:research`  | 9     | Technical investigation           | research, decision-record                 |
-| `/spec_kit:resume`    | 4-5   | Resume previous session           | Loads memory/                             |
-| `/spec_kit:handover`  | 4-5   | Create session handover document  | handover.md                               |
-| `/spec_kit:debug`     | 4-5   | Delegate debugging to sub-agent   | debug-delegation.md                       |
+| Command               | Steps | Purpose                           | Key Templates             |
+| --------------------- | ----- | --------------------------------- | ------------------------- |
+| `/spec_kit:complete`  | 12    | Full end-to-end workflow          | All templates             |
+| `/spec_kit:plan`      | 7     | Planning only (no implementation) | spec, plan, checklist     |
+| `/spec_kit:implement` | 8     | Execute pre-planned work          | tasks, checklist          |
+| `/spec_kit:research`  | 9     | Technical investigation           | research, decision-record |
+| `/spec_kit:resume`    | 4-5   | Resume previous session           | Loads memory/             |
+| `/spec_kit:handover`  | 4-5   | Create session handover document  | handover.md               |
+| `/spec_kit:debug`     | 4-5   | Delegate debugging to sub-agent   | debug-delegation.md       |
 
 ### Core Commands (6)
 
@@ -1310,9 +1310,9 @@ Spec Kit uses a 2-tier architecture:
 | `workflows-documentation` | Validates documentation quality      |
 
 **Integrated (formerly separate skill):**
-| Component                 | Integration                          |
-| ------------------------- | ------------------------------------ |
-| Semantic Memory MCP       | Context preservation via vector search (merged) |
+| Component           | Integration                                     |
+| ------------------- | ----------------------------------------------- |
+| Semantic Memory MCP | Context preservation via vector search (merged) |
 
 ### External Dependencies
 
@@ -1655,11 +1655,11 @@ grep -n "^\- \[" specs/###-folder/checklist.md | grep -v "P0:\|P1:\|P2:"
 ```
 
 **Priority Levels**:
-| Tag  | Meaning  | Requirement                          |
-| ---- | -------- | ------------------------------------ |
-| `P0` | Blocker  | MUST pass - work incomplete without  |
-| `P1` | Required | MUST pass for production readiness   |
-| `P2` | Optional | Can defer with documented reason     |
+| Tag  | Meaning  | Requirement                         |
+| ---- | -------- | ----------------------------------- |
+| `P0` | Blocker  | MUST pass - work incomplete without |
+| `P1` | Required | MUST pass for production readiness  |
+| `P2` | Optional | Can defer with documented reason    |
 
 ---
 

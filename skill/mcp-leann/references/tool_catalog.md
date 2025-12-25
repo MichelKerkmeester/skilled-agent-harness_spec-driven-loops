@@ -653,7 +653,7 @@ leann build my-index --docs ./src --compact
 ### Related Skills
 
 - **mcp-narsil** - Structural code queries for symbol navigation (via Code Mode)
-- **system-memory** - Conversation context preservation (NATIVE MCP)
+- **system-spec-kit** - Conversation context preservation (NATIVE MCP)
 - **mcp-code-mode** - TypeScript execution for external MCP tools (Code Mode)
 
 ---

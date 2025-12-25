@@ -96,7 +96,7 @@ Say: "save context" or "save conversation"
 
 **Required Argument:** Spec folder path is MANDATORY
 ```
-node .opencode/skill/system-memory/scripts/generate-context.js specs/007-feature/
+node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/007-feature/
 ```
 
 Context saved to `specs/###-folder/memory/` or `memory/` (fallback).
@@ -366,7 +366,7 @@ Before presenting documentation to user:
 
 **MANDATORY:** Use generate-context.js for memory save:
 ```
-node .opencode/skill/system-memory/scripts/generate-context.js specs/###-folder/
+node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/###-folder/
 ```
 
 ❌ DO NOT use Write/Edit tools to create memory files directly.
@@ -552,5 +552,5 @@ When in doubt:
 
 ### Related Skills
 - `workflows-code` - Implementation, debugging, and verification lifecycle
-- `system-memory` - Context preservation with semantic memory
+- `system-spec-kit` - Context preservation with semantic memory
 - `workflows-git` - Git workspace setup and clean commits

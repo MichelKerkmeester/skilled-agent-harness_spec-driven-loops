@@ -670,15 +670,15 @@ Keywords: greeting, salutation, welcome, email opening
 
 For comprehensive real-world examples, examine these production skills:
 
-| Skill             | Path                                     | Highlights                                                                       |
-| ----------------- | ---------------------------------------- | -------------------------------------------------------------------------------- |
-| **mcp-leann**     | `.opencode/skill/mcp-leann/SKILL.md`     | Native MCP tool integration, semantic search, SMART ROUTING with Resource Router |
-| **system-memory** | `.opencode/skill/system-memory/SKILL.md` | Complex skill with multiple references, checkpoint system, tier-based importance |
+| Skill               | Path                                       | Highlights                                                                       |
+| ------------------- | ------------------------------------------ | -------------------------------------------------------------------------------- |
+| **mcp-leann**       | `.opencode/skill/mcp-leann/SKILL.md`       | Native MCP tool integration, semantic search, SMART ROUTING with Resource Router |
+| **system-spec-kit** | `.opencode/skill/system-spec-kit/SKILL.md` | Complex skill with multiple references, checkpoint system, context preservation  |
 
 **To examine:**
 ```bash
 cat .opencode/skill/mcp-leann/SKILL.md | head -100
-cat .opencode/skill/system-memory/SKILL.md | head -100
+cat .opencode/skill/system-spec-kit/SKILL.md | head -100
 ```
 
 ---
@@ -869,8 +869,8 @@ Folder: .opencode/skill/mcp-leann/
 Folder: .opencode/skill/workflows-code/
     → Function: skills_workflows_code()
 
-Folder: .opencode/skill/system-memory/
-    → Function: skills_system_memory()
+Folder: .opencode/skill/system-spec-kit/
+    → Function: skills_system_spec_kit()
 ```
 
 ### Quick Verification

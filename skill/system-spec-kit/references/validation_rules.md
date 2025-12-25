@@ -1,39 +1,64 @@
 # Validation Rules Reference
 
-> Complete reference for all validation rules in `validate-spec.sh`.
+Complete reference for all validation rules used by the SpecKit validation system.
 
 ---
 
-## Rule Summary
+## 1. 📖 INTRODUCTION & PURPOSE
 
-| Rule ID              | Severity | Applies To        | Description                                    |
-| -------------------- | -------- | ----------------- | ---------------------------------------------- |
-| `FILE_EXISTS`        | ERROR    | All levels        | Required files present for documentation level |
-| `PLACEHOLDER_FILLED` | ERROR    | Core files        | No unfilled template placeholders              |
-| `SECTIONS_PRESENT`   | WARNING  | All templates     | Required markdown sections exist               |
-| `LEVEL_DECLARED`     | INFO     | spec.md           | Level explicitly stated in metadata            |
-| `PRIORITY_TAGS`      | WARNING  | checklist.md      | P0/P1/P2 priority tags properly formatted      |
-| `EVIDENCE_CITED`     | WARNING  | checklist.md      | Non-P2 items cite supporting evidence          |
-| `ANCHORS_VALID`      | ERROR    | memory/*.md       | ANCHOR pairs properly opened and closed        |
+### What Is This Reference?
+
+This document provides comprehensive documentation for every validation rule enforced by the SpecKit system. It covers rule behavior, severity levels, detection patterns, and remediation steps for each validation check.
+
+**Core Purpose**:
+- **Rule Documentation** - Complete specifications for all validation checks
+- **Fix Instructions** - Clear remediation steps when validation fails
+- **Configuration Guide** - Environment variables and usage patterns
+
+### Core Principle
+
+> Validation ensures spec folders meet quality standards before claiming completion—preventing incomplete documentation from passing Gate 6.
+
+### Severity Levels
+
+| Severity | Exit Code | Strict Mode | Description                       |
+| -------- | --------- | ----------- | --------------------------------- |
+| ERROR    | 2         | 2           | Validation failed, must fix       |
+| WARNING  | 1         | 2           | Passed with issues, should fix    |
+| INFO     | 0         | 0           | Informational, no action required |
 
 ---
 
-## FILE_EXISTS
+## 2. 📋 RULE SUMMARY
+
+| Rule ID              | Severity | Applies To    | Description                                    |
+| -------------------- | -------- | ------------- | ---------------------------------------------- |
+| `FILE_EXISTS`        | ERROR    | All levels    | Required files present for documentation level |
+| `PLACEHOLDER_FILLED` | ERROR    | Core files    | No unfilled template placeholders              |
+| `SECTIONS_PRESENT`   | WARNING  | All templates | Required markdown sections exist               |
+| `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
+| `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
+| `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
+| `ANCHORS_VALID`      | ERROR    | memory/*.md   | ANCHOR pairs properly opened and closed        |
+
+---
+
+## 3. 📁 FILE_EXISTS
 
 **Severity:** ERROR  
 **Description:** Validates that all required files exist for the detected documentation level.
 
 ### Required Files by Level
 
-| Level | Required Files                                              |
-| ----- | ----------------------------------------------------------- |
-| 1     | `spec.md`, `plan.md`, `tasks.md`                            |
-| 2     | Level 1 + `checklist.md`                                    |
-| 3     | Level 2 + `decision-record.md`                              |
+| Level | Required Files                             |
+| ----- | ------------------------------------------ |
+| 1     | `spec.md`, `plan.md`, `tasks.md`           |
+| 2     | Level 1 + `checklist.md`                   |
+| 3     | Level 2 + `decision-record.md`             |
 
 ### Examples
 
-**Pass:**
+✅ **Pass:**
 ```
 specs/007-feature/
 ├── spec.md         ✓
@@ -41,7 +66,7 @@ specs/007-feature/
 └── tasks.md        ✓
 ```
 
-**Fail:**
+❌ **Fail:**
 ```
 specs/007-feature/
 ├── plan.md         ✓
@@ -52,24 +77,25 @@ specs/007-feature/
 ### How to Fix
 
 Create the missing file(s) using the appropriate template:
+
 ```bash
 cp .opencode/skill/system-spec-kit/templates/spec.md specs/007-feature/
 ```
 
 ---
 
-## PLACEHOLDER_FILLED
+## 4. ✏️ PLACEHOLDER_FILLED
 
 **Severity:** ERROR  
 **Description:** Detects unfilled template placeholders that should be replaced with actual content.
 
 ### Patterns Detected
 
-| Pattern                      | Status    | Action Required           |
-| ---------------------------- | --------- | ------------------------- |
-| `[YOUR_VALUE_HERE: ...]`     | FLAGGED   | Replace with actual value |
-| `[NEEDS CLARIFICATION: ...]` | FLAGGED   | Resolve and replace       |
-| `[OPTIONAL: ...]`            | IGNORED   | Optional content          |
+| Pattern                      | Status  | Action Required           |
+| ---------------------------- | ------- | ------------------------- |
+| `[YOUR_VALUE_HERE: ...]`     | FLAGGED | Replace with actual value |
+| `[NEEDS CLARIFICATION: ...]` | FLAGGED | Resolve and replace       |
+| `[OPTIONAL: ...]`            | IGNORED | Optional content          |
 
 ### Files Scanned
 
@@ -87,7 +113,7 @@ cp .opencode/skill/system-spec-kit/templates/spec.md specs/007-feature/
 
 ### Examples
 
-**Fail:**
+❌ **Fail:**
 ```markdown
 ## Metadata
 
@@ -96,7 +122,7 @@ cp .opencode/skill/system-spec-kit/templates/spec.md specs/007-feature/
 | **Type** | [YOUR_VALUE_HERE: Feature type] |  ← FLAGGED
 ```
 
-**Pass:**
+✅ **Pass:**
 ```markdown
 ## Metadata
 
@@ -115,19 +141,19 @@ Replace placeholder text with actual content:
 
 ---
 
-## SECTIONS_PRESENT
+## 5. 📑 SECTIONS_PRESENT
 
 **Severity:** WARNING  
 **Description:** Validates that required markdown sections exist in each file type.
 
 ### Required Sections
 
-| File                | Required Sections                                |
-| ------------------- | ------------------------------------------------ |
-| `spec.md`           | Problem Statement, Requirements, Scope           |
-| `plan.md`           | Technical Context, Architecture, Implementation  |
-| `checklist.md`      | P0, P1 (section headers)                         |
-| `decision-record.md`| Context, Decision, Consequences                  |
+| File                | Required Sections                               |
+| ------------------- | ----------------------------------------------- |
+| `spec.md`           | Problem Statement, Requirements, Scope          |
+| `plan.md`           | Technical Context, Architecture, Implementation |
+| `checklist.md`      | P0, P1 (section headers)                        |
+| `decision-record.md`| Context, Decision, Consequences                 |
 
 ### Matching Rules
 
@@ -137,7 +163,7 @@ Replace placeholder text with actual content:
 
 ### Examples
 
-**Warning:**
+⚠️ **Warning:**
 ```markdown
 # My Spec
 
@@ -146,7 +172,7 @@ Replace placeholder text with actual content:
 ## Scope              ✓ Match
 ```
 
-**Pass:**
+✅ **Pass:**
 ```markdown
 # My Spec
 
@@ -158,6 +184,7 @@ Replace placeholder text with actual content:
 ### How to Fix
 
 Add the missing section headers. You can use numbered prefixes:
+
 ```markdown
 ## 1. Problem Statement
 
@@ -170,7 +197,7 @@ Add the missing section headers. You can use numbered prefixes:
 
 ---
 
-## LEVEL_DECLARED
+## 6. 🏷️ LEVEL_DECLARED
 
 **Severity:** INFO  
 **Description:** Checks if the documentation level is explicitly declared in spec.md metadata.
@@ -185,7 +212,7 @@ Add the missing section headers. You can use numbered prefixes:
 
 ### Examples
 
-**Explicit (no INFO):**
+✅ **Explicit (no INFO):**
 ```markdown
 ## Metadata
 
@@ -194,7 +221,7 @@ Add the missing section headers. You can use numbered prefixes:
 | **Level** | 2 |
 ```
 
-**Inferred (INFO logged):**
+⚠️ **Inferred (INFO logged):**
 ```markdown
 ## Metadata
 
@@ -207,24 +234,25 @@ Add the missing section headers. You can use numbered prefixes:
 ### How to Fix
 
 Add the Level field to your spec.md metadata table:
+
 ```markdown
 | **Level** | 2 |
 ```
 
 ---
 
-## PRIORITY_TAGS
+## 7. 🎯 PRIORITY_TAGS
 
 **Severity:** WARNING  
 **Description:** Validates that checklist items use proper P0/P1/P2 priority tagging format.
 
 ### Priority Definitions
 
-| Priority | Meaning       | Deferral Rules                          |
-| -------- | ------------- | --------------------------------------- |
-| **P0**   | HARD BLOCKER  | Must complete, cannot defer             |
+| Priority | Meaning       | Deferral Rules                             |
+| -------- | ------------- | ------------------------------------------ |
+| **P0**   | HARD BLOCKER  | Must complete, cannot defer                |
 | **P1**   | Must complete | Can defer only with explicit user approval |
-| **P2**   | Can defer     | Can defer without approval              |
+| **P2**   | Can defer     | Can defer without approval                 |
 
 ### Recognized Formats
 
@@ -266,7 +294,7 @@ Priority tags apply to items **until the next priority header or end of file**:
 
 ### Examples
 
-**Pass:**
+✅ **Pass:**
 ```markdown
 ## P0 - Blockers
 
@@ -278,7 +306,7 @@ Priority tags apply to items **until the next priority header or end of file**:
 - [ ] Documentation updated
 ```
 
-**Warning (no priority context):**
+⚠️ **Warning (no priority context):**
 ```markdown
 ## Tasks
 
@@ -295,7 +323,7 @@ Add priority headers or inline tags to all checklist items:
 
 ---
 
-## EVIDENCE_CITED
+## 8. 📎 EVIDENCE_CITED
 
 **Severity:** WARNING  
 **Description:** Validates that non-P2 checklist items include evidence citations to support claims.
@@ -310,25 +338,25 @@ Evidence citations:
 
 ### Recognized Evidence Patterns
 
-| Pattern | Description | Example |
-| ------- | ----------- | ------- |
-| `[Source: ...]` | General source citation | `[Source: API docs v2.1]` |
-| `[File: ...]` | File path reference | `[File: src/auth.ts:45-67]` |
-| `[Test: ...]` | Test execution reference | `[Test: npm run test:auth]` |
-| `[Commit: ...]` | Git commit reference | `[Commit: abc1234]` |
-| `[Screenshot: ...]` | Visual evidence | `[Screenshot: ./evidence/login.png]` |
+| Pattern              | Description              | Example                          |
+| -------------------- | ------------------------ | -------------------------------- |
+| `[Source: ...]`      | General source citation  | `[Source: API docs v2.1]`        |
+| `[File: ...]`        | File path reference      | `[File: src/auth.ts:45-67]`      |
+| `[Test: ...]`        | Test execution reference | `[Test: npm run test:auth]`      |
+| `[Commit: ...]`      | Git commit reference     | `[Commit: abc1234]`              |
+| `[Screenshot: ...]`  | Visual evidence          | `[Screenshot: ./evidence/login.png]` |
 
 ### Priority Exemptions
 
-| Priority | Evidence Required | Rationale |
-| -------- | ----------------- | --------- |
-| **P0**   | YES               | Critical items need strong proof |
-| **P1**   | YES               | Required items need verification |
+| Priority | Evidence Required | Rationale                          |
+| -------- | ----------------- | ---------------------------------- |
+| **P0**   | YES               | Critical items need strong proof   |
+| **P1**   | YES               | Required items need verification   |
 | **P2**   | NO (exempt)       | Deferrable items may be incomplete |
 
 ### Examples
 
-**Pass:**
+✅ **Pass:**
 ```markdown
 ## P0 - Critical
 
@@ -344,7 +372,7 @@ Evidence citations:
 - [ ] Refactor utils      ← No evidence needed (P2 exempt)
 ```
 
-**Warning:**
+⚠️ **Warning:**
 ```markdown
 ## P0 - Critical
 
@@ -372,7 +400,7 @@ Add evidence to non-P2 items:
 
 ---
 
-## ANCHORS_VALID
+## 9. ⚓ ANCHORS_VALID
 
 **Severity:** ERROR  
 **Description:** Validates that memory files use proper ANCHOR format with matching open/close pairs.
@@ -401,7 +429,7 @@ Content goes here...
 
 ### Examples
 
-**Pass:**
+✅ **Pass:**
 ```markdown
 <!-- ANCHOR:context -->
 ## Project Context
@@ -416,7 +444,7 @@ We chose JWT because...
 <!-- /ANCHOR:decisions -->
 ```
 
-**Error (unclosed anchor):**
+❌ **Error (unclosed anchor):**
 ```markdown
 <!-- ANCHOR:context -->
 ## Project Context
@@ -428,7 +456,7 @@ This feature adds authentication...
 <!-- /ANCHOR:decisions -->
 ```
 
-**Error (mismatched names):**
+❌ **Error (mismatched names):**
 ```markdown
 <!-- ANCHOR:context -->
 ## Content
@@ -467,29 +495,45 @@ Content here...
 
 ---
 
-## Severity Levels
+## 10. ⚙️ CONFIGURATION
 
-| Severity | Exit Code | Strict Mode | Description                           |
-| -------- | --------- | ----------- | ------------------------------------- |
-| ERROR    | 2         | 2           | Validation failed, must fix           |
-| WARNING  | 1         | 2           | Passed with issues, should fix        |
-| INFO     | 0         | 0           | Informational, no action required     |
+### Environment Variables
+
+| Variable             | Default | Description                       |
+| -------------------- | ------- | --------------------------------- |
+| `SPECKIT_VALIDATION` | true    | Set to `false` to skip validation |
+| `SPECKIT_STRICT`     | false   | Set to `true` to fail on warnings |
+| `SPECKIT_JSON`       | false   | Set to `true` for JSON output     |
+| `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output  |
+
+### Usage Examples
+
+**Run validation on a spec folder:**
+```bash
+./scripts/validate-spec.sh specs/007-feature/
+```
+
+**Run in strict mode (fail on warnings):**
+```bash
+SPECKIT_STRICT=true ./scripts/validate-spec.sh specs/007-feature/
+```
+
+**Get JSON output for automation:**
+```bash
+SPECKIT_JSON=true ./scripts/validate-spec.sh specs/007-feature/
+```
 
 ---
 
-## Environment Variables
+## 11. 📚 RELATED RESOURCES
 
-| Variable             | Default | Description                           |
-| -------------------- | ------- | ------------------------------------- |
-| `SPECKIT_VALIDATION` | true    | Set to `false` to skip validation     |
-| `SPECKIT_STRICT`     | false   | Set to `true` to fail on warnings     |
-| `SPECKIT_JSON`       | false   | Set to `true` for JSON output         |
-| `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output      |
+### Reference Files
 
----
-
-## Related
-
+- [level_specifications.md](./level_specifications.md) - Documentation level requirements
+- [template_guide.md](./template_guide.md) - Template usage guide
 - [path_scoped_rules.md](./path_scoped_rules.md) - Path scoping overview
-- [level_specifications.md](./level_specifications.md) - Level requirements
-- `validate-spec.sh` - Implementation script
+
+### Scripts
+
+- `scripts/validate-spec.sh` - Main validation script
+- `scripts/rules/` - Individual rule implementations

@@ -164,7 +164,7 @@ User Request
                               │ stdio
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    semantic-memory.js                         │
+│                    context-server.js                          │
 │  ┌─────────────────────────────────────────────────────┐    │
 │  │ MCP Protocol Handler (@modelcontextprotocol/sdk)    │    │
 │  │ - ListTools / CallTool handlers                     │    │

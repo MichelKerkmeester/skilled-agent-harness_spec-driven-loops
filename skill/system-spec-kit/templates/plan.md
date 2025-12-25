@@ -87,9 +87,6 @@ specs/[###-feature]/
   spec.md              # Feature specification (see spec-template.md)
   plan.md              # This file (/spec_kit:plan command output)
   research.md          # Phase 0 output (/spec_kit:plan command)
-  data-model.md        # Phase 1 output (/spec_kit:plan command)
-  quickstart.md        # Phase 1 output (/spec_kit:plan command)
-  contracts/           # Phase 1 output (/spec_kit:plan command)
   tasks.md             # Phase 2 output (/spec_kit:tasks command)
   scratch/             # Drafts, prototypes, debug logs (git-ignored, delete when done)
   memory/              # Session context preservation (auto-created, git-tracked)
@@ -159,11 +156,10 @@ ios/ or android/
 
 ### Phase 1: Design & Setup
 
-- **Goal**: [YOUR_VALUE_HERE: design objectives - example: define data models and API contracts]
+- **Goal**: [YOUR_VALUE_HERE: design objectives - example: define component structure and interfaces]
 - **Deliverables**:
-  - Data models defined (data-model.md)
-  - API contracts defined (contracts/)
-  - Quick start guide (quickstart.md)
+  - Component structure defined
+  - Interface contracts documented
   - Development environment setup
 - **Owner**: [YOUR_VALUE_HERE: team or individual]
 - **Duration**: [YOUR_VALUE_HERE: time estimate - example: 1 week]

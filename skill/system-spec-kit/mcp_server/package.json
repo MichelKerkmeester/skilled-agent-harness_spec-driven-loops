@@ -2,17 +2,17 @@
   "name": "semantic-memory-mcp",
   "version": "12.1.0",
   "description": "Semantic Memory MCP Server - provides 14 tools for semantic search, memory management, validation, checkpoints, and auto-indexing",
-  "main": "semantic-memory.js",
+  "main": "context-server.js",
   "bin": {
-    "semantic-memory": "./semantic-memory.js",
+    "context-server": "./context-server.js",
     "memory-index": "./scripts/index-cli.js",
     "memory-watch": "./file-watcher.js"
   },
   "scripts": {
-    "start": "node semantic-memory.js",
+    "start": "node context-server.js",
     "index": "node scripts/index-cli.js",
     "watch": "node file-watcher.js",
-    "test": "node -e \"require('./semantic-memory.js')\""
+    "test": "node -e \"require('./context-server.js')\""
   },
   "keywords": [
     "mcp",

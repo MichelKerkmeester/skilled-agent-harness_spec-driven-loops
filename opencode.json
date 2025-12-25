@@ -9,7 +9,7 @@
   },
   "plugin": [
     "opencode-antigravity-auth@1.2.4",
-    "opencode-openai-codex-auth@4.1.1",
+    "opencode-openai-codex-auth@4.1.1"
   ],
   "provider": {
     "google": {
@@ -147,7 +147,7 @@
     "leann": {
       "type": "local",
       "command": [
-        "/Users/.local/bin/leann_mcp"
+        "leann_mcp"
       ],
       "environment": {
         "_NOTE_TOOLS": "Provides: leann_build, leann_search, leann_ask, leann_list, leann_remove",
@@ -155,29 +155,21 @@
         "_NOTE_EMBEDDING": "Uses nomic-embed-text via Ollama (local, no API costs)",
         "_NOTE_LLM_DEFAULT": "CLI defaults to qwen3:8b via Ollama (requires 'ollama pull qwen3:8b')",
         "_NOTE_LLM_GEMINI": "Use 'leann-ask' alias for Gemini 2.5 Flash (cloud, low RAM, cheap)",
-        "_NOTE_DOCS": "https://github.com/yichuan-w/LEANN"
+        "_NOTE_DOCS": "https://github.com/yichuan-w/LEANN",
+        "_NOTE_INSTALL": "LEANN binary must be in PATH (typically ~/.local/bin/leann_mcp)"
       },
-      "enabled": true
-    },
-    "code_context": {
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "code-context-provider-mcp"
-      ],
       "enabled": true
     },
     "semantic_memory": {
       "type": "local",
       "command": [
         "node",
-        "/.opencode/skill/system-memory/mcp_server/semantic-memory.js"
+        ".opencode/skill/system-spec-kit/mcp_server/context-server.js"
       ],
       "environment": {
-        "_NOTE_DATABASE": "Stores vectors in: /.opencode/skill/system-memory/database/memory-index.sqlite",
+        "_NOTE_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
         "_NOTE_MODEL": "Uses nomic-embed-text-v1.5 (768-dim embeddings)",
-        "_NOTE_NEW_PROJECT": "When copying to new project, update this path to match new project location"
+        "_NOTE_PORTABLE": "Uses relative path - works when copying project to new location"
       },
       "enabled": true
     },
@@ -185,10 +177,12 @@
       "type": "local",
       "command": [
         "node",
-        "/Users/MCP Servers/code-mode/code-mode-mcp/dist/index.js"
+        "${HOME}/path/to/code-mode/code-mode-mcp/dist/index.js"
       ],
       "environment": {
-        "UTCP_CONFIG_FILE": "/.utcp_config.json"
+        "UTCP_CONFIG_FILE": ".utcp_config.json",
+        "_NOTE_SERVER_PATH": "Code Mode server location - update ${HOME}/... path for your system",
+        "_NOTE_CONFIG": "UTCP config uses relative path - portable across project copies"
       },
       "enabled": true
     }

@@ -1087,17 +1087,123 @@ function shouldAutoSave(messageCount) {
 // DATA LOADING
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────
+// INPUT NORMALIZATION HELPERS (Refactored from CC=39 to ~15)
+// ───────────────────────────────────────────────────────────────
+
 /**
- * Transform simplified manual input format to MCP-compatible format
- * Allows users to provide a simple JSON structure that gets normalized
+ * Transform a key decision item into an observation object
+ * Handles both string format ("Decided X because Y") and object format
  * 
- * Manual format accepts:
- * - specFolder (string) → SPEC_FOLDER
- * - sessionSummary (string) → observations[0].narrative
- * - keyDecisions (array of strings) → observations with type='decision'
- * - filesModified (array of strings) → FILES array
- * - triggerPhrases (array of strings) → passes through
- * - technicalContext (object) → merged into summary
+ * @param {string|Object} decisionItem - Decision in string or structured format
+ * @returns {Object|null} Observation object or null if invalid
+ */
+function transformKeyDecision(decisionItem) {
+  let decisionText, chosenApproach, rationale, alternatives;
+  
+  if (typeof decisionItem === 'string') {
+    // String format - parse from text
+    decisionText = decisionItem;
+    const choiceMatch = decisionText.match(/(?:chose|selected|decided on|using|went with|opted for|implemented)\s+([^.,]+)/i);
+    chosenApproach = choiceMatch ? choiceMatch[1].trim() : null;
+    rationale = decisionText;
+    alternatives = [];
+  } else if (typeof decisionItem === 'object' && decisionItem !== null) {
+    // Object format - extract structured fields
+    decisionText = decisionItem.decision || decisionItem.title || 'Unknown decision';
+    chosenApproach = decisionItem.chosenOption || decisionItem.chosen || decisionItem.decision;
+    rationale = decisionItem.rationale || decisionItem.reason || decisionText;
+    alternatives = decisionItem.alternatives || [];
+    
+    // Build full text from object fields for narrative
+    if (decisionItem.rationale) {
+      decisionText = `${decisionText} - ${decisionItem.rationale}`;
+    }
+    if (alternatives.length > 0) {
+      decisionText += ` Alternatives considered: ${alternatives.join(', ')}.`;
+    }
+  } else {
+    return null; // Invalid entry
+  }
+  
+  // Generate clean title (first sentence or 80 chars)
+  const titleMatch = decisionText.match(/^([^.!?]+[.!?]?)/);
+  const title = titleMatch 
+    ? titleMatch[1].substring(0, 80).trim()
+    : decisionText.substring(0, 80).trim();
+  
+  const finalChosenApproach = chosenApproach || title;
+  
+  // Build structured facts array
+  const facts = [
+    `Option 1: ${finalChosenApproach}`,
+    `Chose: ${finalChosenApproach}`,
+    `Rationale: ${rationale}`
+  ];
+  
+  // Add alternatives as facts
+  alternatives.forEach((alt, i) => {
+    facts.push(`Alternative ${i + 2}: ${alt}`);
+  });
+  
+  return {
+    type: 'decision',
+    title: title,
+    narrative: decisionText,
+    facts: facts,
+    _manualDecision: {
+      fullText: decisionText,
+      chosenApproach: finalChosenApproach,
+      confidence: 75
+    }
+  };
+}
+
+/**
+ * Build a session summary observation from summary text
+ * 
+ * @param {string} summary - Session summary text
+ * @param {string[]} triggerPhrases - Optional trigger phrases for facts
+ * @returns {Object} Observation object
+ */
+function buildSessionSummaryObservation(summary, triggerPhrases = []) {
+  const summaryTitle = summary.length > 100 
+    ? summary.substring(0, 100).replace(/\s+\S*$/, '') + '...'
+    : summary;
+  
+  return {
+    type: 'feature',
+    title: summaryTitle,
+    narrative: summary,
+    facts: triggerPhrases
+  };
+}
+
+/**
+ * Build a technical context observation from context object
+ * 
+ * @param {Object} techContext - Technical context key-value pairs
+ * @returns {Object} Observation object
+ */
+function buildTechnicalContextObservation(techContext) {
+  const techDetails = Object.entries(techContext)
+    .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
+    .join('; ');
+  
+  return {
+    type: 'implementation',
+    title: 'Technical Implementation Details',
+    narrative: techDetails,
+    facts: []
+  };
+}
+
+/**
+ * Normalize input data from manual format to MCP-compatible format
+ * Handles both MCP format (pass-through) and simplified manual format
+ * 
+ * Refactored: Reduced cyclomatic complexity from 39 to ~15
+ * by extracting decision transformation and observation builders
  * 
  * @param {Object} data - Raw input data (manual or MCP format)
  * @returns {Object} - Normalized data in MCP-compatible format
@@ -1108,15 +1214,13 @@ function normalizeInputData(data) {
     return data;
   }
   
-  // Transform simplified manual format to MCP-compatible format
   const normalized = {};
   
-  // Transform specFolder → SPEC_FOLDER
+  // Transform simple fields
   if (data.specFolder) {
     normalized.SPEC_FOLDER = data.specFolder;
   }
   
-  // Transform filesModified → FILES array
   if (data.filesModified && Array.isArray(data.filesModified)) {
     normalized.FILES = data.filesModified.map(filePath => ({
       FILE_PATH: filePath,
@@ -1124,132 +1228,47 @@ function normalizeInputData(data) {
     }));
   }
   
-  // Build observations from sessionSummary and keyDecisions
+  // Build observations from various sources
   const observations = [];
   
-  // Session summary as main observation
+  // Session summary observation
   if (data.sessionSummary) {
-    // Use full summary for narrative, truncate title at sentence boundary
-    const summaryTitle = data.sessionSummary.length > 100 
-      ? data.sessionSummary.substring(0, 100).replace(/\s+\S*$/, '') + '...'
-      : data.sessionSummary;
-    
-    observations.push({
-      type: 'feature',
-      title: summaryTitle,
-      narrative: data.sessionSummary,  // Full text for OUTCOME
-      facts: data.triggerPhrases || []
-    });
+    observations.push(buildSessionSummaryObservation(data.sessionSummary, data.triggerPhrases));
   }
   
-  // Key decisions as decision observations
-  // Supports both string format and object format:
-  // - String: "Decided to use X because Y"
-  // - Object: { decision: "...", rationale: "...", alternatives: [...], chosenOption: "..." }
+  // Key decisions as observations
   if (data.keyDecisions && Array.isArray(data.keyDecisions)) {
     for (const decisionItem of data.keyDecisions) {
-      let decisionText, chosenApproach, rationale, alternatives;
-      
-      // Handle both string and object formats
-      if (typeof decisionItem === 'string') {
-        // String format - parse from text
-        decisionText = decisionItem;
-        const choiceMatch = decisionText.match(/(?:chose|selected|decided on|using|went with|opted for|implemented)\s+([^.,]+)/i);
-        chosenApproach = choiceMatch ? choiceMatch[1].trim() : null;
-        rationale = decisionText;
-        alternatives = [];
-      } else if (typeof decisionItem === 'object' && decisionItem !== null) {
-        // Object format - extract structured fields
-        decisionText = decisionItem.decision || decisionItem.title || 'Unknown decision';
-        chosenApproach = decisionItem.chosenOption || decisionItem.chosen || decisionItem.decision;
-        rationale = decisionItem.rationale || decisionItem.reason || decisionText;
-        alternatives = decisionItem.alternatives || [];
-        
-        // Build full text from object fields for narrative
-        if (decisionItem.rationale) {
-          decisionText = `${decisionText} - ${decisionItem.rationale}`;
-        }
-        if (alternatives.length > 0) {
-          decisionText += ` Alternatives considered: ${alternatives.join(', ')}.`;
-        }
-      } else {
-        // Skip invalid entries
-        continue;
+      const observation = transformKeyDecision(decisionItem);
+      if (observation) {
+        observations.push(observation);
       }
-      
-      // Generate a clean title from the decision text (first sentence or 80 chars)
-      const titleMatch = decisionText.match(/^([^.!?]+[.!?]?)/);
-      const title = titleMatch 
-        ? titleMatch[1].substring(0, 80).trim()
-        : decisionText.substring(0, 80).trim();
-      
-      // Use extracted or parsed chosen approach, fallback to title
-      const finalChosenApproach = chosenApproach || title;
-      
-      // Build structured facts array for better extraction downstream
-      const facts = [
-        `Option 1: ${finalChosenApproach}`,
-        `Chose: ${finalChosenApproach}`,
-        `Rationale: ${rationale}`
-      ];
-      
-      // Add alternatives as facts if available
-      if (alternatives.length > 0) {
-        alternatives.forEach((alt, i) => {
-          facts.push(`Alternative ${i + 2}: ${alt}`);
-        });
-      }
-      
-      observations.push({
-        type: 'decision',
-        title: title,
-        narrative: decisionText,
-        facts: facts,
-        // Add structured metadata for extractDecisions to use
-        _manualDecision: {
-          fullText: decisionText,
-          chosenApproach: finalChosenApproach,
-          confidence: 75
-        }
-      });
     }
   }
   
-  // Technical context as additional observation
+  // Technical context observation
   if (data.technicalContext && typeof data.technicalContext === 'object') {
-    const techDetails = Object.entries(data.technicalContext)
-      .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
-      .join('; ');
-    
-    observations.push({
-      type: 'implementation',
-      title: 'Technical Implementation Details',
-      narrative: techDetails,
-      facts: []
-    });
+    observations.push(buildTechnicalContextObservation(data.technicalContext));
   }
   
   normalized.observations = observations;
   
-  // Create synthetic user_prompts for conversation extraction
+  // Create synthetic MCP structures
   normalized.user_prompts = [{
     prompt: data.sessionSummary || 'Manual context save',
     timestamp: new Date().toISOString()
   }];
   
-  // Create synthetic recent_context
   normalized.recent_context = [{
     request: data.sessionSummary || 'Manual context save',
     learning: data.sessionSummary || ''
   }];
   
-  // Pass through trigger phrases for extraction
+  // Pass through metadata for downstream processing
   if (data.triggerPhrases) {
     normalized._manualTriggerPhrases = data.triggerPhrases;
   }
   
-  // V10.1: Pass through key decisions for extractDecisions() to process
-  // This enables better decision extraction with options/rationale/tradeoffs
   if (data.keyDecisions && Array.isArray(data.keyDecisions)) {
     normalized._manualDecisions = data.keyDecisions;
   }
@@ -1760,86 +1779,100 @@ function extractKeyArtifacts(messages) {
   return artifacts;
 }
 
+// ───────────────────────────────────────────────────────────────
+// DATA VALIDATION HELPERS (Refactored from CC=45 to ~15)
+// ───────────────────────────────────────────────────────────────
+
+/**
+ * Configuration: Fields that set HAS_* flags based on array presence
+ * Maps field name to its corresponding flag field
+ */
+const ARRAY_FLAG_MAPPINGS = {
+  CODE_BLOCKS: 'HAS_CODE_BLOCKS',
+  NOTES: 'HAS_NOTES',
+  RELATED_FILES: 'HAS_RELATED_FILES',
+  CAVEATS: 'HAS_CAVEATS',
+  FOLLOWUP: 'HAS_FOLLOWUP',
+  OPTIONS: 'HAS_OPTIONS',
+  EVIDENCE: 'HAS_EVIDENCE',
+  PHASES: 'HAS_PHASES',
+  MESSAGES: 'HAS_MESSAGES'
+};
+
+/**
+ * Configuration: Fields that set HAS_* flags based on presence (truthy)
+ */
+const PRESENCE_FLAG_MAPPINGS = {
+  DESCRIPTION: 'HAS_DESCRIPTION',
+  RESULT_PREVIEW: 'HAS_RESULT',
+  DECISION_TREE: 'HAS_DECISION_TREE'
+};
+
+/**
+ * Ensure value is an array of objects with specified key
+ * Converts strings or single values to array of objects
+ * 
+ * @param {*} value - Value to normalize
+ * @param {string} objectKey - Key to use in object wrapper
+ * @returns {Array<Object>} Normalized array of objects
+ */
+function ensureArrayOfObjects(value, objectKey) {
+  if (!value) return [];
+  if (!Array.isArray(value)) {
+    return [{ [objectKey]: String(value) }];
+  }
+  if (value.length > 0 && typeof value[0] === 'string') {
+    return value.map(item => ({ [objectKey]: item }));
+  }
+  return value;
+}
+
+/**
+ * Check if array field has content (non-empty array)
+ * @param {*} value - Value to check
+ * @returns {boolean} True if non-empty array
+ */
+function hasArrayContent(value) {
+  return Array.isArray(value) && value.length > 0;
+}
+
+/**
+ * Validate and normalize data structure for template rendering
+ * Sets HAS_* boolean flags and ensures array formats
+ * 
+ * Refactored: Reduced cyclomatic complexity from 45 to ~15
+ * by using configuration-driven field processing
+ * 
+ * @param {Object} data - Data object to validate
+ * @returns {Object} Validated data with boolean flags set
+ */
 function validateDataStructure(data) {
-  // Ensure all required boolean flags are set
   const validated = { ...data };
 
-  // Set boolean flags based on data presence
-  if (validated.CODE_BLOCKS) {
-    validated.HAS_CODE_BLOCKS = Array.isArray(validated.CODE_BLOCKS) && validated.CODE_BLOCKS.length > 0;
-  }
-
-  if (validated.PROS) {
-    // Ensure PROS is array of objects
-    if (!Array.isArray(validated.PROS)) {
-      validated.PROS = validated.PROS ? [{ PRO: String(validated.PROS) }] : [];
-    } else if (validated.PROS.length > 0 && typeof validated.PROS[0] === 'string') {
-      validated.PROS = validated.PROS.map(p => ({ PRO: p }));
+  // Process array flag fields (configuration-driven)
+  for (const [field, flagField] of Object.entries(ARRAY_FLAG_MAPPINGS)) {
+    if (validated[field] !== undefined) {
+      validated[flagField] = hasArrayContent(validated[field]);
     }
   }
 
-  if (validated.CONS) {
-    // Ensure CONS is array of objects
-    if (!Array.isArray(validated.CONS)) {
-      validated.CONS = validated.CONS ? [{ CON: String(validated.CONS) }] : [];
-    } else if (validated.CONS.length > 0 && typeof validated.CONS[0] === 'string') {
-      validated.CONS = validated.CONS.map(c => ({ CON: c }));
+  // Process presence flag fields (configuration-driven)
+  for (const [field, flagField] of Object.entries(PRESENCE_FLAG_MAPPINGS)) {
+    if (validated[field]) {
+      validated[flagField] = true;
     }
   }
 
-  // Only set HAS_PROS_CONS if arrays have content
-  if (validated.PROS && Array.isArray(validated.PROS) && validated.PROS.length > 0) {
-    validated.HAS_PROS_CONS = true;
-  } else if (validated.CONS && Array.isArray(validated.CONS) && validated.CONS.length > 0) {
-    validated.HAS_PROS_CONS = true;
-  } else {
-    validated.HAS_PROS_CONS = false;
+  // Special handling: PROS/CONS need array-of-objects normalization
+  if (validated.PROS !== undefined) {
+    validated.PROS = ensureArrayOfObjects(validated.PROS, 'PRO');
+  }
+  if (validated.CONS !== undefined) {
+    validated.CONS = ensureArrayOfObjects(validated.CONS, 'CON');
   }
 
-  if (validated.DESCRIPTION) {
-    validated.HAS_DESCRIPTION = true;
-  }
-
-  if (validated.NOTES) {
-    validated.HAS_NOTES = Array.isArray(validated.NOTES) && validated.NOTES.length > 0;
-  }
-
-  if (validated.RELATED_FILES) {
-    validated.HAS_RELATED_FILES = Array.isArray(validated.RELATED_FILES) && validated.RELATED_FILES.length > 0;
-  }
-
-  if (validated.RESULT_PREVIEW) {
-    validated.HAS_RESULT = true;
-  }
-
-  if (validated.DECISION_TREE) {
-    validated.HAS_DECISION_TREE = true;
-  }
-
-  if (validated.CAVEATS) {
-    validated.HAS_CAVEATS = Array.isArray(validated.CAVEATS) && validated.CAVEATS.length > 0;
-  }
-
-  if (validated.FOLLOWUP) {
-    validated.HAS_FOLLOWUP = Array.isArray(validated.FOLLOWUP) && validated.FOLLOWUP.length > 0;
-  }
-
-  // Add missing boolean flags
-  if (validated.OPTIONS) {
-    validated.HAS_OPTIONS = Array.isArray(validated.OPTIONS) && validated.OPTIONS.length > 0;
-  }
-
-  if (validated.EVIDENCE) {
-    validated.HAS_EVIDENCE = Array.isArray(validated.EVIDENCE) && validated.EVIDENCE.length > 0;
-  }
-
-  if (validated.PHASES) {
-    validated.HAS_PHASES = Array.isArray(validated.PHASES) && validated.PHASES.length > 0;
-  }
-
-  if (validated.MESSAGES) {
-    validated.HAS_MESSAGES = Array.isArray(validated.MESSAGES) && validated.MESSAGES.length > 0;
-  }
+  // HAS_PROS_CONS: true if either has content
+  validated.HAS_PROS_CONS = hasArrayContent(validated.PROS) || hasArrayContent(validated.CONS);
 
   // Recursively validate nested arrays
   for (const key in validated) {
@@ -1859,6 +1892,209 @@ function validateDataStructure(data) {
 // ───────────────────────────────────────────────────────────────
 // MAIN WORKFLOW
 // ───────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────
+// MAIN WORKFLOW HELPERS (Refactored from main CC=53)
+// ───────────────────────────────────────────────────────────────
+
+/**
+ * Helper to get basename from path with null safety
+ * Normalizes path separators for cross-platform compatibility
+ * @param {string} p - File path
+ * @returns {string} Basename or empty string
+ */
+function getPathBasename(p) {
+  if (!p || typeof p !== 'string') return '';
+  return p.replace(/\\/g, '/').split('/').pop() || '';
+}
+
+/**
+ * Enhance FILES array with semantic descriptions from summarizer
+ * Uses exact path matching first, then unique basename matching
+ * 
+ * @param {Array} files - Original FILES array from sessionData
+ * @param {Map} semanticFileChanges - Map of path -> {description, action}
+ * @returns {Array} Enhanced files with semantic descriptions
+ */
+function enhanceFilesWithSemanticDescriptions(files, semanticFileChanges) {
+  return files.map(file => {
+    const filePath = file.FILE_PATH;
+    const fileBasename = getPathBasename(filePath);
+
+    // Priority 1: Try EXACT full path match first
+    if (semanticFileChanges.has(filePath)) {
+      const info = semanticFileChanges.get(filePath);
+      return {
+        FILE_PATH: file.FILE_PATH,
+        DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
+        ACTION: info.action === 'created' ? 'Created' : 'Modified'
+      };
+    }
+
+    // Priority 2: Try basename match ONLY if unique
+    let matchCount = 0;
+    let basenameMatch = null;
+
+    for (const [path, info] of semanticFileChanges) {
+      const pathBasename = getPathBasename(path);
+      if (pathBasename === fileBasename) {
+        matchCount++;
+        basenameMatch = { path, info };
+      }
+    }
+
+    // Log collision detection for debugging
+    if (matchCount > 1) {
+      console.warn(`   ⚠️  Multiple files with basename '${fileBasename}' - using default description`);
+    }
+
+    // Only apply basename match if it's UNIQUE (no collision)
+    if (matchCount === 1 && basenameMatch) {
+      const info = basenameMatch.info;
+      return {
+        FILE_PATH: file.FILE_PATH,
+        DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
+        ACTION: info.action === 'created' ? 'Created' : 'Modified'
+      };
+    }
+
+    return file;
+  });
+}
+
+/**
+ * Build the complete template data object for context.md
+ * 
+ * @param {Object} params - All template parameters
+ * @returns {Object} Complete template data
+ */
+function buildContextTemplateData({
+  sessionData,
+  conversations,
+  workflowData,
+  enhancedFiles,
+  decisions,
+  diagrams,
+  implementationSummary,
+  keyTopics,
+  keyFiles,
+  IMPLEMENTATION_SUMMARY,
+  HAS_IMPLEMENTATION_SUMMARY,
+  MODEL_NAME
+}) {
+  return {
+    ...sessionData,
+    ...conversations,
+    ...workflowData,
+    // Override FILES with enhanced semantic descriptions
+    FILES: enhancedFiles,
+    MESSAGE_COUNT: conversations.MESSAGES.length,
+    DECISION_COUNT: decisions.DECISIONS.length,
+    DIAGRAM_COUNT: diagrams.DIAGRAMS.length,
+    PHASE_COUNT: conversations.PHASE_COUNT,
+    DECISIONS: decisions.DECISIONS,
+    HIGH_CONFIDENCE_COUNT: decisions.HIGH_CONFIDENCE_COUNT,
+    MEDIUM_CONFIDENCE_COUNT: decisions.MEDIUM_CONFIDENCE_COUNT,
+    LOW_CONFIDENCE_COUNT: decisions.LOW_CONFIDENCE_COUNT,
+    FOLLOWUP_COUNT: decisions.FOLLOWUP_COUNT,
+    HAS_AUTO_GENERATED: diagrams.HAS_AUTO_GENERATED,
+    FLOW_TYPE: diagrams.FLOW_TYPE,
+    AUTO_CONVERSATION_FLOWCHART: diagrams.AUTO_CONVERSATION_FLOWCHART,
+    AUTO_DECISION_TREES: diagrams.AUTO_DECISION_TREES,
+    DIAGRAMS: diagrams.DIAGRAMS,
+    // Semantic implementation summary
+    IMPLEMENTATION_SUMMARY: IMPLEMENTATION_SUMMARY,
+    HAS_IMPLEMENTATION_SUMMARY: HAS_IMPLEMENTATION_SUMMARY,
+    IMPL_TASK: implementationSummary.task,
+    IMPL_SOLUTION: implementationSummary.solution,
+    IMPL_FILES_CREATED: implementationSummary.filesCreated,
+    IMPL_FILES_MODIFIED: implementationSummary.filesModified,
+    IMPL_DECISIONS: implementationSummary.decisions,
+    IMPL_OUTCOMES: implementationSummary.outcomes,
+    HAS_IMPL_FILES_CREATED: implementationSummary.filesCreated.length > 0,
+    HAS_IMPL_FILES_MODIFIED: implementationSummary.filesModified.length > 0,
+    HAS_IMPL_DECISIONS: implementationSummary.decisions.length > 0,
+    HAS_IMPL_OUTCOMES: implementationSummary.outcomes.length > 0 && implementationSummary.outcomes[0] !== 'Session completed',
+    // YAML Metadata fields (v11.2)
+    TOPICS: keyTopics,
+    HAS_KEY_TOPICS: keyTopics.length > 0,
+    KEY_FILES: keyFiles,
+    RELATED_SESSIONS: [],  // Empty by default, populated by cross-session analysis
+    PARENT_SPEC: sessionData.SPEC_FOLDER || '',
+    CHILD_SESSIONS: [],
+    EMBEDDING_MODEL: MODEL_NAME || 'text-embedding-3-small',
+    EMBEDDING_VERSION: '1.0',
+    CHUNK_COUNT: 1  // Single document, no chunking
+  };
+}
+
+/**
+ * Build metadata.json content for the context save
+ * 
+ * @param {Object} params - Metadata parameters
+ * @returns {Object} Metadata object
+ */
+function buildMetadataJson({
+  sessionData,
+  decisions,
+  diagrams,
+  implementationSummary,
+  filterStats,
+  MODEL_NAME,
+  EMBEDDING_DIM
+}) {
+  return {
+    timestamp: `${sessionData.DATE} ${sessionData.TIME}`,
+    messageCount: sessionData.MESSAGE_COUNT,
+    decisionCount: decisions.DECISIONS.length,
+    diagramCount: diagrams.DIAGRAMS.length,
+    skillVersion: CONFIG.SKILL_VERSION,
+    autoTriggered: shouldAutoSave(sessionData.MESSAGE_COUNT),
+    filtering: filterStats,
+    semanticSummary: {
+      task: implementationSummary.task.substring(0, 100),
+      filesCreated: implementationSummary.filesCreated.length,
+      filesModified: implementationSummary.filesModified.length,
+      decisions: implementationSummary.decisions.length,
+      messageStats: implementationSummary.messageStats
+    },
+    embedding: {
+      status: 'pending',
+      model: MODEL_NAME,
+      dimensions: EMBEDDING_DIM
+    }
+  };
+}
+
+/**
+ * Validate files for leaked/malformed placeholders before writing
+ * @param {string} content - File content to validate
+ * @param {string} filename - Filename for error messages
+ * @throws {Error} If leaked or malformed placeholders detected
+ */
+function validateNoLeakedPlaceholders(content, filename) {
+  // Check for complete placeholders
+  const leaked = content.match(/\{\{[A-Z_]+\}\}/g);
+  if (leaked) {
+    console.warn(`⚠️  Leaked placeholders detected in ${filename}: ${leaked.join(', ')}`);
+    console.warn(`   Context around leak: ${content.substring(content.indexOf(leaked[0]) - 100, content.indexOf(leaked[0]) + 100)}`);
+    throw new Error(`❌ Leaked placeholders in ${filename}: ${leaked.join(', ')}`);
+  }
+
+  // Check for partial/malformed placeholders
+  const partialLeaked = content.match(/\{\{[^}]*$/g);
+  if (partialLeaked) {
+    console.warn(`⚠️  Partial placeholder detected in ${filename}: ${partialLeaked.join(', ')}`);
+    throw new Error(`❌ Malformed placeholder in ${filename}`);
+  }
+
+  // Check for unclosed conditional blocks (warning only)
+  const openBlocks = (content.match(/\{\{[#^][A-Z_]+\}\}/g) || []);
+  const closeBlocks = (content.match(/\{\{\/[A-Z_]+\}\}/g) || []);
+  if (openBlocks.length !== closeBlocks.length) {
+    console.warn(`⚠️  Template has ${openBlocks.length} open blocks but ${closeBlocks.length} close blocks`);
+  }
+}
 
 async function main() {
   try {
@@ -1960,61 +2196,9 @@ async function main() {
       collectedData?.observations || []
     );
 
-    // Enhance FILES with semantic descriptions from the summarizer
+    // Enhance FILES with semantic descriptions using helper
     const semanticFileChanges = extractFileChanges(allMessages, collectedData?.observations || []);
-
-    // V5.2: Helper with null safety - Extract basename from path for exact matching
-    // Normalize path separators for cross-platform compatibility (Windows uses \)
-    const getBasename = (p) => {
-      if (!p || typeof p !== 'string') return '';
-      return p.replace(/\\/g, '/').split('/').pop() || '';
-    };
-
-    // Merge semantic file descriptions into sessionData.FILES
-    // FIX v4: Use UNIQUE basename matching to prevent collision with same-named files
-    const enhancedFiles = sessionData.FILES.map(file => {
-      const filePath = file.FILE_PATH;
-      const fileBasename = getBasename(filePath);
-
-      // Priority 1: Try EXACT full path match first
-      if (semanticFileChanges.has(filePath)) {
-        const info = semanticFileChanges.get(filePath);
-        return {
-          FILE_PATH: file.FILE_PATH,
-          DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
-          ACTION: info.action === 'created' ? 'Created' : 'Modified'
-        };
-      }
-
-      // Priority 2: Try basename match ONLY if unique
-      let matchCount = 0;
-      let basenameMatch = null;
-
-      for (const [path, info] of semanticFileChanges) {
-        const pathBasename = getBasename(path);
-        if (pathBasename === fileBasename) {
-          matchCount++;
-          basenameMatch = { path, info };
-        }
-      }
-
-      // P3.1: Log collision detection for debugging
-      if (matchCount > 1) {
-        console.warn(`   ⚠️  Multiple files with basename '${fileBasename}' - using default description`);
-      }
-
-      // Only apply basename match if it's UNIQUE (no collision)
-      if (matchCount === 1 && basenameMatch) {
-        const info = basenameMatch.info;
-        return {
-          FILE_PATH: file.FILE_PATH,
-          DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
-          ACTION: info.action === 'created' ? 'Created' : 'Modified'
-        };
-      }
-
-      return file;
-    });
+    const enhancedFiles = enhanceFilesWithSemanticDescriptions(sessionData.FILES, semanticFileChanges);
 
     // Build implementation summary markdown
     const IMPLEMENTATION_SUMMARY = formatSummaryAsMarkdown(implementationSummary);
@@ -2029,7 +2213,6 @@ async function main() {
 
     // Build filename: {date}_{time}__{folder-name}.md
     // Dutch format: DD-MM-YY_HH-MM (2-digit year, no seconds)
-    // Example: 09-11-25_07-52__skill-refinement.md
     // V10.1: Use basename only for filename (handle nested paths like 005-memory/008-anchor)
     const specFolderBasename = path.basename(sessionData.SPEC_FOLDER);
     const folderName = specFolderBasename.replace(/^\d+-/, '');
@@ -2125,39 +2308,13 @@ async function main() {
     // Step 9: Write files with atomic writes and rollback on failure
     console.log('💾 Step 9: Writing files...');
 
-    // Validate files for leaked placeholders before writing
-    function detectLeakedPlaceholders(content, filename) {
-      // Check for complete placeholders
-      const leaked = content.match(/\{\{[A-Z_]+\}\}/g);
-      if (leaked) {
-        console.warn(`⚠️  Leaked placeholders detected in ${filename}: ${leaked.join(', ')}`);
-        console.warn(`   Context around leak: ${content.substring(content.indexOf(leaked[0]) - 100, content.indexOf(leaked[0]) + 100)}`);
-        throw new Error(`❌ Leaked placeholders in ${filename}: ${leaked.join(', ')}`);
-      }
-
-      // Check for partial/malformed placeholders
-      const partialLeaked = content.match(/\{\{[^}]*$/g);
-      if (partialLeaked) {
-        console.warn(`⚠️  Partial placeholder detected in ${filename}: ${partialLeaked.join(', ')}`);
-        throw new Error(`❌ Malformed placeholder in ${filename}`);
-      }
-
-      // P2-027: Re-enable template placeholder validation with warning (not error)
-      // Check for unclosed conditional blocks (both {{#...}} and {{^...}} need {{/...}})
-      const openBlocks = (content.match(/\{\{[#^][A-Z_]+\}\}/g) || []);
-      const closeBlocks = (content.match(/\{\{\/[A-Z_]+\}\}/g) || []);
-      if (openBlocks.length !== closeBlocks.length) {
-        console.warn(`⚠️  Template has ${openBlocks.length} open blocks but ${closeBlocks.length} close blocks`);
-      }
-    }
-
     const writtenFiles = [];
     let writeError = null;
 
     try {
       for (const [filename, content] of Object.entries(files)) {
-        // Validate content before writing
-        detectLeakedPlaceholders(content, filename);
+        // Validate content before writing using helper
+        validateNoLeakedPlaceholders(content, filename);
 
         const filePath = path.join(contextDir, filename);
 
@@ -3004,8 +3161,228 @@ async function setupContextDirectory(specFolder) {
 // DATA COLLECTION FROM MCP
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────
+// SESSION DATA HELPERS (Refactored from collectSessionData CC=60)
+// ───────────────────────────────────────────────────────────────
+
+/**
+ * Extract and deduplicate files from collected data
+ * Handles multiple input formats: FILES array, files_modified, observations
+ * 
+ * @param {Object} collectedData - Raw collected data from MCP
+ * @param {Array} observations - Processed observations array
+ * @returns {Array<{FILE_PATH: string, DESCRIPTION: string}>} Deduplicated files
+ */
+function extractFilesFromData(collectedData, observations) {
+  const filesMap = new Map();
+  
+  // Helper to add files with normalized path deduplication
+  const addFile = (rawPath, description) => {
+    const normalized = toRelativePath(rawPath);
+    if (!normalized) return;
+    
+    const existing = filesMap.get(normalized);
+    const cleaned = cleanDescription(description);
+    
+    if (existing) {
+      if (isDescriptionValid(cleaned) && cleaned.length < existing.length) {
+        filesMap.set(normalized, cleaned);
+      }
+    } else {
+      filesMap.set(normalized, cleaned || 'Modified during session');
+    }
+  };
+  
+  // Source 1: FILES array (primary input format)
+  if (collectedData.FILES && Array.isArray(collectedData.FILES)) {
+    for (const fileInfo of collectedData.FILES) {
+      const filePath = fileInfo.FILE_PATH || fileInfo.path;
+      const description = fileInfo.DESCRIPTION || fileInfo.description || 'Modified during session';
+      if (filePath) addFile(filePath, description);
+    }
+  }
+  
+  // Source 2: files_modified array (legacy format)
+  if (collectedData.files_modified && Array.isArray(collectedData.files_modified)) {
+    for (const fileInfo of collectedData.files_modified) {
+      addFile(fileInfo.path, fileInfo.changes_summary || 'Modified during session');
+    }
+  }
+  
+  // Source 3: observations
+  for (const obs of observations) {
+    if (obs.files) {
+      for (const file of obs.files) {
+        addFile(file, 'Modified during session');
+      }
+    }
+    if (obs.facts) {
+      for (const fact of obs.facts) {
+        if (fact.files && Array.isArray(fact.files)) {
+          for (const file of fact.files) {
+            addFile(file, 'Modified during session');
+          }
+        }
+      }
+    }
+  }
+  
+  // Prioritize files with valid descriptions, limit to max
+  const filesEntries = Array.from(filesMap.entries());
+  const withValidDesc = filesEntries.filter(([_, desc]) => isDescriptionValid(desc));
+  const withFallback = filesEntries.filter(([_, desc]) => !isDescriptionValid(desc));
+  
+  const allFiles = [...withValidDesc, ...withFallback];
+  if (allFiles.length > CONFIG.MAX_FILES_IN_MEMORY) {
+    console.warn(`⚠️  Truncating files list from ${allFiles.length} to ${CONFIG.MAX_FILES_IN_MEMORY}`);
+  }
+  
+  return allFiles
+    .slice(0, CONFIG.MAX_FILES_IN_MEMORY)
+    .map(([filePath, description]) => ({
+      FILE_PATH: filePath,
+      DESCRIPTION: description
+    }));
+}
+
+/**
+ * Build detailed observations with anchor IDs for grep-based retrieval
+ * 
+ * @param {Array} observations - Raw observations from MCP
+ * @param {string} specFolder - Spec folder name for anchor generation
+ * @returns {Array} Observations with TYPE, TITLE, NARRATIVE, ANCHOR_ID, etc.
+ */
+function buildObservationsWithAnchors(observations, specFolder) {
+  const usedAnchorIds = [];
+  const specNumber = extractSpecNumber(specFolder);
+  
+  return (observations || [])
+    .filter(obs => obs != null)
+    .map(obs => {
+      // Auto-categorize observation
+      const category = categorizeSection(
+        obs.title || 'Observation',
+        obs.narrative || ''
+      );
+      
+      // Generate unique anchor ID
+      let anchorId = generateAnchorId(
+        obs.title || 'Observation',
+        category,
+        specNumber
+      );
+      anchorId = validateAnchorUniqueness(anchorId, usedAnchorIds);
+      usedAnchorIds.push(anchorId);
+      
+      const obsType = detectObservationType(obs);
+      
+      return {
+        TYPE: obsType.toUpperCase(),
+        TITLE: obs.title || 'Observation',
+        NARRATIVE: obs.narrative || '',
+        HAS_FILES: obs.files && obs.files.length > 0,
+        FILES_LIST: obs.files ? obs.files.join(', ') : '',
+        HAS_FACTS: obs.facts && obs.facts.length > 0,
+        FACTS_LIST: obs.facts ? obs.facts.join(' | ') : '',
+        ANCHOR_ID: anchorId,
+        IS_DECISION: obsType === 'decision'
+      };
+    });
+}
+
+/**
+ * Detect session characteristics: contextType and importanceTier
+ * 
+ * @param {Array} observations - Processed observations
+ * @param {Array} userPrompts - User prompts from MCP
+ * @param {Array} FILES - Extracted files array
+ * @returns {{contextType: string, importanceTier: string, decisionCount: number, toolCounts: Object}}
+ */
+function detectSessionCharacteristics(observations, userPrompts, FILES) {
+  const toolCounts = countToolsByType(observations, userPrompts);
+  
+  const decisionCount = observations.filter(obs =>
+    obs.type === 'decision' || (obs.title && obs.title.toLowerCase().includes('decision'))
+  ).length;
+  
+  const contextType = detectContextType(toolCounts, decisionCount);
+  const filePathsModified = FILES.map(f => f.FILE_PATH);
+  const importanceTier = detectImportanceTier(filePathsModified, contextType);
+  
+  return { contextType, importanceTier, decisionCount, toolCounts };
+}
+
+/**
+ * Build project state snapshot (phase, active file, blockers, progress)
+ * 
+ * @param {Object} params - Parameters object
+ * @param {Object} params.toolCounts - Tool usage counts
+ * @param {Array} params.observations - Processed observations
+ * @param {number} params.messageCount - Message count
+ * @param {Array} params.FILES - Extracted files
+ * @param {Array} params.SPEC_FILES - Spec-related files
+ * @param {string} params.specFolderPath - Full path to spec folder
+ * @param {Array} params.recentContext - Recent context from MCP
+ * @returns {{projectPhase: string, activeFile: string, lastAction: string, nextAction: string, blockers: Array, fileProgress: Array}}
+ */
+function buildProjectStateSnapshot({ toolCounts, observations, messageCount, FILES, SPEC_FILES, specFolderPath, recentContext }) {
+  const projectPhase = detectProjectPhase(toolCounts, observations, messageCount);
+  const activeFile = extractActiveFile(observations, FILES);
+  const lastAction = observations.slice(-1)[0]?.title || 'Context save initiated';
+  const nextAction = extractNextAction(observations, recentContext);
+  const blockers = extractBlockers(observations);
+  const fileProgress = buildFileProgress(SPEC_FILES, specFolderPath);
+  
+  return { projectPhase, activeFile, lastAction, nextAction, blockers, fileProgress };
+}
+
+/**
+ * Calculate session duration from user prompts
+ * 
+ * @param {Array} userPrompts - User prompts with timestamps
+ * @param {Date} now - Current timestamp
+ * @returns {string} Duration string (e.g., "1h 30m" or "45m")
+ */
+function calculateSessionDuration(userPrompts, now) {
+  if (userPrompts.length === 0) return 'N/A';
+  
+  const safeParseDate = (dateStr, fallback) => {
+    const parsed = new Date(dateStr);
+    return isNaN(parsed.getTime()) ? fallback : parsed;
+  };
+  
+  const firstTimestamp = safeParseDate(userPrompts[0]?.timestamp, now);
+  const lastTimestamp = safeParseDate(userPrompts[userPrompts.length - 1]?.timestamp, now);
+  const durationMs = lastTimestamp - firstTimestamp;
+  const minutes = Math.floor(durationMs / 60000);
+  const hours = Math.floor(minutes / 60);
+  
+  return hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`;
+}
+
+/**
+ * Build expiry epoch based on importance tier
+ * 
+ * @param {string} importanceTier - Importance tier
+ * @param {number} createdAtEpoch - Creation timestamp
+ * @returns {number} Expiry epoch (0 = never expires)
+ */
+function calculateExpiryEpoch(importanceTier, createdAtEpoch) {
+  if (['constitutional', 'critical', 'important'].includes(importanceTier)) {
+    return 0; // Never expires
+  }
+  if (importanceTier === 'temporary') {
+    return createdAtEpoch + (7 * 24 * 60 * 60); // 7 days
+  }
+  if (importanceTier === 'deprecated') {
+    return createdAtEpoch; // Already expired
+  }
+  return createdAtEpoch + (90 * 24 * 60 * 60); // 90 days (normal)
+}
+
 async function collectSessionData(collectedData, specFolderName = null) {
   const now = new Date();
+  
   // Use provided specFolderName (cached) or detect as fallback with full relative path
   let folderName = specFolderName;
   if (!folderName) {
@@ -3026,7 +3403,7 @@ async function collectSessionData(collectedData, specFolderName = null) {
     });
   }
 
-  // Process real MCP data
+  // Extract core data from MCP response
   const sessionInfo = collectedData.recent_context?.[0] || {};
   const observations = collectedData.observations || [];
   const userPrompts = collectedData.user_prompts || [];
@@ -3037,100 +3414,13 @@ async function collectSessionData(collectedData, specFolderName = null) {
     console.log(`\n   📊 Context Budget: ${messageCount} messages reached. Auto-saving context...\n`);
   }
 
-  // P2-026: Safe date parsing with validation
-  function safeParseDate(dateStr, fallback) {
-    const parsed = new Date(dateStr);
-    return isNaN(parsed.getTime()) ? fallback : parsed;
-  }
+  // Calculate duration using helper
+  const duration = calculateSessionDuration(userPrompts, now);
 
-  // Calculate duration
-  let duration = 'N/A';
-  if (userPrompts.length > 0) {
-    const firstTimestamp = safeParseDate(userPrompts[0]?.timestamp, now);
-    const lastTimestamp = safeParseDate(userPrompts[userPrompts.length - 1]?.timestamp, now);
-    const durationMs = lastTimestamp - firstTimestamp;
-    const minutes = Math.floor(durationMs / 60000);
-    const hours = Math.floor(minutes / 60);
-    duration = hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`;
-  }
+  // Extract files using helper (handles deduplication, multiple sources)
+  const FILES = extractFilesFromData(collectedData, observations);
 
-  // V8: Extract files with normalized paths and deduplication
-  const filesMap = new Map();
-
-  // V8.4: Helper to add files with normalized path deduplication
-  // Prefers shorter valid descriptions (concise > verbose)
-  const addFile = (rawPath, description) => {
-    const normalized = toRelativePath(rawPath);
-    if (!normalized) return;
-
-    const existing = filesMap.get(normalized);
-    const cleaned = cleanDescription(description);
-
-    // Keep existing if new description is invalid or longer
-    if (existing) {
-      if (isDescriptionValid(cleaned) && cleaned.length < existing.length) {
-        filesMap.set(normalized, cleaned);
-      }
-    } else {
-      filesMap.set(normalized, cleaned || 'Modified during session');
-    }
-  };
-
-  // V7.1: FIRST, check for FILES array (primary input format with full descriptions)
-  if (collectedData.FILES && Array.isArray(collectedData.FILES)) {
-    for (const fileInfo of collectedData.FILES) {
-      const filePath = fileInfo.FILE_PATH || fileInfo.path;
-      const description = fileInfo.DESCRIPTION || fileInfo.description || 'Modified during session';
-      if (filePath) addFile(filePath, description);
-    }
-  }
-
-  // Also check for files_modified array (legacy format)
-  if (collectedData.files_modified && Array.isArray(collectedData.files_modified)) {
-    for (const fileInfo of collectedData.files_modified) {
-      addFile(fileInfo.path, fileInfo.changes_summary || 'Modified during session');
-    }
-  }
-
-  // Also extract from observations
-  for (const obs of observations) {
-    if (obs.files) {
-      for (const file of obs.files) {
-        addFile(file, 'Modified during session');
-      }
-    }
-    // Also check facts for files
-    if (obs.facts) {
-      for (const fact of obs.facts) {
-        if (fact.files && Array.isArray(fact.files)) {
-          for (const file of fact.files) {
-            addFile(file, 'Modified during session');
-          }
-        }
-      }
-    }
-  }
-
-  // V8.1: Limit to 10 key files, prioritizing those with valid descriptions
-  const filesEntries = Array.from(filesMap.entries());
-  const withValidDesc = filesEntries.filter(([_, desc]) => isDescriptionValid(desc));
-  const withFallback = filesEntries.filter(([_, desc]) => !isDescriptionValid(desc));
-
-  // P1-025: Add truncation warning when files are limited
-  const allFiles = [...withValidDesc, ...withFallback];
-  if (allFiles.length > CONFIG.MAX_FILES_IN_MEMORY) {
-    console.warn(`⚠️  Truncating files list from ${allFiles.length} to ${CONFIG.MAX_FILES_IN_MEMORY}. Some files will not be included in memory.`);
-  }
-  const FILES = allFiles
-    .slice(0, CONFIG.MAX_FILES_IN_MEMORY)
-    .map(([filePath, description]) => ({
-      FILE_PATH: filePath,
-      DESCRIPTION: description
-    }));
-
-  // V7.2: Extract outcomes from ALL observation types (not just change/feature)
-  // V11.1: Use auto-detection for type classification
-  // Include: bugfix, feature, change, discovery, decision, refactor
+  // Extract outcomes from observations
   const OUTCOMES = observations
     .slice(0, 10)
     .map(obs => ({
@@ -3143,97 +3433,29 @@ async function collectSessionData(collectedData, specFolderName = null) {
     || observations.slice(0, 3).map(o => o.narrative).join(' ')
     || 'Session focused on implementing and testing features.';
 
-  // Get detailed tool counts first (needed for TOOL_COUNT calculation)
-  const toolCounts = countToolsByType(observations, userPrompts);
-
-  // Count tools used - sum of all tool counts from toolCounts object
+  // Detect session characteristics using helper
+  const { contextType, importanceTier, decisionCount, toolCounts } = 
+    detectSessionCharacteristics(observations, userPrompts, FILES);
+  
+  // Count tools used
   const TOOL_COUNT = Object.values(toolCounts).reduce((sum, count) => sum + count, 0);
 
   // Extract task from FIRST user prompt if no observations available
-  // This prevents falling back to generic "Development session"
   const firstPrompt = userPrompts[0]?.prompt || '';
   const taskFromPrompt = firstPrompt.match(/^(.{20,100}?)(?:[.!?\n]|$)/)?.[1];
 
-  // V7.3: Build detailed OBSERVATIONS array for template
-  // V9.0: Add anchor IDs for searchable context retrieval (Phase 1 - Anchor Infrastructure)
-  //
-  // Purpose: Enable task-oriented memory retrieval via grep search patterns
-  // Format: category-keywords-spec# (e.g., implementation-oauth-callback-049)
-  //
-  // Why anchor IDs:
-  // - Token efficiency: Load relevant sections (500-1500 tokens) vs full files (10k-15k tokens)
-  // - Task-oriented: Search by what was done, not when it happened
-  // - Grep-friendly: Simple command-line extraction without parsing
-  //
-  // Example usage:
-  //   grep -l "ANCHOR:implementation-oauth" specs/*/memory/*.md
-  //   sed -n '/ANCHOR:implementation-oauth-049/,/\/ANCHOR:implementation-oauth-049/p' file.md
-  //
-  const usedAnchorIds = []; // Track anchors to ensure uniqueness across observations
-  const specNumber = extractSpecNumber(collectedData.SPEC_FOLDER || folderName);
+  // Build detailed observations with anchors using helper
+  const OBSERVATIONS_DETAILED = buildObservationsWithAnchors(
+    observations, 
+    collectedData.SPEC_FOLDER || folderName
+  );
 
-  // P2-025: Add null check in observation processing
-  const OBSERVATIONS_DETAILED = (observations || [])
-    .filter(obs => obs != null)
-    .map(obs => {
-    // Step 1: Auto-categorize observation based on title and content
-    // Categories: implementation, decision, guide, architecture, files, discovery, integration
-    const category = categorizeSection(
-      obs.title || 'Observation',
-      obs.narrative || ''
-    );
-
-    // Step 2: Generate anchor ID from title keywords
-    // Example: "Implemented OAuth callback handler" → "implementation-oauth-callback-handler-049"
-    let anchorId = generateAnchorId(
-      obs.title || 'Observation',
-      category,
-      specNumber
-    );
-
-    // Step 3: Ensure uniqueness within this memory file
-    // If collision detected, appends -2, -3, etc.
-    anchorId = validateAnchorUniqueness(anchorId, usedAnchorIds);
-    usedAnchorIds.push(anchorId);
-
-    // Detect observation type once for reuse
-    const obsType = detectObservationType(obs);
-    
-    return {
-      TYPE: obsType.toUpperCase(),
-      TITLE: obs.title || 'Observation',
-      NARRATIVE: obs.narrative || '',
-      HAS_FILES: obs.files && obs.files.length > 0,
-      FILES_LIST: obs.files ? obs.files.join(', ') : '',
-      HAS_FACTS: obs.facts && obs.facts.length > 0,
-      FACTS_LIST: obs.facts ? obs.facts.join(' | ') : '',
-      ANCHOR_ID: anchorId, // V9.0: Searchable anchor ID for grep-based retrieval
-      IS_DECISION: obsType === 'decision' // V12.1: Flag for template filtering ({{^IS_DECISION}})
-    };
-  });
-
-  // V11.0: Generate session metadata for enhanced retrieval
+  // Generate session metadata
   const sessionId = generateSessionId();
   const channel = getChannel();
   const createdAtEpoch = Math.floor(Date.now() / 1000);
 
-  // Count decisions from observations
-  const decisionCount = observations.filter(obs =>
-    obs.type === 'decision' || (obs.title && obs.title.toLowerCase().includes('decision'))
-  ).length;
-
-  // Auto-detect context type based on tool usage patterns (toolCounts already calculated above)
-  const contextType = detectContextType(toolCounts, decisionCount);
-
-  // Extract file paths for importance detection
-  const filePathsModified = FILES.map(f => f.FILE_PATH);
-
-  // Detect importance tier based on files and context type
-  const importanceTier = detectImportanceTier(filePathsModified, contextType);
-
-  // V11.2: Detect related spec/plan files in the spec folder (enhanced)
-  // Uses detectRelatedDocs() for comprehensive file detection with meaningful descriptions
-  // Also includes parent folder docs if in a sub-folder
+  // Detect related spec/plan files in the spec folder
   let SPEC_FILES = [];
   const specFolderPath = collectedData.SPEC_FOLDER
     ? path.join(CONFIG.PROJECT_ROOT, 'specs', collectedData.SPEC_FOLDER)
@@ -3248,25 +3470,23 @@ async function collectSessionData(collectedData, specFolderName = null) {
     }
   }
 
-  // V12.0: Build implementation guide data
+  // Build implementation guide data
   const implementationGuide = buildImplementationGuideData(observations, FILES, folderName);
 
-  // V13.0: Build project state snapshot (replaces separate STATE.md)
-  // Detects phase from tool usage and observations
-  const projectPhase = detectProjectPhase(toolCounts, observations, messageCount);
-  
-  // Extract active file from most recent observation
-  const activeFile = extractActiveFile(observations, FILES);
-  
-  // Build quick summary for last/next action
-  const lastAction = observations.slice(-1)[0]?.title || 'Context save initiated';
-  const nextAction = extractNextAction(observations, collectedData.recent_context);
-  
-  // Check for blockers in observations
-  const blockers = extractBlockers(observations);
-  
-  // Build file progress from spec files
-  const fileProgress = buildFileProgress(SPEC_FILES, specFolderPath);
+  // Build project state snapshot using helper
+  const { projectPhase, activeFile, lastAction, nextAction, blockers, fileProgress } = 
+    buildProjectStateSnapshot({
+      toolCounts,
+      observations,
+      messageCount,
+      FILES,
+      SPEC_FILES,
+      specFolderPath,
+      recentContext: collectedData.recent_context
+    });
+
+  // Calculate expiry using helper
+  const expiresAtEpoch = calculateExpiryEpoch(importanceTier, createdAtEpoch);
 
   return {
     TITLE: folderName.replace(/^\d{3}-/, '').replace(/-/g, ' '),
@@ -3299,14 +3519,7 @@ async function collectSessionData(collectedData, specFolderName = null) {
     CONTEXT_TYPE: contextType,
     CREATED_AT_EPOCH: createdAtEpoch,
     LAST_ACCESSED_EPOCH: createdAtEpoch, // Same as created initially
-    // V11.1: Calculate expiry based on importance tier (0 = never expires)
-    EXPIRES_AT_EPOCH: ['constitutional', 'critical', 'important'].includes(importanceTier)
-      ? 0 // Never expires
-      : importanceTier === 'temporary'
-        ? createdAtEpoch + (7 * 24 * 60 * 60) // 7 days
-        : importanceTier === 'deprecated'
-          ? createdAtEpoch // Already expired
-          : createdAtEpoch + (90 * 24 * 60 * 60), // 90 days (normal)
+    EXPIRES_AT_EPOCH: expiresAtEpoch,
     TOOL_COUNTS: toolCounts, // Detailed tool usage breakdown
     DECISION_COUNT: decisionCount,
     // V11.1: Access analytics (new memories start at 1)

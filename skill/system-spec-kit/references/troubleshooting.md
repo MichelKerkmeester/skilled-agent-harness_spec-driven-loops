@@ -45,7 +45,7 @@ Issue Detected
 | Missing spec folder | `Folder not found` | `mkdir -p specs/###-feature/memory/` |
 | Vector search empty | No results from `memory_search()` | Run `memory_stats()` to check index health |
 | MCP server not responding | Tool timeout errors | Restart MCP server, check `opencode.json` config |
-| Wrong script path | `File not found` | Use `.opencode/skill/system-memory/` |
+| Wrong script path | `File not found` | Use `.opencode/skill/system-spec-kit/` |
 | Arg format error | Invalid parameter | Use full folder name: `122-skill-standardization` |
 | Decay not applying | Old memories ranked high | Check `useDecay: true` in search params |
 | Constitutional not surfacing | Critical memories missing | Verify tier is `constitutional` via `memory_list()` |

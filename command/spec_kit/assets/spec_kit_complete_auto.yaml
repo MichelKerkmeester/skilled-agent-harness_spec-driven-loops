@@ -818,7 +818,7 @@ workflow:
     - Fill Constitution Check section
     - Evaluate gates (ERROR if violations unjustified)
     - Phase 0: Generate research.md to resolve all unknowns
-    - Phase 1: Generate data-model.md, contracts/, quickstart.md
+    - Phase 1: Define component structure and interfaces
     - Generate Testing Strategy with test pyramid
     - Generate Success Metrics from spec criteria
     - Import Risk Matrix from spec
@@ -829,8 +829,6 @@ workflow:
     outputs:
     - plan.md: technical_approach
     - research.md: resolved_unknowns
-    - data-model.md: entities
-    - contracts/: API_specifications
     - dependencies: identified
     - upstream_docs: reviewed
     level_1_baseline:
@@ -918,7 +916,7 @@ workflow:
     - Run check-prerequisites.sh --json to get FEATURE_DIR
     - Load plan.md for tech stack and architecture
     - Load spec.md for user stories and priorities
-    - Load optional artifacts (data-model, contracts, research)
+    - Load optional artifacts (research)
     - Extract user stories with priorities (P0, P1, P2, P3)
     - Generate tasks organized by user story
     - Create dependency graph for task ordering

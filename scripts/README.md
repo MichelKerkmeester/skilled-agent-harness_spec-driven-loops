@@ -334,7 +334,7 @@ High-confidence keywords that directly map to specific skills:
 | `rebase`     | workflows-git             | +0.8  |
 | `flowchart`  | workflows-documentation   | +0.7  |
 | `treesitter` | mcp-narsil                | +0.7  |
-| `checkpoint` | system-memory             | +0.6  |
+| `checkpoint` | system-spec-kit           | +0.6  |
 
 ### MULTI_SKILL_BOOSTERS
 
@@ -505,7 +505,7 @@ $ python skill_advisor.py "save this conversation context for later"
 
 [
   {
-    "skill": "system-memory",
+    "skill": "system-spec-kit",
     "confidence": 0.85,
     "reason": "Matched: !session, context, save"
   },
@@ -534,7 +534,7 @@ $ python skill_advisor.py "hello"
 | Documentation      | workflows-documentation   | markdown, flowchart, diagram, readme      |
 | Code search        | mcp-leann                 | search, find, semantic, embeddings        |
 | Structure analysis | mcp-narsil                | symbols, functions, classes, ast, security, call-graph |
-| Memory/context     | system-memory             | remember, save, context, checkpoint       |
+| Memory/context     | system-spec-kit           | remember, save, context, checkpoint       |
 | Specifications     | system-spec-kit           | spec, checklist, plan, specification      |
 
 **External MCP Tools:**

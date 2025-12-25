@@ -964,7 +964,7 @@ Quality:
 | **Total Lines**       | 400-800                   | 800-2000                         | 2000-5000                           |
 | **SKILL.md Lines**    | 400-800                   | 800-1000                         | <3000                               |
 | **Sections**          | 6 core                    | 6 core + navigation              | 6 core per mode + overview          |
-| **Example Skills**    | workflows-chrome-devtools | system-memory, workflows-code | workflows-documentation, workflows-git |
+| **Example Skills**    | workflows-chrome-devtools | system-spec-kit, workflows-code | workflows-documentation, workflows-git |
 
 ### Validation Command Reference
 

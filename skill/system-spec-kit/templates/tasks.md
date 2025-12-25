@@ -24,8 +24,6 @@ Task list template for feature implementation with user story organization and i
 The `/spec_kit:tasks` command MUST replace these with actual tasks based on:
 - User stories from spec.md (with their priorities P1, P2, P3...)
 - Feature requirements from plan.md
-- Entities from data-model.md
-- Endpoints from contracts/
 
 Tasks MUST be organized by user story so each story can be:
 - Implemented independently
@@ -48,7 +46,7 @@ Design documents from `/specs/[###-feature-name]/`
 
 ### Prerequisites
 - **Required**: `plan.md`, `spec.md` (for user stories)
-- **Optional**: `research.md`, `data-model.md`, `contracts/`
+- **Optional**: `research.md`
 
 ### Organization
 Tasks are grouped by user story to enable independent implementation and testing of each story.
@@ -281,7 +279,6 @@ Choose based on project complexity and traceability requirements.
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
-- [ ] TXXX Run quickstart.md validation
 
 ---
 

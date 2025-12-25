@@ -797,7 +797,7 @@ curl http://localhost:11434/api/tags
 
 | Skill | Purpose | MCP Type |
 |-------|---------|----------|
-| **[system-memory](../system-memory/README.md)** | Conversation context preservation | Native MCP |
+| **[system-spec-kit](../system-spec-kit/README.md)** | Conversation context preservation | Native MCP |
 | **[mcp-code-mode](../mcp-code-mode/README.md)** | External MCP tools (Webflow, etc.) | Code Mode |
 
 ### Cross-Skill Workflow

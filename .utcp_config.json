@@ -59,8 +59,8 @@
               "@taazkareem/clickup-mcp-server"
             ],
             "env": {
-              "CLICKUP_API_KEY": "YOUR_CLICKUP_API_KEY",
-              "CLICKUP_TEAM_ID": "YOUR_TEAM_ID",
+              "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
+              "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}",
               "DOCUMENT_SUPPORT": "true",
               "NODE_ENV": "production"
             }
@@ -81,7 +81,7 @@
               "mcp-figma"
             ],
             "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "YOUR_FIGMA_TOKEN",
+              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}",
               "NODE_ENV": "production"
             }
           }
@@ -101,8 +101,46 @@
               "@modelcontextprotocol/server-github"
             ],
             "env": {
-              "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_TOKEN"
+              "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
             }
+          }
+        }
+      }
+    },
+    {
+      "name": "narsil",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "narsil": {
+            "transport": "stdio",
+            "command": "/path/to/narsil-mcp",
+            "args": [
+              "--repos",
+              "/path/to/repository",
+              "--git",
+              "--call-graph",
+              "--persist",
+              "--watch"
+            ],
+            "env": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "webflow",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "webflow": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "mcp-remote",
+              "https://mcp.webflow.com/sse"
+            ],
+            "env": {}
           }
         }
       }

@@ -315,14 +315,14 @@ Folders matching these patterns are automatically excluded:
 
 ```bash
 # Skip alignment prompts, use most recent folder
-AUTO_SAVE_MODE=true node .opencode/skill/system-memory/scripts/generate-context.js data.json
+AUTO_SAVE_MODE=true node .opencode/skill/system-spec-kit/scripts/generate-context.js data.json
 ```
 
 ### Explicit Folder Argument
 
 ```bash
 # Bypass scoring, use specified folder
-node .opencode/skill/system-memory/scripts/generate-context.js data.json "122-specific-folder"
+node .opencode/skill/system-spec-kit/scripts/generate-context.js data.json "122-specific-folder"
 ```
 
 ### Session Preferences
@@ -608,7 +608,7 @@ find . -name ".spec-active*" -type f 2>/dev/null
 
 ### Related Skills
 - `system-spec-kit` - Spec folder creation and template management
-- `system-memory` - Main skill documentation
+- `system-spec-kit` - Main skill documentation
 
 ---
 

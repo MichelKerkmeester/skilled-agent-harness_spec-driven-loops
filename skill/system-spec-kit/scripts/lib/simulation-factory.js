@@ -9,8 +9,22 @@
  * - extractDiagrams() fallback
  * 
  * @module simulation-factory
- * @version 1.0.0
+ * @version 1.1.0
  */
+
+const crypto = require('crypto');
+
+/**
+ * Generate cryptographically secure random string (CWE-330 mitigation)
+ * @param {number} length - Length of random string (default 9)
+ * @returns {string} Random alphanumeric string
+ */
+function secureRandomString(length = 9) {
+  return crypto.randomBytes(Math.ceil(length * 0.75))
+    .toString('base64')
+    .replace(/[+/=]/g, '')
+    .slice(0, length);
+}
 
 /**
  * Format timestamp with multiple output formats
@@ -58,10 +72,11 @@ function formatTimestamp(date = new Date(), format = 'iso') {
 /**
  * Generate a unique session ID for tracking
  * Format: session-{timestamp}-{random}
+ * Uses crypto.randomBytes for secure randomness (CWE-330)
  * @returns {string} Unique session identifier
  */
 function generateSessionId() {
-  return `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  return `session-${Date.now()}-${secureRandomString(9)}`;
 }
 
 /**

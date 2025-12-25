@@ -37,9 +37,11 @@ Not working? Jump to [Troubleshooting](#9--troubleshooting).
 ---
 
 > **Related Documentation:**
-> - [Skill README](../../skill/system-memory/README.md) - Overview and workflow details
-> - [SKILL.md](../../skill/system-memory/SKILL.md) - AI agent instructions for memory operations
+> - [Skill README](../../skill/system-spec-kit/README.md) - Overview and workflow details
+> - [SKILL.md](../../skill/system-spec-kit/SKILL.md) - AI agent instructions for memory operations
 > - `/memory:save` and `/memory:search` commands - Command reference
+
+> **Migration Note (December 2025):** The semantic memory system was merged into `system-spec-kit`. All paths in this guide reflect the new locations. The `semantic_memory` MCP tool names remain unchanged for backward compatibility.
 
 ---
 
@@ -49,7 +51,7 @@ Not working? Jump to [Troubleshooting](#9--troubleshooting).
 I want to configure the Semantic Memory MCP server for conversation memory retrieval.
 
 The server is already bundled in my project at:
-.opencode/skill/system-memory/mcp_server/semantic-memory.js
+.opencode/skill/system-spec-kit/mcp_server/context-server.js
 
 Please help me:
 1. Check if I have Node.js 18+ installed
@@ -68,7 +70,7 @@ Guide me through each step with the exact commands and configuration needed.
 - Run npm install in the mcp_server directory for dependencies
 - Configure MCP settings for your platform
 - Initialize the SQLite database with vector extension
-- Test all tools: `memory_search`, `memory_load`, `memory_match_triggers`
+- Test all tools: `memory_search`, `memory_match_triggers`
 
 **Expected setup time:** 5-10 minutes
 
@@ -80,14 +82,14 @@ The Semantic Memory MCP Server provides AI assistants with conversation memory r
 
 ### Source Repository
 
-| Property        | Value                                       |
-| --------------- | ------------------------------------------- |
-| **Type**        | Bundled (internal project)                  |
-| **Location**    | `.opencode/skill/system-memory/mcp_server/` |
-| **Entry Point** | `semantic-memory.js`                        |
-| **License**     | Internal                                    |
+| Property        | Value                                         |
+| --------------- | --------------------------------------------- |
+| **Type**        | Bundled (internal project)                    |
+| **Location**    | `.opencode/skill/system-spec-kit/mcp_server/` |
+| **Entry Point** | `context-server.js`                           |
+| **License**     | Internal                                      |
 
-> **Note**: This MCP server is bundled within the `system-memory` skill folder. No external installation or GitHub repository required - the server code travels with the skill for self-contained deployment.
+> **Note**: This MCP server is bundled within the `system-spec-kit` skill folder. No external installation or GitHub repository required - the server code travels with the skill for self-contained deployment.
 
 ### Key Features
 
@@ -138,11 +140,11 @@ User Request
          │             YES            NO
          │              │              │
          ▼              ▼              ▼
-┌─────────────────┐  ┌──────────────┐  ┌────────────────┐
-│ Found matches?  │  │ memory_search│  │ memory_load    │
-│                 │  │ (~500ms)     │  │ (direct access)│
-└────────┬────────┘  └──────────────┘  └────────────────┘
-         │
+┌─────────────────┐  ┌──────────────┐  ┌─────────────────────┐
+│ Found matches?  │  │ memory_search│  │ memory_search       │
+│                 │  │ (~500ms)     │  │ (includeContent:true│
+└────────┬────────┘  └──────────────┘  │  for direct access) │
+         │                             └─────────────────────┘
     ┌────┴────┐
    YES        NO
     │          │
@@ -194,7 +196,6 @@ User Request
 | -------------------- | ------ | ------- |
 | Trigger matching     | <50ms  | ~35ms   |
 | Vector search        | <500ms | ~450ms  |
-| Memory load          | <10ms  | ~5ms    |
 | Embedding generation | <500ms | ~400ms  |
 
 ---
@@ -235,7 +236,7 @@ These dependencies are required and typically available via shared node_modules:
 
 The memory database is stored at:
 ```
-.opencode/skill/system-memory/database/memory-index.sqlite
+.opencode/skill/system-spec-kit/database/context-index.sqlite
 ```
 
 This location is within the skill folder for self-contained deployment.
@@ -257,16 +258,16 @@ This location is within the skill folder for self-contained deployment.
 
 ## 3. 📥 INSTALLATION
 
-The Semantic Memory MCP server is bundled within the `system-memory` skill folder. No external installation or file copying is required.
+The Semantic Memory MCP server is bundled within the `system-spec-kit` skill folder. No external installation or file copying is required.
 
 ### Skill Folder Structure
 
 ```
-.opencode/skill/system-memory/
+.opencode/skill/system-spec-kit/
 ├── database/
-│   └── memory-index.sqlite       # Vector database (auto-created)
+│   └── context-index.sqlite      # Vector database (auto-created)
 ├── mcp_server/
-│   ├── semantic-memory.js        # Main MCP server entry point
+│   ├── context-server.js         # Main MCP server entry point
 │   ├── package.json              # Dependencies manifest
 │   ├── lib/                      # Server modules
 │   │   ├── embeddings.js         # HuggingFace embedding generation
@@ -285,7 +286,7 @@ The Semantic Memory MCP server is bundled within the `system-memory` skill folde
 Navigate to the MCP server directory and install dependencies:
 
 ```bash
-cd .opencode/skill/system-memory/mcp_server
+cd .opencode/skill/system-spec-kit/mcp_server
 npm install
 ```
 
@@ -299,7 +300,7 @@ This installs all required packages including:
 
 ```bash
 # Test that server starts correctly
-node .opencode/skill/system-memory/mcp_server/semantic-memory.js
+node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 # Press Ctrl+C after seeing successful startup message
 ```
 
@@ -316,7 +317,7 @@ See [Section 4: Configuration](#4--configuration) for client-specific setup.
 
 **Quick Verification:**
 ```bash
-ls .opencode/skill/system-memory/mcp_server/semantic-memory.js && ls .opencode/skill/system-memory/mcp_server/node_modules/better-sqlite3 && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/skill/system-spec-kit/mcp_server/context-server.js && ls .opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3 && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ❌ **STOP if validation fails** - Fix before continuing.
@@ -335,7 +336,7 @@ Add to `.mcp.json` in your project root:
     "semantic_memory": {
       "command": "node",
       "args": [
-        "${workspaceFolder}/.opencode/skill/system-memory/mcp_server/semantic-memory.js"
+        "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"
       ],
       "env": {},
       "disabled": false
@@ -345,7 +346,7 @@ Add to `.mcp.json` in your project root:
 ```
 
 **Note:** Replace `${workspaceFolder}` with your absolute project path, e.g.:
-`/Users/yourname/projects/my-project/.opencode/skill/system-memory/mcp_server/semantic-memory.js`
+`/Users/yourname/projects/my-project/.opencode/skill/system-spec-kit/mcp_server/context-server.js`
 
 Enable in `settings.local.json`:
 
@@ -368,10 +369,10 @@ Add to `opencode.json` in your project root:
       "type": "local",
       "command": [
         "node",
-        "${workspaceFolder}/.opencode/skill/system-memory/mcp_server/semantic-memory.js"
+        "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"
       ],
       "environment": {
-        "_NOTE_DATABASE": "Stores vectors in: ${workspaceFolder}/.opencode/skill/system-memory/database/memory-index.sqlite",
+        "_NOTE_DATABASE": "Stores vectors in: ${workspaceFolder}/.opencode/skill/system-spec-kit/database/context-index.sqlite",
         "_NOTE_MODEL": "Uses nomic-embed-text-v1.5 (768-dim embeddings)",
         "_NOTE_NEW_PROJECT": "When copying to new project, update this path to match new project location"
       },
@@ -387,25 +388,25 @@ Add to `opencode.json` in your project root:
 
 The MCP server and database are bundled **inside the skill folder** for several reasons:
 
-1. **Portable**: Copy `.opencode/skill/system-memory/` to any project and it works
+1. **Portable**: Copy `.opencode/skill/system-spec-kit/` to any project and it works
 2. **Project-isolated**: Each project has its own memory database - no cross-contamination
 3. **Version controlled**: Server code travels with the skill, ensuring compatibility
 4. **Simple deployment**: No external dependencies or separate MCP server installations
 
 **When copying to a new project:**
-1. Copy the entire `.opencode/skill/system-memory/` folder
+1. Copy the entire `.opencode/skill/system-spec-kit/` folder
 2. Update the path in `opencode.json` to match the new project location
 3. Run `npm install` in the `mcp_server/` directory
 4. The database will be created fresh on first use (or copy `database/` to preserve memories)
 
 ### Database Path Configuration
 
-The default database path is `.opencode/skill/system-memory/database/memory-index.sqlite`. This can be overridden via environment variable:
+The default database path is `.opencode/skill/system-spec-kit/database/context-index.sqlite`. This can be overridden via environment variable:
 
 ```json
 {
   "environment": {
-    "MEMORY_DB_PATH": "/custom/path/memory-index.sqlite"
+    "MEMORY_DB_PATH": "/custom/path/context-index.sqlite"
   }
 }
 ```
@@ -417,17 +418,17 @@ The default database path is `.opencode/skill/system-memory/database/memory-inde
 ### One-Command Health Check
 
 ```bash
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT 'OK: ' || COUNT(*) || ' memories' FROM memory_index" 2>/dev/null || echo "Database not created yet (will be created on first save)"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT 'OK: ' || COUNT(*) || ' memories' FROM memory_index" 2>/dev/null || echo "Database not created yet (will be created on first save)"
 ```
 
 ### Check 1: Verify Server Files
 
 ```bash
 # Check all required files exist
-ls -la .opencode/skill/system-memory/mcp_server/
-# Should show: semantic-memory.js, lib/, package.json
+ls -la .opencode/skill/system-spec-kit/mcp_server/
+# Should show: context-server.js, lib/, package.json
 
-ls -la .opencode/skill/system-memory/mcp_server/lib/
+ls -la .opencode/skill/system-spec-kit/mcp_server/lib/
 # Should show: embeddings.js, vector-index.js, trigger-matcher.js,
 #              memory-parser.js, importance-tiers.js, and more
 ```
@@ -436,7 +437,7 @@ ls -la .opencode/skill/system-memory/mcp_server/lib/
 
 ```bash
 # Check node_modules exists
-ls -la .opencode/skill/system-memory/mcp_server/node_modules/better-sqlite3
+ls -la .opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3
 # Should show the better-sqlite3 directory
 ```
 
@@ -444,7 +445,7 @@ ls -la .opencode/skill/system-memory/mcp_server/node_modules/better-sqlite3
 
 ```bash
 # Start server manually (will wait for MCP protocol input)
-node .opencode/skill/system-memory/mcp_server/semantic-memory.js
+node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 
 # Expected: No errors, server waits for input
 # Press Ctrl+C to exit
@@ -460,7 +461,7 @@ claude
 # Ask about available tools
 > What memory tools are available?
 
-# Expected: Should list memory_search, memory_load, memory_match_triggers
+# Expected: Should list memory_search, memory_match_triggers
 ```
 
 **In OpenCode:**
@@ -476,11 +477,11 @@ opencode
 
 ```bash
 # Check database exists and has tables
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite ".tables"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".tables"
 # Expected: memory_index vec_memories
 
 # Count indexed memories
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
 ```
 
 ### Validation: `installation_complete`
@@ -495,7 +496,7 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT
 
 **Quick Verification:**
 ```bash
-ls .opencode/skill/system-memory/mcp_server/semantic-memory.js && python3 -m json.tool < .mcp.json > /dev/null && sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite ".tables" 2>/dev/null | grep -q "memory_index" && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/skill/system-spec-kit/mcp_server/context-server.js && python3 -m json.tool < .mcp.json > /dev/null && sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".tables" 2>/dev/null | grep -q "memory_index" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 > **Note:** This command checks `.mcp.json` (Claude Code). For OpenCode, verify `opencode.json` instead: `python3 -m json.tool < opencode.json`
@@ -522,18 +523,18 @@ The memory database stores all indexed memories and embeddings. Backup before ri
 
 **Create timestamped backup:**
 ```bash
-cp .opencode/skill/system-memory/database/memory-index.sqlite \
-   .opencode/skill/system-memory/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
+cp .opencode/skill/system-spec-kit/database/context-index.sqlite \
+   .opencode/skill/system-spec-kit/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
 ```
 
 **Verify backup was created:**
 ```bash
-ls -la .opencode/skill/system-memory/database/backup-*.sqlite
+ls -la .opencode/skill/system-spec-kit/database/backup-*.sqlite
 ```
 
 **Verify backup integrity:**
 ```bash
-sqlite3 .opencode/skill/system-memory/database/backup-*.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/database/backup-*.sqlite "SELECT COUNT(*) FROM memory_index"
 ```
 
 ### Restore Procedure
@@ -542,13 +543,13 @@ sqlite3 .opencode/skill/system-memory/database/backup-*.sqlite "SELECT COUNT(*) 
 
 **2. Restore from backup:**
 ```bash
-cp .opencode/skill/system-memory/database/backup-YYYYMMDD-HHMMSS.sqlite \
-   .opencode/skill/system-memory/database/memory-index.sqlite
+cp .opencode/skill/system-spec-kit/database/backup-YYYYMMDD-HHMMSS.sqlite \
+   .opencode/skill/system-spec-kit/database/context-index.sqlite
 ```
 
 **3. Verify restore:**
 ```bash
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
 ```
 
 **4. Restart OpenCode** to reload the MCP server with restored data
@@ -575,7 +576,7 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT
 
 **Quick Verification:**
 ```bash
-ls .opencode/skill/system-memory/database/backup-*.sqlite 2>/dev/null && sqlite3 .opencode/skill/system-memory/database/backup-*.sqlite "SELECT COUNT(*) FROM memory_index" 2>/dev/null | grep -q "[1-9]" && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/skill/system-spec-kit/database/backup-*.sqlite 2>/dev/null && sqlite3 .opencode/skill/system-spec-kit/database/backup-*.sqlite "SELECT COUNT(*) FROM memory_index" 2>/dev/null | grep -q "[1-9]" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ❌ **STOP if validation fails** - Fix before continuing.
@@ -592,8 +593,8 @@ When starting work on a topic, check for existing context:
 1. Call memory_match_triggers with topic keywords
    → Fast check for relevant memories (<50ms)
 
-2. If matches found, call memory_load for details
-   → Load full content of matched memories
+2. If matches found, use memory_search with includeContent: true
+   → Returns full content of matched memories directly
 
 3. If no matches, call memory_search for semantic lookup
    → Broader search using meaning (slower but thorough)
@@ -606,8 +607,8 @@ User: Let's work on the authentication system
 AI uses memory_match_triggers("authentication system")
 → Returns matches with specFolders and file paths
 
-AI uses memory_load(specFolder: "049-auth-system")
-→ Loads full context from previous sessions
+AI uses memory_search({ specFolder: "049-auth-system", includeContent: true })
+→ Returns full context from previous sessions
 ```
 
 ### Pattern 2: Deep Research
@@ -622,8 +623,9 @@ When researching a complex topic:
    → Find memories matching ALL concepts (AND search)
    → Example: ["authentication", "error handling", "retry"]
 
-3. Call memory_load for promising results
-   → Load full content to review
+3. For full content, use memory_search with includeContent: true
+   → Returns content directly in results
+   → Or use Read(filePath) on returned file paths
 ```
 
 ### Pattern 3: Direct Access
@@ -631,18 +633,18 @@ When researching a complex topic:
 When you know exactly what you need:
 
 ```
-1. Call memory_load with specFolder
-   → Get most recent memory for that spec
+1. Call memory_search with specFolder and includeContent: true
+   → Get memories for that spec with full content
 
-2. Optionally add anchorId
-   → Get specific section only
+2. Or use Read(filePath) on search results
+   → Read specific memory files directly
 ```
 
 **Example:**
 ```json
 {
   "specFolder": "011-semantic-memory-upgrade",
-  "anchorId": "decisions"
+  "includeContent": true
 }
 ```
 
@@ -653,7 +655,7 @@ When you know exactly what you need:
 Use the `generate-context.js` script to create properly formatted memory files:
 
 ```bash
-node .opencode/skill/system-memory/scripts/generate-context.js specs/[###-name]/
+node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/[###-name]/
 ```
 
 The script:
@@ -666,7 +668,7 @@ The script:
 
 ```bash
 # After completing auth implementation work
-node .opencode/skill/system-memory/scripts/generate-context.js specs/049-auth-system/
+node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/049-auth-system/
 
 # Creates: specs/049-auth-system/memory/24-12-25_14-30__auth.md
 # Auto-indexed with extracted trigger phrases
@@ -689,12 +691,14 @@ For core project rules that should ALWAYS surface, use constitutional tier (see 
 
 ### Tool Selection Guide
 
-| Scenario               | Tool                            | Why                  |
-| ---------------------- | ------------------------------- | -------------------- |
-| Quick keyword lookup   | `memory_match_triggers`         | <50ms, no embeddings |
-| Semantic understanding | `memory_search`                 | Vector similarity    |
-| Known spec folder      | `memory_load`                   | Direct access        |
-| Multi-concept search   | `memory_search` with `concepts` | AND search           |
+| Scenario               | Tool                                          | Why                      |
+| ---------------------- | --------------------------------------------- | ------------------------ |
+| Quick keyword lookup   | `memory_match_triggers`                       | <50ms, no embeddings     |
+| Semantic understanding | `memory_search`                               | Vector similarity        |
+| Known spec folder      | `memory_search` with `specFolder`             | Filtered search          |
+| Need full content      | `memory_search` with `includeContent: true`   | Returns content directly |
+| Multi-concept search   | `memory_search` with `concepts`               | AND search               |
+| Read specific file     | `Read(filePath)` from search results          | Direct file access       |
 
 ### Memory Commands Reference
 
@@ -773,6 +777,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 | `useDecay`              | boolean | No       | true    | Apply temporal decay scoring                      |
 | `includeContiguity`     | boolean | No       | false   | Include adjacent memories in results              |
 | `includeConstitutional` | boolean | No       | true    | Include constitutional tier at top of results     |
+| `includeContent`        | boolean | No       | false   | Include full memory content in results            |
 
 *Either `query` OR `concepts` required (not both)
 
@@ -805,41 +810,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 }
 ```
 
-### 8.2 memory_load
-
-**Purpose**: Load memory content by spec folder, anchor ID, or memory ID.
-
-**Parameters**:
-
-| Parameter    | Type   | Required | Default | Description             |
-| ------------ | ------ | -------- | ------- | ----------------------- |
-| `specFolder` | string | Yes*     | -       | Spec folder identifier  |
-| `anchorId`   | string | No       | -       | Load specific section   |
-| `memoryId`   | number | No       | -       | Direct memory ID access |
-
-*Either `specFolder` or `memoryId` required
-
-**Example Request**:
-```json
-{
-  "specFolder": "011-semantic-memory-upgrade",
-  "anchorId": "decisions"
-}
-```
-
-**Example Response**:
-```json
-{
-  "id": 15,
-  "specFolder": "011-semantic-memory-upgrade",
-  "filePath": "specs/011-semantic-memory-upgrade/memory/06-12-25_18-46.md",
-  "title": "Semantic Memory Implementation",
-  "anchor": "decisions",
-  "content": "## Key Decisions\n\n1. Use nomic-embed-text-v1.5 for local embeddings..."
-}
-```
-
-### 8.3 memory_match_triggers
+### 8.2 memory_match_triggers
 
 **Purpose**: Fast trigger phrase matching without embeddings. Use for quick keyword-based lookups.
 
@@ -876,7 +847,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 }
 ```
 
-### 8.4 memory_list
+### 8.3 memory_list
 
 **Purpose**: Browse stored memories with pagination. Use to discover what is remembered and find IDs for delete/update.
 
@@ -898,7 +869,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 }
 ```
 
-### 8.5 memory_update
+### 8.4 memory_update
 
 **Purpose**: Update an existing memory with corrections. Re-generates embedding if content changes.
 
@@ -923,7 +894,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 }
 ```
 
-### 8.6 memory_delete
+### 8.5 memory_delete
 
 **Purpose**: Delete a memory by ID or all memories in a spec folder. Use to remove incorrect or outdated information.
 
@@ -952,7 +923,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 }
 ```
 
-### 8.7 memory_stats
+### 8.6 memory_stats
 
 **Purpose**: Get statistics about the memory system. Shows counts, dates, status breakdown, and top folders.
 
@@ -979,7 +950,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 }
 ```
 
-### 8.8 memory_validate
+### 8.7 memory_validate
 
 **Purpose**: Record validation feedback for a memory. Tracks whether memories are useful, updating confidence scores. Memories with high confidence (≥90%) and sufficient validation counts may be promoted to critical tier.
 
@@ -1000,7 +971,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 
 **Confidence Promotion**: When a memory reaches 90% confidence with 5+ validations, it becomes eligible for automatic promotion to `critical` tier.
 
-### 8.9 memory_save
+### 8.8 memory_save
 
 **Purpose**: Index a memory file into the semantic memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index.
 
@@ -1021,7 +992,7 @@ The system automatically falls back to pure vector search if hybrid search fails
 
 **Note**: File must be in a `specs/**/memory/` directory structure.
 
-### 8.10 memory_index_scan
+### 8.9 memory_index_scan
 
 **Purpose**: Scan workspace for new/changed memory files and index them. Useful for bulk indexing after creating multiple memory files.
 
@@ -1051,7 +1022,7 @@ Progress is logged showing batch completion (e.g., `[index-scan] Processing batc
 }
 ```
 
-### 8.11 checkpoint_create
+### 8.10 checkpoint_create
 
 **Purpose**: Create a named checkpoint of current memory state for later restoration. Use before risky operations.
 
@@ -1072,7 +1043,7 @@ Progress is logged showing batch completion (e.g., `[index-scan] Processing batc
 }
 ```
 
-### 8.12 checkpoint_list
+### 8.11 checkpoint_list
 
 **Purpose**: List all available checkpoints.
 
@@ -1083,7 +1054,7 @@ Progress is logged showing batch completion (e.g., `[index-scan] Processing batc
 | `specFolder` | string | No       | -       | Filter by spec folder |
 | `limit`      | number | No       | 50      | Maximum results       |
 
-### 8.13 checkpoint_restore
+### 8.12 checkpoint_restore
 
 **Purpose**: Restore memory state from a checkpoint.
 
@@ -1102,7 +1073,7 @@ Progress is logged showing batch completion (e.g., `[index-scan] Processing batc
 }
 ```
 
-### 8.14 checkpoint_delete
+### 8.13 checkpoint_delete
 
 **Purpose**: Delete a checkpoint that is no longer needed.
 
@@ -1119,7 +1090,7 @@ Progress is logged showing batch completion (e.g., `[index-scan] Processing batc
 }
 ```
 
-### 8.15 Six-Tier Importance System
+### 8.14 Six-Tier Importance System
 
 Memories are classified into six importance tiers that affect search ranking, decay behavior, and auto-expiration:
 
@@ -1134,9 +1105,9 @@ Memories are classified into six importance tiers that affect search ranking, de
 
 **Special Behaviors**:
 - **Constitutional**: Always included at top of search results, regardless of query relevance. With plugin: shown in dashboard summary (~500-800 tokens total for entire dashboard)
-- **Deprecated**: Excluded from search results entirely, accessible only via direct `memory_load`
+- **Deprecated**: Excluded from search results entirely, accessible only via direct `memory_list` or `Read(filePath)`
 - **Temporary**: Automatically deleted after 7 days
-- **Decay**: 90-day half-life for temporal relevance scoring (normal/temporary tiers only)
+- **Decay**: ~62-day half-life for temporal relevance scoring (normal/temporary tiers only)
 
 **Setting Tier**: Use `memory_update` with `importanceTier` parameter:
 ```json
@@ -1146,7 +1117,7 @@ Memories are classified into six importance tiers that affect search ranking, de
 }
 ```
 
-### 8.16 Creating Constitutional Memories
+### 8.15 Creating Constitutional Memories
 
 Constitutional memories are special memories that ALWAYS appear at the top of search results, regardless of query. Use them for:
 
@@ -1160,7 +1131,7 @@ Constitutional memories are special memories that ALWAYS appear at the top of se
 
 2. **Generate memory file:**
    ```bash
-   node .opencode/skill/system-memory/scripts/generate-context.js specs/[folder]/
+   node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/[folder]/
    ```
 
 3. **Index the memory** (if not auto-indexed):
@@ -1217,14 +1188,14 @@ See `specs/005-memory/018-gate3-enforcement/` for a complete example:
 
 **Fix**:
 ```bash
-cd .opencode/skill/system-memory/mcp_server
+cd .opencode/skill/system-spec-kit/mcp_server
 npm install
 ```
 
 **If that doesn't work**:
 ```bash
 # Check node_modules exists
-ls -la .opencode/skill/system-memory/mcp_server/node_modules
+ls -la .opencode/skill/system-spec-kit/mcp_server/node_modules
 # If missing, run npm install again
 ```
 
@@ -1237,15 +1208,15 @@ ls -la .opencode/skill/system-memory/mcp_server/node_modules
 **Fix**:
 ```bash
 # Check if the right platform binary exists in mcp_server/node_modules
-ls .opencode/skill/system-memory/mcp_server/node_modules/sqlite-vec-darwin-arm64/  # macOS ARM
-ls .opencode/skill/system-memory/mcp_server/node_modules/sqlite-vec-darwin-x64/    # macOS Intel
-ls .opencode/skill/system-memory/mcp_server/node_modules/sqlite-vec-linux-x64/     # Linux x64
+ls .opencode/skill/system-spec-kit/mcp_server/node_modules/sqlite-vec-darwin-arm64/  # macOS ARM
+ls .opencode/skill/system-spec-kit/mcp_server/node_modules/sqlite-vec-darwin-x64/    # macOS Intel
+ls .opencode/skill/system-spec-kit/mcp_server/node_modules/sqlite-vec-linux-x64/     # Linux x64
 ```
 
 **If that doesn't work**:
 ```bash
 # Reinstall dependencies
-cd .opencode/skill/system-memory/mcp_server
+cd .opencode/skill/system-spec-kit/mcp_server
 rm -rf node_modules
 npm install
 ```
@@ -1259,16 +1230,16 @@ npm install
 **Fix**:
 ```bash
 # Check database exists
-ls .opencode/skill/system-memory/database/memory-index.sqlite
+ls .opencode/skill/system-spec-kit/database/context-index.sqlite
 
 # Verify embeddings exist
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT(*) FROM vec_memories"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM vec_memories"
 ```
 
 **If that doesn't work**:
 ```bash
 # Check embedding status - most should show 'completed'
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite \
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
   "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
 ```
 
@@ -1278,7 +1249,7 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite \
 memory_index_scan({ force: true })
 
 # Or via CLI script from mcp_server directory
-cd .opencode/skill/system-memory/mcp_server/scripts
+cd .opencode/skill/system-spec-kit/mcp_server/scripts
 node index-cli.js --scan
 ```
 
@@ -1293,7 +1264,7 @@ The `--scan` option recursively finds all memory files in nested specs structure
 **Fix**:
 ```bash
 # Verify WAL mode is enabled for better concurrency
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "PRAGMA journal_mode"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "PRAGMA journal_mode"
 # Should return: wal
 ```
 
@@ -1325,11 +1296,11 @@ python3 -m json.tool < .mcp.json
 **Option A - Restore from backup (preferred):**
 ```bash
 # List available backups
-ls -la .opencode/skill/system-memory/database/backup-*.sqlite
+ls -la .opencode/skill/system-spec-kit/database/backup-*.sqlite
 
 # Restore most recent backup
-cp .opencode/skill/system-memory/database/backup-YYYYMMDD-HHMMSS.sqlite \
-   .opencode/skill/system-memory/database/memory-index.sqlite
+cp .opencode/skill/system-spec-kit/database/backup-YYYYMMDD-HHMMSS.sqlite \
+   .opencode/skill/system-spec-kit/database/context-index.sqlite
 
 # Restart OpenCode to clear MCP server cache
 ```
@@ -1337,11 +1308,11 @@ cp .opencode/skill/system-memory/database/backup-YYYYMMDD-HHMMSS.sqlite \
 **Option B - Reset database (lose all memories):**
 ```bash
 # Backup first (just in case)
-cp .opencode/skill/system-memory/database/memory-index.sqlite \
-   .opencode/skill/system-memory/database/backup-pre-reset-$(date +%Y%m%d).sqlite
+cp .opencode/skill/system-spec-kit/database/context-index.sqlite \
+   .opencode/skill/system-spec-kit/database/backup-pre-reset-$(date +%Y%m%d).sqlite
 
 # Remove corrupted database
-rm .opencode/skill/system-memory/database/memory-index.sqlite
+rm .opencode/skill/system-spec-kit/database/context-index.sqlite
 
 # Restart OpenCode - database will be recreated on first use
 
@@ -1352,13 +1323,13 @@ memory_index_scan({ force: true })
 **Option C - Repair database:**
 ```bash
 # Check database integrity
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "PRAGMA integrity_check"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "PRAGMA integrity_check"
 
 # If issues found, try to recover
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite ".recover" > recovered.sql
-sqlite3 .opencode/skill/system-memory/database/memory-index-new.sqlite < recovered.sql
-mv .opencode/skill/system-memory/database/memory-index-new.sqlite \
-   .opencode/skill/system-memory/database/memory-index.sqlite
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".recover" > recovered.sql
+sqlite3 .opencode/skill/system-spec-kit/database/context-index-new.sqlite < recovered.sql
+mv .opencode/skill/system-spec-kit/database/context-index-new.sqlite \
+   .opencode/skill/system-spec-kit/database/context-index.sqlite
 ```
 
 ### MCP Server Cache Issues
@@ -1392,7 +1363,7 @@ memory_stats()
 **Diagnose:**
 ```bash
 # Check embedding status distribution
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite \
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
   "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
 
 # Expected: Most should be 'completed'
@@ -1456,14 +1427,14 @@ ollama pull nomic-embed-text
 
 ### File Structure
 
-The Semantic Memory system is organized within the `system-memory` skill folder:
+The Semantic Memory system is organized within the `system-spec-kit` skill folder:
 
 ```
-.opencode/skill/system-memory/
+.opencode/skill/system-spec-kit/
 ├── database/
-│   └── memory-index.sqlite       # Vector database (auto-created)
+│   └── context-index.sqlite      # Vector database (auto-created)
 ├── mcp_server/
-│   ├── semantic-memory.js        # Main MCP server entry point
+│   ├── context-server.js         # Main MCP server entry point
 │   ├── package.json              # Dependencies manifest
 │   ├── INSTALL_GUIDE.md          # This installation guide
 │   ├── LICENSE
@@ -1489,9 +1460,10 @@ The Semantic Memory system is organized within the `system-memory` skill folder:
 ├── references/                   # Skill documentation references
 ├── templates/
 │   └── context_template.md       # Memory file template
+├── config/
+│   └── config.jsonc              # Skill configuration
 ├── SKILL.md                      # AI agent instructions
-├── README.md                     # Skill overview
-└── config.jsonc                  # Skill configuration
+└── README.md                     # Skill overview
 ```
 
 ### Database Schema
@@ -1551,19 +1523,19 @@ CREATE TABLE checkpoints (
 
 ```bash
 # Check server version
-node .opencode/skill/system-memory/mcp_server/semantic-memory.js --version 2>&1 | head -1
+node .opencode/skill/system-spec-kit/mcp_server/context-server.js --version 2>&1 | head -1
 
 # Test startup (Ctrl+C to exit)
-node .opencode/skill/system-memory/mcp_server/semantic-memory.js
+node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 
 # Check database tables
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite ".tables"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".tables"
 
 # Count indexed memories
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
 
 # Check embedding statistics
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite \
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
   "SELECT embedding_status, COUNT(*) as count FROM memory_index GROUP BY embedding_status"
 ```
 
@@ -1577,23 +1549,23 @@ Slow operations are logged automatically:
 
 ### Related Documentation
 
-| Document     | Location                                    | Purpose                 |
-| ------------ | ------------------------------------------- | ----------------------- |
-| Skill README | `.opencode/skill/system-memory/README.md`   | Skill overview          |
-| SKILL.md     | `.opencode/skill/system-memory/SKILL.md`    | AI agent instructions   |
-| References   | `.opencode/skill/system-memory/references/` | Technical documentation |
+| Document     | Location                                      | Purpose                 |
+| ------------ | --------------------------------------------- | ----------------------- |
+| Skill README | `.opencode/skill/system-spec-kit/README.md`   | Skill overview          |
+| SKILL.md     | `.opencode/skill/system-spec-kit/SKILL.md`    | AI agent instructions   |
+| References   | `.opencode/skill/system-spec-kit/references/` | Technical documentation |
 
 ---
 
-### Quick Reference: Complete Tool Summary (14 Tools)
+### Quick Reference: Complete Tool Summary (13 Tools)
 
 **Core Search Tools:**
 
-| Tool                    | Purpose                | Speed  | Use When                     |
-| ----------------------- | ---------------------- | ------ | ---------------------------- |
-| `memory_search`         | Semantic vector search | ~500ms | Need meaning-based retrieval |
-| `memory_load`           | Load memory content    | <10ms  | Know exact spec folder/ID    |
-| `memory_match_triggers` | Fast phrase matching   | <50ms  | Quick keyword lookup first   |
+| Tool                    | Purpose                            | Speed  | Use When                           |
+| ----------------------- | ---------------------------------- | ------ | ---------------------------------- |
+| `memory_search`         | Semantic vector search             | ~500ms | Need meaning-based retrieval       |
+| `memory_search` + `includeContent` | Search with full content | ~500ms | Need content without separate read |
+| `memory_match_triggers` | Fast phrase matching               | <50ms  | Quick keyword lookup first         |
 
 **Memory Management Tools:**
 
@@ -1631,14 +1603,14 @@ Slow operations are logged automatically:
 
 ```bash
 # Verify installation
-ls -la .opencode/skill/system-memory/mcp_server/lib/
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite ".tables"
+ls -la .opencode/skill/system-spec-kit/mcp_server/lib/
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".tables"
 
 # Test server
-node .opencode/skill/system-memory/mcp_server/semantic-memory.js
+node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 
 # Check database stats
-sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
 ```
 
 ### Configuration Quick Copy
@@ -1649,7 +1621,7 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT
   "mcpServers": {
     "semantic_memory": {
       "command": "node",
-      "args": ["${workspaceFolder}/.opencode/skill/system-memory/mcp_server/semantic-memory.js"],
+      "args": ["${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"],
       "env": {},
       "disabled": false
     }
@@ -1663,7 +1635,7 @@ sqlite3 .opencode/skill/system-memory/database/memory-index.sqlite "SELECT COUNT
   "mcp": {
     "semantic_memory": {
       "type": "local",
-      "command": ["node", "${workspaceFolder}/.opencode/skill/system-memory/mcp_server/semantic-memory.js"],
+      "command": ["node", "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"],
       "environment": {},
       "enabled": true
     }

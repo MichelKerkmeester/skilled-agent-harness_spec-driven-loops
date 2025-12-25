@@ -435,7 +435,47 @@ Search existing specs (folder names, titles)
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. 📋 CROSS-CUTTING TEMPLATES (ANY LEVEL)
+
+Some templates are not level-specific but can be used at any documentation level. These support session management, context preservation, and work summaries.
+
+### Session Management Templates
+
+| Template | Purpose | When to Use | Created By |
+|----------|---------|-------------|------------|
+| `handover.md` | Session context transfer | End of work session requiring handoff | `/spec_kit:handover` command |
+| `debug-delegation.md` | Debug task delegation | When stuck debugging (3+ failed attempts) | `/spec_kit:debug` command |
+
+**Template Sources:**
+- `.opencode/skill/system-spec-kit/templates/handover.md`
+- `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
+
+### Summary Templates
+
+| Template | Purpose | When to Use | Created By |
+|----------|---------|-------------|------------|
+| `planning-summary.md` | High-level planning overview | After completing planning phase | Manual or after `/spec_kit:plan` |
+| `implementation-summary.md` | Post-implementation documentation | After implementation complete | Manual or context save |
+
+**Template Sources:**
+- `.opencode/skill/system-spec-kit/templates/planning-summary.md`
+- `.opencode/skill/system-spec-kit/templates/implementation-summary.md`
+
+### Auto-Generated Context (Not Templates)
+
+| Folder | Purpose | Creation Method |
+|--------|---------|-----------------|
+| `memory/` | Session context preservation | `generate-context.js` script via `/memory:save` |
+| `scratch/` | Temporary workspace (disposable) | Manual creation (no template needed) |
+
+**Important:**
+- Memory files are auto-generated and should NOT be created manually
+- Use `/memory:save` or `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder]`
+- Scratch folder contents are temporary and should be cleaned up after work completes
+
+---
+
+## 8. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [quick_reference.md](./quick_reference.md) - Commands, checklists, and troubleshooting
@@ -443,15 +483,28 @@ Search existing specs (folder names, titles)
 - [path_scoped_rules.md](./path_scoped_rules.md) - Path-scoped validation rules reference
 
 ### Templates
-- [spec.md](../templates/spec.md) - Requirements and user stories template
-- [plan.md](../templates/plan.md) - Technical implementation plan template
-- [tasks.md](../templates/tasks.md) - Task breakdown template
-- [checklist.md](../templates/checklist.md) - Validation checklist template (Level 2+)
-- [decision-record.md](../templates/decision-record.md) - Architecture Decision Records template (Level 3)
 
-- [research.md](../templates/research.md) - Comprehensive research template (Level 3 optional)
+**Core Templates (Progressive Enhancement):**
+- [spec.md](../templates/spec.md) - Requirements and user stories (Level 1+)
+- [plan.md](../templates/plan.md) - Technical implementation plan (Level 1+)
+- [tasks.md](../templates/tasks.md) - Task breakdown by user story (Level 1+)
+- [checklist.md](../templates/checklist.md) - Validation checklist (Level 2+)
+- [decision-record.md](../templates/decision-record.md) - Architecture Decision Records (Level 3)
+- [research.md](../templates/research.md) - Comprehensive research (Level 3 optional)
+
+**Session Management Templates (Any Level):**
+- [handover.md](../templates/handover.md) - Session context transfer
+- [debug-delegation.md](../templates/debug-delegation.md) - Debug task delegation
+
+**Summary Templates (Any Level):**
+- [planning-summary.md](../templates/planning-summary.md) - Post-planning overview
+- [implementation-summary.md](../templates/implementation-summary.md) - Post-implementation documentation
+
+**Non-Template Folders:**
+- `memory/` - Context preservation (auto-generated via generate-context.js)
+- `scratch/` - Temporary workspace (create ad-hoc files as needed)
 
 ### Related Skills
 - `workflows-code` - Implementation, debugging, and verification lifecycle
-- `system-memory` - Context preservation with semantic memory
+- `system-spec-kit` - Context preservation with semantic memory
 - `workflows-git` - Git workspace setup and clean commits
