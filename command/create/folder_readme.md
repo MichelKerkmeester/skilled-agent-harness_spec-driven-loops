@@ -8,11 +8,11 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 **This command creates documentation files that ARE the documentation artifact.**
 
-| Property | Value |
-|----------|-------|
-| **Location** | User-specified path (`install_guides/` or target directory) |
-| **Reason** | The created file IS the documentation |
-| **Spec Folder** | Not required - the guide/README serves as its own spec |
+| Property        | Value                                                       |
+| --------------- | ----------------------------------------------------------- |
+| **Location**    | User-specified path (`install_guides/` or target directory) |
+| **Reason**      | The created file IS the documentation                       |
+| **Spec Folder** | Not required - the guide/README serves as its own spec      |
 
 ---
 
@@ -44,7 +44,7 @@ EXECUTE THIS CHECK FIRST:
 │   │   │    Documentation for a module/package/skill                │
 │   │   │                                                            │
 │   │   │ C) Feature README                                          │
-│   │   │    Documentation for a specific feature/system             │
+│   │   │    Documentation for a specific feature/system              │
 │   │   │                                                            │
 │   │   │ D) Skill README                                            │
 │   │   │    Documentation for an OpenCode skill                     │
@@ -109,7 +109,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │   │   ┌────────────────────────────────────────────────────────────┐
    │   │   │ "README.md already exists at [path]."                      │
    │   │   │                                                            │
-   │   │   │ A) Overwrite existing file                                 │
+   │   │   │ A) Overwrite existing file                                  │
    │   │   │ B) Create backup and overwrite                             │
    │   │   │ C) Merge/update existing content                           │
    │   │   │ D) Cancel                                                  │
@@ -130,10 +130,10 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                  | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                           |
-| ---------------------- | --------------- | ----------- | -------------------------------------- |
-| PHASE 1: INPUT         | ✅ PASSED       | ______      | target_path: ______ / type: __________ |
-| PHASE 2: TARGET        | ✅ PASSED       | ______      | path_verified: ______ / existing: ____ |
+| PHASE           | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                           |
+| --------------- | --------------- | ----------- | -------------------------------------- |
+| PHASE 1: INPUT  | ✅ PASSED        | ______      | target_path: ______ / type: __________ |
+| PHASE 2: TARGET | ✅ PASSED        | ______      | path_verified: ______ / existing: ____ |
 
 ```
 VERIFICATION CHECK:
@@ -177,13 +177,13 @@ VERIFICATION CHECK:
 
 ## WORKFLOW TRACKING
 
-| STEP | NAME           | STATUS | REQUIRED OUTPUT          | VERIFICATION                    |
-| ---- | -------------- | ------ | ------------------------ | ------------------------------- |
-| 1    | Analysis       | ☐      | README type, path        | Type and location confirmed     |
-| 2    | Discovery      | ☐      | Features, structure      | Project info gathered           |
-| 3    | Structure      | ☐      | Section structure        | Template selected               |
-| 4    | Generation     | ☐      | README.md                | Complete README written         |
-| 5    | Validation     | ☐      | Validated README         | Structure verified              |
+| STEP | NAME       | STATUS | REQUIRED OUTPUT     | VERIFICATION                |
+| ---- | ---------- | ------ | ------------------- | --------------------------- |
+| 1    | Analysis   | ☐      | README type, path   | Type and location confirmed |
+| 2    | Discovery  | ☐      | Features, structure | Project info gathered       |
+| 3    | Structure  | ☐      | Section structure   | Template selected           |
+| 4    | Generation | ☐      | README.md           | Complete README written     |
+| 5    | Validation | ☐      | Validated README    | Structure verified          |
 
 ---
 
@@ -287,13 +287,13 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ## 4. 📚 REFERENCE (See YAML for Details)
 
-| Section              | Location in YAML                    |
-| -------------------- | ----------------------------------- |
-| README Types         | `notes.readme_type_selection`       |
-| Key Patterns         | `notes.key_patterns`                |
-| Section Templates    | `templates.[type]`                  |
-| Failure Recovery     | `failure_recovery`                  |
-| Completion Report    | `completion_report_template`        |
+| Section           | Location in YAML              |
+| ----------------- | ----------------------------- |
+| README Types      | `notes.readme_type_selection` |
+| Key Patterns      | `notes.key_patterns`          |
+| Section Templates | `templates.[type]`            |
+| Failure Recovery  | `failure_recovery`            |
+| Completion Report | `completion_report_template`  |
 
 **Reference READMEs:**
 - `.opencode/skill/system-spec-kit/README.md` (SpecKit + Memory pattern)

@@ -165,7 +165,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   ├── quick_reference.md                # Commands, checklists, troubleshooting
 │   ├── template_guide.md                 # Template selection & adaptation rules
 │   └── sub_folder_versioning.md          # Sub-folder versioning workflow
-├── mcp_server/                           # Semantic Memory MCP (v16.0 integrated)
+├── mcp_server/                           # Spec Kit Memory MCP (v16.0 integrated)
 │   ├── context-server.js                 # MCP server with vector search
 │   ├── lib/                              # Server libraries
 │   ├── configs/                          # Server configuration
@@ -233,7 +233,7 @@ cp src/component.js specs/042-feature/scratch/component-draft.js
 
 #### `memory/` - Context Preservation
 
-> **Fork Exclusive**: Deep integration with Semantic Memory MCP for vector-searchable context.
+> **Fork Exclusive**: Deep integration with Spec Kit Memory MCP for vector-searchable context.
 
 The `memory/` folder stores **conversation context and session history** for AI assistants.
 
@@ -251,7 +251,7 @@ The `memory/` folder stores **conversation context and session history** for AI 
 - Memory saves MUST use `generate-context.js` (Gate 5 enforces this)
 - Project state is embedded IN memory files (no separate STATE.md)
 - No .spec-skip or .spec-active markers needed
-- Semantic Memory MCP is now integrated into this skill (was separate `system-memory`)
+- Spec Kit Memory MCP is now integrated into this skill (was separate `system-memory`)
 
 **Integrated Components:**
 | Component      | Location                        | Purpose                            |
@@ -1312,7 +1312,7 @@ Spec Kit uses a 2-tier architecture:
 **Integrated (formerly separate skill):**
 | Component           | Integration                                     |
 | ------------------- | ----------------------------------------------- |
-| Semantic Memory MCP | Context preservation via vector search (merged) |
+| Spec Kit Memory MCP | Context preservation via vector search (merged) |
 
 ### External Dependencies
 

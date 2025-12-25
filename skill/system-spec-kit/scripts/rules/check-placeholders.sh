@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Rule: PLACEHOLDER_FILLED
-# Detects unfilled placeholders like [YOUR_VALUE_HERE:] and [NEEDS CLARIFICATION:]
+# Detects unfilled placeholders like [YOUR_VALUE_HERE:], [NEEDS CLARIFICATION:], and {{mustache}}
 
 # Requires: should_skip_path() from common-rules.sh (optional)
 
@@ -69,6 +69,17 @@ run_check() {
         done < <(echo "$filtered" | grep -E '\[NEEDS CLARIFICATION:' 2>/dev/null | \
                  grep -v '`\[NEEDS CLARIFICATION:' | \
                  grep -v '\[NEEDS CLARIFICATION:[^]]*\]`' || true)
+        
+        # Pattern 3: {{mustache}} style placeholders
+        # Skip lines where pattern is inside inline backticks
+        while IFS= read -r match; do
+            if [[ -n "$match" ]]; then
+                local linenum="${match%%:*}"
+                found_placeholders+=("$file:$linenum")
+            fi
+        done < <(echo "$filtered" | grep -E '\{\{[^}]+\}\}' 2>/dev/null | \
+                 grep -v '`{{' | \
+                 grep -v '}}`' || true)
     done
     
     # Deduplicate results (same line might match multiple patterns)
@@ -93,6 +104,6 @@ run_check() {
         RULE_STATUS="fail"
         RULE_MESSAGE="Found $count unfilled placeholder(s)"
         RULE_DETAILS=("${unique_placeholders[@]}")
-        RULE_REMEDIATION="Replace [YOUR_VALUE_HERE:] and [NEEDS CLARIFICATION:] with actual values"
+        RULE_REMEDIATION="Replace [YOUR_VALUE_HERE:], [NEEDS CLARIFICATION:], and {{placeholder}} with actual values"
     fi
 }

@@ -1,12 +1,12 @@
-# Semantic Memory MCP Server
+# Spec Kit Memory MCP Server
 
-> **Last Updated:** 2025-12-25 | **Version:** Semantic Memory MCP v12.x
+> **Last Updated:** 2025-12-25 | **Version:** Spec Kit Memory MCP v12.x
 
-Context preservation with **semantic memory**: six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, and checkpoint save/restore. Provides **14 MCP tools** for intelligent memory retrieval. This is a **Native MCP tool** - call it directly.
+Context preservation with **spec kit memory**: six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, and checkpoint save/restore. Provides **13 MCP tools** for intelligent memory management. This is a **Native MCP tool** - call it directly.
 
 > **Navigation**:
-> - New to Semantic Memory? Start with [Overview](#1--overview)
-> - Need tool reference? See [MCP Tools](#2--mcp-tools-14)
+> - New to Spec Kit Memory? Start with [Overview](#1--overview)
+> - Need tool reference? See [MCP Tools](#2--mcp-tools-13)
 > - Configuration help? See [Configuration](#5--configuration)
 > - Troubleshooting? See [Troubleshooting](#7--troubleshooting)
 
@@ -17,7 +17,7 @@ Context preservation with **semantic memory**: six-tier importance system, hybri
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
-- [2. 🔧 MCP TOOLS (14)](#2--mcp-tools-14)
+- [2. 🔧 MCP TOOLS (13)](#2--mcp-tools-13)
 - [3. 📁 LIBRARY MODULES (22)](#3--library-modules-22)
 - [4. 🔄 FILE WATCHER](#4--file-watcher)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
@@ -31,20 +31,21 @@ Context preservation with **semantic memory**: six-tier importance system, hybri
 
 ### What This Folder Contains
 
-The `mcp_server/` folder is the standalone MCP server implementation for semantic memory operations. It exposes memory tools via the Model Context Protocol for use by AI assistants like Claude and OpenCode.
+The `mcp_server/` folder is the standalone MCP server implementation for spec kit memory operations. It exposes memory tools via the Model Context Protocol for use by AI assistants like Claude and OpenCode.
 
 ### Entry Points
 
 | File                 | Purpose           | How to Run                            |
 | -------------------- | ----------------- | ------------------------------------- |
 | `context-server.js` | Main MCP server   | `node context-server.js` (via stdio) |
-| `file-watcher.js`    | Auto-index daemon | `npm run watch`                       |
+
+> **Note:** The legacy `file-watcher.js` daemon was removed; use `memory_index_scan` for manual re-indexing until the watcher is reintroduced.
 
 ### Key Features
 
 | Feature                  | Description                                                   |
 | ------------------------ | ------------------------------------------------------------- |
-| **14 MCP Tools**         | Complete CRUD + search operations for memory management       |
+| **13 MCP Tools**         | Complete CRUD + search operations for memory management       |
 | **Hybrid Search**        | FTS5 keyword + vector semantic search with RRF fusion         |
 | **Local Embeddings**     | nomic-embed-text-v1.5 (768 dimensions) - no external APIs     |
 | **Six Importance Tiers** | constitutional/critical/important/normal/temporary/deprecated |
@@ -92,7 +93,7 @@ file-watcher.js ─────────────────────�
 
 ---
 
-## 2. 🔧 MCP TOOLS (14)
+## 2. 🔧 MCP TOOLS (13)
 
 ### Search & Retrieval Tools
 
@@ -133,14 +134,15 @@ Search memories semantically using vector similarity.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `query` | string | - | Natural language search query |
+| `concepts` | string[] | - | Multi-concept AND search (2-5 concepts) |
+| `specFolder` | string | - | Limit search to specific spec folder |
 | `limit` | number | 10 | Maximum results to return (1-20) |
 | `tier` | string | - | Filter by importance tier |
 | `contextType` | string | - | Filter by context type |
-| `specFolder` | string | - | Limit search to specific spec folder |
-| `concepts` | string[] | - | Multi-concept AND search (2-5 concepts) |
-| `includeConstitutional` | boolean | **true** | Include constitutional tier at top of results |
-| `includeContiguity` | boolean | false | Include adjacent/contiguous memories |
 | `useDecay` | boolean | true | Apply temporal decay scoring |
+| `includeContiguity` | boolean | false | Include adjacent/contiguous memories |
+| `includeConstitutional` | boolean | **true** | Include constitutional tier at top of results |
+| `includeContent` | boolean | false | Embed memory file content directly in results (replaces legacy `memory_load`) |
 
 **Response Fields:**
 
@@ -184,7 +186,6 @@ Browse stored memories with pagination and filtering.
 |-----------|------|---------|-------------|
 | `limit` | number | 20 | Results per page (max 100) |
 | `offset` | number | 0 | Skip N results for pagination |
-| `tier` | string | - | Filter by importance tier (e.g., `constitutional`, `critical`) |
 | `specFolder` | string | - | Filter by spec folder |
 | `sortBy` | string | `created_at` | Sort order: `created_at`, `updated_at`, `importance_weight` |
 

@@ -524,7 +524,7 @@ sequential_thinking_sequentialthinking({
 | Server              | Purpose                  |
 | ------------------- | ------------------------ |
 | **LEANN**           | Semantic code search     |
-| **Semantic Memory** | Context preservation     |
+| **Spec Kit Memory** | Context preservation     |
 | **Code Context**    | Structural code analysis |
 
 ### When to Combine Tools

@@ -1,1 +1,12 @@
-{"type":"commonjs","dependencies":{"@huggingface/transformers":"^3.8.1","better-sqlite3":"^12.5.0","sqlite-vec":"^0.1.7-alpha.2"}}
+{
+  "name": "@spec-kit/scripts",
+  "version": "1.0.0",
+  "description": "CLI tools for spec-kit context generation and memory management",
+  "type": "commonjs",
+  "main": "generate-context.js",
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.1",
+    "better-sqlite3": "^12.5.0",
+    "sqlite-vec": "^0.1.7-alpha.2"
+  }
+}

@@ -376,7 +376,7 @@ Concrete examples showing how to customize from Universal to project-specific.
 | **Skills - Remove**   | ❌      | mcp-leann                 | Small codebase, grep sufficient |
 |                       | ❌      | mcp-narsil                | Minimal JS complexity           |
 |                       | ❌      | workflows-git             | Optional for solo projects      |
-| **MCP - Keep**        | ✅      | semantic_memory           | Required for spec-kit skill     |
+| **MCP - Keep**        | ✅      | spec_kit_memory           | Required for spec-kit skill     |
 |                       | ✅      | code_mode                 | External tool access            |
 | **MCP - Remove**      | ❌      | leann                     | Not using semantic search       |
 |                       | ❌      | sequential_thinking       | Overkill for frontend           |
@@ -403,7 +403,7 @@ Concrete examples showing how to customize from Universal to project-specific.
 |                     | ❌      | mcp-code-mode             | No Webflow/Figma needed       |
 | **MCP - Keep**      | ✅      | leann                     | Semantic search essential     |
 |                     | ✅      | narsil                    | Structure navigation, security |
-|                     | ✅      | semantic_memory           | Context preservation          |
+|                     | ✅      | spec_kit_memory           | Context preservation          |
 |                     | ✅      | sequential_thinking       | Complex reasoning             |
 | **MCP - Remove**    | ❌      | code_mode                 | No external design tools      |
 
@@ -467,7 +467,7 @@ ls -la .opencode/skill/
 | `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning                     |
 | `leann`               | `leann_*`               | Semantic code search                             |
 | `narsil`              | `narsil_*`              | Structural analysis, security scanning, call graphs |
-| `semantic-memory`     | `memory_*`              | Context preservation                             |
+| `spec-kit-memory`     | `memory_*`              | Context preservation                             |
 | `code-mode`           | `call_tool_chain()`     | External tool orchestration                      |
 
 ### 5.3 Update Tool Routing Decision Tree
@@ -1067,7 +1067,7 @@ ls .opencode/commands/
 | Category        | Count | Items                                                                                                                                                    |
 | --------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Skills**      | 8     | mcp-narsil, mcp-code-mode, mcp-leann, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
-| **MCP Servers** | 5     | sequential-thinking, leann, narsil, semantic-memory, code-mode                                                      |
+| **MCP Servers** | 5     | sequential-thinking, leann, narsil, spec-kit-memory, code-mode                                                      |
 | **Commands**    | 16    | /create:* (5), /memory:* (3), /prompt:improve (1), /search:* (2), /spec_kit:* (5)                                   |
 | **Gates**       | 7     | Gate 0-6 (Compaction, Understanding, Routing, Spec, Memory Load, Memory Save, Completion)                           |
 

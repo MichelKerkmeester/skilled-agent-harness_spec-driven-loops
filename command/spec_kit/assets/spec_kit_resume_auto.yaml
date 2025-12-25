@@ -148,8 +148,9 @@ workflow:
       1: handover.md
       2: memory/*.md (contains Project State Snapshot)
     mcp_tool:
-      name: memory_load
-      note: "Call directly - NEVER through Code Mode"
+      name: memory_search
+      note: "Call directly - NEVER through Code Mode. Use includeContent: true to embed memory content in results."
+      example: "spec_kit_memory_memory_search({ specFolder: 'xxx', includeContent: true })"
     outputs:
     - memory_loaded: true
     - context_source: handover|memory
@@ -216,7 +217,7 @@ error_recovery:
     action: "Report no session found, suggest /spec_kit:complete to start"
   spec_folder_missing:
     action: "Report folder not found, ask user to specify or create"
-  memory_load_failed:
+  memory_search_failed:
     action: "Proceed without context, note limitation"
   stale_session_detected:
     action: "Warn user, proceed with caution, suggest review"

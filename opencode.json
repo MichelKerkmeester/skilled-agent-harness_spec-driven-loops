@@ -160,7 +160,7 @@
       },
       "enabled": true
     },
-    "semantic_memory": {
+    "spec_kit_memory": {
       "type": "local",
       "command": [
         "node",

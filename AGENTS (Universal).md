@@ -20,7 +20,7 @@
 - **Truth over agreement** - correct user misconceptions with evidence; do not agree for conversational flow
 
 **MANDATORY TOOLS:**
-- **Semantic Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use generate-context.js** - NEVER manually create memory files.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use generate-context.js** - NEVER manually create memory files.
 - **LEANN MCP** for semantic code search - finds code by MEANING ("How does auth work?"). See §6 for tool list.
 - **Narsil MCP** for structural code queries AND security scanning - finds code by STRUCTURE ("List functions in auth.ts"), security vulnerabilities, call graphs. Complements LEANN: use LEANN for understanding intent, Narsil for symbol navigation and security. Accessed via Code Mode.
 
@@ -287,7 +287,7 @@ File modification planned? → Include Q1 (Spec Folder)
 **MANDATORY:** Before key actions:
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
 - Before **code discovery**: Use mcp-leann (semantic) + mcp-narsil (structural, via Code Mode) as complementary tools (MANDATORY)
-- Before **research tasks**: Use semantic memory MCP to find prior work, saved context, and related memories (MANDATORY)
+- Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
 
@@ -556,11 +556,11 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 | System              | MCP Name          | Database Location                                            | Purpose                               |
 | ------------------- | ----------------- | ------------------------------------------------------------ | ------------------------------------- |
 | **LEANN**           | `leann`           | `~/.leann/indexes/`                                          | **Code** semantic search              |
-| **Semantic Memory** | `semantic_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
+| **Spec Kit Memory** | `spec_kit_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**
 - Both use vector embeddings for semantic search
-- LEANN is for code/document search, Semantic Memory is for conversation context
+- LEANN is for code/document search, Spec Kit Memory is for conversation context
 - They are COMPLETELY SEPARATE systems with different purposes
 
 **When cleaning/resetting databases:**
@@ -591,7 +591,7 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 **Two systems:**
 
 1. **Native MCP** (`opencode.json`) - Direct tools, called natively
-   - Sequential Thinking, LEANN, Semantic Memory, Code Mode server
+   - Sequential Thinking, LEANN, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Standard integrations: Chrome DevTools, ClickUp, Figma, GitHub

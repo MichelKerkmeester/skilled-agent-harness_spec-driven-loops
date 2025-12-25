@@ -59,8 +59,8 @@
               "@taazkareem/clickup-mcp-server"
             ],
             "env": {
-              "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
-              "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}",
+              "CLICKUP_API_KEY": "your_clickup_api_key",
+              "CLICKUP_TEAM_ID": "your_clickup_team_id",
               "DOCUMENT_SUPPORT": "true",
               "NODE_ENV": "production"
             }
@@ -81,7 +81,7 @@
               "mcp-figma"
             ],
             "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}",
+              "FIGMA_PERSONAL_ACCESS_TOKEN": "your_figma_token",
               "NODE_ENV": "production"
             }
           }
@@ -101,7 +101,7 @@
               "@modelcontextprotocol/server-github"
             ],
             "env": {
-              "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+              "GITHUB_PERSONAL_ACCESS_TOKEN": "your_github_token"
             }
           }
         }

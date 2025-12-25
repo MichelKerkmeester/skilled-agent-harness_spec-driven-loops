@@ -8,11 +8,11 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 **This command creates files at a predefined location and is EXEMPT from the spec folder question.**
 
-| Property | Value |
-|----------|-------|
-| **Location** | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
-| **Reason** | Skill-internal files, not project documentation |
-| **Alternative** | Use `/create:skill` for full skill creation with spec folder |
+| Property        | Value                                                                                |
+| --------------- | ------------------------------------------------------------------------------------ |
+| **Location**    | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
+| **Reason**      | Skill-internal files, not project documentation                                      |
+| **Alternative** | Use `/create:skill` for full skill creation with spec folder                         |
 
 ---
 
@@ -82,12 +82,12 @@ EXECUTE THIS CHECK FIRST:
 │   │
 │   ├─ ASK user:
 │   │   ┌────────────────────────────────────────────────────────────┐
-│   │   │ "Which skill needs a reference file, and what type?"       │
+│   │   │ "Which skill needs a reference file, and what type?"        │
 │   │   │                                                            │
 │   │   │ Format: <skill-name> <reference-type>                      │
 │   │   │                                                            │
 │   │   │ Reference types:                                           │
-│   │   │   - workflow    (multi-phase processes)                    │
+│   │   │   - workflow    (multi-phase processes)                     │
 │   │   │   - patterns    (code patterns library)                    │
 │   │   │   - debugging   (troubleshooting guide)                    │
 │   │   │   - tools       (external tool integration)                │
@@ -154,7 +154,7 @@ EXECUTE AFTER PHASE 1 PASSES:
        │   │                                                            │
        │   │ A) Provide correct skill name                              │
        │   │ B) Provide full path to skill                              │
-       │   │ C) Create new skill first                                  │
+       │   │ C) Create new skill first                                   │
        │   └────────────────────────────────────────────────────────────┘
        │
        ├─ WAIT for response
@@ -172,11 +172,11 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                   | REQUIRED STATUS         | YOUR STATUS | OUTPUT VALUE                              |
-| ----------------------- | ----------------------- | ----------- | ----------------------------------------- |
-| PHASE C: CHAINED        | ⏭️ SKIPPED or N/A       | ______      | chained_mode: [yes/no]                    |
-| PHASE 1: INPUT          | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_name: ______ / reference_type: ____ |
-| PHASE 2: SKILL VERIFY   | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_path: ______                        |
+| PHASE                 | REQUIRED STATUS       | YOUR STATUS | OUTPUT VALUE                              |
+| --------------------- | --------------------- | ----------- | ----------------------------------------- |
+| PHASE C: CHAINED      | ⏭️ SKIPPED or N/A      | ______      | chained_mode: [yes/no]                    |
+| PHASE 1: INPUT        | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_name: ______ / reference_type: ____ |
+| PHASE 2: SKILL VERIFY | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_path: ______                        |
 
 ```
 VERIFICATION CHECK:
@@ -220,13 +220,13 @@ VERIFICATION CHECK:
 
 ## WORKFLOW TRACKING
 
-| STEP | NAME           | STATUS | REQUIRED OUTPUT          | VERIFICATION                    |
-| ---- | -------------- | ------ | ------------------------ | ------------------------------- |
-| 1    | Analysis       | ☐      | Skill path, ref type     | Skill verified, type valid      |
-| 2    | Planning       | ☐      | Sections, checkpoints    | Content structure defined       |
-| 3    | Template Load  | ☐      | Structure patterns       | Template loaded                 |
-| 4    | Content        | ☐      | [reference_name].md      | Reference file created          |
-| 5    | Validation     | ☐      | Updated SKILL.md         | Integration complete            |
+| STEP | NAME          | STATUS | REQUIRED OUTPUT       | VERIFICATION               |
+| ---- | ------------- | ------ | --------------------- | -------------------------- |
+| 1    | Analysis      | ☐      | Skill path, ref type  | Skill verified, type valid |
+| 2    | Planning      | ☐      | Sections, checkpoints | Content structure defined  |
+| 3    | Template Load | ☐      | Structure patterns    | Template loaded            |
+| 4    | Content       | ☐      | [reference_name].md   | Reference file created     |
+| 5    | Validation    | ☐      | Updated SKILL.md      | Integration complete       |
 
 ---
 
@@ -339,15 +339,15 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ## 4. 📚 REFERENCE (See YAML for Details)
 
-| Section              | Location in YAML                     |
-| -------------------- | ------------------------------------ |
-| Reference Types      | `notes.reference_type_selection`     |
-| Size Targets         | `notes.reference_type_size_targets`  |
-| Workflow Structure   | `notes.workflow_reference_structure` |
-| Pattern Structure    | `notes.pattern_reference_structure`  |
-| Chained Mode         | `notes.chained_execution_mode`       |
-| Failure Recovery     | `failure_recovery`                   |
-| Completion Report    | `completion_report_template`         |
+| Section            | Location in YAML                     |
+| ------------------ | ------------------------------------ |
+| Reference Types    | `notes.reference_type_selection`     |
+| Size Targets       | `notes.reference_type_size_targets`  |
+| Workflow Structure | `notes.workflow_reference_structure` |
+| Pattern Structure  | `notes.pattern_reference_structure`  |
+| Chained Mode       | `notes.chained_execution_mode`       |
+| Failure Recovery   | `failure_recovery`                   |
+| Completion Report  | `completion_report_template`         |
 
 ---
 

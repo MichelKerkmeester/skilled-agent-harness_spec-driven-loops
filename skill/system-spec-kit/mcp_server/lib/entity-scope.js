@@ -207,8 +207,8 @@ function isValidContextType(type) {
  *
  * @example
  * // Filter by spec folder only
- * buildScopeFilter({ specFolder: '011-semantic-memory' });
- * // Returns: { clause: 'spec_folder = ?', params: ['011-semantic-memory'] }
+ * buildScopeFilter({ specFolder: '011-spec-kit-memory' });
+ * // Returns: { clause: 'spec_folder = ?', params: ['011-spec-kit-memory'] }
  *
  * @example
  * // Filter by session (includes global memories)
@@ -223,13 +223,13 @@ function isValidContextType(type) {
  * @example
  * // Combined filters
  * buildScopeFilter({
- *   specFolder: '011-semantic-memory',
+ *   specFolder: '011-spec-kit-memory',
  *   sessionId: 'session-abc-123',
  *   contextTypes: ['implementation']
  * });
  * // Returns: {
  * //   clause: 'spec_folder = ? AND (session_id = ? OR session_id IS NULL) AND context_type IN (?)',
- * //   params: ['011-semantic-memory', 'session-abc-123', 'implementation']
+ * //   params: ['011-spec-kit-memory', 'session-abc-123', 'implementation']
  * // }
  *
  * @example

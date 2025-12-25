@@ -167,6 +167,20 @@ function safeJsonParse(str, fallback = []) {
 
 // Default base path - use environment variable or current working directory
 const DEFAULT_BASE_PATH = process.env.MEMORY_BASE_PATH || process.cwd();
+const ALLOWED_BASE_PATHS = [
+  path.join(os.homedir(), '.claude'),
+  DEFAULT_BASE_PATH,
+  process.cwd()
+]
+  .filter(Boolean)
+  .map(base => path.resolve(base));
+
+function isWithinAllowedBase(targetPath) {
+  return ALLOWED_BASE_PATHS.some(base => {
+    const relative = path.relative(base, targetPath);
+    return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+  });
+}
 
 // ───────────────────────────────────────────────────────────────
 // PATH VALIDATION
@@ -182,24 +196,13 @@ function validateFilePath(filePath) {
   // Normalize the path to resolve any .. or . components
   const normalized = path.resolve(filePath);
 
-  // Define allowed base directories
-  const homeDir = os.homedir();
-  const allowedBases = [
-    path.join(homeDir, '.claude'),
-    DEFAULT_BASE_PATH, // Use workspace root
-    process.cwd() // Current working directory
-  ];
-
-  // Check if path is under an allowed directory
-  const isAllowed = allowedBases.some(base => normalized.startsWith(base));
-
-  if (!isAllowed) {
-    throw new Error(`Access denied: Path outside allowed directories`);
+  if (!isWithinAllowedBase(normalized)) {
+    throw new Error('Access denied: Path outside allowed directories');
   }
 
   // Additional check: reject paths with suspicious patterns
   if (filePath.includes('..') || filePath.includes('\0')) {
-    throw new Error(`Access denied: Invalid path pattern`);
+    throw new Error('Access denied: Invalid path pattern');
   }
 
   return normalized;
@@ -247,7 +250,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           },
           specFolder: {
             type: 'string',
-            description: 'Limit search to a specific spec folder (e.g., "011-semantic-memory-upgrade")'
+            description: 'Limit search to a specific spec folder (e.g., "011-spec-kit-memory-upgrade")'
           },
           limit: {
             type: 'number',
@@ -461,7 +464,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     },
     {
       name: 'memory_save',
-      description: 'Index a memory file into the semantic memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files.',
+      description: 'Index a memory file into the spec kit memory database. Reads the file, extracts metadata (title, trigger phrases), generates embedding, and stores in the index. Use this to manually index new or updated memory files.',
       inputSchema: {
         type: 'object',
         properties: {

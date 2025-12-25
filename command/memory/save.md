@@ -1,7 +1,7 @@
 ---
 description: Save current conversation context to memory with semantic indexing
 argument-hint: "<spec-folder>"
-allowed-tools: Read, Bash, semantic_memory_memory_save, semantic_memory_memory_index_scan, semantic_memory_memory_stats, semantic_memory_memory_update
+allowed-tools: Read, Bash, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_stats, spec_kit_memory_memory_update
 ---
 
 # 🚨 MANDATORY PHASE - BLOCKING ENFORCEMENT
@@ -169,10 +169,10 @@ operating_mode:
 
 > **Tool Restriction (Gate 5 HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags (with opening AND closing markers), SESSION SUMMARY table, and MEMORY METADATA YAML block. Direct file creation bypasses these critical formatting features. See AGENTS.md Gate 5 for enforcement details.
 
-**Auto-Indexing:** Memory files created in `specs/*/memory/` are automatically indexed when the semantic memory MCP server starts. For immediate indexing after creating a file, use `memory_save`:
+**Auto-Indexing:** Memory files created in `specs/*/memory/` are automatically indexed when the Spec Kit Memory MCP server starts. For immediate indexing after creating a file, use `memory_save`:
 
 ```
-semantic_memory_memory_save({
+spec_kit_memory_memory_save({
   filePath: "specs/<folder>/memory/<filename>.md"
 })
 ```
@@ -498,8 +498,8 @@ Current triggers:
 
 ## 10. 📌 RELATED COMMANDS
 
-- `/memory/search` - Unified memory dashboard (search, browse, cleanup, triggers)
-- `/memory/checkpoint` - Create checkpoint before major changes
+- `/memory:search` - Unified memory dashboard (search, browse, cleanup, triggers)
+- `/memory:checkpoint` - Create checkpoint before major changes
 
 ---
 
@@ -510,21 +510,37 @@ Memory files can be indexed in multiple ways:
 | Method | When It Happens | Use Case |
 | ------ | --------------- | -------- |
 | **Auto-indexing on startup** | MCP server start | Default - no action needed |
-| **generate-context.js** | Script execution | Standard /memory/save workflow |
+| **generate-context.js** | Script execution | Standard /memory:save workflow |
 | **memory_save MCP tool** | On demand | Immediate indexing of single file |
 | **memory_index_scan MCP tool** | On demand | Bulk re-index of folder/all files |
 
+### Full Parameter Reference: memory_save
+
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `filePath` | string | *required* | Absolute path to the memory file (must be in `specs/**/memory/` or `.opencode/skill/*/constitutional/` directory) |
+| `force` | boolean | false | Force re-index even if content hash unchanged. Use when you want to regenerate embeddings or update metadata without changing file content. |
+
 **For manual file creation**, use `memory_save` for immediate indexing:
 ```
-semantic_memory_memory_save({
-  filePath: "specs/011-memory/memory/context.md"
+spec_kit_memory_memory_save({
+  filePath: "specs/011-memory/memory/context.md",
+  force: false  // Set true to force re-index unchanged files
 })
 ```
 
+### Full Parameter Reference: memory_index_scan
+
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `specFolder` | string | - | Limit scan to specific spec folder (e.g., "005-memory"). Omit to scan all memory directories. |
+| `force` | boolean | false | Force re-index all files, ignoring content hash. Useful for regenerating all embeddings. |
+
 **For bulk operations**, use `memory_index_scan`:
 ```
-semantic_memory_memory_index_scan({
-  specFolder: "011-memory"  // Optional: omit for full scan
+spec_kit_memory_memory_index_scan({
+  specFolder: "011-memory",  // Optional: omit for full scan
+  force: false               // Set true to force re-index all
 })
 ```
 

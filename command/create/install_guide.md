@@ -285,7 +285,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 **Reference Guides:**
 - `.opencode/install_guides/MCP/MCP - Code Mode.md`
-- `.opencode/install_guides/MCP/MCP - Semantic Memory.md`
+- `.opencode/install_guides/MCP/MCP - Spec Kit Memory.md`
 - `.opencode/install_guides/MCP/MCP - Chrome Dev Tools.md`
 
 ---

@@ -89,7 +89,7 @@ Research from [Apple](https://machinelearning.apple.com/research/codeact), [Clou
 
 | System | Config File | Examples |
 |--------|-------------|----------|
-| **Native MCP** | `opencode.json` | Sequential Thinking, LEANN, Semantic Memory |
+| **Native MCP** | `opencode.json` | Sequential Thinking, LEANN, Spec Kit Memory |
 | **Code Mode MCP** | `.utcp_config.json` | Webflow, Figma, ClickUp, Chrome DevTools |
 
 ### Basic Workflow
@@ -163,7 +163,7 @@ search_tools  call_tool_   list_tools  register_   deregister_
 - Text searching (use Grep tool)
 - File discovery (use Glob tool)
 - Bash commands (use Bash tool)
-- Native MCP tools (LEANN, Sequential Thinking, Semantic Memory)
+- Native MCP tools (LEANN, Sequential Thinking, Spec Kit Memory)
 
 ---
 

@@ -810,7 +810,7 @@ leann search my-project "authentication flow"
 # (Use Read tool on identified files)
 
 # 3. Save context for future sessions
-# (Use semantic_memory to preserve decisions)
+# (Use spec_kit_memory to preserve decisions)
 ```
 
 ---

@@ -40,7 +40,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 - ❌ Bash commands (use Bash tool)
 - ❌ Semantic code search (use `leann_leann_search()` - **NATIVE MCP**)
 - ✅ Structural code analysis via Narsil (use `narsil.narsil_find_symbols()`, `narsil.narsil_get_project_structure()` via Code Mode)
-- ❌ Conversation memory (use `semantic_memory_memory_search()` - **NATIVE MCP**)
+- ❌ Conversation memory (use `spec_kit_memory_memory_search()` - **NATIVE MCP**)
 - ❌ Sequential Thinking (call `sequential_thinking_sequentialthinking()` directly - **NATIVE MCP**)
 
 > See Section 4 for details on Native MCP vs Code Mode distinction.
@@ -266,7 +266,7 @@ call_tool_chain({
 - **Sequential Thinking**: `sequential_thinking_sequentialthinking()`
 - **LEANN**: `leann_leann_search()`, `leann_leann_list()`, `leann_leann_ask()`
 - **Narsil**: `narsil.narsil_find_symbols()`, `narsil.narsil_get_project_structure()` - Structural code analysis via Rust-powered AST (accessed through Code Mode)
-- **Semantic Memory**: `semantic_memory_memory_search()`, `semantic_memory_memory_save()`, etc.
+- **Spec Kit Memory**: `spec_kit_memory_memory_search()`, `spec_kit_memory_memory_save()`, etc.
 - **Code Mode server**: The Code Mode tool itself
 - **Note**: Some AI environments have built-in extended thinking capabilities that may supersede Sequential Thinking MCP.
 

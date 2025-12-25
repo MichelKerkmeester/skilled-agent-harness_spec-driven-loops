@@ -1,11 +1,11 @@
 ---
 name: system-spec-kit
-description: "Unified documentation and context preservation: spec folder workflow (levels 1-3), template enforcement, validation, semantic memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
+description: "Unified documentation and context preservation: spec folder workflow (levels 1-3), template enforcement, validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
 version: 16.0.0
 ---
 
-<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, semantic-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
+<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
 
 # Spec Kit - Mandatory Conversation Documentation
 
@@ -88,7 +88,7 @@ User Request
     │   └─► Route to /spec_kit:resume
     │
     ├─► Contains "save context", "save memory", "/memory:save"?
-    │   └─► Execute generate-context.js → Index to semantic memory
+    │   └─► Execute generate-context.js → Index to Spec Kit Memory
     │
     ├─► Contains "search memory", "find context", "what did we"?
     │   └─► Use memory_search() MCP tool
@@ -102,14 +102,16 @@ User Request
 
 ### Memory System Triggers
 
+> **Note:** Tool names use the full `spec_kit_memory_*` prefix as required by OpenCode MCP integration.
+
 | Trigger Pattern | Action | MCP Tool |
 |-----------------|--------|----------|
-| "save context", "save memory", `/memory:save` | Generate + index memory file | `memory_save()` |
-| "search memory", "find prior", "what did we decide" | Semantic search across sessions | `memory_search()` |
-| "list memories", "show context" | Browse stored memories | `memory_list()` |
-| "checkpoint", "save state" | Create named checkpoint | `checkpoint_create()` |
-| "restore checkpoint", "rollback" | Restore from checkpoint | `checkpoint_restore()` |
-| Gate enforcement (any file modification) | Auto-surface constitutional rules | `memory_match_triggers()` |
+| "save context", "save memory", `/memory:save` | Generate + index memory file | `spec_kit_memory_memory_save()` |
+| "search memory", "find prior", "what did we decide" | Semantic search across sessions | `spec_kit_memory_memory_search()` |
+| "list memories", "show context" | Browse stored memories | `spec_kit_memory_memory_list()` |
+| "checkpoint", "save state" | Create named checkpoint | `spec_kit_memory_checkpoint_create()` |
+| "restore checkpoint", "rollback" | Restore from checkpoint | `spec_kit_memory_checkpoint_restore()` |
+| Gate enforcement (any file modification) | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()` |
 
 ### Resource Router
 
@@ -363,14 +365,14 @@ specs/007-auth-system/
 <!-- /ANCHOR:artifacts -->
 ```
 
-### Semantic Memory System (Integrated)
+### Spec Kit Memory System (Integrated)
 
-This skill includes a complete semantic memory system for context preservation across sessions.
+This skill includes a complete Spec Kit Memory system for context preservation across sessions.
 
 **Architecture:**
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| MCP Server | `mcp_server/context-server.js` | Semantic memory MCP with vector search |
+| MCP Server | `mcp_server/context-server.js` | Spec Kit Memory MCP with vector search |
 | Database | `database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
 | Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
 | Scripts | `scripts/generate-context.js` | Memory file generation with ANCHOR format |
@@ -388,13 +390,13 @@ This skill includes a complete semantic memory system for context preservation a
 **MCP Tools Available:**
 | Tool | Purpose | Example Use |
 |------|---------|-------------|
-| `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
-| `memory_match_triggers()` | Fast keyword matching (<50ms) | Gate enforcement |
-| `memory_save()` | Index a memory file | After generate-context.js |
-| `memory_list()` | Browse stored memories | Review session history |
-| `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
-| `checkpoint_create()` | Save named state snapshot | Before risky changes |
-| `checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
+| `spec_kit_memory_memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
+| `spec_kit_memory_memory_match_triggers()` | Fast keyword matching (<50ms) | Gate enforcement |
+| `spec_kit_memory_memory_save()` | Index a memory file | After generate-context.js |
+| `spec_kit_memory_memory_list()` | Browse stored memories | Review session history |
+| `spec_kit_memory_memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
+| `spec_kit_memory_checkpoint_create()` | Save named state snapshot | Before risky changes |
+| `spec_kit_memory_checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
 
 **Decay Scoring:**
 - Memories decay over time (~62-day half-life)
@@ -706,7 +708,7 @@ validation:
 | **Downstream** | workflows-code          | Uses spec folders for implementation tracking      |
 | **Downstream** | workflows-git           | References spec folders in commit messages and PRs |
 | **Downstream** | workflows-documentation | Validates spec folder documentation quality        |
-| **Integrated** | Semantic Memory         | Context preservation via MCP (merged into this skill) |
+| **Integrated** | Spec Kit Memory         | Context preservation via MCP (merged into this skill) |
 
 ### Cross-Skill Workflows
 
@@ -715,7 +717,7 @@ validation:
 system-spec-kit (creates spec folder)
     → workflows-code (implements from spec + plan)
     → workflows-git (commits with spec reference)
-    → semantic memory (preserves conversation to spec/memory/ via MCP)
+    → Spec Kit Memory (preserves conversation to spec/memory/ via MCP)
 ```
 
 **Documentation Quality:**
@@ -738,11 +740,11 @@ Implementation complete
 
 | Resource       | Location                                                      | Purpose                      |
 | -------------- | ------------------------------------------------------------- | ---------------------------- |
-| Templates (13) | `templates/`                                                  | All spec folder templates    |
+| Templates (11) | `templates/`                                                  | All spec folder templates    |
 | Validation     | `scripts/validate-spec.sh`                                    | Automated validation         |
 | Gates          | `AGENTS.md` Section 2                                         | Gate definitions             |
 | Memory gen     | `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Memory file creation         |
-| MCP Server     | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`| Semantic memory MCP          |
+| MCP Server     | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`| Spec Kit Memory MCP          |
 | Database       | `.opencode/skill/system-spec-kit/database/context-index.sqlite`| Vector search index         |
 | Constitutional | `.opencode/skill/system-spec-kit/constitutional/`             | Always-surface rules         |
 

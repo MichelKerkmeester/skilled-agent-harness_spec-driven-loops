@@ -189,7 +189,66 @@ Full details: .opencode/command/spec_kit/<command>.md
 
 ---
 
-## 7. ⚠️ ERROR HANDLING
+## 7. 🔄 COMMAND WORKFLOWS
+
+### Separated Workflow (Recommended for complex features)
+
+```
+/spec_kit:research "topic"     → Deep investigation
+        ↓
+/spec_kit:plan "feature"       → Spec + Plan creation
+        ↓
+/spec_kit:implement specs/path → Implementation phase
+```
+
+**When to use:** Complex features requiring research, stakeholder approval between phases, or when you need to pause between stages.
+
+### All-in-One Workflow (For simpler features)
+
+```
+/spec_kit:complete "feature"   → Full lifecycle in one command
+```
+
+**When to use:** Straightforward features where you can plan and implement in a single session without needing approval gates.
+
+### Session Management
+
+```
+/spec_kit:handover            → Save context for new session
+        ↓
+/spec_kit:resume specs/path   → Continue in new session
+```
+
+**When to use:** Long-running work that spans multiple sessions, context compaction detected, or handing off to another team member.
+
+### Debugging
+
+```
+/spec_kit:debug               → Delegate to specialist sub-agent
+```
+
+**When to use:** Stuck on an error after 3+ attempts, need fresh perspective, or want parallel investigation.
+
+---
+
+## 8. 📋 QUICK REFERENCE
+
+| Command | Purpose | Typical Arguments |
+|---------|---------|-------------------|
+| `/spec_kit:complete` | Full workflow | `"feature description"` |
+| `/spec_kit:plan` | Planning only | `"feature description"` |
+| `/spec_kit:implement` | Implementation only | `specs/###-folder-name/` |
+| `/spec_kit:research` | Investigation | `"topic to research"` |
+| `/spec_kit:resume` | Continue work | `specs/###-folder-name/ [:auto]` |
+| `/spec_kit:handover` | Session transfer | *(none)* |
+| `/spec_kit:debug` | Debug delegation | *(none)* |
+| `/spec_kit:help` | This help | `[command-name]` |
+
+**Note:** Full command names are required. Short aliases (e.g., `/sk:c`) are not currently supported.
+
+---
+
+## 9. ⚠️ ERROR HANDLING
 
 | Condition | Action |
 |-----------|--------|
@@ -198,7 +257,7 @@ Full details: .opencode/command/spec_kit/<command>.md
 
 ---
 
-## 8. 🔗 RELATED COMMANDS
+## 10. 🔗 RELATED COMMANDS
 
 - `/memory:search` - Memory system dashboard
 - `/memory:save` - Save conversation context
@@ -206,7 +265,7 @@ Full details: .opencode/command/spec_kit/<command>.md
 
 ---
 
-## 9. 📚 FULL DOCUMENTATION
+## 11. 📚 FULL DOCUMENTATION
 
 For comprehensive SpecKit documentation:
 `.opencode/skill/system-spec-kit/SKILL.md`

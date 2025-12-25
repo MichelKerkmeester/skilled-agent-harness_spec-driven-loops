@@ -224,9 +224,9 @@ FOR CONFIDENCE VIOLATIONS:
 
 ---
 
-# 📊 WORKFLOW EXECUTION (12 STEPS) - MANDATORY TRACKING
+# 📊 WORKFLOW EXECUTION (13 STEPS) - MANDATORY TRACKING
 
-**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→12). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
+**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→13). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
 ---
 

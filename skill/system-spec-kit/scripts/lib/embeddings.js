@@ -68,53 +68,71 @@ function getOptimalDevice() {
 
 let extractor = null;
 let modelLoadTime = null;
+let loadingPromise = null;  // Track loading state to prevent race conditions
 
 /**
  * Get or create the embedding pipeline (singleton pattern)
  * First call downloads/loads model (~274MB), subsequent calls return cached instance.
+ * Prevents race conditions with multiple simultaneous model load requests.
  * Attempts MPS acceleration on Mac, falls back to CPU if unavailable.
  *
  * @returns {Promise<Object>} Feature extraction pipeline
  */
 async function getModel() {
+  // If already loaded, return immediately
   if (extractor) {
     return extractor;
   }
 
-  const start = Date.now();
-  console.warn('[embeddings] Loading nomic-embed-text-v1.5 (~274MB, first load may take 15-30s)...');
-
-  // Dynamic import for ESM module
-  const { pipeline } = await import('@huggingface/transformers');
-
-  // Try optimal device first (MPS on Mac)
-  let targetDevice = getOptimalDevice();
-  console.log(`[embeddings] Attempting device: ${targetDevice}`);
-
-  try {
-    extractor = await pipeline('feature-extraction', MODEL_NAME, {
-      dtype: 'fp32',
-      device: targetDevice
-    });
-    currentDevice = targetDevice;
-  } catch (deviceError) {
-    // MPS failed, fall back to CPU
-    if (targetDevice !== 'cpu') {
-      console.warn(`[embeddings] ${targetDevice.toUpperCase()} unavailable (${deviceError.message}), falling back to CPU`);
-      extractor = await pipeline('feature-extraction', MODEL_NAME, {
-        dtype: 'fp32',
-        device: 'cpu'
-      });
-      currentDevice = 'cpu';
-    } else {
-      throw deviceError;
-    }
+  // If currently loading, wait for that to complete (race protection)
+  if (loadingPromise) {
+    return loadingPromise;
   }
 
-  modelLoadTime = Date.now() - start;
-  console.warn(`[embeddings] Model loaded in ${modelLoadTime}ms (device: ${currentDevice})`);
+  // Start loading and store the promise
+  loadingPromise = (async () => {
+    const start = Date.now();
+    try {
+      console.warn('[embeddings] Loading nomic-embed-text-v1.5 (~274MB, first load may take 15-30s)...');
 
-  return extractor;
+      // Dynamic import for ESM module
+      const { pipeline } = await import('@huggingface/transformers');
+
+      // Try optimal device first (MPS on Mac)
+      let targetDevice = getOptimalDevice();
+      console.log(`[embeddings] Attempting device: ${targetDevice}`);
+
+      try {
+        extractor = await pipeline('feature-extraction', MODEL_NAME, {
+          dtype: 'fp32',
+          device: targetDevice
+        });
+        currentDevice = targetDevice;
+      } catch (deviceError) {
+        // MPS failed, fall back to CPU
+        if (targetDevice !== 'cpu') {
+          console.warn(`[embeddings] ${targetDevice.toUpperCase()} unavailable (${deviceError.message}), falling back to CPU`);
+          extractor = await pipeline('feature-extraction', MODEL_NAME, {
+            dtype: 'fp32',
+            device: 'cpu'
+          });
+          currentDevice = 'cpu';
+        } else {
+          throw deviceError;
+        }
+      }
+
+      modelLoadTime = Date.now() - start;
+      console.warn(`[embeddings] Model loaded in ${modelLoadTime}ms (device: ${currentDevice})`);
+
+      return extractor;
+    } catch (error) {
+      loadingPromise = null;  // Reset on failure to allow retry
+      throw error;
+    }
+  })();
+
+  return loadingPromise;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -278,8 +296,10 @@ async function generateEmbedding(text) {
       normalize: true
     });
 
-    // Convert to Float32Array
-    const embedding = new Float32Array(output.data);
+    // Convert to Float32Array (check if already correct type to avoid unnecessary allocation)
+    const embedding = output.data instanceof Float32Array
+      ? output.data
+      : new Float32Array(output.data);
 
     const inferenceTime = Date.now() - start;
 
@@ -418,6 +438,23 @@ function getTaskPrefix(task) {
   return prefixes[task] || '';
 }
 
+/**
+ * Pre-warm the model for faster first embedding
+ * Call this during server startup to avoid cold start latency
+ *
+ * @returns {Promise<boolean>} True if model loaded successfully
+ */
+async function preWarmModel() {
+  try {
+    await getModel();
+    console.log('[embeddings] Model pre-warmed successfully');
+    return true;
+  } catch (error) {
+    console.error('[embeddings] Model pre-warm failed:', error.message);
+    return false;
+  }
+}
+
 // ───────────────────────────────────────────────────────────────
 // MODULE EXPORTS
 // ───────────────────────────────────────────────────────────────
@@ -442,6 +479,7 @@ module.exports = {
   getCurrentDevice,
   getOptimalDevice,
   getTaskPrefix,
+  preWarmModel,
 
   // Constants for external use
   EMBEDDING_DIM,

@@ -340,7 +340,7 @@ workflow:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save
       invocation: |
-        semantic_memory_memory_save({
+        spec_kit_memory_memory_save({
           filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__asset_creation_session.md"
         })
       critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"

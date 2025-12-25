@@ -1,10 +1,10 @@
 /**
- * Centralized Error Definitions for Semantic Memory MCP Server
+ * Centralized Error Definitions for Spec Kit Memory MCP Server
  * 
  * Provides standardized error codes and a custom MemoryError class
  * for consistent error handling across the codebase.
  * 
- * @module semantic-memory/lib/errors
+ * @module spec-kit-memory/lib/errors
  */
 
 'use strict';

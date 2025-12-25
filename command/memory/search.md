@@ -1,7 +1,7 @@
 ---
 description: Unified memory interface - search, browse, load by ID/folder/anchor, manage, cleanup
 argument-hint: "[query] | <id> | <spec-folder> [--anchor:<id>] [--tier:<tier>] [cleanup] [triggers]"
-allowed-tools: Read, Bash, semantic_memory_memory_search, semantic_memory_memory_match_triggers, semantic_memory_memory_list, semantic_memory_memory_stats, semantic_memory_memory_validate, semantic_memory_memory_update, semantic_memory_memory_delete
+allowed-tools: Read, Bash, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers, spec_kit_memory_memory_list, spec_kit_memory_memory_stats, spec_kit_memory_memory_validate, spec_kit_memory_memory_update, spec_kit_memory_memory_delete
 ---
 
 # 🚨 CONDITIONAL GATE - DESTRUCTIVE OPERATION ENFORCEMENT
@@ -25,7 +25,7 @@ EXECUTE THIS CHECK FIRST:
     ├─ SET STATUS: ☐ BLOCKED
     │
     ├─ EXECUTE cleanup candidate search:
-    │   semantic_memory_memory_list({ limit: 50, sortBy: "created_at" })
+    │   spec_kit_memory_memory_list({ limit: 50, sortBy: "created_at" })
     │
     ├─ FILTER by tier eligibility:
     │   ├─ deprecated      → Always include
@@ -82,17 +82,17 @@ Provide a unified interface for all memory operations: searching, browsing, **di
 
 ### Argument Patterns
 
-| Pattern                  | Mode          | Example                                  |
-| ------------------------ | ------------- | ---------------------------------------- |
-| (empty)                  | Dashboard     | `/memory:search`                         |
-| `<numeric-id>`           | Direct Load   | `/memory:search 42`                      |
-| `<NNN-folder-name>`      | Folder Load   | `/memory:search 007-auth`                |
-| `<id> --anchor:<anchor>` | Anchor Load   | `/memory:search 42 --anchor:summary`     |
-| `<query>`                | Search        | `/memory:search oauth implementation`    |
-| `cleanup`                | Cleanup       | `/memory:search cleanup`                 |
-| `triggers`               | Triggers View | `/memory:search triggers`                |
-| `--tier:<tier>`          | Filtered      | `/memory:search --tier:critical`         |
-| `--type:<type>`          | Filtered      | `/memory:search --type:decision`         |
+| Pattern                  | Mode          | Example                               |
+| ------------------------ | ------------- | ------------------------------------- |
+| (empty)                  | Dashboard     | `/memory:search`                      |
+| `<numeric-id>`           | Direct Load   | `/memory:search 42`                   |
+| `<NNN-folder-name>`      | Folder Load   | `/memory:search 007-auth`             |
+| `<id> --anchor:<anchor>` | Anchor Load   | `/memory:search 42 --anchor:summary`  |
+| `<query>`                | Search        | `/memory:search oauth implementation` |
+| `cleanup`                | Cleanup       | `/memory:search cleanup`              |
+| `triggers`               | Triggers View | `/memory:search triggers`             |
+| `--tier:<tier>`          | Filtered      | `/memory:search --tier:critical`      |
+| `--type:<type>`          | Filtered      | `/memory:search --type:decision`      |
 
 ---
 
@@ -152,11 +152,11 @@ const hasAnchor = /--anchor:[\w-]+/.test(args);
 ┌─────────────────┬─────────────────────────────────────────────────────────┬──────────┬─────────────────┐
 │ MODE            │ REQUIRED CALLS                                          │ PATTERN  │ ON FAILURE      │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ BY ID           │ memory_list → Read(filePath)                            │ SEQUENCE │ ID not found    │
+│ BY ID           │ memory_list → Read(filePath)                             │ SEQUENCE │ ID not found    │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ BY SPEC FOLDER  │ memory_search(specFolder) → Read(filePath)              │ SEQUENCE │ No memories     │
+│ BY SPEC FOLDER  │ memory_search(specFolder) → Read(filePath)               │ SEQUENCE │ No memories     │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ WITH ANCHOR     │ memory_list/search → Read(filePath) → Extract anchor    │ SEQUENCE │ Anchor missing  │
+│ WITH ANCHOR     │ memory_list/search → Read(filePath) → Extract anchor     │ SEQUENCE │ Anchor missing  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
 │ DASHBOARD       │ memory_stats + memory_list                              │ PARALLEL │ Show error msg  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
@@ -168,7 +168,7 @@ const hasAnchor = /--anchor:[\w-]+/.test(args);
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
 │ TRIGGERS VIEW   │ memory_list                                             │ SINGLE   │ Show error msg  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ CLEANUP         │ memory_list → [confirm] → memory_delete                 │ SEQUENCE │ Abort operation │
+│ CLEANUP         │ memory_list → [confirm] → memory_delete                  │ SEQUENCE │ Abort operation │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
 │ TIER CHANGE     │ memory_update                                           │ SINGLE   │ Show error msg  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
@@ -179,15 +179,36 @@ const hasAnchor = /--anchor:[\w-]+/.test(args);
 ### MCP Tool Signatures
 
 ```javascript
-semantic_memory_memory_stats({})
-semantic_memory_memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
-semantic_memory_memory_match_triggers({ prompt: "<context>", limit: N })
-semantic_memory_memory_search({ query: "<q>", limit: N, tier: "<tier>", contextType: "<type>", includeContent: true })
-semantic_memory_memory_validate({ id: <id>, wasUseful: <bool> })
-semantic_memory_memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
-semantic_memory_memory_delete({ id: <id> })
+spec_kit_memory_memory_stats({})
+spec_kit_memory_memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
+spec_kit_memory_memory_match_triggers({ prompt: "<context>", limit: N })
+spec_kit_memory_memory_search({ query: "<q>", limit: N, tier: "<tier>", contextType: "<type>", includeContent: true, includeContiguity: false, concepts: [...] })
+spec_kit_memory_memory_validate({ id: <id>, wasUseful: <bool> })
+spec_kit_memory_memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
+spec_kit_memory_memory_delete({ id: <id> })
 Read({ filePath: "<absolute_path>" })
 ```
+
+### Full Parameter Reference: memory_search
+
+| Parameter               | Type    | Default | Description                                                                                              |
+| ----------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| `query`                 | string  | -       | Natural language search query                                                                            |
+| `concepts`              | array   | -       | Multiple concepts for AND search (2-5 strings). Results must match ALL concepts. Alternative to `query`. |
+| `limit`                 | number  | 10      | Maximum number of results to return                                                                      |
+| `tier`                  | string  | -       | Filter by importance tier: constitutional, critical, important, normal, temporary, deprecated            |
+| `contextType`           | string  | -       | Filter by context type: decision, implementation, research, discovery, general                           |
+| `specFolder`            | string  | -       | Limit search to a specific spec folder (e.g., "011-semantic-memory")                                     |
+| `includeContent`        | boolean | false   | Include full file content in results. Embeds content directly, eliminating separate load calls.          |
+| `includeContiguity`     | boolean | false   | Include adjacent/contiguous memories in results. Useful for finding related context.                     |
+| `includeConstitutional` | boolean | true    | Include constitutional tier memories at top of results (~500 tokens max)                                 |
+| `useDecay`              | boolean | true    | Apply temporal decay scoring to results (recent memories rank higher)                                    |
+
+**Usage Notes:**
+- Use either `query` (single search string) OR `concepts` (array for AND search), not both
+- `concepts` requires 2-5 strings; results must match ALL concepts
+- `includeContent: true` returns full memory content, avoiding separate Read calls
+- `includeContiguity: true` surfaces memories that were created in sequence
 
 ---
 
@@ -201,7 +222,7 @@ Read({ filePath: "<absolute_path>" })
 
 1. List memories to find the ID:
    ```javascript
-   semantic_memory_memory_list({ limit: 100, sortBy: "created_at" })
+   spec_kit_memory_memory_list({ limit: 100, sortBy: "created_at" })
    ```
 
 2. Find memory with matching ID in results
@@ -223,7 +244,7 @@ Read({ filePath: "<absolute_path>" })
 
 1. Search for memories in spec folder:
    ```javascript
-   semantic_memory_memory_search({ 
+   spec_kit_memory_memory_search({ 
      query: "*", 
      specFolder: "007-auth-feature",
      limit: 5 
@@ -276,8 +297,8 @@ Read({ filePath: "<absolute_path>" })
 ### Step 1: Gather Data (Parallel)
 
 ```javascript
-semantic_memory_memory_stats({})
-semantic_memory_memory_list({ limit: 20, sortBy: "updated_at" })
+spec_kit_memory_memory_stats({})
+spec_kit_memory_memory_list({ limit: 20, sortBy: "updated_at" })
 ```
 
 ### Step 2: Display Dashboard
@@ -317,13 +338,13 @@ semantic_memory_memory_list({ limit: 20, sortBy: "updated_at" })
 
 ### Step 3: Handle Actions
 
-| Input  | Action                              |
-| ------ | ----------------------------------- |
-| `<id>` | Go to MEMORY DETAIL for that ID     |
-| s      | Prompt for search query             |
-| t      | Go to TRIGGERS VIEW                 |
-| c      | Go to CLEANUP MODE (Gate 1)         |
-| q      | Exit with STATUS=OK                 |
+| Input  | Action                          |
+| ------ | ------------------------------- |
+| `<id>` | Go to MEMORY DETAIL for that ID |
+| s      | Prompt for search query         |
+| t      | Go to TRIGGERS VIEW             |
+| c      | Go to CLEANUP MODE (Gate 1)     |
+| q      | Exit with STATUS=OK             |
 
 ---
 
@@ -337,12 +358,14 @@ semantic_memory_memory_list({ limit: 20, sortBy: "updated_at" })
 - `--tier:<tier>` - Filter: constitutional, critical, important, normal, temporary, deprecated
 - `--type:<type>` - Filter: research, implementation, decision, discovery, general
 - `--use-decay:false` - Disable temporal decay
-- `--concepts:<a,b,c>` - AND search (match ALL concepts)
+- `--concepts:<a,b,c>` - AND search (match ALL concepts, requires 2-5 items)
+- `--include-content:true` - Include full memory content in results
+- `--include-contiguity:true` - Include adjacent/contiguous memories
 
 ### Step 1: Execute Search
 
 ```javascript
-semantic_memory_memory_search({
+spec_kit_memory_memory_search({
   query: "<query>",
   limit: 10,
   tier: "<tier>",           // if specified
@@ -370,13 +393,13 @@ Filters: tier=<all|tier> | type=<all|type> | decay=<on|off>
 
 ### Step 3: Handle Actions
 
-| Input | Action                   |
-| ----- | ------------------------ |
-| 1-N   | Go to MEMORY DETAIL      |
-| n     | Prompt for new query     |
-| f     | Show filter menu         |
-| b     | Back to DASHBOARD        |
-| q     | Exit                     |
+| Input | Action               |
+| ----- | -------------------- |
+| 1-N   | Go to MEMORY DETAIL  |
+| n     | Prompt for new query |
+| f     | Show filter menu     |
+| b     | Back to DASHBOARD    |
+| q     | Exit                 |
 
 ---
 
@@ -384,12 +407,12 @@ Filters: tier=<all|tier> | type=<all|type> | decay=<on|off>
 
 Constitutional tier memories receive special handling:
 
-| Behavior             | Description                                          |
-| -------------------- | ---------------------------------------------------- |
-| **Always surfaces**  | Appears at TOP of every search result                |
-| **Fixed similarity** | Returns `similarity: 100` regardless of query        |
-| **Response flag**    | `isConstitutional: true` in results                  |
-| **Token budget**     | ~500 tokens max                                      |
+| Behavior             | Description                                   |
+| -------------------- | --------------------------------------------- |
+| **Always surfaces**  | Appears at TOP of every search result         |
+| **Fixed similarity** | Returns `similarity: 100` regardless of query |
+| **Response flag**    | `isConstitutional: true` in results           |
+| **Token budget**     | ~500 tokens max                               |
 
 **Parameter:** Use `--include-constitutional:false` to suppress.
 
@@ -445,19 +468,19 @@ STATUS=OK ID=<id> ANCHOR=<anchor-id>
 
 ### Handle Actions
 
-| Input | Action                                      |
-| ----- | ------------------------------------------- |
-| a-c   | Go to related memory                        |
-| l     | Prompt for anchor ID, extract and display   |
-| t     | Go to TRIGGER EDIT                          |
-| v     | `memory_validate({ wasUseful: true })`      |
-| x     | `memory_validate({ wasUseful: false })`     |
-| p     | Show tier promotion menu                    |
-| f     | Load full memory (from anchor view)         |
-| o     | Prompt for another anchor ID                |
-| s     | New search                                  |
-| b     | Back to previous screen                     |
-| q     | Exit                                        |
+| Input | Action                                    |
+| ----- | ----------------------------------------- |
+| a-c   | Go to related memory                      |
+| l     | Prompt for anchor ID, extract and display |
+| t     | Go to TRIGGER EDIT                        |
+| v     | `memory_validate({ wasUseful: true })`    |
+| x     | `memory_validate({ wasUseful: false })`   |
+| p     | Show tier promotion menu                  |
+| f     | Load full memory (from anchor view)       |
+| o     | Prompt for another anchor ID              |
+| s     | New search                                |
+| b     | Back to previous screen                   |
+| q     | Exit                                      |
 
 ---
 
@@ -479,12 +502,12 @@ Current triggers:
 [a]dd trigger | [r]emove (enter #) | [b]ack | [s]ave
 ```
 
-| Input | Action                                           |
-| ----- | ------------------------------------------------ |
-| a     | Prompt for new trigger phrase                    |
-| r     | Prompt for number to remove                      |
-| s     | `memory_update({ triggerPhrases: [...] })`       |
-| b     | Back (discard changes)                           |
+| Input | Action                                     |
+| ----- | ------------------------------------------ |
+| a     | Prompt for new trigger phrase              |
+| r     | Prompt for number to remove                |
+| s     | `memory_update({ triggerPhrases: [...] })` |
+| b     | Back (discard changes)                     |
 
 ---
 
@@ -493,7 +516,7 @@ Current triggers:
 **Trigger:** `/memory:search triggers` or dashboard [t]
 
 ```javascript
-semantic_memory_memory_list({ limit: 30, sortBy: "updated_at" })
+spec_kit_memory_memory_list({ limit: 30, sortBy: "updated_at" })
 ```
 
 ```
@@ -512,12 +535,12 @@ Memory: "OAuth Implementation" [ID: 42]
 [#] edit triggers for memory # | [s]earch by trigger | [b]ack | [q]uit
 ```
 
-| Input    | Action                             |
-| -------- | ---------------------------------- |
-| `<id>`   | Go to TRIGGER EDIT for that memory |
-| s        | Filter memories by trigger match   |
-| b        | Back to DASHBOARD                  |
-| q        | Exit                               |
+| Input  | Action                             |
+| ------ | ---------------------------------- |
+| `<id>` | Go to TRIGGER EDIT for that memory |
+| s      | Filter memories by trigger match   |
+| b      | Back to DASHBOARD                  |
+| q      | Exit                               |
 
 ---
 
@@ -545,13 +568,13 @@ Protected (not shown):
 [a]ll remove | [r]eview each | [n]one keep | [b]ack | [q]uit
 ```
 
-| Input | Action                                      |
-| ----- | ------------------------------------------- |
-| a     | Confirm prompt, then delete all             |
-| r     | Step through: [y]es, [n]o, [v]iew, [s]kip   |
-| n     | Cancel, keep all                            |
-| b     | Back to DASHBOARD                           |
-| q     | Exit                                        |
+| Input | Action                                    |
+| ----- | ----------------------------------------- |
+| a     | Confirm prompt, then delete all           |
+| r     | Step through: [y]es, [n]o, [v]iew, [s]kip |
+| n     | Cancel, keep all                          |
+| b     | Back to DASHBOARD                         |
+| q     | Exit                                      |
 
 **Completion:**
 ```
@@ -589,17 +612,17 @@ Select new tier:
 
 ## 13. 📌 QUICK REFERENCE
 
-| Command                                  | Result                    |
-| ---------------------------------------- | ------------------------- |
-| `/memory:search`                         | Dashboard                 |
-| `/memory:search 42`                      | Load memory #42 directly  |
-| `/memory:search 007-auth`                | Load from spec folder     |
-| `/memory:search 42 --anchor:summary`     | Load anchor section       |
-| `/memory:search oauth tokens`            | Search query              |
-| `/memory:search cleanup`                 | Cleanup mode              |
-| `/memory:search triggers`                | Triggers view             |
-| `/memory:search --tier:critical`         | Filtered search           |
-| `/memory:search --concepts:auth,jwt`     | AND search                |
+| Command                              | Result                   |
+| ------------------------------------ | ------------------------ |
+| `/memory:search`                     | Dashboard                |
+| `/memory:search 42`                  | Load memory #42 directly |
+| `/memory:search 007-auth`            | Load from spec folder    |
+| `/memory:search 42 --anchor:summary` | Load anchor section      |
+| `/memory:search oauth tokens`        | Search query             |
+| `/memory:search cleanup`             | Cleanup mode             |
+| `/memory:search triggers`            | Triggers view            |
+| `/memory:search --tier:critical`     | Filtered search          |
+| `/memory:search --concepts:auth,jwt` | AND search               |
 
 ---
 

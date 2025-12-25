@@ -36,7 +36,7 @@ Lightweight vector database for semantic code and document search. Unlike tradit
 **Use native tools instead**:
 - ❌ Known file paths (use Read tool - faster, no overhead)
 - ❌ Exact symbol/pattern search (use Grep tool - more precise)
-- ❌ Conversation memory (use `semantic_memory` MCP - different purpose)
+- ❌ Conversation memory (use `spec_kit_memory` MCP - different purpose)
 - ❌ File structure listing (use Glob tool - pattern matching)
 - ❌ Structural code queries (use `mcp-narsil` for symbol navigation via Code Mode)
 
@@ -349,8 +349,8 @@ leann_leann_remove({ index_name: "test-index" })
 - Use **LEANN** for semantic code search by intent (NATIVE MCP)
 - Example: Narsil maps structure → LEANN finds code by meaning
 
-**Pairs with semantic_memory**:
-- Use **semantic_memory** for conversation context preservation (NATIVE MCP)
+**Pairs with spec_kit_memory**:
+- Use **spec_kit_memory** for conversation context preservation (NATIVE MCP)
 - Use **LEANN** for code/document search (NATIVE MCP)
 - Different purposes: memory = conversations, LEANN = codebase
 

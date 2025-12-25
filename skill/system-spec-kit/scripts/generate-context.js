@@ -33,7 +33,7 @@ const {
 
 // Semantic memory v10.0 - embedding generation and vector indexing
 const { generateEmbedding, EMBEDDING_DIM, MODEL_NAME } = require('./lib/embeddings');
-const vectorIndex = require('./lib/vector-index');
+const vectorIndex = require('../mcp_server/lib/vector-index');
 const retryManager = require('./lib/retry-manager');
 const { extractTriggerPhrases } = require('./lib/trigger-extractor');
 
@@ -2386,7 +2386,7 @@ async function main() {
     console.log(`  • Session duration: ${sessionData.DURATION}\n`);
 
     // ─────────────────────────────────────────────────────────────
-    // Step 11: Semantic Memory Indexing (v10.0)
+    // Step 11: Spec Kit Memory Indexing (v10.0)
     // ─────────────────────────────────────────────────────────────
     console.log('🧠 Step 11: Indexing semantic memory...');
 

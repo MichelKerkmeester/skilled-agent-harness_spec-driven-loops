@@ -1,7 +1,7 @@
 ---
 description: Save and restore memory states for context switching and safety nets
 argument-hint: "<subcommand> [name]"
-allowed-tools: Read, Bash, semantic_memory_memory_list, semantic_memory_memory_search, semantic_memory_memory_stats, semantic_memory_memory_delete, semantic_memory_checkpoint_create, semantic_memory_checkpoint_restore, semantic_memory_checkpoint_list, semantic_memory_checkpoint_delete
+allowed-tools: Read, Bash, spec_kit_memory_memory_list, spec_kit_memory_memory_search, spec_kit_memory_memory_stats, spec_kit_memory_memory_delete, spec_kit_memory_checkpoint_create, spec_kit_memory_checkpoint_restore, spec_kit_memory_checkpoint_list, spec_kit_memory_checkpoint_delete
 ---
 
 # 🚨 MANDATORY PHASE - BLOCKING ENFORCEMENT
@@ -143,11 +143,41 @@ operating_mode:
 
 **Tool Call Format:**
 ```
-semantic_memory_checkpoint_create({ name: "<name>" })
-semantic_memory_checkpoint_restore({ name: "<name>" })
-semantic_memory_checkpoint_list({})
-semantic_memory_checkpoint_delete({ name: "<name>" })
+spec_kit_memory_checkpoint_create({ name: "<name>", specFolder: "<folder>", metadata: {...} })
+spec_kit_memory_checkpoint_restore({ name: "<name>", clearExisting: false })
+spec_kit_memory_checkpoint_list({ limit: 50, specFolder: "<folder>" })
+spec_kit_memory_checkpoint_delete({ name: "<name>" })
 ```
+
+### Full Parameter Reference
+
+#### checkpoint_create
+
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `name` | string | *required* | Unique checkpoint name (alphanumeric + dashes, max 50 chars) |
+| `specFolder` | string | - | Limit checkpoint to specific spec folder (e.g., "011-memory"). Only memories from this folder are captured. |
+| `metadata` | object | - | Additional metadata to store with the checkpoint (e.g., `{ reason: "pre-refactor", branch: "feature-x" }`) |
+
+#### checkpoint_restore
+
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `name` | string | *required* | Checkpoint name to restore |
+| `clearExisting` | boolean | false | Clear existing memories before restore. When true, removes all current memories before applying checkpoint state. |
+
+#### checkpoint_list
+
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `limit` | number | 50 | Maximum number of checkpoints to return |
+| `specFolder` | string | - | Filter checkpoints by spec folder |
+
+#### checkpoint_delete
+
+| Parameter | Type | Default | Description |
+| --------- | ---- | ------- | ----------- |
+| `name` | string | *required* | Checkpoint name to delete |
 
 ---
 
@@ -183,7 +213,7 @@ Create and manage checkpoints for memory state preservation. Use checkpoints for
 
 ### Usage
 ```
-/memory/checkpoint create "before-refactor"
+/memory:checkpoint create "before-refactor"
 ```
 
 ### Instructions
@@ -195,8 +225,10 @@ Create and manage checkpoints for memory state preservation. Use checkpoints for
 
 2. **Execute MCP Call**
    ```
-   semantic_memory_checkpoint_create({
-     name: "<checkpoint_name>"
+   spec_kit_memory_checkpoint_create({
+     name: "<checkpoint_name>",
+     specFolder: "<folder>",  // Optional: limit to specific folder
+     metadata: { ... }        // Optional: additional context
    })
    ```
 
@@ -222,14 +254,14 @@ Create and manage checkpoints for memory state preservation. Use checkpoints for
 
 ### Usage
 ```
-/memory/checkpoint restore "before-refactor"
+/memory:checkpoint restore "before-refactor"
 ```
 
 ### Instructions
 
 1. **Load Checkpoint via MCP**
    ```
-   semantic_memory_checkpoint_list({})
+   spec_kit_memory_checkpoint_list({})
    ```
    Verify checkpoint exists.
 
@@ -252,8 +284,9 @@ Create and manage checkpoints for memory state preservation. Use checkpoints for
 
 4. **Execute Restore**
    ```
-   semantic_memory_checkpoint_restore({
-     name: "<checkpoint_name>"
+   spec_kit_memory_checkpoint_restore({
+     name: "<checkpoint_name>",
+     clearExisting: false  // Set true to wipe current state first
    })
    ```
 
@@ -270,10 +303,11 @@ Create and manage checkpoints for memory state preservation. Use checkpoints for
 
 ### ⚠️ CAUTION
 
-Restore is a **destructive operation**:
-- Memories added after checkpoint will be deleted
-- Deleted memories cannot be automatically restored (data loss)
-- Always create a new checkpoint before restoring
+Restore behavior depends on the options you pass:
+- **Default (`clearExisting=false`)**: Scoped restores mark existing memories in that spec folder as `deprecated` so you can inspect them later. Global restores leave other folders untouched.
+- **`clearExisting=true`**: Deletes the existing memories within the scope before inserting the snapshot. Use this only when you need a full rollback.
+- **Embeddings**: Restored memories are inserted with `embedding_status=pending`. Always run `memory_index_scan` after a restore to regenerate embeddings.
+- Always create a fresh checkpoint before running restore.
 
 ---
 
@@ -281,14 +315,17 @@ Restore is a **destructive operation**:
 
 ### Usage
 ```
-/memory/checkpoint list
+/memory:checkpoint list
 ```
 
 ### Instructions
 
 1. **Execute MCP Call**
    ```
-   semantic_memory_checkpoint_list({})
+   spec_kit_memory_checkpoint_list({
+     limit: 50,           // Optional: max results (default: 50)
+     specFolder: "<folder>"  // Optional: filter by folder
+   })
    ```
 
 2. **Display Table**
@@ -310,7 +347,7 @@ Restore is a **destructive operation**:
    ```
    No checkpoints found
 
-   Create one with: /memory/checkpoint create "my-checkpoint"
+   Create one with: /memory:checkpoint create "my-checkpoint"
 
    STATUS=OK ACTION=list
    ```
@@ -321,7 +358,7 @@ Restore is a **destructive operation**:
 
 ### Usage
 ```
-/memory/checkpoint delete "old-checkpoint"
+/memory:checkpoint delete "old-checkpoint"
 ```
 
 ### Instructions
@@ -343,7 +380,7 @@ Restore is a **destructive operation**:
 
 3. **Execute Delete**
    ```
-   semantic_memory_checkpoint_delete({
+   spec_kit_memory_checkpoint_delete({
      name: "<checkpoint_name>"
    })
    ```
@@ -401,35 +438,35 @@ Restore is a **destructive operation**:
 ### Before Major Refactors
 ```
 User: Create a checkpoint before I start the auth refactor
-AI: /memory/checkpoint create "pre-auth-refactor"
+AI: /memory:checkpoint create "pre-auth-refactor"
     ✅ Checkpoint 'pre-auth-refactor' created (47 memories)
 
 [... work happens, things go wrong ...]
 
 User: Restore to before the refactor
-AI: /memory/checkpoint restore "pre-auth-refactor"
+AI: /memory:checkpoint restore "pre-auth-refactor"
 ```
 
 ### Context Switching Between Features
 ```
 User: I need to switch to the billing feature for a bit
-AI: /memory/checkpoint create "auth-wip"
+AI: /memory:checkpoint create "auth-wip"
 
 [... work on billing ...]
 
 User: Back to auth work, restore my context
-AI: /memory/checkpoint restore "auth-wip"
+AI: /memory:checkpoint restore "auth-wip"
 ```
 
 ### Experimentation
 ```
 User: Let me try a different approach, but save current state first
-AI: /memory/checkpoint create "approach-a"
+AI: /memory:checkpoint create "approach-a"
 
 [... try different approach ...]
 
 User: That didn't work, go back
-AI: /memory/checkpoint restore "approach-a"
+AI: /memory:checkpoint restore "approach-a"
 ```
 
 ---
@@ -444,7 +481,7 @@ Configuration is handled internally by the MCP server. Default values:
 | `max_age_days` | 30                        | Auto-delete after N days    |
 | `storage_path` | `.opencode/checkpoints`   | Runtime storage location    |
 
-These defaults are enforced by the semantic memory MCP server and cannot be overridden via configuration files.
+These defaults are enforced by the Spec Kit Memory MCP server and cannot be overridden via configuration files.
 
 ---
 
@@ -460,8 +497,8 @@ These defaults are enforced by the semantic memory MCP server and cannot be over
 
 ## 14. 📌 RELATED COMMANDS
 
-- `/memory/save` - Save conversation context to memory
-- `/memory/search` - Unified memory dashboard (search, browse, cleanup, triggers)
+- `/memory:save` - Save conversation context to memory
+- `/memory:search` - Unified memory dashboard (search, browse, cleanup, triggers)
 
 ---
 

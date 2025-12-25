@@ -1,17 +1,15 @@
 {
-  "name": "semantic-memory-mcp",
+  "name": "@spec-kit/mcp-server",
   "version": "12.1.0",
-  "description": "Semantic Memory MCP Server - provides 14 tools for semantic search, memory management, validation, checkpoints, and auto-indexing",
+  "description": "Semantic Memory MCP Server - provides 13 tools for semantic search, memory management, validation, checkpoints, and auto-indexing",
   "main": "context-server.js",
   "bin": {
     "context-server": "./context-server.js",
-    "memory-index": "./scripts/index-cli.js",
-    "memory-watch": "./file-watcher.js"
+    "memory-index": "./scripts/index-cli.js"
   },
   "scripts": {
     "start": "node context-server.js",
     "index": "node scripts/index-cli.js",
-    "watch": "node file-watcher.js",
     "test": "node -e \"require('./context-server.js')\""
   },
   "keywords": [
@@ -27,12 +25,11 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@huggingface/transformers": "^3.0.0",
+    "@huggingface/transformers": "^3.8.1",
     "@modelcontextprotocol/sdk": "^1.24.3",
-    "better-sqlite3": "^11.0.0",
+    "better-sqlite3": "^12.5.0",
     "chokidar": "^3.6.0",
     "lru-cache": "^11.2.4",
-    "sqlite-vec": "^0.1.0"
-  },
-  "note": "This is the canonical node_modules location. Project scripts in .opencode/memory/scripts symlink to this folder."
+    "sqlite-vec": "^0.1.7-alpha.2"
+  }
 }

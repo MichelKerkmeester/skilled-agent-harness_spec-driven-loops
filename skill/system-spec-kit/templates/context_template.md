@@ -30,6 +30,12 @@
 -->
 
 <!-- Importance Tier Guidelines:
+  - constitutional: Project-wide rules that ALWAYS surface at top of search results
+    * Core constraints/rules that should NEVER be forgotten
+    * Applies to ALL future conversations (not session-specific)
+    * Never expires, never decays, ~500 token budget total
+    * Examples: Gate 3 spec folder rules, memory generation requirements
+
   - critical: Core architectural decisions, never expires
     * System-wide patterns that affect multiple components
     * Security decisions and authentication flows
@@ -463,7 +469,7 @@ spec_folder: "{{SPEC_FOLDER}}"
 channel: "{{CHANNEL}}"
 
 # Classification
-importance_tier: "{{IMPORTANCE_TIER}}"  # critical|important|normal|temporary|deprecated
+importance_tier: "{{IMPORTANCE_TIER}}"  # constitutional|critical|important|normal|temporary|deprecated
 context_type: "{{CONTEXT_TYPE}}"        # research|implementation|decision|discovery|general
 
 # Timestamps (for decay calculations)
@@ -540,6 +546,7 @@ chunk_count: {{CHUNK_COUNT}}
   - Enhanced anchor naming with session IDs
 
   DECAY CALCULATION:
+  - constitutional: never expires, always surfaces first (~500 token budget)
   - critical: never expires (expires_at_epoch = 0)
   - important: 90 days base, extended by access
   - normal: 30 days base, extended by access

@@ -58,7 +58,7 @@ Simple one-liner install? → Just document the command inline
 ### MCP Server Guides
 **Purpose**: Install and configure Model Context Protocol servers for AI assistants
 
-**Examples**: LEANN, semantic-memory, browser-debugger, Webflow MCP
+**Examples**: LEANN, spec-kit-memory, browser-debugger, Webflow MCP
 
 **Key Sections**:
 - AI-First prompt for assisted installation
@@ -350,7 +350,7 @@ Use 3-column format: Error → Cause → Fix
 - Use title case for tool names
 - Examples:
   - ✅ `MCP - LEANN.md`
-  - ✅ `MCP - Semantic Memory.md`
+  - ✅ `MCP - Spec Kit Memory.md`
   - ✅ `CLI - Browser Debugger.md`
   - ❌ `leann-install.md` (wrong format)
 
@@ -965,7 +965,7 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 
 ### Examples
 - [MCP - LEANN.md](../../../install_guides/MCP/MCP%20-%20LEANN.md) - Excellent MCP server example (940 lines)
-- [MCP - Semantic Memory.md](../../../install_guides/MCP/MCP%20-%20Semantic%20Memory.md) - Plugin example
+- [MCP - Spec Kit Memory.md](../../../install_guides/MCP/MCP%20-%20Spec%20Kit%20Memory.md) - Plugin example
 
 ### Skill Reference
 - [workflows-documentation SKILL.md](../SKILL.md) - Mode 4: Install Guide Creation

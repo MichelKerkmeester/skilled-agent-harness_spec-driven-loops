@@ -8,11 +8,11 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 **This command creates files at a predefined location and is EXEMPT from the spec folder question.**
 
-| Property | Value |
-|----------|-------|
-| **Location** | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
-| **Reason** | Skill-internal files, not project documentation |
-| **Alternative** | Use `/create:skill` for full skill creation with spec folder |
+| Property        | Value                                                                                |
+| --------------- | ------------------------------------------------------------------------------------ |
+| **Location**    | `.opencode/skill/[skill-name]/references/` or `.opencode/skill/[skill-name]/assets/` |
+| **Reason**      | Skill-internal files, not project documentation                                      |
+| **Alternative** | Use `/create:skill` for full skill creation with spec folder                         |
 
 ---
 
@@ -135,7 +135,7 @@ EXECUTE AFTER PHASE 1 PASSES:
        │   │                                                            │
        │   │ A) Provide correct skill name                              │
        │   │ B) Provide full path to skill                              │
-       │   │ C) Create new skill first                                  │
+       │   │ C) Create new skill first                                   │
        │   └────────────────────────────────────────────────────────────┘
        │
        ├─ WAIT for response
@@ -153,11 +153,11 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                   | REQUIRED STATUS         | YOUR STATUS | OUTPUT VALUE                           |
-| ----------------------- | ----------------------- | ----------- | -------------------------------------- |
-| PHASE C: CHAINED        | ⏭️ SKIPPED or N/A       | ______      | chained_mode: [yes/no]                 |
-| PHASE 1: INPUT          | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_name: ______ / asset_type: _____ |
-| PHASE 2: SKILL VERIFY   | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_path: ______                     |
+| PHASE                 | REQUIRED STATUS       | YOUR STATUS | OUTPUT VALUE                           |
+| --------------------- | --------------------- | ----------- | -------------------------------------- |
+| PHASE C: CHAINED      | ⏭️ SKIPPED or N/A      | ______      | chained_mode: [yes/no]                 |
+| PHASE 1: INPUT        | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_name: ______ / asset_type: _____ |
+| PHASE 2: SKILL VERIFY | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_path: ______                     |
 
 ```
 VERIFICATION CHECK:
@@ -201,13 +201,13 @@ VERIFICATION CHECK:
 
 ## WORKFLOW TRACKING
 
-| STEP | NAME           | STATUS | REQUIRED OUTPUT          | VERIFICATION                    |
-| ---- | -------------- | ------ | ------------------------ | ------------------------------- |
-| 1    | Analysis       | ☐      | Skill path, asset type   | Skill verified, type valid      |
-| 2    | Planning       | ☐      | Filename, sections       | File spec determined            |
-| 3    | Template Load  | ☐      | Structure patterns       | Template loaded                 |
-| 4    | Content        | ☐      | [asset_name].md          | Asset file created              |
-| 5    | Validation     | ☐      | Updated SKILL.md         | Integration complete            |
+| STEP | NAME          | STATUS | REQUIRED OUTPUT        | VERIFICATION               |
+| ---- | ------------- | ------ | ---------------------- | -------------------------- |
+| 1    | Analysis      | ☐      | Skill path, asset type | Skill verified, type valid |
+| 2    | Planning      | ☐      | Filename, sections     | File spec determined       |
+| 3    | Template Load | ☐      | Structure patterns     | Template loaded            |
+| 4    | Content       | ☐      | [asset_name].md        | Asset file created         |
+| 5    | Validation    | ☐      | Updated SKILL.md       | Integration complete       |
 
 ---
 
@@ -314,12 +314,12 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ### Asset Types & Naming Conventions
 
-| Type      | Naming Pattern           | Example                    | Purpose                        |
-| --------- | ------------------------ | -------------------------- | ------------------------------ |
-| Template  | `[content]_templates.md` | `frontmatter_templates.md` | Copy-paste starting points     |
-| Reference | `[topic]_reference.md`   | `emoji_reference.md`       | Lookup tables, decisions       |
-| Example   | `[topic]_examples.md`    | `optimization_examples.md` | Working code examples          |
-| Guide     | `[process]_guide.md`     | `packaging_guide.md`       | Step-by-step how-tos           |
+| Type      | Naming Pattern           | Example                    | Purpose                    |
+| --------- | ------------------------ | -------------------------- | -------------------------- |
+| Template  | `[content]_templates.md` | `frontmatter_templates.md` | Copy-paste starting points |
+| Reference | `[topic]_reference.md`   | `emoji_reference.md`       | Lookup tables, decisions   |
+| Example   | `[topic]_examples.md`    | `optimization_examples.md` | Working code examples      |
+| Guide     | `[process]_guide.md`     | `packaging_guide.md`       | Step-by-step how-tos       |
 
 ### When to Create Assets
 - Templates users apply repeatedly
@@ -335,14 +335,14 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ### Workflow Details (See YAML)
 
-| Section              | Location in YAML                    |
-| -------------------- | ----------------------------------- |
-| Asset Types          | `notes.asset_type_selection_guide`  |
-| Naming Conventions   | `workflow.steps[2].naming`          |
-| Integration Rules    | `notes.integration_requirements`    |
-| Chained Mode         | `notes.chained_execution_mode`      |
-| Failure Recovery     | `failure_recovery`                  |
-| Completion Report    | `completion_report_template`        |
+| Section            | Location in YAML                   |
+| ------------------ | ---------------------------------- |
+| Asset Types        | `notes.asset_type_selection_guide` |
+| Naming Conventions | `workflow.steps[2].naming`         |
+| Integration Rules  | `notes.integration_requirements`   |
+| Chained Mode       | `notes.chained_execution_mode`     |
+| Failure Recovery   | `failure_recovery`                 |
+| Completion Report  | `completion_report_template`       |
 
 ### Template Reference
 - **Template location**: `.opencode/skill/workflows-documentation/assets/skill_asset_template.md`

@@ -1,6 +1,6 @@
-# Semantic Memory MCP Server Installation Guide
+# Spec Kit Memory MCP Server Installation Guide
 
-A comprehensive guide to installing, configuring, and using the Semantic Memory MCP server for conversation context retrieval and vector search.
+A comprehensive guide to installing, configuring, and using the Spec Kit Memory MCP server for conversation context retrieval and vector search.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Package**: Bundled | **Dependencies**: Node.js 18+, Ollama (optional)
@@ -41,14 +41,14 @@ Not working? Jump to [Troubleshooting](#9--troubleshooting).
 > - [SKILL.md](../../skill/system-spec-kit/SKILL.md) - AI agent instructions for memory operations
 > - `/memory:save` and `/memory:search` commands - Command reference
 
-> **Migration Note (December 2025):** The semantic memory system was merged into `system-spec-kit`. All paths in this guide reflect the new locations. The `semantic_memory` MCP tool names remain unchanged for backward compatibility.
+> **Migration Note (December 2025):** The semantic memory system was merged into `system-spec-kit`. All paths in this guide reflect the new locations. The `spec_kit_memory` MCP tool names remain unchanged for backward compatibility.
 
 ---
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
 ```
-I want to configure the Semantic Memory MCP server for conversation memory retrieval.
+I want to configure the Spec Kit Memory MCP server for conversation memory retrieval.
 
 The server is already bundled in my project at:
 .opencode/skill/system-spec-kit/mcp_server/context-server.js
@@ -78,7 +78,7 @@ Guide me through each step with the exact commands and configuration needed.
 
 ## 1. 📖 OVERVIEW
 
-The Semantic Memory MCP Server provides AI assistants with conversation memory retrieval capabilities. It enables semantic search using local vector embeddings, fast trigger phrase matching, and direct memory content loading.
+The Spec Kit Memory MCP Server provides AI assistants with conversation memory retrieval capabilities. It enables semantic search using local vector embeddings, fast trigger phrase matching, and direct memory content loading.
 
 ### Source Repository
 
@@ -164,7 +164,7 @@ User Request
                               │ stdio
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    semantic-memory.js                         │
+│                    spec-kit-memory.js                         │
 │  ┌─────────────────────────────────────────────────────┐    │
 │  │ MCP Protocol Handler (@modelcontextprotocol/sdk)    │    │
 │  │ - ListTools / CallTool handlers                     │    │
@@ -202,7 +202,7 @@ User Request
 
 ## 2. 📋 PREREQUISITES
 
-Before installing the Semantic Memory MCP server, ensure you have:
+Before installing the Spec Kit Memory MCP server, ensure you have:
 
 ### Required
 
@@ -245,7 +245,7 @@ This location is within the skill folder for self-contained deployment.
 
 **Two config files needed (Claude Code):**
 - `.mcp.json` - defines the server
-- `settings.local.json` - enables via `enabledMcpjsonServers: ["semantic_memory"]`
+- `settings.local.json` - enables via `enabledMcpjsonServers: ["spec_kit_memory"]`
 
 **Platform-specific sqlite-vec:**
 - macOS ARM: `sqlite-vec-darwin-arm64`
@@ -258,7 +258,7 @@ This location is within the skill folder for self-contained deployment.
 
 ## 3. 📥 INSTALLATION
 
-The Semantic Memory MCP server is bundled within the `system-spec-kit` skill folder. No external installation or file copying is required.
+The Spec Kit Memory MCP server is bundled within the `system-spec-kit` skill folder. No external installation or file copying is required.
 
 ### Skill Folder Structure
 
@@ -333,7 +333,7 @@ Add to `.mcp.json` in your project root:
 ```json
 {
   "mcpServers": {
-    "semantic_memory": {
+    "spec_kit_memory": {
       "command": "node",
       "args": [
         "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"
@@ -353,7 +353,7 @@ Enable in `settings.local.json`:
 ```json
 {
   "enabledMcpjsonServers": [
-    "semantic_memory"
+    "spec_kit_memory"
   ]
 }
 ```
@@ -365,7 +365,7 @@ Add to `opencode.json` in your project root:
 ```json
 {
   "mcp": {
-    "semantic_memory": {
+    "spec_kit_memory": {
       "type": "local",
       "command": [
         "node",
@@ -643,7 +643,7 @@ When you know exactly what you need:
 **Example:**
 ```json
 {
-  "specFolder": "011-semantic-memory-upgrade",
+  "specFolder": "011-spec-kit-memory-upgrade",
   "includeContent": true
 }
 ```
@@ -942,7 +942,7 @@ The system automatically falls back to pure vector search if hybrid search fails
     "deprecated": 0
   },
   "topFolders": [
-    { "specFolder": "011-semantic-memory", "count": 23 },
+    { "specFolder": "011-spec-kit-memory", "count": 23 },
     { "specFolder": "049-auth-system", "count": 18 }
   ],
   "oldestMemory": "2025-06-15T10:30:00Z",
@@ -1038,7 +1038,7 @@ Progress is logged showing batch completion (e.g., `[index-scan] Processing batc
 ```json
 {
   "name": "before-migration-v2",
-  "specFolder": "011-semantic-memory",
+  "specFolder": "011-spec-kit-memory",
   "metadata": { "reason": "Pre-schema update backup" }
 }
 ```
@@ -1427,7 +1427,7 @@ ollama pull nomic-embed-text
 
 ### File Structure
 
-The Semantic Memory system is organized within the `system-spec-kit` skill folder:
+The Spec Kit Memory system is organized within the `system-spec-kit` skill folder:
 
 ```
 .opencode/skill/system-spec-kit/
@@ -1516,8 +1516,8 @@ CREATE TABLE checkpoints (
 
 | Client          | Configuration File                  | Server Key        |
 | --------------- | ----------------------------------- | ----------------- |
-| **Claude Code** | `.mcp.json` + `settings.local.json` | `semantic_memory` |
-| **OpenCode**    | `opencode.json`                     | `semantic_memory` |
+| **Claude Code** | `.mcp.json` + `settings.local.json` | `spec_kit_memory` |
+| **OpenCode**    | `opencode.json`                     | `spec_kit_memory` |
 
 ### Verification Commands
 
@@ -1619,7 +1619,7 @@ sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT CO
 ```json
 {
   "mcpServers": {
-    "semantic_memory": {
+    "spec_kit_memory": {
       "command": "node",
       "args": ["${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"],
       "env": {},
@@ -1633,7 +1633,7 @@ sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT CO
 ```json
 {
   "mcp": {
-    "semantic_memory": {
+    "spec_kit_memory": {
       "type": "local",
       "command": ["node", "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"],
       "environment": {},
@@ -1649,9 +1649,9 @@ sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT CO
 
 **Installation Complete!**
 
-You now have the Semantic Memory MCP server configured. Use it to retrieve conversation context, search memories semantically, and quickly match trigger phrases.
+You now have the Spec Kit Memory MCP server configured. Use it to retrieve conversation context, search memories semantically, and quickly match trigger phrases.
 
-Start using Semantic Memory by asking your AI assistant:
+Start using Spec Kit Memory by asking your AI assistant:
 ```
 Search my memories for information about [topic]
 ```

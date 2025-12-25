@@ -187,7 +187,7 @@ EXECUTE AFTER PHASE 3 PASSES:
        │   ┌────────────────────────────────────────────────────────────┐
        │   │ A) Load most recent memory                                 │
        │   │ B) Load all memories (1-3 max)                             │
-       │   │ C) Select specific memory                                  │
+       │   │ C) Select specific memory                                   │
        │   │ D) Skip memory loading                                     │
        │   └────────────────────────────────────────────────────────────┘
        ├─ WAIT for user response
@@ -214,12 +214,12 @@ Note: This implements Gate 4 from AGENTS.md Section 2.
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                         | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                       |
-| ----------------------------- | ----------------- | ----------- | ---------------------------------- |
-| PHASE 1: INPUT & SESSION      | ✅ PASSED          | ______      | spec_path: ______ / method: ______ |
-| PHASE 2: CONTINUATION CHECK   | ✅ PASSED or ⏭️ N/A | ______      | validated: ______ / source: ______ |
-| PHASE 3: ARTIFACTS & MODE     | ✅ PASSED          | ______      | artifacts: ______ / mode: ______   |
-| PHASE 4: MEMORY LOADING       | ✅ PASSED or ⏭️ N/A | ______      | memory: ______ / files: ______     |
+| PHASE                       | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                       |
+| --------------------------- | ----------------- | ----------- | ---------------------------------- |
+| PHASE 1: INPUT & SESSION    | ✅ PASSED          | ______      | spec_path: ______ / method: ______ |
+| PHASE 2: CONTINUATION CHECK | ✅ PASSED or ⏭️ N/A | ______      | validated: ______ / source: ______ |
+| PHASE 3: ARTIFACTS & MODE   | ✅ PASSED          | ______      | artifacts: ______ / mode: ______   |
+| PHASE 4: MEMORY LOADING     | ✅ PASSED or ⏭️ N/A | ______      | memory: ______ / files: ______     |
 
 ```
 VERIFICATION CHECK:
@@ -402,23 +402,34 @@ The resume workflow uses semantic memory MCP tools directly for context loading.
 
 ### Memory Tools
 
-| Tool                    | Purpose                                    | Usage                                   |
-| ----------------------- | ------------------------------------------ | --------------------------------------- |
-| `memory_search`         | Find relevant context from semantic memory | Query: "Load context for {spec_folder}" |
-| `memory_load`           | Load specific memory by spec folder/anchor | Direct load from spec folder path       |
-| `memory_match_triggers` | Fast trigger phrase matching (<50ms)       | Quick session detection by keywords     |
-| `memory_stats`          | Get memory system statistics               | Show resume status and counts           |
+| Tool                    | Purpose                                    | Usage                                              |
+| ----------------------- | ------------------------------------------ | -------------------------------------------------- |
+| `memory_search`         | Find and load context from semantic memory | Query with `includeContent: true` to embed content |
+| `memory_match_triggers` | Fast trigger phrase matching (<50ms)       | Quick session detection by keywords                |
+| `memory_list`           | Browse stored memories with pagination     | Discover available memories and find IDs           |
+| `memory_stats`          | Get memory system statistics               | Show resume status and counts                      |
+
+**Note:** There is no `memory_load` tool. Use `memory_search` with `includeContent: true` to load memory content directly in search results.
 
 ### Example Invocations
 
 ```typescript
-// Direct MCP call (CORRECT - OpenCode native syntax)
-semantic_memory_memory_search({ query: "context for 014-auth-system" })
-semantic_memory_memory_match_triggers({ prompt: "auth system work" })
+// Load memories with content embedded in results (CORRECT)
+spec_kit_memory_memory_search({ 
+  specFolder: "014-auth-system", 
+  includeContent: true,
+  limit: 5
+})
+
+// Fast trigger matching for session detection
+spec_kit_memory_memory_match_triggers({ prompt: "auth system work" })
+
+// List available memories in a spec folder
+spec_kit_memory_memory_list({ specFolder: "014-auth-system" })
 
 // NEVER do this (WRONG)
 call_tool_chain(`memory.memory_search(...)`)  // NO - not through Code Mode
-semantic_memory_memory_search(...)      // NO - wrong prefix syntax
+spec_kit_memory_memory_load(...)              // NO - tool doesn't exist
 ```
 
 ### Session Detection Priority
