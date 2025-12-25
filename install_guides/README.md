@@ -605,34 +605,80 @@ echo 'export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH' >
 
 ### 7.3 Narsil (Structural Analysis + Security)
 
-Narsil provides deep code intelligence including structural analysis, security scanning, and call graph analysis. It is accessed via Code Mode.
+Narsil provides deep code intelligence with **76 specialized tools** for security scanning, call graph analysis, and structural queries. It is accessed via Code Mode for token efficiency.
 
-**Note:** Narsil is accessed through Code Mode's `call_tool_chain()` function, not as a separate MCP server. Ensure Code Mode is installed first.
+> **Detailed Guide:** See [MCP - Narsil.md](./MCP/MCP%20-%20Narsil.md) for comprehensive installation and usage instructions.
+
+**Core Principle:** Narsil = STRUCTURE + SECURITY, LEANN = MEANING
+
+| Feature               | Tool Count | Examples                                      |
+| --------------------- | ---------- | --------------------------------------------- |
+| Security Scanning     | 9          | OWASP Top 10, CWE Top 25, taint analysis      |
+| Call Graph Analysis   | 6          | Callers, callees, function hotspots           |
+| Symbol Navigation     | 7          | Find symbols, definitions, references         |
+| Supply Chain          | 4          | SBOM generation, CVE checking, licenses       |
+| Code Quality          | 5          | Dead code, complexity metrics                 |
+
+**Prerequisite:** Code Mode must be installed first (see 7.1).
+
+**Configure in `.utcp_config.json`:**
+```json
+{
+  "mcpServers": {
+    "narsil": {
+      "transport": "stdio",
+      "command": "${NARSIL_PATH}/target/release/narsil-mcp",
+      "args": ["--repos", "${workspaceFolder}", "--git", "--call-graph", "--persist", "--watch"]
+    }
+  }
+}
+```
 
 **Usage via Code Mode:**
-```javascript
-// List functions in a file
-call_tool_chain(`narsil.narsil_find_symbols({ path: "src/auth.ts", type: "function" })`)
+```typescript
+// Get project structure
+call_tool_chain({
+  code: `return await narsil.narsil_get_project_structure({})`
+});
 
-// Security scan
-call_tool_chain(`narsil.narsil_scan_security({ path: "src/", severity: "high" })`)
+// Find all functions
+call_tool_chain({
+  code: `return await narsil.narsil_find_symbols({ kind: "function" })`
+});
+
+// Security scan (OWASP)
+call_tool_chain({
+  code: `return await narsil.narsil_scan_security({ ruleset: "owasp" })`,
+  timeout: 120000
+});
 
 // Call graph analysis
-call_tool_chain(`narsil.narsil_call_graph({ entry: "src/main.ts" })`)
+call_tool_chain({
+  code: `return await narsil.narsil_get_call_graph({ function_name: "main" })`
+});
 ```
 
 ### Validation: `narsil_check`
 
 - [ ] Code Mode is installed and working
-- [ ] Narsil tools accessible via Code Mode
+- [ ] Narsil binary exists at configured path
+- [ ] `.utcp_config.json` has valid Narsil configuration
+- [ ] `search_tools()` returns Narsil tools
 
 **Quick Verification:**
 ```bash
-# Narsil is accessed via Code Mode - verify Code Mode works
-npx utcp-mcp --help >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
+# Verify Code Mode works
+npx utcp-mcp --help >/dev/null 2>&1 && echo "Code Mode: PASS" || echo "Code Mode: FAIL"
+
+# Verify Narsil config exists
+grep -q "narsil-mcp" .utcp_config.json 2>/dev/null && echo "Config: PASS" || echo "Config: FAIL"
 ```
 
-❌ STOP if validation fails - ensure Code Mode is installed first
+**AI Verification:**
+Ask your assistant: "Use Code Mode to search for Narsil tools"
+Expected: List of `narsil.narsil_*` tools (76 total)
+
+❌ STOP if validation fails - ensure Code Mode is installed and Narsil is configured in `.utcp_config.json`
 
 ---
 
