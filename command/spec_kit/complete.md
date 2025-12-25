@@ -1,5 +1,5 @@
 ---
-description: Full end-to-end SpecKit workflow (12 steps) - supports :auto and :confirm modes
+description: Full end-to-end SpecKit workflow (13 steps) - supports :auto and :confirm modes
 argument-hint: "<feature-description> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
@@ -65,7 +65,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │    D) Skip documentation                                       │
    │                                                                │
    │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
-   │    A) Autonomous - Execute all 12 steps without approval       │
+   │    A) Autonomous - Execute all 13 steps without approval       │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
    │ Reply with choices, e.g.: "B, A" or "A" (if mode pre-set)      │
@@ -173,8 +173,8 @@ VERIFICATION CHECK:
 - **Skipped Phase Gate and jumped directly to implementation code**
 - **Started writing code before completing Steps 1-7 (Planning Phase)**
 - **Did not mark tasks [x] in tasks.md during Step 10**
-- **Did not create implementation-summary.md in Step 11**
-- **Claimed "complete" or "done" without verifying all 12 steps executed**
+- **Did not create implementation-summary.md in Step 12**
+- **Claimed "complete" or "done" without verifying all 13 steps executed**
 
 **Confidence Violations (AGENTS.md Section 3):**
 - **Proceeded with confidence <40% without asking clarifying question**
@@ -272,16 +272,16 @@ WHEN all artifacts verified:
 
 ---
 
-## PHASE B: IMPLEMENTATION (Steps 8-12)
+## PHASE B: IMPLEMENTATION (Steps 8-13)
 
 | STEP | NAME                 | STATUS | REQUIRED OUTPUT                   | VERIFICATION                              |
 | ---- | -------------------- | ------ | --------------------------------- | ----------------------------------------- |
 | 8    | Analysis             | ☐      | consistency_report                | Artifacts cross-checked                   |
 | 9    | Implementation Check | ☐      | prerequisites_verified            | Ready to implement                        |
 | 10   | Development          | ☐      | code changes + tasks marked `[x]` | **ALL tasks in tasks.md marked complete** |
-| 10.5 | Checklist Verify     | ☐      | All P0/P1 verified                | **Level 2+ ONLY - BLOCKING**              |
-| 11   | Completion           | ☐      | `implementation-summary.md`       | **Summary file created**                  |
-| 12   | Save Context         | ☐      | `memory/*.md`                     | Context preserved                         |
+| 11   | Checklist Verify     | ☐      | All P0/P1 verified                | **Level 2+ ONLY - BLOCKING**              |
+| 12   | Completion           | ☐      | `implementation-summary.md`       | **Summary file created**                  |
+| 13   | Save Context         | ☐      | `memory/*.md`                     | Context preserved                         |
 
 ---
 
@@ -294,7 +294,7 @@ STEP 10 (Development) REQUIREMENTS:
 ├─ MUST NOT claim "development complete" until ALL tasks marked [x]
 └─ MUST test code changes before marking complete
 
-STEP 10.5 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
+STEP 11 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
 ├─ ⛔ BLOCKING: This step is REQUIRED for Level 2+ before claiming completion
 ├─ Load checklist.md from spec folder
 ├─ Verify ALL P0 items are marked [x] with evidence
@@ -303,9 +303,9 @@ STEP 10.5 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
 │   └─ Have documented user approval to defer
 ├─ P2 items may be deferred without approval
 ├─ Evidence format: "- [x] Task description [EVIDENCE: file.js:45-67 - implementation verified]"
-└─ ⛔ HARD BLOCK: Cannot proceed to Step 11 if any P0 items are unchecked
+└─ ⛔ HARD BLOCK: Cannot proceed to Step 12 if any P0 items are unchecked
 
-STEP 11 (Completion) REQUIREMENTS:
+STEP 12 (Completion) REQUIREMENTS:
 ├─ Validation runs automatically on spec folder first
 │   ├─ Pass → continue
 │   ├─ Warnings → continue with caution
@@ -318,12 +318,12 @@ STEP 11 (Completion) REQUIREMENTS:
 │   └─ Browser testing results
 └─ MUST NOT skip this step
 
-STEP 12 (Save Context) REQUIREMENTS:
+STEP 13 (Save Context) REQUIREMENTS:
 ├─ MUST save session context to memory/ folder
 ├─ MUST include decisions made and implementation details
 ├─ **MANDATORY:** Use generate-context.js for memory save:
 │   ```
-│   node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]
+│   node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]
 │   ```
 └─ ❌ DO NOT use Write/Edit tools to create memory files directly
 ```
@@ -336,8 +336,8 @@ STEP 12 (Save Context) REQUIREMENTS:
 - Started writing implementation code before Step 8
 - Skipped Steps 8-9 and jumped directly to coding
 - Did not mark tasks `[x]` in tasks.md during Step 10
-- Did not create implementation-summary.md in Step 11
-- Claimed "complete" without all 12 steps showing ✅
+- Did not create implementation-summary.md in Step 12
+- Claimed "complete" without all 13 steps showing ✅
 
 **WORKFLOW VIOLATION RECOVERY:**
 ```
@@ -360,10 +360,10 @@ Execute the complete SpecKit lifecycle from specification through implementation
 ```yaml
 role: Expert Developer using Smart SpecKit with Full Lifecycle Management
 purpose: Spec-driven development with mandatory compliance and comprehensive documentation
-action: Run full 12-step SpecKit from specification to implementation with context preservation
+action: Run full 13-step SpecKit from specification to implementation with context preservation
 
 operating_mode:
-  workflow: sequential_12_step
+  workflow: sequential_13_step
   workflow_compliance: MANDATORY
   workflow_execution: autonomous_or_interactive
   approvals: step_by_step_for_confirm_mode
@@ -373,9 +373,9 @@ operating_mode:
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
-Run the full 12-step SpecKit workflow: specification, clarification, planning, task breakdown, implementation, and context saving. This is the comprehensive workflow for feature development with full documentation trail.
+Run the full 13-step SpecKit workflow: specification, clarification, planning, task breakdown, implementation, and context saving. This is the comprehensive workflow for feature development with full documentation trail.
 
 ---
 
@@ -404,8 +404,9 @@ $ARGUMENTS
 | 8    | Analysis             | Verify consistency                                                           | consistency_report        |
 | 9    | Implementation Check | Verify prerequisites                                                         | greenlight                |
 | 10   | Development          | Execute implementation                                                       | code changes              |
-| 11   | Completion           | Generate summary                                                             | implementation-summary.md |
-| 12   | Save Context         | Preserve conversation                                                        | memory/*.md               |
+| 11   | Checklist Verify     | Verify P0/P1 items (Level 2+)                                                | All P0/P1 verified        |
+| 12   | Completion           | Generate summary                                                             | implementation-summary.md |
+| 13   | Save Context         | Preserve conversation                                                        | memory/*.md               |
 
 ---
 

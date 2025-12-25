@@ -159,12 +159,24 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   ├── level_decision_matrix.md          # LOC thresholds, complexity factors
 │   ├── template_mapping.md               # Template-to-level mapping
 │   └── parallel_dispatch_config.md       # Complexity scoring, agent dispatch config
-└── references/
-    ├── level_specifications.md           # Complete Level 1-3 specifications
-    ├── path_scoped_rules.md              # Path-scoped rule documentation
-    ├── quick_reference.md                # Commands, checklists, troubleshooting
-    ├── template_guide.md                 # Template selection & adaptation rules
-    └── sub_folder_versioning.md          # Sub-folder versioning workflow
+├── references/
+│   ├── level_specifications.md           # Complete Level 1-3 specifications
+│   ├── path_scoped_rules.md              # Path-scoped rule documentation
+│   ├── quick_reference.md                # Commands, checklists, troubleshooting
+│   ├── template_guide.md                 # Template selection & adaptation rules
+│   └── sub_folder_versioning.md          # Sub-folder versioning workflow
+├── mcp_server/                           # Semantic Memory MCP (v16.0 integrated)
+│   ├── context-server.js                 # MCP server with vector search
+│   ├── lib/                              # Server libraries
+│   ├── configs/                          # Server configuration
+│   └── README.md                         # MCP installation guide
+├── database/
+│   └── context-index.sqlite              # Vector search database
+├── constitutional/
+│   └── gate-enforcement.md               # Always-surface rules for gates
+└── scripts/
+    ├── generate-context.js               # Memory file generation (MANDATORY)
+    └── ...                               # Other spec-kit scripts
 ```
 
 ### Spec Folder Structure (Example)
@@ -235,10 +247,26 @@ The `memory/` folder stores **conversation context and session history** for AI 
 - Files follow naming pattern: `DD-MM-YY_HH-MM__topic-name.md`
 - Auto-indexed into semantic memory database on save
 
-**V13.0 Architecture:**
+**V16.0 Architecture (Merged Memory System):**
 - Memory saves MUST use `generate-context.js` (Gate 5 enforces this)
 - Project state is embedded IN memory files (no separate STATE.md)
 - No .spec-skip or .spec-active markers needed
+- Semantic Memory MCP is now integrated into this skill (was separate `system-memory`)
+
+**Integrated Components:**
+| Component | Location | Purpose |
+|-----------|----------|---------|
+| MCP Server | `mcp_server/context-server.js` | Semantic memory with vector search |
+| Database | `database/context-index.sqlite` | SQLite + FTS5 + embeddings |
+| Constitutional | `constitutional/` | Always-surface rules |
+| Scripts | `scripts/generate-context.js` | Memory file generation |
+
+**Memory MCP Tools:**
+- `memory_search()` - Semantic search with vector similarity
+- `memory_match_triggers()` - Fast keyword matching (<50ms)
+- `memory_save()` - Index memory files
+- `memory_list()` - Browse stored memories
+- `checkpoint_create/restore()` - State snapshots
 
 ---
 
@@ -1280,7 +1308,11 @@ Spec Kit uses a 2-tier architecture:
 | `workflows-code`          | Uses spec folders for implementation |
 | `workflows-git`           | References specs in commits/PRs      |
 | `workflows-documentation` | Validates documentation quality      |
-| `system-memory`           | Saves to spec folder memory/         |
+
+**Integrated (formerly separate skill):**
+| Component                 | Integration                          |
+| ------------------------- | ------------------------------------ |
+| Semantic Memory MCP       | Context preservation via vector search (merged) |
 
 ### External Dependencies
 
@@ -1580,7 +1612,7 @@ grep -n "ANCHOR_START\|ANCHOR_END" specs/###-folder/memory/*.md
 
 ```bash
 # Correct way to create memory files
-node .opencode/skill/system-memory/scripts/generate-context.js specs/###-folder/
+node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/###-folder/
 ```
 
 ### EVIDENCE_CITED Failures

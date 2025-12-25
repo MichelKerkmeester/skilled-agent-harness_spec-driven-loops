@@ -1,0 +1,398 @@
+---
+name: mcp-narsil
+description: "Deep code intelligence via Narsil MCP providing 76 tools for security scanning (OWASP, CWE, taint analysis), call graph analysis (CFG, DFG, callers/callees), structural queries (symbols, definitions, references), and supply chain security (SBOM, license compliance). Accessed via Code Mode for token efficiency."
+allowed-tools: [Read, Bash]
+version: 1.0.0
+---
+
+<!-- Keywords: narsil, mcp-narsil, security-scanning, vulnerability, OWASP, CWE, taint-analysis, call-graph, callers, callees, dead-code, control-flow, data-flow, SBOM, supply-chain, license-compliance, find-symbols, project-structure, symbol-definition, git-blame, complexity, code-mode -->
+
+# Narsil MCP - Deep Code Intelligence
+
+Rust-powered code intelligence providing 76 specialized tools for security scanning, call graph analysis, and structural queries. Accessed via **Code Mode** for token-efficient on-demand access (~700 tokens vs ~6,000-8,000 native).
+
+**Core Principle**: Use Narsil for STRUCTURE and SECURITY, use LEANN for MEANING.
+
+---
+
+## 1. 🎯 WHEN TO USE
+
+### Activation Triggers
+
+**Use when**:
+- Security vulnerability scanning needed (OWASP, CWE, injections)
+- Call graph or control flow analysis required
+- Finding symbols, definitions, or references
+- Dead code detection or complexity analysis
+- SBOM generation or license compliance
+- Git blame, history, or hotspot analysis
+
+**Keyword Triggers**:
+- Security: "security scan", "vulnerability", "injection", "OWASP", "CWE", "taint"
+- Call Graph: "call graph", "callers", "callees", "who calls", "what calls"
+- Structure: "find symbols", "find functions", "project structure", "references"
+- Quality: "dead code", "unreachable", "complexity", "unused"
+- Supply Chain: "SBOM", "dependencies", "licenses", "CVE"
+- Git: "git blame", "hotspots", "contributors", "history"
+
+### Use Cases
+
+#### Security Auditing
+
+- Full security scan with OWASP Top 10 and CWE Top 25
+- SQL injection, XSS, command injection detection
+- Taint analysis tracing untrusted data flow
+- Secret and credential detection
+
+#### Code Understanding
+
+- Project structure overview
+- Symbol search (functions, classes, structs)
+- Call graph visualization
+- Dependency analysis
+
+#### Code Quality
+
+- Dead code and unreachable code detection
+- Complexity metrics (cyclomatic, cognitive)
+- Unused assignments and uninitialized variables
+
+#### Supply Chain Security
+
+- SBOM generation (CycloneDX, SPDX)
+- CVE checking against OSV database
+- License compliance verification
+
+### When NOT to Use
+
+**Do not use for**:
+- Semantic code search ("how does X work?") → Use **LEANN**
+- Finding code by meaning or intent → Use **LEANN**
+- RAG-powered Q&A about codebase → Use **LEANN**
+- Simple text pattern search → Use **Grep**
+
+---
+
+## 2. 🧭 SMART ROUTING
+
+### Activation Detection
+
+```
+TASK CONTEXT
+    │
+    ├─► Security scanning needed
+    │   └─► Load: references/security_guide.md
+    │       └─► Tools: scan_security, find_injection_vulnerabilities, trace_taint
+    │
+    ├─► Call graph / code flow analysis
+    │   └─► Load: references/call_graph_guide.md
+    │       └─► Tools: get_call_graph, get_callers, get_callees
+    │
+    ├─► Quick overview / first use
+    │   └─► Load: references/quick_start.md
+    │       └─► Tools: get_project_structure, find_symbols
+    │
+    ├─► Full tool reference needed
+    │   └─► Load: references/tool_reference.md
+    │       └─► All 76 tools documented
+    │
+    └─► Simple structural query
+        └─► Use SKILL.md only
+            └─► Tools: find_symbols, get_project_structure
+```
+
+### Resource Router
+
+```python
+def route_narsil_resources(task):
+    """
+    Resource Router for mcp-narsil skill
+    Load references based on task context
+    """
+
+    # ──────────────────────────────────────────────────────────────────
+    # SECURITY SCANNING
+    # Purpose: OWASP, CWE, injection detection, taint analysis
+    # Key Insight: Start with scan_security for overview, drill into specifics
+    # ──────────────────────────────────────────────────────────────────
+    if task.involves_security or task.mentions_vulnerability:
+        return load("references/security_guide.md")  # Security workflow
+
+    # ──────────────────────────────────────────────────────────────────
+    # CALL GRAPH ANALYSIS
+    # Purpose: CFG, DFG, callers/callees, complexity metrics
+    # Key Insight: Start with get_call_graph, then drill with callers/callees
+    # ──────────────────────────────────────────────────────────────────
+    if task.involves_call_graph or task.mentions_code_flow:
+        return load("references/call_graph_guide.md")  # Analysis workflow
+
+    # ──────────────────────────────────────────────────────────────────
+    # QUICK START
+    # Purpose: First-time usage, verification, basic commands
+    # Key Insight: Fastest path to working state
+    # ──────────────────────────────────────────────────────────────────
+    if task.is_first_use or task.needs_verification:
+        return load("references/quick_start.md")  # Getting started
+
+    # ──────────────────────────────────────────────────────────────────
+    # COMPLETE REFERENCE
+    # Purpose: All 76 tools with descriptions and priority
+    # Key Insight: Use for discovery or when unsure which tool
+    # ──────────────────────────────────────────────────────────────────
+    if task.needs_tool_discovery or task.needs_full_reference:
+        return load("references/tool_reference.md")  # All tools
+
+    # Default: SKILL.md covers basic structural queries
+
+# ══════════════════════════════════════════════════════════════════════
+# STATIC RESOURCES (always available, not conditionally loaded)
+# ══════════════════════════════════════════════════════════════════════
+# assets/tool_categories.md → Priority categorization of all 76 tools
+# scripts/update-narsil.sh   → Script to update Narsil binary
+```
+
+---
+
+## 3. 🛠️ HOW IT WORKS
+
+### Code Mode Invocation
+
+Narsil is accessed via Code Mode's `call_tool_chain()` for token efficiency.
+
+**Naming Convention**:
+```
+narsil.narsil_{tool_name}
+```
+
+**Process Flow**:
+```
+STEP 1: Discover Tools
+       ├─ Use search_tools() for capability-based discovery
+       ├─ Use tool_info() for specific tool details
+       └─ Output: Tool name and parameters
+       ↓
+STEP 2: Execute via Code Mode
+       ├─ Use call_tool_chain() with TypeScript code
+       ├─ Await narsil.narsil_{tool_name}({params})
+       └─ Output: Tool results
+       ↓
+STEP 3: Process Results
+       └─ Parse and present findings
+```
+
+### Tool Invocation Examples
+
+```typescript
+// Discover security tools
+search_tools({ task_description: "security vulnerability scanning" });
+
+// Get tool details
+tool_info({ tool_name: "narsil.narsil_scan_security" });
+
+// Execute security scan
+call_tool_chain({
+  code: `
+    const findings = await narsil.narsil_scan_security({
+      ruleset: "owasp"
+    });
+    return findings;
+  `
+});
+
+// Find all functions
+call_tool_chain({
+  code: `
+    const symbols = await narsil.narsil_find_symbols({
+      kind: "function"
+    });
+    return symbols;
+  `
+});
+
+// Get call graph
+call_tool_chain({
+  code: `
+    const graph = await narsil.narsil_get_call_graph({
+      function_name: "main"
+    });
+    return graph;
+  `
+});
+```
+
+### LEANN Coordination
+
+| Query Type                      | Tool   | Reason            |
+| ------------------------------- | ------ | ----------------- |
+| "How does authentication work?" | LEANN  | Semantic meaning  |
+| "Find code similar to this"     | LEANN  | Vector similarity |
+| "List all auth functions"       | Narsil | Structural query  |
+| "Scan for vulnerabilities"      | Narsil | Security analysis |
+| "Show call graph for login"     | Narsil | Code flow         |
+
+See [references/tool_reference.md](./references/tool_reference.md) for complete tool documentation.
+
+---
+
+## 4. 📋 RULES
+
+### ✅ ALWAYS
+
+1. **ALWAYS use Code Mode for Narsil invocation**
+   - Call via `call_tool_chain()` with TypeScript
+   - Saves ~5,300 tokens vs native MCP
+
+2. **ALWAYS use full tool naming convention**
+   - Format: `narsil.narsil_{tool_name}`
+   - Example: `narsil.narsil_scan_security({})`
+
+3. **ALWAYS check LEANN first for semantic queries**
+   - "How does X work?" → LEANN
+   - "Find code like X" → LEANN
+
+4. **ALWAYS load security_guide.md for security tasks**
+   - Provides phased workflow with checkpoints
+   - Ensures comprehensive coverage
+
+5. **ALWAYS verify tool exists before calling**
+   - Use `search_tools()` or `tool_info()` first
+   - Prevents "tool not found" errors
+
+### ❌ NEVER
+
+1. **NEVER use Narsil for semantic search**
+   - LEANN provides 97% storage savings
+   - LEANN is purpose-built for meaning-based queries
+
+2. **NEVER skip the `narsil_` prefix in tool names**
+   - Wrong: `await narsil.scan_security({})`
+   - Right: `await narsil.narsil_scan_security({})`
+
+3. **NEVER use Narsil's neural/LSP/remote tools**
+   - Neural: LEANN handles semantic search better
+   - LSP: IDE handles this natively
+   - Remote: Not needed for local development
+
+4. **NEVER assume index is current**
+   - Use `narsil_reindex({})` after file changes
+   - Use `--watch` flag for auto-reindex
+
+### ⚠️ ESCALATE IF
+
+1. **ESCALATE IF large repository causes timeout**
+   - Increase timeout: `{ timeout: 120000 }`
+   - Use `--persist` flag to save index
+   - Consider indexing subset of files
+
+2. **ESCALATE IF tool returns unexpected results**
+   - Verify tool name with `tool_info()`
+   - Check if repository is indexed with `list_repos()`
+   - Trigger `reindex()` if needed
+
+3. **ESCALATE IF security findings seem incomplete**
+   - Verify all categories enabled in scan
+   - Check language support (14 languages)
+   - Consider taint analysis for deeper inspection
+
+---
+
+## 5. 🏆 SUCCESS CRITERIA
+
+### Security Audit Complete
+
+**Security audit complete when**:
+- ✅ `scan_security` executed with OWASP/CWE rules
+- ✅ `find_injection_vulnerabilities` checked SQL/XSS/command
+- ✅ `trace_taint` analyzed untrusted data flow
+- ✅ `generate_sbom` created dependency manifest
+- ✅ `check_dependencies` verified against CVE database
+- ✅ `check_licenses` confirmed compliance
+- ✅ All critical/high findings addressed or documented
+
+### Code Analysis Complete
+
+**Code analysis complete when**:
+- ✅ `get_project_structure` provided overview
+- ✅ `find_symbols` identified key components
+- ✅ `get_call_graph` mapped function relationships
+- ✅ `find_dead_code` identified cleanup candidates
+- ✅ `get_complexity` flagged refactoring targets
+- ✅ LEANN used for semantic understanding
+
+### Validation Checkpoints
+
+| Checkpoint          | Validation                                   |
+| ------------------- | -------------------------------------------- |
+| `tools_discovered`  | `search_tools()` returns Narsil tools        |
+| `repo_indexed`      | `list_repos()` shows repository              |
+| `scan_complete`     | Security scan has zero unaddressed criticals |
+| `analysis_complete` | All structural queries executed              |
+
+---
+
+## 6. 🔌 INTEGRATION POINTS
+
+### Code Mode Integration
+
+**Configuration**: Add to `.utcp_config.json`:
+
+```json
+{
+  "name": "narsil",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "narsil": {
+        "transport": "stdio",
+        "command": "/path/to/narsil-mcp",
+        "args": ["--repos", "${workspaceFolder}", "--git", "--call-graph", "--persist", "--watch"]
+      }
+    }
+  }
+}
+```
+
+### Related Skills
+
+| Skill             | Integration                                                              |
+| ----------------- | ------------------------------------------------------------------------ |
+| **mcp-leann**     | Semantic search complement - use LEANN for meaning, Narsil for structure |
+| **mcp-code-mode** | Tool orchestration - Narsil accessed via Code Mode's `call_tool_chain()` |
+| **system-memory** | Context preservation - save security findings for future sessions        |
+
+### Tool Usage Guidelines
+
+**Bash**: Execute update script, verify binary
+**Read**: Load reference files for detailed workflows
+
+### Binary Location
+
+```
+/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp
+```
+
+---
+
+## 7. 📚 RELATED RESOURCES
+
+### Reference Files
+
+- [tool_reference.md](./references/tool_reference.md) - Complete documentation for all 76 tools
+- [security_guide.md](./references/security_guide.md) - Security scanning workflow with checkpoints
+- [call_graph_guide.md](./references/call_graph_guide.md) - Call graph analysis workflow
+- [quick_start.md](./references/quick_start.md) - Getting started in 5 minutes
+
+### Assets
+
+- [tool_categories.md](./assets/tool_categories.md) - Priority categorization of tools
+
+### External Resources
+
+- [Narsil GitHub](https://github.com/postrv/narsil-mcp) - Source code and documentation
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Security standard
+- [CWE Top 25](https://cwe.mitre.org/top25/) - Weakness enumeration
+
+### Related Skills
+
+- `mcp-leann` - Semantic code search (use for meaning-based queries)
+- `mcp-code-mode` - Tool orchestration (Narsil accessed via Code Mode)

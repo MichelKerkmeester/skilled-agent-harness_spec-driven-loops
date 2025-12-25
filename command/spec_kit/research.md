@@ -93,7 +93,7 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 ---
 
-## 🔒 PHASE 2.5: PRIOR WORK SEARCH (Conditional)
+## 🔒 PHASE 3: PRIOR WORK SEARCH (Conditional)
 
 **STATUS: ☐ AUTO-EXECUTE**
 
@@ -121,7 +121,7 @@ EXECUTE AFTER PHASE 2 PASSES:
 
 ---
 
-## 🔒 PHASE 3: MEMORY CONTEXT LOADING (Conditional)
+## 🔒 PHASE 4: MEMORY CONTEXT LOADING (Conditional)
 
 **STATUS: ☐ BLOCKED / ☐ N/A**
 
@@ -163,7 +163,7 @@ CHECK spec_choice value from Phase 2:
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
 ```
 
-**Phase 3 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
+**Phase 4 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
 
 ---
 
@@ -175,7 +175,8 @@ CHECK spec_choice value from Phase 2:
 | -------------------------- | ----------------- | ----------- | --------------------------------------------- |
 | PHASE 1: INPUT             | ✅ PASSED          | ______      | research_topic: ______                        |
 | PHASE 2: SETUP (Spec+Mode) | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
-| PHASE 3: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
+| PHASE 3: PRIOR WORK        | ✅ PASSED or ⏭️ N/A | ______      | prior_work_loaded: ______                     |
+| PHASE 4: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
 
 ```
 VERIFICATION CHECK:
@@ -230,7 +231,7 @@ operating_mode:
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Run the 9-step research workflow: codebase investigation, external research, technical analysis, and documentation. Creates research.md with comprehensive findings. Use when technical uncertainty exists before planning.
 
@@ -317,7 +318,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 6.1 🔀 PARALLEL DISPATCH
+## 7. 🔀 PARALLEL DISPATCH
 
 The research workflow supports parallel agent dispatch for investigation-heavy phases. This is configured in the YAML prompts.
 
@@ -350,7 +351,7 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ---
 
-## 7. 🔀 KEY DIFFERENCES FROM OTHER COMMANDS
+## 8. 🎭 KEY DIFFERENCES FROM OTHER COMMANDS
 
 - **Does NOT proceed to implementation** - Terminates after research.md
 - **Primary output is research.md** - Comprehensive technical documentation
@@ -359,7 +360,7 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ---
 
-## 8. 🔍 EXAMPLES
+## 9. 🔍 EXAMPLES
 
 **Example 1: Multi-Integration Feature**
 ```

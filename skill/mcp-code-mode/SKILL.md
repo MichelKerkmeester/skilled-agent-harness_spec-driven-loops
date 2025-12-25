@@ -39,7 +39,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 - ❌ File discovery (use Glob tool)
 - ❌ Bash commands (use Bash tool)
 - ❌ Semantic code search (use `leann_leann_search()` - **NATIVE MCP**)
-- ❌ Structural code analysis (use `code_context_get_code_context()` - **NATIVE MCP**)
+- ✅ Structural code analysis via Narsil (use `narsil.narsil_find_symbols()`, `narsil.narsil_get_project_structure()` via Code Mode)
 - ❌ Conversation memory (use `semantic_memory_memory_search()` - **NATIVE MCP**)
 - ❌ Sequential Thinking (call `sequential_thinking_sequentialthinking()` directly - **NATIVE MCP**)
 
@@ -265,7 +265,7 @@ call_tool_chain({
 **1. Native MCP** (`opencode.json`) - Direct tools (call directly, NOT through Code Mode):
 - **Sequential Thinking**: `sequential_thinking_sequentialthinking()`
 - **LEANN**: `leann_leann_search()`, `leann_leann_list()`, `leann_leann_ask()`
-- **Code Context**: `code_context_get_code_context()` - Structural code analysis via Tree-sitter AST
+- **Narsil**: `narsil.narsil_find_symbols()`, `narsil.narsil_get_project_structure()` - Structural code analysis via Rust-powered AST (accessed through Code Mode)
 - **Semantic Memory**: `semantic_memory_memory_search()`, `semantic_memory_memory_save()`, etc.
 - **Code Mode server**: The Code Mode tool itself
 - **Note**: Some AI environments have built-in extended thinking capabilities that may supersede Sequential Thinking MCP.
@@ -448,7 +448,7 @@ call_tool_chain({
 
 ---
 
-## 6. 🎓 SUCCESS CRITERIA
+## 6. 🏆 SUCCESS CRITERIA
 
 **Code Mode implementation complete when**:
 
@@ -465,7 +465,7 @@ call_tool_chain({
 
 ---
 
-## 7. 🔗 INTEGRATION POINTS
+## 7. 🔌 INTEGRATION POINTS
 
 ### Cross-Skill Collaboration
 
@@ -508,7 +508,7 @@ call_tool_chain({
 
 ---
 
-## 8. 🎯 QUICK REFERENCE
+## 8. 🏎️ QUICK REFERENCE
 
 ### Essential Commands
 
@@ -603,7 +603,7 @@ See [references/tool_catalog.md](references/tool_catalog.md) for complete list.
 
 ---
 
-## 📦 BUNDLED RESOURCES
+## 10. 📦 BUNDLED RESOURCES
 
 ### scripts/
 

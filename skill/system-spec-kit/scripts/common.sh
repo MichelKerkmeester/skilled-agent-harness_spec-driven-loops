@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 #
-# common.sh - SpecKit Shared Utility Functions
+# common.sh - SpecKit Repository & Branch Utilities
 #
-# This file is sourced by other SpecKit scripts to provide consistent
-# functionality for repository detection, branch management, and path resolution.
+# PURPOSE: Repository detection, branch management, and path resolution.
+#          This is the HIGH-LEVEL utility file for git/repo operations.
+#
+# NOTE: There is also lib/common.sh which provides LOW-LEVEL utilities
+#       (colors, logging, result tracking) for the validation system.
+#       These are SEPARATE files with different purposes:
+#         - scripts/common.sh     → Repo/branch/path utilities (this file)
+#         - scripts/lib/common.sh → Colors/logging for validators
 #
 # VERSION: 2.0.0
 # UPDATED: 2025-12-10

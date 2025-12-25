@@ -1,15 +1,27 @@
 ---
 name: system-spec-kit
-description: "Mandatory spec folder workflow orchestrating documentation level selection (1-3), template selection, and folder creation for all file modifications through documentation enforcement."
+description: "Unified documentation and context preservation: spec folder workflow (levels 1-3), template enforcement, validation, semantic memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
-version: 15.0.0
+version: 16.0.0
 ---
 
-<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation -->
+<!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, semantic-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
 
 # Spec Kit - Mandatory Conversation Documentation
 
 Orchestrates mandatory spec folder creation for all conversations involving file modifications. Ensures proper documentation level selection (1-3), template usage, and context preservation through AGENTS.md-enforced workflows.
+
+---
+
+## What is a Spec Folder?
+
+A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
+
+- **Purpose**: Track specifications, plans, tasks, and decisions for one unit of work
+- **Location**: Always under `specs/` directory with format `###-short-name/`
+- **Contents**: Markdown files (spec.md, plan.md, tasks.md) plus optional memory/ and scratch/ subdirectories
+
+Think of it as a "project folder" for AI-assisted development - it keeps context organized and enables session continuity.
 
 ---
 
@@ -64,7 +76,7 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 User Request
     │
     ├─► Contains "spec", "plan", "document", "checklist"?
-    │   └─► YES → Activate SpecKit
+    │   └─► YES → Activate SpecKit (spec folder workflow)
     │
     ├─► File modification requested?
     │   └─► Gate 3 triggered → Ask spec folder question
@@ -72,9 +84,32 @@ User Request
     ├─► Contains "debug", "stuck", "help"?
     │   └─► Route to /spec_kit:debug
     │
-    └─► Contains "continue", "resume", "pick up"?
-        └─► Route to /spec_kit:resume
+    ├─► Contains "continue", "resume", "pick up"?
+    │   └─► Route to /spec_kit:resume
+    │
+    ├─► Contains "save context", "save memory", "/memory:save"?
+    │   └─► Execute generate-context.js → Index to semantic memory
+    │
+    ├─► Contains "search memory", "find context", "what did we"?
+    │   └─► Use memory_search() MCP tool
+    │
+    ├─► Contains "checkpoint", "save state", "restore"?
+    │   └─► Use checkpoint_create/restore MCP tools
+    │
+    └─► Gate enforcement triggered (file modification)?
+        └─► Constitutional memories auto-surface via memory_match_triggers()
 ```
+
+### Memory System Triggers
+
+| Trigger Pattern | Action | MCP Tool |
+|-----------------|--------|----------|
+| "save context", "save memory", `/memory:save` | Generate + index memory file | `memory_save()` |
+| "search memory", "find prior", "what did we decide" | Semantic search across sessions | `memory_search()` |
+| "list memories", "show context" | Browse stored memories | `memory_list()` |
+| "checkpoint", "save state" | Create named checkpoint | `checkpoint_create()` |
+| "restore checkpoint", "rollback" | Restore from checkpoint | `checkpoint_restore()` |
+| Gate enforcement (any file modification) | Auto-surface constitutional rules | `memory_match_triggers()` |
 
 ### Resource Router
 
@@ -90,28 +125,27 @@ User Request
 | **Handover**       | "stopping", "break", "continue later" | quick_reference.md                         | /spec_kit:handover  |
 | **Resume**         | "continue", "pick up", "resume"       | quick_reference.md                         | /spec_kit:resume    |
 
-**Command → Resource Mapping:**
-
-| Command               | Primary Resources                                 | Templates Used                 |
-| --------------------- | ------------------------------------------------- | ------------------------------ |
-| `/spec_kit:plan`      | level_specifications.md, level_decision_matrix.md | spec.md, plan.md               |
-| `/spec_kit:research`  | quick_reference.md                                | research.md                    |
-| `/spec_kit:implement` | validation_rules.md, template_guide.md            | tasks.md, checklist.md         |
-| `/spec_kit:debug`     | quick_reference.md, parallel_dispatch_config.md   | debug-delegation.md            |
-| `/spec_kit:complete`  | validation_rules.md                               | —                              |
-| `/spec_kit:handover`  | quick_reference.md                                | handover.md                    |
-| `/spec_kit:resume`    | quick_reference.md                                | —                              |
-
 ### Resource Inventory
 
 **Templates (`templates/`):**
 
-| Level | Required Files               | Optional Files                                      |
-| ----- | ---------------------------- | --------------------------------------------------- |
-| 1     | spec.md, plan.md, tasks.md   | —                                                   |
-| 2     | Level 1 + checklist.md       | —                                                   |
-| 3     | Level 2 + decision-record.md | research.md                                         |
-| Any   | —                            | handover.md, debug-delegation.md                    |
+| Level | Required Files               | Optional Files                   |
+| ----- | ---------------------------- | -------------------------------- |
+| 1     | spec.md, plan.md, tasks.md   | —                                |
+| 2     | Level 1 + checklist.md       | —                                |
+| 3     | Level 2 + decision-record.md | research.md                      |
+| Any   | —                            | handover.md, debug-delegation.md |
+
+**Specialized Templates:**
+
+| Template                    | Purpose                               | When to Use                          |
+| --------------------------- | ------------------------------------- | ------------------------------------ |
+| `quickstart.md`             | Rapid setup for simple tasks          | Level 1 tasks, fast iterations       |
+| `spike.md`                  | Technical investigation/exploration   | Proof of concepts, feasibility tests |
+| `data-model.md`             | Database/data structure documentation | Schema changes, data migrations      |
+| `planning-summary.md`       | High-level planning overview          | Complex multi-phase projects         |
+| `implementation-summary.md` | Post-implementation documentation     | Recording what was actually built    |
+| `contracts/api-contract.md` | API endpoint specifications           | REST/GraphQL API development         |
 
 **References (`references/`):**
 | File                     | Purpose                  | When to Load               |
@@ -137,23 +171,9 @@ User Request
 - `lib/` - Shared libraries
 - `rules/` - Validation rule plugins
 
-### Commands
-
-| Command               | Args            | Purpose                                  |
-| --------------------- | --------------- | ---------------------------------------- |
-| `/spec_kit:plan`      | `[spec-folder]` | Start planning phase, create spec folder |
-| `/spec_kit:research`  | `[spec-folder]` | Deep investigation before implementation |
-| `/spec_kit:implement` | `[spec-folder]` | Implementation with validation           |
-| `/spec_kit:debug`     | —               | Delegate debugging to sub-agent          |
-| `/spec_kit:complete`  | `[spec-folder]` | Verify completion, run validation        |
-| `/spec_kit:handover`  | `[spec-folder]` | Create handover for session break        |
-| `/spec_kit:resume`    | `[spec-folder]` | Resume from handover                     |
-
-> **Note:** Validation runs automatically during `/spec_kit:complete` and `/spec_kit:implement`. No separate validate command needed.
-
 ---
 
-## 3. ⚙️ HOW IT WORKS
+## 3. 🛠️ HOW IT WORKS
 
 ### Gate 3 Integration
 
@@ -312,7 +332,7 @@ specs/007-auth-system/
 
 **Manual context save (MANDATORY workflow):**
 - Trigger: `/memory:save`, "save context", or "save memory"
-- **MUST use:** `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]`
+- **MUST use:** `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`
 - **NEVER:** Create memory files manually via Write/Edit (AGENTS.md Gate 5)
 - Location: `specs/###-folder/memory/`
 - Filename: `DD-MM-YY_HH-MM__topic.md` (auto-generated by script)
@@ -339,6 +359,49 @@ specs/007-auth-system/
 - Created: src/utils/jwt.ts
 <!-- /ANCHOR:artifacts -->
 ```
+
+### Semantic Memory System (Integrated)
+
+This skill includes a complete semantic memory system for context preservation across sessions.
+
+**Architecture:**
+| Component | Location | Purpose |
+|-----------|----------|---------|
+| MCP Server | `mcp_server/context-server.js` | Semantic memory MCP with vector search |
+| Database | `database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
+| Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
+| Scripts | `scripts/generate-context.js` | Memory file generation with ANCHOR format |
+
+**Six-Tier Importance System:**
+| Tier | Weight | Purpose | Auto-Surface |
+|------|--------|---------|--------------|
+| **Constitutional** | 1.0 | Critical rules that ALWAYS apply | Yes (top of every search) |
+| **Critical** | 0.9 | High-importance context | Yes (high relevance) |
+| **Important** | 0.7 | Significant decisions/context | Relevance-based |
+| **Normal** | 0.5 | Standard session context | Relevance-based |
+| **Temporary** | 0.3 | Short-term notes | Relevance-based |
+| **Deprecated** | 0.1 | Outdated (kept for history) | Rarely |
+
+**MCP Tools Available:**
+| Tool | Purpose | Example Use |
+|------|---------|-------------|
+| `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
+| `memory_match_triggers()` | Fast keyword matching (<50ms) | Gate enforcement |
+| `memory_save()` | Index a memory file | After generate-context.js |
+| `memory_list()` | Browse stored memories | Review session history |
+| `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
+| `checkpoint_create()` | Save named state snapshot | Before risky changes |
+| `checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
+
+**Decay Scoring:**
+- Memories decay over time (~62-day half-life)
+- Recent context ranks higher than old context
+- Constitutional tier is EXEMPT from decay (always max relevance)
+
+**Constitutional Rules:**
+- Stored in `constitutional/` folder
+- Auto-indexed and always surface at top of search results
+- Used for gate enforcement (e.g., "always ask spec folder question")
 
 ### Two-Stage Question Flow
 
@@ -424,7 +487,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 ---
 
-## 4. 📏 RULES
+## 4. 📋 RULES
 
 ### ALWAYS
 
@@ -615,7 +678,7 @@ validation:
 
 ---
 
-## 7. 🔗 INTEGRATION POINTS
+## 7. 🔌 INTEGRATION POINTS
 
 ### Priority System
 
@@ -640,7 +703,7 @@ validation:
 | **Downstream** | workflows-code          | Uses spec folders for implementation tracking      |
 | **Downstream** | workflows-git           | References spec folders in commit messages and PRs |
 | **Downstream** | workflows-documentation | Validates spec folder documentation quality        |
-| **Downstream** | system-memory           | Saves conversation context to spec/memory/         |
+| **Integrated** | Semantic Memory         | Context preservation via MCP (merged into this skill) |
 
 ### Cross-Skill Workflows
 
@@ -649,7 +712,7 @@ validation:
 system-spec-kit (creates spec folder)
     → workflows-code (implements from spec + plan)
     → workflows-git (commits with spec reference)
-    → system-memory (preserves conversation to spec/memory/)
+    → semantic memory (preserves conversation to spec/memory/ via MCP)
 ```
 
 **Documentation Quality:**
@@ -670,12 +733,15 @@ Implementation complete
 
 ### External Dependencies
 
-| Resource       | Location                                                    | Purpose                   |
-| -------------- | ----------------------------------------------------------- | ------------------------- |
-| Templates (12) | `templates/`                                                | All spec folder templates |
-| Validation     | `scripts/validate-spec.sh`                                  | Automated validation      |
-| Gates          | `AGENTS.md` Section 2                                       | Gate definitions          |
-| Memory gen     | `.opencode/skill/system-memory/scripts/generate-context.js` | Memory file creation      |
+| Resource       | Location                                                      | Purpose                      |
+| -------------- | ------------------------------------------------------------- | ---------------------------- |
+| Templates (13) | `templates/`                                                  | All spec folder templates    |
+| Validation     | `scripts/validate-spec.sh`                                    | Automated validation         |
+| Gates          | `AGENTS.md` Section 2                                         | Gate definitions             |
+| Memory gen     | `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Memory file creation         |
+| MCP Server     | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`| Semantic memory MCP          |
+| Database       | `.opencode/skill/system-spec-kit/database/context-index.sqlite`| Vector search index         |
+| Constitutional | `.opencode/skill/system-spec-kit/constitutional/`             | Always-surface rules         |
 
 ### Common Failure Patterns
 
@@ -692,7 +758,7 @@ Implementation complete
 
 **Create new spec folder:**
 ```bash
-.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh 007-feature-name 2
+./scripts/create-spec-folder.sh "Add feature description" --short-name feature-name --level 2
 ```
 
 **Validate spec folder:**
@@ -702,7 +768,7 @@ Implementation complete
 
 **Save context:**
 ```bash
-node .opencode/skill/system-memory/scripts/generate-context.js specs/007-feature/
+node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/007-feature/
 ```
 
 **Find next spec number:**

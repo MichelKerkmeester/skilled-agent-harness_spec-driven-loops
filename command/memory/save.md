@@ -1,7 +1,7 @@
 ---
 description: Save current conversation context to memory with semantic indexing
 argument-hint: "<spec-folder>"
-allowed-tools: Read, Bash, mcp__semantic_memory__memory_save, mcp__semantic_memory__memory_index_scan, mcp__semantic_memory__memory_stats, mcp__semantic_memory__memory_update
+allowed-tools: Read, Bash, semantic_memory_memory_save, semantic_memory_memory_index_scan, semantic_memory_memory_stats, semantic_memory_memory_update
 ---
 
 # 🚨 MANDATORY PHASE - BLOCKING ENFORCEMENT
@@ -164,22 +164,22 @@ operating_mode:
 
 **Script Location:**
 ```
-.opencode/skill/system-memory/scripts/generate-context.js
+.opencode/skill/system-spec-kit/scripts/generate-context.js
 ```
 
-> **Tool Restriction (Gate 5 HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags (with opening AND closing markers), SESSION SUMMARY table, and MEMORY METADATA YAML block. Direct file creation bypasses these critical formatting features and will cause `memory_load(anchorId)` failures. See AGENTS.md Gate 5 for enforcement details.
+> **Tool Restriction (Gate 5 HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags (with opening AND closing markers), SESSION SUMMARY table, and MEMORY METADATA YAML block. Direct file creation bypasses these critical formatting features. See AGENTS.md Gate 5 for enforcement details.
 
 **Auto-Indexing:** Memory files created in `specs/*/memory/` are automatically indexed when the semantic memory MCP server starts. For immediate indexing after creating a file, use `memory_save`:
 
 ```
-mcp__semantic_memory__memory_save({
+semantic_memory_memory_save({
   filePath: "specs/<folder>/memory/<filename>.md"
 })
 ```
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Save the current conversation context to a spec folder's memory directory for future retrieval. Automatically detects the most relevant spec folder or prompts user when ambiguous.
 
@@ -240,7 +240,7 @@ Content for this section...
 
 **ANTI-PATTERN - THIS WILL BREAK ANCHOR LOADING:**
 ```html
-<!-- WRONG: No closing tag = memory_load(anchorId) returns "Anchor not found" -->
+<!-- WRONG: No closing tag = anchor extraction fails -->
 <!-- anchor: summary -->
 Session summary content...
 <!-- Missing: <!-- /anchor: summary --> -->
@@ -251,7 +251,7 @@ Session summary content...
 <!-- /ANCHOR:summary -->
 ```
 
-**Why This Matters:** The MCP server extracts anchor content using regex that requires both tags. Without the closing tag, extraction fails silently and `memory_load({ anchorId: "summary" })` returns error.
+**Why This Matters:** The MCP server extracts anchor content using regex that requires both tags. Without the closing tag, extraction fails silently.
 
 **Anchor ID Pattern:** `[context-type]-[keywords]-[spec-number]`
 
@@ -287,8 +287,9 @@ Session summary content...
 
 **Retrieval via MCP:**
 ```javascript
-// Load specific section only (93% token savings)
-memory_load({ specFolder: "049-auth", anchorId: "decision-jwt-049" })
+// Search for memories with content included
+memory_search({ query: "jwt auth", includeContent: true })
+// Or use Read tool directly on the memory file path
 ```
 
 ### Step 4: Create JSON Data (AI CONSTRUCTS THIS)
@@ -305,7 +306,7 @@ memory_load({ specFolder: "049-auth", anchorId: "decision-jwt-049" })
     "Decision 2: Selected A over B due to performance considerations"
   ],
   "filesModified": [
-    ".opencode/skill/system-memory/scripts/generate-context.js",
+    ".opencode/skill/system-spec-kit/scripts/generate-context.js",
     "specs/005-memory/010-feature-name/spec.md"
   ],
   "triggerPhrases": [
@@ -334,7 +335,14 @@ memory_load({ specFolder: "049-auth", anchorId: "decision-jwt-049" })
 
 ### Step 5: Execute Processing Script
 
-**Write JSON to temp file, then execute:**
+**Two Execution Modes:**
+
+| Mode | Command | Use When |
+|------|---------|----------|
+| **Mode 1: JSON File** (Recommended) | `node generate-context.js /tmp/save-context-data.json` | Rich context with decisions, files, triggers |
+| **Mode 2: Direct Path** | `node generate-context.js specs/005-memory` | Minimal/placeholder content only |
+
+**Mode 1 (Recommended) - Write JSON to temp file, then execute:**
 ```bash
 # 1. Write the JSON data to a temp file (use Write tool or heredoc)
 cat > /tmp/save-context-data.json << 'EOF'
@@ -346,7 +354,7 @@ cat > /tmp/save-context-data.json << 'EOF'
 EOF
 
 # 2. Execute the script with the JSON file
-node .opencode/skill/system-memory/scripts/generate-context.js /tmp/save-context-data.json
+node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/save-context-data.json
 
 # 3. Clean up temp file
 rm /tmp/save-context-data.json
@@ -364,6 +372,17 @@ rm /tmp/save-context-data.json
 ```
 
 **If you see "simulation mode" warnings, the JSON was not loaded correctly.**
+
+**Mode 2 (Direct Path) - Minimal save:**
+```bash
+# Pass spec folder path directly (creates placeholder content)
+node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/005-memory
+
+# Or with nested folder
+node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/005-memory/010-feature
+```
+
+**When to use Mode 2:** Quick saves without rich context, testing, or when Mode 1 JSON construction fails.
 
 ### Step 6: Report Results
 
@@ -497,14 +516,14 @@ Memory files can be indexed in multiple ways:
 
 **For manual file creation**, use `memory_save` for immediate indexing:
 ```
-mcp__semantic_memory__memory_save({
+semantic_memory_memory_save({
   filePath: "specs/011-memory/memory/context.md"
 })
 ```
 
 **For bulk operations**, use `memory_index_scan`:
 ```
-mcp__semantic_memory__memory_index_scan({
+semantic_memory_memory_index_scan({
   specFolder: "011-memory"  // Optional: omit for full scan
 })
 ```
@@ -514,4 +533,4 @@ mcp__semantic_memory__memory_index_scan({
 ## 12. 📚 FULL DOCUMENTATION
 
 For comprehensive documentation:
-`.opencode/skill/system-memory/SKILL.md`
+`.opencode/skill/system-spec-kit/SKILL.md`

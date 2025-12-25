@@ -292,7 +292,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
      Subsections with semantic emojis (✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF) are REQUIRED.
      Do NOT remove these emojis. Do NOT add horizontal dividers (---) between H3 subsections. -->
 
-## 4. 📖 RULES
+## 4. 📋 RULES
 
 <!-- REQUIRED SUBSECTIONS (package_skill.py validation): -->
 <!-- - ✅ ALWAYS (or "ALWAYS") -->
@@ -347,7 +347,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-## 5. 🎓 SUCCESS CRITERIA
+## 5. 🏆 SUCCESS CRITERIA
 
 ### [Primary Workflow] Completion Checklist
 
@@ -374,7 +374,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-## 6. 🔗 INTEGRATION POINTS
+## 6. 🔌 INTEGRATION POINTS
 
 ### [Integration System 1 - e.g., Validation Workflow]
 
@@ -413,7 +413,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. 📚 RELATED RESOURCES
 
 ### Reference Files
 - [reference-name.md](./references/reference-name.md) - Description of reference file
@@ -638,13 +638,11 @@ STEP 2: [Action]
 - Show, don't just tell (include code examples)
 - Progressive detail: Overview → specifics → edge cases
 - Link to references for deep dives
-- **Flowchart Supplements**: Add visual flowcharts before/after complex Python/YAML logic (see Section 6.5)
+- **Flowchart Supplements**: Add visual flowcharts before/after complex Python/YAML logic (see below)
 
 **Word Budget**: 150-300 lines
 
----
-
-### Section 4.5: FLOWCHART SUPPLEMENTS (NEW - For Complex Logic)
+### Flowchart Supplements (For Complex Logic)
 
 **Purpose**: Add visual clarity to complex Python/YAML logic blocks without removing structured code
 
@@ -988,7 +986,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. 📚 RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type

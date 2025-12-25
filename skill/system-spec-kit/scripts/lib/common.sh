@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 #
-# lib/common.sh - Shared utilities for modular validation architecture
+# lib/common.sh - Validation System Utilities (Colors, Logging, Results)
 #
-# Provides colors, logging functions, and result tracking used by all validators.
+# PURPOSE: Colors, logging functions, and result tracking for validators.
+#          This is the LOW-LEVEL utility file for the validation system.
+#
+# NOTE: There is also scripts/common.sh which provides HIGH-LEVEL utilities
+#       (repo detection, branch management, path resolution).
+#       These are SEPARATE files with different purposes:
+#         - scripts/common.sh     → Repo/branch/path utilities
+#         - scripts/lib/common.sh → Colors/logging for validators (this file)
+#
 # Sourced by: validators/*.sh, validate-spec.sh, and other scripts
 #
 # VERSION: 1.0.0

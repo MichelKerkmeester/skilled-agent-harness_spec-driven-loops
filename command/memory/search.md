@@ -1,7 +1,7 @@
 ---
 description: Unified memory dashboard - search, browse, manage triggers, cleanup, and validate memories
 argument-hint: "[query] [--tier:<tier>] [--type:<type>] [cleanup] [triggers]"
-allowed-tools: Read, Bash, mcp__semantic_memory__memory_search, mcp__semantic_memory__memory_load, mcp__semantic_memory__memory_match_triggers, mcp__semantic_memory__memory_list, mcp__semantic_memory__memory_stats, mcp__semantic_memory__memory_validate, mcp__semantic_memory__memory_update, mcp__semantic_memory__memory_delete
+allowed-tools: Read, Bash, semantic_memory_memory_search, semantic_memory_memory_match_triggers, semantic_memory_memory_list, semantic_memory_memory_stats, semantic_memory_memory_validate, semantic_memory_memory_update, semantic_memory_memory_delete
 ---
 
 # 🚨 CONDITIONAL GATE - DESTRUCTIVE OPERATION ENFORCEMENT
@@ -25,7 +25,7 @@ EXECUTE THIS CHECK FIRST:
     ├─ SET STATUS: ☐ BLOCKED
     │
     ├─ EXECUTE cleanup candidate search:
-    │   mcp__semantic_memory__memory_list({ limit: 50, sortBy: "created_at" })
+    │   semantic_memory_memory_list({ limit: 50, sortBy: "created_at" })
     │
     ├─ FILTER by tier eligibility:
     │   ├─ deprecated      → Always include
@@ -115,7 +115,7 @@ operating_mode:
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Provide a unified interface for all memory operations: searching, browsing, validating, editing triggers, managing tiers, and cleaning up old memories. This command consolidates what were previously separate commands into one cohesive dashboard experience.
 
@@ -174,7 +174,7 @@ $ARGUMENTS
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
 │ SEARCH          │ memory_search                                           │ SINGLE   │ No results msg  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ DETAIL VIEW     │ memory_load + memory_search (for related)               │ PARALLEL │ Show error msg  │
+│ DETAIL VIEW     │ memory_search (includeContent: true for details)        │ SINGLE   │ Show error msg  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
 │ TRIGGER EDIT    │ memory_update                                           │ SINGLE   │ Show error msg  │
 ├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
@@ -191,23 +191,22 @@ $ARGUMENTS
 ### MCP Tool Signatures
 
 ```javascript
-mcp__semantic_memory__memory_stats({})
-mcp__semantic_memory__memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
-mcp__semantic_memory__memory_match_triggers({ prompt: "<context>", limit: N })
-mcp__semantic_memory__memory_search({ query: "<q>", limit: N, tier: "<tier>", contextType: "<type>" })
-mcp__semantic_memory__memory_load({ specFolder: "<folder>", memoryId: <id>, anchorId: "<anchor>" })  // anchorId enables section-specific loading (93% token savings)
-mcp__semantic_memory__memory_validate({ id: <id>, wasUseful: <bool> })
-mcp__semantic_memory__memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
-mcp__semantic_memory__memory_delete({ id: <id> })
+semantic_memory_memory_stats({})
+semantic_memory_memory_list({ limit: N, sortBy: "created_at", specFolder: "optional" })
+semantic_memory_memory_match_triggers({ prompt: "<context>", limit: N })
+semantic_memory_memory_search({ query: "<q>", limit: N, tier: "<tier>", contextType: "<type>" })
+// For full content, use memory_search with specific parameters - memory_load has been deprecated
+semantic_memory_memory_validate({ id: <id>, wasUseful: <bool> })
+semantic_memory_memory_update({ id: <id>, importanceTier: "<tier>", triggerPhrases: [...] })
+semantic_memory_memory_delete({ id: <id> })
 ```
 
-**Anchor-Based Loading:**
+**Content Retrieval:**
 ```javascript
-// Load full memory file
-mcp__semantic_memory__memory_load({ specFolder: "049-auth", memoryId: 42 })
+// Search with content included
+semantic_memory_memory_search({ query: "auth implementation", limit: 5, includeContent: true })
 
-// Load specific section only (93% token savings)
-mcp__semantic_memory__memory_load({ specFolder: "049-auth", anchorId: "decision-jwt-049" })
+// For specific memory by ID, use memory_list to browse then Read the file directly
 ```
 
 ---
@@ -219,8 +218,8 @@ mcp__semantic_memory__memory_load({ specFolder: "049-auth", anchorId: "decision-
 ### Step 1: Gather Data (Parallel MCP Calls)
 
 ```javascript
-mcp__semantic_memory__memory_stats({})
-mcp__semantic_memory__memory_list({ limit: 20, sortBy: "updated_at" })
+semantic_memory_memory_stats({})
+semantic_memory_memory_list({ limit: 20, sortBy: "updated_at" })
 ```
 
 ### Step 2: Display Dashboard
@@ -291,7 +290,7 @@ mcp__semantic_memory__memory_list({ limit: 20, sortBy: "updated_at" })
 ### Step 1: Execute Search
 
 ```javascript
-mcp__semantic_memory__memory_search({
+semantic_memory_memory_search({
   query: "<query>",
   limit: 10,
   tier: "<tier>",           // if specified
@@ -351,11 +350,12 @@ Constitutional tier memories receive special handling in search results:
 
 **Trigger:** Select a memory from dashboard or search
 
-### Step 1: Load Memory (Parallel)
+### Step 1: Load Memory
 
 ```javascript
-mcp__semantic_memory__memory_load({ specFolder: "<folder>", memoryId: <id> })
-mcp__semantic_memory__memory_search({ query: "<title_keywords>", limit: 5 })
+// Search for related memories with content
+semantic_memory_memory_search({ query: "<title_keywords>", limit: 5, includeContent: true })
+// For specific memory details, use the filePath from search results with Read tool
 ```
 
 ### Step 2: Display Detail
@@ -368,11 +368,8 @@ Date:    <created_at>
 Tier:    <tier> (confidence: <N>%)
 Type:    <context_type>
 
-ANCHORS (sections available for targeted loading)
-  [1] summary-<spec#>
-  [2] decision-<topic>-<spec#>
-  [3] files-<spec#>
-  [4] metadata-<spec#>
+SECTIONS
+  Use Read tool with filePath from search results to view full content
 
 PREVIEW
 <First 500 characters of content...>
@@ -386,42 +383,24 @@ RELATED MEMORIES
   [c] <title> (81% match) - <spec_folder>
 
 ────────────────────────────────────────────────────
-[1-4] load section | [a-c] explore related | [l]oad full
-[t]riggers edit    | [v]alidate useful     | [x] not useful
-[p]romote tier     | [s]earch | [b]ack     | [q]uit
+[a-c] explore related | [l]oad full (via Read)
+[t]riggers edit       | [v]alidate useful     | [x] not useful
+[p]romote tier        | [s]earch | [b]ack     | [q]uit
 ```
 
 ### Step 3: Handle Actions
 
-| Input | Action                                                                   |
-| ----- | ------------------------------------------------------------------------ |
-| 1-4   | Load specific anchor section via `memory_load({ anchorId: "<anchor>" })` |
-| a-c   | Go to MEMORY DETAIL for related memory                                   |
-| l     | Load and display full memory content                                     |
-| t     | Go to TRIGGER EDIT for this memory                                       |
-| v     | Call memory_validate with wasUseful: true                                |
-| x     | Call memory_validate with wasUseful: false                               |
-| p     | Show tier promotion menu                                                 |
-| s     | New search                                                               |
-| b     | Back to previous screen                                                  |
-| q     | Exit                                                                     |
-
-### Section-Specific Load Display
-
-When user selects [1-4] to load a specific anchor:
-
-```
-SECTION: decision-jwt-049
-Memory: "<title>" (ID: <id>)
-────────────────────────────────────────────────────
-
-<Section content only - 93% fewer tokens than full load>
-
-────────────────────────────────────────────────────
-[l]oad full | [b]ack to detail | [q]uit
-```
-
----
+| Input | Action                                              |
+| ----- | --------------------------------------------------- |
+| a-c   | Go to MEMORY DETAIL for related memory              |
+| l     | Load full memory content via Read(filePath)         |
+| t     | Go to TRIGGER EDIT for this memory                  |
+| v     | Call memory_validate with wasUseful: true           |
+| x     | Call memory_validate with wasUseful: false          |
+| p     | Show tier promotion menu                            |
+| s     | New search                                          |
+| b     | Back to previous screen                             |
+| q     | Exit                                                |
 
 ## 8. ✏️ TRIGGER EDIT (Per-Memory)
 
@@ -461,7 +440,7 @@ Current triggers:
 ### Step 1: Load Data
 
 ```javascript
-mcp__semantic_memory__memory_list({ limit: 30, sortBy: "updated_at" })
+semantic_memory_memory_list({ limit: 30, sortBy: "updated_at" })
 ```
 
 ### Step 2: Display
@@ -611,4 +590,4 @@ Select new tier:
 ## 14. 📚 FULL DOCUMENTATION
 
 For comprehensive memory system documentation:
-`.opencode/skill/system-memory/SKILL.md`
+`.opencode/skill/system-spec-kit/SKILL.md`

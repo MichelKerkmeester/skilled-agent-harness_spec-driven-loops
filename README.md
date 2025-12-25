@@ -2,9 +2,9 @@
 
 A development environment for [OpenCode](https://github.com/sst/opencode) featuring three custom-built systems you won't find anywhere else:
 
-- **🧠 Semantic Memory**: A purpose-built memory system with hybrid search, importance tiers, and local-first architecture. Your AI remembers context across sessions, days, even weeks later.
+- **🧠 Semantic Memory** (v12.5.0): A purpose-built memory system with hybrid search, importance tiers, and local-first architecture. Your AI remembers context across sessions, days, even weeks later.
 
-- **📋 Spec Kit** (custom fork): Originally inspired by GitHub's spec-kit, this version adds automation, slash commands, deep memory integration, and sub-folder versioning. Documentation writes itself and is enforced by design.
+- **📋 Spec Kit** (v15.0.0): Originally inspired by GitHub's spec-kit, this version adds automation, slash commands, deep memory integration, and sub-folder versioning. Documentation writes itself and is enforced by design.
 
 - **🎯 Skills** (custom framework): 9 domain-specific skills that auto-load based on your task. Designed for efficiency: fewer, smarter skills replace the typical sprawl of dozens of fragmented prompts.
 
@@ -297,13 +297,13 @@ specs/042-add-user-authentication/
 - **checklist.md**: QA validation with P0/P1/P2 priorities
 - **decision-record.md**: Architecture Decision Records (ADRs)
 - **research.md**: Comprehensive technical research
-- **research-spike.md**: Time-boxed proof of concept
 - **handover.md**: Session continuity for multi-session work
 - **debug-delegation.md**: Sub-agent debugging tasks
-- **quick-continue.md**: Minimal handoff for session branching
+- **implementation-summary.md**: Post-implementation summary of what was built
+- **planning-summary.md**: Planning phase completion summary
 
 
-For detailed documentation, see the [README](skill/system-spec-kit/README.md).
+For detailed documentation, see the [README](.opencode/skill/system-spec-kit/README.md).
 
 
 ---
@@ -423,7 +423,7 @@ All processing happens locally:
 - **No external API calls** for memory operations
 - Works fully offline
 
-See [`skill/system-memory/`](skill/system-memory/) for implementation details and [`install_guides/MCP/MCP - Semantic Memory.md`](install_guides/MCP/MCP%20-%20Semantic%20Memory.md) for setup.
+See [`.opencode/skill/system-memory/`](.opencode/skill/system-memory/) for implementation details and [`install_guides/MCP/MCP - Semantic Memory.md`](install_guides/MCP/MCP%20-%20Semantic%20Memory.md) for setup.
 
 
 ---
@@ -475,16 +475,16 @@ Skills are domain expertise on demand. Instead of explaining "how to do git comm
 ### How Skills Work
 
 ```
-Your Request → skill_advisor.py analyzes keywords
+Your Request → python3 .opencode/scripts/skill_advisor.py analyzes keywords
                         ↓
               Confidence > 80%? → Load skill automatically
                         ↓
-              SKILL.md + bundled resources loaded
+              .opencode/skill/<name>/SKILL.md + bundled resources loaded
                         ↓
               AI follows skill guidance
 ```
 
-**Native Discovery:** OpenCode v1.0.190+ automatically finds skills in `skill/*/SKILL.md`. No plugin required.
+**Native Discovery:** OpenCode v1.0.190+ automatically finds skills in `.opencode/skill/*/SKILL.md`. No plugin required.
 
 
 ### Available Skills (9 Total)
@@ -544,7 +544,7 @@ Browser automation and debugging
 ### Creating Custom Skills
 
 ```bash
-python skill/workflows-documentation/scripts/init_skill.py my-skill
+python3 .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill
 ```
 
 See [SET-UP - Skill Creation.md](install_guides/SET-UP%20-%20Skill%20Creation.md) for the full guide.
@@ -575,21 +575,21 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 - Minimal quota cost
 
 
-### Available Commands
+### Available Commands (18 Total)
 
-**spec_kit/**
+**spec_kit/** (7 commands)
 `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:debug`, `/spec_kit:handover`
 
-**memory/**
+**memory/** (3 commands)
 `/memory:save`, `/memory:search`, `/memory:checkpoint`
 
-**create/**
+**create/** (5 commands)
 `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`
 
-**search/**
+**search/** (2 commands)
 `/search:code`, `/search:index`
 
-**prompt/**
+**prompt/** (1 command)
 `/prompt:improve`
 
 
@@ -626,10 +626,14 @@ On first launch, OpenCode guides you through provider configuration.
 
 ### Configuration File
 
-Copy the template to your project:
+Copy the configuration files to your project:
 
 ```bash
-cp "Code Environment/opencode.json" /path/to/your-project/opencode.json
+# Copy the main config
+cp opencode.json /path/to/your-project/opencode.json
+
+# Copy the .opencode folder with skills, commands, and scripts
+cp -r .opencode /path/to/your-project/.opencode
 ```
 
 
@@ -658,25 +662,22 @@ export OPENROUTER_API_KEY="your-api-key"
 
 ### MCP Server Setup
 
-MCP servers extend your AI with specialized capabilities. This environment includes 6 pre-configured servers:
+MCP servers extend your AI with specialized capabilities. This environment includes 5 pre-configured servers in `opencode.json`:
 
-- **Code Mode**: TypeScript tool orchestration
-  [Guide](install_guides/MCP/MCP%20-%20Code%20Mode.md)
-
-- **LEANN**: Semantic code search (97% storage savings)
-  [Guide](install_guides/MCP/MCP%20-%20LEANN.md)
-
-- **Code Context**: Structural code analysis via Tree-sitter
-  [Guide](install_guides/MCP/MCP%20-%20Code%20Context.md)
-
-- **Semantic Memory**: Local vector-based conversation memory
-  [Guide](install_guides/MCP/MCP%20-%20Semantic%20Memory.md)
-
-- **Sequential Thinking**: Structured multi-step reasoning
+- **Sequential Thinking**: Structured multi-step reasoning for complex problems
   [Guide](install_guides/MCP/MCP%20-%20Sequential%20Thinking.md)
 
-- **Chrome DevTools**: Browser automation and debugging
-  [Guide](install_guides/MCP/MCP%20-%20Chrome%20Dev%20Tools.md)
+- **LEANN**: Semantic code search (97% storage savings, finds code by meaning)
+  [Guide](install_guides/MCP/MCP%20-%20LEANN.md)
+
+- **Code Context**: Structural code analysis via Tree-sitter AST
+  [Guide](install_guides/MCP/MCP%20-%20Code%20Context.md)
+
+- **Semantic Memory**: Local vector-based conversation memory (v12.5.0, 14 MCP tools)
+  [Guide](install_guides/MCP/MCP%20-%20Semantic%20Memory.md)
+
+- **Code Mode**: External tool orchestration (Webflow, Figma, ClickUp, Chrome DevTools, etc.)
+  [Guide](install_guides/MCP/MCP%20-%20Code%20Mode.md)
 
 
 ### Code Search Tools (Complementary)
@@ -690,7 +691,7 @@ Use these three tools together:
 
 ### Native Skills Setup
 
-Skills are **natively supported** in OpenCode v1.0.190+. Auto-discovered from `skill/*/SKILL.md`.
+Skills are **natively supported** in OpenCode v1.0.190+. Auto-discovered from `.opencode/skill/*/SKILL.md`.
 
 - [SET-UP - AGENTS.md](install_guides/SET-UP%20-%20AGENTS.md): Configure AI agent guardrails
 - [SET-UP - Skill Advisor.md](install_guides/SET-UP%20-%20Skill%20Advisor.md): Configure intelligent skill routing

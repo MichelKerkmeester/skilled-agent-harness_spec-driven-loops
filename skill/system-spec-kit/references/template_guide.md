@@ -445,6 +445,166 @@ cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/d
 
 ---
 
+### quickstart.md - Getting Started Guide
+
+**When to use:** New feature needs onboarding documentation
+
+**Purpose:** Step-by-step guide to get users up and running quickly with a feature or tool
+
+**Template:** `quickstart.md`
+
+**Copy command:**
+```bash
+cp .opencode/skill/system-spec-kit/templates/quickstart.md specs/###-name/quickstart.md
+```
+
+**Key sections:**
+- Overview (what users will accomplish, time required, skill level)
+- Prerequisites (required and recommended items with verification commands)
+- Installation (step-by-step with expected output)
+- First use example (basic and complete examples)
+- Common commands (table with command details)
+- Configuration (minimal and full reference)
+- Troubleshooting (common issues with solutions)
+- Next steps (learning path and advanced topics)
+
+**Adaptation tips:**
+- Focus on time-to-first-success
+- Include verification commands for each step
+- Provide working code examples users can copy
+- Document common issues proactively
+- Link to deeper documentation for advanced topics
+
+**When NOT to use:**
+- Comprehensive reference needed (use research.md)
+- Internal developer notes (use plan.md)
+- Single-use installation (use inline instructions)
+
+---
+
+### spike.md - Time-Boxed Technical Investigation
+
+**When to use:** Need to answer a specific technical question with time-boxed investigation
+
+**Purpose:** Document time-boxed technical investigations to answer questions or validate hypotheses
+
+**Template:** `spike.md`
+
+**Copy command:**
+```bash
+cp .opencode/skill/system-spec-kit/templates/spike.md specs/###-name/spike-[topic].md
+```
+
+**Key sections:**
+- Metadata (spike ID, status, time-box, actual time spent)
+- Question/Hypothesis (primary question, success criteria, out of scope)
+- Approach (investigation plan, resources needed, risks)
+- Findings (summary, detailed findings with evidence, comparison matrix)
+- Recommendation (primary recommendation, rationale, trade-offs, confidence level)
+- Next steps (immediate actions, follow-up investigation)
+- Artifacts (prototypes, documentation, external references)
+
+**Time-box guidelines:**
+- Small spike: 2-4 hours
+- Medium spike: 1 day
+- Large spike: 2-3 days
+- If more time needed, consider breaking into multiple spikes or using research.md
+
+**Adaptation tips:**
+- Define clear success criteria before starting
+- Document findings with evidence (code, logs, data)
+- Be honest about confidence level in recommendations
+- Clean up prototype code after spike completes (keep in scratch/ during)
+
+**When NOT to use:**
+- Question can be answered with quick research (<1 hour)
+- Decision already made (use decision-record.md)
+- Comprehensive feature research needed (use research.md)
+
+---
+
+### data-model.md - Entity & Schema Documentation
+
+**When to use:** Designing database schema or documenting data structures
+
+**Purpose:** Define entities, relationships, and schema specifications for data layer
+
+**Template:** `data-model.md`
+
+**Copy command:**
+```bash
+cp .opencode/skill/system-spec-kit/templates/data-model.md specs/###-name/data-model.md
+```
+
+**Key sections:**
+- Metadata (model ID, version, status)
+- Overview (purpose, scope, key design decisions)
+- Entity definitions (fields, indexes, constraints for each entity)
+- Relationships (ERD diagram, relationship definitions, foreign keys)
+- Field descriptions (type reference, enumerated values)
+- Constraints (business rules, validation rules, uniqueness)
+- Example data (seed data, test fixtures)
+- Migration notes (schema changes, breaking changes, rollback plan)
+- Performance considerations (query patterns, optimization, scaling)
+- Security & privacy (sensitive fields, data retention, audit requirements)
+
+**Adaptation tips:**
+- Use ASCII diagrams for entity relationships
+- Include both seed data and test fixtures
+- Document migration strategy for schema evolution
+- Flag sensitive/PII fields explicitly
+- Define retention policies for compliance
+
+**When NOT to use:**
+- Temporary data structures (use code comments)
+- API schemas only (use api-contract.md)
+- Single-entity simple CRUD (may be overkill)
+
+---
+
+### contracts/api-contract.md - API Endpoint Specification
+
+**When to use:** Defining or documenting API endpoints
+
+**Purpose:** Contract defining endpoint specifications, request/response formats, and integration requirements
+
+**Template:** `contracts/api-contract.md`
+
+**Copy command:**
+```bash
+mkdir -p specs/###-name/contracts
+cp .opencode/skill/system-spec-kit/templates/contracts/api-contract.md specs/###-name/contracts/api-contract.md
+```
+
+**Key sections:**
+- Metadata (contract ID, version, status, owner)
+- Overview (API purpose, base URL, API style, versioning strategy)
+- Authentication (method, token lifecycle, auth flow)
+- Endpoints (definition, request details, response format for each endpoint)
+- Error handling (error response format, HTTP status codes, application error codes)
+- Rate limiting (configuration, headers, best practices)
+- Examples (complete workflow, SDK examples in multiple languages)
+- Changelog (version history, deprecation notices)
+
+**Adaptation tips:**
+- Include working curl examples for each endpoint
+- Document all error codes with resolution steps
+- Provide SDK examples in languages your consumers use
+- Include rate limit headers in response documentation
+- Maintain changelog for API versioning
+
+**When NOT to use:**
+- Internal function documentation (use code comments)
+- Data schema only (use data-model.md)
+- General technical research (use research.md)
+
+**Related templates:**
+- Use with data-model.md for complete backend documentation
+- Reference from plan.md for implementation planning
+- Store in contracts/ folder for multi-endpoint APIs
+
+---
+
 ## 6. 📋 SESSION MANAGEMENT TEMPLATES
 
 These templates support session continuity, temporary workspaces, and context preservation.

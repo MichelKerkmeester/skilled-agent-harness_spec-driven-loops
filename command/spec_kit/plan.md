@@ -202,7 +202,7 @@ operating_mode:
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Run the 7-step planning workflow: specification, clarification, quality checklist, and technical planning. Creates spec.md, plan.md, and checklists without proceeding to implementation. Use when planning needs review before coding.
 

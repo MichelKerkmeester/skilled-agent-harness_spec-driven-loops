@@ -253,7 +253,7 @@ $ARGUMENTS
 
 ## 3. 📝 INSTRUCTIONS
 
-### Step 3.1: Verify All Phases Passed
+### Step 4: Verify All Phases Passed
 
 Confirm you have these values from the phases:
 - `target_path` from PHASE 1
@@ -263,7 +263,7 @@ Confirm you have these values from the phases:
 
 **If ANY phase is incomplete, STOP and return to the MANDATORY PHASES section.**
 
-### Step 3.2: Load & Execute Workflow
+### Step 5: Load & Execute Workflow
 
 Load and execute the workflow definition:
 
@@ -301,7 +301,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 5. 💡 EXAMPLES
+## 5. 🔍 EXAMPLES
 
 **Example 1: Project README**
 ```

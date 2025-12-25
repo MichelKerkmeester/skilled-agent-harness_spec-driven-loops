@@ -2,56 +2,56 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: debug-delegation | v1.0 -->
 
 **Date:** [AUTO: timestamp]
-**Task ID:** [PLACEHOLDER: task_id]
-**Delegated By:** [PLACEHOLDER: agent_id]
-**Attempts Before Delegation:** [PLACEHOLDER: attempt_count]
+**Task ID:** [YOUR_VALUE_HERE: task_id]
+**Delegated By:** [YOUR_VALUE_HERE: agent_id]
+**Attempts Before Delegation:** [YOUR_VALUE_HERE: attempt_count]
 
 ## 1. PROBLEM SUMMARY
 
 ### Error Category
-[PLACEHOLDER: syntax_error | type_error | runtime_error | test_failure | build_error | lint_error]
+[YOUR_VALUE_HERE: syntax_error | type_error | runtime_error | test_failure | build_error | lint_error]
 
 ### Error Message
 ```
-[PLACEHOLDER: full_error_output]
+[YOUR_VALUE_HERE: full_error_output]
 ```
 
 ### Affected Files
-- [PLACEHOLDER: file_path_1]
-- [PLACEHOLDER: file_path_2]
+- [YOUR_VALUE_HERE: file_path_1]
+- [YOUR_VALUE_HERE: file_path_2]
 
 ## 2. ATTEMPTED FIXES
 
 ### Attempt 1
-- **Approach:** [PLACEHOLDER: description]
-- **Result:** [PLACEHOLDER: failed_because]
-- **Diff:** [PLACEHOLDER: code_diff_or_link]
+- **Approach:** [YOUR_VALUE_HERE: description]
+- **Result:** [YOUR_VALUE_HERE: failed_because]
+- **Diff:** [YOUR_VALUE_HERE: code_diff_or_link]
 
 ### Attempt 2
-- **Approach:** [PLACEHOLDER: description]
-- **Result:** [PLACEHOLDER: failed_because]
+- **Approach:** [YOUR_VALUE_HERE: description]
+- **Result:** [YOUR_VALUE_HERE: failed_because]
 
 ### Attempt 3
-- **Approach:** [PLACEHOLDER: description]
-- **Result:** [PLACEHOLDER: failed_because]
+- **Approach:** [YOUR_VALUE_HERE: description]
+- **Result:** [YOUR_VALUE_HERE: failed_because]
 
 ## 3. CONTEXT FOR SPECIALIST
 
 ### Relevant Code Section
-```[PLACEHOLDER: language]
-[PLACEHOLDER: code_snippet]
+```[YOUR_VALUE_HERE: language]
+[YOUR_VALUE_HERE: code_snippet]
 ```
 
 ### Related Documentation
-- [PLACEHOLDER: doc_references]
+- [YOUR_VALUE_HERE: doc_references]
 
 ### Hypothesis
-[PLACEHOLDER: current_theory_about_root_cause]
+[YOUR_VALUE_HERE: current_theory_about_root_cause]
 
 ## 4. RECOMMENDED NEXT STEPS
 
-1. [PLACEHOLDER: suggested_action_1]
-2. [PLACEHOLDER: suggested_action_2]
+1. [YOUR_VALUE_HERE: suggested_action_1]
+2. [YOUR_VALUE_HERE: suggested_action_2]
 
 ## 5. HANDOFF CHECKLIST
 

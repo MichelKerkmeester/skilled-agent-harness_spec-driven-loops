@@ -1,5 +1,7 @@
 # Code Mode MCP - TypeScript Tool Execution
 
+> **Last Updated:** 2025-12-25 | **Version:** Compatible with Code Mode MCP v1.x
+
 MCP orchestration via TypeScript execution for efficient multi-tool workflows. Provides **98.7% context reduction** and **60% faster execution** through progressive tool discovery and code-based tool chaining.
 
 > **Navigation**:
@@ -7,6 +9,8 @@ MCP orchestration via TypeScript execution for efficient multi-tool workflows. P
 > - Need tool guidance? See [Tool Selection Guide](#3--tool-selection-guide)
 > - Naming issues? See [Naming Convention](#5--naming-convention)
 > - Configuration help? See [Configuration](#6--configuration)
+
+[![MCP](https://img.shields.io/badge/MCP-Native-brightgreen.svg)](https://modelcontextprotocol.io)
 
 ---
 
@@ -23,6 +27,7 @@ MCP orchestration via TypeScript execution for efficient multi-tool workflows. P
 - [9. 💡 USAGE PATTERNS](#9--usage-patterns)
 - [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
 - [11. 📚 RESOURCES](#11--resources)
+- [12. 📋 QUICK REFERENCE CARD](#12--quick-reference-card)
 
 ---
 
@@ -124,7 +129,7 @@ call_tool_chain({
 
 ### Tool Selection Flowchart
 
-```
+```text
 User Request
      │
      ▼
@@ -432,7 +437,7 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 
 ### System Overview
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CLI AI Agents (OpenCode)                     │
 └─────────────────────────────┬───────────────────────────────────┘
@@ -692,7 +697,7 @@ call_tool_chain({
 
 ---
 
-## Quick Reference Card
+## 12. 📋 QUICK REFERENCE CARD
 
 ### Essential Commands
 
@@ -726,7 +731,5 @@ Examples:
 - `webflow.webflow_sites_list({})`
 - `clickup.clickup_create_task({})`
 - `figma.figma_get_file({})`
-
----
 
 **Remember**: Code Mode is for **external MCP tools only** (Webflow, Figma, ClickUp, etc.). Native MCP tools like LEANN and Sequential Thinking should be called directly, NOT through `call_tool_chain()`.

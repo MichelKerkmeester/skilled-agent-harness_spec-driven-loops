@@ -7,7 +7,7 @@ This directory contains shell scripts for spec folder management and validation.
 | Script | Purpose | Usage |
 |--------|---------|-------|
 | `validate-spec.sh` | **Validate spec folder contents** | `./validate-spec.sh specs/007-feature/` |
-| `create-spec-folder.sh` | Create new spec folders with templates | `./create-spec-folder.sh --name feature --level 2` |
+| `create-spec-folder.sh` | Create new spec folders with templates | `./create-spec-folder.sh --short-name feature --level 2` |
 | `check-prerequisites.sh` | Validate spec folder has required files | `./check-prerequisites.sh specs/007-feature/` |
 | `calculate-completeness.sh` | Calculate checklist completion percentage | `./calculate-completeness.sh specs/007-feature/` |
 | `recommend-level.sh` | Recommend documentation level based on LOC | `./recommend-level.sh --loc 250 --files 5` |
@@ -17,7 +17,9 @@ This directory contains shell scripts for spec folder management and validation.
 
 ## Dependencies
 
-- **Bash 4.0+** - Required for associative arrays
+- **Bash 3.2+** - Works for most scripts (macOS default)
+- **Bash 4.0+** - Required only for `lib/config.sh` (uses associative arrays)
+  - macOS users: Install with `brew install bash` if using config features
 - **bc** - Required for percentage calculations in calculate-completeness.sh
 - **git** - Optional, for branch detection and git-aware features
 
@@ -77,17 +79,23 @@ Creates a new spec folder with appropriate templates based on documentation leve
 **Arguments:**
 | Argument | Required | Description |
 |----------|----------|-------------|
-| `--name` | Yes | Feature name (will be sanitized) |
-| `--level` | Yes | Documentation level (1, 2, or 3) |
-| `--prefix` | No | Custom number prefix (auto-detected if omitted) |
+| `<feature_description>` | Yes | Feature description (used to generate folder name) |
+| `--short-name` | No | Custom short name (2-4 words) for the folder |
+| `--level` | No | Documentation level (1, 2, or 3). Default: 1 |
+| `--number` | No | Custom number prefix (auto-detected if omitted) |
+| `--skip-branch` | No | Create spec folder only, don't create git branch |
+| `--sharded` | No | Create sharded spec sections (Level 3 only) |
 
 **Examples:**
 ```bash
-# Create Level 1 spec folder
-./create-spec-folder.sh --name "user-auth" --level 1
+# Create Level 1 spec folder with auto-generated name
+./create-spec-folder.sh "Add user authentication system"
 
-# Create Level 2 with custom prefix
-./create-spec-folder.sh --name "api-refactor" --level 2 --prefix 015
+# Create Level 1 with custom short name
+./create-spec-folder.sh "Add user authentication" --short-name "user-auth"
+
+# Create Level 2 with custom number prefix
+./create-spec-folder.sh "API refactoring project" --level 2 --number 015
 ```
 
 **Exit Codes:**
@@ -147,18 +155,25 @@ Recommends a documentation level based on project metrics.
 - Level 2: 100-499 LOC, or medium risk
 - Level 3: ≥500 LOC, or high risk, or architectural changes
 
-### common.sh
+### common.sh (Two Files)
 
-Shared utility functions sourced by other scripts.
+There are two `common.sh` files with different purposes:
 
-**Key Functions:**
-- `log_info()` - Blue info messages
-- `log_success()` - Green success messages
-- `log_warning()` - Yellow warning messages
-- `log_error()` - Red error messages
-- `find_project_root()` - Locate project root directory
-- `get_next_spec_number()` - Get next available spec folder number
-- `sanitize_name()` - Sanitize folder names for filesystem
+**scripts/common.sh** - Repository & Branch Utilities
+- `get_repo_root()` - Find repository root directory
+- `get_current_branch()` - Detect current feature branch
+- `has_git()` - Check if in a git repository
+- `check_feature_branch()` - Validate branch naming convention
+- `get_feature_dir()` - Build feature directory path
+- `get_feature_paths()` - Export all feature-related paths
+
+**scripts/lib/common.sh** - Validation System Utilities
+- `log_pass()` - Log passing validation (green checkmark)
+- `log_warn()` - Log warning (yellow, non-blocking)
+- `log_error()` - Log error (red, blocking)
+- `log_info()` - Log informational message (blue)
+- `log_detail()` - Log indented detail line
+- Color definitions and result tracking for validators
 
 ## Environment Variables
 

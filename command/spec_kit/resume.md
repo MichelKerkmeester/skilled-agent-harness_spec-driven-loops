@@ -35,7 +35,7 @@ EXECUTE THIS CHECK FIRST:
 │   ├─ IF path exists:
 │   │   ├─ Store as: spec_path
 │   │   ├─ detection_method = "provided"
-│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
+│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 3
 │   │
 │   └─ IF path NOT found:
 │       ├─ SHOW: "Spec folder not found: [path]"
@@ -55,7 +55,7 @@ EXECUTE THIS CHECK FIRST:
     ├─ IF session found:
     │   ├─ Store as: spec_path (extract from memory file path)
     │   ├─ detection_method = "recent"
-    │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
+    │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 3
     │
     └─ IF NO session found:
         ├─ SHOW: "No active session detected"
@@ -74,7 +74,7 @@ EXECUTE THIS CHECK FIRST:
 
 ---
 
-## 🔒 PHASE 1.5: CONTINUATION VALIDATION (Gate 0.5)
+## 🔒 PHASE 2: CONTINUATION VALIDATION (Gate 0.5)
 
 **STATUS: ☐ CONDITIONAL**
 
@@ -119,12 +119,12 @@ EXECUTE IF handoff pattern detected in $ARGUMENTS or recent user messages:
 
 ---
 
-## 🔒 PHASE 2: ARTIFACT VALIDATION & MODE SELECTION
+## 🔒 PHASE 3: ARTIFACT VALIDATION & MODE SELECTION
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE AFTER PHASE 1 PASSES:
+EXECUTE AFTER PHASE 2 PASSES:
 
 1. Check for required artifacts in spec_path:
    $ ls -la [spec_path]/
@@ -159,7 +159,54 @@ since it's a context-recovery operation where user review is beneficial.
 ⛔ HARD STOP: DO NOT proceed until artifacts are validated or user chooses option
 ```
 
-**Phase 2 Output:** `artifacts_valid = [yes/partial/no]` | `available_artifacts = [list]` | `execution_mode = ________________`
+**Phase 3 Output:** `artifacts_valid = [yes/partial/no]` | `available_artifacts = [list]` | `execution_mode = ________________`
+
+---
+
+## 🔒 PHASE 4: MEMORY LOADING (Gate 4)
+
+**STATUS: ☐ CONDITIONAL**
+
+```
+EXECUTE AFTER PHASE 3 PASSES:
+
+1. CHECK for memory files in spec folder:
+   $ ls -la [spec_path]/memory/*.md 2>/dev/null
+
+2. IF memory files exist:
+   │
+   ├─ IF execution_mode = "AUTONOMOUS":
+   │   ├─ Auto-load most recent memory file
+   │   ├─ SHOW: "📚 Auto-loaded: [filename]"
+   │   └─ SET STATUS: ✅ PASSED
+   │
+   └─ IF execution_mode = "INTERACTIVE":
+       ├─ Count available memory files
+       ├─ SHOW: "Found [N] memory file(s) in [spec_path]/memory/"
+       ├─ ASK: "Memory Loading:"
+       │   ┌────────────────────────────────────────────────────────────┐
+       │   │ A) Load most recent memory                                 │
+       │   │ B) Load all memories (1-3 max)                             │
+       │   │ C) Select specific memory                                  │
+       │   │ D) Skip memory loading                                     │
+       │   └────────────────────────────────────────────────────────────┘
+       ├─ WAIT for user response
+       │
+       ├─ IF A: Load most recent memory file → Display summary
+       ├─ IF B: Load up to 3 most recent files → Display summaries
+       ├─ IF C: List all memory files → Wait for selection → Load
+       └─ IF D: Skip → Proceed without memory context
+       │
+       └─ SET STATUS: ✅ PASSED
+
+3. IF NO memory files exist:
+   ├─ SHOW: "ℹ️  No memory files found in [spec_path]/memory/"
+   └─ SET STATUS: ⏭️ N/A (no memories to load)
+
+Note: This implements Gate 4 from AGENTS.md Section 2.
+```
+
+**Phase 4 Output:** `memory_loaded = [yes/no/skipped]` | `memory_files = [list or none]`
 
 ---
 
@@ -170,8 +217,9 @@ since it's a context-recovery operation where user review is beneficial.
 | PHASE                         | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                       |
 | ----------------------------- | ----------------- | ----------- | ---------------------------------- |
 | PHASE 1: INPUT & SESSION      | ✅ PASSED          | ______      | spec_path: ______ / method: ______ |
-| PHASE 1.5: CONTINUATION CHECK | ✅ PASSED or ⏭️ N/A | ______      | validated: ______ / source: ______ |
-| PHASE 2: ARTIFACTS & MODE     | ✅ PASSED          | ______      | artifacts: ______ / mode: ______   |
+| PHASE 2: CONTINUATION CHECK   | ✅ PASSED or ⏭️ N/A | ______      | validated: ______ / source: ______ |
+| PHASE 3: ARTIFACTS & MODE     | ✅ PASSED          | ______      | artifacts: ______ / mode: ______   |
+| PHASE 4: MEMORY LOADING       | ✅ PASSED or ⏭️ N/A | ______      | memory: ______ / files: ______     |
 
 ```
 VERIFICATION CHECK:
@@ -186,9 +234,10 @@ VERIFICATION CHECK:
 
 **YOU ARE IN VIOLATION IF YOU:**
 - Started reading the workflow section before all phases passed
-- Proceeded without validating artifacts exist (Phase 2)
+- Proceeded without validating artifacts exist (Phase 3)
 - Assumed a spec folder without user confirmation when path was invalid
-- Skipped memory file loading options in interactive mode
+- Skipped Gate 4 memory loading question when memory files exist (Phase 4)
+- Did not wait for user A/B/C/D response before loading memories in interactive mode
 - Did not display progress calculation
 - Claimed "resumed" without showing continuation options
 
@@ -252,7 +301,7 @@ operating_mode:
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Resume work on an existing spec folder by automatically detecting the last active session, loading context from memory files, and presenting progress with clear next steps. This is a utility workflow for session continuity.
 
@@ -347,7 +396,7 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 
 ---
 
-## 5.1 🔧 MCP TOOL USAGE
+## 6. 🔧 MCP TOOL USAGE
 
 The resume workflow uses semantic memory MCP tools directly for context loading. **CRITICAL:** Call MCP tools directly - NEVER through Code Mode.
 
@@ -369,7 +418,7 @@ semantic_memory_memory_match_triggers({ prompt: "auth system work" })
 
 // NEVER do this (WRONG)
 call_tool_chain(`memory.memory_search(...)`)  // NO - not through Code Mode
-mcp__semantic_memory__memory_search(...)      // NO - wrong prefix syntax
+semantic_memory_memory_search(...)      // NO - wrong prefix syntax
 ```
 
 ### Session Detection Priority
@@ -396,7 +445,7 @@ This catches:
 
 ---
 
-## 5.2 🔀 PARALLEL DISPATCH
+## 7. 🔀 PARALLEL DISPATCH
 
 The resume workflow is a **utility workflow** and does NOT use parallel dispatch. All steps execute sequentially:
 
@@ -407,7 +456,7 @@ Parallel dispatch is only used in implementation-heavy workflows (`/spec_kit:com
 
 ---
 
-## 6. 🔍 EXAMPLES
+## 8. 🔍 EXAMPLES
 
 **Example 1: Auto-detect and resume**
 ```
@@ -435,7 +484,7 @@ Parallel dispatch is only used in implementation-heavy workflows (`/spec_kit:com
 
 ---
 
-## 7. 🔗 RELATED COMMANDS
+## 9. 🔗 RELATED COMMANDS
 
 | Command               | Relationship                                        |
 | --------------------- | --------------------------------------------------- |

@@ -234,7 +234,7 @@ operating_mode:
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Run the 8-step implementation workflow: plan review, task breakdown, quality validation, development, and completion summary. Picks up where `/spec_kit:plan` left off to execute the actual code changes.
 
@@ -308,7 +308,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 5.1 🔀 PARALLEL DISPATCH
+## 6. 🔀 PARALLEL DISPATCH
 
 The implement workflow supports parallel agent dispatch for complex phases. This is configured in the YAML prompts.
 
@@ -339,7 +339,7 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ---
 
-## 6. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 7. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Requires existing plan** - Won't create spec.md or plan.md
 - **Starts at implementation** - Skips specification and planning phases
@@ -347,7 +347,7 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ---
 
-## 7. ✅ VALIDATION DURING IMPLEMENTATION
+## 8. ✅ VALIDATION DURING IMPLEMENTATION
 
 Validation runs automatically to catch issues early.
 
@@ -358,7 +358,7 @@ Key rules for implementation phase:
 
 ---
 
-## 8. 🔍 EXAMPLES
+## 9. 🔍 EXAMPLES
 
 **Example 1: Execute Existing Plan (autonomous)**
 ```

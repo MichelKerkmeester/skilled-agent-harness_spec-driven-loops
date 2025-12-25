@@ -1,1 +1,0 @@
-../../../install_guides/MCP/MCP - Semantic Memory.md

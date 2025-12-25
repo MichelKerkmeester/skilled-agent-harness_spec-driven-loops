@@ -38,16 +38,16 @@ Lightweight vector database for semantic code and document search. Unlike tradit
 - ❌ Exact symbol/pattern search (use Grep tool - more precise)
 - ❌ Conversation memory (use `semantic_memory` MCP - different purpose)
 - ❌ File structure listing (use Glob tool - pattern matching)
-- ❌ Structural code queries (use `mcp-code-context` for symbol navigation)
+- ❌ Structural code queries (use `mcp-narsil` for symbol navigation via Code Mode)
 
 ### Common Use Cases
 
-| Scenario                     | LEANN Approach                                  | Benefit                       |
-| ---------------------------- | ----------------------------------------------- | ----------------------------- |
-| **Find authentication code** | `leann_leann_search({ query: "user login handling" })`            | Intent-based, not keyword     |
+| Scenario                     | LEANN Approach                                                       | Benefit                       |
+| ---------------------------- | -------------------------------------------------------------------- | ----------------------------- |
+| **Find authentication code** | `leann_leann_search({ query: "user login handling" })`               | Intent-based, not keyword     |
 | **Understand a codebase**    | `leann_leann_ask({ question: "How does payment processing work?" })` | RAG-powered explanation       |
-| **Index new project**        | `leann_leann_build({ index_name: "my-project", docs: "./src" })`           | Fast semantic search ready    |
-| **Search documentation**     | `leann_leann_search({ query: "deployment requirements" })`        | Find by meaning, not filename |
+| **Index new project**        | `leann_leann_build({ index_name: "my-project", docs: "./src" })`     | Fast semantic search ready    |
+| **Search documentation**     | `leann_leann_search({ query: "deployment requirements" })`           | Find by meaning, not filename |
 | **Code exploration**         | `leann_leann_ask({ question: "What are the main API endpoints?" })`  | Structured codebase discovery |
 
 ---
@@ -74,7 +74,7 @@ TASK CONTEXT
     │   └─► Use Read/Grep tools directly, skip LEANN
     │
     └─► Need dependency or architecture analysis
-        └─► Use mcp-code-context or Grep, not LEANN
+        └─► Use mcp-narsil (via Code Mode) or Grep, not LEANN
 ```
 
 ### Resource Router
@@ -320,7 +320,7 @@ leann_leann_remove({ index_name: "test-index" })
 
 ---
 
-## 6. 🎓 SUCCESS CRITERIA
+## 6. 🏆 SUCCESS CRITERIA
 
 **LEANN implementation complete when**:
 
@@ -340,14 +340,14 @@ leann_leann_remove({ index_name: "test-index" })
 
 ---
 
-## 7. 🔗 INTEGRATION POINTS
+## 7. 🔌 INTEGRATION POINTS
 
 ### Cross-Skill Collaboration
 
-**Pairs with mcp-code-context**:
-- Use **mcp-code-context** for structural queries - list functions, classes, symbols (NATIVE MCP)
+**Pairs with mcp-narsil**:
+- Use **mcp-narsil** for structural queries - list functions, classes, symbols (via Code Mode)
 - Use **LEANN** for semantic code search by intent (NATIVE MCP)
-- Example: mcp-code-context maps structure → LEANN finds code by meaning
+- Example: Narsil maps structure → LEANN finds code by meaning
 
 **Pairs with semantic_memory**:
 - Use **semantic_memory** for conversation context preservation (NATIVE MCP)
@@ -362,8 +362,9 @@ leann_leann_search({ index_name: "my-project", query: "authentication flow" })
 // 2. Read the full files found
 // Use Read tool on identified files
 
-// 3. Analyze code structure using mcp-code-context
-code_context_get_code_context({ absolutePath: "src/auth/" })  // List symbols
+// 3. Analyze code structure using Narsil (via Code Mode)
+narsil.narsil_find_symbols({ path: "src/auth/" })  // List symbols
+// Or: narsil.narsil_get_project_structure({ path: "src/auth/" })
 ```
 
 ### Triggers
@@ -385,7 +386,7 @@ code_context_get_code_context({ absolutePath: "src/auth/" })  // List symbols
 
 ---
 
-## 8. 🎯 QUICK REFERENCE
+## 8. 🏎️ QUICK REFERENCE
 
 ### Essential Commands
 
@@ -457,13 +458,13 @@ What do you need?
 
 ### Related Skills
 
-- **[mcp-code-context](../mcp-code-context/SKILL.md)** - Structural code queries for symbol navigation (NATIVE MCP)
+- **[mcp-narsil](../mcp-narsil/SKILL.md)** - Structural code queries for symbol navigation (via Code Mode)
 - **[system-memory](../system-memory/SKILL.md)** - Conversation context preservation (NATIVE MCP)
 - **[mcp-code-mode](../mcp-code-mode/SKILL.md)** - TypeScript execution for external MCP tools (Code Mode)
 
 ---
 
-## 📦 BUNDLED RESOURCES
+## 10. 📦 BUNDLED RESOURCES
 
 ### references/
 

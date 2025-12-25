@@ -92,16 +92,16 @@ TASK CONTEXT
 
 **Mode 2 - Skill Creation:**
 
-| Condition               | Resource                                         | Purpose                                   |
-| ----------------------- | ------------------------------------------------ | ----------------------------------------- |
-| Creating skill          | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                           |
-| Need template           | `assets/skill_md_template.md`                    | SKILL.md structure                        |
-| Need asset template     | `assets/skill_asset_template.md`                 | Bundled assets                            |
-| Need reference template | `assets/skill_reference_template.md`             | Reference docs                            |
-| Need README template    | `assets/readme_template.md`                      | Comprehensive README guide (13 sections)  |
-| Creating command        | `assets/command_template.md`                     | Command creation guide (19 sections)      |
-| Packaging skill         | `scripts/package_skill.py`                       | Validation + zip                          |
-| Quick validation        | `scripts/quick_validate.py`                      | Fast checks                               |
+| Condition               | Resource                                         | Purpose                                  |
+| ----------------------- | ------------------------------------------------ | ---------------------------------------- |
+| Creating skill          | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                          |
+| Need template           | `assets/skill_md_template.md`                    | SKILL.md structure                       |
+| Need asset template     | `assets/skill_asset_template.md`                 | Bundled assets                           |
+| Need reference template | `assets/skill_reference_template.md`             | Reference docs                           |
+| Need README template    | `assets/readme_template.md`                      | Comprehensive README guide (13 sections) |
+| Creating command        | `assets/command_template.md`                     | Command creation guide (19 sections)     |
+| Packaging skill         | `scripts/package_skill.py`                       | Validation + zip                         |
+| Quick validation        | `scripts/quick_validate.py`                      | Fast checks                              |
 
 **Mode 3 - Flowcharts:**
 
@@ -116,21 +116,21 @@ TASK CONTEXT
 
 **Mode 4 - Install Guide Creation:**
 
-| Condition | Resource | Purpose |
-|-----------|----------|---------|
-| Creating install guide | `assets/install_guide_template.md` | Phase-based template |
-| Need standards | `references/install_guide_standards.md` | Best practices |
-| Validating guide | `scripts/extract_structure.py` | Quality check |
+| Condition              | Resource                                | Purpose              |
+| ---------------------- | --------------------------------------- | -------------------- |
+| Creating install guide | `assets/install_guide_template.md`      | Phase-based template |
+| Need standards         | `references/install_guide_standards.md` | Best practices       |
+| Validating guide       | `scripts/extract_structure.py`          | Quality check        |
 
 **General Utilities:**
 
-| Condition           | Resource                          | Purpose                                       |
-| ------------------- | --------------------------------- | --------------------------------------------- |
-| Need frontmatter    | `assets/frontmatter_templates.md` | Frontmatter validation & templates (11 secs)  |
-| Generating llms.txt | `assets/llmstxt_templates.md`     | llms.txt creation with decision framework     |
-| Creating install    | `assets/install_guide_template.md`| 5-phase install guide template (14 sections)  |
-| Analyzing docs      | `scripts/extract_structure.py`    | Parse to JSON for AI analysis                 |
-| Quick reference     | `references/quick_reference.md`   | One-page cheat sheet                          |
+| Condition           | Resource                           | Purpose                                      |
+| ------------------- | ---------------------------------- | -------------------------------------------- |
+| Need frontmatter    | `assets/frontmatter_templates.md`  | Frontmatter validation & templates (11 secs) |
+| Generating llms.txt | `assets/llmstxt_templates.md`      | llms.txt creation with decision framework    |
+| Creating install    | `assets/install_guide_template.md` | 5-phase install guide template (14 sections) |
+| Analyzing docs      | `scripts/extract_structure.py`     | Parse to JSON for AI analysis                |
+| Quick reference     | `references/quick_reference.md`    | One-page cheat sheet                         |
 
 **Key Insight**: Always run `extract_structure.py` first - it provides the structured JSON that enables accurate AI quality assessment. Without it, quality evaluation is subjective guesswork.
 
@@ -190,7 +190,7 @@ TASK CONTEXT
 
 ---
 
-## 4. ⚙️ HOW TO USE
+## 4. 🛠️ HOW IT WORKS
 
 ### Mode 1: Document Quality
 
@@ -504,11 +504,11 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 ### Related Skills
 
-| Skill                  | Integration                                           |
-| ---------------------- | ----------------------------------------------------- |
+| Skill               | Integration                                           |
+| ------------------- | ----------------------------------------------------- |
 | **system-memory**   | Context files can be optimized (flexible enforcement) |
 | **system-spec-kit** | Validates spec folder documentation structure         |
-| **workflows-git**      | Uses documentation quality for commit/PR descriptions |
+| **workflows-git**   | Uses documentation quality for commit/PR descriptions |
 
 ### Workflow Integration
 
@@ -530,7 +530,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 ---
 
-## 9. 🚀 QUICK START
+## 9. 🏎️ QUICK REFERENCE
 
 ### For Document Quality
 

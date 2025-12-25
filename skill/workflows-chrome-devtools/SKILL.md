@@ -174,7 +174,7 @@ Browser debugging task received
 | **CDP Access** | All 644 methods                    | MCP-exposed subset   | Full but complex     |
 | **Best For**   | Debugging, inspection              | Multi-tool workflows | Complex UI testing   |
 
-### 3.1 CLI Approach (Priority) - browser-debugger-cli (bdg)
+### CLI Approach (Priority) - browser-debugger-cli (bdg)
 
 #### Installation & Verification
 
@@ -285,7 +285,7 @@ bdg network cookies 2>&1 | jq '[.[] | {name, domain}]'
 bdg console logs 2>&1 | grep -i "error"
 ```
 
-### 3.2 MCP Approach (Fallback) - Chrome DevTools via Code Mode
+### MCP Approach (Fallback) - Chrome DevTools via Code Mode
 
 When CLI unavailable or multi-tool integration needed.
 
@@ -390,20 +390,20 @@ await call_tool_chain({
 
 #### Available MCP Tools
 
-| Tool                    | Purpose            | CLI Equivalent     |
-| ----------------------- | ------------------ | ------------------ |
-| `navigate_page`         | Navigate to URL    | `bdg <url>`        |
-| `take_screenshot`       | Capture screenshot | `bdg screenshot`   |
-| `list_console_messages` | Get console logs   | `bdg console logs` |
-| `resize_page`           | Set viewport size  | N/A (use cdp)      |
-| `click`                 | Click on element   | `bdg cdp Input.dispatchMouseEvent` |
+| Tool                    | Purpose            | CLI Equivalent                                     |
+| ----------------------- | ------------------ | -------------------------------------------------- |
+| `navigate_page`         | Navigate to URL    | `bdg <url>`                                        |
+| `take_screenshot`       | Capture screenshot | `bdg screenshot`                                   |
+| `list_console_messages` | Get console logs   | `bdg console logs`                                 |
+| `resize_page`           | Set viewport size  | N/A (use cdp)                                      |
+| `click`                 | Click on element   | `bdg cdp Input.dispatchMouseEvent`                 |
 | `fill`                  | Fill form field    | `bdg js "document.querySelector(...).value = ..."` |
-| `hover`                 | Hover over element | `bdg cdp Input.dispatchMouseEvent` |
-| `press_key`             | Press keyboard key | `bdg cdp Input.dispatchKeyEvent` |
-| `wait_for`              | Wait for condition | N/A (scripting)    |
-| `new_page`              | Open new page      | N/A                |
-| `close_page`            | Close page         | `bdg stop`         |
-| `select_page`           | Switch to page     | N/A                |
+| `hover`                 | Hover over element | `bdg cdp Input.dispatchMouseEvent`                 |
+| `press_key`             | Press keyboard key | `bdg cdp Input.dispatchKeyEvent`                   |
+| `wait_for`              | Wait for condition | N/A (scripting)                                    |
+| `new_page`              | Open new page      | N/A                                                |
+| `close_page`            | Close page         | `bdg stop`                                         |
+| `select_page`           | Switch to page     | N/A                                                |
 
 **Note**: Tool names use underscores (e.g., `take_screenshot`) not camelCase.
 
@@ -467,7 +467,7 @@ await call_tool_chain({
 
 ---
 
-## 4. 📖 RULES
+## 4. 📋 RULES
 
 ### ✅ ALWAYS Rules
 
@@ -549,7 +549,7 @@ await call_tool_chain({
 
 ---
 
-## 5. 🎓 SUCCESS CRITERIA
+## 5. 🏆 SUCCESS CRITERIA
 
 ### Browser Debugging Completion Checklist
 
@@ -574,7 +574,7 @@ await call_tool_chain({
 
 ---
 
-## 6. 🔗 INTEGRATION POINTS
+## 6. 🔌 INTEGRATION POINTS
 
 ### Related Skills
 
@@ -682,7 +682,7 @@ await call_tool_chain({
 
 ---
 
-## 8. 📋 QUICK REFERENCE
+## 8. 🏎️ QUICK REFERENCE
 
 ### Essential CLI Commands
 

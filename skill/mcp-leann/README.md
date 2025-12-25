@@ -1,5 +1,7 @@
 # LEANN MCP - Semantic Code Search
 
+> **Last Updated:** 2025-12-25 | **Version:** Compatible with LEANN v0.x
+
 Ultra-efficient semantic code and document search with **97% storage savings** through graph-based selective recomputation. LEANN is a **Native MCP tool** - call it directly, not through Code Mode.
 
 > **Navigation**:
@@ -7,6 +9,8 @@ Ultra-efficient semantic code and document search with **97% storage savings** t
 > - Need tool guidance? See [Tool Selection Guide](#3--tool-selection-guide)
 > - Installation help? See [Install Guide](../../install_guides/MCP/MCP%20-%20LEANN.md)
 > - Command reference? See [Tool Catalog](references/tool_catalog.md)
+
+[![MCP](https://img.shields.io/badge/MCP-Native-brightgreen.svg)](https://modelcontextprotocol.io)
 
 ---
 
@@ -23,6 +27,7 @@ Ultra-efficient semantic code and document search with **97% storage savings** t
 - [9. 📊 PERFORMANCE](#9--performance)
 - [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
 - [11. 📚 RESOURCES](#11--resources)
+- [12. 📋 QUICK REFERENCE CARD](#12--quick-reference-card)
 
 ---
 
@@ -116,7 +121,7 @@ For complete installation instructions including MCP configuration, see:
 
 ### Tool Selection Flowchart
 
-```
+```text
 User Request
      │
      ▼
@@ -377,7 +382,7 @@ leann remove old-index
 
 The core innovation that enables 97% storage savings:
 
-```
+```text
 Source Files ──► Text Chunking ──► Graph Index ──► Selective Storage
      │                │                 │                │
      ▼                ▼                 ▼                ▼
@@ -408,7 +413,7 @@ Source Files ──► Text Chunking ──► Graph Index ──► Selective S
 - Recompute non-stored embeddings on-demand
 - High-degree preserving pruning maintains search quality
 
-```
+```text
 Traditional:   [E1] [E2] [E3] [E4] [E5] ... [E1000]  → Store all 1000
 
 LEANN:         [E1] [ ] [E3] [ ] [ ] ... [E1000]    → Store ~30
@@ -419,7 +424,7 @@ On Query:      Recompute E2, E4, E5 only when needed
 
 ### System Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CLI AI Agents (OpenCode)                     │
 └─────────────────────────────┬───────────────────────────────────┘
@@ -464,7 +469,7 @@ On Query:      Recompute E2, E4, E5 only when needed
 | **DiskANN** | Large datasets | Disk-based, scalable, lower RAM |
 
 **Decision Logic:**
-```
+```text
 IF project < 10K files:
   → Use "hnsw" (fastest, default)
 
@@ -810,7 +815,7 @@ leann search my-project "authentication flow"
 
 ---
 
-## Quick Reference Card
+## 12. 📋 QUICK REFERENCE CARD
 
 ### Essential Commands
 

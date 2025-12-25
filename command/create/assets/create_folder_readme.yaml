@@ -435,7 +435,7 @@ workflow:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save
       invocation: |
-        mcp__semantic_memory__memory_save({
+        semantic_memory_memory_save({
           filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__readme_creation_session.md"
         })
       critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"

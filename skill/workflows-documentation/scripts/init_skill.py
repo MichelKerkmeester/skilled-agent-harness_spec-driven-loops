@@ -106,16 +106,6 @@ User Request
 
 **Output**: [TODO: What the skill produces/delivers]
 
----
-
-## 4. 📋 [TODO: RENAME - Main Content Section]
-
-[TODO: This is your primary content section. Rename based on skill type:
-- For workflow skills: "IMPLEMENTATION STEPS" or "WORKFLOW"
-- For tool skills: "OPERATIONS" or "CAPABILITIES"
-- For reference skills: "GUIDELINES" or "STANDARDS"
-- For technical skills: "USAGE" or "API REFERENCE"]
-
 [TODO: Add your main content here:
 - Code samples for technical skills
 - Step-by-step procedures for workflows
@@ -125,21 +115,21 @@ User Request
 
 ---
 
-## 5. 📖 RULES
+## 4. 📋 RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 - [TODO: List required behaviors]
 - [TODO: Best practices to follow]
 - [TODO: Quality standards]
 
-### NEVER
+### ❌ NEVER
 
 - [TODO: List forbidden actions]
 - [TODO: Common mistakes to avoid]
 - [TODO: Anti-patterns]
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 - [TODO: When to ask user for help]
 - [TODO: Situations requiring clarification]
@@ -147,7 +137,7 @@ User Request
 
 ---
 
-## 6. 🎓 SUCCESS CRITERIA
+## 5. 🏆 SUCCESS CRITERIA
 
 **Task complete when**:
 - ✅ [TODO: First success criterion]
@@ -156,27 +146,7 @@ User Request
 
 ---
 
-## 7. 💡 EXAMPLES
-
-### Example 1: [TODO: Name of scenario]
-
-**Context**: [TODO: Describe the situation]
-
-**Invocation**: [TODO: How user invokes this]
-
-**Output**: [TODO: What gets produced]
-
----
-
-### Example 2: [TODO: Name of scenario]
-
-**Context**: [TODO: Describe the situation]
-
-**Output**: [TODO: What gets produced]
-
----
-
-## 8. 🔗 INTEGRATION POINTS
+## 6. 🔌 INTEGRATION POINTS
 
 **Triggers**: [TODO: What activates this skill]
 
@@ -184,26 +154,14 @@ User Request
 - [TODO: Related skills or tools]
 - [TODO: Complementary functionality]
 
-**Outputs**:
-- [TODO: What this skill produces]
-- [TODO: Where output goes]
-
----
-
-## 9. 🔗 RELATED RESOURCES
-
-### Reference Files
+**Related Resources**:
 - [reference-name.md](./references/reference-name.md) - [TODO: Description]
-
-### Templates
 - [template-name.md](./assets/template-name.md) - [TODO: Description]
-
-### Related Skills
-- `skill-name` - [TODO: How it relates to this skill]
+- `related-skill-name` - [TODO: How it relates to this skill]
 
 ---
 
-## 10. 🎯 QUICK REFERENCE
+## 7. 📋 QUICK REFERENCE
 
 [TODO: Add quick lookup information:
 - Key commands or syntax
@@ -213,7 +171,7 @@ User Request
 
 ---
 
-## 📚 BUNDLED RESOURCES
+## 8. 📦 BUNDLED RESOURCES
 
 This skill includes example resource directories. Delete any you don't need:
 

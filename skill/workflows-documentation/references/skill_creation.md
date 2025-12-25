@@ -4,7 +4,7 @@ Comprehensive reference for creating effective skills that extend AI agent capab
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 🎯 INTRODUCTION & PURPOSE
 
 ### What Is This Reference?
 
@@ -301,7 +301,7 @@ description: [TODO: Complete description]
 
 # Skill Name
 
-## 1. WHEN TO USE
+## 1. 🎯 WHEN TO USE
 [TODO: Activation triggers and use cases ONLY - NO file references here]
 
 ### Activation Triggers
@@ -313,7 +313,7 @@ description: [TODO: Complete description]
 ### When NOT to Use
 [TODO: Exclusions and boundaries]
 
-## 2. SMART ROUTING
+## 2. 🧭 SMART ROUTING
 
 ### Activation Detection
 ```
@@ -349,22 +349,22 @@ def route_request(context):
     # Default: SKILL.md covers basic cases
 ```
 
-## 3. REFERENCES
+## 3. 📦 REFERENCES
 [TODO: Add 3-column tables listing bundled resources]
 
-## 4. HOW IT WORKS
+## 4. 🛠️ HOW IT WORKS
 [TODO: Explain how the skill works]
 
-## 5. RULES
+## 5. 📋 RULES
 [TODO: Add ALWAYS/NEVER/ESCALATE IF rules]
 
-## 6. SUCCESS CRITERIA
+## 6. 🏆 SUCCESS CRITERIA
 [TODO: Define success criteria]
 
-## 7. INTEGRATION POINTS
+## 7. 🔌 INTEGRATION POINTS
 [TODO: Describe integration points]
 
-## BUNDLED RESOURCES
+## 📦 BUNDLED RESOURCES
 [TODO: List bundled resources]
 ```
 
@@ -390,7 +390,7 @@ scripts/init_skill.py markdown-optimizer --path .opencode/skill
 
 **Remember**: Creating this skill for another AI agent instance to use. Focus on information that would be beneficial and non-obvious.
 
-#### 4.1: Start with Reusable Skill Contents
+#### Start with Reusable Skill Contents
 
 Begin with resources identified in Step 2: `scripts/`, `references/`, and `assets/` files.
 
@@ -423,7 +423,7 @@ assets/
   └── example_asset.txt         # DELETE
 ```
 
-#### 4.2: Update SKILL.md
+#### Update SKILL.md
 
 Answer these questions in SKILL.md:
 
@@ -657,7 +657,7 @@ Iteration 3:
 
 ---
 
-## 5. ✅ VALIDATION REQUIREMENTS
+## 5. 🏆 VALIDATION REQUIREMENTS
 
 ### Minimal Validation (quick_validate.py)
 
@@ -700,7 +700,7 @@ scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 
 ---
 
-## 6. 📖 SKILL WRITING BEST PRACTICES
+## 6. 📋 SKILL WRITING BEST PRACTICES
 
 ### ️ Writing Style Guidelines
 
@@ -1163,7 +1163,7 @@ scripts/package_skill.py <path/to/skill> <output-directory>
 
 ---
 
-## 11. 🎯 QUICK REFERENCE
+## 11. 📋 QUICK REFERENCE
 
 ### File Structure
 
@@ -1341,7 +1341,7 @@ python scripts/quick_validate.py .opencode/skill/pdf-editor
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 13. 📚 RELATED RESOURCES
 
 ### Templates
 - [skill_md_template.md](../assets/skill_md_template.md) - SKILL.md file templates

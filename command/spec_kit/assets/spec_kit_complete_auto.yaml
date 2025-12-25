@@ -715,7 +715,7 @@ workflow:
     # ── CODEBASE EXPLORATION ────────────────────────────────────────
     # Tool selection delegated to AGENTS.md Section 6 - no duplication here
     # - Semantic search (LEANN): "how does X work", intent-based discovery
-    # - Structural search (Code Context): list functions, classes, outline
+    # - Structural search (Narsil via Code Mode): list functions, classes, outline
     # - Lexical search (Grep): exact text patterns
 
     # INLINE 4-AGENT PARALLEL EXPLORATION
@@ -901,11 +901,11 @@ workflow:
     checkpoint: true
     memory_action: save
     activities:
-    - Save context checkpoint using system-memory skill
+    - Save context checkpoint using system-spec-kit skill
     - Record progress up to planning milestone for session recovery
     - Preserve planning decisions, exploration findings, and technical approach
     tool_invocation:
-      command: Read(".opencode/skill/system-memory/SKILL.md")
+      command: Read(".opencode/skill/system-spec-kit/SKILL.md")
       note: "Intermediate checkpoint - planning phase complete"
     outputs:
     - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__planning_complete.md"
@@ -1172,11 +1172,11 @@ workflow:
     checkpoint: true
     memory_action: save
     activities:
-    - Save context checkpoint using system-memory skill
+    - Save context checkpoint using system-spec-kit skill
     - Record progress up to development milestone for session recovery
     - Preserve implementation decisions, code changes, and debugging insights
     tool_invocation:
-      command: Read(".opencode/skill/system-memory/SKILL.md")
+      command: Read(".opencode/skill/system-spec-kit/SKILL.md")
       note: "Intermediate checkpoint - development phase complete"
     outputs:
     - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__development_complete.md"
@@ -1253,7 +1253,7 @@ workflow:
   step_12_save_context:
     purpose: Save conversation context for documentation and team sharing
     activities:
-    - Invoke system-memory skill
+    - Invoke system-spec-kit skill
     - Preserve session metadata and timeline
     - Preserve full dialogue flow with decisions
     - Auto-generate workflow flowcharts
@@ -1265,7 +1265,7 @@ workflow:
       enforcement: HARD_BLOCK
       method: "MUST use generate-context.js script"
       command: |
-        node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]
+        node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]
       forbidden:
         tools: [Write, Edit]
         action: "NEVER manually create memory files"
@@ -1278,8 +1278,8 @@ workflow:
         4. Index via memory_save MCP tool
 
     tool_invocation:
-      command: 'Read(".opencode/skill/system-memory/SKILL.md")'
-      note: 'Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving'
+      command: 'Read(".opencode/skill/system-spec-kit/SKILL.md")'
+      note: 'Use command: Read(".opencode/skill/system-spec-kit/SKILL.md") to activate context saving'
     description: |
       Preserve comprehensive conversation context including:
       - Session metadata and timeline
@@ -1300,7 +1300,7 @@ workflow:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save
       invocation: |
-        mcp__semantic_memory__memory_save({
+        semantic_memory_memory_save({
           filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__session.md"
         })
       critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"

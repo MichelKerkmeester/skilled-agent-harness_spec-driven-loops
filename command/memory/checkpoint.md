@@ -1,7 +1,7 @@
 ---
 description: Save and restore memory states for context switching and safety nets
 argument-hint: "<subcommand> [name]"
-allowed-tools: Read, Bash, mcp__semantic_memory__memory_list, mcp__semantic_memory__memory_search, mcp__semantic_memory__memory_load, mcp__semantic_memory__memory_stats, mcp__semantic_memory__memory_delete, mcp__semantic_memory__checkpoint_create, mcp__semantic_memory__checkpoint_restore, mcp__semantic_memory__checkpoint_list, mcp__semantic_memory__checkpoint_delete
+allowed-tools: Read, Bash, semantic_memory_memory_list, semantic_memory_memory_search, semantic_memory_memory_stats, semantic_memory_memory_delete, semantic_memory_checkpoint_create, semantic_memory_checkpoint_restore, semantic_memory_checkpoint_list, semantic_memory_checkpoint_delete
 ---
 
 # 🚨 MANDATORY PHASE - BLOCKING ENFORCEMENT
@@ -143,15 +143,15 @@ operating_mode:
 
 **Tool Call Format:**
 ```
-mcp__semantic_memory__checkpoint_create({ name: "<name>" })
-mcp__semantic_memory__checkpoint_restore({ name: "<name>" })
-mcp__semantic_memory__checkpoint_list({})
-mcp__semantic_memory__checkpoint_delete({ name: "<name>" })
+semantic_memory_checkpoint_create({ name: "<name>" })
+semantic_memory_checkpoint_restore({ name: "<name>" })
+semantic_memory_checkpoint_list({})
+semantic_memory_checkpoint_delete({ name: "<name>" })
 ```
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Create and manage checkpoints for memory state preservation. Use checkpoints for:
 - Safety nets before major refactors
@@ -195,7 +195,7 @@ Create and manage checkpoints for memory state preservation. Use checkpoints for
 
 2. **Execute MCP Call**
    ```
-   mcp__semantic_memory__checkpoint_create({
+   semantic_memory_checkpoint_create({
      name: "<checkpoint_name>"
    })
    ```
@@ -229,7 +229,7 @@ Create and manage checkpoints for memory state preservation. Use checkpoints for
 
 1. **Load Checkpoint via MCP**
    ```
-   mcp__semantic_memory__checkpoint_list({})
+   semantic_memory_checkpoint_list({})
    ```
    Verify checkpoint exists.
 
@@ -252,7 +252,7 @@ Create and manage checkpoints for memory state preservation. Use checkpoints for
 
 4. **Execute Restore**
    ```
-   mcp__semantic_memory__checkpoint_restore({
+   semantic_memory_checkpoint_restore({
      name: "<checkpoint_name>"
    })
    ```
@@ -288,7 +288,7 @@ Restore is a **destructive operation**:
 
 1. **Execute MCP Call**
    ```
-   mcp__semantic_memory__checkpoint_list({})
+   semantic_memory_checkpoint_list({})
    ```
 
 2. **Display Table**
@@ -343,7 +343,7 @@ Restore is a **destructive operation**:
 
 3. **Execute Delete**
    ```
-   mcp__semantic_memory__checkpoint_delete({
+   semantic_memory_checkpoint_delete({
      name: "<checkpoint_name>"
    })
    ```
@@ -468,7 +468,7 @@ These defaults are enforced by the semantic memory MCP server and cannot be over
 ## 15. 📚 FULL DOCUMENTATION
 
 For comprehensive memory system documentation:
-`.opencode/skill/system-memory/SKILL.md`
+`.opencode/skill/system-spec-kit/SKILL.md`
 
 ---
 

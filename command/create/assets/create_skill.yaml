@@ -422,13 +422,14 @@ workflow:
     activities:
     - Load skill_md_template.md for structure reference
     - Fill YAML frontmatter (name, description, allowed-tools, version)
-    - Write Section 1: WHEN TO USE (activation triggers and use cases ONLY)
-    - Write Section 2: SMART ROUTING (Activation Detection flowchart + Resource Router)
-    - Write Section 3: REFERENCES (bundled resources tables)
-    - Write Section 4: HOW IT WORKS
-    - Write Section 5: RULES (ALWAYS/NEVER/ESCALATE IF)
-    - Write Section 6: SUCCESS CRITERIA
-    - Write Section 7: INTEGRATION POINTS
+    - "Write Section 1 - 🎯 WHEN TO USE (activation triggers and use cases ONLY)"
+    - "Write Section 2 - 🧭 SMART ROUTING (Activation Detection flowchart + Resource Router)"
+    - "Write Section 3 - 🛠️ HOW IT WORKS"
+    - "Write Section 4 - 📋 RULES (ALWAYS/NEVER/ESCALATE IF)"
+    - "Write Section 5 - 🏆 SUCCESS CRITERIA"
+    - "Write Section 6 - 🔌 INTEGRATION POINTS"
+    - "Write Section 7 - 📋 QUICK REFERENCE (optional)"
+    - "Write Section 8 - 📦 BUNDLED RESOURCES (optional)"
     - Create bundled resources from Step 4 plan
     - Delete unused example/placeholder files
     section_boundary_rules:
@@ -635,7 +636,7 @@ workflow:
     - Create memory file with timestamp
     - Index memory file for immediate search availability
     tool_invocation:
-      command: "Read(".opencode/skill/system-memory/SKILL.md")"
+      command: 'Read(".opencode/skill/system-memory/SKILL.md")'
       note: "Activate context saving via memory skill"
     memory_content:
       include:
@@ -660,7 +661,7 @@ workflow:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save
       invocation: |
-        mcp__semantic_memory__memory_save({
+        semantic_memory_memory_save({
           filePath: "specs/[NNN]-[skill-name]/memory/[timestamp]_skill_creation.md"
         })
       critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"

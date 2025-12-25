@@ -224,7 +224,7 @@ operating_mode:
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Delegate persistent debugging issues to a specialized sub-agent with fresh context. This workflow creates a comprehensive debug report, dispatches a sub-agent with the selected model, and integrates findings back into the main session.
 

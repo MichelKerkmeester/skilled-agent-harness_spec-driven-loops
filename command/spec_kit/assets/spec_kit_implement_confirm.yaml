@@ -580,11 +580,11 @@ workflow:
     checkpoint: true
     memory_action: save
     activities:
-    - Save context checkpoint using system-memory skill
+    - Save context checkpoint using system-spec-kit skill
     - Record progress up to development milestone for session recovery
     - Preserve implementation decisions, code changes, and debugging insights
     tool_invocation:
-      command: Read(".opencode/skill/system-memory/SKILL.md")
+      command: Read(".opencode/skill/system-spec-kit/SKILL.md")
       note: "Intermediate checkpoint - development phase complete"
     outputs:
     - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__development_complete.md"
@@ -656,14 +656,14 @@ workflow:
   step_8_save_context:
     purpose: Save conversation context
     activities:
-    - Invoke system-memory skill
+    - Invoke system-spec-kit skill
     - Preserve development decisions
     - Preserve debugging insights
     - Preserve code changes
     - Index memory file for immediate search availability
     tool_invocation:
-      command: Read(".opencode/skill/system-memory/SKILL.md")
-      note: 'Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving'
+      command: Read(".opencode/skill/system-spec-kit/SKILL.md")
+      note: 'Use command: Read(".opencode/skill/system-spec-kit/SKILL.md") to activate context saving'
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__implementation_session.md"
     validation: context_saved_successfully
@@ -681,7 +681,7 @@ workflow:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save
       invocation: |
-        mcp__semantic_memory__memory_save({
+        semantic_memory_memory_save({
           filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__implementation_session.md"
         })
       critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"

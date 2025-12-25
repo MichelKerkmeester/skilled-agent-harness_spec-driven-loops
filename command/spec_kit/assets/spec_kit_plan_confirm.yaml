@@ -524,7 +524,7 @@ workflow:
     # ── CODEBASE EXPLORATION ────────────────────────────────────────
     # Tool selection delegated to AGENTS.md Section 6 - no duplication here
     # - Semantic search (LEANN): "how does X work", intent-based discovery
-    # - Structural search (Code Context): list functions, classes, outline
+    # - Structural search (Narsil via Code Mode): list functions, classes, outline
     # - Lexical search (Grep): exact text patterns
 
     # INLINE 4-AGENT PARALLEL EXPLORATION
@@ -690,14 +690,14 @@ workflow:
   step_7_save_context:
     purpose: Save conversation context for planning documentation
     activities:
-    - Invoke system-memory skill
+    - Invoke system-spec-kit skill
     - Preserve requirements analysis and clarifications
     - Preserve technical approach decisions
     - Preserve architecture discussions
     - Index memory file for immediate search availability
     tool_invocation:
-      command: Read(".opencode/skill/system-memory/SKILL.md")
-      note: 'Use command: Read(".opencode/skill/system-memory/SKILL.md") to activate context saving'
+      command: Read(".opencode/skill/system-spec-kit/SKILL.md")
+      note: 'Use command: Read(".opencode/skill/system-spec-kit/SKILL.md") to activate context saving'
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__planning_session.md"
     validation: context_saved_successfully
@@ -715,7 +715,7 @@ workflow:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save
       invocation: |
-        mcp__semantic_memory__memory_save({
+        semantic_memory_memory_save({
           filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__planning_session.md"
         })
       critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"

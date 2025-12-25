@@ -5,10 +5,10 @@
 
 | Field               | Value                                  |
 | ------------------- | -------------------------------------- |
-| **From Session**    | [SESSION_ID or DATE]                   |
-| **To Session**      | [NEXT_SESSION]                         |
-| **Phase Completed** | [RESEARCH / PLANNING / IMPLEMENTATION] |
-| **Handover Time**   | [TIMESTAMP]                            |
+| **From Session**    | [YOUR_VALUE_HERE: session_id or date]  |
+| **To Session**      | [YOUR_VALUE_HERE: next_session]        |
+| **Phase Completed** | [YOUR_VALUE_HERE: RESEARCH / PLANNING / IMPLEMENTATION] |
+| **Handover Time**   | [YOUR_VALUE_HERE: timestamp]           |
 
 ---
 
@@ -17,36 +17,36 @@
 ### 2.1 Key Decisions Made
 | Decision     | Rationale | Impact                 |
 | ------------ | --------- | ---------------------- |
-| [DECISION_1] | [WHY]     | [FILES/AREAS AFFECTED] |
-| [DECISION_2] | [WHY]     | [FILES/AREAS AFFECTED] |
+| [YOUR_VALUE_HERE: decision_1] | [YOUR_VALUE_HERE: why] | [YOUR_VALUE_HERE: files/areas affected] |
+| [YOUR_VALUE_HERE: decision_2] | [YOUR_VALUE_HERE: why] | [YOUR_VALUE_HERE: files/areas affected] |
 
 ### 2.2 Blockers Encountered
 | Blocker     | Status          | Resolution/Workaround |
 | ----------- | --------------- | --------------------- |
-| [BLOCKER_1] | [RESOLVED/OPEN] | [HOW IT WAS HANDLED]  |
+| [YOUR_VALUE_HERE: blocker_1] | [YOUR_VALUE_HERE: RESOLVED/OPEN] | [YOUR_VALUE_HERE: how it was handled] |
 
 ### 2.3 Files Modified
 | File        | Change Summary | Status                 |
 | ----------- | -------------- | ---------------------- |
-| [FILE_PATH] | [WHAT CHANGED] | [COMPLETE/IN_PROGRESS] |
+| [YOUR_VALUE_HERE: file_path] | [YOUR_VALUE_HERE: what changed] | [YOUR_VALUE_HERE: COMPLETE/IN_PROGRESS] |
 
 ---
 
 ## 3. For Next Session
 
 ### 3.1 Recommended Starting Point
-- **File:** [FILE:LINE_NUMBER]
-- **Context:** [WHAT TO FOCUS ON FIRST]
+- **File:** [YOUR_VALUE_HERE: file:line_number]
+- **Context:** [YOUR_VALUE_HERE: what to focus on first]
 
 ### 3.2 Priority Tasks Remaining
-1. [HIGHEST_PRIORITY_TASK]
-2. [SECOND_PRIORITY_TASK]
-3. [THIRD_PRIORITY_TASK]
+1. [YOUR_VALUE_HERE: highest_priority_task]
+2. [YOUR_VALUE_HERE: second_priority_task]
+3. [YOUR_VALUE_HERE: third_priority_task]
 
 ### 3.3 Critical Context to Load
-- [ ] Memory file: `memory/[FILENAME].md`
-- [ ] Spec file: `spec.md` (sections [X, Y, Z])
-- [ ] Plan file: `plan.md` (phase [N])
+- [ ] Memory file: `memory/[YOUR_VALUE_HERE: filename].md`
+- [ ] Spec file: `spec.md` (sections [YOUR_VALUE_HERE: X, Y, Z])
+- [ ] Plan file: `plan.md` (phase [YOUR_VALUE_HERE: N])
 
 ---
 
@@ -63,4 +63,4 @@ Before handover, verify:
 
 ## 5. Session Notes
 
-[FREE-FORM NOTES FOR NEXT SESSION]
+[YOUR_VALUE_HERE: free-form notes for next session]

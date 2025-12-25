@@ -34,7 +34,7 @@ Use this orchestrator when:
 
 ---
 
-## 1.1 🐙 GITHUB MCP INTEGRATION (REMOTE)
+## 2. 🐙 GITHUB MCP INTEGRATION (REMOTE)
 
 **GitHub MCP Server** provides programmatic access to GitHub's remote operations via Code Mode (`call_tool_chain`).
 
@@ -44,26 +44,26 @@ Use this orchestrator when:
 
 ### When to Use GitHub MCP vs Local Git vs gh CLI
 
-| Operation | Tool | Rationale |
-| :--- | :--- | :--- |
-| commit, diff, status, log, merge | Local `git` (Bash) | Faster, no network required |
-| worktree management | Local `git` (Bash) | Local filesystem operation |
-| Create/list PRs | `gh` CLI OR GitHub MCP | Both work; gh CLI simpler for basic ops |
-| PR reviews, comments | GitHub MCP | Richer API for review workflows |
-| Issue management | GitHub MCP | Full CRUD on issues |
-| CI/CD status, logs | GitHub MCP | Access workflow runs and job logs |
-| Search repos/code remotely | GitHub MCP | Cross-repo searches |
+| Operation                        | Tool                   | Rationale                               |
+| :------------------------------- | :--------------------- | :-------------------------------------- |
+| commit, diff, status, log, merge | Local `git` (Bash)     | Faster, no network required             |
+| worktree management              | Local `git` (Bash)     | Local filesystem operation              |
+| Create/list PRs                  | `gh` CLI OR GitHub MCP | Both work; gh CLI simpler for basic ops |
+| PR reviews, comments             | GitHub MCP             | Richer API for review workflows         |
+| Issue management                 | GitHub MCP             | Full CRUD on issues                     |
+| CI/CD status, logs               | GitHub MCP             | Access workflow runs and job logs       |
+| Search repos/code remotely       | GitHub MCP             | Cross-repo searches                     |
 
 ### Available Tools (Code Mode Access)
 
 **Access Pattern:** `github.github_{tool_name}({...})`
 
-| Category | Tools | Description |
-| :--- | :--- | :--- |
+| Category          | Tools                                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                       |
+| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
 | **Pull Requests** | `github_create_pull_request`<br>`github_list_pull_requests`<br>`github_get_pull_request`<br>`github_merge_pull_request`<br>`github_create_pull_request_review`<br>`github_add_pull_request_review_comment`<br>`github_get_pull_request_files`<br>`github_get_pull_request_status`<br>`github_update_pull_request_branch`<br>`github_get_pull_request_comments`<br>`github_get_pull_request_reviews` | Create, list, merge PRs; add reviews and comments; get files, status, and reviews |
-| **Issues** | `github_create_issue`<br>`github_get_issue`<br>`github_list_issues`<br>`github_search_issues`<br>`github_add_issue_comment`<br>`github_update_issue` | Full issue lifecycle management |
-| **Repository** | `github_get_file_contents`<br>`github_create_branch`<br>`github_list_branches`<br>`github_search_repositories`<br>`github_list_commits` | Read files, manage branches, search |
-| **CI/CD** | `github_list_workflow_runs`<br>`github_get_workflow_run`<br>`github_get_job_logs` | Monitor CI status, debug failures |
+| **Issues**        | `github_create_issue`<br>`github_get_issue`<br>`github_list_issues`<br>`github_search_issues`<br>`github_add_issue_comment`<br>`github_update_issue`                                                                                                                                                                                                                                                | Full issue lifecycle management                                                   |
+| **Repository**    | `github_get_file_contents`<br>`github_create_branch`<br>`github_list_branches`<br>`github_search_repositories`<br>`github_list_commits`                                                                                                                                                                                                                                                             | Read files, manage branches, search                                               |
+| **CI/CD**         | `github_list_workflow_runs`<br>`github_get_workflow_run`<br>`github_get_job_logs`                                                                                                                                                                                                                                                                                                                   | Monitor CI status, debug failures                                                 |
 
 ### Usage Examples
 
@@ -176,7 +176,7 @@ if (pr.mergeable === false) {
 
 ---
 
-## 2. 🧭 SMART ROUTING
+## 3. 🧭 SMART ROUTING
 
 ### Phase Detection
 ```
@@ -265,7 +265,7 @@ def route_git_resources(task):
 
 ---
 
-## 3. 🚨 WORKSPACE CHOICE ENFORCEMENT
+## 4. 🚨 WORKSPACE CHOICE ENFORCEMENT
 
 **MANDATORY**: The AI must NEVER autonomously decide between creating a branch or worktree.
 
@@ -304,7 +304,7 @@ Once user chooses, reuse their preference for the session unless:
 
 ---
 
-## 4. 🛠️ HOW TO USE
+## 5. 🛠️ HOW IT WORKS
 
 ### Git Development Lifecycle Map
 
@@ -335,7 +335,7 @@ Git development flows through 3 phases:
 
 ---
 
-## 5. 🗺️ SKILL SELECTION DECISION TREE
+## 6. 🗺️ SKILL SELECTION DECISION TREE
 
 **What are you doing?**
 
@@ -387,7 +387,7 @@ git-finish (feature A) → git-finish (feature B)
 
 ---
 
-## 6. 💡 INTEGRATION EXAMPLES
+## 7. 💡 INTEGRATION EXAMPLES
 
 ### Example 1: New Authentication Feature
 
@@ -420,7 +420,7 @@ git-finish (feature A) → git-finish (feature B)
 
 ---
 
-## 7. ⚡ QUICK REFERENCE
+## 8. 🏎️ QUICK REFERENCE
 
 **For one-page cheat sheet**: See [quick_reference.md](./references/quick_reference.md)
 

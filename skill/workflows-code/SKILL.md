@@ -49,11 +49,11 @@ Unified workflow guidance across 6 specialized code quality skills for frontend 
 
 This orchestrator operates in three primary phases:
 
-| Phase | Purpose | Trigger |
-|-------|---------|---------|
+| Phase                       | Purpose                                                     | Trigger                               |
+| --------------------------- | ----------------------------------------------------------- | ------------------------------------- |
 | **Phase 1: Implementation** | Writing code with async handling, validation, cache-busting | Starting new code, modifying existing |
-| **Phase 2: Debugging** | Fixing issues systematically using DevTools | Console errors, unexpected behavior |
-| **Phase 3: Verification** | Browser testing before completion claims | Before ANY "done" or "works" claim |
+| **Phase 2: Debugging**      | Fixing issues systematically using DevTools                 | Console errors, unexpected behavior   |
+| **Phase 3: Verification**   | Browser testing before completion claims                    | Before ANY "done" or "works" claim    |
 
 **The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
 
@@ -86,35 +86,35 @@ TASK CONTEXT
 
 **Phase 1: Implementation**
 
-| Use Case | Route To |
-|----------|----------|
-| Async/timing issues, DOM not ready, race conditions | [implementation_workflows.md#1-🕐-condition-based-waiting](./references/implementation_workflows.md#1-🕐-condition-based-waiting) |
-| Form input, API calls, DOM manipulation validation | [implementation_workflows.md#2-🛡️-defense-in-depth-validation](./references/implementation_workflows.md#2-🛡️-defense-in-depth-validation) |
-| JavaScript modified, need cache-busting | [implementation_workflows.md#3-🔄-cdn-version-management](./references/implementation_workflows.md#3-🔄-cdn-version-management) |
-| CSS vs Motion.dev, entrance animations, scroll triggers | [animation_workflows.md](./references/animation_workflows.md) |
-| Webflow collection lists, platform limits, ID duplication | [webflow_patterns.md](./references/webflow_patterns.md) |
-| Animation/video/asset optimization | [performance_patterns.md](./references/performance_patterns.md) |
-| XSS, CSRF, injection prevention | [security_patterns.md](./references/security_patterns.md) |
-| Third-party library integration, CDN loading, HLS.js | [third_party_integrations.md](./references/third_party_integrations.md) |
-| MutationObserver, IntersectionObserver, DOM watching | [observer_patterns.md](./references/observer_patterns.md) |
+| Use Case                                                  | Route To                                                                                                                                |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Async/timing issues, DOM not ready, race conditions       | [implementation_workflows.md#1-🕐-condition-based-waiting](./references/implementation_workflows.md#1-🕐-condition-based-waiting)         |
+| Form input, API calls, DOM manipulation validation        | [implementation_workflows.md#2-🛡️-defense-in-depth-validation](./references/implementation_workflows.md#2-🛡️-defense-in-depth-validation) |
+| JavaScript modified, need cache-busting                   | [implementation_workflows.md#3-🔄-cdn-version-management](./references/implementation_workflows.md#3-🔄-cdn-version-management)           |
+| CSS vs Motion.dev, entrance animations, scroll triggers   | [animation_workflows.md](./references/animation_workflows.md)                                                                           |
+| Webflow collection lists, platform limits, ID duplication | [webflow_patterns.md](./references/webflow_patterns.md)                                                                                 |
+| Animation/video/asset optimization                        | [performance_patterns.md](./references/performance_patterns.md)                                                                         |
+| XSS, CSRF, injection prevention                           | [security_patterns.md](./references/security_patterns.md)                                                                               |
+| Third-party library integration, CDN loading, HLS.js      | [third_party_integrations.md](./references/third_party_integrations.md)                                                                 |
+| MutationObserver, IntersectionObserver, DOM watching      | [observer_patterns.md](./references/observer_patterns.md)                                                                               |
 
 **Phase 2: Debugging**
 
-| Use Case | Route To |
-|----------|----------|
-| Console errors, layout bugs, event handler failures | [debugging_workflows.md#1-🔍-systematic-debugging](./references/debugging_workflows.md#1-🔍-systematic-debugging) |
-| Deep call stack, mysterious failures, corrupted data | [debugging_workflows.md#2-🔎-root-cause-tracing](./references/debugging_workflows.md#2-🔎-root-cause-tracing) |
-| Slow page, janky animations, memory leaks | [debugging_workflows.md#3-🔍-performance-debugging](./references/debugging_workflows.md#3-🔍-performance-debugging) |
-| Collection list not rendering, event listeners failing | [webflow_patterns.md](./references/webflow_patterns.md) |
-| Motion.dev not loading, layout jumps, jank | [animation_workflows.md#7-🐛-common-issues-and-solutions](./references/animation_workflows.md#7-🐛-common-issues-and-solutions) |
+| Use Case                                               | Route To                                                                                                                      |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| Console errors, layout bugs, event handler failures    | [debugging_workflows.md#1-🔍-systematic-debugging](./references/debugging_workflows.md#1-🔍-systematic-debugging)               |
+| Deep call stack, mysterious failures, corrupted data   | [debugging_workflows.md#2-🔎-root-cause-tracing](./references/debugging_workflows.md#2-🔎-root-cause-tracing)                   |
+| Slow page, janky animations, memory leaks              | [debugging_workflows.md#3-🔍-performance-debugging](./references/debugging_workflows.md#3-🔍-performance-debugging)             |
+| Collection list not rendering, event listeners failing | [webflow_patterns.md](./references/webflow_patterns.md)                                                                       |
+| Motion.dev not loading, layout jumps, jank             | [animation_workflows.md#7-🐛-common-issues-and-solutions](./references/animation_workflows.md#7-🐛-common-issues-and-solutions) |
 
 **Phase 3: Verification**
 
-| Use Case | Route To |
-|----------|----------|
+| Use Case                                             | Route To                                                            |
+| ---------------------------------------------------- | ------------------------------------------------------------------- |
 | Before claiming "works", "fixed", "done", "complete" | [verification_workflows.md](./references/verification_workflows.md) |
-| Animation working, layout fixed, feature complete | [verification_workflows.md](./references/verification_workflows.md) |
-| Video/media loads, form submission works | [verification_workflows.md](./references/verification_workflows.md) |
+| Animation working, layout fixed, feature complete    | [verification_workflows.md](./references/verification_workflows.md) |
+| Video/media loads, form submission works             | [verification_workflows.md](./references/verification_workflows.md) |
 
 ### Resource Router
 ```python
@@ -598,38 +598,7 @@ See [shared_patterns.md](./references/shared_patterns.md) for common patterns ac
 
 ---
 
-## 7. 🚀 QUICK START
-
-### For Implementation
-
-1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
-2. **Navigate**: [implementation_workflows.md](./references/implementation_workflows.md)
-3. **Use Templates**: [wait_patterns.js](./assets/wait_patterns.js), [validation_patterns.js](./assets/validation_patterns.js)
-
-### For Debugging
-
-1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
-2. **Navigate**: [debugging_workflows.md](./references/debugging_workflows.md)
-3. **Use Checklist**: [debugging_checklist.md](./assets/debugging_checklist.md)
-4. **Reference**: [devtools_guide.md](./references/devtools_guide.md)
-
-### For Verification
-
-1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
-2. **Navigate**: [verification_workflows.md](./references/verification_workflows.md)
-3. **Use Checklist**: [verification_checklist.md](./assets/verification_checklist.md)
-
-### Quick Reference
-
-Need fast navigation? See [quick_reference.md](./references/quick_reference.md)
-
----
-
-**Remember**: This orchestrator navigates you to specialized workflows. Load reference files for detailed instructions.
-
----
-
-## 8. 🧭 WHERE AM I? (Phase Detection Helper)
+## 7. 🧭 WHERE AM I? (Phase Detection Helper)
 
 If you're unsure which phase you're in, use this self-assessment:
 
@@ -675,15 +644,42 @@ If you're unsure which phase you're in, use this self-assessment:
 
 Understanding when and how to move between phases:
 
-| Transition | Trigger | Action |
-|------------|---------|--------|
-| **Phase 1 → Phase 2** | Implementation reveals unexpected behavior or bugs | Stop implementing, switch to debugging workflow |
-| **Phase 2 → Phase 1** | Debugging reveals missing implementation | Return to implementation to add missing code |
-| **Phase 2 → Phase 3** | All identified bugs are fixed | Proceed to browser verification |
-| **Phase 3 → Phase 1** | Verification reveals new requirements | Return to implementation for additional work |
-| **Phase 3 → Phase 2** | Verification reveals bugs not caught during debugging | Return to debugging workflow |
+| Transition            | Trigger                                               | Action                                          |
+| --------------------- | ----------------------------------------------------- | ----------------------------------------------- |
+| **Phase 1 → Phase 2** | Implementation reveals unexpected behavior or bugs    | Stop implementing, switch to debugging workflow |
+| **Phase 2 → Phase 1** | Debugging reveals missing implementation              | Return to implementation to add missing code    |
+| **Phase 2 → Phase 3** | All identified bugs are fixed                         | Proceed to browser verification                 |
+| **Phase 3 → Phase 1** | Verification reveals new requirements                 | Return to implementation for additional work    |
+| **Phase 3 → Phase 2** | Verification reveals bugs not caught during debugging | Return to debugging workflow                    |
 
 **Key principle:** Phases are not strictly linear. Move freely between phases as needed, but always end with Phase 3 (Verification) before claiming completion.
+
+---
+
+## 8. 🏎️ QUICK REFERENCE
+
+### For Implementation
+
+1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
+2. **Navigate**: [implementation_workflows.md](./references/implementation_workflows.md)
+3. **Use Templates**: [wait_patterns.js](./assets/wait_patterns.js), [validation_patterns.js](./assets/validation_patterns.js)
+
+### For Debugging
+
+1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
+2. **Navigate**: [debugging_workflows.md](./references/debugging_workflows.md)
+3. **Use Checklist**: [debugging_checklist.md](./assets/debugging_checklist.md)
+4. **Reference**: [devtools_guide.md](./references/devtools_guide.md)
+
+### For Verification
+
+1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
+2. **Navigate**: [verification_workflows.md](./references/verification_workflows.md)
+3. **Use Checklist**: [verification_checklist.md](./assets/verification_checklist.md)
+
+### Quick Reference
+
+Need fast navigation? See [quick_reference.md](./references/quick_reference.md)
 
 ---
 

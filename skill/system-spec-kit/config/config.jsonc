@@ -1,0 +1,98 @@
+{
+  // Legacy settings (v9.x)
+  "maxResultPreview": 500,
+  "maxConversationMessages": 100,
+  "maxToolOutputLines": 100,
+  "messageTimeWindow": 300000,
+  "contextPreviewHeadLines": 50,
+  "contextPreviewTailLines": 20,
+  "timezoneOffsetHours": 1,
+
+  // Semantic search (v10.0)
+  "semanticSearch": {
+    "enabled": true,
+    "minSimilarityScore": 50,
+    "maxResults": 10,
+    "embeddingModel": "nomic-embed-text-v1.5"
+  },
+
+  "memoryIndex": {
+    "databasePath": ".opencode/skill/system-spec-kit/database/context-index.sqlite",
+    "autoRebuildOnSave": true,
+    "verifyOnStartup": false
+  },
+
+  "triggerSurfacing": {
+    "enabled": true,
+    "minSimilarity": 70,
+    "maxResults": 3,
+    "performanceTargetMs": 50
+  },
+
+  // Memory decay (v11.0) - half-life ≈ 62 days with scaleDays=90
+  "memoryDecay": {
+    "enabled": true,
+    "scaleDays": 90,
+    "decayWeight": 0.3
+  },
+
+  // Importance tiers (DOCUMENTATION ONLY - actual behavior in importance-tiers.js)
+  "importanceTiers": {
+    "constitutional": { "searchBoost": 3.0, "decay": false, "autoExpireDays": null, "alwaysSurface": true },
+    "critical": { "searchBoost": 2.0, "decay": false, "autoExpireDays": null },
+    "important": { "searchBoost": 1.5, "decay": false, "autoExpireDays": null },
+    "normal": { "searchBoost": 1.0, "decay": true, "autoExpireDays": null },
+    "temporary": { "searchBoost": 0.5, "decay": true, "autoExpireDays": 7 },
+    "deprecated": { "searchBoost": 0.0, "decay": false, "excludeFromSearch": true }
+  },
+
+  // Hybrid search - combines FTS + vector similarity
+  "hybridSearch": {
+    "enabled": true,
+    "ftsWeight": 0.4,
+    "vectorWeight": 0.6,
+    "rrfK": 60,
+    "fallbackEnabled": true
+  },
+
+  // Context type auto-detection
+  "contextTypeDetection": {
+    "enabled": true,
+    "rules": {
+      "research": { "readToolsThreshold": 0.5, "writeToolsMax": 0.1 },
+      "implementation": { "writeToolsThreshold": 0.3 },
+      "decision": { "requiresAskUser": true },
+      "discovery": { "webToolsThreshold": 0.3 }
+    },
+    "defaultType": "general"
+  },
+
+  // Access tracking (actual values in search-weights.json)
+  "accessTracking": {
+    "enabled": true,
+    "boostPerAccess": 0.1,
+    "maxBoost": 0.5,
+    "threshold": 5
+  },
+
+  // Checkpoints (behavior in checkpoint.js)
+  "checkpoints": {
+    "enabled": true,
+    "maxCheckpoints": 10,
+    "autoCleanupDays": 30
+  },
+
+  // Constitutional tier (v11.1) - always surfaced at session start
+  "constitutionalTier": {
+    "enabled": true,
+    "maxTokens": 500,
+    "alwaysSurface": true
+  },
+
+  // Confidence tracking (behavior in validation.js)
+  "confidenceTracking": {
+    "enabled": true,
+    "promotionThreshold": 0.9,
+    "minValidations": 5
+  }
+}

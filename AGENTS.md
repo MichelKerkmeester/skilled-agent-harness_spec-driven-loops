@@ -20,21 +20,21 @@
 - **Truth over agreement** - correct user misconceptions with evidence; do not agree for conversational flow
 
 **MANDATORY TOOLS:**
-- **Semantic Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
+- **Semantic Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
 - **LEANN MCP** for semantic code search - finds code by MEANING ("How does auth work?"). See §6 for tool list.
-- **Code Context MCP** for structural code queries - finds code by STRUCTURE ("List functions in auth.ts"). Complements LEANN: use LEANN for understanding intent, Code Context for symbol navigation.
+- **Narsil MCP** for structural code queries AND security scanning - finds code by STRUCTURE ("List functions in auth.ts"), security vulnerabilities, call graphs. Complements LEANN: use LEANN for understanding intent, Narsil for symbol navigation and security. Accessed via Code Mode.
 
 ### Quick Reference: Common Workflows
 
-| Task                     | Flow                                                                                                                              |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Create/select spec → Execute                                                         |
-| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_search()` → Document findings                                              |
-| **Code search**          | `leann_search()` for semantic (meaning), `get_code_context()` for structural (symbols), `Grep()` for text patterns                |
-| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                  |
-| **Save context**         | Execute `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
-| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                       |
-| **Debug delegation**     | `/spec_kit:debug` → Model selection → Sub-agent dispatch via Task tool                                                            |
+| Task                     | Flow                                                                                                                               |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Create/select spec → Execute                                                          |
+| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_search()` → Document findings                                               |
+| **Code search**          | `leann_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text patterns |
+| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                   |
+| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed  |
+| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                        |
+| **Debug delegation**     | `/spec_kit:debug` → Model selection → Sub-agent dispatch via Task tool                                                             |
 
 ---
 
@@ -99,18 +99,25 @@
 │          1b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
 │          1c. Parse request → Check confidence (see §4)                       │
 │          1d. If <40%: ASK | 40-79%: PROCEED WITH CAUTION | ≥80%: PASS       │
+│                                                                             │
+│ ⚠️ PRIORITY NOTE: Gate 1 is SOFT - if file modification detected, Gate 3    │
+│    (HARD BLOCK) takes precedence. Ask spec folder question BEFORE analysis. │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 2: SKILL ROUTING [MANDATORY]                                           │
-│ Action:  Run python .opencode/scripts/skill_advisor.py "$USER_REQUEST"      │
+│ Action:  Run python3 .opencode/scripts/skill_advisor.py "$USER_REQUEST"     │
 │ Logic:   IF confidence > 0.8 → MUST invoke skill (read SKILL.md directly)    │
 │          ELSE → Proceed with manual tool selection                          │
 │ Note:    Do not guess. Use the advisor's output to determine the path.      │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 3: SPEC FOLDER QUESTION [HARD BLOCK]                                   │
+│ GATE 3: SPEC FOLDER QUESTION [HARD BLOCK] ⭐ PRIORITY GATE                  │
+│                                                                             │
+│ ⚠️ HARD BLOCK OVERRIDES SOFT BLOCKS: If file modification detected,           │
+│    Gate 3 question MUST be asked BEFORE Gates 1-2 analysis/tool calls.      │
+│    Sequence: Detect intent → Ask Gate 3 → Wait for A/B/C/D → Then analyze.  │
 │                                                                             │
 │ FILE MODIFICATION TRIGGERS (if ANY match → Q1 REQUIRED):                    │
 │   □ "rename", "move", "delete", "create", "add", "remove"                   │
@@ -142,11 +149,14 @@
 
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 4: MEMORY LOADING [SOFT BLOCK]                                         │
+│ GATE 4: MEMORY CONTEXT [SOFT BLOCK]                                         │
 │ Trigger: User selected A or C in Gate 3 AND memory files exist               │
-│ Action:  A) Recent | B) All (1-3) | C) Select | D) Skip → Wait for choice   │
-│ Block:   SOFT - User can skip (D) to proceed immediately                    │
-│ Note:    Display memory options after user responds to Gate 3               │
+│ Action:  memory_search({ specFolder, includeContent: true })                │
+│          → Results include embedded content (no separate load needed)       │
+│          → Constitutional memories always appear first                       │
+│          → Display relevant context directly from search results            │
+│ Block:   SOFT - User can skip to proceed immediately                        │
+│ Note:    Search-based approach - content is embedded in results             │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
                               ✅ EXECUTE TASK
@@ -167,12 +177,14 @@
 │      Action: Compare conversation topic to folder name                      │
 │      If mismatch detected → WARN user + suggest alternatives                │
 │                                                                             │
-│ EXECUTION:                                                                  │
-│   Action:  MUST use `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` │
-│            → Verify ANCHOR format → Auto-index                              │
-│   Rules:   MUST pass spec folder as argument:                               │
-│            `node .opencode/skill/system-memory/scripts/generate-context.js [path]` │
-│   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked).  │
+│ EXECUTION (TWO MODES):                                                      │
+│   Mode 1 (JSON file): AI writes JSON to /tmp/data.json, passes as argument  │
+│            `node generate-context.js /tmp/save-context-data.json`           │
+│            JSON MUST contain: { specFolder, sessionSummary, keyDecisions }  │
+│   Mode 2 (Direct): Pass spec folder path directly (minimal/placeholder)     │
+│            `node generate-context.js specs/005-memory`                      │
+│   Recommended: Mode 1 (JSON) for rich context preservation                  │
+│   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked). │
 │   Violation: If Write tool used on memory/ path → DELETE & re-run via script│
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
@@ -249,7 +261,7 @@
 □ STOP. File modification detected? Did I ask spec folder question? If NO → Ask NOW. Do not proceed.
 □ Did I wait for user's A/B/C/D response before Read/Edit/Write/Bash (except Gate Actions)?
 □ Am I about to use a project tool without having asked? → STOP, ask first
-□ Am I saving memory/context? → See Gate 5 (`node .opencode/skill/system-memory/scripts/generate-context.js` required)
+□ Am I saving memory/context? → See Gate 5 (`node .opencode/skill/system-spec-kit/scripts/generate-context.js` required)
 □ Aligned with ORIGINAL request? → Check for scope drift from Turn 1 intent
 ```
 
@@ -278,7 +290,7 @@ File modification planned? → Include Q1 (Spec Folder)
 ```
 
 **Gate Bypass Phrases** (user can skip specific gates):
-- Gate 4: "auto-load memories", "fresh start", "skip memory", "D", [skip]
+- Gate 4: "skip context", "fresh start", "skip memory", [skip]
 - Gate 6: Level 1 tasks (no checklist.md required)
 
 #### ⚡ Code Quality Standards Compliance
@@ -288,7 +300,7 @@ File modification planned? → Include Q1 (Spec Folder)
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
 - Before **initialization code**: Follow initialization patterns from code quality standards
 - Before **animation implementation**: See animation workflow references
-- Before **code discovery**: Use mcp-leann (semantic) + mcp-code-context (structural) as complementary tools (MANDATORY)
+- Before **code discovery**: Use mcp-leann (semantic) + mcp-narsil (structural, via Code Mode) as complementary tools (MANDATORY)
 - Before **research tasks**: Use semantic memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required) 
@@ -315,9 +327,9 @@ File modification planned? → Include Q1 (Spec Folder)
 | 13  | Review         | Retain Legacy                 | "just in case"                          | Remove unused, ask if unsure                                                                              |
 | 14  | Completion     | No Browser Test               | "works", "done"                         | Browser verify first                                                                                      |
 | 15  | Completion     | Skip Checklist                | "complete" (L2+)                        | Load checklist.md, verify all                                                                             |
-| 16  | Completion     | Skip Anchor Format            | "save context"                          | HARD BLOCK: Execute `node .opencode/skill/system-memory/scripts/generate-context.js`, verify ANCHOR pairs |
+| 16  | Completion     | Skip Anchor Format            | "save context"                          | HARD BLOCK: Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js`, verify ANCHOR pairs |
 | 17  | Any            | Internal Contradiction        | Conflicting requirements                | HALT → State conflict explicitly → Request resolution                                                     |
-| 18  | Understanding  | Wrong Search Tool             | "find", "search", "list"                | LEANN for meaning, Code Context for structure, Grep for text                                              |
+| 18  | Understanding  | Wrong Search Tool             | "find", "search", "list"                | LEANN for meaning, Narsil for structure, Grep for text                                                    |
 | 19  | Any            | Skip Gate 3 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder question → Wait for A/B/C/D                                                        |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
@@ -538,14 +550,16 @@ Review response for:
 
 ```
 Known file path? → Read()
-Know what code DOES? → leann_search() or leann_ask() [NATIVE MCP - MANDATORY]
+Know what code DOES? → leann_search() or leann_leann_ask() [NATIVE MCP - MANDATORY]
 Research/prior work? → memory_search() [NATIVE MCP - MANDATORY]
-Code structure/symbols? → code_context_get_code_context() [NATIVE MCP]
+Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE - via call_tool_chain()]
+Security scan/vulnerabilities? → narsil.narsil_scan_security() [CODE MODE - via call_tool_chain()]
+Code analysis (dead code, complexity)? → narsil.narsil_* tools [CODE MODE - via call_tool_chain()]
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP - OPTIONAL]
 Browser debugging? → workflows-chrome-devtools skill
-External MCP tools? → call_tool_chain() [Code Mode - Webflow, Figma, ClickUp, etc.]
+External MCP tools? → call_tool_chain() [Code Mode - Webflow, Figma, ClickUp, Narsil, etc.]
 Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 ```
@@ -561,7 +575,7 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 | System              | MCP Name          | Database Location                                            | Purpose                               |
 | ------------------- | ----------------- | ------------------------------------------------------------ | ------------------------------------- |
 | **LEANN**           | `leann`           | `~/.leann/indexes/`                                          | **Code** semantic search              |
-| **Semantic Memory** | `semantic_memory` | `.opencode/skill/system-memory/database/memory-index.sqlite` | **Conversation** context preservation |
+| **Semantic Memory** | `semantic_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**
 - Both use vector embeddings for semantic search
@@ -570,24 +584,25 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 
 **When cleaning/resetting databases:**
 - Code search issues → Delete `~/.leann/indexes/` or use `leann remove <index-name>`
-- Memory issues → Delete `.opencode/skill/system-memory/database/memory-index.sqlite`
+- Memory issues → Delete `.opencode/skill/system-spec-kit/database/context-index.sqlite`
 - **IMPORTANT**: After deletion, restart OpenCode to clear the MCP server's in-memory cache
 
 ### Code Search Tools (COMPLEMENTARY - NOT COMPETING)
 
-| Tool             | Type       | Query Example               | Returns                |
-| ---------------- | ---------- | --------------------------- | ---------------------- |
-| **LEANN**        | Semantic   | "How does auth work?"       | Code by meaning/intent |
-| **Code Context** | Structural | "List functions in auth.ts" | Symbols/definitions    |
-| **Grep**         | Lexical    | "Find 'TODO' comments"      | Text pattern matches   |
+| Tool       | Type                  | Query Example               | Returns                                 |
+| ---------- | --------------------- | --------------------------- | --------------------------------------- |
+| **LEANN**  | Semantic              | "How does auth work?"       | Code by meaning/intent                  |
+| **Narsil** | Structural + Security | "List functions in auth.ts" | Symbols, call graphs, security findings |
+| **Grep**   | Lexical               | "Find 'TODO' comments"      | Text pattern matches                    |
 
 **Decision Logic:**
 - Need to UNDERSTAND code? → LEANN (semantic)
-- Need to MAP code structure? → Code Context (structural)
+- Need to MAP code structure? → Narsil (structural, via Code Mode)
+- Need SECURITY scan or CODE ANALYSIS? → Narsil (via Code Mode)
 - Need to FIND text patterns? → Grep (lexical)
 
 **Typical Workflow:**
-1. Code Context → Map structure ("What functions exist?")
+1. Narsil → Map structure via Code Mode ("What functions exist?")
 2. LEANN → Understand purpose ("How does login work?")
 3. Read → Get implementation details
 
@@ -596,7 +611,7 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 **Two systems:**
 
 1. **Native MCP** (`opencode.json`) - Direct tools, called natively
-   - Sequential Thinking, LEANN, Semantic Memory, Code Context, Code Mode server
+   - Sequential Thinking, LEANN, Semantic Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Webflow, Figma, Github, ClickUp, Chrome DevTools, etc.

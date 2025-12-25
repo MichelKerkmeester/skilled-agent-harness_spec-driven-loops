@@ -2,7 +2,7 @@
 
 Templates and best practices for creating production-quality slash commands in OpenCode.
 
-> **STYLE STANDARD:** Commands use numbered ALL-CAPS section headers WITHOUT decorative emojis. Format: `## N. SECTION-NAME`. Only SEMANTIC emojis (🚨 🔒 ✅ ❌ ⚠️) are allowed for blocking/warning patterns. See Section 14 Validation Checklist for details.
+> **STYLE STANDARD:** Commands use numbered section headers with standardized emojis. Format: `## N. [EMOJI] SECTION-NAME`. Emojis are organized into two categories: **semantic** (for blocking/validation states) and **section** (for content organization). See Section 5 for complete emoji vocabulary.
 
 ---
 
@@ -176,12 +176,12 @@ Is this a repeatable workflow with defined steps?
 
 | Type | Complexity | Use When | Template Section |
 |------|------------|----------|------------------|
-| **Simple** | Low | Single action, few args | Section 8 |
-| **Workflow** | Medium | Multi-step process | Section 9 |
-| **Mode-Based** | Medium | `:auto`/`:confirm` variants | Section 10 |
-| **Argument Dispatch** | Medium | Multiple entry points/actions | Section 11 |
-| **Destructive** | Medium | Requires confirmation | Section 12 |
-| **Namespace** | Varies | Grouped related commands | Section 13 |
+| **Simple** | Low | Single action, few args | Section 10 |
+| **Workflow** | Medium | Multi-step process | Section 11 |
+| **Mode-Based** | Medium | `:auto`/`:confirm` variants | Section 12 |
+| **Argument Dispatch** | Medium | Multiple entry points/actions | Section 13 |
+| **Destructive** | Medium | Requires confirmation | Section 14 |
+| **Namespace** | Varies | Grouped related commands | Section 15 |
 
 ### Choosing the Right Type
 
@@ -252,7 +252,117 @@ allowed-tools: Tool1, Tool2
 
 ---
 
-## 5. 📝 FRONTMATTER REFERENCE
+## 5. 📝 STEP NUMBERING RULES
+
+### Full Integer Steps Only
+
+All primary workflow steps and phases MUST use full integer numbering. Half-steps and decimal sub-steps are PROHIBITED.
+
+### Primary Steps
+
+| Correct | Wrong |
+|---------|-------|
+| Step 1, Step 2, Step 3 | Step 1.5, Step 2.5 |
+| 1. Do X, 2. Do Y, 3. Do Z | 1.1 Do X, 1.2 Do Y |
+
+### Phase Numbering
+
+| Correct | Wrong |
+|---------|-------|
+| PHASE 1, PHASE 2, PHASE 3 | PHASE 1.5, PHASE 2.5 |
+| 🔒 PHASE 1: Input | 🔒 PHASE 1.5: Intermediate |
+
+### Section Numbering
+
+| Correct | Wrong |
+|---------|-------|
+| ## 1. 🎯 PURPOSE | ## 1.1 PURPOSE |
+| ## 5. 📌 REFERENCE | ## 5.1 🔧 MCP USAGE |
+| ## 6. 🔍 EXAMPLES | ## 5.2 🔀 DISPATCH |
+
+### Sub-Activities Within a Step
+
+For sub-activities within a single step, use bullets or letters (NOT decimal sub-steps):
+
+**Correct:**
+```markdown
+Step 3: Execute workflow
+  - Load configuration
+  - Validate inputs  
+  - Run process
+```
+
+**Wrong:**
+```markdown
+Step 3.1: Load configuration
+Step 3.2: Validate inputs
+Step 3.3: Run process
+```
+
+### Why This Matters
+
+Half-steps create:
+- Confusion about step sequence
+- Difficulty tracking progress
+- Inconsistent documentation
+- Harder maintenance
+
+---
+
+## 6. 🏷️ EMOJI VOCABULARY
+
+Commands use two types of emojis: **semantic** (for blocking/validation states) and **section** (for content organization).
+
+### Semantic Emojis (Blocking/Validation)
+
+These emojis indicate workflow state and enforcement:
+
+| Emoji | Name | Purpose | Example Usage |
+|-------|------|---------|---------------|
+| 🚨 | Alert | Critical/mandatory sections | `# 🚨 MANDATORY PHASES` |
+| 🔒 | Lock | Phase/gate headers | `## 🔒 PHASE 1: INPUT` |
+| ✅ | Check | Passed/success status | `✅ PASSED` |
+| ⏭️ | Skip | N/A or skipped | `⏭️ N/A (no memory files)` |
+| ⛔ | Stop | Hard stop/blocking error | `⛔ STOP - Phase incomplete` |
+| ⚠️ | Warning | Non-blocking alert | `⚠️ VIOLATION DETECTED` |
+| ❌ | Fail | Validation failure | `❌ FAILED` |
+
+### Section Emojis (Standardized)
+
+These emojis identify section types. Use EXACTLY as shown:
+
+| Emoji | Section | H2 Format | Purpose |
+|-------|---------|-----------|---------|
+| 🎯 | PURPOSE | `## N. 🎯 PURPOSE` | What the command does |
+| 📝 | CONTRACT | `## N. 📝 CONTRACT` | Inputs/outputs specification |
+| 📊 | WORKFLOW | `## N. 📊 WORKFLOW OVERVIEW` | Process flow/steps table |
+| ⚡ | INSTRUCTIONS | `## N. ⚡ INSTRUCTIONS` | How to execute |
+| 📌 | REFERENCE | `## N. 📌 REFERENCE` | Related resources |
+| 🔍 | EXAMPLES | `## N. 🔍 EXAMPLES` | Usage demonstrations |
+| 🔗 | RELATED | `## N. 🔗 RELATED COMMANDS` | Links to related commands |
+| 🔧 | TOOLS | `## N. 🔧 TOOL SIGNATURES` | MCP/tool configuration |
+| 🔀 | ROUTING | `## N. 🔀 ARGUMENT ROUTING` | Mode detection/dispatch |
+| 📚 | DOCS | `## N. 📚 FULL DOCUMENTATION` | Link to full docs |
+| 📋 | INPUT | `## N. 📋 USER INPUT` | User input display |
+
+### Mode Icons (Search Commands Only)
+
+| Emoji | Mode | Usage |
+|-------|------|-------|
+| 🔮 | Semantic | AI-powered meaning search |
+| 🏗️ | Structural | AST/symbol search |
+| 🧠 | Analysis | Deep code analysis |
+
+### Emoji Consistency Rules
+
+1. **One emoji per purpose**: Don't use 📋 for PURPOSE (use 🎯)
+2. **One purpose per emoji**: Don't use ⚡ for both INSTRUCTIONS and GATE STATUS
+3. **Always include emoji**: Every H2 section header includes its emoji
+4. **Exact format**: `## N. [EMOJI] SECTION-NAME` (number, period, space, emoji, space, name)
+
+---
+
+## 7. 📁 FRONTMATTER REFERENCE
 
 ### Required Fields
 
@@ -332,7 +442,7 @@ allowed-tools: Bash
 
 ---
 
-## 6. 🚨 MANDATORY GATE PATTERN (CRITICAL)
+## 8. 🚨 MANDATORY GATE PATTERN (CRITICAL)
 
 ### Why This Pattern Exists
 
@@ -394,7 +504,7 @@ IF $ARGUMENTS contains [expected input]:
 
 ---
 
-## 7. 🔀 MODE DETECTION PATTERN
+## 9. 🔀 MODE DETECTION PATTERN
 
 ### Overview
 
@@ -453,7 +563,7 @@ If no `:auto` or `:confirm` suffix is present, present options to user:
 
 ---
 
-## 8. 📄 SIMPLE COMMAND TEMPLATE
+## 10. 📄 SIMPLE COMMAND TEMPLATE
 
 Use for: Single-action commands with straightforward execution.
 
@@ -570,7 +680,7 @@ allowed-tools: mcp__semantic-search__semantic_search
 
 ---
 
-## 9. 📊 WORKFLOW COMMAND TEMPLATE
+## 11. 📊 WORKFLOW COMMAND TEMPLATE
 
 Use for: Multi-step processes with defined phases and outputs.
 
@@ -687,7 +797,7 @@ Next Steps:
 
 ---
 
-## 10. 🔀 MODE-BASED COMMAND TEMPLATE
+## 12. 🔀 MODE-BASED COMMAND TEMPLATE
 
 Use for: Commands supporting `:auto` and `:confirm` execution modes.
 
@@ -795,7 +905,7 @@ When resuming work in an existing spec folder, prompt to load prior session memo
 
 ---
 
-## 11. 🧭 ARGUMENT DISPATCH PATTERN
+## 13. 🧭 ARGUMENT DISPATCH PATTERN
 
 Use for: Commands that accept multiple argument types and need to route to different actions.
 
@@ -911,7 +1021,7 @@ $ARGUMENTS
 
 ---
 
-## 12. ⚠️ DESTRUCTIVE COMMAND TEMPLATE
+## 14. ⚠️ DESTRUCTIVE COMMAND TEMPLATE
 
 Use for: Commands that delete data or make irreversible changes.
 
@@ -1026,7 +1136,7 @@ allowed-tools: Bash
 
 ---
 
-## 13. 📁 NAMESPACE COMMAND PATTERN
+## 15. 📁 NAMESPACE COMMAND PATTERN
 
 Use for: Grouping related commands under a common prefix.
 
@@ -1063,7 +1173,7 @@ Use for: Grouping related commands under a common prefix.
 
 ---
 
-## 14. ✅ VALIDATION CHECKLIST
+## 16. ✅ VALIDATION CHECKLIST
 
 Before publishing a command, verify:
 
@@ -1084,54 +1194,247 @@ Before publishing a command, verify:
 
 ### Structure
 
-- [ ] H1 title matches command purpose (no emoji, no number)
-- [ ] H2 sections use format: `## N. SECTION-NAME` (no decorative emoji)
-- [ ] H3 subsections: `### Step N: Description` (no emoji)
+- [ ] H1 title matches command purpose
+- [ ] H2 sections use format: `## N. [EMOJI] SECTION-NAME` (see Section 6 for emoji vocabulary)
+- [ ] H3 subsections: `### Step N: Description`
 - [ ] Dividers (`---`) between major sections
 - [ ] Instructions are numbered and actionable
 - [ ] Example usage shows 2-3 scenarios
+- [ ] Full integer step numbering only (no 1.5, 2.5 - see Section 5)
 
 ### Header Format
 
-- [ ] H1: Plain title only (`# Command Title`)
-- [ ] H2: Numbered + ALL-CAPS, no decorative emoji (`## 1. PURPOSE`)
-- [ ] H3/H4: Title case, no emoji (`### Step 1: Description`)
+- [ ] H1: Plain title only (`# Command Title`) or with semantic emoji for blocking sections (`# 🚨 MANDATORY PHASES`)
+- [ ] H2: Numbered + emoji + SECTION-NAME (`## 1. 🎯 PURPOSE`)
+- [ ] H3/H4: Title case (`### Step 1: Description`)
 - [ ] Consistent numbering (1, 2, 3...)
-- [ ] Semantic emojis only where needed (blocking gates, validation states)
+- [ ] Emojis from approved vocabulary (Section 6)
 
-**Exception - Blocking Phase Pattern:**
-Commands with mandatory input phases may use semantic emojis:
-- `# 🚨 MANDATORY PHASES` - Critical blocking section
-- `## 🔒 PHASE N:` - Required blocking phases
-- `## ✅ PHASE STATUS VERIFICATION` - Gate checks
-
----
-
-## 15. EMOJI POLICY FOR COMMANDS
-
-Commands prioritize **clarity over decoration**. Only SEMANTIC emojis are allowed.
-
-### Allowed Semantic Emojis
-
-| Emoji | Meaning | Use In |
-|-------|---------|--------|
-| 🚨 | Critical/Blocking | Mandatory gates, critical warnings |
-| 🔒 | Locked/Required | Required phases, blocking steps |
-| ✅ | Pass/Success | Validation results, completion |
-| ❌ | Fail/Error | Validation failures |
-| ⚠️ | Warning/Caution | Conditional warnings |
-
-### NOT Allowed (Decorative)
-
-Decorative emojis like 📋 📖 🎯 ⚡ 📝 🔍 📊 🏷️ 🔀 🧭 📁 🔧 🛡️ 🔗 🧠 are **NOT used** in command H2 headers.
-
-### Rationale
-
-Per `core_standards.md`, commands should NEVER use decorative emojis. Semantic emojis convey critical information (blocking status, validation state) that affects execution flow.
+**Blocking Phase Pattern:**
+Commands with mandatory input phases use these semantic emojis:
+- `# 🚨 MANDATORY PHASES` - Critical blocking section (H1)
+- `## 🔒 PHASE N:` - Required blocking phases (H2)
+- `## ✅ PHASE STATUS VERIFICATION` - Gate checks (H2)
+- `## ⚠️ VIOLATION SELF-DETECTION` - Violation recovery (H2)
 
 ---
 
-## 16. BLOCKING PHASE PATTERN
+## 17. 📊 COMMAND STRUCTURE TEMPLATES
+
+Commands follow one of three structures based on their type.
+
+### Workflow Command Structure
+
+For commands with multi-step workflows (spec_kit/*, create/*, prompt/*):
+
+```markdown
+---
+description: "[action verb] [what it does]"
+argument-hint: "<required> [optional]"
+allowed-tools: [tool1, tool2]
+---
+
+## ⚡ GATE 3 STATUS: EXEMPT (if applicable)
+[Table explaining exemption]
+
+# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+
+## 🔒 PHASE 1: [NAME]
+[Phase content with outputs]
+
+## 🔒 PHASE 2: [NAME]
+[Phase content with outputs]
+
+## 🔒 PHASE 3: [NAME] (Conditional)
+[Phase content with outputs]
+
+## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+[Status table]
+
+## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+[Violation checklist]
+
+# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
+[Workflow tracking table - if multi-step]
+
+# [Command Title]
+
+## 1. 🎯 PURPOSE
+[What the command does]
+
+## 2. 📝 CONTRACT
+[Inputs/outputs]
+
+## 3. 📊 WORKFLOW OVERVIEW
+[Steps table - if applicable]
+
+## 4. ⚡ INSTRUCTIONS
+[How to execute]
+
+## 5. 📌 REFERENCE
+[Related resources]
+
+## 6. 🔍 EXAMPLES
+[Usage demonstrations]
+
+## 7. 🔗 RELATED COMMANDS
+[Links - if applicable]
+```
+
+### Search Command Structure
+
+For routing-based search commands (search/*):
+
+```markdown
+---
+description: "[search type] - [what it finds]"
+argument-hint: "<query> [--mode]"
+allowed-tools: [search_tools]
+---
+
+# 🔍 PRE-SEARCH VALIDATION
+[Light validation - not full phases]
+
+# [Command Title]
+
+## 1. 📝 CONTRACT
+[Inputs/outputs with pattern table]
+
+## 2. 🔀 ARGUMENT ROUTING
+[Routing decision tree]
+
+## 3. 🎯 ROUTING DECISION DISPLAY
+[Display format for routing]
+
+## 4. 🔧 TOOL SIGNATURES
+[Tool call examples]
+
+## 5. 📊 DASHBOARD MODE
+[Default no-argument behavior]
+
+## 6. [MODE] MODE
+[Mode-specific sections, one per mode]
+
+## N. ⚠️ ERROR HANDLING
+[Error conditions]
+
+## N+1. 📌 QUICK REFERENCE
+[Quick command table]
+
+## N+2. 🔗 RELATED
+[Related resources]
+```
+
+### Simple Command Structure
+
+For lightweight commands (help, simple utilities):
+
+```markdown
+---
+description: "[what it does]"
+argument-hint: "[arguments]"
+allowed-tools: [tools]
+---
+
+# [Command Title]
+
+## 1. 🎯 PURPOSE
+[What the command does]
+
+## 2. 📝 CONTRACT
+[Inputs/outputs]
+
+## 3. ⚡ INSTRUCTIONS
+[How to execute]
+
+## 4. 🔍 EXAMPLES
+[Usage demonstrations]
+
+## 5. 🔗 RELATED COMMANDS
+[Links - if applicable]
+```
+
+---
+
+## 18. 🔒 BLOCKING PATTERNS
+
+### Phase Status Verification Table
+
+Every workflow command with phases MUST include this verification table:
+
+```markdown
+## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+
+| PHASE | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE |
+|-------|-----------------|-------------|--------------|
+| Phase 1: [Name] | ✅ PASSED | [  ] | [value] |
+| Phase 2: [Name] | ✅ PASSED | [  ] | [value] |
+| Phase 3: [Name] | ✅ PASSED or ⏭️ N/A | [  ] | [value] |
+
+**VERIFICATION CHECK:**
+- ALL required phases show ✅ PASSED or ⏭️ N/A? → Proceed to workflow
+- ANY phase shows ❌ or blank? → ⛔ STOP, complete missing phases
+```
+
+### Violation Self-Detection Section
+
+Every workflow command MUST include this section:
+
+```markdown
+## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+
+**Before proceeding, verify you have NOT:**
+- [ ] Skipped any required phase
+- [ ] Used project tools before completing phases
+- [ ] Proceeded without required user confirmation
+- [ ] Made assumptions instead of asking
+
+**If ANY violation detected:**
+1. STOP immediately
+2. State: "I detected a violation: [description]"
+3. Return to the violated phase
+4. Complete properly before proceeding
+
+**Recovery Protocol:**
+- Phase violation → Return to phase, complete outputs
+- Tool violation → Acknowledge, restart from Phase 1
+- Confirmation violation → Ask user, wait for response
+```
+
+### Gate Exemption Declaration
+
+For commands exempt from Gate 3 (spec folder requirement):
+
+```markdown
+## ⚡ GATE 3 STATUS: EXEMPT
+
+| Aspect | Value |
+|--------|-------|
+| Location | [Where output goes] |
+| Reason | [Why exempt - e.g., "Self-documenting artifact"] |
+| Alternative | [What replaces spec folder - e.g., "Output location validation"] |
+```
+
+### Workflow Tracking Table
+
+For commands with 4+ steps:
+
+```markdown
+# 📊 WORKFLOW EXECUTION (N STEPS) - MANDATORY TRACKING
+
+| Step | Name | Status | Required Output | Verification |
+|------|------|--------|-----------------|--------------|
+| 1 | [Name] | ☐ | [Output] | [How to verify] |
+| 2 | [Name] | ☐ | [Output] | [How to verify] |
+| 3 | [Name] | ☐ | [Output] | [How to verify] |
+| ... | ... | ... | ... | ... |
+
+**Status Legend:** ☐ Pending | 🔄 In Progress | ✅ Complete | ⏭️ Skipped
+```
+
+---
+
+## 19. 🔒 BLOCKING PHASE PATTERN
 
 For commands with mandatory input collection phases, use this structure to enforce blocking gates before workflow execution.
 
@@ -1233,7 +1536,7 @@ Create structured documentation for development tasks...
 
 ---
 
-## 17. ORCHESTRATOR + WORKERS PATTERN
+## 20. ORCHESTRATOR + WORKERS PATTERN
 
 Use for: Commands that spawn parallel sub-agents for exploration/analysis.
 
@@ -1276,7 +1579,7 @@ Use for: Commands that spawn parallel sub-agents for exploration/analysis.
 
 ---
 
-## 18. STATUS OUTPUT PATTERNS
+## 21. STATUS OUTPUT PATTERNS
 
 ### Standard Patterns
 
@@ -1291,7 +1594,7 @@ Use for: Commands that spawn parallel sub-agents for exploration/analysis.
 
 ---
 
-## 19. BEST PRACTICES SUMMARY
+## 22. BEST PRACTICES SUMMARY
 
 ### DO
 
@@ -1317,7 +1620,7 @@ Use for: Commands that spawn parallel sub-agents for exploration/analysis.
 
 ---
 
-## 20. RELATED RESOURCES
+## 23. RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type

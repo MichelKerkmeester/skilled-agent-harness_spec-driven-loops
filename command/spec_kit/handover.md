@@ -108,10 +108,10 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                   | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                       |
-| ----------------------- | --------------- | ----------- | ---------------------------------- |
-| PHASE 1: INPUT & SPEC   | ✅ PASSED        | ______      | spec_path: ______ / method: ______ |
-| PHASE 2: VALIDATION     | ✅ PASSED        | ______      | validation: ______                 |
+| PHASE                 | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                       |
+| --------------------- | --------------- | ----------- | ---------------------------------- |
+| PHASE 1: INPUT & SPEC | ✅ PASSED        | ______      | spec_path: ______ / method: ______ |
+| PHASE 2: VALIDATION   | ✅ PASSED        | ______      | validation: ______                 |
 
 ```
 VERIFICATION CHECK:
@@ -180,7 +180,7 @@ operating_mode:
 
 ---
 
-## 1. 📋 PURPOSE
+## 1. 🎯 PURPOSE
 
 Create a handover document that enables seamless session continuation. The handover captures session context, decisions, blockers, and next steps for the next session.
 
@@ -269,7 +269,7 @@ Show the created file path and continuation instructions.
 The handover file is created in the spec folder root, NOT in memory/.
 
 > **💡 Tip:** After creating the handover file, consider running:
-> `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]`
+> `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`
 > to preserve full semantic context for future searches. Handover files are for quick continuation; memory files are for semantic retrieval.
 
 ### Handover Success
@@ -318,7 +318,7 @@ The handover file is created in the spec folder root, NOT in memory/.
 
 ---
 
-## 6.1 🔀 PARALLEL DISPATCH
+## 7. 🔀 PARALLEL DISPATCH
 
 The handover workflow is a **utility workflow** and does NOT use parallel dispatch. All 4 steps execute sequentially.
 
@@ -326,7 +326,7 @@ Parallel dispatch is only used in implementation-heavy workflows (`/spec_kit:com
 
 ---
 
-## 7. 🔍 EXAMPLES
+## 8. 🔍 EXAMPLES
 
 **Example 1: Auto-detect handover**
 ```
@@ -342,17 +342,17 @@ Parallel dispatch is only used in implementation-heavy workflows (`/spec_kit:com
 
 ---
 
-## 8. 🔗 RELATED COMMANDS
+## 9. 🔗 RELATED COMMANDS
 
-| Command              | Relationship                                         |
-| -------------------- | ---------------------------------------------------- |
-| `/spec_kit:resume`   | Loads handover document to continue work             |
-| `/spec_kit:complete` | Start new feature (handover captures in-progress)    |
-| `/memory:save`       | Save context to memory (handover is for branching)   |
+| Command              | Relationship                                       |
+| -------------------- | -------------------------------------------------- |
+| `/spec_kit:resume`   | Loads handover document to continue work           |
+| `/spec_kit:complete` | Start new feature (handover captures in-progress)  |
+| `/memory:save`       | Save context to memory (handover is for branching) |
 
 ---
 
-## 9. 📌 INTEGRATION
+## 10. 📌 INTEGRATION
 
 ### Gate 7 Integration
 

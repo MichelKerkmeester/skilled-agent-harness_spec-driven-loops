@@ -1,7 +1,7 @@
 ---
 description: LEANN index sync & freshness manager - check staleness, update indexes, maintain semantic code search
 argument-hint: "[subcommand] [name] [--docs <path>] [--force]"
-allowed-tools: Bash, leann_list, leann_remove, code_context_get_code_context
+allowed-tools: Bash, leann_list, leann_remove
 ---
 
 # 🚨 GATE: DESTRUCTIVE OPERATION CONFIRMATION
@@ -205,16 +205,12 @@ leann_list({})
 **Trigger:** `/search:index status` or `health`
 
 ```javascript
-// Parallel
 leann_list({})
-code_context_get_code_context({ absolutePath: "..." })
 ```
 
 **Output:**
 ```
 📊 LEANN: ✅ Available (N indexes)
-🏗️ CODE CONTEXT: ✅ Available
-📝 GREP: ✅ Available
 ```
 
 ### 5.6 INDEX INFO

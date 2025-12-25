@@ -1,20 +1,19 @@
 ---
-description: Unified code search - route structural, semantic, and lexical queries with smart multi-tool fusion
+description: Unified AI-powered code search - route semantic (LEANN) and structural/security/analysis (Narsil) queries with smart multi-tool fusion
 argument-hint: "[query] [--index:<name>] [--path:<dir>] [--type:<ext>] [--limit:<N>]"
-allowed-tools: Bash, Read, Grep, Glob, leann_search, leann_ask, leann_list, code_context_get_code_context
+allowed-tools: Bash, Read, leann_search, leann_ask, leann_list, code_mode_call_tool_chain, code_mode_search_tools
 ---
 
-# 🔍 PRE-SEARCH VALIDATION (LIGHT)
+# PRE-SEARCH VALIDATION (LIGHT)
 
 ```
 EXECUTE QUICK VALIDATION:
 ├─ INDEX MANAGEMENT REDIRECT? ("build", "list", "remove", "status")
 │   └─ YES → Forward to /search:index
-├─ CLASSIFY INTENT: SEMANTIC | STRUCTURAL | LEXICAL | AMBIGUOUS
+├─ CLASSIFY INTENT: SEMANTIC | STRUCTURAL | SECURITY | ANALYSIS | AMBIGUOUS
 ├─ RESOURCE CHECK (non-blocking):
 │   ├─ Semantic → Check index exists (warn if missing)
-│   ├─ Structural → Check path exists
-│   └─ Lexical → No check needed
+│   └─ Structural/Security/Analysis → Check path exists
 └─ PROCEED (warnings inline, don't block)
 ```
 
@@ -22,17 +21,17 @@ EXECUTE QUICK VALIDATION:
 
 # Unified Code Search
 
-One command for semantic (LEANN), structural (Code Context), and lexical (Grep) search with intelligent routing.
+One command for semantic (LEANN) and structural/security/analysis (Narsil) search with intelligent routing.
 
 ```yaml
 role: Code Search Specialist
-purpose: Unified interface for all code search operations
+purpose: Unified interface for AI-powered code search operations
 action: Route to optimal tool based on query intent
 ```
 
 ---
 
-## 1. 📝 CONTRACT
+## 1. 📋 CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Query, mode keyword, or filters
 **Outputs:** `STATUS=<OK|FAIL>` with `RESULTS=<N>` and `TOOLS=<used>`
@@ -62,15 +61,16 @@ $ARGUMENTS
     ├─► Empty → DASHBOARD (Section 4)
     │
     ├─► EXPLICIT MODE KEYWORDS
-    │   ├─► "tree" | "structure" → STRUCTURAL
-    │   ├─► "outline" | "symbols" → STRUCTURAL  
-    │   └─► "grep" | "pattern" → LEXICAL
+    │   ├─► "tree" | "structure" | "outline" | "symbols" → STRUCTURAL
+    │   ├─► "security" | "vulnerabilities" | "scan" | "audit" → SECURITY
+    │   └─► "complexity" | "dead code" | "call graph" | "unused" → ANALYSIS
     │
     └─► SMART ROUTING (natural language)
         ├─► STRUCTURAL? ("list functions", "show classes", "where defined")
-        ├─► SEMANTIC? ("how does", "explain", "what is", "why")
-        ├─► LEXICAL? (quoted strings, /regex/, "TODO", "FIXME")
-        └─► AMBIGUOUS (<60% confidence) → FUSION
+        ├─► SEMANTIC? ("how does", "explain", "what is", "why", "understand")
+        ├─► SECURITY? ("security", "vulnerability", "OWASP", "CWE", "injection")
+        ├─► ANALYSIS? ("complexity", "dead code", "dependencies", "unused")
+        └─► AMBIGUOUS (<60% confidence) → FUSION (LEANN + Narsil)
 ```
 
 ---
@@ -81,21 +81,22 @@ $ARGUMENTS
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│ 🎯 ROUTING DECISION                                             │
+│ ROUTING DECISION                                                │
 ├─────────────────────────────────────────────────────────────────┤
 │ Query: "<user_query>"                                           │
 │ Mode: <emoji> <MODE>  |  Tool: <tool_name>                      │
 │ Why: <trigger_reason>  |  Confidence: <N>%                      │
-│ 💡 <mode-specific_tip>                                          │
+│ Tip: <mode-specific_tip>                                        │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Mode       | Emoji | Tool         | Type                                 |
-| ---------- | ----- | ------------ | ------------------------------------ |
-| SEMANTIC   | 🔮     | LEANN        | RAG (Retrieval-Augmented Generation) |
-| STRUCTURAL | 🏗️     | Code Context | AST Parser (Abstract Syntax Tree)    |
-| LEXICAL    | 🔍     | Grep         | Text Pattern Matching                |
-| FUSION     | ⚡     | All          | Multi-tool parallel execution        |
+| Mode       | Emoji | Tool   | Type                                 |
+| ---------- | ----- | ------ | ------------------------------------ |
+| SEMANTIC   | 🔮     | LEANN  | RAG (Retrieval-Augmented Generation) |
+| STRUCTURAL | 🏗️     | Narsil | AST Parser (Abstract Syntax Tree)    |
+| SECURITY   | 🔒     | Narsil | Vulnerability Scanning               |
+| ANALYSIS   | 📊     | Narsil | Code Metrics & Quality               |
+| FUSION     | ⚡     | Both   | Multi-tool parallel execution        |
 
 **Trigger reasons:** See `/search:code:help` Section 3 for full detection patterns.
 
@@ -109,17 +110,34 @@ leann_search({ index_name: "<name>", query: "<q>", top_k: N, show_metadata: true
 leann_list({})
 Bash("leann ask <name> '<question>'")
 
-// Code Context (Structural)
-code_context_get_code_context({ 
-  absolutePath: "<path>", 
-  analyzeJs: true,
-  includeSymbols: true,
-  symbolType: "functions", // or "classes", "all"
-  maxDepth: N 
+// Narsil (Structural - via Code Mode)
+code_mode_call_tool_chain({
+  code: `
+    const symbols = await narsil.narsil_find_symbols({ kind: "function", pattern: "" });
+    const structure = await narsil.narsil_get_project_structure({});
+    return { symbols, structure };
+  `
 })
 
-// Grep (Lexical)
-Grep({ pattern: "<regex>", path: "<dir>", include: "<glob>" })
+// Narsil (Security - via Code Mode)
+code_mode_call_tool_chain({
+  code: `
+    const results = await narsil.narsil_scan_security({ 
+      path: "<path>",
+      severity: "high"
+    });
+    return results;
+  `
+})
+
+// Narsil (Analysis - via Code Mode)
+code_mode_call_tool_chain({
+  code: `
+    const deadCode = await narsil.narsil_find_dead_code({ path: "<path>" });
+    const complexity = await narsil.narsil_analyze_complexity({ path: "<path>" });
+    return { deadCode, complexity };
+  `
+})
 ```
 
 ---
@@ -137,14 +155,17 @@ leann_list({})
 │  CODE SEARCH DASHBOARD                                                      │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  🔮 LEANN          Semantic (RAG)         ✅ anobel                          │
-│  🏗️ Code Context   Structural (AST)       ✅ Available                       │
-│  🔍 Grep           Lexical (Pattern)      ✅ Available                       │
+│  🏗️ Narsil         Structural (AST)       ✅ Available                       │
+│  🔒 Narsil         Security (Scan)        ✅ Available                       │
+│  📊 Narsil         Analysis (Metrics)     ✅ Available                       │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  COMMANDS                                                                   │
 │                                                                             │
 │  [s] search <query>     Semantic search     --index: --limit:               │
 │  [t] tree <path>        Structure/symbols   --depth: --type:                │
 │  [a] ask <question>     Q&A with context    --index:                        │
+│  [x] security <path>    Vulnerability scan  --severity:                     │
+│  [c] complexity <path>  Code analysis       --type:                         │
 │  [f] fusion <query>     Multi-tool search   (auto-routes to best tool)      │
 │  [i] index              Index management    → /search:index                 │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -179,14 +200,28 @@ Index: <name> | Limit: <N>
 
 ---
 
-## 7. 🏗️ STRUCTURAL MODE (Code Context)
+## 7. 🏗️ STRUCTURAL MODE (Narsil)
 
 **Trigger:** "list functions", "show classes", "tree", "outline", "where defined"
 
 **Workflow:**
 ```
 1. Parse: --path:<dir>, --depth:<N>, remaining → path
-2. Execute: code_context_get_code_context({ absolutePath, analyzeJs: true, includeSymbols: true, maxDepth })
+2. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       const symbols = await narsil.narsil_find_symbols({ 
+         kind: "function", 
+         pattern: "",
+         path: "<path>" 
+       });
+       const structure = await narsil.narsil_get_project_structure({ 
+         path: "<path>",
+         maxDepth: <N> 
+       });
+       return { symbols, structure };
+     `
+   })
 3. Display tree/outline
 ```
 
@@ -207,32 +242,85 @@ src/auth/
 
 ---
 
-## 8. 📝 LEXICAL MODE (Grep)
+## 8. 🔒 SECURITY MODE (Narsil)
 
-**Trigger:** quoted strings `"..."`, regex `/pattern/`, "TODO", "FIXME"
+**Trigger:** "security", "vulnerabilities", "scan", "audit", "OWASP", "CWE"
 
 **Workflow:**
 ```
-1. Parse: --path:<dir>, --type:<ext>, --limit:<N>, remaining → pattern
-2. Execute: Grep({ pattern, path, include: "*.{ext}" })
-3. Display matches table
+1. Parse: --path:<dir>, --severity:<level>, remaining → target
+2. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       const results = await narsil.narsil_scan_security({ 
+         path: "<path>",
+         severity: "high" // "low", "medium", "high", "critical"
+       });
+       return results;
+     `
+   })
+3. Display security findings
 ```
 
 **Output:**
 ```
-GREP: "TODO"
-Path: src/ | Type: js,ts | Limit: 20
+SECURITY SCAN: src/auth/
+Severity: high+
 ────────────────────────────────────────────────────
-| #   | File              | Line | Match                      |
-| --- | ----------------- | ---- | -------------------------- |
-| 1   | src/auth/oauth.js | 45   | // TODO: Add rate limiting |
+| #   | Severity | CWE     | File              | Finding                 |
+| --- | -------- | ------- | ----------------- | ----------------------- |
+| 1   | HIGH     | CWE-89  | src/auth/login.js | SQL Injection risk      |
+| 2   | HIGH     | CWE-79  | src/auth/oauth.js | XSS vulnerability       |
 ────────────────────────────────────────────────────
-[1-N] view | [r]efine pattern | [s]earch | [b]ack | [q]uit
+[1-N] details | [f]ix suggestions | [e]xport | [b]ack | [q]uit
 ```
 
 ---
 
-## 9. ⚡ FUSION MODE (Multi-Tool)
+## 9. 📈 ANALYSIS MODE (Narsil)
+
+**Trigger:** "dead code", "complexity", "dependencies", "call graph", "unused"
+
+**Workflow:**
+```
+1. Parse: --path:<dir>, --type:<analysis>, remaining → target
+2. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       // For dead code analysis
+       const deadCode = await narsil.narsil_find_dead_code({ path: "<path>" });
+       
+       // For complexity analysis
+       const complexity = await narsil.narsil_analyze_complexity({ path: "<path>" });
+       
+       // For call graph
+       const callGraph = await narsil.narsil_get_call_graph({ 
+         path: "<path>",
+         symbol: "<function_name>" 
+       });
+       
+       return { deadCode, complexity, callGraph };
+     `
+   })
+3. Display analysis results
+```
+
+**Output:**
+```
+CODE ANALYSIS: src/auth/
+Type: complexity
+────────────────────────────────────────────────────
+| #   | File              | Function       | Complexity | Lines |
+| --- | ----------------- | -------------- | ---------- | ----- |
+| 1   | src/auth/oauth.js | handleCallback | 15 (high)  | 89    |
+| 2   | src/auth/login.js | validateUser   | 8 (medium) | 45    |
+────────────────────────────────────────────────────
+[1-N] details | [r]efactor suggestions | [c]all graph | [b]ack | [q]uit
+```
+
+---
+
+## 10. ⚡ FUSION MODE (Multi-Tool)
 
 **Trigger:** Ambiguous queries (confidence < 60%), broad topics, single words
 
@@ -240,8 +328,9 @@ Path: src/ | Type: js,ts | Limit: 20
 ```
 1. Execute in parallel:
    - leann_search({ index_name, query, top_k: 5 })
-   - code_context_get_code_context({ absolutePath: "src/", ... })
-   - Grep({ pattern: query, path: "src/" })
+   - code_mode_call_tool_chain({ 
+       code: `await narsil.narsil_find_symbols({ kind: "all", pattern: "<query>" })` 
+     })
 2. Merge by file path, deduplicate, sort by relevance
 3. Display unified results with tool attribution
 ```
@@ -249,50 +338,51 @@ Path: src/ | Type: js,ts | Limit: 20
 **Output:**
 ```
 SEARCH RESULTS: "authentication"
-Mode: Multi-Tool Fusion
+Mode: Multi-Tool Fusion (LEANN + Narsil)
 ────────────────────────────────────────────────────
-| #   | Tool    | Score | File              | Match                   |
-| --- | ------- | ----- | ----------------- | ----------------------- |
-| 1   | LEANN   | 94%   | src/auth/oauth.js | OAuth callback handling |
-| 2   | Context | -     | src/auth/index.js | function: validateUser  |
-| 3   | Grep    | -     | src/utils/auth.js | "authentication token"  |
+| #   | Tool   | Score | File              | Match                   |
+| --- | ------ | ----- | ----------------- | ----------------------- |
+| 1   | LEANN  | 94%   | src/auth/oauth.js | OAuth callback handling |
+| 2   | Narsil | -     | src/auth/index.js | function: validateUser  |
+| 3   | Narsil | -     | src/auth/login.js | class: AuthManager      |
 ────────────────────────────────────────────────────
-[1-N] view | [s]emantic | [t]ree | [g]rep | [r]efine | [q]uit
+[1-N] view | [s]emantic | [t]ree | [x]security | [r]efine | [q]uit
 ```
 
 ---
 
-## 10. ⚠️ ERROR HANDLING
+## 11. ⚠️ ERROR HANDLING
 
-| Condition       | Action                                      |
-| --------------- | ------------------------------------------- |
-| Index not found | Suggest `/search:index build`               |
-| Path not found  | Show similar paths via Glob                 |
-| Empty results   | Try fallback: Semantic→Structural→Lexical   |
-| All tools fail  | Show diagnostic with refinement suggestions |
+| Condition       | Action                                        |
+| --------------- | --------------------------------------------- |
+| Index not found | Suggest `/search:index build`                 |
+| Path not found  | Show similar paths via Glob                   |
+| Empty results   | Try fallback: Semantic → Structural → Diagnostic |
+| All tools fail  | Show diagnostic with refinement suggestions   |
 
 **Fallback Chain:**
 ```
-Primary empty? → Semantic → Structural → Lexical → Diagnostic
+Primary empty? → Semantic → Structural → Diagnostic
 ```
 
 ---
 
-## 11. 📌 QUICK REFERENCE
+## 12. 📌 QUICK REFERENCE
 
-| Command                                  | Result        |
-| ---------------------------------------- | ------------- |
-| `/search:code`                           | Dashboard     |
-| `/search:code how does auth work`        | Semantic      |
-| `/search:code list functions in auth.js` | Structural    |
-| `/search:code "TODO"`                    | Lexical       |
-| `/search:code authentication`            | Fusion (auto) |
-| `/search:code tree src/`                 | Folder tree   |
+| Command                                  | Result     |
+| ---------------------------------------- | ---------- |
+| `/search:code`                           | Dashboard  |
+| `/search:code how does auth work`        | Semantic   |
+| `/search:code list functions in auth.js` | Structural |
+| `/search:code security scan src/`        | Security   |
+| `/search:code complexity analysis`       | Analysis   |
+| `/search:code authentication`            | Fusion     |
+| `/search:code tree src/`                 | Structural |
 
 ---
 
-## 12. 📚 MORE HELP
+## 13. 📚 MORE HELP
 
 For detailed reference (examples, patterns, comparisons):
-- **mcp-leann skill** - LEANN documentation
-- **mcp-code-context skill** - Code Context documentation
+- **mcp-leann skill** - LEANN semantic search documentation
+- **mcp-narsil skill** - Narsil structural, security, and analysis documentation

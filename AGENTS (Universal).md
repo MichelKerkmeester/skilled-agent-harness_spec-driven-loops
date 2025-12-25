@@ -22,7 +22,7 @@
 **MANDATORY TOOLS:**
 - **Semantic Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use generate-context.js** - NEVER manually create memory files.
 - **LEANN MCP** for semantic code search - finds code by MEANING ("How does auth work?"). See §6 for tool list.
-- **Code Context MCP** for structural code queries - finds code by STRUCTURE ("List functions in auth.ts"). Complements LEANN: use LEANN for understanding intent, Code Context for symbol navigation.
+- **Narsil MCP** for structural code queries AND security scanning - finds code by STRUCTURE ("List functions in auth.ts"), security vulnerabilities, call graphs. Complements LEANN: use LEANN for understanding intent, Narsil for symbol navigation and security. Accessed via Code Mode.
 
 ### Quick Reference: Common Workflows
 
@@ -30,7 +30,7 @@
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Create/select spec → Execute                                          |
 | **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_search()` → Document findings                               |
-| **Code search**          | `leann_search()` for semantic (meaning), `get_code_context()` for structural (symbols), `Grep()` for text patterns |
+| **Code search**          | `leann_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text patterns |
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                   |
 | **Save context**         | Execute `generate-context.js` → Verify ANCHOR format → Auto-indexed                                                |
 | **Claim completion**     | Run validate-spec.sh → Load `checklist.md` → Verify ALL items → Mark with evidence                                 |
@@ -104,7 +104,7 @@
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ GATE 2: SKILL ROUTING [MANDATORY]                                           │
-│ Action:  Run python .opencode/scripts/skill_advisor.py "$USER_REQUEST"      │
+│ Action:  Run python3 .opencode/scripts/skill_advisor.py "$USER_REQUEST"     │
 │ Logic:   IF confidence > 0.8 → MUST invoke skill (read SKILL.md directly)    │
 │          ELSE → Proceed with manual tool selection                          │
 │ Note:    Do not guess. Use the advisor's output to determine the path.      │
@@ -169,10 +169,10 @@
 │      If mismatch detected → WARN user + suggest alternatives                │
 │                                                                             │
 │ EXECUTION:                                                                  │
-│   Action:  MUST use `node .opencode/skill/system-memory/scripts/generate-context.js [spec-folder-path]` │
+│   Action:  MUST use `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` │
 │            → Verify ANCHOR format → Auto-index                              │
 │   Rules:   MUST pass spec folder as argument:                               │
-│            `node .opencode/skill/system-memory/scripts/generate-context.js [path]` │
+│            `node .opencode/skill/system-spec-kit/scripts/generate-context.js [path]` │
 │   Block:   HARD - Cannot create memory files manually (Write/Edit Blocked).  │
 │   Violation: If Write tool used on memory/ path → DELETE & re-run via script│
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -286,7 +286,7 @@ File modification planned? → Include Q1 (Spec Folder)
 
 **MANDATORY:** Before key actions:
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
-- Before **code discovery**: Use mcp-leann (semantic) + mcp-code-context (structural) as complementary tools (MANDATORY)
+- Before **code discovery**: Use mcp-leann (semantic) + mcp-narsil (structural, via Code Mode) as complementary tools (MANDATORY)
 - Before **research tasks**: Use semantic memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
@@ -314,7 +314,7 @@ File modification planned? → Include Q1 (Spec Folder)
 | 15  | Completion     | Skip Checklist                | "complete" (L2+)                        | Load checklist.md, verify all                                |
 | 16  | Completion     | Skip Anchor Format            | "save context"                          | HARD BLOCK: Execute generate-context.js, verify ANCHOR pairs |
 | 17  | Any            | Internal Contradiction        | Conflicting requirements                | HALT → State conflict explicitly → Request resolution        |
-| 18  | Understanding  | Wrong Search Tool             | "find", "search", "list"                | LEANN for meaning, Code Context for structure, Grep for text |
+| 18  | Understanding  | Wrong Search Tool             | "find", "search", "list"                | LEANN for meaning, Narsil for structure, Grep for text       |
 | 19  | Any            | Skip Gate 3 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder question → Wait for A/B/C/D           |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
@@ -533,9 +533,10 @@ Review response for:
 
 ```
 Known file path? → Read()
-Know what code DOES? → leann_search() or leann_ask() [NATIVE MCP - MANDATORY]
+Know what code DOES? → leann_search() or leann_leann_ask() [NATIVE MCP - MANDATORY]
 Research/prior work? → memory_search() [NATIVE MCP - MANDATORY]
-Code structure/symbols? → code_context_get_code_context() [NATIVE MCP]
+Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE - via call_tool_chain()]
+Security scan/vulnerabilities? → narsil.narsil_scan_security() [CODE MODE - via call_tool_chain()]
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP - OPTIONAL]
@@ -555,7 +556,7 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 | System              | MCP Name          | Database Location                                            | Purpose                               |
 | ------------------- | ----------------- | ------------------------------------------------------------ | ------------------------------------- |
 | **LEANN**           | `leann`           | `~/.leann/indexes/`                                          | **Code** semantic search              |
-| **Semantic Memory** | `semantic_memory` | `.opencode/skill/system-memory/database/memory-index.sqlite` | **Conversation** context preservation |
+| **Semantic Memory** | `semantic_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**
 - Both use vector embeddings for semantic search
@@ -564,7 +565,7 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 
 **When cleaning/resetting databases:**
 - Code search issues → Delete `~/.leann/indexes/` or use `leann remove <index-name>`
-- Memory issues → Delete `.opencode/skill/system-memory/database/memory-index.sqlite`
+- Memory issues → Delete `.opencode/skill/system-spec-kit/database/context-index.sqlite`
 - **IMPORTANT**: After deletion, restart OpenCode to clear the MCP server's in-memory cache
 
 ### Code Search Tools (COMPLEMENTARY - NOT COMPETING)
@@ -572,16 +573,16 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 | Tool             | Type       | Query Example               | Returns                |
 | ---------------- | ---------- | --------------------------- | ---------------------- |
 | **LEANN**        | Semantic   | "How does auth work?"       | Code by meaning/intent |
-| **Code Context** | Structural | "List functions in auth.ts" | Symbols/definitions    |
+| **Narsil**       | Structural | "List functions in auth.ts" | Symbols/definitions, security findings |
 | **Grep**         | Lexical    | "Find 'TODO' comments"      | Text pattern matches   |
 
 **Decision Logic:**
 - Need to UNDERSTAND code? → LEANN (semantic)
-- Need to MAP code structure? → Code Context (structural)
+- Need to MAP code structure? → Narsil (structural, via Code Mode)
 - Need to FIND text patterns? → Grep (lexical)
 
 **Typical Workflow:**
-1. Code Context → Map structure ("What functions exist?")
+1. Narsil → Map structure (via Code Mode: "What functions exist?")
 2. LEANN → Understand purpose ("How does login work?")
 3. Read → Get implementation details
 
@@ -590,7 +591,7 @@ Stuck debugging 3+ attempts? → /spec_kit:debug [Delegate to sub-agent]
 **Two systems:**
 
 1. **Native MCP** (`opencode.json`) - Direct tools, called natively
-   - Sequential Thinking, LEANN, Semantic Memory, Code Context, Code Mode server
+   - Sequential Thinking, LEANN, Semantic Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
    - Standard integrations: Chrome DevTools, ClickUp, Figma, GitHub

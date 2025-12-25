@@ -333,7 +333,7 @@ High-confidence keywords that directly map to specific skills:
 | `leann`      | mcp-leann                 | +1.0  |
 | `rebase`     | workflows-git             | +0.8  |
 | `flowchart`  | workflows-documentation   | +0.7  |
-| `treesitter` | mcp-code-context          | +0.7  |
+| `treesitter` | mcp-narsil                | +0.7  |
 | `checkpoint` | system-memory             | +0.6  |
 
 ### MULTI_SKILL_BOOSTERS
@@ -342,9 +342,9 @@ For ambiguous keywords that could apply to multiple skills, use `MULTI_SKILL_BOO
 
 ```python
 MULTI_SKILL_BOOSTERS = {
-    "codebase": [("mcp-leann", 0.2), ("mcp-code-context", 0.2)],
-    "search": [("mcp-leann", 0.2), ("mcp-code-context", 0.2)],
-    "code": [("workflows-code", 0.2), ("mcp-code-context", 0.15), ("mcp-leann", 0.1)],
+    "codebase": [("mcp-leann", 0.2), ("mcp-narsil", 0.2)],
+    "search": [("mcp-leann", 0.2), ("mcp-narsil", 0.2)],
+    "code": [("workflows-code", 0.2), ("mcp-narsil", 0.15), ("mcp-leann", 0.1)],
     ...
 }
 ```
@@ -491,7 +491,7 @@ $ python skill_advisor.py "search for how authentication works in the codebase"
     "reason": "Matched: !auth, !how, !search(multi), !codebase(multi)"
   },
   {
-    "skill": "mcp-code-context",
+    "skill": "mcp-narsil",
     "confidence": 0.86,
     "reason": "Matched: !codebase(multi), !search(multi)"
   }
@@ -533,7 +533,7 @@ $ python skill_advisor.py "hello"
 | Browser debugging  | workflows-chrome-devtools | devtools, chrome, browser, debug, console |
 | Documentation      | workflows-documentation   | markdown, flowchart, diagram, readme      |
 | Code search        | mcp-leann                 | search, find, semantic, embeddings        |
-| Structure analysis | mcp-code-context          | symbols, functions, classes, ast          |
+| Structure analysis | mcp-narsil                | symbols, functions, classes, ast, security, call-graph |
 | Memory/context     | system-memory             | remember, save, context, checkpoint       |
 | Specifications     | system-spec-kit           | spec, checklist, plan, specification      |
 
