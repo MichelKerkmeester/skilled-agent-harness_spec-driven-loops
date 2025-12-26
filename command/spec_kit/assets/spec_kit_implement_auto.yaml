@@ -142,7 +142,6 @@ prerequisites:
   level_3_required:
   - "[SPEC_FOLDER]/decision-record.md"
   optional_artifacts:
-  - "[SPEC_FOLDER]/planning-summary.md"
   - "[SPEC_FOLDER]/research.md"
   verification: MUST EXIST BEFORE PROCEEDING
   note: This workflow assumes planning completed via /spec_kit:plan
@@ -339,7 +338,6 @@ workflow:
     - "[SPEC_FOLDER]/spec.md"
     - "[SPEC_FOLDER]/plan.md"
     optional_documents:
-    - planning-summary.md
     - research.md
     - decision-record-*.md
     deep_analysis:
@@ -458,6 +456,19 @@ workflow:
     - Integration work (database, middleware, logging)
     - Update task checklist progressively (mark [X])
     - Log progress after each task
+    
+    # ⛔ DEBUG DELEGATION REMINDER
+    debug_delegation:
+      trigger: "Same error encountered 3+ times after fix attempts"
+      enforcement: MANDATORY
+      action: |
+        If you encounter the same error 3+ times after fix attempts:
+        1. STOP attempting more fixes
+        2. Suggest to user: "Would you like me to delegate this to a debug specialist? Run: /spec_kit:debug"
+        3. This delegation is MANDATORY after 3 failed attempts
+        4. Do not continue debugging without user decision
+      rationale: "Fresh perspective often solves stuck issues faster than repeated attempts"
+    
     approach: autonomous_implementation_with_checkpoints
     requirements:
     - follow: Check skills folder for coding standards
@@ -528,6 +539,11 @@ workflow:
 
   step_7_completion:
     purpose: Generate implementation summary
+    level_requirement: "Level 2+ (MANDATORY - do not skip this step)"
+    enforcement_note: |
+      ⛔ This step is MANDATORY for Level 2+ specs.
+      ⛔ Do not skip this step - implementation-summary.md is a required file.
+      ⛔ Even for Level 1 specs, this step is strongly recommended.
     activities:
     - Run validation on spec folder first
     - Verify all tasks completed
@@ -649,11 +665,44 @@ workflow:
         temporary: Short-term notes
         deprecated: Outdated but retained
 
+  step_9_session_handover_check:
+    purpose: Prompt user for session handover before completing
+    enforcement: MANDATORY_CHECK
+    activities:
+    - Display handover prompt to user
+    - Wait for user response
+    - If user accepts, run /spec_kit:handover
+    - If user declines, proceed to termination
+    
+    handover_prompt:
+      display: |
+        📋 Implementation complete. Before ending:
+
+        Would you like to create a handover document for future sessions?
+        - Run: /spec_kit:handover
+
+        This is recommended if:
+        - You may continue this work later
+        - Another AI/developer may pick this up
+        - The implementation has nuances worth documenting
+      
+      options:
+        - label: "Create Handover"
+          action: "Run /spec_kit:handover workflow"
+        - label: "Skip"
+          action: "Proceed to workflow termination"
+    
+    behavior:
+      user_accepts: "Execute /spec_kit:handover command"
+      user_declines: "Proceed to termination without handover"
+    
+    validation: handover_check_complete
+
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
-  after_step: 8
+  after_step: 9
   message: "Implementation phase completed successfully. Workflow terminated after step 8 (save context)."
   next_steps:
   - Review implementation-summary.md

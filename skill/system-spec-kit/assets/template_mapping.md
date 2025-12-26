@@ -15,7 +15,7 @@
 ## 2. 📋 REQUIRED TEMPLATES BY LEVEL (Progressive Enhancement)
 
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md
+Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
                               ↓

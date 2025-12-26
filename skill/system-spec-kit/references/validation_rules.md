@@ -50,28 +50,59 @@ This document provides comprehensive documentation for every validation rule enf
 
 ### Required Files by Level
 
-| Level | Required Files                             |
-| ----- | ------------------------------------------ |
-| 1     | `spec.md`, `plan.md`, `tasks.md`           |
-| 2     | Level 1 + `checklist.md`                   |
-| 3     | Level 2 + `decision-record.md`             |
+| Level | Required Files                                                 |
+| ----- | -------------------------------------------------------------- |
+| 1     | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`  |
+| 2     | Level 1 + `checklist.md`                                       |
+| 3     | Level 2 + `decision-record.md`                                 |
+
+### Implementation Summary (All Levels)
+
+All spec folders require an implementation summary that captures what was built:
+
+| File                        | Created When                | Purpose                                        |
+| --------------------------- | --------------------------- | ---------------------------------------------- |
+| `implementation-summary.md` | End of implementation phase | Captures what was built, deviations, results   |
+
+**Note:** This file is validated as part of the FILE_EXISTS rule. If missing for any spec folder, validation will fail with an ERROR.
 
 ### Examples
 
-✅ **Pass:**
+✅ **Pass (Level 1):**
+```
+specs/007-feature/
+├── spec.md                   ✓
+├── plan.md                   ✓
+├── tasks.md                  ✓
+└── implementation-summary.md ✓
+```
+
+✅ **Pass (Level 2):**
+```
+specs/008-complex-feature/
+├── spec.md                   ✓
+├── plan.md                   ✓
+├── tasks.md                  ✓
+├── checklist.md              ✓
+└── implementation-summary.md ✓
+```
+
+❌ **Fail (Level 1 - missing core file):**
+```
+specs/007-feature/
+├── plan.md                   ✓
+├── tasks.md                  ✓
+└── implementation-summary.md ✓
+                              ✗ Missing: spec.md
+```
+
+❌ **Fail (Level 1 - missing implementation summary):**
 ```
 specs/007-feature/
 ├── spec.md         ✓
 ├── plan.md         ✓
 └── tasks.md        ✓
-```
-
-❌ **Fail:**
-```
-specs/007-feature/
-├── plan.md         ✓
-└── tasks.md        ✓
-                    ✗ Missing: spec.md
+                    ✗ Missing: implementation-summary.md
 ```
 
 ### How to Fix
@@ -79,8 +110,17 @@ specs/007-feature/
 Create the missing file(s) using the appropriate template:
 
 ```bash
+# Core files
 cp .opencode/skill/system-spec-kit/templates/spec.md specs/007-feature/
+
+# Implementation summary (required for all levels)
+# Create at end of implementation phase
+cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/007-feature/
 ```
+
+**Workflow:**
+1. Complete implementation phase → create `implementation-summary.md`
+2. Run validation to confirm all requirements are met
 
 ---
 

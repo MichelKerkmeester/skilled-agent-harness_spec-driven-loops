@@ -113,7 +113,7 @@ Validates that a spec folder contains required files for its level.
 | `[path]` | Yes | Path to spec folder |
 
 **Checks Performed:**
-- Level 1: spec.md, plan.md, tasks.md
+- Level 1: spec.md, plan.md, tasks.md, implementation-summary.md
 - Level 2: Level 1 + checklist.md
 - Level 3: Level 2 + decision-record.md
 

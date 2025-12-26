@@ -429,12 +429,42 @@ function createFullSimulation(config = {}) {
 function requiresSimulation(collectedData) {
   if (!collectedData) return true;
   
+  // Check for explicit simulation marker (P0-006)
+  if (collectedData._isSimulation) return true;
+  
   // Check for minimal data presence
   const hasUserPrompts = collectedData.user_prompts && collectedData.user_prompts.length > 0;
   const hasObservations = collectedData.observations && collectedData.observations.length > 0;
   const hasRecentContext = collectedData.recent_context && collectedData.recent_context.length > 0;
   
   return !hasUserPrompts && !hasObservations && !hasRecentContext;
+}
+
+/**
+ * Add simulation warning to content (P0-006)
+ * Prepends a visible warning to content generated in simulation mode
+ * 
+ * @param {string} content - Content to add warning to
+ * @returns {string} Content with warning prepended
+ */
+function addSimulationWarning(content) {
+  const warning = `<!-- WARNING: This is simulated/placeholder content - NOT from a real session -->\n\n`;
+  return warning + content;
+}
+
+/**
+ * Add simulation flag to metadata (P0-006)
+ * Marks metadata as simulated for downstream filtering
+ * 
+ * @param {Object} metadata - Metadata object
+ * @returns {Object} Metadata with isSimulated flag
+ */
+function markAsSimulated(metadata) {
+  return {
+    ...metadata,
+    isSimulated: true,
+    _simulationWarning: 'This memory was generated using placeholder data, not from a real conversation'
+  };
 }
 
 module.exports = {
@@ -450,5 +480,9 @@ module.exports = {
   // Utility functions
   requiresSimulation,
   formatTimestamp,
-  generateSessionId
+  generateSessionId,
+  
+  // P0-006: Simulation warning utilities
+  addSimulationWarning,
+  markAsSimulated
 };

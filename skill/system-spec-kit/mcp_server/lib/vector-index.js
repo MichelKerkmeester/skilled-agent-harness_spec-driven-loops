@@ -90,10 +90,18 @@ function validateFilePath(filePath) {
     // Resolve to absolute path (handles .., symlinks, etc.)
     const resolved = path.resolve(filePath);
     
-    // Check if path is within any allowed base directory
+    // Security: Use path.relative() containment check instead of startsWith()
+    // This prevents path confusion attacks (CWE-22)
+    // See: specs/003-memory-and-spec-kit/038-post-merge-refinement-3
     const isAllowed = ALLOWED_BASE_PATHS.some(basePath => {
-      const normalizedBase = path.resolve(basePath);
-      return resolved.startsWith(normalizedBase + path.sep) || resolved === normalizedBase;
+      try {
+        const normalizedBase = path.resolve(basePath);
+        const relative = path.relative(normalizedBase, resolved);
+        // Secure: relative path must not start with '..' and must not be absolute
+        return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
+      } catch {
+        return false;
+      }
     });
 
     if (!isAllowed) {
@@ -186,6 +194,73 @@ let db = null;
 let dbPath = DEFAULT_DB_PATH;
 let sqliteVecAvailable = true; // Track if sqlite-vec is available (NFR-R01)
 let shuttingDown = false;
+
+// P1-CODE-004: Constitutional memory caching to avoid repeated DB queries
+// Cache key includes specFolder to support folder-scoped queries
+let constitutionalCache = new Map(); // Map<specFolder|'global', {data, timestamp}>
+const CONSTITUTIONAL_CACHE_TTL = 60000; // 1 minute TTL
+
+/**
+ * Get cached constitutional memories or fetch from database
+ * @param {Object} database - Database connection
+ * @param {string|null} specFolder - Optional spec folder filter
+ * @returns {Object[]} Constitutional memory results
+ */
+function getConstitutionalMemories(database, specFolder = null) {
+  const cacheKey = specFolder || 'global';
+  const now = Date.now();
+  const cached = constitutionalCache.get(cacheKey);
+  
+  if (cached && (now - cached.timestamp) < CONSTITUTIONAL_CACHE_TTL) {
+    return cached.data;
+  }
+  
+  // Fetch from database
+  const constitutionalSql = `
+    SELECT m.*, 100.0 as similarity, 1.0 as effective_importance,
+           'constitutional' as source_type
+    FROM memory_index m
+    WHERE m.importance_tier = 'constitutional'
+      AND m.embedding_status = 'success'
+      ${specFolder ? 'AND m.spec_folder = ?' : ''}
+    ORDER BY m.importance_weight DESC, m.created_at DESC
+  `;
+  
+  const params = specFolder ? [specFolder] : [];
+  let results = database.prepare(constitutionalSql).all(...params);
+  
+  // Limit constitutional results to ~500 tokens (~2000 chars, ~5 memories avg)
+  const MAX_CONSTITUTIONAL_TOKENS = 500;
+  const TOKENS_PER_MEMORY = 100;
+  const maxConstitutionalCount = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
+  results = results.slice(0, maxConstitutionalCount);
+  
+  // Mark as constitutional for client identification
+  results = results.map(row => {
+    if (row.trigger_phrases) {
+      row.trigger_phrases = JSON.parse(row.trigger_phrases);
+    }
+    row.isConstitutional = true;
+    return row;
+  });
+  
+  // Cache the results
+  constitutionalCache.set(cacheKey, { data: results, timestamp: now });
+  
+  return results;
+}
+
+/**
+ * Clear constitutional cache (call when tier changes)
+ * @param {string|null} specFolder - Clear specific folder or all if null
+ */
+function clearConstitutionalCache(specFolder = null) {
+  if (specFolder) {
+    constitutionalCache.delete(specFolder);
+  } else {
+    constitutionalCache.clear();
+  }
+}
 
 /**
  * Initialize or get database connection
@@ -380,6 +455,16 @@ function migrateConfidenceColumns(database) {
       if (!e.message.includes('duplicate column')) throw e;
     }
   }
+
+  // P0-005: Add related_memories column for linkRelatedOnSave() and getRelatedMemories()
+  if (!columnNames.includes('related_memories')) {
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN related_memories TEXT`);
+      console.warn('[vector-index] Migration: Added related_memories column');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
+  }
 }
 
 /**
@@ -430,6 +515,57 @@ function migrateConstitutionalTier(database) {
   }
 }
 
+/*
+ * TIMESTAMP FORMAT NOTES (P2-002):
+ * - created_at, updated_at: TEXT (ISO 8601 strings) - human readable
+ * - last_accessed: INTEGER (Unix timestamp) - efficient for sorting/comparison
+ * - expires_at: DATETIME - SQLite native format
+ * 
+ * This mixed format is intentional:
+ * - TEXT for audit/display purposes
+ * - INTEGER for performance-critical access tracking
+ * 
+ * Future consideration: Standardize to TEXT ISO format for consistency.
+ */
+
+/**
+ * P2-001: Create indexes for commonly queried columns
+ * Called during schema creation and migration to ensure indexes exist.
+ * Uses IF NOT EXISTS for idempotency.
+ * 
+ * @param {Object} database - better-sqlite3 instance
+ */
+function createCommonIndexes(database) {
+  // Create indexes for common query patterns
+  try {
+    database.exec(`CREATE INDEX IF NOT EXISTS idx_file_path ON memory_index(file_path)`);
+    console.log('[vector-index] Created idx_file_path index');
+  } catch (err) {
+    // Index may already exist
+  }
+
+  try {
+    database.exec(`CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash)`);
+    console.log('[vector-index] Created idx_content_hash index');
+  } catch (err) {
+    // Index may already exist
+  }
+
+  try {
+    database.exec(`CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC)`);
+    console.log('[vector-index] Created idx_last_accessed index');
+  } catch (err) {
+    // Index may already exist
+  }
+
+  try {
+    database.exec(`CREATE INDEX IF NOT EXISTS idx_importance_tier ON memory_index(importance_tier)`);
+    console.log('[vector-index] Created idx_importance_tier index');
+  } catch (err) {
+    // Index may already exist
+  }
+}
+
 /**
  * Create database schema
  * @param {Object} database - better-sqlite3 instance
@@ -445,6 +581,10 @@ function createSchema(database) {
     // Migrations for existing databases
     migrateConfidenceColumns(database);
     migrateConstitutionalTier(database);
+    
+    // P2-001: Create indexes for common query patterns (idempotent)
+    createCommonIndexes(database);
+    
     return; // Schema already exists
   }
 
@@ -575,8 +715,28 @@ function createSchema(database) {
     CREATE INDEX IF NOT EXISTS idx_checkpoints_spec ON checkpoints(spec_folder);
   `);
 
+  // P2-001: Additional indexes for commonly queried columns
+  database.exec(`
+    CREATE INDEX IF NOT EXISTS idx_file_path ON memory_index(file_path);
+    CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash);
+    CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
+  `);
+
   console.warn('[vector-index] Schema created successfully');
 }
+
+/*
+ * TIMESTAMP FORMAT NOTES (P2-002):
+ * - created_at, updated_at: TEXT (ISO 8601 strings) - human readable
+ * - last_accessed: INTEGER (Unix timestamp) - efficient for sorting/comparison
+ * - expires_at: DATETIME - SQLite native format
+ * 
+ * This mixed format is intentional:
+ * - TEXT for audit/display purposes
+ * - INTEGER for performance-critical access tracking
+ * 
+ * Future consideration: Standardize to TEXT ISO format for consistency.
+ */
 
 // ───────────────────────────────────────────────────────────────
 // CORE OPERATIONS
@@ -712,6 +872,8 @@ function updateMemory(params) {
     if (importanceTier !== undefined) {
       updates.push('importance_tier = ?');
       values.push(importanceTier);
+      // P1-CODE-004: Clear constitutional cache when tier changes
+      clearConstitutionalCache();
     }
     if (embedding) {
       updates.push('embedding_model = ?');
@@ -809,8 +971,12 @@ function getMemory(id) {
 
   const row = database.prepare('SELECT * FROM memory_index WHERE id = ?').get(id);
 
-  if (row && row.trigger_phrases) {
-    row.trigger_phrases = JSON.parse(row.trigger_phrases);
+  if (row) {
+    if (row.trigger_phrases) {
+      row.trigger_phrases = JSON.parse(row.trigger_phrases);
+    }
+    // Set isConstitutional based on actual tier
+    row.isConstitutional = row.importance_tier === 'constitutional';
   }
 
   return row || null;
@@ -833,6 +999,8 @@ function getMemoriesByFolder(specFolder) {
     if (row.trigger_phrases) {
       row.trigger_phrases = JSON.parse(row.trigger_phrases);
     }
+    // Set isConstitutional based on actual tier
+    row.isConstitutional = row.importance_tier === 'constitutional';
     return row;
   });
 }
@@ -942,38 +1110,13 @@ function vectorSearch(queryEmbedding, options = {}) {
 
   // ─────────────────────────────────────────────────────────────────
   // CONSTITUTIONAL MEMORIES: Always surface at top (unless filtering by tier)
+  // P1-CODE-004: Use cached constitutional memories to avoid repeated DB queries
   // ─────────────────────────────────────────────────────────────────
   let constitutionalResults = [];
 
   // Only fetch constitutional if not filtering by constitutional tier specifically and includeConstitutional is true
   if (includeConstitutional && tier !== 'constitutional') {
-    const constitutionalSql = `
-      SELECT m.*, 100.0 as similarity, 1.0 as effective_importance,
-             'constitutional' as source_type
-      FROM memory_index m
-      WHERE m.importance_tier = 'constitutional'
-        AND m.embedding_status = 'success'
-        ${specFolder ? 'AND m.spec_folder = ?' : ''}
-      ORDER BY m.importance_weight DESC, m.created_at DESC
-    `;
-
-    const constitutionalParams = specFolder ? [specFolder] : [];
-    constitutionalResults = database.prepare(constitutionalSql).all(...constitutionalParams);
-
-    // Limit constitutional results to ~500 tokens (~2000 chars, ~5 memories avg)
-    const MAX_CONSTITUTIONAL_TOKENS = 500;
-    const TOKENS_PER_MEMORY = 100; // Conservative fixed estimate (~4 chars/token)
-    const maxConstitutionalCount = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
-    constitutionalResults = constitutionalResults.slice(0, maxConstitutionalCount);
-
-    // Mark as constitutional for client identification
-    constitutionalResults = constitutionalResults.map(row => {
-      if (row.trigger_phrases) {
-        row.trigger_phrases = JSON.parse(row.trigger_phrases);
-      }
-      row.isConstitutional = true;
-      return row;
-    });
+    constitutionalResults = getConstitutionalMemories(database, specFolder);
   }
 
   // ─────────────────────────────────────────────────────────────────
@@ -1037,7 +1180,8 @@ function vectorSearch(queryEmbedding, options = {}) {
     if (row.trigger_phrases) {
       row.trigger_phrases = JSON.parse(row.trigger_phrases);
     }
-    row.isConstitutional = false;
+    // Set isConstitutional based on actual tier, not search path
+    row.isConstitutional = row.importance_tier === 'constitutional';
     return row;
   });
 
@@ -1046,45 +1190,34 @@ function vectorSearch(queryEmbedding, options = {}) {
 }
 
 /**
- * Get all constitutional tier memories
+ * Get all constitutional tier memories (public API wrapper)
  *
  * Returns constitutional memories without requiring a query embedding.
  * Useful for always-surfacing core rules regardless of search context.
+ *
+ * Note: This is a public API wrapper that delegates to the internal
+ * cached getConstitutionalMemories(database, specFolder) function.
  *
  * @param {Object} [options] - Options
  * @param {string} [options.specFolder] - Filter by spec folder
  * @param {number} [options.maxTokens=500] - Maximum tokens worth of results
  * @returns {Object[]} Constitutional memories sorted by importance
  */
-function getConstitutionalMemories(options = {}) {
+function getConstitutionalMemoriesPublic(options = {}) {
   const database = initializeDb();
-
   const { specFolder = null, maxTokens = 500 } = options;
 
-  const sql = `
-    SELECT m.*, 100.0 as similarity, 1.0 as effective_importance
-    FROM memory_index m
-    WHERE m.importance_tier = 'constitutional'
-      AND m.embedding_status = 'success'
-      ${specFolder ? 'AND m.spec_folder = ?' : ''}
-    ORDER BY m.importance_weight DESC, m.created_at DESC
-  `;
+  // Delegate to cached internal function
+  let results = getConstitutionalMemories(database, specFolder);
 
-  const params = specFolder ? [specFolder] : [];
-  let results = database.prepare(sql).all(...params);
-
-  // Limit to token budget (~100 tokens per memory avg)
+  // Apply token budget limit if different from default
   const TOKENS_PER_MEMORY = 100;
   const maxCount = Math.floor(maxTokens / TOKENS_PER_MEMORY);
-  results = results.slice(0, maxCount);
+  if (results.length > maxCount) {
+    results = results.slice(0, maxCount);
+  }
 
-  return results.map(row => {
-    if (row.trigger_phrases) {
-      row.trigger_phrases = JSON.parse(row.trigger_phrases);
-    }
-    row.isConstitutional = true;
-    return row;
-  });
+  return results;
 }
 
 /**
@@ -1181,6 +1314,8 @@ function multiConceptSearch(conceptEmbeddings, options = {}) {
     // Add concept_similarities array and calculate average
     row.concept_similarities = conceptBuffers.map((_, i) => row[`similarity_${i}`]);
     row.avg_similarity = row.concept_similarities.reduce((a, b) => a + b, 0) / concepts.length;
+    // Set isConstitutional based on actual tier, not search path
+    row.isConstitutional = row.importance_tier === 'constitutional';
     return row;
   });
 }
@@ -1531,6 +1666,8 @@ function keywordSearch(query, options = {}) {
         row.trigger_phrases = [];
       }
     }
+    // Set isConstitutional based on actual tier
+    row.isConstitutional = row.importance_tier === 'constitutional';
     return row;
   });
 }
@@ -1630,7 +1767,9 @@ async function vectorSearchEnriched(query, limit = 20, options = {}) {
       snippet,
       id: row.id,
       importanceWeight: row.importance_weight,
-      searchMethod
+      searchMethod,
+      // Preserve isConstitutional from raw results
+      isConstitutional: row.isConstitutional || row.importance_tier === 'constitutional'
     });
   }
 
@@ -1733,7 +1872,9 @@ async function multiConceptSearchEnriched(concepts, limit = 20, options = {}) {
       tags,
       snippet,
       id: row.id,
-      importanceWeight: row.importance_weight
+      importanceWeight: row.importance_weight,
+      // Preserve isConstitutional from raw results
+      isConstitutional: row.isConstitutional || row.importance_tier === 'constitutional'
     });
   }
 
@@ -1814,7 +1955,9 @@ function multiConceptKeywordSearch(concepts, limit = 20, options = {}) {
       snippet,
       id: row.id,
       importanceWeight: row.importance_weight,
-      searchMethod: 'keyword'
+      searchMethod: 'keyword',
+      // Set isConstitutional based on actual tier
+      isConstitutional: row.importance_tier === 'constitutional'
     });
   }
 
@@ -2168,7 +2311,7 @@ async function linkRelatedOnSave(newMemoryId, content) {
 /**
  * Record that a memory was accessed for usage tracking (T3.2)
  *
- * Increments access_count and updates last_accessed_at timestamp.
+ * Increments access_count and updates last_accessed timestamp.
  * Used for analytics and potential cleanup of rarely-accessed memories.
  *
  * @param {number} memoryId - ID of the accessed memory
@@ -2186,7 +2329,7 @@ function recordAccess(memoryId) {
     const result = database.prepare(`
       UPDATE memory_index
       SET access_count = access_count + 1,
-          last_accessed_at = ?
+          last_accessed = ?
       WHERE id = ?
     `).run(now, memoryId);
 
@@ -2220,24 +2363,37 @@ function recordAccess(memoryId) {
 async function cachedSearch(query, limit = 20, options = {}) {
   const cache = getQueryCache();
   const key = `${query}:${limit}:${JSON.stringify(options)}`;
+  const now = Date.now();
 
   // Check cache for valid entry
   const cached = cache.get(key);
-  if (cached && (Date.now() - cached.timestamp < cache.ttl)) {
+  if (cached && (now - cached.timestamp < cache.ttl)) {
+    // P1-006: Update accessTime on cache hit for true LRU behavior
+    cached.accessTime = now;
     return cached.results;
   }
 
   // Perform actual search
   const results = await vectorSearchEnriched(query, limit, options);
 
-  // Simple LRU eviction: delete oldest entry if at max size
+  // P1-006: True LRU eviction - find and delete least recently accessed entry
   if (cache.size >= cache.maxSize) {
-    const oldest = cache.keys().next().value;
-    cache.delete(oldest);
+    let oldestKey = null;
+    let oldestAccessTime = Infinity;
+    for (const [k, entry] of cache.entries()) {
+      const entryAccessTime = entry.accessTime || entry.timestamp || 0;
+      if (entryAccessTime < oldestAccessTime) {
+        oldestAccessTime = entryAccessTime;
+        oldestKey = k;
+      }
+    }
+    if (oldestKey) {
+      cache.delete(oldestKey);
+    }
   }
 
-  // Store in cache with timestamp
-  cache.set(key, { results, timestamp: Date.now() });
+  // Store in cache with timestamp and accessTime
+  cache.set(key, { results, timestamp: now, accessTime: now });
 
   return results;
 }
@@ -2311,7 +2467,7 @@ function getRelatedMemories(memoryId) {
  * Useful for identifying frequently used vs stale memories.
  *
  * @param {Object} [options] - Query options
- * @param {string} [options.sortBy='access_count'] - Sort by 'access_count' or 'last_accessed_at'
+ * @param {string} [options.sortBy='access_count'] - Sort by 'access_count' or 'last_accessed'
  * @param {string} [options.order='DESC'] - Sort order 'ASC' or 'DESC'
  * @param {number} [options.limit=20] - Maximum results
  * @returns {Array<Object>} Memories with usage stats
@@ -2324,7 +2480,7 @@ function getUsageStats(options = {}) {
   } = options;
 
   // Validate sortBy to prevent SQL injection
-  const validSortFields = ['access_count', 'last_accessed_at', 'confidence'];
+  const validSortFields = ['access_count', 'last_accessed', 'confidence'];
   const sortField = validSortFields.includes(sortBy) ? sortBy : 'access_count';
   const sortOrder = order.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
 
@@ -2332,7 +2488,7 @@ function getUsageStats(options = {}) {
 
   const rows = database.prepare(`
     SELECT id, title, spec_folder, file_path, access_count,
-           last_accessed_at, confidence, created_at
+           last_accessed, confidence, created_at
     FROM memory_index
     WHERE access_count > 0
     ORDER BY ${sortField} ${sortOrder}
@@ -2415,7 +2571,7 @@ function findCleanupCandidates(options = {}) {
       file_path,
       title,
       created_at,
-      last_accessed_at,
+      last_accessed,
       access_count,
       confidence,
       importance_weight
@@ -2424,9 +2580,9 @@ function findCleanupCandidates(options = {}) {
       created_at < ?
       OR access_count <= ?
       OR confidence <= ?
-      OR (last_accessed_at IS NULL AND created_at < ?)
+      OR (last_accessed IS NULL AND created_at < ?)
     ORDER BY
-      last_accessed_at ASC NULLS FIRST,
+      last_accessed ASC NULLS FIRST,
       access_count ASC,
       confidence ASC
     LIMIT ?
@@ -2473,7 +2629,7 @@ function findCleanupCandidates(options = {}) {
   // Enrich with human-readable age
   return rows.map(row => {
     const ageString = formatAgeString(row.created_at);
-    const lastAccessString = formatAgeString(row.last_accessed_at);
+    const lastAccessString = formatAgeString(row.last_accessed);
 
     // Determine why this is a candidate
     const reasons = [];
@@ -2494,7 +2650,7 @@ function findCleanupCandidates(options = {}) {
       filePath: row.file_path,
       title: row.title || 'Untitled',
       createdAt: row.created_at,
-      lastAccessedAt: row.last_accessed_at,
+      lastAccessedAt: row.last_accessed,
       accessCount: row.access_count || 0,
       confidence: row.confidence || 0.5,
       ageString,
@@ -2621,11 +2777,11 @@ function getMemoryPreview(memoryId, maxLines = 50) {
     filePath: memory.file_path,
     title: memory.title || 'Untitled',
     createdAt: memory.created_at,
-    lastAccessedAt: memory.last_accessed_at,
+    lastAccessedAt: memory.last_accessed,
     accessCount: memory.access_count || 0,
     confidence: memory.confidence || 0.5,
     ageString: formatAgeString(memory.created_at),
-    lastAccessString: formatAgeString(memory.last_accessed_at),
+    lastAccessString: formatAgeString(memory.last_accessed),
     content
   };
 }
@@ -2727,7 +2883,8 @@ module.exports = {
 
   // Search - Basic
   vectorSearch,
-  getConstitutionalMemories,
+  getConstitutionalMemories: getConstitutionalMemoriesPublic, // P0-001: Export public wrapper, internal cached version used internally
+  clearConstitutionalCache,
   multiConceptSearch,
   isVectorSearchAvailable,
 

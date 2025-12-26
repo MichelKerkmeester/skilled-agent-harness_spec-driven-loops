@@ -550,6 +550,19 @@ Memory: "OAuth Implementation" [ID: 42]
 
 **⚠️ GATE 1 MUST BE PASSED**
 
+### Pre-Cleanup Safety
+
+Before executing bulk delete:
+1. Create automatic checkpoint: `checkpoint_create({ name: "pre-cleanup-{timestamp}" })`
+   - Example: `pre-cleanup-2025-01-15T10-30-00`
+2. Inform user of checkpoint name in output
+3. Proceed with deletion after user confirmation
+4. Provide restore instructions in output:
+   ```
+   To undo this cleanup, run:
+   checkpoint_restore({ name: "pre-cleanup-{timestamp}" })
+   ```
+
 ```
 CLEANUP MODE
 ────────────────────────────────────────────────────

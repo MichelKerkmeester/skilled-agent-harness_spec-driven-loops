@@ -1,5 +1,5 @@
 ---
-description: Full end-to-end SpecKit workflow (13 steps) - supports :auto and :confirm modes
+description: Full end-to-end SpecKit workflow (14 steps) - supports :auto and :confirm modes
 argument-hint: "<feature-description> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
@@ -65,7 +65,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │    D) Skip documentation                                       │
    │                                                                │
    │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
-   │    A) Autonomous - Execute all 13 steps without approval       │
+   │    A) Autonomous - Execute all 14 steps without approval       │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
    │ Reply with choices, e.g.: "B, A" or "A" (if mode pre-set)      │
@@ -174,7 +174,7 @@ VERIFICATION CHECK:
 - **Started writing code before completing Steps 1-7 (Planning Phase)**
 - **Did not mark tasks [x] in tasks.md during Step 10**
 - **Did not create implementation-summary.md in Step 12**
-- **Claimed "complete" or "done" without verifying all 13 steps executed**
+- **Claimed "complete" or "done" without verifying all 14 steps executed**
 
 **Confidence Violations (AGENTS.md Section 3):**
 - **Proceeded with confidence <40% without asking clarifying question**
@@ -224,9 +224,9 @@ FOR CONFIDENCE VIOLATIONS:
 
 ---
 
-# 📊 WORKFLOW EXECUTION (13 STEPS) - MANDATORY TRACKING
+# 📊 WORKFLOW EXECUTION (14 STEPS) - MANDATORY TRACKING
 
-**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→13). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
+**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→14). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
 ---
 
@@ -272,7 +272,7 @@ WHEN all artifacts verified:
 
 ---
 
-## PHASE B: IMPLEMENTATION (Steps 8-13)
+## PHASE B: IMPLEMENTATION (Steps 8-14)
 
 | STEP | NAME                 | STATUS | REQUIRED OUTPUT                   | VERIFICATION                              |
 | ---- | -------------------- | ------ | --------------------------------- | ----------------------------------------- |
@@ -280,8 +280,9 @@ WHEN all artifacts verified:
 | 9    | Implementation Check | ☐      | prerequisites_verified            | Ready to implement                        |
 | 10   | Development          | ☐      | code changes + tasks marked `[x]` | **ALL tasks in tasks.md marked complete** |
 | 11   | Checklist Verify     | ☐      | All P0/P1 verified                | **Level 2+ ONLY - BLOCKING**              |
-| 12   | Completion           | ☐      | `implementation-summary.md`       | **Summary file created**                  |
+| 12   | Completion           | ☐      | `implementation-summary.md`       | **Summary file created (MANDATORY L2+)**  |
 | 13   | Save Context         | ☐      | `memory/*.md`                     | Context preserved                         |
+| 14   | Handover Check       | ☐      | User prompted                     | Handover offered before completion        |
 
 ---
 
@@ -306,6 +307,7 @@ STEP 11 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
 └─ ⛔ HARD BLOCK: Cannot proceed to Step 12 if any P0 items are unchecked
 
 STEP 12 (Completion) REQUIREMENTS:
+├─ ⛔ MANDATORY for Level 2+ specs - DO NOT skip this step
 ├─ Validation runs automatically on spec folder first
 │   ├─ Pass → continue
 │   ├─ Warnings → continue with caution
@@ -316,7 +318,8 @@ STEP 12 (Completion) REQUIREMENTS:
 │   ├─ Verification steps taken
 │   ├─ Deviations from plan (if any)
 │   └─ Browser testing results
-└─ MUST NOT skip this step
+├─ implementation-summary.md is a REQUIRED file for Level 2+ specs
+└─ MUST NOT skip this step - summary documents completion state for handovers
 
 STEP 13 (Save Context) REQUIREMENTS:
 ├─ MUST save session context to memory/ folder
@@ -326,6 +329,26 @@ STEP 13 (Save Context) REQUIREMENTS:
 │   node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]
 │   ```
 └─ ❌ DO NOT use Write/Edit tools to create memory files directly
+
+STEP 14 (Session Handover Check) REQUIREMENTS:
+├─ **MANDATORY CHECK** before claiming complete
+├─ Display to user:
+│   ┌────────────────────────────────────────────────────────────────┐
+│   │ Implementation complete. Before ending:                        │
+│   │                                                                │
+│   │ Would you like to create a handover document for future        │
+│   │ sessions?                                                      │
+│   │                                                                │
+│   │ Run: /spec_kit:handover                                        │
+│   │                                                                │
+│   │ This is recommended if:                                        │
+│   │ - You may continue this work later                             │
+│   │ - Another AI/developer may pick this up                        │
+│   │ - The implementation has nuances worth documenting             │
+│   └────────────────────────────────────────────────────────────────┘
+├─ WAIT for user response
+├─ IF user accepts → Run /spec_kit:handover before final completion
+└─ IF user declines → Proceed to mark workflow complete
 ```
 
 ---
@@ -337,7 +360,7 @@ STEP 13 (Save Context) REQUIREMENTS:
 - Skipped Steps 8-9 and jumped directly to coding
 - Did not mark tasks `[x]` in tasks.md during Step 10
 - Did not create implementation-summary.md in Step 12
-- Claimed "complete" without all 13 steps showing ✅
+- Claimed "complete" without all 14 steps showing ✅
 
 **WORKFLOW VIOLATION RECOVERY:**
 ```
@@ -360,10 +383,10 @@ Execute the complete SpecKit lifecycle from specification through implementation
 ```yaml
 role: Expert Developer using Smart SpecKit with Full Lifecycle Management
 purpose: Spec-driven development with mandatory compliance and comprehensive documentation
-action: Run full 13-step SpecKit from specification to implementation with context preservation
+action: Run full 14-step SpecKit from specification to implementation with context preservation
 
 operating_mode:
-  workflow: sequential_13_step
+  workflow: sequential_14_step
   workflow_compliance: MANDATORY
   workflow_execution: autonomous_or_interactive
   approvals: step_by_step_for_confirm_mode
@@ -375,7 +398,7 @@ operating_mode:
 
 ## 1. 🎯 PURPOSE
 
-Run the full 13-step SpecKit workflow: specification, clarification, planning, task breakdown, implementation, and context saving. This is the comprehensive workflow for feature development with full documentation trail.
+Run the full 14-step SpecKit workflow: specification, clarification, planning, task breakdown, implementation, and context saving. This is the comprehensive workflow for feature development with full documentation trail.
 
 ---
 
@@ -405,8 +428,9 @@ $ARGUMENTS
 | 9    | Implementation Check | Verify prerequisites                                                         | greenlight                |
 | 10   | Development          | Execute implementation                                                       | code changes              |
 | 11   | Checklist Verify     | Verify P0/P1 items (Level 2+)                                                | All P0/P1 verified        |
-| 12   | Completion           | Generate summary                                                             | implementation-summary.md |
+| 12   | Completion           | Generate summary (MANDATORY L2+)                                             | implementation-summary.md |
 | 13   | Save Context         | Preserve conversation                                                        | memory/*.md               |
+| 14   | Handover Check       | Offer handover before completion                                             | User prompted             |
 
 ---
 

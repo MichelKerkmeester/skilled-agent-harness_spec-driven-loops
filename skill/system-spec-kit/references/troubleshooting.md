@@ -8,7 +8,7 @@
 
 **Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
 
-This reference provides structured troubleshooting for the semantic memory system v12.5.0, covering:
+This reference provides structured troubleshooting for the semantic memory system v16.0.0, covering:
 
 - **Context retrieval failures** - Memory search returning no/wrong results
 - **Vector index issues** - Embedding generation and search problems

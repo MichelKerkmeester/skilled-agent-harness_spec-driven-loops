@@ -4,7 +4,7 @@
 #
 # Creates a new spec folder with appropriate templates based on documentation level.
 # Aligns with system-spec-kit SKILL.md progressive enhancement model:
-#   - Level 1 (Baseline):     spec.md + plan.md + tasks.md
+#   - Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
 #   - Level 2 (Verification): Level 1 + checklist.md
 #   - Level 3 (Full):         Level 2 + decision-record.md
 #
@@ -99,7 +99,7 @@ while [ $i -le $# ]; do
             echo "  --help, -h          Show this help message"
             echo ""
             echo "Documentation Levels:"
-            echo "  Level 1 (Baseline):     spec.md + plan.md + tasks.md"
+            echo "  Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md"
             echo "  Level 2 (Verification): Level 1 + checklist.md"
             echo "  Level 3 (Full):         Level 2 + decision-record.md"
             echo ""
@@ -356,10 +356,11 @@ copy_template() {
     fi
 }
 
-# Level 1 (Baseline): spec.md + plan.md + tasks.md
+# Level 1 (Baseline): spec.md + plan.md + tasks.md + implementation-summary.md
 copy_template "spec.md"
 copy_template "plan.md"
 copy_template "tasks.md"
+copy_template "implementation-summary.md"
 
 # Level 2 (Verification): Level 1 + checklist.md
 if [ "$DOC_LEVEL" -ge 2 ]; then

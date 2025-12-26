@@ -132,7 +132,7 @@ available_templates:
 # Smart parallel sub-agent dispatch for eligible workflow phases.
 # Uses 5-dimension complexity scoring algorithm.
 # Always ask before parallel dispatch (no auto-dispatch)
-# Exception: Step 6 Planning exploration is automatic (core planning feature)
+# Exception: Step 5 Planning exploration is automatic (core planning feature)
 parallel_dispatch_config:
   enabled: true
 
@@ -160,7 +160,7 @@ parallel_dispatch_config:
     ask_min: 20
     min_domains_for_ask: 2
     # NOTE: No auto-dispatch - always ask before parallel dispatch
-    # Always ask user before parallel dispatch (except Step 6 Planning)
+    # Always ask user before parallel dispatch (except Step 5 Planning)
 
   session_preference:
     persist_duration_seconds: 3600
@@ -191,7 +191,7 @@ parallel_dispatch_config:
 
   eligible_phases:
     - step_3_specification
-    - step_6_planning  # Has inline_parallel_exploration - 4 agents dispatched directly
+    - step_5_planning  # Has inline_parallel_exploration - 4 agents dispatched directly
 
 # ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK
@@ -272,7 +272,7 @@ workflow_enforcement:
   skip_allowed: false
   
   planning_gate:
-    location: "After Step 6"
+    location: "After Step 5"
     purpose: "Verify all planning artifacts complete before context save"
     requirements:
       - "spec.md exists and has no [NEEDS CLARIFICATION] markers"
@@ -294,7 +294,7 @@ workflow_enforcement:
     step_3_specification:
       enforcement: "MUST create spec.md with all required sections"
       verification: "File exists and contains acceptance criteria"
-    step_6_planning:
+    step_5_planning:
       enforcement: "MUST create plan.md with technical approach"
       verification: "File exists and contains implementation phases"
 
@@ -461,21 +461,7 @@ workflow:
     - updated_spec
     validation: requirements_clear
 
-  step_5_quality_checklist:
-    purpose: Generate validation checklist (Level 2+ requirement)
-    level_requirement: "Level 2+ (Verification and Full)"
-    activities:
-    - Check documentation level - skip for Level 1, required for Level 2+
-    - Load checklist.md template
-    - Generate domain-specific validation items
-    - Create checklist file
-    - Run validation check
-    outputs:
-    - quality_checklist: generated
-    template: .opencode/skill/system-spec-kit/templates/checklist.md
-    validation: checklist_generated
-
-  step_6_planning:
+  step_5_planning:
     purpose: Create technical plan with implementation approach
 
     # ── CODEBASE EXPLORATION ────────────────────────────────────────
@@ -588,10 +574,8 @@ workflow:
     - Import Risk Matrix from spec
     - Generate Dependencies Tables
     - Generate Phase 2-4 outlines
-    - Create planning-summary.md
     outputs:
     - plan.md: technical_approach
-    - planning-summary.md: overview
     - research.md: resolved_unknowns
     template: .opencode/skill/system-spec-kit/templates/plan.md
     
@@ -613,7 +597,7 @@ workflow:
           assess: "Does approach follow existing codebase patterns?"
       thresholds:
         high_80_plus:
-          action: "Finalize plan.md and proceed to Step 7"
+          action: "Finalize plan.md and proceed to Step 6"
           log: "Confidence: [NN%] - Technical plan complete"
           cite: "Document key sources in plan.md Technical Context"
         medium_40_79:
@@ -634,7 +618,7 @@ workflow:
     
     validation: approach_defined
 
-  step_7_save_context:
+  step_6_save_context:
     purpose: Save conversation context for planning documentation
     activities:
     - Invoke system-spec-kit skill
@@ -705,12 +689,40 @@ workflow:
         temporary: Short-term notes
         deprecated: Outdated but retained
 
+  step_7_handover_check:
+    purpose: Prompt user to create session handover for future continuity
+    activities:
+    - Display handover prompt to user
+    - If accepted, run /spec_kit:handover
+    - If declined, proceed to completion
+    mandatory_check: true
+    
+    display_prompt: |
+      📋 Planning complete. Before ending:
+      
+      Would you like to create a handover document for future sessions?
+      - Run: /spec_kit:handover
+      
+      This is recommended if:
+      - Implementation will happen in a different session
+      - Another AI/developer may implement this
+      - The planning has nuances worth documenting
+    
+    user_response_handling:
+      accept: "Run /spec_kit:handover command"
+      decline: "Proceed to workflow termination"
+      default: "Wait for user response (do not auto-decline)"
+    
+    outputs:
+    - handover.md: optional
+    validation: handover_check_completed
+
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
   after_step: 7
-  message: "Planning phase completed successfully. Workflow terminated after step 7 (save context)."
+  message: "Planning phase completed successfully. Workflow terminated after step 7 (handover check)."
   next_steps:
   - Review planning documentation
   - Validate technical approach

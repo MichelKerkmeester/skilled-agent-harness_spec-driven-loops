@@ -1,6 +1,4 @@
 # Path-Scoped Validation Rules
-
-> ✅ **IMPLEMENTED** - v1.0.0 (2024-12-24)
 > 
 > This document describes the path-scoped validation system.
 > See `validate-spec.sh` for the implementation.
@@ -42,20 +40,20 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ### By Directory
 
-| Pattern                                         | Behavior                     |
-| ----------------------------------------------- | ---------------------------- |
-| `**/scratch/**`                                 | Skip all validation          |
-| `**/memory/**`                                  | Minimal validation (planned) |
+| Pattern                                        | Behavior                     |
+| ---------------------------------------------- | ---------------------------- |
+| `**/scratch/**`                                | Skip all validation          |
+| `**/memory/**`                                 | Minimal validation (planned) |
 | `.opencode/skill/system-spec-kit/templates/**` | Skip content validation      |
-| `specs/*/`                                      | Level-appropriate validation |
+| `specs/*/`                                     | Level-appropriate validation |
 
 ### By Level
 
-| Level | Required Files                                      | Checks Applied                              |
-| ----- | --------------------------------------------------- | ------------------------------------------- |
-| 1     | spec.md, plan.md, tasks.md                          | FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS   |
-| 2     | Level 1 + checklist.md                              | + P0/P1 section headers                     |
-| 3     | Level 2 + decision-record.md                        | + Context/Decision/Consequences sections    |
+| Level | Required Files               | Checks Applied                            |
+| ----- | ---------------------------- | ----------------------------------------- |
+| 1     | spec.md, plan.md, tasks.md   | FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS |
+| 2     | Level 1 + checklist.md       | + P0/P1 section headers                   |
+| 3     | Level 2 + decision-record.md | + Context/Decision/Consequences sections  |
 
 ---
 
@@ -63,14 +61,14 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ### Implemented Rules
 
-| Rule ID              | Severity | Description                                      |
-| -------------------- | -------- | ------------------------------------------------ |
-| `FILE_EXISTS`        | ERROR    | Required files present for documentation level   |
-| `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` placeholders    |
-| `SECTIONS_PRESENT`   | WARNING  | Required markdown sections exist                 |
-| `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata      |
-| `PRIORITY_TAGS`      | WARNING  | Validate P0/P1/P2 format in checklists           |
-| `EVIDENCE_CITED`     | WARNING  | Verify `[EVIDENCE:]` on completed P0/P1 items    |
+| Rule ID              | Severity | Description                                         |
+| -------------------- | -------- | --------------------------------------------------- |
+| `FILE_EXISTS`        | ERROR    | Required files present for documentation level      |
+| `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` placeholders       |
+| `SECTIONS_PRESENT`   | WARNING  | Required markdown sections exist                    |
+| `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata         |
+| `PRIORITY_TAGS`      | WARNING  | Validate P0/P1/P2 format in checklists              |
+| `EVIDENCE_CITED`     | WARNING  | Verify `[EVIDENCE:]` on completed P0/P1 items       |
 | `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in memory files |
 
 ### Placeholder Patterns Detected
@@ -81,12 +79,12 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ### Section Requirements
 
-| File                | Required Sections                          |
-| ------------------- | ------------------------------------------ |
-| spec.md             | Problem Statement, Requirements, Scope     |
-| plan.md             | Technical Context, Architecture, Implementation |
-| checklist.md        | P0, P1 headers                             |
-| decision-record.md  | Context, Decision, Consequences            |
+| File               | Required Sections                               |
+| ------------------ | ----------------------------------------------- |
+| spec.md            | Problem Statement, Requirements, Scope          |
+| plan.md            | Technical Context, Architecture, Implementation |
+| checklist.md       | P0, P1 headers                                  |
+| decision-record.md | Context, Decision, Consequences                 |
 
 ---
 
@@ -107,20 +105,20 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ### Environment Variables
 
-| Variable           | Default | Description                          |
-| ------------------ | ------- | ------------------------------------ |
-| `SPECKIT_VALIDATION` | true  | Set to `false` to disable validation |
-| `SPECKIT_STRICT`   | false   | Set to `true` for strict mode        |
-| `SPECKIT_JSON`     | false   | Set to `true` for JSON output        |
-| `SPECKIT_VERBOSE`  | false   | Set to `true` for verbose output     |
+| Variable             | Default | Description                          |
+| -------------------- | ------- | ------------------------------------ |
+| `SPECKIT_VALIDATION` | true    | Set to `false` to disable validation |
+| `SPECKIT_STRICT`     | false   | Set to `true` for strict mode        |
+| `SPECKIT_JSON`       | false   | Set to `true` for JSON output        |
+| `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output     |
 
 ### Exit Codes
 
-| Code | Meaning                              |
-| ---- | ------------------------------------ |
-| 0    | Validation passed                    |
-| 1    | Validation passed with warnings      |
-| 2    | Validation failed (errors found)     |
+| Code | Meaning                          |
+| ---- | -------------------------------- |
+| 0    | Validation passed                |
+| 1    | Validation passed with warnings  |
+| 2    | Validation failed (errors found) |
 
 ---
 

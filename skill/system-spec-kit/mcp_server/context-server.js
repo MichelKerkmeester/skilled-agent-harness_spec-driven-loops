@@ -58,8 +58,9 @@ const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
 // ───────────────────────────────────────────────────────────────
 
 // Batch processing settings for memory_index_scan
-const BATCH_SIZE = 5;       // Process 5 files concurrently
-const BATCH_DELAY_MS = 100; // Small delay between batches to prevent resource exhaustion
+// Configurable via environment variables for performance tuning
+const BATCH_SIZE = parseInt(process.env.SPEC_KIT_BATCH_SIZE || '5', 10);
+const BATCH_DELAY_MS = parseInt(process.env.SPEC_KIT_BATCH_DELAY_MS || '100', 10);
 
 // Embedding model readiness flag - set after successful warmup
 let embeddingModelReady = false;
@@ -588,7 +589,8 @@ async function handleMemorySearch(args) {
   const { query, concepts, specFolder, limit = 10, tier, contextType, useDecay = true, includeContiguity = false, includeConstitutional = true, includeContent = false } = args;
 
   // Allow either query OR concepts (for multi-concept search)
-  const hasValidQuery = query && typeof query === 'string';
+  // P0-005: Check for non-empty trimmed string to prevent invalid embeddings
+  const hasValidQuery = query && typeof query === 'string' && query.trim().length > 0;
   const hasValidConcepts = concepts && Array.isArray(concepts) && concepts.length >= 2;
 
   if (!hasValidQuery && !hasValidConcepts) {
@@ -598,6 +600,15 @@ async function handleMemorySearch(args) {
   // Validate specFolder parameter
   if (specFolder !== undefined && typeof specFolder !== 'string') {
     throw new Error('specFolder must be a string');
+  }
+
+  // P1-CODE-003: Wait for embedding model to be ready before generating embeddings
+  // Prevents race condition where tool calls during startup fail
+  if (!embeddingModelReady) {
+    const modelReady = await waitForEmbeddingModel(30000);
+    if (!modelReady) {
+      throw new Error('Embedding model not ready after 30s timeout. Try again later.');
+    }
   }
 
   // Multi-concept search
@@ -823,6 +834,7 @@ async function handleMemoryMatchTriggers(args) {
 
 /**
  * Handle memory_delete tool - delete by ID or bulk delete by spec folder
+ * P0-011: Auto-creates checkpoint before bulk delete for undo capability
  */
 async function handleMemoryDelete(args) {
   const { id, specFolder, confirm } = args;
@@ -841,14 +853,35 @@ async function handleMemoryDelete(args) {
   }
 
   let deletedCount = 0;
+  let checkpointName = null;
 
   if (id) {
-    // Single delete by ID
+    // Single delete by ID - no checkpoint needed
     const success = vectorIndex.deleteMemory(id);
     deletedCount = success ? 1 : 0;
   } else {
     // Bulk delete by spec folder
     const memories = vectorIndex.getMemoriesByFolder(specFolder);
+    
+    // P0-011: Create auto-checkpoint before bulk delete
+    if (memories.length > 0) {
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+      checkpointName = `pre-cleanup-${timestamp}`;
+      try {
+        checkpoints.createCheckpoint(checkpointName, { 
+          specFolder, 
+          metadata: { 
+            reason: 'auto-checkpoint before bulk delete',
+            memoryCount: memories.length 
+          } 
+        });
+        console.error(`[memory-delete] Created checkpoint: ${checkpointName}`);
+      } catch (cpErr) {
+        console.error(`[memory-delete] Failed to create checkpoint: ${cpErr.message}`);
+        // Continue with delete even if checkpoint fails (warn but don't block)
+      }
+    }
+    
     for (const memory of memories) {
       if (vectorIndex.deleteMemory(memory.id)) {
         deletedCount++;
@@ -856,15 +889,28 @@ async function handleMemoryDelete(args) {
     }
   }
 
+  // P1-005: Clear trigger cache after mutation to prevent stale data
+  if (deletedCount > 0) {
+    triggerMatcher.clearCache();
+  }
+
+  const response = {
+    deleted: deletedCount,
+    message: deletedCount > 0
+      ? `Deleted ${deletedCount} memory(s)`
+      : 'No memories found to delete'
+  };
+
+  // Include checkpoint info for bulk deletes
+  if (checkpointName) {
+    response.checkpoint = checkpointName;
+    response.restoreCommand = `checkpoint_restore({ name: "${checkpointName}" })`;
+  }
+
   return {
     content: [{
       type: 'text',
-      text: JSON.stringify({
-        deleted: deletedCount,
-        message: deletedCount > 0
-          ? `Deleted ${deletedCount} memory(s)`
-          : 'No memories found to delete'
-      }, null, 2)
+      text: JSON.stringify(response, null, 2)
     }]
   };
 }
@@ -932,6 +978,9 @@ async function handleMemoryUpdate(args) {
 
   // Execute update
   vectorIndex.updateMemory(updateParams);
+
+  // P1-005: Clear trigger cache after mutation to prevent stale data
+  triggerMatcher.clearCache();
 
   // If embedding failed, return explicit failure status so caller is aware
   if (embeddingFailed) {
@@ -1367,6 +1416,9 @@ async function handleMemorySave(args) {
     };
   }
 
+  // P1-005: Clear trigger cache after mutation to prevent stale data
+  triggerMatcher.clearCache();
+
   // Build response for indexed/updated status
   const response = {
     status: result.status,
@@ -1652,11 +1704,11 @@ async function main() {
   // Run integrity check on startup (non-blocking)
   // Note: initializeDb() already called above, this is a no-op that returns cached db
   try {
-    const report = vectorIndex.verifyIntegrityWithPaths(DEFAULT_BASE_PATH);
+    const report = vectorIndex.verifyIntegrity();
     console.error(`[context-server] Integrity check: ${report.validCount}/${report.total} valid entries`);
     if (report.orphanedCount > 0) {
       console.error(`[context-server] WARNING: ${report.orphanedCount} orphaned entries detected (files missing)`);
-      console.error('[context-server] Run cleanupOrphans() to remove stale entries');
+      console.error('[context-server] Orphaned entries detected. Manual cleanup may be required.');
     }
 
     // Initialize checkpoints and access tracker with database connection

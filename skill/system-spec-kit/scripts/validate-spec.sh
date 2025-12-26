@@ -141,10 +141,35 @@ load_config() {
 detect_level() {
     local folder="$1"
     local spec_file="$folder/spec.md"
+    local level=""
+    
     if [[ -f "$spec_file" ]]; then
-        local level; level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        # Pattern 1: Table format with bold (most common)
+        # | **Level** | 2 |
+        level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        
+        # Pattern 2: Table format without bold
+        # | Level | 2 |
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '\|\s*Level\s*\|\s*[123]\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        fi
+        
+        # Pattern 3: YAML frontmatter
+        # level: 2
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^level:\s*[123]' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        fi
+        
+        # Pattern 4: Inline "Level: N" or "Level N" (case insensitive)
+        # Level: 2 or Level 2
+        if [[ -z "$level" ]]; then
+            level=$(grep -iE 'level[:\s]+[123]' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        fi
+        
         [[ -n "$level" ]] && { DETECTED_LEVEL="$level"; LEVEL_METHOD="explicit"; return; }
     fi
+    
+    # Fallback: infer from existing files
     [[ -f "$folder/decision-record.md" ]] && { DETECTED_LEVEL=3; LEVEL_METHOD="inferred"; return; }
     [[ -f "$folder/checklist.md" ]] && { DETECTED_LEVEL=2; LEVEL_METHOD="inferred"; return; }
     DETECTED_LEVEL=1; LEVEL_METHOD="inferred"

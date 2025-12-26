@@ -39,7 +39,7 @@ The `mcp_server/` folder is the standalone MCP server implementation for spec ki
 | -------------------- | ----------------- | ------------------------------------- |
 | `context-server.js` | Main MCP server   | `node context-server.js` (via stdio) |
 
-> **Note:** The legacy `file-watcher.js` daemon was removed; use `memory_index_scan` for manual re-indexing until the watcher is reintroduced.
+> **Note:** File watching functionality is not currently implemented. Use `memory_index_scan` for manual re-indexing.
 
 ### Key Features
 
@@ -86,9 +86,9 @@ context-server.js  ────────────────────�
   ├─ lib/memory-parser.js   File parsing + validation     │
   └─ lib/checkpoints.js     State snapshots               │
                                                           │
-file-watcher.js ──────────────────────────────────────────┘
-  │
-  └─ Watches specs/**/memory/*.md for changes
+                                                          │
+   Note: File watching not currently implemented           │
+   Use memory_index_scan for manual re-indexing            │
 ```
 
 ---
@@ -202,7 +202,7 @@ Fast trigger phrase matching (<50ms) without embeddings.
 
 ---
 
-## 3. 📁 LIBRARY MODULES (22)
+## 3. 📁 LIBRARY MODULES (23)
 
 ### Core Modules
 
@@ -253,38 +253,35 @@ Fast trigger phrase matching (<50ms) without embeddings.
 
 ---
 
-## 4. 🔄 FILE WATCHER
+## 4. 🔄 FILE INDEXING
 
 ### Purpose
 
-The file watcher (`file-watcher.js`) provides automatic indexing of memory files when they are created or modified.
+Memory files are indexed into the semantic database for vector search. Indexing can be triggered manually or via the MCP tool.
+
+### Manual Indexing
+
+Use the `memory_index_scan` MCP tool to scan and index memory files:
+
+```typescript
+// Scan all memory files in workspace
+memory_index_scan({})
+
+// Scan specific spec folder
+memory_index_scan({ specFolder: "049-auth-system" })
+
+// Force re-index even if content unchanged
+memory_index_scan({ force: true })
+```
 
 ### Features
 
 | Feature               | Description                        |
 | --------------------- | ---------------------------------- |
-| **Watch Pattern**     | `specs/**/memory/**/*.md`          |
-| **Debouncing**        | 500ms delay to batch rapid changes |
+| **Scan Pattern**      | `specs/**/memory/**/*.md`          |
 | **Content Hash**      | Skip unchanged files (SHA-256)     |
-| **Graceful Handling** | Handles add/change/unlink events   |
-
-### Usage
-
-```bash
-# From mcp_server directory
-npm run watch
-
-# Or with custom workspace path
-node file-watcher.js /path/to/project
-```
-
-### Environment Variables
-
-| Variable                   | Default | Description                        |
-| -------------------------- | ------- | ---------------------------------- |
-| `MEMORY_WATCH_PATH`        | CWD     | Base path to watch                 |
-| `MEMORY_DEBOUNCE_MS`       | 500     | Debounce delay in ms               |
-| `MEMORY_SKIP_STARTUP_SCAN` | (unset) | Set to `1` to disable startup scan |
+| **Batch Processing**  | 5 files per batch with 100ms delay |
+| **Retry Logic**       | Exponential backoff for failures   |
 
 ---
 

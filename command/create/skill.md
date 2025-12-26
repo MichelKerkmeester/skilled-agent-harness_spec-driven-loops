@@ -139,9 +139,9 @@ CHECK spec_choice value from Phase 2:
         │   ┌────────────────────────────────────────────────────┐
         │   │ "Load previous context from this spec folder?"     │
         │   │                                                    │
-        │   │ A) Load most recent memory file (quick refresh)    │
-        │   │ B) Load all recent files, up to 3 (comprehensive)  │
-        │   │ C) List all files and select specific              │
+        │   │ A) Load most recent memory file (quick refresh)     │
+        │   │ B) Load all recent files, up to 3 (comprehensive)   │
+        │   │ C) List all files and select specific                │
         │   │ D) Skip (start fresh, no context)                  │
         │   └────────────────────────────────────────────────────┘
         │
@@ -161,11 +161,11 @@ CHECK spec_choice value from Phase 2:
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                 | REQUIRED STATUS    | YOUR STATUS | OUTPUT VALUE                           |
-| --------------------- | ------------------ | ----------- | -------------------------------------- |
-| PHASE 1: INPUT        | ✅ PASSED          | ______      | skill_name: ______ / skill_path: _____ |
-| PHASE 2: SPEC FOLDER  | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ______   |
-| PHASE 3: MEMORY       | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                  |
+| PHASE                | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                           |
+| -------------------- | ----------------- | ----------- | -------------------------------------- |
+| PHASE 1: INPUT       | ✅ PASSED          | ______      | skill_name: ______ / skill_path: _____ |
+| PHASE 2: SPEC FOLDER | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ______   |
+| PHASE 3: MEMORY      | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                  |
 
 ```
 VERIFICATION CHECK:
@@ -357,16 +357,16 @@ Execute all 9 steps in sequence following the workflow definition.
 
 ## 4. 📚 REFERENCE (See YAML for Details)
 
-| Section              | Location in YAML                          |
-| -------------------- | ----------------------------------------- |
-| Step Activities      | `workflow.steps[1-9].activities`          |
-| Failure Recovery     | `failure_recovery`                        |
-| Error Handling       | `error_handling`                          |
-| Templates Used       | `templates_used`                          |
-| Completion Report    | `completion_report_template`              |
-| DQI Quality Bands    | `notes.dqi_quality_bands`                 |
-| Resource Categories  | `notes.resource_categories`               |
-| Resource Routing     | `workflow.steps[8]` (Step 8 details)      |
+| Section             | Location in YAML                     |
+| ------------------- | ------------------------------------ |
+| Step Activities     | `workflow.steps[1-9].activities`     |
+| Failure Recovery    | `failure_recovery`                   |
+| Error Handling      | `error_handling`                     |
+| Templates Used      | `templates_used`                     |
+| Completion Report   | `completion_report_template`         |
+| DQI Quality Bands   | `notes.dqi_quality_bands`            |
+| Resource Categories | `notes.resource_categories`          |
+| Resource Routing    | `workflow.steps[8]` (Step 8 details) |
 
 ---
 

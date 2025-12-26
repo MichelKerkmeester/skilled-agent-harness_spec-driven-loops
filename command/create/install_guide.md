@@ -8,11 +8,11 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 **This command creates documentation files that ARE the documentation artifact.**
 
-| Property | Value |
-|----------|-------|
-| **Location** | User-specified path (`install_guides/` or target directory) |
-| **Reason** | The created file IS the documentation |
-| **Spec Folder** | Not required - the guide/README serves as its own spec |
+| Property        | Value                                                       |
+| --------------- | ----------------------------------------------------------- |
+| **Location**    | User-specified path (`install_guides/` or target directory) |
+| **Reason**      | The created file IS the documentation                       |
+| **Spec Folder** | Not required - the guide/README serves as its own spec      |
 
 ---
 
@@ -92,7 +92,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │   │   ┌────────────────────────────────────────────────────────────┐
    │   │   │ "Found existing guide at [path]."                          │
    │   │   │                                                            │
-   │   │   │ A) Overwrite existing file                                 │
+   │   │   │ A) Overwrite existing file                                  │
    │   │   │ B) Create with different name                              │
    │   │   │ C) Merge with existing content                             │
    │   │   │ D) Cancel                                                  │

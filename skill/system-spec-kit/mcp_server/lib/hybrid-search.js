@@ -47,10 +47,13 @@ function isFtsAvailable() {
 function ftsSearch(queryText, options = {}) {
   const { limit = 10, specFolder = null } = options;
 
-  // Escape FTS5 special characters
+  // Escape FTS5 special characters and operators
+  // P1-CODE-002: Added escaping for FTS5 boolean operators (AND, OR, NOT) and prefix operators (+, -)
   const escapedQuery = queryText
     .replace(/"/g, '""')
     .replace(/[*:()^{}[\]]/g, ' ')
+    .replace(/\b(AND|OR|NOT)\b/gi, ' ')
+    .replace(/[+-]/g, ' ')
     .trim();
 
   if (!escapedQuery) return [];

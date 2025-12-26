@@ -315,7 +315,7 @@ workflow:
     - Create memory file with timestamp
     - Index memory file for immediate search availability
     tool_invocation:
-      command: "Read(".opencode/skill/system-memory/SKILL.md")"
+      command: 'Read(".opencode/skill/system-memory/SKILL.md")'
       note: "Activate context saving via memory skill"
     memory_content:
       include:

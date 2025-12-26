@@ -1,6 +1,6 @@
 # Skill Advisor
 
-> Analyzes user requests and recommends appropriate skills with confidence scores. Used by Gate 2 in AGENTS.md for mandatory skill routing.
+> Analyzes user requests and recommends appropriate skills with confidence scores. Used by Gate 3 in AGENTS.md for mandatory skill routing.
 
 ---
 
@@ -22,7 +22,7 @@
 
 ### What is Skill Advisor?
 
-Skill Advisor is a Python script that analyzes user requests and recommends the most appropriate skills based on keyword matching, synonym expansion, and intent detection. It serves as the routing engine for Gate 2 in the AGENTS.md workflow, determining which specialized skill should handle a given task.
+Skill Advisor is a Python script that analyzes user requests and recommends the most appropriate skills based on keyword matching, synonym expansion, and intent detection. It serves as the routing engine for Gate 3 in the AGENTS.md workflow, determining which specialized skill should handle a given task.
 
 ### Key Statistics
 
@@ -47,7 +47,7 @@ Skill Advisor is a Python script that analyzes user requests and recommends the 
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│                         GATE 2                                   │
+│                         GATE 3                                   │
 │               Skill Routing (MANDATORY)                          │
 ├──────────────────────────────────────────────────────────────────┤
 │                                                                  │
@@ -120,7 +120,7 @@ python3 .opencode/scripts/skill_advisor.py "test"
 
 ### Integration with AI Agents
 
-In your AI agent workflow (e.g., AGENTS.md Gate 2):
+In your AI agent workflow (e.g., AGENTS.md Gate 3):
 
 ```bash
 # Run skill advisor and capture output
@@ -149,7 +149,7 @@ fi
 │                                                                   │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────────────┐    │
 │  │ STOP_WORDS  │    │ SYNONYM_MAP │    │  INTENT_BOOSTERS    │    │
-│  │ (~60 words) │    │ (~25 maps)  │    │  (~30 mappings)     │    │
+│  │ (~60 words) │    │ (~25 maps)  │    │  (~80 mappings)     │    │
 │  └──────┬──────┘    └──────┬──────┘    └──────────┬──────────┘    │
 │         │                  │                      │               │
 │         └──────────────────┼──────────────────────┘               │
@@ -274,7 +274,7 @@ User Input: "help me fix the authentication bug"
 │   ├── skill_advisor.py     # This script
 │   ├── README.md            # This documentation
 │   └── SET-UP_GUIDE.md      # Customization guide
-└── skills/
+└── skill/
     ├── workflows-git/
     │   └── SKILL.md         # Parsed for name/description
     ├── workflows-code/

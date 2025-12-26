@@ -4,7 +4,7 @@
 
 **Progressive Enhancement Model:**
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md
+Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
@@ -43,13 +43,14 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 ### Level 1: Baseline Documentation (LOC guidance: <100)
 
-**Required Templates:** `spec.md` + `plan.md` + `tasks.md`
+**Required Templates:** `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md`
 
 **Copy commands:**
 ```bash
 cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-name/spec.md
 cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-name/plan.md
 cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/###-name/implementation-summary.md
 ```
 
 **When to use:**
@@ -1003,7 +1004,6 @@ See each sub-folder's README.md for details.
 
 **Summary Templates:**
 - [implementation-summary.md](../templates/implementation-summary.md) - Post-implementation summary for memory save
-- [planning-summary.md](../templates/planning-summary.md) - Post-planning summary for memory save
 
 **Non-Template Folders (for reference):**
 - `scratch/` - Temporary workspace folder (create ad-hoc files as needed, no template)

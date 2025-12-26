@@ -4,7 +4,7 @@
 
 **Progressive Enhancement Model:**
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md
+Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
 Level 2 (Verification): Level 1 + checklist.md
 Level 3 (Full):         Level 2 + decision-record.md + optional research
 ```
@@ -19,7 +19,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research
 
 | Situation | Level | Required Templates | Optional Templates |
 |-----------|-------|-------------------|-------------------|
-| Any task (baseline) | 1 | spec.md + plan.md + tasks.md | None |
+| Any task (baseline) | 1 | spec.md + plan.md + tasks.md + implementation-summary.md | None |
 | Needs QA validation | 2 | L1 + checklist.md | None |
 | Complex/architectural | 3 | L2 + decision-record.md | research.md |
 
@@ -38,6 +38,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research
 cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-name/spec.md
 cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-name/plan.md
 cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/###-name/implementation-summary.md
 ```
 
 ### Level 2: Add Verification (to Level 1)
@@ -112,7 +113,7 @@ Before making ANY file changes, verify:
 - [ ] Determined level (1/2/3) or exempt (typo fix)
 - [ ] Created `/specs/[###-short-name]/`
 - [ ] Copied ALL REQUIRED templates for chosen level:
-  - [ ] Level 1: spec.md + plan.md + tasks.md
+  - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - [ ] Level 2: Level 1 + checklist.md
   - [ ] Level 3: Level 2 + decision-record.md
 - [ ] Renamed templates correctly
@@ -335,7 +336,7 @@ Skipping documentation:
 Before presenting documentation to user:
 
 - [ ] All REQUIRED templates for level copied from `.opencode/skill/system-spec-kit/templates/`:
-  - [ ] Level 1: spec.md + plan.md + tasks.md
+  - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - [ ] Level 2: Level 1 + checklist.md
   - [ ] Level 3: Level 2 + decision-record.md
 - [ ] Optional templates copied if needed (Level 3 only)
@@ -404,7 +405,7 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/###-folde
 - **NEVER create documentation from scratch** - Always copy from templates
 - **ALWAYS copy from `.opencode/skill/system-spec-kit/templates/`** directory
 - **ALWAYS copy ALL REQUIRED templates for chosen level**:
-  - Level 1: spec.md + plan.md + tasks.md
+  - Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
   - Level 2: Level 1 + checklist.md
   - Level 3: Level 2 + decision-record.md
 - **ALWAYS fill ALL placeholders** - No `[PLACEHOLDER]` in final docs
@@ -548,7 +549,6 @@ When in doubt:
 
 **Summary Templates:**
 - [implementation-summary.md](../templates/implementation-summary.md) - Step 11 completion summary
-- [planning-summary.md](../templates/planning-summary.md) - Planning phase summary
 
 ### Related Skills
 - `workflows-code` - Implementation, debugging, and verification lifecycle

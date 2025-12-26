@@ -1222,7 +1222,7 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 | Category | Commands                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | Create   | `/create:skill`, `/create:spec`                                                                         |
-| Memory   | `/memory:save`, `/memory:search`, `/memory:load`                                                        |
+| Memory   | `/memory:save`, `/memory:search`                                                                        |
 | Prompt   | `/prompt:improve`                                                                                       |
 | Search   | `/search:code`, `/search:files`                                                                         |
 | SpecKit  | `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume` |

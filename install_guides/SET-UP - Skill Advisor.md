@@ -1,6 +1,6 @@
 # Skill Advisor Setup Guide
 
-The Skill Advisor is a Python script that analyzes user requests and recommends appropriate skills with confidence scores. It powers Gate 2 in AGENTS.md, enabling intelligent skill routing.
+The Skill Advisor is a Python script that analyzes user requests and recommends appropriate skills with confidence scores. It powers Gate 3 in AGENTS.md, enabling intelligent skill routing.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
 
@@ -31,11 +31,11 @@ The Skill Advisor is a Python script that analyzes user requests and recommends 
 I want to set up the Skill Advisor for my OpenCode project.
 
 Please help me:
-1. Verify Python 3.10+ is installed
+1. Verify Python 3.6+ is installed
 2. Check the skill_advisor.py script exists at .opencode/scripts/
 3. Make the script executable
 4. Test the advisor with sample queries
-5. Verify all 9 skills are routing correctly
+5. Verify all 8 skills are routing correctly
 
 My project is at: [your project path]
 
@@ -45,7 +45,7 @@ Guide me through each step.
 **What the AI will do:**
 - Verify Python version
 - Check script location and permissions
-- Test skill routing for all 9 current skills
+- Test skill routing for all 8 current skills
 - Validate confidence thresholds
 
 **Expected setup time:** 5-10 minutes
@@ -71,11 +71,11 @@ The Skill Advisor is a lightweight Python script that:
 
 ### Integration with AGENTS.md
 
-Gate 2 in AGENTS.md invokes the Skill Advisor:
+Gate 3 in AGENTS.md invokes the Skill Advisor:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 2: SKILL ROUTING [MANDATORY]                                           │
+│ GATE 3: SKILL ROUTING [MANDATORY]                                           │
 │ Action:  Run python .opencode/scripts/skill_advisor.py "$USER_REQUEST"      │
 │ Logic:   IF confidence > 0.8 → MUST invoke skill (read SKILL.md directly)   │
 │          ELSE → Proceed with manual tool selection                          │
@@ -98,7 +98,7 @@ Gate 2 in AGENTS.md invokes the Skill Advisor:
 
 | Requirement | Version | Check Command                  |
 | ----------- | ------- | ------------------------------ |
-| Python      | 3.10+   | `python --version`             |
+| Python      | 3.6+    | `python --version`             |
 | AGENTS.md   | Current | Check Gate 2 references script |
 
 ### File Permissions
@@ -184,7 +184,7 @@ python .opencode/scripts/skill_advisor.py "create a pull request for my changes"
 □ Script is executable (chmod +x applied)
 □ Returns valid JSON array
 □ High-confidence queries return > 0.8 confidence
-□ All 9 skills are discoverable
+□ All 8 skills are discoverable
 ```
 
 ---

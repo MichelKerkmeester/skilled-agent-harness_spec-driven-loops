@@ -16,12 +16,35 @@ let db = null;
 const MAX_CHECKPOINTS = 10;
 const CHECKPOINT_TTL_DAYS = 30;
 
+// Embedding dimension for validation (must match vector-index.js)
+const EMBEDDING_DIM = 768;
+
 /**
  * Initialize checkpoints with database reference
  * @param {Object} database - better-sqlite3 instance
+ * @returns {boolean} True if initialization succeeded
  */
 function init(database) {
+  if (!database) {
+    console.error('[checkpoints] WARNING: init() called with null database');
+    console.error('[checkpoints] Checkpoint operations will fail until a valid database is provided');
+    return false;
+  }
   db = database;
+  console.error('[checkpoints] Database initialized successfully');
+  return true;
+}
+
+/**
+ * Get database with null check
+ * @returns {Object} Database instance
+ * @throws {Error} If database not initialized
+ */
+function getDatabase() {
+  if (!db) {
+    throw new Error('Checkpoint database not initialized. The server may have started before the database was ready. Please try again or restart the server.');
+  }
+  return db;
 }
 
 /**
@@ -48,6 +71,7 @@ function getGitBranch() {
  * @returns {number} Checkpoint ID
  */
 function createCheckpoint(name, options = {}) {
+  const database = getDatabase(); // Throws if not initialized
   const { specFolder = null, metadata = {} } = options;
 
   // Get memories to snapshot
@@ -55,12 +79,55 @@ function createCheckpoint(name, options = {}) {
     ? 'SELECT * FROM memory_index WHERE spec_folder = ?'
     : 'SELECT * FROM memory_index';
   const memories = specFolder
-    ? db.prepare(memorySql).all(specFolder)
-    : db.prepare(memorySql).all();
+    ? database.prepare(memorySql).all(specFolder)
+    : database.prepare(memorySql).all();
+
+  // Get embeddings for these memories (preserves semantic search capability after restore)
+  const embeddings = [];
+  let sqliteVecAvailable = false;
+  
+  // Check if sqlite-vec is available
+  try {
+    database.prepare('SELECT 1 FROM vec_memories LIMIT 1').get();
+    sqliteVecAvailable = true;
+  } catch (e) {
+    // vec_memories table doesn't exist - sqlite-vec not available
+  }
+  
+  if (sqliteVecAvailable) {
+    for (const memory of memories) {
+      try {
+        const row = database.prepare('SELECT embedding FROM vec_memories WHERE rowid = ?').get(memory.id);
+        if (row && row.embedding) {
+          // Convert Buffer to array for JSON serialization
+          const floatArray = new Float32Array(row.embedding.buffer, row.embedding.byteOffset, row.embedding.byteLength / 4);
+          embeddings.push({
+            memoryId: memory.id,
+            embedding: Array.from(floatArray)
+          });
+        }
+      } catch (err) {
+        // Skip if embedding is missing
+        console.warn(`[checkpoints] Could not get embedding for memory ${memory.id}: ${err.message}`);
+      }
+    }
+  }
+
+  // Create snapshot with embeddings
+  const snapshot = {
+    memories,
+    embeddings,
+    metadata: {
+      ...metadata,
+      createdAt: new Date().toISOString(),
+      memoryCount: memories.length,
+      embeddingCount: embeddings.length
+    }
+  };
 
   // Size validation before compression
   const MAX_CHECKPOINT_SIZE = 100 * 1024 * 1024; // 100MB limit
-  const jsonData = JSON.stringify(memories);
+  const jsonData = JSON.stringify(snapshot);
   if (jsonData.length > MAX_CHECKPOINT_SIZE) {
     throw new Error(`Checkpoint data too large (${Math.round(jsonData.length / 1024 / 1024)}MB). Maximum is ${MAX_CHECKPOINT_SIZE / 1024 / 1024}MB.`);
   }
@@ -69,7 +136,7 @@ function createCheckpoint(name, options = {}) {
   const memorySnapshot = zlib.gzipSync(jsonData);
 
   // Atomic insert with race condition protection
-  const result = db.prepare(`
+  const result = database.prepare(`
     INSERT OR IGNORE INTO checkpoints (name, created_at, spec_folder, git_branch, memory_snapshot, metadata)
     VALUES (?, ?, ?, ?, ?, ?)
   `).run(
@@ -86,7 +153,7 @@ function createCheckpoint(name, options = {}) {
   }
 
   // Enforce checkpoint limit and TTL cleanup atomically
-  db.transaction(() => {
+  database.transaction(() => {
     const existingCheckpoints = listCheckpoints({ specFolder, limit: 100 });
     const deletedNames = new Set();
     
@@ -127,6 +194,7 @@ function createCheckpoint(name, options = {}) {
  * @returns {Array} Checkpoint list
  */
 function listCheckpoints(options = {}) {
+  const database = getDatabase(); // Throws if not initialized
   const { specFolder = null, limit = 50 } = options;
 
   const sql = `
@@ -140,7 +208,7 @@ function listCheckpoints(options = {}) {
   `;
 
   const params = specFolder ? [specFolder, limit] : [limit];
-  const rows = db.prepare(sql).all(...params);
+  const rows = database.prepare(sql).all(...params);
 
   return rows.map(row => ({
     ...row,
@@ -154,7 +222,8 @@ function listCheckpoints(options = {}) {
  * @returns {Object|null}
  */
 function getCheckpoint(name) {
-  const row = db.prepare('SELECT * FROM checkpoints WHERE name = ?').get(name);
+  const database = getDatabase(); // Throws if not initialized
+  const row = database.prepare('SELECT * FROM checkpoints WHERE name = ?').get(name);
   if (!row) return null;
 
   // Safe decompression with error handling
@@ -165,12 +234,17 @@ function getCheckpoint(name) {
     throw new Error(`Failed to decompress checkpoint data: ${err.message}. The checkpoint may be corrupted.`);
   }
   
-  let memories;
+  let snapshot;
   try {
-    memories = JSON.parse(decompressed);
+    snapshot = JSON.parse(decompressed);
   } catch (parseError) {
     throw new Error(`Checkpoint data corrupted: ${parseError.message}`);
   }
+
+  // Handle both old format (array of memories) and new format (object with memories + embeddings)
+  const isNewFormat = snapshot && typeof snapshot === 'object' && Array.isArray(snapshot.memories);
+  const memories = isNewFormat ? snapshot.memories : snapshot;
+  const embeddings = isNewFormat ? (snapshot.embeddings || []) : [];
 
   return {
     id: row.id,
@@ -179,6 +253,8 @@ function getCheckpoint(name) {
     specFolder: row.spec_folder,
     gitBranch: row.git_branch,
     memoryCount: memories.length,
+    embeddingCount: embeddings.length,
+    hasEmbeddings: embeddings.length > 0,
     metadata: row.metadata ? JSON.parse(row.metadata) : {}
   };
 }
@@ -192,9 +268,10 @@ function getCheckpoint(name) {
  * @returns {Object} Restoration report
  */
 function restoreCheckpoint(name, options = {}) {
+  const database = getDatabase(); // Throws if not initialized
   const { clearExisting = false, reinsertMemories = true } = options;
 
-  const checkpoint = db.prepare('SELECT * FROM checkpoints WHERE name = ?').get(name);
+  const checkpoint = database.prepare('SELECT * FROM checkpoints WHERE name = ?').get(name);
   if (!checkpoint) {
     throw new Error(`Checkpoint not found: ${name}`);
   }
@@ -207,34 +284,56 @@ function restoreCheckpoint(name, options = {}) {
     throw new Error(`Failed to decompress checkpoint data: ${err.message}. The checkpoint may be corrupted.`);
   }
   
-  let memories;
+  let snapshot;
   try {
-    memories = JSON.parse(decompressed);
+    snapshot = JSON.parse(decompressed);
   } catch (parseError) {
     throw new Error(`Checkpoint data corrupted: ${parseError.message}`);
   }
 
-  const result = db.transaction(() => {
+  // Handle both old format (array of memories) and new format (object with memories + embeddings)
+  const isNewFormat = snapshot && typeof snapshot === 'object' && Array.isArray(snapshot.memories);
+  const memories = isNewFormat ? snapshot.memories : snapshot;
+  const snapshotEmbeddings = isNewFormat ? (snapshot.embeddings || []) : [];
+  
+  // Build old ID -> embedding mapping for restoration
+  const embeddingsByOldId = new Map();
+  for (const emb of snapshotEmbeddings) {
+    embeddingsByOldId.set(emb.memoryId, emb.embedding);
+  }
+
+  // Check if sqlite-vec is available
+  let sqliteVecAvailable = false;
+  try {
+    database.prepare('SELECT 1 FROM vec_memories LIMIT 1').get();
+    sqliteVecAvailable = true;
+  } catch (e) {
+    // vec_memories table doesn't exist
+  }
+
+  const result = database.transaction(() => {
     let cleared = 0;
     let inserted = 0;
     let skipped = 0;
     let deprecated = 0;
+    let embeddingsRestored = 0;
+    let embeddingsSkipped = 0;
 
     // Step 1: Clear or deprecate existing memories
     if (clearExisting) {
       // Get IDs to delete (scoped to spec_folder if present, otherwise ALL)
       const existingIds = checkpoint.spec_folder
-        ? db.prepare('SELECT id FROM memory_index WHERE spec_folder = ?').all(checkpoint.spec_folder).map(r => r.id)
-        : db.prepare('SELECT id FROM memory_index').all().map(r => r.id);
+        ? database.prepare('SELECT id FROM memory_index WHERE spec_folder = ?').all(checkpoint.spec_folder).map(r => r.id)
+        : database.prepare('SELECT id FROM memory_index').all().map(r => r.id);
 
-      if (existingIds.length > 0) {
+      if (existingIds.length > 0 && sqliteVecAvailable) {
         // Batch delete from vec_memories to avoid SQLite parameter limits
         const BATCH_SIZE = 500;
         for (let i = 0; i < existingIds.length; i += BATCH_SIZE) {
           const batch = existingIds.slice(i, i + BATCH_SIZE);
           const placeholders = batch.map(() => '?').join(',');
           try {
-            db.prepare(`DELETE FROM vec_memories WHERE rowid IN (${placeholders})`).run(...batch);
+            database.prepare(`DELETE FROM vec_memories WHERE rowid IN (${placeholders})`).run(...batch);
           } catch (e) {
             // Only ignore expected errors (table doesn't exist or busy)
             if (!e.message.includes('no such table') && !e.message.includes('SQLITE_BUSY')) {
@@ -246,12 +345,12 @@ function restoreCheckpoint(name, options = {}) {
 
       // Delete from memory_index
       const deleteResult = checkpoint.spec_folder
-        ? db.prepare('DELETE FROM memory_index WHERE spec_folder = ?').run(checkpoint.spec_folder)
-        : db.prepare('DELETE FROM memory_index').run();
+        ? database.prepare('DELETE FROM memory_index WHERE spec_folder = ?').run(checkpoint.spec_folder)
+        : database.prepare('DELETE FROM memory_index').run();
       cleared = deleteResult.changes;
     } else if (checkpoint.spec_folder) {
       // Deprecate only works for scoped checkpoints
-      const deprecateResult = db.prepare(`
+      const deprecateResult = database.prepare(`
         UPDATE memory_index
         SET importance_tier = 'deprecated'
         WHERE spec_folder = ?
@@ -259,19 +358,26 @@ function restoreCheckpoint(name, options = {}) {
       deprecated = deprecateResult.changes;
     }
 
-    // Step 2: Re-insert memories from snapshot (with new IDs, embeddings pending)
+    // Step 2: Re-insert memories from snapshot
+    // Track old ID -> new ID mapping for embedding restoration
+    const idMapping = new Map();
+    
     if (reinsertMemories && memories.length > 0) {
-      const insertStmt = db.prepare(`
+      const insertStmt = database.prepare(`
         INSERT INTO memory_index (
           spec_folder, file_path, anchor_id, title, trigger_phrases,
           importance_weight, created_at, updated_at, embedding_model,
           embedding_status, importance_tier, context_type, channel
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'), ?, 'pending', ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'), ?, ?, ?, ?, ?)
       `);
 
       for (const mem of memories) {
+        // Check if we have an embedding for this memory
+        const hasEmbedding = embeddingsByOldId.has(mem.id);
+        const embeddingStatus = hasEmbedding ? 'success' : 'pending';
+        
         try {
-          insertStmt.run(
+          const insertResult = insertStmt.run(
             mem.spec_folder,
             mem.file_path,
             mem.anchor_id,
@@ -280,11 +386,16 @@ function restoreCheckpoint(name, options = {}) {
             mem.importance_weight || 0.5,
             mem.created_at,
             mem.embedding_model || 'nomic-ai/nomic-embed-text-v1.5',
+            embeddingStatus,
             mem.importance_tier || 'normal',
             mem.context_type || 'general',
             mem.channel || 'default'
           );
           inserted++;
+          
+          // Track ID mapping for embedding restoration
+          const newId = Number(insertResult.lastInsertRowid);
+          idMapping.set(mem.id, newId);
         } catch (e) {
           // Skip duplicates (UNIQUE constraint)
           if (e.message.includes('UNIQUE constraint failed')) {
@@ -296,12 +407,72 @@ function restoreCheckpoint(name, options = {}) {
       }
     }
 
-    return { cleared, deprecated, inserted, skipped, memoryCount: memories.length };
+    // Step 3: Restore embeddings if available and sqlite-vec is present
+    if (sqliteVecAvailable && snapshotEmbeddings.length > 0) {
+      const insertEmbeddingStmt = database.prepare(`
+        INSERT OR REPLACE INTO vec_memories (rowid, embedding) VALUES (?, ?)
+      `);
+
+      for (const [oldId, embeddingArray] of embeddingsByOldId) {
+        const newId = idMapping.get(oldId);
+        if (!newId) {
+          // Memory wasn't inserted (duplicate or error)
+          continue;
+        }
+
+        try {
+          // Validate embedding dimension
+          if (embeddingArray.length !== EMBEDDING_DIM) {
+            console.warn(`[checkpoints] Embedding dimension mismatch for memory ${oldId}: expected ${EMBEDDING_DIM}, got ${embeddingArray.length}. Will regenerate.`);
+            // Mark for regeneration
+            database.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('pending', newId);
+            embeddingsSkipped++;
+            continue;
+          }
+
+          // Convert array back to Float32Array buffer
+          const embeddingBuffer = Buffer.from(new Float32Array(embeddingArray).buffer);
+          
+          // Insert embedding
+          insertEmbeddingStmt.run(BigInt(newId), embeddingBuffer);
+          embeddingsRestored++;
+        } catch (err) {
+          console.warn(`[checkpoints] Could not restore embedding for memory ${oldId} -> ${newId}: ${err.message}`);
+          // Mark for regeneration on error
+          database.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('pending', newId);
+          embeddingsSkipped++;
+        }
+      }
+    }
+
+    return { 
+      cleared, 
+      deprecated, 
+      inserted, 
+      skipped, 
+      memoryCount: memories.length,
+      embeddingsRestored,
+      embeddingsSkipped,
+      embeddingsInSnapshot: snapshotEmbeddings.length
+    };
   })();
 
-  // Warn about embedding regeneration if memories were restored
-  if (result.inserted > 0) {
-    console.warn(`[checkpoints] Restored ${result.inserted} memories. Embeddings need regeneration - run memory_index_scan.`);
+  // Determine if embeddings need regeneration
+  const embeddingsNeedRegeneration = result.inserted > 0 && 
+    (result.embeddingsInSnapshot === 0 || result.embeddingsRestored < result.inserted);
+  
+  // Build appropriate note
+  let note;
+  if (result.inserted === 0) {
+    note = 'No memories were inserted (duplicates or empty snapshot).';
+  } else if (result.embeddingsRestored === result.inserted) {
+    note = `All ${result.embeddingsRestored} embeddings restored. Semantic search works immediately.`;
+  } else if (result.embeddingsRestored > 0) {
+    note = `${result.embeddingsRestored}/${result.inserted} embeddings restored. Run memory_index_scan to regenerate ${result.inserted - result.embeddingsRestored} missing embeddings.`;
+  } else if (result.embeddingsInSnapshot === 0) {
+    note = 'Checkpoint created before embedding preservation was added. Run memory_index_scan to generate embeddings.';
+  } else {
+    note = 'Embeddings could not be restored. Run memory_index_scan to regenerate embeddings.';
   }
 
   return {
@@ -310,13 +481,13 @@ function restoreCheckpoint(name, options = {}) {
     cleared: result.cleared,
     deprecated: result.deprecated,
     totalInSnapshot: result.memoryCount,
+    embeddingsRestored: result.embeddingsRestored,
+    embeddingsSkipped: result.embeddingsSkipped,
     specFolder: checkpoint.spec_folder,
     gitBranch: checkpoint.git_branch,
     createdAt: checkpoint.created_at,
-    embeddingsNeedRegeneration: result.inserted > 0,
-    note: result.inserted > 0
-      ? 'Memories restored with embedding_status=pending. Run memory_index_scan to regenerate embeddings.'
-      : 'No memories were inserted (duplicates or empty snapshot).'
+    embeddingsNeedRegeneration,
+    note
   };
 }
 
@@ -326,7 +497,8 @@ function restoreCheckpoint(name, options = {}) {
  * @returns {boolean} Success
  */
 function deleteCheckpoint(name) {
-  const result = db.prepare('DELETE FROM checkpoints WHERE name = ?').run(name);
+  const database = getDatabase(); // Throws if not initialized
+  const result = database.prepare('DELETE FROM checkpoints WHERE name = ?').run(name);
   return result.changes > 0;
 }
 

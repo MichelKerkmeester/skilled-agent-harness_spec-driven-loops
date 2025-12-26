@@ -4,7 +4,7 @@
 
 **Progressive Enhancement Model:**
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md
+Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
@@ -35,6 +35,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 - `spec.md` - Requirements and user stories (copy template from `templates/spec.md`)
 - `plan.md` - Technical implementation plan (copy template from `templates/plan.md`)
 - `tasks.md` - Task breakdown by user story (copy template from `templates/tasks.md`)
+- `implementation-summary.md` - Post-implementation documentation (copy template from `templates/implementation-summary.md`)
 
 ### Optional Files
 
@@ -85,6 +86,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 - `.opencode/skill/system-spec-kit/templates/spec.md`
 - `.opencode/skill/system-spec-kit/templates/plan.md`
 - `.opencode/skill/system-spec-kit/templates/tasks.md`
+- `.opencode/skill/system-spec-kit/templates/implementation-summary.md`
 
 ### Template Adaptation
 
@@ -96,7 +98,8 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 6. State clear success criteria
 7. Fill plan.md with implementation steps
 8. Fill tasks.md with task breakdown
-9. Remove all sample content and placeholders
+9. Fill implementation-summary.md at end of implementation
+10. Remove all sample content and placeholders
 
 ---
 
@@ -115,6 +118,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 - `spec.md` (from Level 1) - Requirements and user stories
 - `plan.md` (from Level 1) - Technical implementation plan
 - `tasks.md` (from Level 1) - Task breakdown by user story
+- `implementation-summary.md` (from Level 1) - Post-implementation documentation
 - `checklist.md` (NEW at Level 2) - Validation/QA checklists
 
 ### Optional Files
@@ -158,6 +162,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 - `.opencode/skill/system-spec-kit/templates/spec.md`
 - `.opencode/skill/system-spec-kit/templates/plan.md`
 - `.opencode/skill/system-spec-kit/templates/tasks.md`
+- `.opencode/skill/system-spec-kit/templates/implementation-summary.md`
 - `.opencode/skill/system-spec-kit/templates/checklist.md`
 
 ### Template Adaptation
@@ -179,12 +184,13 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 **Folder Structure:**
 ```
 specs/012-user-profile-api/
-├── spec.md          # Requirements and scope
-├── plan.md          # Technical approach
-├── tasks.md         # Implementation tasks
-├── checklist.md     # Verification checklist
-├── memory/          # Session context
-└── scratch/         # Temporary files
+├── spec.md                    # Requirements and scope
+├── plan.md                    # Technical approach
+├── tasks.md                   # Implementation tasks
+├── implementation-summary.md  # Post-implementation outcomes
+├── checklist.md               # Verification checklist (Level 2+)
+├── memory/                    # Session context
+└── scratch/                   # Temporary files
 ```
 
 **Checklist Example:**
@@ -286,8 +292,8 @@ If you discover mid-work that scope is larger than anticipated, escalate by addi
 
 | From  | To                         | Action                                                | Files to Add |
 | ----- | -------------------------- | ----------------------------------------------------- | ------------ |
-| 1 → 2 | Add verification           | `checklist.md`                                        |
-| 2 → 3 | Add decision documentation | `decision-record.md` (+ optional `research.md`) |
+| 1 → 2 | Add verification           | `checklist.md`                                        |              |
+| 2 → 3 | Add decision documentation | `decision-record.md` (+ optional `research.md`)       |              |
 
 **Changelog example:**
 
@@ -450,16 +456,19 @@ Some templates are not level-specific but can be used at any documentation level
 - `.opencode/skill/system-spec-kit/templates/handover.md`
 - `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
 
-### Summary Templates
+### Summary Templates (REQUIRED for ALL Levels)
 
 | Template | Purpose | When to Use | Created By |
 |----------|---------|-------------|------------|
-| `planning-summary.md` | High-level planning overview | After completing planning phase | Manual or after `/spec_kit:plan` |
-| `implementation-summary.md` | Post-implementation documentation | After implementation complete | Manual or context save |
+| `implementation-summary.md` | Post-implementation documentation | End of implementation phase (REQUIRED all levels) | Manual or context save |
 
 **Template Sources:**
-- `.opencode/skill/system-spec-kit/templates/planning-summary.md`
 - `.opencode/skill/system-spec-kit/templates/implementation-summary.md`
+
+**Why Required for ALL Levels:**
+- `implementation-summary.md` documents outcomes, lessons learned, and deviations from plan
+- Ensures proper documentation trail for future sessions, handoffs, and audits
+- Even simple Level 1 tasks benefit from documenting what was actually done
 
 ### Auto-Generated Context (Not Templates)
 
@@ -496,9 +505,8 @@ Some templates are not level-specific but can be used at any documentation level
 - [handover.md](../templates/handover.md) - Session context transfer
 - [debug-delegation.md](../templates/debug-delegation.md) - Debug task delegation
 
-**Summary Templates (Any Level):**
-- [planning-summary.md](../templates/planning-summary.md) - Post-planning overview
-- [implementation-summary.md](../templates/implementation-summary.md) - Post-implementation documentation
+**Summary Templates (REQUIRED ALL Levels):**
+- [implementation-summary.md](../templates/implementation-summary.md) - Post-implementation documentation (REQUIRED all levels)
 
 **Non-Template Folders:**
 - `memory/` - Context preservation (auto-generated via generate-context.js)

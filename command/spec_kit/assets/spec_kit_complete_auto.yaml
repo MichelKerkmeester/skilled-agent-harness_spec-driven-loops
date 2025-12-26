@@ -6,7 +6,7 @@ purpose: Spec-driven development with mandatory compliance and autonomous execut
 action: Run full SpecKit from spec to implementation with continuous validation
 
 operating_mode:
-  workflow: sequential
+  workflow: sequential_14_step
   workflow_compliance: MANDATORY
   workflow_execution: autonomous
   approvals: none
@@ -443,7 +443,7 @@ workflow_enforcement:
       verification: "File must exist in spec folder"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (12 STEPS - ALL LOGIC ABSORBED)
+# WORKFLOW (14 STEPS - ALL LOGIC ABSORBED)
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:

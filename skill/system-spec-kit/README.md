@@ -14,16 +14,16 @@ The result? Six months from now, you'll know exactly why you made that architect
 | ---------------------- | ----------------- | ------------------------------------------------ |
 | **Context Loss**       | Manual recovery   | Auto-saved with ANCHOR format                    |
 | **Templates**          | ~5 basic files    | 10 purpose-built templates                       |
-| **Commands**           | Manual workflow   | 7 slash commands with `:auto`/`:confirm` modes   |
+| **Commands**           | Manual workflow   | 12 slash commands with `:auto`/`:confirm` modes  |
 | **Memory Integration** | None              | Deep integration via `generate-context.js`       |
 | **Quality Gates**      | None              | 8 gates enforce nothing slips through            |
 | **Debug Assistance**   | None              | AI detects frustration → auto-suggests sub-agent |
 | **Session Handover**   | None              | `:quick` (15 lines) or `:full` (150 lines)       |
 | **Quality Metrics**    | Guesswork         | Completeness scoring (0-100%)                    |
 | **Folder Versioning**  | Overwrite         | Sub-folder patterns                              |
-| **Automation**         | None              | 7 scripts handle the boring work                 |
+| **Automation**         | None              | 11 scripts handle the boring work                |
 
-> **The bottom line:** 10 templates, 7 commands, 7 scripts, 0 excuses for losing context.
+> **The bottom line:** 10 templates, 12 commands, 11 scripts, 0 excuses for losing context.
 
 ---
 
@@ -61,12 +61,12 @@ The result? Six months from now, you'll know exactly why you made that architect
 | Category   | Count  | Details                                                                  |
 | ---------- | ------ | ------------------------------------------------------------------------ |
 | Templates  | 10     | Markdown templates for specs, plans, research, decisions, handover       |
-| Scripts    | 7      | Shell scripts for automation and validation                              |
+| Scripts    | 11     | Shell scripts for automation and validation                              |
 | Assets     | 3      | Decision support tools (level matrix, template mapping, parallel config) |
 | References | 5      | Detailed workflow documentation                                          |
 | Checklists | 4      | Phase-specific checklists (research, planning, implementation, review)   |
 | **Total**  | **28** | Complete bundled resource set                                            |
-| Commands   | 7      | Slash commands (external: `.opencode/command/spec_kit/`)                 |
+| Commands   | 12     | Slash commands (8 spec_kit + 4 memory)                                   |
 
 > **Automation Win**: These 28 resources eliminate the "blank page problem" — you're never starting from scratch.
 
@@ -268,6 +268,28 @@ The `memory/` folder stores **conversation context and session history** for AI 
 - `memory_list()` - Browse stored memories
 - `checkpoint_create/restore()` - State snapshots
 
+### Tool Naming Convention
+
+MCP tools use the full prefix `spec_kit_memory_*` when invoked. Documentation uses shorthand for readability.
+
+| Full MCP Name | Shorthand (in docs) |
+|---------------|---------------------|
+| `spec_kit_memory_memory_search` | `memory_search` |
+| `spec_kit_memory_memory_save` | `memory_save` |
+| `spec_kit_memory_memory_list` | `memory_list` |
+| `spec_kit_memory_memory_stats` | `memory_stats` |
+| `spec_kit_memory_memory_update` | `memory_update` |
+| `spec_kit_memory_memory_delete` | `memory_delete` |
+| `spec_kit_memory_memory_validate` | `memory_validate` |
+| `spec_kit_memory_memory_index_scan` | `memory_index_scan` |
+| `spec_kit_memory_memory_match_triggers` | `memory_match_triggers` |
+| `spec_kit_memory_checkpoint_create` | `checkpoint_create` |
+| `spec_kit_memory_checkpoint_list` | `checkpoint_list` |
+| `spec_kit_memory_checkpoint_restore` | `checkpoint_restore` |
+| `spec_kit_memory_checkpoint_delete` | `checkpoint_delete` |
+
+**Usage:** When calling MCP tools directly, use the full name (e.g., `spec_kit_memory_memory_search({ query: "..." })`). In documentation and discussion, shorthand is acceptable.
+
 ---
 
 ## 3. 📊 DOCUMENTATION LEVELS (1-3)
@@ -277,7 +299,7 @@ The Spec Kit documentation system uses a **progressive enhancement** approach wh
 ### Progressive Enhancement Model
 
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md
+Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               │
                               ▼
 Level 2 (Verification): Level 1 + checklist.md
@@ -290,11 +312,11 @@ Utility (any level):    handover.md, debug-delegation.md
 
 ### Level Specifications
 
-| Level | Name         | Required Files               | LOC Guidance | Enforcement                              |
-| ----- | ------------ | ---------------------------- | ------------ | ---------------------------------------- |
-| **1** | Baseline     | spec.md + plan.md + tasks.md | <100         | Hard block if any missing                |
-| **2** | Verification | Level 1 + checklist.md       | 100-499      | Hard block if checklist.md missing       |
-| **3** | Full         | Level 2 + decision-record.md | ≥500         | Hard block if decision-record.md missing |
+| Level | Name         | Required Files                                            | LOC Guidance | Enforcement                              |
+| ----- | ------------ | --------------------------------------------------------- | ------------ | ---------------------------------------- |
+| **1** | Baseline     | spec.md + plan.md + tasks.md + implementation-summary.md  | <100         | Hard block if any missing                |
+| **2** | Verification | Level 1 + checklist.md                                    | 100-499      | Hard block if checklist.md missing       |
+| **3** | Full         | Level 2 + decision-record.md                              | ≥500         | Hard block if decision-record.md missing |
 
 ### Level 1: Baseline Documentation
 
@@ -361,7 +383,6 @@ All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEV
 | `handover.md`               | Any   | Utility  | ~100  | Full session continuity (7 sections)    |
 | `debug-delegation.md`       | Any   | Utility  | ~64   | Sub-agent debugging delegation          |
 | `implementation-summary.md` | Any   | Utility  | ~50   | Implementation completion summary       |
-| `planning-summary.md`       | Any   | Utility  | ~50   | Planning phase summary                  |
 
 ### Level 1: Baseline Templates
 
@@ -539,7 +560,7 @@ cp .opencode/skill/system-spec-kit/templates/debug-delegation.md specs/###-name/
 
 > **Fork Exclusive**: The original Spec Kit has zero automation scripts. This fork has seven.
 
-Seven automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle the tedious work so you can focus on building.
+Eleven automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle the tedious work so you can focus on building.
 
 ### Script Overview
 
@@ -583,7 +604,7 @@ Seven automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle th
 | `--skip-branch`       | Create spec folder without git branch | false          |
 
 **Documentation Levels**:
-- **Level 1 (Baseline)**: spec.md + plan.md + tasks.md
+- **Level 1 (Baseline)**: spec.md + plan.md + tasks.md + implementation-summary.md
 - **Level 2 (Verification)**: Level 1 + checklist.md
 - **Level 3 (Full)**: Level 2 + decision-record.md
 
@@ -1002,7 +1023,7 @@ Testing: invalid-anchors ....................... PASS (expected fail)
 
 > **Fork Exclusive**: The original Spec Kit has no slash commands. This fork has seven, each with `:auto` and `:confirm` mode variants.
 
-Seven Spec Kit commands transform multi-step workflows into single invocations.
+Twelve Spec Kit commands transform multi-step workflows into single invocations.
 
 ### Command Overview
 
@@ -1351,6 +1372,7 @@ Spec Kit uses a 2-tier architecture:
 cp .opencode/skill/system-spec-kit/templates/spec.md specs/042-feature/spec.md
 cp .opencode/skill/system-spec-kit/templates/plan.md specs/042-feature/plan.md
 cp .opencode/skill/system-spec-kit/templates/tasks.md specs/042-feature/tasks.md
+cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/042-feature/implementation-summary.md
 
 # Level 2: Add verification
 cp .opencode/skill/system-spec-kit/templates/checklist.md specs/042-feature/checklist.md
@@ -1718,7 +1740,6 @@ A:
 7. `handover.md` - Full session continuity (utility, ~100-150 lines)
 8. `debug-delegation.md` - Sub-agent debugging (utility)
 9. `implementation-summary.md` - Implementation completion summary (utility)
-10. `planning-summary.md` - Planning phase summary (utility)
 
 ---
 
@@ -1750,8 +1771,8 @@ A: The original Spec Kit is a concept. This fork is a complete system:
 | What You Get       | Original | This Fork                           |
 | ------------------ | -------- | ----------------------------------- |
 | Templates          | Basic    | 10 production-ready                 |
-| Automation         | None     | 7 scripts                           |
-| Commands           | None     | 7 with mode variants                |
+| Automation         | None     | 11 scripts                          |
+| Commands           | None     | 12 with mode variants               |
 | Memory Integration | None     | Semantic search across sessions     |
 | Debug Help         | None     | AI-detected frustration → sub-agent |
 | Gate Enforcement   | None     | 8 gates prevent mistakes            |

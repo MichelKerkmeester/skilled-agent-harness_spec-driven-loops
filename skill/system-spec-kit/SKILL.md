@@ -79,7 +79,7 @@ User Request
     │   └─► YES → Activate SpecKit (spec folder workflow)
     │
     ├─► File modification requested?
-    │   └─► Gate 3 triggered → Ask spec folder question
+    │   └─► Gate 4 triggered → Ask spec folder question
     │
     ├─► Contains "debug", "stuck", "help"?
     │   └─► Route to /spec_kit:debug
@@ -131,19 +131,24 @@ User Request
 
 **Templates (`templates/`):**
 
-| Level | Required Files               | Optional Files                   |
-| ----- | ---------------------------- | -------------------------------- |
-| 1     | spec.md, plan.md, tasks.md   | —                                |
-| 2     | Level 1 + checklist.md       | —                                |
-| 3     | Level 2 + decision-record.md | research.md                      |
-| Any   | —                            | handover.md, debug-delegation.md |
+| Level | Required Files                                                               | Optional Files                   |
+| ----- | ---------------------------------------------------------------------------- | -------------------------------- |
+| 1     | spec.md, plan.md, tasks.md, implementation-summary.md                        | —                                |
+| 2     | Level 1 + checklist.md                                                       | —                                |
+| 3     | Level 2 + decision-record.md                                                 | research.md                      |
+| Any   | —                                                                            | handover.md, debug-delegation.md |
 
-**Summary Templates (Any Level):**
+**Internal Templates (Not for Direct Use):**
+
+| Template | Purpose | Used By |
+|----------|---------|---------|
+| `context_template.md` | Memory file generation template with ANCHOR format | `generate-context.js` (internal) |
+
+**Summary Template (REQUIRED for Level 1+):**
 
 | Template                    | Purpose                               | When to Use                          |
 | --------------------------- | ------------------------------------- | ------------------------------------ |
-| `planning-summary.md`       | High-level planning overview          | After planning phase complete        |
-| `implementation-summary.md` | Post-implementation documentation     | Recording what was actually built    |
+| `implementation-summary.md` | Post-implementation documentation     | End of implementation phase (Level 1+)|
 
 **Auto-Generated Folders (Not Templates):**
 
@@ -153,15 +158,20 @@ User Request
 | `scratch/` | Temporary workspace (disposable)    | Manual creation (no template)        |
 
 **References (`references/`):**
-| File                     | Purpose                  | When to Load               |
-| ------------------------ | ------------------------ | -------------------------- |
-| level_specifications.md  | Complete Level 1-3 specs | Planning phase             |
-| template_guide.md        | Template selection rules | Planning, Implementation   |
-| validation_rules.md      | All validation rules     | Implementation, Completion |
-| quick_reference.md       | Commands, checklists     | Any phase                  |
-| path_scoped_rules.md     | Path-scoped rules        | Advanced usage             |
-| worked_examples.md       | Real-world examples      | Learning, Research         |
-| sub_folder_versioning.md | Sub-folder workflow      | Reusing spec folders       |
+| File                     | Purpose                                | When to Load               |
+| ------------------------ | -------------------------------------- | -------------------------- |
+| level_specifications.md  | Complete Level 1-3 specs               | Planning phase             |
+| template_guide.md        | Template selection rules               | Planning, Implementation   |
+| validation_rules.md      | All validation rules                   | Implementation, Completion |
+| quick_reference.md       | Commands, checklists                   | Any phase                  |
+| path_scoped_rules.md     | Path-scoped rules                      | Advanced usage             |
+| worked_examples.md       | Real-world examples                    | Learning, Research         |
+| sub_folder_versioning.md | Sub-folder workflow                    | Reusing spec folders       |
+| folder_routing.md        | Folder structure and routing logic     | Planning                   |
+| phase_checklists.md      | Per-phase validation checklists        | Completion                 |
+| save-workflow.md         | Memory save workflow documentation     | Context preservation       |
+| trigger_config.md        | Trigger phrase configuration           | Setup, debugging           |
+| troubleshooting.md       | Common issues and solutions            | Debugging                  |
 
 **Assets (`assets/`):**
 - `level_decision_matrix.md` - LOC thresholds, complexity factors
@@ -169,20 +179,80 @@ User Request
 - `parallel_dispatch_config.md` - Agent dispatch configuration
 
 **Scripts (`scripts/`):**
-- `validate-spec.sh` - Validation orchestrator (runs automatically)
-- `create-spec-folder.sh` - Create new spec folders
-- `recommend-level.sh` - Suggest documentation level
-- `archive-spec.sh` - Archive completed specs
-- `lib/` - Shared libraries
-- `rules/` - Validation rule plugins
+
+| Script | Purpose |
+|--------|---------|
+| `generate-context.js` | Generate memory context files from conversation data |
+| `validate-spec.sh` | Validate spec folder structure (runs automatically) |
+| `validate-spec-folder.js` | JavaScript validation orchestrator |
+| `validate-memory-file.js` | Validate memory file format and anchors |
+| `create-spec-folder.sh` | Create new spec folders with templates |
+| `recommend-level.sh` | Suggest documentation level based on LOC |
+| `archive-spec.sh` | Archive completed spec folders |
+| `check-completion.sh` | Check spec folder completion status |
+| `lib/` | Shared JavaScript libraries |
+| `rules/` | Validation rule plugins |
+
+**generate-context.js Input Modes:**
+
+The script supports two input modes:
+
+| Mode | Usage | Description |
+|------|-------|-------------|
+| **Direct** | `node generate-context.js specs/007-feature/` | Auto-captures context from OpenCode session |
+| **JSON** | `node generate-context.js /tmp/context-data.json` | Manual context injection via JSON file |
+
+**JSON Input Schema:**
+
+When using JSON input mode, create a file with this structure:
+
+```json
+{
+  "specFolder": "specs/007-feature",
+  "summary": "Session summary describing what was accomplished",
+  "keyDecisions": [
+    "Decision 1: Chose approach X over Y because...",
+    "Decision 2: Deferred Z to follow-up task"
+  ],
+  "filesModified": [
+    "src/components/Auth.tsx",
+    "src/utils/validation.ts"
+  ],
+  "observations": [
+    {
+      "type": "pattern",
+      "description": "Existing code uses factory pattern for services"
+    },
+    {
+      "type": "constraint",
+      "description": "Must maintain backward compatibility with v2 API"
+    }
+  ],
+  "followUps": [
+    "Add unit tests for edge cases",
+    "Update API documentation"
+  ]
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `specFolder` | **Yes** | Path to spec folder (relative or absolute) |
+| `summary` | No | High-level session summary |
+| `keyDecisions` | No | Array of decision strings |
+| `filesModified` | No | Array of file paths touched |
+| `observations` | No | Array of `{type, description}` objects |
+| `followUps` | No | Array of follow-up task strings |
+
+> **Note:** JSON mode is for **manual context injection** when you need to provide specific data. Automatic capture (direct mode) extracts context from the OpenCode session. JSON mode uses provided data directly without session extraction.
 
 ---
 
 ## 3. 🛠️ HOW IT WORKS
 
-### Gate 3 Integration
+### Gate 4 Integration
 
-> **See AGENTS.md Section 2** for the complete Gate 3 spec folder question flow. This skill implements that gate.
+> **See AGENTS.md Section 2** for the complete Gate 4 spec folder question flow. This skill implements that gate.
 
 **Quick Reference:** When file modification detected, AI MUST ask:
 
@@ -198,7 +268,7 @@ User Request
 | **D) Skip**     | No spec folder (creates tech debt) | Trivial changes only            |
 
 **First Message Protocol:**
-1. Gate 3 question is your FIRST response
+1. Gate 4 question is your FIRST response
 2. No analysis first ("let me understand the scope")
 3. No tool calls first ("let me check what exists")
 4. Ask immediately, wait for answer, then proceed
@@ -223,18 +293,18 @@ Reply with your choice (A/B/C/D).
 ### 3-Level Progressive Enhancement
 
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md
+Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
          ↓
 Level 2 (Verification): Level 1 + checklist.md
          ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 ```
 
-| Level | LOC Guidance | Required Files               | Use When                     |
-| ----- | ------------ | ---------------------------- | ---------------------------- |
-| **1** | <100         | spec.md, plan.md, tasks.md   | All features (minimum)       |
-| **2** | 100-499      | Level 1 + checklist.md       | QA validation needed         |
-| **3** | ≥500         | Level 2 + decision-record.md | Complex/architecture changes |
+| Level | LOC Guidance | Required Files                                                           | Use When                     |
+| ----- | ------------ | ------------------------------------------------------------------------ | ---------------------------- |
+| **1** | <100         | spec.md, plan.md, tasks.md, implementation-summary.md                    | All features (minimum)       |
+| **2** | 100-499      | Level 1 + checklist.md                                                   | QA validation needed         |
+| **3** | ≥500         | Level 2 + decision-record.md                                             | Complex/architecture changes |
 
 **Level Selection Examples:**
 
@@ -374,7 +444,7 @@ This skill includes a complete Spec Kit Memory system for context preservation a
 |-----------|----------|---------|
 | MCP Server | `mcp_server/context-server.js` | Spec Kit Memory MCP with vector search |
 | Database | `database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
-| Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
+| Constitutional | `constitutional/` | Always-surface rules (Gate 4 enforcement) |
 | Scripts | `scripts/generate-context.js` | Memory file generation with ANCHOR format |
 
 **Six-Tier Importance System:**
@@ -388,6 +458,9 @@ This skill includes a complete Spec Kit Memory system for context preservation a
 | **Deprecated** | 0.1 | Outdated (kept for history) | Rarely |
 
 **MCP Tools Available:**
+
+> **Note:** MCP tool names use the format `spec_kit_memory_<tool_name>`. In documentation, shorthand names like `memory_search()` refer to the full `spec_kit_memory_memory_search()` tool.
+
 | Tool | Purpose | Example Use |
 |------|---------|-------------|
 | `spec_kit_memory_memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
@@ -397,6 +470,27 @@ This skill includes a complete Spec Kit Memory system for context preservation a
 | `spec_kit_memory_memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
 | `spec_kit_memory_checkpoint_create()` | Save named state snapshot | Before risky changes |
 | `spec_kit_memory_checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
+
+**memory_search() Behavior Notes:**
+
+> **Important:** Constitutional memories ALWAYS appear at the top of search results, even when a `specFolder` filter is applied. This is BY DESIGN to ensure critical context (e.g., Gate enforcement rules) is never accidentally filtered out.
+
+| Parameter | Behavior |
+|-----------|----------|
+| `specFolder: "007-auth"` | Filters results to that folder, but constitutional memories still appear first |
+| `includeConstitutional: false` | Explicitly excludes constitutional memories from results |
+| `includeContent: true` | Embeds full memory file content in results (eliminates separate load calls) |
+
+**memory_list() Behavior Notes:**
+
+> **Important:** The `specFolder` filter uses **EXACT matching**, not prefix or hierarchical matching.
+
+| Query | Matches | Does NOT Match |
+|-------|---------|----------------|
+| `specFolder: "003-memory"` | `003-memory` only | `003-memory-and-spec-kit`, `003-memory-upgrade` |
+| `specFolder: "003-memory-and-spec-kit"` | `003-memory-and-spec-kit` only | `003-memory` |
+
+Use exact folder names when filtering. This is intentional for precise filtering control.
 
 **Decay Scoring:**
 - Memories decay over time (~62-day half-life)
@@ -447,6 +541,8 @@ STAGE 2: MEMORY LOADING
   - Same error 3+ times after fix attempts
   - Frustration keywords: "stuck", "can't fix", "tried everything"
   - Extended debugging: >15 minutes with 2+ fix attempts
+
+**⚠️ MANDATORY: After 3 failed attempts on the same error, you MUST suggest `/spec_kit:debug`. Do not continue attempting fixes without offering debug delegation first.**
 
 **Model Selection (MANDATORY - never skip):**
 
@@ -508,6 +604,9 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 10. **Complete P0/P1 before claiming done** - No exceptions
 11. **Suggest handover.md on session-end keywords** - "continue later", "next session"
 12. **Run validate-spec.sh before completion** - Gate 6 requirement
+13. **Create implementation-summary.md at end of implementation phase (Level 1+)** - Document what was built
+14. **Suggest /spec_kit:handover when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
+15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
 
 ### NEVER
 
@@ -695,7 +794,7 @@ validation:
 
 ### Validation Triggers
 
-- **AGENTS.md Gate 3** → Validates spec folder existence and template completeness
+- **AGENTS.md Gate 4** → Validates spec folder existence and template completeness
 - **AGENTS.md Gate 6** → Runs validate-spec.sh before completion claims
 - **Manual `/memory:save`** → Context preservation on demand
 - **Template validation** → Checks placeholder removal and required field completion
@@ -740,7 +839,7 @@ Implementation complete
 
 | Resource       | Location                                                      | Purpose                      |
 | -------------- | ------------------------------------------------------------- | ---------------------------- |
-| Templates (11) | `templates/`                                                  | All spec folder templates    |
+| Templates (10) | `templates/`                                                  | All spec folder templates    |
 | Validation     | `scripts/validate-spec.sh`                                    | Automated validation         |
 | Gates          | `AGENTS.md` Section 2                                         | Gate definitions             |
 | Memory gen     | `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Memory file creation         |
@@ -752,7 +851,7 @@ Implementation complete
 
 | Pattern                       | Trigger                                 | Prevention                                |
 | ----------------------------- | --------------------------------------- | ----------------------------------------- |
-| Skip Gate 3 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder → Wait for A/B/C/D |
+| Skip Gate 4 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder → Wait for A/B/C/D |
 | Rush to code                  | "straightforward", "simple fix"         | Analyze → Verify → Simplest solution      |
 | Create docs from scratch      | Time pressure                           | Always copy from templates/               |
 | Skip checklist verification   | "trivial edit"                          | Load checklist.md, verify ALL items       |

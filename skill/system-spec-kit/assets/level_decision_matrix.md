@@ -14,7 +14,7 @@
 
 **Progressive Enhancement Model:**
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md
+Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
@@ -175,7 +175,7 @@ The spec validation system (`validate-spec.sh`) checks documentation quality usi
 - Purpose: Ensures all required files for the documentation level are present
 - Applies to: All levels (checks level-specific required files)
 - Severity: error (blocks completion)
-- Details: Level 1 requires `spec.md`, `plan.md`, `tasks.md`; Level 2 adds `checklist.md`; Level 3 adds `decision-record.md`
+- Details: Level 1 requires `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`; Level 2 adds `checklist.md`; Level 3 adds `decision-record.md`
 
 **PLACEHOLDER_FILLED**
 - Purpose: Detects unfilled template placeholders that indicate incomplete documentation

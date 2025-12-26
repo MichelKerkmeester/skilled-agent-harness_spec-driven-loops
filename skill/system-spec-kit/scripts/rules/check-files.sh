@@ -7,6 +7,8 @@
 # Level 1: spec.md, plan.md, tasks.md
 # Level 2: Level 1 + checklist.md
 # Level 3: Level 2 + decision-record.md
+#
+# implementation-summary.md: Required AFTER implementation starts (detected by completed checklist items)
 
 run_check() {
     local folder="$1"
@@ -24,6 +26,20 @@ run_check() {
     [[ ! -f "$folder/spec.md" ]] && missing+=("spec.md")
     [[ ! -f "$folder/plan.md" ]] && missing+=("plan.md")
     [[ ! -f "$folder/tasks.md" ]] && missing+=("tasks.md")
+    
+    # implementation-summary.md is only required after implementation starts
+    # Detect by checking for completed items in checklist.md
+    local has_implementation=false
+    if [[ -f "$folder/checklist.md" ]]; then
+        # Check if any items are marked complete [x] or [X]
+        if grep -qE '\[[xX]\]' "$folder/checklist.md" 2>/dev/null; then
+            has_implementation=true
+        fi
+    fi
+    
+    if [[ "$has_implementation" == "true" ]]; then
+        [[ ! -f "$folder/implementation-summary.md" ]] && missing+=("implementation-summary.md (required after implementation)")
+    fi
     
     # Level 2 additions
     if [[ "$level" -ge 2 ]]; then

@@ -64,8 +64,21 @@ run_check() {
             # Pattern 2: | Evidence: (pipe-separated)
             [[ "$line_lower" == *"| evidence:"* ]] && has_evidence=true
             
-            # Pattern 3: ✓ or ✔ with description after
-            [[ "$line" == *"✓ "* || "$line" == *"✔ "* ]] && has_evidence=true
+            # Pattern 3: Various unicode checkmarks with description after
+            # ✓ (U+2713) - Check Mark
+            # ✔ (U+2714) - Heavy Check Mark
+            # ☑ (U+2611) - Ballot Box with Check
+            # ✅ (U+2705) - White Heavy Check Mark
+            if [[ "$line" == *"✓"* || "$line" == *"✔"* || "$line" == *"☑"* || "$line" == *"✅"* ]]; then
+                has_evidence=true
+            fi
+            
+            # Pattern 3b: Markdown checkboxes [x] or [X] with additional evidence text
+            # Note: The checkbox itself is already detected above, this is for inline evidence markers
+            if [[ "$line" =~ \[[xX]\].*\[[xX]\] ]]; then
+                # Multiple checkboxes on same line = evidence pattern
+                has_evidence=true
+            fi
             
             # Pattern 4: (verified), (tested), (confirmed) at end
             [[ "$line_lower" == *"(verified)"* || "$line_lower" == *"(tested)"* || "$line_lower" == *"(confirmed)"* ]] && has_evidence=true

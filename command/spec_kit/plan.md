@@ -67,7 +67,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │    D) Skip documentation                                       │
    │                                                                │
    │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
-   │    A) Autonomous - Execute all 7 steps without approval        │
+   │    A) Autonomous - Execute all steps without approval           │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
    │ Reply with choices, e.g.: "B, A" or "A" (if mode pre-set)      │
@@ -189,10 +189,10 @@ Execute the SpecKit planning lifecycle from specification through planning. Term
 ```yaml
 role: Expert Developer using Smart SpecKit for Planning Phase
 purpose: Spec-driven planning with mandatory compliance and stakeholder review support
-action: Run 7-step planning workflow from specification through technical plan creation
+action: Run planning workflow from specification through technical plan creation
 
 operating_mode:
-  workflow: sequential_7_step
+  workflow: sequential
   workflow_compliance: MANDATORY
   workflow_execution: autonomous_or_interactive
   approvals: step_by_step_for_confirm_mode
@@ -204,7 +204,7 @@ operating_mode:
 
 ## 1. 🎯 PURPOSE
 
-Run the 7-step planning workflow: specification, clarification, quality checklist, and technical planning. Creates spec.md, plan.md, and checklists without proceeding to implementation. Use when planning needs review before coding.
+Run the planning workflow: specification, clarification, and technical planning. Creates spec.md, plan.md, and checklists without proceeding to implementation. Use when planning needs review before coding.
 
 ---
 
@@ -215,7 +215,6 @@ Run the 7-step planning workflow: specification, clarification, quality checklis
 - spec.md ✓
 - plan.md ✓
 - checklist.md (Level 2+ only) ✓
-- planning-summary.md ✓
 - memory/*.md ✓
 
 > **⚠️ Level 1 Note:** The /spec_kit:plan command creates spec.md and plan.md but NOT tasks.md. For complete Level 1 baseline documentation, either:
@@ -234,15 +233,15 @@ $ARGUMENTS
 
 ## 3. 📊 WORKFLOW OVERVIEW (7 STEPS)
 
-| Step | Name              | Purpose                                                                                      | Outputs                      |
-| ---- | ----------------- | -------------------------------------------------------------------------------------------- | ---------------------------- |
-| 1    | Request Analysis  | Analyze inputs, define scope                                                                 | requirement_summary          |
-| 2    | Pre-Work Review   | Review AGENTS.md, standards                                                                  | coding_standards_summary     |
-| 3    | Specification     | Create spec.md                                                                               | spec.md, feature branch      |
-| 4    | Clarification     | Resolve ambiguities                                                                          | updated spec.md              |
-| 5    | Quality Checklist | Generate validation checklist (will be ACTIVELY USED for verification during implementation) | checklist.md                 |
-| 6    | Planning          | Create technical plan                                                                        | plan.md, planning-summary.md |
-| 7    | Save Context      | Preserve conversation                                                                        | memory/*.md                  |
+| Step | Name             | Purpose                        | Outputs                  |
+| ---- | ---------------- | ------------------------------ | ------------------------ |
+| 1    | Request Analysis | Analyze inputs, define scope   | requirement_summary      |
+| 2    | Pre-Work Review  | Review AGENTS.md, standards    | coding_standards_summary |
+| 3    | Specification    | Create spec.md                 | spec.md                  |
+| 4    | Clarification    | Resolve ambiguities            | updated spec.md          |
+| 5    | Planning         | Create technical plan          | plan.md, checklist.md    |
+| 6    | Save Context     | Save conversation context      | memory/*.md              |
+| 7    | Handover Check   | Prompt for session handover    | handover.md (optional)   |
 
 ---
 
@@ -293,9 +292,9 @@ This workflow supports smart parallel sub-agent dispatch for eligible phases usi
 - **<20%**: Proceed directly (no parallel agents)
 - **≥20% + 2 domains**: ALWAYS ask user before parallel dispatch
 
-### Step 6: 4-Agent Parallel Exploration (Automatic)
+### Planning Step: 4-Agent Parallel Exploration (Automatic)
 
-Step 6 (Planning) automatically dispatches 4 Sonnet agents in parallel via the Task tool:
+The Planning step automatically dispatches 4 Sonnet agents in parallel via the Task tool:
 
 1. **Architecture Explorer** - Project structure, entry points, component connections
 2. **Feature Explorer** - Similar features, related patterns
@@ -320,7 +319,6 @@ After agents return, hypotheses are verified by reading identified files and bui
 ## 7. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Terminates after planning** - Does not include task breakdown, analysis, or implementation
-- **Outputs planning-summary.md** instead of implementation-summary.md
 - **Next step guidance** - Recommends `/spec_kit:implement` when ready to build
 - **Use case** - Planning phase separation, stakeholder review, feasibility analysis
 

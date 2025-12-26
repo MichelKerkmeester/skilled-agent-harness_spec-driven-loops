@@ -88,12 +88,27 @@ function loadConfig() {
         // Simple approach: remove // and everything after if not inside a string
         let cleanLine = line;
         
+        // P2-003: Helper to check if quote is escaped
+        // A quote is escaped if preceded by odd number of backslashes
+        function isEscapedQuote(str, index) {
+          if (index === 0) return false;
+          let backslashCount = 0;
+          let i = index - 1;
+          while (i >= 0 && str[i] === '\\') {
+            backslashCount++;
+            i--;
+          }
+          // Odd number of backslashes means the quote is escaped
+          return backslashCount % 2 === 1;
+        }
+        
         // Find // that's not inside a string
         let inString = false;
         let commentStart = -1;
         for (let i = 0; i < line.length - 1; i++) {
           const char = line[i];
-          if (char === '"' && (i === 0 || line[i-1] !== '\\')) {
+          // P2-003: Handle escaped quotes properly (e.g., \\" is escaped backslash followed by real quote)
+          if (char === '"' && !isEscapedQuote(line, i)) {
             inString = !inString;
           }
           if (!inString && char === '/' && line[i+1] === '/') {
@@ -1316,10 +1331,12 @@ async function loadCollectedData() {
 
   // Priority 3: Simulation fallback
   console.log('   ⚠️  Using fallback simulation mode');
+  console.warn('[generate-context] WARNING: Using simulation mode - placeholder data generated');
   console.log('   ⚠️  OUTPUT WILL CONTAIN PLACEHOLDER DATA - NOT REAL SESSION CONTENT');
   console.log('   ℹ️  To save real context, AI must construct JSON and pass as argument:');
   console.log('      node generate-context.js /tmp/save-context-data.json');
-  return null;
+  // Return simulation marker for downstream handling (P0-006)
+  return { _isSimulation: true };
 }
 
 /**
@@ -2096,6 +2113,63 @@ function validateNoLeakedPlaceholders(content, filename) {
   }
 }
 
+/**
+ * P0-010: Validate anchor pairs in content
+ * Checks for malformed anchor pairs (unclosed or orphaned closing tags)
+ * 
+ * @param {string} content - Content to validate
+ * @returns {string[]} Array of warning messages (empty if valid)
+ */
+function validateAnchors(content) {
+  // Match opening anchors: <!-- ANCHOR:name --> or <!-- anchor:name -->
+  const openPattern = /<!-- (?:ANCHOR|anchor):([a-zA-Z0-9_-]+)/g;
+  // Match closing anchors: <!-- /ANCHOR:name --> or <!-- /anchor:name -->
+  const closePattern = /<!-- \/(?:ANCHOR|anchor):([a-zA-Z0-9_-]+)/g;
+  
+  const openAnchors = new Set();
+  const closeAnchors = new Set();
+  
+  let match;
+  while ((match = openPattern.exec(content)) !== null) {
+    openAnchors.add(match[1]);
+  }
+  while ((match = closePattern.exec(content)) !== null) {
+    closeAnchors.add(match[1]);
+  }
+  
+  const warnings = [];
+  
+  // Check for unclosed anchors
+  for (const anchor of openAnchors) {
+    if (!closeAnchors.has(anchor)) {
+      warnings.push(`Unclosed anchor: ${anchor} (missing <!-- /ANCHOR:${anchor} -->)`);
+    }
+  }
+  
+  // Check for orphaned closing tags
+  for (const anchor of closeAnchors) {
+    if (!openAnchors.has(anchor)) {
+      warnings.push(`Orphaned closing anchor: ${anchor} (no matching opening tag)`);
+    }
+  }
+  
+  return warnings;
+}
+
+/**
+ * P0-010: Log anchor validation warnings for a file
+ * 
+ * @param {string} content - Content to validate
+ * @param {string} filename - Filename for log messages
+ */
+function logAnchorValidation(content, filename) {
+  const anchorWarnings = validateAnchors(content);
+  if (anchorWarnings.length > 0) {
+    console.warn(`[generate-context] Anchor validation warnings in ${filename}:`);
+    anchorWarnings.forEach(w => console.warn(`  - ${w}`));
+  }
+}
+
 async function main() {
   try {
     console.log('🚀 Starting memory skill...\n');
@@ -2303,6 +2377,14 @@ async function main() {
       console.log(`   ⚠️  Low quality session (${filterStats.qualityScore}/100) - warning header added`);
     }
 
+    // P0-006: Add simulation warning if using placeholder data
+    const isSimulation = !collectedData || collectedData._isSimulation || simFactory.requiresSimulation(collectedData);
+    if (isSimulation) {
+      const simWarning = `<!-- WARNING: This is simulated/placeholder content - NOT from a real session -->\n\n`;
+      files[contextFilename] = simWarning + files[contextFilename];
+      console.log(`   ⚠️  Simulation mode: placeholder content warning added`);
+    }
+
     console.log(`   ✓ Template populated (quality: ${filterStats.qualityScore}/100)\n`);
 
     // Step 9: Write files with atomic writes and rollback on failure
@@ -2315,6 +2397,9 @@ async function main() {
       for (const [filename, content] of Object.entries(files)) {
         // Validate content before writing using helper
         validateNoLeakedPlaceholders(content, filename);
+        
+        // P0-010: Validate anchor pairs before writing
+        logAnchorValidation(content, filename);
 
         const filePath = path.join(contextDir, filename);
 
@@ -2515,8 +2600,20 @@ async function main() {
     console.log();
 
   } catch (error) {
-    console.error('❌ Error:', error.message);
-    console.error(error.stack);
+    // P2-004: Handle expected errors (from detectSpecFolder) vs unexpected errors
+    const isExpectedError = error.message.includes('Spec folder not found') ||
+                           error.message.includes('No spec folders found') ||
+                           error.message.includes('specs/ directory not found') ||
+                           error.message.includes('retry attempts');
+    
+    if (isExpectedError) {
+      // Expected error - message already logged, just exit
+      console.error(`\n❌ Error: ${error.message}`);
+    } else {
+      // Unexpected error - log full stack for debugging
+      console.error('❌ Unexpected Error:', error.message);
+      console.error(error.stack);
+    }
     process.exit(1);
   }
 }
@@ -2582,7 +2679,8 @@ async function detectSpecFolder(collectedData = null) {
       }
 
       console.error('\nUsage: node generate-context.js [spec-folder-name] OR node generate-context.js <data-file> [spec-folder]\n');
-      process.exit(1);
+      // P2-004: Throw instead of process.exit for testability
+      throw new Error(`Spec folder not found: ${CONFIG.SPEC_FOLDER_ARG}`);
     }
   }
 
@@ -2633,15 +2731,16 @@ async function detectSpecFolder(collectedData = null) {
     specFolders = filterArchiveFolders(specFolders);
 
     if (specFolders.length === 0) {
-      // No spec folders found - error and exit
+      // No spec folders found - error and throw
       console.error('\n❌ Cannot save context: No spec folder found\n');
       console.error('memory requires a spec folder to save memory documentation.');
       console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
       console.error('Please create a spec folder first:');
       console.error('  mkdir -p specs/###-feature-name/\n');
       console.error('Then re-run memory.\n');
-    process.exit(1);
-  }
+      // P2-004: Throw instead of process.exit for testability
+      throw new Error('No spec folders found in specs/ directory');
+    }
 
     // If no conversation data, use most recent (backward compatible)
     if (!collectedData || specFolders.length === 1) {
@@ -2699,18 +2798,21 @@ async function detectSpecFolder(collectedData = null) {
     }
 
   } catch (error) {
-    // If error is from promptUser, re-throw
-    if (error.message.includes('retry attempts')) {
+    // If error is from promptUser or already a structured error, re-throw
+    if (error.message.includes('retry attempts') || 
+        error.message.includes('Spec folder not found') ||
+        error.message.includes('No spec folders found')) {
       throw error;
     }
-    // specs directory doesn't exist - error and exit
+    // specs directory doesn't exist - error and throw
     console.error('\n❌ Cannot save context: No spec folder found\n');
     console.error('save-context requires a spec folder to save memory documentation.');
     console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
     console.error('Please create a spec folder first:');
     console.error('  mkdir -p specs/###-feature-name/\n');
     console.error('Then re-run save-context.\n');
-    process.exit(1);
+    // P2-004: Throw instead of process.exit for testability
+    throw new Error('specs/ directory not found');
   }
 }
 
@@ -3049,12 +3151,21 @@ function filterArchiveFolders(folders) {
 
 /**
  * Prompt user with numbered choices and validate input
+ * P0-007: Returns defaultChoice (1) in non-interactive mode instead of throwing
+ * 
  * @param {string} question - Prompt text
  * @param {number} maxChoice - Maximum valid choice number
  * @param {number} maxAttempts - Maximum retry attempts (default 3)
+ * @param {number} defaultChoice - Default choice for non-interactive mode (default 1)
  * @returns {Promise<number>} Selected choice number (1-indexed)
  */
-async function promptUserChoice(question, maxChoice, maxAttempts = 3) {
+async function promptUserChoice(question, maxChoice, maxAttempts = 3, defaultChoice = 1) {
+  // P0-007: Return default in non-interactive mode
+  if (!process.stdout.isTTY || !process.stdin.isTTY) {
+    console.warn(`[generate-context] Non-interactive mode: using default choice ${defaultChoice}`);
+    return defaultChoice;
+  }
+
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     const answer = await promptUser(question);
     const choice = parseInt(answer);
@@ -3078,11 +3189,17 @@ async function promptUserChoice(question, maxChoice, maxAttempts = 3) {
 /**
  * Prompt user for input in terminal
  * Ensures readline interface is always closed, even on errors
+ * P0-007: Returns defaultValue in non-interactive mode instead of throwing
+ * 
+ * @param {string} question - Prompt text to display
+ * @param {string} [defaultValue=''] - Default value to use in non-interactive mode
+ * @returns {Promise<string>} User input or default value
  */
-function promptUser(question) {
-  // Safety check: don't create readline interface if no TTY available
+function promptUser(question, defaultValue = '') {
+  // P0-007: Use default in non-interactive mode instead of throwing
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
-    throw new Error('Cannot prompt user: No TTY available (running in non-interactive mode)');
+    console.warn('[generate-context] Non-interactive mode: using default choice');
+    return Promise.resolve(defaultValue);
   }
 
   const rl = readline.createInterface({

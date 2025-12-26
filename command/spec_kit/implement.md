@@ -1,5 +1,5 @@
 ---
-description: Implementation workflow (8 steps) - execute pre-planned work. Requires existing plan.md. Supports :auto and :confirm modes
+description: Implementation workflow (9 steps) - execute pre-planned work. Requires existing plan.md. Supports :auto and :confirm modes
 argument-hint: "<spec-folder> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
@@ -104,7 +104,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │    C) Cancel - I need to plan first                             │
    │                                                                │
    │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
-   │    A) Autonomous - Execute all 8 steps without approval        │
+   │    A) Autonomous - Execute all 9 steps without approval        │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
    │ Reply with choices, e.g.: "A, A" or "A" (if mode pre-set)      │
@@ -236,14 +236,14 @@ operating_mode:
 
 ## 1. 🎯 PURPOSE
 
-Run the 8-step implementation workflow: plan review, task breakdown, quality validation, development, and completion summary. Picks up where `/spec_kit:plan` left off to execute the actual code changes.
+Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and handover check. Picks up where `/spec_kit:plan` left off to execute the actual code changes.
 
 ---
 
 ## 2. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Spec folder path (REQUIRED) with optional parameters (environment, constraints)
-**Outputs:** Completed implementation + implementation-summary.md + `STATUS=<OK|FAIL|CANCELLED>`
+**Outputs:** Completed implementation + implementation-summary.md + optional handover.md + `STATUS=<OK|FAIL|CANCELLED>`
 
 ### User Input
 
@@ -265,18 +265,19 @@ If prerequisites are missing, guide user to run `/spec_kit:plan` first.
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW (8 STEPS)
+## 3. 📊 WORKFLOW OVERVIEW (9 STEPS)
 
-| Step | Name                 | Purpose                                                            | Outputs                   |
-| ---- | -------------------- | ------------------------------------------------------------------ | ------------------------- |
-| 1    | Review Plan & Spec   | Understand requirements                                            | requirements_summary      |
-| 2    | Task Breakdown       | Create/validate tasks.md                                           | tasks.md                  |
-| 3    | Analysis             | Verify consistency                                                 | consistency_report        |
-| 4    | Quality Checklist    | Validate checklists (ACTIVELY USED for verification at completion) | checklist_status          |
-| 5    | Implementation Check | Verify prerequisites                                               | greenlight                |
-| 6    | Development          | Execute implementation                                             | code changes              |
-| 7    | Completion           | Generate summary                                                   | implementation-summary.md |
-| 8    | Save Context         | Preserve conversation                                              | memory/*.md               |
+| Step | Name                   | Purpose                                                            | Outputs                   |
+| ---- | ---------------------- | ------------------------------------------------------------------ | ------------------------- |
+| 1    | Review Plan & Spec     | Understand requirements                                            | requirements_summary      |
+| 2    | Task Breakdown         | Create/validate tasks.md                                           | tasks.md                  |
+| 3    | Analysis               | Verify consistency                                                 | consistency_report        |
+| 4    | Quality Checklist      | Validate checklists (ACTIVELY USED for verification at completion) | checklist_status          |
+| 5    | Implementation Check   | Verify prerequisites                                               | greenlight                |
+| 6    | Development            | Execute implementation                                             | code changes              |
+| 7    | Completion             | Generate summary (MANDATORY for Level 2+)                          | implementation-summary.md |
+| 8    | Save Context           | Preserve conversation                                              | memory/*.md               |
+| 9    | Session Handover Check | Prompt for handover document                                       | handover.md (optional)    |
 
 ---
 

@@ -267,6 +267,20 @@
 
 <a id="workflow-visualization"></a>
 
+<!-- DYNAMIC SECTION NUMBERING:
+  This section number depends on which optional sections are present:
+  - Base: 2 (after Overview)
+  - +1 if HAS_IMPLEMENTATION_GUIDE (adds section 1)
+  - +1 if HAS_OBSERVATIONS (adds Detailed Changes before this)
+  
+  Result matrix:
+  | IMPL_GUIDE | OBSERVATIONS | This Section # |
+  |------------|--------------|----------------|
+  | No         | No           | 2              |
+  | No         | Yes          | 3              |
+  | Yes        | No           | 3              |
+  | Yes        | Yes          | 4              |
+-->
 ## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}4{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}3{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}3{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}2{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. WORKFLOW VISUALIZATION
 
 **Pattern Type**: {{PATTERN_TYPE}}
@@ -322,6 +336,25 @@
 <!-- ANCHOR:decisions-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
 <a id="decisions"></a>
 
+<!-- DYNAMIC SECTION NUMBERING:
+  This section number depends on which optional sections are present:
+  - Base: 2 (after Overview)
+  - +1 if HAS_IMPLEMENTATION_GUIDE (adds section 1)
+  - +1 if HAS_OBSERVATIONS (adds Detailed Changes)
+  - +1 if HAS_WORKFLOW_DIAGRAM (adds Workflow Visualization)
+  
+  Result matrix:
+  | IMPL_GUIDE | OBSERVATIONS | WORKFLOW | This Section # |
+  |------------|--------------|----------|----------------|
+  | No         | No           | No       | 2              |
+  | No         | No           | Yes      | 3              |
+  | No         | Yes          | No       | 3              |
+  | No         | Yes          | Yes      | 4              |
+  | Yes        | No           | No       | 3              |
+  | Yes        | No           | Yes      | 4              |
+  | Yes        | Yes          | No       | 4              |
+  | Yes        | Yes          | Yes      | 5              |
+-->
 ## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}2{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. DECISIONS
 {{#DECISIONS}}
 
@@ -404,6 +437,11 @@ This session did not involve significant architectural or technical decisions. T
 <!-- ANCHOR:session-history-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
 <a id="conversation"></a>
 
+<!-- DYNAMIC SECTION NUMBERING:
+  This section number = DECISIONS section + 1
+  See DECISIONS section comment for the full matrix.
+  Range: 3-6 depending on optional sections present.
+-->
 ## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}6{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. CONVERSATION
 
 Complete timestamped dialogue capturing all user interactions, AI responses, tool executions, and code changes during the session.
