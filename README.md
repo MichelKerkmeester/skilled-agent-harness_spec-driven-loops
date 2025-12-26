@@ -2,9 +2,9 @@
 
 A development environment for [OpenCode](https://github.com/sst/opencode) featuring two custom-built systems you won't find anywhere else:
 
-- **📋 Spec Kit**: Originally inspired by GitHub's spec-kit, this unified system adds automation, slash commands, integrated semantic memory, and sub-folder versioning. Documentation writes itself and is enforced by design.
+**📋 Spec Kit**: Originally inspired by GitHub's spec-kit, this unified system adds automation, slash commands, integrated semantic memory, and sub-folder versioning. Documentation writes itself and is enforced by design.
 
-- **🎯 Skills** (custom framework): 8 domain-specific skills that auto-load based on your task. Designed for efficiency: fewer, smarter skills replace the typical sprawl of dozens of fragmented prompts.
+**🎯 Skills** (custom framework): 8 domain-specific skills that auto-load based on your task. Designed for efficiency: fewer, smarter skills replace the typical sprawl of dozens of fragmented prompts.
 
 #### Table of Contents
 
