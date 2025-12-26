@@ -1,6 +1,6 @@
 # AI Assistant Framework
 
-> Configuration defining behavior guardrails, standards, and decision frameworks. 
+> Configuration defining behavior guardrails, standards, and decision frameworks. Optimized for Webflow Projects.
 
 ---
 

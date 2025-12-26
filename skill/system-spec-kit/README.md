@@ -1,7 +1,5 @@
 # Spec Kit Framework
 
-> **Documentation that writes itself. Context that never dies.**
-
 Every feature you build should leave a trail. Not for bureaucracy, for your future self, your team, and the AI that helps you code. Spec Kit enforces one simple rule: *no code without a spec folder*.
 
 The result? Six months from now, you'll know exactly why you made that architectural decision. Your AI assistant will pick up where you left off. And onboarding new developers takes hours instead of weeks.
@@ -16,7 +14,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 | **Templates**          | ~5 basic files    | 10 purpose-built templates                       |
 | **Commands**           | Manual workflow   | 12 slash commands with `:auto`/`:confirm` modes  |
 | **Memory Integration** | None              | Deep integration via `generate-context.js`       |
-| **Quality Gates**      | None              | 8 gates enforce nothing slips through            |
+| **Quality Gates**      | None              | Mandatory gates enforce nothing slips through    |
 | **Debug Assistance**   | None              | AI detects frustration → auto-suggests sub-agent |
 | **Session Handover**   | None              | `:quick` (15 lines) or `:full` (150 lines)       |
 | **Quality Metrics**    | Guesswork         | Completeness scoring (0-100%)                    |
@@ -36,11 +34,12 @@ The result? Six months from now, you'll know exactly why you made that architect
 - [5. ⚙️ SCRIPTS](#5--scripts)
 - [6. 🎯 COMMANDS (7 TOTAL)](#6--commands-7-total)
 - [7. 🔄 HOW IT WORKS](#7--how-it-works)
-- [8. 🔌 INTEGRATION POINTS](#8--integration-points)
-- [9. 💡 USAGE EXAMPLES](#9--usage-examples)
-- [10. 🚀 INSTALLATION & SETUP](#10--installation--setup)
-- [11. 🔧 TROUBLESHOOTING](#11--troubleshooting)
-- [12. ❓ FAQ](#12--faq)
+- [8. 🧠 INTEGRATED MEMORY SYSTEM](#8--integrated-memory-system)
+- [9. 🔌 INTEGRATION POINTS](#9--integration-points)
+- [10. 💡 USAGE EXAMPLES](#10--usage-examples)
+- [11. 🚀 INSTALLATION & SETUP](#11--installation--setup)
+- [12. 🔧 TROUBLESHOOTING](#12--troubleshooting)
+- [13. ❓ FAQ](#13--faq)
 
 ---
 
@@ -51,7 +50,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 **Spec Kit** is an automation-first documentation framework that makes AI assistants *actually useful* across sessions. While the original Spec Kit concept provides basic structure, this enhanced fork transforms it into a complete system with:
 
 - **Deep Memory Integration** — Context auto-saves to semantic memory, searchable across sessions
-- **Gate Enforcement** — 8 mandatory gates prevent skipped steps, lost context, and incomplete work
+- **Gate Enforcement** — Mandatory gates prevent skipped steps, lost context, and incomplete work
 - **Debug Intelligence** — AI detects when you're stuck and offers to dispatch a specialist sub-agent
 
 > **Fork Exclusive**: This version is specifically designed for AI-assisted development workflows where context preservation is critical.
@@ -73,7 +72,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 ### Key Features
 
 **Template Management**:
-- 12 structured templates for documentation levels 1-3
+- 10 structured templates for documentation levels 1-3
 - Placeholder system with validation enforcement
 - Template source markers for traceability
 
@@ -111,7 +110,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 ```
 .opencode/skill/system-spec-kit/
 ├── README.md               # This file (comprehensive documentation)
-├── templates/              # 12 markdown templates
+├── templates/              # 10 markdown templates
 │   ├── spec.md             # Feature specification (Level 1+)
 │   ├── plan.md             # Implementation plan (Level 1+)
 │   ├── tasks.md            # Task breakdown (Level 1+)
@@ -272,21 +271,21 @@ The `memory/` folder stores **conversation context and session history** for AI 
 
 MCP tools use the full prefix `spec_kit_memory_*` when invoked. Documentation uses shorthand for readability.
 
-| Full MCP Name | Shorthand (in docs) |
-|---------------|---------------------|
-| `spec_kit_memory_memory_search` | `memory_search` |
-| `spec_kit_memory_memory_save` | `memory_save` |
-| `spec_kit_memory_memory_list` | `memory_list` |
-| `spec_kit_memory_memory_stats` | `memory_stats` |
-| `spec_kit_memory_memory_update` | `memory_update` |
-| `spec_kit_memory_memory_delete` | `memory_delete` |
-| `spec_kit_memory_memory_validate` | `memory_validate` |
-| `spec_kit_memory_memory_index_scan` | `memory_index_scan` |
+| Full MCP Name                           | Shorthand (in docs)     |
+| --------------------------------------- | ----------------------- |
+| `spec_kit_memory_memory_search`         | `memory_search`         |
+| `spec_kit_memory_memory_save`           | `memory_save`           |
+| `spec_kit_memory_memory_list`           | `memory_list`           |
+| `spec_kit_memory_memory_stats`          | `memory_stats`          |
+| `spec_kit_memory_memory_update`         | `memory_update`         |
+| `spec_kit_memory_memory_delete`         | `memory_delete`         |
+| `spec_kit_memory_memory_validate`       | `memory_validate`       |
+| `spec_kit_memory_memory_index_scan`     | `memory_index_scan`     |
 | `spec_kit_memory_memory_match_triggers` | `memory_match_triggers` |
-| `spec_kit_memory_checkpoint_create` | `checkpoint_create` |
-| `spec_kit_memory_checkpoint_list` | `checkpoint_list` |
-| `spec_kit_memory_checkpoint_restore` | `checkpoint_restore` |
-| `spec_kit_memory_checkpoint_delete` | `checkpoint_delete` |
+| `spec_kit_memory_checkpoint_create`     | `checkpoint_create`     |
+| `spec_kit_memory_checkpoint_list`       | `checkpoint_list`       |
+| `spec_kit_memory_checkpoint_restore`    | `checkpoint_restore`    |
+| `spec_kit_memory_checkpoint_delete`     | `checkpoint_delete`     |
 
 **Usage:** When calling MCP tools directly, use the full name (e.g., `spec_kit_memory_memory_search({ query: "..." })`). In documentation and discussion, shorthand is acceptable.
 
@@ -312,11 +311,11 @@ Utility (any level):    handover.md, debug-delegation.md
 
 ### Level Specifications
 
-| Level | Name         | Required Files                                            | LOC Guidance | Enforcement                              |
-| ----- | ------------ | --------------------------------------------------------- | ------------ | ---------------------------------------- |
-| **1** | Baseline     | spec.md + plan.md + tasks.md + implementation-summary.md  | <100         | Hard block if any missing                |
-| **2** | Verification | Level 1 + checklist.md                                    | 100-499      | Hard block if checklist.md missing       |
-| **3** | Full         | Level 2 + decision-record.md                              | ≥500         | Hard block if decision-record.md missing |
+| Level | Name         | Required Files                                           | LOC Guidance | Enforcement                              |
+| ----- | ------------ | -------------------------------------------------------- | ------------ | ---------------------------------------- |
+| **1** | Baseline     | spec.md + plan.md + tasks.md + implementation-summary.md | <100         | Hard block if any missing                |
+| **2** | Verification | Level 1 + checklist.md                                   | 100-499      | Hard block if checklist.md missing       |
+| **3** | Full         | Level 2 + decision-record.md                             | ≥500         | Hard block if decision-record.md missing |
 
 ### Level 1: Baseline Documentation
 
@@ -558,7 +557,7 @@ cp .opencode/skill/system-spec-kit/templates/debug-delegation.md specs/###-name/
 
 ## 5. ⚙️ SCRIPTS
 
-> **Fork Exclusive**: The original Spec Kit has zero automation scripts. This fork has seven.
+> **Fork Exclusive**: The original Spec Kit has zero automation scripts. This fork has eleven.
 
 Eleven automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle the tedious work so you can focus on building.
 
@@ -1317,7 +1316,101 @@ Spec Kit uses a 2-tier architecture:
 
 ---
 
-## 8. 🔌 INTEGRATION POINTS
+## 8. 🧠 INTEGRATED MEMORY SYSTEM
+
+> **Fork Exclusive**: The original Spec Kit has no memory integration. This fork includes a complete semantic memory system with vector search, importance tiers, and proactive context surfacing.
+
+### 8.1 Overview
+
+The Spec Kit Memory system gives your AI assistant persistent, searchable memory across sessions. Memory files live IN spec folders (`specs/###-feature/memory/`), are indexed into a local SQLite database with vector embeddings, and surface proactively when relevant.
+
+**Key Capabilities:**
+- Hybrid search (vector + FTS5 + RRF fusion)
+- 6 importance tiers with configurable decay
+- ANCHOR format for 93% token savings
+- <50ms proactive trigger matching
+- Checkpoints for state snapshots
+
+### 8.2 Importance Tiers
+
+The memory system uses 6 importance tiers to prioritize what surfaces first:
+
+| Tier | Boost | Decay | Use Case |
+|------|-------|-------|----------|
+| **constitutional** | 3.0x | Never | Project rules, always-on context (~500 tokens max) |
+| **critical** | 2.0x | Never | Architecture decisions, breaking changes |
+| **important** | 1.5x | Never | Key implementations, major features |
+| **normal** | 1.0x | 90-day | Standard development context (default) |
+| **temporary** | 0.5x | 7-day | Debug sessions, experiments |
+| **deprecated** | 0.0x | Excluded | Outdated information (preserved but hidden) |
+
+**Tier Selection:**
+- **constitutional**: Reserved for rules that should ALWAYS surface
+- **critical/important**: Decisions that would break things or save significant time
+- **normal**: Default for most session context
+- **temporary**: Short-term debugging notes
+- **deprecated**: Mark outdated info instead of deleting
+
+### 8.3 ANCHOR Format
+
+Memory files use ANCHOR markers for section-level retrieval, enabling 93% token savings:
+
+```markdown
+<!-- ANCHOR: decision-auth-flow -->
+## Authentication Decision
+
+We chose JWT with refresh tokens because:
+1. Stateless authentication scales better
+2. Refresh tokens allow session extension without re-login
+
+**Trade-offs:** Token revocation requires blocklist.
+<!-- ANCHOR_END: decision-auth-flow -->
+```
+
+**How it works:**
+1. `generate-context.js` extracts ANCHOR sections
+2. Each section is embedded separately
+3. Search returns specific sections, not entire files
+4. Agent loads only relevant anchors
+
+**ANCHOR Rules:**
+- Every `ANCHOR:` must have matching `ANCHOR_END:`
+- IDs must be unique within a file
+- Use descriptive IDs: `decision-*`, `blocker-*`, `context-*`
+
+### 8.4 Memory Commands
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/memory:save [folder]` | Save context via generate-context.js | `/memory:save specs/042-auth` |
+| `/memory:search` | Dashboard with stats and suggestions | `/memory:search` |
+| `/memory:search <query>` | Semantic search with filters | `/memory:search "auth flow"` |
+| `/memory:search cleanup` | Interactive cleanup of old memories | `/memory:search cleanup` |
+| `/memory:checkpoint create` | Snapshot current state | `/memory:checkpoint create v1` |
+
+### 8.5 Hybrid Search
+
+The memory system combines three search strategies via RRF (Reciprocal Rank Fusion):
+
+| Strategy | Speed | Best For |
+|----------|-------|----------|
+| **Vector** | ~100ms | Semantic queries ("How does auth work?") |
+| **FTS5** | <10ms | Exact keywords ("JWT", "refresh token") |
+| **Trigger** | <50ms | Proactive surfacing (phrase matching) |
+
+Results are merged using RRF fusion, giving you semantic understanding with keyword precision.
+
+### 8.6 Privacy & Local-First
+
+All processing happens locally:
+- **Embeddings**: nomic-embed-text-v1.5 runs on YOUR machine via Ollama
+- **Storage**: SQLite database in YOUR project (`.opencode/skill/system-spec-kit/database/`)
+- **No external API calls** for memory operations
+- Works fully offline after initial model download
+
+---
+
+## 9. 🔌 INTEGRATION POINTS
 
 ### Related Skills
 
@@ -1337,7 +1430,7 @@ Spec Kit uses a 2-tier architecture:
 
 ### External Dependencies
 
-- `.opencode/skill/system-spec-kit/templates/*.md` - All 12 templates
+- `.opencode/skill/system-spec-kit/templates/*.md` - All 10 templates
 - `.opencode/skill/system-spec-kit/SKILL.md` - Main skill
 - `AGENTS.md` - Section 2 defines requirements
 - `specs/` - Directory for all spec folders
@@ -1351,7 +1444,7 @@ Spec Kit uses a 2-tier architecture:
 
 ---
 
-## 9. 💡 USAGE EXAMPLES
+## 10. 💡 USAGE EXAMPLES
 
 ### Creating a New Feature
 
@@ -1456,7 +1549,7 @@ specs/042-user-auth/
 
 ---
 
-## 10. 🚀 INSTALLATION & SETUP
+## 11. 🚀 INSTALLATION & SETUP
 
 ### 30-Second Setup
 
@@ -1502,7 +1595,7 @@ cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-your-feature-nam
 
 ---
 
-## 11. 🔧 TROUBLESHOOTING
+## 12. 🔧 TROUBLESHOOTING
 
 ### Spec Folder Not Found
 
@@ -1685,7 +1778,7 @@ grep -n "^\- \[" specs/###-folder/checklist.md | grep -v "P0:\|P1:\|P2:"
 
 ---
 
-## 12. ❓ FAQ
+## 13. ❓ FAQ
 
 ### General Questions
 
@@ -1740,6 +1833,7 @@ A:
 7. `handover.md` - Full session continuity (utility, ~100-150 lines)
 8. `debug-delegation.md` - Sub-agent debugging (utility)
 9. `implementation-summary.md` - Implementation completion summary (utility)
+10. `context_template.md` - Memory context template (utility)
 
 ---
 
@@ -1775,7 +1869,7 @@ A: The original Spec Kit is a concept. This fork is a complete system:
 | Commands           | None     | 12 with mode variants               |
 | Memory Integration | None     | Semantic search across sessions     |
 | Debug Help         | None     | AI-detected frustration → sub-agent |
-| Gate Enforcement   | None     | 8 gates prevent mistakes            |
+| Gate Enforcement   | None     | Mandatory gates prevent mistakes    |
 | Quality Metrics    | None     | Completeness scoring                |
 
 **TL;DR**: The original tells you *what* to document. This fork *does the documenting for you*.

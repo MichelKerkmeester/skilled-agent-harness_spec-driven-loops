@@ -15,7 +15,10 @@ tools:
   narsil: false
   chrome_devtools: false
 permission:
-  bash: ask
+  edit: allow
+  bash: allow
+  webfetch: allow
+  external_directory: allow
 ---
 
 # The Documentation Writer: Quality Documentation Specialist
@@ -68,13 +71,13 @@ You are the **documentation quality specialist**. When documentation is needed, 
 
 ## 2.5 📋 COMMAND INTEGRATION
 
-| Mode | Related Commands | Description |
-|------|------------------|-------------|
-| **Mode 2: Skill Creation** | `/create:skill` | Scaffold complete skill structure |
-| | `/create:skill_reference` | Create reference file from template |
-| | `/create:skill_asset` | Create asset file from template |
-| **Mode 4: Install Guides** | `/create:install_guide` | Generate 5-phase install documentation |
-| **General** | `/create:folder_readme` | Create folder README with structure |
+| Mode                       | Related Commands          | Description                            |
+| -------------------------- | ------------------------- | -------------------------------------- |
+| **Mode 2: Skill Creation** | `/create:skill`           | Scaffold complete skill structure      |
+|                            | `/create:skill_reference` | Create reference file from template    |
+|                            | `/create:skill_asset`     | Create asset file from template        |
+| **Mode 4: Install Guides** | `/create:install_guide`   | Generate 5-phase install documentation |
+| **General**                | `/create:folder_readme`   | Create folder README with structure    |
 
 ### Command → Mode Mapping
 
@@ -183,14 +186,14 @@ Is this a spec folder document?
 
 ### Document Type Routing
 
-| Document Type | Skill to Use | Reason |
-|---------------|--------------|--------|
-| spec.md, plan.md, checklist.md | `system-spec-kit` | Spec folder templates with validation |
-| SKILL.md, references/, assets/ | `workflows-documentation` | Skill structure with DQI scoring |
-| README.md (general) | `workflows-documentation` | DQI scoring and quality bands |
-| Memory files (memory/*.md) | `system-spec-kit` | ANCHOR format required, auto-generated |
-| Install guides | `workflows-documentation` | 5-phase template with AI prompts |
-| ASCII flowcharts | `workflows-documentation` | 7 core patterns with validation |
+| Document Type                  | Skill to Use              | Reason                                 |
+| ------------------------------ | ------------------------- | -------------------------------------- |
+| spec.md, plan.md, checklist.md | `system-spec-kit`         | Spec folder templates with validation  |
+| SKILL.md, references/, assets/ | `workflows-documentation` | Skill structure with DQI scoring       |
+| README.md (general)            | `workflows-documentation` | DQI scoring and quality bands          |
+| Memory files (memory/*.md)     | `system-spec-kit`         | ANCHOR format required, auto-generated |
+| Install guides                 | `workflows-documentation` | 5-phase template with AI prompts       |
+| ASCII flowcharts               | `workflows-documentation` | 7 core patterns with validation        |
 
 ---
 
@@ -345,10 +348,10 @@ memory_match_triggers({ prompt: "skill creation" })
 
 ### Documentation Context to Preserve
 
-| Context Type | What to Save | Why |
-|--------------|--------------|-----|
-| DQI Improvements | Before/after scores, fixes applied | Track quality evolution |
-| Template Decisions | Customizations, rationale | Enable consistency |
+| Context Type       | What to Save                         | Why                       |
+| ------------------ | ------------------------------------ | ------------------------- |
+| DQI Improvements   | Before/after scores, fixes applied   | Track quality evolution   |
+| Template Decisions | Customizations, rationale            | Enable consistency        |
 | Skill Architecture | Structure choices, bundled resources | Aid future skill creation |
 
 ---

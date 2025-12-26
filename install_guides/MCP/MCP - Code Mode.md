@@ -52,7 +52,7 @@ Guide me through each step with the exact commands and configuration needed.
 - Configure Code Mode for your specific AI platform
 - Add MCP server definitions for your preferred tools
 - Test the four available tools: `call_tool_chain`, `search_tools`, `list_tools`, `tool_info`
-- Show you the **critical naming convention**: `{manual}.{manual}.{tool_name}`
+- Show you the **critical naming convention**: `{manual}.{manual_name}_{tool_name}`
 - Demonstrate progressive tool discovery
 
 **Expected setup time:** 10-15 minutes
@@ -678,29 +678,29 @@ echo "Run: list_tools() in OpenCode to verify"
 
 **Pattern:**
 ```
-{manual}.{manual}.{tool_name}
+{manual}.{manual_name}_{tool_name}
 ```
 
-All tool calls MUST follow this exact pattern with **dots separating all parts**.
+All tool calls MUST follow this exact pattern with a **dot** after the manual name and an **underscore** before the tool name.
 
 **Examples:**
 
-| Manual              | Pattern                                      | Example Call                                               |
-| ------------------- | -------------------------------------------- | ---------------------------------------------------------- |
-| `webflow`           | `webflow.webflow.{tool}`                     | `webflow.webflow.sites_list({})`                           |
-| `github`            | `github.github.{tool}`                       | `github.github.get_issue({...})`                           |
-| `clickup`           | `clickup.clickup.{tool}`                     | `clickup.clickup.create_task({...})`                       |
-| `figma`             | `figma.figma.{tool}`                         | `figma.figma.get_file({...})`                              |
-| `chrome_devtools_1` | `chrome_devtools_1.chrome_devtools_1.{tool}` | `chrome_devtools_1.chrome_devtools_1.navigate_page({...})` |
+| Manual              | Pattern                                         | Example Call                                                  |
+| ------------------- | ----------------------------------------------- | ------------------------------------------------------------- |
+| `webflow`           | `webflow.webflow_{tool}`                        | `webflow.webflow_sites_list({})`                              |
+| `github`            | `github.github_{tool}`                          | `github.github_get_issue({...})`                              |
+| `clickup`           | `clickup.clickup_{tool}`                        | `clickup.clickup_create_task({...})`                          |
+| `figma`             | `figma.figma_{tool}`                            | `figma.figma_get_file({...})`                                 |
+| `chrome_devtools_1` | `chrome_devtools_1.chrome_devtools_1_{tool}`    | `chrome_devtools_1.chrome_devtools_1_navigate_page({...})`    |
 
 ### Common Mistakes
 
-| Error                         | Wrong                          | Correct                        |
-| ----------------------------- | ------------------------------ | ------------------------------ |
-| **Missing second part**       | `webflow.sites_list()`         | `webflow.webflow.sites_list()` |
-| **Underscore instead of dot** | `webflow.webflow_sites_list()` | `webflow.webflow.sites_list()` |
-| **camelCase**                 | `webflow.webflow.sitesList()`  | `webflow.webflow.sites_list()` |
-| **Wrong manual name**         | `wf.webflow.sites_list()`      | `webflow.webflow.sites_list()` |
+| Error                         | Wrong                          | Correct                         |
+| ----------------------------- | ------------------------------ | ------------------------------- |
+| **Missing second part**       | `webflow.sites_list()`         | `webflow.webflow_sites_list()`  |
+| **Dot instead of underscore** | `webflow.webflow.sites_list()` | `webflow.webflow_sites_list()`  |
+| **camelCase**                 | `webflow.webflow_sitesList()`  | `webflow.webflow_sites_list()`  |
+| **Wrong manual name**         | `wf.webflow_sites_list()`      | `webflow.webflow_sites_list()`  |
 
 ### Why This Pattern?
 
@@ -710,12 +710,12 @@ The naming follows the `.utcp_config.json` structure:
   "name": "webflow",           // ← First part (manual name)
   "config": {
     "mcpServers": {
-      "webflow": { ... }       // ← Second part (server name)
+      "webflow": { ... }       // ← Second part (server name, joined with underscore to tool)
     }
   }
 }
-// Tool name comes from the MCP server → Third part
-// Result: webflow.webflow.sites_list
+// Tool name comes from the MCP server → Combined with underscore
+// Result: webflow.webflow_sites_list
 ```
 
 ### Basic Workflow
@@ -737,7 +737,7 @@ search_tools({
 ```typescript
 // Get full interface for specific tool
 tool_info({
-  tool_name: "webflow.webflow.sites_list"
+  tool_name: "webflow.webflow_sites_list"
 });
 
 // Returns: Full TypeScript interface definition
@@ -749,7 +749,7 @@ tool_info({
 // Execute TypeScript with direct tool access
 call_tool_chain({
   code: `
-    const sites = await webflow.webflow.sites_list({});
+    const sites = await webflow.webflow_sites_list({});
     console.log('Found sites:', sites.sites.length);
     return sites;
   `
@@ -829,9 +829,9 @@ timeout = base_overhead + (num_tools × tool_avg) + safety_margin
 call_tool_chain({
   code: `
     // Complex multi-tool workflow
-    const sites = await webflow.webflow.sites_list({});
-    const collections = await webflow.webflow.collections_list({ site_id: sites.sites[0].id });
-    const task = await clickup.clickup.create_task({ name: "Review collections" });
+    const sites = await webflow.webflow_sites_list({});
+    const collections = await webflow.webflow_collections_list({ site_id: sites.sites[0].id });
+    const task = await clickup.clickup_create_task({ name: "Review collections" });
     return { sites, collections, task };
   `,
   timeout: 60000  // 3 tools → use 60000ms
@@ -855,7 +855,7 @@ call_tool_chain({
 ```typescript
 call_tool_chain({
   code: `
-    const sites = await webflow.webflow.sites_list({});
+    const sites = await webflow.webflow_sites_list({});
     return sites;
   `,
   timeout: 60000
@@ -900,7 +900,7 @@ list_tools();
 **Purpose**: Get complete TypeScript interface for a specific tool.
 
 **Parameters**:
-- `tool_name` (string, required) - Full tool name (e.g., "webflow.webflow.sites_list")
+- `tool_name` (string, required) - Full tool name (e.g., "webflow.webflow_sites_list")
 
 **Example**:
 ```typescript
@@ -923,14 +923,14 @@ tool_info({
 call_tool_chain({
   code: `
     // Get all sites
-    const sitesResult = await webflow.webflow.sites_list({});
+    const sitesResult = await webflow.webflow_sites_list({});
     const sites = sitesResult.sites;
 
     console.log(\`Found \${sites.length} sites\`);
 
     // Get collections for first site
     if (sites.length > 0) {
-      const collections = await webflow.webflow.collections_list({
+      const collections = await webflow.webflow_collections_list({
         site_id: sites[0].id
       });
 
@@ -1020,7 +1020,7 @@ call_tool_chain({
 
       // Step 3: Add to Webflow CMS queue
       console.log('Adding to Webflow CMS...');
-      const cmsItem = await webflow.webflow.collections_items_create_item_live({
+      const cmsItem = await webflow.webflow_collections_items_create_item_live({
         collection_id: "YOUR_COLLECTION_ID",
         request: {
           items: [{
@@ -1122,12 +1122,12 @@ call_tool_chain({
 
     // Execute operations with fallbacks
     const sites = await tryExecute('list-sites',
-      () => webflow.webflow.sites_list({})
+      () => webflow.webflow_sites_list({})
     );
 
     if (sites) {
       await tryExecute('get-collections',
-        () => webflow.webflow.collections_list({ site_id: sites.sites[0].id })
+        () => webflow.webflow_collections_list({ site_id: sites.sites[0].id })
       );
     }
 
@@ -1146,8 +1146,8 @@ call_tool_chain({
 
 | Error Message                                | Cause                        | Solution                                  |
 | -------------------------------------------- | ---------------------------- | ----------------------------------------- |
-| `Tool not found: webflow.sites_list`         | Missing second manual part   | Use `webflow.webflow.sites_list`          |
-| `Tool not found: webflow.webflow_sites_list` | Underscore instead of dot    | Use `webflow.webflow.sites_list`          |
+| `Tool not found: webflow.sites_list`         | Missing second manual part   | Use `webflow.webflow_sites_list`          |
+| `Tool not found: webflow.webflow.sites_list` | Dot instead of underscore    | Use `webflow.webflow_sites_list`          |
 | `Execution timeout exceeded`                 | Complex operation            | Increase `timeout` parameter              |
 | `UTCP_CONFIG_PATH not set`                   | Missing environment variable | Set path to `.utcp_config.json`           |
 | `Environment variable X not found`           | Missing in .env              | Add variable to `.env` file               |
@@ -1162,16 +1162,16 @@ call_tool_chain({
 **Cause**: Missing the second manual/server part in the tool name
 
 **Solution**:
-1. Use correct naming pattern: `{manual}.{manual}.{tool_name}`
+1. Use correct naming pattern: `{manual}.{manual_name}_{tool_name}`
    ```typescript
    // WRONG - Missing second part
    await webflow.sites_list({});
 
-   // WRONG - Underscore instead of dot
-   await webflow.webflow_sites_list({});
+   // WRONG - Dot instead of underscore
+   await webflow.webflow.sites_list({});
 
    // CORRECT
-   await webflow.webflow.sites_list({});
+   await webflow.webflow_sites_list({});
    ```
 
 2. Use tool discovery to find exact names:
@@ -1290,7 +1290,7 @@ call_tool_chain({
 await webflow.webflow();
 
 // CORRECT - Include tool name
-await webflow.webflow.sites_list({});
+await webflow.webflow_sites_list({});
 ```
 
 ---
@@ -1387,18 +1387,18 @@ env | grep -E "(CLICKUP|FIGMA|GITHUB)"
 ### NAMING PATTERN (Memorize This!)
 
 ```typescript
-// Pattern: {manual}.{manual}.{tool_name}
-//          ───┬───  ───┬───  ────┬────
-//             │        │         └── Tool from MCP server
-//             │        └── Server name (from mcpServers key)
+// Pattern: {manual}.{manual_name}_{tool_name}
+//          ───┬───  ─────┬─────  ────┬────
+//             │          │           └── Tool from MCP server
+//             │          └── Server name + underscore + tool
 //             └── Manual name (from "name" field)
 
 // Examples:
-webflow.webflow.sites_list({});
-github.github.get_issue({ owner: "foo", repo: "bar", issue_number: 123 });
-clickup.clickup.create_task({ name: "My Task", listName: "Sprint" });
-figma.figma.get_file({ fileId: "abc123" });
-chrome_devtools_1.chrome_devtools_1.new_page({});
+webflow.webflow_sites_list({});
+github.github_get_issue({ owner: "foo", repo: "bar", issue_number: 123 });
+clickup.clickup_create_task({ name: "My Task", listName: "Sprint" });
+figma.figma_get_file({ fileId: "abc123" });
+chrome_devtools_1.chrome_devtools_1_new_page({});
 ```
 
 ### Common Workflows
@@ -1412,7 +1412,7 @@ console.log(tools.map(t => t.name));
 **Single Tool Call**:
 ```typescript
 call_tool_chain({
-  code: `await webflow.webflow.sites_list({})`
+  code: `await webflow.webflow_sites_list({})`
 });
 ```
 
@@ -1421,8 +1421,8 @@ call_tool_chain({
 call_tool_chain({
   code: `
     try {
-      const a = await github.github.get_repo({ owner: "x", repo: "y" });
-      const b = await clickup.clickup.create_task({ name: a.name });
+      const a = await github.github_get_repo({ owner: "x", repo: "y" });
+      const b = await clickup.clickup_create_task({ name: a.name });
       return { success: true, a, b };
     } catch (error) {
       return { success: false, error: error.message };

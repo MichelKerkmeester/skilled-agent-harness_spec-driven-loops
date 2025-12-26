@@ -363,6 +363,75 @@ function restoreCheckpoint(name, options = {}) {
     const idMapping = new Map();
     
     if (reinsertMemories && memories.length > 0) {
+      // ========================================================================
+      // DEDUPLICATION FIX (SPECKIT-003 v2): BATCH DELETE BEFORE INSERT
+      // ========================================================================
+      // The previous per-memory deduplication didn't work because:
+      // 1. NULL file_paths: WHERE file_path = NULL never matches (SQL semantics)
+      // 2. No visibility into what was happening
+      //
+      // This fix does a BATCH delete of all existing memories that match any
+      // file_path in the snapshot BEFORE inserting, ensuring no duplicates.
+      // ========================================================================
+      
+      // Step 2a: Collect all valid file_paths from snapshot
+      const filePaths = memories
+        .map(m => m.file_path)
+        .filter(fp => fp != null && fp !== '');
+      
+      console.error(`[checkpoints] DEDUP: ${memories.length} memories in snapshot, ${filePaths.length} have valid file_paths`);
+      
+      // Step 2b: Find existing memories with these file_paths (batch query)
+      const existingIdsToDelete = [];
+      if (filePaths.length > 0) {
+        // Query in batches to avoid SQLite parameter limits
+        const BATCH_SIZE = 500;
+        for (let i = 0; i < filePaths.length; i += BATCH_SIZE) {
+          const batch = filePaths.slice(i, i + BATCH_SIZE);
+          const placeholders = batch.map(() => '?').join(',');
+          const rows = database.prepare(
+            `SELECT id FROM memory_index WHERE file_path IN (${placeholders})`
+          ).all(...batch);
+          for (const row of rows) {
+            existingIdsToDelete.push(row.id);
+          }
+        }
+      }
+      
+      console.error(`[checkpoints] DEDUP: Found ${existingIdsToDelete.length} existing memories to delete before restore`);
+      
+      // Step 2c: Delete embeddings for these IDs (if sqlite-vec available)
+      if (sqliteVecAvailable && existingIdsToDelete.length > 0) {
+        const BATCH_SIZE = 500;
+        for (let i = 0; i < existingIdsToDelete.length; i += BATCH_SIZE) {
+          const batch = existingIdsToDelete.slice(i, i + BATCH_SIZE);
+          const placeholders = batch.map(() => '?').join(',');
+          try {
+            database.prepare(`DELETE FROM vec_memories WHERE rowid IN (${placeholders})`).run(...batch);
+          } catch (vecErr) {
+            // Ignore vec_memories errors (table may not exist or rows may be missing)
+            console.error(`[checkpoints] DEDUP: vec_memories delete warning: ${vecErr.message}`);
+          }
+        }
+      }
+      
+      // Step 2d: Delete the memories from memory_index
+      let deletedCount = 0;
+      if (existingIdsToDelete.length > 0) {
+        const BATCH_SIZE = 500;
+        for (let i = 0; i < existingIdsToDelete.length; i += BATCH_SIZE) {
+          const batch = existingIdsToDelete.slice(i, i + BATCH_SIZE);
+          const placeholders = batch.map(() => '?').join(',');
+          const result = database.prepare(
+            `DELETE FROM memory_index WHERE id IN (${placeholders})`
+          ).run(...batch);
+          deletedCount += result.changes;
+        }
+      }
+      
+      console.error(`[checkpoints] DEDUP: Deleted ${deletedCount} existing memories (cleared for restore)`);
+
+      // Step 2e: Now INSERT all memories from snapshot (no duplicates possible)
       const insertStmt = database.prepare(`
         INSERT INTO memory_index (
           spec_folder, file_path, anchor_id, title, trigger_phrases,
@@ -397,14 +466,17 @@ function restoreCheckpoint(name, options = {}) {
           const newId = Number(insertResult.lastInsertRowid);
           idMapping.set(mem.id, newId);
         } catch (e) {
-          // Skip duplicates (UNIQUE constraint)
+          // Skip duplicates (UNIQUE constraint) - should rarely happen now with batch delete
           if (e.message.includes('UNIQUE constraint failed')) {
+            console.error(`[checkpoints] DEDUP: Skipped duplicate (unexpected): ${mem.file_path}`);
             skipped++;
           } else {
             throw e;
           }
         }
       }
+      
+      console.error(`[checkpoints] DEDUP: Inserted ${inserted} memories, skipped ${skipped}`);
     }
 
     // Step 3: Restore embeddings if available and sqlite-vec is present

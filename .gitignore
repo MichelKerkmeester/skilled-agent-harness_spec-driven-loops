@@ -7,9 +7,9 @@
 node_modules/
 
 # Database files (contain personal memory/session data)
-memory/database/*.sqlite
-memory/database/*.sqlite-shm
-memory/database/*.sqlite-wal
+skill/system-spec-kit/database/*.sqlite
+skill/system-spec-kit/database/*.sqlite-shm
+skill/system-spec-kit/database/*.sqlite-wal
 
 # Archive folder (root level only)
 /z — Archive/

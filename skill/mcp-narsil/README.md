@@ -204,26 +204,26 @@ call_tool_chain({
 
 Comprehensive security analysis with OWASP Top 10, CWE Top 25, and taint tracking.
 
-| Tool                             | Purpose                                   |
-| -------------------------------- | ----------------------------------------- |
-| `scan_security`                  | Full security scan with multiple rulesets |
-| `find_injection_vulnerabilities` | SQL, XSS, command injection detection     |
-| `check_owasp_top10`              | OWASP Top 10 2021 compliance              |
-| `check_cwe_top25`                | CWE Top 25 weaknesses                     |
-| `trace_taint`                    | Data flow from untrusted sources          |
+| Tool                                        | Purpose                                   |
+| ------------------------------------------- | ----------------------------------------- |
+| `narsil.narsil_scan_security`               | Full security scan with multiple rulesets |
+| `narsil.narsil_find_injection_vulnerabilities` | SQL, XSS, command injection detection  |
+| `narsil.narsil_check_owasp_top10`           | OWASP Top 10 2021 compliance              |
+| `narsil.narsil_check_cwe_top25`             | CWE Top 25 weaknesses                     |
+| `narsil.narsil_trace_taint`                 | Data flow from untrusted sources          |
 
 ### Call Graph Analysis
 
 Deep code flow understanding with CFG, DFG, and complexity metrics.
 
-| Tool               | Purpose                         |
-| ------------------ | ------------------------------- |
-| `get_call_graph`   | Function call relationships     |
-| `get_callers`      | Who calls this function?        |
-| `get_callees`      | What does this function call?   |
-| `get_complexity`   | Cyclomatic/cognitive complexity |
-| `get_control_flow` | CFG showing basic blocks        |
-| `get_data_flow`    | Variable definitions and uses   |
+| Tool                            | Purpose                         |
+| ------------------------------- | ------------------------------- |
+| `narsil.narsil_get_call_graph`  | Function call relationships     |
+| `narsil.narsil_get_callers`     | Who calls this function?        |
+| `narsil.narsil_get_callees`     | What does this function call?   |
+| `narsil.narsil_get_complexity`  | Cyclomatic/cognitive complexity |
+| `narsil.narsil_get_control_flow`| CFG showing basic blocks        |
+| `narsil.narsil_get_data_flow`   | Variable definitions and uses   |
 
 ### Neural Semantic Search
 
@@ -247,33 +247,33 @@ Built-in type inference for dynamic languages without requiring external type ch
 
 **Supported Languages:** Python, JavaScript, TypeScript
 
-| Tool                   | Purpose                                                 |
-| ---------------------- | ------------------------------------------------------- |
-| `infer_types`          | Get inferred types for all variables in a function      |
-| `check_type_errors`    | Find potential type mismatches without running mypy/tsc |
-| `get_typed_taint_flow` | Enhanced security analysis combining types with taint   |
+| Tool                              | Purpose                                                 |
+| --------------------------------- | ------------------------------------------------------- |
+| `narsil.narsil_infer_types`       | Get inferred types for all variables in a function      |
+| `narsil.narsil_check_type_errors` | Find potential type mismatches without running mypy/tsc |
+| `narsil.narsil_get_typed_taint_flow` | Enhanced security analysis combining types with taint|
 
 ### Supply Chain Security
 
 Dependency management and compliance verification.
 
-| Tool                 | Purpose                                   |
-| -------------------- | ----------------------------------------- |
-| `generate_sbom`      | CycloneDX/SPDX software bill of materials |
-| `check_dependencies` | CVE checking against OSV database         |
-| `check_licenses`     | License compliance verification           |
-| `find_upgrade_path`  | Safe upgrade paths for vulnerable deps    |
+| Tool                              | Purpose                                   |
+| --------------------------------- | ----------------------------------------- |
+| `narsil.narsil_generate_sbom`     | CycloneDX/SPDX software bill of materials |
+| `narsil.narsil_check_dependencies`| CVE checking against OSV database         |
+| `narsil.narsil_check_licenses`    | License compliance verification           |
+| `narsil.narsil_find_upgrade_path` | Safe upgrade paths for vulnerable deps    |
 
 ### Structural Queries
 
 Symbol search and project navigation.
 
-| Tool                      | Purpose                          |
-| ------------------------- | -------------------------------- |
-| `find_symbols`            | Find functions, classes, structs |
-| `get_project_structure`   | Directory tree overview          |
-| `find_references`         | All usages of a symbol           |
-| `workspace_symbol_search` | Fuzzy search across workspace    |
+| Tool                                   | Purpose                          |
+| -------------------------------------- | -------------------------------- |
+| `narsil.narsil_find_symbols`           | Find functions, classes, structs |
+| `narsil.narsil_get_project_structure`  | Directory tree overview          |
+| `narsil.narsil_find_references`        | All usages of a symbol           |
+| `narsil.narsil_workspace_symbol_search`| Fuzzy search across workspace    |
 
 ### WASM/Browser Support
 
@@ -495,14 +495,14 @@ call_tool_chain({
 
 ### Common Patterns
 
-| Pattern        | Code                                            | When to Use       |
-| -------------- | ----------------------------------------------- | ----------------- |
-| Security scan  | `narsil_scan_security({ ruleset: "owasp" })`    | Pre-release audit |
-| Find symbols   | `narsil_find_symbols({ kind: "function" })`     | Code exploration  |
-| Call graph     | `narsil_get_call_graph({ function_name: "X" })` | Impact analysis   |
-| SBOM           | `narsil_generate_sbom({ format: "cyclonedx" })` | Compliance        |
-| Type inference | `narsil_infer_types({ function_name: "X" })`    | Dynamic languages |
-| Taint analysis | `narsil_trace_taint({ source: "user_input" })`  | Security review   |
+| Pattern        | Code                                                          | When to Use       |
+| -------------- | ------------------------------------------------------------- | ----------------- |
+| Security scan  | `narsil.narsil_scan_security({ ruleset: "owasp" })`           | Pre-release audit |
+| Find symbols   | `narsil.narsil_find_symbols({ kind: "function" })`            | Code exploration  |
+| Call graph     | `narsil.narsil_get_call_graph({ function_name: "X" })`        | Impact analysis   |
+| SBOM           | `narsil.narsil_generate_sbom({ format: "cyclonedx" })`        | Compliance        |
+| Type inference | `narsil.narsil_infer_types({ function_name: "X" })`           | Dynamic languages |
+| Taint analysis | `narsil.narsil_trace_taint({ source: "user_input" })`         | Security review   |
 
 ---
 

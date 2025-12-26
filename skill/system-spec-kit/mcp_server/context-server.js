@@ -666,8 +666,9 @@ async function handleMemorySearch(args) {
         filteredResults = filteredResults.filter(r => r.context_type === contextType);
       }
       
-      // Add constitutional memories if requested and not filtering by tier
-      if (includeConstitutional && !tier) {
+      // Handle constitutional memories based on includeConstitutional flag
+      if (includeConstitutional !== false && !tier) {
+        // Add constitutional memories when flag is true (default behavior)
         const constitutionalResults = vectorIndex.vectorSearch(queryEmbedding, {
           limit: 5,
           specFolder,
@@ -678,6 +679,9 @@ async function handleMemorySearch(args) {
         const existingIds = new Set(filteredResults.map(r => r.id));
         const uniqueConstitutional = constitutionalResults.filter(r => !existingIds.has(r.id));
         filteredResults = [...uniqueConstitutional, ...filteredResults].slice(0, limit);
+      } else if (includeConstitutional === false) {
+        // Filter OUT constitutional memories when flag is explicitly false
+        filteredResults = filteredResults.filter(r => r.importance_tier !== 'constitutional');
       }
       
       return formatSearchResults(filteredResults, 'hybrid', includeContent);

@@ -1,6 +1,6 @@
 # Spec Kit Memory MCP Server
 
-> **Last Updated:** 2025-12-25 | **Version:** Spec Kit Memory MCP v12.x
+> **Last Updated:** 2025-12-25 | **Version:** Spec Kit Memory MCP v16.x
 
 Context preservation with **spec kit memory**: six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, and checkpoint save/restore. Provides **13 MCP tools** for intelligent memory management. This is a **Native MCP tool** - call it directly.
 
@@ -18,7 +18,7 @@ Context preservation with **spec kit memory**: six-tier importance system, hybri
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🔧 MCP TOOLS (13)](#2--mcp-tools-13)
-- [3. 📁 LIBRARY MODULES (22)](#3--library-modules-22)
+- [3. 📁 LIBRARY MODULES (23)](#3--library-modules-23)
 - [4. 🔄 FILE WATCHER](#4--file-watcher)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
 - [6. 🚀 INSTALLATION](#6--installation)
@@ -35,9 +35,9 @@ The `mcp_server/` folder is the standalone MCP server implementation for spec ki
 
 ### Entry Points
 
-| File                 | Purpose           | How to Run                            |
-| -------------------- | ----------------- | ------------------------------------- |
-| `context-server.js` | Main MCP server   | `node context-server.js` (via stdio) |
+| File                | Purpose         | How to Run                           |
+| ------------------- | --------------- | ------------------------------------ |
+| `context-server.js` | Main MCP server | `node context-server.js` (via stdio) |
 
 > **Note:** File watching functionality is not currently implemented. Use `memory_index_scan` for manual re-indexing.
 
@@ -56,13 +56,13 @@ The `mcp_server/` folder is the standalone MCP server implementation for spec ki
 
 The **constitutional** tier is the highest importance level, designed for operational rules and critical context that must ALWAYS be visible to the AI agent.
 
-| Behavior | Description |
-|----------|-------------|
-| **Always surfaces** | Included at top of every `memory_search` result by default |
-| **Fixed similarity** | Returns `similarity: 100` regardless of query relevance |
-| **Response flag** | `isConstitutional: true` in search results |
-| **Token budget** | ~500 tokens max for constitutional memories per search |
-| **Control** | Set `includeConstitutional: false` to disable |
+| Behavior             | Description                                                |
+| -------------------- | ---------------------------------------------------------- |
+| **Always surfaces**  | Included at top of every `memory_search` result by default |
+| **Fixed similarity** | Returns `similarity: 100` regardless of query relevance    |
+| **Response flag**    | `isConstitutional: true` in search results                 |
+| **Token budget**     | ~500 tokens max for constitutional memories per search     |
+| **Control**          | Set `includeConstitutional: false` to disable              |
 
 **Use cases:**
 - Gate enforcement rules (e.g., Gate 3 spec folder question)
@@ -87,8 +87,8 @@ context-server.js  ────────────────────�
   └─ lib/checkpoints.js     State snapshots               │
                                                           │
                                                           │
-   Note: File watching not currently implemented           │
-   Use memory_index_scan for manual re-indexing            │
+   Note: File watching not currently implemented          │
+   Use memory_index_scan for manual re-indexing           │
 ```
 
 ---
@@ -131,42 +131,42 @@ context-server.js  ────────────────────�
 
 Search memories semantically using vector similarity.
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `query` | string | - | Natural language search query |
-| `concepts` | string[] | - | Multi-concept AND search (2-5 concepts) |
-| `specFolder` | string | - | Limit search to specific spec folder |
-| `limit` | number | 10 | Maximum results to return (1-20) |
-| `tier` | string | - | Filter by importance tier |
-| `contextType` | string | - | Filter by context type |
-| `useDecay` | boolean | true | Apply temporal decay scoring |
-| `includeContiguity` | boolean | false | Include adjacent/contiguous memories |
-| `includeConstitutional` | boolean | **true** | Include constitutional tier at top of results |
-| `includeContent` | boolean | false | Embed memory file content directly in results (replaces legacy `memory_load`) |
+| Parameter               | Type     | Default  | Description                                                                   |
+| ----------------------- | -------- | -------- | ----------------------------------------------------------------------------- |
+| `query`                 | string   | -        | Natural language search query                                                 |
+| `concepts`              | string[] | -        | Multi-concept AND search (2-5 concepts)                                       |
+| `specFolder`            | string   | -        | Limit search to specific spec folder                                          |
+| `limit`                 | number   | 10       | Maximum results to return (1-20)                                              |
+| `tier`                  | string   | -        | Filter by importance tier                                                     |
+| `contextType`           | string   | -        | Filter by context type                                                        |
+| `useDecay`              | boolean  | true     | Apply temporal decay scoring                                                  |
+| `includeContiguity`     | boolean  | false    | Include adjacent/contiguous memories                                          |
+| `includeConstitutional` | boolean  | **true** | Include constitutional tier at top of results                                 |
+| `includeContent`        | boolean  | false    | Embed memory file content directly in results (replaces legacy `memory_load`) |
 
 **Response Fields:**
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | number | Memory ID |
-| `title` | string | Memory title |
-| `similarity` | number | 0-100 relevance score |
-| `isConstitutional` | boolean | `true` if constitutional tier (always surfaces first) |
-| `importanceTier` | string | One of 6 tiers |
-| `specFolder` | string | Source spec folder |
-| `triggerPhrases` | string[] | Trigger phrases for fast matching |
+| Field              | Type     | Description                                           |
+| ------------------ | -------- | ----------------------------------------------------- |
+| `id`               | number   | Memory ID                                             |
+| `title`            | string   | Memory title                                          |
+| `similarity`       | number   | 0-100 relevance score                                 |
+| `isConstitutional` | boolean  | `true` if constitutional tier (always surfaces first) |
+| `importanceTier`   | string   | One of 6 tiers                                        |
+| `specFolder`       | string   | Source spec folder                                    |
+| `triggerPhrases`   | string[] | Trigger phrases for fast matching                     |
 
 #### memory_update
 
 Update an existing memory's metadata.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | number | **Yes** | Memory ID to update |
-| `title` | string | No | New title (triggers re-embedding) |
-| `importanceTier` | string | No | One of: `constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated` |
-| `importanceWeight` | number | No | Weight 0-1 within tier |
-| `triggerPhrases` | string[] | No | Updated trigger phrases for fast matching |
+| Parameter          | Type     | Required | Description                                                                            |
+| ------------------ | -------- | -------- | -------------------------------------------------------------------------------------- |
+| `id`               | number   | **Yes**  | Memory ID to update                                                                    |
+| `title`            | string   | No       | New title (triggers re-embedding)                                                      |
+| `importanceTier`   | string   | No       | One of: `constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated` |
+| `importanceWeight` | number   | No       | Weight 0-1 within tier                                                                 |
+| `triggerPhrases`   | string[] | No       | Updated trigger phrases for fast matching                                              |
 
 **Tier Promotion Example:**
 ```typescript
@@ -182,27 +182,27 @@ memory_update({
 
 Browse stored memories with pagination and filtering.
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `limit` | number | 20 | Results per page (max 100) |
-| `offset` | number | 0 | Skip N results for pagination |
-| `specFolder` | string | - | Filter by spec folder |
-| `sortBy` | string | `created_at` | Sort order: `created_at`, `updated_at`, `importance_weight` |
+| Parameter    | Type   | Default      | Description                                                 |
+| ------------ | ------ | ------------ | ----------------------------------------------------------- |
+| `limit`      | number | 20           | Results per page (max 100)                                  |
+| `offset`     | number | 0            | Skip N results for pagination                               |
+| `specFolder` | string | -            | Filter by spec folder                                       |
+| `sortBy`     | string | `created_at` | Sort order: `created_at`, `updated_at`, `importance_weight` |
 
 #### memory_match_triggers
 
 Fast trigger phrase matching (<50ms) without embeddings.
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `prompt` | string | **Required** | User prompt to match against trigger phrases |
-| `limit` | number | 3 | Maximum matching memories to return |
+| Parameter | Type   | Default      | Description                                  |
+| --------- | ------ | ------------ | -------------------------------------------- |
+| `prompt`  | string | **Required** | User prompt to match against trigger phrases |
+| `limit`   | number | 3            | Maximum matching memories to return          |
 
 **Response includes:** `memoryId`, `matchedPhrases[]`, `title`, `importanceWeight`
 
 ---
 
-## 3. 📁 LIBRARY MODULES (23)
+## 3. 📁 LIBRARY MODULES (23 TOTAL)
 
 ### Core Modules
 
@@ -247,6 +247,7 @@ Fast trigger phrase matching (<50ms) without embeddings.
 | `config-loader.js` | Configuration file loading and validation       |
 | `channel.js`       | Communication channel management                |
 | `entity-scope.js`  | Entity and scope resolution                     |
+| `errors.js`        | Custom error types and error handling utilities |
 | `index-refresh.js` | Index refresh and maintenance                   |
 | `retry-manager.js` | Failed embedding retry with exponential backoff |
 | `token-budget.js`  | Token limit enforcement for responses           |
@@ -276,12 +277,12 @@ memory_index_scan({ force: true })
 
 ### Features
 
-| Feature               | Description                        |
-| --------------------- | ---------------------------------- |
-| **Scan Pattern**      | `specs/**/memory/**/*.md`          |
-| **Content Hash**      | Skip unchanged files (SHA-256)     |
-| **Batch Processing**  | 5 files per batch with 100ms delay |
-| **Retry Logic**       | Exponential backoff for failures   |
+| Feature              | Description                        |
+| -------------------- | ---------------------------------- |
+| **Scan Pattern**     | `specs/**/memory/**/*.md`          |
+| **Content Hash**     | Skip unchanged files (SHA-256)     |
+| **Batch Processing** | 5 files per batch with 100ms delay |
+| **Retry Logic**      | Exponential backoff for failures   |
 
 ---
 
@@ -383,10 +384,10 @@ memory_index_scan({ force: true })
 
 ### Reference Files
 
-| Document                   | Location         | Purpose                           |
-| -------------------------- | ---------------- | --------------------------------- |
-| `folder_routing.md`        | `../references/` | Routing logic and alignment scoring |
-| `execution_methods.md`     | `../references/` | Save context workflows            |
+| Document            | Location         | Purpose                             |
+| ------------------- | ---------------- | ----------------------------------- |
+| `folder_routing.md` | `../references/` | Routing logic and alignment scoring |
+| `save-workflow.md`  | `../references/` | Save context workflows              |
 
 ### External Resources
 

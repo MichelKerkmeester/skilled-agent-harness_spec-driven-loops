@@ -7,7 +7,7 @@ Ultra-efficient semantic code and document search with **97% storage savings** t
 > **Navigation**:
 > - New to LEANN? Start with [Quick Start](#2--quick-start)
 > - Need tool guidance? See [Tool Selection Guide](#3--tool-selection-guide)
-> - Installation help? See [Install Guide](../../install_guides/MCP/MCP%20-%20LEANN.md)
+> - Installation help? See [Install Guide](../../install_guides/MCP/MCP - LEANN.md)
 > - Command reference? See [Tool Catalog](references/tool_catalog.md)
 
 [![MCP](https://img.shields.io/badge/MCP-Native-brightgreen.svg)](https://modelcontextprotocol.io)
@@ -103,7 +103,7 @@ leann search my-project "authentication flow"
 ### Installation Guide
 
 For complete installation instructions including MCP configuration, see:
-**[MCP - LEANN Install Guide](../../install_guides/MCP/MCP%20-%20LEANN.md)**
+**[MCP - LEANN Install Guide](../../install_guides/MCP/MCP - LEANN.md)**
 
 ---
 
@@ -784,7 +784,7 @@ curl http://localhost:11434/api/tags
 
 ### Installation
 
-**Full installation guide**: [MCP - LEANN.md](../../install_guides/MCP/MCP%20-%20LEANN.md)
+**Full installation guide**: [MCP - LEANN.md](../../install_guides/MCP/MCP - LEANN.md)
 
 ### External Resources
 
