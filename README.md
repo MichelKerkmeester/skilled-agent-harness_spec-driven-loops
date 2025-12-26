@@ -643,15 +643,20 @@ On first launch, OpenCode guides you through provider configuration.
 
 ### Configuration File
 
-Copy the configuration files to your project:
+Copy this environment to your project:
 
 ```bash
-# Copy the main config
-cp opencode.json /path/to/your-project/opencode.json
+# Clone and copy to your project
+git clone https://github.com/MichelKerkmeester/Opencode_Dev_Environment.git
+cp -r Opencode_Dev_Environment/* /path/to/your-project/
 
-# Copy the .opencode folder with skills, commands, and scripts
-cp -r .opencode /path/to/your-project/.opencode
+# Or copy specific components
+cp opencode.json /path/to/your-project/
+cp -r skill /path/to/your-project/.opencode/skill
+cp -r command /path/to/your-project/.opencode/command
 ```
+
+> **Full installation guide:** See [`install_guides/README.md`](install_guides/README.md) for comprehensive setup with validation checkpoints.
 
 
 ### Connecting Providers
