@@ -1,24 +1,6 @@
-# OpenCode Installation Guide
+# OpenCode Dev Environment — Installation Guide
 
 AI-executable guide for the OpenCode dev environment. Installs 4 native MCP servers + Narsil (via Code Mode), 8 native skills, and optional CLI tools. Execute phases sequentially—each includes validation checkpoints.
-
----
-
-## 0. 🤖 AI-FIRST INSTALL GUIDE
-
-Copy this prompt to your AI assistant:
-
-```
-I need to install OpenCode components. Please guide me using .opencode/install_guides/README.md
-
-My environment:
-- Platform: [macOS / Linux / Windows WSL]
-- LLM Provider: [Claude / GitHub Copilot / OpenAI / Gemini / Ollama]
-- Install Mode: [Full / Minimal / Missing only / Custom]
-- Components (if custom): [Code Mode, LEANN, Narsil (via Code Mode), Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
-
-Start with Pre-Flight Check to detect what's already installed, then guide me through each phase.
-```
 
 ---
 
@@ -41,6 +23,23 @@ Start with Pre-Flight Check to detect what's already installed, then guide me th
 14. [🔧 TROUBLESHOOTING](#14--troubleshooting)
 15. [📖 QUICK REFERENCE](#15--quick-reference)
 
+---
+
+## 0. 🤖 AI-FIRST INSTALL GUIDE
+
+Copy this prompt to your AI assistant:
+
+```
+I need to install OpenCode components. Please guide me using .opencode/install_guides/README.md
+
+My environment:
+- Platform: [macOS / Linux / Windows WSL]
+- LLM Provider: [Claude / GitHub Copilot / OpenAI / Gemini / Ollama]
+- Install Mode: [Full / Minimal / Missing only / Custom]
+- Components (if custom): [Code Mode, LEANN, Narsil (via Code Mode), Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
+
+Start with Pre-Flight Check to detect what's already installed, then guide me through each phase.
+```
 
 ---
 
