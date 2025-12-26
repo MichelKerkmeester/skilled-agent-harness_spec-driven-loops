@@ -7,7 +7,7 @@
 1. Use this `AGENTS.md` as your starting point for SpecKit and memory workflows in any codebase.
 2. Adapt the framework to fit your project's code standards, workflows, etc.
 3. Update or extend rules, tools, and protocols as needed.
-4. For practical setup examples and detailed instructions, see `AGENTS (WEBFLOW).md` and `.opencode/install_guides/SET-UP - AGENTS.md`.
+4. For practical setup examples and detailed instructions, see `AGENTS_WEBFLOW_.md` and `.opencode/install_guides/SET-UP - AGENTS.md`.
 
 ---
 
