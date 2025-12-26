@@ -526,8 +526,8 @@ Deep code intelligence: security scanning, call graphs, structural queries (via 
 > Example: "Scan for vulnerabilities" or "List functions in auth.ts"
 
 **mcp-code-mode**
-External tool orchestration (Webflow, Figma)
-> Example: "Update Webflow site"
+External tool orchestration (Figma, GitHub, ClickUp, etc.)
+> Example: "Get Figma file" or "Create GitHub issue"
 
 **workflows-code**
 Implementation lifecycle (plan, code, verify)
@@ -567,7 +567,7 @@ Browser automation and debugging
 python3 .opencode/skill/workflows-documentation/scripts/init_skill.py my-skill
 ```
 
-See [SET-UP - Skill Creation.md](install_guides/SET-UP - Skill Creation.md) for the full guide.
+See [SET-UP - Skill Creation.md](.opencode/install_guides/SET-UP - Skill Creation.md) for the full guide.
 
 
 ---
@@ -615,7 +615,7 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 
 ## 7. 🚀 Installation & Setup
 
-> **Master install guide:** [`install_guides/README.md`](install_guides/README.md)
+> **Master install guide:** [`.opencode/install_guides/README.md`](.opencode/install_guides/README.md)
 
 
 ### Installing OpenCode
@@ -648,15 +648,17 @@ Copy this environment to your project:
 ```bash
 # Clone and copy to your project
 git clone https://github.com/MichelKerkmeester/Opencode_Dev_Environment.git
-cp -r Opencode_Dev_Environment/* /path/to/your-project/
+cp -r Opencode_Dev_Environment/.opencode /path/to/your-project/
+cp Opencode_Dev_Environment/opencode.json /path/to/your-project/
+cp Opencode_Dev_Environment/AGENTS.md /path/to/your-project/
 
 # Or copy specific components
 cp opencode.json /path/to/your-project/
-cp -r skill /path/to/your-project/.opencode/skill
-cp -r command /path/to/your-project/.opencode/command
+cp -r .opencode/skill /path/to/your-project/.opencode/
+cp -r .opencode/command /path/to/your-project/.opencode/
 ```
 
-> **Full installation guide:** See [`install_guides/README.md`](install_guides/README.md) for comprehensive setup with validation checkpoints.
+> **Full installation guide:** See [`.opencode/install_guides/README.md`](.opencode/install_guides/README.md) for comprehensive setup with validation checkpoints.
 
 
 ### Connecting Providers
@@ -687,21 +689,21 @@ export OPENROUTER_API_KEY="your-api-key"
 MCP servers extend your AI with specialized capabilities. This environment includes 4 pre-configured servers in `opencode.json`:
 
 - **Sequential Thinking**: Structured multi-step reasoning for complex problems
-  [Guide](install_guides/MCP/MCP - Sequential Thinking.md)
+  [Guide](.opencode/install_guides/MCP/MCP - Sequential Thinking.md)
 
 - **LEANN**: Semantic code search (97% storage savings, finds code by meaning)
-  [Guide](install_guides/MCP/MCP - LEANN.md)
+  [Guide](.opencode/install_guides/MCP/MCP - LEANN.md)
 
 - **Spec Kit Memory**: Local vector-based conversation memory (13 MCP tools)
-  [Guide](install_guides/MCP/MCP - Spec Kit Memory.md)
+  [Guide](.opencode/install_guides/MCP/MCP - Spec Kit Memory.md)
 
-- **Code Mode**: External tool orchestration (Webflow, Figma, ClickUp, Chrome DevTools, Narsil, etc.)
-  [Guide](install_guides/MCP/MCP - Code Mode.md)
+- **Code Mode**: External tool orchestration (Figma, GitHub, ClickUp, Chrome DevTools, Narsil, etc.)
+  [Guide](.opencode/install_guides/MCP/MCP - Code Mode.md)
 
 **Via Code Mode:**
 
 - **Narsil**: Deep code intelligence (security scanning, call graphs, structural queries)
-  [Guide](install_guides/MCP/MCP - Narsil.md)
+  [Guide](.opencode/install_guides/MCP/MCP - Narsil.md)
 
 
 ### Two Semantic Systems (Don't Confuse Them)
@@ -730,15 +732,15 @@ Use these three tools together:
 
 Skills are **natively supported** in OpenCode v1.0.190+. Auto-discovered from `.opencode/skill/*/SKILL.md`.
 
-- [SET-UP - AGENTS.md](install_guides/SET-UP - AGENTS.md): Configure AI agent guardrails
-- [SET-UP - Skill Advisor.md](install_guides/SET-UP - Skill Advisor.md): Configure intelligent skill routing
-- [SET-UP - Skill Creation.md](install_guides/SET-UP - Skill Creation.md): Create custom skills
+- [SET-UP - AGENTS.md](.opencode/install_guides/SET-UP - AGENTS.md): Configure AI agent guardrails
+- [SET-UP - Skill Advisor.md](.opencode/install_guides/SET-UP - Skill Advisor.md): Configure intelligent skill routing
+- [SET-UP - Skill Creation.md](.opencode/install_guides/SET-UP - Skill Creation.md): Create custom skills
 
 
 ### Auth Plugins
 
-- **Antigravity Auth** (Google OAuth): [PLUGIN - Antigravity Auth.md](install_guides/PLUGIN/PLUGIN - Antigravity Auth.md)
-- **OpenAI Codex Auth**: [PLUGIN - OpenAI Codex Auth.md](install_guides/PLUGIN/PLUGIN - OpenAI Codex Auth.md)
+- **Antigravity Auth** (Google OAuth): [PLUGIN - Antigravity Auth.md](.opencode/install_guides/PLUGIN/PLUGIN - Antigravity Auth.md)
+- **OpenAI Codex Auth**: [PLUGIN - OpenAI Codex Auth.md](.opencode/install_guides/PLUGIN/PLUGIN - OpenAI Codex Auth.md)
 
 
 ---
@@ -757,10 +759,10 @@ Skills are **natively supported** in OpenCode v1.0.190+. Auto-discovered from `.
 
 ### Going Deeper
 
-- **Full installation**: [install_guides/README.md](install_guides/README.md)
-- **MCP server setup**: [install_guides/MCP/](install_guides/MCP/)
-- **Creating skills**: [SET-UP - Skill Creation.md](install_guides/SET-UP - Skill Creation.md)
-- **Agent configuration**: [SET-UP - AGENTS.md](install_guides/SET-UP - AGENTS.md)
+- **Full installation**: [.opencode/install_guides/README.md](.opencode/install_guides/README.md)
+- **MCP server setup**: [.opencode/install_guides/MCP/](.opencode/install_guides/MCP/)
+- **Creating skills**: [SET-UP - Skill Creation.md](.opencode/install_guides/SET-UP - Skill Creation.md)
+- **Agent configuration**: [SET-UP - AGENTS.md](.opencode/install_guides/SET-UP - AGENTS.md)
 
 
 ### Get Help

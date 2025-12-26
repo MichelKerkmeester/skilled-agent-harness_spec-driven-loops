@@ -1,6 +1,13 @@
-# AI Assistant Framework
+# AI Assistant Framework (Universal Template)
 
-> Configuration defining behavior guardrails, standards, and decision frameworks. Optimized for Webflow Projects.
+> **Universal behavior framework** defining guardrails, standards, and decision protocols.
+
+#### 👨‍🚀 HOW TO USE / ADAPT THIS FRAMEWORK
+
+1. Use this `AGENTS.md` as your starting point for SpecKit and memory workflows in any codebase.
+2. Adapt the framework to fit your project's code standards, workflows, etc.
+3. Update or extend rules, tools, and protocols as needed.
+4. For practical setup examples and detailed instructions, see `AGENTS (WEBFLOW).md` and `.opencode/install_guides/SET-UP - AGENTS.md`.
 
 ---
 
@@ -26,20 +33,20 @@
 
 ### Quick Reference: Common Workflows
 
-| Task                     | Flow                                                                                                                                |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                          |
-| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_search()` → Document findings                                                |
-| **Code search**          | `leann_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text patterns  |
-| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                    |
-| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
-| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                         |
-| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                            |
-| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                         |
-| **End session**          | /spec_kit:handover → Save context → Provide continuation prompt                                                                     |
-| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                             |
-| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                       |
-| **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                 |
+| Task                     | Flow                                                                                                                                     |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                               |
+| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_leann_search()` → Document findings                                               |
+| **Code search**          | `leann_leann_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text patterns |
+| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                         |
+| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed      |
+| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                              |
+| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                                 |
+| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                              |
+| **End session**          | /spec_kit:handover → Save context → Provide continuation prompt                                                                          |
+| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                  |
+| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                            |
+| **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                      |
 
 ---
 
@@ -113,7 +120,7 @@
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ MEMORY CONTEXT LOADING [SOFT]                                               │
-│ Trigger: User selected A or C in Gate 3 AND memory files exist              │
+│ Trigger: User selected A or C in Gate 3 AND memory files exist               │
 │ Action:  memory_search({ specFolder, includeContent: true })                │
 │          → Results include embedded content (no separate load needed)       │
 │          → Constitutional memories always appear first                       │
@@ -221,20 +228,18 @@ File modification planned? → Include Q1 (Spec Folder)
 - Memory Context Loading: "skip context", "fresh start", "skip memory", [skip]
 - Completion Verification: Level 1 tasks (no checklist.md required)
 
-#### ⚡ Code Quality Standards Compliance
+#### ⚡ Compliance Checkpoints
 
-**MANDATORY:** Compliance checkpoints:
-- Before **proposing solutions**: Verify approach aligns with code quality standards and webflow patterns 
+**MANDATORY:**
+- Before **proposing solutions**: Verify approach aligns with project patterns and conventions
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
-- Before **initialization code**: Follow initialization patterns from code quality standards
-- Before **animation implementation**: See animation workflow references
 - Before **code discovery**: Use mcp-leann (semantic) + mcp-narsil (structural, via Code Mode) as complementary tools (MANDATORY)
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required) 
-- **If conflict exists**: Code quality standards override general practices
+- **If conflict exists**: Project-specific patterns override general practices
 
-**Violation handling:** If proposed solution contradicts code quality standards, STOP and ask for clarification or revise approach.
+**Violation handling:** If proposed solution contradicts project patterns, STOP and ask for clarification or revise approach.
 
 #### ⚡ Common Failure Patterns 
 
@@ -479,7 +484,7 @@ Review response for:
 
 ```
 Known file path? → Read()
-Know what code DOES? → leann_search() or leann_leann_ask() [NATIVE MCP - MANDATORY]
+Know what code DOES? → leann_leann_search() or leann_leann_ask() [NATIVE MCP - MANDATORY]
 Research/prior work? → memory_search() [NATIVE MCP - MANDATORY]
 Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE - via call_tool_chain()]
 Security scan/vulnerabilities? → narsil.narsil_scan_security() [CODE MODE - via call_tool_chain()]
@@ -488,7 +493,7 @@ Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP - OPTIONAL]
 Browser debugging? → workflows-chrome-devtools skill
-External MCP tools? → call_tool_chain() [Code Mode - Webflow, Figma, ClickUp, Narsil, etc.]
+External MCP tools? → call_tool_chain() [Code Mode - Figma, GitHub, ClickUp, Narsil, etc.]
 Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 Stuck debugging 3+ attempts? → /spec_kit:debug → Model selection → Task tool dispatch
 Multi-step task? → Task tool for delegation
@@ -541,8 +546,8 @@ Documentation generation? → workflows-documentation skill
    - Sequential Thinking, LEANN, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - Webflow, Figma, Github, ClickUp, Chrome DevTools, etc.
-   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`)
+   - Figma, GitHub, ClickUp, Chrome DevTools, etc.
+   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `figma.figma_get_file({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
   
 ---
