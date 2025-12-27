@@ -1,10 +1,15 @@
+---
+title: Install Guide Standards - Phase-Based Installation Documentation
+description: Standards for clear, reliable install guides with phase-based validation checkpoints.
+---
+
 # Install Guide Standards - Phase-Based Installation Documentation
 
-Reference for creating clear, reliable, and AI-friendly install guides with validation checkpoints at each phase.
+Standards for clear, reliable install guides with validation checkpoints at each phase.
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. 📖 OVERVIEW
 
 This reference defines standards for install guide documentation. Install guides require special consideration: unclear instructions lead to failed setups, wasted time, and frustrated users.
 

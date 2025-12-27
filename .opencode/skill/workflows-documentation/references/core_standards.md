@@ -1,10 +1,15 @@
+---
+title: Core Standards - Structure and Validation Rules
+description: Filename conventions, document type detection, and structural validation rules for markdown documentation.
+---
+
 # Core Standards - Structure and Validation Rules
 
-Comprehensive reference for filename conventions, document type detection, structural validation, and quality enforcement patterns for OpenCode skill documentation.
+Filename conventions, document type detection, and structural validation rules for markdown documentation.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Are Core Standards?
 

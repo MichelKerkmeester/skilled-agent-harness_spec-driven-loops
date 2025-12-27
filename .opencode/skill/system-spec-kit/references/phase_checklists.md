@@ -1,21 +1,22 @@
+---
+title: Phase Checklists
+description: Priority-based checklists for each phase of the SpecKit workflow.
+---
+
 # Phase Checklists - Validation Items by Development Phase
 
 Priority-based checklists for each phase of the SpecKit workflow.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
-
-### What Are Phase Checklists?
-
-Phase checklists provide validation items organized by development phase (Planning, Research, Implementation, Review). Each item is tagged with priority (P0/P1/P2) to indicate importance.
+## 1. 📖 OVERVIEW
 
 **Priority Levels**:
 - **P0 (HARD BLOCKER)** - Must complete before proceeding
 - **P1 (MUST COMPLETE)** - Required for completion, can defer with approval
 - **P2 (NICE TO HAVE)** - Optional, can defer without approval
 
-> **Context**: Use these checklists during Gate 6 (Completion Verification) to ensure all requirements are met.
+> **Context**: Use these checklists during the Completion Verification Rule to ensure all requirements are met.
 
 ---
 
@@ -113,7 +114,7 @@ Phase checklists provide validation items organized by development phase (Planni
 
 **Before Claiming Complete:**
 - [ ] All P0 items verified with evidence
-- [ ] Browser tested if frontend (Gate 6 requirement)
+- [ ] Browser tested if frontend (Completion Verification Rule requirement)
 - [ ] Save context if significant progress: `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder]`
 
 ### Debug Escalation Protocol
@@ -163,7 +164,7 @@ When debugging becomes prolonged or repetitive:
 
 ---
 
-## 6. 📚 RELATED RESOURCES
+## 7. 🔗 RELATED RESOURCES
 
 ### Reference Files
 

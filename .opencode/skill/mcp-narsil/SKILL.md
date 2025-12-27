@@ -360,6 +360,13 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 | **mcp-code-mode** | Tool orchestration - Narsil accessed via Code Mode's `call_tool_chain()` |
 | **system-spec-kit** | Context preservation - save security findings for future sessions        |
 
+### Complementary Skills
+
+| Skill | Relationship |
+|-------|--------------|
+| mcp-leann | Semantic search (by meaning) - use for "how does X work?" |
+| mcp-narsil | Structural search (by symbol) - use for "list functions in X" |
+
 ### Tool Usage Guidelines
 
 **Bash**: Execute update script, verify binary

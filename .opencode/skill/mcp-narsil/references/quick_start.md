@@ -1,19 +1,26 @@
+---
+title: Quick Start - Narsil MCP
+description: Get started with Narsil in 5 minutes covering prerequisites, verification, and first commands.
+---
+
 # Quick Start - Narsil MCP
 
-Get started with Narsil in 5 minutes. This guide covers prerequisites, verification, and first commands.
+Get started with Narsil in 5 minutes covering prerequisites and first commands.
 
 ---
 
-## 1. ✅ PREREQUISITES
+## 1. 📖 OVERVIEW
 
-### Required
+### Prerequisites
+
+#### Required
 
 | Component | Purpose | Verification |
 |-----------|---------|--------------|
 | Narsil binary | MCP server | `narsil-mcp --version` |
 | Code Mode MCP | Tool orchestration | `search_tools()` returns results |
 
-### Installation Location
+#### Installation Location
 
 ```
 /Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/
@@ -205,7 +212,7 @@ call_tool_chain({
 
 ---
 
-## 6. 📚 NEXT STEPS
+## 6. 🔗 RELATED RESOURCES
 
 | Guide | When to Use |
 |-------|-------------|

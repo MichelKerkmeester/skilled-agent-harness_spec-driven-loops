@@ -1,10 +1,15 @@
+---
+title: Advanced Session Management
+description: Patterns for browser session lifecycle, concurrency, resumption, and state persistence with bdg.
+---
+
 # Advanced Session Management
 
-Comprehensive patterns for managing browser sessions, handling multiple concurrent connections, session resumption, and state persistence using browser-debugger-cli (bdg).
+Advanced patterns for session lifecycle, multi-session handling, and state persistence.
 
 ---
 
-## 1. 💡 CORE PRINCIPLE
+## 1. 📖 OVERVIEW
 
 Always verify session state before operations - session failures cascade. Implement proper cleanup patterns (trap-based) to prevent resource leaks and orphaned browser processes.
 

@@ -1,10 +1,17 @@
+---
+title: Configuration Guide - .utcp_config.json and Environment Setup
+description: Configure MCP servers, environment variables, and credentials for Code Mode UTCP.
+---
+
 # Configuration Guide - .utcp_config.json and Environment Setup
 
-Complete guide for configuring Code Mode UTCP including configuration file structure, environment variables, and adding new MCP servers.
+Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 
 ---
 
-## 1. 📁 CONFIGURATION FILES OVERVIEW
+## 1. 📖 OVERVIEW
+
+### Required Files
 
 **Two files required:**
 

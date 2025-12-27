@@ -1,12 +1,19 @@
+---
+title: Narsil Tool Reference - Complete Guide
+description: Complete documentation for all 76 Narsil MCP tools, organized by category with priority levels and usage guidance.
+---
+
 # Narsil Tool Reference - Complete Guide
 
-Complete documentation for all 76 Narsil MCP tools, organized by category with priority levels and usage guidance.
-
-**Core Principle**: Choose the right tool for the job - Narsil for STRUCTURE and SECURITY, LEANN for MEANING.
+Complete reference for all 76 Narsil MCP tools organized by priority level.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
+
+### Core Principle
+
+Choose the right tool for the job - Narsil for STRUCTURE and SECURITY, LEANN for MEANING.
 
 ### Tool Distribution
 

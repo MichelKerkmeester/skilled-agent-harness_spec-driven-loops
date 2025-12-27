@@ -1,13 +1,18 @@
+---
+title: Animation Workflows - Phase 1 Implementation
+description: CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects.
+---
+
 # Animation Workflows - Phase 1 Implementation
 
-Complete animation implementation guide following CSS-first approach, with Motion.dev for complex sequences. Includes decision tree, implementation patterns, performance optimization, testing procedures, and policy.
+CSS-first animation guide with Motion.dev integration for complex sequences and scroll-triggered effects.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
-Complete animation implementation guide following CSS-first approach, with Motion.dev for complex sequences.
+Complete animation implementation guide covering decision trees, CSS patterns, Motion.dev integration, performance optimization, and accessibility compliance.
 
 ### When to Use
 - Implementing UI animations

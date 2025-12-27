@@ -1,12 +1,31 @@
+---
+title: Workflow Examples - Complex Multi-Tool Patterns
+description: Five workflow patterns for multi-tool orchestration, error handling, and state persistence.
+---
+
 # Workflow Examples - Complex Multi-Tool Patterns
 
-Four comprehensive examples demonstrating Code Mode UTCP capabilities including single-tool workflows, multi-tool orchestration, error handling, and state persistence.
-
-**All examples use markdown code blocks** (not separate .ts files) for easier reference and embedding in documentation.
+Five patterns demonstrating multi-tool orchestration, error handling, and state persistence in Code Mode.
 
 ---
 
-## 1. 🌐 WEBFLOW WORKFLOW
+## 1. 📖 OVERVIEW
+
+This document provides five comprehensive workflow patterns for Code Mode UTCP.
+
+**All examples use markdown code blocks** (not separate .ts files) for easier reference and embedding in documentation.
+
+**Patterns covered:**
+
+1. **Webflow Workflow** - Basic tool calling and data processing
+2. **ClickUp Workflow** - Task creation with verification
+3. **Notion Workflow** - Database operations with `notion_API_` prefix
+4. **Multi-Tool Orchestration** - Complex cross-platform workflows
+5. **Error Handling** - Robust patterns with fallbacks
+
+---
+
+## 2. 🌐 WEBFLOW WORKFLOW
 
 **Scenario:** Get all Webflow sites and their CMS collections
 
@@ -98,7 +117,7 @@ call_tool_chain({
 
 ---
 
-## 2. ✅ CLICKUP WORKFLOW
+## 3. ✅ CLICKUP WORKFLOW
 
 **Scenario:** Create a task in ClickUp and immediately fetch its details for confirmation
 
@@ -176,7 +195,7 @@ call_tool_chain({
 
 ---
 
-## 3. 📝 NOTION WORKFLOW
+## 4. 📝 NOTION WORKFLOW
 
 **Scenario:** Create a page in Notion and add content blocks
 
@@ -263,7 +282,7 @@ call_tool_chain({
 
 ---
 
-## 4. 🔄 MULTI-TOOL ORCHESTRATION
+## 5. 🔄 MULTI-TOOL ORCHESTRATION
 
 **Scenario:** Design-to-implementation workflow across three platforms (Figma → ClickUp → Webflow)
 
@@ -392,7 +411,7 @@ call_tool_chain({
 
 ---
 
-## 5. 🛡️ ERROR HANDLING PATTERNS
+## 6. 🛡️ ERROR HANDLING PATTERNS
 
 **Scenario:** Robust error handling with fallback logic and partial success
 
@@ -578,7 +597,7 @@ call_tool_chain({
 
 ---
 
-## 6. ⚡ PATTERN COMPARISON
+## 7. ⚡ PATTERN COMPARISON
 
 ### Traditional Multi-Tool Approach (Without Code Mode)
 
@@ -611,7 +630,7 @@ call_tool_chain({
 
 ---
 
-## 7. ✅ BEST PRACTICES
+## 8. ✅ BEST PRACTICES
 
 ### 1. Always Use Console Logging
 
@@ -698,7 +717,7 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 
 ---
 
-## 8. 📝 SUMMARY
+## 9. 📝 SUMMARY
 
 **Five workflow patterns demonstrated:**
 
@@ -728,7 +747,7 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 10. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [naming_convention.md](./naming_convention.md) - Critical naming patterns used in all examples

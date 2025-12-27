@@ -1,12 +1,15 @@
+---
+title: Command Template - OpenCode Slash Commands
+description: Templates and best practices for creating production-quality slash commands in OpenCode with proper frontmatter and structure.
+---
+
 # Command Template - OpenCode Slash Commands
 
-Templates and best practices for creating production-quality slash commands in OpenCode.
-
-> **STYLE STANDARD:** Commands use numbered section headers with standardized emojis. Format: `## N. [EMOJI] SECTION-NAME`. Emojis are organized into two categories: **semantic** (for blocking/validation states) and **section** (for content organization). See Section 5 for complete emoji vocabulary.
+Templates for creating slash commands with proper frontmatter, mandatory gates, and structured workflows.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Are OpenCode Commands?
 

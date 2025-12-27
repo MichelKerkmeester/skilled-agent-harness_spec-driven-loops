@@ -1,20 +1,26 @@
+---
+title: Implementation Workflows - Phase 1
+description: Three specialized workflows for writing robust frontend code with proper timing, validation, and cache management.
+---
+
 # Implementation Workflows - Phase 1
 
 Three specialized workflows for writing robust frontend code with proper timing, validation, and cache management.
 
-**Prerequisites:** Follow code quality standards for all implementations:
+---
+
+## 1. 📖 OVERVIEW
+
+### Purpose
+Specialized workflows for writing robust frontend code with proper timing, validation, and cache management.
+
+### Prerequisites
+Follow code quality standards for all implementations:
 - **Naming:** Use `snake_case` for functions/variables, semantic prefixes (`is_`, `has_`, `get_`, etc.)
 - **Initialization:** Use CDN-safe pattern with guard flags and delays
 - **Animation:** CSS first, Motion.dev for complexity - see [animation_workflows.md](./animation_workflows.md)
 - **Webflow:** Collection list patterns, async rendering - see [webflow_patterns.md](./webflow_patterns.md)
 - See [code_quality_standards.md](./code_quality_standards.md) for complete standards
-
----
-
-## 1. 📋 OVERVIEW
-
-### Purpose
-Specialized workflows for writing robust frontend code with proper timing, validation, and cache management.
 
 ### When to Use
 - Handling async operations and race conditions
@@ -409,117 +415,37 @@ See [validation_patterns.js](../assets/validation_patterns.js) for full implemen
 
 ---
 
-## 4. 🔄 CDN VERSION MANAGEMENT
+## 4. 🔄 MINIFICATION & CDN DEPLOYMENT
 
-**When to use**: After JavaScript file changes, cache-busting needed, deployment workflow
+For JavaScript minification and CDN deployment workflows, see dedicated references:
 
-### Core Principle
+- **[minification_guide.md](./minification_guide.md)** - Safe minification with terser, verification pipeline, debugging
+- **[cdn_deployment.md](./cdn_deployment.md)** - Cloudflare R2 upload, version management, HTML updates
 
-Update version query parameters (`?v=x.x.x`) in HTML files to force browsers to download fresh JavaScript instead of using cached versions.
-
-### How It Works
-
-The skill modifies HTML files to append or update version parameters to JavaScript URLs, ensuring users always receive the latest code.
-
-**Process:**
-1. Scans all HTML files in `/src/0_html/` directory
-2. Finds R2 CDN script references (both `<script>` and `<link rel="preload">`)
-3. Updates or adds version parameters to force cache refresh
-4. Reports modified files and provides deployment instructions
-
-### Implementation Workflow
-
-#### Manual Version Update
-
-**NOTE**: CDN versioning script previously existed in code-cdn-versioning skill but has been removed during restructuring. Use manual approach:
-
-**Steps**:
-1. Identify HTML files that reference modified JS files
-2. Locate version parameters (e.g., `?v=1.0.1`)
-3. Increment version appropriately:
-   - Patch (bug fixes): 1.0.1 → 1.0.2
-   - Minor (new features): 1.0.X → 1.1.0
-   - Major (breaking changes): 1.X.X → 2.0.0
-4. Update all references consistently
-
-**Example**:
-```html
-<!-- Before -->
-<script src="/path/to/file.js?v=1.0.1"></script>
-
-<!-- After (patch increment) -->
-<script src="/path/to/file.js?v=1.0.2"></script>
-```
-
-**Automation opportunity**: This version bumping process could be automated with a shell script
-
-### Complete Deployment Workflow
-
-1. **Make JavaScript changes**
-   ```javascript
-   // Example: Modified page_loader.js
-   const TIMING = {
-     HERO_OVERLAP_DELAY: 350,  // Changed from 400
-   };
-   ```
-
-2. **Update version parameters manually**
-   - Locate HTML files referencing the modified JS
-   - Increment version parameter (e.g., `?v=1.0.1` → `?v=1.0.2`)
-   - Update all references consistently
-
-3. **Review changes**
-   ```
-   ✅ global.html
-     Script: page_loader.js → page_loader.js?v=1.0.2
-   ✅ home.html
-     Script: hero_general.js → hero_general.js?v=1.0.2
-   ```
-
-4. **Deploy files**
-   - Upload JS files to Cloudflare R2
-   - Upload HTML files to Webflow
-   - Clear CDN cache if needed
-   - Publish Webflow site
-
-### Rules
-
-**ALWAYS:**
-- Run after ANY JavaScript modification
-- Update ALL HTML files, not just some
-- Increment version number for each deployment
-- Verify changes before uploading
-- Clear CDN cache after deployment
-
-**NEVER:**
-- Use the same version number after making changes
-- Skip HTML files (all must be updated together)
-- Modify external CDN URLs (jsdelivr, unpkg)
-- Edit version numbers manually in HTML files
-- Deploy JS without updating HTML versions
-
-**ESCALATE IF:**
-- Script reports no HTML files found
-- Current version cannot be determined
-- File permissions prevent updates
-- Webflow deployment fails
-
-### Example Output
-
-**Bug Fix in page_loader.js:**
+### Quick Workflow
 
 ```bash
-# Manually update version parameters in HTML files
-# Example: Change ?v=1.0.5 to ?v=1.0.6 for page_loader.js references
-```
+# 1. Make JS changes
+#    Edit: src/2_javascript/[folder]/[file].js
 
-Output:
-```
-🔄 Auto-incrementing to version: v1.0.2
-📁 Found 18 HTML files to process
-✅ global.html
-  Script: page_loader.js → page_loader.js?v=1.0.2
-✅ Successfully updated to version v1.0.2!
+# 2. Minify
+npx terser src/2_javascript/[folder]/[file].js --compress --mangle \
+  -o src/2_javascript/z_minified/[folder]/[file].js
+
+# 3. Verify (AST check)
+node scripts/verify-minification.mjs
+
+# 4. Test (runtime check)
+node scripts/test-minified-runtime.mjs
+
+# 5. Update HTML versions
+#    Increment ?v=X.X.X in all referencing HTML files
+
+# 6. Upload to Cloudflare R2
+#    Dashboard → R2 → Upload minified file
+
+# 7. Verify live site
+#    Hard refresh, check console, test functionality
 ```
 
 ---
@@ -564,18 +490,6 @@ function sanitizeText(text) {
     .replace(/>/g, '&gt;')
     .slice(0, maxLength);
 }
-```
-
-### CDN Versioning Commands
-
-```bash
-# Manual version update required (script removed during skill consolidation)
-# 1. Find HTML files referencing modified JS
-# 2. Update version parameter: ?v=X.Y.Z → ?v=X.Y.(Z+1)
-# 3. Use semantic versioning: patch for fixes, minor for features, major for breaking
-
-# Example manual update:
-# <script src="file.js?v=1.0.5"></script> → <script src="file.js?v=1.0.6"></script>
 ```
 
 ---

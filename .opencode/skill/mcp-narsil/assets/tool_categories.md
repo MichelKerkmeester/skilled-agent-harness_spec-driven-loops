@@ -1,6 +1,11 @@
+---
+title: Tool Categories - Priority Classification
+description: Categorization of all 76 Narsil tools with priority levels for efficient usage.
+---
+
 # Tool Categories - Priority Classification
 
-Categorization of all 76 Narsil tools with priority levels for efficient usage. Use this as a quick reference to choose the right tool for your task.
+Quick reference for choosing the right Narsil tool by priority level.
 
 ---
 

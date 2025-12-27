@@ -713,7 +713,7 @@ memory_match_triggers({ prompt: "fix the bug" })
 | Document | Location | Purpose |
 |----------|----------|---------|
 | Gate Enforcement | `./gate-enforcement.md` | Default constitutional memory |
-| Save Workflow | `../references/save-workflow.md` | Memory save workflows |
+| Save Workflow | `../references/save_workflow.md` | Memory save workflows |
 | Trigger Config | `../references/trigger_config.md` | Trigger phrase configuration |
 
 ### External Resources

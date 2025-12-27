@@ -1,18 +1,24 @@
+---
+title: Webflow Platform Patterns - Development Guide
+description: Complete platform constraints and collection list patterns for Webflow development.
+---
+
 # Webflow Platform Patterns - Development Guide
 
-Complete platform constraints and collection list patterns for Webflow development. These limits are enforced by Webflow and cannot be overridden - architecture must work within them from the start.
-
-**Prerequisites:** Follow code quality standards:
-- **Initialization:** Use CDN-safe pattern with guard flags and delays
-- **Naming:** Use `snake_case` for functions/variables
-- See [code_quality_standards.md](./code_quality_standards.md) for complete standards
+Complete platform constraints and collection list patterns for Webflow development.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
-Complete platform constraints and collection list patterns for Webflow development.
+Platform constraints and collection list patterns for Webflow development. These limits are enforced by Webflow and cannot be overridden - architecture must work within them from the start.
+
+### Prerequisites
+Follow code quality standards:
+- **Initialization:** Use CDN-safe pattern with guard flags and delays
+- **Naming:** Use `snake_case` for functions/variables
+- See [code_quality_standards.md](./code_quality_standards.md) for complete standards
 
 ### When to Use
 - Working with Webflow CMS Collections

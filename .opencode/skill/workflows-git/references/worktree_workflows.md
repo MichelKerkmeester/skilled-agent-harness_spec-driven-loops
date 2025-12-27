@@ -1,10 +1,23 @@
+---
+title: Git Worktrees - Detailed Workflow Reference
+description: Complete workflow documentation for creating isolated git workspaces with minimal branching.
+---
+
 # Git Worktrees - Detailed Workflow Reference
 
 Complete workflow documentation for creating isolated git workspaces with minimal branching.
 
 ---
 
-## 🚨 IMPORTANT: WORKSPACE CHOICE ENFORCEMENT
+## 1. 📖 OVERVIEW
+
+Git worktrees create isolated working directories sharing the same repository database. Each worktree can have a different branch checked out, allowing parallel work without context switching.
+
+**Core principle**: Systematic directory selection + safety verification = reliable isolation
+
+---
+
+## 2. 🚨 WORKSPACE CHOICE ENFORCEMENT
 
 **This workflow only applies when user has explicitly chosen "Create a git worktree" (Option B).**
 
@@ -22,15 +35,7 @@ If the user has not been prompted or selected a different option:
 
 ---
 
-## 1. 🎯 OVERVIEW
-
-Git worktrees create isolated working directories sharing the same repository database. Each worktree can have a different branch checked out, allowing parallel work without context switching.
-
-**Core principle**: Systematic directory selection + safety verification = reliable isolation
-
----
-
-## 2. 🛠️ PROCESS OVERVIEW
+## 3. 🛠️ PROCESS OVERVIEW
 
 1. Determine worktree directory location (priority: existing → AGENTS.md → ask user)
 2. Verify safety (`.gitignore` check for project-local directories)
@@ -46,7 +51,7 @@ Git worktrees create isolated working directories sharing the same repository da
 
 ---
 
-## 3. 🛠️ COMPLETE WORKFLOW
+## 4. 🛠️ COMPLETE WORKFLOW
 
 ### Step 1: Gather User Inputs
 
@@ -283,7 +288,7 @@ Fast mode (large repos):
 
 ---
 
-## 4. 🌿 BRANCH STRATEGY GUIDE
+## 5. 🌿 BRANCH STRATEGY GUIDE
 
 ### Main Temp (Default - Recommended) ⭐
 
@@ -348,7 +353,7 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
-## 5. ⚖️ DECISION MATRIX
+## 6. ⚖️ DECISION MATRIX
 
 | Situation | Directory Strategy | Branch Strategy |
 |-----------|-------------------|-----------------|
@@ -362,7 +367,7 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
-## 6. ❌ COMMON MISTAKES
+## 7. ❌ COMMON MISTAKES
 
 **Skipping .gitignore verification**:
 - **Problem**: Worktree contents get tracked, pollute git status
@@ -386,7 +391,7 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
-## 7. 💡 EXAMPLE WORKFLOWS
+## 8. 💡 EXAMPLE WORKFLOWS
 
 ### Example 1: Main Temp (Default Workflow) ⭐
 
@@ -473,7 +478,7 @@ Agent: "Creating branch from detached HEAD..."
 
 ---
 
-## 8. 🐛 TROUBLESHOOTING
+## 9. 🐛 TROUBLESHOOTING
 
 ### Worktree Creation Fails
 
@@ -530,7 +535,7 @@ git worktree prune
 
 ---
 
-## 9. 🎓 SUCCESS CRITERIA
+## 10. 🎓 SUCCESS CRITERIA
 
 **Worktree creation is successful when**:
 - ✅ Directory selected following priority system
@@ -547,7 +552,7 @@ git worktree prune
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 11. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [commit_workflows.md](./commit_workflows.md) - Professional commit practices with Conventional Commits

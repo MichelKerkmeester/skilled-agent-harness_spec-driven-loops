@@ -1,8 +1,17 @@
+---
+title: Browser Verification Checklist
+description: Checklist for verifying work in browser before claiming completion
+---
+
 # Browser Verification Checklist
 
-**The Iron Law**: Evidence in browser before claims, always.
-
 Use this checklist BEFORE claiming any work is complete, fixed, or working.
+
+---
+
+## Purpose
+
+**The Iron Law**: Evidence in browser before claims, always. This checklist ensures all claims are backed by actual browser testing evidence.
 
 ---
 
@@ -238,8 +247,7 @@ Timing appears correct
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 🔗 Related Resources
 
-### Reference Files
 - [verification_workflows.md](../references/verification_workflows.md) - Full verification guide
 - [quick_reference.md](../references/quick_reference.md) - Quick checklist

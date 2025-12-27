@@ -1,10 +1,15 @@
+---
+title: Sub-Folder Versioning
+description: Pattern for separating iterative work within existing spec folders while maintaining independent memory contexts.
+---
+
 # Sub-Folder Versioning - Iterative Work Separation Pattern
 
-> Pattern for separating iterative work within existing spec folders while maintaining independent memory contexts.
+Pattern for separating iterative work within existing spec folders while maintaining independent memory contexts.
 
 ---
 
-## 1. 📖 PATTERN OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
 

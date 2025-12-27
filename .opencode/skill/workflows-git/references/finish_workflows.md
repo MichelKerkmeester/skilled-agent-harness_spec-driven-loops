@@ -1,10 +1,15 @@
+---
+title: Git Finish - Detailed Workflow Reference
+description: Complete workflow documentation for completing development work with structured integration options.
+---
+
 # Git Finish - Detailed Workflow Reference
 
 Complete workflow documentation for completing development work with structured integration options.
 
 ---
 
-## 1. 🎯 OVERVIEW
+## 1. 📖 OVERVIEW
 
 Systematically complete development work by verifying tests, presenting integration options, and executing the chosen workflow. Ensures work is properly integrated with clean branch management.
 

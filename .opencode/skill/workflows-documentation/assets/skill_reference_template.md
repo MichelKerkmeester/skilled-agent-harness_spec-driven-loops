@@ -1,10 +1,15 @@
+---
+title: Skill Reference File Templates
+description: Comprehensive templates for creating effective reference files for AI agent skills with workflows, decision logic, and validation checkpoints.
+---
+
 # Skill Reference File Templates - AI Agent Skills
 
-Comprehensive templates for creating effective reference files for AI agent skills. Reference files provide deep-dive technical guidance with explicit reasoning - step-by-step workflows, decision logic, validation checkpoints, and root cause analysis.
+Templates for creating reference files in AI agent skills with deep-dive technical guidance.
 
 ---
 
-## 0. 📋 REFERENCE FILE REQUIREMENTS
+## 1. 📖 OVERVIEW
 
 ### Location & Naming
 
@@ -38,7 +43,91 @@ Comprehensive templates for creating effective reference files for AI agent skil
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 2. 📋 DOCUMENT STRUCTURE
+
+### Document Structure: Title and Intro
+
+**CRITICAL: The intro after the H1 title must be 1-2 SHORT sentences only.**
+
+```markdown
+---
+title: [Title]
+description: [One-line description - same as intro]
+---
+
+# [Title]
+
+[1-2 SHORT sentences only. Brief hook/summary. NO subsections, NO headers here.]
+
+---
+
+## 1. 📖 OVERVIEW
+[All detailed content goes here, NOT in the intro]
+```
+
+> **WARNING: DO NOT duplicate content between intro and Section 1.**
+> The intro is a hook; Section 1 provides the details.
+
+#### ✅ GOOD Intro Structure
+
+```markdown
+# Git Commit Workflows
+
+Step-by-step workflows for creating clean, atomic commits with proper filtering.
+
+---
+
+## 1. 📖 OVERVIEW
+
+### Purpose
+Provides systematic workflows for analyzing changes, filtering artifacts, and creating well-structured commits.
+
+### When to Use
+- Creating commits with multiple file changes
+- Filtering generated files from commits
+- Writing clear commit messages
+
+### Core Principle
+Atomic commits with clear intent + filtered artifacts = maintainable Git history.
+```
+
+#### ❌ BAD Intro Structure (duplicates content)
+
+```markdown
+# Git Commit Workflows
+
+Step-by-step workflows for creating clean, atomic commits with proper filtering.
+
+### Core Principle   ← WRONG: No headers in intro!
+Atomic commits with clear intent + filtered artifacts = maintainable Git history.
+
+### When to Use      ← WRONG: This belongs in Section 1!
+- Creating commits with multiple file changes
+
+---
+
+## 1. 📖 OVERVIEW
+
+### Purpose
+Provides systematic workflows...  ← Now this duplicates the intro!
+
+### Core Principle
+Atomic commits...  ← DUPLICATED from intro!
+```
+
+#### Intro vs Section 1 Content Placement
+
+| Content Type          | Intro (after H1) | Section 1 OVERVIEW |
+| --------------------- | ---------------- | ------------------ |
+| 1-2 sentence summary  | ✅ YES            | ❌ NO (don't repeat) |
+| Core Principle        | ❌ NO             | ✅ YES              |
+| When to Use           | ❌ NO             | ✅ YES              |
+| Primary Sources       | ❌ NO             | ✅ YES (as "Key Sources") |
+| Purpose (detailed)    | ❌ NO             | ✅ YES              |
+| Prerequisites         | ❌ NO             | ✅ YES              |
+| Any H3 subsections    | ❌ NEVER          | ✅ YES              |
+
+---
 
 ### What Are AI Agent Skill Reference Files?
 
@@ -72,7 +161,7 @@ Level 3: Reference files (this document)
 
 ---
 
-## 2. 🎯 WHEN TO CREATE REFERENCE FILES
+## 3. 🎯 WHEN TO CREATE REFERENCE FILES
 
 ### Create Reference File When
 
@@ -119,14 +208,18 @@ Level 3: Reference files (this document)
 
 ---
 
-## 3. 🧠 AI AGENT SKILL REFERENCE CHARACTERISTICS
+## 4. 🧠 AI AGENT SKILL REFERENCE CHARACTERISTICS
 
 ### Core Principle Statements
 
 **Purpose**: Distill philosophy into one-line wisdom
 
+> **PLACEMENT**: Core Principle goes in **Section 1 OVERVIEW**, NOT in the intro paragraph after the H1 title.
+
 **Format**:
 ```markdown
+## 1. 📖 OVERVIEW
+
 ### Core Principle
 
 [Single powerful statement that captures the workflow's essence]
@@ -278,20 +371,27 @@ Analyze situation
 
 **Purpose**: Link to required standards and context
 
+> **PLACEMENT**: Prerequisites go in **Section 1 OVERVIEW**, NOT in the intro paragraph.
+
 **Format**:
 ```markdown
 # [Workflow Name]
 
-[One-line description]
+[1-2 sentence summary only - no prerequisites here]
 
-**Prerequisites:** Follow [standard name] for all implementations:
+---
+
+## 1. 📖 OVERVIEW
+
+### Prerequisites
+Follow [standard name] for all implementations:
 - **[Standard 1]**: [Brief description]
 - **[Standard 2]**: [Brief description]
 - See [standard_file.md](./standard_file.md) for complete requirements
 ```
 
 **Key Elements**:
-- Appears at top, before main content
+- Appears in Section 1 OVERVIEW, not intro
 - Links to other reference files
 - Lists specific requirements
 
@@ -511,7 +611,7 @@ You MUST complete each phase before proceeding to the next.
 
 ---
 
-## 4. 🔄 CONVERTING LOGIC TO EXECUTABLE CODE
+## 5. 🔄 CONVERTING LOGIC TO EXECUTABLE CODE
 
 ### When to Extract Logic from Markdown
 
@@ -598,7 +698,7 @@ def test_quick_mode():
 
 ---
 
-## 5. 📋 YAML CONFIGURATION PATTERNS
+## 6. 📋 YAML CONFIGURATION PATTERNS
 
 ### Purpose
 
@@ -714,7 +814,7 @@ class VariantDetector:
 
 ---
 
-## 6. 🐍 PYTHON SCRIPT INTEGRATION
+## 7. 🐍 PYTHON SCRIPT INTEGRATION
 
 ### When to Use Python for Logic
 
@@ -838,7 +938,7 @@ def test_default_mode():
 
 ---
 
-## 7. 🏗️ STANDARD STRUCTURE TEMPLATE
+## 8. 🏗️ STANDARD STRUCTURE TEMPLATE
 
 ### Complete Skill Directory Structure
 
@@ -905,7 +1005,7 @@ def test_default_mode():
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 9. 🔗 RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type

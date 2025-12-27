@@ -1,8 +1,18 @@
+---
+title: Template Guide
+description: Comprehensive guide to template selection, copying, adaptation, and quality standards using the progressive enhancement model.
+---
+
 # Template Guide - Template Selection, Adaptation & Quality Standards
 
-> Comprehensive guide to template selection, copying, adaptation, and quality standards using the progressive enhancement model.
+Guide to template selection, copying, adaptation, and quality standards.
 
-**Progressive Enhancement Model:**
+---
+
+## 1. 📖 OVERVIEW
+
+### Progressive Enhancement Model
+
 ```
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
@@ -10,10 +20,6 @@ Level 2 (Verification): Level 1 + checklist.md
                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 ```
-
----
-
-## 1. 💡 TEMPLATE PHILOSOPHY
 
 ### Core Principles
 
@@ -543,7 +549,7 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/007-featu
 - ANCHOR format enables semantic search retrieval
 - Manual creation bypasses indexing and loses searchability
 
-**Note:** Never manually create memory files using Write/Edit tools. Always use the generate-context.js script per AGENTS.md Gate 5.
+**Note:** Never manually create memory files using Write/Edit tools. Always use the generate-context.js script per AGENTS.md Memory Save Rule.
 
 ---
 

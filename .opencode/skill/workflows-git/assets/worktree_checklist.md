@@ -1,10 +1,28 @@
+---
+title: Worktree Creation Checklist
+description: Step-by-step checklist for creating git worktrees safely and reliably.
+---
+
 # Worktree Creation Checklist
 
-Step-by-step checklist for creating git worktrees safely and reliably.
+Step-by-step checklist for safe and reliable git worktree creation.
 
 ---
 
-## 1. ⚠️ PRE-CREATION CHECKLIST
+## Purpose
+
+This checklist ensures git worktrees are created safely with proper .gitignore configuration, dependency installation, and baseline test verification. Use it when setting up isolated development environments.
+
+## Usage
+
+1. Complete the pre-creation checklist (gather info, select directory, verify safety)
+2. Follow the creation steps for your branch strategy
+3. Run post-creation verification
+4. Report status to user using the template
+
+---
+
+## Pre-Creation Checklist
 
 ### Step 1: Gather Information
 
@@ -69,7 +87,7 @@ Step-by-step checklist for creating git worktrees safely and reliably.
 
 ---
 
-## 2. 🔨 CREATION CHECKLIST
+## Creation Checklist
 
 ### Step 4: Create Worktree
 
@@ -201,7 +219,7 @@ Run tests to ensure worktree starts in known-good state:
 
 ---
 
-## 3. ✅ POST-CREATION CHECKLIST
+## Post-Creation Checklist
 
 ### Step 7: Final Verification
 
@@ -225,7 +243,7 @@ Run tests to ensure worktree starts in known-good state:
 
 ---
 
-## 4. 📊 STATUS REPORT TEMPLATE
+## Status Report Template
 
 Provide this information to user:
 
@@ -246,7 +264,7 @@ Example:
 
 ---
 
-## 5. 🔧 COMMON ISSUES CHECKLIST
+## Common Issues Checklist
 
 ### Issue: Worktree Creation Fails
 
@@ -333,7 +351,7 @@ git worktree add .worktrees/<name> -b <branch>
 
 ---
 
-## 6. 🏎️ QUICK REFERENCE COMMANDS
+## Quick Reference Commands
 
 **List all worktrees**:
 ```bash
@@ -368,7 +386,7 @@ git check-ignore -n .worktrees
 
 ---
 
-## 7. 🎯 SUCCESS CRITERIA
+## Success Criteria
 
 Worktree creation is successful when:
 
@@ -386,9 +404,8 @@ Worktree creation is successful when:
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 🔗 Related Resources
 
-### Reference Files
 - [worktree_workflows.md](../references/worktree_workflows.md) - Complete workflow details
 - [shared_patterns.md](../references/shared_patterns.md) - Common git patterns
 - [quick_reference.md](../references/quick_reference.md) - Command cheat sheet

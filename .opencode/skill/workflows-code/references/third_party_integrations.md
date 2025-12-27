@@ -1,10 +1,15 @@
+---
+title: Third-Party Library Integrations
+description: Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns.
+---
+
 # Third-Party Library Integrations
 
-Reference guide for integrating external JavaScript libraries in Webflow projects. All patterns are extracted from production code and follow the project's code quality standards.
+Reference guide for integrating external JavaScript libraries in Webflow projects, with production-tested patterns following code quality standards.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
 Reference guide for integrating external JavaScript libraries in Webflow projects.
@@ -464,3 +469,12 @@ function destroy_player(player) {
 | Lenis | jsdelivr | latest | Smooth scrolling |
 | Botpoison | unpkg | latest | Form spam protection |
 | Finsweet | jsdelivr | 1.x | Webflow enhancements |
+
+---
+
+## 8. 🔗 RELATED RESOURCES
+
+### Reference Files
+- [code_quality_standards.md](./code_quality_standards.md) - CDN-safe initialization pattern for all library integrations
+- [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns for library loading
+- [performance_patterns.md](./performance_patterns.md) - Lazy loading and code splitting strategies

@@ -1,10 +1,15 @@
+---
+title: Install Guide Creation - Templates and Standards
+description: Templates for creating consistent, AI-friendly installation guides for MCP servers, plugins, CLI tools, and development dependencies.
+---
+
 # Install Guide Creation - Templates and Standards
 
-Templates and guidelines for creating consistent, AI-friendly installation guides for MCP servers, plugins, CLI tools, and development dependencies.
+Templates for creating phased installation guides with validation checkpoints.
 
 ---
 
-## 1. 📖 WHAT ARE INSTALL GUIDES?
+## 1. 📖 OVERVIEW
 
 **Purpose**: Install guides provide step-by-step instructions for installing, configuring, and verifying software tools. They bridge the gap between "download this" and "now use it successfully."
 

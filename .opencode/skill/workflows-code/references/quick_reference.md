@@ -1,13 +1,18 @@
+---
+title: Code Workflows Quick Reference
+description: Quick-access cheat sheet with decision trees, code snippets, and verification checklists.
+---
+
 # Code Workflows Quick Reference
 
-One-page cheat sheet for fast navigation and common operations.
+Quick-access cheat sheet with decision trees, code snippets, and verification checklists.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
-One-page cheat sheet for fast navigation and common operations.
+One-page reference for fast lookups during implementation, debugging, and verification workflows.
 
 ### When to Use
 - Fast lookups for commands and snippets
@@ -88,15 +93,22 @@ const value = obj?.nested?.property ?? 'default';
 text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 ```
 
-### CDN Versioning
+### Minification & CDN Deployment
+
+See: [minification_guide.md](./minification_guide.md) and [cdn_deployment.md](./cdn_deployment.md)
 
 ```bash
-# NOTE: CDN versioning script location TBD (previously in code-cdn-versioning skill)
-# Manual approach: Update version parameters in HTML files that reference modified JS
+# Quick workflow:
+# 1. Minify
+npx terser src/file.js --compress --mangle -o z_minified/file.js
 
-# Example manual update in HTML:
-# <script src="path/to/file.js?v=1.0.0"></script>
-# Change to: <script src="path/to/file.js?v=1.0.1"></script>
+# 2. Verify
+node scripts/verify-minification.mjs
+node scripts/test-minified-runtime.mjs
+
+# 3. Update HTML versions (?v=X.X.X → ?v=X.X.X+1)
+# 4. Upload to Cloudflare R2 dashboard
+# 5. Test live site
 ```
 
 ### Performance Patterns
@@ -374,7 +386,6 @@ const userId = validate(input, 'string', 'anonymous');
 - [verification_workflows.md](./verification_workflows.md) - Phase 3 workflows for browser testing (MANDATORY)
 - [code_quality_standards.md](./code_quality_standards.md) - Naming conventions, initialization patterns, and standards
 - [shared_patterns.md](./shared_patterns.md) - DevTools, logging, and testing utilities
-- [devtools_guide.md](./devtools_guide.md) - Comprehensive Chrome DevTools reference
 
 ### Templates
 - [wait_patterns.js](../assets/wait_patterns.js) - Production-ready condition-based waiting code templates

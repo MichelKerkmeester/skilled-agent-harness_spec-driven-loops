@@ -1,12 +1,21 @@
+---
+title: LEANN Tool Catalog - Complete Command Reference
+description: Complete reference for all 5 LEANN commands with parameters, examples, troubleshooting, and configuration options.
+---
+
 # LEANN Tool Catalog - Complete Command Reference
 
-Complete reference for all 5 LEANN commands with parameters, examples, troubleshooting, and configuration options.
-
-**Usage:** Use `leann --help` or `leann <command> --help` to discover commands dynamically. This catalog provides a comprehensive static reference.
+Complete reference for all 5 LEANN commands. Use `leann --help` for dynamic discovery.
 
 ---
 
-## 1. 📖 HOW TO USE THIS CATALOG
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+This catalog provides a comprehensive static reference for LEANN commands with parameters, examples, troubleshooting, and configuration options.
+
+### CLI Discovery (Recommended)
 
 **CLI discovery is faster than static reference:**
 

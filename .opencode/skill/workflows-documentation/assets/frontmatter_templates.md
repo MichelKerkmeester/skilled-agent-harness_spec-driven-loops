@@ -1,10 +1,15 @@
+---
+title: YAML Frontmatter Templates
+description: Templates and validation rules for YAML frontmatter across all document types in the OpenCode ecosystem.
+---
+
 # YAML Frontmatter Templates - Document Type Reference
 
-Templates and validation rules for YAML frontmatter across all document types in the OpenCode ecosystem.
+Templates and validation rules for YAML frontmatter by document type.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Is YAML Frontmatter?
 

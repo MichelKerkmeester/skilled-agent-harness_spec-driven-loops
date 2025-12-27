@@ -1,6 +1,15 @@
+---
+title: Level Specifications
+description: Complete specifications for all three documentation levels using the progressive enhancement model.
+---
+
 # Level Specifications - Complete Level 1-3 Requirements
 
-> Complete specifications for all three documentation levels using the progressive enhancement model.
+Complete specifications for all three documentation levels using the progressive enhancement model.
+
+---
+
+## 1. 📖 OVERVIEW
 
 **Progressive Enhancement Model:**
 ```
@@ -20,7 +29,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 ---
 
-## 1. 🔵 LEVEL 1: BASELINE DOCUMENTATION (LOC guidance: <100)
+## 2. 🔵 LEVEL 1: BASELINE DOCUMENTATION (LOC guidance: <100)
 
 ### When to Use
 
@@ -103,7 +112,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 ---
 
-## 2. 🟡 LEVEL 2: VERIFICATION ADDED (LOC guidance: 100-499)
+## 3. 🟡 LEVEL 2: VERIFICATION ADDED (LOC guidance: 100-499)
 
 ### When to Use
 
@@ -211,7 +220,7 @@ specs/012-user-profile-api/
 
 ---
 
-## 3. 🔴 LEVEL 3: FULL DOCUMENTATION (LOC guidance: ≥500)
+## 4. 🔴 LEVEL 3: FULL DOCUMENTATION (LOC guidance: ≥500)
 
 ### When to Use
 
@@ -284,7 +293,7 @@ specs/012-user-profile-api/
 
 ---
 
-## 4. 🔄 LEVEL MIGRATION
+## 5. 🔄 LEVEL MIGRATION
 
 ### When Scope Grows During Implementation
 
@@ -324,7 +333,7 @@ If you discover mid-work that scope is larger than anticipated, escalate by addi
 
 ---
 
-## 5. 📌 STATUS FIELD CONVENTION
+## 6. 📌 STATUS FIELD CONVENTION
 
 Every spec.md should include a status field to track lifecycle:
 
@@ -366,7 +375,7 @@ active (resume)
 
 ---
 
-## 6. 🔀 RELATED SPECS: UPDATE VS CREATE
+## 7. 🔀 RELATED SPECS: UPDATE VS CREATE
 
 ### When to UPDATE Existing Spec
 
@@ -441,7 +450,7 @@ Search existing specs (folder names, titles)
 
 ---
 
-## 7. 📋 CROSS-CUTTING TEMPLATES (ANY LEVEL)
+## 8. 📋 CROSS-CUTTING TEMPLATES (ANY LEVEL)
 
 Some templates are not level-specific but can be used at any documentation level. These support session management, context preservation, and work summaries.
 
@@ -484,7 +493,7 @@ Some templates are not level-specific but can be used at any documentation level
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 9. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [quick_reference.md](./quick_reference.md) - Commands, checklists, and troubleshooting

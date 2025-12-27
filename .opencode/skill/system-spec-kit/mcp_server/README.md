@@ -385,7 +385,7 @@ memory_index_scan({ force: true })
 | Document            | Location         | Purpose                             |
 | ------------------- | ---------------- | ----------------------------------- |
 | `folder_routing.md` | `../references/` | Routing logic and alignment scoring |
-| `save-workflow.md`  | `../references/` | Save context workflows              |
+| `save_workflow.md`  | `../references/` | Save context workflows              |
 
 ### External Resources
 
@@ -394,3 +394,22 @@ memory_index_scan({ force: true })
 | MCP Protocol Spec     | https://modelcontextprotocol.io/                      |
 | nomic-embed-text-v1.5 | https://huggingface.co/nomic-ai/nomic-embed-text-v1.5 |
 | sqlite-vec            | https://github.com/asg017/sqlite-vec                  |
+
+---
+
+## 9. 🧪 EXPERIMENTAL FEATURES
+
+### Cross-Encoder Reranking
+
+An experimental reranking feature is available that uses a cross-encoder model to improve search result relevance.
+
+**Enable:**
+```bash
+export ENABLE_RERANKER=true
+```
+
+**Requirements:**
+- Python 3.8+
+- `sentence_transformers` package: `pip install sentence-transformers`
+
+**Note:** This feature is experimental and may increase response latency.

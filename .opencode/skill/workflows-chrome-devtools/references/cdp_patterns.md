@@ -1,10 +1,15 @@
+---
+title: CDP Patterns & Command Examples
+description: Chrome DevTools Protocol patterns, workflows, and Unix composability examples for bdg.
+---
+
 # CDP Patterns & Command Examples
 
-Complete reference for Chrome DevTools Protocol execution patterns, common workflows, and Unix composability examples using browser-debugger-cli (bdg).
+CDP command reference with domain patterns and Unix pipeline examples.
 
 ---
 
-## 1. 💡 CORE PRINCIPLE
+## 1. 📖 OVERVIEW
 
 Progressive disclosure from discovery to execution - always explore capabilities via `--list`/`--describe`/`--search` before executing CDP methods. Self-documentation eliminates hardcoded method lists and ensures up-to-date access to all 644 CDP methods.
 

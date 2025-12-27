@@ -1,10 +1,15 @@
+---
+title: SKILL.md File Templates - Creation Guide
+description: Templates and guidelines for creating effective SKILL.md files for AI agent skills with complete scaffolds and section guidance.
+---
+
 # SKILL.md File Templates - Creation Guide
 
-Comprehensive templates and guidelines for creating effective SKILL.md files for AI agent skills. These templates provide complete scaffolds for skills of varying complexity levels with detailed section guidance.
+Templates for creating SKILL.md files with proper structure, frontmatter, and required sections.
 
 ---
 
-## 1. 📖 INTRODUCTION & TEMPLATE SELECTION
+## 1. 📖 OVERVIEW
 
 ### Purpose of SKILL.md Files
 
@@ -413,7 +418,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-## 7. 📚 RELATED RESOURCES
+## 7. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [reference-name.md](./references/reference-name.md) - Description of reference file
@@ -986,7 +991,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 ---
 
-## 7. 📚 RELATED RESOURCES
+## 7. 🔗 RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type

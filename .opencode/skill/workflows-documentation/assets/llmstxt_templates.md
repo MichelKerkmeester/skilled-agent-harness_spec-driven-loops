@@ -1,10 +1,15 @@
+---
+title: llms.txt Templates
+description: Templates and patterns for creating effective llms.txt files that help AI assistants understand projects.
+---
+
 # llms.txt Templates - Document Type Reference
 
-Templates and patterns for creating effective llms.txt files that help AI assistants understand projects.
+Templates for creating llms.txt files that provide AI assistants with project context.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Is llms.txt?
 

@@ -1,21 +1,36 @@
+---
+title: Quick Reference
+description: Fast lookup for commands, checklists, and troubleshooting using the progressive enhancement model.
+---
+
 # Quick Reference - Commands, Checklists & Troubleshooting
 
-> Fast lookup for commands, checklists, and troubleshooting using the progressive enhancement model.
+Fast lookup for spec folder commands, checklists, and troubleshooting.
 
-**Progressive Enhancement Model:**
+---
+
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+Quick reference for spec folder management, commands, and troubleshooting using the progressive enhancement model.
+
+### Progressive Enhancement Model
+
 ```
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
 Level 2 (Verification): Level 1 + checklist.md
 Level 3 (Full):         Level 2 + decision-record.md + optional research
 ```
 
-**Key Points:**
+### Key Points
+
 - LOC thresholds are **SOFT GUIDANCE** (not enforcement)
 - **Enforcement is MANUAL** - verify required templates exist before claiming completion
 
 ---
 
-## 1. 🎯 LEVEL DECISION SHORTCUTS (Progressive Enhancement)
+## 2. 🎯 LEVEL DECISION SHORTCUTS (Progressive Enhancement)
 
 | Situation | Level | Required Templates | Optional Templates |
 |-----------|-------|-------------------|-------------------|
@@ -30,7 +45,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research
 
 ---
 
-## 2. 💻 TEMPLATE COPY COMMANDS (Progressive)
+## 3. 💻 TEMPLATE COPY COMMANDS (Progressive)
 
 ### Level 1: Baseline (ALL features start here)
 
@@ -64,7 +79,7 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research
 
 ---
 
-## 3. ⚙️ ESSENTIAL COMMANDS
+## 4. ⚙️ ESSENTIAL COMMANDS
 
 ### Find Next Spec Number
 
@@ -106,7 +121,7 @@ Context saved to `specs/###-folder/memory/` or `memory/` (fallback).
 
 ---
 
-## 4. ✅ PRE-IMPLEMENTATION CHECKLIST (Progressive Enhancement)
+## 5. ✅ PRE-IMPLEMENTATION CHECKLIST (Progressive Enhancement)
 
 Before making ANY file changes, verify:
 
@@ -128,7 +143,7 @@ Before making ANY file changes, verify:
 
 ---
 
-## 5. 📁 FOLDER NAMING EXAMPLES
+## 6. 📁 FOLDER NAMING EXAMPLES
 
 ### Good Examples ✅
 
@@ -148,7 +163,7 @@ Before making ANY file changes, verify:
 
 ---
 
-## 6. 📌 STATUS FIELD VALUES
+## 7. 📌 STATUS FIELD VALUES
 
 | Status | Meaning | Reuse Priority |
 |--------|---------|----------------|
@@ -160,7 +175,7 @@ Before making ANY file changes, verify:
 
 ---
 
-## 7. 🔀 UPDATE VS CREATE DECISION
+## 8. 🔀 UPDATE VS CREATE DECISION
 
 ### UPDATE Existing Spec When:
 
@@ -180,7 +195,7 @@ Before making ANY file changes, verify:
 
 ---
 
-## 8. 🔔 CONFIRMATION OPTIONS
+## 9. 🔔 CONFIRMATION OPTIONS
 
 When workflow prompts at conversation start:
 
@@ -193,7 +208,7 @@ When workflow prompts at conversation start:
 
 ---
 
-## 9. 🔄 LEVEL MIGRATION (Progressive Enhancement)
+## 10. 🔄 LEVEL MIGRATION (Progressive Enhancement)
 
 If scope grows during implementation, add the required files:
 
@@ -210,7 +225,7 @@ If scope grows during implementation, add the required files:
 
 ---
 
-## 10. 🔧 TROUBLESHOOTING
+## 11. 🔧 TROUBLESHOOTING
 
 ### "I forgot to create the spec folder"
 
@@ -282,7 +297,7 @@ If scope grows during implementation, add the required files:
 
 ---
 
-## 11. 📋 WHAT REQUIRES SPEC FOLDERS
+## 12. 📋 WHAT REQUIRES SPEC FOLDERS
 
 | File Type | Requires Spec | Examples |
 |-----------|--------------|----------|
@@ -301,7 +316,7 @@ If scope grows during implementation, add the required files:
 
 ---
 
-## 12. ⚠️ SKIP OPTION (OPTION D) USAGE
+## 13. ⚠️ SKIP OPTION (OPTION D) USAGE
 
 ### When Appropriate ✅
 
@@ -331,7 +346,7 @@ Skipping documentation:
 
 ---
 
-## 13. ✅ TEMPLATE ADAPTATION CHECKLIST (Progressive Enhancement)
+## 14. ✅ TEMPLATE ADAPTATION CHECKLIST (Progressive Enhancement)
 
 Before presenting documentation to user:
 
@@ -355,7 +370,7 @@ Before presenting documentation to user:
 
 ---
 
-## 14. 💾 CONTEXT SAVE & HANDOVER
+## 15. 💾 CONTEXT SAVE & HANDOVER
 
 ### Context Save
 
@@ -372,7 +387,7 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/###-folde
 
 ❌ DO NOT use Write/Edit tools to create memory files directly.
 
-> **Gate 4 Integration:** Memory loading implements AGENTS.md Gate 4. When resuming work on an existing spec folder with memory files, display options: `[1] [2] [3] [all] [skip]` for memory selection.
+> **Memory Context Loading Integration:** Memory loading implements AGENTS.md Memory Context Loading. When resuming work on an existing spec folder with memory files, display options: `[1] [2] [3] [all] [skip]` for memory selection.
 
 **Save location:**
 - Primary: `specs/###-folder/memory/`
@@ -398,7 +413,7 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/###-folde
 
 ---
 
-## 15. 🤖 AGENT CRITICAL RULES (Progressive Enhancement)
+## 16. 🤖 AGENT CRITICAL RULES (Progressive Enhancement)
 
 ### Absolutely Required
 
@@ -431,7 +446,7 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/###-folde
 
 ---
 
-## 16. ✅ CHECKLIST VERIFICATION PROTOCOL (Level 2+)
+## 17. ✅ CHECKLIST VERIFICATION PROTOCOL (Level 2+)
 
 ### When to Use
 
@@ -508,7 +523,7 @@ For each checklist item:
 
 ---
 
-## 17. 💡 CORE PRINCIPLE
+## 18. 💡 CORE PRINCIPLE
 
 **Every file change deserves documentation.**
 
@@ -524,7 +539,7 @@ When in doubt:
 
 ---
 
-## 18. 🔗 RELATED RESOURCES
+## 19. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [template_guide.md](./template_guide.md) - Template selection, adaptation, and quality standards

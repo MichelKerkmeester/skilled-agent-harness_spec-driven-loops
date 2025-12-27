@@ -1,32 +1,38 @@
+---
+title: Tool Catalog - Complete List of Available MCP Tools
+description: Reference catalog of 275+ tools across 9 MCP servers.
+---
+
 # Tool Catalog - Complete List of Available MCP Tools
 
-Complete catalog of 200+ tools accessible via Code Mode UTCP, organized by MCP server.
-
-**Usage:** Use `search_tools()` or `list_tools()` to discover tools dynamically. This catalog provides a static reference.
+Reference catalog of 275+ tools across 9 MCP servers, organized by service.
 
 ---
 
-## 1. 📖 HOW TO USE THIS CATALOG
+## 1. 📖 OVERVIEW
 
-**Tool discovery is better than static reference:**
+### Dynamic Discovery (Recommended)
+
+Use `search_tools()` or `list_tools()` to discover tools at runtime:
 
 ```typescript
-// Recommended: Dynamic discovery
+// Search by task description
 const tools = await search_tools({
   task_description: "webflow CMS collections",
   limit: 10
 });
 
-// Alternative: List all tools
+// List all available tools
 const allTools = await list_tools();
 
-// Get specific tool info
+// Get specific tool interface
 const info = await tool_info({
   tool_name: "webflow.webflow_collections_list"
 });
 ```
 
-**This catalog is useful for:**
+### When to Use This Catalog
+
 - Understanding available capabilities
 - Planning workflows
 - Quick reference when offline

@@ -416,7 +416,7 @@ call_tool_chain({
 
 ## 5. 📋 RULES
 
-### ✅ ALWAYS 
+### ✅ ALWAYS
 
 - **Use Code Mode for ALL MCP tool calls** - Mandatory for ClickUp, Notion, Figma, Webflow, Chrome DevTools, etc.
 - **Follow naming pattern**: `{manual_name}.{manual_name}_{tool_name}` (see [naming_convention.md](references/naming_convention.md))
@@ -426,7 +426,7 @@ call_tool_chain({
 - **Console.log progress** in complex workflows for debugging
 - **Structure return values** consistently: `{ success, data, errors, timestamp }`
 
-### ❌ NEVER 
+### ❌ NEVER
 
 - **Skip Code Mode for MCP tools** - Direct MCP calls cause context exhaustion
 - **Use wrong naming pattern** - `webflow.sites_list` instead of `webflow.webflow_sites_list`
@@ -606,6 +606,19 @@ See [references/tool_catalog.md](references/tool_catalog.md) for complete list.
 ## 10. 📦 BUNDLED RESOURCES
 
 ### scripts/
+
+**update-code-mode.sh** - Update Code Mode to latest version
+
+Updates @utcp/code-mode-mcp to the latest version via npm. Verifies configuration and provides setup guidance.
+
+**Usage**: 
+```bash
+bash .opencode/skill/mcp-code-mode/scripts/update-code-mode.sh
+```
+
+**Environment variable**: Set `CODE_MODE_DIR` to override installation path.
+
+---
 
 **validate_config.py** - Configuration validation tool
 

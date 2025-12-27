@@ -1,16 +1,23 @@
+---
+title: Configuration Template
+description: Complete .utcp_config.json template for Code Mode UTCP setup with multiple MCP servers.
+---
+
 # Configuration Template
 
-Complete `.utcp_config.json` template for Code Mode UTCP setup with multiple MCP servers.
+Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured MCP servers.
 
 ---
 
-## 1. 📋 COMPLETE TEMPLATE
+## Purpose
 
-**Purpose**: Base configuration file for Code Mode UTCP with progressive tool loading and environment variable support.
+Base configuration file for Code Mode UTCP with progressive tool loading and environment variable support. Includes pre-configured templates for Webflow, ClickUp, Figma, Notion, and Chrome DevTools.
 
-**Usage**: Copy this template to `.utcp_config.json` in your project root, then customize the `manual_call_templates` array with your desired MCP servers.
+## Usage
 
-**Template:**
+Copy this template to `.utcp_config.json` in your project root, then customize the `manual_call_templates` array with your desired MCP servers. Reference credentials using `${VARIABLE_NAME}` syntax.
+
+## Template
 
 ```json
 {
@@ -124,7 +131,7 @@ Complete `.utcp_config.json` template for Code Mode UTCP setup with multiple MCP
 
 ---
 
-## 2. 🔧 CONFIGURATION SECTIONS
+## Configuration Sections
 
 ### load_variables_from
 
@@ -193,7 +200,7 @@ Complete `.utcp_config.json` template for Code Mode UTCP setup with multiple MCP
 
 ---
 
-## 3. 📝 MCP SERVER CONFIGURATIONS
+## MCP Server Configurations
 
 ### Webflow (Remote MCP)
 
@@ -320,7 +327,7 @@ Complete `.utcp_config.json` template for Code Mode UTCP setup with multiple MCP
 
 ---
 
-## 4. 🔐 ENVIRONMENT VARIABLES
+## Environment Variables
 
 **Required .env file**: Create `.env` in project root with:
 
@@ -343,7 +350,7 @@ NOTION_TOKEN=ntn_your_token_here
 
 ---
 
-## 5. ⚙️ CUSTOMIZATION GUIDE
+## Customization Guide
 
 ### Adding a New MCP Server
 
@@ -403,7 +410,7 @@ GITHUB_TOKEN=ghp_your_token_here
 
 ---
 
-## 6. ✅ VALIDATION
+## Validation
 
 **Validate configuration:**
 
@@ -419,7 +426,7 @@ GITHUB_TOKEN=ghp_your_token_here
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 🔗 Related Resources
 
 ### Templates
 - [env_template.md](./env_template.md) - Complete .env file template with credential sources

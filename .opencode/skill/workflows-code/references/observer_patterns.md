@@ -1,13 +1,18 @@
+---
+title: Observer Patterns Reference
+description: Browser observer APIs for reactive DOM watching, visibility detection, and scroll-triggered behaviors.
+---
+
 # Observer Patterns Reference
 
-> Production-tested patterns for MutationObserver and IntersectionObserver in Webflow projects.
+Browser observer APIs for reactive DOM watching, visibility detection, and scroll-triggered behaviors.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
-Production-tested patterns for MutationObserver and IntersectionObserver in Webflow projects.
+Production-tested patterns for MutationObserver, IntersectionObserver, and ResizeObserver in Webflow projects with proper cleanup and performance optimization.
 
 ### When to Use (Observers vs Polling)
 
@@ -493,3 +498,13 @@ function setup_combined_observers(container) {
 | `threshold: [0, 1]` | Know when element enters AND fully visible |
 | RAF batching | Prevent jank from rapid callbacks |
 | Cleanup arrays | SPA-safe resource management |
+
+---
+
+## 7. 🔗 RELATED RESOURCES
+
+### Reference Files
+- [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns using observers
+- [webflow_patterns.md](./webflow_patterns.md) - Collection list patterns that use MutationObserver
+- [animation_workflows.md](./animation_workflows.md) - IntersectionObserver for scroll-triggered animations
+- [performance_patterns.md](./performance_patterns.md) - Lazy loading with IntersectionObserver

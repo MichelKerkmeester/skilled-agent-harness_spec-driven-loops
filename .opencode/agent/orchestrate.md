@@ -1,4 +1,5 @@
 ---
+name: orchestrate
 description: Senior orchestration agent with full authority over task decomposition, delegation, quality evaluation, and unified delivery synthesis
 mode: primary
 temperature: 0.1
@@ -51,34 +52,34 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 ### Skills (.opencode/skill/) - Complete Reference
 
-| Skill | Domain | Use When | Key Commands/Tools |
-|-------|--------|----------|-------------------|
-| `system-spec-kit` | Documentation | Spec folders, memory, validation, context preservation | `/spec_kit:*`, `/memory:*` |
-| `workflows-code` | Implementation | Code changes, debugging, 3-phase lifecycle, browser verification | - |
-| `workflows-git` | Version Control | Branches, commits, PRs, worktrees, merges | GitHub MCP |
-| `workflows-documentation` | Markdown | Doc quality, DQI scoring, skill creation, flowcharts | `/create:*` |
-| `workflows-chrome-devtools` | Browser | DevTools automation, screenshots, console, CDP | `bdg` CLI |
-| `mcp-leann` | Semantic | Intent-based code finding (what code DOES) | `leann_search`, `leann_ask` |
-| `mcp-narsil` | Structural | Symbol analysis, security scans, call graphs (via Code Mode) | `narsil.*` via `call_tool_chain()` |
-| `mcp-code-mode` | External Tools | Webflow, Figma, ClickUp, Narsil, Chrome DevTools via MCP | `call_tool_chain()` |
+| Skill                       | Domain          | Use When                                                         | Key Commands/Tools                 |
+| --------------------------- | --------------- | ---------------------------------------------------------------- | ---------------------------------- |
+| `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation           | `/spec_kit:*`, `/memory:*`         |
+| `workflows-code`            | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                                  |
+| `workflows-git`             | Version Control | Branches, commits, PRs, worktrees, merges                        | GitHub MCP                         |
+| `workflows-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                        |
+| `workflows-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI                          |
+| `mcp-leann`                 | Semantic        | Intent-based code finding (what code DOES)                       | `leann_search`, `leann_ask`        |
+| `mcp-narsil`                | Structural      | Symbol analysis, security scans, call graphs (via Code Mode)     | `narsil.*` via `call_tool_chain()` |
+| `mcp-code-mode`             | External Tools  | Webflow, Figma, ClickUp, Narsil, Chrome DevTools via MCP         | `call_tool_chain()`                |
 
 ### Core Tools
 
-| Tool | Purpose | When to Recommend |
-|------|---------|-------------------|
-| `leann_leann_search` | Intent-based code discovery | "Find code that handles...", unknown locations |
-| `leann_leann_ask` | RAG-powered Q&A | "How does X work?" |
-| `spec_kit_memory_memory_search` | Memory vector search | Find prior work, decisions |
-| `narsil.narsil_*` | Structural Analysis (via Code Mode) | Call graphs, symbol maps, security scans |
-| `call_tool_chain()` | External MCP tools | Webflow, Figma, ClickUp, Narsil |
+| Tool                            | Purpose                             | When to Recommend                              |
+| ------------------------------- | ----------------------------------- | ---------------------------------------------- |
+| `leann_leann_search`            | Intent-based code discovery         | "Find code that handles...", unknown locations |
+| `leann_leann_ask`               | RAG-powered Q&A                     | "How does X work?"                             |
+| `spec_kit_memory_memory_search` | Memory vector search                | Find prior work, decisions                     |
+| `narsil.narsil_*`               | Structural Analysis (via Code Mode) | Call graphs, symbol maps, security scans       |
+| `call_tool_chain()`             | External MCP tools                  | Webflow, Figma, ClickUp, Narsil                |
 
 ### Tool Access Patterns
 
-| Tool Type | Access Method | Example |
-|-----------|---------------|---------|
-| Native MCP | Direct call | `leann_leann_search({ query: "auth" })` |
-| Code Mode MCP | `call_tool_chain()` | `narsil.narsil_find_symbols({...})` |
-| CLI tools | Bash via sub-agent | `bdg screenshot` |
+| Tool Type     | Access Method       | Example                                 |
+| ------------- | ------------------- | --------------------------------------- |
+| Native MCP    | Direct call         | `leann_leann_search({ query: "auth" })` |
+| Code Mode MCP | `call_tool_chain()` | `narsil.narsil_find_symbols({...})`     |
+| CLI tools     | Bash via sub-agent  | `bdg screenshot`                        |
 
 ---
 
@@ -105,29 +106,29 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 ### Built-in Subagent Types (Task tool)
 
-| subagent_type | Capabilities | Best For |
-|---------------|--------------|----------|
-| `"general"` | Full tools: Read, Write, Edit, Bash, Glob, Grep | Implementation, debugging, complex tasks |
-| `"explore"` | Fast search: Glob, Grep, Read (limited) | Quick codebase exploration, file discovery |
+| subagent_type | Capabilities                                    | Best For                                   |
+| ------------- | ----------------------------------------------- | ------------------------------------------ |
+| `"general"`   | Full tools: Read, Write, Edit, Bash, Glob, Grep | Implementation, debugging, complex tasks   |
+| `"explore"`   | Fast search: Glob, Grep, Read (limited)         | Quick codebase exploration, file discovery |
 
 **Usage:** Specify `subagent_type` in Task tool dispatch.
 
 ### Project-Specific Agents (This Codebase)
 
-| Agent | File | Dispatch Method |
-|-------|------|-----------------|
-| @research | `.opencode/agent/research.md` | Task with full research context |
-| @documentation-writer | `.opencode/agent/create_documentation.md` | Task with doc requirements |
+| Agent                 | File                                      | Dispatch Method                 |
+| --------------------- | ----------------------------------------- | ------------------------------- |
+| @research             | `.opencode/agent/research.md`             | Task with full research context |
+| @documentation-writer | `.opencode/agent/create_documentation.md` | Task with doc requirements      |
 
 ### Agent Selection Matrix
 
-| Task Type | Agent | Rationale |
-|-----------|-------|-----------|
-| Quick file search | `@explore` | Fast, minimal context |
-| Evidence gathering | `@research` | Comprehensive, citations |
-| Code implementation | `@general` | Full tool access |
-| Documentation | `@documentation-writer` | DQI standards |
-| Debugging (stuck) | `/spec_kit:debug` | Model selection, fresh perspective |
+| Task Type           | Agent                   | Rationale                          |
+| ------------------- | ----------------------- | ---------------------------------- |
+| Quick file search   | `@explore`              | Fast, minimal context              |
+| Evidence gathering  | `@research`             | Comprehensive, citations           |
+| Code implementation | `@general`              | Full tool access                   |
+| Documentation       | `@documentation-writer` | DQI standards                      |
+| Debugging (stuck)   | `/spec_kit:debug`       | Model selection, fresh perspective |
 
 ---
 
@@ -152,14 +153,14 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 **Proactively suggest commands when conditions match:**
 
-| Condition | Suggest | Reason |
-|-----------|---------|--------|
-| Sub-agent stuck 3+ times on same error | `/spec_kit:debug` | Fresh perspective with model selection |
-| Session ending or user says "stopping" | `/spec_kit:handover` | Preserve context for continuation |
-| Need formal research before planning | `/spec_kit:research` | 9-step structured investigation |
-| Claiming task completion | `/spec_kit:complete` | Verification workflow with checklist |
-| Need to save important context | `/memory:save` | Preserve decisions and findings |
-| Resuming prior work | `/spec_kit:resume` | Load context from spec folder |
+| Condition                              | Suggest              | Reason                                 |
+| -------------------------------------- | -------------------- | -------------------------------------- |
+| Sub-agent stuck 3+ times on same error | `/spec_kit:debug`    | Fresh perspective with model selection |
+| Session ending or user says "stopping" | `/spec_kit:handover` | Preserve context for continuation      |
+| Need formal research before planning   | `/spec_kit:research` | 9-step structured investigation        |
+| Claiming task completion               | `/spec_kit:complete` | Verification workflow with checklist   |
+| Need to save important context         | `/memory:save`       | Preserve decisions and findings        |
+| Resuming prior work                    | `/spec_kit:resume`   | Load context from spec folder          |
 
 ### Auto-Suggestion Triggers
 
@@ -282,11 +283,11 @@ This dispatches a fresh agent with model selection for a different perspective.
 
 ### Timeout Handling
 
-| Situation | Action |
-|-----------|--------|
-| Sub-agent no response (2 min) | Report timeout, offer retry or reassign |
-| Partial response received | Extract useful findings, dispatch new agent for remainder |
-| Multiple timeouts | Suggest breaking task into smaller pieces |
+| Situation                     | Action                                                    |
+| ----------------------------- | --------------------------------------------------------- |
+| Sub-agent no response (2 min) | Report timeout, offer retry or reassign                   |
+| Partial response received     | Extract useful findings, dispatch new agent for remainder |
+| Multiple timeouts             | Suggest breaking task into smaller pieces                 |
 
 ---
 
@@ -341,12 +342,12 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-pa
 
 ### Context Health Monitoring
 
-| Signal | Threshold | Action |
-|--------|-----------|--------|
-| Tool calls | 15+ | Suggest handover |
-| Files modified | 5+ | Recommend context save |
-| Sub-agent failures | 2+ | Consider debug delegation |
-| Session duration | Extended | Proactive handover prompt |
+| Signal             | Threshold | Action                    |
+| ------------------ | --------- | ------------------------- |
+| Tool calls         | 15+       | Suggest handover          |
+| Files modified     | 5+        | Recommend context save    |
+| Sub-agent failures | 2+        | Consider debug delegation |
+| Session duration   | Extended  | Proactive handover prompt |
 
 ---
 

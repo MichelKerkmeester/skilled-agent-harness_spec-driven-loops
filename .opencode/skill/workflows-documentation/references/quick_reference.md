@@ -1,10 +1,15 @@
+---
+title: Markdown Optimizer - Quick Reference
+description: One-page cheat sheet for commands, quality gates, and transformation patterns.
+---
+
 # Markdown Optimizer - Quick Reference
 
-One-page cheat sheet for experienced users who need quick command access, quality gates, transformation patterns, and integration points.
+Commands, quality gates, and patterns at a glance.
 
 ---
 
-## 1. 💻 COMMANDS
+## 1. 📖 OVERVIEW
 
 **Extract Structure** (for AI analysis):
 ```bash

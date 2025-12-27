@@ -11,6 +11,13 @@ URL="${1:-https://anobel.com}"
 OUTPUT_DIR="${2:-performance-baselines}"
 DATE_STAMP=$(date +%Y%m%d-%H%M%S)
 
+# Validate URL format
+if [[ ! "$URL" =~ ^https?:// ]]; then
+    echo "Error: Invalid URL format. URL must start with http:// or https://" >&2
+    echo "Usage: $0 [URL]" >&2
+    exit 1
+fi
+
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 

@@ -1,15 +1,15 @@
+---
+title: Document Quality Workflows - Mode 1 Reference
+description: Execution modes, validation patterns, and phase interactions for Mode 1 document quality workflows.
+---
+
 # Document Quality Workflows - Mode 1 Reference
 
-Comprehensive reference for execution modes, validation patterns, structure workflows, and phase interactions for the markdown documentation workflow (Mode 1: Document Quality).
-
-> **Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
-> - Mode 2 (Skill Creation): [skill_creation.md](./skill_creation.md)
-> - Mode 3 (Flowcharts): [assets/flowcharts/](../assets/flowcharts/)
-> - Mode 4 (Install Guides): [install_guide_standards.md](./install_guide_standards.md)
+Execution modes, validation patterns, and phase interactions for Mode 1 (Document Quality) workflows.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Are Workflows?
 
@@ -24,6 +24,11 @@ Workflows define the execution patterns and operational modes for the markdown d
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](skill_creation.md#progressive-disclosure).
 
 This reference provides deep-dive technical guidance on execution modes, validation patterns, and workflow orchestration.
+
+**Scope Note**: This reference covers Mode 1 (Document Quality) workflows only. For other modes, see:
+- Mode 2 (Skill Creation): [skill_creation.md](./skill_creation.md)
+- Mode 3 (Flowcharts): [assets/flowcharts/](../assets/flowcharts/)
+- Mode 4 (Install Guides): [install_guide_standards.md](./install_guide_standards.md)
 
 ### Core Principle
 

@@ -1,21 +1,23 @@
+---
+title: Environment Variables Template
+description: Complete .env file template with placeholders for all MCP server credentials and API tokens.
+---
+
 # Environment Variables Template
 
-Complete `.env` file template with placeholders for all MCP server credentials and API tokens.
+Copy-ready `.env` template for Code Mode UTCP authentication with all supported MCP servers.
 
 ---
 
-## 1. 📋 COMPLETE TEMPLATE
+## Purpose
 
-**Purpose**: Centralized environment variables for Code Mode UTCP authentication and configuration.
+Centralized environment variables for Code Mode UTCP authentication and configuration. Use this template to securely manage credentials for ClickUp, Figma, Notion, GitHub, Webflow, and Chrome DevTools MCP servers.
 
-**Usage**: Copy this template to `.env` in your project root, then replace placeholder values with your actual credentials.
+## Usage
 
-**Security**:
-- ⚠️ **NEVER commit `.env` to version control**
-- Add `.env` to `.gitignore` immediately
-- Use `.env.example` (without real values) for sharing templates
+Copy this template to `.env` in your project root, then replace placeholder values with your actual credentials. Never commit `.env` to version control - add it to `.gitignore` immediately.
 
-**Template:**
+## Template
 
 ```bash
 # Code Mode UTCP - Environment Variables Template
@@ -46,7 +48,7 @@ WEBFLOW_API_TOKEN=your_webflow_token_here
 
 ---
 
-## 2. 🔐 CREDENTIAL SOURCES
+## Credential Sources
 
 ### ClickUp
 
@@ -156,7 +158,7 @@ WEBFLOW_API_TOKEN=your_webflow_api_token_here
 
 ---
 
-## 3. 🔒 SECURITY BEST PRACTICES
+## Security Best Practices
 
 ### .gitignore Configuration
 
@@ -206,7 +208,7 @@ WEBFLOW_API_TOKEN=your_webflow_api_token_here
 
 ---
 
-## 4. ⚙️ CONFIGURATION REFERENCE
+## Configuration Reference
 
 ### Variable Syntax in .utcp_config.json
 
@@ -270,7 +272,7 @@ export CLICKUP_TEAM_ID=12345
 
 ---
 
-## 5. 🔍 TROUBLESHOOTING
+## Troubleshooting
 
 ### Variable Not Found Error
 
@@ -315,7 +317,7 @@ Error: Access denied to resource
 
 ---
 
-## 6. 📝 TEMPLATE CUSTOMIZATION
+## Template Customization
 
 ### Adding New MCP Server Credentials
 
@@ -361,18 +363,7 @@ Then reference in `.utcp_config.json`:
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
-
-### Templates
-- [config_template.md](./config_template.md) - Complete .utcp_config.json configuration template
-
-### Reference Files
-- [configuration.md](../references/configuration.md) - Comprehensive configuration guide for Code Mode UTCP
-- [naming_convention.md](../references/naming_convention.md) - Tool naming conventions and patterns for Code Mode
-
----
-
-## 8. ✅ VALIDATION CHECKLIST
+## Validation Checklist
 
 **Before using Code Mode, verify:**
 
@@ -397,6 +388,17 @@ call_tool_chain({
 ```
 
 **Expected result**: Should return tool count without authentication errors
+
+---
+
+## 🔗 Related Resources
+
+### Templates
+- [config_template.md](./config_template.md) - Complete .utcp_config.json configuration template
+
+### Reference Files
+- [configuration.md](../references/configuration.md) - Comprehensive configuration guide for Code Mode UTCP
+- [naming_convention.md](../references/naming_convention.md) - Tool naming conventions and patterns for Code Mode
 
 **Template Version**: 1.0.0
 **Last Updated**: 2025-01-23

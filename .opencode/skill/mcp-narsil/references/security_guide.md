@@ -1,12 +1,19 @@
+---
+title: Security Scanning Guide - Narsil MCP
+description: Comprehensive security scanning workflow using Narsil's security tools with phased execution and validation checkpoints.
+---
+
 # Security Scanning Guide - Narsil MCP
 
-Comprehensive security scanning workflow using Narsil's security tools with phased execution and validation checkpoints.
-
-**Core Principle**: Start broad with `scan_security`, then drill into specifics with taint analysis and injection detection.
+Phased security scanning workflow using Narsil's security tools.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
+
+### Core Principle
+
+Start broad with `scan_security`, then drill into specifics with taint analysis and injection detection.
 
 ### Security Capabilities
 

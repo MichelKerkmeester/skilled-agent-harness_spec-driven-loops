@@ -1,10 +1,15 @@
+---
+title: Worked Examples Reference
+description: Practical scenarios demonstrating SpecKit workflows for different documentation levels.
+---
+
 # Worked Examples Reference
 
 Practical scenarios demonstrating SpecKit workflows for different documentation levels.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Are Worked Examples?
 
@@ -265,7 +270,7 @@ AI: Loading context for specs/009-notification-system/
 
 ---
 
-## 6. 📚 RELATED RESOURCES
+## 6. 🔗 RELATED RESOURCES
 
 ### Reference Files
 

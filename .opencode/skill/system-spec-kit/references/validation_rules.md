@@ -1,10 +1,15 @@
+---
+title: Validation Rules Reference
+description: Complete reference for all validation rules used by the SpecKit validation system.
+---
+
 # Validation Rules Reference
 
 Complete reference for all validation rules used by the SpecKit validation system.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Is This Reference?
 
@@ -17,7 +22,7 @@ This document provides comprehensive documentation for every validation rule enf
 
 ### Core Principle
 
-> Validation ensures spec folders meet quality standards before claiming completion—preventing incomplete documentation from passing Gate 6.
+> Validation ensures spec folders meet quality standards before claiming completion—preventing incomplete documentation from passing the Completion Verification Rule.
 
 ### Severity Levels
 
@@ -565,7 +570,7 @@ SPECKIT_JSON=true ./scripts/validate-spec.sh specs/007-feature/
 
 ---
 
-## 11. 📚 RELATED RESOURCES
+## 11. 🔗 RELATED RESOURCES
 
 ### Reference Files
 

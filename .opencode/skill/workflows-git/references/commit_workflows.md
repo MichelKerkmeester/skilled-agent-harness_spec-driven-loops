@@ -1,10 +1,15 @@
+---
+title: Git Commit - Detailed Workflow Reference
+description: Complete workflow documentation for professional commit practices with Conventional Commits.
+---
+
 # Git Commit - Detailed Workflow Reference
 
 Complete workflow documentation for professional commit practices with Conventional Commits.
 
 ---
 
-## 1. 🎯 OVERVIEW
+## 1. 📖 OVERVIEW
 
 Systematically analyze changes, determine appropriate commit strategy, and craft professional commit messages following best practices. Ensures commits are atomic, well-documented, and exclude internal development artifacts.
 

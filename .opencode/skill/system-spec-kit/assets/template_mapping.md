@@ -1,6 +1,24 @@
-# Template Mapping - Template-to-Level Guide with Copy Commands
+---
+title: Template Mapping
+description: Complete mapping of documentation levels to templates with copy commands.
+---
 
-> Complete mapping of documentation levels to templates using the progressive enhancement model.
+# Template Mapping
+
+Maps documentation levels to required templates with ready-to-use copy commands.
+
+---
+
+## Purpose
+
+This asset provides the definitive source for which templates are required at each documentation level. Use it to ensure spec folders contain all mandatory files before claiming completion.
+
+## Usage
+
+1. Determine your documentation level (1, 2, or 3)
+2. Copy the required templates using the provided bash commands
+3. Follow the step-by-step template usage guide for proper folder setup
+4. Verify all placeholders are filled before proceeding
 
 ---
 
@@ -278,7 +296,7 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. 🔗 Related Resources
 
 ### Asset Files
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch

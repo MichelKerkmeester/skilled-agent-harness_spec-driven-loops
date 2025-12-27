@@ -1,6 +1,15 @@
+---
+title: Verification Workflows - Phase 3 (MANDATORY)
+description: Browser verification requirements for all completion claims - no exceptions.
+---
+
 # Verification Workflows - Phase 3 (MANDATORY)
 
-## 1. 📋 OVERVIEW
+Browser verification requirements for all completion claims - no exceptions.
+
+---
+
+## 1. 📖 OVERVIEW
 
 ### Purpose
 **The Iron Law**: Evidence in browser before claims, always. Claiming work is complete without browser verification is dishonesty, not efficiency. "Works on my machine" is not verification.

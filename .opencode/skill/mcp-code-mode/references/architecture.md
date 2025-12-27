@@ -1,10 +1,17 @@
+---
+title: System Architecture - Code Mode UTCP
+description: Architecture, data flow, and execution environment for Code Mode UTCP.
+---
+
 # System Architecture - Code Mode UTCP
 
-Technical architecture, data flow, and execution environment for Code Mode UTCP MCP orchestration system.
+Understand how Code Mode UTCP achieves 98.7% token savings while providing access to 200+ tools.
 
 ---
 
-## 1. 📐 HIGH-LEVEL OVERVIEW
+## 1. 📖 OVERVIEW
+
+### What is Code Mode UTCP?
 
 **Code Mode UTCP** is an MCP orchestration layer that executes TypeScript code with direct access to multiple MCP servers, eliminating traditional tool-calling overhead through progressive disclosure.
 

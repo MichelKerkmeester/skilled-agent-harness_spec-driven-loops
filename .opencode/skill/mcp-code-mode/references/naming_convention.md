@@ -1,10 +1,17 @@
+---
+title: Tool Naming Convention - Complete Guide
+description: Critical naming pattern for MCP tool calls with troubleshooting guide.
+---
+
 # Tool Naming Convention - Complete Guide
 
-The #1 most common error when using Code Mode UTCP is using wrong function names when calling MCP tools. This guide provides the complete naming pattern with troubleshooting.
+Master the critical naming pattern to avoid the #1 most common Code Mode error.
 
 ---
 
-## 1. 🎯 CRITICAL NAMING PATTERN
+## 1. 📖 OVERVIEW
+
+### Core Pattern
 
 ```typescript
 {manual_name}.{manual_name}_{tool_name}

@@ -1,10 +1,28 @@
+---
+title: Pull Request Template
+description: Templates and examples for creating professional pull requests with clear summaries and test plans.
+---
+
 # Pull Request Template
 
-Template for creating professional pull requests with clear summaries and test plans.
+Templates for creating professional pull requests following best practices.
 
 ---
 
-## 1. 📝 BASIC STRUCTURE
+## Purpose
+
+This asset provides structured templates for pull request descriptions. Use it when creating PRs to ensure consistent, comprehensive documentation of changes.
+
+## Usage
+
+1. Choose the appropriate template section based on your PR type (feature, bug fix, refactor, or docs)
+2. Copy the template structure
+3. Fill in the relevant sections
+4. Follow the guidelines for summary, test plan, and related issues
+
+---
+
+## Basic Structure
 
 ```markdown
 ## Summary
@@ -21,7 +39,7 @@ Template for creating professional pull requests with clear summaries and test p
 
 ---
 
-## 2. 📋 COMPLETE PR TEMPLATE
+## Complete PR Template
 
 ```markdown
 ## Summary
@@ -66,7 +84,7 @@ Related to #<issue-number>
 
 ---
 
-## 3. ✨ EXAMPLE 1: FEATURE PR
+## Example: Feature PR
 
 ```markdown
 ## Summary
@@ -121,7 +139,7 @@ Related to #235 (SSO integration - follow-up)
 
 ---
 
-## 4. 🐛 EXAMPLE 2: BUG FIX PR
+## Example: Bug Fix PR
 
 ```markdown
 ## Summary
@@ -167,7 +185,7 @@ Fixes #346 (duplicate of same issue)
 
 ---
 
-## 5. 🔧 EXAMPLE 3: REFACTORING PR
+## Example: Refactoring PR
 
 ```markdown
 ## Summary
@@ -220,7 +238,7 @@ No external API changes. Internal developers should use
 
 ---
 
-## 6. 📚 EXAMPLE 4: DOCUMENTATION PR
+## Example: Documentation PR
 
 ```markdown
 ## Summary
@@ -256,7 +274,7 @@ Related to #234 (OAuth2 feature PR)
 
 ---
 
-## 7. 📝 PR TITLE GUIDELINES
+## PR Title Guidelines
 
 **Format**: Follow Conventional Commits
 
@@ -275,7 +293,7 @@ chore(deps): update axios to v1.6.0
 
 ---
 
-## 8. 📋 SUMMARY SECTION GUIDELINES
+## Summary Section Guidelines
 
 **DO**:
 - Use bullet points for clarity
@@ -308,7 +326,7 @@ backend and frontend. Added WebSocket stuff.
 
 ---
 
-## 9. ✅ TEST PLAN GUIDELINES
+## Test Plan Guidelines
 
 **Structure**:
 - Separate manual and automated testing
@@ -347,7 +365,7 @@ backend and frontend. Added WebSocket stuff.
 
 ---
 
-## 10. 📸 SCREENSHOTS/VIDEOS GUIDELINES
+## Screenshots/Videos Guidelines
 
 **When to include**:
 - UI changes
@@ -380,7 +398,7 @@ Shows complete user flow: login → notification → mark as read
 
 ---
 
-## 11. ⚠️ BREAKING CHANGES GUIDELINES
+## Breaking Changes Guidelines
 
 **When to document**:
 - API changes that break backward compatibility
@@ -411,7 +429,7 @@ See [migration guide](./docs/migration.md) for details.
 
 ---
 
-## 12. 🔗 RELATED ISSUES GUIDELINES
+## Related Issues Guidelines
 
 **Format**:
 ```markdown
@@ -428,7 +446,7 @@ Part of #456       # Part of larger epic
 
 ---
 
-## 13. ✅ PR CHECKLIST
+## PR Checklist
 
 Before submitting PR, verify:
 
@@ -446,7 +464,7 @@ Before submitting PR, verify:
 
 ---
 
-## 14. 💻 CREATING PRS PROGRAMMATICALLY
+## Creating PRs Programmatically
 
 ### GitHub CLI (Preferred)
 ```bash
@@ -495,7 +513,7 @@ call_tool_chain(`github.github_create_pull_request({
 
 ---
 
-## 15. 💡 TIPS
+## Tips
 
 1. **Write PR description as you code** - Don't wait until end
 2. **Test plan first** - Know what you're testing before claiming "done"
@@ -507,9 +525,7 @@ call_tool_chain(`github.github_create_pull_request({
 
 ---
 
-## 16. 🔗 RELATED RESOURCES
-
-### External Resources
+## 🔗 Related Resources
 - [GitHub PR Best Practices](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests) - Official GitHub documentation on pull request collaboration
 - [Conventional Commits](https://www.conventionalcommits.org/) - Specification for commit message formatting
 - [GitHub CLI Manual](https://cli.github.com/manual/gh_pr_create) - Command reference for creating PRs via CLI

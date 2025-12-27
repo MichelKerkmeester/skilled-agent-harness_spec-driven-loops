@@ -1,13 +1,18 @@
+---
+title: Security Patterns - OWASP Top 10 Integration
+description: Security hardening patterns covering XSS prevention, CSRF protection, and input validation.
+---
+
 # Security Patterns - OWASP Top 10 Integration
 
-Security hardening checklist based on OWASP Top 10 vulnerabilities for frontend development.
+Security hardening patterns covering XSS prevention, CSRF protection, and input validation.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
-Security hardening checklist based on OWASP Top 10 vulnerabilities for frontend development.
+Frontend security checklist based on OWASP Top 10 vulnerabilities, covering input validation, injection prevention, and secure data handling.
 
 ### When to Use
 Apply during Phase 1 (Implementation) when:
@@ -281,7 +286,7 @@ document.cookie = "session=abc123";  // Accessible to XSS
 ### Reference Files
 - [implementation_workflows.md](./implementation_workflows.md) - Defense-in-depth validation
 - [verification_workflows.md](./verification_workflows.md) - Security testing
-- [devtools_guide.md](./devtools_guide.md) - DevTools security audits
+- See `workflows-chrome-devtools` skill for DevTools security audits
 
 ### External Resources
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/) - OWASP Top 10 Web Application Security Risks

@@ -1,6 +1,11 @@
+---
+title: Troubleshooting Reference
+description: Systematic diagnosis and resolution for semantic memory issues, context retrieval failures, and MCP tool problems.
+---
+
 # Troubleshooting Reference - Issue Resolution Guide
 
-> Systematic diagnosis and resolution for semantic memory issues, context retrieval failures, and MCP tool problems.
+Systematic diagnosis and resolution for semantic memory issues, context retrieval failures, and MCP tool problems.
 
 ---
 
@@ -347,7 +352,25 @@ If settings are wrong:
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. 🔍 EMPTY TRIGGER PHRASES
+
+**Symptom:** `memory_match_triggers()` returns no results even for relevant queries.
+
+**Cause:** Older memories may have been indexed before trigger phrase extraction was improved.
+
+**Solution:** Re-index memories with force flag:
+```bash
+# Via MCP tool
+memory_index_scan({ force: true })
+
+# Or delete and re-save specific memories
+memory_delete({ id: <memory_id> })
+# Then re-save the memory file
+```
+
+---
+
+## 8. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [README.md](../README.md) - MCP tools, hybrid search, and importance tier system

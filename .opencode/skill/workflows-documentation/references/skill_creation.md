@@ -1,10 +1,15 @@
+---
+title: Skill Creation Workflow
+description: Complete guide for creating, validating, and distributing AI agent skills with bundled resources.
+---
+
 # Skill Creation Workflow
 
-Comprehensive reference for creating effective skills that extend AI agent capabilities with specialized knowledge, workflows, tool integrations, and bundled resources.
+Step-by-step guide from concept to packaged skill with validation standards and best practices.
 
 ---
 
-## 1. 🎯 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Is This Reference?
 
@@ -1341,7 +1346,7 @@ python scripts/quick_validate.py .opencode/skill/pdf-editor
 
 ---
 
-## 13. 📚 RELATED RESOURCES
+## 13. 🔗 RELATED RESOURCES
 
 ### Templates
 - [skill_md_template.md](../assets/skill_md_template.md) - SKILL.md file templates

@@ -1,13 +1,18 @@
+---
+title: Debugging Workflows - Phase 2
+description: Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
+---
+
 # Debugging Workflows - Phase 2
 
-Two systematic approaches to fixing frontend issues using browser DevTools and evidence-based debugging.
+Systematic debugging with four-phase investigation, root cause tracing, and performance profiling.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
-Systematic approaches to fixing frontend issues using browser DevTools and evidence-based debugging.
+Evidence-based debugging workflows for frontend issues using browser DevTools, console analysis, and performance profiling.
 
 ### When to Use
 - Console errors or JavaScript failures
@@ -1155,7 +1160,6 @@ console.dir(object);
 - [implementation_workflows.md](./implementation_workflows.md) - Debug timing and validation issues
 - [verification_workflows.md](./verification_workflows.md) - Verify fixes work correctly
 - [shared_patterns.md](./shared_patterns.md) - Use common DevTools and logging patterns
-- [devtools_guide.md](./devtools_guide.md) - Comprehensive DevTools reference
 
 ### Templates
 - [debugging_checklist.md](../assets/debugging_checklist.md) - Systematic debugging checklist
@@ -1172,4 +1176,4 @@ console.dir(object);
 
 **For complete checklists:**
 - [debugging_checklist.md](../assets/debugging_checklist.md) - Systematic debugging checklist
-- [devtools_guide.md](./devtools_guide.md) - Comprehensive DevTools reference
+- See `workflows-chrome-devtools` skill for comprehensive DevTools reference

@@ -1,14 +1,21 @@
+---
+title: Folder Routing & Alignment
+description: Stateless spec folder routing with alignment scoring for context preservation.
+---
+
 # Folder Routing & Alignment
 
-> Stateless spec folder routing with alignment scoring for context preservation.
-
-**Core Principle:** Spec folder is passed explicitly as a CLI argument with alignment validation to ensure accurate routing.
+Stateless spec folder routing with alignment scoring for context preservation.
 
 ---
 
 ## 1. 📖 OVERVIEW
 
 The memory system uses a **stateless CLI-first architecture**. The spec folder path is passed directly to `generate-context.js` as an argument, then validated with alignment scoring.
+
+### Core Principle
+
+Spec folder is passed explicitly as a CLI argument with alignment validation to ensure accurate routing.
 
 ### Architecture
 

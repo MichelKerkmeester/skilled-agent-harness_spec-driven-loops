@@ -1,10 +1,21 @@
+---
+title: Shared Patterns - Cross-Workflow Reference
+description: Common patterns, commands, and conventions used across all git workflows.
+---
+
 # Shared Patterns - Cross-Workflow Reference
 
 Common patterns, commands, and conventions used across all git workflows.
 
 ---
 
-## 1. 🏷️ BRANCH NAMING CONVENTIONS
+## 1. 📖 OVERVIEW
+
+This reference consolidates common patterns, commands, and conventions used across all git workflows (worktrees, commits, and finish). Use this as a quick lookup for branch naming, git commands, Conventional Commits format, and error handling patterns.
+
+---
+
+## 2. 🏷️ BRANCH NAMING CONVENTIONS
 
 ### Temporary Branches (Main-Focused Workflow)
 
@@ -77,7 +88,7 @@ git worktree add --detach .worktrees/experiment main
 
 ---
 
-## 2. 💻 GIT COMMAND REFERENCE
+## 3. 💻 GIT COMMAND REFERENCE
 
 ### Worktree Operations
 
@@ -230,7 +241,7 @@ git remote show origin             # Show remote details
 
 ---
 
-## 3. 📝 CONVENTIONAL COMMITS FORMAT
+## 4. 📝 CONVENTIONAL COMMITS FORMAT
 
 ### Structure
 
@@ -324,7 +335,7 @@ Clients must update to handle JSON responses.
 
 ---
 
-## 4. 🔧 COMMON GIT PATTERNS
+## 5. 🔧 COMMON GIT PATTERNS
 
 ### Pattern 1: Quick Fix Workflow
 
@@ -403,7 +414,7 @@ git worktree remove .worktrees/experiment
 
 ---
 
-## 5. 🐛 ERROR HANDLING PATTERNS
+## 6. 🐛 ERROR HANDLING PATTERNS
 
 ### Pattern: Tests Fail After Changes
 
@@ -555,7 +566,7 @@ git worktree list
 
 ---
 
-## 6. ✅ QUALITY CHECK PATTERNS
+## 7. ✅ QUALITY CHECK PATTERNS
 
 ### Pre-Commit Checklist
 
@@ -593,7 +604,7 @@ git worktree list
 
 ---
 
-## 7. 📂 FILE TYPE PATTERNS
+## 8. 📂 FILE TYPE PATTERNS
 
 ### Files to Always Commit
 

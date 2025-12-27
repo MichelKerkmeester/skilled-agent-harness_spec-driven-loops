@@ -1,10 +1,15 @@
+---
+title: Troubleshooting Guide
+description: Error resolution guide for common bdg issues with diagnostic steps and solutions.
+---
+
 # Troubleshooting Guide
 
-Comprehensive error resolution guide for common browser-debugger-cli (bdg) issues, with diagnostic steps and solutions.
+Systematic diagnostics and solutions for bdg CLI issues.
 
 ---
 
-## 1. 💡 CORE PRINCIPLE
+## 1. 📖 OVERVIEW
 
 Find root cause before attempting fixes - symptom fixes create cascading failures. Always run systematic diagnostics (5-check sequence) before implementing solutions.
 

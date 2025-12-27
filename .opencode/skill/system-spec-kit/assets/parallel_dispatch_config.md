@@ -1,6 +1,24 @@
-# Parallel Dispatch Configuration - Complexity Scoring & Agent Dispatch
+---
+title: Parallel Dispatch Configuration
+description: Complexity scoring and agent dispatch configuration for parallel task execution.
+---
 
-> Configuration for smart parallel sub-agent dispatch based on task complexity scoring.
+# Parallel Dispatch Configuration
+
+Configuration for smart parallel sub-agent dispatch based on task complexity scoring.
+
+---
+
+## Purpose
+
+Defines when and how to dispatch parallel agents for complex tasks. Use this configuration to determine if a task benefits from parallel exploration vs. direct execution.
+
+## Usage
+
+1. Score the task using the 5-dimension complexity model
+2. Check score against decision thresholds (<20% = direct, ≥20% + 2 domains = ask user)
+3. For Step 6 Planning, use the 4-agent parallel exploration pattern
+4. Apply override phrases when user specifies execution preference
 
 ---
 
@@ -54,7 +72,7 @@
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. 🔗 Related Resources
 
 ### Asset Files
 - [template_mapping.md](./template_mapping.md) - Template routing and task mapping

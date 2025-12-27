@@ -1,32 +1,36 @@
-# Skill Asset File Templates - Creation Guide
+---
+title: Skill Asset File Templates
+description: Templates and guidelines for creating asset files in AI agent skills.
+---
 
-Templates and guidelines for creating asset files in AI agent skills. Asset files contain reference data, templates, examples, and lookup tables that support skill functionality.
+# Skill Asset File Templates
+
+Templates and guidelines for creating asset files in AI agent skills.
 
 ---
 
-## 1. 📖 WHAT ARE SKILL ASSETS?
+## 1. 📖 OVERVIEW
 
-**Purpose**: Asset files provide reference data that supports skill workflows without cluttering the main SKILL.md file.
+### Purpose
 
-**Key Characteristics**:
-- **Reference data**: Templates, examples, lookup tables
-- **Static content**: Doesn't change during execution
-- **Supporting role**: Enhances skill functionality, not core logic
-- **Reusable**: Multiple sections of SKILL.md may reference the same asset
+Asset files provide reference data that supports skill workflows without cluttering the main SKILL.md file.
+
+### When to Use
+
+- Templates users apply repeatedly
+- Reference data >50 lines and self-contained
+- Multiple examples of same pattern exist
+- Lookup tables or decision matrices needed
+
+### Location & Naming
 
 **Location**: `.opencode/skill/[skill-name]/assets/`
 
 **Naming**: snake_case files (e.g., `frontmatter_templates.md`, `config_examples.yaml`)
 
-**Benefits**:
-- Keeps SKILL.md concise (<900 lines)
-- Organizes reference material logically
-- Makes templates easily discoverable
-- Enables progressive disclosure (load only when needed)
-
 ---
 
-## 2. 🎯 WHEN TO CREATE ASSET FILES
+## 2. 🎯 WHEN TO CREATE ASSETS
 
 **Create asset files when**:
 - Templates users apply repeatedly
@@ -57,7 +61,103 @@ Templates and guidelines for creating asset files in AI agent skills. Asset file
 
 ---
 
-## 3. 📂 ASSET FILE TYPES
+## 3. 📋 REQUIRED STRUCTURE
+
+**CRITICAL: Every asset file MUST follow this structure.**
+
+```markdown
+---
+title: [Title from H1]
+description: [One-line description - brief summary]
+---
+
+# [Title]
+
+[1-2 SHORT sentences only - what this asset is for. NO subsections here.]
+
+---
+
+## Purpose
+
+[Why this asset exists, when to use it]
+
+## Usage
+
+[How to use this asset - copy instructions, customization notes]
+
+## [Content Section(s)]
+
+[The actual template/checklist/snippet content - may or may not use numbered sections]
+
+---
+
+## 🔗 Related Resources (optional, if present must be last)
+
+[Links to related files]
+```
+
+### Key Rules
+
+| Element | Requirement |
+|---------|-------------|
+| **YAML Frontmatter** | REQUIRED: `title` and `description` fields |
+| **Intro after H1** | 1-2 SHORT sentences ONLY. NO headers, NO subsections |
+| **Purpose section** | Comes BEFORE main content - explains WHY |
+| **Usage section** | Comes BEFORE main content - explains HOW to use |
+| **Content sections** | May or may not use numbered sections (unlike references which always do) |
+| **Related Resources** | If present, MUST be last section with 🔗 emoji |
+
+### GOOD vs BAD Examples
+
+#### ✅ GOOD Intro Structure
+
+```markdown
+# Git Commit Templates
+
+Copy-paste templates for creating well-structured commit messages.
+
+---
+
+## Purpose
+
+Provides consistent commit message formats for atomic commits...
+
+## Usage
+
+Copy the appropriate template based on commit type...
+```
+
+#### ❌ BAD Intro Structure (too long, has subsections)
+
+```markdown
+# Git Commit Templates
+
+Copy-paste templates for creating well-structured commit messages.
+
+### Core Principle    ← WRONG: No headers in intro!
+Atomic commits with clear intent = maintainable history.
+
+### When to Use       ← WRONG: This belongs in Purpose section!
+- Creating new features
+- Fixing bugs
+
+---
+```
+
+### Intro vs Purpose/Usage Content Placement
+
+| Content Type | Intro (after H1) | Purpose/Usage Sections |
+|--------------|------------------|------------------------|
+| 1-2 sentence summary | ✅ YES | ❌ NO (don't repeat) |
+| Core Principle | ❌ NO | ✅ YES (in Purpose) |
+| When to Use | ❌ NO | ✅ YES (in Purpose) |
+| How to copy/customize | ❌ NO | ✅ YES (in Usage) |
+| Prerequisites | ❌ NO | ✅ YES (in Usage) |
+| Any H2/H3 subsections | ❌ NEVER | ✅ YES |
+
+---
+
+## 4. 📂 ASSET FILE TYPES
 
 ### Template Files
 **Purpose**: Provide copy-paste starting points for common tasks
@@ -132,7 +232,7 @@ Templates and guidelines for creating asset files in AI agent skills. Asset file
 
 ---
 
-## 4. 🏗️ STANDARD ASSET STRUCTURE
+## 5. 🏗️ STANDARD ASSET STRUCTURE
 
 **Template**:
 
@@ -191,7 +291,7 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-## 5. 🧠 LOGIC REPRESENTATION PATTERNS
+## 6. 🧠 LOGIC REPRESENTATION PATTERNS
 
 **Purpose**: Guidelines for representing logic, workflows, and decision trees in asset files using structured formats instead of prose.
 
@@ -232,7 +332,7 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-## 6. 🔀 DECISION LOGIC EXAMPLES
+## 7. 🔀 DECISION LOGIC EXAMPLES
 
 **Purpose**: Demonstrate how to convert markdown prose into structured decision logic.
 
@@ -331,7 +431,7 @@ def validate_document(doc, doc_type):
 
 ---
 
-## 7. 🔄 WORKFLOW PATTERNS
+## 8. 🔄 WORKFLOW PATTERNS
 
 **Purpose**: Show how to represent multi-step workflows using YAML structures.
 
@@ -469,7 +569,7 @@ variant_generation_logic:
 
 ---
 
-## 8. ⚙️ CONFIGURATION TEMPLATES
+## 9. ⚙️ CONFIGURATION TEMPLATES
 
 **Purpose**: Demonstrate structured data formats for configuration and metadata.
 
@@ -567,7 +667,7 @@ VALIDATION_LEVELS = {
 
 ---
 
-## 9. 📝 TEMPLATE GUIDELINES
+## 10. 📝 TEMPLATE GUIDELINES
 
 ### Naming Conventions
 
@@ -670,7 +770,7 @@ VALIDATION_LEVELS = {
 
 ---
 
-## 10. ✅ ASSET FILE CHECKLIST
+## 11. ✅ ASSET FILE CHECKLIST
 
 **Before creating an asset file, verify**:
 
@@ -704,7 +804,7 @@ Integration:
 
 ---
 
-## 11. 💡 EXAMPLES FROM THIS SKILL
+## 12. 💡 EXAMPLES FROM THIS SKILL
 
 ### Example 1: Template File
 
@@ -759,7 +859,7 @@ Integration:
 
 ---
 
-## 12. 🔄 ASSET MAINTENANCE
+## 13. 🔄 ASSET MAINTENANCE
 
 ### When to Update Assets
 
@@ -798,7 +898,7 @@ Integration:
 
 ---
 
-## 13. 🎓 BEST PRACTICES SUMMARY
+## 14. 🎓 BEST PRACTICES SUMMARY
 
 **DO**:
 - ✅ Create assets for reference data >50 lines
@@ -819,7 +919,7 @@ Integration:
 
 ---
 
-## 14. 📚 ASSET FILE NAMING QUICK REFERENCE
+## 15. 📚 ASSET FILE NAMING QUICK REFERENCE
 
 **Location**: `.opencode/skill/[skill-name]/assets/`
 
@@ -841,7 +941,7 @@ Integration:
 
 ---
 
-## 15. 🔗 RELATED RESOURCES
+## 16. 🔗 RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type

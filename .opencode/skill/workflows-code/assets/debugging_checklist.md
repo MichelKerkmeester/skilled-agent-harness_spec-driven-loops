@@ -1,3 +1,8 @@
+---
+title: Systematic Debugging Checklist
+description: Step-by-step checklist for investigating frontend technical issues
+---
+
 # Systematic Debugging Checklist
 
 Use this checklist for ANY frontend technical issue to ensure thorough investigation.
@@ -200,8 +205,7 @@ Use when errors occur deep in call stack:
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 🔗 Related Resources
 
-### Reference Files
 - [debugging_workflows.md](../references/debugging_workflows.md) - Full debugging guide
-- [devtools_guide.md](../references/devtools_guide.md) - DevTools reference
+- See `workflows-chrome-devtools` skill for DevTools reference

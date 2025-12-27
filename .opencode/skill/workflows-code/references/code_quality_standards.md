@@ -1,22 +1,26 @@
+---
+title: Code Quality Standards - Integrated Reference
+description: Essential code quality standards for frontend development, integrating naming conventions, animation patterns, and initialization structure.
+---
+
 # Code Quality Standards - Integrated Reference
 
 Essential code quality standards for frontend development, integrating naming conventions, animation patterns, and initialization structure.
 
-### Core Principle
+---
 
+## 1. 📖 OVERVIEW
+
+### Purpose
+Comprehensive code quality standards for frontend development covering naming conventions, animation patterns, and initialization structure.
+
+### Core Principle
 Consistency enables collaboration. Clarity prevents bugs.
 
-### Primary Sources
+### Key Sources
 - Section 2 (Naming) and Section 6 (Commenting) below - Complete naming and commenting rules
 - Section 4 below - Complete CDN-safe pattern documentation
 - [animation_workflows.md](./animation_workflows.md) - Complete animation implementation guide
-
----
-
-## 1. 📋 OVERVIEW
-
-### Purpose
-Essential code quality standards for frontend development, integrating naming conventions, animation patterns, and initialization structure.
 
 ### When to Use
 - Writing new code (naming, structure)
@@ -31,26 +35,26 @@ Essential code quality standards for frontend development, integrating naming co
 
 All JavaScript code uses `snake_case` for consistency:
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Variables | `snake_case` | `user_data`, `is_valid` |
-| Functions | `snake_case` | `handle_submit()`, `init_component()` |
-| Constants | `UPPER_SNAKE_CASE` | `MAX_RETRIES`, `INIT_DELAY_MS` |
-| Private | `_snake_case` | `_internal_cache` |
+| Type      | Convention         | Example                               |
+| --------- | ------------------ | ------------------------------------- |
+| Variables | `snake_case`       | `user_data`, `is_valid`               |
+| Functions | `snake_case`       | `handle_submit()`, `init_component()` |
+| Constants | `UPPER_SNAKE_CASE` | `MAX_RETRIES`, `INIT_DELAY_MS`        |
+| Private   | `_snake_case`      | `_internal_cache`                     |
 
 ### Semantic Function Prefixes
 
 Use standard prefixes to indicate purpose:
 
-| Prefix | Purpose | Returns |
-|--------|---------|---------|
-| `is_` | Boolean check | true/false |
-| `has_` | Presence check | true/false |
-| `get_` | Data retrieval | data (no mutation) |
-| `set_` | Data mutation | void/success |
-| `handle_` | Event handler | void |
-| `init_` | Initialization | void |
-| `load_` | Resource loading | Promise |
+| Prefix    | Purpose          | Returns            |
+| --------- | ---------------- | ------------------ |
+| `is_`     | Boolean check    | true/false         |
+| `has_`    | Presence check   | true/false         |
+| `get_`    | Data retrieval   | data (no mutation) |
+| `set_`    | Data mutation    | void/success       |
+| `handle_` | Event handler    | void               |
+| `init_`   | Initialization   | void               |
+| `load_`   | Resource loading | Promise            |
 
 **Examples:**
 ```javascript
@@ -162,20 +166,20 @@ if (window.Webflow?.push) {
 
 ### Why This Pattern Exists
 
-| Requirement | Implementation | Why Needed |
-|------------|----------------|------------|
-| **Guard Flag** | `if (window[INIT_FLAG]) return;` | Prevents double initialization during Webflow page transitions |
-| **Delayed Execution** | `setTimeout(init_component, INIT_DELAY_MS)` | Ensures DOM and dependencies (Motion.dev) fully ready |
-| **Webflow.push Support** | `window.Webflow.push(start)` | Integrates with Webflow's native queueing system |
-| **Once-Only Listener** | `{ once: true }` | Prevents memory leaks from duplicate listeners |
+| Requirement              | Implementation                              | Why Needed                                                     |
+| ------------------------ | ------------------------------------------- | -------------------------------------------------------------- |
+| **Guard Flag**           | `if (window[INIT_FLAG]) return;`            | Prevents double initialization during Webflow page transitions |
+| **Delayed Execution**    | `setTimeout(init_component, INIT_DELAY_MS)` | Ensures DOM and dependencies (Motion.dev) fully ready          |
+| **Webflow.push Support** | `window.Webflow.push(start)`                | Integrates with Webflow's native queueing system               |
+| **Once-Only Listener**   | `{ once: true }`                            | Prevents memory leaks from duplicate listeners                 |
 
 ### When to Adjust INIT_DELAY_MS
 
-| Delay | When to Use | Example |
-|-------|-------------|---------|
-| **0ms** | No dependencies, simple DOM queries | Copyright year updater |
-| **50ms** (default) | Standard components | Forms, accordions, navigation |
-| **100ms+** | Heavy dependencies | Hero animations (Motion.dev), video players |
+| Delay              | When to Use                         | Example                                     |
+| ------------------ | ----------------------------------- | ------------------------------------------- |
+| **0ms**            | No dependencies, simple DOM queries | Copyright year updater                      |
+| **50ms** (default) | Standard components                 | Forms, accordions, navigation               |
+| **100ms+**         | Heavy dependencies                  | Hero animations (Motion.dev), video players |
 
 **See:** Top of Section 4 for complete pattern documentation and troubleshooting.
 
@@ -339,6 +343,11 @@ Before deploying any component:
 - [ ] Platform constraints documented
 - [ ] No commented-out code
 
+**CSS:**
+- [ ] Attribute selectors use `i` flag for case-insensitivity
+- [ ] Custom properties use semantic prefixes (`--font-*`, `--vw-*`, etc.)
+- [ ] GPU-accelerated properties only for animations (transform, opacity)
+
 ---
 
 **Core principle:** These standards ensure maintainable, performant, accessible frontend code that integrates seamlessly with Webflow's CDN delivery and lifecycle.
@@ -351,13 +360,13 @@ Before deploying any component:
 
 **Use prefixes to indicate scope and purpose:**
 
-| Prefix | Scope | Example |
-|--------|-------|---------|
-| `--font-*` | Typography variables | `--font-from`, `--font-to` |
-| `--vw-*` | Viewport calculations | `--vw-from`, `--vw-to` |
-| `--component-*` | Component-specific | `--hero-padding`, `--card-radius` |
-| `--state-*` | Interactive states | `--state-hover-opacity` |
-| `--global-*` | Site-wide values | `--global-max-width` |
+| Prefix          | Scope                 | Example                           |
+| --------------- | --------------------- | --------------------------------- |
+| `--font-*`      | Typography variables  | `--font-from`, `--font-to`        |
+| `--vw-*`        | Viewport calculations | `--vw-from`, `--vw-to`            |
+| `--component-*` | Component-specific    | `--hero-padding`, `--card-radius` |
+| `--state-*`     | Interactive states    | `--state-hover-opacity`           |
+| `--global-*`    | Site-wide values      | `--global-max-width`              |
 
 **Production example from fluid_responsive.css:**
 ```css
@@ -369,6 +378,33 @@ Before deploying any component:
   --coefficient: calc((var(--font-to) - var(--font-from)) / (var(--vw-to) - var(--vw-from)));
   --base: calc((var(--font-from) - var(--vw-from) * var(--coefficient)) / 16);
 }
+```
+
+### Attribute Selectors
+
+**Always use the case-insensitivity flag `i` for custom data attributes:**
+
+```css
+/* ✅ CORRECT: Case-insensitive (matches "Base", "base", "BASE") */
+[data-render-content="base" i] {
+  content-visibility: auto;
+}
+
+/* ❌ AVOID: Case-sensitive (only matches exact "base") */
+[data-render-content="base"] {
+  content-visibility: auto;
+}
+```
+
+**Why this matters:**
+- Webflow attribute panel may produce inconsistent casing
+- Users may type "Base" instead of "base" when adding attributes
+- Prevents silent CSS selector failures
+- Browser support: Chrome 49+, Firefox 47+, Safari 9+, Edge 79+ (CSS Selectors Level 4)
+
+**Standard pattern:**
+```css
+[data-attribute="value" i] { /* styles */ }
 ```
 
 ### Fluid Typography Formula

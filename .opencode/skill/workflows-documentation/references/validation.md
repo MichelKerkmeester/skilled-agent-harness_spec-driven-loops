@@ -1,10 +1,15 @@
+---
+title: Validation - Quality Assessment and Gates
+description: Quality gates, DQI scoring, and improvement recommendations for markdown documentation.
+---
+
 # Validation - Quality Assessment and Gates
 
-Comprehensive reference for qualitative quality assessment, gating, and improvement recommendations for markdown documentation using script-assisted AI analysis.
+Quality gates, DQI scoring, and script-assisted AI analysis for markdown documentation.
 
 ---
 
-## 1. 📖 INTRODUCTION & PURPOSE
+## 1. 📖 OVERVIEW
 
 ### What Is Validation?
 

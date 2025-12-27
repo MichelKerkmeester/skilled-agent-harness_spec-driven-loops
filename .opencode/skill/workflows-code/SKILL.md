@@ -5,7 +5,7 @@ allowed-tools: [Read, Grep, Glob, Bash]
 version: 2.0.0
 ---
 
-<!-- Keywords: workflows-code, development-orchestrator, frontend-development, browser-verification, debugging-workflow, implementation-patterns, webflow-integration, devtools -->
+<!-- Keywords: workflows-code, development-orchestrator, frontend-development, browser-verification, debugging-workflow, implementation-patterns, webflow-integration -->
 
 # Code Workflows - Development Orchestrator
 
@@ -71,7 +71,8 @@ TASK CONTEXT
     │
     ├─► Code not working / debugging issues
     │   └─► PHASE 2: Debugging
-    │       └─► Load: debugging_workflows.md, devtools_guide.md
+    │       └─► Load: debugging_workflows.md
+    │       └─► See: workflows-chrome-devtools skill for DevTools reference
     │
     ├─► Code complete / needs verification
     │   └─► PHASE 3: Verification (MANDATORY)
@@ -90,7 +91,8 @@ TASK CONTEXT
 | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | Async/timing issues, DOM not ready, race conditions       | [implementation_workflows.md#2-⏱️-condition-based-waiting](./references/implementation_workflows.md#2-⏱️-condition-based-waiting)         |
 | Form input, API calls, DOM manipulation validation        | [implementation_workflows.md#3-🛡️-defense-in-depth-validation](./references/implementation_workflows.md#3-🛡️-defense-in-depth-validation) |
-| JavaScript modified, need cache-busting                   | [implementation_workflows.md#4-🔄-cdn-version-management](./references/implementation_workflows.md#4-🔄-cdn-version-management)           |
+| JavaScript minification, terser, verification             | [minification_guide.md](./references/minification_guide.md)                                                                             |
+| CDN deployment, version management, Cloudflare R2         | [cdn_deployment.md](./references/cdn_deployment.md)                                                                                     |
 | CSS vs Motion.dev, entrance animations, scroll triggers   | [animation_workflows.md](./references/animation_workflows.md)                                                                           |
 | Webflow collection lists, platform limits, ID duplication | [webflow_patterns.md](./references/webflow_patterns.md)                                                                                 |
 | Animation/video/asset optimization                        | [performance_patterns.md](./references/performance_patterns.md)                                                                         |
@@ -121,7 +123,7 @@ TASK CONTEXT
 def route_frontend_resources(task):
     # ──────────────────────────────────────────────────────────────────
     # Phase 1: Implementation
-    # Purpose: Phase 1: condition-based waiting, defense-in-depth validation, CDN versioning
+    # Purpose: Phase 1: condition-based waiting, defense-in-depth validation
     # Key Insight: Load for async handling patterns and validation
     # ──────────────────────────────────────────────────────────────────
     if task.phase == "implementation":
@@ -129,6 +131,15 @@ def route_frontend_resources(task):
             load("assets/wait_patterns.js")  # async waiting patterns
         if task.needs_validation:
             load("assets/validation_patterns.js")  # validation templates
+        # ──────────────────────────────────────────────────────────────────
+        # Minification & CDN Deployment
+        # Purpose: Safe JS minification, verification, Cloudflare R2 upload
+        # Key Insight: Load for deployment workflow
+        # ──────────────────────────────────────────────────────────────────
+        if task.needs_minification:
+            return load("references/minification_guide.md")  # terser, verification
+        if task.needs_cdn_deployment:
+            return load("references/cdn_deployment.md")  # R2 upload, versioning
         # ──────────────────────────────────────────────────────────────────
         # Animation Workflows
         # Purpose: Phase 1: CSS vs Motion.dev decision tree, animation patterns, performance, testing
@@ -159,7 +170,7 @@ def route_frontend_resources(task):
     # ──────────────────────────────────────────────────────────────────
     if task.phase == "debugging":
         load("assets/debugging_checklist.md")  # step-by-step workflow
-        load("references/devtools_guide.md")  # DevTools reference
+        # For DevTools reference, see workflows-chrome-devtools skill
         return load("references/debugging_workflows.md")  # root cause tracing
 
     # ──────────────────────────────────────────────────────────────────
@@ -185,6 +196,8 @@ def route_frontend_resources(task):
 # references/code_quality_standards.md → Cross-phase: Naming, initialization, file structure standards
 # references/shared_patterns.md → DevTools, logging, testing, error patterns
 # references/performance_patterns.md → Phase 1: Performance optimization (animations, assets, requests)
+# references/minification_guide.md → Safe JS minification with terser, verification pipeline
+# references/cdn_deployment.md → Cloudflare R2 upload, version management, HTML updates
 
 # See "The Iron Law" in Section 1 - Phase 3: Verification
 ```
@@ -299,7 +312,7 @@ See [verification_workflows.md](./references/verification_workflows.md) for comp
 
 ### Phase 1: Implementation
 
-**✅ ALWAYS:**
+#### ✅ ALWAYS
 - Wait for actual conditions, not arbitrary timeouts
 - Include timeout limits (default 5-10 seconds)
 - Validate function parameters (null/undefined/type checks)
@@ -311,7 +324,7 @@ See [verification_workflows.md](./references/verification_workflows.md) for comp
 - Add `try/catch` around risky operations
 - Log when operations complete successfully
 
-**❌ NEVER:**
+#### ❌ NEVER
 - Use `setTimeout` without documenting WHY
 - Wait without timeout (infinite loops)
 - Assume data exists without checking
@@ -322,7 +335,7 @@ See [verification_workflows.md](./references/verification_workflows.md) for comp
 - Deploy JS without updating HTML versions
 - Skip validation failures silently
 
-**⚠️ ESCALATE IF:**
+#### ⚠️ ESCALATE IF
 - Condition never becomes true (infinite wait)
 - Validation logic becoming too complex
 - Security concerns with XSS or injection attacks
@@ -333,7 +346,7 @@ See [implementation_workflows.md](./references/implementation_workflows.md) for 
 
 ### Phase 2: Debugging
 
-**✅ ALWAYS:**
+#### ✅ ALWAYS
 - Open browser DevTools console BEFORE attempting fixes
 - Read complete error messages and stack traces
 - Test across multiple viewports via Chrome DevTools emulation (375px, 768px, 1920px minimum)
@@ -347,7 +360,7 @@ See [implementation_workflows.md](./references/implementation_workflows.md) for 
 - Fix at the source, not symptom
 - Document root cause in comments
 
-**❌ NEVER:**
+#### ❌ NEVER
 - Skip console error messages
 - Test only in one browser
 - Ignore mobile viewport issues
@@ -359,7 +372,7 @@ See [implementation_workflows.md](./references/implementation_workflows.md) for 
 - Skip DevTools investigation
 - Leave production console.log statements
 
-**⚠️ ESCALATE IF:**
+#### ⚠️ ESCALATE IF
 - Bug only occurs in production
 - Issue requires changing Webflow-generated code
 - Cross-browser compatibility cannot be achieved
@@ -371,7 +384,7 @@ See [debugging_workflows.md](./references/debugging_workflows.md) for detailed r
 
 ### Phase 3: Verification (MANDATORY)
 
-**✅ ALWAYS:**
+#### ✅ ALWAYS
 - Open actual browser to verify (not just code review)
 - Test in Chrome at minimum (primary browser)
 - Test mobile viewport (375px minimum)
@@ -382,7 +395,7 @@ See [debugging_workflows.md](./references/debugging_workflows.md) for detailed r
 - Note what you tested in your claim
 - Record any limitations
 
-**❌ NEVER:**
+#### ❌ NEVER
 - Claim "works" without opening browser
 - Say "should work" or "probably works" - test it
 - Trust code review alone for visual/interactive features
@@ -393,7 +406,7 @@ See [debugging_workflows.md](./references/debugging_workflows.md) for detailed r
 - Claim "cross-browser" without testing multiple browsers
 - Express satisfaction before verification ("Great!", "Perfect!", "Done!")
 
-**⚠️ ESCALATE IF:**
+#### ⚠️ ESCALATE IF
 - Cannot test in required browsers
 - Real device testing required but unavailable
 - Issue only reproduces in production
@@ -538,6 +551,7 @@ Platform limits enforced by Webflow that affect architecture decisions:
 - **Python 3** - General scripting support
 - **Git** - Version control for checking changes
 - **Motion.dev** - Animation library (CDN: jsdelivr.net/npm/motion@12.15.0)
+- **mcp-narsil** - Security scanning during debugging (OWASP, CWE, taint analysis via Code Mode)
 
 ### Browser Verification Tools (Choose One)
 
@@ -669,7 +683,7 @@ Understanding when and how to move between phases:
 1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
 2. **Navigate**: [debugging_workflows.md](./references/debugging_workflows.md)
 3. **Use Checklist**: [debugging_checklist.md](./assets/debugging_checklist.md)
-4. **Reference**: [devtools_guide.md](./references/devtools_guide.md)
+4. **DevTools**: See workflows-chrome-devtools skill for Chrome DevTools reference
 
 ### For Verification
 

@@ -1,6 +1,27 @@
-# Level Decision Matrix - Quick Reference for Documentation Level Selection
+---
+title: Level Decision Matrix
+description: Quick reference for selecting the appropriate documentation level using progressive enhancement.
+---
 
-> Quick reference for selecting the appropriate documentation level using the progressive enhancement model.
+# Level Decision Matrix
+
+Quick reference for selecting documentation levels (1-3) based on LOC guidance and complexity factors.
+
+---
+
+## Purpose
+
+This matrix helps determine the appropriate documentation level for any task. Use it when:
+- Starting a new spec folder and need to choose Level 1, 2, or 3
+- Scope changes mid-implementation and level escalation may be needed
+- Uncertain whether complexity/risk factors should override LOC guidance
+
+## Usage
+
+1. Check LOC estimate against thresholds (<100, 100-499, ≥500)
+2. Evaluate secondary factors (complexity, risk, dependencies, testing needs)
+3. If factors suggest higher level than LOC indicates, escalate
+4. When in doubt, choose the higher level
 
 ---
 
@@ -271,7 +292,7 @@ Architectural decision? ──YES──→ Level 3 (add decision-record.md)
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. 🔗 Related Resources
 
 ### Asset Files
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch

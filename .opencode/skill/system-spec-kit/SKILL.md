@@ -5,6 +5,8 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
 version: 16.0.0
 ---
 
+> **Version Note:** The version number (16.0.0) tracks the skill's evolution including documentation, templates, scripts, and MCP server. All package.json files are aligned to this version.
+
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
 
 # Spec Kit - Mandatory Conversation Documentation
@@ -122,129 +124,74 @@ User Request
 | **Planning**       | New feature, "plan", "design"         | level_specifications.md, template_guide.md | /spec_kit:plan      |
 | **Research**       | "investigate", "explore", "analyze"   | quick_reference.md, worked_examples.md     | /spec_kit:research  |
 | **Implementation** | "implement", "build", "code"          | validation_rules.md, template_guide.md     | /spec_kit:implement |
-| **Debugging**      | "stuck", "error", "not working"       | quick_reference.md, troubleshooting        | /spec_kit:debug     |
+| **Debugging**      | "stuck", "error", "not working"       | quick_reference.md, troubleshooting.md     | /spec_kit:debug     |
 | **Completion**     | "done", "finished", "complete"        | validation_rules.md, phase_checklists.md   | /spec_kit:complete  |
 | **Handover**       | "stopping", "break", "continue later" | quick_reference.md                         | /spec_kit:handover  |
 | **Resume**         | "continue", "pick up", "resume"       | quick_reference.md                         | /spec_kit:resume    |
 
 ### Resource Inventory
 
-**Templates (`templates/`):**
+**Templates by Level (`templates/`):**
 
-| Level | Required Files                                                               | Optional Files                   |
-| ----- | ---------------------------------------------------------------------------- | -------------------------------- |
-| 1     | spec.md, plan.md, tasks.md, implementation-summary.md                        | —                                |
-| 2     | Level 1 + checklist.md                                                       | —                                |
-| 3     | Level 2 + decision-record.md                                                 | research.md                      |
-| Any   | —                                                                            | handover.md, debug-delegation.md |
+| Level | Required Files | Optional |
+| ----- | -------------- | -------- |
+| 1     | spec.md, plan.md, tasks.md, implementation-summary.md | — |
+| 2     | Level 1 + checklist.md | — |
+| 3     | Level 2 + decision-record.md | research.md |
+| Any   | — | handover.md, debug-delegation.md |
 
-**Internal Templates (Not for Direct Use):**
+**Auto-Generated Folders:**
+- `memory/` - Session context (via `generate-context.js`)
+- `scratch/` - Temporary workspace (manual creation)
 
-| Template | Purpose | Used By |
-|----------|---------|---------|
-| `context_template.md` | Memory file generation template with ANCHOR format | `generate-context.js` (internal) |
-
-**Summary Template (REQUIRED for Level 1+):**
-
-| Template                    | Purpose                               | When to Use                          |
-| --------------------------- | ------------------------------------- | ------------------------------------ |
-| `implementation-summary.md` | Post-implementation documentation     | End of implementation phase (Level 1+)|
-
-**Auto-Generated Folders (Not Templates):**
-
-| Folder     | Purpose                             | Creation Method                      |
-| ---------- | ----------------------------------- | ------------------------------------ |
-| `memory/`  | Session context preservation        | `generate-context.js` via `/memory:save` |
-| `scratch/` | Temporary workspace (disposable)    | Manual creation (no template)        |
-
-**References (`references/`):**
-| File                     | Purpose                                | When to Load               |
-| ------------------------ | -------------------------------------- | -------------------------- |
-| level_specifications.md  | Complete Level 1-3 specs               | Planning phase             |
-| template_guide.md        | Template selection rules               | Planning, Implementation   |
-| validation_rules.md      | All validation rules                   | Implementation, Completion |
-| quick_reference.md       | Commands, checklists                   | Any phase                  |
-| path_scoped_rules.md     | Path-scoped rules                      | Advanced usage             |
-| worked_examples.md       | Real-world examples                    | Learning, Research         |
-| sub_folder_versioning.md | Sub-folder workflow                    | Reusing spec folders       |
-| folder_routing.md        | Folder structure and routing logic     | Planning                   |
-| phase_checklists.md      | Per-phase validation checklists        | Completion                 |
-| save-workflow.md         | Memory save workflow documentation     | Context preservation       |
-| trigger_config.md        | Trigger phrase configuration           | Setup, debugging           |
-| troubleshooting.md       | Common issues and solutions            | Debugging                  |
-
-**Assets (`assets/`):**
-- `level_decision_matrix.md` - LOC thresholds, complexity factors
-- `template_mapping.md` - Template-to-level mapping
-- `parallel_dispatch_config.md` - Agent dispatch configuration
-
-**Scripts (`scripts/`):**
+**Key Scripts:**
 
 | Script | Purpose |
 |--------|---------|
-| `generate-context.js` | Generate memory context files from conversation data |
-| `validate-spec.sh` | Validate spec folder structure (runs automatically) |
-| `validate-spec-folder.js` | JavaScript validation orchestrator |
-| `validate-memory-file.js` | Validate memory file format and anchors |
+| `generate-context.js` | Generate memory files from conversation |
+| `validate-spec.sh` | Validate spec folder structure |
 | `create-spec-folder.sh` | Create new spec folders with templates |
+| `check-completion.sh` | Verify checklist completion status |
 | `recommend-level.sh` | Suggest documentation level based on LOC |
 | `archive-spec.sh` | Archive completed spec folders |
-| `check-completion.sh` | Check spec folder completion status |
-| `lib/` | Shared JavaScript libraries |
-| `rules/` | Validation rule plugins |
+
+**References (`references/`):**
+
+| File | Purpose | When to Load |
+|------|---------|--------------|
+| `level_specifications.md` | Complete Level 1-3 requirements | Planning |
+| `template_guide.md` | Template selection and usage | Planning, Implementation |
+| `validation_rules.md` | All validation rules and fixes | Implementation, Completion |
+| `quick_reference.md` | Commands and checklists | Any phase |
+| `troubleshooting.md` | Common issues and solutions | Debugging |
+| `save_workflow.md` | Memory save workflow docs | Context preservation |
+| `memory_system.md` | MCP tool behavior and config | Memory operations |
+| `folder_structure.md` | Folder naming conventions | Planning |
+| `folder_routing.md` | Folder routing logic | Planning |
+| `sub_folder_versioning.md` | Sub-folder workflow | Reusing spec folders |
+| `phase_checklists.md` | Per-phase validation | Completion |
+| `worked_examples.md` | Real-world examples | Learning |
+| `path_scoped_rules.md` | Path-scoped validation | Advanced |
+| `trigger_config.md` | Trigger phrase configuration | Setup |
+| `execution_methods.md` | Script execution patterns | Operations |
+| `environment_variables.md` | Env var configuration | Setup |
+
+**Assets (`assets/`):**
+
+| File | Purpose |
+|------|---------|
+| `level_decision_matrix.md` | LOC thresholds and complexity factors |
+| `template_mapping.md` | Template-to-level mapping rules |
+| `parallel_dispatch_config.md` | Agent dispatch configuration |
 
 **generate-context.js Input Modes:**
-
-The script supports two input modes:
 
 | Mode | Usage | Description |
 |------|-------|-------------|
 | **Direct** | `node generate-context.js specs/007-feature/` | Auto-captures context from OpenCode session |
 | **JSON** | `node generate-context.js /tmp/context-data.json` | Manual context injection via JSON file |
 
-**JSON Input Schema:**
-
-When using JSON input mode, create a file with this structure:
-
-```json
-{
-  "specFolder": "specs/007-feature",
-  "summary": "Session summary describing what was accomplished",
-  "keyDecisions": [
-    "Decision 1: Chose approach X over Y because...",
-    "Decision 2: Deferred Z to follow-up task"
-  ],
-  "filesModified": [
-    "src/components/Auth.tsx",
-    "src/utils/validation.ts"
-  ],
-  "observations": [
-    {
-      "type": "pattern",
-      "description": "Existing code uses factory pattern for services"
-    },
-    {
-      "type": "constraint",
-      "description": "Must maintain backward compatibility with v2 API"
-    }
-  ],
-  "followUps": [
-    "Add unit tests for edge cases",
-    "Update API documentation"
-  ]
-}
-```
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `specFolder` | **Yes** | Path to spec folder (relative or absolute) |
-| `summary` | No | High-level session summary |
-| `keyDecisions` | No | Array of decision strings |
-| `filesModified` | No | Array of file paths touched |
-| `observations` | No | Array of `{type, description}` objects |
-| `followUps` | No | Array of follow-up task strings |
-
-> **Note:** JSON mode is for **manual context injection** when you need to provide specific data. Automatic capture (direct mode) extracts context from the OpenCode session. JSON mode uses provided data directly without session extraction.
+**JSON mode documentation:** See [save_workflow.md](./references/save_workflow.md) for full schema and examples.
 
 ---
 
@@ -252,9 +199,9 @@ When using JSON input mode, create a file with this structure:
 
 ### Gate 3 Integration
 
-> **See AGENTS.md Section 2** for the complete Gate 3 spec folder question flow. This skill implements that gate.
+> **See AGENTS.md Section 2** for the complete Gate 3 flow. This skill implements that gate.
 
-**Quick Reference:** When file modification detected, AI MUST ask:
+When file modification detected, AI MUST ask:
 
 ```
 **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
@@ -267,28 +214,7 @@ When using JSON input mode, create a file with this structure:
 | **C) Update**   | Add to existing documentation      | Extending existing docs         |
 | **D) Skip**     | No spec folder (creates tech debt) | Trivial changes only            |
 
-**First Message Protocol:**
-1. Gate 3 question is your FIRST response
-2. No analysis first ("let me understand the scope")
-3. No tool calls first ("let me check what exists")
-4. Ask immediately, wait for answer, then proceed
-
-**Why:** Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
-
-**Enforcement:** Constitutional-tier memory surfaces automatically via `memory_match_triggers()`. See `specs/005-memory/018-gate3-enforcement/` for implementation details.
-
-**Example First Response:**
-```
-Before proceeding with file modifications, please choose:
-
-**Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
-
-I found these potentially related specs:
-- 005-user-auth/ (active) - User authentication system
-- 006-login-form/ (complete) - Login form implementation
-
-Reply with your choice (A/B/C/D).
-```
+**Enforcement:** Constitutional-tier memory surfaces automatically via `memory_match_triggers()`.
 
 ### 3-Level Progressive Enhancement
 
@@ -437,81 +363,26 @@ specs/007-auth-system/
 
 ### Spec Kit Memory System (Integrated)
 
-This skill includes a complete Spec Kit Memory system for context preservation across sessions.
+Context preservation across sessions via vector-based semantic search.
 
-**Architecture:**
-| Component | Location | Purpose |
-|-----------|----------|---------|
-| MCP Server | `mcp_server/context-server.js` | Spec Kit Memory MCP with vector search |
-| Database | `database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
-| Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
-| Scripts | `scripts/generate-context.js` | Memory file generation with ANCHOR format |
+**MCP Tools:**
 
-**Six-Tier Importance System:**
-| Tier | Weight | Purpose | Auto-Surface |
-|------|--------|---------|--------------|
-| **Constitutional** | 1.0 | Critical rules that ALWAYS apply | Yes (top of every search) |
-| **Critical** | 0.9 | High-importance context | Yes (high relevance) |
-| **Important** | 0.7 | Significant decisions/context | Relevance-based |
-| **Normal** | 0.5 | Standard session context | Relevance-based |
-| **Temporary** | 0.3 | Short-term notes | Relevance-based |
-| **Deprecated** | 0.1 | Outdated (kept for history) | Rarely |
+| Tool | Purpose |
+|------|---------|
+| `memory_search()` | Semantic search with vector similarity |
+| `memory_match_triggers()` | Fast keyword matching (<50ms) |
+| `memory_save()` | Index a memory file |
+| `memory_list()` | Browse stored memories |
+| `checkpoint_create/restore()` | Save/restore state snapshots |
 
-**MCP Tools Available:**
+> **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search()`).
 
-> **Note:** MCP tool names use the format `spec_kit_memory_<tool_name>`. In documentation, shorthand names like `memory_search()` refer to the full `spec_kit_memory_memory_search()` tool.
+**Key Concepts:**
+- **Constitutional tier** - Critical rules that ALWAYS surface at top of search results
+- **Decay scoring** - Recent memories rank higher (~62-day half-life)
+- **Real-time sync** - Use `memory_save` or `memory_index_scan` after creating files
 
-| Tool | Purpose | Example Use |
-|------|---------|-------------|
-| `spec_kit_memory_memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
-| `spec_kit_memory_memory_match_triggers()` | Fast keyword matching (<50ms) | Gate enforcement |
-| `spec_kit_memory_memory_save()` | Index a memory file | After generate-context.js |
-| `spec_kit_memory_memory_list()` | Browse stored memories | Review session history |
-| `spec_kit_memory_memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
-| `spec_kit_memory_checkpoint_create()` | Save named state snapshot | Before risky changes |
-| `spec_kit_memory_checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
-
-**memory_search() Behavior Notes:**
-
-> **Important:** Constitutional memories ALWAYS appear at the top of search results, even when a `specFolder` filter is applied. This is BY DESIGN to ensure critical context (e.g., Gate enforcement rules) is never accidentally filtered out.
-
-| Parameter | Behavior |
-|-----------|----------|
-| `specFolder: "007-auth"` | Filters results to that folder, but constitutional memories still appear first |
-| `includeConstitutional: false` | Explicitly excludes constitutional memories from results |
-| `includeContent: true` | Embeds full memory file content in results (eliminates separate load calls) |
-
-**memory_list() Behavior Notes:**
-
-> **Important:** The `specFolder` filter uses **EXACT matching**, not prefix or hierarchical matching.
-
-| Query | Matches | Does NOT Match |
-|-------|---------|----------------|
-| `specFolder: "003-memory"` | `003-memory` only | `003-memory-and-spec-kit`, `003-memory-upgrade` |
-| `specFolder: "003-memory-and-spec-kit"` | `003-memory-and-spec-kit` only | `003-memory` |
-
-Use exact folder names when filtering. This is intentional for precise filtering control.
-
-**Decay Scoring:**
-- Memories decay over time (~62-day half-life)
-- Recent context ranks higher than old context
-- Constitutional tier is EXEMPT from decay (always max relevance)
-
-**Real-time Sync Limitation:**
-
-> **Note:** Memory files are indexed on MCP server startup. Changes made to memory files after startup are NOT automatically detected.
-
-**Workaround:** To index new or modified memory files:
-1. Use `memory_save` tool to index a specific file
-2. Use `memory_index_scan` tool to scan and index all memory files
-3. Restart the MCP server (indexes all files on startup)
-
-**Future Enhancement:** File watcher for real-time sync is planned but not yet implemented.
-
-**Constitutional Rules:**
-- Stored in `constitutional/` folder
-- Auto-indexed and always surface at top of search results
-- Used for gate enforcement (e.g., "always ask spec folder question")
+**Full documentation:** See [memory_system.md](./references/memory_system.md) for tool behavior, importance tiers, and configuration.
 
 ### Two-Stage Question Flow
 
@@ -601,7 +472,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 ## 4. 📋 RULES
 
-### ALWAYS
+### ✅ ALWAYS
 
 1. **Determine level (1/2/3) before ANY file changes** - Count LOC, assess complexity/risk
 2. **Copy templates from `templates/`** - NEVER create from scratch
@@ -619,7 +490,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 14. **Suggest /spec_kit:handover when session-end keywords detected OR after extended work (15+ tool calls)** - Proactive context preservation
 15. **Suggest /spec_kit:debug after 3+ failed fix attempts on same error** - Do not continue without offering debug delegation
 
-### NEVER
+### ❌ NEVER
 
 1. **Create documentation from scratch** - Use templates only
 2. **Skip spec folder creation** - Unless user explicitly selects D
@@ -630,7 +501,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 7. **Proceed without spec folder confirmation** - Wait for A/B/C/D
 8. **Skip validation before completion** - Completion Verification hard block
 
-### ESCALATE IF
+### ⚠️ ESCALATE IF
 
 1. **Scope grows during implementation** - Add higher-level templates, document change in changelog
 2. **Uncertainty about level <80%** - Present level options to user, default to higher
@@ -642,21 +513,9 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 ## 5. ✅ VALIDATION
 
-### Overview
+Automated validation of spec folder contents via `validate-spec.sh`.
 
-`validate-spec.sh` provides automated validation of spec folder contents based on documentation level.
-
-**Location:** `.opencode/skill/system-spec-kit/scripts/validate-spec.sh`
-
-### Usage
-
-```bash
-./validate-spec.sh <folder-path>              # Basic validation
-./validate-spec.sh <folder-path> --json       # JSON output for tooling
-./validate-spec.sh <folder-path> --strict     # Warnings as errors
-./validate-spec.sh <folder-path> --verbose    # Detailed output with timing
-./validate-spec.sh <folder-path> --quiet      # Exit code only
-```
+**Usage:** `.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>`
 
 ### Exit Codes
 
@@ -666,85 +525,15 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 | 1    | Passed with warnings            | Address or document warnings |
 | 2    | Failed (errors found)           | MUST fix before completion   |
 
-### Validation Rules
-
-| Rule                 | Severity | Description                      |
-| -------------------- | -------- | -------------------------------- |
-| `FILE_EXISTS`        | ERROR    | Required files present for level |
-| `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` |
-| `SECTIONS_PRESENT`   | WARN     | Required markdown sections exist |
-| `LEVEL_DECLARED`     | INFO     | Level in spec.md metadata        |
-| `PRIORITY_TAGS`      | WARN     | P0/P1/P2 on checklist items      |
-| `EVIDENCE_CITED`     | WARN     | Completed P0/P1 cite evidence    |
-| `ANCHORS_VALID`      | ERROR    | Memory anchor pairs matched      |
-
-### Quick Fixes
-
-| Issue                | Fix Command/Action                                               |
-| -------------------- | ---------------------------------------------------------------- |
-| Missing file         | `cp templates/spec.md specs/007-feature/`                        |
-| Unfilled placeholder | Replace `[YOUR_VALUE_HERE: description]` with actual content     |
-| Missing section      | Add `## Section Name` header to file                             |
-| No level declared    | Add `\| **Level** \| 2 \|` to spec.md metadata table             |
-| No priority context  | Add `## P0` headers or `[P1]` inline tags to checklist           |
-| Missing evidence     | Add `[Test: npm test - 15/15 passing]` to completed items        |
-| Unclosed anchor      | Add `<!-- /ANCHOR:id -->` closing tag                            |
-| Mismatched anchor    | Ensure opening/closing anchor IDs match exactly (case-sensitive) |
-
-**Detailed rule documentation:** See [validation_rules.md](./references/validation_rules.md)
-
-### Completion Verification Integration
+### Completion Verification
 
 Before claiming "done":
-1. Run: `.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>`
-2. Exit 2 (errors) → FIX the issues
-3. Exit 1 (warnings) → ADDRESS or DOCUMENT
-4. Exit 0 (pass) → Proceed with completion claim
-5. Also verify checklist.md items manually
+1. Run validation: `./scripts/validate-spec.sh <spec-folder>`
+2. Exit 2 → FIX errors
+3. Exit 1 → ADDRESS warnings or document reason
+4. Exit 0 → Proceed with completion claim
 
-### Configuration
-
-Override defaults via `.speckit.yaml` (in spec folder or project root):
-
-```yaml
-validation:
-  rules:
-    FILE_EXISTS: error        # error | warn | info | skip
-    PLACEHOLDER_FILLED: error
-    SECTIONS_PRESENT: warn
-    LEVEL_DECLARED: info
-    PRIORITY_TAGS: warn
-    EVIDENCE_CITED: warn
-    ANCHORS_VALID: error
-  skip:
-    - "**/scratch/**"
-    - "**/memory/**"
-    - "**/templates/**"
-  rule_order:              # Optional custom execution order
-    - FILE_EXISTS
-    - LEVEL_DECLARED
-    - SECTIONS_PRESENT
-```
-
-**Priority:** CLI args > Environment vars > Config file > Defaults
-
-### Environment Variables
-
-| Variable             | Default | Description                       |
-| -------------------- | ------- | --------------------------------- |
-| `SPECKIT_VALIDATION` | true    | Set to `false` to skip validation |
-| `SPECKIT_STRICT`     | false   | Set to `true` to fail on warnings |
-| `SPECKIT_JSON`       | false   | Set to `true` for JSON output     |
-| `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output  |
-
-### Troubleshooting
-
-| Problem                     | Cause                     | Solution                                |
-| --------------------------- | ------------------------- | --------------------------------------- |
-| "Folder not found"          | Path incorrect            | Use absolute or correct relative path   |
-| False placeholder positives | Placeholder in code block | Move to `scratch/` or wrap in backticks |
-| Section not detected        | Wrong header format       | Use `##` or `###`, check spelling       |
-| Level detection wrong       | Missing metadata          | Add explicit `\| **Level** \| N \|` row |
+**Full documentation:** See [validation_rules.md](./references/validation_rules.md) for all rules, configuration, and troubleshooting.
 
 ---
 

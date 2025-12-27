@@ -1,12 +1,21 @@
+---
+title: Memory Save Workflow
+description: Complete guide to saving conversation context including execution methods, output format, and retrieval.
+---
+
 # Memory Save Workflow
 
-> Complete guide to saving conversation context: execution methods, output format, and retrieval.
-
-**Core Principle:** Execute memory operations through whichever method fits your workflow - slash commands for convenience, direct scripts for control. All paths produce identical output with consistent naming for reliable retrieval.
+Complete guide to saving conversation context, execution methods, and retrieval.
 
 ---
 
 ## 1. 📖 OVERVIEW
+
+### Core Principle
+
+Execute memory operations through whichever method fits your workflow - slash commands for convenience, direct scripts for control. All paths produce identical output with consistent naming for reliable retrieval.
+
+### Execution Paths
 
 The memory system supports **2 independent execution paths**. Any method can be used standalone.
 

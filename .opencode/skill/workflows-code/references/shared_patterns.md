@@ -1,13 +1,18 @@
+---
+title: Shared Patterns - Cross-Workflow Standards
+description: Common patterns for DevTools usage, logging, testing, error handling, and browser compatibility.
+---
+
 # Shared Patterns - Cross-Workflow Standards
 
-Patterns and standards used across all code quality workflows.
+Common patterns for DevTools usage, logging, testing, error handling, and browser compatibility.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
-Patterns and standards used across all code quality workflows.
+Cross-workflow standards and reusable patterns for DevTools, console logging, manual testing, and browser compatibility.
 
 ### When to Use
 - Implementing common UI/UX patterns
@@ -607,10 +612,8 @@ window.addEventListener('offline', handleOffline);
 - [implementation_workflows.md](./implementation_workflows.md) - Apply patterns during implementation
 - [debugging_workflows.md](./debugging_workflows.md) - Use DevTools and logging during debugging
 - [verification_workflows.md](./verification_workflows.md) - Use browser testing patterns for verification
-- [devtools_guide.md](./devtools_guide.md) - Comprehensive DevTools reference
-
 ### Related Skills
-- `workflows-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
+- `workflows-chrome-devtools` - Chrome DevTools reference and CLI-based browser automation via browser-debugger-cli (bdg)
 
 ### External Resources
 - [MDN Web Docs](https://developer.mozilla.org) - JavaScript, CSS, and browser API documentation

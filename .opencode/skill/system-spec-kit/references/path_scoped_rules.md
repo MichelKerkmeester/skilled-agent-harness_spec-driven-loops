@@ -1,11 +1,15 @@
+---
+title: Path-Scoped Validation Rules
+description: Path-scoped validation system for differentiated validation based on file location, level, and type
+---
+
 # Path-Scoped Validation Rules
-> 
-> This document describes the path-scoped validation system.
-> See `validate-spec.sh` for the implementation.
+
+Path-scoped validation for differentiated rules based on file location, level, and type.
 
 ---
 
-## 1. 📖 Overview
+## 1. 📖 OVERVIEW
 
 Path-scoped rules enable differentiated validation based on:
 - File location (scratch/, memory/, templates/)
@@ -22,7 +26,7 @@ Path-scoped rules enable differentiated validation based on:
 
 ---
 
-## 2. 🏗️ Rule Hierarchy
+## 2. 🏗️ RULE HIERARCHY
 
 ```
 GLOBAL RULES (always apply)
@@ -36,7 +40,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ---
 
-## 3. 📂 Path Patterns
+## 3. 📂 PATH PATTERNS
 
 ### By Directory
 
@@ -57,7 +61,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ---
 
-## 4. ✅ Validation Rules
+## 4. ✅ VALIDATION RULES
 
 ### Implemented Rules
 
@@ -88,7 +92,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ---
 
-## 5. 🔧 Usage
+## 5. 🔧 USAGE
 
 ### Basic Validation
 
@@ -122,11 +126,11 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ---
 
-## 6. 🔗 Integration Points
+## 6. 🔌 INTEGRATION POINTS
 
-### AGENTS.md Gate 6
+### AGENTS.md Completion Verification Rule
 
-Gate 6 (Completion Verification) requires running validation before claiming completion:
+The Completion Verification Rule requires running validation before claiming completion:
 
 ```bash
 .opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
@@ -138,7 +142,7 @@ Step 11 (Completion) runs validation as the first action.
 
 ---
 
-## 7. 🚀 Future Enhancements
+## 7. 🚀 FUTURE ENHANCEMENTS
 
 Planned but not yet implemented:
 
@@ -146,12 +150,12 @@ Planned but not yet implemented:
 
 ---
 
-## 8. 🔗 Related Resources
+## 8. 🔗 RELATED RESOURCES
 
 ### Reference Files
-- [validation_rules.md](./validation_rules.md) - Detailed rule reference
-- [level_specifications.md](./level_specifications.md) - Complete Level 1-3 requirements
-- [quick_reference.md](./quick_reference.md) - Commands and troubleshooting
+- [Validation Rules](./validation_rules.md) - Detailed rule reference
+- [Level Specifications](./level_specifications.md) - Complete Level 1-3 requirements
+- [Quick Reference](./quick_reference.md) - Commands and troubleshooting
 
 ### Scripts
 - `validate-spec.sh` - Main validation script

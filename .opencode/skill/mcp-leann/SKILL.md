@@ -349,6 +349,13 @@ leann_leann_remove({ index_name: "test-index" })
 - Use **LEANN** for semantic code search by intent (NATIVE MCP)
 - Example: Narsil maps structure → LEANN finds code by meaning
 
+### Complementary Skills
+
+| Skill | Relationship |
+|-------|--------------|
+| mcp-leann | Semantic search (by meaning) - use for "how does X work?" |
+| mcp-narsil | Structural search (by symbol) - use for "list functions in X" |
+
 **Pairs with spec_kit_memory**:
 - Use **spec_kit_memory** for conversation context preservation (NATIVE MCP)
 - Use **LEANN** for code/document search (NATIVE MCP)
@@ -465,6 +472,17 @@ What do you need?
 ---
 
 ## 10. 📦 BUNDLED RESOURCES
+
+### scripts/
+
+**update-leann.sh** - Update LEANN to latest version
+
+Updates LEANN CLI and MCP server to the latest version via `uv`. Checks Ollama status and required models.
+
+**Usage**: 
+```bash
+bash .opencode/skill/mcp-leann/scripts/update-leann.sh
+```
 
 ### references/
 

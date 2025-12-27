@@ -1,10 +1,15 @@
+---
+title: README Creation - Templates and Standards
+description: Templates for creating comprehensive, AI-optimized README files with consistent structure and progressive disclosure.
+---
+
 # README Creation - Templates and Standards
 
-Templates and guidelines for creating comprehensive, AI-optimized README files with consistent structure, progressive disclosure, and scannable content.
+Templates for creating README files with scannable structure and progressive disclosure.
 
 ---
 
-## 1. 📖 WHAT ARE READMEs?
+## 1. 📖 OVERVIEW
 
 **Purpose**: README files are the entry point to any project, component, or feature. They answer "What is this?" and "How do I use it?" in a scannable, progressive format.
 

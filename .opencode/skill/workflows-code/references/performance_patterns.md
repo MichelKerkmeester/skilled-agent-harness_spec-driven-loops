@@ -1,13 +1,18 @@
+---
+title: Performance Optimization Patterns - Phase 1 Integration
+description: Performance optimization checklist covering animations, assets, requests, and Core Web Vitals budgets.
+---
+
 # Performance Optimization Patterns - Phase 1 Integration
 
-Performance optimization checklist for frontend development (Motion.dev, HLS video, Webflow).
+Performance optimization checklist covering animations, assets, requests, and Core Web Vitals budgets.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### Purpose
-Performance optimization checklist for frontend development (Motion.dev, HLS video, Webflow).
+Comprehensive performance optimization patterns for frontend development targeting Motion.dev animations, HLS video streaming, and Webflow platform constraints.
 
 ### When to Use
 Apply during Phase 1 (Implementation) when:
@@ -410,7 +415,6 @@ echo "✅ PASS: Animation performance budgets met"
 ### Reference Files
 - [debugging_workflows.md](./debugging_workflows.md) - Performance debugging workflows for identifying bottlenecks
 - [verification_workflows.md](./verification_workflows.md) - Browser testing and verification workflows
-- [devtools_guide.md](./devtools_guide.md) - Comprehensive Chrome DevTools reference for performance analysis
 - [animation_workflows.md](./animation_workflows.md) - Animation performance patterns for GPU-accelerated properties
 - [webflow_patterns.md](./webflow_patterns.md) - Webflow-specific performance considerations for collection lists
 

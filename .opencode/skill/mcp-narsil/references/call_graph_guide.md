@@ -1,12 +1,19 @@
+---
+title: Call Graph Analysis Guide - Narsil MCP
+description: Deep code flow analysis workflow using Narsil's call graph, control flow, and data flow tools with phased execution and validation checkpoints.
+---
+
 # Call Graph Analysis Guide - Narsil MCP
 
-Deep code flow analysis workflow using Narsil's call graph, control flow, and data flow tools with phased execution and validation checkpoints.
-
-**Core Principle**: Start with `get_call_graph` for the big picture, then drill into `callers`/`callees` for specific functions.
+Code flow analysis workflow using Narsil's call graph, control flow, and data flow tools.
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
+
+### Core Principle
+
+Start with `get_call_graph` for the big picture, then drill into `callers`/`callees` for specific functions.
 
 ### Analysis Capabilities
 
