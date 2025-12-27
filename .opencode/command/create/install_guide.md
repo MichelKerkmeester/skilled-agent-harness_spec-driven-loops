@@ -24,6 +24,54 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 ---
 
+## 🔒 PHASE 0: WRITE AGENT VERIFICATION [PRIORITY GATE]
+
+**STATUS: ☐ BLOCKED** (Must pass BEFORE all other phases)
+
+> **⚠️ CRITICAL:** This command REQUIRES the `@write` agent for template enforcement, DQI scoring, and quality gates.
+
+```
+EXECUTE THIS CHECK FIRST:
+
+├─ SELF-CHECK: Are you operating as the @write agent?
+│   │
+│   ├─ INDICATORS that you ARE @write agent:
+│   │   ├─ You were invoked with "@write" prefix
+│   │   ├─ You have template-first workflow capabilities
+│   │   ├─ You load templates BEFORE creating content
+│   │   ├─ You validate template alignment AFTER creating
+│   │
+│   ├─ IF YES (all indicators present):
+│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 1
+│   │
+│   └─ IF NO or UNCERTAIN:
+│       │
+│       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+│       │
+│       ├─ DISPLAY to user:
+│       │   ┌────────────────────────────────────────────────────────────┐
+│       │   │ ⛔ WRITE AGENT REQUIRED                                    │
+│       │   │                                                            │
+│       │   │ This command requires the @write agent for:                │
+│       │   │   • Template-first workflow (loads before creating)          │
+│       │   │   • DQI scoring (target: 90+ Excellent)                    │
+│       │   │   • workflows-documentation skill integration               │
+│       │   │                                                            │
+│       │   │ To proceed, restart with:                                  │
+│       │   │   @write /create:install_guide [project-name]              │
+│       │   │                                                            │
+│       │   │ Reference: .opencode/agent/write.md                        │
+│       │   └────────────────────────────────────────────────────────────┘
+│       │
+│       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+
+⛔ HARD STOP: DO NOT proceed to PHASE 1 until STATUS = ✅ PASSED
+```
+
+**Phase 0 Output:** `write_agent_verified = [yes/no]`
+
+---
+
 ## 🔒 PHASE 1: INPUT VALIDATION
 
 **STATUS: ☐ BLOCKED**
@@ -116,10 +164,11 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE           | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                             |
-| --------------- | --------------- | ----------- | ---------------------------------------- |
-| PHASE 1: INPUT  | ✅ PASSED        | ______      | project: ______ / platforms: ________    |
-| PHASE 2: OUTPUT | ✅ PASSED        | ______      | output_path: ______ / existing: ________ |
+| PHASE                | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                             |
+| -------------------- | --------------- | ----------- | ---------------------------------------- |
+| PHASE 0: WRITE AGENT | ✅ PASSED        | ______      | write_agent_verified: ______             |
+| PHASE 1: INPUT       | ✅ PASSED        | ______      | project: ______ / platforms: ________    |
+| PHASE 2: OUTPUT      | ✅ PASSED        | ______      | output_path: ______ / existing: ________ |
 
 ```
 VERIFICATION CHECK:
@@ -135,6 +184,7 @@ VERIFICATION CHECK:
 **YOU ARE IN VIOLATION IF YOU:**
 
 **Phase Violations:**
+- Executed command without @write agent verification (Phase 0)
 - Started reading the workflow section before all phases passed
 - Proceeded without explicit project name (Phase 1)
 - Assumed platforms without confirmation (Phase 1)
@@ -226,7 +276,7 @@ Create a comprehensive AI-first installation guide following the pattern in `ins
 
 ---
 
-## 2. 📋 CONTRACT
+## 2. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Project name with optional --platforms flag
 **Outputs:** Installation guide at specified location + `STATUS=<OK|FAIL|CANCELLED>`
@@ -239,7 +289,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📝 INSTRUCTIONS
+## 3. ⚡ INSTRUCTIONS
 
 ### Step 4: Verify All Phases Passed
 
@@ -273,7 +323,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 4. 📚 REFERENCE (See YAML for Details)
+## 4. 📌 REFERENCE (See YAML for Details)
 
 | Section             | Location in YAML                |
 | ------------------- | ------------------------------- |

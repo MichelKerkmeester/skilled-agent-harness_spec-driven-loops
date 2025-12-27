@@ -5,6 +5,21 @@ role: Expert Skill Creator using workflows-documentation skill
 purpose: Create production-ready OpenCode skills with 9-step workflow
 action: Guide skill creation from understanding through packaging with DQI verification and resource routing
 
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @write AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @write agent for:
+#   • Template-first workflow (loads templates before creating)
+#   • DQI scoring (target: 90+ Excellent)
+#   • workflows-documentation skill integration
+#
+# PHASE 0 in the command markdown verifies @write agent BEFORE
+# this YAML workflow loads. If you're executing this workflow,
+# @write verification has already passed.
+#
+# To invoke correctly: @write /create:skill [skill-name]
+# ─────────────────────────────────────────────────────────────────
+
 operating_mode:
   workflow: sequential_9_step
   workflow_compliance: MANDATORY
@@ -27,19 +42,19 @@ confidence_framework:
     high: { range: "80-100%", action: "Proceed with citable source" }
     medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
     low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
-  
+
   scoring_weights:
     task_purpose_clarity: 0.30
     content_planning: 0.25
     template_adherence: 0.25
     validation_readiness: 0.20
-  
+
   clarification_format: |
     "I need clarity (confidence: [NN%]). Which approach:
     - A) [option with brief rationale]
     - B) [option with brief rationale]
     - C) [option with brief rationale]"
-  
+
   escalation:
     timebox_minutes: 10
     failed_attempts_threshold: 2
@@ -50,22 +65,22 @@ confidence_framework:
 # ─────────────────────────────────────────────────────────────────
 request_analysis_framework:
   solution_flow:
-    - "Parse carefully: What is ACTUALLY requested?"
-    - "Gather Context: Read files, check skills folder"
-    - "Identify Approach: SIMPLEST solution that works"
-    - "Validate Choice: Follow patterns, maintainable"
-    - "Clarify If Needed: If <80% confidence, ask"
-    - "Scope Check: Solving ONLY what was asked?"
-    - "Execute: Implement with minimal complexity"
-  
+  - "Parse carefully: What is ACTUALLY requested?"
+  - "Gather Context: Read files, check skills folder"
+  - "Identify Approach: SIMPLEST solution that works"
+  - "Validate Choice: Follow patterns, maintainable"
+  - "Clarify If Needed: If <80% confidence, ask"
+  - "Scope Check: Solving ONLY what was asked?"
+  - "Execute: Implement with minimal complexity"
+
   pre_change_validation:
     items:
-      - "Skill name format validated? (hyphen-case)"
-      - "Skill path confirmed?"
-      - "Spec folder created?"
-      - "Examples gathered (3-5)?"
-      - "Confidence >=80%? (if not: ask)"
-    stop_conditions: ["Any item unchecked", "No spec folder"]
+    - "Skill name format validated? (hyphen-case)"
+    - "Skill path confirmed?"
+    - "Spec folder created?"
+    - "Examples gathered (3-5)?"
+    - "Confidence >=80%? (if not: ask)"
+    stop_conditions: [ "Any item unchecked", "No spec folder" ]
     stop_action: "STOP and address before proceeding"
 
 # ─────────────────────────────────────────────────────────────────
@@ -75,22 +90,22 @@ user_inputs:
   skill_name: |
     [SKILL_NAME]
     Name for the skill in hyphen-case (e.g., my-awesome-skill).
-    FROM GATE 0 OUTPUT.
+    FROM PHASE 1 OUTPUT.
 
   skill_path: |
     [SKILL_PATH]
     Output directory. Default: .opencode/skill/
-    FROM GATE 0 OUTPUT.
+    FROM PHASE 1 OUTPUT.
 
   spec_path: |
     [SPEC_PATH]
     Spec folder for tracking this work.
-    FROM GATE 1 OUTPUT (user choice A/B/C/D).
+    FROM PHASE 2 OUTPUT (user choice A/B/C/D).
 
   memory_loaded: |
     [MEMORY_LOADED]
     Whether previous context was loaded.
-    FROM GATE 2 OUTPUT.
+    FROM PHASE 3 OUTPUT.
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -102,7 +117,7 @@ field_handling:
 
   defaults:
     skill_path_empty: ".opencode/skill/"
-    spec_path_from_gate: "FROM USER CHOICE IN GATE 1"
+    spec_path_from_phase: "FROM USER CHOICE IN PHASE 2"
 
 # ─────────────────────────────────────────────────────────────────
 # DOCUMENTATION LEVEL
@@ -110,9 +125,9 @@ field_handling:
 documentation_level:
   default: "Level 1 (Baseline)"
   required_files:
-    - spec.md
-    - plan.md
-    - tasks.md
+  - spec.md
+  - plan.md
+  - tasks.md
   note: "Skill creation typically Level 1 unless complex"
 
 # ─────────────────────────────────────────────────────────────────
@@ -155,17 +170,17 @@ workflow_enforcement:
   mode: strict
   step_order: sequential_mandatory
   skip_allowed: false
-  
+
   phase_gate:
     location: "Between Step 4 and Step 5"
     purpose: "Verify planning complete before initialization"
     requirements:
-      - "Examples gathered (3-5 concrete use cases)"
-      - "Trigger patterns identified"
-      - "Resource plan created (scripts, references, assets)"
-      - "Success criteria defined"
+    - "Examples gathered (3-5 concrete use cases)"
+    - "Trigger patterns identified"
+    - "Resource plan created (scripts, references, assets)"
+    - "Success criteria defined"
     action_if_failed: "STOP and return to incomplete step"
-  
+
   critical_steps:
     step_3_understanding:
       enforcement: "MUST gather 3-5 concrete usage examples"
@@ -187,14 +202,14 @@ workflow:
   # ═══════════════════════════════════════════════════════════════
   # PHASE A: PLANNING (Steps 1-4)
   # ═══════════════════════════════════════════════════════════════
-  
+
   step_1_request_analysis:
-    purpose: Parse inputs and validate skill name (from gate outputs)
+    purpose: Parse inputs and validate skill name (from phase outputs)
     activities:
-    - Confirm skill_name from GATE 0
-    - Confirm skill_path from GATE 0 (default: .opencode/skill/)
-    - Confirm spec_path from GATE 1 (user choice A/B/C/D)
-    - Confirm memory_loaded from GATE 2
+    - Confirm skill_name from PHASE 1
+    - Confirm skill_path from PHASE 1 (default: .opencode/skill/)
+    - Confirm spec_path from PHASE 2 (user choice A/B/C/D)
+    - Confirm memory_loaded from PHASE 3
     - Verify skill name format (hyphen-case, 2-4 words)
     - Check if skill already exists at target path
     validation:
@@ -229,7 +244,7 @@ workflow:
       invocation: "NATIVE MCP - call directly, NOT through Code Mode"
       query_template: "{skill_name} implementation workflow skill"
       parameters:
-        index_name: "anobel"  # Adjust to project-specific index
+        index_name: "anobel" # Adjust to project-specific index
         top_k: 5
         complexity: 32
     - name: "Search for similar skills by purpose"
@@ -265,7 +280,7 @@ workflow:
     skip_condition: "No LEANN index available OR user explicitly skips discovery"
 
   step_2_spec_folder_setup:
-    purpose: Create documentation folder for tracking (if user chose B or C in Gate 1)
+    purpose: Create documentation folder for tracking (if user chose B or C in Phase 2)
     condition: "spec_choice != D (Skip)"
     activities:
     - IF spec_choice == B (Create new):
@@ -336,15 +351,15 @@ workflow:
     resource_categories:
       scripts:
         purpose: "Deterministic operations, repeatedly needed code"
-        examples: ["rotate_pdf.py", "extract_structure.py", "validate.py"]
+        examples: [ "rotate_pdf.py", "extract_structure.py", "validate.py" ]
         directory: "scripts/"
       references:
         purpose: "Detailed documentation loaded as needed"
-        examples: ["schema.md", "api_docs.md", "debugging.md"]
+        examples: [ "schema.md", "api_docs.md", "debugging.md" ]
         directory: "references/"
       assets:
         purpose: "Templates and output resources"
-        examples: ["templates.md", "examples.md", "flowcharts/"]
+        examples: [ "templates.md", "examples.md", "flowcharts/" ]
         directory: "assets/"
     resource_plan_format: |
       bundled_resources:
@@ -376,16 +391,16 @@ workflow:
     enforcement: HARD_BLOCK
     verification: |
       BEFORE proceeding to Implementation Phase (Steps 5-9):
-      
+
       VERIFY all planning artifacts exist:
       ├─ [ ] Examples gathered (3-5 concrete use cases)
       ├─ [ ] Trigger patterns identified
       ├─ [ ] Resource plan created (scripts, references, assets)
       ├─ [ ] Success criteria defined
-      
+
       IF any artifact missing:
       └─ STOP → Return to appropriate step (3 or 4) → Complete it → Return here
-      
+
       WHEN all artifacts verified:
       └─ SET PHASE GATE STATUS: ✅ PASSED → Proceed to Step 5
     action_if_failed: "Return to incomplete step"
@@ -437,26 +452,26 @@ workflow:
         ❌ WRONG: Navigation Guide in "When to Use"
         ❌ WRONG: Separate "Navigation Guide" subsection listing files
         ✅ RIGHT: File refs inline in Activation Detection flowchart and Resource Router
-        
+
         "When to Use" = WHEN (triggers, conditions, use cases)
         "Smart Routing" = WHAT (files inline in flowchart + Router load() calls)
-        
+
         ⚠️ ANTI-PATTERN: Do NOT create a separate "Navigation Guide" - it's redundant
       section_1_when_to_use:
         allowed_content:
-          - Activation Triggers
-          - Use Cases
-          - When NOT to Use
-          - Keyword Triggers (optional)
+        - Activation Triggers
+        - Use Cases
+        - When NOT to Use
+        - Keyword Triggers (optional)
         forbidden_content:
-          - File references
-          - Navigation guides
-          - Resource paths
-          - Resource tables
+        - File references
+        - Navigation guides
+        - Resource paths
+        - Resource tables
       section_2_smart_routing:
         required_subsections:
-          - Activation Detection (flowchart WITH file refs inline in each branch)
-          - Resource Router (Python pseudocode WITH descriptive comments and load() calls)
+        - Activation Detection (flowchart WITH file refs inline in each branch)
+        - Resource Router (Python pseudocode WITH descriptive comments and load() calls)
         anti_pattern: |
           Do NOT create a separate "Navigation Guide" listing files - this is
           REDUNDANT because files are already referenced in the flowchart
@@ -544,37 +559,37 @@ workflow:
     - Update SKILL.md with new resource references
     trigger_analysis:
       patterns:
-        - trigger: "Multi-step process mentions"
-          recommendation: "workflow reference"
-          command: "/create:skill_reference [skill-name] workflow --chained"
-        - trigger: "Error handling, debugging mentions"
-          recommendation: "debugging reference"
-          command: "/create:skill_reference [skill-name] debugging --chained"
-        - trigger: "Code patterns, before/after examples"
-          recommendation: "patterns reference"
-          command: "/create:skill_reference [skill-name] patterns --chained"
-        - trigger: "External tool/MCP integration"
-          recommendation: "tools reference"
-          command: "/create:skill_reference [skill-name] tools --chained"
-        - trigger: "Commands, shortcuts, quick lookups"
-          recommendation: "quick_ref reference"
-          command: "/create:skill_reference [skill-name] quick_ref --chained"
-        - trigger: "Starting points, boilerplate needed"
-          recommendation: "template asset"
-          command: "/create:skill_asset [skill-name] template --chained"
-        - trigger: "Working code examples needed"
-          recommendation: "example asset"
-          command: "/create:skill_asset [skill-name] example --chained"
-        - trigger: "Step-by-step instructions needed"
-          recommendation: "guide asset"
-          command: "/create:skill_asset [skill-name] guide --chained"
+      - trigger: "Multi-step process mentions"
+        recommendation: "workflow reference"
+        command: "/create:skill_reference [skill-name] workflow --chained"
+      - trigger: "Error handling, debugging mentions"
+        recommendation: "debugging reference"
+        command: "/create:skill_reference [skill-name] debugging --chained"
+      - trigger: "Code patterns, before/after examples"
+        recommendation: "patterns reference"
+        command: "/create:skill_reference [skill-name] patterns --chained"
+      - trigger: "External tool/MCP integration"
+        recommendation: "tools reference"
+        command: "/create:skill_reference [skill-name] tools --chained"
+      - trigger: "Commands, shortcuts, quick lookups"
+        recommendation: "quick_ref reference"
+        command: "/create:skill_reference [skill-name] quick_ref --chained"
+      - trigger: "Starting points, boilerplate needed"
+        recommendation: "template asset"
+        command: "/create:skill_asset [skill-name] template --chained"
+      - trigger: "Working code examples needed"
+        recommendation: "example asset"
+        command: "/create:skill_asset [skill-name] example --chained"
+      - trigger: "Step-by-step instructions needed"
+        recommendation: "guide asset"
+        command: "/create:skill_asset [skill-name] guide --chained"
     presentation_format: |
       ┌────────────────────────────────────────────────────────────┐
-      │ 📚 Resource Recommendations for [skill-name]              │
+      │ 📚 Resource Recommendations for [skill-name]               │
       │                                                            │
       │ Based on your skill's content, I recommend:                │
       │                                                            │
-      │ [A] workflow reference                                     │
+      │ [A] workflow reference                                      │
       │     Why: [rationale based on trigger analysis]             │
       │                                                            │
       │ [B] debugging reference                                    │
@@ -590,20 +605,20 @@ workflow:
     chained_execution:
       mode: "sequential"
       pass_parameters:
-        - skill_name
-        - skill_path
-        - resource_type
+      - skill_name
+      - skill_path
+      - resource_type
       flag: "--chained"
       note: "Chained commands skip Gates 0-1 (already verified)"
     skill_md_update:
       sections_to_update:
-        - "Activation Detection"
-        - "Resource Router"
+      - "Activation Detection"
+      - "Resource Router"
       format: |
         Add to Activation Detection flowchart:
         ├─► [condition]
         │   └─► Load: [resource_path]
-        
+
         Add to Resource Router:
         # [Category Name]
         # Purpose: [description]
@@ -674,29 +689,29 @@ workflow:
       format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
       case: "UPPERCASE recommended for visibility"
       required_sections:
-        - context_type: "general"
-          section: "Session summary with skill creation outcomes"
-          example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
-          example: |
-            <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
-            ## Session Summary
-            Created skill X with Y resources...
-            <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
-        - context_type: "decision"
-          section: "Key decisions made during skill creation"
-          example_id: "DECISION-SKILL-STRUCTURE-{spec#}"
-          example: |
-            <!-- ANCHOR:DECISION-SKILL-STRUCTURE-{spec#} -->
-            ## Key Decisions
-            - Chose reference structure because...
-            <!-- /ANCHOR:DECISION-SKILL-STRUCTURE-{spec#} -->
+      - context_type: "general"
+        section: "Session summary with skill creation outcomes"
+        example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
+        example: |
+          <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+          ## Session Summary
+          Created skill X with Y resources...
+          <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+      - context_type: "decision"
+        section: "Key decisions made during skill creation"
+        example_id: "DECISION-SKILL-STRUCTURE-{spec#}"
+        example: |
+          <!-- ANCHOR:DECISION-SKILL-STRUCTURE-{spec#} -->
+          ## Key Decisions
+          - Chose reference structure because...
+          <!-- /ANCHOR:DECISION-SKILL-STRUCTURE-{spec#} -->
       optional_sections:
-        - context_type: "implementation"
-          section: "Resources added and rationale"
-          example_id: "IMPLEMENTATION-RESOURCES-{spec#}"
-        - context_type: "general"
-          section: "DQI score and validation results"
-          example_id: "GENERAL-VALIDATION-{spec#}"
+      - context_type: "implementation"
+        section: "Resources added and rationale"
+        example_id: "IMPLEMENTATION-RESOURCES-{spec#}"
+      - context_type: "general"
+        section: "DQI score and validation results"
+        example_id: "GENERAL-VALIDATION-{spec#}"
       benefit: "93% token savings on anchor-based retrieval"
       reference: "See /memory:save Step 3 for full anchor documentation"
 
@@ -718,34 +733,34 @@ workflow:
 completion_report:
   template: |
     ✅ Skill Creation Complete
-    
+
     Skill: [skill-name]
     Location: [full-path]
     DQI Score: [score] ([band])
-    
+
     Files Created:
     - SKILL.md (validated)
     - scripts/ ([N] files)
     - references/ ([N] files)
     - assets/ ([N] files)
-    
+
     Resources Added (Step 8):
     - [resource_1] ([type])
     - [resource_2] ([type])
     - (or "None - user skipped")
-    
+
     Spec Folder: specs/[NNN]-[skill-name]/
     Memory: [timestamp]_skill_creation.md
-    
+
     Validation:
     - quick_validate: PASSED
     - DQI: [score] ≥ 75 ✅
-    
+
     Next Steps:
     - Test skill with real examples
     - Iterate based on usage
     - Package for distribution: scripts/package_skill.py [skill-path]
-    
+
     STATUS=OK PATH=[skill-path]
 
 # ─────────────────────────────────────────────────────────────────
@@ -757,7 +772,7 @@ error_recovery:
     example: "Expected: my-skill-name (lowercase, hyphens, 2-4 words)"
   skill_already_exists:
     action: "Offer to update existing or choose new name"
-    options: ["Update existing", "Choose new name", "Cancel"]
+    options: [ "Update existing", "Choose new name", "Cancel" ]
   init_script_fails:
     action: "Check permissions, verify path exists, create directories manually"
     fallback: "mkdir -p [skill-path]/{scripts,references,assets}"

@@ -36,7 +36,59 @@ WHEN TO CREATE:
 
 **These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
 
-**⚡ CHAINED EXECUTION MODE:** If invoked with `--chained` flag from a parent workflow, Phases 1-2 are PRE-VERIFIED. Skip directly to the workflow section with provided parameters.
+**⚡ CHAINED EXECUTION MODE:** If invoked with `--chained` flag from a parent workflow, Phase 0 and Phases 1-2 are PRE-VERIFIED. Skip directly to the workflow section with provided parameters.
+
+---
+
+## 🔒 PHASE 0: WRITE AGENT VERIFICATION [PRIORITY GATE]
+
+**STATUS: ☐ BLOCKED / ⏭️ N/A if chained**
+
+> **⚠️ CRITICAL:** This command REQUIRES the `@write` agent unless invoked via `--chained` from a parent workflow.
+
+```
+EXECUTE THIS CHECK FIRST:
+
+├─ IF invoked with --chained flag:
+│   └─ SET STATUS: ⏭️ N/A (parent workflow verified @write agent)
+│
+└─ IF NOT chained:
+    │
+    ├─ SELF-CHECK: Are you operating as the @write agent?
+    │   │
+    │   ├─ INDICATORS that you ARE @write agent:
+    │   │   ├─ You were invoked with "@write" prefix
+    │   │   ├─ You have template-first workflow capabilities
+    │   │   ├─ You load templates BEFORE creating content
+    │   │
+    │   ├─ IF YES (all indicators present):
+    │   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE C
+    │   │
+    │   └─ IF NO or UNCERTAIN:
+    │       │
+    │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+    │       │
+    │       ├─ DISPLAY to user:
+    │       │   ┌────────────────────────────────────────────────────────────┐
+    │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
+    │       │   │                                                            │
+    │       │   │ This command requires the @write agent for:                │
+    │       │   │   • Template-first workflow                                  │
+    │       │   │   • DQI scoring                                            │
+    │       │   │   • workflows-documentation skill integration               │
+    │       │   │                                                            │
+    │       │   │ To proceed, restart with:                                  │
+    │       │   │   @write /create:skill_reference [args]                    │
+    │       │   │                                                            │
+    │       │   │ Reference: .opencode/agent/write.md                        │
+    │       │   └────────────────────────────────────────────────────────────┘
+    │       │
+    │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+
+⛔ HARD STOP: DO NOT proceed to PHASE C until STATUS = ✅ PASSED or ⏭️ N/A
+```
+
+**Phase 0 Output:** `write_agent_verified = [yes/no/skipped-chained]`
 
 ---
 
@@ -174,6 +226,7 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 | PHASE                 | REQUIRED STATUS       | YOUR STATUS | OUTPUT VALUE                              |
 | --------------------- | --------------------- | ----------- | ----------------------------------------- |
+| PHASE 0: WRITE AGENT  | ✅ PASSED or ⏭️ N/A     | ______      | write_agent_verified: ______              |
 | PHASE C: CHAINED      | ⏭️ SKIPPED or N/A      | ______      | chained_mode: [yes/no]                    |
 | PHASE 1: INPUT        | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_name: ______ / reference_type: ____ |
 | PHASE 2: SKILL VERIFY | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_path: ______                        |
@@ -195,6 +248,7 @@ VERIFICATION CHECK:
 
 **YOU ARE IN VIOLATION IF YOU:**
 
+- Executed command without @write agent verification (Phase 0) when not chained
 - Started reading the workflow section before all phases passed (unless chained)
 - Proceeded without both skill name AND reference type (Phase 1) when not chained
 - Attempted to create reference for non-existent skill (Phase 2) when not chained
@@ -292,7 +346,7 @@ Create a technical reference file for an existing skill following the `skill_ref
 
 ---
 
-## 2. 📋 CONTRACT
+## 2. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Skill name and reference type (workflow|patterns|debugging|tools|quick_ref)
 **Outputs:** Reference file in skill's references/ directory + `STATUS=<OK|FAIL|CANCELLED>`
@@ -305,7 +359,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📝 INSTRUCTIONS
+## 3. ⚡ INSTRUCTIONS
 
 ### Step 4: Verify All Phases Passed
 
@@ -337,7 +391,7 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ---
 
-## 4. 📚 REFERENCE (See YAML for Details)
+## 4. 📌 REFERENCE (See YAML for Details)
 
 | Section            | Location in YAML                     |
 | ------------------ | ------------------------------------ |

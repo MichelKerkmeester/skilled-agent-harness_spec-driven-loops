@@ -5,12 +5,32 @@ role: Expert Reference Creator using workflows-documentation skill
 purpose: Create reference files for existing skills (Level 3 progressive disclosure)
 action: Generate workflow, patterns, debugging, or tool integration documentation
 
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @write AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @write agent for:
+#   • Template-first workflow (loads templates before creating)
+#   • DQI scoring (target: 75+ Good)
+#   • workflows-documentation skill integration
+#
+# STANDALONE MODE: PHASE 0 in the command markdown verifies @write
+# agent BEFORE this YAML workflow loads.
+#
+# CHAINED MODE: When invoked from /create:skill Step 8, @write
+# verification was already performed by the parent command.
+# The --chained flag indicates this is a chained invocation.
+#
+# To invoke correctly:
+#   Standalone: @write /create:skill_reference [skill-name] [type]
+#   Chained: /create:skill_reference [skill-name] [type] --chained
+# ─────────────────────────────────────────────────────────────────
+
 operating_mode:
   workflow: sequential_5_step
   workflow_compliance: MANDATORY
   workflow_execution: interactive
   approvals: step_by_step
-  chained_support: true  # Can be invoked from parent workflows (skill.md Step 8)
+  chained_support: true # Can be invoked from parent workflows (skill.md Step 8)
 
 development_philosophy:
   principle: "Reference files provide deep technical guidance loaded on-demand"
@@ -25,19 +45,19 @@ confidence_framework:
     high: { range: "80-100%", action: "Proceed with citable source" }
     medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
     low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
-  
+
   scoring_weights:
     task_purpose_clarity: 0.30
     content_planning: 0.25
     template_adherence: 0.25
     validation_readiness: 0.20
-  
+
   clarification_format: |
     "I need clarity (confidence: [NN%]). Which approach:
     - A) [option with brief rationale]
     - B) [option with brief rationale]
     - C) [option with brief rationale]"
-  
+
   escalation:
     timebox_minutes: 10
     failed_attempts_threshold: 2
@@ -48,22 +68,22 @@ confidence_framework:
 # ─────────────────────────────────────────────────────────────────
 request_analysis_framework:
   solution_flow:
-    - "Parse carefully: What is ACTUALLY requested?"
-    - "Gather Context: Read files, check skills folder"
-    - "Identify Approach: SIMPLEST solution that works"
-    - "Validate Choice: Follow patterns, maintainable"
-    - "Clarify If Needed: If <80% confidence, ask"
-    - "Scope Check: Solving ONLY what was asked?"
-    - "Execute: Implement with minimal complexity"
-  
+  - "Parse carefully: What is ACTUALLY requested?"
+  - "Gather Context: Read files, check skills folder"
+  - "Identify Approach: SIMPLEST solution that works"
+  - "Validate Choice: Follow patterns, maintainable"
+  - "Clarify If Needed: If <80% confidence, ask"
+  - "Scope Check: Solving ONLY what was asked?"
+  - "Execute: Implement with minimal complexity"
+
   pre_change_validation:
     items:
-      - "Skill exists and has SKILL.md?"
-      - "Reference type valid? (workflow/patterns/debugging/tools/quick_ref)"
-      - "Content scope defined?"
-      - "Template patterns identified?"
-      - "Confidence >=80%? (if not: ask)"
-    stop_conditions: ["Any item unchecked", "Skill not found"]
+    - "Skill exists and has SKILL.md?"
+    - "Reference type valid? (workflow/patterns/debugging/tools/quick_ref)"
+    - "Content scope defined?"
+    - "Template patterns identified?"
+    - "Confidence >=80%? (if not: ask)"
+    stop_conditions: [ "Any item unchecked", "Skill not found" ]
     stop_action: "STOP and address before proceeding"
 
 # ─────────────────────────────────────────────────────────────────
@@ -73,22 +93,22 @@ user_inputs:
   skill_name: |
     [SKILL_NAME]
     Target skill to add reference to.
-    FROM GATE 0 OUTPUT.
+    FROM PHASE 1 OUTPUT.
 
   reference_type: |
     [REFERENCE_TYPE]
     Type: workflow | patterns | debugging | tools | quick_ref
-    FROM GATE 0 OUTPUT.
+    FROM PHASE 1 OUTPUT.
 
   skill_path: |
     [SKILL_PATH]
     Verified path to the skill.
-    FROM GATE 1 OUTPUT.
+    FROM PHASE 2 OUTPUT.
 
   skill_verified: |
     [SKILL_VERIFIED]
     Whether skill exists and has SKILL.md.
-    FROM GATE 1 OUTPUT.
+    FROM PHASE 2 OUTPUT.
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE TYPES
@@ -185,12 +205,12 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
-    purpose: Verify gate outputs and confirm reference creation
+    purpose: Verify phase outputs and confirm reference creation
     activities:
-    - Confirm skill_name from GATE 0
-    - Confirm reference_type from GATE 0
-    - Confirm skill_path from GATE 1
-    - Confirm skill_verified from GATE 1
+    - Confirm skill_name from PHASE 1
+    - Confirm reference_type from PHASE 1
+    - Confirm skill_path from PHASE 2
+    - Confirm skill_verified from PHASE 2
     - Validate reference_type is one of: workflow, patterns, debugging, tools, quick_ref
     type_reference:
       workflow: "Multi-phase processes - 500-1500 lines - Phased steps, checkpoints"
@@ -228,7 +248,7 @@ workflow:
       ┌────────────────────────────────────────────────────────────┐
       │ "What technical guidance should this reference provide?"   │
       │                                                            │
-      │ - What workflows or processes?                             │
+      │ - What workflows or processes?                              │
       │ - What patterns or examples?                               │
       │ - What troubleshooting scenarios?                          │
       └────────────────────────────────────────────────────────────┘
@@ -298,70 +318,70 @@ workflow:
     type_templates:
       workflow: |
         # [Workflow Name]
-        
+
         [One-line description]
-        
+
         **Prerequisites:** [Required standards/context]
-        
+
         ---
-        
+
         ## 1. 📖 INTRODUCTION & PURPOSE
-        
+
         ### Core Principle
-        
+
         [Single powerful statement capturing essence]
-        
+
         ### The [N] Phases
-        
+
         You MUST complete each phase before proceeding to the next.
-        
+
         ---
-        
+
         ## 2. 🔄 PHASE 1: [PHASE NAME]
-        
+
         **Purpose**: [What this phase accomplishes]
-        
+
         **Actions**:
         1. [Action 1]
         2. [Action 2]
-        
+
         **Validation**: `checkpoint_name`
         - [Validation question 1]
         - [Validation question 2]
-        
+
         ---
-        
+
         ## N. 📋 QUICK REFERENCE
-        
+
         [Summary checklist]
-      
+
       patterns: |
         # [Pattern Library Name]
-        
+
         ---
-        
+
         ## 1. 📖 INTRODUCTION
-        
+
         ### Purpose
-        
+
         [What patterns this file provides]
-        
+
         ---
-        
+
         ## 2. 🔧 PATTERN: [NAME]
-        
+
         ❌ **BEFORE**: [Problem]
         ```[language]
         // Bad code
         ```
-        
+
         ✅ **AFTER**: [Solution]
         ```[language]
         // Good code
         ```
-        
+
         **Why better**: [Explanation]
-        
+
         ---
     output_path: "[skill-path]/references/[filename].md"
     outputs:
@@ -465,29 +485,29 @@ workflow:
       format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
       case: "UPPERCASE recommended for visibility"
       required_sections:
-        - context_type: "general"
-          section: "Session summary with reference creation outcomes"
-          example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
-          example: |
-            <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
-            ## Session Summary
-            Created [type] reference for [skill]...
-            <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
-        - context_type: "decision"
-          section: "Key decisions made during reference creation"
-          example_id: "DECISION-REFERENCE-STRUCTURE-{spec#}"
-          example: |
-            <!-- ANCHOR:DECISION-REFERENCE-STRUCTURE-{spec#} -->
-            ## Key Decisions
-            - Chose workflow structure because...
-            <!-- /ANCHOR:DECISION-REFERENCE-STRUCTURE-{spec#} -->
+      - context_type: "general"
+        section: "Session summary with reference creation outcomes"
+        example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
+        example: |
+          <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+          ## Session Summary
+          Created [type] reference for [skill]...
+          <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
+      - context_type: "decision"
+        section: "Key decisions made during reference creation"
+        example_id: "DECISION-REFERENCE-STRUCTURE-{spec#}"
+        example: |
+          <!-- ANCHOR:DECISION-REFERENCE-STRUCTURE-{spec#} -->
+          ## Key Decisions
+          - Chose workflow structure because...
+          <!-- /ANCHOR:DECISION-REFERENCE-STRUCTURE-{spec#} -->
       optional_sections:
-        - context_type: "implementation"
-          section: "Patterns or workflows documented"
-          example_id: "IMPLEMENTATION-PATTERNS-{spec#}"
-        - context_type: "implementation"
-          section: "SKILL.md integration changes"
-          example_id: "IMPLEMENTATION-INTEGRATION-{spec#}"
+      - context_type: "implementation"
+        section: "Patterns or workflows documented"
+        example_id: "IMPLEMENTATION-PATTERNS-{spec#}"
+      - context_type: "implementation"
+        section: "SKILL.md integration changes"
+        example_id: "IMPLEMENTATION-INTEGRATION-{spec#}"
       benefit: "93% token savings on anchor-based retrieval"
       reference: "See /memory:save Step 3 for full anchor documentation"
 
@@ -509,27 +529,27 @@ workflow:
 completion_report:
   template: |
     ✅ Reference Created
-    
+
     Skill: [skill-name]
     Reference: [filename]
     Location: [full-path]
     Type: [workflow|patterns|debugging|tools|quick_ref]
-    
+
     Content:
     - Sections: [N]
     - Phased Workflows: [Y/N]
     - Code Examples: [N pairs]
     - Checkpoints: [N named]
-    
+
     SKILL.md Updated:
     - Navigation Guide: [Y/N]
     - SMART ROUTING: [Y/N]
-    
+
     Next Steps:
     - Test reference in skill context
     - Add more examples if needed
     - Validate skill: quick_validate.py [skill-path]
-    
+
     STATUS=OK PATH=[reference-path]
 
 # ─────────────────────────────────────────────────────────────────
@@ -538,13 +558,13 @@ completion_report:
 error_recovery:
   skill_not_found:
     action: "List available skills, prompt for selection"
-    options: ["List skills", "Provide path", "Cancel"]
+    options: [ "List skills", "Provide path", "Cancel" ]
   invalid_reference_type:
     action: "Show valid types"
-    options: ["workflow", "patterns", "debugging", "tools", "quick_ref"]
+    options: [ "workflow", "patterns", "debugging", "tools", "quick_ref" ]
   reference_exists:
     action: "Offer to update or rename"
-    options: ["Update existing", "Create with new name", "Cancel"]
+    options: [ "Update existing", "Create with new name", "Cancel" ]
   no_references_dir:
     action: "Create directory automatically"
     command: "mkdir -p [skill-path]/references/"

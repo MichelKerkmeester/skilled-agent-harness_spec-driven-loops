@@ -5,6 +5,26 @@ role: Expert Asset Creator using workflows-documentation skill
 purpose: Create asset files for existing skills (templates, lookups, examples, guides)
 action: Generate properly structured asset files with validation
 
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @write AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @write agent for:
+#   • Template-first workflow (loads templates before creating)
+#   • DQI scoring (target: 75+ Good)
+#   • workflows-documentation skill integration
+#
+# STANDALONE MODE: PHASE 0 in the command markdown verifies @write
+# agent BEFORE this YAML workflow loads.
+#
+# CHAINED MODE: When invoked from /create:skill Step 8, @write
+# verification was already performed by the parent command.
+# The --chained flag indicates this is a chained invocation.
+#
+# To invoke correctly:
+#   Standalone: @write /create:skill_asset [skill-name] [type]
+#   Chained: /create:skill_asset [skill-name] [type] --chained
+# ─────────────────────────────────────────────────────────────────
+
 operating_mode:
   workflow: sequential_5_step
   workflow_compliance: MANDATORY
@@ -73,22 +93,22 @@ user_inputs:
   skill_name: |
     [SKILL_NAME]
     Target skill to add asset to.
-    FROM GATE 0 OUTPUT.
+    FROM PHASE 1 OUTPUT.
 
   asset_type: |
     [ASSET_TYPE]
     Type: template | lookup | example | guide
-    FROM GATE 0 OUTPUT.
+    FROM PHASE 1 OUTPUT.
 
   skill_path: |
     [SKILL_PATH]
     Verified path to the skill.
-    FROM GATE 1 OUTPUT.
+    FROM PHASE 2 OUTPUT.
 
   skill_verified: |
     [SKILL_VERIFIED]
     Whether skill exists and has SKILL.md.
-    FROM GATE 1 OUTPUT.
+    FROM PHASE 2 OUTPUT.
 
 # ─────────────────────────────────────────────────────────────────
 # ASSET TYPES
@@ -152,12 +172,12 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
-    purpose: Verify gate outputs and confirm asset creation
+    purpose: Verify phase outputs and confirm asset creation
     activities:
-    - Confirm skill_name from GATE 0
-    - Confirm asset_type from GATE 0
-    - Confirm skill_path from GATE 1
-    - Confirm skill_verified from GATE 1
+    - Confirm skill_name from PHASE 1
+    - Confirm asset_type from PHASE 1
+    - Confirm skill_path from PHASE 2
+    - Confirm skill_verified from PHASE 2
     - Validate asset_type is one of: template, lookup, example, guide
     type_lookup:
       template: "[content]_templates.md - Copy-paste starting points"

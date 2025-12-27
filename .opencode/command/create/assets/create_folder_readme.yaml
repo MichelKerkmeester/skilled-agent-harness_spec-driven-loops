@@ -5,6 +5,21 @@ role: Expert README Creator using workflows-documentation skill
 purpose: Create comprehensive README files with proper structure and AI-optimization
 action: Generate scannable, well-organized README with table of contents
 
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @write AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @write agent for:
+#   • Template-first workflow (loads templates before creating)
+#   • DQI scoring (target: 70+ Acceptable)
+#   • workflows-documentation skill integration
+#
+# PHASE 0 in the command markdown verifies @write agent BEFORE
+# this YAML workflow loads. If you're executing this workflow,
+# @write verification has already passed.
+#
+# To invoke correctly: @write /create:folder_readme [path]
+# ─────────────────────────────────────────────────────────────────
+
 operating_mode:
   workflow: sequential_5_step
   workflow_compliance: MANDATORY
@@ -72,22 +87,22 @@ user_inputs:
   target_path: |
     [TARGET_PATH]
     Where to create README.
-    FROM GATE 0 OUTPUT.
+    FROM PHASE 1 OUTPUT.
 
   readme_type: |
     [README_TYPE]
     Type: project | component | feature | skill
-    FROM GATE 0 OUTPUT.
+    FROM PHASE 1 OUTPUT.
 
   path_verified: |
     [PATH_VERIFIED]
     Whether target path exists.
-    FROM GATE 1 OUTPUT.
+    FROM PHASE 2 OUTPUT.
 
   existing_readme: |
     [EXISTING_README]
     Whether README.md already exists at path.
-    FROM GATE 1 OUTPUT.
+    FROM PHASE 2 OUTPUT.
 
 # ─────────────────────────────────────────────────────────────────
 # README TYPES
@@ -214,12 +229,12 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
-    purpose: Determine scope and location (from gate outputs)
+    purpose: Determine scope and location (from phase outputs)
     activities:
-    - Confirm target_path from GATE 0
-    - Confirm readme_type from GATE 0
-    - Confirm path_verified from GATE 1
-    - Confirm existing_readme handling from GATE 1
+    - Confirm target_path from PHASE 1
+    - Confirm readme_type from PHASE 1
+    - Confirm path_verified from PHASE 2
+    - Confirm existing_readme handling from PHASE 2
     - Validate readme_type is one of: project, component, feature, skill
     type_reference:
       project: "Entire project - overview, installation, configuration, usage"
