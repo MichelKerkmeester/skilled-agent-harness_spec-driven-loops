@@ -4,6 +4,21 @@
 
 ---
 
+#### 📦 PUBLIC RELEASE
+
+The OpenCode development environment in this project is also available as a standalone public release.
+
+| Resource                | Location                                                              |
+| ----------------------- | --------------------------------------------------------------------- |
+| **Public Repo (local)** | `/Users/michelkerkmeester/MEGA/Development/Opencode Dev Environment/` |
+| **GitHub**              | https://github.com/MichelKerkmeester/Opencode_Dev_Environment         |
+
+**This project is the source of truth.** Changes are synced to the public repo for distribution.
+
+See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, and release management.
+
+---
+
 ## 1. 🚨 CRITICAL RULES (MANDATORY)
 
 **HARD BLOCKERS (must do or stop):**
@@ -42,6 +57,7 @@
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                      |
 | **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                                     |
 | **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                            |
+| **LEANN index build**    | `leann-build <name> --docs src/` (requires alias setup - see mcp-leann skill)                                                            |
 
 ---
 
@@ -273,15 +289,18 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 ### Documentation Levels
 
-| Level | LOC     | Required Files               | Use When                     |
-| ----- | ------- | ---------------------------- | ---------------------------- |
-| **1** | <100    | spec.md, plan.md, tasks.md   | All features (minimum)       |
-| **2** | 100-499 | Level 1 + checklist.md       | QA validation needed         |
-| **3** | ≥500    | Level 2 + decision-record.md | Complex/architecture changes |
+| Level | LOC     | Required Files                                            | Use When                     |
+| ----- | ------- | --------------------------------------------------------- | ---------------------------- |
+| **1** | <100    | spec.md, plan.md, tasks.md, implementation-summary.md     | All features (minimum)       |
+| **2** | 100-499 | Level 1 + checklist.md                                    | QA validation needed         |
+| **3** | ≥500    | Level 2 + decision-record.md (+ optional research.md)     | Complex/architecture changes |
 
-> **Note:** `implementation-summary.md` is created after implementation completes, not at spec folder creation time.
+> **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
 
-**Rules:** When in doubt → higher level. LOC is soft guidance. Risk/complexity can override.
+**Rules:** 
+- When in doubt → higher level
+- LOC is soft guidance (risk/complexity can override)
+- Single typo/whitespace fixes (<5 characters in one file) are exempt from spec folder requirements
 
 ### Spec Folder Structure
 **Path:** `/specs/[###-short-name]/` (e.g., `007-add-auth`)
@@ -536,6 +555,12 @@ Documentation generation? → workflows-documentation skill
 1. Narsil → Map structure via Code Mode ("What functions exist?")
 2. LEANN → Understand purpose ("How does login work?")
 3. Read → Get implementation details
+
+**LEANN Indexing Best Practices:**
+- **Shell alias recommended:** `alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'`
+- Usage: `leann-build <name> --docs src/` (Qwen3 is 50% better than Contriever, trained on code)
+- Start with smallest effective scope: `--docs src/` for large projects (>2000 files)
+- See mcp-leann skill for setup instructions
 
 ### MCP Configuration
 

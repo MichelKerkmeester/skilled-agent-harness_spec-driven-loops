@@ -85,8 +85,8 @@ $ARGUMENTS
 ├─────────────────────────────────────────────────────────────────┤
 │ Query: "<user_query>"                                           │
 │ Mode: <emoji> <MODE>  |  Tool: <tool_name>                      │
-│ Why: <trigger_reason>  |  Confidence: <N>%                      │
-│ Tip: <mode-specific_tip>                                        │
+│ Why: <trigger_reason>  |  Confidence: <N>%                       │
+│ Tip: <mode-specific_tip>                                         │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -154,10 +154,10 @@ leann_list({})
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  CODE SEARCH DASHBOARD                                                      │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│  🔮 LEANN          Semantic (RAG)         ✅ anobel                          │
-│  🏗️ Narsil         Structural (AST)       ✅ Available                       │
-│  🔒 Narsil         Security (Scan)        ✅ Available                       │
-│  📊 Narsil         Analysis (Metrics)     ✅ Available                       │
+│  🔮 LEANN          Semantic (RAG)         ✅ anobel                         │
+│  🏗️ Narsil         Structural (AST)       ✅ Available                      │
+│  🔒 Narsil         Security (Scan)        ✅ Available                      │
+│  📊 Narsil         Analysis (Metrics)     ✅ Available                      │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  COMMANDS                                                                   │
 │                                                                             │
@@ -267,10 +267,10 @@ src/auth/
 SECURITY SCAN: src/auth/
 Severity: high+
 ────────────────────────────────────────────────────
-| #   | Severity | CWE     | File              | Finding                 |
-| --- | -------- | ------- | ----------------- | ----------------------- |
-| 1   | HIGH     | CWE-89  | src/auth/login.js | SQL Injection risk      |
-| 2   | HIGH     | CWE-79  | src/auth/oauth.js | XSS vulnerability       |
+| #   | Severity | CWE    | File              | Finding            |
+| --- | -------- | ------ | ----------------- | ------------------ |
+| 1   | HIGH     | CWE-89 | src/auth/login.js | SQL Injection risk |
+| 2   | HIGH     | CWE-79 | src/auth/oauth.js | XSS vulnerability  |
 ────────────────────────────────────────────────────
 [1-N] details | [f]ix suggestions | [e]xport | [b]ack | [q]uit
 ```
@@ -353,12 +353,12 @@ Mode: Multi-Tool Fusion (LEANN + Narsil)
 
 ## 11. ⚠️ ERROR HANDLING
 
-| Condition       | Action                                        |
-| --------------- | --------------------------------------------- |
-| Index not found | Suggest `/search:index build`                 |
-| Path not found  | Show similar paths via Glob                   |
+| Condition       | Action                                           |
+| --------------- | ------------------------------------------------ |
+| Index not found | Suggest `/search:index build`                    |
+| Path not found  | Show similar paths via Glob                      |
 | Empty results   | Try fallback: Semantic → Structural → Diagnostic |
-| All tools fail  | Show diagnostic with refinement suggestions   |
+| All tools fail  | Show diagnostic with refinement suggestions      |
 
 **Fallback Chain:**
 ```

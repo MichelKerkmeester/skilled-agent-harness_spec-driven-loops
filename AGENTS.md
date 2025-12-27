@@ -47,6 +47,7 @@
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                  |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                            |
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                      |
+| **LEANN index build**    | `leann-build <name> --docs src/` (requires alias setup - see mcp-leann skill)                                                            |
 
 ---
 
@@ -274,15 +275,18 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 ### Documentation Levels
 
-| Level | LOC     | Required Files               | Use When                     |
-| ----- | ------- | ---------------------------- | ---------------------------- |
-| **1** | <100    | spec.md, plan.md, tasks.md   | All features (minimum)       |
-| **2** | 100-499 | Level 1 + checklist.md       | QA validation needed         |
-| **3** | ≥500    | Level 2 + decision-record.md | Complex/architecture changes |
+| Level | LOC     | Required Files                                            | Use When                     |
+| ----- | ------- | --------------------------------------------------------- | ---------------------------- |
+| **1** | <100    | spec.md, plan.md, tasks.md, implementation-summary.md     | All features (minimum)       |
+| **2** | 100-499 | Level 1 + checklist.md                                    | QA validation needed         |
+| **3** | ≥500    | Level 2 + decision-record.md (+ optional research.md)     | Complex/architecture changes |
 
-> **Note:** `implementation-summary.md` is created after implementation completes, not at spec folder creation time.
+> **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
 
-**Rules:** When in doubt → higher level. LOC is soft guidance. Risk/complexity can override.
+**Rules:** 
+- When in doubt → higher level
+- LOC is soft guidance (risk/complexity can override)
+- Single typo/whitespace fixes (<5 characters in one file) are exempt from spec folder requirements
 
 ### Spec Folder Structure
 **Path:** `/specs/[###-short-name]/` (e.g., `007-add-auth`)
@@ -454,8 +458,6 @@ PRE-CHANGE VALIDATION:
 
 **STOP CONDITIONS:** □ unchecked | no spec folder | no user approval → STOP and address
 
-**Full details:** workflows-code skill (3-phase implementation lifecycle)
-
 #### Phase 7: Final Output Review
 **Verification Summary (Mandatory for Factual Content):**
 
@@ -492,13 +494,11 @@ Code analysis (dead code, complexity)? → narsil.narsil_* tools [CODE MODE - vi
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP - OPTIONAL]
-Browser debugging? → workflows-chrome-devtools skill
 External MCP tools? → call_tool_chain() [Code Mode - Figma, GitHub, ClickUp, Narsil, etc.]
 Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 Stuck debugging 3+ attempts? → /spec_kit:debug → Model selection → Task tool dispatch
 Multi-step task? → Task tool for delegation
 New spec folder (Option B)? → Research task dispatch
-Browser debugging needed? → workflows-chrome-devtools skill
 Documentation generation? → workflows-documentation skill
 ```
 
@@ -538,6 +538,12 @@ Documentation generation? → workflows-documentation skill
 2. LEANN → Understand purpose ("How does login work?")
 3. Read → Get implementation details
 
+**LEANN Indexing Best Practices:**
+- **Shell alias recommended:** `alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'`
+- Usage: `leann-build <name> --docs src/` (Qwen3 is 50% better than Contriever, trained on code)
+- Start with smallest effective scope: `--docs src/` for large projects (>2000 files)
+- See mcp-leann skill for setup instructions
+
 ### MCP Configuration
 
 **Two systems:**
@@ -546,7 +552,7 @@ Documentation generation? → workflows-documentation skill
    - Sequential Thinking, LEANN, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - Figma, GitHub, ClickUp, Chrome DevTools, Narsil, etc.
+   - Figma, GitHub, ClickUp, Narsil, etc.
    - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `figma.figma_get_file({})`, `narsil.narsil_find_symbols({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
   

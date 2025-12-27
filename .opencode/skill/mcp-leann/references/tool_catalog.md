@@ -131,8 +131,8 @@ leann build <index-name> --docs <path>
 | `index-name` | string | Yes | - | Name for the index |
 | `--docs` | path(s) | Yes | - | Directories/files to index |
 | `--backend-name` | string | No | `hnsw` | `hnsw` or `diskann` |
-| `--embedding-model` | string | No | `facebook/contriever` | Embedding model name |
-| `--embedding-mode` | string | No | `sentence-transformers` | Provider mode |
+| `--embedding-model` | string | No | `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` | Embedding model name |
+| `--embedding-mode` | string | No | `mlx` | Provider mode (mlx recommended for Apple Silicon) |
 | `--force` | flag | No | false | Force rebuild existing index |
 | `--graph-degree` | int | No | 32 | Graph connectivity |
 | `--complexity` | int | No | 64 | Build complexity |
@@ -149,10 +149,23 @@ leann build <index-name> --docs <path>
 
 | Provider | Mode Flag | Model Example | Requirements |
 |----------|-----------|---------------|--------------|
+| **MLX** (recommended) | `mlx` | `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` | Apple Silicon |
 | **sentence-transformers** | `sentence-transformers` | `facebook/contriever` | Python, torch |
 | **OpenAI** | `openai` | `text-embedding-3-small` | API key |
-| **MLX** | `mlx` | `mlx-community/bge-small` | Apple Silicon |
 | **Ollama** | `ollama` | `nomic-embed-text` | Ollama running |
+
+### Embedding Mode Comparison
+
+| Mode                          | Model                            | Memory | Speed  | Quality   | Best For                            |
+| ----------------------------- | -------------------------------- | ------ | ------ | --------- | ----------------------------------- |
+| **mlx** (recommended)         | Qwen3-Embedding-0.6B-4bit-DWQ    | Low    | Fast   | MTEB 70.7 | Apple Silicon                       |
+| sentence-transformers         | facebook/contriever              | High   | Medium | MTEB ~40  | Linux/Windows (fallback)            |
+| openai                        | text-embedding-3-small           | Minimal| Fast   | High      | Memory-constrained systems          |
+| ollama                        | nomic-embed-text                 | Medium | Medium | Medium    | Local with flexibility              |
+
+> **Why Qwen3-Embedding?** 50% better quality than Contriever (MTEB 70.7 vs ~40), trained on code (MTEB-Code 75.41), 32K context vs 512 tokens, native MLX support with 4-bit quantization, and actively maintained (Jun 2025).
+
+> **Apple Silicon Users**: Use `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` for best quality and memory efficiency.
 
 ### Backend Options
 
@@ -170,24 +183,30 @@ When `--use-ast-chunking` is enabled, LEANN parses code files using AST (Abstrac
 ### Example Commands
 
 ```bash
+# Apple Silicon (RECOMMENDED) - Memory-efficient with MLX + Qwen3
+leann build my-project --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+
+# Code indexing with AST chunking (Apple Silicon)
+leann build my-code --docs ./src --file-types ".js,.ts,.py" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --use-ast-chunking
+
 # Basic document indexing
-leann build my-docs --docs ./documents
+leann build my-docs --docs ./documents --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
-# Code indexing with AST chunking
-leann build my-code --docs ./src --use-ast-chunking --file-types ".js,.ts,.py"
-
-# Using OpenAI embeddings
+# Using OpenAI embeddings (memory-constrained systems)
 leann build openai-index --docs ./src \
   --embedding-mode openai \
   --embedding-model text-embedding-3-small
 
-# Using Ollama embeddings
-leann build ollama-index --docs ./src \
-  --embedding-mode ollama \
-  --embedding-model nomic-embed-text
+# Using sentence-transformers (Linux/Windows - fallback)
+leann build st-index --docs ./src \
+  --embedding-mode sentence-transformers \
+  --embedding-model facebook/contriever
 
-# Large codebase with DiskANN
+# Large codebase with DiskANN + MLX
 leann build large-project --docs ./src \
+  --file-types ".js,.ts,.py" \
+  --embedding-mode mlx \
+  --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" \
   --backend-name diskann \
   --use-ast-chunking \
   --graph-degree 64 \
@@ -195,6 +214,8 @@ leann build large-project --docs ./src \
 
 # Force rebuild with custom chunk sizes
 leann build my-index --docs ./src \
+  --embedding-mode mlx \
+  --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" \
   --force \
   --doc-chunk-size 1024 \
   --doc-chunk-overlap 100 \
@@ -446,8 +467,8 @@ leann remove my-code
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `LEANN_INDEX_DIR` | `~/.leann/indexes` | Index storage location |
-| `LEANN_EMBEDDING_MODEL` | `nomic-embed-text` | Default embedding model (recommended) |
-| `LEANN_EMBEDDING_MODE` | `ollama` | Default embedding provider (recommended) |
+| `LEANN_EMBEDDING_MODE` | `mlx` | Embedding provider (mlx recommended for Apple Silicon) |
+| `LEANN_EMBEDDING_MODEL` | `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` | Embedding model (Qwen3 for Apple Silicon) |
 | `OPENAI_API_KEY` | - | Required for OpenAI embeddings/LLM |
 | `GEMINI_API_KEY` | - | Required for Gemini LLM (recommended for `ask`) |
 | `HF_TOKEN` | - | Required for HuggingFace models |
@@ -455,12 +476,12 @@ leann remove my-code
 
 ### Embedding Model Options
 
-| Provider | Popular Models | Dimensions |
-|----------|----------------|------------|
-| **Ollama** (recommended) | `nomic-embed-text`, `mxbai-embed-large` | 768, 1024 |
-| **sentence-transformers** | `facebook/contriever`, `all-MiniLM-L6-v2` | 768, 384 |
-| **OpenAI** | `text-embedding-3-small`, `text-embedding-3-large` | 1536, 3072 |
-| **MLX** | `mlx-community/bge-small-en-v1.5` | 384 |
+| Provider | Popular Models | Dimensions | Quality |
+|----------|----------------|------------|---------|
+| **MLX** (recommended) | `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` | 1024 | MTEB 70.7 |
+| **sentence-transformers** | `facebook/contriever` | 768 | MTEB ~40 |
+| **OpenAI** | `text-embedding-3-small`, `text-embedding-3-large` | 1536, 3072 | High |
+| **Ollama** | `nomic-embed-text`, `mxbai-embed-large` | 768, 1024 | Medium |
 
 ### LLM Model Options
 
@@ -470,9 +491,31 @@ leann remove my-code
 | **OpenAI** | `gpt-4o-mini`, `gpt-4o` | 128K |
 | **HuggingFace** | `meta-llama/Llama-3.2-3B-Instruct` | 8K-128K |
 
-### Configuration File
+### Shell Alias Setup (Recommended)
 
-LEANN can use a configuration file at `~/.leann/config.toml`:
+LEANN CLI doesn't support config files for embedding defaults. Use a shell alias for Qwen3:
+
+```bash
+# Add to ~/.zshrc or ~/.bashrc
+alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'
+
+# Reload shell
+source ~/.zshrc
+```
+
+**Usage:**
+```bash
+# With alias (recommended)
+leann-build myproject --docs src/
+leann-build myproject --docs src/ --file-types ".js,.css,.html" --use-ast-chunking
+
+# Full command (equivalent)
+leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+```
+
+### Configuration File (Limited Support)
+
+LEANN can use a configuration file at `~/.leann/config.toml`, but **embedding defaults are NOT read from this file**. The CLI has hardcoded defaults. Use the shell alias above for embedding defaults.
 
 ```toml
 [defaults]
@@ -491,6 +534,8 @@ doc_chunk_overlap = 50
 code_chunk_size = 1000
 code_chunk_overlap = 100
 ```
+
+> **Note**: The `[llm]` section is also NOT currently implemented in the CLI. Use CLI flags or the `leann-ask` alias instead.
 
 ### Configuration Paths
 
@@ -602,17 +647,42 @@ pip install leann[ast]         # For AST chunking
 
 **What it means**: Index too large for available RAM.
 
-**Fix**:
+**Fix (in priority order)**:
+
 ```bash
-# Use DiskANN for large datasets
+# 1. PRIMARY: Use MLX embedding mode with Qwen3 (Apple Silicon)
+leann build my-index --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+
+# 2. SECONDARY: Reduce scope with file type filters
+leann build my-index --docs ./src --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+
+# 3. TERTIARY: Use OpenAI API to offload embedding computation
+leann build my-index --docs ./src --embedding-mode openai
+
+# 4. Use DiskANN for large datasets
 leann build my-index --docs ./src \
+  --embedding-mode mlx \
+  --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" \
   --backend-name diskann
 
-# Or reduce chunk size
+# 5. Reduce chunk size (last resort)
 leann build my-index --docs ./src \
+  --embedding-mode mlx \
+  --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" \
   --doc-chunk-size 256 \
   --code-chunk-size 500
 ```
+
+### Memory-Efficient Indexing Strategy
+
+For large projects, use **progressive scope indexing**:
+
+| File Count | Recommendation | Action |
+|------------|----------------|--------|
+| <2,000 | Normal | Proceed with default settings |
+| 2,000-5,000 | Suggest reduction | Use `--docs src/` or file type filters |
+| 5,000-10,000 | Strongly recommend | Use scope reduction + MLX embedding mode |
+| >10,000 | Warning | Use DiskANN backend + scope reduction + MLX |
 
 ### Slow Search Performance
 
@@ -672,8 +742,11 @@ leann build my-index --docs ./src --compact
 ### Essential Commands
 
 ```bash
-# Build index from source code
-leann build my-code --docs ./src --use-ast-chunking
+# Build index from source code (Apple Silicon - recommended)
+leann build my-code --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --use-ast-chunking
+
+# Build index (Linux/Windows - fallback with Contriever)
+leann build my-code --docs ./src --embedding-mode sentence-transformers --embedding-model "facebook/contriever" --use-ast-chunking
 
 # Search for code by intent
 leann search my-code "authentication logic"
@@ -716,7 +789,11 @@ curl http://localhost:11434/api/tags
 
 Start using LEANN by building an index:
 ```bash
-leann build my-project --docs ./src --use-ast-chunking
+# Apple Silicon (recommended)
+leann build my-project --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --use-ast-chunking
+
+# Linux/Windows (fallback with Contriever)
+leann build my-project --docs ./src --embedding-mode sentence-transformers --embedding-model "facebook/contriever" --use-ast-chunking
 ```
 
 Then search:

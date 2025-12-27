@@ -188,8 +188,11 @@ On Query:      Recompute E2, E4, E5 only when needed
 ### Quick Examples
 
 ```javascript
-// Build index for source directory
-leann_leann_build({ index_name: "my-project", docs: "./src" })
+// Build index for source directory (Apple Silicon - recommended)
+leann_leann_build({ index_name: "my-project", docs: "./src", file_types: ".js,.ts,.css,.html,.md", embedding_mode: "mlx", embedding_model: "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" })
+
+// Build index with AST chunking for code projects
+leann_leann_build({ index_name: "my-code", docs: "./src", file_types: ".js,.ts", embedding_mode: "mlx", embedding_model: "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ", use_ast_chunking: true })
 
 // Search for code by intent
 leann_leann_search({ index_name: "my-project", query: "error handling logic" })
@@ -266,13 +269,48 @@ leann_leann_remove({ index_name: "test-index" })
 
 ### Environment Variables
 
-| Variable                | Default                  | Description                                                |
-| ----------------------- | ------------------------ | ---------------------------------------------------------- |
-| `LEANN_INDEX_DIR`       | `~/.leann/indexes`       | Index storage location                                     |
-| `LEANN_EMBEDDING_MODEL` | `nomic-embed-text`       | Embedding model (recommended: nomic-embed-text via Ollama) |
-| `LEANN_EMBEDDING_MODE`  | `ollama`                 | Embedding provider (ollama recommended for local-first)    |
-| `OLLAMA_HOST`           | `http://localhost:11434` | Ollama server URL                                          |
-| `OPENAI_API_KEY`        | -                        | Only required if using OpenAI embeddings instead of Ollama |
+| Variable                | Default                                    | Description                                            |
+| ----------------------- | ------------------------------------------ | ------------------------------------------------------ |
+| `LEANN_INDEX_DIR`       | `~/.leann/indexes`                         | Index storage location                                 |
+| `LEANN_EMBEDDING_MODEL` | `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` | Embedding model (Qwen3 for Apple Silicon)           |
+| `LEANN_EMBEDDING_MODE`  | `mlx`                                      | Embedding provider (mlx recommended for Apple Silicon) |
+| `OLLAMA_HOST`           | `http://localhost:11434`                   | Ollama server URL                                      |
+| `OPENAI_API_KEY`        | -                                          | Only required if using OpenAI embeddings               |
+
+### Embedding Mode Comparison
+
+| Mode                          | Model                            | Memory | Speed  | Quality   | Best For                            |
+| ----------------------------- | -------------------------------- | ------ | ------ | --------- | ----------------------------------- |
+| **mlx** (recommended)         | Qwen3-Embedding-0.6B-4bit-DWQ    | Low    | Fast   | MTEB 70.7 | Apple Silicon                       |
+| sentence-transformers         | facebook/contriever              | High   | Medium | MTEB ~40  | Linux/Windows                       |
+| openai                        | text-embedding-3-small           | Minimal| Fast   | High      | Memory-constrained systems          |
+| ollama                        | nomic-embed-text                 | Medium | Medium | Medium    | Local with flexibility              |
+
+> **Why Qwen3-Embedding?** 50% better quality than Contriever (MTEB 70.7 vs ~40), trained on code (MTEB-Code 75.41), 32K context vs 512 tokens, native MLX support with 4-bit quantization, and actively maintained (Jun 2025).
+
+> **Apple Silicon Users**: Use `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` for best quality and memory efficiency.
+
+### Shell Alias Setup (Recommended)
+
+LEANN CLI doesn't support config files for embedding defaults. Use a shell alias for Qwen3:
+
+```bash
+# Add to ~/.zshrc or ~/.bashrc
+alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'
+
+# Reload shell
+source ~/.zshrc
+```
+
+**Usage:**
+```bash
+# With alias (recommended)
+leann-build myproject --docs src/
+leann-build myproject --docs src/ --file-types ".js,.css,.html"
+
+# Full command (equivalent)
+leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+```
 
 ### Prerequisites
 
@@ -284,9 +322,11 @@ leann_leann_remove({ index_name: "test-index" })
 | nomic-embed-text | Embeddings model    | `ollama pull nomic-embed-text` |
 | qwen3:8b         | LLM for ask command | `ollama pull qwen3:8b`         |
 
-> **Recommended Setup**: Use `nomic-embed-text` via Ollama for embeddings. This provides high-quality embeddings locally without external API dependencies. No API keys required.
+> **Recommended Setup (Apple Silicon)**: Use `--embedding-mode mlx` for memory-efficient indexing. MLX uses Apple's unified memory architecture and is significantly more efficient than sentence-transformers.
 
-> **Alternative**: For cloud-based embeddings, set `LEANN_EMBEDDING_MODE=openai` and provide `OPENAI_API_KEY`.
+> **Alternative (Linux/Windows)**: Use `nomic-embed-text` via Ollama for embeddings. This provides high-quality embeddings locally without external API dependencies.
+
+> **Escape Hatch**: For memory-constrained systems, set `LEANN_EMBEDDING_MODE=openai` and provide `OPENAI_API_KEY` to offload embedding computation to the cloud.
 
 ---
 
@@ -300,6 +340,8 @@ leann_leann_remove({ index_name: "test-index" })
 - **Verify index exists** - Use `leann list` before searching
 - **Combine with Read tool** - LEANN finds results, Read provides full context
 - **Check Ollama is running** - Required for embeddings and LLM features
+- **Use MLX on Apple Silicon** - Use `--embedding-mode mlx` for memory-efficient indexing
+- **Start with smallest scope** - Use progressive scope indexing (see Memory-Efficient Indexing below)
 
 ### ❌ NEVER
 
@@ -317,6 +359,63 @@ leann_leann_remove({ index_name: "test-index" })
 - **Build fails or times out** - Check file permissions, directory path, exclude large binaries
 - **Unsure which index to search** - Use `leann list` and let user choose
 - **Ollama connection error** - Verify Ollama is running with `ollama serve`
+- **Out of memory during indexing** - Apply progressive scope indexing or switch to MLX/OpenAI
+
+---
+
+## 5.1 🧠 MEMORY-EFFICIENT INDEXING
+
+### Progressive Scope Strategy
+
+Start with the smallest effective scope and expand only if needed. This prevents memory issues and speeds up indexing.
+
+**Scope Suggestion Order:**
+1. **Primary code directory only**: `--docs src/` or `--docs lib/`
+2. **Add file type filters**: `--file-types ".js,.ts,.css,.html,.md"`
+3. **Full project**: Only as last resort, with memory monitoring
+
+### File Count Thresholds
+
+| File Count | Recommendation | Action |
+| ---------- | -------------- | ------ |
+| <2,000     | Normal         | Proceed with default settings |
+| 2,000-5,000| Suggest reduction | Consider `--docs src/` or file type filters |
+| 5,000-10,000| Strongly recommend | Use scope reduction + MLX embedding mode |
+| >10,000    | Warning        | Use DiskANN backend + scope reduction + MLX |
+
+### Recommended Build Commands
+
+```bash
+# Apple Silicon (RECOMMENDED) - Memory-efficient with MLX + Qwen3
+leann build my-project --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+
+# Scoped indexing with AST chunking
+leann build my-code --docs src/ --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --use-ast-chunking
+
+# Large project with DiskANN backend
+leann build large-project --docs src/ --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --backend-name diskann
+```
+
+### Memory Escape Hatches
+
+If you encounter memory issues during indexing:
+
+1. **Primary: Use MLX embedding mode with Qwen3** (Apple Silicon)
+   ```bash
+   leann build my-project --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+   ```
+
+2. **Secondary: Reduce scope**
+   ```bash
+   leann build my-project --docs src/ --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+   ```
+
+3. **Tertiary: Use OpenAI API** (offloads embedding computation)
+   ```bash
+   leann build my-project --docs src/ --embedding-mode openai
+   ```
+
+> **Note**: These escape hatches can be combined for maximum memory efficiency.
 
 ---
 
@@ -398,8 +497,11 @@ narsil.narsil_find_symbols({ path: "src/auth/" })  // List symbols
 ### Essential Commands
 
 ```javascript
-// Build index from source code
-leann_leann_build({ index_name: "my-code", docs: "./src", use_ast_chunking: true })
+// Build index from source code (Apple Silicon - recommended)
+leann_leann_build({ index_name: "my-code", docs: "./src", file_types: ".js,.ts,.css,.html,.md", embedding_mode: "mlx", embedding_model: "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ", use_ast_chunking: true })
+
+// Build index (Linux/Windows - fallback)
+leann_leann_build({ index_name: "my-code", docs: "./src", file_types: ".js,.ts,.css,.html,.md", embedding_mode: "sentence-transformers", embedding_model: "facebook/contriever", use_ast_chunking: true })
 
 // Search for code by intent
 leann_leann_search({ index_name: "my-code", query: "authentication logic" })

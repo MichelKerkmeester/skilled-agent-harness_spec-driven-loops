@@ -38,16 +38,16 @@ action: Check freshness by default, update when stale
 **Inputs:** `$ARGUMENTS` — Subcommand with optional name and options
 **Outputs:** `STATUS=<OK|FAIL>` with `ACTION=<subcommand>` and freshness metrics
 
-| Pattern                      | Action          | Example                                   |
-| ---------------------------- | --------------- | ----------------------------------------- |
-| (empty)                      | **Sync Status** | `/search:index`                           |
-| `update` or `sync`           | Smart Update    | `/search:index update`                    |
-| `update --force`             | Force Rebuild   | `/search:index update --force`            |
-| `list` or `ls`               | List All        | `/search:index list`                      |
+| Pattern                      | Action          | Example                                     |
+| ---------------------------- | --------------- | ------------------------------------------- |
+| (empty)                      | **Sync Status** | `/search:index`                             |
+| `update` or `sync`           | Smart Update    | `/search:index update`                      |
+| `update --force`             | Force Rebuild   | `/search:index update --force`              |
+| `list` or `ls`               | List All        | `/search:index list`                        |
 | `build <name> --docs <path>` | Build New       | `/search:index build myproject --docs src/` |
-| `remove <name>`              | Remove Index    | `/search:index remove oldindex`           |
-| `status` or `health`         | Tool Health     | `/search:index status`                    |
-| `info <name>`                | Index Details   | `/search:index info anobel`               |
+| `remove <name>`              | Remove Index    | `/search:index remove oldindex`             |
+| `status` or `health`         | Tool Health     | `/search:index status`                      |
+| `info <name>`                | Index Details   | `/search:index info anobel`                 |
 
 ---
 
@@ -73,14 +73,34 @@ $ARGUMENTS
 
 ## 3. 🔧 TOOL SIGNATURES
 
+### Shell Alias (Recommended)
+
+LEANN CLI doesn't support config files for embedding defaults. Use a shell alias:
+
+```bash
+# Add to ~/.zshrc or ~/.bashrc
+alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'
+```
+
+**Usage:** `leann-build <name> --docs <scope>`
+
+### Tool Reference
+
 ```javascript
 // LEANN Native MCP
 leann_list({})
 leann_remove({ index_name: "<name>" })
 
 // LEANN CLI (via Bash)
-Bash("leann build <name> --docs <path>")
-Bash("leann build <name> --docs <path> --exclude <patterns>")
+Bash("leann build <name> --docs <path> --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
+Bash("leann build <name> --docs <path> --exclude <patterns> --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
+
+// Recommended build (Apple Silicon with Qwen3 - 50% better quality than Contriever)
+// Qwen3-Embedding: Specifically trained on code (MTEB-Code 75.41), 4-bit quantized for memory efficiency
+Bash("leann build <name> --docs src/ --file-types '.js,.css,.html' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
+
+// Progressive scope build (large projects)
+Bash("leann build <name> --docs src/ --file-types '.js,.ts,.css,.html,.md' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
 
 // Cross-Platform Stat Functions (define once, reuse)
 // NOTE: Define these helper functions before using freshness detection commands
@@ -129,13 +149,13 @@ Bash("find ./src -type f ... -newer .leann/indexes/anobel/documents.index | head
 
 ### Freshness Algorithm
 
-| Changed Files | Status           | Recommendation             |
-| ------------- | ---------------- | -------------------------- |
-| Index missing | ❌ MISSING       | Build index first          |
-| 0             | ✅ FRESH         | No update needed           |
-| 1-10          | ⚠️ SLIGHTLY STALE | Consider updating          |
-| 11-50         | 🔄 STALE         | Update recommended         |
-| >50           | 🔴 OUTDATED      | Update strongly recommended |
+| Changed Files | Status           | Recommendation              |
+| ------------- | ---------------- | --------------------------- |
+| Index missing | ❌ MISSING        | Build index first           |
+| 0             | ✅ FRESH          | No update needed            |
+| 1-10          | ⚠️ SLIGHTLY STALE | Consider updating           |
+| 11-50         | 🔄 STALE          | Update recommended          |
+| >50           | 🔴 OUTDATED       | Update strongly recommended |
 
 ### Output Template
 
@@ -174,9 +194,23 @@ Bash("find ./src -type f ... -newer .leann/indexes/anobel/documents.index | head
    → Display "Already fresh. Use --force to rebuild anyway."
    → EXIT STATUS=OK ACTION=update RESULT=skipped
 3. ELSE:
+   → Check project size (find . -type f | wc -l)
+   → IF >2000 files AND rebuilding:
+      ├─► Display memory warning
+      ├─► Suggest scope reduction: "Consider --docs src/ for faster rebuild"
+      └─► Recommend MLX + Qwen3 if Apple Silicon
    → leann_remove({ index_name })
-   → Bash("leann build <name> --docs .")
+   → Bash("leann build <name> --docs <scope> --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
    → Display result with document count delta
+```
+
+**Memory Warning (Large Projects):**
+```
+⚠️ MEMORY NOTICE: Rebuilding large index (<N> files)
+   Tip: Use --docs src/ to reduce scope
+   Tip: Qwen3 + MLX: 50% better quality, 4-bit quantized for memory efficiency
+   
+   Continue with full rebuild? [y] yes | [s] suggest scope | [c] cancel
 ```
 
 **Output:** "Index updated in Xs" | "Index is now FRESH ✅"
@@ -191,8 +225,8 @@ leann_list({})
 
 **Output:**
 ```
-| Name   | Size   | Status        |
-| ------ | ------ | ------------- |
+| Name   | Size   | Status       |
+| ------ | ------ | ------------ |
 | anobel | 8.7 MB | ⚠️ Stale (23) |
 
 [u]pdate stale | [b]uild new | [r]emove | [q]uit
@@ -202,11 +236,72 @@ leann_list({})
 
 **Trigger:** `/search:index build <name> --docs <path>`
 
+#### Smart Scope Suggestion (Pre-Build)
+
+Before any build, run scope analysis to optimize indexing:
+
+```
+SCOPE SUGGESTION WORKFLOW:
+├─► Step 1: Detect project size
+│   └─ Bash("find . -type f -not -path './node_modules/*' -not -path './.git/*' | wc -l")
+│
+├─► Step 2: IF >2000 files → Suggest progressive scope
+│   ├─► Recommend: --docs src/ (or primary code directory)
+│   ├─► Recommend: --file-types ".js,.ts,.css,.html,.md"
+│   └─► Show estimated file reduction
+│
+├─► Step 3: Detect Apple Silicon
+│   └─ Bash("uname -m") → IF "arm64" → Add: --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+│
+└─► Step 4: Present scope options to user
+    ├─ a) src/ only (recommended for large projects)
+    ├─ b) src/ with specific file types
+    └─ c) Full project (warn if >2000 files)
+```
+
+**Scope Options Display:**
+```
+┌───────────────────────────────────────────────────────────────────┐
+│  SMART SCOPE SUGGESTION                                           │
+├───────────────────────────────────────────────────────────────────┤
+│  Project size: <N> files detected                                  │
+│  Platform: <Apple Silicon | Intel/Other>                          │
+├───────────────────────────────────────────────────────────────────┤
+│  RECOMMENDED OPTIONS:                                             │
+│                                                                   │
+│  [a] src/ only          ~<N> files    (recommended)                │
+│  [b] src/ + file types  ~<N> files    .js,.ts,.css,.html,.md        │
+│  [c] Full project       <N> files     ⚠️ Large - may be slow       │
+│  [d] Custom scope       Enter path    --docs <your-path>          │
+├───────────────────────────────────────────────────────────────────┤
+│  MLX Mode: <✅ Enabled | ❌ Not available (Intel)>                │
+│  Model: Qwen3-Embedding-0.6B-4bit-DWQ (50% better than Contriever)│
+│  Tip: Qwen3 is specifically trained on code (MTEB-Code 75.41)      │
+└───────────────────────────────────────────────────────────────────┘
+```
+
+#### Build Execution
+
 ```
 1. Parse: <name> (required), --docs (default "."), --exclude (optional)
-2. Validate: path exists, index doesn't exist (suggest update if it does)
-3. Execute: Bash("leann build <name> --docs <path>")
-4. Display: "Indexed N documents in Xs"
+2. Run Smart Scope Suggestion (above) if no --docs specified
+3. Validate: path exists, index doesn't exist (suggest update if it does)
+4. Build command template:
+   - Apple Silicon: Bash("leann build <name> --docs <scope> --file-types '<types>' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
+   - Intel/Other:   Bash("leann build <name> --docs <scope> --file-types '<types>' --embedding-mode sentence-transformers --embedding-model 'facebook/contriever'")
+5. Display: "Indexed N documents in Xs"
+```
+
+**Recommended Build Commands:**
+```bash
+# With alias (recommended) - see Section 3 for setup
+leann-build <name> --docs src/ --file-types ".js,.ts,.css,.html,.md"
+
+# Full command (if alias not set)
+leann build <name> --docs src/ --file-types ".js,.ts,.css,.html,.md" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+
+# Intel/Linux - Progressive scope (fallback with Contriever)
+leann build <name> --docs src/ --file-types ".js,.ts,.css,.html,.md" --embedding-mode sentence-transformers --embedding-model "facebook/contriever"
 ```
 
 ### 5.4 REMOVE INDEX
@@ -272,8 +367,11 @@ Bash("find ... -newer ... | wc -l")
 # Force rebuild
 /search:index update --force
 
-# Build new index
-/search:index build anobel --docs .
+# Build new index (with alias - recommended)
+leann-build anobel --docs src/
+
+# Build new index (full command)
+leann build anobel --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # Remove old index
 /search:index remove oldproject

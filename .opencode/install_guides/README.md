@@ -546,11 +546,19 @@ LEANN provides semantic search over codebases using vector embeddings.
 
 **Check:** `command -v leann` â†’ If path shown, skip to config
 
-**Prerequisites:** Python 3.10+, uv, Homebrew deps (macOS), Ollama with nomic-embed-text
+**Prerequisites:** Python 3.10+, uv, Homebrew deps (macOS)
 
 **Install if missing:**
 ```bash
 uv tool install leann-core --with leann
+source "$HOME/.local/bin/env"
+```
+
+**Set up shell alias (Recommended for Apple Silicon):**
+```bash
+# Add to ~/.zshrc (one-time)
+echo 'alias leann-build='"'"'leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'"'"'' >> ~/.zshrc
+source ~/.zshrc
 ```
 
 **Configure in `opencode.json`:**
@@ -558,21 +566,23 @@ uv tool install leann-core --with leann
 {
   "mcp": {
     "leann": {
-      "command": "leann",
-      "args": ["mcp"],
-      "env": {}
+      "type": "local",
+      "command": ["/Users/YOUR_USERNAME/.local/bin/leann_mcp"],
+      "enabled": true
     }
   }
 }
 ```
 
+> **Note**: Replace `YOUR_USERNAME` with your actual username. Find it with `whoami`.
+
 **Build index for your project:**
 ```bash
-# Navigate to project root
-cd /path/to/your/project
+# Using alias (Apple Silicon - recommended)
+leann-build myproject --docs /path/to/your/project/src
 
-# Build index (creates .leann/ directory)
-leann build --name myproject --path . --include "**/*.{js,ts,py,md}"
+# Or full command (any platform)
+leann build myproject --docs /path/to/your/project --embedding-mode ollama
 ```
 
 ### Validation: `leann_check`
@@ -918,11 +928,16 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "â
       "env": {}
     },
     "leann": {
-      "command": "leann",
-      "args": ["mcp"],
-      "env": {}
+      "type": "local",
+      "command": ["/Users/YOUR_USERNAME/.local/bin/leann_mcp"],
+      "environment": {
+        "_NOTE_TOOLS": "Provides: leann_build, leann_search, leann_ask, leann_list, leann_remove",
+        "_NOTE_USAGE": "Semantic code search with 97% less storage than traditional vector DBs",
+        "_NOTE_EMBEDDING": "Recommend MLX with Qwen3-Embedding-0.6B-4bit-DWQ for Apple Silicon",
+        "_NOTE_DOCS": "https://github.com/yichuan-w/LEANN"
+      },
+      "enabled": true
     },
-
     "spec_kit_memory": {
       "command": "node",
       "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"]
@@ -938,6 +953,9 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "â
     "opencode-openai-codex-auth@4.1.1"
   ]
 }
+```
+
+> **Note**: Replace `YOUR_USERNAME` with your actual username. Find it with `whoami`.
 ```
 
 ### 9.2 Complete `.utcp_config.json`
@@ -1201,7 +1219,7 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 | ---- | ---------------------- | ---------------------------------------------------------------- |
 | 1    | Verify installation    | Run health check script from Section 10.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
-| 3    | Build your first index | `leann build --name myproject --path . --include "**/*.{js,ts}"` |
+| 3    | Build your first index | `leann-build myproject --docs src/` (with alias) or `leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` |
 | 4    | Test skill invocation  | `python .opencode/scripts/skill_advisor.py "your task"`          |
 | 5    | Save first memory      | Use `/memory:save` or "save context" in conversation             |
 
@@ -1209,7 +1227,7 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 
 | Workflow                 | Tools/Commands                | Example                                                   |
 | ------------------------ | ----------------------------- | --------------------------------------------------------- |
-| **Code Exploration**     | LEANN, Narsil                 | `leann search --index proj --query "authentication flow"` |
+| **Code Exploration**     | LEANN, Narsil                 | `leann search proj "authentication flow"`                 |
 | **Context Preservation** | Spec Kit Memory               | `/memory:save`, `memory_search()`                         |
 | **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
 | **Documentation**        | workflows-documentation skill | Invoke skill for doc structure                            |
@@ -1447,8 +1465,8 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Check prerequisites  | `node -v && python3 -V && uv -V`                            |
 | Start Ollama         | `ollama serve`                                              |
 | Pull embedding model | `ollama pull nomic-embed-text`                              |
-| Build LEANN index    | `leann build --name proj --path . --include "**/*.{js,ts}"` |
-| Search code          | `leann search --index proj --query "your query"`            |
+| Build LEANN index    | `leann-build proj --docs src/` (with alias) or `leann build proj --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` |
+| Search code          | `leann search proj "your query"`                            |
 | List skills          | `ls .opencode/skill/`                                       |
 | Read skill           | `cat .opencode/skill/<skill-name>/SKILL.md`                 |
 | Browser screenshot   | `bdg screenshot --url <url> --output out.png`               |

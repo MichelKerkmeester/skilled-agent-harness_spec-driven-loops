@@ -1,7 +1,5 @@
 # LEANN MCP - Semantic Code Search
 
-> **Last Updated:** 2025-12-25 | **Version:** Compatible with LEANN v0.x
-
 Ultra-efficient semantic code and document search with **97% storage savings** through graph-based selective recomputation. LEANN is a **Native MCP tool** - call it directly, not through Code Mode.
 
 > **Navigation**:
@@ -39,32 +37,32 @@ LEANN (Lean ANNs) provides semantic search capabilities for code and documents t
 
 ### Key Capabilities
 
-| Feature | Description |
-|---------|-------------|
-| **97% Storage Savings** | Selective recomputation vs storing all embeddings |
-| **Intent-Based Search** | Find code by what it does, not what it's called |
-| **AST-Aware Chunking** | Smart code parsing for better results |
-| **RAG Q&A Built-in** | Answer questions using retrieved context |
-| **Multiple Backends** | HNSW (fast, default) or DiskANN (large scale) |
-| **Local-First** | Uses Ollama for embeddings - no external API required |
-| **Native MCP** | Direct tool calls, not through Code Mode |
+| Feature                 | Description                                           |
+| ----------------------- | ----------------------------------------------------- |
+| **97% Storage Savings** | Selective recomputation vs storing all embeddings     |
+| **Intent-Based Search** | Find code by what it does, not what it's called       |
+| **AST-Aware Chunking**  | Smart code parsing for better results                 |
+| **RAG Q&A Built-in**    | Answer questions using retrieved context              |
+| **Multiple Backends**   | HNSW (fast, default) or DiskANN (large scale)         |
+| **Local-First**         | Uses Ollama for embeddings - no external API required |
+| **Native MCP**          | Direct tool calls, not through Code Mode              |
 
 ### How It Compares
 
-| Feature | LEANN | Traditional Vector DB | Grep/Ripgrep |
-|---------|-------|----------------------|--------------|
-| **Storage** | 97% smaller | Full vectors | N/A |
-| **Query Type** | Semantic | Semantic | Keywords |
-| **External DB** | None required | Required | N/A |
-| **RAG Built-in** | Yes | Usually no | No |
+| Feature          | LEANN         | Traditional Vector DB | Grep/Ripgrep |
+| ---------------- | ------------- | --------------------- | ------------ |
+| **Storage**      | 97% smaller   | Full vectors          | N/A          |
+| **Query Type**   | Semantic      | Semantic              | Keywords     |
+| **External DB**  | None required | Required              | N/A          |
+| **RAG Built-in** | Yes           | Usually no            | No           |
 
 ### Storage Comparison
 
-| Codebase Size | Traditional DB | LEANN | Savings |
-|---------------|----------------|-------|---------|
-| 1,000 files | ~500 MB | ~15 MB | 97% |
-| 10,000 files | ~5 GB | ~150 MB | 97% |
-| 100,000 files | ~50 GB | ~1.5 GB | 97% |
+| Codebase Size | Traditional DB | LEANN   | Savings |
+| ------------- | -------------- | ------- | ------- |
+| 1,000 files   | ~500 MB        | ~15 MB  | 97%     |
+| 10,000 files  | ~5 GB          | ~150 MB | 97%     |
+| 100,000 files | ~50 GB         | ~1.5 GB | 97%     |
 
 ---
 
@@ -72,12 +70,34 @@ LEANN (Lean ANNs) provides semantic search capabilities for code and documents t
 
 ### Prerequisites
 
-| Component | Purpose | Install |
-|-----------|---------|---------|
-| **Python 3.9+** | Core runtime | `brew install python` |
-| **uv** | Package manager | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
-| **Ollama** | Local embeddings | `brew install ollama` |
-| **nomic-embed-text** | Embedding model | `ollama pull nomic-embed-text` |
+| Component            | Purpose          | Install                                            |
+| -------------------- | ---------------- | -------------------------------------------------- |
+| **Python 3.9+**      | Core runtime     | `brew install python`                              |
+| **uv**               | Package manager  | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
+| **Ollama**           | Local embeddings | `brew install ollama`                              |
+| **nomic-embed-text** | Embedding model  | `ollama pull nomic-embed-text`                     |
+
+### Shell Alias Setup (Recommended)
+
+LEANN CLI doesn't support config files for embedding defaults. Use a shell alias for Qwen3:
+
+```bash
+# Add to ~/.zshrc or ~/.bashrc
+alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'
+
+# Reload shell
+source ~/.zshrc
+```
+
+**Usage:**
+```bash
+# With alias (recommended)
+leann-build myproject --docs src/
+leann-build myproject --docs src/ --file-types ".js,.css,.html"
+
+# Full command (equivalent)
+leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+```
 
 ### 5-Minute Setup
 
@@ -89,16 +109,18 @@ brew install libomp boost protobuf zeromq pkgconf
 uv tool install leann-core --with leann
 source "$HOME/.local/bin/env"
 
-# 3. Start Ollama
+# 3. Start Ollama (for LLM features)
 brew services start ollama
 ollama pull nomic-embed-text
 
-# 4. Build your first index
-leann build my-project --docs /path/to/your/project
+# 4. Build your first index (Apple Silicon - recommended)
+leann build my-project --docs /path/to/your/project/src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # 5. Test search
 leann search my-project "authentication flow"
 ```
+
+> **Apple Silicon Users**: The `--embedding-mode mlx` flag uses Apple's unified memory architecture for significantly better memory efficiency during indexing.
 
 ### Installation Guide
 
@@ -111,13 +133,13 @@ For complete installation instructions including MCP configuration, see:
 
 ### Tools at a Glance
 
-| Tool | Purpose | Speed | Use When |
-|------|---------|-------|----------|
-| `leann_build` | Create vector index | 1-60s | Setting up semantic search |
-| `leann_search` | Semantic similarity | <1s | Finding relevant code/docs |
-| `leann_ask` | RAG Q&A with LLM | 2-10s | Answering questions |
-| `leann_list` | Show indexes | <1s | Managing indexes |
-| `leann_remove` | Delete index | <1s | Cleanup |
+| Tool           | Purpose             | Speed | Use When                   |
+| -------------- | ------------------- | ----- | -------------------------- |
+| `leann_build`  | Create vector index | 1-60s | Setting up semantic search |
+| `leann_search` | Semantic similarity | <1s   | Finding relevant code/docs |
+| `leann_ask`    | RAG Q&A with LLM    | 2-10s | Answering questions        |
+| `leann_list`   | Show indexes        | <1s   | Managing indexes           |
+| `leann_remove` | Delete index        | <1s   | Cleanup                    |
 
 ### Tool Selection Flowchart
 
@@ -132,12 +154,12 @@ User Request
     ┌───────────┼───────────┬───────────┬───────────┐
     │           │           │           │           │
     ▼           ▼           ▼           ▼           ▼
-┌────────┐  ┌────────┐  ┌────────┐  ┌────────┐  ┌────────┐
-│ Create │  │ Find   │  │ Answer │  │ List   │  │ Delete │
+┌────────┐  ┌────────┐  ┌─────────┐  ┌────────┐  ┌────────┐
+│ Create │  │ Find   │  │ Answer  │  │ List   │  │ Delete │
 │ index  │  │ code   │  │ question│  │ indexes│  │ index  │
-└───┬────┘  └───┬────┘  └───┬────┘  └───┬────┘  └───┬────┘
-    │           │           │           │           │
-    ▼           ▼           ▼           ▼           ▼
+└───┬────┘  └───┬────┘  └───┬─────┘  └───┬────┘  └───┬────┘
+    │           │           │            │           │
+    ▼           ▼           ▼            ▼           ▼
 leann_build  leann_search  leann_ask  leann_list  leann_remove
 ```
 
@@ -171,8 +193,8 @@ def route_leann_tool(task):
 #### Pattern 1: Code Discovery
 
 ```bash
-# 1. Build index for project
-leann build my-project --docs ./src
+# 1. Build index for project (Apple Silicon)
+leann build my-project --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # 2. Search by intent
 leann search my-project "error handling patterns"
@@ -196,9 +218,9 @@ leann search my-project "JWT token validation"
 #### Pattern 3: Multi-Project Search
 
 ```bash
-# Build indexes for each project
-leann build frontend --docs /path/to/frontend
-leann build backend --docs /path/to/backend
+# Build indexes for each project (Apple Silicon)
+leann build frontend --docs /path/to/frontend/src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+leann build backend --docs /path/to/backend/src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # Search each independently
 leann search frontend "login form component"
@@ -220,24 +242,24 @@ leann build <name> --docs <path> [options]
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `name` | string | Yes | - | Unique name for the index |
-| `--docs` | path | Yes | - | Directory to index |
-| `--backend` | string | No | hnsw | `hnsw` or `diskann` |
-| `--embedding` | string | No | ollama | Embedding provider |
-| `--use-ast-chunking` | flag | No | false | AST-aware code chunking |
+| Parameter            | Type   | Required | Default | Description               |
+| -------------------- | ------ | -------- | ------- | ------------------------- |
+| `name`               | string | Yes      | -       | Unique name for the index |
+| `--docs`             | path   | Yes      | -       | Directory to index        |
+| `--backend`          | string | No       | hnsw    | `hnsw` or `diskann`       |
+| `--embedding`        | string | No       | ollama  | Embedding provider        |
+| `--use-ast-chunking` | flag   | No       | false   | AST-aware code chunking   |
 
 **Examples**:
 ```bash
-# Basic indexing
-leann build my-project --docs ./src
+# Apple Silicon (RECOMMENDED) - Memory-efficient with MLX + Qwen3
+leann build my-project --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
-# Code project with AST chunking
-leann build my-code --docs ./src --use-ast-chunking
+# Code project with AST chunking (Apple Silicon)
+leann build my-code --docs ./src --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --use-ast-chunking
 
-# Large codebase with DiskANN
-leann build large-project --docs ./src --backend diskann
+# Large codebase with DiskANN + MLX
+leann build large-project --docs ./src --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --backend diskann
 ```
 
 ---
@@ -253,13 +275,13 @@ leann search <name> "<query>" [options]
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `name` | string | Yes | - | Index name |
-| `query` | string | Yes | - | Natural language query |
-| `--top-k` | int | No | 5 | Number of results |
-| `--complexity` | int | No | 32 | Search complexity (16-128) |
-| `--show-metadata` | flag | No | false | Include file metadata |
+| Parameter         | Type   | Required | Default | Description                |
+| ----------------- | ------ | -------- | ------- | -------------------------- |
+| `name`            | string | Yes      | -       | Index name                 |
+| `query`           | string | Yes      | -       | Natural language query     |
+| `--top-k`         | int    | No       | 5       | Number of results          |
+| `--complexity`    | int    | No       | 32      | Search complexity (16-128) |
+| `--show-metadata` | flag   | No       | false   | Include file metadata      |
 
 **Examples**:
 ```bash
@@ -300,14 +322,14 @@ leann ask <name> "<question>" [options]
 
 **Parameters**:
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `name` | string | Yes | - | Index name |
-| `question` | string | Yes | - | Natural language question |
-| `--llm` | string | No | ollama | LLM provider |
-| `--model` | string | No | qwen3:8b | Model name |
-| `--top-k` | int | No | 20 | Context chunks to retrieve |
-| `--interactive` | flag | No | false | Interactive chat mode |
+| Parameter       | Type   | Required | Default  | Description                |
+| --------------- | ------ | -------- | -------- | -------------------------- |
+| `name`          | string | Yes      | -        | Index name                 |
+| `question`      | string | Yes      | -        | Natural language question  |
+| `--llm`         | string | No       | ollama   | LLM provider               |
+| `--model`       | string | No       | qwen3:8b | Model name                 |
+| `--top-k`       | int    | No       | 20       | Context chunks to retrieve |
+| `--interactive` | flag   | No       | false    | Interactive chat mode      |
 
 **Examples**:
 ```bash
@@ -461,12 +483,25 @@ On Query:      Recompute E2, E4, E5 only when needed
 └─────────────────────────────────────────────────────────────────┘
 ```
 
+### Embedding Mode Comparison
+
+| Mode                  | Model                         | Memory  | Speed  | Quality   | Best For                   |
+| --------------------- | ----------------------------- | ------- | ------ | --------- | -------------------------- |
+| **mlx** (recommended) | Qwen3-Embedding-0.6B-4bit-DWQ | Low     | Fast   | MTEB 70.7 | Apple Silicon              |
+| sentence-transformers | facebook/contriever           | High    | Medium | MTEB ~40  | Linux/Windows (fallback)   |
+| openai                | text-embedding-3-small        | Minimal | Fast   | High      | Memory-constrained systems |
+| ollama                | nomic-embed-text              | Medium  | Medium | Medium    | Local with flexibility     |
+
+> **Why Qwen3-Embedding?** 50% better quality than Contriever (MTEB 70.7 vs ~40), trained on code (MTEB-Code 75.41), 32K context vs 512 tokens, native MLX support with 4-bit quantization, and actively maintained (Jun 2025).
+
+> **Apple Silicon Users**: Use `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` for best quality and memory efficiency.
+
 ### Backend Options
 
-| Backend | Best For | Characteristics |
-|---------|----------|-----------------|
-| **HNSW** (default) | Most use cases | Fast queries, in-memory |
-| **DiskANN** | Large datasets | Disk-based, scalable, lower RAM |
+| Backend            | Best For       | Characteristics                 |
+| ------------------ | -------------- | ------------------------------- |
+| **HNSW** (default) | Most use cases | Fast queries, in-memory         |
+| **DiskANN**        | Large datasets | Disk-based, scalable, lower RAM |
 
 **Decision Logic:**
 ```text
@@ -531,14 +566,14 @@ leann ask my-index "How does authentication work?"
 
 ### Comparison Table
 
-| Feature | Gemini 2.5 Flash | Ollama (qwen3:8b) |
-|---------|------------------|-------------------|
-| **RAM Usage** | ~0 MB | ~8 GB |
-| **Cost** | ~$0.001/query | Free |
-| **Speed** | Fast (5-15s) | Varies by hardware |
-| **Privacy** | Cloud (Google) | Fully local |
-| **Setup** | API key only | Model download |
-| **Offline** | No | Yes |
+| Feature       | Gemini 2.5 Flash | Ollama (qwen3:8b)  |
+| ------------- | ---------------- | ------------------ |
+| **RAM Usage** | ~0 MB            | ~8 GB              |
+| **Cost**      | ~$0.001/query    | Free               |
+| **Speed**     | Fast (5-15s)     | Varies by hardware |
+| **Privacy**   | Cloud (Google)   | Fully local        |
+| **Setup**     | API key only     | Model download     |
+| **Offline**   | No               | Yes                |
 
 > **Recommendation**: Use **Gemini 2.5 Flash** for daily development (cheap, fast, no RAM). Use **Ollama** for offline work or privacy-sensitive projects.
 
@@ -587,21 +622,23 @@ This is the same pattern as Sequential Thinking MCP:
 
 ### Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `LEANN_INDEX_DIR` | `~/.leann/indexes` | Index storage location |
-| `OLLAMA_HOST` | `http://localhost:11434` | Ollama server URL |
-| `OPENAI_API_KEY` | - | Required for OpenAI embeddings/LLM |
-| `GEMINI_API_KEY` | - | Required for Gemini LLM |
+| Variable                | Default                                       | Description                                            |
+| ----------------------- | --------------------------------------------- | ------------------------------------------------------ |
+| `LEANN_INDEX_DIR`       | `~/.leann/indexes`                            | Index storage location                                 |
+| `LEANN_EMBEDDING_MODE`  | `mlx`                                         | Embedding provider (mlx recommended for Apple Silicon) |
+| `LEANN_EMBEDDING_MODEL` | `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` | Embedding model (Qwen3 for Apple Silicon)              |
+| `OLLAMA_HOST`           | `http://localhost:11434`                      | Ollama server URL                                      |
+| `OPENAI_API_KEY`        | -                                             | Required for OpenAI embeddings/LLM                     |
+| `GEMINI_API_KEY`        | -                                             | Required for Gemini LLM                                |
 
 ### File Locations
 
-| Path | Purpose |
-|------|---------|
-| `~/.local/bin/leann` | LEANN CLI binary |
-| `~/.local/bin/leann_mcp` | LEANN MCP server binary |
-| `~/.leann/indexes/` | Index storage location |
-| `~/.leann/config.toml` | Configuration (embedding only, LLM not implemented) |
+| Path                     | Purpose                                             |
+| ------------------------ | --------------------------------------------------- |
+| `~/.local/bin/leann`     | LEANN CLI binary                                    |
+| `~/.local/bin/leann_mcp` | LEANN MCP server binary                             |
+| `~/.leann/indexes/`      | Index storage location                              |
+| `~/.leann/config.toml`   | Configuration (embedding only, LLM not implemented) |
 
 ---
 
@@ -615,15 +652,31 @@ This is the same pattern as Sequential Thinking MCP:
 - When switching embedding providers
 
 ```bash
-# Basic build
-leann build my-project --docs ./src
+# Apple Silicon (RECOMMENDED) - Memory-efficient with MLX + Qwen3
+leann build my-project --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # With AST chunking (recommended for code)
-leann build my-code --docs ./src --use-ast-chunking
+leann build my-code --docs ./src --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --use-ast-chunking
 
 # Force rebuild
-leann build my-project --docs ./src --force
+leann build my-project --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --force
 ```
+
+### Memory-Efficient Indexing
+
+Use **progressive scope indexing** to prevent memory issues:
+
+| File Count   | Recommendation     | Action                                      |
+| ------------ | ------------------ | ------------------------------------------- |
+| <2,000       | Normal             | Proceed with default settings               |
+| 2,000-5,000  | Suggest reduction  | Use `--docs src/` or file type filters      |
+| 5,000-10,000 | Strongly recommend | Use scope reduction + MLX embedding mode    |
+| >10,000      | Warning            | Use DiskANN backend + scope reduction + MLX |
+
+**Memory Escape Hatches** (in priority order):
+1. **Primary**: Use `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` (Apple Silicon)
+2. **Secondary**: Reduce scope with `--file-types` filter
+3. **Tertiary**: Use `--embedding-mode openai` to offload to cloud
 
 ### Rebuilding Indexes
 
@@ -656,12 +709,12 @@ leann remove my-project && leann build my-project --docs ./src
 
 ### Index Hygiene
 
-| Task | Frequency | Command |
-|------|-----------|---------|
-| **List indexes** | Weekly | `leann list` |
-| **Remove unused** | Monthly | `leann remove old-index` |
-| **Rebuild active** | After major changes | `leann build --force` |
-| **Check storage** | Monthly | `du -sh ~/.leann/indexes/` |
+| Task               | Frequency           | Command                    |
+| ------------------ | ------------------- | -------------------------- |
+| **List indexes**   | Weekly              | `leann list`               |
+| **Remove unused**  | Monthly             | `leann remove old-index`   |
+| **Rebuild active** | After major changes | `leann build --force`      |
+| **Check storage**  | Monthly             | `du -sh ~/.leann/indexes/` |
 
 ---
 
@@ -669,32 +722,33 @@ leann remove my-project && leann build my-project --docs ./src
 
 ### Target Metrics
 
-| Operation | Target | Typical |
-|-----------|--------|---------|
-| **Index build** (small) | <30s | ~15s |
-| **Index build** (medium) | 1-2min | ~60s |
-| **Search** | <1s | ~200ms |
-| **Ask** (local LLM) | 5-30s | ~10s |
-| **Ask** (Gemini) | 2-10s | ~5s |
-| **List** | <1s | ~50ms |
-| **Remove** | <1s | ~100ms |
+| Operation                | Target | Typical |
+| ------------------------ | ------ | ------- |
+| **Index build** (small)  | <30s   | ~15s    |
+| **Index build** (medium) | 1-2min | ~60s    |
+| **Search**               | <1s    | ~200ms  |
+| **Ask** (local LLM)      | 5-30s  | ~10s    |
+| **Ask** (Gemini)         | 2-10s  | ~5s     |
+| **List**                 | <1s    | ~50ms   |
+| **Remove**               | <1s    | ~100ms  |
 
 ### Memory Usage
 
-| Component | Memory |
-|-----------|--------|
-| LEANN CLI | ~50MB |
-| Embedding model (Ollama) | ~200MB |
-| LLM (qwen3:8b) | ~8GB |
-| LLM (Gemini) | ~0MB (cloud) |
+| Component                | Memory       |
+| ------------------------ | ------------ |
+| LEANN CLI                | ~50MB        |
+| Embedding model (Ollama) | ~200MB       |
+| LLM (qwen3:8b)           | ~8GB         |
+| LLM (Gemini)             | ~0MB (cloud) |
 
 ### Optimization Tips
 
-1. **Use Ollama for embeddings** - Local, fast, no API costs
+1. **Use MLX for embeddings** (Apple Silicon) - Uses unified memory, most efficient
 2. **Use Gemini for RAG** - No RAM usage, cheap, fast
 3. **Use AST chunking for code** - Better semantic chunks
-4. **Use DiskANN for large projects** - Lower memory usage
-5. **Rebuild indexes sparingly** - Only when needed
+4. **Use progressive scope indexing** - Start with `src/` directory, add file type filters
+5. **Use DiskANN for large projects** - Lower memory usage
+6. **Rebuild indexes sparingly** - Only when needed
 
 ---
 
@@ -777,9 +831,9 @@ curl http://localhost:11434/api/tags
 
 ### Bundled Files
 
-| File | Purpose |
-|------|---------|
-| [SKILL.md](./SKILL.md) | AI agent instructions for LEANN integration |
+| File                                                     | Purpose                                        |
+| -------------------------------------------------------- | ---------------------------------------------- |
+| [SKILL.md](./SKILL.md)                                   | AI agent instructions for LEANN integration    |
 | [references/tool_catalog.md](references/tool_catalog.md) | Complete command reference with all parameters |
 
 ### Installation
@@ -795,10 +849,10 @@ curl http://localhost:11434/api/tags
 
 ### Related Skills
 
-| Skill | Purpose | MCP Type |
-|-------|---------|----------|
-| **[system-spec-kit](../system-spec-kit/README.md)** | Conversation context preservation | Native MCP |
-| **[mcp-code-mode](../mcp-code-mode/README.md)** | External MCP tools (Webflow, etc.) | Code Mode |
+| Skill                                               | Purpose                            | MCP Type   |
+| --------------------------------------------------- | ---------------------------------- | ---------- |
+| **[system-spec-kit](../system-spec-kit/README.md)** | Conversation context preservation  | Native MCP |
+| **[mcp-code-mode](../mcp-code-mode/README.md)**     | External MCP tools (Webflow, etc.) | Code Mode  |
 
 ### Cross-Skill Workflow
 
@@ -820,8 +874,11 @@ leann search my-project "authentication flow"
 ### Essential Commands
 
 ```bash
-# Build index from source code
-leann build my-code --docs ./src --use-ast-chunking
+# Build index from source code (Apple Silicon - recommended)
+leann build my-code --docs ./src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --use-ast-chunking
+
+# Build index (Linux/Windows - fallback with Contriever)
+leann build my-code --docs ./src --embedding-mode sentence-transformers --embedding-model "facebook/contriever" --use-ast-chunking
 
 # Search for code by intent
 leann search my-code "authentication logic"

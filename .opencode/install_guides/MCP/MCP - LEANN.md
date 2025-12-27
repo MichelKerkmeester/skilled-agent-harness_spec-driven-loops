@@ -3,7 +3,7 @@
 A comprehensive guide to installing, configuring, and using the LEANN (Lean ANNs) MCP server for ultra-efficient semantic code and document search with 97% storage savings.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
-> **Binary**: `~/.local/bin/leann_mcp` | **Dependencies**: Ollama + nomic-embed-text
+> **Binary**: `~/.local/bin/leann_mcp` | **Recommended**: MLX with Qwen3-Embedding-0.6B (Apple Silicon)
 
 ---
 
@@ -105,7 +105,7 @@ LEANN (Lean ANNs) is an ultra-efficient MCP server for semantic search that achi
 │  │                     leann_remove                          │  │
 │  └───────────────────────────────────────────────────────────┘  │
 │  ┌───────────────────────────────────────────────────────────┐  │
-│  │                    Core Components                         │  │
+│  │                    Core Components                        │  │
 │  │  AST Chunking | Embedding Providers | ANN Backends        │  │
 │  └───────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
@@ -287,6 +287,42 @@ leann --version && which leann | grep -q ".local/bin/leann" && which leann_mcp |
 
 ---
 
+### Step 3: Shell Alias Setup (Recommended)
+
+LEANN CLI doesn't support config files for embedding defaults. Set up a shell alias for Qwen3:
+
+```bash
+# Add to ~/.zshrc (macOS) or ~/.bashrc (Linux)
+echo 'alias leann-build='"'"'leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'"'"'' >> ~/.zshrc
+
+# Reload shell
+source ~/.zshrc
+
+# Verify alias
+type leann-build
+```
+
+**Usage:**
+```bash
+leann-build myproject --docs src/
+leann-build myproject --docs src/ --file-types ".js,.css,.html"
+```
+
+**Note:** The alias includes MLX mode and Qwen3 model. You only need to specify index name and docs path.
+
+### Validation: `shell_alias_complete`
+
+**Checklist:**
+- [ ] `type leann-build` shows the alias definition
+- [ ] Alias includes `--embedding-mode mlx` and `--embedding-model`
+
+**Quick Verification:**
+```bash
+type leann-build 2>/dev/null | grep -q "mlx" && echo "✅ PASS" || echo "❌ FAIL (alias not set)"
+```
+
+---
+
 ### Estimating Index Size Before Building
 
 Before building an index, estimate the number of chunks to choose the right backend.
@@ -332,37 +368,146 @@ fi
 
 ---
 
-### Step 3: Build Your First Index
+### Step 4: Build Your First Index
 
 Build a vector index from your codebase or documents.
 
-**For Code Projects:**
+**For Code Projects (Apple Silicon - Using Alias):**
 ```bash
-# Build index with AST-aware chunking (recommended for code)
-leann build my-project --docs /path/to/your/project
+# Build index using the leann-build alias (includes Qwen3 defaults)
+leann-build my-project --docs /path/to/your/project
 
-# With specific options
-leann build my-project --docs /path/to/your/project \
-  --backend hnsw \
-  --embedding sentence-transformers
+# With scoped directory (prevents indexing node_modules, etc.)
+leann-build my-project --docs /path/to/your/project/src
+```
+
+**For Code Projects (Apple Silicon - Without Alias):**
+```bash
+# Full command with all options specified
+leann build my-project --docs /path/to/your/project --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+```
+
+**For Code Projects (Other Platforms):**
+```bash
+# Build index with Ollama embeddings
+leann build my-project --docs /path/to/your/project --embedding-mode ollama
 ```
 
 **For Documents (Markdown, Text):**
 ```bash
-# Build index for documentation
-leann build my-docs --docs /path/to/docs/folder
+# Build index for documentation (using alias)
+leann-build my-docs --docs /path/to/docs/folder
+```
+
+**For Large Projects (>2000 files):**
+```bash
+# Combine alias with file type filtering to reduce scope
+leann-build my-project --docs /path/to/project --file-types ".js,.ts,.md"
 ```
 
 ### Build Options Reference
 
-| Option         | Values                                     | Default | Description          |
-| -------------- | ------------------------------------------ | ------- | -------------------- |
-| `--backend`    | hnsw, diskann                              | hnsw    | ANN algorithm        |
-| `--embedding`  | ollama, sentence-transformers, openai, mlx | ollama  | Embedding provider   |
-| `--chunk-size` | integer                                    | 512     | Characters per chunk |
-| `--overlap`    | integer                                    | 50      | Chunk overlap        |
+| Option              | Values                                     | Default | Description            |
+| ------------------- | ------------------------------------------ | ------- | ---------------------- |
+| `--backend`         | hnsw, diskann                              | hnsw    | ANN algorithm          |
+| `--embedding-mode`  | mlx, sentence-transformers, openai, ollama | ollama  | Embedding provider     |
+| `--embedding-model` | model name/path                            | varies  | Specific model to use  |
+| `--chunk-size`      | integer                                    | 512     | Characters per chunk   |
+| `--overlap`         | integer                                    | 50      | Chunk overlap          |
+| `--file-types`      | string (comma-separated)                   | all     | Filter by extensions   |
+| `--docs`            | path                                       | .       | Source directory scope |
 
-> **Recommended**: Use `--embedding ollama` with `nomic-embed-text` model for local-first operation.
+> **Recommended for Apple Silicon**: Use `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` for efficient local embeddings with low memory usage and high quality.
+
+### MLX Embedding Mode (Apple Silicon)
+
+**What is MLX?**
+MLX is Apple's machine learning framework optimized for Apple Silicon (M1/M2/M3/M4). It leverages the unified memory architecture of M-series chips, allowing models to share memory between CPU and GPU efficiently.
+
+**Why use MLX with Qwen3-Embedding?**
+- **50% better quality**: MTEB score 70.7 vs Contriever's ~40 - significantly more accurate search results
+- **Code-trained**: MTEB-Code score 75.41 - Qwen3 was trained on code, Contriever wasn't
+- **32K context length**: Handles entire files vs Contriever's 512 token limit
+- **4-bit quantization**: Memory-efficient without sacrificing quality
+- **Low memory footprint**: Uses unified memory efficiently, avoiding the RAM bloat of sentence-transformers
+- **Native performance**: Optimized for Apple Silicon's Neural Engine
+- **No model duplication**: Unlike sentence-transformers which loads models into separate RAM
+
+**How to use:**
+```bash
+# Recommended for Apple Silicon Macs (with explicit model specification)
+leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+```
+
+> **Important**: MLX mode requires specifying `--embedding-model` explicitly. Without it, LEANN may fall back to a default model with lower quality.
+
+**When to use:**
+- **Always on Apple Silicon**: MLX with Qwen3 is the recommended default for all M1/M2/M3/M4 Macs
+- **Large projects**: Prevents memory issues that occur with sentence-transformers
+- **Code search**: Qwen3's code-trained embeddings provide significantly better results for codebases
+- **Resource-constrained environments**: 4-bit quantization leaves more RAM for other applications
+
+### Embedding Mode Comparison
+
+| Mode                    | Model                         | Platform      | Memory  | Quality   | Notes                                             |
+| ----------------------- | ----------------------------- | ------------- | ------- | --------- | ------------------------------------------------- |
+| `mlx` (recommended)     | Qwen3-Embedding-0.6B-4bit-DWQ | Apple Silicon | Low     | MTEB 70.7 | **Best for M-series** - code-trained, 32K context |
+| `sentence-transformers` | facebook/contriever           | Any           | High    | MTEB ~40  | Legacy default - may cause memory issues          |
+| `openai`                | text-embedding-3-small        | Any           | Minimal | Good      | Requires API key, small cost per embedding        |
+| `ollama`                | nomic-embed-text              | Any           | Medium  | Good      | Requires Ollama running                           |
+
+**Decision Logic:**
+```
+IF Apple Silicon (M1/M2/M3/M4):
+  → Use "--embedding-mode mlx --embedding-model mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" (recommended)
+
+IF large project (>2000 files) on any platform:
+  → Use "--embedding-mode mlx" with Qwen3 (Apple) or "--embedding-mode openai" (cloud offload)
+
+IF offline/privacy required AND not Apple Silicon:
+  → Use "--embedding-mode ollama" with nomic-embed-text
+```
+
+### Memory Considerations
+
+Large projects (>2000 files) can cause memory issues during index building. The default `sentence-transformers` mode loads the embedding model entirely into RAM, which can make your Mac unresponsive.
+
+**Common symptoms:**
+- Mac becomes unresponsive during `leann build`
+- System memory pressure warnings
+- Build process killed by OS
+
+**Solutions (in order of preference):**
+
+1. **Use MLX with Qwen3 (Recommended for Apple Silicon)**
+   ```bash
+   leann build myproject --docs . --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+   ```
+
+2. **Reduce scope with `--docs`**
+   ```bash
+   # Index only source code, not node_modules or build artifacts
+   leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+   ```
+
+3. **Filter file types**
+   ```bash
+   # Only index specific file types
+   leann build myproject --docs . --file-types ".js,.ts,.md" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+   ```
+
+4. **Use OpenAI API for cloud offloading**
+   ```bash
+   # Offload embedding computation to cloud
+   export OPENAI_API_KEY="sk-..."
+   leann build myproject --docs . --embedding-mode openai
+   ```
+
+**Recommended pattern for large projects:**
+```bash
+# Combine MLX with Qwen3, scoped directory, and file type filtering
+leann build myproject --docs src/ --file-types ".js,.ts,.jsx,.tsx,.md" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+```
 
 ### Validation: `index_built_complete`
 
@@ -386,6 +531,16 @@ leann list | grep -q "my-project" && leann search my-project "main function" | g
 ## 4. ⚙️ CONFIGURATION
 
 Connect LEANN to your AI assistant (Phase 4).
+
+### Important: CLI Limitation
+
+**LEANN CLI doesn't read config files for embedding defaults.** The `~/.leann/config.toml` file exists but embedding settings in it are not loaded by the CLI. You must specify embedding options via:
+
+1. **Shell alias** (recommended) - See Step 3 above
+2. **CLI flags** - `--embedding-mode mlx --embedding-model "..."`
+3. **Environment variables** - `LEANN_EMBEDDING_MODE`, `LEANN_EMBEDDING_MODEL`
+
+The shell alias is the recommended workaround for consistent Qwen3 defaults across all build commands.
 
 ### Option A: Configure for OpenCode
 
@@ -470,6 +625,10 @@ Add to `claude_desktop_config.json`:
 Set these for advanced configuration:
 
 ```bash
+# For MLX with Qwen3 (recommended defaults for Apple Silicon)
+export LEANN_EMBEDDING_MODE=mlx
+export LEANN_EMBEDDING_MODEL=mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ
+
 # For OpenAI embeddings
 export OPENAI_API_KEY="sk-..."
 
@@ -759,8 +918,8 @@ leann remove old-project
 **Scenario**: Find video player implementation details
 
 ```bash
-# Step 1: Build index for your project
-leann build anobel --docs /path/to/anobel.com
+# Step 1: Build index for your project (Apple Silicon with Qwen3)
+leann build anobel --docs /path/to/anobel.com/src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # Step 2: Search for video-related code
 leann search anobel "HLS video player initialization and playback control"
@@ -776,8 +935,8 @@ leann search anobel "HLS video player initialization and playback control"
 **Scenario**: Ask questions about project documentation
 
 ```bash
-# Step 1: Build index for docs
-leann build project-docs --docs /path/to/docs
+# Step 1: Build index for docs (Apple Silicon with Qwen3)
+leann build project-docs --docs /path/to/docs --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # Step 2: Ask a question
 leann ask project-docs "What are the main CSS naming conventions used?"
@@ -790,10 +949,10 @@ leann ask project-docs "What are the main CSS naming conventions used?"
 **Scenario**: Search across different codebases
 
 ```bash
-# Build indexes for each project
-leann build frontend --docs /path/to/frontend
-leann build backend --docs /path/to/backend
-leann build shared --docs /path/to/shared-libs
+# Build indexes for each project (Apple Silicon with Qwen3)
+leann build frontend --docs /path/to/frontend/src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+leann build backend --docs /path/to/backend/src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+leann build shared --docs /path/to/shared-libs --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # Search each independently
 leann search frontend "authentication component"
@@ -815,22 +974,44 @@ leann build monorepo --docs /path/to/large/monorepo \
 leann search monorepo "database migration scripts"
 ```
 
-### Example 5: OpenAI Embeddings
+### Example 5: OpenAI Embeddings (Cloud Offloading)
 
-**Scenario**: Use OpenAI embeddings for higher quality
+**Scenario**: Use OpenAI embeddings for cloud-based embedding generation (useful when local memory is constrained)
 
 ```bash
 # Set API key
 export OPENAI_API_KEY="sk-..."
 
-# Build with OpenAI embeddings
-leann build my-project --docs /path/to/project --embedding openai
+# Build with OpenAI embeddings (offloads computation to cloud)
+leann build my-project --docs /path/to/project --embedding-mode openai
 
 # Search (uses same embeddings)
 leann search my-project "error handling patterns"
 ```
 
-### Example 6: MCP Integration Query
+### Example 6: Memory-Efficient Large Project Build
+
+**Scenario**: Index a large project without memory issues
+
+```bash
+# Combine all memory-saving strategies with Qwen3
+leann build large-project \
+  --docs /path/to/project/src \
+  --file-types ".js,.ts,.jsx,.tsx,.py,.md" \
+  --embedding-mode mlx \
+  --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" \
+  --backend hnsw
+
+# For very large projects (>100K chunks), use diskann backend
+leann build enterprise-app \
+  --docs /path/to/monorepo/packages \
+  --file-types ".ts,.tsx,.md" \
+  --embedding-mode mlx \
+  --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" \
+  --backend diskann
+```
+
+### Example 7: MCP Integration Query
 
 **In your AI assistant:**
 
@@ -970,13 +1151,33 @@ Expected response:
   - Permission denied → Check file permissions on source directory
   - Path doesn't exist → Verify path with `ls`
 
-**❌ "Memory error during build"**
-- **Cause**: Large codebase with HNSW backend.
-- **Fix**:
+**❌ "Memory error during build" / Mac becomes unresponsive**
+- **Cause**: Large codebase with sentence-transformers embedding mode (default on some systems).
+- **Symptoms**: 
+  - Mac becomes unresponsive during `leann build`
+  - System memory pressure warnings
+  - Build process killed by OS
+  - Activity Monitor shows high memory usage
+- **Root Cause**: The `sentence-transformers` embedding mode loads the entire model into RAM, which can consume 4-8GB+ for large projects.
+- **Fix** (in order of preference):
   ```bash
-  # Use DiskANN for large projects
-  leann build large-project --docs /path --backend diskann
+  # Option 1: Use MLX with Qwen3 (RECOMMENDED for Apple Silicon)
+  leann build my-project --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+  
+  # Option 2: Reduce scope - only index source files
+  leann build my-project --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+  
+  # Option 3: Filter file types
+  leann build my-project --docs . --file-types ".js,.ts,.md" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+  
+  # Option 4: Use DiskANN backend for very large projects
+  leann build large-project --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --backend diskann
+  
+  # Option 5: Offload to cloud (requires API key)
+  export OPENAI_API_KEY="sk-..."
+  leann build my-project --docs . --embedding-mode openai
   ```
+- **Prevention**: Always use `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` on Apple Silicon and scope with `--docs src/` to avoid indexing node_modules
 
 **❌ "Slow search performance"**
 - **Cause**: Large index or slow embedding generation.
@@ -1009,8 +1210,14 @@ Expected response:
 ### CLI Command Reference
 
 ```bash
-# Build index
-leann build <name> --docs <path> [--backend hnsw|diskann] [--embedding provider]
+# Build index (Apple Silicon - recommended with Qwen3)
+leann build <name> --docs <path> --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" [--backend hnsw|diskann]
+
+# Build index (other platforms)
+leann build <name> --docs <path> --embedding-mode ollama [--backend hnsw|diskann]
+
+# Build with file type filter
+leann build <name> --docs <path> --file-types ".js,.ts,.md" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # Search index
 leann search <name> "<query>" [--top-k N]
@@ -1030,15 +1237,15 @@ leann --version
 
 ### Embedding Providers
 
-| Provider              | Command                             | Notes                                         |
-| --------------------- | ----------------------------------- | --------------------------------------------- |
-| Ollama                | `--embedding ollama`                | **Recommended**, local, uses nomic-embed-text |
-| sentence-transformers | `--embedding sentence-transformers` | Local, fast, good default                     |
-| OpenAI                | `--embedding openai`                | Requires OPENAI_API_KEY, cloud                |
-| Gemini                | N/A (via env vars)                  | Requires GEMINI_API_KEY, cloud                |
-| MLX                   | `--embedding mlx`                   | Apple Silicon optimized                       |
+| Provider              | Command                                                                                | Platform      | Memory  | Quality   | Notes                                             |
+| --------------------- | -------------------------------------------------------------------------------------- | ------------- | ------- | --------- | ------------------------------------------------- |
+| MLX + Qwen3           | `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` | Apple Silicon | Low     | MTEB 70.7 | **Recommended** for M1/M2/M3/M4 Macs              |
+| Ollama                | `--embedding-mode ollama`                                                              | Any           | Medium  | Good      | Local, uses nomic-embed-text                      |
+| sentence-transformers | `--embedding-mode sentence-transformers`                                               | Any           | High    | MTEB ~40  | Legacy, may cause memory issues on large projects |
+| OpenAI                | `--embedding-mode openai`                                                              | Any           | Minimal | Good      | Cloud, requires OPENAI_API_KEY, small cost        |
 
-> **Recommended Setup**: Ollama with `nomic-embed-text` for local-first development.
+> **Recommended Setup (Apple Silicon)**: Use `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` for efficient local embeddings with 50% better quality than legacy defaults.
+> **Recommended Setup (Other platforms)**: Use `--embedding-mode ollama` with `nomic-embed-text` for local-first development.
 
 ### LLM Providers (for `ask` command)
 
@@ -1128,7 +1335,18 @@ The `~/.leann/config.toml` file's `[llm]` section is **not currently implemented
 brew install libomp boost protobuf zeromq pkgconf
 uv tool install leann-core --with leann
 source "$HOME/.local/bin/env"
-leann build my-project --docs /path/to/project
+
+# Set up shell alias (Apple Silicon - recommended)
+echo 'alias leann-build='"'"'leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'"'"'' >> ~/.zshrc
+source ~/.zshrc
+
+# Build with alias (Apple Silicon)
+leann-build my-project --docs /path/to/project/src
+
+# Build without alias (full command)
+leann build my-project --docs /path/to/project/src --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+
+# Search
 leann search my-project "test query"
 
 # Update LEANN
@@ -1213,16 +1431,23 @@ brew install libomp boost protobuf zeromq pkgconf
 uv tool install leann-core --with leann
 source "$HOME/.local/bin/env"
 
-# 3. Build an index
-leann build my-project --docs /path/to/your/project
+# 3. Set up shell alias (Apple Silicon - recommended)
+echo 'alias leann-build='"'"'leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'"'"'' >> ~/.zshrc
+source ~/.zshrc
 
-# 4. Search
+# 4. Build an index (Apple Silicon - using alias)
+leann-build my-project --docs /path/to/your/project/src
+
+# 4. Build an index (Other platforms)
+leann build my-project --docs /path/to/your/project --embedding-mode ollama
+
+# 5. Search
 leann search my-project "your query here"
 
-# 5. Configure MCP (add to opencode.json)
+# 6. Configure MCP (add to opencode.json)
 # See Configuration section above
 
-# 6. Restart OpenCode and start using!
+# 7. Restart OpenCode and start using!
 ```
 
 ---
