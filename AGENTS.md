@@ -546,8 +546,8 @@ Documentation generation? → workflows-documentation skill
    - Sequential Thinking, LEANN, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - Figma, GitHub, ClickUp, Chrome DevTools, etc.
-   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `figma.figma_get_file({})`)
+   - Figma, GitHub, ClickUp, Chrome DevTools, Narsil, etc.
+   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `figma.figma_get_file({})`, `narsil.narsil_find_symbols({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
   
 ---

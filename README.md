@@ -530,8 +530,8 @@ External tool orchestration (Figma, GitHub, ClickUp, etc.)
 > Example: "Get Figma file" or "Create GitHub issue"
 
 **workflows-code**
-Implementation lifecycle (plan, code, verify)
-> Example: "Implement this feature"
+Implementation lifecycle (plan, code, verify), CDN deployment, JavaScript minification
+> Example: "Implement this feature" or "Minify and deploy JavaScript"
 
 **workflows-documentation**
 Document quality, skill creation

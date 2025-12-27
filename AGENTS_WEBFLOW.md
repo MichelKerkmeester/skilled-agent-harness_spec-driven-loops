@@ -40,6 +40,8 @@
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                  |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                            |
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                      |
+| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                                     |
+| **JavaScript minify**    | `npx terser` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                                    |
 
 ---
 
@@ -231,7 +233,9 @@ File modification planned? → Include Q1 (Spec Folder)
 - Before **code discovery**: Use mcp-leann (semantic) + mcp-narsil (structural, via Code Mode) as complementary tools (MANDATORY)
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
-- Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required) 
+- Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
+- Before **CDN deployment**: See cdn_deployment.md for version management and upload workflow
+- Before **JavaScript minification**: See minification_guide.md for safe minification with verification
 - **If conflict exists**: Code quality standards override general practices
 
 **Violation handling:** If proposed solution contradicts code quality standards, STOP and ask for clarification or revise approach.
@@ -541,8 +545,8 @@ Documentation generation? → workflows-documentation skill
    - Sequential Thinking, LEANN, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - Webflow, Figma, Github, ClickUp, Chrome DevTools, etc.
-   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`)
+   - Webflow, Figma, Github, ClickUp, Chrome DevTools, Narsil, etc.
+   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`, `narsil.narsil_find_symbols({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
   
 ---
