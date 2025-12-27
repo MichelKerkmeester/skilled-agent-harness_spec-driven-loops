@@ -1337,7 +1337,7 @@ The memory system uses 6 importance tiers to prioritize what surfaces first:
 
 | Tier | Boost | Decay | Use Case |
 |------|-------|-------|----------|
-| **constitutional** | 3.0x | Never | Project rules, always-on context (~500 tokens max) |
+| **constitutional** | 3.0x | Never | Project rules, always-on context (~2000 tokens max) |
 | **critical** | 2.0x | Never | Architecture decisions, breaking changes |
 | **important** | 1.5x | Never | Key implementations, major features |
 | **normal** | 1.0x | 90-day | Standard development context (default) |

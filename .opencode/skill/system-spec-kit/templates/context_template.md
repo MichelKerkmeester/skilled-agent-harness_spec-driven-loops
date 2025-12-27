@@ -33,7 +33,7 @@
   - constitutional: Project-wide rules that ALWAYS surface at top of search results
     * Core constraints/rules that should NEVER be forgotten
     * Applies to ALL future conversations (not session-specific)
-    * Never expires, never decays, ~500 token budget total
+    * Never expires, never decays, ~2000 token budget total
     * Examples: Gate 3 spec folder rules, memory generation requirements
 
   - critical: Core architectural decisions, never expires
@@ -79,7 +79,7 @@
   2. Criteria for constitutional:
      - Applies to ALL future conversations (not project-specific)
      - Core constraints/rules that should NEVER be forgotten
-     - ~500 token budget total for constitutional tier
+     - ~2000 token budget total for constitutional tier
      
   3. Add trigger phrases for proactive surfacing:
      memory_update({ 
@@ -584,7 +584,7 @@ chunk_count: {{CHUNK_COUNT}}
   - Enhanced anchor naming with session IDs
 
   DECAY CALCULATION:
-  - constitutional: never expires, always surfaces first (~500 token budget)
+  - constitutional: never expires, always surfaces first (~2000 token budget)
   - critical: never expires (expires_at_epoch = 0)
   - important: 90 days base, extended by access
   - normal: 30 days base, extended by access

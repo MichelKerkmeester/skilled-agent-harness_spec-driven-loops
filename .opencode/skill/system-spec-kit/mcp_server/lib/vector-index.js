@@ -233,8 +233,8 @@ function getConstitutionalMemories(database, specFolder = null) {
   const params = specFolder ? [specFolder] : [];
   let results = database.prepare(constitutionalSql).all(...params);
   
-  // Limit constitutional results to ~500 tokens (~2000 chars, ~5 memories avg)
-  const MAX_CONSTITUTIONAL_TOKENS = 500;
+  // Limit constitutional results to ~2000 tokens (~8000 chars, ~20 memories avg)
+  const MAX_CONSTITUTIONAL_TOKENS = 2000;
   const TOKENS_PER_MEMORY = 100;
   const maxConstitutionalCount = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
   results = results.slice(0, maxConstitutionalCount);
@@ -1192,7 +1192,7 @@ function getStats() {
  * Search memories by vector similarity
  *
  * Constitutional tier memories are ALWAYS included at the top of results,
- * regardless of query, limited to ~500 tokens worth of content.
+ * regardless of query, limited to ~2000 tokens worth of content.
  *
  * @param {Float32Array|Buffer} queryEmbedding - Query vector (768-dim)
  * @param {Object} [options] - Search options
@@ -1332,12 +1332,12 @@ function vectorSearch(queryEmbedding, options = {}) {
  *
  * @param {Object} [options] - Options
  * @param {string} [options.specFolder] - Filter by spec folder
- * @param {number} [options.maxTokens=500] - Maximum tokens worth of results
+ * @param {number} [options.maxTokens=2000] - Maximum tokens worth of results
  * @returns {Object[]} Constitutional memories sorted by importance
  */
 function getConstitutionalMemoriesPublic(options = {}) {
   const database = initializeDb();
-  const { specFolder = null, maxTokens = 500 } = options;
+  const { specFolder = null, maxTokens = 2000 } = options;
 
   // Delegate to cached internal function
   let results = getConstitutionalMemories(database, specFolder);

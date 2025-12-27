@@ -41,7 +41,7 @@ const IMPORTANCE_TIERS = {
     decay: false,
     autoExpireDays: null,
     alwaysSurface: true,
-    maxTokens: 500,
+    maxTokens: 2000,
     description: 'Core rules and constraints - always surface at top of results'
   },
   critical: {
@@ -286,7 +286,7 @@ function shouldAlwaysSurface(tier) {
  * @param {string} tier - The importance tier name
  * @returns {number|null} Max tokens or null if unlimited
  * @example
- * getMaxTokens('constitutional'); // Returns: 500
+ * getMaxTokens('constitutional'); // Returns: 2000
  * getMaxTokens('critical');       // Returns: null
  */
 function getMaxTokens(tier) {

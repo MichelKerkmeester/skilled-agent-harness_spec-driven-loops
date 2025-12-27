@@ -59,7 +59,7 @@ The **constitutional** tier is the highest importance level, designed for operat
 | **Always surfaces**  | Included at top of every `memory_search` result by default |
 | **Fixed similarity** | Returns `similarity: 100` regardless of query relevance    |
 | **Response flag**    | `isConstitutional: true` in search results                 |
-| **Token budget**     | ~500 tokens max for constitutional memories per search     |
+| **Token budget**     | ~2000 tokens max for constitutional memories per search     |
 | **Control**          | Set `includeConstitutional: false` to disable              |
 
 **Use cases:**

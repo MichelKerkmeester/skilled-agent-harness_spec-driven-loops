@@ -85,7 +85,7 @@
   // Constitutional tier (v11.1) - always surfaced at session start
   "constitutionalTier": {
     "enabled": true,
-    "maxTokens": 500,
+    "maxTokens": 2000,
     "alwaysSurface": true
   },
 
