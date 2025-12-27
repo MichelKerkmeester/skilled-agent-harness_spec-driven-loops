@@ -39,22 +39,22 @@ Think of agents as **roles** with specific job descriptions, while skills are **
 
 ### Key Statistics
 
-| Metric | Value | Description |
-|--------|-------|-------------|
-| Available Agents | 2 | orchestrate, write |
-| Default Mode | primary | Full authority within scope |
-| Default Temperature | 0.1 | Deterministic, consistent output |
-| Location | `.opencode/agent/` | Agent definition files |
+| Metric              | Value              | Description                      |
+| ------------------- | ------------------ | -------------------------------- |
+| Available Agents    | 2                  | orchestrate, write               |
+| Default Mode        | primary            | Full authority within scope      |
+| Default Temperature | 0.1                | Deterministic, consistent output |
+| Location            | `.opencode/agent/` | Agent definition files           |
 
 ### Key Features
 
-| Feature | Description |
-|---------|-------------|
-| **Tool Permissions** | Fine-grained control over which tools each agent can use |
-| **Behavioral Rules** | Embedded workflows and constraints in each agent file |
-| **Parallel Delegation** | Orchestrator can spawn up to 20 sub-agents |
-| **Template Enforcement** | Write agent ensures 100% template alignment |
-| **Skill Integration** | Agents invoke skills for domain expertise |
+| Feature                  | Description                                              |
+| ------------------------ | -------------------------------------------------------- |
+| **Tool Permissions**     | Fine-grained control over which tools each agent can use |
+| **Behavioral Rules**     | Embedded workflows and constraints in each agent file    |
+| **Parallel Delegation**  | Orchestrator can spawn up to 20 sub-agents               |
+| **Template Enforcement** | Write agent ensures 100% template alignment              |
+| **Skill Integration**    | Agents invoke skills for domain expertise                |
 
 ### How Agents Work
 
@@ -63,14 +63,14 @@ User Request
     │
     ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                     AGENT SELECTION                          │
+│                     AGENT SELECTION                         │
 ├─────────────────────────────────────────────────────────────┤
-│  Complex multi-step task?                                    │
+│  Complex multi-step task?                                   │
 │  ├─► YES → @orchestrate (decompose, delegate, synthesize)   │
-│  │                                                           │
-│  Documentation task?                                         │
-│  ├─► YES → @write (template-first, DQI scoring)             │
-│  │                                                           │
+│  │                                                          │
+│  Documentation task?                                        │
+│  ├─► YES → @write (template-first, DQI scoring)              │
+│  │                                                          │
 │  └─► DEFAULT → Main assistant with AGENTS.md rules          │
 └─────────────────────────────────────────────────────────────┘
     │
@@ -134,20 +134,20 @@ ls .opencode/agent/
 
 ### File Naming Conventions
 
-| Pattern | Example | Use Case |
-|---------|---------|----------|
-| `{role}.md` | `write.md` | Single-word role name |
-| `{action}-{domain}.md` | `review-code.md` | Action-focused agent |
-| `{domain}-specialist.md` | `security-specialist.md` | Domain expert agent |
+| Pattern                  | Example                  | Use Case              |
+| ------------------------ | ------------------------ | --------------------- |
+| `{role}.md`              | `write.md`               | Single-word role name |
+| `{action}-{domain}.md`   | `review-code.md`         | Action-focused agent  |
+| `{domain}-specialist.md` | `security-specialist.md` | Domain expert agent   |
 
 ### Required vs Optional Files
 
-| File | Required | Purpose |
-|------|----------|---------|
-| `README.md` | Recommended | This documentation |
+| File             | Required    | Purpose                  |
+| ---------------- | ----------- | ------------------------ |
+| `README.md`      | Recommended | This documentation       |
 | `orchestrate.md` | Recommended | Multi-agent coordination |
-| `write.md` | Recommended | Documentation tasks |
-| Custom agents | Optional | Domain-specific agents |
+| `write.md`       | Recommended | Documentation tasks      |
+| Custom agents    | Optional    | Domain-specific agents   |
 
 ---
 
@@ -155,10 +155,10 @@ ls .opencode/agent/
 
 ### Agent Summary
 
-| Agent | Purpose | Tools | Key Capability |
-|-------|---------|-------|----------------|
-| **orchestrate** | Task decomposition & delegation | `task` only | Parallel delegation (up to 20 agents) |
-| **write** | Documentation creation | read, write, edit, bash, grep, glob, webfetch, leann, memory | Template-first, DQI scoring |
+| Agent           | Purpose                         | Tools                                                        | Key Capability                        |
+| --------------- | ------------------------------- | ------------------------------------------------------------ | ------------------------------------- |
+| **orchestrate** | Task decomposition & delegation | `task` only                                                  | Parallel delegation (up to 20 agents) |
+| **write**       | Documentation creation          | read, write, edit, bash, grep, glob, webfetch, leann, memory | Template-first, DQI scoring           |
 
 ---
 
@@ -166,12 +166,12 @@ ls .opencode/agent/
 
 **The Senior Task Commander**
 
-| Attribute | Value |
-|-----------|-------|
-| Name | `orchestrate` |
-| Mode | primary |
-| Temperature | 0.1 |
-| Tools | `task` only (cannot read/write directly) |
+| Attribute   | Value                                    |
+| ----------- | ---------------------------------------- |
+| Name        | `orchestrate`                            |
+| Mode        | primary                                  |
+| Temperature | 0.1                                      |
+| Tools       | `task` only (cannot read/write directly) |
 
 **Authority:**
 - Task decomposition into discrete, delegatable units
@@ -193,12 +193,12 @@ ls .opencode/agent/
 
 **The Documentation Writer**
 
-| Attribute | Value |
-|-----------|-------|
-| Name | `documentation-writer` |
-| Mode | primary |
-| Temperature | 0.1 |
-| Tools | read, write, edit, bash, grep, glob, webfetch, leann, memory |
+| Attribute   | Value                                                        |
+| ----------- | ------------------------------------------------------------ |
+| Name        | `documentation-writer`                                       |
+| Mode        | primary                                                      |
+| Temperature | 0.1                                                          |
+| Tools       | read, write, edit, bash, grep, glob, webfetch, leann, memory |
 
 **Authority:**
 - Document creation (READMEs, skills, guides, references)
@@ -251,30 +251,30 @@ permission:                         # Required: Action permissions
 
 ### Frontmatter Field Reference
 
-| Field | Required | Type | Description |
-|-------|----------|------|-------------|
-| `name` | Yes | string | Agent identifier (used in `@name` invocation) |
-| `description` | Yes | string | One-line purpose description |
-| `mode` | Yes | string | `primary` (full authority) or `secondary` (limited) |
-| `temperature` | Yes | float | 0.0-1.0, lower = more deterministic |
-| `tools` | Yes | object | Tool permissions (true/false for each) |
-| `permission` | Yes | object | Action permissions (allow/deny) |
+| Field         | Required | Type   | Description                                         |
+| ------------- | -------- | ------ | --------------------------------------------------- |
+| `name`        | Yes      | string | Agent identifier (used in `@name` invocation)       |
+| `description` | Yes      | string | One-line purpose description                        |
+| `mode`        | Yes      | string | `primary` (full authority) or `secondary` (limited) |
+| `temperature` | Yes      | float  | 0.0-1.0, lower = more deterministic                 |
+| `tools`       | Yes      | object | Tool permissions (true/false for each)              |
+| `permission`  | Yes      | object | Action permissions (allow/deny)                     |
 
 ### Tool Permissions
 
-| Tool | Purpose | Typical Setting |
-|------|---------|-----------------|
-| `read` | Read files | true |
-| `write` | Create files | true |
-| `edit` | Modify files | true |
-| `bash` | Execute commands | true (with caution) |
-| `grep` | Search content | true |
-| `glob` | Find files | true |
-| `webfetch` | Fetch URLs | false (unless needed) |
-| `leann` | Semantic code search | true |
-| `memory` | Spec Kit Memory | true |
-| `narsil` | Code analysis | false (unless needed) |
-| `chrome_devtools` | Browser debugging | false (unless needed) |
+| Tool              | Purpose              | Typical Setting       |
+| ----------------- | -------------------- | --------------------- |
+| `read`            | Read files           | true                  |
+| `write`           | Create files         | true                  |
+| `edit`            | Modify files         | true                  |
+| `bash`            | Execute commands     | true (with caution)   |
+| `grep`            | Search content       | true                  |
+| `glob`            | Find files           | true                  |
+| `webfetch`        | Fetch URLs           | false (unless needed) |
+| `leann`           | Semantic code search | true                  |
+| `memory`          | Spec Kit Memory      | true                  |
+| `narsil`          | Code analysis        | false (unless needed) |
+| `chrome_devtools` | Browser debugging    | false (unless needed) |
 
 ### Required Sections
 
@@ -399,125 +399,36 @@ Content...
 # Or let OpenCode route automatically based on task type
 ```
 
-### Agent Template
-
-```markdown
----
-name: agent-name
-description: One-line description
-mode: primary
-temperature: 0.1
-tools:
-  read: true
-  write: true
-  edit: true
-  bash: true
-  grep: true
-  glob: true
-  webfetch: false
-  leann: true
-  memory: true
-  narsil: false
-  chrome_devtools: false
-permission:
-  edit: allow
-  bash: allow
----
-
-# Agent Title: Descriptive Subtitle
-
-Brief description of this agent's purpose, authority, and key capabilities.
-
----
-
-## 1. 🔄 CORE WORKFLOW
-
-1. **RECEIVE** → Parse request
-2. **ANALYZE** → Understand requirements
-3. **EXECUTE** → Perform task
-4. **VALIDATE** → Verify output
-5. **DELIVER** → Return result
-
----
-
-## 2. 📋 CAPABILITIES
-
-### What This Agent Does
-
-- Capability 1
-- Capability 2
-- Capability 3
-
-### What This Agent Does NOT Do
-
-- Exclusion 1
-- Exclusion 2
-
----
-
-## 3. 🔧 WORKFLOW DETAILS
-
-### Workflow 1
-
-Steps...
-
-### Workflow 2
-
-Steps...
-
----
-
-## 4. 🚫 ANTI-PATTERNS
-
-❌ **Never do X**
-- Explanation
-
-❌ **Never do Y**
-- Explanation
-
----
-
-## 5. 🔗 RELATED RESOURCES
-
-### Skills
-
-- [skill-name](../skill/skill-name/SKILL.md) - Description
-
-### Templates
-
-- [template-name](../skill/workflows-documentation/assets/template.md) - Description
-```
-
 ---
 
 ## 7. 🎯 AGENT VS SKILL
 
 ### Key Differences
 
-| Aspect | Agent | Skill |
-|--------|-------|-------|
-| **Purpose** | Persona with authority to act | Knowledge/workflow bundle |
-| **Location** | `.opencode/agent/` | `.opencode/skill/` |
-| **Invocation** | `@agent-name` or automatic | `skill("name")` or automatic |
-| **Has Tools** | Yes (tool permissions) | No (uses agent's tools) |
-| **Has Rules** | Yes (behavioral) | Yes (domain-specific) |
-| **Scope** | Broad authority | Narrow expertise |
-| **Can Delegate** | Yes (orchestrate) | No |
-| **Frontmatter** | name, tools, permission | name, allowed-tools |
+| Aspect           | Agent                         | Skill                        |
+| ---------------- | ----------------------------- | ---------------------------- |
+| **Purpose**      | Persona with authority to act | Knowledge/workflow bundle    |
+| **Location**     | `.opencode/agent/`            | `.opencode/skill/`           |
+| **Invocation**   | `@agent-name` or automatic    | `skill("name")` or automatic |
+| **Has Tools**    | Yes (tool permissions)        | No (uses agent's tools)      |
+| **Has Rules**    | Yes (behavioral)              | Yes (domain-specific)        |
+| **Scope**        | Broad authority               | Narrow expertise             |
+| **Can Delegate** | Yes (orchestrate)             | No                           |
+| **Frontmatter**  | name, tools, permission       | name, allowed-tools          |
 
 ### When to Use Each
 
-| Scenario | Use Agent | Use Skill |
-|----------|-----------|-----------|
-| Need specific tool permissions | ✅ | ❌ |
-| Need to delegate to sub-agents | ✅ | ❌ |
-| Need domain knowledge/workflows | ❌ | ✅ |
-| Need templates and standards | ❌ | ✅ |
-| Need behavioral constraints | ✅ | ✅ |
-| Creating documentation | ✅ `@write` | ✅ `workflows-documentation` |
-| Complex multi-step task | ✅ `@orchestrate` | ❌ |
-| Code quality standards | ❌ | ✅ `workflows-code` |
-| Git workflows | ❌ | ✅ `workflows-git` |
+| Scenario                        | Use Agent        | Use Skill                   |
+| ------------------------------- | ---------------- | --------------------------- |
+| Need specific tool permissions  | ✅                | ❌                           |
+| Need to delegate to sub-agents  | ✅                | ❌                           |
+| Need domain knowledge/workflows | ❌                | ✅                           |
+| Need templates and standards    | ❌                | ✅                           |
+| Need behavioral constraints     | ✅                | ✅                           |
+| Creating documentation          | ✅ `@write`       | ✅ `workflows-documentation` |
+| Complex multi-step task         | ✅ `@orchestrate` | ❌                           |
+| Code quality standards          | ❌                | ✅ `workflows-code`          |
+| Git workflows                   | ❌                | ✅ `workflows-git`           |
 
 ### How They Work Together
 
@@ -604,12 +515,12 @@ User: "Create a new skill for API testing"
 
 **Causes & Solutions:**
 
-| Cause | Solution |
-|-------|----------|
-| File not in correct location | Move to `.opencode/agent/` |
-| Invalid frontmatter | Check YAML syntax |
-| Missing `name` field | Add `name: agent-name` to frontmatter |
-| OpenCode not restarted | Restart OpenCode |
+| Cause                        | Solution                              |
+| ---------------------------- | ------------------------------------- |
+| File not in correct location | Move to `.opencode/agent/`            |
+| Invalid frontmatter          | Check YAML syntax                     |
+| Missing `name` field         | Add `name: agent-name` to frontmatter |
+| OpenCode not restarted       | Restart OpenCode                      |
 
 #### Agent Can't Use Tool
 
@@ -617,11 +528,11 @@ User: "Create a new skill for API testing"
 
 **Causes & Solutions:**
 
-| Cause | Solution |
-|-------|----------|
+| Cause               | Solution                                  |
+| ------------------- | ----------------------------------------- |
 | Tool set to `false` | Set `tools.toolname: true` in frontmatter |
-| Permission denied | Set `permission.action: allow` |
-| Tool not available | Check tool exists in OpenCode |
+| Permission denied   | Set `permission.action: allow`            |
+| Tool not available  | Check tool exists in OpenCode             |
 
 #### Agent Not Following Rules
 
@@ -629,11 +540,11 @@ User: "Create a new skill for API testing"
 
 **Causes & Solutions:**
 
-| Cause | Solution |
-|-------|----------|
+| Cause                  | Solution                              |
+| ---------------------- | ------------------------------------- |
 | Rules not clear enough | Make rules explicit with ALWAYS/NEVER |
-| Conflicting rules | Resolve conflicts, prioritize |
-| Temperature too high | Lower temperature to 0.1 |
+| Conflicting rules      | Resolve conflicts, prioritize         |
+| Temperature too high   | Lower temperature to 0.1              |
 
 ### Diagnostic Commands
 
@@ -650,12 +561,12 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 ### Quick Fixes
 
-| Problem | Quick Fix |
-|---------|-----------|
-| Agent not found | Check file location and name field |
+| Problem                | Quick Fix                           |
+| ---------------------- | ----------------------------------- |
+| Agent not found        | Check file location and name field  |
 | Tool permission denied | Update tools section in frontmatter |
-| Inconsistent behavior | Lower temperature to 0.1 |
-| Not invoking skills | Add skill invocation to workflow |
+| Inconsistent behavior  | Lower temperature to 0.1            |
+| Not invoking skills    | Add skill invocation to workflow    |
 
 ---
 
@@ -663,35 +574,35 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 ### Internal Documentation
 
-| Document | Location | Purpose |
-|----------|----------|---------|
+| Document  | Location          | Purpose                        |
+| --------- | ----------------- | ------------------------------ |
 | AGENTS.md | `../../AGENTS.md` | Main AI behavior configuration |
-| Skills | `../skill/` | Domain expertise bundles |
-| Commands | `../command/` | Slash command definitions |
+| Skills    | `../skill/`       | Domain expertise bundles       |
+| Commands  | `../command/`     | Slash command definitions      |
 
 ### Agent Files
 
-| Agent | Location | Purpose |
-|-------|----------|---------|
+| Agent       | Location           | Purpose                         |
+| ----------- | ------------------ | ------------------------------- |
 | orchestrate | `./orchestrate.md` | Task decomposition & delegation |
-| write | `./write.md` | Documentation creation |
+| write       | `./write.md`       | Documentation creation          |
 
 ### Related Skills
 
-| Skill | Location | Purpose |
-|-------|----------|---------|
+| Skill                   | Location                            | Purpose                 |
+| ----------------------- | ----------------------------------- | ----------------------- |
 | workflows-documentation | `../skill/workflows-documentation/` | Documentation standards |
-| workflows-code | `../skill/workflows-code/` | Code quality standards |
-| system-spec-kit | `../skill/system-spec-kit/` | Spec folder management |
-| workflows-git | `../skill/workflows-git/` | Git workflows |
+| workflows-code          | `../skill/workflows-code/`          | Code quality standards  |
+| system-spec-kit         | `../skill/system-spec-kit/`         | Spec folder management  |
+| workflows-git           | `../skill/workflows-git/`           | Git workflows           |
 
 ### Templates
 
-| Template | Location | Purpose |
-|----------|----------|---------|
-| skill_md_template | `../skill/workflows-documentation/assets/` | SKILL.md structure |
+| Template                 | Location                                   | Purpose                  |
+| ------------------------ | ------------------------------------------ | ------------------------ |
+| skill_md_template        | `../skill/workflows-documentation/assets/` | SKILL.md structure       |
 | skill_reference_template | `../skill/workflows-documentation/assets/` | Reference file structure |
-| skill_asset_template | `../skill/workflows-documentation/assets/` | Asset file structure |
+| skill_asset_template     | `../skill/workflows-documentation/assets/` | Asset file structure     |
 
 ---
 
