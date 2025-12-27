@@ -41,7 +41,7 @@
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                            |
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                      |
 | **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                                     |
-| **JavaScript minify**    | `npx terser` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                                    |
+| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                            |
 
 ---
 

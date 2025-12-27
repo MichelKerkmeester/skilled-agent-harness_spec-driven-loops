@@ -25,10 +25,37 @@
 
 ## 0. 🤖 AI INSTALL GUIDE
 
+### ⛔ HARD BLOCK: Write Agent Required
+
+> **⚠️ CRITICAL:** Skill creation REQUIRES the `@write` agent to be active.
+
+**Why @write is mandatory:**
+- Loads `skill_md_template.md` BEFORE creating (template-first workflow)
+- Validates template alignment AFTER creating
+- Runs DQI scoring (target: 90+ Excellent)
+- Invokes `workflows-documentation` skill for standards
+- Ensures proper use of `init_skill.py` and `package_skill.py`
+
+**Verification (MUST pass before proceeding):**
+- [ ] Write agent exists: `ls .opencode/agent/write.md`
+- [ ] Use `@write` prefix when invoking the prompt below
+
+**❌ DO NOT** create skills without the @write agent — manual creation bypasses quality gates and template alignment.
+
+**Reference:** `.opencode/agent/write.md` → Section 4 (Mode 2: Skill Creation)
+
+---
+
 **Copy and paste this prompt for interactive skill creation:**
 
 ```text
-I want to create a new skill for OpenCode. Please guide me through the process interactively by asking me questions one at a time.
+@write I want to create a new skill for OpenCode. Please guide me through the process interactively by asking me questions one at a time.
+
+**PREREQUISITE CHECK (you MUST verify before proceeding):**
+- [ ] You are operating as the @write agent (Mode 2: Skill Creation)
+- [ ] workflows-documentation skill is accessible
+
+⚠️ If you are NOT the @write agent: STOP immediately and instruct the user to restart with the "@write" prefix. Do NOT proceed with skill creation.
 
 **Questions to ask me (one at a time, wait for my answer):**
 
@@ -117,6 +144,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 | Python                        | 3.10+     | `python3 --version`                           |
 | workflows-documentation skill | Latest    | `ls .opencode/skill/workflows-documentation/` |
 | OpenCode                      | v1.0.190+ | Native skill discovery built-in               |
+| **@write agent**              | -         | `ls .opencode/agent/write.md`                 |
 
 ### Required Files
 
@@ -131,13 +159,15 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 ```bash
 python3 --version && \
 ls .opencode/skill/workflows-documentation/scripts/init_skill.py && \
-echo "Prerequisites OK"
+ls .opencode/agent/write.md && \
+echo "Prerequisites OK (including @write agent)"
 ```
 
 **Checklist:**
 - [ ] Python 3.10+ installed?
 - [ ] workflows-documentation skill exists?
 - [ ] init_skill.py and package_skill.py accessible?
+- [ ] **@write agent exists (.opencode/agent/write.md)?**
 
 ❌ **STOP if validation fails** - Install prerequisites before creating skills.
 
@@ -148,6 +178,8 @@ echo "Prerequisites OK"
 ### Workflow Overview
 
 ```text
+[PREREQUISITE: Invoke with @write agent - see HARD BLOCK in Section 0]
+            ↓
 Step 1: UNDERSTANDING (~5 min)
     └─► Define purpose, use cases, trigger conditions
             ↓
@@ -915,10 +947,11 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py \
 
 ### Related Guides
 
-| Guide                                          | Purpose                    |
-| ---------------------------------------------- | -------------------------- |
-| [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Add skills to agent config |
-| [Master Installation Guide](./README.md)       | OpenCode setup overview    |
+| Guide                                          | Purpose                           |
+| ---------------------------------------------- | --------------------------------- |
+| [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Add skills to agent config        |
+| [Master Installation Guide](./README.md)       | OpenCode setup overview           |
+| [@write Agent](../../agent/write.md)           | Write agent (Mode 2: Skill Creation) |
 
 ### External Resources
 
