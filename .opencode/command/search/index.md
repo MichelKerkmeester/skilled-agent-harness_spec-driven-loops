@@ -73,16 +73,16 @@ $ARGUMENTS
 
 ## 3. 🔧 TOOL SIGNATURES
 
-### Shell Alias (Recommended)
-
-LEANN CLI doesn't support config files for embedding defaults. Use a shell alias:
+### Shell Alias (Required)
 
 ```bash
-# Add to ~/.zshrc or ~/.bashrc
+# Add to ~/.zshrc
 alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'
 ```
 
-**Usage:** `leann-build <name> --docs <scope>`
+**Usage:** `leann-build <name> --docs src/`
+
+> **IMPORTANT**: LEANN is for **CODE search only**. Always index `src/` folder. For document/spec search, use **Spec Kit Memory MCP**.
 
 ### Tool Reference
 
@@ -95,8 +95,7 @@ leann_remove({ index_name: "<name>" })
 Bash("leann build <name> --docs <path> --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
 Bash("leann build <name> --docs <path> --exclude <patterns> --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
 
-// Recommended build (Apple Silicon with Qwen3 - 50% better quality than Contriever)
-// Qwen3-Embedding: Specifically trained on code (MTEB-Code 75.41), 4-bit quantized for memory efficiency
+// Recommended build (Apple Silicon with Qwen3)
 Bash("leann build <name> --docs src/ --file-types '.js,.css,.html' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
 
 // Progressive scope build (large projects)
@@ -274,8 +273,8 @@ SCOPE SUGGESTION WORKFLOW:
 │  [c] Full project       <N> files     ⚠️ Large - may be slow       │
 │  [d] Custom scope       Enter path    --docs <your-path>          │
 ├───────────────────────────────────────────────────────────────────┤
-│  MLX Mode: <✅ Enabled | ❌ Not available (Intel)>                │
-│  Model: Qwen3-Embedding-0.6B-4bit-DWQ (50% better than Contriever)│
+│  MLX Mode: <✅ Enabled | ❌ Not available (Intel)>                 │
+│  Model: Qwen3-Embedding-0.6B-4bit-DWQ                             │
 │  Tip: Qwen3 is specifically trained on code (MTEB-Code 75.41)      │
 └───────────────────────────────────────────────────────────────────┘
 ```
@@ -286,22 +285,21 @@ SCOPE SUGGESTION WORKFLOW:
 1. Parse: <name> (required), --docs (default "."), --exclude (optional)
 2. Run Smart Scope Suggestion (above) if no --docs specified
 3. Validate: path exists, index doesn't exist (suggest update if it does)
-4. Build command template:
-   - Apple Silicon: Bash("leann build <name> --docs <scope> --file-types '<types>' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
-   - Intel/Other:   Bash("leann build <name> --docs <scope> --file-types '<types>' --embedding-mode sentence-transformers --embedding-model 'facebook/contriever'")
+4. Build command:
+   Bash("leann build <name> --docs <scope> --file-types '<types>' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
 5. Display: "Indexed N documents in Xs"
 ```
 
 **Recommended Build Commands:**
 ```bash
-# With alias (recommended) - see Section 3 for setup
-leann-build <name> --docs src/ --file-types ".js,.ts,.css,.html,.md"
+# With alias (recommended)
+leann-build <name> --docs src/
+
+# With file type filter
+leann-build <name> --docs src/ --file-types ".js,.ts,.css,.html"
 
 # Full command (if alias not set)
-leann build <name> --docs src/ --file-types ".js,.ts,.css,.html,.md" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
-
-# Intel/Linux - Progressive scope (fallback with Contriever)
-leann build <name> --docs src/ --file-types ".js,.ts,.css,.html,.md" --embedding-mode sentence-transformers --embedding-model "facebook/contriever"
+leann build <name> --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 ```
 
 ### 5.4 REMOVE INDEX
@@ -367,11 +365,8 @@ Bash("find ... -newer ... | wc -l")
 # Force rebuild
 /search:index update --force
 
-# Build new index (with alias - recommended)
+# Build new index (src/ only)
 leann-build anobel --docs src/
-
-# Build new index (full command)
-leann build anobel --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
 # Remove old index
 /search:index remove oldproject

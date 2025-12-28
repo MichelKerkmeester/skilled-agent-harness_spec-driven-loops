@@ -93,7 +93,7 @@ if [[ $(uname -m) == "arm64" ]]; then
     fi
 else
     echo "  Platform: $(uname -m)"
-    echo "  Recommended: sentence-transformers with Contriever"
+    echo "  Note: MLX + Qwen3 requires Apple Silicon. Other platforms not officially supported."
 fi
 
 echo ""
@@ -131,7 +131,10 @@ echo "  # Full command (equivalent)"
 echo "  leann build <name> --docs src/ --embedding-mode mlx --embedding-model \"mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ\""
 echo ""
 echo "Why Qwen3-Embedding?"
-echo "  - 50% better quality than Contriever (MTEB 70.7 vs ~40)"
+echo "  - High quality (MTEB 70.7)"
 echo "  - Trained on code (MTEB-Code 75.41)"
-echo "  - 32K context vs 512 tokens"
+echo "  - 32K context length"
 echo "  - Native MLX support with 4-bit quantization"
+echo ""
+echo "IMPORTANT: LEANN is for CODE search only (src/ folder)."
+echo "For document/spec search, use Spec Kit Memory MCP."

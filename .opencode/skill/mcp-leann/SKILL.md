@@ -1,15 +1,17 @@
 ---
 name: mcp-leann
-description: "Lightweight vector database providing semantic code search with 97% storage savings. Uses graph-based selective recomputation for efficient RAG on codebases, documents, and any text content. Provides build, search, and ask commands via MCP integration."
+description: "Lightweight vector database providing semantic CODE search with 97% storage savings. Uses MLX + Qwen3 embeddings on Apple Silicon. Index src/ folder only - use Spec Kit Memory for documents."
 allowed-tools: [leann_leann_build, leann_leann_search, leann_leann_ask, leann_leann_list, leann_leann_remove]
-version: 1.1.0
+version: 1.2.0
 ---
 
-<!-- Keywords: leann, semantic-search, vector-database, rag, embeddings, code-search, document-search, hnsw, diskann, selective-recomputation, native-mcp -->
+<!-- Keywords: leann, semantic-search, vector-database, rag, embeddings, code-search, mlx, qwen3, apple-silicon, native-mcp -->
 
-# MCP LEANN - Lightweight Semantic Search
+# MCP LEANN - Semantic Code Search
 
-Lightweight vector database for semantic code and document search. Unlike traditional vector databases that store all embeddings, LEANN uses graph-based selective recomputation to achieve **97% storage savings** while maintaining search quality. LEANN is a **NATIVE MCP tool** - call it directly, not through Code Mode.
+Lightweight vector database for **semantic CODE search** on Apple Silicon. Uses MLX + Qwen3 embeddings for local, memory-efficient indexing. LEANN is a **NATIVE MCP tool** - call it directly, not through Code Mode.
+
+> **IMPORTANT**: LEANN is for **CODE search only** (index `src/` folder). For document/spec search, use **Spec Kit Memory MCP** instead.
 
 ---
 
@@ -17,38 +19,40 @@ Lightweight vector database for semantic code and document search. Unlike tradit
 
 ### Use LEANN When
 
-**MANDATORY for semantic code/document search**:
-- ✅ Searching code by intent or behavior ("Find code that handles user login")
-- ✅ Querying documents by meaning ("What does the config say about timeouts?")
-- ✅ Building searchable indexes for codebases or documents
-- ✅ Need efficient RAG without massive storage overhead
-- ✅ Semantic search on any text content (markdown, code, logs)
+**For semantic CODE search only**:
+- ✅ Searching code by intent ("Find code that handles user login")
+- ✅ Understanding how code works ("How does authentication flow?")
+- ✅ Building searchable index for `src/` folder
+- ✅ RAG Q&A about your codebase
 
-**Benefits over grep/find**:
+**Benefits**:
 - 🚀 **97% storage savings** - Selective recomputation vs storing all embeddings
 - ⚡ **Intent-based search** - Find by what code does, not what it's called
-- 🔗 **Local-first** - No external API keys required (uses Ollama)
-- 🛡️ **AST-aware chunking** - Smart code parsing for better results
-- 🎯 **RAG Q&A built-in** - Answer questions using retrieved context
+- 🔗 **Local-first** - MLX + Qwen3 runs entirely on your Mac
+- 🛡️ **Memory-efficient** - 4-bit quantized model won't crash your Mac
 
 ### Do NOT Use LEANN For
 
-**Use native tools instead**:
-- ❌ Known file paths (use Read tool - faster, no overhead)
-- ❌ Exact symbol/pattern search (use Grep tool - more precise)
-- ❌ Conversation memory (use `spec_kit_memory` MCP - different purpose)
-- ❌ File structure listing (use Glob tool - pattern matching)
-- ❌ Structural code queries (use `mcp-narsil` for symbol navigation via Code Mode)
+| Don't Index         | Use Instead                |
+| ------------------- | -------------------------- |
+| `specs/` folder     | Spec Kit Memory MCP        |
+| `.opencode/` folder | Spec Kit Memory MCP        |
+| `docs/` folder      | Grep or Spec Kit Memory    |
+| `node_modules/`     | Never index                |
+| Known file paths    | Read tool                  |
+| Exact patterns      | Grep tool                  |
+| Symbol navigation   | mcp-narsil (via Code Mode) |
+
+> **Why src/ only?** Smaller index = faster search, less memory, better relevance. Use Spec Kit Memory for conversation context and documentation.
 
 ### Common Use Cases
 
-| Scenario                     | LEANN Approach                                                       | Benefit                       |
-| ---------------------------- | -------------------------------------------------------------------- | ----------------------------- |
-| **Find authentication code** | `leann_leann_search({ query: "user login handling" })`               | Intent-based, not keyword     |
-| **Understand a codebase**    | `leann_leann_ask({ question: "How does payment processing work?" })` | RAG-powered explanation       |
-| **Index new project**        | `leann_leann_build({ index_name: "my-project", docs: "./src" })`     | Fast semantic search ready    |
-| **Search documentation**     | `leann_leann_search({ query: "deployment requirements" })`           | Find by meaning, not filename |
-| **Code exploration**         | `leann_leann_ask({ question: "What are the main API endpoints?" })`  | Structured codebase discovery |
+| Scenario                     | LEANN Approach                                                       | Benefit                   |
+| ---------------------------- | -------------------------------------------------------------------- | ------------------------- |
+| **Find authentication code** | `leann_leann_search({ query: "user login handling" })`               | Intent-based, not keyword |
+| **Understand a codebase**    | `leann_leann_ask({ question: "How does payment processing work?" })` | RAG-powered explanation   |
+| **Index project code**       | `leann_leann_build({ index_name: "my-project", docs: "./src" })`     | Fast semantic search      |
+| **Code exploration**         | `leann_leann_ask({ question: "What are the main API endpoints?" })`  | Codebase discovery        |
 
 ---
 
@@ -188,11 +192,8 @@ On Query:      Recompute E2, E4, E5 only when needed
 ### Quick Examples
 
 ```javascript
-// Build index for source directory (Apple Silicon - recommended)
-leann_leann_build({ index_name: "my-project", docs: "./src", file_types: ".js,.ts,.css,.html,.md", embedding_mode: "mlx", embedding_model: "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" })
-
-// Build index with AST chunking for code projects
-leann_leann_build({ index_name: "my-code", docs: "./src", file_types: ".js,.ts", embedding_mode: "mlx", embedding_model: "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ", use_ast_chunking: true })
+// Build index for src/ folder (ALWAYS use src/ only)
+leann_leann_build({ index_name: "my-project", docs: "./src", embedding_mode: "mlx", embedding_model: "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" })
 
 // Search for code by intent
 leann_leann_search({ index_name: "my-project", query: "error handling logic" })
@@ -269,33 +270,27 @@ leann_leann_remove({ index_name: "test-index" })
 
 ### Environment Variables
 
-| Variable                | Default                                    | Description                                            |
-| ----------------------- | ------------------------------------------ | ------------------------------------------------------ |
-| `LEANN_INDEX_DIR`       | `~/.leann/indexes`                         | Index storage location                                 |
-| `LEANN_EMBEDDING_MODEL` | `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` | Embedding model (Qwen3 for Apple Silicon)           |
-| `LEANN_EMBEDDING_MODE`  | `mlx`                                      | Embedding provider (mlx recommended for Apple Silicon) |
-| `OLLAMA_HOST`           | `http://localhost:11434`                   | Ollama server URL                                      |
-| `OPENAI_API_KEY`        | -                                          | Only required if using OpenAI embeddings               |
+| Variable                | Default                                       | Description                               |
+| ----------------------- | --------------------------------------------- | ----------------------------------------- |
+| `LEANN_INDEX_DIR`       | `~/.leann/indexes`                            | Index storage location                    |
+| `LEANN_EMBEDDING_MODEL` | `mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ` | Embedding model (Qwen3 for Apple Silicon) |
+| `LEANN_EMBEDDING_MODE`  | `mlx`                                         | Embedding provider (mlx only)             |
+| `OLLAMA_HOST`           | `http://localhost:11434`                      | Ollama server URL (for ask command LLM)   |
 
-### Embedding Mode Comparison
+### Embedding Configuration
 
-| Mode                          | Model                            | Memory | Speed  | Quality   | Best For                            |
-| ----------------------------- | -------------------------------- | ------ | ------ | --------- | ----------------------------------- |
-| **mlx** (recommended)         | Qwen3-Embedding-0.6B-4bit-DWQ    | Low    | Fast   | MTEB 70.7 | Apple Silicon                       |
-| sentence-transformers         | facebook/contriever              | High   | Medium | MTEB ~40  | Linux/Windows                       |
-| openai                        | text-embedding-3-small           | Minimal| Fast   | High      | Memory-constrained systems          |
-| ollama                        | nomic-embed-text                 | Medium | Medium | Medium    | Local with flexibility              |
+**MLX + Qwen3 is the ONLY supported embedding mode.**
 
-> **Why Qwen3-Embedding?** 50% better quality than Contriever (MTEB 70.7 vs ~40), trained on code (MTEB-Code 75.41), 32K context vs 512 tokens, native MLX support with 4-bit quantization, and actively maintained (Jun 2025).
+| Provider        | Mode  | Model                         | Memory | Quality   |
+| --------------- | ----- | ----------------------------- | ------ | --------- |
+| **MLX + Qwen3** | `mlx` | Qwen3-Embedding-0.6B-4bit-DWQ | Low    | MTEB 70.7 |
 
-> **Apple Silicon Users**: Use `--embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` for best quality and memory efficiency.
+> **Why Qwen3-Embedding?** 50% better quality than alternatives (MTEB 70.7), trained on code (MTEB-Code 75.41), 32K context, native MLX support with 4-bit quantization, and won't crash your Mac.
 
-### Shell Alias Setup (Recommended)
-
-LEANN CLI doesn't support config files for embedding defaults. Use a shell alias for Qwen3:
+### Shell Alias Setup (Required)
 
 ```bash
-# Add to ~/.zshrc or ~/.bashrc
+# Add to ~/.zshrc
 alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'
 
 # Reload shell
@@ -304,29 +299,17 @@ source ~/.zshrc
 
 **Usage:**
 ```bash
-# With alias (recommended)
+# Index your project's src/ folder (ALWAYS src/ only)
 leann-build myproject --docs src/
-leann-build myproject --docs src/ --file-types ".js,.css,.html"
-
-# Full command (equivalent)
-leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 ```
 
 ### Prerequisites
 
-| Component        | Purpose             | Install Command                |
-| ---------------- | ------------------- | ------------------------------ |
-| LEANN CLI        | Core functionality  | See install guide              |
-| leann_mcp        | MCP server binary   | Built with LEANN               |
-| Ollama           | Local embeddings    | `brew install ollama`          |
-| nomic-embed-text | Embeddings model    | `ollama pull nomic-embed-text` |
-| qwen3:8b         | LLM for ask command | `ollama pull qwen3:8b`         |
-
-> **Recommended Setup (Apple Silicon)**: Use `--embedding-mode mlx` for memory-efficient indexing. MLX uses Apple's unified memory architecture and is significantly more efficient than sentence-transformers.
-
-> **Alternative (Linux/Windows)**: Use `nomic-embed-text` via Ollama for embeddings. This provides high-quality embeddings locally without external API dependencies.
-
-> **Escape Hatch**: For memory-constrained systems, set `LEANN_EMBEDDING_MODE=openai` and provide `OPENAI_API_KEY` to offload embedding computation to the cloud.
+| Component | Purpose             | Install Command                                                    |
+| --------- | ------------------- | ------------------------------------------------------------------ |
+| LEANN CLI | Core functionality  | `uv tool install leann-core --with leann --with mlx --with mlx-lm` |
+| leann_mcp | MCP server binary   | Built with LEANN                                                   |
+| qwen3:8b  | LLM for ask command | `ollama pull qwen3:8b`                                             |
 
 ---
 
@@ -339,7 +322,7 @@ leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-co
 - **Choose the correct command** - build/search/ask/list/remove for each task type
 - **Verify index exists** - Use `leann list` before searching
 - **Combine with Read tool** - LEANN finds results, Read provides full context
-- **Check Ollama is running** - Required for embeddings and LLM features
+- **Check Ollama is running** - Required for LLM in ask command (not for embeddings - MLX handles those)
 - **Use MLX on Apple Silicon** - Use `--embedding-mode mlx` for memory-efficient indexing
 - **Start with smallest scope** - Use progressive scope indexing (see Memory-Efficient Indexing below)
 
@@ -363,59 +346,38 @@ leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-co
 
 ---
 
-## 5.1 🧠 MEMORY-EFFICIENT INDEXING
+## 5.1 🧠 INDEXING BEST PRACTICES
 
-### Progressive Scope Strategy
-
-Start with the smallest effective scope and expand only if needed. This prevents memory issues and speeds up indexing.
-
-**Scope Suggestion Order:**
-1. **Primary code directory only**: `--docs src/` or `--docs lib/`
-2. **Add file type filters**: `--file-types ".js,.ts,.css,.html,.md"`
-3. **Full project**: Only as last resort, with memory monitoring
-
-### File Count Thresholds
-
-| File Count | Recommendation | Action |
-| ---------- | -------------- | ------ |
-| <2,000     | Normal         | Proceed with default settings |
-| 2,000-5,000| Suggest reduction | Consider `--docs src/` or file type filters |
-| 5,000-10,000| Strongly recommend | Use scope reduction + MLX embedding mode |
-| >10,000    | Warning        | Use DiskANN backend + scope reduction + MLX |
-
-### Recommended Build Commands
+### ALWAYS Index src/ Only
 
 ```bash
-# Apple Silicon (RECOMMENDED) - Memory-efficient with MLX + Qwen3
-leann build my-project --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+# Correct - index src/ folder only
+leann-build myproject --docs src/
 
-# Scoped indexing with AST chunking
-leann build my-code --docs src/ --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --use-ast-chunking
-
-# Large project with DiskANN backend
-leann build large-project --docs src/ --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" --backend-name diskann
+# WRONG - do not index these folders
+# leann-build myproject --docs specs/        # Use Spec Kit Memory instead
+# leann-build myproject --docs .opencode/    # Use Spec Kit Memory instead
+# leann-build myproject --docs docs/         # Use Spec Kit Memory instead
 ```
 
-### Memory Escape Hatches
+### Why src/ Only?
 
-If you encounter memory issues during indexing:
+| Reason          | Explanation                                       |
+| --------------- | ------------------------------------------------- |
+| **Performance** | Smaller index = faster search (~1 min vs 30+ min) |
+| **Memory**      | Large indexes can crash your Mac                  |
+| **Relevance**   | Code search should return code, not docs          |
+| **Separation**  | Use Spec Kit Memory for conversation context      |
 
-1. **Primary: Use MLX embedding mode with Qwen3** (Apple Silicon)
-   ```bash
-   leann build my-project --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
-   ```
+### Recommended Build Command
 
-2. **Secondary: Reduce scope**
-   ```bash
-   leann build my-project --docs src/ --file-types ".js,.ts" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
-   ```
+```bash
+# Using shell alias (recommended)
+leann-build myproject --docs src/
 
-3. **Tertiary: Use OpenAI API** (offloads embedding computation)
-   ```bash
-   leann build my-project --docs src/ --embedding-mode openai
-   ```
-
-> **Note**: These escape hatches can be combined for maximum memory efficiency.
+# Full command (equivalent)
+leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
+```
 
 ---
 
@@ -450,9 +412,9 @@ If you encounter memory issues during indexing:
 
 ### Complementary Skills
 
-| Skill | Relationship |
-|-------|--------------|
-| mcp-leann | Semantic search (by meaning) - use for "how does X work?" |
+| Skill      | Relationship                                                  |
+| ---------- | ------------------------------------------------------------- |
+| mcp-leann  | Semantic search (by meaning) - use for "how does X work?"     |
 | mcp-narsil | Structural search (by symbol) - use for "list functions in X" |
 
 **Pairs with spec_kit_memory**:
@@ -497,20 +459,14 @@ narsil.narsil_find_symbols({ path: "src/auth/" })  // List symbols
 ### Essential Commands
 
 ```javascript
-// Build index from source code (Apple Silicon - recommended)
-leann_leann_build({ index_name: "my-code", docs: "./src", file_types: ".js,.ts,.css,.html,.md", embedding_mode: "mlx", embedding_model: "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ", use_ast_chunking: true })
-
-// Build index (Linux/Windows - fallback)
-leann_leann_build({ index_name: "my-code", docs: "./src", file_types: ".js,.ts,.css,.html,.md", embedding_mode: "sentence-transformers", embedding_model: "facebook/contriever", use_ast_chunking: true })
+// Build index for src/ folder (ALWAYS src/ only)
+leann_leann_build({ index_name: "my-code", docs: "./src", embedding_mode: "mlx", embedding_model: "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ" })
 
 // Search for code by intent
 leann_leann_search({ index_name: "my-code", query: "authentication logic" })
 
 // Ask questions with RAG
 leann_leann_ask({ index_name: "my-code", question: "How does error handling work?" })
-
-// Interactive Q&A session
-leann_leann_ask({ index_name: "my-code", interactive: true })
 
 // List all indexes
 leann_leann_list()
@@ -596,4 +552,8 @@ Detailed documentation for all 5 LEANN commands with parameters, examples, troub
 
 ---
 
-**Remember**: LEANN is a **NATIVE MCP tool**. Call `leann_leann_build()`, `leann_leann_search()`, `leann_leann_ask()`, `leann_leann_list()`, `leann_leann_remove()` directly - do NOT use Code Mode's `call_tool_chain()`. LEANN provides efficient semantic search with 97% storage savings through graph-based selective recomputation.
+**Remember**: 
+- LEANN is for **CODE search only** - index `src/` folder, nothing else
+- Use **MLX + Qwen3** embeddings (the only supported mode)
+- For document/spec search, use **Spec Kit Memory MCP** instead
+- LEANN is a **NATIVE MCP tool** - call directly, not through Code Mode

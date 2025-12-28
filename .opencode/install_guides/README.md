@@ -105,7 +105,7 @@ Answer these questions to configure your installation:
 - **Gemini (Google)** → Requires `GEMINI_API_KEY`
 - **Ollama (Local)** → For embeddings; optionally for local inference
 
-> **Note:** Ollama with `nomic-embed-text` is required for LEANN and Spec Kit Memory embeddings regardless of your main LLM provider.
+> **Note:** Ollama with `nomic-embed-text` is required for Spec Kit Memory embeddings. LEANN uses MLX + Qwen3 embeddings (Apple Silicon only) and only needs Ollama for the optional `ask` command LLM.
 
 ---
 
@@ -235,7 +235,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Component           | Type       | Purpose                                               | Dependencies                            |
 | ------------------- | ---------- | ----------------------------------------------------- | --------------------------------------- |
 | Code Mode           | MCP Server | External tool orchestration (Webflow, Figma, ClickUp) | Node.js 18+                             |
-| LEANN               | MCP Server | Semantic code search                                  | Python 3.10+, uv, Homebrew deps, Ollama |
+| LEANN               | MCP Server | Semantic code search (src/ only)                      | Python 3.10+, uv, Homebrew deps, MLX    |
 | Narsil              | MCP Server | Structural analysis, security scanning, call graphs   | Via Code Mode                           |
 | Spec Kit Memory     | MCP Server | Conversation context preservation                     | Node.js 18+, Ollama (optional)          |
 | Sequential Thinking | MCP Server | Complex reasoning chains                              | npx (Node.js 18+)                       |
@@ -421,7 +421,7 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 
 ## 6. 🤖 PHASE 2: OLLAMA & MODELS
 
-Ollama provides local LLM inference and embeddings. Required for LEANN and Spec Kit Memory.
+Ollama provides local LLM inference and embeddings. Required for Spec Kit Memory. LEANN uses MLX + Qwen3 for embeddings (Apple Silicon) and only needs Ollama for the optional `ask` command.
 
 > **Skip Check:** Run `ollama list | grep nomic` — if nomic-embed-text shown, skip to Phase 3.
 
@@ -476,7 +476,7 @@ ollama pull llama3.2
 ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-❌ STOP if validation fails - Ollama must be running for LEANN and Spec Kit Memory
+❌ STOP if validation fails - Ollama must be running for Spec Kit Memory embeddings
 
 ---
 
@@ -550,15 +550,8 @@ LEANN provides semantic search over codebases using vector embeddings.
 
 **Install if missing:**
 ```bash
-uv tool install leann-core --with leann
-source "$HOME/.local/bin/env"
-```
-
-**Set up shell alias (Recommended for Apple Silicon):**
-```bash
-# Add to ~/.zshrc (one-time)
-echo 'alias leann-build='"'"'leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'"'"'' >> ~/.zshrc
-source ~/.zshrc
+# Apple Silicon (with MLX for embeddings)
+uv tool install leann-core --with leann --with mlx --with mlx-lm
 ```
 
 **Configure in `opencode.json`:**
@@ -566,23 +559,28 @@ source ~/.zshrc
 {
   "mcp": {
     "leann": {
-      "type": "local",
-      "command": ["/Users/YOUR_USERNAME/.local/bin/leann_mcp"],
-      "enabled": true
+      "command": "leann",
+      "args": ["mcp"],
+      "env": {}
     }
   }
 }
 ```
 
-> **Note**: Replace `YOUR_USERNAME` with your actual username. Find it with `whoami`.
-
 **Build index for your project:**
 ```bash
-# Using alias (Apple Silicon - recommended)
-leann-build myproject --docs /path/to/your/project/src
+# Navigate to project root
+cd /path/to/your/project
 
-# Or full command (any platform)
-leann build myproject --docs /path/to/your/project --embedding-mode ollama
+# Set up shell alias (Apple Silicon - recommended, one-time setup)
+echo 'alias leann-build='"'"'leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'"'"'' >> ~/.zshrc
+source ~/.zshrc
+
+# Build index using alias (creates ~/.leann/indexes/ directory)
+leann-build myproject --docs src/
+
+# Or full command without alias
+leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 ```
 
 ### Validation: `leann_check`
@@ -928,16 +926,11 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
       "env": {}
     },
     "leann": {
-      "type": "local",
-      "command": ["/Users/YOUR_USERNAME/.local/bin/leann_mcp"],
-      "environment": {
-        "_NOTE_TOOLS": "Provides: leann_build, leann_search, leann_ask, leann_list, leann_remove",
-        "_NOTE_USAGE": "Semantic code search with 97% less storage than traditional vector DBs",
-        "_NOTE_EMBEDDING": "Recommend MLX with Qwen3-Embedding-0.6B-4bit-DWQ for Apple Silicon",
-        "_NOTE_DOCS": "https://github.com/yichuan-w/LEANN"
-      },
-      "enabled": true
+      "command": "leann",
+      "args": ["mcp"],
+      "env": {}
     },
+
     "spec_kit_memory": {
       "command": "node",
       "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"]
@@ -953,9 +946,6 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
     "opencode-openai-codex-auth@4.1.1"
   ]
 }
-```
-
-> **Note**: Replace `YOUR_USERNAME` with your actual username. Find it with `whoami`.
 ```
 
 ### 9.2 Complete `.utcp_config.json`
@@ -1219,7 +1209,7 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 | ---- | ---------------------- | ---------------------------------------------------------------- |
 | 1    | Verify installation    | Run health check script from Section 10.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
-| 3    | Build your first index | `leann-build myproject --docs src/` (with alias) or `leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` |
+| 3    | Build your first index | `leann-build myproject --docs src/` (uses Qwen3 via alias) |
 | 4    | Test skill invocation  | `python .opencode/scripts/skill_advisor.py "your task"`          |
 | 5    | Save first memory      | Use `/memory:save` or "save context" in conversation             |
 
@@ -1311,14 +1301,14 @@ source ~/.zshrc
 
 ### Index build fails
 ```bash
-# Check Ollama is running
-ollama list
+# Try smaller index first (Apple Silicon with Qwen3)
+leann-build test --docs src/ --file-types ".md"
 
-# Verify nomic-embed-text model
-ollama pull nomic-embed-text
+# Or without alias
+leann build test --docs src/ --file-types ".md" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
 
-# Try smaller index first
-leann build --name test --path . --include "*.md"
+# Verify MLX is installed
+python3 -c "import mlx; print('MLX OK')"
 ```
 
 ### Search returns no results
@@ -1465,7 +1455,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Check prerequisites  | `node -v && python3 -V && uv -V`                            |
 | Start Ollama         | `ollama serve`                                              |
 | Pull embedding model | `ollama pull nomic-embed-text`                              |
-| Build LEANN index    | `leann-build proj --docs src/` (with alias) or `leann build proj --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"` |
+| Build LEANN index    | `leann-build proj --docs src/` (alias with Qwen3)           |
 | Search code          | `leann search proj "your query"`                            |
 | List skills          | `ls .opencode/skill/`                                       |
 | Read skill           | `cat .opencode/skill/<skill-name>/SKILL.md`                 |
