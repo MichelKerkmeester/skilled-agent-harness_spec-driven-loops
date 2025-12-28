@@ -151,12 +151,11 @@
       ],
       "environment": {
         "_NOTE_TOOLS": "Provides: leann_build, leann_search, leann_ask, leann_list, leann_remove",
-        "_NOTE_USAGE": "Semantic code search with 97% less storage than traditional vector DBs",
-        "_NOTE_EMBEDDING": "Uses nomic-embed-text via Ollama (local, no API costs)",
-        "_NOTE_LLM_DEFAULT": "CLI defaults to qwen3:8b via Ollama (requires 'ollama pull qwen3:8b')",
-        "_NOTE_LLM_GEMINI": "Use 'leann-ask' alias for Gemini 2.5 Flash (cloud, low RAM, cheap)",
-        "_NOTE_DOCS": "https://github.com/yichuan-w/LEANN",
-        "_NOTE_INSTALL": "LEANN binary must be in PATH (typically ~/.local/bin/leann_mcp)"
+        "_NOTE_USAGE": "Semantic CODE search only (index src/ folder). 97% storage savings via graph-based recomputation.",
+        "_NOTE_EMBEDDING": "Uses MLX + Qwen3-Embedding-0.6B-4bit-DWQ (Apple Silicon). Shell alias: leann-build",
+        "_NOTE_LLM": "ask command uses Ollama qwen3:8b (requires 'ollama pull qwen3:8b')",
+        "_NOTE_INSTALL": "uv tool install leann-core --with leann --with mlx --with mlx-lm",
+        "_NOTE_ALIAS": "alias leann-build='leann build --embedding-mode mlx --embedding-model mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'"
       },
       "enabled": true
     },
