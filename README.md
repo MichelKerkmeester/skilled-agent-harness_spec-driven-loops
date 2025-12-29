@@ -23,7 +23,9 @@ A development environment for [OpenCode](https://github.com/sst/opencode) featur
 5. [🧩 Skills Library](#5--skills-library)
 6. [⚡ Commands](#6--commands)
 7. [🚀 Installation & Setup](#7--installation--setup)
-8. [🎯 What's Next?](#8--whats-next)
+8. [🎯 What's Next?](#8--whats-next)arrow
+
+↓
 
 > - 99.999% of people will keep blaming AI for not being good enough for advanced coding.
 > - Beat the odds with this system?
