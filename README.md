@@ -61,6 +61,8 @@ AI coding assistants are powerful but stateless. Every session starts from zero.
 - **Quality gates**: Mandatory gates verify completion
 - **Tool orchestration**: 8 skills load automatically based on task
 
+---
+
 ### Semantic Memory: Built from Scratch
 
 A custom MCP server that gives your AI assistant persistent, searchable memory across sessions. Not a wrapper around existing tools: this is purpose-built for AI-assisted development.
@@ -84,6 +86,8 @@ A custom MCP server that gives your AI assistant persistent, searchable memory a
 - ANCHOR format = 93% token savings
 - <50ms proactive surfacing before you ask
 - Checkpoints = undo button for your index
+
+---
 
 ### Spec Kit: What Sets This Apart
 
@@ -123,7 +127,6 @@ These systems aren't just bundled: they're *woven together*:
 - `/spec_kit:resume` auto-loads relevant memories
 - Sub-folder versioning preserves independent memory per version
 
-
 ### How It All Works Together
 
 When you make a request, the system:
@@ -149,7 +152,7 @@ When you make a request, the system:
 ┌─────────────────────────────────────┐
 │  GATE SYSTEM ACTIVATES              │
 │                                     │
-│  • Confidence check (≥80%?)          │
+│  • Confidence check (≥80%?)         │
 │  • Asks: Spec folder? Git branch?   │
 │  • Loads relevant memories          │
 └────────────────┬────────────────────┘
@@ -159,7 +162,7 @@ When you make a request, the system:
 │  SKILL MATCHING                     │
 │                                     │
 │  Agent scans <available_skills>     │
-│  Loads: workflows-code, spec-kit,    │
+│  Loads: workflows-code, spec-kit,   │
 │         memory, git, etc.           │
 └────────────────┬────────────────────┘
                  │
@@ -186,8 +189,8 @@ When you make a request, the system:
 ┌─────────────────────────────────────┐
 │  COMPLETION                         │
 │                                     │
-│  • Checklist verification (L2+)      │
-│  • Browser testing confirmed         │
+│  • Checklist verification (L2+)     │
+│  • Browser testing confirmed        │
 │  • Documentation complete           │
 └─────────────────────────────────────┘
 
