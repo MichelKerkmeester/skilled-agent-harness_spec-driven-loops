@@ -1,4 +1,20 @@
+<div align="center">
+
 # OpenCode Dev Environment
+
+**AI-assisted development with persistent memory**
+
+[![OpenCode](https://img.shields.io/badge/OpenCode-Compatible-5ad4e6?style=for-the-badge&labelColor=222222)](https://github.com/sst/opencode)
+[![Skills](https://img.shields.io/badge/Skills-8_Domains-7bd88f?style=for-the-badge&labelColor=222222)](#5--skills-library)
+[![Commands](https://img.shields.io/badge/Commands-17_Total-fce566?style=for-the-badge&labelColor=222222)](#6--commands)
+[![Memory](https://img.shields.io/badge/Memory-Semantic_Search-948ae3?style=for-the-badge&labelColor=222222)](#3--semantic-memory-system)
+[![License](https://img.shields.io/badge/License-MIT-fc618d?style=for-the-badge&labelColor=222222)](LICENSE)
+
+[Overview](#1--overview) • [Spec Kit](#2--spec-kit-framework) • [Memory](#3--semantic-memory-system) • [Skills](#5--skills-library) • [Install](#7--installation--setup)
+
+</div>
+
+---
 
 A development environment for [OpenCode](https://github.com/sst/opencode) featuring two custom-built systems you won't find anywhere else:
 
@@ -517,13 +533,9 @@ Your Request → python3 .opencode/scripts/skill_advisor.py analyzes keywords
 Unified documentation enforcement, templates, and context preservation across sessions
 > Example: "Create spec for feature" or "Save this context"
 
-**mcp-leann**
-Semantic code search: finds code by meaning
-> Example: "How does auth work?"
-
 **mcp-narsil**
-Deep code intelligence: security scanning, call graphs, structural queries (via Code Mode)
-> Example: "Scan for vulnerabilities" or "List functions in auth.ts"
+Deep code intelligence: semantic search, security scanning, call graphs, structural queries (via Code Mode)
+> Example: "How does auth work?" or "Scan for vulnerabilities" or "List functions in auth.ts"
 
 **mcp-code-mode**
 External tool orchestration (Figma, GitHub, ClickUp, etc.)
@@ -691,9 +703,6 @@ MCP servers extend your AI with specialized capabilities. This environment inclu
 - **Sequential Thinking**: Structured multi-step reasoning for complex problems
   [Guide](.opencode/install_guides/MCP/MCP - Sequential Thinking.md)
 
-- **LEANN**: Semantic code search (97% storage savings, finds code by meaning)
-  [Guide](.opencode/install_guides/MCP/MCP - LEANN.md)
-
 - **Spec Kit Memory**: Local vector-based conversation memory (13 MCP tools)
   [Guide](.opencode/install_guides/MCP/MCP - Spec Kit Memory.md)
 
@@ -702,29 +711,28 @@ MCP servers extend your AI with specialized capabilities. This environment inclu
 
 **Via Code Mode:**
 
-- **Narsil**: Deep code intelligence (security scanning, call graphs, structural queries)
+- **Narsil**: Deep code intelligence (semantic search, security scanning, call graphs, structural queries)
   [Guide](.opencode/install_guides/MCP/MCP - Narsil.md)
 
 
-### Two Semantic Systems (Don't Confuse Them)
+### Two Systems (Don't Confuse Them)
 
-| System              | MCP Name          | Database Location                                               | Purpose                               |
-| ------------------- | ----------------- | --------------------------------------------------------------- | ------------------------------------- |
-| **LEANN**           | `leann`           | `~/.leann/indexes/`                                             | **Code** semantic search              |
-| **Spec Kit Memory** | `spec_kit_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
+| System              | MCP Name             | Database Location                                               | Purpose                               |
+| ------------------- | -------------------- | --------------------------------------------------------------- | ------------------------------------- |
+| **Narsil**          | `narsil` (Code Mode) | Managed by Narsil                                               | **Code** semantic + structural search |
+| **Spec Kit Memory** | `spec_kit_memory`    | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**
-- Both use vector embeddings for semantic search
-- LEANN is for code/document search, Spec Kit Memory is for conversation context
+- Narsil handles ALL code intelligence (semantic, structural, security)
+- Spec Kit Memory is for conversation context preservation
 - They are COMPLETELY SEPARATE systems with different purposes
 
 
-### Code Search Tools (Complementary)
+### Code Search Tools
 
-Use these three tools together:
+Use these two tools together:
 
-- **LEANN** (Semantic): "How does auth work?" returns code by meaning
-- **Narsil** (Structural + Security): "List functions in auth.ts" or "Scan for vulnerabilities" (via Code Mode)
+- **Narsil** (Semantic + Structural + Security): "How does auth work?" or "List functions in auth.ts" or "Scan for vulnerabilities" (via Code Mode)
 - **Grep** (Lexical): "Find 'TODO' comments" returns text pattern matches
 
 
