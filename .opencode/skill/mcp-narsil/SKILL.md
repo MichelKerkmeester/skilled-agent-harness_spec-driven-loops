@@ -235,7 +235,7 @@ Narsil provides both structural AND semantic search capabilities:
 ### Neural Semantic Search
 
 Narsil is configured with neural embeddings via Voyage API:
-- **Model**: voyage-code-3 (code-specialized)
+- **Model**: voyage-code-2 (code-specialized, 1536-dim - required for Narsil v1.0.0)
 - **Tool**: `narsil_neural_search`
 - **Fallback**: BM25 search if API unavailable
 

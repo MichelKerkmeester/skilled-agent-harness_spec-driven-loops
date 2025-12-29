@@ -345,7 +345,7 @@ Add Narsil to your project's `.utcp_config.json`:
 | `--watch`         | Auto-reindex on file changes                 | Yes         |
 | `--neural`        | Enable neural semantic search                | Optional    |
 | `--neural-backend`| Backend for embeddings (api or local)        | Optional    |
-| `--neural-model`  | Embedding model (e.g., voyage-code-3)        | Optional    |
+| `--neural-model`  | Embedding model (voyage-code-2 for Narsil v1.0.0) | Optional    |
 | `--lsp`           | LSP integration (SKIP - IDE handles)         | No          |
 | `--remote`        | Remote repository access (SKIP - local only) | No          |
 
@@ -395,7 +395,7 @@ To enable neural semantic search capabilities:
         "--watch",
         "--neural",
         "--neural-backend", "api",
-        "--neural-model", "voyage-code-3"
+        "--neural-model", "voyage-code-2"
       ],
       "env": {
         "VOYAGE_API_KEY": "your-voyage-api-key-here"

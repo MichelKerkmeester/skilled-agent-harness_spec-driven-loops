@@ -121,7 +121,7 @@ ls -la "${NARSIL_PATH}/target/release/narsil-mcp"
 
 # 2. Check version
 "${NARSIL_PATH}/target/release/narsil-mcp" --version
-# Expected: narsil-mcp 1.0.1
+# Expected: narsil-mcp 1.0.0
 ```
 
 ### Installation Options
@@ -231,7 +231,7 @@ Find similar code using embeddings - works even when variable names, comments, a
 
 | Backend   | Flag                    | Models                                             | Best For                     |
 | --------- | ----------------------- | -------------------------------------------------- | ---------------------------- |
-| Voyage AI | `--neural-backend api`  | `voyage-code-2`, `voyage-code-3`                   | Code-specific, best accuracy |
+| Voyage AI | `--neural-backend api`  | `voyage-code-2` (1536-dim, required for Narsil v1.0.0) | Code-specific, best accuracy |
 | OpenAI    | `--neural-backend api`  | `text-embedding-3-small`, `text-embedding-3-large` | General, wide availability   |
 | Custom    | `--neural-backend api`  | Any compatible                                     | Local deployment             |
 | ONNX      | `--neural-backend onnx` | Local models                                       | Offline, no API costs        |
