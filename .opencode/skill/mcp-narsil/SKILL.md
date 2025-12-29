@@ -235,7 +235,7 @@ Narsil provides both structural AND semantic search capabilities:
 ### Neural Semantic Search
 
 Narsil is configured with neural embeddings via Voyage API:
-- **Model**: voyage-code-2 (code-specialized, 1536-dim - required for Narsil v1.0.0)
+- **Model**: voyage-code-2 (code-specialized, 1536-dim)
 - **Tool**: `narsil_neural_search`
 - **Fallback**: BM25 search if API unavailable
 
@@ -362,12 +362,25 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
       "narsil": {
         "transport": "stdio",
         "command": "/path/to/narsil-mcp",
-        "args": ["--repos", "${workspaceFolder}", "--git", "--call-graph", "--persist", "--watch"]
+        "args": ["--repos", "${workspaceFolder}", "--index-path", ".narsil-index", "--git", "--call-graph", "--persist", "--watch"]
       }
     }
   }
 }
 ```
+
+### Index Persistence
+
+Narsil supports persisting the code index to disk for faster startup:
+
+| Flag | Purpose | Default |
+|------|---------|---------|
+| `--persist` | Enable saving/loading index from disk | Disabled |
+| `--index-path` | Custom index storage location | `~/.cache/narsil-mcp/` |
+
+**Project-local indexes** (recommended): Use `--index-path .narsil-index` and add `.narsil-index/` to `.gitignore`.
+
+**Manual save**: Use `narsil.narsil_save_index({})` via Code Mode to trigger index save.
 
 ### Related Skills
 

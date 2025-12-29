@@ -1,6 +1,6 @@
 # Narsil MCP
 
-> **Last Updated:** 2025-12-25 | **Version:** Narsil MCP v1.0.x
+> **Last Updated:** 2025-12-29 | **Version:** Narsil MCP
 
 The blazing-fast, privacy-first MCP server for **deep code intelligence**. **76 tools**, **15 languages**, security scanning, call graphs, and more. Narsil is accessed via **Code Mode** - use `call_tool_chain()` to invoke tools.
 
@@ -231,7 +231,7 @@ Find similar code using embeddings - works even when variable names, comments, a
 
 | Backend   | Flag                    | Models                                             | Best For                     |
 | --------- | ----------------------- | -------------------------------------------------- | ---------------------------- |
-| Voyage AI | `--neural-backend api`  | `voyage-code-2` (1536-dim, required for Narsil v1.0.0) | Code-specific, best accuracy |
+| Voyage AI | `--neural-backend api`  | `voyage-code-2` (1536-dim)                         | Code-specific, best accuracy |
 | OpenAI    | `--neural-backend api`  | `text-embedding-3-small`, `text-embedding-3-large` | General, wide availability   |
 | Custom    | `--neural-backend api`  | Any compatible                                     | Local deployment             |
 | ONNX      | `--neural-backend onnx` | Local models                                       | Offline, no API costs        |
@@ -311,6 +311,7 @@ Add to `.utcp_config.json`:
             "command": "${NARSIL_PATH}/target/release/narsil-mcp",
             "args": [
               "--repos", "${workspaceFolder}",
+              "--index-path", ".narsil-index",
               "--git",
               "--call-graph",
               "--persist",
@@ -325,11 +326,71 @@ Add to `.utcp_config.json`:
 }
 ```
 
+### Index Persistence
+
+Narsil supports persisting the code index to disk for faster startup on subsequent sessions.
+
+| Flag | Purpose | Default |
+|------|---------|---------|
+| `--persist` | Enable saving/loading index from disk | Disabled |
+| `--index-path` | Custom index storage location | `~/.cache/narsil-mcp/` |
+
+**Project-Local Indexes (Recommended)**
+
+Store indexes per-project instead of globally:
+
+```json
+"args": [
+  "--repos", ".",
+  "--index-path", ".narsil-index",
+  "--persist",
+  ...
+]
+```
+
+Add to `.gitignore`:
+```
+.narsil-index/
+```
+
+**How Persistence Works**
+
+1. **On startup**: Loads existing index from disk (if available)
+2. **After --reindex**: Automatically saves index to disk
+3. **Manual save**: Use `save_index` MCP tool via Code Mode
+4. **Watch mode**: Saves after detecting file changes
+
+**Manual Index Building**
+
+For large codebases or pre-warming the index:
+
+```bash
+narsil-mcp \
+  --repos . \
+  --index-path .narsil-index \
+  --persist \
+  --reindex \
+  --http
+
+# Index builds and saves automatically
+# Press Ctrl+C when done, or leave running for visualization
+# Open http://localhost:3000 for web UI
+```
+
+**New MCP Tool: save_index**
+
+Manually trigger index save via Code Mode:
+
+```javascript
+narsil.narsil_save_index({})
+```
+
 ### CLI Flags Reference
 
 | Flag               | Purpose                         | Recommended |
 | ------------------ | ------------------------------- | ----------- |
 | `--repos`          | Repository paths to index       | Required    |
+| `--index-path`     | Custom index storage location   | Yes         |
 | `--git`            | Enable git integration          | Yes         |
 | `--call-graph`     | Enable call graph analysis      | Yes         |
 | `--persist`        | Save index to disk              | Yes         |

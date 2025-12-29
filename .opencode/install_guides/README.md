@@ -536,7 +536,7 @@ Narsil provides deep code intelligence with **76 specialized tools** for securit
     "narsil": {
       "transport": "stdio",
       "command": "${NARSIL_PATH}/target/release/narsil-mcp",
-      "args": ["--repos", "${workspaceFolder}", "--git", "--call-graph", "--persist", "--watch"]
+      "args": ["--repos", "${workspaceFolder}", "--index-path", ".narsil-index", "--git", "--call-graph", "--persist", "--watch"]
     }
   }
 }
@@ -727,7 +727,7 @@ Skills are automatically discovered from:
 **Current Skills (8 total):**
 | Skill                     | Version | Purpose                                              |
 | ------------------------- | ------- | ---------------------------------------------------- |
-| mcp-narsil                | v1.0.0  | Unified code intelligence (semantic + structural + security) |
+| mcp-narsil                | v1.0.x  | Unified code intelligence (semantic + structural + security) |
 | mcp-code-mode             | v1.2.0  | External tool orchestration                          |
 | system-spec-kit           | v2.0.0  | Spec folder + template system + context preservation |
 | workflows-chrome-devtools | v2.1.0  | Browser debugging                                    |

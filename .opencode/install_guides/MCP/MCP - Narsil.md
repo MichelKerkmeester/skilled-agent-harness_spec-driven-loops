@@ -342,10 +342,11 @@ Add Narsil to your project's `.utcp_config.json`:
 | `--git`           | Enable git integration (blame, history)      | Yes         |
 | `--call-graph`    | Enable call graph analysis                   | Yes         |
 | `--persist`       | Save index to disk (faster restarts)         | Yes         |
+| `--index-path`    | Custom index storage location                | Yes         |
 | `--watch`         | Auto-reindex on file changes                 | Yes         |
 | `--neural`        | Enable neural semantic search                | Optional    |
 | `--neural-backend`| Backend for embeddings (api or local)        | Optional    |
-| `--neural-model`  | Embedding model (voyage-code-2 for Narsil v1.0.0) | Optional    |
+| `--neural-model`  | Embedding model (voyage-code-2 for Narsil)   | Optional    |
 | `--lsp`           | LSP integration (SKIP - IDE handles)         | No          |
 | `--remote`        | Remote repository access (SKIP - local only) | No          |
 
@@ -366,7 +367,7 @@ If you have multiple Code Mode tools configured:
     "narsil": {
       "transport": "stdio",
       "command": "/Users/YOUR_USERNAME/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp",
-      "args": ["--repos", "${workspaceFolder}", "--git", "--call-graph", "--persist", "--watch"]
+      "args": ["--repos", "${workspaceFolder}", "--index-path", ".narsil-index", "--git", "--call-graph", "--persist", "--watch"]
     },
     "webflow": {
       "transport": "stdio",
@@ -376,6 +377,69 @@ If you have multiple Code Mode tools configured:
   }
 }
 ```
+
+## Index Persistence
+
+Narsil supports persisting the code index to disk for faster startup on subsequent sessions.
+
+### Configuration
+
+| Flag | Purpose | Default |
+|------|---------|---------|
+| `--persist` | Enable saving/loading index from disk | Disabled |
+| `--index-path` | Custom index storage location | `~/.cache/narsil-mcp/` |
+
+### Project-Local Indexes (Recommended)
+
+Store indexes per-project instead of globally:
+
+```json
+"args": [
+  "--repos", ".",
+  "--index-path", ".narsil-index",
+  "--persist",
+  ...
+]
+```
+
+Add to `.gitignore`:
+```
+.narsil-index/
+```
+
+### How Persistence Works
+
+1. **On startup**: Loads existing index from disk (if available)
+2. **After --reindex**: Automatically saves index to disk
+3. **Manual save**: Use `save_index` MCP tool via Code Mode
+4. **Watch mode**: Saves after detecting file changes
+
+### Manual Index Building
+
+For large codebases or pre-warming the index:
+
+```bash
+narsil-mcp \
+  --repos . \
+  --index-path .narsil-index \
+  --persist \
+  --reindex \
+  --http
+
+# Index builds and saves automatically
+# Press Ctrl+C when done, or leave running for visualization
+# Open http://localhost:3000 for web UI
+```
+
+### New MCP Tool: save_index
+
+Manually trigger index save via Code Mode:
+
+```javascript
+narsil.narsil_save_index({})
+```
+
+---
 
 ### Neural Semantic Search Configuration (Optional)
 
@@ -1285,6 +1349,7 @@ Examples:
       "command": "/path/to/narsil-mcp",
       "args": [
         "--repos", "${workspaceFolder}",
+        "--index-path", ".narsil-index",
         "--git",
         "--call-graph",
         "--persist",
