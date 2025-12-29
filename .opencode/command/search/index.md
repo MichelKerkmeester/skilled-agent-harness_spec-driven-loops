@@ -325,11 +325,22 @@ Narsil is configured in `.utcp_config.json` with these flags:
 - `--index-path .narsil-index` - Project-local index storage
 - `--git` - Git integration (blame, history)
 - `--call-graph` - Function call analysis
-- `--persist` - Save index to disk
+- `--persist` - Save index to disk (symbols + call graph only)
 - `--watch` - Auto-reindex on changes
 - `--neural` - Neural semantic search
 - `--neural-backend api` - Voyage AI embeddings
 - `--neural-model voyage-code-2` - Code-specialized model (1536-dim)
+
+### Known Limitations
+
+> **⚠️ Persistence Bug**: The `--persist` flag only saves **symbols and call graph data**. The following indexes regenerate on every startup (~45-60s):
+> - Neural embeddings (for `neural_search`)
+> - BM25/TF-IDF indexes (for `bm25_search`, `tfidf_search`)
+> - Code chunks (for `search_chunks`, `hybrid_search`)
+>
+> **Workaround**: Run Narsil as a **long-lived server** rather than restarting between queries.
+
+> **⚠️ Unicode Bug**: Chunking crashes on Unicode box-drawing characters (─, │, etc.). Affected tools: `hybrid_search`, `search_chunks`. **Workaround**: Remove box-drawing characters from code comments/docs, or avoid chunk-based tools.
 
 ### Supported Languages (15)
 Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, PHP, Swift, Verilog/SystemVerilog

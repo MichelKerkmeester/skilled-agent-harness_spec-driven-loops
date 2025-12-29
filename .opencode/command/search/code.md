@@ -189,6 +189,8 @@ code_mode_call_tool_chain({
 
 **Trigger:** "how does", "explain", "what is", "why", "understand"
 
+> **⚠️ Note**: Neural embeddings don't persist to disk. If Narsil was recently restarted, the first semantic search may take ~45-60s to rebuild the index. Run Narsil as a long-lived server for best performance.
+
 **Workflow:**
 ```
 1. Parse: --limit:<N>, remaining → query
@@ -396,11 +398,18 @@ code_mode_call_tool_chain({
 | Path not found  | Show similar paths via Glob                      |
 | Empty results   | Try fallback: Semantic → Structural → Diagnostic |
 | All tools fail  | Show diagnostic with refinement suggestions      |
+| Slow semantic   | Neural index rebuilding (~45-60s after restart)  |
+| Chunk crash     | Unicode bug - use structural search instead      |
 
 **Fallback Chain:**
 ```
 Primary empty? → Semantic → Structural → Diagnostic
 ```
+
+**Known Limitations:**
+- Neural/BM25/TF-IDF indexes don't persist (rebuild on restart)
+- Unicode box-drawing characters (─, │) crash chunk-based tools
+- See `/search:index` troubleshooting for workarounds
 
 ---
 
