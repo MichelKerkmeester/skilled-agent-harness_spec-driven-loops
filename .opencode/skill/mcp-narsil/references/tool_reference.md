@@ -19,7 +19,7 @@ Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTIC un
 
 | Category | Count | Priority |
 |----------|-------|----------|
-| Repository & File Management | 8 | HIGH |
+| Repository & File Management | 9 | HIGH |
 | Symbol Search & Navigation | 7 | HIGH |
 | Code Search | 6 | MEDIUM |
 | AST-Aware Chunking | 3 | LOW |
@@ -51,7 +51,7 @@ Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTIC un
 
 ## 2. 🔧 HIGH PRIORITY TOOLS (39 tools)
 
-### Repository & File Management (8)
+### Repository & File Management (9)
 
 | Tool | Description | Example |
 |------|-------------|---------|
@@ -60,6 +60,7 @@ Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTIC un
 | `get_file` | Get file contents with line range | `narsil_get_file({ path: "src/main.rs" })` |
 | `get_excerpt` | Extract code around lines | `narsil_get_excerpt({ path: "file.rs", line: 50 })` |
 | `reindex` | Trigger re-indexing | `narsil_reindex({})` |
+| `save_index` | Save current index to disk (requires --persist) | `narsil_save_index({})` |
 | `discover_repos` | Auto-discover repos in directory | `narsil_discover_repos({ path: "~/projects" })` |
 | `validate_repo` | Check if path is valid repo | `narsil_validate_repo({ path: "/path" })` |
 | `get_index_status` | Show index stats and features | `narsil_get_index_status({})` |

@@ -300,16 +300,28 @@ For large repos (>50K files):
 RUST_MIN_STACK=8388608 narsil-mcp --repos /path/to/repo
 ```
 
+### Manual Index Building (HTTP Server Mode)
+
+For pre-warming indexes or large codebases:
+
+```bash
+narsil-mcp --repos . --index-path .narsil-index --persist --reindex --http
+```
+
+This starts an HTTP server with visualization UI at http://localhost:3000.
+Index saves automatically after --reindex completes.
+
 ### Configuration Reference
 Narsil is configured in `.utcp_config.json` with these flags:
 - `--repos .` - Index current workspace
+- `--index-path .narsil-index` - Project-local index storage
 - `--git` - Git integration (blame, history)
 - `--call-graph` - Function call analysis
 - `--persist` - Save index to disk
 - `--watch` - Auto-reindex on changes
 - `--neural` - Neural semantic search
 - `--neural-backend api` - Voyage AI embeddings
-- `--neural-model voyage-code-2` - Code-specialized model (1536-dim, required for Narsil v1.0.0)
+- `--neural-model voyage-code-2` - Code-specialized model (1536-dim)
 
 ### Supported Languages (16)
 Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, PHP, Swift, Verilog/SystemVerilog
