@@ -33,7 +33,7 @@ A development environment for [OpenCode](https://github.com/sst/opencode) featur
 7. [🚀 Installation & Setup](#7--installation--setup)
 8. [🎯 What's Next?](#8--whats-next)
 
-—
+---
 
 ### Why This System?
 
@@ -61,8 +61,6 @@ AI coding assistants are powerful but stateless. Every session starts from zero.
 - **Quality gates**: Mandatory gates verify completion
 - **Tool orchestration**: 8 skills load automatically based on task
 
-—
-
 ### Semantic Memory: Built from Scratch
 
 A custom MCP server that gives your AI assistant persistent, searchable memory across sessions. Not a wrapper around existing tools: this is purpose-built for AI-assisted development.
@@ -86,8 +84,6 @@ A custom MCP server that gives your AI assistant persistent, searchable memory a
 - ANCHOR format = 93% token savings
 - <50ms proactive surfacing before you ask
 - Checkpoints = undo button for your index
-
-—
 
 ### Spec Kit: What Sets This Apart
 
@@ -118,8 +114,6 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 - Stateless architecture (no STATE.md)
 - Completeness scoring (0-100%)
 
-—
-
 ### The Integration Nobody Else Has
 
 These systems aren't just bundled: they're *woven together*:
@@ -128,8 +122,6 @@ These systems aren't just bundled: they're *woven together*:
 - Gate 5 enforces `generate-context.js` for every save
 - `/spec_kit:resume` auto-loads relevant memories
 - Sub-folder versioning preserves independent memory per version
-
-—
 
 
 ### How It All Works Together
@@ -364,26 +356,26 @@ Memory and Spec Kit are designed to work together:
 
 ### The Six Importance Tiers
 
-| Tier | Boost | Decay | Use Case |
-|------|-------|-------|----------|
-| **constitutional** | 3.0x | Never | Project rules, always-on context (~500 tokens max) |
-| **critical** | 2.0x | Never | Architecture decisions, breaking changes |
-| **important** | 1.5x | Never | Key implementations, major features |
-| **normal** | 1.0x | 90-day | Standard development context (default) |
-| **temporary** | 0.5x | 7-day | Debug sessions, experiments |
-| **deprecated** | 0.0x | Excluded | Outdated information (preserved but hidden) |
+| Tier               | Boost | Decay    | Use Case                                           |
+| ------------------ | ----- | -------- | -------------------------------------------------- |
+| **constitutional** | 3.0x  | Never    | Project rules, always-on context (~500 tokens max) |
+| **critical**       | 2.0x  | Never    | Architecture decisions, breaking changes           |
+| **important**      | 1.5x  | Never    | Key implementations, major features                |
+| **normal**         | 1.0x  | 90-day   | Standard development context (default)             |
+| **temporary**      | 0.5x  | 7-day    | Debug sessions, experiments                        |
+| **deprecated**     | 0.0x  | Excluded | Outdated information (preserved but hidden)        |
 
 
 ### Memory Commands
 
-| Command | Purpose |
-|---------|---------|
-| `/memory:save [spec-folder]` | Save context via generate-context.js |
-| `/memory:search` | Dashboard with stats, recent memories, and suggested actions |
-| `/memory:search <query>` | Semantic search with tier/type filters |
-| `/memory:search cleanup` | Interactive cleanup of old memories |
-| `/memory:search triggers` | View and manage trigger phrases |
-| `/memory:checkpoint create` | Snapshot current state |
+| Command                      | Purpose                                                      |
+| ---------------------------- | ------------------------------------------------------------ |
+| `/memory:save [spec-folder]` | Save context via generate-context.js                         |
+| `/memory:search`             | Dashboard with stats, recent memories, and suggested actions |
+| `/memory:search <query>`     | Semantic search with tier/type filters                       |
+| `/memory:search cleanup`     | Interactive cleanup of old memories                          |
+| `/memory:search triggers`    | View and manage trigger phrases                              |
+| `/memory:checkpoint create`  | Snapshot current state                                       |
 
 **Example:**
 
@@ -421,21 +413,21 @@ We chose JWT with refresh tokens because:
 
 ### The 13 MCP Tools
 
-| Tool | Purpose |
-|------|---------|
-| `memory_search` | Semantic search with vector similarity |
-| `memory_match_triggers` | Fast keyword matching (<50ms) |
-| `memory_save` | Index memory files |
-| `memory_list` | Browse stored memories |
-| `memory_stats` | Database statistics |
-| `memory_update` | Update existing memory |
-| `memory_delete` | Remove memory by ID |
-| `memory_validate` | Record validation feedback |
-| `memory_index_scan` | Bulk index new files |
-| `checkpoint_create` | Snapshot current state |
-| `checkpoint_list` | List available checkpoints |
-| `checkpoint_restore` | Restore from checkpoint |
-| `checkpoint_delete` | Remove checkpoint |
+| Tool                    | Purpose                                |
+| ----------------------- | -------------------------------------- |
+| `memory_search`         | Semantic search with vector similarity |
+| `memory_match_triggers` | Fast keyword matching (<50ms)          |
+| `memory_save`           | Index memory files                     |
+| `memory_list`           | Browse stored memories                 |
+| `memory_stats`          | Database statistics                    |
+| `memory_update`         | Update existing memory                 |
+| `memory_delete`         | Remove memory by ID                    |
+| `memory_validate`       | Record validation feedback             |
+| `memory_index_scan`     | Bulk index new files                   |
+| `checkpoint_create`     | Snapshot current state                 |
+| `checkpoint_list`       | List available checkpoints             |
+| `checkpoint_restore`    | Restore from checkpoint                |
+| `checkpoint_delete`     | Remove checkpoint                      |
 
 > **Note:** Full MCP names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search`).
 
