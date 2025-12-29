@@ -24,12 +24,13 @@ The blazing-fast, privacy-first MCP server for **deep code intelligence**. **76 
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. ⚡ FEATURES](#4--features)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 📊 PERFORMANCE](#7--performance)
-- [8. 🏗️ ARCHITECTURE](#8--architecture)
-- [9. 🛠️ TROUBLESHOOTING](#9--troubleshooting)
-- [10. ❓ FAQ](#10--faq)
-- [11. 📚 RELATED DOCUMENTS](#11--related-documents)
+- [6. 🌐 HTTP SERVER & VISUALIZATION](#6--http-server--visualization)
+- [7. 💡 USAGE EXAMPLES](#7--usage-examples)
+- [8. 📊 PERFORMANCE](#8--performance)
+- [9. 🏗️ ARCHITECTURE](#9--architecture)
+- [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
+- [11. ❓ FAQ](#11--faq)
+- [12. 📚 RELATED DOCUMENTS](#12--related-documents)
 
 ---
 
@@ -468,7 +469,71 @@ narsil.narsil_save_index({})
 
 ---
 
-## 6. 💡 USAGE EXAMPLES
+## 6. 🌐 HTTP SERVER & VISUALIZATION
+
+Narsil includes an HTTP server with a React-based visualization frontend for exploring code graphs interactively.
+
+### Starting the Servers
+
+The backend and frontend run as separate processes:
+
+```bash
+# Terminal 1: Start backend with HTTP server
+narsil-mcp \
+  --repos . \
+  --index-path .narsil-index \
+  --persist \
+  --http \
+  --http-port 3000
+
+# Terminal 2: Start frontend (separate React app)
+cd "${NARSIL_PATH}/frontend"
+npm install  # First time only
+npm run dev  # Runs on http://localhost:5173
+```
+
+**Important**: Both servers must be running for visualization to work.
+
+### Graph Views
+
+| View       | Purpose                                    | Best For                    |
+| ---------- | ------------------------------------------ | --------------------------- |
+| `import`   | Module import/export relationships         | JavaScript/TypeScript       |
+| `call`     | Function call relationships                | Rust, Python (limited JS)   |
+| `symbol`   | Symbol definitions and references          | All languages               |
+| `hybrid`   | Combined import + call graph               | Comprehensive analysis      |
+| `flow`     | Data flow visualization                    | Security analysis           |
+
+**Note**: For JavaScript projects, the `import` view is most useful. The `call` view works better for statically-typed languages like Rust and Python.
+
+### Performance Tips
+
+1. **Use the Limit slider** in the UI to reduce displayed nodes (prevents browser crashes)
+2. **Index specific directories** instead of entire project:
+   ```bash
+   narsil-mcp -r src -r .opencode --http --http-port 3000
+   ```
+3. **Exclude node_modules** by adding to `.gitignore` (Narsil respects `.gitignore`):
+   ```
+   **/node_modules
+   ```
+4. **Multiple repositories**: Use multiple `-r` flags:
+   ```bash
+   narsil-mcp -r src -r lib -r .opencode --http
+   ```
+
+### Validation
+
+```bash
+# Check backend health
+curl http://localhost:3000/health
+
+# Frontend should be accessible at http://localhost:5173
+```
+
+---
+
+## 7. 💡 USAGE EXAMPLES
 
 ### Example 1: Security Audit
 
@@ -568,7 +633,7 @@ call_tool_chain({
 
 ---
 
-## 7. 📊 PERFORMANCE
+## 8. 📊 PERFORMANCE
 
 Benchmarked on Apple M1 (criterion.rs):
 
@@ -609,7 +674,7 @@ Benchmarked on Apple M1 (criterion.rs):
 
 ---
 
-## 8. 🏗️ ARCHITECTURE
+## 9. 🏗️ ARCHITECTURE
 
 ```text
 ╭─────────────────────────────────────────────────────────────────╮
@@ -681,7 +746,7 @@ Benchmarked on Apple M1 (criterion.rs):
 
 ---
 
-## 9. 🛠️ TROUBLESHOOTING
+## 10. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -806,7 +871,7 @@ call_tool_chain({
 
 ---
 
-## 10. ❓ FAQ
+## 11. ❓ FAQ
 
 ### General Questions
 
@@ -857,7 +922,7 @@ A: Narsil uses data flow analysis to track type flow through variables, analyzin
 
 ---
 
-## 11. 📚 RELATED DOCUMENTS
+## 12. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 

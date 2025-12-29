@@ -586,6 +586,17 @@ grep -q "narsil-mcp" .utcp_config.json 2>/dev/null && echo "Config: PASS" || ech
 Ask your assistant: "Use Code Mode to search for Narsil tools"
 Expected: List of `narsil.narsil_*` tools (76 total)
 
+**Optional: HTTP Visualization**
+Narsil includes an HTTP server with React frontend for interactive graph visualization:
+```bash
+# Backend (port 3000)
+narsil-mcp --repos . --http --http-port 3000
+
+# Frontend (port 5173) - separate terminal
+cd "${NARSIL_PATH}/frontend" && npm install && npm run dev
+```
+See [MCP - Narsil.md](./MCP/MCP%20-%20Narsil.md) for detailed visualization setup.
+
 ❌ STOP if validation fails - ensure Code Mode is installed and Narsil is configured in `.utcp_config.json`
 
 ---

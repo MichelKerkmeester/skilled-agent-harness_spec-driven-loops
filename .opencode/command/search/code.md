@@ -139,7 +139,7 @@ code_mode_call_tool_chain({
 code_mode_call_tool_chain({
   code: `
     const deadCode = await narsil.narsil_find_dead_code({ path: "<path>" });
-    const complexity = await narsil.narsil_analyze_complexity({ path: "<path>" });
+    const complexity = await narsil.narsil_get_complexity({ path: "<path>" });
     return { deadCode, complexity };
   `
 })
@@ -212,7 +212,7 @@ code_mode_call_tool_chain({
 ├─────────────────────────────────────────────────────────────────┤
 │ Results: N matches                                              │
 │                                                                 │
-│ [1] path/to/file.js:42                                          │
+│ [1] path/to/file.js:42                                           │
 │     function handleAuth() { ... }                               │
 │     Score: 0.92                                                 │
 │                                                                 │
@@ -222,7 +222,7 @@ code_mode_call_tool_chain({
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-**Q&A:** Use `narsil.narsil_semantic_search()` via Code Mode, then Read tool for file content.
+**Q&A:** Use `narsil.narsil_neural_search()` via Code Mode, then Read tool for file content.
 
 ---
 

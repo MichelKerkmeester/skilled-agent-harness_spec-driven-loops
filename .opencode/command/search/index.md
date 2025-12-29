@@ -309,10 +309,14 @@ RUST_MIN_STACK=8388608 narsil-mcp --repos /path/to/repo
 For pre-warming indexes or large codebases:
 
 ```bash
-narsil-mcp --repos . --index-path .narsil-index --persist --reindex --http
+# Terminal 1: Start backend with HTTP server
+narsil-mcp --repos . --index-path .narsil-index --persist --reindex --http --http-port 3000
+
+# Terminal 2: Start frontend (separate React app)
+cd "${NARSIL_PATH}/frontend" && npm install && npm run dev
 ```
 
-This starts an HTTP server with visualization UI at http://localhost:3000.
+The backend runs on port 3000, frontend on port 5173. Both must be running for visualization.
 Index saves automatically after --reindex completes.
 
 ### Configuration Reference
@@ -327,7 +331,7 @@ Narsil is configured in `.utcp_config.json` with these flags:
 - `--neural-backend api` - Voyage AI embeddings
 - `--neural-model voyage-code-2` - Code-specialized model (1536-dim)
 
-### Supported Languages (16)
+### Supported Languages (15)
 Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, PHP, Swift, Verilog/SystemVerilog
 
 ---

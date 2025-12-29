@@ -384,6 +384,22 @@ Narsil supports persisting the code index to disk for faster startup:
 
 **Manual save**: Use `narsil.narsil_save_index({})` via Code Mode to trigger index save.
 
+### HTTP Server & Visualization
+
+Narsil includes an HTTP server with React frontend for interactive graph visualization:
+
+```bash
+# Backend (port 3000)
+narsil-mcp --repos . --http --http-port 3000
+
+# Frontend (port 5173) - in separate terminal
+cd "${NARSIL_PATH}/frontend" && npm install && npm run dev
+```
+
+**Graph views**: `import` (best for JS), `call`, `symbol`, `hybrid`, `flow`
+
+**Performance**: Use Limit slider in UI, index specific dirs with `-r src -r lib`, add `**/node_modules` to `.gitignore`.
+
 ### Related Skills
 
 | Skill               | Integration                                                       |

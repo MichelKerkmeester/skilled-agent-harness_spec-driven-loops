@@ -14,12 +14,13 @@ A comprehensive guide to installing, configuring, and using the Narsil MCP serve
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
 4. [⚙️ CONFIGURATION](#4-configuration)
-5. [✅ VERIFICATION](#5--verification)
-6. [🚀 USAGE](#6--usage)
-7. [🎯 FEATURES](#7--features)
-8. [💡 EXAMPLES](#8--examples)
-9. [🔧 TROUBLESHOOTING](#9--troubleshooting)
-10. [📚 RESOURCES](#10--resources)
+5. [🌐 HTTP SERVER & VISUALIZATION](#5--http-server--visualization)
+6. [✅ VERIFICATION](#6--verification)
+7. [🚀 USAGE](#7--usage)
+8. [🎯 FEATURES](#8--features)
+9. [💡 EXAMPLES](#9--examples)
+10. [🔧 TROUBLESHOOTING](#10--troubleshooting)
+11. [📚 RESOURCES](#11--resources)
 
 ---
 
@@ -439,8 +440,6 @@ Manually trigger index save via Code Mode:
 narsil.narsil_save_index({})
 ```
 
----
-
 ### Neural Semantic Search Configuration (Optional)
 
 To enable neural semantic search capabilities:
@@ -509,7 +508,94 @@ grep -q "narsil-mcp" .utcp_config.json && python3 -m json.tool < .utcp_config.js
 
 ---
 
-## 5. ✅ VERIFICATION
+## 5. 🌐 HTTP SERVER & VISUALIZATION
+
+Narsil includes an HTTP server with a React-based visualization frontend for exploring code graphs interactively. This is optional but useful for understanding code relationships visually.
+
+### Starting the HTTP Server
+
+```bash
+# Start Narsil with HTTP server enabled
+narsil-mcp \
+  --repos . \
+  --index-path .narsil-index \
+  --persist \
+  --http \
+  --http-port 3000
+```
+
+The HTTP server provides:
+- `/health` endpoint for health checks
+- API endpoints for graph data (used by frontend)
+
+### Starting the Frontend
+
+The visualization frontend is a **separate React application** located in the `frontend/` directory of the Narsil repository:
+
+```bash
+# Navigate to Narsil frontend directory
+cd "${NARSIL_PATH}/frontend"
+
+# Install dependencies (first time only)
+npm install
+
+# Start the development server
+npm run dev
+# Frontend runs on http://localhost:5173
+```
+
+**Important**: The backend (port 3000) and frontend (port 5173) must both be running for visualization to work.
+
+### Graph Views
+
+The visualization supports multiple graph types:
+
+| View       | Purpose                                    | Best For                    |
+| ---------- | ------------------------------------------ | --------------------------- |
+| `import`   | Module import/export relationships         | JavaScript/TypeScript       |
+| `call`     | Function call relationships                | Rust, Python (limited JS)   |
+| `symbol`   | Symbol definitions and references          | All languages               |
+| `hybrid`   | Combined import + call graph               | Comprehensive analysis      |
+| `flow`     | Data flow visualization                    | Security analysis           |
+
+**Note**: For JavaScript projects, the `import` view is most useful. The `call` view works better for statically-typed languages like Rust and Python.
+
+### Performance Tips for Large Codebases
+
+1. **Use the Limit slider** in the UI to reduce displayed nodes (prevents browser crashes)
+2. **Index specific directories** instead of entire project:
+   ```bash
+   narsil-mcp -r src -r .opencode --http --http-port 3000
+   ```
+3. **Exclude node_modules** by adding to `.gitignore` (Narsil respects `.gitignore`):
+   ```
+   **/node_modules
+   ```
+4. **Multiple repositories**: Use multiple `-r` flags:
+   ```bash
+   narsil-mcp -r src -r lib -r .opencode --http
+   ```
+
+### Validation: `http_visualization_check`
+
+**Checklist:**
+- [ ] Backend running on port 3000 (`curl http://localhost:3000/health`)
+- [ ] Frontend running on port 5173
+- [ ] Graph visualization loads in browser
+- [ ] Can switch between graph views
+
+**Quick Verification:**
+```bash
+# Check backend health
+curl http://localhost:3000/health && echo "Backend: PASS" || echo "Backend: FAIL"
+
+# Check frontend (should see Vite dev server output)
+curl -s http://localhost:5173 | head -1 && echo "Frontend: PASS" || echo "Frontend: FAIL"
+```
+
+---
+
+## 6. ✅ VERIFICATION
 
 Verify Narsil is accessible via Code Mode.
 
@@ -590,7 +676,7 @@ Ask your assistant:
 
 ---
 
-## 6. 🚀 USAGE
+## 7. 🚀 USAGE
 
 ### Daily Workflow
 
@@ -754,7 +840,7 @@ call_tool_chain({
 
 ---
 
-## 7. 🎯 FEATURES
+## 8. 🎯 FEATURES
 
 Narsil provides 76 tools organized into categories. This section covers the **39 HIGH priority tools** you'll use most often.
 
@@ -956,7 +1042,7 @@ call_tool_chain({
 
 ---
 
-## 8. 💡 EXAMPLES
+## 9. 💡 EXAMPLES
 
 ### Example 1: Security Audit
 
@@ -1173,7 +1259,7 @@ call_tool_chain({
 
 ---
 
-## 9. 🔧 TROUBLESHOOTING
+## 10. 🔧 TROUBLESHOOTING
 
 ### Common Errors
 
@@ -1275,7 +1361,7 @@ tool_info({ tool_name: "narsil.narsil_scan_security" });
 
 ---
 
-## 10. 📚 RESOURCES
+## 11. 📚 RESOURCES
 
 ### File Locations
 
