@@ -230,31 +230,35 @@ workflow:
       - label: "C) Change path"
         description: "Use a different output location"
 
-  step_1b_leann_discovery:
+  step_1b_narsil_discovery:
     purpose: Search for similar existing skills before creating new one (MANDATORY)
     gate_type: SOFT_BLOCK
     enforcement: "Warn if similar skill exists, allow user override"
     activities:
-    - name: "Check LEANN index exists"
-      command: "leann_list()"
-      expected: "Index containing skills exists (e.g., 'anobel' or project-specific index)"
-      fallback: "If no index, proceed with warning - recommend building index later"
+    - name: "Check Narsil index status"
+      tool: narsil.narsil_get_index_status
+      invocation: "Code Mode - via call_tool_chain()"
+      expected: "Narsil index available for semantic search"
+      fallback: "If no index, proceed with warning - recommend indexing later"
     - name: "Search for similar skills by name"
-      tool: leann_search
-      invocation: "NATIVE MCP - call directly, NOT through Code Mode"
+      tool: narsil.narsil_neural_search
+      invocation: "Code Mode - via call_tool_chain()"
       query_template: "{skill_name} implementation workflow skill"
       parameters:
-        index_name: "anobel" # Adjust to project-specific index
         top_k: 5
-        complexity: 32
     - name: "Search for similar skills by purpose"
-      tool: leann_search
-      invocation: "NATIVE MCP - call directly, NOT through Code Mode"
+      tool: narsil.narsil_neural_search
+      invocation: "Code Mode - via call_tool_chain()"
       query_template: "{skill_description} capabilities patterns"
       parameters:
-        index_name: "anobel"
         top_k: 5
-        complexity: 32
+    - name: "Find existing skill symbols"
+      tool: narsil.narsil_find_symbols
+      invocation: "Code Mode - via call_tool_chain()"
+      query_template: "Search for skill-related symbols in .opencode/skill/"
+      parameters:
+        kind: "all"
+        pattern: "{skill_name}"
     - name: "Analyze search results"
       tasks:
       - Check if any results have similarity > 0.7
@@ -277,7 +281,7 @@ workflow:
         description: "Load and review the similar skill before deciding"
       - label: "C) Abort"
         description: "Cancel skill creation"
-    skip_condition: "No LEANN index available OR user explicitly skips discovery"
+    skip_condition: "No Narsil index available OR user explicitly skips discovery"
 
   step_2_spec_folder_setup:
     purpose: Create documentation folder for tracking (if user chose B or C in Phase 2)

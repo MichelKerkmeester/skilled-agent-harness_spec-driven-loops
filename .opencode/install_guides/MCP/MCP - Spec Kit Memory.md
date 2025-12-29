@@ -164,7 +164,7 @@ User Request
                               │ stdio
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    context-server.js                          │
+│                    context-server.js                        │
 │  ┌─────────────────────────────────────────────────────┐    │
 │  │ MCP Protocol Handler (@modelcontextprotocol/sdk)    │    │
 │  │ - ListTools / CallTool handlers                     │    │
@@ -691,14 +691,14 @@ For core project rules that should ALWAYS surface, use constitutional tier (see 
 
 ### Tool Selection Guide
 
-| Scenario               | Tool                                          | Why                      |
-| ---------------------- | --------------------------------------------- | ------------------------ |
-| Quick keyword lookup   | `memory_match_triggers`                       | <50ms, no embeddings     |
-| Semantic understanding | `memory_search`                               | Vector similarity        |
-| Known spec folder      | `memory_search` with `specFolder`             | Filtered search          |
-| Need full content      | `memory_search` with `includeContent: true`   | Returns content directly |
-| Multi-concept search   | `memory_search` with `concepts`               | AND search               |
-| Read specific file     | `Read(filePath)` from search results          | Direct file access       |
+| Scenario               | Tool                                        | Why                      |
+| ---------------------- | ------------------------------------------- | ------------------------ |
+| Quick keyword lookup   | `memory_match_triggers`                     | <50ms, no embeddings     |
+| Semantic understanding | `memory_search`                             | Vector similarity        |
+| Known spec folder      | `memory_search` with `specFolder`           | Filtered search          |
+| Need full content      | `memory_search` with `includeContent: true` | Returns content directly |
+| Multi-concept search   | `memory_search` with `concepts`             | AND search               |
+| Read specific file     | `Read(filePath)` from search results        | Direct file access       |
 
 ### Memory Commands Reference
 
@@ -1561,11 +1561,11 @@ Slow operations are logged automatically:
 
 **Core Search Tools:**
 
-| Tool                    | Purpose                            | Speed  | Use When                           |
-| ----------------------- | ---------------------------------- | ------ | ---------------------------------- |
-| `memory_search`         | Semantic vector search             | ~500ms | Need meaning-based retrieval       |
+| Tool                               | Purpose                  | Speed  | Use When                           |
+| ---------------------------------- | ------------------------ | ------ | ---------------------------------- |
+| `memory_search`                    | Semantic vector search   | ~500ms | Need meaning-based retrieval       |
 | `memory_search` + `includeContent` | Search with full content | ~500ms | Need content without separate read |
-| `memory_match_triggers` | Fast phrase matching               | <50ms  | Quick keyword lookup first         |
+| `memory_match_triggers`            | Fast phrase matching     | <50ms  | Quick keyword lookup first         |
 
 **Memory Management Tools:**
 

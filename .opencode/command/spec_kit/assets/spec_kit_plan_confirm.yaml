@@ -507,8 +507,8 @@ workflow:
 
     # ── CODEBASE EXPLORATION ────────────────────────────────────────
     # Tool selection delegated to AGENTS.md Section 6 - no duplication here
-    # - Semantic search (LEANN): "how does X work", intent-based discovery
-    # - Structural search (Narsil via Code Mode): list functions, classes, outline
+    # - Semantic search (Narsil neural): "how does X work", intent-based discovery
+    # - Structural search (Narsil): list functions, classes, symbols, call graphs
     # - Lexical search (Grep): exact text patterns
 
     # INLINE 4-AGENT PARALLEL EXPLORATION

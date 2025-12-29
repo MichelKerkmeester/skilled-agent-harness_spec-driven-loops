@@ -1,53 +1,49 @@
 ---
-description: LEANN index sync & freshness manager - check staleness, update indexes, maintain semantic code search
-argument-hint: "[subcommand] [name] [--docs <path>] [--force]"
-allowed-tools: Bash, leann_list, leann_remove
+name: index
+description: Narsil index management - status, reindex, repos, validate, health
+argument-hint: "[status|reindex|repos|validate|health] [--path:<dir>]"
+allowed-tools: Bash, code_mode_call_tool_chain
 ---
 
-# 🚨 GATE: DESTRUCTIVE OPERATION CONFIRMATION
-
-**Applies ONLY to: "remove" or "--force" operations**
+# 🔍 PRE-INDEX VALIDATION (LIGHT)
 
 ```
-IF "remove" or "--force" in $ARGUMENTS:
-├─ Parse index name (if missing → list and ask)
-├─ Verify index exists via leann_list({})
-├─ Display confirmation with size/details
-├─ WAIT for [y]es or [n]o
-└─ Only proceed after explicit confirmation
-
-⛔ HARD STOP: Never auto-proceed with destructive operations
+EXECUTE QUICK VALIDATION:
+├─ SEARCH REDIRECT? (query-like input: "how does", "find", "what is")
+│   └─ YES → Forward to /search:code
+├─ CLASSIFY OPERATION: STATUS | REINDEX | REPOS | VALIDATE | HEALTH
+└─ PROCEED
 ```
 
 ---
 
-# LEANN Index Sync Manager
+# Narsil Index Manager
 
-Keep semantic code search indexes fresh. LEANN indexes are snapshots — they don't auto-update when files change.
+Manage and monitor Narsil's code index for the current workspace.
 
 ```yaml
-role: Index Freshness Manager
-purpose: Detect stale indexes and facilitate updates
-action: Check freshness by default, update when stale
+role: Index Management Specialist
+purpose: Unified interface for Narsil index operations
+action: Route to appropriate index management tool
 ```
 
 ---
 
 ## 1. 📝 CONTRACT
 
-**Inputs:** `$ARGUMENTS` — Subcommand with optional name and options
-**Outputs:** `STATUS=<OK|FAIL>` with `ACTION=<subcommand>` and freshness metrics
+**Inputs:** `$ARGUMENTS` — Operation keyword or path
+**Outputs:** `STATUS=<OK|FAIL>` with operation results
 
-| Pattern                      | Action          | Example                                     |
-| ---------------------------- | --------------- | ------------------------------------------- |
-| (empty)                      | **Sync Status** | `/search:index`                             |
-| `update` or `sync`           | Smart Update    | `/search:index update`                      |
-| `update --force`             | Force Rebuild   | `/search:index update --force`              |
-| `list` or `ls`               | List All        | `/search:index list`                        |
-| `build <name> --docs <path>` | Build New       | `/search:index build myproject --docs src/` |
-| `remove <name>`              | Remove Index    | `/search:index remove oldindex`             |
-| `status` or `health`         | Tool Health     | `/search:index status`                      |
-| `info <name>`                | Index Details   | `/search:index info anobel`                 |
+| Pattern           | Operation | Example                    |
+| ----------------- | --------- | -------------------------- |
+| (empty)           | Dashboard | `/search:index`            |
+| `status`          | Status    | `/search:index status`     |
+| `reindex`         | Reindex   | `/search:index reindex`    |
+| `repos`           | List      | `/search:index repos`      |
+| `validate <path>` | Validate  | `/search:index validate .` |
+| `health`          | Health    | `/search:index health`     |
+
+**Code Search:** Use `/search:code` for semantic, structural, security, analysis.
 
 ---
 
@@ -56,325 +52,288 @@ action: Check freshness by default, update when stale
 ```
 $ARGUMENTS
     │
-    ├─► Empty → SYNC STATUS (Section 4)
+    ├─► SEARCH KEYWORDS? (query-like: "how does", "find", "what is")
+    │   └─► Forward to /search:code
     │
-    ├─► SUBCOMMAND DETECTION
-    │   ├─► "update" | "sync"   → UPDATE (Section 5.1)
-    │   ├─► "list" | "ls"       → LIST (Section 5.2)
-    │   ├─► "build" <name>      → BUILD (Section 5.3)
-    │   ├─► "remove" | "delete" → REMOVE (Section 5.4)
-    │   ├─► "status" | "health" → STATUS (Section 5.5)
-    │   └─► "info" <name>       → INFO (Section 5.6)
+    ├─► Empty → DASHBOARD (Section 4)
     │
-    └─► UNKNOWN → Show help with valid subcommands
+    └─► OPERATION KEYWORDS
+        ├─► "status" | "stats" → STATUS MODE
+        ├─► "reindex" | "rebuild" | "refresh" → REINDEX MODE
+        ├─► "repos" | "list" | "repositories" → REPOS MODE
+        ├─► "validate" | "check" → VALIDATE MODE
+        └─► "health" | "diag" | "diagnostic" → HEALTH MODE
 ```
 
 ---
 
-## 3. 🔧 TOOL SIGNATURES
+## 3. 🎯 OPERATION DECISION DISPLAY
 
-### Shell Alias (Required)
+**Before executing, show operation decision:**
 
-```bash
-# Add to ~/.zshrc
-alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ INDEX OPERATION                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│ Operation: <OPERATION>                                          │
+│ Target: <path_or_all>                                           │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-**Usage:** `leann-build <name> --docs src/`
-
-> **IMPORTANT**: LEANN is for **CODE search only**. Always index `src/` folder. For document/spec search, use **Spec Kit Memory MCP**.
-
-### Tool Reference
-
-```javascript
-// LEANN Native MCP
-leann_list({})
-leann_remove({ index_name: "<name>" })
-
-// LEANN CLI (via Bash)
-Bash("leann build <name> --docs <path> --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
-Bash("leann build <name> --docs <path> --exclude <patterns> --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
-
-// Recommended build (Apple Silicon with Qwen3)
-Bash("leann build <name> --docs src/ --file-types '.js,.css,.html' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
-
-// Progressive scope build (large projects)
-Bash("leann build <name> --docs src/ --file-types '.js,.ts,.css,.html,.md' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
-
-// Cross-Platform Stat Functions (define once, reuse)
-// NOTE: Define these helper functions before using freshness detection commands
-get_file_mtime() {
-  local file="$1"
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    stat -f '%m' "$file"
-  else
-    stat -c '%Y' "$file"
-  fi
-}
-
-get_file_mtime_human() {
-  local file="$1"
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    stat -f '%Sm' -t '%b %d, %Y at %I:%M %p' "$file"
-  else
-    date -d "@$(stat -c '%Y' "$file")" '+%b %d, %Y at %I:%M %p'
-  fi
-}
-
-// Freshness Detection (using cross-platform functions)
-Bash("get_file_mtime .leann/indexes/<name>/documents.index 2>/dev/null || echo 'missing'")
-Bash("find ./src -type f \\( -name '*.js' -o -name '*.ts' -o -name '*.css' -o -name '*.html' \\) -newer .leann/indexes/<name>/documents.index 2>/dev/null | wc -l")
-Bash("find ./src -type f \\( -name '*.js' -o -name '*.ts' -o -name '*.css' -o -name '*.html' \\) -newer .leann/indexes/<name>/documents.index 2>/dev/null | head -5")
-Bash("get_file_mtime_human .leann/indexes/<name>/documents.index 2>/dev/null")
-```
+| Operation | Type                       |
+| --------- | -------------------------- |
+| STATUS    | Index statistics and state |
+| REINDEX   | Force full re-indexing     |
+| REPOS     | List indexed repositories  |
+| VALIDATE  | Check repository validity  |
+| HEALTH    | Diagnostic health check    |
 
 ---
 
-## 4. 🔄 SYNC STATUS MODE (Default)
+## 4. 📊 DASHBOARD MODE (No Arguments)
 
 **Trigger:** `/search:index` with no arguments
 
-### Workflow
-
 ```javascript
-// 1. Get index list
-leann_list({})
-
-// 2. Get freshness for primary index (uses cross-platform functions from Section 3)
-Bash("get_file_mtime_human .leann/indexes/anobel/documents.index")
-Bash("find ./src -type f ... -newer .leann/indexes/anobel/documents.index | wc -l")
-Bash("find ./src -type f ... -newer .leann/indexes/anobel/documents.index | head -5")
+code_mode_call_tool_chain({
+  code: `
+    const status = await narsil.narsil_get_index_status({});
+    return status;
+  `
+})
 ```
 
-### Freshness Algorithm
-
-| Changed Files | Status           | Recommendation              |
-| ------------- | ---------------- | --------------------------- |
-| Index missing | ❌ MISSING        | Build index first           |
-| 0             | ✅ FRESH          | No update needed            |
-| 1-10          | ⚠️ SLIGHTLY STALE | Consider updating           |
-| 11-50         | 🔄 STALE          | Update recommended          |
-| >50           | 🔴 OUTDATED       | Update strongly recommended |
-
-### Output Template
-
 ```
-╭─────────────────────────────────────────────────────────────╮
-│  LEANN INDEX SYNC STATUS                                    │
-├─────────────────────────────────────────────────────────────┤
-│  📊 <name>                                                  │
-│     ├─ Status: <emoji> <STATUS>                             │
-│     ├─ Last built: <date>                                   │
-│     ├─ Files changed since: <N>                             │
-│     └─ Size: <size>                                         │
-│                                                             │
-│  <Recent changes if stale>                                  │
-├─────────────────────────────────────────────────────────────┤
-│  <RECOMMENDATION>                                           │
-│  [u]pdate | [l]ist | [i]nfo | [s]tatus | [q]uit             │
-╰─────────────────────────────────────────────────────────────╯
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  INDEX MANAGEMENT DASHBOARD                                                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  INDEX STATUS                                                               │
+│                                                                             │
+│  Status:     <indexed|indexing|error>                                       │
+│  Files:      <N> indexed                                                    │
+│  Languages:  <N> detected                                                   │
+│  Neural:     <enabled|disabled>                                             │
+│  Last:       <timestamp>                                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  OPERATIONS                                                                 │
+│                                                                             │
+│  [s] status           Show detailed index statistics                        │
+│  [r] reindex          Force full re-indexing                                │
+│  [l] repos            List all indexed repositories                         │
+│  [v] validate <path>  Check if path is valid repository                     │
+│  [h] health           Run diagnostic health check                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  SEARCH: /search:code                                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
-
-**Variations:**
-- FRESH: Hide "Recent changes", show "INDEX UP TO DATE"
-- MISSING: Show "NO INDEX FOUND", offer [b]uild
 
 ---
 
-## 5. ⚡ WORKFLOWS
+## 5. 📈 STATUS MODE
 
-### 5.1 UPDATE INDEX
+**Trigger:** `status`, `stats`
 
-**Trigger:** `/search:index update` or `sync`
-
+**Workflow:**
 ```
-1. Check freshness (count changed files)
-2. IF fresh AND NOT --force:
-   → Display "Already fresh. Use --force to rebuild anyway."
-   → EXIT STATUS=OK ACTION=update RESULT=skipped
-3. ELSE:
-   → Check project size (find . -type f | wc -l)
-   → IF >2000 files AND rebuilding:
-      ├─► Display memory warning
-      ├─► Suggest scope reduction: "Consider --docs src/ for faster rebuild"
-      └─► Recommend MLX + Qwen3 if Apple Silicon
-   → leann_remove({ index_name })
-   → Bash("leann build <name> --docs <scope> --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
-   → Display result with document count delta
-```
-
-**Memory Warning (Large Projects):**
-```
-⚠️ MEMORY NOTICE: Rebuilding large index (<N> files)
-   Tip: Use --docs src/ to reduce scope
-   Tip: Qwen3 + MLX: 50% better quality, 4-bit quantized for memory efficiency
-   
-   Continue with full rebuild? [y] yes | [s] suggest scope | [c] cancel
-```
-
-**Output:** "Index updated in Xs" | "Index is now FRESH ✅"
-
-### 5.2 LIST INDEXES
-
-**Trigger:** `/search:index list` or `ls`
-
-```javascript
-leann_list({})
+1. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       const status = await narsil.narsil_get_index_status({});
+       return status;
+     `
+   })
+2. Display detailed statistics
 ```
 
 **Output:**
 ```
-| Name   | Size   | Status       |
-| ------ | ------ | ------------ |
-| anobel | 8.7 MB | ⚠️ Stale (23) |
-
-[u]pdate stale | [b]uild new | [r]emove | [q]uit
+INDEX STATUS
+────────────────────────────────────────────────────
+Status:      Indexed
+Files:       1,234 files
+Languages:   JavaScript (456), TypeScript (321), Python (89)
+Features:    Neural ✅  Git ✅  Call Graph ✅
+Last Index:  2024-01-15 14:32:00
+────────────────────────────────────────────────────
 ```
 
-### 5.3 BUILD INDEX
+---
 
-**Trigger:** `/search:index build <name> --docs <path>`
+## 6. 🔄 REINDEX MODE
 
-#### Smart Scope Suggestion (Pre-Build)
+**Trigger:** `reindex`, `rebuild`, `refresh`
 
-Before any build, run scope analysis to optimize indexing:
-
+**Workflow:**
 ```
-SCOPE SUGGESTION WORKFLOW:
-├─► Step 1: Detect project size
-│   └─ Bash("find . -type f -not -path './node_modules/*' -not -path './.git/*' | wc -l")
-│
-├─► Step 2: IF >2000 files → Suggest progressive scope
-│   ├─► Recommend: --docs src/ (or primary code directory)
-│   ├─► Recommend: --file-types ".js,.ts,.css,.html,.md"
-│   └─► Show estimated file reduction
-│
-├─► Step 3: Detect Apple Silicon
-│   └─ Bash("uname -m") → IF "arm64" → Add: --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
-│
-└─► Step 4: Present scope options to user
-    ├─ a) src/ only (recommended for large projects)
-    ├─ b) src/ with specific file types
-    └─ c) Full project (warn if >2000 files)
-```
-
-**Scope Options Display:**
-```
-┌───────────────────────────────────────────────────────────────────┐
-│  SMART SCOPE SUGGESTION                                           │
-├───────────────────────────────────────────────────────────────────┤
-│  Project size: <N> files detected                                  │
-│  Platform: <Apple Silicon | Intel/Other>                          │
-├───────────────────────────────────────────────────────────────────┤
-│  RECOMMENDED OPTIONS:                                             │
-│                                                                   │
-│  [a] src/ only          ~<N> files    (recommended)                │
-│  [b] src/ + file types  ~<N> files    .js,.ts,.css,.html,.md        │
-│  [c] Full project       <N> files     ⚠️ Large - may be slow       │
-│  [d] Custom scope       Enter path    --docs <your-path>          │
-├───────────────────────────────────────────────────────────────────┤
-│  MLX Mode: <✅ Enabled | ❌ Not available (Intel)>                 │
-│  Model: Qwen3-Embedding-0.6B-4bit-DWQ                             │
-│  Tip: Qwen3 is specifically trained on code (MTEB-Code 75.41)      │
-└───────────────────────────────────────────────────────────────────┘
-```
-
-#### Build Execution
-
-```
-1. Parse: <name> (required), --docs (default "."), --exclude (optional)
-2. Run Smart Scope Suggestion (above) if no --docs specified
-3. Validate: path exists, index doesn't exist (suggest update if it does)
-4. Build command:
-   Bash("leann build <name> --docs <scope> --file-types '<types>' --embedding-mode mlx --embedding-model 'mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'")
-5. Display: "Indexed N documents in Xs"
-```
-
-**Recommended Build Commands:**
-```bash
-# With alias (recommended)
-leann-build <name> --docs src/
-
-# With file type filter
-leann-build <name> --docs src/ --file-types ".js,.ts,.css,.html"
-
-# Full command (if alias not set)
-leann build <name> --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
-```
-
-### 5.4 REMOVE INDEX
-
-**Trigger:** `/search:index remove <name>` (requires Gate confirmation)
-
-```
-1. Validate name (list to select if missing)
-2. Confirm: "Remove '<name>'? Size: X. ⚠️ Permanent. [y/n]"
-3. After [y]: leann_remove({ index_name })
-4. Display: "✅ Index Removed. Space recovered: X"
-```
-
-### 5.5 STATUS (Tool Health)
-
-**Trigger:** `/search:index status` or `health`
-
-```javascript
-leann_list({})
+1. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       const result = await narsil.narsil_reindex({});
+       return result;
+     `
+   })
+2. Display reindex progress/result
 ```
 
 **Output:**
 ```
-📊 LEANN: ✅ Available (N indexes)
+REINDEX INITIATED
+────────────────────────────────────────────────────
+Status:      Indexing...
+Progress:    Processing files...
+────────────────────────────────────────────────────
 ```
-
-### 5.6 INDEX INFO
-
-**Trigger:** `/search:index info <name>`
-
-```javascript
-leann_list({})
-Bash("get_file_mtime_human .leann/indexes/<name>/documents.index")
-Bash("find ... -newer ... | wc -l")
-```
-
-**Output:** Name, Size, Location, Last Built, Freshness Status, Changed Files
 
 ---
 
-## 6. ⚠️ ERROR HANDLING
+## 7. 📂 REPOS MODE
 
-| Condition            | Action                              |
-| -------------------- | ----------------------------------- |
-| LEANN CLI not found  | Show installation instructions      |
-| Index not found      | Suggest build, show available       |
-| Index already exists | Suggest update instead              |
-| Path not found       | Show error with path validation     |
-| Build fails          | Show error, suggest troubleshooting |
-| Remove w/o confirm   | Block until y/n received            |
+**Trigger:** `repos`, `list`, `repositories`
+
+**Workflow:**
+```
+1. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       const repos = await narsil.narsil_list_repos({});
+       return repos;
+     `
+   })
+2. Display repository list
+```
+
+**Output:**
+```
+INDEXED REPOSITORIES
+────────────────────────────────────────────────────
+| #   | Path                    | Files | Status  |
+| --- | ----------------------- | ----- | ------- |
+| 1   | /path/to/repo           | 1,234 | Indexed |
+────────────────────────────────────────────────────
+```
 
 ---
 
-## 7. 📌 QUICK REFERENCE
+## 8. ✅ VALIDATE MODE
 
+**Trigger:** `validate <path>`, `check <path>`
+
+**Workflow:**
+```
+1. Parse: path from arguments
+2. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       const result = await narsil.narsil_validate_repo({ path: "<path>" });
+       return result;
+     `
+   })
+3. Display validation result
+```
+
+**Output:**
+```
+REPOSITORY VALIDATION: <path>
+────────────────────────────────────────────────────
+Valid:       ✅ Yes
+Type:        Git repository
+Languages:   JavaScript, TypeScript
+────────────────────────────────────────────────────
+```
+
+---
+
+## 9. 💚 HEALTH MODE
+
+**Trigger:** `health`, `diag`, `diagnostic`
+
+**Workflow:**
+```
+1. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       const status = await narsil.narsil_get_index_status({});
+       return { status, healthy: true };
+     `
+   })
+2. Display health diagnostics
+```
+
+**Output:**
+```
+INDEX HEALTH CHECK
+────────────────────────────────────────────────────
+Index:       ✅ Healthy
+Neural:      ✅ API Connected
+Watch:       ✅ Active
+Memory:      Normal
+────────────────────────────────────────────────────
+```
+
+---
+
+## 10. ⚠️ ERROR HANDLING
+
+| Condition       | Action                    |
+| --------------- | ------------------------- |
+| Index not found | Suggest `reindex`         |
+| API key missing | Show VOYAGE_API_KEY setup |
+| Path not found  | Show similar paths        |
+| MCP not running | Show startup instructions |
+
+---
+
+## 11. 🔧 TROUBLESHOOTING
+
+### Index Not Updating
+1. Check if `--watch` flag is enabled (default: yes)
+2. Verify file is not in .gitignore (Narsil respects gitignore)
+3. Force reindex: `/search:index reindex`
+
+### Neural Search Not Working
+1. Verify VOYAGE_API_KEY in `.utcp_config.json`
+2. Check API key format (starts with "pa-")
+3. Narsil falls back to BM25 if API unavailable
+
+### High Memory Usage
+For large repos (>50K files):
 ```bash
-# Check freshness (most common)
-/search:index
-
-# Smart update (only if stale)
-/search:index update
-
-# Force rebuild
-/search:index update --force
-
-# Build new index (src/ only)
-leann-build anobel --docs src/
-
-# Remove old index
-/search:index remove oldproject
+RUST_MIN_STACK=8388608 narsil-mcp --repos /path/to/repo
 ```
+
+### Configuration Reference
+Narsil is configured in `.utcp_config.json` with these flags:
+- `--repos .` - Index current workspace
+- `--preset full` - All 76 tools enabled
+- `--git` - Git integration (blame, history)
+- `--call-graph` - Function call analysis
+- `--persist` - Save index to disk
+- `--watch` - Auto-reindex on changes
+- `--neural` - Neural semantic search
+- `--neural-backend api` - Voyage AI embeddings
+- `--neural-model voyage-code-3` - Code-specialized model
+
+### Supported Languages (16)
+Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, PHP, Swift, Verilog/SystemVerilog
 
 ---
 
-## 8. 🔗 RELATED
+## 12. 📌 QUICK REFERENCE
 
-- `/search:code` - Semantic, structural, lexical code search
-- **mcp-leann skill** - Full LEANN documentation and advanced usage
+| Command                    | Result              |
+| -------------------------- | ------------------- |
+| `/search:index`            | Dashboard           |
+| `/search:index status`     | Detailed statistics |
+| `/search:index reindex`    | Force reindex       |
+| `/search:index repos`      | List repositories   |
+| `/search:index validate .` | Validate path       |
+| `/search:index health`     | Health check        |
+
+---
+
+## 13. 🔗 RELATED RESOURCES
+
+- `/search:code` - Unified code search (semantic + structural)
+- `mcp-narsil` skill - Full Narsil documentation
+- **Narsil GitHub**: https://github.com/postrv/narsil-mcp
+- **Configuration**: `.utcp_config.json` (narsil section)

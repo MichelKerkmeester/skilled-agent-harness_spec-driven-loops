@@ -63,7 +63,7 @@ Simple one-liner install? → Just document the command inline
 ### MCP Server Guides
 **Purpose**: Install and configure Model Context Protocol servers for AI assistants
 
-**Examples**: LEANN, spec-kit-memory, browser-debugger, Webflow MCP
+**Examples**: Narsil, spec-kit-memory, browser-debugger, Webflow MCP
 
 **Key Sections**:
 - AI-First prompt for assisted installation
@@ -74,7 +74,7 @@ Simple one-liner install? → Just document the command inline
 ### CLI Tool Guides
 **Purpose**: Install command-line tools that support AI workflows
 
-**Examples**: browser-debugger-cli (bdg), leann CLI, uv
+**Examples**: browser-debugger-cli (bdg), narsil-mcp, uv
 
 **Key Sections**:
 - Binary installation and PATH setup
@@ -354,10 +354,10 @@ Use 3-column format: Error → Cause → Fix
 - Format: `MCP - [Tool Name].md` or `CLI - [Tool Name].md`
 - Use title case for tool names
 - Examples:
-  - ✅ `MCP - LEANN.md`
+  - ✅ `MCP - Narsil.md`
   - ✅ `MCP - Spec Kit Memory.md`
   - ✅ `CLI - Browser Debugger.md`
-  - ❌ `leann-install.md` (wrong format)
+  - ❌ `narsil-install.md` (wrong format)
 
 ### Command Block Standards
 
@@ -372,14 +372,14 @@ package --version
 
 **Always include expected output**:
 ```bash
-leann --version
-# → leann 0.1.5
+narsil-mcp --version
+# → narsil 0.1.5
 ```
 
 **Comment complex commands**:
 ```bash
-# Build index with AST-aware chunking (recommended for code)
-leann build my-project --docs /path/to/project --backend hnsw
+# Start Narsil with recommended flags for code analysis
+narsil-mcp --repos /path/to/project --git --call-graph --persist --watch
 ```
 
 ### Writing Style
@@ -438,7 +438,7 @@ Integration:
 
 ## 10. 💡 PATTERNS FROM EXISTING GUIDES
 
-### LEANN Guide Analysis (940 lines)
+### Narsil Guide Analysis (1300+ lines)
 
 **What works well**:
 - AI-First prompt is comprehensive and specific
@@ -969,7 +969,7 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 - [core_standards.md](../references/core_standards.md) - Document formatting standards
 
 ### Examples
-- [MCP - LEANN.md](../../../install_guides/MCP/MCP%20-%20LEANN.md) - Excellent MCP server example (940 lines)
+- [MCP - Narsil.md](../../../install_guides/MCP/MCP%20-%20Narsil.md) - Excellent MCP server example (1300+ lines)
 - [MCP - Spec Kit Memory.md](../../../install_guides/MCP/MCP%20-%20Spec%20Kit%20Memory.md) - Plugin example
 
 ### Skill Reference

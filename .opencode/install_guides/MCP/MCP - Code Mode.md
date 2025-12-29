@@ -138,7 +138,7 @@ Usable?    ✓       ✓       ✓       ✓       ✓       ✓
                            │ Tool Calls
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  MCP Servers: Webflow, ClickUp, Figma, GitHub, Chrome, etc. │
+│  MCP Servers: Webflow, ClickUp, Figma, GitHub, Chrome, etc.  │
 │  (159 tools accessible via Code Mode)                       │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -685,22 +685,22 @@ All tool calls MUST follow this exact pattern with a **dot** after the manual na
 
 **Examples:**
 
-| Manual              | Pattern                                         | Example Call                                                  |
-| ------------------- | ----------------------------------------------- | ------------------------------------------------------------- |
-| `webflow`           | `webflow.webflow_{tool}`                        | `webflow.webflow_sites_list({})`                              |
-| `github`            | `github.github_{tool}`                          | `github.github_get_issue({...})`                              |
-| `clickup`           | `clickup.clickup_{tool}`                        | `clickup.clickup_create_task({...})`                          |
-| `figma`             | `figma.figma_{tool}`                            | `figma.figma_get_file({...})`                                 |
-| `chrome_devtools_1` | `chrome_devtools_1.chrome_devtools_1_{tool}`    | `chrome_devtools_1.chrome_devtools_1_navigate_page({...})`    |
+| Manual              | Pattern                                      | Example Call                                               |
+| ------------------- | -------------------------------------------- | ---------------------------------------------------------- |
+| `webflow`           | `webflow.webflow_{tool}`                     | `webflow.webflow_sites_list({})`                           |
+| `github`            | `github.github_{tool}`                       | `github.github_get_issue({...})`                           |
+| `clickup`           | `clickup.clickup_{tool}`                     | `clickup.clickup_create_task({...})`                       |
+| `figma`             | `figma.figma_{tool}`                         | `figma.figma_get_file({...})`                              |
+| `chrome_devtools_1` | `chrome_devtools_1.chrome_devtools_1_{tool}` | `chrome_devtools_1.chrome_devtools_1_navigate_page({...})` |
 
 ### Common Mistakes
 
-| Error                         | Wrong                          | Correct                         |
-| ----------------------------- | ------------------------------ | ------------------------------- |
-| **Missing second part**       | `webflow.sites_list()`         | `webflow.webflow_sites_list()`  |
-| **Dot instead of underscore** | `webflow.webflow.sites_list()` | `webflow.webflow_sites_list()`  |
-| **camelCase**                 | `webflow.webflow_sitesList()`  | `webflow.webflow_sites_list()`  |
-| **Wrong manual name**         | `wf.webflow_sites_list()`      | `webflow.webflow_sites_list()`  |
+| Error                         | Wrong                          | Correct                        |
+| ----------------------------- | ------------------------------ | ------------------------------ |
+| **Missing second part**       | `webflow.sites_list()`         | `webflow.webflow_sites_list()` |
+| **Dot instead of underscore** | `webflow.webflow.sites_list()` | `webflow.webflow_sites_list()` |
+| **camelCase**                 | `webflow.webflow_sitesList()`  | `webflow.webflow_sites_list()` |
+| **Wrong manual name**         | `wf.webflow_sites_list()`      | `webflow.webflow_sites_list()` |
 
 ### Why This Pattern?
 

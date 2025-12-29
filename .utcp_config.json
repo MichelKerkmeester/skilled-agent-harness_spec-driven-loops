@@ -114,16 +114,47 @@
         "mcpServers": {
           "narsil": {
             "transport": "stdio",
-            "command": "/path/to/narsil-mcp",
+            "command": "narsil-mcp",
             "args": [
-              "--repos",
-              "/path/to/repository",
+              "--repos", ".",
+              "--preset", "full",
               "--git",
               "--call-graph",
               "--persist",
-              "--watch"
+              "--watch",
+              "--neural",
+              "--neural-backend", "api",
+              "--neural-model", "voyage-code-3"
             ],
-            "env": {}
+            "env": {
+              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
+              "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+            },
+            "_note": "Full Narsil v1.1.4 with neural semantic search. Current config uses Voyage API (voyage-code-3).",
+            "_neural_options": {
+              "voyage_api": {
+                "backend": "--neural-backend api",
+                "models": ["voyage-code-2", "voyage-code-3"],
+                "env_var": "VOYAGE_API_KEY",
+                "get_key": "https://www.voyageai.com/",
+                "best_for": "Code-specific, best accuracy"
+              },
+              "openai_api": {
+                "backend": "--neural-backend api",
+                "models": ["text-embedding-3-small", "text-embedding-3-large"],
+                "env_var": "OPENAI_API_KEY",
+                "args_change": "--neural-model text-embedding-3-small",
+                "best_for": "General purpose, wide availability"
+              },
+              "onnx_local": {
+                "backend": "--neural-backend onnx",
+                "models": "Local ONNX models",
+                "env_var": "None required",
+                "args_change": "Replace '--neural-backend api' with '--neural-backend onnx'",
+                "best_for": "Offline, no API costs, privacy-first"
+              }
+            },
+            "_fallback": "If API unavailable, Narsil automatically falls back to BM25 search"
           }
         }
       }

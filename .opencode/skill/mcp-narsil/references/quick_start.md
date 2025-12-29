@@ -165,7 +165,7 @@ See [security_guide.md](./security_guide.md) for detailed workflow.
 1. get_project_structure → Overview
 2. find_symbols          → Key components
 3. get_call_graph        → Relationships
-4. LEANN search          → Semantic understanding
+4. neural_search         → Semantic understanding
 ```
 
 See [call_graph_guide.md](./call_graph_guide.md) for detailed workflow.

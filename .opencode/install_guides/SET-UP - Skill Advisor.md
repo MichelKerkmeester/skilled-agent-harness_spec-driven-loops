@@ -122,7 +122,6 @@ chmod +x .opencode/scripts/skill_advisor.py
 ├── skill/                   # Skills to match against
 │   ├── mcp-narsil/
 │   ├── mcp-code-mode/
-│   ├── mcp-leann/
 │   ├── system-spec-kit/
 │   ├── workflows-chrome-devtools/
 │   ├── workflows-code/
@@ -158,7 +157,7 @@ python .opencode/scripts/skill_advisor.py "how does authentication work"
 ```json
 [
   {
-    "skill": "mcp-leann",
+    "skill": "mcp-narsil",
     "confidence": 0.95,
     "reason": "Matched: !how, !authentication, !does, !work"
   }
@@ -170,7 +169,7 @@ python .opencode/scripts/skill_advisor.py "how does authentication work"
 Test that key phrases trigger their expected skills above 0.8 threshold:
 
 ```bash
-# Should return mcp-leann with confidence > 0.8
+# Should return mcp-narsil with confidence > 0.8
 python .opencode/scripts/skill_advisor.py "explain how the login system works"
 
 # Should return workflows-git with confidence > 0.8
@@ -297,20 +296,20 @@ def calculate_confidence(score, has_intent_boost):
 
 Intent boosters are high-confidence keywords that strongly indicate a specific skill. They are checked **before** stop word filtering, allowing question words to contribute.
 
-**Why this matters**: Words like "how", "what", "why", "does", "work" would normally be filtered as stop words, but they are critical signals for semantic search (mcp-leann).
+**Why this matters**: Words like "how", "what", "why", "does", "work" would normally be filtered as stop words, but they are critical signals for semantic search (mcp-narsil).
 
 Example boost values:
 
 | Keyword          | Target Skill              | Boost |
 | ---------------- | ------------------------- | ----- |
-| `explain`        | mcp-leann                 | +3.5  |
+| `explain`        | mcp-narsil                | +3.5  |
 | `figma`          | mcp-code-mode             | +2.5  |
 | `webflow`        | mcp-code-mode             | +2.5  |
 | `github`         | workflows-git             | +2.0  |
-| `authentication` | mcp-leann                 | +1.8  |
-| `understand`     | mcp-leann                 | +1.5  |
-| `why`            | mcp-leann                 | +1.5  |
-| `how`            | mcp-leann                 | +1.2  |
+| `authentication` | mcp-narsil                | +1.8  |
+| `understand`     | mcp-narsil                | +1.5  |
+| `why`            | mcp-narsil                | +1.5  |
+| `how`            | mcp-narsil                | +1.2  |
 | `worktree`       | workflows-git             | +1.2  |
 | `browser`        | workflows-chrome-devtools | +1.2  |
 
@@ -318,26 +317,32 @@ Example boost values:
 
 Some keywords are ambiguous and boost multiple skills:
 
-| Keyword   | Skills Boosted                                                    |
-| --------- | ----------------------------------------------------------------- |
-| `code`    | workflows-code (+0.2), mcp-narsil (+0.15), mcp-leann (+0.1) |
-| `context` | system-spec-kit (+0.3), mcp-narsil (+0.2)                     |
-| `search`  | mcp-leann (+0.2), mcp-narsil (+0.2)                         |
-| `api`     | mcp-code-mode (+0.3), mcp-leann (+0.2)                            |
-| `plan`    | system-spec-kit (+0.3), workflows-code (+0.2)                     |
+| Keyword   | Skills Boosted                                |
+| --------- | --------------------------------------------- |
+| `code`    | workflows-code (+0.2), mcp-narsil (+0.25)     |
+| `context` | system-spec-kit (+0.3), mcp-narsil (+0.2)     |
+| `search`  | mcp-narsil (+0.4)                             |
+| `api`     | mcp-code-mode (+0.3), mcp-narsil (+0.2)       |
+| `plan`    | system-spec-kit (+0.3), workflows-code (+0.2) |
 
 ---
 
 ## 5. 🎯 CURRENT SKILLS REFERENCE
 
-The Skill Advisor routes to these 9 skills based on trigger keywords:
+The Skill Advisor routes to these 8 skills based on trigger keywords:
 
 ### 5.1 mcp-narsil
 
-**Purpose**: Structural code queries, security scanning, and call graph analysis via Narsil MCP
+**Purpose**: Semantic + structural code queries, security scanning, and call graph analysis via Narsil MCP
 
 **Trigger Keywords** (Intent Boosters):
 ```
+# Semantic search (meaning-based)
+ask, auth, authentication, does, embeddings, explain, how, index,
+login, logout, meaning, password, purpose, query, rag, semantic,
+understand, user, vector, what, why, work, works
+
+# Structural analysis (AST-based)
 ast, callers, callees, call-graph, cfg, classes, cwe, definitions, 
 dfg, exports, functions, imports, list, methods, navigate, outline, 
 owasp, sbom, security, structure, symbols, taint, tree, treesitter, 
@@ -345,11 +350,12 @@ vulnerability
 ```
 
 **Example Queries**:
-- "list all functions in this file"
-- "show the class structure"
-- "what symbols are exported"
-- "scan for security vulnerabilities"
-- "show the call graph for this function"
+- "how does authentication work" (semantic)
+- "explain the login flow" (semantic)
+- "what does this function do" (semantic)
+- "list all functions in this file" (structural)
+- "show the class structure" (structural)
+- "scan for security vulnerabilities" (security)
 
 ---
 
@@ -370,25 +376,7 @@ site, sites, typescript, utcp, webflow
 
 ---
 
-### 5.3 mcp-leann
-
-**Purpose**: Semantic code search - finds code by meaning/intent
-
-**Trigger Keywords** (Intent Boosters):
-```
-ask, auth, authentication, does, embeddings, explain, how, index,
-leann, login, logout, password, query, rag, semantic, understand,
-vector, what, why, work, works
-```
-
-**Example Queries**:
-- "how does authentication work"
-- "explain the login flow"
-- "what does this function do"
-
----
-
-### 5.4 system-spec-kit
+### 5.3 system-spec-kit
 
 **Purpose**: Spec folder management, context preservation and semantic memory search
 
@@ -402,25 +390,11 @@ checkpoint, history, memory, recall, remember, restore, spec, template
 - "recall what we discussed about auth"
 - "restore the previous checkpoint"
 - "create a spec folder for this feature"
-
----
-
-### 5.5 system-spec-kit
-
-**Purpose**: Specification and planning workflow
-
-**Trigger Keywords** (Intent Boosters):
-```
-checklist, folder, spec, specification
-```
-
-**Example Queries**:
 - "create a spec for this feature"
-- "set up a new spec folder"
 
 ---
 
-### 5.6 workflows-chrome-devtools
+### 5.4 workflows-chrome-devtools
 
 **Purpose**: Browser debugging and Chrome DevTools integration
 
@@ -437,7 +411,7 @@ dom, inspect, network, screenshot
 
 ---
 
-### 5.7 workflows-code
+### 5.5 workflows-code
 
 **Purpose**: Implementation, debugging, and verification lifecycle
 
@@ -453,7 +427,7 @@ bug, implement, refactor, verification
 
 ---
 
-### 5.8 workflows-git
+### 5.6 workflows-git
 
 **Purpose**: Git operations, branching, and GitHub integration
 
@@ -470,7 +444,7 @@ pr, pull, push, rebase, repo, review, stash, worktree
 
 ---
 
-### 5.9 workflows-documentation
+### 5.7 workflows-documentation
 
 **Purpose**: Unified markdown and skill management - document quality enforcement, skill creation workflow, flowchart creation, and install guide creation
 
@@ -536,7 +510,7 @@ Modify the threshold in your AGENTS.md Gate 2:
 
 ## 7. 🧮 EXAMPLE CALCULATIONS
 
-### Example 1: High-Confidence Match (mcp-leann)
+### Example 1: High-Confidence Match (mcp-narsil)
 
 **Request**: `"how does authentication work"`
 
@@ -547,10 +521,10 @@ Tokens: ["how", "does", "authentication", "work"]
 
 **Step 2: Intent Boosters (before stop word filter)**
 ```
-"how" → mcp-leann +1.2
-"does" → mcp-leann +0.6
-"authentication" → mcp-leann +1.8
-"work" → mcp-leann +1.0
+"how" → mcp-narsil +1.2
+"does" → mcp-narsil +0.6
+"authentication" → mcp-narsil +1.8
+"work" → mcp-narsil +1.0
 ─────────────────────────────
 Total intent boost: 4.6
 ```
@@ -569,7 +543,7 @@ confidence = min(0.50 + 4.6 * 0.15, 0.95)
 confidence = min(1.19, 0.95) = 0.95
 ```
 
-**Result**: `mcp-leann` with **0.95 confidence** ✅ (> 0.8 threshold)
+**Result**: `mcp-narsil` with **0.95 confidence** ✅ (> 0.8 threshold)
 
 ---
 
@@ -586,7 +560,7 @@ Tokens: ["help", "me", "write", "documentation", "for", "the", "api"]
 ```
 "api" → MULTI_SKILL_BOOSTERS:
   - mcp-code-mode +0.3
-  - mcp-leann +0.2
+  - mcp-narsil +0.2
 ```
 
 **Step 3: Stop Word Filter**
@@ -739,7 +713,7 @@ Boost certain skills based on project type:
 
 **Backend Projects**:
 ```python
-"database": ("mcp-leann", 0.5),
+"database": ("mcp-narsil", 0.5),
 "endpoint": ("workflows-code", 0.5),
 "migration": ("workflows-code", 0.6),
 ```
@@ -753,17 +727,17 @@ Boost certain skills based on project type:
 Run these commands to verify each skill routes correctly:
 
 ```bash
-# mcp-narsil - should return > 0.8
+# mcp-narsil (structural) - should return > 0.8
 python .opencode/scripts/skill_advisor.py "list all functions in the file"
 python .opencode/scripts/skill_advisor.py "show the class structure"
+
+# mcp-narsil (semantic) - should return > 0.8
+python .opencode/scripts/skill_advisor.py "how does authentication work"
+python .opencode/scripts/skill_advisor.py "explain the login flow"
 
 # mcp-code-mode - should return > 0.8
 python .opencode/scripts/skill_advisor.py "get my Webflow sites"
 python .opencode/scripts/skill_advisor.py "fetch the Figma design"
-
-# mcp-leann - should return > 0.8
-python .opencode/scripts/skill_advisor.py "how does authentication work"
-python .opencode/scripts/skill_advisor.py "explain the login flow"
 
 # system-spec-kit - should return > 0.8
 python .opencode/scripts/skill_advisor.py "save this context to memory"
@@ -797,7 +771,7 @@ python .opencode/scripts/skill_advisor.py "hello world"
 
 SCRIPT=".opencode/scripts/skill_advisor.py"
 TESTS=(
-    "how does authentication work|mcp-leann"
+    "how does authentication work|mcp-narsil"
     "list all functions|mcp-narsil"
     "get webflow sites|mcp-code-mode"
     "save context to memory|system-spec-kit"
@@ -826,7 +800,7 @@ done
 ### Validation Checkpoint
 
 ```
-□ All 9 skills route correctly with known queries
+□ All 8 skills route correctly with known queries
 □ High-confidence keywords reach > 0.8 threshold
 □ Ambiguous queries return reasonable suggestions
 □ Empty/irrelevant queries return low confidence
@@ -850,7 +824,7 @@ python .opencode/scripts/skill_advisor.py "your query here"
 The output shows which patterns matched:
 ```json
 {
-  "skill": "mcp-leann",
+  "skill": "mcp-narsil",
   "confidence": 0.65,
   "reason": "Matched: !how, search(name)"
 }
@@ -885,7 +859,8 @@ grep "'your_word'" .opencode/scripts/skill_advisor.py | head -5
 Check:
 1. "fix" is in `MULTI_SKILL_BOOSTERS` → workflows-code +0.3
 2. "bug" is in `INTENT_BOOSTERS` → workflows-code +0.5
-3. Total: 0.8 boost → confidence = min(0.50 + 0.8 * 0.15, 0.95) = 0.62
+3. "login" is in `INTENT_BOOSTERS` → mcp-narsil +0.8 (may override)
+4. Total: depends on accumulated boosts per skill
 
 **Solution**: Add more boosters or rephrase query
 
@@ -960,7 +935,7 @@ ls -la .opencode/scripts/skill_advisor.py
 <summary><strong>Wrong skill recommended</strong></summary>
 
 **Symptoms:**
-- Script recommends `mcp-leann` when you wanted `workflows-code`
+- Script recommends `mcp-narsil` when you wanted `workflows-code`
 
 **Solution:**
 1. Check intent booster values for competing skills
@@ -1080,4 +1055,4 @@ cat .opencode/skill/your-skill/SKILL.md | head -20
 - [Master Installation Guide](./README.md)
 - [SET-UP - Skill Creation](./SET-UP%20-%20Skill%20Creation.md)
 - [MCP - Code Context](./MCP/MCP%20-%20Code%20Context.md)
-- [MCP - LEANN](./MCP/MCP%20-%20LEANN.md)
+- [MCP - Narsil](./MCP/MCP%20-%20Narsil.md)

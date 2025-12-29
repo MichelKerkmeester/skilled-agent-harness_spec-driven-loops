@@ -155,10 +155,10 @@ ls .opencode/agent/
 
 ### Agent Summary
 
-| Agent           | Purpose                         | Tools                                                        | Key Capability                        |
-| --------------- | ------------------------------- | ------------------------------------------------------------ | ------------------------------------- |
-| **orchestrate** | Task decomposition & delegation | `task` only                                                  | Parallel delegation (up to 20 agents) |
-| **write**       | Documentation creation          | read, write, edit, bash, grep, glob, webfetch, leann, memory | Template-first, DQI scoring           |
+| Agent           | Purpose                         | Tools                                                         | Key Capability                        |
+| --------------- | ------------------------------- | ------------------------------------------------------------- | ------------------------------------- |
+| **orchestrate** | Task decomposition & delegation | `task` only                                                   | Parallel delegation (up to 20 agents) |
+| **write**       | Documentation creation          | read, write, edit, bash, grep, glob, webfetch, narsil, memory | Template-first, DQI scoring           |
 
 ---
 
@@ -198,7 +198,7 @@ ls .opencode/agent/
 | Name        | `documentation-writer`                                       |
 | Mode        | primary                                                      |
 | Temperature | 0.1                                                          |
-| Tools       | read, write, edit, bash, grep, glob, webfetch, leann, memory |
+| Tools       | read, write, edit, bash, grep, glob, webfetch, narsil, memory |
 
 **Authority:**
 - Document creation (READMEs, skills, guides, references)
@@ -237,9 +237,8 @@ tools:                              # Required: Tool permissions
   grep: true
   glob: true
   webfetch: false
-  leann: true
+  narsil: true
   memory: true
-  narsil: false
   chrome_devtools: false
 permission:                         # Required: Action permissions
   edit: allow
@@ -262,19 +261,18 @@ permission:                         # Required: Action permissions
 
 ### Tool Permissions
 
-| Tool              | Purpose              | Typical Setting       |
-| ----------------- | -------------------- | --------------------- |
-| `read`            | Read files           | true                  |
-| `write`           | Create files         | true                  |
-| `edit`            | Modify files         | true                  |
-| `bash`            | Execute commands     | true (with caution)   |
-| `grep`            | Search content       | true                  |
-| `glob`            | Find files           | true                  |
-| `webfetch`        | Fetch URLs           | false (unless needed) |
-| `leann`           | Semantic code search | true                  |
-| `memory`          | Spec Kit Memory      | true                  |
-| `narsil`          | Code analysis        | false (unless needed) |
-| `chrome_devtools` | Browser debugging    | false (unless needed) |
+| Tool              | Purpose                              | Typical Setting       |
+| ----------------- | ------------------------------------ | --------------------- |
+| `read`            | Read files                           | true                  |
+| `write`           | Create files                         | true                  |
+| `edit`            | Modify files                         | true                  |
+| `bash`            | Execute commands                     | true (with caution)   |
+| `grep`            | Search content                       | true                  |
+| `glob`            | Find files                           | true                  |
+| `webfetch`        | Fetch URLs                           | false (unless needed) |
+| `narsil`          | Semantic + structural code analysis  | true                  |
+| `memory`          | Spec Kit Memory                      | true                  |
+| `chrome_devtools` | Browser debugging                    | false (unless needed) |
 
 ### Required Sections
 
@@ -339,9 +337,8 @@ tools:
   grep: true
   glob: true
   webfetch: false
-  leann: true
+  narsil: true
   memory: true
-  narsil: false
   chrome_devtools: false
 permission:
   edit: allow

@@ -38,7 +38,7 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 - ❌ Text searching (use Grep tool)
 - ❌ File discovery (use Glob tool)
 - ❌ Bash commands (use Bash tool)
-- ❌ Semantic code search (use `leann_leann_search()` - **NATIVE MCP**)
+- ✅ Semantic code search via Narsil (use `narsil.narsil_neural_search()` via Code Mode)
 - ✅ Structural code analysis via Narsil (use `narsil.narsil_find_symbols()`, `narsil.narsil_get_project_structure()` via Code Mode)
 - ❌ Conversation memory (use `spec_kit_memory_memory_search()` - **NATIVE MCP**)
 - ❌ Sequential Thinking (call `sequential_thinking_sequentialthinking()` directly - **NATIVE MCP**)
@@ -264,11 +264,12 @@ call_tool_chain({
 
 **1. Native MCP** (`opencode.json`) - Direct tools (call directly, NOT through Code Mode):
 - **Sequential Thinking**: `sequential_thinking_sequentialthinking()`
-- **LEANN**: `leann_leann_search()`, `leann_leann_list()`, `leann_leann_ask()`
-- **Narsil**: `narsil.narsil_find_symbols()`, `narsil.narsil_get_project_structure()` - Structural code analysis via Rust-powered AST (accessed through Code Mode)
 - **Spec Kit Memory**: `spec_kit_memory_memory_search()`, `spec_kit_memory_memory_save()`, etc.
 - **Code Mode server**: The Code Mode tool itself
 - **Note**: Some AI environments have built-in extended thinking capabilities that may supersede Sequential Thinking MCP.
+
+**Code Mode MCP tools** (accessed via `call_tool_chain()`):
+- **Narsil**: `narsil.narsil_find_symbols()`, `narsil.narsil_neural_search()`, `narsil.narsil_get_project_structure()` - Semantic + structural code analysis via Rust-powered AST
 
 **2. Code Mode MCP** (`.utcp_config.json`) - External tools accessed through Code Mode:
 - **MCP Config**: `.utcp_config.json` (project root)
@@ -469,23 +470,29 @@ call_tool_chain({
 
 ### Cross-Skill Collaboration
 
-**Pairs with mcp-leann**:
-- Use **mcp-leann** for semantic code search (NATIVE MCP - call directly)
+**Pairs with mcp-narsil**:
+- Use **mcp-narsil** for semantic + structural code search (via Code Mode)
 - Use **mcp-code-mode** for external tool integration (Webflow, Figma, ClickUp, etc.)
 - Example: Search codebase → Create ClickUp task → Update Notion docs
 
 **Workflow**:
 ```typescript
-// 1. Find relevant code using LEANN (NATIVE MCP - call directly)
-leann_leann_search({ index_name: "project", query: "authentication implementation" });  // Direct call, NOT through Code Mode
-
-// 2. Create task using Code Mode (for external tools)
+// All Code Mode - single execution for code search + task creation
 call_tool_chain({
   code: `
-    await clickup.clickup_create_task({
-      name: "Refactor authentication",
-      description: "Found in src/auth/..."
+    // 1. Find relevant code using Narsil semantic search
+    const searchResults = await narsil.narsil_neural_search({
+      query: "authentication implementation",
+      top_k: 5
     });
+
+    // 2. Create task based on search results
+    const task = await clickup.clickup_create_task({
+      name: "Refactor authentication",
+      description: \`Found in: \${searchResults.results.map(r => r.file).join(', ')}\`
+    });
+
+    return { searchResults, task };
   `
 });
 ```
@@ -599,7 +606,7 @@ See [references/tool_catalog.md](references/tool_catalog.md) for complete list.
 
 ### Related Skills
 
-- **[mcp-leann](../mcp-leann/SKILL.md)** - Semantic code search (**NATIVE MCP** - call `leann_leann_search()` directly, NOT through Code Mode)
+- **[mcp-narsil](../mcp-narsil/SKILL.md)** - Semantic + structural code search (via Code Mode - call `narsil.narsil_neural_search()`, `narsil.narsil_find_symbols()` through `call_tool_chain()`)
 
 ---
 

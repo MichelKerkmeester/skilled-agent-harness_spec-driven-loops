@@ -144,21 +144,6 @@
       ],
       "enabled": true
     },
-    "leann": {
-      "type": "local",
-      "command": [
-        "leann_mcp"
-      ],
-      "environment": {
-        "_NOTE_TOOLS": "Provides: leann_build, leann_search, leann_ask, leann_list, leann_remove",
-        "_NOTE_USAGE": "Semantic CODE search only (index src/ folder). 97% storage savings via graph-based recomputation.",
-        "_NOTE_EMBEDDING": "Uses MLX + Qwen3-Embedding-0.6B-4bit-DWQ (Apple Silicon). Shell alias: leann-build",
-        "_NOTE_LLM": "ask command uses Ollama qwen3:8b (requires 'ollama pull qwen3:8b')",
-        "_NOTE_INSTALL": "uv tool install leann-core --with leann --with mlx --with mlx-lm",
-        "_NOTE_ALIAS": "alias leann-build='leann build --embedding-mode mlx --embedding-model mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ'"
-      },
-      "enabled": true
-    },
     "spec_kit_memory": {
       "type": "local",
       "command": [

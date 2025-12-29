@@ -511,4 +511,4 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 - [workflows.md](./workflows.md) - Complex multi-tool workflow examples
 
 ### Related Skills
-- `mcp-leann` - Semantic code search
+- `mcp-narsil` - Semantic + structural code search (via Code Mode)

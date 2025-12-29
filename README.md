@@ -162,7 +162,7 @@ When you make a request, the system:
 │  SKILL MATCHING                     │
 │                                     │
 │  Agent scans <available_skills>     │
-│  Loads: workflows-code, spec-kit,   │
+│  Loads: workflows-code, spec-kit,    │
 │         memory, git, etc.           │
 └────────────────┬────────────────────┘
                  │
@@ -189,8 +189,8 @@ When you make a request, the system:
 ┌─────────────────────────────────────┐
 │  COMPLETION                         │
 │                                     │
-│  • Checklist verification (L2+)     │
-│  • Browser testing confirmed        │
+│  • Checklist verification (L2+)      │
+│  • Browser testing confirmed         │
 │  • Documentation complete           │
 └─────────────────────────────────────┘
 
@@ -255,8 +255,6 @@ specs/042-add-user-authentication/
 - **Debug Assistance**: AI detects frustration, auto-suggests sub-agent
 - **Quality Metrics**: Completeness scoring (0-100%)
 - **Folder Versioning**: 001/002/003 sub-folder pattern preserves history
-
----
 
 ### Three Documentation Levels
 
@@ -345,8 +343,6 @@ No cloud. No external APIs. Just intelligent context preservation that makes AI-
 - **Spec Kit Integration**: Deep (Gate 5 enforced, lives in spec folders)
 - **Proactive Surfacing**: <50ms trigger matching
 - **Recovery**: Checkpoints (undo button for your index)
-
----
 
 ### Deep Integration with Spec Kit
 

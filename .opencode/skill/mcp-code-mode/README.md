@@ -85,12 +85,12 @@ Research from [Apple](https://machinelearning.apple.com/research/codeact), [Clou
 
 ### Two MCP Configuration Systems
 
-**IMPORTANT**: Code Mode only accesses tools in `.utcp_config.json`. Native MCP tools like Sequential Thinking and LEANN are NOT accessed through Code Mode.
+**IMPORTANT**: Code Mode only accesses tools in `.utcp_config.json`. Native MCP tools like Sequential Thinking and Spec Kit Memory are NOT accessed through Code Mode.
 
 | System | Config File | Examples |
 |--------|-------------|----------|
-| **Native MCP** | `opencode.json` | Sequential Thinking, LEANN, Spec Kit Memory |
-| **Code Mode MCP** | `.utcp_config.json` | Webflow, Figma, ClickUp, Chrome DevTools |
+| **Native MCP** | `opencode.json` | Sequential Thinking, Spec Kit Memory |
+| **Code Mode MCP** | `.utcp_config.json` | Webflow, Figma, ClickUp, Chrome DevTools, Narsil |
 
 ### Basic Workflow
 
@@ -163,7 +163,7 @@ search_tools  call_tool_   list_tools  register_   deregister_
 - Text searching (use Grep tool)
 - File discovery (use Glob tool)
 - Bash commands (use Bash tool)
-- Native MCP tools (LEANN, Sequential Thinking, Spec Kit Memory)
+- Native MCP tools (Sequential Thinking, Spec Kit Memory)
 
 ---
 
@@ -672,27 +672,33 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 
 | Skill | Purpose | MCP Type |
 |-------|---------|----------|
-| **[mcp-leann](../mcp-leann/README.md)** | Semantic code search | Native MCP |
+| **[mcp-narsil](../mcp-narsil/README.md)** | Semantic + structural code search | Code Mode MCP |
 | **[system-spec-kit](../system-spec-kit/README.md)** | Context preservation | Native MCP |
 
 ### Cross-Skill Workflow
 
 ```typescript
-// 1. Find relevant code using LEANN (Native MCP - call directly)
-leann_search({ index_name: "my-project", query: "authentication" });
-
-// 2. Create task using Code Mode (for external tools)
+// All Code Mode - single execution for code search + task creation
 call_tool_chain({
   code: `
-    await clickup.clickup_create_task({
-      name: "Refactor authentication",
-      description: "Found in src/auth/..."
+    // 1. Find relevant code using Narsil semantic search
+    const searchResults = await narsil.narsil_neural_search({
+      query: "authentication",
+      top_k: 5
     });
+
+    // 2. Create task based on search results
+    const task = await clickup.clickup_create_task({
+      name: "Refactor authentication",
+      description: \`Found in: \${searchResults.results.map(r => r.file).join(', ')}\`
+    });
+
+    return { searchResults, task };
   `
 });
 
-// 3. Save context for future sessions (Native MCP)
-// Use semantic memory to preserve decisions
+// 3. Save context for future sessions (Native MCP - call directly)
+// Use spec_kit_memory_memory_save() to preserve decisions
 ```
 
 ---
@@ -732,4 +738,4 @@ Examples:
 - `clickup.clickup_create_task({})`
 - `figma.figma_get_file({})`
 
-**Remember**: Code Mode is for **external MCP tools only** (Webflow, Figma, ClickUp, etc.). Native MCP tools like LEANN and Sequential Thinking should be called directly, NOT through `call_tool_chain()`.
+**Remember**: Code Mode is for **external MCP tools** (Webflow, Figma, ClickUp, Narsil, etc.). Native MCP tools like Sequential Thinking and Spec Kit Memory should be called directly, NOT through `call_tool_chain()`.

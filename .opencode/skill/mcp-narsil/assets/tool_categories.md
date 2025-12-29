@@ -122,13 +122,13 @@ Quick reference for choosing the right Narsil tool by priority level.
 | Tool | Purpose | Notes |
 |------|---------|-------|
 | `search_code` | Keyword search | Exact matches only |
-| `semantic_search` | BM25 search | LEANN is better |
-| `hybrid_search` | Combined search | LEANN is better |
+| `semantic_search` | BM25 search | Keyword-based ranking |
+| `hybrid_search` | Combined search | BM25 + TF-IDF |
 | `search_chunks` | Chunk search | Structured blocks |
-| `find_similar_code` | TF-IDF similarity | LEANN is better |
-| `find_similar_to_symbol` | Symbol similarity | LEANN is better |
+| `find_similar_code` | TF-IDF similarity | Code clone detection |
+| `find_similar_to_symbol` | Symbol similarity | Find related symbols |
 
-> **Note**: For semantic/similarity search, prefer LEANN.
+> **Note**: For deep semantic understanding, use `neural_search`.
 
 ### Data Flow Analysis (4)
 
@@ -187,17 +187,7 @@ Quick reference for choosing the right Narsil tool by priority level.
 |------|--------|
 | `get_metrics` | Performance debugging only |
 
-### SKIP (9)
-
-#### Neural Semantic Search (3)
-
-| Tool | Reason |
-|------|--------|
-| `neural_search` | LEANN provides 97% storage savings |
-| `find_semantic_clones` | LEANN handles similarity better |
-| `get_neural_stats` | Not needed if skipping neural |
-
-> **Why Skip**: LEANN is purpose-built for semantic search with optimized vector embeddings.
+### SKIP (6)
 
 #### LSP Integration (3)
 
@@ -237,7 +227,6 @@ Quick reference for choosing the right Narsil tool by priority level.
 
 | Flag | Reason |
 |------|--------|
-| `--neural` | LEANN handles semantic search |
 | `--lsp` | IDE handles LSP |
 | `--remote` | Not needed for local dev |
 

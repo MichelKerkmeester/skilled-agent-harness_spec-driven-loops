@@ -36,7 +36,7 @@ My environment:
 - Platform: [macOS / Linux / Windows WSL]
 - LLM Provider: [Claude / GitHub Copilot / OpenAI / Gemini / Ollama]
 - Install Mode: [Full / Minimal / Missing only / Custom]
-- Components (if custom): [Code Mode, LEANN, Narsil (via Code Mode), Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
+- Components (if custom): [Code Mode, Narsil (via Code Mode), Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
 
 Start with Pre-Flight Check to detect what's already installed, then guide me through each phase.
 ```
@@ -59,7 +59,7 @@ printf "  │ %-23s │ %-29s │\n" "Python 3.10+" "$(python3 -V 2>&1 | grep -q
 printf "  │ %-23s │ %-29s │\n" "uv" "$(command -v uv >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
 printf "  │ %-23s │ %-29s │\n" "Ollama" "$(command -v ollama >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
 printf "  │ %-23s │ %-29s │\n" "nomic-embed-text" "$(ollama list 2>/dev/null | grep -q nomic && echo '✅ Pulled' || echo '❌ Not pulled')"
-printf "  │ %-23s │ %-29s │\n" "LEANN CLI" "$(command -v leann >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "Narsil (via Code Mode)" "$(grep -q 'narsil' .utcp_config.json 2>/dev/null && echo '✅ Configured' || echo '⚪ Optional')"
 printf "  │ %-23s │ %-29s │\n" "Chrome DevTools (bdg)" "$(command -v bdg >/dev/null && echo '✅ Installed' || echo '⚪ Optional')"
 echo "    ├─────────────────────────┼───────────────────────────────┤"
 printf "  │ %-23s │ %-29s │\n" "opencode.json" "$(test -f opencode.json && echo '✅ Exists' || echo '❌ Missing')"
@@ -105,7 +105,7 @@ Answer these questions to configure your installation:
 - **Gemini (Google)** → Requires `GEMINI_API_KEY`
 - **Ollama (Local)** → For embeddings; optionally for local inference
 
-> **Note:** Ollama with `nomic-embed-text` is required for Spec Kit Memory embeddings. LEANN uses MLX + Qwen3 embeddings (Apple Silicon only) and only needs Ollama for the optional `ask` command LLM.
+> **Note:** Ollama with `nomic-embed-text` is required for Spec Kit Memory embeddings.
 
 ---
 
@@ -192,7 +192,7 @@ git checkout -- script.sh
 
 **Notes:**
 - Node.js 22+ recommended for best performance
-- Python 3.12 recommended for LEANN and Sequential Thinking
+- Python 3.12 recommended for Sequential Thinking
 - Ollama 0.3+ required for nomic-embed-text model
 
 ### 3.2 Resource Requirements
@@ -200,7 +200,7 @@ git checkout -- script.sh
 | Bundle   | RAM  | Disk | Network  | Components                                |
 | -------- | ---- | ---- | -------- | ----------------------------------------- |
 | Minimal  | 4GB  | 2GB  | Optional | Code Mode + Spec Kit Memory               |
-| Standard | 8GB  | 5GB  | Required | + LEANN + Narsil + Sequential Thinking    |
+| Standard | 8GB  | 5GB  | Required | + Narsil + Sequential Thinking            |
 | Full     | 16GB | 10GB | Required | All + Ollama models + Chrome DevTools CLI |
 
 **Disk breakdown:**
@@ -208,7 +208,6 @@ git checkout -- script.sh
 - Ollama base: ~1GB
 - nomic-embed-text model: ~300MB
 - llama3.2 model (optional): ~4GB
-- LEANN indexes: varies by codebase (~100MB per 10K files)
 - Spec Kit Memory database: ~50MB typical
 
 ### Validation: `environment_check`
@@ -235,7 +234,6 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Component           | Type       | Purpose                                               | Dependencies                            |
 | ------------------- | ---------- | ----------------------------------------------------- | --------------------------------------- |
 | Code Mode           | MCP Server | External tool orchestration (Webflow, Figma, ClickUp) | Node.js 18+                             |
-| LEANN               | MCP Server | Semantic code search (src/ only)                      | Python 3.10+, uv, Homebrew deps, MLX    |
 | Narsil              | MCP Server | Structural analysis, security scanning, call graphs   | Via Code Mode                           |
 | Spec Kit Memory     | MCP Server | Conversation context preservation                     | Node.js 18+, Ollama (optional)          |
 | Sequential Thinking | MCP Server | Complex reasoning chains                              | npx (Node.js 18+)                       |
@@ -249,35 +247,35 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 ```
                     ┌─────────────────────────────────────────┐
                     │           PREREQUISITES                 │
-                    │  Node.js 18+ │ Python 3.10+ │ uv │ brew │
+                    │         Node.js 18+ │ Python 3.10+      │
                     └─────────────────────────────────────────┘
                                        │
           ┌────────────────────────────┼────────────────────────────┐
           ▼                            ▼                            ▼
     ┌──────────┐                ┌───────────┐                ┌───────────┐
-    │  Ollama  │                │ Homebrew  │                │    uv     │
-    │  Models  │                │   Deps    │                │  (Python) │
+    │  Ollama  │                │    npm    │                │    uv     │
+    │  Models  │                │  (global) │                │  (Python) │
     └────┬─────┘                └─────┬─────┘                └─────┬─────┘
          │                            │                            │
          ▼                            ▼                            ▼
     ┌─────────────────────────────────────────────────────────────────────┐
-    │                     4 NATIVE MCP SERVERS                            │
+    │                     3 NATIVE MCP SERVERS                            │
     │                   (configured in opencode.json)                      │
     └─────────────────────────────────────────────────────────────────────┘
                                        │
-         ┌─────────────┬───────────────┼───────────────┐
-         ▼             ▼               ▼               ▼
-   ┌───────────┐ ┌───────────┐ ┌───────────┐ ┌───────────┐
-   │   Code    │ │   LEANN   │ │ Semantic  │ │Sequential │
-   │   Mode    │ │ (search)  │ │  Memory   │ │ Thinking  │
-   └─────┬─────┘ └───────────┘ └───────────┘ └───────────┘
+         ┌─────────────────────────────┼───────────────┐
+         ▼                             ▼               ▼
+   ┌───────────┐               ┌───────────┐ ┌───────────┐
+   │   Code    │               │ Semantic  │ │Sequential │
+   │   Mode    │               │  Memory   │ │ Thinking  │
+   └─────┬─────┘               └───────────┘ └───────────┘
          │
          ▼
-   ┌───────────────────────────────────────┐
+   ┌───────────────────────────────────┐
    │    EXTERNAL TOOLS (via Code Mode)     │
    │      (.utcp_config.json)              │
    │  Narsil, Webflow, Figma, ClickUp...   │
-   └───────────────────────────────────────┘
+   └───────────────────────────────────┘
 
    NATIVE SKILLS: 8 skills auto-discovered from .opencode/skill/*/SKILL.md
    OPTIONAL: Chrome DevTools CLI (bdg), Auth Plugins
@@ -287,7 +285,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 **Full Bundle** (all components):
 ```
-Prerequisites → Ollama → Code Mode → LEANN → Narsil → 
+Prerequisites → Ollama → Code Mode → Narsil (via Code Mode) → 
 Spec Kit Memory → Sequential Thinking → Chrome DevTools CLI → 
 Antigravity Auth → OpenAI Codex Auth
 ```
@@ -299,8 +297,7 @@ Prerequisites → Code Mode → Spec Kit Memory
 
 **Custom Bundle** - Select from:
 - [ ] Code Mode (foundation for external tools)
-- [ ] LEANN (semantic code search)
-- [ ] Narsil (structural analysis, security)
+- [ ] Narsil (structural analysis, security, semantic search via Code Mode)
 - [ ] Spec Kit Memory (context preservation)
 - [ ] Sequential Thinking (complex reasoning)
 - [ ] Chrome DevTools CLI (browser debugging)
@@ -313,7 +310,7 @@ Prerequisites → Code Mode → Spec Kit Memory
 
 ## 5. 📥 PHASE 1: PREREQUISITES
 
-> **Skip Check:** Run `node -v && python3 -V && uv -V` — if all return versions, skip to Phase 2.
+> **Skip Check:** Run `node -v && python3 -V` — if both return versions, skip to Phase 2.
 
 ### 5.1 Node.js 18+
 
@@ -354,7 +351,7 @@ sudo apt-get install -y nodejs
 ```
 </details>
 
-### 5.2 Python 3.10+ (for LEANN)
+### 5.2 Python 3.10+ (for Sequential Thinking)
 
 **Check version:**
 ```bash
@@ -380,39 +377,14 @@ sudo apt install python3.12 python3.12-venv
 ```
 </details>
 
-### 5.3 uv Package Manager (for LEANN)
-
-**Install:**
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-**Verify:**
-```bash
-uv --version
-```
-
-### 5.4 Homebrew Dependencies (macOS only, for LEANN)
-
-```bash
-brew install libomp boost protobuf zeromq pkgconf
-```
-
-**Verify installation:**
-```bash
-brew list | grep -E "libomp|boost|protobuf|zeromq|pkgconf"
-```
-
 ### Validation: `prerequisites_check`
 
 - [ ] Node.js version is 18.x or higher
 - [ ] Python version is 3.10.x or higher
-- [ ] uv package manager installed and responds to `uv --version`
-- [ ] (macOS) Homebrew dependencies installed
 
 **Quick Verification:**
 ```bash
-node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(1[0-9]|[2-9][0-9])" && uv --version && echo "✅ PASS" || echo "❌ FAIL"
+node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(1[0-9]|[2-9][0-9])" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ❌ STOP if validation fails - install missing prerequisites before continuing
@@ -421,7 +393,7 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 
 ## 6. 🤖 PHASE 2: OLLAMA & MODELS
 
-Ollama provides local LLM inference and embeddings. Required for Spec Kit Memory. LEANN uses MLX + Qwen3 for embeddings (Apple Silicon) and only needs Ollama for the optional `ask` command.
+Ollama provides local LLM inference and embeddings. Required for Spec Kit Memory.
 
 > **Skip Check:** Run `ollama list | grep nomic` — if nomic-embed-text shown, skip to Phase 3.
 
@@ -458,7 +430,7 @@ brew services start ollama
 ### 6.3 Pull Required Models
 
 ```bash
-# Embedding model (required for LEANN and Spec Kit Memory)
+# Embedding model (required for Spec Kit Memory)
 ollama pull nomic-embed-text
 
 # Optional: Reasoning model for local inference
@@ -482,15 +454,14 @@ ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 
 ## 7. ⚙️ PHASE 3: MCP SERVERS
 
-> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"leann"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ All configured"` — if all configured, skip to Phase 4.
+> **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ All configured"` — if all configured, skip to Phase 4.
 
 ### Installation Order (Important!)
 
 1. **Code Mode** (foundation - install FIRST)
-2. LEANN (semantic code search)
-3. Narsil (structural analysis, security - via Code Mode)
-4. Spec Kit Memory (context preservation)
-5. Sequential Thinking (complex reasoning)
+2. Narsil (structural analysis, security, semantic search - via Code Mode)
+3. Spec Kit Memory (context preservation)
+4. Sequential Thinking (complex reasoning)
 
 ---
 
@@ -540,84 +511,13 @@ npx utcp-mcp --help >/dev/null 2>&1 && test -f .utcp_config.json && echo "✅ PA
 
 ---
 
-### 7.2 LEANN (Semantic Code Search)
+### 7.2 Narsil (Structural Analysis + Security + Semantic Search)
 
-LEANN provides semantic search over codebases using vector embeddings.
-
-**Check:** `command -v leann` → If path shown, skip to config
-
-**Prerequisites:** Python 3.10+, uv, Homebrew deps (macOS)
-
-**Install if missing:**
-```bash
-# Apple Silicon (with MLX for embeddings)
-uv tool install leann-core --with leann --with mlx --with mlx-lm
-```
-
-**Configure in `opencode.json`:**
-```json
-{
-  "mcp": {
-    "leann": {
-      "command": "leann",
-      "args": ["mcp"],
-      "env": {}
-    }
-  }
-}
-```
-
-**Build index for your project:**
-```bash
-# Navigate to project root
-cd /path/to/your/project
-
-# Set up shell alias (Apple Silicon - recommended, one-time setup)
-echo 'alias leann-build='"'"'leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'"'"'' >> ~/.zshrc
-source ~/.zshrc
-
-# Build index using alias (creates ~/.leann/indexes/ directory)
-leann-build myproject --docs src/
-
-# Or full command without alias
-leann build myproject --docs src/ --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
-```
-
-### Validation: `leann_check`
-
-- [ ] leann command responds to --version
-- [ ] At least one index exists (after building)
-- [ ] Search returns results
-
-**Quick Verification:**
-```bash
-leann --version >/dev/null 2>&1 && grep -q '"leann"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
-```
-
-❌ STOP if validation fails - check Ollama is running and models are pulled
-
-<details>
-<summary>Troubleshooting: libomp errors on macOS</summary>
-
-```bash
-# If you see "libomp not found" errors
-brew reinstall libomp
-export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH
-
-# Add to ~/.zshrc for persistence
-echo 'export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH' >> ~/.zshrc
-```
-</details>
-
----
-
-### 7.3 Narsil (Structural Analysis + Security)
-
-Narsil provides deep code intelligence with **76 specialized tools** for security scanning, call graph analysis, and structural queries. It is accessed via Code Mode for token efficiency.
+Narsil provides deep code intelligence with **76 specialized tools** for security scanning, call graph analysis, structural queries, and neural semantic search. It is accessed via Code Mode for token efficiency.
 
 > **Detailed Guide:** See [MCP - Narsil.md](./MCP/MCP%20-%20Narsil.md) for comprehensive installation and usage instructions.
 
-**Core Principle:** Narsil = STRUCTURE + SECURITY, LEANN = MEANING
+**Core Principle:** Narsil = STRUCTURE + SECURITY + SEMANTICS (unified code intelligence)
 
 | Feature             | Tool Count | Examples                                 |
 | ------------------- | ---------- | ---------------------------------------- |
@@ -690,7 +590,7 @@ Expected: List of `narsil.narsil_*` tools (76 total)
 
 ---
 
-### 7.4 Spec Kit Memory (Context Preservation)
+### 7.3 Spec Kit Memory (Context Preservation)
 
 Spec Kit Memory provides conversation context preservation with vector search.
 
@@ -730,7 +630,7 @@ test -f .opencode/skill/system-spec-kit/mcp_server/context-server.js && grep -q 
 
 ---
 
-### 7.5 Sequential Thinking (Complex Reasoning)
+### 7.4 Sequential Thinking (Complex Reasoning)
 
 Sequential Thinking provides structured reasoning chains for complex problems.
 
@@ -761,7 +661,7 @@ grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FA
 
 ---
 
-### 7.6 Chrome DevTools CLI (Optional)
+### 7.5 Chrome DevTools CLI (Optional)
 
 Chrome DevTools provides browser automation and debugging via CLI.
 
@@ -799,7 +699,6 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 ### Phase 3 Complete Validation: `mcp_servers_check`
 
 - [ ] Code Mode: npx utcp-mcp --version responds
-- [ ] LEANN: leann --version responds
 - [ ] Narsil: accessible via Code Mode
 - [ ] Spec Kit Memory: configured in opencode.json
 - [ ] Sequential Thinking: configured in opencode.json
@@ -807,7 +706,7 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 
 **Quick Verification:**
 ```bash
-grep -q '"code_mode"' opencode.json && grep -q '"leann"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ❌ STOP if any required server fails - review individual server troubleshooting
@@ -828,9 +727,8 @@ Skills are automatically discovered from:
 **Current Skills (8 total):**
 | Skill                     | Version | Purpose                                              |
 | ------------------------- | ------- | ---------------------------------------------------- |
-| mcp-narsil                | v1.0.0  | Structural analysis, security, call graphs           |
+| mcp-narsil                | v1.0.0  | Unified code intelligence (semantic + structural + security) |
 | mcp-code-mode             | v1.2.0  | External tool orchestration                          |
-| mcp-leann                 | v1.1.0  | Semantic code search                                 |
 | system-spec-kit           | v2.0.0  | Spec folder + template system + context preservation |
 | workflows-chrome-devtools | v2.1.0  | Browser debugging                                    |
 | workflows-code            | v2.0.0  | Implementation orchestrator                          |
@@ -839,7 +737,7 @@ Skills are automatically discovered from:
 
 **How it works:**
 - OpenCode scans skill folders on startup
-- Skills are surfaced as `skills_*` functions (e.g., `skills_mcp_leann`)
+- Skills are surfaced as `skills_*` functions (e.g., `skills_mcp_narsil`)
 - Agents read `SKILL.md` files directly when a task matches
 
 **No configuration needed** - skills in `.opencode/skill/` are automatically available.
@@ -925,12 +823,6 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
       "args": ["utcp-mcp"],
       "env": {}
     },
-    "leann": {
-      "command": "leann",
-      "args": ["mcp"],
-      "env": {}
-    },
-
     "spec_kit_memory": {
       "command": "node",
       "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"]
@@ -994,8 +886,8 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 
 - [ ] Prerequisites: Node.js 18+, Python 3.10+, uv
 - [ ] Ollama running with nomic-embed-text model
-- [ ] All 4 native MCP servers configured in opencode.json
-- [ ] Skills directory exists with 8 skills
+- [ ] All 3 native MCP servers configured in opencode.json
+- [ ] Skills directory exists with 7 skills
 - [ ] Configuration files exist and are valid JSON
 
 ### Quick Verification
@@ -1014,7 +906,6 @@ echo "✅ INSTALLATION COMPLETE" || echo "❌ VERIFICATION FAILED"
 
 ```bash
 npx utcp-mcp --list-tools          # Code Mode
-leann list                          # LEANN indexes
 ls .opencode/skill/                 # Skills
 cat opencode.json | jq '.mcp | keys'  # MCP servers
 ```
@@ -1062,9 +953,7 @@ BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$
 | Component                | Uninstall Command                                      | Notes                                                |
 | ------------------------ | ------------------------------------------------------ | ---------------------------------------------------- |
 | **Code Mode**            | `npm uninstall -g utcp-mcp`                            | Remove from opencode.json + delete .utcp_config.json |
-| **LEANN CLI**            | `uv tool uninstall leann-core`                         | Indexes remain until manually deleted                |
-| **LEANN (single index)** | `leann remove <index-name>`                            | List indexes: `leann list`                           |
-| **LEANN (all indexes)**  | `rm -rf ~/.leann/indexes/`                             | Removes all indexed codebases                        |
+
 | **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`                |                                                      |
 | **Spec Kit Memory**      | `rm .opencode/skill/system-spec-kit/database/*.sqlite` | Database will be recreated                           |
 | **Sequential Thinking**  | Remove from `opencode.json`                            | No files to delete                                   |
@@ -1092,7 +981,7 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 | MCP server hangs             | `pkill -f "server-name" && opencode`                       |
 | Ollama not responding        | `pkill ollama && ollama serve &`                           |
 | Database corruption (Memory) | `rm -rf .opencode/skill/system-spec-kit/database/`         |
-| Index corruption (LEANN)     | `leann remove <index-name> && leann build ...`             |
+
 | Config invalid JSON          | Restore from backup or regenerate from Section 8 templates |
 | npm packages broken          | `npm cache clean --force && npm install -g <package>`      |
 | Python/uv issues             | `uv cache clean && uv tool install <tool> --force`         |
@@ -1108,7 +997,7 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skill ] && echo "✅ Core components OK" || echo "❌ Check failed"
 
 # Detailed checks
-leann list                    # LEANN indexes
+
 ls .opencode/skill/           # Skills installed
 cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 ```
@@ -1119,7 +1008,7 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 | Symptom                       | Likely Cause        | Solution                        |
 | ----------------------------- | ------------------- | ------------------------------- |
-| `leann: command not found`    | LEANN not in PATH   | Reinstall LEANN, check PATH     |
+
 | `Error: ENOENT opencode.json` | Config missing      | Restore from backup or recreate |
 | `MCP server timeout`          | Process stuck       | Kill processes (§10.4)          |
 | `Database locked`             | Multiple processes  | Kill processes, restart         |
@@ -1128,7 +1017,7 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 | `Port already in use`         | Port conflict       | Kill conflicting process        |
 | `Permission denied`           | File permissions    | Check ownership, run `chmod`    |
 | `Memory not found`            | DB not indexed      | Run `memory_index_scan()`       |
-| `LEANN search empty`          | Index missing       | Run `leann build`               |
+
 
 ---
 
@@ -1158,7 +1047,7 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 | Project Type | Primary Tools                   | Primary Skills                           | Remove/De-emphasize           |
 | ------------ | ------------------------------- | ---------------------------------------- | ----------------------------- |
 | Front-end    | Chrome DevTools, Webflow, Figma | workflows-chrome-devtools, mcp-code-mode | Database tools, API patterns  |
-| Back-end     | API testing, Database tools     | workflows-code, mcp-leann                | Browser tools, Webflow, Figma |
+| Back-end     | API testing, Database tools     | workflows-code, mcp-narsil               | Browser tools, Webflow, Figma |
 | Full-stack   | All tools                       | All skills                               | Nothing                       |
 
 📖 **Detailed Guide**: [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md)
@@ -1190,12 +1079,35 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 📖 **Detailed Guide**: [SET-UP - Skill Creation.md](./SET-UP%20-%20Skill%20Creation.md)
 
+### 12.4 Agent System
+
+The Agent System provides specialized AI personas with defined authorities, tool permissions, and behavioral rules. Unlike skills (knowledge bundles), agents have **authority** to act and **tools** to execute.
+
+**Available Agents:**
+| Agent           | Purpose                         | Key Capability                        |
+| --------------- | ------------------------------- | ------------------------------------- |
+| **orchestrate** | Task decomposition & delegation | Parallel delegation (up to 20 agents) |
+| **write**       | Documentation creation          | Template-first, DQI scoring           |
+
 **Quick Verification:**
 ```bash
-test -f AGENTS.md && test -d .opencode/skill && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/agent/*.md 2>/dev/null && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-❌ STOP if validation fails - AGENTS.md and skills are required for full AI agent functionality
+📖 **Detailed Guide**: [SET-UP - Opencode Agents.md](./SET-UP%20-%20Opencode%20Agents.md)
+
+---
+
+**Post-Installation Quick Verification:**
+```bash
+node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skill ] && echo "✅ Core components OK" || echo "❌ Check failed"
+
+# Detailed checks
+ls .opencode/skill/           # Skills installed
+cat opencode.json | jq '.mcp | keys'  # MCP servers configured
+```
+
+❌ STOP if validation fails - AGENTS.md, skills, and agents are required for full AI agent functionality
 
 ---
 
@@ -1209,15 +1121,14 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 | ---- | ---------------------- | ---------------------------------------------------------------- |
 | 1    | Verify installation    | Run health check script from Section 10.5                        |
 | 2    | Customize AGENTS.md    | Edit `AGENTS.md` for your project type                           |
-| 3    | Build your first index | `leann-build myproject --docs src/` (uses Qwen3 via alias) |
-| 4    | Test skill invocation  | `python .opencode/scripts/skill_advisor.py "your task"`          |
-| 5    | Save first memory      | Use `/memory:save` or "save context" in conversation             |
+| 3    | Test skill invocation  | `python .opencode/scripts/skill_advisor.py "your task"`          |
+| 4    | Save first memory      | Use `/memory:save` or "save context" in conversation             |
 
 ### 13.2 Common Workflows
 
 | Workflow                 | Tools/Commands                | Example                                                   |
 | ------------------------ | ----------------------------- | --------------------------------------------------------- |
-| **Code Exploration**     | LEANN, Narsil                 | `leann search proj "authentication flow"`                 |
+| **Code Exploration**     | Narsil                        | `narsil.narsil_neural_search({ query: "authentication" })`|
 | **Context Preservation** | Spec Kit Memory               | `/memory:save`, `memory_search()`                         |
 | **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
 | **Documentation**        | workflows-documentation skill | Invoke skill for doc structure                            |
@@ -1236,21 +1147,22 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 
 ### 13.4 Learning Resources
 
-| Resource      | Location                                   | Description                 |
-| ------------- | ------------------------------------------ | --------------------------- |
-| OpenCode Docs | https://opencode.ai/docs                   | Official documentation      |
-| LEANN Skill   | `.opencode/skill/mcp-leann/SKILL.md`       | Semantic search usage       |
-| Memory Skill  | `.opencode/skill/system-spec-kit/SKILL.md` | Context preservation        |
-| Code Skill    | `.opencode/skill/workflows-code/SKILL.md`  | Implementation patterns     |
-| Git Skill     | `.opencode/skill/workflows-git/SKILL.md`   | Git workflows               |
-| AGENTS.md     | `AGENTS.md`                                | AI agent behavior reference |
+| Resource      | Location                                   | Description                   |
+| ------------- | ------------------------------------------ | ----------------------------- |
+| OpenCode Docs | https://opencode.ai/docs                   | Official documentation        |
+| Narsil Skill  | `.opencode/skill/mcp-narsil/SKILL.md`      | Code intelligence usage       |
+| Memory Skill  | `.opencode/skill/system-spec-kit/SKILL.md` | Context preservation          |
+| Code Skill    | `.opencode/skill/workflows-code/SKILL.md`  | Implementation patterns       |
+| Git Skill     | `.opencode/skill/workflows-git/SKILL.md`   | Git workflows                 |
+| AGENTS.md     | `AGENTS.md`                                | AI agent behavior reference   |
+| Agent System  | `.opencode/install_guides/SET-UP - Opencode Agents.md` | Agent creation & usage |
 
 ### 13.5 Next Level (Week 1)
 
 - [ ] Configure external tools in `.utcp_config.json` (Webflow, Figma, ClickUp)
 - [ ] Create project-specific skills for repeated workflows
 - [ ] Set up backup schedule for configurations
-- [ ] Explore advanced LEANN queries and index management
+- [ ] Explore Narsil neural search and security scanning features
 - [ ] Practice spec folder workflow for all file modifications
 
 ---
@@ -1274,51 +1186,6 @@ npx utcp-mcp
 1. Check `.utcp_config.json` syntax (valid JSON)
 2. Restart OpenCode after config changes
 3. Verify tool command works standalone
-
-</details>
-
-<details>
-<summary><strong>LEANN Issues</strong></summary>
-
-### uv tool install fails
-```bash
-# Ensure uv is up to date
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Try with verbose output
-uv tool install leann-core --with leann -v
-```
-
-### libomp not found (macOS)
-```bash
-brew reinstall libomp
-export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH
-
-# Add to shell profile
-echo 'export DYLD_LIBRARY_PATH=$(brew --prefix libomp)/lib:$DYLD_LIBRARY_PATH' >> ~/.zshrc
-source ~/.zshrc
-```
-
-### Index build fails
-```bash
-# Try smaller index first (Apple Silicon with Qwen3)
-leann-build test --docs src/ --file-types ".md"
-
-# Or without alias
-leann build test --docs src/ --file-types ".md" --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"
-
-# Verify MLX is installed
-python3 -c "import mlx; print('MLX OK')"
-```
-
-### Search returns no results
-```bash
-# Verify index exists
-leann list
-
-# Check index has documents
-ls -la .leann/indexes/<index-name>/
-```
 
 </details>
 
@@ -1452,11 +1319,10 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 
 | Task                 | Command                                                     |
 | -------------------- | ----------------------------------------------------------- |
-| Check prerequisites  | `node -v && python3 -V && uv -V`                            |
+| Check prerequisites  | `node -v && python3 -V`                                     |
 | Start Ollama         | `ollama serve`                                              |
 | Pull embedding model | `ollama pull nomic-embed-text`                              |
-| Build LEANN index    | `leann-build proj --docs src/` (alias with Qwen3)           |
-| Search code          | `leann search proj "your query"`                            |
+| Search code (Narsil) | `narsil.narsil_neural_search({ query: "your query" })`      |
 | List skills          | `ls .opencode/skill/`                                       |
 | Read skill           | `cat .opencode/skill/<skill-name>/SKILL.md`                 |
 | Browser screenshot   | `bdg screenshot --url <url> --output out.png`               |
@@ -1466,21 +1332,22 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 
 | File                        | Purpose                                       |
 | --------------------------- | --------------------------------------------- |
-| `opencode.json`             | OpenCode MCP server config (4 native servers) |
+| `opencode.json`             | OpenCode MCP server config (3 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
-| `.opencode/skill/`          | Skill definitions (8 skills)                  |
+| `.opencode/skill/`          | Skill definitions (7 skills)                  |
+| `.opencode/agent/`          | Agent definitions (orchestrate, write)        |
 | `.opencode/install_guides/` | Installation documentation                    |
-| `.leann/indexes/`           | LEANN search indexes                          |
+
 | `~/.opencode-backup/`       | Configuration backups                         |
 | `AGENTS.md`                 | AI agent behavior configuration               |
 
 ### Component Summary
 
-| Category           | Count | Items                                                                                                                                    |
-| ------------------ | ----- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Native MCP Servers | 4     | code_mode, leann, spec_kit_memory, sequential_thinking                                                                                   |
-| Code Mode Tools    | 1     | narsil (structural analysis, security, call graphs)                                                                                      |
-| Skills             | 8     | mcp-narsil, mcp-code-mode, mcp-leann, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
+| Category           | Count | Items                                                                                                                    |
+| ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
+| Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
+| Code Mode Tools    | 1     | narsil (structural analysis, security, semantic search, call graphs)                                                     |
+| Skills             | 7     | mcp-narsil, mcp-code-mode, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
 | Commands           | 16    | /create:*, /memory:*, /prompt:improve, /search:*, /spec_kit:*                                                                            |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                                      |

@@ -13,7 +13,7 @@ Complete reference for all 76 Narsil MCP tools organized by priority level.
 
 ### Core Principle
 
-Choose the right tool for the job - Narsil for STRUCTURE and SECURITY, LEANN for MEANING.
+Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTIC understanding.
 
 ### Tool Distribution
 
@@ -139,13 +139,13 @@ Choose the right tool for the job - Narsil for STRUCTURE and SECURITY, LEANN for
 | Tool | Description | Notes |
 |------|-------------|-------|
 | `search_code` | Keyword search | Use for exact matches |
-| `semantic_search` | BM25-ranked search | LEANN is better for semantics |
+| `semantic_search` | BM25-ranked search | Good for keyword-based ranking |
 | `hybrid_search` | BM25 + TF-IDF | Combined ranking |
 | `search_chunks` | AST-aware chunk search | For structured code blocks |
-| `find_similar_code` | TF-IDF similarity | LEANN is better for this |
-| `find_similar_to_symbol` | Symbol similarity | LEANN is better for this |
+| `find_similar_code` | TF-IDF similarity | Code clone detection |
+| `find_similar_to_symbol` | Symbol similarity | Find related symbols |
 
-> **Note**: For semantic/similarity search, prefer LEANN. Use these for keyword/exact matching only.
+> **Note**: For deep semantic understanding, use `neural_search`. Use these tools for keyword/exact matching.
 
 ### Data Flow Analysis (4)
 
@@ -204,15 +204,7 @@ Choose the right tool for the job - Narsil for STRUCTURE and SECURITY, LEANN for
 |------|-------------|
 | `get_metrics` | Performance stats |
 
-### SKIP Tools (9 tools)
-
-#### Neural Semantic Search (3) - Use LEANN instead
-
-| Tool | Reason to Skip |
-|------|----------------|
-| `neural_search` | LEANN provides 97% storage savings, purpose-built for semantic search |
-| `find_semantic_clones` | LEANN handles similarity better |
-| `get_neural_stats` | Not needed if skipping neural |
+### SKIP Tools (6 tools)
 
 #### LSP Integration (3) - IDE handles this
 
@@ -238,7 +230,7 @@ Choose the right tool for the job - Narsil for STRUCTURE and SECURITY, LEANN for
 User Request
      │
      ├─► "How does X work?" / Understanding intent
-     │   └─► Use LEANN (semantic search)
+     │   └─► Use Narsil: neural_search (semantic)
      │
      ├─► "Find functions/classes/symbols"
      │   └─► Use Narsil: find_symbols
@@ -268,7 +260,7 @@ User Request
 
 | Task | Primary Tool | Secondary Tool |
 |------|--------------|----------------|
-| Semantic understanding | LEANN | - |
+| Semantic understanding | `neural_search` | `semantic_search` |
 | Symbol search | `find_symbols` | `workspace_symbol_search` |
 | Security audit | `scan_security` | `find_injection_vulnerabilities` |
 | Call analysis | `get_call_graph` | `get_callers`, `get_callees` |

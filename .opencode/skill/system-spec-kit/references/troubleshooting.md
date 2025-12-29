@@ -379,4 +379,4 @@ memory_delete({ id: <memory_id> })
 
 ### Related Skills
 - `system-spec-kit` - Spec folder creation and template management
-- `mcp-leann` - Semantic code search using vector embeddings
+- `mcp-narsil` - Unified code intelligence (semantic + structural + security)
