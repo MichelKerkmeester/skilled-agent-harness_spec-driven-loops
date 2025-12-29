@@ -1,5 +1,4 @@
 ---
-name: index
 description: Narsil index management - status, reindex, repos, validate, health
 argument-hint: "[status|reindex|repos|validate|health] [--path:<dir>]"
 allowed-tools: Bash, code_mode_call_tool_chain
