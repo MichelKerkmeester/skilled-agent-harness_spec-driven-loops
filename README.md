@@ -7,7 +7,6 @@
 [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/stargazers)
 [![License](https://img.shields.io/github/license/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/releases)
-[![OpenCode](https://img.shields.io/badge/OpenCode-Compatible-948ae3?style=for-the-badge&labelColor=222222)](https://github.com/sst/opencode)
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20WSL-fd9353?style=for-the-badge&labelColor=222222)](#7--installation--setup)
 
 [Overview](#1--overview) • [Spec Kit](#2--spec-kit-framework) • [Memory](#3--semantic-memory-system) • [Skills](#5--skills-library) • [Install](#7--installation--setup)
