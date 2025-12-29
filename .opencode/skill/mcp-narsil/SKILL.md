@@ -314,8 +314,35 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 
 3. **ESCALATE IF security findings seem incomplete**
    - Verify all categories enabled in scan
-   - Check language support (14 languages)
+   - Check language support (15 languages)
    - Consider taint analysis for deeper inspection
+
+### ⚠️ KNOWN LIMITATIONS
+
+1. **JavaScript Call Graph**
+   - Call graph analysis may return empty or incomplete results for JavaScript
+   - tree-sitter-javascript has limited support for dynamic call patterns
+   - **Workaround**: Use `find_symbols` + `get_symbol_definition` for JS code analysis
+
+2. **Security Scanning Language Support**
+   - Security rules are primarily designed for backend languages (Rust, Python, Go, Java, C/C++)
+   - JavaScript/TypeScript security coverage is limited
+   - Frontend-specific vulnerabilities (DOM XSS) may not be fully detected
+
+3. **Neural Search After Index Clear**
+   - Clearing `.narsil-index/` requires **OpenCode restart** to rebuild neural embeddings
+   - Simply calling `reindex()` may not regenerate embeddings if MCP server has stale state
+   - **Fix**: Exit OpenCode (Ctrl+C), then restart
+
+4. **Index Persistence**
+   - The `--persist` flag only saves symbols and call graph data
+   - Neural embeddings, BM25, and TF-IDF indexes regenerate on every startup (~45-60s)
+   - **Workaround**: Run Narsil as a long-lived server
+
+5. **Unicode in Chunking** (Fixed in some builds)
+   - Chunking may crash on Unicode box-drawing characters (─, │, etc.)
+   - Affects: `hybrid_search`, `search_chunks`
+   - **Workaround**: Remove box-drawing chars or avoid chunk-based tools
 
 ---
 

@@ -152,7 +152,7 @@ code_mode_call_tool_chain({
 │ Status       Indexed                                            │
 │ Files        1,234 files                                         │
 │ Languages    JavaScript (456), TypeScript (321), Python (89)    │
-│ Features     Neural ✅  Git ✅  Call Graph ✅                   │
+│ Features     Neural ✅  Git ✅  Call Graph ✅                    │
 │ Last Index   2024-01-15 14:32:00                                │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -292,6 +292,13 @@ code_mode_call_tool_chain({
 1. Check if `--watch` flag is enabled (default: yes)
 2. Verify file is not in .gitignore (Narsil respects gitignore)
 3. Force reindex: `/search:index reindex`
+4. If still not updating, **restart OpenCode** to restart the MCP server
+
+### Full Reindex After Clearing Index
+If you manually cleared `.narsil-index/`:
+1. Simply running `reindex` may not rebuild neural embeddings
+2. **Restart OpenCode** (Ctrl+C, then restart) for a complete rebuild
+3. The MCP server needs a fresh start to regenerate all indexes
 
 ### Neural Search Not Working
 1. Verify VOYAGE_API_KEY in `.utcp_config.json`
@@ -344,6 +351,11 @@ Narsil is configured in `.utcp_config.json` with these flags:
 
 ### Supported Languages (15)
 Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, PHP, Swift, Verilog/SystemVerilog
+
+### JavaScript/TypeScript Limitations
+- **Call Graph**: May return empty results due to dynamic call patterns
+- **Security Scan**: Limited rule coverage for frontend code
+- **Workaround**: Use `find_symbols` + `get_symbol_definition` for structural analysis
 
 ---
 

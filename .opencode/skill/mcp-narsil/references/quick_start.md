@@ -203,11 +203,32 @@ cargo build --release
 
 **Symptom**: Tools return empty arrays
 
-**Solution**: Trigger reindex
+**Solution**: 
+1. First, try reindex via Code Mode:
 ```typescript
 call_tool_chain({
   code: `await narsil.narsil_reindex({})`
 });
+```
+
+2. If still empty (especially after clearing `.narsil-index/`), **restart OpenCode**:
+   - The MCP server may have stale in-memory state
+   - Exit OpenCode (Ctrl+C), then restart
+   - Fresh index will be built on startup
+
+### Call Graph Empty for JavaScript
+
+**Symptom**: `get_call_graph` returns 0 nodes for JS projects
+
+**Cause**: tree-sitter-javascript has limited support for dynamic call patterns
+
+**Workaround**: Use structural queries instead:
+```typescript
+// Find all functions
+const symbols = await narsil.narsil_find_symbols({ kind: "function" });
+
+// Get definition for specific function  
+const def = await narsil.narsil_get_symbol_definition({ symbol: "myFunction" });
 ```
 
 ---

@@ -316,7 +316,7 @@ console.log(`${callers.length} functions will be affected`);
 
 **Symptom**: Call graph returns no nodes
 
-**Cause**: Repository not indexed or no functions found
+**Cause**: Repository not indexed, no functions found, or **JavaScript limitation**
 
 **Solution**:
 ```typescript
@@ -330,6 +330,28 @@ call_tool_chain({
   code: `await narsil.narsil_reindex({})`
 });
 ```
+
+### Empty Call Graph for JavaScript Projects
+
+**Symptom**: Call graph returns 0 nodes even after reindexing
+
+**Cause**: tree-sitter-javascript has limited support for extracting call relationships from dynamic JavaScript patterns (callbacks, closures, method chaining, etc.)
+
+**Workaround**: Use structural queries instead of call graph:
+```typescript
+// Find all functions in the project
+const functions = await narsil.narsil_find_symbols({ kind: "function" });
+
+// Get callers/callees manually via text search
+const refs = await narsil.narsil_find_references({ symbol: "targetFunction" });
+
+// Use neural search for semantic understanding
+const related = await narsil.narsil_neural_search({ 
+  query: "functions that call targetFunction" 
+});
+```
+
+**Note**: Call graph works best with statically-typed languages (Rust, Go, Java, TypeScript with strict types).
 
 ### Path Not Found
 

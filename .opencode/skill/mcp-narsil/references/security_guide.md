@@ -344,7 +344,7 @@ subprocess.run(["ls", user_path], shell=False)
 
 **Symptom**: Security scan returns empty findings
 
-**Cause**: Repository not indexed or language not supported
+**Cause**: Repository not indexed, language not supported, or frontend-only codebase
 
 **Solution**:
 ```typescript
@@ -358,6 +358,24 @@ call_tool_chain({
   code: `await narsil.narsil_reindex({})`
 });
 ```
+
+### Limited Results for JavaScript/Frontend Projects
+
+**Symptom**: Security scan shows 0 or very few findings for JS projects
+
+**Cause**: Narsil's security rules are primarily designed for backend languages
+
+**Supported Languages (Best Coverage)**:
+- Rust, Python, Go, Java, C/C++, C#
+
+**Limited Coverage**:
+- JavaScript/TypeScript (basic patterns only)
+- Frontend-specific vulnerabilities (DOM XSS, prototype pollution) may not be detected
+
+**Workaround for JS Security**:
+1. Use ESLint with security plugins (eslint-plugin-security)
+2. Use dedicated JS security tools (Snyk, npm audit)
+3. Manual review for DOM manipulation patterns
 
 ### Taint Analysis Incomplete
 
