@@ -131,9 +131,11 @@
             },
             "_note": "Narsil v1.0.0 with neural semantic search. Current config uses Voyage API (voyage-code-2, 1536-dim).",
             "_neural_options": {
+              "_dimension_note": "Narsil v1.0.0 expects 1536-dim embeddings. Use voyage-code-2 (1536-dim), NOT voyage-code-3 (1024-dim).",
               "voyage_api": {
                 "backend": "--neural-backend api",
-                "models": ["voyage-code-2", "voyage-code-3"],
+                "models": ["voyage-code-2"],
+                "models_incompatible": ["voyage-code-3 (1024-dim - incompatible with Narsil v1.0.0)"],
                 "env_var": "VOYAGE_API_KEY",
                 "get_key": "https://www.voyageai.com/",
                 "best_for": "Code-specific, best accuracy"
