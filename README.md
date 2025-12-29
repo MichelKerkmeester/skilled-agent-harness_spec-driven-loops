@@ -1,4 +1,5 @@
 <div align="left">
+     
 # OpenCode Dev Environment
 
 [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/stargazers)
@@ -8,6 +9,7 @@
 > - 99.999% of people will keep blaming AI for not being good enough for advanced coding
 > - Beat the odds with this system?
 > - https://buymeacoffee.com/michelkerkmeester
+
 </div>
 
 ---
