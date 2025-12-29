@@ -6,12 +6,15 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/releases)
 
-> - 99.999% of people will keep blaming AI for not being good enough for advanced coding.
+> - 99.999% of people will keep blaming AI for not being good enough for advanced coding
 > - Beat the odds with this system?
-> - Don't reward me with unwanted coffee:
 > - https://buymeacoffee.com/michelkerkmeester
 
 </div>
+
+---
+
+## 1. 📖 Overview
 
 A development environment for [OpenCode](https://github.com/sst/opencode) featuring two custom-built systems you won't find anywhere else:
 
@@ -29,13 +32,6 @@ A development environment for [OpenCode](https://github.com/sst/opencode) featur
 6. [⚡ Commands](#6--commands)
 7. [🚀 Installation & Setup](#7--installation--setup)
 8. [🎯 What's Next?](#8--whats-next)
-
----
-
-## 1. 📖 Overview
-
-> **Context that persists. Documentation that writes itself.**
-
 
 ### Why This System?
 
