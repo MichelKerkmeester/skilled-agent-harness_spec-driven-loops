@@ -1,6 +1,6 @@
 <div align="left">
 
-**AI-assisted development with persistent memory**
+# OpenCode Dev Environment
 
 [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/stargazers)
 [![License](https://img.shields.io/github/license/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
