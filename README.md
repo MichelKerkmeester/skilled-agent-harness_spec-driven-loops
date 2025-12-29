@@ -1,18 +1,12 @@
 <div align="left">
 
-# OpenCode Dev Environment
-
 **AI-assisted development with persistent memory**
 
 [![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/stargazers)
 [![License](https://img.shields.io/github/license/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/releases)
 
-[Overview](#1--overview) • [Spec Kit](#2--spec-kit-framework) • [Memory](#3--semantic-memory-system) • [Skills](#5--skills-library) • [Install](#7--installation--setup)
-
 </div>
-
----
 
 A development environment for [OpenCode](https://github.com/sst/opencode) featuring two custom-built systems you won't find anywhere else:
 
