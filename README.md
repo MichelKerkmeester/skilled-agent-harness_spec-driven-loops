@@ -33,6 +33,8 @@ A development environment for [OpenCode](https://github.com/sst/opencode) featur
 7. [🚀 Installation & Setup](#7--installation--setup)
 8. [🎯 What's Next?](#8--whats-next)
 
+—
+
 ### Why This System?
 
 AI coding assistants are powerful but stateless. Every session starts from zero. This environment adds the missing layers: persistent memory, enforced documentation, and automated workflows that make AI-assisted development sustainable for real projects.
