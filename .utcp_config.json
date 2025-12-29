@@ -117,20 +117,19 @@
             "command": "narsil-mcp",
             "args": [
               "--repos", ".",
-              "--preset", "full",
               "--git",
               "--call-graph",
               "--persist",
               "--watch",
               "--neural",
               "--neural-backend", "api",
-              "--neural-model", "voyage-code-3"
+              "--neural-model", "voyage-code-2"
             ],
             "env": {
               "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
               "OPENAI_API_KEY": "${OPENAI_API_KEY}"
             },
-            "_note": "Full Narsil v1.1.4 with neural semantic search. Current config uses Voyage API (voyage-code-3).",
+            "_note": "Narsil v1.0.0 with neural semantic search. Current config uses Voyage API (voyage-code-2, 1536-dim).",
             "_neural_options": {
               "voyage_api": {
                 "backend": "--neural-backend api",
