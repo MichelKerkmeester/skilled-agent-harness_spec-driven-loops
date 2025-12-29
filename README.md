@@ -256,6 +256,7 @@ specs/042-add-user-authentication/
 - **Quality Metrics**: Completeness scoring (0-100%)
 - **Folder Versioning**: 001/002/003 sub-folder pattern preserves history
 
+---
 
 ### Three Documentation Levels
 
@@ -345,6 +346,7 @@ No cloud. No external APIs. Just intelligent context preservation that makes AI-
 - **Proactive Surfacing**: <50ms trigger matching
 - **Recovery**: Checkpoints (undo button for your index)
 
+---
 
 ### Deep Integration with Spec Kit
 
