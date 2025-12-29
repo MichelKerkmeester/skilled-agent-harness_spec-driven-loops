@@ -207,14 +207,19 @@ code_mode_call_tool_chain({
 
 **Output:**
 ```
-SEMANTIC SEARCH: "<query>"
-Index: <name> | Limit: <N>
-────────────────────────────────────────────────────
-| #   | Score | File              | Preview                 |
-| --- | ----- | ----------------- | ----------------------- |
-| 1   | 94%   | src/auth/oauth.js | OAuth callback handling |
-────────────────────────────────────────────────────
-[1-N] view | [a]sk Q&A | [r]efine | [b]ack | [q]uit
+┌─────────────────────────────────────────────────────────────────┐
+│ SEMANTIC SEARCH: <query>                                        │
+├─────────────────────────────────────────────────────────────────┤
+│ Results: N matches                                              │
+│                                                                 │
+│ [1] path/to/file.js:42                                          │
+│     function handleAuth() { ... }                               │
+│     Score: 0.92                                                 │
+│                                                                 │
+│ [2] path/to/other.js:15                                         │
+│     const authMiddleware = ...                                  │
+│     Score: 0.87                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 **Q&A:** Use `narsil.narsil_semantic_search()` via Code Mode, then Read tool for file content.
@@ -248,17 +253,20 @@ Index: <name> | Limit: <N>
 
 **Output:**
 ```
-STRUCTURE: src/auth/
-Depth: 2
-────────────────────────────────────────────────────
-src/auth/
-├── index.js
-│   ├── function: validateUser
-│   └── export: authMiddleware
-└── oauth.js
-    └── class: OAuthProvider
-────────────────────────────────────────────────────
-[f]ile inspect | [d]eeper | [s]earch | [b]ack | [q]uit
+┌─────────────────────────────────────────────────────────────────┐
+│ STRUCTURE: <path>                                               │
+├─────────────────────────────────────────────────────────────────┤
+│ Depth: 2                                                        │
+│                                                                 │
+│ src/auth/                                                       │
+│ ├── index.js                                                    │
+│ │   ├── function: validateUser                                  │
+│ │   └── export: authMiddleware                                  │
+│ └── oauth.js                                                    │
+│     └── class: OAuthProvider                                    │
+├─────────────────────────────────────────────────────────────────┤
+│ [f]ile | [d]eeper | [s]earch | [b]ack | [q]uit                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -285,15 +293,19 @@ src/auth/
 
 **Output:**
 ```
-SECURITY SCAN: src/auth/
-Severity: high+
-────────────────────────────────────────────────────
-| #   | Severity | CWE    | File              | Finding            |
-| --- | -------- | ------ | ----------------- | ------------------ |
-| 1   | HIGH     | CWE-89 | src/auth/login.js | SQL Injection risk |
-| 2   | HIGH     | CWE-79 | src/auth/oauth.js | XSS vulnerability  |
-────────────────────────────────────────────────────
-[1-N] details | [f]ix suggestions | [e]xport | [b]ack | [q]uit
+┌─────────────────────────────────────────────────────────────────┐
+│ SECURITY SCAN: <path>                                           │
+├─────────────────────────────────────────────────────────────────┤
+│ Findings: N issues                                              │
+│                                                                 │
+│ [HIGH] SQL Injection                                            │
+│        src/db/query.js:45                                       │
+│        User input in SQL query                                  │
+│                                                                 │
+│ [MED]  XSS Vulnerability                                        │
+│        src/views/render.js:23                                   │
+│        Unescaped output                                         │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -328,15 +340,15 @@ Severity: high+
 
 **Output:**
 ```
-CODE ANALYSIS: src/auth/
-Type: complexity
-────────────────────────────────────────────────────
-| #   | File              | Function       | Complexity | Lines |
-| --- | ----------------- | -------------- | ---------- | ----- |
-| 1   | src/auth/oauth.js | handleCallback | 15 (high)  | 89    |
-| 2   | src/auth/login.js | validateUser   | 8 (medium) | 45    |
-────────────────────────────────────────────────────
-[1-N] details | [r]efactor suggestions | [c]all graph | [b]ack | [q]uit
+┌─────────────────────────────────────────────────────────────────┐
+│ ANALYSIS: <path>                                                │
+├─────────────────────────────────────────────────────────────────┤
+│ Metrics                                                         │
+│                                                                 │
+│ Complexity     Cyclomatic: 12    Cognitive: 8                   │
+│ Dependencies   Imports: 5        Exports: 3                     │
+│ Size           Lines: 245        Functions: 12                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -363,16 +375,15 @@ Type: complexity
 
 **Output:**
 ```
-SEARCH RESULTS: "authentication"
-Mode: Hybrid (Narsil semantic + structural)
-────────────────────────────────────────────────────
-| #   | Type       | Score | File              | Match                   |
-| --- | ---------- | ----- | ----------------- | ----------------------- |
-| 1   | Semantic   | 94%   | src/auth/oauth.js | OAuth callback handling |
-| 2   | Structural | -     | src/auth/index.js | function: validateUser  |
-| 3   | Structural | -     | src/auth/login.js | class: AuthManager      |
-────────────────────────────────────────────────────
-[1-N] view | [s]emantic | [t]ree | [x]security | [r]efine | [q]uit
+┌─────────────────────────────────────────────────────────────────┐
+│ FUSION SEARCH: <query>                                          │
+├─────────────────────────────────────────────────────────────────┤
+│ Modes: semantic + structural                                    │
+│ Results: N matches                                              │
+│                                                                 │
+│ [1] path/to/file.js                                              │
+│     Semantic: 0.92 | Structural: function match                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---

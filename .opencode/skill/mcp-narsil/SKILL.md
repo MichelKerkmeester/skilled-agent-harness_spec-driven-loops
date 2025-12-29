@@ -15,9 +15,11 @@ Rust-powered code intelligence providing 76 specialized tools for security scann
 
 ---
 
-## 1. 🎯 WHEN TO USE
+## 1. 📖 OVERVIEW
 
-### Activation Triggers
+Narsil MCP provides deep code intelligence through 76 specialized tools covering security scanning (OWASP, CWE, taint analysis), call graph analysis (CFG, DFG, callers/callees), structural queries (symbols, definitions, references), and supply chain security (SBOM, license compliance). All tools are accessed via Code Mode for token efficiency.
+
+### When to Use
 
 **Use when**:
 - Security vulnerability scanning needed (OWASP, CWE, injections)

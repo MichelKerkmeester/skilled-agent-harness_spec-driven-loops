@@ -61,13 +61,13 @@ Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep 
 
 ### Source Repository
 
-| Property       | Value                                                      |
-| -------------- | ---------------------------------------------------------- |
-| **GitHub**     | [postrv/narsil-mcp](https://github.com/postrv/narsil-mcp)  |
-| **Language**   | Rust                                                       |
-| **Binary**     | `narsil-mcp` (pre-built or cargo build)                    |
-| **License**    | MIT                                                        |
-| **Tool Count** | 76 tools                                                   |
+| Property       | Value                                                     |
+| -------------- | --------------------------------------------------------- |
+| **GitHub**     | [postrv/narsil-mcp](https://github.com/postrv/narsil-mcp) |
+| **Language**   | Rust                                                      |
+| **Binary**     | `narsil-mcp` (pre-built or cargo build)                   |
+| **License**    | MIT                                                       |
+| **Tool Count** | 76 tools                                                  |
 
 ### Core Principle
 
@@ -80,16 +80,16 @@ Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep 
 
 ### Key Features
 
-| Feature                   | Description                                         |
-| ------------------------- | --------------------------------------------------- |
-| **Security Scanning**     | OWASP Top 10, CWE Top 25, taint analysis            |
-| **Call Graph Analysis**   | CFG, DFG, callers/callees, function hotspots        |
-| **Structural Queries**    | Find symbols, definitions, references               |
-| **Supply Chain Security** | SBOM generation, CVE checking, license compliance   |
-| **Git Integration**       | Blame, history, hotspots, contributors              |
-| **Code Quality**          | Dead code detection, complexity metrics             |
-| **76 Tools**              | Comprehensive coverage for code intelligence        |
-| **Via Code Mode**         | Token-efficient access (~700 tokens vs ~6,000-8,000)|
+| Feature                   | Description                                          |
+| ------------------------- | ---------------------------------------------------- |
+| **Security Scanning**     | OWASP Top 10, CWE Top 25, taint analysis             |
+| **Call Graph Analysis**   | CFG, DFG, callers/callees, function hotspots         |
+| **Structural Queries**    | Find symbols, definitions, references                |
+| **Supply Chain Security** | SBOM generation, CVE checking, license compliance    |
+| **Git Integration**       | Blame, history, hotspots, contributors               |
+| **Code Quality**          | Dead code detection, complexity metrics              |
+| **76 Tools**              | Comprehensive coverage for code intelligence         |
+| **Via Code Mode**         | Token-efficient access (~700 tokens vs ~6,000-8,000) |
 
 ### Architecture Overview
 
@@ -118,47 +118,47 @@ Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep 
 ┌─────────────────────────────────────────────────────────────────┐
 │  Narsil MCP Server (Rust)                                       │
 │  ┌───────────────────────────────────────────────────────────┐  │
-│  │                    76 Analysis Tools                       │  │
+│  │                    76 Analysis Tools                      │  │
 │  │  Security | Call Graph | Symbols | Quality | Git | SBOM   │  │
 │  └───────────────────────────────────────────────────────────┘  │
 │  ┌───────────────────────────────────────────────────────────┐  │
-│  │                    Core Components                         │  │
+│  │                    Core Components                        │  │
 │  │  AST Parser | Taint Tracker | Index Manager | Git Backend │  │
 │  └───────────────────────────────────────────────────────────┘  │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                      Project Repository                          │
-│  Source files | Git history | Dependencies | Config              │
+│                      Project Repository                         │
+│  Source files | Git history | Dependencies | Config               │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ### How It Compares
 
-| Feature            | Narsil            | Grep/Ripgrep |
-| ------------------ | ----------------- | ------------ |
-| **Query Type**     | Structural + Semantic | Lexical  |
-| **Security Scan**  | Yes (OWASP/CWE)   | No           |
-| **Call Graph**     | Yes               | No           |
-| **Find Symbols**   | Yes               | Pattern only |
-| **Meaning Search** | Yes (with --neural) | No         |
-| **Dead Code**      | Yes               | No           |
-| **SBOM/CVE**       | Yes               | No           |
+| Feature            | Narsil                | Grep/Ripgrep |
+| ------------------ | --------------------- | ------------ |
+| **Query Type**     | Structural + Semantic | Lexical      |
+| **Security Scan**  | Yes (OWASP/CWE)       | No           |
+| **Call Graph**     | Yes                   | No           |
+| **Find Symbols**   | Yes                   | Pattern only |
+| **Meaning Search** | Yes (with --neural)   | No           |
+| **Dead Code**      | Yes                   | No           |
+| **SBOM/CVE**       | Yes                   | No           |
 
 ### Tool Categories Summary
 
-| Category               | Tool Count | Key Tools                                    |
-| ---------------------- | ---------- | -------------------------------------------- |
-| **Security**           | 9          | scan_security, check_owasp_top10, trace_taint|
-| **Call Graph**         | 6          | get_call_graph, get_callers, get_callees     |
-| **Symbols/Navigation** | 7          | find_symbols, get_symbol_definition          |
-| **Repository/Files**   | 8          | get_project_structure, get_file, reindex     |
-| **Supply Chain**       | 4          | generate_sbom, check_dependencies            |
-| **Code Quality**       | 5          | find_dead_code, get_complexity               |
-| **Data Flow**          | 4          | get_data_flow, find_uninitialized            |
-| **Git**                | 10         | get_blame, get_hotspots, get_contributors    |
-| **Other**              | 23         | Type inference, chunking, metrics            |
+| Category               | Tool Count | Key Tools                                     |
+| ---------------------- | ---------- | --------------------------------------------- |
+| **Security**           | 9          | scan_security, check_owasp_top10, trace_taint |
+| **Call Graph**         | 6          | get_call_graph, get_callers, get_callees      |
+| **Symbols/Navigation** | 7          | find_symbols, get_symbol_definition           |
+| **Repository/Files**   | 8          | get_project_structure, get_file, reindex      |
+| **Supply Chain**       | 4          | generate_sbom, check_dependencies             |
+| **Code Quality**       | 5          | find_dead_code, get_complexity                |
+| **Data Flow**          | 4          | get_data_flow, find_uninitialized             |
+| **Git**                | 10         | get_blame, get_hotspots, get_contributors     |
+| **Other**              | 23         | Type inference, chunking, metrics             |
 
 ---
 
@@ -336,19 +336,19 @@ Add Narsil to your project's `.utcp_config.json`:
 
 ### Configuration Flags Reference
 
-| Flag              | Purpose                                      | Recommended |
-| ----------------- | -------------------------------------------- | ----------- |
-| `--repos`         | Repository paths to index                    | Yes         |
-| `--git`           | Enable git integration (blame, history)      | Yes         |
-| `--call-graph`    | Enable call graph analysis                   | Yes         |
-| `--persist`       | Save index to disk (faster restarts)         | Yes         |
-| `--index-path`    | Custom index storage location                | Yes         |
-| `--watch`         | Auto-reindex on file changes                 | Yes         |
-| `--neural`        | Enable neural semantic search                | Optional    |
-| `--neural-backend`| Backend for embeddings (api or local)        | Optional    |
-| `--neural-model`  | Embedding model (voyage-code-2 for Narsil)   | Optional    |
-| `--lsp`           | LSP integration (SKIP - IDE handles)         | No          |
-| `--remote`        | Remote repository access (SKIP - local only) | No          |
+| Flag               | Purpose                                      | Recommended |
+| ------------------ | -------------------------------------------- | ----------- |
+| `--repos`          | Repository paths to index                    | Yes         |
+| `--git`            | Enable git integration (blame, history)      | Yes         |
+| `--call-graph`     | Enable call graph analysis                   | Yes         |
+| `--persist`        | Save index to disk (faster restarts)         | Yes         |
+| `--index-path`     | Custom index storage location                | Yes         |
+| `--watch`          | Auto-reindex on file changes                 | Yes         |
+| `--neural`         | Enable neural semantic search                | Optional    |
+| `--neural-backend` | Backend for embeddings (api or local)        | Optional    |
+| `--neural-model`   | Embedding model (voyage-code-2 for Narsil)   | Optional    |
+| `--lsp`            | LSP integration (SKIP - IDE handles)         | No          |
+| `--remote`         | Remote repository access (SKIP - local only) | No          |
 
 ### Step 2: Verify .utcp_config.json Syntax
 
@@ -384,10 +384,10 @@ Narsil supports persisting the code index to disk for faster startup on subseque
 
 ### Configuration
 
-| Flag | Purpose | Default |
-|------|---------|---------|
-| `--persist` | Enable saving/loading index from disk | Disabled |
-| `--index-path` | Custom index storage location | `~/.cache/narsil-mcp/` |
+| Flag           | Purpose                               | Default                |
+| -------------- | ------------------------------------- | ---------------------- |
+| `--persist`    | Enable saving/loading index from disk | Disabled               |
+| `--index-path` | Custom index storage location         | `~/.cache/narsil-mcp/` |
 
 ### Project-Local Indexes (Recommended)
 
@@ -486,7 +486,6 @@ call_tool_chain({
     return results;
   `
 });
-```
 ```
 
 ### Validation: `configuration_complete`
@@ -727,16 +726,16 @@ call_tool_chain({
 
 ### When to Use Different Narsil Tools
 
-| Query Type                      | Tool                    | Reason                    |
-| ------------------------------- | ----------------------- | ------------------------- |
-| "How does authentication work?" | `narsil_neural_search`  | Semantic meaning          |
-| "Find code similar to this"     | `narsil_neural_search`  | Vector similarity         |
-| "List all auth functions"       | `narsil_find_symbols`   | Structural query          |
-| "Scan for SQL injection"        | `narsil_scan_security`  | Security analysis         |
-| "Show call graph for login"     | `narsil_get_call_graph` | Code flow                 |
-| "Who calls validateUser?"       | `narsil_get_callers`    | Callers analysis          |
-| "Find dead code"                | `narsil_find_dead_code` | Unreachable code          |
-| "Generate SBOM"                 | `narsil_generate_sbom`  | Supply chain              |
+| Query Type                      | Tool                    | Reason            |
+| ------------------------------- | ----------------------- | ----------------- |
+| "How does authentication work?" | `narsil_neural_search`  | Semantic meaning  |
+| "Find code similar to this"     | `narsil_neural_search`  | Vector similarity |
+| "List all auth functions"       | `narsil_find_symbols`   | Structural query  |
+| "Scan for SQL injection"        | `narsil_scan_security`  | Security analysis |
+| "Show call graph for login"     | `narsil_get_call_graph` | Code flow         |
+| "Who calls validateUser?"       | `narsil_get_callers`    | Callers analysis  |
+| "Find dead code"                | `narsil_find_dead_code` | Unreachable code  |
+| "Generate SBOM"                 | `narsil_generate_sbom`  | Supply chain      |
 
 ### Reindexing
 
@@ -761,16 +760,16 @@ Narsil provides 76 tools organized into categories. This section covers the **39
 
 ### 7.1 Repository & File Management (8 tools)
 
-| Tool                   | Purpose                          | Example                               |
-| ---------------------- | -------------------------------- | ------------------------------------- |
-| `list_repos`           | List indexed repositories        | `narsil_list_repos({})`               |
-| `get_project_structure`| Directory tree overview          | `narsil_get_project_structure({})`    |
-| `get_file`             | Get file contents                | `narsil_get_file({ path: "src/a.ts" })`|
-| `get_excerpt`          | Extract code context             | `narsil_get_excerpt({ ... })`         |
-| `reindex`              | Trigger re-indexing              | `narsil_reindex({})`                  |
-| `discover_repos`       | Auto-discover repositories       | `narsil_discover_repos({})`           |
-| `validate_repo`        | Validate repository path         | `narsil_validate_repo({ path: "..." })`|
-| `get_index_status`     | Show index statistics            | `narsil_get_index_status({})`         |
+| Tool                    | Purpose                    | Example                                 |
+| ----------------------- | -------------------------- | --------------------------------------- |
+| `list_repos`            | List indexed repositories  | `narsil_list_repos({})`                 |
+| `get_project_structure` | Directory tree overview    | `narsil_get_project_structure({})`      |
+| `get_file`              | Get file contents          | `narsil_get_file({ path: "src/a.ts" })` |
+| `get_excerpt`           | Extract code context       | `narsil_get_excerpt({ ... })`           |
+| `reindex`               | Trigger re-indexing        | `narsil_reindex({})`                    |
+| `discover_repos`        | Auto-discover repositories | `narsil_discover_repos({})`             |
+| `validate_repo`         | Validate repository path   | `narsil_validate_repo({ path: "..." })` |
+| `get_index_status`      | Show index statistics      | `narsil_get_index_status({})`           |
 
 **Example - Get Project Structure:**
 ```typescript
@@ -786,15 +785,15 @@ call_tool_chain({
 
 ### 7.2 Symbol Search & Navigation (7 tools)
 
-| Tool                    | Purpose                          | Example                                    |
-| ----------------------- | -------------------------------- | ------------------------------------------ |
-| `find_symbols`          | Find functions/classes/structs   | `narsil_find_symbols({ kind: "function" })`|
-| `get_symbol_definition` | Get source code for symbol       | `narsil_get_symbol_definition({ name: "main" })`|
-| `find_references`       | Find all usages of a symbol      | `narsil_find_references({ name: "auth" })` |
-| `get_dependencies`      | Analyze imports                  | `narsil_get_dependencies({ file: "..." })` |
-| `workspace_symbol_search`| Fuzzy search across workspace   | `narsil_workspace_symbol_search({ query: "user" })`|
-| `find_symbol_usages`    | Cross-file usage analysis        | `narsil_find_symbol_usages({ name: "..." })`|
-| `get_export_map`        | Module exports/API discovery     | `narsil_get_export_map({})`                |
+| Tool                      | Purpose                        | Example                                             |
+| ------------------------- | ------------------------------ | --------------------------------------------------- |
+| `find_symbols`            | Find functions/classes/structs | `narsil_find_symbols({ kind: "function" })`         |
+| `get_symbol_definition`   | Get source code for symbol     | `narsil_get_symbol_definition({ name: "main" })`    |
+| `find_references`         | Find all usages of a symbol    | `narsil_find_references({ name: "auth" })`          |
+| `get_dependencies`        | Analyze imports                | `narsil_get_dependencies({ file: "..." })`          |
+| `workspace_symbol_search` | Fuzzy search across workspace  | `narsil_workspace_symbol_search({ query: "user" })` |
+| `find_symbol_usages`      | Cross-file usage analysis      | `narsil_find_symbol_usages({ name: "..." })`        |
+| `get_export_map`          | Module exports/API discovery   | `narsil_get_export_map({})`                         |
 
 **Example - Find All Functions:**
 ```typescript
@@ -809,14 +808,14 @@ call_tool_chain({
 
 ### 7.3 Call Graph Analysis (6 tools)
 
-| Tool                   | Purpose                          | Example                                  |
-| ---------------------- | -------------------------------- | ---------------------------------------- |
-| `get_call_graph`       | Function relationships           | `narsil_get_call_graph({ function_name: "main" })`|
-| `get_callers`          | Who calls this function?         | `narsil_get_callers({ function_name: "auth" })`|
-| `get_callees`          | What does this function call?    | `narsil_get_callees({ function_name: "login" })`|
-| `find_call_path`       | Path between two functions       | `narsil_find_call_path({ from: "a", to: "b" })`|
-| `get_complexity`       | Cyclomatic/cognitive complexity  | `narsil_get_complexity({})`              |
-| `get_function_hotspots`| Find central/critical functions  | `narsil_get_function_hotspots({})`       |
+| Tool                    | Purpose                         | Example                                            |
+| ----------------------- | ------------------------------- | -------------------------------------------------- |
+| `get_call_graph`        | Function relationships          | `narsil_get_call_graph({ function_name: "main" })` |
+| `get_callers`           | Who calls this function?        | `narsil_get_callers({ function_name: "auth" })`    |
+| `get_callees`           | What does this function call?   | `narsil_get_callees({ function_name: "login" })`   |
+| `find_call_path`        | Path between two functions      | `narsil_find_call_path({ from: "a", to: "b" })`    |
+| `get_complexity`        | Cyclomatic/cognitive complexity | `narsil_get_complexity({})`                        |
+| `get_function_hotspots` | Find central/critical functions | `narsil_get_function_hotspots({})`                 |
 
 **Example - Get Call Graph:**
 ```typescript
@@ -834,12 +833,12 @@ call_tool_chain({
 
 ### 7.4 Security - Taint Tracking (4 tools)
 
-| Tool                           | Purpose                          | Example                            |
-| ------------------------------ | -------------------------------- | ---------------------------------- |
-| `find_injection_vulnerabilities`| SQL/XSS/command injection       | `narsil_find_injection_vulnerabilities({})`|
-| `trace_taint`                  | Trace untrusted data flow        | `narsil_trace_taint({ source: "input" })`|
-| `get_taint_sources`            | Identify input entry points      | `narsil_get_taint_sources({})`     |
-| `get_security_summary`         | Quick risk assessment            | `narsil_get_security_summary({})`  |
+| Tool                             | Purpose                     | Example                                     |
+| -------------------------------- | --------------------------- | ------------------------------------------- |
+| `find_injection_vulnerabilities` | SQL/XSS/command injection   | `narsil_find_injection_vulnerabilities({})` |
+| `trace_taint`                    | Trace untrusted data flow   | `narsil_trace_taint({ source: "input" })`   |
+| `get_taint_sources`              | Identify input entry points | `narsil_get_taint_sources({})`              |
+| `get_security_summary`           | Quick risk assessment       | `narsil_get_security_summary({})`           |
 
 **Example - Find Injection Vulnerabilities:**
 ```typescript
@@ -855,13 +854,13 @@ call_tool_chain({
 
 ### 7.5 Security - Rules Engine (5 tools)
 
-| Tool                   | Purpose                          | Example                                |
-| ---------------------- | -------------------------------- | -------------------------------------- |
-| `scan_security`        | Full security scan               | `narsil_scan_security({ ruleset: "owasp" })`|
-| `check_owasp_top10`    | OWASP Top 10 compliance          | `narsil_check_owasp_top10({})`         |
-| `check_cwe_top25`      | CWE Top 25 compliance            | `narsil_check_cwe_top25({})`           |
-| `explain_vulnerability`| Get detailed vulnerability info  | `narsil_explain_vulnerability({ id: "..." })`|
-| `suggest_fix`          | Get remediation guidance         | `narsil_suggest_fix({ vulnerability_id: "..." })`|
+| Tool                    | Purpose                         | Example                                           |
+| ----------------------- | ------------------------------- | ------------------------------------------------- |
+| `scan_security`         | Full security scan              | `narsil_scan_security({ ruleset: "owasp" })`      |
+| `check_owasp_top10`     | OWASP Top 10 compliance         | `narsil_check_owasp_top10({})`                    |
+| `check_cwe_top25`       | CWE Top 25 compliance           | `narsil_check_cwe_top25({})`                      |
+| `explain_vulnerability` | Get detailed vulnerability info | `narsil_explain_vulnerability({ id: "..." })`     |
+| `suggest_fix`           | Get remediation guidance        | `narsil_suggest_fix({ vulnerability_id: "..." })` |
 
 **Example - OWASP Security Scan:**
 ```typescript
@@ -885,12 +884,12 @@ call_tool_chain({
 
 ### 7.6 Supply Chain Security (4 tools)
 
-| Tool                | Purpose                          | Example                                  |
-| ------------------- | -------------------------------- | ---------------------------------------- |
-| `generate_sbom`     | Generate Software Bill of Materials| `narsil_generate_sbom({ format: "cyclonedx" })`|
-| `check_dependencies`| Check for known CVEs             | `narsil_check_dependencies({})`          |
-| `check_licenses`    | License compliance verification  | `narsil_check_licenses({})`              |
-| `find_upgrade_path` | Find safe upgrade path           | `narsil_find_upgrade_path({ package: "..." })`|
+| Tool                 | Purpose                             | Example                                         |
+| -------------------- | ----------------------------------- | ----------------------------------------------- |
+| `generate_sbom`      | Generate Software Bill of Materials | `narsil_generate_sbom({ format: "cyclonedx" })` |
+| `check_dependencies` | Check for known CVEs                | `narsil_check_dependencies({})`                 |
+| `check_licenses`     | License compliance verification     | `narsil_check_licenses({})`                     |
+| `find_upgrade_path`  | Find safe upgrade path              | `narsil_find_upgrade_path({ package: "..." })`  |
 
 **Example - Generate SBOM:**
 ```typescript
@@ -907,12 +906,12 @@ call_tool_chain({
 
 ### 7.7 Control Flow & Code Quality (4 tools)
 
-| Tool             | Purpose                          | Example                        |
-| ---------------- | -------------------------------- | ------------------------------ |
-| `get_control_flow`| CFG basic blocks analysis       | `narsil_get_control_flow({ function: "..." })`|
-| `find_dead_code` | Find unreachable code            | `narsil_find_dead_code({})`    |
-| `find_dead_stores`| Find unused assignments         | `narsil_find_dead_stores({})`  |
-| `find_uninitialized`| Find uninitialized variables  | `narsil_find_uninitialized({})`|
+| Tool                 | Purpose                      | Example                                        |
+| -------------------- | ---------------------------- | ---------------------------------------------- |
+| `get_control_flow`   | CFG basic blocks analysis    | `narsil_get_control_flow({ function: "..." })` |
+| `find_dead_code`     | Find unreachable code        | `narsil_find_dead_code({})`                    |
+| `find_dead_stores`   | Find unused assignments      | `narsil_find_dead_stores({})`                  |
+| `find_uninitialized` | Find uninitialized variables | `narsil_find_uninitialized({})`                |
 
 **Example - Find Dead Code:**
 ```typescript
@@ -927,22 +926,22 @@ call_tool_chain({
 
 ### 7.8 Type Inference (3 tools)
 
-| Tool                | Purpose                          | Example                          |
-| ------------------- | -------------------------------- | -------------------------------- |
-| `infer_types`       | Discover types without tooling   | `narsil_infer_types({ file: "..." })`|
-| `check_type_errors` | Quick type error detection       | `narsil_check_type_errors({})`   |
-| `get_typed_taint_flow`| Type-aware taint analysis      | `narsil_get_typed_taint_flow({})` |
+| Tool                   | Purpose                        | Example                               |
+| ---------------------- | ------------------------------ | ------------------------------------- |
+| `infer_types`          | Discover types without tooling | `narsil_infer_types({ file: "..." })` |
+| `check_type_errors`    | Quick type error detection     | `narsil_check_type_errors({})`        |
+| `get_typed_taint_flow` | Type-aware taint analysis      | `narsil_get_typed_taint_flow({})`     |
 
 ### 7.9 Git Integration (6 HIGH priority tools)
 
-| Tool              | Purpose                          | Example                             |
-| ----------------- | -------------------------------- | ----------------------------------- |
-| `get_blame`       | Git blame for file/line          | `narsil_get_blame({ file: "..." })` |
-| `get_file_history`| Commit history for file          | `narsil_get_file_history({ file: "..." })`|
-| `get_recent_changes`| Recent commits                  | `narsil_get_recent_changes({})`     |
-| `get_hotspots`    | Churn analysis (risk areas)      | `narsil_get_hotspots({})`           |
-| `get_contributors`| Team/author information          | `narsil_get_contributors({})`       |
-| `get_commit_diff` | Diff for specific commit         | `narsil_get_commit_diff({ commit: "..." })`|
+| Tool                 | Purpose                     | Example                                     |
+| -------------------- | --------------------------- | ------------------------------------------- |
+| `get_blame`          | Git blame for file/line     | `narsil_get_blame({ file: "..." })`         |
+| `get_file_history`   | Commit history for file     | `narsil_get_file_history({ file: "..." })`  |
+| `get_recent_changes` | Recent commits              | `narsil_get_recent_changes({})`             |
+| `get_hotspots`       | Churn analysis (risk areas) | `narsil_get_hotspots({})`                   |
+| `get_contributors`   | Team/author information     | `narsil_get_contributors({})`               |
+| `get_commit_diff`    | Diff for specific commit    | `narsil_get_commit_diff({ commit: "..." })` |
 
 **Example - Get Hotspots:**
 ```typescript
@@ -1280,12 +1279,12 @@ tool_info({ tool_name: "narsil.narsil_scan_security" });
 
 ### File Locations
 
-| Path                                 | Purpose                          |
-| ------------------------------------ | -------------------------------- |
-| `${NARSIL_PATH}/target/release/narsil-mcp` | Narsil binary                    |
-| `.utcp_config.json`                  | Code Mode configuration          |
-| `opencode.json`                      | OpenCode MCP configuration       |
-| `.opencode/skill/mcp-narsil/`        | Narsil skill documentation       |
+| Path                                       | Purpose                    |
+| ------------------------------------------ | -------------------------- |
+| `${NARSIL_PATH}/target/release/narsil-mcp` | Narsil binary              |
+| `.utcp_config.json`                        | Code Mode configuration    |
+| `opencode.json`                            | OpenCode MCP configuration |
+| `.opencode/skill/mcp-narsil/`              | Narsil skill documentation |
 
 ### Tool Naming Convention
 
@@ -1302,28 +1301,28 @@ Examples:
 
 ### Quick Reference - Top 20 Tools
 
-| Tool                           | Purpose                          |
-| ------------------------------ | -------------------------------- |
-| `narsil_get_project_structure` | Directory tree overview          |
-| `narsil_find_symbols`          | Find functions/classes           |
-| `narsil_scan_security`         | Full security scan               |
-| `narsil_check_owasp_top10`     | OWASP compliance check           |
+| Tool                                    | Purpose                     |
+| --------------------------------------- | --------------------------- |
+| `narsil_get_project_structure`          | Directory tree overview     |
+| `narsil_find_symbols`                   | Find functions/classes      |
+| `narsil_scan_security`                  | Full security scan          |
+| `narsil_check_owasp_top10`              | OWASP compliance check      |
 | `narsil_find_injection_vulnerabilities` | SQL/XSS/injection detection |
-| `narsil_trace_taint`           | Trace untrusted data flow        |
-| `narsil_get_call_graph`        | Function relationships           |
-| `narsil_get_callers`           | Who calls this function?         |
-| `narsil_get_callees`           | What does this call?             |
-| `narsil_find_dead_code`        | Unreachable code detection       |
-| `narsil_get_complexity`        | Complexity metrics               |
-| `narsil_generate_sbom`         | Software Bill of Materials       |
-| `narsil_check_dependencies`    | CVE vulnerability check          |
-| `narsil_get_blame`             | Git blame                        |
-| `narsil_get_hotspots`          | High-churn files                 |
-| `narsil_reindex`               | Trigger re-indexing              |
-| `narsil_get_symbol_definition` | Get source code for symbol       |
-| `narsil_find_references`       | Find all usages                  |
-| `narsil_get_security_summary`  | Quick risk assessment            |
-| `narsil_check_licenses`        | License compliance               |
+| `narsil_trace_taint`                    | Trace untrusted data flow   |
+| `narsil_get_call_graph`                 | Function relationships      |
+| `narsil_get_callers`                    | Who calls this function?    |
+| `narsil_get_callees`                    | What does this call?        |
+| `narsil_find_dead_code`                 | Unreachable code detection  |
+| `narsil_get_complexity`                 | Complexity metrics          |
+| `narsil_generate_sbom`                  | Software Bill of Materials  |
+| `narsil_check_dependencies`             | CVE vulnerability check     |
+| `narsil_get_blame`                      | Git blame                   |
+| `narsil_get_hotspots`                   | High-churn files            |
+| `narsil_reindex`                        | Trigger re-indexing         |
+| `narsil_get_symbol_definition`          | Get source code for symbol  |
+| `narsil_find_references`                | Find all usages             |
+| `narsil_get_security_summary`           | Quick risk assessment       |
+| `narsil_check_licenses`                 | License compliance          |
 
 ### Configuration Templates
 
@@ -1370,18 +1369,18 @@ Examples:
 
 ### Related Skills
 
-| Skill             | Relationship                                       |
-| ----------------- | -------------------------------------------------- |
-| `mcp-code-mode`   | Narsil accessed via Code Mode                      |
-| `system-spec-kit` | Save security findings for future sessions         |
+| Skill             | Relationship                               |
+| ----------------- | ------------------------------------------ |
+| `mcp-code-mode`   | Narsil accessed via Code Mode              |
+| `system-spec-kit` | Save security findings for future sessions |
 
 ### Optional Flags
 
-| Flag       | Purpose                                          | When to Use                           |
-| ---------- | ------------------------------------------------ | ------------------------------------- |
-| `--neural` | Enable neural semantic search (Voyage AI)        | If you need semantic code search      |
-| `--lsp`    | IDE provides LSP features natively               | Skip - IDE handles this               |
-| `--remote` | Not needed for local development                 | Skip - local only                     |
+| Flag       | Purpose                                   | When to Use                      |
+| ---------- | ----------------------------------------- | -------------------------------- |
+| `--neural` | Enable neural semantic search (Voyage AI) | If you need semantic code search |
+| `--lsp`    | IDE provides LSP features natively        | Skip - IDE handles this          |
+| `--remote` | Not needed for local development          | Skip - local only                |
 
 ---
 
