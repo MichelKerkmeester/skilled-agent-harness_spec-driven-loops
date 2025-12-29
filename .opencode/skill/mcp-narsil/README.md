@@ -386,6 +386,23 @@ Manually trigger index save via Code Mode:
 narsil.narsil_save_index({})
 ```
 
+### Known Persistence Limitations
+
+> **Important**: The `--persist` flag has limitations. While **symbols and call graph data** persist correctly to disk, the following indexes are **regenerated on every startup** (~45-60 seconds for medium codebases):
+> - Neural embeddings (for `neural_search`)
+> - BM25 index (for `semantic_search`)
+> - TF-IDF embeddings (for `find_similar_code`)
+> - Code chunks (for `search_chunks`, `hybrid_search`)
+
+**Workaround**: Run Narsil as a **long-lived process** (HTTP server mode or persistent MCP stdio server) rather than restarting between queries. This ensures embedding indexes remain in memory.
+
+```bash
+# Recommended: Long-lived HTTP server
+narsil-mcp --repos . --persist --http --http-port 3000
+
+# Or: Keep MCP server running (don't restart OpenCode frequently)
+```
+
 ### CLI Flags Reference
 
 | Flag               | Purpose                         | Recommended |
@@ -834,6 +851,23 @@ RUST_MIN_STACK=8388608 narsil-mcp --repos /path/to/huge-repo
 narsil-mcp --repos /path/to/repo/src --repos /path/to/repo/lib
 ```
 
+### Known Limitations & Bugs
+
+**1. Persistence Bug**: Neural/BM25/TF-IDF/chunk indexes don't persist to disk (only symbols + call graph do). These indexes regenerate on each startup (~45-60s).
+   - **Workaround**: Run Narsil as a long-lived HTTP server process
+   - **Track**: https://github.com/postrv/narsil-mcp/issues
+
+**2. Unicode Character Panic**: Chunking crashes on Unicode box-drawing characters (─, │, etc.). This affects:
+   - `hybrid_search`
+   - `find_similar_code`
+   - `search_chunks`
+   - **Workaround**: Use `neural_search` or `semantic_search` instead
+   - **Track**: https://github.com/postrv/narsil-mcp/issues
+
+**Tools confirmed working** (in same session with `--reindex`):
+- `neural_search`, `semantic_search`, `get_call_graph`, `get_callers`, `get_callees`
+- `find_references`, `get_dependencies`, `find_symbols`, `get_symbol_definition`
+
 ### Quick Fixes
 
 | Problem               | Quick Fix                                   |
@@ -844,6 +878,8 @@ narsil-mcp --repos /path/to/repo/src --repos /path/to/repo/lib
 | Security scan timeout | Increase timeout to 120s                    |
 | Binary missing        | Run `cargo build --release`                 |
 | .gitignore issues     | Use `--verbose` to see skipped files        |
+| Embedding search empty| Run as long-lived server (see §5)           |
+| Chunking crashes      | Avoid files with box-drawing chars          |
 
 ### Diagnostic Commands
 

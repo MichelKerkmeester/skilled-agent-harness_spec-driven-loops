@@ -292,6 +292,10 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
    - LSP: IDE handles this natively
    - Remote: Not needed for local development
 
+3. **NEVER restart Narsil frequently for embedding searches**
+   - Neural/BM25/TF-IDF indexes don't persist to disk
+   - Run as long-lived server for best performance
+
 4. **NEVER assume index is current**
    - Use `narsil_reindex({})` after file changes
    - Use `--watch` flag for auto-reindex
@@ -383,6 +387,8 @@ Narsil supports persisting the code index to disk for faster startup:
 **Project-local indexes** (recommended): Use `--index-path .narsil-index` and add `.narsil-index/` to `.gitignore`.
 
 **Manual save**: Use `narsil.narsil_save_index({})` via Code Mode to trigger index save.
+
+> **Known Limitation**: The `--persist` flag only saves symbols and call graph data. Neural embeddings, BM25, TF-IDF, and chunk indexes regenerate on every startup (~45-60s). **Run Narsil as a long-lived server** for best performance.
 
 ### HTTP Server & Visualization
 

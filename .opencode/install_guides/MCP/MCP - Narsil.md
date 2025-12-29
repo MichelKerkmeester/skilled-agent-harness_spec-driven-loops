@@ -415,6 +415,17 @@ Add to `.gitignore`:
 3. **Manual save**: Use `save_index` MCP tool via Code Mode
 4. **Watch mode**: Saves after detecting file changes
 
+> **Known Limitation**: The `--persist` flag has limitations. While **symbols and call graph data** persist correctly, the following indexes are **regenerated on every startup** (~45-60 seconds):
+> - Neural embeddings (for `neural_search`)
+> - BM25 index (for `semantic_search`)
+> - TF-IDF embeddings (for `find_similar_code`)
+> - Code chunks (for `search_chunks`, `hybrid_search`)
+>
+> **Workaround**: Run Narsil as a **long-lived HTTP server** rather than restarting between queries:
+> ```bash
+> narsil-mcp --repos . --persist --http --http-port 3000
+> ```
+
 ### Manual Index Building
 
 For large codebases or pre-warming the index:
@@ -1338,6 +1349,20 @@ call_tool_chain({
   });
   ```
   Or ensure `--watch` flag is in configuration for auto-reindex.
+
+### Known Limitations & Bugs
+
+**1. Persistence Bug**: Neural/BM25/TF-IDF/chunk indexes don't persist to disk (only symbols + call graph do). These indexes regenerate on each startup (~45-60s).
+   - **Workaround**: Run Narsil as a long-lived HTTP server process
+   - **Track**: https://github.com/postrv/narsil-mcp/issues
+
+**2. Unicode Character Panic**: Chunking crashes on Unicode box-drawing characters (─, │, etc.). This affects `hybrid_search`, `find_similar_code`, and `search_chunks`.
+   - **Workaround**: Use `neural_search` or `semantic_search` instead
+   - **Track**: https://github.com/postrv/narsil-mcp/issues
+
+**Tools confirmed working** (in same session with `--reindex`):
+- `neural_search`, `semantic_search`, `get_call_graph`, `get_callers`, `get_callees`
+- `find_references`, `get_dependencies`, `find_symbols`, `get_symbol_definition`
 
 ### Diagnostic Commands
 

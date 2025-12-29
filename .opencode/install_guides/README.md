@@ -586,6 +586,8 @@ grep -q "narsil-mcp" .utcp_config.json 2>/dev/null && echo "Config: PASS" || ech
 Ask your assistant: "Use Code Mode to search for Narsil tools"
 Expected: List of `narsil.narsil_*` tools (76 total)
 
+> **Note**: For best performance with embedding-based searches (`neural_search`, `semantic_search`), run Narsil as a **long-lived HTTP server**. Embedding indexes don't persist to disk and regenerate on each startup (~45-60s).
+
 **Optional: HTTP Visualization**
 Narsil includes an HTTP server with React frontend for interactive graph visualization:
 ```bash
