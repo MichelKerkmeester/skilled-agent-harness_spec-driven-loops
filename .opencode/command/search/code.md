@@ -1,10 +1,10 @@
 ---
-description: Unified AI-powered code search - route semantic (LEANN) and structural/security/analysis (Narsil) queries with smart multi-tool fusion
+description: Unified AI-powered code search - semantic and structural via Narsil with smart multi-tool fusion
 argument-hint: "[query] [--index:<name>] [--path:<dir>] [--type:<ext>] [--limit:<N>]"
-allowed-tools: Bash, Read, leann_search, leann_ask, leann_list, code_mode_call_tool_chain, code_mode_search_tools
+allowed-tools: Bash, Read, code_mode_call_tool_chain, code_mode_search_tools
 ---
 
-# PRE-SEARCH VALIDATION (LIGHT)
+# 🔍 PRE-SEARCH VALIDATION (LIGHT)
 
 ```
 EXECUTE QUICK VALIDATION:
@@ -21,7 +21,7 @@ EXECUTE QUICK VALIDATION:
 
 # Unified Code Search
 
-One command for semantic (LEANN) and structural/security/analysis (Narsil) search with intelligent routing.
+One command for semantic and structural code search via Narsil with intelligent routing.
 
 ```yaml
 role: Code Search Specialist
@@ -31,20 +31,19 @@ action: Route to optimal tool based on query intent
 
 ---
 
-## 1. 📋 CONTRACT
+## 1. 📝 CONTRACT
 
 **Inputs:** `$ARGUMENTS` — Query, mode keyword, or filters
 **Outputs:** `STATUS=<OK|FAIL>` with `RESULTS=<N>` and `TOOLS=<used>`
 
-| Pattern          | Mode        | Example                           |
-| ---------------- | ----------- | --------------------------------- |
-| (empty)          | Dashboard   | `/search:code`                    |
-| `<query>`        | Smart Route | `/search:code how does auth work` |
-| `--index:<name>` | Filter      | `/search:code --index:anobel`     |
-| `--path:<dir>`   | Filter      | `/search:code --path:src/auth`    |
-| `--type:<ext>`   | Filter      | `/search:code --type:js,ts`       |
-| `--limit:<N>`    | Filter      | `/search:code --limit:20`         |
-| `--depth:<N>`    | Filter      | `/search:code --depth:3`          |
+| Pattern        | Mode        | Example                           |
+| -------------- | ----------- | --------------------------------- |
+| (empty)        | Dashboard   | `/search:code`                    |
+| `<query>`      | Smart Route | `/search:code how does auth work` |
+| `--path:<dir>` | Filter      | `/search:code --path:src/auth`    |
+| `--type:<ext>` | Filter      | `/search:code --type:js,ts`       |
+| `--limit:<N>`  | Filter      | `/search:code --limit:20`         |
+| `--depth:<N>`  | Filter      | `/search:code --depth:3`          |
 
 **Index Management:** Use `/search:index` for build, list, remove, status.
 
@@ -70,7 +69,7 @@ $ARGUMENTS
         ├─► SEMANTIC? ("how does", "explain", "what is", "why", "understand")
         ├─► SECURITY? ("security", "vulnerability", "OWASP", "CWE", "injection")
         ├─► ANALYSIS? ("complexity", "dead code", "dependencies", "unused")
-        └─► AMBIGUOUS (<60% confidence) → FUSION (LEANN + Narsil)
+        └─► AMBIGUOUS (<60% confidence) → HYBRID (Narsil semantic + structural)
 ```
 
 ---
@@ -84,19 +83,19 @@ $ARGUMENTS
 │ ROUTING DECISION                                                │
 ├─────────────────────────────────────────────────────────────────┤
 │ Query: "<user_query>"                                           │
-│ Mode: <emoji> <MODE>  |  Tool: <tool_name>                      │
+│ Mode: <MODE>                                                    │
 │ Why: <trigger_reason>  |  Confidence: <N>%                       │
 │ Tip: <mode-specific_tip>                                         │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Mode       | Emoji | Tool   | Type                                 |
-| ---------- | ----- | ------ | ------------------------------------ |
-| SEMANTIC   | 🔮     | LEANN  | RAG (Retrieval-Augmented Generation) |
-| STRUCTURAL | 🏗️     | Narsil | AST Parser (Abstract Syntax Tree)    |
-| SECURITY   | 🔒     | Narsil | Vulnerability Scanning               |
-| ANALYSIS   | 📊     | Narsil | Code Metrics & Quality               |
-| FUSION     | ⚡     | Both   | Multi-tool parallel execution        |
+| Mode       | Type                              |
+| ---------- | --------------------------------- |
+| SEMANTIC   | Neural Search (Semantic)          |
+| STRUCTURAL | AST Parser (Abstract Syntax Tree) |
+| SECURITY   | Vulnerability Scanning            |
+| ANALYSIS   | Code Metrics & Quality            |
+| FUSION     | Multi-tool parallel execution     |
 
 **Trigger reasons:** See `/search:code:help` Section 3 for full detection patterns.
 
@@ -105,10 +104,16 @@ $ARGUMENTS
 ## 4. 🔧 TOOL SIGNATURES
 
 ```javascript
-// LEANN (Semantic)
-leann_search({ index_name: "<name>", query: "<q>", top_k: N, show_metadata: true })
-leann_list({})
-Bash("leann ask <name> '<question>'")
+// Narsil (Semantic - via Code Mode)
+code_mode_call_tool_chain({
+  code: `
+    const results = await narsil.narsil_neural_search({ 
+      query: "<q>",
+      top_k: N 
+    });
+    return results;
+  `
+})
 
 // Narsil (Structural - via Code Mode)
 code_mode_call_tool_chain({
@@ -147,40 +152,56 @@ code_mode_call_tool_chain({
 **Trigger:** `/search:code` with no arguments
 
 ```javascript
-leann_list({})
+code_mode_call_tool_chain({
+  code: `
+    const status = await narsil.narsil_get_index_status({});
+    return status;
+  `
+})
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │  CODE SEARCH DASHBOARD                                                      │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│  🔮 LEANN          Semantic (RAG)         ✅ anobel                         │
-│  🏗️ Narsil         Structural (AST)       ✅ Available                      │
-│  🔒 Narsil         Security (Scan)        ✅ Available                      │
-│  📊 Narsil         Analysis (Metrics)     ✅ Available                      │
+│  SEARCH MODES                                                               │
+│                                                                             │
+│  Semantic        Neural Search           ✅ Available                       │
+│  Structural      AST Parser              ✅ Available                       │
+│  Security        Vulnerability Scan      ✅ Available                       │
+│  Analysis        Code Metrics            ✅ Available                       │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │  COMMANDS                                                                   │
 │                                                                             │
-│  [s] search <query>     Semantic search     --index: --limit:               │
-│  [t] tree <path>        Structure/symbols   --depth: --type:                │
-│  [a] ask <question>     Q&A with context    --index:                        │
-│  [x] security <path>    Vulnerability scan  --severity:                     │
-│  [c] complexity <path>  Code analysis       --type:                         │
-│  [f] fusion <query>     Multi-tool search   (auto-routes to best tool)      │
-│  [i] index              Index management    → /search:index                 │
+│  [s] search <query>     Semantic search       --path: --limit:              │
+│  [t] tree <path>        Structure/symbols     --depth: --type:              │
+│  [x] security <path>    Vulnerability scan    --severity:                   │
+│  [a] analysis <path>    Code metrics          --type:                       │
+│  [f] fusion <query>     Multi-mode search     (auto-routes)                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  INDEX: /search:index                                                       │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 6. 🧠 SEMANTIC MODE (LEANN)
+## 6. 🔮 SEMANTIC MODE
 
 **Trigger:** "how does", "explain", "what is", "why", "understand"
 
 **Workflow:**
 ```
-1. Parse: --index:<name>, --limit:<N>, remaining → query
-2. Execute: leann_search({ index_name, query, top_k, show_metadata: true })
+1. Parse: --limit:<N>, remaining → query
+2. Execute via Code Mode:
+   code_mode_call_tool_chain({
+     code: `
+       const results = await narsil.narsil_neural_search({ 
+         query: "<query>",
+         top_k: <N> 
+       });
+       return results;
+     `
+   })
 3. Display results table
 ```
 
@@ -196,11 +217,11 @@ Index: <name> | Limit: <N>
 [1-N] view | [a]sk Q&A | [r]efine | [b]ack | [q]uit
 ```
 
-**Q&A:** `Bash("leann ask <name> '<question>'")`
+**Q&A:** Use `narsil.narsil_semantic_search()` via Code Mode, then Read tool for file content.
 
 ---
 
-## 7. 🏗️ STRUCTURAL MODE (Narsil)
+## 7. 🏗️ STRUCTURAL MODE
 
 **Trigger:** "list functions", "show classes", "tree", "outline", "where defined"
 
@@ -242,7 +263,7 @@ src/auth/
 
 ---
 
-## 8. 🔒 SECURITY MODE (Narsil)
+## 8. 🔒 SECURITY MODE
 
 **Trigger:** "security", "vulnerabilities", "scan", "audit", "OWASP", "CWE"
 
@@ -277,7 +298,7 @@ Severity: high+
 
 ---
 
-## 9. 📈 ANALYSIS MODE (Narsil)
+## 9. 🧠 ANALYSIS MODE
 
 **Trigger:** "dead code", "complexity", "dependencies", "call graph", "unused"
 
@@ -320,31 +341,36 @@ Type: complexity
 
 ---
 
-## 10. ⚡ FUSION MODE (Multi-Tool)
+## 10. ⚡ FUSION MODE
 
 **Trigger:** Ambiguous queries (confidence < 60%), broad topics, single words
 
 **Workflow:**
 ```
-1. Execute in parallel:
-   - leann_search({ index_name, query, top_k: 5 })
-   - code_mode_call_tool_chain({ 
-       code: `await narsil.narsil_find_symbols({ kind: "all", pattern: "<query>" })` 
-     })
+1. Execute via Code Mode (parallel Narsil calls):
+   code_mode_call_tool_chain({
+     code: `
+       const [semantic, structural] = await Promise.all([
+         narsil.narsil_neural_search({ query: "<query>", top_k: 5 }),
+         narsil.narsil_find_symbols({ kind: "all", pattern: "<query>" })
+       ]);
+       return { semantic, structural };
+     `
+   })
 2. Merge by file path, deduplicate, sort by relevance
-3. Display unified results with tool attribution
+3. Display unified results with search type attribution
 ```
 
 **Output:**
 ```
 SEARCH RESULTS: "authentication"
-Mode: Multi-Tool Fusion (LEANN + Narsil)
+Mode: Hybrid (Narsil semantic + structural)
 ────────────────────────────────────────────────────
-| #   | Tool   | Score | File              | Match                   |
-| --- | ------ | ----- | ----------------- | ----------------------- |
-| 1   | LEANN  | 94%   | src/auth/oauth.js | OAuth callback handling |
-| 2   | Narsil | -     | src/auth/index.js | function: validateUser  |
-| 3   | Narsil | -     | src/auth/login.js | class: AuthManager      |
+| #   | Type       | Score | File              | Match                   |
+| --- | ---------- | ----- | ----------------- | ----------------------- |
+| 1   | Semantic   | 94%   | src/auth/oauth.js | OAuth callback handling |
+| 2   | Structural | -     | src/auth/index.js | function: validateUser  |
+| 3   | Structural | -     | src/auth/login.js | class: AuthManager      |
 ────────────────────────────────────────────────────
 [1-N] view | [s]emantic | [t]ree | [x]security | [r]efine | [q]uit
 ```
@@ -381,8 +407,7 @@ Primary empty? → Semantic → Structural → Diagnostic
 
 ---
 
-## 13. 📚 MORE HELP
+## 13. 🔗 RELATED RESOURCES
 
-For detailed reference (examples, patterns, comparisons):
-- **mcp-leann skill** - LEANN semantic search documentation
-- **mcp-narsil skill** - Narsil structural, security, and analysis documentation
+- **mcp-narsil skill** - Narsil semantic, structural, security, and analysis documentation
+- `/search:index` - Index management and status

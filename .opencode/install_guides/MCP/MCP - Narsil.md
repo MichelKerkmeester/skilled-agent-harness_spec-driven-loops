@@ -57,7 +57,7 @@ Guide me through each step with the exact commands I need to run.
 
 ## 1. 📖 OVERVIEW
 
-Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep code intelligence. Unlike LEANN (semantic/meaning-based search), Narsil excels at **structural analysis** and **security scanning**.
+Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep code intelligence including **structural analysis**, **security scanning**, and **neural semantic search**.
 
 ### Source Repository
 
@@ -71,10 +71,12 @@ Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep 
 
 ### Core Principle
 
-> **Narsil = STRUCTURE + SECURITY, LEANN = MEANING**
+> **Narsil = UNIFIED CODE INTELLIGENCE**
 >
-> Use Narsil for "List all functions" or "Scan for vulnerabilities".
-> Use LEANN for "How does authentication work?" or "Find code similar to X".
+> Use Narsil for:
+> - **Structure**: "List all functions", "Show call graph"
+> - **Security**: "Scan for vulnerabilities", "Check OWASP compliance"
+> - **Semantics**: "How does authentication work?" (with --neural flag)
 
 ### Key Features
 
@@ -92,50 +94,57 @@ Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep 
 ### Architecture Overview
 
 ```
-+-----------------------------------------------------------------+
-|                   CLI AI Agents (OpenCode)                       |
-+-----------------------------------------------------------------+
-                              | MCP Protocol
-                              v
-+-----------------------------------------------------------------+
-|                   Code Mode MCP Server                           |
-|  +-----------------------------------------------------------+  |
-|  |                  Tool Orchestration Layer                  |  |
-|  |  call_tool_chain() | search_tools() | tool_info()          |  |
-|  +-----------------------------------------------------------+  |
-+-----------------------------------------------------------------+
-                              | TypeScript Invocation
-                              v
-+-----------------------------------------------------------------+
-|                   Narsil MCP Server (Rust)                       |
-|  +-----------------------------------------------------------+  |
-|  |                    76 Analysis Tools                       |  |
-|  |  Security | Call Graph | Symbols | Quality | Git | SBOM   |  |
-|  +-----------------------------------------------------------+  |
-|  +-----------------------------------------------------------+  |
-|  |                    Core Components                         |  |
-|  |  AST Parser | Taint Tracker | Index Manager | Git Backend |  |
-|  +-----------------------------------------------------------+  |
-+-----------------------------------------------------------------+
-                              |
-                              v
-+-----------------------------------------------------------------+
-|                      Project Repository                          |
-|  Source files | Git history | Dependencies | Config              |
-+-----------------------------------------------------------------+
+┌─────────────────────────────────────────────────────────────────┐
+│  AI Agent (Claude Code, OpenCode, VS Code Copilot)              │
+│                                                                 │
+│  Sees: Only 4 tools in context (~1.6k tokens)                   │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │ • call_tool_chain   (Execute TypeScript)                  │  │
+│  │ • search_tools      (Progressive discovery)               │  │
+│  │ • list_tools        (List all available)                  │  │
+│  │ • tool_info         (Get tool interface)                  │  │
+│  └───────────────────────────────────────────────────────────┘  │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │ TypeScript Code
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Code Mode MCP Server (V8 Isolate Sandbox)                      │
+│  • Executes TypeScript with tool access                         │
+│  • Routes calls to appropriate MCP servers                      │
+│  • Returns results + logs                                       │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │ Tool Calls
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Narsil MCP Server (Rust)                                       │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                    76 Analysis Tools                       │  │
+│  │  Security | Call Graph | Symbols | Quality | Git | SBOM   │  │
+│  └───────────────────────────────────────────────────────────┘  │
+│  ┌───────────────────────────────────────────────────────────┐  │
+│  │                    Core Components                         │  │
+│  │  AST Parser | Taint Tracker | Index Manager | Git Backend │  │
+│  └───────────────────────────────────────────────────────────┘  │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      Project Repository                          │
+│  Source files | Git history | Dependencies | Config              │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ### How It Compares
 
-| Feature            | Narsil            | LEANN           | Grep/Ripgrep |
-| ------------------ | ----------------- | --------------- | ------------ |
-| **Query Type**     | Structural        | Semantic        | Lexical      |
-| **Security Scan**  | Yes (OWASP/CWE)   | No              | No           |
-| **Call Graph**     | Yes               | No              | No           |
-| **Find Symbols**   | Yes               | Limited         | Pattern only |
-| **Meaning Search** | No (use LEANN)    | Yes             | No           |
-| **Dead Code**      | Yes               | No              | No           |
-| **SBOM/CVE**       | Yes               | No              | No           |
+| Feature            | Narsil            | Grep/Ripgrep |
+| ------------------ | ----------------- | ------------ |
+| **Query Type**     | Structural + Semantic | Lexical  |
+| **Security Scan**  | Yes (OWASP/CWE)   | No           |
+| **Call Graph**     | Yes               | No           |
+| **Find Symbols**   | Yes               | Pattern only |
+| **Meaning Search** | Yes (with --neural) | No         |
+| **Dead Code**      | Yes               | No           |
+| **SBOM/CVE**       | Yes               | No           |
 
 ### Tool Categories Summary
 
@@ -288,7 +297,7 @@ Connect Narsil to Code Mode for AI assistant access.
 
 ### IMPORTANT: Narsil Uses Code Mode (Not Standalone MCP)
 
-Unlike LEANN or Sequential Thinking, Narsil is **NOT** configured in `opencode.json` directly. Instead, it's configured in `.utcp_config.json` for Code Mode access.
+Unlike Sequential Thinking (which uses native MCP), Narsil is **NOT** configured in `opencode.json` directly. Instead, it's configured in `.utcp_config.json` for Code Mode access.
 
 This provides:
 - Token efficiency (~700 tokens vs ~6,000-8,000 native)
@@ -327,16 +336,18 @@ Add Narsil to your project's `.utcp_config.json`:
 
 ### Configuration Flags Reference
 
-| Flag           | Purpose                                      | Recommended |
-| -------------- | -------------------------------------------- | ----------- |
-| `--repos`      | Repository paths to index                    | Yes         |
-| `--git`        | Enable git integration (blame, history)      | Yes         |
-| `--call-graph` | Enable call graph analysis                   | Yes         |
-| `--persist`    | Save index to disk (faster restarts)         | Yes         |
-| `--watch`      | Auto-reindex on file changes                 | Yes         |
-| `--neural`     | Neural semantic search (SKIP - use LEANN)    | No          |
-| `--lsp`        | LSP integration (SKIP - IDE handles)         | No          |
-| `--remote`     | Remote repository access (SKIP - local only) | No          |
+| Flag              | Purpose                                      | Recommended |
+| ----------------- | -------------------------------------------- | ----------- |
+| `--repos`         | Repository paths to index                    | Yes         |
+| `--git`           | Enable git integration (blame, history)      | Yes         |
+| `--call-graph`    | Enable call graph analysis                   | Yes         |
+| `--persist`       | Save index to disk (faster restarts)         | Yes         |
+| `--watch`         | Auto-reindex on file changes                 | Yes         |
+| `--neural`        | Enable neural semantic search                | Optional    |
+| `--neural-backend`| Backend for embeddings (api or local)        | Optional    |
+| `--neural-model`  | Embedding model (e.g., voyage-code-3)        | Optional    |
+| `--lsp`           | LSP integration (SKIP - IDE handles)         | No          |
+| `--remote`        | Remote repository access (SKIP - local only) | No          |
 
 ### Step 2: Verify .utcp_config.json Syntax
 
@@ -364,6 +375,54 @@ If you have multiple Code Mode tools configured:
     }
   }
 }
+```
+
+### Neural Semantic Search Configuration (Optional)
+
+To enable neural semantic search capabilities:
+
+```json
+{
+  "mcpServers": {
+    "narsil": {
+      "transport": "stdio",
+      "command": "/Users/YOUR_USERNAME/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp",
+      "args": [
+        "--repos", "${workspaceFolder}",
+        "--git",
+        "--call-graph",
+        "--persist",
+        "--watch",
+        "--neural",
+        "--neural-backend", "api",
+        "--neural-model", "voyage-code-3"
+      ],
+      "env": {
+        "VOYAGE_API_KEY": "your-voyage-api-key-here"
+      }
+    }
+  }
+}
+```
+
+**Voyage API Setup:**
+1. Get API key from https://www.voyageai.com/
+2. Key format: starts with "pa-"
+3. Add to env section in `.utcp_config.json`
+
+**Neural Search Usage:**
+```typescript
+// Semantic search for code meaning
+call_tool_chain({
+  code: `
+    const results = await narsil.narsil_neural_search({
+      query: "how does authentication work",
+      top_k: 10
+    });
+    return results;
+  `
+});
+```
 ```
 
 ### Validation: `configuration_complete`
@@ -602,18 +661,18 @@ call_tool_chain({
 });
 ```
 
-### When to Use Narsil vs LEANN
+### When to Use Different Narsil Tools
 
-| Query Type                      | Tool   | Reason                    |
-| ------------------------------- | ------ | ------------------------- |
-| "How does authentication work?" | LEANN  | Semantic meaning          |
-| "Find code similar to this"     | LEANN  | Vector similarity         |
-| "List all auth functions"       | Narsil | Structural query          |
-| "Scan for SQL injection"        | Narsil | Security analysis         |
-| "Show call graph for login"     | Narsil | Code flow                 |
-| "Who calls validateUser?"       | Narsil | Callers analysis          |
-| "Find dead code"                | Narsil | Unreachable code          |
-| "Generate SBOM"                 | Narsil | Supply chain              |
+| Query Type                      | Tool                    | Reason                    |
+| ------------------------------- | ----------------------- | ------------------------- |
+| "How does authentication work?" | `narsil_neural_search`  | Semantic meaning          |
+| "Find code similar to this"     | `narsil_neural_search`  | Vector similarity         |
+| "List all auth functions"       | `narsil_find_symbols`   | Structural query          |
+| "Scan for SQL injection"        | `narsil_scan_security`  | Security analysis         |
+| "Show call graph for login"     | `narsil_get_call_graph` | Code flow                 |
+| "Who calls validateUser?"       | `narsil_get_callers`    | Callers analysis          |
+| "Find dead code"                | `narsil_find_dead_code` | Unreachable code          |
+| "Generate SBOM"                 | `narsil_generate_sbom`  | Supply chain              |
 
 ### Reindexing
 
@@ -942,9 +1001,15 @@ call_tool_chain({
   `
 });
 
-// Step 5: Use LEANN for semantic understanding
-// (Switch to LEANN for meaning-based queries)
-leann_search({ index_name: "project", query: "How does authentication work?" });
+// Step 5: Use neural search for semantic understanding
+call_tool_chain({
+  code: `
+    const results = await narsil.narsil_neural_search({
+      query: "How does authentication work?"
+    });
+    return results;
+  `
+});
 ```
 
 ### Example 3: Code Quality Review
@@ -1242,17 +1307,16 @@ Examples:
 
 | Skill             | Relationship                                       |
 | ----------------- | -------------------------------------------------- |
-| `mcp-leann`       | Semantic search complement (LEANN = meaning)       |
 | `mcp-code-mode`   | Narsil accessed via Code Mode                      |
 | `system-spec-kit` | Save security findings for future sessions         |
 
-### Flags to Skip
+### Optional Flags
 
-| Flag       | Reason                                           |
-| ---------- | ------------------------------------------------ |
-| `--neural` | LEANN handles semantic search with 97% savings   |
-| `--lsp`    | IDE provides LSP features natively               |
-| `--remote` | Not needed for local development                 |
+| Flag       | Purpose                                          | When to Use                           |
+| ---------- | ------------------------------------------------ | ------------------------------------- |
+| `--neural` | Enable neural semantic search (Voyage AI)        | If you need semantic code search      |
+| `--lsp`    | IDE provides LSP features natively               | Skip - IDE handles this               |
+| `--remote` | Not needed for local development                 | Skip - local only                     |
 
 ---
 
@@ -1293,9 +1357,9 @@ You now have Narsil MCP configured and accessible via Code Mode. Use it for:
 - **Code quality**: `narsil_find_dead_code`, `narsil_get_complexity`
 - **Supply chain**: `narsil_generate_sbom`, `narsil_check_dependencies`
 
-**Remember**: Use Narsil for STRUCTURE and SECURITY, use LEANN for MEANING.
+**Remember**: Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTICS.
 
-For semantic code search ("How does X work?"), use LEANN instead.
+For semantic code search ("How does X work?"), use `narsil.narsil_neural_search()` with the neural backend enabled.
 
 For more information, refer to:
 - Skill documentation: `.opencode/skill/mcp-narsil/SKILL.md`

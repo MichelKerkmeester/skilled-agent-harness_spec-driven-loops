@@ -330,7 +330,7 @@ High-confidence keywords that directly map to specific skills:
 | ------------ | ------------------------- | ----- |
 | `worktree`   | workflows-git             | +1.2  |
 | `devtools`   | workflows-chrome-devtools | +1.0  |
-| `leann`      | mcp-leann                 | +1.0  |
+| `narsil`     | mcp-narsil                | +1.0  |
 | `rebase`     | workflows-git             | +0.8  |
 | `flowchart`  | workflows-documentation   | +0.7  |
 | `treesitter` | mcp-narsil                | +0.7  |
@@ -342,9 +342,9 @@ For ambiguous keywords that could apply to multiple skills, use `MULTI_SKILL_BOO
 
 ```python
 MULTI_SKILL_BOOSTERS = {
-    "codebase": [("mcp-leann", 0.2), ("mcp-narsil", 0.2)],
-    "search": [("mcp-leann", 0.2), ("mcp-narsil", 0.2)],
-    "code": [("workflows-code", 0.2), ("mcp-narsil", 0.15), ("mcp-leann", 0.1)],
+    "codebase": [("mcp-narsil", 0.3)],
+    "search": [("mcp-narsil", 0.3)],
+    "code": [("workflows-code", 0.2), ("mcp-narsil", 0.2)],
     ...
 }
 ```
@@ -486,14 +486,9 @@ $ python skill_advisor.py "search for how authentication works in the codebase"
 
 [
   {
-    "skill": "mcp-leann",
+    "skill": "mcp-narsil",
     "confidence": 0.95,
     "reason": "Matched: !auth, !how, !search(multi), !codebase(multi)"
-  },
-  {
-    "skill": "mcp-narsil",
-    "confidence": 0.86,
-    "reason": "Matched: !codebase(multi), !search(multi)"
   }
 ]
 ```
@@ -532,7 +527,7 @@ $ python skill_advisor.py "hello"
 | Git operations     | workflows-git             | commit, push, branch, merge, worktree, github, pr, issue |
 | Browser debugging  | workflows-chrome-devtools | devtools, chrome, browser, debug, console |
 | Documentation      | workflows-documentation   | markdown, flowchart, diagram, readme      |
-| Code search        | mcp-leann                 | search, find, semantic, embeddings        |
+| Code search        | mcp-narsil                | search, find, semantic, symbols, functions |
 | Structure analysis | mcp-narsil                | symbols, functions, classes, ast, security, call-graph |
 | Memory/context     | system-spec-kit           | remember, save, context, checkpoint       |
 | Specifications     | system-spec-kit           | spec, checklist, plan, specification      |

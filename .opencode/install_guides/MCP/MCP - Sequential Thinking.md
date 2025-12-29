@@ -523,16 +523,15 @@ sequential_thinking_sequentialthinking({
 
 | Server              | Purpose                  |
 | ------------------- | ------------------------ |
-| **LEANN**           | Semantic code search     |
+| **Narsil**          | Semantic + structural code search |
 | **Spec Kit Memory** | Context preservation     |
-| **Code Context**    | Structural code analysis |
 
 ### When to Combine Tools
 
 ```
-Complex debugging → Sequential Thinking + LEANN (search for related code)
+Complex debugging → Sequential Thinking + Narsil (search for related code)
 Architecture decisions → Sequential Thinking + Memory (recall past decisions)
-Code exploration → LEANN + Code Context (understand before changing)
+Code exploration → Narsil (semantic + structural analysis before changing)
 ```
 
 ---

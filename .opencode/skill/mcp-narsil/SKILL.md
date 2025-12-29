@@ -11,7 +11,7 @@ version: 1.0.0
 
 Rust-powered code intelligence providing 76 specialized tools for security scanning, call graph analysis, and structural queries. Accessed via **Code Mode** for token-efficient on-demand access (~700 tokens vs ~6,000-8,000 native).
 
-**Core Principle**: Use Narsil for STRUCTURE and SECURITY, use LEANN for MEANING.
+**Core Principle**: Unified code intelligence - Narsil handles STRUCTURE, SECURITY, and SEMANTIC search.
 
 ---
 
@@ -66,10 +66,10 @@ Rust-powered code intelligence providing 76 specialized tools for security scann
 ### When NOT to Use
 
 **Do not use for**:
-- Semantic code search ("how does X work?") → Use **LEANN**
-- Finding code by meaning or intent → Use **LEANN**
-- RAG-powered Q&A about codebase → Use **LEANN**
 - Simple text pattern search → Use **Grep**
+- File path/name matching → Use **Glob**
+
+**For semantic search**: Use `narsil_neural_search` - Narsil's neural backend handles meaning-based queries.
 
 ---
 
@@ -220,15 +220,37 @@ call_tool_chain({
 });
 ```
 
-### LEANN Coordination
+### Unified Code Search
 
-| Query Type                      | Tool   | Reason            |
-| ------------------------------- | ------ | ----------------- |
-| "How does authentication work?" | LEANN  | Semantic meaning  |
-| "Find code similar to this"     | LEANN  | Vector similarity |
-| "List all auth functions"       | Narsil | Structural query  |
-| "Scan for vulnerabilities"      | Narsil | Security analysis |
-| "Show call graph for login"     | Narsil | Code flow         |
+Narsil provides both structural AND semantic search capabilities:
+
+| Query Type                      | Tool                    | Reason            |
+| ------------------------------- | ----------------------- | ----------------- |
+| "How does authentication work?" | `narsil_neural_search`  | Semantic meaning  |
+| "Find code similar to this"     | `narsil_neural_search`  | Vector similarity |
+| "List all auth functions"       | `narsil_find_symbols`   | Structural query  |
+| "Scan for vulnerabilities"      | `narsil_scan_security`  | Security analysis |
+| "Show call graph for login"     | `narsil_get_call_graph` | Code flow         |
+
+### Neural Semantic Search
+
+Narsil is configured with neural embeddings via Voyage API:
+- **Model**: voyage-code-3 (code-specialized)
+- **Tool**: `narsil_neural_search`
+- **Fallback**: BM25 search if API unavailable
+
+```typescript
+// Example: Semantic code search
+call_tool_chain({
+  code: `
+    const results = await narsil.narsil_neural_search({ 
+      query: "how does authentication work",
+      top_k: 10 
+    });
+    return results;
+  `
+});
+```
 
 See [references/tool_reference.md](./references/tool_reference.md) for complete tool documentation.
 
@@ -246,9 +268,9 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
    - Format: `narsil.narsil_{tool_name}`
    - Example: `narsil.narsil_scan_security({})`
 
-3. **ALWAYS check LEANN first for semantic queries**
-   - "How does X work?" → LEANN
-   - "Find code like X" → LEANN
+3. **ALWAYS use neural_search for semantic queries**
+   - "How does X work?" → `narsil_neural_search`
+   - "Find code like X" → `narsil_neural_search`
 
 4. **ALWAYS load security_guide.md for security tasks**
    - Provides phased workflow with checkpoints
@@ -260,16 +282,11 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 
 ### ❌ NEVER
 
-1. **NEVER use Narsil for semantic search**
-   - LEANN provides 97% storage savings
-   - LEANN is purpose-built for meaning-based queries
-
-2. **NEVER skip the `narsil_` prefix in tool names**
+1. **NEVER skip the `narsil_` prefix in tool names**
    - Wrong: `await narsil.scan_security({})`
    - Right: `await narsil.narsil_scan_security({})`
 
-3. **NEVER use Narsil's neural/LSP/remote tools**
-   - Neural: LEANN handles semantic search better
+2. **NEVER use Narsil's LSP/remote tools unnecessarily**
    - LSP: IDE handles this natively
    - Remote: Not needed for local development
 
@@ -317,7 +334,7 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 - ✅ `get_call_graph` mapped function relationships
 - ✅ `find_dead_code` identified cleanup candidates
 - ✅ `get_complexity` flagged refactoring targets
-- ✅ LEANN used for semantic understanding
+- ✅ `narsil_neural_search` used for semantic understanding
 
 ### Validation Checkpoints
 
@@ -354,18 +371,10 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 
 ### Related Skills
 
-| Skill             | Integration                                                              |
-| ----------------- | ------------------------------------------------------------------------ |
-| **mcp-leann**     | Semantic search complement - use LEANN for meaning, Narsil for structure |
-| **mcp-code-mode** | Tool orchestration - Narsil accessed via Code Mode's `call_tool_chain()` |
-| **system-spec-kit** | Context preservation - save security findings for future sessions        |
-
-### Complementary Skills
-
-| Skill | Relationship |
-|-------|--------------|
-| mcp-leann | Semantic search (by meaning) - use for "how does X work?" |
-| mcp-narsil | Structural search (by symbol) - use for "list functions in X" |
+| Skill               | Integration                                                       |
+| ------------------- | ----------------------------------------------------------------- |
+| **mcp-code-mode**   | Tool orchestration - Narsil accessed via Code Mode's `call_tool_chain()` |
+| **system-spec-kit** | Context preservation - save security findings for future sessions |
 
 ### Tool Usage Guidelines
 
@@ -401,5 +410,5 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 
 ### Related Skills
 
-- `mcp-leann` - Semantic code search (use for meaning-based queries)
 - `mcp-code-mode` - Tool orchestration (Narsil accessed via Code Mode)
+- `system-spec-kit` - Context preservation across sessions

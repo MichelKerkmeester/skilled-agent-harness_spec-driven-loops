@@ -346,11 +346,12 @@ Add to `.utcp_config.json`:
 
 ### Flags to Skip
 
-| Flag       | Reason                               |
-| ---------- | ------------------------------------ |
-| `--neural` | LEANN handles semantic search better |
-| `--lsp`    | IDE handles LSP natively             |
-| `--remote` | Not needed for local development     |
+| Flag       | Reason                           |
+| ---------- | -------------------------------- |
+| `--lsp`    | IDE handles LSP natively         |
+| `--remote` | Not needed for local development |
+
+> **Note**: `--neural` is now RECOMMENDED for semantic code search capabilities.
 
 ### Feature Builds
 
@@ -748,9 +749,9 @@ call_tool_chain({
 
 ### General Questions
 
-**Q: When should I use Narsil vs LEANN?**
+**Q: What can Narsil do?**
 
-A: Use Narsil for STRUCTURE and SECURITY (finding symbols, call graphs, vulnerability scanning). Use LEANN for MEANING (semantic search, "how does X work?", code similarity by intent).
+A: Narsil is a unified code intelligence solution providing STRUCTURE (symbols, call graphs), SECURITY (vulnerability scanning, taint analysis), and SEMANTIC search (neural embeddings via `narsil_neural_search`).
 
 **Q: Why use Code Mode instead of native MCP?**
 
@@ -821,8 +822,7 @@ A: Narsil uses data flow analysis to track type flow through variables, analyzin
 
 ### Related Skills
 
-| Skill                                       | Purpose                                      |
-| ------------------------------------------- | -------------------------------------------- |
-| [mcp-leann](../mcp-leann/README.md)         | Semantic code search (meaning-based queries) |
-| [mcp-code-mode](../mcp-code-mode/README.md) | Tool orchestration via TypeScript execution  |
-| [system-spec-kit](../system-spec-kit/README.md) | Context preservation across sessions         |
+| Skill                                           | Purpose                                     |
+| ----------------------------------------------- | ------------------------------------------- |
+| [mcp-code-mode](../mcp-code-mode/README.md)     | Tool orchestration via TypeScript execution |
+| [system-spec-kit](../system-spec-kit/README.md) | Context preservation across sessions        |

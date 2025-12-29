@@ -59,27 +59,26 @@ You are the **single point of accountability**. The user receives ONE coherent r
 | `workflows-git`             | Version Control | Branches, commits, PRs, worktrees, merges                        | GitHub MCP                         |
 | `workflows-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`                        |
 | `workflows-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI                          |
-| `mcp-leann`                 | Semantic        | Intent-based code finding (what code DOES)                       | `leann_search`, `leann_ask`        |
-| `mcp-narsil`                | Structural      | Symbol analysis, security scans, call graphs (via Code Mode)     | `narsil.*` via `call_tool_chain()` |
+| `mcp-narsil`                | Code Intel      | Semantic + structural search, security scans, call graphs (via Code Mode) | `narsil.*` via `call_tool_chain()` |
 | `mcp-code-mode`             | External Tools  | Webflow, Figma, ClickUp, Narsil, Chrome DevTools via MCP         | `call_tool_chain()`                |
 
 ### Core Tools
 
 | Tool                            | Purpose                             | When to Recommend                              |
 | ------------------------------- | ----------------------------------- | ---------------------------------------------- |
-| `leann_leann_search`            | Intent-based code discovery         | "Find code that handles...", unknown locations |
-| `leann_leann_ask`               | RAG-powered Q&A                     | "How does X work?"                             |
+| `narsil.narsil_neural_search`   | Semantic code discovery             | "Find code that handles...", unknown locations |
+| `narsil.narsil_find_symbols`    | Structural code analysis            | Symbol maps, function lists, call graphs       |
 | `spec_kit_memory_memory_search` | Memory vector search                | Find prior work, decisions                     |
-| `narsil.narsil_*`               | Structural Analysis (via Code Mode) | Call graphs, symbol maps, security scans       |
+| `narsil.narsil_*`               | Full Code Intelligence (via Code Mode) | Security scans, call graphs, dead code      |
 | `call_tool_chain()`             | External MCP tools                  | Webflow, Figma, ClickUp, Narsil                |
 
 ### Tool Access Patterns
 
-| Tool Type     | Access Method       | Example                                 |
-| ------------- | ------------------- | --------------------------------------- |
-| Native MCP    | Direct call         | `leann_leann_search({ query: "auth" })` |
-| Code Mode MCP | `call_tool_chain()` | `narsil.narsil_find_symbols({...})`     |
-| CLI tools     | Bash via sub-agent  | `bdg screenshot`                        |
+| Tool Type     | Access Method       | Example                                      |
+| ------------- | ------------------- | -------------------------------------------- |
+| Native MCP    | Direct call         | `spec_kit_memory_memory_search({ query })` |
+| Code Mode MCP | `call_tool_chain()` | `narsil.narsil_find_symbols({...})`          |
+| CLI tools     | Bash via sub-agent  | `bdg screenshot`                             |
 
 ---
 
@@ -92,7 +91,7 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 ### @research - The Evidence Analyst
 - **Role:** Context Discovery, Pattern Finding, Prior Work Analysis
-- **Skills:** `mcp-leann`, `mcp-narsil`, `system-spec-kit`
+- **Skills:** `mcp-narsil`, `system-spec-kit`
 - **Use When:** Planning, searching, researching, Gate 4 Option B
 
 ### @documentation-writer - The Quality Publisher
@@ -200,7 +199,7 @@ TASK #N: [Descriptive Title]
 TASK #1: Research Toast Patterns
 ├─ Scope: Find existing toast/notification implementations
 ├─ Agent: @research
-├─ Skills: mcp-leann, mcp-narsil
+├─ Skills: mcp-narsil, system-spec-kit
 ├─ Output: Research Findings with Confidence Score
 ├─ Success: Pattern identified and cited
 └─ Depends: none

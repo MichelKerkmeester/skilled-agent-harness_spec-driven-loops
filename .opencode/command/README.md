@@ -61,8 +61,8 @@ Commands for code search and indexing.
 
 | Command | Description | File |
 |---------|-------------|------|
-| `/search:code` | Semantic code search using LEANN or Narsil | `search/code.md` |
-| `/search:index` | Manage LEANN indexes (build, list, remove) | `search/index.md` |
+| `/search:code` | Semantic code search using Narsil | `search/code.md` |
+| `/search:index` | Manage Narsil indexes (build, list, remove) | `search/index.md` |
 
 ---
 

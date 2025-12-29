@@ -11,7 +11,6 @@ tools:
   grep: true
   glob: true
   webfetch: true
-  leann: true
   memory: true
   narsil: false
   chrome_devtools: false

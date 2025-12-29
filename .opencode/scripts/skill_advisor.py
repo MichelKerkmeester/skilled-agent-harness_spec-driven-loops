@@ -165,36 +165,36 @@ INTENT_BOOSTERS = {
     "store": ("system-spec-kit", 0.4),
     
     # ─────────────────────────────────────────────────────────────────
-    # MCP-LEANN: Semantic code search (meaning-based)
+    # MCP-NARSIL: Semantic + structural code search (meaning-based)
     # ─────────────────────────────────────────────────────────────────
-    "ask": ("mcp-leann", 0.4),
-    "auth": ("mcp-leann", 1.8),
-    "authentication": ("mcp-leann", 1.8),
-    "codebase": ("mcp-leann", 0.5),
-    "does": ("mcp-leann", 0.6),
-    "embeddings": ("mcp-leann", 0.7),
-    "explain": ("mcp-leann", 3.5),
-    "how": ("mcp-leann", 1.2),
-    "index": ("mcp-leann", 0.3),
-    "leann": ("mcp-leann", 1.0),
-    "login": ("mcp-leann", 0.8),
-    "logout": ("mcp-leann", 0.6),
-    "meaning": ("mcp-leann", 0.6),
-    "password": ("mcp-leann", 0.5),
-    "purpose": ("mcp-leann", 0.5),
-    "query": ("mcp-leann", 0.4),
-    "rag": ("mcp-leann", 0.6),
-    "semantic": ("mcp-leann", 0.5),
-    "understand": ("mcp-leann", 1.5),
-    "user": ("mcp-leann", 0.4),
-    "vector": ("mcp-leann", 0.6),
-    "what": ("mcp-leann", 1.0),
-    "why": ("mcp-leann", 1.5),
-    "work": ("mcp-leann", 1.0),
-    "works": ("mcp-leann", 1.0),
+    "ask": ("mcp-narsil", 0.4),
+    "auth": ("mcp-narsil", 1.8),
+    "authentication": ("mcp-narsil", 1.8),
+    "codebase": ("mcp-narsil", 0.5),
+    "does": ("mcp-narsil", 0.6),
+    "embeddings": ("mcp-narsil", 0.7),
+    "explain": ("mcp-narsil", 3.5),
+    "how": ("mcp-narsil", 1.2),
+    "index": ("mcp-narsil", 0.3),
+    "login": ("mcp-narsil", 0.8),
+    "logout": ("mcp-narsil", 0.6),
+    "meaning": ("mcp-narsil", 0.6),
+    "password": ("mcp-narsil", 0.5),
+    "purpose": ("mcp-narsil", 0.5),
+    "query": ("mcp-narsil", 0.4),
+    "rag": ("mcp-narsil", 0.6),
+    "semantic": ("mcp-narsil", 0.5),
+    "understand": ("mcp-narsil", 1.5),
+    "user": ("mcp-narsil", 0.4),
+    "vector": ("mcp-narsil", 0.6),
+    "what": ("mcp-narsil", 1.0),
+    "why": ("mcp-narsil", 1.5),
+    "work": ("mcp-narsil", 1.0),
+    "works": ("mcp-narsil", 1.0),
     
     # ─────────────────────────────────────────────────────────────────
     # MCP-NARSIL: Structural analysis, security scanning, call graphs
+    # (Additional structural and security keywords)
     # ─────────────────────────────────────────────────────────────────
     # Structural analysis (AST-based)
     "ast": ("mcp-narsil", 0.6),
@@ -346,18 +346,18 @@ INTENT_BOOSTERS = {
 # Ambiguous keywords that should boost MULTIPLE skills
 # Format: keyword -> list of (skill_name, boost_amount)
 MULTI_SKILL_BOOSTERS = {
-    "api": [("mcp-code-mode", 0.3), ("mcp-leann", 0.2)],
+    "api": [("mcp-code-mode", 0.3), ("mcp-narsil", 0.2)],
     "changes": [("workflows-git", 0.4), ("system-spec-kit", 0.2)],
-    "code": [("workflows-code", 0.2), ("mcp-narsil", 0.15), ("mcp-leann", 0.1)],
-    "codebase": [("mcp-leann", 0.2), ("mcp-narsil", 0.2)],
+    "code": [("workflows-code", 0.2), ("mcp-narsil", 0.25)],
+    "codebase": [("mcp-narsil", 0.4)],
     "context": [("system-spec-kit", 0.3), ("mcp-narsil", 0.2)],
-    "find": [("mcp-leann", 0.2), ("mcp-narsil", 0.2)],
+    "find": [("mcp-narsil", 0.4)],
     "fix": [("workflows-code", 0.3), ("workflows-git", 0.1)],
-    "mcp": [("mcp-code-mode", 0.3), ("mcp-leann", 0.2), ("mcp-narsil", 0.2)],
+    "mcp": [("mcp-code-mode", 0.3), ("mcp-narsil", 0.4)],
     "plan": [("system-spec-kit", 0.3), ("workflows-code", 0.2)],
     "save": [("system-spec-kit", 0.3), ("workflows-git", 0.2)],
-    "search": [("mcp-leann", 0.2), ("mcp-narsil", 0.2)],
-    "session": [("system-spec-kit", 0.4), ("mcp-leann", 0.4)],
+    "search": [("mcp-narsil", 0.4)],
+    "session": [("system-spec-kit", 0.4), ("mcp-narsil", 0.2)],
     "test": [("workflows-code", 0.3), ("workflows-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("workflows-git", 0.2), ("workflows-code", 0.2)],
 }

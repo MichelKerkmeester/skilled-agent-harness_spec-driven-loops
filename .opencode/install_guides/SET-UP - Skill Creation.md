@@ -704,12 +704,12 @@ For comprehensive real-world examples, examine these production skills:
 
 | Skill               | Path                                       | Highlights                                                                       |
 | ------------------- | ------------------------------------------ | -------------------------------------------------------------------------------- |
-| **mcp-leann**       | `.opencode/skill/mcp-leann/SKILL.md`       | Native MCP tool integration, semantic search, SMART ROUTING with Resource Router |
+| **mcp-narsil**      | `.opencode/skill/mcp-narsil/SKILL.md`      | Native MCP tool integration, semantic + structural search, SMART ROUTING         |
 | **system-spec-kit** | `.opencode/skill/system-spec-kit/SKILL.md` | Complex skill with multiple references, checkpoint system, context preservation  |
 
 **To examine:**
 ```bash
-cat .opencode/skill/mcp-leann/SKILL.md | head -100
+cat .opencode/skill/mcp-narsil/SKILL.md | head -100
 cat .opencode/skill/system-spec-kit/SKILL.md | head -100
 ```
 
@@ -895,8 +895,8 @@ Step 4: AVAILABILITY
 ### Function Naming
 
 ```text
-Folder: .opencode/skill/mcp-leann/
-    → Function: skills_mcp_leann()
+Folder: .opencode/skill/mcp-narsil/
+    → Function: skills_mcp_narsil()
 
 Folder: .opencode/skill/workflows-code/
     → Function: skills_workflows_code()

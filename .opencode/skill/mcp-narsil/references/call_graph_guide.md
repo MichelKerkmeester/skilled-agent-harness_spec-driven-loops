@@ -282,7 +282,7 @@ const uninitialized = await narsil.narsil_find_uninitialized({});
 1. **Get overview**: `get_call_graph({})` - See overall structure
 2. **Find central code**: `get_function_hotspots({})` - Identify important functions
 3. **Trace dependencies**: `get_callers()` / `get_callees()` - Understand relationships
-4. **Combine with LEANN**: Use LEANN for semantic understanding of what functions do
+4. **Semantic context**: Use `neural_search` for understanding what functions do
 
 ### Impact Analysis (Before Refactoring)
 
@@ -356,7 +356,7 @@ call_tool_chain({
 - [tool_reference.md](./tool_reference.md) - Complete tool documentation
 - [security_guide.md](./security_guide.md) - Security scanning (uses call graph for taint)
 
-### Complementary Tools
+### Complementary Analysis
 
-- **LEANN**: Use for understanding what functions do (semantic)
-- **Narsil**: Use for structural relationships (call graph)
+- **Semantic**: Use `neural_search` for understanding what functions do
+- **Structural**: Use call graph tools for relationships and flow
