@@ -13,3 +13,5 @@ node_modules/
 
 # Archive folder (root level only)
 /z — Archive/
+# Narsil index (project-local)
+.narsil-index/

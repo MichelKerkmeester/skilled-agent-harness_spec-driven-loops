@@ -303,14 +303,13 @@ RUST_MIN_STACK=8388608 narsil-mcp --repos /path/to/repo
 ### Configuration Reference
 Narsil is configured in `.utcp_config.json` with these flags:
 - `--repos .` - Index current workspace
-- `--preset full` - All 76 tools enabled
 - `--git` - Git integration (blame, history)
 - `--call-graph` - Function call analysis
 - `--persist` - Save index to disk
 - `--watch` - Auto-reindex on changes
 - `--neural` - Neural semantic search
 - `--neural-backend api` - Voyage AI embeddings
-- `--neural-model voyage-code-3` - Code-specialized model
+- `--neural-model voyage-code-2` - Code-specialized model (1536-dim, required for Narsil v1.0.0)
 
 ### Supported Languages (16)
 Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, PHP, Swift, Verilog/SystemVerilog
