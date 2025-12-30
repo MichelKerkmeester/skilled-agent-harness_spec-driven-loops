@@ -522,6 +522,10 @@ Deep code intelligence: semantic search, security scanning, call graphs, structu
 External tool orchestration (Figma, GitHub, ClickUp, etc.)
 > Example: "Get Figma file" or "Create GitHub issue"
 
+**mcp-figma**
+Figma design integration: file operations, components, styles, variables, comments, projects, versioning (via Code Mode)
+> Example: "Get Figma file nodes" or "List team components" or "Post comment on design"
+
 **workflows-code**
 Implementation lifecycle (plan, code, verify), CDN deployment, JavaScript minification
 > Example: "Implement this feature" or "Minify and deploy JavaScript"
@@ -588,7 +592,7 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 - Minimal quota cost
 
 
-### Available Commands (17 Total)
+### Available Commands (18 Total)
 
 **spec_kit/** (7 commands)
 `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:debug`, `/spec_kit:handover`
@@ -596,8 +600,8 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 **memory/** (3 commands)
 `/memory:save`, `/memory:search`, `/memory:checkpoint`
 
-**create/** (5 commands)
-`/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`
+**create/** (6 commands)
+`/create:agent`, `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`
 
 **search/** (2 commands)
 `/search:code`, `/search:index`
