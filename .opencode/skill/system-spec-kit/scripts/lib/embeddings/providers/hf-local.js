@@ -1,8 +1,8 @@
 /**
- * Provider de Embeddings - Hugging Face Local
+ * Embeddings Provider - Hugging Face Local
  * 
- * Usa @huggingface/transformers con nomic-embed-text-v1.5 para
- * generar embeddings de 768 dimensiones completamente locales.
+ * Uses @huggingface/transformers with nomic-embed-text-v1.5 to generate
+ * 768-dimensional embeddings completely locally.
  * 
  * @module embeddings/providers/hf-local
  * @version 1.0.0
@@ -13,17 +13,17 @@
 const { EmbeddingProfile } = require('../profile');
 
 // ───────────────────────────────────────────────────────────────
-// CONFIGURACIÓN
+// CONFIGURATION
 // ───────────────────────────────────────────────────────────────
 
 const DEFAULT_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const EMBEDDING_DIM = 768;
-const MAX_TEXT_LENGTH = 8000; // nomic soporta 8192 tokens
-const EMBEDDING_TIMEOUT = 30000; // 30 segundos timeout
+const MAX_TEXT_LENGTH = 8000; // nomic supports 8192 tokens
+const EMBEDDING_TIMEOUT = 30000; // 30 second timeout
 
 /**
- * Prefijos de tarea requeridos por nomic-embed-text-v1.5
- * Ver: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
+ * Task prefixes required by nomic-embed-text-v1.5
+ * See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
  */
 const TASK_PREFIX = {
   DOCUMENT: 'search_document: ',
@@ -33,17 +33,17 @@ const TASK_PREFIX = {
 };
 
 // ───────────────────────────────────────────────────────────────
-// DETECCIÓN DE DISPOSITIVO
+// DEVICE DETECTION
 // ───────────────────────────────────────────────────────────────
 
 let currentDevice = null;
 
 /**
- * Determinar el dispositivo óptimo para embeddings
- * - macOS con Apple Silicon: Usar MPS (Metal Performance Shaders)
- * - Otras plataformas: Usar CPU
+ * Determine optimal device for embeddings
+ * - macOS with Apple Silicon: Use MPS (Metal Performance Shaders)
+ * - Other platforms: Use CPU
  *
- * @returns {string} Identificador de dispositivo ('mps' o 'cpu')
+ * @returns {string} Device identifier ('mps' or 'cpu')
  */
 function getOptimalDevice() {
   if (process.platform === 'darwin') {
@@ -53,7 +53,7 @@ function getOptimalDevice() {
 }
 
 // ───────────────────────────────────────────────────────────────
-// CLASE PROVIDER
+// PROVIDER CLASS
 // ───────────────────────────────────────────────────────────────
 
 class HFLocalProvider {
@@ -70,35 +70,35 @@ class HFLocalProvider {
   }
 
   /**
-   * Obtener o crear el pipeline de embeddings (patrón singleton)
-   * La primera llamada descarga/carga el modelo (~274MB), las siguientes retornan la instancia cacheada.
-   * Previene condiciones de carrera con múltiples solicitudes de carga simultáneas.
+   * Get or create embeddings pipeline (singleton pattern)
+   * First call downloads/loads the model (~274MB), subsequent calls return cached instance.
+   * Prevents race conditions with multiple simultaneous load requests.
    *
-   * @returns {Promise<Object>} Pipeline de extracción de features
+   * @returns {Promise<Object>} Feature extraction pipeline
    */
   async getModel() {
-    // Si ya está cargado, retornar inmediatamente
+    // If already loaded, return immediately
     if (this.extractor) {
       return this.extractor;
     }
 
-    // Si está cargando, esperar a que complete (protección contra race conditions)
+    // If currently loading, wait for completion (race condition protection)
     if (this.loadingPromise) {
       return this.loadingPromise;
     }
 
-    // Iniciar carga y guardar la promesa
+    // Start loading and store promise
     this.loadingPromise = (async () => {
       const start = Date.now();
       try {
-        console.warn(`[hf-local] Cargando ${this.modelName} (~274MB, primera carga puede tomar 15-30s)...`);
+        console.warn(`[hf-local] Loading ${this.modelName} (~274MB, first load may take 15-30s)...`);
 
-        // Import dinámico para módulo ESM
+        // Dynamic import for ESM module
         const { pipeline } = await import('@huggingface/transformers');
 
-        // Intentar dispositivo óptimo primero (MPS en Mac)
+        // Try optimal device first (MPS on Mac)
         let targetDevice = getOptimalDevice();
-        console.log(`[hf-local] Intentando dispositivo: ${targetDevice}`);
+        console.log(`[hf-local] Attempting device: ${targetDevice}`);
 
         try {
           this.extractor = await pipeline('feature-extraction', this.modelName, {
@@ -107,9 +107,9 @@ class HFLocalProvider {
           });
           currentDevice = targetDevice;
         } catch (deviceError) {
-          // MPS falló, fallback a CPU
+          // MPS failed, fallback to CPU
           if (targetDevice !== 'cpu') {
-            console.warn(`[hf-local] ${targetDevice.toUpperCase()} no disponible (${deviceError.message}), usando CPU`);
+            console.warn(`[hf-local] ${targetDevice.toUpperCase()} unavailable (${deviceError.message}), using CPU`);
             this.extractor = await pipeline('feature-extraction', this.modelName, {
               dtype: 'fp32',
               device: 'cpu'
@@ -121,11 +121,11 @@ class HFLocalProvider {
         }
 
         this.modelLoadTime = Date.now() - start;
-        console.warn(`[hf-local] Modelo cargado en ${this.modelLoadTime}ms (dispositivo: ${currentDevice})`);
+        console.warn(`[hf-local] Model loaded in ${this.modelLoadTime}ms (device: ${currentDevice})`);
 
         return this.extractor;
       } catch (error) {
-        this.loadingPromise = null;  // Reset en caso de fallo para permitir reintento
+        this.loadingPromise = null;  // Reset on failure to allow retry
         this.isHealthy = false;
         throw error;
       }
@@ -135,27 +135,27 @@ class HFLocalProvider {
   }
 
   /**
-   * Generar embedding para texto sin prefijo (función interna)
+   * Generate embedding for text without prefix (internal function)
    *
-   * @param {string} text - Texto a embeddear (con prefijo de tarea si es necesario)
-   * @returns {Promise<Float32Array>} Vector de embeddings normalizado de 768 dimensiones
+   * @param {string} text - Text to embed (with task prefix if necessary)
+   * @returns {Promise<Float32Array>} Normalized embedding vector of 768 dimensions
    */
   async generateEmbedding(text) {
     if (!text || typeof text !== 'string') {
-      console.warn('[hf-local] Texto vacío o inválido proporcionado');
+      console.warn('[hf-local] Empty or invalid text provided');
       return null;
     }
 
     const trimmedText = text.trim();
     if (trimmedText.length === 0) {
-      console.warn('[hf-local] Texto vacío después de trim');
+      console.warn('[hf-local] Empty text after trim');
       return null;
     }
 
-    // Truncar si excede límite (chunking semántico se maneja en capa superior)
+    // Truncate if exceeds limit (semantic chunking handled in upper layer)
     let inputText = trimmedText;
     if (inputText.length > this.maxTextLength) {
-      console.warn(`[hf-local] Texto truncado de ${inputText.length} a ${this.maxTextLength} caracteres`);
+      console.warn(`[hf-local] Text truncated from ${inputText.length} to ${this.maxTextLength} characters`);
       inputText = inputText.substring(0, this.maxTextLength);
     }
 
@@ -164,35 +164,35 @@ class HFLocalProvider {
     try {
       const model = await this.getModel();
 
-      // Generar embedding con mean pooling y normalización
+      // Generate embedding with mean pooling and normalization
       const output = await model(inputText, {
         pooling: 'mean',
         normalize: true
       });
 
-      // Convertir a Float32Array
+      // Convert to Float32Array
       const embedding = output.data instanceof Float32Array
         ? output.data
         : new Float32Array(output.data);
 
       const inferenceTime = Date.now() - start;
 
-      // Logging de performance (target <800ms)
+      // Performance logging (target <800ms)
       if (inferenceTime > 800) {
-        console.warn(`[hf-local] Inferencia lenta: ${inferenceTime}ms (target <800ms)`);
+        console.warn(`[hf-local] Slow inference: ${inferenceTime}ms (target <800ms)`);
       }
 
       return embedding;
 
     } catch (error) {
-      console.warn(`[hf-local] Generación falló: ${error.message}`);
+      console.warn(`[hf-local] Generation failed: ${error.message}`);
       this.isHealthy = false;
       throw error;
     }
   }
 
   /**
-   * Embeddear un documento (para indexación)
+   * Embed a document (for indexing)
    */
   async embedDocument(text) {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
@@ -203,7 +203,7 @@ class HFLocalProvider {
   }
 
   /**
-   * Embeddear una query de búsqueda
+   * Embed a search query
    */
   async embedQuery(text) {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
@@ -214,23 +214,23 @@ class HFLocalProvider {
   }
 
   /**
-   * Pre-calentar el modelo (útil en startup del servidor)
+   * Pre-warm the model (useful on server startup)
    */
   async warmup() {
     try {
-      console.log('[hf-local] Pre-calentando modelo...');
+      console.log('[hf-local] Pre-warming model...');
       await this.embedQuery('test warmup query');
-      console.log('[hf-local] Modelo pre-calentado exitosamente');
+      console.log('[hf-local] Model successfully pre-warmed');
       return true;
     } catch (error) {
-      console.warn(`[hf-local] Warmup falló: ${error.message}`);
+      console.warn(`[hf-local] Warmup failed: ${error.message}`);
       this.isHealthy = false;
       return false;
     }
   }
 
   /**
-   * Obtener metadata del provider
+   * Get provider metadata
    */
   getMetadata() {
     return {
@@ -245,7 +245,7 @@ class HFLocalProvider {
   }
 
   /**
-   * Obtener perfil de embeddings
+   * Get embedding profile
    */
   getProfile() {
     return new EmbeddingProfile({
@@ -256,7 +256,7 @@ class HFLocalProvider {
   }
 
   /**
-   * Verificar si el provider está saludable
+   * Check if provider is healthy
    */
   async healthCheck() {
     try {

@@ -1,8 +1,8 @@
 /**
- * Embedding Profile - Define el perfil de embeddings activo
+ * Embedding Profile - Define the active embedding profile
  * 
- * Un perfil incluye: provider, modelo, dimensión.
- * Cada perfil único genera su propia base de datos vectorial.
+ * A profile includes: provider, model, dimension.
+ * Each unique profile generates its own vector database.
  * 
  * @module embeddings/profile
  * @version 1.0.0
@@ -11,16 +11,16 @@
 'use strict';
 
 /**
- * Crea un slug seguro para nombres de archivo desde el perfil
- * Ejemplo: openai__text-embedding-3-small__1536
+ * Create a safe slug for filenames from the profile
+ * Example: openai__text-embedding-3-small__1536
  * 
- * @param {string} provider - Nombre del provider (openai, hf-local, ollama)
- * @param {string} model - Nombre del modelo
- * @param {number} dim - Dimensión del vector
- * @returns {string} Slug seguro para usar en nombres de archivo
+ * @param {string} provider - Provider name (openai, hf-local, ollama)
+ * @param {string} model - Model name
+ * @param {number} dim - Vector dimension
+ * @returns {string} Safe slug for use in filenames
  */
 function createProfileSlug(provider, model, dim) {
-  // Normalizar el nombre del modelo (reemplazar caracteres no seguros)
+  // Normalize model name (replace unsafe characters)
   const safeModel = model
     .replace(/[^a-zA-Z0-9-_.]/g, '_')
     .replace(/__+/g, '_')
@@ -30,9 +30,9 @@ function createProfileSlug(provider, model, dim) {
 }
 
 /**
- * Parsear un slug de perfil de vuelta a sus componentes
+ * Parse a profile slug back to its components
  * 
- * @param {string} slug - Slug de perfil
+ * @param {string} slug - Profile slug
  * @returns {{provider: string, model: string, dim: number} | null}
  */
 function parseProfileSlug(slug) {
@@ -50,44 +50,44 @@ function parseProfileSlug(slug) {
 }
 
 /**
- * Clase que representa un perfil de embeddings
+ * Class representing an embedding profile
  */
 class EmbeddingProfile {
   constructor({ provider, model, dim, baseUrl = null }) {
     this.provider = provider;
     this.model = model;
     this.dim = dim;
-    this.baseUrl = baseUrl; // Para Ollama u otros servicios locales
+    this.baseUrl = baseUrl; // For Ollama or other local services
     this.slug = createProfileSlug(provider, model, dim);
   }
 
   /**
-   * Obtiene el path de la base de datos para este perfil
+   * Get the database path for this profile
    * 
-   * @param {string} baseDir - Directorio base
-   * @returns {string} Path completo del archivo SQLite
+   * @param {string} baseDir - Base directory
+   * @returns {string} Full path to SQLite file
    */
   getDatabasePath(baseDir) {
-    // El perfil legacy (hf-local + nomic + 768) usa el nombre tradicional
+    // The legacy profile (hf-local + nomic + 768) uses the traditional name
     if (this.provider === 'hf-local' && 
         this.model.includes('nomic-embed-text') && 
         this.dim === 768) {
       return `${baseDir}/context-index.sqlite`;
     }
     
-    // Nuevos perfiles usan el slug
+    // New profiles use the slug
     return `${baseDir}/context-index__${this.slug}.sqlite`;
   }
 
   /**
-   * Representación en string del perfil
+   * String representation of the profile
    */
   toString() {
     return `${this.provider}:${this.model}:${this.dim}`;
   }
 
   /**
-   * Convierte el perfil a un objeto simple
+   * Convert the profile to a plain object
    */
   toJSON() {
     return {

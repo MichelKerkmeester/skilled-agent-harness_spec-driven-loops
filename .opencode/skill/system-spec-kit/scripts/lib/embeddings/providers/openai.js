@@ -1,8 +1,8 @@
 /**
- * Provider de Embeddings - OpenAI
+ * Embeddings Provider - OpenAI
  * 
- * Usa la API de OpenAI para generar embeddings.
- * Soporta text-embedding-3-small (1536 dims) y text-embedding-3-large (3072 dims).
+ * Uses OpenAI API to generate embeddings.
+ * Supports text-embedding-3-small (1536 dims) and text-embedding-3-large (3072 dims).
  * 
  * @module embeddings/providers/openai
  * @version 1.0.0
@@ -13,15 +13,15 @@
 const { EmbeddingProfile } = require('../profile');
 
 // ───────────────────────────────────────────────────────────────
-// CONFIGURACIÓN
+// CONFIGURATION
 // ───────────────────────────────────────────────────────────────
 
 const DEFAULT_MODEL = 'text-embedding-3-small';
 const DEFAULT_DIM = 1536; // text-embedding-3-small
 const DEFAULT_BASE_URL = 'https://api.openai.com/v1';
-const REQUEST_TIMEOUT = 30000; // 30 segundos
+const REQUEST_TIMEOUT = 30000; // 30 second timeout
 
-// Dimensiones por modelo
+// Dimensions by model
 const MODEL_DIMENSIONS = {
   'text-embedding-3-small': 1536,
   'text-embedding-3-large': 3072,
@@ -29,7 +29,7 @@ const MODEL_DIMENSIONS = {
 };
 
 // ───────────────────────────────────────────────────────────────
-// CLASE PROVIDER
+// PROVIDER CLASS
 // ───────────────────────────────────────────────────────────────
 
 class OpenAIProvider {
@@ -44,15 +44,15 @@ class OpenAIProvider {
     this.totalTokens = 0;
 
     if (!this.apiKey) {
-      throw new Error('OpenAI API key es requerida. Setear OPENAI_API_KEY.');
+      throw new Error('OpenAI API key is required. Set OPENAI_API_KEY.');
     }
   }
 
   /**
-   * Hacer request a la API de OpenAI
+   * Make request to OpenAI API
    *
-   * @param {string|string[]} input - Texto o array de textos
-   * @returns {Promise<Object>} Respuesta de la API
+   * @param {string|string[]} input - Text or array of texts
+   * @returns {Promise<Object>} API response
    */
   async makeRequest(input) {
     const url = `${this.baseUrl}/embeddings`;
@@ -84,7 +84,7 @@ class OpenAIProvider {
 
       const data = await response.json();
       
-      // Actualizar estadísticas
+      // Update statistics
       this.requestCount++;
       if (data.usage) {
         this.totalTokens += data.usage.total_tokens;
@@ -105,20 +105,20 @@ class OpenAIProvider {
   }
 
   /**
-   * Generar embedding para texto
+   * Generate embedding for text
    *
-   * @param {string} text - Texto a embeddear
-   * @returns {Promise<Float32Array>} Vector de embeddings
+   * @param {string} text - Text to embed
+   * @returns {Promise<Float32Array>} Embedding vector
    */
   async generateEmbedding(text) {
     if (!text || typeof text !== 'string') {
-      console.warn('[openai] Texto vacío o inválido proporcionado');
+      console.warn('[openai] Empty or invalid text provided');
       return null;
     }
 
     const trimmedText = text.trim();
     if (trimmedText.length === 0) {
-      console.warn('[openai] Texto vacío después de trim');
+      console.warn('[openai] Empty text after trim');
       return null;
     }
 
@@ -128,35 +128,35 @@ class OpenAIProvider {
       const response = await this.makeRequest(trimmedText);
       
       if (!response.data || response.data.length === 0) {
-        throw new Error('OpenAI no retornó embeddings');
+        throw new Error('OpenAI did not return embeddings');
       }
 
-      // Extraer el embedding del primer (y único) elemento
+      // Extract embedding from first (and only) element
       const embedding = new Float32Array(response.data[0].embedding);
 
-      // Verificar dimensión
+      // Check dimension
       if (embedding.length !== this.dim) {
-        console.warn(`[openai] Dimensión inesperada: ${embedding.length}, esperada: ${this.dim}`);
+        console.warn(`[openai] Unexpected dimension: ${embedding.length}, expected: ${this.dim}`);
       }
 
       const inferenceTime = Date.now() - start;
       
       if (inferenceTime > 2000) {
-        console.warn(`[openai] Request lento: ${inferenceTime}ms`);
+        console.warn(`[openai] Slow request: ${inferenceTime}ms`);
       }
 
       return embedding;
 
     } catch (error) {
-      console.warn(`[openai] Generación falló: ${error.message}`);
+      console.warn(`[openai] Generation failed: ${error.message}`);
       this.isHealthy = false;
       throw error;
     }
   }
 
   /**
-   * Embeddear un documento (para indexación)
-   * Nota: OpenAI no requiere prefijos especiales como nomic
+   * Embed a document (for indexing)
+   * Note: OpenAI does not require special prefixes like nomic
    */
   async embedDocument(text) {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
@@ -166,8 +166,8 @@ class OpenAIProvider {
   }
 
   /**
-   * Embeddear una query de búsqueda
-   * Nota: OpenAI no requiere prefijos especiales como nomic
+   * Embed a search query
+   * Note: OpenAI does not require special prefixes like nomic
    */
   async embedQuery(text) {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
@@ -177,24 +177,24 @@ class OpenAIProvider {
   }
 
   /**
-   * Pre-calentar el provider (verificar conectividad)
+   * Pre-warm provider (verify connectivity)
    */
   async warmup() {
     try {
-      console.log('[openai] Verificando conectividad con OpenAI API...');
+      console.log('[openai] Checking connectivity with OpenAI API...');
       const result = await this.embedQuery('test warmup query');
       this.isHealthy = result !== null;
-      console.log('[openai] Conectividad verificada exitosamente');
+      console.log('[openai] Connectivity verified successfully');
       return this.isHealthy;
     } catch (error) {
-      console.warn(`[openai] Warmup falló: ${error.message}`);
+      console.warn(`[openai] Warmup failed: ${error.message}`);
       this.isHealthy = false;
       return false;
     }
   }
 
   /**
-   * Obtener metadata del provider
+   * Get provider metadata
    */
   getMetadata() {
     return {
@@ -209,7 +209,7 @@ class OpenAIProvider {
   }
 
   /**
-   * Obtener perfil de embeddings
+   * Get embedding profile
    */
   getProfile() {
     return new EmbeddingProfile({
@@ -221,7 +221,7 @@ class OpenAIProvider {
   }
 
   /**
-   * Verificar si el provider está saludable
+   * Check if provider is healthy
    */
   async healthCheck() {
     try {
@@ -235,13 +235,13 @@ class OpenAIProvider {
   }
 
   /**
-   * Obtener estadísticas de uso
+   * Get usage statistics
    */
   getUsageStats() {
     return {
       requestCount: this.requestCount,
       totalTokens: this.totalTokens,
-      estimatedCost: this.totalTokens * 0.00002 // ~$0.02 por 1M tokens para text-embedding-3-small
+      estimatedCost: this.totalTokens * 0.00002 // ~$0.02 per 1M tokens for text-embedding-3-small
     };
   }
 }

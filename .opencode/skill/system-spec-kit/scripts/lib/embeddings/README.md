@@ -1,58 +1,58 @@
-# Embeddings Factory - Arquitectura Multi-Provider
+# Embeddings Factory - Multi-Provider Architecture
 
-Sistema de embeddings flexible que soporta múltiples backends con fallback robusto y DB por perfil.
+Flexible embeddings system supporting multiple backends with robust fallback and per-profile databases.
 
-## 📁 Estructura
+## 📁 Structure
 
 ```
 embeddings/
-├── profile.js              # Define EmbeddingProfile y gestión de slugs
-├── factory.js              # Factory que selecciona el provider adecuado
+├── profile.js              # Defines EmbeddingProfile and slug management
+├── factory.js              # Factory that selects the appropriate provider
 └── providers/
     ├── hf-local.js         # HuggingFace local (default)
     ├── openai.js           # OpenAI embeddings API
-    └── ollama.js           # Ollama (futuro)
+    └── ollama.js           # Ollama (future)
 ```
 
-## 🎯 Providers Disponibles
+## 🎯 Available Providers
 
-| Provider | Dimensión | Requisitos | Cuándo usar |
+| Provider | Dimension | Requirements | When to use |
 |----------|-----------|------------|-------------|
-| **hf-local** | 768 | Solo Node.js | Default, privacidad, offline |
-| **openai** | 1536/3072 | `OPENAI_API_KEY` | Cloud, auto-detect si existe key |
-| **ollama** | 768 | Ollama service | (No implementado aún) |
+| **hf-local** | 768 | Node.js only | Default, privacy, offline |
+| **openai** | 1536/3072 | `OPENAI_API_KEY` | Cloud, auto-detect if key exists |
+| **ollama** | 768 | Ollama service | (Not yet implemented) |
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-### Auto-detección (Recomendado)
+### Auto-detection (Recommended)
 
 ```bash
-# Sin configuración: usa HF local
+# Without configuration: uses HF local
 node context-server.js
 
-# Con OpenAI: auto-detecta la key
+# With OpenAI: auto-detects the key
 export OPENAI_API_KEY=sk-...
 node context-server.js
 ```
 
-### Override Manual
+### Manual Override
 
 ```bash
-# Forzar HF local aunque exista OPENAI_API_KEY
+# Force HF local even if OPENAI_API_KEY exists
 export EMBEDDINGS_PROVIDER=hf-local
 
-# Forzar OpenAI (requiere key)
+# Force OpenAI (requires key)
 export EMBEDDINGS_PROVIDER=openai
 export OPENAI_API_KEY=sk-...
 
-# Configurar modelo específico
+# Configure specific model
 export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-large  # 3072 dims
 export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5
 ```
 
-## 💾 DB por Perfil
+## 💾 DB per Profile
 
-Cada combinación única de `{provider, model, dimension}` usa su propia base de datos SQLite:
+Each unique combination of `{provider, model, dimension}` uses its own SQLite database:
 
 ```
 database/
@@ -62,29 +62,29 @@ database/
 └── context-index__hf-local__custom-model__768.sqlite
 ```
 
-**Ventajas:**
-- ✅ No hay "dimension mismatch" errors
-- ✅ Cambiar de provider no requiere migración
-- ✅ Puedes experimentar sin perder datos
+**Advantages:**
+- ✅ No "dimension mismatch" errors
+- ✅ Changing providers doesn't require migration
+- ✅ You can experiment without losing data
 
 ## 📖 API Usage
 
-### Generar Embeddings
+### Generate Embeddings
 
 ```javascript
 const embeddings = require('./embeddings');
 
-// Para indexar documentos
-const docEmbedding = await embeddings.generateDocumentEmbedding('texto...');
+// To index documents
+const docEmbedding = await embeddings.generateDocumentEmbedding('text...');
 
-// Para búsqueda
-const queryEmbedding = await embeddings.generateQueryEmbedding('búsqueda...');
+// For search
+const queryEmbedding = await embeddings.generateQueryEmbedding('search...');
 ```
 
-### Obtener Metadata
+### Get Metadata
 
 ```javascript
-// Info del provider actual
+// Current provider info
 const metadata = embeddings.getProviderMetadata();
 console.log(metadata);
 // {
@@ -94,81 +94,81 @@ console.log(metadata);
 //   healthy: true
 // }
 
-// Perfil completo
+// Complete profile
 const profile = embeddings.getEmbeddingProfile();
 console.log(profile.getDatabasePath('/base/dir'));
 // '/base/dir/context-index__openai__text-embedding-3-small__1536.sqlite'
 ```
 
-### Pre-warmup (Recomendado en startup)
+### Pre-warmup (Recommended on startup)
 
 ```javascript
 await embeddings.preWarmModel();
-// Descarga/carga el modelo en background
+// Downloads/loads the model in background
 ```
 
-## 🔄 Precedencia de Configuración
+## 🔄 Configuration Precedence
 
-1. `EMBEDDINGS_PROVIDER` explícito (si no es `auto`)
-2. Auto-detección: OpenAI si existe `OPENAI_API_KEY`
+1. Explicit `EMBEDDINGS_PROVIDER` (if not `auto`)
+2. Auto-detection: OpenAI if `OPENAI_API_KEY` exists
 3. Fallback: HF local
 
-## 🛡️ Fallback Robusto
+## 🛡️ Robust Fallback
 
-Si OpenAI falla durante warmup/healthcheck (auth, red, rate limit), el sistema degrada automáticamente a HF local **antes** de indexar datos, previniendo mezcla de dimensiones.
+If OpenAI fails during warmup/healthcheck (auth, network, rate limit), the system automatically degrades to HF local **before** indexing data, preventing dimension mixing.
 
 ## 🧪 Testing
 
 ```bash
-# Test básico (sin cargar modelos pesados)
+# Basic test (without loading heavy models)
 node scripts/test-embeddings-factory.js
 
-# Con OpenAI
+# With OpenAI
 OPENAI_API_KEY=sk-... node scripts/test-embeddings-factory.js
 ```
 
-## 📝 Compatibilidad Legacy
+## 📝 Legacy Compatibility
 
-La API pública se mantiene 100% compatible. Código existente funciona sin cambios:
+The public API maintains 100% compatibility. Existing code works without changes:
 
 ```javascript
-// ✅ Sigue funcionando
+// ✅ Still works
 const { generateDocumentEmbedding, getEmbeddingDimension } = require('./embeddings');
 ```
 
-## 🔮 Futuro: Ollama Provider
+## 🔮 Future: Ollama Provider
 
-Para implementar el provider de Ollama:
+To implement the Ollama provider:
 
-1. Crear `providers/ollama.js` similar a `openai.js`
-2. HTTP requests a `http://localhost:11434/api/embeddings`
-3. Añadir `case 'ollama':` en `factory.js`
+1. Create `providers/ollama.js` similar to `openai.js`
+2. HTTP requests to `http://localhost:11434/api/embeddings`
+3. Add `case 'ollama':` in `factory.js`
 
-## 📊 Comparación de Providers
+## 📊 Provider Comparison
 
-| Característica | HF Local | OpenAI | Ollama |
+| Feature | HF Local | OpenAI | Ollama |
 |----------------|----------|--------|--------|
-| Coste | Gratis | ~$0.02/1M tokens | Gratis |
-| Latencia | Media | Baja-Media | Baja |
-| Privacidad | ✅ Local | ❌ Cloud | ✅ Local |
-| Offline | ✅ Sí | ❌ No | ✅ Sí |
-| Setup | Fácil | API key | Install + model |
-| Dimensión | 768 fija | Configurable | Depende modelo |
+| Cost | Free | ~$0.02/1M tokens | Free |
+| Latency | Medium | Low-Medium | Low |
+| Privacy | ✅ Local | ❌ Cloud | ✅ Local |
+| Offline | ✅ Yes | ❌ No | ✅ Yes |
+| Setup | Easy | API key | Install + model |
+| Dimension | 768 fixed | Configurable | Model dependent |
 
 ## 🐛 Troubleshooting
 
 ### "Dimension mismatch"
-Ya no debería ocurrir. Cada perfil tiene su DB. Si ves este error, verifica que no estés usando `MEMORY_DB_PATH` forzado.
+Should no longer occur. Each profile has its own DB. If you see this error, verify you're not using forced `MEMORY_DB_PATH`.
 
-### "OpenAI provider requiere OPENAI_API_KEY"
-Fuerza HF local: `export EMBEDDINGS_PROVIDER=hf-local`
+### "OpenAI provider requires OPENAI_API_KEY"
+Force HF local: `export EMBEDDINGS_PROVIDER=hf-local`
 
 ### "Model not loaded"
-HF local descarga ~274MB en primera ejecución. Paciencia en cold start.
+HF local downloads ~274MB on first run. Be patient during cold start.
 
-### Ver provider activo
+### View active provider
 ```bash
-# En el MCP tool memory_health
+# In the MCP tool memory_health
 {
   "embeddingProvider": {
     "provider": "...",

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Test script para verificar el factory de embeddings
- * Prueba la creación de providers y generación básica de embeddings
+ * Test script to verify embeddings factory
+ * Tests provider creation and basic embedding generation
  */
 
 'use strict';
@@ -15,91 +15,91 @@ async function testFactory() {
   console.log('🧪 Testing Embeddings Factory...\n');
 
   try {
-    // Test 1: Importar módulos
-    console.log('1️⃣ Importando módulos...');
+    // Test 1: Import modules
+    console.log('1️⃣ Importing modules...');
     const { EmbeddingProfile } = require(path.join(libPath, 'embeddings/profile'));
     const { HFLocalProvider } = require(path.join(libPath, 'embeddings/providers/hf-local'));
     const { OpenAIProvider } = require(path.join(libPath, 'embeddings/providers/openai'));
     const { createEmbeddingsProvider, getProviderInfo } = require(path.join(libPath, 'embeddings/factory'));
     const embeddings = require(path.join(libPath, 'embeddings'));
-    console.log('   ✅ Módulos importados correctamente\n');
+    console.log('   ✅ Modules imported successfully\n');
 
-    // Test 2: Verificar info del provider
-    console.log('2️⃣ Verificando configuración del provider...');
+    // Test 2: Verify provider configuration
+    console.log('2️⃣ Verifying provider configuration...');
     const providerInfo = getProviderInfo();
-    console.log('   Provider seleccionado:', providerInfo.provider);
-    console.log('   Razón:', providerInfo.reason);
+    console.log('   Selected provider:', providerInfo.provider);
+    console.log('   Reason:', providerInfo.reason);
     console.log('   Config:', JSON.stringify(providerInfo.config, null, 2));
-    console.log('   ✅ Configuración obtenida\n');
+    console.log('   ✅ Configuration obtained\n');
 
-    // Test 3: Crear perfil
-    console.log('3️⃣ Creando perfil de embeddings...');
+    // Test 3: Create embedding profile
+    console.log('3️⃣ Creating embedding profile...');
     const profile = new EmbeddingProfile({
       provider: 'hf-local',
       model: 'nomic-ai/nomic-embed-text-v1.5',
       dim: 768
     });
-    console.log('   Perfil:', profile.toString());
+    console.log('   Profile:', profile.toString());
     console.log('   Slug:', profile.slug);
     console.log('   DB path:', profile.getDatabasePath('/tmp/test'));
-    console.log('   ✅ Perfil creado correctamente\n');
+    console.log('   ✅ Profile created successfully\n');
 
-    // Test 4: Verificar API de embeddings (sin ejecutar modelo pesado)
-    console.log('4️⃣ Verificando API de embeddings...');
-    console.log('   Funciones disponibles:');
+    // Test 4: Verify embeddings API (without running heavy model)
+    console.log('4️⃣ Verifying embeddings API...');
+    console.log('   Available functions:');
     console.log('   - generateDocumentEmbedding:', typeof embeddings.generateDocumentEmbedding);
     console.log('   - generateQueryEmbedding:', typeof embeddings.generateQueryEmbedding);
     console.log('   - getEmbeddingDimension:', typeof embeddings.getEmbeddingDimension);
     console.log('   - getProviderMetadata:', typeof embeddings.getProviderMetadata);
     console.log('   - getEmbeddingProfile:', typeof embeddings.getEmbeddingProfile);
-    console.log('   ✅ API completa disponible\n');
+    console.log('   ✅ Complete API available\n');
 
-    // Test 5: Verificar constantes
-    console.log('5️⃣ Verificando constantes...');
+    // Test 5: Verify constants
+    console.log('5️⃣ Verifying constants...');
     console.log('   EMBEDDING_DIM:', embeddings.EMBEDDING_DIM);
     console.log('   MODEL_NAME:', embeddings.MODEL_NAME);
     console.log('   MAX_TEXT_LENGTH:', embeddings.MAX_TEXT_LENGTH);
-    console.log('   ✅ Constantes disponibles\n');
+    console.log('   ✅ Constants available\n');
 
-    // Test 6: Probar creación de provider HF (sin warmup)
-    console.log('6️⃣ Creando provider HF local (sin warmup)...');
+    // Test 6: Test HF provider creation (without warmup)
+    console.log('6️⃣ Creating HF local provider (without warmup)...');
     const hfProvider = new HFLocalProvider({ model: 'test-model', dim: 768 });
     console.log('   Metadata:', JSON.stringify(hfProvider.getMetadata(), null, 2));
-    console.log('   ✅ Provider HF creado\n');
+    console.log('   ✅ HF provider created\n');
 
-    // Test 7: Probar creación de provider OpenAI (si hay key)
-    console.log('7️⃣ Verificando provider OpenAI...');
+    // Test 7: Test OpenAI provider creation (if key available)
+    console.log('7️⃣ Verifying OpenAI provider...');
     if (process.env.OPENAI_API_KEY) {
-      console.log('   OPENAI_API_KEY detectada');
+      console.log('   OPENAI_API_KEY detected');
       try {
         const openaiProvider = new OpenAIProvider();
         console.log('   Metadata:', JSON.stringify(openaiProvider.getMetadata(), null, 2));
-        console.log('   ✅ Provider OpenAI creado\n');
+        console.log('   ✅ OpenAI provider created\n');
       } catch (error) {
-        console.log('   ⚠️  Error creando provider:', error.message, '\n');
+        console.log('   ⚠️  Error creating provider:', error.message, '\n');
       }
     } else {
-      console.log('   ⚠️  OPENAI_API_KEY no detectada (OK para HF local)\n');
+      console.log('   ⚠️  OPENAI_API_KEY not detected (OK for HF local)\n');
     }
 
-    console.log('✅ TODOS LOS TESTS PASARON\n');
-    console.log('📋 Resumen:');
-    console.log('   - Factory pattern: ✅ Funcional');
-    console.log('   - API compatible: ✅ Mantenida');
-    console.log('   - Profiles: ✅ Funcionando');
-    console.log('   - Providers: ✅ Disponibles');
-    console.log('   - Provider activo:', providerInfo.provider);
+    console.log('✅ ALL TESTS PASSED\n');
+    console.log('📋 Summary:');
+    console.log('   - Factory pattern: ✅ Functional');
+    console.log('   - Compatible API: ✅ Maintained');
+    console.log('   - Profiles: ✅ Working');
+    console.log('   - Providers: ✅ Available');
+    console.log('   - Active provider:', providerInfo.provider);
 
     return true;
 
   } catch (error) {
-    console.error('❌ ERROR EN TESTS:', error.message);
+    console.error('❌ ERROR IN TESTS:', error.message);
     console.error('Stack:', error.stack);
     return false;
   }
 }
 
-// Ejecutar tests
+// Run tests
 testFactory().then(success => {
   process.exit(success ? 0 : 1);
 });

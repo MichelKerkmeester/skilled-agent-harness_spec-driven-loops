@@ -1,9 +1,9 @@
 /**
- * Factory de Embeddings - Crea el provider adecuado según configuración
+ * Embeddings Factory - Create the appropriate provider based on configuration
  * 
- * Precedencia de configuración:
- * 1. EMBEDDINGS_PROVIDER (si no es 'auto')
- * 2. Auto-detección: OpenAI si existe OPENAI_API_KEY
+ * Configuration precedence:
+ * 1. EMBEDDINGS_PROVIDER (if not 'auto')
+ * 2. Auto-detection: OpenAI if OPENAI_API_KEY exists
  * 3. Fallback: HF local
  * 
  * @module embeddings/factory
@@ -16,57 +16,57 @@ const { HFLocalProvider } = require('./providers/hf-local');
 const { OpenAIProvider } = require('./providers/openai');
 
 // ───────────────────────────────────────────────────────────────
-// CONFIGURACIÓN DE PROVIDERS
+// PROVIDER CONFIGURATION
 // ───────────────────────────────────────────────────────────────
 
 /**
- * Resolver el provider a usar según env vars
+ * Resolve the provider to use based on env vars
  * 
- * @returns {{name: string, reason: string}} Provider seleccionado y razón
+ * @returns {{name: string, reason: string}} Selected provider and reason
  */
 function resolveProvider() {
-  // 1. Verificar override explícito
+  // 1. Check for explicit override
   const explicitProvider = process.env.EMBEDDINGS_PROVIDER;
   if (explicitProvider && explicitProvider !== 'auto') {
     return {
       name: explicitProvider,
-      reason: 'EMBEDDINGS_PROVIDER variable explícita'
+      reason: 'Explicit EMBEDDINGS_PROVIDER variable'
     };
   }
 
-  // 2. Auto-detección: OpenAI si existe la key
+  // 2. Auto-detection: OpenAI if key exists
   if (process.env.OPENAI_API_KEY) {
     return {
       name: 'openai',
-      reason: 'OPENAI_API_KEY detectada (modo auto)'
+      reason: 'OPENAI_API_KEY detected (auto mode)'
     };
   }
 
-  // 3. Fallback a local
+  // 3. Fallback to local
   return {
     name: 'hf-local',
-    reason: 'fallback por defecto (sin OPENAI_API_KEY)'
+    reason: 'Default fallback (no OPENAI_API_KEY)'
   };
 }
 
 /**
- * Crear instancia del provider según configuración
+ * Create provider instance based on configuration
  * 
- * @param {Object} options - Opciones de configuración
- * @param {string} options.provider - Nombre del provider ('openai', 'hf-local', 'auto')
- * @param {string} options.model - Modelo a usar (opcional, usa default del provider)
- * @param {number} options.dim - Dimensión del embedding (opcional)
- * @param {boolean} options.warmup - Si pre-calentar el modelo (default: false)
- * @returns {Promise<Object>} Instancia del provider
+ * @param {Object} options - Configuration options
+ * @param {string} options.provider - Provider name ('openai', 'hf-local', 'auto')
+ * @param {string} options.model - Model to use (optional, uses provider default)
+ * @param {number} options.dim - Embedding dimension (optional)
+ * @param {boolean} options.warmup - Whether to pre-warm the model (default: false)
+ * @returns {Promise<Object>} Provider instance
  */
 async function createEmbeddingsProvider(options = {}) {
-  // Resolver provider
+  // Resolve provider
   const resolution = resolveProvider();
   const providerName = options.provider === 'auto' || !options.provider 
     ? resolution.name 
     : options.provider;
 
-  console.log(`[factory] Usando provider: ${providerName} (${resolution.reason})`);
+  console.log(`[factory] Using provider: ${providerName} (${resolution.reason})`);
 
   let provider;
 
@@ -75,8 +75,8 @@ async function createEmbeddingsProvider(options = {}) {
       case 'openai':
         if (!process.env.OPENAI_API_KEY && !options.apiKey) {
           throw new Error(
-            'OpenAI provider requiere OPENAI_API_KEY. ' +
-            'Setear la variable o usar EMBEDDINGS_PROVIDER=hf-local para forzar local.'
+            'OpenAI provider requires OPENAI_API_KEY. ' +
+            'Set the variable or use EMBEDDINGS_PROVIDER=hf-local to force local.'
           );
         }
         provider = new OpenAIProvider({
@@ -94,25 +94,25 @@ async function createEmbeddingsProvider(options = {}) {
         break;
 
       case 'ollama':
-        throw new Error('Ollama provider aún no implementado. Usar hf-local u openai.');
+        throw new Error('Ollama provider not yet implemented. Use hf-local or openai.');
 
       default:
         throw new Error(
-          `Provider desconocido: ${providerName}. ` +
-          `Valores válidos: openai, hf-local, auto`
+          `Unknown provider: ${providerName}. ` +
+          `Valid values: openai, hf-local, auto`
         );
     }
 
-    // Warmup si se solicitó
+    // Warmup if requested
     if (options.warmup) {
-      console.log(`[factory] Pre-calentando ${providerName}...`);
+      console.log(`[factory] Warming up ${providerName}...`);
       const success = await provider.warmup();
       if (!success) {
-        console.warn(`[factory] Warmup falló para ${providerName}`);
+        console.warn(`[factory] Warmup failed for ${providerName}`);
         
-        // Si falló OpenAI en modo auto, intentar fallback a local
+        // If OpenAI failed in auto mode, try fallback to local
         if (providerName === 'openai' && !options.provider) {
-          console.warn('[factory] Intentando fallback a hf-local...');
+          console.warn('[factory] Attempting fallback to hf-local...');
           provider = new HFLocalProvider({
             model: options.model,
             dim: options.dim
@@ -125,11 +125,11 @@ async function createEmbeddingsProvider(options = {}) {
     return provider;
 
   } catch (error) {
-    console.error(`[factory] Error creando provider ${providerName}:`, error.message);
+    console.error(`[factory] Error creating provider ${providerName}:`, error.message);
     
-    // Si falló OpenAI en modo auto, intentar fallback a local
+    // If OpenAI failed in auto mode, try fallback to local
     if (providerName === 'openai' && !options.provider) {
-      console.warn('[factory] Fallback a hf-local debido a error en OpenAI');
+      console.warn('[factory] Fallback to hf-local due to OpenAI error');
       provider = new HFLocalProvider({
         model: options.model,
         dim: options.dim
@@ -147,9 +147,9 @@ async function createEmbeddingsProvider(options = {}) {
 }
 
 /**
- * Obtener información de configuración actual sin crear el provider
+ * Get configuration information without creating the provider
  * 
- * @returns {Object} Información de configuración
+ * @returns {Object} Configuration information
  */
 function getProviderInfo() {
   const resolution = resolveProvider();

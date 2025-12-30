@@ -1,44 +1,44 @@
-# Implementación: Factory Pattern para Embeddings (v12.0)
+# Implementation: Factory Pattern for Embeddings (v12.0)
 
-## 🎯 Objetivo Completado
+## 🎯 Completed Objective
 
-Reemplazar la dependencia obligatoria de Ollama por un sistema flexible de embeddings que soporta múltiples providers con auto-detección y fallback robusto.
+Replace mandatory Ollama dependency with a flexible embeddings system supporting multiple providers with auto-detection and robust fallback.
 
-## ✅ Cambios Implementados
+## ✅ Implemented Changes
 
-### 1. Nueva Arquitectura de Embeddings
+### 1. New Embeddings Architecture
 
-**Archivos Creados:**
-- `scripts/lib/embeddings/profile.js` - Gestión de perfiles de embeddings
-- `scripts/lib/embeddings/factory.js` - Factory pattern para selección de providers
-- `scripts/lib/embeddings/providers/hf-local.js` - Provider HuggingFace local
-- `scripts/lib/embeddings/providers/openai.js` - Provider OpenAI
-- `scripts/lib/embeddings/README.md` - Documentación de arquitectura
+**Created Files:**
+- `scripts/lib/embeddings/profile.js` - Embedding profile management
+- `scripts/lib/embeddings/factory.js` - Factory pattern for provider selection
+- `scripts/lib/embeddings/providers/hf-local.js` - HuggingFace local provider
+- `scripts/lib/embeddings/providers/openai.js` - OpenAI provider
+- `scripts/lib/embeddings/README.md` - Architecture documentation
 
-**Archivos Modificados:**
-- `scripts/lib/embeddings.js` - Nuevo wrapper que usa factory (mantiene API compatible)
-- `scripts/lib/embeddings-legacy.js` - Backup del código original (renombrado)
-- `mcp_server/lib/vector-index.js` - Soporte para DB por perfil
-- `mcp_server/context-server.js` - Expone metadata del provider en `memory_health`
-- `.opencode/install_guides/README.md` - Documentación actualizada
+**Modified Files:**
+- `scripts/lib/embeddings.js` - New wrapper using factory (maintains compatible API)
+- `scripts/lib/embeddings-legacy.js` - Backup of original code (renamed)
+- `mcp_server/lib/vector-index.js` - Support for per-profile DB
+- `mcp_server/context-server.js` - Exposes provider metadata in `memory_health`
+- `.opencode/install_guides/README.md` - Updated documentation
 
-### 2. Características Implementadas
+### 2. Implemented Features
 
-#### Auto-detección de Provider
+#### Provider Auto-detection
 ```bash
-# Sin configuración → usa HF local (768 dims)
+# Without configuration → uses HF local (768 dims)
 node context-server.js
 
-# Con OPENAI_API_KEY → usa OpenAI automáticamente (1536 dims)
+# With OPENAI_API_KEY → uses OpenAI automatically (1536 dims)
 export OPENAI_API_KEY=sk-...
 node context-server.js
 
-# Override manual
-export EMBEDDINGS_PROVIDER=hf-local  # Fuerza local aunque exista key
+# Manual override
+export EMBEDDINGS_PROVIDER=hf-local  # Force local even if key exists
 ```
 
-#### DB por Perfil (Evita Dimension Mismatch)
-Cada combinación `{provider, model, dimension}` usa su propia SQLite:
+#### DB per Profile (Avoids Dimension Mismatch)
+Each `{provider, model, dimension}` combination uses its own SQLite:
 ```
 database/
 ├── context-index.sqlite                                    # Legacy (hf-local + nomic + 768)
@@ -46,113 +46,113 @@ database/
 └── context-index__openai__text-embedding-3-large__3072.sqlite
 ```
 
-#### Fallback Robusto
-Si OpenAI falla durante warmup/healthcheck, degrada automáticamente a HF local **antes** de escribir datos, previniendo mezcla de dimensiones.
+#### Robust Fallback
+If OpenAI fails during warmup/healthcheck, automatically degrades to HF local **before** writing data, preventing dimension mixing.
 
-#### API 100% Compatible
-El código existente sigue funcionando sin cambios:
+#### 100% Compatible API
+Existing code continues working without changes:
 ```javascript
 const { generateDocumentEmbedding, getEmbeddingDimension } = require('./embeddings');
-// ✅ Funciona igual que antes
+// ✅ Works exactly as before
 ```
 
-### 3. Variables de Entorno
+### 3. Environment Variables
 
-**Nuevas variables opcionales:**
+**New optional variables:**
 ```bash
-# Selección de provider (auto|openai|hf-local|ollama)
+# Provider selection (auto|openai|hf-local|ollama)
 EMBEDDINGS_PROVIDER=auto          # Default
 
 # OpenAI config
-OPENAI_API_KEY=sk-...            # Habilita auto-detección de OpenAI
+OPENAI_API_KEY=sk-...            # Enables OpenAI auto-detection
 OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
 
 # HF Local config  
 HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default
 
 # Database location
-MEMORY_DB_DIR=/path/to/database  # Opcional
+MEMORY_DB_DIR=/path/to/database  # Optional
 ```
 
-### 4. Documentación Actualizada
+### 4. Updated Documentation
 
-**README.md actualizado:**
-- ✅ Fase 2 (Ollama) marcada como OPCIONAL
-- ✅ Sección 7.3 (Spec Kit Memory) documenta múltiples providers
-- ✅ Tabla comparativa de providers
-- ✅ Instrucciones de configuración por env vars
-- ✅ Cómo verificar provider activo via `memory_health`
+**Updated README.md:**
+- ✅ Phase 2 (Ollama) marked as OPTIONAL
+- ✅ Section 7.3 (Spec Kit Memory) documents multiple providers
+- ✅ Provider comparison table
+- ✅ Configuration instructions via env vars
+- ✅ How to verify active provider via `memory_health`
 
 ## 🧪 Testing
 
-Script de test incluido y validado:
+Test script included and validated:
 ```bash
 node .opencode/skill/system-spec-kit/scripts/test-embeddings-factory.js
 ```
 
-**Resultado:** ✅ Todos los tests pasaron
+**Result:** ✅ All tests passed
 
-## 📊 Providers Soportados
+## 📊 Supported Providers
 
-| Provider   | Dimensión | Requisitos        | Estado        |
+| Provider   | Dimension | Requirements      | Status        |
 |------------|-----------|-------------------|---------------|
-| hf-local   | 768       | Solo Node.js      | ✅ Funcional  |
-| openai     | 1536/3072 | OPENAI_API_KEY    | ✅ Funcional  |
-| ollama     | 768       | Ollama + modelo   | ⏳ Pendiente  |
+| hf-local   | 768       | Node.js only      | ✅ Functional |
+| openai     | 1536/3072 | OPENAI_API_KEY    | ✅ Functional |
+| ollama     | 768       | Ollama + model    | ⏳ Pending    |
 
-## 🔄 Flujo de Selección de Provider
+## 🔄 Provider Selection Flow
 
-1. ¿Existe `EMBEDDINGS_PROVIDER` (y no es 'auto')? → Usar ese
-2. ¿Modo 'auto' Y existe `OPENAI_API_KEY`? → Usar OpenAI
-3. Fallback → HF local (sin deps adicionales)
+1. Does `EMBEDDINGS_PROVIDER` exist (and isn't 'auto')? → Use that
+2. 'auto' mode AND `OPENAI_API_KEY` exists? → Use OpenAI
+3. Fallback → HF local (no additional deps)
 
-## 📝 Próximos Pasos (Opcionales)
+## 📝 Next Steps (Optional)
 
-1. **Implementar Ollama Provider** (si se requiere):
-   - Crear `providers/ollama.js`
-   - HTTP a `localhost:11434/api/embeddings`
-   - Añadir case en factory
+1. **Implement Ollama Provider** (if required):
+   - Create `providers/ollama.js`
+   - HTTP to `localhost:11434/api/embeddings`
+   - Add case in factory
 
-2. **Optimizaciones** (si se requieren):
-   - Cache de embeddings frecuentes
-   - Batch processing para OpenAI
-   - Métricas de coste/uso
+2. **Optimizations** (if required):
+   - Cache for frequent embeddings
+   - Batch processing for OpenAI
+   - Cost/usage metrics
 
-3. **Testing adicional**:
-   - Test e2e con OpenAI real
-   - Test de migración DB legacy → nuevo formato
-   - Benchmark de performance por provider
+3. **Additional testing**:
+   - E2E test with real OpenAI
+   - Test DB migration legacy → new format
+   - Performance benchmark per provider
 
-## 🛡️ Consideraciones de Seguridad/Privacidad
+## 🛡️ Security/Privacy Considerations
 
-- ✅ Credenciales via env vars (no en git)
-- ✅ Override manual para forzar local
-- ✅ Logs claros de qué provider se usa
-- ⚠️ OpenAI envía contenido a cloud (documentado)
+- ✅ Credentials via env vars (not in git)
+- ✅ Manual override to force local
+- ✅ Clear logs of which provider is used
+- ⚠️ OpenAI sends content to cloud (documented)
 
-## 💾 Compatibilidad
+## 💾 Compatibility
 
-- ✅ API pública sin cambios breaking
-- ✅ DB legacy (hf-local + nomic + 768) mantiene mismo path
-- ✅ Código existente funciona sin modificaciones
-- ✅ Tests de sintaxis pasados
+- ✅ Public API without breaking changes
+- ✅ Legacy DB (hf-local + nomic + 768) maintains same path
+- ✅ Existing code works without modifications
+- ✅ Syntax tests passed
 
-## 🚀 Para Usar Ahora
+## 🚀 To Use Now
 
-### Con HF Local (Default, sin cambios)
+### With HF Local (Default, no changes)
 ```bash
-# Ya funciona, nada que configurar
+# Already works, nothing to configure
 node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 ```
 
-### Con OpenAI
+### With OpenAI
 ```bash
 export OPENAI_API_KEY=sk-proj-...
 node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 ```
 
-### Verificar Provider Activo
-Usar el tool `memory_health` desde OpenCode:
+### Verify Active Provider
+Use the `memory_health` tool from OpenCode:
 ```json
 {
   "embeddingProvider": {
@@ -165,32 +165,32 @@ Usar el tool `memory_health` desde OpenCode:
 }
 ```
 
-## 📄 Archivos Modificados (Resumen)
+## 📄 Modified Files (Summary)
 
 ```
 .opencode/skill/system-spec-kit/
 ├── scripts/
 │   ├── lib/
-│   │   ├── embeddings.js                    [MODIFICADO] Nuevo wrapper con factory
-│   │   ├── embeddings-legacy.js             [NUEVO] Backup del original
+│   │   ├── embeddings.js                    [MODIFIED] New wrapper with factory
+│   │   ├── embeddings-legacy.js             [NEW] Backup of original
 │   │   └── embeddings/
-│   │       ├── README.md                    [NUEVO] Documentación
-│   │       ├── profile.js                   [NUEVO] EmbeddingProfile
-│   │       ├── factory.js                   [NUEVO] Factory pattern
+│   │       ├── README.md                    [NEW] Documentation
+│   │       ├── profile.js                   [NEW] EmbeddingProfile
+│   │       ├── factory.js                   [NEW] Factory pattern
 │   │       └── providers/
-│   │           ├── hf-local.js              [NUEVO] Provider local
-│   │           └── openai.js                [NUEVO] Provider OpenAI
-│   └── test-embeddings-factory.js           [NUEVO] Script de test
+│   │           ├── hf-local.js              [NEW] Local provider
+│   │           └── openai.js                [NEW] OpenAI provider
+│   └── test-embeddings-factory.js           [NEW] Test script
 ├── mcp_server/
-│   ├── context-server.js                    [MODIFICADO] Expone provider metadata
+│   ├── context-server.js                    [MODIFIED] Exposes provider metadata
 │   └── lib/
-│       └── vector-index.js                  [MODIFICADO] DB por perfil
+│       └── vector-index.js                  [MODIFIED] DB per profile
 └── .opencode/install_guides/
-    └── README.md                             [MODIFICADO] Ollama opcional, providers documentados
+    └── README.md                             [MODIFIED] Ollama optional, providers documented
 ```
 
 ---
 
-**Estado:** ✅ Implementación completa y testeada  
-**Versión:** 12.0.0  
-**Fecha:** 30 de diciembre de 2025
+**Status:** ✅ Implementation complete and tested  
+**Version:** 12.0.0  
+**Date:** December 30, 2025

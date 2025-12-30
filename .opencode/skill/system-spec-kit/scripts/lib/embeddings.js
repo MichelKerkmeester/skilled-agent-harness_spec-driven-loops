@@ -1,12 +1,12 @@
 /**
  * Embeddings Module - Unified embedding generation
  *
- * Soporta múltiples providers (OpenAI, HF local, Ollama) con fallback robusto.
- * Mantiene compatibilidad con la API legacy mientras permite configuración por env vars.
+ * Supports multiple providers (OpenAI, HF local, Ollama) with robust fallback.
+ * Maintains compatibility with legacy API while allowing environment variable configuration.
  *
- * Precedencia de configuración:
- * 1. EMBEDDINGS_PROVIDER explícito (openai, hf-local, auto)
- * 2. Auto-detección: OpenAI si existe OPENAI_API_KEY
+ * Configuration precedence:
+ * 1. Explicit EMBEDDINGS_PROVIDER (openai, hf-local, auto)
+ * 2. Auto-detection: OpenAI if OPENAI_API_KEY exists
  * 3. Fallback: HF local
  *
  * @module embeddings
@@ -26,9 +26,9 @@ let providerInstance = null;
 let providerInitPromise = null;
 
 /**
- * Obtener o crear la instancia del provider (singleton)
+ * Get or create provider instance (singleton)
  * 
- * @returns {Promise<Object>} Instancia del provider
+ * @returns {Promise<Object>} Provider instance
  */
 async function getProvider() {
   if (providerInstance) {
@@ -42,7 +42,7 @@ async function getProvider() {
   providerInitPromise = (async () => {
     try {
       providerInstance = await createEmbeddingsProvider({
-        warmup: false // No warmup automático, se hace explícitamente con preWarmModel
+        warmup: false // No automatic warmup, done explicitly with preWarmModel
       });
       return providerInstance;
     } catch (error) {
@@ -55,31 +55,31 @@ async function getProvider() {
 }
 
 // ───────────────────────────────────────────────────────────────
-// CORE EMBEDDING GENERATION (API compatible con legacy)
+// CORE EMBEDDING GENERATION (API compatible with legacy)
 // ───────────────────────────────────────────────────────────────
 
 /**
  * Generate embedding for text (low-level function)
  *
- * @param {string} text - Texto a embeddear
- * @returns {Promise<Float32Array>} Vector de embeddings normalizado
+ * @param {string} text - Text to embed
+ * @returns {Promise<Float32Array>} Normalized embedding vector
  */
 async function generateEmbedding(text) {
   if (!text || typeof text !== 'string') {
-    console.warn('[embeddings] Texto vacío o inválido proporcionado');
+    console.warn('[embeddings] Empty or invalid text provided');
     return null;
   }
 
   const trimmedText = text.trim();
   if (trimmedText.length === 0) {
-    console.warn('[embeddings] Texto vacío después de trim');
+    console.warn('[embeddings] Empty text after trim');
     return null;
   }
 
   const provider = await getProvider();
   
-  // Aplicar chunking semántico si es necesario
-  const maxLength = 8000; // Compatible con nomic y seguro para la mayoría de modelos
+  // Apply semantic chunking if necessary
+  const maxLength = 8000; // Compatible with nomic and safe for most models
   let inputText = trimmedText;
   if (inputText.length > maxLength) {
     inputText = semanticChunk(trimmedText, maxLength);
@@ -91,9 +91,9 @@ async function generateEmbedding(text) {
 /**
  * Generate embedding with timeout protection
  *
- * @param {string} text - Texto a embeddear
- * @param {number} timeout - Timeout en milisegundos (default: 30000)
- * @returns {Promise<Float32Array>} Vector de embeddings
+ * @param {string} text - Text to embed
+ * @param {number} timeout - Timeout in milliseconds (default: 30000)
+ * @returns {Promise<Float32Array>} Embedding vector
  */
 async function generateEmbeddingWithTimeout(text, timeout = 30000) {
   const timeoutPromise = new Promise((_, reject) => {
@@ -109,12 +109,12 @@ async function generateEmbeddingWithTimeout(text, timeout = 30000) {
 /**
  * Generate embeddings for batch of texts
  *
- * @param {string[]} texts - Array de textos
- * @returns {Promise<Float32Array[]>} Array de embeddings
+ * @param {string[]} texts - Array of texts
+ * @returns {Promise<Float32Array[]>} Array of embeddings
  */
 async function generateBatchEmbeddings(texts) {
   if (!Array.isArray(texts)) {
-    throw new TypeError('texts debe ser un array');
+    throw new TypeError('texts must be an array');
   }
 
   const results = [];
@@ -126,24 +126,24 @@ async function generateBatchEmbeddings(texts) {
 }
 
 // ───────────────────────────────────────────────────────────────
-// TASK-SPECIFIC FUNCTIONS (Recomendadas)
+// TASK-SPECIFIC FUNCTIONS (Recommended)
 // ───────────────────────────────────────────────────────────────
 
 /**
  * Generate embedding for a document (for indexing/storage)
  *
- * @param {string} text - Texto del documento
- * @returns {Promise<Float32Array>} Vector de embeddings
+ * @param {string} text - Document text
+ * @returns {Promise<Float32Array>} Embedding vector
  */
 async function generateDocumentEmbedding(text) {
   if (!text || typeof text !== 'string' || text.trim().length === 0) {
-    console.warn('[embeddings] Texto de documento vacío');
+    console.warn('[embeddings] Empty document text');
     return null;
   }
 
   const provider = await getProvider();
   
-  // Aplicar chunking semántico si es necesario
+  // Apply semantic chunking if necessary
   const maxLength = 8000;
   let inputText = text;
   if (inputText.length > maxLength) {
@@ -156,12 +156,12 @@ async function generateDocumentEmbedding(text) {
 /**
  * Generate embedding for a search query
  *
- * @param {string} query - Query de búsqueda
- * @returns {Promise<Float32Array>} Vector de embeddings
+ * @param {string} query - Search query
+ * @returns {Promise<Float32Array>} Embedding vector
  */
 async function generateQueryEmbedding(query) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
-    console.warn('[embeddings] Query vacío');
+    console.warn('[embeddings] Empty query');
     return null;
   }
 
@@ -172,31 +172,31 @@ async function generateQueryEmbedding(query) {
 /**
  * Generate embedding for clustering task
  *
- * @param {string} text - Texto para clustering
- * @returns {Promise<Float32Array>} Vector de embeddings
+ * @param {string} text - Text for clustering
+ * @returns {Promise<Float32Array>} Embedding vector
  */
 async function generateClusteringEmbedding(text) {
   if (!text || typeof text !== 'string' || text.trim().length === 0) {
     return null;
   }
 
-  // Para clustering usamos la función de documento
+  // For clustering we use the document function
   return await generateDocumentEmbedding(text);
 }
 
 // ───────────────────────────────────────────────────────────────
-// UTILITY FUNCTIONS (Compatibilidad con API legacy)
+// UTILITY FUNCTIONS (Legacy API compatibility)
 // ───────────────────────────────────────────────────────────────
 
 /**
  * Get embedding dimension
- * @returns {number} Dimensión del embedding
+ * @returns {number} Embedding dimension
  */
 function getEmbeddingDimension() {
   if (providerInstance) {
     return providerInstance.getProfile().dim;
   }
-  // Default para compatibilidad
+  // Default for compatibility
   return 768;
 }
 
