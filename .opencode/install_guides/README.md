@@ -466,7 +466,7 @@ ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 
 1. **Code Mode** (foundation - install FIRST)
 2. Narsil (structural analysis, security, semantic search - via Code Mode)
-3. Spec Kit Memory (context preservation - **ahora soporta múltiples providers de embeddings**)
+3. Spec Kit Memory (context preservation - **now supports multiple embedding providers**)
 4. Sequential Thinking (complex reasoning)
 
 ---
