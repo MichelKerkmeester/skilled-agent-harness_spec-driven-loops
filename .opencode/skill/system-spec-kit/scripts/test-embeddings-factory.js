@@ -8,7 +8,7 @@
 
 const path = require('path');
 
-// Configurar paths relativos
+// Configure relative paths
 const libPath = path.join(__dirname, '../scripts/lib');
 
 async function testFactory() {
