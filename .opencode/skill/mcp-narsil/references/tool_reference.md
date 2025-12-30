@@ -23,7 +23,7 @@ Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTIC un
 | Symbol Search & Navigation   | 7      | HIGH     |
 | Code Search                  | 6      | MEDIUM   |
 | AST-Aware Chunking           | 3      | LOW      |
-| Neural Semantic Search       | 3      | SKIP     |
+| Neural Semantic Search       | 3      | HIGH     |
 | Call Graph Analysis          | 6      | HIGH     |
 | Control Flow Analysis        | 2      | MEDIUM   |
 | Data Flow Analysis           | 4      | MEDIUM   |
@@ -199,7 +199,6 @@ Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTIC un
 | `get_symbol_history` | Symbol changes | Git CLI often faster |
 | `get_branch_info`    | Branch status  | Git CLI              |
 | `get_modified_files` | Working tree   | Git CLI              |
-| `search_commits`     | Commit search  | Git CLI              |
 
 #### Metrics (1)
 

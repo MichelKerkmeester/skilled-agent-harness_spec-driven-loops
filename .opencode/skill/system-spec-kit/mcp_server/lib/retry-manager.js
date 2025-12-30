@@ -102,6 +102,10 @@ function isEligibleForRetry(row, now) {
  */
 function getFailedEmbeddings() {
   const db = vectorIndex.getDb();
+  if (!db) {
+    console.warn('[retry-manager] Database not initialized, returning empty array');
+    return [];
+  }
 
   const rows = db.prepare(`
     SELECT * FROM memory_index
@@ -119,6 +123,10 @@ function getFailedEmbeddings() {
  */
 function getRetryStats() {
   const db = vectorIndex.getDb();
+  if (!db) {
+    console.warn('[retry-manager] Database not initialized, returning default stats');
+    return { pending: 0, retry: 0, failed: 0, success: 0, total: 0, queueSize: 0 };
+  }
 
   const stats = db.prepare(`
     SELECT

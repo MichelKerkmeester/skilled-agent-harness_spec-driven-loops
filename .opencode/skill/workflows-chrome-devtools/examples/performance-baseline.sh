@@ -38,22 +38,22 @@ bdg cdp Performance.getMetrics 2>&1 > "$OUTPUT_DIR/metrics-${DATE_STAMP}.json"
 
 # Capture network HAR
 echo "🌐 Capturing network trace..."
-bdg har export "$OUTPUT_DIR/network-${DATE_STAMP}.har" 2>&1
+bdg network har "$OUTPUT_DIR/network-${DATE_STAMP}.har" 2>&1
 
 # Capture screenshot
 echo "📸 Capturing screenshot..."
-bdg screenshot "$OUTPUT_DIR/screenshot-${DATE_STAMP}.png" 2>&1
+bdg dom screenshot "$OUTPUT_DIR/screenshot-${DATE_STAMP}.png" 2>&1
 
 # Capture DOM statistics
 echo "📐 Capturing DOM statistics..."
-DOM_NODES=$(bdg js "document.getElementsByTagName('*').length" 2>&1)
-IMAGE_COUNT=$(bdg js "document.images.length" 2>&1)
-SCRIPT_COUNT=$(bdg js "document.scripts.length" 2>&1)
-STYLESHEET_COUNT=$(bdg js "document.styleSheets.length" 2>&1)
+DOM_NODES=$(bdg dom eval "document.getElementsByTagName('*').length" 2>&1)
+IMAGE_COUNT=$(bdg dom eval "document.images.length" 2>&1)
+SCRIPT_COUNT=$(bdg dom eval "document.scripts.length" 2>&1)
+STYLESHEET_COUNT=$(bdg dom eval "document.styleSheets.length" 2>&1)
 
 # Capture console logs
 echo "📝 Capturing console logs..."
-bdg console logs 2>&1 > "$OUTPUT_DIR/console-${DATE_STAMP}.json"
+bdg console --list 2>&1 > "$OUTPUT_DIR/console-${DATE_STAMP}.json"
 
 # Stop session
 echo "🛑 Stopping browser session..."

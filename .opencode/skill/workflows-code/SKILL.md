@@ -11,7 +11,7 @@ version: 2.0.0
 
 Unified workflow guidance across 6 specialized code quality skills for frontend development.
 
-**Core principle**: Implementation → Debugging (if needed) → Verification (MANDATORY) = reliable frontend code.
+**Core Principle**: Implementation → Debugging (if needed) → Verification (MANDATORY) = reliable frontend code.
 
 ---
 
@@ -230,7 +230,7 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
    - Layer 4: Safe access patterns
 
 3. **CDN Version Management** - Update version parameters after JS changes
-   - Manual version increment workflow (see Section 3)
+   - Manual version increment workflow (see Section 4)
    - Updates all HTML files referencing changed JS
    - Forces browser cache refresh
 
@@ -491,6 +491,15 @@ See [verification_workflows.md](./references/verification_workflows.md) for comp
 
 ## 6. 🔌 INTEGRATION POINTS
 
+### Framework Integration
+
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
+
+Key integrations:
+- **Gate 2**: Skill routing via `skill_advisor.py`
+- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Memory**: Context preserved via Spec Kit Memory MCP
+
 ### Code Quality Standards (INTEGRATED)
 
 **Primary Reference:** [code_quality_standards.md](./references/code_quality_standards.md)
@@ -612,7 +621,43 @@ See [shared_patterns.md](./references/shared_patterns.md) for common patterns ac
 
 ---
 
-## 7. 🧭 WHERE AM I? (Phase Detection Helper)
+## 7. 📦 REFERENCES
+
+### Core References
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [implementation_workflows.md](references/implementation_workflows.md) | Async patterns, validation | Condition-based waiting |
+| [debugging_workflows.md](references/debugging_workflows.md) | Systematic debugging | Root cause tracing |
+| [verification_workflows.md](references/verification_workflows.md) | Browser testing | The Iron Law |
+| [animation_workflows.md](references/animation_workflows.md) | Motion.dev, Lenis, GSAP | Library loading patterns |
+| [minification_guide.md](references/minification_guide.md) | Safe JS minification | AST verification |
+| [cdn_deployment.md](references/cdn_deployment.md) | R2/CDN uploads | Version management |
+| [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common patterns |
+
+### Standards & Patterns
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [code_quality_standards.md](references/code_quality_standards.md) | Naming, structure | Webflow conventions |
+| [webflow_patterns.md](references/webflow_patterns.md) | Webflow-specific code | Attribute selectors |
+| [performance_patterns.md](references/performance_patterns.md) | Optimization | Lazy loading, caching |
+| [security_patterns.md](references/security_patterns.md) | XSS prevention | Input sanitization |
+| [shared_patterns.md](references/shared_patterns.md) | Reusable utilities | Observer patterns |
+| [third_party_integrations.md](references/third_party_integrations.md) | HLS, Lenis, etc. | Library loading |
+| [observer_patterns.md](references/observer_patterns.md) | Intersection/Mutation | Performance observers |
+
+### Assets
+| Asset | Purpose | Usage |
+|-------|---------|-------|
+| [wait_patterns.js](assets/wait_patterns.js) | Element/library waiting | Copy for async loading |
+| [validation_patterns.js](assets/validation_patterns.js) | Form validation | Defense-in-depth |
+| [hls_patterns.js](assets/hls_patterns.js) | HLS.js streaming | Video implementation |
+| [lenis_patterns.js](assets/lenis_patterns.js) | Smooth scroll | Lenis integration |
+| [verification_checklist.md](assets/verification_checklist.md) | Pre-deploy checks | QA workflow |
+| [debugging_checklist.md](assets/debugging_checklist.md) | Debug process | Issue tracking |
+
+---
+
+## 8. 🧭 WHERE AM I? (Phase Detection Helper)
 
 If you're unsure which phase you're in, use this self-assessment:
 
@@ -670,24 +715,24 @@ Understanding when and how to move between phases:
 
 ---
 
-## 8. 🏎️ QUICK REFERENCE
+## 9. 🔗 RELATED RESOURCES
 
 ### For Implementation
 
-1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
+1. **Read**: This SKILL.md Section 1 (When to Use), Section 4 (How It Works), Section 5 (Rules), Section 6 (Success Criteria)
 2. **Navigate**: [implementation_workflows.md](./references/implementation_workflows.md)
 3. **Use Templates**: [wait_patterns.js](./assets/wait_patterns.js), [validation_patterns.js](./assets/validation_patterns.js)
 
 ### For Debugging
 
-1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
+1. **Read**: This SKILL.md Section 1 (When to Use), Section 4 (How It Works), Section 5 (Rules), Section 6 (Success Criteria)
 2. **Navigate**: [debugging_workflows.md](./references/debugging_workflows.md)
 3. **Use Checklist**: [debugging_checklist.md](./assets/debugging_checklist.md)
 4. **DevTools**: See workflows-chrome-devtools skill for Chrome DevTools reference
 
 ### For Verification
 
-1. **Read**: This SKILL.md Section 1 (When to Use), Section 3 (How It Works), Section 4 (Rules), Section 5 (Success Criteria)
+1. **Read**: This SKILL.md Section 1 (When to Use), Section 4 (How It Works), Section 5 (Rules), Section 6 (Success Criteria)
 2. **Navigate**: [verification_workflows.md](./references/verification_workflows.md)
 3. **Use Checklist**: [verification_checklist.md](./assets/verification_checklist.md)
 

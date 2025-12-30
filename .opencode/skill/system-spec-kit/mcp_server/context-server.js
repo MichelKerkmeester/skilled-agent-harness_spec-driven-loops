@@ -500,6 +500,11 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
             type: 'boolean',
             default: false,
             description: 'Force re-index all files (ignore content hash)'
+          },
+          includeConstitutional: {
+            type: 'boolean',
+            default: true,
+            description: 'Whether to scan .opencode/skill/*/constitutional/ directories'
           }
         },
         required: []
@@ -1555,12 +1560,46 @@ async function handleMemorySave(args) {
 }
 
 /**
+ * Find constitutional memory files in skill directories
+ * @param {string} workspacePath - Workspace root path
+ * @returns {string[]} - Array of absolute file paths
+ */
+function findConstitutionalFiles(workspacePath) {
+  const results = [];
+  const skillDir = path.join(workspacePath, '.opencode', 'skill');
+  
+  if (!fs.existsSync(skillDir)) return results;
+  
+  try {
+    const skillEntries = fs.readdirSync(skillDir, { withFileTypes: true });
+    for (const entry of skillEntries) {
+      if (!entry.isDirectory() || entry.name.startsWith('.')) continue;
+      const constitutionalDir = path.join(skillDir, entry.name, 'constitutional');
+      if (!fs.existsSync(constitutionalDir)) continue;
+      try {
+        const files = fs.readdirSync(constitutionalDir, { withFileTypes: true });
+        for (const file of files) {
+          if (file.isFile() && file.name.endsWith('.md')) {
+            results.push(path.join(constitutionalDir, file.name));
+          }
+        }
+      } catch (err) {
+        console.warn(`Warning: Could not read constitutional dir ${constitutionalDir}:`, err.message);
+      }
+    }
+  } catch (err) {
+    console.warn(`Warning: Could not read skill directory:`, err.message);
+  }
+  return results;
+}
+
+/**
  * Handle memory_index_scan tool - scan and index multiple memory files
  * Uses batch processing with concurrency control to prevent resource exhaustion
  * L15: Rate limited to prevent excessive resource usage (1 minute cooldown)
  */
 async function handleMemoryIndexScan(args) {
-  const { specFolder = null, force = false } = args;
+  const { specFolder = null, force = false, includeConstitutional = true } = args;
 
   // L15: Rate limiting check
   const now = Date.now();
@@ -1582,8 +1621,14 @@ async function handleMemoryIndexScan(args) {
 
   const workspacePath = DEFAULT_BASE_PATH;
 
-  // Find all memory files
-  const files = memoryParser.findMemoryFiles(workspacePath, { specFolder });
+  // Find all memory files from specs
+  const specFiles = memoryParser.findMemoryFiles(workspacePath, { specFolder });
+  
+  // Find constitutional files if enabled
+  const constitutionalFiles = includeConstitutional ? findConstitutionalFiles(workspacePath) : [];
+  
+  // Combine all files (specs + constitutional)
+  const files = [...specFiles, ...constitutionalFiles];
 
   if (files.length === 0) {
     return {
@@ -1616,12 +1661,21 @@ async function handleMemoryIndexScan(args) {
     updated: 0,
     unchanged: 0,
     failed: 0,
-    files: []
+    files: [],
+    constitutional: {
+      found: constitutionalFiles.length,
+      indexed: 0,
+      alreadyIndexed: 0
+    }
   };
+  
+  // Track which files are constitutional for stats
+  const constitutionalSet = new Set(constitutionalFiles);
 
   for (let i = 0; i < batchResults.length; i++) {
     const result = batchResults[i];
     const filePath = files[i];
+    const isConstitutional = constitutionalSet.has(filePath);
 
     if (result.error) {
       // Error caught by processBatches
@@ -1634,12 +1688,23 @@ async function handleMemoryIndexScan(args) {
     } else {
       // Success - count by status
       results[result.status]++;
+      
+      // Track constitutional stats
+      if (isConstitutional) {
+        if (result.status === 'indexed') {
+          results.constitutional.indexed++;
+        } else if (result.status === 'unchanged') {
+          results.constitutional.alreadyIndexed++;
+        }
+      }
+      
       if (result.status !== 'unchanged') {
         results.files.push({
           file: path.basename(filePath),
           specFolder: result.specFolder,
           status: result.status,
-          id: result.id
+          id: result.id,
+          isConstitutional
         });
       }
     }

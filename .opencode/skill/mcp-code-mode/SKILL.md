@@ -468,6 +468,15 @@ call_tool_chain({
 
 ## 7. 🔌 INTEGRATION POINTS
 
+### Framework Integration
+
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
+
+Key integrations:
+- **Gate 2**: Skill routing via `skill_advisor.py`
+- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Memory**: Context preserved via Spec Kit Memory MCP
+
 ### Cross-Skill Collaboration
 
 **Pairs with mcp-narsil**:
@@ -515,7 +524,31 @@ call_tool_chain({
 
 ---
 
-## 8. 🏎️ QUICK REFERENCE
+## 8. 📦 REFERENCES
+
+### Configuration
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [configuration.md](references/configuration.md) | Setup guide | .utcp_config.json structure |
+| [env_template.md](assets/env_template.md) | Environment variables | API key patterns |
+| [config_template.md](assets/config_template.md) | Config examples | Server definitions |
+
+### Tool Documentation
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [naming_convention.md](references/naming_convention.md) | Tool naming patterns | `{manual}.{manual}_{tool}` |
+| [tool_catalog.md](references/tool_catalog.md) | Available tools | By server category |
+| [workflows.md](references/workflows.md) | Usage patterns | Multi-tool examples |
+
+### Architecture
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [architecture.md](references/architecture.md) | System design | Performance benefits |
+| [README.md](README.md) | Overview | Quick start |
+
+---
+
+## 9. 🏎️ QUICK REFERENCE
 
 ### Essential Commands
 
@@ -547,7 +580,35 @@ call_tool_chain({
   `,
   timeout: 60000
 });
+
+// 6. Parallel execution of independent operations
+call_tool_chain({
+  code: `
+    const [sites, tasks, figmaFile] = await Promise.all([
+      webflow.webflow_sites_list({}),
+      clickup.clickup_get_tasks({ listName: "Development" }),
+      figma.figma_get_file({ fileKey: "abc123" })
+    ]);
+    
+    return { 
+      siteCount: sites.length,
+      taskCount: tasks.length,
+      figmaName: figmaFile.name
+    };
+  `
+});
 ```
+
+### Parallel Execution Patterns
+
+| Pattern | Use When | Example |
+|---------|----------|---------|
+| `Promise.all()` | All must succeed | `const [a, b] = await Promise.all([fnA(), fnB()])` |
+| `Promise.allSettled()` | Partial success OK | `const results = await Promise.allSettled([...])` |
+| Batch processing | Many items, rate limits | `processInBatches(items, 3, processor)` |
+| Parallel → Sequential | Fetch then process | Phase 1: parallel fetch, Phase 2: sequential use |
+
+**See [references/workflows.md](references/workflows.md) Section 7 for comprehensive parallel execution examples.**
 
 ### Critical Naming Pattern
 
@@ -563,95 +624,50 @@ call_tool_chain({
 
 ---
 
-## 9. 📚 ADDITIONAL RESOURCES
-
-### Configuration Files
-
-**Required files**:
-- `.utcp_config.json` - MCP server definitions ([template](assets/config_template.md))
-- `.env` - API keys and tokens ([template](assets/env_template.md))
-
-**Validation**:
-```bash
-python3 scripts/validate_config.py .utcp_config.json --check-env .env
-```
-
-### Performance Metrics
-
-| Metric              | Traditional       | Code Mode         | Improvement     |
-| ------------------- | ----------------- | ----------------- | --------------- |
-| **Context tokens**  | 141k (47 tools)   | 1.6k (200+ tools) | 98.7% reduction |
-| **Execution time**  | ~2000ms (4 tools) | ~300ms (4 tools)  | 60% faster      |
-| **API round trips** | 15+               | 1                 | 93% reduction   |
-
-### Common MCP Servers
-
-**Available tools by server**:
-- **Webflow**: 40+ tools (sites, collections, pages, CMS)
-- **ClickUp**: 20+ tools (tasks, lists, workspaces)
-- **Figma**: 15+ tools (files, comments, images)
-- **Notion**: 20+ tools (pages, databases, blocks)
-- **Chrome DevTools**: 52 tools (26 tools × 2 instances)
-
-See [references/tool_catalog.md](references/tool_catalog.md) for complete list.
-
-### Example Workflows
-
-**5 comprehensive examples in [references/workflows.md](references/workflows.md)**:
-1. **Webflow** - List Sites and Collections
-2. **ClickUp** - Create and Track Task
-3. **Notion** - Database queries and page creation (uses `notion_API_` prefix)
-4. **Multi-Tool** - Figma → ClickUp → Webflow (complex orchestration)
-5. **Error Handling** - Robust patterns with fallbacks
-
-### Related Skills
-
-- **[mcp-narsil](../mcp-narsil/SKILL.md)** - Semantic + structural code search (via Code Mode - call `narsil.narsil_neural_search()`, `narsil.narsil_find_symbols()` through `call_tool_chain()`)
-
----
-
-## 10. 📦 BUNDLED RESOURCES
+## 10. 🔗 RELATED RESOURCES
 
 ### scripts/
 
-**update-code-mode.sh** - Update Code Mode to latest version
-
-Updates @utcp/code-mode-mcp to the latest version via npm. Verifies configuration and provides setup guidance.
-
-**Usage**: 
-```bash
-bash .opencode/skill/mcp-code-mode/scripts/update-code-mode.sh
-```
-
-**Environment variable**: Set `CODE_MODE_DIR` to override installation path.
-
----
-
-**validate_config.py** - Configuration validation tool
-
-Validates `.utcp_config.json` structure, manual names, environment variables, and MCP server configurations.
-
-**Usage**: `python3 scripts/validate_config.py <config-path> --check-env <env-path>`
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| **update-code-mode.sh** | Update to latest version | `bash .opencode/skill/mcp-code-mode/scripts/update-code-mode.sh` |
+| **validate_config.py** | Validate configuration | `python3 scripts/validate_config.py <config-path> --check-env <env-path>` |
 
 ### references/
 
-**Detailed documentation loaded into context**:
-
-- **naming_convention.md** - Tool naming pattern and troubleshooting (CRITICAL)
-- **configuration.md** - .utcp_config.json and .env setup guide
-- **tool_catalog.md** - Complete catalog of 200+ available tools
-- **workflows.md** - 5 comprehensive workflow examples
-- **architecture.md** - Technical architecture and token economics
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| **naming_convention.md** | Tool naming pattern | CRITICAL - read first for errors |
+| **configuration.md** | Setup guide | .utcp_config.json and .env |
+| **tool_catalog.md** | Available tools | 250+ tools across 8 servers |
+| **workflows.md** | Usage patterns | 5 comprehensive examples |
+| **architecture.md** | System design | Token economics |
 
 ### assets/
 
-**Templates for configuration**:
+| Asset | Purpose |
+|-------|---------|
+| **config_template.md** | .utcp_config.json template |
+| **env_template.md** | .env template with API key placeholders |
 
-- **config_template.md** - Template .utcp_config.json file
-- **env_template.md** - Template .env file with placeholders
+### External Resources
 
-**Usage**: Copy to project root, customize with your credentials and MCP servers
+- [Code Mode GitHub](https://github.com/anthropics/code-mode-mcp) - Source code and documentation
+- [MCP Specification](https://modelcontextprotocol.io/) - Model Context Protocol standard
 
----
+### Performance Metrics
 
-**Remember**: This skill operates as a unified execution environment for all MCP tools. It provides context efficiency and type safety for complex multi-tool workflows.
+| Metric | Traditional | Code Mode | Improvement |
+|--------|-------------|-----------|-------------|
+| Context tokens | 141k (47 tools) | 1.6k (200+ tools) | 98.7% reduction |
+| Execution time | ~2000ms (4 tools) | ~300ms (4 tools) | 60% faster |
+| API round trips | 15+ | 1 | 93% reduction |
+
+### Related Skills
+
+- **[mcp-narsil](../mcp-narsil/SKILL.md)** - Semantic + structural code search (via Code Mode)
+- **[mcp-figma](../mcp-figma/SKILL.md)** - Figma design file access (via Code Mode)
+
+### Install Guide
+
+- [MCP - Code Mode.md](../../install_guides/MCP/MCP%20-%20Code%20Mode.md) - Installation and configuration

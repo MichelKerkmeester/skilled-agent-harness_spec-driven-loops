@@ -122,10 +122,10 @@ function loadTriggerCache() {
           continue;
         }
 
-        const phraseLower = phrase.toLowerCase();
+        const phraseLower = normalizeUnicode(phrase, false);
         triggerCache.push({
-          phrase: phraseLower, // Pre-lowercase for fast comparison
-          regex: new RegExp(`\\b${escapeRegex(phraseLower)}\\b`, 'i'), // Pre-compiled regex
+          phrase: phraseLower, // Pre-normalized for fast comparison
+          regex: new RegExp(`\\b${escapeRegex(phraseLower)}\\b`, 'iu'), // Pre-compiled regex with Unicode flag
           memoryId: row.id,
           specFolder: row.spec_folder,
           filePath: row.file_path,
@@ -178,6 +178,35 @@ function escapeRegex(str) {
 }
 
 /**
+ * Normalize string for Unicode-safe comparison
+ * - NFC normalization (canonical composition)
+ * - Lowercase
+ * - Optional: remove diacritics for accent-insensitive search
+ * 
+ * @param {string} str - Input string
+ * @param {boolean} stripAccents - If true, remove diacritical marks
+ * @returns {string} - Normalized string
+ */
+function normalizeUnicode(str, stripAccents = false) {
+  if (!str) return '';
+  
+  // Step 1: NFC normalization (compose characters)
+  let normalized = str.normalize('NFC');
+  
+  // Step 2: Optional accent stripping (NFKD + remove combining marks)
+  if (stripAccents) {
+    normalized = normalized
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, ''); // Remove combining diacritical marks
+  }
+  
+  // Step 3: Case-fold (locale-independent lowercase)
+  normalized = normalized.toLowerCase();
+  
+  return normalized;
+}
+
+/**
  * Check if a phrase exists in text with word boundaries
  * @param {string} text - Text to search in (lowercase)
  * @param {string} phrase - Phrase to find (lowercase)
@@ -191,7 +220,7 @@ function matchPhraseWithBoundary(text, phrase, precompiledRegex = null) {
   }
   // Fallback for direct calls without pre-compiled regex
   const escaped = escapeRegex(phrase);
-  const regex = new RegExp(`\\b${escaped}\\b`, 'i');
+  const regex = new RegExp(`\\b${escaped}\\b`, 'iu');
   return regex.test(text);
 }
 
@@ -222,7 +251,7 @@ function matchTriggerPhrases(userPrompt, limit = CONFIG.DEFAULT_LIMIT) {
     ? userPrompt.substring(0, CONFIG.MAX_PROMPT_LENGTH)
     : userPrompt;
 
-  const promptLower = prompt.toLowerCase();
+  const promptNormalized = normalizeUnicode(prompt, false);
 
   // Load cache (fast if already loaded)
   const cache = loadTriggerCache();
@@ -236,7 +265,7 @@ function matchTriggerPhrases(userPrompt, limit = CONFIG.DEFAULT_LIMIT) {
   const matchesByMemory = new Map();
 
   for (const entry of cache) {
-    if (matchPhraseWithBoundary(promptLower, entry.phrase, entry.regex)) {
+    if (matchPhraseWithBoundary(promptNormalized, entry.phrase, entry.regex)) {
       const key = entry.memoryId;
 
       if (!matchesByMemory.has(key)) {
@@ -350,6 +379,7 @@ module.exports = {
   getMemoriesByPhrase,
   // Expose internals for testing
   escapeRegex,
+  normalizeUnicode,
   matchPhraseWithBoundary,
   // Configuration
   CONFIG,

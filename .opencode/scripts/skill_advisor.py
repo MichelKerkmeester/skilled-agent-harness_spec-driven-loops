@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Skill Advisor - Analyzes user requests and recommends appropriate skills.
-Used by Gate 3 in AGENTS.md for mandatory skill routing.
+Used by Gate 2 in AGENTS.md for skill routing.
 
 Usage: python skill_advisor.py "user request" [--threshold 0.8]
 Output: JSON array of skill recommendations with confidence scores

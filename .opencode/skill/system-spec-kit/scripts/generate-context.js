@@ -2701,9 +2701,11 @@ async function main() {
 
         const filePath = path.join(contextDir, filename);
 
+        // Declare tempPath before try block so it's accessible in catch for cleanup
+        let tempPath;
         try {
           // Write to temp file first (atomic write pattern)
-          const tempPath = filePath + '.tmp';
+          tempPath = filePath + '.tmp';
           await fs.writeFile(tempPath, content, 'utf-8');
 
           // Verify write succeeded by checking file size
@@ -2723,10 +2725,12 @@ async function main() {
         } catch (fileError) {
           // L17: Improved error messages with context
           // M6: Clean up temp file on failure
-          try {
-            await fs.unlink(tempPath);
-          } catch (cleanupErr) {
-            // Ignore cleanup errors - temp file may not exist
+          if (tempPath) {
+            try {
+              await fs.unlink(tempPath);
+            } catch (cleanupErr) {
+              // Ignore cleanup errors - temp file may not exist
+            }
           }
           
           // Provide context-specific error messages
@@ -4128,7 +4132,9 @@ async function extractConversations(collectedData) {
       if (!phaseTimestamps.has(phase)) {
         phaseTimestamps.set(phase, []);
       }
-      phaseTimestamps.get(phase).push(new Date(userMessage.TIMESTAMP));
+      // Convert "YYYY-MM-DD @ HH:MM:SS" format to ISO for reliable parsing
+      const phaseTimestamp = userMessage.TIMESTAMP.replace(' @ ', 'T');
+      phaseTimestamps.get(phase).push(new Date(phaseTimestamp));
     }
   }
 
@@ -4173,8 +4179,11 @@ async function extractConversations(collectedData) {
   // Calculate total duration
   let duration = 'N/A';
   if (MESSAGES.length > 0) {
-    const firstTime = new Date(MESSAGES[0].TIMESTAMP);
-    const lastTime = new Date(MESSAGES[MESSAGES.length - 1].TIMESTAMP);
+    // Convert "YYYY-MM-DD @ HH:MM:SS" format to ISO for reliable parsing
+    const firstTimestamp = MESSAGES[0].TIMESTAMP.replace(' @ ', 'T');
+    const lastTimestamp = MESSAGES[MESSAGES.length - 1].TIMESTAMP.replace(' @ ', 'T');
+    const firstTime = new Date(firstTimestamp);
+    const lastTime = new Date(lastTimestamp);
     const durationMs = lastTime - firstTime;
     const minutes = Math.floor(durationMs / 60000);
     const hours = Math.floor(minutes / 60);

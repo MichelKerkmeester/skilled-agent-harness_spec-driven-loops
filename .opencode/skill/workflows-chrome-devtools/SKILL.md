@@ -168,10 +168,10 @@ Browser debugging task received
 
 | Feature        | CLI (bdg)                          | MCP (Code Mode)      | Puppeteer/Playwright |
 | -------------- | ---------------------------------- | -------------------- | -------------------- |
-| **Setup**      | `npm install -g bdg`               | MCP config + server  | Heavy dependencies   |
+| **Setup**      | `npm install -g browser-debugger-cli@alpha` | MCP config + server  | Heavy dependencies   |
 | **Discovery**  | `--list`, `--describe`, `--search` | `search_tools()`     | API docs required    |
 | **Token Cost** | Lowest (self-doc)                  | Medium (progressive) | Highest (verbose)    |
-| **CDP Access** | All 644 methods                    | MCP-exposed subset   | Full but complex     |
+| **CDP Access** | 300+ methods across 53 domains     | MCP-exposed subset   | Full but complex     |
 | **Best For**   | Debugging, inspection              | Multi-tool workflows | Complex UI testing   |
 
 ### CLI Approach (Priority) - browser-debugger-cli (bdg)
@@ -197,16 +197,16 @@ bdg --version 2>&1
 
 ```bash
 # Step 1: List available domains
-bdg --list
+bdg cdp --list
 
 # Step 2: Explore specific domain
-bdg --describe Page
+bdg cdp --describe Page
 
 # Step 3: Search for capability
-bdg --search screenshot
+bdg cdp --search screenshot
 
 # Step 4: Get method details
-bdg --describe Page.captureScreenshot
+bdg cdp --describe Page.captureScreenshot
 
 # Step 5: Execute
 bdg cdp Page.captureScreenshot 2>&1
@@ -222,8 +222,8 @@ bdg https://example.com 2>&1
 bdg status 2>&1
 
 # Execute operations
-bdg screenshot output.png 2>&1
-bdg console logs 2>&1
+bdg dom screenshot output.png 2>&1
+bdg console --list 2>&1
 
 # Stop session (cleanup)
 bdg stop 2>&1
@@ -242,12 +242,12 @@ bdg https://example.com 2>&1
 
 **Screenshots**:
 ```bash
-bdg screenshot output.png 2>&1
+bdg dom screenshot output.png 2>&1
 ```
 
 **Console logs**:
 ```bash
-bdg console logs 2>&1 | jq '.[] | select(.level == "error")'
+bdg console --list 2>&1 | jq '.[] | select(.level == "error")'
 ```
 
 **DOM queries**:
@@ -258,31 +258,31 @@ bdg dom query "#element-id" 2>&1
 
 **Cookies**:
 ```bash
-bdg network cookies 2>&1
+bdg network getCookies 2>&1
 bdg cdp Network.setCookie '{"name":"auth","value":"token","domain":"example.com"}' 2>&1
 ```
 
 **JavaScript execution**:
 ```bash
-bdg js "document.title" 2>&1
+bdg dom eval "document.title" 2>&1
 ```
 
 **HAR export**:
 ```bash
-bdg har export network-trace.har 2>&1
+bdg network har network-trace.har 2>&1
 ```
 
 #### Unix Composability
 
 ```bash
 # Pipe to jq
-bdg console logs 2>&1 | jq '.[] | select(.level == "error")'
+bdg console --list 2>&1 | jq '.[] | select(.level == "error")'
 
 # Filter cookies
-bdg network cookies 2>&1 | jq '[.[] | {name, domain}]'
+bdg network getCookies 2>&1 | jq '[.[] | {name, domain}]'
 
 # Grep patterns
-bdg console logs 2>&1 | grep -i "error"
+bdg console --list 2>&1 | grep -i "error"
 ```
 
 ### MCP Approach (Fallback) - Chrome DevTools via Code Mode
@@ -393,11 +393,11 @@ await call_tool_chain({
 | Tool                    | Purpose            | CLI Equivalent                                     |
 | ----------------------- | ------------------ | -------------------------------------------------- |
 | `navigate_page`         | Navigate to URL    | `bdg <url>`                                        |
-| `take_screenshot`       | Capture screenshot | `bdg screenshot`                                   |
-| `list_console_messages` | Get console logs   | `bdg console logs`                                 |
+| `take_screenshot`       | Capture screenshot | `bdg dom screenshot`                               |
+| `list_console_messages` | Get console logs   | `bdg console --list`                               |
 | `resize_page`           | Set viewport size  | N/A (use cdp)                                      |
 | `click`                 | Click on element   | `bdg cdp Input.dispatchMouseEvent`                 |
-| `fill`                  | Fill form field    | `bdg js "document.querySelector(...).value = ..."` |
+| `fill`                  | Fill form field    | `bdg dom eval "document.querySelector(...).value = ..."` |
 | `hover`                 | Hover over element | `bdg cdp Input.dispatchMouseEvent`                 |
 | `press_key`             | Press keyboard key | `bdg cdp Input.dispatchKeyEvent`                   |
 | `wait_for`              | Wait for condition | N/A (scripting)                                    |
@@ -422,7 +422,7 @@ await call_tool_chain({
 
 - Higher token cost than CLI
 - Requires Code Mode infrastructure
-- Subset of CDP methods (CLI has full 644 methods)
+- Subset of CDP methods (CLI has 300+ methods across 53 domains)
 - Less self-documenting than CLI's `--list`, `--describe`
 
 ### MCP Session Cleanup
@@ -576,6 +576,15 @@ await call_tool_chain({
 
 ## 6. 🔌 INTEGRATION POINTS
 
+### Framework Integration
+
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
+
+Key integrations:
+- **Gate 2**: Skill routing via `skill_advisor.py`
+- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Memory**: Context preserved via Spec Kit Memory MCP
+
 ### Related Skills
 
 **mcp-code-mode**: Required for MCP fallback approach
@@ -589,8 +598,8 @@ await call_tool_chain({
   npm run dev &
   sleep 5
   bdg http://localhost:3000 2>&1
-  bdg screenshot verification.png 2>&1
-  bdg console logs 2>&1 > console.json
+  bdg dom screenshot verification.png 2>&1
+  bdg console --list 2>&1 > console.json
   bdg stop 2>&1
   ```
 
@@ -627,7 +636,7 @@ command -v bdg || echo "Install: npm install -g browser-debugger-cli@alpha"
 bdg https://example.com 2>&1
 
 # Capture screenshot
-bdg screenshot example.png 2>&1
+bdg dom screenshot example.png 2>&1
 
 # Stop session
 bdg stop 2>&1
@@ -638,7 +647,7 @@ bdg stop 2>&1
 ```bash
 bdg https://example.com 2>&1
 bdg cdp Runtime.enable 2>&1
-bdg console logs 2>&1 | jq '.[] | select(.level=="error")' > errors.json
+bdg console --list 2>&1 | jq '.[] | select(.level=="error")' > errors.json
 bdg stop 2>&1
 ```
 
@@ -688,9 +697,9 @@ await call_tool_chain({
 
 ```bash
 # Discovery
-bdg --list                    # List domains
-bdg --describe Page           # Domain methods
-bdg --search screenshot       # Find methods
+bdg cdp --list                # List domains
+bdg cdp --describe Page       # Domain methods
+bdg cdp --search screenshot   # Find methods
 
 # Session
 bdg <url>                     # Start
@@ -698,12 +707,12 @@ bdg status                    # Check
 bdg stop                      # Stop
 
 # Helpers
-bdg screenshot <path>         # Screenshot
-bdg console logs              # Console
-bdg network cookies           # Cookies
+bdg dom screenshot <path>     # Screenshot
+bdg console --list            # Console
+bdg network getCookies        # Cookies
 bdg dom query "<sel>"         # DOM query
-bdg js "<expr>"               # Execute JS
-bdg har export <path>         # HAR export
+bdg dom eval "<expr>"         # Execute JS
+bdg network har <path>        # HAR export
 ```
 
 ### MCP Tools (Isolated Instances)
@@ -734,7 +743,7 @@ bdg "$URL" 2>&1 || exit 1
 
 ---
 
-## 9. 📦 BUNDLED RESOURCES
+## 9. 🔗 RELATED RESOURCES
 
 ### references/
 

@@ -39,11 +39,11 @@ Six-tier system for prioritizing memory relevance:
 | Tier | Weight | Purpose | Auto-Surface |
 |------|--------|---------|--------------|
 | **Constitutional** | 1.0 | Critical rules that ALWAYS apply | Yes (top of every search) |
-| **Critical** | 0.9 | High-importance context | Yes (high relevance) |
-| **Important** | 0.7 | Significant decisions/context | Relevance-based |
+| **Critical** | 1.0 | High-importance context | Yes (high relevance) |
+| **Important** | 0.8 | Significant decisions/context | Relevance-based |
 | **Normal** | 0.5 | Standard session context | Relevance-based |
 | **Temporary** | 0.3 | Short-term notes | Relevance-based |
-| **Deprecated** | 0.1 | Outdated (kept for history) | Rarely |
+| **Deprecated** | 0.1 | Outdated (kept for history) | Never (excluded from search results) |
 
 ### Constitutional Tier Behavior
 
@@ -65,7 +65,7 @@ Six-tier system for prioritizing memory relevance:
 |------|---------|-------------|
 | `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
 | `memory_match_triggers()` | Fast keyword matching (<50ms) | Gate enforcement |
-| `memory_save()` | Index a memory file | After generate-context.js |
+| `memory_save()` | Index a memory file. Re-generates embedding when **title** changes. Content changes without title changes do not trigger re-embedding. | After generate-context.js |
 | `memory_list()` | Browse stored memories | Review session history |
 | `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
 | `checkpoint_create()` | Save named state snapshot | Before risky changes |
@@ -142,6 +142,15 @@ Use exact folder names when filtering. This is intentional for precise filtering
 | `offset` | number | 0 | Pagination offset |
 | `sortBy` | string | `created_at` | Sort order: created_at, updated_at, importance_weight |
 
+### Spec Folder Filtering
+
+The `specFolder` parameter behavior varies by operation:
+- `memory_search`: Exact match (SQL `=` operator)
+- `memory_list`: Exact match (SQL `=` operator)
+- `findMemoryFiles`: Prefix match (`startsWith`) - matches `007-auth` and `007-auth-v2`
+
+For consistent exact matching, use the full spec folder name.
+
 ---
 
 ## 6. ⏱️ DECAY SCORING
@@ -199,6 +208,10 @@ To index new or modified memory files:
 ### Future Enhancement
 
 File watcher for real-time sync is planned but not yet implemented.
+
+### Rate Limiting
+
+The `memory_index_scan` operation has a 1-minute cooldown between scans to prevent resource exhaustion. If called within the cooldown period, it returns an error with the remaining wait time.
 
 ---
 

@@ -1,11 +1,11 @@
 ---
 title: Tool Catalog - Complete List of Available MCP Tools
-description: Reference catalog of 275+ tools across 9 MCP servers.
+description: Reference catalog of 250+ tools across 8 MCP servers.
 ---
 
 # Tool Catalog - Complete List of Available MCP Tools
 
-Reference catalog of 275+ tools across 9 MCP servers, organized by service.
+Reference catalog of 250+ tools across 8 MCP servers, organized by service.
 
 ---
 
@@ -44,14 +44,16 @@ const info = await tool_info({
 1. **Webflow** - 40+ tools (Site & CMS management)
 2. **ClickUp** - 20+ tools (Task & project management)
 3. **Figma** - 15+ tools (Design file access)
-4. **Notion** - 20+ tools (Notes & database management)
-5. **Chrome DevTools** - 52 tools (26 tools × 2 instances)
-6. **ShadCN UI** - Component library access
-7. **Imagician** - Image processing
-8. **Video Audio** - 30+ tools (Video/audio processing)
-9. **Narsil** - 76 tools (Security scanning, call graph analysis, code intelligence)
+4. **Chrome DevTools** - 52 tools (26 tools × 2 instances)
+5. **ShadCN UI** - Component library access
+6. **Imagician** - Image processing
+7. **Video Audio** - 30+ tools (Video/audio processing)
+8. **Narsil** - 76 tools (Security scanning, call graph analysis, code intelligence)
+9. **GitHub** - 20+ tools (Repository & PR management)
 
-**Total:** 275+ tools
+**Total:** 250+ tools
+
+> **Note:** Notion MCP is not currently configured. Add to `.utcp_config.json` if needed.
 
 ---
 
@@ -216,66 +218,10 @@ const info = await tool_info({
 
 ---
 
-## 6. 📝 NOTION (20+ TOOLS)
-
-**Manual name:** `notion`
-**Naming pattern:** `notion.notion_API_{tool_name}`
-
-**Note:** All Notion tools are prefixed with `notion_API_` in the tool name.
-
-### Users (3 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `notion_API_get_user` | Get user by ID | `user_id` |
-| `notion_API_get_users` | List all users | None |
-| `notion_API_get_self` | Get current user | None |
-
-### Search & Query (2 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `notion_API_post_search` | Search by title | `query`, `filter` |
-| `notion_API_post_database_query` | Query database | `database_id`, `filter`, `sorts` |
-
-### Blocks (5 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `notion_API_get_block_children` | Get block children | `block_id`, `start_cursor` |
-| `notion_API_retrieve_a_block` | Retrieve block | `block_id` |
-| `notion_API_update_a_block` | Update block | `block_id`, `updates` |
-| `notion_API_delete_a_block` | Delete block | `block_id` |
-| `notion_API_append_block_children` | Append children | `block_id`, `children[]` |
-
-### Pages (3 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `notion_API_retrieve_a_page` | Retrieve page | `page_id` |
-| `notion_API_post_page` | Create page | `parent`, `properties` |
-| `notion_API_update_page_properties` | Update properties | `page_id`, `properties` |
-
-### Databases (4 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `notion_API_retrieve_a_database` | Retrieve database | `database_id` |
-| `notion_API_create_a_database` | Create database | `parent`, `properties`, `title` |
-| `notion_API_update_a_database` | Update database | `database_id`, `updates` |
-| `notion_API_query_a_database` | Query database | `database_id`, `filter` |
-
-### Comments (2 tools)
-
-- `notion_API_retrieve_comments` - Get comments
-- `notion_API_create_comment` - Create comment
-
----
-
-## 7. 🔧 CHROME DEVTOOLS (52 TOOLS)
+## 6. 🔧 CHROME DEVTOOLS (52 TOOLS)
 
 **Manual names:** `chrome_devtools_1`, `chrome_devtools_2`
-**Naming pattern:** `chrome_devtools_1.chrome_devtools_{tool_name}`
+**Naming pattern:** `chrome_devtools_1.chrome_devtools_1_{tool_name}`
 
 **Note:** 26 tools × 2 instances = 52 tools total
 
@@ -330,7 +276,7 @@ const info = await tool_info({
 
 ---
 
-## 8. 🎨 SHADCN UI (COMPONENTS)
+## 7. 🎨 SHADCN UI (COMPONENTS)
 
 **Manual name:** `shadcn_ui`
 **Naming pattern:** `shadcn_ui.shadcn_ui_{tool_name}`
@@ -343,7 +289,7 @@ const info = await tool_info({
 
 ---
 
-## 9. 🖼️ IMAGICIAN (IMAGE PROCESSING)
+## 8. 🖼️ IMAGICIAN (IMAGE PROCESSING)
 
 **Manual name:** `imagician`
 **Naming pattern:** `imagician.imagician_{tool_name}`
@@ -359,7 +305,7 @@ const info = await tool_info({
 
 ---
 
-## 10. 🎬 VIDEO AUDIO (30+ TOOLS)
+## 9. 🎬 VIDEO AUDIO (30+ TOOLS)
 
 **Manual name:** `video_audio`
 **Naming pattern:** `video_audio.video_audio_{tool_name}`
@@ -396,7 +342,7 @@ const info = await tool_info({
 
 ---
 
-## 11. 🛡️ NARSIL (76 TOOLS)
+## 10. 🛡️ NARSIL (76 TOOLS)
 
 **Manual name:** `narsil`
 **Naming pattern:** `narsil.narsil_{tool_name}`
@@ -494,7 +440,7 @@ Deep code intelligence for security scanning, call graph analysis, and structura
 
 ---
 
-## 12. 🔍 TOOL DISCOVERY EXAMPLES
+## 11. 🔍 TOOL DISCOVERY EXAMPLES
 
 ### Example 1: Search by Task Description
 
@@ -550,9 +496,9 @@ console.log(info.interface);
 
 ---
 
-## 13. 📝 SUMMARY
+## 12. 📝 SUMMARY
 
-**Total Tools:** 275+ across 9 MCP servers
+**Total Tools:** 250+ across 8 MCP servers
 
 **Best practices:**
 1. Use `search_tools()` for dynamic discovery
@@ -564,7 +510,7 @@ console.log(info.interface);
 
 ---
 
-## 14. 🔗 RELATED RESOURCES
+## 13. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [naming_convention.md](./naming_convention.md) - Critical naming patterns for all tools in this catalog

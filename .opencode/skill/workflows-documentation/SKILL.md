@@ -11,46 +11,96 @@ version: 5.2.0
 
 Unified specialist providing: (1) Document quality pipeline with structure enforcement and content optimization, (2) OpenCode component creation (skills, agents, commands) with scaffolding, validation, and packaging, (3) ASCII flowchart creation for visualizing workflows, and (4) Install guide creation for setup documentation.
 
-**Core principle**: Structure first, then content, then quality.
+**Core Principle**: Structure first, then content, then quality.
 
 **Architecture**: Scripts handle deterministic parsing/metrics, AI handles quality judgment and recommendations.
 
 ---
 
-## 1. 🎯 CAPABILITIES OVERVIEW
+## 1. 🎯 WHEN TO USE
 
-### Mode 1: Document Quality Management
+### Use Case: Document Quality Management
 
 Enforce markdown structure, optimize content for AI assistants, validate quality through script-assisted AI analysis.
 
-**Use when**: Writing/optimizing markdown, enforcing structural standards, improving AI-friendliness, validating before release.
+**README Creation** - Use `readme_template.md` when:
+- Creating new README for any folder or project
+- User requests "create a README", "add documentation"
+- Folder needs comprehensive documentation
 
-### Mode 2: OpenCode Component Creation
+**Frontmatter Validation** - Use `frontmatter_templates.md` when:
+- Validating YAML frontmatter in any document
+- Checking required fields for document types
+- Fixing frontmatter syntax errors
+
+**Validation Workflow** - Apply after Write/Edit operations:
+- Auto-correct filename violations (ALL CAPS → lowercase, hyphens → underscores)
+- Fix safe violations (separators, H2 case, emoji per rules)
+- Check critical violations (missing frontmatter, wrong section order)
+
+**Manual Optimization** - Run when:
+- README needs optimization for AI assistants
+- Creating critical documentation (specs, knowledge, skills)
+- Pre-release quality checks
+- Generating llms.txt for LLM navigation
+
+### Use Case: OpenCode Component Creation
 
 Create and manage OpenCode components: skills, agents, and commands. Each component type has templates, validation, and quality standards.
-
-**Use when**: Creating skills, agents, or commands. Scaffolding structure, validating quality, packaging for distribution.
 
 **Component Types:**
 - **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
 - **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/agent_template.md)
 - **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
 
-### Mode 3: Flowchart Creation
+**Use when**:
+- User requests skill creation ("create a skill", "make a new skill")
+- User requests agent creation ("create an agent", "make a new agent")
+- User requests command creation ("create a command", "add a slash command")
+- Scaffolding component structure
+- Validating component quality
+- Packaging skill for distribution
+
+**Skill Process (6 steps)**: Understanding (examples) → Planning (resources) → Initialization (`init_skill.py`) → Editing (populate) → Packaging (`package_skill.py`) → Iteration (test/improve)
+
+**Agent Process**: Load `agent_template.md` → Define frontmatter (tools, permissions) → Create sections (workflow, capabilities, anti-patterns) → Validate → Test
+
+**Command Process**: Load `command_template.md` → Define frontmatter (name, description) → Create execution logic → Add to command registry → Test
+
+### Use Case: Flowchart Creation
 
 Create ASCII flowcharts for visualizing workflows, user journeys, and decision trees.
 
-**Use when**: Documenting multi-step processes, decision trees, parallel execution, approval gates.
+**Use when**:
+- Documenting multi-step processes with branching
+- Creating decision trees with multiple outcomes
+- Showing parallel execution with sync points
+- Visualizing approval gates and revision cycles
 
 **See**: [assets/flowcharts/](./assets/flowcharts/)
 
-### Mode 4: Install Guide Creation
+### Use Case: Install Guide Creation
 
 Create and validate installation documentation for MCP servers, plugins, and tools using phase-based templates.
 
-**Use when**: Creating install guides, documenting setup procedures, standardizing installation documentation.
+**Use when**:
+- Creating documentation for MCP server installation
+- Documenting plugin setup procedures
+- Standardizing tool installation across platforms
+- Need phase-based validation checkpoints
+
+**5-Phase Process**: Overview → Prerequisites → Installation → Configuration → Verification
 
 **See**: [install_guide_standards.md](./references/install_guide_standards.md)
+
+### When NOT to Use (All Modes)
+
+- Non-markdown files (only `.md` supported)
+- Simple typo fixes (use Edit tool directly)
+- Internal notes or drafts
+- Auto-generated API docs
+- Very simple 2-3 step processes (use bullet points)
+- Code architecture (use mermaid diagrams)
 
 ---
 
@@ -143,81 +193,73 @@ TASK CONTEXT
 | Analyzing docs      | `scripts/extract_structure.py`     | Parse to JSON for AI analysis                |
 | Quick reference     | `references/quick_reference.md`    | One-page cheat sheet                         |
 
+### Core References
+
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [skill_creation.md](references/skill_creation.md) | Complete skill creation workflow | Template structure, validation |
+| [validation.md](references/validation.md) | DQI scoring criteria | Quality gates |
+| [optimization.md](references/optimization.md) | Content optimization | AI context efficiency |
+| [core_standards.md](references/core_standards.md) | Structural standards | Section ordering |
+| [workflows.md](references/workflows.md) | Execution modes | Mode selection |
+| [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common operations |
+
+### Templates
+
+| Template | Purpose | Usage |
+|----------|---------|-------|
+| [skill_md_template.md](assets/skill_md_template.md) | SKILL.md template | New skill creation |
+| [skill_reference_template.md](assets/skill_reference_template.md) | Reference file template | Bundled resources |
+| [readme_template.md](assets/readme_template.md) | README template | Project documentation |
+| [command_template.md](assets/command_template.md) | Command template | Slash commands |
+| [agent_template.md](assets/agent_template.md) | Agent template | Custom agents |
+
+### Resource Router
+
+```python
+def route_documentation_resources(task):
+    """Route to appropriate documentation resources."""
+    
+    # Mode 1: Skill Creation
+    if task.involves("skill creation") or task.involves("new skill"):
+        load("references/skill_creation.md")
+        load("assets/skill_md_template.md")
+        return "Mode 1: Skill Creation"
+    
+    if task.involves("reference file") or task.involves("bundled resource"):
+        load("assets/skill_reference_template.md")
+        return "Mode 1: Reference Creation"
+    
+    # Mode 2: Document Quality
+    if task.involves("DQI") or task.involves("quality score"):
+        load("references/validation.md")
+        return "Mode 2: Document Quality"
+    
+    # Mode 3: Content Optimization
+    if task.involves("optimize") or task.involves("AI context"):
+        load("references/optimization.md")
+        return "Mode 3: Content Optimization"
+    
+    # Mode 4: Flowchart Creation
+    if task.involves("flowchart") or task.involves("ASCII diagram"):
+        load("assets/flowcharts/")
+        return "Mode 4: Flowchart Creation"
+    
+    # Mode 5: Install Guide
+    if task.involves("install guide") or task.involves("setup instructions"):
+        load("assets/install_guide_template.md")
+        return "Mode 5: Install Guide"
+    
+    # Default
+    load("references/quick_reference.md")
+    return "Quick Reference"
+```
+
 **Key Insight**: Always run `extract_structure.py` first - it provides the structured JSON that enables accurate AI quality assessment. Without it, quality evaluation is subjective guesswork.
 
 ---
 
-## 3. 🎯 WHEN TO USE
-
-### Mode 1: Document Quality
-
-**README Creation** - Use `readme_template.md` when:
-- Creating new README for any folder or project
-- User requests "create a README", "add documentation"
-- Folder needs comprehensive documentation
-
-**Frontmatter Validation** - Use `frontmatter_templates.md` when:
-- Validating YAML frontmatter in any document
-- Checking required fields for document types
-- Fixing frontmatter syntax errors
-
-**Validation Workflow** - Apply after Write/Edit operations:
-- Auto-correct filename violations (ALL CAPS → lowercase, hyphens → underscores)
-- Fix safe violations (separators, H2 case, emoji per rules)
-- Check critical violations (missing frontmatter, wrong section order)
-
-**Manual Optimization** - Run when:
-- README needs optimization for AI assistants
-- Creating critical documentation (specs, knowledge, skills)
-- Pre-release quality checks
-- Generating llms.txt for LLM navigation
-
-### Mode 2: OpenCode Component Creation
-
-**Use when**:
-- User requests skill creation ("create a skill", "make a new skill")
-- User requests agent creation ("create an agent", "make a new agent")
-- User requests command creation ("create a command", "add a slash command")
-- Scaffolding component structure
-- Validating component quality
-- Packaging skill for distribution
-
-**Skill Process (6 steps)**: Understanding (examples) → Planning (resources) → Initialization (`init_skill.py`) → Editing (populate) → Packaging (`package_skill.py`) → Iteration (test/improve)
-
-**Agent Process**: Load `agent_template.md` → Define frontmatter (tools, permissions) → Create sections (workflow, capabilities, anti-patterns) → Validate → Test
-
-**Command Process**: Load `command_template.md` → Define frontmatter (name, description) → Create execution logic → Add to command registry → Test
-
-### Mode 3: Flowchart Creation
-
-**Use when**:
-- Documenting multi-step processes with branching
-- Creating decision trees with multiple outcomes
-- Showing parallel execution with sync points
-- Visualizing approval gates and revision cycles
-
-### Mode 4: Install Guide Creation
-
-**Use when**:
-- Creating documentation for MCP server installation
-- Documenting plugin setup procedures
-- Standardizing tool installation across platforms
-- Need phase-based validation checkpoints
-
-**5-Phase Process**: Overview → Prerequisites → Installation → Configuration → Verification
-
-### When NOT to Use (All Modes)
-
-- Non-markdown files (only `.md` supported)
-- Simple typo fixes (use Edit tool directly)
-- Internal notes or drafts
-- Auto-generated API docs
-- Very simple 2-3 step processes (use bullet points)
-- Code architecture (use mermaid diagrams)
-
----
-
-## 4. 🛠️ HOW IT WORKS
+## 3. 🛠️ HOW IT WORKS
 
 ### Mode 1: Document Quality
 
@@ -332,7 +374,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 
 ---
 
-## 5. 📋 RULES
+## 4. 📋 RULES
 
 ### Mode 1: Document Quality
 
@@ -503,7 +545,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 
 ---
 
-## 6. 🏆 SUCCESS CRITERIA
+## 5. 🏆 SUCCESS CRITERIA
 
 ### Document Quality Index (DQI)
 
@@ -592,7 +634,16 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 ---
 
-## 7. 🔌 INTEGRATION POINTS
+## 6. 🔌 INTEGRATION POINTS
+
+### Framework Integration
+
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
+
+Key integrations:
+- **Gate 2**: Skill routing via `skill_advisor.py`
+- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Memory**: Context preserved via Spec Kit Memory MCP
 
 ### Scripts
 
@@ -633,7 +684,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 ---
 
-## 8. 📚 EXTERNAL RESOURCES
+## 7. 📚 EXTERNAL RESOURCES
 
 - **llms.txt specification**: https://llmstxt.org/
 - **Context7 (external docs benchmark)**: https://context7.ai/
@@ -642,7 +693,7 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 
 ---
 
-## 9. 🏎️ QUICK REFERENCE
+## 8. 🔗 RELATED RESOURCES
 
 ### For Document Quality
 

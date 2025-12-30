@@ -71,6 +71,21 @@ function getGitBranch() {
  * @returns {number} Checkpoint ID
  */
 function createCheckpoint(name, options = {}) {
+  // Validate checkpoint name format
+  if (!name || typeof name !== 'string') {
+    throw new Error('Checkpoint name is required and must be a string');
+  }
+  
+  // Allow alphanumeric, underscore, hyphen only
+  if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
+    throw new Error('Checkpoint name can only contain letters, numbers, underscores, and hyphens');
+  }
+  
+  // Reasonable length limit
+  if (name.length > 100) {
+    throw new Error('Checkpoint name must be 100 characters or less');
+  }
+
   const database = getDatabase(); // Throws if not initialized
   const { specFolder = null, metadata = {} } = options;
 

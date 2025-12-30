@@ -460,10 +460,10 @@ Error: Method not found: Page.screenshot
 **Diagnosis**:
 ```bash
 # Discover correct method name
-bdg --search screenshot
+bdg cdp --search screenshot
 
 # Check domain
-bdg --describe Page
+bdg cdp --describe Page
 ```
 
 **Solution**:
@@ -477,7 +477,7 @@ bdg cdp Page.captureScreenshot 2>&1
 bdg cdp page.capturescreenshot 2>&1
 
 # Use helper instead
-bdg screenshot output.png 2>&1
+bdg dom screenshot output.png 2>&1
 ```
 
 ---
@@ -493,7 +493,7 @@ Error: Invalid URL format
 **Diagnosis**:
 ```bash
 # Check method signature
-bdg --describe Page.navigate
+bdg cdp --describe Page.navigate
 
 # Validate JSON
 echo '{"url":"example.com"}' | jq .
@@ -595,7 +595,7 @@ bdg status 2>&1 | head
 
 **Symptoms**:
 ```bash
-$ bdg screenshot - | jq .
+$ bdg dom screenshot - | jq .
 Binary file (standard input) matches
 ```
 
@@ -604,7 +604,7 @@ Binary file (standard input) matches
 Handle binary output correctly:
 ```bash
 # Save to file
-bdg screenshot output.png 2>&1
+bdg dom screenshot output.png 2>&1
 
 # Or pipe to base64
 bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > output.png
@@ -633,7 +633,7 @@ ping example.com
 bdg cdp Memory.getDOMCounters 2>&1
 
 # Check page complexity
-bdg js "document.querySelectorAll('*').length" 2>&1
+bdg dom eval "document.querySelectorAll('*').length" 2>&1
 ```
 
 **Solutions**:
@@ -647,15 +647,15 @@ bdg js "document.querySelectorAll('*').length" 2>&1
    bdg cdp DOM.enable 2>&1
 
    # Now commands execute faster
-   bdg console logs 2>&1
+   bdg console --list 2>&1
    ```
 
 2. **Use helpers instead of raw CDP**:
    ```bash
-   # Faster
-   bdg screenshot output.png 2>&1
+    # Faster
+    bdg dom screenshot output.png 2>&1
 
-   # Slower (raw CDP)
+    # Slower (raw CDP)
    bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' | base64 -d > output.png
    ```
 

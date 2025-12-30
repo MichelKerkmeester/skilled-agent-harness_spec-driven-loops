@@ -11,7 +11,7 @@ CDP command reference with domain patterns and Unix pipeline examples.
 
 ## 1. 📖 OVERVIEW
 
-Progressive disclosure from discovery to execution - always explore capabilities via `--list`/`--describe`/`--search` before executing CDP methods. Self-documentation eliminates hardcoded method lists and ensures up-to-date access to all 644 CDP methods.
+Progressive disclosure from discovery to execution - always explore capabilities via `bdg cdp --list`/`--describe`/`--search` before executing CDP methods. Self-documentation eliminates hardcoded method lists and ensures up-to-date access to 300+ CDP methods across 53 domains.
 
 ---
 
@@ -36,12 +36,12 @@ Progressive disclosure from discovery to execution - always explore capabilities
 
 | Task | Command Pattern | Output |
 |------|----------------|--------|
-| Screenshot | `bdg screenshot output.png` | PNG file saved |
-| Console logs | `bdg console logs` | JSON array of log entries |
-| Network cookies | `bdg network cookies` | JSON cookie list |
+| Screenshot | `bdg dom screenshot output.png` | PNG file saved |
+| Console logs | `bdg console --list` | JSON array of log entries |
+| Network cookies | `bdg network getCookies` | JSON cookie list |
 | DOM query | `bdg dom query ".classname"` | Matching elements |
-| HAR export | `bdg har export output.har` | HAR file with network data |
-| JavaScript eval | `bdg js "document.title"` | Execution result |
+| HAR export | `bdg network har output.har` | HAR file with network data |
+| JavaScript eval | `bdg dom eval "document.title"` | Execution result |
 | Page navigation | `bdg cdp Page.navigate '{"url":"https://example.com"}'` | Navigation response |
 
 ---
@@ -214,9 +214,9 @@ bdg cdp Network.continueInterceptedRequest '{
 **Helper Command Alternative**:
 ```bash
 # Simpler network inspection
-bdg network cookies
+bdg network getCookies
 bdg network headers
-bdg har export network-trace.har
+bdg network har network-trace.har
 ```
 
 ---
@@ -250,9 +250,9 @@ bdg cdp Runtime.getProperties '{
 **Helper Command Alternative**:
 ```bash
 # Simpler console access
-bdg console logs
-bdg js "window.location.href"
-bdg js "localStorage.getItem('token')"
+bdg console --list
+bdg dom eval "window.location.href"
+bdg dom eval "localStorage.getItem('token')"
 ```
 
 ---
@@ -334,7 +334,7 @@ sleep 2
 bdg status 2>&1 || { echo "Session failed"; exit 1; }
 
 # Capture screenshot
-bdg screenshot output.png 2>&1
+bdg dom screenshot output.png 2>&1
 
 # Alternative: Base64 screenshot via CDP
 bdg cdp Page.captureScreenshot 2>&1 | jq -r '.result.data' > screenshot-b64.txt
@@ -359,7 +359,7 @@ bdg https://example.com 2>&1
 bdg cdp Runtime.enable 2>&1
 
 # Get console logs (helper)
-bdg console logs 2>&1 | jq '.[] | select(.level=="error")' > errors.json
+bdg console --list 2>&1 | jq '.[] | select(.level=="error")' > errors.json
 
 # Count errors
 error_count=$(jq '. | length' errors.json)
@@ -388,7 +388,7 @@ bdg cdp Network.enable 2>&1
 sleep 5
 
 # Export HAR file
-bdg har export network-trace.har 2>&1
+bdg network har network-trace.har 2>&1
 
 # Analyze HAR with jq
 jq '.log.entries[] | {
@@ -418,7 +418,7 @@ bdg https://example.com 2>&1
 bdg cdp Network.enable 2>&1
 
 # Get all cookies
-bdg network cookies 2>&1 | jq '.'
+bdg network getCookies 2>&1 | jq '.'
 
 # Set authentication cookie
 bdg cdp Network.setCookie '{
@@ -487,10 +487,10 @@ bdg stop 2>&1
 bdg cdp Page.getNavigationHistory 2>&1 | jq '.result.entries[] | .url'
 
 # Filter results
-bdg console logs 2>&1 | jq '.[] | select(.level == "error")'
+bdg console --list 2>&1 | jq '.[] | select(.level == "error")'
 
 # Transform output
-bdg network cookies 2>&1 | jq '[.[] | {name, domain, value}]'
+bdg network getCookies 2>&1 | jq '[.[] | {name, domain, value}]'
 
 # Count items
 bdg cdp DOM.querySelectorAll '{"nodeId":1,"selector":"div"}' 2>&1 | \
@@ -503,10 +503,10 @@ bdg cdp DOM.querySelectorAll '{"nodeId":1,"selector":"div"}' 2>&1 | \
 
 ```bash
 # Find errors in logs
-bdg console logs 2>&1 | grep -i "error"
+bdg console --list 2>&1 | grep -i "error"
 
 # Filter by URL pattern
-bdg har export - 2>&1 | grep "api.example.com"
+bdg network har - 2>&1 | grep "api.example.com"
 
 # Case-insensitive search
 bdg cdp DOM.getDocument 2>&1 | grep -i "title"
@@ -518,10 +518,10 @@ bdg cdp DOM.getDocument 2>&1 | grep -i "title"
 
 ```bash
 # Download screenshot and upload to S3
-bdg screenshot - 2>&1 | aws s3 cp - s3://bucket/screenshot.png
+bdg dom screenshot - 2>&1 | aws s3 cp - s3://bucket/screenshot.png
 
 # Extract data and POST to API
-bdg js "localStorage.getItem('data')" 2>&1 | \
+bdg dom eval "localStorage.getItem('data')" 2>&1 | \
   jq -r '.result.value' | \
   curl -X POST -d @- https://api.example.com/data
 
@@ -541,13 +541,13 @@ urls=("https://example.com" "https://test.com" "https://demo.com")
 
 for url in "${urls[@]}"; do
   bdg "$url" 2>&1
-  bdg screenshot "${url//https:\/\//}.png" 2>&1
+  bdg dom screenshot "${url//https:\/\//}.png" 2>&1
   bdg stop 2>&1
 done
 
 # Batch cookie extraction
 bdg https://example.com 2>&1
-bdg network cookies 2>&1 | jq -r '.[] | "\(.name)=\(.value)"' | \
+bdg network getCookies 2>&1 | jq -r '.[] | "\(.name)=\(.value)"' | \
 while read cookie; do
   echo "$cookie" >> cookies.txt
 done
@@ -573,7 +573,7 @@ fi
 bdg cdp Network.enable 2>/dev/null
 
 # Combine and filter
-(bdg console logs 2>&1 | jq '.') || echo "Command failed"
+(bdg console --list 2>&1 | jq '.') || echo "Command failed"
 ```
 
 ---
@@ -596,17 +596,17 @@ bdg cdp capture 2>&1          # FAILS - incomplete name
 ✅ **AFTER** (Correct - Progressive disclosure):
 ```bash
 # Step 1: List all domains
-bdg --list  # → Discover "Page" domain exists
+bdg cdp --list  # → Discover "Page" domain exists
 
 **Validation**: `domains_discovered`
 
 # Step 2: Explore specific domain
-bdg --describe Page  # → Find "captureScreenshot" method
+bdg cdp --describe Page  # → Find "captureScreenshot" method
 
 **Validation**: `method_identified`
 
 # Step 3: Get method details
-bdg --describe Page.captureScreenshot  # → See parameters and return type
+bdg cdp --describe Page.captureScreenshot  # → See parameters and return type
 
 **Validation**: `signature_understood`
 
@@ -622,16 +622,16 @@ bdg cdp Page.captureScreenshot 2>&1
 
 ```bash
 # Find cookie-related methods
-bdg --search cookie
+bdg cdp --search cookie
 
 # Find performance methods
-bdg --search performance
+bdg cdp --search performance
 
 # Find DOM manipulation
-bdg --search DOM
+bdg cdp --search DOM
 
 # Find network interception
-bdg --search intercept
+bdg cdp --search intercept
 ```
 
 ---
@@ -680,7 +680,7 @@ done
 ```bash
 # Extract, transform, load pattern
 bdg https://example.com 2>&1 && \
-bdg js "document.querySelectorAll('a')" 2>&1 | \
+bdg dom eval "document.querySelectorAll('a')" 2>&1 | \
 jq -r '.result.value[] | .href' | \
 sort -u > links.txt && \
 bdg stop 2>&1
@@ -719,7 +719,7 @@ bdg stop 2>&1
 - `workflows-chrome-devtools` - Main skill orchestrator for bdg CLI workflows
 
 ### External Resources
-- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) - Official CDP documentation with all 644 methods
+- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) - Official CDP documentation with 300+ methods across 53 domains
 - [browser-debugger-cli GitHub](https://github.com/szymdzum/browser-debugger-cli) - Source repository and issue tracker
 
 ---

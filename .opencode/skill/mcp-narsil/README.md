@@ -1,7 +1,5 @@
 # Narsil MCP
 
-> **Last Updated:** 2025-12-29 | **Version:** Narsil MCP
-
 The blazing-fast, privacy-first MCP server for **deep code intelligence**. **76 tools**, **15 languages**, security scanning, call graphs, and more. Narsil is accessed via **Code Mode** - use `call_tool_chain()` to invoke tools.
 
 > **Navigation**:

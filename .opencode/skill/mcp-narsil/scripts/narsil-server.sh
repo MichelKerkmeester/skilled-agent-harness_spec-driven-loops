@@ -21,7 +21,13 @@
 set -e
 
 # Configuration
-NARSIL_PATH="${NARSIL_PATH:-/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp}"
+# NARSIL_PATH must be set - no default to avoid hardcoded paths
+if [ -z "${NARSIL_PATH:-}" ]; then
+    echo "ERROR: NARSIL_PATH environment variable not set"
+    echo "Set it to your narsil-mcp directory, e.g.:"
+    echo "  export NARSIL_PATH=\$HOME/narsil-mcp"
+    exit 1
+fi
 NARSIL_BIN="${NARSIL_PATH}/target/release/narsil-mcp"
 HTTP_PORT="${NARSIL_HTTP_PORT:-3001}"
 LOG_FILE="/tmp/narsil-http-server.log"

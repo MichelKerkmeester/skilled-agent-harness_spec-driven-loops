@@ -597,7 +597,191 @@ call_tool_chain({
 
 ---
 
-## 7. ⚡ PATTERN COMPARISON
+## 7. ⚡ PARALLEL EXECUTION PATTERNS
+
+### When to Parallelize
+
+**✅ USE Promise.all WHEN:**
+- Operations don't depend on each other's results
+- Order of execution doesn't matter
+- You need data from multiple sources before next step
+
+**✅ USE Promise.allSettled WHEN:**
+- Some operations might fail
+- You want partial results rather than complete failure
+- Resilience is more important than speed
+
+**❌ DO NOT PARALLELIZE WHEN:**
+- Operation B needs result from Operation A
+- Order of mutations matters (create before update)
+- API has strict rate limits
+
+### Pattern 1: Basic Parallel Fetch
+
+```typescript
+call_tool_chain({
+  code: `
+    // Independent operations - execute in parallel
+    const [sites, workspace, figmaFile] = await Promise.all([
+      webflow.webflow_sites_list({}),
+      clickup.clickup_get_workspace_hierarchy({}),
+      figma.figma_get_file({ fileKey: "abc123" })
+    ]);
+    
+    return {
+      webflow: { siteCount: sites.sites.length },
+      clickup: { spaceCount: workspace.spaces.length },
+      figma: { fileName: figmaFile.name }
+    };
+  `,
+  timeout: 45000
+});
+```
+
+**Performance:** ~400ms total vs ~1200ms sequential (3x faster)
+
+### Pattern 2: Graceful Failure with Promise.allSettled
+
+```typescript
+call_tool_chain({
+  code: `
+    const results = await Promise.allSettled([
+      webflow.webflow_sites_list({}),
+      clickup.clickup_get_workspace_hierarchy({}),
+      figma.figma_get_file({ fileKey: "invalid-key" })  // Will fail
+    ]);
+    
+    const processed = results.map((result, index) => {
+      const sources = ['webflow', 'clickup', 'figma'];
+      if (result.status === 'fulfilled') {
+        return { source: sources[index], success: true, data: result.value };
+      } else {
+        return { source: sources[index], success: false, error: result.reason.message };
+      }
+    });
+    
+    return {
+      successCount: processed.filter(p => p.success).length,
+      results: processed
+    };
+  `,
+  timeout: 45000
+});
+```
+
+**Key insight:** Promise.allSettled never rejects - always returns all results with status
+
+### Pattern 3: Parallel Fetch → Sequential Process
+
+```typescript
+call_tool_chain({
+  code: `
+    // Phase 1: Fetch all data in parallel
+    const [sites, workspace] = await Promise.all([
+      webflow.webflow_sites_list({}),
+      clickup.clickup_get_workspace_hierarchy({})
+    ]);
+    
+    // Phase 2: Sequential processing (depends on parallel results)
+    const firstSite = sites.sites[0];
+    const collections = await webflow.webflow_collections_list({ 
+      site_id: firstSite.id 
+    });
+    
+    // Phase 3: Create task with combined data
+    const task = await clickup.clickup_create_task({
+      name: \`Sync \${firstSite.displayName} collections\`,
+      listName: workspace.spaces[0]?.name || "Default"
+    });
+    
+    return {
+      phase1: { sites: sites.sites.length, spaces: workspace.spaces.length },
+      phase2: { collections: collections.collections.length },
+      phase3: { taskId: task.id }
+    };
+  `,
+  timeout: 60000
+});
+```
+
+### Pattern 4: Batch Operations with Chunked Parallelism
+
+```typescript
+call_tool_chain({
+  code: `
+    async function processInBatches(items, batchSize, processor) {
+      const results = [];
+      for (let i = 0; i < items.length; i += batchSize) {
+        const batch = items.slice(i, i + batchSize);
+        console.log(\`Processing batch \${Math.floor(i/batchSize) + 1}\`);
+        const batchResults = await Promise.all(batch.map(processor));
+        results.push(...batchResults);
+      }
+      return results;
+    }
+    
+    const collectionsResult = await webflow.webflow_collections_list({ 
+      site_id: "your-site-id" 
+    });
+    
+    // Process in batches of 3 (limit concurrent API calls)
+    const details = await processInBatches(
+      collectionsResult.collections.slice(0, 9),
+      3,
+      async (collection) => {
+        const items = await webflow.webflow_collections_items_list_items({
+          collection_id: collection.id,
+          limit: 5
+        });
+        return { name: collection.displayName, itemCount: items.items?.length || 0 };
+      }
+    );
+    
+    return { collectionsProcessed: details.length, results: details };
+  `,
+  timeout: 90000
+});
+```
+
+**Key insight:** Batching prevents API rate limits while still parallelizing
+
+### Pattern 5: Error Handling in Parallel Context
+
+```typescript
+call_tool_chain({
+  code: `
+    async function safeParallel(operations) {
+      const results = await Promise.allSettled(
+        operations.map(async (op) => {
+          try {
+            return await op.fn();
+          } catch (error) {
+            return { error: true, name: op.name, message: error.message };
+          }
+        })
+      );
+      
+      return results.map((r, i) => ({
+        name: operations[i].name,
+        success: r.status === 'fulfilled' && !r.value?.error,
+        data: r.status === 'fulfilled' ? r.value : null,
+        error: r.status === 'rejected' ? r.reason.message : r.value?.message
+      }));
+    }
+    
+    return await safeParallel([
+      { name: 'webflow', fn: () => webflow.webflow_sites_list({}) },
+      { name: 'clickup', fn: () => clickup.clickup_get_workspace_hierarchy({}) },
+      { name: 'figma', fn: () => figma.figma_get_file({ fileKey: "test" }) }
+    ]);
+  `,
+  timeout: 60000
+});
+```
+
+---
+
+## 8. 📊 PATTERN COMPARISON
 
 ### Traditional Multi-Tool Approach (Without Code Mode)
 
@@ -630,7 +814,7 @@ call_tool_chain({
 
 ---
 
-## 8. ✅ BEST PRACTICES
+## 9. ✅ BEST PRACTICES
 
 ### 1. Always Use Console Logging
 
@@ -717,7 +901,7 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 
 ---
 
-## 9. 📝 SUMMARY
+## 10. 📝 SUMMARY
 
 **Five workflow patterns demonstrated:**
 
@@ -726,6 +910,7 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 3. **Notion workflow** - Database querying and page creation with `notion_API_` prefix
 4. **Multi-tool orchestration** (Figma → ClickUp → Webflow) - Complex data flow
 5. **Error handling** (Webflow with fallbacks) - Robust error management
+6. **Parallel execution** - Promise.all, Promise.allSettled, batching patterns
 
 **Key benefits of Code Mode:**
 - State persistence across operations
@@ -742,12 +927,13 @@ const c = await webflow.webflow_collections_list({ site_id: s.id });
 - **Pattern 3:** Notion database operations (note the `notion_API_` prefix)
 - **Pattern 4:** Complex multi-platform workflows
 - **Pattern 5:** Mission-critical workflows requiring error resilience
+- **Pattern 6:** Performance-critical workflows requiring parallel execution
 
 **All examples use markdown code blocks** for easier embedding in SKILL.md and documentation.
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 11. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [naming_convention.md](./naming_convention.md) - Critical naming patterns used in all examples

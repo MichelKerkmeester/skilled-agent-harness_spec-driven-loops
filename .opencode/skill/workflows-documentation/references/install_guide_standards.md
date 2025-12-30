@@ -23,7 +23,7 @@ This reference defines standards for install guide documentation. Install guides
 
 ---
 
-## 2. 🧭 CORE PRINCIPLES
+## 2. 🧭 Core Principles
 
 ### Phase-Based Installation
 

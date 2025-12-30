@@ -42,8 +42,8 @@ bdg status
 
 # 3. Execute operations
 bdg cdp <Method>
-bdg screenshot output.png
-bdg console logs
+bdg dom screenshot output.png
+bdg console --list
 
 # 4. Stop session
 bdg stop
@@ -160,7 +160,7 @@ echo "Current state: $session_state"
 
 # Conditional execution based on status
 if bdg status 2>&1 | jq -e '.state == "active"' > /dev/null; then
-  bdg screenshot output.png 2>&1
+  bdg dom screenshot output.png 2>&1
 else
   echo "Session not active, cannot capture screenshot"
 fi
@@ -305,9 +305,9 @@ process_url() {
   sleep 3
 
   # Capture data
-  bdg screenshot "${filename}.png" 2>&1
-  bdg console logs 2>&1 > "${filename}-console.json"
-  bdg har export "${filename}.har" 2>&1
+  bdg dom screenshot "${filename}.png" 2>&1
+  bdg console --list 2>&1 > "${filename}-console.json"
+  bdg network har "${filename}.har" 2>&1
 
   # Cleanup
   bdg stop 2>&1
@@ -372,7 +372,7 @@ save_session_state() {
   echo "Saving session state..."
 
   local state=$(bdg status 2>&1)
-  local cookies=$(bdg network cookies 2>&1)
+  local cookies=$(bdg network getCookies 2>&1)
   local url=$(bdg cdp Page.getNavigationHistory 2>&1 | \
     jq -r '.result.entries[-1].url')
 
@@ -471,8 +471,8 @@ capture_with_fallback() {
   local url=$1
   local output=$2
 
-  # Try bdg screenshot
-  if bdg screenshot "$output" 2>&1; then
+  # Try bdg dom screenshot
+  if bdg dom screenshot "$output" 2>&1; then
     echo "✓ Screenshot captured with bdg"
     return 0
   fi
@@ -506,8 +506,8 @@ capture_with_fallback "https://example.com" "output.png"
 # Missing cleanup - resource leak risk
 
 bdg https://example.com 2>&1
-bdg screenshot output.png 2>&1
-bdg console logs 2>&1
+bdg dom screenshot output.png 2>&1
+bdg console --list 2>&1
 
 # Script exits without stopping session
 # → Browser process remains running
@@ -533,8 +533,8 @@ trap cleanup EXIT INT TERM
 
 # Session work
 bdg https://example.com 2>&1
-bdg screenshot output.png 2>&1
-bdg console logs 2>&1
+bdg dom screenshot output.png 2>&1
+bdg console --list 2>&1
 
 **Validation**: `operations_complete`
 
@@ -655,10 +655,10 @@ batch_operations() {
 
 # Usage
 batch_operations "https://example.com" \
-  "bdg screenshot page.png" \
-  "bdg console logs > console.json" \
-  "bdg network cookies > cookies.json" \
-  "bdg har export network.har"
+  "bdg dom screenshot page.png" \
+  "bdg console --list > console.json" \
+  "bdg network getCookies > cookies.json" \
+  "bdg network har network.har"
 ```
 
 ---

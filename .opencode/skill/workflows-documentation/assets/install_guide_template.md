@@ -552,14 +552,6 @@ IF condition_2:
 - User feedback reveals confusion
 - Dependency requirements change
 
-### Version Tracking
-
-Include version info in Overview section:
-
-```markdown
-**Guide Version**: 2.1 | **Tool Version**: 0.1.5 | **Last Updated**: 2025-01-15
-```
-
 ### Deprecation
 
 If a tool is deprecated:

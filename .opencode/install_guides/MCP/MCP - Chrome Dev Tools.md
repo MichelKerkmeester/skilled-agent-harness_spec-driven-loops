@@ -1,13 +1,13 @@
 # Chrome DevTools Installation Guide
 
-Complete installation and configuration guide for Chrome DevTools integration, enabling browser debugging and automation for AI agents. Covers both CLI approach (bdg command - primary, faster, token-efficient) and MCP fallback for multi-tool integration scenarios. Provides screenshot capture, DOM inspection, console access, network monitoring, CSS debugging, and JavaScript execution capabilities for visual testing and web development workflows.
+Complete installation and configuration guide for Chrome DevTools integration, enabling browser debugging and automation for AI agents. Covers both **CLI approach** (bdg command - primary, faster, token-efficient) and **MCP fallback** (Code Mode provider) for multi-tool integration scenarios. Provides screenshot capture, DOM inspection, console access, network monitoring, CSS debugging, and JavaScript execution capabilities.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Package**: `browser-debugger-cli@alpha` | **Dependencies**: Node.js 18+, Chrome/Chromium
 
 ---
 
-#### TABLE OF CONTENTS
+## Table of Contents
 
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
@@ -62,6 +62,52 @@ Guide me through each step with the exact commands needed.
 - Configure MCP fallback if multi-tool workflows needed
 
 **Expected setup time:** 3-5 minutes
+
+---
+
+## ⚠️ IMPORTANT: Two Access Methods
+
+Chrome DevTools offers **two approaches** - choose based on your needs:
+
+| Approach           | Configuration                               | Best For                                | Code Mode Required? |
+| ------------------ | ------------------------------------------- | --------------------------------------- | ------------------- |
+| **CLI (Primary)**  | `npm install -g browser-debugger-cli@alpha` | Quick debugging, single browser         | ❌ No                |
+| **MCP (Fallback)** | `.utcp_config.json`                         | Multi-tool workflows, parallel browsers | ✅ Yes               |
+
+### MCP Approach = Code Mode Provider
+
+**When using MCP, Chrome DevTools is accessed through Code Mode, not called directly.**
+
+| Aspect             | What This Means                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------- |
+| **Configuration**  | Chrome DevTools is configured in `.utcp_config.json`, NOT `opencode.json`                |
+| **Access Method**  | Tools accessed via Code Mode's `call_tool_chain()`                                       |
+| **Prerequisite**   | Code Mode MCP must be installed first ([MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md)) |
+| **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 26 Chrome DevTools tools              |
+| **Naming Pattern** | `chrome_devtools_1.chrome_devtools_1_{tool_name}`                                        |
+
+**Why Code Mode for MCP?** Chrome DevTools' 26 MCP tools would consume ~78k tokens if exposed natively. Code Mode provides on-demand access with 98% context reduction.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Your AI Client (Claude Code, OpenCode, VS Code)                │
+│  └─► CLI: bdg command (direct, standalone, no Code Mode)        │
+│  └─► MCP: 4 Code Mode tools → chrome_devtools_1.*               │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │ (MCP only)
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Code Mode MCP (configured in opencode.json)                     │
+│  └─► Reads .utcp_config.json for Chrome DevTools provider        │
+└──────────────────────────┬──────────────────────────────────────┘
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Chrome DevTools Provider (configured in .utcp_config.json)       │
+│  └─► 26 tools via chrome_devtools_1.chrome_devtools_1_{tool}    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+> **Recommendation**: Start with CLI (`bdg`). Only use MCP if you need multi-tool orchestration or parallel browser testing.
 
 ---
 
@@ -275,6 +321,34 @@ source ~/.zshrc
 ## 4. ⚙️ MCP CONFIGURATION
 
 > **Note:** MCP is optional. Only configure if you need multi-tool workflows or when CLI is unavailable.
+
+---
+
+### ⚠️ Code Mode Provider (MCP Approach)
+
+**When using MCP, Chrome DevTools is a Code Mode provider, NOT a standalone MCP server.**
+
+| Aspect             | What This Means                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------- |
+| **Configuration**  | Chrome DevTools is configured in `.utcp_config.json`, NOT `opencode.json`                |
+| **Access Method**  | Tools accessed via Code Mode's `call_tool_chain()`                                       |
+| **Prerequisite**   | Code Mode MCP must be installed first ([MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md)) |
+| **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 26 Chrome DevTools tools              |
+| **Naming Pattern** | `chrome_devtools_1.chrome_devtools_1_{tool_name}`                                        |
+
+**Why Code Mode for MCP?** Chrome DevTools' 26 MCP tools would consume ~78k tokens if exposed natively. Code Mode provides on-demand access with 98% context reduction.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Your AI Client (Claude Code, OpenCode, VS Code)                │
+│  └─► CLI: bdg command (direct, no Code Mode needed)             │
+│  └─► MCP: 4 Code Mode tools → chrome_devtools_1.chrome_devtools_1_* │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+> **CLI vs MCP**: The CLI approach (`bdg` command) is standalone and doesn't require Code Mode. Only the MCP approach requires Code Mode.
+
+---
 
 ### When to Use MCP
 

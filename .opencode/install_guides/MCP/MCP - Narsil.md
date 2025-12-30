@@ -1,13 +1,13 @@
-# Narsil MCP Server Installation Guide
+# Narsil MCP Server Installation Guide (Code Mode Provider)
 
-Complete installation and configuration guide for the Narsil MCP server, providing deep code intelligence through 76 specialized tools. Covers semantic search (neural embeddings for meaning-based queries), structural analysis (AST-based symbol and definition queries), security scanning (OWASP, CWE, taint analysis), and call graph visualization. Accessed via Code Mode for token-efficient multi-tool workflows with type-safe invocation.
+Complete installation and configuration guide for Narsil MCP as a **Code Mode provider**, providing deep code intelligence through 76 specialized tools. Covers semantic search (neural embeddings for meaning-based queries), structural analysis (AST-based symbol and definition queries), security scanning (OWASP, CWE, taint analysis), and call graph visualization.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
-> **Binary**: `${NARSIL_PATH}/target/release/narsil-mcp` | **Access**: Via Code Mode (not standalone)
+> **Binary**: `${NARSIL_PATH}/target/release/narsil-mcp` | **Access**: **Via Code Mode (ONLY)** - not standalone
 
 ---
 
-#### TABLE OF CONTENTS
+## Table of Contents
 
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
@@ -52,6 +52,43 @@ Guide me through each step with the exact commands I need to run.
 - Show you how to use security scanning and call graph tools
 
 **Expected setup time:** 5-10 minutes (binary exists) or 15-20 minutes (building from source)
+
+---
+
+## ⚠️ IMPORTANT: Code Mode Provider
+
+**Narsil MCP is accessed through Code Mode, not called directly.**
+
+This means:
+
+| Aspect             | What This Means                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------- |
+| **Configuration**  | Narsil is configured in `.utcp_config.json`, NOT `opencode.json`                         |
+| **Access Method**  | All 76 Narsil tools are accessed via Code Mode's `call_tool_chain()`                     |
+| **Prerequisite**   | Code Mode MCP must be installed first ([MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md)) |
+| **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 76 Narsil tools                       |
+| **Naming Pattern** | Tools use pattern: `narsil.narsil_{tool_name}`                                           |
+
+**Why Code Mode?** Narsil's 76 tools would consume ~228k tokens if exposed natively. Code Mode provides on-demand access with 99% context reduction.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Your AI Client (Claude Code, OpenCode, VS Code)                │
+│  └─► Sees: 4 Code Mode tools (call_tool_chain, search_tools...) │
+│      └─► NOT 76 Narsil tools directly                           │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │ call_tool_chain({ code: `narsil.narsil_scan_security(...)` })
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Code Mode MCP (configured in opencode.json)                     │
+│  └─► Reads .utcp_config.json for Narsil provider definition       │
+└──────────────────────────┬──────────────────────────────────────┘
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Narsil Provider (configured in .utcp_config.json)                │
+│  └─► 76 tools accessible via narsil.narsil_{tool_name}          │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 

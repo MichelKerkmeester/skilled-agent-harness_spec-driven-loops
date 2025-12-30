@@ -57,10 +57,10 @@ for viewport in "${VIEWPORTS[@]}"; do
 
   # Capture initial state
   echo "  📸 Capturing initial state..."
-  bdg screenshot "$OUTPUT_DIR/$DATE_STAMP/${name}-initial.png" 2>&1
+  bdg dom screenshot "$OUTPUT_DIR/$DATE_STAMP/${name}-initial.png" 2>&1
 
   # Check if target element exists
-  ELEMENT_EXISTS=$(bdg js "document.querySelector('$SELECTOR') !== null" 2>&1)
+  ELEMENT_EXISTS=$(bdg dom eval "document.querySelector('$SELECTOR') !== null" 2>&1)
 
   if [ "$ELEMENT_EXISTS" = "true" ]; then
     echo "  ✅ Target element found: $SELECTOR"
@@ -68,12 +68,12 @@ for viewport in "${VIEWPORTS[@]}"; do
     # Trigger animation (if selector and class provided)
     if [ -n "$TRIGGER_CLASS" ] && [ "$TRIGGER_CLASS" != "none" ]; then
       echo "  🎬 Triggering animation..."
-      bdg js "document.querySelector('$SELECTOR').classList.add('$TRIGGER_CLASS')" 2>&1
+      bdg dom eval "document.querySelector('$SELECTOR').classList.add('$TRIGGER_CLASS')" 2>&1
       sleep 1
 
       # Capture after animation
       echo "  📸 Capturing animated state..."
-      bdg screenshot "$OUTPUT_DIR/$DATE_STAMP/${name}-animated.png" 2>&1
+      bdg dom screenshot "$OUTPUT_DIR/$DATE_STAMP/${name}-animated.png" 2>&1
     fi
 
     # Get performance metrics
@@ -81,7 +81,7 @@ for viewport in "${VIEWPORTS[@]}"; do
     bdg cdp Performance.getMetrics 2>&1 > "$OUTPUT_DIR/$DATE_STAMP/${name}-metrics.json"
 
     # Get console logs
-    bdg console logs 2>&1 > "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json"
+    bdg console --list 2>&1 > "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json"
 
     # Check for console errors
     ERROR_COUNT=$(jq '[.[] | select(.level=="error")] | length' "$OUTPUT_DIR/$DATE_STAMP/${name}-console.json" 2>/dev/null || echo "0")

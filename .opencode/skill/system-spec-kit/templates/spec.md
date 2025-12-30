@@ -354,7 +354,7 @@ Is this content disposable after the task?
 ```
 
 > **OpenCode Users:** Verify file placement manually before claiming completion.
-> See checklist items CHK036-038.
+> See your project's checklist.md for validation items.
 
 ---
 

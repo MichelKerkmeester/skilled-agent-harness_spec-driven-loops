@@ -497,6 +497,21 @@ npm install -g utcp-mcp
 }
 ```
 
+**Code Mode Providers (External Tools):**
+
+Code Mode enables access to external MCP tools. Each provider has its own detailed install guide:
+
+| Provider | Tools | Install Guide |
+|----------|-------|---------------|
+| **Narsil** | 76 | [MCP - Narsil.md](./MCP/MCP%20-%20Narsil.md) - Code intelligence, security scanning |
+| **Figma** | 18 | [MCP - Figma.md](./MCP/MCP%20-%20Figma.md) - Design file access, image export |
+| **Chrome DevTools** | 26 | [MCP - Chrome Dev Tools.md](./MCP/MCP%20-%20Chrome%20Dev%20Tools.md) - Browser debugging (MCP mode) |
+| **Webflow** | 42 | Via Code Mode - CMS management, site operations |
+| **ClickUp** | 21 | Via Code Mode - Task management, project tracking |
+| **GitHub** | 26 | Via Code Mode - Repository operations, issues, PRs |
+
+> **Note**: All Code Mode providers are configured in `.utcp_config.json`, NOT `opencode.json`. See each provider's install guide for configuration details.
+
 ### Validation: `code_mode_check`
 
 - [ ] npx utcp-mcp responds to --help

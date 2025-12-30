@@ -27,6 +27,7 @@ const sqliteVec = require('sqlite-vec');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
+const { formatAgeString } = require('./utils/format-helpers');
 
 /**
  * Convert Float32Array to Buffer for sqlite-vec
@@ -202,7 +203,56 @@ let shuttingDown = false;
 // P1-CODE-004: Constitutional memory caching to avoid repeated DB queries
 // Cache key includes specFolder to support folder-scoped queries
 let constitutionalCache = new Map(); // Map<specFolder|'global', {data, timestamp}>
-const CONSTITUTIONAL_CACHE_TTL = 60000; // 1 minute TTL
+const CONSTITUTIONAL_CACHE_TTL = 300000; // 5 minute TTL - constitutional memories rarely change
+
+// ───────────────────────────────────────────────────────────────
+// PREPARED STATEMENT CACHING (PERF-1)
+// ───────────────────────────────────────────────────────────────
+// Cache common prepared statements to avoid ~0.1-0.5ms overhead per query
+
+let preparedStatements = null;
+
+/**
+ * Initialize and cache prepared statements for common queries
+ * @param {Object} database - better-sqlite3 instance
+ * @returns {Object} Cached prepared statements
+ */
+function initPreparedStatements(database) {
+  if (preparedStatements) return preparedStatements;
+  
+  preparedStatements = {
+    // Count queries
+    countAll: database.prepare('SELECT COUNT(*) as count FROM memory_index'),
+    countByFolder: database.prepare('SELECT COUNT(*) as count FROM memory_index WHERE spec_folder = ?'),
+    
+    // Common lookups
+    getById: database.prepare('SELECT * FROM memory_index WHERE id = ?'),
+    getByPath: database.prepare('SELECT * FROM memory_index WHERE file_path = ?'),
+    getByFolderAndPath: database.prepare('SELECT id FROM memory_index WHERE spec_folder = ? AND file_path = ? AND (anchor_id = ? OR (anchor_id IS NULL AND ? IS NULL))'),
+    
+    // Stats queries
+    getStats: database.prepare(`
+      SELECT 
+        COUNT(*) as total,
+        SUM(CASE WHEN embedding_status = 'success' THEN 1 ELSE 0 END) as complete,
+        SUM(CASE WHEN embedding_status = 'pending' THEN 1 ELSE 0 END) as pending,
+        SUM(CASE WHEN embedding_status = 'failed' THEN 1 ELSE 0 END) as failed
+      FROM memory_index
+    `),
+    
+    // List query (without dynamic parts)
+    listBase: database.prepare('SELECT * FROM memory_index ORDER BY created_at DESC LIMIT ? OFFSET ?')
+  };
+  
+  return preparedStatements;
+}
+
+/**
+ * Clear prepared statements cache (call when database is reset)
+ */
+function clearPreparedStatements() {
+  preparedStatements = null;
+}
 
 /**
  * Get cached constitutional memories or fetch from database
@@ -896,11 +946,9 @@ function indexMemory(params) {
   const triggersJson = JSON.stringify(triggerPhrases);
   const embeddingBuffer = toEmbeddingBuffer(embedding);
 
-  // Check for existing entry
-  const existing = database.prepare(`
-    SELECT id FROM memory_index
-    WHERE spec_folder = ? AND file_path = ? AND (anchor_id = ? OR (anchor_id IS NULL AND ? IS NULL))
-  `).get(specFolder, filePath, anchorId, anchorId);
+  // Check for existing entry (PERF-1: use cached prepared statement)
+  const stmts = initPreparedStatements(database);
+  const existing = stmts.getByFolderAndPath.get(specFolder, filePath, anchorId, anchorId);
 
   if (existing) {
     // Update existing entry
@@ -1101,7 +1149,9 @@ function deleteMemoryByPath(specFolder, filePath, anchorId = null) {
 function getMemory(id) {
   const database = initializeDb();
 
-  const row = database.prepare('SELECT * FROM memory_index WHERE id = ?').get(id);
+  // PERF-1: use cached prepared statement
+  const stmts = initPreparedStatements(database);
+  const row = stmts.getById.get(id);
 
   if (row) {
     if (row.trigger_phrases) {
@@ -1144,7 +1194,9 @@ function getMemoriesByFolder(specFolder) {
  */
 function getMemoryCount() {
   const database = initializeDb();
-  const result = database.prepare('SELECT COUNT(*) as count FROM memory_index').get();
+  // PERF-1: use cached prepared statement
+  const stmts = initPreparedStatements(database);
+  const result = stmts.countAll.get();
   return result.count;
 }
 
@@ -2848,30 +2900,6 @@ function findCleanupCandidates(options = {}) {
     return [];
   }
 
-  // Helper function to format age strings
-  function formatAgeString(dateString) {
-    if (!dateString) return 'never';
-
-    const date = new Date(dateString);
-    const now = Date.now();
-    const ageMs = now - date.getTime();
-    const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
-
-    if (ageDays < 1) {
-      return 'today';
-    } else if (ageDays === 1) {
-      return 'yesterday';
-    } else if (ageDays < 7) {
-      return `${ageDays} days ago`;
-    } else if (ageDays < 30) {
-      const weeks = Math.floor(ageDays / 7);
-      return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
-    } else {
-      const months = Math.floor(ageDays / 30);
-      return `${months} month${months > 1 ? 's' : ''} ago`;
-    }
-  }
-
   // Enrich with human-readable age
   return rows.map(row => {
     const ageString = formatAgeString(row.created_at);
@@ -2999,30 +3027,6 @@ function getMemoryPreview(memoryId, maxLines = 50) {
     }
   } catch (e) {
     content = '(Unable to read file content)';
-  }
-
-  // Helper function to format age strings (reused from findCleanupCandidates)
-  function formatAgeString(dateString) {
-    if (!dateString) return 'never';
-
-    const date = new Date(dateString);
-    const now = Date.now();
-    const ageMs = now - date.getTime();
-    const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
-
-    if (ageDays < 1) {
-      return 'today';
-    } else if (ageDays === 1) {
-      return 'yesterday';
-    } else if (ageDays < 7) {
-      return `${ageDays} days ago`;
-    } else if (ageDays < 30) {
-      const weeks = Math.floor(ageDays / 7);
-      return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
-    } else {
-      const months = Math.floor(ageDays / 30);
-      return `${months} month${months > 1 ? 's' : ''} ago`;
-    }
   }
 
   return {

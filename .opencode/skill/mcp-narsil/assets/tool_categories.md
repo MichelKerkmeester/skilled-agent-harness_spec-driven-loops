@@ -215,7 +215,6 @@ These tools require search indexes to be built first:
 | `get_symbol_history` | Git CLI is faster |
 | `get_branch_info`    | Git CLI           |
 | `get_modified_files` | Git CLI           |
-| `search_commits`     | Git CLI           |
 
 #### Metrics (1)
 

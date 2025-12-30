@@ -1,7 +1,5 @@
 # Code Mode MCP - TypeScript Tool Execution
 
-> **Last Updated:** 2025-12-25 | **Version:** Compatible with Code Mode MCP v1.x
-
 MCP orchestration via TypeScript execution for efficient multi-tool workflows. Provides **98.7% context reduction** and **60% faster execution** through progressive tool discovery and code-based tool chaining.
 
 > **Navigation**:
@@ -330,7 +328,7 @@ register_manual({
 | webflow | sites_list | `webflow.webflow_sites_list({})` |
 | clickup | create_task | `clickup.clickup_create_task({})` |
 | figma | get_file | `figma.figma_get_file({})` |
-| chrome_devtools_1 | navigate | `chrome_devtools_1.chrome_devtools_1_navigate({})` |
+| chrome_devtools_1 | navigate_page | `chrome_devtools_1.chrome_devtools_1_navigate_page({})` |
 
 ### Common Mistakes
 

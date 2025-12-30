@@ -15,7 +15,9 @@ Orchestrates mandatory spec folder creation for all conversations involving file
 
 ---
 
-## What is a Spec Folder?
+## 1. 🎯 WHEN TO USE
+
+### What is a Spec Folder?
 
 A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that contains all documentation for a single feature or task:
 
@@ -24,10 +26,6 @@ A **spec folder** is a numbered directory (e.g., `specs/007-auth-feature/`) that
 - **Contents**: Markdown files (spec.md, plan.md, tasks.md) plus optional memory/ and scratch/ subdirectories
 
 Think of it as a "project folder" for AI-assisted development - it keeps context organized and enables session continuity.
-
----
-
-## 1. 🎯 WHEN TO USE
 
 ### Activation Triggers
 
@@ -154,6 +152,14 @@ User Request
 | `check-completion.sh` | Verify checklist completion status |
 | `recommend-level.sh` | Suggest documentation level based on LOC |
 | `archive-spec.sh` | Archive completed spec folders |
+| `cleanup-orphaned-vectors.js` | Removes orphaned vector entries |
+| `check-prerequisites.sh` | Checks prerequisites before implementation |
+| `common.sh` | Shared shell utilities |
+| `setup.sh` | Initial setup script |
+| `test-validation.sh` | Validation test runner |
+| `calculate-completeness.sh` | Calculates spec completeness percentage |
+| `package.json` | Node.js dependencies |
+| `README.md` | Scripts documentation |
 
 **References (`references/`):**
 
@@ -599,16 +605,6 @@ Before claiming "done":
 - **Manual `/memory:save`** → Context preservation on demand
 - **Template validation** → Checks placeholder removal and required field completion
 
-### Related Skills
-
-| Direction      | Skill                   | Integration                                        |
-| -------------- | ----------------------- | -------------------------------------------------- |
-| **Upstream**   | None                    | This is the foundational workflow                  |
-| **Downstream** | workflows-code          | Uses spec folders for implementation tracking      |
-| **Downstream** | workflows-git           | References spec folders in commit messages and PRs |
-| **Downstream** | workflows-documentation | Validates spec folder documentation quality        |
-| **Integrated** | Spec Kit Memory         | Context preservation via MCP (merged into this skill) |
-
 ### Cross-Skill Workflows
 
 **Spec Folder → Implementation:**
@@ -634,18 +630,6 @@ Implementation complete
     → Address WARNING-level issues
     → Claim completion with confidence
 ```
-
-### External Dependencies
-
-| Resource       | Location                                                      | Purpose                      |
-| -------------- | ------------------------------------------------------------- | ---------------------------- |
-| Templates (10) | `templates/`                                                  | All spec folder templates    |
-| Validation     | `scripts/validate-spec.sh`                                    | Automated validation         |
-| Gates          | `AGENTS.md` Section 2                                         | Gate definitions             |
-| Memory gen     | `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Memory file creation         |
-| MCP Server     | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`| Spec Kit Memory MCP          |
-| Database       | `.opencode/skill/system-spec-kit/database/context-index.sqlite`| Vector search index         |
-| Constitutional | `.opencode/skill/system-spec-kit/constitutional/`             | Always-surface rules         |
 
 ### Common Failure Patterns
 
@@ -684,6 +668,32 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 ```bash
 .opencode/skill/system-spec-kit/scripts/calculate-completeness.sh specs/007-feature/
 ```
+
+---
+
+## 8. 🔗 RELATED RESOURCES
+
+### Related Skills
+
+| Direction      | Skill                   | Integration                                        |
+| -------------- | ----------------------- | -------------------------------------------------- |
+| **Upstream**   | None                    | This is the foundational workflow                  |
+| **Downstream** | workflows-code          | Uses spec folders for implementation tracking      |
+| **Downstream** | workflows-git           | References spec folders in commit messages and PRs |
+| **Downstream** | workflows-documentation | Validates spec folder documentation quality        |
+| **Integrated** | Spec Kit Memory         | Context preservation via MCP (merged into this skill) |
+
+### External Dependencies
+
+| Resource       | Location                                                      | Purpose                      |
+| -------------- | ------------------------------------------------------------- | ---------------------------- |
+| Templates (10) | `templates/`                                                  | All spec folder templates    |
+| Validation     | `scripts/validate-spec.sh`                                    | Automated validation         |
+| Gates          | `AGENTS.md` Section 2                                         | Gate definitions             |
+| Memory gen     | `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Memory file creation         |
+| MCP Server     | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`| Spec Kit Memory MCP          |
+| Database       | `.opencode/skill/system-spec-kit/database/context-index.sqlite`| Vector search index         |
+| Constitutional | `.opencode/skill/system-spec-kit/constitutional/`             | Always-surface rules         |
 
 ---
 

@@ -15,11 +15,9 @@ Rust-powered code intelligence providing 76 specialized tools for security scann
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. 🎯 WHEN TO USE
 
-Narsil MCP provides deep code intelligence through 76 specialized tools covering security scanning (OWASP, CWE, taint analysis), call graph analysis (CFG, DFG, callers/callees), structural queries (symbols, definitions, references), and supply chain security (SBOM, license compliance). All tools are accessed via Code Mode for token efficiency.
-
-### When to Use
+### Activation Triggers
 
 **Use when**:
 - Security vulnerability scanning needed (OWASP, CWE, injections)
@@ -279,6 +277,84 @@ call_tool_chain({
 
 See [references/tool_reference.md](./references/tool_reference.md) for complete tool documentation.
 
+### Error Handling Patterns
+
+Narsil tools can fail for various reasons. Use these patterns for robust error handling.
+
+#### Pattern 1: Check Index Status Before Search
+
+```typescript
+call_tool_chain({
+  code: `
+    const status = await narsil.narsil_get_index_status({});
+    
+    if (!status.neural_ready || status.embedding_count === 0) {
+      console.log("Neural index building, using structural query");
+      const symbols = await narsil.narsil_find_symbols({
+        repo: "unknown",
+        symbol_type: "function",
+        name_pattern: "auth"
+      });
+      return { fallback: true, results: symbols };
+    }
+    
+    const results = await narsil.narsil_neural_search({
+      query: "authentication flow"
+    });
+    return { fallback: false, results };
+  `
+});
+```
+
+#### Pattern 2: Try-Catch with Retry
+
+```typescript
+call_tool_chain({
+  code: `
+    try {
+      const findings = await narsil.narsil_scan_security({ repo: "unknown" });
+      return { success: true, findings };
+    } catch (error) {
+      if (error.message?.includes("not found")) {
+        await narsil.narsil_reindex({});
+        const findings = await narsil.narsil_scan_security({ repo: "unknown" });
+        return { success: true, retried: true, findings };
+      }
+      throw error;
+    }
+  `,
+  timeout: 60000
+});
+```
+
+#### Pattern 3: Graceful Degradation
+
+```typescript
+call_tool_chain({
+  code: `
+    async function robustSearch(query) {
+      try {
+        const neural = await narsil.narsil_neural_search({ query, top_k: 10 });
+        if (neural.results?.length > 0) return { method: "neural", results: neural.results };
+      } catch (e) { console.log("Neural unavailable:", e.message); }
+      
+      try {
+        const semantic = await narsil.narsil_semantic_search({ repo: "unknown", query });
+        if (semantic.results?.length > 0) return { method: "semantic", results: semantic.results };
+      } catch (e) { console.log("Semantic unavailable:", e.message); }
+      
+      const symbols = await narsil.narsil_find_symbols({
+        repo: "unknown",
+        name_pattern: query.split(" ")[0]
+      });
+      return { method: "symbols", results: symbols };
+    }
+    
+    return await robustSearch("authentication handler");
+  `
+});
+```
+
 ---
 
 ## 4. 📋 RULES
@@ -440,6 +516,15 @@ curl -X POST http://localhost:3001/tools/call \
 
 ## 6. 🔌 INTEGRATION POINTS
 
+### Framework Integration
+
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
+
+Key integrations:
+- **Gate 2**: Skill routing via `skill_advisor.py`
+- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Memory**: Context preserved via Spec Kit Memory MCP
+
 ### Code Mode Integration
 
 **Configuration**: Add to `.utcp_config.json`:
@@ -520,24 +605,106 @@ cd "${NARSIL_PATH}/frontend" && npm install && npm run dev
 
 ### Binary Location
 
+Set via environment variable:
+```bash
+export NARSIL_MCP_BIN=$HOME/narsil-mcp/target/release/narsil-mcp
 ```
-/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp
-```
+
+The binary path is configured in `.utcp_config.json` using `${NARSIL_MCP_BIN}`.
 
 ---
 
-## 7. 📚 RELATED RESOURCES
+## 7. 🏎️ QUICK REFERENCE
 
-### Reference Files
+### Essential Commands
 
-- [tool_reference.md](./references/tool_reference.md) - Complete documentation for all 76 tools
-- [security_guide.md](./references/security_guide.md) - Security scanning workflow with checkpoints
-- [call_graph_guide.md](./references/call_graph_guide.md) - Call graph analysis workflow
-- [quick_start.md](./references/quick_start.md) - Getting started in 5 minutes
+| Task | Tool | Example |
+|------|------|---------|
+| Semantic search | `neural_search` | `narsil.narsil_neural_search({ query: "authentication flow" })` |
+| Find symbols | `find_symbols` | `narsil.narsil_find_symbols({ symbol_type: "function" })` |
+| Security scan | `scan_security` | `narsil.narsil_scan_security({ repo: "." })` |
+| Call graph | `get_call_graph` | `narsil.narsil_get_call_graph({ function: "main" })` |
+| Find callers | `get_callers` | `narsil.narsil_get_callers({ function: "login" })` |
+| Find references | `find_references` | `narsil.narsil_find_references({ symbol: "UserService" })` |
 
-### Assets
+### Common Patterns
 
-- [tool_categories.md](./assets/tool_categories.md) - Priority categorization of tools
+```typescript
+// Semantic code search
+call_tool_chain({
+  code: `
+    const results = await narsil.narsil_neural_search({
+      query: "how does authentication work"
+    });
+    return results;
+  `
+});
+
+// Security scan
+call_tool_chain({
+  code: `
+    const findings = await narsil.narsil_scan_security({
+      repo: "."
+    });
+    return findings;
+  `
+});
+
+// Find all functions
+call_tool_chain({
+  code: `
+    const functions = await narsil.narsil_find_symbols({
+      symbol_type: "function"
+    });
+    return functions;
+  `
+});
+```
+
+### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Neural search returns empty | Wait 60s after server start for index to build |
+| Call graph empty for JS | Known limitation - use find_symbols + find_references instead |
+| Tool not found | Check naming: `narsil.narsil_{tool}` |
+| Slow first query | Index building in progress - check with `get_index_status` |
+
+### Error Quick Reference
+
+| Error Pattern | Cause | Solution |
+|---------------|-------|----------|
+| "not found" in message | Repo not indexed | Run `narsil.narsil_reindex({})` |
+| "timeout" in message | Large codebase | Use `categories` filter, increase timeout |
+| `neural_ready: false` | Index building | Wait ~60s or use AST-based tools |
+| Empty results | No matches or index issue | Try different search method |
+
+---
+
+## 8. 🔗 RELATED RESOURCES
+
+### scripts/
+
+| Script | Purpose | Usage |
+|--------|---------|-------|
+| **update-narsil.sh** | Update to latest version | `bash .opencode/skill/mcp-narsil/scripts/update-narsil.sh` |
+| **narsil-server.sh** | HTTP server management | `bash scripts/narsil-server.sh start\|stop\|status` |
+| **narsil-search.sh** | Search CLI | `bash scripts/narsil-search.sh neural "query"` |
+
+### references/
+
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| **tool_reference.md** | All 76 tools documented | Complete parameter reference |
+| **security_guide.md** | Security scanning workflow | OWASP/CWE checkpoints |
+| **call_graph_guide.md** | Call graph analysis | CFG/DFG patterns |
+| **quick_start.md** | Getting started | 5-minute setup |
+
+### assets/
+
+| Asset | Purpose |
+|-------|---------|
+| **tool_categories.md** | Priority categorization of all 76 tools |
 
 ### External Resources
 
@@ -547,5 +714,9 @@ cd "${NARSIL_PATH}/frontend" && npm install && npm run dev
 
 ### Related Skills
 
-- `mcp-code-mode` - Tool orchestration (Narsil accessed via Code Mode)
-- `system-spec-kit` - Context preservation across sessions
+- **[mcp-code-mode](../mcp-code-mode/SKILL.md)** - Tool orchestration (Narsil accessed via Code Mode)
+- **[system-spec-kit](../system-spec-kit/SKILL.md)** - Context preservation across sessions
+
+### Install Guide
+
+- [MCP - Narsil.md](../../install_guides/MCP/MCP%20-%20Narsil.md) - Installation and configuration

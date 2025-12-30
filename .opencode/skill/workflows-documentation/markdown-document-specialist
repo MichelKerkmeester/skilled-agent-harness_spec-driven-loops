@@ -51,12 +51,12 @@ EXAMPLES:
     markdown-document-specialist extract README.md
 
     # Validate a skill
-    markdown-document-specialist validate .opencode/skills/my-skill
-    markdown-document-specialist validate .opencode/skills/my-skill --json
+    markdown-document-specialist validate .opencode/skill/my-skill
+    markdown-document-specialist validate .opencode/skill/my-skill --json
 
     # Create and package skills
-    markdown-document-specialist init my-skill --path .opencode/skills
-    markdown-document-specialist package .opencode/skills/my-skill
+    markdown-document-specialist init my-skill --path .opencode/skill
+    markdown-document-specialist package .opencode/skill/my-skill
 
 WORKFLOW:
     1. Run 'extract' to get structured JSON output
@@ -64,8 +64,8 @@ WORKFLOW:
     3. AI generates recommendations based on checklist results
 
 For full documentation, see:
-    .opencode/skills/workflows-documentation/SKILL.md
-    .opencode/skills/workflows-documentation/references/workflows.md
+    .opencode/skill/workflows-documentation/SKILL.md
+    .opencode/skill/workflows-documentation/references/workflows.md
 EOF
 }
 

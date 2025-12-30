@@ -9,7 +9,7 @@ version: 1.5.0
 
 # Git Workflows - Git Development Orchestrator
 
-> Unified workflow guidance across workspace isolation, commit hygiene, and work completion.
+Unified workflow guidance across workspace isolation, commit hygiene, and work completion.
 
 ---
 
@@ -34,149 +34,7 @@ Use this orchestrator when:
 
 ---
 
-## 2. 🐙 GITHUB MCP INTEGRATION (REMOTE)
-
-**GitHub MCP Server** provides programmatic access to GitHub's remote operations via Code Mode (`call_tool_chain`).
-
-### Prerequisites
-
-- **PAT configured** in `.utcp_config.json` with appropriate scopes (repo, issues, pull_requests)
-
-### When to Use GitHub MCP vs Local Git vs gh CLI
-
-| Operation                        | Tool                   | Rationale                               |
-| :------------------------------- | :--------------------- | :-------------------------------------- |
-| commit, diff, status, log, merge | Local `git` (Bash)     | Faster, no network required             |
-| worktree management              | Local `git` (Bash)     | Local filesystem operation              |
-| Create/list PRs                  | `gh` CLI OR GitHub MCP | Both work; gh CLI simpler for basic ops |
-| PR reviews, comments             | GitHub MCP             | Richer API for review workflows         |
-| Issue management                 | GitHub MCP             | Full CRUD on issues                     |
-| CI/CD status, logs               | GitHub MCP             | Access workflow runs and job logs       |
-| Search repos/code remotely       | GitHub MCP             | Cross-repo searches                     |
-
-### Available Tools (Code Mode Access)
-
-**Access Pattern:** `github.github_{tool_name}({...})`
-
-| Category          | Tools                                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                       |
-| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
-| **Pull Requests** | `github_create_pull_request`<br>`github_list_pull_requests`<br>`github_get_pull_request`<br>`github_merge_pull_request`<br>`github_create_pull_request_review`<br>`github_add_pull_request_review_comment`<br>`github_get_pull_request_files`<br>`github_get_pull_request_status`<br>`github_update_pull_request_branch`<br>`github_get_pull_request_comments`<br>`github_get_pull_request_reviews` | Create, list, merge PRs; add reviews and comments; get files, status, and reviews |
-| **Issues**        | `github_create_issue`<br>`github_get_issue`<br>`github_list_issues`<br>`github_search_issues`<br>`github_add_issue_comment`<br>`github_update_issue`                                                                                                                                                                                                                                                | Full issue lifecycle management                                                   |
-| **Repository**    | `github_get_file_contents`<br>`github_create_branch`<br>`github_list_branches`<br>`github_search_repositories`<br>`github_list_commits`                                                                                                                                                                                                                                                             | Read files, manage branches, search                                               |
-| **CI/CD**         | `github_list_workflow_runs`<br>`github_get_workflow_run`<br>`github_get_job_logs`                                                                                                                                                                                                                                                                                                                   | Monitor CI status, debug failures                                                 |
-
-### Usage Examples
-
-```javascript
-// List open PRs
-call_tool_chain(`github.github_list_pull_requests({
-  owner: 'owner',
-  repo: 'repo',
-  state: 'open'
-})`)
-
-// Create PR with full details
-call_tool_chain(`github.github_create_pull_request({
-  owner: 'owner',
-  repo: 'repo',
-  title: 'feat(auth): add OAuth2 login',
-  head: 'feature/oauth',
-  base: 'main',
-  body: '## Summary\\n- Implements OAuth2 flow\\n- Adds token management'
-})`)
-
-// Get issue details
-call_tool_chain(`github.github_get_issue({
-  owner: 'owner',
-  repo: 'repo',
-  issue_number: 123
-})`)
-
-// Check CI workflow status
-call_tool_chain(`github.github_list_workflow_runs({
-  owner: 'owner',
-  repo: 'repo',
-  branch: 'main'
-})`)
-
-// Add PR review comment
-call_tool_chain(`github.github_add_pull_request_review_comment({
-  owner: 'owner',
-  repo: 'repo',
-  pull_number: 42,
-  body: 'Consider extracting this to a helper function',
-  commit_id: 'abc123',
-  path: 'src/auth.js',
-  line: 25
-})`)
-
-// Get files changed in PR
-call_tool_chain(`github.github_get_pull_request_files({
-  owner: 'owner',
-  repo: 'repo',
-  pull_number: 42
-})`)
-
-// Get PR status checks
-call_tool_chain(`github.github_get_pull_request_status({
-  owner: 'owner',
-  repo: 'repo',
-  pull_number: 42
-})`)
-```
-
-**Best Practice**: Prefer local `git` commands for local operations (faster, offline-capable). Use GitHub MCP for remote state queries and collaboration features.
-
-### Error Handling
-
-#### Failed PR Creation
-
-```javascript
-// Handle PR creation failures
-try {
-  const result = await call_tool_chain(`github.github_create_pull_request({
-    owner: 'owner',
-    repo: 'repo',
-    title: 'feat: new feature',
-    head: 'feature-branch',
-    base: 'main',
-    body: 'Description'
-  })`);
-} catch (error) {
-  // Common errors:
-  // - 422: Branch doesn't exist or no commits between branches
-  // - 403: Insufficient permissions
-  // - 404: Repository not found
-  console.error('PR creation failed:', error.message);
-}
-```
-
-#### Merge Conflicts
-
-```javascript
-// Check for merge conflicts before merging
-const pr = await call_tool_chain(`github.github_get_pull_request({
-  owner: 'owner',
-  repo: 'repo',
-  pull_number: 42
-})`);
-
-if (pr.mergeable === false) {
-  console.log('Merge conflict detected. Resolve before merging.');
-  // Option 1: Update branch from base
-  await call_tool_chain(`github.github_update_pull_request_branch({
-    owner: 'owner',
-    repo: 'repo',
-    pull_number: 42
-  })`);
-  // Option 2: Resolve conflicts locally
-  // git fetch origin main && git merge origin/main
-}
-```
-
----
-
-## 3. 🧭 SMART ROUTING
+## 2. 🧭 SMART ROUTING
 
 ### Phase Detection
 ```
@@ -265,7 +123,285 @@ def route_git_resources(task):
 
 ---
 
-## 4. 🚨 WORKSPACE CHOICE ENFORCEMENT
+## 3. 🛠️ HOW IT WORKS
+
+### Git Development Lifecycle Map
+
+Git development flows through 3 phases:
+
+**Phase 1: Workspace Setup** (Isolate your work)
+- **git-worktrees** - Create isolated workspace with short-lived temp branches
+- Prevents: Branch juggling, stash chaos, context switching
+- Output: Clean workspace ready for focused development
+- **See**: [worktree_workflows.md](./references/worktree_workflows.md)
+
+**Phase 2: Work & Commit** (Make clean commits)
+- **git-commit** - Analyze changes, filter artifacts, write Conventional Commits
+- Prevents: Accidental artifact commits, unclear commit history
+- Output: Professional commit history following conventions
+- **See**: [commit_workflows.md](./references/commit_workflows.md)
+
+**Phase 3: Complete & Integrate** (Finish the work)
+- **git-finish** - Merge, create PR, or discard work (with tests gate)
+- Prevents: Incomplete work merged, untested code integrated
+- Output: Work successfully integrated or cleanly discarded
+- **See**: [finish_workflows.md](./references/finish_workflows.md)
+
+### Phase Transitions
+- Setup → Work: Worktree created, ready to code
+- Work → Complete: Changes committed, tests passing
+- Complete → Setup: Work integrated, start next task
+
+---
+
+## 4. 📋 RULES
+
+### ✅ ALWAYS
+
+1. **Use conventional commit format** - All commits must follow `type(scope): description` pattern
+2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
+3. **Verify branch is up-to-date** - Pull latest changes before creating PR
+4. **Use descriptive branch names** - Format: `type/short-description` (e.g., `feat/add-auth`, `fix/login-bug`)
+5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
+6. **Clean up after merge** - Delete local and remote feature branches after successful merge
+7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
+
+### ❌ NEVER
+
+1. **Force push to main/master** - Protected branches must never receive force pushes
+2. **Commit directly to protected branches** - Always use feature branches and PRs
+3. **Leave worktrees uncleaned** - Remove worktree directories after merge
+4. **Commit secrets or credentials** - Use environment variables or secret management
+5. **Create PRs without description** - Always include context, changes, and testing notes
+6. **Merge without CI passing** - Wait for all checks to complete
+7. **Rebase public/shared branches** - Only rebase local, unpushed commits
+
+### ⚠️ ESCALATE IF
+
+1. **Merge conflicts cannot be auto-resolved** - Complex conflicts require human decision on which changes to keep
+2. **GitHub MCP returns authentication errors** - Token may be expired or permissions insufficient
+3. **Worktree directory is locked or corrupted** - May require manual cleanup with `git worktree prune`
+4. **Force push to protected branch is requested** - This requires explicit approval and understanding of consequences
+5. **CI/CD pipeline fails repeatedly** - May indicate infrastructure issues beyond code problems
+6. **Branch divergence exceeds 50 commits** - Large divergence suggests need for incremental merging strategy
+7. **Submodule conflicts detected** - Submodule updates require careful coordination
+
+---
+
+## 5. 🏆 SUCCESS CRITERIA
+
+### Workspace Setup Complete
+- ✅ Worktree created in correct directory (`.worktrees/` or user-specified)
+- ✅ Branch naming follows convention (`type/short-description`)
+- ✅ Working directory is clean and isolated
+- ✅ User confirmed workspace choice (branch/worktree/current)
+
+### Commit Complete
+- ✅ All changes reviewed and categorized
+- ✅ Artifacts filtered out (build files, coverage, etc.)
+- ✅ Commit message follows Conventional Commits format
+- ✅ Only public-value files staged
+
+### Integration Complete
+- ✅ Tests pass before merge/PR
+- ✅ PR description includes context, changes, and testing notes
+- ✅ Branch up-to-date with base branch
+- ✅ Worktree cleaned up after merge (if used)
+- ✅ Local and remote feature branches deleted
+
+### Quality Gates
+
+| Gate | Criteria | Blocking |
+|------|----------|----------|
+| **Pre-commit** | Artifacts excluded, message formatted | Yes |
+| **Pre-merge** | Tests pass, branch up-to-date | Yes |
+| **Pre-PR** | Description complete, CI passing | Yes |
+| **Post-merge** | Worktree removed, branches cleaned | No |
+
+---
+
+## 6. 🔌 INTEGRATION POINTS
+
+### Framework Integration
+
+This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
+
+Key integrations:
+- **Gate 2**: Skill routing via `skill_advisor.py`
+- **Tool Routing**: Per AGENTS.md Section 6 decision tree
+- **Memory**: Context preserved via Spec Kit Memory MCP
+
+---
+
+## 7. 🐙 GITHUB MCP INTEGRATION (REMOTE)
+
+**GitHub MCP Server** provides programmatic access to GitHub's remote operations via Code Mode (`call_tool_chain`).
+
+### Prerequisites
+
+- **PAT configured** in `.utcp_config.json` with appropriate scopes (repo, issues, pull_requests)
+
+### When to Use GitHub MCP vs Local Git vs gh CLI
+
+| Operation                        | Tool                   | Rationale                               |
+| :------------------------------- | :--------------------- | :-------------------------------------- |
+| commit, diff, status, log, merge | Local `git` (Bash)     | Faster, no network required             |
+| worktree management              | Local `git` (Bash)     | Local filesystem operation              |
+| Create/list PRs                  | `gh` CLI OR GitHub MCP | Both work; gh CLI simpler for basic ops |
+| PR reviews, comments             | GitHub MCP             | Richer API for review workflows         |
+| Issue management                 | GitHub MCP             | Full CRUD on issues                     |
+| CI/CD status, logs               | GitHub MCP             | Access workflow runs and job logs       |
+| Search repos/code remotely       | GitHub MCP             | Cross-repo searches                     |
+
+### Available Tools (Code Mode Access)
+
+**Access Pattern:** `github.github.{tool_name}({...})`
+
+| Category          | Tools                                                                                                                                                                                                                                                                                                                                                           | Description                                                                       |
+| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
+| **Pull Requests** | `github_create_pull_request`<br>`github_list_pull_requests`<br>`github_get_pull_request`<br>`github_merge_pull_request`<br>`github_create_pull_request_review`<br>`github_get_pull_request_files`<br>`github_get_pull_request_status`<br>`github_update_pull_request_branch`<br>`github_get_pull_request_comments`<br>`github_get_pull_request_reviews` | Create, list, merge PRs; add reviews; get files, status, and reviews |
+| **Issues**        | `github_create_issue`<br>`github_get_issue`<br>`github_list_issues`<br>`github_search_issues`<br>`github_add_issue_comment`<br>`github_update_issue`                                                                                                                                                                                                            | Full issue lifecycle management                                                   |
+| **Repository**    | `github_get_file_contents`<br>`github_create_branch`<br>`github_search_repositories`<br>`github_list_commits`                                                                                                                                                                                                                                                   | Read files, manage branches, search                                               |
+
+> **Note**: CI/CD workflow status and branch listing require the `gh` CLI:
+> - `gh run list` - List workflow runs
+> - `gh run view <id>` - View specific run
+> - `gh api repos/{owner}/{repo}/branches` - List branches
+
+### Usage Examples
+
+```typescript
+// List open PRs
+call_tool_chain({
+  code: `await github.github.list_pull_requests({
+    owner: 'owner',
+    repo: 'repo',
+    state: 'open'
+  })`
+})
+
+// Create PR with full details
+call_tool_chain({
+  code: `await github.github.create_pull_request({
+    owner: 'owner',
+    repo: 'repo',
+    title: 'feat(auth): add OAuth2 login',
+    head: 'feature/oauth',
+    base: 'main',
+    body: '## Summary\\n- Implements OAuth2 flow\\n- Adds token management'
+  })`
+})
+
+// Get issue details
+call_tool_chain({
+  code: `await github.github.get_issue({
+    owner: 'owner',
+    repo: 'repo',
+    issue_number: 123
+  })`
+})
+
+// Get files changed in PR
+call_tool_chain({
+  code: `await github.github.get_pull_request_files({
+    owner: 'owner',
+    repo: 'repo',
+    pull_number: 42
+  })`
+})
+
+// Get PR status checks
+call_tool_chain({
+  code: `await github.github.get_pull_request_status({
+    owner: 'owner',
+    repo: 'repo',
+    pull_number: 42
+  })`
+})
+```
+
+**Best Practice**: Prefer local `git` commands for local operations (faster, offline-capable). Use GitHub MCP for remote state queries and collaboration features.
+
+### Error Handling
+
+#### Failed PR Creation
+
+```typescript
+// Handle PR creation failures
+call_tool_chain({
+  code: `
+    try {
+      const result = await github.github.create_pull_request({
+        owner: 'owner',
+        repo: 'repo',
+        title: 'feat: new feature',
+        head: 'feature-branch',
+        base: 'main',
+        body: 'Description'
+      });
+      return result;
+    } catch (error) {
+      // Common errors:
+      // - 422: Branch doesn't exist or no commits between branches
+      // - 403: Insufficient permissions
+      // - 404: Repository not found
+      return { error: error.message };
+    }
+  `
+})
+```
+
+#### Merge Conflicts
+
+```typescript
+// Check for merge conflicts before merging
+call_tool_chain({
+  code: `
+    const pr = await github.github.get_pull_request({
+      owner: 'owner',
+      repo: 'repo',
+      pull_number: 42
+    });
+
+    if (pr.mergeable === false) {
+      console.log('Merge conflict detected. Resolve before merging.');
+      // Option 1: Update branch from base
+      await github.github.update_pull_request_branch({
+        owner: 'owner',
+        repo: 'repo',
+        pull_number: 42
+      });
+      // Option 2: Resolve conflicts locally
+      // git fetch origin main && git merge origin/main
+    }
+    return pr;
+  `
+})
+```
+
+---
+
+## 8. 📦 REFERENCES
+
+### Core Workflows
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [worktree_workflows.md](references/worktree_workflows.md) | 7-step workspace creation | Directory selection, branch strategies |
+| [commit_workflows.md](references/commit_workflows.md) | 6-step commit workflow | Artifact filtering, Conventional Commits |
+| [finish_workflows.md](references/finish_workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
+| [shared_patterns.md](references/shared_patterns.md) | Reusable git patterns | Error recovery, conflict resolution |
+| [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common operations |
+
+### Assets
+| Asset | Purpose | Usage |
+|-------|---------|-------|
+| [worktree_checklist.md](assets/worktree_checklist.md) | Worktree creation checklist | Pre-flight verification |
+| [commit_message_template.md](assets/commit_message_template.md) | Commit format guide | Conventional Commits |
+| [pr_template.md](assets/pr_template.md) | PR description template | Consistent PR format |
+
+---
+
+## 9. 🚨 WORKSPACE CHOICE ENFORCEMENT
 
 **MANDATORY**: The AI must NEVER autonomously decide between creating a branch or worktree.
 
@@ -304,72 +440,7 @@ Once user chooses, reuse their preference for the session unless:
 
 ---
 
-## 5. 🛠️ HOW IT WORKS
-
-### Git Development Lifecycle Map
-
-Git development flows through 3 phases:
-
-**Phase 1: Workspace Setup** (Isolate your work)
-- **git-worktrees** - Create isolated workspace with short-lived temp branches
-- Prevents: Branch juggling, stash chaos, context switching
-- Output: Clean workspace ready for focused development
-- **See**: [worktree_workflows.md](./references/worktree_workflows.md)
-
-**Phase 2: Work & Commit** (Make clean commits)
-- **git-commit** - Analyze changes, filter artifacts, write Conventional Commits
-- Prevents: Accidental artifact commits, unclear commit history
-- Output: Professional commit history following conventions
-- **See**: [commit_workflows.md](./references/commit_workflows.md)
-
-**Phase 3: Complete & Integrate** (Finish the work)
-- **git-finish** - Merge, create PR, or discard work (with tests gate)
-- Prevents: Incomplete work merged, untested code integrated
-- Output: Work successfully integrated or cleanly discarded
-- **See**: [finish_workflows.md](./references/finish_workflows.md)
-
-### Phase Transitions
-- Setup → Work: Worktree created, ready to code
-- Work → Complete: Changes committed, tests passing
-- Complete → Setup: Work integrated, start next task
-
----
-
-## 6. 📋 RULES
-
-### ✅ ALWAYS
-
-1. **Use conventional commit format** - All commits must follow `type(scope): description` pattern
-2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
-3. **Verify branch is up-to-date** - Pull latest changes before creating PR
-4. **Use descriptive branch names** - Format: `type/short-description` (e.g., `feat/add-auth`, `fix/login-bug`)
-5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
-6. **Clean up after merge** - Delete local and remote feature branches after successful merge
-7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
-
-### ❌ NEVER
-
-1. **Force push to main/master** - Protected branches must never receive force pushes
-2. **Commit directly to protected branches** - Always use feature branches and PRs
-3. **Leave worktrees uncleaned** - Remove worktree directories after merge
-4. **Commit secrets or credentials** - Use environment variables or secret management
-5. **Create PRs without description** - Always include context, changes, and testing notes
-6. **Merge without CI passing** - Wait for all checks to complete
-7. **Rebase public/shared branches** - Only rebase local, unpushed commits
-
-### ⚠️ ESCALATE IF
-
-1. **Merge conflicts cannot be auto-resolved** - Complex conflicts require human decision on which changes to keep
-2. **GitHub MCP returns authentication errors** - Token may be expired or permissions insufficient
-3. **Worktree directory is locked or corrupted** - May require manual cleanup with `git worktree prune`
-4. **Force push to protected branch is requested** - This requires explicit approval and understanding of consequences
-5. **CI/CD pipeline fails repeatedly** - May indicate infrastructure issues beyond code problems
-6. **Branch divergence exceeds 50 commits** - Large divergence suggests need for incremental merging strategy
-7. **Submodule conflicts detected** - Submodule updates require careful coordination
-
----
-
-## 7. 🗺️ SKILL SELECTION DECISION TREE
+## 10. 🗺️ SKILL SELECTION DECISION TREE
 
 **What are you doing?**
 
@@ -421,7 +492,7 @@ git-finish (feature A) → git-finish (feature B)
 
 ---
 
-## 8. 💡 INTEGRATION EXAMPLES
+## 11. 💡 INTEGRATION EXAMPLES
 
 ### Example 1: New Authentication Feature
 
@@ -454,7 +525,7 @@ git-finish (feature A) → git-finish (feature B)
 
 ---
 
-## 9. 🏎️ QUICK REFERENCE
+## 12. 🔗 RELATED RESOURCES
 
 **For one-page cheat sheet**: See [quick_reference.md](./references/quick_reference.md)
 

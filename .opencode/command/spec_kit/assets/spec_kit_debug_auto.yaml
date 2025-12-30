@@ -1,0 +1,242 @@
+# ───────────────────────────────────────────────────────────────────
+# SMART SPECKIT: DEBUG DELEGATION WORKFLOW (AUTONOMOUS MODE)
+# ───────────────────────────────────────────────────────────────────
+role: Expert Developer using Smart SpecKit for autonomous debug delegation
+purpose: Spec-driven debug escalation when stuck after 3+ failed attempts
+action: Run SpecKit debug workflow from analysis to agent dispatch
+
+operating_mode:
+  workflow: sequential
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  tracking: debug_delegation_log
+  validation: continuous_self_validation
+
+debug_philosophy:
+  principle: "Fresh perspective solves stuck problems"
+  approach: "Systematic escalation with context preservation"
+  mandate: "Gather context, select model, dispatch, synthesize findings"
+
+# ───────────────────────────────────────────────────────────────────
+# USER INPUTS (Transformed from raw text)
+# ───────────────────────────────────────────────────────────────────
+user_inputs:
+  spec_folder: |
+    [SPEC_FOLDER]
+    Spec folder path for the stuck issue. REQUIRED.
+
+  issue_description: |
+    [ISSUE]
+    Description of the stuck issue and what has been tried.
+
+  failed_attempts: |
+    [ATTEMPTS]
+    Number of failed attempts (must be 3+ to trigger debug delegation).
+
+  error_messages: |
+    [ERRORS]
+    Error messages or symptoms observed.
+
+  files_involved: |
+    [FILES]
+    Files or code areas involved in the issue.
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    failed_attempts_empty: "Assume 3 (minimum threshold)"
+    error_messages_empty: "Gather from recent conversation context"
+    files_involved_empty: "Infer from issue description"
+
+  validation:
+    failed_attempts_minimum: 3
+    spec_folder_required: true
+
+# ─────────────────────────────────────────────────────────────────
+# MODEL SELECTION OPTIONS
+# ─────────────────────────────────────────────────────────────────
+model_selection:
+  options:
+    - id: claude-sonnet
+      name: "Claude Sonnet"
+      strengths: "Fast iteration, good for straightforward debugging"
+      use_when: "Issue seems solvable with fresh perspective"
+    - id: claude-opus
+      name: "Claude Opus"
+      strengths: "Deep reasoning, complex problem solving"
+      use_when: "Issue requires architectural understanding or complex logic"
+    - id: gpt-4
+      name: "GPT-4"
+      strengths: "Alternative perspective, different training data"
+      use_when: "Claude models haven't found the solution"
+
+  selection_criteria:
+    complexity_low: "claude-sonnet"
+    complexity_medium: "claude-sonnet or claude-opus"
+    complexity_high: "claude-opus"
+    alternative_needed: "gpt-4"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  step_completion_rule: |
+    FOR EACH STEP:
+    1. Execute ALL activities listed
+    2. Verify ALL outputs exist
+    3. Mark step ✅ in tracking
+    4. ONLY THEN proceed to next step
+    
+    ⛔ NEVER skip a step
+    ⛔ NEVER proceed without completing previous step
+    ⛔ NEVER dispatch without full context
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (4 STEPS)
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_analyze_stuck_issue:
+    purpose: Gather comprehensive context about the stuck issue
+    activities:
+    - Review conversation history for failed attempts
+    - Document what was tried and why it failed
+    - Identify error patterns and symptoms
+    - Map affected files and code areas
+    - Note any partial progress made
+    - Establish clear success criteria
+    outputs:
+    - issue_summary
+    - failed_approaches
+    - error_patterns
+    - affected_scope
+    - success_criteria
+    validation: context_gathered
+
+  step_2_model_selection:
+    purpose: Select appropriate model for debug delegation
+    activities:
+    - Assess issue complexity
+    - Evaluate what type of reasoning is needed
+    - Consider previous model attempts (if any)
+    - Select model based on criteria
+    - Document selection rationale
+    outputs:
+    - selected_model
+    - selection_rationale
+    validation: model_selected
+
+  step_3_dispatch_debug_agent:
+    purpose: Dispatch debug agent with full context
+    activities:
+    - Prepare comprehensive handoff context
+    - Include all failed attempts and learnings
+    - Include error messages and patterns
+    - Include relevant code snippets
+    - Dispatch via Task tool with selected model
+    - Monitor agent progress
+    dispatch_format: |
+      **DEBUG DELEGATION**
+      
+      **Issue:** [issue_summary]
+      **Spec Folder:** [spec_folder]
+      **Failed Attempts:** [count] attempts
+      
+      **What was tried:**
+      [failed_approaches]
+      
+      **Error patterns:**
+      [error_patterns]
+      
+      **Files involved:**
+      [affected_scope]
+      
+      **Success criteria:**
+      [success_criteria]
+      
+      **Your task:**
+      Investigate this issue with a fresh perspective. Focus on what might have been missed.
+    outputs:
+    - agent_dispatch
+    - handoff_context
+    validation: agent_dispatched
+
+  step_4_summarize_results:
+    purpose: Synthesize debug agent findings
+    activities:
+    - Collect agent findings
+    - Verify solution addresses original issue
+    - Document what was discovered
+    - Update spec folder with findings
+    - Save context for future reference
+    outputs:
+    - findings_summary
+    - solution_status
+    - updated_documentation
+    validation: results_summarized
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: 4
+  message: "Debug delegation completed. Check findings summary for results."
+  next_steps:
+  - Review debug agent findings
+  - Apply discovered solution
+  - Update checklist if issue resolved
+
+# ─────────────────────────────────────────────────────────────────
+# AUTONOMOUS EXECUTION GUIDANCE
+# ─────────────────────────────────────────────────────────────────
+autonomous_execution:
+  principle: "Execute debug delegation autonomously for stuck issues"
+
+  decision_making:
+  - Gather full context before dispatch
+  - Select most appropriate model
+  - Provide comprehensive handoff
+  - Synthesize findings systematically
+
+  validation_approach:
+  - Verify minimum 3 failed attempts
+  - Ensure context is comprehensive
+  - Confirm agent received full handoff
+  - Validate solution addresses issue
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  insufficient_attempts:
+    action: "Require at least 3 failed attempts before delegation"
+  context_unclear:
+    action: "Gather more context from conversation history"
+  agent_fails:
+    action: "Try different model, escalate to user if all fail"
+  solution_incomplete:
+    action: "Request agent to continue or try alternative approach"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - verify_minimum_failed_attempts
+  - gather_comprehensive_context
+  - select_appropriate_model
+  - provide_full_handoff_context
+  - synthesize_findings
+  - update_documentation
+
+  NEVER:
+  - dispatch_without_full_context
+  - skip_model_selection
+  - ignore_failed_attempts
+  - dispatch_before_3_attempts

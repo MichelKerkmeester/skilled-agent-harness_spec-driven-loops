@@ -334,7 +334,7 @@ command -v jq || sudo apt install jq  # Linux
 # Verify CDP command syntax
 bdg https://example.com 2>&1
 bdg cdp Emulation.setDeviceMetricsOverride '{"width":375,"height":667,"deviceScaleFactor":2,"mobile":true}' 2>&1
-bdg screenshot test.png 2>&1
+bdg dom screenshot test.png 2>&1
 bdg stop 2>&1
 ```
 
@@ -347,7 +347,7 @@ chmod 755 ./test-output
 
 # Test screenshot command
 bdg https://example.com 2>&1
-bdg screenshot ./test-output/test.png 2>&1
+bdg dom screenshot ./test-output/test.png 2>&1
 bdg stop 2>&1
 ```
 

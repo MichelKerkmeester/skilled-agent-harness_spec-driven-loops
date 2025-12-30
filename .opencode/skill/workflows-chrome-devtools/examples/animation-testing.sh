@@ -35,21 +35,21 @@ sleep 2
 
 # Capture before animation
 echo "📸 Capturing state before animation..."
-bdg screenshot "$OUTPUT_DIR/animation-before-${DATE_STAMP}.png" 2>&1
+bdg dom screenshot "$OUTPUT_DIR/animation-before-${DATE_STAMP}.png" 2>&1
 
 # Clear performance metrics
 bdg cdp Performance.enable 2>&1 > /dev/null
 
 # Trigger animation
 echo "🎬 Triggering animation..."
-bdg js "document.querySelector('$SELECTOR').classList.add('$TRIGGER_CLASS')" 2>&1
+bdg dom eval "document.querySelector('$SELECTOR').classList.add('$TRIGGER_CLASS')" 2>&1
 
 # Wait for animation to complete (adjust based on your animation duration)
 sleep 1
 
 # Capture after animation
 echo "📸 Capturing state after animation..."
-bdg screenshot "$OUTPUT_DIR/animation-after-${DATE_STAMP}.png" 2>&1
+bdg dom screenshot "$OUTPUT_DIR/animation-after-${DATE_STAMP}.png" 2>&1
 
 # Get performance metrics
 echo "📊 Capturing performance metrics..."
@@ -58,7 +58,7 @@ echo "$METRICS" > "$OUTPUT_DIR/animation-metrics-${DATE_STAMP}.json"
 
 # Capture console logs (check for errors)
 echo "📝 Capturing console logs..."
-bdg console logs 2>&1 > "$OUTPUT_DIR/animation-console-${DATE_STAMP}.json"
+bdg console --list 2>&1 > "$OUTPUT_DIR/animation-console-${DATE_STAMP}.json"
 
 # Stop session
 echo "🛑 Stopping browser session..."

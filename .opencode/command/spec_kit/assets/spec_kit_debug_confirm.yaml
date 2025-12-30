@@ -1,0 +1,311 @@
+# ───────────────────────────────────────────────────────────────────
+# SMART SPECKIT: DEBUG DELEGATION WORKFLOW (INTERACTIVE MODE)
+# ───────────────────────────────────────────────────────────────────
+role: Expert Developer using Smart SpecKit for interactive debug delegation
+purpose: Spec-driven debug escalation with user approval at each step
+action: Run SpecKit debug workflow with user checkpoints
+
+operating_mode:
+  workflow: sequential
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: step_by_step
+  tracking: debug_delegation_log
+  validation: checkpoint_based
+
+debug_philosophy:
+  principle: "Fresh perspective solves stuck problems"
+  approach: "Systematic escalation with user validation at checkpoints"
+  mandate: "Gather context, confirm with user, dispatch, synthesize findings"
+
+# ───────────────────────────────────────────────────────────────────
+# USER INPUTS (Transformed from raw text)
+# ───────────────────────────────────────────────────────────────────
+user_inputs:
+  spec_folder: |
+    [SPEC_FOLDER]
+    Spec folder path for the stuck issue. REQUIRED.
+
+  issue_description: |
+    [ISSUE]
+    Description of the stuck issue and what has been tried.
+
+  failed_attempts: |
+    [ATTEMPTS]
+    Number of failed attempts (must be 3+ to trigger debug delegation).
+
+  error_messages: |
+    [ERRORS]
+    Error messages or symptoms observed.
+
+  files_involved: |
+    [FILES]
+    Files or code areas involved in the issue.
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    failed_attempts_empty: "Assume 3 (minimum threshold)"
+    error_messages_empty: "Gather from recent conversation context"
+    files_involved_empty: "Infer from issue description"
+
+  validation:
+    failed_attempts_minimum: 3
+    spec_folder_required: true
+
+# ─────────────────────────────────────────────────────────────────
+# MODEL SELECTION OPTIONS
+# ─────────────────────────────────────────────────────────────────
+model_selection:
+  options:
+    - id: claude-sonnet
+      name: "Claude Sonnet"
+      strengths: "Fast iteration, good for straightforward debugging"
+      use_when: "Issue seems solvable with fresh perspective"
+    - id: claude-opus
+      name: "Claude Opus"
+      strengths: "Deep reasoning, complex problem solving"
+      use_when: "Issue requires architectural understanding or complex logic"
+    - id: gpt-4
+      name: "GPT-4"
+      strengths: "Alternative perspective, different training data"
+      use_when: "Claude models haven't found the solution"
+
+  selection_criteria:
+    complexity_low: "claude-sonnet"
+    complexity_medium: "claude-sonnet or claude-opus"
+    complexity_high: "claude-opus"
+    alternative_needed: "gpt-4"
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT OPTIONS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_options:
+  standard:
+  - label: "Approve"
+    description: "Approve this step and proceed to next"
+  - label: "Review Details"
+    description: "Show more details about what was gathered"
+  - label: "Modify"
+    description: "Request changes before proceeding"
+
+  model_selection:
+  - label: "Use Recommended"
+    description: "Use the recommended model"
+  - label: "Choose Different"
+    description: "Select a different model"
+  - label: "Skip Delegation"
+    description: "Cancel debug delegation"
+
+  dispatch:
+  - label: "Dispatch"
+    description: "Send to debug agent now"
+  - label: "Edit Context"
+    description: "Modify the handoff context"
+  - label: "Cancel"
+    description: "Cancel the dispatch"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  step_completion_rule: |
+    FOR EACH STEP:
+    1. Execute ALL activities listed
+    2. Verify ALL outputs exist
+    3. Present checkpoint to user for approval
+    4. Mark step ✅ in tracking after approval
+    5. ONLY THEN proceed to next step
+    
+    ⛔ NEVER skip a step
+    ⛔ NEVER proceed without user approval at checkpoint
+    ⛔ NEVER dispatch without user confirmation
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (4 STEPS WITH CHECKPOINTS)
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_analyze_stuck_issue:
+    purpose: Gather comprehensive context about the stuck issue
+    activities:
+    - Review conversation history for failed attempts
+    - Document what was tried and why it failed
+    - Identify error patterns and symptoms
+    - Map affected files and code areas
+    - Note any partial progress made
+    - Establish clear success criteria
+    outputs:
+    - issue_summary
+    - failed_approaches
+    - error_patterns
+    - affected_scope
+    - success_criteria
+    validation: context_gathered
+    checkpoint:
+      question: "Step 1 Complete: Context gathered. Is this summary accurate?"
+      use: present_options_to_user
+      options:
+      - label: "Approve Summary"
+        description: "Context is accurate, proceed to model selection"
+      - label: "Add Context"
+        description: "Include additional information"
+      - label: "Correct Details"
+        description: "Fix inaccuracies in the summary"
+
+  step_2_model_selection:
+    purpose: Select appropriate model for debug delegation
+    activities:
+    - Assess issue complexity
+    - Evaluate what type of reasoning is needed
+    - Consider previous model attempts (if any)
+    - Recommend model based on criteria
+    - Present options to user
+    outputs:
+    - recommended_model
+    - selection_rationale
+    validation: model_selected
+    checkpoint:
+      question: "Step 2 Complete: Model recommended. Which model would you like to use?"
+      use: present_options_to_user
+      options:
+      - label: "Claude Sonnet"
+        description: "Fast iteration, good for straightforward debugging"
+      - label: "Claude Opus"
+        description: "Deep reasoning, complex problem solving"
+      - label: "GPT-4"
+        description: "Alternative perspective, different training data"
+      - label: "Cancel"
+        description: "Cancel debug delegation"
+
+  step_3_dispatch_debug_agent:
+    purpose: Dispatch debug agent with full context
+    activities:
+    - Prepare comprehensive handoff context
+    - Include all failed attempts and learnings
+    - Include error messages and patterns
+    - Include relevant code snippets
+    - Present handoff for user approval
+    - Dispatch via Task tool with selected model
+    dispatch_format: |
+      **DEBUG DELEGATION**
+      
+      **Issue:** [issue_summary]
+      **Spec Folder:** [spec_folder]
+      **Failed Attempts:** [count] attempts
+      
+      **What was tried:**
+      [failed_approaches]
+      
+      **Error patterns:**
+      [error_patterns]
+      
+      **Files involved:**
+      [affected_scope]
+      
+      **Success criteria:**
+      [success_criteria]
+      
+      **Your task:**
+      Investigate this issue with a fresh perspective. Focus on what might have been missed.
+    outputs:
+    - agent_dispatch
+    - handoff_context
+    validation: agent_dispatched
+    checkpoint:
+      question: "Step 3 Ready: Review handoff context before dispatch."
+      use: present_options_to_user
+      options: checkpoint_options.dispatch
+
+  step_4_summarize_results:
+    purpose: Synthesize debug agent findings
+    activities:
+    - Collect agent findings
+    - Verify solution addresses original issue
+    - Document what was discovered
+    - Update spec folder with findings
+    - Save context for future reference
+    outputs:
+    - findings_summary
+    - solution_status
+    - updated_documentation
+    validation: results_summarized
+    checkpoint:
+      question: "Step 4 Complete: Debug delegation finished!"
+      use: present_options_to_user
+      options:
+      - label: "Done"
+        description: "Complete the debug workflow"
+      - label: "View Summary"
+        description: "Show detailed findings summary"
+      - label: "Try Again"
+        description: "Dispatch with different model"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW TERMINATION
+# ─────────────────────────────────────────────────────────────────
+termination:
+  after_step: 4
+  message: "Debug delegation completed. Check findings summary for results."
+  next_steps:
+  - Review debug agent findings
+  - Apply discovered solution
+  - Update checklist if issue resolved
+
+# ─────────────────────────────────────────────────────────────────
+# INTERACTIVE EXECUTION GUIDANCE
+# ─────────────────────────────────────────────────────────────────
+interactive_execution:
+  principle: "Execute debug delegation with user approval at each checkpoint"
+
+  checkpoint_behavior:
+  - Complete step activities
+  - Present findings summary
+  - Present options to user for approval
+  - Wait for user response
+  - Process user feedback
+  - Proceed, modify, or cancel as directed
+
+  user_feedback_handling:
+    approve: "Proceed to next step"
+    review: "Show detailed output of current step"
+    modify: "Accept changes and re-execute step"
+    cancel: "Stop the debug delegation workflow"
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR RECOVERY
+# ─────────────────────────────────────────────────────────────────
+error_recovery:
+  insufficient_attempts:
+    action: "Inform user about 3-attempt minimum, ask to proceed anyway"
+  context_unclear:
+    action: "Ask user for additional context"
+  user_cancels:
+    action: "Acknowledge cancellation, offer alternatives"
+  agent_fails:
+    action: "Present option to try different model"
+  solution_incomplete:
+    action: "Present option to continue or try alternative approach"
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+  - verify_minimum_failed_attempts
+  - gather_comprehensive_context
+  - get_user_approval_for_model
+  - confirm_before_dispatch
+  - synthesize_findings
+  - respect_user_decisions
+
+  NEVER:
+  - dispatch_without_user_approval
+  - skip_model_selection
+  - ignore_user_feedback
+  - dispatch_before_3_attempts_without_acknowledgment

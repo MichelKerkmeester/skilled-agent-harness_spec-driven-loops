@@ -647,132 +647,129 @@ GitHub MCP provides programmatic access to GitHub's remote operations via Code M
 
 ### Access Pattern
 
-```javascript
-call_tool_chain(`github.github_{tool_name}({...})`)
+```typescript
+call_tool_chain({
+  code: `await github.github.{tool_name}({...})`
+})
 ```
 
 ### Pattern 1: Issue Management
 
-```javascript
+```typescript
 // Create issue
-call_tool_chain(`github.github_create_issue({
-  owner: 'owner',
-  repo: 'repo',
-  title: 'Bug: Login fails on Safari',
-  body: '## Description\\nLogin button unresponsive on Safari 17.\\n\\n## Steps\\n1. Navigate to login\\n2. Click login button',
-  labels: ['bug', 'browser-compat']
-})`)
+call_tool_chain({
+  code: `await github.github.create_issue({
+    owner: 'owner',
+    repo: 'repo',
+    title: 'Bug: Login fails on Safari',
+    body: '## Description\\nLogin button unresponsive on Safari 17.\\n\\n## Steps\\n1. Navigate to login\\n2. Click login button',
+    labels: ['bug', 'browser-compat']
+  })`
+})
 
 // Get issue details
-call_tool_chain(`github.github_get_issue({
-  owner: 'owner',
-  repo: 'repo',
-  issue_number: 123
-})`)
+call_tool_chain({
+  code: `await github.github.get_issue({
+    owner: 'owner',
+    repo: 'repo',
+    issue_number: 123
+  })`
+})
 
 // Search issues
-call_tool_chain(`github.github_search_issues({
-  q: 'repo:owner/repo is:issue is:open label:bug'
-})`)
+call_tool_chain({
+  code: `await github.github.search_issues({
+    q: 'repo:owner/repo is:issue is:open label:bug'
+  })`
+})
 
 // Add comment to issue
-call_tool_chain(`github.github_add_issue_comment({
-  owner: 'owner',
-  repo: 'repo',
-  issue_number: 123,
-  body: 'Investigated - this is related to WebKit changes in Safari 17.'
-})`)
+call_tool_chain({
+  code: `await github.github.add_issue_comment({
+    owner: 'owner',
+    repo: 'repo',
+    issue_number: 123,
+    body: 'Investigated - this is related to WebKit changes in Safari 17.'
+  })`
+})
 ```
 
 
 ### Pattern 2: Pull Request Review
 
-```javascript
+```typescript
 // List PRs needing review
-call_tool_chain(`github.github_list_pull_requests({
-  owner: 'owner',
-  repo: 'repo',
-  state: 'open'
-})`)
+call_tool_chain({
+  code: `await github.github.list_pull_requests({
+    owner: 'owner',
+    repo: 'repo',
+    state: 'open'
+  })`
+})
 
 // Get PR details with diff
-call_tool_chain(`github.github_get_pull_request({
-  owner: 'owner',
-  repo: 'repo',
-  pull_number: 42
-})`)
+call_tool_chain({
+  code: `await github.github.get_pull_request({
+    owner: 'owner',
+    repo: 'repo',
+    pull_number: 42
+  })`
+})
 
 // Create PR review
-call_tool_chain(`github.github_create_pull_request_review({
-  owner: 'owner',
-  repo: 'repo',
-  pull_number: 42,
-  event: 'APPROVE',  // or 'REQUEST_CHANGES', 'COMMENT'
-  body: 'LGTM! Clean implementation.'
-})`)
-
-// Add line comment during review
-call_tool_chain(`github.github_add_pull_request_review_comment({
-  owner: 'owner',
-  repo: 'repo',
-  pull_number: 42,
-  body: 'Consider using optional chaining here',
-  commit_id: 'abc123def',
-  path: 'src/utils.js',
-  line: 42
-})`)
+call_tool_chain({
+  code: `await github.github.create_pull_request_review({
+    owner: 'owner',
+    repo: 'repo',
+    pull_number: 42,
+    event: 'APPROVE',  // or 'REQUEST_CHANGES', 'COMMENT'
+    body: 'LGTM! Clean implementation.'
+  })`
+})
 ```
 
 
 ### Pattern 3: CI/CD Status Check
 
-```javascript
-// List recent workflow runs
-call_tool_chain(`github.github_list_workflow_runs({
-  owner: 'owner',
-  repo: 'repo',
-  branch: 'main',
-  status: 'completed'  // or 'in_progress', 'queued'
-})`)
+> **Note**: CI/CD workflow status requires the `gh` CLI (not available in GitHub MCP):
 
-// Get specific workflow run
-call_tool_chain(`github.github_get_workflow_run({
-  owner: 'owner',
-  repo: 'repo',
-  run_id: 12345
-})`)
+```bash
+# List recent workflow runs
+gh run list --branch main --status completed
 
-// Get job logs for debugging failures
-call_tool_chain(`github.github_get_job_logs({
-  owner: 'owner',
-  repo: 'repo',
-  job_id: 67890
-})`)
+# Get specific workflow run
+gh run view 12345
+
+# Get job logs for debugging failures
+gh run view 12345 --log
 ```
 
 
 ### Pattern 4: Remote File Access
 
-```javascript
+```typescript
 // Read file from remote repo (useful for checking configs)
-call_tool_chain(`github.github_get_file_contents({
-  owner: 'owner',
-  repo: 'repo',
-  path: 'package.json',
-  ref: 'main'  // branch, tag, or commit SHA
-})`)
-
-// List branches
-call_tool_chain(`github.github_list_branches({
-  owner: 'owner',
-  repo: 'repo'
-})`)
+call_tool_chain({
+  code: `await github.github.get_file_contents({
+    owner: 'owner',
+    repo: 'repo',
+    path: 'package.json',
+    ref: 'main'  // branch, tag, or commit SHA
+  })`
+})
 
 // Search repositories
-call_tool_chain(`github.github_search_repositories({
-  q: 'oauth2 language:javascript stars:>100'
-})`)
+call_tool_chain({
+  code: `await github.github.search_repositories({
+    q: 'oauth2 language:javascript stars:>100'
+  })`
+})
 ```
+
+> **Note**: Branch listing requires the `gh` CLI:
+> ```bash
+> gh api repos/{owner}/{repo}/branches
+> ```
 
 
 ### When to Use GitHub MCP vs Local Git

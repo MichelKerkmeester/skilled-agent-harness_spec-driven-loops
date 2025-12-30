@@ -523,7 +523,7 @@ For each checklist item:
 
 ---
 
-## 18. 💡 CORE PRINCIPLE
+## 18. 💡 Core Principle
 
 **Every file change deserves documentation.**
 
@@ -546,7 +546,7 @@ When in doubt:
 - [level_specifications.md](./level_specifications.md) - Complete Level 1-3 requirements and migration
 - [path_scoped_rules.md](./path_scoped_rules.md) - Path-scoped validation rules reference
 
-### Templates (12 total)
+### Templates (10)
 
 **Core Templates (Level 1-3):**
 - [spec.md](../templates/spec.md) - Requirements and user stories template

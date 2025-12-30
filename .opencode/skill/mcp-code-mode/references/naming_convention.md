@@ -318,19 +318,19 @@ await notion.notion_API_post_page({ parent: {...}, properties: {...} });
 **Correct tool calls:**
 ```typescript
 // Navigation
-await chrome_devtools_1.chrome_devtools_new_page({});
-await chrome_devtools_1.chrome_devtools_navigate_page({ url: "..." });
-await chrome_devtools_1.chrome_devtools_close_page({ pageId: "..." });
+await chrome_devtools_1.chrome_devtools_1_new_page({});
+await chrome_devtools_1.chrome_devtools_1_navigate_page({ url: "..." });
+await chrome_devtools_1.chrome_devtools_1_close_page({ pageId: "..." });
 
 // Interaction
-await chrome_devtools_1.chrome_devtools_click({ selector: "..." });
-await chrome_devtools_1.chrome_devtools_fill({ selector: "...", value: "..." });
-await chrome_devtools_1.chrome_devtools_fill_form({ formData: {...} });
+await chrome_devtools_1.chrome_devtools_1_click({ selector: "..." });
+await chrome_devtools_1.chrome_devtools_1_fill({ selector: "...", value: "..." });
+await chrome_devtools_1.chrome_devtools_1_fill_form({ formData: {...} });
 
 // Inspection
-await chrome_devtools_1.chrome_devtools_take_screenshot({});
-await chrome_devtools_1.chrome_devtools_evaluate_script({ script: "..." });
-await chrome_devtools_1.chrome_devtools_get_console_message({});
+await chrome_devtools_1.chrome_devtools_1_take_screenshot({});
+await chrome_devtools_1.chrome_devtools_1_evaluate_script({ script: "..." });
+await chrome_devtools_1.chrome_devtools_1_get_console_message({});
 ```
 
 **Note:** Manual name includes instance number (`chrome_devtools_1`) to prevent conflicts with multiple Chrome DevTools instances.
@@ -461,7 +461,7 @@ ReferenceError: webflow_prod is not defined
 | `clickup`           | `clickup.clickup_{tool}`                   | `clickup.clickup_create_task()`                |
 | `figma`             | `figma.figma_{tool}`                       | `figma.figma_get_file()`                       |
 | `notion`            | `notion.notion_API_{tool}`                 | `notion.notion_API_get_user()`                 |
-| `chrome_devtools_1` | `chrome_devtools_1.chrome_devtools_{tool}` | `chrome_devtools_1.chrome_devtools_new_page()` |
+| `chrome_devtools_1` | `chrome_devtools_1.chrome_devtools_1_{tool}` | `chrome_devtools_1.chrome_devtools_1_new_page()` |
 | `github`            | `github.github_{tool}`                     | `github.github_get_pull_request()`             |
 
 ---

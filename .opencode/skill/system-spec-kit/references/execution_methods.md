@@ -40,15 +40,6 @@ bash .opencode/skill/system-spec-kit/scripts/validate-spec.sh --json specs/001-f
 | 1 | Warnings found (non-blocking) |
 | 2 | Errors found (blocking) |
 
-### validate-spec-folder.js
-
-Programmatic validation for integration with other tools.
-
-```javascript
-const { validateSpecFolder } = require('./scripts/validate-spec-folder.js');
-const result = validateSpecFolder('specs/001-feature/');
-```
-
 ---
 
 ## 3. 🏁 COMPLETION CHECKING

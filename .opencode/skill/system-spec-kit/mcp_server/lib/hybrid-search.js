@@ -18,6 +18,12 @@ let vectorSearchFn = null;
  * @param {Function} vectorSearch - Vector search function from vector-index
  */
 function init(database, vectorSearch) {
+  if (!database) {
+    throw new Error('[hybrid-search] init() requires a valid database instance');
+  }
+  if (typeof vectorSearch !== 'function') {
+    throw new Error('[hybrid-search] init() requires vectorSearch to be a function');
+  }
   db = database;
   vectorSearchFn = vectorSearch;
 }
