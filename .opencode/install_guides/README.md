@@ -103,9 +103,9 @@ Answer these questions to configure your installation:
 - **GitHub Copilot** → Requires GitHub authentication
 - **OpenAI / Codex** → Requires `OPENAI_API_KEY`
 - **Gemini (Google)** → Requires `GEMINI_API_KEY`
-- **Ollama (Local)** → For embeddings; optionally for local inference
+- **Ollama (Local)** → Optional for local inference
 
-> **Note:** Ollama with `nomic-embed-text` is required for Spec Kit Memory embeddings.
+> **Note:** Spec Kit Memory embeddings support multiple providers (OpenAI, HF Local, optional Ollama). HF Local works by default without additional installation. See [Section 7.3](#73-spec-kit-memory-mcp-bundled) for details.
 
 ---
 
@@ -193,7 +193,7 @@ git checkout -- script.sh
 **Notes:**
 - Node.js 22+ recommended for best performance
 - Python 3.12 recommended for Sequential Thinking
-- Ollama 0.3+ required for nomic-embed-text model
+- Ollama 0.3+ optional for local LLM inference
 
 ### 3.2 Resource Requirements
 

@@ -152,8 +152,12 @@
       ],
       "environment": {
         "_NOTE_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
-        "_NOTE_MODEL": "Uses nomic-embed-text-v1.5 (768-dim embeddings)",
-        "_NOTE_PORTABLE": "Uses relative path - works when copying project to new location"
+        "_NOTE_PROVIDERS": "Supports multiple embedding providers: OpenAI (1536/3072 dims), HF Local (768 dims, default), Ollama (optional)",
+        "_NOTE_AUTO_DETECTION": "If OPENAI_API_KEY exists, uses OpenAI automatically. Otherwise uses HF Local (no installation needed)",
+        "_NOTE_PORTABLE": "Uses relative path - works when copying project to new location",
+        "_EXAMPLE_OPENAI": "To use OpenAI: export OPENAI_API_KEY=sk-proj-... (auto-detected)",
+        "_EXAMPLE_FORCE_LOCAL": "To force HF Local: export EMBEDDINGS_PROVIDER=hf-local",
+        "_EXAMPLE_MODEL": "To change model: export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-large"
       },
       "enabled": true
     },

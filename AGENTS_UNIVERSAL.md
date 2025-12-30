@@ -30,6 +30,29 @@
 - **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
 - **Narsil MCP** for ALL code intelligence - semantic search (neural), structural queries, security scanning, call graphs. Accessed via Code Mode.
 
+### Embedding Provider Configuration (v12.0+)
+
+The Spec Kit Memory MCP supports multiple embedding providers with automatic detection:
+
+**Provider Selection (automatic):**
+1. If `OPENAI_API_KEY` environment variable exists → OpenAI (1536 or 3072 dims)
+2. Otherwise → HF Local (768 dims, no additional installation)
+3. Manual override: `EMBEDDINGS_PROVIDER=hf-local` forces local
+
+**Environment Variables:**
+- `EMBEDDINGS_PROVIDER` - Provider selection (auto|openai|hf-local|ollama)
+- `OPENAI_API_KEY` - Enables OpenAI auto-detection
+- `OPENAI_EMBEDDINGS_MODEL` - Model selection (default: text-embedding-3-small)
+- `HF_EMBEDDINGS_MODEL` - HF model (default: nomic-ai/nomic-embed-text-v1.5)
+
+**Verify Active Provider:**
+Use `memory_health` tool to see current configuration and provider status.
+
+**Common Issues:**
+- **"Dimension mismatch" error** → Switched providers mid-database. Each provider uses its own DB (DB-per-profile architecture prevents this, but restart with clean DB if needed).
+- **Embeddings slow** → OpenAI may be timing out. Check API key validity or force HF local: `export EMBEDDINGS_PROVIDER=hf-local`
+- **"Provider not available"** → Check environment variables are set correctly. HF Local always works as fallback.
+
 ### Quick Reference: Common Workflows
 
 | Task                     | Flow                                                                                                                                     |
