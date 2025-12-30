@@ -8,7 +8,7 @@
     "external_directory": "allow"
   },
   "plugin": [
-    "opencode-antigravity-auth@1.2.4",
+    "opencode-antigravity-auth@1.2.6",
     "opencode-openai-codex-auth@4.1.1"
   ],
   "provider": {
@@ -161,11 +161,11 @@
       "type": "local",
       "command": [
         "node",
-        "${HOME}/path/to/code-mode/code-mode-mcp/dist/index.js"
+        "/Users/michelkerkmeester/MEGA/MCP Servers/code-mode/code-mode-mcp/dist/index.js"
       ],
       "environment": {
         "UTCP_CONFIG_FILE": ".utcp_config.json",
-        "_NOTE_SERVER_PATH": "Code Mode server location - update ${HOME}/... path for your system",
+        "_NOTE_SERVER_PATH": "Code Mode server location - update path for your system",
         "_NOTE_CONFIG": "UTCP config uses relative path - portable across project copies"
       },
       "enabled": true

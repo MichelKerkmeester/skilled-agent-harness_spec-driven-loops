@@ -28,13 +28,13 @@ Templates for creating slash commands with proper frontmatter, mandatory gates, 
 
 ### Core Characteristics
 
-| Characteristic | Description |
-|----------------|-------------|
-| **Markdown-based** | Human-readable instruction files |
+| Characteristic         | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| **Markdown-based**     | Human-readable instruction files                      |
 | **Frontmatter-driven** | Metadata controls behavior (description, args, tools) |
-| **Argument-aware** | Parse and validate user input via `$ARGUMENTS` |
-| **Status-reporting** | Return structured outcomes (`STATUS=OK\|FAIL`) |
-| **Tool-restricted** | `allowed-tools` limits available tools |
+| **Argument-aware**     | Parse and validate user input via `$ARGUMENTS`        |
+| **Status-reporting**   | Return structured outcomes (`STATUS=OK\|FAIL`)        |
+| **Tool-restricted**    | `allowed-tools` limits available tools                |
 
 ### How Commands Are Invoked
 
@@ -83,49 +83,18 @@ Level 3: Mode-Based / Dispatch Command
 
 ### Create Command When
 
-**Workflow Indicators**:
 - Multi-step process with defined phases
 - Repeated task needing consistency across sessions
 - Requires confirmation gates (destructive actions)
 - Multiple argument patterns need routing
-
-**Control Requirements**:
 - User should control execution pace (`:auto`/`:confirm` modes)
 - Tool restrictions needed for security/focus
-- Structured status reporting required
-
-**Priority by Use Case**:
-
-| Scenario | Priority | Reason |
-|----------|----------|--------|
-| Multi-step workflow | **High** | Single invocation for complex process |
-| Repeated task | **High** | Consistency across sessions |
-| Requires confirmation gates | **High** | Prevent accidental actions |
-| Multiple argument patterns | **Medium** | Structured routing needed |
-| Mode variants (auto/confirm) | **Medium** | User control over execution |
-| Tool restrictions needed | **Medium** | Security/focus |
 
 ### Use Skill Instead When
 
-**Reference Documentation Indicators**:
 - Content is reference material, not executable workflow
 - Complex domain knowledge that multiple commands might need
 - Reusable patterns/standards across multiple commands
-
-| Scenario | Better Choice | Reason |
-|----------|---------------|--------|
-| Reference documentation | Skill (SKILL.md + references/) | Not an executable workflow |
-| Complex domain knowledge | Skill with bundled resources | Reusable across contexts |
-| Reusable across commands | Skill (commands invoke skills) | DRY principle |
-| Standards/patterns library | Skill | Reference, not execution |
-
-### Skip Command When
-
-**Simplicity Indicators**:
-- One-time task (just do it inline)
-- Simple enough to explain in conversation
-- No argument parsing needed
-- No status reporting required
 
 ### Decision Framework
 
@@ -162,14 +131,14 @@ Is this a repeatable workflow with defined steps?
 
 ### Command Types by Complexity
 
-| Type | Complexity | Lines | Use When |
-|------|------------|-------|----------|
-| **Simple** | Low | 50-100 | Single action, few args |
-| **Workflow** | Medium | 100-200 | Multi-step process with outputs |
-| **Mode-Based** | Medium | 150-250 | User controls execution pace |
-| **Argument Dispatch** | Medium | 150-300 | Multiple entry points/actions |
-| **Destructive** | Medium | 100-180 | Irreversible actions, needs confirmation |
-| **Namespace** | Varies | 50-150 each | Related commands grouped together |
+| Type                  | Complexity | Lines       | Use When                                 |
+| --------------------- | ---------- | ----------- | ---------------------------------------- |
+| **Simple**            | Low        | 50-100      | Single action, few args                  |
+| **Workflow**          | Medium     | 100-200     | Multi-step process with outputs          |
+| **Mode-Based**        | Medium     | 150-250     | User controls execution pace             |
+| **Argument Dispatch** | Medium     | 150-300     | Multiple entry points/actions            |
+| **Destructive**       | Medium     | 100-180     | Irreversible actions, needs confirmation |
+| **Namespace**         | Varies     | 50-150 each | Related commands grouped together        |
 
 ---
 
@@ -177,14 +146,14 @@ Is this a repeatable workflow with defined steps?
 
 ### Overview
 
-| Type | Complexity | Use When | Template Section |
-|------|------------|----------|------------------|
-| **Simple** | Low | Single action, few args | Section 10 |
-| **Workflow** | Medium | Multi-step process | Section 11 |
-| **Mode-Based** | Medium | `:auto`/`:confirm` variants | Section 12 |
-| **Argument Dispatch** | Medium | Multiple entry points/actions | Section 13 |
-| **Destructive** | Medium | Requires confirmation | Section 14 |
-| **Namespace** | Varies | Grouped related commands | Section 15 |
+| Type                  | Complexity | Use When                      | Template Section |
+| --------------------- | ---------- | ----------------------------- | ---------------- |
+| **Simple**            | Low        | Single action, few args       | Section 10       |
+| **Workflow**          | Medium     | Multi-step process            | Section 11       |
+| **Mode-Based**        | Medium     | `:auto`/`:confirm` variants   | Section 12       |
+| **Argument Dispatch** | Medium     | Multiple entry points/actions | Section 13       |
+| **Destructive**       | Medium     | Requires confirmation         | Section 14       |
+| **Namespace**         | Varies     | Grouped related commands      | Section 15       |
 
 ### Choosing the Right Type
 
@@ -216,15 +185,15 @@ Start Here
 
 ### Common Sections (All Command Types)
 
-| Order | Section | Required | Purpose |
-|-------|---------|----------|---------|
-| 0 | **Frontmatter** | Yes | Metadata (description, args, tools) |
-| 1 | **Mandatory Gate** | If required args | Prevent context inference |
-| 2 | **Title + Purpose** | Yes | What the command does |
-| 3 | **Contract** | Recommended | Inputs/outputs specification |
-| 4 | **Instructions** | Yes | Step-by-step execution |
-| 5 | **Examples** | Recommended | Usage demonstrations |
-| 6 | **Notes** | Optional | Caveats, requirements |
+| Order | Section             | Required         | Purpose                             |
+| ----- | ------------------- | ---------------- | ----------------------------------- |
+| 0     | **Frontmatter**     | Yes              | Metadata (description, args, tools) |
+| 1     | **Mandatory Gate**  | If required args | Prevent context inference           |
+| 2     | **Title + Purpose** | Yes              | What the command does               |
+| 3     | **Contract**        | Recommended      | Inputs/outputs specification        |
+| 4     | **Instructions**    | Yes              | Step-by-step execution              |
+| 5     | **Examples**        | Recommended      | Usage demonstrations                |
+| 6     | **Notes**           | Optional         | Caveats, requirements               |
 
 ### Minimal Command Structure
 
@@ -257,58 +226,21 @@ allowed-tools: Tool1, Tool2
 
 ## 5. 📝 STEP NUMBERING RULES
 
-### Full Integer Steps Only
+**Rule**: Use full integers only (1, 2, 3). No decimals (1.5, 2.5) or sub-steps (1.1, 1.2).
 
-All primary workflow steps and phases MUST use full integer numbering. Half-steps and decimal sub-steps are PROHIBITED.
+| Element  | Correct                   | Wrong              |
+| -------- | ------------------------- | ------------------ |
+| Steps    | Step 1, Step 2, Step 3    | Step 1.5, Step 2.5 |
+| Phases   | PHASE 1, PHASE 2, PHASE 3 | PHASE 1.5, PHASE 2 |
+| Sections | ## 1. 🎯 PURPOSE           | ## 1.1 PURPOSE     |
 
-### Primary Steps
-
-| Correct | Wrong |
-|---------|-------|
-| Step 1, Step 2, Step 3 | Step 1.5, Step 2.5 |
-| 1. Do X, 2. Do Y, 3. Do Z | 1.1 Do X, 1.2 Do Y |
-
-### Phase Numbering
-
-| Correct | Wrong |
-|---------|-------|
-| PHASE 1, PHASE 2, PHASE 3 | PHASE 1.5, PHASE 2.5 |
-| 🔒 PHASE 1: Input | 🔒 PHASE 1.5: Intermediate |
-
-### Section Numbering
-
-| Correct | Wrong |
-|---------|-------|
-| ## 1. 🎯 PURPOSE | ## 1.1 PURPOSE |
-| ## 5. 📌 REFERENCE | ## 5.1 🔧 MCP USAGE |
-| ## 6. 🔍 EXAMPLES | ## 5.2 🔀 DISPATCH |
-
-### Sub-Activities Within a Step
-
-For sub-activities within a single step, use bullets or letters (NOT decimal sub-steps):
-
-**Correct:**
+**Sub-activities**: Use bullets within a step, not decimal sub-steps:
 ```markdown
 Step 3: Execute workflow
   - Load configuration
   - Validate inputs  
   - Run process
 ```
-
-**Wrong:**
-```markdown
-Step 3.1: Load configuration
-Step 3.2: Validate inputs
-Step 3.3: Run process
-```
-
-### Why This Matters
-
-Half-steps create:
-- Confusion about step sequence
-- Difficulty tracking progress
-- Inconsistent documentation
-- Harder maintenance
 
 ---
 
@@ -320,48 +252,39 @@ Commands use two types of emojis: **semantic** (for blocking/validation states) 
 
 These emojis indicate workflow state and enforcement:
 
-| Emoji | Name | Purpose | Example Usage |
-|-------|------|---------|---------------|
-| 🚨 | Alert | Critical/mandatory sections | `# 🚨 MANDATORY PHASES` |
-| 🔒 | Lock | Phase/gate headers | `## 🔒 PHASE 1: INPUT` |
-| ✅ | Check | Passed/success status | `✅ PASSED` |
-| ⏭️ | Skip | N/A or skipped | `⏭️ N/A (no memory files)` |
-| ⛔ | Stop | Hard stop/blocking error | `⛔ STOP - Phase incomplete` |
-| ⚠️ | Warning | Non-blocking alert | `⚠️ VIOLATION DETECTED` |
-| ❌ | Fail | Validation failure | `❌ FAILED` |
+| Emoji | Name    | Purpose                     | Example Usage               |
+| ----- | ------- | --------------------------- | --------------------------- |
+| 🚨     | Alert   | Critical/mandatory sections | `# 🚨 MANDATORY PHASES`      |
+| 🔒     | Lock    | Phase/gate headers          | `## 🔒 PHASE 1: INPUT`       |
+| ✅     | Check   | Passed/success status       | `✅ PASSED`                  |
+| ⏭️     | Skip    | N/A or skipped              | `⏭️ N/A (no memory files)`   |
+| ⛔     | Stop    | Hard stop/blocking error    | `⛔ STOP - Phase incomplete` |
+| ⚠️     | Warning | Non-blocking alert          | `⚠️ VIOLATION DETECTED`      |
+| ❌     | Fail    | Validation failure          | `❌ FAILED`                  |
 
 ### Section Emojis (Standardized)
 
 These emojis identify section types. Use EXACTLY as shown:
 
-| Emoji | Section | H2 Format | Purpose |
-|-------|---------|-----------|---------|
-| 🎯 | PURPOSE | `## N. 🎯 PURPOSE` | What the command does |
-| 📝 | CONTRACT | `## N. 📝 CONTRACT` | Inputs/outputs specification |
-| 📊 | WORKFLOW | `## N. 📊 WORKFLOW OVERVIEW` | Process flow/steps table |
-| ⚡ | INSTRUCTIONS | `## N. ⚡ INSTRUCTIONS` | How to execute |
-| 📌 | REFERENCE | `## N. 📌 REFERENCE` | Related resources |
-| 🔍 | EXAMPLES | `## N. 🔍 EXAMPLES` | Usage demonstrations |
-| 🔗 | RELATED | `## N. 🔗 RELATED COMMANDS` | Links to related commands |
-| 🔧 | TOOLS | `## N. 🔧 TOOL SIGNATURES` | MCP/tool configuration |
-| 🔀 | ROUTING | `## N. 🔀 ARGUMENT ROUTING` | Mode detection/dispatch |
-| 📚 | DOCS | `## N. 📚 FULL DOCUMENTATION` | Link to full docs |
-| 📋 | INPUT | `## N. 📋 USER INPUT` | User input display |
-
-### Mode Icons (Search Commands Only)
-
-| Emoji | Mode | Usage |
-|-------|------|-------|
-| 🔮 | Semantic | AI-powered meaning search |
-| 🏗️ | Structural | AST/symbol search |
-| 🧠 | Analysis | Deep code analysis |
+| Emoji | Section      | H2 Format                    | Purpose                      |
+| ----- | ------------ | ---------------------------- | ---------------------------- |
+| 🎯     | PURPOSE      | `## N. 🎯 PURPOSE`            | What the command does        |
+| 📝     | CONTRACT     | `## N. 📝 CONTRACT`           | Inputs/outputs specification |
+| 📊     | WORKFLOW     | `## N. 📊 WORKFLOW OVERVIEW`  | Process flow/steps table     |
+| ⚡     | INSTRUCTIONS | `## N. ⚡ INSTRUCTIONS`       | How to execute               |
+| 📌     | REFERENCE    | `## N. 📌 REFERENCE`          | Related resources            |
+| 🔍     | EXAMPLES     | `## N. 🔍 EXAMPLES`           | Usage demonstrations         |
+| 🔗     | RELATED      | `## N. 🔗 RELATED COMMANDS`   | Links to related commands    |
+| 🔧     | TOOLS        | `## N. 🔧 TOOL SIGNATURES`    | MCP/tool configuration       |
+| 🔀     | ROUTING      | `## N. 🔀 ARGUMENT ROUTING`   | Mode detection/dispatch      |
+| 📚     | DOCS         | `## N. 📚 FULL DOCUMENTATION` | Link to full docs            |
+| 📋     | INPUT        | `## N. 📋 USER INPUT`         | User input display           |
 
 ### Emoji Consistency Rules
 
 1. **One emoji per purpose**: Don't use 📋 for PURPOSE (use 🎯)
 2. **One purpose per emoji**: Don't use ⚡ for both INSTRUCTIONS and GATE STATUS
-3. **Always include emoji**: Every H2 section header includes its emoji
-4. **Exact format**: `## N. [EMOJI] SECTION-NAME` (number, period, space, emoji, space, name)
+3. **Exact format**: `## N. [EMOJI] SECTION-NAME` (number, period, space, emoji, space, name)
 
 ---
 
@@ -414,32 +337,13 @@ disable-model-invocation: true
 ---
 ```
 
-### Frontmatter Examples
+### Example
 
-**Simple search command:**
-```yaml
----
-description: Search codebase semantically using natural language queries
-argument-hint: "<query> [--refined]"
-allowed-tools: mcp__semantic-search__semantic_search
----
-```
-
-**Workflow command:**
 ```yaml
 ---
 description: Complete spec folder workflow (5 steps) - research through implementation
 argument-hint: "<task> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Task
----
-```
-
-**Destructive command:**
-```yaml
----
-description: Reset semantic index (DESTRUCTIVE)
-argument-hint: "[--confirm]"
-allowed-tools: Bash
 ---
 ```
 
@@ -456,11 +360,11 @@ Without this gate, AI agents may:
 
 ### When to Use
 
-| Argument Type | Use Mandatory Gate? | Example |
-|---------------|---------------------|---------|
-| `<required>` (angle brackets) | **YES** | `<task>`, `<query>`, `<spec-folder>` |
-| `[optional]` (square brackets) | No (has default) | `[count]`, `[--flag]` |
-| `[:auto\|:confirm]` mode flags | No (mode selection) | Mode suffixes only |
+| Argument Type                  | Use Mandatory Gate? | Example                              |
+| ------------------------------ | ------------------- | ------------------------------------ |
+| `<required>` (angle brackets)  | **YES**             | `<task>`, `<query>`, `<spec-folder>` |
+| `[optional]` (square brackets) | No (has default)    | `[count]`, `[--flag]`                |
+| `[:auto\|:confirm]` mode flags | No (mode selection) | Mode suffixes only                   |
 
 ### The Pattern
 
@@ -496,77 +400,72 @@ IF $ARGUMENTS contains [expected input]:
 
 ### Example Questions by Command Type
 
-| Command Purpose | Question |
-|-----------------|----------|
-| Planning | "What would you like to plan?" |
-| Research | "What topic would you like to research?" |
-| Implementation | "Which spec folder would you like to implement?" |
-| File improvement | "What would you like to improve and which files?" |
-| Prompt enhancement | "What prompt would you like to improve?" |
-| Generic routing | "What request would you like to route?" |
+| Command Purpose    | Question                                          |
+| ------------------ | ------------------------------------------------- |
+| Planning           | "What would you like to plan?"                    |
+| Research           | "What topic would you like to research?"          |
+| Implementation     | "Which spec folder would you like to implement?"  |
+| File improvement   | "What would you like to improve and which files?" |
+| Prompt enhancement | "What prompt would you like to improve?"          |
+| Generic routing    | "What request would you like to route?"           |
 
----
+### Multi-Phase Blocking Pattern
 
-## 9. 🔀 MODE DETECTION PATTERN
-
-### Overview
-
-Mode-based commands support `:auto` and `:confirm` execution modes, giving users control over approval gates.
-
-### Mode Definitions
-
-| Pattern | Mode | Behavior |
-|---------|------|----------|
-| `/command:auto` | AUTONOMOUS | Execute all steps without user approval gates |
-| `/command:confirm` | INTERACTIVE | Pause at each step for user approval |
-| `/command` (no suffix) | PROMPT | Ask user to choose mode |
-
-### Mode Selection Logic
+For commands requiring multiple inputs before workflow execution:
 
 ```markdown
-## MODE DETECTION & ROUTING
+# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
 
-### Step 1: Parse Mode Suffix
+> **HARD BLOCK**: Do not proceed past this section until ALL phases complete.
 
-Detect execution mode from command invocation:
+## 🔒 PHASE 1: INPUT COLLECTION
+[Collect required inputs from $ARGUMENTS or prompt user]
 
-| Pattern | Mode | Behavior |
-|---------|------|----------|
-| `/command:auto` | AUTONOMOUS | Execute all steps without user approval gates |
-| `/command:confirm` | INTERACTIVE | Pause at each step for user approval |
-| `/command` (no suffix) | PROMPT | Ask user to choose mode |
+## 🔒 PHASE 2: CONTEXT VERIFICATION
+[Verify prerequisites exist]
 
-### Step 2: Mode Selection (when no suffix detected)
+## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-If no `:auto` or `:confirm` suffix is present, present options to user:
+| Phase            | Status | Blocker? |
+| ---------------- | ------ | -------- |
+| Input Collection | ✅/❌   | HARD     |
+| Context Verify   | ✅/❌   | HARD     |
 
-**Question**: "How would you like to execute this workflow?"
-
-| Option | Mode | Description |
-|--------|------|-------------|
-| **A** | Autonomous | Execute all steps without approval gates |
-| **B** | Interactive | Pause at each step for approval |
-
-**Wait for user response before proceeding.**
+**Gate Check:** ALL phases must show ✅. ANY ❌ = STOP and resolve.
 ```
 
-### Key Behaviors by Mode
+### Violation Self-Detection
 
-**Autonomous Mode (`:auto`):**
-- Executes all steps without user approval gates
-- Self-validates at each checkpoint
-- Makes informed decisions based on best judgment
-- Documents all significant decisions
+Every workflow command MUST include:
 
-**Interactive Mode (`:confirm`):**
-- Pauses after each step for user approval
-- Presents options: Approve, Review Details, Modify, Skip, Abort
-- Documents user decisions at each checkpoint
-- Allows course correction throughout workflow
+```markdown
+## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+
+**Before proceeding, verify you have NOT:**
+- [ ] Skipped any required phase
+- [ ] Used project tools before completing phases
+- [ ] Proceeded without required user confirmation
+
+**If ANY violation:** STOP → State violation → Return to phase → Complete properly
+```
+
+### Gate Exemption Declaration
+
+For commands exempt from Gate 3:
+
+```markdown
+## ⚡ GATE 3 STATUS: EXEMPT
+
+| Aspect      | Value                            |
+| ----------- | -------------------------------- |
+| Location    | [Where output goes]              |
+| Reason      | [Why exempt]                     |
+| Alternative | [What replaces spec folder]      |
+```
 
 ---
 
-## 10. 📄 SIMPLE COMMAND TEMPLATE
+## 9. 📄 SIMPLE COMMAND TEMPLATE
 
 Use for: Single-action commands with straightforward execution.
 
@@ -683,7 +582,7 @@ allowed-tools: mcp__semantic-search__semantic_search
 
 ---
 
-## 11. 📊 WORKFLOW COMMAND TEMPLATE
+## 10. 📊 WORKFLOW COMMAND TEMPLATE
 
 Use for: Multi-step processes with defined phases and outputs.
 
@@ -716,12 +615,12 @@ $ARGUMENTS
 
 ## 2. 🔍 WORKFLOW OVERVIEW ([N] STEPS)
 
-| Step | Name | Purpose | Outputs |
-|------|------|---------|---------|
-| 1 | [Step Name] | [What it does] | [Artifacts created] |
-| 2 | [Step Name] | [What it does] | [Artifacts created] |
-| 3 | [Step Name] | [What it does] | [Artifacts created] |
-| N | Save Context | Preserve conversation | memory/*.md |
+| Step | Name         | Purpose               | Outputs             |
+| ---- | ------------ | --------------------- | ------------------- |
+| 1    | [Step Name]  | [What it does]        | [Artifacts created] |
+| 2    | [Step Name]  | [What it does]        | [Artifacts created] |
+| 3    | [Step Name]  | [What it does]        | [Artifacts created] |
+| N    | Save Context | Preserve conversation | memory/*.md         |
 
 ---
 
@@ -743,8 +642,8 @@ $ARGUMENTS
 
 ## 4. 🔧 FAILURE RECOVERY
 
-| Failure Type | Recovery Action |
-|--------------|-----------------|
+| Failure Type        | Recovery Action  |
+| ------------------- | ---------------- |
 | [Failure condition] | [How to recover] |
 | [Another condition] | [Recovery steps] |
 
@@ -752,10 +651,10 @@ $ARGUMENTS
 
 ## 5. ⚠️ ERROR HANDLING
 
-| Condition | Action |
-|-----------|--------|
+| Condition          | Action                            |
+| ------------------ | --------------------------------- |
 | Empty `$ARGUMENTS` | Prompt user: "Please describe..." |
-| [Other condition] | [Action to take] |
+| [Other condition]  | [Action to take]                  |
 
 ---
 
@@ -800,7 +699,7 @@ Next Steps:
 
 ---
 
-## 12. 🔀 MODE-BASED COMMAND TEMPLATE
+## 11. 🔀 MODE-BASED COMMAND TEMPLATE
 
 Use for: Commands supporting `:auto` and `:confirm` execution modes.
 
@@ -837,11 +736,11 @@ $ARGUMENTS
 
 Detect execution mode from command invocation:
 
-| Pattern | Mode | Behavior |
-|---------|------|----------|
-| `/command:auto` | AUTONOMOUS | Execute all steps without user approval gates |
-| `/command:confirm` | INTERACTIVE | Pause at each step for user approval |
-| `/command` (no suffix) | PROMPT | Ask user to choose mode |
+| Pattern                | Mode        | Behavior                                      |
+| ---------------------- | ----------- | --------------------------------------------- |
+| `/command:auto`        | AUTONOMOUS  | Execute all steps without user approval gates |
+| `/command:confirm`     | INTERACTIVE | Pause at each step for user approval          |
+| `/command` (no suffix) | PROMPT      | Ask user to choose mode                       |
 
 ### Step 2: Mode Selection (when no suffix detected)
 
@@ -849,10 +748,10 @@ If no `:auto` or `:confirm` suffix is present, present options to user:
 
 **Question**: "How would you like to execute this workflow?"
 
-| Option | Mode | Description |
-|--------|------|-------------|
-| **A** | Autonomous | Execute all steps without approval gates. Best for [use case]. |
-| **B** | Interactive | Pause at each step for approval. Best for [use case]. |
+| Option | Mode        | Description                                                    |
+| ------ | ----------- | -------------------------------------------------------------- |
+| **A**  | Autonomous  | Execute all steps without approval gates. Best for [use case]. |
+| **B**  | Interactive | Pause at each step for approval. Best for [use case].          |
 
 **Wait for user response before proceeding.**
 
@@ -908,7 +807,7 @@ When resuming work in an existing spec folder, prompt to load prior session memo
 
 ---
 
-## 13. 🧭 ARGUMENT DISPATCH PATTERN
+## 12. 🧭 ARGUMENT DISPATCH PATTERN
 
 Use for: Commands that accept multiple argument types and need to route to different actions.
 
@@ -918,11 +817,11 @@ When a single command handles multiple argument patterns (like `/semantic_search
 
 ### When to Use Argument Dispatch
 
-| Scenario | Use Pattern? |
-|----------|--------------|
-| Command has multiple action keywords | **Yes** |
-| Command accepts both keywords AND queries | **Yes** |
-| Command has only one action | No (use simple template) |
+| Scenario                                   | Use Pattern?                 |
+| ------------------------------------------ | ---------------------------- |
+| Command has multiple action keywords       | **Yes**                      |
+| Command accepts both keywords AND queries  | **Yes**                      |
+| Command has only one action                | No (use simple template)     |
 | Command uses `:auto`/`:confirm` modes only | No (use mode-based template) |
 
 ### The Pattern
@@ -978,12 +877,12 @@ $ARGUMENTS
 
 ## 3. 📊 EXAMPLE ROUTING
 
-| Input | Detected As | Action |
-|-------|-------------|--------|
-| (empty) | No args | Show menu/help |
-| `start` | Keyword | START ACTION |
-| `how does auth work` | Natural language | SEARCH ACTION |
-| `oauth` | Single word | SEARCH ACTION (default) |
+| Input                | Detected As      | Action                  |
+| -------------------- | ---------------- | ----------------------- |
+| (empty)              | No args          | Show menu/help          |
+| `start`              | Keyword          | START ACTION            |
+| `how does auth work` | Natural language | SEARCH ACTION           |
+| `oauth`              | Single word      | SEARCH ACTION (default) |
 ```
 
 ### Real Example: `/semantic_search`
@@ -1024,7 +923,7 @@ $ARGUMENTS
 
 ---
 
-## 14. ⚠️ DESTRUCTIVE COMMAND TEMPLATE
+## 13. ⚠️ DESTRUCTIVE COMMAND TEMPLATE
 
 Use for: Commands that delete data or make irreversible changes.
 
@@ -1139,7 +1038,7 @@ allowed-tools: Bash
 
 ---
 
-## 15. 📁 NAMESPACE COMMAND PATTERN
+## 14. 📁 NAMESPACE COMMAND PATTERN
 
 Use for: Grouping related commands under a common prefix.
 
@@ -1168,15 +1067,15 @@ Use for: Grouping related commands under a common prefix.
 
 ### Naming Conventions
 
-| Element | Convention | Example |
-|---------|------------|---------|
-| Namespace directory | lowercase, hyphen-case | `index/`, `git-workflow/` |
-| Action files | lowercase, hyphen-case | `search.md`, `full-reset.md` |
-| Resulting command | namespace:action | `/index:search` |
+| Element             | Convention             | Example                      |
+| ------------------- | ---------------------- | ---------------------------- |
+| Namespace directory | lowercase, hyphen-case | `index/`, `git-workflow/`    |
+| Action files        | lowercase, hyphen-case | `search.md`, `full-reset.md` |
+| Resulting command   | namespace:action       | `/index:search`              |
 
 ---
 
-## 16. ✅ VALIDATION CHECKLIST
+## 15. ✅ VALIDATION CHECKLIST
 
 Before publishing a command, verify:
 
@@ -1222,408 +1121,68 @@ Commands with mandatory input phases use these semantic emojis:
 
 ---
 
-## 17. 📊 COMMAND STRUCTURE TEMPLATES
-
-Commands follow one of three structures based on their type.
-
-### Workflow Command Structure
-
-For commands with multi-step workflows (spec_kit/*, create/*, prompt/*):
-
-```markdown
----
-description: "[action verb] [what it does]"
-argument-hint: "<required> [optional]"
-allowed-tools: [tool1, tool2]
----
-
-## ⚡ GATE 3 STATUS: EXEMPT (if applicable)
-[Table explaining exemption]
-
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
-
-## 🔒 PHASE 1: [NAME]
-[Phase content with outputs]
-
-## 🔒 PHASE 2: [NAME]
-[Phase content with outputs]
-
-## 🔒 PHASE 3: [NAME] (Conditional)
-[Phase content with outputs]
-
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
-[Status table]
-
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
-[Violation checklist]
-
-# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
-[Workflow tracking table - if multi-step]
-
-# [Command Title]
-
-## 1. 🎯 PURPOSE
-[What the command does]
-
-## 2. 📝 CONTRACT
-[Inputs/outputs]
-
-## 3. 📊 WORKFLOW OVERVIEW
-[Steps table - if applicable]
-
-## 4. ⚡ INSTRUCTIONS
-[How to execute]
-
-## 5. 📌 REFERENCE
-[Related resources]
-
-## 6. 🔍 EXAMPLES
-[Usage demonstrations]
-
-## 7. 🔗 RELATED COMMANDS
-[Links - if applicable]
-```
-
-### Search Command Structure
-
-For routing-based search commands (search/*):
-
-```markdown
----
-description: "[search type] - [what it finds]"
-argument-hint: "<query> [--mode]"
-allowed-tools: [search_tools]
----
-
-# 🔍 PRE-SEARCH VALIDATION
-[Light validation - not full phases]
-
-# [Command Title]
-
-## 1. 📝 CONTRACT
-[Inputs/outputs with pattern table]
-
-## 2. 🔀 ARGUMENT ROUTING
-[Routing decision tree]
-
-## 3. 🎯 ROUTING DECISION DISPLAY
-[Display format for routing]
-
-## 4. 🔧 TOOL SIGNATURES
-[Tool call examples]
-
-## 5. 📊 DASHBOARD MODE
-[Default no-argument behavior]
-
-## 6. [MODE] MODE
-[Mode-specific sections, one per mode]
-
-## N. ⚠️ ERROR HANDLING
-[Error conditions]
-
-## N+1. 📌 QUICK REFERENCE
-[Quick command table]
-
-## N+2. 🔗 RELATED
-[Related resources]
-```
-
-### Simple Command Structure
-
-For lightweight commands (help, simple utilities):
-
-```markdown
----
-description: "[what it does]"
-argument-hint: "[arguments]"
-allowed-tools: [tools]
----
-
-# [Command Title]
-
-## 1. 🎯 PURPOSE
-[What the command does]
-
-## 2. 📝 CONTRACT
-[Inputs/outputs]
-
-## 3. ⚡ INSTRUCTIONS
-[How to execute]
-
-## 4. 🔍 EXAMPLES
-[Usage demonstrations]
-
-## 5. 🔗 RELATED COMMANDS
-[Links - if applicable]
-```
-
----
-
-## 18. 🔒 BLOCKING PATTERNS
-
-### Phase Status Verification Table
-
-Every workflow command with phases MUST include this verification table:
-
-```markdown
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
-
-| PHASE | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE |
-|-------|-----------------|-------------|--------------|
-| Phase 1: [Name] | ✅ PASSED | [  ] | [value] |
-| Phase 2: [Name] | ✅ PASSED | [  ] | [value] |
-| Phase 3: [Name] | ✅ PASSED or ⏭️ N/A | [  ] | [value] |
-
-**VERIFICATION CHECK:**
-- ALL required phases show ✅ PASSED or ⏭️ N/A? → Proceed to workflow
-- ANY phase shows ❌ or blank? → ⛔ STOP, complete missing phases
-```
-
-### Violation Self-Detection Section
-
-Every workflow command MUST include this section:
-
-```markdown
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
-
-**Before proceeding, verify you have NOT:**
-- [ ] Skipped any required phase
-- [ ] Used project tools before completing phases
-- [ ] Proceeded without required user confirmation
-- [ ] Made assumptions instead of asking
-
-**If ANY violation detected:**
-1. STOP immediately
-2. State: "I detected a violation: [description]"
-3. Return to the violated phase
-4. Complete properly before proceeding
-
-**Recovery Protocol:**
-- Phase violation → Return to phase, complete outputs
-- Tool violation → Acknowledge, restart from Phase 1
-- Confirmation violation → Ask user, wait for response
-```
-
-### Gate Exemption Declaration
-
-For commands exempt from Gate 3 (spec folder requirement):
-
-```markdown
-## ⚡ GATE 3 STATUS: EXEMPT
-
-| Aspect | Value |
-|--------|-------|
-| Location | [Where output goes] |
-| Reason | [Why exempt - e.g., "Self-documenting artifact"] |
-| Alternative | [What replaces spec folder - e.g., "Output location validation"] |
-```
-
-### Workflow Tracking Table
-
-For commands with 4+ steps:
-
-```markdown
-# 📊 WORKFLOW EXECUTION (N STEPS) - MANDATORY TRACKING
-
-| Step | Name | Status | Required Output | Verification |
-|------|------|--------|-----------------|--------------|
-| 1 | [Name] | ☐ | [Output] | [How to verify] |
-| 2 | [Name] | ☐ | [Output] | [How to verify] |
-| 3 | [Name] | ☐ | [Output] | [How to verify] |
-| ... | ... | ... | ... | ... |
-
-**Status Legend:** ☐ Pending | 🔄 In Progress | ✅ Complete | ⏭️ Skipped
-```
-
----
-
-## 19. 🔒 BLOCKING PHASE PATTERN
-
-For commands with mandatory input collection phases, use this structure to enforce blocking gates before workflow execution.
-
-### When to Use
-
-| Scenario | Use Blocking Phase Pattern? |
-|----------|----------------------------|
-| Command requires user input before ANY workflow steps | **Yes** |
-| Multiple inputs must be collected and validated | **Yes** |
-| Single optional input with defaults | No (use simple mandatory gate) |
-| No required inputs | No |
-
-### Pattern Structure
-
-```markdown
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
-
-> **HARD BLOCK**: Do not proceed past this section until ALL phases complete.
-
-## 🔒 PHASE 1: INPUT COLLECTION
-
-**Required Inputs:**
-- Input A: [description]
-- Input B: [description]
-
-**Collection Method:**
-1. Check `$ARGUMENTS` for provided values
-2. If missing, prompt user with structured options
-3. Validate format/type before proceeding
-
-## 🔒 PHASE 2: CONTEXT VERIFICATION
-
-**Verify:**
-- [ ] Required files exist
-- [ ] Permissions are sufficient
-- [ ] No conflicting state
-
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
-
-Before proceeding to workflow:
-
-| Phase | Status | Blocker? |
-|-------|--------|----------|
-| Input Collection | ✅/❌ | HARD |
-| Context Verification | ✅/❌ | HARD |
-
-**Gate Check:**
-- ALL phases must show ✅
-- ANY ❌ = STOP and resolve before continuing
-
----
-
-## 1. PURPOSE
-
-[Standard workflow sections begin here...]
-```
-
-### Key Elements
-
-| Element | Purpose |
-|---------|---------|
-| `# 🚨 MANDATORY PHASES` | H1 with semantic emoji signals critical blocking section |
-| `## 🔒 PHASE N:` | Each required phase uses lock emoji |
-| `## ✅ PHASE STATUS VERIFICATION` | Gate check before proceeding |
-| `---` separator | Visual break between blocking phases and workflow |
-| Standard sections follow | `## 1. PURPOSE`, `## 2. CONTRACT`, etc. (no decorative emoji) |
-
-### Example: Spec Creation Command
-
-```markdown
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
-
-## 🔒 PHASE 1: TASK IDENTIFICATION
-
-Check `$ARGUMENTS`:
-- If empty → Ask: "What would you like to work on?"
-- If provided → Parse and validate task description
-
-## 🔒 PHASE 2: SPEC FOLDER SELECTION
-
-Present options:
-- A) Use existing spec folder
-- B) Create new spec folder
-- C) Skip documentation (not recommended)
-
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
-
-| Phase | Required |
-|-------|----------|
-| Task identified | ✅ Must have explicit task |
-| Folder selected | ✅ Must have A/B/C response |
-
----
-
-## 1. PURPOSE
-
-Create structured documentation for development tasks...
-```
-
----
-
-## 20. ORCHESTRATOR + WORKERS PATTERN
+## 16. 🎭 ORCHESTRATOR + WORKERS PATTERN
 
 Use for: Commands that spawn parallel sub-agents for exploration/analysis.
 
-### Pattern Overview
-
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  OPUS ORCHESTRATOR                                          │
-│  - Understands task                                         │
-│  - Dispatches Sonnet workers                                │
-│  - Verifies hypotheses                                      │
-│  - Synthesizes findings                                     │
-│  - Creates final output                                     │
-└─────────────────────────────────────────────────────────────┘
-              │
-              ├──────────────────┬──────────────────┐
-              ▼                  ▼                  ▼
-┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│ SONNET WORKER 1 │  │ SONNET WORKER 2 │  │ SONNET WORKER N │
-│ Fast exploration│  │ Fast exploration│  │ Fast exploration│
-└─────────────────┘  └─────────────────┘  └─────────────────┘
+OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
+     │                              │
+     └── Synthesizes ←──────────────┘
 ```
 
-### Model Hierarchy
+| Role             | Model    | Responsibility                                        |
+| ---------------- | -------- | ----------------------------------------------------- |
+| **Orchestrator** | `opus`   | Task understanding, dispatch, verification, synthesis |
+| **Workers**      | `sonnet` | Fast parallel exploration, hypothesis generation      |
 
-| Role | Model | Responsibility |
-|------|-------|----------------|
-| **Orchestrator** | `opus` | Task understanding, dispatch, verification, synthesis |
-| **Workers** | `sonnet` | Fast parallel exploration, discovery, hypothesis generation |
-
-### When to Use
-
-| Scenario | Use Orchestrator Pattern? |
-|----------|--------------------------|
-| Parallel codebase exploration | Yes |
-| Multi-aspect analysis | Yes |
-| Complex planning with verification | Yes |
-| Simple single-action command | No |
-| Sequential workflow | No |
+**Use when**: Parallel codebase exploration, multi-aspect analysis, complex planning.
+**Skip when**: Simple single-action commands, sequential workflows.
 
 ---
 
-## 21. STATUS OUTPUT PATTERNS
+## 17. 📊 STATUS OUTPUT PATTERNS
 
 ### Standard Patterns
 
-| Pattern | Use Case | Example |
-|---------|----------|---------|
-| `STATUS=OK` | Simple success | Basic commands |
-| `STATUS=OK RESULTS_COUNT=N` | Search/query | `/index:search` |
-| `STATUS=OK ACTION=<action>` | State change | `/index:start` |
-| `STATUS=OK ACTION=<action> PATH=<path>` | File creation | `/spec_kit:complete` |
-| `STATUS=FAIL ERROR="<message>"` | All failures | Error handling |
-| `STATUS=CANCELLED ACTION=cancelled` | User abort | Interactive commands |
+| Pattern                                 | Use Case       | Example              |
+| --------------------------------------- | -------------- | -------------------- |
+| `STATUS=OK`                             | Simple success | Basic commands       |
+| `STATUS=OK RESULTS_COUNT=N`             | Search/query   | `/index:search`      |
+| `STATUS=OK ACTION=<action>`             | State change   | `/index:start`       |
+| `STATUS=OK ACTION=<action> PATH=<path>` | File creation  | `/spec_kit:complete` |
+| `STATUS=FAIL ERROR="<message>"`         | All failures   | Error handling       |
+| `STATUS=CANCELLED ACTION=cancelled`     | User abort     | Interactive commands |
 
 ---
 
-## 22. BEST PRACTICES SUMMARY
+## 18. 📋 BEST PRACTICES SUMMARY
 
 ### DO
 
-| Practice | Reason |
-|----------|--------|
+| Practice                                 | Reason                            |
+| ---------------------------------------- | --------------------------------- |
 | Include mandatory gate for required args | Prevents context inference errors |
-| Use action verbs in descriptions | Clear, scannable in /help |
-| Document all steps with checkpoints | Enables debugging and recovery |
-| Provide example usage | Users learn faster |
-| Return structured status | Enables automation |
-| Use appropriate command type | Right tool for the job |
+| Use action verbs in descriptions         | Clear, scannable in /help         |
+| Document all steps with checkpoints      | Enables debugging and recovery    |
+| Provide example usage                    | Users learn faster                |
+| Return structured status                 | Enables automation                |
+| Use appropriate command type             | Right tool for the job            |
 
 ### DON'T
 
-| Anti-Pattern | Problem |
-|--------------|---------|
-| Skip mandatory gate | AI will infer incorrectly |
-| Vague descriptions | Users won't know when to use |
-| Missing error handling | Failures become mysterious |
-| No examples | Users struggle to start |
-| Inconsistent status format | Breaks automation |
-| Over-complex commands | Split into namespace instead |
+| Anti-Pattern               | Problem                      |
+| -------------------------- | ---------------------------- |
+| Skip mandatory gate        | AI will infer incorrectly    |
+| Vague descriptions         | Users won't know when to use |
+| Missing error handling     | Failures become mysterious   |
+| No examples                | Users struggle to start      |
+| Inconsistent status format | Breaks automation            |
+| Over-complex commands      | Split into namespace instead |
 
 ---
 
-## 23. RELATED RESOURCES
+## 19. 🔗 RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type

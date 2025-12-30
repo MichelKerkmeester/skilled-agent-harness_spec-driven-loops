@@ -3,13 +3,13 @@
 A comprehensive guide to installing, configuring, and using the OpenCode OpenAI Codex Auth plugin - enabling OAuth authentication with your ChatGPT Plus/Pro subscription to access GPT-5.x models including GPT 5.2, GPT 5.1 Codex, Codex Max, and Codex Mini.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
+> **Scope**: opencode.json
 > **Package**: `opencode-openai-codex-auth`
 
 ---
 
 ## TABLE OF CONTENTS
 
-0. [🤖 AI Install Guide](#0--ai-install-guide)
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
@@ -24,7 +24,7 @@ A comprehensive guide to installing, configuring, and using the OpenCode OpenAI 
 
 ---
 
-## 0. 🤖 AI INSTALL GUIDE
+## 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 

@@ -1,10 +1,13 @@
-# Agent System
+# Opencode Agents — Primary & Sub-agents
 
-> Specialized AI personas with defined authorities, tool permissions, and behavioral rules for task execution.
+Comprehensive guide for creating and configuring OpenCode agents. Covers both **primary agents** (main assistants cycled via Tab key) and **subagents** (specialized assistants invoked via @ mention or automatically by primary agents). Includes built-in agents (Build, Plan, General, Explore), custom agent creation with YAML frontmatter, tool permissions, behavioral rules, and the distinction between agents (authority + tools) and skills (knowledge + workflows).
 
 Agents are the execution layer of the OpenCode system. Each agent is a specialized persona with specific capabilities, tool access, and behavioral constraints. Unlike skills (which provide knowledge and workflows), agents have **authority** to act and **tools** to execute.
 
 The agent system enables both focused single-agent work and complex multi-agent orchestration with parallel delegation.
+
+> **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
+> **Scope**: .opencode/agent
 
 ---
 
@@ -23,6 +26,103 @@ The agent system enables both focused single-agent work and complex multi-agent 
 
 ---
 
+## 🤖 AI SET-UP GUIDE
+
+### ⛔ HARD BLOCK: Write Agent Required
+
+> **⚠️ CRITICAL:** Agent creation REQUIRES the `@write` agent to be active.
+
+**Why @write is mandatory:**
+- Loads `agent_template.md` BEFORE creating (template-first workflow)
+- Validates frontmatter format (YAML syntax, required fields)
+- Ensures proper tool permissions and behavioral rules
+- Invokes `workflows-documentation` skill for documentation standards
+- Validates template alignment AFTER creating
+
+**Template Location:** `.opencode/skill/workflows-documentation/assets/agent_template.md`
+
+**Verification (MUST pass before proceeding):**
+- [ ] Write agent exists: `ls .opencode/agent/write.md`
+- [ ] Agent template exists: `ls .opencode/skill/workflows-documentation/assets/agent_template.md`
+- [ ] Use `@write` prefix when invoking the prompt below
+
+**❌ DO NOT** create agents without the @write agent — manual creation bypasses quality gates and frontmatter validation.
+
+**Reference:** `.opencode/agent/write.md` → Documentation creation standards
+
+---
+
+**Copy and paste this prompt for interactive agent creation:**
+
+```text
+@write I want to create a new agent for OpenCode. Please guide me through the process interactively by asking me questions one at a time.
+
+**PREREQUISITE CHECK (you MUST verify before proceeding):**
+- [ ] You are operating as the @write agent
+- [ ] workflows-documentation skill is accessible
+
+⚠️ If you are NOT the @write agent: STOP immediately and instruct the user to restart with the "@write" prefix. Do NOT proceed with agent creation.
+
+**Questions to ask me (one at a time, wait for my answer):**
+
+1. **Purpose**: What is the agent's purpose? What specific role will it fill?
+   (e.g., "Code review specialist", "Security auditor", "Test automation")
+
+2. **Authority**: What is this agent responsible for? What decisions can it make?
+   (e.g., "Approve/reject code changes", "Flag security issues", "Generate test cases")
+
+3. **Tool Permissions**: What tools will the agent need access to?
+   - read: Examine files
+   - write: Create files
+   - edit: Modify files
+   - bash: Run commands
+   - grep: Search content
+   - glob: Find files
+   - webfetch: Fetch URLs
+   - narsil: Semantic + structural code analysis
+   - memory: Spec Kit Memory
+   - chrome_devtools: Browser debugging
+   - task: Delegate to sub-agents (orchestrator only)
+
+4. **Behavioral Rules**: What should this agent ALWAYS do? NEVER do?
+   (e.g., "ALWAYS run tests before approving", "NEVER modify production files")
+
+5. **Skills Integration**: What skills should this agent invoke?
+   (e.g., "workflows-code for code standards", "system-spec-kit for documentation")
+
+6. **Agent Name**: What should we name this agent?
+   (Format: lowercase, single word or hyphenated, e.g., "review", "security-audit")
+
+**After gathering my answers, please:**
+
+1. Create the agent file at `.opencode/agent/<agent-name>.md`
+2. Generate proper YAML frontmatter with:
+   - name, description, mode, temperature
+   - tools (true/false for each)
+   - permission (allow/deny for actions)
+3. Create the agent body with:
+   - Core workflow section
+   - Domain-specific sections
+   - Anti-patterns section
+   - Related resources section
+4. Validate the frontmatter syntax
+5. Help me test the agent with a real example
+6. Iterate and refine based on testing
+
+My project is at: [your project path]
+```
+
+**What the AI will do:**
+- Ask questions one at a time to understand your agent requirements
+- Create the agent file with proper frontmatter structure
+- Generate behavioral rules based on your answers
+- Set appropriate tool permissions
+- Guide you through testing with real examples
+
+**Expected creation time:** 15-25 minutes
+
+---
+
 ## 1. 📖 OVERVIEW
 
 ### What Are Agents?
@@ -37,12 +137,40 @@ Agents are specialized AI personas defined in markdown files with YAML frontmatt
 
 Think of agents as **roles** with specific job descriptions, while skills are **knowledge bases** they can consult.
 
+### Agent Types
+
+OpenCode has **two types** of agents:
+
+| Type            | Description                                                                 | Invocation                                      |
+| --------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
+| **Primary**     | Main assistants you interact with directly. Handle main conversation.       | **Tab** key to cycle, or configured keybind     |
+| **Subagent**    | Specialized assistants for specific tasks. Invoked by primary agents or manually. | **@ mention** (e.g., `@general`) or automatic |
+
+**Primary agents** are cycled through using the **Tab** key during a session. They have full access to configured tools and handle your main conversation.
+
+**Subagents** are specialized assistants that:
+- Can be invoked **automatically** by primary agents based on their descriptions
+- Can be invoked **manually** by @ mentioning them (e.g., `@general help me search`)
+- Create child sessions that you can navigate using `<Leader>+Right/Left`
+
+### Built-in Agents (OpenCode Default)
+
+OpenCode comes with **4 built-in agents** (2 primary + 2 subagents):
+
+| Agent       | Mode       | Purpose                                                    |
+| ----------- | ---------- | ---------------------------------------------------------- |
+| **Build**   | `primary`  | Default agent with all tools enabled for development work  |
+| **Plan**    | `primary`  | Restricted agent for analysis/planning without changes     |
+| **General** | `subagent` | General-purpose for research and multi-step tasks          |
+| **Explore** | `subagent` | Fast agent for codebase exploration and file searching     |
+
 ### Key Statistics
 
 | Metric              | Value              | Description                      |
 | ------------------- | ------------------ | -------------------------------- |
-| Available Agents    | 2                  | orchestrate, write               |
-| Default Mode        | primary            | Full authority within scope      |
+| Built-in Agents     | 4                  | Build, Plan, General, Explore    |
+| Custom Agents       | 2                  | orchestrate, write               |
+| Default Mode        | `all`              | Both primary and subagent        |
 | Default Temperature | 0.1                | Deterministic, consistent output |
 | Location            | `.opencode/agent/` | Agent definition files           |
 
@@ -52,9 +180,10 @@ Think of agents as **roles** with specific job descriptions, while skills are **
 | ------------------------ | -------------------------------------------------------- |
 | **Tool Permissions**     | Fine-grained control over which tools each agent can use |
 | **Behavioral Rules**     | Embedded workflows and constraints in each agent file    |
-| **Parallel Delegation**  | Orchestrator can spawn up to 20 sub-agents               |
+| **Parallel Delegation**  | Primary agents can invoke subagents for specialized tasks |
 | **Template Enforcement** | Write agent ensures 100% template alignment              |
 | **Skill Integration**    | Agents invoke skills for domain expertise                |
+| **Session Navigation**   | Navigate between parent and child sessions with keybinds |
 
 ### How Agents Work
 
@@ -65,17 +194,21 @@ User Request
 ┌─────────────────────────────────────────────────────────────┐
 │                     AGENT SELECTION                         │
 ├─────────────────────────────────────────────────────────────┤
-│  Complex multi-step task?                                   │
-│  ├─► YES → @orchestrate (decompose, delegate, synthesize)   │
+│  PRIMARY AGENTS (Tab to cycle):                             │
+│  ├─► Build: Full development with all tools                 │
+│  ├─► Plan: Analysis without making changes                  │
 │  │                                                          │
-│  Documentation task?                                        │
-│  ├─► YES → @write (template-first, DQI scoring)              │
+│  SUBAGENTS (@ mention or automatic):                        │
+│  ├─► @general: Research, search, multi-step tasks           │
+│  ├─► @explore: Fast codebase exploration                    │
 │  │                                                          │
-│  └─► DEFAULT → Main assistant with AGENTS.md rules          │
+│  CUSTOM AGENTS:                                             │
+│  ├─► @orchestrate: Task decomposition & delegation          │
+│  └─► @write: Documentation with template enforcement        │
 └─────────────────────────────────────────────────────────────┘
     │
     ▼
-Agent Executes (using permitted tools + invoking skills)
+Agent Executes (using permitted tools + invoking skills/subagents)
     │
     ▼
 Response Delivered
@@ -85,39 +218,69 @@ Response Delivered
 
 ## 2. 🚀 QUICK START
 
-### Using an Agent
+### Using Primary Agents
 
-Agents are invoked automatically based on task type, or explicitly via `@agent-name`:
+Primary agents are cycled using the **Tab** key during a session:
 
 ```markdown
-# Automatic (OpenCode routes based on task)
-"Create a README for the utils folder"
-→ Routes to @write agent
+# Press Tab to switch between primary agents
+<Tab> → Build (default, all tools)
+<Tab> → Plan (analysis only, no changes)
+<Tab> → Build (cycles back)
 
-# Explicit invocation
-"@orchestrate analyze this codebase and create a refactoring plan"
-→ Explicitly uses orchestrate agent
+# You'll see the current agent indicated in the lower right corner
 ```
+
+### Using Subagents
+
+Subagents are invoked via **@ mention** or automatically by primary agents:
+
+```markdown
+# Manual invocation with @ mention
+"@general help me search for this function"
+"@explore find all files matching *.config.ts"
+
+# Automatic invocation (primary agent decides based on task)
+"Search the codebase for authentication patterns"
+→ Primary agent may invoke @explore automatically
+```
+
+### Session Navigation
+
+When subagents create child sessions, navigate between them:
+
+| Keybind              | Action                                    |
+| -------------------- | ----------------------------------------- |
+| `<Leader>+Right`     | Cycle forward: parent → child1 → child2   |
+| `<Leader>+Left`      | Cycle backward: parent ← child1 ← child2  |
 
 ### Verify Agents Are Available
 
 ```bash
-# List agent files
+# List custom agent files
 ls .opencode/agent/
 
 # Expected output:
 # README.md
 # orchestrate.md
 # write.md
+
+# Built-in agents (Build, Plan, General, Explore) are always available
 ```
 
 ### First Use
 
-1. **For documentation tasks**: Just ask - the write agent handles template loading, DQI scoring, and alignment verification automatically
+1. **For development work**: Use **Build** agent (default) - has all tools enabled
 
-2. **For complex multi-step tasks**: The orchestrate agent decomposes work and delegates to sub-agents
+2. **For planning/analysis**: Press **Tab** to switch to **Plan** agent - suggests changes without making them
 
-3. **For general tasks**: The main assistant uses AGENTS.md rules directly
+3. **For codebase exploration**: Type `@explore` to invoke the fast exploration subagent
+
+4. **For research tasks**: Type `@general` to invoke the general-purpose subagent
+
+5. **For documentation tasks**: Type `@write` to invoke the custom documentation agent
+
+6. **For complex multi-step tasks**: Type `@orchestrate` to decompose and delegate work
 
 ---
 
@@ -153,34 +316,121 @@ ls .opencode/agent/
 
 ## 4. 🤖 AVAILABLE AGENTS
 
-### Agent Summary
+### Built-in Agents (OpenCode Default)
+
+These agents come with OpenCode and are always available:
+
+| Agent       | Mode       | Purpose                                              | Key Feature                          |
+| ----------- | ---------- | ---------------------------------------------------- | ------------------------------------ |
+| **Build**   | `primary`  | Default development agent with all tools enabled     | Full tool access, Tab to select      |
+| **Plan**    | `primary`  | Analysis and planning without making changes         | Read-only, suggests changes          |
+| **General** | `subagent` | Research, search, and multi-step task execution      | @ mention or automatic invocation    |
+| **Explore** | `subagent` | Fast codebase exploration and file pattern matching  | Quick file/code discovery            |
+
+---
+
+### Build (Built-in Primary)
+
+**The Default Development Agent**
+
+| Attribute   | Value                                    |
+| ----------- | ---------------------------------------- |
+| Mode        | `primary`                                |
+| Tools       | All tools enabled                        |
+| Permissions | Full access to file operations and bash  |
+
+**When to Use:**
+- Standard development work
+- Making code changes
+- Running commands
+- Full access needed
+
+---
+
+### Plan (Built-in Primary)
+
+**The Analysis Agent**
+
+| Attribute   | Value                                    |
+| ----------- | ---------------------------------------- |
+| Mode        | `primary`                                |
+| Tools       | Read-only (write/edit/bash set to `ask`) |
+| Permissions | Prompts for approval before changes      |
+
+**When to Use:**
+- Analyzing code without making changes
+- Creating plans and suggestions
+- Code review and feedback
+- Understanding codebase before implementing
+
+**Tip:** Switch to Plan mode using **Tab** when you want suggestions without automatic changes.
+
+---
+
+### General (Built-in Subagent)
+
+**The Research Agent**
+
+| Attribute   | Value                                    |
+| ----------- | ---------------------------------------- |
+| Mode        | `subagent`                               |
+| Invocation  | `@general` or automatic                  |
+
+**When to Use:**
+- Researching complex questions
+- Searching for code patterns
+- Executing multi-step tasks
+- When you're not confident about finding the right match quickly
+
+---
+
+### Explore (Built-in Subagent)
+
+**The Fast Explorer**
+
+| Attribute   | Value                                    |
+| ----------- | ---------------------------------------- |
+| Mode        | `subagent`                               |
+| Invocation  | `@explore` or automatic                  |
+
+**When to Use:**
+- Quickly finding files by patterns
+- Searching code for keywords
+- Answering questions about codebase structure
+- Fast exploration without deep analysis
+
+---
+
+### Custom Agents Summary
+
+These are project-specific agents defined in `.opencode/agent/`:
 
 | Agent           | Purpose                         | Tools                                                         | Key Capability                        |
 | --------------- | ------------------------------- | ------------------------------------------------------------- | ------------------------------------- |
-| **orchestrate** | Task decomposition & delegation | `task` only                                                   | Parallel delegation (up to 20 agents) |
+| **orchestrate** | Task decomposition & delegation | `task` only                                                   | Parallel delegation to subagents      |
 | **write**       | Documentation creation          | read, write, edit, bash, grep, glob, webfetch, narsil, memory | Template-first, DQI scoring           |
 
 ---
 
-### orchestrate.md
+### orchestrate.md (Custom)
 
 **The Senior Task Commander**
 
 | Attribute   | Value                                    |
 | ----------- | ---------------------------------------- |
 | Name        | `orchestrate`                            |
-| Mode        | primary                                  |
+| Mode        | `primary`                                |
 | Temperature | 0.1                                      |
 | Tools       | `task` only (cannot read/write directly) |
 
 **Authority:**
 - Task decomposition into discrete, delegatable units
-- Strategic delegation to sub-agents
+- Strategic delegation to subagents
 - Quality evaluation (accept/reject/revise)
 - Conflict resolution between parallel workstreams
 - Unified synthesis into single response
 
-**Key Constraint:** Has ONLY the `task` tool. Cannot read files, search code, or execute commands directly. MUST delegate ALL work to sub-agents.
+**Key Constraint:** Has ONLY the `task` tool. Cannot read files, search code, or execute commands directly. MUST delegate ALL work to subagents.
 
 **When to Use:**
 - Complex requests requiring multiple skills
@@ -189,15 +439,15 @@ ls .opencode/agent/
 
 ---
 
-### write.md
+### write.md (Custom)
 
 **The Documentation Writer**
 
-| Attribute   | Value                                                        |
-| ----------- | ------------------------------------------------------------ |
-| Name        | `documentation-writer`                                       |
-| Mode        | primary                                                      |
-| Temperature | 0.1                                                          |
+| Attribute   | Value                                                         |
+| ----------- | ------------------------------------------------------------- |
+| Name        | `documentation-writer`                                        |
+| Mode        | `primary`                                                     |
+| Temperature | 0.1                                                           |
 | Tools       | read, write, edit, bash, grep, glob, webfetch, narsil, memory |
 
 **Authority:**
@@ -250,29 +500,39 @@ permission:                         # Required: Action permissions
 
 ### Frontmatter Field Reference
 
-| Field         | Required | Type   | Description                                         |
-| ------------- | -------- | ------ | --------------------------------------------------- |
-| `name`        | Yes      | string | Agent identifier (used in `@name` invocation)       |
-| `description` | Yes      | string | One-line purpose description                        |
-| `mode`        | Yes      | string | `primary` (full authority) or `secondary` (limited) |
-| `temperature` | Yes      | float  | 0.0-1.0, lower = more deterministic                 |
-| `tools`       | Yes      | object | Tool permissions (true/false for each)              |
-| `permission`  | Yes      | object | Action permissions (allow/deny)                     |
+| Field         | Required | Type   | Description                                                                 |
+| ------------- | -------- | ------ | --------------------------------------------------------------------------- |
+| `name`        | Yes      | string | Agent identifier (used in `@name` invocation)                               |
+| `description` | Yes      | string | One-line purpose description (used for automatic routing)                   |
+| `mode`        | No       | string | `primary`, `subagent`, or `all` (default: `all`)                            |
+| `temperature` | No       | float  | 0.0-1.0, lower = more deterministic (default: model-specific)               |
+| `tools`       | No       | object | Tool permissions (true/false for each)                                      |
+| `permission`  | No       | object | Action permissions (allow/deny/ask)                                         |
+| `model`       | No       | string | Override model for this agent (format: `provider/model-id`)                 |
+| `maxSteps`    | No       | int    | Maximum agentic iterations before forced text response                      |
+
+### Mode Options
+
+| Mode        | Description                                                              | Invocation                    |
+| ----------- | ------------------------------------------------------------------------ | ----------------------------- |
+| `primary`   | Main assistant, cycled via Tab key                                       | Tab key or configured keybind |
+| `subagent`  | Specialized assistant, invoked by primary agents or @ mention            | `@agent-name` or automatic    |
+| `all`       | Can be used as both primary and subagent (default if not specified)      | Both methods                  |
 
 ### Tool Permissions
 
-| Tool              | Purpose                              | Typical Setting       |
-| ----------------- | ------------------------------------ | --------------------- |
-| `read`            | Read files                           | true                  |
-| `write`           | Create files                         | true                  |
-| `edit`            | Modify files                         | true                  |
-| `bash`            | Execute commands                     | true (with caution)   |
-| `grep`            | Search content                       | true                  |
-| `glob`            | Find files                           | true                  |
-| `webfetch`        | Fetch URLs                           | false (unless needed) |
-| `narsil`          | Semantic + structural code analysis  | true                  |
-| `memory`          | Spec Kit Memory                      | true                  |
-| `chrome_devtools` | Browser debugging                    | false (unless needed) |
+| Tool              | Purpose                             | Typical Setting       |
+| ----------------- | ----------------------------------- | --------------------- |
+| `read`            | Read files                          | true                  |
+| `write`           | Create files                        | true                  |
+| `edit`            | Modify files                        | true                  |
+| `bash`            | Execute commands                    | true (with caution)   |
+| `grep`            | Search content                      | true                  |
+| `glob`            | Find files                          | true                  |
+| `webfetch`        | Fetch URLs                          | false (unless needed) |
+| `narsil`          | Semantic + structural code analysis | true                  |
+| `memory`          | Spec Kit Memory                     | true                  |
+| `chrome_devtools` | Browser debugging                   | false (unless needed) |
 
 ### Required Sections
 
@@ -316,8 +576,54 @@ If you need **knowledge + workflows** → Create a skill.
 
 #### Step 2: Create the File
 
+**Option A: Interactive Command (Recommended)**
+
 ```bash
-# Create agent file
+# Use the /create:agent command with @write agent
+@write /create:agent my-agent
+```
+
+This interactive command will:
+1. Verify @write agent is active (required for template enforcement)
+2. Ask for agent type (primary/subagent/all)
+3. Confirm output location (project or global)
+4. Guide you through understanding (purpose, use cases, authority)
+5. Help you plan configuration (tools, permissions, rules)
+6. Generate the agent file with proper frontmatter
+7. Validate YAML syntax before completion
+
+**Option B: OpenCode CLI (Alternative)**
+
+```bash
+# Use OpenCode's built-in agent creation wizard
+opencode agent create
+```
+
+This CLI command will:
+1. Ask where to save the agent (global or project-specific)
+2. Ask for a description of what the agent should do
+3. Generate an appropriate system prompt and identifier
+4. Let you select which tools the agent can access
+5. Create a markdown file with the agent configuration
+
+**Option C: Manual Creation**
+
+```bash
+# Create agent file manually
+touch .opencode/agent/my-agent.md
+```
+
+This interactive command will:
+1. Ask where to save the agent (global or project-specific)
+2. Ask for a description of what the agent should do
+3. Generate an appropriate system prompt and identifier
+4. Let you select which tools the agent can access
+5. Create a markdown file with the agent configuration
+
+**Option B: Manual Creation**
+
+```bash
+# Create agent file manually
 touch .opencode/agent/my-agent.md
 ```
 
@@ -327,7 +633,7 @@ touch .opencode/agent/my-agent.md
 ---
 name: my-agent
 description: One-line description of what this agent does
-mode: primary
+mode: subagent  # Options: primary, subagent, or all (default)
 temperature: 0.1
 tools:
   read: true
@@ -345,6 +651,14 @@ permission:
   bash: allow
 ---
 ```
+
+**Mode Selection Guide:**
+
+| Choose `mode`  | When...                                                        |
+| -------------- | -------------------------------------------------------------- |
+| `primary`      | Agent should appear in Tab cycle as main assistant             |
+| `subagent`     | Agent should only be invoked via @ mention or by other agents  |
+| `all` (default)| Agent can be used both ways                                    |
 
 #### Step 4: Add Content
 
@@ -607,11 +921,26 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 The agent system provides **specialized AI personas** for different task types:
 
-- **orchestrate**: Complex multi-step tasks requiring decomposition and delegation
-- **write**: Documentation tasks requiring template alignment and quality scoring
+### Built-in Agents (Always Available)
 
-Key principles:
+| Agent       | Type       | Purpose                                    | Invocation        |
+| ----------- | ---------- | ------------------------------------------ | ----------------- |
+| **Build**   | Primary    | Full development with all tools            | Tab key (default) |
+| **Plan**    | Primary    | Analysis without changes                   | Tab key           |
+| **General** | Subagent   | Research and multi-step tasks              | `@general`        |
+| **Explore** | Subagent   | Fast codebase exploration                  | `@explore`        |
 
+### Custom Agents (Project-Specific)
+
+| Agent           | Type    | Purpose                                    | Invocation        |
+| --------------- | ------- | ------------------------------------------ | ----------------- |
+| **orchestrate** | Primary | Task decomposition & delegation            | `@orchestrate`    |
+| **write**       | Primary | Documentation with template enforcement    | `@write`          |
+
+### Key Principles
+
+- **Primary agents** are cycled via **Tab** key - use for main conversation
+- **Subagents** are invoked via **@ mention** - use for specialized tasks
 - **Agents have authority** - They can act using permitted tools
 - **Skills have knowledge** - They provide expertise agents can invoke
 - **Templates ensure consistency** - All output follows established patterns
@@ -621,4 +950,4 @@ Key principles:
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2025-12-27*
+*Documentation version: 1.1 | Last updated: 2025-12-30*

@@ -107,19 +107,19 @@ Simple one-liner install? → Just document the command inline
 
 Every install guide follows an 11-section structure (sections 0-10), with 9 required and 2 optional:
 
-| # | Section | Purpose | Required |
-|---|---------|---------|----------|
-| 0 | **AI-First Install Guide** | Copy-paste prompt for AI-assisted install | ✅ Yes |
-| 1 | **Overview** | What it does, key features, architecture | ✅ Yes |
-| 2 | **Prerequisites** | Required tools, versions, Phase 1 validation | ✅ Yes |
-| 3 | **Installation** | Step-by-step commands, Phase 2-3 validation | ✅ Yes |
-| 4 | **Configuration** | Platform configs, env vars, Phase 4 validation | ✅ Yes |
-| 5 | **Verification** | End-to-end test, Phase 5 success criteria | ✅ Yes |
-| 6 | **Usage** | Daily workflow, common operations | ✅ Yes |
-| 7 | **Features** | Detailed tool/command documentation | ⚠️ Optional |
-| 8 | **Examples** | Real-world usage scenarios | ⚠️ Optional |
-| 9 | **Troubleshooting** | Common errors with fixes | ✅ Yes |
-| 10 | **Resources** | File locations, command reference, links | ✅ Yes |
+| #   | Section                    | Purpose                                        | Required   |
+| --- | -------------------------- | ---------------------------------------------- | ---------- |
+| 0   | **AI-First Install Guide** | Copy-paste prompt for AI-assisted install      | ✅ Yes      |
+| 1   | **Overview**               | What it does, key features, architecture       | ✅ Yes      |
+| 2   | **Prerequisites**          | Required tools, versions, Phase 1 validation   | ✅ Yes      |
+| 3   | **Installation**           | Step-by-step commands, Phase 2-3 validation    | ✅ Yes      |
+| 4   | **Configuration**          | Platform configs, env vars, Phase 4 validation | ✅ Yes      |
+| 5   | **Verification**           | End-to-end test, Phase 5 success criteria      | ✅ Yes      |
+| 6   | **Usage**                  | Daily workflow, common operations              | ✅ Yes      |
+| 7   | **Features**               | Detailed tool/command documentation            | ⚠️ Optional |
+| 8   | **Examples**               | Real-world usage scenarios                     | ⚠️ Optional |
+| 9   | **Troubleshooting**        | Common errors with fixes                       | ✅ Yes      |
+| 10  | **Resources**              | File locations, command reference, links       | ✅ Yes      |
 
 **Section Purposes**:
 
@@ -382,6 +382,45 @@ narsil-mcp --version
 narsil-mcp --repos /path/to/project --git --call-graph --persist --watch
 ```
 
+### H1 Description Standards
+
+The description paragraph under the H1 title should be **2-4 sentences** that:
+
+1. **State what the guide covers**: "Complete installation and configuration guide for..."
+2. **List key features/capabilities**: 3-5 specific items with brief explanations
+3. **Mention the workflow or approach**: If relevant (e.g., "via Code Mode", "CLI primary")
+4. **Explain the value proposition**: Why this tool matters
+
+**Pattern**:
+```
+Complete installation and configuration guide for [tool name], [primary purpose]. 
+[Key features - 3-5 items with parenthetical explanations]. 
+[Workflow/approach if relevant]. [Value proposition].
+```
+
+**Good Example (Narsil)**:
+```
+Complete installation and configuration guide for the Narsil MCP server, providing 
+deep code intelligence through 76 specialized tools. Covers semantic search (neural 
+embeddings for meaning-based queries), structural analysis (AST-based symbol queries), 
+security scanning (OWASP, CWE, taint analysis), and call graph visualization. 
+Accessed via Code Mode for token-efficient multi-tool workflows.
+```
+
+**Good Example (Code Mode)**:
+```
+Complete installation and configuration guide for the Code Mode MCP server, enabling 
+TypeScript-based orchestration of external MCP tools. Provides unified access to 
+Webflow, Figma, ClickUp, GitHub, Chrome DevTools, and other MCP servers through a 
+single `call_tool_chain()` interface. Delivers 98.7% context reduction and 60% 
+faster execution compared to individual tool calls.
+```
+
+**Bad Example** (too brief):
+```
+A guide to installing the Narsil MCP server.
+```
+
 ### Writing Style
 
 - **Imperative mood**: "Install the package" not "The package should be installed"
@@ -409,6 +448,7 @@ Before publishing an install guide, verify:
 
 ```markdown
 Structure:
+□ H1 description is 2-4 sentences with features list (see H1 Description Standards)
 □ AI-First Install Guide section at top
 □ All 11 sections present (9 required + 2 optional)
 □ Table of contents with anchor links
@@ -484,10 +524,10 @@ export OTHER_VAR="value"
 ```markdown
 ### Selection Guide
 
-| Option | Best For | Metric 1 | Metric 2 |
-|--------|----------|----------|----------|
-| `option1` | Use case 1 | Value | Value |
-| `option2` | Use case 2 | Value | Value |
+| Option    | Best For   | Metric 1 | Metric 2 |
+| --------- | ---------- | -------- | -------- |
+| `option1` | Use case 1 | Value    | Value    |
+| `option2` | Use case 2 | Value    | Value    |
 
 **Decision Logic:**
 ```
@@ -566,7 +606,7 @@ Copy and customize this template for new install guides. Replace all `[PLACEHOLD
 ```markdown
 # [TOOL_NAME] Installation Guide
 
-[BRIEF_DESCRIPTION - 1-2 sentences about what this tool does and why it's valuable]
+Complete installation and configuration guide for [TOOL_NAME], [PRIMARY_PURPOSE - what it enables]. [KEY_FEATURES - list 3-5 specific capabilities with parenthetical explanations]. [WORKFLOW_APPROACH - how it's accessed/used]. [VALUE_PROPOSITION - why it matters].
 
 ---
 
@@ -627,8 +667,8 @@ Guide me through each step with the exact commands I need to run.
 
 ### Key Features
 
-| Feature | Description |
-|---------|-------------|
+| Feature         | Description   |
+| --------------- | ------------- |
 | **[FEATURE_1]** | [DESCRIPTION] |
 | **[FEATURE_2]** | [DESCRIPTION] |
 | **[FEATURE_3]** | [DESCRIPTION] |
@@ -909,8 +949,8 @@ opencode
 
 ### File Locations
 
-| Path | Purpose |
-|------|---------|
+| Path            | Purpose          |
+| --------------- | ---------------- |
 | `[BINARY_PATH]` | [BINARY_PURPOSE] |
 | `[CONFIG_PATH]` | [CONFIG_PURPOSE] |
 
@@ -954,7 +994,6 @@ opencode
 **Installation Complete!**
 
 You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
-```
 
 ---
 

@@ -3,13 +3,13 @@
 A comprehensive guide to installing, configuring, and using the OpenCode Antigravity Auth plugin - enabling authentication with Google's Antigravity OAuth to access models like `gemini-3-pro-high` and `claude-opus-4-5-thinking`.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
+> **Scope**: opencode.json
 > **Package**: `opencode-antigravity-auth`
-> 
+
 ---
 
 ## TABLE OF CONTENTS
 
-- [0. 🤖 AI Install Guide](#0--ai-install-guide)
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📋 PREREQUISITES](#2--prerequisites)
 - [3. 📦 INSTALLATION](#3--installation)
@@ -27,7 +27,7 @@ A comprehensive guide to installing, configuring, and using the OpenCode Antigra
 
 ---
 
-## 0. 🤖 AI INSTALL GUIDE
+## 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -703,11 +703,11 @@ By using this plugin, you acknowledge:
 
 Review the terms of service for the models you access through Antigravity:
 
-| Provider     | Terms Link                                              |
-| ------------ | ------------------------------------------------------- |
-| **Google**   | https://policies.google.com/terms                       |
-| **Anthropic** | https://www.anthropic.com/legal/consumer-terms         |
-| **OpenAI**   | https://openai.com/policies/terms-of-use               |
+| Provider      | Terms Link                                     |
+| ------------- | ---------------------------------------------- |
+| **Google**    | https://policies.google.com/terms              |
+| **Anthropic** | https://www.anthropic.com/legal/consumer-terms |
+| **OpenAI**    | https://openai.com/policies/terms-of-use       |
 
 ### Intended Use
 

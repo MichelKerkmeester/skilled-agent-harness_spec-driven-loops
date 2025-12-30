@@ -1,6 +1,6 @@
 # Chrome DevTools Installation Guide
 
-Browser debugging and automation for AI agents through CLI (primary) and MCP (fallback) approaches.
+Complete installation and configuration guide for Chrome DevTools integration, enabling browser debugging and automation for AI agents. Covers both CLI approach (bdg command - primary, faster, token-efficient) and MCP fallback for multi-tool integration scenarios. Provides screenshot capture, DOM inspection, console access, network monitoring, CSS debugging, and JavaScript execution capabilities for visual testing and web development workflows.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Package**: `browser-debugger-cli@alpha` | **Dependencies**: Node.js 18+, Chrome/Chromium
@@ -9,7 +9,6 @@ Browser debugging and automation for AI agents through CLI (primary) and MCP (fa
 
 #### TABLE OF CONTENTS
 
-0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 CLI INSTALLATION](#3--cli-installation)
@@ -23,7 +22,7 @@ Browser debugging and automation for AI agents through CLI (primary) and MCP (fa
 
 ---
 
-## 0. 🤖 AI INSTALL GUIDE
+## 🤖 AI INSTALL GUIDE
 
 ### Verify Success (30 seconds)
 

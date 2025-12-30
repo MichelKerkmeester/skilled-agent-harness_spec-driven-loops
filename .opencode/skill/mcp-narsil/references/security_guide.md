@@ -19,29 +19,29 @@ Start broad with `scan_security`, then drill into specifics with taint analysis 
 
 Narsil provides comprehensive security analysis:
 
-| Capability | Tools | Coverage |
-|------------|-------|----------|
-| **Rule-Based Scanning** | `scan_security`, `check_owasp_top10`, `check_cwe_top25` | 35+ security rules |
-| **Injection Detection** | `find_injection_vulnerabilities` | SQL, XSS, command injection |
-| **Taint Analysis** | `trace_taint`, `get_taint_sources` | Data flow from untrusted sources |
-| **Supply Chain** | `generate_sbom`, `check_dependencies`, `check_licenses` | CVE + license compliance |
+| Capability              | Tools                                                   | Coverage                         |
+| ----------------------- | ------------------------------------------------------- | -------------------------------- |
+| **Rule-Based Scanning** | `scan_security`, `check_owasp_top10`, `check_cwe_top25` | 35+ security rules               |
+| **Injection Detection** | `find_injection_vulnerabilities`                        | SQL, XSS, command injection      |
+| **Taint Analysis**      | `trace_taint`, `get_taint_sources`                      | Data flow from untrusted sources |
+| **Supply Chain**        | `generate_sbom`, `check_dependencies`, `check_licenses` | CVE + license compliance         |
 
 ### Security Tools Summary
 
-| Tool | Purpose | Priority |
-|------|---------|----------|
-| `scan_security` | Full security scan with rulesets | HIGH |
-| `find_injection_vulnerabilities` | SQL, XSS, command injection | HIGH |
-| `check_owasp_top10` | OWASP Top 10 2021 compliance | HIGH |
-| `check_cwe_top25` | CWE Top 25 weaknesses | HIGH |
-| `trace_taint` | Taint data flow analysis | HIGH |
-| `get_taint_sources` | List input sources | MEDIUM |
-| `get_security_summary` | Risk assessment overview | MEDIUM |
-| `explain_vulnerability` | Detailed vulnerability info | MEDIUM |
-| `suggest_fix` | Remediation guidance | MEDIUM |
-| `generate_sbom` | Software bill of materials | HIGH |
-| `check_dependencies` | CVE checking | HIGH |
-| `check_licenses` | License compliance | HIGH |
+| Tool                             | Purpose                          | Priority |
+| -------------------------------- | -------------------------------- | -------- |
+| `scan_security`                  | Full security scan with rulesets | HIGH     |
+| `find_injection_vulnerabilities` | SQL, XSS, command injection      | HIGH     |
+| `check_owasp_top10`              | OWASP Top 10 2021 compliance     | HIGH     |
+| `check_cwe_top25`                | CWE Top 25 weaknesses            | HIGH     |
+| `trace_taint`                    | Taint data flow analysis         | HIGH     |
+| `get_taint_sources`              | List input sources               | MEDIUM   |
+| `get_security_summary`           | Risk assessment overview         | MEDIUM   |
+| `explain_vulnerability`          | Detailed vulnerability info      | MEDIUM   |
+| `suggest_fix`                    | Remediation guidance             | MEDIUM   |
+| `generate_sbom`                  | Software bill of materials       | HIGH     |
+| `check_dependencies`             | CVE checking                     | HIGH     |
+| `check_licenses`                 | License compliance               | HIGH     |
 
 ---
 
@@ -228,18 +228,18 @@ call_tool_chain({
 
 ## 3. 🛡️ OWASP TOP 10 COVERAGE
 
-| ID | Category | Narsil Detection | Tool |
-|----|----------|------------------|------|
-| A01 | Broken Access Control | Taint analysis | `trace_taint` |
-| A02 | Cryptographic Failures | Crypto rules | `scan_security` |
-| A03 | Injection | Injection detection | `find_injection_vulnerabilities` |
-| A04 | Insecure Design | Complexity metrics | `get_complexity` |
-| A05 | Security Misconfiguration | Config analysis | `scan_security` |
-| A06 | Vulnerable Components | SBOM + CVE check | `check_dependencies` |
-| A07 | Auth Failures | Pattern matching | `scan_security` |
-| A08 | Data Integrity Failures | Taint analysis | `trace_taint` |
-| A09 | Logging Failures | Pattern matching | `scan_security` |
-| A10 | SSRF | Taint analysis | `trace_taint` |
+| ID  | Category                  | Narsil Detection    | Tool                             |
+| --- | ------------------------- | ------------------- | -------------------------------- |
+| A01 | Broken Access Control     | Taint analysis      | `trace_taint`                    |
+| A02 | Cryptographic Failures    | Crypto rules        | `scan_security`                  |
+| A03 | Injection                 | Injection detection | `find_injection_vulnerabilities` |
+| A04 | Insecure Design           | Complexity metrics  | `get_complexity`                 |
+| A05 | Security Misconfiguration | Config analysis     | `scan_security`                  |
+| A06 | Vulnerable Components     | SBOM + CVE check    | `check_dependencies`             |
+| A07 | Auth Failures             | Pattern matching    | `scan_security`                  |
+| A08 | Data Integrity Failures   | Taint analysis      | `trace_taint`                    |
+| A09 | Logging Failures          | Pattern matching    | `scan_security`                  |
+| A10 | SSRF                      | Taint analysis      | `trace_taint`                    |
 
 ---
 

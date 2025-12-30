@@ -59,6 +59,7 @@ Template-first documentation specialist ensuring 100% alignment with workflows-d
 | README           | `readme_template.md`          | `workflows-documentation/assets/` |
 | Install guide    | `install_guide_template.md`   | `workflows-documentation/assets/` |
 | Command          | `command_template.md`         | `workflows-documentation/assets/` |
+| **Agent file**   | `agent_template.md`           | `workflows-documentation/assets/` |
 | Spec folder docs | System-spec-kit templates     | `system-spec-kit/templates/`      |
 
 ### Universal Template Pattern
@@ -155,8 +156,11 @@ Content Alignment:
 │  ├─► Improving markdown / documentation quality                 │
 │  │   └─► MODE 1: Document Quality                               │
 │  │                                                              │
-│  ├─► Creating new skill / skill maintenance                     │
-│  │   └─► MODE 2: Skill Creation                                 │
+│  ├─► Creating OpenCode components (skills, agents, commands)    │
+│  │   └─► MODE 2: Component Creation                             │
+│  │       ├─► Skills: init_skill.py + skill_md_template.md       │
+│  │       ├─► Agents: agent_template.md                          │
+│  │       └─► Commands: command_template.md                      │
 │  │                                                              │
 │  ├─► Creating ASCII flowcharts / diagrams                        │
 │  │   └─► MODE 3: ASCII Flowcharts                               │
@@ -168,6 +172,24 @@ Content Alignment:
 
 ### Mode 1: Document Quality
 
+**README Creation:**
+```
+├─► Load readme_template.md
+├─► Apply 13-section structure
+├─► Validate template alignment
+├─► Run DQI scoring
+└─► Target: Good (75+)
+```
+
+**Frontmatter Validation:**
+```
+├─► Load frontmatter_templates.md
+├─► Identify document type
+├─► Validate required fields
+└─► Fix syntax errors
+```
+
+**Quality Improvement:**
 ```
 ├─► Load template for document type
 ├─► Extract structure with script (Baseline)
@@ -179,8 +201,9 @@ Content Alignment:
 └─► Report improvement
 ```
 
-### Mode 2: Skill Creation
+### Mode 2: Component Creation
 
+**Skills:**
 ```
 ├─► Load skill_md_template.md
 ├─► Use init_skill.py for scaffolding
@@ -190,6 +213,28 @@ Content Alignment:
 ├─► Validate with package_skill.py
 ├─► Verify template alignment
 └─► DQI target: Excellent (90+)
+```
+
+**Agents:**
+```
+├─► Load agent_template.md
+├─► Define frontmatter (name, mode, temperature, tools, permission)
+├─► Create CORE WORKFLOW section
+├─► Create CAPABILITY SCAN section
+├─► Create ANTI-PATTERNS section
+├─► Create RELATED RESOURCES section
+├─► Validate frontmatter syntax
+└─► Test with real examples
+```
+
+**Commands:**
+```
+├─► Load command_template.md
+├─► Define frontmatter (name, description, triggers)
+├─► Create execution logic
+├─► Add usage examples
+├─► Add to command registry
+└─► Test invocation
 ```
 
 ### Mode 3: ASCII Flowcharts
@@ -225,8 +270,13 @@ Is this a spec folder document?
 │   └─► Use system-spec-kit skill templates
 │
 └─ NO
-    ├─ Is this a skill file? (SKILL.md, references/, assets/)
-    │   └─► Use workflows-documentation Mode 2
+    ├─ Is this an OpenCode component?
+    │   ├─ Skill file? (SKILL.md, references/, assets/)
+    │   │   └─► Use workflows-documentation Mode 2 (Skills)
+    │   ├─ Agent file? (.opencode/agent/*.md)
+    │   │   └─► Use workflows-documentation Mode 2 (Agents)
+    │   └─ Command file? (.opencode/command/*.md)
+    │       └─► Use workflows-documentation Mode 2 (Commands)
     │
     ├─ Is this a README or knowledge file?
     │   └─► Use workflows-documentation Mode 1
@@ -249,6 +299,8 @@ Is this a spec folder document?
 | README.md (general)            | `workflows-documentation` | readme_template.md          |
 | Memory files (memory/*.md)     | `system-spec-kit`         | Auto-generated              |
 | Install guides                 | `workflows-documentation` | install_guide_template.md   |
+| Agent files (.opencode/agent/*.md) | `workflows-documentation` | agent_template.md       |
+| Command files (.opencode/command/*.md) | `workflows-documentation` | command_template.md   |
 
 ---
 

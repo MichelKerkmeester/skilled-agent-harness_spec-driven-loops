@@ -3,13 +3,12 @@
 Comprehensive guide for customizing the AI agent configuration file (AGENTS.md) for your specific project type, installed MCP tools, and available skills. Covers front-end, back-end, and full-stack configurations with interactive AI-assisted setup.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
-> **Scope**: Agent Configuration 
+> **Scope**: AGENTS.md
 
 ---
 
 ## TABLE OF CONTENTS
 
-0. [🤖 AI-FIRST CUSTOMIZATION GUIDE](#-ai-first-customization-guide)
 1. [📖 OVERVIEW](#1--overview)
 2. [🚦 AGENTS.md GATES REFERENCE](#2--agentsmd-gates-reference)
 3. [📝 FILE NAMING CONVENTION](#3--file-naming-convention)
@@ -22,7 +21,7 @@ Comprehensive guide for customizing the AI agent configuration file (AGENTS.md) 
 
 ---
 
-## 0. 🤖 AI-FIRST CUSTOMIZATION GUIDE
+## 🤖 AI-FIRST SET-UP GUIDE
 
 **Copy and paste this prompt for interactive AGENTS.md customization:**
 
@@ -287,9 +286,9 @@ Backend projects emphasize data integrity, security, and API design.
 
 #### Primary Skills
 
-| Skill            | Purpose                                           |
-| ---------------- | ------------------------------------------------- |
-| `workflows-code` | Implementation, debugging, verification lifecycle |
+| Skill            | Purpose                                                      |
+| ---------------- | ------------------------------------------------------------ |
+| `workflows-code` | Implementation, debugging, verification lifecycle            |
 | `mcp-narsil`     | Semantic + structural code search for understanding patterns |
 
 #### Confidence Weight Adjustments
@@ -458,12 +457,12 @@ ls -la .opencode/skill/
 
 **Current Installation (5 servers):**
 
-| Server                | Tool Prefix             | Purpose                                                     |
-| --------------------- | ----------------------- | ----------------------------------------------------------- |
-| `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning                                |
+| Server                | Tool Prefix             | Purpose                                                        |
+| --------------------- | ----------------------- | -------------------------------------------------------------- |
+| `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning                                   |
 | `narsil`              | `narsil_*`              | Semantic + structural analysis, security scanning, call graphs |
-| `spec-kit-memory`     | `memory_*`              | Context preservation                                        |
-| `code-mode`           | `call_tool_chain()`     | External tool orchestration                                 |
+| `spec-kit-memory`     | `memory_*`              | Context preservation                                           |
+| `code-mode`           | `call_tool_chain()`     | External tool orchestration                                    |
 
 ### 5.3 Update Tool Routing Decision Tree
 
@@ -622,15 +621,15 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 
 **Current Installation (9 skills):**
 
-| Skill                       | Version | Primary Triggers                                                    | Purpose                                              |
-| --------------------------- | ------- | ------------------------------------------------------------------- | ---------------------------------------------------- |
-| `mcp-narsil`                | v1.0.0  | "how does X work", "list functions", "security scan", "semantic"    | Semantic + structural analysis, security, call graphs |
-| `mcp-code-mode`             | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"                      | MCP orchestration for external tools                 |
-| `system-spec-kit`           | v12.4.0 | "save context", "/memory:save", "spec folder", "plan"               | Context preservation and spec workflow               |
-| `workflows-chrome-devtools` | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"                         | Chrome DevTools Protocol debugging                   |
-| `workflows-code`            | v2.0.0  | "implement", "debug", "verify", "refactor"                          | Implementation lifecycle orchestrator                |
-| `workflows-documentation`   | v1.0.0  | "skill", "markdown", "flowchart", "documentation"                   | Unified markdown and skill management                |
-| `workflows-git`             | v1.5.0  | "commit", "branch", "PR", "push", "git"                             | Git workflow orchestration                           |
+| Skill                       | Version | Primary Triggers                                                 | Purpose                                               |
+| --------------------------- | ------- | ---------------------------------------------------------------- | ----------------------------------------------------- |
+| `mcp-narsil`                | v1.0.0  | "how does X work", "list functions", "security scan", "semantic" | Semantic + structural analysis, security, call graphs |
+| `mcp-code-mode`             | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"                   | MCP orchestration for external tools                  |
+| `system-spec-kit`           | v12.4.0 | "save context", "/memory:save", "spec folder", "plan"            | Context preservation and spec workflow                |
+| `workflows-chrome-devtools` | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"                      | Chrome DevTools Protocol debugging                    |
+| `workflows-code`            | v2.0.0  | "implement", "debug", "verify", "refactor"                       | Implementation lifecycle orchestrator                 |
+| `workflows-documentation`   | v1.0.0  | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
+| `workflows-git`             | v1.5.0  | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
 
 ### 6.2 Skill Routing Table
 
@@ -730,12 +729,12 @@ ls -la .opencode/skill/
 
 For a backend/API project, you would typically have these skills in `.opencode/skill/`:
 
-| Skill              | Purpose                                                                                        |
-| ------------------ | ---------------------------------------------------------------------------------------------- |
-| `mcp-narsil`       | Semantic + structural code analysis, security scanning, call graphs                            |
-| `workflows-code`   | Implementation lifecycle orchestrator for complex multi-file changes and refactoring           |
-| `system-spec-kit`  | Context preservation for research tasks and finding prior architectural decisions              |
-| `workflows-git`    | Git workflow for PRs, commits, branches                                                        |
+| Skill             | Purpose                                                                              |
+| ----------------- | ------------------------------------------------------------------------------------ |
+| `mcp-narsil`      | Semantic + structural code analysis, security scanning, call graphs                  |
+| `workflows-code`  | Implementation lifecycle orchestrator for complex multi-file changes and refactoring |
+| `system-spec-kit` | Context preservation for research tasks and finding prior architectural decisions    |
+| `workflows-git`   | Git workflow for PRs, commits, branches                                              |
 
 **Skills to consider removing:**
 - `workflows-chrome-devtools` - No browser UI to debug
@@ -1050,12 +1049,12 @@ ls .opencode/commands/
 
 ### Current Installation Summary
 
-| Category        | Count | Items                                                                                                                                  |
-| --------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 7     | mcp-narsil, mcp-code-mode, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git          |
-| **MCP Servers** | 4     | sequential-thinking, narsil, spec-kit-memory, code-mode                                                                                |
-| **Commands**    | 16    | /create:* (5), /memory:* (3), /prompt:improve (1), /search:* (2), /spec_kit:* (5)                                                      |
-| **Gates**       | 7     | Gate 0-6 (Compaction, Understanding, Routing, Spec, Memory Load, Memory Save, Completion)                                              |
+| Category        | Count | Items                                                                                                                         |
+| --------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **Skills**      | 7     | mcp-narsil, mcp-code-mode, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
+| **MCP Servers** | 4     | sequential-thinking, narsil, spec-kit-memory, code-mode                                                                       |
+| **Commands**    | 16    | /create:* (5), /memory:* (3), /prompt:improve (1), /search:* (2), /spec_kit:* (5)                                             |
+| **Gates**       | 7     | Gate 0-6 (Compaction, Understanding, Routing, Spec, Memory Load, Memory Save, Completion)                                     |
 
 ### Minimal AGENTS.md Structure
 

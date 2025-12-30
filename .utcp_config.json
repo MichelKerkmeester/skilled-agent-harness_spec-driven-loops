@@ -59,8 +59,8 @@
               "@taazkareem/clickup-mcp-server"
             ],
             "env": {
-              "CLICKUP_API_KEY": "your_clickup_api_key",
-              "CLICKUP_TEAM_ID": "your_clickup_team_id",
+              "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
+              "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}",
               "DOCUMENT_SUPPORT": "true",
               "NODE_ENV": "production"
             }
@@ -81,7 +81,7 @@
               "mcp-figma"
             ],
             "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "your_figma_token",
+              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}",
               "NODE_ENV": "production"
             }
           }
@@ -101,7 +101,7 @@
               "@modelcontextprotocol/server-github"
             ],
             "env": {
-              "GITHUB_PERSONAL_ACCESS_TOKEN": "your_github_token"
+              "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
             }
           }
         }
@@ -116,58 +116,36 @@
             "transport": "stdio",
             "command": "narsil-mcp",
             "args": [
-              "--repos",
-              ".",
-              "--preset",
-              "full",
-              "--index-path",
-              ".narsil-index",
+              "--repos", ".",
+              "--index-path", ".narsil-index",
               "--git",
               "--call-graph",
               "--persist",
               "--neural",
-              "--neural-backend",
-              "api",
-              "--neural-model",
-              "voyage-code-2"
+              "--neural-backend", "api",
+              "--neural-model", "voyage-code-2"
             ],
             "env": {
               "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
             },
-            "_note": "Narsil with full toolset (76 tools). MCP transport is always stdio. Add '--http --http-port 3000' for visualization UI.",
-            "_neural_options": {
-              "_dimension_note": "Narsil expects 1536-dim embeddings. Use voyage-code-2 (1536-dim), NOT voyage-code-3 (1024-dim).",
-              "voyage_api": {
-                "backend": "--neural-backend api",
-                "models": [
-                  "voyage-code-2"
-                ],
-                "models_incompatible": [
-                  "voyage-code-3 (1024-dim - incompatible)"
-                ],
-                "env_var": "VOYAGE_API_KEY",
-                "get_key": "https://www.voyageai.com/",
-                "best_for": "Code-specific, best accuracy"
-              },
-              "openai_api": {
-                "backend": "--neural-backend api",
-                "models": [
-                  "text-embedding-3-small",
-                  "text-embedding-3-large"
-                ],
-                "env_var": "OPENAI_API_KEY",
-                "args_change": "--neural-model text-embedding-3-small",
-                "best_for": "General purpose, wide availability"
-              },
-              "onnx_local": {
-                "backend": "--neural-backend onnx",
-                "models": "Local ONNX models",
-                "env_var": "None required",
-                "args_change": "Replace '--neural-backend api' with '--neural-backend onnx'",
-                "best_for": "Offline, no API costs, privacy-first"
-              }
-            },
-            "_fallback": "If API unavailable, Narsil automatically falls back to BM25 search"
+            "_note": "Narsil with full toolset (76 tools). --http enables visualization UI at localhost:3000. MCP transport is always stdio (Code Mode spawns process)."
+          }
+        }
+      }
+    },
+    {
+      "name": "webflow",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "webflow": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "mcp-remote",
+              "https://mcp.webflow.com/sse"
+            ],
+            "env": {}
           }
         }
       }

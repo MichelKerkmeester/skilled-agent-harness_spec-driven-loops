@@ -1,6 +1,6 @@
 # Sequential Thinking MCP Server Installation Guide
 
-A comprehensive guide to installing, configuring, and using the Sequential Thinking MCP server for dynamic problem-solving and structured reasoning.
+Complete installation and configuration guide for the Sequential Thinking MCP server, enabling dynamic and reflective problem-solving through structured reasoning chains. Supports thought branching, revision of previous conclusions, hypothesis generation and verification, and adaptive thought count adjustment. Ideal for complex multi-step analysis, planning with course correction, debugging stuck issues, and problems requiring iterative refinement where the full scope may not be clear initially.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Package**: `@modelcontextprotocol/server-sequential-thinking` | **Dependencies**: Node.js 18+
@@ -9,7 +9,6 @@ A comprehensive guide to installing, configuring, and using the Sequential Think
 
 #### TABLE OF CONTENTS
 
-0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [⚙️ CONFIGURATION](#3-️-configuration)
@@ -23,7 +22,7 @@ A comprehensive guide to installing, configuring, and using the Sequential Think
 
 ---
 
-## 0. 🤖 AI INSTALL GUIDE
+## 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -521,10 +520,10 @@ sequential_thinking_sequentialthinking({
 
 ### Related MCP Servers
 
-| Server              | Purpose                  |
-| ------------------- | ------------------------ |
+| Server              | Purpose                           |
+| ------------------- | --------------------------------- |
 | **Narsil**          | Semantic + structural code search |
-| **Spec Kit Memory** | Context preservation     |
+| **Spec Kit Memory** | Context preservation              |
 
 ### When to Combine Tools
 

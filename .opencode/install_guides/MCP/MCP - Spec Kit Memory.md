@@ -1,6 +1,6 @@
 # Spec Kit Memory MCP Server Installation Guide
 
-A comprehensive guide to installing, configuring, and using the Spec Kit Memory MCP server for conversation context retrieval and vector search.
+Complete installation and configuration guide for the Spec Kit Memory MCP server, providing semantic memory and context preservation across AI sessions. Features vector-based semantic search with hybrid ranking, fast trigger phrase matching (<50ms), six-tier importance system (constitutional to deprecated), checkpoint save/restore, and automatic memory indexing. Essential for maintaining continuity in long-running projects, recovering context after session breaks, and surfacing relevant prior decisions during implementation.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Package**: Bundled | **Dependencies**: Node.js 18+, Ollama (optional)
@@ -9,7 +9,6 @@ A comprehensive guide to installing, configuring, and using the Spec Kit Memory 
 
 #### TABLE OF CONTENTS
 
-0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
@@ -23,7 +22,7 @@ A comprehensive guide to installing, configuring, and using the Spec Kit Memory 
 
 ---
 
-## 0. 🤖 AI INSTALL GUIDE
+## 🤖 AI INSTALL GUIDE
 
 ### Verify Success (30 seconds)
 

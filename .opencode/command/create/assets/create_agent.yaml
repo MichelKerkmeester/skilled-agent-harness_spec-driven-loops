@@ -1,0 +1,433 @@
+# ───────────────────────────────────────────────────────────────────
+# DOCUMENTATION: AGENT CREATION WORKFLOW
+# ───────────────────────────────────────────────────────────────────
+role: Expert Agent Creator using workflows-documentation skill
+purpose: Create production-ready OpenCode agents (primary or subagent)
+action: Guide agent creation from understanding through validation
+
+# ─────────────────────────────────────────────────────────────────
+# PREREQUISITE: @write AGENT VERIFICATION
+# ─────────────────────────────────────────────────────────────────
+# This workflow REQUIRES the @write agent for:
+#   • Template-first workflow
+#   • Frontmatter validation
+#   • workflows-documentation skill integration
+#
+# PHASE 0 in the command markdown verifies @write agent BEFORE
+# this YAML workflow loads. If you're executing this workflow,
+# @write verification has already passed.
+#
+# To invoke correctly: @write /create:agent [agent-name]
+# ─────────────────────────────────────────────────────────────────
+
+operating_mode:
+  workflow: sequential_6_step
+  workflow_compliance: MANDATORY
+  workflow_execution: interactive
+  approvals: step_by_step
+  tracking: progressive_task_checklists
+  validation: yaml_frontmatter_check
+
+development_philosophy:
+  principle: "Understand purpose before defining configuration"
+  approach: "Understand → Plan → Generate → Validate"
+  mandate: "Concrete use cases first, then tools/permissions, then content"
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# ─────────────────────────────────────────────────────────────────
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+
+  scoring_weights:
+    purpose_clarity: 0.30
+    use_case_specificity: 0.25
+    tool_permission_clarity: 0.25
+    behavioral_rules_defined: 0.20
+
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS (From gate outputs)
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  agent_name: |
+    [AGENT_NAME]
+    Name for the agent in lowercase (e.g., review, security-audit).
+    FROM PHASE 1 OUTPUT.
+
+  agent_mode: |
+    [AGENT_MODE]
+    Agent type: primary, subagent, or all.
+    FROM PHASE 2 OUTPUT (user choice A/B/C).
+
+  agent_path: |
+    [AGENT_PATH]
+    Output file path.
+    FROM PHASE 3 OUTPUT.
+
+  spec_path: |
+    [SPEC_PATH]
+    Spec folder for tracking this work (optional).
+    FROM PHASE 4 OUTPUT (user choice A/B/C).
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  agent_name:
+    validation: "lowercase, letters/numbers/hyphens only, no uppercase"
+    required: true
+
+  agent_mode:
+    validation: "must be one of: primary, subagent, all"
+    default: "subagent"
+
+  defaults:
+    agent_path_local: ".opencode/agent/"
+    agent_path_global: "~/.config/opencode/agent/"
+    temperature: 0.1
+
+# ─────────────────────────────────────────────────────────────────
+# AGENT CONFIGURATION REFERENCE
+# ─────────────────────────────────────────────────────────────────
+agent_modes:
+  primary:
+    description: "Main assistant, appears in Tab cycle"
+    tab_cycle: true
+    at_mention: true
+    automatic_invocation: false
+    use_case: "Main conversation handler"
+
+  subagent:
+    description: "Specialized assistant, invoked via @ mention or automatically"
+    tab_cycle: false
+    at_mention: true
+    automatic_invocation: true
+    use_case: "Specialized tasks delegated by primary agents"
+
+  all:
+    description: "Can be used as both primary and subagent"
+    tab_cycle: true
+    at_mention: true
+    automatic_invocation: true
+    use_case: "Maximum flexibility"
+
+available_tools:
+  read:
+    purpose: "Read files"
+    default: true
+  write:
+    purpose: "Create files"
+    default: true
+  edit:
+    purpose: "Modify files"
+    default: true
+  bash:
+    purpose: "Execute commands"
+    default: true
+  grep:
+    purpose: "Search content"
+    default: true
+  glob:
+    purpose: "Find files"
+    default: true
+  webfetch:
+    purpose: "Fetch URLs"
+    default: false
+  narsil:
+    purpose: "Semantic + structural code analysis"
+    default: true
+  memory:
+    purpose: "Spec Kit Memory"
+    default: true
+  chrome_devtools:
+    purpose: "Browser debugging"
+    default: false
+
+permission_values:
+- allow # Allow all operations without approval
+- deny # Disable the tool
+- ask # Prompt for approval before running
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# ─────────────────────────────────────────────────────────────────
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  critical_steps:
+    step_2_understanding:
+      enforcement: "MUST gather purpose, use cases, and authority"
+      verification: "Cannot proceed without user confirmation"
+    step_3_planning:
+      enforcement: "MUST define tools, permissions, and behavioral rules"
+      verification: "All configuration decisions documented"
+    step_4_generation:
+      enforcement: "MUST create valid YAML frontmatter + markdown body"
+      verification: "File created with all required sections"
+    step_5_validation:
+      enforcement: "MUST verify YAML syntax parses correctly"
+      verification: "Validation command returns success"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (6 STEPS WITH CHECKPOINTS)
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  steps:
+  - step: 1
+    name: "Analysis"
+    duration: "~2 min"
+    goal: "Validate inputs and confirm output location"
+    activities:
+    - "Validate agent name format (lowercase, hyphenated)"
+    - "Confirm output location from Phase 3"
+    - "Verify no conflicts with existing agents"
+    outputs:
+    - agent_name_validated
+    - agent_path_confirmed
+    checkpoint:
+      prompt: "Agent '[agent_name]' will be created at [agent_path]. Proceed?"
+      options: [ "Approve", "Change name", "Change location", "Cancel" ]
+
+  - step: 2
+    name: "Understanding"
+    duration: "~5 min"
+    goal: "Gather purpose, use cases, and authority"
+    activities:
+    - "Ask: What is the agent's PURPOSE?"
+    - "Ask: Give 2-3 concrete USE CASES"
+    - "Ask: What AUTHORITY does this agent have?"
+    questions:
+      purpose: |
+        What is the agent's purpose? What specific role will it fill?
+        (e.g., "Code review specialist", "Security auditor", "Test automation")
+      use_cases: |
+        Give me 2-3 concrete examples of when this agent would be invoked.
+        (e.g., "When user asks to review a PR", "When security scan is needed")
+      authority: |
+        What is this agent responsible for? What decisions can it make?
+        (e.g., "Approve/reject code changes", "Flag security issues")
+    outputs:
+    - purpose_defined
+    - use_cases_gathered
+    - authority_defined
+    checkpoint:
+      prompt: "Understanding complete. Ready to plan configuration?"
+      options: [ "Approve", "Add more details", "Revise" ]
+
+  - step: 3
+    name: "Planning"
+    duration: "~5 min"
+    goal: "Define tools, permissions, and behavioral rules"
+    activities:
+    - "Identify required TOOLS based on use cases"
+    - "Determine PERMISSIONS for each action"
+    - "Define BEHAVIORAL RULES (ALWAYS/NEVER/ESCALATE)"
+    - "Identify SKILLS to integrate"
+    questions:
+      tools: |
+        Based on the use cases, which tools does this agent need?
+        - read: Examine files
+        - write: Create files
+        - edit: Modify files
+        - bash: Run commands
+        - grep: Search content
+        - glob: Find files
+        - webfetch: Fetch URLs
+        - narsil: Semantic + structural code analysis
+        - memory: Spec Kit Memory
+        - chrome_devtools: Browser debugging
+      permissions: |
+        What permissions should this agent have?
+        - edit: allow/deny/ask
+        - bash: allow/deny/ask
+        - webfetch: allow/deny/ask
+      rules: |
+        What behavioral rules should this agent follow?
+        - ✅ ALWAYS: What must it always do?
+        - ❌ NEVER: What must it never do?
+        - ⚠️ ESCALATE IF: When should it ask for help?
+      skills: |
+        Which skills should this agent invoke?
+        (e.g., workflows-code, system-spec-kit, workflows-documentation)
+    outputs:
+    - tools_configured
+    - permissions_configured
+    - rules_defined
+    - skills_identified
+    checkpoint:
+      prompt: "Configuration planned. Ready to generate agent file?"
+      options: [ "Approve", "Modify tools", "Modify permissions", "Modify rules" ]
+
+  - step: 4
+    name: "Generation"
+    duration: "~5 min"
+    goal: "Create agent markdown file with frontmatter and content"
+    activities:
+    - "Generate YAML frontmatter with all fields"
+    - "Generate markdown body with required sections"
+    - "Write file to agent_path"
+    template: |
+      ---
+      name: [agent_name]
+      description: "[description from purpose]"
+      mode: [agent_mode]
+      temperature: 0.1
+      tools:
+        read: [true/false]
+        write: [true/false]
+        edit: [true/false]
+        bash: [true/false]
+        grep: [true/false]
+        glob: [true/false]
+        webfetch: [true/false]
+        narsil: [true/false]
+        memory: [true/false]
+        chrome_devtools: [true/false]
+      permission:
+        edit: [allow/deny/ask]
+        bash: [allow/deny/ask]
+        webfetch: [allow/deny/ask]
+      ---
+
+      # [Agent Title]
+
+      [Intro based on purpose and authority]
+
+      ---
+
+      ## 1. 🔄 CORE WORKFLOW
+
+      [Steps based on use cases]
+
+      ---
+
+      ## 2. 📋 [DOMAIN SECTION]
+
+      [Content based on purpose]
+
+      ---
+
+      ## 3. 🚫 ANTI-PATTERNS
+
+      ❌ **Never [rule]**
+      - [Reason]
+
+      ---
+
+      ## 4. 🔗 RELATED RESOURCES
+
+      - [Skills and resources]
+    outputs:
+    - agent_file_created
+    checkpoint:
+      prompt: "Agent file generated. Ready to validate?"
+      options: [ "Approve", "Review content", "Modify" ]
+
+  - step: 5
+    name: "Validation"
+    duration: "~2 min"
+    goal: "Verify YAML frontmatter syntax and required fields"
+    activities:
+    - "Parse YAML frontmatter with Python yaml module"
+    - "Verify required fields present (name, description)"
+    - "Verify mode is valid (primary/subagent/all)"
+    - "Verify tools and permissions have valid values"
+    validation_command: |
+      python3 -c "import yaml; yaml.safe_load(open('[agent_path]').read().split('---')[1])"
+    checks:
+    - "YAML parses without errors"
+    - "name field matches file name"
+    - "description is present and single-line"
+    - "mode is one of: primary, subagent, all"
+    - "tools object has valid boolean values"
+    - "permission object has valid values"
+    outputs:
+    - validation_passed
+    checkpoint:
+      prompt: "Validation complete. Agent ready for use?"
+      options: [ "Complete", "Fix issues", "Review" ]
+
+  - step: 6
+    name: "Save Context"
+    duration: "~1 min"
+    goal: "Preserve context if spec folder was used"
+    condition: "spec_path is not null"
+    activities:
+    - "Run generate-context.js to save context"
+    - "Verify memory file created"
+    command: |
+      node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec_path]
+    outputs:
+    - context_saved
+    checkpoint:
+      prompt: "Context saved. Agent creation complete!"
+      options: [ "Done" ]
+
+# ─────────────────────────────────────────────────────────────────
+# COMPLETION REPORT TEMPLATE
+# ─────────────────────────────────────────────────────────────────
+completion_report_template: |
+  ## Agent Creation Complete
+
+  | Property    | Value                    |
+  | ----------- | ------------------------ |
+  | Agent Name  | [agent_name]             |
+  | Mode        | [agent_mode]             |
+  | Location    | [agent_path]             |
+  | Spec Folder | [spec_path or "N/A"]     |
+
+  ### Invocation
+
+  [IF mode == primary]
+  - Press **Tab** to cycle to this agent
+  [ENDIF]
+
+  [IF mode == subagent OR mode == all]
+  - Type `@[agent_name]` to invoke
+  - Primary agents can invoke automatically based on description
+  [ENDIF]
+
+  ### Next Steps
+
+  1. Restart OpenCode to load the new agent
+  2. Test invocation with a sample request
+  3. Iterate on behavioral rules based on testing
+
+# ─────────────────────────────────────────────────────────────────
+# ERROR HANDLING
+# ─────────────────────────────────────────────────────────────────
+error_handling:
+  yaml_parse_error:
+    message: "YAML frontmatter failed to parse"
+    action: "Check for syntax errors, fix and re-validate"
+  missing_required_field:
+    message: "Required field missing: [field_name]"
+    action: "Add the missing field and re-validate"
+  invalid_mode:
+    message: "Invalid mode: [mode]. Must be primary, subagent, or all"
+    action: "Correct the mode value and re-validate"
+  file_exists:
+    message: "Agent file already exists at [path]"
+    action: "Choose to overwrite, rename, or cancel"
+
+# ─────────────────────────────────────────────────────────────────
+# FAILURE RECOVERY
+# ─────────────────────────────────────────────────────────────────
+failure_recovery:
+  step_failed:
+    action: "Return to failed step, address issue, retry"
+  validation_failed:
+    action: "Fix YAML syntax or missing fields, re-run validation"
+  user_cancelled:
+    action: "Clean up any partial files, report cancellation"

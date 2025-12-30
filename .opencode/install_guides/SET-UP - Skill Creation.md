@@ -1,14 +1,12 @@
 # SET-UP - Skill Creation
 
-> Create AI agent skills with native OpenCode discovery. Complete workflow from concept to deployment.
+Complete guide for creating AI agent skills with native OpenCode discovery. Covers the full 6-step workflow from concept to deployment: understanding, planning, initializing, editing, packaging, and iterating. Includes SKILL.md template reference, bundled resources (scripts, references, assets), validation with DQI scoring, and troubleshooting for common discovery issues.
 
-**Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
-
----
+> **Part of OpenCode Installation** - See [Master Installation Guide](./README.md) for complete setup.
+> **Scope**: .opencode/skill
 
 ## TABLE OF CONTENTS
 
-- [0. 🤖 AI INSTALL GUIDE](#0--ai-install-guide)
 - [1. 🚀 QUICK START](#1--quick-start)
 - [2. 📋 PREREQUISITES](#2--prerequisites)
 - [3. 🔄 THE 6-STEP WORKFLOW](#3--the-6-step-workflow)
@@ -20,11 +18,10 @@
 - [9. 🔧 DISCOVERY MECHANICS](#9--discovery-mechanics)
 - [10. 📚 RESOURCES](#10--resources)
 - [11. ✅ FINAL CHECKLIST](#11--final-checklist)
-- [12. 🔗 POST-CREATION: SKILL ADVISOR SETUP](#12--post-creation-skill-advisor-setup)
 
 ---
 
-## 0. 🤖 AI INSTALL GUIDE
+## 🤖 AI SET-UP GUIDE
 
 ### ⛔ HARD BLOCK: Write Agent Required
 
@@ -36,7 +33,6 @@
 - Runs DQI scoring (target: 90+ Excellent)
 - Invokes `workflows-documentation` skill for standards
 - Ensures proper use of `init_skill.py` and `package_skill.py`
-- Adheres to all template standards from `workflows-documentation`
 
 **Verification (MUST pass before proceeding):**
 - [ ] Write agent exists: `ls .opencode/agent/write.md`
@@ -45,22 +41,6 @@
 **❌ DO NOT** create skills without the @write agent — manual creation bypasses quality gates and template alignment.
 
 **Reference:** `.opencode/agent/write.md` → Section 4 (Mode 2: Skill Creation)
-
-### 📋 Required Templates (Loaded by @write Agent)
-
-The @write agent MUST load these templates before creating any skill files:
-
-| Template | Path | Purpose |
-|----------|------|---------|
-| **SKILL.md Template** | `.opencode/skill/workflows-documentation/assets/skill_md_template.md` | Main skill file structure |
-| **Reference Template** | `.opencode/skill/workflows-documentation/assets/skill_reference_template.md` | Reference file structure |
-| **Asset Template** | `.opencode/skill/workflows-documentation/assets/skill_asset_template.md` | Asset file structure |
-| **Skill Creation Guide** | `.opencode/skill/workflows-documentation/references/skill_creation.md` | Complete workflow reference |
-
-**Template-First Workflow:**
-```
-1. LOAD template → 2. CREATE content → 3. VALIDATE alignment → 4. DQI score
-```
 
 ---
 
@@ -720,10 +700,10 @@ Keywords: greeting, salutation, welcome, email opening
 
 For comprehensive real-world examples, examine these production skills:
 
-| Skill               | Path                                       | Highlights                                                                       |
-| ------------------- | ------------------------------------------ | -------------------------------------------------------------------------------- |
-| **mcp-narsil**      | `.opencode/skill/mcp-narsil/SKILL.md`      | Native MCP tool integration, semantic + structural search, SMART ROUTING         |
-| **system-spec-kit** | `.opencode/skill/system-spec-kit/SKILL.md` | Complex skill with multiple references, checkpoint system, context preservation  |
+| Skill               | Path                                       | Highlights                                                                      |
+| ------------------- | ------------------------------------------ | ------------------------------------------------------------------------------- |
+| **mcp-narsil**      | `.opencode/skill/mcp-narsil/SKILL.md`      | Native MCP tool integration, semantic + structural search, SMART ROUTING        |
+| **system-spec-kit** | `.opencode/skill/system-spec-kit/SKILL.md` | Complex skill with multiple references, checkpoint system, context preservation |
 
 **To examine:**
 ```bash
@@ -940,15 +920,12 @@ head -10 .opencode/skill/my-skill/SKILL.md
 
 ### File Locations
 
-| Path                                                                       | Purpose                   |
-| -------------------------------------------------------------------------- | ------------------------- |
-| `.opencode/skill/`                                                         | Skills directory          |
-| `.opencode/skill/workflows-documentation/scripts/init_skill.py`            | Initialize skill          |
-| `.opencode/skill/workflows-documentation/scripts/package_skill.py`         | Validate and package      |
-| `.opencode/skill/workflows-documentation/assets/skill_md_template.md`      | SKILL.md template         |
-| `.opencode/skill/workflows-documentation/assets/skill_reference_template.md` | Reference file template |
-| `.opencode/skill/workflows-documentation/assets/skill_asset_template.md`   | Asset file template       |
-| `.opencode/skill/workflows-documentation/references/skill_creation.md`     | Complete workflow guide   |
+| Path                                                                  | Purpose              |
+| --------------------------------------------------------------------- | -------------------- |
+| `.opencode/skill/`                                                    | Skills directory     |
+| `.opencode/skill/workflows-documentation/scripts/init_skill.py`       | Initialize skill     |
+| `.opencode/skill/workflows-documentation/scripts/package_skill.py`    | Validate and package |
+| `.opencode/skill/workflows-documentation/assets/skill_md_template.md` | SKILL.md template    |
 
 ### Scripts Reference
 
@@ -968,10 +945,10 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py \
 
 ### Related Guides
 
-| Guide                                          | Purpose                           |
-| ---------------------------------------------- | --------------------------------- |
-| [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Add skills to agent config        |
-| [Master Installation Guide](./README.md)       | OpenCode setup overview           |
+| Guide                                          | Purpose                              |
+| ---------------------------------------------- | ------------------------------------ |
+| [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md) | Add skills to agent config           |
+| [Master Installation Guide](./README.md)       | OpenCode setup overview              |
 | [@write Agent](../../agent/write.md)           | Write agent (Mode 2: Skill Creation) |
 
 ### External Resources
@@ -995,70 +972,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py \
   - [ ] RULES subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
 - [ ] **Step 5:** Validation passed (package_skill.py --check)
 - [ ] **Step 6:** Tested with real use cases
-- [ ] **Step 7:** Skill Advisor configured (see [Section 12](#12--post-creation-skill-advisor-setup))
 - [ ] **Optional:** DQI score >= 75 (Good)
-
----
-
-## 12. 🔗 POST-CREATION: SKILL ADVISOR SETUP
-
-After creating a skill, you must configure the **Skill Advisor** so AI agents can automatically route tasks to your new skill.
-
-### Why This Step Matters
-
-The Skill Advisor (`skill_advisor.py`) is the routing system that matches user requests to skills. Without adding your skill to the advisor, AI agents won't know when to invoke it.
-
-### Quick Setup
-
-**Full guide:** [SET-UP - Skill Advisor.md](./SET-UP%20-%20Skill%20Advisor.md)
-
-**Quick steps:**
-
-1. **Open the skill advisor script:**
-   ```bash
-   code .opencode/scripts/skill_advisor.py
-   ```
-
-2. **Add your skill to the `SKILLS` dictionary:**
-   ```python
-   SKILLS = {
-       # ... existing skills ...
-       "my-new-skill": {
-           "triggers": ["keyword1", "keyword2", "use case phrase"],
-           "description": "Brief description matching SKILL.md",
-           "path": ".opencode/skill/my-new-skill/SKILL.md"
-       }
-   }
-   ```
-
-3. **Test the routing:**
-   ```bash
-   python3 .opencode/scripts/skill_advisor.py "your trigger phrase"
-   ```
-
-4. **Verify confidence > 0.8** for your intended triggers
-
-### Trigger Keyword Best Practices
-
-| Good Triggers | Why |
-|---------------|-----|
-| Specific verbs | "create flowchart", "generate diagram" |
-| Domain terms | "ASCII art", "decision tree" |
-| Use case phrases | "visualize workflow" |
-
-| Avoid | Why |
-|-------|-----|
-| Generic words | "help", "create", "make" (too broad) |
-| Single letters | Low specificity |
-| Common phrases | May conflict with other skills |
-
-### Validation Checklist
-
-- [ ] Skill added to `SKILLS` dictionary in `skill_advisor.py`
-- [ ] Triggers are specific and unique
-- [ ] Description matches SKILL.md description
-- [ ] Path is correct and file exists
-- [ ] Test returns confidence > 0.8 for intended triggers
 
 ---
 

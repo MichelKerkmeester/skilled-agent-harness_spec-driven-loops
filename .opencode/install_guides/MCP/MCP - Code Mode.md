@@ -1,6 +1,6 @@
 # MCP Code Mode Installation Guide
 
-A comprehensive guide to installing, configuring, and using the Code Mode MCP server for TypeScript-based tool orchestration.
+Complete installation and configuration guide for the Code Mode MCP server, enabling TypeScript-based orchestration of external MCP tools. Provides unified access to Webflow, Figma, ClickUp, GitHub, Chrome DevTools, Narsil, and other MCP servers through a single `call_tool_chain()` interface. Delivers 98.7% context reduction and 60% faster execution compared to individual tool calls, with type-safe invocation and automatic tool discovery.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Package**: `@utcp/code-mode-mcp` | **Dependencies**: Node.js 18+, .utcp_config.json
@@ -9,7 +9,6 @@ A comprehensive guide to installing, configuring, and using the Code Mode MCP se
 
 #### TABLE OF CONTENTS
 
-0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
@@ -24,7 +23,7 @@ A comprehensive guide to installing, configuring, and using the Code Mode MCP se
 
 ---
 
-## 0. 🤖 AI INSTALL GUIDE
+## 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 

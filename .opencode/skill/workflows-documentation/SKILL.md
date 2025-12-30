@@ -1,15 +1,15 @@
 ---
 name: workflows-documentation
-description: "Unified markdown and skill management specialist providing document quality enforcement (structure, style), content optimization for AI assistants, complete skill creation workflow (scaffolding, validation, packaging), ASCII flowchart creation for visualizing complex workflows, user journeys, and decision trees, and install guide creation for MCP servers, plugins, and tools."
+description: "Unified markdown and OpenCode component specialist providing document quality enforcement (structure, style), content optimization for AI assistants, complete component creation workflows (skills, agents, commands with scaffolding, validation, packaging), ASCII flowchart creation for visualizing complex workflows, and install guide creation for MCP servers, plugins, and tools."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 5.1.0
+version: 5.2.0
 ---
 
 <!-- Keywords: workflows-documentation, markdown-quality, skill-creation, document-validation, ascii-flowchart, llms-txt, content-optimization, extract-structure -->
 
-# Documentation Creation Specialist - Unified Markdown & Skill Management
+# Documentation Creation Specialist - Unified Markdown & Component Management
 
-Unified specialist providing: (1) Document quality pipeline with structure enforcement and content optimization, (2) Skill creation workflow with scaffolding, validation, and packaging, and (3) ASCII flowchart creation for visualizing workflows and decision trees.
+Unified specialist providing: (1) Document quality pipeline with structure enforcement and content optimization, (2) OpenCode component creation (skills, agents, commands) with scaffolding, validation, and packaging, (3) ASCII flowchart creation for visualizing workflows, and (4) Install guide creation for setup documentation.
 
 **Core principle**: Structure first, then content, then quality.
 
@@ -25,13 +25,16 @@ Enforce markdown structure, optimize content for AI assistants, validate quality
 
 **Use when**: Writing/optimizing markdown, enforcing structural standards, improving AI-friendliness, validating before release.
 
-### Mode 2: Skill Creation & Management
+### Mode 2: OpenCode Component Creation
 
-Guide skill creation through 6-step workflow: Understanding → Planning → Initialization → Editing → Packaging → Iteration.
+Create and manage OpenCode components: skills, agents, and commands. Each component type has templates, validation, and quality standards.
 
-**Use when**: Creating new skills, scaffolding structure, validating SKILL.md quality, packaging for distribution.
+**Use when**: Creating skills, agents, or commands. Scaffolding structure, validating quality, packaging for distribution.
 
-**See**: [skill_creation.md](./references/skill_creation.md)
+**Component Types:**
+- **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
+- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/agent_template.md)
+- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
 
 ### Mode 3: Flowchart Creation
 
@@ -59,16 +62,21 @@ Create and validate installation documentation for MCP servers, plugins, and too
 TASK CONTEXT
     │
     ├─► Improving markdown / documentation quality
-    │   └─► MODE 1: Document Optimization
-    │       └─► Execute: extract_structure.py → JSON output
-    │       └─► AI evaluates JSON and provides recommendations
+    │   └─► MODE 1: Document Quality
+    │       ├─► README creation: readme_template.md
+    │       ├─► Knowledge files, general markdown
+    │       ├─► Frontmatter validation: frontmatter_templates.md
+    │       ├─► Quality analysis: extract_structure.py → JSON
+    │       └─► llms.txt generation (ask first)
     │
-    ├─► Creating new skill / skill maintenance
-    │   └─► MODE 2: Skill Creation
-    │       └─► Execute: init_skill.py, package_skill.py
+    ├─► Creating OpenCode components (skills, agents, commands)
+    │   └─► MODE 2: Component Creation
+    │       ├─► Skills: init_skill.py + skill_md_template.md
+    │       ├─► Agents: agent_template.md
+    │       └─► Commands: command_template.md
     │
     ├─► Creating ASCII flowcharts / diagrams
-    │   └─► MODE 3: ASCII Flowcharts
+    │   └─► MODE 3: Flowchart Creation
     │       └─► Load flowchart assets by pattern type
     │
     ├─► Creating install guide / setup documentation
@@ -83,25 +91,28 @@ TASK CONTEXT
 
 **Mode 1 - Document Quality:**
 
-| Condition          | Resource                       | Purpose                                        |
-| ------------------ | ------------------------------ | ---------------------------------------------- |
-| Checking structure | `references/core_standards.md` | Filename conventions, structural violations    |
-| Optimizing content | `references/optimization.md`   | Question coverage, AI-friendly transformations |
-| Validating quality | `references/validation.md`     | DQI scoring, quality gates                     |
-| Workflow guidance  | `references/workflows.md`      | Execution modes, enforcement patterns          |
+| Condition              | Resource                          | Purpose                                        |
+| ---------------------- | --------------------------------- | ---------------------------------------------- |
+| Checking structure     | `references/core_standards.md`    | Filename conventions, structural violations    |
+| Optimizing content     | `references/optimization.md`      | Question coverage, AI-friendly transformations |
+| Validating quality     | `references/validation.md`        | DQI scoring, quality gates                     |
+| Workflow guidance      | `references/workflows.md`         | Execution modes, enforcement patterns          |
+| **Creating README**    | `assets/readme_template.md`       | README structure (13 sections)                 |
+| **Validating frontmatter** | `assets/frontmatter_templates.md` | Frontmatter validation & templates (11 types) |
 
-**Mode 2 - Skill Creation:**
+**Mode 2 - OpenCode Component Creation:**
 
-| Condition               | Resource                                         | Purpose                                  |
-| ----------------------- | ------------------------------------------------ | ---------------------------------------- |
-| Creating skill          | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                          |
-| Need template           | `assets/skill_md_template.md`                    | SKILL.md structure                       |
-| Need asset template     | `assets/skill_asset_template.md`                 | Bundled assets                           |
-| Need reference template | `assets/skill_reference_template.md`             | Reference docs                           |
-| Need README template    | `assets/readme_template.md`                      | Comprehensive README guide (13 sections) |
-| Creating command        | `assets/command_template.md`                     | Command creation guide (19 sections)     |
-| Packaging skill         | `scripts/package_skill.py`                       | Validation + zip                         |
-| Quick validation        | `scripts/quick_validate.py`                      | Fast checks                              |
+| Category | Condition               | Resource                                         | Purpose                                  |
+| -------- | ----------------------- | ------------------------------------------------ | ---------------------------------------- |
+| **Skills** | Creating skill        | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                          |
+|          | SKILL.md template       | `assets/skill_md_template.md`                    | SKILL.md structure                       |
+|          | Reference template      | `assets/skill_reference_template.md`             | Reference docs in references/            |
+|          | Asset template          | `assets/skill_asset_template.md`                 | Bundled assets in assets/                |
+|          | Packaging skill         | `scripts/package_skill.py`                       | Validation + zip                         |
+| **Agents** | Creating agent        | `assets/agent_template.md`                       | Agent file with frontmatter & permissions |
+| **Commands** | Creating command    | `assets/command_template.md`                     | Command creation guide (19 sections)     |
+| **Shared** | Component README      | `assets/readme_template.md`                      | README for skill/agent/command folders   |
+|          | Quick validation        | `scripts/quick_validate.py`                      | Fast validation checks                   |
 
 **Mode 3 - Flowcharts:**
 
@@ -140,6 +151,16 @@ TASK CONTEXT
 
 ### Mode 1: Document Quality
 
+**README Creation** - Use `readme_template.md` when:
+- Creating new README for any folder or project
+- User requests "create a README", "add documentation"
+- Folder needs comprehensive documentation
+
+**Frontmatter Validation** - Use `frontmatter_templates.md` when:
+- Validating YAML frontmatter in any document
+- Checking required fields for document types
+- Fixing frontmatter syntax errors
+
 **Validation Workflow** - Apply after Write/Edit operations:
 - Auto-correct filename violations (ALL CAPS → lowercase, hyphens → underscores)
 - Fix safe violations (separators, H2 case, emoji per rules)
@@ -151,15 +172,21 @@ TASK CONTEXT
 - Pre-release quality checks
 - Generating llms.txt for LLM navigation
 
-### Mode 2: Skill Creation
+### Mode 2: OpenCode Component Creation
 
 **Use when**:
 - User requests skill creation ("create a skill", "make a new skill")
-- Scaffolding skill directory structure
-- Validating SKILL.md quality
+- User requests agent creation ("create an agent", "make a new agent")
+- User requests command creation ("create a command", "add a slash command")
+- Scaffolding component structure
+- Validating component quality
 - Packaging skill for distribution
 
-**6-Step Process**: Understanding (examples) → Planning (resources) → Initialization (`init_skill.py`) → Editing (populate) → Packaging (`package_skill.py`) → Iteration (test/improve)
+**Skill Process (6 steps)**: Understanding (examples) → Planning (resources) → Initialization (`init_skill.py`) → Editing (populate) → Packaging (`package_skill.py`) → Iteration (test/improve)
+
+**Agent Process**: Load `agent_template.md` → Define frontmatter (tools, permissions) → Create sections (workflow, capabilities, anti-patterns) → Validate → Test
+
+**Command Process**: Load `command_template.md` → Define frontmatter (name, description) → Create execution logic → Add to command registry → Test
 
 ### Mode 3: Flowchart Creation
 
@@ -219,7 +246,9 @@ scripts/extract_structure.py path/to/document.md
 | Spec      | Loose       | Optional    | Working docs; avoid blocking     |
 | Generic   | Flexible    | Optional    | Best-effort structure            |
 
-### Mode 2: Skill Creation
+### Mode 2: OpenCode Component Creation
+
+#### Skill Creation
 
 **Progressive Disclosure Design**:
 1. Metadata (name + description) - Always in context (~100 words)
@@ -245,6 +274,28 @@ scripts/package_skill.py .opencode/skill/my-skill
 # 5. Quality assurance (DQI scoring)
 scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 ```
+
+#### Agent Creation
+
+**Template-First Workflow**:
+1. Load `agent_template.md` for structure reference
+2. Create agent file in `.opencode/agent/`
+3. Define YAML frontmatter (name, tools, permissions)
+4. Create required sections (workflow, capabilities, anti-patterns)
+5. Validate frontmatter syntax
+6. Test with real examples
+
+**Key Difference from Skills**: Agents have tool permissions (true/false per tool) and action permissions (allow/deny), not just allowed-tools array.
+
+#### Command Creation
+
+**Template-First Workflow**:
+1. Load `command_template.md` for structure reference
+2. Create command file in `.opencode/command/`
+3. Define YAML frontmatter (name, description, triggers)
+4. Create execution logic and examples
+5. Add to command registry
+6. Test invocation
 
 ### Mode 3: Flowchart Creation
 
@@ -312,9 +363,11 @@ Standard Flow:      Branch:           Parallel:         Merge:
 4. Style guide missing
 5. Conflicts with user intent
 
-### Mode 2: Skill Creation
+### Mode 2: OpenCode Component Creation
 
-#### ✅ ALWAYS
+#### Skills
+
+##### ✅ ALWAYS
 
 1. **ALWAYS start with concrete examples** (validate understanding)
 2. **ALWAYS run init_skill.py** (proper scaffolding)
@@ -325,7 +378,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 7. **ALWAYS validate before packaging**
 8. **ALWAYS recommend final review** (run `extract_structure.py`)
 
-#### ❌ NEVER
+##### ❌ NEVER
 
 1. **NEVER use second-person** (imperative/infinitive only)
 2. **NEVER duplicate SKILL.md/references/** (progressive disclosure)
@@ -334,13 +387,58 @@ Standard Flow:      Branch:           Parallel:         Merge:
 5. **NEVER include excessive detail** (SKILL.md is orchestrator)
 6. **NEVER use vague descriptions**
 
-#### ⚠️ ESCALATE IF
+##### ⚠️ ESCALATE IF
 
 1. Skill purpose unclear
 2. No concrete examples
 3. Validation fails repeatedly
 4. Unsupported features
 5. User input required (brand assets, API docs)
+
+#### Agents
+
+##### ✅ ALWAYS
+
+1. **ALWAYS load agent_template.md first** (template-first workflow)
+2. **ALWAYS validate frontmatter** (name, mode, temperature, tools, permission)
+3. **ALWAYS include CORE WORKFLOW section** (numbered steps)
+4. **ALWAYS include ANTI-PATTERNS section** (what NOT to do)
+5. **ALWAYS set explicit tool permissions** (true/false for each tool)
+6. **ALWAYS test with real examples** before deployment
+
+##### ❌ NEVER
+
+1. **NEVER create agents without @write agent** (bypasses quality gates)
+2. **NEVER skip frontmatter validation** (causes discovery failures)
+3. **NEVER use vague tool permissions** (be explicit: true or false)
+4. **NEVER omit anti-patterns** (agents need clear boundaries)
+
+##### ⚠️ ESCALATE IF
+
+1. Agent purpose overlaps with existing agent
+2. Tool permissions unclear
+3. Behavioral rules conflict with AGENTS.md
+
+#### Commands
+
+##### ✅ ALWAYS
+
+1. **ALWAYS load command_template.md first** (template-first workflow)
+2. **ALWAYS define clear triggers** (what invokes the command)
+3. **ALWAYS include usage examples** (copy-paste ready)
+4. **ALWAYS validate command name** (lowercase, colon-separated)
+
+##### ❌ NEVER
+
+1. **NEVER create commands without frontmatter** (required for discovery)
+2. **NEVER use ambiguous triggers** (must be unique)
+3. **NEVER skip testing** (commands must work on first invocation)
+
+##### ⚠️ ESCALATE IF
+
+1. Command conflicts with existing command
+2. Trigger phrase is ambiguous
+3. Command requires special permissions
 
 ### Mode 3: Flowchart Creation
 
@@ -456,6 +554,21 @@ The `extract_structure.py` script computes a **DQI** (0-100) based on measurable
 - ✅ SKILL.md under 5k words, bundled resources organized
 - ✅ Unused examples deleted, passes `package_skill.py`
 - ✅ Final AI review completed, tested on real examples
+
+**Agent Creation Complete**:
+- ✅ YAML frontmatter with name, mode, temperature, tools, permission
+- ✅ Tool permissions explicitly set (true/false for each)
+- ✅ CORE WORKFLOW section with numbered steps
+- ✅ ANTI-PATTERNS section with clear boundaries
+- ✅ RELATED RESOURCES section with links
+- ✅ Tested with real examples
+
+**Command Creation Complete**:
+- ✅ YAML frontmatter with name, description, triggers
+- ✅ Clear usage examples (copy-paste ready)
+- ✅ Execution logic defined
+- ✅ Added to command registry
+- ✅ Tested invocation works
 
 **Flowchart Complete**:
 - ✅ All paths clear, decisions labeled, parallel blocks resolve

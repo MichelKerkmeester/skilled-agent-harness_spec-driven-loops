@@ -1,6 +1,6 @@
 # Narsil MCP Server Installation Guide
 
-A comprehensive guide to installing, configuring, and using the Narsil MCP server for deep code intelligence including security scanning, call graph analysis, and structural queries with 76 specialized tools.
+Complete installation and configuration guide for the Narsil MCP server, providing deep code intelligence through 76 specialized tools. Covers semantic search (neural embeddings for meaning-based queries), structural analysis (AST-based symbol and definition queries), security scanning (OWASP, CWE, taint analysis), and call graph visualization. Accessed via Code Mode for token-efficient multi-tool workflows with type-safe invocation.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Binary**: `${NARSIL_PATH}/target/release/narsil-mcp` | **Access**: Via Code Mode (not standalone)
@@ -9,7 +9,6 @@ A comprehensive guide to installing, configuring, and using the Narsil MCP serve
 
 #### TABLE OF CONTENTS
 
-0. [🤖 AI INSTALL GUIDE](#0--ai-install-guide)
 1. [📖 OVERVIEW](#1--overview)
 2. [📋 PREREQUISITES](#2--prerequisites)
 3. [📥 INSTALLATION](#3--installation)
@@ -24,7 +23,7 @@ A comprehensive guide to installing, configuring, and using the Narsil MCP serve
 
 ---
 
-## 0. 🤖 AI INSTALL GUIDE
+## 🤖 AI INSTALL GUIDE
 
 **Copy and paste this prompt to your AI assistant to get installation help:**
 
@@ -317,23 +316,31 @@ Add Narsil to your project's `.utcp_config.json`:
     "mcpServers": {
       "narsil": {
         "transport": "stdio",
-        "command": "/Users/YOUR_USERNAME/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp",
+        "command": "narsil-mcp",
         "args": [
-          "--repos", "${workspaceFolder}",
+          "--repos", ".",
+          "--preset", "full",
+          "--index-path", ".narsil-index",
           "--git",
           "--call-graph",
           "--persist",
-          "--watch"
-        ]
+          "--neural",
+          "--neural-backend", "api",
+          "--neural-model", "voyage-code-2"
+        ],
+        "env": {
+          "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
+        }
       }
     }
   }
 }
 ```
 
-**Replace:**
-- `YOUR_USERNAME` with your actual username
-- Path with your actual Narsil binary location
+**Note**: 
+- Use `narsil-mcp` if installed via Homebrew/npm, or full path to binary
+- `--preset full` enables all 76 tools
+- `--http --http-port 3000` can be added for visualization UI (optional)
 
 ### Configuration Flags Reference
 
@@ -344,7 +351,9 @@ Add Narsil to your project's `.utcp_config.json`:
 | `--call-graph`     | Enable call graph analysis                   | Yes         |
 | `--persist`        | Save index to disk (faster restarts)         | Yes         |
 | `--index-path`     | Custom index storage location                | Yes         |
-| `--watch`          | Auto-reindex on file changes                 | Yes         |
+| `--preset`         | Tool preset (minimal/balanced/full)          | Yes (full)  |
+| `--http`           | Enable visualization UI at localhost:3000    | Optional    |
+| `--http-port`      | Port for visualization UI (default: 3000)    | Optional    |
 | `--neural`         | Enable neural semantic search                | Optional    |
 | `--neural-backend` | Backend for embeddings (api or local)        | Optional    |
 | `--neural-model`   | Embedding model (voyage-code-2 for Narsil)   | Optional    |
@@ -367,17 +376,19 @@ If you have multiple Code Mode tools configured:
   "mcpServers": {
     "narsil": {
       "transport": "stdio",
-      "command": "/Users/YOUR_USERNAME/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp",
-      "args": ["--repos", "${workspaceFolder}", "--index-path", ".narsil-index", "--git", "--call-graph", "--persist", "--watch"]
+      "command": "narsil-mcp",
+      "args": ["--repos", ".", "--preset", "full", "--index-path", ".narsil-index", "--git", "--call-graph", "--persist"]
     },
     "webflow": {
       "transport": "stdio",
       "command": "npx",
-      "args": ["-y", "@anthropic/webflow-mcp"]
+      "args": ["mcp-remote", "https://mcp.webflow.com/sse"]
     }
   }
 }
 ```
+
+> **Architecture Note**: The `--http` flag enables a visualization web UI, NOT HTTP transport for MCP. MCP communication is always via stdio.
 
 ## Index Persistence
 
@@ -415,17 +426,6 @@ Add to `.gitignore`:
 3. **Manual save**: Use `save_index` MCP tool via Code Mode
 4. **Watch mode**: Saves after detecting file changes
 
-> **Known Limitation**: The `--persist` flag has limitations. While **symbols and call graph data** persist correctly, the following indexes are **regenerated on every startup** (~45-60 seconds):
-> - Neural embeddings (for `neural_search`)
-> - BM25 index (for `semantic_search`)
-> - TF-IDF embeddings (for `find_similar_code`)
-> - Code chunks (for `search_chunks`, `hybrid_search`)
->
-> **Workaround**: Run Narsil as a **long-lived HTTP server** rather than restarting between queries:
-> ```bash
-> narsil-mcp --repos . --persist --http --http-port 3000
-> ```
-
 ### Manual Index Building
 
 For large codebases or pre-warming the index:
@@ -460,19 +460,20 @@ To enable neural semantic search capabilities:
   "mcpServers": {
     "narsil": {
       "transport": "stdio",
-      "command": "/Users/YOUR_USERNAME/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp",
+      "command": "narsil-mcp",
       "args": [
-        "--repos", "${workspaceFolder}",
+        "--repos", ".",
+        "--preset", "full",
+        "--index-path", ".narsil-index",
         "--git",
         "--call-graph",
         "--persist",
-        "--watch",
         "--neural",
         "--neural-backend", "api",
         "--neural-model", "voyage-code-2"
       ],
       "env": {
-        "VOYAGE_API_KEY": "your-voyage-api-key-here"
+        "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
       }
     }
   }
@@ -523,12 +524,15 @@ grep -q "narsil-mcp" .utcp_config.json && python3 -m json.tool < .utcp_config.js
 
 Narsil includes an HTTP server with a React-based visualization frontend for exploring code graphs interactively. This is optional but useful for understanding code relationships visually.
 
+> **Important Architecture Note**: The `--http` flag enables a **visualization web UI**, NOT HTTP transport for MCP. MCP tool communication is **always via stdio** - Code Mode spawns the Narsil process and communicates via stdin/stdout. The HTTP server runs in parallel on port 3000 for visual exploration of call graphs, import dependencies, and code structure.
+
 ### Starting the HTTP Server
 
 ```bash
-# Start Narsil with HTTP server enabled
+# Start Narsil with HTTP visualization enabled
 narsil-mcp \
   --repos . \
+  --preset full \
   --index-path .narsil-index \
   --persist \
   --http \
@@ -538,6 +542,7 @@ narsil-mcp \
 The HTTP server provides:
 - `/health` endpoint for health checks
 - API endpoints for graph data (used by frontend)
+- Web UI at http://localhost:3000 for interactive visualization
 
 ### Starting the Frontend
 
@@ -561,13 +566,13 @@ npm run dev
 
 The visualization supports multiple graph types:
 
-| View       | Purpose                                    | Best For                    |
-| ---------- | ------------------------------------------ | --------------------------- |
-| `import`   | Module import/export relationships         | JavaScript/TypeScript       |
-| `call`     | Function call relationships                | Rust, Python (limited JS)   |
-| `symbol`   | Symbol definitions and references          | All languages               |
-| `hybrid`   | Combined import + call graph               | Comprehensive analysis      |
-| `flow`     | Data flow visualization                    | Security analysis           |
+| View     | Purpose                            | Best For                  |
+| -------- | ---------------------------------- | ------------------------- |
+| `import` | Module import/export relationships | JavaScript/TypeScript     |
+| `call`   | Function call relationships        | Rust, Python (limited JS) |
+| `symbol` | Symbol definitions and references  | All languages             |
+| `hybrid` | Combined import + call graph       | Comprehensive analysis    |
+| `flow`   | Data flow visualization            | Security analysis         |
 
 **Note**: For JavaScript projects, the `import` view is most useful. The `call` view works better for statically-typed languages like Rust and Python.
 
@@ -847,7 +852,7 @@ call_tool_chain({
 });
 ```
 
-> **Note:** With `--watch` flag enabled, Narsil auto-reindexes on file changes.
+> **Note:** Use `--persist` to save the index to disk for faster subsequent startups.
 
 ---
 
@@ -1348,21 +1353,7 @@ call_tool_chain({
     code: `await narsil.narsil_reindex({})`
   });
   ```
-  Or ensure `--watch` flag is in configuration for auto-reindex.
-
-### Known Limitations & Bugs
-
-**1. Persistence Bug**: Neural/BM25/TF-IDF/chunk indexes don't persist to disk (only symbols + call graph do). These indexes regenerate on each startup (~45-60s).
-   - **Workaround**: Run Narsil as a long-lived HTTP server process
-   - **Track**: https://github.com/postrv/narsil-mcp/issues
-
-**2. Unicode Character Panic**: Chunking crashes on Unicode box-drawing characters (─, │, etc.). This affects `hybrid_search`, `find_similar_code`, and `search_chunks`.
-   - **Workaround**: Use `neural_search` or `semantic_search` instead
-   - **Track**: https://github.com/postrv/narsil-mcp/issues
-
-**Tools confirmed working** (in same session with `--reindex`):
-- `neural_search`, `semantic_search`, `get_call_graph`, `get_callers`, `get_callees`
-- `find_references`, `get_dependencies`, `find_symbols`, `get_symbol_definition`
+  The `--persist` flag saves the index to disk for faster restarts.
 
 ### Diagnostic Commands
 
@@ -1443,32 +1434,45 @@ Examples:
   "mcpServers": {
     "narsil": {
       "transport": "stdio",
-      "command": "/path/to/narsil-mcp",
-      "args": ["--repos", "${workspaceFolder}"]
+      "command": "narsil-mcp",
+      "args": ["--repos", ".", "--preset", "minimal"]
     }
   }
 }
 ```
 
-**Recommended .utcp_config.json:**
+**Recommended .utcp_config.json (Full Features):**
 ```json
 {
   "mcpServers": {
     "narsil": {
       "transport": "stdio",
-      "command": "/path/to/narsil-mcp",
+      "command": "narsil-mcp",
       "args": [
-        "--repos", "${workspaceFolder}",
+        "--repos", ".",
+        "--preset", "full",
         "--index-path", ".narsil-index",
         "--git",
         "--call-graph",
         "--persist",
-        "--watch"
-      ]
+        "--neural",
+        "--neural-backend", "api",
+        "--neural-model", "voyage-code-2"
+      ],
+      "env": {
+        "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
+      }
     }
   }
 }
 ```
+
+**Presets:**
+| Preset     | Tools | Best For                               |
+| ---------- | ----- | -------------------------------------- |
+| `minimal`  | 26    | Fast startup, lightweight editors      |
+| `balanced` | 51    | General development                    |
+| `full`     | 76    | Comprehensive analysis, Claude Desktop |
 
 ### External Resources
 
@@ -1500,26 +1504,43 @@ Examples:
 ```bash
 # 1. Prerequisites
 # - Ensure Code Mode is installed
-# - Ensure Narsil binary exists
+# - Ensure Narsil binary exists (brew install narsil-mcp or cargo install narsil-mcp)
 
-# 2. Configure .utcp_config.json
-cat > .utcp_config.json << 'EOF'
-{
-  "mcpServers": {
-    "narsil": {
-      "transport": "stdio",
-      "command": "/path/to/narsil-mcp",
-      "args": ["--repos", "${workspaceFolder}", "--git", "--call-graph", "--persist", "--watch"]
-    }
-  }
-}
-EOF
+# 2. Configure .utcp_config.json (add narsil section)
+# See "Recommended .utcp_config.json" above for full config
 
 # 3. Restart OpenCode
 
 # 4. Verify via AI
 # "Use Code Mode to search for Narsil tools"
 # "Use Narsil to get the project structure"
+```
+
+### Architecture Summary
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Code Mode (.utcp_config.json)                               │
+│  call_tool_chain() ───────────────────────────────────────┐ │
+└───────────────────────────────────────────────────────────┼─┘
+                                                            │
+                            ┌───────────────────────────────┘
+                            │ stdio (spawn process)
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Narsil MCP Server                                          │
+│  ┌──────────────────────┬──────────────────────────────────┐│
+│  │ MCP Tools (76)       │ Visualization UI (optional)      ││
+│  │ via stdio            │ via HTTP :3000                   ││
+│  │                      │                                  ││
+│  │ • narsil_find_symbols│ • Call graph viewer               ││
+│  │ • narsil_scan_security│ • Import graph                  ││
+│  │ • narsil_neural_search│ • File browser                  ││
+│  └──────────────────────┴──────────────────────────────────┘│
+└─────────────────────────────────────────────────────────────┘
+
+NOTE: --http enables visualization UI only, NOT HTTP transport for MCP.
+      MCP communication is ALWAYS via stdio.
 ```
 
 ---

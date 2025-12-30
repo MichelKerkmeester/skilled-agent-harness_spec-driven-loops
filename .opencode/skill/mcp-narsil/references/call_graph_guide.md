@@ -19,29 +19,29 @@ Start with `get_call_graph` for the big picture, then drill into `callers`/`call
 
 Narsil provides comprehensive code flow analysis:
 
-| Capability | Tools | Purpose |
-|------------|-------|---------|
-| **Call Graph** | `get_call_graph`, `get_callers`, `get_callees` | Function relationships |
-| **Path Analysis** | `find_call_path`, `get_function_hotspots` | Execution paths |
-| **Control Flow** | `get_control_flow`, `find_dead_code` | Basic blocks and branches |
-| **Data Flow** | `get_data_flow`, `find_dead_stores`, `find_uninitialized` | Variable tracking |
-| **Complexity** | `get_complexity` | Cyclomatic/cognitive metrics |
+| Capability        | Tools                                                     | Purpose                      |
+| ----------------- | --------------------------------------------------------- | ---------------------------- |
+| **Call Graph**    | `get_call_graph`, `get_callers`, `get_callees`            | Function relationships       |
+| **Path Analysis** | `find_call_path`, `get_function_hotspots`                 | Execution paths              |
+| **Control Flow**  | `get_control_flow`, `find_dead_code`                      | Basic blocks and branches    |
+| **Data Flow**     | `get_data_flow`, `find_dead_stores`, `find_uninitialized` | Variable tracking            |
+| **Complexity**    | `get_complexity`                                          | Cyclomatic/cognitive metrics |
 
 ### Analysis Tools Summary
 
-| Tool | Purpose | Priority |
-|------|---------|----------|
-| `get_call_graph` | Function call relationships | HIGH |
-| `get_callers` | Who calls this function? | HIGH |
-| `get_callees` | What does this function call? | HIGH |
-| `find_call_path` | Path between functions | HIGH |
-| `get_complexity` | Complexity metrics | HIGH |
-| `get_function_hotspots` | Highly connected functions | HIGH |
-| `get_control_flow` | CFG with basic blocks | MEDIUM |
-| `find_dead_code` | Unreachable code | MEDIUM |
-| `get_data_flow` | Variable definitions/uses | MEDIUM |
-| `find_dead_stores` | Unused assignments | MEDIUM |
-| `find_uninitialized` | Variables used before init | MEDIUM |
+| Tool                    | Purpose                       | Priority |
+| ----------------------- | ----------------------------- | -------- |
+| `get_call_graph`        | Function call relationships   | HIGH     |
+| `get_callers`           | Who calls this function?      | HIGH     |
+| `get_callees`           | What does this function call? | HIGH     |
+| `find_call_path`        | Path between functions        | HIGH     |
+| `get_complexity`        | Complexity metrics            | HIGH     |
+| `get_function_hotspots` | Highly connected functions    | HIGH     |
+| `get_control_flow`      | CFG with basic blocks         | MEDIUM   |
+| `find_dead_code`        | Unreachable code              | MEDIUM   |
+| `get_data_flow`         | Variable definitions/uses     | MEDIUM   |
+| `find_dead_stores`      | Unused assignments            | MEDIUM   |
+| `find_uninitialized`    | Variables used before init    | MEDIUM   |
 
 ---
 
