@@ -69,12 +69,30 @@ search_tools({ task_description: "narsil security" });
 
 ## 3. 🎯 FIRST COMMANDS
 
+> **Important**: Most Narsil tools require a `repo` parameter. First discover the repo name:
+
+### Step 0: Discover Repo Name
+
+```typescript
+call_tool_chain({
+  code: `
+    const repos = await narsil.narsil_list_repos({});
+    console.log(repos);
+    return repos;  // Returns repo name (typically "unknown")
+  `
+});
+
+// Expected output: Repo name like "unknown"
+```
+
 ### Get Project Structure
 
 ```typescript
 call_tool_chain({
   code: `
-    const structure = await narsil.narsil_get_project_structure({});
+    const structure = await narsil.narsil_get_project_structure({
+      repo: "unknown"  // Required: use repo name from list_repos
+    });
     console.log(structure);
     return structure;
   `
@@ -94,7 +112,8 @@ call_tool_chain({
 call_tool_chain({
   code: `
     const symbols = await narsil.narsil_find_symbols({
-      kind: "function"
+      repo: "unknown",           // Required
+      symbol_type: "function"    // Note: symbol_type, not kind
     });
     console.log('Found', symbols.length, 'functions');
     return symbols.slice(0, 10);  // First 10
@@ -112,7 +131,7 @@ call_tool_chain({
 call_tool_chain({
   code: `
     const findings = await narsil.narsil_scan_security({
-      ruleset: "owasp"
+      repo: "unknown"  // Required
     });
     console.log('Findings:', findings.length);
     return findings;
@@ -131,7 +150,8 @@ call_tool_chain({
 call_tool_chain({
   code: `
     const graph = await narsil.narsil_get_call_graph({
-      function_name: "main"
+      repo: "unknown",    // Required
+      function: "main"    // Note: function, not function_name
     });
     console.log('Nodes:', graph.nodes?.length);
     return graph;
@@ -224,11 +244,36 @@ call_tool_chain({
 
 **Workaround**: Use structural queries instead:
 ```typescript
-// Find all functions
-const symbols = await narsil.narsil_find_symbols({ kind: "function" });
+// Find all functions (use symbol_type, not kind)
+const symbols = await narsil.narsil_find_symbols({ 
+  repo: "unknown", 
+  symbol_type: "function" 
+});
 
-// Get definition for specific function  
-const def = await narsil.narsil_get_symbol_definition({ symbol: "myFunction" });
+// Get definition for specific function (use symbol, not name)
+const def = await narsil.narsil_get_symbol_definition({ 
+  repo: "unknown", 
+  symbol: "myFunction" 
+});
+```
+
+### Search Returns Empty (Code Mode)
+
+**Symptom**: `semantic_search`, `neural_search`, `hybrid_search` return empty results
+
+**Cause**: Code Mode spawns fresh MCP processes for each batch. Search indexes take ~40-60s to rebuild.
+
+**Solution**: Use HTTP server for reliable search:
+```bash
+# Start HTTP server (indexes build once and stay warm)
+./.opencode/skill/mcp-narsil/scripts/narsil-server.sh start
+
+# Wait ~60s for indexes, then search
+./.opencode/skill/mcp-narsil/scripts/narsil-search.sh semantic "query"
+./.opencode/skill/mcp-narsil/scripts/narsil-search.sh neural "how does X work"
+
+# Stop when done
+./.opencode/skill/mcp-narsil/scripts/narsil-server.sh stop
 ```
 
 ---
@@ -245,13 +290,15 @@ const def = await narsil.narsil_get_symbol_definition({ symbol: "myFunction" });
 
 | Task | Command |
 |------|---------|
-| Project structure | `narsil_get_project_structure({})` |
-| Find functions | `narsil_find_symbols({ kind: "function" })` |
-| Security scan | `narsil_scan_security({ ruleset: "owasp" })` |
-| Call graph | `narsil_get_call_graph({ function_name: "X" })` |
-| Dead code | `narsil_find_dead_code({})` |
-| SBOM | `narsil_generate_sbom({ format: "cyclonedx" })` |
-| Reindex | `narsil_reindex({})` |
+| List repos | `narsil_list_repos({})` |
+| Project structure | `narsil_get_project_structure({ repo: "unknown" })` |
+| Find functions | `narsil_find_symbols({ repo: "unknown", symbol_type: "function" })` |
+| Security scan | `narsil_scan_security({ repo: "unknown" })` |
+| Call graph | `narsil_get_call_graph({ repo: "unknown", function: "X" })` |
+| Symbol definition | `narsil_get_symbol_definition({ repo: "unknown", symbol: "X" })` |
+| Dead code | `narsil_find_dead_code({ repo: "unknown", path: "src/file.js" })` |
+| SBOM | `narsil_generate_sbom({ repo: "unknown", format: "cyclonedx" })` |
+| Reindex | `narsil_reindex({ repo: "unknown" })` |
 
 ---
 

@@ -51,59 +51,61 @@ Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTIC un
 
 ## 2. 🔧 HIGH PRIORITY TOOLS (39 tools)
 
+> **Important**: Most tools require a `repo` parameter. Use `list_repos()` first to discover the repo name (typically "unknown").
+
 ### Repository & File Management (9)
 
 | Tool | Description | Example |
 |------|-------------|---------|
 | `list_repos` | List all indexed repositories | `narsil_list_repos({})` |
-| `get_project_structure` | Directory tree with file info | `narsil_get_project_structure({})` |
-| `get_file` | Get file contents with line range | `narsil_get_file({ path: "src/main.rs" })` |
-| `get_excerpt` | Extract code around lines | `narsil_get_excerpt({ path: "file.rs", line: 50 })` |
-| `reindex` | Trigger re-indexing | `narsil_reindex({})` |
+| `get_project_structure` | Directory tree with file info | `narsil_get_project_structure({ repo: "unknown" })` |
+| `get_file` | Get file contents with line range | `narsil_get_file({ repo: "unknown", path: "src/main.rs" })` |
+| `get_excerpt` | Extract code around lines | `narsil_get_excerpt({ repo: "unknown", path: "file.rs", line: 50 })` |
+| `reindex` | Trigger re-indexing | `narsil_reindex({ repo: "unknown" })` |
 | `save_index` | Save current index to disk (requires --persist) | `narsil_save_index({})` |
 | `discover_repos` | Auto-discover repos in directory | `narsil_discover_repos({ path: "~/projects" })` |
 | `validate_repo` | Check if path is valid repo | `narsil_validate_repo({ path: "/path" })` |
-| `get_index_status` | Show index stats and features | `narsil_get_index_status({})` |
+| `get_index_status` | Show index stats and features | `narsil_get_index_status({ repo: "unknown" })` |
 
 ### Symbol Search & Navigation (7)
 
 | Tool | Description | Example |
 |------|-------------|---------|
-| `find_symbols` | Find functions, classes, structs | `narsil_find_symbols({ kind: "function" })` |
-| `get_symbol_definition` | Get symbol source code | `narsil_get_symbol_definition({ name: "main" })` |
-| `find_references` | Find all references to symbol | `narsil_find_references({ symbol: "Config" })` |
-| `get_dependencies` | Analyze imports/dependents | `narsil_get_dependencies({ file: "main.rs" })` |
-| `workspace_symbol_search` | Fuzzy symbol search | `narsil_workspace_symbol_search({ query: "auth" })` |
-| `find_symbol_usages` | Cross-file usage with imports | `narsil_find_symbol_usages({ symbol: "parse" })` |
-| `get_export_map` | Get exported symbols | `narsil_get_export_map({ file: "lib.rs" })` |
+| `find_symbols` | Find functions, classes, structs | `narsil_find_symbols({ repo: "unknown", symbol_type: "function" })` |
+| `get_symbol_definition` | Get symbol source code | `narsil_get_symbol_definition({ repo: "unknown", symbol: "main" })` |
+| `find_references` | Find all references to symbol | `narsil_find_references({ repo: "unknown", symbol: "Config" })` |
+| `get_dependencies` | Analyze imports/dependents | `narsil_get_dependencies({ repo: "unknown", file: "main.rs" })` |
+| `workspace_symbol_search` | Fuzzy symbol search | `narsil_workspace_symbol_search({ repo: "unknown", query: "auth" })` |
+| `find_symbol_usages` | Cross-file usage with imports | `narsil_find_symbol_usages({ repo: "unknown", symbol: "parse" })` |
+| `get_export_map` | Get exported symbols | `narsil_get_export_map({ repo: "unknown", path: "lib.rs" })` |
 
 ### Call Graph Analysis (6)
 
 | Tool | Description | Example |
 |------|-------------|---------|
-| `get_call_graph` | Function call graph | `narsil_get_call_graph({ function_name: "main" })` |
-| `get_callers` | Functions that call X | `narsil_get_callers({ function_name: "validate" })` |
-| `get_callees` | Functions called by X | `narsil_get_callees({ function_name: "process" })` |
-| `find_call_path` | Path between functions | `narsil_find_call_path({ from: "main", to: "save" })` |
-| `get_complexity` | Cyclomatic complexity | `narsil_get_complexity({ function_name: "handle" })` |
-| `get_function_hotspots` | Highly connected functions | `narsil_get_function_hotspots({ limit: 10 })` |
+| `get_call_graph` | Function call graph | `narsil_get_call_graph({ repo: "unknown", function: "main" })` |
+| `get_callers` | Functions that call X | `narsil_get_callers({ repo: "unknown", function: "validate" })` |
+| `get_callees` | Functions called by X | `narsil_get_callees({ repo: "unknown", function: "process" })` |
+| `find_call_path` | Path between functions | `narsil_find_call_path({ repo: "unknown", from: "main", to: "save" })` |
+| `get_complexity` | Cyclomatic complexity | `narsil_get_complexity({ repo: "unknown", function: "handle" })` |
+| `get_function_hotspots` | Highly connected functions | `narsil_get_function_hotspots({ repo: "unknown" })` |
 
 ### Security - Taint Tracking (4)
 
 | Tool | Description | Example |
 |------|-------------|---------|
-| `find_injection_vulnerabilities` | SQL, XSS, command injection | `narsil_find_injection_vulnerabilities({})` |
-| `trace_taint` | Trace tainted data flow | `narsil_trace_taint({ source: "user_input" })` |
-| `get_taint_sources` | List input sources | `narsil_get_taint_sources({})` |
-| `get_security_summary` | Risk assessment | `narsil_get_security_summary({})` |
+| `find_injection_vulnerabilities` | SQL, XSS, command injection | `narsil_find_injection_vulnerabilities({ repo: "unknown" })` |
+| `trace_taint` | Trace tainted data flow | `narsil_trace_taint({ repo: "unknown", source: "user_input" })` |
+| `get_taint_sources` | List input sources | `narsil_get_taint_sources({ repo: "unknown" })` |
+| `get_security_summary` | Risk assessment | `narsil_get_security_summary({ repo: "unknown" })` |
 
 ### Security - Rules Engine (5)
 
 | Tool | Description | Example |
 |------|-------------|---------|
-| `scan_security` | Full security scan | `narsil_scan_security({ ruleset: "owasp" })` |
-| `check_owasp_top10` | OWASP Top 10 2021 | `narsil_check_owasp_top10({})` |
-| `check_cwe_top25` | CWE Top 25 | `narsil_check_cwe_top25({})` |
+| `scan_security` | Full security scan | `narsil_scan_security({ repo: "unknown" })` |
+| `check_owasp_top10` | OWASP Top 10 2021 | `narsil_check_owasp_top10({ repo: "unknown" })` |
+| `check_cwe_top25` | CWE Top 25 | `narsil_check_cwe_top25({ repo: "unknown" })` |
 | `explain_vulnerability` | Detailed explanation | `narsil_explain_vulnerability({ id: "CWE-89" })` |
 | `suggest_fix` | Remediation suggestions | `narsil_suggest_fix({ finding_id: "123" })` |
 
@@ -111,25 +113,25 @@ Narsil provides unified code intelligence - STRUCTURE, SECURITY, and SEMANTIC un
 
 | Tool | Description | Example |
 |------|-------------|---------|
-| `generate_sbom` | Generate SBOM | `narsil_generate_sbom({ format: "cyclonedx" })` |
-| `check_dependencies` | CVE checking | `narsil_check_dependencies({})` |
-| `check_licenses` | License compliance | `narsil_check_licenses({})` |
-| `find_upgrade_path` | Safe upgrade paths | `narsil_find_upgrade_path({ package: "lodash" })` |
+| `generate_sbom` | Generate SBOM | `narsil_generate_sbom({ repo: "unknown", format: "cyclonedx" })` |
+| `check_dependencies` | CVE checking | `narsil_check_dependencies({ repo: "unknown" })` |
+| `check_licenses` | License compliance | `narsil_check_licenses({ repo: "unknown" })` |
+| `find_upgrade_path` | Safe upgrade paths | `narsil_find_upgrade_path({ repo: "unknown", package: "lodash" })` |
 
 ### Type Inference (3)
 
 | Tool | Description | Example |
 |------|-------------|---------|
-| `infer_types` | Infer variable types | `narsil_infer_types({ file: "script.py" })` |
-| `check_type_errors` | Find type errors | `narsil_check_type_errors({})` |
-| `get_typed_taint_flow` | Enhanced taint with types | `narsil_get_typed_taint_flow({})` |
+| `infer_types` | Infer variable types | `narsil_infer_types({ repo: "unknown", path: "script.py" })` |
+| `check_type_errors` | Find type errors | `narsil_check_type_errors({ repo: "unknown", path: "script.py" })` |
+| `get_typed_taint_flow` | Enhanced taint with types | `narsil_get_typed_taint_flow({ repo: "unknown" })` |
 
 ### Control Flow (2)
 
 | Tool | Description | Example |
 |------|-------------|---------|
-| `get_control_flow` | CFG with basic blocks | `narsil_get_control_flow({ function: "process" })` |
-| `find_dead_code` | Find unreachable code | `narsil_find_dead_code({})` |
+| `get_control_flow` | CFG with basic blocks | `narsil_get_control_flow({ repo: "unknown", function: "process" })` |
+| `find_dead_code` | Find unreachable code | `narsil_find_dead_code({ repo: "unknown", path: "src/main.js" })` |
 
 ---
 

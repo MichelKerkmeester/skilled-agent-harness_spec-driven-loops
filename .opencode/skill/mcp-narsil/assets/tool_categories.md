@@ -30,6 +30,42 @@ Quick reference for choosing the right Narsil tool by priority level.
 | SKIP | 9 | 12% |
 | **Total** | **76** | **100%** |
 
+### Index Dependency Classification
+
+> **Important**: Code Mode spawns fresh Narsil MCP processes for each `call_tool_chain()` batch. This affects tool availability timing.
+
+| Category | Timing | Description |
+|----------|--------|-------------|
+| **AST-Based** | Instant | Parse source files directly, no index needed |
+| **Index-Based** | ~40-60s | Require BM25/TF-IDF/Neural indexes to build |
+
+#### AST-Based Tools (Work Immediately)
+
+These tools parse source files directly and work instantly:
+
+| Category | Tools |
+|----------|-------|
+| Repository | `list_repos`, `get_project_structure`, `get_file`, `get_excerpt`, `get_index_status`, `validate_repo` |
+| Symbols | `find_symbols`, `get_symbol_definition`, `find_references`, `get_dependencies`, `get_export_map` |
+| Call Graph | `get_call_graph`, `get_callers`, `get_callees`, `find_call_path`, `get_complexity` |
+| Security | `scan_security`, `find_injection_vulnerabilities`, `trace_taint`, `get_taint_sources` |
+| Control Flow | `get_control_flow`, `find_dead_code` |
+| Git | `get_blame`, `get_file_history`, `get_recent_changes` |
+
+#### Index-Based Tools (Need ~40-60s After Server Start)
+
+These tools require search indexes to be built first:
+
+| Category | Tools | Index Type |
+|----------|-------|------------|
+| Neural Search | `neural_search` | Neural embeddings (Voyage AI) |
+| Keyword Search | `semantic_search`, `search_code` | BM25 |
+| Hybrid Search | `hybrid_search` | BM25 + TF-IDF + Neural |
+| Similarity | `find_similar_code`, `find_similar_to_symbol` | TF-IDF |
+| Chunk Search | `search_chunks` | Code chunks |
+
+**Workaround**: Keep related Narsil calls in the same `call_tool_chain()` batch, or wait ~60s after first call before using search functions.
+
 ---
 
 ## 2. ⭐ HIGH PRIORITY TOOLS (39)

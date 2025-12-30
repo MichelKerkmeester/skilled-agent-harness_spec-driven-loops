@@ -288,6 +288,14 @@ code_mode_call_tool_chain({
 
 ## 11. 🔧 TROUBLESHOOTING
 
+### Code Mode Process Behavior (Important!)
+Code Mode spawns fresh MCP processes for each `call_tool_chain()` batch. This means:
+- **Search indexes rebuild** each time (~40-60s for BM25/TF-IDF/Neural)
+- **AST-based tools work immediately** (find_symbols, scan_security, find_dead_code)
+- **Search tools need time** (neural_search, semantic_search, hybrid_search)
+
+**Workaround:** Keep related Narsil calls in the same `call_tool_chain()` batch, or wait ~60s after first call before using search functions.
+
 ### Index Not Updating
 1. Check if `--watch` flag is enabled (default: yes)
 2. Verify file is not in .gitignore (Narsil respects gitignore)
@@ -332,22 +340,11 @@ Narsil is configured in `.utcp_config.json` with these flags:
 - `--index-path .narsil-index` - Project-local index storage
 - `--git` - Git integration (blame, history)
 - `--call-graph` - Function call analysis
-- `--persist` - Save index to disk (symbols + call graph only)
+- `--persist` - Save index to disk
 - `--watch` - Auto-reindex on changes
 - `--neural` - Neural semantic search
 - `--neural-backend api` - Voyage AI embeddings
 - `--neural-model voyage-code-2` - Code-specialized model (1536-dim)
-
-### Known Limitations
-
-> **⚠️ Persistence Bug**: The `--persist` flag only saves **symbols and call graph data**. The following indexes regenerate on every startup (~45-60s):
-> - Neural embeddings (for `neural_search`)
-> - BM25/TF-IDF indexes (for `bm25_search`, `tfidf_search`)
-> - Code chunks (for `search_chunks`, `hybrid_search`)
->
-> **Workaround**: Run Narsil as a **long-lived server** rather than restarting between queries.
-
-> **⚠️ Unicode Bug**: Chunking crashes on Unicode box-drawing characters (─, │, etc.). Affected tools: `hybrid_search`, `search_chunks`. **Workaround**: Remove box-drawing characters from code comments/docs, or avoid chunk-based tools.
 
 ### Supported Languages (15)
 Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, PHP, Swift, Verilog/SystemVerilog

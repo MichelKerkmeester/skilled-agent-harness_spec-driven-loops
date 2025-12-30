@@ -116,34 +116,45 @@
             "transport": "stdio",
             "command": "narsil-mcp",
             "args": [
-              "--repos", ".",
-              "--index-path", ".narsil-index",
+              "--repos",
+              ".",
+              "--preset",
+              "full",
+              "--index-path",
+              ".narsil-index",
               "--git",
               "--call-graph",
               "--persist",
-              "--watch",
               "--neural",
-              "--neural-backend", "api",
-              "--neural-model", "voyage-code-2"
+              "--neural-backend",
+              "api",
+              "--neural-model",
+              "voyage-code-2"
             ],
             "env": {
-              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
-              "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
             },
-            "_note": "Narsil with neural semantic search. Current config uses Voyage API (voyage-code-2, 1536-dim).",
+            "_note": "Narsil with full toolset (76 tools). MCP transport is always stdio. Add '--http --http-port 3000' for visualization UI.",
             "_neural_options": {
               "_dimension_note": "Narsil expects 1536-dim embeddings. Use voyage-code-2 (1536-dim), NOT voyage-code-3 (1024-dim).",
               "voyage_api": {
                 "backend": "--neural-backend api",
-                "models": ["voyage-code-2"],
-                "models_incompatible": ["voyage-code-3 (1024-dim - incompatible)"],
+                "models": [
+                  "voyage-code-2"
+                ],
+                "models_incompatible": [
+                  "voyage-code-3 (1024-dim - incompatible)"
+                ],
                 "env_var": "VOYAGE_API_KEY",
                 "get_key": "https://www.voyageai.com/",
                 "best_for": "Code-specific, best accuracy"
               },
               "openai_api": {
                 "backend": "--neural-backend api",
-                "models": ["text-embedding-3-small", "text-embedding-3-large"],
+                "models": [
+                  "text-embedding-3-small",
+                  "text-embedding-3-large"
+                ],
                 "env_var": "OPENAI_API_KEY",
                 "args_change": "--neural-model text-embedding-3-small",
                 "best_for": "General purpose, wide availability"
@@ -157,23 +168,6 @@
               }
             },
             "_fallback": "If API unavailable, Narsil automatically falls back to BM25 search"
-          }
-        }
-      }
-    },
-    {
-      "name": "webflow",
-      "call_template_type": "mcp",
-      "config": {
-        "mcpServers": {
-          "webflow": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": [
-              "mcp-remote",
-              "https://mcp.webflow.com/sse"
-            ],
-            "env": {}
           }
         }
       }

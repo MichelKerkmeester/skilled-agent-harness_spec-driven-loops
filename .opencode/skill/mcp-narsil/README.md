@@ -156,11 +156,23 @@ search_tools({ task_description: "narsil" });
 
 ### First Use
 
+> **Important**: Most Narsil tools require a `repo` parameter. First discover the repo name:
+
 ```typescript
-// Get project structure
+// Step 1: Discover repo name
 call_tool_chain({
   code: `
-    const structure = await narsil.narsil_get_project_structure({});
+    const repos = await narsil.narsil_list_repos({});
+    return repos;  // Returns repo name (typically "unknown")
+  `
+});
+
+// Step 2: Get project structure (with repo parameter)
+call_tool_chain({
+  code: `
+    const structure = await narsil.narsil_get_project_structure({
+      repo: "unknown"
+    });
     console.log(structure);
     return structure;
   `
@@ -185,6 +197,8 @@ call_tool_chain({
 ├── assets/
 │   └── tool_categories.md      # Tool priority categorization
 └── scripts/
+    ├── narsil-server.sh        # HTTP server management (start/stop/restart/status)
+    ├── narsil-search.sh        # Search CLI (neural/semantic/code/hybrid)
     └── update-narsil.sh        # Binary update script
 ```
 
@@ -196,6 +210,8 @@ call_tool_chain({
 | `references/tool_reference.md` | Complete tool documentation with all 76 tools      |
 | `references/security_guide.md` | Security scanning phased workflow                  |
 | `assets/tool_categories.md`    | HIGH/MEDIUM/LOW/SKIP categorization                |
+| `scripts/narsil-server.sh`     | HTTP server management for reliable search         |
+| `scripts/narsil-search.sh`     | Search CLI wrapper for HTTP API                    |
 
 ---
 
@@ -309,16 +325,21 @@ Add to `.utcp_config.json`:
         "mcpServers": {
           "narsil": {
             "transport": "stdio",
-            "command": "${NARSIL_PATH}/target/release/narsil-mcp",
+            "command": "narsil-mcp",
             "args": [
-              "--repos", "${workspaceFolder}",
+              "--repos", ".",
+              "--preset", "full",
               "--index-path", ".narsil-index",
               "--git",
               "--call-graph",
               "--persist",
-              "--watch"
+              "--neural",
+              "--neural-backend", "api",
+              "--neural-model", "voyage-code-2"
             ],
-            "env": {}
+            "env": {
+              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
+            }
           }
         }
       }
@@ -326,6 +347,16 @@ Add to `.utcp_config.json`:
   ]
 }
 ```
+
+### Presets
+
+| Preset | Tools | Best For |
+|--------|-------|----------|
+| `minimal` | 26 | Fast startup, lightweight editors (Zed, Cursor) |
+| `balanced` | 51 | General development (VS Code) |
+| `full` | 76 | Comprehensive analysis (Claude Desktop) |
+
+> **Note**: `--http` flag enables visualization UI at localhost:3000, NOT HTTP transport for MCP. MCP communication is always via stdio.
 
 ### Index Persistence
 
@@ -356,10 +387,13 @@ Add to `.gitignore`:
 
 **How Persistence Works**
 
-1. **On startup**: Loads existing index from disk (if available)
-2. **After --reindex**: Automatically saves index to disk
-3. **Manual save**: Use `save_index` MCP tool via Code Mode
-4. **Watch mode**: Saves after detecting file changes
+1. **On startup**: Rebuilds index from source files (structural index is fast, search indexes take ~40-60s)
+2. **On shutdown**: Saves index to disk (with `--persist` flag)
+3. **After --reindex**: Automatically saves index to disk
+4. **Manual save**: Use `save_index` MCP tool via Code Mode
+5. **Watch mode**: Saves after detecting file changes
+
+> **Note**: The `--persist` flag saves the index on shutdown but the index is rebuilt on each startup for freshness. The structural index (symbols, AST) loads quickly, but search indexes (BM25, TF-IDF, Neural) take ~40-60 seconds to build.
 
 **Manual Index Building**
 
@@ -386,23 +420,6 @@ Manually trigger index save via Code Mode:
 narsil.narsil_save_index({})
 ```
 
-### Known Persistence Limitations
-
-> **Important**: The `--persist` flag has limitations. While **symbols and call graph data** persist correctly to disk, the following indexes are **regenerated on every startup** (~45-60 seconds for medium codebases):
-> - Neural embeddings (for `neural_search`)
-> - BM25 index (for `semantic_search`)
-> - TF-IDF embeddings (for `find_similar_code`)
-> - Code chunks (for `search_chunks`, `hybrid_search`)
-
-**Workaround**: Run Narsil as a **long-lived process** (HTTP server mode or persistent MCP stdio server) rather than restarting between queries. This ensures embedding indexes remain in memory.
-
-```bash
-# Recommended: Long-lived HTTP server
-narsil-mcp --repos . --persist --http --http-port 3000
-
-# Or: Keep MCP server running (don't restart OpenCode frequently)
-```
-
 ### CLI Flags Reference
 
 | Flag               | Purpose                         | Recommended |
@@ -412,7 +429,9 @@ narsil-mcp --repos . --persist --http --http-port 3000
 | `--git`            | Enable git integration          | Yes         |
 | `--call-graph`     | Enable call graph analysis      | Yes         |
 | `--persist`        | Save index to disk              | Yes         |
-| `--watch`          | Auto-reindex on changes         | Yes         |
+| `--preset`         | Tool preset (minimal/balanced/full) | Yes (full) |
+| `--http`           | Enable visualization UI         | Optional    |
+| `--http-port`      | Port for visualization (3000)   | Optional    |
 | `--lsp`            | Enable LSP for hover, go-to-def | Optional    |
 | `--streaming`      | Stream large result sets        | Optional    |
 | `--remote`         | Enable GitHub remote support    | Optional    |
@@ -490,6 +509,8 @@ narsil-mcp --repos . --persist --http --http-port 3000
 
 Narsil includes an HTTP server with a React-based visualization frontend for exploring code graphs interactively.
 
+> **Important Architecture Note**: The `--http` flag enables a **visualization web UI**, NOT HTTP transport for MCP. MCP tool communication is **always via stdio** - Code Mode spawns the Narsil process and communicates via stdin/stdout. The HTTP server runs in parallel on port 3000 for visual exploration.
+
 ### Starting the Servers
 
 The backend and frontend run as separate processes:
@@ -498,6 +519,7 @@ The backend and frontend run as separate processes:
 # Terminal 1: Start backend with HTTP server
 narsil-mcp \
   --repos . \
+  --preset full \
   --index-path .narsil-index \
   --persist \
   --http \
@@ -552,17 +574,22 @@ curl http://localhost:3000/health
 
 ## 7. 💡 USAGE EXAMPLES
 
+> **Important**: All examples below require a `repo` parameter. Use `list_repos()` first to discover the repo name (typically "unknown").
+
 ### Example 1: Security Audit
 
 ```typescript
 call_tool_chain({
   code: `
+    const repo = "unknown";  // Get from list_repos()
+    
     // OWASP Top 10 scan
-    const owasp = await narsil.narsil_check_owasp_top10({});
+    const owasp = await narsil.narsil_check_owasp_top10({ repo });
     console.log('OWASP findings:', owasp.length);
     
     // Injection vulnerabilities
     const injections = await narsil.narsil_find_injection_vulnerabilities({
+      repo,
       types: ["sql", "xss", "command"]
     });
     
@@ -579,15 +606,21 @@ call_tool_chain({
 ```typescript
 call_tool_chain({
   code: `
+    const repo = "unknown";  // Get from list_repos()
+    
     // Project structure
-    const structure = await narsil.narsil_get_project_structure({});
+    const structure = await narsil.narsil_get_project_structure({ repo });
     
-    // Find all functions
-    const functions = await narsil.narsil_find_symbols({ kind: "function" });
+    // Find all functions (use symbol_type, not kind)
+    const functions = await narsil.narsil_find_symbols({ 
+      repo, 
+      symbol_type: "function" 
+    });
     
-    // Get call graph for main
+    // Get call graph for main (use function, not function_name)
     const callGraph = await narsil.narsil_get_call_graph({ 
-      function_name: "main" 
+      repo,
+      function: "main" 
     });
     
     return { structure, functions: functions.length, callGraph };
@@ -602,11 +635,19 @@ call_tool_chain({
 ```typescript
 call_tool_chain({
   code: `
-    // Find unreachable code
-    const deadCode = await narsil.narsil_find_dead_code({});
+    const repo = "unknown";  // Get from list_repos()
+    
+    // Find unreachable code (requires path parameter)
+    const deadCode = await narsil.narsil_find_dead_code({
+      repo,
+      path: "src/main.js"
+    });
     
     // Find unused assignments
-    const deadStores = await narsil.narsil_find_dead_stores({});
+    const deadStores = await narsil.narsil_find_dead_stores({
+      repo,
+      path: "src/main.js"
+    });
     
     return { deadCode, deadStores };
   `
@@ -617,17 +658,21 @@ call_tool_chain({
 
 ### Example 4: Neural Semantic Search
 
+> **Note**: Neural search requires ~60s for index to build after server start.
+
 ```typescript
 call_tool_chain({
   code: `
-    // Find similar code by meaning
+    // Neural search doesn't require repo (searches all)
     const similar = await narsil.narsil_neural_search({
       query: "function that validates email addresses"
     });
     
-    // Find semantic clones of a function
+    // Find semantic clones (requires repo, path, function)
     const clones = await narsil.narsil_find_semantic_clones({
-      function_name: "validate_input"
+      repo: "unknown",
+      path: "src/validation.js",
+      function: "validate_input"
     });
     
     return { similar, clones };
@@ -639,14 +684,14 @@ call_tool_chain({
 
 ### Common Patterns
 
-| Pattern        | Code                                                          | When to Use       |
-| -------------- | ------------------------------------------------------------- | ----------------- |
-| Security scan  | `narsil.narsil_scan_security({ ruleset: "owasp" })`           | Pre-release audit |
-| Find symbols   | `narsil.narsil_find_symbols({ kind: "function" })`            | Code exploration  |
-| Call graph     | `narsil.narsil_get_call_graph({ function_name: "X" })`        | Impact analysis   |
-| SBOM           | `narsil.narsil_generate_sbom({ format: "cyclonedx" })`        | Compliance        |
-| Type inference | `narsil.narsil_infer_types({ function_name: "X" })`           | Dynamic languages |
-| Taint analysis | `narsil.narsil_trace_taint({ source: "user_input" })`         | Security review   |
+| Pattern        | Code                                                                    | When to Use       |
+| -------------- | ----------------------------------------------------------------------- | ----------------- |
+| Security scan  | `narsil_scan_security({ repo: "unknown" })`                             | Pre-release audit |
+| Find symbols   | `narsil_find_symbols({ repo: "unknown", symbol_type: "function" })`     | Code exploration  |
+| Call graph     | `narsil_get_call_graph({ repo: "unknown", function: "X" })`             | Impact analysis   |
+| SBOM           | `narsil_generate_sbom({ repo: "unknown", format: "cyclonedx" })`        | Compliance        |
+| Symbol def     | `narsil_get_symbol_definition({ repo: "unknown", symbol: "X" })`        | Go to definition  |
+| Dead code      | `narsil_find_dead_code({ repo: "unknown", path: "src/file.js" })`       | Code cleanup      |
 
 ---
 
@@ -851,22 +896,40 @@ RUST_MIN_STACK=8388608 narsil-mcp --repos /path/to/huge-repo
 narsil-mcp --repos /path/to/repo/src --repos /path/to/repo/lib
 ```
 
-### Known Limitations & Bugs
+#### Search returns empty results (Code Mode)
 
-**1. Persistence Bug**: Neural/BM25/TF-IDF/chunk indexes don't persist to disk (only symbols + call graph do). These indexes regenerate on each startup (~45-60s).
-   - **Workaround**: Run Narsil as a long-lived HTTP server process
-   - **Track**: https://github.com/postrv/narsil-mcp/issues
+**Symptom**: `semantic_search`, `neural_search`, `hybrid_search` return empty results via Code Mode
 
-**2. Unicode Character Panic**: Chunking crashes on Unicode box-drawing characters (─, │, etc.). This affects:
-   - `hybrid_search`
-   - `find_similar_code`
-   - `search_chunks`
-   - **Workaround**: Use `neural_search` or `semantic_search` instead
-   - **Track**: https://github.com/postrv/narsil-mcp/issues
+**Cause**: Code Mode spawns fresh MCP processes for each `call_tool_chain()` batch. Search indexes (BM25, TF-IDF, Neural) are in-memory and take ~40-60s to rebuild each time.
 
-**Tools confirmed working** (in same session with `--reindex`):
-- `neural_search`, `semantic_search`, `get_call_graph`, `get_callers`, `get_callees`
-- `find_references`, `get_dependencies`, `find_symbols`, `get_symbol_definition`
+**Solution**: Use the HTTP server workaround for reliable search:
+
+```bash
+# Start HTTP server (indexes build once and stay warm)
+./.opencode/skill/mcp-narsil/scripts/narsil-server.sh start
+
+# Wait ~60s for indexes to build
+./.opencode/skill/mcp-narsil/scripts/narsil-server.sh status
+
+# Search reliably via CLI
+./.opencode/skill/mcp-narsil/scripts/narsil-search.sh semantic "query"
+./.opencode/skill/mcp-narsil/scripts/narsil-search.sh neural "how does X work"
+./.opencode/skill/mcp-narsil/scripts/narsil-search.sh symbols function
+
+# Or call any tool via HTTP directly
+curl -X POST http://localhost:3001/tools/call \
+  -H "Content-Type: application/json" \
+  -d '{"tool": "semantic_search", "args": {"repo": "unknown", "query": "test"}}'
+
+# Stop when done
+./.opencode/skill/mcp-narsil/scripts/narsil-server.sh stop
+```
+
+**Scripts available:**
+- `narsil-server.sh` - Server management (start/stop/restart/status/logs)
+- `narsil-search.sh` - Search CLI (neural/semantic/code/hybrid/symbols)
+
+**Alternative**: Keep all search calls in the same `call_tool_chain()` batch to reuse the MCP process.
 
 ### Quick Fixes
 
@@ -878,8 +941,6 @@ narsil-mcp --repos /path/to/repo/src --repos /path/to/repo/lib
 | Security scan timeout | Increase timeout to 120s                    |
 | Binary missing        | Run `cargo build --release`                 |
 | .gitignore issues     | Use `--verbose` to see skipped files        |
-| Embedding search empty| Run as long-lived server (see §5)           |
-| Chunking crashes      | Avoid files with box-drawing chars          |
 
 ### Diagnostic Commands
 
@@ -927,13 +988,15 @@ A: Narsil is privacy-first (fully local), supports neural search, taint analysis
 
 **Q: How do I reindex after making code changes?**
 
-A: Use the `--watch` flag for auto-reindexing, or manually trigger:
+A: Manually trigger via Code Mode:
 
 ```typescript
 call_tool_chain({
   code: `await narsil.narsil_reindex({})`
 });
 ```
+
+The `--persist` flag saves the index to disk for faster restarts.
 
 **Q: Which languages are supported?**
 

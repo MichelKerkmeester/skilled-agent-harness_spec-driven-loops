@@ -103,11 +103,15 @@ $ARGUMENTS
 
 ## 4. 🔧 TOOL SIGNATURES
 
+> **Note:** Most Narsil tools require a `repo` parameter. Use `narsil.narsil_list_repos({})` to discover the repo name (typically "unknown" for single-repo setups).
+
 ```javascript
 // Narsil (Semantic - via Code Mode)
+// NOTE: Neural search requires ~40-60s for index to build after MCP spawn
 code_mode_call_tool_chain({
   code: `
     const results = await narsil.narsil_neural_search({ 
+      repo: "unknown",  // Required - use list_repos to discover
       query: "<q>",
       top_k: N 
     });
@@ -116,10 +120,15 @@ code_mode_call_tool_chain({
 })
 
 // Narsil (Structural - via Code Mode)
+// NOTE: AST-based tools work immediately (no index wait)
 code_mode_call_tool_chain({
   code: `
-    const symbols = await narsil.narsil_find_symbols({ kind: "function", pattern: "" });
-    const structure = await narsil.narsil_get_project_structure({});
+    const symbols = await narsil.narsil_find_symbols({ 
+      repo: "unknown",
+      symbol_type: "function",  // NOT "kind"
+      pattern: "" 
+    });
+    const structure = await narsil.narsil_get_project_structure({ repo: "unknown" });
     return { symbols, structure };
   `
 })
@@ -128,6 +137,7 @@ code_mode_call_tool_chain({
 code_mode_call_tool_chain({
   code: `
     const results = await narsil.narsil_scan_security({ 
+      repo: "unknown",
       path: "<path>",
       severity: "high"
     });
@@ -138,8 +148,8 @@ code_mode_call_tool_chain({
 // Narsil (Analysis - via Code Mode)
 code_mode_call_tool_chain({
   code: `
-    const deadCode = await narsil.narsil_find_dead_code({ path: "<path>" });
-    const complexity = await narsil.narsil_get_complexity({ path: "<path>" });
+    const deadCode = await narsil.narsil_find_dead_code({ repo: "unknown", path: "<path>" });
+    const complexity = await narsil.narsil_analyze_complexity({ repo: "unknown", path: "<path>" });
     return { deadCode, complexity };
   `
 })
@@ -189,8 +199,6 @@ code_mode_call_tool_chain({
 
 **Trigger:** "how does", "explain", "what is", "why", "understand"
 
-> **⚠️ Note**: Neural embeddings don't persist to disk. If Narsil was recently restarted, the first semantic search may take ~45-60s to rebuild the index. Run Narsil as a long-lived server for best performance.
-
 **Workflow:**
 ```
 1. Parse: --limit:<N>, remaining → query
@@ -239,11 +247,13 @@ code_mode_call_tool_chain({
    code_mode_call_tool_chain({
      code: `
        const symbols = await narsil.narsil_find_symbols({ 
-         kind: "function", 
+         repo: "unknown",
+         symbol_type: "function",  // NOT "kind"
          pattern: "",
          path: "<path>" 
        });
        const structure = await narsil.narsil_get_project_structure({ 
+         repo: "unknown",
          path: "<path>",
          maxDepth: <N> 
        });
@@ -284,6 +294,7 @@ code_mode_call_tool_chain({
    code_mode_call_tool_chain({
      code: `
        const results = await narsil.narsil_scan_security({ 
+         repo: "unknown",
          path: "<path>",
          severity: "high" // "low", "medium", "high", "critical"
        });
@@ -323,15 +334,16 @@ code_mode_call_tool_chain({
    code_mode_call_tool_chain({
      code: `
        // For dead code analysis
-       const deadCode = await narsil.narsil_find_dead_code({ path: "<path>" });
+       const deadCode = await narsil.narsil_find_dead_code({ repo: "unknown", path: "<path>" });
        
        // For complexity analysis
-       const complexity = await narsil.narsil_analyze_complexity({ path: "<path>" });
+       const complexity = await narsil.narsil_analyze_complexity({ repo: "unknown", path: "<path>" });
        
        // For call graph
        const callGraph = await narsil.narsil_get_call_graph({ 
+         repo: "unknown",
          path: "<path>",
-         symbol: "<function_name>" 
+         function: "<function_name>"  // NOT "symbol"
        });
        
        return { deadCode, complexity, callGraph };
@@ -365,8 +377,8 @@ code_mode_call_tool_chain({
    code_mode_call_tool_chain({
      code: `
        const [semantic, structural] = await Promise.all([
-         narsil.narsil_neural_search({ query: "<query>", top_k: 5 }),
-         narsil.narsil_find_symbols({ kind: "all", pattern: "<query>" })
+         narsil.narsil_neural_search({ repo: "unknown", query: "<query>", top_k: 5 }),
+         narsil.narsil_find_symbols({ repo: "unknown", symbol_type: "all", pattern: "<query>" })
        ]);
        return { semantic, structural };
      `
@@ -398,18 +410,11 @@ code_mode_call_tool_chain({
 | Path not found  | Show similar paths via Glob                      |
 | Empty results   | Try fallback: Semantic → Structural → Diagnostic |
 | All tools fail  | Show diagnostic with refinement suggestions      |
-| Slow semantic   | Neural index rebuilding (~45-60s after restart)  |
-| Chunk crash     | Unicode bug - use structural search instead      |
 
 **Fallback Chain:**
 ```
 Primary empty? → Semantic → Structural → Diagnostic
 ```
-
-**Known Limitations:**
-- Neural/BM25/TF-IDF indexes don't persist (rebuild on restart)
-- Unicode box-drawing characters (─, │) crash chunk-based tools
-- See `/search:index` troubleshooting for workarounds
 
 ---
 
