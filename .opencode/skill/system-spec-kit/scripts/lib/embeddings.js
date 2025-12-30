@@ -202,7 +202,7 @@ function getEmbeddingDimension() {
 
 /**
  * Get model name
- * @returns {string} Nombre del modelo
+ * @returns {string} Model name
  */
 function getModelName() {
   if (providerInstance) {
@@ -213,7 +213,7 @@ function getModelName() {
 
 /**
  * Check if model is loaded
- * @returns {boolean} True si el modelo está cargado
+ * @returns {boolean} True if model is loaded
  */
 function isModelLoaded() {
   return providerInstance !== null;
@@ -221,7 +221,7 @@ function isModelLoaded() {
 
 /**
  * Get model load time (compatibility - may not be available for all providers)
- * @returns {number|null} Tiempo de carga en ms o null
+ * @returns {number|null} Load time in ms or null
  */
 function getModelLoadTime() {
   if (providerInstance) {
@@ -233,7 +233,7 @@ function getModelLoadTime() {
 
 /**
  * Get current compute device (compatibility - only for HF local)
- * @returns {string|null} Identificador del dispositivo o null
+ * @returns {string|null} Device identifier or null
  */
 function getCurrentDevice() {
   if (providerInstance) {
@@ -245,16 +245,16 @@ function getCurrentDevice() {
 
 /**
  * Get optimal device (compatibility function)
- * @returns {string} 'mps' o 'cpu'
+ * @returns {string} 'mps' or 'cpu'
  */
 function getOptimalDevice() {
   return process.platform === 'darwin' ? 'mps' : 'cpu';
 }
 
 /**
- * Get task prefix (compatibility - algunos providers no usan prefijos)
- * @param {'document'|'query'|'clustering'|'classification'} task - Tipo de tarea
- * @returns {string} Prefijo de tarea
+ * Get task prefix (compatibility - some providers do not use prefixes)
+ * @param {'document'|'query'|'clustering'|'classification'} task - Task type
+ * @returns {string} Task prefix
  */
 function getTaskPrefix(task) {
   const prefixes = {
@@ -269,23 +269,23 @@ function getTaskPrefix(task) {
 /**
  * Pre-warm the model for faster first embedding
  *
- * @returns {Promise<boolean>} True si se pre-calentó exitosamente
+ * @returns {Promise<boolean>} True if pre-warm was successful
  */
 async function preWarmModel() {
   try {
     const provider = await getProvider();
     await provider.warmup();
-    console.log('[embeddings] Provider pre-calentado exitosamente');
+    console.log('[embeddings] Provider warmed up successfully');
     return true;
   } catch (error) {
-    console.error('[embeddings] Pre-warmup falló:', error.message);
+    console.error('[embeddings] Pre-warmup failed:', error.message);
     return false;
   }
 }
 
 /**
  * Get current embedding profile
- * @returns {Object} Perfil de embeddings actual
+ * @returns {Object} Current embedding profile
  */
 function getEmbeddingProfile() {
   if (providerInstance) {
@@ -296,7 +296,7 @@ function getEmbeddingProfile() {
 
 /**
  * Get provider metadata
- * @returns {Object} Metadata del provider
+ * @returns {Object} Provider metadata
  */
 function getProviderMetadata() {
   if (providerInstance) {
@@ -306,7 +306,7 @@ function getProviderMetadata() {
 }
 
 // ───────────────────────────────────────────────────────────────
-// CONSTANTS (Compatibilidad)
+// CONSTANTS (Compatibility)
 // ───────────────────────────────────────────────────────────────
 
 const EMBEDDING_DIM = 768; // Default legacy
@@ -331,12 +331,12 @@ module.exports = {
   generateEmbeddingWithTimeout,
   generateBatchEmbeddings,
 
-  // Task-specific functions (recomendadas)
+  // Task-specific functions (recommended)
   generateDocumentEmbedding,
   generateQueryEmbedding,
   generateClusteringEmbedding,
 
-  // Semantic chunking (re-export desde legacy)
+  // Semantic chunking (re-export from legacy)
   semanticChunk,
 
   // Utility functions
