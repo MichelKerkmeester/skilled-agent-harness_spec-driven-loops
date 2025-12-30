@@ -454,7 +454,7 @@ ollama pull llama3.2
 ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-⚠️ **Nota:** Ollama solo es necesario si configuras `EMBEDDINGS_PROVIDER=ollama`. Por defecto, el sistema usa HF local (sin Ollama) o OpenAI si existe `OPENAI_API_KEY`.
+⚠️ **Note:** Ollama is only required if you set `EMBEDDINGS_PROVIDER=ollama`. By default, the system uses local HF embeddings (without Ollama) or OpenAI if `OPENAI_API_KEY` is set.
 
 ---
 
