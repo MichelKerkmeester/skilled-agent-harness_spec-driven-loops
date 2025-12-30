@@ -450,7 +450,7 @@ ollama pull llama3.2
 
 **Quick Verification:**
 ```bash
-# Solo si usarás Ollama:
+# Only if you will use Ollama:
 ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
