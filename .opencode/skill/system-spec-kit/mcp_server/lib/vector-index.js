@@ -50,12 +50,39 @@ function getEmbeddingsModule() {
 // CONFIGURATION
 // ───────────────────────────────────────────────────────────────
 
-const EMBEDDING_DIM = 768; // nomic-embed-text-v1.5
+const EMBEDDING_DIM = 768; // Legacy default - actual dim comes from provider profile
 // Project-local database for memory storage
 // V12.1: Updated path after consolidation to skill/system-spec-kit/
+const DEFAULT_DB_DIR = process.env.MEMORY_DB_DIR ||
+  path.resolve(__dirname, '../../database');
 const DEFAULT_DB_PATH = process.env.MEMORY_DB_PATH || 
-  path.resolve(__dirname, '../../database/context-index.sqlite');
+  path.join(DEFAULT_DB_DIR, 'context-index.sqlite');
 const DB_PERMISSIONS = 0o600; // Owner read/write only
+
+/**
+ * Resolve database path based on embedding profile
+ * V12.0: DB-per-profile to avoid dimension mismatch
+ * 
+ * @returns {string} Path to database file
+ */
+function resolveDatabasePath() {
+  // If explicit path override, use it
+  if (process.env.MEMORY_DB_PATH) {
+    return process.env.MEMORY_DB_PATH;
+  }
+
+  // Get current embedding profile
+  const embeddings = getEmbeddingsModule();
+  const profile = embeddings.getEmbeddingProfile();
+  
+  if (!profile) {
+    // Profile not loaded yet, use default
+    return DEFAULT_DB_PATH;
+  }
+
+  // Use profile's getDatabasePath method
+  return profile.getDatabasePath(DEFAULT_DB_DIR);
+}
 
 // Schema version for migration tracking (M19 fix)
 // Increment this when schema changes are made
@@ -419,7 +446,7 @@ function initializeDb(customPath = null) {
     return db;
   }
 
-  const targetPath = customPath || dbPath;
+  const targetPath = customPath || resolveDatabasePath();
 
   // Ensure directory exists
   const dir = path.dirname(targetPath);
