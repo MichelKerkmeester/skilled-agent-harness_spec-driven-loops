@@ -82,7 +82,7 @@ A custom MCP server that gives your AI assistant persistent, searchable memory a
 
 - Hybrid search (vector + FTS5 + RRF fusion)
 - 6 importance tiers with auto-decay
-- 100% local (nomic-embed on YOUR machine)
+- Multiple embedding providers (OpenAI, HF Local, optional Ollama)
 - ANCHOR format = 93% token savings
 - <50ms proactive surfacing before you ask
 - Checkpoints = undo button for your index
@@ -338,7 +338,7 @@ No cloud. No external APIs. Just intelligent context preservation that makes AI-
 - **Search**: Hybrid semantic + keyword (RRF fusion)
 - **Prioritization**: 6-tier importance (constitutional to deprecated)
 - **Relevance**: 90-day decay keeps recent memories on top
-- **Privacy**: 100% local (nomic-embed runs on YOUR machine)
+- **Privacy**: Local options available (HF Local runs on YOUR machine)
 - **Token Efficiency**: ANCHOR format (93% savings)
 - **Spec Kit Integration**: Deep (Gate 5 enforced, lives in spec folders)
 - **Proactive Surfacing**: <50ms trigger matching
@@ -433,16 +433,41 @@ We chose JWT with refresh tokens because:
 > **Note:** Full MCP names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search`).
 
 
-### Privacy & Local-First
+### Embedding Provider Options (v12.0)
 
-> **Your Code Never Leaves Your Machine**
+> **Choose Your Privacy & Performance Balance**
 
-All processing happens locally:
+Spec Kit Memory supports multiple embedding providers with automatic detection:
 
-- **Embeddings**: `nomic-embed-text-v1.5` runs on YOUR machine (768-dim vectors)
-- **Storage**: SQLite with sqlite-vec extension in YOUR project
-- **No external API calls** for memory operations
-- Works fully offline after initial Ollama model download
+| Provider | Dimensions | Requirements | Best For |
+|----------|------------|--------------|----------|
+| **OpenAI** | 1536/3072 | `OPENAI_API_KEY` | Best accuracy, cloud-based |
+| **HF Local** | 768 | Node.js only | Privacy, offline, default |
+| **Ollama** | 768 | Ollama + model | Optional (not yet available) |
+
+**Auto-detection:**
+- If `OPENAI_API_KEY` exists → Uses OpenAI automatically
+- If not → Uses HF Local (works without additional installation)
+- Override: `export EMBEDDINGS_PROVIDER=hf-local` forces local
+
+**Configuration:**
+```bash
+# OpenAI provider (cloud-based)
+export OPENAI_API_KEY=sk-proj-...
+export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Optional
+
+# Force HF local (even with API key)
+export EMBEDDINGS_PROVIDER=hf-local
+export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Optional
+```
+
+**Privacy with HF Local:**
+- Embeddings run on YOUR machine (768-dim vectors)
+- Storage: SQLite with sqlite-vec extension in YOUR project
+- No external API calls
+- Works fully offline, no downloads required
+
+**Database per profile:** Each provider+model+dimension uses its own SQLite to prevent dimension mismatch errors.
 
 See [`.opencode/skill/system-spec-kit/`](.opencode/skill/system-spec-kit/) for implementation details.
 

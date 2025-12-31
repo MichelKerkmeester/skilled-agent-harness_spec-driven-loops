@@ -1234,6 +1234,10 @@ async function handleMemoryHealth(args) {
     // Database might not be initialized
   }
   
+  // Get embedding provider metadata
+  const providerMetadata = embeddings.getProviderMetadata();
+  const profile = embeddings.getEmbeddingProfile();
+  
   const health = {
     status: embeddingModelReady && database ? 'healthy' : 'degraded',
     embeddingModelReady,
@@ -1241,7 +1245,15 @@ async function handleMemoryHealth(args) {
     vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
     memoryCount,
     uptime: process.uptime(),
-    version: '12.6.0'
+    version: '12.6.0',
+    // V12.0: Embedding provider info
+    embeddingProvider: {
+      provider: providerMetadata.provider,
+      model: providerMetadata.model,
+      dimension: profile ? profile.dim : 768,
+      healthy: providerMetadata.healthy !== false,
+      databasePath: profile ? profile.getDatabasePath(require('path').resolve(__dirname, '../database')) : null
+    }
   };
   
   return {

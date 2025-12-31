@@ -1400,13 +1400,30 @@ The memory system combines three search strategies via RRF (Reciprocal Rank Fusi
 
 Results are merged using RRF fusion, giving you semantic understanding with keyword precision.
 
-### 8.6 Privacy & Local-First
+### 8.6 Privacy & Embedding Options
 
-All processing happens locally:
-- **Embeddings**: nomic-embed-text-v1.5 runs on YOUR machine via Ollama
+**Provider Flexibility (v12.0+):**
+
+The memory system supports multiple embedding providers:
+
+| Provider | Dimensions | Requirements | Best For |
+|----------|------------|--------------|----------|
+| **OpenAI** | 1536/3072 | `OPENAI_API_KEY` | Best accuracy, cloud-based |
+| **HF Local** | 768 | Node.js only | Privacy, offline, default |
+| **Ollama** | 768 | Ollama + model | Optional (not yet available) |
+
+**Local-First Option (HF Local):**
+- **Embeddings**: nomic-embed-text-v1.5 runs on YOUR machine via Transformers.js
 - **Storage**: SQLite database in YOUR project (`.opencode/skill/system-spec-kit/database/`)
 - **No external API calls** for memory operations
-- Works fully offline after initial model download
+- Works fully offline, no downloads required
+
+**Cloud Option (OpenAI):**
+- Higher accuracy with larger dimension vectors
+- Auto-detected if `OPENAI_API_KEY` exists
+- Override with `EMBEDDINGS_PROVIDER=hf-local` to force local
+
+See [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md) for technical details on the factory pattern and DB-per-profile architecture.
 
 ---
 

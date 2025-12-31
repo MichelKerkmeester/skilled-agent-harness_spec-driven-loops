@@ -103,9 +103,9 @@ Answer these questions to configure your installation:
 - **GitHub Copilot** → Requires GitHub authentication
 - **OpenAI / Codex** → Requires `OPENAI_API_KEY`
 - **Gemini (Google)** → Requires `GEMINI_API_KEY`
-- **Ollama (Local)** → For embeddings; optionally for local inference
+- **Ollama (Local)** → Optional for local inference
 
-> **Note:** Ollama with `nomic-embed-text` is required for Spec Kit Memory embeddings.
+> **Note:** Spec Kit Memory embeddings support multiple providers (OpenAI, HF Local, optional Ollama). HF Local works by default without additional installation. See [Section 7.3](#73-spec-kit-memory-mcp-bundled) for details.
 
 ---
 
@@ -193,7 +193,7 @@ git checkout -- script.sh
 **Notes:**
 - Node.js 22+ recommended for best performance
 - Python 3.12 recommended for Sequential Thinking
-- Ollama 0.3+ required for nomic-embed-text model
+- Ollama 0.3+ optional for local LLM inference
 
 ### 3.2 Resource Requirements
 
@@ -391,13 +391,18 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 
 ---
 
-## 6. 🤖 PHASE 2: OLLAMA & MODELS
+## 6. 🤖 PHASE 2: OLLAMA & MODELS (OPTIONAL)
 
-Ollama provides local LLM inference and embeddings. Required for Spec Kit Memory.
+Ollama provides local LLM inference and embeddings. **No longer required** for Spec Kit Memory.
 
-> **Skip Check:** Run `ollama list | grep nomic` — if nomic-embed-text shown, skip to Phase 3.
+**Since v12.0:** Spec Kit Memory supports multiple embedding backends:
+- **OpenAI** (recommended if you have `OPENAI_API_KEY`) - cloud embeddings
+- **HF Local** (default without API key) - local embeddings with HuggingFace Transformers
+- **Ollama** (optional) - for local embeddings via Ollama
 
-### 6.1 Install Ollama
+> **Skip Check:** If you prefer OpenAI or HF local, you can skip this entire phase.
+
+### 6.1 Install Ollama (Only if you'll use Ollama for embeddings)
 
 **Check:** `command -v ollama` → If path shown, skip to 6.2
 
@@ -430,7 +435,7 @@ brew services start ollama
 ### 6.3 Pull Required Models
 
 ```bash
-# Embedding model (required for Spec Kit Memory)
+# Embedding model (to use Ollama as provider)
 ollama pull nomic-embed-text
 
 # Optional: Reasoning model for local inference
@@ -439,16 +444,17 @@ ollama pull llama3.2
 
 ### Validation: `ollama_check`
 
-- [ ] Ollama service is running
-- [ ] nomic-embed-text model is available
+- [ ] Ollama service is running (only if you chose Ollama)
+- [ ] nomic-embed-text model is available (only if you chose Ollama)
 - [ ] (Optional) llama3.2 model is available
 
 **Quick Verification:**
 ```bash
+# Only if you will use Ollama:
 ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
-❌ STOP if validation fails - Ollama must be running for Spec Kit Memory embeddings
+⚠️ **Note:** Ollama is only required if you set `EMBEDDINGS_PROVIDER=ollama`. By default, the system uses local HF embeddings (without Ollama) or OpenAI if `OPENAI_API_KEY` is set.
 
 ---
 
@@ -460,7 +466,7 @@ ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 
 1. **Code Mode** (foundation - install FIRST)
 2. Narsil (structural analysis, security, semantic search - via Code Mode)
-3. Spec Kit Memory (context preservation)
+3. Spec Kit Memory (context preservation - **now supports multiple embedding providers**)
 4. Sequential Thinking (complex reasoning)
 
 ---
@@ -620,6 +626,21 @@ See [MCP - Narsil.md](./MCP/MCP%20-%20Narsil.md) for detailed visualization setu
 
 Spec Kit Memory provides conversation context preservation with vector search.
 
+**V12.0: Multiple Embedding Providers**
+
+Spec Kit Memory now supports three embedding backends:
+
+| Provider | When to use | Dimension | Requirements |
+|----------|-------------|-----------|------------|
+| **OpenAI** | API key available, cloud preference | 1536/3072 | `OPENAI_API_KEY` |
+| **HF Local** | No API key, privacy/offline | 768 | Node.js only (default) |
+| **Ollama** | Ollama local preference | 768 | Ollama + nomic model |
+
+**Automatic provider configuration:**
+- If `OPENAI_API_KEY` exists: uses OpenAI (auto-detected)
+- If not: uses HF Local (fallback, no additional installation)
+- Manual override: `export EMBEDDINGS_PROVIDER=hf-local` (forces local even with key)
+
 **Location:** Bundled in project at `.opencode/skill/system-spec-kit/`
 
 **Configure in `opencode.json`:**
@@ -628,11 +649,34 @@ Spec Kit Memory provides conversation context preservation with vector search.
   "mcp": {
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"]
+      "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"],
+      "env": {
+        "EMBEDDINGS_PROVIDER": "auto",
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+      }
     }
   }
 }
 ```
+
+**Optional environment variables:**
+```bash
+# Provider selection (auto|openai|hf-local|ollama)
+export EMBEDDINGS_PROVIDER=auto  # Default: auto-detect
+
+# OpenAI config (if using OpenAI)
+export OPENAI_API_KEY=sk-...
+export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
+
+# HF Local config (if using HF local)
+export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default
+
+# Database directory (optional - default: .opencode/skill/system-spec-kit/database/)
+export MEMORY_DB_DIR=/path/to/database
+```
+
+**Note on per-profile DB:**
+Each provider+model+dimension combination uses its own SQLite database. This prevents "dimension mismatch" errors and allows switching providers without migrations.
 
 **Initialize database:**
 ```bash
@@ -645,11 +689,24 @@ ls -la .opencode/skill/system-spec-kit/database/
 
 - [ ] Context server JS file exists
 - [ ] Database directory exists (or will be created)
-- [ ] Embeddings model loads on first run
+- [ ] Embeddings provider loads on first run (OpenAI or HF local depending on config)
 
 **Quick Verification:**
 ```bash
 test -f .opencode/skill/system-spec-kit/mcp_server/context-server.js && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+```
+
+**Verify active provider:**
+Use the `memory_health` tool after starting OpenCode to see which provider is active:
+```json
+{
+  "embeddingProvider": {
+    "provider": "openai",  // or "hf-local"
+    "model": "text-embedding-3-small",
+    "dimension": 1536,
+    "healthy": true
+  }
+}
 ```
 
 ❌ STOP if validation fails - verify file paths and Node.js installation

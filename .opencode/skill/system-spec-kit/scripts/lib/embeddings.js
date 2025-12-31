@@ -1,347 +1,101 @@
 /**
- * Embeddings Module - Local vector embedding generation
+ * Embeddings Module - Unified embedding generation
  *
- * Uses @huggingface/transformers with nomic-embed-text-v1.5 for
- * 768-dimensional sentence embeddings. Runs entirely locally
- * with no external API calls.
+ * Supports multiple providers (OpenAI, HF local, Ollama) with robust fallback.
+ * Maintains compatibility with legacy API while allowing environment variable configuration.
  *
- * UPGRADE NOTE (2025-12-09):
- * - Changed from all-MiniLM-L6-v2 (384-dim) to nomic-embed-text-v1.5 (768-dim)
- * - Added task prefix support (search_document/search_query) per nomic spec
- * - Increased context window from 512 to 8192 tokens
- * - Requires database migration (vec_memories table recreation)
+ * Configuration precedence:
+ * 1. Explicit EMBEDDINGS_PROVIDER (openai, hf-local, auto)
+ * 2. Auto-detection: OpenAI if OPENAI_API_KEY exists
+ * 3. Fallback: HF local
  *
  * @module embeddings
- * @version 11.0.0
+ * @version 12.0.0
  */
 
 'use strict';
 
+const { createEmbeddingsProvider, getProviderInfo } = require('./embeddings/factory');
+const { semanticChunk, RESERVED_OVERVIEW, RESERVED_OUTCOME, MIN_SECTION_LENGTH } = require('./embeddings-legacy');
+
 // ───────────────────────────────────────────────────────────────
-// CONFIGURATION
+// SINGLETON PROVIDER INSTANCE
 // ───────────────────────────────────────────────────────────────
 
-const MODEL_NAME = 'nomic-ai/nomic-embed-text-v1.5';
-const EMBEDDING_DIM = 768;
-const MAX_TEXT_LENGTH = 8000; // nomic supports 8192 tokens
-const EMBEDDING_TIMEOUT = 30000; // 30 seconds timeout for embedding generation
-
-// Semantic chunking configuration
-const RESERVED_OVERVIEW = 500;   // First N chars always included
-const RESERVED_OUTCOME = 300;    // Last N chars always included
-const MIN_SECTION_LENGTH = 20;   // Ignore sections shorter than this
+let providerInstance = null;
+let providerInitPromise = null;
 
 /**
- * Task prefixes required by nomic-embed-text-v1.5
- * See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
+ * Get or create provider instance (singleton)
+ * 
+ * @returns {Promise<Object>} Provider instance
  */
-const TASK_PREFIX = {
-  DOCUMENT: 'search_document: ',
-  QUERY: 'search_query: ',
-  CLUSTERING: 'clustering: ',
-  CLASSIFICATION: 'classification: '
-};
-
-// ───────────────────────────────────────────────────────────────
-// DEVICE DETECTION (MPS/Metal on Mac, CPU fallback)
-// ───────────────────────────────────────────────────────────────
-
-let currentDevice = null;
-
-/**
- * Determine optimal compute device for embeddings
- * - macOS with Apple Silicon: Use MPS (Metal Performance Shaders)
- * - Other platforms: Use CPU
- *
- * @returns {string} Device identifier ('mps' or 'cpu')
- */
-function getOptimalDevice() {
-  // MPS available on macOS with Apple Silicon (M1/M2/M3)
-  if (process.platform === 'darwin') {
-    return 'mps';
-  }
-  return 'cpu';
-}
-
-// ───────────────────────────────────────────────────────────────
-// SINGLETON MODEL INSTANCE
-// ───────────────────────────────────────────────────────────────
-
-let extractor = null;
-let modelLoadTime = null;
-let loadingPromise = null;  // Track loading state to prevent race conditions
-
-/**
- * Get or create the embedding pipeline (singleton pattern)
- * First call downloads/loads model (~274MB), subsequent calls return cached instance.
- * Prevents race conditions with multiple simultaneous model load requests.
- * Attempts MPS acceleration on Mac, falls back to CPU if unavailable.
- *
- * @returns {Promise<Object>} Feature extraction pipeline
- */
-async function getModel() {
-  // If already loaded, return immediately
-  if (extractor) {
-    return extractor;
+async function getProvider() {
+  if (providerInstance) {
+    return providerInstance;
   }
 
-  // If currently loading, wait for that to complete (race protection)
-  if (loadingPromise) {
-    return loadingPromise;
+  if (providerInitPromise) {
+    return providerInitPromise;
   }
 
-  // Start loading and store the promise
-  loadingPromise = (async () => {
-    const start = Date.now();
+  providerInitPromise = (async () => {
     try {
-      console.warn('[embeddings] Loading nomic-embed-text-v1.5 (~274MB, first load may take 15-30s)...');
-
-      // Dynamic import for ESM module
-      const { pipeline } = await import('@huggingface/transformers');
-
-      // Try optimal device first (MPS on Mac)
-      let targetDevice = getOptimalDevice();
-      console.log(`[embeddings] Attempting device: ${targetDevice}`);
-
-      try {
-        extractor = await pipeline('feature-extraction', MODEL_NAME, {
-          dtype: 'fp32',
-          device: targetDevice
-        });
-        currentDevice = targetDevice;
-      } catch (deviceError) {
-        // MPS failed, fall back to CPU
-        if (targetDevice !== 'cpu') {
-          console.warn(`[embeddings] ${targetDevice.toUpperCase()} unavailable (${deviceError.message}), falling back to CPU`);
-          extractor = await pipeline('feature-extraction', MODEL_NAME, {
-            dtype: 'fp32',
-            device: 'cpu'
-          });
-          currentDevice = 'cpu';
-        } else {
-          throw deviceError;
-        }
-      }
-
-      modelLoadTime = Date.now() - start;
-      console.warn(`[embeddings] Model loaded in ${modelLoadTime}ms (device: ${currentDevice})`);
-
-      return extractor;
+      providerInstance = await createEmbeddingsProvider({
+        warmup: false // No automatic warmup, done explicitly with preWarmModel
+      });
+      return providerInstance;
     } catch (error) {
-      loadingPromise = null;  // Reset on failure to allow retry
+      providerInitPromise = null;
       throw error;
     }
   })();
 
-  return loadingPromise;
+  return providerInitPromise;
 }
 
 // ───────────────────────────────────────────────────────────────
-// SEMANTIC CHUNKING
+// CORE EMBEDDING GENERATION (API compatible with legacy)
 // ───────────────────────────────────────────────────────────────
 
 /**
- * Priority patterns for section categorization
- * Sections matching these patterns are prioritized during chunking
- */
-const PRIORITY_PATTERNS = {
-  high: /overview|summary|decision|chose|key outcome|conclusion|result|important|critical|must|required/i,
-  medium: /implementation|file|change|technical|approach|solution|method|function|class|component/i,
-  // Everything else is low priority
-};
-
-/**
- * Intelligently chunk text to fit within maxLength while preserving important content
- * 
- * Priority-based chunking strategy:
- * 1. Always include first RESERVED_OVERVIEW chars (usually overview/intro)
- * 2. Always include last RESERVED_OUTCOME chars (usually outcomes/conclusions)
- * 3. Always include sections containing "decision" or "chose"
- * 4. Fill remaining space with high → medium → low priority sections
- * 
- * @param {string} text - Full text to chunk
- * @param {number} maxLength - Maximum output length (default: MAX_TEXT_LENGTH)
- * @returns {string} Chunked text within maxLength
- */
-function semanticChunk(text, maxLength = MAX_TEXT_LENGTH) {
-  // If text fits, return as-is
-  if (text.length <= maxLength) {
-    return text;
-  }
-
-  const originalLength = text.length;
-  
-  // Step 1: Extract guaranteed sections
-  const overview = text.substring(0, RESERVED_OVERVIEW);
-  const outcome = text.substring(text.length - RESERVED_OUTCOME);
-  
-  // Calculate remaining budget after reserved sections
-  // Account for separator newlines
-  let remainingBudget = maxLength - overview.length - outcome.length - 10;
-  
-  // Step 2: Split middle content into sections by headers/paragraphs
-  const middleText = text.substring(RESERVED_OVERVIEW, text.length - RESERVED_OUTCOME);
-  const sections = middleText.split(/\n#{1,3}\s|\n\n/).filter(s => s.trim().length >= MIN_SECTION_LENGTH);
-  
-  // Step 3: Categorize sections by priority
-  const priorities = {
-    critical: [],  // Decision sections - always include
-    high: [],      // Overview, summary, conclusions
-    medium: [],    // Implementation details
-    low: []        // Everything else
-  };
-  
-  sections.forEach(section => {
-    const trimmed = section.trim();
-    if (trimmed.length < MIN_SECTION_LENGTH) return;
-    
-    // Critical: sections with decision keywords - always include
-    if (/decision|chose|decided|selected|picked|concluded/i.test(trimmed)) {
-      priorities.critical.push(trimmed);
-    } else if (PRIORITY_PATTERNS.high.test(trimmed)) {
-      priorities.high.push(trimmed);
-    } else if (PRIORITY_PATTERNS.medium.test(trimmed)) {
-      priorities.medium.push(trimmed);
-    } else {
-      priorities.low.push(trimmed);
-    }
-  });
-  
-  // Step 4: Build middle content within budget
-  const includedSections = [];
-  
-  // Critical sections (decisions) - always include, subtract from budget
-  for (const section of priorities.critical) {
-    includedSections.push(section);
-    remainingBudget -= section.length + 2; // +2 for separator
-  }
-  
-  // Fill remaining budget with priority order
-  for (const priority of ['high', 'medium', 'low']) {
-    for (const section of priorities[priority]) {
-      if (remainingBudget <= 0) break;
-      if (section.length + 2 <= remainingBudget) {
-        includedSections.push(section);
-        remainingBudget -= section.length + 2;
-      }
-    }
-    if (remainingBudget <= 0) break;
-  }
-  
-  // Step 5: Assemble final text
-  let result = overview;
-  if (includedSections.length > 0) {
-    result += '\n\n' + includedSections.join('\n\n');
-  }
-  result += '\n\n' + outcome;
-  
-  // Final safety truncation (should rarely trigger)
-  if (result.length > maxLength) {
-    result = result.substring(0, maxLength);
-  }
-  
-  // Log chunking stats
-  console.warn(`[embeddings] Semantic chunking: ${originalLength} → ${result.length} chars (${Math.round((1 - result.length/originalLength) * 100)}% reduced)`);
-  console.warn(`[embeddings] Sections: ${priorities.critical.length} critical, ${priorities.high.length} high, ${priorities.medium.length} medium, ${priorities.low.length} low priority`);
-  console.warn(`[embeddings] Included: ${includedSections.length} middle sections + overview(${overview.length}) + outcome(${outcome.length})`);
-  
-  return result.trim();
-}
-
-// ───────────────────────────────────────────────────────────────
-// CORE EMBEDDING GENERATION
-// ───────────────────────────────────────────────────────────────
-
-/**
- * Generate a 768-dimensional embedding vector for text
+ * Generate embedding for text (low-level function)
  *
- * NOTE: For best results, use generateDocumentEmbedding() for indexing
- * and generateQueryEmbedding() for search queries. This function is
- * the low-level implementation that handles the actual embedding.
- *
- * @param {string} text - Text to embed (with task prefix if needed)
- * @returns {Promise<Float32Array>} Normalized 768-dim embedding vector
- * @throws {Error} If embedding generation fails
- *
- * @example
- * const embedding = await generateEmbedding('search_document: Hello world');
- * console.log(embedding.length); // 768
+ * @param {string} text - Text to embed
+ * @returns {Promise<Float32Array>} Normalized embedding vector
  */
 async function generateEmbedding(text) {
-  // Handle empty/null text
   if (!text || typeof text !== 'string') {
-    console.warn('[embeddings] Empty or invalid text provided, skipping embedding');
+    console.warn('[embeddings] Empty or invalid text provided');
     return null;
   }
 
   const trimmedText = text.trim();
   if (trimmedText.length === 0) {
-    console.warn('[embeddings] Empty text after trimming, skipping embedding');
+    console.warn('[embeddings] Empty text after trim');
     return null;
   }
 
-  // Apply semantic chunking if text exceeds limit
+  const provider = await getProvider();
+  
+  // Apply semantic chunking if necessary
+  const maxLength = 8000; // Compatible with nomic and safe for most models
   let inputText = trimmedText;
-  if (inputText.length > MAX_TEXT_LENGTH) {
-    inputText = semanticChunk(trimmedText, MAX_TEXT_LENGTH);
+  if (inputText.length > maxLength) {
+    inputText = semanticChunk(trimmedText, maxLength);
   }
 
-  const start = Date.now();
-
-  try {
-    const model = await getModel();
-
-    // Generate embedding with mean pooling and normalization
-    const output = await model(inputText, {
-      pooling: 'mean',
-      normalize: true
-    });
-
-    // Convert to Float32Array (check if already correct type to avoid unnecessary allocation)
-    const embedding = output.data instanceof Float32Array
-      ? output.data
-      : new Float32Array(output.data);
-
-    const inferenceTime = Date.now() - start;
-
-    // Performance logging (target <800ms for larger model)
-    if (inferenceTime > 800) {
-      console.warn(`[embeddings] Slow inference: ${inferenceTime}ms (target <800ms)`);
-    }
-
-    return embedding;
-
-  } catch (error) {
-    console.warn(`[embeddings] Generation failed: ${error.message}`);
-    throw error;
-  }
+  return await provider.generateEmbedding(inputText);
 }
 
-// ───────────────────────────────────────────────────────────────
-// TIMEOUT AND BATCH EMBEDDING FUNCTIONS (L12, L13)
-// ───────────────────────────────────────────────────────────────
-
 /**
- * Generate embedding with timeout protection (L12)
- *
- * Wraps generateEmbedding with a timeout to prevent hanging on slow operations.
- * Useful for production environments where responsiveness is critical.
+ * Generate embedding with timeout protection
  *
  * @param {string} text - Text to embed
- * @param {number} [timeout=EMBEDDING_TIMEOUT] - Timeout in milliseconds (default: 30000)
- * @returns {Promise<Float32Array>} Normalized 768-dim embedding vector
- * @throws {Error} If embedding generation times out or fails
- *
- * @example
- * try {
- *   const embedding = await generateEmbeddingWithTimeout('Hello world', 5000);
- * } catch (err) {
- *   if (err.message.includes('timed out')) {
- *     console.log('Embedding took too long');
- *   }
- * }
+ * @param {number} timeout - Timeout in milliseconds (default: 30000)
+ * @returns {Promise<Float32Array>} Embedding vector
  */
-async function generateEmbeddingWithTimeout(text, timeout = EMBEDDING_TIMEOUT) {
+async function generateEmbeddingWithTimeout(text, timeout = 30000) {
   const timeoutPromise = new Promise((_, reject) => {
     setTimeout(() => reject(new Error('Embedding generation timed out')), timeout);
   });
@@ -353,199 +107,227 @@ async function generateEmbeddingWithTimeout(text, timeout = EMBEDDING_TIMEOUT) {
 }
 
 /**
- * Generate embeddings for multiple texts in batches (L13)
+ * Generate embeddings for batch of texts
  *
- * Processes texts in configurable batch sizes to balance throughput
- * and memory usage. Provides progress callback for long operations.
- *
- * @param {string[]} texts - Array of texts to embed
- * @param {Object} [options] - Batch options
- * @param {number} [options.batchSize=5] - Number of texts to process in parallel
- * @param {Function} [options.onProgress] - Progress callback: ({completed, total}) => void
- * @returns {Promise<Float32Array[]>} Array of embedding vectors (null for failed texts)
- *
- * @example
- * const embeddings = await generateBatchEmbeddings(
- *   ['text1', 'text2', 'text3'],
- *   {
- *     batchSize: 2,
- *     onProgress: ({completed, total}) => console.log(`${completed}/${total}`)
- *   }
- * );
+ * @param {string[]} texts - Array of texts
+ * @returns {Promise<Float32Array[]>} Array of embeddings
  */
-async function generateBatchEmbeddings(texts, options = {}) {
-  const { batchSize = 5, onProgress } = options;
-  const results = [];
-
-  for (let i = 0; i < texts.length; i += batchSize) {
-    const batch = texts.slice(i, i + batchSize);
-    const batchResults = await Promise.all(
-      batch.map(text => generateEmbedding(text).catch(err => {
-        console.warn(`[embeddings] Batch embedding failed for text: ${err.message}`);
-        return null;
-      }))
-    );
-    results.push(...batchResults);
-
-    if (onProgress) {
-      onProgress({
-        completed: Math.min(i + batchSize, texts.length),
-        total: texts.length
-      });
-    }
+async function generateBatchEmbeddings(texts) {
+  if (!Array.isArray(texts)) {
+    throw new TypeError('texts must be an array');
   }
 
+  const results = [];
+  for (const text of texts) {
+    const embedding = await generateEmbedding(text);
+    results.push(embedding);
+  }
   return results;
 }
 
 // ───────────────────────────────────────────────────────────────
-// TASK-SPECIFIC EMBEDDING FUNCTIONS
+// TASK-SPECIFIC FUNCTIONS (Recommended)
 // ───────────────────────────────────────────────────────────────
 
 /**
  * Generate embedding for a document (for indexing/storage)
  *
- * Uses the "search_document: " prefix required by nomic-embed-text-v1.5
- * for optimal document retrieval performance.
- *
- * @param {string} text - Document text to embed
- * @returns {Promise<Float32Array>} 768-dim embedding vector
- *
- * @example
- * const embedding = await generateDocumentEmbedding('OAuth implementation details...');
+ * @param {string} text - Document text
+ * @returns {Promise<Float32Array>} Embedding vector
  */
 async function generateDocumentEmbedding(text) {
   if (!text || typeof text !== 'string' || text.trim().length === 0) {
-    console.warn('[embeddings] Empty document text, skipping embedding');
+    console.warn('[embeddings] Empty document text');
     return null;
   }
 
-  const prefixedText = TASK_PREFIX.DOCUMENT + text;
-  return await generateEmbedding(prefixedText);
+  const provider = await getProvider();
+  
+  // Apply semantic chunking if necessary
+  const maxLength = 8000;
+  let inputText = text;
+  if (inputText.length > maxLength) {
+    inputText = semanticChunk(text, maxLength);
+  }
+  
+  return await provider.embedDocument(inputText);
 }
 
 /**
  * Generate embedding for a search query
  *
- * Uses the "search_query: " prefix required by nomic-embed-text-v1.5
- * for optimal query-document matching.
- *
- * @param {string} query - Search query text
- * @returns {Promise<Float32Array>} 768-dim embedding vector
- *
- * @example
- * const embedding = await generateQueryEmbedding('how did we implement auth?');
+ * @param {string} query - Search query
+ * @returns {Promise<Float32Array>} Embedding vector
  */
 async function generateQueryEmbedding(query) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
-    console.warn('[embeddings] Empty query text, skipping embedding');
+    console.warn('[embeddings] Empty query');
     return null;
   }
 
-  const prefixedQuery = TASK_PREFIX.QUERY + query;
-  return await generateEmbedding(prefixedQuery);
+  const provider = await getProvider();
+  return await provider.embedQuery(query);
 }
 
 /**
  * Generate embedding for clustering task
  *
- * @param {string} text - Text to embed for clustering
- * @returns {Promise<Float32Array>} 768-dim embedding vector
+ * @param {string} text - Text for clustering
+ * @returns {Promise<Float32Array>} Embedding vector
  */
 async function generateClusteringEmbedding(text) {
   if (!text || typeof text !== 'string' || text.trim().length === 0) {
     return null;
   }
 
-  const prefixedText = TASK_PREFIX.CLUSTERING + text;
-  return await generateEmbedding(prefixedText);
+  // For clustering we use the document function
+  return await generateDocumentEmbedding(text);
 }
 
 // ───────────────────────────────────────────────────────────────
-// UTILITY FUNCTIONS
+// UTILITY FUNCTIONS (Legacy API compatibility)
 // ───────────────────────────────────────────────────────────────
 
 /**
- * Get embedding dimension (for validation)
- * @returns {number} Embedding dimension (768)
+ * Get embedding dimension
+ * @returns {number} Embedding dimension
  */
 function getEmbeddingDimension() {
-  return EMBEDDING_DIM;
+  if (providerInstance) {
+    return providerInstance.getProfile().dim;
+  }
+  // Default for compatibility
+  return 768;
 }
 
 /**
  * Get model name
- * @returns {string} Model identifier
+ * @returns {string} Model name
  */
 function getModelName() {
-  return MODEL_NAME;
+  if (providerInstance) {
+    return providerInstance.getProfile().model;
+  }
+  return 'not-loaded';
 }
 
 /**
  * Check if model is loaded
- * @returns {boolean} True if model is cached
+ * @returns {boolean} True if model is loaded
  */
 function isModelLoaded() {
-  return extractor !== null;
+  return providerInstance !== null;
 }
 
 /**
- * Get model load time (if loaded)
+ * Get model load time (compatibility - may not be available for all providers)
  * @returns {number|null} Load time in ms or null
  */
 function getModelLoadTime() {
-  return modelLoadTime;
+  if (providerInstance) {
+    const metadata = providerInstance.getMetadata();
+    return metadata.loadTimeMs || null;
+  }
+  return null;
 }
 
 /**
- * Get current compute device
- * @returns {string|null} Device identifier ('mps' or 'cpu') or null if not loaded
+ * Get current compute device (compatibility - only for HF local)
+ * @returns {string|null} Device identifier or null
  */
 function getCurrentDevice() {
-  return currentDevice;
+  if (providerInstance) {
+    const metadata = providerInstance.getMetadata();
+    return metadata.device || null;
+  }
+  return null;
 }
 
 /**
- * Get task prefix for a given task type
+ * Get optimal device (compatibility function)
+ * @returns {string} 'mps' or 'cpu'
+ */
+function getOptimalDevice() {
+  return process.platform === 'darwin' ? 'mps' : 'cpu';
+}
+
+/**
+ * Get task prefix (compatibility - some providers do not use prefixes)
  * @param {'document'|'query'|'clustering'|'classification'} task - Task type
- * @returns {string} Task prefix string
+ * @returns {string} Task prefix
  */
 function getTaskPrefix(task) {
   const prefixes = {
-    document: TASK_PREFIX.DOCUMENT,
-    query: TASK_PREFIX.QUERY,
-    clustering: TASK_PREFIX.CLUSTERING,
-    classification: TASK_PREFIX.CLASSIFICATION
+    document: 'search_document: ',
+    query: 'search_query: ',
+    clustering: 'clustering: ',
+    classification: 'classification: '
   };
   return prefixes[task] || '';
 }
 
 /**
  * Pre-warm the model for faster first embedding
- * Call this during server startup to avoid cold start latency
  *
- * @returns {Promise<boolean>} True if model loaded successfully
+ * @returns {Promise<boolean>} True if pre-warm was successful
  */
 async function preWarmModel() {
   try {
-    await getModel();
-    console.log('[embeddings] Model pre-warmed successfully');
+    const provider = await getProvider();
+    await provider.warmup();
+    console.log('[embeddings] Provider warmed up successfully');
     return true;
   } catch (error) {
-    console.error('[embeddings] Model pre-warm failed:', error.message);
+    console.error('[embeddings] Pre-warmup failed:', error.message);
     return false;
   }
 }
+
+/**
+ * Get current embedding profile
+ * @returns {Object} Current embedding profile
+ */
+function getEmbeddingProfile() {
+  if (providerInstance) {
+    return providerInstance.getProfile();
+  }
+  return null;
+}
+
+/**
+ * Get provider metadata
+ * @returns {Object} Provider metadata
+ */
+function getProviderMetadata() {
+  if (providerInstance) {
+    return providerInstance.getMetadata();
+  }
+  return getProviderInfo();
+}
+
+// ───────────────────────────────────────────────────────────────
+// CONSTANTS (Compatibility)
+// ───────────────────────────────────────────────────────────────
+
+const EMBEDDING_DIM = 768; // Default legacy
+const EMBEDDING_TIMEOUT = 30000;
+const MAX_TEXT_LENGTH = 8000;
+const MODEL_NAME = 'nomic-ai/nomic-embed-text-v1.5'; // Default legacy
+
+const TASK_PREFIX = {
+  DOCUMENT: 'search_document: ',
+  QUERY: 'search_query: ',
+  CLUSTERING: 'clustering: ',
+  CLASSIFICATION: 'classification: '
+};
 
 // ───────────────────────────────────────────────────────────────
 // MODULE EXPORTS
 // ───────────────────────────────────────────────────────────────
 
 module.exports = {
-  // Core function
+  // Core functions
   generateEmbedding,
-
-  // Timeout and batch functions (L12, L13)
   generateEmbeddingWithTimeout,
   generateBatchEmbeddings,
 
@@ -554,7 +336,7 @@ module.exports = {
   generateQueryEmbedding,
   generateClusteringEmbedding,
 
-  // Semantic chunking (can be used standalone)
+  // Semantic chunking (re-export from legacy)
   semanticChunk,
 
   // Utility functions
@@ -567,14 +349,18 @@ module.exports = {
   getTaskPrefix,
   preWarmModel,
 
-  // Constants for external use
+  // New functions
+  getEmbeddingProfile,
+  getProviderMetadata,
+
+  // Constants
   EMBEDDING_DIM,
   EMBEDDING_TIMEOUT,
   MAX_TEXT_LENGTH,
   MODEL_NAME,
   TASK_PREFIX,
   
-  // Chunking configuration
+  // Chunking configuration (re-export)
   RESERVED_OVERVIEW,
   RESERVED_OUTCOME,
   MIN_SECTION_LENGTH
