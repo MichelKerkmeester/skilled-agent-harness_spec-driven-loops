@@ -47,6 +47,8 @@ Comprehensive system hardening release with critical bug fixes, security improve
 - Removed personal path references from public release
 - Fixed symlinks pointing to personal directories
 
+---
+
 ### [**1.0.2.0**] - 2025-12-30
 
 Technical debt remediation for Spec Kit Memory system with 6 infrastructure improvements. Comprehensive skill audit standardizing documentation across 7 skills. New mcp-figma skill added for design-to-code workflows.
@@ -83,6 +85,8 @@ Enhanced install guides with comprehensive H1 descriptions for all MCP servers. 
 - All MCP install guides now include detailed H1 descriptions
 - `command_template.md` reduced 27% by removing duplication
 
+---
+
 ### [**1.0.1.6**] - 2025-12-30
 
 Fixes critical Narsil MCP parameter naming issues across all 39 high-priority tools. Adds HTTP server scripts for reliable search functionality.
@@ -99,6 +103,8 @@ Fixes critical Narsil MCP parameter naming issues across all 39 high-priority to
   - `function_name` → `function` in call graph tools
   - Added `repo: "unknown"` requirement for all tools
 
+---
+
 ### [**1.0.1.5**] - 2025-12-29
 
 Documents JavaScript-specific Narsil limitations discovered during testing.
@@ -114,6 +120,8 @@ Documents JavaScript-specific Narsil limitations discovered during testing.
 - `get_file` for file content
 - Git integration features
 
+---
+
 ### [**1.0.1.4**] - 2025-12-29
 
 Documents discovered Narsil bugs and limitations with workarounds.
@@ -125,6 +133,8 @@ Documents discovered Narsil bugs and limitations with workarounds.
 #### Known Issues
 - Persistence bug: indexes regenerate ~45-60s on startup
 - Unicode bug: box-drawing characters crash chunking
+
+---
 
 ### [**1.0.1.3**] - 2025-12-29
 
@@ -139,6 +149,8 @@ Documents Narsil's HTTP server and React frontend for interactive code graph vis
 - Tool names corrected in documentation
 - Language count: 16 → 15
 
+---
+
 ### [**1.0.1.2**] - 2025-12-29
 
 Adds project-local Narsil index support for isolated per-project indexing.
@@ -150,6 +162,8 @@ Adds project-local Narsil index support for isolated per-project indexing.
 - `save_index` tool for manual saves
 - HTTP server mode documentation
 
+---
+
 ### [**1.0.1.1**] - 2025-12-29
 
 Fixes Narsil neural search configuration for embedding dimension compatibility.
@@ -157,6 +171,8 @@ Fixes Narsil neural search configuration for embedding dimension compatibility.
 #### Fixed
 - `voyage-code-3` (1024-dim) → `voyage-code-2` (1536-dim) for correct embedding dimensions
 - Invalid frontmatter in search commands
+
+---
 
 ### [**1.0.1.0**] - 2025-12-29
 
@@ -174,6 +190,8 @@ Complete migration from LEANN to Narsil for unified code intelligence. Adds 76 s
 
 ## 1.0.0.x Series
 
+---
+
 ### [**1.0.0.8**] - 2025-12-29
 
 Consolidates embedding options to MLX + Qwen3 as the single path.
@@ -182,6 +200,8 @@ Consolidates embedding options to MLX + Qwen3 as the single path.
 - LEANN for code search (`src/` directories)
 - Spec Kit Memory for document search (`specs/`, `.opencode/`)
 - Removed Voyage, Gemini, and Contriever embedding options
+
+---
 
 ### [**1.0.0.7**] - 2025-12-29
 
@@ -194,6 +214,8 @@ Major semantic search upgrade with Qwen3 embedding model.
 #### Changed
 - AGENTS.md made frontend/backend agnostic
 
+---
+
 ### [**1.0.0.6**] - 2025-12-29
 
 Strengthens write agent enforcement for /create commands.
@@ -203,6 +225,8 @@ Strengthens write agent enforcement for /create commands.
 - Prompt prefix requirement
 - Prerequisite check validation
 - Validation command for skill creation
+
+---
 
 ### [**1.0.0.5**] - 2025-12-29
 
@@ -217,6 +241,8 @@ Enforces @write agent for skill creation with multi-layer enforcement.
 - Quick Reference updated with CDN deployment workflow
 - Quick Reference updated with JS minification workflow
 - Narsil added to Code Mode examples
+
+---
 
 ### [**1.0.0.4**] - 2025-12-29
 
@@ -238,6 +264,8 @@ Complete skill system overhaul standardizing 69 reference/asset files across all
 - Hardcoded paths throughout skills
 - Broken anchor links
 
+---
+
 ### [**1.0.0.3**] - 2025-12-29
 
 Constitutional memory system improvements with 4x token budget increase.
@@ -252,6 +280,8 @@ Constitutional memory system improvements with 4x token budget increase.
 - Gate enforcement restructured with First Message Protocol [HARD BLOCK]
 - 4-step Violation Recovery process
 - 5 ANCHOR sections for memory format
+
+---
 
 ### [**1.0.0.2**] - 2025-12-29
 
@@ -274,6 +304,8 @@ Continued post-release refinement with 80+ bug fixes.
 - AGENTS.md made fully universal (no project-specific patterns)
 - Symlinks converted to relative paths
 
+---
+
 ### [**1.0.0.1**] - 2025-12-29
 
 First post-release refinement focusing on structural reorganization and critical bug fixes.
@@ -293,6 +325,8 @@ First post-release refinement focusing on structural reorganization and critical
 - P1: Embedding rollback
 - P1: LEANN naming consistency
 - P1: Error codes standardized
+
+---
 
 ### [**1.0.0.0**] - 2025-12-29
 
@@ -318,4 +352,3 @@ First official release of the OpenCode Dev Environment.
 - Semantic search by meaning, not text
 - <50ms proactive surfacing before you ask
 - Checkpoints = undo button for your index
-
