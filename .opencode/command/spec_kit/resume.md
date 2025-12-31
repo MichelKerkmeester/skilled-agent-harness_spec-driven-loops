@@ -408,6 +408,19 @@ The resume workflow uses semantic memory MCP tools directly for context loading.
 | `memory_match_triggers` | Fast trigger phrase matching (<50ms)       | Quick session detection by keywords                |
 | `memory_list`           | Browse stored memories with pagination     | Discover available memories and find IDs           |
 | `memory_stats`          | Get memory system statistics               | Show resume status and counts                      |
+| `memory_delete`         | Delete a memory by ID or spec folder       | Use `dryRun: true` for safe preview before delete  |
+| `memory_update`         | Update existing memory metadata            | Modify title, triggers, or importance tier         |
+| `memory_validate`       | Record validation feedback for memories    | Track usefulness to adjust confidence scores       |
+| `memory_index_scan`     | Scan workspace for new/changed files       | Bulk index after creating multiple memory files    |
+| `memory_health`         | Check health status of memory system       | Verify database, embeddings, and index status      |
+
+### Checkpoint Tools
+
+| Tool                | Purpose                              | Usage                                    |
+| ------------------- | ------------------------------------ | ---------------------------------------- |
+| `checkpoint_create` | Create named checkpoint of state     | Snapshot memory state before major work  |
+| `checkpoint_list`   | List all available checkpoints       | Browse saved checkpoints with metadata   |
+| `checkpoint_delete` | Delete a checkpoint                  | Clean up old or unused checkpoints       |
 
 **Note:** There is no `memory_load` tool. Use `memory_search` with `includeContent: true` to load memory content directly in search results.
 
@@ -426,6 +439,27 @@ spec_kit_memory_memory_match_triggers({ prompt: "auth system work" })
 
 // List available memories in a spec folder
 spec_kit_memory_memory_list({ specFolder: "014-auth-system" })
+
+// Delete with dry run preview first (safe)
+spec_kit_memory_memory_delete({ id: 42, dryRun: true })
+
+// Update memory metadata
+spec_kit_memory_memory_update({ id: 42, importanceTier: "critical" })
+
+// Record validation feedback
+spec_kit_memory_memory_validate({ id: 42, wasUseful: true })
+
+// Scan for new memory files
+spec_kit_memory_memory_index_scan({ specFolder: "014-auth-system" })
+
+// Check system health
+spec_kit_memory_memory_health({})
+
+// Create checkpoint before major changes
+spec_kit_memory_checkpoint_create({ name: "pre-refactor-backup" })
+
+// List available checkpoints
+spec_kit_memory_checkpoint_list({})
 
 // NEVER do this (WRONG)
 call_tool_chain(`memory.memory_search(...)`)  // NO - not through Code Mode
