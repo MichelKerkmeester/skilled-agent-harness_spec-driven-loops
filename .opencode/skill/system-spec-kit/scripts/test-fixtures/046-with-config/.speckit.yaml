@@ -1,0 +1,8 @@
+# SpecKit Configuration
+version: "1.0"
+
+rules:
+  priority_tags:
+    severity: warn
+  evidence_cited:
+    severity: warn

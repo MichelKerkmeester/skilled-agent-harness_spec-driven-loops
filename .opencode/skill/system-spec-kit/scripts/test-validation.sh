@@ -681,59 +681,59 @@ fi
 # POSITIVE TESTS
 # -----------------------------------------------------------------------------
 if begin_category "Positive Tests (should PASS)"; then
-    run_test "Valid Level 1 spec folder" "valid-level1" "pass"
-    run_test "Valid Level 2 spec folder" "valid-level2" "pass"
-    run_test "Valid Level 3 spec folder" "valid-level3" "pass"
-    run_test "Valid spec with scratch/ (ignored)" "with-scratch" "pass"
-    run_test "Valid spec with templates/ (skipped)" "with-templates" "pass"
-    run_test "Valid priority tags (P0, P1, P2)" "valid-priority-tags" "pass"
-    run_test "Valid evidence on P0/P1 completed items" "valid-evidence" "pass"
-    run_test "Valid anchors in memory files" "valid-anchors" "pass"
-    run_test "L1 with extra files (notes.md, research.md)" "with-extra-files" "pass"
-    run_test "Valid sections in all files (L3)" "valid-sections" "pass"
+    run_test "Valid Level 1 spec folder" "002-valid-level1" "pass"
+    run_test "Valid Level 2 spec folder" "003-valid-level2" "pass"
+    run_test "Valid Level 3 spec folder" "004-valid-level3" "pass"
+    run_test "Valid spec with scratch/ (ignored)" "050-with-scratch" "pass"
+    run_test "Valid spec with templates/ (skipped)" "051-with-templates" "pass"
+    run_test "Valid priority tags (P0, P1, P2)" "009-valid-priority-tags" "pass"
+    run_test "Valid evidence on P0/P1 completed items" "010-valid-evidence" "pass"
+    run_test "Valid anchors in memory files" "007-valid-anchors" "pass"
+    run_test "L1 with extra files (notes.md, research.md)" "047-with-extra-files" "pass"
+    run_test "Valid sections in all files (L3)" "045-valid-sections" "pass"
 fi
 
 # -----------------------------------------------------------------------------
 # LEVEL_DECLARED RULE TESTS
 # -----------------------------------------------------------------------------
 if begin_category "Level Declaration Tests (should PASS)"; then
-    run_test "Explicit level declaration (| **Level** | 2 |)" "level-explicit" "pass"
-    run_test "Inferred level (no level field, inferred from files)" "level-inferred" "pass"
-    run_test "Level 0 (invalid, falls back to inferred)" "level-zero" "pass"
-    run_test "Level 5 (out of range, falls back to inferred)" "level-out-of-range" "pass"
-    run_test "Level without bold (| Level | 2 |, falls back to inferred)" "level-no-bold" "pass"
+    run_test "Explicit level declaration (| **Level** | 2 |)" "022-level-explicit" "pass"
+    run_test "Inferred level (no level field, inferred from files)" "023-level-inferred" "pass"
+    run_test "Level 0 (invalid, falls back to inferred)" "026-level-zero" "pass"
+    run_test "Level 5 (out of range, falls back to inferred)" "025-level-out-of-range" "pass"
+    run_test "Level without bold (| Level | 2 |, falls back to inferred)" "024-level-no-bold" "pass"
 fi
 
 # -----------------------------------------------------------------------------
 # WARNING TESTS
 # -----------------------------------------------------------------------------
 if begin_category "Warning Tests (should WARN)"; then
-    run_test "Invalid priority tags (unknown tags)" "invalid-priority-tags" "warn"
-    run_test "Missing evidence on P0/P1 completed items" "missing-evidence" "warn"
+    run_test "Invalid priority tags (unknown tags)" "021-invalid-priority-tags" "warn"
+    run_test "Missing evidence on P0/P1 completed items" "031-missing-evidence" "warn"
 fi
 
 # -----------------------------------------------------------------------------
 # SECTIONS_PRESENT RULE TESTS
 # -----------------------------------------------------------------------------
 if begin_category "Sections Present Tests (should WARN on missing)"; then
-    run_test "Missing spec.md sections (no Problem Statement)" "missing-spec-sections" "warn"
-    run_test "Missing plan.md sections (no Architecture)" "missing-plan-sections" "warn"
-    run_test "Missing checklist.md sections (no P0/P1)" "missing-checklist-sections" "warn"
-    run_test "Missing decision-record.md sections (no Consequences)" "missing-decision-sections" "warn"
+    run_test "Missing spec.md sections (no Problem Statement)" "034-missing-spec-sections" "warn"
+    run_test "Missing plan.md sections (no Architecture)" "033-missing-plan-sections" "warn"
+    run_test "Missing checklist.md sections (no P0/P1)" "029-missing-checklist-sections" "warn"
+    run_test "Missing decision-record.md sections (no Consequences)" "030-missing-decision-sections" "warn"
 fi
 
 # -----------------------------------------------------------------------------
 # NEGATIVE TESTS
 # -----------------------------------------------------------------------------
 if begin_category "Negative Tests (should FAIL)"; then
-    run_test "Missing required files (no spec.md)" "missing-required-files" "fail"
-    run_test "Unfilled placeholders" "unfilled-placeholders" "fail"
-    run_test "Invalid anchors (unclosed, mismatched, orphaned)" "invalid-anchors" "fail"
-    run_test "Empty folder (all L1 files missing)" "empty-folder" "fail"
-    run_test "Missing plan.md (L1)" "missing-plan" "fail"
-    run_test "Missing tasks.md (L1)" "missing-tasks" "fail"
-    run_test "Level 2 missing checklist.md" "level2-missing-checklist" "fail"
-    run_test "Level 3 missing decision-record.md" "level3-missing-decision" "fail"
+    run_test "Missing required files (no spec.md)" "006-missing-required-files" "fail"
+    run_test "Unfilled placeholders" "005-unfilled-placeholders" "fail"
+    run_test "Invalid anchors (unclosed, mismatched, orphaned)" "008-invalid-anchors" "fail"
+    run_test "Empty folder (all L1 files missing)" "001-empty-folder" "fail"
+    run_test "Missing plan.md (L1)" "032-missing-plan" "fail"
+    run_test "Missing tasks.md (L1)" "035-missing-tasks" "fail"
+    run_test "Level 2 missing checklist.md" "027-level2-missing-checklist" "fail"
+    run_test "Level 3 missing decision-record.md" "028-level3-missing-decision" "fail"
 fi
 
 # -----------------------------------------------------------------------------
@@ -741,14 +741,14 @@ fi
 # -----------------------------------------------------------------------------
 if begin_category "Priority Tags Edge Cases"; then
     # PASS cases
-    run_test "Inline priority tags only [P0]/[P1]/[P2]" "priority-inline-tags" "pass"
-    run_test "Mixed priority headers and inline tags" "priority-mixed-format" "pass"
+    run_test "Inline priority tags only [P0]/[P1]/[P2]" "041-priority-inline-tags" "pass"
+    run_test "Mixed priority headers and inline tags" "043-priority-mixed-format" "pass"
     
-    run_test "Items after non-priority header inherit context" "priority-context-reset" "pass"
+    run_test "Items after non-priority header inherit context" "040-priority-context-reset" "pass"
     
     # WARN cases - priority context not recognized
-    run_test "Lowercase priority headers (## p0)" "priority-lowercase" "warn"
-    run_test "Invalid P3/P4 priority levels" "priority-p3-invalid" "warn"
+    run_test "Lowercase priority headers (## p0)" "042-priority-lowercase" "warn"
+    run_test "Invalid P3/P4 priority levels" "044-priority-p3-invalid" "warn"
 fi
 
 # -----------------------------------------------------------------------------
@@ -756,13 +756,13 @@ fi
 # -----------------------------------------------------------------------------
 if begin_category "Anchor Edge Cases"; then
     # PASS cases - anchors in valid edge case scenarios
-    run_test "Nested anchors (outer contains inner)" "anchors-nested" "pass"
-    run_test "Empty memory/ directory (skipped)" "anchors-empty-memory" "pass"
-    run_test "No memory/ directory (skipped)" "anchors-no-memory" "pass"
-    run_test "Duplicate anchor IDs, each properly closed" "anchors-duplicate-ids" "pass"
+    run_test "Nested anchors (outer contains inner)" "014-anchors-nested" "pass"
+    run_test "Empty memory/ directory (skipped)" "012-anchors-empty-memory" "pass"
+    run_test "No memory/ directory (skipped)" "015-anchors-no-memory" "pass"
+    run_test "Duplicate anchor IDs, each properly closed" "011-anchors-duplicate-ids" "pass"
     
     # FAIL cases - anchor errors in multi-file scenarios
-    run_test "Multiple memory files, one with error" "anchors-multiple-files" "fail"
+    run_test "Multiple memory files, one with error" "013-anchors-multiple-files" "fail"
 fi
 
 # -----------------------------------------------------------------------------
@@ -770,13 +770,13 @@ fi
 # -----------------------------------------------------------------------------
 if begin_category "Evidence Edge Cases"; then
     # PASS cases - all evidence patterns recognized
-    run_test "All 5 evidence patterns recognized" "evidence-all-patterns" "pass"
-    run_test "Case-insensitive evidence tags" "evidence-case-variations" "pass"
-    run_test "P2 items exempt from evidence" "evidence-p2-exempt" "pass"
-    run_test "Both checkmark formats (✓ ✔)" "evidence-checkmark-formats" "pass"
+    run_test "All 5 evidence patterns recognized" "016-evidence-all-patterns" "pass"
+    run_test "Case-insensitive evidence tags" "017-evidence-case-variations" "pass"
+    run_test "P2 items exempt from evidence" "019-evidence-p2-exempt" "pass"
+    run_test "Both checkmark formats (✓ ✔)" "018-evidence-checkmark-formats" "pass"
     
     # WARN cases - invalid patterns detected
-    run_test "Wrong suffix (complete/done/finished)" "evidence-wrong-suffix" "warn"
+    run_test "Wrong suffix (complete/done/finished)" "020-evidence-wrong-suffix" "warn"
 fi
 
 # -----------------------------------------------------------------------------
@@ -784,13 +784,13 @@ fi
 # -----------------------------------------------------------------------------
 if begin_category "Placeholder Edge Cases"; then
     # PASS cases - placeholders should be ignored in these contexts
-    run_test "Placeholder in fenced code block (ignored)" "placeholder-in-codeblock" "pass"
-    run_test "Placeholder in inline code backticks (ignored)" "placeholder-in-inline-code" "pass"
-    run_test "Placeholder in memory/ directory (skipped)" "with-memory-placeholders" "pass"
+    run_test "Placeholder in fenced code block (ignored)" "038-placeholder-in-codeblock" "pass"
+    run_test "Placeholder in inline code backticks (ignored)" "039-placeholder-in-inline-code" "pass"
+    run_test "Placeholder in memory/ directory (skipped)" "048-with-memory-placeholders" "pass"
     
     # FAIL cases - placeholders should be detected
-    run_test "Multiple placeholders across files (all detected)" "multiple-placeholders" "fail"
-    run_test "Placeholder case variations (detected)" "placeholder-case-variations" "fail"
+    run_test "Multiple placeholders across files (all detected)" "036-multiple-placeholders" "fail"
+    run_test "Placeholder case variations (detected)" "037-placeholder-case-variations" "fail"
 fi
 
 # -----------------------------------------------------------------------------
@@ -798,28 +798,28 @@ fi
 # -----------------------------------------------------------------------------
 if begin_category "CLI Options Tests"; then
     # Test 1: --json output format (valid JSON with required fields)
-    run_test_json_valid "--json produces valid JSON with required fields" "valid-level1" "pass"
+    run_test_json_valid "--json produces valid JSON with required fields" "002-valid-level1" "pass"
     
     # Test 2: --strict mode (warnings become errors)
     # invalid-priority-tags normally returns WARN (exit 1), with --strict should FAIL (exit 2)
-    run_test_with_flags "--strict mode: warnings become errors" "invalid-priority-tags" "fail" "--strict"
+    run_test_with_flags "--strict mode: warnings become errors" "021-invalid-priority-tags" "fail" "--strict"
     
     # Test 3: --quiet mode (minimal output)
-    run_test_quiet "--quiet mode: minimal output" "valid-level1" "pass"
+    run_test_quiet "--quiet mode: minimal output" "002-valid-level1" "pass"
     
     # Test 4: .speckit.yaml configuration (config file detection)
     # Note: Config file IS detected and shown in output, but YAML parsing for 
     # rule severity overrides is not yet implemented in validate-spec.sh
     # This test verifies config file detection; expect WARN due to unimplemented parsing
-    run_test "Config file: .speckit.yaml detected (parsing TODO)" "with-config" "warn"
+    run_test "Config file: .speckit.yaml detected (parsing TODO)" "046-with-config" "warn"
     
     # Test 5: Environment variable override (SPECKIT_STRICT=true)
     # invalid-priority-tags normally returns WARN, with SPECKIT_STRICT=true should FAIL
-    run_test_with_flags "Env var: SPECKIT_STRICT=true" "invalid-priority-tags" "fail" "" "SPECKIT_STRICT=true"
+    run_test_with_flags "Env var: SPECKIT_STRICT=true" "021-invalid-priority-tags" "fail" "" "SPECKIT_STRICT=true"
     
     # Test 6: Rule execution order configuration
     # with-rule-order has .speckit.yaml with rule_order setting
-    run_test "Rule order: .speckit.yaml rule_order" "with-rule-order" "pass"
+    run_test "Rule order: .speckit.yaml rule_order" "049-with-rule-order" "pass"
 fi
 
 # Save final category

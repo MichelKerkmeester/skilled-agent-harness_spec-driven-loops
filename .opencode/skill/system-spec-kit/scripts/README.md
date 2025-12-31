@@ -4,6 +4,29 @@
 
 ---
 
+## Script Registry
+
+All scripts are catalogued in [`scripts-registry.json`](./scripts-registry.json) for dynamic discovery. Use the registry loader to query scripts:
+
+```bash
+# List all scripts
+./registry-loader.sh --list
+
+# Get info about a specific script
+./registry-loader.sh validate-spec
+
+# Find scripts by trigger phrase
+./registry-loader.sh --by-trigger "save context"
+
+# List essential scripts only
+./registry-loader.sh --essential
+
+# List validation rules
+./registry-loader.sh --rules
+```
+
+---
+
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)

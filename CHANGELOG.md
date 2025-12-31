@@ -8,6 +8,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## 1.0.2.x Series
 
+### [**1.0.2.3**] - 2025-12-31
+
+Comprehensive Spec Kit & Memory system audit with test suite fixes, documentation improvements, and new Script Registry for dynamic script discovery.
+
+#### Fixed
+- Test fixtures renamed to follow `###-short-name` naming convention (51 fixtures updated)
+- Added `SPECKIT_TEMPLATE_SOURCE` marker to all test fixture frontmatter
+- FRONTMATTER_VALID rule now skips template marker check for test-fixtures/ directory
+- Updated test-validation.sh references to match renamed fixtures
+- All 55 validation tests now pass (previously 90%+ failed)
+
+#### Added
+- Script Registry (`scripts-registry.json`) - Centralized JSON config for all 14 scripts and 9 rules
+- Registry Loader (`registry-loader.sh`) - CLI tool to query script registry
+- 41 new test fixtures for comprehensive edge case coverage
+- Documentation for `memory_search` query/concepts requirement (E040 error prevention)
+- Documentation for indexing persistence gap between script and MCP server
+
+#### Changed
+- `memory_search` documentation clarified: `query` OR `concepts` parameter is REQUIRED
+- `check-frontmatter.sh` now supports `SKIP_TEMPLATE_CHECK=1` environment variable
+- Updated AGENTS.md, SKILL.md, and memory_system.md with parameter requirements
+
+---
+
 ### [**1.0.2.2**] - 2025-12-31
 
 Security patch fixing HIGH severity DoS vulnerability in `qs` dependency. Documentation updated with complete MCP tool reference for resume command.

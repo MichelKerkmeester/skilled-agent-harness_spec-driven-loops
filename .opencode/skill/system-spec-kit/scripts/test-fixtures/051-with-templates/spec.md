@@ -1,0 +1,27 @@
+
+# Test Feature - With Templates
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+| **Status** | Active |
+| **Created** | 2025-01-01 |
+
+## Problem Statement
+
+Tests that templates/ directory is properly skipped during validation.
+
+## Requirements
+
+- Validation skips templates/ contents
+- Main files pass validation
+
+## Scope
+
+### In Scope
+
+- Templates directory handling
+
+### Out of Scope
+
+- N/A

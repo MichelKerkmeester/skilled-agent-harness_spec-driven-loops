@@ -1,0 +1,11 @@
+# SpecKit Configuration
+version: "1.0"
+
+rule_order:
+  - files_present
+  - level_declared
+  - placeholder_filled
+  - priority_tags
+  - evidence_cited
+  - anchor_matched
+  - sections_present

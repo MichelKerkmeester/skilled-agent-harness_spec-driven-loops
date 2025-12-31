@@ -1,0 +1,404 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "description": "Spec Kit Script Registry - Centralized catalog of all scripts for dynamic discovery",
+  "lastUpdated": "2025-12-31",
+  "scripts": [
+    {
+      "name": "generate-context",
+      "path": "scripts/generate-context.js",
+      "type": "node",
+      "description": "Generate memory files with ANCHOR format for Spec Kit Memory indexing",
+      "trigger": ["save context", "save memory", "/memory:save"],
+      "calledBy": ["AI Assistant", "Command YAML"],
+      "essential": true,
+      "inputs": {
+        "mode1": "JSON data file path (e.g., /tmp/context-data.json)",
+        "mode2": "Spec folder path (e.g., specs/007-feature/)"
+      },
+      "outputs": ["memory/*.md", "metadata.json"],
+      "gate": "Gate 5 (Memory Save)",
+      "version": "2.0.0",
+      "dependencies": ["lib/embeddings.js", "lib/anchor-generator.js", "lib/content-filter.js"]
+    },
+    {
+      "name": "validate-spec",
+      "path": "scripts/validate-spec.sh",
+      "type": "bash",
+      "description": "Validate spec folder contents against documentation level requirements",
+      "trigger": ["validate spec", "check spec"],
+      "calledBy": ["AI Assistant", "CI/CD Pipeline", "Pre-commit Hook"],
+      "essential": true,
+      "inputs": {
+        "required": "Spec folder path",
+        "options": "--json, --strict, --verbose, --quiet"
+      },
+      "outputs": ["Pass/warn/fail status", "JSON report (with --json)"],
+      "gate": "Completion Verification",
+      "version": "2.0.0",
+      "dependencies": ["rules/*.sh", "lib/common.sh"]
+    },
+    {
+      "name": "check-completion",
+      "path": "scripts/check-completion.sh",
+      "type": "bash",
+      "description": "Gate 6 enforcement - verify checklist items are complete before claiming done",
+      "trigger": ["check completion", "verify complete", "claiming done"],
+      "calledBy": ["AI Assistant", "Completion Verification Rule"],
+      "essential": true,
+      "inputs": {
+        "required": "Spec folder path",
+        "options": "--json, --strict, --quiet"
+      },
+      "outputs": ["Pass/fail status", "Incomplete items list"],
+      "gate": "Gate 6 (Completion Verification)",
+      "version": "1.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "check-prerequisites",
+      "path": "scripts/check-prerequisites.sh",
+      "type": "bash",
+      "description": "Validate spec folder exists and contains required files for its level",
+      "trigger": ["check prerequisites", "verify files"],
+      "calledBy": ["AI Assistant", "Implementation Phase"],
+      "essential": true,
+      "inputs": {
+        "options": "--json, --require-tasks, --include-tasks, --paths-only"
+      },
+      "outputs": ["FEATURE_DIR path", "AVAILABLE_DOCS list"],
+      "gate": null,
+      "version": "2.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "calculate-completeness",
+      "path": "scripts/calculate-completeness.sh",
+      "type": "bash",
+      "description": "Calculate percentage of template placeholders replaced with real content",
+      "trigger": ["calculate progress", "completeness"],
+      "calledBy": ["AI Assistant", "Progress Tracking"],
+      "essential": false,
+      "inputs": {
+        "required": "Spec folder path",
+        "options": "--verbose, --json, --file <path>, --quality"
+      },
+      "outputs": ["Completeness percentage", "Per-file breakdown (with --verbose)"],
+      "gate": null,
+      "version": "1.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "test-validation",
+      "path": "scripts/test-validation.sh",
+      "type": "bash",
+      "description": "Test runner for validate-spec.sh against fixture spec folders",
+      "trigger": ["test validation", "run tests"],
+      "calledBy": ["Developer", "CI/CD Pipeline"],
+      "essential": false,
+      "inputs": {
+        "options": "-v (verbose), -t NAME (single test), -c CATEGORY, -l (list), -h (help)"
+      },
+      "outputs": ["Test pass/fail results", "Coverage report"],
+      "gate": null,
+      "version": "2.0.0",
+      "dependencies": ["validate-spec.sh", "test-fixtures/"]
+    },
+    {
+      "name": "create-spec-folder",
+      "path": "scripts/create-spec-folder.sh",
+      "type": "bash",
+      "description": "Create new spec folders with appropriate templates based on documentation level",
+      "trigger": ["create spec", "new spec folder", "Option B"],
+      "calledBy": ["AI Assistant", "Gate 3 (Option B)"],
+      "essential": true,
+      "inputs": {
+        "required": "Feature description",
+        "options": "--short-name, --level (1/2/3), --number, --skip-branch, --sharded, --subfolder"
+      },
+      "outputs": ["New spec folder with templates", "Git branch (optional)"],
+      "gate": "Gate 3 (Spec Folder Creation)",
+      "version": "2.0.0",
+      "dependencies": ["templates/"]
+    },
+    {
+      "name": "recommend-level",
+      "path": "scripts/recommend-level.sh",
+      "type": "bash",
+      "description": "Recommend documentation level based on task complexity factors",
+      "trigger": ["recommend level", "what level"],
+      "calledBy": ["AI Assistant", "Gate 3"],
+      "essential": false,
+      "inputs": {
+        "options": "--loc <number>, --files <number>, --auth, --api, --db, --architectural, --json"
+      },
+      "outputs": ["Recommended level (0-3)", "Score breakdown"],
+      "gate": null,
+      "version": "1.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "archive-spec",
+      "path": "scripts/archive-spec.sh",
+      "type": "bash",
+      "description": "Move completed spec folders to archive, keeping specs/ directory clean",
+      "trigger": ["archive spec", "move to archive"],
+      "calledBy": ["AI Assistant", "Cleanup"],
+      "essential": false,
+      "inputs": {
+        "required": "Spec folder path",
+        "options": "--list, --restore <archived-folder>"
+      },
+      "outputs": ["Archived folder path", "Archive listing (with --list)"],
+      "gate": null,
+      "version": "1.0.0",
+      "dependencies": ["calculate-completeness.sh"]
+    },
+    {
+      "name": "setup",
+      "path": "scripts/setup.sh",
+      "type": "bash",
+      "description": "One-command setup for the semantic memory system",
+      "trigger": ["setup memory", "install memory"],
+      "calledBy": ["Developer", "First-time Setup"],
+      "essential": true,
+      "inputs": {
+        "options": "--force (reinstall)"
+      },
+      "outputs": ["Installed dependencies", "Initialized database"],
+      "gate": null,
+      "version": "1.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "common",
+      "path": "scripts/common.sh",
+      "type": "bash",
+      "description": "Repository and branch utilities - get_repo_root(), get_current_branch()",
+      "trigger": [],
+      "calledBy": ["Other scripts"],
+      "essential": true,
+      "inputs": {},
+      "outputs": ["Utility functions"],
+      "gate": null,
+      "version": "2.0.0",
+      "dependencies": [],
+      "isLibrary": true
+    },
+    {
+      "name": "cleanup-orphaned-vectors",
+      "path": "scripts/cleanup-orphaned-vectors.js",
+      "type": "node",
+      "description": "Remove orphaned vector entries from the SQLite database",
+      "trigger": ["cleanup vectors", "database cleanup"],
+      "calledBy": ["Developer", "Maintenance"],
+      "essential": false,
+      "inputs": {},
+      "outputs": ["Cleanup report", "Deleted count"],
+      "gate": null,
+      "version": "1.0.0",
+      "dependencies": ["better-sqlite3", "sqlite-vec"]
+    },
+    {
+      "name": "test-embeddings-factory",
+      "path": "scripts/test-embeddings-factory.js",
+      "type": "node",
+      "description": "Test and verify embedding provider configuration",
+      "trigger": ["test embeddings", "verify provider"],
+      "calledBy": ["Developer", "Debugging"],
+      "essential": false,
+      "inputs": {},
+      "outputs": ["Provider status", "Configuration details"],
+      "gate": null,
+      "version": "1.0.0",
+      "dependencies": ["lib/embeddings/"]
+    },
+    {
+      "name": "skill_advisor",
+      "path": "../../../scripts/skill_advisor.py",
+      "type": "python",
+      "description": "Analyze user requests and recommend appropriate skills for Gate 2 routing",
+      "trigger": ["which skill", "skill routing", "Gate 2"],
+      "calledBy": ["AI Assistant", "Gate 2"],
+      "essential": true,
+      "inputs": {
+        "required": "User request string",
+        "options": "--threshold <float>, --health"
+      },
+      "outputs": ["JSON array of skill recommendations with confidence scores"],
+      "gate": "Gate 2 (Skill Routing)",
+      "version": "1.0.0",
+      "dependencies": [],
+      "location": ".opencode/scripts/skill_advisor.py"
+    }
+  ],
+  "rules": [
+    {
+      "name": "check-files",
+      "path": "scripts/rules/check-files.sh",
+      "type": "bash",
+      "description": "FILE_EXISTS rule - validates required files exist for documentation level",
+      "severity": "error",
+      "essential": true,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-folder-naming",
+      "path": "scripts/rules/check-folder-naming.sh",
+      "type": "bash",
+      "description": "FOLDER_NAMING rule - validates ###-short-name convention",
+      "severity": "error",
+      "essential": true,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-frontmatter",
+      "path": "scripts/rules/check-frontmatter.sh",
+      "type": "bash",
+      "description": "FRONTMATTER_VALID rule - validates YAML frontmatter structure",
+      "severity": "warning",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-priority-tags",
+      "path": "scripts/rules/check-priority-tags.sh",
+      "type": "bash",
+      "description": "PRIORITY_TAGS rule - validates checklist items have P0/P1/P2 context",
+      "severity": "warning",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-evidence",
+      "path": "scripts/rules/check-evidence.sh",
+      "type": "bash",
+      "description": "EVIDENCE_CITED rule - checks completed P0/P1 items have evidence",
+      "severity": "warning",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-placeholders",
+      "path": "scripts/rules/check-placeholders.sh",
+      "type": "bash",
+      "description": "PLACEHOLDER_FILLED rule - detects unfilled [TODO:], [TBD], {{mustache}} placeholders",
+      "severity": "warning",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-anchors",
+      "path": "scripts/rules/check-anchors.sh",
+      "type": "bash",
+      "description": "ANCHORS_VALID rule - checks anchor pairs in memory files are properly matched",
+      "severity": "warning",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-sections",
+      "path": "scripts/rules/check-sections.sh",
+      "type": "bash",
+      "description": "SECTIONS_PRESENT rule - checks for required markdown sections in spec files",
+      "severity": "warning",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-level",
+      "path": "scripts/rules/check-level.sh",
+      "type": "bash",
+      "description": "LEVEL_DECLARED rule - checks if documentation level was explicitly declared",
+      "severity": "info",
+      "essential": false,
+      "version": "1.0.0"
+    }
+  ],
+  "libraries": {
+    "shell": [
+      {
+        "name": "common",
+        "path": "scripts/lib/common.sh",
+        "description": "Validation utilities (colors, logging, result tracking)"
+      },
+      {
+        "name": "config",
+        "path": "scripts/lib/config.sh",
+        "description": "Configuration loading"
+      },
+      {
+        "name": "output",
+        "path": "scripts/lib/output.sh",
+        "description": "Formatted output helpers"
+      }
+    ],
+    "javascript": [
+      {
+        "name": "embeddings",
+        "path": "scripts/lib/embeddings.js",
+        "description": "Re-exports from ../../shared/embeddings"
+      },
+      {
+        "name": "trigger-extractor",
+        "path": "scripts/lib/trigger-extractor.js",
+        "description": "Re-exports from ../../shared/trigger-extractor"
+      },
+      {
+        "name": "semantic-summarizer",
+        "path": "scripts/lib/semantic-summarizer.js",
+        "description": "Message classification"
+      },
+      {
+        "name": "opencode-capture",
+        "path": "scripts/lib/opencode-capture.js",
+        "description": "OpenCode session capture"
+      },
+      {
+        "name": "content-filter",
+        "path": "scripts/lib/content-filter.js",
+        "description": "Three-stage content filtering"
+      },
+      {
+        "name": "anchor-generator",
+        "path": "scripts/lib/anchor-generator.js",
+        "description": "ANCHOR ID generation"
+      },
+      {
+        "name": "flowchart-generator",
+        "path": "scripts/lib/flowchart-generator.js",
+        "description": "ASCII flowcharts"
+      },
+      {
+        "name": "ascii-boxes",
+        "path": "scripts/lib/ascii-boxes.js",
+        "description": "ASCII box drawing"
+      },
+      {
+        "name": "simulation-factory",
+        "path": "scripts/lib/simulation-factory.js",
+        "description": "Fallback data generation"
+      },
+      {
+        "name": "retry-manager",
+        "path": "scripts/lib/retry-manager.js",
+        "description": "Embedding retry logic"
+      }
+    ]
+  },
+  "metadata": {
+    "totalScripts": 14,
+    "essentialScripts": 8,
+    "optionalScripts": 6,
+    "totalRules": 9,
+    "essentialRules": 2,
+    "totalLibraries": 13,
+    "categories": {
+      "memory": ["generate-context", "cleanup-orphaned-vectors", "test-embeddings-factory", "setup"],
+      "validation": ["validate-spec", "check-completion", "check-prerequisites", "test-validation"],
+      "lifecycle": ["create-spec-folder", "archive-spec", "recommend-level", "calculate-completeness"],
+      "routing": ["skill_advisor"],
+      "utilities": ["common"]
+    }
+  }
+}

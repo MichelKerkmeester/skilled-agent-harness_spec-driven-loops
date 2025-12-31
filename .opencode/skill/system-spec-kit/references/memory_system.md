@@ -75,18 +75,35 @@ Six-tier system for prioritizing memory relevance:
 
 ## 4. 🔍 MEMORY_SEARCH() BEHAVIOR
 
+### Parameter Requirements
+
+> **IMPORTANT:** You MUST provide either `query` OR `concepts` parameter. Calling `memory_search({ specFolder: "..." })` without a search parameter will cause an E040 error.
+
+**Required Parameters (one of):**
+- `query`: Natural language search query (string)
+- `concepts`: Multiple concepts for AND search (array of 2-5 strings)
+
+**Optional Parameters:**
+- `specFolder`: Limit search to specific spec folder
+- `includeContent`: Include full file content in results
+- `includeConstitutional`: Include constitutional tier memories
+- `tier`: Filter by importance tier
+- `limit`: Maximum results to return
+- `useDecay`: Apply temporal decay scoring
+
 ### Parameter Reference
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `query` | string | - | Natural language search query |
-| `specFolder` | string | - | Filter to specific spec folder |
-| `includeConstitutional` | boolean | true | Include constitutional memories |
-| `includeContent` | boolean | false | Embed full file content in results |
-| `includeContiguity` | boolean | false | Include adjacent memories |
-| `tier` | string | - | Filter by importance tier |
-| `limit` | number | 10 | Maximum results to return |
-| `useDecay` | boolean | true | Apply temporal decay scoring |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `query` | string | One of query/concepts | - | Natural language search query |
+| `concepts` | string[] | One of query/concepts | - | 2-5 concepts for AND search (results must match ALL) |
+| `specFolder` | string | No | - | Filter to specific spec folder |
+| `includeConstitutional` | boolean | No | true | Include constitutional memories |
+| `includeContent` | boolean | No | false | Embed full file content in results |
+| `includeContiguity` | boolean | No | false | Include adjacent memories |
+| `tier` | string | No | - | Filter by importance tier |
+| `limit` | number | No | 10 | Maximum results to return |
+| `useDecay` | boolean | No | true | Apply temporal decay scoring |
 
 ### Constitutional Memory Behavior
 
@@ -101,14 +118,20 @@ Six-tier system for prioritizing memory relevance:
 ### Usage Examples
 
 ```javascript
-// Basic semantic search
+// Basic semantic search (query required)
 memory_search({ query: "authentication decisions" })
 
-// Folder-scoped with content
+// Folder-scoped with content (query still required)
 memory_search({ 
   query: "OAuth implementation", 
   specFolder: "007-auth",
   includeContent: true 
+})
+
+// Multi-concept AND search (alternative to query)
+memory_search({ 
+  concepts: ["authentication", "session management"],
+  specFolder: "007-auth"
 })
 
 // Exclude constitutional tier
@@ -116,6 +139,9 @@ memory_search({
   query: "login flow",
   includeConstitutional: false 
 })
+
+// WRONG: specFolder alone is NOT sufficient
+// memory_search({ specFolder: "007-auth" })  // ERROR: E040
 ```
 
 ---

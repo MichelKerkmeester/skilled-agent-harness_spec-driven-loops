@@ -43,7 +43,7 @@ See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, 
 | Task                     | Flow                                                                                                                                |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                          |
-| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `narsil.narsil_neural_search()` → Document findings                                 |
+| **Research/exploration** | `memory_match_triggers()` → `memory_search({ query: "..." })` → `narsil.narsil_neural_search()` → Document findings                 |
 | **Code search**          | `narsil.narsil_neural_search()` for semantic, `narsil.narsil_find_symbols()` for structural, `Grep()` for text patterns             |
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                    |
 | **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
@@ -131,7 +131,7 @@ See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, 
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ MEMORY CONTEXT LOADING [SOFT]                                               │
 │ Trigger: User selected A or C in Gate 3 AND memory files exist               │
-│ Action:  memory_search({ specFolder, includeContent: true })                │
+│ Action:  memory_search({ query: "session context", specFolder, includeContent: true })
 │          → Results include embedded content (no separate load needed)       │
 │          → Constitutional memories always appear first                       │
 │          → Display relevant context directly from search results            │
@@ -158,6 +158,10 @@ See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, 
 │            `node generate-context.js /tmp/save-context-data.json`           │
 │   Mode 2 (Direct): Pass spec folder path directly                           │
 │            `node generate-context.js specs/005-memory`                      │
+│                                                                             │
+│ INDEXING NOTE: Script reports "Indexed as memory #X" but running MCP server │
+│   may not see it immediately (separate DB connection). For immediate MCP    │
+│   visibility: call memory_index_scan({ specFolder }) or memory_save()       │
 │                                                                             │
 │ VIOLATION: Write tool on memory/ path → DELETE & re-run via script          │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -502,7 +506,7 @@ Review response for:
 ```
 Known file path? → Read()
 Know what code DOES? → narsil.narsil_neural_search() [CODE MODE - MANDATORY]
-Research/prior work? → memory_search() [NATIVE MCP - MANDATORY]
+Research/prior work? → memory_search({ query: "..." }) [NATIVE MCP - MANDATORY]
 Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE - via call_tool_chain()]
 Security scan/vulnerabilities? → narsil.narsil_scan_security() [CODE MODE - via call_tool_chain()]
 Code analysis (dead code, complexity)? → narsil.narsil_* tools [CODE MODE - via call_tool_chain()]

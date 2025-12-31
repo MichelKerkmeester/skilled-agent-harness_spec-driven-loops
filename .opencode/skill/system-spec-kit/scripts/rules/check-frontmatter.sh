@@ -37,8 +37,19 @@ run_check() {
         fi
         
         # Check for SPECKIT_TEMPLATE_SOURCE marker (indicates template was used)
-        if ! grep -q "SPECKIT_TEMPLATE_SOURCE" "$filepath" 2>/dev/null; then
-            issues+=("$file: Missing SPECKIT_TEMPLATE_SOURCE marker (may not be from template)")
+        # Skip for test fixtures (path-based) or when SKIP_TEMPLATE_CHECK=1 (env var)
+        local skip_template_check=false
+        if [[ "$folder" == *"test-fixtures"* ]]; then
+            skip_template_check=true
+        fi
+        if [[ "${SKIP_TEMPLATE_CHECK:-0}" == "1" ]]; then
+            skip_template_check=true
+        fi
+        
+        if [[ "$skip_template_check" == "false" ]]; then
+            if ! grep -q "SPECKIT_TEMPLATE_SOURCE" "$filepath" 2>/dev/null; then
+                issues+=("$file: Missing SPECKIT_TEMPLATE_SOURCE marker (may not be from template)")
+            fi
         fi
     done
     

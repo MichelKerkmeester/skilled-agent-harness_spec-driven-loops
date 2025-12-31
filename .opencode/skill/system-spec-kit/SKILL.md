@@ -91,7 +91,7 @@ User Request
     │   └─► Execute generate-context.js → Index to Spec Kit Memory
     │
     ├─► Contains "search memory", "find context", "what did we"?
-    │   └─► Use memory_search() MCP tool
+    │   └─► Use memory_search({ query: "..." }) MCP tool (query OR concepts required)
     │
     ├─► Contains "checkpoint", "save state", "restore"?
     │   └─► Use checkpoint_create/restore MCP tools
@@ -107,7 +107,7 @@ User Request
 | Trigger Pattern | Action | MCP Tool |
 |-----------------|--------|----------|
 | "save context", "save memory", `/memory:save` | Generate + index memory file | `spec_kit_memory_memory_save()` |
-| "search memory", "find prior", "what did we decide" | Semantic search across sessions | `spec_kit_memory_memory_search()` |
+| "search memory", "find prior", "what did we decide" | Semantic search across sessions | `spec_kit_memory_memory_search({ query: "..." })` (query OR concepts required) |
 | "list memories", "show context" | Browse stored memories | `spec_kit_memory_memory_list()` |
 | "checkpoint", "save state" | Create named checkpoint | `spec_kit_memory_checkpoint_create()` |
 | "restore checkpoint", "rollback" | Restore from checkpoint | `spec_kit_memory_checkpoint_restore()` |
@@ -397,10 +397,32 @@ Context preservation across sessions via vector-based semantic search.
 
 > **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search()`).
 
+**memory_search() Parameter Requirements:**
+
+> **IMPORTANT:** `query` (string) OR `concepts` (array of 2-5 strings) is REQUIRED. `specFolder` alone is NOT sufficient and will cause E040 error.
+
+```javascript
+// Correct usage
+memory_search({ query: "session context", specFolder: "007-auth" })
+memory_search({ concepts: ["auth", "session"], specFolder: "007-auth" })
+
+// WRONG: Will cause E040 error
+// memory_search({ specFolder: "007-auth" })
+```
+
 **Key Concepts:**
 - **Constitutional tier** - Critical rules that ALWAYS surface at top of search results
 - **Decay scoring** - Recent memories rank higher (~62-day half-life)
 - **Real-time sync** - Use `memory_save` or `memory_index_scan` after creating files
+
+**Indexing Persistence Note:**
+When `generate-context.js` creates a memory file, it performs internal indexing and reports "Indexed as memory #X". However, the running MCP server maintains its own database connection and may not immediately see the new index entry.
+
+For immediate MCP visibility, call one of:
+- `memory_index_scan({ specFolder: "your-folder" })` - Re-scan and index
+- `memory_save({ filePath: "path/to/memory.md" })` - Index specific file
+
+This is typically only needed if you want to search the memory immediately after creation in the same session.
 
 **Full documentation:** See [memory_system.md](./references/memory_system.md) for tool behavior, importance tiers, and configuration.
 

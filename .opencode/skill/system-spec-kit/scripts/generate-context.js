@@ -2853,6 +2853,19 @@ async function main() {
     // ─────────────────────────────────────────────────────────────
     // Step 11: Spec Kit Memory Indexing (v10.0)
     // ─────────────────────────────────────────────────────────────
+    // NOTE: Indexing Persistence Gap
+    // When this script indexes a memory file, it writes directly to the SQLite
+    // database. However, if the MCP server (context-server.js) is running, it
+    // maintains its own database connection and may not immediately see the new
+    // index entry due to SQLite connection caching.
+    //
+    // For immediate MCP visibility after running this script, call one of:
+    //   - memory_index_scan({ specFolder: "your-folder" }) - Re-scan and index
+    //   - memory_save({ filePath: "path/to/memory.md" }) - Index specific file
+    //
+    // This is typically only needed if you want to search the memory immediately
+    // after creation in the same session. New sessions will see all indexed memories.
+    // ─────────────────────────────────────────────────────────────
     console.log('🧠 Step 11: Indexing semantic memory...');
 
     try {
