@@ -3,17 +3,18 @@
  * 
  * Configuration precedence:
  * 1. EMBEDDINGS_PROVIDER (if not 'auto')
- * 2. Auto-detection: OpenAI if OPENAI_API_KEY exists
- * 3. Fallback: HF local
+ * 2. Auto-detection: Voyage if VOYAGE_API_KEY exists
+ * 3. Auto-detection: OpenAI if OPENAI_API_KEY exists
+ * 4. Fallback: HF local
  * 
  * @module embeddings/factory
- * @version 1.0.0
  */
 
 'use strict';
 
 const { HFLocalProvider } = require('./providers/hf-local');
 const { OpenAIProvider } = require('./providers/openai');
+const { VoyageProvider } = require('./providers/voyage');
 
 // ───────────────────────────────────────────────────────────────
 // PROVIDER CONFIGURATION
@@ -34,7 +35,15 @@ function resolveProvider() {
     };
   }
 
-  // 2. Auto-detection: OpenAI if key exists
+  // 2. Auto-detection: Voyage if key exists (preferred for retrieval)
+  if (process.env.VOYAGE_API_KEY) {
+    return {
+      name: 'voyage',
+      reason: 'VOYAGE_API_KEY detected (auto mode)'
+    };
+  }
+
+  // 3. Auto-detection: OpenAI if key exists
   if (process.env.OPENAI_API_KEY) {
     return {
       name: 'openai',
@@ -42,10 +51,10 @@ function resolveProvider() {
     };
   }
 
-  // 3. Fallback to local
+  // 4. Fallback to local
   return {
     name: 'hf-local',
-    reason: 'Default fallback (no OPENAI_API_KEY)'
+    reason: 'Default fallback (no API keys detected)'
   };
 }
 
@@ -72,6 +81,20 @@ async function createEmbeddingsProvider(options = {}) {
 
   try {
     switch (providerName) {
+      case 'voyage':
+        if (!process.env.VOYAGE_API_KEY && !options.apiKey) {
+          throw new Error(
+            'Voyage provider requires VOYAGE_API_KEY. ' +
+            'Set the variable or use EMBEDDINGS_PROVIDER=hf-local to force local.'
+          );
+        }
+        provider = new VoyageProvider({
+          model: options.model,
+          dim: options.dim,
+          apiKey: options.apiKey
+        });
+        break;
+
       case 'openai':
         if (!process.env.OPENAI_API_KEY && !options.apiKey) {
           throw new Error(
@@ -94,12 +117,12 @@ async function createEmbeddingsProvider(options = {}) {
         break;
 
       case 'ollama':
-        throw new Error('Ollama provider not yet implemented. Use hf-local or openai.');
+        throw new Error('Ollama provider not yet implemented. Use hf-local, voyage, or openai.');
 
       default:
         throw new Error(
           `Unknown provider: ${providerName}. ` +
-          `Valid values: openai, hf-local, auto`
+          `Valid values: voyage, openai, hf-local, auto`
         );
     }
 
@@ -159,9 +182,11 @@ function getProviderInfo() {
     reason: resolution.reason,
     config: {
       EMBEDDINGS_PROVIDER: process.env.EMBEDDINGS_PROVIDER || 'auto',
+      VOYAGE_API_KEY: process.env.VOYAGE_API_KEY ? '***set***' : 'not set',
+      VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-3.5',
       OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '***set***' : 'not set',
-      OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || 'default',
-      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || 'default'
+      OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small',
+      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || 'nomic-ai/nomic-embed-text-v1.5'
     }
   };
 }

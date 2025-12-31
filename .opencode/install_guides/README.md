@@ -396,8 +396,9 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 Ollama provides local LLM inference and embeddings. **No longer required** for Spec Kit Memory.
 
 **Since v12.0:** Spec Kit Memory supports multiple embedding backends:
-- **OpenAI** (recommended if you have `OPENAI_API_KEY`) - cloud embeddings
-- **HF Local** (default without API key) - local embeddings with HuggingFace Transformers
+- **Voyage** (recommended if you have `VOYAGE_API_KEY`) - best retrieval quality, cloud embeddings
+- **OpenAI** (alternative if you have `OPENAI_API_KEY`) - cloud embeddings
+- **HF Local** (default without API keys) - local embeddings with HuggingFace Transformers
 - **Ollama** (optional) - for local embeddings via Ollama
 
 > **Skip Check:** If you prefer OpenAI or HF local, you can skip this entire phase.
@@ -632,14 +633,16 @@ Spec Kit Memory now supports three embedding backends:
 
 | Provider | When to use | Dimension | Requirements |
 |----------|-------------|-----------|------------|
+| **Voyage** | Recommended, best quality | 1024 | `VOYAGE_API_KEY` |
 | **OpenAI** | API key available, cloud preference | 1536/3072 | `OPENAI_API_KEY` |
 | **HF Local** | No API key, privacy/offline | 768 | Node.js only (default) |
 | **Ollama** | Ollama local preference | 768 | Ollama + nomic model |
 
 **Automatic provider configuration:**
-- If `OPENAI_API_KEY` exists: uses OpenAI (auto-detected)
-- If not: uses HF Local (fallback, no additional installation)
-- Manual override: `export EMBEDDINGS_PROVIDER=hf-local` (forces local even with key)
+- If `VOYAGE_API_KEY` exists: uses Voyage (recommended, 8% better retrieval)
+- Else if `OPENAI_API_KEY` exists: uses OpenAI (auto-detected)
+- Else: uses HF Local (fallback, no additional installation)
+- Manual override: `export EMBEDDINGS_PROVIDER=hf-local` (forces local even with keys)
 
 **Location:** Bundled in project at `.opencode/skill/system-spec-kit/`
 
@@ -661,8 +664,12 @@ Spec Kit Memory now supports three embedding backends:
 
 **Optional environment variables:**
 ```bash
-# Provider selection (auto|openai|hf-local|ollama)
+# Provider selection (auto|voyage|openai|hf-local|ollama)
 export EMBEDDINGS_PROVIDER=auto  # Default: auto-detect
+
+# Voyage config (recommended - best retrieval quality)
+export VOYAGE_API_KEY=pa-...
+export VOYAGE_EMBEDDINGS_MODEL=voyage-3.5  # Default
 
 # OpenAI config (if using OpenAI)
 export OPENAI_API_KEY=sk-...

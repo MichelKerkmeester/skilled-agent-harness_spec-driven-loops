@@ -45,7 +45,7 @@ The `mcp_server/` folder is the standalone MCP server implementation for spec ki
 | ------------------------ | ------------------------------------------------------------- |
 | **13 MCP Tools**         | Complete CRUD + search operations for memory management       |
 | **Hybrid Search**        | FTS5 keyword + vector semantic search with RRF fusion         |
-| **Local Embeddings**     | nomic-embed-text-v1.5 (768 dimensions) - no external APIs     |
+| **Multi-Provider Embeddings** | HF Local (768d), Voyage AI (1024d), OpenAI (1536d) - auto-detected |
 | **Six Importance Tiers** | constitutional/critical/important/normal/temporary/deprecated |
 | **Checkpoints**          | Save/restore memory state for safety                          |
 | **Auto-Indexing**        | Startup scan + file watcher for automatic indexing            |
@@ -197,6 +197,54 @@ Fast trigger phrase matching (<50ms) without embeddings.
 | `limit`   | number | 3            | Maximum matching memories to return          |
 
 **Response includes:** `memoryId`, `matchedPhrases[]`, `title`, `importanceWeight`
+
+#### memory_delete
+
+Delete memories by ID or spec folder.
+
+| Parameter    | Type    | Required | Description                                           |
+| ------------ | ------- | -------- | ----------------------------------------------------- |
+| `id`         | number  | No*      | Memory ID to delete                                   |
+| `specFolder` | string  | No*      | Delete all memories in spec folder                    |
+| `confirm`    | boolean | No       | Required for bulk delete (when specFolder is used)    |
+| `dryRun`     | boolean | No       | Preview what would be deleted without deleting (v12.6+) |
+
+*Either `id` or `specFolder` is required.
+
+**Example with dryRun:**
+```typescript
+// Preview deletions first
+memory_delete({ specFolder: "old-feature", dryRun: true })
+// Returns: { dryRun: true, wouldDelete: 15, memories: [...] }
+
+// Then confirm deletion
+memory_delete({ specFolder: "old-feature", confirm: true })
+```
+
+#### memory_index_scan
+
+Scan workspace for memory files and index them.
+
+| Parameter              | Type    | Default | Description                                           |
+| ---------------------- | ------- | ------- | ----------------------------------------------------- |
+| `specFolder`           | string  | -       | Limit scan to specific spec folder                    |
+| `force`                | boolean | false   | Re-index all files (ignore content hash)              |
+| `includeConstitutional`| boolean | true    | Also scan `.opencode/skill/*/constitutional/` directories |
+
+**Examples:**
+```typescript
+// Full workspace scan
+memory_index_scan({})
+
+// Scan specific folder
+memory_index_scan({ specFolder: "049-auth-system" })
+
+// Force re-index everything
+memory_index_scan({ force: true })
+
+// Skip constitutional directories
+memory_index_scan({ includeConstitutional: false })
+```
 
 ---
 

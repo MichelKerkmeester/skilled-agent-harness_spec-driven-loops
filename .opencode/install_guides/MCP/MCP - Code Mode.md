@@ -313,7 +313,7 @@ Add to `.mcp.json` in your project root:
   "mcpServers": {
     "code-mode": {
       "command": "npx",
-      "args": ["-y", "utcp-mcp"],
+      "args": ["-y", "@utcp/code-mode-mcp"],
       "env": {
         "UTCP_CONFIG_PATH": ".utcp_config.json"
       }
@@ -329,16 +329,17 @@ Add to `opencode.json` in your project root:
 ```json
 {
   "mcp": {
-    "code-mode": {
+    "code_mode": {
       "type": "local",
       "command": [
         "npx",
         "-y",
-        "utcp-mcp"
+        "@utcp/code-mode-mcp"
       ],
-      "env": {
+      "environment": {
         "UTCP_CONFIG_PATH": ".utcp_config.json"
-      }
+      },
+      "enabled": true
     }
   }
 }
@@ -353,13 +354,18 @@ Add to `.vscode/mcp.json`:
   "mcpServers": {
     "code-mode": {
       "command": "npx",
-      "args": ["-y", "utcp-mcp"],
+      "args": ["-y", "@utcp/code-mode-mcp"],
       "env": {
         "UTCP_CONFIG_PATH": ".utcp_config.json"
       }
     }
   }
 }
+```
+
+### Package Name Note
+
+> **Note**: The package `@utcp/code-mode-mcp` is the official UTCP Code Mode MCP server. Some older documentation may reference `utcp-mcp` - both should work, but `@utcp/code-mode-mcp` is the current recommended package.
 ```
 
 ---

@@ -138,6 +138,9 @@ User Request
 | 3     | Level 2 + decision-record.md | research.md |
 | Any   | — | handover.md, debug-delegation.md |
 
+**Internal Templates:**
+- `context_template.md` - Internal template for memory file generation (Mustache format)
+
 **Auto-Generated Folders:**
 - `memory/` - Session context (via `generate-context.js`)
 - `scratch/` - Temporary workspace (manual creation)
@@ -160,6 +163,7 @@ User Request
 | `calculate-completeness.sh` | Calculates spec completeness percentage |
 | `package.json` | Node.js dependencies |
 | `README.md` | Scripts documentation |
+| `test-embeddings-factory.js` | Test embedding provider configuration |
 
 **References (`references/`):**
 
@@ -167,6 +171,7 @@ User Request
 |------|---------|--------------|
 | `level_specifications.md` | Complete Level 1-3 requirements | Planning |
 | `template_guide.md` | Template selection and usage | Planning, Implementation |
+| `template_style_guide.md` | Template formatting conventions | Documentation |
 | `validation_rules.md` | All validation rules and fixes | Implementation, Completion |
 | `quick_reference.md` | Commands and checklists | Any phase |
 | `troubleshooting.md` | Common issues and solutions | Debugging |
@@ -378,8 +383,17 @@ Context preservation across sessions via vector-based semantic search.
 | `memory_search()` | Semantic search with vector similarity |
 | `memory_match_triggers()` | Fast keyword matching (<50ms) |
 | `memory_save()` | Index a memory file |
-| `memory_list()` | Browse stored memories |
-| `checkpoint_create/restore()` | Save/restore state snapshots |
+| `memory_list()` | Browse stored memories with pagination |
+| `memory_delete()` | Delete memories by ID or spec folder |
+| `memory_update()` | Update memory metadata and importance tier |
+| `memory_stats()` | Get system statistics and counts |
+| `memory_validate()` | Record validation feedback for confidence |
+| `memory_index_scan()` | Bulk scan and index workspace |
+| `memory_health()` | Check system health status |
+| `checkpoint_create()` | Create named checkpoint |
+| `checkpoint_list()` | List all available checkpoints |
+| `checkpoint_restore()` | Restore from checkpoint |
+| `checkpoint_delete()` | Delete a checkpoint |
 
 > **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search()`).
 

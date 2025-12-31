@@ -14,6 +14,7 @@
 'use strict';
 
 const vectorIndex = require('./vector-index');
+const { escapeRegex } = require('../../shared/utils');
 
 // ───────────────────────────────────────────────────────────────
 // CONFIGURATION
@@ -167,15 +168,6 @@ function getCacheStats() {
 // ───────────────────────────────────────────────────────────────
 // STRING MATCHING
 // ───────────────────────────────────────────────────────────────
-
-/**
- * Escape special regex characters
- * @param {string} str - String to escape
- * @returns {string} - Escaped string
- */
-function escapeRegex(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
 
 /**
  * Normalize string for Unicode-safe comparison
@@ -377,7 +369,7 @@ module.exports = {
   getCacheStats,
   getAllPhrases,
   getMemoriesByPhrase,
-  // Expose internals for testing
+  // Expose internals for testing (escapeRegex now from shared/utils)
   escapeRegex,
   normalizeUnicode,
   matchPhraseWithBoundary,

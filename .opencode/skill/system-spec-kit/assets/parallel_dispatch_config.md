@@ -9,11 +9,13 @@ Configuration for smart parallel sub-agent dispatch based on task complexity sco
 
 ---
 
-## Purpose
+## 1. 📖 OVERVIEW
+
+### Purpose
 
 Defines when and how to dispatch parallel agents for complex tasks. Use this configuration to determine if a task benefits from parallel exploration vs. direct execution.
 
-## Usage
+### Usage
 
 1. Score the task using the 5-dimension complexity model
 2. Check score against decision thresholds (<20% = direct, ≥20% + 2 domains = ask user)
@@ -22,7 +24,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 1. 📊 5-DIMENSION COMPLEXITY SCORING
+## 2. 📊 5-DIMENSION COMPLEXITY SCORING
 
 | Dimension            | Weight | Scoring                                |
 | -------------------- | ------ | -------------------------------------- |
@@ -36,7 +38,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 2. 🎯 DECISION THRESHOLDS
+## 3. 🎯 DECISION THRESHOLDS
 
 | Score            | Action                                |
 | ---------------- | ------------------------------------- |
@@ -47,7 +49,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 3. 🤖 4-AGENT PARALLEL EXPLORATION (Step 6 Planning)
+## 4. 🤖 4-AGENT PARALLEL EXPLORATION (Step 6 Planning)
 
 | Agent                 | Focus                            | Purpose                          |
 | --------------------- | -------------------------------- | -------------------------------- |
@@ -60,7 +62,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 4. 🔧 OVERRIDE PHRASES
+## 5. 🔧 OVERRIDE PHRASES
 
 | Intent                    | Phrases                                                |
 | ------------------------- | ------------------------------------------------------ |
@@ -72,7 +74,7 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 5. 🔗 Related Resources
+## 6. 🔗 RELATED RESOURCES
 
 ### Asset Files
 - [template_mapping.md](./template_mapping.md) - Template routing and task mapping

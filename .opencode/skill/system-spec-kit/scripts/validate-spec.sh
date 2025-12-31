@@ -70,7 +70,8 @@ EXIT CODES: 0=pass, 1=warnings, 2=errors
 RULES: FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS_PRESENT, LEVEL_DECLARED,
        PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID
 
-LEVELS: 1=spec+plan+tasks, 2=+checklist, 3=+decision-record
+LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+decision-record
+        *impl-summary required after tasks completed
 EOF
 exit 0; }
 

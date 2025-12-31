@@ -17,6 +17,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { escapeRegex } = require('../../shared/utils');
 
 // ───────────────────────────────────────────────────────────────
 // CONFIGURATION
@@ -370,15 +371,6 @@ function validateAnchors(content) {
     warnings,
     unclosedAnchors
   };
-}
-
-/**
- * Escape special regex characters in a string
- * @param {string} str - String to escape
- * @returns {string} Escaped string safe for use in RegExp
- */
-function escapeRegex(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 /**

@@ -611,7 +611,7 @@ find . -name ".spec-active*" -type f 2>/dev/null
 
 ### Reference Files
 - [execution_methods.md](./execution_methods.md) - Save context workflows
-- [spec_kit_memory.md](./spec_kit_memory.md) - MCP tool reference
+- [memory_system.md](./memory_system.md) - MCP tool reference
 
 ### Related Skills
 - `system-spec-kit` - Spec folder creation and template management

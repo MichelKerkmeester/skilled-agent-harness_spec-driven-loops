@@ -1,6 +1,6 @@
 # Scripts Library
 
-> Shared JavaScript and shell script libraries for embedding generation, content processing, and validation utilities.
+> JavaScript and shell script libraries for CLI utilities including content processing, summarization, and validation.
 
 ---
 
@@ -20,24 +20,55 @@
 
 ### What is the lib/ Directory?
 
-The `lib/` directory contains shared JavaScript and shell script libraries used by `generate-context.js` and other spec-kit utilities. These modules handle embedding generation, content processing, semantic summarization, and validation output formatting.
+The `lib/` directory contains JavaScript and shell script libraries used by `generate-context.js` and other spec-kit CLI utilities. These modules handle content processing, semantic summarization, and validation output formatting.
+
+### Shared Library Architecture
+
+As of 2024-12-31, the following modules are **re-exports** from the shared `lib/` directory:
+
+| Module | Canonical Source | This Location |
+|--------|-----------------|---------------|
+| `embeddings.js` | `../shared/embeddings.js` | Re-export wrapper |
+| `trigger-extractor.js` | `../shared/trigger-extractor.js` | Re-export wrapper |
+
+This consolidation ensures consistent behavior between CLI scripts and MCP server.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     SHARED LIB/ ARCHITECTURE                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│    scripts/lib/                       lib/ (CANONICAL)          │
+│    ┌─────────────┐                   ┌─────────────┐            │
+│    │embeddings.js│ ──re-export────► │embeddings.js│            │
+│    │trigger-     │                   │trigger-     │            │
+│    │extractor.js │ ──re-export────► │extractor.js │            │
+│    └─────────────┘                   │embeddings/  │            │
+│                                       └─────────────┘            │
+│    Local modules:                                                │
+│    anchor-generator.js, semantic-summarizer.js, etc.            │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| JavaScript Libraries | 8 | Core processing, embeddings, output formatting |
+| Local JavaScript Libraries | 8 | Content processing, summarization, formatting |
+| Re-exported Modules | 2 | embeddings.js, trigger-extractor.js |
 | Shell Libraries | 3 | Configuration, utilities, output helpers |
-| Embedding Model | nomic-embed-text-v1.5 | 768-dimensional vectors |
+| Embedding Providers | 3 | Voyage, OpenAI, HF Local (multi-provider support) |
 
 ### Key Features
 
 | Feature | Description |
 |---------|-------------|
-| **Embedding Generation** | Local embedding via @xenova/transformers with timeout protection |
+| **Multi-Provider Embeddings** | Voyage, OpenAI, HF local with 768/1024/1536 dimensions |
 | **Semantic Summarization** | Extract key points and decisions from conversations |
 | **Anchor Generation** | Create semantic ANCHOR tags for memory files |
 | **ASCII Formatting** | Generate boxes, tables, and flowcharts |
+| **TF-IDF Triggers** | Advanced trigger phrase extraction (v11) |
 
 ### Requirements
 
@@ -55,7 +86,8 @@ The `lib/` directory contains shared JavaScript and shell script libraries used 
 
 ```javascript
 // Import libraries in your Node.js script
-const { generateEmbedding } = require('./lib/embeddings');
+const { generateEmbedding, getProviderMetadata } = require('./lib/embeddings');
+const { extractTriggerPhrases } = require('./lib/trigger-extractor');
 const { generateAnchor } = require('./lib/anchor-generator');
 const { summarize } = require('./lib/semantic-summarizer');
 ```
@@ -66,17 +98,22 @@ const { summarize } = require('./lib/semantic-summarizer');
 # Check that all libraries exist
 ls .opencode/skill/system-spec-kit/scripts/lib/
 
-# Expected: 11 files (.js and .sh)
-# anchor-generator.js, embeddings.js, semantic-summarizer.js, ...
+# Expected: 13 files (.js and .sh)
+# anchor-generator.js, embeddings.js, trigger-extractor.js, ...
 ```
 
 ### First Use
 
 ```javascript
+// Check embedding provider
+const meta = getProviderMetadata();
+console.log(`Provider: ${meta.provider}, Dimensions: ${meta.dim}`);
+// Example: "Provider: voyage, Dimensions: 1024"
+
 // Generate an embedding
 const embedding = await generateEmbedding('How does authentication work?');
 console.log(`Embedding dimensions: ${embedding.length}`);
-// Expected: Embedding dimensions: 768
+// Dimensions depend on provider: 768 (HF), 1024 (Voyage), 1536 (OpenAI)
 ```
 
 ---
@@ -85,12 +122,14 @@ console.log(`Embedding dimensions: ${embedding.length}`);
 
 ```
 lib/
-├── JavaScript Libraries
+├── Re-exported Modules (from ../shared/)
+│   ├── embeddings.js           # → ../shared/embeddings.js (multi-provider)
+│   └── trigger-extractor.js    # → ../shared/trigger-extractor.js (v11)
+│
+├── Local JavaScript Libraries
 │   ├── anchor-generator.js     # Semantic ANCHOR tag generation
 │   ├── content-filter.js       # Content filtering and cleaning
-│   ├── embeddings.js           # Embedding generation (nomic-embed-text-v1.5)
 │   ├── semantic-summarizer.js  # Conversation summarization
-│   ├── trigger-extractor.js    # Trigger phrase extraction
 │   ├── retry-manager.js        # Retry logic for operations
 │   ├── ascii-boxes.js          # ASCII box diagram generation
 │   ├── flowchart-generator.js  # ASCII flowchart generation
@@ -107,18 +146,47 @@ lib/
 
 ### Key Files
 
-| File | Purpose |
-|------|---------|
-| `embeddings.js` | Core embedding generation with timeout and batch support |
-| `anchor-generator.js` | Generate semantic anchors for memory file sections |
-| `semantic-summarizer.js` | Summarize conversations for memory storage |
-| `common.sh` | Shared validation utilities (log_pass, log_warn, log_error) |
+| File | Purpose | Source |
+|------|---------|--------|
+| `embeddings.js` | Multi-provider embedding generation | Re-export from `../shared/` |
+| `trigger-extractor.js` | TF-IDF trigger phrase extraction | Re-export from `../shared/` |
+| `anchor-generator.js` | Generate semantic anchors for memory file sections | Local |
+| `semantic-summarizer.js` | Summarize conversations for memory storage | Local |
+| `common.sh` | Shared validation utilities (log_pass, log_warn, log_error) | Local |
 
 ---
 
 ## 4. ⚡ FEATURES
 
-### JavaScript Libraries
+### Re-exported Modules
+
+These modules are re-exports from the shared `../shared/` directory:
+
+#### embeddings.js (Re-export)
+
+| Feature | Details |
+|---------|---------|
+| **Providers** | Voyage AI (recommended), OpenAI, HuggingFace local |
+| **Dimensions** | 768 (HF), 1024 (Voyage), 1536/3072 (OpenAI) |
+| **Auto-Detection** | Selects provider based on API keys |
+| **Task-Specific** | Document, query, clustering embeddings |
+
+See [../shared/README.md](../shared/README.md) for full documentation.
+
+#### trigger-extractor.js (Re-export)
+
+| Feature | Details |
+|---------|---------|
+| **Algorithm** | TF-IDF + N-gram hybrid |
+| **Version** | v11.0.0 |
+| **Priority Extraction** | Problem terms (3x), technical terms (2.5x), decisions (2x) |
+| **Performance** | <100ms for typical content (<10KB) |
+
+See [../shared/README.md](../shared/README.md) for full documentation.
+
+---
+
+### Local JavaScript Libraries
 
 #### Core Processing
 
@@ -127,14 +195,6 @@ lib/
 | `anchor-generator.js` | Generate semantic ANCHOR tags | `generateAnchor()`, `validateAnchorFormat()` |
 | `content-filter.js` | Filter and clean content | `filterContent()`, `removeBoilerplate()` |
 | `semantic-summarizer.js` | Generate semantic summaries | `summarize()`, `extractKeyPoints()` |
-| `trigger-extractor.js` | Extract trigger phrases | `extractTriggers()`, `rankTriggers()` |
-
-#### Embedding & Vector
-
-| File | Purpose | Key Exports |
-|------|---------|-------------|
-| `embeddings.js` | Generate embeddings (nomic-embed-text-v1.5) | `generateEmbedding()`, `generateBatchEmbeddings()`, `generateEmbeddingWithTimeout()` |
-| `retry-manager.js` | Manage retry logic | `RetryManager`, `processWithRetry()` |
 
 #### Output & Formatting
 
@@ -149,6 +209,7 @@ lib/
 |------|---------|-------------|
 | `opencode-capture.js` | Capture OpenCode session data | `captureSession()`, `parseMessages()` |
 | `simulation-factory.js` | Generate test data | `createSimulation()`, `mockConversation()` |
+| `retry-manager.js` | Manage retry logic | `RetryManager`, `processWithRetry()` |
 
 ---
 
@@ -164,40 +225,47 @@ lib/
 
 ## 5. 💡 USAGE EXAMPLES
 
-### Example 1: Generate Embedding
+### Example 1: Generate Embedding (Multi-Provider)
 
 ```javascript
-const { generateEmbedding, generateEmbeddingWithTimeout } = require('./lib/embeddings');
+const { 
+  generateDocumentEmbedding, 
+  generateQueryEmbedding,
+  getProviderMetadata 
+} = require('./lib/embeddings');
 
-// Simple embedding
-const embedding = await generateEmbedding('How does authentication work?');
+// Check active provider
+const meta = getProviderMetadata();
+console.log(`Using ${meta.provider} (${meta.dim} dimensions)`);
 
-// With timeout protection (recommended)
-const embedding = await generateEmbeddingWithTimeout(
-  'How does authentication work?',
-  30000  // 30 second timeout
-);
+// For indexing documents
+const docEmbedding = await generateDocumentEmbedding('Authentication flow details...');
+
+// For search queries  
+const queryEmbedding = await generateQueryEmbedding('How does auth work?');
 ```
 
-**Result**: 768-dimensional Float32Array
+**Result**: Float32Array with provider-specific dimensions (768/1024/1536)
 
 ---
 
-### Example 2: Batch Embeddings
+### Example 2: Extract Trigger Phrases
 
 ```javascript
-const { generateBatchEmbeddings } = require('./lib/embeddings');
+const { extractTriggerPhrases, extractTriggerPhrasesWithStats } = require('./lib/trigger-extractor');
 
-const embeddings = await generateBatchEmbeddings(
-  ['text1', 'text2', 'text3'],
-  { 
-    batchSize: 5, 
-    onProgress: (p) => console.log(`${p.completed}/${p.total}`) 
-  }
-);
+// Simple extraction
+const triggers = extractTriggerPhrases(memoryContent);
+console.log(triggers);
+// ['memory search', 'trigger extraction', 'problem detection', ...]
+
+// With stats for debugging
+const result = extractTriggerPhrasesWithStats(memoryContent);
+console.log(result.stats.extractionTimeMs);  // <100ms target
+console.log(result.breakdown.problemTerms);   // Count by type
 ```
 
-**Result**: Array of 768-dimensional embeddings
+**Result**: 8-25 normalized trigger phrases
 
 ---
 
@@ -249,8 +317,10 @@ log_error "PLACEHOLDER_FILLED" "Found 3 unfilled placeholders"
 
 | Pattern | Code | When to Use |
 |---------|------|-------------|
-| Embedding with timeout | `generateEmbeddingWithTimeout(text, 30000)` | Production use |
-| Batch processing | `generateBatchEmbeddings(texts, opts)` | Multiple texts |
+| Document embedding | `generateDocumentEmbedding(text)` | Indexing content |
+| Query embedding | `generateQueryEmbedding(text)` | Search queries |
+| Check provider | `getProviderMetadata()` | Debugging, logging |
+| Extract triggers | `extractTriggerPhrases(text)` | Memory indexing |
 | Anchor generation | `generateAnchor({ type, content })` | Memory file sections |
 | Validation logging | `log_pass()`, `log_warn()`, `log_error()` | Shell validators |
 
@@ -260,26 +330,40 @@ log_error "PLACEHOLDER_FILLED" "Found 3 unfilled placeholders"
 
 ### Common Issues
 
-#### Embedding Model Not Found
+#### Provider Not Loading
 
-**Symptom**: `Error: Could not load model nomic-embed-text-v1.5`
+**Symptom**: `Error: Provider not initialized`
 
-**Cause**: Model not downloaded or cache corrupted
+**Cause**: Provider failed to initialize or API key invalid
 
 **Solution**:
-```bash
-# Clear transformers cache and retry
-rm -rf ~/.cache/huggingface/hub/models--nomic-ai--nomic-embed-text-v1.5
-# Model will auto-download on next use
+```javascript
+// Pre-warm the model on startup
+const { preWarmModel, getProviderMetadata } = require('./lib/embeddings');
+await preWarmModel();
+console.log(getProviderMetadata());  // Check which provider loaded
 ```
 
 ---
 
-#### Timeout on First Embedding
+#### Dimension Mismatch
 
-**Symptom**: First embedding call times out
+**Symptom**: `Error: dimension mismatch (expected 768, got 1024)`
 
-**Cause**: Model download/initialization takes time on first use
+**Cause**: Changed providers without updating database
+
+**Solution**: Per-profile databases should prevent this. Delete old database if needed:
+```bash
+rm .opencode/skill/system-spec-kit/database/context-index.sqlite
+```
+
+---
+
+#### Slow First Embedding
+
+**Symptom**: First embedding call takes 30+ seconds
+
+**Cause**: HF local downloads ~274MB model on first use
 
 **Solution**:
 ```javascript
@@ -309,8 +393,9 @@ source "$SCRIPT_DIR/lib/common.sh"
 
 | Problem | Quick Fix |
 |---------|-----------|
-| Model timeout | Increase timeout to 60000ms |
-| Batch failures | Reduce batchSize to 3 |
+| Provider not detected | Check `echo $VOYAGE_API_KEY` or `echo $OPENAI_API_KEY` |
+| Wrong provider | Set `EMBEDDINGS_PROVIDER` explicitly |
+| Slow triggers | Ensure content is <10KB for <100ms |
 | Missing colors | Check terminal supports ANSI |
 | Permission denied | `chmod +x lib/*.sh` |
 
@@ -323,8 +408,16 @@ source "$SCRIPT_DIR/lib/common.sh"
 node --version
 # Expected: v18.0.0 or higher
 
+# Check environment
+echo "VOYAGE_API_KEY: ${VOYAGE_API_KEY:0:10}..."
+echo "OPENAI_API_KEY: ${OPENAI_API_KEY:0:10}..."
+echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
+
 # Test embedding generation
-node -e "require('./lib/embeddings').generateEmbedding('test').then(e => console.log('Dims:', e.length))"
+node -e "require('./lib/embeddings').generateDocumentEmbedding('test').then(e => console.log('Dims:', e.length))"
+
+# Test trigger extraction
+node -e "console.log(require('./lib/trigger-extractor').extractTriggerPhrases('memory search trigger extraction'))"
 
 # Check shell library syntax
 bash -n lib/common.sh && echo "Syntax OK"
@@ -338,6 +431,8 @@ bash -n lib/common.sh && echo "Syntax OK"
 
 | Document | Purpose |
 |----------|---------|
+| [../shared/README.md](../shared/README.md) | **Shared lib/ documentation** (canonical source for embeddings, triggers) |
+| [../shared/embeddings/README.md](../shared/embeddings/README.md) | Embeddings factory detailed docs |
 | [generate-context.js](../generate-context.js) | Main script using these libraries |
 | [SKILL.md](../../SKILL.md) | Parent skill documentation |
 | [mcp_server/lib/](../../mcp_server/lib/) | MCP server library modules |
@@ -346,9 +441,11 @@ bash -n lib/common.sh && echo "Syntax OK"
 
 | Resource | Description |
 |----------|-------------|
-| [@xenova/transformers](https://github.com/xenova/transformers.js) | JavaScript ML library |
-| [nomic-embed-text](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) | Embedding model |
+| [@xenova/transformers](https://github.com/xenova/transformers.js) | JavaScript ML library for HF local |
+| [nomic-embed-text](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) | Default HF embedding model |
+| [Voyage AI](https://www.voyageai.com/) | Recommended embedding provider |
+| [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings) | OpenAI embedding API docs |
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2025-12-26*
+*Documentation version: 1.1 | Last updated: 2024-12-31*

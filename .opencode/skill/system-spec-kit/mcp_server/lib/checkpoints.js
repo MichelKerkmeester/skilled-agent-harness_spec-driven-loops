@@ -1,13 +1,14 @@
 /**
  * Checkpoints Module - Session state management
  * @module lib/checkpoints
- * @version 11.0.0
+ * @version 11.1.0
  */
 
 'use strict';
 
 const zlib = require('zlib');
 const { execSync } = require('child_process');
+const { getEmbeddingDimension } = require('../../shared/embeddings');
 
 // Database reference
 let db = null;
@@ -15,9 +16,6 @@ let db = null;
 // Checkpoint limits
 const MAX_CHECKPOINTS = 10;
 const CHECKPOINT_TTL_DAYS = 30;
-
-// Embedding dimension for validation (must match vector-index.js)
-const EMBEDDING_DIM = 768;
 
 /**
  * Initialize checkpoints with database reference
@@ -128,6 +126,9 @@ function createCheckpoint(name, options = {}) {
     }
   }
 
+  // Get current embedding dimension for metadata
+  const currentEmbeddingDim = getEmbeddingDimension();
+  
   // Create snapshot with embeddings
   const snapshot = {
     memories,
@@ -136,7 +137,8 @@ function createCheckpoint(name, options = {}) {
       ...metadata,
       createdAt: new Date().toISOString(),
       memoryCount: memories.length,
-      embeddingCount: embeddings.length
+      embeddingCount: embeddings.length,
+      embeddingDimension: currentEmbeddingDim // Store dimension for restore validation
     }
   };
 
@@ -497,6 +499,18 @@ function restoreCheckpoint(name, options = {}) {
         INSERT OR REPLACE INTO vec_memories (rowid, embedding) VALUES (?, ?)
       `);
 
+      // Get current embedding dimension from provider (dynamic, not hardcoded)
+      const currentDim = getEmbeddingDimension();
+      // Get checkpoint's stored dimension (fallback to 768 for legacy checkpoints)
+      const checkpointDim = isNewFormat && snapshot.metadata?.embeddingDimension 
+        ? snapshot.metadata.embeddingDimension 
+        : 768;
+      
+      // Log dimension info for debugging
+      if (checkpointDim !== currentDim) {
+        console.warn(`[checkpoints] Dimension change detected: checkpoint=${checkpointDim}, current=${currentDim}. Embeddings will be regenerated.`);
+      }
+
       for (const [oldId, embeddingArray] of embeddingsByOldId) {
         const newId = idMapping.get(oldId);
         if (!newId) {
@@ -505,9 +519,9 @@ function restoreCheckpoint(name, options = {}) {
         }
 
         try {
-          // Validate embedding dimension
-          if (embeddingArray.length !== EMBEDDING_DIM) {
-            console.warn(`[checkpoints] Embedding dimension mismatch for memory ${oldId}: expected ${EMBEDDING_DIM}, got ${embeddingArray.length}. Will regenerate.`);
+          // Validate embedding dimension against CURRENT provider dimension
+          if (embeddingArray.length !== currentDim) {
+            console.warn(`[checkpoints] Embedding dimension mismatch for memory ${oldId}: current provider expects ${currentDim}, checkpoint has ${embeddingArray.length}. Will regenerate.`);
             // Mark for regeneration
             database.prepare('UPDATE memory_index SET embedding_status = ? WHERE id = ?').run('pending', newId);
             embeddingsSkipped++;

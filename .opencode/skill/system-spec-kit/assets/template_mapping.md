@@ -9,11 +9,13 @@ Maps documentation levels to required templates with ready-to-use copy commands.
 
 ---
 
-## Purpose
+## 1. 📖 OVERVIEW
+
+### Purpose
 
 This asset provides the definitive source for which templates are required at each documentation level. Use it to ensure spec folders contain all mandatory files before claiming completion.
 
-## Usage
+### Usage
 
 1. Determine your documentation level (1, 2, or 3)
 2. Copy the required templates using the provided bash commands
@@ -22,7 +24,7 @@ This asset provides the definitive source for which templates are required at ea
 
 ---
 
-## 1. 📍 TEMPLATE LOCATION
+## 2. 📍 TEMPLATE LOCATION
 
 **All templates located in:** `.opencode/skill/system-spec-kit/templates/`
 
@@ -30,7 +32,7 @@ This asset provides the definitive source for which templates are required at ea
 
 ---
 
-## 2. 📋 REQUIRED TEMPLATES BY LEVEL (Progressive Enhancement)
+## 3. 📋 REQUIRED TEMPLATES BY LEVEL (Progressive Enhancement)
 
 ```
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
@@ -69,13 +71,13 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research
 
 ---
 
-## 3. 📦 OPTIONAL TEMPLATES (Level 3 Only)
+## 4. 📦 OPTIONAL TEMPLATES (Level 3 Only)
 
 These templates are OPTIONAL and only apply to Level 3 documentation:
 
-| Template File  | Copy As       | When to Use                          | Copy Command                                                                          |
-| -------------- | ------------- | ------------------------------------ | ------------------------------------------------------------------------------------- |
-| `research.md`  | `research.md` | Comprehensive research documentation | `cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md` |
+| Template File | Copy As       | When to Use                          | Copy Command                                                                          |
+| ------------- | ------------- | ------------------------------------ | ------------------------------------------------------------------------------------- |
+| `research.md` | `research.md` | Comprehensive research documentation | `cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md` |
 
 **Notes:**
 - These are OPTIONAL - only copy when research is needed
@@ -83,7 +85,7 @@ These templates are OPTIONAL and only apply to Level 3 documentation:
 
 ---
 
-## 4. 🗂️ FOLDER STRUCTURE BY LEVEL (Progressive Enhancement)
+## 5. 🗂️ FOLDER STRUCTURE BY LEVEL (Progressive Enhancement)
 
 ### Level 1: Baseline Documentation
 
@@ -145,7 +147,7 @@ specs/045-user-dashboard/
 
 ---
 
-## 5. 📐 TEMPLATE STRUCTURE REQUIREMENTS
+## 6. 📐 TEMPLATE STRUCTURE REQUIREMENTS
 
 All templates follow consistent structure:
 
@@ -214,7 +216,7 @@ Content that will be indexed...
 
 ---
 
-## 6. ✅ TEMPLATE ADHERENCE RULES
+## 7. ✅ TEMPLATE ADHERENCE RULES
 
 **Non-negotiable rules:**
 
@@ -233,7 +235,7 @@ Content that will be indexed...
 
 ---
 
-## 7. 🎯 STEP-BY-STEP TEMPLATE USAGE (Progressive Enhancement)
+## 8. 🎯 STEP-BY-STEP TEMPLATE USAGE (Progressive Enhancement)
 
 ### Step 1: Determine Level
 Use LOC as soft guidance + complexity/risk factors
@@ -296,7 +298,7 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 
 ---
 
-## 8. 🔗 Related Resources
+## 9. 🔗 RELATED RESOURCES
 
 ### Asset Files
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch

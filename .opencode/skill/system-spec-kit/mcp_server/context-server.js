@@ -11,7 +11,7 @@
  * - memory_match_triggers: Fast trigger phrase matching
  * - checkpoint_create/list/restore/delete: Memory state checkpointing
  *
- * @version 12.6.0
+ * @version 16.0.0
  * @module system-spec-kit/context-server
  * 
  * Logging conventions:
@@ -52,6 +52,7 @@ const { VALID_TIERS, isValidTier } = require(path.join(LIB_DIR, 'importance-tier
 const confidenceTracker = require(path.join(LIB_DIR, 'confidence-tracker.js'));
 const memoryParser = require(path.join(LIB_DIR, 'memory-parser.js'));
 const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
+const { validateFilePath } = require('../shared/utils');
 
 // ───────────────────────────────────────────────────────────────
 // BULK INDEXING CONFIGURATION
@@ -180,37 +181,65 @@ const ALLOWED_BASE_PATHS = [
   .filter(Boolean)
   .map(base => path.resolve(base));
 
-function isWithinAllowedBase(targetPath) {
-  return ALLOWED_BASE_PATHS.some(base => {
-    const relative = path.relative(base, targetPath);
-    return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
-  });
-}
-
-// ───────────────────────────────────────────────────────────────
-// PATH VALIDATION
-// ───────────────────────────────────────────────────────────────
-
 /**
- * Validate file path to prevent path traversal attacks
+ * Local wrapper for validateFilePath that throws on invalid paths
+ * Uses shared utility with ALLOWED_BASE_PATHS from this module
  * @param {string} filePath - Path to validate
  * @returns {string} Normalized path
  * @throws {Error} If path is outside allowed directories
  */
-function validateFilePath(filePath) {
-  // Normalize the path to resolve any .. or . components
-  const normalized = path.resolve(filePath);
-
-  if (!isWithinAllowedBase(normalized)) {
+function validateFilePathLocal(filePath) {
+  const result = validateFilePath(filePath, ALLOWED_BASE_PATHS);
+  if (result === null) {
     throw new Error('Access denied: Path outside allowed directories');
   }
-
-  // Additional check: reject paths with suspicious patterns
-  if (filePath.includes('..') || filePath.includes('\0')) {
+  // Additional check for .. patterns (not just null bytes which shared handles)
+  if (filePath.includes('..')) {
     throw new Error('Access denied: Invalid path pattern');
   }
+  return result;
+}
 
-  return normalized;
+// ───────────────────────────────────────────────────────────────
+// SEC-003: INPUT LENGTH VALIDATION (CWE-400 mitigation)
+// ───────────────────────────────────────────────────────────────
+
+/**
+ * Maximum allowed lengths for string inputs (defense against resource exhaustion)
+ */
+const INPUT_LIMITS = {
+  query: 10000,       // Search queries
+  title: 500,         // Memory titles
+  specFolder: 200,    // Spec folder paths
+  contextType: 100,   // Context type values
+  name: 200,          // Checkpoint names
+  prompt: 10000,      // Trigger match prompts
+  filePath: 500       // File paths
+};
+
+/**
+ * Validate input string lengths
+ * @param {Object} args - Arguments object to validate
+ * @throws {Error} If any input exceeds maximum length
+ */
+function validateInputLengths(args) {
+  if (!args || typeof args !== 'object') return;
+  
+  const checks = [
+    ['query', INPUT_LIMITS.query],
+    ['title', INPUT_LIMITS.title],
+    ['specFolder', INPUT_LIMITS.specFolder],
+    ['contextType', INPUT_LIMITS.contextType],
+    ['name', INPUT_LIMITS.name],
+    ['prompt', INPUT_LIMITS.prompt],
+    ['filePath', INPUT_LIMITS.filePath]
+  ];
+  
+  for (const [field, maxLength] of checks) {
+    if (args[field] && typeof args[field] === 'string' && args[field].length > maxLength) {
+      throw new Error(`Input '${field}' exceeds maximum length of ${maxLength} characters`);
+    }
+  }
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -220,7 +249,7 @@ function validateFilePath(filePath) {
 const server = new Server(
   {
     name: 'context-server',
-    version: '12.6.0'
+    version: '16.0.0'
   },
   {
     capabilities: {
@@ -533,6 +562,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
 
   try {
+    // SEC-003: Validate input lengths before processing (CWE-400 mitigation)
+    validateInputLengths(args);
+    
     // Note: Database is initialized once in main() before server.connect().
     // This call is a safe no-op (singleton pattern returns cached db).
     // Kept for defensive programming in case handler is called before main() completes.
@@ -671,9 +703,11 @@ async function handleMemorySearch(args) {
     throw new Error('Failed to generate embedding for query');
   }
 
-  // Validate embedding dimension
-  if (queryEmbedding.length !== 768) {
-    throw new Error(`Invalid embedding dimension: expected 768, got ${queryEmbedding.length}`);
+  // Validate embedding dimension (use dynamic profile dimension, not hardcoded)
+  const profile = embeddings.getEmbeddingProfile();
+  const expectedDim = profile?.dim || 768;
+  if (queryEmbedding.length !== expectedDim) {
+    throw new Error(`Invalid embedding dimension: expected ${expectedDim}, got ${queryEmbedding.length}`);
   }
 
   // Try hybrid search first (combines FTS5 + vector search via RRF fusion)
@@ -743,7 +777,7 @@ async function handleMemorySearch(args) {
  * @param {string} searchType - Type of search performed (hybrid, vector, multi-concept)
  * @param {boolean} includeContent - If true, include full file content in each result
  */
-function formatSearchResults(results, searchType, includeContent = false) {
+async function formatSearchResults(results, searchType, includeContent = false) {
   if (!results || results.length === 0) {
     return {
       content: [
@@ -764,7 +798,7 @@ function formatSearchResults(results, searchType, includeContent = false) {
   // Count constitutional results
   const constitutionalCount = results.filter(r => r.isConstitutional).length;
 
-  const formatted = results.map(r => {
+  const formatted = await Promise.all(results.map(async (r) => {
     const result = {
       id: r.id,
       specFolder: r.spec_folder,
@@ -779,17 +813,22 @@ function formatSearchResults(results, searchType, includeContent = false) {
     };
     
     // Include file content if requested (embeds load logic in search)
+    // SEC-002: Validate DB-stored file paths before reading (CWE-22 defense-in-depth)
     if (includeContent && r.file_path) {
       try {
-        result.content = fs.readFileSync(r.file_path, 'utf-8');
+        const validatedPath = validateFilePathLocal(r.file_path);
+        result.content = await fs.promises.readFile(validatedPath, 'utf-8');
       } catch (err) {
         result.content = null;
-        result.contentError = `Failed to read file: ${err.message}`;
+        // Don't expose validation failure details (could leak path info)
+        result.contentError = err.message.includes('Access denied') 
+          ? 'Security: Access denied'
+          : `Failed to read file: ${err.message}`;
       }
     }
     
     return result;
-  });
+  }));
 
   return {
     content: [
@@ -1231,7 +1270,8 @@ async function handleMemoryHealth(args) {
     const result = database.prepare('SELECT COUNT(*) as count FROM memory_index').get();
     memoryCount = result.count;
   } catch (err) {
-    // Database might not be initialized
+    // Database might not be initialized - log for debugging
+    console.warn('[memory-health] Failed to get memory count:', err.message);
   }
   
   // Get embedding provider metadata
@@ -1245,7 +1285,7 @@ async function handleMemoryHealth(args) {
     vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
     memoryCount,
     uptime: process.uptime(),
-    version: '12.6.0',
+    version: '16.0.0',
     // V12.0: Embedding provider info
     embeddingProvider: {
       provider: providerMetadata.provider,
@@ -1516,7 +1556,7 @@ async function handleMemorySave(args) {
   }
 
   // Validate path
-  const validatedPath = validateFilePath(filePath);
+  const validatedPath = validateFilePathLocal(filePath);
 
   // Check if it's a valid memory file
   if (!memoryParser.isMemoryFile(validatedPath)) {
@@ -1612,6 +1652,19 @@ function findConstitutionalFiles(workspacePath) {
  */
 async function handleMemoryIndexScan(args) {
   const { specFolder = null, force = false, includeConstitutional = true } = args;
+
+  // Pre-flight dimension check - log embedding provider info for debugging
+  // This helps diagnose dimension mismatches before bulk indexing begins
+  try {
+    const profile = embeddings.getEmbeddingProfile();
+    if (profile) {
+      const providerDim = profile.dim;
+      console.error(`[memory_index_scan] Using embedding provider: ${profile.provider}, model: ${profile.model}, dimension: ${providerDim}`);
+    }
+  } catch (dimCheckError) {
+    console.warn('[memory_index_scan] Could not verify embedding dimension:', dimCheckError.message);
+    // Continue anyway - the actual indexing will catch dimension mismatches
+  }
 
   // L15: Rate limiting check
   const now = Date.now();

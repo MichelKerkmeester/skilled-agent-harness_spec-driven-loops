@@ -2,12 +2,11 @@
 <!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v1.0 -->
 
 ## Metadata
-| Field           | Value                                            |
-| --------------- | ------------------------------------------------ |
-| **Spec Folder** | [YOUR_VALUE_HERE: ###-feature-name]              |
-| **Completed**   | [FORMAT: YYYY-MM-DD]                             |
-| **Duration**    | [YOUR_VALUE_HERE: time from start to completion] |
-| **Level**       | [FORMAT: 1                                       | 2 | 3] |
+
+- **Spec Folder:** [YOUR_VALUE_HERE: ###-feature-name]
+- **Completed:** [FORMAT: YYYY-MM-DD]
+- **Duration:** [YOUR_VALUE_HERE: time from start to completion]
+- **Level:** [FORMAT: 1 / 2 / 3]
 
 ## 1. What Was Built
 

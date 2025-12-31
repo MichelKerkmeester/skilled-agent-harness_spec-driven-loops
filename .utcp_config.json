@@ -13,6 +13,125 @@
   },
   "manual_call_templates": [
     {
+      "name": "narsil",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "narsil": {
+            "transport": "stdio",
+            "command": "narsil-mcp",
+            "args": [
+              "--repos",
+              ".",
+              "--index-path",
+              ".narsil-index",
+              "--git",
+              "--call-graph",
+              "--persist",
+              "--neural",
+              "--neural-backend",
+              "api",
+              "--neural-model",
+              "voyage-code-2"
+            ],
+            "env": {
+              "VOYAGE_API_KEY": "pa-haUjP97YZVqR9BYTwpi0SZ6GrJ8PD17ZiWSnXim9R-X"
+            },
+            "_note": "Narsil with full toolset (76 tools). IMPORTANT: Code Mode does NOT support ${VAR} env substitution - hardcode the command path and API keys directly.",
+            "_neural_backends": {
+              "voyage": {
+                "backend": "api",
+                "model": "voyage-code-2",
+                "env": "VOYAGE_API_KEY",
+                "dimensions": 1536,
+                "note": "Recommended for code search. Set VOYAGE_API_KEY in .env"
+              },
+              "openai": {
+                "backend": "api",
+                "model": "text-embedding-3-small",
+                "env": "OPENAI_API_KEY",
+                "dimensions": 1536,
+                "note": "Alternative cloud option. Set OPENAI_API_KEY in .env"
+              },
+              "onnx": {
+                "backend": "onnx",
+                "model": "default",
+                "env": "none",
+                "dimensions": 384,
+                "note": "Local embeddings, no API key needed. Use --neural-backend onnx"
+              }
+            },
+            "_usage_examples": {
+              "voyage": "--neural --neural-backend api --neural-model voyage-code-2",
+              "openai": "--neural --neural-backend api --neural-model text-embedding-3-small",
+              "onnx_local": "--neural --neural-backend onnx"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "github",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "github": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "@modelcontextprotocol/server-github"
+            ],
+            "env": {
+              "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "figma",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "figma": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "mcp-figma"
+            ],
+            "env": {
+              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PAT}",
+              "NODE_ENV": "production"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "clickup",
+      "call_template_type": "mcp",
+      "config": {
+        "mcpServers": {
+          "clickup": {
+            "transport": "stdio",
+            "command": "npx",
+            "args": [
+              "-y",
+              "@taazkareem/clickup-mcp-server"
+            ],
+            "env": {
+              "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
+              "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}",
+              "DOCUMENT_SUPPORT": "true",
+              "NODE_ENV": "production"
+            }
+          }
+        }
+      }
+    },
+    {
       "name": "chrome_devtools_1",
       "call_template_type": "mcp",
       "config": {
@@ -42,93 +161,6 @@
               "--isolated=true"
             ],
             "env": {}
-          }
-        }
-      }
-    },
-    {
-      "name": "clickup",
-      "call_template_type": "mcp",
-      "config": {
-        "mcpServers": {
-          "clickup": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": [
-              "-y",
-              "@taazkareem/clickup-mcp-server"
-            ],
-            "env": {
-              "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
-              "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}",
-              "DOCUMENT_SUPPORT": "true",
-              "NODE_ENV": "production"
-            }
-          }
-        }
-      }
-    },
-    {
-      "name": "figma",
-      "call_template_type": "mcp",
-      "config": {
-        "mcpServers": {
-          "figma": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": [
-              "-y",
-              "mcp-figma"
-            ],
-            "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}",
-              "NODE_ENV": "production"
-            }
-          }
-        }
-      }
-    },
-    {
-      "name": "github",
-      "call_template_type": "mcp",
-      "config": {
-        "mcpServers": {
-          "github": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": [
-              "-y",
-              "@modelcontextprotocol/server-github"
-            ],
-            "env": {
-              "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
-            }
-          }
-        }
-      }
-    },
-    {
-      "name": "narsil",
-      "call_template_type": "mcp",
-      "config": {
-        "mcpServers": {
-          "narsil": {
-            "transport": "stdio",
-            "command": "narsil-mcp",
-            "args": [
-              "--repos", ".",
-              "--index-path", ".narsil-index",
-              "--git",
-              "--call-graph",
-              "--persist",
-              "--neural",
-              "--neural-backend", "api",
-              "--neural-model", "voyage-code-2"
-            ],
-            "env": {
-              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
-            },
-            "_note": "Narsil with full toolset (76 tools). --http enables visualization UI at localhost:3000. MCP transport is always stdio (Code Mode spawns process)."
           }
         }
       }

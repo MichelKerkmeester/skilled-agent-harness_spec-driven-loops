@@ -392,15 +392,21 @@ function parseRow(row) {
 }
 
 /**
- * Load content from a file for re-embedding
+ * Load content from a file
  *
  * @param {string} filePath - Path to memory file
  * @returns {Promise<string|null>} File content or null
  */
 async function loadContentFromFile(filePath) {
   try {
+    // SEC-002: Validate DB-stored file paths before reading (CWE-22 defense-in-depth)
+    const { validateFilePath } = require('./vector-index');
+    const validPath = validateFilePath(filePath);
+    if (!validPath) {
+      return null;
+    }
     const fs = require('fs/promises');
-    return await fs.readFile(filePath, 'utf-8');
+    return await fs.readFile(validPath, 'utf-8');
   } catch {
     return null;
   }

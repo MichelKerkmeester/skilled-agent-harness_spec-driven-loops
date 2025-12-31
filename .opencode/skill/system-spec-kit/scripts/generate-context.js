@@ -14,6 +14,35 @@ const readline = require('readline');
 const { execSync } = require('child_process');
 
 // ───────────────────────────────────────────────────────────────
+// CLI HELP FLAG HANDLING
+// ───────────────────────────────────────────────────────────────
+
+// Handle --help flag before any other processing
+if (process.argv.includes('--help') || process.argv.includes('-h')) {
+  console.log(`
+Usage: node generate-context.js [options] <input>
+
+Arguments:
+  <input>           Either a JSON data file path OR a spec folder path
+                    - JSON mode: node generate-context.js data.json [spec-folder]
+                    - Direct mode: node generate-context.js specs/001-feature/
+
+Options:
+  --help, -h        Show this help message
+
+Examples:
+  node generate-context.js /tmp/context-data.json
+  node generate-context.js /tmp/context-data.json specs/001-feature/
+  node generate-context.js specs/001-feature/
+
+Output:
+  Creates a memory file in <spec-folder>/memory/ with ANCHOR format
+  for indexing by the Spec Kit Memory system.
+`);
+  process.exit(0);
+}
+
+// ───────────────────────────────────────────────────────────────
 // L18: STRUCTURED LOGGING UTILITY
 // ───────────────────────────────────────────────────────────────
 
@@ -1260,8 +1289,11 @@ function validateArguments() {
               }
             }
           }
-        } catch {
-          // Silently ignore read errors
+        } catch (readErr) {
+          // Log read errors in debug mode only (non-critical - just listing suggestions)
+          structuredLog('debug', 'Failed to read specs directory for suggestions', { 
+            error: readErr.message 
+          });
         }
       }
 
@@ -1564,7 +1596,27 @@ async function loadCollectedData() {
   // Priority 1: Data file provided via command line
   if (CONFIG.DATA_FILE) {
     try {
-      const dataContent = await fs.readFile(CONFIG.DATA_FILE, 'utf-8');
+      // SEC-001: Validate data file path before reading (CWE-22 mitigation)
+      // Allow /tmp for JSON mode, project paths for direct mode
+      const dataFileAllowedBases = [
+        '/tmp',                                    // JSON mode: /tmp/save-context-data.json
+        process.cwd(),                             // Project root
+        path.join(process.cwd(), 'specs'),         // Spec folders
+        path.join(process.cwd(), '.opencode')      // OpenCode skill folder
+      ];
+      
+      let validatedDataFilePath;
+      try {
+        validatedDataFilePath = sanitizePath(CONFIG.DATA_FILE, dataFileAllowedBases);
+      } catch (pathError) {
+        structuredLog('error', 'Invalid data file path - security validation failed', {
+          filePath: CONFIG.DATA_FILE,
+          error: pathError.message
+        });
+        throw new Error(`Security: Invalid data file path: ${pathError.message}`);
+      }
+      
+      const dataContent = await fs.readFile(validatedDataFilePath, 'utf-8');
       const rawData = JSON.parse(dataContent);
       
       // M13: Validate JSON structure before processing
@@ -3635,7 +3687,18 @@ async function setupContextDirectory(specFolder) {
 
   // Ensure directory exists (create if needed)
   // No prompts - files are timestamped so no conflicts
-  await fs.mkdir(contextDir, { recursive: true });
+  try {
+    await fs.mkdir(contextDir, { recursive: true });
+  } catch (mkdirError) {
+    console.error(`[generate-context] Failed to create memory directory: ${contextDir}`);
+    console.error(`[generate-context] Error: ${mkdirError.message}`);
+    if (mkdirError.code === 'EACCES') {
+      console.error('[generate-context] Permission denied. Check directory permissions.');
+    } else if (mkdirError.code === 'ENOSPC') {
+      console.error('[generate-context] No space left on device.');
+    }
+    throw mkdirError;
+  }
 
   return contextDir;
 }

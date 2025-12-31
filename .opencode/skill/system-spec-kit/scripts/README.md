@@ -27,9 +27,10 @@ The `scripts/` directory contains shell scripts for spec folder management and v
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Shell Scripts | 8 | Core management and validation |
-| Validation Rules | 7 | Modular rule scripts in `rules/` |
-| Library Files | 3 | Shared utilities in `lib/` |
+| Shell Scripts | 10 | Core management and validation |
+| JavaScript Scripts | 3 | Memory generation and utilities |
+| Validation Rules | 9 | Modular rule scripts in `rules/` |
+| Library Files | 13 | Shell (3) + JavaScript (10) in `lib/` |
 | Documentation Levels | 3 | L1, L2, L3 with progressive requirements |
 
 ### Key Features
@@ -72,9 +73,11 @@ cd /path/to/project
 # Check scripts are executable
 ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 
-# Expected: 8 .sh files with execute permissions
+# Expected: 10 .sh files with execute permissions
 # -rwxr-xr-x validate-spec.sh
 # -rwxr-xr-x create-spec-folder.sh
+# -rwxr-xr-x setup.sh
+# -rwxr-xr-x check-completion.sh
 # ...
 ```
 
@@ -96,18 +99,27 @@ ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 
 ```
 scripts/
-├── Core Scripts
+├── Shell Scripts (10)
 │   ├── validate-spec.sh          # Validate spec folder contents
 │   ├── create-spec-folder.sh     # Create new spec folders
 │   ├── check-prerequisites.sh    # Check required files exist
-│   ├── calculate-completeness.sh # Calculate checklist completion
+│   ├── check-completion.sh       # Verify checklist completion (Gate 6)
+│   ├── calculate-completeness.sh # Calculate checklist completion %
 │   ├── recommend-level.sh        # Recommend documentation level
 │   ├── archive-spec.sh           # Archive completed specs
+│   ├── setup.sh                  # Initial setup script
 │   ├── common.sh                 # Repository & branch utilities
 │   └── test-validation.sh        # Test suite for validation
 │
-├── rules/                        # Modular validation rules
+├── JavaScript Scripts (3)
+│   ├── generate-context.js       # Memory file generation (ANCHOR format)
+│   ├── test-embeddings-factory.js # Test embedding providers
+│   └── cleanup-orphaned-vectors.js # Database cleanup utility
+│
+├── rules/                        # Modular validation rules (9)
 │   ├── check-files.sh            # FILE_EXISTS rule
+│   ├── check-folder-naming.sh    # FOLDER_NAMING rule (###-short-name)
+│   ├── check-frontmatter.sh      # FRONTMATTER_VALID rule (YAML)
 │   ├── check-priority-tags.sh    # PRIORITY_TAGS rule
 │   ├── check-evidence.sh         # EVIDENCE_CITED rule
 │   ├── check-placeholders.sh     # PLACEHOLDER_FILLED rule
@@ -116,11 +128,35 @@ scripts/
 │   ├── check-level.sh            # LEVEL_DECLARED rule
 │   └── README.md                 # Rules documentation
 │
-├── lib/                          # Shared libraries
-│   ├── common.sh                 # Validation utilities
-│   ├── config.sh                 # Configuration loading
-│   ├── output.sh                 # Formatted output helpers
+├── lib/                          # Shared libraries (13 files)
+│   ├── Shell (3)
+│   │   ├── common.sh             # Validation utilities
+│   │   ├── config.sh             # Configuration loading
+│   │   └── output.sh             # Formatted output helpers
+│   ├── JavaScript (10)
+│   │   ├── embeddings.js         # Re-exports from ../../shared/embeddings
+│   │   ├── trigger-extractor.js  # Re-exports from ../../shared/trigger-extractor
+│   │   ├── semantic-summarizer.js # Message classification
+│   │   ├── opencode-capture.js   # OpenCode session capture
+│   │   ├── content-filter.js     # Three-stage content filtering
+│   │   ├── anchor-generator.js   # ANCHOR ID generation
+│   │   ├── flowchart-generator.js # ASCII flowcharts
+│   │   ├── ascii-boxes.js        # ASCII box drawing
+│   │   ├── simulation-factory.js # Fallback data generation
+│   │   └── retry-manager.js      # Embedding retry logic
 │   └── README.md                 # Library documentation
+│
+├── test-fixtures/                # Validation test cases (10 dirs)
+│   ├── valid-level1/             # L1 spec structure tests
+│   ├── valid-level2/             # L2 spec structure tests
+│   ├── valid-level3/             # L3 spec structure tests
+│   ├── valid-anchors/            # Valid ANCHOR format tests
+│   ├── invalid-anchors/          # Invalid ANCHOR detection
+│   ├── valid-evidence/           # Evidence citation tests
+│   ├── valid-priority-tags/      # Priority tag tests
+│   ├── unfilled-placeholders/    # Placeholder detection tests
+│   ├── missing-required-files/   # Missing file detection
+│   └── empty-folder/             # Empty directory handling
 │
 └── README.md                     # This file
 ```
@@ -129,10 +165,14 @@ scripts/
 
 | File | Purpose |
 |------|---------|
-| `validate-spec.sh` | Main validation orchestrator - invokes all rules |
+| `validate-spec.sh` | Main validation orchestrator - invokes all 9 rules |
 | `create-spec-folder.sh` | Create new spec folders with templates |
-| `rules/` | Modular validation rules (7 scripts) |
-| `lib/` | Shared JavaScript and shell libraries |
+| `generate-context.js` | Memory file generation with ANCHOR format |
+| `check-completion.sh` | Gate 6 enforcement - verify checklist completion |
+| `setup.sh` | One-command setup for memory system dependencies |
+| `rules/` | Modular validation rules (9 scripts) |
+| `lib/` | Shared libraries (3 shell + 10 JavaScript) |
+| `test-fixtures/` | Validation test cases (10 directories, 36 files) |
 
 ---
 
@@ -146,7 +186,7 @@ scripts/
 |--------|---------|
 | **Input** | Spec folder path |
 | **Output** | Pass/warn/fail status with details |
-| **Rules** | 7 modular validation rules |
+| **Rules** | 9 modular validation rules |
 | **Modes** | Normal, strict, verbose, JSON |
 
 **Arguments**:
@@ -207,6 +247,30 @@ scripts/
 
 ---
 
+### check-completion.sh
+
+**Purpose**: Gate 6 enforcement - verify checklist items are complete before claiming done
+
+| Aspect | Details |
+|--------|---------|
+| **Input** | Spec folder path |
+| **Output** | Pass/fail with incomplete items listed |
+| **Gate** | Blocks completion claims until checklist verified |
+
+---
+
+### setup.sh
+
+**Purpose**: One-command setup for semantic memory system
+
+| Aspect | Details |
+|--------|---------|
+| **Input** | None |
+| **Output** | Installed dependencies, initialized database |
+| **Actions** | npm install, sqlite-vec setup, database creation |
+
+---
+
 ### calculate-completeness.sh
 
 **Purpose**: Calculate checklist completion percentage
@@ -248,6 +312,52 @@ P2: 60% (6/10)
 | `has_git()` | Check if in a git repository |
 | `check_feature_branch()` | Validate branch naming convention |
 | `get_feature_dir()` | Build feature directory path |
+
+---
+
+### JavaScript Scripts
+
+#### generate-context.js
+
+**Purpose**: Generate memory files from conversation data with ANCHOR format for Spec Kit Memory indexing
+
+| Aspect | Details |
+|--------|---------|
+| **Input** | JSON data file OR spec folder path |
+| **Output** | Memory file in `specs/###-feature/memory/` |
+| **Format** | ANCHOR-tagged sections for selective retrieval |
+
+**Usage Modes**:
+```bash
+# Mode 1: JSON data file
+node generate-context.js /tmp/context-data.json specs/007-feature/
+
+# Mode 2: Direct spec folder (auto-captures from OpenCode)
+node generate-context.js specs/007-feature/
+
+# Help
+node generate-context.js --help
+```
+
+#### test-embeddings-factory.js
+
+**Purpose**: Test and verify embedding provider configuration
+
+| Aspect | Details |
+|--------|---------|
+| **Input** | None |
+| **Output** | Provider status and configuration |
+| **Tests** | Module imports, provider creation, API verification |
+
+#### cleanup-orphaned-vectors.js
+
+**Purpose**: Remove orphaned vector entries from the SQLite database
+
+| Aspect | Details |
+|--------|---------|
+| **Input** | None (uses default database path) |
+| **Output** | Cleanup report with deleted count |
+| **Action** | Batch deletion of orphaned vectors |
 
 ---
 
@@ -479,4 +589,4 @@ bash -n .opencode/skill/system-spec-kit/scripts/validate-spec.sh && echo "Syntax
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2025-12-26*
+*Documentation version: 2.0 | Last updated: 2025-12-31*

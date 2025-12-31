@@ -1,17 +1,10 @@
 /**
- * trigger-extractor.js - Re-export from canonical location
+ * trigger-extractor.js - Re-export from shared/
  * 
- * Consolidated on 2025-12-25 as part of lib directory unification.
- * Canonical source: scripts/lib/trigger-extractor.js (v11.0.0)
+ * Consolidated on 2024-12-31 as part of lib directory unification.
+ * Canonical source: shared/trigger-extractor.js (v11.0.0)
  * 
- * The scripts/lib version (v11.0.0) includes advanced semantic extraction:
- * - Problem term detection (3x priority boost)
- * - Technical term extraction (camelCase, snake_case parsing)
- * - Decision pattern matching
- * - Action verb extraction
- * - Compound noun detection
- * 
- * The mcp_server version (v10.0.0) was basic TF-IDF only.
- * Same API, v11 is strictly better.
+ * Previously re-exported from scripts/lib/trigger-extractor.js
+ * Now re-exports from the canonical shared/ location.
  */
-module.exports = require('../../scripts/lib/trigger-extractor.js');
+module.exports = require('../../shared/trigger-extractor.js');

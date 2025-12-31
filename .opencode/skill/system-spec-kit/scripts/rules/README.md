@@ -26,7 +26,7 @@ Validation rules are modular shell scripts that check spec folders for structura
 
 | Category             | Count | Details                                  |
 | -------------------- | ----- | ---------------------------------------- |
-| Rules                | 7     | Modular validation scripts               |
+| Rules                | 9     | Modular validation scripts               |
 | Severity Levels      | 3     | error, warn, info                        |
 | Documentation Levels | 3     | L1, L2, L3 with progressive requirements |
 
@@ -69,7 +69,7 @@ cd specs/003-memory-and-spec-kit/046-post-release-refinement-1/
 # Check that rules are executable
 ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
-# Expected: 7 .sh files with execute permissions
+# Expected: 9 .sh files with execute permissions
 # -rwxr-xr-x check-files.sh
 # -rwxr-xr-x check-priority-tags.sh
 # ...
@@ -91,6 +91,8 @@ rules/
 ├── check-anchors.sh        # ANCHORS_VALID - Memory file anchor pairs
 ├── check-evidence.sh       # EVIDENCE_CITED - P0/P1 completion evidence
 ├── check-files.sh          # FILE_EXISTS - Required files by level
+├── check-folder-naming.sh  # FOLDER_NAMING - ###-short-name pattern validation
+├── check-frontmatter.sh    # FRONTMATTER_VALID - YAML frontmatter validation
 ├── check-level.sh          # LEVEL_DECLARED - Explicit vs inferred level
 ├── check-placeholders.sh   # PLACEHOLDER_FILLED - Unfilled placeholders
 ├── check-priority-tags.sh  # PRIORITY_TAGS - Checklist priority context
@@ -103,6 +105,8 @@ rules/
 | File                     | Purpose                                                                |
 | ------------------------ | ---------------------------------------------------------------------- |
 | `check-files.sh`         | Core validation - ensures required files exist for documentation level |
+| `check-folder-naming.sh` | Structure validation - ensures ###-short-name pattern                  |
+| `check-frontmatter.sh`   | Metadata validation - validates YAML frontmatter structure             |
 | `check-priority-tags.sh` | Quality validation - ensures checklist items have P0/P1/P2 context     |
 | `check-evidence.sh`      | Completion validation - ensures completed items cite evidence          |
 
@@ -213,6 +217,37 @@ All rules implement a standardized interface:
 **Recommendation**: Add `| **Level** | N |` to spec.md metadata table
 
 **Severity**: info (informational only)
+
+---
+
+#### FOLDER_NAMING (check-folder-naming.sh)
+
+**Purpose**: Validates spec folder follows `###-short-name` naming convention
+
+**Pattern**: `[0-9]{3}-[a-z0-9-]+`
+
+**Examples**:
+- ✓ `007-add-authentication`
+- ✓ `042-fix-login-bug`
+- ✗ `add-authentication` (missing number prefix)
+- ✗ `7-feature` (number not zero-padded)
+- ✗ `007_feature` (underscore instead of hyphen)
+
+**Severity**: error (blocks validation)
+
+---
+
+#### FRONTMATTER_VALID (check-frontmatter.sh)
+
+**Purpose**: Validates YAML frontmatter structure in markdown files
+
+**Checks**:
+- Frontmatter delimiters (`---`) present
+- Valid YAML syntax
+- No duplicate keys
+- Optional: validates expected fields (title, description, etc.)
+
+**Severity**: warn (advisory)
 
 ---
 

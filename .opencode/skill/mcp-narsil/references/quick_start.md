@@ -23,7 +23,7 @@ Get started with Narsil in 5 minutes covering prerequisites and first commands.
 #### Installation Location
 
 ```
-/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/
+/path/to/narsil-mcp/
 ├── target/release/narsil-mcp  # Binary
 ├── Cargo.toml                  # Build config
 └── src/                        # Source code
@@ -37,7 +37,7 @@ Get started with Narsil in 5 minutes covering prerequisites and first commands.
 
 ```bash
 # Check binary exists
-ls -la "/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp"
+ls -la "/path/to/narsil-mcp/target/release/narsil-mcp"
 
 # Expected output:
 # -rwxr-xr-x  1 user  staff  52.8M  Dec 25 12:00 narsil-mcp
@@ -46,7 +46,7 @@ ls -la "/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/target/release/nars
 ### Step 2: Check Version
 
 ```bash
-"/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp" --version
+"/path/to/narsil-mcp/target/release/narsil-mcp" --version
 
 # Expected output:
 # narsil-mcp 1.0.0
@@ -215,7 +215,7 @@ See [call_graph_guide.md](./call_graph_guide.md) for detailed workflow.
 
 **Solution**:
 ```bash
-cd "/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp"
+cd "/path/to/narsil-mcp"
 cargo build --release
 ```
 

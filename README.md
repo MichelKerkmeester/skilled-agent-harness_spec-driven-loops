@@ -2,9 +2,9 @@
      
 # OpenCode Dev Environment
 
-[![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/stargazers)
-[![License](https://img.shields.io/github/license/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
-[![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/Opencode_Dev_Environment?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/Opencode_Dev_Environment/releases)
+[![GitHub Stars](https://img.shields.io/github/stars/MichelKerkmeester/opencode-dev-environment?style=for-the-badge&logo=github&color=fce566&labelColor=222222)](https://github.com/MichelKerkmeester/opencode-dev-environment/stargazers)
+[![License](https://img.shields.io/github/license/MichelKerkmeester/opencode-dev-environment?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode-dev-environment?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode-dev-environment/releases)
 
 > - 99.999% of people will keep blaming AI for not being good enough for advanced coding
 > - Beat the odds with this system?
@@ -82,7 +82,7 @@ A custom MCP server that gives your AI assistant persistent, searchable memory a
 
 - Hybrid search (vector + FTS5 + RRF fusion)
 - 6 importance tiers with auto-decay
-- Multiple embedding providers (OpenAI, HF Local, optional Ollama)
+- Multiple embedding providers (Voyage recommended, OpenAI, HF Local)
 - ANCHOR format = 93% token savings
 - <50ms proactive surfacing before you ask
 - Checkpoints = undo button for your index
@@ -422,7 +422,7 @@ We chose JWT with refresh tokens because:
 | `memory_list`           | Browse stored memories                 |
 | `memory_stats`          | Database statistics                    |
 | `memory_update`         | Update existing memory                 |
-| `memory_delete`         | Remove memory by ID                    |
+| `memory_delete`         | Delete by ID or spec folder            |
 | `memory_validate`       | Record validation feedback             |
 | `memory_index_scan`     | Bulk index new files                   |
 | `checkpoint_create`     | Snapshot current state                 |
@@ -433,7 +433,7 @@ We chose JWT with refresh tokens because:
 > **Note:** Full MCP names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search`).
 
 
-### Embedding Provider Options (v12.0)
+### Embedding Provider Options
 
 > **Choose Your Privacy & Performance Balance**
 
@@ -441,22 +441,28 @@ Spec Kit Memory supports multiple embedding providers with automatic detection:
 
 | Provider | Dimensions | Requirements | Best For |
 |----------|------------|--------------|----------|
-| **OpenAI** | 1536/3072 | `OPENAI_API_KEY` | Best accuracy, cloud-based |
-| **HF Local** | 768 | Node.js only | Privacy, offline, default |
+| **Voyage** | 1024 | `VOYAGE_API_KEY` | Recommended, 8% better retrieval |
+| **OpenAI** | 1536/3072 | `OPENAI_API_KEY` | Cloud-based alternative |
+| **HF Local** | 768 | Node.js only | Privacy, offline, default fallback |
 | **Ollama** | 768 | Ollama + model | Optional (not yet available) |
 
 **Auto-detection:**
-- If `OPENAI_API_KEY` exists → Uses OpenAI automatically
-- If not → Uses HF Local (works without additional installation)
+- If `VOYAGE_API_KEY` exists → Uses Voyage automatically (recommended)
+- Else if `OPENAI_API_KEY` exists → Uses OpenAI automatically
+- Else → Uses HF Local (works without additional installation)
 - Override: `export EMBEDDINGS_PROVIDER=hf-local` forces local
 
 **Configuration:**
 ```bash
-# OpenAI provider (cloud-based)
+# Voyage provider (recommended - best retrieval quality)
+export VOYAGE_API_KEY=pa-...
+export VOYAGE_EMBEDDINGS_MODEL=voyage-3.5  # Optional, this is default
+
+# OpenAI provider (cloud-based alternative)
 export OPENAI_API_KEY=sk-proj-...
 export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Optional
 
-# Force HF local (even with API key)
+# Force HF local (even with API keys)
 export EMBEDDINGS_PROVIDER=hf-local
 export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Optional
 ```
@@ -669,10 +675,10 @@ Copy this environment to your project:
 
 ```bash
 # Clone and copy to your project
-git clone https://github.com/MichelKerkmeester/Opencode_Dev_Environment.git
-cp -r Opencode_Dev_Environment/.opencode /path/to/your-project/
-cp Opencode_Dev_Environment/opencode.json /path/to/your-project/
-cp Opencode_Dev_Environment/AGENTS.md /path/to/your-project/
+git clone https://github.com/MichelKerkmeester/opencode-dev-environment.git
+cp -r opencode-dev-environment/.opencode /path/to/your-project/
+cp opencode-dev-environment/opencode.json /path/to/your-project/
+cp opencode-dev-environment/AGENTS.md /path/to/your-project/
 
 # Or copy specific components
 cp opencode.json /path/to/your-project/

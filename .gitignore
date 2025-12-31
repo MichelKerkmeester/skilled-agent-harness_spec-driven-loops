@@ -15,3 +15,16 @@ node_modules/
 /z — Archive/
 # Narsil index (project-local)
 .narsil-index/
+
+# Environment files
+.env
+.env.*
+.env.local
+.env.*.local
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+scratch/

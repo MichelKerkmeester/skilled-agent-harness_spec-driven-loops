@@ -92,7 +92,7 @@ The Spec Kit Memory MCP Server provides AI assistants with conversation memory r
 
 ### Key Features
 
-- **Local Embeddings**: Uses `nomic-embed-text-v1.5` model (768 dimensions) - no external API calls
+- **Multi-Provider Embeddings**: Supports HF Local (768d), Voyage AI (1024d), OpenAI (1536d) - dimensions auto-detected
 - **Fast Trigger Matching**: Sub-50ms phrase matching for proactive surfacing
 - **Multi-Concept Search**: Find memories matching ALL specified concepts
 - **Graceful Degradation**: Falls back to anchor-only mode if sqlite-vec unavailable
@@ -100,17 +100,20 @@ The Spec Kit Memory MCP Server provides AI assistants with conversation memory r
 
 ### Embedding Model
 
-> **Model**: `nomic-ai/nomic-embed-text-v1.5` (768 dimensions)
+> **Default Model**: `nomic-ai/nomic-embed-text-v1.5` (768 dimensions)
+> **Cloud Options**: Voyage AI (1024d), OpenAI (1536d) - configure via environment variables
 
-| Specification      | Value                            |
-| ------------------ | -------------------------------- |
-| **Model Name**     | `nomic-ai/nomic-embed-text-v1.5` |
-| **Dimensions**     | 768                              |
-| **Context Window** | 8,192 tokens                     |
-| **Inference**      | Local (HuggingFace Transformers) |
-| **Storage**        | sqlite-vec (`FLOAT[768]`)        |
+| Specification      | Default (HF Local)               | Voyage AI                 | OpenAI                    |
+| ------------------ | -------------------------------- | ------------------------- | ------------------------- |
+| **Model Name**     | `nomic-ai/nomic-embed-text-v1.5` | `voyage-3.5`              | `text-embedding-3-small`  |
+| **Dimensions**     | 768                              | 1024                      | 1536                      |
+| **Context Window** | 8,192 tokens                     | 32,000 tokens             | 8,191 tokens              |
+| **Inference**      | Local (HuggingFace Transformers) | Cloud API                 | Cloud API                 |
+| **Storage**        | sqlite-vec (dynamic dimensions)  | sqlite-vec (auto-config)  | sqlite-vec (auto-config)  |
 
-**Why nomic-embed-text-v1.5?**
+**Note**: Dimensions are now auto-detected from the provider profile. Each provider uses its own database file to prevent dimension mismatches.
+
+**Why nomic-embed-text-v1.5 as default?**
 - 2x larger context window than alternatives (8K vs 512 tokens)
 - Better semantic understanding for technical documentation
 - Fully local inference - no API calls, complete privacy
@@ -372,7 +375,8 @@ Add to `opencode.json` in your project root:
       ],
       "environment": {
         "_NOTE_DATABASE": "Stores vectors in: ${workspaceFolder}/.opencode/skill/system-spec-kit/database/context-index.sqlite",
-        "_NOTE_MODEL": "Uses nomic-embed-text-v1.5 (768-dim embeddings)",
+        "_NOTE_PROVIDERS": "Supports multiple embedding providers: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, default)",
+        "_NOTE_AUTO_DETECTION": "Priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local (no installation needed)",
         "_NOTE_NEW_PROJECT": "When copying to new project, update this path to match new project location"
       },
       "enabled": true
@@ -899,11 +903,12 @@ The system automatically falls back to pure vector search if hybrid search fails
 
 **Parameters**:
 
-| Parameter    | Type    | Required | Default | Description                             |
-| ------------ | ------- | -------- | ------- | --------------------------------------- |
-| `id`         | number  | No*      | -       | Memory ID to delete                     |
-| `specFolder` | string  | No*      | -       | Delete all memories in this spec folder |
-| `confirm`    | boolean | No       | -       | Required for bulk delete (specFolder)   |
+| Parameter    | Type    | Required | Default | Description                                       |
+| ------------ | ------- | -------- | ------- | ------------------------------------------------- |
+| `id`         | number  | No*      | -       | Memory ID to delete                               |
+| `specFolder` | string  | No*      | -       | Delete all memories in this spec folder           |
+| `confirm`    | boolean | No       | -       | Required for bulk delete (specFolder)             |
+| `dryRun`     | boolean | No       | false   | Preview what would be deleted without deleting    |
 
 *Either `id` or `specFolder` required
 
@@ -914,7 +919,27 @@ The system automatically falls back to pure vector search if hybrid search fails
 }
 ```
 
-**Example Request** (bulk):
+**Example Request** (bulk with dryRun preview):
+```json
+{
+  "specFolder": "deprecated-project",
+  "dryRun": true
+}
+```
+
+**Example dryRun Response**:
+```json
+{
+  "dryRun": true,
+  "wouldDelete": 15,
+  "memories": [
+    { "id": 1, "title": "Memory 1", "specFolder": "deprecated-project" },
+    { "id": 2, "title": "Memory 2", "specFolder": "deprecated-project" }
+  ]
+}
+```
+
+**Example Request** (confirmed bulk delete):
 ```json
 {
   "specFolder": "deprecated-project",
@@ -997,10 +1022,11 @@ The system automatically falls back to pure vector search if hybrid search fails
 
 **Parameters**:
 
-| Parameter    | Type    | Required | Default | Description                            |
-| ------------ | ------- | -------- | ------- | -------------------------------------- |
-| `specFolder` | string  | No       | -       | Limit scan to specific spec folder     |
-| `force`      | boolean | No       | false   | Force re-index all files (ignore hash) |
+| Parameter               | Type    | Required | Default | Description                                           |
+| ----------------------- | ------- | -------- | ------- | ----------------------------------------------------- |
+| `specFolder`            | string  | No       | -       | Limit scan to specific spec folder                    |
+| `force`                 | boolean | No       | false   | Force re-index all files (ignore hash)                |
+| `includeConstitutional` | boolean | No       | true    | Also scan `.opencode/skill/*/constitutional/` directories |
 
 #### Batch Processing
 
@@ -1494,11 +1520,12 @@ CREATE INDEX idx_spec_folder ON memory_index(spec_folder);
 CREATE INDEX idx_importance_tier ON memory_index(importance_tier);
 CREATE INDEX idx_embedding_status ON memory_index(embedding_status);
 
--- Vector table (sqlite-vec with nomic-embed-text-v1.5)
+-- Vector table (sqlite-vec with dynamic dimensions based on provider)
 CREATE VIRTUAL TABLE vec_memories USING vec0(
-  embedding FLOAT[768]  -- nomic-embed-text-v1.5 dimensions
+  embedding FLOAT[N]  -- N = 768 (HF Local), 1024 (Voyage), 1536 (OpenAI)
 );
 -- Note: rowids synchronized between tables
+-- Note: Dimensions are auto-detected from embedding provider profile
 
 -- Checkpoints table
 CREATE TABLE checkpoints (

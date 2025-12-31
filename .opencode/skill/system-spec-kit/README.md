@@ -128,6 +128,8 @@ The result? Six months from now, you'll know exactly why you made that architect
     │   ├── check-anchors.sh    # ANCHOR tag validation
     │   ├── check-evidence.sh   # Evidence citation validation
     │   ├── check-files.sh      # Required files per level
+    │   ├── check-folder-naming.sh # ###-short-name pattern validation
+    │   ├── check-frontmatter.sh # YAML frontmatter validation
     │   ├── check-level.sh      # Level detection/validation
     │   ├── check-placeholders.sh # Unfilled placeholder detection
     │   ├── check-priority-tags.sh # P0/P1/P2 tag validation
@@ -137,7 +139,7 @@ The result? Six months from now, you'll know exactly why you made that architect
     │   ├── valid-level3/       # Valid Level 3 spec folder
     │   ├── missing-plan/       # Missing required file test
     │   ├── unfilled-placeholders/ # Placeholder detection test
-    │   └── ...                 # 51 test fixtures (55 tests across 10 categories)
+    │   └── ...                 # 36 test fixtures across 10 categories
     ├── common.sh               # Legacy compatibility (sources lib/)
     ├── create-spec-folder.sh   # Create feature branch & spec folder
     ├── check-prerequisites.sh  # Validate spec folder structure
@@ -861,13 +863,15 @@ validate-spec.sh (orchestrator)
     ├── lib/output.sh    ─── Output formatting (text/JSON modes)
     │
     └── rules/           ─── Individual validation rules
-        ├── check-files.sh        → FILE_EXISTS
-        ├── check-placeholders.sh → PLACEHOLDER_FILLED
-        ├── check-sections.sh     → SECTIONS_PRESENT
-        ├── check-level.sh        → LEVEL_DECLARED
-        ├── check-priority-tags.sh → PRIORITY_TAGS
-        ├── check-evidence.sh     → EVIDENCE_CITED
-        └── check-anchors.sh      → ANCHORS_VALID
+        ├── check-files.sh          → FILE_EXISTS
+        ├── check-folder-naming.sh  → FOLDER_NAMING (###-short-name pattern)
+        ├── check-frontmatter.sh    → FRONTMATTER_VALID (YAML structure)
+        ├── check-placeholders.sh   → PLACEHOLDER_FILLED
+        ├── check-sections.sh       → SECTIONS_PRESENT
+        ├── check-level.sh          → LEVEL_DECLARED
+        ├── check-priority-tags.sh  → PRIORITY_TAGS
+        ├── check-evidence.sh       → EVIDENCE_CITED
+        └── check-anchors.sh        → ANCHORS_VALID
 ```
 
 **Design Principles**:
@@ -944,7 +948,7 @@ validation:
 
 ### 5.10 Test Suite
 
-> **Quality Assurance**: 51 test fixtures (55 tests across 10 categories) ensure validation rules work correctly.
+> **Quality Assurance**: 36 test fixtures across 10 categories ensure validation rules work correctly.
 
 The test suite validates that all rules correctly detect issues and pass valid specs.
 
@@ -1408,8 +1412,9 @@ The memory system supports multiple embedding providers:
 
 | Provider | Dimensions | Requirements | Best For |
 |----------|------------|--------------|----------|
-| **OpenAI** | 1536/3072 | `OPENAI_API_KEY` | Best accuracy, cloud-based |
-| **HF Local** | 768 | Node.js only | Privacy, offline, default |
+| **Voyage** | 1024 | `VOYAGE_API_KEY` | Recommended, best retrieval quality |
+| **OpenAI** | 1536/3072 | `OPENAI_API_KEY` | Alternative cloud option |
+| **HF Local** | 768 | Node.js only | Privacy, offline, default fallback |
 | **Ollama** | 768 | Ollama + model | Optional (not yet available) |
 
 **Local-First Option (HF Local):**
@@ -1418,9 +1423,9 @@ The memory system supports multiple embedding providers:
 - **No external API calls** for memory operations
 - Works fully offline, no downloads required
 
-**Cloud Option (OpenAI):**
-- Higher accuracy with larger dimension vectors
-- Auto-detected if `OPENAI_API_KEY` exists
+**Cloud Option (Voyage / OpenAI):**
+- Voyage offers 8% better retrieval quality than OpenAI
+- Auto-detection priority: Voyage → OpenAI → HF Local
 - Override with `EMBEDDINGS_PROVIDER=hf-local` to force local
 
 See [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md) for technical details on the factory pattern and DB-per-profile architecture.

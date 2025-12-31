@@ -28,6 +28,7 @@ const path = require('path');
 const os = require('os');
 const fs = require('fs');
 const { formatAgeString } = require('./utils/format-helpers');
+const { validateFilePath } = require('../../shared/utils');
 
 /**
  * Convert Float32Array to Buffer for sqlite-vec
@@ -51,6 +52,36 @@ function getEmbeddingsModule() {
 // ───────────────────────────────────────────────────────────────
 
 const EMBEDDING_DIM = 768; // Legacy default - actual dim comes from provider profile
+
+/**
+ * Get embedding dimension from active profile
+ * V12.3: Now throws error if profile not available to prevent dimension mismatch bugs
+ */
+function getEmbeddingDim() {
+  try {
+    const embeddings = getEmbeddingsModule();
+    const profile = embeddings.getEmbeddingProfile();
+    if (profile && profile.dim) {
+      return profile.dim;
+    }
+    // Profile not initialized - check environment for Voyage (most common case)
+    // This prevents schema creation with wrong dimensions before provider warmup
+    if (process.env.VOYAGE_API_KEY || process.env.EMBEDDINGS_PROVIDER === 'voyage') {
+      console.log('[vector-index] Voyage detected but provider not warmed up - using 1024 dimensions');
+      return 1024; // Voyage models use 1024 dimensions
+    }
+    if (process.env.OPENAI_API_KEY || process.env.EMBEDDINGS_PROVIDER === 'openai') {
+      console.log('[vector-index] OpenAI detected but provider not warmed up - using 1536 dimensions');
+      return 1536; // OpenAI text-embedding-3-small uses 1536
+    }
+  } catch (e) {
+    console.warn('[vector-index] Could not get embedding dimension from profile:', e.message);
+  }
+  // Only fall back to 768 for local/HF providers
+  console.warn('[vector-index] Using legacy 768 dimensions - ensure this matches your embedding provider');
+  return EMBEDDING_DIM;
+}
+
 // Project-local database for memory storage
 // V12.1: Updated path after consolidation to skill/system-spec-kit/
 const DEFAULT_DB_DIR = process.env.MEMORY_DB_DIR ||
@@ -105,47 +136,14 @@ const ALLOWED_BASE_PATHS = [
 ].filter(Boolean);
 
 /**
- * Validate file path is within allowed directories (CWE-22: Path Traversal mitigation)
- * 
- * Prevents directory traversal attacks by ensuring resolved paths
- * stay within allowed base directories.
+ * Local wrapper for shared validateFilePath
+ * Uses this module's ALLOWED_BASE_PATHS configuration
  * 
  * @param {string} filePath - Path to validate (from database)
  * @returns {string|null} Validated absolute path or null if invalid
  */
-function validateFilePath(filePath) {
-  if (!filePath || typeof filePath !== 'string') {
-    return null;
-  }
-
-  try {
-    // Resolve to absolute path (handles .., symlinks, etc.)
-    const resolved = path.resolve(filePath);
-    
-    // Security: Use path.relative() containment check instead of startsWith()
-    // This prevents path confusion attacks (CWE-22)
-    // See: specs/003-memory-and-spec-kit/038-post-merge-refinement-3
-    const isAllowed = ALLOWED_BASE_PATHS.some(basePath => {
-      try {
-        const normalizedBase = path.resolve(basePath);
-        const relative = path.relative(normalizedBase, resolved);
-        // Secure: relative path must not start with '..' and must not be absolute
-        return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
-      } catch {
-        return false;
-      }
-    });
-
-    if (!isAllowed) {
-      console.warn(`[vector-index] Path traversal blocked: ${filePath} -> ${resolved}`);
-      return null;
-    }
-
-    return resolved;
-  } catch (err) {
-    console.warn(`[vector-index] Path validation error: ${err.message}`);
-    return null;
-  }
+function validateFilePathLocal(filePath) {
+  return validateFilePath(filePath, ALLOWED_BASE_PATHS);
 }
 
 /**
@@ -158,7 +156,7 @@ function validateFilePath(filePath) {
  * @returns {string} File content or empty string
  */
 function safeReadFile(filePath) {
-  const validPath = validateFilePath(filePath);
+  const validPath = validateFilePathLocal(filePath);
   if (!validPath) {
     return '';
   }
@@ -825,10 +823,12 @@ function createSchema(database) {
   `);
 
   // Create vec_memories virtual table (only if sqlite-vec is available)
+  // V12.2: Use dynamic dimension from provider profile
   if (sqliteVecAvailable) {
+    const embeddingDim = getEmbeddingDim();
     database.exec(`
       CREATE VIRTUAL TABLE vec_memories USING vec0(
-        embedding FLOAT[${EMBEDDING_DIM}]
+        embedding FLOAT[${embeddingDim}]
       )
     `);
   }
@@ -963,10 +963,11 @@ function indexMemory(params) {
     throw new Error('Embedding is required');
   }
   
-  // Validate embedding dimension
-  if (embedding.length !== EMBEDDING_DIM) {
-    console.warn(`[vector-index] Embedding dimension mismatch: expected ${EMBEDDING_DIM}, got ${embedding.length}`);
-    throw new Error(`Embedding must be ${EMBEDDING_DIM} dimensions, got ${embedding.length}`);
+  // Validate embedding dimension (dynamic based on provider profile)
+  const expectedDim = getEmbeddingDim();
+  if (embedding.length !== expectedDim) {
+    console.warn(`[vector-index] Embedding dimension mismatch: expected ${expectedDim}, got ${embedding.length}`);
+    throw new Error(`Embedding must be ${expectedDim} dimensions, got ${embedding.length}`);
   }
 
   const now = new Date().toISOString();
@@ -1079,10 +1080,11 @@ function updateMemory(params) {
 
     // Update embedding if provided (only if sqlite-vec available)
     if (embedding && sqliteVecAvailable) {
-      // Validate embedding dimension before processing
-      if (embedding.length !== EMBEDDING_DIM) {
-        console.warn(`[vector-index] Embedding dimension mismatch in update: expected ${EMBEDDING_DIM}, got ${embedding.length}`);
-        throw new Error(`Embedding must be ${EMBEDDING_DIM} dimensions, got ${embedding.length}`);
+      // Validate embedding dimension before processing (dynamic based on provider profile)
+      const expectedDim = getEmbeddingDim();
+      if (embedding.length !== expectedDim) {
+        console.warn(`[vector-index] Embedding dimension mismatch in update: expected ${expectedDim}, got ${embedding.length}`);
+        throw new Error(`Embedding must be ${expectedDim} dimensions, got ${embedding.length}`);
       }
       
       const embeddingBuffer = toEmbeddingBuffer(embedding);
@@ -1456,9 +1458,11 @@ function multiConceptSearch(conceptEmbeddings, options = {}) {
   }
 
   // Validate embedding dimensions before search
+  // V12.2: Use dynamic dimension from provider profile
+  const expectedDim = getEmbeddingDim();
   for (const emb of concepts) {
-    if (!emb || emb.length !== EMBEDDING_DIM) {
-      throw new Error(`Invalid embedding dimension: expected ${EMBEDDING_DIM}, got ${emb?.length}`);
+    if (!emb || emb.length !== expectedDim) {
+      throw new Error(`Invalid embedding dimension: expected ${expectedDim}, got ${emb?.length}`);
     }
   }
 
@@ -3044,12 +3048,16 @@ function getMemoryPreview(memoryId, maxLines = 50) {
 
   let content = '';
   try {
-    if (memory.file_path && fs.existsSync(memory.file_path)) {
-      const fullContent = fs.readFileSync(memory.file_path, 'utf-8');
-      const lines = fullContent.split('\n');
-      content = lines.slice(0, maxLines).join('\n');
-      if (lines.length > maxLines) {
-        content += `\n... (${lines.length - maxLines} more lines)`;
+    // SEC-002: Validate DB-stored file paths before reading (CWE-22 defense-in-depth)
+    if (memory.file_path) {
+      const validPath = validateFilePathLocal(memory.file_path);
+      if (validPath && fs.existsSync(validPath)) {
+        const fullContent = fs.readFileSync(validPath, 'utf-8');
+        const lines = fullContent.split('\n');
+        content = lines.slice(0, maxLines).join('\n');
+        if (lines.length > maxLines) {
+          content += `\n... (${lines.length - maxLines} more lines)`;
+        }
       }
     }
   } catch (e) {
@@ -3241,6 +3249,9 @@ module.exports = {
   // Query Utilities
   generateQueryEmbedding,
   parseQuotedTerms,
+
+  // Security Utilities (SEC-002)
+  validateFilePath: validateFilePathLocal,
 
   // Constants
   EMBEDDING_DIM,

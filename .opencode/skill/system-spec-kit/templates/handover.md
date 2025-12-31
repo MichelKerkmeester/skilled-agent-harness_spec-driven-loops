@@ -3,12 +3,10 @@
 
 ## 1. Handover Summary
 
-| Field               | Value                                  |
-| ------------------- | -------------------------------------- |
-| **From Session**    | [YOUR_VALUE_HERE: session_id or date]  |
-| **To Session**      | [YOUR_VALUE_HERE: next_session]        |
-| **Phase Completed** | [YOUR_VALUE_HERE: RESEARCH / PLANNING / IMPLEMENTATION] |
-| **Handover Time**   | [YOUR_VALUE_HERE: timestamp]           |
+- **From Session:** [YOUR_VALUE_HERE: session_id or date]
+- **To Session:** [YOUR_VALUE_HERE: next_session]
+- **Phase Completed:** [YOUR_VALUE_HERE: RESEARCH / PLANNING / IMPLEMENTATION]
+- **Handover Time:** [YOUR_VALUE_HERE: timestamp]
 
 ---
 

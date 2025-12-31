@@ -7,157 +7,39 @@ description: Templates and guidelines for creating asset files in AI agent skill
 
 Templates and guidelines for creating asset files in AI agent skills.
 
----
-
 ## 1. 📖 OVERVIEW
-
-### Purpose
-
-Asset files provide reference data that supports skill workflows without cluttering the main SKILL.md file.
-
-### When to Use
-
-- Templates users apply repeatedly
-- Reference data >50 lines and self-contained
-- Multiple examples of same pattern exist
-- Lookup tables or decision matrices needed
 
 ### Location & Naming
 
-**Location**: `.opencode/skill/[skill-name]/assets/`
+**Location:** `.opencode/skill/[skill-name]/assets/`
 
-**Naming**: snake_case files (e.g., `frontmatter_templates.md`, `config_examples.yaml`)
+**Naming Convention:** snake_case with appropriate extension
 
----
+| ✅ Valid Names | ❌ Invalid Names |
+|---------------|-----------------|
+| `frontmatter_templates.md` | `FrontmatterTemplates.md` (PascalCase) |
+| `config_examples.yaml` | `config-examples.yaml` (kebab-case) |
+| `validation_checklist.md` | `ValidationChecklist.MD` (wrong case) |
+| `emoji_reference.md` | `emojiReference.md` (camelCase) |
 
-## 2. 🎯 WHEN TO CREATE ASSETS
+### When to Create Assets
 
-**Create asset files when**:
+**Create an asset file when:**
 - Templates users apply repeatedly
 - Reference data >50 lines and self-contained
 - Multiple examples of same pattern exist
 - Lookup tables or decision matrices needed
 - Template variations for different scenarios
 
-**Keep in SKILL.md when**:
+**Keep in SKILL.md when:**
 - Content <30 lines
 - Tightly coupled to workflow logic
 - Needs to be visible immediately (not progressive disclosure)
 - Part of core instructions (RULES, WORKFLOW sections)
 
-**Examples of good asset file content**:
-- ✅ Frontmatter templates for different file types
-- ✅ Document structure examples
-- ✅ Code snippet libraries
-- ✅ Configuration templates
-- ✅ Validation checklists
-- ✅ Decision matrices
-
-**Examples of content that stays in SKILL.md**:
-- ❌ Workflow steps (belongs in WORKFLOW section)
-- ❌ Core rules (belongs in RULES section)
-- ❌ Brief examples (can inline in SKILL.md)
-- ❌ Success criteria (belongs in SUCCESS CRITERIA section)
-
 ---
 
-## 3. 📋 REQUIRED STRUCTURE
-
-**CRITICAL: Every asset file MUST follow this structure.**
-
-```markdown
----
-title: [Title from H1]
-description: [One-line description - brief summary]
----
-
-# [Title]
-
-[1-2 SHORT sentences only - what this asset is for. NO subsections here.]
-
----
-
-## Purpose
-
-[Why this asset exists, when to use it]
-
-## Usage
-
-[How to use this asset - copy instructions, customization notes]
-
-## [Content Section(s)]
-
-[The actual template/checklist/snippet content - may or may not use numbered sections]
-
----
-
-## 🔗 Related Resources (optional, if present must be last)
-
-[Links to related files]
-```
-
-### Key Rules
-
-| Element | Requirement |
-|---------|-------------|
-| **YAML Frontmatter** | REQUIRED: `title` and `description` fields |
-| **Intro after H1** | 1-2 SHORT sentences ONLY. NO headers, NO subsections |
-| **Purpose section** | Comes BEFORE main content - explains WHY |
-| **Usage section** | Comes BEFORE main content - explains HOW to use |
-| **Content sections** | May or may not use numbered sections (unlike references which always do) |
-| **Related Resources** | If present, MUST be last section with 🔗 emoji |
-
-### GOOD vs BAD Examples
-
-#### ✅ GOOD Intro Structure
-
-```markdown
-# Git Commit Templates
-
-Copy-paste templates for creating well-structured commit messages.
-
----
-
-## Purpose
-
-Provides consistent commit message formats for atomic commits...
-
-## Usage
-
-Copy the appropriate template based on commit type...
-```
-
-#### ❌ BAD Intro Structure (too long, has subsections)
-
-```markdown
-# Git Commit Templates
-
-Copy-paste templates for creating well-structured commit messages.
-
-### Core Principle    ← WRONG: No headers in intro!
-Atomic commits with clear intent = maintainable history.
-
-### When to Use       ← WRONG: This belongs in Purpose section!
-- Creating new features
-- Fixing bugs
-
----
-```
-
-### Intro vs Purpose/Usage Content Placement
-
-| Content Type | Intro (after H1) | Purpose/Usage Sections |
-|--------------|------------------|------------------------|
-| 1-2 sentence summary | ✅ YES | ❌ NO (don't repeat) |
-| Core Principle | ❌ NO | ✅ YES (in Purpose) |
-| When to Use | ❌ NO | ✅ YES (in Purpose) |
-| How to copy/customize | ❌ NO | ✅ YES (in Usage) |
-| Prerequisites | ❌ NO | ✅ YES (in Usage) |
-| Any H2/H3 subsections | ❌ NEVER | ✅ YES |
-
----
-
-## 4. 📂 ASSET FILE TYPES
+## 2. 🎯 ASSET FILE TYPES
 
 ### Template Files
 **Purpose**: Provide copy-paste starting points for common tasks
@@ -232,7 +114,102 @@ Atomic commits with clear intent = maintainable history.
 
 ---
 
-## 5. 🏗️ STANDARD ASSET STRUCTURE
+## 3. 📋 DOCUMENT STRUCTURE
+
+### Title and Intro
+
+**CRITICAL: The intro after the H1 title must be 1-2 SHORT sentences only.**
+
+```markdown
+---
+title: [Title]
+description: [One-line description - same as intro]
+---
+
+# [Title]
+
+[1-2 SHORT sentences only. Brief hook/summary. NO subsections, NO headers here.]
+
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+[Why this asset exists]
+
+### Usage
+
+[How to use this asset - copy instructions, customization notes]
+
+---
+
+## 2. [EMOJI] [Content Section]
+
+[The actual template/checklist/snippet content]
+
+---
+
+## N. 🔗 Related Resources (optional, if present must be last)
+
+[Links to related files]
+```
+
+> **WARNING: DO NOT duplicate content between intro and OVERVIEW section.**
+> The intro is a hook; OVERVIEW provides the details.
+
+#### ✅ GOOD Intro Structure
+
+```markdown
+# Git Commit Templates
+
+Copy-paste templates for creating well-structured commit messages.
+
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+Provides consistent commit message formats for atomic commits...
+
+### Usage
+
+Copy the appropriate template based on commit type...
+
+---
+
+## 2. 📝 COMMIT TEMPLATES
+...
+```
+
+#### ❌ BAD Intro Structure (too long, has subsections)
+
+```markdown
+# Git Commit Templates
+
+Copy-paste templates for creating well-structured commit messages.
+
+### Core Principle    ← WRONG: No headers in intro!
+Atomic commits with clear intent = maintainable history.
+
+### When to Use       ← WRONG: This belongs in OVERVIEW section!
+- Creating new features
+- Fixing bugs
+
+---
+```
+
+### Intro vs OVERVIEW Content Placement
+
+| Content Type          | Intro (after H1) | OVERVIEW Section       |
+| --------------------- | ---------------- | ---------------------- |
+| 1-2 sentence summary  | ✅ YES            | ❌ NO (don't repeat)    |
+| Core Principle        | ❌ NO             | ✅ YES (in Purpose)     |
+| When to Use           | ❌ NO             | ✅ YES (in Purpose)     |
+| How to copy/customize | ❌ NO             | ✅ YES (in Usage)       |
+| Prerequisites         | ❌ NO             | ✅ YES (in Usage)       |
+| Any H2/H3 subsections | ❌ NEVER          | ✅ YES                  |
+
+---
+
+## 4. 🏗️ STANDARD ASSET STRUCTURE
 
 **Template**:
 
@@ -241,11 +218,19 @@ Atomic commits with clear intent = maintainable history.
 
 Brief introduction (1-2 sentences) explaining what this asset provides and when to use it.
 
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+[Why this asset exists, what problem it solves]
+
+### Usage
+
+[How to use this asset - copy instructions, customization notes]
+
 ---
 
-## 1. [EMOJI] SECTION 1 NAME
-
-**Purpose**: Brief explanation of this section's purpose
+## 2. [EMOJI] SECTION NAME
 
 **Key Points**:
 - Point 1
@@ -273,25 +258,20 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-## 2. [EMOJI] SECTION 2 NAME
+## 3. [EMOJI] SECTION NAME
 
 [Continue pattern...]
 
 ---
 
-## N. [EMOJI] QUICK REFERENCE
+## N. 🔗 RELATED RESOURCES
 
-**Summary table or checklist**:
-
-| Item   | Description | Example   |
-| ------ | ----------- | --------- |
-| Item 1 | Description | `example` |
-| Item 2 | Description | `example` |
+[Links to related files - MUST be last section if present]
 ```
 
 ---
 
-## 6. 🧠 LOGIC REPRESENTATION PATTERNS
+## 5. 🧠 LOGIC REPRESENTATION PATTERNS
 
 **Purpose**: Guidelines for representing logic, workflows, and decision trees in asset files using structured formats instead of prose.
 
@@ -332,7 +312,7 @@ Brief introduction (1-2 sentences) explaining what this asset provides and when 
 
 ---
 
-## 7. 🔀 DECISION LOGIC EXAMPLES
+## 6. 🔀 DECISION LOGIC EXAMPLES
 
 **Purpose**: Demonstrate how to convert markdown prose into structured decision logic.
 
@@ -431,7 +411,7 @@ def validate_document(doc, doc_type):
 
 ---
 
-## 8. 🔄 WORKFLOW PATTERNS
+## 7. 🔄 WORKFLOW PATTERNS
 
 **Purpose**: Show how to represent multi-step workflows using YAML structures.
 
@@ -569,7 +549,7 @@ variant_generation_logic:
 
 ---
 
-## 9. ⚙️ CONFIGURATION TEMPLATES
+## 8. ⚙️ CONFIGURATION TEMPLATES
 
 **Purpose**: Demonstrate structured data formats for configuration and metadata.
 
@@ -667,7 +647,7 @@ VALIDATION_LEVELS = {
 
 ---
 
-## 10. 📝 TEMPLATE GUIDELINES
+## 9. 📝 TEMPLATE GUIDELINES
 
 ### Naming Conventions
 
@@ -770,7 +750,7 @@ VALIDATION_LEVELS = {
 
 ---
 
-## 11. ✅ ASSET FILE CHECKLIST
+## 10. ✅ ASSET FILE CHECKLIST
 
 **Before creating an asset file, verify**:
 
@@ -804,7 +784,7 @@ Integration:
 
 ---
 
-## 12. 💡 EXAMPLES FROM THIS SKILL
+## 11. 💡 EXAMPLES FROM THIS SKILL
 
 ### Example 1: Template File
 
@@ -859,7 +839,7 @@ Integration:
 
 ---
 
-## 13. 🔄 ASSET MAINTENANCE
+## 12. 🔄 ASSET MAINTENANCE
 
 ### When to Update Assets
 
@@ -898,7 +878,7 @@ Integration:
 
 ---
 
-## 14. 🎓 BEST PRACTICES SUMMARY
+## 13. 🎓 BEST PRACTICES SUMMARY
 
 **DO**:
 - ✅ Create assets for reference data >50 lines
@@ -919,7 +899,7 @@ Integration:
 
 ---
 
-## 15. 📚 ASSET FILE NAMING QUICK REFERENCE
+## 14. 📚 ASSET FILE NAMING QUICK REFERENCE
 
 **Location**: `.opencode/skill/[skill-name]/assets/`
 
@@ -941,7 +921,7 @@ Integration:
 
 ---
 
-## 16. 🔗 RELATED RESOURCES
+## 15. 🔗 RELATED RESOURCES
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type

@@ -9,14 +9,16 @@ Quick reference for selecting documentation levels (1-3) based on LOC guidance a
 
 ---
 
-## Purpose
+## 1. 📖 OVERVIEW
+
+### Purpose
 
 This matrix helps determine the appropriate documentation level for any task. Use it when:
 - Starting a new spec folder and need to choose Level 1, 2, or 3
 - Scope changes mid-implementation and level escalation may be needed
 - Uncertain whether complexity/risk factors should override LOC guidance
 
-## Usage
+### Usage
 
 1. Check LOC estimate against thresholds (<100, 100-499, ≥500)
 2. Evaluate secondary factors (complexity, risk, dependencies, testing needs)
@@ -25,7 +27,7 @@ This matrix helps determine the appropriate documentation level for any task. Us
 
 ---
 
-## 1. 📊 DECISION MATRIX TABLE (Progressive Enhancement)
+## 2. 📊 DECISION MATRIX TABLE (Progressive Enhancement)
 
 | Level               | LOC Guidance | Required Files                     | Adds To Previous        | Use When                             |
 | ------------------- | ------------ | ---------------------------------- | ----------------------- | ------------------------------------ |
@@ -44,7 +46,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 ---
 
-## 2. 🎯 LOC AS SOFT GUIDANCE (Not Enforcement)
+## 3. 🎯 LOC AS SOFT GUIDANCE (Not Enforcement)
 
 **How to count:**
 - Count all files being modified
@@ -65,7 +67,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 ---
 
-## 3. ⚖️ SECONDARY FACTORS (CAN OVERRIDE LOC)
+## 4. ⚖️ SECONDARY FACTORS (CAN OVERRIDE LOC)
 
 These factors can push you to a higher level even if LOC suggests lower:
 
@@ -91,7 +93,7 @@ These factors can push you to a higher level even if LOC suggests lower:
 
 ---
 
-## 4. ⚠️ EDGE CASE GUIDANCE
+## 5. ⚠️ EDGE CASE GUIDANCE
 
 | Scenario                | LOC | Suggested Level | Required Files                  | Rationale                                |
 | ----------------------- | --- | --------------- | ------------------------------- | ---------------------------------------- |
@@ -107,7 +109,7 @@ These factors can push you to a higher level even if LOC suggests lower:
 
 ---
 
-## 5. 🤔 WHEN IN DOUBT
+## 6. 🤔 WHEN IN DOUBT
 
 **Choose the higher level.**
 
@@ -119,7 +121,7 @@ These factors can push you to a higher level even if LOC suggests lower:
 
 ---
 
-## 5.1 📋 CHECKLIST QUALITY REQUIREMENTS
+## 6.1 📋 CHECKLIST QUALITY REQUIREMENTS
 
 Level 2+ documentation requires `checklist.md` with specific quality standards:
 
@@ -127,11 +129,11 @@ Level 2+ documentation requires `checklist.md` with specific quality standards:
 
 All checklist items MUST be tagged with priority markers:
 
-| Priority | Meaning        | Action Required                           |
-| -------- | -------------- | ----------------------------------------- |
-| **P0**   | HARD BLOCKER   | Must complete before ANY other work       |
-| **P1**   | Must complete  | Required for completion OR user-approved deferral |
-| **P2**   | Can defer      | Nice-to-have, can defer without approval  |
+| Priority | Meaning       | Action Required                                   |
+| -------- | ------------- | ------------------------------------------------- |
+| **P0**   | HARD BLOCKER  | Must complete before ANY other work               |
+| **P1**   | Must complete | Required for completion OR user-approved deferral |
+| **P2**   | Can defer     | Nice-to-have, can defer without approval          |
 
 **Format Example:**
 ```markdown
@@ -176,19 +178,19 @@ Completed checklist items MUST include verification evidence:
 
 ---
 
-## 5.2 ✅ VALIDATION RULES REFERENCE
+## 6.2 ✅ VALIDATION RULES REFERENCE
 
 The spec validation system (`validate-spec.sh`) checks documentation quality using these rules:
 
 ### Rules by Applicability
 
-| Rule                 | Level 1 | Level 2 | Level 3 | Severity | Description                                      |
-| -------------------- | ------- | ------- | ------- | -------- | ------------------------------------------------ |
-| **FILE_EXISTS**      | ✓       | ✓       | ✓       | error    | Required files must exist for the level          |
-| **PLACEHOLDER_FILLED** | ✓     | ✓       | ✓       | warning  | Template placeholders must be replaced           |
-| **ANCHORS_VALID**    | ✓       | ✓       | ✓       | warning  | Memory files must have balanced anchor pairs     |
-| **CHECKLIST_HAS_ITEMS** | —    | ✓       | ✓       | warning  | checklist.md must contain actionable items       |
-| **DECISION_RECORDED** | —      | —       | ✓       | warning  | decision-record.md must document key decisions   |
+| Rule                    | Level 1 | Level 2 | Level 3 | Severity | Description                                    |
+| ----------------------- | ------- | ------- | ------- | -------- | ---------------------------------------------- |
+| **FILE_EXISTS**         | ✓       | ✓       | ✓       | error    | Required files must exist for the level        |
+| **PLACEHOLDER_FILLED**  | ✓       | ✓       | ✓       | warning  | Template placeholders must be replaced         |
+| **ANCHORS_VALID**       | ✓       | ✓       | ✓       | warning  | Memory files must have balanced anchor pairs   |
+| **CHECKLIST_HAS_ITEMS** | —       | ✓       | ✓       | warning  | checklist.md must contain actionable items     |
+| **DECISION_RECORDED**   | —       | —       | ✓       | warning  | decision-record.md must document key decisions |
 
 ### Rule Details
 
@@ -224,21 +226,21 @@ The spec validation system (`validate-spec.sh`) checks documentation quality usi
 
 ### Severity Levels
 
-| Severity  | Meaning                                    | Action Required              |
-| --------- | ------------------------------------------ | ---------------------------- |
-| **error** | Validation fails, blocks completion claims | Must fix before proceeding   |
-| **warning** | Issue detected, should address           | Address or acknowledge       |
-| **info**  | Informational, no action required          | Optional improvement         |
+| Severity    | Meaning                                    | Action Required            |
+| ----------- | ------------------------------------------ | -------------------------- |
+| **error**   | Validation fails, blocks completion claims | Must fix before proceeding |
+| **warning** | Issue detected, should address             | Address or acknowledge     |
+| **info**    | Informational, no action required          | Optional improvement       |
 
 ---
 
-## 6. 🔄 LEVEL MIGRATION DURING IMPLEMENTATION
+## 7. 🔄 LEVEL MIGRATION DURING IMPLEMENTATION
 
 If scope grows during implementation, escalate by adding the required files:
 
-| From Level | To Level                   | Action                                                | Files to Add |
-| ---------- | -------------------------- | ----------------------------------------------------- | ------------ |
-| 1 → 2      | Add verification           | `checklist.md`                                        |
+| From Level | To Level                   | Action                                          | Files to Add |
+| ---------- | -------------------------- | ----------------------------------------------- | ------------ |
+| 1 → 2      | Add verification           | `checklist.md`                                  |
 | 2 → 3      | Add decision documentation | `decision-record.md` (+ optional `research.md`) |
 
 **Changelog example:**
@@ -253,7 +255,7 @@ If scope grows during implementation, escalate by adding the required files:
 
 ---
 
-## 7. 🚀 QUICK DECISION FLOWCHART
+## 8. 🚀 QUICK DECISION FLOWCHART
 
 ```
 Any file modification?
@@ -292,7 +294,7 @@ Architectural decision? ──YES──→ Level 3 (add decision-record.md)
 
 ---
 
-## 8. 🔗 Related Resources
+## 9. 🔗 RELATED RESOURCES
 
 ### Asset Files
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch

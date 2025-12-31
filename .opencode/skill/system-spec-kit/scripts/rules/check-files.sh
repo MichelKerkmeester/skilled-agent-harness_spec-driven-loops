@@ -41,13 +41,13 @@ run_check() {
         [[ ! -f "$folder/implementation-summary.md" ]] && missing+=("implementation-summary.md (required after implementation)")
     fi
     
-    # For Level 1 specs, warn if implementation appears complete but no summary
+    # For Level 1 specs, require implementation-summary.md if tasks are completed
     # Check tasks.md for completed items since Level 1 doesn't require checklist.md
     if [[ "$level" -eq 1 ]] && [[ ! -f "$folder/implementation-summary.md" ]]; then
         if [[ -f "$folder/tasks.md" ]]; then
             if grep -qE '\[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
-                # Don't add to missing[] (which causes fail), we'll warn separately
-                RULE_DETAILS+=("implementation-summary.md recommended for completed Level 1 spec")
+                # Per AGENTS.md: implementation-summary.md is REQUIRED after implementation completes
+                missing+=("implementation-summary.md (required: tasks show completion)")
             fi
         fi
     fi
