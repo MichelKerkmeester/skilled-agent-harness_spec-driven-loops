@@ -4,21 +4,6 @@
 
 ---
 
-#### 📦 PUBLIC RELEASE
-
-The OpenCode development environment in this project is also available as a standalone public release.
-
-| Resource                | Location                                                              |
-| ----------------------- | --------------------------------------------------------------------- |
-| **Public Repo (local)** | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/` |
-| **GitHub**              | https://github.com/MichelKerkmeester/opencode-dev-environment         |
-
-**This project is the source of truth.** Changes are synced to the public repo for distribution.
-
-See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, and release management.
-
----
-
 ## 1. 🚨 CRITICAL RULES (MANDATORY)
 
 **HARD BLOCKERS (must do or stop):**
