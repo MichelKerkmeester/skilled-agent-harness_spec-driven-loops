@@ -31,6 +31,9 @@ Comprehensive Spec Kit & Memory system audit with test suite fixes, documentatio
 - `check-frontmatter.sh` now supports `SKIP_TEMPLATE_CHECK=1` environment variable
 - Updated AGENTS.md, SKILL.md, and memory_system.md with parameter requirements
 
+#### Removed
+- Deprecated `mcp_server/INSTALL_GUIDE.md` (duplicate of install_guides/MCP/MCP - Spec Kit Memory.md)
+
 ---
 
 ### [**1.0.2.2**] - 2025-12-31
