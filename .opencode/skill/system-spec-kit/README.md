@@ -62,12 +62,12 @@ The result? Six months from now, you'll know exactly why you made that architect
 | Templates  | 10     | Markdown templates for specs, plans, research, decisions, handover       |
 | Scripts    | 11     | Shell scripts for automation and validation                              |
 | Assets     | 3      | Decision support tools (level matrix, template mapping, parallel config) |
-| References | 5      | Detailed workflow documentation                                          |
+| References | 18     | Detailed workflow documentation in 7 categories                          |
 | Checklists | 4      | Phase-specific checklists (research, planning, implementation, review)   |
-| **Total**  | **28** | Complete bundled resource set                                            |
+| **Total**  | **41** | Complete bundled resource set                                            |
 | Commands   | 12     | Slash commands (8 spec_kit + 4 memory)                                   |
 
-> **Automation Win**: These 28 resources eliminate the "blank page problem" — you're never starting from scratch.
+> **Automation Win**: These 41 resources eliminate the "blank page problem" — you're never starting from scratch.
 
 ### Key Features
 
@@ -160,12 +160,14 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   ├── level_decision_matrix.md          # LOC thresholds, complexity factors
 │   ├── template_mapping.md               # Template-to-level mapping
 │   └── parallel_dispatch_config.md       # Complexity scoring, agent dispatch config
-├── references/
-│   ├── level_specifications.md           # Complete Level 1-3 specifications
-│   ├── path_scoped_rules.md              # Path-scoped rule documentation
-│   ├── quick_reference.md                # Commands, checklists, troubleshooting
-│   ├── template_guide.md                 # Template selection & adaptation rules
-│   └── sub_folder_versioning.md          # Sub-folder versioning workflow
+├── references/                           # 18 reference documents in 7 categories
+│   ├── config/                           # Configuration (environment variables)
+│   ├── debugging/                        # Debugging guides (universal methodology, troubleshooting)
+│   ├── memory/                           # Memory system (save workflow, triggers)
+│   ├── structure/                        # Folder structure and versioning
+│   ├── templates/                        # Template guides and specifications
+│   ├── validation/                       # Validation rules and checklists
+│   └── workflows/                        # Workflow execution guides
 ├── mcp_server/                           # Spec Kit Memory MCP (v16.0 integrated)
 │   ├── context-server.js                 # MCP server with vector search
 │   ├── lib/                              # Server libraries
@@ -1656,7 +1658,7 @@ grep -r "\[YOUR_VALUE_HERE\]" specs/042-feature/
 
 # Common placeholders to replace:
 # - [FEATURE_NAME] → Actual feature name
-# - [PRIORITY] → P0/P1/P2/P3
+# - [PRIORITY] → P0/P1/P2
 # - [STATUS] → Draft/In Progress/Complete
 ```
 

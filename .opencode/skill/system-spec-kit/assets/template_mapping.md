@@ -44,7 +44,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 | Level               | Required Files                     | Adds To Previous        | Copy Commands              |
 | ------------------- | ---------------------------------- | ----------------------- | -------------------------- |
-| **1: Baseline**     | `spec.md` + `plan.md` + `tasks.md` | (foundation)            | See Level 1 commands below |
+| **1: Baseline**     | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md` | (foundation)            | See Level 1 commands below |
 | **2: Verification** | Level 1 + `checklist.md`           | QA checklist            | See Level 2 commands below |
 | **3: Full**         | Level 2 + `decision-record.md`     | ADR + optional research | See Level 3 commands below |
 

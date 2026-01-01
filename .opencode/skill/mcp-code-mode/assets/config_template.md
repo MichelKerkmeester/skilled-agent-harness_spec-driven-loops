@@ -9,15 +9,19 @@ Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured M
 
 ---
 
-## Purpose
+## 1. 📖 OVERVIEW
+
+### Purpose
 
 Base configuration file for Code Mode UTCP with progressive tool loading and environment variable support. Includes pre-configured templates for Webflow, ClickUp, Figma, Notion, and Chrome DevTools.
 
-## Usage
+### Usage
 
 Copy this template to `.utcp_config.json` in your project root, then customize the `manual_call_templates` array with your desired MCP servers. Reference credentials using `${VARIABLE_NAME}` syntax.
 
-## Template
+---
+
+## 2. 📋 TEMPLATE
 
 ```json
 {
@@ -73,9 +77,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
           "figma": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-figma"],
+            "args": ["-y", "figma-developer-mcp", "--stdio"],
             "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}"
+              "FIGMA_API_KEY": "${FIGMA_API_KEY}"
             }
           }
         }
@@ -131,7 +135,7 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 
 ---
 
-## Configuration Sections
+## 3. ⚙️ CONFIGURATION SECTIONS
 
 ### load_variables_from
 
@@ -200,7 +204,7 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 
 ---
 
-## MCP Server Configurations
+## 4. 🔌 MCP SERVER CONFIGURATIONS
 
 ### Webflow (Remote MCP)
 
@@ -262,9 +266,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
       "figma": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-figma"],
+        "args": ["-y", "figma-developer-mcp", "--stdio"],
         "env": {
-          "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}"
+          "FIGMA_API_KEY": "${FIGMA_API_KEY}"
         }
       }
     }
@@ -272,9 +276,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 }
 ```
 
-**Features**: 15+ tools for files, comments, images
-**Authentication**: Requires `FIGMA_PERSONAL_ACCESS_TOKEN` in .env
-**Package**: `@modelcontextprotocol/server-figma` (official MCP server)
+**Features**: 18 tools for files, comments, images, components, styles
+**Authentication**: Requires `FIGMA_API_KEY` in .env
+**Package**: `figma-developer-mcp` (Framelink third-party)
 
 ### Notion
 
@@ -327,7 +331,7 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 
 ---
 
-## Environment Variables
+## 5. 🔐 ENVIRONMENT VARIABLES
 
 **Required .env file**: Create `.env` in project root with:
 
@@ -337,7 +341,7 @@ CLICKUP_API_KEY=pk_your_api_key_here
 CLICKUP_TEAM_ID=your_team_id_here
 
 # Figma
-FIGMA_PERSONAL_ACCESS_TOKEN=figd_your_token_here
+FIGMA_API_KEY=figd_your_token_here
 
 # Notion
 NOTION_TOKEN=ntn_your_token_here
@@ -350,7 +354,7 @@ NOTION_TOKEN=ntn_your_token_here
 
 ---
 
-## Customization Guide
+## 6. 🛠️ CUSTOMIZATION GUIDE
 
 ### Adding a New MCP Server
 
@@ -410,7 +414,7 @@ GITHUB_TOKEN=ghp_your_token_here
 
 ---
 
-## Validation
+## 7. ✅ VALIDATION
 
 **Validate configuration:**
 
@@ -426,7 +430,7 @@ GITHUB_TOKEN=ghp_your_token_here
 
 ---
 
-## 🔗 Related Resources
+## 8. 🔗 RELATED RESOURCES
 
 ### Templates
 - [env_template.md](./env_template.md) - Complete .env file template with credential sources

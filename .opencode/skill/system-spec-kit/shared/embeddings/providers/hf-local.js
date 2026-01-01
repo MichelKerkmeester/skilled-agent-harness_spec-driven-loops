@@ -1,273 +1,219 @@
-/**
- * Embeddings Provider - Hugging Face Local
- * 
- * Uses @huggingface/transformers with nomic-embed-text-v1.5 to generate
- * 768-dimensional embeddings completely locally.
- * 
- * @module embeddings/providers/hf-local
- * @version 1.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// HF-LOCAL.JS: Hugging Face local embeddings provider
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const { EmbeddingProfile } = require('../profile');
 
-// ───────────────────────────────────────────────────────────────
-// CONFIGURATION
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
 
 const DEFAULT_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const EMBEDDING_DIM = 768;
-const MAX_TEXT_LENGTH = 8000; // nomic supports 8192 tokens
-const EMBEDDING_TIMEOUT = 30000; // 30 second timeout
+const MAX_TEXT_LENGTH = 8000;
+const EMBEDDING_TIMEOUT = 30000;
 
-/**
- * Task prefixes required by nomic-embed-text-v1.5
- * See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
- */
+// Task prefixes required by nomic-embed-text-v1.5
+// See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
 const TASK_PREFIX = {
   DOCUMENT: 'search_document: ',
   QUERY: 'search_query: ',
   CLUSTERING: 'clustering: ',
-  CLASSIFICATION: 'classification: '
+  CLASSIFICATION: 'classification: ',
 };
 
-// ───────────────────────────────────────────────────────────────
-// DEVICE DETECTION
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   2. DEVICE DETECTION
+   ─────────────────────────────────────────────────────────────── */
 
-let currentDevice = null;
+let current_device = null;
 
-/**
- * Determine optimal device for embeddings
- * - macOS with Apple Silicon: Use MPS (Metal Performance Shaders)
- * - Other platforms: Use CPU
- *
- * @returns {string} Device identifier ('mps' or 'cpu')
- */
-function getOptimalDevice() {
+function get_optimal_device() {
+  // macOS with Apple Silicon uses MPS (Metal Performance Shaders)
   if (process.platform === 'darwin') {
     return 'mps';
   }
   return 'cpu';
 }
 
-// ───────────────────────────────────────────────────────────────
-// PROVIDER CLASS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   3. PROVIDER CLASS
+   ─────────────────────────────────────────────────────────────── */
 
-class HFLocalProvider {
+class HfLocalProvider {
   constructor(options = {}) {
-    this.modelName = options.model || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL;
+    this.model_name = options.model || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL;
     this.dim = options.dim || EMBEDDING_DIM;
-    this.maxTextLength = options.maxTextLength || MAX_TEXT_LENGTH;
+    this.max_text_length = options.maxTextLength || MAX_TEXT_LENGTH;
     this.timeout = options.timeout || EMBEDDING_TIMEOUT;
     
     this.extractor = null;
-    this.modelLoadTime = null;
-    this.loadingPromise = null;
-    this.isHealthy = true;
+    this.model_load_time = null;
+    this.loading_promise = null;
+    this.is_healthy = true;
   }
 
-  /**
-   * Get or create embeddings pipeline (singleton pattern)
-   * First call downloads/loads the model (~274MB), subsequent calls return cached instance.
-   * Prevents race conditions with multiple simultaneous load requests.
-   *
-   * @returns {Promise<Object>} Feature extraction pipeline
-   */
-  async getModel() {
-    // If already loaded, return immediately
+  async get_model() {
     if (this.extractor) {
       return this.extractor;
     }
 
-    // If currently loading, wait for completion (race condition protection)
-    if (this.loadingPromise) {
-      return this.loadingPromise;
+    // Race condition protection: wait for in-progress load
+    if (this.loading_promise) {
+      return this.loading_promise;
     }
 
-    // Start loading and store promise
-    this.loadingPromise = (async () => {
+    this.loading_promise = (async () => {
       const start = Date.now();
       try {
-        console.warn(`[hf-local] Loading ${this.modelName} (~274MB, first load may take 15-30s)...`);
+        console.warn(`[hf-local] Loading ${this.model_name} (~274MB, first load may take 15-30s)...`);
 
-        // Dynamic import for ESM module
         const { pipeline } = await import('@huggingface/transformers');
 
-        // Try optimal device first (MPS on Mac)
-        let targetDevice = getOptimalDevice();
-        console.log(`[hf-local] Attempting device: ${targetDevice}`);
+        let target_device = get_optimal_device();
+        console.log(`[hf-local] Attempting device: ${target_device}`);
 
         try {
-          this.extractor = await pipeline('feature-extraction', this.modelName, {
+          this.extractor = await pipeline('feature-extraction', this.model_name, {
             dtype: 'fp32',
-            device: targetDevice
+            device: target_device,
           });
-          currentDevice = targetDevice;
-        } catch (deviceError) {
-          // MPS failed, fallback to CPU
-          if (targetDevice !== 'cpu') {
-            console.warn(`[hf-local] ${targetDevice.toUpperCase()} unavailable (${deviceError.message}), using CPU`);
-            this.extractor = await pipeline('feature-extraction', this.modelName, {
+          current_device = target_device;
+        } catch (device_error) {
+          // MPS unavailable, fallback to CPU
+          if (target_device !== 'cpu') {
+            console.warn(`[hf-local] ${target_device.toUpperCase()} unavailable (${device_error.message}), using CPU`);
+            this.extractor = await pipeline('feature-extraction', this.model_name, {
               dtype: 'fp32',
-              device: 'cpu'
+              device: 'cpu',
             });
-            currentDevice = 'cpu';
+            current_device = 'cpu';
           } else {
-            throw deviceError;
+            throw device_error;
           }
         }
 
-        this.modelLoadTime = Date.now() - start;
-        console.warn(`[hf-local] Model loaded in ${this.modelLoadTime}ms (device: ${currentDevice})`);
+        this.model_load_time = Date.now() - start;
+        console.warn(`[hf-local] Model loaded in ${this.model_load_time}ms (device: ${current_device})`);
 
         return this.extractor;
       } catch (error) {
-        this.loadingPromise = null;  // Reset on failure to allow retry
-        this.isHealthy = false;
+        this.loading_promise = null;
+        this.is_healthy = false;
         throw error;
       }
     })();
 
-    return this.loadingPromise;
+    return this.loading_promise;
   }
 
-  /**
-   * Generate embedding for text without prefix (internal function)
-   *
-   * @param {string} text - Text to embed (with task prefix if necessary)
-   * @returns {Promise<Float32Array>} Normalized embedding vector of 768 dimensions
-   */
-  async generateEmbedding(text) {
+  async generate_embedding(text) {
     if (!text || typeof text !== 'string') {
       console.warn('[hf-local] Empty or invalid text provided');
       return null;
     }
 
-    const trimmedText = text.trim();
-    if (trimmedText.length === 0) {
+    const trimmed_text = text.trim();
+    if (trimmed_text.length === 0) {
       console.warn('[hf-local] Empty text after trim');
       return null;
     }
 
-    // Truncate if exceeds limit (semantic chunking handled in upper layer)
-    let inputText = trimmedText;
-    if (inputText.length > this.maxTextLength) {
-      console.warn(`[hf-local] Text truncated from ${inputText.length} to ${this.maxTextLength} characters`);
-      inputText = inputText.substring(0, this.maxTextLength);
+    let input_text = trimmed_text;
+    if (input_text.length > this.max_text_length) {
+      console.warn(`[hf-local] Text truncated from ${input_text.length} to ${this.max_text_length} characters`);
+      input_text = input_text.substring(0, this.max_text_length);
     }
 
     const start = Date.now();
 
     try {
-      const model = await this.getModel();
+      const model = await this.get_model();
 
-      // Generate embedding with mean pooling and normalization
-      const output = await model(inputText, {
+      const output = await model(input_text, {
         pooling: 'mean',
-        normalize: true
+        normalize: true,
       });
 
-      // Convert to Float32Array
       const embedding = output.data instanceof Float32Array
         ? output.data
         : new Float32Array(output.data);
 
-      const inferenceTime = Date.now() - start;
+      const inference_time = Date.now() - start;
 
-      // Performance logging (target <800ms)
-      if (inferenceTime > 800) {
-        console.warn(`[hf-local] Slow inference: ${inferenceTime}ms (target <800ms)`);
+      if (inference_time > 800) {
+        console.warn(`[hf-local] Slow inference: ${inference_time}ms (target <800ms)`);
       }
 
       return embedding;
 
     } catch (error) {
       console.warn(`[hf-local] Generation failed: ${error.message}`);
-      this.isHealthy = false;
+      this.is_healthy = false;
       throw error;
     }
   }
 
-  /**
-   * Embed a document (for indexing)
-   */
-  async embedDocument(text) {
+  async embed_document(text) {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
       return null;
     }
-    const prefixedText = TASK_PREFIX.DOCUMENT + text;
-    return await this.generateEmbedding(prefixedText);
+    const prefixed_text = TASK_PREFIX.DOCUMENT + text;
+    return await this.generate_embedding(prefixed_text);
   }
 
-  /**
-   * Embed a search query
-   */
-  async embedQuery(text) {
+  async embed_query(text) {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
       return null;
     }
-    const prefixedQuery = TASK_PREFIX.QUERY + text;
-    return await this.generateEmbedding(prefixedQuery);
+    const prefixed_query = TASK_PREFIX.QUERY + text;
+    return await this.generate_embedding(prefixed_query);
   }
 
-  /**
-   * Pre-warm the model (useful on server startup)
-   */
   async warmup() {
     try {
       console.log('[hf-local] Pre-warming model...');
-      await this.embedQuery('test warmup query');
+      await this.embed_query('test warmup query');
       console.log('[hf-local] Model successfully pre-warmed');
       return true;
     } catch (error) {
       console.warn(`[hf-local] Warmup failed: ${error.message}`);
-      this.isHealthy = false;
+      this.is_healthy = false;
       return false;
     }
   }
 
-  /**
-   * Get provider metadata
-   */
-  getMetadata() {
+  get_metadata() {
     return {
       provider: 'hf-local',
-      model: this.modelName,
+      model: this.model_name,
       dim: this.dim,
-      device: currentDevice,
-      healthy: this.isHealthy,
+      device: current_device,
+      healthy: this.is_healthy,
       loaded: this.extractor !== null,
-      loadTimeMs: this.modelLoadTime
+      load_time_ms: this.model_load_time,
     };
   }
 
-  /**
-   * Get embedding profile
-   */
-  getProfile() {
+  get_profile() {
     return new EmbeddingProfile({
       provider: 'hf-local',
-      model: this.modelName,
-      dim: this.dim
+      model: this.model_name,
+      dim: this.dim,
     });
   }
 
-  /**
-   * Check if provider is healthy
-   */
-  async healthCheck() {
+  async health_check() {
     try {
-      const result = await this.embedQuery('health check');
-      this.isHealthy = result !== null;
-      return this.isHealthy;
+      const result = await this.embed_query('health check');
+      this.is_healthy = result !== null;
+      return this.is_healthy;
     } catch (error) {
-      this.isHealthy = false;
+      this.is_healthy = false;
       return false;
     }
   }
 }
 
-module.exports = { HFLocalProvider, TASK_PREFIX };
+module.exports = { HfLocalProvider, TASK_PREFIX };

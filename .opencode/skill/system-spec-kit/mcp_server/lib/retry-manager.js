@@ -1,46 +1,32 @@
-/**
- * Retry Manager - Handle failed embedding generation with exponential backoff
- *
- * Implements FR-011: Resilient retry mechanism for embedding failures
- * - Automatic retry with exponential backoff (1min, 5min, 15min)
- * - Maximum 3 retry attempts
- * - Status transitions: pending → success/retry → failed
- *
- * @module retry-manager
- * @version 10.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// retry-manager.js: Embedding retry queue with exponential backoff
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
-const vectorIndex = require('./vector-index');
-const { generateEmbedding } = require('./embeddings');
+const vector_index = require('./vector-index');
+const { generate_embedding } = require('./embeddings');
 
-// ───────────────────────────────────────────────────────────────
-// CONFIGURATION
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
 
 // Backoff delays in milliseconds (1min, 5min, 15min)
 const BACKOFF_DELAYS = [
   60 * 1000,      // 1 minute
   5 * 60 * 1000,  // 5 minutes
-  15 * 60 * 1000  // 15 minutes
+  15 * 60 * 1000, // 15 minutes
 ];
 
 const MAX_RETRIES = 3;
 
-// ───────────────────────────────────────────────────────────────
-// RETRY QUEUE
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   2. RETRY QUEUE
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Get memories eligible for retry based on backoff timing
- *
- * @param {number} [limit=10] - Maximum items to return
- * @returns {Object[]} Array of memories ready for retry
- */
-function getRetryQueue(limit = 10) {
-  vectorIndex.initializeDb();  // Ensure DB is ready
-  const db = vectorIndex.getDb();
+// Get memories eligible for retry based on backoff timing
+function get_retry_queue(limit = 10) {
+  vector_index.initialize_db();  // Ensure DB is ready
+  const db = vector_index.get_db();
   if (!db) {
     console.warn('[retry-manager] Database not available');
     return [];
@@ -62,8 +48,8 @@ function getRetryQueue(limit = 10) {
   // Filter by backoff timing
   const eligible = [];
   for (const row of rows) {
-    if (isEligibleForRetry(row, now)) {
-      eligible.push(parseRow(row));
+    if (is_eligible_for_retry(row, now)) {
+      eligible.push(parse_row(row));
       if (eligible.length >= limit) break;
     }
   }
@@ -71,14 +57,8 @@ function getRetryQueue(limit = 10) {
   return eligible;
 }
 
-/**
- * Check if a memory is eligible for retry based on backoff
- *
- * @param {Object} row - Memory row from database
- * @param {number} now - Current timestamp
- * @returns {boolean} True if eligible
- */
-function isEligibleForRetry(row, now) {
+// Check if a memory is eligible for retry based on backoff
+function is_eligible_for_retry(row, now) {
   // Pending items are always eligible
   if (row.embedding_status === 'pending') {
     return true;
@@ -86,22 +66,18 @@ function isEligibleForRetry(row, now) {
 
   // Check backoff for retry items
   if (row.embedding_status === 'retry' && row.last_retry_at) {
-    const lastRetry = new Date(row.last_retry_at).getTime();
-    const requiredDelay = BACKOFF_DELAYS[Math.min(row.retry_count, BACKOFF_DELAYS.length - 1)];
-    return (now - lastRetry) >= requiredDelay;
+    const last_retry = new Date(row.last_retry_at).getTime();
+    const required_delay = BACKOFF_DELAYS[Math.min(row.retry_count, BACKOFF_DELAYS.length - 1)];
+    return (now - last_retry) >= required_delay;
   }
 
   // No last_retry_at means first retry attempt
   return row.embedding_status === 'retry';
 }
 
-/**
- * Get all failed embeddings
- *
- * @returns {Object[]} Array of permanently failed memories
- */
-function getFailedEmbeddings() {
-  const db = vectorIndex.getDb();
+// Get all failed embeddings
+function get_failed_embeddings() {
+  const db = vector_index.get_db();
   if (!db) {
     console.warn('[retry-manager] Database not initialized, returning empty array');
     return [];
@@ -113,19 +89,15 @@ function getFailedEmbeddings() {
     ORDER BY updated_at DESC
   `).all();
 
-  return rows.map(parseRow);
+  return rows.map(parse_row);
 }
 
-/**
- * Get retry statistics
- *
- * @returns {Object} Statistics about retry queue
- */
-function getRetryStats() {
-  const db = vectorIndex.getDb();
+// Get retry statistics
+function get_retry_stats() {
+  const db = vector_index.get_db();
   if (!db) {
     console.warn('[retry-manager] Database not initialized, returning default stats');
-    return { pending: 0, retry: 0, failed: 0, success: 0, total: 0, queueSize: 0 };
+    return { pending: 0, retry: 0, failed: 0, success: 0, total: 0, queue_size: 0 };
   }
 
   const stats = db.prepare(`
@@ -144,23 +116,17 @@ function getRetryStats() {
     failed: stats.failed || 0,
     success: stats.success || 0,
     total: stats.total || 0,
-    queueSize: (stats.pending || 0) + (stats.retry || 0)
+    queue_size: (stats.pending || 0) + (stats.retry || 0),
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// RETRY OPERATIONS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   3. RETRY OPERATIONS
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Retry embedding generation for a specific memory
- *
- * @param {number} id - Memory ID to retry
- * @param {string} content - Content to generate embedding from
- * @returns {Object} Result with success/failure status
- */
-async function retryEmbedding(id, content) {
-  const db = vectorIndex.getDb();
+// Retry embedding generation for a specific memory
+async function retry_embedding(id, content) {
+  const db = vector_index.get_db();
   if (!db) {
     return { success: false, error: 'Database not initialized' };
   }
@@ -169,28 +135,28 @@ async function retryEmbedding(id, content) {
 
   try {
     // Get current state
-    const memory = vectorIndex.getMemory(id);
+    const memory = vector_index.get_memory(id);
     if (!memory) {
       return { success: false, error: 'Memory not found' };
     }
 
     if (memory.retry_count >= MAX_RETRIES) {
       // Mark as permanently failed
-      markAsFailed(id, 'Maximum retry attempts exceeded');
+      mark_as_failed(id, 'Maximum retry attempts exceeded');
       return { success: false, error: 'Maximum retries exceeded', permanent: true };
     }
 
     // Generate embedding
-    const embedding = await generateEmbedding(content);
+    const embedding = await generate_embedding(content);
 
     if (!embedding) {
       // Increment retry count and mark for retry
-      incrementRetryCount(id, 'Embedding generation returned null');
+      increment_retry_count(id, 'Embedding generation returned null');
       return { success: false, error: 'Embedding returned null' };
     }
 
     // Success - update with new embedding using transaction with error handling
-    const updateTx = db.transaction(() => {
+    const update_tx = db.transaction(() => {
       // Update metadata
       db.prepare(`
         UPDATE memory_index
@@ -209,46 +175,41 @@ async function retryEmbedding(id, content) {
       }
 
       // Insert new vector
-      const embeddingBuffer = Buffer.from(embedding.buffer);
-      db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)').run(BigInt(id), embeddingBuffer);
+      const embedding_buffer = Buffer.from(embedding.buffer);
+      db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)').run(BigInt(id), embedding_buffer);
     });
 
     try {
-      updateTx();
+      update_tx();
       return { success: true, id, dimensions: embedding.length };
-    } catch (txError) {
-      incrementRetryCount(id, `Transaction failed: ${txError.message}`);
-      return { success: false, error: `Transaction failed: ${txError.message}` };
+    } catch (tx_error) {
+      increment_retry_count(id, `Transaction failed: ${tx_error.message}`);
+      return { success: false, error: `Transaction failed: ${tx_error.message}` };
     }
 
   } catch (error) {
-    incrementRetryCount(id, error.message);
+    increment_retry_count(id, error.message);
     return { success: false, error: error.message };
   }
 }
 
-/**
- * Increment retry count and update status
- *
- * @param {number} id - Memory ID
- * @param {string} reason - Failure reason
- */
-function incrementRetryCount(id, reason) {
-  const db = vectorIndex.getDb();
+// Increment retry count and update status
+function increment_retry_count(id, reason) {
+  const db = vector_index.get_db();
   if (!db) return;
 
   const now = new Date().toISOString();
 
-  const memory = vectorIndex.getMemory(id);
+  const memory = vector_index.get_memory(id);
   if (!memory) {
     console.warn(`[retry-manager] Memory ${id} not found during retry count increment`);
     return;
   }
 
-  const newRetryCount = (memory.retry_count || 0) + 1;
+  const new_retry_count = (memory.retry_count || 0) + 1;
 
-  if (newRetryCount >= MAX_RETRIES) {
-    markAsFailed(id, reason);
+  if (new_retry_count >= MAX_RETRIES) {
+    mark_as_failed(id, reason);
   } else {
     db.prepare(`
       UPDATE memory_index
@@ -258,18 +219,13 @@ function incrementRetryCount(id, reason) {
           failure_reason = ?,
           updated_at = ?
       WHERE id = ?
-    `).run(newRetryCount, now, reason, now, id);
+    `).run(new_retry_count, now, reason, now, id);
   }
 }
 
-/**
- * Mark a memory as permanently failed
- *
- * @param {number} id - Memory ID
- * @param {string} reason - Final failure reason
- */
-function markAsFailed(id, reason) {
-  const db = vectorIndex.getDb();
+// Mark a memory as permanently failed
+function mark_as_failed(id, reason) {
+  const db = vector_index.get_db();
   const now = new Date().toISOString();
 
   db.prepare(`
@@ -281,14 +237,9 @@ function markAsFailed(id, reason) {
   `).run(reason, now, id);
 }
 
-/**
- * Reset a failed memory to retry status
- *
- * @param {number} id - Memory ID
- * @returns {boolean} True if reset
- */
-function resetForRetry(id) {
-  const db = vectorIndex.getDb();
+// Reset a failed memory to retry status
+function reset_for_retry(id) {
+  const db = vector_index.get_db();
   const now = new Date().toISOString();
 
   const result = db.prepare(`
@@ -304,20 +255,14 @@ function resetForRetry(id) {
   return result.changes > 0;
 }
 
-// ───────────────────────────────────────────────────────────────
-// BATCH PROCESSING
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   4. BATCH PROCESSING
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Process retry queue opportunistically
- * Called during context save to process a few pending retries
- *
- * @param {number} [limit=3] - Maximum items to process
- * @param {Function} [contentLoader] - Function to load content for a memory
- * @returns {Object} Processing results
- */
-async function processRetryQueue(limit = 3, contentLoader = null) {
-  const queue = getRetryQueue(limit);
+// Process retry queue opportunistically
+// Called during context save to process a few pending retries
+async function process_retry_queue(limit = 3, content_loader = null) {
+  const queue = get_retry_queue(limit);
 
   if (queue.length === 0) {
     return { processed: 0, succeeded: 0, failed: 0 };
@@ -327,32 +272,32 @@ async function processRetryQueue(limit = 3, contentLoader = null) {
     processed: 0,
     succeeded: 0,
     failed: 0,
-    details: []
+    details: [],
   };
 
   for (const memory of queue) {
     // Load content for embedding
     let content = null;
 
-    if (contentLoader) {
-      content = await contentLoader(memory);
+    if (content_loader) {
+      content = await content_loader(memory);
     } else {
       // Default: try to read from file
-      content = await loadContentFromFile(memory.file_path);
+      content = await load_content_from_file(memory.file_path);
     }
 
     if (!content) {
       results.details.push({
         id: memory.id,
         success: false,
-        error: 'Could not load content'
+        error: 'Could not load content',
       });
       results.failed++;
       results.processed++;
       continue;
     }
 
-    const result = await retryEmbedding(memory.id, content);
+    const result = await retry_embedding(memory.id, content);
     results.processed++;
 
     if (result.success) {
@@ -363,24 +308,19 @@ async function processRetryQueue(limit = 3, contentLoader = null) {
 
     results.details.push({
       id: memory.id,
-      ...result
+      ...result,
     });
   }
 
   return results;
 }
 
-// ───────────────────────────────────────────────────────────────
-// UTILITIES
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   5. UTILITIES
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Parse a database row, converting JSON fields
- *
- * @param {Object} row - Raw database row
- * @returns {Object} Parsed row
- */
-function parseRow(row) {
+// Parse a database row, converting JSON fields
+function parse_row(row) {
   if (row.trigger_phrases) {
     try {
       row.trigger_phrases = JSON.parse(row.trigger_phrases);
@@ -391,46 +331,50 @@ function parseRow(row) {
   return row;
 }
 
-/**
- * Load content from a file
- *
- * @param {string} filePath - Path to memory file
- * @returns {Promise<string|null>} File content or null
- */
-async function loadContentFromFile(filePath) {
+// Load content from a file
+async function load_content_from_file(file_path) {
   try {
     // SEC-002: Validate DB-stored file paths before reading (CWE-22 defense-in-depth)
-    const { validateFilePath } = require('./vector-index');
-    const validPath = validateFilePath(filePath);
-    if (!validPath) {
+    const { validate_file_path } = require('./vector-index');
+    const valid_path = validate_file_path(file_path);
+    if (!valid_path) {
       return null;
     }
     const fs = require('fs/promises');
-    return await fs.readFile(validPath, 'utf-8');
+    return await fs.readFile(valid_path, 'utf-8');
   } catch {
     return null;
   }
 }
 
-// ───────────────────────────────────────────────────────────────
-// MODULE EXPORTS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   6. MODULE EXPORTS
+   ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // Queue operations
-  getRetryQueue,
-  getFailedEmbeddings,
-  getRetryStats,
+  get_retry_queue,
+  get_failed_embeddings,
+  get_retry_stats,
 
   // Retry operations
-  retryEmbedding,
-  markAsFailed,
-  resetForRetry,
+  retry_embedding,
+  mark_as_failed,
+  reset_for_retry,
 
   // Batch processing
-  processRetryQueue,
+  process_retry_queue,
+
+  // Legacy aliases for backward compatibility
+  getRetryQueue: get_retry_queue,
+  getFailedEmbeddings: get_failed_embeddings,
+  getRetryStats: get_retry_stats,
+  retryEmbedding: retry_embedding,
+  markAsFailed: mark_as_failed,
+  resetForRetry: reset_for_retry,
+  processRetryQueue: process_retry_queue,
 
   // Constants
   BACKOFF_DELAYS,
-  MAX_RETRIES
+  MAX_RETRIES,
 };

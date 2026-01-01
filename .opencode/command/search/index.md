@@ -152,7 +152,7 @@ code_mode_call_tool_chain({
 │ Status       Indexed                                           │
 │ Files        1,234 files                                        │
 │ Languages    JavaScript (456), TypeScript (321), Python (89)   │
-│ Features     Neural ✅  Git ✅  Call Graph ✅                   │
+│ Features     Neural ✅  Git ✅  Call Graph ✅                  │
 │ Last Index   2024-01-15 14:32:00                               │
 └────────────────────────────────────────────────────────────────┘
 ```

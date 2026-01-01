@@ -510,9 +510,9 @@ Code Mode enables access to external MCP tools. Each provider has its own detail
 
 | Provider | Tools | Install Guide |
 |----------|-------|---------------|
-| **Narsil** | 76 | [MCP - Narsil.md](./MCP/MCP%20-%20Narsil.md) - Code intelligence, security scanning |
-| **Figma** | 18 | [MCP - Figma.md](./MCP/MCP%20-%20Figma.md) - Design file access, image export |
-| **Chrome DevTools** | 26 | [MCP - Chrome Dev Tools.md](./MCP/MCP%20-%20Chrome%20Dev%20Tools.md) - Browser debugging (MCP mode) |
+| **Narsil** | 76 | [MCP - Narsil.md](./MCP%20-%20Narsil.md) - Code intelligence, security scanning |
+| **Figma** | 18 | [MCP - Figma.md](./MCP%20-%20Figma.md) - Design file access, image export |
+| **Chrome DevTools** | 26 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) - Browser debugging (MCP mode) |
 | **Webflow** | 42 | Via Code Mode - CMS management, site operations |
 | **ClickUp** | 21 | Via Code Mode - Task management, project tracking |
 | **GitHub** | 26 | Via Code Mode - Repository operations, issues, PRs |
@@ -537,7 +537,7 @@ npx utcp-mcp --help >/dev/null 2>&1 && test -f .utcp_config.json && echo "✅ PA
 
 Narsil provides deep code intelligence with **76 specialized tools** for security scanning, call graph analysis, structural queries, and neural semantic search. It is accessed via Code Mode for token efficiency.
 
-> **Detailed Guide:** See [MCP - Narsil.md](./MCP/MCP%20-%20Narsil.md) for comprehensive installation and usage instructions.
+> **Detailed Guide:** See [MCP - Narsil.md](./MCP%20-%20Narsil.md) for comprehensive installation and usage instructions.
 
 **Core Principle:** Narsil = STRUCTURE + SECURITY + SEMANTICS (unified code intelligence)
 
@@ -617,7 +617,7 @@ narsil-mcp --repos . --http --http-port 3000
 # Frontend (port 5173) - separate terminal
 cd "${NARSIL_PATH}/frontend" && npm install && npm run dev
 ```
-See [MCP - Narsil.md](./MCP/MCP%20-%20Narsil.md) for detailed visualization setup.
+See [MCP - Narsil.md](./MCP%20-%20Narsil.md) for detailed visualization setup.
 
 ❌ STOP if validation fails - ensure Code Mode is installed and Narsil is configured in `.utcp_config.json`
 

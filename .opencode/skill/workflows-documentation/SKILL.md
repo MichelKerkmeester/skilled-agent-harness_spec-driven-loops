@@ -543,6 +543,22 @@ Standard Flow:      Branch:           Parallel:         Merge:
 
 **H3 Semantic Exception**: Emojis ✅ ❌ ⚠️ REQUIRED on H3 in RULES sections for functional signaling.
 
+### H2 Emoji Enforcement by Document Type
+
+| Document Type | Emoji Required | Enforcement Level | Missing Emoji Severity |
+|---------------|----------------|-------------------|------------------------|
+| **SKILL.md** | ✅ Yes | Strict | `error` (BLOCKING) |
+| **README.md** | ✅ Yes | Strict | `error` (BLOCKING) |
+| **Asset files** | ✅ Yes | Strict | `error` (BLOCKING) |
+| **Reference files** | ✅ Yes | Strict | `error` (BLOCKING) |
+| **Command files** | ⚠️ Semantic only | Moderate | `warning` |
+| **Spec files** | ❌ No | Loose | N/A |
+| **Generic** | ❌ No | Flexible | N/A |
+
+**CRITICAL**: For template-based documents (SKILL, README, asset, reference), missing H2 emojis are BLOCKING errors. The `extract_structure.py` script will return `severity: 'error'` for these violations.
+
+**Prevention**: Always COPY headers from templates. Never reconstruct from memory.
+
 ---
 
 ## 5. 🏆 SUCCESS CRITERIA

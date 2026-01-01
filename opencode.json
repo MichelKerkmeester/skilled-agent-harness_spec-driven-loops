@@ -14,8 +14,7 @@
         "npx",
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "enabled": true
+      ]
     },
     "spec_kit_memory": {
       "type": "local",
@@ -24,30 +23,28 @@
         ".opencode/skill/system-spec-kit/mcp_server/context-server.js"
       ],
       "environment": {
-        "_NOTE_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
-        "_NOTE_PROVIDERS": "Supports multiple embedding providers: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, default)",
-        "_NOTE_AUTO_DETECTION": "Priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local (no installation needed)",
-        "_NOTE_PORTABLE": "Uses relative path - works when copying project to new location",
-        "_EXAMPLE_VOYAGE": "To use Voyage (recommended): export VOYAGE_API_KEY=pa-... (auto-detected, 8% better than OpenAI)",
-        "_EXAMPLE_OPENAI": "To use OpenAI: export OPENAI_API_KEY=sk-proj-... (auto-detected)",
-        "_EXAMPLE_FORCE_LOCAL": "To force HF Local: export EMBEDDINGS_PROVIDER=hf-local",
-        "_EXAMPLE_MODEL_VOYAGE": "To change Voyage model: export VOYAGE_EMBEDDINGS_MODEL=voyage-3-large",
-        "_EXAMPLE_MODEL_OPENAI": "To change OpenAI model: export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-large"
-      },
-      "enabled": true
+        "EMBEDDINGS_PROVIDER": "auto",
+        "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
+        "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
+        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
+        "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
+        "_NOTE_3_AUTO_DETECTION": "Provider priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local fallback",
+        "_NOTE_4_EMBEDDINGS_PROVIDER": "Set to: 'auto' (default), 'voyage', 'openai', or 'hf-local' to force specific provider",
+        "_NOTE_5_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)",
+        "_NOTE_6_GET_OPENAI_KEY": "Get OpenAI key: https://platform.openai.com/api-keys",
+        "_NOTE_7_LOCAL_EMBEDDINGS": "For offline/free: set EMBEDDINGS_PROVIDER=hf-local (uses @xenova/transformers, no API needed)"
+      }
     },
     "code_mode": {
       "type": "local",
       "command": [
-        "node",
-        "/Users/michelkerkmeester/MEGA/MCP Servers/code-mode/code-mode-mcp/dist/index.js"
+        "npx",
+        "-y",
+        "@utcp/code-mode-mcp"
       ],
       "environment": {
-        "UTCP_CONFIG_FILE": ".utcp_config.json",
-        "_NOTE_SERVER_PATH": "Code Mode server location - update path for your system",
-        "_NOTE_CONFIG": "UTCP config uses relative path - portable across project copies"
-      },
-      "enabled": true
+        "UTCP_CONFIG_PATH": "/.utcp_config.json"
+      }
     }
   },
   "plugin": [

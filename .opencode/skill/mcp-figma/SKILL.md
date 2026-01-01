@@ -9,9 +9,18 @@ version: 1.0.0
 
 # Figma MCP - Design File Access
 
-Programmatic access to Figma design files through 18 specialized tools covering file retrieval, image export, component/style extraction, and collaboration. Accessed **exclusively via Code Mode** for token-efficient on-demand access.
+Programmatic access to Figma design files through 18 specialized tools covering file retrieval, image export, component/style extraction, and collaboration. Accessed **via Code Mode** for token-efficient on-demand access.
 
 **Core Principle**: Design-to-code bridge - Figma MCP enables AI assistants to read and understand design files.
+
+### Two Options Available
+
+| Option | Name | Type | Best For |
+|--------|------|------|----------|
+| **A** | Official Figma MCP | HTTP (mcp.figma.com) | Simplicity - no install, OAuth login |
+| **B** | Framelink (3rd-party) | stdio (local) | Code Mode integration, API key auth |
+
+**Recommendation:** Start with **Option A** (Official) - zero installation, OAuth login, works immediately. See [Install Guide](../../install_guides/MCP/MCP%20-%20Figma.md) for setup details.
 
 ---
 
@@ -362,8 +371,8 @@ Dependency Chain:
 ┌─────────────────────────────────────────────────────────────────┐
 │  .utcp_config.json                                               │
 │  └─► Configures: figma provider (among others)                    │
-│      └─► Package: mcp-figma                                      │
-│      └─► Auth: FIGMA_PERSONAL_ACCESS_TOKEN                      │
+│      └─► Package: figma-developer-mcp                            │
+│      └─► Auth: FIGMA_API_KEY                                     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -378,15 +387,17 @@ Dependency Chain:
       "figma": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "mcp-figma"],
+        "args": ["-y", "figma-developer-mcp", "--stdio"],
         "env": {
-          "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}"
+          "FIGMA_API_KEY": "figd_your_token_here"
         }
       }
     }
   }
 }
 ```
+
+> **Note**: Code Mode does NOT support `${VAR}` env substitution. You must hardcode the API key directly in the config.
 
 ### Related Skills
 
@@ -497,7 +508,8 @@ call_tool_chain({
 ### External Resources
 
 - [Figma API Documentation](https://www.figma.com/developers/api) - Official API reference
-- [mcp-figma npm](https://www.npmjs.com/package/mcp-figma) - Package documentation
+- [Official Figma MCP Server](https://developers.figma.com/docs/figma-mcp-server/) - Figma's official MCP (HTTP at mcp.figma.com) - **RECOMMENDED**
+- [figma-developer-mcp](https://www.npmjs.com/package/figma-developer-mcp) - Recommended package for Code Mode integration
 
 ### Related Skills
 

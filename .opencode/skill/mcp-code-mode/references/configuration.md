@@ -80,9 +80,9 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
           "figma": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["-y", "@modelcontextprotocol/server-figma"],
+            "args": ["-y", "figma-developer-mcp", "--stdio"],
             "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}"
+              "FIGMA_API_KEY": "${FIGMA_API_KEY}"
             }
           }
         }
@@ -251,9 +251,9 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
    {
      "transport": "stdio",
      "command": "npx",
-     "args": ["@modelcontextprotocol/server-figma"],
+     "args": ["-y", "figma-developer-mcp", "--stdio"],
      "env": {
-       "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_TOKEN}"
+       "FIGMA_API_KEY": "${FIGMA_API_KEY}"
      }
    }
    ```
@@ -282,7 +282,7 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 "env": {
   "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
   "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}",
-  "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_TOKEN}"
+  "FIGMA_API_KEY": "${FIGMA_API_KEY}"
 }
 ```
 
@@ -303,8 +303,7 @@ CLICKUP_API_KEY=pk_your_api_key_here
 CLICKUP_TEAM_ID=90151466006
 
 # Figma Configuration
-FIGMA_PERSONAL_ACCESS_TOKEN=figd_your_token_here
-FIGMA_TOKEN=figd_your_token_here  # Alias for convenience
+FIGMA_API_KEY=figd_your_token_here
 
 # Notion Configuration
 NOTION_TOKEN=ntn_your_token_here
@@ -331,7 +330,7 @@ WEBFLOW_API_TOKEN=your_webflow_token_here
    ```bash
    # Good
    CLICKUP_API_KEY=pk_123...
-   FIGMA_PERSONAL_ACCESS_TOKEN=figd_abc...
+   FIGMA_API_KEY=figd_abc...
 
    # Bad
    KEY=pk_123...
@@ -345,7 +344,7 @@ WEBFLOW_API_TOKEN=your_webflow_token_here
    CLICKUP_TEAM_ID=...
 
    # Figma
-   FIGMA_PERSONAL_ACCESS_TOKEN=...
+   FIGMA_API_KEY=...
    ```
 
 4. **Provide example file**
@@ -354,7 +353,7 @@ WEBFLOW_API_TOKEN=your_webflow_token_here
    cat > .env.example <<EOF
    CLICKUP_API_KEY=your_api_key_here
    CLICKUP_TEAM_ID=your_team_id_here
-   FIGMA_PERSONAL_ACCESS_TOKEN=your_token_here
+   FIGMA_API_KEY=your_token_here
    EOF
    ```
 
@@ -576,7 +575,7 @@ Error: Failed to start MCP server: webflow
 1. Check `command` and `args` are correct
 2. Test command manually:
    ```bash
-   npx @modelcontextprotocol/server-figma
+   npx -y figma-developer-mcp --stdio
    ```
 3. Verify npm/npx is in PATH
 4. Check for missing dependencies

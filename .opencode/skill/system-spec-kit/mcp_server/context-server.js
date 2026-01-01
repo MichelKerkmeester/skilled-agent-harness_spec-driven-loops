@@ -1,24 +1,24 @@
-#!/usr/bin/env node
-
-/**
- * Context MCP Server (Standalone)
- *
- * Exposes semantic context operations as MCP tools for Claude Code integration.
- * Provides memory_search with embedded content loading for accessing saved conversation context.
- *
- * Tools:
- * - memory_search: Semantic search across all memories (use includeContent: true to embed load logic)
- * - memory_match_triggers: Fast trigger phrase matching
- * - checkpoint_create/list/restore/delete: Memory state checkpointing
- *
- * @version 16.0.0
- * @module system-spec-kit/context-server
- * 
- * Logging conventions:
- * - console.error() - Errors and important status (goes to MCP stderr)
- * - console.warn() - Warnings for recoverable issues  
- * - console.log() - Debug info (usually disabled in production)
- */
+// ───────────────────────────────────────────────────────────────
+// context-server.js: MCP server for semantic memory operations
+// ───────────────────────────────────────────────────────────────
+//
+// Context MCP Server (Standalone)
+//
+// Exposes semantic context operations as MCP tools for Claude Code integration.
+// Provides memory_search with embedded content loading for accessing saved conversation context.
+//
+// Tools:
+// - memory_search: Semantic search across all memories (use includeContent: true to embed load logic)
+// - memory_match_triggers: Fast trigger phrase matching
+// - checkpoint_create/list/restore/delete: Memory state checkpointing
+//
+// @version 16.0.0
+// @module system-spec-kit/context-server
+// 
+// Logging conventions:
+// - console.error() - Errors and important status (goes to MCP stderr)
+// - console.warn() - Warnings for recoverable issues  
+// - console.log() - Debug info (usually disabled in production)
 
 'use strict';
 
@@ -54,9 +54,9 @@ const memoryParser = require(path.join(LIB_DIR, 'memory-parser.js'));
 const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
 const { validateFilePath } = require('../shared/utils');
 
-// ───────────────────────────────────────────────────────────────
-// BULK INDEXING CONFIGURATION
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   1. BULK INDEXING CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
 
 // Batch processing settings for memory_index_scan
 // Configurable via environment variables for performance tuning
@@ -68,7 +68,135 @@ let embeddingModelReady = false;
 
 // Rate limiting for memory_index_scan to prevent resource exhaustion (L15)
 const INDEX_SCAN_COOLDOWN = 60000; // 1 minute cooldown between scans
-let lastIndexScanTime = 0;
+// BUG-005 FIX: Removed in-memory lastIndexScanTime - now persisted in database config table
+
+/* ───────────────────────────────────────────────────────────────
+   2. BUG-001 FIX: DATABASE CHANGE NOTIFICATION
+   ─────────────────────────────────────────────────────────────── */
+
+const DB_UPDATED_FILE = path.join(__dirname, '../database/.db-updated');
+let lastDbCheck = 0;
+
+/**
+ * Check if the database was updated externally (e.g., by generate-context.js)
+ * and reinitialize the connection if needed.
+ * BUG-001: Fixes race condition where MCP server misses external DB changes.
+ * @returns {Promise<boolean>} True if database was reinitialized
+ */
+async function checkDatabaseUpdated() {
+  try {
+    if (fs.existsSync(DB_UPDATED_FILE)) {
+      const updateTime = parseInt(fs.readFileSync(DB_UPDATED_FILE, 'utf8'));
+      if (updateTime > lastDbCheck) {
+        console.error('[context-server] Database updated externally, reinitializing connection...');
+        lastDbCheck = updateTime;
+        // Reinitialize the database connection
+        await reinitializeDatabase();
+        return true;
+      }
+    }
+  } catch (e) {
+    // Ignore errors reading notification file
+  }
+  return false;
+}
+
+/**
+ * Reinitialize the database connection after external changes
+ * BUG-001: Closes and reopens DB to pick up external modifications.
+ */
+async function reinitializeDatabase() {
+  if (typeof vectorIndex.closeDb === 'function') {
+    vectorIndex.closeDb();
+  }
+  // Database will be reinitialized on next access via initializeDb()
+  vectorIndex.initializeDb();
+  
+  // Reinitialize dependent modules with new connection
+  const database = vectorIndex.getDb();
+  checkpoints.init(database);
+  accessTracker.init(database);
+  hybridSearch.init(database, vectorIndex.vectorSearch);
+  console.error('[context-server] Database connection reinitialized');
+}
+
+/* ───────────────────────────────────────────────────────────────
+   3. BUG-005 FIX: PERSISTENT RATE LIMITING
+   ─────────────────────────────────────────────────────────────── */
+
+/**
+ * Get the last index scan time from database config table
+ * BUG-005: Persists rate limit state across server restarts.
+ * @returns {Promise<number>} Unix timestamp of last scan, or 0 if never run
+ */
+async function getLastScanTime() {
+  try {
+    const db = vectorIndex.getDb();
+    // Ensure config table exists
+    db.exec(`
+      CREATE TABLE IF NOT EXISTS config (
+        key TEXT PRIMARY KEY,
+        value TEXT
+      )
+    `);
+    const row = db.prepare('SELECT value FROM config WHERE key = ?').get('last_index_scan');
+    return row ? parseInt(row.value) : 0;
+  } catch (e) {
+    console.error('[context-server] Error getting last scan time:', e.message);
+    return 0;
+  }
+}
+
+/**
+ * Set the last index scan time in database config table
+ * BUG-005: Persists rate limit state across server restarts.
+ * @param {number} time - Unix timestamp to store
+ */
+async function setLastScanTime(time) {
+  try {
+    const db = vectorIndex.getDb();
+    // Ensure config table exists
+    db.exec(`
+      CREATE TABLE IF NOT EXISTS config (
+        key TEXT PRIMARY KEY,
+        value TEXT
+      )
+    `);
+    db.prepare('INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)').run('last_index_scan', time.toString());
+  } catch (e) {
+    console.error('[context-server] Error setting last scan time:', e.message);
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   4. BUG-007 FIX: QUERY VALIDATION
+   ─────────────────────────────────────────────────────────────── */
+
+const MAX_QUERY_LENGTH = 10000; // Reasonable limit for search queries
+
+/**
+ * Validate and normalize a search query
+ * BUG-007: Properly rejects empty, null, and invalid queries.
+ * @param {*} query - Query to validate
+ * @returns {string} Normalized (trimmed) query string
+ * @throws {Error} If query is invalid
+ */
+function validateQuery(query) {
+  if (query === null || query === undefined) {
+    throw new Error('Query cannot be null or undefined');
+  }
+  if (typeof query !== 'string') {
+    throw new Error('Query must be a string');
+  }
+  const normalized = query.trim();
+  if (normalized.length === 0) {
+    throw new Error('Query cannot be empty or whitespace-only');
+  }
+  if (normalized.length > MAX_QUERY_LENGTH) {
+    throw new Error(`Query exceeds maximum length of ${MAX_QUERY_LENGTH} characters`);
+  }
+  return normalized;
+}
 
 /**
  * Check if the embedding model has been warmed up and is ready
@@ -78,9 +206,9 @@ function isEmbeddingModelReady() {
   return embeddingModelReady;
 }
 
-// ───────────────────────────────────────────────────────────────
-// BATCH PROCESSING UTILITIES
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   5. BATCH PROCESSING UTILITIES
+   ─────────────────────────────────────────────────────────────── */
 
 // Load error utilities
 const { isTransientError, userFriendlyError, MemoryError, ErrorCodes } = require(path.join(LIB_DIR, 'errors.js'));
@@ -148,9 +276,9 @@ async function processBatches(items, processor, batchSize = BATCH_SIZE, delayMs 
   return results;
 }
 
-// ───────────────────────────────────────────────────────────────
-// SAFE JSON PARSING
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   6. SAFE JSON PARSING
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Safely parse JSON with fallback value
@@ -167,9 +295,9 @@ function safeJsonParse(str, fallback = []) {
   }
 }
 
-// ───────────────────────────────────────────────────────────────
-// DEFAULT PATHS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   7. DEFAULT PATHS
+   ─────────────────────────────────────────────────────────────── */
 
 // Default base path - use environment variable or current working directory
 const DEFAULT_BASE_PATH = process.env.MEMORY_BASE_PATH || process.cwd();
@@ -200,9 +328,9 @@ function validateFilePathLocal(filePath) {
   return result;
 }
 
-// ───────────────────────────────────────────────────────────────
-// SEC-003: INPUT LENGTH VALIDATION (CWE-400 mitigation)
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   8. SEC-003: INPUT LENGTH VALIDATION (CWE-400 mitigation)
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Maximum allowed lengths for string inputs (defense against resource exhaustion)
@@ -242,9 +370,9 @@ function validateInputLengths(args) {
   }
 }
 
-// ───────────────────────────────────────────────────────────────
-// SERVER INITIALIZATION
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   9. SERVER INITIALIZATION
+   ─────────────────────────────────────────────────────────────── */
 
 const server = new Server(
   {
@@ -258,9 +386,9 @@ const server = new Server(
   }
 );
 
-// ───────────────────────────────────────────────────────────────
-// TOOL DEFINITIONS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   10. TOOL DEFINITIONS
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * List available tools
@@ -551,9 +679,9 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   ]
 }));
 
-// ───────────────────────────────────────────────────────────────
-// TOOL HANDLERS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   11. TOOL HANDLERS
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle tool calls
@@ -639,19 +767,39 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   }
 });
 
-// ───────────────────────────────────────────────────────────────
-// SEARCH HANDLER
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   12. SEARCH HANDLER
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_search tool
  */
 async function handleMemorySearch(args) {
+  // BUG-001: Check for external database updates before processing
+  await checkDatabaseUpdated();
+
   const { query, concepts, specFolder, limit = 10, tier, contextType, useDecay = true, includeContiguity = false, includeConstitutional = true, includeContent = false } = args;
+
+  // BUG-007: Validate query first with proper error handling
+  let normalizedQuery = null;
+  if (query !== undefined) {
+    try {
+      normalizedQuery = validateQuery(query);
+    } catch (validationError) {
+      // If concepts are provided, we can still proceed without query
+      if (!concepts || !Array.isArray(concepts) || concepts.length < 2) {
+        return {
+          content: [{ type: 'text', text: JSON.stringify({ error: validationError.message }) }]
+        };
+      }
+      // Has valid concepts, so query validation failure is OK - set to null
+      normalizedQuery = null;
+    }
+  }
 
   // Allow either query OR concepts (for multi-concept search)
   // P0-005: Check for non-empty trimmed string to prevent invalid embeddings
-  const hasValidQuery = query && typeof query === 'string' && query.trim().length > 0;
+  const hasValidQuery = normalizedQuery !== null;
   const hasValidConcepts = concepts && Array.isArray(concepts) && concepts.length >= 2;
 
   if (!hasValidQuery && !hasValidConcepts) {
@@ -698,7 +846,8 @@ async function handleMemorySearch(args) {
   }
 
   // Single query search (using query prefix for optimal retrieval)
-  const queryEmbedding = await embeddings.generateQueryEmbedding(query);
+  // BUG-007: Use normalizedQuery (validated and trimmed) instead of raw query
+  const queryEmbedding = await embeddings.generateQueryEmbedding(normalizedQuery);
   if (!queryEmbedding) {
     throw new Error('Failed to generate embedding for query');
   }
@@ -712,7 +861,8 @@ async function handleMemorySearch(args) {
 
   // Try hybrid search first (combines FTS5 + vector search via RRF fusion)
   try {
-    const hybridResults = hybridSearch.searchWithFallback(queryEmbedding, query, {
+    // BUG-007: Use normalizedQuery (validated and trimmed) for hybrid search
+    const hybridResults = hybridSearch.searchWithFallback(queryEmbedding, normalizedQuery, {
       limit,
       specFolder,
       useDecay,
@@ -845,14 +995,17 @@ async function formatSearchResults(results, searchType, includeContent = false) 
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// TRIGGER MATCHING HANDLER
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   13. TRIGGER MATCHING HANDLER
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_match_triggers tool - fast phrase matching without embeddings
  */
 async function handleMemoryMatchTriggers(args) {
+  // BUG-001: Check for external database updates before processing
+  await checkDatabaseUpdated();
+
   const { prompt, limit = 3 } = args;
 
   if (!prompt || typeof prompt !== 'string') {
@@ -900,9 +1053,9 @@ async function handleMemoryMatchTriggers(args) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// CRUD HANDLERS (memory_delete, memory_update, memory_list, memory_stats)
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   14. CRUD HANDLERS (memory_delete, memory_update, memory_list, memory_stats)
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_delete tool - delete by ID or bulk delete by spec folder
@@ -1132,6 +1285,9 @@ async function handleMemoryUpdate(args) {
  * Handle memory_list tool - paginated memory browsing
  */
 async function handleMemoryList(args) {
+  // BUG-001: Check for external database updates before processing
+  await checkDatabaseUpdated();
+
   const { limit: rawLimit = 20, offset: rawOffset = 0, specFolder, sortBy = 'created_at' } = args;
 
   // Validate specFolder parameter
@@ -1203,6 +1359,9 @@ async function handleMemoryList(args) {
  * Handle memory_stats tool - system-wide statistics
  */
 async function handleMemoryStats(args) {
+  // BUG-001: Check for external database updates before processing
+  await checkDatabaseUpdated();
+
   const database = vectorIndex.getDb();
 
   // Total count
@@ -1253,9 +1412,9 @@ async function handleMemoryStats(args) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// HEALTH CHECK HANDLER (L16)
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   15. HEALTH CHECK HANDLER (L16)
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_health tool - check health status of the memory system
@@ -1304,9 +1463,9 @@ async function handleMemoryHealth(args) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// CHECKPOINT HANDLERS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   16. CHECKPOINT HANDLERS
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle checkpoint_create tool - create a named checkpoint
@@ -1410,9 +1569,9 @@ async function handleCheckpointDelete(args) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// VALIDATION HANDLER
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   17. VALIDATION HANDLER
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_validate tool - record validation feedback for a memory
@@ -1448,9 +1607,9 @@ async function handleMemoryValidate(args) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// SHARED INDEXING LOGIC
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   18. SHARED INDEXING LOGIC
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Core indexing logic shared between handleMemorySave and indexSingleFile.
@@ -1541,14 +1700,17 @@ async function indexMemoryFile(filePath, { force = false } = {}) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// MEMORY SAVE HANDLER (Option 1: MCP Tool for indexing)
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   19. MEMORY SAVE HANDLER (Option 1: MCP Tool for indexing)
+   ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_save tool - index a single memory file
  */
 async function handleMemorySave(args) {
+  // BUG-001: Check for external database updates before processing
+  await checkDatabaseUpdated();
+
   const { filePath, force = false } = args;
 
   if (!filePath || typeof filePath !== 'string') {
@@ -1666,10 +1828,15 @@ async function handleMemoryIndexScan(args) {
     // Continue anyway - the actual indexing will catch dimension mismatches
   }
 
+  // BUG-001: Check for external database updates before processing
+  await checkDatabaseUpdated();
+
   // L15: Rate limiting check
+  // BUG-005: Use persistent rate limiting from database instead of in-memory variable
   const now = Date.now();
-  if (now - lastIndexScanTime < INDEX_SCAN_COOLDOWN) {
-    const waitTime = Math.ceil((INDEX_SCAN_COOLDOWN - (now - lastIndexScanTime)) / 1000);
+  const lastScanTime = await getLastScanTime();
+  if (now - lastScanTime < INDEX_SCAN_COOLDOWN) {
+    const waitTime = Math.ceil((INDEX_SCAN_COOLDOWN - (now - lastScanTime)) / 1000);
     return {
       content: [{
         type: 'text',
@@ -1682,7 +1849,8 @@ async function handleMemoryIndexScan(args) {
       isError: true
     };
   }
-  lastIndexScanTime = now;
+  // BUG-005: Persist the scan time to database
+  await setLastScanTime(now);
 
   const workspacePath = DEFAULT_BASE_PATH;
 
@@ -1796,9 +1964,9 @@ async function indexSingleFile(filePath, force = false) {
   return indexMemoryFile(filePath, { force });
 }
 
-// ───────────────────────────────────────────────────────────────
-// STARTUP SCAN (Option 4: Background indexing on server start)
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   20. STARTUP SCAN (Option 4: Background indexing on server start)
+   ─────────────────────────────────────────────────────────────── */
 
 // Mutex flag to prevent tool calls during startup scan
 let startupScanInProgress = false;
@@ -1890,9 +2058,9 @@ async function startupScan(basePath) {
   }
 }
 
-// ───────────────────────────────────────────────────────────────
-// GRACEFUL SHUTDOWN
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   21. GRACEFUL SHUTDOWN
+   ─────────────────────────────────────────────────────────────── */
 
 let shuttingDown = false;
 
@@ -1914,9 +2082,9 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
-// ───────────────────────────────────────────────────────────────
-// GLOBAL ERROR HANDLERS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   22. GLOBAL ERROR HANDLERS
+   ─────────────────────────────────────────────────────────────── */
 
 process.on('uncaughtException', (err) => {
   console.error('[context-server] Uncaught exception:', err);
@@ -1934,9 +2102,9 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('[context-server] Unhandled rejection at:', promise, 'reason:', reason);
 });
 
-// ───────────────────────────────────────────────────────────────
-// MAIN
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   23. MAIN
+   ─────────────────────────────────────────────────────────────── */
 
 async function main() {
   // ─────────────────────────────────────────────────────────────────

@@ -22,7 +22,7 @@ Task list template for feature implementation with user story organization and i
 **⚠️ THIS TEMPLATE CONTAINS SAMPLE TASKS FOR ILLUSTRATION ONLY**
 
 The `/spec_kit:tasks` command MUST replace these with actual tasks based on:
-- User stories from spec.md (with their priorities P1, P2, P3...)
+- User stories from spec.md (with their priorities P0, P1, P2)
 - Feature requirements from plan.md
 
 Tasks MUST be organized by user story so each story can be:
@@ -39,7 +39,7 @@ Tasks MUST be organized by user story so each story can be:
 ### Metadata
 - **Category**: Tasks
 - **Tags**: [YOUR_VALUE_HERE: feature-name], [YOUR_VALUE_HERE: area]
-- **Priority**: [NEEDS CLARIFICATION: What is the task priority? (a) P0-critical - must complete first (b) P1-high - core functionality (c) P2-medium - important but not blocking (d) P3-low - can defer]
+- **Priority**: [NEEDS CLARIFICATION: What is the task priority? (a) P0-critical - HARD BLOCKER, must complete (b) P1-high - must complete OR user-approved deferral (c) P2-medium - can defer without approval]
 
 ### Input
 Design documents from `/specs/[###-feature-name]/`
@@ -247,7 +247,7 @@ Choose based on project complexity and traceability requirements.
 
 ---
 
-### Phase 5: User Story 3 - [YOUR_VALUE_HERE: title] (Priority: P3)
+### Phase 5: User Story 3 - [YOUR_VALUE_HERE: title] (Priority: P2)
 
 **Goal**: [YOUR_VALUE_HERE: brief description of what this story delivers]
 

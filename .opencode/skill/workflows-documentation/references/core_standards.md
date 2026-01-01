@@ -168,6 +168,34 @@ allowed-tools: Read, Write, Edit
 
 **Validation**: Use `scripts/quick_validate.py --validate-only file.md` or `scripts/extract_structure.py file.md` for structure analysis.
 
+### H2 Emoji Violations (BLOCKING)
+
+For template-based document types (SKILL, README, asset, reference), missing H2 emojis are **BLOCKING errors**.
+
+| Violation | Detection | Severity | Fix |
+|-----------|-----------|----------|-----|
+| H2 missing emoji (SKILL) | `## 1. SECTION` without emoji | `error` | Add emoji: `## 1. 🎯 SECTION` |
+| H2 missing emoji (README) | `## 1. SECTION` without emoji | `error` | Add emoji: `## 1. 📖 SECTION` |
+| H2 missing emoji (asset) | `## 1. SECTION` without emoji | `error` | Add emoji from template |
+| H2 missing emoji (reference) | `## 1. SECTION` without emoji | `error` | Add emoji from template |
+
+**Root Cause**: Headers reconstructed from memory instead of copied from template.
+
+**Prevention**:
+1. Always LOAD template before creating document
+2. COPY header skeleton verbatim (including emojis)
+3. Never type headers from memory
+4. Validate with `extract_structure.py` before delivery
+
+**Standard Section Emojis**:
+```
+📖 OVERVIEW       🚀 QUICK START    📁 STRUCTURE
+⚡ FEATURES       ⚙️ CONFIGURATION   💡 USAGE EXAMPLES
+🛠️ TROUBLESHOOTING  ❓ FAQ           📚 RELATED DOCUMENTS
+🎯 WHEN TO USE    🧭 SMART ROUTING  📋 RULES
+🔄 CORE WORKFLOW  🚫 ANTI-PATTERNS  🔗 RELATED RESOURCES
+```
+
 ---
 
 ## 6. 🔀 DIVIDER USAGE RULES

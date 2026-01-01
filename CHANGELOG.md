@@ -8,6 +8,62 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## 1.0.2.x Series
 
+### [**1.0.2.4**] - 2026-01-01
+
+Major infrastructure release with critical bug fixes, security hardening, MCP install automation, and comprehensive codebase standardization across 70+ files. Adds sub-agent delegation for token efficiency and universal stack-agnostic debugging.
+
+#### Fixed
+- **Critical**: SQLite transaction nesting error in `memory_index_scan` - `indexMemory()` now uses composable `database.transaction()` wrapper
+- **Critical**: Race condition where database changes weren't visible across MCP/script connections - added file-based notification with `reinitializeDatabase()`
+- **Critical**: Failed vector insertions leaving orphaned metadata - explicit transaction control with rollback
+- **High**: Schema created with wrong embedding dimensions before provider warmup - `getConfirmedEmbeddingDimension()` with polling
+- **High**: Constitutional cache didn't invalidate on external database edits - mtime tracking added
+- **High**: Rate limiting state lost on server restart - persistent `config` table in SQLite
+- **High**: Stale prepared statements after database reset - `clearPreparedStatements()` in reset paths
+- Query validation for whitespace-only/empty/null inputs
+- UTF-8 BOM (EF BB BF) detection in memory parser
+- Cache key collision risk - SHA256 hash-based keys
+- Non-interactive mode silently using defaults - now fails with guidance
+- Orphaned vectors never auto-cleaned - `verifyIntegrity({ autoClean: true })`
+
+#### Security
+- **CWE-22**: Path traversal protection in CLI `CONFIG.DATA_FILE` and DB-stored paths
+- **CWE-400**: Input length limits for MCP tool parameters (query 10K, title 500, paths 500 chars)
+- MEDIUM severity issues reduced from 4 to 1
+
+#### Added
+- **MCP Install Scripts Suite**: Shell-based installers for all 6 MCP servers with shared utilities library (33 functions)
+- **Sub-agent delegation**: `/spec_kit:handover` and `/memory:save` now delegate heavy work to sub-agents for token efficiency
+- **Session behavior modes**: `--brief`, `--verbose`, `--debug` flags for controlling response verbosity
+- **Universal debugging methodology**: Stack-agnostic 4-phase approach (Observe → Analyze → Hypothesize → Fix) with new reference doc
+- **Auto/Confirm modes**: 6 `/create` commands now support `:auto` and `:confirm` mode flags
+- **Optional research chaining**: `/spec_kit:complete` supports `:with-research` and `:auto-debug` flags
+- Configurable scoring weights for smart ranking (`smartRanking.recencyWeight`)
+- Configurable trigger phrase limit via `maxTriggersPerMemory`
+- Plain-language gates (~50+ "STOP HERE - Wait for X" markers) in 16 command files
+- "What Next?" navigation tables in 14 commands
+- Confidence checkpoints in 9 YAML workflow files
+
+#### Changed
+- **References reorganized**: 18 files moved from flat structure into 7 logical sub-folders (`config/`, `debugging/`, `memory/`, `structure/`, `templates/`, `validation/`, `workflows/`)
+- **79 internal links fixed** across reference documentation
+- **Lib consolidation**: Shared modules centralized in `lib/` folder with re-export wrappers
+- **Asset template alignment**: 9 asset files standardized across 6 skill folders
+- **workflows-code skill**: Priority-based resource loading (P1/P2/P3), references reorganized into 5 sub-folders
+- **Code style alignment**: 70 files standardized with snake_case naming, 3-line box-drawing headers, ~3,900 lines metadata removed
+- `/spec_kit:debug` made stack-agnostic - removed frontend-specific tool references
+- `implementation-summary.md` now required for all spec levels
+- Template priority standardized to P0/P1/P2 only
+
+#### Documentation
+- New `universal_debugging_methodology.md` reference (~150 lines)
+- New `lib/README.md` with architecture diagrams (447 lines)
+- Updated MCP install guides with multi-provider embedding support
+- New install scripts `README.md` with 9-section structure
+- SKILL.md routing tables with keyword navigation
+
+---
+
 ### [**1.0.2.3**] - 2025-12-31
 
 Comprehensive Spec Kit & Memory system audit with test suite fixes, documentation improvements, and new Script Registry for dynamic script discovery.

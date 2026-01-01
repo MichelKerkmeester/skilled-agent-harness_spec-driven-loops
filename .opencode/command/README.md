@@ -104,6 +104,31 @@ Examples:
 
 ---
 
+## Session Behavior Modes
+
+Commands support session-wide behavior flags that affect response verbosity:
+
+| Flag | Effect |
+|------|--------|
+| `--brief` | Concise responses, minimal explanations |
+| `--verbose` | Detailed explanations, reasoning shown |
+| `--debug` | Maximum diagnostic output, all tool calls |
+
+**Usage:**
+```
+/spec_kit:implement --brief "add validation"
+/spec_kit:plan --verbose "refactor auth system"
+```
+
+Commands that support modes document it in frontmatter:
+```yaml
+argument-hint: "<args> [--brief|--verbose|--debug]"
+```
+
+See AGENTS.md Section 8 for full mode definitions.
+
+---
+
 ## Adding New Commands
 
 1. Create a new `.md` file in the appropriate namespace directory

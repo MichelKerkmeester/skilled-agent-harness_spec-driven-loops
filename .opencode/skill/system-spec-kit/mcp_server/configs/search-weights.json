@@ -61,5 +61,13 @@
     "triggerMatchMaxMs": 50,
     "hybridSearchMaxMs": 300,
     "ftsSearchMaxMs": 100
+  },
+
+  "maxTriggersPerMemory": 10,
+
+  "smartRanking": {
+    "recencyWeight": 0.5,
+    "accessWeight": 0.3,
+    "relevanceWeight": 0.2
   }
 }

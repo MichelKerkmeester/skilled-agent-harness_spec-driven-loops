@@ -67,6 +67,8 @@ EXECUTE THIS CHECK FIRST:
         │   └────────────────────────────────────────────────────────────┘
         └─ WAIT for user response
 
+**STOP HERE** - Wait for user to provide or confirm a valid spec folder path before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until a valid spec_path is confirmed
 ```
 
@@ -155,6 +157,8 @@ EXECUTE AFTER PHASE 2 PASSES:
 
 Note: Unlike other workflows, resume defaults to INTERACTIVE without asking,
 since it's a context-recovery operation where user review is beneficial.
+
+**STOP HERE** - Wait for artifact validation or user selection before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until artifacts are validated or user chooses option
 ```
@@ -536,3 +540,32 @@ Parallel dispatch is only used in implementation-heavy workflows (`/spec_kit:com
 | `/spec_kit:complete`  | Start new feature (resume continues existing)       |
 | `/spec_kit:plan`      | Create planning artifacts (if missing on resume)    |
 | `/spec_kit:implement` | Execute implementation (can be called after resume) |
+
+---
+
+## 10. 🔗 COMMAND CHAIN
+
+This command continues work from a handover:
+
+```
+[/spec_kit:handover] → /spec_kit:resume → [Continue workflow]
+```
+
+**Prerequisite:**
+← `/spec_kit:handover [spec-folder-path]` (creates handover.md)
+
+---
+
+## 11. 🔜 WHAT NEXT?
+
+After resume completes, suggest relevant next steps based on progress:
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Planning incomplete | `/spec_kit:plan [feature-description]` | Complete planning phase |
+| Ready to implement | `/spec_kit:implement [spec-folder-path]` | Continue implementation |
+| Implementation in progress | Continue from last task | Resume where you left off |
+| Found issues | `/spec_kit:debug [spec-folder-path]` | Debug problems |
+| Session ending again | `/spec_kit:handover [spec-folder-path]` | Save progress for later |
+
+**ALWAYS** end with: "What would you like to work on?"

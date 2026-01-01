@@ -42,6 +42,8 @@ EXECUTE THIS CHECK FIRST:
         ├─ WAIT for user selection
         └─ SET STATUS: ✅ PASSED → Proceed to cleanup execution
 
+**STOP HERE** - Wait for user to confirm deletion action ([a]ll, [r]eview, [n]one) before deleting any memories.
+
 ⛔ HARD STOP: DO NOT delete any memories until user explicitly chooses [a]ll or [y]es per item
 ⛔ NEVER auto-delete without user confirmation
 ```

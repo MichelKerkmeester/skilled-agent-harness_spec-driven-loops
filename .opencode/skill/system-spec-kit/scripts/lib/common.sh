@@ -1,24 +1,14 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# LIB: VALIDATION UTILITIES
+# ───────────────────────────────────────────────────────────────
 #
-# lib/common.sh - Validation System Utilities (Colors, Logging, Results)
-#
-# PURPOSE: Colors, logging functions, and result tracking for validators.
-#          This is the LOW-LEVEL utility file for the validation system.
-#
-# NOTE: There is also scripts/common.sh which provides HIGH-LEVEL utilities
-#       (repo detection, branch management, path resolution).
-#       These are SEPARATE files with different purposes:
-#         - scripts/common.sh     → Repo/branch/path utilities
-#         - scripts/lib/common.sh → Colors/logging for validators (this file)
-#
-# Sourced by: validators/*.sh, validate-spec.sh, and other scripts
-#
-# VERSION: 1.0.0
-# UPDATED: 2024-12-24
+# Colors, logging functions, and result tracking for validators.
+# NOTE: Separate from scripts/common.sh (repo/branch/path utilities)
 
-# ============================================================================
-# COLOR DEFINITIONS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 1. COLOR DEFINITIONS
+# ───────────────────────────────────────────────────────────────
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -27,126 +17,91 @@ BLUE='\033[0;34m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-# Disable colors for non-TTY (piped output, CI, etc.)
 if [[ ! -t 1 ]]; then
     RED='' GREEN='' YELLOW='' BLUE='' BOLD='' NC=''
 fi
 
-# ============================================================================
-# GLOBAL RESULT TRACKING
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 2. GLOBAL RESULT TRACKING
+# ───────────────────────────────────────────────────────────────
 
 declare -a RESULTS=()
 ERRORS=0
 WARNINGS=0
 INFOS=0
 
-# ============================================================================
-# LOGGING FUNCTIONS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 3. LOGGING FUNCTIONS
+# ───────────────────────────────────────────────────────────────
 
-# _json_escape(string)
-# Escape a string for safe JSON inclusion
 _json_escape() {
     local str="$1"
-    str="${str//\\/\\\\}"    # Backslash
-    str="${str//\"/\\\"}"    # Double quote
-    str="${str//$'\n'/\\n}"  # Newline
-    str="${str//$'\t'/\\t}"  # Tab
-    str="${str//$'\r'/\\r}"  # Carriage return
+    str="${str//\\/\\\\}"
+    str="${str//\"/\\\"}"
+    str="${str//$'\n'/\\n}"
+    str="${str//$'\t'/\\t}"
+    str="${str//$'\r'/\\r}"
     printf '%s' "$str"
 }
 
-# log_pass(rule, message, [remediation])
-# Log a passing validation check
 log_pass() {
     local rule="$1"
     local message="$2"
     local remediation="${3:-}"
     local remediation_json="null"
-    
-    if [[ -n "$remediation" ]]; then
-        remediation_json="\"$(_json_escape "$remediation")\""
-    fi
-    
+    [[ -n "$remediation" ]] && remediation_json="\"$(_json_escape "$remediation")\""
     printf "${GREEN}✓${NC} ${BOLD}%s${NC}: %s\n" "$rule" "$message"
     RESULTS+=("{\"rule\":\"$(_json_escape "$rule")\",\"status\":\"pass\",\"message\":\"$(_json_escape "$message")\",\"remediation\":$remediation_json}")
 }
 
-# log_warn(rule, message, [remediation])
-# Log a warning (non-blocking issue)
 log_warn() {
     local rule="$1"
     local message="$2"
     local remediation="${3:-}"
     local remediation_json="null"
-    
-    if [[ -n "$remediation" ]]; then
-        remediation_json="\"$(_json_escape "$remediation")\""
-    fi
-    
+    [[ -n "$remediation" ]] && remediation_json="\"$(_json_escape "$remediation")\""
     printf "${YELLOW}⚠${NC} ${BOLD}%s${NC}: %s\n" "$rule" "$message"
     RESULTS+=("{\"rule\":\"$(_json_escape "$rule")\",\"status\":\"warn\",\"message\":\"$(_json_escape "$message")\",\"remediation\":$remediation_json}")
     ((WARNINGS++))
 }
 
-# log_error(rule, message, [remediation])
-# Log an error (blocking issue)
 log_error() {
     local rule="$1"
     local message="$2"
     local remediation="${3:-}"
     local remediation_json="null"
-    
-    if [[ -n "$remediation" ]]; then
-        remediation_json="\"$(_json_escape "$remediation")\""
-    fi
-    
+    [[ -n "$remediation" ]] && remediation_json="\"$(_json_escape "$remediation")\""
     printf "${RED}✗${NC} ${BOLD}%s${NC}: %s\n" "$rule" "$message"
     RESULTS+=("{\"rule\":\"$(_json_escape "$rule")\",\"status\":\"error\",\"message\":\"$(_json_escape "$message")\",\"remediation\":$remediation_json}")
     ((ERRORS++))
 }
 
-# log_info(rule, message, [remediation])
-# Log an informational message
 log_info() {
     local rule="$1"
     local message="$2"
     local remediation="${3:-}"
     local remediation_json="null"
-    
-    if [[ -n "$remediation" ]]; then
-        remediation_json="\"$(_json_escape "$remediation")\""
-    fi
-    
+    [[ -n "$remediation" ]] && remediation_json="\"$(_json_escape "$remediation")\""
     printf "${BLUE}ℹ${NC} ${BOLD}%s${NC}: %s\n" "$rule" "$message"
     RESULTS+=("{\"rule\":\"$(_json_escape "$rule")\",\"status\":\"info\",\"message\":\"$(_json_escape "$message")\",\"remediation\":$remediation_json}")
     ((INFOS++))
 }
 
-# log_detail(message)
-# Log an indented detail line (no JSON tracking)
 log_detail() {
-    local message="$1"
-    printf "    - %s\n" "$message"
+    printf "    - %s\n" "$1"
 }
 
-# ============================================================================
-# UTILITY FUNCTIONS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 4. UTILITY FUNCTIONS
+# ───────────────────────────────────────────────────────────────
 
-# get_script_dir()
-# Returns the directory of the calling script
 get_script_dir() {
     local source="${BASH_SOURCE[1]}"
     local dir
-    
-    # Resolve symlinks
     while [[ -L "$source" ]]; do
         dir="$(cd -P "$(dirname "$source")" && pwd)"
         source="$(readlink "$source")"
         [[ "$source" != /* ]] && source="$dir/$source"
     done
-    
     cd -P "$(dirname "$source")" && pwd
 }

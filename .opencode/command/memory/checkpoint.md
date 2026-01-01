@@ -58,6 +58,8 @@ EXECUTE THIS CHECK FIRST:
     ├─ Show usage help with subcommand options
     └─ SET STATUS: ⛔ BLOCKED (awaiting valid subcommand)
 
+**STOP HERE** - Wait for user to provide valid subcommand and checkpoint name before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED
 ```
 

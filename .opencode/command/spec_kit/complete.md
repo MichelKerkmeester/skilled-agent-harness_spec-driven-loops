@@ -1,6 +1,6 @@
 ---
-description: Full end-to-end SpecKit workflow (14 steps) - supports :auto and :confirm modes
-argument-hint: "<feature-description> [:auto|:confirm]"
+description: Full end-to-end SpecKit workflow (14+ steps) - supports :auto, :confirm, :with-research, and :auto-debug modes
+argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:auto-debug]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -29,6 +29,8 @@ EXECUTE THIS CHECK FIRST:
 └─ IF $ARGUMENTS contains content:
     ├─ Store as: feature_description
     └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
+
+**STOP HERE** - Wait for user to provide the feature description before continuing.
 
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer features from context, screenshots, or conversation history
@@ -80,6 +82,8 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 6. SET STATUS: ✅ PASSED (Stateless - no .spec-active file created)
 
+**STOP HERE** - Wait for user to select A/B/C/D and execution mode before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until user explicitly answers
 ⛔ NEVER auto-create spec folders without user confirmation
 ⛔ NEVER auto-select execution mode without suffix or explicit choice
@@ -130,6 +134,8 @@ CHECK spec_choice value from Phase 2:
         ├─ Acknowledge loaded context briefly
         └─ SET STATUS: ✅ PASSED
 
+**STOP HERE** - Wait for user to select memory loading option before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
 ```
 
@@ -137,15 +143,101 @@ CHECK spec_choice value from Phase 2:
 
 ---
 
+## 🔀 PHASE 2.5: OPTIONAL RESEARCH PHASE (Conditional)
+
+**STATUS: ☐ SKIP / ☐ TRIGGERED**
+
+> **Optional Chained Workflow:** This phase integrates `/spec_kit:research` into the complete workflow when triggered.
+
+```
+EXECUTE AFTER PHASE 2 PASSES:
+
+1. CHECK for research trigger:
+
+├─ IF `:with-research` flag present in command:
+│   ├─ research_triggered = TRUE
+│   └─ trigger_reason = "explicit_flag"
+│
+├─ ELSE evaluate confidence from Step 1-2 analysis:
+│   ├─ IF confidence_score < 60%:
+│   │   ├─ SUGGEST research:
+│   │   │   ┌────────────────────────────────────────────────────────┐
+│   │   │   │ ⚠️ Technical uncertainty detected (confidence: [NN%])   │
+│   │   │   │                                                        │
+│   │   │   │ Would you like to run a research phase first?           │
+│   │   │   │                                                        │
+│   │   │   │ A) Yes - Run 9-step research workflow before planning   │
+│   │   │   │ B) No - Proceed directly to specification               │
+│   │   │   │ C) Review - Show me what's uncertain first              │
+│   │   │   └────────────────────────────────────────────────────────┘
+│   │   ├─ WAIT for user response
+│   │   ├─ IF A selected:
+│   │   │   ├─ research_triggered = TRUE
+│   │   │   └─ trigger_reason = "uncertainty_detected"
+│   │   └─ IF B or C selected:
+│   │       └─ research_triggered = FALSE
+│   │
+│   └─ ELSE (confidence >= 60%):
+│       └─ research_triggered = FALSE
+
+2. IF research_triggered == TRUE:
+
+├─ Display: "📚 Initiating research phase..."
+├─ Execute research workflow (9 steps):
+│   ├─ Use same spec_path from Phase 2
+│   ├─ Use same execution_mode (auto/confirm)
+│   ├─ Steps 1-9 of research workflow
+│   └─ Creates: research.md in spec folder
+│
+├─ On research completion, display CHECKPOINT:
+│   ┌────────────────────────────────────────────────────────────────┐
+│   │ 📍 WORKFLOW CHECKPOINT - Research Complete                     │
+│   ├────────────────────────────────────────────────────────────────┤
+│   │ ✅ Research phase complete                                     │
+│   │                                                                │
+│   │ Created: research.md (17 sections)                             │
+│   │ Key Findings: [brief 2-3 bullet summary]                       │
+│   │                                                                │
+│   │ Current workflow progress:                                      │
+│   │ ✅ Phase 1-2: Input + Setup complete                           │
+│   │ ✅ Phase 2.5: Research complete                                │
+│   │ ☐ Steps 1-14: Main workflow pending                             │
+│   │                                                                │
+│   │ Continue to Step 1 (Request Analysis)? [Y/n/review]            │
+│   │                                                                │
+│   │ Options:                                                       │
+│   │   Y - Continue to main workflow                                 │
+│   │   n - Pause workflow here                                       │
+│   │   review - Review research.md before continuing                │
+│   └────────────────────────────────────────────────────────────────┘
+│
+├─ WAIT for user response
+├─ IF 'review' → Read and display research.md, re-prompt
+├─ IF 'n' → Pause workflow, SET STATUS: ⏸️ PAUSED
+└─ IF 'Y' → SET STATUS: ✅ PASSED, proceed with research context loaded
+
+3. IF research_triggered == FALSE:
+└─ SET STATUS: ⏭️ SKIP (no research needed)
+
+**STOP HERE** - If research triggered, wait for checkpoint confirmation before continuing.
+
+⛔ DO NOT skip checkpoint prompt after research completes
+```
+
+**Phase 2.5 Output:** `research_triggered = [yes/no]` | `research_findings = ________________`
+
+---
+
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                      | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                                  |
-| -------------------------- | ----------------- | ----------- | --------------------------------------------- |
-| PHASE 1: INPUT             | ✅ PASSED          | ______      | feature_description: ______                   |
-| PHASE 2: SETUP (Spec+Mode) | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
-| PHASE 3: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
+| PHASE                      | REQUIRED STATUS    | YOUR STATUS | OUTPUT VALUE                                  |
+| -------------------------- | ------------------ | ----------- | --------------------------------------------- |
+| PHASE 1: INPUT             | ✅ PASSED           | ______      | feature_description: ______                   |
+| PHASE 2: SETUP (Spec+Mode) | ✅ PASSED           | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
+| PHASE 2.5: RESEARCH        | ✅ PASSED or ⏭️ SKIP | ______      | research_triggered: ______                    |
+| PHASE 3: MEMORY            | ✅ PASSED or ⏭️ N/A  | ______      | memory_loaded: ______                         |
 
 ```
 VERIFICATION CHECK:
@@ -181,6 +273,12 @@ VERIFICATION CHECK:
 - **Made technical decisions without citing sources**
 - **Claimed certainty without evidence (fabricated or guessed)**
 - **Failed to escalate after 2 failed attempts or 10 minutes**
+
+**Optional Workflow Violations:**
+- **Skipped checkpoint prompt after research phase completed**
+- **Skipped checkpoint prompt after debug delegation completed**
+- **Did not suggest debug after 3+ failed fix attempts (unless :auto-debug flag)**
+- **Auto-dispatched debug without :auto-debug flag**
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
@@ -232,15 +330,15 @@ FOR CONFIDENCE VIOLATIONS:
 
 ## PHASE A: PLANNING (Steps 1-7)
 
-| STEP | NAME              | STATUS | REQUIRED OUTPUT           | VERIFICATION                          |
-| ---- | ----------------- | ------ | ------------------------- | ------------------------------------- |
-| 1    | Request Analysis  | ☐      | requirement_summary       | Scope defined                         |
-| 2    | Pre-Work Review   | ☐      | coding_standards_summary  | AGENTS.md reviewed                    |
-| 3    | Specification     | ☐      | `spec.md` created         | File exists, no [NEEDS CLARIFICATION] |
-| 4    | Clarification     | ☐      | updated `spec.md`         | Ambiguities resolved                  |
-| 5    | Quality Checklist | ☐      | `checklist.md` (Level 2+) | Checklist items defined               |
-| 6    | Planning          | ☐      | `plan.md` created         | Technical approach documented         |
-| 7    | Task Breakdown    | ☐      | `tasks.md` created        | All tasks listed with IDs             |
+| STEP | NAME              | STATUS | REQUIRED OUTPUT                            | VERIFICATION                          |
+| ---- | ----------------- | ------ | ------------------------------------------ | ------------------------------------- |
+| 1    | Request Analysis  | ☐      | requirement_summary                        | Scope defined                         |
+| 2    | Pre-Work Review   | ☐      | coding_standards_summary                   | AGENTS.md reviewed                    |
+| 3    | Specification     | ☐      | `spec.md` created                          | File exists, no [NEEDS CLARIFICATION] |
+| 4    | Clarification     | ☐      | updated `spec.md`                          | Ambiguities resolved                  |
+| 5    | Quality Checklist | ☐      | `checklist.md` (Level 2+)                  | Checklist items defined               |
+| 6    | Planning          | ☐      | `plan.md` (+ research.md if Phase 2.5 ran) | Technical approach documented         |
+| 7    | Task Breakdown    | ☐      | `tasks.md` created                         | All tasks listed with IDs             |
 
 ---
 
@@ -264,6 +362,8 @@ IF any artifact missing or incomplete:
 
 WHEN all artifacts verified:
 └─ SET PHASE STATUS: ✅ PASSED → Proceed to Step 8
+
+**STOP HERE** - Verify all planning artifacts exist before starting implementation.
 
 ⛔ HARD STOP: DO NOT start Step 8 until Phase Gate shows ✅ PASSED
 ⛔ NEVER skip directly to writing implementation code
@@ -293,7 +393,8 @@ STEP 10 (Development) REQUIREMENTS:
 ├─ MUST load tasks.md and execute tasks in order
 ├─ MUST mark each task [x] in tasks.md when completed
 ├─ MUST NOT claim "development complete" until ALL tasks marked [x]
-└─ MUST test code changes before marking complete
+├─ MUST test code changes before marking complete
+└─ See "STEP 10 DEBUG INTEGRATION" below for failure handling
 
 STEP 11 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
 ├─ ⛔ BLOCKING: This step is REQUIRED for Level 2+ before claiming completion
@@ -349,6 +450,83 @@ STEP 14 (Session Handover Check) REQUIREMENTS:
 ├─ WAIT for user response
 ├─ IF user accepts → Run /spec_kit:handover before final completion
 └─ IF user declines → Proceed to mark workflow complete
+```
+
+---
+
+## 🔀 STEP 10 DEBUG INTEGRATION (Conditional)
+
+> **Optional Chained Workflow:** This integrates `/spec_kit:debug` into Step 10 when implementation failures occur.
+
+```
+DURING STEP 10 (Development):
+
+TRACK failure attempts per task:
+├─ failure_count = 0 (reset for each task in tasks.md)
+├─ On each failed fix attempt: failure_count++
+
+IF failure_count >= 3:
+
+├─ IF `:auto-debug` flag present:
+│   ├─ AUTO dispatch debug sub-agent
+│   └─ debug_mode = "autonomous"
+│
+└─ ELSE (no flag):
+    ├─ SUGGEST debug delegation:
+    │   ┌────────────────────────────────────────────────────────────────┐
+    │   │ ⚠️ Multiple fix attempts failed (3+) for task [T###]            │
+    │   │                                                                │
+    │   │ Would you like to delegate to a debug agent?                   │
+    │   │                                                                │
+    │   │ A) Yes - Dispatch debug agent for fresh analysis               │
+    │   │ B) No - Continue debugging manually                            │
+    │   │ C) Skip task - Move to next task in tasks.md                   │
+    │   │ D) Pause - Stop workflow and review                             │
+    │   └────────────────────────────────────────────────────────────────┘
+    ├─ WAIT for user response
+    ├─ IF A selected: debug_mode = "interactive"
+    ├─ IF B selected: Continue manual debugging (reset failure_count)
+    ├─ IF C selected: Mark task as [SKIPPED], move to next
+    └─ IF D selected: Pause workflow
+
+IF debug triggered (A selected or auto-debug):
+
+├─ Store: current_task_id = [T### from tasks.md]
+├─ Execute debug workflow (5 steps):
+│   ├─ Use same spec_path
+│   ├─ Context = current error + previous attempts
+│   └─ Sub-agent dispatched via Task tool
+│
+├─ On debug completion, display CHECKPOINT:
+│   ┌────────────────────────────────────────────────────────────────┐
+│   │ 📍 WORKFLOW CHECKPOINT - Debug Complete                        │
+│   ├────────────────────────────────────────────────────────────────┤
+│   │ ✅ Debug delegation complete                                   │
+│   │                                                                │
+│   │ Task: [T### - task description]                                │
+│   │ Root Cause: [from sub-agent analysis]                          │
+│   │ Fix: [applied / pending review]                                │
+│   │                                                                │
+│   │ Current workflow progress:                                      │
+│   │ ✅ Steps 1-9: Planning + Analysis complete                     │
+│   │ 🔄 Step 10: Development in progress                            │
+│   │   └─ [X/Y] tasks complete                                      │
+│   │ ☐ Steps 11-14: Verification + Completion pending                │
+│   │                                                                │
+│   │ Continue with Step 10? [Y/n/review]                            │
+│   │                                                                │
+│   │ Options:                                                       │
+│   │   Y - Retry task with fix applied                               │
+│   │   n - Pause workflow here                                       │
+│   │   review - Review debug findings before continuing              │
+│   └────────────────────────────────────────────────────────────────┘
+│
+├─ WAIT for user response
+├─ IF 'review' → Display full debug report, re-prompt
+├─ IF 'n' → Pause workflow
+└─ IF 'Y' → Reset failure_count, retry current task or move to next
+
+⛔ DO NOT skip checkpoint prompt after debug completes
 ```
 
 ---
@@ -531,3 +709,85 @@ After agents return, hypotheses are verified by reading identified files and bui
 - **Direct**: "proceed directly", "handle directly", "skip parallel"
 - **Parallel**: "use parallel", "dispatch agents", "parallelize"
 - **Auto-decide**: "auto-decide", "auto mode", "decide for me" (1 hour session preference)
+
+---
+
+## 8. 🔗 COMMAND CHAIN
+
+This command is the full SpecKit workflow with optional chained sub-workflows:
+
+```
+                    ┌─────────────────────┐
+                    │ /spec_kit:complete  │
+                    └─────────┬───────────┘
+                              │
+         ┌────────────────────┼────────────────────┐
+         │                    │                    │
+         ▼                    │                    │
+┌─────────────────┐           │                    │
+│ :with-research  │           │                    │
+│ (OPTIONAL)      │           │                    │
+│                 │           │                    │
+│ 9-step research │           │                    │
+│ ↓               │           │                    │
+│ research.md     │           │                    │
+└────────┬────────┘           │                    │
+         │                    │                    │
+         └────────────────────┼────────────────────┘
+                              │
+                              ▼
+                    ┌─────────────────────┐
+                    │ Steps 1-9: Planning │
+                    └─────────┬───────────┘
+                              │
+                              ▼
+                    ┌─────────────────────┐
+                    │ Step 10: Development│◄──────────────┐
+                    └─────────┬───────────┘               │
+                              │                           │
+                    ┌─────────┼─────────┐                 │
+                    │ 3+ failures?      │                 │
+                    └─────────┼─────────┘                 │
+                              │                           │
+                              ▼                           │
+                    ┌─────────────────────┐               │
+                    │ :auto-debug         │               │
+                    │ (OPTIONAL)          │               │
+                    │                     │               │
+                    │ 5-step debug        │───────────────┘
+                    │ ↓                   │   (retry with fix)
+                    │ debug-delegation.md │
+                    └─────────────────────┘
+                              │
+                              ▼
+                    ┌─────────────────────┐
+                    │ Steps 11-14: Verify │
+                    └─────────────────────┘
+```
+
+**Workflow modes:**
+- **Standard**: `/spec_kit:complete "feature"` - 14 steps, no chained workflows
+- **With Research**: `/spec_kit:complete "feature" :with-research` - Research + 14 steps
+- **Auto-Debug**: `/spec_kit:complete "feature" :auto-debug` - 14 steps with auto debug on failures
+- **Full Options**: `/spec_kit:complete "feature" :auto :with-research :auto-debug`
+
+**Alternative split workflows:**
+- Research first: `/spec_kit:research` → `/spec_kit:plan` → `/spec_kit:implement`
+- Planning only: `/spec_kit:plan` → `/spec_kit:implement`
+
+---
+
+## 9. 🔜 WHAT NEXT?
+
+After the complete workflow finishes, suggest relevant next steps:
+
+| Condition                 | Suggested Command                          | Reason                                    |
+| ------------------------- | ------------------------------------------ | ----------------------------------------- |
+| Implementation complete   | Verify in browser                          | Test functionality works                  |
+| Need to save context      | `/memory:save [spec-folder-path]`          | Preserve all decisions and implementation |
+| Ending session            | `/spec_kit:handover [spec-folder-path]`    | Create continuation document              |
+| Found bugs during testing | `/spec_kit:debug [spec-folder-path]`       | Delegate debugging to fresh agent         |
+| Ready for next feature    | `/spec_kit:complete [feature-description]` | Start new workflow                        |
+| Want to clean up          | Review and archive spec folder             | Keep workspace organized                  |
+
+**ALWAYS** end with: "What would you like to do next?"

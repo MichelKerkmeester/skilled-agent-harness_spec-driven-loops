@@ -1,51 +1,39 @@
-/**
- * Temporal Contiguity Module - Adjacent memory retrieval
- * @module lib/temporal-contiguity
- * @version 11.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// temporal-contiguity.js: Temporal adjacency for memory retrieval
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
-// Default contiguity window (neighbors before and after)
+/* ───────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
+
 const DEFAULT_WINDOW = 2;
 const MAX_WINDOW = 10;
 
-/**
- * Vector search with temporal contiguity
- * Returns primary matches plus temporally adjacent memories
- *
- * @param {Object} db - Database instance
- * @param {Function} vectorSearchFn - Vector search function
- * @param {Buffer} queryEmbedding - Query vector
- * @param {Object} [options]
- * @param {number} [options.limit=10] - Primary results limit
- * @param {number} [options.contiguityWindow=2] - Neighbors to include
- * @param {string} [options.specFolder] - Filter by spec folder
- * @returns {Object} { primary: Array, contiguous: Array }
- */
-function vectorSearchWithContiguity(db, vectorSearchFn, queryEmbedding, options = {}) {
+/* ───────────────────────────────────────────────────────────────
+   2. CORE FUNCTIONS
+   ─────────────────────────────────────────────────────────────── */
+
+// Returns primary matches plus temporally adjacent memories
+function vector_search_with_contiguity(db, vector_search_fn, query_embedding, options = {}) {
   const {
     limit = 10,
-    contiguityWindow = DEFAULT_WINDOW,
-    specFolder = null
+    contiguity_window = DEFAULT_WINDOW,
+    spec_folder = null,
   } = options;
 
-  // Validate window size
-  const window = Math.min(Math.max(1, contiguityWindow), MAX_WINDOW);
-
-  // Get primary results
-  const primary = vectorSearchFn(queryEmbedding, { limit, specFolder });
+  const window = Math.min(Math.max(1, contiguity_window), MAX_WINDOW);
+  const primary = vector_search_fn(query_embedding, { limit, spec_folder });
 
   if (primary.length === 0) {
     return { primary: [], contiguous: [] };
   }
 
-  // Find temporally adjacent memories
-  const contiguousIds = new Set();
-  const seenPrimary = new Set(primary.map(p => p.id));
+  const contiguous_ids = new Set();
+  const seen_primary = new Set(primary.map(p => p.id));
 
   for (const result of primary) {
-    // Get neighbors within the same spec folder by time proximity
+    // Get neighbors within same spec folder by time proximity
     const neighbors = db.prepare(`
       SELECT id, title, created_at, spec_folder
       FROM memory_index
@@ -55,24 +43,18 @@ function vectorSearchWithContiguity(db, vectorSearchFn, queryEmbedding, options 
         AND importance_tier != 'deprecated'
       ORDER BY ABS(julianday(created_at) - julianday(?))
       LIMIT ?
-    `).all(
-      result.spec_folder,
-      result.id,
-      result.created_at,
-      window * 2
-    );
+    `).all(result.spec_folder, result.id, result.created_at, window * 2);
 
     for (const neighbor of neighbors) {
-      if (!seenPrimary.has(neighbor.id)) {
-        contiguousIds.add(neighbor.id);
+      if (!seen_primary.has(neighbor.id)) {
+        contiguous_ids.add(neighbor.id);
       }
     }
   }
 
-  // Fetch contiguous memories
   const contiguous = [];
-  if (contiguousIds.size > 0) {
-    const ids = Array.from(contiguousIds);
+  if (contiguous_ids.size > 0) {
+    const ids = Array.from(contiguous_ids);
     const placeholders = ids.map(() => '?').join(',');
 
     const rows = db.prepare(`
@@ -85,36 +67,22 @@ function vectorSearchWithContiguity(db, vectorSearchFn, queryEmbedding, options 
       if (row.trigger_phrases) {
         row.trigger_phrases = JSON.parse(row.trigger_phrases);
       }
-      contiguous.push({
-        ...row,
-        contiguitySource: 'temporal'
-      });
+      contiguous.push({ ...row, contiguity_source: 'temporal' });
     }
   }
 
   return { primary, contiguous };
 }
 
-/**
- * Get temporal neighbors for a specific memory
- * @param {Object} db - Database instance
- * @param {number} memoryId - Memory ID to find neighbors for
- * @param {Object} [options]
- * @param {number} [options.before=2] - Neighbors before
- * @param {number} [options.after=2] - Neighbors after
- * @returns {Object} { before: Array, after: Array }
- */
-function getTemporalNeighbors(db, memoryId, options = {}) {
+function get_temporal_neighbors(db, memory_id, options = {}) {
   const { before = 2, after = 2 } = options;
 
-  // Get the source memory
-  const source = db.prepare('SELECT * FROM memory_index WHERE id = ?').get(memoryId);
+  const source = db.prepare('SELECT * FROM memory_index WHERE id = ?').get(memory_id);
   if (!source) {
     return { before: [], after: [] };
   }
 
-  // Get memories before
-  const beforeRows = db.prepare(`
+  const before_rows = db.prepare(`
     SELECT * FROM memory_index
     WHERE spec_folder = ?
       AND created_at < ?
@@ -123,10 +91,9 @@ function getTemporalNeighbors(db, memoryId, options = {}) {
       AND importance_tier != 'deprecated'
     ORDER BY created_at DESC
     LIMIT ?
-  `).all(source.spec_folder, source.created_at, memoryId, before);
+  `).all(source.spec_folder, source.created_at, memory_id, before);
 
-  // Get memories after
-  const afterRows = db.prepare(`
+  const after_rows = db.prepare(`
     SELECT * FROM memory_index
     WHERE spec_folder = ?
       AND created_at > ?
@@ -135,10 +102,9 @@ function getTemporalNeighbors(db, memoryId, options = {}) {
       AND importance_tier != 'deprecated'
     ORDER BY created_at ASC
     LIMIT ?
-  `).all(source.spec_folder, source.created_at, memoryId, after);
+  `).all(source.spec_folder, source.created_at, memory_id, after);
 
-  // Parse trigger phrases
-  const parseRow = row => {
+  const parse_row = row => {
     if (row.trigger_phrases) {
       row.trigger_phrases = JSON.parse(row.trigger_phrases);
     }
@@ -146,20 +112,12 @@ function getTemporalNeighbors(db, memoryId, options = {}) {
   };
 
   return {
-    before: beforeRows.reverse().map(parseRow),
-    after: afterRows.map(parseRow)
+    before: before_rows.reverse().map(parse_row),
+    after: after_rows.map(parse_row),
   };
 }
 
-/**
- * Build timeline of memories in a spec folder
- * @param {Object} db - Database instance
- * @param {string} specFolder - Spec folder name
- * @param {Object} [options]
- * @param {number} [options.limit=50]
- * @returns {Array} Chronological memory list
- */
-function buildTimeline(db, specFolder, options = {}) {
+function build_timeline(db, spec_folder, options = {}) {
   const { limit = 50 } = options;
 
   const rows = db.prepare(`
@@ -170,19 +128,23 @@ function buildTimeline(db, specFolder, options = {}) {
       AND importance_tier != 'deprecated'
     ORDER BY created_at ASC
     LIMIT ?
-  `).all(specFolder, limit);
+  `).all(spec_folder, limit);
 
   return rows.map((row, index) => ({
     ...row,
     position: index + 1,
-    total: rows.length
+    total: rows.length,
   }));
 }
+
+/* ───────────────────────────────────────────────────────────────
+   3. EXPORTS
+   ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
   DEFAULT_WINDOW,
   MAX_WINDOW,
-  vectorSearchWithContiguity,
-  getTemporalNeighbors,
-  buildTimeline
+  vector_search_with_contiguity,
+  get_temporal_neighbors,
+  build_timeline,
 };

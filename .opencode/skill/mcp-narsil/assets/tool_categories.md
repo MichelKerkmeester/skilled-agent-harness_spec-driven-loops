@@ -9,7 +9,19 @@ Quick reference for choosing the right Narsil tool by priority level.
 
 ---
 
-## 1. 📋 PRIORITY LEVELS
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+Quick reference for choosing the right Narsil tool by priority level. Categorizes all 76 tools for efficient usage.
+
+### Usage
+
+Use priority tables to select tools. HIGH priority for active use, MEDIUM for situational needs, LOW sparingly, SKIP for tools handled better elsewhere.
+
+---
+
+## 2. 📋 PRIORITY LEVELS
 
 ### Definitions
 
@@ -68,7 +80,7 @@ These tools require search indexes to be built first:
 
 ---
 
-## 2. ⭐ HIGH PRIORITY TOOLS (39)
+## 3. ⭐ HIGH PRIORITY TOOLS (39)
 
 ### Repository & File Management (8)
 
@@ -151,7 +163,7 @@ These tools require search indexes to be built first:
 
 ---
 
-## 3. 📊 MEDIUM PRIORITY TOOLS (19)
+## 4. 📊 MEDIUM PRIORITY TOOLS (19)
 
 ### Code Search (6)
 
@@ -196,7 +208,7 @@ These tools require search indexes to be built first:
 
 ---
 
-## 4. ⚠️ LOW PRIORITY & SKIP TOOLS (18)
+## 5. ⚠️ LOW PRIORITY & SKIP TOOLS (18)
 
 ### LOW Priority (9)
 
@@ -246,7 +258,7 @@ These tools require search indexes to be built first:
 
 ---
 
-## 5. ⚙️ RECOMMENDED CONFIGURATION
+## 6. ⚙️ RECOMMENDED CONFIGURATION
 
 ### Flags to Use
 
@@ -278,7 +290,7 @@ narsil-mcp \
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 7. 🔗 RELATED RESOURCES
 
 ### Guides
 

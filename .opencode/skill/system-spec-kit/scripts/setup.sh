@@ -1,27 +1,19 @@
-#!/bin/bash
-# ═══════════════════════════════════════════════════════════════
-# Memory System Setup
-# ═══════════════════════════════════════════════════════════════
-#
-# One-command setup for the semantic memory system.
-# Checks prerequisites, installs dependencies, and initializes database.
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# SPEC-KIT: MEMORY SYSTEM SETUP
+# ───────────────────────────────────────────────────────────────
 #
 # Usage: ./setup.sh [--force]
-#
-# Options:
-#   --force    Reinstall dependencies even if node_modules exists
-#
-# ═══════════════════════════════════════════════════════════════
+# Options: --force  Reinstall dependencies even if node_modules exists
 
 set -euo pipefail
 
-# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 CYAN='\033[0;36m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -30,22 +22,21 @@ PROJECT_ROOT="$(cd "$SKILL_DIR/../../.." && pwd)"
 FORCE_INSTALL=false
 [[ "${1:-}" == "--force" ]] && FORCE_INSTALL=true
 
-echo "═══════════════════════════════════════════════════════════"
+echo "───────────────────────────────────────────────────────────"
 echo "  Memory System Setup"
-echo "═══════════════════════════════════════════════════════════"
+echo "───────────────────────────────────────────────────────────"
 echo ""
 echo "Project: $PROJECT_ROOT"
 echo ""
 
-# ═══════════════════════════════════════════════════════════════
-# PREREQUISITES CHECK
-# ═══════════════════════════════════════════════════════════════
+# ───────────────────────────────────────────────────────────────
+# 1. PREREQUISITES CHECK
+# ───────────────────────────────────────────────────────────────
 
 echo -e "${BLUE}📋 Checking Prerequisites...${NC}"
 
 PREREQS_OK=true
 
-# Node.js
 if command -v node &> /dev/null; then
   NODE_VERSION=$(node --version)
   NODE_MAJOR=$(echo "$NODE_VERSION" | cut -d'.' -f1 | tr -d 'v')
@@ -64,7 +55,6 @@ else
   PREREQS_OK=false
 fi
 
-# npm
 if command -v npm &> /dev/null; then
   echo -e "  ${GREEN}✓${NC} npm $(npm --version)"
 else
@@ -72,7 +62,6 @@ else
   PREREQS_OK=false
 fi
 
-# Check for rsync (needed for sync script)
 if command -v rsync &> /dev/null; then
   echo -e "  ${GREEN}✓${NC} rsync available"
 else
@@ -85,9 +74,9 @@ if [[ "$PREREQS_OK" == false ]]; then
   exit 1
 fi
 
-# ═══════════════════════════════════════════════════════════════
-# INSTALL DEPENDENCIES
-# ═══════════════════════════════════════════════════════════════
+# ───────────────────────────────────────────────────────────────
+# 2. INSTALL DEPENDENCIES
+# ───────────────────────────────────────────────────────────────
 
 echo ""
 echo -e "${BLUE}📦 Installing Dependencies...${NC}"
@@ -126,22 +115,19 @@ EOF
   echo -e "  ${GREEN}✓${NC} Dependencies installed"
 fi
 
-# ═══════════════════════════════════════════════════════════════
-# INITIALIZE DATABASE
-# ═══════════════════════════════════════════════════════════════
+# ───────────────────────────────────────────────────────────────
+# 3. INITIALIZE DATABASE
+# ───────────────────────────────────────────────────────────────
 
 echo ""
 echo -e "${BLUE}🗃️  Initializing Database...${NC}"
 
-# Create database directory
 DB_DIR="$HOME/.opencode"
 mkdir -p "$DB_DIR"
 
-# Also check for project-local database
 PROJECT_DB_DIR="$PROJECT_ROOT/.codebase"
 mkdir -p "$PROJECT_DB_DIR"
 
-# Initialize the database
 cd "$SKILL_DIR/scripts"
 
 node -e "
@@ -150,10 +136,8 @@ const path = require('path');
 try {
   const vectorIndex = require('./lib/vector-index.js');
 
-  // Initialize database
   vectorIndex.initializeDb();
 
-  // Get stats
   const stats = vectorIndex.getStats();
 
   console.log('  Database initialized successfully');
@@ -178,16 +162,15 @@ try {
   fi
 done
 
-# ═══════════════════════════════════════════════════════════════
-# VERIFY INSTALLATION
-# ═══════════════════════════════════════════════════════════════
+# ───────────────────────────────────────────────────────────────
+# 4. VERIFY INSTALLATION
+# ───────────────────────────────────────────────────────────────
 
 echo ""
 echo -e "${BLUE}🔍 Verifying Installation...${NC}"
 
 VERIFY_OK=true
 
-# Check key files exist
 KEY_FILES=(
   "lib/vector-index.js"
   "lib/embeddings.js"
@@ -205,12 +188,12 @@ for file in "${KEY_FILES[@]}"; do
   fi
 done
 
-# ═══════════════════════════════════════════════════════════════
-# SUMMARY
-# ═══════════════════════════════════════════════════════════════
+# ───────────────────────────────────────────────────────────────
+# 5. SUMMARY
+# ───────────────────────────────────────────────────────────────
 
 echo ""
-echo "═══════════════════════════════════════════════════════════"
+echo "───────────────────────────────────────────────────────────"
 
 if [[ "$VERIFY_OK" == true ]]; then
   echo -e "${GREEN}✅ Setup Complete!${NC}"
@@ -236,4 +219,4 @@ else
   echo "but with reduced functionality."
 fi
 
-echo "═══════════════════════════════════════════════════════════"
+echo "───────────────────────────────────────────────────────────"

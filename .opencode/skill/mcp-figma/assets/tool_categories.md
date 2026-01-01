@@ -9,7 +9,19 @@ Quick reference for choosing the right Figma tool by priority level.
 
 ---
 
-## 1. 📋 PRIORITY LEVELS
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+Quick reference for choosing the right Figma tool by priority level. Helps identify which tools to use actively vs. sparingly.
+
+### Usage
+
+Use the priority tables to select appropriate tools. HIGH priority tools should be used actively, MEDIUM when specific needs arise, LOW sparingly.
+
+---
+
+## 2. 📋 PRIORITY LEVELS
 
 ### Definitions
 
@@ -30,7 +42,7 @@ Quick reference for choosing the right Figma tool by priority level.
 
 ---
 
-## 2. ⭐ HIGH PRIORITY TOOLS (5)
+## 3. ⭐ HIGH PRIORITY TOOLS (5)
 
 Core design file access - use actively.
 
@@ -51,7 +63,7 @@ Core design file access - use actively.
 
 ---
 
-## 3. 📊 MEDIUM PRIORITY TOOLS (7)
+## 4. 📊 MEDIUM PRIORITY TOOLS (7)
 
 Useful but situational - use when needed.
 
@@ -74,7 +86,7 @@ Useful but situational - use when needed.
 
 ---
 
-## 4. ⚠️ LOW PRIORITY TOOLS (6)
+## 5. ⚠️ LOW PRIORITY TOOLS (6)
 
 Rarely needed - use sparingly.
 
@@ -96,7 +108,7 @@ Rarely needed - use sparingly.
 
 ---
 
-## 5. 📂 TOOLS BY CATEGORY
+## 6. 📂 TOOLS BY CATEGORY
 
 ### File Management (4)
 
@@ -148,7 +160,7 @@ Rarely needed - use sparingly.
 
 ---
 
-## 6. 🔄 DECISION FLOWCHART
+## 7. 🔄 DECISION FLOWCHART
 
 ```
 What do you need?
@@ -181,7 +193,7 @@ What do you need?
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 8. 🔗 RELATED RESOURCES
 
 ### Guides
 

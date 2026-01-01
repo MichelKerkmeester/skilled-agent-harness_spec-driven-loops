@@ -59,6 +59,8 @@ EXECUTE THIS CHECK FIRST:
         │   └────────────────────────────────────────────────────────────┘
         └─ WAIT for user response
 
+**STOP HERE** - Wait for user to provide or confirm a valid spec folder path before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until a valid spec_path is confirmed
 ```
 
@@ -96,6 +98,8 @@ EXECUTE AFTER PHASE 1 PASSES:
    │   │ C) Cancel                                                  │
    │   └────────────────────────────────────────────────────────────┘
    └─ WAIT for user response
+
+**STOP HERE** - Wait for validation to complete or user to confirm bypass before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until validation is complete or user confirms bypass
 ```
@@ -318,11 +322,129 @@ The handover file is created in the spec folder root, NOT in memory/.
 
 ---
 
-## 7. 🔀 PARALLEL DISPATCH
+## 7. 🔀 SUB-AGENT DELEGATION
 
-The handover workflow is a **utility workflow** and does NOT use parallel dispatch. All 4 steps execute sequentially.
+The handover workflow delegates execution work to a sub-agent for token efficiency. The main agent handles validation and user interaction; the sub-agent handles context gathering and file generation.
 
-Parallel dispatch is only used in implementation-heavy workflows (`/spec_kit:complete`, `/spec_kit:implement`, `/spec_kit:research`).
+### Delegation Architecture
+
+```
+Main Agent (reads command):
+├── PHASE 1: Input & Spec Detection (validation)
+├── PHASE 2: Pre-Handover Validation
+├── DISPATCH: Task tool with sub-agent
+│   ├── Sub-agent gathers context
+│   ├── Sub-agent creates handover.md
+│   └── Sub-agent returns result
+├── FALLBACK (if Task unavailable):
+│   └── Execute Steps 1-3 directly
+└── Step 4: Display Result (always main agent)
+```
+
+### Sub-Agent Execution
+
+**WHEN phases pass, dispatch to sub-agent:**
+
+```
+DISPATCH SUB-AGENT:
+  tool: Task
+  subagent_type: general
+  description: "Create handover document"
+  prompt: |
+    Create a handover document for spec folder: {spec_path}
+    
+    VALIDATED INPUTS:
+    - spec_path: {spec_path}
+    - detection_method: {detection_method}
+    
+    TASKS TO EXECUTE:
+    1. Load context from spec folder:
+       - Read spec.md, plan.md, tasks.md, checklist.md (if exist)
+       - Read memory/*.md files for session context
+       - Extract current phase, blockers, key decisions
+    
+    2. Determine attempt number:
+       - Check if {spec_path}/handover.md exists
+       - If exists: extract current attempt N, increment to N+1
+       - If not exists: start at attempt 1
+    
+    3. Generate handover.md using template:
+       - Template: .opencode/skill/system-spec-kit/templates/handover.md
+       - Include: session summary, context transfer, next steps, validation checklist
+    
+    4. Write file to: {spec_path}/handover.md
+    
+    RETURN (as your final message):
+    ```json
+    {
+      "status": "OK",
+      "file_path": "{spec_path}/handover.md",
+      "attempt_number": [N],
+      "last_action": "[extracted from context]",
+      "next_action": "[extracted from context]",
+      "spec_folder": "{spec_path}"
+    }
+    ```
+    
+    If any step fails, return:
+    ```json
+    {
+      "status": "FAIL",
+      "error": "[error description]"
+    }
+    ```
+    
+    Tools you can use: Read, Write, Glob, Bash
+```
+
+### Fallback Logic
+
+**FALLBACK triggers if:**
+- Task tool call returns error
+- Task tool call times out
+- Sub-agent returns `status: FAIL`
+
+**FALLBACK behavior:**
+```
+WHEN fallback triggers:
+├── Log: "Sub-agent unavailable, executing directly"
+├── Execute Steps 1-3 directly (current workflow behavior)
+└── Continue to Step 4: Display Result
+```
+
+### Execution Flow
+
+```
+IF phases passed:
+  TRY:
+    result = Task(subagent_type="general", prompt=SUB_AGENT_PROMPT)
+    IF result.status == "OK":
+      file_path = result.file_path
+      attempt_number = result.attempt_number
+      last_action = result.last_action
+      next_action = result.next_action
+      → Proceed to Step 4: Display Result
+    ELSE:
+      → GOTO fallback
+  CATCH (Task unavailable or error):
+    → GOTO fallback
+
+fallback:
+  Log: "Fallback: executing handover steps directly"
+  Execute Step 1: Validate Spec (use phase outputs)
+  Execute Step 2: Gather Context
+  Execute Step 3: Create Handover
+  → Proceed to Step 4: Display Result
+```
+
+### Why Sub-Agent?
+
+| Benefit | Description |
+|---------|-------------|
+| Token efficiency | Heavy context analysis happens in sub-agent context |
+| Main agent responsive | User can see progress without waiting |
+| Fallback safety | Commands always work, even without Task tool |
+| Parallel potential | Future: multiple handovers could run in parallel |
 
 ---
 
@@ -381,3 +503,31 @@ Run /spec_kit:handover to save handover.md, then in new session:
 Proactive `/spec_kit:handover` suggestion on session-ending keywords:
 - "stopping", "done", "finished", "break", "later"
 - "forgetting", "remember", "context", "losing track"
+
+---
+
+## 11. 🔗 COMMAND CHAIN
+
+This command is part of the SpecKit workflow:
+
+```
+[Any workflow] → /spec_kit:handover → [/spec_kit:resume]
+```
+
+**Explicit next step:**
+→ `/spec_kit:resume [spec-folder-path]` (in new session)
+
+---
+
+## 12. 🔜 WHAT NEXT?
+
+After handover is created, provide continuation instructions:
+
+| Condition | Suggested Action | Reason |
+|-----------|------------------|--------|
+| Handover created | Copy continuation prompt | Ready for new session |
+| Ready to continue now | `/spec_kit:resume [spec-folder-path]` | Load context and continue |
+| Want to save more context | `/memory:save [spec-folder-path]` | Preserve additional details |
+| Starting new work | `/spec_kit:complete [feature-description]` | Begin different feature |
+
+**ALWAYS** end with: "To continue in a new session, use: `/spec_kit:resume [spec-folder-path]`"

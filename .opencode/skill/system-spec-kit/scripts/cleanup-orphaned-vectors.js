@@ -1,34 +1,42 @@
-#!/usr/bin/env node
-/**
- * Cleanup orphaned vectors from the database
- * These are vector entries that have no corresponding memory entry
- */
+// ───────────────────────────────────────────────────────────────
+// MAINTENANCE: CLEANUP ORPHANED VECTORS
+// ───────────────────────────────────────────────────────────────
+
+'use strict';
 
 const Database = require('better-sqlite3');
 const { load: loadSqliteVec } = require('sqlite-vec');
 const path = require('path');
 
-const dbPath = path.join(__dirname, '../database/context-index.sqlite');
+/* ─────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+──────────────────────────────────────────────────────────────── */
+
+const db_path = path.join(__dirname, '../database/context-index.sqlite');
+
+/* ─────────────────────────────────────────────────────────────
+   2. MAIN FUNCTION
+──────────────────────────────────────────────────────────────── */
 
 async function main() {
   let database;
   try {
-    console.log('Opening database:', dbPath);
-    database = new Database(dbPath);
+    console.log('Opening database:', db_path);
+    database = new Database(db_path);
     loadSqliteVec(database);
 
     // Find orphaned vector rowids
     console.log('Finding orphaned vectors...');
-    const orphanedRows = database.prepare(`
+    const orphaned_rows = database.prepare(`
       SELECT v.rowid 
       FROM vec_memories v
       LEFT JOIN memory_index m ON v.rowid = m.id
       WHERE m.id IS NULL
     `).all();
 
-    console.log('Orphaned vectors found:', orphanedRows.length);
+    console.log('Orphaned vectors found:', orphaned_rows.length);
 
-    if (orphanedRows.length === 0) {
+    if (orphaned_rows.length === 0) {
       console.log('No cleanup needed.');
       database.close();
       process.exit(0);
@@ -36,28 +44,28 @@ async function main() {
 
     // Delete orphaned vectors in batches
     let deleted = 0;
-    const deleteStmt = database.prepare('DELETE FROM vec_memories WHERE rowid = ?');
-    const deleteBatch = database.transaction((rows) => {
+    const delete_stmt = database.prepare('DELETE FROM vec_memories WHERE rowid = ?');
+    const delete_batch = database.transaction((rows) => {
       for (const row of rows) {
-        deleteStmt.run(BigInt(row.rowid));
+        delete_stmt.run(BigInt(row.rowid));
         deleted++;
       }
     });
 
     // Process in chunks of 100
-    const chunkSize = 100;
-    for (let i = 0; i < orphanedRows.length; i += chunkSize) {
-      const chunk = orphanedRows.slice(i, i + chunkSize);
-      deleteBatch(chunk);
-      console.log(`Deleted ${deleted}/${orphanedRows.length}`);
+    const chunk_size = 100;
+    for (let i = 0; i < orphaned_rows.length; i += chunk_size) {
+      const chunk = orphaned_rows.slice(i, i + chunk_size);
+      delete_batch(chunk);
+      console.log(`Deleted ${deleted}/${orphaned_rows.length}`);
     }
 
     console.log('Cleanup complete. Total deleted:', deleted);
 
     // Verify
-    const afterCount = database.prepare('SELECT COUNT(*) as count FROM vec_memories').get();
-    const memoryCount = database.prepare('SELECT COUNT(*) as count FROM memory_index').get();
-    console.log(`Vectors: ${afterCount.count}, Memories: ${memoryCount.count}`);
+    const after_count = database.prepare('SELECT COUNT(*) as count FROM vec_memories').get();
+    const memory_count = database.prepare('SELECT COUNT(*) as count FROM memory_index').get();
+    console.log(`Vectors: ${after_count.count}, Memories: ${memory_count.count}`);
 
     database.close();
     console.log('Cleanup completed successfully');
@@ -67,12 +75,16 @@ async function main() {
     if (database) {
       try {
         database.close();
-      } catch (closeErr) {
+      } catch (close_err) {
         // Ignore close errors
       }
     }
     process.exit(1);
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   3. INITIALIZE
+──────────────────────────────────────────────────────────────── */
 
 main();

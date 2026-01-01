@@ -1,6 +1,6 @@
 ---
-description: Create an AI-optimized README.md file with proper structure, table of contents, and comprehensive documentation
-argument-hint: "<target-path> [--type <project|component|feature|skill>]"
+description: Create an AI-optimized README.md file with proper structure, table of contents, and comprehensive documentation - supports :auto and :confirm modes
+argument-hint: "<target-path> [--type <project|component|feature|skill>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -65,6 +65,8 @@ EXECUTE THIS CHECK FIRST:
 │       │
 │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
 
+**STOP HERE** - Verify you are operating as @write agent before continuing. If not, instruct user to restart with @write prefix.
+
 ⛔ HARD STOP: DO NOT proceed to PHASE 1 until STATUS = ✅ PASSED
 ```
 
@@ -118,12 +120,45 @@ EXECUTE THIS CHECK FIRST:
     │
     └─ SET STATUS: ✅ PASSED
 
+**STOP HERE** - Wait for user to provide target path and README type before continuing.
+
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer README location from context
 ⛔ NEVER overwrite existing README without confirmation
 ```
 
 **Phase 1 Output:** `target_path = ________________` | `readme_type = ________________`
+
+---
+
+## 🔒 MODE DETECTION
+
+```
+CHECK for mode suffix in $ARGUMENTS or command invocation:
+
+├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
+├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
+└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
+```
+
+**Mode Output:** `execution_mode = ________________`
+
+---
+
+## 📋 MODE BEHAVIORS
+
+**AUTONOMOUS (:auto):**
+- Execute all steps without approval prompts
+- Only stop for errors or missing required input
+- Best for: Experienced users, scripted workflows, batch operations
+
+**INTERACTIVE (:confirm):**
+- Pause at each major step for user approval
+- Show preview before file creation
+- Ask for confirmation on critical decisions
+- Best for: New users, learning workflows, high-stakes changes
+
+**Default:** INTERACTIVE (creation workflows benefit from confirmation)
 
 ---
 
@@ -167,6 +202,8 @@ EXECUTE AFTER PHASE 1 PASSES:
    └─ IF path exists and no README:
        └─ SET STATUS: ✅ PASSED
 
+**STOP HERE** - Wait for target path verification or user to resolve existing README conflict before continuing.
+
 ⛔ HARD STOP: DO NOT proceed without confirmed target
 ```
 
@@ -182,6 +219,7 @@ EXECUTE AFTER PHASE 1 PASSES:
 | -------------------- | --------------- | ----------- | -------------------------------------- |
 | PHASE 0: WRITE AGENT | ✅ PASSED        | ______      | write_agent_verified: ______           |
 | PHASE 1: INPUT       | ✅ PASSED        | ______      | target_path: ______ / type: __________ |
+| MODE DETECTION       | ✅ SET           | ______      | execution_mode: ______                 |
 | PHASE 2: TARGET      | ✅ PASSED        | ______      | path_verified: ______ / existing: ____ |
 
 ```
@@ -369,3 +407,43 @@ Execute all 5 steps in sequence following the workflow definition.
 /documentation:create_readme ./src/auth --type component
 ```
 → Creates component README with API, usage, integration
+
+**Example 4: Auto mode (no prompts)**
+```
+/create:folder_readme ./ --type project :auto
+```
+→ Creates README without approval prompts, only stops for errors
+
+**Example 5: Confirm mode (step-by-step approval)**
+```
+/create:folder_readme .opencode/skill/my-skill --type skill :confirm
+```
+→ Pauses at each step for user confirmation
+
+---
+
+## 6. 🔗 COMMAND CHAIN
+
+This command creates standalone documentation:
+
+```
+/create:folder_readme → [Verify README]
+```
+
+**Related commands:**
+- Create install guide: `/create:install_guide [project]`
+
+---
+
+## 7. 🔜 WHAT NEXT?
+
+After README creation completes, suggest relevant next steps:
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| README created | Review and verify links work | Confirm TOC links correctly |
+| Need install guide | `/create:install_guide [project]` | Add installation documentation |
+| Create another README | `/create:folder_readme [path]` | Document related component |
+| Want to save context | `/memory:save [spec-folder-path]` | Preserve documentation context |
+
+**ALWAYS** end with: "What would you like to do next?"

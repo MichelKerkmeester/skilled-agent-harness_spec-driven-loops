@@ -1,7 +1,7 @@
 ---
 description: Save current conversation context to memory with semantic indexing
 argument-hint: "<spec-folder>"
-allowed-tools: Read, Bash, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_stats, spec_kit_memory_memory_update
+allowed-tools: Read, Bash, Task, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_stats, spec_kit_memory_memory_update
 ---
 
 # 🚨 MANDATORY PHASE - BLOCKING ENFORCEMENT
@@ -37,6 +37,8 @@ EXECUTE THIS CHECK FIRST:
     ├─ ASK user to select or retry
     ├─ WAIT for response
     └─ SET STATUS: ✅ PASSED (after selection + alignment)
+
+**STOP HERE** - Wait for user to confirm or provide a valid spec folder before saving context.
 
 ⛔ HARD STOP: DO NOT proceed to save workflow until STATUS = ✅ PASSED
 ```
@@ -74,6 +76,8 @@ ALIGNMENT VALIDATION:
 │
 └─ SET STATUS: ✅ PASSED (after alignment confirmed)
 
+**STOP HERE** - Wait for user to confirm content alignment or select alternative folder before continuing.
+
 ⛔ HARD STOP: DO NOT proceed if alignment not validated
 ```
 
@@ -85,10 +89,10 @@ ALIGNMENT VALIDATION:
 
 **Before continuing to the workflow, verify phase status:**
 
-| PHASE                     | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE             |
-| ------------------------- | --------------- | ----------- | ------------------------ |
-| PHASE 1: SPEC FOLDER      | ✅ PASSED        | ______      | target_folder: ______    |
-| PHASE 1B: CONTENT ALIGN   | ✅ PASSED        | ______      | alignment_validated: ___ |
+| PHASE                   | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE             |
+| ----------------------- | --------------- | ----------- | ------------------------ |
+| PHASE 1: SPEC FOLDER    | ✅ PASSED        | ______      | target_folder: ______    |
+| PHASE 1B: CONTENT ALIGN | ✅ PASSED        | ______      | alignment_validated: ___ |
 
 ```
 VERIFICATION CHECK:
@@ -255,13 +259,13 @@ Session summary content...
 
 **Anchor ID Pattern:** `[context-type]-[keywords]-[spec-number]`
 
-| Context Type | Use For | Example |
-|--------------|---------|---------|
+| Context Type     | Use For                  | Example                             |
+| ---------------- | ------------------------ | ----------------------------------- |
 | `implementation` | Code patterns, solutions | `implementation-oauth-callback-049` |
-| `decision` | Architecture choices | `decision-database-schema-005` |
-| `research` | Investigation findings | `research-lenis-scroll-006` |
-| `discovery` | Learnings, insights | `discovery-api-limits-011` |
-| `general` | Mixed content | `general-session-summary-049` |
+| `decision`       | Architecture choices     | `decision-database-schema-005`      |
+| `research`       | Investigation findings   | `research-lenis-scroll-006`         |
+| `discovery`      | Learnings, insights      | `discovery-api-limits-011`          |
+| `general`        | Mixed content            | `general-session-summary-049`       |
 
 **Minimum Anchors Required:**
 - 1 anchor: Primary section (session summary)
@@ -325,22 +329,22 @@ memory_search({ query: "jwt auth", includeContent: true })
 ```
 
 **Field Guidelines:**
-| Field | Min Length | Purpose |
-|-------|------------|---------|
-| `sessionSummary` | 100+ chars | Becomes OVERVIEW - be comprehensive |
-| `keyDecisions` | 1+ items | Each decision with rationale |
-| `filesModified` | 0+ items | Actual paths modified |
-| `triggerPhrases` | 5-10 items | Keywords for semantic search |
-| `technicalContext` | Optional | Additional technical details |
+| Field              | Min Length | Purpose                             |
+| ------------------ | ---------- | ----------------------------------- |
+| `sessionSummary`   | 100+ chars | Becomes OVERVIEW - be comprehensive |
+| `keyDecisions`     | 1+ items   | Each decision with rationale        |
+| `filesModified`    | 0+ items   | Actual paths modified               |
+| `triggerPhrases`   | 5-10 items | Keywords for semantic search        |
+| `technicalContext` | Optional   | Additional technical details        |
 
 ### Step 5: Execute Processing Script
 
 **Two Execution Modes:**
 
-| Mode | Command | Use When |
-|------|---------|----------|
+| Mode                                | Command                                                | Use When                                     |
+| ----------------------------------- | ------------------------------------------------------ | -------------------------------------------- |
 | **Mode 1: JSON File** (Recommended) | `node generate-context.js /tmp/save-context-data.json` | Rich context with decisions, files, triggers |
-| **Mode 2: Direct Path** | `node generate-context.js specs/005-memory` | Minimal/placeholder content only |
+| **Mode 2: Direct Path**             | `node generate-context.js specs/005-memory`            | Minimal/placeholder content only             |
 
 **Mode 1 (Recommended) - Write JSON to temp file, then execute:**
 ```bash
@@ -434,11 +438,11 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 
 ## 8. 🔍 QUICK REFERENCE
 
-| Usage                                                   | Behavior                              |
-| ------------------------------------------------------- | ------------------------------------- |
-| `/memory:save`                                          | Auto-detect spec folder, save context |
-| `/memory:save 011-memory`                               | Save to specific spec folder          |
-| `/memory:save specs/006-semantic-memory/003-debugging`  | Save to nested spec folder            |
+| Usage                                                  | Behavior                              |
+| ------------------------------------------------------ | ------------------------------------- |
+| `/memory:save`                                         | Auto-detect spec folder, save context |
+| `/memory:save 011-memory`                              | Save to specific spec folder          |
+| `/memory:save specs/006-semantic-memory/003-debugging` | Save to nested spec folder            |
 
 ---
 
@@ -469,10 +473,10 @@ STATUS=OK PATH=specs/<folder>/memory/<filename>.md ANCHORS=<count>
 
 ### Post-Save Actions
 
-| Input | Action |
-|-------|--------|
-| t | Edit trigger phrases for this memory (add/remove) |
-| d | Done, exit save workflow |
+| Input | Action                                            |
+| ----- | ------------------------------------------------- |
+| t     | Edit trigger phrases for this memory (add/remove) |
+| d     | Done, exit save workflow                          |
 
 ### Trigger Edit (if selected)
 
@@ -487,12 +491,12 @@ Current triggers:
 [a]dd trigger | [r]emove # | [s]ave | [d]one
 ```
 
-| Input | Action |
-|-------|--------|
-| a | Prompt for new phrase, add to list |
-| r | Enter number to remove |
-| s | Save changes via memory_update |
-| d | Done (discard unsaved changes) |
+| Input | Action                             |
+| ----- | ---------------------------------- |
+| a     | Prompt for new phrase, add to list |
+| r     | Enter number to remove             |
+| s     | Save changes via memory_update     |
+| d     | Done (discard unsaved changes)     |
 
 ---
 
@@ -507,19 +511,19 @@ Current triggers:
 
 Memory files can be indexed in multiple ways:
 
-| Method | When It Happens | Use Case |
-| ------ | --------------- | -------- |
-| **Auto-indexing on startup** | MCP server start | Default - no action needed |
-| **generate-context.js** | Script execution | Standard /memory:save workflow |
-| **memory_save MCP tool** | On demand | Immediate indexing of single file |
-| **memory_index_scan MCP tool** | On demand | Bulk re-index of folder/all files |
+| Method                         | When It Happens  | Use Case                          |
+| ------------------------------ | ---------------- | --------------------------------- |
+| **Auto-indexing on startup**   | MCP server start | Default - no action needed        |
+| **generate-context.js**        | Script execution | Standard /memory:save workflow    |
+| **memory_save MCP tool**       | On demand        | Immediate indexing of single file |
+| **memory_index_scan MCP tool** | On demand        | Bulk re-index of folder/all files |
 
 ### Full Parameter Reference: memory_save
 
-| Parameter | Type | Default | Description |
-| --------- | ---- | ------- | ----------- |
-| `filePath` | string | *required* | Absolute path to the memory file (must be in `specs/**/memory/` or `.opencode/skill/*/constitutional/` directory) |
-| `force` | boolean | false | Force re-index even if content hash unchanged. Use when you want to regenerate embeddings or update metadata without changing file content. |
+| Parameter  | Type    | Default    | Description                                                                                                                                 |
+| ---------- | ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filePath` | string  | *required* | Absolute path to the memory file (must be in `specs/**/memory/` or `.opencode/skill/*/constitutional/` directory)                           |
+| `force`    | boolean | false      | Force re-index even if content hash unchanged. Use when you want to regenerate embeddings or update metadata without changing file content. |
 
 **For manual file creation**, use `memory_save` for immediate indexing:
 ```
@@ -531,10 +535,10 @@ spec_kit_memory_memory_save({
 
 ### Full Parameter Reference: memory_index_scan
 
-| Parameter | Type | Default | Description |
-| --------- | ---- | ------- | ----------- |
-| `specFolder` | string | - | Limit scan to specific spec folder (e.g., "005-memory"). Omit to scan all memory directories. |
-| `force` | boolean | false | Force re-index all files, ignoring content hash. Useful for regenerating all embeddings. |
+| Parameter    | Type    | Default | Description                                                                                   |
+| ------------ | ------- | ------- | --------------------------------------------------------------------------------------------- |
+| `specFolder` | string  | -       | Limit scan to specific spec folder (e.g., "005-memory"). Omit to scan all memory directories. |
+| `force`      | boolean | false   | Force re-index all files, ignoring content hash. Useful for regenerating all embeddings.      |
 
 **For bulk operations**, use `memory_index_scan`:
 ```
@@ -550,3 +554,181 @@ spec_kit_memory_memory_index_scan({
 
 For comprehensive documentation:
 `.opencode/skill/system-spec-kit/SKILL.md`
+
+---
+
+## 13. 🔀 SUB-AGENT DELEGATION
+
+The memory save workflow delegates execution work to a sub-agent for token efficiency. The main agent handles folder validation and user interaction; the sub-agent handles context analysis and file generation.
+
+### Delegation Architecture
+
+```
+Main Agent (reads command):
+├── PHASE 1: Spec Folder Validation
+├── PHASE 1B: Content Alignment Check
+├── DISPATCH: Task tool with sub-agent
+│   ├── Sub-agent analyzes conversation
+│   ├── Sub-agent generates JSON data
+│   ├── Sub-agent executes generate-context.js
+│   └── Sub-agent returns result
+├── FALLBACK (if Task unavailable):
+│   └── Execute Steps 2-5 directly
+└── Step 6: Report Results (always main agent)
+```
+
+### Sub-Agent Execution
+
+**WHEN phases pass, dispatch to sub-agent:**
+
+```
+DISPATCH SUB-AGENT:
+  tool: Task
+  subagent_type: general
+  description: "Save memory context"
+  prompt: |
+    Save conversation context to memory for spec folder: {target_folder}
+    
+    VALIDATED INPUTS:
+    - target_folder: {target_folder}
+    - alignment_validated: {YES/WARNED_CONFIRMED}
+    
+    TASKS TO EXECUTE:
+    
+    1. CONTEXT ANALYSIS - Extract from current conversation:
+       - sessionSummary: 2-4 sentences describing what was accomplished
+       - keyDecisions: Array of "Decision: [choice] because [reason]" strings
+       - filesModified: Full paths to all files created/edited
+       - triggerPhrases: 5-10 keywords/phrases for semantic search
+       - technicalContext: { rootCause, solution, patterns }
+    
+    2. ANCHOR GENERATION - Create proper ANCHOR tags:
+       - Use format: <!-- ANCHOR:anchor-id --> ... <!-- /ANCHOR:anchor-id -->
+       - Include BOTH opening AND closing tags (CRITICAL)
+       - Minimum: summary-{spec#} anchor
+       - Recommended: also decision-{topic}-{spec#}, files-{spec#}
+    
+    3. BUILD JSON DATA - Create structure:
+       {
+         "specFolder": "{target_folder}",
+         "sessionSummary": "[extracted summary]",
+         "keyDecisions": ["Decision 1...", "Decision 2..."],
+         "filesModified": ["path1", "path2"],
+         "triggerPhrases": ["phrase1", "phrase2"],
+         "technicalContext": { "rootCause": "...", "solution": "...", "patterns": "..." }
+       }
+    
+    4. WRITE JSON to temp file:
+       Write JSON to /tmp/save-context-data.json
+    
+    5. EXECUTE SCRIPT:
+       node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/save-context-data.json
+    
+    6. CLEANUP:
+       rm /tmp/save-context-data.json
+    
+    RETURN (as your final message):
+    ```json
+    {
+      "status": "OK",
+      "file_path": "[full path to created memory file]",
+      "memory_id": [ID if indexed, or null],
+      "anchors_created": ["summary-049", "decision-topic-049"],
+      "trigger_phrases": ["phrase1", "phrase2", "phrase3"],
+      "spec_folder": "{target_folder}"
+    }
+    ```
+    
+    If any step fails, return:
+    ```json
+    {
+      "status": "FAIL",
+      "error": "[error description]"
+    }
+    ```
+    
+    Tools you can use: Read, Bash, Write (for temp JSON only), Glob
+```
+
+### Fallback Logic
+
+**FALLBACK triggers if:**
+- Task tool call returns error
+- Task tool call times out
+- Sub-agent returns `status: FAIL`
+
+**FALLBACK behavior:**
+```
+WHEN fallback triggers:
+├── Log: "Sub-agent unavailable, executing directly"
+├── Execute Steps 2-5 directly (current workflow behavior)
+│   ├── Step 2: Context Analysis (AI extracts data)
+│   ├── Step 3: Anchor Generation
+│   ├── Step 4: JSON Data Construction
+│   └── Step 5: Execute generate-context.js
+└── Continue to Step 6: Report Results
+```
+
+### Execution Flow
+
+```
+IF phases passed:
+  TRY:
+    result = Task(subagent_type="general", prompt=SUB_AGENT_PROMPT)
+    IF result.status == "OK":
+      file_path = result.file_path
+      memory_id = result.memory_id
+      anchors = result.anchors_created
+      triggers = result.trigger_phrases
+      → Proceed to Step 6: Report Results
+    ELSE:
+      → GOTO fallback
+  CATCH (Task unavailable or error):
+    → GOTO fallback
+
+fallback:
+  Log: "Fallback: executing save steps directly"
+  Execute Step 2: Context Analysis
+  Execute Step 3: Anchor Generation
+  Execute Step 4: JSON Data Construction
+  Execute Step 5: Execute Script
+  → Proceed to Step 6: Report Results
+```
+
+### Why Sub-Agent?
+
+| Benefit               | Description                                           |
+| --------------------- | ----------------------------------------------------- |
+| Token efficiency      | Heavy context extraction happens in sub-agent context |
+| Main agent responsive | Validation and reporting stay lightweight             |
+| Fallback safety       | Commands always work, even without Task tool          |
+| Better isolation      | Sub-agent focuses solely on save workflow             |
+
+---
+
+## 14. 🔗 COMMAND CHAIN
+
+This command can be used with any workflow:
+
+```
+[Any workflow step] → /memory:save → [Continue workflow]
+```
+
+**Related commands:**
+- `/memory:search` - Find saved memories
+- `/memory:checkpoint` - Create restore point
+
+---
+
+## 15. 🔜 WHAT NEXT?
+
+After context is saved, suggest relevant next steps:
+
+| Condition                    | Suggested Command                          | Reason                        |
+| ---------------------------- | ------------------------------------------ | ----------------------------- |
+| Context saved, continue work | Return to previous task                    | Memory preserved, continue    |
+| Ending session               | `/spec_kit:handover [spec-folder-path]`    | Create full handover document |
+| Search saved memories        | `/memory:search [query]`                   | Find related context          |
+| Start new work               | `/spec_kit:complete [feature-description]` | Begin new feature             |
+
+**ALWAYS** end with: "Context saved. What would you like to do next?"

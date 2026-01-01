@@ -200,7 +200,7 @@ Script is advisory, not mandatory per request.
 
 **Action:**
 ```javascript
-memory_search({ specFolder: "folder-name", includeContent: true })
+memory_search({ query: "session context", specFolder: "folder-name", includeContent: true })
 ```
 
 Results include embedded content directly. Constitutional memories always appear first.

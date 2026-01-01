@@ -30,6 +30,8 @@ EXECUTE THIS CHECK FIRST:
     ├─ Store as: research_topic
     └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
 
+**STOP HERE** - Wait for user to provide the research topic before continuing.
+
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer topics from context, screenshots, or conversation history
 ```
@@ -83,6 +85,8 @@ EXECUTE AFTER PHASE 1 PASSES:
    └─ Spec folder is passed via CLI argument
 
 7. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select A/B/C/D and execution mode before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly answers
 ⛔ NEVER auto-create spec folders without user confirmation
@@ -159,6 +163,8 @@ CHECK spec_choice value from Phase 2:
         ├─ Execute loading based on choice (use Read tool)
         ├─ Acknowledge loaded context briefly
         └─ SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select memory loading option before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
 ```
@@ -376,3 +382,32 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 ```
 /spec_kit:research "Video streaming optimization for mobile browsers"
 ```
+
+---
+
+## 10. 🔗 COMMAND CHAIN
+
+This command is part of the SpecKit workflow:
+
+```
+/spec_kit:research → [/spec_kit:plan] → [/spec_kit:implement]
+```
+
+**Explicit next step:**
+→ `/spec_kit:plan [feature-description]` (use research findings to inform planning)
+
+---
+
+## 11. 🔜 WHAT NEXT?
+
+After research completes, suggest relevant next steps:
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Research complete, ready to plan | `/spec_kit:plan [feature-description]` | Use findings to create spec and plan |
+| Need more investigation | `/spec_kit:research [new-topic]` | Deeper dive on specific area |
+| Research reveals blockers | Document in research.md | Capture constraints before planning |
+| Need to pause work | `/spec_kit:handover [spec-folder-path]` | Save context for later |
+| Want to save context | `/memory:save [spec-folder-path]` | Preserve research findings |
+
+**ALWAYS** end with: "What would you like to do next?"

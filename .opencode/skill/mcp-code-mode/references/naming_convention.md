@@ -228,9 +228,9 @@ await clickup.clickup_create_list({ name: "..." });
       "figma": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-figma"],
+        "args": ["-y", "figma-developer-mcp", "--stdio"],
         "env": {
-          "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}"
+          "FIGMA_API_KEY": "${FIGMA_API_KEY}"
         }
       }
     }

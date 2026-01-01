@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# RULE: CHECK-FRONTMATTER
+# ───────────────────────────────────────────────────────────────
+
 # Rule: FRONTMATTER_VALID
 # Severity: warning
 # Description: Validates YAML frontmatter structure in markdown files (optional check)
+
+# ───────────────────────────────────────────────────────────────
+# 1. INITIALIZATION
+# ───────────────────────────────────────────────────────────────
 
 run_check() {
     local folder="$1"
@@ -14,20 +22,21 @@ run_check() {
     RULE_REMEDIATION=""
     
     local issues=()
-    
-    # Check key markdown files for frontmatter
+
+# ───────────────────────────────────────────────────────────────
+# 2. VALIDATION LOGIC
+# ───────────────────────────────────────────────────────────────
+
     local files_to_check=("spec.md" "plan.md")
     
     for file in "${files_to_check[@]}"; do
         local filepath="$folder/$file"
         [[ ! -f "$filepath" ]] && continue
         
-        # Check if file starts with ---
         local first_line
         first_line=$(head -n 1 "$filepath" 2>/dev/null)
         
         if [[ "$first_line" == "---" ]]; then
-            # Has frontmatter, check if it's closed
             local frontmatter_end
             frontmatter_end=$(awk 'NR>1 && /^---$/{print NR; exit}' "$filepath")
             
@@ -36,15 +45,10 @@ run_check() {
             fi
         fi
         
-        # Check for SPECKIT_TEMPLATE_SOURCE marker (indicates template was used)
-        # Skip for test fixtures (path-based) or when SKIP_TEMPLATE_CHECK=1 (env var)
+        # Check for SPECKIT_TEMPLATE_SOURCE marker (skip test fixtures)
         local skip_template_check=false
-        if [[ "$folder" == *"test-fixtures"* ]]; then
-            skip_template_check=true
-        fi
-        if [[ "${SKIP_TEMPLATE_CHECK:-0}" == "1" ]]; then
-            skip_template_check=true
-        fi
+        [[ "$folder" == *"test-fixtures"* ]] && skip_template_check=true
+        [[ "${SKIP_TEMPLATE_CHECK:-0}" == "1" ]] && skip_template_check=true
         
         if [[ "$skip_template_check" == "false" ]]; then
             if ! grep -q "SPECKIT_TEMPLATE_SOURCE" "$filepath" 2>/dev/null; then
@@ -52,7 +56,11 @@ run_check() {
             fi
         fi
     done
-    
+
+# ───────────────────────────────────────────────────────────────
+# 3. RESULTS
+# ───────────────────────────────────────────────────────────────
+
     if [[ ${#issues[@]} -gt 0 ]]; then
         RULE_STATUS="warn"
         RULE_MESSAGE="Found ${#issues[@]} frontmatter issue(s)"

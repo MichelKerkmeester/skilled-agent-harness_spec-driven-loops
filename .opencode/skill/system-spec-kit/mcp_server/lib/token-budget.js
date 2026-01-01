@@ -1,199 +1,99 @@
-/**
- * Token Budget Module - Response size management
- *
- * Prevents "Response exceeds maximum allowed tokens" errors by providing
- * utilities for estimating token counts and truncating results to fit
- * within MCP response limits.
- *
- * @module lib/token-budget
- * @version 11.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// token-budget.js: Token estimation and truncation utilities
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
-/**
- * Token configuration with environment overrides
- * @type {Object}
- * @property {number} maxTokens - Maximum allowed tokens (default: 25000)
- * @property {number} safetyBuffer - Safety buffer multiplier (default: 0.8 = 80%)
- * @property {number} charsPerToken - Average characters per token (default: 3.5)
- * @property {number} minItems - Minimum items to always include (default: 1)
- */
+/* ───────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
+
+// Token estimation: ~3.5 chars/token for mixed English/code content
 const TOKEN_CONFIG = {
-  maxTokens: parseInt(process.env.MCP_MAX_TOKENS || '25000', 10),
-  safetyBuffer: parseFloat(process.env.MCP_TOKEN_SAFETY_BUFFER || '0.8'),
-  charsPerToken: parseFloat(process.env.MCP_CHARS_PER_TOKEN || '3.5'),
-  minItems: parseInt(process.env.MCP_MIN_ITEMS || '1', 10)
+  max_tokens: parseInt(process.env.MCP_MAX_TOKENS || '25000', 10),
+  safety_buffer: parseFloat(process.env.MCP_TOKEN_SAFETY_BUFFER || '0.8'),
+  chars_per_token: parseFloat(process.env.MCP_CHARS_PER_TOKEN || '3.5'),
+  min_items: parseInt(process.env.MCP_MIN_ITEMS || '1', 10),
 };
 
-/**
- * Estimate token count for content
- *
- * Uses a character-based approximation since exact tokenization
- * varies by model. The default ratio of 3.5 chars/token is a
- * conservative estimate for mixed English/code content.
- *
- * @param {string|Object} content - Content to estimate (strings or objects)
- * @returns {number} Estimated token count (always >= 1)
- * @example
- * estimateTokens('Hello world'); // ~3 tokens
- * estimateTokens({ key: 'value' }); // ~5 tokens
- */
-function estimateTokens(content) {
+/* ───────────────────────────────────────────────────────────────
+   2. CORE FUNCTIONS
+   ─────────────────────────────────────────────────────────────── */
+
+function estimate_tokens(content) {
   if (content === null || content === undefined) {
     return 0;
   }
-
   const text = typeof content === 'string' ? content : JSON.stringify(content);
-  return Math.max(1, Math.ceil(text.length / TOKEN_CONFIG.charsPerToken));
+  return Math.max(1, Math.ceil(text.length / TOKEN_CONFIG.chars_per_token));
 }
 
-/**
- * Truncate results to fit token budget
- *
- * Iterates through results, accumulating token counts until the budget
- * is exhausted. Always includes at least `minItems` results regardless
- * of token count to ensure some data is returned.
- *
- * @param {Array} results - Search results array to truncate
- * @param {Object} [config=TOKEN_CONFIG] - Override configuration
- * @param {number} [config.maxTokens] - Maximum token limit
- * @param {number} [config.safetyBuffer] - Safety buffer multiplier (0-1)
- * @param {number} [config.charsPerToken] - Characters per token estimate
- * @param {number} [config.minItems] - Minimum items to include
- * @returns {Object} Truncation result object
- * @returns {Array} returns.results - Truncated results array
- * @returns {number} returns.tokensUsed - Total tokens in returned results
- * @returns {boolean} returns.truncated - Whether results were truncated
- * @returns {number} returns.originalCount - Original number of results
- * @returns {number} returns.returnedCount - Number of results returned
- * @example
- * const { results, truncated } = truncateToTokenLimit(searchResults);
- * if (truncated) {
- *   console.log('Results were truncated to fit token budget');
- * }
- */
-function truncateToTokenLimit(results, config = TOKEN_CONFIG) {
-  // Handle edge cases
-  if (!Array.isArray(results)) {
+// Truncates results to fit token budget, always includes at least min_items
+function truncate_to_token_limit(results, config = TOKEN_CONFIG) {
+  if (!Array.isArray(results) || results.length === 0) {
     return {
       results: [],
-      tokensUsed: 0,
+      tokens_used: 0,
       truncated: false,
-      originalCount: 0,
-      returnedCount: 0
+      original_count: results?.length || 0,
+      returned_count: 0,
     };
   }
 
-  if (results.length === 0) {
-    return {
-      results: [],
-      tokensUsed: 0,
-      truncated: false,
-      originalCount: 0,
-      returnedCount: 0
-    };
-  }
+  const effective_config = { ...TOKEN_CONFIG, ...config };
+  const max_tokens = effective_config.max_tokens * effective_config.safety_buffer;
 
-  // Merge provided config with defaults
-  const effectiveConfig = { ...TOKEN_CONFIG, ...config };
-  const maxTokens = effectiveConfig.maxTokens * effectiveConfig.safetyBuffer;
-
-  let totalTokens = 0;
+  let total_tokens = 0;
   const truncated = [];
 
   for (const result of results) {
-    const resultTokens = estimateTokens(result);
+    const result_tokens = estimate_tokens(result);
 
-    // Check if we'd exceed the budget, but always include minItems
-    if (totalTokens + resultTokens > maxTokens &&
-        truncated.length >= effectiveConfig.minItems) {
+    if (total_tokens + result_tokens > max_tokens &&
+        truncated.length >= effective_config.min_items) {
       break;
     }
 
     truncated.push(result);
-    totalTokens += resultTokens;
+    total_tokens += result_tokens;
   }
 
   return {
     results: truncated,
-    tokensUsed: totalTokens,
+    tokens_used: total_tokens,
     truncated: results.length > truncated.length,
-    originalCount: results.length,
-    returnedCount: truncated.length
+    original_count: results.length,
+    returned_count: truncated.length,
   };
 }
 
-/**
- * Format truncation message for MCP response
- *
- * Generates a human-readable message explaining the truncation.
- * Returns null if no truncation occurred.
- *
- * @param {Object} truncationResult - Result from truncateToTokenLimit
- * @param {boolean} truncationResult.truncated - Whether truncation occurred
- * @param {number} truncationResult.returnedCount - Number of results returned
- * @param {number} truncationResult.originalCount - Original number of results
- * @param {number} truncationResult.tokensUsed - Tokens used by returned results
- * @returns {string|null} Human-readable truncation message, or null if not truncated
- * @example
- * const result = truncateToTokenLimit(searchResults);
- * const message = formatTruncationMessage(result);
- * if (message) {
- *   response.metadata = { truncationNote: message };
- * }
- */
-function formatTruncationMessage(truncationResult) {
-  if (!truncationResult || !truncationResult.truncated) {
+function format_truncation_message(truncation_result) {
+  if (!truncation_result || !truncation_result.truncated) {
     return null;
   }
-
-  return `Results truncated: showing ${truncationResult.returnedCount} of ${truncationResult.originalCount} (${truncationResult.tokensUsed} tokens used)`;
+  return `Results truncated: showing ${truncation_result.returned_count} of ${truncation_result.original_count} (${truncation_result.tokens_used} tokens used)`;
 }
 
-/**
- * Check if content fits within token budget
- *
- * Quick check to determine if content would fit without truncation.
- *
- * @param {string|Object} content - Content to check
- * @param {Object} [config=TOKEN_CONFIG] - Override configuration
- * @returns {boolean} True if content fits within budget
- * @example
- * if (!fitsWithinBudget(largeResponse)) {
- *   response = summarize(response);
- * }
- */
-function fitsWithinBudget(content, config = TOKEN_CONFIG) {
-  const effectiveConfig = { ...TOKEN_CONFIG, ...config };
-  const maxTokens = effectiveConfig.maxTokens * effectiveConfig.safetyBuffer;
-  return estimateTokens(content) <= maxTokens;
+function fits_within_budget(content, config = TOKEN_CONFIG) {
+  const effective_config = { ...TOKEN_CONFIG, ...config };
+  const max_tokens = effective_config.max_tokens * effective_config.safety_buffer;
+  return estimate_tokens(content) <= max_tokens;
 }
 
-/**
- * Get remaining token budget
- *
- * Calculate how many tokens are available after accounting for
- * already-used tokens.
- *
- * @param {number} usedTokens - Tokens already consumed
- * @param {Object} [config=TOKEN_CONFIG] - Override configuration
- * @returns {number} Remaining token budget (minimum 0)
- * @example
- * const remaining = getRemainingBudget(headerTokens);
- * const bodyResults = truncateToTokenLimit(results, { maxTokens: remaining });
- */
-function getRemainingBudget(usedTokens, config = TOKEN_CONFIG) {
-  const effectiveConfig = { ...TOKEN_CONFIG, ...config };
-  const maxTokens = effectiveConfig.maxTokens * effectiveConfig.safetyBuffer;
-  return Math.max(0, maxTokens - usedTokens);
+function get_remaining_budget(used_tokens, config = TOKEN_CONFIG) {
+  const effective_config = { ...TOKEN_CONFIG, ...config };
+  const max_tokens = effective_config.max_tokens * effective_config.safety_buffer;
+  return Math.max(0, max_tokens - used_tokens);
 }
+
+/* ───────────────────────────────────────────────────────────────
+   3. EXPORTS
+   ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
   TOKEN_CONFIG,
-  estimateTokens,
-  truncateToTokenLimit,
-  formatTruncationMessage,
-  fitsWithinBudget,
-  getRemainingBudget
+  estimate_tokens,
+  truncate_to_token_limit,
+  format_truncation_message,
+  fits_within_budget,
+  get_remaining_budget,
 };

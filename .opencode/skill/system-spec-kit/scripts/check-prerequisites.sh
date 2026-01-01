@@ -1,32 +1,15 @@
 #!/usr/bin/env bash
-#
-# check-prerequisites.sh - SpecKit Prerequisite Validation
-#
-# Validates that a spec folder exists and contains required files before
-# proceeding with implementation phases. Provides unified prerequisite
-# checking for the Spec-Driven Development workflow.
-#
-# VERSION: 2.0.0
-# UPDATED: 2025-12-10
-#
-# USAGE: ./check-prerequisites.sh [OPTIONS]
-#
-# OPTIONS:
-#   --json              Output in JSON format
-#   --require-tasks     Require tasks.md to exist (for implementation phase)
-#   --include-tasks     Include tasks.md in AVAILABLE_DOCS list
-#   --paths-only        Only output path variables (no validation)
-#   --help, -h          Show help message
-#
-# OUTPUTS:
-#   JSON mode: {"FEATURE_DIR":"...", "AVAILABLE_DOCS":["..."]}
-#   Text mode: FEATURE_DIR:... \n AVAILABLE_DOCS: \n ✓/✗ file.md
-#   Paths only: REPO_ROOT: ... \n BRANCH: ... \n FEATURE_DIR: ... etc.
-#
+# ───────────────────────────────────────────────────────────────
+# SPECKIT: CHECK PREREQUISITES
+# ───────────────────────────────────────────────────────────────
+# Validates spec folder exists with required files before implementation.
 
 set -euo pipefail
 
-# Parse command line arguments
+# ───────────────────────────────────────────────────────────────
+# 1. ARGUMENT PARSING
+# ───────────────────────────────────────────────────────────────
+
 JSON_MODE=false
 REQUIRE_TASKS=false
 INCLUDE_TASKS=false
@@ -37,81 +20,53 @@ VALIDATE_VERBOSE=false
 
 for arg in "$@"; do
     case "$arg" in
-        --json)
-            JSON_MODE=true
-            ;;
-        --require-tasks)
-            REQUIRE_TASKS=true
-            ;;
-        --include-tasks)
-            INCLUDE_TASKS=true
-            ;;
-        --paths-only)
-            PATHS_ONLY=true
-            ;;
-        --validate|-V)
-            VALIDATE_MODE=true
-            ;;
-        --validate-strict)
-            VALIDATE_MODE=true
-            VALIDATE_STRICT=true
-            ;;
-        --validate-verbose)
-            VALIDATE_MODE=true
-            VALIDATE_VERBOSE=true
-            ;;
+        --json) JSON_MODE=true ;;
+        --require-tasks) REQUIRE_TASKS=true ;;
+        --include-tasks) INCLUDE_TASKS=true ;;
+        --paths-only) PATHS_ONLY=true ;;
+        --validate|-V) VALIDATE_MODE=true ;;
+        --validate-strict) VALIDATE_MODE=true; VALIDATE_STRICT=true ;;
+        --validate-verbose) VALIDATE_MODE=true; VALIDATE_VERBOSE=true ;;
         --help|-h)
             cat << 'EOF'
-Usage: check-prerequisites.sh [OPTIONS]
+check-prerequisites.sh - Spec folder prerequisite validation
 
-Consolidated prerequisite checking for Spec-Driven Development workflow.
+USAGE: ./check-prerequisites.sh [OPTIONS]
 
 OPTIONS:
   --json              Output in JSON format
-  --require-tasks     Require tasks.md to exist (for implementation phase)
-  --include-tasks     Include tasks.md in AVAILABLE_DOCS list
-  --paths-only        Only output path variables (no prerequisite validation)
-  --validate, -V      Run validation on the spec folder (calls validate-spec.sh)
-  --validate-strict   Run validation in strict mode (warnings as errors)
-  --validate-verbose  Run validation with verbose output
-  --help, -h          Show this help message
-
-EXAMPLES:
-  # Check task prerequisites (plan.md required)
-  ./check-prerequisites.sh --json
-  
-  # Check implementation prerequisites (plan.md + tasks.md required)
-  ./check-prerequisites.sh --json --require-tasks --include-tasks
-  
-  # Get feature paths only (no validation)
-  ./check-prerequisites.sh --paths-only
-  
-  # Run full validation on spec folder
-  ./check-prerequisites.sh --validate
-  
-  # Run strict validation (warnings become errors)
-  ./check-prerequisites.sh --validate-strict
-  
+  --require-tasks     Require tasks.md (for implementation phase)
+  --include-tasks     Include tasks.md in AVAILABLE_DOCS
+  --paths-only        Output paths only (no validation)
+  --validate, -V      Run validate-spec.sh on folder
+  --validate-strict   Strict mode (warnings as errors)
+  --validate-verbose  Verbose validation output
+  --help, -h          Show help
 EOF
             exit 0
             ;;
         *)
-            echo "ERROR: Unknown option '$arg'. Use --help for usage information." >&2
+            echo "ERROR: Unknown option '$arg'. Use --help for usage." >&2
             exit 1
             ;;
     esac
 done
 
-# Source common functions
+# ───────────────────────────────────────────────────────────────
+# 2. INITIALIZATION
+# ───────────────────────────────────────────────────────────────
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
-# Get feature paths and validate branch
-# SECURITY: get_feature_paths uses printf %q for shell-safe output, making this eval safe
+# SECURITY: get_feature_paths uses printf %q for shell-safe output
 eval $(get_feature_paths)
 check_feature_branch "$CURRENT_BRANCH" "$HAS_GIT" || exit 1
 
-# If paths-only mode, output paths and exit (support JSON + paths-only combined)
+# ───────────────────────────────────────────────────────────────
+# 3. PATH-ONLY MODE
+# ───────────────────────────────────────────────────────────────
+
 if $PATHS_ONLY; then
     if $JSON_MODE; then
         # Minimal JSON paths payload (no validation performed)
@@ -128,14 +83,16 @@ if $PATHS_ONLY; then
     exit 0
 fi
 
-# Validate required directories and files
+# ───────────────────────────────────────────────────────────────
+# 4. VALIDATION
+# ───────────────────────────────────────────────────────────────
+
 if [[ ! -d "$FEATURE_DIR" ]]; then
     echo "ERROR: Feature directory not found: $FEATURE_DIR" >&2
     echo "Run /spec_kit:complete or /spec_kit:plan first to create the feature structure." >&2
     exit 1
 fi
 
-# If validation mode, run validate-spec.sh and exit
 if $VALIDATE_MODE; then
     VALIDATE_ARGS=()
     $JSON_MODE && VALIDATE_ARGS+=(--json)
@@ -148,39 +105,28 @@ fi
 
 if [[ ! -f "$IMPL_PLAN" ]]; then
     echo "ERROR: plan.md not found in $FEATURE_DIR" >&2
-    echo "Run /spec_kit:plan or /spec_kit:complete first to create the implementation plan." >&2
     exit 1
 fi
 
-# Check for tasks.md if required
 if $REQUIRE_TASKS && [[ ! -f "$TASKS" ]]; then
     echo "ERROR: tasks.md not found in $FEATURE_DIR" >&2
-    echo "Create tasks.md manually or ensure spec folder has complete documentation." >&2
     exit 1
 fi
 
-# Build list of available documents
+# ───────────────────────────────────────────────────────────────
+# 5. BUILD AVAILABLE DOCS LIST
+# ───────────────────────────────────────────────────────────────
+
 docs=()
-
-# Always check these optional docs
 [[ -f "$RESEARCH" ]] && docs+=("research.md")
+[[ -d "$CHECKLISTS_DIR" && -n "$(ls -A "$CHECKLISTS_DIR" 2>/dev/null)" ]] && docs+=("checklists/")
+[[ -d "$DECISIONS_DIR" && -n "$(ls -A "$DECISIONS_DIR" 2>/dev/null)" ]] && docs+=("decisions/")
+$INCLUDE_TASKS && [[ -f "$TASKS" ]] && docs+=("tasks.md")
 
-# Check checklists directory (only if it exists and has files)
-if [[ -d "$CHECKLISTS_DIR" ]] && [[ -n "$(ls -A "$CHECKLISTS_DIR" 2>/dev/null)" ]]; then
-    docs+=("checklists/")
-fi
+# ───────────────────────────────────────────────────────────────
+# 6. OUTPUT
+# ───────────────────────────────────────────────────────────────
 
-# Check decisions directory (only if it exists and has files)
-if [[ -d "$DECISIONS_DIR" ]] && [[ -n "$(ls -A "$DECISIONS_DIR" 2>/dev/null)" ]]; then
-    docs+=("decisions/")
-fi
-
-# Include tasks.md if requested and it exists
-if $INCLUDE_TASKS && [[ -f "$TASKS" ]]; then
-    docs+=("tasks.md")
-fi
-
-# Output results
 if $JSON_MODE; then
     # Build JSON array of documents
     if [[ ${#docs[@]} -eq 0 ]]; then
@@ -192,16 +138,10 @@ if $JSON_MODE; then
     
     printf '{"FEATURE_DIR":"%s","AVAILABLE_DOCS":%s}\n' "$FEATURE_DIR" "$json_docs"
 else
-    # Text output
     echo "FEATURE_DIR:$FEATURE_DIR"
     echo "AVAILABLE_DOCS:"
-    
-    # Show status of each potential document
     check_file "$RESEARCH" "research.md"
     check_dir "$CHECKLISTS_DIR" "checklists/"
     check_dir "$DECISIONS_DIR" "decisions/"
-    
-    if $INCLUDE_TASKS; then
-        check_file "$TASKS" "tasks.md"
-    fi
+    $INCLUDE_TASKS && check_file "$TASKS" "tasks.md"
 fi

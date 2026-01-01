@@ -1,11 +1,8 @@
-#!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────
+// SCRIPT: GENERATE CONVERSATION CONTEXT DOCUMENTATION
+// ───────────────────────────────────────────────────────────────
 
-/**
- * Memory - Generate Expanded Conversation Documentation
- *
- * This script generates comprehensive conversation context documentation
- * from conversation session data provided via JSON input file.
- */
+'use strict';
 
 const fs = require('fs/promises');
 const fsSync = require('fs');
@@ -13,9 +10,9 @@ const path = require('path');
 const readline = require('readline');
 const { execSync } = require('child_process');
 
-// ───────────────────────────────────────────────────────────────
-// CLI HELP FLAG HANDLING
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   1. CLI HELP FLAG HANDLING
+──────────────────────────────────────────────────────────────── */
 
 // Handle --help flag before any other processing
 if (process.argv.includes('--help') || process.argv.includes('-h')) {
@@ -42,16 +39,11 @@ Output:
   process.exit(0);
 }
 
-// ───────────────────────────────────────────────────────────────
-// L18: STRUCTURED LOGGING UTILITY
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   2. STRUCTURED LOGGING UTILITY
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Structured logging utility for consistent JSON-formatted log output
- * @param {string} level - Log level: 'debug', 'info', 'warn', 'error'
- * @param {string} message - Human-readable log message
- * @param {Object} data - Additional structured data to include
- */
+// Structured JSON logging: level ('debug'|'info'|'warn'|'error'), message, optional data
 function structuredLog(level, message, data = {}) {
   const logEntry = {
     timestamp: new Date().toISOString(),
@@ -73,17 +65,11 @@ function structuredLog(level, message, data = {}) {
   }
 }
 
-// ───────────────────────────────────────────────────────────────
-// L19: PATH SANITIZATION UTILITY
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   3. PATH SANITIZATION UTILITY
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Sanitize and validate file paths to prevent path traversal attacks
- * @param {string} inputPath - User-provided path to sanitize
- * @param {string[]} allowedBases - Array of allowed base directories (defaults to project paths)
- * @returns {string} Sanitized absolute path
- * @throws {Error} If path is invalid or outside allowed directories
- */
+// Sanitize path to prevent traversal attacks (CWE-22) - returns validated absolute path
 function sanitizePath(inputPath, allowedBases = null) {
   if (!inputPath || typeof inputPath !== 'string') {
     throw new Error('Invalid path: path must be a non-empty string');
@@ -128,9 +114,9 @@ function sanitizePath(inputPath, allowedBases = null) {
   return resolved;
 }
 
-// ───────────────────────────────────────────────────────────────
-// L20: LIBRARY IMPORTS WITH ERROR HANDLING
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   4. LIBRARY IMPORTS WITH ERROR HANDLING
+──────────────────────────────────────────────────────────────── */
 
 // Content filtering stats (filtering happens in transform-transcript.js)
 let getFilterStats;
@@ -276,12 +262,11 @@ try {
   process.exit(1);
 }
 
-// ───────────────────────────────────────────────────────────────
-// CONFIGURATION
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   5. CONFIGURATION
+──────────────────────────────────────────────────────────────── */
 
-// Load configuration from config.jsonc with fallback to defaults
-// Supports JSONC format: strips // comments from all lines before parsing
+// Load config.jsonc with JSONC comment stripping, falls back to defaults
 function loadConfig() {
   const defaultConfig = {
     maxResultPreview: 500,
@@ -384,6 +369,27 @@ function loadConfig() {
 
 const userConfig = loadConfig();
 
+/* ─────────────────────────────────────────────────────────────
+   6. DATABASE UPDATE NOTIFICATION
+──────────────────────────────────────────────────────────────── */
+const DB_UPDATED_FILE = path.join(__dirname, '../database/.db-updated');
+
+// BUG-001: Write notification file so MCP server can refresh its DB connection
+function notifyDatabaseUpdated() {
+  try {
+    // Ensure database directory exists
+    const dbDir = path.dirname(DB_UPDATED_FILE);
+    if (!fsSync.existsSync(dbDir)) {
+      fsSync.mkdirSync(dbDir, { recursive: true });
+    }
+    // Write current timestamp
+    fsSync.writeFileSync(DB_UPDATED_FILE, Date.now().toString());
+    console.log('[generate-context] Database update notification written');
+  } catch (e) {
+    console.warn('[generate-context] Failed to write database notification:', e.message);
+  }
+}
+
 const CONFIG = {
   SKILL_VERSION: '12.5.0',
   MESSAGE_COUNT_TRIGGER: 20, // Auto-save every 20 messages
@@ -409,16 +415,11 @@ const CONFIG = {
   MAX_CONTENT_PREVIEW: 500
 };
 
-// ───────────────────────────────────────────────────────────────
-// SMART ARGUMENT PARSING (V13.0)
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   7. SMART ARGUMENT PARSING
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Parse command line arguments to detect data file vs spec folder
- * Supports two modes:
- * 1. Legacy/Manual: node script.js <data-file> [spec-folder]
- * 2. Stateless/Agent: node script.js <spec-folder> (auto-capture)
- */
+// Parse CLI args: Legacy (data-file [spec-folder]) or Stateless (spec-folder with auto-capture)
 function parseArguments() {
   const arg1 = process.argv[2];
   const arg2 = process.argv[3];
@@ -449,18 +450,11 @@ function parseArguments() {
 // Run argument parsing immediately
 parseArguments();
 
-// ───────────────────────────────────────────────────────────────
-// V11.0: SESSION METADATA HELPERS
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   8. SESSION METADATA HELPERS
+──────────────────────────────────────────────────────────────── */
 
-/**
- * V11.2: Detect and link related documentation files in spec folder
- * Scans for standard documentation files with meaningful descriptions
- * Also includes parent folder docs if in a sub-folder (e.g., 005-memory/010-feature)
- * 
- * @param {string} specFolderPath - Absolute path to the spec folder
- * @returns {Promise<Array<{FILE_NAME: string, FILE_PATH: string, DESCRIPTION: string}>>} Array of found docs
- */
+// V11.2: Detect spec/plan/checklist files in folder (includes parent if nested)
 async function detectRelatedDocs(specFolderPath) {
   // Standard documentation files with their roles
   const docFiles = [
@@ -521,13 +515,7 @@ async function detectRelatedDocs(specFolderPath) {
   return found;
 }
 
-/**
- * Extract key topics from session summary and decisions
- * Uses simple keyword extraction with stopword filtering
- * @param {string} summary - Session summary text
- * @param {Array} decisions - Array of decision objects
- * @returns {Array<string>} Array of key topic strings (max 10)
- */
+// Extract key topics from summary/decisions using keyword extraction (max 10)
 function extractKeyTopics(summary, decisions = []) {
   const topics = new Set();
   
@@ -591,20 +579,12 @@ function extractKeyTopics(summary, decisions = []) {
     .slice(0, 10);
 }
 
-/**
- * Generate a unique session ID for tracking
- * Format: session-{timestamp}-{random}
- * @returns {string} Unique session identifier
- */
+// Generate unique session ID: session-{timestamp}-{random}
 function generateSessionId() {
   return `session-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
 }
 
-/**
- * Detect the current git branch/channel
- * Returns branch name, or detached:hash if in detached HEAD state
- * @returns {string} Channel identifier
- */
+// Get git branch name (or 'detached:hash' if HEAD is detached)
 function getChannel() {
   try {
     const branch = execSync('git rev-parse --abbrev-ref HEAD', {
@@ -620,12 +600,7 @@ function getChannel() {
   }
 }
 
-/**
- * Auto-detect context type based on tool usage patterns
- * @param {Object} toolCounts - Map of tool names to usage counts
- * @param {number} decisionCount - Number of decisions in the session
- * @returns {string} Context type: general|decision|discovery|research|implementation
- */
+// Auto-detect context type from tool usage: general|decision|discovery|research|implementation
 function detectContextType(toolCounts, decisionCount) {
   const total = Object.values(toolCounts).reduce((a, b) => a + b, 0);
   if (total === 0) return 'general';
@@ -641,12 +616,7 @@ function detectContextType(toolCounts, decisionCount) {
   return 'general';
 }
 
-/**
- * Detect importance tier based on files modified and context type
- * @param {Array<string>} filesModified - List of modified file paths
- * @param {string} contextType - The detected context type
- * @returns {string} Importance tier: critical|important|normal
- */
+// Detect importance tier from files modified: critical|important|normal
 function detectImportanceTier(filesModified, contextType) {
   // Check for architecture/core paths
   const criticalPaths = ['/architecture/', '/core/', '/schema/', '/security/', '/config/'];
@@ -657,17 +627,11 @@ function detectImportanceTier(filesModified, contextType) {
   return 'normal'; // Default
 }
 
-// ───────────────────────────────────────────────────────────────
-// PROJECT STATE SNAPSHOT HELPERS (V13.0 - Replaces STATE.md)
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   9. PROJECT STATE SNAPSHOT HELPERS
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Detect project phase from tool usage and observations
- * @param {Object} toolCounts - Tool usage counts
- * @param {Array} observations - Session observations
- * @param {number} messageCount - Total message count
- * @returns {string} Phase: RESEARCH|PLANNING|IMPLEMENTATION|REVIEW|COMPLETE
- */
+// Detect project phase: RESEARCH|PLANNING|IMPLEMENTATION|REVIEW|COMPLETE
 function detectProjectPhase(toolCounts, observations, messageCount) {
   const total = Object.values(toolCounts).reduce((a, b) => a + b, 0);
   if (total === 0 && messageCount < 3) return 'RESEARCH';
@@ -688,12 +652,7 @@ function detectProjectPhase(toolCounts, observations, messageCount) {
   return 'IMPLEMENTATION'; // Default for active sessions
 }
 
-/**
- * Extract the most recently active file from observations
- * @param {Array} observations - Session observations
- * @param {Array} files - Files array with FILE_PATH
- * @returns {string} Active file path or 'N/A'
- */
+// Extract most recently active file from observations (or 'N/A')
 function extractActiveFile(observations, files) {
   // Check most recent observations for file references
   for (let i = observations.length - 1; i >= 0; i--) {
@@ -711,12 +670,7 @@ function extractActiveFile(observations, files) {
   return 'N/A';
 }
 
-/**
- * Extract next action from context or observations
- * @param {Array} observations - Session observations
- * @param {Array} recentContext - Recent context from conversation
- * @returns {string} Next action description
- */
+// Extract next action from observations or recent context
 function extractNextAction(observations, recentContext) {
   // Check for explicit follow-up in observations
   for (const obs of observations) {
@@ -740,11 +694,7 @@ function extractNextAction(observations, recentContext) {
   return 'Continue implementation';
 }
 
-/**
- * Extract any blockers mentioned in observations
- * @param {Array} observations - Session observations
- * @returns {string} Blockers description or 'None'
- */
+// Extract blockers from observations (or 'None')
 function extractBlockers(observations) {
   const blockerKeywords = /\b(?:block(?:ed|er|ing)?|stuck|issue|problem|error|fail(?:ed|ing)?|cannot|can't)\b/i;
   
@@ -764,12 +714,7 @@ function extractBlockers(observations) {
   return 'None';
 }
 
-/**
- * Build file progress from spec files
- * @param {Array} specFiles - Array of spec file objects
- * @param {string} specFolderPath - Path to spec folder
- * @returns {Array} Array of {FILE_NAME, FILE_STATUS}
- */
+// Build file progress array from spec files
 function buildFileProgress(specFiles, specFolderPath) {
   if (!specFiles || specFiles.length === 0) return [];
   
@@ -779,11 +724,7 @@ function buildFileProgress(specFiles, specFolderPath) {
   }));
 }
 
-/**
- * Auto-detect observation type based on content
- * @param {Object} obs - Observation object with title, narrative, facts
- * @returns {string} Type: feature|bugfix|refactor|discovery|decision|research|observation
- */
+// Auto-detect observation type: feature|bugfix|refactor|discovery|decision|research|observation
 function detectObservationType(obs) {
   // Return existing type if already set (and not generic 'observation')
   if (obs.type && obs.type !== 'observation') return obs.type;
@@ -803,16 +744,11 @@ function detectObservationType(obs) {
   return 'observation'; // Default fallback
 }
 
-// ───────────────────────────────────────────────────────────────
-// IMPLEMENTATION GUIDE EXTRACTION (V12.0)
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   10. IMPLEMENTATION GUIDE EXTRACTION
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Check if session contains implementation work worth documenting
- * @param {Array} observations - Session observations
- * @param {Array} files - Files modified during session
- * @returns {boolean} True if implementation guide should be generated
- */
+// Check if session has enough implementation work for guide generation
 function hasImplementationWork(observations, files) {
   // Check observation types
   const implTypes = ['implementation', 'feature', 'bugfix', 'refactor'];
@@ -832,12 +768,7 @@ function hasImplementationWork(observations, files) {
   return score >= 2;
 }
 
-/**
- * Extract main topic from observations for Implementation Guide anchor
- * @param {Array} observations - Session observations
- * @param {string} specFolder - Spec folder name
- * @returns {string} Main topic slug (e.g., "oauth-callback", "content-filter")
- */
+// Extract main topic slug for Implementation Guide anchor
 function extractMainTopic(observations, specFolder) {
   // Try to get topic from spec folder name first
   if (specFolder) {
@@ -863,11 +794,7 @@ function extractMainTopic(observations, specFolder) {
   return 'implementation';
 }
 
-/**
- * Extract what was built from implementation observations
- * @param {Array} observations - Session observations
- * @returns {Array} Array of {FEATURE_NAME, DESCRIPTION}
- */
+// Extract implemented features from observations (max 5)
 function extractWhatBuilt(observations) {
   const implementations = [];
   const seen = new Set();
@@ -913,12 +840,7 @@ function extractWhatBuilt(observations) {
   return implementations.slice(0, 5); // Limit to 5 features
 }
 
-/**
- * Extract key files with their roles from file changes
- * @param {Array} files - Files modified during session (with FILE_PATH, DESCRIPTION)
- * @param {Array} observations - Session observations for additional context
- * @returns {Array} Array of {FILE_PATH, ROLE}
- */
+// Extract key files with detected roles (max 8)
 function extractKeyFilesWithRoles(files, observations) {
   const keyFiles = [];
   
@@ -1007,12 +929,7 @@ function extractKeyFilesWithRoles(files, observations) {
   return keyFiles.slice(0, 8); // Limit to 8 key files
 }
 
-/**
- * Generate extension guide based on patterns observed
- * @param {Array} observations - Session observations
- * @param {Array} files - Files modified
- * @returns {Array} Array of {GUIDE_TEXT}
- */
+// Generate extension guide from observed patterns (max 4)
 function generateExtensionGuide(observations, files) {
   const guides = [];
   const seenPatterns = new Set();
@@ -1070,12 +987,7 @@ function generateExtensionGuide(observations, files) {
   return guides.slice(0, 4); // Limit to 4 guides
 }
 
-/**
- * Extract code patterns used in the session
- * @param {Array} observations - Session observations
- * @param {Array} files - Files modified
- * @returns {Array} Array of {PATTERN_NAME, USAGE}
- */
+// Extract code patterns from observations and files (max 5)
 function extractCodePatterns(observations, files) {
   const patterns = [];
   const seen = new Set();
@@ -1164,13 +1076,7 @@ function extractCodePatterns(observations, files) {
   return patterns.slice(0, 5); // Limit to 5 patterns
 }
 
-/**
- * Build complete implementation guide data for template
- * @param {Array} observations - Session observations
- * @param {Array} files - Files modified (with FILE_PATH, DESCRIPTION)
- * @param {string} specFolder - Spec folder name
- * @returns {Object} Implementation guide data for template
- */
+// Build complete implementation guide data for template
 function buildImplementationGuideData(observations, files, specFolder) {
   // Check if we have enough implementation work
   const hasImpl = hasImplementationWork(observations, files);
@@ -1196,12 +1102,7 @@ function buildImplementationGuideData(observations, files, specFolder) {
   };
 }
 
-/**
- * Count tool usage by type from observations and user prompts
- * @param {Array} observations - Session observations
- * @param {Array} userPrompts - User prompt history
- * @returns {Object} Tool counts by name
- */
+// Count tool usage by type from observations and user prompts
 function countToolsByType(observations, userPrompts) {
   const counts = {};
   const toolNames = ['Read', 'Edit', 'Write', 'Bash', 'Grep', 'Glob', 'Task', 'WebFetch', 'WebSearch', 'Skill'];
@@ -1239,13 +1140,11 @@ function countToolsByType(observations, userPrompts) {
   return counts;
 }
 
-// ───────────────────────────────────────────────────────────────
-// ARGUMENT VALIDATION
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   11. ARGUMENT VALIDATION
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Validate command-line arguments early to provide helpful error messages
- */
+// Validate CLI arguments early with helpful error messages
 function validateArguments() {
   // Validate SPEC_FOLDER_ARG format if provided
   if (CONFIG.SPEC_FOLDER_ARG) {
@@ -1306,15 +1205,11 @@ function validateArguments() {
 // Run validation immediately
 validateArguments();
 
-// ───────────────────────────────────────────────────────────────
-// CONTEXT BUDGET MANAGEMENT
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   12. CONTEXT BUDGET MANAGEMENT
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Check if auto-save should trigger based on message count
- * @param {number} messageCount - Total number of messages in conversation
- * @returns {boolean} - True if should auto-save
- */
+// Check if auto-save should trigger based on message count
 function shouldAutoSave(messageCount) {
   // Auto-save every MESSAGE_COUNT_TRIGGER messages
   if (messageCount > 0 && messageCount % CONFIG.MESSAGE_COUNT_TRIGGER === 0) {
@@ -1323,21 +1218,15 @@ function shouldAutoSave(messageCount) {
   return false;
 }
 
-// ───────────────────────────────────────────────────────────────
-// DATA LOADING
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   13. DATA LOADING
+──────────────────────────────────────────────────────────────── */
 
-// ───────────────────────────────────────────────────────────────
-// INPUT NORMALIZATION HELPERS (Refactored from CC=39 to ~15)
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   14. INPUT NORMALIZATION HELPERS
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Transform a key decision item into an observation object
- * Handles both string format ("Decided X because Y") and object format
- * 
- * @param {string|Object} decisionItem - Decision in string or structured format
- * @returns {Object|null} Observation object or null if invalid
- */
+// Transform key decision (string or object) into observation object
 function transformKeyDecision(decisionItem) {
   let decisionText, chosenApproach, rationale, alternatives;
   
@@ -1399,13 +1288,7 @@ function transformKeyDecision(decisionItem) {
   };
 }
 
-/**
- * Build a session summary observation from summary text
- * 
- * @param {string} summary - Session summary text
- * @param {string[]} triggerPhrases - Optional trigger phrases for facts
- * @returns {Object} Observation object
- */
+// Build session summary observation from summary text
 function buildSessionSummaryObservation(summary, triggerPhrases = []) {
   const summaryTitle = summary.length > 100 
     ? summary.substring(0, 100).replace(/\s+\S*$/, '') + '...'
@@ -1419,12 +1302,7 @@ function buildSessionSummaryObservation(summary, triggerPhrases = []) {
   };
 }
 
-/**
- * Build a technical context observation from context object
- * 
- * @param {Object} techContext - Technical context key-value pairs
- * @returns {Object} Observation object
- */
+// Build technical context observation from context object
 function buildTechnicalContextObservation(techContext) {
   const techDetails = Object.entries(techContext)
     .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
@@ -1438,16 +1316,7 @@ function buildTechnicalContextObservation(techContext) {
   };
 }
 
-/**
- * Normalize input data from manual format to MCP-compatible format
- * Handles both MCP format (pass-through) and simplified manual format
- * 
- * Refactored: Reduced cyclomatic complexity from 39 to ~15
- * by extracting decision transformation and observation builders
- * 
- * @param {Object} data - Raw input data (manual or MCP format)
- * @returns {Object} - Normalized data in MCP-compatible format
- */
+// Normalize manual format to MCP-compatible format (pass-through if already MCP)
 function normalizeInputData(data) {
   // If already has MCP format indicators, return as-is
   if (data.user_prompts || data.observations || data.recent_context) {
@@ -1517,14 +1386,7 @@ function normalizeInputData(data) {
   return normalized;
 }
 
-/**
- * M13: Validate JSON input data against expected schema
- * Ensures required fields exist and optional fields have correct types
- * 
- * @param {Object} data - Parsed JSON data to validate
- * @throws {Error} If validation fails with descriptive error message
- * @returns {boolean} True if validation passes
- */
+// M13: Validate JSON input schema - throws on validation failure
 function validateInputData(data) {
   const errors = [];
   
@@ -1792,9 +1654,9 @@ function transformOpenCodeCapture(capture) {
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// HELPER FUNCTIONS
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   15. HELPER FUNCTIONS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Format timestamp with multiple output formats
@@ -1876,12 +1738,7 @@ function truncateToolOutput(output, maxLines = CONFIG.MAX_TOOL_OUTPUT_LINES) {
   ].join('\n');
 }
 
-/**
- * V8.2: Normalize file paths to clean relative format
- * @param {string} filePath - Raw file path (absolute or relative)
- * @param {string} projectRoot - Project root directory
- * @returns {string} Clean relative path
- */
+// V8.2: Normalize file paths to clean relative format
 function toRelativePath(filePath, projectRoot = CONFIG.PROJECT_ROOT) {
   if (!filePath) return '';
   let cleaned = filePath;
@@ -1908,11 +1765,7 @@ function toRelativePath(filePath, projectRoot = CONFIG.PROJECT_ROOT) {
   return cleaned;
 }
 
-/**
- * V8.3: Validate if a description is meaningful (not garbage)
- * @param {string} description - File description to validate
- * @returns {boolean} True if description is valid and meaningful
- */
+// V8.3: Validate if description is meaningful (returns true if valid)
 function isDescriptionValid(description) {
   if (!description || description.length < 8) return false;
 
@@ -1930,11 +1783,7 @@ function isDescriptionValid(description) {
   return !garbagePatterns.some(p => p.test(description));
 }
 
-/**
- * V8.3: Clean description text for display
- * @param {string} desc - Raw description
- * @returns {string} Cleaned description
- */
+// V8.3: Clean description text for display (removes markdown, truncates)
 function cleanDescription(desc) {
   if (!desc) return '';
   let cleaned = desc.trim();
@@ -1961,12 +1810,7 @@ function cleanDescription(desc) {
   return cleaned;
 }
 
-/**
- * Detect tool calls from conversation facts with strict pattern matching
- * Avoids false positives from prose text like "Read more about..."
- * @param {string} text - Text to analyze for tool calls
- * @returns {Object|null} { tool: string, confidence: string } or null
- */
+// Detect tool calls with strict matching, avoids prose false positives
 function detectToolCall(text) {
   if (!text || typeof text !== 'string') return null;
 
@@ -1997,12 +1841,7 @@ function detectToolCall(text) {
   return null;
 }
 
-/**
- * Check if detected tool match is actually prose context (not a real tool call)
- * @param {string} text - Full text being analyzed
- * @param {number} matchStartIndex - Index where match was found
- * @returns {boolean} True if this is prose context, false if legitimate tool call
- */
+// Check if detected tool match is prose context (not a real tool call)
 function isProseContext(text, matchStartIndex) {
   if (matchStartIndex < 0) return false;
 
@@ -2146,14 +1985,11 @@ function extractKeyArtifacts(messages) {
   return artifacts;
 }
 
-// ───────────────────────────────────────────────────────────────
-// DATA VALIDATION HELPERS (Refactored from CC=45 to ~15)
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   16. DATA VALIDATION HELPERS
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Configuration: Fields that set HAS_* flags based on array presence
- * Maps field name to its corresponding flag field
- */
+// Fields that set HAS_* flags based on array presence
 const ARRAY_FLAG_MAPPINGS = {
   CODE_BLOCKS: 'HAS_CODE_BLOCKS',
   NOTES: 'HAS_NOTES',
@@ -2166,23 +2002,14 @@ const ARRAY_FLAG_MAPPINGS = {
   MESSAGES: 'HAS_MESSAGES'
 };
 
-/**
- * Configuration: Fields that set HAS_* flags based on presence (truthy)
- */
+// Fields that set HAS_* flags based on presence (truthy)
 const PRESENCE_FLAG_MAPPINGS = {
   DESCRIPTION: 'HAS_DESCRIPTION',
   RESULT_PREVIEW: 'HAS_RESULT',
   DECISION_TREE: 'HAS_DECISION_TREE'
 };
 
-/**
- * Ensure value is an array of objects with specified key
- * Converts strings or single values to array of objects
- * 
- * @param {*} value - Value to normalize
- * @param {string} objectKey - Key to use in object wrapper
- * @returns {Array<Object>} Normalized array of objects
- */
+// Ensure value is array of objects, converts strings to [{key: value}]
 function ensureArrayOfObjects(value, objectKey) {
   if (!value) return [];
   if (!Array.isArray(value)) {
@@ -2194,25 +2021,12 @@ function ensureArrayOfObjects(value, objectKey) {
   return value;
 }
 
-/**
- * Check if array field has content (non-empty array)
- * @param {*} value - Value to check
- * @returns {boolean} True if non-empty array
- */
+// Check if value is non-empty array
 function hasArrayContent(value) {
   return Array.isArray(value) && value.length > 0;
 }
 
-/**
- * Validate and normalize data structure for template rendering
- * Sets HAS_* boolean flags and ensures array formats
- * 
- * Refactored: Reduced cyclomatic complexity from 45 to ~15
- * by using configuration-driven field processing
- * 
- * @param {Object} data - Data object to validate
- * @returns {Object} Validated data with boolean flags set
- */
+// Validate/normalize data for template: sets HAS_* flags, ensures array formats
 function validateDataStructure(data) {
   const validated = { ...data };
 
@@ -2256,33 +2070,21 @@ function validateDataStructure(data) {
   return validated;
 }
 
-// ───────────────────────────────────────────────────────────────
-// MAIN WORKFLOW
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   17. MAIN WORKFLOW
+──────────────────────────────────────────────────────────────── */
 
-// ───────────────────────────────────────────────────────────────
-// MAIN WORKFLOW HELPERS (Refactored from main CC=53)
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   18. MAIN WORKFLOW HELPERS
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Helper to get basename from path with null safety
- * Normalizes path separators for cross-platform compatibility
- * @param {string} p - File path
- * @returns {string} Basename or empty string
- */
+// Get basename from path with null safety (cross-platform)
 function getPathBasename(p) {
   if (!p || typeof p !== 'string') return '';
   return p.replace(/\\/g, '/').split('/').pop() || '';
 }
 
-/**
- * Enhance FILES array with semantic descriptions from summarizer
- * Uses exact path matching first, then unique basename matching
- * 
- * @param {Array} files - Original FILES array from sessionData
- * @param {Map} semanticFileChanges - Map of path -> {description, action}
- * @returns {Array} Enhanced files with semantic descriptions
- */
+// Enhance FILES with semantic descriptions (exact path match, then unique basename)
 function enhanceFilesWithSemanticDescriptions(files, semanticFileChanges) {
   return files.map(file => {
     const filePath = file.FILE_PATH;
@@ -2329,12 +2131,7 @@ function enhanceFilesWithSemanticDescriptions(files, semanticFileChanges) {
   });
 }
 
-/**
- * Build the complete template data object for context.md
- * 
- * @param {Object} params - All template parameters
- * @returns {Object} Complete template data
- */
+// Build complete template data object for context.md
 function buildContextTemplateData({
   sessionData,
   conversations,
@@ -2395,12 +2192,7 @@ function buildContextTemplateData({
   };
 }
 
-/**
- * Build metadata.json content for the context save
- * 
- * @param {Object} params - Metadata parameters
- * @returns {Object} Metadata object
- */
+// Build metadata.json content for context save
 function buildMetadataJson({
   sessionData,
   decisions,
@@ -2433,12 +2225,7 @@ function buildMetadataJson({
   };
 }
 
-/**
- * Validate files for leaked/malformed placeholders before writing
- * @param {string} content - File content to validate
- * @param {string} filename - Filename for error messages
- * @throws {Error} If leaked or malformed placeholders detected
- */
+// Validate for leaked/malformed placeholders before writing (throws on error)
 function validateNoLeakedPlaceholders(content, filename) {
   // Check for complete placeholders
   const leaked = content.match(/\{\{[A-Z_]+\}\}/g);
@@ -2463,13 +2250,7 @@ function validateNoLeakedPlaceholders(content, filename) {
   }
 }
 
-/**
- * P0-010: Validate anchor pairs in content
- * Checks for malformed anchor pairs (unclosed or orphaned closing tags)
- * 
- * @param {string} content - Content to validate
- * @returns {string[]} Array of warning messages (empty if valid)
- */
+// P0-010: Validate anchor pairs (returns warnings for unclosed/orphaned tags)
 function validateAnchors(content) {
   // Match opening anchors: <!-- ANCHOR:name --> or <!-- anchor:name -->
   const openPattern = /<!-- (?:ANCHOR|anchor):([a-zA-Z0-9_-]+)/g;
@@ -2506,12 +2287,7 @@ function validateAnchors(content) {
   return warnings;
 }
 
-/**
- * P0-010: Log anchor validation warnings for a file
- * 
- * @param {string} content - Content to validate
- * @param {string} filename - Filename for log messages
- */
+// P0-010: Log anchor validation warnings for a file
 function logAnchorValidation(content, filename) {
   const anchorWarnings = validateAnchors(content);
   if (anchorWarnings.length > 0) {
@@ -2941,6 +2717,9 @@ async function main() {
         console.log(`   ✓ Embedding generated in ${embeddingTime}ms`);
         console.log(`   ✓ Indexed as memory #${memoryId} (${EMBEDDING_DIM} dimensions)`);
 
+        // BUG-001: Notify MCP server that database has been updated
+        notifyDatabaseUpdated();
+
         // Update metadata.json with successful embedding info (CHK016)
         try {
           const metadataPath = path.join(contextDir, 'metadata.json');
@@ -3232,9 +3011,7 @@ async function detectSpecFolder(collectedData = null) {
 // TOPIC EXTRACTION & ALIGNMENT
 // ───────────────────────────────────────────────────────────────
 
-/**
- * Configuration for alignment checking
- */
+// Configuration for alignment checking
 const ALIGNMENT_CONFIG = {
   THRESHOLD: 70, // Require 70% match before auto-selecting
   WARNING_THRESHOLD: 50, // Show warning and prompt when alignment below this
@@ -3242,21 +3019,7 @@ const ALIGNMENT_CONFIG = {
   STOPWORDS: ['the', 'this', 'that', 'with', 'for', 'and', 'from', 'fix', 'update', 'add', 'remove']
 };
 
-/**
- * V14.0: Phase 1B Content Alignment Check (per save.md specification)
- * 
- * Validates that conversation content matches the target spec folder.
- * This is a LIGHTWEIGHT heuristic check that:
- * - Extracts conversation topic/keywords from session data
- * - Compares against spec folder name
- * - Warns if mismatch detected (does NOT block save)
- * - Suggests alternatives if better matches exist
- * 
- * @param {Object} collectedData - Conversation data with observations, prompts, etc.
- * @param {string} specFolderName - Target folder name (e.g., "015-auth-system")
- * @param {string} specsDir - Base specs directory path
- * @returns {Promise<{proceed: boolean, useAlternative: boolean, selectedFolder?: string}>}
- */
+// V14.0: Validate conversation content matches target spec folder (warns, doesn't block)
 async function validateContentAlignment(collectedData, specFolderName, specsDir) {
   // Extract conversation topics from session data
   const conversationTopics = extractConversationTopics(collectedData);
@@ -3348,12 +3111,7 @@ async function validateContentAlignment(collectedData, specFolderName, specsDir)
   return { proceed: true, useAlternative: false };
 }
 
-/**
- * Extract keywords from observation titles and narratives
- * Provides richer context beyond just user prompts
- * @param {Object} collectedData - Conversation data
- * @returns {Array<string>} Array of extracted keywords
- */
+// Extract keywords from observation titles and narratives
 function extractObservationKeywords(collectedData) {
   const keywords = new Set();
   
@@ -3389,14 +3147,7 @@ function extractObservationKeywords(collectedData) {
   );
 }
 
-/**
- * V6.2: Validate alignment between conversation content and selected spec folder
- * ALWAYS runs, even when folder is explicitly provided
- * @param {Object} collectedData - Conversation data
- * @param {string} specFolderName - Selected folder name (e.g., "015-auth-system")
- * @param {string} specsDir - Base specs directory path
- * @returns {Promise<{proceed: boolean, useAlternative: boolean, selectedFolder?: string}>}
- */
+// V6.2: Validate alignment between content and selected spec folder
 async function validateFolderAlignment(collectedData, specFolderName, specsDir) {
   const conversationTopics = extractConversationTopics(collectedData);
   const alignmentScore = calculateAlignmentScore(conversationTopics, specFolderName);
@@ -3478,11 +3229,7 @@ async function validateFolderAlignment(collectedData, specFolderName, specsDir) 
   return { proceed: true, useAlternative: false };
 }
 
-/**
- * Extract conversation topics from collected data
- * @param {Object} collectedData - Conversation data structure
- * @returns {Array<string>} Array of topic keywords
- */
+// Extract conversation topics from collected data
 function extractConversationTopics(collectedData) {
   const topics = new Set();
 
@@ -3509,11 +3256,7 @@ function extractConversationTopics(collectedData) {
   );
 }
 
-/**
- * Parse spec folder name to extract topic keywords
- * @param {string} folderName - e.g., "015-auth-system"
- * @returns {Array<string>} Topic keywords ["auth", "system"]
- */
+// Parse spec folder name to extract topic keywords (e.g., "015-auth" → ["auth"])
 function parseSpecFolderTopic(folderName) {
   // Remove numeric prefix: "015-auth-system" → "auth-system"
   const topic = folderName.replace(/^\d+-/, '');
@@ -3521,12 +3264,7 @@ function parseSpecFolderTopic(folderName) {
   return topic.split(/[-_]/).filter(w => w.length > 0);
 }
 
-/**
- * Calculate alignment score between conversation and spec folder
- * @param {Array<string>} conversationTopics - From extractConversationTopics()
- * @param {string} specFolderName - e.g., "015-auth-system"
- * @returns {number} Score 0-100 (percentage match)
- */
+// Calculate alignment score (0-100) between conversation and spec folder
 function calculateAlignmentScore(conversationTopics, specFolderName) {
   const specTopics = parseSpecFolderTopic(specFolderName);
 
@@ -3547,11 +3285,7 @@ function calculateAlignmentScore(conversationTopics, specFolderName) {
   return Math.round((matches / specTopics.length) * 100);
 }
 
-/**
- * Filter out archive folders from spec folder list
- * @param {Array<string>} folders - List of folder names
- * @returns {Array<string>} Filtered list without archives
- */
+// Filter out archive folders from spec folder list
 function filterArchiveFolders(folders) {
   return folders.filter(folder => {
     const lowerFolder = folder.toLowerCase();
@@ -3561,21 +3295,31 @@ function filterArchiveFolders(folders) {
   });
 }
 
-/**
- * Prompt user with numbered choices and validate input
- * P0-007: Returns defaultChoice (1) in non-interactive mode instead of throwing
- * 
- * @param {string} question - Prompt text
- * @param {number} maxChoice - Maximum valid choice number
- * @param {number} maxAttempts - Maximum retry attempts (default 3)
- * @param {number} defaultChoice - Default choice for non-interactive mode (default 1)
- * @returns {Promise<number>} Selected choice number (1-indexed)
- */
-async function promptUserChoice(question, maxChoice, maxAttempts = 3, defaultChoice = 1) {
-  // P0-007: Return default in non-interactive mode
+// BUG-011: Fail explicitly if running in non-interactive mode
+function requireInteractiveMode(operation) {
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
-    console.warn(`[generate-context] Non-interactive mode: using default choice ${defaultChoice}`);
-    return defaultChoice;
+    console.error('ERROR: This operation requires user input but running in non-interactive mode.');
+    console.error(`Operation: ${operation}`);
+    console.error('');
+    console.error('Please specify the spec folder explicitly using:');
+    console.error('  node generate-context.js <spec-folder-path>');
+    console.error('');
+    console.error('Example:');
+    console.error('  node generate-context.js specs/003-memory-and-spec-kit/054-remaining-bugs-remediation');
+    process.exit(1);
+  }
+}
+
+// Prompt user with numbered choices, validates input (1-indexed return)
+async function promptUserChoice(question, maxChoice, maxAttempts = 3, requireInteractive = true) {
+  // BUG-011: Fail explicitly in non-interactive mode for folder selection
+  if (!process.stdout.isTTY || !process.stdin.isTTY) {
+    if (requireInteractive) {
+      requireInteractiveMode('spec folder selection');
+    }
+    // For non-critical prompts, return 1 as default
+    console.warn(`[generate-context] Non-interactive mode: using default choice 1`);
+    return 1;
   }
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -3598,19 +3342,14 @@ async function promptUserChoice(question, maxChoice, maxAttempts = 3, defaultCho
 // CONTEXT DIRECTORY SETUP
 // ───────────────────────────────────────────────────────────────
 
-/**
- * Prompt user for input in terminal
- * Ensures readline interface is always closed, even on errors
- * P0-007: Returns defaultValue in non-interactive mode instead of throwing
- * 
- * @param {string} question - Prompt text to display
- * @param {string} [defaultValue=''] - Default value to use in non-interactive mode
- * @returns {Promise<string>} User input or default value
- */
-function promptUser(question, defaultValue = '') {
-  // P0-007: Use default in non-interactive mode instead of throwing
+// Prompt user for terminal input (handles non-interactive mode gracefully)
+function promptUser(question, defaultValue = '', requireInteractive = true) {
+  // BUG-011: Fail explicitly in non-interactive mode for required inputs
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
-    console.warn('[generate-context] Non-interactive mode: using default choice');
+    if (requireInteractive && defaultValue === '') {
+      requireInteractiveMode('user input required');
+    }
+    console.warn('[generate-context] Non-interactive mode: using default value');
     return Promise.resolve(defaultValue);
   }
 
@@ -3639,10 +3378,7 @@ function promptUser(question, defaultValue = '') {
   });
 }
 
-/**
- * Ensure memory directory exists within spec folder
- * Uses single memory/ folder with timestamped markdown files
- */
+// Ensure memory/ directory exists within spec folder
 async function setupContextDirectory(specFolder) {
   // L19: Sanitize path before use to prevent path traversal attacks
   let sanitizedPath;
@@ -3724,14 +3460,7 @@ async function setupContextDirectory(specFolder) {
 // SESSION DATA HELPERS (Refactored from collectSessionData CC=60)
 // ───────────────────────────────────────────────────────────────
 
-/**
- * Extract and deduplicate files from collected data
- * Handles multiple input formats: FILES array, files_modified, observations
- * 
- * @param {Object} collectedData - Raw collected data from MCP
- * @param {Array} observations - Processed observations array
- * @returns {Array<{FILE_PATH: string, DESCRIPTION: string}>} Deduplicated files
- */
+// Extract and deduplicate files from collected data (handles multiple formats)
 function extractFilesFromData(collectedData, observations) {
   const filesMap = new Map();
   
@@ -3804,13 +3533,7 @@ function extractFilesFromData(collectedData, observations) {
     }));
 }
 
-/**
- * Build detailed observations with anchor IDs for grep-based retrieval
- * 
- * @param {Array} observations - Raw observations from MCP
- * @param {string} specFolder - Spec folder name for anchor generation
- * @returns {Array} Observations with TYPE, TITLE, NARRATIVE, ANCHOR_ID, etc.
- */
+// Build detailed observations with anchor IDs for grep-based retrieval
 function buildObservationsWithAnchors(observations, specFolder) {
   const usedAnchorIds = [];
   const specNumber = extractSpecNumber(specFolder);
@@ -3849,14 +3572,7 @@ function buildObservationsWithAnchors(observations, specFolder) {
     });
 }
 
-/**
- * Detect session characteristics: contextType and importanceTier
- * 
- * @param {Array} observations - Processed observations
- * @param {Array} userPrompts - User prompts from MCP
- * @param {Array} FILES - Extracted files array
- * @returns {{contextType: string, importanceTier: string, decisionCount: number, toolCounts: Object}}
- */
+// Detect session characteristics: contextType, importanceTier, toolCounts
 function detectSessionCharacteristics(observations, userPrompts, FILES) {
   const toolCounts = countToolsByType(observations, userPrompts);
   
@@ -3871,19 +3587,7 @@ function detectSessionCharacteristics(observations, userPrompts, FILES) {
   return { contextType, importanceTier, decisionCount, toolCounts };
 }
 
-/**
- * Build project state snapshot (phase, active file, blockers, progress)
- * 
- * @param {Object} params - Parameters object
- * @param {Object} params.toolCounts - Tool usage counts
- * @param {Array} params.observations - Processed observations
- * @param {number} params.messageCount - Message count
- * @param {Array} params.FILES - Extracted files
- * @param {Array} params.SPEC_FILES - Spec-related files
- * @param {string} params.specFolderPath - Full path to spec folder
- * @param {Array} params.recentContext - Recent context from MCP
- * @returns {{projectPhase: string, activeFile: string, lastAction: string, nextAction: string, blockers: Array, fileProgress: Array}}
- */
+// Build project state snapshot (phase, active file, blockers, progress)
 function buildProjectStateSnapshot({ toolCounts, observations, messageCount, FILES, SPEC_FILES, specFolderPath, recentContext }) {
   const projectPhase = detectProjectPhase(toolCounts, observations, messageCount);
   const activeFile = extractActiveFile(observations, FILES);
@@ -3895,13 +3599,7 @@ function buildProjectStateSnapshot({ toolCounts, observations, messageCount, FIL
   return { projectPhase, activeFile, lastAction, nextAction, blockers, fileProgress };
 }
 
-/**
- * Calculate session duration from user prompts
- * 
- * @param {Array} userPrompts - User prompts with timestamps
- * @param {Date} now - Current timestamp
- * @returns {string} Duration string (e.g., "1h 30m" or "45m")
- */
+// Calculate session duration from user prompts (returns "1h 30m" format)
 function calculateSessionDuration(userPrompts, now) {
   if (userPrompts.length === 0) return 'N/A';
   
@@ -3919,13 +3617,7 @@ function calculateSessionDuration(userPrompts, now) {
   return hours > 0 ? `${hours}h ${minutes % 60}m` : `${minutes}m`;
 }
 
-/**
- * Build expiry epoch based on importance tier
- * 
- * @param {string} importanceTier - Importance tier
- * @param {number} createdAtEpoch - Creation timestamp
- * @returns {number} Expiry epoch (0 = never expires)
- */
+// Build expiry epoch based on importance tier (0 = never expires)
 function calculateExpiryEpoch(importanceTier, createdAtEpoch) {
   if (['constitutional', 'critical', 'important'].includes(importanceTier)) {
     return 0; // Never expires
@@ -4797,10 +4489,7 @@ function extractPhasesFromData(collectedData) {
 // are imported from ./lib/ascii-boxes.js
 // ───────────────────────────────────────────────────────────────
 
-/**
- * Generate enhanced decision tree with full decision context
- * Accepts full decision object with all metadata
- */
+// Generate enhanced decision tree with full decision context
 function generateDecisionTree(decisionData) {
   // Handle legacy format (simple parameters) for backwards compatibility
   if (typeof decisionData === 'string') {
@@ -4958,12 +4647,7 @@ function cleanupExcessiveNewlines(text) {
   return text.replace(/\n{3,}/g, '\n\n');
 }
 
-/**
- * Strip template configuration comments from rendered output
- * These comments are meant for template developers, not final output
- * @param {string} text - Rendered template text
- * @returns {string} Text with configuration comments removed
- */
+// Strip template configuration comments from rendered output
 function stripTemplateConfigComments(text) {
   // Remove the main template configuration block (multiline)
   // Matches: <!-- Template Configuration Comments (stripped during generation) -->
@@ -4986,11 +4670,7 @@ function stripTemplateConfigComments(text) {
   return result.replace(/\n{3,}/g, '\n\n');
 }
 
-/**
- * Check if value should be treated as falsy in template conditionals
- * @param {*} value - Value to check
- * @returns {boolean} True if value is falsy
- */
+// Check if value should be treated as falsy in template conditionals
 function isFalsy(value) {
   if (value === undefined || value === null || value === false) return true;
   if (typeof value === 'string' && value.toLowerCase() === 'false') return true;

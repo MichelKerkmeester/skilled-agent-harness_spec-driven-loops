@@ -1,20 +1,10 @@
 #!/usr/bin/env bash
-#
-# create-spec-folder.sh - SpecKit Spec Folder & Documentation Creation Script
-#
-# Creates a new spec folder with appropriate templates based on documentation level.
-# Aligns with system-spec-kit SKILL.md progressive enhancement model:
-#   - Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
-#   - Level 2 (Verification): Level 1 + checklist.md
-#   - Level 3 (Full):         Level 2 + decision-record.md
-#
-# Also creates:
-#   - scratch/  : Temporary working files (git-ignored except .gitkeep)
-#   - memory/   : Context preservation folder (populated by auto-save workflow)
-#
-# VERSION: 2.0.0
-# UPDATED: 2025-12-10
-#
+# ───────────────────────────────────────────────────────────────
+# SPECKIT: CREATE SPEC FOLDER
+# ───────────────────────────────────────────────────────────────
+# Creates spec folder with templates based on documentation level.
+# Levels: 1=spec+plan+tasks, 2=+checklist, 3=+decision-record
+# Also creates scratch/ and memory/ directories.
 
 set -euo pipefail
 
@@ -166,7 +156,10 @@ if [ -z "$FEATURE_DESCRIPTION" ]; then
     exit 1
 fi
 
-# Function to find the repository root by searching for existing project markers
+# ───────────────────────────────────────────────────────────────
+# 1. HELPER FUNCTIONS
+# ───────────────────────────────────────────────────────────────
+
 find_repo_root() {
     local dir="$1"
     while [ "$dir" != "/" ]; do
@@ -179,7 +172,6 @@ find_repo_root() {
     return 1
 }
 
-# Function to check existing branches (local and remote) and return next available number
 check_existing_branches() {
     local short_name="$1"
 
@@ -216,8 +208,6 @@ check_existing_branches() {
     echo $((max_num + 1))
 }
 
-# Function to create versioned sub-folder in existing spec folder
-# Used when reusing spec folders for new work phases
 create_versioned_subfolder() {
     local base_folder="$1"
     local topic="$2"
@@ -256,130 +246,6 @@ create_versioned_subfolder() {
     echo "$subfolder_path"
 }
 
-# Resolve repository root. Prefer git information when available, but fall back
-# to searching for repository markers so the workflow still functions in repositories that
-# were initialised with --no-git.
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-if git rev-parse --show-toplevel >/dev/null 2>&1; then
-    REPO_ROOT=$(git rev-parse --show-toplevel)
-    HAS_GIT=true
-else
-    REPO_ROOT="$(find_repo_root "$SCRIPT_DIR")"
-    if [ -z "$REPO_ROOT" ]; then
-        echo "Error: Could not determine repository root. Please run this script from within the repository." >&2
-        exit 1
-    fi
-    HAS_GIT=false
-fi
-
-cd "$REPO_ROOT"
-
-SPECS_DIR="$REPO_ROOT/specs"
-mkdir -p "$SPECS_DIR"
-
-# ============================================================================
-# SUBFOLDER MODE: Create versioned sub-folder in existing spec folder
-# ============================================================================
-if [ "$SUBFOLDER_MODE" = true ]; then
-    # Resolve base folder path (handle both absolute and relative paths)
-    if [[ "$SUBFOLDER_BASE" = /* ]]; then
-        RESOLVED_BASE="$SUBFOLDER_BASE"
-    else
-        RESOLVED_BASE="$REPO_ROOT/$SUBFOLDER_BASE"
-    fi
-    
-    # Validate base folder exists
-    if [ ! -d "$RESOLVED_BASE" ]; then
-        echo "Error: Base folder does not exist: $SUBFOLDER_BASE" >&2
-        echo "Hint: Provide a valid spec folder path, e.g., specs/005-memory" >&2
-        exit 1
-    fi
-    
-    # Determine topic name
-    if [ -n "$SUBFOLDER_TOPIC" ]; then
-        TOPIC_NAME="$SUBFOLDER_TOPIC"
-    else
-        # Generate from feature description
-        TOPIC_NAME=$(echo "$FEATURE_DESCRIPTION" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//')
-    fi
-    
-    # Create the versioned subfolder
-    SUBFOLDER_PATH=$(create_versioned_subfolder "$RESOLVED_BASE" "$TOPIC_NAME")
-    SUBFOLDER_NAME=$(basename "$SUBFOLDER_PATH")
-    
-    # Copy templates based on documentation level
-    TEMPLATES_DIR="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
-    CREATED_FILES=()
-    
-    # Helper function for subfolder template copying
-    copy_subfolder_template() {
-        local template_name="$1"
-        local dest_name="${2:-$template_name}"
-        local template_path="$TEMPLATES_DIR/$template_name"
-        local dest_path="$SUBFOLDER_PATH/$dest_name"
-        
-        if [ -f "$template_path" ]; then
-            cp "$template_path" "$dest_path"
-            CREATED_FILES+=("$dest_name")
-        else
-            touch "$dest_path"
-            CREATED_FILES+=("$dest_name (empty - template not found)")
-        fi
-    }
-    
-    # Level 1 (Baseline): spec.md + plan.md + tasks.md + implementation-summary.md
-    copy_subfolder_template "spec.md"
-    copy_subfolder_template "plan.md"
-    copy_subfolder_template "tasks.md"
-    copy_subfolder_template "implementation-summary.md"
-    
-    # Level 2 (Verification): Level 1 + checklist.md
-    if [ "$DOC_LEVEL" -ge 2 ]; then
-        copy_subfolder_template "checklist.md"
-    fi
-    
-    # Level 3 (Full): Level 2 + decision-record.md
-    if [ "$DOC_LEVEL" -ge 3 ]; then
-        copy_subfolder_template "decision-record.md"
-    fi
-    
-    # Output results
-    if $JSON_MODE; then
-        files_json=$(printf '"%s",' "${CREATED_FILES[@]}" | sed 's/,$//')
-        printf '{"SUBFOLDER_PATH":"%s","SUBFOLDER_NAME":"%s","BASE_FOLDER":"%s","DOC_LEVEL":%d,"CREATED_FILES":[%s]}\n' \
-            "$SUBFOLDER_PATH" "$SUBFOLDER_NAME" "$RESOLVED_BASE" "$DOC_LEVEL" "$files_json"
-    else
-        echo ""
-        echo "═══════════════════════════════════════════════════════════════════"
-        echo "  SpecKit: Versioned Sub-folder Created Successfully"
-        echo "═══════════════════════════════════════════════════════════════════"
-        echo ""
-        echo "  BASE_FOLDER:    $(basename "$RESOLVED_BASE")/"
-        echo "  SUBFOLDER:      $SUBFOLDER_NAME/"
-        echo "  DOC_LEVEL:      Level $DOC_LEVEL"
-        echo "  FULL_PATH:      $SUBFOLDER_PATH"
-        echo ""
-        echo "  Created Structure:"
-        echo "  └── $(basename "$RESOLVED_BASE")/"
-        echo "      └── $SUBFOLDER_NAME/"
-        for file in "${CREATED_FILES[@]}"; do
-            echo "          ├── $file"
-        done
-        echo "          ├── scratch/          (git-ignored working files)"
-        echo "          │   └── .gitkeep"
-        echo "          └── memory/           (independent context)"
-        echo "              └── .gitkeep"
-        echo ""
-        echo "  Note: Each sub-folder has independent memory/ and scratch/ directories."
-        echo ""
-        echo "═══════════════════════════════════════════════════════════════════"
-    fi
-    
-    exit 0
-fi
-
-# Function to generate branch name with stop word filtering and length filtering
 generate_branch_name() {
     local description="$1"
     
@@ -432,16 +298,138 @@ generate_branch_name() {
     fi
 }
 
-# Generate branch name
+# ───────────────────────────────────────────────────────────────
+# 2. REPOSITORY DETECTION
+# ───────────────────────────────────────────────────────────────
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+if git rev-parse --show-toplevel >/dev/null 2>&1; then
+    REPO_ROOT=$(git rev-parse --show-toplevel)
+    HAS_GIT=true
+else
+    REPO_ROOT="$(find_repo_root "$SCRIPT_DIR")"
+    if [ -z "$REPO_ROOT" ]; then
+        echo "Error: Could not determine repository root. Please run this script from within the repository." >&2
+        exit 1
+    fi
+    HAS_GIT=false
+fi
+
+cd "$REPO_ROOT"
+
+SPECS_DIR="$REPO_ROOT/specs"
+mkdir -p "$SPECS_DIR"
+
+# ───────────────────────────────────────────────────────────────
+# 3. SUBFOLDER MODE
+# ───────────────────────────────────────────────────────────────
+
+if [ "$SUBFOLDER_MODE" = true ]; then
+    # Resolve base folder path (handle both absolute and relative paths)
+    if [[ "$SUBFOLDER_BASE" = /* ]]; then
+        RESOLVED_BASE="$SUBFOLDER_BASE"
+    else
+        RESOLVED_BASE="$REPO_ROOT/$SUBFOLDER_BASE"
+    fi
+    
+    # Validate base folder exists
+    if [ ! -d "$RESOLVED_BASE" ]; then
+        echo "Error: Base folder does not exist: $SUBFOLDER_BASE" >&2
+        echo "Hint: Provide a valid spec folder path, e.g., specs/005-memory" >&2
+        exit 1
+    fi
+    
+    # Determine topic name
+    if [ -n "$SUBFOLDER_TOPIC" ]; then
+        TOPIC_NAME="$SUBFOLDER_TOPIC"
+    else
+        # Generate from feature description
+        TOPIC_NAME=$(echo "$FEATURE_DESCRIPTION" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//')
+    fi
+
+    SUBFOLDER_PATH=$(create_versioned_subfolder "$RESOLVED_BASE" "$TOPIC_NAME")
+    SUBFOLDER_NAME=$(basename "$SUBFOLDER_PATH")
+    
+    # Copy templates based on documentation level
+    TEMPLATES_DIR="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+    CREATED_FILES=()
+
+    copy_subfolder_template() {
+        local template_name="$1"
+        local dest_name="${2:-$template_name}"
+        local template_path="$TEMPLATES_DIR/$template_name"
+        local dest_path="$SUBFOLDER_PATH/$dest_name"
+        
+        if [ -f "$template_path" ]; then
+            cp "$template_path" "$dest_path"
+            CREATED_FILES+=("$dest_name")
+        else
+            touch "$dest_path"
+            CREATED_FILES+=("$dest_name (empty - template not found)")
+        fi
+    }
+
+    # Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
+    copy_subfolder_template "spec.md"
+    copy_subfolder_template "plan.md"
+    copy_subfolder_template "tasks.md"
+    copy_subfolder_template "implementation-summary.md"
+
+    # Level 2: + checklist.md
+    if [ "$DOC_LEVEL" -ge 2 ]; then
+        copy_subfolder_template "checklist.md"
+    fi
+
+    # Level 3: + decision-record.md
+    if [ "$DOC_LEVEL" -ge 3 ]; then
+        copy_subfolder_template "decision-record.md"
+    fi
+
+    if $JSON_MODE; then
+        files_json=$(printf '"%s",' "${CREATED_FILES[@]}" | sed 's/,$//')
+        printf '{"SUBFOLDER_PATH":"%s","SUBFOLDER_NAME":"%s","BASE_FOLDER":"%s","DOC_LEVEL":%d,"CREATED_FILES":[%s]}\n' \
+            "$SUBFOLDER_PATH" "$SUBFOLDER_NAME" "$RESOLVED_BASE" "$DOC_LEVEL" "$files_json"
+    else
+        echo ""
+        echo "───────────────────────────────────────────────────────────────────"
+        echo "  SpecKit: Versioned Sub-folder Created Successfully"
+        echo "───────────────────────────────────────────────────────────────────"
+        echo ""
+        echo "  BASE_FOLDER:    $(basename "$RESOLVED_BASE")/"
+        echo "  SUBFOLDER:      $SUBFOLDER_NAME/"
+        echo "  DOC_LEVEL:      Level $DOC_LEVEL"
+        echo "  FULL_PATH:      $SUBFOLDER_PATH"
+        echo ""
+        echo "  Created Structure:"
+        echo "  └── $(basename "$RESOLVED_BASE")/"
+        echo "      └── $SUBFOLDER_NAME/"
+        for file in "${CREATED_FILES[@]}"; do
+            echo "          ├── $file"
+        done
+        echo "          ├── scratch/          (git-ignored working files)"
+        echo "          │   └── .gitkeep"
+        echo "          └── memory/           (independent context)"
+        echo "              └── .gitkeep"
+        echo ""
+        echo "  Note: Each sub-folder has independent memory/ and scratch/ directories."
+        echo ""
+        echo "───────────────────────────────────────────────────────────────────"
+    fi
+    
+    exit 0
+fi
+
+# ───────────────────────────────────────────────────────────────
+# 4. BRANCH NAME GENERATION
+# ───────────────────────────────────────────────────────────────
+
 if [ -n "$SHORT_NAME" ]; then
-    # Use provided short name, just clean it up
     BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//')
 else
-    # Generate from description with smart filtering
     BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
 fi
 
-# Determine branch number
 if [ -z "$BRANCH_NUMBER" ]; then
     if [ "$HAS_GIT" = true ]; then
         # Check existing branches on remotes
@@ -462,23 +450,16 @@ if [ -z "$BRANCH_NUMBER" ]; then
     fi
 fi
 
-# Force base-10 interpretation (prevents octal issues with leading zeros like 053)
+# Force base-10 interpretation (prevents octal issues with leading zeros)
 FEATURE_NUM=$(printf "%03d" "$((10#$BRANCH_NUMBER))")
 BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
 
-# GitHub enforces a 244-byte limit on branch names
-# Validate and truncate if necessary
+# GitHub enforces 244-byte branch name limit
 MAX_BRANCH_LENGTH=244
 if [ ${#BRANCH_NAME} -gt $MAX_BRANCH_LENGTH ]; then
-    # Calculate how much we need to trim from suffix
     # Account for: feature number (3) + hyphen (1) = 4 chars
     MAX_SUFFIX_LENGTH=$((MAX_BRANCH_LENGTH - 4))
-    
-    # Truncate suffix at word boundary if possible
-    TRUNCATED_SUFFIX=$(echo "$BRANCH_SUFFIX" | cut -c1-$MAX_SUFFIX_LENGTH)
-    # Remove trailing hyphen if truncation created one
-    TRUNCATED_SUFFIX=$(echo "$TRUNCATED_SUFFIX" | sed 's/-$//')
-    
+    TRUNCATED_SUFFIX=$(echo "$BRANCH_SUFFIX" | cut -c1-$MAX_SUFFIX_LENGTH | sed 's/-$//')
     ORIGINAL_BRANCH_NAME="$BRANCH_NAME"
     BRANCH_NAME="${FEATURE_NUM}-${TRUNCATED_SUFFIX}"
     
@@ -496,9 +477,10 @@ else
     >&2 echo "[speckit] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
 fi
 
-# ============================================================================
-# CREATE SPEC FOLDER STRUCTURE
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 5. CREATE SPEC FOLDER STRUCTURE
+# ───────────────────────────────────────────────────────────────
+
 FEATURE_DIR="$SPECS_DIR/$BRANCH_NAME"
 TEMPLATES_DIR="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
 CREATED_FILES=()
@@ -506,26 +488,18 @@ CREATED_FILES=()
 # Validate templates directory exists
 if [ ! -d "$TEMPLATES_DIR" ]; then
     echo "Error: Templates directory not found at $TEMPLATES_DIR" >&2
-    echo "Please ensure SpecKit is properly installed." >&2
     exit 1
 fi
 
-# Create directories
-mkdir -p "$FEATURE_DIR"
-mkdir -p "$FEATURE_DIR/scratch"
-mkdir -p "$FEATURE_DIR/memory"
-touch "$FEATURE_DIR/scratch/.gitkeep"
-touch "$FEATURE_DIR/memory/.gitkeep"
+mkdir -p "$FEATURE_DIR" "$FEATURE_DIR/scratch" "$FEATURE_DIR/memory"
+touch "$FEATURE_DIR/scratch/.gitkeep" "$FEATURE_DIR/memory/.gitkeep"
 
-# ============================================================================
-# COPY TEMPLATES BASED ON DOCUMENTATION LEVEL
-# Progressive Enhancement: Each level includes all files from previous levels
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 6. COPY TEMPLATES BASED ON DOCUMENTATION LEVEL
+# ───────────────────────────────────────────────────────────────
 
-# Helper function to copy template
 copy_template() {
-    local template_name="$1"
-    local dest_name="${2:-$template_name}"  # Use template name if dest not specified
+    local template_name="$1" dest_name="${2:-$template_name}"
     local template_path="$TEMPLATES_DIR/$template_name"
     local dest_path="$FEATURE_DIR/$dest_name"
 
@@ -538,26 +512,26 @@ copy_template() {
     fi
 }
 
-# Level 1 (Baseline): spec.md + plan.md + tasks.md + implementation-summary.md
+# Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
 copy_template "spec.md"
 copy_template "plan.md"
 copy_template "tasks.md"
 copy_template "implementation-summary.md"
 
-# Level 2 (Verification): Level 1 + checklist.md
+# Level 2: + checklist.md
 if [ "$DOC_LEVEL" -ge 2 ]; then
     copy_template "checklist.md"
 fi
 
-# Level 3 (Full): Level 2 + decision-record.md
+# Level 3: + decision-record.md
 if [ "$DOC_LEVEL" -ge 3 ]; then
     copy_template "decision-record.md"
 fi
 
-# ============================================================================
-# SHARDED SPEC SECTIONS (Level 3 with --sharded flag)
-# Creates modular spec-sections/ for large projects to reduce token usage
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 7. SHARDED SPEC SECTIONS (Level 3 with --sharded flag)
+# ───────────────────────────────────────────────────────────────
+
 if [ "$SHARDED" = true ] && [ "$DOC_LEVEL" -ge 3 ]; then
     # Create spec-sections directory
     mkdir -p "$FEATURE_DIR/spec-sections"
@@ -788,9 +762,10 @@ SPEC_FILE="$FEATURE_DIR/spec.md"
 # Set the SPECIFY_FEATURE environment variable for the current session
 export SPECIFY_FEATURE="$BRANCH_NAME"
 
-# ============================================================================
-# OUTPUT
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 8. OUTPUT
+# ───────────────────────────────────────────────────────────────
+
 if $JSON_MODE; then
     # Build JSON array of created files
     files_json=$(printf '"%s",' "${CREATED_FILES[@]}" | sed 's/,$//')
@@ -798,9 +773,9 @@ if $JSON_MODE; then
         "$BRANCH_NAME" "$SPEC_FILE" "$FEATURE_NUM" "$DOC_LEVEL" "$SHARDED" "$files_json"
 else
     echo ""
-    echo "═══════════════════════════════════════════════════════════════════"
+    echo "───────────────────────────────────────────────────────────────────"
     echo "  SpecKit: Spec Folder Created Successfully"
-    echo "═══════════════════════════════════════════════════════════════════"
+    echo "───────────────────────────────────────────────────────────────────"
     echo ""
     echo "  BRANCH_NAME:  $BRANCH_NAME"
     echo "  FEATURE_NUM:  $FEATURE_NUM"
@@ -837,5 +812,5 @@ else
     [ "$DOC_LEVEL" -ge 2 ] && echo "    4. Add verification items to checklist.md"
     [ "$DOC_LEVEL" -ge 3 ] && echo "    5. Document decisions in decision-record.md"
     echo ""
-    echo "═══════════════════════════════════════════════════════════════════"
+    echo "───────────────────────────────────────────────────────────────────"
 fi

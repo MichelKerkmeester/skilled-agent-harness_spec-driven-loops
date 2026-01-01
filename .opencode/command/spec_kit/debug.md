@@ -12,19 +12,6 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 ---
 
-## ⚡ GATE 3 CLARIFICATION
-
-**When Gate 3 applies:** When debugging leads to file modifications (Step 5, Option A "Apply the fix").
-
-- If a spec folder was established in Phase 1 → Gate 3 is satisfied
-- If ad-hoc mode was selected → Gate 3 MUST be asked before applying fixes:
-  > **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
-
-**Self-Verification:** Before applying any fix:
-> □ STOP. File modification detected? Did I ask spec folder question? If NO → Ask NOW.
-
----
-
 ## 🔒 PHASE 1: CONTEXT DETECTION
 
 **STATUS: ☐ BLOCKED**
@@ -96,14 +83,12 @@ EXECUTE THIS CHECK FIRST:
     │   └────────────────────────────────────────────────────────────┘
     └─ WAIT for user response
 
+**STOP HERE** - Wait for user to confirm spec folder and provide error context before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until spec_path is confirmed AND error context is gathered
 ```
 
-**Phase 1 Output:**
-- `spec_path = ________________` | `detection_method = [recent/provided/ad-hoc]`
-- `error_message = ________________`
-- `affected_files = ________________`
-- `previous_attempts = ________________`
+**Phase 1 Output:** `spec_path = ___` | `detection_method = [recent/provided/ad-hoc]` | `error_message = ___` | `affected_files = ___`
 
 ---
 
@@ -138,10 +123,25 @@ Parse response:
 
 Store: selected_model = ________________
 
+**STOP HERE** - Wait for user to select a model (A/B/C/D) before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until model is selected
 ```
 
-**Phase 2 Output:** `selected_model = ________________`
+**Phase 2 Output:** `selected_model = ___`
+
+---
+
+## ⚡ GATE 3 CLARIFICATION
+
+**When Gate 3 applies:** When debugging leads to file modifications (Step 5, Option A "Apply the fix").
+
+- If a spec folder was established in Phase 1 → Gate 3 is satisfied
+- If ad-hoc mode was selected → Gate 3 MUST be asked before applying fixes:
+  > **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
+
+**Self-Verification:** Before applying any fix:
+> □ STOP. File modification detected? Did I ask spec folder question? If NO → Ask NOW.
 
 ---
 
@@ -157,7 +157,7 @@ Store: selected_model = ________________
 ```
 VERIFICATION CHECK:
 ├─ ALL phases show ✅ PASSED?
-│   ├─ YES → Proceed to "# Debug Delegation Workflow" section below
+│   ├─ YES → Proceed to "# /spec_kit:debug" section below
 │   └─ NO  → STOP and complete the blocked phase
 ```
 
@@ -184,7 +184,7 @@ VERIFICATION CHECK:
 
 ---
 
-# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
+# 📊 WORKFLOW EXECUTION (5 STEPS) - MANDATORY TRACKING
 
 **⛔ ENFORCEMENT RULE:** Execute steps IN ORDER. Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
@@ -202,9 +202,9 @@ VERIFICATION CHECK:
 
 ---
 
-# Debug Delegation Workflow
+# /spec_kit:debug
 
-Delegate debugging to a specialized sub-agent with fresh context and full error documentation. The sub-agent analyzes the problem independently and returns findings for integration.
+Delegate persistent debugging issues to a specialized sub-agent with fresh context. Creates a comprehensive debug report, dispatches a sub-agent with the selected model, and integrates findings back into the main session.
 
 ---
 
@@ -249,236 +249,47 @@ $ARGUMENTS
 
 ---
 
-## 3. ⚡ INSTRUCTIONS
+## 3. 📊 WORKFLOW OVERVIEW
 
-### Step 1: Validate Context
-
-Confirm all required context is available:
-
-```
-VALIDATE:
-├─ spec_path exists and is accessible
-├─ error_message is captured
-├─ affected_files are identified
-├─ previous_attempts are documented
-└─ reproduction_steps are known (optional but helpful)
-
-IF any critical context missing:
-├─ Report what's missing
-└─ Request from user before proceeding
-```
-
-### Step 2: Generate Debug Report
-
-Create debug-delegation.md using the template:
-
-**Template:** `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
-
-> **Note:** The debug-delegation.md template may not have a "6. RESOLUTION" section. Create this section when documenting the fix outcome.
-
-```
-GENERATE debug-delegation.md:
-
-1. Read template from: .opencode/skill/system-spec-kit/templates/debug-delegation.md
-
-2. Fill placeholders:
-   ├─ Date: [Current timestamp - ISO format]
-   ├─ Task ID: [Extract from spec folder name or generate: debug-YYYYMMDD-HHMM]
-   ├─ Delegated By: "Primary Agent"
-   ├─ Attempts Before Delegation: [Count from previous_attempts]
-   │
-   ├─ Error Category: [Classify from error message]
-   │   Options: syntax_error | type_error | runtime_error | 
-   │            test_failure | build_error | lint_error | unknown
-   │
-   ├─ Error Message: [Full error output, preserve formatting]
-   ├─ Affected Files: [List from affected_files]
-   │
-   ├─ Attempted Fixes: [Document each from previous_attempts]
-   │   Format per attempt:
-   │   - Approach: [what was tried]
-   │   - Result: [why it failed]
-   │
-   ├─ Relevant Code Section: [Extract key code snippets]
-   ├─ Hypothesis: [Current theory about root cause]
-   └─ Recommended Next Steps: [Suggestions for sub-agent]
-
-3. Save to: [spec_path]/debug-delegation.md
-   (or scratch/debug-delegation.md if ad-hoc mode)
-
-4. Verify file was created successfully
-```
-
-### Step 3: Dispatch Sub-Agent
-
-**Sub-Agent Dispatch:**
-
-Use the Task tool with these parameters:
-- **description**: "Debug: [brief error summary - max 50 chars]"
-- **prompt**: [Full debug context including error, attempts, code snippets]
-- **subagent_type**: "general"
-
-Example invocation:
-```
-Task tool parameters:
-- description: "Debug: TypeError in auth module"
-- prompt: "DEBUGGING TASK: [full context here]"
-- subagent_type: general
-```
-
-**Prompt Template for Sub-Agent:**
-
-```markdown
-# Debug Task Delegation
-
-You are a specialized debugging agent. A primary agent has encountered a persistent issue and is delegating to you for fresh analysis.
-
-## Selected Model
-[selected_model] - chosen for this debugging task.
-
-## Your Task
-Analyze the following debug report and provide:
-1. Root cause analysis
-2. Proposed fix with code
-3. Verification steps
-4. Prevention recommendations
-
-## Debug Report
-[INSERT FULL CONTENT OF debug-delegation.md HERE]
-
-## Instructions
-- Focus on the error, not general code quality
-- Provide executable fix code with exact file paths
-- Explain your reasoning step by step
-- If you need more context, specify exactly what files/info you need
-- Consider edge cases the primary agent may have missed
-
-## Response Format
-
-### 🔍 Root Cause
-[Your analysis of what's causing the issue - be specific about the mechanism]
-
-### 🔧 Proposed Fix
-\`\`\`[language]
-// File: [exact file path]
-[Code changes - show before/after or patch format]
-\`\`\`
-
-### ✅ Verification
-[Specific steps to verify the fix works]
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-
-### 🛡️ Prevention
-[How to prevent this issue in future - patterns, tests, or guards to add]
-
-### ⚠️ Caveats
-[Any assumptions made or areas of uncertainty]
-```
-
-> **Note:** Model selection (Phase 2) is mandatory—the user must always be asked to select a model. The Task tool uses the model configured in your OpenCode environment, so the selected model name is passed in the prompt to provide capability-level context to the sub-agent. This context is valuable for the sub-agent's self-understanding, even though it does not change which model processes the request.
-
-**Timeout:** Sub-agent has standard timeout (2 minutes). If no response, report back to user with partial findings if available.
-
-### Step 4: Receive Findings
-
-Capture and validate sub-agent response:
-
-```
-RECEIVE sub-agent response:
-
-├─ IF response received:
-│   ├─ Extract: root_cause, proposed_fix, verification_steps, prevention
-│   ├─ Validate: proposed_fix includes file paths and executable code
-│   └─ Store findings for integration
-│
-├─ IF timeout or error:
-│   ├─ Report: "Sub-agent did not respond in time"
-│   ├─ Offer: "Would you like to:"
-│   │   ┌────────────────────────────────────────────────────────────┐
-│   │   │ A) Retry with same model                                   │
-│   │   │ B) Try a different model                                   │
-│   │   │ C) Continue debugging manually                             │
-│   │   └────────────────────────────────────────────────────────────┘
-│   └─ WAIT for user response
-│
-└─ IF response is "need more context":
-    ├─ Display what context is needed
-    ├─ Gather additional context
-    └─ Re-dispatch sub-agent with enhanced report
-
-**Retry Limit:** Maximum 3 re-dispatch attempts before forcing escalation to user.
-```
-
-### Step 5: Integration
-
-Present findings and apply resolution:
-
-```
-PRESENT findings to user:
-
-┌────────────────────────────────────────────────────────────────┐
-│ 🔍 DEBUG FINDINGS                                              │
-├────────────────────────────────────────────────────────────────┤
-│ Root Cause: [summary from sub-agent]                           │
-│                                                                │
-│ Proposed Fix:                                                  │
-│ [code snippet preview - first 10 lines]                         │
-│                                                                │
-│ Confidence: [HIGH/MEDIUM/LOW based on sub-agent analysis]       │
-└────────────────────────────────────────────────────────────────┘
-
-ASK: "How would you like to proceed?"
-
-┌────────────────────────────────────────────────────────────────┐
-│ A) Apply the fix - I'll make the code changes now               │
-│ B) Show full details - Let me review before deciding           │
-│ C) Request more investigation - This needs deeper analysis     │
-│ D) Manual review - I'll handle it myself                       │
-└────────────────────────────────────────────────────────────────┘
-
-WAIT for user response.
-
-HANDLE response:
-├─ A) Apply fix:
-│   ├─ Make code changes using Edit tool
-│   ├─ Verify changes applied correctly
-│   ├─ Suggest running tests/build to verify
-│   └─ Update debug-delegation.md with resolution section
-│
-├─ B) Show details:
-│   ├─ Display full sub-agent response
-│   ├─ Re-ask for action (A, C, or D)
-│   └─ WAIT for user response
-│
-├─ C) More investigation:
-│   ├─ Ask what specific areas need deeper analysis
-│   ├─ Re-dispatch sub-agent with focused questions
-│   └─ Return to Step 3
-│
-└─ D) Manual review:
-    ├─ Confirm user will handle
-    ├─ Keep debug-delegation.md for reference
-    └─ STATUS = NEEDS_REVIEW
-```
-
-**Update debug-delegation.md on resolution:**
-
-Append to file:
-```markdown
-## 6. RESOLUTION
-
-**Resolved By:** Sub-agent delegation
-**Resolution Date:** [timestamp]
-**Root Cause:** [from sub-agent]
-**Fix Applied:** [description of changes]
-**Verified:** [yes/no + verification method]
-```
+| Step | Name               | Purpose                             | Outputs             |
+| ---- | ------------------ | ----------------------------------- | ------------------- |
+| 1    | Validate Context   | Confirm all inputs ready            | context_confirmed   |
+| 2    | Generate Report    | Create debug-delegation.md          | debug-delegation.md |
+| 3    | Dispatch Sub-Agent | Send to Task tool with full context | sub_agent_dispatch  |
+| 4    | Receive Findings   | Capture and validate response       | findings_received   |
+| 5    | Integration        | Apply fix or review                 | resolution_complete |
 
 ---
 
-## 4. 📊 OUTPUT FORMATS
+## 4. ⚡ INSTRUCTIONS
+
+After all phases pass, load and execute the appropriate YAML prompt:
+
+- **AUTONOMOUS**: `.opencode/command/spec_kit/assets/spec_kit_debug_auto.yaml`
+- **INTERACTIVE**: `.opencode/command/spec_kit/assets/spec_kit_debug_confirm.yaml`
+
+The YAML contains detailed step-by-step workflow, sub-agent prompt template, error handling, and all configuration.
+
+### Quick Reference
+
+**Step 2 - Generate Report:**
+- Template: `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
+- Save to: `[spec_path]/debug-delegation.md` (or `scratch/` if ad-hoc)
+
+**Step 3 - Dispatch Sub-Agent:**
+- Tool: Task
+- subagent_type: "general"
+- Timeout: 2 minutes (standard)
+
+**Step 5 - Integration Options:**
+- A) Apply the fix
+- B) Show full details
+- C) Request more investigation
+- D) Manual review
+
+---
+
+## 5. 📊 OUTPUT FORMATS
 
 ### Debug Delegation Success
 
@@ -506,7 +317,6 @@ Append to file:
 │ Report: specs/014-auth-feature/debug-delegation.md              │
 ├─────────────────────────────────────────────────────────────────┤
 │ Findings documented. User chose manual review.                  │
-│ Proposed fix available in debug-delegation.md                    │
 │ Status: NEEDS_REVIEW                                            │
 ╰─────────────────────────────────────────────────────────────────╯
 ```
@@ -521,7 +331,7 @@ Append to file:
 │ Attempts: 3                                                     │
 ├─────────────────────────────────────────────────────────────────┤
 │ RECOMMENDED:                                                    │
-│   • Try /spec_kit:debug with Opus model                         │
+│   • Try /spec_kit:debug with different model                    │
 │   • Review debug-delegation.md for all attempted fixes           │
 │   • Consider breaking problem into smaller parts                │
 │ Status: ESCALATE                                                │
@@ -530,7 +340,7 @@ Append to file:
 
 ---
 
-## 5. 📌 REFERENCE
+## 6. 📌 REFERENCE
 
 ### Error Categories
 
@@ -541,40 +351,59 @@ Append to file:
 | runtime_error | Exceptions during execution, crashes           |
 | test_failure  | Assertion failures, test timeouts              |
 | build_error   | Compilation failures, bundling errors          |
-| lint_error    | ESLint, Prettier, style violations             |
+| lint_error    | Linter errors, code style violations           |
 | unknown       | Cannot classify from error message             |
+
+### Related Templates
+
+| Template            | Path                                                                            |
+| ------------------- | ------------------------------------------------------------------------------- |
+| Debug delegation    | `.opencode/skill/system-spec-kit/templates/debug-delegation.md`                 |
+| Universal debugging | `.opencode/skill/system-spec-kit/references/universal_debugging_methodology.md` |
 
 ### Validation Integration
 
-Before or during debugging, validation runs automatically to catch common issues.
-
-Common validation issues that cause debugging sessions:
+Before or during debugging, validation runs automatically to catch common issues:
 - Missing required files (FILE_EXISTS)
 - Unfilled placeholders (PLACEHOLDER_FILLED)
 - Missing priority tags in checklist (PRIORITY_TAGS)
 - Broken memory anchors (ANCHORS_VALID)
 
-### Related Templates
-
-- `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
-- `.opencode/skill/workflows-code/references/debugging_workflows.md`
-- `.opencode/skill/workflows-code/assets/debugging_checklist.md`
-
 ---
 
-## 6. 🔀 PARALLEL DISPATCH
+## 7. 🔀 SUB-AGENT DELEGATION
 
 This command uses the Task tool to dispatch a parallel sub-agent for debugging. The sub-agent runs independently and returns findings.
 
-**Model Hint:** The selected model (Claude/Gemini/Codex) is passed as context to help route to appropriate capabilities.
+### Delegation Architecture
 
-**Timeout:** Sub-agent has standard timeout. If no response, report back to user with options.
+```
+Main Agent (reads command):
+├── PHASE 1: Context Detection (validation)
+├── PHASE 2: Model Selection (mandatory)
+├── DISPATCH: Task tool with sub-agent
+│   ├── Sub-agent analyzes debug report
+│   ├── Sub-agent proposes fix
+│   └── Sub-agent returns findings
+└── Step 5: Integration (always main agent)
+```
 
-**Sub-agent isolation:** The debugging sub-agent does NOT have access to the conversation history. All context must be passed via the debug-delegation.md report.
+### Sub-Agent Isolation
+
+The debugging sub-agent does NOT have access to the conversation history. All context must be passed via the debug-delegation.md report.
+
+### Model Hint
+
+The selected model (Claude/Gemini/Codex) is passed as context to help route to appropriate capabilities. The Task tool uses the model configured in your OpenCode environment.
+
+### Timeout & Retry
+
+- **Timeout:** 2 minutes (standard)
+- **Retry Limit:** Maximum 3 re-dispatch attempts before forcing escalation
 
 ---
 
-## 7. 🔍 EXAMPLES
+## 8. 🔍 EXAMPLES
 
 **Example 1: Auto-detect with recent error**
 ```
@@ -598,7 +427,7 @@ Agent: Let me delegate this to a fresh debugging agent...
 
 ---
 
-## 8. 🔗 RELATED COMMANDS
+## 9. 🔗 RELATED COMMANDS
 
 | Command              | Relationship                                    |
 | -------------------- | ----------------------------------------------- |
@@ -608,14 +437,15 @@ Agent: Let me delegate this to a fresh debugging agent...
 
 ---
 
-## 9. 📌 INTEGRATION
+## 10. 📌 INTEGRATION
 
 ### workflows-code Skill Integration
 
-The debug command complements the workflows-code skill's debugging phase:
-- Use workflows-code for standard debugging workflow
-- Use /spec_kit:debug when stuck after multiple attempts
+The debug command uses universal debugging methodology applicable to any technology stack:
+- Follows 4-phase approach: Observe → Analyze → Hypothesize → Fix
+- Use /spec_kit:debug when stuck after multiple attempts (any stack)
 - Debug delegation creates permanent record in debug-delegation.md
+- Sub-agent adapts debugging approach based on error context and file types
 
 ### Memory Integration
 
@@ -623,3 +453,33 @@ After successful resolution:
 - Consider running `/memory:save` to capture debugging insights
 - Debug-delegation.md serves as memory for the spec folder
 - Future agents can learn from documented fix attempts
+
+---
+
+## 11. 🔗 COMMAND CHAIN
+
+This command can be invoked from any workflow:
+
+```
+[/spec_kit:implement] → /spec_kit:debug → [Return to original workflow]
+[/spec_kit:complete] → /spec_kit:debug → [Return to original workflow]
+```
+
+**After resolution:**
+→ Return to the original workflow step that triggered debugging
+
+---
+
+## 12. 🔜 WHAT NEXT?
+
+After debugging completes, suggest relevant next steps:
+
+| Condition                      | Suggested Command                              | Reason                        |
+| ------------------------------ | ---------------------------------------------- | ----------------------------- |
+| Fix applied successfully       | Verify in browser/tests                        | Confirm fix works             |
+| Fix applied, continue work     | Return to original workflow                    | Resume implementation         |
+| Issue needs more analysis      | `/spec_kit:debug` (retry with different model) | Fresh perspective             |
+| Want to save debugging context | `/memory:save [spec-folder-path]`              | Preserve debugging insights   |
+| Debugging session complete     | `/spec_kit:handover [spec-folder-path]`        | Document for future reference |
+
+**ALWAYS** end with: "What would you like to do next?"

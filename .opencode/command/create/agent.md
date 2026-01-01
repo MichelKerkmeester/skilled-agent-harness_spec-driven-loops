@@ -1,6 +1,6 @@
 ---
-description: Create an OpenCode agent (primary or subagent) with proper frontmatter, tool permissions, and behavioral rules
-argument-hint: "agent-name [--mode primary|subagent|all] [--global]"
+description: Create an OpenCode agent (primary or subagent) with proper frontmatter, tool permissions, and behavioral rules - supports :auto and :confirm modes
+argument-hint: "agent-name [--mode primary|subagent|all] [--global] [:auto|:confirm]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, TodoWrite]
 ---
 
@@ -121,12 +121,45 @@ EXECUTE THIS CHECK FIRST:
     ├─ Store global flag as: is_global (default: false)
     └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
 
+**STOP HERE** - Wait for user to provide a valid agent name before continuing.
+
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer agent names from context
 ⛔ NEVER proceed without explicit agent name from user
 ```
 
 **Phase 1 Output:** `agent_name = ________________` | `agent_mode = ________________` | `is_global = ________________`
+
+---
+
+## 🔒 MODE DETECTION
+
+```
+CHECK for mode suffix in $ARGUMENTS or command invocation:
+
+├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
+├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
+└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
+```
+
+**Mode Output:** `execution_mode = ________________`
+
+---
+
+## 📋 MODE BEHAVIORS
+
+**AUTONOMOUS (:auto):**
+- Execute all steps without approval prompts
+- Only stop for errors or missing required input
+- Best for: Experienced users, scripted workflows, batch operations
+
+**INTERACTIVE (:confirm):**
+- Pause at each major step for user approval
+- Show preview before file creation
+- Ask for confirmation on critical decisions
+- Best for: New users, learning workflows, high-stakes changes
+
+**Default:** INTERACTIVE (creation workflows benefit from confirmation)
 
 ---
 
@@ -164,6 +197,8 @@ EXECUTE AFTER PHASE 1 PASSES:
    └─ IF C: agent_mode = "all"
 
 4. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select agent type (A/B/C) before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly selects A, B, or C
 ```
@@ -203,6 +238,8 @@ EXECUTE AFTER PHASE 2 PASSES:
    │
    └─ IF no existing file:
        └─ SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to confirm output location or resolve existing file conflict before continuing.
 
 ⛔ HARD STOP: DO NOT proceed without confirmed output location
 ```
@@ -246,6 +283,8 @@ EXECUTE AFTER PHASE 3 PASSES:
 
 4. SET STATUS: ✅ PASSED or ⏭️ N/A
 
+**STOP HERE** - Wait for user to select spec folder option (A/B/C) before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until user explicitly selects A, B, or C
 ```
 
@@ -261,6 +300,7 @@ EXECUTE AFTER PHASE 3 PASSES:
 | -------------------- | ----------------- | ----------- | ------------------------------------- |
 | PHASE 0: WRITE AGENT | ✅ PASSED          | ______      | write_agent_verified: ______          |
 | PHASE 1: INPUT       | ✅ PASSED          | ______      | agent_name: ______ / mode: ______     |
+| MODE DETECTION       | ✅ SET             | ______      | execution_mode: ______                |
 | PHASE 2: AGENT TYPE  | ✅ PASSED          | ______      | agent_mode: ______                    |
 | PHASE 3: OUTPUT      | ✅ PASSED          | ______      | agent_path: ______ / existing: ______ |
 | PHASE 4: SPEC FOLDER | ✅ PASSED or ⏭️ N/A | ______      | spec_path: ______                     |
@@ -620,3 +660,44 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec_path]
 ```
 → Prompts: "What agent would you like to create?"
 → Interactive workflow guides through all decisions
+
+**Example 5: Auto mode (no prompts)**
+```
+/create:agent review --mode subagent :auto
+```
+→ Creates agent without approval prompts, only stops for errors
+
+**Example 6: Confirm mode (step-by-step approval)**
+```
+/create:agent security-audit --mode primary :confirm
+```
+→ Pauses at each step for user confirmation
+
+---
+
+## 6. 🔗 COMMAND CHAIN
+
+This command creates standalone agents:
+
+```
+/create:agent → [Test with @agent-name]
+```
+
+**Related commands:**
+- Test agent: `@[agent-name] [task]`
+- Edit agent: `.opencode/agent/[agent-name].md`
+
+---
+
+## 7. 🔜 WHAT NEXT?
+
+After agent creation completes, suggest relevant next steps:
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Agent created | Test with `@[agent-name]` | Verify agent works as expected |
+| Need to modify | Edit `.opencode/agent/[agent-name].md` | Adjust behavior or permissions |
+| Create another agent | `/create:agent [name]` | Build related agent |
+| Want to save context | `/memory:save [spec-folder-path]` | Preserve agent design decisions |
+
+**ALWAYS** end with: "What would you like to do next?"

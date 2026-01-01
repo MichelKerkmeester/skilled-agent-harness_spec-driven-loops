@@ -1054,5 +1054,5 @@ cat .opencode/skill/your-skill/SKILL.md | head -20
 
 - [Master Installation Guide](./README.md)
 - [SET-UP - Skill Creation](./SET-UP%20-%20Skill%20Creation.md)
-- [MCP - Code Context](./MCP/MCP%20-%20Code%20Context.md)
-- [MCP - Narsil](./MCP/MCP%20-%20Narsil.md)
+- [MCP - Code Context](./MCP%20-%20Code%20Context.md)
+- [MCP - Narsil](./MCP%20-%20Narsil.md)

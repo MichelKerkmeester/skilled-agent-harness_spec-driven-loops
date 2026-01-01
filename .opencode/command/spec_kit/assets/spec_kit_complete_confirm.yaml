@@ -13,6 +13,113 @@ operating_mode:
   tracking: progressive_task_checklists
   validation: checkpoint_based
 
+mode:
+  name: "interactive"
+  description: |
+    Executes the 14-step workflow with step-by-step approval.
+    Supports optional chained workflows:
+    - :with-research - Run research phase before planning
+    - :auto-debug - Auto-dispatch debug agent on 3+ failures (otherwise asks)
+    
+    In interactive mode, uncertainty detection prompts the user to decide
+    whether to run research. Checkpoints always pause for confirmation.
+
+# ───────────────────────────────────────────────────────────────────
+# OPTIONAL CHAINED WORKFLOWS CONFIGURATION
+# ───────────────────────────────────────────────────────────────────
+optional_workflows:
+  research_integration:
+    enabled: true
+    trigger:
+      flag: ":with-research"
+      smart_detect: true
+      uncertainty_threshold: 60  # Suggest if confidence < 60%
+    insert_point: "after_phase_2"
+    workflow_reference: "spec_kit_research_confirm.yaml"
+    checkpoint:
+      enabled: true
+      prompt: |
+        📍 WORKFLOW CHECKPOINT - Research Complete
+        
+        ✅ Research phase complete
+        Created: research.md (17 sections)
+        
+        Continue to Step 1 (Request Analysis)? [Y/n/review]
+      options:
+        - key: "Y"
+          action: "continue"
+          description: "Continue to main workflow"
+        - key: "n"
+          action: "pause"
+          description: "Pause workflow here"
+        - key: "review"
+          action: "show_output"
+          description: "Review research.md before continuing"
+  
+  debug_integration:
+    enabled: true
+    trigger:
+      flag: ":auto-debug"
+      auto_suggest: true
+      failure_threshold: 3  # Suggest after 3+ failures
+    within_step: 10
+    workflow_reference: "../../debug.md"
+    checkpoint:
+      enabled: true
+      prompt: |
+        📍 WORKFLOW CHECKPOINT - Debug Complete
+        
+        ✅ Debug delegation complete
+        Root Cause: {root_cause}
+        Fix: {fix_status}
+        
+        Continue with Step 10? [Y/n/review]
+      options:
+        - key: "Y"
+          action: "retry_task"
+          description: "Retry task with fix applied"
+        - key: "n"
+          action: "pause"
+          description: "Pause workflow here"
+        - key: "review"
+          action: "show_debug_report"
+          description: "Review debug findings"
+
+# Checkpoint Protocol for Optional Workflows
+checkpoint_protocol:
+  display_format: |
+    ┌────────────────────────────────────────────────────────────────┐
+    │ 📍 WORKFLOW CHECKPOINT - {checkpoint_title}                    │
+    ├────────────────────────────────────────────────────────────────┤
+    │ {checkpoint_content}                                           │
+    │                                                                │
+    │ Current workflow progress:                                     │
+    │ {progress_display}                                             │
+    │                                                                │
+    │ {continue_prompt}                                              │
+    └────────────────────────────────────────────────────────────────┘
+  
+  interactive_behavior:
+    # In interactive mode, always pause for confirmation
+    pause_for_confirmation: true
+    require_explicit_response: true
+    # No auto-continue timeout in interactive mode
+
+# Interactive Research Prompt (Key difference from auto.yaml)
+# In confirm.yaml, uncertainty prompts user choice
+# In auto.yaml, uncertainty auto-triggers research
+interactive_research_prompt:
+  trigger_condition: "confidence < 60 AND NOT :with-research flag"
+  behavior: "ask_user"  # vs "auto_trigger" in auto.yaml
+  prompt: |
+    ⚠️ Technical uncertainty detected (confidence: {confidence_score}%)
+    
+    Would you like to run a research phase first?
+    
+    A) Yes - Run research workflow
+    B) No - Proceed directly
+    C) Review - Show uncertainty details
+
 development_philosophy:
   principle: "Quality first, velocity second"
   approach: "Complete lifecycle with user-validated checkpoints"
@@ -199,6 +306,22 @@ parallel_dispatch_config:
     - step_6_planning  # Has inline_parallel_exploration - 4 agents dispatched directly
     - step_8_analysis
     - step_10_development
+
+# ─────────────────────────────────────────────────────────────────
+# CONFIDENCE CHECKPOINTS (Quick Reference)
+# ─────────────────────────────────────────────────────────────────
+confidence_checkpoints:
+  enabled: true
+  key_steps: [1, 3, 6, 10, 14]  # Steps requiring confidence evaluation
+  thresholds:
+    high: 80      # ≥80% proceed with evidence
+    medium: 40    # 40-79% proceed with caution
+    low: 0        # <40% ask clarifying question
+  protocol: |
+    At each key step, evaluate confidence:
+    - ≥80%: Proceed with cited evidence
+    - 40-79%: Proceed with caution, document assumptions
+    - <40%: STOP and ask clarifying question (A/B/C format)
 
 # ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK
@@ -467,6 +590,38 @@ workflow:
       question: "Step 2 Complete: Skills folder reviewed. How would you like to proceed?"
       use: present_options_to_user
       options: checkpoint_options.standard
+
+  # After step 2 completion, check for research trigger
+  phase_2_5_research:
+    condition: |
+      research_triggered = FALSE
+      
+      IF ":with-research" in command_flags:
+        research_triggered = TRUE
+        trigger_reason = "explicit_flag"
+      ELSE IF confidence_score < 60:
+        # In INTERACTIVE mode, ASK user about research
+        prompt_user:
+          message: |
+            ⚠️ Technical uncertainty detected (confidence: {confidence_score}%)
+            
+            Would you like to run a research phase first?
+            
+            A) Yes - Run 9-step research workflow before planning
+            B) No - Proceed directly to specification
+            C) Review - Show me what's uncertain first
+          on_A: research_triggered = TRUE
+          on_B: research_triggered = FALSE
+          on_C: show_uncertainty_details, then re-prompt
+    
+    actions:
+      if_triggered:
+        - log: "📚 Initiating research phase (reason: {trigger_reason})"
+        - execute_workflow: "spec_kit_research_confirm.yaml"
+        - on_complete: "show_checkpoint"
+      if_skipped:
+        - log: "Research phase skipped"
+        - continue_to: "step_1"
 
   step_3_specification:
     purpose: Create comprehensive feature specification
@@ -917,6 +1072,44 @@ workflow:
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
+
+    # Debug integration for interactive mode
+    debug_integration:
+      failure_tracking:
+        enabled: true
+        counter_name: "task_failure_count"
+        reset_on: "new_task"
+        threshold: 3
+      
+      on_threshold_reached:
+        if_auto_debug_flag:
+          action: "auto_dispatch_debug"
+          log: "🔧 Auto-dispatching debug agent (3+ failures, :auto-debug enabled)"
+        else:
+          action: "prompt_user"
+          prompt: |
+            ⚠️ Multiple fix attempts failed (3+) for task {current_task_id}
+            
+            Would you like to delegate to a debug agent?
+            
+            A) Yes - Dispatch debug agent for fresh analysis
+            B) No - Continue debugging manually
+            C) Skip task - Move to next task
+            D) Pause - Stop workflow and review
+          on_A: dispatch_debug
+          on_B: reset_failure_count, continue
+          on_C: mark_task_skipped, next_task
+          on_D: pause_workflow
+          
+      debug_dispatch:
+        subagent_type: "general"
+        timeout_ms: 120000
+        context_includes:
+          - error_message
+          - affected_files
+          - previous_attempts
+          - current_task_id
+        on_complete: "show_checkpoint"
 
     activities:
     - Parse tasks.md structure

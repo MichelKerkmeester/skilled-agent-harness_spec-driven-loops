@@ -1,46 +1,17 @@
 #!/usr/bin/env bash
-#
-# registry-loader.sh - Query the Spec Kit Script Registry
-#
-# A helper script to query scripts-registry.json for script information.
-# Supports listing, searching by name, filtering by trigger phrase, and more.
-#
-# VERSION: 1.0.0
-# CREATED: 2025-12-31
-#
-# USAGE:
-#   ./registry-loader.sh [OPTIONS]
-#
-# OPTIONS:
-#   <script-name>             Get info about a specific script (partial match)
-#   --list                    List all scripts
-#   --essential               List only essential scripts
-#   --optional                List only optional scripts
-#   --by-trigger "phrase"     Find scripts by trigger phrase
-#   --by-gate "gate"          Find scripts by gate association
-#   --by-type "bash|node|python"  Filter by script type
-#   --rules                   List all validation rules
-#   --json                    Output in JSON format
-#   --help                    Show this help message
-#
-# EXAMPLES:
-#   ./registry-loader.sh validate-spec
-#   ./registry-loader.sh --list
-#   ./registry-loader.sh --essential
-#   ./registry-loader.sh --by-trigger "save context"
-#   ./registry-loader.sh --by-gate "Gate 3"
-#   ./registry-loader.sh --rules
-#
+# ───────────────────────────────────────────────────────────────
+# SPECKIT: REGISTRY LOADER
+# ───────────────────────────────────────────────────────────────
+# Queries scripts-registry.json for script information.
 
 set -eo pipefail
 
-# ============================================================================
-# CONFIGURATION
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 1. CONFIGURATION
+# ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REGISTRY_FILE="$SCRIPT_DIR/scripts-registry.json"
-VERSION="1.0.0"
 
 # Colors (disabled for non-TTY)
 if [[ -t 1 ]]; then
@@ -56,9 +27,9 @@ else
     RED='' GREEN='' YELLOW='' BLUE='' CYAN='' BOLD='' DIM='' NC=''
 fi
 
-# ============================================================================
-# HELPER FUNCTIONS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 2. HELPER FUNCTIONS
+# ───────────────────────────────────────────────────────────────
 
 show_help() {
     cat << 'EOF'
@@ -104,9 +75,9 @@ check_registry() {
     fi
 }
 
-# ============================================================================
-# QUERY FUNCTIONS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 3. QUERY FUNCTIONS
+# ───────────────────────────────────────────────────────────────
 
 list_all_scripts() {
     local json_mode="$1"
@@ -325,9 +296,9 @@ list_rules() {
     fi
 }
 
-# ============================================================================
-# MAIN
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 4. MAIN
+# ───────────────────────────────────────────────────────────────
 
 main() {
     check_jq

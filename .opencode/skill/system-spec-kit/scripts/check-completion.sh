@@ -1,46 +1,19 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# SPEC-KIT: CHECK COMPLETION
+# ───────────────────────────────────────────────────────────────
 #
-# check-completion.sh - Gate 6 Enforcement: Verify Checklist Completion
-#
-# Reads checklist.md from a spec folder and verifies all items are complete.
-# Used for Gate 6 enforcement before claiming task completion.
-#
-# VERSION: 1.0.0
-# CREATED: 2025-12-25
-#
-# USAGE:
-#   ./check-completion.sh <spec-folder-path> [OPTIONS]
-#
-# OPTIONS:
-#   --json      Output in JSON format
-#   --strict    Treat P2 items as required (default: P2 can be deferred)
-#   --quiet     Suppress output, exit code only
-#   --help      Show this help
-#
-# EXIT CODES:
-#   0 = All required items complete
-#   1 = Incomplete items found
-#   2 = Error (file not found, invalid path, etc.)
-#
-# EXAMPLES:
-#   ./check-completion.sh specs/007-feature/
-#   ./check-completion.sh specs/007-feature/ --json
-#   ./check-completion.sh specs/007-feature/ --strict
-#
+# Gate 6 Enforcement: Verify Checklist Completion
+# Exit: 0=complete, 1=incomplete, 2=error
 
 set -eo pipefail
 
-# Constants
-VERSION="1.0.0"
 SCRIPT_NAME="check-completion.sh"
-
-# State
 FOLDER_PATH=""
 JSON_MODE=false
 STRICT_MODE=false
 QUIET_MODE=false
 
-# Counters
 TOTAL_ITEMS=0
 COMPLETED_ITEMS=0
 P0_TOTAL=0
@@ -50,7 +23,6 @@ P1_COMPLETE=0
 P2_TOTAL=0
 P2_COMPLETE=0
 
-# Colors (disabled for non-TTY)
 if [[ -t 1 ]]; then
     RED='\033[0;31m'
     GREEN='\033[0;32m'
@@ -64,7 +36,7 @@ fi
 
 show_help() {
     cat << EOF
-$SCRIPT_NAME v$VERSION - Gate 6 Enforcement: Verify Checklist Completion
+$SCRIPT_NAME - Gate 6 Enforcement: Verify Checklist Completion
 
 USAGE:
   ./$SCRIPT_NAME <spec-folder-path> [OPTIONS]
@@ -96,21 +68,10 @@ EOF
 parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            --help|-h)
-                show_help
-                ;;
-            --json)
-                JSON_MODE=true
-                shift
-                ;;
-            --strict)
-                STRICT_MODE=true
-                shift
-                ;;
-            --quiet|-q)
-                QUIET_MODE=true
-                shift
-                ;;
+            --help|-h) show_help ;;
+            --json) JSON_MODE=true; shift ;;
+            --strict) STRICT_MODE=true; shift ;;
+            --quiet|-q) QUIET_MODE=true; shift ;;
             -*)
                 echo "ERROR: Unknown option '$1'" >&2
                 exit 2
@@ -127,17 +88,14 @@ parse_args() {
         esac
     done
 
-    # Validate folder path
     if [[ -z "$FOLDER_PATH" ]]; then
         echo "ERROR: Spec folder path required" >&2
         echo "Usage: ./$SCRIPT_NAME <spec-folder-path>" >&2
         exit 2
     fi
 
-    # Remove trailing slash
     FOLDER_PATH="${FOLDER_PATH%/}"
 
-    # Check folder exists
     if [[ ! -d "$FOLDER_PATH" ]]; then
         echo "ERROR: Folder not found: $FOLDER_PATH" >&2
         exit 2
@@ -147,18 +105,14 @@ parse_args() {
 count_checklist_items() {
     local checklist_file="$1"
 
-    # Read checklist and count items
     while IFS= read -r line; do
-        # Match checkbox items: - [ ] or - [x]
         if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[([[:space:]]|x|X)\][[:space:]] ]]; then
             ((TOTAL_ITEMS++)) || true
 
-            # Check if completed
             if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[xX]\] ]]; then
                 ((COMPLETED_ITEMS++)) || true
             fi
 
-            # Determine priority
             if [[ "$line" =~ \[P0\] ]]; then
                 ((P0_TOTAL++)) || true
                 if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[xX]\] ]]; then
@@ -184,24 +138,20 @@ calculate_status() {
     local p1_pass=true
     local p2_pass=true
 
-    # P0 must be 100% complete
     if [[ $P0_TOTAL -gt 0 && $P0_COMPLETE -lt $P0_TOTAL ]]; then
         p0_pass=false
     fi
 
-    # P1 must be 100% complete
     if [[ $P1_TOTAL -gt 0 && $P1_COMPLETE -lt $P1_TOTAL ]]; then
         p1_pass=false
     fi
 
-    # P2 only required in strict mode
     if $STRICT_MODE; then
         if [[ $P2_TOTAL -gt 0 && $P2_COMPLETE -lt $P2_TOTAL ]]; then
             p2_pass=false
         fi
     fi
 
-    # Determine overall status
     if ! $p0_pass; then
         echo "P0_INCOMPLETE"
     elif ! $p1_pass; then
@@ -220,7 +170,6 @@ output_json() {
 
     cat << EOF
 {
-  "version": "$VERSION",
   "folder": "$FOLDER_PATH",
   "status": "$status",
   "passed": $passed,
@@ -243,16 +192,15 @@ output_text() {
     local status="$1"
     local percentage=$(( TOTAL_ITEMS > 0 ? (COMPLETED_ITEMS * 100 / TOTAL_ITEMS) : 0 ))
 
-    echo -e "\n${BLUE}═══════════════════════════════════════════════════════════════${NC}"
-    echo -e "${BLUE}  Checklist Completion Check v$VERSION${NC}"
-    echo -e "${BLUE}═══════════════════════════════════════════════════════════════${NC}\n"
+    echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}"
+    echo -e "${BLUE}  Checklist Completion Check${NC}"
+    echo -e "${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
 
     echo -e "  ${BOLD}Folder:${NC} $FOLDER_PATH"
     echo -e "  ${BOLD}Mode:${NC}   $(if $STRICT_MODE; then echo "Strict (P2 required)"; else echo "Standard (P2 deferrable)"; fi)"
 
     echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
 
-    # Priority breakdown
     echo -e "  ${BOLD}Priority Breakdown:${NC}"
     
     if [[ $P0_TOTAL -gt 0 ]]; then
@@ -285,11 +233,9 @@ output_text() {
 
     echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
 
-    # Overall summary
     echo -e "  ${BOLD}Summary:${NC} $COMPLETED_ITEMS/$TOTAL_ITEMS items ($percentage%)"
     echo ""
 
-    # Result
     case "$status" in
         COMPLETE)
             echo -e "  ${GREEN}${BOLD}RESULT: READY FOR COMPLETION${NC}"
@@ -315,7 +261,6 @@ output_text() {
 main() {
     parse_args "$@"
 
-    # Find checklist.md
     local checklist_file="$FOLDER_PATH/checklist.md"
 
     if [[ ! -f "$checklist_file" ]]; then
@@ -326,19 +271,15 @@ main() {
             echo "  This may be a Level 1 spec (checklist not required)."
             echo "  Create checklist.md for Level 2+ enforcement."
         fi
-        exit 0  # Not an error - Level 1 specs don't require checklist
+        exit 0
     fi
 
-    # Count items
     count_checklist_items "$checklist_file"
 
-    # Calculate status
     local status
     status=$(calculate_status)
 
-    # Output
     if $QUIET_MODE; then
-        # Quiet mode - exit code only
         :
     elif $JSON_MODE; then
         output_json "$status"
@@ -346,7 +287,6 @@ main() {
         output_text "$status"
     fi
 
-    # Exit code
     if [[ "$status" == "COMPLETE" ]]; then
         exit 0
     else

@@ -1,323 +1,151 @@
-/**
- * Access Tracker Module - Frequency-based importance boosting
- *
- * Tracks memory access patterns with batched updates to minimize I/O.
- * Uses an in-memory accumulator that flushes to the database after
- * reaching a threshold, reducing write operations while maintaining
- * accurate access statistics.
- *
- * @module lib/access-tracker
- * @version 11.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// ACCESS-TRACKER: Memory access pattern tracking with batched I/O
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
-// =============================================================================
-// Constants
-// =============================================================================
+// Tracks memory access patterns with batched updates to minimize I/O.
+// Uses an in-memory accumulator that flushes after reaching threshold.
 
-/**
- * Accumulator threshold - batch updates to reduce I/O
- * Flushes after 5 accesses (0.1 * 5 = 0.5)
- * @constant {number}
- */
+/* ───────────────────────────────────────────────────────────────
+   1. CONSTANTS
+   ─────────────────────────────────────────────────────────────── */
+
+// Flushes after 5 accesses (0.1 * 5 = 0.5)
 const ACCUMULATOR_THRESHOLD = 0.5;
-
-/**
- * Value to increment accumulator by on each access
- * @constant {number}
- */
 const INCREMENT_VALUE = 0.1;
 
-// =============================================================================
-// State
-// =============================================================================
+/* ───────────────────────────────────────────────────────────────
+   2. STATE
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * In-memory accumulator for batching access counts
- * Maps memory ID to accumulated access value
- * @type {Map<number, number>}
- */
-const accessAccumulator = new Map();
-
-/**
- * Reference to better-sqlite3 database instance
- * Set via init()
- * @type {Object|null}
- */
+const access_accumulator = new Map();
 let db = null;
+let stmt_cache = { update_access: null, update_access_batch: null };
 
-/**
- * Cached prepared statements for performance (P1 optimization)
- * @type {Object}
- */
-let stmtCache = {
-  updateAccess: null,
-  updateAccessBatch: null
-};
+/* ───────────────────────────────────────────────────────────────
+   3. INITIALIZATION
+   ─────────────────────────────────────────────────────────────── */
 
-// =============================================================================
-// Initialization
-// =============================================================================
-
-/**
- * Initialize access tracker with database reference
- * Must be called before any tracking operations
- *
- * @param {Object} database - better-sqlite3 instance
- * @throws {Error} If database is null/undefined
- *
- * @example
- * const Database = require('better-sqlite3');
- * const accessTracker = require('./lib/access-tracker');
- *
- * const db = new Database('memories.db');
- * accessTracker.init(db);
- */
 function init(database) {
   if (!database) {
     throw new Error('Database instance is required for initialization');
   }
   db = database;
 
-  // Pre-compile prepared statements for performance
-  stmtCache.updateAccess = db.prepare(`
+  stmt_cache.update_access = db.prepare(`
     UPDATE memory_index
     SET access_count = access_count + 1, last_accessed = ?
     WHERE id = ?
   `);
-  stmtCache.updateAccessBatch = db.prepare(`
+  stmt_cache.update_access_batch = db.prepare(`
     UPDATE memory_index
     SET access_count = access_count + ?, last_accessed = ?
     WHERE id = ?
   `);
 }
 
-// =============================================================================
-// Access Tracking
-// =============================================================================
+/* ───────────────────────────────────────────────────────────────
+   4. ACCESS TRACKING
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Track a memory access (batched)
- *
- * Increments the in-memory accumulator for the given memory ID.
- * When the accumulator reaches the threshold, it flushes to the database
- * and resets. This batching reduces I/O while still tracking access patterns.
- *
- * @param {number} id - Memory row ID to track
- * @throws {Error} If access tracker not initialized via init()
- *
- * @example
- * // Track a single memory access
- * accessTracker.trackAccess(42);
- *
- * // After 5 accesses (0.1 * 5 = 0.5 threshold), database is updated
- */
-function trackAccess(id) {
+function track_access(id) {
   if (!db) {
     throw new Error('Access tracker not initialized - call init(db) first');
   }
 
-  const current = accessAccumulator.get(id) || 0;
-  const newValue = current + INCREMENT_VALUE;
+  const current = access_accumulator.get(id) || 0;
+  const new_value = current + INCREMENT_VALUE;
 
-  if (newValue >= ACCUMULATOR_THRESHOLD) {
-    // Flush to database - update access_count and last_accessed timestamp
-    // Use cached prepared statement for performance
-    stmtCache.updateAccess.run(Date.now(), id);
-
-    // Clear accumulator for this ID
-    accessAccumulator.delete(id);
+  if (new_value >= ACCUMULATOR_THRESHOLD) {
+    stmt_cache.update_access.run(Date.now(), id);
+    access_accumulator.delete(id);
   } else {
-    // Store updated value in accumulator
-    accessAccumulator.set(id, newValue);
+    access_accumulator.set(id, new_value);
   }
 }
 
-/**
- * Track multiple accesses (for search results)
- *
- * Convenience method to track accesses for an array of memory IDs,
- * typically used after a search returns multiple results.
- *
- * @param {Array<number>} ids - Array of memory IDs to track
- *
- * @example
- * // After search returns results
- * const searchResults = [{ id: 1 }, { id: 5 }, { id: 12 }];
- * accessTracker.trackMultipleAccesses(searchResults.map(r => r.id));
- */
-function trackMultipleAccesses(ids) {
-  if (!Array.isArray(ids)) {
-    return;
-  }
+function track_multiple_accesses(ids) {
+  if (!Array.isArray(ids)) return;
 
   for (const id of ids) {
     if (typeof id === 'number' && Number.isInteger(id)) {
-      trackAccess(id);
+      track_access(id);
     }
   }
 }
 
-// =============================================================================
-// Flush Operations
-// =============================================================================
+/* ───────────────────────────────────────────────────────────────
+   5. FLUSH OPERATIONS
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Flush all accumulated access counts to database
- *
- * Writes all pending access counts to the database in a single transaction.
- * Call this on shutdown, before closing the database, or periodically
- * to ensure data integrity.
- *
- * @example
- * // On application shutdown
- * accessTracker.flushAccessCounts();
- * db.close();
- */
-function flushAccessCounts() {
-  if (!db || accessAccumulator.size === 0) {
-    return;
-  }
+function flush_access_counts() {
+  if (!db || access_accumulator.size === 0) return;
 
   const tx = db.transaction(() => {
     const now = Date.now();
 
-    for (const [id, count] of accessAccumulator.entries()) {
+    for (const [id, count] of access_accumulator.entries()) {
       if (count > 0) {
-        // Convert accumulated value back to access count
-        // e.g., 0.3 / 0.1 = 3 accesses, ceil handles partial values
-        const incrementBy = Math.ceil(count / INCREMENT_VALUE);
-
-        // Use cached prepared statement for performance
-        stmtCache.updateAccessBatch.run(incrementBy, now, id);
+        const increment_by = Math.ceil(count / INCREMENT_VALUE);
+        stmt_cache.update_access_batch.run(increment_by, now, id);
       }
     }
   });
 
-  // Execute transaction
   tx();
-
-  // Clear the accumulator
-  accessAccumulator.clear();
+  access_accumulator.clear();
 }
 
-// =============================================================================
-// Utility Functions
-// =============================================================================
+/* ───────────────────────────────────────────────────────────────
+   6. UTILITY FUNCTIONS
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Get current accumulator state (for debugging)
- *
- * Returns a snapshot of the current in-memory accumulator state,
- * useful for debugging and testing.
- *
- * @returns {Object} Map entries as plain object { id: accumulatedValue }
- *
- * @example
- * // Check pending accesses
- * console.log(accessTracker.getAccumulatorState());
- * // Output: { 42: 0.3, 17: 0.1 }
- */
-function getAccumulatorState() {
-  return Object.fromEntries(accessAccumulator);
+function get_accumulator_state() {
+  return Object.fromEntries(access_accumulator);
 }
 
-/**
- * Calculate popularity score from access count (logarithmic)
- *
- * Converts raw access count to a normalized 0-1 score using
- * logarithmic scaling. This prevents frequently accessed memories
- * from dominating while still giving them a boost.
- *
- * Scale: log10(accessCount + 1) / 3
- * - 1 access = 0.1
- * - 10 accesses = 0.33
- * - 100 accesses = 0.67
- * - 1000+ accesses = 1.0 (capped)
- *
- * @param {number} accessCount - Raw access count from database
- * @returns {number} Normalized score between 0 and 1
- *
- * @example
- * const score = accessTracker.calculatePopularityScore(50);
- * // Returns ~0.57
- *
- * const maxScore = accessTracker.calculatePopularityScore(10000);
- * // Returns 1.0 (capped)
- */
-function calculatePopularityScore(accessCount) {
-  // Log scale capped at 3 orders of magnitude (1000 accesses = 1.0)
-  // Adding 1 to avoid log(0) = -Infinity
-  return Math.min(1, Math.log10((accessCount || 0) + 1) / 3);
+// Logarithmic scale: log10(count + 1) / 3
+// 1 access = 0.1, 10 = 0.33, 100 = 0.67, 1000+ = 1.0 (capped)
+function calculate_popularity_score(access_count) {
+  return Math.min(1, Math.log10((access_count || 0) + 1) / 3);
 }
 
-/**
- * Reset the tracker state (for testing)
- *
- * Clears the accumulator without flushing to database.
- * Primarily used in test environments.
- */
 function reset() {
-  accessAccumulator.clear();
+  access_accumulator.clear();
   db = null;
-  stmtCache = { updateAccess: null, updateAccessBatch: null };
+  stmt_cache = { update_access: null, update_access_batch: null };
 }
 
-// =============================================================================
-// Process Exit Handler
-// =============================================================================
+/* ───────────────────────────────────────────────────────────────
+   7. PROCESS EXIT HANDLERS
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Cleanup on process exit
- * Attempts to flush any pending access counts to database
- */
 process.on('exit', () => {
-  try {
-    flushAccessCounts();
-  } catch (e) {
+  try { flush_access_counts(); } catch (e) {
     console.error('[access-tracker] Error flushing on exit:', e.message);
   }
 });
 
-// Handle other termination signals
 process.on('SIGINT', () => {
-  try {
-    flushAccessCounts();
-  } catch (e) {
-    // Silently fail during signal handling
-  }
+  try { flush_access_counts(); } catch (e) { /* silent */ }
 });
 
 process.on('SIGTERM', () => {
-  try {
-    flushAccessCounts();
-  } catch (e) {
-    // Silently fail during signal handling
-  }
+  try { flush_access_counts(); } catch (e) { /* silent */ }
 });
 
-// =============================================================================
-// Module Exports
-// =============================================================================
+/* ───────────────────────────────────────────────────────────────
+   8. EXPORTS
+   ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  // Initialization
   init,
-
-  // Core tracking
-  trackAccess,
-  trackMultipleAccesses,
-
-  // Flush operations
-  flushAccessCounts,
-
-  // Utilities
-  getAccumulatorState,
-  calculatePopularityScore,
+  track_access,
+  track_multiple_accesses,
+  flush_access_counts,
+  get_accumulator_state,
+  calculate_popularity_score,
   reset,
-
-  // Constants (exported for testing)
   ACCUMULATOR_THRESHOLD,
-  INCREMENT_VALUE
+  INCREMENT_VALUE,
 };

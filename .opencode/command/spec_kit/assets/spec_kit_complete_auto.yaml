@@ -12,11 +12,79 @@ operating_mode:
   approvals: none
   tracking: progressive_task_checklists
   validation: continuous_self_validation
+  description: |
+    Executes the 14-step workflow without step-by-step approval.
+    Supports optional chained workflows:
+    - :with-research - Run research phase before planning
+    - :auto-debug - Auto-dispatch debug agent on 3+ failures
+    
+    Checkpoints still pause for confirmation after optional workflows complete.
 
 development_philosophy:
   principle: "Quality first, velocity second"
   approach: "Complete lifecycle with validated checkpoints"
   mandate: "Plan thoroughly, implement carefully, verify continuously, execute autonomously"
+
+# ───────────────────────────────────────────────────────────────────
+# OPTIONAL CHAINED WORKFLOWS CONFIGURATION
+# ───────────────────────────────────────────────────────────────────
+optional_workflows:
+  research_integration:
+    enabled: true
+    trigger:
+      flag: ":with-research"
+      smart_detect: true
+      uncertainty_threshold: 60  # Suggest if confidence < 60%
+    insert_point: "after_phase_2"
+    workflow_reference: "spec_kit_research_auto.yaml"
+    checkpoint:
+      enabled: true
+      prompt: |
+        📍 WORKFLOW CHECKPOINT - Research Complete
+        
+        ✅ Research phase complete
+        Created: research.md (17 sections)
+        
+        Continue to Step 1 (Request Analysis)? [Y/n/review]
+      options:
+        - key: "Y"
+          action: "continue"
+          description: "Continue to main workflow"
+        - key: "n"
+          action: "pause"
+          description: "Pause workflow here"
+        - key: "review"
+          action: "show_output"
+          description: "Review research.md before continuing"
+  
+  debug_integration:
+    enabled: true
+    trigger:
+      flag: ":auto-debug"
+      auto_suggest: true
+      failure_threshold: 3  # Suggest after 3+ failures
+    within_step: 10
+    workflow_reference: "../../debug.md"  # Uses debug command logic
+    checkpoint:
+      enabled: true
+      prompt: |
+        📍 WORKFLOW CHECKPOINT - Debug Complete
+        
+        ✅ Debug delegation complete
+        Root Cause: {root_cause}
+        Fix: {fix_status}
+        
+        Continue with Step 10? [Y/n/review]
+      options:
+        - key: "Y"
+          action: "retry_task"
+          description: "Retry task with fix applied"
+        - key: "n"
+          action: "pause"
+          description: "Pause workflow here"
+        - key: "review"
+          action: "show_debug_report"
+          description: "Review debug findings"
 
 # ───────────────────────────────────────────────────────────────────
 # USER INPUTS (Transformed from raw text)
@@ -532,6 +600,28 @@ workflow:
       - constraint_identification
       - principle_alignment
     validation: principles_established
+
+  # ── RESEARCH TRIGGER CHECK (after Step 2) ──────────────────────────
+  phase_2_5_research:
+    condition: |
+      research_triggered = FALSE
+      
+      IF ":with-research" in command_flags:
+        research_triggered = TRUE
+        trigger_reason = "explicit_flag"
+      ELSE IF confidence_score < 60:
+        # In AUTONOMOUS mode with smart-detect, auto-trigger research
+        research_triggered = TRUE
+        trigger_reason = "uncertainty_auto_detected"
+      
+    actions:
+      if_triggered:
+        - log: "📚 Initiating research phase (reason: {trigger_reason})"
+        - execute_workflow: "spec_kit_research_auto.yaml"
+        - on_complete: "show_checkpoint"
+      if_skipped:
+        - log: "Research phase skipped (confidence: {confidence_score}%)"
+        - continue_to: "step_3"
 
   step_3_specification:
     purpose: Create comprehensive feature specification
@@ -1149,6 +1239,40 @@ workflow:
       - quality_assurance
       - deviation_documentation
     validation: development_complete
+
+    # ── DEBUG INTEGRATION (for autonomous mode) ────────────────────────
+    debug_integration:
+      failure_tracking:
+        enabled: true
+        counter_name: "task_failure_count"
+        reset_on: "new_task"
+        threshold: 3
+      
+      on_threshold_reached:
+        if_auto_debug_flag:
+          action: "auto_dispatch_debug"
+          log: "🔧 Auto-dispatching debug agent (3+ failures, :auto-debug enabled)"
+        else:
+          action: "suggest_debug"
+          prompt: |
+            ⚠️ Multiple fix attempts failed (3+) for task {current_task_id}
+            
+            Would you like to delegate to a debug agent?
+            
+            A) Yes - Dispatch debug agent for fresh analysis
+            B) No - Continue debugging manually
+            C) Skip task - Move to next task
+            D) Pause - Stop workflow and review
+          
+      debug_dispatch:
+        subagent_type: "general"
+        timeout_ms: 120000
+        context_includes:
+          - error_message
+          - affected_files
+          - previous_attempts
+          - current_task_id
+        on_complete: "show_checkpoint"
     
     # ⛔ COMPLETION CHECKPOINT (CRITICAL)
     completion_checkpoint:
@@ -1352,6 +1476,29 @@ workflow:
 termination:
   after_step: 12
   message: "SpecKit workflow completed successfully. Workflow terminated after step 12 (save context)."
+
+# ─────────────────────────────────────────────────────────────────
+# CHECKPOINT PROTOCOL FOR OPTIONAL WORKFLOWS
+# ─────────────────────────────────────────────────────────────────
+checkpoint_protocol:
+  display_format: |
+    ┌────────────────────────────────────────────────────────────────┐
+    │ 📍 WORKFLOW CHECKPOINT - {checkpoint_title}                    │
+    ├────────────────────────────────────────────────────────────────┤
+    │ {checkpoint_content}                                           │
+    │                                                                │
+    │ Current workflow progress:                                     │
+    │ {progress_display}                                             │
+    │                                                                │
+    │ {continue_prompt}                                              │
+    └────────────────────────────────────────────────────────────────┘
+  
+  autonomous_behavior:
+    # In autonomous mode, checkpoints still pause for user confirmation
+    # This is intentional - optional workflows are significant decision points
+    pause_for_confirmation: true
+    default_action_on_timeout: "continue"
+    timeout_seconds: 300  # 5 minute timeout before auto-continue
 
 # ─────────────────────────────────────────────────────────────────
 # QUALITY STANDARDS

@@ -30,6 +30,8 @@ EXECUTE THIS CHECK FIRST:
     ├─ Store as: feature_description
     └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
 
+**STOP HERE** - Wait for user to provide the feature description before continuing.
+
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer features from context, screenshots, or conversation history
 ```
@@ -67,7 +69,7 @@ EXECUTE AFTER PHASE 1 PASSES:
    │    D) Skip documentation                                       │
    │                                                                │
    │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
-   │    A) Autonomous - Execute all steps without approval           │
+   │    A) Autonomous - Execute all steps without approval          │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
    │ Reply with choices, e.g.: "B, A" or "A" (if mode pre-set)      │
@@ -81,6 +83,8 @@ EXECUTE AFTER PHASE 1 PASSES:
    - execution_mode = [AUTONOMOUS/INTERACTIVE] (from suffix or second answer)
 
 6. SET STATUS: ✅ PASSED (Stateless - no .spec-active file created)
+
+**STOP HERE** - Wait for user to select A/B/C/D and execution mode before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly answers
 ⛔ NEVER auto-create spec folders without user confirmation
@@ -129,6 +133,8 @@ CHECK spec_choice value from Phase 2:
         ├─ Execute loading based on choice (use Read tool)
         ├─ Acknowledge loaded context briefly
         └─ SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select memory loading option before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
 ```
@@ -233,15 +239,15 @@ $ARGUMENTS
 
 ## 3. 📊 WORKFLOW OVERVIEW (7 STEPS)
 
-| Step | Name             | Purpose                        | Outputs                  |
-| ---- | ---------------- | ------------------------------ | ------------------------ |
-| 1    | Request Analysis | Analyze inputs, define scope   | requirement_summary      |
-| 2    | Pre-Work Review  | Review AGENTS.md, standards    | coding_standards_summary |
-| 3    | Specification    | Create spec.md                 | spec.md                  |
-| 4    | Clarification    | Resolve ambiguities            | updated spec.md          |
-| 5    | Planning         | Create technical plan          | plan.md, checklist.md    |
-| 6    | Save Context     | Save conversation context      | memory/*.md              |
-| 7    | Handover Check   | Prompt for session handover    | handover.md (optional)   |
+| Step | Name             | Purpose                      | Outputs                  |
+| ---- | ---------------- | ---------------------------- | ------------------------ |
+| 1    | Request Analysis | Analyze inputs, define scope | requirement_summary      |
+| 2    | Pre-Work Review  | Review AGENTS.md, standards  | coding_standards_summary |
+| 3    | Specification    | Create spec.md               | spec.md                  |
+| 4    | Clarification    | Resolve ambiguities          | updated spec.md          |
+| 5    | Planning         | Create technical plan        | plan.md, checklist.md    |
+| 6    | Save Context     | Save conversation context    | memory/*.md              |
+| 7    | Handover Check   | Prompt for session handover  | handover.md (optional)   |
 
 ---
 
@@ -340,3 +346,32 @@ After agents return, hypotheses are verified by reading identified files and bui
 ```
 /spec_kit:plan "Build analytics dashboard" tech stack: React, Chart.js, existing API
 ```
+
+---
+
+## 9. 🔗 COMMAND CHAIN
+
+This command is part of the SpecKit workflow:
+
+```
+[/spec_kit:research] → /spec_kit:plan → [/spec_kit:implement]
+```
+
+**Explicit next step:**
+→ `/spec_kit:implement [spec-folder-path]`
+
+---
+
+## 10. 🔜 WHAT NEXT?
+
+After planning completes, suggest relevant next steps:
+
+| Condition                             | Suggested Command                        | Reason                           |
+| ------------------------------------- | ---------------------------------------- | -------------------------------- |
+| Planning complete, ready to implement | `/spec_kit:implement [spec-folder-path]` | Continue to implementation phase |
+| Need stakeholder review first         | Share `plan.md` for review               | Get approval before coding       |
+| Technical uncertainty exists          | `/spec_kit:research [topic]`             | Investigate before committing    |
+| Need to pause work                    | `/spec_kit:handover [spec-folder-path]`  | Save context for later           |
+| Want to save context                  | `/memory:save [spec-folder-path]`        | Preserve decisions and findings  |
+
+**ALWAYS** end with: "What would you like to do next?"

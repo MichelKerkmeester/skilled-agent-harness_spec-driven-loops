@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# RULE: CHECK-FOLDER-NAMING
+# ───────────────────────────────────────────────────────────────
+
 # Rule: FOLDER_NAMING
 # Severity: error
 # Description: Validates spec folder follows ###-short-name convention
+
+# ───────────────────────────────────────────────────────────────
+# 1. INITIALIZATION
+# ───────────────────────────────────────────────────────────────
 
 run_check() {
     local folder="$1"
@@ -12,8 +20,11 @@ run_check() {
     RULE_MESSAGE=""
     RULE_DETAILS=()
     RULE_REMEDIATION=""
-    
-    # Get the folder name (basename)
+
+# ───────────────────────────────────────────────────────────────
+# 2. VALIDATION LOGIC
+# ───────────────────────────────────────────────────────────────
+
     local folder_name
     folder_name=$(basename "$folder")
     
@@ -26,18 +37,16 @@ run_check() {
         RULE_DETAILS+=("Expected pattern: ###-short-name (e.g., 001-auth-feature)")
         RULE_DETAILS+=("Got: $folder_name")
         
-        # Provide specific feedback
-        if [[ ! "$folder_name" =~ ^[0-9]{3}- ]]; then
-            RULE_DETAILS+=("Missing 3-digit prefix (e.g., 001-, 042-)")
-        fi
-        if [[ "$folder_name" =~ [A-Z] ]]; then
-            RULE_DETAILS+=("Contains uppercase letters (use lowercase only)")
-        fi
-        if [[ "$folder_name" =~ _ ]]; then
-            RULE_DETAILS+=("Contains underscores (use hyphens instead)")
-        fi
+        [[ ! "$folder_name" =~ ^[0-9]{3}- ]] && RULE_DETAILS+=("Missing 3-digit prefix (e.g., 001-, 042-)")
+        [[ "$folder_name" =~ [A-Z] ]] && RULE_DETAILS+=("Contains uppercase letters (use lowercase only)")
+        [[ "$folder_name" =~ _ ]] && RULE_DETAILS+=("Contains underscores (use hyphens instead)")
         
         RULE_REMEDIATION="Rename folder to follow pattern: ###-short-name (lowercase, hyphens only)"
+
+# ───────────────────────────────────────────────────────────────
+# 3. RESULTS
+# ───────────────────────────────────────────────────────────────
+
     else
         RULE_MESSAGE="Folder name '$folder_name' follows naming convention"
     fi

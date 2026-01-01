@@ -9,15 +9,19 @@ Copy-ready `.env` template for Code Mode UTCP authentication with all supported 
 
 ---
 
-## Purpose
+## 1. 📖 OVERVIEW
+
+### Purpose
 
 Centralized environment variables for Code Mode UTCP authentication and configuration. Use this template to securely manage credentials for ClickUp, Figma, Notion, GitHub, Webflow, and Chrome DevTools MCP servers.
 
-## Usage
+### Usage
 
 Copy this template to `.env` in your project root, then replace placeholder values with your actual credentials. Never commit `.env` to version control - add it to `.gitignore` immediately.
 
-## Template
+---
+
+## 2. 📋 TEMPLATE
 
 ```bash
 # Code Mode UTCP - Environment Variables Template
@@ -28,7 +32,7 @@ CLICKUP_API_KEY=pk_your_api_key_here
 CLICKUP_TEAM_ID=your_team_id_here
 
 # Figma Configuration
-FIGMA_PERSONAL_ACCESS_TOKEN=figd_your_token_here
+FIGMA_API_KEY=figd_your_token_here
 
 # Notion Configuration
 NOTION_TOKEN=ntn_your_token_here
@@ -48,7 +52,7 @@ WEBFLOW_API_TOKEN=your_webflow_token_here
 
 ---
 
-## Credential Sources
+## 3. 🔑 CREDENTIAL SOURCES
 
 ### ClickUp
 
@@ -73,7 +77,7 @@ CLICKUP_TEAM_ID=12345678
 ### Figma
 
 **Required Variables:**
-- `FIGMA_PERSONAL_ACCESS_TOKEN` - Personal access token for Figma API
+- `FIGMA_API_KEY` - Personal access token for Figma API
 
 **How to Obtain:**
 1. Log in to Figma
@@ -83,7 +87,7 @@ CLICKUP_TEAM_ID=12345678
 
 **Format:**
 ```bash
-FIGMA_PERSONAL_ACCESS_TOKEN=figd-abcdefghijklmnopqrstuvwxyz1234567890
+FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
 ```
 
 **Permissions**: Token inherits your Figma account permissions
@@ -158,7 +162,7 @@ WEBFLOW_API_TOKEN=your_webflow_api_token_here
 
 ---
 
-## Security Best Practices
+## 4. 🔒 SECURITY BEST PRACTICES
 
 ### .gitignore Configuration
 
@@ -208,7 +212,7 @@ WEBFLOW_API_TOKEN=your_webflow_api_token_here
 
 ---
 
-## Configuration Reference
+## 5. ⚙️ CONFIGURATION REFERENCE
 
 ### Variable Syntax in .utcp_config.json
 
@@ -272,7 +276,7 @@ export CLICKUP_TEAM_ID=12345
 
 ---
 
-## Troubleshooting
+## 6. 🛠️ TROUBLESHOOTING
 
 ### Variable Not Found Error
 
@@ -317,7 +321,7 @@ Error: Access denied to resource
 
 ---
 
-## Template Customization
+## 7. 🔧 TEMPLATE CUSTOMIZATION
 
 ### Adding New MCP Server Credentials
 
@@ -358,12 +362,12 @@ Then reference in `.utcp_config.json`:
 **Example:**
 ```bash
 # Figma Configuration (removed - no longer using)
-# FIGMA_PERSONAL_ACCESS_TOKEN=figd_old_token
+# FIGMA_API_KEY=figd_old_token
 ```
 
 ---
 
-## Validation Checklist
+## 8. ✅ VALIDATION CHECKLIST
 
 **Before using Code Mode, verify:**
 
@@ -391,7 +395,7 @@ call_tool_chain({
 
 ---
 
-## 🔗 Related Resources
+## 9. 🔗 RELATED RESOURCES
 
 ### Templates
 - [config_template.md](./config_template.md) - Complete .utcp_config.json configuration template

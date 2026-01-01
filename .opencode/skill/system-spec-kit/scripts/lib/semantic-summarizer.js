@@ -1,94 +1,73 @@
-/**
- * Semantic Summarizer - Extract meaningful summaries from conversation data
- *
- * This module provides semantic understanding of conversation content,
- * transforming raw messages into structured implementation summaries.
- *
- * Key capabilities:
- * - Message classification (intent, plan, implementation, result, decision)
- * - File change tracking with semantic descriptions
- * - Decision extraction from user interactions
- * - Implementation summary generation
- */
+// ───────────────────────────────────────────────────────────────
+// LIB: SEMANTIC SUMMARIZER
+// ───────────────────────────────────────────────────────────────
 
 'use strict';
 
 const { extractTriggerPhrases } = require('./trigger-extractor');
 
-// ───────────────────────────────────────────────────────────────
-// MESSAGE CLASSIFICATION
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   1. CONSTANTS
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Message types for semantic classification
- */
 const MESSAGE_TYPES = {
-  INTENT: 'intent',           // User's initial request/goal
-  PLAN: 'plan',               // Planning/approach discussion
-  IMPLEMENTATION: 'implementation', // Code/file changes
-  RESULT: 'result',           // Outcomes, completions
-  DECISION: 'decision',       // User choices (decision points)
-  QUESTION: 'question',       // Clarification requests
-  CONTEXT: 'context'          // Background/research
+  INTENT: 'intent',
+  PLAN: 'plan',
+  IMPLEMENTATION: 'implementation',
+  RESULT: 'result',
+  DECISION: 'decision',
+  QUESTION: 'question',
+  CONTEXT: 'context',
 };
 
-/**
- * Classification patterns for detecting message types
- * CRITICAL: Order matters - specific patterns first, generic last
- * Fixed pattern order: DECISION → IMPLEMENTATION → RESULT → PLAN → INTENT → QUESTION
- */
+// Classification patterns - order matters: specific first, generic last
 const CLASSIFICATION_PATTERNS = {
-  // 1. DECISION - very specific markers (must come first)
   [MESSAGE_TYPES.DECISION]: [
     /(?:Selected:|Chose:|user chose|user selected|decision made|user decision)/i,
     /^(?:Option\s+)?[A-D](?:\)|:|\s*[-–])/i,
-    /(?:selected option|picked option|chose option)/i
+    /(?:selected option|picked option|chose option)/i,
   ],
-  // 2. IMPLEMENTATION - file operations and code changes (specific evidence)
   [MESSAGE_TYPES.IMPLEMENTATION]: [
     /(?:^Created|^Modified|^Edited|^Wrote|^Added|^Removed|^Changed|^Fixed)\s+[`"']?[\w./-]+/i,
     /(?:Edit|Write)\s*\([^)]*file_path/i,
     /(?:\.js|\.ts|\.md|\.json|\.sh|\.css|\.py)\s*(?:file|module|script)?/i,
-    /(?:function|class|const|let|var|export|import)\s+\w+/i
+    /(?:function|class|const|let|var|export|import)\s+\w+/i,
   ],
-  // 3. RESULT - completion indicators
   [MESSAGE_TYPES.RESULT]: [
     /(?:complete[d!]?|done[!]?|finished|success)/i,
     /(?:tests? pass|all tests|verified|confirmed)/i,
     /(?:## Implementation Complete|## Summary|## Results|✅|✓)/i,
-    /^(?:It works|Working|Fixed|Resolved)/i
+    /^(?:It works|Working|Fixed|Resolved)/i,
   ],
-  // 4. PLAN - future tense planning
   [MESSAGE_TYPES.PLAN]: [
     /(?:^I'll|^Let me|^First,|^Then,|^Next,|^Finally,)/i,
     /(?:plan|approach|strategy|steps to|phases)/i,
     /(?:todo|task list|checklist)/i,
-    /(?:^#+\s*Plan|Implementation Plan|will need to)/i
+    /(?:^#+\s*Plan|Implementation Plan|will need to)/i,
   ],
-  // 5. INTENT - user requests (BEFORE question to catch "Can you help me...?")
   [MESSAGE_TYPES.INTENT]: [
     /^(?:I want|I need|Please|Help me|I'd like|Analyze|Implement|Create|Fix|Improve)/i,
-    /^(?:Can you|Could you|Would you)\s+(?:help|implement|create|add|build|fix)/i
+    /^(?:Can you|Could you|Would you)\s+(?:help|implement|create|add|build|fix)/i,
   ],
-  // 6. QUESTION - LAST and more specific (requires question word + ?)
   [MESSAGE_TYPES.QUESTION]: [
-    /^(?:Which|What|How|Where|When|Why|Should|Is|Are|Does|Do).+\?$/i
-  ]
+    /^(?:Which|What|How|Where|When|Why|Should|Is|Are|Does|Do).+\?$/i,
+  ],
 };
 
-/**
- * Classify a message by its semantic type
- * @param {string} content - Message content
- * @returns {string} - Message type from MESSAGE_TYPES
- */
-function classifyMessage(content) {
+const DESC_MIN_LENGTH = 10;
+const DESC_MAX_LENGTH = 100;
+
+/* ─────────────────────────────────────────────────────────────
+   2. MESSAGE CLASSIFICATION
+──────────────────────────────────────────────────────────────── */
+
+function classify_message(content) {
   if (!content || typeof content !== 'string') {
     return MESSAGE_TYPES.CONTEXT;
   }
 
   const normalized = content.trim();
 
-  // Check each type's patterns
   for (const [type, patterns] of Object.entries(CLASSIFICATION_PATTERNS)) {
     for (const pattern of patterns) {
       if (pattern.test(normalized)) {
@@ -100,12 +79,7 @@ function classifyMessage(content) {
   return MESSAGE_TYPES.CONTEXT;
 }
 
-/**
- * Classify all messages in a conversation
- * @param {Array} messages - Array of message objects with content/prompt
- * @returns {Map} - Map of type -> messages[]
- */
-function classifyMessages(messages) {
+function classify_messages(messages) {
   const classified = new Map();
 
   for (const type of Object.values(MESSAGE_TYPES)) {
@@ -114,140 +88,108 @@ function classifyMessages(messages) {
 
   for (const msg of messages) {
     const content = msg.prompt || msg.content || msg.CONTENT || '';
-    const type = classifyMessage(content);
+    const type = classify_message(content);
     classified.get(type).push({
       ...msg,
-      _semanticType: type
+      _semanticType: type,
     });
   }
 
   return classified;
 }
 
-// ───────────────────────────────────────────────────────────────
-// FILE CHANGE EXTRACTION
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   3. FILE CHANGE EXTRACTION
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Find file position starting from a given offset
- * This ensures each file gets its own context window, not the same first occurrence
- * @param {string} content - Full content to search
- * @param {string} filePath - File path to find
- * @param {number} searchFrom - Start position for search
- * @returns {number} - Index position or -1 if not found
- */
-function findFilePosition(content, filePath, searchFrom = 0) {
-  const searchContent = content.substring(searchFrom);
-  const index = searchContent.indexOf(filePath);
-  return index === -1 ? -1 : searchFrom + index;
+function find_file_position(content, file_path, search_from = 0) {
+  const search_content = content.substring(search_from);
+  const index = search_content.indexOf(file_path);
+  return index === -1 ? -1 : search_from + index;
 }
 
-/**
- * Extract semantic descriptions of file changes from messages
- * @param {Array} messages - Conversation messages
- * @param {Array} observations - AI's observations
- * @returns {Map} - Map of filepath -> {action, description, changes[]}
- */
-function extractFileChanges(messages, observations = []) {
-  const fileChanges = new Map();
+function extract_file_changes(messages, observations = []) {
+  const file_changes = new Map();
 
-  // Pattern to detect file operations
-  const filePatterns = {
+  const file_patterns = {
     created: /(?:created?|wrote?|new file|Write\()/i,
     modified: /(?:modified|edited|changed|updated|Edit\()/i,
     deleted: /(?:deleted|removed|rm\s)/i,
-    read: /(?:read|Read\()/i
+    read: /(?:read|Read\()/i,
   };
 
-  // Extract file paths from text
-  const extractFilePaths = (text) => {
+  const extract_file_paths = (text) => {
     const paths = [];
 
-    // Pattern for quoted paths
-    const quotedPaths = text.match(/["'`]([^"'`]+\.[a-zA-Z]{1,10})["'`]/g);
-    if (quotedPaths) {
-      paths.push(...quotedPaths.map(p => p.replace(/["'`]/g, '')));
+    const quoted_paths = text.match(/["'`]([^"'`]+\.[a-zA-Z]{1,10})["'`]/g);
+    if (quoted_paths) {
+      paths.push(...quoted_paths.map(p => p.replace(/["'`]/g, '')));
     }
 
-    // Pattern for paths with common extensions
-    const extensionPaths = text.match(/(?:^|[\s(])([./\w-]+\.(?:js|ts|jsx|tsx|json|jsonc|md|sh|css|html|py|yaml|yml))/gi);
-    if (extensionPaths) {
-      paths.push(...extensionPaths.map(p => p.trim().replace(/^[(]/, '')));
+    const extension_paths = text.match(/(?:^|[\s(])([./\w-]+\.(?:js|ts|jsx|tsx|json|jsonc|md|sh|css|html|py|yaml|yml))/gi);
+    if (extension_paths) {
+      paths.push(...extension_paths.map(p => p.trim().replace(/^[(]/, '')));
     }
 
     return [...new Set(paths)];
   };
 
-  // Process messages for file changes
   for (const msg of messages) {
     const content = msg.prompt || msg.content || msg.CONTENT || '';
-    const type = classifyMessage(content);
+    const type = classify_message(content);
 
     if (type === MESSAGE_TYPES.IMPLEMENTATION || type === MESSAGE_TYPES.RESULT) {
-      const paths = extractFilePaths(content);
+      const paths = extract_file_paths(content);
+      let last_search_position = 0;
 
-      // Track search position to find EACH file's unique context
-      let lastSearchPosition = 0;
-
-      for (const filePath of paths) {
-        // Determine action type
+      for (const file_path of paths) {
         let action = 'modified';
-        for (const [actionType, pattern] of Object.entries(filePatterns)) {
+        for (const [action_type, pattern] of Object.entries(file_patterns)) {
           if (pattern.test(content)) {
-            action = actionType;
+            action = action_type;
             break;
           }
         }
 
-        // Skip read-only operations for the summary
         if (action === 'read') continue;
 
-        // FIX: Find THIS file's position starting from last found position
-        // This ensures each file gets its own unique context window
-        const fileIndex = findFilePosition(content, filePath, lastSearchPosition);
+        const file_index = find_file_position(content, file_path, last_search_position);
 
-        if (fileIndex === -1) {
-          // File not found from current position, try from start as fallback
-          const fallbackIndex = content.indexOf(filePath);
-          if (fallbackIndex === -1) continue;
-          // Use fallback but don't update lastSearchPosition
-          const contextStart = Math.max(0, fallbackIndex - 100);
-          const contextEnd = Math.min(content.length, fallbackIndex + filePath.length + 200);
-          const context = content.substring(contextStart, contextEnd);
-          const description = extractChangeDescription(context, filePath);
+        if (file_index === -1) {
+          const fallback_index = content.indexOf(file_path);
+          if (fallback_index === -1) continue;
+          const context_start = Math.max(0, fallback_index - 100);
+          const context_end = Math.min(content.length, fallback_index + file_path.length + 200);
+          const context = content.substring(context_start, context_end);
+          const description = extract_change_description(context, file_path);
 
-          if (!fileChanges.has(filePath)) {
-            fileChanges.set(filePath, { action, description, changes: [], mentions: 1 });
+          if (!file_changes.has(file_path)) {
+            file_changes.set(file_path, { action, description, changes: [], mentions: 1 });
           }
           continue;
         }
 
-        // Update search position for next file
-        lastSearchPosition = fileIndex + filePath.length;
+        last_search_position = file_index + file_path.length;
 
-        // Extract context around THIS file's actual position
-        const contextStart = Math.max(0, fileIndex - 100);
-        const contextEnd = Math.min(content.length, fileIndex + filePath.length + 200);
-        const context = content.substring(contextStart, contextEnd);
+        const context_start = Math.max(0, file_index - 100);
+        const context_end = Math.min(content.length, file_index + file_path.length + 200);
+        const context = content.substring(context_start, context_end);
 
-        // Try to extract a meaningful description
-        let description = extractChangeDescription(context, filePath);
+        let description = extract_change_description(context, file_path);
 
-        if (!fileChanges.has(filePath)) {
-          fileChanges.set(filePath, {
+        if (!file_changes.has(file_path)) {
+          file_changes.set(file_path, {
             action,
             description,
             changes: [],
-            mentions: 1
+            mentions: 1,
           });
         } else {
-          const existing = fileChanges.get(filePath);
+          const existing = file_changes.get(file_path);
           existing.mentions++;
-          // Update description if new one is more descriptive
           if (description.length > existing.description.length) {
             existing.description = description;
           }
-          // Upgrade action (created > modified)
           if (action === 'created' && existing.action !== 'created') {
             existing.action = action;
           }
@@ -256,258 +198,185 @@ function extractFileChanges(messages, observations = []) {
     }
   }
 
-  // Enhance with observations data - also use file-specific descriptions
   for (const obs of observations) {
     if (obs.files && Array.isArray(obs.files)) {
       const narrative = obs.narrative || '';
 
       for (const file of obs.files) {
-        if (!fileChanges.has(file)) {
-          // Extract file-specific description from narrative
-          const description = extractChangeDescription(narrative, file);
-          fileChanges.set(file, {
+        if (!file_changes.has(file)) {
+          const description = extract_change_description(narrative, file);
+          file_changes.set(file, {
             action: 'modified',
             description: description,
             changes: [],
-            mentions: 1
+            mentions: 1,
           });
         }
       }
     }
   }
 
-  return fileChanges;
+  return file_changes;
 }
 
-/**
- * V8.3: Clean and format a description string
- * Removes markdown formatting, trailing punctuation, and truncates
- * @param {string} desc - Raw description
- * @returns {string} - Cleaned description
- */
-function cleanDescription(desc) {
+/* ─────────────────────────────────────────────────────────────
+   4. DESCRIPTION UTILITIES
+──────────────────────────────────────────────────────────────── */
+
+function clean_description(desc) {
   if (!desc) return '';
   let cleaned = desc.trim();
 
-  // Remove markdown formatting
-  cleaned = cleaned.replace(/^#+\s+/, '');        // ## headers
-  cleaned = cleaned.replace(/^[-*]\s+/, '');      // - bullets
-  cleaned = cleaned.replace(/`([^`]+)`/g, '$1');  // `backticks`
-  cleaned = cleaned.replace(/\*\*([^*]+)\*\*/g, '$1'); // **bold**
-
-  // Remove trailing punctuation
+  cleaned = cleaned.replace(/^#+\s+/, '');
+  cleaned = cleaned.replace(/^[-*]\s+/, '');
+  cleaned = cleaned.replace(/`([^`]+)`/g, '$1');
+  cleaned = cleaned.replace(/\*\*([^*]+)\*\*/g, '$1');
   cleaned = cleaned.replace(/[.,;:]+$/, '');
 
-  // Truncate to max 60 chars for concise output
   if (cleaned.length > 60) {
     cleaned = cleaned.substring(0, 57) + '...';
   }
 
-  // Capitalize first letter
   if (cleaned.length > 0) {
     cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
   }
   return cleaned;
 }
 
-/**
- * V8.3: Validate that a description is actually file-specific and not garbage
- * @param {string} description - Description text
- * @returns {boolean} - True if description is likely valid/meaningful
- */
-function isDescriptionValid(description) {
+function is_description_valid(description) {
   if (!description || description.length < 8) return false;
 
-  // Reject known generic/garbage descriptions
-  const garbagePatterns = [
-    /^#+\s/,                            // Markdown headers: ## Foo
-    /^[-*]\s/,                          // List bullets: - foo, * bar
-    /\s(?:and|or|to|the)\s*$/i,         // Incomplete: "Fixed the"
-    /^(?:modified?|updated?)\s+\w+$/i,  // Too short: "Modified file"
-    /^filtering\s+(?:pipeline|system)$/i, // Generic fallback
-    /^And\s+[`'"]?/i,                   // Fragment: "And `foo"
-    /^modified? during session$/i,       // Default fallback
+  const garbage_patterns = [
+    /^#+\s/,
+    /^[-*]\s/,
+    /\s(?:and|or|to|the)\s*$/i,
+    /^(?:modified?|updated?)\s+\w+$/i,
+    /^filtering\s+(?:pipeline|system)$/i,
+    /^And\s+[`'"]?/i,
+    /^modified? during session$/i,
     /^changed?$/i,
     /^no description available$/i,
     /^modified?$/i,
-    /\[PLACEHOLDER\]/i,                 // Unfilled template
+    /\[PLACEHOLDER\]/i,
   ];
 
-  return !garbagePatterns.some(p => p.test(description));
+  return !garbage_patterns.some(p => p.test(description));
 }
 
-// P3.3: Standardized length constants for consistency
-const DESC_MIN_LENGTH = 10;
-const DESC_MAX_LENGTH = 100;
+// Caps context at 500 chars to prevent regex backtracking
+function extract_change_description(context, file_path) {
+  const safe_context = context.substring(0, 500);
 
-/**
- * Extract a meaningful change description from context
- * FIX v4: Prioritize file-specific patterns, improved regex escaping and validation
- * @param {string} context - Text around file mention
- * @param {string} filePath - The file path
- * @returns {string} - Semantic description of change
- */
-function extractChangeDescription(context, filePath) {
-  // V5.5: Cap context at 500 chars to prevent regex backtracking on long strings
-  // Patterns like .{15,100}? can cause exponential backtracking on 3000+ char contexts
-  const safeContext = context.substring(0, 500);
+  const filename = file_path.replace(/\\/g, '/').split('/').pop();
+  const filename_no_ext = filename.replace(/\.[^.]+$/, '');
+  const escaped_filename = filename_no_ext.replace(/[-.*+?^${}()|[\]\\]/g, '\\$&');
 
-  // Get filename for filtering out path repetitions
-  // Normalize path separators for cross-platform compatibility (Windows uses \)
-  const filename = filePath.replace(/\\/g, '/').split('/').pop();
-  const filenameNoExt = filename.replace(/\.[^.]+$/, '');
-
-  // P1.2: Escape special regex characters in filename (added hyphen to escape list)
-  const escapedFilename = filenameNoExt.replace(/[-.*+?^${}()|[\]\\]/g, '\\$&');
-
-  // 1. PRIORITY: File-specific patterns - look for descriptions mentioning THIS file
-  const fileSpecificPatterns = [
-    // "Updated content-filter.js to add..." or "Modified X with..."
-    new RegExp(`(?:updated?|modified?|changed?|fixed?|edited?)\\s+(?:the\\s+)?['"\`]?${escapedFilename}(?:\\.\\w+)?['"\`]?\\s+(?:to\\s+)?(.{15,100}?)(?:\\s*[.!,]|$)`, 'i'),
-    // P2.2: "content-filter.js: Added new patterns" - added em-dash (—) to variants
-    new RegExp(`${escapedFilename}(?:\\.\\w+)?\\s*[:\\-–—]\\s*(.{15,100}?)(?:\\s*[.!,\\n]|$)`, 'i'),
-    // "In content-filter.js, we added..." or "For X, implemented..."
-    new RegExp(`(?:in|for|to)\\s+['"\`]?${escapedFilename}(?:\\.\\w+)?['"\`]?[,:]?\\s+(?:we\\s+)?(.{15,100}?)(?:\\s*[.!,]|$)`, 'i'),
-    // "Added X to content-filter.js"
-    new RegExp(`(?:added?|implemented?|created?)\\s+(.{15,80}?)\\s+(?:to|in|for)\\s+['"\`]?${escapedFilename}`, 'i'),
-    // "The content-filter handles..."
-    new RegExp(`(?:the\\s+)?${escapedFilename}(?:\\.\\w+)?\\s+(?:now\\s+)?(?:handles?|provides?|implements?|contains?)\\s+(.{15,80}?)(?:\\s*[.!,]|$)`, 'i'),
-    // P2.1: "X now supports/includes Y"
-    new RegExp(`['"\`]?${escapedFilename}['"\`]?\\s+(?:now\\s+)?(?:supports?|includes?)\\s+(.{10,80})`, 'i'),
-    // P2.1: "Modified X, adding Y"
-    new RegExp(`modified\\s+['"\`]?${escapedFilename}['"\`]?,\\s+(?:adding|removing|implementing)\\s+(.{10,80})`, 'i')
+  const file_specific_patterns = [
+    new RegExp(`(?:updated?|modified?|changed?|fixed?|edited?)\\s+(?:the\\s+)?['"\`]?${escaped_filename}(?:\\.\\w+)?['"\`]?\\s+(?:to\\s+)?(.{15,100}?)(?:\\s*[.!,]|$)`, 'i'),
+    new RegExp(`${escaped_filename}(?:\\.\\w+)?\\s*[:\\-–—]\\s*(.{15,100}?)(?:\\s*[.!,\\n]|$)`, 'i'),
+    new RegExp(`(?:in|for|to)\\s+['"\`]?${escaped_filename}(?:\\.\\w+)?['"\`]?[,:]?\\s+(?:we\\s+)?(.{15,100}?)(?:\\s*[.!,]|$)`, 'i'),
+    new RegExp(`(?:added?|implemented?|created?)\\s+(.{15,80}?)\\s+(?:to|in|for)\\s+['"\`]?${escaped_filename}`, 'i'),
+    new RegExp(`(?:the\\s+)?${escaped_filename}(?:\\.\\w+)?\\s+(?:now\\s+)?(?:handles?|provides?|implements?|contains?)\\s+(.{15,80}?)(?:\\s*[.!,]|$)`, 'i'),
+    new RegExp(`['"\`]?${escaped_filename}['"\`]?\\s+(?:now\\s+)?(?:supports?|includes?)\\s+(.{10,80})`, 'i'),
+    new RegExp(`modified\\s+['"\`]?${escaped_filename}['"\`]?,\\s+(?:adding|removing|implementing)\\s+(.{10,80})`, 'i'),
   ];
 
-  for (const pattern of fileSpecificPatterns) {
-    const match = safeContext.match(pattern);
+  for (const pattern of file_specific_patterns) {
+    const match = safe_context.match(pattern);
     if (match && match[1]) {
       let desc = match[1].trim();
-      // Skip if description contains the file path (redundant)
-      if (desc.includes(filePath) || desc.toLowerCase().includes(filenameNoExt.toLowerCase())) continue;
-      desc = cleanDescription(desc);
-      // P3.3: Use standardized length constants
-      if (desc.length >= DESC_MIN_LENGTH && desc.length <= DESC_MAX_LENGTH && isDescriptionValid(desc)) {
+      if (desc.includes(file_path) || desc.toLowerCase().includes(filename_no_ext.toLowerCase())) continue;
+      desc = clean_description(desc);
+      if (desc.length >= DESC_MIN_LENGTH && desc.length <= DESC_MAX_LENGTH && is_description_valid(desc)) {
         return desc;
       }
     }
   }
 
-  // 2. Common patterns for extracting descriptions after "with" or "to"
-  const withPatterns = [
-    // "Created X with Y" - extract Y
+  const with_patterns = [
     /with\s+(.{10,80}?)(?:\s*[.!,]|$)/i,
-    // "to add/apply/integrate/remove/fix/enhance X" - expanded verb list (P2.1)
     /to\s+(?:add|apply|integrate|include|remove|fix|enhance|validate)\s+(.{10,80}?)(?:\s*[.!,]|$)/i,
-    // "for X" - extract X
     /for\s+(.{10,80}?)(?:\s*[.!,]|$)/i,
-    // P2.1: "Replaced X with Y"
-    /replaced\s+(.{5,40})\s+with\s+(.{5,40})/i
+    /replaced\s+(.{5,40})\s+with\s+(.{5,40})/i,
   ];
 
-  for (const pattern of withPatterns) {
-    const match = safeContext.match(pattern);
+  for (const pattern of with_patterns) {
+    const match = safe_context.match(pattern);
     if (match && match[1]) {
       let desc = match[1].trim();
-      // For replace pattern, combine both captures
       if (match[2]) {
         desc = `Replaced ${match[1].trim()} with ${match[2].trim()}`;
       }
-      // Skip if description contains the file path (redundant)
-      if (desc.includes(filePath) || desc.includes(filename)) continue;
-      desc = cleanDescription(desc);
-      // P3.3: Use standardized length constants
+      if (desc.includes(file_path) || desc.includes(filename)) continue;
+      desc = clean_description(desc);
       if (desc.length >= DESC_MIN_LENGTH && desc.length <= DESC_MAX_LENGTH && !/^(the|a|an)\s/i.test(desc)) {
         return desc;
       }
     }
   }
 
-  // 3. Fallback patterns for action + description
-  const actionPatterns = [
-    // "3-stage filtering pipeline"
+  const action_patterns = [
     /(\d+-stage\s+\w+\s+pipeline)/i,
-    // "filtering module" or similar - expanded adjective list (P2.1)
     /((?:filtering|content|semantic|noise|validation|processing|analysis|transformation)\s+(?:module|pipeline|system|logic))/i,
-    // "configurable X settings/config/options" - expanded suffix list (P2.1)
     /(configurable\s+.{5,30}\s+(?:settings|config|options|behavior))/i,
-    // Extract after colon (not at end of string - P2.1 fix)
-    /:\s*(.{10,60}?)(?:\s*[.!,\n]|$)/
+    /:\s*(.{10,60}?)(?:\s*[.!,\n]|$)/,
   ];
 
-  for (const pattern of actionPatterns) {
-    const match = safeContext.match(pattern);
+  for (const pattern of action_patterns) {
+    const match = safe_context.match(pattern);
     if (match && match[1]) {
       let desc = match[1].trim();
-      if (desc.includes(filePath) || desc.includes(filename)) continue;
-      desc = cleanDescription(desc);
-      // P3.3: Use standardized length constants
+      if (desc.includes(file_path) || desc.includes(filename)) continue;
+      desc = clean_description(desc);
       if (desc.length >= DESC_MIN_LENGTH && desc.length <= DESC_MAX_LENGTH) {
         return desc;
       }
     }
   }
 
-  // 4. Filename-based fallback with better humanization
-  const humanReadable = filenameNoExt
+  const human_readable = filename_no_ext
     .replace(/[-_]/g, ' ')
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .toLowerCase();
 
-  return `Updated ${humanReadable}`;
+  return `Updated ${human_readable}`;
 }
 
-// ───────────────────────────────────────────────────────────────
-// DECISION EXTRACTION
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   5. DECISION EXTRACTION
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Extract user decisions from conversation
- * @param {Array} messages - Conversation messages
- * @returns {Array} - Array of {question, choice, context}
- */
-function extractDecisions(messages) {
+function extract_decisions(messages) {
   const decisions = [];
-
-  // Patterns for detecting decision points
-  const decisionPatterns = [
-    // User choice format (A/B/C/D options)
-    /(?:Which|What|How|Should).+\?\s*(?:A\)|Option A|1\.)/is,
-    // Direct choice patterns
-    /(?:user chose|selected|decision made):\s*(.+)/i,
-    // Option selection
-    /(?:^|\n)\s*([A-D])\)\s*(.+?)(?:\n|$)/g
-  ];
 
   for (let i = 0; i < messages.length; i++) {
     const msg = messages[i];
     const content = msg.prompt || msg.content || msg.CONTENT || '';
-    const type = classifyMessage(content);
+    const type = classify_message(content);
 
     if (type === MESSAGE_TYPES.DECISION) {
-      // Look for the question in previous message
       let question = '';
       if (i > 0) {
-        const prevContent = messages[i - 1].prompt || messages[i - 1].content || '';
-        const questionMatch = prevContent.match(/([^.!?]+\?)/);
-        if (questionMatch) {
-          question = questionMatch[1].trim();
+        const prev_content = messages[i - 1].prompt || messages[i - 1].content || '';
+        const question_match = prev_content.match(/([^.!?]+\?)/);
+        if (question_match) {
+          question = question_match[1].trim();
         }
       }
 
-      // Extract the choice
-      const choicePatterns = [
+      const choice_patterns = [
         /(?:chose|selected|picked)\s*[:"']?\s*([A-D](?:\)|:|\s)|.{5,50})/i,
         /^(?:Option\s+)?([A-D])(?:\)|:|\s)/i,
-        /^([A-D])\s*[-–]\s*(.+)/i
+        /^([A-D])\s*[-–]\s*(.+)/i,
       ];
 
-      for (const pattern of choicePatterns) {
+      for (const pattern of choice_patterns) {
         const match = content.match(pattern);
         if (match) {
           decisions.push({
             question: question || 'User decision',
             choice: match[1]?.trim() || content.substring(0, 50),
-            context: content.substring(0, 100)
+            context: content.substring(0, 100),
           });
           break;
         }
@@ -518,91 +387,70 @@ function extractDecisions(messages) {
   return decisions;
 }
 
-// ───────────────────────────────────────────────────────────────
-// IMPLEMENTATION SUMMARY GENERATION
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   6. IMPLEMENTATION SUMMARY GENERATION
+──────────────────────────────────────────────────────────────── */
 
-/**
- * Generate a structured implementation summary
- * @param {Array} messages - Conversation messages
- * @param {Array} observations - AI's observations
- * @returns {Object} - Structured summary with task, solution, files, decisions
- */
-function generateImplementationSummary(messages, observations = []) {
-  const classified = classifyMessages(messages);
-  const fileChanges = extractFileChanges(messages, observations);
-  const decisions = extractDecisions(messages);
+function generate_implementation_summary(messages, observations = []) {
+  const classified = classify_messages(messages);
+  const file_changes = extract_file_changes(messages, observations);
+  const decisions = extract_decisions(messages);
 
-  // Extract the main task from intent messages or first user message
-  const intentMessages = classified.get(MESSAGE_TYPES.INTENT);
-  const questionMessages = classified.get(MESSAGE_TYPES.QUESTION);
+  const intent_messages = classified.get(MESSAGE_TYPES.INTENT);
+  const question_messages = classified.get(MESSAGE_TYPES.QUESTION);
 
   let task = 'Development session';
 
-  // First try intent messages
-  if (intentMessages.length > 0) {
-    const firstIntent = intentMessages[0].prompt || intentMessages[0].content || '';
-    // Try to extract a clean task statement
-    const taskPatterns = [
+  if (intent_messages.length > 0) {
+    const first_intent = intent_messages[0].prompt || intent_messages[0].content || '';
+    const task_patterns = [
       /^(?:I want to|I need to|Please|Help me)\s+(.{15,120}?)(?:[.!?\n]|$)/i,
       /(?:implement|create|add|build|fix|improve)\s+(.{10,100}?)(?:[.!?\n]|$)/i,
-      /^(.{20,120}?)(?:[.!?\n]|$)/  // Fallback: first sentence
+      /^(.{20,120}?)(?:[.!?\n]|$)/,
     ];
 
-    for (const pattern of taskPatterns) {
-      const match = firstIntent.match(pattern);
+    for (const pattern of task_patterns) {
+      const match = first_intent.match(pattern);
       if (match && match[1]) {
         task = match[1].trim().replace(/[.,;:]+$/, '');
-        // Capitalize first letter
         task = task.charAt(0).toUpperCase() + task.slice(1);
         break;
       }
     }
   }
 
-  // If no intent, try to infer from question messages
-  if (task === 'Development session' && questionMessages.length > 0) {
-    const firstQuestion = questionMessages[0].prompt || questionMessages[0].content || '';
-    if (firstQuestion.length > 20) {
-      task = firstQuestion.substring(0, 100).replace(/\?.*$/, '').trim();
+  if (task === 'Development session' && question_messages.length > 0) {
+    const first_question = question_messages[0].prompt || question_messages[0].content || '';
+    if (first_question.length > 20) {
+      task = first_question.substring(0, 100).replace(/\?.*$/, '').trim();
     }
   }
 
-  // Extract solution approach from plan/implementation messages
-  const planMessages = classified.get(MESSAGE_TYPES.PLAN);
-  const implMessages = classified.get(MESSAGE_TYPES.IMPLEMENTATION);
-  const resultMessages = classified.get(MESSAGE_TYPES.RESULT);
+  const plan_messages = classified.get(MESSAGE_TYPES.PLAN);
+  const impl_messages = classified.get(MESSAGE_TYPES.IMPLEMENTATION);
+  const result_messages = classified.get(MESSAGE_TYPES.RESULT);
 
   let solution = 'Implementation and updates';
-  const allPlanImpl = [...planMessages, ...implMessages, ...resultMessages];
+  const all_plan_impl = [...plan_messages, ...impl_messages, ...result_messages];
 
-  if (allPlanImpl.length > 0) {
-    // Find patterns describing the solution
-    for (const msg of allPlanImpl) {
+  if (all_plan_impl.length > 0) {
+    for (const msg of all_plan_impl) {
       const content = msg.prompt || msg.content || '';
-      const solutionPatterns = [
-        // 1. Specific patterns - "Create a 3-stage pipeline"
+      const solution_patterns = [
         /(?:create|implement|build)\s+(?:a\s+)?(.{15,80}?(?:pipeline|system|module|filter))/i,
-        // 2. "with X" patterns for implementation details
         /with\s+(.{15,80}?(?:filtering|detection|processing|validation))/i,
-        // 3. "X-stage Y pipeline" patterns
         /(\d+-stage\s+.{10,50}?(?:pipeline|system|process))/i,
-        // 4. Solution/approach header patterns
         /(?:solution|approach):\s*(.{15,100})/i,
-        // 5. Generic implementation patterns (before fallback)
         /(?:implement|create|add|build|fix)\s+(.{15,80}?)(?:\s+(?:to|for|that|in)|[.!]|$)/i,
         /(?:by\s+)?(?:adding|creating|implementing|fixing)\s+(.{15,80}?)(?:[.!]|$)/i,
-        // 6. Explicit action statement
         /(?:implemented?|added?|created?)\s+(.{15,80}?(?:for|to|that))/i,
-        // 7. Extract from first message sentence (last resort before fallback)
-        /^(.{20,100}?)(?:\s+(?:to|for|by)|[.!?\n])/i
+        /^(.{20,100}?)(?:\s+(?:to|for|by)|[.!?\n])/i,
       ];
 
-      for (const pattern of solutionPatterns) {
+      for (const pattern of solution_patterns) {
         const match = content.match(pattern);
         if (match && match[1]) {
           let extracted = match[1].trim().replace(/[.,;:]+$/, '');
-          // Skip if too generic
           if (extracted.length >= 15 && !/^(a|the|some)\s/i.test(extracted)) {
             solution = extracted.charAt(0).toUpperCase() + extracted.slice(1);
             break;
@@ -613,36 +461,33 @@ function generateImplementationSummary(messages, observations = []) {
     }
   }
 
-  // Build files summary with semantic descriptions
-  const filesCreated = [];
-  const filesModified = [];
+  const files_created = [];
+  const files_modified = [];
 
-  for (const [path, info] of fileChanges) {
+  for (const [path, info] of file_changes) {
     const entry = {
       path: path.replace(/^\/Users\/[^/]+\/[^/]+\/[^/]+\/[^/]+\//, ''),
-      description: info.description
+      description: info.description,
     };
 
     if (info.action === 'created') {
-      filesCreated.push(entry);
+      files_created.push(entry);
     } else {
-      filesModified.push(entry);
+      files_modified.push(entry);
     }
   }
 
-  // Extract key outcomes from result messages (already declared above)
   const outcomes = [];
 
-  for (const msg of resultMessages.slice(0, 5)) {
+  for (const msg of result_messages.slice(0, 5)) {
     const content = msg.prompt || msg.content || '';
-    // Look for bullet points or key statements
-    const outcomePatterns = [
+    const outcome_patterns = [
       /[-•]\s*(.{15,80})/g,
       /(?:completed?|finished|implemented|working):\s*(.{15,80})/gi,
-      /✓\s*(.{15,80})/g
+      /✓\s*(.{15,80})/g,
     ];
 
-    for (const pattern of outcomePatterns) {
+    for (const pattern of outcome_patterns) {
       let match;
       while ((match = pattern.exec(content)) !== null) {
         const outcome = match[1].trim();
@@ -655,37 +500,31 @@ function generateImplementationSummary(messages, observations = []) {
     }
   }
 
-  // Extract trigger phrases from all message content (FR-012)
-  const allContent = messages
+  const all_content = messages
     .map(m => m.prompt || m.content || '')
     .join('\n\n');
-  const triggerPhrases = extractTriggerPhrases(allContent);
+  const trigger_phrases = extractTriggerPhrases(all_content);
 
   return {
     task,
     solution,
-    filesCreated,
-    filesModified,
+    filesCreated: files_created,
+    filesModified: files_modified,
     decisions: decisions.slice(0, 5),
     outcomes: outcomes.length > 0 ? outcomes : ['Session completed'],
-    triggerPhrases,
+    triggerPhrases: trigger_phrases,
     messageStats: {
-      intent: intentMessages.length,
-      plan: planMessages.length,
-      implementation: implMessages.length,
-      result: resultMessages.length,
+      intent: intent_messages.length,
+      plan: plan_messages.length,
+      implementation: impl_messages.length,
+      result: result_messages.length,
       decision: decisions.length,
-      total: messages.length
-    }
+      total: messages.length,
+    },
   };
 }
 
-/**
- * Format implementation summary as markdown
- * @param {Object} summary - Summary from generateImplementationSummary
- * @returns {string} - Formatted markdown
- */
-function formatSummaryAsMarkdown(summary) {
+function format_summary_as_markdown(summary) {
   const lines = [];
 
   lines.push('## Implementation Summary\n');
@@ -728,23 +567,16 @@ function formatSummaryAsMarkdown(summary) {
   return lines.join('\n');
 }
 
-// ───────────────────────────────────────────────────────────────
-// EXPORTS
-// ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   7. EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  // Constants
   MESSAGE_TYPES,
-
-  // Classification functions
-  classifyMessage,
-  classifyMessages,
-
-  // Extraction functions
-  extractFileChanges,
-  extractDecisions,
-
-  // Summary generation
-  generateImplementationSummary,
-  formatSummaryAsMarkdown
+  classify_message,
+  classify_messages,
+  extract_file_changes,
+  extract_decisions,
+  generate_implementation_summary,
+  format_summary_as_markdown,
 };

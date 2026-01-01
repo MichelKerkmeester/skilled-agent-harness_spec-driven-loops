@@ -1,6 +1,6 @@
 ---
-description: Create a reference file for an existing skill - deep-dive technical documentation with workflows, patterns, or debugging guides
-argument-hint: "<skill-name> <reference-type> [--chained]"
+description: Create a reference file for an existing skill - deep-dive technical documentation with workflows, patterns, or debugging guides - supports :auto and :confirm modes
+argument-hint: "<skill-name> <reference-type> [--chained] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -84,6 +84,8 @@ EXECUTE THIS CHECK FIRST:
     │       │   └────────────────────────────────────────────────────────────┘
     │       │
     │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+
+**STOP HERE** - Verify you are operating as @write agent (or in chained mode) before continuing.
 
 ⛔ HARD STOP: DO NOT proceed to PHASE C until STATUS = ✅ PASSED or ⏭️ N/A
 ```
@@ -169,12 +171,47 @@ EXECUTE THIS CHECK FIRST:
     │
     └─ SET STATUS: ✅ PASSED
 
+**STOP HERE** - Wait for user to provide skill name and reference type before continuing.
+
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer skill name from context or conversation history
 ⛔ NEVER assume reference type without explicit input
 ```
 
 **Phase 1 Output:** `skill_name = ________________` | `reference_type = ________________`
+
+---
+
+## 🔒 MODE DETECTION
+
+```
+CHECK for mode suffix in $ARGUMENTS or command invocation:
+
+├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
+├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
+└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
+
+Note: When --chained flag is present, mode inherits from parent workflow.
+```
+
+**Mode Output:** `execution_mode = ________________`
+
+---
+
+## 📋 MODE BEHAVIORS
+
+**AUTONOMOUS (:auto):**
+- Execute all steps without approval prompts
+- Only stop for errors or missing required input
+- Best for: Experienced users, scripted workflows, batch operations
+
+**INTERACTIVE (:confirm):**
+- Pause at each major step for user approval
+- Show preview before file creation
+- Ask for confirmation on critical decisions
+- Best for: New users, learning workflows, high-stakes changes
+
+**Default:** INTERACTIVE (creation workflows benefit from confirmation)
 
 ---
 
@@ -212,6 +249,8 @@ EXECUTE AFTER PHASE 1 PASSES:
        ├─ WAIT for response
        └─ Process based on choice
 
+**STOP HERE** - Wait for skill verification to complete or user to provide correct skill path before continuing.
+
 ⛔ HARD STOP: DO NOT proceed without verified skill path
 ⛔ NEVER create references for non-existent skills
 ```
@@ -229,6 +268,7 @@ EXECUTE AFTER PHASE 1 PASSES:
 | PHASE 0: WRITE AGENT  | ✅ PASSED or ⏭️ N/A     | ______      | write_agent_verified: ______              |
 | PHASE C: CHAINED      | ⏭️ SKIPPED or N/A      | ______      | chained_mode: [yes/no]                    |
 | PHASE 1: INPUT        | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_name: ______ / reference_type: ____ |
+| MODE DETECTION        | ✅ SET                 | ______      | execution_mode: ______                    |
 | PHASE 2: SKILL VERIFY | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_path: ______                        |
 
 ```
@@ -424,3 +464,44 @@ Execute all 5 steps in sequence following the workflow definition.
 /documentation:create_reference workflows-chrome-devtools debugging
 ```
 → Creates systematic troubleshooting guide
+
+**Example 4: Auto mode (no prompts)**
+```
+/create:skill_reference workflows-code workflow :auto
+```
+→ Creates reference without approval prompts, only stops for errors
+
+**Example 5: Confirm mode (step-by-step approval)**
+```
+/create:skill_reference workflows-documentation patterns :confirm
+```
+→ Pauses at each step for user confirmation
+
+---
+
+## 6. 🔗 COMMAND CHAIN
+
+This command is often used after skill creation:
+
+```
+[/create:skill] → /create:skill_reference → [/create:skill_asset]
+```
+
+**Related commands:**
+← `/create:skill [skill-name]` (create the skill first)
+→ `/create:skill_asset [skill-name] [type]` (add asset files)
+
+---
+
+## 7. 🔜 WHAT NEXT?
+
+After reference creation completes, suggest relevant next steps:
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Skill needs more references | `/create:skill_reference [skill-name] [type]` | Add another reference |
+| Skill needs assets | `/create:skill_asset [skill-name] template` | Add templates or examples |
+| Reference complete | Verify SKILL.md Navigation Guide updated | Confirm routing works |
+| Want to save context | `/memory:save [spec-folder-path]` | Preserve creation context |
+
+**ALWAYS** end with: "What would you like to do next?"

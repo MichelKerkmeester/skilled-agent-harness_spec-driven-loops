@@ -652,7 +652,7 @@ call_tool_chain({
 
 ### External Resources
 
-- [Code Mode GitHub](https://github.com/anthropics/code-mode-mcp) - Source code and documentation
+- [Code Mode GitHub](https://github.com/universal-tool-calling-protocol/code-mode) - Source code and documentation
 - [MCP Specification](https://modelcontextprotocol.io/) - Model Context Protocol standard
 
 ### Performance Metrics

@@ -12,7 +12,7 @@ Complete feature specification defining requirements, user stories, and success 
 - **Category**: [FORMAT: Spec | Feature | Enhancement | Fix]
 - **Level**: [FORMAT: 1 | 2 | 3]
 - **Tags**: [YOUR_VALUE_HERE: feature-area], [YOUR_VALUE_HERE: component]
-- **Priority**: [FORMAT: P0 | P1 | P2 | P3]
+- **Priority**: [FORMAT: P0 | P1 | P2]
 - **Feature Branch**: `[FORMAT: ###-feature-name]`
 - **Created**: [FORMAT: YYYY-MM-DD]
 - **Status**: [FORMAT: Draft | In Review | Approved | In Progress | Complete]
@@ -74,10 +74,9 @@ Complete feature specification defining requirements, user stories, and success 
   you should still have a viable MVP that delivers value.
 
   User Story Prioritization Guide:
-  - P0: Critical path, blocks launch - must have for any release
-  - P1: Core functionality, needed for MVP - essential for usable product
-  - P2: Important but not blocking - enhances experience but not required for launch
-  - P3: Nice to have, can be deferred - future enhancement
+  - P0: HARD BLOCKER - must complete, blocks launch
+  - P1: Must complete OR user-approved deferral - core MVP functionality
+  - P2: Can defer without approval - enhances experience, nice to have
 
   Independent Testing Principle:
   Each story should be testable in isolation and provide standalone value.
@@ -85,7 +84,7 @@ Complete feature specification defining requirements, user stories, and success 
   If you then add Story 2, it should enhance but not depend on Story 1's internals.
 -->
 
-### User Story 1 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2/P3)
+### User Story 1 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2)
 
 [YOUR_VALUE_HERE: Describe this user journey in plain language - what the user wants to accomplish and why]
 
@@ -107,7 +106,7 @@ Complete feature specification defining requirements, user stories, and success 
 
 ---
 
-### User Story 2 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2/P3)
+### User Story 2 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2)
 
 [YOUR_VALUE_HERE: Describe this user journey in plain language]
 
@@ -121,7 +120,7 @@ Complete feature specification defining requirements, user stories, and success 
 
 ---
 
-### User Story 3 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2/P3)
+### User Story 3 - [YOUR_VALUE_HERE: Brief descriptive title] (Priority: P0/P1/P2)
 
 [YOUR_VALUE_HERE: Describe this user journey in plain language]
 

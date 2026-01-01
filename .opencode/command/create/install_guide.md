@@ -1,6 +1,6 @@
 ---
-description: Create a comprehensive AI-first installation guide with step-by-step setup instructions, requirements, and troubleshooting
-argument-hint: "<project-name> [--platforms <list>]"
+description: Create a comprehensive AI-first installation guide with step-by-step setup instructions, requirements, and troubleshooting - supports :auto and :confirm modes
+argument-hint: "<project-name> [--platforms <list>] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
 
@@ -111,12 +111,45 @@ EXECUTE THIS CHECK FIRST:
     │
     └─ SET STATUS: ✅ PASSED
 
+**STOP HERE** - Wait for user to provide project name and platform details before continuing.
+
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer project from context
 ⛔ NEVER assume platforms without confirmation
 ```
 
 **Phase 1 Output:** `project_name = ________________` | `platforms = ________________`
+
+---
+
+## 🔒 MODE DETECTION
+
+```
+CHECK for mode suffix in $ARGUMENTS or command invocation:
+
+├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
+├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
+└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
+```
+
+**Mode Output:** `execution_mode = ________________`
+
+---
+
+## 📋 MODE BEHAVIORS
+
+**AUTONOMOUS (:auto):**
+- Execute all steps without approval prompts
+- Only stop for errors or missing required input
+- Best for: Experienced users, scripted workflows, batch operations
+
+**INTERACTIVE (:confirm):**
+- Pause at each major step for user approval
+- Show preview before file creation
+- Ask for confirmation on critical decisions
+- Best for: New users, learning workflows, high-stakes changes
+
+**Default:** INTERACTIVE (creation workflows benefit from confirmation)
 
 ---
 
@@ -168,6 +201,7 @@ EXECUTE AFTER PHASE 1 PASSES:
 | -------------------- | --------------- | ----------- | ---------------------------------------- |
 | PHASE 0: WRITE AGENT | ✅ PASSED        | ______      | write_agent_verified: ______             |
 | PHASE 1: INPUT       | ✅ PASSED        | ______      | project: ______ / platforms: ________    |
+| MODE DETECTION       | ✅ SET           | ______      | execution_mode: ______                   |
 | PHASE 2: OUTPUT      | ✅ PASSED        | ______      | output_path: ______ / existing: ________ |
 
 ```
@@ -359,3 +393,43 @@ Execute all 5 steps in sequence following the workflow definition.
 /documentation:create_install_guide antigravity-auth
 ```
 → Creates `install_guides/PLUGIN - Antigravity Auth.md`
+
+**Example 4: Auto mode (no prompts)**
+```
+/create:install_guide semantic-search-mcp :auto
+```
+→ Creates install guide without approval prompts, only stops for errors
+
+**Example 5: Confirm mode (step-by-step approval)**
+```
+/create:install_guide chrome-devtools-cli --platforms macos,linux :confirm
+```
+→ Pauses at each step for user confirmation
+
+---
+
+## 6. 🔗 COMMAND CHAIN
+
+This command creates standalone documentation:
+
+```
+/create:install_guide → [Verify guide works]
+```
+
+**Related commands:**
+- Create README: `/create:folder_readme [path]`
+
+---
+
+## 7. 🔜 WHAT NEXT?
+
+After install guide creation completes, suggest relevant next steps:
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Guide created | Test AI-First prompt | Verify installation works |
+| Need README | `/create:folder_readme [path]` | Add project README |
+| Create another guide | `/create:install_guide [project]` | Document related tool |
+| Want to save context | `/memory:save [spec-folder-path]` | Preserve documentation context |
+
+**ALWAYS** end with: "What would you like to do next?"

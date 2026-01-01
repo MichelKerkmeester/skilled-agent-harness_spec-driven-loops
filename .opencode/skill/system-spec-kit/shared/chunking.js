@@ -1,81 +1,57 @@
-/**
- * Semantic Chunking Utilities
- * 
- * Intelligently chunks text to fit within embedding model limits
- * while preserving important content (overview, decisions, outcomes).
- * 
- * @module chunking
- * @version 1.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// SHARED: SEMANTIC CHUNKING
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
-// ───────────────────────────────────────────────────────────────
-// CONFIGURATION
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
 
-const MAX_TEXT_LENGTH = 8000; // Safe for most embedding models
-const RESERVED_OVERVIEW = 500;   // First N chars always included
-const RESERVED_OUTCOME = 300;    // Last N chars always included
-const MIN_SECTION_LENGTH = 20;   // Ignore sections shorter than this
+const MAX_TEXT_LENGTH = 8000;
+const RESERVED_OVERVIEW = 500;
+const RESERVED_OUTCOME = 300;
+const MIN_SECTION_LENGTH = 20;
 
-/**
- * Priority patterns for section categorization
- */
 const PRIORITY_PATTERNS = {
   high: /overview|summary|decision|chose|key outcome|conclusion|result|important|critical|must|required/i,
   medium: /implementation|file|change|technical|approach|solution|method|function|class|component/i,
 };
 
-// ───────────────────────────────────────────────────────────────
-// SEMANTIC CHUNKING
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   2. SEMANTIC CHUNKING
+   ─────────────────────────────────────────────────────────────── */
 
 /**
- * Intelligently chunk text to fit within maxLength while preserving important content
- * 
- * Priority-based chunking strategy:
- * 1. Always include first RESERVED_OVERVIEW chars (usually overview/intro)
- * 2. Always include last RESERVED_OUTCOME chars (usually outcomes/conclusions)
- * 3. Always include sections containing "decision" or "chose"
- * 4. Fill remaining space with high → medium → low priority sections
- * 
- * @param {string} text - Full text to chunk
- * @param {number} maxLength - Maximum output length (default: MAX_TEXT_LENGTH)
- * @returns {string} Chunked text within maxLength
+ * Intelligently chunk text to fit within max_length while preserving important content.
+ * Priority: 1) First RESERVED_OVERVIEW chars, 2) Last RESERVED_OUTCOME chars,
+ * 3) Decision sections, 4) Fill remaining with high → medium → low priority.
  */
-function semanticChunk(text, maxLength = MAX_TEXT_LENGTH) {
-  // If text fits, return as-is
-  if (text.length <= maxLength) {
+function semantic_chunk(text, max_length = MAX_TEXT_LENGTH) {
+  if (text.length <= max_length) {
     return text;
   }
 
-  const originalLength = text.length;
+  const original_length = text.length;
   
-  // Step 1: Extract guaranteed sections
   const overview = text.substring(0, RESERVED_OVERVIEW);
   const outcome = text.substring(text.length - RESERVED_OUTCOME);
   
-  // Calculate remaining budget after reserved sections
-  let remainingBudget = maxLength - overview.length - outcome.length - 10;
+  let remaining_budget = max_length - overview.length - outcome.length - 10;
   
-  // Step 2: Split middle content into sections by headers/paragraphs
-  const middleText = text.substring(RESERVED_OVERVIEW, text.length - RESERVED_OUTCOME);
-  const sections = middleText.split(/\n#{1,3}\s|\n\n/).filter(s => s.trim().length >= MIN_SECTION_LENGTH);
+  const middle_text = text.substring(RESERVED_OVERVIEW, text.length - RESERVED_OUTCOME);
+  const sections = middle_text.split(/\n#{1,3}\s|\n\n/).filter(s => s.trim().length >= MIN_SECTION_LENGTH);
   
-  // Step 3: Categorize sections by priority
   const priorities = {
-    critical: [],  // Decision sections - always include
-    high: [],      // Overview, summary, conclusions
-    medium: [],    // Implementation details
-    low: []        // Everything else
+    critical: [],
+    high: [],
+    medium: [],
+    low: [],
   };
   
   sections.forEach(section => {
     const trimmed = section.trim();
     if (trimmed.length < MIN_SECTION_LENGTH) return;
     
-    // Critical: sections with decision keywords - always include
     if (/decision|chose|decided|selected|picked|concluded/i.test(trimmed)) {
       priorities.critical.push(trimmed);
     } else if (PRIORITY_PATTERNS.high.test(trimmed)) {
@@ -87,53 +63,47 @@ function semanticChunk(text, maxLength = MAX_TEXT_LENGTH) {
     }
   });
   
-  // Step 4: Build middle content within budget
-  const includedSections = [];
+  const included_sections = [];
   
-  // Critical sections (decisions) - always include, subtract from budget
   for (const section of priorities.critical) {
-    includedSections.push(section);
-    remainingBudget -= section.length + 2;
+    included_sections.push(section);
+    remaining_budget -= section.length + 2;
   }
   
-  // Fill remaining budget with priority order
   for (const priority of ['high', 'medium', 'low']) {
     for (const section of priorities[priority]) {
-      if (remainingBudget <= 0) break;
-      if (section.length + 2 <= remainingBudget) {
-        includedSections.push(section);
-        remainingBudget -= section.length + 2;
+      if (remaining_budget <= 0) break;
+      if (section.length + 2 <= remaining_budget) {
+        included_sections.push(section);
+        remaining_budget -= section.length + 2;
       }
     }
-    if (remainingBudget <= 0) break;
+    if (remaining_budget <= 0) break;
   }
   
-  // Step 5: Assemble final text
   let result = overview;
-  if (includedSections.length > 0) {
-    result += '\n\n' + includedSections.join('\n\n');
+  if (included_sections.length > 0) {
+    result += '\n\n' + included_sections.join('\n\n');
   }
   result += '\n\n' + outcome;
   
-  // Final safety truncation (should rarely trigger)
-  if (result.length > maxLength) {
-    result = result.substring(0, maxLength);
+  if (result.length > max_length) {
+    result = result.substring(0, max_length);
   }
   
-  // Log chunking stats
-  console.warn(`[chunking] Semantic chunking: ${originalLength} → ${result.length} chars (${Math.round((1 - result.length/originalLength) * 100)}% reduced)`);
+  console.warn(`[chunking] Semantic chunking: ${original_length} → ${result.length} chars (${Math.round((1 - result.length/original_length) * 100)}% reduced)`);
   
   return result.trim();
 }
 
-// ───────────────────────────────────────────────────────────────
-// MODULE EXPORTS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   3. MODULE EXPORTS
+   ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  semanticChunk,
+  semantic_chunk,
   MAX_TEXT_LENGTH,
   RESERVED_OVERVIEW,
   RESERVED_OUTCOME,
-  MIN_SECTION_LENGTH
+  MIN_SECTION_LENGTH,
 };

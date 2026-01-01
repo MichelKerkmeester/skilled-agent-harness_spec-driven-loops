@@ -294,6 +294,25 @@ PLACEHOLDER_PATTERNS = [
 # Include both base emoji and with variation selector (️)
 SEMANTIC_EMOJIS = ['✅', '❌', '⚠️', '⚠', '✔', '✗', '⚡', '✔️', '❎']
 
+# Standard section emojis for template-based documents
+# Used to validate H2 headers have proper emoji formatting
+SECTION_EMOJIS = {
+    # README sections
+    '📖', '🚀', '📁', '⚡', '⚙️', '💡', '🛠️', '❓', '📚',
+    # SKILL sections  
+    '🎯', '🧭', '🔍', '📋', '🏆', '🔌', '🔗',
+    # Agent sections
+    '🔄', '🚫',
+    # Install guide sections
+    '🤖', '✅', '📥',
+    # Other common
+    '📝', '💾', '⚠️', '🔀', '🏗️', '✍️', '🎨', '📄', '🗺️', '📊', '🔧',
+}
+
+# Document types that require H2 emojis (blocking error if missing)
+# These are template-based document types where emoji omission is a critical error
+EMOJI_REQUIRED_TYPES = {'skill', 'readme', 'asset', 'reference'}
+
 
 def detect_placeholders(content: str) -> List[Dict[str, Any]]:
     """Detect placeholder markers in content, skipping code blocks."""
@@ -376,11 +395,20 @@ def check_code_block_languages(code_blocks: List[Dict]) -> List[Dict[str, Any]]:
 
 
 def check_h2_formatting(headings: List[Dict], doc_type: str) -> List[Dict[str, Any]]:
-    """Check H2 formatting: number + emoji + ALL CAPS for skills/assets."""
+    """Check H2 formatting: number + emoji + ALL CAPS for template-based types.
+    
+    For EMOJI_REQUIRED_TYPES (skill, readme, asset, reference):
+    - Missing emoji returns 'error' severity (BLOCKING)
+    - Missing number returns 'warning' severity
+    - Wrong case returns 'warning' severity
+    """
     issues = []
     
-    # Only strict for skill and asset types
-    if doc_type not in ['skill', 'asset']:
+    # Determine if this doc type requires emoji enforcement
+    requires_emoji = doc_type in EMOJI_REQUIRED_TYPES
+    
+    # Only run strict checks for template-based types
+    if doc_type not in ['skill', 'asset', 'readme', 'reference']:
         return issues
     
     for h in headings:
@@ -398,13 +426,21 @@ def check_h2_formatting(headings: List[Dict], doc_type: str) -> List[Dict[str, A
                 'severity': 'warning'
             })
         
-        # Check for emoji
+        # Check for emoji - BLOCKING for required types
         if not h['has_emoji']:
+            # Determine severity based on document type
+            severity = 'error' if requires_emoji else 'warning'
+            
+            # Extract what character is at the emoji position for better error message
+            # Pattern expected: "N. [emoji] TITLE"
+            after_number = re.sub(r'^\d+\.\s*', '', text)
+            found_char = after_number[0] if after_number else 'nothing'
+            
             issues.append({
                 'type': 'h2_missing_emoji',
                 'line': h['line'],
-                'text': f"H2 '{text}' missing emoji",
-                'severity': 'warning'
+                'text': f"H2 '{text}' missing emoji (found: '{found_char}' where emoji expected)",
+                'severity': severity
             })
         
         # Check for ALL CAPS (extract text after number and emoji)
@@ -640,6 +676,7 @@ REFERENCE_CHECKLIST = [
     ('has_h1_title', 'Has H1 title', lambda fm, h, c: any(heading['level'] == 1 for heading in h)),
     ('has_intro', 'Has introduction paragraph', lambda fm, h, c: check_intro_paragraph(c, h)),
     ('h2_numbered', 'H2s have number prefix', lambda fm, h, c: all(heading['has_number'] for heading in h if heading['level'] == 2) if any(heading['level'] == 2 for heading in h) else True),
+    ('h2_emoji', 'H2s have emoji', lambda fm, h, c: all(heading['has_emoji'] for heading in h if heading['level'] == 2) if any(heading['level'] == 2 for heading in h) else True),
     ('no_placeholders', 'No placeholder markers', lambda fm, h, c: len(detect_placeholders(c)) == 0),
     ('has_depth', 'Has substantial content (>200 words)', lambda fm, h, c: len(re.findall(r'\b\w+\b', c)) > 200),
 ]
@@ -1100,9 +1137,10 @@ def extract_structure(filepath: str) -> Dict[str, Any]:
     content_issues.extend(detect_placeholders(content))
     content_issues.extend(check_code_block_languages(code_blocks))
     
-    # Run style checks (for skill and asset types)
+    # Run style checks for template-based document types
+    # EMOJI_REQUIRED_TYPES: skill, readme, asset, reference
     style_issues = []
-    if doc_type in ['skill', 'asset']:
+    if doc_type in EMOJI_REQUIRED_TYPES:
         style_issues.extend(check_h2_formatting(headings, doc_type))
         style_issues.extend(check_section_dividers(content, headings))
     if doc_type == 'skill':

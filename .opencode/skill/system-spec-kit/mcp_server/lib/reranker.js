@@ -1,61 +1,58 @@
-/**
- * Reranker Module - Optional cross-encoder reranking
- * @module lib/reranker
- * @version 11.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// reranker.js: Cross-encoder reranking for search results
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const { execSync } = require('child_process');
 const path = require('path');
 
+/* ───────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
+
 const RERANKER_SCRIPT = path.join(__dirname, '../scripts/rerank.py');
 const RERANKER_ENABLED = process.env.ENABLE_RERANKER === 'true';
-const RERANKER_TIMEOUT = 5000; // 5 seconds
+const RERANKER_TIMEOUT = 5000;
 
-// Cache availability check
-let _pythonAvailable = null;
+let _python_available = null;
 
-/**
- * Check if Python and required packages are available
- * @returns {boolean}
- */
-function isPythonAvailable() {
-  if (_pythonAvailable !== null) {
-    return _pythonAvailable;
-  }
+/* ───────────────────────────────────────────────────────────────
+   2. AVAILABILITY CHECKS
+   ─────────────────────────────────────────────────────────────── */
+
+function is_python_available() {
+  if (_python_available !== null) return _python_available;
 
   try {
     execSync('python3 -c "from sentence_transformers import CrossEncoder"', {
       encoding: 'utf-8',
       timeout: 10000,
-      stdio: ['pipe', 'pipe', 'pipe']
+      stdio: ['pipe', 'pipe', 'pipe'],
     });
-    _pythonAvailable = true;
+    _python_available = true;
   } catch {
-    _pythonAvailable = false;
+    _python_available = false;
     console.warn('[reranker] Python cross-encoder not available. Reranking disabled.');
   }
 
-  return _pythonAvailable;
+  return _python_available;
 }
 
-/**
- * Rerank results using cross-encoder (optional enhancement)
- * @param {string} query - Search query
- * @param {Array} results - Results to rerank
- * @param {number} [topK=5] - Number of results to keep
- * @returns {Array} Reranked results
- */
-function rerankResults(query, results, topK = 5) {
-  // Skip if disabled or single result
+function is_reranker_available() {
+  return RERANKER_ENABLED && is_python_available();
+}
+
+/* ───────────────────────────────────────────────────────────────
+   3. CORE FUNCTIONS
+   ─────────────────────────────────────────────────────────────── */
+
+function rerank_results(query, results, top_k = 5) {
   if (!RERANKER_ENABLED || results.length <= 1) {
-    return results.slice(0, topK);
+    return results.slice(0, top_k);
   }
 
-  // Check Python availability
-  if (!isPythonAvailable()) {
-    return results.slice(0, topK);
+  if (!is_python_available()) {
+    return results.slice(0, top_k);
   }
 
   try {
@@ -63,45 +60,35 @@ function rerankResults(query, results, topK = 5) {
       query,
       documents: results.map(r => ({
         id: r.id,
-        text: `${r.title || ''} ${r.content || ''}`
-      }))
+        text: `${r.title || ''} ${r.content || ''}`,
+      })),
     });
 
     const output = execSync(
       `python3 "${RERANKER_SCRIPT}"`,
-      {
-        input,
-        encoding: 'utf-8',
-        maxBuffer: 10 * 1024 * 1024,
-        timeout: RERANKER_TIMEOUT
-      }
+      { input, encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024, timeout: RERANKER_TIMEOUT }
     );
 
     const scores = JSON.parse(output);
 
-    // Add rerank scores and sort
     return results
-      .map((r, i) => ({ ...r, rerankScore: scores[i] }))
-      .sort((a, b) => b.rerankScore - a.rerankScore)
-      .slice(0, topK);
+      .map((r, i) => ({ ...r, rerank_score: scores[i] }))
+      .sort((a, b) => b.rerank_score - a.rerank_score)
+      .slice(0, top_k);
 
   } catch (error) {
     console.warn(`[reranker] Failed, using original ranking: ${error.message}`);
-    return results.slice(0, topK);
+    return results.slice(0, top_k);
   }
 }
 
-/**
- * Check if reranking is enabled and available
- * @returns {boolean}
- */
-function isRerankerAvailable() {
-  return RERANKER_ENABLED && isPythonAvailable();
-}
+/* ───────────────────────────────────────────────────────────────
+   4. EXPORTS
+   ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  rerankResults,
-  isRerankerAvailable,
-  isPythonAvailable,
-  RERANKER_ENABLED
+  rerank_results,
+  is_reranker_available,
+  is_python_available,
+  RERANKER_ENABLED,
 };

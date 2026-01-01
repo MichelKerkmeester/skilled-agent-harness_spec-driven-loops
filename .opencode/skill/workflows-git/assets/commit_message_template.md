@@ -9,11 +9,13 @@ Templates for professional commit messages following Conventional Commits.
 
 ---
 
-## Purpose
+## 1. 📖 OVERVIEW
+
+### Purpose
 
 This asset provides structured templates and examples for commit messages. Use it to ensure consistent, meaningful git history that follows the Conventional Commits specification.
 
-## Usage
+### Usage
 
 1. Choose the correct type (`feat`, `fix`, `refactor`, etc.) from the reference table
 2. Add an optional scope in parentheses
@@ -22,7 +24,7 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
-## Basic Format
+## 2. 📋 BASIC FORMAT
 
 ```
 <type>(<scope>): <description>
@@ -34,7 +36,7 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
-## Type Reference
+## 3. 🏷️ TYPE REFERENCE
 
 | Type | When to Use | Breaking? |
 |------|-------------|-----------|
@@ -50,7 +52,7 @@ This asset provides structured templates and examples for commit messages. Use i
 
 ---
 
-## Scope Guidelines
+## 4. 📂 SCOPE GUIDELINES
 
 **What is scope?**
 The component or area of the codebase affected by the change.
@@ -68,7 +70,7 @@ The component or area of the codebase affected by the change.
 
 ---
 
-## Description Rules
+## 5. ✏️ DESCRIPTION RULES
 
 ✅ **DO**:
 - Use imperative mood ("add" not "added" or "adds")
@@ -86,7 +88,7 @@ The component or area of the codebase affected by the change.
 
 ---
 
-## Body Guidelines
+## 6. 📝 BODY GUIDELINES
 
 **When to include a body**:
 - Change is complex or non-obvious
@@ -102,7 +104,7 @@ The component or area of the codebase affected by the change.
 
 ---
 
-## Footer Guidelines
+## 7. 📎 FOOTER GUIDELINES
 
 ### Breaking Changes
 
@@ -135,7 +137,7 @@ Related to #789
 
 ---
 
-## Complete Examples
+## 8. 💡 COMPLETE EXAMPLES
 
 ### Example 1: Feature with Body
 
@@ -243,7 +245,7 @@ Related to #125
 
 ---
 
-## Bad Examples (Learn What to Avoid)
+## 9. ❌ BAD EXAMPLES
 
 ### ❌ Example 1: Vague
 
@@ -362,7 +364,7 @@ Adds documentation for new login endpoints.
 
 ---
 
-## Templates for Common Scenarios
+## 10. 📋 TEMPLATES FOR COMMON SCENARIOS
 
 ### Feature Addition
 
@@ -414,7 +416,7 @@ chore(deps): <update/add X to version Y>
 
 ---
 
-## Commit Message Checklist
+## 11. ✅ COMMIT MESSAGE CHECKLIST
 
 Before committing, verify:
 
@@ -433,7 +435,7 @@ Before committing, verify:
 
 ---
 
-## Quick Reference
+## 12. 📖 QUICK REFERENCE
 
 ### Imperative Mood Conversion
 
@@ -466,7 +468,7 @@ chore: update <dependency>
 
 ---
 
-## 🔗 Related Resources
+## 13. 🔗 RELATED RESOURCES
 
 - [Conventional Commits Specification](https://www.conventionalcommits.org/) - Official specification for commit message formatting
 - [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) - Best practices guide by Chris Beams

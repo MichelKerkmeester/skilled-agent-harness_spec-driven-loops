@@ -1,6 +1,6 @@
 ---
-description: Create a complete OpenCode skill with 9-step workflow including resource planning - supports interactive execution
-argument-hint: "skill-name [--path output-dir]"
+description: Create a complete OpenCode skill with 9-step workflow including resource planning - supports :auto and :confirm modes
+argument-hint: "skill-name [--path output-dir] [:auto|:confirm]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task, TodoWrite]
 ---
 
@@ -53,6 +53,8 @@ EXECUTE THIS CHECK FIRST:
 │       │
 │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
 
+**STOP HERE** - Verify you are operating as @write agent before continuing. If not, instruct user to restart with @write prefix.
+
 ⛔ HARD STOP: DO NOT proceed to PHASE 1 until STATUS = ✅ PASSED
 ```
 
@@ -101,12 +103,45 @@ EXECUTE THIS CHECK FIRST:
     ├─ Store output path as: skill_path (default: .opencode/skill/)
     └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
 
+**STOP HERE** - Wait for user to provide a valid skill name before continuing.
+
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer skill names from context, screenshots, or conversation history
 ⛔ NEVER proceed without explicit skill name from user
 ```
 
 **Phase 1 Output:** `skill_name = ________________` | `skill_path = ________________`
+
+---
+
+## 🔒 MODE DETECTION
+
+```
+CHECK for mode suffix in $ARGUMENTS or command invocation:
+
+├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
+├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
+└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
+```
+
+**Mode Output:** `execution_mode = ________________`
+
+---
+
+## 📋 MODE BEHAVIORS
+
+**AUTONOMOUS (:auto):**
+- Execute all steps without approval prompts
+- Only stop for errors or missing required input
+- Best for: Experienced users, scripted workflows, batch operations
+
+**INTERACTIVE (:confirm):**
+- Pause at each major step for user approval
+- Show preview before file creation
+- Ask for confirmation on critical decisions
+- Best for: New users, learning workflows, high-stakes changes
+
+**Default:** INTERACTIVE (creation workflows benefit from confirmation)
 
 ---
 
@@ -150,6 +185,8 @@ EXECUTE AFTER PHASE 1 PASSES:
        └─ spec_path = null
 
 5. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select spec folder option (A/B/C/D) before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly selects A, B, C, or D
 ⛔ NEVER auto-create spec folders without user confirmation
@@ -213,6 +250,7 @@ CHECK spec_choice value from Phase 2:
 | -------------------- | ----------------- | ----------- | -------------------------------------- |
 | PHASE 0: WRITE AGENT | ✅ PASSED          | ______      | write_agent_verified: ______           |
 | PHASE 1: INPUT       | ✅ PASSED          | ______      | skill_name: ______ / skill_path: _____ |
+| MODE DETECTION       | ✅ SET             | ______      | execution_mode: ______                 |
 | PHASE 2: SPEC FOLDER | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ______   |
 | PHASE 3: MEMORY      | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                  |
 
@@ -442,7 +480,49 @@ Execute all 9 steps in sequence following the workflow definition.
 ```
 → Prompts: "What skill would you like to create?"
 
+**Example 4: Auto mode (no prompts)**
+```
+/create:skill pdf-editor :auto
+```
+→ Creates skill without approval prompts, only stops for errors
+
+**Example 5: Confirm mode (step-by-step approval)**
+```
+/create:skill pdf-editor :confirm
+```
+→ Pauses at each step for user confirmation
+
 **Validation** (run after creation):
 ```bash
 python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencode/skill/pdf-editor --check
 ```
+
+---
+
+## 6. 🔗 COMMAND CHAIN
+
+This command creates skills that may need additional resources:
+
+```
+/create:skill → [/create:skill_reference] and/or [/create:skill_asset]
+```
+
+**Explicit next steps:**
+→ `/create:skill_reference [skill-name] [type]` (add technical reference docs)
+→ `/create:skill_asset [skill-name] [type]` (add templates, lookups, examples)
+
+---
+
+## 7. 🔜 WHAT NEXT?
+
+After skill creation completes, suggest relevant next steps:
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Skill needs reference docs | `/create:skill_reference [skill-name] workflow` | Add technical workflows |
+| Skill needs templates | `/create:skill_asset [skill-name] template` | Add copy-paste templates |
+| Skill needs examples | `/create:skill_asset [skill-name] example` | Add working code examples |
+| Skill is complete | Test with `/skill:[skill-name]` | Verify skill works |
+| Want to save context | `/memory:save [spec-folder-path]` | Preserve skill creation context |
+
+**ALWAYS** end with: "What would you like to do next?"

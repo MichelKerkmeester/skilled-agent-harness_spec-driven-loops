@@ -11,9 +11,23 @@ Get started with Figma MCP in 5 minutes covering prerequisites and first command
 
 ## 1. 📖 OVERVIEW
 
+### Two Options Available
+
+| Option | Name | Auth | Install |
+|--------|------|------|---------|
+| **A (Recommended)** | Official Figma MCP | OAuth (browser) | None - HTTP endpoint |
+| **B** | Framelink (3rd-party) | API Key (`figd_*`) | npm package |
+
 ### Prerequisites
 
-#### Required
+#### Option A: Official Figma MCP (Recommended)
+
+| Component | Purpose | Verification |
+|-----------|---------|--------------|
+| Code Mode MCP | Tool orchestration | `search_tools()` returns results |
+| Figma account | OAuth login | Browser login when prompted |
+
+#### Option B: Framelink (3rd-party)
 
 | Component | Purpose | Verification |
 |-----------|---------|--------------|
@@ -26,7 +40,7 @@ Get started with Figma MCP in 5 minutes covering prerequisites and first command
 ```
 project/
 ├── .utcp_config.json    # Figma MCP configuration
-├── .env                  # FIGMA_PERSONAL_ACCESS_TOKEN
+├── .env                  # FIGMA_API_KEY (Option B only)
 └── opencode.json        # Code Mode configuration
 ```
 

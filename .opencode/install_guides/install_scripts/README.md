@@ -1,0 +1,449 @@
+# MCP Install Scripts
+
+> Automated installation scripts for Model Context Protocol (MCP) servers used by OpenCode, providing idempotent setup with validation checkpoints.
+
+---
+
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. ⚙️ CONFIGURATION](#5--configuration)
+- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
+- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
+- [8. ❓ FAQ](#8--faq)
+- [9. 📚 RELATED DOCUMENTS](#9--related-documents)
+
+---
+
+## 1. 📖 OVERVIEW
+
+### What are MCP Install Scripts?
+
+MCP Install Scripts automate the installation and configuration of Model Context Protocol servers for OpenCode. Each script handles prerequisites, installation, configuration, and verification in a single command, ensuring consistent setup across environments.
+
+### Key Statistics
+
+| Category | Count | Details |
+|----------|-------|---------|
+| Install Scripts | 6 | One per MCP server |
+| Shared Utilities | 33 | Functions in `_utils.sh` |
+| Platforms | 3 | macOS, Linux, Windows (WSL) |
+| Install Time | 2-10 min | Per MCP, depending on complexity |
+
+### Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Idempotent** | Safe to run multiple times - detects existing installations |
+| **Validated** | Each phase has verification checkpoints |
+| **Configurable** | Supports `--verbose`, `--skip-verify`, `--dry-run` flags |
+| **Backup-Safe** | Creates timestamped backups before modifying configs |
+| **Cross-Platform** | Works on macOS, Linux, and Windows (WSL) |
+
+### Requirements
+
+| Requirement | Minimum | Recommended |
+|-------------|---------|-------------|
+| Node.js | 18+ | 20+ |
+| npm | 9+ | 10+ |
+| Bash | 4.0+ | 5.0+ |
+
+---
+
+## 2. 🚀 QUICK START
+
+### 30-Second Setup
+
+```bash
+# 1. Navigate to project root
+cd /path/to/your/project
+
+# 2. Make scripts executable
+chmod +x .opencode/install_guides/install_scripts/*.sh
+
+# 3. Install core MCPs (recommended order)
+.opencode/install_guides/install_scripts/install-code-mode.sh
+.opencode/install_guides/install_scripts/install-spec-kit-memory.sh
+.opencode/install_guides/install_scripts/install-sequential-thinking.sh
+```
+
+### Verify Installation
+
+```bash
+# Check all MCPs are configured
+cat opencode.json | python3 -m json.tool | grep -A2 '"mcp"'
+
+# Expected: Shows configured MCP entries
+```
+
+### First Use
+
+```bash
+# Start OpenCode - MCPs load automatically
+opencode
+
+# Test Sequential Thinking
+# Ask: "Use sequential thinking to analyze this problem..."
+```
+
+---
+
+## 3. 📁 STRUCTURE
+
+```
+install_scripts/
+├── _utils.sh                      # Shared utility functions (33 functions)
+├── install-sequential-thinking.sh # Sequential Thinking MCP
+├── install-spec-kit-memory.sh     # Spec Kit Memory MCP
+├── install-code-mode.sh           # Code Mode MCP
+├── install-chrome-devtools.sh     # Chrome DevTools MCP (bdg CLI)
+├── install-figma.sh               # Figma MCP (Official or Framelink)
+├── install-narsil.sh              # Narsil MCP (76 code intelligence tools)
+├── install-all.sh                 # Master installer with --skip/--only flags
+├── logs/                          # Installation logs
+├── test/                          # Docker test environment
+│   ├── Dockerfile                 # Clean environment for testing
+│   └── run-tests.sh               # Test runner
+└── README.md                      # This file
+```
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `_utils.sh` | 33 shared functions for logging, JSON, prerequisites |
+| `install-all.sh` | Master installer with `--skip` and `--only` flags |
+| `test/Dockerfile` | Docker image for clean environment testing |
+
+---
+
+## 4. ⚡ FEATURES
+
+### Available Scripts
+
+| Script | MCP | Description | Prerequisites |
+|--------|-----|-------------|---------------|
+| `install-sequential-thinking.sh` | Sequential Thinking | Structured problem-solving via flexible thinking | Node.js 18+ |
+| `install-spec-kit-memory.sh` | Spec Kit Memory | Semantic vector search for conversation context | Node.js 18+, npm |
+| `install-code-mode.sh` | Code Mode | MCP orchestration via TypeScript execution | Node.js 18+ |
+| `install-chrome-devtools.sh` | Chrome DevTools | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
+| `install-figma.sh` | Figma | Design file access (Official or Framelink) | Node.js 18+ |
+| `install-narsil.sh` | Narsil | Deep code intelligence (76 tools) | Code Mode |
+
+### Shared Utilities (_utils.sh)
+
+| Category | Functions | Purpose |
+|----------|-----------|---------|
+| **Logging** | `log_info`, `log_success`, `log_error`, `log_warn`, `log_step` | Colored terminal output |
+| **Prerequisites** | `check_node_version`, `check_npx`, `check_npm`, `check_command` | Dependency verification |
+| **JSON** | `json_validate`, `json_has_key`, `json_set_value`, `json_get_value` | Config file manipulation |
+| **Files** | `backup_file`, `find_project_root`, `ensure_dir` | File operations |
+| **User Input** | `confirm`, `prompt_value`, `prompt_secret` | Interactive prompts |
+| **Platform** | `detect_platform`, `detect_arch`, `is_wsl` | Environment detection |
+| **Environment** | `env_add_var`, `env_has_var`, `env_get_var` | .env file management |
+
+### Master Installer (install-all.sh)
+
+```bash
+# Install all MCPs
+./install-all.sh
+
+# Skip specific MCPs
+./install-all.sh --skip narsil --skip figma
+
+# Install only specific MCPs
+./install-all.sh --only code-mode --only spec-kit-memory
+
+# Non-interactive mode (for CI/CD)
+./install-all.sh --non-interactive
+```
+
+---
+
+## 5. ⚙️ CONFIGURATION
+
+### Configuration Files
+
+**Location**: Project root
+
+| File | Purpose | Modified By |
+|------|---------|-------------|
+| `opencode.json` | MCP server definitions | All scripts |
+| `.utcp_config.json` | Code Mode provider configs | Code Mode, Narsil, Figma (Framelink) |
+| `.env` | API keys and secrets | Code Mode, Narsil |
+| `.env.example` | API key templates | Code Mode |
+
+### Common Options
+
+All scripts support these standard options:
+
+| Option | Description |
+|--------|-------------|
+| `-h, --help` | Show help message |
+| `-v, --verbose` | Enable verbose output |
+| `--skip-verify` | Skip verification step |
+| `--dry-run` | Preview changes without making them |
+
+### Script-Specific Options
+
+**install-figma.sh**:
+| Option | Description |
+|--------|-------------|
+| `-a, --official` | Install Official Figma MCP (HTTP, OAuth) |
+| `-b, --framelink` | Install Framelink third-party (API key) |
+
+**install-narsil.sh**:
+| Option | Description |
+|--------|-------------|
+| `-m, --method NUM` | Use installation method (1=npm, 2=brew, 3=one-click, 4=cargo) |
+| `--skip-wizard` | Skip Narsil config wizard |
+| `--voyage-key KEY` | Set VOYAGE_API_KEY for neural search |
+
+**install-chrome-devtools.sh**:
+| Option | Description |
+|--------|-------------|
+| `--force` | Force reinstallation |
+| `--add-profile` | Add CHROME_PATH to shell profile |
+
+---
+
+## 6. 💡 USAGE EXAMPLES
+
+### Example 1: Install Core MCPs
+
+```bash
+# Install the three core MCPs in recommended order
+./install-code-mode.sh
+./install-spec-kit-memory.sh
+./install-sequential-thinking.sh
+```
+
+**Result**: Core MCPs configured in `opencode.json`, ready for use.
+
+### Example 2: Install Narsil with npm
+
+```bash
+# Install Narsil using npm (method 1), skip interactive wizard
+./install-narsil.sh -m 1 --skip-wizard
+
+# Or with Voyage API key for neural search
+./install-narsil.sh -m 1 --voyage-key "your-voyage-api-key"
+```
+
+**Result**: Narsil installed globally, configured in `.utcp_config.json`.
+
+### Example 3: Install Figma (Official)
+
+```bash
+# Install Official Figma MCP (HTTP, OAuth - no API key needed)
+./install-figma.sh -a
+```
+
+**Result**: HTTP server config added to `opencode.json`, OAuth login on first use.
+
+### Example 4: CI/CD Installation
+
+```bash
+# Non-interactive installation of all MCPs
+./install-all.sh --non-interactive
+
+# Or specific MCPs only
+./install-all.sh --only code-mode --only sequential-thinking --non-interactive
+```
+
+**Result**: MCPs installed without prompts, suitable for automation.
+
+### Common Patterns
+
+| Pattern | Command | When to Use |
+|---------|---------|-------------|
+| Core setup | `./install-all.sh --only code-mode --only spec-kit-memory --only sequential-thinking` | New project setup |
+| Full setup | `./install-all.sh` | Complete MCP installation |
+| Add Narsil | `./install-narsil.sh -m 1` | After Code Mode is installed |
+| Reinstall | `./install-{name}.sh --force` | Fix broken installation |
+| Debug | `./install-{name}.sh -v` | Troubleshoot issues |
+
+---
+
+## 7. 🛠️ TROUBLESHOOTING
+
+### Common Issues
+
+#### Node.js not found
+
+**Symptom**: `command not found: node`
+
+**Cause**: Node.js not installed or not in PATH
+
+**Solution**:
+```bash
+# Install Node.js 18+ from nodejs.org
+# Or via nvm:
+nvm install 18
+nvm use 18
+```
+
+#### Permission denied
+
+**Symptom**: `Permission denied` when running script
+
+**Cause**: Script not executable
+
+**Solution**:
+```bash
+chmod +x .opencode/install_guides/install_scripts/*.sh
+```
+
+#### opencode.json not found
+
+**Symptom**: `Error: opencode.json not found`
+
+**Cause**: Running from wrong directory
+
+**Solution**:
+```bash
+# Run from project root containing opencode.json
+cd /path/to/your/project
+./install-{name}.sh
+```
+
+#### JSON validation failed
+
+**Symptom**: `Error: JSON validation failed`
+
+**Cause**: Syntax error in config file
+
+**Solution**:
+```bash
+# Check JSON syntax
+python3 -m json.tool < opencode.json
+
+# Restore from backup if needed
+cp opencode.json.bak.YYYYMMDD_HHMMSS opencode.json
+```
+
+### Quick Fixes
+
+| Problem | Quick Fix |
+|---------|-----------|
+| Node.js not found | Install from [nodejs.org](https://nodejs.org/) |
+| npx not found | `npm install -g npx` |
+| Chrome not found | Set `CHROME_PATH` environment variable |
+| Code Mode not configured | Run `install-code-mode.sh` first |
+| MCP not appearing | Restart OpenCode/Claude Code |
+
+### Diagnostic Commands
+
+```bash
+# Check Node.js version
+node --version
+
+# Check npm version
+npm --version
+
+# Validate opencode.json
+python3 -m json.tool < opencode.json
+
+# Check MCP package accessibility
+npx -y @modelcontextprotocol/server-sequential-thinking --help
+
+# Check bdg installation
+bdg --version
+
+# Check narsil installation
+narsil-mcp --version
+```
+
+---
+
+## 8. ❓ FAQ
+
+### General Questions
+
+**Q: What order should I install MCPs?**
+
+A: Install Code Mode first if you plan to use Narsil or Framelink (Figma). Otherwise, order doesn't matter. Recommended: Code Mode → Spec Kit Memory → Sequential Thinking → others.
+
+---
+
+**Q: Are the scripts safe to run multiple times?**
+
+A: Yes, all scripts are idempotent. They detect existing installations and skip redundant work. Config files are backed up before modification.
+
+---
+
+**Q: Do I need all 6 MCPs?**
+
+A: No. Install based on your needs:
+- **Core**: Code Mode, Spec Kit Memory, Sequential Thinking
+- **Optional**: Narsil (code intelligence), Figma (design), Chrome DevTools (debugging)
+
+---
+
+### Technical Questions
+
+**Q: Where are backups stored?**
+
+A: In the same directory as the original file, with timestamp suffix:
+```
+opencode.json.bak.20260101_120000
+.utcp_config.json.bak.20260101_120000
+```
+
+---
+
+**Q: How do I add a new MCP script?**
+
+A: Follow the template pattern:
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/_utils.sh"
+
+# Check prerequisites → Install → Configure → Verify
+```
+
+See the Contributing section in the source for the full template.
+
+---
+
+**Q: Can I run these in Docker/CI?**
+
+A: Yes, use `--non-interactive` flag or the test Docker environment:
+```bash
+cd test/
+docker build -t mcp-install-test .
+docker run -it mcp-install-test
+```
+
+---
+
+## 9. 📚 RELATED DOCUMENTS
+
+### Internal Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [MCP - Code Mode.md](../MCP%20-%20Code%20Mode.md) | Code Mode installation guide |
+| [MCP - Narsil.md](../MCP%20-%20Narsil.md) | Narsil installation guide |
+| [MCP - Figma.md](../MCP%20-%20Figma.md) | Figma installation guide |
+| [MCP - Sequential Thinking.md](../MCP%20-%20Sequential%20Thinking.md) | Sequential Thinking guide |
+| [MCP - Spec Kit Memory.md](../MCP%20-%20Spec%20Kit%20Memory.md) | Spec Kit Memory guide |
+| [MCP - Chrome Dev Tools.md](../MCP%20-%20Chrome%20Dev%20Tools.md) | Chrome DevTools guide |
+
+### External Resources
+
+| Resource | Description |
+|----------|-------------|
+| [Model Context Protocol](https://modelcontextprotocol.io/) | Official MCP documentation |
+| [OpenCode](https://github.com/sst/opencode) | OpenCode CLI documentation |
+| [Narsil MCP](https://github.com/postrv/narsil-mcp) | Narsil code intelligence |
+| [Code Mode](https://github.com/universal-tool-calling-protocol/code-mode) | UTCP Code Mode |
+
+---
+
+*Part of the [OpenCode Development Environment](https://github.com/MichelKerkmeester/opencode-dev-environment)*

@@ -127,6 +127,33 @@ User Request
 | **Handover**       | "stopping", "break", "continue later" | quick_reference.md                         | /spec_kit:handover  |
 | **Resume**         | "continue", "pick up", "resume"       | quick_reference.md                         | /spec_kit:resume    |
 
+### Reference Sub-folders
+
+| Sub-folder | Purpose | Files |
+|------------|---------|-------|
+| `memory/` | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md |
+| `templates/` | Template system, level specs | level_specifications.md, template_guide.md, template_style_guide.md |
+| `validation/` | Validation rules, checklists | validation_rules.md, phase_checklists.md, path_scoped_rules.md |
+| `structure/` | Folder organization, routing | folder_structure.md, folder_routing.md, sub_folder_versioning.md |
+| `workflows/` | Usage workflows, examples | quick_reference.md, execution_methods.md, worked_examples.md |
+| `debugging/` | Troubleshooting, debugging | troubleshooting.md, universal_debugging_methodology.md |
+| `config/` | Configuration | environment_variables.md |
+
+### Keyword-Based Routing
+
+| Keywords | Route To |
+|----------|----------|
+| "memory", "save context", "MCP", "trigger" | `references/memory/` |
+| "embeddings", "vector", "semantic", "decay" | `references/memory/` |
+| "anchor", "snapshot" | `references/memory/` |
+| "template", "level 1/2/3", "spec.md format" | `references/templates/` |
+| "validate", "rules", "checklist", "P0/P1/P2" | `references/validation/` |
+| "folder", "naming", "structure", "versioning" | `references/structure/` |
+| "workflow", "example", "commands", "quick" | `references/workflows/` |
+| "debug", "error", "stuck", "troubleshoot" | `references/debugging/` |
+| "env", "environment", "configuration" | `references/config/` |
+| "scripts", "generate-context", "check-completion" | `scripts/` |
+
 ### Resource Inventory
 
 **Templates by Level (`templates/`):**
@@ -167,25 +194,26 @@ User Request
 
 **References (`references/`):**
 
-| File | Purpose | When to Load |
-|------|---------|--------------|
-| `level_specifications.md` | Complete Level 1-3 requirements | Planning |
-| `template_guide.md` | Template selection and usage | Planning, Implementation |
-| `template_style_guide.md` | Template formatting conventions | Documentation |
-| `validation_rules.md` | All validation rules and fixes | Implementation, Completion |
-| `quick_reference.md` | Commands and checklists | Any phase |
-| `troubleshooting.md` | Common issues and solutions | Debugging |
-| `save_workflow.md` | Memory save workflow docs | Context preservation |
-| `memory_system.md` | MCP tool behavior and config | Memory operations |
-| `folder_structure.md` | Folder naming conventions | Planning |
-| `folder_routing.md` | Folder routing logic | Planning |
-| `sub_folder_versioning.md` | Sub-folder workflow | Reusing spec folders |
-| `phase_checklists.md` | Per-phase validation | Completion |
-| `worked_examples.md` | Real-world examples | Learning |
-| `path_scoped_rules.md` | Path-scoped validation | Advanced |
-| `trigger_config.md` | Trigger phrase configuration | Setup |
-| `execution_methods.md` | Script execution patterns | Operations |
-| `environment_variables.md` | Env var configuration | Setup |
+| Sub-folder | File | Purpose | When to Load |
+|------------|------|---------|--------------|
+| `memory/` | `memory_system.md` | MCP tool behavior and config | Memory operations |
+| `memory/` | `save_workflow.md` | Memory save workflow docs | Context preservation |
+| `memory/` | `trigger_config.md` | Trigger phrase configuration | Setup |
+| `templates/` | `level_specifications.md` | Complete Level 1-3 requirements | Planning |
+| `templates/` | `template_guide.md` | Template selection and usage | Planning, Implementation |
+| `templates/` | `template_style_guide.md` | Template formatting conventions | Documentation |
+| `validation/` | `validation_rules.md` | All validation rules and fixes | Implementation, Completion |
+| `validation/` | `phase_checklists.md` | Per-phase validation | Completion |
+| `validation/` | `path_scoped_rules.md` | Path-scoped validation | Advanced |
+| `structure/` | `folder_structure.md` | Folder naming conventions | Planning |
+| `structure/` | `folder_routing.md` | Folder routing logic | Planning |
+| `structure/` | `sub_folder_versioning.md` | Sub-folder workflow | Reusing spec folders |
+| `workflows/` | `quick_reference.md` | Commands and checklists | Any phase |
+| `workflows/` | `execution_methods.md` | Script execution patterns | Operations |
+| `workflows/` | `worked_examples.md` | Real-world examples | Learning |
+| `debugging/` | `troubleshooting.md` | Common issues and solutions | Debugging |
+| `debugging/` | `universal_debugging_methodology.md` | Stack-agnostic 4-phase debugging | Debugging |
+| `config/` | `environment_variables.md` | Env var configuration | Setup |
 
 **Assets (`assets/`):**
 
@@ -202,7 +230,7 @@ User Request
 | **Direct** | `node generate-context.js specs/007-feature/` | Auto-captures context from OpenCode session |
 | **JSON** | `node generate-context.js /tmp/context-data.json` | Manual context injection via JSON file |
 
-**JSON mode documentation:** See [save_workflow.md](./references/save_workflow.md) for full schema and examples.
+**JSON mode documentation:** See [save_workflow.md](./references/memory/save_workflow.md) for full schema and examples.
 
 ---
 
@@ -338,7 +366,7 @@ specs/007-auth-system/
     └── memory/
 ```
 
-**Full documentation:** See [sub_folder_versioning.md](./references/sub_folder_versioning.md)
+**Full documentation:** See [sub_folder_versioning.md](./references/structure/sub_folder_versioning.md)
 
 ### Context Preservation
 
@@ -424,7 +452,7 @@ For immediate MCP visibility, call one of:
 
 This is typically only needed if you want to search the memory immediately after creation in the same session.
 
-**Full documentation:** See [memory_system.md](./references/memory_system.md) for tool behavior, importance tiers, and configuration.
+**Full documentation:** See [memory_system.md](./references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
 
 ### Two-Stage Question Flow
 
@@ -575,7 +603,7 @@ Before claiming "done":
 3. Exit 1 → ADDRESS warnings or document reason
 4. Exit 0 → Proceed with completion claim
 
-**Full documentation:** See [validation_rules.md](./references/validation_rules.md) for all rules, configuration, and troubleshooting.
+**Full documentation:** See [validation_rules.md](./references/validation/validation_rules.md) for all rules, configuration, and troubleshooting.
 
 ---
 

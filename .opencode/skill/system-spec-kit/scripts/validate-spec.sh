@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-# validate-spec.sh - Spec Folder Validation Orchestrator
-# Version: 2.0.0 | Bash 3.2+ compatible
+# ───────────────────────────────────────────────────────────────
+# SPECKIT: VALIDATE SPEC
+# ───────────────────────────────────────────────────────────────
+# Spec Folder Validation Orchestrator - Bash 3.2+ compatible
+
 set -eo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -308,9 +311,9 @@ run_all_rules() {
 
 print_header() {
     $JSON_MODE && return 0; $QUIET_MODE && return 0
-    echo -e "\n${BLUE}═══════════════════════════════════════════════════════════════${NC}"
+    echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}"
     echo -e "${BLUE}  Spec Folder Validation v$VERSION${NC}"
-    echo -e "${BLUE}═══════════════════════════════════════════════════════════════${NC}\n"
+    echo -e "${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
     echo -e "  ${BOLD}Folder:${NC} $FOLDER_PATH"
     echo -e "  ${BOLD}Level:${NC}  $DETECTED_LEVEL ($LEVEL_METHOD)"
     [[ -n "$CONFIG_FILE_PATH" ]] && echo -e "  ${BOLD}Config:${NC} $CONFIG_FILE_PATH" || true

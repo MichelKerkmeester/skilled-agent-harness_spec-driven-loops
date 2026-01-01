@@ -100,12 +100,13 @@
             "command": "npx",
             "args": [
               "-y",
-              "mcp-figma"
+              "figma-developer-mcp",
+              "--stdio"
             ],
             "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}",
-              "NODE_ENV": "production"
-            }
+              "FIGMA_API_KEY": "${FIGMA_API_KEY}"
+            },
+            "_note": "Framelink Figma MCP. Requires FIGMA_API_KEY in .env (get from Figma Settings > Personal Access Tokens)"
           }
         }
       }

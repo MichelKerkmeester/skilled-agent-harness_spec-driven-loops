@@ -120,6 +120,22 @@ stale_session_detection:
       description: "Do not resume"
 
 # ─────────────────────────────────────────────────────────────────
+# CONFIDENCE CHECKPOINTS (Quick Reference)
+# ─────────────────────────────────────────────────────────────────
+confidence_checkpoints:
+  enabled: true
+  key_steps: [1, 3, 5]  # Steps requiring confidence evaluation
+  thresholds:
+    high: 80      # ≥80% proceed with evidence
+    medium: 40    # 40-79% proceed with caution
+    low: 0        # <40% ask clarifying question
+  protocol: |
+    At each key step, evaluate confidence:
+    - ≥80%: Proceed with cited evidence
+    - 40-79%: Proceed with caution, document assumptions
+    - <40%: STOP and ask clarifying question (A/B/C format)
+
+# ─────────────────────────────────────────────────────────────────
 # CONFIDENCE FRAMEWORK - Simplified for Resume
 # ─────────────────────────────────────────────────────────────────
 confidence_framework:

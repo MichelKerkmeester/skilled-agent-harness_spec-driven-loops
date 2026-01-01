@@ -52,6 +52,8 @@ EXECUTE THIS CHECK FIRST:
     ├─ Store as: spec_folder_input
     └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
 
+**STOP HERE** - Wait for user to specify or select a spec folder before continuing.
+
 ⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
 ⛔ NEVER infer spec folder from context, .spec-active, or conversation history
 ```
@@ -123,6 +125,8 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 8. SET STATUS: ✅ PASSED (Stateless - no .spec-active file created)
 
+**STOP HERE** - Wait for user to confirm spec folder and select execution mode before continuing.
+
 ⛔ HARD STOP: DO NOT proceed until user explicitly confirms
 ⛔ NEVER assume spec folder is correct without validation
 ⛔ NEVER auto-select execution mode without suffix or explicit choice
@@ -160,6 +164,8 @@ EXECUTE AFTER PHASE 2 PASSES:
     ├─ Execute loading based on choice (use Read tool)
     ├─ Acknowledge loaded context briefly
     └─ SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select memory loading option before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
 ```
@@ -375,3 +381,32 @@ Key rules for implementation phase:
 ```
 /spec_kit:implement "specs/042-user-auth/" staging: https://staging.example.com
 ```
+
+---
+
+## 10. 🔗 COMMAND CHAIN
+
+This command is part of the SpecKit workflow:
+
+```
+[/spec_kit:plan] → /spec_kit:implement → [/spec_kit:handover]
+```
+
+**Prerequisite:**
+← `/spec_kit:plan [feature-description]` (creates spec.md, plan.md)
+
+---
+
+## 11. 🔜 WHAT NEXT?
+
+After implementation completes, suggest relevant next steps:
+
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| Implementation complete | Verify in browser | Test functionality works |
+| Need to save progress | `/memory:save [spec-folder-path]` | Preserve implementation context |
+| Ending session | `/spec_kit:handover [spec-folder-path]` | Create continuation document |
+| Found bugs during testing | `/spec_kit:debug [spec-folder-path]` | Delegate debugging to fresh agent |
+| Ready for next feature | `/spec_kit:complete [feature-description]` | Start new workflow |
+
+**ALWAYS** end with: "What would you like to do next?"

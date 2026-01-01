@@ -1,131 +1,112 @@
-/**
- * Configuration Loader Module
- * @module lib/config-loader
- * @version 11.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// CONFIG-LOADER: JSONC configuration file loader with caching
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
 
+/* ───────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
+
 const CONFIG_PATH = path.join(__dirname, '../configs/search-weights.json');
 
-let cachedConfig = null;
+let cached_config = null;
 
-/**
- * Strip JSON comments (JSONC support)
- * Removes single-line and multi-line comments
- * while preserving comment-like sequences inside strings
- * @param {string} jsonString - Raw JSONC content
- * @returns {string} Clean JSON string
- */
-function stripJsonComments(jsonString) {
-  return jsonString
+/* ───────────────────────────────────────────────────────────────
+   2. UTILITIES
+   ─────────────────────────────────────────────────────────────── */
+
+// Strip JSON comments (JSONC support) while preserving strings
+function strip_json_comments(json_string) {
+  return json_string
     .replace(/\\"|"(?:\\"|[^"])*"|(\/\/.*|\/\*[\s\S]*?\*\/)/g, (m, g) => g ? '' : m)
     .trim();
 }
 
-/**
- * Get default configuration
- * @returns {Object} Default config object
- */
-function getDefaultConfig() {
-  return {
-    hybridSearch: { enabled: true, vectorWeight: 0.6, ftsWeight: 0.4 },
-    memoryDecay: { enabled: true, decayWeight: 0.3, scaleDays: 90 },
-    compositeScoring: { enabled: true }
-  };
-}
-
-/**
- * Load configuration with defaults
- * @param {string} [configPath] - Optional custom config path
- * @param {boolean} [refresh=false] - Force reload from file
- * @returns {Object} Merged configuration
- */
-function loadConfig(configPath = CONFIG_PATH, refresh = false) {
-  if (cachedConfig && !refresh) {
-    return cachedConfig;
-  }
-
-  const defaults = getDefaultConfig();
-
-  // Path validation
-  if (!configPath || typeof configPath !== 'string') {
-    throw new Error('Config path must be a non-empty string');
-  }
-
-  // Resolve to absolute path
-  const resolvedPath = path.resolve(configPath);
-
-  // Check file exists
-  if (!fs.existsSync(resolvedPath)) {
-    console.warn(`[config-loader] Config file not found: ${resolvedPath}, using defaults`);
-    cachedConfig = defaults;
-    return cachedConfig;
-  }
-
-  try {
-    const rawContent = fs.readFileSync(resolvedPath, 'utf-8');
-    const strippedContent = stripJsonComments(rawContent);
-    let fileConfig;
-    try {
-      fileConfig = JSON.parse(strippedContent);
-    } catch (parseErr) {
-      throw new Error(`Failed to parse config file ${resolvedPath}: ${parseErr.message}`);
-    }
-    cachedConfig = deepMerge(defaults, fileConfig);
-  } catch (err) {
-    console.warn('[config-loader] Failed to load config:', err.message);
-    cachedConfig = defaults;
-  }
-
-  return cachedConfig;
-}
-
-/**
- * Deep merge objects with proper null handling
- * @param {Object} target - Base object
- * @param {Object} source - Object to merge in (takes precedence)
- * @returns {Object} Merged result
- */
-function deepMerge(target, source) {
+function deep_merge(target, source) {
   const result = { ...target };
   for (const key of Object.keys(source)) {
-    const sourceVal = source[key];
-    // Handle null explicitly - null overwrites
-    if (sourceVal === null) {
+    const source_val = source[key];
+    if (source_val === null) {
       result[key] = null;
-    } else if (typeof sourceVal === 'object' && !Array.isArray(sourceVal)) {
-      // Deep merge objects, but handle target being null/undefined
-      const targetVal = target[key];
-      if (targetVal && typeof targetVal === 'object' && !Array.isArray(targetVal)) {
-        result[key] = deepMerge(targetVal, sourceVal);
+    } else if (typeof source_val === 'object' && !Array.isArray(source_val)) {
+      const target_val = target[key];
+      if (target_val && typeof target_val === 'object' && !Array.isArray(target_val)) {
+        result[key] = deep_merge(target_val, source_val);
       } else {
-        result[key] = sourceVal;
+        result[key] = source_val;
       }
     } else {
-      result[key] = sourceVal;
+      result[key] = source_val;
     }
   }
   return result;
 }
 
-/**
- * Get specific config section
- * @param {string} section - Config section name
- * @returns {Object}
- */
-function getSection(section) {
-  const config = loadConfig();
+/* ───────────────────────────────────────────────────────────────
+   3. CORE FUNCTIONS
+   ─────────────────────────────────────────────────────────────── */
+
+function get_default_config() {
+  return {
+    hybrid_search: { enabled: true, vector_weight: 0.6, fts_weight: 0.4 },
+    memory_decay: { enabled: true, decay_weight: 0.3, scale_days: 90 },
+    composite_scoring: { enabled: true },
+  };
+}
+
+function load_config(config_path = CONFIG_PATH, refresh = false) {
+  if (cached_config && !refresh) {
+    return cached_config;
+  }
+
+  const defaults = get_default_config();
+
+  if (!config_path || typeof config_path !== 'string') {
+    throw new Error('Config path must be a non-empty string');
+  }
+
+  const resolved_path = path.resolve(config_path);
+
+  if (!fs.existsSync(resolved_path)) {
+    console.warn(`[config-loader] Config file not found: ${resolved_path}, using defaults`);
+    cached_config = defaults;
+    return cached_config;
+  }
+
+  try {
+    const raw_content = fs.readFileSync(resolved_path, 'utf-8');
+    const stripped_content = strip_json_comments(raw_content);
+    let file_config;
+    try {
+      file_config = JSON.parse(stripped_content);
+    } catch (parse_err) {
+      throw new Error(`Failed to parse config file ${resolved_path}: ${parse_err.message}`);
+    }
+    cached_config = deep_merge(defaults, file_config);
+  } catch (err) {
+    console.warn('[config-loader] Failed to load config:', err.message);
+    cached_config = defaults;
+  }
+
+  return cached_config;
+}
+
+function get_section(section) {
+  const config = load_config();
   return config[section] || {};
 }
 
+/* ───────────────────────────────────────────────────────────────
+   4. EXPORTS
+   ─────────────────────────────────────────────────────────────── */
+
 module.exports = {
-  loadConfig,
-  getSection,
-  getDefaultConfig,
-  stripJsonComments,
-  CONFIG_PATH
+  load_config,
+  get_section,
+  get_default_config,
+  strip_json_comments,
+  CONFIG_PATH,
 };

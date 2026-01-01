@@ -1,34 +1,15 @@
 #!/usr/bin/env bash
-#
-# test-validation.sh - Test runner for validate-spec.sh
-#
-# Runs validation tests against fixture spec folders to verify
-# correct behavior for valid and invalid specs.
-#
-# VERSION: 2.0.0
-# CREATED: 2024-12-24
-# UPDATED: 2024-12-24 - Added categories, timing, verbose mode, single test run
-#
-# USAGE: 
-#   ./test-validation.sh              # Run all tests
-#   ./test-validation.sh -v           # Verbose mode (show output for passing tests)
-#   ./test-validation.sh -t NAME      # Run single test by name (partial match)
-#   ./test-validation.sh -c CATEGORY  # Run tests in category only
-#   ./test-validation.sh -l           # List all tests and categories
-#   ./test-validation.sh -h           # Show help
-#
-# EXIT CODES:
-#   0 - All tests passed
-#   1 - One or more tests failed
-#
+# ───────────────────────────────────────────────────────────────
+# SPECKIT: TEST VALIDATION
+# ───────────────────────────────────────────────────────────────
+# Runs validation tests against fixture spec folders.
 # COMPATIBILITY: bash 3.2+ (macOS default)
-#
 
 set -uo pipefail
 
-# ============================================================================
-# CONFIGURATION
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 1. CONFIGURATION
+# ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VALIDATOR="$SCRIPT_DIR/validate-spec.sh"
@@ -55,23 +36,19 @@ SINGLE_TEST=""
 SINGLE_CATEGORY=""
 LIST_ONLY=false
 
-# Category tracking (bash 3.2 compatible - using simple variables)
+# Category tracking (bash 3.2 compatible)
 CURRENT_CATEGORY=""
 CURRENT_CAT_PASSED=0
 CURRENT_CAT_FAILED=0
 CURRENT_CAT_SKIPPED=0
 CURRENT_CAT_TIME=0
-
-# Category summaries (newline-separated: name|passed|failed|skipped|time)
 CATEGORY_SUMMARIES=""
-
-# Test registry for listing (newline-separated)
 TEST_LIST=""
 CATEGORY_LIST=""
 
-# ============================================================================
-# HELPER FUNCTIONS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 2. HELPER FUNCTIONS
+# ───────────────────────────────────────────────────────────────
 
 show_help() {
     cat << 'EOF'
@@ -100,7 +77,6 @@ EXIT CODES:
 EOF
 }
 
-# Format milliseconds to human-readable
 format_time() {
     local ms=$1
     if [ "$ms" -lt 1000 ]; then
@@ -112,7 +88,6 @@ format_time() {
     fi
 }
 
-# Get current time in milliseconds (portable)
 get_time_ms() {
     if command -v gdate &> /dev/null; then
         # macOS with coreutils
@@ -126,12 +101,10 @@ get_time_ms() {
     fi
 }
 
-# Lowercase a string (bash 3.2 compatible)
 to_lower() {
     echo "$1" | tr '[:upper:]' '[:lower:]'
 }
 
-# Case-insensitive contains check
 contains_ci() {
     local haystack="$1"
     local needle="$2"
@@ -146,8 +119,6 @@ contains_ci() {
     esac
 }
 
-# save_category_summary()
-# Save current category stats to summary string
 save_category_summary() {
     if [ -n "$CURRENT_CATEGORY" ]; then
         local total=$((CURRENT_CAT_PASSED + CURRENT_CAT_FAILED + CURRENT_CAT_SKIPPED))
@@ -166,14 +137,10 @@ ${entry}"
     fi
 }
 
-# ============================================================================
-# CATEGORY FUNCTIONS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 3. CATEGORY FUNCTIONS
+# ───────────────────────────────────────────────────────────────
 
-# begin_category()
-# Start a new test category
-# Args: $1 - category name
-# Returns: 0 if category should run, 1 if filtered out
 begin_category() {
     local name="$1"
     
@@ -208,13 +175,10 @@ ${name}"
     return 0
 }
 
-# ============================================================================
-# TEST FUNCTIONS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 4. TEST FUNCTIONS
+# ───────────────────────────────────────────────────────────────
 
-# run_test()
-# Run a single test case
-# Args: $1 - test name, $2 - fixture folder, $3 - expected result (pass/warn/fail)
 run_test() {
     local name="$1"
     local fixture="$2"
@@ -333,10 +297,6 @@ ${test_entry}"
     fi
 }
 
-# run_test_with_flags()
-# Run a test case with custom validator flags and/or environment variables
-# Args: $1 - test name, $2 - fixture folder, $3 - expected result (pass/warn/fail)
-#       $4 - validator flags (optional), $5 - env vars (optional)
 run_test_with_flags() {
     local name="$1"
     local fixture="$2"
@@ -432,9 +392,6 @@ ${test_entry}"
     fi
 }
 
-# run_test_json_valid()
-# Run a test and verify JSON output is valid with required fields
-# Args: $1 - test name, $2 - fixture folder, $3 - expected result
 run_test_json_valid() {
     local name="$1"
     local fixture="$2"
@@ -494,13 +451,9 @@ ${test_entry}"
         *) actual="fail" ;;
     esac
     
-    # Validate JSON structure using python3
     local json_valid=false
-    if echo "$output" | python3 -m json.tool > /dev/null 2>&1; then
-        json_valid=true
-    fi
-    
-    # Check required fields exist
+    echo "$output" | python3 -m json.tool > /dev/null 2>&1 && json_valid=true
+
     local has_fields="False"
     if [ "$json_valid" = true ]; then
         has_fields=$(echo "$output" | python3 -c "
@@ -533,9 +486,6 @@ except: print('False')
     fi
 }
 
-# run_test_quiet()
-# Run a test and verify quiet mode produces minimal output
-# Args: $1 - test name, $2 - fixture folder, $3 - expected result
 run_test_quiet() {
     local name="$1"
     local fixture="$2"
@@ -594,11 +544,10 @@ ${test_entry}"
         1) actual="warn" ;;
         *) actual="fail" ;;
     esac
-    
-    # Count output lines (quiet mode should have minimal output)
+
     local line_count
     line_count=$(echo -n "$output" | wc -l | tr -d ' ')
-    
+
     # Quiet mode should produce 0-2 lines max
     if [ "$actual" = "$expect" ] && [ "$line_count" -le 2 ]; then
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
@@ -618,9 +567,9 @@ ${test_entry}"
     fi
 }
 
-# ============================================================================
-# PARSE ARGUMENTS
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 5. PARSE ARGUMENTS
+# ───────────────────────────────────────────────────────────────
 
 while [ $# -gt 0 ]; do
     case $1 in
@@ -652,14 +601,14 @@ while [ $# -gt 0 ]; do
     esac
 done
 
-# ============================================================================
-# HEADER
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 6. HEADER
+# ───────────────────────────────────────────────────────────────
 
 echo ""
-echo -e "${BLUE}═══════════════════════════════════════════════════════════════${NC}"
+echo -e "${BLUE}───────────────────────────────────────────────────────────────${NC}"
 echo -e "${BLUE}${BOLD}  validate-spec.sh Test Suite v2.0${NC}"
-echo -e "${BLUE}═══════════════════════════════════════════════════════════════${NC}"
+echo -e "${BLUE}───────────────────────────────────────────────────────────────${NC}"
 
 if [ "$LIST_ONLY" = true ]; then
     echo -e "${DIM}  Mode: List only${NC}"
@@ -673,13 +622,13 @@ if [ "$VERBOSE" = true ]; then
     echo -e "${DIM}  Verbose: enabled${NC}"
 fi
 
-# ============================================================================
-# TEST CASES
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 7. TEST CASES
+# ───────────────────────────────────────────────────────────────
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # POSITIVE TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Positive Tests (should PASS)"; then
     run_test "Valid Level 1 spec folder" "002-valid-level1" "pass"
     run_test "Valid Level 2 spec folder" "003-valid-level2" "pass"
@@ -693,9 +642,9 @@ if begin_category "Positive Tests (should PASS)"; then
     run_test "Valid sections in all files (L3)" "045-valid-sections" "pass"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # LEVEL_DECLARED RULE TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Level Declaration Tests (should PASS)"; then
     run_test "Explicit level declaration (| **Level** | 2 |)" "022-level-explicit" "pass"
     run_test "Inferred level (no level field, inferred from files)" "023-level-inferred" "pass"
@@ -704,17 +653,17 @@ if begin_category "Level Declaration Tests (should PASS)"; then
     run_test "Level without bold (| Level | 2 |, falls back to inferred)" "024-level-no-bold" "pass"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # WARNING TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Warning Tests (should WARN)"; then
     run_test "Invalid priority tags (unknown tags)" "021-invalid-priority-tags" "warn"
     run_test "Missing evidence on P0/P1 completed items" "031-missing-evidence" "warn"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # SECTIONS_PRESENT RULE TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Sections Present Tests (should WARN on missing)"; then
     run_test "Missing spec.md sections (no Problem Statement)" "034-missing-spec-sections" "warn"
     run_test "Missing plan.md sections (no Architecture)" "033-missing-plan-sections" "warn"
@@ -722,9 +671,9 @@ if begin_category "Sections Present Tests (should WARN on missing)"; then
     run_test "Missing decision-record.md sections (no Consequences)" "030-missing-decision-sections" "warn"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # NEGATIVE TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Negative Tests (should FAIL)"; then
     run_test "Missing required files (no spec.md)" "006-missing-required-files" "fail"
     run_test "Unfilled placeholders" "005-unfilled-placeholders" "fail"
@@ -736,9 +685,9 @@ if begin_category "Negative Tests (should FAIL)"; then
     run_test "Level 3 missing decision-record.md" "028-level3-missing-decision" "fail"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # PRIORITY_TAGS EDGE CASE TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Priority Tags Edge Cases"; then
     # PASS cases
     run_test "Inline priority tags only [P0]/[P1]/[P2]" "041-priority-inline-tags" "pass"
@@ -751,9 +700,9 @@ if begin_category "Priority Tags Edge Cases"; then
     run_test "Invalid P3/P4 priority levels" "044-priority-p3-invalid" "warn"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # ANCHOR EDGE CASE TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Anchor Edge Cases"; then
     # PASS cases - anchors in valid edge case scenarios
     run_test "Nested anchors (outer contains inner)" "014-anchors-nested" "pass"
@@ -765,9 +714,9 @@ if begin_category "Anchor Edge Cases"; then
     run_test "Multiple memory files, one with error" "013-anchors-multiple-files" "fail"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # EVIDENCE_CITED EDGE CASE TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Evidence Edge Cases"; then
     # PASS cases - all evidence patterns recognized
     run_test "All 5 evidence patterns recognized" "016-evidence-all-patterns" "pass"
@@ -779,9 +728,9 @@ if begin_category "Evidence Edge Cases"; then
     run_test "Wrong suffix (complete/done/finished)" "020-evidence-wrong-suffix" "warn"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # PLACEHOLDER_FILLED EDGE CASE TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "Placeholder Edge Cases"; then
     # PASS cases - placeholders should be ignored in these contexts
     run_test "Placeholder in fenced code block (ignored)" "038-placeholder-in-codeblock" "pass"
@@ -793,9 +742,9 @@ if begin_category "Placeholder Edge Cases"; then
     run_test "Placeholder case variations (detected)" "037-placeholder-case-variations" "fail"
 fi
 
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 # CLI OPTIONS TESTS
-# -----------------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────
 if begin_category "CLI Options Tests"; then
     # Test 1: --json output format (valid JSON with required fields)
     run_test_json_valid "--json produces valid JSON with required fields" "002-valid-level1" "pass"
@@ -825,9 +774,9 @@ fi
 # Save final category
 save_category_summary
 
-# ============================================================================
-# LIST MODE OUTPUT
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 8. LIST MODE OUTPUT
+# ───────────────────────────────────────────────────────────────
 
 if [ "$LIST_ONLY" = true ]; then
     echo ""
@@ -853,14 +802,14 @@ if [ "$LIST_ONLY" = true ]; then
     exit 0
 fi
 
-# ============================================================================
-# SUMMARY
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 9. SUMMARY
+# ───────────────────────────────────────────────────────────────
 
 echo ""
-echo -e "${BLUE}═══════════════════════════════════════════════════════════════${NC}"
+echo -e "${BLUE}───────────────────────────────────────────────────────────────${NC}"
 echo -e "${BLUE}${BOLD}  Summary${NC}"
-echo -e "${BLUE}═══════════════════════════════════════════════════════════════${NC}"
+echo -e "${BLUE}───────────────────────────────────────────────────────────────${NC}"
 echo ""
 
 # Per-category breakdown
@@ -898,9 +847,9 @@ echo -e "  Total:   $TOTAL"
 echo -e "  ${DIM}Time:    $TOTAL_TIME_FMT${NC}"
 echo ""
 
-# ============================================================================
-# EXIT
-# ============================================================================
+# ───────────────────────────────────────────────────────────────
+# 10. EXIT
+# ───────────────────────────────────────────────────────────────
 
 if [ $FAILED -gt 0 ]; then
     echo -e "${RED}${BOLD}RESULT: FAILED${NC}"

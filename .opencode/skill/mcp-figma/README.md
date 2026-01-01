@@ -8,7 +8,7 @@ Programmatic access to Figma design files through **18 specialized tools**. Get 
 > - Configuration help? See [Configuration](#5--configuration)
 > - Troubleshooting? See [Troubleshooting](#9--troubleshooting)
 
-[![npm](https://img.shields.io/npm/v/mcp-figma.svg)](https://www.npmjs.com/package/mcp-figma)
+[![npm](https://img.shields.io/npm/v/figma-developer-mcp.svg)](https://www.npmjs.com/package/figma-developer-mcp)
 [![MCP](https://img.shields.io/badge/MCP-compatible-blue.svg)](https://modelcontextprotocol.io)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
@@ -71,8 +71,8 @@ Figma MCP is an MCP server that provides AI assistants with programmatic access 
 
 | Property | Value |
 |----------|-------|
-| **npm Package** | [`mcp-figma`](https://www.npmjs.com/package/mcp-figma) |
-| **GitHub** | [mcp-figma](https://github.com/nicholasoxford/mcp-figma) |
+| **npm Package** | [`figma-developer-mcp`](https://www.npmjs.com/package/figma-developer-mcp) |
+| **GitHub** | [anthropics/figma-developer-mcp](https://github.com/anthropics/figma-developer-mcp) |
 | **Tools** | 18 |
 | **License** | MIT |
 
@@ -99,7 +99,7 @@ Figma MCP is an MCP server that provides AI assistants with programmatic access 
 # 1. Add Figma to .utcp_config.json (see Configuration section)
 
 # 2. Add token to .env
-echo "FIGMA_PERSONAL_ACCESS_TOKEN=figd_your_token_here" >> .env
+echo "FIGMA_API_KEY=figd_your_token_here" >> .env
 
 # 3. Restart your AI client
 ```
@@ -261,9 +261,9 @@ Add to `.utcp_config.json`:
           "figma": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["-y", "mcp-figma"],
+            "args": ["-y", "figma-developer-mcp", "--stdio"],
             "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}"
+              "FIGMA_API_KEY": "figd_your_token_here"
             }
           }
         }
@@ -273,14 +273,16 @@ Add to `.utcp_config.json`:
 }
 ```
 
+> **Important**: Code Mode does NOT support `${VAR}` env substitution. You must hardcode the API key directly in `.utcp_config.json`. Keep this file secure and do not commit to version control if it contains real API keys.
+
 ### Environment Variables
 
 Add to `.env`:
 
 ```bash
-# Figma Personal Access Token
+# Figma API Key
 # Get from: Figma → Settings → Account → Personal access tokens
-FIGMA_PERSONAL_ACCESS_TOKEN=figd_your_token_here
+FIGMA_API_KEY=figd_your_token_here
 ```
 
 > **Security**: Never commit `.env` to version control. Add it to `.gitignore`.
@@ -634,7 +636,7 @@ await figma.figma_get_file({ fileKey: "abc" });
 
 #### Environment Variable Not Found
 
-**Symptom**: `Environment variable FIGMA_PERSONAL_ACCESS_TOKEN not found`
+**Symptom**: `Environment variable FIGMA_API_KEY not found`
 
 **Cause**: Token not in `.env` or `.env` not loaded.
 
@@ -755,7 +757,7 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 | Resource | Description |
 |----------|-------------|
 | [Figma API Documentation](https://www.figma.com/developers/api) | Official API reference |
-| [mcp-figma npm](https://www.npmjs.com/package/mcp-figma) | Package documentation |
+| [figma-developer-mcp npm](https://www.npmjs.com/package/figma-developer-mcp) | Package documentation |
 | [Figma Settings](https://www.figma.com/settings) | Token generation |
 
 ### Related Skills

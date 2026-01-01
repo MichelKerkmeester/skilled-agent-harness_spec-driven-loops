@@ -1,86 +1,66 @@
-/**
- * Embeddings Factory - Create the appropriate provider based on configuration
- * 
- * Configuration precedence:
- * 1. EMBEDDINGS_PROVIDER (if not 'auto')
- * 2. Auto-detection: Voyage if VOYAGE_API_KEY exists
- * 3. Auto-detection: OpenAI if OPENAI_API_KEY exists
- * 4. Fallback: HF local
- * 
- * @module embeddings/factory
- */
-
+// ───────────────────────────────────────────────────────────────
+// FACTORY.JS: Provider resolution and factory for embeddings
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
-const { HFLocalProvider } = require('./providers/hf-local');
+const { HfLocalProvider } = require('./providers/hf-local');
 const { OpenAIProvider } = require('./providers/openai');
 const { VoyageProvider } = require('./providers/voyage');
 
-// ───────────────────────────────────────────────────────────────
-// PROVIDER CONFIGURATION
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   1. PROVIDER RESOLUTION
+   ─────────────────────────────────────────────────────────────── */
 
 /**
- * Resolve the provider to use based on env vars
- * 
- * @returns {{name: string, reason: string}} Selected provider and reason
+ * Resolve provider based on env vars.
+ * Precedence: 1) EMBEDDINGS_PROVIDER, 2) VOYAGE_API_KEY, 3) OPENAI_API_KEY, 4) hf-local
  */
-function resolveProvider() {
-  // 1. Check for explicit override
-  const explicitProvider = process.env.EMBEDDINGS_PROVIDER;
-  if (explicitProvider && explicitProvider !== 'auto') {
+function resolve_provider() {
+  const explicit_provider = process.env.EMBEDDINGS_PROVIDER;
+  if (explicit_provider && explicit_provider !== 'auto') {
     return {
-      name: explicitProvider,
-      reason: 'Explicit EMBEDDINGS_PROVIDER variable'
+      name: explicit_provider,
+      reason: 'Explicit EMBEDDINGS_PROVIDER variable',
     };
   }
 
-  // 2. Auto-detection: Voyage if key exists (preferred for retrieval)
   if (process.env.VOYAGE_API_KEY) {
     return {
       name: 'voyage',
-      reason: 'VOYAGE_API_KEY detected (auto mode)'
+      reason: 'VOYAGE_API_KEY detected (auto mode)',
     };
   }
 
-  // 3. Auto-detection: OpenAI if key exists
   if (process.env.OPENAI_API_KEY) {
     return {
       name: 'openai',
-      reason: 'OPENAI_API_KEY detected (auto mode)'
+      reason: 'OPENAI_API_KEY detected (auto mode)',
     };
   }
 
-  // 4. Fallback to local
   return {
     name: 'hf-local',
-    reason: 'Default fallback (no API keys detected)'
+    reason: 'Default fallback (no API keys detected)',
   };
 }
 
-/**
- * Create provider instance based on configuration
- * 
- * @param {Object} options - Configuration options
- * @param {string} options.provider - Provider name ('openai', 'hf-local', 'auto')
- * @param {string} options.model - Model to use (optional, uses provider default)
- * @param {number} options.dim - Embedding dimension (optional)
- * @param {boolean} options.warmup - Whether to pre-warm the model (default: false)
- * @returns {Promise<Object>} Provider instance
- */
-async function createEmbeddingsProvider(options = {}) {
-  // Resolve provider
-  const resolution = resolveProvider();
-  const providerName = options.provider === 'auto' || !options.provider 
+/* ───────────────────────────────────────────────────────────────
+   2. PROVIDER FACTORY
+   ─────────────────────────────────────────────────────────────── */
+
+/** Create provider instance based on configuration */
+async function create_embeddings_provider(options = {}) {
+  const resolution = resolve_provider();
+  const provider_name = options.provider === 'auto' || !options.provider 
     ? resolution.name 
     : options.provider;
 
-  console.log(`[factory] Using provider: ${providerName} (${resolution.reason})`);
+  console.log(`[factory] Using provider: ${provider_name} (${resolution.reason})`);
 
   let provider;
 
   try {
-    switch (providerName) {
+    switch (provider_name) {
       case 'voyage':
         if (!process.env.VOYAGE_API_KEY && !options.apiKey) {
           throw new Error(
@@ -91,7 +71,7 @@ async function createEmbeddingsProvider(options = {}) {
         provider = new VoyageProvider({
           model: options.model,
           dim: options.dim,
-          apiKey: options.apiKey
+          apiKey: options.apiKey,
         });
         break;
 
@@ -105,14 +85,14 @@ async function createEmbeddingsProvider(options = {}) {
         provider = new OpenAIProvider({
           model: options.model,
           dim: options.dim,
-          apiKey: options.apiKey
+          apiKey: options.apiKey,
         });
         break;
 
       case 'hf-local':
-        provider = new HFLocalProvider({
+        provider = new HfLocalProvider({
           model: options.model,
-          dim: options.dim
+          dim: options.dim,
         });
         break;
 
@@ -121,24 +101,22 @@ async function createEmbeddingsProvider(options = {}) {
 
       default:
         throw new Error(
-          `Unknown provider: ${providerName}. ` +
+          `Unknown provider: ${provider_name}. ` +
           `Valid values: voyage, openai, hf-local, auto`
         );
     }
 
-    // Warmup if requested
     if (options.warmup) {
-      console.log(`[factory] Warming up ${providerName}...`);
+      console.log(`[factory] Warming up ${provider_name}...`);
       const success = await provider.warmup();
       if (!success) {
-        console.warn(`[factory] Warmup failed for ${providerName}`);
+        console.warn(`[factory] Warmup failed for ${provider_name}`);
         
-        // If OpenAI failed in auto mode, try fallback to local
-        if (providerName === 'openai' && !options.provider) {
+        if (provider_name === 'openai' && !options.provider) {
           console.warn('[factory] Attempting fallback to hf-local...');
-          provider = new HFLocalProvider({
+          provider = new HfLocalProvider({
             model: options.model,
-            dim: options.dim
+            dim: options.dim,
           });
           await provider.warmup();
         }
@@ -148,14 +126,13 @@ async function createEmbeddingsProvider(options = {}) {
     return provider;
 
   } catch (error) {
-    console.error(`[factory] Error creating provider ${providerName}:`, error.message);
+    console.error(`[factory] Error creating provider ${provider_name}:`, error.message);
     
-    // If OpenAI failed in auto mode, try fallback to local
-    if (providerName === 'openai' && !options.provider) {
+    if (provider_name === 'openai' && !options.provider) {
       console.warn('[factory] Fallback to hf-local due to OpenAI error');
-      provider = new HFLocalProvider({
+      provider = new HfLocalProvider({
         model: options.model,
-        dim: options.dim
+        dim: options.dim,
       });
       
       if (options.warmup) {
@@ -169,13 +146,13 @@ async function createEmbeddingsProvider(options = {}) {
   }
 }
 
-/**
- * Get configuration information without creating the provider
- * 
- * @returns {Object} Configuration information
- */
-function getProviderInfo() {
-  const resolution = resolveProvider();
+/* ───────────────────────────────────────────────────────────────
+   3. PROVIDER INFO
+   ─────────────────────────────────────────────────────────────── */
+
+/** Get configuration information without creating the provider */
+function get_provider_info() {
+  const resolution = resolve_provider();
   
   return {
     provider: resolution.name,
@@ -186,13 +163,13 @@ function getProviderInfo() {
       VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-3.5',
       OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '***set***' : 'not set',
       OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small',
-      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || 'nomic-ai/nomic-embed-text-v1.5'
-    }
+      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || 'nomic-ai/nomic-embed-text-v1.5',
+    },
   };
 }
 
 module.exports = {
-  createEmbeddingsProvider,
-  resolveProvider,
-  getProviderInfo
+  create_embeddings_provider,
+  resolve_provider,
+  get_provider_info,
 };

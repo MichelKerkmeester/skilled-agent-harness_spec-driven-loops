@@ -1,121 +1,96 @@
-/**
- * History Module - Audit trail for memory mutations
- * @module lib/history
- * @version 11.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// MCP: HISTORY
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const crypto = require('crypto');
 
-// Prepared statement cache for performance (P1 optimization)
-// P2-007: Track db instance to handle db changes and prevent cache leak
-const stmtCache = new Map();
-let cachedDb = null;
+/* ───────────────────────────────────────────────────────────────
+   1. STATEMENT CACHE
+   ─────────────────────────────────────────────────────────────── */
 
-/**
- * Get or create a cached prepared statement
- * Clears cache when db instance changes to prevent statement leaks (P2-007)
- * @param {Object} db - Database instance
- * @param {string} key - Cache key
- * @param {string} sql - SQL to prepare
- * @returns {Object} Prepared statement
- */
-function getStmt(db, key, sql) {
-  // Clear cache if db instance changed (P2-007: Fix statement cache leak)
-  if (cachedDb !== db) {
-    stmtCache.clear();
-    cachedDb = db;
+// P2-007: Track db instance to handle db changes and prevent cache leak
+const stmt_cache = new Map();
+let cached_db = null;
+
+function get_stmt(db, key, sql) {
+  if (cached_db !== db) {
+    stmt_cache.clear();
+    cached_db = db;
   }
-  if (!stmtCache.has(key)) {
-    stmtCache.set(key, db.prepare(sql));
+  if (!stmt_cache.has(key)) {
+    stmt_cache.set(key, db.prepare(sql));
   }
-  return stmtCache.get(key);
+  return stmt_cache.get(key);
 }
 
-/**
- * Generate a UUID v4
- * @returns {string} UUID string
- */
-function generateUUID() {
+/* ───────────────────────────────────────────────────────────────
+   2. UTILITIES
+   ─────────────────────────────────────────────────────────────── */
+
+function generate_uuid() {
   return crypto.randomUUID();
 }
 
-/**
- * Record a history event
- * @param {Object} db - Database instance (better-sqlite3)
- * @param {Object} params
- * @param {number} params.memoryId - Memory row ID
- * @param {Object} [params.prevValue] - Previous state (for UPDATE/DELETE)
- * @param {Object} [params.newValue] - New state (for ADD/UPDATE)
- * @param {string} params.event - 'ADD', 'UPDATE', or 'DELETE'
- * @param {string} [params.actor='system'] - 'user', 'system', 'hook', 'decay'
- * @returns {string} History entry ID
- * @throws {Error} If required parameters are missing or invalid
- */
-function recordHistory(db, params) {
-  const { memoryId, prevValue, newValue, event, actor = 'system' } = params;
+/* ───────────────────────────────────────────────────────────────
+   3. RECORD HISTORY
+   ─────────────────────────────────────────────────────────────── */
 
-  // Validate required parameters
-  if (!memoryId || typeof memoryId !== 'number') {
-    throw new Error('memoryId is required and must be a number');
+function record_history(db, params) {
+  const { memory_id, prev_value, new_value, event, actor = 'system' } = params;
+
+  if (!memory_id || typeof memory_id !== 'number') {
+    throw new Error('memory_id is required and must be a number');
   }
 
-  const validEvents = ['ADD', 'UPDATE', 'DELETE'];
-  if (!event || !validEvents.includes(event)) {
-    throw new Error(`event must be one of: ${validEvents.join(', ')}`);
+  const valid_events = ['ADD', 'UPDATE', 'DELETE'];
+  if (!event || !valid_events.includes(event)) {
+    throw new Error(`event must be one of: ${valid_events.join(', ')}`);
   }
 
-  const validActors = ['user', 'system', 'hook', 'decay'];
-  if (!validActors.includes(actor)) {
-    throw new Error(`actor must be one of: ${validActors.join(', ')}`);
+  const valid_actors = ['user', 'system', 'hook', 'decay'];
+  if (!valid_actors.includes(actor)) {
+    throw new Error(`actor must be one of: ${valid_actors.join(', ')}`);
   }
 
-  // Validate state based on event type
-  if (event === 'ADD' && !newValue) {
-    throw new Error('newValue is required for ADD events');
+  if (event === 'ADD' && !new_value) {
+    throw new Error('new_value is required for ADD events');
   }
-  if (event === 'DELETE' && !prevValue) {
-    throw new Error('prevValue is required for DELETE events');
+  if (event === 'DELETE' && !prev_value) {
+    throw new Error('prev_value is required for DELETE events');
   }
-  if (event === 'UPDATE' && (!prevValue || !newValue)) {
-    throw new Error('Both prevValue and newValue are required for UPDATE events');
+  if (event === 'UPDATE' && (!prev_value || !new_value)) {
+    throw new Error('Both prev_value and new_value are required for UPDATE events');
   }
 
-  const historyId = generateUUID();
+  const history_id = generate_uuid();
   const timestamp = new Date().toISOString();
 
-  const stmt = getStmt(db, 'insert_history', `
+  const stmt = get_stmt(db, 'insert_history', `
     INSERT INTO memory_history (id, memory_id, prev_value, new_value, event, actor, timestamp)
     VALUES (?, ?, ?, ?, ?, ?, ?)
   `);
 
   stmt.run(
-    historyId,
-    memoryId,
-    prevValue ? JSON.stringify(prevValue) : null,
-    newValue ? JSON.stringify(newValue) : null,
+    history_id,
+    memory_id,
+    prev_value ? JSON.stringify(prev_value) : null,
+    new_value ? JSON.stringify(new_value) : null,
     event,
     actor,
     timestamp
   );
 
-  return historyId;
+  return history_id;
 }
 
-/**
- * Get history for a specific memory
- * @param {Object} db - Database instance
- * @param {number} memoryId - Memory row ID
- * @param {Object} [options]
- * @param {number} [options.limit=50] - Max entries
- * @param {string} [options.since] - ISO date to filter from
- * @returns {Array} History entries chronologically (oldest first)
- * @throws {Error} If memoryId is invalid
- */
-function getHistory(db, memoryId, options = {}) {
-  if (!memoryId || typeof memoryId !== 'number') {
-    throw new Error('memoryId is required and must be a number');
+/* ───────────────────────────────────────────────────────────────
+   4. RETRIEVE HISTORY
+   ─────────────────────────────────────────────────────────────── */
+
+function get_history(db, memory_id, options = {}) {
+  if (!memory_id || typeof memory_id !== 'number') {
+    throw new Error('memory_id is required and must be a number');
   }
 
   const { limit = 50, since } = options;
@@ -125,7 +100,7 @@ function getHistory(db, memoryId, options = {}) {
     FROM memory_history
     WHERE memory_id = ?
   `;
-  const params = [memoryId];
+  const params = [memory_id];
 
   if (since) {
     query += ' AND timestamp >= ?';
@@ -135,30 +110,20 @@ function getHistory(db, memoryId, options = {}) {
   query += ' ORDER BY timestamp ASC LIMIT ?';
   params.push(limit);
 
-  const stmt = db.prepare(query);
-  const rows = stmt.all(...params);
+  const rows = db.prepare(query).all(...params);
 
   return rows.map(row => ({
     id: row.id,
-    memoryId: row.memory_id,
-    prevValue: row.prev_value ? JSON.parse(row.prev_value) : null,
-    newValue: row.new_value ? JSON.parse(row.new_value) : null,
+    memory_id: row.memory_id,
+    prev_value: row.prev_value ? JSON.parse(row.prev_value) : null,
+    new_value: row.new_value ? JSON.parse(row.new_value) : null,
     event: row.event,
     actor: row.actor,
-    timestamp: row.timestamp
+    timestamp: row.timestamp,
   }));
 }
 
-/**
- * Get recent history across all memories
- * @param {Object} db - Database instance
- * @param {Object} [options]
- * @param {number} [options.limit=100] - Max entries
- * @param {string} [options.event] - Filter by event type ('ADD', 'UPDATE', 'DELETE')
- * @param {string} [options.actor] - Filter by actor ('user', 'system', 'hook', 'decay')
- * @returns {Array} Recent history entries (newest first)
- */
-function getRecentHistory(db, options = {}) {
+function get_recent_history(db, options = {}) {
   const { limit = 100, event, actor } = options;
 
   let query = `
@@ -169,18 +134,18 @@ function getRecentHistory(db, options = {}) {
   const params = [];
 
   if (event) {
-    const validEvents = ['ADD', 'UPDATE', 'DELETE'];
-    if (!validEvents.includes(event)) {
-      throw new Error(`event must be one of: ${validEvents.join(', ')}`);
+    const valid_events = ['ADD', 'UPDATE', 'DELETE'];
+    if (!valid_events.includes(event)) {
+      throw new Error(`event must be one of: ${valid_events.join(', ')}`);
     }
     query += ' AND event = ?';
     params.push(event);
   }
 
   if (actor) {
-    const validActors = ['user', 'system', 'hook', 'decay'];
-    if (!validActors.includes(actor)) {
-      throw new Error(`actor must be one of: ${validActors.join(', ')}`);
+    const valid_actors = ['user', 'system', 'hook', 'decay'];
+    if (!valid_actors.includes(actor)) {
+      throw new Error(`actor must be one of: ${valid_actors.join(', ')}`);
     }
     query += ' AND actor = ?';
     params.push(actor);
@@ -189,186 +154,143 @@ function getRecentHistory(db, options = {}) {
   query += ' ORDER BY timestamp DESC LIMIT ?';
   params.push(limit);
 
-  const stmt = db.prepare(query);
-  const rows = stmt.all(...params);
+  const rows = db.prepare(query).all(...params);
 
   return rows.map(row => ({
     id: row.id,
-    memoryId: row.memory_id,
-    prevValue: row.prev_value ? JSON.parse(row.prev_value) : null,
-    newValue: row.new_value ? JSON.parse(row.new_value) : null,
+    memory_id: row.memory_id,
+    prev_value: row.prev_value ? JSON.parse(row.prev_value) : null,
+    new_value: row.new_value ? JSON.parse(row.new_value) : null,
     event: row.event,
     actor: row.actor,
-    timestamp: row.timestamp
+    timestamp: row.timestamp,
   }));
 }
 
-/**
- * Undo the last change to a memory
- * Wrapped in transaction for atomicity (P1-009)
- * @param {Object} db - Database instance
- * @param {number} memoryId - Memory row ID
- * @returns {Object} Result with restored state and metadata
- * @throws {Error} If no history found or undo not possible
- */
-function undoLastChange(db, memoryId) {
-  if (!memoryId || typeof memoryId !== 'number') {
-    throw new Error('memoryId is required and must be a number');
+/* ───────────────────────────────────────────────────────────────
+   5. UNDO OPERATIONS
+   ─────────────────────────────────────────────────────────────── */
+
+// P1-009: Wrapped in transaction for atomicity
+function undo_last_change(db, memory_id) {
+  if (!memory_id || typeof memory_id !== 'number') {
+    throw new Error('memory_id is required and must be a number');
   }
 
-  // P1-009: Wrap entire undo operation in transaction for atomicity
   return db.transaction(() => {
-    // Get the last history entry for this memory
-    const lastEntryStmt = db.prepare(`
+    const last_entry = db.prepare(`
       SELECT id, memory_id, prev_value, new_value, event, actor, timestamp
       FROM memory_history
       WHERE memory_id = ?
       ORDER BY timestamp DESC
       LIMIT 1
-    `);
+    `).get(memory_id);
 
-    const lastEntry = lastEntryStmt.get(memoryId);
-
-    if (!lastEntry) {
-      throw new Error(`No history found for memory ${memoryId}`);
+    if (!last_entry) {
+      throw new Error(`No history found for memory ${memory_id}`);
     }
 
-    const prevValue = lastEntry.prev_value ? JSON.parse(lastEntry.prev_value) : null;
-    const newValue = lastEntry.new_value ? JSON.parse(lastEntry.new_value) : null;
+    const prev_value = last_entry.prev_value ? JSON.parse(last_entry.prev_value) : null;
+    const new_value = last_entry.new_value ? JSON.parse(last_entry.new_value) : null;
 
-    // Handle based on event type
-    let restoredState;
-    let undoAction;
+    let restored_state;
+    let undo_action;
 
-    switch (lastEntry.event) {
+    switch (last_entry.event) {
       case 'ADD':
-        // Undo ADD = DELETE the memory
-        undoAction = 'DELETE';
-        restoredState = null;
-
-        // Mark memory as deleted (soft delete) or remove
-        const deleteStmt = db.prepare(`
+        // Undo ADD = soft delete
+        undo_action = 'DELETE';
+        restored_state = null;
+        db.prepare(`
           UPDATE memory_index
           SET importance_tier = 'deprecated', updated_at = datetime('now')
           WHERE id = ?
-        `);
-        deleteStmt.run(memoryId);
+        `).run(memory_id);
         break;
 
       case 'UPDATE':
-        // Undo UPDATE = restore previous value
-        if (!prevValue) {
+        if (!prev_value) {
           throw new Error('Cannot undo UPDATE: no previous value recorded');
         }
-        undoAction = 'UPDATE';
-        restoredState = prevValue;
+        undo_action = 'UPDATE';
+        restored_state = prev_value;
 
-        // P2-005: Normalize property names to handle both camelCase and snake_case
-        const weight = prevValue.importance_weight ?? prevValue.importanceWeight ?? 0.5;
+        // P2-005: Handle both camelCase and snake_case property names
+        const weight = prev_value.importance_weight ?? prev_value.importanceWeight ?? 0.5;
 
-        // Restore the previous state
-        const updateStmt = db.prepare(`
+        db.prepare(`
           UPDATE memory_index
-          SET title = ?,
-              importance_weight = ?,
-              updated_at = datetime('now')
+          SET title = ?, importance_weight = ?, updated_at = datetime('now')
           WHERE id = ?
-        `);
-        updateStmt.run(
-          prevValue.title || null,
-          weight,
-          memoryId
-        );
+        `).run(prev_value.title || null, weight, memory_id);
         break;
 
       case 'DELETE':
-        // Undo DELETE = restore the memory
-        if (!prevValue) {
+        if (!prev_value) {
           throw new Error('Cannot undo DELETE: no previous value recorded');
         }
-        undoAction = 'RESTORE';
-        restoredState = prevValue;
+        undo_action = 'RESTORE';
+        restored_state = prev_value;
 
-        // P2-005: Normalize property names to handle both camelCase and snake_case
-        const restoreWeight = prevValue.importance_weight ?? prevValue.importanceWeight ?? 0.5;
-        const restoreTier = prevValue.importance_tier ?? prevValue.importanceTier ?? 'normal';
+        // P2-005: Handle both camelCase and snake_case property names
+        const restore_weight = prev_value.importance_weight ?? prev_value.importanceWeight ?? 0.5;
+        const restore_tier = prev_value.importance_tier ?? prev_value.importanceTier ?? 'normal';
 
-        // Restore the memory (change tier back from deprecated)
-        const restoreStmt = db.prepare(`
+        db.prepare(`
           UPDATE memory_index
           SET importance_tier = COALESCE(?, 'normal'),
               title = ?,
               importance_weight = ?,
               updated_at = datetime('now')
           WHERE id = ?
-        `);
-        restoreStmt.run(
-          restoreTier,
-          prevValue.title || null,
-          restoreWeight,
-          memoryId
-        );
+        `).run(restore_tier, prev_value.title || null, restore_weight, memory_id);
         break;
 
       default:
-        throw new Error(`Unknown event type: ${lastEntry.event}`);
+        throw new Error(`Unknown event type: ${last_entry.event}`);
     }
 
-    // Record the undo operation in history
-    const undoHistoryId = recordHistory(db, {
-      memoryId,
-      prevValue: newValue,
-      newValue: restoredState,
-      event: undoAction === 'DELETE' ? 'DELETE' : 'UPDATE',
-      actor: 'system'
+    const undo_history_id = record_history(db, {
+      memory_id,
+      prev_value: new_value,
+      new_value: restored_state,
+      event: undo_action === 'DELETE' ? 'DELETE' : 'UPDATE',
+      actor: 'system',
     });
 
     return {
       success: true,
-      undoHistoryId,
-      originalEvent: lastEntry.event,
-      undoAction,
-      restoredState,
-      undoneEntryId: lastEntry.id,
-      timestamp: new Date().toISOString()
+      undo_history_id,
+      original_event: last_entry.event,
+      undo_action,
+      restored_state,
+      undone_entry_id: last_entry.id,
+      timestamp: new Date().toISOString(),
     };
   })();
 }
 
-/**
- * Purge old history entries (retention policy)
- * @param {Object} db - Database instance
- * @param {number} [daysToKeep=90] - Keep entries newer than this many days
- * @returns {number} Number of entries removed
- */
-function purgeOldHistory(db, daysToKeep = 90) {
-  if (typeof daysToKeep !== 'number' || daysToKeep < 0) {
-    throw new Error('daysToKeep must be a non-negative number');
+/* ───────────────────────────────────────────────────────────────
+   6. MAINTENANCE
+   ─────────────────────────────────────────────────────────────── */
+
+function purge_old_history(db, days_to_keep = 90) {
+  if (typeof days_to_keep !== 'number' || days_to_keep < 0) {
+    throw new Error('days_to_keep must be a non-negative number');
   }
 
-  // Calculate cutoff date
-  const cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - daysToKeep);
-  const cutoffISO = cutoffDate.toISOString();
+  const cutoff_date = new Date();
+  cutoff_date.setDate(cutoff_date.getDate() - days_to_keep);
 
-  // Delete old entries
-  const stmt = db.prepare(`
-    DELETE FROM memory_history
-    WHERE timestamp < ?
-  `);
-
-  const result = stmt.run(cutoffISO);
+  const result = db.prepare(`
+    DELETE FROM memory_history WHERE timestamp < ?
+  `).run(cutoff_date.toISOString());
 
   return result.changes;
 }
 
-/**
- * Get history statistics
- * @param {Object} db - Database instance
- * @returns {Object} Statistics about history entries
- */
-function getHistoryStats(db) {
-  const stmt = getStmt(db, 'history_stats', `
+function get_history_stats(db) {
+  const row = get_stmt(db, 'history_stats', `
     SELECT
       COUNT(*) as total,
       SUM(CASE WHEN event = 'ADD' THEN 1 ELSE 0 END) as adds,
@@ -377,29 +299,24 @@ function getHistoryStats(db) {
       MIN(timestamp) as oldest,
       MAX(timestamp) as newest
     FROM memory_history
-  `);
-
-  const row = stmt.get();
+  `).get();
 
   return {
     total: row.total || 0,
-    byEvent: {
-      ADD: row.adds || 0,
-      UPDATE: row.updates || 0,
-      DELETE: row.deletes || 0
-    },
-    dateRange: {
-      oldest: row.oldest || null,
-      newest: row.newest || null
-    }
+    by_event: { ADD: row.adds || 0, UPDATE: row.updates || 0, DELETE: row.deletes || 0 },
+    date_range: { oldest: row.oldest || null, newest: row.newest || null },
   };
 }
 
+/* ───────────────────────────────────────────────────────────────
+   7. EXPORTS
+   ─────────────────────────────────────────────────────────────── */
+
 module.exports = {
-  recordHistory,
-  getHistory,
-  getRecentHistory,
-  undoLastChange,
-  purgeOldHistory,
-  getHistoryStats
+  record_history,
+  get_history,
+  get_recent_history,
+  undo_last_change,
+  purge_old_history,
+  get_history_stats,
 };

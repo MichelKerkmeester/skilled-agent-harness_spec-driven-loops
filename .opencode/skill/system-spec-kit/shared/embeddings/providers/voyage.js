@@ -1,26 +1,19 @@
-/**
- * Embeddings Provider - Voyage AI
- * 
- * Uses Voyage AI API to generate embeddings.
- * Optimized for retrieval with input_type support (document/query).
- * 
- * @module embeddings/providers/voyage
- */
-
+// ───────────────────────────────────────────────────────────────
+// VOYAGE.JS: Voyage AI embeddings provider implementation
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const { EmbeddingProfile } = require('../profile');
 
-// ───────────────────────────────────────────────────────────────
-// CONFIGURATION
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
 
 const DEFAULT_MODEL = 'voyage-3.5';
 const DEFAULT_DIM = 1024;
 const DEFAULT_BASE_URL = 'https://api.voyageai.com/v1';
-const REQUEST_TIMEOUT = 30000; // 30 second timeout
+const REQUEST_TIMEOUT = 30000;
 
-// Dimensions by model
 const MODEL_DIMENSIONS = {
   'voyage-3.5': 1024,
   'voyage-3.5-lite': 1024,
@@ -29,50 +22,43 @@ const MODEL_DIMENSIONS = {
   'voyage-code-2': 1536,
   'voyage-3': 1024,
   'voyage-finance-2': 1024,
-  'voyage-law-2': 1024
+  'voyage-law-2': 1024,
 };
 
-// ───────────────────────────────────────────────────────────────
-// PROVIDER CLASS
-// ───────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
+   2. PROVIDER CLASS
+   ─────────────────────────────────────────────────────────────── */
 
 class VoyageProvider {
   constructor(options = {}) {
-    this.apiKey = options.apiKey || process.env.VOYAGE_API_KEY;
-    this.baseUrl = options.baseUrl || DEFAULT_BASE_URL;
-    this.modelName = options.model || process.env.VOYAGE_EMBEDDINGS_MODEL || DEFAULT_MODEL;
-    this.dim = options.dim || MODEL_DIMENSIONS[this.modelName] || DEFAULT_DIM;
+    this.api_key = options.apiKey || process.env.VOYAGE_API_KEY;
+    this.base_url = options.baseUrl || DEFAULT_BASE_URL;
+    this.model_name = options.model || process.env.VOYAGE_EMBEDDINGS_MODEL || DEFAULT_MODEL;
+    this.dim = options.dim || MODEL_DIMENSIONS[this.model_name] || DEFAULT_DIM;
     this.timeout = options.timeout || REQUEST_TIMEOUT;
-    this.isHealthy = true;
-    this.requestCount = 0;
-    this.totalTokens = 0;
+    this.is_healthy = true;
+    this.request_count = 0;
+    this.total_tokens = 0;
 
-    if (!this.apiKey) {
+    if (!this.api_key) {
       throw new Error('Voyage API key is required. Set VOYAGE_API_KEY.');
     }
   }
 
-  /**
-   * Make request to Voyage API
-   *
-   * @param {string|string[]} input - Text or array of texts
-   * @param {string} inputType - 'document' or 'query' for retrieval optimization
-   * @returns {Promise<Object>} API response
-   */
-  async makeRequest(input, inputType = null) {
-    const url = `${this.baseUrl}/embeddings`;
+  async make_request(input, input_type = null) {
+    const url = `${this.base_url}/embeddings`;
     
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+    const timeout_id = setTimeout(() => controller.abort(), this.timeout);
 
     const body = {
       input: Array.isArray(input) ? input : [input],
-      model: this.modelName
+      model: this.model_name,
     };
 
-    // Add input_type for retrieval optimization (Voyage-specific)
-    if (inputType) {
-      body.input_type = inputType;
+    // Voyage-specific: input_type optimizes retrieval ('document' or 'query')
+    if (input_type) {
+      body.input_type = input_type;
     }
 
     try {
@@ -80,13 +66,13 @@ class VoyageProvider {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.apiKey}`
+          'Authorization': `Bearer ${this.api_key}`,
         },
         body: JSON.stringify(body),
-        signal: controller.signal
+        signal: controller.signal,
       });
 
-      clearTimeout(timeoutId);
+      clearTimeout(timeout_id);
 
       if (!response.ok) {
         const error = await response.json().catch(() => ({ detail: response.statusText }));
@@ -95,41 +81,33 @@ class VoyageProvider {
 
       const data = await response.json();
       
-      // Update statistics
-      this.requestCount++;
+      this.request_count++;
       if (data.usage) {
-        this.totalTokens += data.usage.total_tokens;
+        this.total_tokens += data.usage.total_tokens;
       }
 
       return data;
 
     } catch (error) {
-      clearTimeout(timeoutId);
+      clearTimeout(timeout_id);
       
       if (error.name === 'AbortError') {
         throw new Error('Voyage request timeout');
       }
       
-      this.isHealthy = false;
+      this.is_healthy = false;
       throw error;
     }
   }
 
-  /**
-   * Generate embedding for text
-   *
-   * @param {string} text - Text to embed
-   * @param {string} inputType - 'document' or 'query'
-   * @returns {Promise<Float32Array>} Embedding vector
-   */
-  async generateEmbedding(text, inputType = null) {
+  async generate_embedding(text, input_type = null) {
     if (!text || typeof text !== 'string') {
       console.warn('[voyage] Empty or invalid text provided');
       return null;
     }
 
-    const trimmedText = text.trim();
-    if (trimmedText.length === 0) {
+    const trimmed_text = text.trim();
+    if (trimmed_text.length === 0) {
       console.warn('[voyage] Empty text after trim');
       return null;
     }
@@ -137,124 +115,99 @@ class VoyageProvider {
     const start = Date.now();
 
     try {
-      const response = await this.makeRequest(trimmedText, inputType);
+      const response = await this.make_request(trimmed_text, input_type);
       
       if (!response.data || response.data.length === 0) {
         throw new Error('Voyage did not return embeddings');
       }
 
-      // Extract embedding from first element
       const embedding = new Float32Array(response.data[0].embedding);
 
-      // Check dimension
       if (embedding.length !== this.dim) {
         console.warn(`[voyage] Unexpected dimension: ${embedding.length}, expected: ${this.dim}`);
       }
 
-      const inferenceTime = Date.now() - start;
+      const inference_time = Date.now() - start;
       
-      if (inferenceTime > 2000) {
-        console.warn(`[voyage] Slow request: ${inferenceTime}ms`);
+      if (inference_time > 2000) {
+        console.warn(`[voyage] Slow request: ${inference_time}ms`);
       }
 
       return embedding;
 
     } catch (error) {
       console.warn(`[voyage] Generation failed: ${error.message}`);
-      this.isHealthy = false;
+      this.is_healthy = false;
       throw error;
     }
   }
 
-  /**
-   * Embed a document (for indexing)
-   * Uses input_type: 'document' for optimized retrieval
-   */
-  async embedDocument(text) {
+  async embed_document(text) {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
       return null;
     }
-    return await this.generateEmbedding(text, 'document');
+    return await this.generate_embedding(text, 'document');
   }
 
-  /**
-   * Embed a search query
-   * Uses input_type: 'query' for optimized retrieval
-   */
-  async embedQuery(text) {
+  async embed_query(text) {
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
       return null;
     }
-    return await this.generateEmbedding(text, 'query');
+    return await this.generate_embedding(text, 'query');
   }
 
-  /**
-   * Pre-warm provider (verify connectivity)
-   */
   async warmup() {
     try {
       console.log('[voyage] Checking connectivity with Voyage API...');
-      const result = await this.embedQuery('test warmup query');
-      this.isHealthy = result !== null;
+      const result = await this.embed_query('test warmup query');
+      this.is_healthy = result !== null;
       console.log('[voyage] Connectivity verified successfully');
-      return this.isHealthy;
+      return this.is_healthy;
     } catch (error) {
       console.warn(`[voyage] Warmup failed: ${error.message}`);
-      this.isHealthy = false;
+      this.is_healthy = false;
       return false;
     }
   }
 
-  /**
-   * Get provider metadata
-   */
-  getMetadata() {
+  get_metadata() {
     return {
       provider: 'voyage',
-      model: this.modelName,
+      model: this.model_name,
       dim: this.dim,
-      baseUrl: this.baseUrl,
-      healthy: this.isHealthy,
-      requestCount: this.requestCount,
-      totalTokens: this.totalTokens
+      base_url: this.base_url,
+      healthy: this.is_healthy,
+      request_count: this.request_count,
+      total_tokens: this.total_tokens,
     };
   }
 
-  /**
-   * Get embedding profile
-   */
-  getProfile() {
+  get_profile() {
     return new EmbeddingProfile({
       provider: 'voyage',
-      model: this.modelName,
+      model: this.model_name,
       dim: this.dim,
-      baseUrl: this.baseUrl
+      baseUrl: this.base_url,
     });
   }
 
-  /**
-   * Check if provider is healthy
-   */
-  async healthCheck() {
+  async health_check() {
     try {
-      const result = await this.embedQuery('health check');
-      this.isHealthy = result !== null;
-      return this.isHealthy;
+      const result = await this.embed_query('health check');
+      this.is_healthy = result !== null;
+      return this.is_healthy;
     } catch (error) {
-      this.isHealthy = false;
+      this.is_healthy = false;
       return false;
     }
   }
 
-  /**
-   * Get usage statistics
-   */
-  getUsageStats() {
+  get_usage_stats() {
     return {
-      requestCount: this.requestCount,
-      totalTokens: this.totalTokens,
+      request_count: this.request_count,
+      total_tokens: this.total_tokens,
       // voyage-3.5 pricing: $0.06 per 1M tokens
-      estimatedCost: this.totalTokens * 0.00006
+      estimated_cost: this.total_tokens * 0.00006,
     };
   }
 }

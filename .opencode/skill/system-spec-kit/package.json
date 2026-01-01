@@ -12,7 +12,9 @@
   },
   "scripts": {
     "start": "npm run start --workspace=mcp_server",
+    "test": "npm run test:cli && npm run test:embeddings && npm run test:mcp",
     "test:mcp": "npm run test --workspace=mcp_server",
-    "test:cli": "node scripts/generate-context.js --help"
+    "test:cli": "node scripts/generate-context.js --help",
+    "test:embeddings": "node scripts/test-embeddings-factory.js"
   }
 }

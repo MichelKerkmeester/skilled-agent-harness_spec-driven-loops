@@ -11,7 +11,7 @@ Implementation plan defining technical approach, project structure, and executio
 ### Metadata
 - **Category**: Plan
 - **Tags**: [YOUR_VALUE_HERE: feature-name], [YOUR_VALUE_HERE: area]
-- **Priority**: [NEEDS CLARIFICATION: What is the implementation priority? (a) P0-critical - blocks launch, must ship (b) P1-high - core MVP, essential (c) P2-medium - important enhancement (d) P3-low - nice to have, can defer]
+- **Priority**: [NEEDS CLARIFICATION: What is the implementation priority? (a) P0-critical - HARD BLOCKER, must complete (b) P1-high - must complete OR user-approved deferral (c) P2-medium - can defer without approval]
 - **Branch**: `[FORMAT: ###-feature-name]`
 - **Date**: [FORMAT: YYYY-MM-DD]
 - **Spec**: [OPTIONAL: link to spec.md if exists]

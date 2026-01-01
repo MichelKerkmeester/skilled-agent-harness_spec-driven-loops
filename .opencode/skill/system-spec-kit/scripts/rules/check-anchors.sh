@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# RULE: CHECK-ANCHORS
+# ───────────────────────────────────────────────────────────────
+
 # Rule: ANCHORS_VALID
-# Checks that anchor pairs in memory files are properly matched
+# Severity: error
+# Description: Checks that anchor pairs in memory files are properly matched
+
+# ───────────────────────────────────────────────────────────────
+# 1. INITIALIZATION
+# ───────────────────────────────────────────────────────────────
 
 run_check() {
     local folder="$1"
@@ -13,21 +22,22 @@ run_check() {
     RULE_REMEDIATION=""
     
     local memory_dir="$folder/memory"
-    
-    # Early exit if no memory directory
+
+# ───────────────────────────────────────────────────────────────
+# 2. VALIDATION LOGIC
+# ───────────────────────────────────────────────────────────────
+
     if [[ ! -d "$memory_dir" ]]; then
         RULE_STATUS="pass"
         RULE_MESSAGE="No memory/ directory found (skipped)"
         return
     fi
     
-    # Find all markdown files in memory/
     local -a memory_files=()
     while IFS= read -r -d '' file; do
         memory_files+=("$file")
     done < <(find "$memory_dir" -maxdepth 1 -name "*.md" -type f -print0 2>/dev/null)
     
-    # No memory files found
     if [[ ${#memory_files[@]} -eq 0 ]]; then
         RULE_STATUS="pass"
         RULE_MESSAGE="No memory files found (skipped)"
@@ -42,26 +52,21 @@ run_check() {
         local filename
         filename=$(basename "$file")
         
-        # Use temp files to store anchor data (Bash 3.x compatible)
         local tmp_opens tmp_closes
         tmp_opens=$(mktemp)
         tmp_closes=$(mktemp)
         
-        # Extract opening anchors: <!-- ANCHOR:id --> with line numbers
-        # Format: "linenum id" per line
-        # Use || true to handle grep's exit code 1 when no matches (pipefail safe)
+        # Extract opening anchors: <!-- ANCHOR:id --> format: "linenum id"
         { grep -n '<!-- ANCHOR:[^/]' "$file" 2>/dev/null || true; } | \
             sed -n 's/^\([0-9]*\):.*ANCHOR:\([^[:space:]>]*\).*/\1 \2/p' > "$tmp_opens"
         
-        # Extract closing anchors: <!-- /ANCHOR:id --> with line numbers
+        # Extract closing anchors: <!-- /ANCHOR:id -->
         { grep -n '<!-- /ANCHOR:' "$file" 2>/dev/null || true; } | \
             sed -n 's/^\([0-9]*\):.*\/ANCHOR:\([^[:space:]>]*\).*/\1 \2/p' > "$tmp_closes"
         
-        # Get unique anchor IDs from both files
         local all_ids
         all_ids=$(awk '{print $2}' "$tmp_opens" "$tmp_closes" 2>/dev/null | sort -u)
         
-        # Check each anchor ID for mismatches
         local id
         for id in $all_ids; do
             [[ -z "$id" ]] && continue
@@ -81,8 +86,11 @@ run_check() {
         
         rm -f "$tmp_opens" "$tmp_closes"
     done
-    
-    # Set results based on findings
+
+# ───────────────────────────────────────────────────────────────
+# 3. RESULTS
+# ───────────────────────────────────────────────────────────────
+
     if [[ ${#errors[@]} -eq 0 ]]; then
         RULE_STATUS="pass"
         RULE_MESSAGE="All anchor pairs valid in $file_count memory file(s)"

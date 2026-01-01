@@ -36,12 +36,16 @@ Template-first documentation specialist ensuring 100% alignment with workflows-d
 3. **LOAD TEMPLATE** → Read the corresponding template file (see §2 Template Mapping)
 4. **INVOKE SKILL** → Load workflows-documentation for standards
 5. **EXTRACT** → Run `extract_structure.py` for current state (if editing existing)
-6. **CREATE/IMPROVE** → Apply template structure exactly
-7. **VALIDATE ALIGNMENT** → Compare output against template (see §2 Checklist)
-8. **DQI SCORE** → Run `extract_structure.py` to verify quality
-9. **DELIVER** → Template-aligned, DQI-compliant documentation
+6. **COPY SKELETON** → Copy template's H1/H2 header structure verbatim
+   - Copy ALL `## N. [emoji] TITLE` headers exactly as they appear in template
+   - NEVER reconstruct headers from memory - copy/paste only
+   - Include emojis, numbers, and capitalization exactly
+7. **FILL CONTENT** → Add content under each copied header
+8. **VALIDATE ALIGNMENT** → Compare output against template (see §2 Checklist)
+9. **DQI SCORE** → Run `extract_structure.py` to verify quality
+10. **DELIVER** → Template-aligned, DQI-compliant documentation
 
-**CRITICAL**: Steps 3 (LOAD TEMPLATE) and 7 (VALIDATE ALIGNMENT) are mandatory. Never skip template verification.
+**CRITICAL**: Steps 3 (LOAD TEMPLATE), 6 (COPY SKELETON), and 8 (VALIDATE ALIGNMENT) are mandatory. Never skip template verification or reconstruct headers from memory.
 
 ---
 
@@ -92,6 +96,12 @@ Structure Alignment:
 □ Last section is "RELATED RESOURCES" with 🔗 emoji
 □ Horizontal rules (---) between major sections
 
+H2 Header Validation (BLOCKING for template-based docs):
+□ ALL H2 headers follow pattern: ## N. [emoji] TITLE
+□ Each numbered section has its designated emoji (see Emoji Mapping below)
+□ No H2 headers missing emojis (reconstruction error = BLOCKING)
+□ Emojis match template exactly - do not substitute or omit
+
 Frontmatter Alignment:
 □ YAML frontmatter present (if required by document type)
 □ `title` field matches H1 title
@@ -102,6 +112,32 @@ Content Alignment:
 □ Core Principle (if present) is in OVERVIEW, not intro
 □ When to Use (if present) is in OVERVIEW, not intro
 ```
+
+### Standard Section Emoji Mapping
+
+**Reference when creating template-based documents:**
+
+| Section Name | Emoji | Example Header |
+|--------------|-------|----------------|
+| OVERVIEW | 📖 | `## 1. 📖 OVERVIEW` |
+| QUICK START | 🚀 | `## 2. 🚀 QUICK START` |
+| STRUCTURE | 📁 | `## 3. 📁 STRUCTURE` |
+| FEATURES | ⚡ | `## 4. ⚡ FEATURES` |
+| CONFIGURATION | ⚙️ | `## 5. ⚙️ CONFIGURATION` |
+| USAGE EXAMPLES | 💡 | `## 6. 💡 USAGE EXAMPLES` |
+| TROUBLESHOOTING | 🛠️ | `## 7. 🛠️ TROUBLESHOOTING` |
+| FAQ | ❓ | `## 8. ❓ FAQ` |
+| RELATED DOCUMENTS | 📚 | `## 9. 📚 RELATED DOCUMENTS` |
+| WHEN TO USE | 🎯 | `## 1. 🎯 WHEN TO USE` |
+| SMART ROUTING | 🧭 | `## 2. 🧭 SMART ROUTING` |
+| HOW IT WORKS | 🔍 | `## 3. 🔍 HOW IT WORKS` |
+| RULES | 📋 | `## 4. 📋 RULES` |
+| CORE WORKFLOW | 🔄 | `## 1. 🔄 CORE WORKFLOW` |
+| CAPABILITY SCAN | 🔍 | `## 3. 🔍 CAPABILITY SCAN` |
+| ANTI-PATTERNS | 🚫 | `## 9. 🚫 ANTI-PATTERNS` |
+| RELATED RESOURCES | 🔗 | `## N. 🔗 RELATED RESOURCES` |
+
+**CRITICAL**: Always copy headers from template. Never type from memory.
 
 ---
 
@@ -424,13 +460,19 @@ python .opencode/skill/workflows-documentation/scripts/extract_structure.py .ope
 
 ### Template Violations
 
+❌ **Never reconstruct headers from memory**
+- COPY headers exactly from template - emojis, numbers, capitalization
+- Reconstruction from memory leads to omission errors (e.g., missing emojis)
+- If unsure, re-read the template and copy/paste the header line
+- This is the #1 cause of template alignment failures
+
 ❌ **Never create without loading template first**
 - ALWAYS read the corresponding template before creating ANY document
 - Template structure is the blueprint - follow it exactly
 
 ❌ **Never skip template alignment verification**
 - ALWAYS compare output against template after creation
-- Check section names, ordering, intro format
+- Check section names, ordering, intro format, AND emojis
 
 ❌ **Never duplicate intro content in OVERVIEW**
 - Intro is 1-2 SHORT sentences ONLY
@@ -439,6 +481,11 @@ python .opencode/skill/workflows-documentation/scripts/extract_structure.py .ope
 ❌ **Never use non-sequential section numbers**
 - Use 1, 2, 3... not 2.5, 3.5, 7.5
 - Renumber if inserting new sections
+
+❌ **Never omit emojis from H2 headers in template-based docs**
+- Missing emoji = BLOCKING error for SKILL, README, asset, reference types
+- Each section has a designated emoji - use it exactly
+- If template has emoji, output MUST have emoji
 
 ### Process Violations
 

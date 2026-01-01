@@ -1,35 +1,41 @@
-#!/usr/bin/env node
-/**
- * Test script to verify embeddings factory
- * Tests provider creation and basic embedding generation
- */
+// ───────────────────────────────────────────────────────────────
+// TEST: EMBEDDINGS FACTORY VERIFICATION
+// ───────────────────────────────────────────────────────────────
 
 'use strict';
 
 const path = require('path');
 
-// Configure relative paths
-const libPath = path.join(__dirname, '../scripts/lib');
+/* ─────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+──────────────────────────────────────────────────────────────── */
 
-async function testFactory() {
+// Configure relative paths - embeddings consolidated to shared/ on 2024-12-31
+const lib_path = path.join(__dirname, '../shared');
+
+/* ─────────────────────────────────────────────────────────────
+   2. TEST FUNCTION
+──────────────────────────────────────────────────────────────── */
+
+async function test_factory() {
   console.log('🧪 Testing Embeddings Factory...\n');
 
   try {
-    // Test 1: Import modules
+    // Test 1: Import modules (from shared/ after 2024-12-31 consolidation)
     console.log('1️⃣ Importing modules...');
-    const { EmbeddingProfile } = require(path.join(libPath, 'embeddings/profile'));
-    const { HFLocalProvider } = require(path.join(libPath, 'embeddings/providers/hf-local'));
-    const { OpenAIProvider } = require(path.join(libPath, 'embeddings/providers/openai'));
-    const { createEmbeddingsProvider, getProviderInfo } = require(path.join(libPath, 'embeddings/factory'));
-    const embeddings = require(path.join(libPath, 'embeddings'));
+    const { EmbeddingProfile } = require(path.join(lib_path, 'embeddings/profile'));
+    const { HFLocalProvider } = require(path.join(lib_path, 'embeddings/providers/hf-local'));
+    const { OpenAIProvider } = require(path.join(lib_path, 'embeddings/providers/openai'));
+    const { createEmbeddingsProvider, getProviderInfo } = require(path.join(lib_path, 'embeddings/factory'));
+    const embeddings = require(path.join(lib_path, 'embeddings.js'));
     console.log('   ✅ Modules imported successfully\n');
 
     // Test 2: Verify provider configuration
     console.log('2️⃣ Verifying provider configuration...');
-    const providerInfo = getProviderInfo();
-    console.log('   Selected provider:', providerInfo.provider);
-    console.log('   Reason:', providerInfo.reason);
-    console.log('   Config:', JSON.stringify(providerInfo.config, null, 2));
+    const provider_info = getProviderInfo();
+    console.log('   Selected provider:', provider_info.provider);
+    console.log('   Reason:', provider_info.reason);
+    console.log('   Config:', JSON.stringify(provider_info.config, null, 2));
     console.log('   ✅ Configuration obtained\n');
 
     // Test 3: Create embedding profile
@@ -37,7 +43,7 @@ async function testFactory() {
     const profile = new EmbeddingProfile({
       provider: 'hf-local',
       model: 'nomic-ai/nomic-embed-text-v1.5',
-      dim: 768
+      dim: 768,
     });
     console.log('   Profile:', profile.toString());
     console.log('   Slug:', profile.slug);
@@ -63,8 +69,8 @@ async function testFactory() {
 
     // Test 6: Test HF provider creation (without warmup)
     console.log('6️⃣ Creating HF local provider (without warmup)...');
-    const hfProvider = new HFLocalProvider({ model: 'test-model', dim: 768 });
-    console.log('   Metadata:', JSON.stringify(hfProvider.getMetadata(), null, 2));
+    const hf_provider = new HFLocalProvider({ model: 'test-model', dim: 768 });
+    console.log('   Metadata:', JSON.stringify(hf_provider.getMetadata(), null, 2));
     console.log('   ✅ HF provider created\n');
 
     // Test 7: Test OpenAI provider creation (if key available)
@@ -72,8 +78,8 @@ async function testFactory() {
     if (process.env.OPENAI_API_KEY) {
       console.log('   OPENAI_API_KEY detected');
       try {
-        const openaiProvider = new OpenAIProvider();
-        console.log('   Metadata:', JSON.stringify(openaiProvider.getMetadata(), null, 2));
+        const openai_provider = new OpenAIProvider();
+        console.log('   Metadata:', JSON.stringify(openai_provider.getMetadata(), null, 2));
         console.log('   ✅ OpenAI provider created\n');
       } catch (error) {
         console.log('   ⚠️  Error creating provider:', error.message, '\n');
@@ -88,7 +94,7 @@ async function testFactory() {
     console.log('   - Compatible API: ✅ Maintained');
     console.log('   - Profiles: ✅ Working');
     console.log('   - Providers: ✅ Available');
-    console.log('   - Active provider:', providerInfo.provider);
+    console.log('   - Active provider:', provider_info.provider);
 
     return true;
 
@@ -99,7 +105,11 @@ async function testFactory() {
   }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   3. MAIN
+──────────────────────────────────────────────────────────────── */
+
 // Run tests
-testFactory().then(success => {
+test_factory().then(success => {
   process.exit(success ? 0 : 1);
 });

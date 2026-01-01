@@ -1,68 +1,63 @@
-/**
- * Hybrid Search Module - Combined vector + FTS5 search
- * @module lib/hybrid-search
- * @version 11.0.0
- */
-
+// ───────────────────────────────────────────────────────────────
+// MCP: HYBRID SEARCH
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
-const { fuseResults } = require('./rrf-fusion');
+const { fuse_results } = require('./rrf-fusion');
+
+/* ───────────────────────────────────────────────────────────────
+   1. MODULE STATE
+   ─────────────────────────────────────────────────────────────── */
 
 // Database reference
 let db = null;
-let vectorSearchFn = null;
+let vector_search_fn = null;
 
-/**
- * Initialize hybrid search
- * @param {Object} database - better-sqlite3 instance
- * @param {Function} vectorSearch - Vector search function from vector-index
- */
-function init(database, vectorSearch) {
+/* ───────────────────────────────────────────────────────────────
+   2. INITIALIZATION
+   ─────────────────────────────────────────────────────────────── */
+
+// Initialize hybrid search with database and vector search function
+function init(database, vector_search) {
   if (!database) {
     throw new Error('[hybrid-search] init() requires a valid database instance');
   }
-  if (typeof vectorSearch !== 'function') {
+  if (typeof vector_search !== 'function') {
     throw new Error('[hybrid-search] init() requires vectorSearch to be a function');
   }
   db = database;
-  vectorSearchFn = vectorSearch;
+  vector_search_fn = vector_search;
 }
 
-/**
- * Check if FTS5 table exists
- * @returns {boolean}
- */
-function isFtsAvailable() {
+/* ───────────────────────────────────────────────────────────────
+   3. FTS5 SEARCH
+   ─────────────────────────────────────────────────────────────── */
+
+// Check if FTS5 table exists
+function is_fts_available() {
   if (!db) return false;
   try {
-    db.prepare("SELECT 1 FROM memory_fts LIMIT 1").get();
+    db.prepare('SELECT 1 FROM memory_fts LIMIT 1').get();
     return true;
   } catch {
     return false;
   }
 }
 
-/**
- * FTS5-only search
- * @param {string} queryText - Search query
- * @param {Object} [options]
- * @param {number} [options.limit=10]
- * @param {string} [options.specFolder]
- * @returns {Array} FTS5 results
- */
-function ftsSearch(queryText, options = {}) {
-  const { limit = 10, specFolder = null } = options;
+// FTS5-only search
+function fts_search(query_text, options = {}) {
+  const { limit = 10, spec_folder = null } = options;
 
   // Escape FTS5 special characters and operators
   // P1-CODE-002: Added escaping for FTS5 boolean operators (AND, OR, NOT) and prefix operators (+, -)
-  const escapedQuery = queryText
+  const escaped_query = query_text
     .replace(/"/g, '""')
     .replace(/[*:()^{}[\]]/g, ' ')
     .replace(/\b(AND|OR|NOT)\b/gi, ' ')
     .replace(/[+-]/g, ' ')
     .trim();
 
-  if (!escapedQuery) return [];
+  if (!escaped_query) return [];
 
   const sql = `
     SELECT m.*,
@@ -70,15 +65,15 @@ function ftsSearch(queryText, options = {}) {
     FROM memory_fts f
     JOIN memory_index m ON f.rowid = m.id
     WHERE memory_fts MATCH ?
-    ${specFolder ? 'AND m.spec_folder = ?' : ''}
+    ${spec_folder ? 'AND m.spec_folder = ?' : ''}
     AND m.importance_tier != 'deprecated'
     ORDER BY rank
     LIMIT ?
   `;
 
-  const params = specFolder
-    ? [escapedQuery, specFolder, limit]
-    : [escapedQuery, limit];
+  const params = spec_folder
+    ? [escaped_query, spec_folder, limit]
+    : [escaped_query, limit];
 
   try {
     return db.prepare(sql).all(...params);
@@ -88,84 +83,83 @@ function ftsSearch(queryText, options = {}) {
   }
 }
 
-/**
- * Hybrid search combining vector and FTS5
- * @param {Buffer} queryEmbedding - Query vector
- * @param {string} queryText - Query text for FTS5
- * @param {Object} [options]
- * @param {number} [options.limit=10]
- * @param {string} [options.specFolder]
- * @param {boolean} [options.useDecay=true]
- * @returns {Array} Fused results
- */
-function hybridSearch(queryEmbedding, queryText, options = {}) {
+/* ───────────────────────────────────────────────────────────────
+   4. HYBRID SEARCH
+   ─────────────────────────────────────────────────────────────── */
+
+// Hybrid search combining vector and FTS5
+function hybrid_search(query_embedding, query_text, options = {}) {
   if (!db) {
     console.warn('[hybrid-search] Database not initialized. Call init() first.');
     return [];
   }
 
-  const { limit = 10, specFolder = null, useDecay = true } = options;
+  const { limit = 10, spec_folder = null, use_decay = true } = options;
 
   // Get vector results (2x limit for fusion headroom)
-  const vectorResults = vectorSearchFn ?
-    vectorSearchFn(queryEmbedding, { limit: limit * 2, specFolder, useDecay }) : [];
+  const vector_results = vector_search_fn ?
+    vector_search_fn(query_embedding, { limit: limit * 2, spec_folder, use_decay }) : [];
 
   // Get FTS5 results if available
-  const ftsResults = isFtsAvailable() ?
-    ftsSearch(queryText, { limit: limit * 2, specFolder }) : [];
+  const fts_results = is_fts_available() ?
+    fts_search(query_text, { limit: limit * 2, spec_folder }) : [];
 
   // If only one source has results, return those with RRF metadata for consistent shape
-  if (vectorResults.length === 0) {
-    return ftsResults.slice(0, limit).map((r, i) => ({
+  if (vector_results.length === 0) {
+    return fts_results.slice(0, limit).map((r, i) => ({
       ...r,
-      rrfScore: 1 / (60 + i + 1), // RRF score based on rank position
-      inVector: false,
-      inFts: true,
-      searchMethod: 'fts_only'
+      rrf_score: 1 / (60 + i + 1), // RRF score based on rank position
+      in_vector: false,
+      in_fts: true,
+      search_method: 'fts_only',
     }));
   }
-  if (ftsResults.length === 0) {
-    return vectorResults.slice(0, limit).map((r, i) => ({
+  if (fts_results.length === 0) {
+    return vector_results.slice(0, limit).map((r, i) => ({
       ...r,
-      rrfScore: 1 / (60 + i + 1), // RRF score based on rank position
-      inVector: true,
-      inFts: false,
-      searchMethod: 'vector_only'
+      rrf_score: 1 / (60 + i + 1), // RRF score based on rank position
+      in_vector: true,
+      in_fts: false,
+      search_method: 'vector_only',
     }));
   }
 
   // Fuse results using RRF
-  return fuseResults(vectorResults, ftsResults, { limit });
+  return fuse_results(vector_results, fts_results, { limit });
 }
 
-/**
- * Search with automatic fallback
- * Uses hybrid if both available, otherwise falls back to whichever is available
- * @param {Buffer} queryEmbedding - Query vector (can be null)
- * @param {string} queryText - Query text
- * @param {Object} options - Search options
- * @returns {Array} Search results
- */
-function searchWithFallback(queryEmbedding, queryText, options = {}) {
-  const hasVector = queryEmbedding && vectorSearchFn;
-  const hasFts = isFtsAvailable();
+// Search with automatic fallback
+// Uses hybrid if both available, otherwise falls back to whichever is available
+function search_with_fallback(query_embedding, query_text, options = {}) {
+  const has_vector = query_embedding && vector_search_fn;
+  const has_fts = is_fts_available();
 
-  if (hasVector && hasFts) {
-    return hybridSearch(queryEmbedding, queryText, options);
-  } else if (hasVector) {
-    return vectorSearchFn(queryEmbedding, options);
-  } else if (hasFts) {
-    return ftsSearch(queryText, options);
+  if (has_vector && has_fts) {
+    return hybrid_search(query_embedding, query_text, options);
+  } else if (has_vector) {
+    return vector_search_fn(query_embedding, options);
+  } else if (has_fts) {
+    return fts_search(query_text, options);
   }
 
   console.warn('[hybrid-search] No search method available');
   return [];
 }
 
+/* ───────────────────────────────────────────────────────────────
+   5. MODULE EXPORTS
+   ─────────────────────────────────────────────────────────────── */
+
 module.exports = {
   init,
-  isFtsAvailable,
-  ftsSearch,
-  hybridSearch,
-  searchWithFallback
+  is_fts_available,
+  fts_search,
+  hybrid_search,
+  search_with_fallback,
+
+  // Legacy aliases for backward compatibility
+  isFtsAvailable: is_fts_available,
+  ftsSearch: fts_search,
+  hybridSearch: hybrid_search,
+  searchWithFallback: search_with_fallback,
 };

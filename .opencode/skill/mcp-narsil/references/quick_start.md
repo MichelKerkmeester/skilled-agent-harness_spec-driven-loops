@@ -20,36 +20,35 @@ Get started with Narsil in 5 minutes covering prerequisites and first commands.
 | Narsil binary | MCP server | `narsil-mcp --version` |
 | Code Mode MCP | Tool orchestration | `search_tools()` returns results |
 
-#### Installation Location
-
-```
-/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/
-├── target/release/narsil-mcp  # Binary
-├── Cargo.toml                  # Build config
-└── src/                        # Source code
-```
-
 ---
 
-## 2. 🚀 INSTALLATION VERIFICATION
+## 2. 🚀 INSTALLATION
 
-### Step 1: Verify Binary
+### Installation Methods (Choose One)
+
+| Method | Command | Platform |
+|--------|---------|----------|
+| **Homebrew** | `brew tap postrv/narsil && brew install narsil-mcp` | macOS, Linux |
+| **Scoop** | `scoop bucket add narsil https://github.com/postrv/scoop-narsil && scoop install narsil-mcp` | Windows |
+| **npm** | `npm install -g narsil-mcp` | All |
+| **Cargo** | `cargo install narsil-mcp` | All (Rust) |
+| **AUR** | `yay -S narsil-mcp-bin` | Arch Linux |
+
+### Config Wizard (After Install)
 
 ```bash
-# Check binary exists
-ls -la "/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp"
+# Interactive setup with automatic editor detection
+narsil-mcp config init
 
-# Expected output:
-# -rwxr-xr-x  1 user  staff  52.8M  Dec 25 12:00 narsil-mcp
+# With neural search enabled (requires Voyage API key)
+narsil-mcp config init --neural
 ```
 
-### Step 2: Check Version
+### Verify Installation
 
 ```bash
-"/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/target/release/narsil-mcp" --version
-
-# Expected output:
-# narsil-mcp 1.0.0
+narsil-mcp --version
+# Expected: narsil-mcp X.X.X
 ```
 
 ### Step 3: Verify Code Mode Integration
