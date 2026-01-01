@@ -638,6 +638,19 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 `/search:code`, `/search:index`
 
 
+### Sub-Agent Delegation
+
+Several commands leverage sub-agents for complex tasks:
+
+| Command | Delegation | Purpose |
+|---------|------------|---------|
+| `/spec_kit:debug` | Model selection prompt | Routes debugging to specialized model (Gemini/Claude/GPT) |
+| `/spec_kit:handover` | Task tool dispatch | Delegates context gathering to sub-agent |
+| `/memory:save` | Task tool dispatch | Delegates memory extraction to sub-agent |
+
+**Model Selection (Debug):** When stuck 3+ attempts, `/spec_kit:debug` prompts you to select a model, then dispatches to that model via Task tool for fresh perspective.
+
+
 ---
 
 
@@ -717,18 +730,35 @@ export OPENROUTER_API_KEY="your-api-key"
 MCP servers extend your AI with specialized capabilities. This environment includes 4 pre-configured servers in `opencode.json`:
 
 - **Sequential Thinking**: Structured multi-step reasoning for complex problems
-  [Guide](.opencode/install_guides/MCP/MCP - Sequential Thinking.md)
+  [Guide](.opencode/install_guides/MCP - Sequential Thinking.md)
 
 - **Spec Kit Memory**: Local vector-based conversation memory (13 MCP tools)
-  [Guide](.opencode/install_guides/MCP/MCP - Spec Kit Memory.md)
+  [Guide](.opencode/install_guides/MCP - Spec Kit Memory.md)
 
 - **Code Mode**: External tool orchestration (Figma, GitHub, ClickUp, Chrome DevTools, Narsil, etc.)
-  [Guide](.opencode/install_guides/MCP/MCP - Code Mode.md)
+  [Guide](.opencode/install_guides/MCP - Code Mode.md)
 
 **Via Code Mode:**
 
 - **Narsil**: Deep code intelligence (semantic search, security scanning, call graphs, structural queries)
-  [Guide](.opencode/install_guides/MCP/MCP - Narsil.md)
+  [Guide](.opencode/install_guides/MCP - Narsil.md)
+
+### MCP Install Scripts
+
+Automated installation scripts for MCP servers. Located in `.opencode/install_guides/install_scripts/`:
+
+```bash
+# Install all MCP servers at once
+./install-all.sh
+
+# Or install individually
+./install-sequential-thinking.sh
+./install-spec-kit-memory.sh
+./install-code-mode.sh
+./install-narsil.sh
+```
+
+Each script handles dependencies, configuration, and validation automatically.
 
 
 ### Two Systems (Don't Confuse Them)
@@ -761,10 +791,17 @@ Skills are **natively supported** in OpenCode v1.0.190+. Auto-discovered from `.
 - [SET-UP - Skill Creation.md](.opencode/install_guides/SET-UP - Skill Creation.md): Create custom skills
 
 
-### Auth Plugins
+### Session Behavior Modes
 
-- **Antigravity Auth** (Google OAuth): [PLUGIN - Antigravity Auth.md](.opencode/install_guides/PLUGIN/PLUGIN - Antigravity Auth.md)
-- **OpenAI Codex Auth**: [PLUGIN - OpenAI Codex Auth.md](.opencode/install_guides/PLUGIN/PLUGIN - OpenAI Codex Auth.md)
+Commands support session-wide behavior flags that affect response verbosity:
+
+| Flag | Effect | Use When |
+|------|--------|----------|
+| `--brief` | Concise responses, minimal explanations | Quick tasks, experienced users |
+| `--verbose` | Detailed explanations, reasoning shown | Learning, complex debugging |
+| `--debug` | Maximum diagnostic output, all tool calls | Troubleshooting, verification |
+
+**Example:** `/spec_kit:implement --brief "add validation"` or `/spec_kit:debug --verbose`
 
 
 ---
@@ -784,7 +821,7 @@ Skills are **natively supported** in OpenCode v1.0.190+. Auto-discovered from `.
 ### Going Deeper
 
 - **Full installation**: [.opencode/install_guides/README.md](.opencode/install_guides/README.md)
-- **MCP server setup**: [.opencode/install_guides/MCP/](.opencode/install_guides/MCP/)
+- **MCP server setup**: [.opencode/install_guides/](.opencode/install_guides/) (includes install scripts)
 - **Creating skills**: [SET-UP - Skill Creation.md](.opencode/install_guides/SET-UP - Skill Creation.md)
 - **Agent configuration**: [SET-UP - AGENTS.md](.opencode/install_guides/SET-UP - AGENTS.md)
 

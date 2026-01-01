@@ -1108,12 +1108,17 @@ Comprehensive technical research workflow.
 
 Create session handover document for continuing work in new conversations.
 
+**Key Features:**
+- **Sub-agent delegation**: Dispatches context gathering to sub-agent via Task tool
+- **Two variants**: `:quick` (15-line summary) or `:full` (150-line comprehensive)
+- **Memory integration**: Auto-saves context via `generate-context.js`
+
 **Steps (4-5)**:
 1. Validate/detect spec folder
-2. Gather session context
+2. Dispatch sub-agent to gather session context
 3. Create handover.md document
 4. Display continuation instructions
-5. Analyze session via Sonnet agent (optional)
+5. Save context to memory (optional)
 
 #### `/spec_kit:debug` - Debug Delegation
 
@@ -1122,10 +1127,11 @@ Create session handover document for continuing work in new conversations.
 Delegates debugging tasks to a specialized sub-agent with full context handoff.
 
 **Key Features:**
-- **Always asks** which AI model to use (Claude/Gemini/Codex)
-- **Generates** structured debug report using `debug-delegation.md` template
-- **Dispatches** parallel sub-agent via Task tool
-- **Returns** root cause analysis, proposed fix, and verification steps
+- **Model selection prompt**: Always asks which AI model to use (Claude/Gemini/GPT)
+- **Structured debug report**: Generates report using `debug-delegation.md` template
+- **Sub-agent dispatch**: Routes debugging to selected model via Task tool
+- **Universal methodology**: Follows systematic debugging approach documented in `references/debugging/universal_debugging_methodology.md`
+- **Returns**: Root cause analysis, proposed fix, and verification steps
 
 **Auto-Suggestion (AI-Powered):**
 The AI monitors your session and proactively suggests this command when:
@@ -1142,9 +1148,9 @@ The AI monitors your session and proactively suggests this command when:
 
 **Steps (4-5)**:
 1. Validate/detect spec folder
-2. Ask user which AI model to use
+2. Ask user which AI model to use (Claude/Gemini/GPT)
 3. Generate debug-delegation.md with context
-4. Dispatch sub-agent via Task tool
+4. Dispatch sub-agent via Task tool with universal debugging methodology
 5. Return results with root cause and fix proposal
 
 ### Utility Commands (1)
@@ -1166,6 +1172,23 @@ Each core command supports two execution modes:
 ```bash
 /spec_kit:complete add user authentication :auto
 /spec_kit:plan refactor database layer :confirm
+```
+
+### Session Behavior Modes
+
+Commands also support session-wide behavior flags that affect response verbosity:
+
+| Flag | Effect | Use When |
+|------|--------|----------|
+| `--brief` | Concise responses, minimal explanations | Quick tasks, experienced users |
+| `--verbose` | Detailed explanations, reasoning shown | Learning, complex debugging |
+| `--debug` | Maximum diagnostic output, all tool calls | Troubleshooting, verification |
+
+**Examples**:
+```bash
+/spec_kit:implement --brief "add validation"
+/spec_kit:debug --verbose
+/spec_kit:research --debug "evaluate auth options"
 ```
 
 ### Workflow Decision Guide
@@ -1283,10 +1306,11 @@ specs/122-skill-standardization/
 > **V13.0 Change**: Memory saves MUST use `generate-context.js`. Manual file creation is blocked by Gate 5.
 
 Context preservation uses the `/memory:save` command or "save context" trigger phrase. The system:
-1. Runs `generate-context.js` to capture conversation context
-2. Generates ANCHOR markers for section-level retrieval (93% token savings)
-3. Auto-indexes into semantic memory database
-4. Embeds project state directly in memory file (no separate STATE.md)
+1. Dispatches sub-agent via Task tool to gather context (for complex sessions)
+2. Runs `generate-context.js` to capture conversation context
+3. Generates ANCHOR markers for section-level retrieval (93% token savings)
+4. Auto-indexes into semantic memory database
+5. Embeds project state directly in memory file (no separate STATE.md)
 
 ### 7.5 Folder Naming Convention
 
