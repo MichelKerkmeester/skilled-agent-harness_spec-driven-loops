@@ -35,9 +35,10 @@
               "voyage-code-2"
             ],
             "env": {
-              "VOYAGE_API_KEY": "pa-haUjP97YZVqR9BYTwpi0SZ6GrJ8PD17ZiWSnXim9R-X"
+              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
+              "OPENAI_API_KEY": "${OPENAI_API_KEY}"
             },
-            "_note": "Narsil with full toolset (76 tools). IMPORTANT: Code Mode does NOT support ${VAR} env substitution - hardcode the command path and API keys directly.",
+            "_note": "Narsil with full toolset (76 tools). IMPORTANT: Code Mode does NOT support ${VAR} env substitution - hardcode the command path and API keys directly. --http enables visualization UI at localhost:3000.",
             "_neural_backends": {
               "voyage": {
                 "backend": "api",
@@ -83,7 +84,7 @@
               "@modelcontextprotocol/server-github"
             ],
             "env": {
-              "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}"
+              "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
             }
           }
         }
@@ -102,7 +103,7 @@
               "mcp-figma"
             ],
             "env": {
-              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PAT}",
+              "FIGMA_PERSONAL_ACCESS_TOKEN": "${FIGMA_PERSONAL_ACCESS_TOKEN}",
               "NODE_ENV": "production"
             }
           }
@@ -159,23 +160,6 @@
             "args": [
               "chrome-devtools-mcp@latest",
               "--isolated=true"
-            ],
-            "env": {}
-          }
-        }
-      }
-    },
-    {
-      "name": "webflow",
-      "call_template_type": "mcp",
-      "config": {
-        "mcpServers": {
-          "webflow": {
-            "transport": "stdio",
-            "command": "npx",
-            "args": [
-              "mcp-remote",
-              "https://mcp.webflow.com/sse"
             ],
             "env": {}
           }
