@@ -146,8 +146,7 @@ The result? Six months from now, you'll know exactly why you made that architect
     ├── calculate-completeness.sh # Calculate completeness percentage
     ├── recommend-level.sh      # Recommend documentation level (1-3)
     ├── archive-spec.sh         # Archive completed spec folders
-    ├── validate-spec.sh        # Validation orchestrator (v2.0)
-    └── test-validation.sh      # Test runner for validation rules
+    └── validate-spec.sh        # Validation orchestrator (v2.0)
 ```
 
 ### Skill Resources (system-spec-kit)
@@ -178,8 +177,9 @@ The result? Six months from now, you'll know exactly why you made that architect
 ├── constitutional/
 │   └── gate-enforcement.md               # Always-surface rules for gates
 └── scripts/
-    ├── generate-context.js               # Memory file generation (MANDATORY)
-    └── ...                               # Other spec-kit scripts
+    ├── generate-context.js               # Memory file generation (modular: 30 modules)
+    ├── core/, extractors/, utils/...     # JS modules (see scripts/README.md)
+    └── *.sh                              # Shell scripts for validation
 ```
 
 ### Spec Folder Structure (Example)
@@ -957,10 +957,10 @@ The test suite validates that all rules correctly detect issues and pass valid s
 **Running Tests**:
 ```bash
 # Run all validation tests
-.opencode/skill/system-spec-kit/scripts/test-validation.sh
+.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh
 
 # Run with verbose output
-.opencode/skill/system-spec-kit/scripts/test-validation.sh --verbose
+.opencode/skill/system-spec-kit/scripts/tests/test-validation.sh --verbose
 ```
 
 **Test Fixture Structure**:
@@ -1000,12 +1000,12 @@ cp templates/tasks.md test-fixtures/my-test-case/
 # 3. Modify to create test condition
 # (e.g., leave placeholder unfilled, remove required section)
 
-# 4. Add expected outcome to test-validation.sh
+# 4. Add expected outcome to tests/test-validation.sh
 ```
 
 **Test Output Example**:
 ```bash
-$ ./test-validation.sh
+$ ./tests/test-validation.sh
 
 ═══════════════════════════════════════════════════════════════
   Spec Kit Validation Test Suite

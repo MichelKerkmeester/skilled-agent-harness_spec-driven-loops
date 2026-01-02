@@ -340,6 +340,7 @@ function classify_diagram_pattern(ascii_art) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   generate_conversation_flowchart,
   generate_workflow_flowchart,
   detect_workflow_pattern,
@@ -347,6 +348,15 @@ module.exports = {
   build_phase_details,
   extract_flowchart_features,
   get_pattern_use_cases,
+  // CamelCase aliases (for generate-context.js compatibility)
+  generateConversationFlowchart: generate_conversation_flowchart,
+  generateWorkflowFlowchart: generate_workflow_flowchart,
+  detectWorkflowPattern: detect_workflow_pattern,
+  classifyDiagramPattern: classify_diagram_pattern,
+  buildPhaseDetails: build_phase_details,
+  extractFlowchartFeatures: extract_flowchart_features,
+  getPatternUseCases: get_pattern_use_cases,
+  // Constants
   PATTERNS,
   DIAGRAM_PATTERNS,
   COMPLEXITY,

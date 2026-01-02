@@ -155,6 +155,7 @@ function get_current_date() {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   generate_anchor_id,
   generate_semantic_slug,
   generate_short_hash,
@@ -164,6 +165,16 @@ module.exports = {
   slugify,
   extract_spec_number,
   get_current_date,
+  // CamelCase aliases (for generate-context.js compatibility)
+  generateAnchorId: generate_anchor_id,
+  generateSemanticSlug: generate_semantic_slug,
+  generateShortHash: generate_short_hash,
+  categorizeSection: categorize_section,
+  validateAnchorUniqueness: validate_anchor_uniqueness,
+  extractKeywords: extract_keywords,
+  extractSpecNumber: extract_spec_number,
+  getCurrentDate: get_current_date,
+  // Constants
   STOP_WORDS,
   ACTION_VERBS,
 };

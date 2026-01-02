@@ -387,6 +387,7 @@ function mark_as_simulated(metadata) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   create_session_data,
   create_conversation_data,
   create_decision_data,
@@ -399,4 +400,17 @@ module.exports = {
   generate_session_id,
   add_simulation_warning,
   mark_as_simulated,
+  // CamelCase aliases (for generate-context.js compatibility)
+  createSessionData: create_session_data,
+  createConversationData: create_conversation_data,
+  createDecisionData: create_decision_data,
+  createDiagramData: create_diagram_data,
+  createSimulationPhases: create_simulation_phases,
+  createSimulationFlowchart: create_simulation_flowchart,
+  createFullSimulation: create_full_simulation,
+  requiresSimulation: requires_simulation,
+  formatTimestamp: format_timestamp,
+  generateSessionId: generate_session_id,
+  addSimulationWarning: add_simulation_warning,
+  markAsSimulated: mark_as_simulated,
 };

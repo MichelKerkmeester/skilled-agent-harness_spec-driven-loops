@@ -176,7 +176,7 @@ User Request
 
 | Script | Purpose |
 |--------|---------|
-| `generate-context.js` | Generate memory files from conversation |
+| `generate-context.js` | Generate memory files from conversation (modular: 30 modules in 6 dirs) |
 | `validate-spec.sh` | Validate spec folder structure |
 | `create-spec-folder.sh` | Create new spec folders with templates |
 | `check-completion.sh` | Verify checklist completion status |
@@ -186,11 +186,12 @@ User Request
 | `check-prerequisites.sh` | Checks prerequisites before implementation |
 | `common.sh` | Shared shell utilities |
 | `setup.sh` | Initial setup script |
-| `test-validation.sh` | Validation test runner |
 | `calculate-completeness.sh` | Calculates spec completeness percentage |
 | `package.json` | Node.js dependencies |
 | `README.md` | Scripts documentation |
-| `test-embeddings-factory.js` | Test embedding provider configuration |
+| `tests/test-validation.sh` | Validation test runner |
+| `tests/test-embeddings-factory.js` | Test embedding provider configuration |
+| `tests/test-bug-fixes.js` | Bug fix regression tests |
 
 **References (`references/`):**
 
@@ -229,6 +230,8 @@ User Request
 |------|-------|-------------|
 | **Direct** | `node generate-context.js specs/007-feature/` | Auto-captures context from OpenCode session |
 | **JSON** | `node generate-context.js /tmp/context-data.json` | Manual context injection via JSON file |
+
+**Architecture:** The script uses a modular architecture (145-line CLI entry point + 30 modules across 6 directories: `core/`, `extractors/`, `utils/`, `renderers/`, `spec-folder/`, `loaders/`). See [scripts/README.md](./scripts/README.md) for module details and extension points.
 
 **JSON mode documentation:** See [save_workflow.md](./references/memory/save_workflow.md) for full schema and examples.
 

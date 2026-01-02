@@ -412,6 +412,7 @@ function build_exchanges(prompts, messages, responses, limit) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   get_recent_prompts,
   get_session_responses,
   get_tool_executions,
@@ -426,4 +427,17 @@ module.exports = {
   read_jsonl_tail,
   OPENCODE_STORAGE,
   PROMPT_HISTORY,
+  // CamelCase aliases (for generate-context.js compatibility)
+  getRecentPrompts: get_recent_prompts,
+  getSessionResponses: get_session_responses,
+  getToolExecutions: get_tool_executions,
+  captureConversation: capture_conversation,
+  getProjectId: get_project_id,
+  getRecentSessions: get_recent_sessions,
+  getCurrentSession: get_current_session,
+  getSessionMessages: get_session_messages,
+  getMessageParts: get_message_parts,
+  pathExists: path_exists,
+  readJsonSafe: read_json_safe,
+  readJsonlTail: read_jsonl_tail,
 };

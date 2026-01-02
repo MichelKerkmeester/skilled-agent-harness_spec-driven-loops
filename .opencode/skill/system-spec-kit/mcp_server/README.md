@@ -370,7 +370,7 @@ Contains:
 
 ## 6. 🚀 INSTALLATION
 
-See [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) for detailed installation steps, platform-specific instructions, and configuration options.
+See [MCP - Spec Kit Memory Install Guide](../../../install_guides/MCP%20-%20Spec%20Kit%20Memory.md) for detailed installation steps, platform-specific instructions, and configuration options.
 
 ---
 
@@ -401,7 +401,7 @@ See [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) for detailed installation steps, plat
 **Symptom:** `Invalid anchor format` or `Missing required fields`
 **Solution:**
 - Ensure memory files use ANCHOR format: `<!-- ANCHOR: id -->`
-- Run validation: `node scripts/generate-context.js --validate`
+- Run validation: `node .opencode/skill/system-spec-kit/scripts/generate-context.js --validate`
 
 ### Diagnostic Commands
 
@@ -426,7 +426,7 @@ memory_index_scan({ force: true })
 | ------------- | -------------------- | ------------------------------------------ |
 | Skill README  | `../README.md`       | Complete skill documentation (2000+ lines) |
 | SKILL.md      | `../SKILL.md`        | Workflow instructions for AI agents        |
-| Install Guide | `./INSTALL_GUIDE.md` | Detailed installation steps                |
+| Install Guide | `../../../install_guides/MCP - Spec Kit Memory.md` | Detailed installation steps |
 
 ### Reference Files
 

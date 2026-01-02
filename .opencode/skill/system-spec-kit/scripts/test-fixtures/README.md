@@ -16,7 +16,7 @@ Run validation against a fixture:
 Run all fixtures with expected results:
 
 ```bash
-./test-validation.sh
+./tests/test-validation.sh
 ```
 
 
@@ -32,6 +32,6 @@ Run all fixtures with expected results:
 ## 6. 🔗 RELATED RESOURCES
 
 - **Validation Script**: `../validate-spec.sh`
-- **Test Runner**: `../test-validation.sh`
+- **Test Runner**: `../tests/test-validation.sh`
 - **SpecKit SKILL.md**: `../../SKILL.md`
 - **Templates**: `../../templates/`

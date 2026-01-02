@@ -8,6 +8,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## 1.0.2.x Series
 
+### [**1.0.2.6**] - 2026-01-02
+
+Major refactoring release for generate-context.js with 97% code reduction in the CLI entry point. Modularizes the ~4,800-line monolith into 30 focused modules across 6 directories for improved maintainability. Fixes 6 broken documentation paths and adds install guide symlinks.
+
+#### Changed
+- **generate-context.js modularization**: Refactored from 4,800-line monolith to 142-line CLI entry point + 30 modules in: `core/` · `extractors/` · `utils/` · `renderers/` · `spec-folder/` · `loaders/`
+- Test scripts moved to `scripts/tests/` folder: `test-bug-fixes.js` · `test-embeddings-factory.js` · `test-validation.sh`
+- 31 files standardized with workflows-code style headers (3-line box-drawing format)
+- ~1,000 lines of JSDoc blocks and inline comments removed for cleaner code
+- AGENTS.md EXECUTION section now uses `[script]` placeholder pattern with full path reference
+
+#### Fixed
+- AGENTS.md missing full script path in MEMORY SAVE RULE execution examples
+- `mcp_server/README.md` line 404: relative path `scripts/generate-context.js` → full path
+- `references/structure/folder_routing.md`: 5 short path references updated to full paths
+- `shared/embeddings/README.md`: broken relative link `../../generate-context.js` → `../../scripts/generate-context.js`
+- `shared/embeddings/README.md`: misleading label `lib/README.md` → `shared/README.md`
+
+#### Added
+- INDEXING NOTE section in AGENTS.md explaining MCP server database connection behavior
+- `INSTALL_GUIDE.md` symlinks in `mcp_server/` folders pointing to install guides
+- Numbered section headers in all 31 modular JavaScript files
+
+#### Documentation
+- 20-agent parallel scan verified alignment across all SpecKit documentation
+- scripts/README.md updated with modular architecture details (tests/ folder structure)
+- SKILL.md updated with 30-module architecture description
+
+---
+
 ### [**1.0.2.5**] - 2026-01-02
 
 Security and documentation release fixing hardcoded API key exposure in `.utcp_config.json` and broken install script configuration. Adds comprehensive documentation for Narsil's three neural embedding backends (Voyage AI, OpenAI, Local ONNX) and HTTP server visualization setup.

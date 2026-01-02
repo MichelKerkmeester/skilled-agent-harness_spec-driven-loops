@@ -159,7 +159,7 @@ Planned but not yet implemented:
 
 ### Scripts
 - `../../scripts/validate-spec.sh` - Main validation script
-- `../../scripts/test-validation.sh` - Test suite for validation
+- `../../scripts/tests/test-validation.sh` - Test suite for validation
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator

@@ -375,6 +375,7 @@ function filter_content(prompts, options = {}) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   create_filter_pipeline,
   filter_content,
   get_filter_stats,
@@ -386,4 +387,15 @@ module.exports = {
   calculate_similarity,
   calculate_quality_score,
   NOISE_PATTERNS,
+  // CamelCase aliases (for generate-context.js compatibility)
+  createFilterPipeline: create_filter_pipeline,
+  filterContent: filter_content,
+  getFilterStats: get_filter_stats,
+  resetStats: reset_stats,
+  isNoiseContent: is_noise_content,
+  stripNoiseWrappers: strip_noise_wrappers,
+  meetsMinimumRequirements: meets_minimum_requirements,
+  generateContentHash: generate_content_hash,
+  calculateSimilarity: calculate_similarity,
+  calculateQualityScore: calculate_quality_score,
 };

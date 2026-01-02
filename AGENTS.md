@@ -143,11 +143,15 @@
 │   1. If NO folder argument → HARD BLOCK → List folders → Ask user           │
 │   2. If folder provided → Validate alignment with conversation topic        │
 │                                                                             │
-│ EXECUTION:                                                                  │
+│ EXECUTION (script: .opencode/skill/system-spec-kit/scripts/generate-context.js):
 │   Mode 1 (JSON): Write JSON to /tmp/save-context-data.json, pass as arg     │
-│            `node generate-context.js /tmp/save-context-data.json`           │
+│            node [script] /tmp/save-context-data.json                        │
 │   Mode 2 (Direct): Pass spec folder path directly                           │
-│            `node generate-context.js specs/005-memory`                      │
+│            node [script] specs/005-memory                                   │
+│                                                                             │
+│ INDEXING NOTE: Script reports "Indexed as memory #X" but running MCP server │
+│   may not see it immediately (separate DB connection). For immediate MCP    │
+│   visibility: call memory_index_scan({ specFolder }) or memory_save()       │
 │                                                                             │
 │ VIOLATION: Write tool on memory/ path → DELETE & re-run via script          │
 └─────────────────────────────────────────────────────────────────────────────┘

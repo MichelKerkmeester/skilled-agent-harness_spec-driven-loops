@@ -51,7 +51,9 @@ The `scripts/` directory contains shell scripts for spec folder management and v
 | Category | Count | Details |
 |----------|-------|---------|
 | Shell Scripts | 10 | Core management and validation |
-| JavaScript Scripts | 3 | Memory generation and utilities |
+| JavaScript Entry Points | 2 | generate-context.js, cleanup-orphaned-vectors.js |
+| Test Scripts | 3 | tests/test-bug-fixes.js, tests/test-embeddings-factory.js, tests/test-validation.sh |
+| generate-context Modules | 30 | Modular architecture across 6 directories (core/, extractors/, utils/, renderers/, spec-folder/, loaders/) |
 | Validation Rules | 9 | Modular rule scripts in `rules/` |
 | Library Files | 13 | Shell (3) + JavaScript (10) in `lib/` |
 | Documentation Levels | 3 | L1, L2, L3 with progressive requirements |
@@ -131,13 +133,57 @@ scripts/
 │   ├── recommend-level.sh        # Recommend documentation level
 │   ├── archive-spec.sh           # Archive completed specs
 │   ├── setup.sh                  # Initial setup script
-│   ├── common.sh                 # Repository & branch utilities
+│   └── common.sh                 # Repository & branch utilities
+│
+├── generate-context.js           # CLI entry point (145 lines) - routes to modular architecture
+├── cleanup-orphaned-vectors.js   # Database cleanup utility
+│
+├── tests/                        # Test scripts (3 files)
+│   ├── test-bug-fixes.js         # Bug fix regression tests
+│   ├── test-embeddings-factory.js # Test embedding providers
 │   └── test-validation.sh        # Test suite for validation
 │
-├── JavaScript Scripts (3)
-│   ├── generate-context.js       # Memory file generation (ANCHOR format)
-│   ├── test-embeddings-factory.js # Test embedding providers
-│   └── cleanup-orphaned-vectors.js # Database cleanup utility
+├── core/                         # Workflow orchestration (3 files)
+│   ├── index.js                  # Module exports
+│   ├── config.js                 # Configuration constants
+│   └── workflow.js               # Main orchestration logic
+│
+├── extractors/                   # Data extraction modules (9 files)
+│   ├── index.js                  # Module exports
+│   ├── file-extractor.js         # File artifact extraction
+│   ├── diagram-extractor.js      # ASCII diagram generation
+│   ├── decision-tree-generator.js # Decision tree rendering
+│   ├── conversation-extractor.js # Conversation summarization
+│   ├── decision-extractor.js     # Decision/rationale extraction
+│   ├── session-extractor.js      # Session metadata extraction
+│   ├── collect-session-data.js   # Session data aggregation
+│   └── implementation-guide-extractor.js # Implementation guidance
+│
+├── utils/                        # Utility functions (10 files)
+│   ├── index.js                  # Module exports
+│   ├── logger.js                 # Structured logging
+│   ├── path-utils.js             # Path resolution
+│   ├── data-validator.js         # Data validation
+│   ├── input-normalizer.js       # Input normalization
+│   ├── prompt-utils.js           # Prompt building
+│   ├── file-helpers.js           # File operations
+│   ├── tool-detection.js         # Tool usage detection
+│   ├── message-utils.js          # Message processing
+│   └── validation-utils.js       # Validation helpers
+│
+├── renderers/                    # Template rendering (2 files)
+│   ├── index.js                  # Module exports
+│   └── template-renderer.js      # Mustache template rendering
+│
+├── spec-folder/                  # Spec folder handling (4 files)
+│   ├── index.js                  # Module exports
+│   ├── folder-detector.js        # Spec folder detection
+│   ├── alignment-validator.js    # Content alignment validation
+│   └── directory-setup.js        # Directory creation
+│
+├── loaders/                      # Data loading (2 files)
+│   ├── index.js                  # Module exports
+│   └── data-loader.js            # JSON/fallback data loading
 │
 ├── rules/                        # Modular validation rules (9)
 │   ├── check-files.sh            # FILE_EXISTS rule
@@ -340,7 +386,7 @@ P2: 60% (6/10)
 
 ### JavaScript Scripts
 
-#### generate-context.js
+#### generate-context.js (Modular Architecture)
 
 **Purpose**: Generate memory files from conversation data with ANCHOR format for Spec Kit Memory indexing
 
@@ -349,6 +395,18 @@ P2: 60% (6/10)
 | **Input** | JSON data file OR spec folder path |
 | **Output** | Memory file in `specs/###-feature/memory/` |
 | **Format** | ANCHOR-tagged sections for selective retrieval |
+| **Architecture** | 145-line CLI entry point + 30 modules across 6 directories |
+
+**Modular Structure** (refactored from 4,837-line monolith):
+
+| Directory | Purpose | Modules |
+|-----------|---------|---------|
+| `core/` | Configuration and workflow orchestration | config.js, workflow.js |
+| `extractors/` | Data extraction (files, decisions, sessions) | 9 modules |
+| `utils/` | Utility functions (logging, paths, validation) | 10 modules |
+| `renderers/` | Template rendering (Mustache) | template-renderer.js |
+| `spec-folder/` | Spec folder detection and validation | 4 modules |
+| `loaders/` | Data loading with fallback logic | data-loader.js |
 
 **Usage Modes**:
 ```bash
@@ -362,7 +420,12 @@ node generate-context.js specs/007-feature/
 node generate-context.js --help
 ```
 
-#### test-embeddings-factory.js
+**Extension Points**:
+- Add new extractors: Create module in `extractors/`, export via `extractors/index.js`
+- Add new utilities: Create module in `utils/`, export via `utils/index.js`
+- Modify workflow: Edit `core/workflow.js` (main orchestration)
+
+#### tests/test-embeddings-factory.js
 
 **Purpose**: Test and verify embedding provider configuration
 
@@ -371,6 +434,26 @@ node generate-context.js --help
 | **Input** | None |
 | **Output** | Provider status and configuration |
 | **Tests** | Module imports, provider creation, API verification |
+
+#### tests/test-bug-fixes.js
+
+**Purpose**: Regression tests for bug fixes in generate-context.js modular architecture
+
+| Aspect | Details |
+|--------|---------|
+| **Input** | None |
+| **Output** | Pass/fail results for 27 test cases |
+| **Tests** | Memory validation, embedding, transactions, error handling |
+
+#### tests/test-validation.sh
+
+**Purpose**: Test suite for validate-spec.sh against fixture spec folders
+
+| Aspect | Details |
+|--------|---------|
+| **Input** | Options: -v (verbose), -t NAME (single test), -c CATEGORY, -l (list) |
+| **Output** | Test pass/fail results, coverage report |
+| **Tests** | Validates all test fixtures against expected outcomes |
 
 #### cleanup-orphaned-vectors.js
 

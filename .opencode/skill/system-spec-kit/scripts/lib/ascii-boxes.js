@@ -145,6 +145,7 @@ function format_follow_up_box(followup) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   BOX,
   pad_text,
   format_decision_header,
@@ -152,4 +153,11 @@ module.exports = {
   format_chosen_box,
   format_caveats_box,
   format_follow_up_box,
+  // CamelCase aliases (for generate-context.js compatibility)
+  padText: pad_text,
+  formatDecisionHeader: format_decision_header,
+  formatOptionBox: format_option_box,
+  formatChosenBox: format_chosen_box,
+  formatCaveatsBox: format_caveats_box,
+  formatFollowUpBox: format_follow_up_box,
 };

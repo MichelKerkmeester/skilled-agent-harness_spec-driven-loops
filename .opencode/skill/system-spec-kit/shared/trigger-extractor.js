@@ -620,6 +620,7 @@ function extract_trigger_phrases_with_stats(text) {
    ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   extract_trigger_phrases,
   extract_trigger_phrases_with_stats,
   remove_markdown,
@@ -641,4 +642,19 @@ module.exports = {
   STOP_WORDS_ARTIFACTS,
   PROBLEM_INDICATORS,
   STATE_KEYWORDS,
+  // CamelCase aliases (for generate-context.js compatibility)
+  extractTriggerPhrases: extract_trigger_phrases,
+  extractTriggerPhrasesWithStats: extract_trigger_phrases_with_stats,
+  removeMarkdown: remove_markdown,
+  filterStopWords: filter_stop_words,
+  extractNgrams: extract_ngrams,
+  countNgrams: count_ngrams,
+  scoreNgrams: score_ngrams,
+  deduplicateSubstrings: deduplicate_substrings,
+  filterTechStopWords: filter_tech_stop_words,
+  extractProblemTerms: extract_problem_terms,
+  extractTechnicalTerms: extract_technical_terms,
+  extractDecisionTerms: extract_decision_terms,
+  extractActionTerms: extract_action_terms,
+  extractCompoundNouns: extract_compound_nouns,
 };

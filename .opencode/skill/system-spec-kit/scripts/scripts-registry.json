@@ -90,7 +90,7 @@
     },
     {
       "name": "test-validation",
-      "path": "scripts/test-validation.sh",
+      "path": "scripts/tests/test-validation.sh",
       "type": "bash",
       "description": "Test runner for validate-spec.sh against fixture spec folders",
       "trigger": ["test validation", "run tests"],
@@ -201,7 +201,7 @@
     },
     {
       "name": "test-embeddings-factory",
-      "path": "scripts/test-embeddings-factory.js",
+      "path": "scripts/tests/test-embeddings-factory.js",
       "type": "node",
       "description": "Test and verify embedding provider configuration",
       "trigger": ["test embeddings", "verify provider"],

@@ -572,6 +572,7 @@ function format_summary_as_markdown(summary) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   MESSAGE_TYPES,
   classify_message,
   classify_messages,
@@ -579,4 +580,11 @@ module.exports = {
   extract_decisions,
   generate_implementation_summary,
   format_summary_as_markdown,
+  // CamelCase aliases (for generate-context.js compatibility)
+  classifyMessage: classify_message,
+  classifyMessages: classify_messages,
+  extractFileChanges: extract_file_changes,
+  extractDecisions: extract_decisions,
+  generateImplementationSummary: generate_implementation_summary,
+  formatSummaryAsMarkdown: format_summary_as_markdown,
 };

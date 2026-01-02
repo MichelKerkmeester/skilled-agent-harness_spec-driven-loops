@@ -329,6 +329,7 @@ const TASK_PREFIX = {
    ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Snake_case exports (original)
   generate_embedding,
   generate_embedding_with_timeout,
   generate_batch_embeddings,
@@ -357,4 +358,25 @@ module.exports = {
   RESERVED_OVERVIEW,
   RESERVED_OUTCOME,
   MIN_SECTION_LENGTH,
+  // CamelCase aliases (for generate-context.js compatibility)
+  generateEmbedding: generate_embedding,
+  generateEmbeddingWithTimeout: generate_embedding_with_timeout,
+  generateBatchEmbeddings: generate_batch_embeddings,
+  generateDocumentEmbedding: generate_document_embedding,
+  generateQueryEmbedding: generate_query_embedding,
+  generateClusteringEmbedding: generate_clustering_embedding,
+  semanticChunk: semantic_chunk,
+  getEmbeddingDimension: get_embedding_dimension,
+  getModelName: get_model_name,
+  isModelLoaded: is_model_loaded,
+  getModelLoadTime: get_model_load_time,
+  getCurrentDevice: get_current_device,
+  getOptimalDevice: get_optimal_device,
+  getTaskPrefix: get_task_prefix,
+  preWarmModel: pre_warm_model,
+  getEmbeddingProfile: get_embedding_profile,
+  getEmbeddingProfileAsync: get_embedding_profile_async,
+  getProviderMetadata: get_provider_metadata,
+  clearEmbeddingCache: clear_embedding_cache,
+  getEmbeddingCacheStats: get_embedding_cache_stats,
 };

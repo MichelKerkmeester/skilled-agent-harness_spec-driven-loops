@@ -10,6 +10,8 @@ allowed-tools: Bash, code_mode_call_tool_chain
 EXECUTE QUICK VALIDATION:
 ├─ SEARCH REDIRECT? (query-like input: "how does", "find", "what is")
 │   └─ YES → Forward to /search:code
+├─ HTTP SERVER CHECK (if "ui", "viz", "visual", "frontend", "http", "server")
+│   └─ Run Section 14: HTTP Server Auto-Start
 ├─ CLASSIFY OPERATION: STATUS | REINDEX | REPOS | VALIDATE | HEALTH
 └─ PROCEED
 ```
@@ -41,6 +43,7 @@ action: Route to appropriate index management tool
 | `repos`           | List      | `/search:index repos`      |
 | `validate <path>` | Validate  | `/search:index validate .` |
 | `health`          | Health    | `/search:index health`     |
+| `ui`              | Viz UI    | `/search:index ui`         |
 
 **Code Search:** Use `/search:code` for semantic, structural, security, analysis.
 
@@ -61,7 +64,8 @@ $ARGUMENTS
         ├─► "reindex" | "rebuild" | "refresh" → REINDEX MODE
         ├─► "repos" | "list" | "repositories" → REPOS MODE
         ├─► "validate" | "check" → VALIDATE MODE
-        └─► "health" | "diag" | "diagnostic" → HEALTH MODE
+        ├─► "health" | "diag" | "diagnostic" → HEALTH MODE
+        └─► "ui" | "viz" | "visual" | "frontend" | "http" | "server" → HTTP SERVER MODE (Section 14)
 ```
 
 ---
@@ -385,20 +389,125 @@ Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, 
 
 ---
 
-## 12. 📌 QUICK REFERENCE
+## 12. 🌐 HTTP SERVER MODE (Visualization UI)
 
-| Command                    | Result              |
-| -------------------------- | ------------------- |
-| `/search:index`            | Dashboard           |
-| `/search:index status`     | Detailed statistics |
-| `/search:index reindex`    | Force reindex       |
-| `/search:index repos`      | List repositories   |
-| `/search:index validate .` | Validate path       |
-| `/search:index health`     | Health check        |
+**Trigger:** `ui`, `viz`, `visual`, `frontend`, `http`, `server`
+
+**Purpose:** Start Narsil's visualization frontend for graphical index exploration.
+
+### Auto-Start Workflow
+
+```
+1. CHECK IF SERVERS RUNNING:
+   - Backend: lsof -i :3000 | grep LISTEN
+   - Frontend: lsof -i :5173 | grep LISTEN
+
+2. IF BOTH RUNNING:
+   - Display "Already running" message
+   - Open browser to http://localhost:5173
+
+3. IF BACKEND OFFLINE (port 3000 not listening):
+   - Start backend with stdin kept open:
+     (tail -f /dev/null | /Users/michelkerkmeester/bin/narsil-mcp \
+       --repos . --index-path .narsil-index \
+       --git --call-graph --persist \
+       --http --http-port 3000 > /tmp/narsil-http.log 2>&1) &
+   - Wait 2 seconds, verify port 3000 listening
+
+4. IF FRONTEND OFFLINE (port 5173 not listening):
+   - Start frontend:
+     cd "/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/frontend" && \
+       npm run dev > /tmp/narsil-frontend.log 2>&1 &
+   - Wait 3 seconds, verify port 5173 listening
+
+5. OPEN BROWSER:
+   - open http://localhost:5173
+
+6. DISPLAY STATUS
+```
+
+### Bash Commands (Execute in Order)
+
+```bash
+# Step 1: Check current status
+BACKEND_RUNNING=$(lsof -i :3000 2>/dev/null | grep LISTEN | wc -l)
+FRONTEND_RUNNING=$(lsof -i :5173 2>/dev/null | grep LISTEN | wc -l)
+
+# Step 2: Start backend if needed
+if [ "$BACKEND_RUNNING" -eq 0 ]; then
+  (tail -f /dev/null | /Users/michelkerkmeester/bin/narsil-mcp \
+    --repos . --index-path .narsil-index \
+    --git --call-graph --persist \
+    --http --http-port 3000 > /tmp/narsil-http.log 2>&1) &
+  sleep 2
+fi
+
+# Step 3: Start frontend if needed  
+if [ "$FRONTEND_RUNNING" -eq 0 ]; then
+  cd "/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/frontend" && \
+    npm run dev > /tmp/narsil-frontend.log 2>&1 &
+  sleep 3
+fi
+
+# Step 4: Open browser
+open http://localhost:5173
+```
+
+### Output Display
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ NARSIL VISUALIZATION UI                                         │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│ Backend:   <Started|Already Running> → http://localhost:3000    │
+│ Frontend:  <Started|Already Running> → http://localhost:5173    │
+│                                                                 │
+│ Browser opened to: http://localhost:5173                        │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│ TO STOP SERVERS                                                 │
+│                                                                 │
+│ pkill -f "narsil-mcp.*--http"                                   │
+│ pkill -f "vite"                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Configuration
+
+| Setting | Value |
+|---------|-------|
+| Backend Port | 3000 |
+| Frontend Port | 5173 |
+| Backend Log | `/tmp/narsil-http.log` |
+| Frontend Log | `/tmp/narsil-frontend.log` |
+| Narsil Path | `/Users/michelkerkmeester/bin/narsil-mcp` |
+| Frontend Path | `/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp/frontend` |
+
+### Notes
+
+- HTTP server mode is **separate from OpenCode's Code Mode** integration
+- Backend uses the same `.narsil-index` as the stdio MCP (shared index)
+- Frontend requires `node_modules` installed (run `npm install` if missing)
+- Watch mode does NOT work in HTTP server mode (use for visualization only)
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 13. 📌 QUICK REFERENCE
+
+| Command                    | Result                    |
+| -------------------------- | ------------------------- |
+| `/search:index`            | Dashboard                 |
+| `/search:index status`     | Detailed statistics       |
+| `/search:index reindex`    | Force reindex             |
+| `/search:index repos`      | List repositories         |
+| `/search:index validate .` | Validate path             |
+| `/search:index health`     | Health check              |
+| `/search:index ui`         | Start visualization UI    |
+
+---
+
+## 14. 🔗 RELATED RESOURCES
 
 - `/search:code` - Unified code search (semantic + structural)
 - `mcp-narsil` skill - Full Narsil documentation

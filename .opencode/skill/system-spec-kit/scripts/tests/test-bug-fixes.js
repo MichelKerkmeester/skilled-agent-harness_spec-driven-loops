@@ -12,7 +12,7 @@ const crypto = require('crypto');
    1. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..', '..');
 const LIB_PATH = path.join(ROOT, 'mcp_server', 'lib');
 const SHARED_PATH = path.join(ROOT, 'shared');
 const DB_PATH = path.join(ROOT, 'database');
@@ -66,16 +66,25 @@ async function test_bug_001() {
     const db_updated_file = path.join(DB_PATH, '.db-updated');
     
     // Test 1: Notification file mechanism exists
+    // NOTE: After Spec 058 modularization, notifyDatabaseUpdated() moved to core/workflow.js
     const generate_context = fs.readFileSync(
       path.join(ROOT, 'scripts', 'generate-context.js'), 
       'utf8'
     );
-    if (generate_context.includes('notifyDatabaseUpdated') && 
-        generate_context.includes('.db-updated')) {
-      pass('T-005a: Notification mechanism in generate-context.js', 
+    const workflow_js = fs.readFileSync(
+      path.join(ROOT, 'scripts', 'core', 'workflow.js'), 
+      'utf8'
+    );
+    // Check either file (workflow.js is the actual location after modularization)
+    const has_notify = (generate_context.includes('notifyDatabaseUpdated') && 
+                        generate_context.includes('.db-updated')) ||
+                       (workflow_js.includes('notifyDatabaseUpdated') && 
+                        workflow_js.includes('.db-updated'));
+    if (has_notify) {
+      pass('T-005a: Notification mechanism in scripts/', 
            'notifyDatabaseUpdated() function found');
     } else {
-      fail('T-005a: Notification mechanism in generate-context.js', 
+      fail('T-005a: Notification mechanism in scripts/', 
            'Function not found');
     }
     
@@ -122,8 +131,8 @@ async function test_bug_002() {
     
     // Test 1: Transaction control via database.transaction() wrapper (BUG-057 fix)
     // Changed from explicit BEGIN/COMMIT/ROLLBACK to database.transaction() for nested transaction support
-    if (vector_index.includes('const indexMemoryTx = database.transaction(') &&
-        vector_index.includes('return indexMemoryTx()')) {
+    if (vector_index.includes('const index_memory_tx = database.transaction(') &&
+        vector_index.includes('return index_memory_tx()')) {
       pass('T-010a: Transaction wrapper in indexMemory()', 
            'database.transaction() wrapper found - supports nested transactions');
     } else if ((vector_index.includes("database.exec('BEGIN TRANSACTION')") || 
@@ -197,22 +206,22 @@ async function test_bug_004() {
       'utf8'
     );
     
-    // Test 1: mtime tracking
-    if (vector_index.includes('lastDbModTime') &&
+    // Test 1: mtime tracking (snake_case: last_db_mod_time)
+    if (vector_index.includes('last_db_mod_time') &&
         vector_index.includes('stats.mtimeMs')) {
       pass('T-018a: Database mtime tracking implemented', 
-           'lastDbModTime and mtimeMs check found');
+           'last_db_mod_time and mtimeMs check found');
     } else {
       fail('T-018a: Database mtime tracking implemented', 
            'mtime tracking not found');
     }
     
-    // Test 2: Cache validation function
-    if (vector_index.includes('isConstitutionalCacheValid')) {
-      pass('T-018b: isConstitutionalCacheValid() exists', 
+    // Test 2: Cache validation function (snake_case: is_constitutional_cache_valid)
+    if (vector_index.includes('is_constitutional_cache_valid')) {
+      pass('T-018b: is_constitutional_cache_valid() exists', 
            'Function found in source');
     } else {
-      fail('T-018b: isConstitutionalCacheValid() exists', 
+      fail('T-018b: is_constitutional_cache_valid() exists', 
            'Function not found');
     }
     
@@ -275,13 +284,13 @@ async function test_bug_006() {
       'utf8'
     );
     
-    // Test: clearPreparedStatements in closeDb
-    if (vector_index.includes('clearPreparedStatements()') &&
-        vector_index.includes('closeDb')) {
-      pass('T-027: clearPreparedStatements() in closeDb()', 
+    // Test: clear_prepared_statements in close_db (snake_case naming)
+    if (vector_index.includes('clear_prepared_statements()') &&
+        (vector_index.includes('close_db') || vector_index.includes('closeDb: close_db'))) {
+      pass('T-027: clear_prepared_statements() in close_db()', 
            'Function call found in database closing');
     } else {
-      fail('T-027: clearPreparedStatements() in closeDb()', 
+      fail('T-027: clear_prepared_statements() in close_db()', 
            'Function call not found');
     }
     

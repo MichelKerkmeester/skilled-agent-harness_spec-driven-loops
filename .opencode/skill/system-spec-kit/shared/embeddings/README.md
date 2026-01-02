@@ -260,10 +260,10 @@ await embeddings.preWarmModel();
 
 ```bash
 # Basic test (without loading heavy models)
-node scripts/test-embeddings-factory.js
+node scripts/tests/test-embeddings-factory.js
 
 # With OpenAI
-OPENAI_API_KEY=sk-... node scripts/test-embeddings-factory.js
+OPENAI_API_KEY=sk-... node scripts/tests/test-embeddings-factory.js
 ```
 
 ---
@@ -360,8 +360,8 @@ echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 
 | Document | Purpose |
 |----------|---------|
-| [lib/README.md](../README.md) | Parent library documentation |
-| [generate-context.js](../../generate-context.js) | Main script using embeddings |
+| [shared/README.md](../README.md) | Parent shared library documentation |
+| [generate-context.js](../../scripts/generate-context.js) | Main script using embeddings |
 | [SKILL.md](../../../SKILL.md) | System spec-kit skill documentation |
 
 ### External Resources
