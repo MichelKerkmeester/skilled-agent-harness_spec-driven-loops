@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { escapeRegex } = require('../../shared/utils');
+const { escape_regex: escapeRegex } = require('../../shared/utils');
 
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION

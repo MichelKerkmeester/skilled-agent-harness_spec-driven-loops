@@ -52,7 +52,7 @@ const { VALID_TIERS, isValidTier } = require(path.join(LIB_DIR, 'importance-tier
 const confidenceTracker = require(path.join(LIB_DIR, 'confidence-tracker.js'));
 const memoryParser = require(path.join(LIB_DIR, 'memory-parser.js'));
 const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
-const { validateFilePath } = require('../shared/utils');
+const { validate_file_path: validateFilePath } = require('../shared/utils');
 
 /* ───────────────────────────────────────────────────────────────
    1. BULK INDEXING CONFIGURATION
@@ -211,7 +211,7 @@ function isEmbeddingModelReady() {
    ─────────────────────────────────────────────────────────────── */
 
 // Load error utilities
-const { isTransientError, userFriendlyError, MemoryError, ErrorCodes } = require(path.join(LIB_DIR, 'errors.js'));
+const { is_transient_error: isTransientError, user_friendly_error: userFriendlyError, MemoryError, ErrorCodes } = require(path.join(LIB_DIR, 'errors.js'));
 
 /**
  * Process a single item with retry logic for transient failures
@@ -1451,7 +1451,7 @@ async function handleMemoryHealth(args) {
       model: providerMetadata.model,
       dimension: profile ? profile.dim : 768,
       healthy: providerMetadata.healthy !== false,
-      databasePath: profile ? profile.getDatabasePath(require('path').resolve(__dirname, '../database')) : null
+      databasePath: profile ? profile.get_database_path(require('path').resolve(__dirname, '../database')) : null
     }
   };
   

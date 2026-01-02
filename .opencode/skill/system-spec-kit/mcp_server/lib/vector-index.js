@@ -10,7 +10,7 @@ const os = require('os');
 const fs = require('fs');
 const crypto = require('crypto');
 const { format_age_string } = require('./utils/format-helpers');
-const { validateFilePath } = require('../../shared/utils');
+const { validate_file_path: validateFilePath } = require('../../shared/utils');
 
 // Load search weights from config for configurable limits
 const search_weights = require('../configs/search-weights.json');
@@ -97,7 +97,7 @@ function resolve_database_path() {
     return DEFAULT_DB_PATH;
   }
 
-  return profile.getDatabasePath(DEFAULT_DB_DIR);
+  return profile.get_database_path(DEFAULT_DB_DIR);
 }
 
 // Schema version for migration tracking

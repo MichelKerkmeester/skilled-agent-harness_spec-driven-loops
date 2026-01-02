@@ -4,7 +4,7 @@
 'use strict';
 
 const vector_index = require('./vector-index');
-const { escapeRegex } = require('../../shared/utils');
+const { escape_regex: escapeRegex } = require('../../shared/utils');
 
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION

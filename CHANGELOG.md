@@ -8,6 +8,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## 1.0.2.x Series
 
+### [**1.0.2.9**] - 2026-01-02
+
+Fixes critical MCP server bugs preventing Spec Kit Memory operations. Multiple import naming mismatches caused E040 errors (`is not a function`) across `memory_health`, `memory_index_scan`, and `memory_save` tools.
+
+#### Fixed
+- **Critical**: `getDatabasePath` → `get_database_path` method name mismatch:
+  - `mcp_server/context-server.js:1454` (health check response)
+  - `mcp_server/lib/vector-index.js:100` (database path resolution)
+- **Critical**: `validateFilePath` → `validate_file_path` import mismatch:
+  - `mcp_server/context-server.js:55`
+  - `mcp_server/lib/vector-index.js:13`
+- **Critical**: `isTransientError` / `userFriendlyError` → `is_transient_error` / `user_friendly_error` import mismatch:
+  - `mcp_server/context-server.js:214`
+- **Critical**: `escapeRegex` → `escape_regex` import mismatch:
+  - `mcp_server/lib/trigger-matcher.js:7`
+  - `mcp_server/lib/memory-parser.js:9`
+
+#### Root Cause
+During snake_case refactoring, exports in source modules (`shared/utils.js`, `lib/errors.js`) were renamed but imports in consuming files retained camelCase names. Fixed using import aliasing: `const { snake_case: camelCase } = require(...)`
+
+---
+
 ### [**1.0.2.8**] - 2026-01-02
 
 Reorganizes the workflows-documentation skill's asset folder structure for improved discoverability. Renames `assets/components/` to `assets/opencode/` and `assets/documents/` to `assets/documentation/` with 250+ path reference updates across 35+ files. Establishes new organizational principle for skill folder structure.
