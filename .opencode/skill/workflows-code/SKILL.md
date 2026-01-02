@@ -75,6 +75,7 @@ This orchestrator operates in three primary phases:
 TASK_KEYWORDS = {
     "VERIFICATION": ["done", "complete", "works", "verify", "finished"],
     "DEBUGGING": ["bug", "fix", "error", "broken", "issue", "failing"],
+    "CODE_QUALITY": ["style check", "quality check", "validate code", "check standards", "code review"],
     "ANIMATION": ["animation", "motion", "gsap", "lenis", "scroll"],
     "FORMS": ["form", "validation", "input", "submit", "botpoison"],
     "VIDEO": ["video", "hls", "streaming", "player"],
@@ -92,6 +93,15 @@ TASK CONTEXT
     ├─► Writing new code / implementing feature
     │   └─► PHASE 1: Implementation
     │       └─► Load: phase1-implementation/*.md (ALWAYS: implementation_workflows.md)
+    │       └─► At completion: CODE QUALITY GATE (see Phase 1.5)
+    │
+    ├─► Implementation complete / claiming done
+    │   └─► PHASE 1.5: Code Quality Gate (MANDATORY for all code files)
+    │       └─► Load: assets/checklists/code_quality_checklist.md (ALWAYS)
+    │       └─► Load: references/standards/code_style_enforcement.md (if violations found)
+    │       └─► JavaScript (.js): Sections 2-7 of checklist
+    │       └─► CSS (.css): Section 8 of checklist
+    │       └─► ⚠️ HARD BLOCK: All P0 checklist items must pass before claiming complete
     │
     ├─► Code not working / debugging issues
     │   └─► PHASE 2: Debugging
@@ -145,12 +155,12 @@ TASK CONTEXT
 ### Resource Router
 ```python
 def route_frontend_resources(task):
-    # ══════════════════════════════════════════════════════════════════════
+    # ──────────────────────────────────────────────────────────────────
     # Level-based loading
     # ALWAYS: Load for every phase invocation
     # CONDITIONAL: Load if keywords match
     # ON_DEMAND: Load on explicit request
-    # ══════════════════════════════════════════════════════════════════════
+    # ──────────────────────────────────────────────────────────────────
     
     # ──────────────────────────────────────────────────────────────────
     # Phase 1: Implementation
@@ -195,6 +205,18 @@ def route_frontend_resources(task):
         return load("references/phase1-implementation/implementation_workflows.md")
 
     # ──────────────────────────────────────────────────────────────────
+    # Phase 1.5: Code Quality Gate (MANDATORY for all code files)
+    # ALWAYS: code_quality_checklist.md
+    # CONDITIONAL: code_style_enforcement.md (if violations found)
+    # JavaScript (.js): Sections 2-7 | CSS (.css): Section 8
+    # ──────────────────────────────────────────────────────────────────
+    if task.phase == "code_quality" or task.implementation_complete:
+        load("assets/checklists/code_quality_checklist.md")  # ALWAYS: validation checklist
+        if task.has_violations:
+            load("references/standards/code_style_enforcement.md")  # CONDITIONAL: remediation
+        return True  # Gate must pass before proceeding
+
+    # ──────────────────────────────────────────────────────────────────
     # Phase 2: Debugging
     # ALWAYS: debugging_workflows.md + debugging_checklist.md
     # ──────────────────────────────────────────────────────────────────
@@ -217,18 +239,21 @@ def route_frontend_resources(task):
     if task.needs_quick_reference:
         return load("references/standards/quick_reference.md")  # one-page cheat sheet
 
-# ══════════════════════════════════════════════════════════════════════
+# ──────────────────────────────────────────────────────────────────
 # STATIC RESOURCES (always available, not conditionally loaded)
 # Located in references/standards/ for cross-phase access
-# ══════════════════════════════════════════════════════════════════════
+# ──────────────────────────────────────────────────────────────────
 # references/standards/code_quality_standards.md → Cross-phase: Initialization, error handling, validation patterns
 # references/standards/code_style_guide.md → Cross-phase: Naming conventions, formatting, comments
+# references/standards/code_style_enforcement.md → Phase 1.5: Enforcement rules with examples and remediation
 # references/standards/shared_patterns.md → DevTools, logging, testing, error patterns
 # references/phase1-implementation/performance_patterns.md → Phase 1: Performance optimization (ON_DEMAND)
 # references/deployment/minification_guide.md → Safe JS minification with terser, verification pipeline
 # references/deployment/cdn_deployment.md → Cloudflare R2 upload, version management, HTML updates
+# assets/checklists/code_quality_checklist.md → Phase 1.5: Code quality validation checklist
 
 # See "The Iron Law" in Section 1 - Phase 3: Verification
+# See "Code Quality Gate" in Section 3 - Phase 1.5 for style enforcement
 ```
 
 ---
@@ -237,10 +262,10 @@ def route_frontend_resources(task):
 
 ### Development Lifecycle
 
-Frontend development flows through 3 phases:
+Frontend development flows through phases with a mandatory quality gate:
 
 ```
-Implementation → Debugging (if issues) → Verification (MANDATORY)
+Implementation → Code Quality Gate → Debugging (if issues) → Verification (MANDATORY)
 ```
 
 ### Phase 1: Implementation
@@ -264,6 +289,46 @@ Implementation → Debugging (if issues) → Verification (MANDATORY)
    - Forces browser cache refresh
 
 See [implementation_workflows.md](./references/phase1-implementation/implementation_workflows.md) for complete workflows.
+
+
+### Phase 1.5: Code Quality Gate
+
+**Before claiming implementation is complete, validate code against style standards:**
+
+1. **Identify File Type** - Determine which checklist sections apply:
+   - **JavaScript (`.js`)**: Sections 2-7 (13 P0 items)
+   - **CSS (`.css`)**: Section 8 (4 P0 items)
+   - **Both**: All sections (17 P0 items)
+
+2. **Load Checklist** - Load [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md)
+
+3. **Validate P0 Items** - Check all P0 (blocking) items for the file type:
+   
+   **JavaScript P0 Items:**
+   - File header format (three-line with box-drawing characters)
+   - Section organization (IIFE, numbered headers)
+   - No commented-out code
+   - snake_case naming conventions
+   - CDN-safe initialization pattern
+   
+   **CSS P0 Items:**
+   - Custom property naming (semantic prefixes: `--font-*`, `--vw-*`, etc.)
+   - Attribute selectors use case-insensitivity flag `i`
+   - BEM naming convention (`.block--element`, `.block-modifier`)
+   - GPU-accelerated animation properties only (`transform`, `opacity`, `scale`)
+
+4. **Validate P1 Items** - Check all P1 (required) items for the file type
+
+5. **Fix or Document** - For any failures:
+   - P0 violations: MUST fix before proceeding
+   - P1 violations: Fix OR document approved deferral
+   - P2 violations: Can defer with documented reason
+
+6. **Only Then** - Proceed to verification or claim completion
+
+**Gate Rule**: If ANY P0 item fails, completion is BLOCKED until fixed.
+
+See [code_style_enforcement.md](./references/standards/code_style_enforcement.md) for remediation instructions.
 
 
 ### Phase 2: Debugging
@@ -365,6 +430,37 @@ See [verification_workflows.md](./references/phase3-verification/verification_wo
 
 See [implementation_workflows.md](./references/phase1-implementation/implementation_workflows.md) for detailed rules.
 
+### Phase 1.5: Code Quality Gate (MANDATORY for all code files)
+
+#### ✅ ALWAYS
+- Load code_quality_checklist.md before claiming implementation complete
+- Identify file type (JavaScript → Sections 2-7, CSS → Section 8)
+- Validate all P0 items for the applicable file type
+- Fix P0 violations before proceeding
+- Document any P1/P2 deferrals with reasons
+- Use code_style_enforcement.md for remediation guidance
+
+#### ❌ NEVER (JavaScript)
+- Skip the quality gate for "simple" changes
+- Claim completion with P0 violations
+- Use commented-out code (delete it)
+- Use camelCase for variables/functions (use snake_case)
+- Skip file headers or section organization
+
+#### ❌ NEVER (CSS)
+- Use generic custom property names without semantic prefixes
+- Omit case-insensitivity flag `i` on data attribute selectors
+- Use inconsistent BEM naming (mix snake_case, camelCase)
+- Animate layout properties (width, height, top, left, padding, margin)
+- Set `will-change` permanently in CSS (set dynamically via JS)
+
+#### ⚠️ ESCALATE IF
+- Cannot fix a P0 violation
+- Standard conflicts with existing code patterns
+- Unclear whether code is compliant
+
+See [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md) and [code_style_enforcement.md](./references/standards/code_style_enforcement.md) for detailed rules.
+
 ### Phase 2: Debugging
 
 #### ✅ ALWAYS
@@ -431,6 +527,28 @@ See [verification_workflows.md](./references/phase3-verification/verification_wo
 - ✅ Clear error messages logged
 
 See [implementation_workflows.md](./references/phase1-implementation/implementation_workflows.md) for complete criteria.
+
+### Phase 1.5: Code Quality Gate
+
+**Code Quality Gate passes when:**
+
+**JavaScript (.js):**
+- ✅ All P0 checklist items verified and passing (Sections 2-7)
+- ✅ All P1 checklist items verified or documented deferrals
+- ✅ File headers use correct format (three-line, box-drawing)
+- ✅ Section organization follows standard (IIFE, numbered headers)
+- ✅ No commented-out code present
+- ✅ All naming uses snake_case (not camelCase)
+- ✅ CDN-safe initialization pattern followed
+
+**CSS (.css):**
+- ✅ All P0 checklist items verified and passing (Section 8)
+- ✅ Custom properties use semantic prefixes (`--font-*`, `--vw-*`, etc.)
+- ✅ Attribute selectors include case-insensitivity flag `i`
+- ✅ Class names follow BEM convention (`.block--element`, `.block-modifier`)
+- ✅ Animations use GPU-accelerated properties only (`transform`, `opacity`, `scale`)
+
+See [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md) for complete criteria.
 
 ### Phase 2: Debugging
 

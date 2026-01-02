@@ -346,6 +346,43 @@ Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, 
 - **Security Scan**: Limited rule coverage for frontend code
 - **Workaround**: Use `find_symbols` + `get_symbol_definition` for structural analysis
 
+### Narsil Not Appearing in Code Mode
+
+**Symptom:** `narsil is not defined` error when calling `narsil.narsil_*` tools
+
+**Root Cause:** Code Mode loads `.utcp_config.json` at **startup only**. Changes to the config file are NOT picked up until OpenCode restarts.
+
+**Solution:**
+1. Verify `.utcp_config.json` has correct Narsil configuration
+2. **Restart OpenCode** (Ctrl+C, then restart)
+3. After restart, verify with `code_mode_list_tools()`
+
+**Common Config Issues:**
+| Issue | Fix |
+|-------|-----|
+| Extra fields in config | Remove `_note`, `_neural_backends`, `_usage_examples` |
+| Relative command path | Use absolute path: `/Users/username/bin/narsil-mcp` |
+| Missing transport field | Add `"transport": "stdio"` to mcpServers config |
+| Invalid JSON | Validate: `python3 -m json.tool < .utcp_config.json` |
+
+**Minimal Working Config:**
+```json
+{
+  "name": "narsil",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "narsil": {
+        "transport": "stdio",
+        "command": "/absolute/path/to/narsil-mcp",
+        "args": ["--repos", ".", "--persist"],
+        "env": {}
+      }
+    }
+  }
+}
+```
+
 ---
 
 ## 12. 📌 QUICK REFERENCE

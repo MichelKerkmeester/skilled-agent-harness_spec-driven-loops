@@ -599,13 +599,32 @@ call_tool_chain({
 });
 ```
 
+### ⚠️ CRITICAL: Config Changes Require Restart
+
+**Code Mode loads `.utcp_config.json` at startup.** Any changes to the Narsil configuration will NOT take effect until you restart OpenCode.
+
+**After editing `.utcp_config.json`:**
+1. Save the file
+2. Exit OpenCode (Ctrl+C)
+3. Restart OpenCode
+4. Verify with `code_mode_list_tools()` - should show `narsil.*` tools
+
+**If Narsil still doesn't appear after restart:**
+| Issue | Fix |
+|-------|-----|
+| Extra fields in config | Remove `_note`, `_neural_backends`, `_usage_examples` from mcpServers |
+| Relative command path | Use absolute path: `/Users/username/bin/narsil-mcp` |
+| Missing transport field | Add `"transport": "stdio"` to the narsil mcpServers config |
+| JSON syntax error | Validate: `python3 -m json.tool < .utcp_config.json` |
+
 ### Validation: `configuration_complete`
 
 **Checklist:**
 - [ ] `.utcp_config.json` exists with valid JSON
 - [ ] Narsil server block is present with correct path
-- [ ] Binary path matches actual location
-- [ ] Username replaced with actual username
+- [ ] Binary path matches actual location (use absolute path)
+- [ ] No extra fields like `_note` in mcpServers config
+- [ ] `transport: "stdio"` is present
 
 **Quick Verification:**
 ```bash
@@ -616,7 +635,8 @@ grep -q "narsil-mcp" .utcp_config.json && python3 -m json.tool < .utcp_config.js
 
 **Common fixes:**
 - Invalid JSON → `python3 -m json.tool < .utcp_config.json` to find errors
-- Path not found → Update `command` path to actual binary location
+- Path not found → Update `command` path to actual binary location (use absolute path)
+- Narsil not appearing → Restart OpenCode after config changes
 
 ---
 
@@ -1530,42 +1550,64 @@ Examples:
 ### Configuration Templates
 
 **Minimal .utcp_config.json:**
+
+> **IMPORTANT**: Use absolute path for command.
+
 ```json
 {
-  "mcpServers": {
-    "narsil": {
-      "transport": "stdio",
-      "command": "narsil-mcp",
-      "args": ["--repos", ".", "--preset", "minimal"]
+  "name": "narsil",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "narsil": {
+        "transport": "stdio",
+        "command": "/absolute/path/to/narsil-mcp",
+        "args": ["--repos", ".", "--preset", "minimal", "--persist"],
+        "env": {}
+      }
     }
   }
 }
 ```
 
 **Recommended .utcp_config.json (Full Features):**
+
+> **IMPORTANT**: Use absolute path for command, and avoid extra fields like `_note`.
+
 ```json
 {
-  "mcpServers": {
-    "narsil": {
-      "transport": "stdio",
-      "command": "narsil-mcp",
-      "args": [
-        "--repos", ".",
-        "--preset", "full",
-        "--index-path", ".narsil-index",
-        "--git",
-        "--call-graph",
-        "--persist",
-        "--neural",
-        "--neural-backend", "api",
-        "--neural-model", "voyage-code-2"
-      ],
-      "env": {
-        "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
+  "name": "narsil",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "narsil": {
+        "transport": "stdio",
+        "command": "/absolute/path/to/narsil-mcp",
+        "args": [
+          "--repos", ".",
+          "--preset", "full",
+          "--index-path", ".narsil-index",
+          "--git",
+          "--call-graph",
+          "--persist",
+          "--neural",
+          "--neural-backend", "api",
+          "--neural-model", "voyage-code-2"
+        ],
+        "env": {
+          "VOYAGE_API_KEY": "your-voyage-api-key"
+        }
       }
     }
   }
 }
+```
+
+**Finding your Narsil path:**
+```bash
+which narsil-mcp
+# Example output: /Users/username/bin/narsil-mcp
+# Use this absolute path in the config
 ```
 
 **Presets:**

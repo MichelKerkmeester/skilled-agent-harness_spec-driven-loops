@@ -404,16 +404,36 @@ code_mode_call_tool_chain({
 
 ## 11. ⚠️ ERROR HANDLING
 
-| Condition       | Action                                           |
-| --------------- | ------------------------------------------------ |
-| Index not found | Suggest `/search:index build`                    |
-| Path not found  | Show similar paths via Glob                      |
-| Empty results   | Try fallback: Semantic → Structural → Diagnostic |
-| All tools fail  | Show diagnostic with refinement suggestions      |
+| Condition            | Action                                           |
+| -------------------- | ------------------------------------------------ |
+| Index not found      | Suggest `/search:index build`                    |
+| Path not found       | Show similar paths via Glob                      |
+| Empty results        | Try fallback: Semantic → Structural → Diagnostic |
+| All tools fail       | Show diagnostic with refinement suggestions      |
+| Narsil not defined   | **Restart OpenCode** - config loaded at startup  |
 
 **Fallback Chain:**
 ```
 Primary empty? → Semantic → Structural → Diagnostic
+```
+
+### Narsil Not Connected
+
+**Symptom:** `narsil is not defined` or Code Mode can't find Narsil tools
+
+**Root Cause:** Code Mode loads `.utcp_config.json` at **startup only**. Config changes require restart.
+
+**Solution:**
+1. Verify `.utcp_config.json` has Narsil configured correctly
+2. **Restart OpenCode** (Ctrl+C, then restart)
+3. Verify: `code_mode_list_tools()` should show `narsil.*` tools
+
+**Quick Diagnostic:**
+```javascript
+// Check if Narsil is registered
+code_mode_list_tools()
+// Look for: narsil.narsil_* in the output
+// If missing: restart OpenCode
 ```
 
 ---

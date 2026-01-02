@@ -469,6 +469,13 @@ curl -X POST http://localhost:3001/tools/call \
    - `get_chunk_stats`: Returns 0 (aggregate stats not populated)
    - `hybrid_search`: Requires BOTH BM25 + Neural indexes to be built
 
+7. **Code Mode Config Loading (CRITICAL)**
+   - Code Mode loads `.utcp_config.json` at **startup only**
+   - Changes to Narsil config require **OpenCode restart** to take effect
+   - If `narsil is not defined` error: **restart OpenCode**
+   - Verify after restart: `code_mode_list_tools()` should show `narsil.*` tools
+   - Common config issues: extra fields, relative paths, missing `transport: "stdio"`
+
 ### Function Categories by Index Dependency
 
 | Category | Functions | Timing |
@@ -529,6 +536,11 @@ Key integrations:
 
 **Configuration**: Add to `.utcp_config.json`:
 
+> **CRITICAL**: 
+> - Use **absolute path** for command (e.g., `/Users/username/bin/narsil-mcp`)
+> - Do NOT include extra fields like `_note`, `_neural_backends` in mcpServers
+> - Config changes require **OpenCode restart** to take effect
+
 ```json
 {
   "name": "narsil",
@@ -537,7 +549,7 @@ Key integrations:
     "mcpServers": {
       "narsil": {
         "transport": "stdio",
-        "command": "narsil-mcp",
+        "command": "/absolute/path/to/narsil-mcp",
         "args": [
           "--repos", ".",
           "--preset", "full",
@@ -550,13 +562,24 @@ Key integrations:
           "--neural-model", "voyage-code-2"
         ],
         "env": {
-          "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
+          "VOYAGE_API_KEY": "your-voyage-api-key"
         }
       }
     }
   }
 }
 ```
+
+**Finding your Narsil path:**
+```bash
+which narsil-mcp
+# Use the output as the absolute path in config
+```
+
+**After config changes:**
+1. Save `.utcp_config.json`
+2. **Restart OpenCode** (Ctrl+C, then restart)
+3. Verify: `code_mode_list_tools()` should show `narsil.*` tools
 
 > **Note**: The `--http` flag enables a visualization web UI at localhost:3000, NOT HTTP transport for MCP. MCP transport is always stdio.
 

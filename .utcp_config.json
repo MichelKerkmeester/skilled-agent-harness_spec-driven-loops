@@ -36,36 +36,12 @@
             ],
             "env": {
               "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
-              "OPENAI_API_KEY": "${OPENAI_API_KEY}"
-            },
-            "_note": "Narsil with full toolset (76 tools). IMPORTANT: Code Mode does NOT support ${VAR} env substitution - hardcode the command path and API keys directly. --http enables visualization UI at localhost:3000.",
-            "_neural_backends": {
-              "voyage": {
-                "backend": "api",
-                "model": "voyage-code-2",
-                "env": "VOYAGE_API_KEY",
-                "dimensions": 1536,
-                "note": "Recommended for code search. Set VOYAGE_API_KEY in .env"
-              },
-              "openai": {
-                "backend": "api",
-                "model": "text-embedding-3-small",
-                "env": "OPENAI_API_KEY",
-                "dimensions": 1536,
-                "note": "Alternative cloud option. Set OPENAI_API_KEY in .env"
-              },
-              "onnx": {
-                "backend": "onnx",
-                "model": "default",
-                "env": "none",
-                "dimensions": 384,
-                "note": "Local embeddings, no API key needed. Use --neural-backend onnx"
-              }
-            },
-            "_usage_examples": {
-              "voyage": "--neural --neural-backend api --neural-model voyage-code-2",
-              "openai": "--neural --neural-backend api --neural-model text-embedding-3-small",
-              "onnx_local": "--neural --neural-backend onnx"
+              "OPENAI_API_KEY": "${OPENAI_API_KEY}",
+              "_NOTE_1_NEURAL_BACKENDS": "Three options: 'api' (Voyage/OpenAI), 'onnx' (local, no API needed)",
+              "_NOTE_2_VOYAGE_RECOMMENDED": "Default config uses Voyage. Get key: https://dash.voyageai.com/api-keys (starts with 'pa-')",
+              "_NOTE_3_OPENAI_ALTERNATIVE": "To use OpenAI instead: change --neural-model to 'text-embedding-3-small'. Get key: https://platform.openai.com/api-keys (starts with 'sk-')",
+              "_NOTE_4_LOCAL_ONNX": "For offline/free: change --neural-backend to 'onnx' and remove --neural-model (no API key needed)",
+              "_NOTE_5_MODEL_OPTIONS": "Voyage: voyage-code-2, voyage-code-3 | OpenAI: text-embedding-3-small, text-embedding-3-large"
             }
           }
         }
@@ -105,8 +81,7 @@
             ],
             "env": {
               "FIGMA_API_KEY": "${FIGMA_API_KEY}"
-            },
-            "_note": "Framelink Figma MCP. Requires FIGMA_API_KEY in .env (get from Figma Settings > Personal Access Tokens)"
+            }
           }
         }
       }

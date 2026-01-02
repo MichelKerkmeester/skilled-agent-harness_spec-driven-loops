@@ -202,19 +202,45 @@ See [call_graph_guide.md](./call_graph_guide.md) for detailed workflow.
 
 ## 5. 🛠️ TROUBLESHOOTING
 
+### Narsil Not Defined in Code Mode (MOST COMMON)
+
+**Symptom**: `narsil is not defined` error when calling `narsil.narsil_*` tools
+
+**Root Cause**: Code Mode loads `.utcp_config.json` at **startup only**. Config changes require restart.
+
+**Solution**:
+1. Verify `.utcp_config.json` has correct Narsil configuration
+2. **Restart OpenCode** (Ctrl+C, then restart)
+3. After restart, verify: `code_mode_list_tools()` should show `narsil.*` tools
+
+**Common Config Issues**:
+| Issue | Fix |
+|-------|-----|
+| Extra fields | Remove `_note`, `_neural_backends`, `_usage_examples` |
+| Relative path | Use absolute: `/Users/username/bin/narsil-mcp` |
+| Missing transport | Add `"transport": "stdio"` to mcpServers |
+
 ### Tool Not Found
 
 **Symptom**: `search_tools` doesn't find Narsil tools
 
-**Solution**: Verify Code Mode configuration in `.utcp_config.json`
+**Solution**: 
+1. Verify Code Mode configuration in `.utcp_config.json`
+2. **Restart OpenCode** to reload config
+3. Check with `code_mode_list_tools()`
 
 ### Binary Not Found
 
 **Symptom**: `spawn ENOENT` error
 
-**Solution**:
+**Solution**: Reinstall Narsil following [INSTALL.md](../INSTALL.md):
+
 ```bash
-cd "/Users/michelkerkmeester/MEGA/MCP Servers/narsil-mcp"
+# If installed via Homebrew:
+brew reinstall narsil-mcp
+
+# If built from source, rebuild in your narsil-mcp directory:
+cd <your-narsil-source-directory>
 cargo build --release
 ```
 
