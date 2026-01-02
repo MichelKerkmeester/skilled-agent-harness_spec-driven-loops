@@ -412,7 +412,7 @@ We chose JWT with refresh tokens because:
 4. Agent loads only relevant anchors (93% token savings)
 
 
-### The 13 MCP Tools
+### The 14 MCP Tools
 
 | Tool                    | Purpose                                |
 | ----------------------- | -------------------------------------- |
@@ -425,6 +425,7 @@ We chose JWT with refresh tokens because:
 | `memory_delete`         | Delete by ID or spec folder            |
 | `memory_validate`       | Record validation feedback             |
 | `memory_index_scan`     | Bulk index new files                   |
+| `memory_health`         | Check memory system health status      |
 | `checkpoint_create`     | Snapshot current state                 |
 | `checkpoint_list`       | List available checkpoints             |
 | `checkpoint_restore`    | Restore from checkpoint                |
