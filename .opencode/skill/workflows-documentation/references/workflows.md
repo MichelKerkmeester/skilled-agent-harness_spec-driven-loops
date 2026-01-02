@@ -21,7 +21,7 @@ Workflows define the execution patterns and operational modes for the markdown d
 - **Phase orchestration** - Sequential or independent phase execution
 - **Error handling** - Graceful degradation with clear error messages
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](./skill_creation.md#progressive-disclosure).
 
 This reference provides deep-dive technical guidance on execution modes, validation patterns, and workflow orchestration.
 
@@ -276,7 +276,9 @@ done
 - [optimization.md](./optimization.md) - Content transformation patterns
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](./quick_reference.md) - Quick command reference
+- [skill_creation.md](./skill_creation.md) - Skill creation workflow
+- [install_guide_standards.md](./install_guide_standards.md) - Install guide standards
 
 ### Templates
-- [skill_md_template.md](../assets/skill_md_template.md) - SKILL.md file templates
-- [command_template.md](../assets/command_template.md) - Command file templates
+- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
+- [command_template.md](../assets/opencode/command_template.md) - Command file templates

@@ -771,9 +771,9 @@ The skill provides:
 
 ## REFERENCE MATERIALS
 
-- [Optimization Guide](https://github.com/example/doc-optimizer/blob/main/references/optimization.md): Transformation patterns
-- [Validation Guide](https://github.com/example/doc-optimizer/blob/main/references/validation.md): Structure checks and quality gates
-- [Core Standards](https://github.com/example/doc-optimizer/blob/main/references/core_standards.md): Document types and structural rules
+- [Optimization Guide](https://github.com/example/doc-optimizer/blob/main/references/document-quality/optimization.md): Transformation patterns
+- [Validation Guide](https://github.com/example/doc-optimizer/blob/main/references/document-quality/validation.md): Structure checks and quality gates
+- [Core Standards](https://github.com/example/doc-optimizer/blob/main/references/document-quality/core_standards.md): Document types and structural rules
 
 ## EXAMPLES
 
@@ -843,10 +843,10 @@ Add sections:
 
 ### Templates
 - [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type
-- [skill_md_template.md](./skill_md_template.md) - SKILL.md file templates
+- [skill_md_template.md](../opencode/skill_md_template.md) - SKILL.md file templates
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
+- [core_standards.md](../../references/core_standards.md) - Document type rules
 
 ### External
 - [llmstxt.org](https://llmstxt.org/) - Official specification

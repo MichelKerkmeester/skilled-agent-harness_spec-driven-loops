@@ -383,10 +383,10 @@ Before deploying an agent, verify:
 
 ### Templates
 
-| Template               | Purpose            | Path                              |
-| ---------------------- | ------------------ | --------------------------------- |
-| `skill_md_template.md` | SKILL.md structure | `workflows-documentation/assets/` |
-| `command_template.md`  | Command files      | `workflows-documentation/assets/` |
+| Template               | Purpose            | Path                                                     |
+| ---------------------- | ------------------ | -------------------------------------------------------- |
+| `skill_md_template.md` | SKILL.md structure | `workflows-documentation/assets/opencode/`    |
+| `command_template.md`  | Command files      | `workflows-documentation/assets/opencode/`    |
 
 ### Agent Files
 

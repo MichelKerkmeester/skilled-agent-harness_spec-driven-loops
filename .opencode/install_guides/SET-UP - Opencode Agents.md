@@ -39,11 +39,11 @@ The agent system enables both focused single-agent work and complex multi-agent 
 - Invokes `workflows-documentation` skill for documentation standards
 - Validates template alignment AFTER creating
 
-**Template Location:** `.opencode/skill/workflows-documentation/assets/agent_template.md`
+**Template Location:** `.opencode/skill/workflows-documentation/assets/opencode/agent_template.md`
 
 **Verification (MUST pass before proceeding):**
 - [ ] Write agent exists: `ls .opencode/agent/write.md`
-- [ ] Agent template exists: `ls .opencode/skill/workflows-documentation/assets/agent_template.md`
+- [ ] Agent template exists: `ls .opencode/skill/workflows-documentation/assets/opencode/agent_template.md`
 - [ ] Use `@write` prefix when invoking the prompt below
 
 **❌ DO NOT** create agents without the @write agent — manual creation bypasses quality gates and frontmatter validation.
@@ -698,7 +698,7 @@ Content...
 ## 4. 🔗 RELATED RESOURCES
 
 - [Skill Name](../skill/skill-name/SKILL.md)
-- [Template](../skill/workflows-documentation/assets/template.md)
+- [Template](../skill/workflows-documentation/assets/opencode/agent_template.md)
 ```
 
 #### Step 5: Test the Agent
@@ -909,11 +909,11 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 ### Templates
 
-| Template                 | Location                                   | Purpose                  |
-| ------------------------ | ------------------------------------------ | ------------------------ |
-| skill_md_template        | `../skill/workflows-documentation/assets/` | SKILL.md structure       |
-| skill_reference_template | `../skill/workflows-documentation/assets/` | Reference file structure |
-| skill_asset_template     | `../skill/workflows-documentation/assets/` | Asset file structure     |
+| Template                 | Location                                                      | Purpose                  |
+| ------------------------ | ------------------------------------------------------------- | ------------------------ |
+| skill_md_template        | `../skill/workflows-documentation/assets/opencode/` | SKILL.md structure       |
+| skill_reference_template | `../skill/workflows-documentation/assets/opencode/` | Reference file structure |
+| skill_asset_template     | `../skill/workflows-documentation/assets/opencode/` | Asset file structure     |
 
 ---
 

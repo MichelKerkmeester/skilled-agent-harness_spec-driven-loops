@@ -545,6 +545,10 @@ if __name__ == "__main__":
 
 **Naming:** snake_case, only `.md` files
 
+**Folder Organization:** Keep FLAT (no subfolders recommended)
+- Simpler navigation, easier discovery for AI agents
+- Example: `references/core_standards.md`, `references/validation.md`
+
 **Best Practices:**
 - If content exceeds 500 words, move to references/
 - Include grep search patterns in SKILL.md for large files
@@ -556,10 +560,14 @@ if __name__ == "__main__":
 
 **Naming:** snake_case
 
+**Folder Organization:** Subfolders ALLOWED when organizing many files by category
+- Group related templates together for clarity
+- Example: `assets/opencode/`, `assets/documentation/`, `assets/flowcharts/`
+
 **Best Practices:**
 - Use `[PLACEHOLDER]` format for replaceable content
 - Include usage instructions in template files
-- Organize complex assets in subdirectories
+- Organize complex assets in subdirectories (e.g., `opencode/`, `documentation/`)
 
 ### Referencing Resources in SKILL.md
 
@@ -925,7 +933,7 @@ head -10 .opencode/skill/my-skill/SKILL.md
 | `.opencode/skill/`                                                    | Skills directory     |
 | `.opencode/skill/workflows-documentation/scripts/init_skill.py`       | Initialize skill     |
 | `.opencode/skill/workflows-documentation/scripts/package_skill.py`    | Validate and package |
-| `.opencode/skill/workflows-documentation/assets/skill_md_template.md` | SKILL.md template    |
+| `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` | SKILL.md template    |
 
 ### Scripts Reference
 

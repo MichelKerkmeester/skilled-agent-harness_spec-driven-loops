@@ -1008,10 +1008,10 @@ def test_default_mode():
 ## 9. 🔗 RELATED RESOURCES
 
 ### Templates
-- [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type
 - [skill_md_template.md](./skill_md_template.md) - If converting to skill
 - [skill_asset_template.md](./skill_asset_template.md) - Asset file creation guide
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
-- [skill_creation.md](../references/skill_creation.md) - Complete skill creation workflow
+- [core_standards.md](../../references/core_standards.md) - Document type rules
+- [skill_creation.md](../../references/skill_creation.md) - Complete skill creation workflow

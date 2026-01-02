@@ -55,15 +55,15 @@ Template-first documentation specialist ensuring 100% alignment with workflows-d
 
 **BEFORE creating any document, load the corresponding template:**
 
-| Document Type    | Template File                 | Location                          |
-| ---------------- | ----------------------------- | --------------------------------- |
-| SKILL.md         | `skill_md_template.md`        | `workflows-documentation/assets/` |
-| Reference file   | `skill_reference_template.md` | `workflows-documentation/assets/` |
-| Asset file       | `skill_asset_template.md`     | `workflows-documentation/assets/` |
-| README           | `readme_template.md`          | `workflows-documentation/assets/` |
-| Install guide    | `install_guide_template.md`   | `workflows-documentation/assets/` |
-| Command          | `command_template.md`         | `workflows-documentation/assets/` |
-| **Agent file**   | `agent_template.md`           | `workflows-documentation/assets/` |
+| Document Type    | Template File                 | Location                                           |
+| ---------------- | ----------------------------- | -------------------------------------------------- |
+| SKILL.md         | `skill_md_template.md`        | `workflows-documentation/assets/opencode/` |
+| Reference file   | `skill_reference_template.md` | `workflows-documentation/assets/opencode/` |
+| Asset file       | `skill_asset_template.md`     | `workflows-documentation/assets/opencode/` |
+| README           | `readme_template.md`          | `workflows-documentation/assets/documentation/`  |
+| Install guide    | `install_guide_template.md`   | `workflows-documentation/assets/documentation/`  |
+| Command          | `command_template.md`         | `workflows-documentation/assets/opencode/` |
+| **Agent file**   | `agent_template.md`           | `workflows-documentation/assets/opencode/` |
 | Spec folder docs | System-spec-kit templates     | `system-spec-kit/templates/`      |
 
 ### Universal Template Pattern
@@ -367,7 +367,7 @@ Is this a spec folder document?
 
 ```bash
 # 1. Load template for document type
-# Read the corresponding template from workflows-documentation/assets/
+# Read the corresponding template from workflows-documentation/assets/{subfolder}/
 
 # 2. Extract current structure (BASELINE)
 python .opencode/skill/workflows-documentation/scripts/extract_structure.py document.md
@@ -396,7 +396,7 @@ python .opencode/skill/workflows-documentation/scripts/extract_structure.py docu
 python .opencode/skill/workflows-documentation/scripts/init_skill.py skill-name --path .opencode/skill/
 
 # 2. Load and apply SKILL.md template
-# Read: .opencode/skill/workflows-documentation/assets/skill_md_template.md
+# Read: .opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md
 
 # 3. Create references using skill_reference_template.md
 
@@ -511,14 +511,14 @@ python .opencode/skill/workflows-documentation/scripts/extract_structure.py .ope
 
 ### Templates
 
-| Template                      | Purpose            | Path                              |
-| ----------------------------- | ------------------ | --------------------------------- |
-| `skill_md_template.md`        | SKILL.md structure | `workflows-documentation/assets/` |
-| `skill_reference_template.md` | Reference files    | `workflows-documentation/assets/` |
-| `skill_asset_template.md`     | Asset files        | `workflows-documentation/assets/` |
-| `readme_template.md`          | README files       | `workflows-documentation/assets/` |
-| `install_guide_template.md`   | Install guides     | `workflows-documentation/assets/` |
-| `command_template.md`         | Commands           | `workflows-documentation/assets/` |
+| Template                      | Purpose            | Path                                               |
+| ----------------------------- | ------------------ | -------------------------------------------------- |
+| `skill_md_template.md`        | SKILL.md structure | `workflows-documentation/assets/opencode/` |
+| `skill_reference_template.md` | Reference files    | `workflows-documentation/assets/opencode/` |
+| `skill_asset_template.md`     | Asset files        | `workflows-documentation/assets/opencode/` |
+| `readme_template.md`          | README files       | `workflows-documentation/assets/documentation/`  |
+| `install_guide_template.md`   | Install guides     | `workflows-documentation/assets/documentation/`  |
+| `command_template.md`         | Commands           | `workflows-documentation/assets/opencode/` |
 
 ### Skills
 

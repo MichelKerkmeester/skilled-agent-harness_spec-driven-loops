@@ -879,7 +879,7 @@ error_recovery:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  install_guide_template: .opencode/skill/workflows-documentation/assets/install_guide_template.md
+  install_guide_template: .opencode/skill/workflows-documentation/assets/documentation/install_guide_template.md
   mcp_guide: .opencode/install_guides/MCP - Code Mode.md
   cli_guide: .opencode/install_guides/MCP - Chrome Dev Tools.md
   core_standards: .opencode/skill/workflows-documentation/references/core_standards.md

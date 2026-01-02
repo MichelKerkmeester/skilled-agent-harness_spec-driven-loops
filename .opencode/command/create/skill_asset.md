@@ -439,7 +439,7 @@ Execute all 5 steps in sequence following the workflow definition.
 | Completion Report  | `completion_report_template`       |
 
 ### Template Reference
-- **Template location**: `.opencode/skill/workflows-documentation/assets/skill_asset_template.md`
+- **Template location**: `.opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md`
 
 ---
 

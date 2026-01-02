@@ -280,7 +280,7 @@ workflow:
     - Read skill_reference_template.md from workflows-documentation skill
     - Extract patterns based on reference_type
     - Note formatting requirements (emojis, checkpoints, code blocks)
-    template_path: .opencode/skill/workflows-documentation/assets/skill_reference_template.md
+    template_path: .opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
     type_specific_patterns:
       workflow:
       - "Core Principle Statements"
@@ -573,7 +573,7 @@ error_recovery:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  skill_reference: .opencode/skill/workflows-documentation/assets/skill_reference_template.md
+  skill_reference: .opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
   core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────

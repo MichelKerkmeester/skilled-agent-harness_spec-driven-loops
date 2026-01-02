@@ -207,7 +207,7 @@ ai_optimization:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  readme_template: .opencode/skill/workflows-documentation/assets/readme_template.md
+  readme_template: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
   speckit_readme: .opencode/skill/system-spec-kit/README.md
   memory_readme: .opencode/skill/system-spec-kit/README.md
   core_standards: .opencode/skill/workflows-documentation/references/core_standards.md

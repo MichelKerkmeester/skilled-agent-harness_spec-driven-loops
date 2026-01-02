@@ -446,9 +446,20 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 ├── SKILL.md (800-1000 lines)
 └── Bundled Resources
     ├── scripts/          - Executable automation
-    ├── references/       - Detailed documentation
-    └── assets/           - Templates and examples
+    ├── references/       - Detailed documentation (FLAT - no subfolders)
+    └── assets/           - Templates and examples (subfolders OK)
+        ├── opencode/     - OpenCode component templates (skills, agents, commands)
+        └── documentation/ - Document templates (README, install guides)
 ```
+
+**Folder Organization Principle**:
+- **references/** = Keep FLAT (files directly in folder, no subfolders)
+  - Simpler navigation, easier discovery
+  - Example: `references/core_standards.md`, `references/validation.md`
+- **assets/** = Subfolders ALLOWED when organizing many files by category
+  - Group related templates together
+  - Example: `assets/opencode/`, `assets/documentation/`, `assets/flowcharts/`
+- **scripts/** = Typically flat, but subfolders OK for large script collections
 
 **Native Discovery**:
 - Skills auto-discovered from `.opencode/skill/*/SKILL.md` frontmatter
@@ -863,7 +874,7 @@ mode_detection:
 ## 5. ⚠️ COMMON PITFALLS
 
 For the complete list of 8 common pitfalls with before/after examples, see:
-→ **[skill_creation.md § 7. COMMON PITFALLS](../references/skill_creation.md#7--common-pitfalls)**
+→ **[skill_creation.md § 7. COMMON PITFALLS](../../references/skill_creation.md#7--common-pitfalls)**
 
 **Quick Summary:**
 1. Generic descriptions → Be specific about capabilities
@@ -994,10 +1005,10 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 ## 7. 🔗 RELATED RESOURCES
 
 ### Templates
-- [frontmatter_templates.md](./frontmatter_templates.md) - Frontmatter by document type
+- [frontmatter_templates.md](../documentation/frontmatter_templates.md) - Frontmatter by document type
 - [skill_asset_template.md](./skill_asset_template.md) - Asset file creation guide
 - [skill_reference_template.md](./skill_reference_template.md) - Reference file templates
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
-- [skill_creation.md](../references/skill_creation.md) - Complete skill creation workflow
+- [core_standards.md](../../references/core_standards.md) - Document type rules
+- [skill_creation.md](../../references/skill_creation.md) - Complete skill creation workflow

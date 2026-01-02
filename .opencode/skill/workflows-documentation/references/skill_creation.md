@@ -35,7 +35,7 @@ Level 3: Reference files (this document)
 
 This reference file provides Level 3 deep-dive technical guidance on skill creation, validation, and distribution.
 
-**See also**: [SET-UP - Skill Creation.md](../install_guides/SET-UP%20-%20Skill%20Creation.md) for interactive AI-first creation workflow with detailed time estimates.
+**See also**: [SET-UP - Skill Creation.md](../../install_guides/SET-UP%20-%20Skill%20Creation.md) for interactive AI-first creation workflow with detailed time estimates.
 
 ### Core Principle
 
@@ -80,9 +80,20 @@ skill-name/
 │   └── Markdown instructions (required)
 └── Bundled Resources (optional)
     ├── scripts/          - Executable code (Python/Bash/etc.)
-    ├── references/       - Documentation loaded into context as needed
-    └── assets/           - Files used in output (templates, icons, fonts)
+    ├── references/       - Documentation (FLAT - no subfolders recommended)
+    └── assets/           - Files used in output (subfolders OK for organization)
+        ├── opencode/     - OpenCode component templates (skills, agents, commands)
+        └── documentation/ - Document templates (README, install guides)
 ```
+
+**Folder Organization Principle**:
+- **references/** = Keep FLAT (files directly in folder, no subfolders)
+  - Simpler navigation, easier discovery for AI agents
+  - Example: `references/core_standards.md`, `references/validation.md`
+- **assets/** = Subfolders ALLOWED when organizing many files by category
+  - Group related templates together for clarity
+  - Example: `assets/opencode/`, `assets/documentation/`, `assets/flowcharts/`
+- **scripts/** = Typically flat, but subfolders OK for large script collections
 
 ### SKILL.md Requirements
 
@@ -543,7 +554,7 @@ version: 1.0.0
 ---
 ```
 
-> **Complete Reference**: For validation rules, format specifications, and all document types, see [frontmatter_templates.md](../assets/frontmatter_templates.md)
+> **Complete Reference**: For validation rules, format specifications, and all document types, see [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md)
 
 
 ### Step 5: Packaging a Skill (~2 min)
@@ -784,7 +795,7 @@ scripts/extract_structure.py .opencode/skill/my-skill/SKILL.md
 <!-- In SKILL.md -->
 ## 4. HOW IT WORKS
 
-See [workflows.md](./references/workflows.md) for detailed execution modes.
+See [workflows.md](./workflows.md) for detailed execution modes.
 
 <!-- In references/workflows.md -->
 ## EXECUTION MODES
@@ -830,8 +841,8 @@ description: Complete document quality pipeline with structure enforcement, cont
 
 # Good - Progressive disclosure
 ## 4. HOW IT WORKS
-See [workflows.md](./references/workflows.md) for execution modes.
-See [optimization.md](./references/optimization.md) for transformation patterns.
+See [workflows.md](./workflows.md) for execution modes.
+See [optimization.md](./optimization.md) for transformation patterns.
 ```
 
 **Fix**: Move detailed content to references/, keep SKILL.md lean.
@@ -1179,11 +1190,15 @@ skill-name/
 │   └── Markdown content (<5k words)
 ├── scripts/ (optional)
 │   └── *.py, *.sh
-├── references/ (optional)
+├── references/ (optional, FLAT - no subfolders)
 │   └── *.md
-└── assets/ (optional)
+└── assets/ (optional, subfolders OK)
+    ├── opencode/     - OpenCode component templates
+    ├── documentation/ - Document templates
     └── *.*
 ```
+
+**Organization**: `references/` stays flat for simplicity; `assets/` can use subfolders to group related files.
 
 ### ️ Writing Style
 
@@ -1349,15 +1364,16 @@ python scripts/quick_validate.py .opencode/skill/pdf-editor
 ## 13. 🔗 RELATED RESOURCES
 
 ### Templates
-- [skill_md_template.md](../assets/skill_md_template.md) - SKILL.md file templates
-- [skill_reference_template.md](../assets/skill_reference_template.md) - Reference file templates
-- [skill_asset_template.md](../assets/skill_asset_template.md) - Asset file templates
-- [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter by document type
+- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
+- [skill_reference_template.md](../assets/opencode/skill_reference_template.md) - Reference file templates
+- [skill_asset_template.md](../assets/opencode/skill_asset_template.md) - Asset file templates
+- [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
 
 ### Reference Files
 - [core_standards.md](./core_standards.md) - Document type rules and structural requirements
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](./quick_reference.md) - Quick command reference
+- [install_guide_standards.md](./install_guide_standards.md) - Install guide standards
 
 ---
 

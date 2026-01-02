@@ -1200,17 +1200,17 @@ A: [Answer with code if applicable.]
 ## 13. 🔗 RELATED RESOURCES
 
 ### Templates
-- [skill_asset_template.md](./skill_asset_template.md) - Pattern reference for this document
+- [skill_asset_template.md](../opencode/skill_asset_template.md) - Pattern reference for this document
 - [install_guide_template.md](./install_guide_template.md) - For installation documentation
 - [frontmatter_templates.md](./frontmatter_templates.md) - YAML frontmatter examples
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document formatting rules
-- [validation.md](../references/validation.md) - Quality scoring (DQI)
+- [core_standards.md](../../references/core_standards.md) - Document formatting rules
+- [validation.md](../../references/validation.md) - Quality scoring (DQI)
 
 ### Examples
 - Project READMEs in `/specs/` folders
 - Skill READMEs in `.opencode/skill/` folders
 
 ### Skill Reference
-- [workflows-documentation SKILL.md](../SKILL.md) - Parent skill documentation
+- [workflows-documentation SKILL.md](../../SKILL.md) - Parent skill documentation

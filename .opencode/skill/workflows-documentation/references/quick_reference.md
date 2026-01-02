@@ -259,11 +259,13 @@ python scripts/package_skill.py skill-path        # Package skill
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [optimization.md](./optimization.md) - Content transformation patterns
 - [workflows.md](./workflows.md) - Execution modes and workflows
+- [skill_creation.md](./skill_creation.md) - Skill creation workflow
+- [install_guide_standards.md](./install_guide_standards.md) - Install guide standards
 
 ### Templates
-- [skill_md_template.md](../assets/skill_md_template.md) - SKILL.md file templates
-- [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter by document type
-- [command_template.md](../assets/command_template.md) - Command file templates
+- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
+- [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
+- [command_template.md](../assets/opencode/command_template.md) - Command file templates
 
 ### Related Skills
 - `git-commit` - Git commit workflows

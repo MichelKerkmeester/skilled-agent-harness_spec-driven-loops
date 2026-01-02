@@ -20,7 +20,7 @@ Core standards define the structural foundation for all OpenCode skill documenta
 - **Type-specific rules** - Tailored requirements for SKILL, Knowledge, Command, Spec, README files
 - **Quality gates** - Filename, frontmatter, heading, and emoji standards
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](./skill_creation.md#progressive-disclosure).
 
 This reference provides deep-dive technical guidance on structure validation, document type detection, and quality enforcement.
 
@@ -482,16 +482,18 @@ Format: Plain text navigation file for LLMs
 - [optimization.md](./optimization.md) - Content transformation patterns
 - [validation.md](./validation.md) - Quality scoring and validation workflows
 - [quick_reference.md](./quick_reference.md) - Quick command reference
+- [skill_creation.md](./skill_creation.md) - Skill creation workflow
+- [install_guide_standards.md](./install_guide_standards.md) - Install guide standards
 
 ### Templates
-- [skill_md_template.md](../assets/skill_md_template.md) - SKILL.md file templates
-- [skill_asset_template.md](../assets/skill_asset_template.md) - Bundled asset structure
-- [skill_reference_template.md](../assets/skill_reference_template.md) - Reference doc structure
-- [readme_template.md](../assets/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../assets/command_template.md) - Command creation guide (19 sections)
-- [install_guide_template.md](../assets/install_guide_template.md) - Install guide template (14 sections)
-- [llmstxt_templates.md](../assets/llmstxt_templates.md) - llms.txt with decision framework
-- [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter by document type
+- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
+- [skill_asset_template.md](../assets/opencode/skill_asset_template.md) - Bundled asset structure
+- [skill_reference_template.md](../assets/opencode/skill_reference_template.md) - Reference doc structure
+- [readme_template.md](../assets/documentation/readme_template.md) - Comprehensive README guide (13 sections)
+- [command_template.md](../assets/opencode/command_template.md) - Command creation guide (19 sections)
+- [install_guide_template.md](../assets/documentation/install_guide_template.md) - Install guide template (14 sections)
+- [llmstxt_templates.md](../assets/documentation/llmstxt_templates.md) - llms.txt with decision framework
+- [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter by document type
 
 ### Additional Resources
 - `document_style_guide.md` - Project-specific style guide (create if needed)

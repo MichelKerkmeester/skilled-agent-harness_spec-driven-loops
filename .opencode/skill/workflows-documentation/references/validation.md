@@ -21,7 +21,7 @@ Validation provides a comprehensive quality assessment framework for markdown do
 - **Improvement guidance** - Actionable recommendations based on AI analysis
 - **Checklist validation** - Automated structural checks via script
 
-> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](skill_creation.md#progressive-disclosure).
+> **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation.md § Progressive Disclosure](./skill_creation.md#progressive-disclosure).
 
 This reference provides deep-dive technical guidance on qualitative assessment, quality gates, and interpretation patterns.
 
@@ -501,12 +501,14 @@ fi
 - [workflows.md](./workflows.md) - Execution modes and workflow details
 - [optimization.md](./optimization.md) - Content transformation patterns
 - [quick_reference.md](./quick_reference.md) - Quick command reference
+- [skill_creation.md](./skill_creation.md) - Skill creation workflow
+- [install_guide_standards.md](./install_guide_standards.md) - Install guide standards
 
 ### Templates
-- [skill_md_template.md](../assets/skill_md_template.md) - SKILL.md file templates
-- [skill_asset_template.md](../assets/skill_asset_template.md) - Bundled asset structure
-- [readme_template.md](../assets/readme_template.md) - Comprehensive README guide (13 sections)
-- [command_template.md](../assets/command_template.md) - Command creation guide (19 sections)
-- [install_guide_template.md](../assets/install_guide_template.md) - Install guide template (14 sections)
-- [llmstxt_templates.md](../assets/llmstxt_templates.md) - llms.txt with decision framework
-- [frontmatter_templates.md](../assets/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)
+- [skill_md_template.md](../assets/opencode/skill_md_template.md) - SKILL.md file templates
+- [skill_asset_template.md](../assets/opencode/skill_asset_template.md) - Bundled asset structure
+- [readme_template.md](../assets/documentation/readme_template.md) - Comprehensive README guide (13 sections)
+- [command_template.md](../assets/opencode/command_template.md) - Command creation guide (19 sections)
+- [install_guide_template.md](../assets/documentation/install_guide_template.md) - Install guide template (14 sections)
+- [llmstxt_templates.md](../assets/documentation/llmstxt_templates.md) - llms.txt with decision framework
+- [frontmatter_templates.md](../assets/documentation/frontmatter_templates.md) - Frontmatter validation & templates (11 sections)

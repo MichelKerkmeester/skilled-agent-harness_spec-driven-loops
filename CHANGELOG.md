@@ -8,9 +8,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## 1.0.2.x Series
 
+### [**1.0.2.8**] - 2026-01-02
+
+Reorganizes the workflows-documentation skill's asset folder structure for improved discoverability. Renames `assets/components/` to `assets/opencode/` and `assets/documents/` to `assets/documentation/` with 250+ path reference updates across 35+ files. Establishes new organizational principle for skill folder structure.
+
+#### Changed
+- `assets/components/` → `assets/opencode/` (OpenCode component templates: skills, agents, commands)
+- `assets/documents/` → `assets/documentation/` (document templates: README, install guides, frontmatter)
+- 250+ path references updated across: `SKILL.md` · 7 reference files · 9 asset files · `AGENTS.md` · `write.md` agent · 7 command files · 2 install guides
+- New organizational principle established and documented:
+  - `references/` = FLAT (no subfolders) for simpler AI agent discovery
+  - `assets/` = Subfolders ALLOWED for grouping related templates
+  - `scripts/` = Typically flat, subfolders OK for large collections
+- `skill_md_template.md` updated with "Folder Organization Principle" section
+- `skill_creation.md` updated with folder guidance in anatomy and quick reference sections
+
+#### Fixed
+- Duplicate `INSTALL_GUIDE.md` in mcp-figma skill root (deleted)
+- 3 broken paths in mcp-figma (removed erroneous `/MCP/` from paths)
+
+---
+
 ### [**1.0.2.7**] - 2026-01-02
 
-Bug fix release addressing critical runtime errors, code quality issues, and documentation misalignments discovered by 20-agent parallel scan in v1.0.2.6.
+Addresses critical runtime errors, code quality issues, and documentation misalignments discovered by a 20-agent parallel scan.
 
 #### Critical Fixes
 - **workflow.js:19**: Added missing `collectSessionData` import that would cause runtime error

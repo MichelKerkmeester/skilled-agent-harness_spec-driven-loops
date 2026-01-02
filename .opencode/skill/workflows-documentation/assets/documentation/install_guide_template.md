@@ -992,16 +992,16 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 ## 14. 🔗 RELATED RESOURCES
 
 ### Templates
-- [skill_asset_template.md](./skill_asset_template.md) - Pattern reference for this document
+- [skill_asset_template.md](../opencode/skill_asset_template.md) - Pattern reference for this document
 - [frontmatter_templates.md](./frontmatter_templates.md) - YAML frontmatter examples
 
 ### Standards
-- [install_guide_standards.md](../references/install_guide_standards.md) - Phase validation rules
-- [core_standards.md](../references/core_standards.md) - Document formatting standards
+- [install_guide_standards.md](../../references/install_guide_standards.md) - Phase validation rules
+- [core_standards.md](../../references/core_standards.md) - Document formatting standards
 
 ### Examples
-- [MCP - Narsil.md](../../../install_guides/MCP/MCP%20-%20Narsil.md) - Excellent MCP server example (1300+ lines)
-- [MCP - Spec Kit Memory.md](../../../install_guides/MCP/MCP%20-%20Spec%20Kit%20Memory.md) - Plugin example
+- [MCP - Narsil.md](../../../../install_guides/MCP/MCP%20-%20Narsil.md) - Excellent MCP server example (1300+ lines)
+- [MCP - Spec Kit Memory.md](../../../../install_guides/MCP/MCP%20-%20Spec%20Kit%20Memory.md) - Plugin example
 
 ### Skill Reference
-- [workflows-documentation SKILL.md](../SKILL.md) - Mode 4: Install Guide Creation
+- [workflows-documentation SKILL.md](../../SKILL.md) - Mode 4: Install Guide Creation

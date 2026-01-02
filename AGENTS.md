@@ -1,13 +1,21 @@
-# AI Assistant Framework (Universal Template)
+# AI Assistant Framework
 
-> **Universal behavior framework** defining guardrails, standards, and decision protocols.
+> **Behavior framework** defining guardrails, standards, and decision protocols—tailored for anobel.com’s Webflow implementation.
 
-#### 👨‍🚀 HOW TO USE / ADAPT THIS FRAMEWORK
+---
 
-1. Use this `AGENTS.md` as your starting point for SpecKit and memory workflows in any codebase.
-2. Adapt the framework to fit your project's code standards, workflows, etc.
-3. Update or extend rules, tools, and protocols as needed.
-4. For practical setup examples and detailed instructions, see `AGENTS_WEBFLOW_.md` and `.opencode/install_guides/SET-UP - AGENTS.md`.
+#### 📦 PUBLIC RELEASE
+
+The OpenCode development environment in this project is also available as a standalone public release.
+
+| Resource                | Location                                                              |
+| ----------------------- | --------------------------------------------------------------------- |
+| **Public Repo (local)** | `/Users/michelkerkmeester/MEGA/Development/Opencode Dev Environment/` |
+| **GitHub**              | https://github.com/MichelKerkmeester/Opencode_Dev_Environment         |
+
+**This project is the source of truth.** Changes are synced to the public repo for distribution.
+
+See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, and release management.
 
 ---
 
@@ -28,15 +36,16 @@
 
 **MANDATORY TOOLS:**
 - **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
-- **Narsil MCP** for ALL code intelligence - semantic search (neural), structural queries, security scanning, call graphs. Accessed via Code Mode.
+- **LEANN MCP** for semantic code search - finds code by MEANING ("How does auth work?"). See §6 for tool list.
+- **Narsil MCP** for structural code queries AND security scanning - finds code by STRUCTURE ("List functions in auth.ts"), security vulnerabilities, call graphs. Complements LEANN: use LEANN for understanding intent, Narsil for symbol navigation and security. Accessed via Code Mode.
 
 ### Quick Reference: Common Workflows
 
 | Task                     | Flow                                                                                                                                     |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                               |
-| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `narsil.narsil_neural_search()` → Document findings                                               |
-| **Code search**          | `narsil.narsil_neural_search()` for semantic, `narsil.narsil_find_symbols()` for structural, `Grep()` for text patterns |
+| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → `leann_leann_search()` → Document findings                                               |
+| **Code search**          | `leann_leann_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text patterns |
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                         |
 | **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed      |
 | **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                              |
@@ -46,7 +55,9 @@
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                  |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                            |
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                      |
-
+| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                                     |
+| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                            |
+| **LEANN index build**    | `leann-build <name> --docs src/` (requires alias setup - see mcp-leann skill)                                                            |
 
 ---
 
@@ -143,15 +154,11 @@
 │   1. If NO folder argument → HARD BLOCK → List folders → Ask user           │
 │   2. If folder provided → Validate alignment with conversation topic        │
 │                                                                             │
-│ EXECUTION (script: .opencode/skill/system-spec-kit/scripts/generate-context.js):
+│ EXECUTION:                                                                  │
 │   Mode 1 (JSON): Write JSON to /tmp/save-context-data.json, pass as arg     │
-│            node [script] /tmp/save-context-data.json                        │
+│            `node generate-context.js /tmp/save-context-data.json`           │
 │   Mode 2 (Direct): Pass spec folder path directly                           │
-│            node [script] specs/005-memory                                   │
-│                                                                             │
-│ INDEXING NOTE: Script reports "Indexed as memory #X" but running MCP server │
-│   may not see it immediately (separate DB connection). For immediate MCP    │
-│   visibility: call memory_index_scan({ specFolder }) or memory_save()       │
+│            `node generate-context.js specs/005-memory`                      │
 │                                                                             │
 │ VIOLATION: Write tool on memory/ path → DELETE & re-run via script          │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -232,18 +239,22 @@ File modification planned? → Include Q1 (Spec Folder)
 - Memory Context Loading: "skip context", "fresh start", "skip memory", [skip]
 - Completion Verification: Level 1 tasks (no checklist.md required)
 
-#### ⚡ Compliance Checkpoints
+#### ⚡ Code Quality Standards Compliance
 
-**MANDATORY:**
-- Before **proposing solutions**: Verify approach aligns with project patterns and conventions
+**MANDATORY:** Compliance checkpoints:
+- Before **proposing solutions**: Verify approach aligns with code quality standards and webflow patterns 
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
-- Before **code discovery**: Use mcp-narsil for all code search (semantic via neural, structural via symbols) (MANDATORY)
+- Before **initialization code**: Follow initialization patterns from code quality standards
+- Before **animation implementation**: See animation workflow references
+- Before **code discovery**: Use mcp-leann (semantic) + mcp-narsil (structural, via Code Mode) as complementary tools (MANDATORY)
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
-- Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required) 
-- **If conflict exists**: Project-specific patterns override general practices
+- Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
+- Before **CDN deployment**: See cdn_deployment.md for version management and upload workflow
+- Before **JavaScript minification**: See minification_guide.md for safe minification with verification
+- **If conflict exists**: Code quality standards override general practices
 
-**Violation handling:** If proposed solution contradicts project patterns, STOP and ask for clarification or revise approach.
+**Violation handling:** If proposed solution contradicts code quality standards, STOP and ask for clarification or revise approach.
 
 #### ⚡ Common Failure Patterns 
 
@@ -262,7 +273,7 @@ File modification planned? → Include Q1 (Spec Folder)
 | 11  | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                           |
 | 12  | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                   |
 | 13  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution  |
-| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Narsil neural for meaning, Narsil structural for symbols, Grep for text |
+| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | LEANN for meaning, Narsil for structure, Grep for text |
 | 15  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                  |
 | 16  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                 |
 | 17  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response     |
@@ -461,6 +472,8 @@ PRE-CHANGE VALIDATION:
 
 **STOP CONDITIONS:** □ unchecked | no spec folder | no user approval → STOP and address
 
+**Full details:** workflows-code skill (3-phase implementation lifecycle)
+
 #### Phase 7: Final Output Review
 **Verification Summary (Mandatory for Factual Content):**
 
@@ -489,7 +502,7 @@ Review response for:
 
 ```
 Known file path? → Read()
-Know what code DOES? → narsil.narsil_neural_search() [CODE MODE - MANDATORY]
+Know what code DOES? → leann_leann_search() or leann_leann_ask() [NATIVE MCP - MANDATORY]
 Research/prior work? → memory_search() [NATIVE MCP - MANDATORY]
 Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE - via call_tool_chain()]
 Security scan/vulnerabilities? → narsil.narsil_scan_security() [CODE MODE - via call_tool_chain()]
@@ -497,11 +510,13 @@ Code analysis (dead code, complexity)? → narsil.narsil_* tools [CODE MODE - vi
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP - OPTIONAL]
-External MCP tools? → call_tool_chain() [Code Mode - Figma, GitHub, ClickUp, Narsil, etc.]
+Browser debugging? → workflows-chrome-devtools skill
+External MCP tools? → call_tool_chain() [Code Mode - Webflow, Figma, ClickUp, Narsil, etc.]
 Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 Stuck debugging 3+ attempts? → /spec_kit:debug → Model selection → Task tool dispatch
 Multi-step task? → Task tool for delegation
 New spec folder (Option B)? → Research task dispatch
+Browser debugging needed? → workflows-chrome-devtools skill
 Documentation generation? → workflows-documentation skill
 ```
 
@@ -509,16 +524,16 @@ Documentation generation? → workflows-documentation skill
 
 | System              | MCP Name          | Database Location                                               | Purpose                               |
 | ------------------- | ----------------- | --------------------------------------------------------------- | ------------------------------------- |
-| **Narsil**          | `narsil` (Code Mode) | Managed by Narsil (--persist flag)                           | **Code** semantic + structural search |
+| **LEANN**           | `leann`           | `~/.leann/indexes/`                                             | **Code** semantic search              |
 | **Spec Kit Memory** | `spec_kit_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**
 - Both use vector embeddings for semantic search
-- Narsil is for code search (semantic + structural), Spec Kit Memory is for conversation context
+- LEANN is for code/document search, Spec Kit Memory is for conversation context
 - They are COMPLETELY SEPARATE systems with different purposes
 
 **When cleaning/resetting databases:**
-- Code search issues → Use `narsil.narsil_reindex()` or restart MCP
+- Code search issues → Delete `~/.leann/indexes/` or use `leann remove <index-name>`
 - Memory issues → Delete `.opencode/skill/system-spec-kit/database/context-index.sqlite`
 - **IMPORTANT**: After deletion, restart OpenCode to clear the MCP server's in-memory cache
 
@@ -526,31 +541,37 @@ Documentation generation? → workflows-documentation skill
 
 | Tool       | Type                  | Query Example               | Returns                                 |
 | ---------- | --------------------- | --------------------------- | --------------------------------------- |
-| **Narsil Neural** | Semantic       | "How does auth work?"       | Code by meaning/intent                  |
-| **Narsil Structural** | Structural + Security | "List functions in auth.ts" | Symbols, call graphs, security findings |
+| **LEANN**  | Semantic              | "How does auth work?"       | Code by meaning/intent                  |
+| **Narsil** | Structural + Security | "List functions in auth.ts" | Symbols, call graphs, security findings |
 | **Grep**   | Lexical               | "Find 'TODO' comments"      | Text pattern matches                    |
 
 **Decision Logic:**
-- Need to UNDERSTAND code? → Narsil neural_search
+- Need to UNDERSTAND code? → LEANN (semantic)
 - Need to MAP code structure? → Narsil (structural, via Code Mode)
 - Need SECURITY scan or CODE ANALYSIS? → Narsil (via Code Mode)
 - Need to FIND text patterns? → Grep (lexical)
 
 **Typical Workflow:**
 1. Narsil → Map structure via Code Mode ("What functions exist?")
-2. Narsil neural_search → Understand purpose ("How does login work?")
+2. LEANN → Understand purpose ("How does login work?")
 3. Read → Get implementation details
+
+**LEANN Indexing Best Practices:**
+- **Shell alias recommended:** `alias leann-build='leann build --embedding-mode mlx --embedding-model "mlx-community/Qwen3-Embedding-0.6B-4bit-DWQ"'`
+- Usage: `leann-build <name> --docs src/` (Qwen3 is 50% better than Contriever, trained on code)
+- Start with smallest effective scope: `--docs src/` for large projects (>2000 files)
+- See mcp-leann skill for setup instructions
 
 ### MCP Configuration
 
 **Two systems:**
 
 1. **Native MCP** (`opencode.json`) - Direct tools, called natively
-   - Sequential Thinking, Spec Kit Memory, Code Mode server
+   - Sequential Thinking, LEANN, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - Figma, GitHub, ClickUp, Narsil, etc.
-   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `figma.figma_get_file({})`, `narsil.narsil_find_symbols({})`)
+   - Webflow, Figma, Github, ClickUp, Chrome DevTools, Narsil, etc.
+   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`, `narsil.narsil_find_symbols({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
   
 ---
@@ -574,7 +595,7 @@ Task Received → Gate 2: Run skill_advisor.py (optional)
 ```
 
 **Invocation Methods:**
-- **Native**: OpenCode v1.0.190+ auto-discovers skills and exposes them as `skills_*` functions (e.g., `skills_system_spec_kit`)
+- **Native**: OpenCode v1.0.190+ auto-discovers skills and exposes them as `skills_*` functions (e.g., `skills_mcp_leann`, `skills_system_spec_kit`)
 - **Direct**: Read `SKILL.md` from `.opencode/skill/<skill-name>/` folder
 
 ### Skill Loading Protocol
@@ -601,7 +622,7 @@ Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you
 
 **How to use skills:**
 - OpenCode v1.0.190+ auto-discovers skills from `.opencode/skill/*/SKILL.md` frontmatter
-- Skills appear as `skills_*` functions in your available tools (e.g., `skills_system_spec_kit`)
+- Skills appear as `skills_*` functions in your available tools (e.g., `skills_mcp_leann`, `skills_system_spec_kit`)
 - When a task matches a skill, read the SKILL.md directly: `Read(".opencode/skill/<skill-name>/SKILL.md")`
 - Base directory provided for resolving bundled resources (`references/`, `scripts/`, `assets/`)
 

@@ -228,7 +228,9 @@ $env:MCP_PATH = "$HOME\.mcp"
 - **[core_standards.md](./core_standards.md)** - Filename conventions, heading format, emoji rules
 - **[validation.md](./validation.md)** - DQI scoring methodology, quality bands
 - **[workflows.md](./workflows.md)** - Document creation workflows
-- **`assets/install_guide_template.md`** - Template for new install guides
+- **[quick_reference.md](./quick_reference.md)** - Quick command reference
+- **[skill_creation.md](./skill_creation.md)** - Skill creation workflow
+- **[install_guide_template.md](../assets/documentation/install_guide_template.md)** - Template for new install guides
 
 ### Pre-Publish Checklist
 

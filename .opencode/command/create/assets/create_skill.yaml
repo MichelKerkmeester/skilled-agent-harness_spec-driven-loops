@@ -134,9 +134,9 @@ documentation_level:
 # SKILL CREATION TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 skill_templates:
-  skill_md: .opencode/skill/workflows-documentation/assets/skill_md_template.md
-  skill_asset: .opencode/skill/workflows-documentation/assets/skill_asset_template.md
-  skill_reference: .opencode/skill/workflows-documentation/assets/skill_reference_template.md
+  skill_md: .opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md
+  skill_asset: .opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
+  skill_reference: .opencode/skill/workflows-documentation/assets/opencode/skill_reference_template.md
 
 skill_scripts:
   init_skill: .opencode/skill/workflows-documentation/scripts/init_skill.py

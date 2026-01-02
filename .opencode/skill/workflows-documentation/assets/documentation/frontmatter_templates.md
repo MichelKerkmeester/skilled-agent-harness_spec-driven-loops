@@ -766,9 +766,9 @@ Document type?
 ## 11. 🔗 RELATED RESOURCES
 
 ### Templates
-- [skill_md_template.md](./skill_md_template.md) - SKILL.md file templates
-- [command_template.md](./command_template.md) - Command file templates
+- [skill_md_template.md](../opencode/skill_md_template.md) - SKILL.md file templates
+- [command_template.md](../opencode/command_template.md) - Command file templates
 
 ### Standards
-- [core_standards.md](../references/core_standards.md) - Document type rules
-- [validation.md](../references/validation.md) - Quality scoring
+- [core_standards.md](../../references/core_standards.md) - Document type rules
+- [validation.md](../../references/validation.md) - Quality scoring

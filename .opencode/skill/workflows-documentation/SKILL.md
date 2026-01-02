@@ -50,8 +50,8 @@ Create and manage OpenCode components: skills, agents, and commands. Each compon
 
 **Component Types:**
 - **Skills** (.opencode/skill/) - Knowledge bundles with workflows → [skill_creation.md](./references/skill_creation.md)
-- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/agent_template.md)
-- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/command_template.md)
+- **Agents** (.opencode/agent/) - AI personas with tool permissions → [agent_template.md](./assets/opencode/agent_template.md)
+- **Commands** (.opencode/command/) - Slash commands for user invocation → [command_template.md](./assets/opencode/command_template.md)
 
 **Use when**:
 - User requests skill creation ("create a skill", "make a new skill")
@@ -147,21 +147,21 @@ TASK CONTEXT
 | Optimizing content     | `references/optimization.md`      | Question coverage, AI-friendly transformations |
 | Validating quality     | `references/validation.md`        | DQI scoring, quality gates                     |
 | Workflow guidance      | `references/workflows.md`         | Execution modes, enforcement patterns          |
-| **Creating README**    | `assets/readme_template.md`       | README structure (13 sections)                 |
-| **Validating frontmatter** | `assets/frontmatter_templates.md` | Frontmatter validation & templates (11 types) |
+| **Creating README**    | `assets/documentation/readme_template.md`       | README structure (13 sections)                 |
+| **Validating frontmatter** | `assets/documentation/frontmatter_templates.md` | Frontmatter validation & templates (11 types) |
 
 **Mode 2 - OpenCode Component Creation:**
 
 | Category | Condition               | Resource                                         | Purpose                                  |
 | -------- | ----------------------- | ------------------------------------------------ | ---------------------------------------- |
 | **Skills** | Creating skill        | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                          |
-|          | SKILL.md template       | `assets/skill_md_template.md`                    | SKILL.md structure                       |
-|          | Reference template      | `assets/skill_reference_template.md`             | Reference docs in references/            |
-|          | Asset template          | `assets/skill_asset_template.md`                 | Bundled assets in assets/                |
+|          | SKILL.md template       | `assets/opencode/skill_md_template.md`                    | SKILL.md structure                       |
+|          | Reference template      | `assets/opencode/skill_reference_template.md`             | Reference docs in references/            |
+|          | Asset template          | `assets/opencode/skill_asset_template.md`                 | Bundled assets in assets/                |
 |          | Packaging skill         | `scripts/package_skill.py`                       | Validation + zip                         |
-| **Agents** | Creating agent        | `assets/agent_template.md`                       | Agent file with frontmatter & permissions |
-| **Commands** | Creating command    | `assets/command_template.md`                     | Command creation guide (19 sections)     |
-| **Shared** | Component README      | `assets/readme_template.md`                      | README for skill/agent/command folders   |
+| **Agents** | Creating agent        | `assets/opencode/agent_template.md`                       | Agent file with frontmatter & permissions |
+| **Commands** | Creating command    | `assets/opencode/command_template.md`                     | Command creation guide (19 sections)     |
+| **Shared** | Component README      | `assets/documentation/readme_template.md`                      | README for skill/agent/command folders   |
 |          | Quick validation        | `scripts/quick_validate.py`                      | Fast validation checks                   |
 
 **Mode 3 - Flowcharts:**
@@ -179,7 +179,7 @@ TASK CONTEXT
 
 | Condition              | Resource                                | Purpose              |
 | ---------------------- | --------------------------------------- | -------------------- |
-| Creating install guide | `assets/install_guide_template.md`      | Phase-based template |
+| Creating install guide | `assets/documentation/install_guide_template.md`      | Phase-based template |
 | Need standards         | `references/install_guide_standards.md` | Best practices       |
 | Validating guide       | `scripts/extract_structure.py`          | Quality check        |
 
@@ -187,9 +187,9 @@ TASK CONTEXT
 
 | Condition           | Resource                           | Purpose                                      |
 | ------------------- | ---------------------------------- | -------------------------------------------- |
-| Need frontmatter    | `assets/frontmatter_templates.md`  | Frontmatter validation & templates (11 secs) |
-| Generating llms.txt | `assets/llmstxt_templates.md`      | llms.txt creation with decision framework    |
-| Creating install    | `assets/install_guide_template.md` | 5-phase install guide template (14 sections) |
+| Need frontmatter    | `assets/documentation/frontmatter_templates.md`  | Frontmatter validation & templates (11 secs) |
+| Generating llms.txt | `assets/documentation/llmstxt_templates.md`      | llms.txt creation with decision framework    |
+| Creating install    | `assets/documentation/install_guide_template.md` | 5-phase install guide template (14 sections) |
 | Analyzing docs      | `scripts/extract_structure.py`     | Parse to JSON for AI analysis                |
 | Quick reference     | `references/quick_reference.md`    | One-page cheat sheet                         |
 
@@ -208,11 +208,11 @@ TASK CONTEXT
 
 | Template | Purpose | Usage |
 |----------|---------|-------|
-| [skill_md_template.md](assets/skill_md_template.md) | SKILL.md template | New skill creation |
-| [skill_reference_template.md](assets/skill_reference_template.md) | Reference file template | Bundled resources |
-| [readme_template.md](assets/readme_template.md) | README template | Project documentation |
-| [command_template.md](assets/command_template.md) | Command template | Slash commands |
-| [agent_template.md](assets/agent_template.md) | Agent template | Custom agents |
+| [skill_md_template.md](assets/opencode/skill_md_template.md) | SKILL.md template | New skill creation |
+| [skill_reference_template.md](assets/opencode/skill_reference_template.md) | Reference file template | Bundled resources |
+| [readme_template.md](assets/documentation/readme_template.md) | README template | Project documentation |
+| [command_template.md](assets/opencode/command_template.md) | Command template | Slash commands |
+| [agent_template.md](assets/opencode/agent_template.md) | Agent template | Custom agents |
 
 ### Resource Router
 
@@ -223,11 +223,11 @@ def route_documentation_resources(task):
     # Mode 1: Skill Creation
     if task.involves("skill creation") or task.involves("new skill"):
         load("references/skill_creation.md")
-        load("assets/skill_md_template.md")
+        load("assets/opencode/skill_md_template.md")
         return "Mode 1: Skill Creation"
     
     if task.involves("reference file") or task.involves("bundled resource"):
-        load("assets/skill_reference_template.md")
+        load("assets/opencode/skill_reference_template.md")
         return "Mode 1: Reference Creation"
     
     # Mode 2: Document Quality
@@ -247,7 +247,7 @@ def route_documentation_resources(task):
     
     # Mode 5: Install Guide
     if task.involves("install guide") or task.involves("setup instructions"):
-        load("assets/install_guide_template.md")
+        load("assets/documentation/install_guide_template.md")
         return "Mode 5: Install Guide"
     
     # Default

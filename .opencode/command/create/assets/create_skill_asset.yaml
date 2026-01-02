@@ -244,7 +244,7 @@ workflow:
     - Read skill_asset_template.md from workflows-documentation skill
     - Extract structure patterns for asset type
     - Note formatting requirements
-    template_path: .opencode/skill/workflows-documentation/assets/skill_asset_template.md
+    template_path: .opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
     key_structure_elements:
     - "Title with emoji and descriptive subtitle"
     - "Introduction paragraph (1-2 sentences)"
@@ -490,7 +490,7 @@ error_recovery:
 # REFERENCE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 reference_templates:
-  skill_asset: .opencode/skill/workflows-documentation/assets/skill_asset_template.md
+  skill_asset: .opencode/skill/workflows-documentation/assets/opencode/skill_asset_template.md
   core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
