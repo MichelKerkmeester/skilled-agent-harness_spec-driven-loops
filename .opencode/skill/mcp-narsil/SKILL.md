@@ -257,10 +257,32 @@ Narsil provides both structural AND semantic search capabilities:
 
 ### Neural Semantic Search
 
-Narsil is configured with neural embeddings via Voyage API:
-- **Model**: voyage-code-2 (code-specialized, 1536-dim)
-- **Tool**: `narsil_neural_search`
-- **Fallback**: BM25 search if API unavailable
+Narsil supports **three neural embedding backends** for semantic code search:
+
+| Backend | Model | API Key | Dimensions | Best For |
+|---------|-------|---------|------------|----------|
+| **Voyage AI** | `voyage-code-2` | `VOYAGE_API_KEY` | 1536 | Code search (RECOMMENDED) |
+| **OpenAI** | `text-embedding-3-small` | `OPENAI_API_KEY` | 1536 | General purpose |
+| **Local ONNX** | Built-in | None required | 384 | Offline/privacy |
+
+**Configuration Examples:**
+
+```bash
+# Voyage AI (recommended for code)
+--neural --neural-backend api --neural-model voyage-code-2
+# Requires: VOYAGE_API_KEY in .env
+
+# OpenAI
+--neural --neural-backend api --neural-model text-embedding-3-small
+# Requires: OPENAI_API_KEY in .env
+
+# Local ONNX (no API key needed)
+--neural --neural-backend onnx
+# No API key required - runs locally
+```
+
+**Tool**: `narsil_neural_search`
+**Fallback**: BM25 search if neural unavailable
 
 ```typescript
 // Example: Semantic code search
@@ -552,17 +574,17 @@ Key integrations:
         "command": "/absolute/path/to/narsil-mcp",
         "args": [
           "--repos", ".",
-          "--preset", "full",
           "--index-path", ".narsil-index",
           "--git",
           "--call-graph",
           "--persist",
+          "--watch",
           "--neural",
           "--neural-backend", "api",
           "--neural-model", "voyage-code-2"
         ],
         "env": {
-          "VOYAGE_API_KEY": "your-voyage-api-key"
+          "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
         }
       }
     }
@@ -602,15 +624,37 @@ Narsil includes an HTTP server with React frontend for interactive graph visuali
 
 > **Important**: The `--http` flag enables a **visualization web UI**, NOT HTTP transport for MCP. MCP communication is **always via stdio** - Code Mode spawns the Narsil process and communicates via stdin/stdout. The HTTP server runs in parallel for visual exploration.
 
-```bash
-# Start with HTTP visualization enabled
-narsil-mcp --repos . --preset full --http --http-port 3000
+**Starting the HTTP Server (CRITICAL):**
 
-# Frontend (port 5173) - in separate terminal (optional, for development)
-cd "${NARSIL_PATH}/frontend" && npm install && npm run dev
+The HTTP server requires stdin to stay open. Use this pattern to keep it running:
+
+```bash
+# Backend (port 3000) - MUST use stdin pipe to prevent EOF shutdown
+(tail -f /dev/null | narsil-mcp \
+  --repos . \
+  --index-path .narsil-index \
+  --git --call-graph --persist \
+  --http --http-port 3000 > /tmp/narsil-http.log 2>&1) &
+
+# Frontend (port 5173) - in separate terminal
+cd /path/to/narsil-mcp/frontend && npm install && npm run dev
 ```
 
-**Graph views**: `import` (best for JS), `call`, `symbol`, `hybrid`, `flow`
+**Why the pipe?** MCP servers read from stdin. Without input, they receive EOF and shut down. The `tail -f /dev/null |` keeps stdin open indefinitely.
+
+**Graph Views & Limitations:**
+
+| View | Purpose | Required Parameters |
+|------|---------|---------------------|
+| `import` | Module import/export | None (best for JS) |
+| `call` | Function call graph | None |
+| `symbol` | Symbol definitions | **Requires `root` parameter** (function name) |
+| `hybrid` | Combined import + call | **Requires `repo` parameter** |
+| `flow` | Data flow | None |
+
+**Known Frontend Issues:**
+- Symbol view shows "Symbol view requires a root" - enter a function name in the Root field
+- Hybrid view may fail without repo parameter - use Import or Call view instead
 
 **Performance**: Use Limit slider in UI, index specific dirs with `-r src -r lib`, add `**/node_modules` to `.gitignore`.
 

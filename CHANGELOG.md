@@ -8,6 +8,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## 1.0.2.x Series
 
+### [**1.0.2.5**] - 2026-01-02
+
+Security and documentation release fixing hardcoded API key exposure in `.utcp_config.json` and broken install script configuration. Adds comprehensive documentation for Narsil's three neural embedding backends (Voyage AI, OpenAI, Local ONNX) and HTTP server visualization setup.
+
+#### Security
+- **CWE-798 (Hardcoded Credentials)**: Fixed hardcoded `VOYAGE_API_KEY` in `.utcp_config.json` - now uses `${VOYAGE_API_KEY}` variable reference loaded from `.env`
+
+#### Fixed
+- `install-narsil.sh` generating invalid config with `_note`, `_neural_backends` fields that break Code Mode parsing
+- Missing `--watch` flag in all recommended Narsil configurations
+
+#### Added
+- Neural backend comparison table showing all 3 options: Voyage AI (recommended) · OpenAI · Local ONNX
+- Separate configuration examples for each neural backend in install guide
+- HTTP server stdin pipe trick documentation (`tail -f /dev/null |` to prevent EOF shutdown)
+- Symbol/Hybrid view parameter requirements (`root`, `repo`) in visualization docs
+
+#### Changed
+- All Narsil config examples now include `--watch` flag for auto-reindexing
+- API key references changed from hardcoded values to `${VOYAGE_API_KEY}` variable syntax
+- Install script help text expanded with Neural Search Backends section
+
+---
+
 ### [**1.0.2.4**] - 2026-01-01
 
 Major infrastructure release with critical bug fixes, security hardening, MCP install automation, and comprehensive codebase standardization across 70+ files. Adds sub-agent delegation for token efficiency and universal stack-agnostic debugging.

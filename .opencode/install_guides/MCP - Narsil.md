@@ -397,11 +397,11 @@ Add Narsil to your project's `.utcp_config.json`:
         "command": "narsil-mcp",
         "args": [
           "--repos", ".",
-          "--preset", "full",
           "--index-path", ".narsil-index",
           "--git",
           "--call-graph",
           "--persist",
+          "--watch",
           "--neural",
           "--neural-backend", "api",
           "--neural-model", "voyage-code-2"
@@ -417,7 +417,7 @@ Add Narsil to your project's `.utcp_config.json`:
 
 **Note**: 
 - Use `narsil-mcp` if installed via Homebrew/npm, or full path to binary
-- `--preset full` enables all 76 tools
+- `--watch` enables auto-reindexing when files change
 - `--http --http-port 3000` can be added for visualization UI (optional)
 
 ### Configuration Flags Reference
@@ -428,8 +428,9 @@ Add Narsil to your project's `.utcp_config.json`:
 | `--git`            | Enable git integration (blame, history)      | Yes         |
 | `--call-graph`     | Enable call graph analysis                   | Yes         |
 | `--persist`        | Save index to disk (faster restarts)         | Yes         |
+| `--watch`          | Auto-reindex when files change               | Yes         |
 | `--index-path`     | Custom index storage location                | Yes         |
-| `--preset`         | Tool preset (see Presets section below)      | Yes (full)  |
+| `--preset`         | Tool preset (see Presets section below)      | Optional    |
 | `--http`           | Enable visualization UI at localhost:3000    | Optional    |
 | `--http-port`      | Port for visualization UI (default: 3000)    | Optional    |
 | `--neural`         | Enable neural semantic search                | Optional    |
@@ -553,7 +554,15 @@ narsil.narsil_save_index({})
 
 ### Neural Semantic Search Configuration (Optional)
 
-To enable neural semantic search capabilities:
+Narsil supports **three neural embedding backends** for semantic code search:
+
+| Backend | Model | API Key Env Var | Dimensions | Best For |
+|---------|-------|-----------------|------------|----------|
+| **Voyage AI** | `voyage-code-2` | `VOYAGE_API_KEY` | 1536 | Code search (RECOMMENDED) |
+| **OpenAI** | `text-embedding-3-small` | `OPENAI_API_KEY` | 1536 | General purpose |
+| **Local ONNX** | Built-in | None required | 384 | Offline/privacy |
+
+#### Option 1: Voyage AI (Recommended for Code)
 
 ```json
 {
@@ -563,11 +572,8 @@ To enable neural semantic search capabilities:
       "command": "narsil-mcp",
       "args": [
         "--repos", ".",
-        "--preset", "full",
         "--index-path", ".narsil-index",
-        "--git",
-        "--call-graph",
-        "--persist",
+        "--git", "--call-graph", "--persist", "--watch",
         "--neural",
         "--neural-backend", "api",
         "--neural-model", "voyage-code-2"
@@ -580,10 +586,44 @@ To enable neural semantic search capabilities:
 }
 ```
 
-**Voyage API Setup:**
-1. Get API key from https://www.voyageai.com/
-2. Key format: starts with "pa-"
-3. Add to env section in `.utcp_config.json`
+**Setup:** Get API key from https://www.voyageai.com/ (key starts with "pa-")
+
+#### Option 2: OpenAI
+
+```json
+{
+  "args": [
+    "--repos", ".",
+    "--index-path", ".narsil-index",
+    "--git", "--call-graph", "--persist", "--watch",
+    "--neural",
+    "--neural-backend", "api",
+    "--neural-model", "text-embedding-3-small"
+  ],
+  "env": {
+    "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+  }
+}
+```
+
+**Setup:** Get API key from https://platform.openai.com/api-keys (key starts with "sk-")
+
+#### Option 3: Local ONNX (No API Key Required)
+
+```json
+{
+  "args": [
+    "--repos", ".",
+    "--index-path", ".narsil-index",
+    "--git", "--call-graph", "--persist", "--watch",
+    "--neural",
+    "--neural-backend", "onnx"
+  ],
+  "env": {}
+}
+```
+
+**No API key needed** - embeddings run locally. Lower quality than cloud options but works offline.
 
 **Neural Search Usage:**
 ```typescript
@@ -648,16 +688,21 @@ Narsil includes an HTTP server with a React-based visualization frontend for exp
 
 ### Starting the HTTP Server
 
+**CRITICAL**: The HTTP server requires stdin to stay open. Use this pattern:
+
 ```bash
-# Start Narsil with HTTP visualization enabled
-narsil-mcp \
+# Backend (port 3000) - MUST use stdin pipe to prevent EOF shutdown
+(tail -f /dev/null | narsil-mcp \
   --repos . \
-  --preset full \
   --index-path .narsil-index \
-  --persist \
-  --http \
-  --http-port 3000
+  --git --call-graph --persist \
+  --http --http-port 3000 > /tmp/narsil-http.log 2>&1) &
+
+# Check it's running
+curl http://localhost:3000/health
 ```
+
+**Why the pipe?** MCP servers read from stdin. Without input, they receive EOF and shut down immediately. The `tail -f /dev/null |` keeps stdin open indefinitely.
 
 The HTTP server provides:
 - `/health` endpoint for health checks
@@ -669,8 +714,11 @@ The HTTP server provides:
 The visualization frontend is a **separate React application** located in the `frontend/` directory of the Narsil repository:
 
 ```bash
+# Find Narsil source (if installed from source)
+# Common locations: ~/narsil-mcp, ~/MEGA/MCP Servers/narsil-mcp
+
 # Navigate to Narsil frontend directory
-cd "${NARSIL_PATH}/frontend"
+cd /path/to/narsil-mcp/frontend
 
 # Install dependencies (first time only)
 npm install
@@ -682,19 +730,23 @@ npm run dev
 
 **Important**: The backend (port 3000) and frontend (port 5173) must both be running for visualization to work.
 
-### Graph Views
+### Graph Views & Limitations
 
 The visualization supports multiple graph types:
 
-| View     | Purpose                            | Best For                  |
-| -------- | ---------------------------------- | ------------------------- |
-| `import` | Module import/export relationships | JavaScript/TypeScript     |
-| `call`   | Function call relationships        | Rust, Python (limited JS) |
-| `symbol` | Symbol definitions and references  | All languages             |
-| `hybrid` | Combined import + call graph       | Comprehensive analysis    |
-| `flow`   | Data flow visualization            | Security analysis         |
+| View     | Purpose                            | Required Parameters | Best For                  |
+| -------- | ---------------------------------- | ------------------- | ------------------------- |
+| `import` | Module import/export relationships | None                | JavaScript/TypeScript     |
+| `call`   | Function call relationships        | None                | Rust, Python (limited JS) |
+| `symbol` | Symbol definitions and references  | **`root` (function name)** | All languages     |
+| `hybrid` | Combined import + call graph       | **`repo`**          | Comprehensive analysis    |
+| `flow`   | Data flow visualization            | None                | Security analysis         |
 
-**Note**: For JavaScript projects, the `import` view is most useful. The `call` view works better for statically-typed languages like Rust and Python.
+**Known Frontend Issues:**
+- **Symbol view**: Shows "Symbol view requires a root" - you must enter a function name in the Root field
+- **Hybrid view**: May fail without repo parameter - use Import or Call view instead
+- For JavaScript projects, the `import` view is most useful
+- The `call` view works better for statically-typed languages like Rust and Python
 
 ### Performance Tips for Large Codebases
 
@@ -1562,7 +1614,7 @@ Examples:
       "narsil": {
         "transport": "stdio",
         "command": "/absolute/path/to/narsil-mcp",
-        "args": ["--repos", ".", "--preset", "minimal", "--persist"],
+        "args": ["--repos", ".", "--preset", "minimal", "--persist", "--watch"],
         "env": {}
       }
     }
@@ -1572,7 +1624,10 @@ Examples:
 
 **Recommended .utcp_config.json (Full Features):**
 
-> **IMPORTANT**: Use absolute path for command, and avoid extra fields like `_note`.
+> **IMPORTANT**: 
+> - Use absolute path for command
+> - Use `${VOYAGE_API_KEY}` variable reference (not hardcoded key)
+> - Do NOT add extra fields like `_note`, `_neural_backends` - they break Code Mode parsing
 
 ```json
 {
@@ -1585,17 +1640,17 @@ Examples:
         "command": "/absolute/path/to/narsil-mcp",
         "args": [
           "--repos", ".",
-          "--preset", "full",
           "--index-path", ".narsil-index",
           "--git",
           "--call-graph",
           "--persist",
+          "--watch",
           "--neural",
           "--neural-backend", "api",
           "--neural-model", "voyage-code-2"
         ],
         "env": {
-          "VOYAGE_API_KEY": "your-voyage-api-key"
+          "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
         }
       }
     }

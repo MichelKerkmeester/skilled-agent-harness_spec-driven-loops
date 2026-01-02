@@ -57,10 +57,25 @@ Installation Methods:
     3) One-click installer   curl -fsSL .../install.sh | bash
     4) Cargo                 cargo install narsil-mcp
 
+Neural Search Backends:
+    Narsil supports 3 embedding backends for semantic code search:
+    
+    1) Voyage AI (RECOMMENDED for code)
+       --neural --neural-backend api --neural-model voyage-code-2
+       Requires: VOYAGE_API_KEY (get from voyageai.com)
+    
+    2) OpenAI
+       --neural --neural-backend api --neural-model text-embedding-3-small
+       Requires: OPENAI_API_KEY (get from platform.openai.com)
+    
+    3) Local ONNX (no API key needed)
+       --neural --neural-backend onnx
+       Runs locally, no API key required
+
 Examples:
     $(basename "$0")                      # Interactive installation
     $(basename "$0") -m 1                 # Install via npm (no prompt)
-    $(basename "$0") --voyage-key abc123  # Install with API key
+    $(basename "$0") --voyage-key abc123  # Install with Voyage API key
 
 EOF
 }
@@ -367,6 +382,7 @@ UTCP_EOF
         cfg.manual_call_templates = cfg.manual_call_templates.filter(t => t.name !== 'narsil');
         
         // Add new narsil configuration
+        // NOTE: Do NOT add extra fields like _note, _neural_backends - they break Code Mode parsing
         const narsilConfig = {
             name: 'narsil',
             call_template_type: 'mcp',
@@ -381,35 +397,12 @@ UTCP_EOF
                             '--git',
                             '--call-graph',
                             '--persist',
+                            '--watch',
                             '--neural',
                             '--neural-backend', 'api',
                             '--neural-model', 'voyage-code-2'
                         ],
-                        env: ${env_block},
-                        _note: 'Narsil with full toolset (76 tools). Requires VOYAGE_API_KEY for neural search.',
-                        _neural_backends: {
-                            voyage: {
-                                backend: 'api',
-                                model: 'voyage-code-2',
-                                env: 'VOYAGE_API_KEY',
-                                dimensions: 1536,
-                                note: 'Recommended for code search. Set VOYAGE_API_KEY in .env'
-                            },
-                            openai: {
-                                backend: 'api',
-                                model: 'text-embedding-3-small',
-                                env: 'OPENAI_API_KEY',
-                                dimensions: 1536,
-                                note: 'Alternative cloud option. Set OPENAI_API_KEY in .env'
-                            },
-                            onnx: {
-                                backend: 'onnx',
-                                model: 'default',
-                                env: 'none',
-                                dimensions: 384,
-                                note: 'Local embeddings, no API key needed. Use --neural-backend onnx'
-                            }
-                        }
+                        env: ${env_block}
                     }
                 }
             }
@@ -647,13 +640,24 @@ main() {
     fi
     
     # ───────────────────────────────────────────────────────────────────
-    # VOYAGE API KEY
+    # NEURAL SEARCH API KEY
     # ───────────────────────────────────────────────────────────────────
     if [[ -z "${voyage_key}" ]]; then
         echo ""
-        echo "Narsil's neural search requires a Voyage AI API key for semantic code search."
-        echo "Get one free at: https://www.voyageai.com/"
-        echo "(You can skip this and add it later to .env)"
+        echo "Narsil's neural search supports 3 embedding backends:"
+        echo ""
+        echo "  1) Voyage AI (RECOMMENDED) - Best for code search"
+        echo "     Get API key: https://www.voyageai.com/"
+        echo ""
+        echo "  2) OpenAI - General purpose embeddings"
+        echo "     Get API key: https://platform.openai.com/api-keys"
+        echo "     (Manually edit .utcp_config.json to use OpenAI)"
+        echo ""
+        echo "  3) Local ONNX - No API key needed (runs offline)"
+        echo "     (Manually edit .utcp_config.json: --neural-backend onnx)"
+        echo ""
+        echo "This installer configures Voyage AI by default."
+        echo "(You can skip and configure manually later)"
         echo ""
         read -rp "Enter VOYAGE_API_KEY (or press Enter to skip): " voyage_key
     fi
@@ -681,7 +685,10 @@ main() {
     echo "Next steps:"
     echo "  1. Restart OpenCode to load the new MCP"
     echo "  2. Test with: narsil.narsil_find_symbols({ path: \".\" })"
-    echo "  3. For neural search, ensure VOYAGE_API_KEY is set in .env"
+    echo "  3. For neural search, set one of these in .env:"
+    echo "     - VOYAGE_API_KEY (recommended for code)"
+    echo "     - OPENAI_API_KEY (general purpose)"
+    echo "     - Or use --neural-backend onnx (no key needed)"
     echo ""
     echo "Useful commands:"
     echo "  narsil-mcp --help              Show all options"
