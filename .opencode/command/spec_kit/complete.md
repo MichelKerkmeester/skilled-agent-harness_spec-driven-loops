@@ -97,7 +97,7 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 **STATUS: ☐ BLOCKED / ☐ N/A**
 
-> **Gate 4 Integration:** This phase implements AGENTS.md Gate 4 (Memory Loading). See Gate 4 for the `[1] [2] [3] [all] [skip]` selection format.
+> **Memory Context Loading:** This phase implements AGENTS.md Section 2 "Memory Context Loading". See that section for the `[1] [2] [3] [all] [skip]` selection format.
 
 ```
 EXECUTE AFTER PHASE 2 PASSES:

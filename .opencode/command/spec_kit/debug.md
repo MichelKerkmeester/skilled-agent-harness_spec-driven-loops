@@ -359,7 +359,7 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 | Template            | Path                                                                            |
 | ------------------- | ------------------------------------------------------------------------------- |
 | Debug delegation    | `.opencode/skill/system-spec-kit/templates/debug-delegation.md`                 |
-| Universal debugging | `.opencode/skill/system-spec-kit/references/universal_debugging_methodology.md` |
+| Universal debugging | `.opencode/skill/system-spec-kit/references/debugging/universal_debugging_methodology.md` |
 
 ### Validation Integration
 

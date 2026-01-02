@@ -110,7 +110,7 @@ function normalizeInputData(data) {
   if (data.filesModified && Array.isArray(data.filesModified)) {
     normalized.FILES = data.filesModified.map(filePath => ({
       FILE_PATH: filePath,
-      DESCRIPTION: 'Modified during session'
+      DESCRIPTION: 'File modified (description pending)'
     }));
   }
   
@@ -296,7 +296,7 @@ function transformOpenCodeCapture(capture) {
         seenPaths.add(filePath);
         FILES.push({
           FILE_PATH: filePath,
-          DESCRIPTION: tool.title || `${tool.tool === 'write' ? 'Created' : 'Modified'} during session`
+          DESCRIPTION: tool.title || `${tool.tool === 'write' ? 'Created' : 'Edited'} via ${tool.tool} tool`
         });
       }
     }

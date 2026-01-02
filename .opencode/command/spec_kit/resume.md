@@ -76,7 +76,7 @@ EXECUTE THIS CHECK FIRST:
 
 ---
 
-## 🔒 PHASE 2: CONTINUATION VALIDATION (Gate 0.5)
+## 🔒 PHASE 2: CONTINUATION VALIDATION
 
 **STATUS: ☐ CONDITIONAL**
 
@@ -167,7 +167,7 @@ since it's a context-recovery operation where user review is beneficial.
 
 ---
 
-## 🔒 PHASE 4: MEMORY LOADING (Gate 4)
+## 🔒 PHASE 4: MEMORY LOADING
 
 **STATUS: ☐ CONDITIONAL**
 
@@ -207,7 +207,7 @@ EXECUTE AFTER PHASE 3 PASSES:
    ├─ SHOW: "ℹ️  No memory files found in [spec_path]/memory/"
    └─ SET STATUS: ⏭️ N/A (no memories to load)
 
-Note: This implements Gate 4 from AGENTS.md Section 2.
+Note: This implements Memory Context Loading from AGENTS.md Section 2.
 ```
 
 **Phase 4 Output:** `memory_loaded = [yes/no/skipped]` | `memory_files = [list or none]`
@@ -240,7 +240,7 @@ VERIFICATION CHECK:
 - Started reading the workflow section before all phases passed
 - Proceeded without validating artifacts exist (Phase 3)
 - Assumed a spec folder without user confirmation when path was invalid
-- Skipped Gate 4 memory loading question when memory files exist (Phase 4)
+- Skipped memory loading question when memory files exist (Phase 4)
 - Did not wait for user A/B/C/D response before loading memories in interactive mode
 - Did not display progress calculation
 - Claimed "resumed" without showing continuation options

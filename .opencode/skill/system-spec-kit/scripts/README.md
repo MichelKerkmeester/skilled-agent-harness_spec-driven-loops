@@ -135,7 +135,7 @@ scripts/
 │   ├── setup.sh                  # Initial setup script
 │   └── common.sh                 # Repository & branch utilities
 │
-├── generate-context.js           # CLI entry point (145 lines) - routes to modular architecture
+├── generate-context.js           # CLI entry point (142 lines) - routes to modular architecture
 ├── cleanup-orphaned-vectors.js   # Database cleanup utility
 │
 ├── tests/                        # Test scripts (3 files)
@@ -395,7 +395,7 @@ P2: 60% (6/10)
 | **Input** | JSON data file OR spec folder path |
 | **Output** | Memory file in `specs/###-feature/memory/` |
 | **Format** | ANCHOR-tagged sections for selective retrieval |
-| **Architecture** | 145-line CLI entry point + 30 modules across 6 directories |
+| **Architecture** | 142-line CLI entry point + 30 modules across 6 directories |
 
 **Modular Structure** (refactored from 4,837-line monolith):
 

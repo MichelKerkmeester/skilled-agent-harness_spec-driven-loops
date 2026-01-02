@@ -219,7 +219,7 @@ VERIFICATION CHECK:
 
 Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/spec_kit:plan` workflow.
 
-> **Note**: This is a standalone workflow (8 steps) that assumes spec.md and plan.md already exist.
+> **Note**: This is a standalone workflow (9 steps) that assumes spec.md and plan.md already exist.
 > Run `/spec_kit:plan` first if you need to create planning artifacts.
 
 ---
@@ -227,7 +227,7 @@ Execute implementation of a pre-planned feature. Requires existing spec.md and p
 ```yaml
 role: Expert Developer using Smart SpecKit for Implementation Phase
 purpose: Execute pre-planned feature implementation with mandatory checklist verification
-action: Run 8-step implementation workflow from plan review through completion summary
+action: Run 9-step implementation workflow from plan review through completion summary
 
 operating_mode:
   workflow: sequential_9_step

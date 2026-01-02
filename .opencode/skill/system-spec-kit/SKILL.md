@@ -176,7 +176,7 @@ User Request
 
 | Script | Purpose |
 |--------|---------|
-| `generate-context.js` | Generate memory files from conversation (modular: 30 modules in 6 dirs) |
+| `generate-context.js` | Generate memory files from conversation (modular: 44 modules in 10 dirs) |
 | `validate-spec.sh` | Validate spec folder structure |
 | `create-spec-folder.sh` | Create new spec folders with templates |
 | `check-completion.sh` | Verify checklist completion status |
@@ -231,7 +231,7 @@ User Request
 | **Direct** | `node generate-context.js specs/007-feature/` | Auto-captures context from OpenCode session |
 | **JSON** | `node generate-context.js /tmp/context-data.json` | Manual context injection via JSON file |
 
-**Architecture:** The script uses a modular architecture (145-line CLI entry point + 30 modules across 6 directories: `core/`, `extractors/`, `utils/`, `renderers/`, `spec-folder/`, `loaders/`). See [scripts/README.md](./scripts/README.md) for module details and extension points.
+**Architecture:** The script uses a modular architecture (142-line CLI entry point + 44 modules across 10 directories: `core/`, `extractors/`, `lib/`, `loaders/`, `renderers/`, `rules/`, `spec-folder/`, `test-fixtures/`, `tests/`, `utils/`). See [scripts/README.md](./scripts/README.md) for module details and extension points.
 
 **JSON mode documentation:** See [save_workflow.md](./references/memory/save_workflow.md) for full schema and examples.
 

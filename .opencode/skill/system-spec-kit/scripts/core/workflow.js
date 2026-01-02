@@ -16,7 +16,7 @@ const { extractConversations, extractDecisions, extractDiagrams, extractPhasesFr
         enhanceFilesWithSemanticDescriptions } = require('../extractors');
 const { detectSpecFolder, setupContextDirectory } = require('../spec-folder');
 const { populateTemplate } = require('../renderers');
-const { shouldAutoSave } = require('../extractors/collect-session-data');
+const { shouldAutoSave, collectSessionData } = require('../extractors/collect-session-data');
 
 /* ─────────────────────────────────────────────────────────────
    2. LAZY-LOADED DEPENDENCIES
@@ -60,7 +60,7 @@ function notifyDatabaseUpdated() {
     const dbDir = path.dirname(DB_UPDATED_FILE);
     if (!fsSync.existsSync(dbDir)) fsSync.mkdirSync(dbDir, { recursive: true });
     fsSync.writeFileSync(DB_UPDATED_FILE, Date.now().toString());
-  } catch (e) { /* ignore */ }
+  } catch (e) { console.error('[workflow] Database notification error:', e.message); }
 }
 
 function validateNoLeakedPlaceholders(content, filename) {

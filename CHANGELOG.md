@@ -8,6 +8,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## 1.0.2.x Series
 
+### [**1.0.2.7**] - 2026-01-02
+
+Bug fix release addressing critical runtime errors, code quality issues, and documentation misalignments discovered by 20-agent parallel scan in v1.0.2.6.
+
+#### Critical Fixes
+- **workflow.js:19**: Added missing `collectSessionData` import that would cause runtime error
+- **workflow.js:63**: Empty catch block now logs database notification errors instead of silently swallowing them
+- **input-normalizer.js:113,299**: Changed default descriptions from "Modified during session" (flagged as garbage by file-helpers.js) to meaningful defaults: "File modified (description pending)", "Edited via edit tool", "Created via write tool"
+
+#### Code Quality Fixes
+- **decision-tree-generator.js:17-20**: Replaced aggressive `process.exit(1)` with graceful fallback - workflow continues with simplified output when `ascii-boxes` library unavailable
+- **diagram-extractor.js:35-43**: Fixed inverted null check order - now verifies object existence before property access
+
+#### Documentation Fixes
+- **mcp_server/README.md**: Tool count corrected 13→14 (5 locations), file watcher claim clarified as "not yet implemented"
+- **SKILL.md:179,234**: Module count corrected 30→44, directory count 6→10, line count 145→142
+- **scripts/README.md:138,398**: Line count corrected 145→142
+- **debug.md:362**: Path corrected to include `debugging/` subfolder for `universal_debugging_methodology.md`
+- **handover.md**: Removed references to non-existent Gates (0, 7) - now references AGENTS.md Section 2
+- **resume.md**: Removed references to non-existent Gates (0.5, 4) - now references Memory Context Loading
+- **implement.md:222,230**: Step count corrected 8→9
+- **complete.md**: Gate 4/5 references updated to "Memory Context Loading" / "Memory Save Rule"
+- **spec_kit_complete_*.yaml**: Gate 5 references updated to "Memory Save Rule Enforcement"
+- **spec_kit_debug_*.yaml**: Path corrected to include `debugging/` subfolder
+
+#### Verification
+- All 44 JavaScript modules pass syntax check
+- 25 bug fix tests pass, 0 failures
+- Integration test passes (generate-context.js --help)
+- All 3 repos (anobel.com, Public, Barter) verified in sync
+
+---
+
 ### [**1.0.2.6**] - 2026-01-02
 
 Major architectural refactoring release for the Spec Kit Memory system. The generate-context.js script undergoes complete modularization from a 4,800-line monolith to a 142-line CLI entry point with 30 focused modules across 6 directories. Includes comprehensive code style standardization, test reorganization, 20-agent documentation alignment scan, and cross-repo synchronization.

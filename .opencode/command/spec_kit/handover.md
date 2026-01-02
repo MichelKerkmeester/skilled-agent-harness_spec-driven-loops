@@ -318,7 +318,7 @@ The handover file is created in the spec folder root, NOT in memory/.
 
 **Template:** `.opencode/skill/system-spec-kit/templates/handover.md`
 
-**See also:** AGENTS.md Gate 0 (compaction handling), Gate 7 (context health monitoring).
+**See also:** AGENTS.md Section 2 (Compaction Recovery edge case, Context Health suggestions).
 
 ---
 
@@ -476,17 +476,17 @@ fallback:
 
 ## 10. 📌 INTEGRATION
 
-### Gate 7 Integration
+### Context Health Suggestions
 
-Gate 7 (Context Health Monitor) suggests `/spec_kit:handover` during long sessions:
+Long sessions benefit from periodic handover suggestions:
 
 - **Tier 1** (15 exchanges): "Consider /spec_kit:handover soon"
 - **Tier 2** (25 exchanges): "Recommend /spec_kit:handover now"
 - **Tier 3** (35 exchanges): "Handover strongly recommended"
 
-### Gate 0 Integration
+### Compaction Recovery (AGENTS.md Section 2)
 
-Gate 0 (Compaction Detection) displays handover format when context compaction is detected:
+When context compaction is detected (system message contains "Please continue the conversation..."), the handover format is displayed:
 
 ```
 CONTINUATION - Attempt [N]

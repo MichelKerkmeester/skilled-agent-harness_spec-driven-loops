@@ -33,15 +33,17 @@ const { generateDecisionTree } = require('./decision-tree-generator');
 ──────────────────────────────────────────────────────────────── */
 
 function extractPhasesFromData(collectedData) {
+  // Check parent object exists BEFORE accessing properties
+  if (!collectedData || !collectedData.observations || collectedData.observations.length === 0) {
+    return simFactory.createSimulationPhases();
+  }
+  
   // Return empty for very short sessions (≤2 messages)
-  const messageCount = collectedData?.observations?.length || 0;
+  // Safe to access now - we verified collectedData.observations exists above
+  const messageCount = collectedData.observations.length;
   if (messageCount <= 2) {
     console.log('   ℹ️  Session too short for meaningful phase detection');
     return [];
-  }
-  
-  if (!collectedData || !collectedData.observations || collectedData.observations.length === 0) {
-    return simFactory.createSimulationPhases();
   }
 
   const observations = collectedData.observations;

@@ -87,7 +87,7 @@ model_selection:
 # ───────────────────────────────────────────────────────────────────
 available_templates:
   debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
-  universal_debugging: .opencode/skill/system-spec-kit/references/universal_debugging_methodology.md
+  universal_debugging: .opencode/skill/system-spec-kit/references/debugging/universal_debugging_methodology.md
 
 # ───────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT (CRITICAL)

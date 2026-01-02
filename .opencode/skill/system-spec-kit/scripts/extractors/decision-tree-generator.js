@@ -5,6 +5,7 @@
 ──────────────────────────────────────────────────────────────── */
 
 let padText, formatDecisionHeader, formatOptionBox, formatChosenBox, formatCaveatsBox, formatFollowUpBox;
+let asciiBoxesAvailable = false;
 try {
   ({
     padText,
@@ -14,9 +15,17 @@ try {
     formatCaveatsBox,
     formatFollowUpBox
   } = require('../lib/ascii-boxes'));
+  asciiBoxesAvailable = true;
 } catch (err) {
-  console.error('Failed to load ascii-boxes library:', err.message);
-  process.exit(1);
+  console.warn('Warning: ascii-boxes library not available:', err.message);
+  console.warn('Decision tree generation will use fallback formatting.');
+  // Provide minimal fallback implementations
+  padText = (text, length) => String(text || '').substring(0, length).padEnd(length);
+  formatDecisionHeader = (title) => `[DECISION: ${title}]`;
+  formatOptionBox = (opt, isChosen) => `[${isChosen ? '✓' : ' '} ${opt?.LABEL || 'Option'}]`;
+  formatChosenBox = (chosen) => `[CHOSEN: ${chosen}]`;
+  formatCaveatsBox = (caveats) => `[CAVEATS: ${caveats?.length || 0}]`;
+  formatFollowUpBox = (followup) => `[FOLLOWUP: ${followup?.length || 0}]`;
 }
 
 /* ─────────────────────────────────────────────────────────────

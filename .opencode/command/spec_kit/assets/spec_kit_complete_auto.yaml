@@ -1382,7 +1382,7 @@ workflow:
     - Preserve file changes and implementation details
     - Index memory file for immediate search availability
 
-    # ── MANDATORY MEMORY CREATION (Gate 5 Enforcement) ──────────────
+    # ── MANDATORY MEMORY CREATION (Memory Save Rule Enforcement) ────
     memory_creation:
       enforcement: HARD_BLOCK
       method: "MUST use generate-context.js script"

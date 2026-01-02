@@ -1,10 +1,10 @@
 # Spec Kit Memory MCP Server
 
-Context preservation with **spec kit memory**: six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, and checkpoint save/restore. Provides **13 MCP tools** for intelligent memory management. This is a **Native MCP tool** - call it directly.
+Context preservation with **spec kit memory**: six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, and checkpoint save/restore. Provides **14 MCP tools** for intelligent memory management. This is a **Native MCP tool** - call it directly.
 
 > **Navigation**:
 > - New to Spec Kit Memory? Start with [Overview](#1--overview)
-> - Need tool reference? See [MCP Tools](#2--mcp-tools-13)
+> - Need tool reference? See [MCP Tools](#2--mcp-tools-14)
 > - Configuration help? See [Configuration](#5--configuration)
 > - Troubleshooting? See [Troubleshooting](#7--troubleshooting)
 
@@ -15,7 +15,7 @@ Context preservation with **spec kit memory**: six-tier importance system, hybri
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
-- [2. 🔧 MCP TOOLS (13)](#2--mcp-tools-13)
+- [2. 🔧 MCP TOOLS (14)](#2--mcp-tools-14)
 - [3. 📁 LIBRARY MODULES (23)](#3--library-modules-23)
 - [4. 🔄 FILE WATCHER](#4--file-watcher)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
@@ -43,12 +43,12 @@ The `mcp_server/` folder is the standalone MCP server implementation for spec ki
 
 | Feature                  | Description                                                   |
 | ------------------------ | ------------------------------------------------------------- |
-| **13 MCP Tools**         | Complete CRUD + search operations for memory management       |
+| **14 MCP Tools**         | Complete CRUD + search operations for memory management       |
 | **Hybrid Search**        | FTS5 keyword + vector semantic search with RRF fusion         |
 | **Multi-Provider Embeddings** | HF Local (768d), Voyage AI (1024d), OpenAI (1536d) - auto-detected |
 | **Six Importance Tiers** | constitutional/critical/important/normal/temporary/deprecated |
 | **Checkpoints**          | Save/restore memory state for safety                          |
-| **Auto-Indexing**        | Startup scan + file watcher for automatic indexing            |
+| **Auto-Indexing**        | Startup scan for automatic indexing (file watcher not yet implemented) |
 
 ### Constitutional Tier
 
@@ -91,7 +91,7 @@ context-server.js  ────────────────────�
 
 ---
 
-## 2. 🔧 MCP TOOLS (13)
+## 2. 🔧 MCP TOOLS (14)
 
 ### Search & Retrieval Tools
 
