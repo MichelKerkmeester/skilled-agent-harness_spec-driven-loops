@@ -4,6 +4,8 @@ All notable changes to the OpenCode Dev Environment are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
+
 ---
 
 ## 1.0.3.x Series
