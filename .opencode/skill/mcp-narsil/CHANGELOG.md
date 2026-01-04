@@ -8,9 +8,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
-## 1.0.2.x Series
-
-### [**1.0.2.5**] - 2026-01-02
+## [**1.0.2.5**] - 2026-01-02
 
 Documentation improvements for neural embedding backends.
 
@@ -30,9 +28,7 @@ Documentation improvements for neural embedding backends.
 
 ---
 
-## 1.0.1.x Series
-
-### [**1.0.1.6**] - 2025-12-30
+## [**1.0.1.6**] - 2025-12-30
 
 Critical parameter naming fixes for Narsil tools.
 
@@ -50,7 +46,7 @@ Critical parameter naming fixes for Narsil tools.
 
 ---
 
-### [**1.0.1.5**] - 2025-12-29
+## [**1.0.1.5**] - 2025-12-29
 
 Documents JavaScript-specific Narsil limitations.
 
@@ -67,7 +63,7 @@ Documents JavaScript-specific Narsil limitations.
 
 ---
 
-### [**1.0.1.4**] - 2025-12-29
+## [**1.0.1.4**] - 2025-12-29
 
 Documents discovered Narsil bugs and limitations.
 
@@ -77,7 +73,7 @@ Documents discovered Narsil bugs and limitations.
 
 ---
 
-### [**1.0.1.3**] - 2025-12-29
+## [**1.0.1.3**] - 2025-12-29
 
 HTTP server and visualization documentation.
 
@@ -92,7 +88,7 @@ HTTP server and visualization documentation.
 
 ---
 
-### [**1.0.1.2**] - 2025-12-29
+## [**1.0.1.2**] - 2025-12-29
 
 Project-local index support.
 
@@ -105,7 +101,7 @@ Project-local index support.
 
 ---
 
-### [**1.0.1.1**] - 2025-12-29
+## [**1.0.1.1**] - 2025-12-29
 
 Embedding dimension fix.
 
@@ -114,7 +110,7 @@ Embedding dimension fix.
 
 ---
 
-### [**1.0.1.0**] - 2025-12-29
+## [**1.0.1.0**] - 2025-12-29
 
 Initial release - migration from LEANN to Narsil.
 

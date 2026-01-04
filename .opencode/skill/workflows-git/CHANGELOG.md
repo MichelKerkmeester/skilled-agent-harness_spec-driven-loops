@@ -8,9 +8,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
-## 1.0.0.x Series
-
-### [**1.0.0.4**] - 2025-12-29
+## [**1.0.0.4**] - 2025-12-29
 
 Skill standardization release.
 
@@ -24,7 +22,7 @@ Skill standardization release.
 
 ---
 
-### [**1.0.0.0**] - 2025-12-29
+## [**1.0.0.0**] - 2025-12-29
 
 First official release of the workflows-git skill.
 

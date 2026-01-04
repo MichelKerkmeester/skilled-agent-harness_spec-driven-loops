@@ -8,9 +8,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
-## 1.0.3.x Series
-
-### [**1.0.3.0**] - 2026-01-04
+## [**1.0.3.0**] - 2026-01-04
 
 Adds support for alternative specs folder location inside `.opencode/`. Memory files and spec folders can now be stored in either `specs/` (project root) or `.opencode/specs/` for projects that prefer keeping all OpenCode files in a hidden directory.
 
@@ -51,9 +49,7 @@ No action required. Existing `specs/` folders continue to work unchanged.
 
 ---
 
-## 1.0.2.x Series
-
-### [**1.0.2.9**] - 2026-01-02
+## [**1.0.2.9**] - 2026-01-02
 
 Fixes critical MCP server bugs preventing Spec Kit Memory operations. Multiple import naming mismatches caused E040 errors (`is not a function`) across `memory_health`, `memory_index_scan`, and `memory_save` tools.
 
@@ -75,7 +71,7 @@ During snake_case refactoring, exports in source modules (`shared/utils.js`, `li
 
 ---
 
-### [**1.0.2.8**] - 2026-01-02
+## [**1.0.2.8**] - 2026-01-02
 
 Reorganizes the workflows-documentation skill's asset folder structure for improved discoverability. Renames `assets/components/` to `assets/opencode/` and `assets/documents/` to `assets/documentation/` with 250+ path reference updates across 35+ files. Establishes new organizational principle for skill folder structure.
 
@@ -96,7 +92,7 @@ Reorganizes the workflows-documentation skill's asset folder structure for impro
 
 ---
 
-### [**1.0.2.7**] - 2026-01-02
+## [**1.0.2.7**] - 2026-01-02
 
 Addresses critical runtime errors, code quality issues, and documentation misalignments discovered by a 20-agent parallel scan.
 
@@ -129,7 +125,7 @@ Addresses critical runtime errors, code quality issues, and documentation misali
 
 ---
 
-### [**1.0.2.6**] - 2026-01-02
+## [**1.0.2.6**] - 2026-01-02
 
 Major architectural refactoring release for the Spec Kit Memory system. The generate-context.js script undergoes complete modularization from a 4,800-line monolith to a 142-line CLI entry point with 30 focused modules across 6 directories. Includes comprehensive code style standardization, test reorganization, 20-agent documentation alignment scan, and cross-repo synchronization.
 
@@ -196,7 +192,7 @@ Major architectural refactoring release for the Spec Kit Memory system. The gene
 
 ---
 
-### [**1.0.2.5**] - 2026-01-02
+## [**1.0.2.5**] - 2026-01-02
 
 Security and documentation release fixing hardcoded API key exposure in `.utcp_config.json` and broken install script configuration. Adds comprehensive documentation for Narsil's three neural embedding backends (Voyage AI, OpenAI, Local ONNX) and HTTP server visualization setup.
 
@@ -220,7 +216,7 @@ Security and documentation release fixing hardcoded API key exposure in `.utcp_c
 
 ---
 
-### [**1.0.2.4**] - 2026-01-01
+## [**1.0.2.4**] - 2026-01-01
 
 Major infrastructure release with critical bug fixes, security hardening, MCP install automation, and comprehensive codebase standardization across 70+ files. Adds sub-agent delegation for token efficiency and universal stack-agnostic debugging.
 
@@ -276,7 +272,7 @@ Major infrastructure release with critical bug fixes, security hardening, MCP in
 
 ---
 
-### [**1.0.2.3**] - 2025-12-31
+## [**1.0.2.3**] - 2025-12-31
 
 Comprehensive Spec Kit & Memory system audit with test suite fixes, documentation improvements, and new Script Registry for dynamic script discovery.
 
@@ -304,7 +300,7 @@ Comprehensive Spec Kit & Memory system audit with test suite fixes, documentatio
 
 ---
 
-### [**1.0.2.2**] - 2025-12-31
+## [**1.0.2.2**] - 2025-12-31
 
 Security patch fixing HIGH severity DoS vulnerability in `qs` dependency. Documentation updated with complete MCP tool reference for resume command.
 
@@ -319,7 +315,7 @@ Security patch fixing HIGH severity DoS vulnerability in `qs` dependency. Docume
 
 ---
 
-### [**1.0.2.1**] - 2025-12-31
+## [**1.0.2.1**] - 2025-12-31
 
 Comprehensive system hardening release with critical bug fixes, security improvements, and performance optimizations for the Spec Kit Memory system.
 
@@ -360,7 +356,7 @@ Comprehensive system hardening release with critical bug fixes, security improve
 
 ---
 
-### [**1.0.2.0**] - 2025-12-30
+## [**1.0.2.0**] - 2025-12-30
 
 Technical debt remediation for Spec Kit Memory system with 6 infrastructure improvements. Comprehensive skill audit standardizing documentation across 7 skills. New mcp-figma skill added for design-to-code workflows.
 
@@ -382,9 +378,7 @@ Technical debt remediation for Spec Kit Memory system with 6 infrastructure impr
 
 ---
 
-## 1.0.1.x Series
-
-### [**1.0.1.7**] - 2025-12-30
+## [**1.0.1.7**] - 2025-12-30
 
 Enhanced install guides with comprehensive H1 descriptions for all MCP servers. Added new `/create:agent` command.
 
@@ -398,7 +392,7 @@ Enhanced install guides with comprehensive H1 descriptions for all MCP servers. 
 
 ---
 
-### [**1.0.1.6**] - 2025-12-30
+## [**1.0.1.6**] - 2025-12-30
 
 Fixes critical Narsil MCP parameter naming issues across all 39 high-priority tools. Adds HTTP server scripts for reliable search functionality.
 
@@ -416,7 +410,7 @@ Fixes critical Narsil MCP parameter naming issues across all 39 high-priority to
 
 ---
 
-### [**1.0.1.5**] - 2025-12-29
+## [**1.0.1.5**] - 2025-12-29
 
 Documents JavaScript-specific Narsil limitations discovered during testing.
 
@@ -433,7 +427,7 @@ Documents JavaScript-specific Narsil limitations discovered during testing.
 
 ---
 
-### [**1.0.1.4**] - 2025-12-29
+## [**1.0.1.4**] - 2025-12-29
 
 Documents discovered Narsil bugs and limitations with workarounds.
 
@@ -447,7 +441,7 @@ Documents discovered Narsil bugs and limitations with workarounds.
 
 ---
 
-### [**1.0.1.3**] - 2025-12-29
+## [**1.0.1.3**] - 2025-12-29
 
 Documents Narsil's HTTP server and React frontend for interactive code graph visualization.
 
@@ -462,7 +456,7 @@ Documents Narsil's HTTP server and React frontend for interactive code graph vis
 
 ---
 
-### [**1.0.1.2**] - 2025-12-29
+## [**1.0.1.2**] - 2025-12-29
 
 Adds project-local Narsil index support for isolated per-project indexing.
 
@@ -475,7 +469,7 @@ Adds project-local Narsil index support for isolated per-project indexing.
 
 ---
 
-### [**1.0.1.1**] - 2025-12-29
+## [**1.0.1.1**] - 2025-12-29
 
 Fixes Narsil neural search configuration for embedding dimension compatibility.
 
@@ -485,7 +479,7 @@ Fixes Narsil neural search configuration for embedding dimension compatibility.
 
 ---
 
-### [**1.0.1.0**] - 2025-12-29
+## [**1.0.1.0**] - 2025-12-29
 
 Complete migration from LEANN to Narsil for unified code intelligence. Adds 76 specialized tools covering semantic search, security scanning, and call graph analysis.
 
@@ -499,11 +493,7 @@ Complete migration from LEANN to Narsil for unified code intelligence. Adds 76 s
 
 ---
 
-## 1.0.0.x Series
-
----
-
-### [**1.0.0.8**] - 2025-12-29
+## [**1.0.0.8**] - 2025-12-29
 
 Consolidates embedding options to MLX + Qwen3 as the single path.
 
@@ -514,7 +504,7 @@ Consolidates embedding options to MLX + Qwen3 as the single path.
 
 ---
 
-### [**1.0.0.7**] - 2025-12-29
+## [**1.0.0.7**] - 2025-12-29
 
 Major semantic search upgrade with Qwen3 embedding model.
 
@@ -527,7 +517,7 @@ Major semantic search upgrade with Qwen3 embedding model.
 
 ---
 
-### [**1.0.0.6**] - 2025-12-29
+## [**1.0.0.6**] - 2025-12-29
 
 Strengthens write agent enforcement for /create commands.
 
@@ -539,7 +529,7 @@ Strengthens write agent enforcement for /create commands.
 
 ---
 
-### [**1.0.0.5**] - 2025-12-29
+## [**1.0.0.5**] - 2025-12-29
 
 Enforces @write agent for skill creation with multi-layer enforcement.
 
@@ -555,7 +545,7 @@ Enforces @write agent for skill creation with multi-layer enforcement.
 
 ---
 
-### [**1.0.0.4**] - 2025-12-29
+## [**1.0.0.4**] - 2025-12-29
 
 Complete skill system overhaul standardizing 69 reference/asset files across all 8 skills.
 
@@ -577,7 +567,7 @@ Complete skill system overhaul standardizing 69 reference/asset files across all
 
 ---
 
-### [**1.0.0.3**] - 2025-12-29
+## [**1.0.0.3**] - 2025-12-29
 
 Constitutional memory system improvements with 4x token budget increase.
 
@@ -594,7 +584,7 @@ Constitutional memory system improvements with 4x token budget increase.
 
 ---
 
-### [**1.0.0.2**] - 2025-12-29
+## [**1.0.0.2**] - 2025-12-29
 
 Continued post-release refinement with 80+ bug fixes.
 
@@ -617,7 +607,7 @@ Continued post-release refinement with 80+ bug fixes.
 
 ---
 
-### [**1.0.0.1**] - 2025-12-29
+## [**1.0.0.1**] - 2025-12-29
 
 First post-release refinement focusing on structural reorganization and critical bug fixes.
 
@@ -639,7 +629,7 @@ First post-release refinement focusing on structural reorganization and critical
 
 ---
 
-### [**1.0.0.0**] - 2025-12-29
+## [**1.0.0.0**] - 2025-12-29
 
 First official release of the OpenCode Dev Environment.
 

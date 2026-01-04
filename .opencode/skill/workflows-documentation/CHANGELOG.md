@@ -8,9 +8,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
-## 1.0.2.x Series
-
-### [**1.0.2.8**] - 2026-01-02
+## [**1.0.2.8**] - 2026-01-02
 
 Major asset folder restructure for improved discoverability.
 
@@ -27,9 +25,7 @@ Major asset folder restructure for improved discoverability.
 
 ---
 
-## 1.0.1.x Series
-
-### [**1.0.1.7**] - 2025-12-30
+## [**1.0.1.7**] - 2025-12-30
 
 New `/create:agent` command and install guide improvements.
 
@@ -43,7 +39,7 @@ New `/create:agent` command and install guide improvements.
 
 ---
 
-### [**1.0.1.4**] - 2025-12-29
+## [**1.0.1.4**] - 2025-12-29
 
 Skill creation guide added.
 
@@ -52,9 +48,7 @@ Skill creation guide added.
 
 ---
 
-## 1.0.0.x Series
-
-### [**1.0.0.6**] - 2025-12-29
+## [**1.0.0.6**] - 2025-12-29
 
 Write agent enforcement for /create commands.
 
@@ -66,7 +60,7 @@ Write agent enforcement for /create commands.
 
 ---
 
-### [**1.0.0.5**] - 2025-12-29
+## [**1.0.0.5**] - 2025-12-29
 
 Multi-layer write agent enforcement.
 
@@ -77,7 +71,7 @@ Multi-layer write agent enforcement.
 
 ---
 
-### [**1.0.0.4**] - 2025-12-29
+## [**1.0.0.4**] - 2025-12-29
 
 Skill standardization and new references.
 
@@ -95,7 +89,7 @@ Skill standardization and new references.
 
 ---
 
-### [**1.0.0.0**] - 2025-12-29
+## [**1.0.0.0**] - 2025-12-29
 
 First official release of the workflows-documentation skill.
 

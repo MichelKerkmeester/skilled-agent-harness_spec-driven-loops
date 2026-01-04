@@ -8,9 +8,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
-## 1.0.2.x Series
-
-### [**1.0.2.8**] - 2026-01-02
+## [**1.0.2.8**] - 2026-01-02
 
 Asset path updates for documentation skill restructure.
 
@@ -19,7 +17,7 @@ Asset path updates for documentation skill restructure.
 
 ---
 
-### [**1.0.2.4**] - 2026-01-01
+## [**1.0.2.4**] - 2026-01-01
 
 Resource loading optimization and reorganization.
 
@@ -33,9 +31,7 @@ Resource loading optimization and reorganization.
 
 ---
 
-## 1.0.0.x Series
-
-### [**1.0.0.5**] - 2025-12-29
+## [**1.0.0.5**] - 2025-12-29
 
 Deployment workflows added.
 
@@ -45,7 +41,7 @@ Deployment workflows added.
 
 ---
 
-### [**1.0.0.4**] - 2025-12-29
+## [**1.0.0.4**] - 2025-12-29
 
 Skill standardization release.
 
@@ -59,7 +55,7 @@ Skill standardization release.
 
 ---
 
-### [**1.0.0.0**] - 2025-12-29
+## [**1.0.0.0**] - 2025-12-29
 
 First official release of the workflows-code skill.
 

@@ -8,9 +8,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
-## 1.0.3.x Series
-
-### [**1.0.3.0**] - 2026-01-04
+## [**1.0.3.0**] - 2026-01-04
 
 Adds support for alternative specs folder location inside `.opencode/`. Memory files and spec folders can now be stored in either `specs/` (project root) or `.opencode/specs/` for projects that prefer keeping all OpenCode files in a hidden directory.
 
@@ -49,9 +47,7 @@ No action required. Existing `specs/` folders continue to work unchanged.
 
 ---
 
-## 1.0.2.x Series
-
-### [**1.0.2.9**] - 2026-01-02
+## [**1.0.2.9**] - 2026-01-02
 
 Fixes critical MCP server bugs preventing Spec Kit Memory operations. Multiple import naming mismatches caused E040 errors (`is not a function`) across `memory_health`, `memory_index_scan`, and `memory_save` tools.
 
@@ -66,7 +62,7 @@ During snake_case refactoring, exports in source modules were renamed but import
 
 ---
 
-### [**1.0.2.7**] - 2026-01-02
+## [**1.0.2.7**] - 2026-01-02
 
 Addresses critical runtime errors and documentation misalignments in spec-kit components.
 
@@ -88,7 +84,7 @@ Addresses critical runtime errors and documentation misalignments in spec-kit co
 
 ---
 
-### [**1.0.2.6**] - 2026-01-02
+## [**1.0.2.6**] - 2026-01-02
 
 Major architectural refactoring release. The generate-context.js script undergoes complete modularization from a 4,800-line monolith to a 142-line CLI entry point with 30 focused modules.
 
@@ -117,7 +113,7 @@ Major architectural refactoring release. The generate-context.js script undergoe
 
 ---
 
-### [**1.0.2.4**] - 2026-01-01
+## [**1.0.2.4**] - 2026-01-01
 
 Major infrastructure release with critical bug fixes, security hardening, and MCP install automation.
 
@@ -155,7 +151,7 @@ Major infrastructure release with critical bug fixes, security hardening, and MC
 
 ---
 
-### [**1.0.2.3**] - 2025-12-31
+## [**1.0.2.3**] - 2025-12-31
 
 Comprehensive Spec Kit & Memory system audit with test suite fixes and new Script Registry.
 
@@ -176,7 +172,7 @@ Comprehensive Spec Kit & Memory system audit with test suite fixes and new Scrip
 
 ---
 
-### [**1.0.2.2**] - 2025-12-31
+## [**1.0.2.2**] - 2025-12-31
 
 Security patch fixing HIGH severity DoS vulnerability in `qs` dependency.
 
@@ -188,7 +184,7 @@ Security patch fixing HIGH severity DoS vulnerability in `qs` dependency.
 
 ---
 
-### [**1.0.2.1**] - 2025-12-31
+## [**1.0.2.1**] - 2025-12-31
 
 Comprehensive system hardening with critical bug fixes, security improvements, and performance optimizations.
 
@@ -223,7 +219,7 @@ Comprehensive system hardening with critical bug fixes, security improvements, a
 
 ---
 
-### [**1.0.2.0**] - 2025-12-30
+## [**1.0.2.0**] - 2025-12-30
 
 Technical debt remediation for Spec Kit Memory system.
 
@@ -239,9 +235,7 @@ Technical debt remediation for Spec Kit Memory system.
 
 ---
 
-## 1.0.0.x Series
-
-### [**1.0.0.3**] - 2025-12-29
+## [**1.0.0.3**] - 2025-12-29
 
 Constitutional memory system improvements with 4x token budget increase.
 
@@ -258,7 +252,7 @@ Constitutional memory system improvements with 4x token budget increase.
 
 ---
 
-### [**1.0.0.2**] - 2025-12-29
+## [**1.0.0.2**] - 2025-12-29
 
 Post-release refinement with 80+ bug fixes.
 
@@ -279,7 +273,7 @@ Post-release refinement with 80+ bug fixes.
 
 ---
 
-### [**1.0.0.1**] - 2025-12-29
+## [**1.0.0.1**] - 2025-12-29
 
 First post-release refinement focusing on structural reorganization.
 
@@ -298,7 +292,7 @@ First post-release refinement focusing on structural reorganization.
 
 ---
 
-### [**1.0.0.0**] - 2025-12-29
+## [**1.0.0.0**] - 2025-12-29
 
 First official release of the Spec Kit Memory system.
 

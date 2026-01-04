@@ -8,9 +8,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
-## 1.0.2.x Series
-
-### [**1.0.2.8**] - 2026-01-02
+## [**1.0.2.8**] - 2026-01-02
 
 Fixes for broken paths in mcp-figma skill.
 
@@ -20,7 +18,7 @@ Fixes for broken paths in mcp-figma skill.
 
 ---
 
-### [**1.0.2.0**] - 2025-12-30
+## [**1.0.2.0**] - 2025-12-30
 
 Initial release of mcp-figma skill.
 
