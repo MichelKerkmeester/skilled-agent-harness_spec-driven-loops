@@ -5,7 +5,7 @@
 ──────────────────────────────────────────────────────────────── */
 
 const path = require('path');
-const { CONFIG } = require('../core');
+const { CONFIG, findActiveSpecsDir } = require('../core');
 const { formatTimestamp } = require('../utils/message-utils');
 const { detectSpecFolder } = require('../spec-folder');
 
@@ -59,7 +59,7 @@ async function collectSessionData(collectedData, specFolderName = null) {
   let folderName = specFolderName;
   if (!folderName) {
     const detectedFolder = await detectSpecFolder();
-    const specsDir = path.join(CONFIG.PROJECT_ROOT, 'specs');
+    const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
     folderName = path.relative(specsDir, detectedFolder);
   }
   const dateOnly = formatTimestamp(now, 'date-dutch');
@@ -115,8 +115,9 @@ async function collectSessionData(collectedData, specFolderName = null) {
   const createdAtEpoch = Math.floor(Date.now() / 1000);
 
   let SPEC_FILES = [];
+  const activeSpecsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
   const specFolderPath = collectedData.SPEC_FOLDER
-    ? path.join(CONFIG.PROJECT_ROOT, 'specs', collectedData.SPEC_FOLDER)
+    ? path.join(activeSpecsDir, collectedData.SPEC_FOLDER)
     : null;
 
   if (specFolderPath) {

@@ -6,6 +6,49 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ---
 
+## 1.0.3.x Series
+
+### [**1.0.3.0**] - 2026-01-04
+
+Adds support for alternative specs folder location inside `.opencode/`. Memory files and spec folders can now be stored in either `specs/` (project root) or `.opencode/specs/` for projects that prefer keeping all OpenCode files in a hidden directory.
+
+---
+
+**New Feature**
+
+- `specs/` OR `.opencode/specs/`: Both locations now supported for spec folders and memory files
+- Project root location takes precedence if both exist
+
+---
+
+**File Updates (10 files)**
+
+- `context-server.js`: Path validation updated for dual locations
+- `memory-parser.js`: Scans both `specs/` and `.opencode/specs/` directories
+- `generate-context.js`: Supports spec folder in either location
+- `config.js`: Updated path configuration
+- `workflow.js`: Dual location awareness
+- `collect-session-data.js`: Updated data collection paths
+- `directory-setup.js`: Creates folders in correct location
+- `folder-detector.js`: Detects specs in both locations
+- `MCP - Spec Kit Memory.md`: Documentation updated with examples
+
+---
+
+**Fixes**
+
+- Cross-repo symlink in Public repo: `INSTALL_GUIDE.md` now points locally instead of to external project
+
+---
+
+**Upgrade**
+
+No action required. Existing `specs/` folders continue to work unchanged.
+
+**Full Changelog**: [v1.0.2.9...v1.0.3.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.9...v1.0.3.0)
+
+---
+
 ## 1.0.2.x Series
 
 ### [**1.0.2.9**] - 2026-01-02

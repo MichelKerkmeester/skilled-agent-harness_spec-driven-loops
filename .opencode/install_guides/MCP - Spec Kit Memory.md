@@ -660,7 +660,11 @@ When you know exactly what you need:
 Use the `generate-context.js` script to create properly formatted memory files:
 
 ```bash
+# Standard location (project root)
 node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/[###-name]/
+
+# Alternative location (inside .opencode)
+node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/[###-name]/
 ```
 
 The script:
@@ -672,10 +676,14 @@ The script:
 **Example:**
 
 ```bash
-# After completing auth implementation work
+# After completing auth implementation work (standard location)
 node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/049-auth-system/
-
 # Creates: specs/049-auth-system/memory/24-12-25_14-30__auth.md
+
+# Or using alternative location
+node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/049-auth-system/
+# Creates: .opencode/specs/049-auth-system/memory/24-12-25_14-30__auth.md
+
 # Auto-indexed with extracted trigger phrases
 ```
 
@@ -1016,7 +1024,21 @@ The system automatically falls back to pure vector search if hybrid search fails
 }
 ```
 
-**Note**: File must be in a `specs/**/memory/` directory structure.
+**Alternative location example**:
+```json
+{
+  "filePath": "/Users/me/project/.opencode/specs/049-auth-system/memory/session-notes.md",
+  "force": false
+}
+```
+
+**Note**: File must be in a `specs/**/memory/` or `.opencode/specs/**/memory/` directory structure.
+
+> **Specs Directory Locations**: The system checks for specs folders in two locations (in priority order):
+> 1. `<project-root>/specs/` - Standard location at project root
+> 2. `<project-root>/.opencode/specs/` - Alternative location inside .opencode folder
+> 
+> If both locations exist, the project root location takes precedence.
 
 ### 8.9 memory_index_scan
 
@@ -1280,7 +1302,7 @@ cd .opencode/skill/system-spec-kit/mcp_server/scripts
 node index-cli.js --scan
 ```
 
-The `--scan` option recursively finds all memory files in nested specs structures like `specs/001-foo/002-bar/memory/`.
+The `--scan` option recursively finds all memory files in nested specs structures like `specs/001-foo/002-bar/memory/` or `.opencode/specs/001-foo/002-bar/memory/`.
 
 ### Slow Performance
 

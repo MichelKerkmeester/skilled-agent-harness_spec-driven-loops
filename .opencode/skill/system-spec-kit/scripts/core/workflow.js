@@ -10,7 +10,7 @@
 const fs = require('fs/promises');
 const fsSync = require('fs');
 const path = require('path');
-const { CONFIG } = require('./config');
+const { CONFIG, findActiveSpecsDir } = require('./config');
 const { structuredLog } = require('../utils');
 const { extractConversations, extractDecisions, extractDiagrams, extractPhasesFromData,
         enhanceFilesWithSemanticDescriptions } = require('../extractors');
@@ -263,7 +263,7 @@ async function runWorkflow(options = {}) {
   // Step 2: Detect spec folder with context alignment
   log('📁 Step 2: Detecting spec folder...');
   const specFolder = await detectSpecFolder(collectedData);
-  const specsDir = path.join(CONFIG.PROJECT_ROOT, 'specs');
+  const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
   const specFolderName = path.relative(specsDir, specFolder);
   log(`   ✓ Using: ${specFolder}\n`);
 

@@ -137,10 +137,38 @@ const CONFIG = {
 };
 
 /* ─────────────────────────────────────────────────────────────
-   4. EXPORTS
+   4. SPECS DIRECTORY UTILITIES
+──────────────────────────────────────────────────────────────── */
+
+function getSpecsDirectories() {
+  return [
+    path.join(CONFIG.PROJECT_ROOT, 'specs'),
+    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs')
+  ];
+}
+
+function findActiveSpecsDir() {
+  const possibleDirs = getSpecsDirectories();
+  for (const dir of possibleDirs) {
+    if (fsSync.existsSync(dir)) {
+      return dir;
+    }
+  }
+  return null;
+}
+
+function getAllExistingSpecsDirs() {
+  return getSpecsDirectories().filter(dir => fsSync.existsSync(dir));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   5. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   CONFIG,
-  loadConfig
+  loadConfig,
+  getSpecsDirectories,
+  findActiveSpecsDir,
+  getAllExistingSpecsDirs
 };

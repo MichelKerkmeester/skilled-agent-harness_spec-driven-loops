@@ -10,7 +10,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 const { promptUser, promptUserChoice } = require('../utils/prompt-utils');
-const { CONFIG } = require('../core');
+const { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs } = require('../core');
 const {
   ALIGNMENT_CONFIG,
   extractConversationTopics,
@@ -38,14 +38,25 @@ function filterArchiveFolders(folders) {
 
 async function detectSpecFolder(collectedData = null) {
   const cwd = process.cwd();
-  const specsDir = path.join(CONFIG.PROJECT_ROOT, 'specs');
+  
+  // Check for dual specs directory locations
+  const existingSpecsDirs = getAllExistingSpecsDirs();
+  if (existingSpecsDirs.length > 1) {
+    console.warn('⚠️  Multiple specs directories found. Using: ' + existingSpecsDirs[0]);
+    console.warn('   Other locations ignored: ' + existingSpecsDirs.slice(1).join(', '));
+  }
+
+  const specsDir = findActiveSpecsDir();
+  const defaultSpecsDir = path.join(CONFIG.PROJECT_ROOT, 'specs');
 
   // Priority 1: CLI argument
   if (CONFIG.SPEC_FOLDER_ARG) {
     const specArg = CONFIG.SPEC_FOLDER_ARG;
     const specFolderPath = specArg.startsWith('specs/')
       ? path.join(CONFIG.PROJECT_ROOT, specArg)
-      : path.join(specsDir, specArg);
+      : specArg.startsWith('.opencode/specs/')
+        ? path.join(CONFIG.PROJECT_ROOT, specArg)
+        : path.join(specsDir || defaultSpecsDir, specArg);
 
     try {
       await fs.access(specFolderPath);
@@ -53,10 +64,10 @@ async function detectSpecFolder(collectedData = null) {
       
       if (collectedData) {
         const folderName = path.basename(specFolderPath);
-        const alignmentResult = await validateContentAlignment(collectedData, folderName, specsDir);
+        const alignmentResult = await validateContentAlignment(collectedData, folderName, specsDir || defaultSpecsDir);
         
         if (alignmentResult.useAlternative && alignmentResult.selectedFolder) {
-          return path.join(specsDir, alignmentResult.selectedFolder);
+          return path.join(specsDir || defaultSpecsDir, alignmentResult.selectedFolder);
         }
       }
       
@@ -66,7 +77,8 @@ async function detectSpecFolder(collectedData = null) {
       console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
       
       try {
-        const entries = await fs.readdir(specsDir);
+        const searchDir = specsDir || defaultSpecsDir;
+        const entries = await fs.readdir(searchDir);
         const available = entries
           .filter(name => /^\d{3}-/.test(name))
           .filter(name => !name.match(/^(z_|.*archive.*|.*old.*|.*\.archived.*)/i))
@@ -91,14 +103,15 @@ async function detectSpecFolder(collectedData = null) {
   // Priority 2: JSON data field
   if (collectedData && collectedData.SPEC_FOLDER) {
     const specFolderFromData = collectedData.SPEC_FOLDER;
-    const specFolderPath = path.join(specsDir, specFolderFromData);
+    const activeDir = specsDir || defaultSpecsDir;
+    const specFolderPath = path.join(activeDir, specFolderFromData);
 
     try {
       await fs.access(specFolderPath);
       console.log(`   Using spec folder from data: ${specFolderFromData}`);
-      const alignmentResult = await validateFolderAlignment(collectedData, specFolderFromData, specsDir);
+      const alignmentResult = await validateFolderAlignment(collectedData, specFolderFromData, activeDir);
       if (alignmentResult.proceed) {
-        return alignmentResult.useAlternative ? path.join(specsDir, alignmentResult.selectedFolder) : specFolderPath;
+        return alignmentResult.useAlternative ? path.join(activeDir, alignmentResult.selectedFolder) : specFolderPath;
       }
     } catch {
       console.warn(`   Spec folder from data not found: ${specFolderFromData}`);
@@ -107,13 +120,24 @@ async function detectSpecFolder(collectedData = null) {
 
   // Priority 3: Current working directory
   if (cwd.includes('/specs/') || cwd.includes('\\specs\\')) {
-    const match = cwd.match(/(.*[\/\\]specs[\/\\][^\/\\]+)/);
+    const match = cwd.match(/(.*[\/\\](?:\.opencode[\/\\])?specs[\/\\][^\/\\]+)/);
     if (match) {
       return path.normalize(match[1]);
     }
   }
 
   // Priority 4: Auto-detect from specs directory
+  if (!specsDir) {
+    console.error('\n Cannot save context: No spec folder found\n');
+    console.error('memory requires a spec folder to save memory documentation.');
+    console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
+    console.error('Please create a spec folder first:');
+    console.error('  mkdir -p specs/###-feature-name/');
+    console.error('  OR: mkdir -p .opencode/specs/###-feature-name/\n');
+    console.error('Then re-run memory.\n');
+    throw new Error('No specs/ directory found');
+  }
+
   try {
     const entries = await fs.readdir(specsDir);
     let specFolders = entries
@@ -128,7 +152,8 @@ async function detectSpecFolder(collectedData = null) {
       console.error('memory requires a spec folder to save memory documentation.');
       console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
       console.error('Please create a spec folder first:');
-      console.error('  mkdir -p specs/###-feature-name/\n');
+      console.error('  mkdir -p specs/###-feature-name/');
+      console.error('  OR: mkdir -p .opencode/specs/###-feature-name/\n');
       console.error('Then re-run memory.\n');
       throw new Error('No spec folders found in specs/ directory');
     }
@@ -180,14 +205,16 @@ async function detectSpecFolder(collectedData = null) {
   } catch (error) {
     if (error.message.includes('retry attempts') || 
         error.message.includes('Spec folder not found') ||
-        error.message.includes('No spec folders found')) {
+        error.message.includes('No spec folders found') ||
+        error.message.includes('No specs/ directory found')) {
       throw error;
     }
     console.error('\n Cannot save context: No spec folder found\n');
     console.error('save-context requires a spec folder to save memory documentation.');
     console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
     console.error('Please create a spec folder first:');
-    console.error('  mkdir -p specs/###-feature-name/\n');
+    console.error('  mkdir -p specs/###-feature-name/');
+    console.error('  OR: mkdir -p .opencode/specs/###-feature-name/\n');
     console.error('Then re-run save-context.\n');
     throw new Error('specs/ directory not found');
   }

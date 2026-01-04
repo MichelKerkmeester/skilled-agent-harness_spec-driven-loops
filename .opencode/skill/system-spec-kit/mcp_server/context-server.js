@@ -632,7 +632,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         properties: {
           filePath: {
             type: 'string',
-            description: 'Absolute path to the memory file (must be in specs/**/memory/ or .opencode/skill/*/constitutional/ directory)'
+            description: 'Absolute path to the memory file (must be in specs/**/memory/ or .opencode/specs/**/memory/ or .opencode/skill/*/constitutional/ directory)'
           },
           force: {
             type: 'boolean',
@@ -1722,7 +1722,7 @@ async function handleMemorySave(args) {
 
   // Check if it's a valid memory file
   if (!memoryParser.isMemoryFile(validatedPath)) {
-    throw new Error('File must be in specs/**/memory/ or .opencode/skill/*/constitutional/ directory and have .md extension');
+    throw new Error('File must be in specs/**/memory/ or .opencode/specs/**/memory/ or .opencode/skill/*/constitutional/ directory and have .md extension');
   }
 
   // Use shared indexing logic

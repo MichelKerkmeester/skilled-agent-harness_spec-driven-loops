@@ -10,7 +10,7 @@
 
 const path = require('path');
 const fsSync = require('fs');
-const { CONFIG } = require('./core');
+const { CONFIG, findActiveSpecsDir, getSpecsDirectories } = require('./core');
 const { runWorkflow } = require('./core/workflow');
 const { loadCollectedData } = require('./loaders');
 const { collectSessionData } = require('./extractors/collect-session-data');
@@ -26,6 +26,7 @@ Arguments:
   <input>           Either a JSON data file path OR a spec folder path
                     - JSON mode: node generate-context.js data.json [spec-folder]
                     - Direct mode: node generate-context.js specs/001-feature/
+                    - Direct mode: node generate-context.js .opencode/specs/001-feature/
 
 Options:
   --help, -h        Show this help message
@@ -33,7 +34,9 @@ Options:
 Examples:
   node generate-context.js /tmp/context-data.json
   node generate-context.js /tmp/context-data.json specs/001-feature/
+  node generate-context.js /tmp/context-data.json .opencode/specs/001-feature/
   node generate-context.js specs/001-feature/
+  node generate-context.js .opencode/specs/001-feature/
 
 Output:
   Creates a memory file in <spec-folder>/memory/ with ANCHOR format
@@ -54,8 +57,11 @@ function parseArguments() {
   const arg2 = process.argv[3];
   if (!arg1) return;
 
-  const isSpecFolder = (arg1.startsWith('specs/') || /^\d{3}-/.test(path.basename(arg1))) 
-                       && !arg1.endsWith('.json');
+  const isSpecFolder = (
+    arg1.startsWith('specs/') || 
+    arg1.startsWith('.opencode/specs/') ||
+    /^\d{3}-/.test(path.basename(arg1))
+  ) && !arg1.endsWith('.json');
 
   if (isSpecFolder) {
     CONFIG.SPEC_FOLDER_ARG = arg1;
@@ -76,7 +82,7 @@ function validateArguments() {
   console.error(`\n❌ Invalid spec folder format: ${CONFIG.SPEC_FOLDER_ARG}`);
   console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
 
-  const specsDir = path.join(CONFIG.PROJECT_ROOT, 'specs');
+  const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
   if (fsSync.existsSync(specsDir)) {
     try {
       const available = fsSync.readdirSync(specsDir);

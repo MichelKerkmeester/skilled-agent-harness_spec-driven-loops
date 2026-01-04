@@ -361,10 +361,11 @@ function find_memory_files(workspace_path, options = {}) {
   const { specFolder: spec_folder = null } = options;
   const results = [];
 
-  const specs_dir = path.join(workspace_path, 'specs');
-  if (!fs.existsSync(specs_dir)) {
-    return results;
-  }
+  // Check both possible specs locations
+  const specs_locations = [
+    path.join(workspace_path, 'specs'),
+    path.join(workspace_path, '.opencode', 'specs')
+  ];
 
   // Recursive directory walker
   function walk_dir(dir, depth = 0) {
@@ -404,7 +405,13 @@ function find_memory_files(workspace_path, options = {}) {
     }
   }
 
-  walk_dir(specs_dir);
+  // Scan all existing specs locations
+  for (const specs_dir of specs_locations) {
+    if (fs.existsSync(specs_dir)) {
+      walk_dir(specs_dir);
+    }
+  }
+
   return results;
 }
 

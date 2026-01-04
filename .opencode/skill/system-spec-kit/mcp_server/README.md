@@ -325,10 +325,21 @@ memory_index_scan({ force: true })
 
 | Feature              | Description                        |
 | -------------------- | ---------------------------------- |
-| **Scan Pattern**     | `specs/**/memory/**/*.md`          |
+| **Scan Pattern**     | `specs/**/memory/**/*.md` and `.opencode/specs/**/memory/**/*.md` |
 | **Content Hash**     | Skip unchanged files (SHA-256)     |
 | **Batch Processing** | 5 files per batch with 100ms delay |
 | **Retry Logic**      | Exponential backoff for failures   |
+
+### Specs Directory Locations
+
+The memory system supports specs folders in two locations (checked in priority order):
+
+| Priority | Location | Use Case |
+|----------|----------|----------|
+| 1 | `<project>/specs/` | Standard location, visible at project root |
+| 2 | `<project>/.opencode/specs/` | Hidden location, keeps project root clean |
+
+If both locations exist, the project root location takes precedence. A warning is logged when multiple locations are detected.
 
 ---
 

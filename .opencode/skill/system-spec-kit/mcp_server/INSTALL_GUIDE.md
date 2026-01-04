@@ -1,1 +1,1 @@
-/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/install_guides/MCP - Spec Kit Memory.md
+../../../install_guides/MCP - Spec Kit Memory.md

@@ -10,7 +10,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 const { structuredLog, sanitizePath } = require('../utils');
-const { CONFIG } = require('../core');
+const { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs, getSpecsDirectories } = require('../core');
 
 /* ─────────────────────────────────────────────────────────────────
    2. DIRECTORY SETUP
@@ -38,7 +38,7 @@ async function setupContextDirectory(specFolder) {
     }
   } catch (err) {
     if (err.code === 'ENOENT') {
-      const specsDir = path.join(CONFIG.PROJECT_ROOT, 'specs');
+      const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
       let availableFolders = [];
       try {
         const entries = await fs.readdir(specsDir, { withFileTypes: true });
@@ -50,11 +50,14 @@ async function setupContextDirectory(specFolder) {
         // specs/ doesn't exist or can't be read
       }
       
+      const existingDirs = getAllExistingSpecsDirs();
       let errorMsg = `Spec folder does not exist: ${sanitizedPath}`;
       errorMsg += '\nPlease create the spec folder first or check the path.';
+      errorMsg += `\nSearched in: ${getSpecsDirectories().join(', ')}`;
       if (availableFolders.length > 0) {
-        errorMsg += '\n\nAvailable spec folders:';
-        availableFolders.forEach(f => errorMsg += `\n  - specs/${f}`);
+        const activeDirName = path.basename(specsDir);
+        errorMsg += `\n\nAvailable spec folders (in ${activeDirName}/):`;
+        availableFolders.forEach(f => errorMsg += `\n  - ${activeDirName}/${f}`);
       }
       structuredLog('error', 'Spec folder not found', {
         specFolder: sanitizedPath,
