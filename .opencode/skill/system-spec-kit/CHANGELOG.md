@@ -1,11 +1,9 @@
 # Changelog
 
 All notable changes to the **system-spec-kit** skill are documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/).
-
 Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
+> The format is based on [Keep a Changelog](https://keepachangelog.com/)
 ---
 
 ## [**1.0.3.0**] - 2026-01-04

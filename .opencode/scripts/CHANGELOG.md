@@ -1,10 +1,9 @@
 # Changelog
 
 All notable changes to the **scripts** folder are documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/).
-
 Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
+
+> The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
 ---
 
