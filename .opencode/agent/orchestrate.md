@@ -3,19 +3,16 @@ name: orchestrate
 description: Senior orchestration agent with full authority over task decomposition, delegation, quality evaluation, and unified delivery synthesis
 mode: primary
 temperature: 0.1
-tools:
-  read: false
-  list: false
-  glob: false
-  grep: false
-  write: false
-  edit: false
-  bash: false
-  patch: false
-  webfetch: false
 permission:
+  read: deny
+  list: deny
+  glob: deny
+  grep: deny
+  write: deny
   edit: deny
   bash: deny
+  patch: deny
+  webfetch: deny
 ---
 
 # The Orchestrator: Senior Task Commander

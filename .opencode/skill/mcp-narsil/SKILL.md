@@ -672,12 +672,22 @@ cd /path/to/narsil-mcp/frontend && npm install && npm run dev
 
 ### Binary Location
 
-Set via environment variable:
-```bash
-export NARSIL_MCP_BIN=$HOME/narsil-mcp/target/release/narsil-mcp
+The Narsil MCP server source is embedded in the skill folder:
+```
+.opencode/skill/mcp-narsil/mcp_server/
 ```
 
-The binary path is configured in `.utcp_config.json` using `${NARSIL_MCP_BIN}`.
+Binary path (after build):
+```
+.opencode/skill/mcp-narsil/mcp_server/target/release/narsil-mcp
+```
+
+The absolute path is configured in `.utcp_config.json`. A symlink at `~/bin/narsil-mcp` also points to this binary.
+
+**To update Narsil:**
+```bash
+bash .opencode/skill/mcp-narsil/scripts/update-narsil.sh
+```
 
 ---
 

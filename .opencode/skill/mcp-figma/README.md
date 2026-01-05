@@ -771,4 +771,4 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 
 | Guide | Purpose |
 |-------|---------|
-| [MCP - Figma.md](../../install_guides/MCP/MCP%20-%20Figma.md) | Complete installation instructions |
+| [MCP - Figma.md](../../install_guides/MCP%20-%20Figma.md) | Complete installation instructions |

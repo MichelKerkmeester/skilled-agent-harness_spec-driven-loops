@@ -19,7 +19,7 @@
         "mcpServers": {
           "narsil": {
             "transport": "stdio",
-            "command": "/Users/michelkerkmeester/bin/narsil-mcp",
+            "command": "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-narsil/mcp_server/target/release/narsil-mcp",
             "args": [
               "--repos",
               ".",
@@ -36,13 +36,7 @@
               "voyage-code-2"
             ],
             "env": {
-              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
-              "OPENAI_API_KEY": "${OPENAI_API_KEY}",
-              "_NOTE_1_NEURAL_BACKENDS": "Three options: 'api' (Voyage/OpenAI), 'onnx' (local, no API needed)",
-              "_NOTE_2_VOYAGE_RECOMMENDED": "Default config uses Voyage. Get key: https://dash.voyageai.com/api-keys (starts with 'pa-')",
-              "_NOTE_3_OPENAI_ALTERNATIVE": "To use OpenAI instead: change --neural-model to 'text-embedding-3-small'. Get key: https://platform.openai.com/api-keys (starts with 'sk-')",
-              "_NOTE_4_LOCAL_ONNX": "For offline/free: change --neural-backend to 'onnx' and remove --neural-model (no API key needed)",
-              "_NOTE_5_MODEL_OPTIONS": "Voyage: voyage-code-2, voyage-code-3 | OpenAI: text-embedding-3-small, text-embedding-3-large"
+              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
             }
           }
         }

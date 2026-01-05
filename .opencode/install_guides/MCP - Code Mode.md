@@ -259,6 +259,10 @@ Create environment file for secrets:
 
 ```bash
 cat > .env << 'EOF'
+# =============================================================================
+# API Keys - Standard Variables
+# =============================================================================
+
 # ClickUp Configuration
 # CLICKUP_API_KEY=pk_your_api_key_here
 # CLICKUP_TEAM_ID=your_team_id_here
@@ -269,7 +273,20 @@ cat > .env << 'EOF'
 # GitHub Configuration
 # GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your_token_here
 
-# Add other API keys as needed
+# Voyage AI (for Narsil neural search)
+# VOYAGE_API_KEY=pa-your_voyage_key_here
+
+# =============================================================================
+# Code Mode Prefixed Variables (REQUIRED for Code Mode)
+# =============================================================================
+# Code Mode requires variables prefixed with the manual name.
+# Copy your API keys to these prefixed versions.
+
+# clickup_CLICKUP_API_KEY=pk_your_api_key_here
+# clickup_CLICKUP_TEAM_ID=your_team_id_here
+# figma_FIGMA_API_KEY=figd_your_token_here
+# github_GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your_token_here
+# narsil_VOYAGE_API_KEY=pa-your_voyage_key_here
 EOF
 ```
 
@@ -329,6 +346,7 @@ Add to `.mcp.json` in your project root:
 
 Add to `opencode.json` in your project root:
 
+**Option B1: NPM Package (Recommended for most users)**
 ```json
 {
   "mcp": {
@@ -340,13 +358,35 @@ Add to `opencode.json` in your project root:
         "@utcp/code-mode-mcp"
       ],
       "environment": {
-        "UTCP_CONFIG_FILE": "/path/to/your/.utcp_config.json",
-        "_NOTE_CONFIG": "UTCP config path - use absolute path or relative to project root"
+        "UTCP_CONFIG_FILE": ".utcp_config.json"
       }
     }
   }
 }
 ```
+
+**Option B2: Embedded Source (For bundled projects)**
+
+If the Code Mode source is embedded in your project at `.opencode/skill/mcp-code-mode/mcp_server/`:
+
+```json
+{
+  "mcp": {
+    "code_mode": {
+      "type": "local",
+      "command": [
+        "node",
+        ".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"
+      ],
+      "environment": {
+        "UTCP_CONFIG_FILE": ".utcp_config.json"
+      }
+    }
+  }
+}
+```
+
+> **Note:** The embedded approach requires running `npm install` in the `mcp_server/` directory first. This is useful for projects that want to bundle the MCP server source for version control and portability.
 
 ### Option C: Configure for VS Code Copilot
 
@@ -407,6 +447,48 @@ CLICKUP_API_KEY=pk_224591351_your_actual_key
 □ All secrets use ${VARIABLE_NAME} syntax
 □ .env file permissions are restricted (chmod 600 .env)
 ```
+
+---
+
+### ⚠️ CRITICAL: Prefixed Environment Variables
+
+> **Code Mode requires PREFIXED environment variables.** This is the #1 cause of "Variable not found" errors.
+
+When Code Mode loads a manual configuration, it looks for environment variables with the **manual name as a prefix**. For example:
+
+| Manual Name | Config Variable | Required .env Variable |
+|-------------|-----------------|------------------------|
+| `narsil` | `${VOYAGE_API_KEY}` | `narsil_VOYAGE_API_KEY` |
+| `figma` | `${FIGMA_API_KEY}` | `figma_FIGMA_API_KEY` |
+| `github` | `${GITHUB_PERSONAL_ACCESS_TOKEN}` | `github_GITHUB_PERSONAL_ACCESS_TOKEN` |
+| `clickup` | `${CLICKUP_API_KEY}` | `clickup_CLICKUP_API_KEY` |
+| `clickup` | `${CLICKUP_TEAM_ID}` | `clickup_CLICKUP_TEAM_ID` |
+
+**Error you'll see without prefixed variables:**
+```
+Error during batch registration for manual 'narsil': Variable 'narsil_VOYAGE_API_KEY' 
+referenced in call template configuration not found.
+```
+
+**Solution:** Add BOTH unprefixed AND prefixed versions to your `.env`:
+
+```bash
+# Standard variables (for other tools)
+VOYAGE_API_KEY=pa-your-voyage-key
+FIGMA_API_KEY=figd_your-figma-key
+GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your-github-token
+CLICKUP_API_KEY=pk_your-clickup-key
+CLICKUP_TEAM_ID=your-team-id
+
+# Code Mode prefixed versions (REQUIRED for Code Mode)
+narsil_VOYAGE_API_KEY=pa-your-voyage-key
+figma_FIGMA_API_KEY=figd_your-figma-key
+github_GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your-github-token
+clickup_CLICKUP_API_KEY=pk_your-clickup-key
+clickup_CLICKUP_TEAM_ID=your-team-id
+```
+
+**Why both?** The unprefixed versions are used by other tools and scripts. The prefixed versions are specifically for Code Mode's variable substitution system.
 
 ---
 
@@ -1159,9 +1241,30 @@ call_tool_chain({
 | `Execution timeout exceeded`                 | Complex operation            | Increase `timeout` parameter              |
 | `UTCP_CONFIG_FILE not set`                   | Missing environment variable | Set path to `.utcp_config.json`           |
 | `Environment variable X not found`           | Missing in .env              | Add variable to `.env` file               |
+| `Variable 'manual_VAR' not found`            | Missing prefixed variable    | Add `{manual}_{VAR}` to `.env` (see below)|
 | `TypeError: X is not a function`             | Wrong naming pattern         | Check exact tool name with `search_tools` |
 | `Failed to start MCP server`                 | Package or auth issue        | Test command manually in terminal         |
 | `Invalid JSON`                               | Config syntax error          | Validate with `python3 -m json.tool`      |
+
+### Prefixed Variable Not Found
+
+**Problem**: `Error during batch registration for manual 'X': Variable 'X_VAR' not found`
+
+**Cause**: Code Mode requires environment variables prefixed with the manual name.
+
+**Solution**:
+1. Identify the manual name from the error (e.g., `narsil`, `figma`, `clickup`)
+2. Add the prefixed variable to `.env`:
+   ```bash
+   # For error: Variable 'narsil_VOYAGE_API_KEY' not found
+   narsil_VOYAGE_API_KEY=pa-your-voyage-key
+   
+   # For error: Variable 'figma_FIGMA_API_KEY' not found
+   figma_FIGMA_API_KEY=figd_your-figma-key
+   ```
+3. Restart OpenCode/Code Mode after updating `.env`
+
+See the [Prefixed Environment Variables](#️-critical-prefixed-environment-variables) section for the complete list.
 
 ### Tool Not Found Error
 

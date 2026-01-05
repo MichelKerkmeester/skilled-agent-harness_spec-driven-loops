@@ -489,32 +489,28 @@ Ask user these questions (one at a time):
 **STEP 3: Planning**
 Based on understanding, determine:
 
-1. **Tools**: Which tools does this agent need?
-   - read: Examine files
-   - write: Create files
-   - edit: Modify files
-   - bash: Run commands
-   - grep: Search content
-   - glob: Find files
-   - webfetch: Fetch URLs
-   - narsil: Semantic + structural code analysis
-   - memory: Spec Kit Memory
-   - chrome_devtools: Browser debugging
+1. **Permissions** (v1.1.1+ unified format): Which tools and actions are allowed?
+   - read: allow/deny - Examine files
+   - write: allow/deny - Create files
+   - edit: allow/deny/ask - Modify files
+   - bash: allow/deny/ask - Run commands (can use patterns)
+   - grep: allow/deny - Search content
+   - glob: allow/deny - Find files
+   - webfetch: allow/deny/ask - Fetch URLs
+   - narsil: allow/deny - Semantic + structural code analysis
+   - memory: allow/deny - Spec Kit Memory
+   - chrome_devtools: allow/deny - Browser debugging
+   - external_directory: allow/deny - Access files outside project
 
-2. **Permissions**: What actions are allowed?
-   - edit: allow/deny/ask
-   - bash: allow/deny/ask (can specify per-command)
-   - webfetch: allow/deny/ask
-
-3. **Behavioral Rules**:
+2. **Behavioral Rules**:
    - ✅ ALWAYS: What must this agent always do?
    - ❌ NEVER: What must this agent never do?
    - ⚠️ ESCALATE IF: When should it ask for help?
 
-4. **Skills Integration**: Which skills should this agent invoke?
+3. **Skills Integration**: Which skills should this agent invoke?
 
 **STEP 4: Generation**
-Create the agent file with this structure:
+Create the agent file with this structure (v1.1.1+ format):
 
 ```markdown
 ---
@@ -522,21 +518,18 @@ name: [agent_name]
 description: "[One-line description based on purpose]"
 mode: [agent_mode]
 temperature: 0.1
-tools:
-  read: [true/false]
-  write: [true/false]
-  edit: [true/false]
-  bash: [true/false]
-  grep: [true/false]
-  glob: [true/false]
-  webfetch: [true/false]
-  narsil: [true/false]
-  memory: [true/false]
-  chrome_devtools: [true/false]
 permission:
+  read: [allow/deny]
+  write: [allow/deny]
   edit: [allow/deny/ask]
   bash: [allow/deny/ask]
+  grep: [allow/deny]
+  glob: [allow/deny]
   webfetch: [allow/deny/ask]
+  narsil: [allow/deny]
+  memory: [allow/deny]
+  chrome_devtools: [allow/deny]
+  external_directory: [allow/deny]
 ---
 
 # [Agent Title]
@@ -585,8 +578,8 @@ Verify:
 - [ ] `name` field matches file name
 - [ ] `description` is present and single-line
 - [ ] `mode` is one of: primary, subagent, all
-- [ ] `tools` object has valid boolean values
-- [ ] `permission` object has valid values (allow/deny/ask)
+- [ ] `permission` object uses v1.1.1+ format (allow/deny/ask values)
+- [ ] No deprecated `tools` object present
 
 **STEP 6: Save Context (if spec folder used)**
 If spec_path is not null:

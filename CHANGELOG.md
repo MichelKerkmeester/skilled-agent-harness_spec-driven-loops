@@ -7,6 +7,28 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.3.1**] - 2026-01-05
+
+Updates agent configuration to OpenCode v1.1.1+ format. Migrates deprecated `tools:` object to unified `permission:` format with `allow`/`deny`/`ask` values across all agent files, templates, and documentation.
+
+---
+
+**Changed**
+1. Agent frontmatter: `tools:` object → `permission:` object (v1.1.1+ format)
+2. `write.md` · `orchestrate.md`: Consolidated tool permissions into unified permission block
+3. `agent_template.md`: Updated with v1.1.1 format, granular permissions example, deprecation note
+4. `SET-UP - Opencode Agents.md`: Updated examples, field reference, troubleshooting (v1.2)
+5. `/create:agent` command: Now generates v1.1.1 compliant agent files
+
+---
+
+**Upgrade**
+Existing agents with `tools:` format continue to work (backwards compatible). New agents should use the `permission:` format. See `agent_template.md` for migration examples.
+
+**Full Changelog**: [v1.0.3.0...v1.0.3.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.0...v1.0.3.1)
+
+---
+
 ## [**1.0.3.0**] - 2026-01-04
 
 Adds support for alternative specs folder location inside `.opencode/`. Memory files and spec folders can now be stored in either `specs/` (project root) or `.opencode/specs/` for projects that prefer keeping all OpenCode files in a hidden directory.

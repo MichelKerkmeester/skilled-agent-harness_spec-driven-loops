@@ -3,21 +3,17 @@ name: write
 description: Documentation generation and maintenance specialist using workflows-documentation skill for DQI-compliant, template-aligned output
 mode: primary
 temperature: 0.1
-tools:
-  read: true
-  write: true
-  edit: true
-  bash: true
-  grep: true
-  glob: true
-  webfetch: true
-  memory: true
-  narsil: false
-  chrome_devtools: false
 permission:
+  read: allow
+  write: allow
   edit: allow
   bash: allow
+  grep: allow
+  glob: allow
   webfetch: allow
+  memory: allow
+  narsil: deny
+  chrome_devtools: deny
   external_directory: allow
 ---
 

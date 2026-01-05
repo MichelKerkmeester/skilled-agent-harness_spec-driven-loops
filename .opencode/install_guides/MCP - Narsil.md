@@ -588,6 +588,20 @@ Narsil supports **three neural embedding backends** for semantic code search:
 
 **Setup:** Get API key from https://www.voyageai.com/ (key starts with "pa-")
 
+> **⚠️ IMPORTANT: Code Mode Prefixed Variables**
+> 
+> When using Narsil via Code Mode, you must add a **prefixed** version of the API key to your `.env`:
+> ```bash
+> # Standard variable
+> VOYAGE_API_KEY=pa-your-voyage-key
+> 
+> # Code Mode prefixed version (REQUIRED)
+> narsil_VOYAGE_API_KEY=pa-your-voyage-key
+> ```
+> 
+> Code Mode looks for `{manual_name}_{VARIABLE}` in the environment. Without the prefixed version, you'll see:
+> `Error: Variable 'narsil_VOYAGE_API_KEY' not found`
+
 #### Option 2: OpenAI
 
 ```json
@@ -1516,6 +1530,20 @@ call_tool_chain({
   3. Restart OpenCode completely
   4. Try `list_tools()` to see all available tools
 
+**"Variable 'narsil_VOYAGE_API_KEY' not found"**
+- **Cause:** Code Mode requires prefixed environment variables.
+- **Fix:**
+  1. Add the prefixed variable to `.env`:
+     ```bash
+     # Standard variable
+     VOYAGE_API_KEY=pa-your-voyage-key
+     
+     # Code Mode prefixed version (REQUIRED)
+     narsil_VOYAGE_API_KEY=pa-your-voyage-key
+     ```
+  2. Restart OpenCode after updating `.env`
+  3. Code Mode looks for `{manual_name}_{VARIABLE}` format
+
 **"Index out of date / stale results"**
 - **Cause:** Files changed but index not updated.
 - **Fix:**
@@ -1559,7 +1587,26 @@ tool_info({ tool_name: "narsil.narsil_scan_security" });
 | `.utcp_config.json`           | Code Mode configuration              |
 | `opencode.json`               | OpenCode MCP configuration           |
 | `.opencode/skill/mcp-narsil/` | Narsil skill documentation           |
+| `.opencode/skill/mcp-narsil/mcp_server/` | Embedded Narsil source (optional) |
 | `.narsil-index/`              | Project-local index (add to .gitignore) |
+
+### Embedded Source Option
+
+For projects that want to bundle the Narsil source for version control and portability, the source can be embedded at `.opencode/skill/mcp-narsil/mcp_server/`.
+
+**Setup:**
+1. Copy Narsil source to `mcp_server/` (excluding `.git`, `target`, `frontend`)
+2. Build: `cd mcp_server && cargo build --release`
+3. Update `.utcp_config.json` to use the embedded binary:
+   ```json
+   "command": ".opencode/skill/mcp-narsil/mcp_server/target/release/narsil-mcp"
+   ```
+4. Add `mcp_server/target/` to `.gitignore`
+
+**Benefits:**
+- Self-contained project with all dependencies
+- Version-controlled MCP server source
+- No external path dependencies
 
 ### Tool Naming Convention
 

@@ -24,7 +24,7 @@
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
-        "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
+        "VOYAGE_API_KEY": "pa-1C0kMn_ucXXWcCm-4baFdnX1x-BjsQllWyU3tuecBm8",
         "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
         "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
         "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
@@ -38,12 +38,11 @@
     "code_mode": {
       "type": "local",
       "command": [
-        "npx",
-        "-y",
-        "@utcp/code-mode-mcp"
+        "node",
+        ".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"
       ],
       "environment": {
-        "UTCP_CONFIG_PATH": "/.utcp_config.json"
+        "UTCP_CONFIG_FILE": ".utcp_config.json"
       }
     }
   },

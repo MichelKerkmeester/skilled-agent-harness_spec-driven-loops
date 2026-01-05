@@ -469,7 +469,7 @@ These are project-specific agents defined in `.opencode/agent/`:
 
 ## 5. ⚙️ AGENT ANATOMY
 
-### Frontmatter Fields
+### Frontmatter Fields (v1.1.1+ Format)
 
 Every agent file MUST have YAML frontmatter:
 
@@ -479,24 +479,22 @@ name: agent-name                    # Required: Identifier
 description: One-line description   # Required: Purpose
 mode: primary                       # Required: primary or secondary
 temperature: 0.1                    # Required: 0.0-1.0 (lower = deterministic)
-tools:                              # Required: Tool permissions
-  read: true
-  write: true
-  edit: true
-  bash: true
-  grep: true
-  glob: true
-  webfetch: false
-  narsil: true
-  memory: true
-  chrome_devtools: false
-permission:                         # Required: Action permissions
+permission:                         # Required: Unified permissions (v1.1.1+)
+  read: allow
+  write: allow
   edit: allow
   bash: allow
+  grep: allow
+  glob: allow
   webfetch: deny
+  narsil: allow
+  memory: allow
+  chrome_devtools: deny
   external_directory: allow
 ---
 ```
+
+> **Note:** The separate `tools:` object is deprecated as of OpenCode v1.1.1. Use the unified `permission:` object with `allow`/`deny`/`ask` values instead. The old format still works for backwards compatibility.
 
 ### Frontmatter Field Reference
 
@@ -506,10 +504,9 @@ permission:                         # Required: Action permissions
 | `description` | Yes      | string | One-line purpose description (used for automatic routing)                   |
 | `mode`        | No       | string | `primary`, `subagent`, or `all` (default: `all`)                            |
 | `temperature` | No       | float  | 0.0-1.0, lower = more deterministic (default: model-specific)               |
-| `tools`       | No       | object | Tool permissions (true/false for each)                                      |
-| `permission`  | No       | object | Action permissions (allow/deny/ask)                                         |
+| `permission`  | No       | object | Unified tool & action permissions (allow/deny/ask)                          |
 | `model`       | No       | string | Override model for this agent (format: `provider/model-id`)                 |
-| `maxSteps`    | No       | int    | Maximum agentic iterations before forced text response                      |
+| `steps`       | No       | int    | Max agentic iterations (replaces deprecated `maxSteps`)                     |
 
 ### Mode Options
 
@@ -519,20 +516,29 @@ permission:                         # Required: Action permissions
 | `subagent`  | Specialized assistant, invoked by primary agents or @ mention            | `@agent-name` or automatic    |
 | `all`       | Can be used as both primary and subagent (default if not specified)      | Both methods                  |
 
-### Tool Permissions
+### Permission Reference
 
-| Tool              | Purpose                             | Typical Setting       |
-| ----------------- | ----------------------------------- | --------------------- |
-| `read`            | Read files                          | true                  |
-| `write`           | Create files                        | true                  |
-| `edit`            | Modify files                        | true                  |
-| `bash`            | Execute commands                    | true (with caution)   |
-| `grep`            | Search content                      | true                  |
-| `glob`            | Find files                          | true                  |
-| `webfetch`        | Fetch URLs                          | false (unless needed) |
-| `narsil`          | Semantic + structural code analysis | true                  |
-| `memory`          | Spec Kit Memory                     | true                  |
-| `chrome_devtools` | Browser debugging                   | false (unless needed) |
+| Permission          | Purpose                             | Typical Setting       |
+| ------------------- | ----------------------------------- | --------------------- |
+| `read`              | Read files                          | allow                 |
+| `write`             | Create files                        | allow                 |
+| `edit`              | Modify files                        | allow                 |
+| `bash`              | Execute commands                    | allow (with caution)  |
+| `grep`              | Search content                      | allow                 |
+| `glob`              | Find files                          | allow                 |
+| `webfetch`          | Fetch URLs                          | deny (unless needed)  |
+| `narsil`            | Semantic + structural code analysis | allow                 |
+| `memory`            | Spec Kit Memory                     | allow                 |
+| `chrome_devtools`   | Browser debugging                   | deny (unless needed)  |
+| `external_directory`| Access files outside project        | allow                 |
+
+### Permission Values
+
+| Value   | Behavior                                    |
+| ------- | ------------------------------------------- |
+| `allow` | Automatically approve (no prompt)           |
+| `deny`  | Automatically reject (blocked)              |
+| `ask`   | Prompt the user for approval each time      |
 
 ### Required Sections
 
@@ -627,7 +633,7 @@ This interactive command will:
 touch .opencode/agent/my-agent.md
 ```
 
-#### Step 3: Add Frontmatter
+#### Step 3: Add Frontmatter (v1.1.1+ Format)
 
 ```yaml
 ---
@@ -635,20 +641,18 @@ name: my-agent
 description: One-line description of what this agent does
 mode: subagent  # Options: primary, subagent, or all (default)
 temperature: 0.1
-tools:
-  read: true
-  write: true
-  edit: true
-  bash: true
-  grep: true
-  glob: true
-  webfetch: false
-  narsil: true
-  memory: true
-  chrome_devtools: false
 permission:
+  read: allow
+  write: allow
   edit: allow
   bash: allow
+  grep: allow
+  glob: allow
+  webfetch: deny
+  narsil: allow
+  memory: allow
+  chrome_devtools: deny
+  external_directory: allow
 ---
 ```
 
@@ -839,11 +843,11 @@ User: "Create a new skill for API testing"
 
 **Causes & Solutions:**
 
-| Cause               | Solution                                  |
-| ------------------- | ----------------------------------------- |
-| Tool set to `false` | Set `tools.toolname: true` in frontmatter |
-| Permission denied   | Set `permission.action: allow`            |
-| Tool not available  | Check tool exists in OpenCode             |
+| Cause                     | Solution                                         |
+| ------------------------- | ------------------------------------------------ |
+| Permission set to `deny`  | Set `permission.toolname: allow` in frontmatter  |
+| Using deprecated format   | Migrate from `tools:` to `permission:` (v1.1.1+) |
+| Tool not available        | Check tool exists in OpenCode                    |
 
 #### Agent Not Following Rules
 
@@ -872,12 +876,13 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 ### Quick Fixes
 
-| Problem                | Quick Fix                           |
-| ---------------------- | ----------------------------------- |
-| Agent not found        | Check file location and name field  |
-| Tool permission denied | Update tools section in frontmatter |
-| Inconsistent behavior  | Lower temperature to 0.1            |
-| Not invoking skills    | Add skill invocation to workflow    |
+| Problem                | Quick Fix                                         |
+| ---------------------- | ------------------------------------------------- |
+| Agent not found        | Check file location and name field                |
+| Tool permission denied | Set `permission.toolname: allow` in frontmatter   |
+| Inconsistent behavior  | Lower temperature to 0.1                          |
+| Not invoking skills    | Add skill invocation to workflow                  |
+| Using deprecated format| Migrate from `tools:` to `permission:` (v1.1.1+)  |
 
 ---
 
@@ -950,4 +955,4 @@ The agent system provides **specialized AI personas** for different task types:
 
 ---
 
-*Documentation version: 1.1 | Last updated: 2025-12-30*
+*Documentation version: 1.2 | Last updated: 2025-01-04 | OpenCode v1.1.1+ compatible*

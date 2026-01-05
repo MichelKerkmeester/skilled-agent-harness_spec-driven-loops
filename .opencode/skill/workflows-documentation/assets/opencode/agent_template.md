@@ -1,6 +1,6 @@
 # Agent Template
 
-> Template for creating OpenCode agent files with proper frontmatter, tool permissions, and behavioral structure.
+> Template for creating OpenCode agent files with proper frontmatter, permissions, and behavioral structure.
 
 ---
 
@@ -10,13 +10,13 @@ Agents are specialized AI personas with defined authorities, tool permissions, a
 
 ### Key Characteristics
 
-| Aspect          | Agent                                      | Skill                        |
-| --------------- | ------------------------------------------ | ---------------------------- |
-| **Purpose**     | Persona with authority to act              | Knowledge/workflow bundle    |
-| **Location**    | `.opencode/agent/`                         | `.opencode/skill/`           |
-| **Invocation**  | `@agent-name` or automatic routing         | `skill("name")` or automatic |
-| **Has Tools**   | Yes (tool permissions object)              | No (uses agent's tools)      |
-| **Frontmatter** | name, mode, temperature, tools, permission | name, allowed-tools          |
+| Aspect          | Agent                                   | Skill                        |
+| --------------- | --------------------------------------- | ---------------------------- |
+| **Purpose**     | Persona with authority to act           | Knowledge/workflow bundle    |
+| **Location**    | `.opencode/agent/`                      | `.opencode/skill/`           |
+| **Invocation**  | `@agent-name` or automatic routing      | `skill("name")` or automatic |
+| **Has Tools**   | Yes (permission object)                 | No (uses agent's tools)      |
+| **Frontmatter** | name, mode, temperature, permission     | name, allowed-tools          |
 
 ### When to Create an Agent
 
@@ -35,7 +35,7 @@ Create an agent when you need:
 
 ## 2. 📋 FRONTMATTER REFERENCE
 
-### Required Fields
+### Required Fields (v1.1.1+ Format)
 
 ```yaml
 ---
@@ -43,25 +43,23 @@ name: agent-name                    # REQUIRED: Identifier (must match filename)
 description: One-line description   # REQUIRED: Purpose statement
 mode: primary                       # REQUIRED: primary | secondary
 temperature: 0.1                    # REQUIRED: 0.0-1.0 (lower = deterministic)
-tools:                              # REQUIRED: Tool permissions object
-  read: true
-  write: true
-  edit: true
-  bash: true
-  grep: true
-  glob: true
-  webfetch: false
-  narsil: true
-  memory: true
-  chrome_devtools: false
-  task: false
-permission:                         # REQUIRED: Action permissions
+permission:                         # REQUIRED: Unified permission object (v1.1.1+)
+  read: allow
+  write: allow
   edit: allow
   bash: allow
+  grep: allow
+  glob: allow
   webfetch: deny
+  narsil: allow
+  memory: allow
+  chrome_devtools: deny
+  task: deny
   external_directory: allow
 ---
 ```
+
+> **Note:** The separate `tools:` object is deprecated as of OpenCode v1.1.1. Use the unified `permission:` object with `allow`/`deny`/`ask` values instead. The old format still works for backwards compatibility but should not be used for new agents.
 
 ### Field Reference
 
@@ -71,35 +69,52 @@ permission:                         # REQUIRED: Action permissions
 | `description` | string | Yes      | One-line purpose description                        |
 | `mode`        | string | Yes      | `primary` (full authority) or `secondary` (limited) |
 | `temperature` | float  | Yes      | 0.0-1.0, lower = more deterministic                 |
-| `tools`       | object | Yes      | Tool permissions (true/false for each)              |
-| `permission`  | object | Yes      | Action permissions (allow/deny)                     |
+| `permission`  | object | Yes      | Unified tool & action permissions (allow/deny/ask)  |
+| `steps`       | int    | No       | Max agentic iterations (replaces deprecated maxSteps) |
 
-### Tool Permissions Reference
+### Permission Reference
 
-| Tool              | Purpose                             | Typical Setting            |
-| ----------------- | ----------------------------------- | -------------------------- |
-| `read`            | Read files                          | true                       |
-| `write`           | Create files                        | true                       |
-| `edit`            | Modify files                        | true                       |
-| `bash`            | Execute commands                    | true (with caution)        |
-| `grep`            | Search content                      | true                       |
-| `glob`            | Find files                          | true                       |
-| `webfetch`        | Fetch URLs                          | false (unless needed)      |
-| `narsil`          | Semantic + structural code analysis | true                       |
-| `memory`          | Spec Kit Memory                     | true                       |
-| `chrome_devtools` | Browser debugging                   | false (unless needed)      |
-| `task`            | Delegate to sub-agents              | false (orchestrators only) |
-| `list`            | List directory contents             | true                       |
-| `patch`           | Apply patches                       | false (unless needed)      |
+| Permission          | Purpose                             | Typical Setting  |
+| ------------------- | ----------------------------------- | ---------------- |
+| `read`              | Read files                          | allow            |
+| `write`             | Create files                        | allow            |
+| `edit`              | Modify files                        | allow            |
+| `bash`              | Execute commands                    | allow (caution)  |
+| `grep`              | Search content                      | allow            |
+| `glob`              | Find files                          | allow            |
+| `webfetch`          | Fetch URLs                          | deny (unless needed) |
+| `narsil`            | Semantic + structural code analysis | allow            |
+| `memory`            | Spec Kit Memory                     | allow            |
+| `chrome_devtools`   | Browser debugging                   | deny (unless needed) |
+| `task`              | Delegate to sub-agents              | deny (orchestrators only) |
+| `list`              | List directory contents             | allow            |
+| `patch`             | Apply patches                       | deny (unless needed) |
+| `external_directory`| Access files outside project        | allow            |
 
-### Permission Settings Reference
+### Permission Values
 
-| Permission           | Values     | Description                                |
-| -------------------- | ---------- | ------------------------------------------ |
-| `edit`               | allow/deny | Permission to modify files                 |
-| `bash`               | allow/deny | Permission to execute shell commands       |
-| `webfetch`           | allow/deny | Permission to fetch external URLs          |
-| `external_directory` | allow/deny | Permission to access files outside project |
+| Value   | Behavior                                    |
+| ------- | ------------------------------------------- |
+| `allow` | Automatically approve (no prompt)           |
+| `deny`  | Automatically reject (blocked)              |
+| `ask`   | Prompt the user for approval each time      |
+
+### Granular Permissions (Advanced)
+
+v1.1.1+ supports pattern-based granular control:
+
+```yaml
+permission:
+  bash:
+    "npm *": allow      # Allow npm commands
+    "git *": allow      # Allow git commands
+    "rm -rf *": deny    # Block dangerous deletions
+    "*": ask            # Ask for all other commands
+  edit:
+    "*.md": allow       # Allow markdown edits
+    "*.ts": ask         # Ask for TypeScript edits
+    "*": deny           # Block all other edits
+```
 
 ---
 
@@ -225,22 +240,18 @@ name: [agent-name]
 description: [One-line description of agent purpose and authority]
 mode: primary
 temperature: 0.1
-tools:
-  read: true
-  write: true
-  edit: true
-  bash: true
-  grep: true
-  glob: true
-  webfetch: false
-  narsil: true
-  memory: true
-  chrome_devtools: false
-  task: false
 permission:
+  read: allow
+  write: allow
   edit: allow
   bash: allow
+  grep: allow
+  glob: allow
   webfetch: deny
+  narsil: allow
+  memory: allow
+  chrome_devtools: deny
+  task: deny
   external_directory: allow
 ---
 
@@ -360,8 +371,8 @@ Before deploying an agent, verify:
 - [ ] `description` is one-line, specific
 - [ ] `mode` is `primary` or `secondary`
 - [ ] `temperature` is 0.0-1.0
-- [ ] `tools` object has all required permissions
-- [ ] `permission` object has action settings
+- [ ] `permission` object has all tool/action settings (v1.1.1+ format)
+- [ ] No deprecated `tools` object present
 
 **Structure:**
 - [ ] H1 title follows "# The [Role]: [Subtitle]" pattern

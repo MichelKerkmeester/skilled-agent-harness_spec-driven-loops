@@ -7,9 +7,11 @@
 node_modules/
 
 # Database files (contain personal memory/session data)
-.opencode/skill/system-spec-kit/database/*.sqlite
-.opencode/skill/system-spec-kit/database/*.sqlite-shm
-.opencode/skill/system-spec-kit/database/*.sqlite-wal
+.opencode/skill/system-spec-kit/database/
+
+# MCP server source code (install separately, not distributed)
+.opencode/skill/mcp-narsil/mcp_server/
+.opencode/skill/mcp-code-mode/mcp_server/
 
 # Archive folder (root level only)
 /z — Archive/

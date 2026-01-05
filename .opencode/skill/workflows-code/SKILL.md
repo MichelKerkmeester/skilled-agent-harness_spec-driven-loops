@@ -717,19 +717,3 @@ If you're unsure which phase you're in:
 - **Phase 3 → 1/2:** Verification reveals issues → Return to appropriate phase
 
 **Key principle:** Always end with Phase 3 before claiming completion.
-
----
-
-## 10. 🏎️ QUICK REFERENCE
-
-### Universal Workflow
-
-```
-1. IMPLEMENT → Use condition-based waiting, validate inputs
-2. DEBUG (if needed) → DevTools console, trace root cause
-3. VERIFY (MANDATORY) → Browser test at 1920px + 375px, check console
-```
-
-### The Iron Law
-
-**NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE**

@@ -20,7 +20,7 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 | **A** | Official Figma MCP | HTTP (mcp.figma.com) | Simplicity - no install, OAuth login |
 | **B** | Framelink (3rd-party) | stdio (local) | Code Mode integration, API key auth |
 
-**Recommendation:** Start with **Option A** (Official) - zero installation, OAuth login, works immediately. See [Install Guide](../../install_guides/MCP/MCP%20-%20Figma.md) for setup details.
+**Recommendation:** Start with **Option A** (Official) - zero installation, OAuth login, works immediately. See [Install Guide](../../install_guides/MCP%20-%20Figma.md) for setup details.
 
 ---
 
@@ -517,4 +517,4 @@ call_tool_chain({
 
 ### Install Guide
 
-- [MCP - Figma.md](../../install_guides/MCP/MCP%20-%20Figma.md) - Installation and configuration
+- [MCP - Figma.md](../../install_guides/MCP%20-%20Figma.md) - Installation and configuration

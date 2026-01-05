@@ -7,6 +7,18 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.3.1**] - 2026-01-05
+
+OpenCode v1.1.1 compatibility update for agent templates.
+
+#### Changed
+- `agent_template.md`: Migrated from deprecated `tools:` to unified `permission:` format
+- Added granular pattern-based permissions documentation
+- Added deprecation note for old format
+- Updated validation checklist for v1.1.1 compliance
+
+---
+
 ## [**1.0.2.8**] - 2026-01-02
 
 Major asset folder restructure for improved discoverability.
