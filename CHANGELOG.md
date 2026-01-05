@@ -7,6 +7,48 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.3.2**] - 2026-01-05
+
+Embeds MCP server source code into skill folders for improved portability. Documents critical Code Mode prefixed environment variable requirement that was causing "Variable not found" errors. Updates install guides with comprehensive troubleshooting.
+
+---
+
+**New**
+1. Embedded MCP servers: Narsil source in `mcp-narsil/mcp_server/`, Code Mode source in `mcp-code-mode/mcp_server/`
+2. `.env.example` template with Code Mode prefixed variables documented
+
+---
+
+**Changed**
+1. Install guides updated: `MCP - Narsil.md` · `MCP - Code Mode.md` with prefixed variable documentation
+2. Code Mode install guide: Added "CRITICAL: Prefixed Environment Variables" section
+3. Narsil install guide: Added prefixed variable note in Neural Search Configuration
+4. Both guides: New troubleshooting entries for "Variable not found" errors
+
+---
+
+**Fixed**
+1. Documentation gap: Code Mode requires `{manual}_{VAR}` format (e.g., `narsil_VOYAGE_API_KEY`)
+2. Public repo configs: Removed hardcoded API keys and absolute paths
+
+---
+
+**Upgrade**
+Add prefixed variables to `.env` for Code Mode:
+```bash
+# Standard variable
+VOYAGE_API_KEY=pa-your-key
+
+# Code Mode prefixed version (REQUIRED)
+narsil_VOYAGE_API_KEY=pa-your-key
+```
+
+See `.env.example` for complete template.
+
+**Full Changelog**: [v1.0.3.1...v1.0.3.2](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.1...v1.0.3.2)
+
+---
+
 ## [**1.0.3.1**] - 2026-01-05
 
 Updates agent configuration to OpenCode v1.1.1+ format. Migrates deprecated `tools:` object to unified `permission:` format with `allow`/`deny`/`ask` values across all agent files, templates, and documentation.

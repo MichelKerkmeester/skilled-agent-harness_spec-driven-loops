@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3.2] - 2026-01-05
+
+### Added
+- **Embedded MCP server source** - Narsil source code now included in `mcp_server/` folder for portability
+- **Prefixed variable documentation** - Install guide updated with Code Mode `{manual}_{VAR}` requirement
+
+### Changed
+- Install guide: Added "Variable not found" troubleshooting entry
+- Install guide: Added note about `narsil_VOYAGE_API_KEY` requirement for Code Mode
+
+### Fixed
+- Documentation gap: Code Mode requires prefixed environment variables (e.g., `narsil_VOYAGE_API_KEY`)
+
 ## [1.2.0] - 2025-01-04
 
 ### Added

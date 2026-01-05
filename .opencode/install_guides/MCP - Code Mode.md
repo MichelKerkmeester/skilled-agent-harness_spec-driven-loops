@@ -1557,7 +1557,7 @@ call_tool_chain({
 
 **Before Each Session:**
 ```
-□ Correct naming pattern: {manual}.{manual}.{tool}
+□ Correct naming pattern: {manual}.{manual}_{tool}
 □ Timeout calculated for complexity
 □ Error handling in place
 □ API keys not expired
@@ -1576,7 +1576,7 @@ Use search_tools to find tools for [your task]
 
 **Remember the naming pattern:**
 ```
-{manual}.{manual}.{tool_name}
+{manual}.{manual}_{tool_name}
 ```
 
 For more information, refer to the MCP Protocol documentation and the skill documentation in `.opencode/skill/mcp-code-mode/`.
