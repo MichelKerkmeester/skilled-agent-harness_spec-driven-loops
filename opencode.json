@@ -47,8 +47,7 @@
     }
   },
   "plugin": [
-    "opencode-antigravity-auth@1.2.8",
-    "opencode-openai-codex-auth@4.1.1"
+    "opencode-antigravity-auth@1.2.8"
   ],
   "provider": {
     "google": {
@@ -119,71 +118,6 @@
             "output": [
               "text"
             ]
-          }
-        }
-      }
-    },
-    "openai": {
-      "options": {
-        "reasoningEffort": "high",
-        "reasoningSummary": "detailed",
-        "textVerbosity": "medium",
-        "include": [
-          "reasoning.encrypted_content"
-        ],
-        "store": false
-      },
-      "models": {
-        "gpt-5.2-high": {
-          "id": "gpt-5.2-high",
-          "name": "GPT 5.2 High (OAuth)",
-          "limit": {
-            "context": 272000,
-            "output": 128000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "options": {
-            "reasoningEffort": "high",
-            "reasoningSummary": "detailed",
-            "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
-            "store": false
-          }
-        },
-        "codex-5.2-high": {
-          "id": "codex-5.2-high",
-          "name": "Codex 5.2 High (OAuth)",
-          "limit": {
-            "context": 272000,
-            "output": 128000
-          },
-          "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
-          },
-          "options": {
-            "reasoningEffort": "high",
-            "reasoningSummary": "detailed",
-            "textVerbosity": "medium",
-            "include": [
-              "reasoning.encrypted_content"
-            ],
-            "store": false
           }
         }
       }
