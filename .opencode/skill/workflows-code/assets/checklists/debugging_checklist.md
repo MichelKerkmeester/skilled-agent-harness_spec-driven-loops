@@ -219,5 +219,5 @@ Use when errors occur deep in call stack:
 
 ## 10. 🔗 RELATED RESOURCES
 
-- [debugging_workflows.md](../references/debugging_workflows.md) - Full debugging guide
+- [debugging_workflows.md](../../references/debugging/debugging_workflows.md) - Full debugging guide
 - See `workflows-chrome-devtools` skill for DevTools reference

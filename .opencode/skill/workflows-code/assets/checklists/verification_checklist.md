@@ -255,5 +255,5 @@ Timing appears correct
 
 ## 12. 🔗 RELATED RESOURCES
 
-- [verification_workflows.md](../references/verification_workflows.md) - Full verification guide
-- [quick_reference.md](../references/quick_reference.md) - Quick checklist
+- [verification_workflows.md](../../references/verification/verification_workflows.md) - Full verification guide
+- [quick_reference.md](../../references/standards/quick_reference.md) - Quick checklist

@@ -302,8 +302,8 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 ### Reference Files
 
 - [minification_guide.md](./minification_guide.md) - Safe minification workflow with verification
-- [implementation_workflows.md](./implementation_workflows.md) - General implementation patterns
-- [verification_workflows.md](./verification_workflows.md) - Browser verification workflows
+- [implementation_workflows.md](../implementation/implementation_workflows.md) - General implementation patterns
+- [verification_workflows.md](../verification/verification_workflows.md) - Browser verification workflows
 
 ### Scripts
 

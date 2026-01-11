@@ -609,9 +609,9 @@ window.addEventListener('offline', handleOffline);
 ## 9. 🔗 RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](./implementation_workflows.md) - Apply patterns during implementation
-- [debugging_workflows.md](./debugging_workflows.md) - Use DevTools and logging during debugging
-- [verification_workflows.md](./verification_workflows.md) - Use browser testing patterns for verification
+- [implementation_workflows.md](../implementation/implementation_workflows.md) - Apply patterns during implementation
+- [debugging_workflows.md](../debugging/debugging_workflows.md) - Use DevTools and logging during debugging
+- [verification_workflows.md](../verification/verification_workflows.md) - Use browser testing patterns for verification
 ### Related Skills
 - `workflows-chrome-devtools` - Chrome DevTools reference and CLI-based browser automation via browser-debugger-cli (bdg)
 

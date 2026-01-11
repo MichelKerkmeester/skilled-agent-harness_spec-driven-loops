@@ -73,84 +73,30 @@ This orchestrator operates in three primary phases:
 
 ```python
 TASK_KEYWORDS = {
+    # Core workflow phases
     "VERIFICATION": ["done", "complete", "works", "verify", "finished"],
     "DEBUGGING": ["bug", "fix", "error", "broken", "issue", "failing"],
     "CODE_QUALITY": ["style check", "quality check", "validate code", "check standards", "code review"],
-    "ANIMATION": ["animation", "motion", "gsap", "lenis", "scroll"],
+
+    # Implementation domains
+    "IMPLEMENTATION": ["implement", "build", "create", "add", "feature", "code"],
+    "ANIMATION": ["animation", "motion", "gsap", "lenis", "scroll", "carousel", "slider", "swiper"],
     "FORMS": ["form", "validation", "input", "submit", "botpoison"],
     "VIDEO": ["video", "hls", "streaming", "player"],
     "DEPLOYMENT": ["deploy", "minify", "cdn", "r2", "production"],
-    # ON_DEMAND explicit request triggers
-    "PERFORMANCE": ["performance", "optimize", "core web vitals", "lazy load", "cache"],
+
+    # Technical domains
+    "ASYNC": ["async", "await", "promise", "fetch", "timeout", "setTimeout"],
+    "DOM": ["dom", "element", "querySelector", "event", "click", "listener"],
+    "CSS": ["css", "style", "layout", "responsive", "media query", "flexbox", "grid"],
+    "API": ["api", "fetch", "endpoint", "request", "response"],
+    "ACCESSIBILITY": ["a11y", "accessibility", "aria", "screen reader", "keyboard", "focus", "tab"],
+
+    # CONDITIONAL: triggers performance pattern loading
+    "PERFORMANCE": ["performance", "optimize", "core web vitals", "lazy load", "cache", "throttle", "debounce", "requestAnimationFrame", "RAF"],
     "OBSERVERS": ["observer", "mutation", "intersection", "resize observer"]
 }
 ```
-
-### Phase Detection
-```
-TASK CONTEXT
-    │
-    ├─► Writing new code / implementing feature
-    │   └─► PHASE 1: Implementation
-    │       └─► Load: phase1-implementation/*.md (ALWAYS: implementation_workflows.md)
-    │       └─► At completion: CODE QUALITY GATE (see Phase 1.5)
-    │
-    ├─► Implementation complete / claiming done
-    │   └─► PHASE 1.5: Code Quality Gate (MANDATORY for all code files)
-    │       └─► Load: assets/checklists/code_quality_checklist.md (ALWAYS)
-    │       └─► Load: references/standards/code_style_enforcement.md (if violations found)
-    │       └─► JavaScript (.js): Sections 2-7 of checklist
-    │       └─► CSS (.css): Section 8 of checklist
-    │       └─► ⚠️ HARD BLOCK: All P0 checklist items must pass before claiming complete
-    │
-    ├─► Code not working / debugging issues
-    │   └─► PHASE 2: Debugging
-    │       └─► Load: phase2-debugging/debugging_workflows.md (ALWAYS)
-    │       └─► See: workflows-chrome-devtools skill for DevTools reference
-    │
-    ├─► Code complete / needs verification
-    │   └─► PHASE 3: Verification (MANDATORY)
-    │       └─► Load: phase3-verification/verification_workflows.md (ALWAYS)
-    │       └─► ⚠️ The Iron Law: NO COMPLETION CLAIMS WITHOUT BROWSER VERIFICATION
-    │
-    └─► Quick reference needed
-        └─► Load: standards/quick_reference.md
-```
-
-### Specific Use Case Router
-
-**Phase 1: Implementation**
-
-| Use Case                                                  | Route To                                                                                                                                                      | Load Level  |
-| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Async/timing issues, DOM not ready, race conditions       | [implementation_workflows.md#2-⏱️-condition-based-waiting](./references/phase1-implementation/implementation_workflows.md#2-⏱️-condition-based-waiting)         | ALWAYS      |
-| Form input, API calls, DOM manipulation validation        | [implementation_workflows.md#3-🛡️-defense-in-depth-validation](./references/phase1-implementation/implementation_workflows.md#3-🛡️-defense-in-depth-validation) | ALWAYS      |
-| JavaScript minification, terser, verification             | [minification_guide.md](./references/deployment/minification_guide.md)                                                                                        | CONDITIONAL |
-| CDN deployment, version management, Cloudflare R2         | [cdn_deployment.md](./references/deployment/cdn_deployment.md)                                                                                                | CONDITIONAL |
-| CSS vs Motion.dev, entrance animations, scroll triggers   | [animation_workflows.md](./references/phase1-implementation/animation_workflows.md)                                                                           | CONDITIONAL |
-| Webflow collection lists, platform limits, ID duplication | [webflow_patterns.md](./references/phase1-implementation/webflow_patterns.md)                                                                                 | CONDITIONAL |
-| Animation/video/asset optimization                        | [performance_patterns.md](./references/phase1-implementation/performance_patterns.md)                                                                         | ON_DEMAND   |
-| XSS, CSRF, injection prevention                           | [security_patterns.md](./references/phase1-implementation/security_patterns.md)                                                                               | CONDITIONAL |
-| Third-party library integration, CDN loading, HLS.js      | [third_party_integrations.md](./references/phase1-implementation/third_party_integrations.md)                                                                 | CONDITIONAL |
-| MutationObserver, IntersectionObserver, DOM watching      | [observer_patterns.md](./references/phase1-implementation/observer_patterns.md)                                                                               | ON_DEMAND   |
-
-**Phase 2: Debugging**
-
-| Use Case                                               | Route To                                                                                                                                            | Load Level  |
-| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Console errors, layout bugs, event handler failures    | [debugging_workflows.md#2-🔍-systematic-debugging](./references/phase2-debugging/debugging_workflows.md#2-🔍-systematic-debugging)                    | ALWAYS      |
-| Deep call stack, mysterious failures, corrupted data   | [debugging_workflows.md#3-🎯-root-cause-tracing](./references/phase2-debugging/debugging_workflows.md#3-🎯-root-cause-tracing)                        | ALWAYS      |
-| Slow page, janky animations, memory leaks              | [debugging_workflows.md#4-🔍-performance-debugging](./references/phase2-debugging/debugging_workflows.md#4-🔍-performance-debugging)                  | CONDITIONAL |
-| Collection list not rendering, event listeners failing | [webflow_patterns.md](./references/phase1-implementation/webflow_patterns.md)                                                                       | CONDITIONAL |
-| Motion.dev not loading, layout jumps, jank             | [animation_workflows.md#7-🐛-common-issues-and-solutions](./references/phase1-implementation/animation_workflows.md#7-🐛-common-issues-and-solutions) | CONDITIONAL |
-
-**Phase 3: Verification**
-
-| Use Case                                             | Route To                                                                                | Load Level |
-| ---------------------------------------------------- | --------------------------------------------------------------------------------------- | ---------- |
-| Before claiming "works", "fixed", "done", "complete" | [verification_workflows.md](./references/phase3-verification/verification_workflows.md) | ALWAYS     |
-| Animation working, layout fixed, feature complete    | [verification_workflows.md](./references/phase3-verification/verification_workflows.md) | ALWAYS     |
-| Video/media loads, form submission works             | [verification_workflows.md](./references/phase3-verification/verification_workflows.md) | ALWAYS     |
 
 ### Resource Router
 ```python
@@ -165,44 +111,65 @@ def route_frontend_resources(task):
     # ──────────────────────────────────────────────────────────────────
     # Phase 1: Implementation
     # ALWAYS: implementation_workflows.md
-    # CONDITIONAL: animation, webflow, security (if keywords match)
+    # CONDITIONAL: animation, webflow, security, css, swiper, a11y (if keywords match)
     # ON_DEMAND: performance, observer (on request)
     # ──────────────────────────────────────────────────────────────────
     if task.phase == "implementation":
-        # ALWAYS: Load for async/validation
+        # CONDITIONAL: Load for async/validation if keywords detected
         if task.has_async_loading:
-            load("assets/patterns/wait_patterns.js")  # ALWAYS: async waiting patterns
+            load("assets/patterns/wait_patterns.js")  # CONDITIONAL: async waiting patterns
         if task.needs_validation:
-            load("assets/patterns/validation_patterns.js")  # ALWAYS: validation templates
-        
+            load("assets/patterns/validation_patterns.js")  # CONDITIONAL: validation templates
+
         # CONDITIONAL: Load if deployment keywords detected
         if task.needs_minification:
             return load("references/deployment/minification_guide.md")  # CONDITIONAL: terser, verification
         if task.needs_cdn_deployment:
             return load("references/deployment/cdn_deployment.md")  # CONDITIONAL: R2 upload, versioning
-        
+
         # CONDITIONAL: Load if animation keywords detected
         if task.has_animations:
-            return load("references/phase1-implementation/animation_workflows.md")  # CONDITIONAL: CSS vs Motion.dev
-        
+            return load("references/implementation/animation_workflows.md")  # CONDITIONAL: CSS vs Motion.dev
+
+        # CONDITIONAL: Load if CSS keywords detected (css, style, layout, responsive)
+        if task.has_css_work:
+            load("references/implementation/css_patterns.md")  # CONDITIONAL: CSS architecture
+            load("references/standards/css_quick_reference.md")  # CONDITIONAL: CSS quick lookups
+
+        # CONDITIONAL: Load if carousel/slider keywords detected
+        if task.has_carousel or task.has_slider:
+            return load("references/implementation/swiper_patterns.md")  # CONDITIONAL: Swiper.js patterns
+
+        # CONDITIONAL: Load if accessibility/focus keywords detected
+        if task.has_accessibility or task.has_focus:
+            return load("references/implementation/focus_management.md")  # CONDITIONAL: a11y, keyboard nav
+
         # CONDITIONAL: Load if webflow keywords detected
         if task.webflow_specific:
-            return load("references/phase1-implementation/webflow_patterns.md")  # CONDITIONAL: platform limits
-        
+            return load("references/implementation/webflow_patterns.md")  # CONDITIONAL: platform limits
+
         # CONDITIONAL: Load if security keywords detected
         if task.security_concerns:
-            return load("references/phase1-implementation/security_patterns.md")  # CONDITIONAL: OWASP Top 10
-        
-        # ON_DEMAND: Load on explicit request (performance optimization)
+            return load("references/implementation/security_patterns.md")  # CONDITIONAL: OWASP Top 10
+
+        # CONDITIONAL: Load if performance keywords detected (throttle, debounce, RAF)
         if task.needs_performance_optimization:
-            return load("references/phase1-implementation/performance_patterns.md")  # ON_DEMAND: Core Web Vitals
-        
+            return load("references/implementation/performance_patterns.md")  # CONDITIONAL: throttle, debounce, RAF
+
         # ON_DEMAND: Load on explicit request (observer patterns)
         if task.needs_observer_patterns:
-            return load("references/phase1-implementation/observer_patterns.md")  # ON_DEMAND: MutationObserver, IO
-        
+            return load("references/implementation/observer_patterns.md")  # ON_DEMAND: MutationObserver, IO
+
+        # CONDITIONAL: Load if lenis smooth scroll detected
+        if task.has_lenis or 'lenis' in task.keywords:
+            load("assets/integrations/lenis_patterns.js")  # CONDITIONAL: Lenis smooth scroll patterns
+
+        # CONDITIONAL: Load if HLS video streaming detected
+        if task.has_hls or 'hls' in task.keywords:
+            load("assets/integrations/hls_patterns.js")  # CONDITIONAL: HLS.js video patterns
+
         # ALWAYS: Default implementation patterns
-        return load("references/phase1-implementation/implementation_workflows.md")
+        return load("references/implementation/implementation_workflows.md")
 
     # ──────────────────────────────────────────────────────────────────
     # Phase 1.5: Code Quality Gate (MANDATORY for all code files)
@@ -219,11 +186,25 @@ def route_frontend_resources(task):
     # ──────────────────────────────────────────────────────────────────
     # Phase 2: Debugging
     # ALWAYS: debugging_workflows.md + debugging_checklist.md
+    # CONDITIONAL: css, swiper, focus (if debugging those domains)
     # ──────────────────────────────────────────────────────────────────
     if task.phase == "debugging":
         load("assets/checklists/debugging_checklist.md")  # ALWAYS: step-by-step workflow
+
+        # CONDITIONAL: Load if CSS debugging
+        if task.has_css_issues:
+            load("references/implementation/css_patterns.md")  # CONDITIONAL: CSS debugging
+
+        # CONDITIONAL: Load if carousel/slider debugging
+        if task.has_carousel_issues or task.has_slider_issues:
+            load("references/implementation/swiper_patterns.md")  # CONDITIONAL: Swiper debugging
+
+        # CONDITIONAL: Load if focus/accessibility debugging
+        if task.has_focus_issues or task.has_a11y_issues:
+            load("references/implementation/focus_management.md")  # CONDITIONAL: a11y debugging
+
         # For DevTools reference, see workflows-chrome-devtools skill
-        return load("references/phase2-debugging/debugging_workflows.md")  # ALWAYS: root cause tracing
+        return load("references/debugging/debugging_workflows.md")  # ALWAYS: root cause tracing
 
     # ──────────────────────────────────────────────────────────────────
     # Phase 3: Verification (MANDATORY)
@@ -231,30 +212,62 @@ def route_frontend_resources(task):
     # ──────────────────────────────────────────────────────────────────
     if task.phase == "verification" or task.claiming_complete:
         load("assets/checklists/verification_checklist.md")  # ALWAYS: mandatory steps
-        return load("references/phase3-verification/verification_workflows.md")  # ALWAYS: browser testing
+        return load("references/verification/verification_workflows.md")  # ALWAYS: browser testing
 
     # ──────────────────────────────────────────────────────────────────
     # Quick Reference
     # ──────────────────────────────────────────────────────────────────
     if task.needs_quick_reference:
-        return load("references/standards/quick_reference.md")  # one-page cheat sheet
-
-# ──────────────────────────────────────────────────────────────────
-# STATIC RESOURCES (always available, not conditionally loaded)
-# Located in references/standards/ for cross-phase access
-# ──────────────────────────────────────────────────────────────────
-# references/standards/code_quality_standards.md → Cross-phase: Initialization, error handling, validation patterns
-# references/standards/code_style_guide.md → Cross-phase: Naming conventions, formatting, comments
-# references/standards/code_style_enforcement.md → Phase 1.5: Enforcement rules with examples and remediation
-# references/standards/shared_patterns.md → DevTools, logging, testing, error patterns
-# references/phase1-implementation/performance_patterns.md → Phase 1: Performance optimization (ON_DEMAND)
-# references/deployment/minification_guide.md → Safe JS minification with terser, verification pipeline
-# references/deployment/cdn_deployment.md → Cloudflare R2 upload, version management, HTML updates
-# assets/checklists/code_quality_checklist.md → Phase 1.5: Code quality validation checklist
+        load("references/standards/quick_reference.md")  # one-page cheat sheet
+        if task.has_css_work:
+            load("references/standards/css_quick_reference.md")  # CSS quick reference
+        return True
 
 # See "The Iron Law" in Section 1 - Phase 3: Verification
 # See "Code Quality Gate" in Section 3 - Phase 1.5 for style enforcement
 ```
+
+### Specific Use Case Router
+
+**Phase 1: Implementation**
+
+| Use Case                                                  | Route To                                                                                                                                           | Load Level  |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Async/timing issues, DOM not ready, race conditions       | [implementation_workflows.md#2-condition-based-waiting](./references/implementation/implementation_workflows.md#2-condition-based-waiting)         | ALWAYS      |
+| Form input, API calls, DOM manipulation validation        | [implementation_workflows.md#3-defense-in-depth-validation](./references/implementation/implementation_workflows.md#3-defense-in-depth-validation) | ALWAYS      |
+| JavaScript minification, terser, verification             | [minification_guide.md](./references/deployment/minification_guide.md)                                                                             | CONDITIONAL |
+| CDN deployment, version management, Cloudflare R2         | [cdn_deployment.md](./references/deployment/cdn_deployment.md)                                                                                     | CONDITIONAL |
+| CSS vs Motion.dev, entrance animations, scroll triggers   | [animation_workflows.md](./references/implementation/animation_workflows.md)                                                                       | CONDITIONAL |
+| CSS architecture, custom properties, responsive patterns  | [css_patterns.md](./references/implementation/css_patterns.md)                                                                                     | CONDITIONAL |
+| CSS quick lookups, property references                    | [css_quick_reference.md](./references/standards/css_quick_reference.md)                                                                            | CONDITIONAL |
+| Carousel, slider, Swiper.js integration                   | [swiper_patterns.md](./references/implementation/swiper_patterns.md)                                                                               | CONDITIONAL |
+| Focus management, keyboard navigation, accessibility      | [focus_management.md](./references/implementation/focus_management.md)                                                                             | CONDITIONAL |
+| Webflow collection lists, platform limits, ID duplication | [webflow_patterns.md](./references/implementation/webflow_patterns.md)                                                                             | CONDITIONAL |
+| Animation/video/asset optimization, throttle, debounce    | [performance_patterns.md](./references/implementation/performance_patterns.md)                                                                     | CONDITIONAL |
+| XSS, CSRF, injection prevention                           | [security_patterns.md](./references/implementation/security_patterns.md)                                                                           | CONDITIONAL |
+| Third-party library integration, CDN loading, HLS.js      | [third_party_integrations.md](./references/implementation/third_party_integrations.md)                                                             | CONDITIONAL |
+| MutationObserver, IntersectionObserver, DOM watching      | [observer_patterns.md](./references/implementation/observer_patterns.md)                                                                           | ON_DEMAND   |
+
+**Phase 2: Debugging**
+
+| Use Case                                               | Route To                                                                                                                                 | Load Level  |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Console errors, layout bugs, event handler failures    | [debugging_workflows.md#2-systematic-debugging](./references/debugging/debugging_workflows.md#2-systematic-debugging)                    | ALWAYS      |
+| Deep call stack, mysterious failures, corrupted data   | [debugging_workflows.md#3-root-cause-tracing](./references/debugging/debugging_workflows.md#3-root-cause-tracing)                        | ALWAYS      |
+| Slow page, janky animations, memory leaks              | [debugging_workflows.md#4-performance-debugging](./references/debugging/debugging_workflows.md#4-performance-debugging)                  | CONDITIONAL |
+| Collection list not rendering, event listeners failing | [webflow_patterns.md](./references/implementation/webflow_patterns.md)                                                                   | CONDITIONAL |
+| Motion.dev not loading, layout jumps, jank             | [animation_workflows.md#7-common-issues-and-solutions](./references/implementation/animation_workflows.md#7-common-issues-and-solutions) | CONDITIONAL |
+| CSS layout bugs, specificity issues, responsive breaks | [css_patterns.md](./references/implementation/css_patterns.md)                                                                           | CONDITIONAL |
+| Carousel/slider not working, Swiper issues             | [swiper_patterns.md](./references/implementation/swiper_patterns.md)                                                                     | CONDITIONAL |
+| Focus trapping, keyboard navigation, a11y failures     | [focus_management.md](./references/implementation/focus_management.md)                                                                   | CONDITIONAL |
+
+**Phase 3: Verification**
+
+| Use Case                                             | Route To                                                                         | Load Level |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------- | ---------- |
+| Before claiming "works", "fixed", "done", "complete" | [verification_workflows.md](./references/verification/verification_workflows.md) | ALWAYS     |
+| Animation working, layout fixed, feature complete    | [verification_workflows.md](./references/verification/verification_workflows.md) | ALWAYS     |
+| Video/media loads, form submission works             | [verification_workflows.md](./references/verification/verification_workflows.md) | ALWAYS     |
 
 ---
 
@@ -288,7 +301,12 @@ Implementation → Code Quality Gate → Debugging (if issues) → Verification 
    - Updates all HTML files referencing changed JS
    - Forces browser cache refresh
 
-See [implementation_workflows.md](./references/phase1-implementation/implementation_workflows.md) for complete workflows.
+4. **Animation Visibility Gates** - Use IntersectionObserver for animation control
+   - 0.1 threshold for animation start/stop (10% visibility)
+   - Controls video autoplay and Swiper pagination
+   - See [observer_patterns.md](./references/implementation/observer_patterns.md) for patterns
+
+See [implementation_workflows.md](./references/implementation/implementation_workflows.md) for complete workflows.
 
 
 ### Phase 1.5: Code Quality Gate
@@ -333,42 +351,11 @@ See [code_style_enforcement.md](./references/standards/code_style_enforcement.md
 
 ### Phase 2: Debugging
 
-**Systematic Debugging** uses a 4-phase framework:
+**Systematic Debugging** uses a 4-phase framework: Root Cause Investigation → Pattern Analysis → Hypothesis Testing → Implementation. Key principle: Test one change at a time; if 3+ fixes fail → question approach.
 
-1. **Root Cause Investigation**
-   - Read error messages carefully
-   - Reproduce consistently
-   - Check recent changes
-   - Gather evidence in DevTools
-   - Trace data flow
+**Root Cause Tracing**: Trace backward from symptom → immediate cause → source. Fix at source, not symptom.
 
-2. **Pattern Analysis**
-   - Find working examples
-   - Compare against references
-   - Identify differences
-   - Understand dependencies
-
-3. **Hypothesis and Testing**
-   - Form single hypothesis
-   - Test minimally (one change at a time)
-   - Verify before continuing
-   - Ask when unsure
-
-4. **Implementation**
-   - Document the fix
-   - Implement single fix
-   - Verify in browser
-   - If 3+ fixes failed → question approach
-
-**Root Cause Tracing** traces backward through call chain:
-
-1. Observe symptom
-2. Find immediate cause
-3. Trace one level up
-4. Keep tracing up
-5. Fix at source, not symptom
-
-See [debugging_workflows.md](./references/phase2-debugging/debugging_workflows.md) for complete workflows.
+See [debugging_workflows.md](./references/debugging/debugging_workflows.md) for complete workflows.
 
 
 ### Phase 3: Verification
@@ -397,7 +384,7 @@ See [debugging_workflows.md](./references/phase2-debugging/debugging_workflows.m
 - Chrome Mobile emulation (375px)
 - DevTools console clear at all viewports
 
-See [verification_workflows.md](./references/phase3-verification/verification_workflows.md) for complete requirements.
+See [verification_workflows.md](./references/verification/verification_workflows.md) for complete requirements.
 
 
 ---
@@ -413,6 +400,7 @@ See [verification_workflows.md](./references/phase3-verification/verification_wo
 - Update CDN versions after JavaScript modifications
 - Use optional chaining (`?.`) and try/catch for safe access
 - Log meaningful success/error messages
+- Use validated timing constants: 64ms throttle (pointer), 180ms debounce (validation), 200ms debounce (resize), 0.1 IntersectionObserver threshold
 
 #### ❌ NEVER
 - Use `setTimeout` without documenting WHY
@@ -428,7 +416,7 @@ See [verification_workflows.md](./references/phase3-verification/verification_wo
 - Script reports no HTML files found
 - CDN version cannot be determined
 
-See [implementation_workflows.md](./references/phase1-implementation/implementation_workflows.md) for detailed rules.
+See [implementation_workflows.md](./references/implementation/implementation_workflows.md) for detailed rules.
 
 ### Phase 1.5: Code Quality Gate (MANDATORY for all code files)
 
@@ -470,6 +458,7 @@ See [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md) a
 - Test one change at a time
 - Trace backward from symptom to root cause
 - Document root cause in comments
+- Remember: RAF auto-throttles to ~1fps in background tabs (no manual visibility checks needed)
 
 #### ❌ NEVER
 - Skip console error messages
@@ -486,7 +475,7 @@ See [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md) a
 - Cannot trace backward (dead end)
 - Root cause in third-party library
 
-See [debugging_workflows.md](./references/phase2-debugging/debugging_workflows.md) for detailed rules.
+See [debugging_workflows.md](./references/debugging/debugging_workflows.md) for detailed rules.
 
 ### Phase 3: Verification (MANDATORY)
 
@@ -510,73 +499,34 @@ See [debugging_workflows.md](./references/phase2-debugging/debugging_workflows.m
 - Issue only reproduces in production
 - Performance testing requires specialized tools
 
-See [verification_workflows.md](./references/phase3-verification/verification_workflows.md) for detailed rules.
+See [verification_workflows.md](./references/verification/verification_workflows.md) for detailed rules.
+
+### Error Recovery
+
+See [error_recovery.md](./references/debugging/error_recovery.md) for CDN upload, minification, and version mismatch recovery procedures.
 
 ---
 
 ## 5. 🏆 SUCCESS CRITERIA
 
-### Phase 1: Implementation
+### Phase Completion Checklists
 
-**Implementation is successful when:**
-- ✅ No arbitrary setTimeout used (or documented why needed)
-- ✅ All inputs validated (parameters, DOM, API responses)
-- ✅ User input sanitized
-- ✅ CDN versions updated after JS changes
-- ✅ Safe defaults provided for missing data
-- ✅ Clear error messages logged
+| Phase | Checklist | Key Criteria |
+|-------|-----------|--------------|
+| Phase 1: Implementation | [implementation_workflows.md](./references/implementation/implementation_workflows.md) | No arbitrary setTimeout, inputs validated, CDN updated |
+| Phase 1.5: Code Quality | [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md) | P0 items passing, snake_case, file headers |
+| Phase 2: Debugging | [debugging_workflows.md](./references/debugging/debugging_workflows.md) | Root cause documented, fix at source |
+| Phase 3: Verification | [verification_checklist.md](./assets/checklists/verification_checklist.md) | Browser tested, multi-viewport, console clean |
 
-See [implementation_workflows.md](./references/phase1-implementation/implementation_workflows.md) for complete criteria.
+### Performance Targets
 
-### Phase 1.5: Code Quality Gate
+| Metric | Target | Tool | Metric | Target | Tool |
+|--------|--------|------|--------|--------|------|
+| FCP | < 1.8s | Lighthouse | CLS | < 0.1 | Lighthouse |
+| LCP | < 2.5s | Lighthouse | FPS | 60fps | DevTools |
+| TTI | < 3.8s | Lighthouse | Errors | 0 | Console |
 
-**Code Quality Gate passes when:**
-
-**JavaScript (.js):**
-- ✅ All P0 checklist items verified and passing (Sections 2-7)
-- ✅ All P1 checklist items verified or documented deferrals
-- ✅ File headers use correct format (three-line, box-drawing)
-- ✅ Section organization follows standard (IIFE, numbered headers)
-- ✅ No commented-out code present
-- ✅ All naming uses snake_case (not camelCase)
-- ✅ CDN-safe initialization pattern followed
-
-**CSS (.css):**
-- ✅ All P0 checklist items verified and passing (Section 8)
-- ✅ Custom properties use semantic prefixes (`--font-*`, `--vw-*`, etc.)
-- ✅ Attribute selectors include case-insensitivity flag `i`
-- ✅ Class names follow BEM convention (`.block--element`, `.block-modifier`)
-- ✅ Animations use GPU-accelerated properties only (`transform`, `opacity`, `scale`)
-
-See [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md) for complete criteria.
-
-### Phase 2: Debugging
-
-**Debugging is successful when:**
-- ✅ Root cause identified and documented
-- ✅ Fix addresses cause, not symptom
-- ✅ Tested across target browsers and viewports
-- ✅ No console errors introduced
-- ✅ Performance not degraded
-- ✅ Code comments explain WHY fix needed
-
-See [debugging_workflows.md](./references/phase2-debugging/debugging_workflows.md) for complete criteria.
-
-### Phase 3: Verification
-
-**Verification is successful when:**
-- ✅ Opened actual browser (not just reviewed code)
-- ✅ Tested in multiple viewports (mobile + desktop)
-- ✅ Checked DevTools console (no errors)
-- ✅ Tested interactions by actually clicking/hovering
-- ✅ Documented what was tested in claim
-- ✅ Can describe exactly what was seen in browser
-
-See [verification_workflows.md](./references/phase3-verification/verification_workflows.md) for complete criteria.
-
-### Verification Statement Template
-
-See [verification_checklist.md](./assets/checklists/verification_checklist.md) for the completion claim template.
+Run Lighthouse 3× in Incognito with mobile emulation, use median scores.
 
 ---
 
@@ -593,51 +543,17 @@ Key integrations:
 
 ### Code Quality Standards
 
-**Primary References:**
-- [code_quality_standards.md](./references/standards/code_quality_standards.md) - Initialization, error handling, validation, async patterns
-- [code_style_guide.md](./references/standards/code_style_guide.md) - Naming conventions, formatting, comments
-
-See these reference files for complete standards. Key patterns include CDN-safe initialization, snake_case naming, and defense-in-depth validation.
-
-### Tool Usage Guidelines
-
-- **Bash**: Git commands, system operations
-- **Read**: Examine code files, documentation
-- **Grep**: Pattern searches, finding keywords
-- **Glob**: File discovery by patterns
-
-### Additional Knowledge Base Dependencies
-
-- **Code Quality Standards** - Initialization and validation patterns in [code_quality_standards.md](./references/standards/code_quality_standards.md)
-- **Code Style Guide** - Naming conventions and formatting in [code_style_guide.md](./references/standards/code_style_guide.md)
+- [code_quality_standards.md](./references/standards/code_quality_standards.md) - Initialization, validation, async patterns
+- [code_style_guide.md](./references/standards/code_style_guide.md) - Naming, formatting, comments
+- [shared_patterns.md](./references/standards/shared_patterns.md) - Common patterns across workflows
 
 ### External Tools
 
-- **Browser DevTools** - Chrome DevTools MCP (automated testing), Chrome DevTools (manual debugging)
-- **Python 3** - General scripting support
-- **Git** - Version control for checking changes
-- **Motion.dev** - Animation library (CDN: jsdelivr.net/npm/motion@12.15.0)
-- **mcp-narsil** - Security scanning during debugging (OWASP, CWE, taint analysis via Code Mode)
-
-### Browser Verification
-
-For browser debugging and verification, use the **workflows-chrome-devtools** skill which provides:
-- CLI-first approach via `browser-debugger-cli` (bdg)
-- MCP fallback for multi-tool workflows
-- Complete DevTools integration (644 methods across 53 domains)
-
-**See:** `.opencode/skill/workflows-chrome-devtools/SKILL.md` for complete reference.
-
-### Quality Review Integration
-
-> **Note:** Review quality manually after file modifications.
-
-**Manual quality review steps:**
-- Review recent file changes for quality issues
-- Check for consistent patterns across modifications
-- Use as inputs to Phase 1 investigation during debugging
-
-See [shared_patterns.md](./references/standards/shared_patterns.md) for common patterns across all workflows.
+| Tool | Purpose |
+|------|---------|
+| **workflows-chrome-devtools** | Browser debugging (CLI-first via bdg, MCP fallback) |
+| **mcp-narsil** | Security scanning (OWASP, CWE, taint analysis) |
+| **Motion.dev** | Animation library (CDN: jsdelivr.net/npm/motion@12.15.0) |
 
 ---
 
@@ -679,7 +595,7 @@ See [shared_patterns.md](./references/standards/shared_patterns.md) for common p
 **For Implementation Tasks:**
 1. Start with Section 1 (When to Use) to confirm this skill applies
 2. Follow Implementation phase from Section 3 (How It Works)
-3. Load ALWAYS/CONDITIONAL resources from `references/phase1-implementation/`
+3. Load ALWAYS/CONDITIONAL resources from `references/implementation/`
 
 **For Debugging Tasks:**
 1. Load [debugging_checklist.md](./assets/checklists/debugging_checklist.md)
@@ -693,27 +609,128 @@ See [shared_patterns.md](./references/standards/shared_patterns.md) for common p
 
 ---
 
-## 9. 📍 WHERE AM I? (Phase Detection Helper)
+## 9. 📍 WHERE AM I? (Phase Detection)
 
-If you're unsure which phase you're in:
+| Phase | You're here if... | Exit criteria |
+|-------|-------------------|---------------|
+| **1: Implementation** | Writing/modifying code | Code written, builds |
+| **2: Debugging** | Code has bugs/failing tests | All tests passing |
+| **3: Verification** | Tests pass, final validation | Verified in browser |
 
-### Phase 1: Implementation
-**You're here if:** Writing/modifying code, not yet testing
-**Exit criteria:** Code written, builds successfully
+**Transitions:** 1→2 (bugs found) | 2→1 (missing code) | 2→3 (fixed) | 3→1/2 (issues found). Always end with Phase 3.
 
-### Phase 2: Debugging
-**You're here if:** Code written but has bugs/failing tests
-**Exit criteria:** All tests passing, feature functional
+---
 
-### Phase 3: Verification
-**You're here if:** Tests pass, performing final validation
-**Exit criteria:** Verified in browser, ready to ship
+## 10. 🏎️ QUICK REFERENCE
 
-### Phase Transitions
+### Essential Timing Constants
 
-- **Phase 1 → 2:** Implementation reveals bugs → Switch to debugging
-- **Phase 2 → 1:** Debugging reveals missing code → Return to implementation
-- **Phase 2 → 3:** All bugs fixed → Proceed to verification
-- **Phase 3 → 1/2:** Verification reveals issues → Return to appropriate phase
+| Constant            | Value | Use Case                                     |
+| ------------------- | ----- | -------------------------------------------- |
+| Pointer throttle    | 64ms  | `pointermove`, `mousemove` event handlers    |
+| Validation debounce | 180ms | Form input validation, search fields         |
+| Resize debounce     | 200ms | Window resize handlers, layout recalculation |
+| IO threshold        | 0.1   | IntersectionObserver for animations (10%)    |
+| RAF background      | ~1fps | Auto-throttled by browser in background tabs |
 
-**Key principle:** Always end with Phase 3 before claiming completion.
+### Critical Patterns
+
+```javascript
+// Condition-based waiting (NOT setTimeout)
+async function wait_for_element(selector, timeout = 5000) {
+    const start = Date.now();
+    while (Date.now() - start < timeout) {
+        const el = document.querySelector(selector);
+        if (el) return el;
+        await new Promise(r => setTimeout(r, 50));
+    }
+    throw new Error(`Timeout waiting for ${selector}`);
+}
+
+// Throttle pattern (64ms for pointer events)
+function throttle(fn, delay = 64) {
+    let last = 0;
+    return (...args) => {
+        const now = Date.now();
+        if (now - last >= delay) {
+            last = now;
+            fn(...args);
+        }
+    };
+}
+
+// Debounce pattern (180ms for validation)
+function debounce(fn, delay = 180) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), delay);
+    };
+}
+
+// IntersectionObserver (0.1 threshold)
+const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => e.isIntersecting && handle(e)),
+    { threshold: 0.1 }
+);
+```
+
+### CDN Version Update
+
+```bash
+# After JS changes, update version in HTML
+# Pattern: src="https://cdn.anobel.com/js/file.js?v=X.Y.Z"
+# Increment Z for patches, Y for features, X for breaking changes
+```
+
+### Browser Testing Matrix
+
+| Viewport | Width  | Required | Notes              |
+| -------- | ------ | -------- | ------------------ |
+| Mobile   | 375px  | ALWAYS   | iPhone SE baseline |
+| Tablet   | 768px  | Standard | iPad portrait      |
+| Desktop  | 1920px | ALWAYS   | Full HD reference  |
+
+### Performance Targets (Summary)
+
+| Metric | Target | Quick Check                      |
+| ------ | ------ | -------------------------------- |
+| FCP    | < 1.8s | Lighthouse mobile                |
+| CLS    | < 0.1  | Lighthouse mobile                |
+| FPS    | 60fps  | DevTools Performance panel       |
+| Errors | 0      | DevTools Console (all viewports) |
+
+### Common Commands
+
+```bash
+# Minification pipeline
+node scripts/minify-webflow.mjs src/2_javascript/[file].js
+node scripts/verify-minification.mjs src/2_javascript/[file].js
+node scripts/test-minified-runtime.mjs src/2_javascript/z_minified/[file].min.js
+
+# CDN deployment
+wrangler r2 object put anobel-cdn/js/[file].min.js --file src/2_javascript/z_minified/[file].min.js
+
+# Version check
+grep -n "v=" src/0_html/global.html | head -5
+```
+
+### Success Criteria Checklist (Quick)
+
+```
+Implementation:
+□ No arbitrary setTimeout (condition-based waiting instead)
+□ All inputs validated
+□ CDN versions updated
+
+Code Quality:
+□ P0 items passing
+□ snake_case naming
+□ File headers present
+
+Verification:
+□ Actual browser opened
+□ Mobile + Desktop tested
+□ Console errors: 0
+□ Documented what was tested
+```

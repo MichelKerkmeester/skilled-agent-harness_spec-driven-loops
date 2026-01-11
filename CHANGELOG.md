@@ -7,6 +7,36 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.3.3**] - 2026-01-11
+
+Security hardening and documentation quality improvements for workflows-code skill. Fixes URL validation XSS vulnerability, repairs 35 broken cross-references, and brings all reference files into H2 emoji compliance.
+
+---
+
+**Fixed**
+1. URL validation now rejects `javascript:` and `data:` schemes (XSS prevention).
+2. 35 broken markdown links across 16 reference files.
+3. `debounce()` missing default delay (now 180ms).
+4. SKILL.md Quick Reference path (`dist/` → `src/2_javascript/z_minified/`).
+
+---
+
+**Changed**
+1. Removed deprecated `SafeDOM` class (107 lines).
+2. Removed deprecated `debounce` and `raf_throttle` exports from `wait_patterns.js`.
+3. Added Lenis smooth scroll pattern routing to SKILL.md.
+4. Added HLS video streaming pattern routing to SKILL.md.
+5. Added H2 emojis to 4 reference files (34 headers) for documentation compliance.
+
+---
+
+**Upgrade**
+No action required. Pull latest to get security improvements.
+
+**Full Changelog**: [v1.0.3.2...v1.0.3.3](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.2...v1.0.3.3)
+
+---
+
 ## [**1.0.3.2**] - 2026-01-05
 
 Embeds MCP server source code into skill folders for improved portability. Documents critical Code Mode prefixed environment variable requirement that was causing "Variable not found" errors. Updates install guides with comprehensive troubleshooting.

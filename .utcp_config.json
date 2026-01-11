@@ -19,7 +19,7 @@
         "mcpServers": {
           "narsil": {
             "transport": "stdio",
-            "command": "narsil-mcp",
+            "command": "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-narsil/mcp_server/target/release/narsil-mcp",
             "args": [
               "--repos",
               ".",

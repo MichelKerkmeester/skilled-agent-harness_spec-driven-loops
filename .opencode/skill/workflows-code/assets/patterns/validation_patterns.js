@@ -196,88 +196,6 @@ class ContactForm {
 }
 
 /**
- * Safe DOM Manipulation Class
- * Validates at every layer to prevent DOM errors
- */
-class SafeDOM {
-  static createElement(tag, attributes = {}, textContent = '') {
-    // Layer 1: Input validation
-    if (!tag || typeof tag !== 'string') {
-      console.error('[SafeDOM] Invalid tag:', tag);
-      return null;
-    }
-
-    try {
-      const element = document.createElement(tag);
-
-      // Layer 2: Attribute validation
-      if (attributes && typeof attributes === 'object') {
-        Object.entries(attributes).forEach(([key, value]) => {
-          if (typeof value === 'string') {
-            element.setAttribute(key, this.sanitizeAttribute(value));
-          }
-        });
-      }
-
-      // Layer 3: Content validation
-      if (textContent) {
-        element.textContent = this.sanitizeText(String(textContent));
-      }
-
-      return element;
-
-    } catch (error) {
-      console.error('[SafeDOM] Element creation failed:', error);
-      return null;
-    }
-  }
-
-  static querySelector(selector, context = document) {
-    // Layer 1: Selector validation
-    if (!selector || typeof selector !== 'string') {
-      console.error('[SafeDOM] Invalid selector:', selector);
-      return null;
-    }
-
-    try {
-      const element = context.querySelector(selector);
-
-      // Layer 2: Result validation
-      if (!element) {
-        console.warn(`[SafeDOM] Element not found: ${selector}`);
-        return null;
-      }
-
-      return element;
-
-    } catch (error) {
-      console.error('[SafeDOM] Query failed:', error);
-      return null;
-    }
-  }
-
-  static sanitizeText(text) {
-    if (typeof text !== 'string') return '';
-
-    return text
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#x27;');
-  }
-
-  static sanitizeAttribute(value) {
-    if (typeof value !== 'string') return '';
-
-    return value
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#x27;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-  }
-}
-
-/**
  * API Client with Multi-Layer Error Handling
  */
 class APIClient {
@@ -832,7 +750,12 @@ class WebflowForm {
 
         case 'url':
           try {
-            new URL(value);
+            const url = new URL(value);
+            // Security: Only allow safe URL schemes
+            if (!['http:', 'https:'].includes(url.protocol)) {
+              this.showFieldError(field, 'Only HTTP and HTTPS URLs are allowed');
+              return false;
+            }
           } catch {
             this.showFieldError(field, 'Please enter a valid URL');
             return false;
@@ -1268,7 +1191,563 @@ class WebflowForm {
 
 
 /* ─────────────────────────────────────────────────────────────
-   4. EXPORTS
+   4. DUTCH PHONE FORMATTING & AUTOFILL DETECTION
+──────────────────────────────────────────────────────────────── */
+
+/**
+ * Dutch Phone Number Formatter
+ *
+ * Formats phone numbers in Dutch mobile format: +31 6 XXXX XXXX
+ * Handles various input formats (international, national, raw digits).
+ * Includes caret position tracking for seamless user input.
+ *
+ * @example
+ * const formatter = new DutchPhoneFormatter();
+ * formatter.format('0612345678');     // '+31 6 1234 5678'
+ * formatter.format('+31612345678');   // '+31 6 1234 5678'
+ * formatter.format('31612345678');    // '+31 6 1234 5678'
+ * formatter.isValid('+31 6 1234 5678'); // true
+ *
+ * @see /src/2_javascript/form/form_validation.js:163-340
+ */
+class DutchPhoneFormatter {
+  /** Maximum digits in Dutch mobile number (after country code) */
+  static MAX_DIGITS = 9;
+
+  /** Country code for Netherlands */
+  static COUNTRY_CODE = '31';
+
+  /**
+   * Extract national digits from raw phone input
+   * Normalizes various formats to consistent digit string
+   *
+   * @param {string} raw - Raw phone input value
+   * @returns {{ digits: string, national: string }}
+   *
+   * @example
+   * extractDigits('+31 6 1234 5678') // { digits: '31612345678', national: '612345678' }
+   * extractDigits('0612345678')      // { digits: '0612345678', national: '612345678' }
+   * extractDigits('06-1234-5678')    // { digits: '0612345678', national: '612345678' }
+   */
+  extractDigits(raw) {
+    const text = raw || '';
+    const digitsOnly = text.replace(/\D+/g, '');
+
+    if (!digitsOnly) {
+      return { digits: '', national: '' };
+    }
+
+    let national = digitsOnly;
+
+    // Handle +31 prefix
+    if (text.trim().startsWith('+')) {
+      if (digitsOnly.startsWith('31')) {
+        national = digitsOnly.slice(2);
+      } else {
+        national = digitsOnly.replace(/^31/, '');
+      }
+    }
+    // Handle 31 without +
+    else if (digitsOnly.startsWith('31')) {
+      national = digitsOnly.slice(2);
+    }
+    // Handle leading 0 (national format)
+    else if (digitsOnly.startsWith('0')) {
+      national = digitsOnly.slice(1);
+    }
+
+    return {
+      digits: digitsOnly,
+      national: national.slice(0, DutchPhoneFormatter.MAX_DIGITS)
+    };
+  }
+
+  /**
+   * Format digits into +31 mobile layout with caret position tracking
+   *
+   * @param {string} raw - Raw phone input value
+   * @returns {{ formatted: string, digits: string, positions: number[], prefixLength: number }}
+   *
+   * @example
+   * formatValue('0612345678')
+   * // { formatted: '+31 6 1234 5678', digits: '612345678', positions: [...], prefixLength: 4 }
+   */
+  formatValue(raw) {
+    const { national: digits } = this.extractDigits(raw);
+
+    if (!digits.length) {
+      return {
+        formatted: raw,
+        digits,
+        positions: [],
+        prefixLength: raw.length
+      };
+    }
+
+    let formatted = '+31 ';
+    const positions = [];
+
+    // Add leading mobile digit (6 for mobile)
+    formatted += digits[0];
+    positions.push(formatted.length);
+
+    // Add middle group (digits 2-5)
+    if (digits.length > 1) {
+      formatted += ' ';
+      const middle = digits.slice(1, Math.min(5, digits.length));
+      for (let i = 0; i < middle.length; i++) {
+        formatted += middle[i];
+        positions.push(formatted.length);
+      }
+    }
+
+    // Add tail group (digits 6-9)
+    if (digits.length > 5) {
+      formatted += ' ';
+      const tail = digits.slice(5, DutchPhoneFormatter.MAX_DIGITS);
+      for (let i = 0; i < tail.length; i++) {
+        formatted += tail[i];
+        positions.push(formatted.length);
+      }
+    }
+
+    return {
+      formatted,
+      digits,
+      positions,
+      prefixLength: 4 // '+31 '
+    };
+  }
+
+  /**
+   * Simple format function for display purposes
+   *
+   * @param {string} value - Phone number in any format
+   * @returns {string} Formatted as +31 6 XXXX XXXX
+   */
+  format(value) {
+    return this.formatValue(value).formatted;
+  }
+
+  /**
+   * Count digits before a given caret position
+   *
+   * @param {string} raw - Raw phone input value
+   * @param {number} caret - Current caret position
+   * @returns {number} Number of national digits before caret
+   */
+  countDigitsBeforeCaret(raw, caret) {
+    const slice = raw.slice(0, caret);
+    return this.extractDigits(slice).national.length;
+  }
+
+  /**
+   * Calculate new caret position after formatting
+   *
+   * @param {{ formatted: string, digits: string, positions: number[], prefixLength: number }} result
+   * @param {number} digitCount - Number of digits before caret
+   * @returns {number} New caret position in formatted string
+   */
+  caretFromDigitPositions(result, digitCount) {
+    if (digitCount <= 0) {
+      return Math.min(result.prefixLength, result.formatted.length);
+    }
+
+    if (digitCount > result.digits.length) {
+      return result.formatted.length;
+    }
+
+    const index = result.positions[digitCount - 1];
+    return typeof index === 'number' ? index : result.formatted.length;
+  }
+
+  /**
+   * Check if value is likely a Dutch phone number
+   *
+   * @param {string} value - Phone input value
+   * @returns {boolean} True if probably Dutch number
+   */
+  isProbablyDutch(value) {
+    const text = String(value || '').replace(/\s+/g, '');
+    if (!text) return true;
+
+    // Check for Dutch prefixes
+    if (text.startsWith('+31') || text.startsWith('31') || text.startsWith('0031')) {
+      return true;
+    }
+
+    // Accept '0' (national format) or '6' (mobile without leading 0)
+    return text.startsWith('0') || text.startsWith('6');
+  }
+
+  /**
+   * Validate Dutch mobile number structure
+   *
+   * @param {string} value - Phone number to validate
+   * @returns {boolean} True if valid Dutch mobile number
+   *
+   * @example
+   * isValid('+31 6 1234 5678') // true
+   * isValid('0612345678')       // true
+   * isValid('+31 20 123 4567')  // false (landline, not mobile)
+   */
+  isValid(value) {
+    const { national } = this.extractDigits(value || '');
+
+    // Must have exactly 9 digits after country code
+    if (national.length !== DutchPhoneFormatter.MAX_DIGITS) {
+      return false;
+    }
+
+    // Must start with 6 (mobile indicator)
+    return national[0] === '6';
+  }
+
+  /**
+   * Validate E.164 international format
+   *
+   * @param {string} value - Phone number to validate
+   * @returns {boolean} True if valid E.164 format
+   */
+  isValidE164(value) {
+    const normalized = String(value || '').replace(/[\s()-]/g, '');
+    return /^\+[1-9][0-9]{6,14}$/.test(normalized);
+  }
+}
+
+
+/**
+ * International Phone Formatter
+ *
+ * Generic formatter for international phone numbers with country code detection.
+ * Groups digits in readable chunks based on country code length.
+ *
+ * @example
+ * const formatter = new InternationalPhoneFormatter();
+ * formatter.format('+1 555 123 4567');  // US format
+ * formatter.format('+44 20 7123 4567'); // UK format
+ */
+class InternationalPhoneFormatter {
+  /**
+   * Map digit positions in formatted string
+   * @param {string} formatted - Formatted phone string
+   * @returns {number[]} Array of positions for each digit
+   */
+  mapDigitPositions(formatted) {
+    const positions = [];
+    for (let i = 0; i < formatted.length; i++) {
+      if (/\d/.test(formatted[i])) {
+        positions.push(i + 1);
+      }
+    }
+    return positions;
+  }
+
+  /**
+   * Format international phone number with smart grouping
+   *
+   * @param {string} raw - Raw phone input
+   * @returns {{ formatted: string, digits: string, positions: number[], prefixLength: number }}
+   */
+  formatValue(raw) {
+    const text = raw || '';
+    const trimmed = text.trim();
+    const digitsOnly = text.replace(/\D+/g, '');
+
+    // Return as-is if not international format
+    if (!trimmed.startsWith('+') || !digitsOnly.length) {
+      return {
+        formatted: text,
+        digits: digitsOnly,
+        positions: this.mapDigitPositions(text),
+        prefixLength: trimmed.startsWith('+') ? 1 : 0
+      };
+    }
+
+    // Determine country code length (1 for US/Russia, 2 for most others)
+    let countryLength;
+    if (digitsOnly[0] === '1' || digitsOnly[0] === '7') {
+      countryLength = 1;
+    } else if (digitsOnly.length >= 2) {
+      countryLength = 2;
+    } else {
+      countryLength = digitsOnly.length;
+    }
+
+    const country = digitsOnly.slice(0, countryLength);
+    let remainder = digitsOnly.slice(countryLength);
+
+    // Group remaining digits in chunks of 3-4
+    const groups = [];
+    while (remainder.length > 4) {
+      groups.push(remainder.slice(0, 3));
+      remainder = remainder.slice(3);
+    }
+    if (remainder.length) {
+      groups.push(remainder);
+    }
+
+    // Build formatted string
+    let formatted = `+${country}`;
+    if (groups.length) {
+      formatted += ' ' + groups.join(' ');
+    }
+
+    const positions = this.mapDigitPositions(formatted);
+    const prefixSpaceIndex = formatted.indexOf(' ');
+    const prefixLength = prefixSpaceIndex === -1
+      ? formatted.length
+      : Math.min(formatted.length, prefixSpaceIndex + 1);
+
+    return {
+      formatted,
+      digits: digitsOnly,
+      positions,
+      prefixLength
+    };
+  }
+
+  /**
+   * Simple format function
+   * @param {string} value - Phone number
+   * @returns {string} Formatted phone number
+   */
+  format(value) {
+    return this.formatValue(value).formatted;
+  }
+}
+
+
+/**
+ * Browser Autofill Detector
+ *
+ * Detects browser autofill events and triggers validation.
+ * Uses CSS animation detection (most reliable cross-browser method)
+ * with fallback to pseudo-class checking.
+ *
+ * Problem: Browser autofill doesn't trigger 'input' events consistently,
+ * causing validation to miss autofilled values.
+ *
+ * Solution: Inject CSS animation on :-webkit-autofill pseudo-class,
+ * listen for animationstart, then trigger validation.
+ *
+ * @example
+ * const detector = new AutofillDetector();
+ * detector.init();
+ *
+ * // Or with callback
+ * detector.init((input) => {
+ *   console.log('Autofill detected on:', input.name);
+ *   validateField(input);
+ * });
+ *
+ * @see /src/2_javascript/form/form_validation.js:1264-1321
+ */
+class AutofillDetector {
+  /** CSS style element ID */
+  static STYLE_ID = 'autofill-detect-animation';
+
+  /** Animation name for detection */
+  static ANIMATION_NAME = 'autofilldetect';
+
+  /** WeakSet to track bound inputs (prevents double-binding) */
+  boundInputs = new WeakSet();
+
+  /**
+   * Inject CSS animation styles for autofill detection
+   * @private
+   */
+  injectStyles() {
+    if (document.getElementById(AutofillDetector.STYLE_ID)) {
+      return;
+    }
+
+    const style = document.createElement('style');
+    style.id = AutofillDetector.STYLE_ID;
+    style.textContent = `
+      @keyframes ${AutofillDetector.ANIMATION_NAME} {
+        0% { opacity: 1; }
+        100% { opacity: 1; }
+      }
+      input:-webkit-autofill,
+      textarea:-webkit-autofill {
+        animation: ${AutofillDetector.ANIMATION_NAME} 0.001s;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  /**
+   * Bind autofill detection to input element
+   *
+   * @param {HTMLInputElement|HTMLTextAreaElement} input - Input to monitor
+   * @param {Function} [onAutofill] - Callback when autofill detected
+   */
+  bindInput(input, onAutofill) {
+    // Skip if already bound (WeakSet prevents double-binding)
+    if (this.boundInputs.has(input)) {
+      return;
+    }
+    this.boundInputs.add(input);
+
+    // Listen for animation triggered by autofill
+    input.addEventListener('animationstart', (event) => {
+      if (event.animationName === AutofillDetector.ANIMATION_NAME) {
+        // Small delay to ensure autofill value is set
+        setTimeout(() => {
+          if (onAutofill) {
+            onAutofill(input);
+          } else {
+            // Default: dispatch input event to trigger validation
+            const inputEvent = new Event('input', { bubbles: true });
+            input.dispatchEvent(inputEvent);
+          }
+        }, 50);
+      }
+    });
+  }
+
+  /**
+   * Check autofill status using pseudo-class (fallback method)
+   *
+   * @param {HTMLInputElement|HTMLTextAreaElement} input - Input to check
+   * @returns {boolean} True if autofilled
+   */
+  isAutofilled(input) {
+    try {
+      return input.matches(':-webkit-autofill') || input.matches(':autofill');
+    } catch (e) {
+      // Browser doesn't support these pseudo-classes
+      return false;
+    }
+  }
+
+  /**
+   * Initialize autofill detection on all inputs
+   *
+   * @param {Function} [onAutofill] - Callback when autofill detected
+   */
+  init(onAutofill) {
+    this.injectStyles();
+
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach((input) => {
+      this.bindInput(input, onAutofill);
+    });
+
+    // Fallback: Check for autofill pseudo-class at various intervals
+    // (catches autofill that happens before our listeners are bound)
+    const checkAutofill = () => {
+      inputs.forEach((input) => {
+        if (this.isAutofilled(input)) {
+          if (onAutofill) {
+            onAutofill(input);
+          } else {
+            const inputEvent = new Event('input', { bubbles: true });
+            input.dispatchEvent(inputEvent);
+          }
+        }
+      });
+    };
+
+    // Check at various intervals to catch different autofill timings
+    setTimeout(checkAutofill, 100);
+    setTimeout(checkAutofill, 500);
+    setTimeout(checkAutofill, 1000);
+  }
+}
+
+
+/**
+ * Field Binding Tracker
+ *
+ * WeakSet-based tracker to prevent double-binding of event handlers.
+ * Essential for forms that may be re-initialized or have dynamic fields.
+ *
+ * Problem: Without tracking, re-running init() or adding dynamic fields
+ * can result in multiple event handlers on the same element.
+ *
+ * Solution: WeakSet stores references without preventing garbage collection,
+ * and provides O(1) lookup for "already bound?" checks.
+ *
+ * @example
+ * const tracker = new FieldBindingTracker();
+ *
+ * function bindValidation(input) {
+ *   if (tracker.isBound(input, 'validation')) return;
+ *   tracker.markBound(input, 'validation');
+ *
+ *   input.addEventListener('blur', validateField);
+ * }
+ *
+ * @see /src/2_javascript/form/form_validation.js:28-29
+ */
+class FieldBindingTracker {
+  /**
+   * Map of binding type to WeakSet
+   * @type {Map<string, WeakSet>}
+   */
+  bindingSets = new Map();
+
+  /**
+   * Get or create WeakSet for binding type
+   *
+   * @param {string} bindingType - Type identifier (e.g., 'validation', 'formatter')
+   * @returns {WeakSet}
+   * @private
+   */
+  getSet(bindingType) {
+    if (!this.bindingSets.has(bindingType)) {
+      this.bindingSets.set(bindingType, new WeakSet());
+    }
+    return this.bindingSets.get(bindingType);
+  }
+
+  /**
+   * Check if element is already bound for given type
+   *
+   * @param {Element} element - DOM element to check
+   * @param {string} bindingType - Type of binding to check
+   * @returns {boolean} True if already bound
+   */
+  isBound(element, bindingType) {
+    return this.getSet(bindingType).has(element);
+  }
+
+  /**
+   * Mark element as bound for given type
+   *
+   * @param {Element} element - DOM element to mark
+   * @param {string} bindingType - Type of binding
+   */
+  markBound(element, bindingType) {
+    this.getSet(bindingType).add(element);
+  }
+
+  /**
+   * Clear binding for element (useful for re-initialization)
+   *
+   * @param {Element} element - DOM element
+   * @param {string} bindingType - Type of binding to clear
+   */
+  clearBinding(element, bindingType) {
+    this.getSet(bindingType).delete(element);
+  }
+
+  /**
+   * Clear all bindings of a type
+   * Note: WeakSet doesn't support iteration, so this creates a new set
+   *
+   * @param {string} bindingType - Type to clear
+   */
+  clearAllOfType(bindingType) {
+    this.bindingSets.set(bindingType, new WeakSet());
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 // Export for module systems (Node.js, bundlers)
@@ -1276,12 +1755,17 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     // Original patterns
     ContactForm,
-    SafeDOM,
+    // SafeDOM - REMOVED (deprecated 2026-01-11, use textContent directly)
     APIClient,
     // Webflow patterns
     BotpoisonProtection,
     WebflowFormState,
-    WebflowForm
+    WebflowForm,
+    // Phone formatting & autofill detection
+    DutchPhoneFormatter,
+    InternationalPhoneFormatter,
+    AutofillDetector,
+    FieldBindingTracker
   };
 }
 
@@ -1290,11 +1774,16 @@ if (typeof window !== 'undefined') {
   window.ValidationPatterns = {
     // Original patterns
     ContactForm,
-    SafeDOM,
+    // SafeDOM - REMOVED (deprecated 2026-01-11, use textContent directly)
     APIClient,
     // Webflow patterns
     BotpoisonProtection,
     WebflowFormState,
-    WebflowForm
+    WebflowForm,
+    // Phone formatting & autofill detection
+    DutchPhoneFormatter,
+    InternationalPhoneFormatter,
+    AutofillDetector,
+    FieldBindingTracker
   };
 }

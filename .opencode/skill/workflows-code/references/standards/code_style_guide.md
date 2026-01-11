@@ -35,7 +35,7 @@ Code should be obviously correct at a glance. When style is consistent, reviewer
 ### Related Resources
 
 - [code_quality_standards.md](./code_quality_standards.md) - Complete quality standards including initialization patterns and animation strategy
-- [animation_workflows.md](./animation_workflows.md) - Animation-specific implementation patterns
+- [animation_workflows.md](../implementation/animation_workflows.md) - Animation-specific implementation patterns
 
 ---
 
@@ -744,7 +744,7 @@ Before committing any code, verify:
 ### Standards Files
 
 - [code_quality_standards.md](./code_quality_standards.md) - Complete quality standards including initialization patterns, animation strategy, and CDN-safe patterns
-- [animation_workflows.md](./animation_workflows.md) - CSS and Motion.dev animation implementation guide
+- [animation_workflows.md](../implementation/animation_workflows.md) - CSS and Motion.dev animation implementation guide
 
 ### Workflow Files
 

@@ -20,7 +20,8 @@ Defensive code prevents runtime errors. Quality patterns ensure reliability.
 ### Key Sources
 - Section 2 - CDN-safe initialization pattern (MANDATORY for all components)
 - Sections 3-8 - Safety and error handling patterns
-- [animation_workflows.md](./animation_workflows.md) - Complete animation implementation guide
+- Sections 12-14 - Cleanup, shared listeners, and WeakMap caching patterns
+- [animation_workflows.md](../implementation/animation_workflows.md) - Complete animation implementation guide
 - [code_style_guide.md](./code_style_guide.md) - Naming conventions, file structure, commenting rules
 
 ### When to Use
@@ -28,6 +29,9 @@ Defensive code prevents runtime errors. Quality patterns ensure reliability.
 - Adding error handling and validation
 - Implementing async operations
 - Optimizing performance
+- Managing component lifecycle (cleanup/destroy)
+- Handling events across dynamic elements (shared listeners)
+- Caching DOM element state (WeakMap patterns)
 
 ---
 
@@ -468,8 +472,8 @@ Need animation?
 ### Complete Animation Guide
 
 **For implementation, debugging, and testing:**
-- **Decision tree and patterns:** [animation_workflows.md](./animation_workflows.md)
-- **Complete reference:** [animation_workflows.md](./animation_workflows.md) contains all animation policy, rationale, and implementation details
+- **Decision tree and patterns:** [animation_workflows.md](../implementation/animation_workflows.md)
+- **Complete reference:** [animation_workflows.md](../implementation/animation_workflows.md) contains all animation policy, rationale, and implementation details
 
 ---
 
@@ -590,7 +594,408 @@ window.ComponentName = {
 
 ---
 
-## 12. ✅ QUICK REFERENCE CHECKLIST
+## 12. 🧹 CLEANUP/DESTROY PATTERNS
+
+Proper resource cleanup prevents memory leaks and ensures components can be safely reinitialized.
+
+### Component Cleanup Pattern (COPY EXACTLY)
+
+```javascript
+/* ─────────────────────────────────────────────────────────────
+   CLEANUP PATTERN - Comprehensive resource cleanup
+──────────────────────────────────────────────────────────────── */
+let observer = null;
+let handler = null;
+let interval = null;
+const instances = new Map();
+
+function cleanup() {
+  // 1. Disconnect observers
+  if (observer) {
+    observer.disconnect();
+    observer = null;
+  }
+
+  // 2. Remove event listeners (must have stored reference)
+  if (handler) {
+    document.removeEventListener('click', handler);
+    handler = null;
+  }
+
+  // 3. Clear intervals and timeouts
+  if (interval) {
+    clearInterval(interval);
+    interval = null;
+  }
+
+  // 4. Clear instance collections
+  instances.clear();
+
+  // 5. Reset initialization flag (allows reinit)
+  window[INIT_FLAG] = false;
+}
+
+// Expose cleanup on public API
+window.ComponentName = {
+  init,
+  cleanup,
+  refresh: () => { cleanup(); init(); },
+};
+```
+
+### What Must Be Cleaned Up
+
+| Resource Type            | Cleanup Method                       | Why                                           |
+| ------------------------ | ------------------------------------ | --------------------------------------------- |
+| **IntersectionObserver** | `observer.disconnect()`              | Continues firing callbacks if not stopped     |
+| **MutationObserver**     | `observer.disconnect()`              | Watches DOM indefinitely                      |
+| **ResizeObserver**       | `observer.disconnect()`              | Fires on every size change                    |
+| **Event Listeners**      | `removeEventListener(type, handler)` | Keeps reference to handler function           |
+| **setInterval**          | `clearInterval(intervalId)`          | Runs forever until cleared                    |
+| **setTimeout**           | `clearTimeout(timeoutId)`            | May fire after component destroyed            |
+| **Map/Set instances**    | `collection.clear()`                 | Holds references preventing garbage collection|
+
+### Cleanup Timing
+
+```javascript
+// Pattern: Track all cleanups in array
+let cleanups = [];
+
+function setup() {
+  // Track each resource for cleanup
+  const resizeHandler = () => update_layout();
+  window.addEventListener('resize', resizeHandler);
+  cleanups.push(() => window.removeEventListener('resize', resizeHandler));
+
+  const io = new IntersectionObserver(handle_visibility);
+  elements.forEach((el) => io.observe(el));
+  cleanups.push(() => io.disconnect());
+
+  const intervalId = setInterval(poll_status, 1000);
+  cleanups.push(() => clearInterval(intervalId));
+}
+
+function cleanup() {
+  cleanups.forEach((fn) => fn());
+  cleanups = [];
+}
+```
+
+### Webflow Page Transition Cleanup
+
+```javascript
+// Re-run cleanup on Webflow page transitions
+document.addEventListener('DOMContentLoaded', () => {
+  // Cleanup previous state before reinit
+  cleanup();
+});
+
+// Or use Webflow's built-in event
+if (window.Webflow) {
+  window.Webflow.ready(() => {
+    cleanup();
+    init();
+  });
+}
+```
+
+---
+
+## 13. 📡 SHARED DOCUMENT LISTENER PATTERN
+
+Single document-level listener for all instances improves performance over per-element listeners.
+
+### The Pattern (Event Delegation)
+
+```javascript
+/* ─────────────────────────────────────────────────────────────
+   SHARED LISTENER - Single document handler for all instances
+──────────────────────────────────────────────────────────────── */
+const SELECTOR = '[data-component]';
+let listener_attached = false;
+
+function handle_document_click(e) {
+  // Find the component element (or null if click outside)
+  const target = e.target.closest(SELECTOR);
+  if (!target) return;
+
+  // Route to appropriate handler based on data attributes
+  const action = target.dataset.action;
+  if (action === 'toggle') toggle_item(target);
+  if (action === 'expand') expand_item(target);
+  if (action === 'close') close_item(target);
+}
+
+function init_shared_listener() {
+  // Guard: Only attach once
+  if (listener_attached) return;
+  listener_attached = true;
+
+  document.addEventListener('click', handle_document_click);
+}
+
+function cleanup_shared_listener() {
+  if (!listener_attached) return;
+  document.removeEventListener('click', handle_document_click);
+  listener_attached = false;
+}
+```
+
+### Performance Benefits
+
+| Approach                   | Listeners | Memory      | Dynamic Elements |
+| -------------------------- | --------- | ----------- | ---------------- |
+| Per-element listeners      | N         | O(N)        | Must rebind      |
+| **Shared document listener** | 1         | O(1)        | Auto-handled     |
+
+### When to Use Each Approach
+
+```
+Need to handle clicks on .item elements?
+├─> Elements are static (known at init time)?
+│   └─> Per-element OK for small sets (<10 elements)
+└─> Elements are dynamic (added/removed)?
+    └─> USE SHARED DOCUMENT LISTENER
+```
+
+### Action Routing Pattern
+
+```javascript
+// Map actions to handlers for clean routing
+const ACTIONS = {
+  toggle: (el) => el.classList.toggle('active'),
+  expand: (el) => el.setAttribute('aria-expanded', 'true'),
+  collapse: (el) => el.setAttribute('aria-expanded', 'false'),
+  remove: (el) => el.remove(),
+};
+
+function handle_action(e) {
+  const trigger = e.target.closest('[data-action]');
+  if (!trigger) return;
+
+  const action = trigger.dataset.action;
+  const target_id = trigger.dataset.target;
+  const target = target_id
+    ? document.getElementById(target_id)
+    : trigger;
+
+  if (ACTIONS[action] && target) {
+    ACTIONS[action](target);
+  }
+}
+```
+
+### Multiple Event Types
+
+```javascript
+// Single attachment point for multiple events
+const EVENTS = ['click', 'keydown', 'focusin', 'focusout'];
+let events_attached = false;
+
+function attach_events() {
+  if (events_attached) return;
+  events_attached = true;
+
+  EVENTS.forEach((type) => {
+    document.addEventListener(type, route_event, { passive: true });
+  });
+}
+
+function route_event(e) {
+  const target = e.target.closest(SELECTOR);
+  if (!target) return;
+
+  switch (e.type) {
+    case 'click': handle_click(target, e); break;
+    case 'keydown': handle_keydown(target, e); break;
+    case 'focusin': handle_focus(target, true); break;
+    case 'focusout': handle_focus(target, false); break;
+  }
+}
+```
+
+---
+
+## 14. 🗃️ WEAKMAP/WEAKSET CACHING PATTERNS
+
+WeakMap and WeakSet allow caching data against DOM elements without preventing garbage collection.
+
+### WeakMap for Element Metadata
+
+```javascript
+/* ─────────────────────────────────────────────────────────────
+   WEAKMAP CACHING - Associate data with elements safely
+──────────────────────────────────────────────────────────────── */
+const element_cache = new WeakMap();
+
+function get_element_data(el) {
+  if (!element_cache.has(el)) {
+    // Compute and cache on first access
+    element_cache.set(el, {
+      id: generate_id('el'),
+      bounds: el.getBoundingClientRect(),
+      initialized: false,
+    });
+  }
+  return element_cache.get(el);
+}
+
+function init_element(el) {
+  const data = get_element_data(el);
+  if (data.initialized) return; // Already done
+
+  data.initialized = true;
+  setup_element(el, data);
+}
+```
+
+### Why WeakMap Over Regular Map
+
+| Feature               | Map                        | WeakMap                    |
+| --------------------- | -------------------------- | -------------------------- |
+| Key types             | Any                        | Objects only               |
+| Key enumerable        | Yes (`.keys()`, `.size`)   | No                         |
+| Prevents GC           | **Yes** (memory leak risk) | **No** (auto-cleanup)      |
+| Use for DOM elements  | Risky                      | **Safe**                   |
+
+```javascript
+// ❌ WRONG: Regular Map holds references
+const cache = new Map();
+cache.set(element, data);
+// If element removed from DOM, cache still holds reference = LEAK
+
+// ✅ CORRECT: WeakMap allows garbage collection
+const cache = new WeakMap();
+cache.set(element, data);
+// If element removed from DOM, entry is auto-cleaned
+```
+
+### Instance Binding Guard Pattern
+
+```javascript
+/* ─────────────────────────────────────────────────────────────
+   BINDING GUARD - Prevent double-initialization of elements
+──────────────────────────────────────────────────────────────── */
+const BOUND_KEY = '__componentBound';
+
+function bind_element(el) {
+  // Guard: Already bound?
+  if (el[BOUND_KEY]) return false;
+  el[BOUND_KEY] = true;
+
+  // Perform one-time setup
+  setup_handlers(el);
+  return true;
+}
+
+function unbind_element(el) {
+  if (!el[BOUND_KEY]) return;
+  el[BOUND_KEY] = false;
+  teardown_handlers(el);
+}
+
+// Usage in init
+function init_all() {
+  document.querySelectorAll(SELECTOR).forEach((el) => {
+    bind_element(el); // Safe to call multiple times
+  });
+}
+```
+
+### WeakSet for Processed Elements
+
+```javascript
+// Track which elements have been processed
+const processed = new WeakSet();
+
+function process_element(el) {
+  if (processed.has(el)) return; // Skip if already done
+  processed.add(el);
+
+  // One-time processing
+  el.classList.add('processed');
+  attach_behavior(el);
+}
+
+// Safe to call on same elements repeatedly
+document.querySelectorAll('.item').forEach(process_element);
+```
+
+### Combined Pattern: WeakMap + Binding Guard
+
+```javascript
+/* ─────────────────────────────────────────────────────────────
+   COMPLETE CACHING PATTERN - WeakMap + binding guard
+──────────────────────────────────────────────────────────────── */
+const instances = new WeakMap();
+const BOUND_FLAG = '__accordionBound';
+
+function create_instance(el) {
+  return {
+    id: generate_id('accordion'),
+    expanded: false,
+    panel: el.querySelector('.panel'),
+    trigger: el.querySelector('.trigger'),
+  };
+}
+
+function init_accordion(el) {
+  // Binding guard
+  if (el[BOUND_FLAG]) return instances.get(el);
+  el[BOUND_FLAG] = true;
+
+  // Create and cache instance
+  const instance = create_instance(el);
+  instances.set(el, instance);
+
+  // Setup
+  instance.trigger?.addEventListener('click', () => toggle(el));
+
+  return instance;
+}
+
+function toggle(el) {
+  const instance = instances.get(el);
+  if (!instance) return;
+
+  instance.expanded = !instance.expanded;
+  instance.panel?.classList.toggle('open', instance.expanded);
+}
+
+function cleanup_accordion(el) {
+  if (!el[BOUND_FLAG]) return;
+  el[BOUND_FLAG] = false;
+  // WeakMap entry auto-cleans when el is garbage collected
+}
+```
+
+### Observer with WeakMap State
+
+```javascript
+// Store observer state per element
+const observer_state = new WeakMap();
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    const state = observer_state.get(entry.target) || { seen: false };
+
+    if (entry.isIntersecting && !state.seen) {
+      state.seen = true;
+      observer_state.set(entry.target, state);
+      animate_in(entry.target);
+    }
+  });
+});
+
+function observe_element(el) {
+  observer_state.set(el, { seen: false });
+  io.observe(el);
+}
+```
+
+---
+
+## 15. ✅ QUICK REFERENCE CHECKLIST
 
 Before deploying any component:
 
@@ -629,19 +1034,36 @@ Before deploying any component:
 - [ ] Motion.dev for complex sequences
 - [ ] `prefers-reduced-motion` support
 
+**Cleanup/Destroy:**
+- [ ] Observers disconnected (`disconnect()`)
+- [ ] Event listeners removed (stored handler reference)
+- [ ] Intervals/timeouts cleared
+- [ ] Instance collections cleared
+- [ ] Cleanup exposed on public API
+
+**Shared Listeners:**
+- [ ] Document-level delegation for dynamic elements
+- [ ] Single listener attachment guard
+- [ ] Action routing via data attributes
+
+**Caching:**
+- [ ] WeakMap for DOM element metadata (not Map)
+- [ ] Binding guard (`__componentBound`) for double-init prevention
+- [ ] WeakSet for processed element tracking
+
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 16. 🔗 RELATED RESOURCES
 
 ### Style Guide
 - [code_style_guide.md](./code_style_guide.md) - Naming conventions, file structure, commenting rules
 
 ### Reference Files
-- [animation_workflows.md](./animation_workflows.md) - Complete animation implementation guide for CSS and Motion.dev patterns
+- [animation_workflows.md](../implementation/animation_workflows.md) - Complete animation implementation guide for CSS and Motion.dev patterns
 - [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting and validation patterns
-- [webflow_patterns.md](../phase1-implementation/webflow_patterns.md) - Webflow-specific patterns requiring CDN-safe initialization
-- [debugging_workflows.md](../phase2-debugging/debugging_workflows.md) - Debugging workflows for pattern compliance
-- [verification_workflows.md](../phase3-verification/verification_workflows.md) - Verification workflows for code standards and accessibility testing
+- [webflow_patterns.md](../implementation/webflow_patterns.md) - Webflow-specific patterns requiring CDN-safe initialization
+- [debugging_workflows.md](../debugging/debugging_workflows.md) - Debugging workflows for pattern compliance
+- [verification_workflows.md](../verification/verification_workflows.md) - Verification workflows for code standards and accessibility testing
 
 ---
 

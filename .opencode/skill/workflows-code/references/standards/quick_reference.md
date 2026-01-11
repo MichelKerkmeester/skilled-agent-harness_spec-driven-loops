@@ -27,8 +27,8 @@ One-page reference for fast lookups during implementation, debugging, and verifi
 │  Async/timing issues?  → condition-based-waiting      │
 │  Validation needed?    → defense-in-depth             │
 │  After JS changes?     → cdn-versioning               │
-│  Animation needed?     → animation-workflows          │
-│  Webflow collections?  → webflow-patterns             │
+│  Animation needed?     → animation-workflows           │
+│  Webflow collections?  → webflow-patterns               │
 │  Performance needed?   → performance-patterns         │
 │  Security needed?      → security-patterns            │
 │                                                       │
@@ -38,8 +38,8 @@ One-page reference for fast lookups during implementation, debugging, and verifi
 │                                                       │
 │  First debugging attempt?     → systematic-debugging  │
 │  Deep call stack issue?       → root-cause-tracing    │
-│  Animation issues?            → animation-workflows   │
-│  Webflow collection issues?   → webflow-patterns      │
+│  Animation issues?            → animation-workflows    │
+│  Webflow collection issues?   → webflow-patterns        │
 │  Performance issues?          → performance-debugging │
 │  Error in unknown location?   → systematic-debugging  │
 │                                                       │
@@ -47,9 +47,9 @@ One-page reference for fast lookups during implementation, debugging, and verifi
 
 ┌─ Ready to claim complete? ────────────────────────────┐
 │                                                       │
-│  ALWAYS → verification-before-completion              │
+│  ALWAYS → verification-before-completion               │
 │                                                       │
-│  NO EXCEPTIONS. Test in browser first.                │
+│  NO EXCEPTIONS. Test in browser first.                 │
 │                                                       │
 └───────────────────────────────────────────────────────┘
 ```
@@ -378,7 +378,7 @@ const userId = validate(input, 'string', 'anonymous');
 
 ### Reference Files
 - [implementation_workflows.md](./implementation_workflows.md) - Phase 1 workflows for condition-based waiting, validation, and CDN versioning
-- [animation_workflows.md](./animation_workflows.md) - Animation implementation guide for CSS and Motion.dev
+- [animation_workflows.md](../implementation/animation_workflows.md) - Animation implementation guide for CSS and Motion.dev
 - [webflow_patterns.md](./webflow_patterns.md) - Webflow platform patterns for collection lists and async rendering
 - [performance_patterns.md](./performance_patterns.md) - Performance optimization checklist for animations, assets, and requests
 - [security_patterns.md](./security_patterns.md) - OWASP security patterns for input validation and XSS prevention
@@ -388,10 +388,10 @@ const userId = validate(input, 'string', 'anonymous');
 - [shared_patterns.md](./shared_patterns.md) - DevTools, logging, and testing utilities
 
 ### Templates
-- [wait_patterns.js](../assets/wait_patterns.js) - Production-ready condition-based waiting code templates
-- [validation_patterns.js](../assets/validation_patterns.js) - Defense-in-depth validation templates
-- [debugging_checklist.md](../assets/debugging_checklist.md) - Systematic debugging workflow checklist
-- [verification_checklist.md](../assets/verification_checklist.md) - Browser testing verification checklist
+- [wait_patterns.js](../../assets/patterns/wait_patterns.js) - Production-ready condition-based waiting code templates
+- [validation_patterns.js](../../assets/patterns/validation_patterns.js) - Defense-in-depth validation templates
+- [debugging_checklist.md](../../assets/checklists/debugging_checklist.md) - Systematic debugging workflow checklist
+- [verification_checklist.md](../../assets/checklists/verification_checklist.md) - Browser testing verification checklist
 
 ### Related Skills
 - `workflows-chrome-devtools` - Chrome DevTools Protocol automation via bdg CLI for browser testing and performance analysis
