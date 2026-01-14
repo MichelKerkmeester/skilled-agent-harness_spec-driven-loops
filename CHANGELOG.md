@@ -9,7 +9,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ## [**1.0.3.4**] - 2026-01-14
 
-Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware memory system introduced in v17.0. This release resolves 12 targeted issues across 6 core modules, ensuring reliable session tracking, safe checkpoint operations, accurate decay calculations, and proper error handling. Test coverage expanded from 59 to 116 tests (+97%).
+Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware memory system introduced in v17.0. Additionally, a comprehensive audit of 4 workflow skills resolved 9 critical bugs, 13 misalignments, and 18 warnings across 13 files. Test coverage expanded from 59 to 116 tests (+97%).
 
 ---
 
@@ -25,7 +25,40 @@ Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware mem
 
 ---
 
-**Fixed**
+### Workflow Skills Improvements
+
+**workflows-git v1.5.0** — Full Git workflow orchestrator for complete development lifecycle:
+- Workspace setup guidance via git-worktrees
+- Clean commit workflows with conventional commit conventions
+- Work completion flows for branch integration
+- Pull request creation and review workflows
+- GitHub issue integration
+- Fixed 7 GitHub MCP naming patterns (underscore → dot notation)
+- Added Gate 3 integration and memory integration examples
+
+**workflows-chrome-devtools v2.1.0** — Enhanced orchestrator with intelligent routing:
+- CLI (bdg) approach prioritized for speed and token efficiency
+- MCP fallback for multi-tool integration scenarios
+- Screenshot capture, network monitoring, console log access
+- Cookie manipulation and JavaScript execution
+- Unix pipe composability for terminal-based automation
+- Fixed section references in session_management.md and cdp_patterns.md
+
+**workflows-documentation** — Validation improvements:
+- Added SMART ROUTING and REFERENCES sections to package_skill.py validation
+- Fixed Resource Router mode numbering (6 duplicates → 4 unique)
+- Added REFERENCES section to init_skill.py template
+
+**workflows-code** — Audit bug fixes:
+- Fixed 15 broken asset and relative paths across 3 reference files
+- Viewport alignment standardized to 375px
+- Removed 60 lines of dead code from wait_patterns.js
+
+**Audit Summary:** 9 critical bugs fixed · 13 misalignments resolved · 18 warnings addressed · 13 files modified
+
+---
+
+**Fixed (Cognitive Memory v17.1)**
 1. `attention-decay.js`: Column name mismatch (`last_session_access`) causing session tracking failures.
 2. `checkpoints.js`: Added backup-before-delete to prevent data loss on restore failures.
 3. `attention-decay.js`: Decay rates returning 1.0 for inactive sessions (should apply decay).

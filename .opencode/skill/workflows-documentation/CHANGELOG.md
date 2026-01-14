@@ -5,21 +5,6 @@ All notable changes to the workflows-documentation skill are documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [5.2.0] - 2026-01-14
-
-### Added
-- Unified markdown and OpenCode component specialist
-- Document quality enforcement (structure, style validation)
-- Content optimization for AI assistants
-- OpenCode component creation workflows (skills, agents, commands)
-- Scaffolding, validation, and packaging for components
-- ASCII flowchart creation for visualizing complex workflows
-- Install guide creation for MCP servers, plugins, and tools
-- README and frontmatter templates
-- DQI (Document Quality Index) scoring system
-
----
-
 ## [5.1.0] - 2026-01-02
 
 *Environment version: 1.0.2.8*
