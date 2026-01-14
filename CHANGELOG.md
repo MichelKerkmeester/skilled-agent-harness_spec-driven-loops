@@ -9,38 +9,57 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ## [**1.0.3.4**] - 2026-01-14
 
-Cognitive Memory v17.1 bug fix release with comprehensive test suite expansion. Resolves 12 bugs across trigger matching, decay scoring, and search functionality. Test coverage doubled from 59 to 116 tests with 100% pass rate.
+Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware memory system introduced in v17.0. This release resolves 12 targeted issues across 6 core modules, ensuring reliable session tracking, safe checkpoint operations, accurate decay calculations, and proper error handling. Test coverage expanded from 59 to 116 tests (+97%).
+
+---
+
+### Cognitive Memory Features (v17.0)
+
+**Turn-Based Attention Decay** — Memories fade naturally over conversation turns unless re-activated. Decay rates vary by importance tier (constitutional=1.0/never, normal=0.80, temporary=0.60).
+
+**Tiered Content Delivery** — HOT (≥0.8): full content, WARM (0.25-0.79): summaries only, COLD (<0.25): excluded. Achieves 63-86% token savings in typical sessions.
+
+**Co-Activation** — When a memory activates, related memories get boosted (+0.35), surfacing contextually relevant content automatically.
+
+**Session-Based Working Memory** — Each conversation maintains independent attention state. Fully backward compatible with stateless mode.
 
 ---
 
 **Fixed**
-1. Column name mismatch in `get_active_memories()`: `last_activated_turn` → `last_mentioned_turn`
-2. Checkpoint restore now creates backup before delete (data safety)
-3. Aligned decay rates: critical/important/deprecated tiers = 1.0 (no decay)
-4. Orphaned working memory entries now skipped during checkpoint restore
-5. NaN validation added for decay calculations (prevents calculation errors)
-6. New `parse_threshold()` helper with validation for threshold parsing
-7. Co-activation logging changed from `console.log` to `console.error`
-8. Tier classification now uses `classifyTier()` instead of hardcoded 'COLD'
-9. Null/array check added before spread in context-server (prevents runtime errors)
-10. Circular reference prevention with `boostedThisTurn` Set in co-activation
-11. HOT > WARM threshold validation added (prevents invalid configurations)
-12. Working-memory logging changed from `console.warn` to `console.error`
+1. `attention-decay.js`: Column name mismatch (`last_session_access`) causing session tracking failures.
+2. `checkpoints.js`: Added backup-before-delete to prevent data loss on restore failures.
+3. `attention-decay.js`: Decay rates returning 1.0 for inactive sessions (should apply decay).
+4. `checkpoints.js`: Graceful skip for orphaned checkpoint entries without corresponding memories.
+5. `attention-decay.js`: NaN/Infinity validation guards in all decay calculation paths.
+6. `tier-classifier.js`: Added `parse_threshold` helper for safe tier threshold config parsing.
+7. `co-activation.js`: Replaced `console.log` with `console.error` for proper error logging.
+8. `co-activation.js`: Added missing `classifyTier` import fixing undefined function errors.
+9. `context-server.js`: Null/array check before spread in status endpoint response.
+10. `co-activation.js`: Circular reference prevention in co-activation graph traversal.
+11. `tier-classifier.js`: HOT threshold > WARM threshold validation to prevent tier inversion.
+12. `working-memory.js`: Replaced `console.log` with `console.error` for error conditions.
 
 ---
 
 **Added**
-1. 57 new tests covering all cognitive memory scenarios.
+1. 57 new tests covering all cognitive memory scenarios (+97% coverage).
 2. Edge case tests for malformed inputs and boundary conditions.
 3. Integration tests for multi-tool workflows.
-4. Performance benchmarks for large memory sets.
 
 ---
 
 **Changed**
-1. Test organization: Grouped by feature (decay, triggers, search, cognitive).
-2. Test naming: Descriptive names following `should_[behavior]_when_[condition]` pattern.
-3. Documentation: Updated MCP tool descriptions with accurate parameter requirements.
+1. All package versions updated to 17.1.0 for consistency.
+2. Test organization grouped by feature (decay, triggers, search, cognitive).
+
+---
+
+**New Modules (v17.0)**
+- `working-memory.js` — Session state management
+- `attention-decay.js` — Turn-based decay calculations
+- `tier-classifier.js` — HOT/WARM/COLD classification
+- `co-activation.js` — Related memory boosting
+- `summary-generator.js` — WARM tier summary generation
 
 ---
 
