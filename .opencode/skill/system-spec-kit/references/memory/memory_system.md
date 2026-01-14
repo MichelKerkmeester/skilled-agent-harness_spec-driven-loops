@@ -183,11 +183,20 @@ For consistent exact matching, use the full spec folder name.
 
 Memories decay over time to prioritize recent context:
 
-### Decay Formula
+### Tier-Specific Decay Rates (v17.1)
 
-- **Half-life:** ~62 days
-- **Recent context:** Ranks higher than old context
-- **Constitutional tier:** EXEMPT from decay (always max relevance)
+| Tier | Decay Rate | Behavior |
+|------|------------|----------|
+| `constitutional` | 1.0 | Never decays |
+| `critical` | 1.0 | Never decays |
+| `important` | 1.0 | Never decays |
+| `normal` | 0.80 | Standard decay |
+| `temporary` | 0.60 | Fast decay |
+| `deprecated` | 1.0 | Never decays (but excluded from results) |
+
+**Formula:** `new_score = current_score × decay_rate^turns_elapsed`
+
+**Protected Tiers:** Constitutional, critical, important, and deprecated tiers are protected from decay (rate = 1.0). This ensures important context is preserved regardless of conversation length.
 
 ### Decay Examples
 

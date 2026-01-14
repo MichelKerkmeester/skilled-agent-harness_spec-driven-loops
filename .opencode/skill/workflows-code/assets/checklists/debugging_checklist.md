@@ -45,7 +45,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 □ Happens on every page load OR specific actions
 □ Tested in current browser
 □ Tested in different browsers (Chrome, Firefox, Safari)
-□ Tested at different viewport sizes (320px, 768px, 1920px)
+□ Tested at different viewport sizes (375px, 768px, 1920px)
 □ Documented exact steps to reproduce
 
 ### Recent Changes
@@ -147,7 +147,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 
 ### Verification
 □ Tested in all target browsers
-□ Tested on all viewport sizes (320px, 768px, 1920px)
+□ Tested on all viewport sizes (375px, 768px, 1920px)
 □ Checked console for errors
 □ Verified animations smooth
 □ Tested user interactions

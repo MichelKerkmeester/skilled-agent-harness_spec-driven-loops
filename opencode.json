@@ -47,7 +47,8 @@
     }
   },
   "plugin": [
-    "opencode-antigravity-auth@1.2.8"
+    "opencode-antigravity-auth@1.2.8",
+    "opencode-antigravity-quota@0.1.3"
   ],
   "provider": {
     "google": {

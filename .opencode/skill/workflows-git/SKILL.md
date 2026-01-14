@@ -228,8 +228,29 @@ This skill operates within the behavioral framework defined in [AGENTS.md](../..
 
 Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
+- **Gate 3**: File modifications require spec folder question per AGENTS.md Gate 3 (HARD BLOCK)
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
 - **Memory**: Context preserved via Spec Kit Memory MCP
+
+### Memory Integration
+
+Use Spec Kit Memory MCP for context recovery and preservation:
+
+```javascript
+// Find prior git work in a spec folder
+memory_search({ query: "git workflow", specFolder: "007-feature-name" })
+
+// Search for related decisions across all specs
+memory_search({ query: "branch strategy decisions", includeContent: true })
+
+// After major commits or workflow completion
+// Save context with: /memory:save or "save context to [spec-folder]"
+```
+
+**Best Practices**:
+- Use `memory_search()` at session start to recover prior git context
+- Save context after significant commits or before ending a session
+- Reference spec folder in commit messages for traceability
 
 ---
 

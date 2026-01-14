@@ -58,25 +58,38 @@ function get_git_branch() {
    3. CHECKPOINT CREATION
    ─────────────────────────────────────────────────────────────── */
 
-// Create a named checkpoint
+/**
+ * Create a named checkpoint
+ * @param {string} name - Checkpoint name (alphanumeric, underscore, hyphen)
+ * @param {Object} options - Options
+ * @param {string} [options.specFolder] - Limit to specific spec folder
+ * @param {Object} [options.metadata] - Additional metadata to store
+ * @param {boolean} [options.includeWorkingMemory=false] - Include working_memory state (v17.1)
+ * @param {string} [options.sessionId] - Session ID to backup (required if includeWorkingMemory)
+ */
 function create_checkpoint(name, options = {}) {
   // Validate checkpoint name format
   if (!name || typeof name !== 'string') {
     throw new Error('Checkpoint name is required and must be a string');
   }
-  
+
   // Allow alphanumeric, underscore, hyphen only
   if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
     throw new Error('Checkpoint name can only contain letters, numbers, underscores, and hyphens');
   }
-  
+
   // Reasonable length limit
   if (name.length > 100) {
     throw new Error('Checkpoint name must be 100 characters or less');
   }
 
   const database = get_database(); // Throws if not initialized
-  const { specFolder: spec_folder = null, metadata = {} } = options;
+  const {
+    specFolder: spec_folder = null,
+    metadata = {},
+    includeWorkingMemory = false,
+    sessionId = null
+  } = options;
 
   // Get memories to snapshot
   const memory_sql = spec_folder
@@ -119,17 +132,44 @@ function create_checkpoint(name, options = {}) {
 
   // Get current embedding dimension for metadata
   const current_embedding_dim = getEmbeddingDimension();
-  
-  // Create snapshot with embeddings
+
+  // v17.1: Optionally backup working_memory state (CHK031)
+  let workingMemorySnapshot = [];
+  if (includeWorkingMemory) {
+    try {
+      // Check if working_memory table exists
+      const tableExists = database.prepare(`
+        SELECT name FROM sqlite_master WHERE type='table' AND name='working_memory'
+      `).get();
+
+      if (tableExists) {
+        // Backup working_memory for the specified session (or all sessions if not specified)
+        const wmQuery = sessionId
+          ? 'SELECT * FROM working_memory WHERE session_id = ?'
+          : 'SELECT * FROM working_memory';
+        workingMemorySnapshot = sessionId
+          ? database.prepare(wmQuery).all(sessionId)
+          : database.prepare(wmQuery).all();
+        console.error(`[checkpoints] Backed up ${workingMemorySnapshot.length} working_memory entries`);
+      }
+    } catch (err) {
+      console.warn(`[checkpoints] Could not backup working_memory: ${err.message}`);
+    }
+  }
+
+  // Create snapshot with embeddings and working_memory
   const snapshot = {
     memories,
     embeddings,
+    workingMemory: workingMemorySnapshot, // v17.1
     metadata: {
       ...metadata,
       createdAt: new Date().toISOString(),
       memoryCount: memories.length,
       embeddingCount: embeddings.length,
       embeddingDimension: current_embedding_dim, // Store dimension for restore validation
+      workingMemoryCount: workingMemorySnapshot.length, // v17.1
+      sessionId: sessionId, // v17.1
     },
   };
 
@@ -267,10 +307,23 @@ function get_checkpoint(name) {
    5. CHECKPOINT RESTORATION
    ─────────────────────────────────────────────────────────────── */
 
-// Restore from a checkpoint
+/**
+ * Restore from a checkpoint
+ * @param {string} name - Checkpoint name to restore
+ * @param {Object} options - Options
+ * @param {boolean} [options.clearExisting=false] - Clear existing memories before restore
+ * @param {boolean} [options.reinsertMemories=true] - Re-insert memories from snapshot
+ * @param {boolean} [options.includeWorkingMemory=false] - Restore working_memory state (v17.1)
+ * @param {string} [options.sessionId] - Session ID to restore to (uses snapshot sessionId if not specified)
+ */
 function restore_checkpoint(name, options = {}) {
   const database = get_database(); // Throws if not initialized
-  const { clearExisting: clear_existing = false, reinsertMemories: reinsert_memories = true } = options;
+  const {
+    clearExisting: clear_existing = false,
+    reinsertMemories: reinsert_memories = true,
+    includeWorkingMemory: include_working_memory = false,
+    sessionId: target_session_id = null
+  } = options;
 
   const checkpoint = database.prepare('SELECT * FROM checkpoints WHERE name = ?').get(name);
   if (!checkpoint) {
@@ -296,7 +349,9 @@ function restore_checkpoint(name, options = {}) {
   const is_new_format = snapshot && typeof snapshot === 'object' && Array.isArray(snapshot.memories);
   const memories = is_new_format ? snapshot.memories : snapshot;
   const snapshot_embeddings = is_new_format ? (snapshot.embeddings || []) : [];
-  
+  const snapshot_working_memory = is_new_format ? (snapshot.workingMemory || []) : []; // v17.1
+  const snapshot_session_id = is_new_format && snapshot.metadata ? snapshot.metadata.sessionId : null;
+
   // Build old ID -> embedding mapping for restoration
   const embeddings_by_old_id = new Map();
   for (const emb of snapshot_embeddings) {
@@ -516,16 +571,99 @@ function restore_checkpoint(name, options = {}) {
       }
     }
 
-    return { 
-      cleared, 
-      deprecated, 
+    // v17.1: Restore working_memory state (CHK031)
+    let workingMemoryRestored = 0;
+    if (include_working_memory && snapshot_working_memory.length > 0) {
+      try {
+        // Check if working_memory table exists
+        const wm_table_exists = database.prepare(`
+          SELECT name FROM sqlite_master WHERE type='table' AND name='working_memory'
+        `).get();
+
+        if (wm_table_exists) {
+          // Determine target session ID
+          const restore_session_id = target_session_id || snapshot_session_id;
+
+          if (restore_session_id) {
+            // BUG-002 FIX: Backup existing working_memory before delete (prevents data loss)
+            const existingWM = database.prepare(
+              'SELECT * FROM working_memory WHERE session_id = ?'
+            ).all(restore_session_id);
+
+            // Insert working_memory entries
+            const wm_insert_stmt = database.prepare(`
+              INSERT OR REPLACE INTO working_memory
+              (session_id, memory_id, attention_score, last_mentioned_turn, tier, created_at, updated_at)
+              VALUES (?, ?, ?, ?, ?, ?, ?)
+            `);
+
+            let skippedWM = 0;
+            try {
+              // Clear existing working_memory for target session
+              database.prepare('DELETE FROM working_memory WHERE session_id = ?').run(restore_session_id);
+
+              for (const wm of snapshot_working_memory) {
+                // BUG-004 FIX: Skip entries where memory was not restored (prevents orphaned entries)
+                const new_memory_id = id_mapping.get(wm.memory_id);
+                if (!new_memory_id) {
+                  console.warn(`[checkpoints] Skipping working_memory entry: memory ${wm.memory_id} was not restored`);
+                  skippedWM++;
+                  continue;
+                }
+                wm_insert_stmt.run(
+                  restore_session_id,
+                  new_memory_id,
+                  wm.attention_score,
+                  wm.last_mentioned_turn,
+                  wm.tier,
+                  wm.created_at,
+                  new Date().toISOString()
+                );
+                workingMemoryRestored++;
+              }
+            } catch (wm_err) {
+              // BUG-002 FIX: Rollback by restoring backup on failure
+              console.error(`[checkpoints] Working memory restore failed, rolling back: ${wm_err.message}`);
+              const restore_stmt = database.prepare(`
+                INSERT OR REPLACE INTO working_memory
+                (session_id, memory_id, attention_score, last_mentioned_turn, tier, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+              `);
+              for (const backup of existingWM) {
+                restore_stmt.run(
+                  backup.session_id,
+                  backup.memory_id,
+                  backup.attention_score,
+                  backup.last_mentioned_turn,
+                  backup.tier,
+                  backup.created_at,
+                  backup.updated_at
+                );
+              }
+              throw wm_err;
+            }
+            console.error(`[checkpoints] Restored ${workingMemoryRestored}/${snapshot_working_memory.length} working_memory entries (${skippedWM} skipped - unmapped memories)`);
+          } else {
+            console.warn('[checkpoints] No session_id available for working_memory restoration');
+          }
+        }
+      } catch (wm_error) {
+        console.warn(`[checkpoints] Working memory restoration failed: ${wm_error.message}`);
+      }
+    }
+
+    return {
+      cleared,
+      deprecated,
       inserted,
       updated,
-      skipped, 
+      skipped,
       memoryCount: memories.length,
       embeddingsRestored: embeddings_restored,
       embeddingsSkipped: embeddings_skipped,
       embeddingsInSnapshot: snapshot_embeddings.length,
+      workingMemoryRestored,
+      workingMemoryInSnapshot: snapshot_working_memory.length,
     };
   })();
 
@@ -552,6 +690,11 @@ function restore_checkpoint(name, options = {}) {
     note = 'Embeddings could not be restored. Run memory_index_scan to regenerate embeddings.';
   }
 
+  // v17.1: Add working_memory info to note if applicable
+  if (result.workingMemoryRestored > 0) {
+    note += ` Working memory: ${result.workingMemoryRestored}/${result.workingMemoryInSnapshot} entries restored.`;
+  }
+
   return {
     restored: result.inserted,
     updated: result.updated,
@@ -561,6 +704,8 @@ function restore_checkpoint(name, options = {}) {
     totalInSnapshot: result.memoryCount,
     embeddingsRestored: result.embeddingsRestored,
     embeddingsSkipped: result.embeddingsSkipped,
+    workingMemoryRestored: result.workingMemoryRestored || 0,
+    workingMemoryInSnapshot: result.workingMemoryInSnapshot || 0,
     specFolder: checkpoint.spec_folder,
     gitBranch: checkpoint.git_branch,
     createdAt: checkpoint.created_at,

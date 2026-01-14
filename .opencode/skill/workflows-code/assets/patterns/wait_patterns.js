@@ -557,67 +557,6 @@ function create_cleanup_registry() {
   };
 }
 
-/**
- * @deprecated Since 2026-01-11. Use performance_patterns.js debounce() instead.
- * The performance_patterns version has cancel(), flush(), and pending() methods.
- *
- * Migration:
- * ```javascript
- * // OLD (this file)
- * import { debounce } from './wait_patterns.js';
- * const handler = debounce(fn, 180);
- *
- * // NEW (recommended)
- * import { debounce } from './performance_patterns.js';
- * const handler = debounce(fn, 180, { leading: false, trailing: true });
- * handler.cancel(); // Cancel pending
- * handler.flush();  // Execute immediately
- * ```
- *
- * @param {Function} fn - Function to debounce
- * @param {number} ms - Debounce delay in ms
- * @returns {Function} Debounced function (basic, no cancel)
- */
-function debounce(fn, ms = 180) {
-  let timer;
-  return function (...args) {
-    clearTimeout(timer);
-    timer = setTimeout(() => fn.apply(this, args), ms);
-  };
-}
-
-/**
- * @deprecated Since 2026-01-11. Use performance_patterns.js throttle() instead.
- * The performance_patterns version has cancel() and reset() methods.
- *
- * Migration:
- * ```javascript
- * // OLD (this file) - RAF-based
- * import { raf_throttle } from './wait_patterns.js';
- * const handler = raf_throttle(fn);
- *
- * // NEW (recommended) - time-based with control
- * import { throttle } from './performance_patterns.js';
- * const handler = throttle(fn, 16); // ~60fps
- * handler.cancel(); // Cancel pending
- * handler.reset();  // Reset state
- * ```
- *
- * @param {Function} fn - Function to throttle
- * @returns {Function} RAF-throttled function (basic, no cancel)
- */
-function raf_throttle(fn) {
-  let pending = false;
-  return function (...args) {
-    if (pending) return;
-    pending = true;
-    requestAnimationFrame(() => {
-      fn.apply(this, args);
-      pending = false;
-    });
-  };
-}
-
 /* ─────────────────────────────────────────────────────────────
    6. EXPORTS
 ──────────────────────────────────────────────────────────────── */

@@ -12,7 +12,7 @@
 // - memory_match_triggers: Fast trigger phrase matching
 // - checkpoint_create/list/restore/delete: Memory state checkpointing
 //
-// @version 16.0.0
+// @version 17.1.0 - Cognitive Memory Features
 // @module system-spec-kit/context-server
 // 
 // Logging conventions:
@@ -54,6 +54,82 @@ const memoryParser = require(path.join(LIB_DIR, 'memory-parser.js'));
 const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
 const { validate_file_path: validateFilePath } = require('../shared/utils');
 
+// Cognitive Memory Modules (v17.1)
+const workingMemory = require(path.join(LIB_DIR, 'working-memory.js'));
+const attentionDecay = require(path.join(LIB_DIR, 'attention-decay.js'));
+const tierClassifier = require(path.join(LIB_DIR, 'tier-classifier.js'));
+const coActivation = require(path.join(LIB_DIR, 'co-activation.js'));
+const summaryGenerator = require(path.join(LIB_DIR, 'summary-generator.js'));
+
+/* ───────────────────────────────────────────────────────────────
+   TOKEN METRICS UTILITIES (v17.1)
+   Estimate token counts for measuring cognitive memory efficiency
+   ─────────────────────────────────────────────────────────────── */
+
+/**
+ * Estimate token count for text content
+ * Uses ~4 chars per token approximation for English text
+ * @param {string} text - Text to estimate tokens for
+ * @returns {number} Estimated token count
+ */
+function estimateTokens(text) {
+  if (!text || typeof text !== 'string') return 0;
+  // Average ~4 chars per token for English, ~2 for code
+  return Math.ceil(text.length / 4);
+}
+
+/**
+ * Calculate token savings from tiered content injection
+ * Compares hypothetical full content vs actual tiered content
+ * @param {Array} allMatches - All matched memories (before tier filtering)
+ * @param {Array} returnedResults - Tiered results actually returned
+ * @returns {Object} Token metrics with savings estimate
+ */
+function calculateTokenMetrics(allMatches, returnedResults) {
+  // Estimate tokens if ALL matches returned full content
+  const hypotheticalFullTokens = returnedResults.reduce((sum, r) => {
+    // For HOT tier, content is already full
+    // For WARM tier, we saved tokens by using summary
+    // For excluded COLD, we saved all tokens
+    return sum + (r.tier === 'WARM' ? estimateTokens(r.content) * 3 : estimateTokens(r.content));
+  }, 0);
+
+  // Actual tokens returned
+  const actualTokens = returnedResults.reduce((sum, r) => {
+    return sum + estimateTokens(r.content || '');
+  }, 0);
+
+  // Count by tier
+  const hotCount = returnedResults.filter(r => r.tier === 'HOT').length;
+  const warmCount = returnedResults.filter(r => r.tier === 'WARM').length;
+  const coldExcluded = allMatches.length - returnedResults.length;
+
+  // Hot tokens (full content)
+  const hotTokens = returnedResults
+    .filter(r => r.tier === 'HOT')
+    .reduce((sum, r) => sum + estimateTokens(r.content || ''), 0);
+
+  // Warm tokens (summaries)
+  const warmTokens = returnedResults
+    .filter(r => r.tier === 'WARM')
+    .reduce((sum, r) => sum + estimateTokens(r.content || ''), 0);
+
+  // Estimate savings (WARM summaries ~1/3 of full content, COLD fully excluded)
+  const estimatedSavings = warmCount > 0 || coldExcluded > 0 ?
+    Math.round((1 - actualTokens / Math.max(hypotheticalFullTokens, 1)) * 100) : 0;
+
+  return {
+    actualTokens,
+    hotTokens,
+    warmTokens,
+    hotCount,
+    warmCount,
+    coldExcluded,
+    estimatedSavingsPercent: Math.max(0, estimatedSavings),
+    note: 'Token estimates use ~4 chars/token approximation'
+  };
+}
+
 /* ───────────────────────────────────────────────────────────────
    1. BULK INDEXING CONFIGURATION
    ─────────────────────────────────────────────────────────────── */
@@ -69,6 +145,126 @@ let embeddingModelReady = false;
 // Rate limiting for memory_index_scan to prevent resource exhaustion (L15)
 const INDEX_SCAN_COOLDOWN = 60000; // 1 minute cooldown between scans
 // BUG-005 FIX: Removed in-memory lastIndexScanTime - now persisted in database config table
+
+/* ───────────────────────────────────────────────────────────────
+   SK-004: MEMORY SURFACE HOOK CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
+
+const MEMORY_AWARE_TOOLS = new Set([
+  'memory_search',
+  'memory_match_triggers',
+  'memory_list',
+  'memory_save',
+  'memory_index_scan'
+]);
+
+// Constitutional memory cache
+let constitutional_cache = null;
+let constitutional_cache_time = 0;
+const CONSTITUTIONAL_CACHE_TTL = 60000; // 1 minute
+
+/**
+ * Extract context hint from tool arguments for memory surfacing
+ * @param {Object} args - Tool call arguments
+ * @returns {string|null} Context hint or null
+ */
+function extract_context_hint(args) {
+  if (!args || typeof args !== 'object') return null;
+
+  const context_fields = ['query', 'prompt', 'specFolder', 'filePath'];
+  for (const field of context_fields) {
+    if (args[field] && typeof args[field] === 'string' && args[field].length >= 3) {
+      return args[field];
+    }
+  }
+
+  // Join concepts array if present
+  if (args.concepts && Array.isArray(args.concepts) && args.concepts.length > 0) {
+    return args.concepts.join(' ');
+  }
+
+  return null;
+}
+
+/**
+ * Get constitutional memories with caching
+ * @returns {Promise<Array>} Constitutional memories
+ */
+async function get_constitutional_memories() {
+  const now = Date.now();
+
+  if (constitutional_cache && (now - constitutional_cache_time) < CONSTITUTIONAL_CACHE_TTL) {
+    return constitutional_cache;
+  }
+
+  try {
+    const db = vectorIndex.getDb();
+    if (!db) return [];
+
+    const rows = db.prepare(`
+      SELECT id, spec_folder, file_path, title, trigger_phrases, importance_tier
+      FROM memory_index
+      WHERE importance_tier = 'constitutional'
+      AND embedding_status = 'success'
+      ORDER BY created_at DESC
+      LIMIT 10
+    `).all();
+
+    constitutional_cache = rows.map(r => ({
+      id: r.id,
+      specFolder: r.spec_folder,
+      filePath: r.file_path,
+      title: r.title,
+      importanceTier: r.importance_tier
+    }));
+    constitutional_cache_time = now;
+
+    return constitutional_cache;
+  } catch (err) {
+    console.warn('[SK-004] Failed to fetch constitutional memories:', err.message);
+    return [];
+  }
+}
+
+/**
+ * Auto-surface memories based on context hint
+ * SK-004: Memory Surface Hook
+ * @param {string} context_hint - Context from tool arguments
+ * @returns {Promise<Object|null>} Surfaced context or null
+ */
+async function auto_surface_memories(context_hint) {
+  const start_time = Date.now();
+
+  try {
+    // Get constitutional memories (always surface)
+    const constitutional = await get_constitutional_memories();
+
+    // Get triggered memories via fast phrase matching
+    const triggered = triggerMatcher.matchTriggerPhrases(context_hint, 5);
+
+    const latency_ms = Date.now() - start_time;
+
+    // Only return if we have something to surface
+    if (constitutional.length === 0 && triggered.length === 0) {
+      return null;
+    }
+
+    return {
+      constitutional: constitutional,
+      triggered: triggered.map(t => ({
+        memory_id: t.memoryId,
+        spec_folder: t.specFolder,
+        title: t.title,
+        matched_phrases: t.matchedPhrases,
+      })),
+      surfaced_at: new Date().toISOString(),
+      latency_ms: latency_ms,
+    };
+  } catch (err) {
+    console.warn('[SK-004] Auto-surface failed:', err.message);
+    return null;
+  }
+}
 
 /* ───────────────────────────────────────────────────────────────
    2. BUG-001 FIX: DATABASE CHANGE NOTIFICATION
@@ -377,7 +573,7 @@ function validateInputLengths(args) {
 const server = new Server(
   {
     name: 'context-server',
-    version: '16.0.0'
+    version: '17.1.0'
   },
   {
     capabilities: {
@@ -453,7 +649,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     },
     {
       name: 'memory_match_triggers',
-      description: 'Fast trigger phrase matching (<50ms) without embeddings. Use this for quick keyword-based memory lookup before falling back to semantic search. Ideal for proactive memory surfacing in environments without hooks.',
+      description: 'Fast trigger phrase matching with cognitive memory features. Supports attention-based decay, tiered content injection (HOT=full, WARM=summary), and co-activation of related memories. Pass session_id and turn_number for cognitive features.',
       inputSchema: {
         type: 'object',
         properties: {
@@ -465,6 +661,19 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
             type: 'number',
             default: 3,
             description: 'Maximum number of matching memories to return (default: 3)'
+          },
+          session_id: {
+            type: 'string',
+            description: 'Session identifier for cognitive features. When provided, enables attention decay and tiered content injection.'
+          },
+          turn_number: {
+            type: 'number',
+            description: 'Current conversation turn number. Used with session_id for decay calculations.'
+          },
+          include_cognitive: {
+            type: 'boolean',
+            default: true,
+            description: 'Enable cognitive features (decay, tiers, co-activation). Requires session_id.'
           }
         },
         required: ['prompt']
@@ -689,63 +898,94 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
 
+  // SK-004: Auto-surface memories for memory-aware tools
+  let auto_surfaced_context = null;
+  if (MEMORY_AWARE_TOOLS.has(name)) {
+    const context_hint = extract_context_hint(args);
+    if (context_hint) {
+      auto_surfaced_context = await auto_surface_memories(context_hint);
+    }
+  }
+
   try {
     // SEC-003: Validate input lengths before processing (CWE-400 mitigation)
     validateInputLengths(args);
-    
+
     // Note: Database is initialized once in main() before server.connect().
     // This call is a safe no-op (singleton pattern returns cached db).
     // Kept for defensive programming in case handler is called before main() completes.
     vectorIndex.initializeDb();
 
+    let result;
     switch (name) {
       case 'memory_search':
-        return await handleMemorySearch(args);
+        result = await handleMemorySearch(args);
+        break;
 
       // memory_load removed - use memory_search with includeContent: true instead
 
       case 'memory_match_triggers':
-        return await handleMemoryMatchTriggers(args);
+        result = await handleMemoryMatchTriggers(args);
+        break;
 
       case 'memory_delete':
-        return await handleMemoryDelete(args);
+        result = await handleMemoryDelete(args);
+        break;
 
       case 'memory_update':
-        return await handleMemoryUpdate(args);
+        result = await handleMemoryUpdate(args);
+        break;
 
       case 'memory_list':
-        return await handleMemoryList(args);
+        result = await handleMemoryList(args);
+        break;
 
       case 'memory_stats':
-        return await handleMemoryStats(args);
+        result = await handleMemoryStats(args);
+        break;
 
       case 'checkpoint_create':
-        return await handleCheckpointCreate(args);
+        result = await handleCheckpointCreate(args);
+        break;
 
       case 'checkpoint_list':
-        return await handleCheckpointList(args);
+        result = await handleCheckpointList(args);
+        break;
 
       case 'checkpoint_restore':
-        return await handleCheckpointRestore(args);
+        result = await handleCheckpointRestore(args);
+        break;
 
       case 'checkpoint_delete':
-        return await handleCheckpointDelete(args);
+        result = await handleCheckpointDelete(args);
+        break;
 
       case 'memory_validate':
-        return await handleMemoryValidate(args);
+        result = await handleMemoryValidate(args);
+        break;
 
       case 'memory_save':
-        return await handleMemorySave(args);
+        result = await handleMemorySave(args);
+        break;
 
       case 'memory_index_scan':
-        return await handleMemoryIndexScan(args);
+        result = await handleMemoryIndexScan(args);
+        break;
 
       case 'memory_health':
-        return await handleMemoryHealth(args);
+        result = await handleMemoryHealth(args);
+        break;
 
       default:
         throw new Error(`Unknown tool: ${name}`);
     }
+
+    // SK-004: Inject auto-surfaced context into successful responses
+    if (auto_surfaced_context && result && !result.isError) {
+      result.auto_surfaced_context = auto_surfaced_context;
+    }
+
+    return result;
   } catch (error) {
     // H9: Structured error response with MemoryError codes
     const errorResponse = {
@@ -754,7 +994,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       details: error.details || null,
       tool: name
     };
-    
+
     return {
       content: [
         {
@@ -996,23 +1236,57 @@ async function formatSearchResults(results, searchType, includeContent = false) 
 }
 
 /* ───────────────────────────────────────────────────────────────
-   13. TRIGGER MATCHING HANDLER
+   13. TRIGGER MATCHING HANDLER (v17.1 - Cognitive Features)
    ─────────────────────────────────────────────────────────────── */
 
 /**
- * Handle memory_match_triggers tool - fast phrase matching without embeddings
+ * Handle memory_match_triggers tool - fast phrase matching with cognitive features
+ * v17.1: Adds attention decay, tiered content injection, and co-activation
+ *
+ * Cognitive Flow (when session_id provided):
+ * 1. DECAY: Apply turn-based decay to all working memory scores
+ * 2. MATCH: Find memories matching trigger phrases
+ * 3. ACTIVATE: Set matched memories to score = 1.0
+ * 4. CO-ACTIVATE: Boost related memories (+0.35)
+ * 5. CLASSIFY: Assign HOT/WARM/COLD tiers
+ * 6. RETURN: Tiered content (HOT=full, WARM=summary)
  */
 async function handleMemoryMatchTriggers(args) {
   // BUG-001: Check for external database updates before processing
   await checkDatabaseUpdated();
 
-  const { prompt, limit = 3 } = args;
+  const {
+    prompt,
+    limit = 3,
+    session_id: sessionId,
+    turn_number: turnNumber = 1,
+    include_cognitive: includeCognitive = true
+  } = args;
 
   if (!prompt || typeof prompt !== 'string') {
     throw new Error('prompt is required and must be a string');
   }
 
-  const results = triggerMatcher.matchTriggerPhrases(prompt, limit);
+  const startTime = Date.now();
+
+  // Check if cognitive features are enabled and requested
+  const useCognitive = includeCognitive &&
+                       sessionId &&
+                       workingMemory.isEnabled() &&
+                       workingMemory.getDb();
+
+  // Step 1: DECAY - Apply decay to all working memory scores (if cognitive enabled)
+  let decayStats = null;
+  if (useCognitive) {
+    try {
+      decayStats = attentionDecay.applyDecay(sessionId, turnNumber);
+    } catch (err) {
+      console.warn('[memory_match_triggers] Decay failed:', err.message);
+    }
+  }
+
+  // Step 2: MATCH - Find memories matching trigger phrases
+  const results = triggerMatcher.matchTriggerPhrases(prompt, limit * 2); // Get more for filtering
 
   if (!results || results.length === 0) {
     return {
@@ -1020,9 +1294,15 @@ async function handleMemoryMatchTriggers(args) {
         {
           type: 'text',
           text: JSON.stringify({
-            matchType: 'trigger-phrase',
+            matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
             count: 0,
             results: [],
+            cognitive: useCognitive ? {
+              enabled: true,
+              sessionId,
+              turnNumber,
+              decayApplied: decayStats ? decayStats.decayedCount : 0
+            } : null,
             message: 'No matching trigger phrases found'
           }, null, 2)
         }
@@ -1030,23 +1310,119 @@ async function handleMemoryMatchTriggers(args) {
     };
   }
 
-  const formatted = results.map(r => ({
-    memoryId: r.memoryId,
-    specFolder: r.specFolder,
-    filePath: r.filePath,
-    title: r.title,
-    matchedPhrases: r.matchedPhrases,
-    importanceWeight: r.importanceWeight
-  }));
+  // Step 3-6: Apply cognitive features if enabled
+  let formattedResults;
+  let cognitiveStats = null;
+
+  if (useCognitive) {
+    // Step 3: ACTIVATE - Set matched memories to score = 1.0
+    const activatedMemories = [];
+    for (const match of results) {
+      try {
+        attentionDecay.activateMemory(sessionId, match.memoryId, turnNumber);
+        activatedMemories.push(match.memoryId);
+      } catch (err) {
+        console.warn(`[memory_match_triggers] Failed to activate memory ${match.memoryId}:`, err.message);
+      }
+    }
+
+    // Step 4: CO-ACTIVATE - Boost related memories
+    const coActivatedMemories = [];
+    if (coActivation.isEnabled()) {
+      for (const memoryId of activatedMemories) {
+        try {
+          const boosted = coActivation.spreadActivation(sessionId, memoryId, turnNumber);
+          if (boosted && Array.isArray(boosted)) {
+            coActivatedMemories.push(...boosted);
+          }
+        } catch (err) {
+          console.warn(`[memory_match_triggers] Co-activation failed for ${memoryId}:`, err.message);
+        }
+      }
+    }
+
+    // Step 5: CLASSIFY - Get all session memories and classify tiers
+    const sessionMemories = workingMemory.getSessionMemories(sessionId);
+
+    // Build enriched results with tier info
+    const enrichedResults = results.map(match => {
+      // Note: working-memory returns camelCase props (memoryId, attentionScore)
+      const wmEntry = sessionMemories.find(wm => wm.memoryId === match.memoryId);
+      const attentionScore = wmEntry ? wmEntry.attentionScore : 1.0;
+      const tier = tierClassifier.classifyTier(attentionScore);
+
+      return {
+        ...match,
+        attentionScore,
+        tier,
+        coActivated: coActivatedMemories.some(ca => ca.memoryId === match.memoryId)
+      };
+    });
+
+    // Step 6: RETURN - Apply tier filtering and content depth
+    const tieredResults = tierClassifier.filterAndLimitByTier(enrichedResults);
+
+    // Format with tiered content
+    formattedResults = await Promise.all(tieredResults.map(async (r) => {
+      const content = await tierClassifier.getTieredContent({
+        filePath: r.filePath,
+        title: r.title,
+        triggerPhrases: r.matchedPhrases
+      }, r.tier);
+
+      return {
+        memoryId: r.memoryId,
+        specFolder: r.specFolder,
+        filePath: r.filePath,
+        title: r.title,
+        matchedPhrases: r.matchedPhrases,
+        importanceWeight: r.importanceWeight,
+        tier: r.tier,
+        attentionScore: r.attentionScore,
+        content: content,
+        coActivated: r.coActivated || false
+      };
+    }));
+
+    // Collect cognitive stats including token metrics (CHK023)
+    cognitiveStats = {
+      enabled: true,
+      sessionId,
+      turnNumber,
+      decayApplied: decayStats ? decayStats.decayedCount : 0,
+      memoriesActivated: activatedMemories.length,
+      coActivations: coActivatedMemories.length,
+      tierDistribution: tierClassifier.getTierStats(enrichedResults),
+      tokenMetrics: calculateTokenMetrics(results, formattedResults)
+    };
+
+  } else {
+    // Fallback: No cognitive features - return classic format
+    formattedResults = results.slice(0, limit).map(r => ({
+      memoryId: r.memoryId,
+      specFolder: r.specFolder,
+      filePath: r.filePath,
+      title: r.title,
+      matchedPhrases: r.matchedPhrases,
+      importanceWeight: r.importanceWeight
+    }));
+  }
+
+  const latencyMs = Date.now() - startTime;
+  if (latencyMs > 100) {
+    console.warn(`[memory_match_triggers] Latency ${latencyMs}ms exceeds 100ms target`);
+  }
 
   return {
     content: [
       {
         type: 'text',
         text: JSON.stringify({
-          matchType: 'trigger-phrase',
-          count: formatted.length,
-          results: formatted
+          matchType: useCognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
+          count: formattedResults.length,
+          results: formattedResults,
+          cognitive: cognitiveStats,
+          latencyMs
         }, null, 2)
       }
     ]
@@ -1444,7 +1820,7 @@ async function handleMemoryHealth(args) {
     vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
     memoryCount,
     uptime: process.uptime(),
-    version: '16.0.0',
+    version: '17.1.0',
     // V12.0: Embedding provider info
     embeddingProvider: {
       provider: providerMetadata.provider,
@@ -2158,10 +2534,23 @@ async function main() {
     // Initialize checkpoints and access tracker with database connection
     checkpoints.init(vectorIndex.getDb());
     accessTracker.init(vectorIndex.getDb());
-    
+
     // Initialize hybrid search with database and vector search function
     hybridSearch.init(vectorIndex.getDb(), vectorIndex.vectorSearch);
     console.error('[context-server] Checkpoints, access tracker, and hybrid search initialized');
+
+    // v17.1: Initialize cognitive memory modules
+    const database = vectorIndex.getDb();
+    try {
+      workingMemory.init(database);
+      attentionDecay.init(database);
+      coActivation.init(database);
+      console.error('[context-server] Cognitive memory modules initialized (working memory, decay, co-activation)');
+      console.error(`[context-server] Working memory enabled: ${workingMemory.isEnabled()}, Co-activation enabled: ${coActivation.isEnabled()}`);
+    } catch (cognitiveErr) {
+      console.warn('[context-server] Cognitive modules partially failed to initialize:', cognitiveErr.message);
+      console.warn('[context-server] memory_match_triggers will fall back to non-cognitive mode');
+    }
   } catch (err) {
     console.error('[context-server] Integrity check failed:', err.message);
   }

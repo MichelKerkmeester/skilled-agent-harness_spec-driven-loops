@@ -2,10 +2,10 @@
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3), template enforcement, validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
-version: 16.0.0
+version: 17.1.0
 ---
 
-> **Version Note:** The version number (16.0.0) tracks the skill's evolution including documentation, templates, scripts, and MCP server. All package.json files are aligned to this version.
+> **Version Note:** The version number (17.1.0) tracks the skill's evolution including documentation, templates, scripts, and MCP server. All package.json files are aligned to this version.
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
 
@@ -112,6 +112,50 @@ User Request
 | "checkpoint", "save state" | Create named checkpoint | `spec_kit_memory_checkpoint_create()` |
 | "restore checkpoint", "rollback" | Restore from checkpoint | `spec_kit_memory_checkpoint_restore()` |
 | Gate enforcement (any file modification) | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()` |
+
+### Cognitive Memory Features (v17.1)
+
+The `memory_match_triggers()` tool includes cognitive memory features for smarter context management. See [mcp_server/README.md](./mcp_server/README.md#cognitive-memory-v170) for full implementation details.
+
+**Cognitive Flow:**
+```
+Gate 1 triggers → DECAY → MATCH → ACTIVATE → CO-ACTIVATE → CLASSIFY → RETURN
+```
+
+1. **DECAY**: Apply turn-based decay to all working memory (rate: 0.15/turn)
+2. **MATCH**: Find memories matching trigger phrases
+3. **ACTIVATE**: Set matched memories to score = 1.0
+4. **CO-ACTIVATE**: Boost related memories (+0.35)
+5. **CLASSIFY**: Assign HOT/WARM/COLD tiers
+6. **RETURN**: Tiered content (HOT=full, WARM=summary)
+
+**Tiered Content Injection:**
+
+| Tier | Attention Score | Content Returned |
+|------|-----------------|------------------|
+| **HOT** | >= 0.8 | Full content |
+| **WARM** | 0.25-0.79 | Summary only |
+| **COLD** | < 0.25 | Not returned |
+
+**Key Behaviors:**
+- **Decay rates by tier:** Constitutional, critical, important, and deprecated tiers have decay rate = 1.0 (no decay). Only normal and temporary tiers decay (rate = 0.15/turn).
+- Each session has isolated working memory state
+- Sessions auto-expire after 1 hour of inactivity
+
+**New Parameters for `memory_match_triggers()`:**
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `session_id` | string | — | Session identifier for working memory |
+| `turn_number` | number | — | Current turn for decay calculation |
+| `include_cognitive` | boolean | `false` | Enable cognitive features (decay, co-activation) |
+
+**New Library Modules (v17.1):**
+- `working-memory.js` - Session-based working memory with attention scores
+- `attention-decay.js` - Turn-based decay mechanics
+- `tier-classifier.js` - HOT/WARM/COLD classification
+- `co-activation.js` - Spreading activation for related memories
+- `summary-generator.js` - Summary generation for WARM tier
 
 ### Resource Router
 

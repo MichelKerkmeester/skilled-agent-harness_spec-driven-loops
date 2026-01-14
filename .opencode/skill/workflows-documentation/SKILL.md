@@ -137,7 +137,7 @@ TASK CONTEXT
         └─► Load: quick_reference.md
 ```
 
-### Resource Router
+### Resource Router (Quick Reference)
 
 **Mode 1 - Document Quality:**
 
@@ -214,41 +214,40 @@ TASK CONTEXT
 | [command_template.md](assets/opencode/command_template.md) | Command template | Slash commands |
 | [agent_template.md](assets/opencode/agent_template.md) | Agent template | Custom agents |
 
-### Resource Router
+### Resource Router (Implementation Logic)
 
 ```python
 def route_documentation_resources(task):
     """Route to appropriate documentation resources."""
     
-    # Mode 1: Skill Creation
+    # Mode 1: Document Quality
+    if task.involves("DQI") or task.involves("quality score"):
+        load("references/validation.md")
+        return "Mode 1: Document Quality"
+    
+    if task.involves("optimize") or task.involves("AI context"):
+        load("references/optimization.md")
+        return "Mode 1: Content Optimization"
+    
+    # Mode 2: Component Creation (Skills, Agents, Commands)
     if task.involves("skill creation") or task.involves("new skill"):
         load("references/skill_creation.md")
         load("assets/opencode/skill_md_template.md")
-        return "Mode 1: Skill Creation"
+        return "Mode 2: Skill Creation"
     
     if task.involves("reference file") or task.involves("bundled resource"):
         load("assets/opencode/skill_reference_template.md")
-        return "Mode 1: Reference Creation"
+        return "Mode 2: Reference Creation"
     
-    # Mode 2: Document Quality
-    if task.involves("DQI") or task.involves("quality score"):
-        load("references/validation.md")
-        return "Mode 2: Document Quality"
-    
-    # Mode 3: Content Optimization
-    if task.involves("optimize") or task.involves("AI context"):
-        load("references/optimization.md")
-        return "Mode 3: Content Optimization"
-    
-    # Mode 4: Flowchart Creation
+    # Mode 3: Flowchart Creation
     if task.involves("flowchart") or task.involves("ASCII diagram"):
         load("assets/flowcharts/")
-        return "Mode 4: Flowchart Creation"
+        return "Mode 3: Flowchart Creation"
     
-    # Mode 5: Install Guide
+    # Mode 4: Install Guide
     if task.involves("install guide") or task.involves("setup instructions"):
         load("assets/documentation/install_guide_template.md")
-        return "Mode 5: Install Guide"
+        return "Mode 4: Install Guide"
     
     # Default
     load("references/quick_reference.md")

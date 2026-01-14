@@ -13,7 +13,7 @@ Systematic diagnosis and resolution for semantic memory issues, context retrieva
 
 **Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
 
-This reference provides structured troubleshooting for the semantic memory system v16.0.0, covering:
+This reference provides structured troubleshooting for the semantic memory system v17.1, covering:
 
 - **Context retrieval failures** - Memory search returning no/wrong results
 - **Vector index issues** - Embedding generation and search problems
@@ -129,6 +129,14 @@ memory_search({ query: "test" })
 | Recent memories not prioritized | Half-life too long | Default is ~62 days; adjust if needed |
 | Score calculations seem wrong | Missing timestamp | Verify `created_at` field populated |
 | Decay too aggressive | Half-life too short | ~62-day half-life (90-day decay constant) is recommended |
+
+**Note (v17.1):** The following tiers are protected from decay (rate = 1.0):
+- constitutional
+- critical
+- important
+- deprecated
+
+Only `normal` (0.80) and `temporary` (0.60) tiers experience decay.
 
 **Decay Formula Reference:**
 ```

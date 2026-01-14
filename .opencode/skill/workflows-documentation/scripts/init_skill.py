@@ -95,7 +95,23 @@ User Request
 
 ---
 
-## 3. 🛠️ HOW IT WORKS
+## 3. 📚 REFERENCES
+
+### Core References
+
+| Document | Purpose | Key Insight |
+|----------|---------|-------------|
+| [TODO: reference-name.md](references/reference-name.md) | [TODO: What it documents] | [TODO: Key takeaway] |
+
+### Templates
+
+| Template | Purpose | Usage |
+|----------|---------|-------|
+| [TODO: template-name.md](assets/template-name.md) | [TODO: What it provides] | [TODO: When to use] |
+
+---
+
+## 4. 🛠️ HOW IT WORKS
 
 [TODO: Brief explanation of the skill's process/workflow]
 
@@ -115,7 +131,7 @@ User Request
 
 ---
 
-## 4. 📋 RULES
+## 5. 📋 RULES
 
 ### ✅ ALWAYS
 
@@ -137,7 +153,7 @@ User Request
 
 ---
 
-## 5. 🏆 SUCCESS CRITERIA
+## 6. 🏆 SUCCESS CRITERIA
 
 **Task complete when**:
 - ✅ [TODO: First success criterion]
@@ -146,7 +162,7 @@ User Request
 
 ---
 
-## 6. 🔌 INTEGRATION POINTS
+## 7. 🔌 INTEGRATION POINTS
 
 **Triggers**: [TODO: What activates this skill]
 
@@ -161,7 +177,7 @@ User Request
 
 ---
 
-## 7. 📋 QUICK REFERENCE
+## 8. 📋 QUICK REFERENCE
 
 [TODO: Add quick lookup information:
 - Key commands or syntax
@@ -171,7 +187,7 @@ User Request
 
 ---
 
-## 8. 📦 BUNDLED RESOURCES
+## 9. 📦 BUNDLED RESOURCES
 
 This skill includes example resource directories. Delete any you don't need:
 

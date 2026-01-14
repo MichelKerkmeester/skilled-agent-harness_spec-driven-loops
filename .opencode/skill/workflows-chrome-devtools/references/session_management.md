@@ -17,11 +17,11 @@ Always verify session state before operations - session failures cascade. Implem
 
 ## 2. 📋 PREREQUISITES
 
-**Foundation:** Follow session basics from SKILL.md Section 4 before using advanced patterns:
+**Foundation:** Follow session basics from SKILL.md Section 3 before using advanced patterns:
 - **Session Lifecycle**: Start → Verify → Execute → Stop workflow
 - **Session States**: inactive, starting, active, error
 - **Basic Verification**: `bdg status 2>&1 | jq '.state'`
-- See [../SKILL.md](../SKILL.md) Section 4 "Session Management Basics"
+- See [../SKILL.md](../SKILL.md) Section 3 "HOW IT WORKS"
 
 **Recommended Tools**:
 - `jq` for JSON parsing (install: `brew install jq` or `apt-get install jq`)

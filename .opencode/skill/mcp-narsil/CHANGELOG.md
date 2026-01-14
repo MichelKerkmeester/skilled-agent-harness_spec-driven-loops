@@ -1,26 +1,168 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to the mcp-narsil skill are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.3.2] - 2026-01-05
+> **Note:** This changelog includes both **Skill Wrapper** changes (SKILL.md, install guides, references) and **Narsil MCP Server** releases (the external tool). Skill wrapper entries are marked with environment version references.
 
-### Added
+---
+
+## Skill Wrapper Changes
+
+### [1.0.3.2] - 2026-01-05
+
+*Environment version: 1.0.3.2*
+
+#### Added
 - **Embedded MCP server source** - Narsil source code now included in `mcp_server/` folder for portability
 - **Prefixed variable documentation** - Install guide updated with Code Mode `{manual}_{VAR}` requirement
 
-### Changed
+#### Changed
 - Install guide: Added "Variable not found" troubleshooting entry
 - Install guide: Added note about `narsil_VOYAGE_API_KEY` requirement for Code Mode
 
-### Fixed
+#### Fixed
 - Documentation gap: Code Mode requires prefixed environment variables (e.g., `narsil_VOYAGE_API_KEY`)
 
-## [1.2.0] - 2025-01-04
+---
 
-### Added
+### [1.0.2.5] - 2026-01-02
+
+*Environment version: 1.0.2.5*
+
+#### Added
+- Neural backend comparison table: Voyage AI (recommended), OpenAI, Local ONNX
+- Separate configuration examples for each neural backend
+- HTTP server stdin pipe trick documentation
+
+#### Changed
+- All config examples now include `--watch` flag for auto-reindexing
+- Install script help text expanded with Neural Search Backends section
+
+---
+
+### [1.0.1.6] - 2025-12-30
+
+*Environment version: 1.0.1.6*
+
+#### Added
+- `narsil-server.sh` for HTTP server management
+- `narsil-search.sh` CLI wrapper for reliable search
+- Index dependency documentation
+
+#### Breaking
+- Parameter names changed in all Narsil tools:
+  - `kind` → `symbol_type` in symbol queries
+  - `name` → `symbol` in definition lookups
+  - `function_name` → `function` in call graph tools
+  - Added `repo: "unknown"` requirement for all tools
+
+---
+
+### [1.0.1.5] - 2025-12-29
+
+*Environment version: 1.0.1.5*
+
+#### Known Issues Documented
+- Call graph empty for JavaScript (tree-sitter limitation)
+- Security scan limited (backend-focused rules)
+- Neural search stale after index clear
+
+#### Working Features
+- `find_symbols` for symbol discovery
+- `get_symbol_definition` for definitions
+- `get_file` for file content
+- Git integration features
+
+---
+
+### [1.0.1.4] - 2025-12-29
+
+*Environment version: 1.0.1.4*
+
+#### Added
+- Skill Creation guide with required templates
+- Skill Advisor configuration documentation
+
+#### Known Issues Documented
+- Persistence bug: indexes regenerate ~45-60s on startup
+- Unicode bug: box-drawing characters crash chunking
+
+---
+
+### [1.0.1.3] - 2025-12-29
+
+*Environment version: 1.0.1.3*
+
+#### Added
+- HTTP backend server (port 3000) documentation
+- React frontend (port 5173) visualization docs
+- Five graph view types: `import`, `call`, `symbol`, `hybrid`, `flow`
+
+#### Fixed
+- Tool names corrected in documentation
+- Language count: 16 → 15
+
+---
+
+### [1.0.1.2] - 2025-12-29
+
+*Environment version: 1.0.1.2*
+
+#### Added
+- Project-local `.narsil-index/` support
+- `--persist` flag documentation
+- `--index-path` option documentation
+- HTTP server mode documentation
+
+---
+
+### [1.0.1.1] - 2025-12-29
+
+*Environment version: 1.0.1.1*
+
+#### Fixed
+- `voyage-code-3` (1024-dim) → `voyage-code-2` (1536-dim) for correct embedding dimensions
+- Invalid frontmatter in search commands
+
+---
+
+### [1.0.1.0] - 2025-12-29
+
+*Environment version: 1.0.1.0*
+
+#### Breaking
+- Complete migration from LEANN to Narsil
+- `leann_leann_search()` → `narsil.narsil_neural_search()`
+- `mcp-leann` skill → `mcp-narsil` skill
+- MLX embeddings → Voyage/OpenAI/ONNX backends
+
+#### Added
+- 76 specialized tools for code intelligence
+- Semantic search, security scanning, call graph analysis
+
+---
+
+### [1.0.0.0] - 2025-12-29
+
+*Environment version: 1.0.0.0*
+
+#### Added
+- Initial skill release
+- Narsil MCP integration via Code Mode
+- Install guide and reference documentation
+
+---
+
+## Narsil MCP Server Releases
+
+*The following entries track releases of the external Narsil MCP server project.*
+
+### [1.2.0] - 2025-01-04
+
+#### Added
 
 - **`exclude_tests` parameter** - 22 tools now support filtering out test files to reduce noise and token usage:
   - Security tools (5): `check_owasp_top10`, `check_cwe_top25`, `find_injection_vulnerabilities`, `get_taint_sources`, `get_security_summary`
@@ -32,27 +174,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **npm package** - Install via `npm install -g narsil-mcp` with automatic binary download
 - **Automated npm publishing** - Release workflow now publishes to npm registry
 
-### Changed
+#### Changed
 
 - **README restructured** - Claude Code configuration moved to first position, reduced from 1,186 to 951 lines (20% reduction)
 - **Documentation reorganized** - WASM, Neural Search, and Frontend docs moved to dedicated files in `docs/`
 - **Install script enhanced** - Now shows Claude Code quick-start guide with `.mcp.json` example after installation
 
-### Defaults
+#### Defaults
 
 - Security/Analysis tools: `exclude_tests` defaults to `true` (excludes tests)
 - Symbol/Search tools: `exclude_tests` defaults to `false` (includes tests)
 - CallGraph tools: accepts parameter but filtering requires call graph rebuild
 
-## [1.1.6] - 2025-01-03
+### [1.1.6] - 2025-01-03
 
-### Fixed
+#### Fixed
 
 - **C++ parser** - Fixed tree-sitter query syntax for C++ namespace and class declarations. Previously caused parsing errors on C++ codebases.
 
-## [1.1.5] - 2025-01-01
+### [1.1.5] - 2025-01-01
 
-### Fixed
+#### Fixed
 
 - **`--http` timeout with Zed editor** - The HTTP server and MCP server were mutually exclusive, causing timeouts when `--http` was enabled. Now HTTP server runs in background via `tokio::spawn` while MCP always runs on the main task, allowing both to operate concurrently.
 
@@ -60,20 +202,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **`prompts/get` method not found** - Implemented the MCP `prompts/get` method with full prompt templates for `explain_codebase` and `find_implementation` prompts. Previously only `prompts/list` was implemented.
 
-### Added
+#### Added
 
 - Comprehensive test coverage for CLI preset behavior (6 new tests)
 - Test coverage for `prompts/get` functionality (6 new tests)
 - Test coverage for HTTP/MCP concurrent operation pattern (6 new tests)
 
-### Changed
+#### Changed
 
 - Documentation updated to clarify `--http` runs alongside MCP (not instead of)
 - Added Scoop installation note about optional features (ONNX, frontend) requiring source build
 
-## [1.1.1] - 2025-12-28
+### [1.1.1] - 2025-12-28
 
-### Added
+#### Added
 
 - **Package manager distribution** - Making installation easier across all platforms:
   - **Homebrew tap** for macOS/Linux (`brew install postrv/narsil/narsil-mcp`)
@@ -84,12 +226,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **SHA256 checksums** generated for all release artifacts
 - **Comprehensive installation guide** (`docs/INSTALL.md`) with platform-specific instructions
 
-### Changed
+#### Changed
 
 - Release workflow now creates versioned tarballs instead of individual binaries
 - `install.sh` updated to download versioned tarballs with proper extraction
 
-### Fixed
+#### Fixed
 
 - Windows CI test failure (`test_claude_code_path`) - now handles both `HOME` and `USERPROFILE` env vars
 - Tree-sitter query warnings for TypeScript/TSX (changed `identifier` to `type_identifier` for class names)
@@ -97,18 +239,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Neural API key warning message now suggests running `narsil-mcp config init --neural` for better user experience
 - Version string in startup logs now uses `CARGO_PKG_VERSION` instead of hardcoded value
 
-## [1.1.0] - 2025-12-28
+### [1.1.0] - 2025-12-28
 
-### 🎯 Major Features - Tool Selection & Configuration System
+#### 🎯 Major Features - Tool Selection & Configuration System
 
 **Solves:** "76 tools? Isn't that much too many? About how many tokens does Narsil add to the context window with this many tools enabled?" - [Reddit](https://www.reddit.com/r/ClaudeAI/)
 
 narsil-mcp v1.1.0 introduces an intelligent tool selection and configuration system that dramatically reduces context window usage while maintaining full backwards compatibility.
 
-### Added
+#### Added
 
-#### Automatic Editor Detection & Presets
-
+**Automatic Editor Detection & Presets:**
 - **4 built-in presets** optimized for different use cases:
   - **Minimal** (26 tools, ~4,686 tokens) - Zed, Cursor - **61% token reduction**
   - **Balanced** (51 tools, ~8,948 tokens) - VS Code, IntelliJ - **25% token reduction**
@@ -116,274 +257,76 @@ narsil-mcp v1.1.0 introduces an intelligent tool selection and configuration sys
   - **Security-focused** (~30 tools) - Security audits and supply chain analysis
 
 - **Automatic client detection** from MCP `initialize` request
-  - Zed automatically gets Minimal preset (61% fewer tokens!)
-  - VS Code/IntelliJ get Balanced preset (25% fewer tokens)
-  - Claude Desktop gets Full preset (all features)
-  - Unknown clients get Full preset (backwards compatible)
 
-#### Configuration System
+**Configuration System:**
+- Multi-source configuration loading (default → user → project → env → CLI)
+- Configuration validation with helpful error messages
+- Interactive config wizard: `narsil-mcp config init`
 
-- **Multi-source configuration loading**:
-  - Default config (embedded in binary)
-  - User config (`~/.config/narsil-mcp/config.yaml`)
-  - Project config (`.narsil.yaml` in repo root)
-  - Environment variables (`NARSIL_*`)
-  - CLI flags (highest priority)
+**New CLI Commands:**
+- `config show`, `config validate`, `config init`, `config preset`, `config export`
+- `tools list`, `tools search`
 
-- **Configuration validation** with helpful error messages
-- **Interactive config wizard**: `narsil-mcp config init`
+**4 new languages:** Bash, Ruby, Kotlin, PHP
 
-#### New CLI Commands
+**Security hardening module** with secret redaction, file size limits, sensitive file detection
 
-- `config show` - View effective configuration
-- `config validate <file>` - Validate config file syntax
-- `config init` - Interactive configuration wizard
-- `config preset <name>` - Apply a preset
-- `config export` - Export current config to YAML
-- `tools list [--category <name>]` - List available tools
-- `tools search <query>` - Search for tools by name/description
+**Expanded security rules** to all 14 supported languages (111 total rules, 50% increase)
 
-#### New CLI Flags
+#### Performance
 
-- `--preset <name>` - Apply a specific preset (minimal, balanced, full, security-focused)
+- Config loading: <10ms
+- Tool filtering: <1ms
+- 494 total tests passing (100% success rate)
 
-#### Environment Variables
+#### Token Usage Savings
 
-- `NARSIL_PRESET` - Override preset selection
-- `NARSIL_CONFIG_PATH` - Custom config file path
-- `NARSIL_ENABLED_CATEGORIES` - Comma-separated list of categories to enable
-- `NARSIL_DISABLED_TOOLS` - Comma-separated list of tools to disable
+| Preset | Tools | Tokens | Reduction |
+|--------|-------|--------|-----------|
+| Minimal | 26 | ~4,686 | **61% fewer** |
+| Balanced | 51 | ~8,948 | **25% fewer** |
+| Full | 69 | ~12,001 | baseline |
 
-### Performance
+### [1.0.0] - 2025-12-23
 
-- **Config loading**: <10ms (budget met ✅)
-- **Tool filtering**: <1ms (budget met ✅)
-  - Minimal preset: 76.3 µs
-  - Balanced preset: 155.1 µs
-  - Full preset: 2.9 µs (no filtering)
-- **MCP initialize + tools/list**: ~10-15ms total
+#### Security
 
-### Documentation
+- **Fixed 7 path traversal vulnerabilities** (CWE-22) in taint analysis, fix suggestions, export map, clone detection, type inference, type errors, and taint flow functions
 
-- **NEW**: `docs/PERFORMANCE.md` - Comprehensive token usage and performance analysis
-- **NEW**: `docs/MIGRATION.md` - Upgrading from v1.0.2 guide
-- **UPDATED**: `README.md` - Added Configuration section with examples
-- **UPDATED**: `CLAUDE.md` - Added configuration system guidance
+#### Changed
 
-### Benchmarks
+- Split `neural` feature into `neural` (TF-IDF + API embeddings) and `neural-onnx` (local ONNX inference)
+- Updated ort dependency to 2.0.0-rc.10
 
-- **NEW**: `benches/filtering.rs` - Config loading and tool filtering performance
-- **NEW**: `benches/token_usage.rs` - Context window impact analysis
+#### Added
 
-### Tests
+- Test file detection for security scanning
+- `exclude_tests` parameter for `scan_security`
 
-- **494 total tests passing** (100% success rate):
-  - 441 library tests
-  - 36 integration tests (full_flow, editor, MCP flow)
-  - 5 initialization tests (non-blocking startup)
-  - 12 cross-platform tests (macOS, Linux, Windows)
+### [0.2.0] - 2025-12-22
 
-- **NEW**: `tests/integration/full_flow_tests.rs` (13 tests)
-  - End-to-end MCP flow testing
-  - Preset validation
-  - Config priority testing
-  - Tool filtering verification
+#### Added
 
-- **NEW**: `tests/cross_platform_tests.rs` (12 tests)
-  - Config path resolution (platform-specific)
-  - File operations (naming conventions, line endings)
-  - Path separators (Windows vs Unix)
-  - Unicode filename support
-  - Long path handling (Windows MAX_PATH)
-  - Case sensitivity (macOS/Windows vs Linux)
+- Phase 6: Advanced Features (Merkle indexing, cross-language symbols, fuzzy search, import/export graphs)
+- Phase 5: Supply Chain Security (SBOM, vulnerability checking, license compliance)
+- Phase 4: Security Rules Engine (OWASP Top 10, CWE Top 25, custom YAML rules)
+- Phase 3: Taint Analysis (source-to-sink tracking, injection detection)
 
-### Implementation Files
+### [0.1.0] - 2025-12-20
 
-**New Modules:**
-- `src/config/mod.rs` - Configuration system exports
-- `src/config/schema.rs` - Configuration data structures (ToolConfig, CategoryConfig, etc.)
-- `src/config/loader.rs` - Multi-source config loading with priority merging
-- `src/config/validation.rs` - Config validation logic
-- `src/config/filter.rs` - Tool filtering based on config + feature flags
-- `src/config/preset.rs` - Preset definitions (Minimal, Balanced, Full, SecurityFocused)
-- `src/config/editor.rs` - Editor detection from MCP client info
-- `src/config/cli.rs` - Config and tools CLI commands
-- `src/tool_metadata.rs` - Tool metadata registry for all 69 tools
-
-**Modified Files:**
-- `src/mcp.rs` - MCP protocol handler with tool filtering integration
-- `src/main.rs` - Added config loading and CLI commands
-- `Cargo.toml` - Added benchmark targets
-
-### Token Usage Savings
-
-Real-world impact on context window usage:
-
-| Preset | Tools | JSON Size | Tokens | Reduction |
-|--------|-------|-----------|--------|-----------|
-| Minimal | 26 | 18.3 KB | ~4,686 | **61% fewer** |
-| Balanced | 51 | 35.0 KB | ~8,948 | **25% fewer** |
-| Full | 69 | 46.9 KB | ~12,001 | baseline |
-
-**Example:** Using Zed with Minimal preset saves **7,315 tokens** (61%) compared to Full preset!
-
-### Backwards Compatibility
-
-✅ **100% backwards compatible** with v1.0.2:
-- All CLI flags work exactly the same
-- All 69 tools available by default (no config needed)
-- No breaking changes to MCP protocol
-- Existing integrations continue working unchanged
-- Configuration is completely optional
-
-**Migration Path:** No changes required! See [MIGRATION.md](docs/MIGRATION.md) for optional enhancements.
-
-### Fixed
-
-- **Import graph duplicates** (B2): Deduplicated file paths in `get_import_graph` - each file is now processed only once regardless of symbol count
-- **License detection for transitive dependencies** (B3): Added `parse_cargo_lock()` to extract all transitive dependencies with license info; `parse_dependencies()` now prefers Cargo.lock over Cargo.toml
-- **Call graph fuzzy function matching** (B5): Applied `find_function()` fuzzy matching in `to_markdown()` and `get_metrics()` - "scan_repository" now correctly finds "CodeIntelEngine::scan_repository"
-- **Initialization test timeout** (CI): Increased threshold from 500ms to 1000ms for cross-platform CI stability
-- Fixed config.preset being ignored in ToolFilter (production bug)
-- Fixed unused import warnings in `src/tool_handlers/mod.rs` and config modules
-
-### Added
-
-- **4 new languages**: Bash, Ruby, Kotlin, PHP
-  - Bash: `.sh`, `.bash`, `.zsh` - functions, variables
-  - Ruby: `.rb`, `.rake`, `.gemspec` - methods, classes, modules
-  - Kotlin: `.kt`, `.kts` - functions, classes, objects, interfaces
-  - PHP: `.php`, `.phtml` - functions, methods, classes, interfaces, traits
-- **Ready-to-use IDE configuration templates** in `/configs`:
-  - Claude Desktop (`claude-desktop.json`)
-  - Cursor (`.cursor/mcp.json`)
-  - VS Code Copilot (`.vscode/mcp.json`)
-  - Continue.dev (`continue-config.json`)
-- **One-click installer script** (`install.sh`)
-  - Auto-detects platform (macOS/Linux, x86_64/arm64)
-  - Downloads pre-built binary or builds from source
-  - Configures PATH automatically
-  - Detects and shows IDE configuration hints
-- **Security hardening module** (`security_config.rs`)
-  - Secret redaction for tool outputs (API keys, tokens, passwords, private keys)
-  - Max file size limits (default 10MB) to prevent DoS
-  - Sensitive file detection (`.env`, `.pem`, credentials, etc.)
-  - Read-only mode by default
-- **DEPENDENCIES.txt** - List of all dependencies for transparency
-- **Expanded security rules to all 14 supported languages**:
-  - New `rules/bash.yaml` with 5 Bash-specific rules (command injection, temp files, curl TLS, permissions, eval)
-  - 3 Rust rules in `cwe-top25.yaml` (unsafe blocks, unwrap/expect, raw pointers)
-  - 5 Go rules in `owasp-top10.yaml` (SQL injection, TLS, command injection, path traversal, weak crypto)
-  - 5 Java rules (SQL injection, XXE, deserialization, path traversal, LDAP injection)
-  - 5 C# rules (SQL injection, deserialization, XSS, path traversal, LDAP injection)
-  - 5 Ruby rules (SQL injection, command injection, mass assignment, open redirect, ERB XSS)
-  - 5 Kotlin rules (SQL injection, WebView JS, intent handling, hardcoded secrets, insecure random)
-  - 6 PHP rules (SQL injection, command injection, file inclusion, unserialize, XSS, path traversal)
-  - 2 TypeScript rules (any type usage, non-null assertion)
-- **Security test fixtures** for all languages in `test-fixtures/security/`
-  - `vulnerable.sh` - Bash vulnerabilities
-  - `vulnerable.rs` - Rust vulnerabilities
-  - `vulnerable.go` - Go vulnerabilities
-  - `vulnerable.java` - Java vulnerabilities
-  - `vulnerable.cs` - C# vulnerabilities
-  - `vulnerable.rb` - Ruby vulnerabilities
-  - `vulnerable.kt` - Kotlin vulnerabilities
-  - `vulnerable.php` - PHP vulnerabilities
-  - `vulnerable.ts` - TypeScript vulnerabilities
-
-### Changed
-
-- Updated README with competitive comparison table
-- Improved documentation structure with badges and better organization
-- Total security rules increased from ~74 to 111 (50% increase)
-
-## [1.0.0] - 2025-12-23
-
-### Security
-
-- **Fixed 7 path traversal vulnerabilities** (CWE-22) in the following functions:
-  - `trace_taint` - taint analysis endpoint
-  - `suggest_fix` - security fix suggestions
-  - `get_export_map` - module export analysis
-  - `find_semantic_clones` - code clone detection
-  - `infer_types` - type inference
-  - `check_type_errors` - type error checking
-  - `get_typed_taint_flow` - typed taint flow analysis
-
-  All path inputs are now validated using `validate_path()` which performs
-  canonicalization and ensures paths stay within the repository root.
-
-### Changed
-
-- Split `neural` feature into two separate features:
-  - `neural` - TF-IDF vector search and API-based embeddings (stable)
-  - `neural-onnx` - Local ONNX model inference (experimental, requires ort 2.0)
-- Updated ort dependency to 2.0.0-rc.10 with new API compatibility
-
-### Fixed
-
-- Fixed compilation issues with ort 2.0.0-rc.10 API changes:
-  - Updated `OnnxEmbedder` to use `Mutex<Session>` for thread-safe inference
-  - Fixed `try_extract_tensor` return type handling (now returns `(Shape, &[T])`)
-  - Removed deprecated `tensor_dimensions()` call
-  - Fixed `TensorRef::from_array_view` to take owned view instead of reference
-- Fixed usearch save/load to use string paths instead of Path references
-- Added missing `neural_config` field to test configurations
-- Fixed integration test `test_error_invalid_json` that could hang indefinitely
-  - The test now correctly handles JSON-RPC 2.0 spec behavior for malformed input
-
-### Added
-
-- **Test file detection for security scanning**: Added `is_test_file()` function
-  that detects test files across languages (Rust, JS/TS, Python, Go, Java)
-- **`exclude_tests` parameter for `scan_security`**: Security scans now exclude
-  test files by default, reducing false positives from intentional vulnerable
-  test fixtures. Set `exclude_tests: false` to include test files.
-
-## [0.2.0] - 2025-12-22
-
-### Added
-
-- Phase 6: Advanced Features
-  - Merkle tree-based incremental indexing
-  - Cross-language symbol resolution
-  - Fuzzy workspace symbol search
-  - Import/export graph analysis
-
-- Phase 5: Supply Chain Security
-  - SBOM generation (CycloneDX, SPDX formats)
-  - Dependency vulnerability checking via OSV database
-  - License compliance analysis
-  - Upgrade path finder for vulnerable dependencies
-
-- Phase 4: Security Rules Engine
-  - OWASP Top 10 2021 scanning
-  - CWE Top 25 vulnerability detection
-  - Custom YAML security rules support
-  - Fix suggestions for common vulnerabilities
-
-- Phase 3: Taint Analysis
-  - Source-to-sink data flow tracking
-  - SQL injection, XSS, command injection detection
-  - Cross-language taint propagation
-
-### Changed
-
-- Improved control flow graph (CFG) analysis
-- Enhanced dead code detection
-- Better type inference for dynamic languages
-
-## [0.1.0] - 2025-12-20
-
-### Added
+#### Added
 
 - Initial release
-- MCP (Model Context Protocol) server implementation
-- Multi-language parsing (Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#)
+- MCP server implementation
+- Multi-language parsing (9 languages)
 - Symbol extraction and search
-- Full-text code search with BM25 ranking
+- Full-text code search with BM25
 - TF-IDF similarity search
 - Call graph analysis
-- Git integration (blame, history, contributors)
-- LSP integration for precise type info
+- Git integration
+- LSP integration
 - Remote GitHub repository support
+
+---
+
+See [SKILL.md](./SKILL.md) for usage documentation.

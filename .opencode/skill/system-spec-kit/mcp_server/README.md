@@ -1,6 +1,6 @@
 # Spec Kit Memory MCP Server
 
-Context preservation with **spec kit memory**: six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, and checkpoint save/restore. Provides **14 MCP tools** for intelligent memory management. This is a **Native MCP tool** - call it directly.
+Context preservation with **spec kit memory** (v17.1): six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, checkpoint save/restore, and **cognitive memory features** (working memory with HOT/WARM/COLD tiers, turn-based attention decay, spreading co-activation). Provides **14 MCP tools** and **28 library modules** for intelligent memory management. This is a **Native MCP tool** - call it directly.
 
 > **Navigation**:
 > - New to Spec Kit Memory? Start with [Overview](#1--overview)
@@ -16,7 +16,7 @@ Context preservation with **spec kit memory**: six-tier importance system, hybri
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🔧 MCP TOOLS (14)](#2--mcp-tools-14)
-- [3. 📁 LIBRARY MODULES (23)](#3--library-modules-23)
+- [3. 📁 LIBRARY MODULES (28)](#3--library-modules-28)
 - [4. 🔄 FILE WATCHER](#4--file-watcher)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
 - [6. 🚀 INSTALLATION](#6--installation)
@@ -49,6 +49,7 @@ The `mcp_server/` folder is the standalone MCP server implementation for spec ki
 | **Six Importance Tiers** | constitutional/critical/important/normal/temporary/deprecated |
 | **Checkpoints**          | Save/restore memory state for safety                          |
 | **Auto-Indexing**        | Startup scan for automatic indexing (file watcher not yet implemented) |
+| **Auto Memory Surfacing** | SK-004: Automatically surfaces constitutional + triggered memories on tool calls |
 
 ### Constitutional Tier
 
@@ -68,6 +69,175 @@ The **constitutional** tier is the highest importance level, designed for operat
 - User preferences that apply globally
 
 **Reference:** See `specs/005-memory/018-gate3-enforcement/` for implementation example.
+
+### SK-004: Auto Memory Surfacing
+
+The **SK-004 Memory Surface Hook** automatically injects relevant context when memory-aware tools are invoked. This provides bonus context without explicit searching.
+
+| Aspect | Details |
+| ------ | ------- |
+| **Trigger** | Any call to memory-aware tools (see below) |
+| **What surfaces** | Constitutional memories + triggered memories matching query |
+| **Response field** | `auto_surfaced_context` added to tool response |
+| **Cache TTL** | 60 seconds for constitutional memories |
+
+**Memory-Aware Tools:**
+- `memory_search`
+- `memory_match_triggers`
+- `memory_list`
+- `memory_save`
+- `memory_index_scan`
+
+**Response Structure:**
+```json
+{
+  "auto_surfaced_context": {
+    "constitutional": [
+      { "id": 1, "specFolder": "...", "title": "...", "importanceTier": "constitutional" }
+    ],
+    "triggered": [
+      { "memory_id": 5, "spec_folder": "...", "title": "...", "matched_phrases": ["fix", "implement"] }
+    ],
+    "surfaced_at": "2026-01-14T...",
+    "latency_ms": 12
+  }
+}
+```
+
+**Value:** When using memory tools, you automatically get relevant rules and context injected - no explicit search needed.
+
+**Reference:** See `specs/005-hooks/002-hook-analysis/implementation-summary.md` for implementation details.
+
+### v17.1: Cognitive Memory Features
+
+The cognitive memory system (v17.1) implements a biologically-inspired working memory model with attention-based activation, decay, and spreading activation for related memories.
+
+#### Cognitive Memory Flow
+
+When `session_id` and `turn_number` are passed to `memory_match_triggers`:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ 1. DECAY     │ Apply turn-based decay to all working memory     │
+│              │ scores (default rate: 0.80 per turn)             │
+├──────────────┼──────────────────────────────────────────────────┤
+│ 2. MATCH     │ Find memories matching trigger phrases in prompt │
+├──────────────┼──────────────────────────────────────────────────┤
+│ 3. ACTIVATE  │ Set matched memories to attention score = 1.0    │
+├──────────────┼──────────────────────────────────────────────────┤
+│ 4. CO-ACTIVATE │ Boost related memories via spreading activation │
+│              │ (+0.35 boost to semantically related memories)   │
+├──────────────┼──────────────────────────────────────────────────┤
+│ 5. CLASSIFY  │ Assign HOT/WARM/COLD tiers based on score        │
+├──────────────┼──────────────────────────────────────────────────┤
+│ 6. RETURN    │ Tiered content (HOT=full, WARM=summary, COLD=skip)│
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### Tier System
+
+| Tier | Score Range | Content Returned | Max Items |
+| ---- | ----------- | ---------------- | --------- |
+| HOT  | >= 0.8      | Full content     | 5         |
+| WARM | 0.25-0.79   | Summary only     | 10        |
+| COLD | < 0.25      | Not returned     | -         |
+
+#### Configuration
+
+```javascript
+WORKING_MEMORY_CONFIG = {
+  defaultDecayRate: 0.80,      // Multiplied each turn
+  hotThreshold: 0.8,           // Score >= this = HOT
+  warmThreshold: 0.25,         // Score >= this = WARM
+  maxHotMemories: 5,           // Cap on HOT tier returns
+  maxWarmMemories: 10,         // Cap on WARM tier returns
+  coActivationBoost: 0.35      // Added to related memories
+}
+```
+
+**Importance Tier Decay Rates:**
+
+| Category | Tier | Decay Rate | Behavior |
+| -------- | ---- | ---------- | -------- |
+| **Protected** | `constitutional` | 1.0 | Never decays |
+| **Protected** | `critical` | 1.0 | Never decays |
+| **Protected** | `important` | 1.0 | Never decays |
+| **Protected** | `deprecated` | 1.0 | Never decays (but excluded from results) |
+| **Decaying** | `normal` | 0.80 | Standard decay per turn |
+| **Decaying** | `temporary` | 0.60 | Fast decay per turn |
+
+**Note:** Decay rates determine how quickly memories fade from working memory. Protected tiers maintain full attention score indefinitely, while decaying tiers lose relevance over conversation turns.
+
+```javascript
+// Example: After 5 turns with no re-activation
+// normal tier:    1.0 → 0.80 → 0.64 → 0.51 → 0.41 → 0.33
+// temporary tier: 1.0 → 0.60 → 0.36 → 0.22 → 0.13 → 0.08
+```
+
+#### New Parameters for memory_match_triggers
+
+| Parameter          | Type    | Default | Description                                |
+| ------------------ | ------- | ------- | ------------------------------------------ |
+| `session_id`       | string  | -       | Session identifier for cognitive features  |
+| `turn_number`      | number  | 1       | Current conversation turn for decay calc   |
+| `include_cognitive`| boolean | true    | Enable cognitive features when session set |
+
+#### Response Format Changes
+
+When cognitive features are enabled, the response includes a `cognitive` field with processing statistics:
+
+```json
+{
+  "matches": [...],
+  "cognitive": {
+    "decayApplied": true,
+    "memoriesActivated": 3,
+    "coActivations": 7,
+    "tierDistribution": {
+      "hot": 2,
+      "warm": 5,
+      "cold": 12
+    },
+    "sessionId": "session-123",
+    "turnNumber": 5
+  }
+}
+```
+
+#### Feature Flags
+
+| Flag                    | Default | Description                              |
+| ----------------------- | ------- | ---------------------------------------- |
+| `ENABLE_WORKING_MEMORY` | true    | Enable working memory system             |
+| `ENABLE_CO_ACTIVATION`  | true    | Enable spreading activation for related  |
+
+#### Three-Layer Memory Model
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ LAYER 1: WORKING MEMORY (v17.1)                                 │
+│   • Session-scoped attention scores                             │
+│   • Turn-based decay (triggered by memory_match_triggers)       │
+│   • HOT/WARM/COLD tiers for content injection amount            │
+└─────────────────────────────────────────────────────────────────┘
+│ LAYER 2: EPISODIC MEMORY (ENHANCED)                             │
+│   • Semantic + trigger search                                   │
+│   • Related memories via co-activation                          │
+└─────────────────────────────────────────────────────────────────┘
+│ LAYER 3: SEMANTIC MEMORY (BASE)                                 │
+│   • Constitutional tier (always surfaces)                       │
+│   • Long-term storage with vector embeddings                    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### Session Management
+
+| Aspect             | Behavior                                        |
+| ------------------ | ----------------------------------------------- |
+| **Isolation**      | Each session has isolated working memory state  |
+| **Turn Tracking**  | Counter advances on each `memory_match_triggers` call |
+| **Decay Rate**     | 0.80 per turn (configurable via config)         |
+| **Expiration**     | Sessions auto-expire after 1 hour of inactivity |
 
 ### Architecture
 
@@ -189,14 +359,37 @@ Browse stored memories with pagination and filtering.
 
 #### memory_match_triggers
 
-Fast trigger phrase matching (<50ms) without embeddings.
+Fast trigger phrase matching (<50ms) with optional cognitive memory features.
 
-| Parameter | Type   | Default      | Description                                  |
-| --------- | ------ | ------------ | -------------------------------------------- |
-| `prompt`  | string | **Required** | User prompt to match against trigger phrases |
-| `limit`   | number | 3            | Maximum matching memories to return          |
+| Parameter          | Type    | Default      | Description                                              |
+| ------------------ | ------- | ------------ | -------------------------------------------------------- |
+| `prompt`           | string  | **Required** | User prompt to match against trigger phrases             |
+| `limit`            | number  | 3            | Maximum matching memories to return                      |
+| `session_id`       | string  | -            | Session identifier for working memory (v17.1+)           |
+| `turn_number`      | number  | -            | Current turn for decay calculation (v17.1+)              |
+| `include_cognitive`| boolean | false        | Enable cognitive features (decay, co-activation) (v17.1+)|
 
 **Response includes:** `memoryId`, `matchedPhrases[]`, `title`, `importanceWeight`
+
+**Cognitive Response Fields (when `include_cognitive: true`):**
+
+| Field              | Type   | Description                                    |
+| ------------------ | ------ | ---------------------------------------------- |
+| `attention_score`  | number | Current attention score (0.0-1.0)              |
+| `tier`             | string | HOT, WARM, or COLD classification              |
+| `content`          | string | Full content (HOT) or summary (WARM)           |
+| `co_activated`     | array  | Related memories activated by spreading        |
+
+**Example with cognitive features:**
+```typescript
+memory_match_triggers({
+  prompt: "implement authentication",
+  session_id: "session-123",
+  turn_number: 5,
+  include_cognitive: true
+})
+// Returns memories with attention scores, tiers, and co-activated related memories
+```
 
 #### memory_delete
 
@@ -248,7 +441,7 @@ memory_index_scan({ includeConstitutional: false })
 
 ---
 
-## 3. 📁 LIBRARY MODULES (23 TOTAL)
+## 3. 📁 LIBRARY MODULES (28 TOTAL)
 
 ### Core Modules
 
@@ -297,6 +490,16 @@ memory_index_scan({ includeConstitutional: false })
 | `index-refresh.js` | Index refresh and maintenance                   |
 | `retry-manager.js` | Failed embedding retry with exponential backoff |
 | `token-budget.js`  | Token limit enforcement for responses           |
+
+### Cognitive Memory Modules (v17.1)
+
+| Module                | Purpose                                              |
+| --------------------- | ---------------------------------------------------- |
+| `working-memory.js`   | Session-based working memory with attention scores   |
+| `attention-decay.js`  | Turn-based decay mechanics for attention scores      |
+| `tier-classifier.js`  | HOT/WARM/COLD classification based on attention      |
+| `co-activation.js`    | Spreading activation graph for related memories      |
+| `summary-generator.js`| Summary generation for WARM tier content             |
 
 ---
 
@@ -353,6 +556,17 @@ If both locations exist, the project root location takes precedence. A warning i
 | `MEMORY_BASE_PATH`      | CWD                                                             | Workspace root for memory files |
 | `HUGGINGFACE_CACHE`     | `~/.cache/huggingface/`                                         | Model cache directory           |
 | `DEBUG_TRIGGER_MATCHER` | `false`                                                         | Enable verbose trigger logs     |
+
+**Tier Threshold Environment Variables:**
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `HOT_THRESHOLD` | 0.8 | Score threshold for HOT tier (0.0-1.0) |
+| `WARM_THRESHOLD` | 0.25 | Score threshold for WARM tier (0.0-1.0) |
+| `MAX_HOT_MEMORIES` | 5 | Maximum HOT tier memories to return |
+| `MAX_WARM_MEMORIES` | 10 | Maximum WARM tier memories to return |
+
+**Validation:** Invalid values automatically fall back to defaults. `HOT_THRESHOLD` must be greater than `WARM_THRESHOLD`.
 
 ### Database Location
 

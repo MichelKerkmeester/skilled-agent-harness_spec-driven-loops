@@ -1,6 +1,6 @@
 {
-  "_comment": "Search weight configuration for semantic memory v16",
-  "_version": "16.0.0",
+  "_comment": "Search weight configuration for semantic memory v17.1",
+  "_version": "17.1.0",
 
   "hybridSearch": {
     "enabled": true,

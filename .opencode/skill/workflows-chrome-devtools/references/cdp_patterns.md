@@ -17,11 +17,11 @@ Progressive disclosure from discovery to execution - always explore capabilities
 
 ## 2. 📋 PREREQUISITES
 
-**Foundation:** Follow session management basics from SKILL.md Section 4 for all CDP operations:
+**Foundation:** Follow session management basics from SKILL.md Section 3 for all CDP operations:
 - **Installation Verification**: Check `command -v bdg` before first use
 - **Session Lifecycle**: Start → Verify → Execute → Stop pattern
 - **Error Handling**: Always use `2>&1` for stderr capture
-- See [../SKILL.md](../SKILL.md) Section 4 for core workflows
+- See [../SKILL.md](../SKILL.md) Section 3 for core workflows
 
 **Platform Requirements**:
 - macOS: Native support

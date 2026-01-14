@@ -95,7 +95,7 @@ text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 ### Minification & CDN Deployment
 
-See: [minification_guide.md](./minification_guide.md) and [cdn_deployment.md](./cdn_deployment.md)
+See: [minification_guide.md](../deployment/minification_guide.md) and [cdn_deployment.md](../deployment/cdn_deployment.md)
 
 ```bash
 # Quick workflow:
@@ -161,7 +161,7 @@ if (!email_regex.test(email)) throw new Error('Invalid email');
 
 ### Performance Debugging
 
-See: [debugging_workflows.md](./debugging_workflows.md#4-🔍-performance-debugging)
+See: [debugging_workflows.md](../debugging/debugging_workflows.md#4-🔍-performance-debugging)
 
 ```markdown
 Chrome DevTools → Performance tab
@@ -377,13 +377,13 @@ const userId = validate(input, 'string', 'anonymous');
 ## 8. 🔗 RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](./implementation_workflows.md) - Phase 1 workflows for condition-based waiting, validation, and CDN versioning
+- [implementation_workflows.md](../implementation/implementation_workflows.md) - Phase 1 workflows for condition-based waiting, validation, and CDN versioning
 - [animation_workflows.md](../implementation/animation_workflows.md) - Animation implementation guide for CSS and Motion.dev
 - [webflow_patterns.md](./webflow_patterns.md) - Webflow platform patterns for collection lists and async rendering
 - [performance_patterns.md](./performance_patterns.md) - Performance optimization checklist for animations, assets, and requests
 - [security_patterns.md](./security_patterns.md) - OWASP security patterns for input validation and XSS prevention
-- [debugging_workflows.md](./debugging_workflows.md) - Phase 2 workflows for systematic debugging
-- [verification_workflows.md](./verification_workflows.md) - Phase 3 workflows for browser testing (MANDATORY)
+- [debugging_workflows.md](../debugging/debugging_workflows.md) - Phase 2 workflows for systematic debugging
+- [verification_workflows.md](../verification/verification_workflows.md) - Phase 3 workflows for browser testing (MANDATORY)
 - [code_quality_standards.md](./code_quality_standards.md) - Naming conventions, initialization patterns, and standards
 - [shared_patterns.md](./shared_patterns.md) - DevTools, logging, and testing utilities
 

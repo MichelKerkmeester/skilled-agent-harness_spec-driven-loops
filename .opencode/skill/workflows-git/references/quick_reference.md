@@ -417,35 +417,35 @@ refactor: restructure validation layer
 **Pull Requests**:
 ```javascript
 // List open PRs
-call_tool_chain(`github.github_list_pull_requests({ owner: 'o', repo: 'r', state: 'open' })`)
+call_tool_chain(`github.github.list_pull_requests({ owner: 'o', repo: 'r', state: 'open' })`)
 
 // Create PR
-call_tool_chain(`github.github_create_pull_request({
+call_tool_chain(`github.github.create_pull_request({
   owner: 'o', repo: 'r', title: 'feat: add X', head: 'branch', base: 'main', body: 'Description'
 })`)
 
 // Merge PR
-call_tool_chain(`github.github_merge_pull_request({ owner: 'o', repo: 'r', pull_number: 42 })`)
+call_tool_chain(`github.github.merge_pull_request({ owner: 'o', repo: 'r', pull_number: 42 })`)
 ```
 
 **Issues**:
 ```javascript
 // Create issue
-call_tool_chain(`github.github_create_issue({
+call_tool_chain(`github.github.create_issue({
   owner: 'o', repo: 'r', title: 'Bug: X fails', body: 'Steps to reproduce...'
 })`)
 
 // Search issues
-call_tool_chain(`github.github_search_issues({ q: 'repo:o/r is:issue is:open label:bug' })`)
+call_tool_chain(`github.github.search_issues({ q: 'repo:o/r is:issue is:open label:bug' })`)
 ```
 
 **CI/CD**:
 ```javascript
 // Check workflow status
-call_tool_chain(`github.github_list_workflow_runs({ owner: 'o', repo: 'r', branch: 'main' })`)
+call_tool_chain(`github.github.list_workflow_runs({ owner: 'o', repo: 'r', branch: 'main' })`)
 
 // Get job logs
-call_tool_chain(`github.github_get_job_logs({ owner: 'o', repo: 'r', job_id: 123 })`)
+call_tool_chain(`github.github.get_job_logs({ owner: 'o', repo: 'r', job_id: 123 })`)
 ```
 
 ### Decision Guide

@@ -81,6 +81,12 @@ The result? Six months from now, you'll know exactly why you made that architect
 - Prerequisite checking catches missing files before you hit errors
 - Completeness scoring (0-100%) tells you exactly when a spec is "done"
 
+**Cognitive Memory** *(v17.1)*:
+- Attention decay fades stale context per turn
+- Tiered content loading (HOT/WARM/COLD)
+- Co-activation surfaces related memories together
+- Session-scoped working memory
+
 **Quality Enforcement**:
 - Integration with `validate-spec-final.sh` script
 - Template adaptation validation
@@ -167,9 +173,9 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   ├── templates/                        # Template guides and specifications
 │   ├── validation/                       # Validation rules and checklists
 │   └── workflows/                        # Workflow execution guides
-├── mcp_server/                           # Spec Kit Memory MCP (v16.0 integrated)
+├── mcp_server/                           # Spec Kit Memory MCP (v17.1 cognitive)
 │   ├── context-server.js                 # MCP server with vector search
-│   ├── lib/                              # Server libraries
+│   ├── lib/                              # Server libraries (28+ modules)
 │   ├── configs/                          # Server configuration
 │   └── README.md                         # MCP installation guide
 ├── database/
@@ -250,11 +256,12 @@ The `memory/` folder stores **conversation context and session history** for AI 
 - Files follow naming pattern: `DD-MM-YY_HH-MM__topic-name.md`
 - Auto-indexed into semantic memory database on save
 
-**V16.0 Architecture (Merged Memory System):**
+**V17.1 Architecture (Cognitive Memory System):**
 - Memory saves MUST use `generate-context.js` (Gate 5 enforces this)
 - Project state is embedded IN memory files (no separate STATE.md)
 - No .spec-skip or .spec-active markers needed
 - Spec Kit Memory MCP is now integrated into this skill (was separate `system-memory`)
+- Cognitive features: attention decay, tiered content (HOT/WARM/COLD), co-activation
 
 **Integrated Components:**
 | Component      | Location                        | Purpose                            |
@@ -1301,9 +1308,9 @@ specs/122-skill-standardization/
         └── 07-12-25_14-30__context.md
 ```
 
-### 7.4 Context Save (V13.0 Architecture)
+### 7.4 Context Save (V17.1 Architecture)
 
-> **V13.0 Change**: Memory saves MUST use `generate-context.js`. Manual file creation is blocked by Gate 5.
+> **V17.1**: Memory saves MUST use `generate-context.js`. Manual file creation is blocked by Gate 5. Cognitive memory features now provide attention decay and tiered content loading.
 
 Context preservation uses the `/memory:save` command or "save context" trigger phrase. The system:
 1. Dispatches sub-agent via Task tool to gather context (for complex sessions)
@@ -1455,6 +1462,37 @@ The memory system supports multiple embedding providers:
 - Override with `EMBEDDINGS_PROVIDER=hf-local` to force local
 
 See [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md) for technical details on the factory pattern and DB-per-profile architecture.
+
+### 8.7 Cognitive Memory (v17.1)
+
+The memory system now includes cognitive features for smarter context surfacing:
+
+| Feature | Description |
+|---------|-------------|
+| **Attention Decay** | Memory scores decay per turn (stale context fades) |
+| **Tiered Content** | HOT=full, WARM=summary, COLD=excluded |
+| **Co-Activation** | Related memories surface together |
+| **Working Memory** | Session-scoped context that persists within a conversation |
+
+**Usage**: Pass `session_id` and `turn_number` to `memory_match_triggers` to enable cognitive features.
+
+**How it works:**
+1. Each memory tracks when it was last accessed
+2. Decay rate applies per conversation turn (configurable)
+3. HOT memories (recently accessed, high relevance) return full content
+4. WARM memories return summaries to save tokens
+5. COLD memories are excluded from results but preserved in database
+6. Co-activation links related memories so they surface together
+
+**Configuration:**
+```javascript
+// Enable cognitive features in memory_match_triggers
+memory_match_triggers({
+  prompt: "user query here",
+  session_id: "unique-session-id",
+  turn_number: 5  // Current turn in conversation
+})
+```
 
 ---
 
@@ -1933,3 +1971,5 @@ This fork exists because documentation shouldn't be a tax on productivity—it s
 **Automation over discipline.** Humans forget to document. Scripts don't. Every manual step that could be automated has been automated.
 
 **Stateless by design.** V13.0 eliminated all marker files (.spec-skip, .spec-active, STATE.md) because they created more problems than they solved. Project state lives in memory files where it belongs—searchable, versionable, and actually useful.
+
+**Cognitive by V17.1.** Memory now behaves more like human memory: recently accessed context stays hot, stale context fades, and related memories surface together through co-activation.

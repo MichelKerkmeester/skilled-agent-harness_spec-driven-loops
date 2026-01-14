@@ -99,8 +99,8 @@ performance-baselines/
 - Performance monitoring over time
 
 **Workflow integration:**
-- See: `.opencode/skill/workflows-code/references/debugging_workflows.md` (Section 7)
-- See: `.opencode/skill/workflows-code/references/performance_patterns.md` (Section 3)
+- See: `.opencode/skill/workflows-code/references/debugging/debugging_workflows.md` (Section 7)
+- See: `.opencode/skill/workflows-code/references/implementation/performance_patterns.md` (Section 3)
 
 ---
 
@@ -148,7 +148,7 @@ animation-tests/
 - CI/CD animation checks
 
 **Workflow integration:**
-- See: `.opencode/skill/workflows-code/references/animation_workflows.md` (Section 6)
+- See: `.opencode/skill/workflows-code/references/implementation/animation_workflows.md` (Section 6)
 
 ---
 
@@ -206,8 +206,8 @@ viewport-tests/20241127-143022/
 - Visual regression across viewports
 
 **Workflow integration:**
-- See: `.opencode/skill/workflows-code/references/verification_workflows.md` (Section 2)
-- See: `.opencode/skill/workflows-code/references/animation_workflows.md` (Multi-Viewport Testing)
+- See: `.opencode/skill/workflows-code/references/verification/verification_workflows.md` (Section 2)
+- See: `.opencode/skill/workflows-code/references/implementation/animation_workflows.md` (Multi-Viewport Testing)
 
 ---
 

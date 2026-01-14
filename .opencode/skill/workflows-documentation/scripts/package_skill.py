@@ -46,14 +46,21 @@ RECOMMENDED_FRONTMATTER_FIELDS = ['version']
 # Note: HOW IT WORKS and HOW TO USE are treated as equivalent
 REQUIRED_SECTIONS = [
     'WHEN TO USE',
+    'SMART ROUTING',  # Section 2 per skill_creation.md
     'HOW IT WORKS',  # Also accepts 'HOW TO USE'
     'RULES',
+    'REFERENCES',  # Section 3 per skill_creation.md (can be combined with SMART ROUTING)
 ]
 
 # Alternative section names (for flexible matching)
+# REFERENCES can be part of "SMART ROUTING & REFERENCES" combined header
 SECTION_ALIASES = {
     'HOW IT WORKS': ['HOW IT WORKS', 'HOW TO USE'],
+    'REFERENCES': ['REFERENCES', 'SMART ROUTING & REFERENCES'],
+    'SMART ROUTING': ['SMART ROUTING', 'SMART ROUTING & REFERENCES'],
 }
+
+
 
 # Recommended sections (warning if missing)
 RECOMMENDED_SECTIONS = [
