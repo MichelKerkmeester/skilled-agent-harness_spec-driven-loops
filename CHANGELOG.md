@@ -7,6 +7,27 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.3.5**] - 2026-01-15
+
+### Fixed
+- **Missing cognitive module files**: Force-added 5 lib files blocked by global gitignore
+  - `attention-decay.js`, `co-activation.js`, `tier-classifier.js`, `working-memory.js`, `summary-generator.js`
+- **Test suite created**: Added 226 comprehensive tests for cognitive memory modules
+  - `attention-decay.test.js` (46 tests)
+  - `working-memory.test.js` (51 tests)
+  - `tier-classifier.test.js` (39 tests)
+  - `co-activation.test.js` (38 tests)
+  - `summary-generator.test.js` (52 tests)
+- **Documentation inconsistencies**: Aligned decay rate documentation (0.80/turn for normal, 0.60/turn for temporary)
+- **CHANGELOG accuracy**: Corrected inflated test count claims from v1.0.3.4
+- **Bug fix**: `flushAccessCounts` → `flush_access_counts` (snake_case alignment)
+- **Gitignore**: Added `.opencode/` exception to prevent future missing file issues
+
+### Changed
+- Updated `.gitignore` to override global gitignore pattern for `.opencode/` directory
+
+---
+
 ## [**1.0.3.4**] - 2026-01-14
 
 Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware memory system introduced in v17.0. Additionally, a comprehensive audit of 4 workflow skills resolved 9 critical bugs, 13 misalignments, and 18 warnings across 13 files.
