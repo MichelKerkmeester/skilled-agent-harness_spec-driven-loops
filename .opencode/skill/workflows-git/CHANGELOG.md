@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.5.0] - 2026-01-14
 
+*Environment version: 1.0.3.4*
+
 ### Added
 - Git workflow orchestrator for complete development lifecycle
 - Workspace setup guidance via git-worktrees
