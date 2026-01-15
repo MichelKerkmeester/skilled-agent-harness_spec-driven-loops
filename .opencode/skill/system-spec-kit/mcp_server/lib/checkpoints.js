@@ -64,7 +64,7 @@ function get_git_branch() {
  * @param {Object} options - Options
  * @param {string} [options.specFolder] - Limit to specific spec folder
  * @param {Object} [options.metadata] - Additional metadata to store
- * @param {boolean} [options.includeWorkingMemory=false] - Include working_memory state (v17.1)
+ * @param {boolean} [options.includeWorkingMemory=false] - Include working_memory state (v1.7.1)
  * @param {string} [options.sessionId] - Session ID to backup (required if includeWorkingMemory)
  */
 function create_checkpoint(name, options = {}) {
@@ -133,7 +133,7 @@ function create_checkpoint(name, options = {}) {
   // Get current embedding dimension for metadata
   const current_embedding_dim = getEmbeddingDimension();
 
-  // v17.1: Optionally backup working_memory state (CHK031)
+  // v1.7.1: Optionally backup working_memory state (CHK031)
   let workingMemorySnapshot = [];
   if (includeWorkingMemory) {
     try {
@@ -161,15 +161,15 @@ function create_checkpoint(name, options = {}) {
   const snapshot = {
     memories,
     embeddings,
-    workingMemory: workingMemorySnapshot, // v17.1
+    workingMemory: workingMemorySnapshot, // v1.7.1
     metadata: {
       ...metadata,
       createdAt: new Date().toISOString(),
       memoryCount: memories.length,
       embeddingCount: embeddings.length,
       embeddingDimension: current_embedding_dim, // Store dimension for restore validation
-      workingMemoryCount: workingMemorySnapshot.length, // v17.1
-      sessionId: sessionId, // v17.1
+      workingMemoryCount: workingMemorySnapshot.length, // v1.7.1
+      sessionId: sessionId, // v1.7.1
     },
   };
 
@@ -313,7 +313,7 @@ function get_checkpoint(name) {
  * @param {Object} options - Options
  * @param {boolean} [options.clearExisting=false] - Clear existing memories before restore
  * @param {boolean} [options.reinsertMemories=true] - Re-insert memories from snapshot
- * @param {boolean} [options.includeWorkingMemory=false] - Restore working_memory state (v17.1)
+ * @param {boolean} [options.includeWorkingMemory=false] - Restore working_memory state (v1.7.1)
  * @param {string} [options.sessionId] - Session ID to restore to (uses snapshot sessionId if not specified)
  */
 function restore_checkpoint(name, options = {}) {
@@ -349,7 +349,7 @@ function restore_checkpoint(name, options = {}) {
   const is_new_format = snapshot && typeof snapshot === 'object' && Array.isArray(snapshot.memories);
   const memories = is_new_format ? snapshot.memories : snapshot;
   const snapshot_embeddings = is_new_format ? (snapshot.embeddings || []) : [];
-  const snapshot_working_memory = is_new_format ? (snapshot.workingMemory || []) : []; // v17.1
+  const snapshot_working_memory = is_new_format ? (snapshot.workingMemory || []) : []; // v1.7.1
   const snapshot_session_id = is_new_format && snapshot.metadata ? snapshot.metadata.sessionId : null;
 
   // Build old ID -> embedding mapping for restoration
@@ -571,7 +571,7 @@ function restore_checkpoint(name, options = {}) {
       }
     }
 
-    // v17.1: Restore working_memory state (CHK031)
+    // v1.7.1: Restore working_memory state (CHK031)
     let workingMemoryRestored = 0;
     if (include_working_memory && snapshot_working_memory.length > 0) {
       try {
@@ -690,7 +690,7 @@ function restore_checkpoint(name, options = {}) {
     note = 'Embeddings could not be restored. Run memory_index_scan to regenerate embeddings.';
   }
 
-  // v17.1: Add working_memory info to note if applicable
+  // v1.7.1: Add working_memory info to note if applicable
   if (result.workingMemoryRestored > 0) {
     note += ` Working memory: ${result.workingMemoryRestored}/${result.workingMemoryInSnapshot} entries restored.`;
   }

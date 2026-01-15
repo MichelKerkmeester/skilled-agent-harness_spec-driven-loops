@@ -183,7 +183,7 @@ For consistent exact matching, use the full spec folder name.
 
 Memories decay over time to prioritize recent context:
 
-### Tier-Specific Decay Rates (v17.1)
+### Tier-Specific Decay Rates (v1.7.1)
 
 | Tier | Decay Rate | Behavior |
 |------|------------|----------|

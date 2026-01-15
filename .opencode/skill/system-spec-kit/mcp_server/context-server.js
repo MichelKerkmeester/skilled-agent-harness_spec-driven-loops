@@ -12,7 +12,7 @@
 // - memory_match_triggers: Fast trigger phrase matching
 // - checkpoint_create/list/restore/delete: Memory state checkpointing
 //
-// @version 17.1.0 - Cognitive Memory Features
+// @version 1.7.1 - Cognitive Memory Features
 // @module system-spec-kit/context-server
 // 
 // Logging conventions:
@@ -54,7 +54,7 @@ const memoryParser = require(path.join(LIB_DIR, 'memory-parser.js'));
 const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
 const { validate_file_path: validateFilePath } = require('../shared/utils');
 
-// Cognitive Memory Modules (v17.1)
+// Cognitive Memory Modules (v1.7.1)
 const workingMemory = require(path.join(LIB_DIR, 'working-memory.js'));
 const attentionDecay = require(path.join(LIB_DIR, 'attention-decay.js'));
 const tierClassifier = require(path.join(LIB_DIR, 'tier-classifier.js'));
@@ -62,7 +62,7 @@ const coActivation = require(path.join(LIB_DIR, 'co-activation.js'));
 const summaryGenerator = require(path.join(LIB_DIR, 'summary-generator.js'));
 
 /* ───────────────────────────────────────────────────────────────
-   TOKEN METRICS UTILITIES (v17.1)
+   TOKEN METRICS UTILITIES (v1.7.1)
    Estimate token counts for measuring cognitive memory efficiency
    ─────────────────────────────────────────────────────────────── */
 
@@ -573,7 +573,7 @@ function validateInputLengths(args) {
 const server = new Server(
   {
     name: 'context-server',
-    version: '17.1.0'
+    version: '1.7.1'
   },
   {
     capabilities: {
@@ -1236,12 +1236,12 @@ async function formatSearchResults(results, searchType, includeContent = false) 
 }
 
 /* ───────────────────────────────────────────────────────────────
-   13. TRIGGER MATCHING HANDLER (v17.1 - Cognitive Features)
+   13. TRIGGER MATCHING HANDLER (v1.7.1 - Cognitive Features)
    ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_match_triggers tool - fast phrase matching with cognitive features
- * v17.1: Adds attention decay, tiered content injection, and co-activation
+ * v1.7.1: Adds attention decay, tiered content injection, and co-activation
  *
  * Cognitive Flow (when session_id provided):
  * 1. DECAY: Apply turn-based decay to all working memory scores
@@ -1820,7 +1820,7 @@ async function handleMemoryHealth(args) {
     vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
     memoryCount,
     uptime: process.uptime(),
-    version: '17.1.0',
+    version: '1.7.1',
     // V12.0: Embedding provider info
     embeddingProvider: {
       provider: providerMetadata.provider,
@@ -2539,7 +2539,7 @@ async function main() {
     hybridSearch.init(vectorIndex.getDb(), vectorIndex.vectorSearch);
     console.error('[context-server] Checkpoints, access tracker, and hybrid search initialized');
 
-    // v17.1: Initialize cognitive memory modules
+    // v1.7.1: Initialize cognitive memory modules
     const database = vectorIndex.getDb();
     try {
       workingMemory.init(database);

@@ -1,6 +1,6 @@
 {
   "name": "@spec-kit/scripts",
-  "version": "17.1.0",
+  "version": "1.7.1",
   "description": "CLI tools for spec-kit context generation and memory management",
   "type": "commonjs",
   "main": "generate-context.js",

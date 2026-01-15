@@ -1,6 +1,6 @@
 # Spec Kit Memory MCP Server
 
-Context preservation with **spec kit memory** (v17.1): six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, checkpoint save/restore, and **cognitive memory features** (working memory with HOT/WARM/COLD tiers, turn-based attention decay, spreading co-activation). Provides **14 MCP tools** and **28 library modules** for intelligent memory management. This is a **Native MCP tool** - call it directly.
+Context preservation with **spec kit memory** (v1.7.1): six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, checkpoint save/restore, and **cognitive memory features** (working memory with HOT/WARM/COLD tiers, turn-based attention decay, spreading co-activation). Provides **14 MCP tools** and **28 library modules** for intelligent memory management. This is a **Native MCP tool** - call it directly.
 
 > **Navigation**:
 > - New to Spec Kit Memory? Start with [Overview](#1--overview)
@@ -108,9 +108,9 @@ The **SK-004 Memory Surface Hook** automatically injects relevant context when m
 
 **Reference:** See `specs/005-hooks/002-hook-analysis/implementation-summary.md` for implementation details.
 
-### v17.1: Cognitive Memory Features
+### v1.7.1: Cognitive Memory Features
 
-The cognitive memory system (v17.1) implements a biologically-inspired working memory model with attention-based activation, decay, and spreading activation for related memories.
+The cognitive memory system (v1.7.1) implements a biologically-inspired working memory model with attention-based activation, decay, and spreading activation for related memories.
 
 #### Cognitive Memory Flow
 
@@ -215,7 +215,7 @@ When cognitive features are enabled, the response includes a `cognitive` field w
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│ LAYER 1: WORKING MEMORY (v17.1)                                 │
+│ LAYER 1: WORKING MEMORY (v1.7.1)                                 │
 │   • Session-scoped attention scores                             │
 │   • Turn-based decay (triggered by memory_match_triggers)       │
 │   • HOT/WARM/COLD tiers for content injection amount            │
@@ -365,9 +365,9 @@ Fast trigger phrase matching (<50ms) with optional cognitive memory features.
 | ------------------ | ------- | ------------ | -------------------------------------------------------- |
 | `prompt`           | string  | **Required** | User prompt to match against trigger phrases             |
 | `limit`            | number  | 3            | Maximum matching memories to return                      |
-| `session_id`       | string  | -            | Session identifier for working memory (v17.1+)           |
-| `turn_number`      | number  | -            | Current turn for decay calculation (v17.1+)              |
-| `include_cognitive`| boolean | false        | Enable cognitive features (decay, co-activation) (v17.1+)|
+| `session_id`       | string  | -            | Session identifier for working memory (v1.7.1+)           |
+| `turn_number`      | number  | -            | Current turn for decay calculation (v1.7.1+)              |
+| `include_cognitive`| boolean | false        | Enable cognitive features (decay, co-activation) (v1.7.1+)|
 
 **Response includes:** `memoryId`, `matchedPhrases[]`, `title`, `importanceWeight`
 
@@ -491,7 +491,7 @@ memory_index_scan({ includeConstitutional: false })
 | `retry-manager.js` | Failed embedding retry with exponential backoff |
 | `token-budget.js`  | Token limit enforcement for responses           |
 
-### Cognitive Memory Modules (v17.1)
+### Cognitive Memory Modules (v1.7.1)
 
 | Module                | Purpose                                              |
 | --------------------- | ---------------------------------------------------- |

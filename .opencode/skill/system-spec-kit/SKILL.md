@@ -2,10 +2,10 @@
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3), template enforcement, validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
-version: 17.1.0
+version: 1.7.1
 ---
 
-> **Version Note:** The version number (17.1.0) tracks the skill's evolution including documentation, templates, scripts, and MCP server. All package.json files are aligned to this version.
+> **Version Note:** The version number (1.7.1) tracks the skill's evolution including documentation, templates, scripts, and MCP server. All package.json files are aligned to this version.
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
 
@@ -113,7 +113,7 @@ User Request
 | "restore checkpoint", "rollback" | Restore from checkpoint | `spec_kit_memory_checkpoint_restore()` |
 | Gate enforcement (any file modification) | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()` |
 
-### Cognitive Memory Features (v17.1)
+### Cognitive Memory Features (v1.7.1)
 
 The `memory_match_triggers()` tool includes cognitive memory features for smarter context management. See [mcp_server/README.md](./mcp_server/README.md#cognitive-memory-v170) for full implementation details.
 
@@ -150,7 +150,7 @@ Gate 1 triggers → DECAY → MATCH → ACTIVATE → CO-ACTIVATE → CLASSIFY �
 | `turn_number` | number | — | Current turn for decay calculation |
 | `include_cognitive` | boolean | `false` | Enable cognitive features (decay, co-activation) |
 
-**New Library Modules (v17.1):**
+**New Library Modules (v1.7.1):**
 - `working-memory.js` - Session-based working memory with attention scores
 - `attention-decay.js` - Turn-based decay mechanics
 - `tier-classifier.js` - HOT/WARM/COLD classification

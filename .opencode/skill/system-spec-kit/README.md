@@ -81,7 +81,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 - Prerequisite checking catches missing files before you hit errors
 - Completeness scoring (0-100%) tells you exactly when a spec is "done"
 
-**Cognitive Memory** *(v17.1)*:
+**Cognitive Memory** *(v1.7.1)*:
 - Attention decay fades stale context per turn
 - Tiered content loading (HOT/WARM/COLD)
 - Co-activation surfaces related memories together
@@ -173,7 +173,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   ├── templates/                        # Template guides and specifications
 │   ├── validation/                       # Validation rules and checklists
 │   └── workflows/                        # Workflow execution guides
-├── mcp_server/                           # Spec Kit Memory MCP (v17.1 cognitive)
+├── mcp_server/                           # Spec Kit Memory MCP (v1.7.1 cognitive)
 │   ├── context-server.js                 # MCP server with vector search
 │   ├── lib/                              # Server libraries (28+ modules)
 │   ├── configs/                          # Server configuration
@@ -1463,7 +1463,7 @@ The memory system supports multiple embedding providers:
 
 See [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md) for technical details on the factory pattern and DB-per-profile architecture.
 
-### 8.7 Cognitive Memory (v17.1)
+### 8.7 Cognitive Memory (v1.7.1)
 
 The memory system now includes cognitive features for smarter context surfacing:
 
