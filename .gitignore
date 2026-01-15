@@ -1,6 +1,14 @@
 # Git Ignore Configuration
 # Specifies intentionally untracked files that Git should ignore
 
+# ===========================================
+# CRITICAL: Override global gitignore
+# ===========================================
+# The global ~/.gitignore_global ignores /.opencode/ for symlinked repos.
+# But THIS repo is the SOURCE of .opencode/ content - it MUST be tracked.
+# The negation pattern below overrides the global ignore.
+!.opencode/
+
 .DS_Store
 
 # Development
