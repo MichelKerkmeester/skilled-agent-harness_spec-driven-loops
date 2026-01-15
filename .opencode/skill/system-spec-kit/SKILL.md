@@ -122,7 +122,7 @@ The `memory_match_triggers()` tool includes cognitive memory features for smarte
 Gate 1 triggers → DECAY → MATCH → ACTIVATE → CO-ACTIVATE → CLASSIFY → RETURN
 ```
 
-1. **DECAY**: Apply turn-based decay to all working memory (rate: 0.15/turn)
+1. **DECAY**: Apply turn-based decay to all working memory (retention rate: 0.80/turn)
 2. **MATCH**: Find memories matching trigger phrases
 3. **ACTIVATE**: Set matched memories to score = 1.0
 4. **CO-ACTIVATE**: Boost related memories (+0.35)
@@ -138,7 +138,7 @@ Gate 1 triggers → DECAY → MATCH → ACTIVATE → CO-ACTIVATE → CLASSIFY �
 | **COLD** | < 0.25 | Not returned |
 
 **Key Behaviors:**
-- **Decay rates by tier:** Constitutional, critical, important, and deprecated tiers have decay rate = 1.0 (no decay). Only normal and temporary tiers decay (rate = 0.15/turn).
+- **Decay rates by tier:** Constitutional, critical, important, and deprecated tiers have decay rate = 1.0 (no decay). Only normal and temporary tiers decay (normal = 0.80/turn, temporary = 0.60/turn).
 - Each session has isolated working memory state
 - Sessions auto-expire after 1 hour of inactivity
 

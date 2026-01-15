@@ -9,7 +9,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ## [**1.0.3.4**] - 2026-01-14
 
-Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware memory system introduced in v17.0. Additionally, a comprehensive audit of 4 workflow skills resolved 9 critical bugs, 13 misalignments, and 18 warnings across 13 files. Test coverage expanded from 59 to 116 tests (+97%).
+Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware memory system introduced in v17.0. Additionally, a comprehensive audit of 4 workflow skills resolved 9 critical bugs, 13 misalignments, and 18 warnings across 13 files.
 
 ---
 
@@ -75,15 +75,15 @@ Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware mem
 ---
 
 **Added**
-1. 57 new tests covering all cognitive memory scenarios (+97% coverage).
-2. Edge case tests for malformed inputs and boundary conditions.
-3. Integration tests for multi-tool workflows.
+1. Five cognitive memory modules for session-aware memory management.
+2. Working memory with HOT/WARM/COLD tier classification.
+3. Turn-based attention decay with configurable rates per importance tier.
+4. Co-activation system for related memory boosting.
 
 ---
 
 **Changed**
 1. All package versions updated to 17.1.0 for consistency.
-2. Test organization grouped by feature (decay, triggers, search, cognitive).
 
 ---
 
@@ -97,7 +97,7 @@ Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware mem
 ---
 
 **Upgrade**
-No action required. Pull latest to get bug fixes and improved test coverage.
+No action required. Pull latest to get bug fixes and cognitive memory improvements.
 
 **Full Changelog**: [v1.0.3.3...v1.0.3.4](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.3...v1.0.3.4)
 

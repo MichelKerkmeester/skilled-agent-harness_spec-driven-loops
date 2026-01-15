@@ -2444,7 +2444,7 @@ process.on('SIGTERM', () => {
   if (shuttingDown) return;
   shuttingDown = true;
   console.error('[context-server] Received SIGTERM, shutting down...');
-  accessTracker.flushAccessCounts();
+  accessTracker.flush_access_counts();
   vectorIndex.closeDb();
   process.exit(0);
 });
@@ -2453,7 +2453,7 @@ process.on('SIGINT', () => {
   if (shuttingDown) return;
   shuttingDown = true;
   console.error('[context-server] Received SIGINT, shutting down...');
-  accessTracker.flushAccessCounts();
+  accessTracker.flush_access_counts();
   vectorIndex.closeDb();
   process.exit(0);
 });
@@ -2466,7 +2466,7 @@ process.on('uncaughtException', (err) => {
   console.error('[context-server] Uncaught exception:', err);
   // Attempt graceful cleanup
   try {
-    accessTracker.flushAccessCounts();
+    accessTracker.flush_access_counts();
     vectorIndex.closeDb();
   } catch (e) {
     console.error('[context-server] Cleanup failed:', e);
