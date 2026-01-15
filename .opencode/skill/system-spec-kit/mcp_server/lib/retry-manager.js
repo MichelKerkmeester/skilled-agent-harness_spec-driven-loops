@@ -226,6 +226,10 @@ function increment_retry_count(id, reason) {
 // Mark a memory as permanently failed
 function mark_as_failed(id, reason) {
   const db = vector_index.get_db();
+  if (!db) {
+    console.warn('[retry-manager] Database not initialized, cannot mark as failed');
+    return;
+  }
   const now = new Date().toISOString();
 
   db.prepare(`

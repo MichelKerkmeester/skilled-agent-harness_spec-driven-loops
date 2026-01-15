@@ -9,12 +9,18 @@ const { EmbeddingProfile } = require('../profile');
    1. CONFIGURATION
    ─────────────────────────────────────────────────────────────── */
 
-const DEFAULT_MODEL = 'voyage-3.5';
+const DEFAULT_MODEL = 'voyage-4';
 const DEFAULT_DIM = 1024;
 const DEFAULT_BASE_URL = 'https://api.voyageai.com/v1';
 const REQUEST_TIMEOUT = 30000;
 
 const MODEL_DIMENSIONS = {
+  // Voyage 4 family (Shared embedding space)
+  'voyage-4-large': 1024, // Supports 256/512/1024/2048 - default to 1024 for compat
+  'voyage-4': 1024,       // Supports 256/512/1024/2048
+  'voyage-4-lite': 1024,  // Supports 256/512/1024/2048
+  
+  // Voyage 3 family
   'voyage-3.5': 1024,
   'voyage-3.5-lite': 1024,
   'voyage-3-large': 1024,
@@ -206,7 +212,9 @@ class VoyageProvider {
     return {
       request_count: this.request_count,
       total_tokens: this.total_tokens,
-      // voyage-3.5 pricing: $0.06 per 1M tokens
+      // voyage-4 pricing: $0.06 per 1M tokens (same as 3.5)
+      // voyage-4-lite: $0.03 per 1M tokens
+      // voyage-4-large: $0.12 per 1M tokens
       estimated_cost: this.total_tokens * 0.00006,
     };
   }

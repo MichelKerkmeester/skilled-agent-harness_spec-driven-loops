@@ -4,6 +4,7 @@
 
 'use strict';
 
+const os = require('os');
 const { extractTriggerPhrases } = require('./trigger-extractor');
 
 /* ─────────────────────────────────────────────────────────────
@@ -466,7 +467,7 @@ function generate_implementation_summary(messages, observations = []) {
 
   for (const [path, info] of file_changes) {
     const entry = {
-      path: path.replace(/^\/Users\/[^/]+\/[^/]+\/[^/]+\/[^/]+\//, ''),
+      path: path.replace(new RegExp(`^${os.homedir().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/[^/]+/`), ''),
       description: info.description,
     };
 

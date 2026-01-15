@@ -120,19 +120,55 @@ function reset() {
    7. PROCESS EXIT HANDLERS
    ─────────────────────────────────────────────────────────────── */
 
-process.on('exit', () => {
-  try { flush_access_counts(); } catch (e) {
-    console.error('[access-tracker] Error flushing on exit:', e.message);
+// T121: Store handler references for cleanup
+const exit_handlers = {
+  exit: null,
+  sigint: null,
+  sigterm: null,
+};
+
+// T121: Initialize exit handlers
+function init_exit_handlers() {
+  // Only register once
+  if (exit_handlers.exit) return;
+
+  exit_handlers.exit = () => {
+    try { flush_access_counts(); } catch (e) {
+      console.error('[access-tracker] Error flushing on exit:', e.message);
+    }
+  };
+
+  exit_handlers.sigint = () => {
+    try { flush_access_counts(); } catch (e) { /* silent */ }
+  };
+
+  exit_handlers.sigterm = () => {
+    try { flush_access_counts(); } catch (e) { /* silent */ }
+  };
+
+  process.on('exit', exit_handlers.exit);
+  process.on('SIGINT', exit_handlers.sigint);
+  process.on('SIGTERM', exit_handlers.sigterm);
+}
+
+// T121: Cleanup function to remove event listeners (prevents memory leaks)
+function cleanup_exit_handlers() {
+  if (exit_handlers.exit) {
+    process.removeListener('exit', exit_handlers.exit);
+    exit_handlers.exit = null;
   }
-});
+  if (exit_handlers.sigint) {
+    process.removeListener('SIGINT', exit_handlers.sigint);
+    exit_handlers.sigint = null;
+  }
+  if (exit_handlers.sigterm) {
+    process.removeListener('SIGTERM', exit_handlers.sigterm);
+    exit_handlers.sigterm = null;
+  }
+}
 
-process.on('SIGINT', () => {
-  try { flush_access_counts(); } catch (e) { /* silent */ }
-});
-
-process.on('SIGTERM', () => {
-  try { flush_access_counts(); } catch (e) { /* silent */ }
-});
+// Auto-initialize handlers on module load
+init_exit_handlers();
 
 /* ───────────────────────────────────────────────────────────────
    8. EXPORTS
@@ -146,6 +182,7 @@ module.exports = {
   get_accumulator_state,
   calculate_popularity_score,
   reset,
+  cleanup_exit_handlers, // T121: Export cleanup function
   ACCUMULATOR_THRESHOLD,
   INCREMENT_VALUE,
 };

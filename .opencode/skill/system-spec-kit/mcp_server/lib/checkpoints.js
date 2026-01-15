@@ -14,9 +14,30 @@ const { getEmbeddingDimension } = require('../../shared/embeddings');
 // Database reference
 let db = null;
 
-// Checkpoint limits
+/**
+ * Maximum number of checkpoints to retain per spec folder.
+ * Older checkpoints are automatically pruned when this limit is exceeded.
+ * Value of 10 balances history depth with storage efficiency.
+ * @constant {number}
+ */
 const MAX_CHECKPOINTS = 10;
+
+/**
+ * Time-to-live in days for checkpoints.
+ * Checkpoints older than this (based on MAX(created_at, last_used_at)) are
+ * eligible for cleanup during the next checkpoint creation.
+ * 30 days allows for monthly review cycles while preventing unbounded growth.
+ * @constant {number}
+ */
 const CHECKPOINT_TTL_DAYS = 30;
+
+/**
+ * Timeout for git commands in milliseconds.
+ * Large repositories may require more time for git operations.
+ * Can be overridden via GIT_COMMAND_TIMEOUT_MS environment variable.
+ * @constant {number}
+ */
+const GIT_COMMAND_TIMEOUT_MS = parseInt(process.env.GIT_COMMAND_TIMEOUT_MS, 10) || 5000;
 
 /* ───────────────────────────────────────────────────────────────
    2. DATABASE UTILITIES
@@ -30,7 +51,20 @@ function init(database) {
     return false;
   }
   db = database;
-  console.error('[checkpoints] Database initialized successfully');
+  
+  // T027: Migrate checkpoints table to add last_used_at column if missing
+  try {
+    const tableInfo = database.prepare('PRAGMA table_info(checkpoints)').all();
+    const hasLastUsedAt = tableInfo.some(col => col.name === 'last_used_at');
+    if (!hasLastUsedAt) {
+      database.exec('ALTER TABLE checkpoints ADD COLUMN last_used_at TEXT');
+      console.log('[checkpoints] Migrated: added last_used_at column');
+    }
+  } catch (migrationErr) {
+    console.error(`[checkpoints] Migration check failed (non-fatal): ${migrationErr.message}`);
+  }
+  
+  console.log('[checkpoints] Database initialized successfully');
   return true;
 }
 
@@ -47,7 +81,7 @@ function get_git_branch() {
   try {
     return execSync('git rev-parse --abbrev-ref HEAD', {
       encoding: 'utf-8',
-      timeout: 1000,
+      timeout: GIT_COMMAND_TIMEOUT_MS,
     }).trim();
   } catch {
     return null;
@@ -150,7 +184,7 @@ function create_checkpoint(name, options = {}) {
         workingMemorySnapshot = sessionId
           ? database.prepare(wmQuery).all(sessionId)
           : database.prepare(wmQuery).all();
-        console.error(`[checkpoints] Backed up ${workingMemorySnapshot.length} working_memory entries`);
+        console.log(`[checkpoints] Backed up ${workingMemorySnapshot.length} working_memory entries`);
       }
     } catch (err) {
       console.warn(`[checkpoints] Could not backup working_memory: ${err.message}`);
@@ -220,12 +254,17 @@ function create_checkpoint(name, options = {}) {
     }
 
     // Clean up expired checkpoints (older than TTL), excluding already deleted
+    // T027 FIX: Consider last_used_at in TTL calculation - recently accessed checkpoints are preserved
     const cutoff_date = new Date();
     cutoff_date.setDate(cutoff_date.getDate() - CHECKPOINT_TTL_DAYS);
     const remaining_checkpoints = existing_checkpoints.filter(cp => !deleted_names.has(cp.name));
-    const expired_checkpoints = remaining_checkpoints.filter(cp => 
-      new Date(cp.created_at) < cutoff_date
-    );
+    const expired_checkpoints = remaining_checkpoints.filter(cp => {
+      // Use MAX(created_at, last_used_at) for TTL calculation
+      const created = new Date(cp.created_at);
+      const lastUsed = cp.last_used_at ? new Date(cp.last_used_at) : created;
+      const lastActivity = new Date(Math.max(created.getTime(), lastUsed.getTime()));
+      return lastActivity < cutoff_date;
+    });
     for (const cp of expired_checkpoints) {
       delete_checkpoint(cp.name);
     }
@@ -244,7 +283,7 @@ function list_checkpoints(options = {}) {
   const { specFolder: spec_folder = null, limit = 50 } = options;
 
   const sql = `
-    SELECT id, name, created_at, spec_folder, git_branch,
+    SELECT id, name, created_at, last_used_at, spec_folder, git_branch,
            LENGTH(memory_snapshot) as snapshot_size,
            metadata
     FROM checkpoints
@@ -270,6 +309,10 @@ function get_checkpoint(name) {
     return null;
   }
 
+  // T027: Update last_used_at when checkpoint is accessed
+  database.prepare('UPDATE checkpoints SET last_used_at = ? WHERE name = ?')
+    .run(new Date().toISOString(), name);
+
   // Safe decompression with error handling
   let decompressed;
   try {
@@ -294,6 +337,7 @@ function get_checkpoint(name) {
     id: row.id,
     name: row.name,
     createdAt: row.created_at,
+    lastUsedAt: row.last_used_at,
     specFolder: row.spec_folder,
     gitBranch: row.git_branch,
     memoryCount: memories.length,
@@ -329,6 +373,10 @@ function restore_checkpoint(name, options = {}) {
   if (!checkpoint) {
     throw new Error(`Checkpoint not found: ${name}`);
   }
+
+  // T027: Update last_used_at when checkpoint is restored
+  database.prepare('UPDATE checkpoints SET last_used_at = ? WHERE name = ?')
+    .run(new Date().toISOString(), name);
 
   // Safe decompression with error handling
   let decompressed;
@@ -382,24 +430,41 @@ function restore_checkpoint(name, options = {}) {
         ? database.prepare('SELECT id FROM memory_index WHERE spec_folder = ?').all(checkpoint.spec_folder).map(r => r.id)
         : database.prepare('SELECT id FROM memory_index').all().map(r => r.id);
 
-      if (existing_ids.length > 0 && sqlite_vec_available) {
-        // Batch delete from vec_memories to avoid SQLite parameter limits
+      if (existing_ids.length > 0) {
+        // T105 FIX: Delete from memory_history first (referential integrity)
         const BATCH_SIZE = 500;
         for (let i = 0; i < existing_ids.length; i += BATCH_SIZE) {
           const batch = existing_ids.slice(i, i + BATCH_SIZE);
           const placeholders = batch.map(() => '?').join(',');
           try {
-            database.prepare(`DELETE FROM vec_memories WHERE rowid IN (${placeholders})`).run(...batch);
+            database.prepare(`DELETE FROM memory_history WHERE memory_id IN (${placeholders})`).run(...batch);
           } catch (e) {
-            // Only ignore expected errors (table doesn't exist or busy)
-            if (!e.message.includes('no such table') && !e.message.includes('SQLITE_BUSY')) {
-              throw e;
+            // Ignore if table doesn't exist yet
+            if (!e.message.includes('no such table')) {
+              console.warn(`[checkpoints] memory_history delete error: ${e.message}`);
+            }
+          }
+        }
+
+        // Delete from vec_memories second (if sqlite-vec is available)
+        // NOTE: vec_memories is a sqlite-vec virtual table - no FK CASCADE support
+        if (sqlite_vec_available) {
+          for (let i = 0; i < existing_ids.length; i += BATCH_SIZE) {
+            const batch = existing_ids.slice(i, i + BATCH_SIZE);
+            const placeholders = batch.map(() => '?').join(',');
+            try {
+              database.prepare(`DELETE FROM vec_memories WHERE rowid IN (${placeholders})`).run(...batch);
+            } catch (e) {
+              // Only ignore expected errors (table doesn't exist or busy)
+              if (!e.message.includes('no such table') && !e.message.includes('SQLITE_BUSY')) {
+                throw e;
+              }
             }
           }
         }
       }
 
-      // Delete from memory_index
+      // Delete from memory_index last
       const delete_result = checkpoint.spec_folder
         ? database.prepare('DELETE FROM memory_index WHERE spec_folder = ?').run(checkpoint.spec_folder)
         : database.prepare('DELETE FROM memory_index').run();
@@ -420,7 +485,7 @@ function restore_checkpoint(name, options = {}) {
     let updated = 0;
     
     if (reinsert_memories && memories.length > 0) {
-      console.error(`[checkpoints] DEDUP: Processing ${memories.length} memories with UPSERT logic`);
+      console.log(`[checkpoints] DEDUP: Processing ${memories.length} memories with UPSERT logic`);
       
       // Prepare statements for check, update, and insert
       const check_existing_stmt = database.prepare(`
@@ -510,7 +575,7 @@ function restore_checkpoint(name, options = {}) {
         } catch (e) {
           // Skip duplicates (UNIQUE constraint) - fallback for edge cases
           if (e.message.includes('UNIQUE constraint failed')) {
-            console.error(`[checkpoints] DEDUP: Skipped duplicate (unexpected): ${mem.file_path}`);
+            console.log(`[checkpoints] DEDUP: Skipped duplicate (unexpected): ${mem.file_path}`);
             skipped++;
           } else {
             throw e;
@@ -518,7 +583,7 @@ function restore_checkpoint(name, options = {}) {
         }
       }
       
-      console.error(`[checkpoints] DEDUP: Updated ${updated}, inserted ${inserted}, skipped ${skipped}`);
+      console.log(`[checkpoints] DEDUP: Updated ${updated}, inserted ${inserted}, skipped ${skipped}`);
     }
 
     // Step 3: Restore embeddings if available and sqlite-vec is present
@@ -642,7 +707,7 @@ function restore_checkpoint(name, options = {}) {
               }
               throw wm_err;
             }
-            console.error(`[checkpoints] Restored ${workingMemoryRestored}/${snapshot_working_memory.length} working_memory entries (${skippedWM} skipped - unmapped memories)`);
+            console.log(`[checkpoints] Restored ${workingMemoryRestored}/${snapshot_working_memory.length} working_memory entries (${skippedWM} skipped - unmapped memories)`);
           } else {
             console.warn('[checkpoints] No session_id available for working_memory restoration');
           }

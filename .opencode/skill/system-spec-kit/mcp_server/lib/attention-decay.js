@@ -125,22 +125,22 @@ function calculate_decayed_score(currentScore, turnsElapsed, decayRate) {
  * Apply decay to ALL working memories for a session
  * @param {string} sessionId - Session identifier
  * @param {number} turnNumber - Current turn number
- * @returns {number} Count of memories decayed
+ * @returns {{decayedCount: number}} Object with count of memories decayed
  */
 function apply_decay(sessionId, turnNumber) {
   if (!db) {
     console.warn('[attention-decay] Database not initialized');
-    return 0;
+    return { decayedCount: 0 };
   }
 
   if (!sessionId || typeof sessionId !== 'string') {
     console.warn('[attention-decay] Invalid sessionId');
-    return 0;
+    return { decayedCount: 0 };
   }
 
   if (typeof turnNumber !== 'number' || turnNumber < 0) {
     console.warn('[attention-decay] Invalid turnNumber');
-    return 0;
+    return { decayedCount: 0 };
   }
 
   try {
@@ -159,7 +159,7 @@ function apply_decay(sessionId, turnNumber) {
     `).all(sessionId);
 
     if (memories.length === 0) {
-      return 0;
+      return { decayedCount: 0 };
     }
 
     // Prepare update statement (use composite key)
@@ -195,10 +195,10 @@ function apply_decay(sessionId, turnNumber) {
       }
     }
 
-    return decayed_count;
+    return { decayedCount: decayed_count };
   } catch (error) {
     console.error(`[attention-decay] Error applying decay: ${error.message}`);
-    return 0;
+    return { decayedCount: 0 };
   }
 }
 

@@ -102,6 +102,7 @@ memory_search({ query: "test" })
 | `Connection refused` | Server not running | Start server: check `.mcp.json` configuration |
 | `Invalid tool name` | Wrong call syntax | Use native MCP syntax: `memory_search()`, `memory_list()`, etc. |
 | `Authentication failed` | Invalid or expired credentials | Refresh API keys in environment |
+| `E429: Rate limited` | Too many requests in short period | Wait specified seconds before retrying; applies to `memory_index_scan()` |
 
 **Connection Recovery Protocol:**
 
@@ -126,9 +127,9 @@ memory_search({ query: "test" })
 | Issue | Root Cause | Resolution |
 |-------|------------|------------|
 | Old memories ranked too high | Decay not enabled | Set `useDecay: true` in search params |
-| Recent memories not prioritized | Half-life too long | Default is ~62 days; adjust if needed |
-| Score calculations seem wrong | Missing timestamp | Verify `created_at` field populated |
-| Decay too aggressive | Half-life too short | ~62-day half-life (90-day decay constant) is recommended |
+| Recent memories not prioritized | Decay rate too high | Check tier-specific rates (normal=0.80, temporary=0.60) |
+| Score calculations seem wrong | Missing turn tracking | Verify `last_mentioned_turn` field populated |
+| Decay too aggressive | Low decay rate | Adjust tier or use protected tier (constitutional/critical/important) |
 
 **Note (v1.7.1):** The following tiers are protected from decay (rate = 1.0):
 - constitutional
@@ -138,14 +139,22 @@ memory_search({ query: "test" })
 
 Only `normal` (0.80) and `temporary` (0.60) tiers experience decay.
 
-**Decay Formula Reference:**
+**Decay Formula Reference (TURN-BASED):**
 ```
-decay_factor = e^(-days / 90)   // 90-day decay constant, ~62-day half-life
-decayed_score = base_score × decay_factor
+new_score = current_score × (decay_rate ^ turns_elapsed)
 
-Example: 60-day-old memory with base score 0.85
-→ 0.85 × e^(-60/90) = 0.85 × 0.51 = 0.44
+Where:
+- turns_elapsed = current_turn - last_mentioned_turn
+- decay_rate varies by tier (see table above)
+
+Example: Normal tier memory, 5 turns since last mention, score 0.85
+→ 0.85 × (0.80 ^ 5) = 0.85 × 0.328 = 0.28
+
+Example: Constitutional tier, 5 turns elapsed, score 0.85
+→ 0.85 × (1.0 ^ 5) = 0.85 (no decay - protected tier)
 ```
+
+**Important:** Decay is calculated per conversation TURN, not calendar time. Each new user message increments the turn counter.
 
 ### Hybrid Search Fallback Scenarios
 

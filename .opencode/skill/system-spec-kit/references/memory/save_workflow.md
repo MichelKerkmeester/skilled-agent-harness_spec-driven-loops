@@ -297,7 +297,7 @@ specs/049-oauth-implementation/
 
 ### Anchor Tags
 
-Each section includes HTML comment anchors for targeted retrieval:
+Each section includes HTML comment anchors for targeted retrieval (implemented in v1.7.2):
 
 ```html
 <!-- ANCHOR:category-keywords-spec# -->
@@ -368,11 +368,13 @@ Content here...
 
 ### Token Efficiency Comparison
 
-| Approach          | Tokens  | Savings | Use Case              |
-| ----------------- | ------- | ------- | --------------------- |
-| Full file read    | ~12,000 | -       | Need complete context |
-| Anchor extraction | ~800    | 93%     | Targeted retrieval    |
-| Summary only      | ~400    | 97%     | Quick overview        |
+| Approach          | Tokens  | Savings | Use Case              | Status           |
+| ----------------- | ------- | ------- | --------------------- | ---------------- |
+| Full file read    | ~12,000 | -       | Need complete context | Implemented      |
+| Anchor extraction | ~800    | ~58-90% | Targeted retrieval    | **Implemented**  |
+| Summary only      | ~400    | ~97%    | Quick overview        | Not implemented  |
+
+> **Implemented (v1.7.2):** ANCHOR tags are now indexed and support section-level retrieval. Use the `anchors` parameter in `memory_search()` to retrieve specific sections. Token savings of 58-90% depending on content structure.
 
 ### Quick Commands
 

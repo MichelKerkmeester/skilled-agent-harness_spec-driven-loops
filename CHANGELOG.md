@@ -7,6 +7,59 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.4.0**] - 2026-01-15
+
+A major quality and architecture release focusing on system reliability, memory system optimization, and codebase maintainability. This version addresses 231 identified issues across the Spec Kit infrastructure, introduces targeted memory retrieval via the Anchor System (achieving 61-93% token savings), modularizes the core MCP server from 2,703 to 319 lines, and upgrades to Voyage 4 embeddings.
+
+---
+
+### New
+1. **Anchor System for Targeted Memory Retrieval** — The `memory_search` tool now accepts an `anchors` parameter enabling retrieval of specific memory sections (e.g., "summary", "decisions") instead of full file content. Verified savings: 73% for summary-only, 87% for decisions-only, 61% for summary+decisions. Response metadata includes `tokenMetrics` with savings calculations.
+
+2. **Modular MCP Server Architecture** — Decomposed `context-server.js` into 19 focused modules across 5 directories:
+   - `core/` (3 files, 507 lines) — Server configuration, database state management
+   - `handlers/` (7 files, 1,395 lines) — Tool handlers for search, triggers, CRUD, checkpoints
+   - `formatters/` (3 files, 353 lines) — Search results and token metrics formatting
+   - `utils/` (4 files, 478 lines) — Validators, JSON helpers, batch processing
+   - `hooks/` (2 files, 223 lines) — SK-004 auto memory surfacing
+
+3. **Voyage 4 Embedding Support** — Added `voyage-4`, `voyage-4-large`, and `voyage-4-lite` to supported models with automatic database separation per model (existing `voyage-3.5` embeddings preserved).
+
+---
+
+### Changed
+1. **Default Embedding Model** — Changed from `voyage-3.5` to `voyage-4` for Spec Kit Memory MCP. Narsil retains `voyage-code-2` until a code-specific Voyage 4 model is released.
+2. **Entry Point Reduction** — `context-server.js` reduced from 2,703 lines to 319 lines (88% reduction).
+3. **Documentation Accuracy** — ANCHOR system documentation updated from "93% token savings" claim to verified metrics. Debug delegation threshold standardized to "3+ failed attempts" across all documentation.
+4. **Attention Decay Documentation** — Corrected to reflect actual turn-based implementation (not time-based as previously documented).
+5. **MCP Tool Documentation** — Expanded from 7 to 14 documented tools. Added `searchBoost` multipliers for importance tiers.
+
+---
+
+### Fixed
+1. **Critical: Missing `await` in memory_search** — Fixed `formatSearchResults()` calls returning Promise objects instead of resolved results when `includeContent=true`.
+2. **Critical: Undefined E429 Error Code** — Added definition to `errors.js` and documented in troubleshooting guide.
+3. **Critical: Embedding API Rate Limiting** — Added `BATCH_DELAY_MS` (100ms default) to prevent provider throttling.
+4. **Critical: vec_memories Cleanup Order** — Fixed deletion order to prevent orphaned vector rows.
+5. **Race Conditions** — Added mutex protection for embedding warmup; fixed constitutional cache clearing; fixed trigger cache invalidation after bulk indexing.
+6. **Memory Leaks** — Implemented LRU cache for regex objects in `trigger-matcher.js`; added timer cleanup in `errors.js`.
+7. **Null Safety** — Added null checks throughout codebase for database query results.
+8. **Cross-Platform Compatibility** — Replaced hardcoded macOS paths with `os.homedir()` and `os.tmpdir()`.
+9. **Config System Cleanup** — Deleted unused `config-loader.js` and reduced `search-weights.json` to actively used sections only.
+10. **parseInt Radix** — Added explicit radix parameter to all `parseInt()` calls.
+
+---
+
+### Upgrade
+1. **Restart Required**: Restart OpenCode to load the updated Spec Kit Memory MCP server with Voyage 4 support.
+2. **Automatic Database Migration**: System creates new database file (`context-index__voyage__voyage-4__1024.sqlite`) when switching to Voyage 4. Existing memories preserved.
+3. **Optional Re-indexing**: Run `memory_index_scan({ force: true })` to bulk re-index existing memory files.
+4. **No Breaking Changes**: All 14 MCP tools maintain identical interfaces.
+
+**Full Changelog**: [v1.0.3.6...v1.0.4.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.6...v1.0.4.0)
+
+---
+
 ## [**1.0.3.6**] - 2026-01-15
 
 Critical MCP protocol fix ensuring Cognitive Memory v17.1 functions correctly. Adds VS Code extension install guide and expands workflows-code skill with 16 new reference and asset files.

@@ -333,16 +333,16 @@ Choose based on project complexity and traceability requirements.
 ## WHEN TO USE THIS TEMPLATE
 
 **Use tasks.md when:**
-- Creating Level 2 or Level 3 spec folders (moderate to complex features)
+- Creating Level 1, Level 2, or Level 3 spec folders (any feature complexity)
 - Feature requires breaking down into discrete, trackable tasks
 - Multiple user stories need independent implementation tracking
 - Team needs clear task assignments and dependencies
 - Tasks span multiple phases or team members
 
-**Never skip tasks.md:**
-- tasks.md is REQUIRED for ALL levels (Level 1, 2, and 3)
-- Even simple features benefit from task tracking
-- Use a minimal task list for straightforward features
+**Level requirements:**
+- tasks.md is REQUIRED for Level 1, Level 2, and Level 3
+- Level 1: Use a minimal task list for straightforward features
+- Level 2/3: Full task breakdown with phases, user stories, and detailed tracking
 - Single-developer work still benefits from task organization
 
 **Related templates:**

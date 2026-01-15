@@ -1,5 +1,6 @@
 // ───────────────────────────────────────────────────────────────
-// MAINTENANCE: CLEANUP ORPHANED VECTORS
+// MAINTENANCE: CLEANUP ORPHANED VECTORS AND HISTORY
+// T105: Enhanced to clean orphaned memory_history entries
 // ───────────────────────────────────────────────────────────────
 
 'use strict';
@@ -25,50 +26,100 @@ async function main() {
     database = new Database(db_path);
     loadSqliteVec(database);
 
-    // Find orphaned vector rowids
-    console.log('Finding orphaned vectors...');
-    const orphaned_rows = database.prepare(`
+    let total_cleaned = 0;
+
+    // ─────────────────────────────────────────────────────────
+    // STEP 1: Clean orphaned memory_history entries
+    // ─────────────────────────────────────────────────────────
+    console.log('\n[Step 1] Finding orphaned memory_history entries...');
+    try {
+      const orphaned_history = database.prepare(`
+        SELECT h.memory_id 
+        FROM memory_history h
+        LEFT JOIN memory_index m ON h.memory_id = m.id
+        WHERE m.id IS NULL
+      `).all();
+
+      if (orphaned_history.length > 0) {
+        console.log(`Found ${orphaned_history.length} orphaned history entries`);
+        
+        const delete_history = database.transaction((ids) => {
+          const stmt = database.prepare('DELETE FROM memory_history WHERE memory_id = ?');
+          for (const { memory_id } of ids) {
+            stmt.run(memory_id);
+          }
+        });
+        
+        delete_history(orphaned_history);
+        console.log(`Deleted ${orphaned_history.length} orphaned history entries`);
+        total_cleaned += orphaned_history.length;
+      } else {
+        console.log('No orphaned history entries found');
+      }
+    } catch (e) {
+      // Table may not exist
+      if (!e.message.includes('no such table')) {
+        console.warn('memory_history cleanup warning:', e.message);
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // STEP 2: Clean orphaned vec_memories entries
+    // ─────────────────────────────────────────────────────────
+    console.log('\n[Step 2] Finding orphaned vector entries...');
+    const orphaned_vectors = database.prepare(`
       SELECT v.rowid 
       FROM vec_memories v
       LEFT JOIN memory_index m ON v.rowid = m.id
       WHERE m.id IS NULL
     `).all();
 
-    console.log('Orphaned vectors found:', orphaned_rows.length);
+    console.log(`Found ${orphaned_vectors.length} orphaned vectors`);
 
-    if (orphaned_rows.length === 0) {
-      console.log('No cleanup needed.');
-      database.close();
-      process.exit(0);
-    }
+    if (orphaned_vectors.length > 0) {
+      // Delete orphaned vectors in batches
+      let deleted = 0;
+      const delete_stmt = database.prepare('DELETE FROM vec_memories WHERE rowid = ?');
+      const delete_batch = database.transaction((rows) => {
+        for (const row of rows) {
+          delete_stmt.run(BigInt(row.rowid));
+          deleted++;
+        }
+      });
 
-    // Delete orphaned vectors in batches
-    let deleted = 0;
-    const delete_stmt = database.prepare('DELETE FROM vec_memories WHERE rowid = ?');
-    const delete_batch = database.transaction((rows) => {
-      for (const row of rows) {
-        delete_stmt.run(BigInt(row.rowid));
-        deleted++;
+      // Process in chunks of 100
+      const chunk_size = 100;
+      for (let i = 0; i < orphaned_vectors.length; i += chunk_size) {
+        const chunk = orphaned_vectors.slice(i, i + chunk_size);
+        delete_batch(chunk);
+        console.log(`Deleted ${deleted}/${orphaned_vectors.length} vectors`);
       }
-    });
-
-    // Process in chunks of 100
-    const chunk_size = 100;
-    for (let i = 0; i < orphaned_rows.length; i += chunk_size) {
-      const chunk = orphaned_rows.slice(i, i + chunk_size);
-      delete_batch(chunk);
-      console.log(`Deleted ${deleted}/${orphaned_rows.length}`);
+      
+      total_cleaned += deleted;
     }
 
-    console.log('Cleanup complete. Total deleted:', deleted);
-
-    // Verify
-    const after_count = database.prepare('SELECT COUNT(*) as count FROM vec_memories').get();
+    // ─────────────────────────────────────────────────────────
+    // STEP 3: Verify and report
+    // ─────────────────────────────────────────────────────────
+    console.log('\n[Step 3] Verification...');
     const memory_count = database.prepare('SELECT COUNT(*) as count FROM memory_index').get();
-    console.log(`Vectors: ${after_count.count}, Memories: ${memory_count.count}`);
+    const vector_count = database.prepare('SELECT COUNT(*) as count FROM vec_memories').get();
+    
+    let history_count = { count: 0 };
+    try {
+      history_count = database.prepare('SELECT COUNT(*) as count FROM memory_history').get();
+    } catch (e) {
+      // Table may not exist
+    }
+
+    console.log(`\nFinal counts:`);
+    console.log(`  Memories: ${memory_count.count}`);
+    console.log(`  Vectors:  ${vector_count.count}`);
+    console.log(`  History:  ${history_count.count}`);
+    console.log(`\nTotal cleaned: ${total_cleaned}`);
 
     database.close();
-    console.log('Cleanup completed successfully');
+    console.log('\nCleanup completed successfully');
     process.exit(0);
   } catch (error) {
     console.error('[cleanup-orphaned-vectors] Error:', error.message);

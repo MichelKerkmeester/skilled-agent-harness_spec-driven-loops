@@ -119,7 +119,27 @@ function renderTemplate(template, data, parentData = {}) {
 
 async function populateTemplate(templateName, data) {
   const templatePath = path.join(CONFIG.TEMPLATE_DIR, `${templateName}_template.md`);
-  const template = await fs.readFile(templatePath, 'utf-8');
+  
+  // T029 FIX: Add error handling for template not found scenario
+  try {
+    // Check if template exists before reading
+    await fs.access(templatePath);
+  } catch (accessError) {
+    throw new Error(
+      `Template not found: "${templateName}" (expected at: ${templatePath}). ` +
+      `Available templates should be in: ${CONFIG.TEMPLATE_DIR}`
+    );
+  }
+  
+  let template;
+  try {
+    template = await fs.readFile(templatePath, 'utf-8');
+  } catch (readError) {
+    throw new Error(
+      `Failed to read template "${templateName}": ${readError.message}`
+    );
+  }
+  
   const rendered = renderTemplate(template, data);
   return stripTemplateConfigComments(rendered);
 }

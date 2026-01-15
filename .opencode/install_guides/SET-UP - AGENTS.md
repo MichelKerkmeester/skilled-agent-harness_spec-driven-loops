@@ -199,7 +199,7 @@ AI assistants automatically read `AGENTS.md` from the project root:
 | Tool            | File Detection                                     |
 | --------------- | -------------------------------------------------- |
 | **OpenCode**    | Reads `AGENTS.md` from project root on startup     |
-| **Claude Code** | Reads `AGENTS.md` or `CLAUDE.md` from project root |
+| **Claude Code** | Reads `AGENTS.md` from project root |
 | **Cursor**      | Reads `.cursorrules` or `AGENTS.md`                |
 | **Windsurf**    | Reads `.windsurfrules` or `AGENTS.md`              |
 

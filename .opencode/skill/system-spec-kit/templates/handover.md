@@ -1,5 +1,23 @@
 # Session Handover Document
-<!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.0 -->
+
+Session handover template for preserving context and enabling seamless continuation across sessions.
+
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
+---
+
+## WHEN TO USE THIS TEMPLATE
+
+**Use handover.md when:**
+- Ending a session with incomplete work that needs continuation
+- Context needs to be preserved for a future session (same or different agent)
+- Transitioning work between team members or AI sessions
+- Complex multi-session features requiring state preservation
+- Session compaction detected and recovery needed
+
+**Status values:** Draft | In Progress | Review | Complete | Archived
+
+---
 
 ## 1. Handover Summary
 
@@ -62,3 +80,34 @@ Before handover, verify:
 ## 5. Session Notes
 
 [YOUR_VALUE_HERE: free-form notes for next session]
+
+---
+
+## TEMPLATE INSTRUCTIONS
+
+**How to use this template:**
+1. Fill in all `[YOUR_VALUE_HERE: ...]` placeholders with actual values
+2. Complete all validation checklist items before handover
+3. Ensure memory file is saved with current context
+4. Prioritize tasks clearly for next session
+5. Remove placeholder text after filling in content
+
+**Common mistakes to avoid:**
+- Handover without saving memory context
+- Incomplete validation checklist
+- Vague task descriptions that lose context
+- Missing file references or line numbers
+
+**Related templates:**
+- Use with `/spec_kit:handover` command for automated context saving
+- Reference memory files from `memory/` folder for context recovery
+- Link to spec.md, plan.md, and tasks.md for complete picture
+- Create new memory file via `generate-context.js` before handover
+
+---
+
+<!--
+  REPLACE SAMPLE CONTENT IN FINAL OUTPUT
+  - This template contains placeholders and examples
+  - Replace them with actual content
+-->

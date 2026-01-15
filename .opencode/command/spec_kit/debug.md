@@ -229,7 +229,7 @@ operating_mode:
 Delegate persistent debugging issues to a specialized sub-agent with fresh context. This workflow creates a comprehensive debug report, dispatches a sub-agent with the selected model, and integrates findings back into the main session.
 
 **When to use:**
-- Same error persists after 2+ fix attempts
+- Same error persists after 3+ fix attempts
 - Need fresh perspective on complex issue
 - Want to preserve debugging context for handoff
 - Primary agent is stuck in a debugging loop

@@ -183,18 +183,21 @@ function test_boost_score() {
 // Test init()
 function test_init() {
   log('\n🔬 init()');
-  
-  // Test 1: init with null doesn't crash
+
+  // Test 1: init with null SHOULD throw (T016: consistent error handling)
   try {
     coActivation.init(null);
-    pass('init(null) does not throw', 'No error');
+    fail('init(null) should throw', 'No error thrown');
   } catch (error) {
-    fail('init(null) does not throw', error.message);
+    if (error.message.includes('Database reference is required')) {
+      pass('init(null) throws correct error', error.message);
+    } else {
+      fail('init(null) throws correct error', `Wrong error: ${error.message}`);
+    }
   }
-  
-  // Test 2: isEnabled returns false without DB
+
+  // Test 2: isEnabled returns false without valid DB (db is still null after init() threw)
   const enabled_without_db = coActivation.isEnabled();
-  // After init(null), db is null, so should be false
   if (enabled_without_db === false) {
     pass('isEnabled() is false without valid DB', `Got: ${enabled_without_db}`);
   } else {
@@ -206,9 +209,9 @@ function test_init() {
 // Test getRelatedMemories() without DB
 function test_get_related_memories_no_db() {
   log('\n🔬 getRelatedMemories() without DB');
-  
-  // Reset DB to null
-  coActivation.init(null);
+
+  // Note: init(null) throws by design - we test graceful handling of uninitialized state
+  // The module should already have db=null if init() was never called with valid db
   
   // Test 1: Returns empty array without DB
   const result = coActivation.getRelatedMemories(1);
@@ -238,9 +241,8 @@ function test_get_related_memories_no_db() {
 // Test spreadActivation() without DB
 function test_spread_activation_no_db() {
   log('\n🔬 spreadActivation() without DB');
-  
-  // Reset DB to null
-  coActivation.init(null);
+
+  // Note: init(null) throws by design - we test graceful handling of uninitialized state
   
   // Test 1: Returns empty array without DB
   const result = coActivation.spreadActivation('session1', 1, 1);
@@ -300,25 +302,25 @@ function test_circular_reference_prevention() {
   }
 }
 
-// BUG-007: console.error logging
+// BUG-007: console.log for informational logging (T037 fix)
 function test_console_error_logging() {
-  log('\n🔬 BUG-007: console.error logging');
+  log('\n🔬 BUG-007: console.log for informational logging');
   
-  // Check source code for console.error usage
+  // Check source code for console.log usage (T037: informational messages should use console.log, not console.error)
   const source = fs.readFileSync(path.join(LIB_PATH, 'co-activation.js'), 'utf8');
   
-  // Test 1: Uses console.error for init logging (not console.log)
-  if (source.includes("console.error('[co-activation] Initialized")) {
-    pass('init() uses console.error for logging', 'Found in source');
+  // Test 1: Uses console.log for init logging (informational, not error)
+  if (source.includes("console.log('[co-activation] Initialized")) {
+    pass('init() uses console.log for logging', 'Found in source');
   } else {
-    fail('init() uses console.error for logging', 'Not found');
+    fail('init() uses console.log for logging', 'Not found');
   }
   
-  // Test 2: Uses console.error for spread_activation logging
-  if (source.includes("console.error(`[co-activation] Populated")) {
-    pass('populate uses console.error for logging', 'Found in source');
+  // Test 2: Uses console.log for populate logging (informational, not error)
+  if (source.includes("console.log(`[co-activation] Populated")) {
+    pass('populate uses console.log for logging', 'Found in source');
   } else {
-    fail('populate uses console.error for logging', 'Not found');
+    fail('populate uses console.log for logging', 'Not found');
   }
 }
 
@@ -377,9 +379,8 @@ function test_log_co_activation_event() {
 // Test populateRelatedMemories() without DB
 async function test_populate_related_memories_no_db() {
   log('\n🔬 populateRelatedMemories() without DB');
-  
-  // Reset DB to null
-  coActivation.init(null);
+
+  // Note: init(null) throws by design - we test graceful handling of uninitialized state
   
   // Test 1: Returns empty array without DB
   const result = await coActivation.populateRelatedMemories(1, async () => []);

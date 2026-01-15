@@ -5,8 +5,16 @@
 
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION
+   
+   These constants are the SINGLE SOURCE OF TRUTH for text length limits.
+   Other modules (embeddings.js, hf-local.js) import from here.
    ─────────────────────────────────────────────────────────────── */
 
+/**
+ * Maximum text length for embedding generation.
+ * This value is used across all embedding providers.
+ * Based on nomic-embed-text-v1.5 context window (~8192 tokens).
+ */
 const MAX_TEXT_LENGTH = 8000;
 const RESERVED_OVERVIEW = 500;
 const RESERVED_OUTCOME = 300;

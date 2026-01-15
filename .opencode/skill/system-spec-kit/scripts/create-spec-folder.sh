@@ -193,7 +193,12 @@ check_existing_branches() {
     # Check specs directory as well
     local spec_dirs=""
     if [ -d "$SPECS_DIR" ]; then
-        spec_dirs=$(find "$SPECS_DIR" -maxdepth 1 -type d -name "[0-9]*-${short_name}" 2>/dev/null | xargs -n1 basename 2>/dev/null | sed 's/-.*//' | sort -n)
+        # Use while loop instead of xargs for cross-platform compatibility
+        # (BSD xargs doesn't support -r flag, GNU xargs needs it for empty input)
+        while IFS= read -r dir; do
+            [ -n "$dir" ] && spec_dirs="$spec_dirs $(basename "$dir" | sed 's/-.*//')"
+        done < <(find "$SPECS_DIR" -maxdepth 1 -type d -name "[0-9]*-${short_name}" 2>/dev/null)
+        spec_dirs=$(echo "$spec_dirs" | tr ' ' '\n' | grep -v '^$' | sort -n)
     fi
     
     # Combine all sources and get the highest number

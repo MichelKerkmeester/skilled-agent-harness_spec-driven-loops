@@ -4,6 +4,7 @@
 'use strict';
 
 const { EmbeddingProfile } = require('../profile');
+const { semantic_chunk, MAX_TEXT_LENGTH } = require('../../chunking');
 
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION
@@ -11,7 +12,7 @@ const { EmbeddingProfile } = require('../profile');
 
 const DEFAULT_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const EMBEDDING_DIM = 768;
-const MAX_TEXT_LENGTH = 8000;
+// MAX_TEXT_LENGTH imported from chunking.js (single source of truth)
 const EMBEDDING_TIMEOUT = 30000;
 
 // Task prefixes required by nomic-embed-text-v1.5
@@ -122,8 +123,9 @@ class HfLocalProvider {
 
     let input_text = trimmed_text;
     if (input_text.length > this.max_text_length) {
-      console.warn(`[hf-local] Text truncated from ${input_text.length} to ${this.max_text_length} characters`);
-      input_text = input_text.substring(0, this.max_text_length);
+      // Use semantic chunking instead of simple truncation to preserve important content
+      console.warn(`[hf-local] Text ${input_text.length} chars exceeds max ${this.max_text_length}, applying semantic chunking`);
+      input_text = semantic_chunk(input_text, this.max_text_length);
     }
 
     const start = Date.now();

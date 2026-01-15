@@ -434,12 +434,16 @@ console.log(results);
 ```javascript
 const hybridSearch = require('./lib/hybrid-search');
 
-// Combined vector + FTS5 search
+// Combined vector + FTS5 search with RRF fusion
+// Note: Uses Reciprocal Rank Fusion (RRF) to combine results, not weighted scoring
 const results = await hybridSearch.hybridSearch(queryEmbedding, 'auth login', {
   limit: 10,
-  vectorWeight: 0.7,
-  ftsWeight: 0.3
+  spec_folder: 'my-feature',
+  use_decay: true
 });
+
+// Results include RRF metadata:
+// { ...memoryFields, rrf_score, in_vector, in_fts, search_method }
 ```
 
 ### Example 3: Checkpoint Management

@@ -134,7 +134,29 @@ archive_spec() {
         exit 1
     fi
 
-    mv "$spec_folder" "$ARCHIVE_DIR/$basename"
+    # Atomic move: First copy to temp location within target, then rename
+    # This avoids race conditions during directory operations
+    local temp_target="$ARCHIVE_DIR/.tmp_$$_$basename"
+    
+    # Clean up any stale temp directories from previous failed runs
+    rm -rf "$ARCHIVE_DIR"/.tmp_*_"$basename" 2>/dev/null || true
+    
+    # Copy to temp location first
+    if ! cp -R "$spec_folder" "$temp_target"; then
+        rm -rf "$temp_target" 2>/dev/null || true
+        log_error "Failed to copy spec folder to archive"
+        exit 1
+    fi
+    
+    # Atomic rename (mv within same filesystem is atomic)
+    if ! mv "$temp_target" "$ARCHIVE_DIR/$basename"; then
+        rm -rf "$temp_target" 2>/dev/null || true
+        log_error "Failed to rename temp archive to final location"
+        exit 1
+    fi
+    
+    # Only remove source after successful copy+rename
+    rm -rf "$spec_folder"
 
     log_success "Archived: $spec_folder -> $ARCHIVE_DIR/$basename"
 }

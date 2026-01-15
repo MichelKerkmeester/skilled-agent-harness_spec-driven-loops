@@ -19,7 +19,7 @@ Provides a universal debugging methodology that works across all technology stac
 
 - Debugging any code issue (frontend, backend, infrastructure)
 - When `/spec_kit:debug` is invoked
-- After 2+ failed fix attempts on the same error
+- After 3+ failed fix attempts on the same error
 - When systematic debugging approach is needed
 
 ### Core Principle
@@ -132,7 +132,7 @@ After any debugging session:
 ## 5. 🚨 WHEN TO ESCALATE
 
 Escalate (use `/spec_kit:debug` delegation) when:
-- Same error persists after 2+ fix attempts
+- Same error persists after 3+ fix attempts
 - Need fresh perspective on complex issue
 - Stuck in a debugging loop
 - Issue requires specialized knowledge

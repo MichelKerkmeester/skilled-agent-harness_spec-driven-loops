@@ -10,6 +10,7 @@
 
 const path = require('path');
 const fsSync = require('fs');
+const os = require('os');
 const { CONFIG, findActiveSpecsDir, getSpecsDirectories } = require('./core');
 const { runWorkflow } = require('./core/workflow');
 const { loadCollectedData } = require('./loaders');
@@ -49,7 +50,86 @@ if (process.argv.includes('--help') || process.argv.includes('-h')) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   3. CLI ARGUMENT PARSING
+   2.1 SIGNAL HANDLERS
+──────────────────────────────────────────────────────────────── */
+
+process.on('SIGTERM', () => {
+  console.log('\n⚠️  Received SIGTERM signal, shutting down gracefully...');
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  console.log('\n⚠️  Received SIGINT signal, shutting down gracefully...');
+  process.exit(0);
+});
+
+/* ─────────────────────────────────────────────────────────────
+   3. SPEC FOLDER VALIDATION
+──────────────────────────────────────────────────────────────── */
+
+/**
+ * Strict regex for spec folder names.
+ * Format: NNN-short-name where:
+ * - NNN is exactly 3 digits (001-999)
+ * - Followed by a hyphen
+ * - Then lowercase letters, digits, or hyphens
+ * - Must start with a letter after the prefix
+ * 
+ * Valid: 001-feature, 064-bug-analysis-and-fix, 003-memory-and-spec-kit
+ * Invalid: 1-short, 0001-too-long, 001_underscore, 001-UPPERCASE
+ */
+const SPEC_FOLDER_PATTERN = /^\d{3}-[a-z][a-z0-9-]*$/;
+
+/**
+ * Basic pattern for initial detection (slightly more permissive).
+ * Used for quick checks before full validation.
+ */
+const SPEC_FOLDER_BASIC_PATTERN = /^\d{3}-[a-zA-Z]/;
+
+/**
+ * Validates if a folder path is a valid spec folder.
+ * @param {string} folderPath - Path to validate
+ * @returns {{ valid: boolean, reason?: string, warning?: string }}
+ */
+function isValidSpecFolder(folderPath) {
+  const folderName = path.basename(folderPath);
+  
+  // Check strict folder name pattern
+  if (!SPEC_FOLDER_PATTERN.test(folderName)) {
+    // Check if it's close but has issues
+    if (/^\d{3}-/.test(folderName)) {
+      if (/[A-Z]/.test(folderName)) {
+        return { valid: false, reason: 'Spec folder name should be lowercase' };
+      }
+      if (/_/.test(folderName)) {
+        return { valid: false, reason: 'Spec folder name should use hyphens, not underscores' };
+      }
+      if (!/^[a-z]/.test(folderName.slice(4))) {
+        return { valid: false, reason: 'Spec folder name must start with a letter after the number prefix' };
+      }
+    }
+    return { valid: false, reason: 'Invalid spec folder format. Expected: NNN-feature-name' };
+  }
+  
+  // Check parent path contains 'specs' (warning only, not blocking)
+  const normalizedPath = folderPath.replace(/\\/g, '/');
+  const hasSpecsParent = normalizedPath.includes('/specs/') || 
+                         normalizedPath.startsWith('specs/') ||
+                         normalizedPath.includes('/.opencode/specs/') ||
+                         normalizedPath.startsWith('.opencode/specs/');
+  
+  if (!hasSpecsParent) {
+    return { 
+      valid: true, 
+      warning: `Spec folder not under specs/ or .opencode/specs/ path: ${folderPath}` 
+    };
+  }
+  
+  return { valid: true };
+}
+
+/* ─────────────────────────────────────────────────────────────
+   4. CLI ARGUMENT PARSING
 ──────────────────────────────────────────────────────────────── */
 
 function parseArguments() {
@@ -57,10 +137,11 @@ function parseArguments() {
   const arg2 = process.argv[3];
   if (!arg1) return;
 
+  const folderName = path.basename(arg1);
   const isSpecFolder = (
     arg1.startsWith('specs/') || 
     arg1.startsWith('.opencode/specs/') ||
-    /^\d{3}-/.test(path.basename(arg1))
+    SPEC_FOLDER_BASIC_PATTERN.test(folderName)
   ) && !arg1.endsWith('.json');
 
   if (isSpecFolder) {
@@ -76,23 +157,29 @@ function parseArguments() {
 function validateArguments() {
   if (!CONFIG.SPEC_FOLDER_ARG) return;
   
-  const folderName = path.basename(CONFIG.SPEC_FOLDER_ARG);
-  if (/^\d{3}-/.test(folderName)) return;
+  const validation = isValidSpecFolder(CONFIG.SPEC_FOLDER_ARG);
+  
+  if (validation.warning) {
+    console.warn(`   ⚠️  ${validation.warning}`);
+  }
+  
+  if (validation.valid) return;
 
   console.error(`\n❌ Invalid spec folder format: ${CONFIG.SPEC_FOLDER_ARG}`);
+  console.error(`   Reason: ${validation.reason}`);
   console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
 
   const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
   if (fsSync.existsSync(specsDir)) {
     try {
       const available = fsSync.readdirSync(specsDir);
-      const matches = available.filter(n => n.includes(CONFIG.SPEC_FOLDER_ARG) && /^\d{3}-/.test(n));
+      const matches = available.filter(n => n.includes(path.basename(CONFIG.SPEC_FOLDER_ARG)) && SPEC_FOLDER_PATTERN.test(n));
       
       if (matches.length > 0) {
         console.error('Did you mean:');
         matches.forEach(m => console.error(`  - ${m}`));
       } else {
-        const allSpecs = available.filter(n => /^\d{3}-/.test(n) && !n.match(/^z_|archive/i))
+        const allSpecs = available.filter(n => SPEC_FOLDER_PATTERN.test(n) && !n.match(/^z_|archive/i))
                                   .sort().reverse().slice(0, 5);
         if (allSpecs.length) {
           console.error('Available spec folders:');
@@ -106,7 +193,7 @@ function validateArguments() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   4. MAIN ENTRY POINT
+   5. MAIN ENTRY POINT
 ──────────────────────────────────────────────────────────────── */
 
 async function main() {
@@ -134,7 +221,7 @@ async function main() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   5. EXPORTS
+   6. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 if (require.main === module) {
@@ -145,4 +232,11 @@ if (require.main === module) {
   });
 }
 
-module.exports = { main, parseArguments, validateArguments };
+module.exports = { 
+  main, 
+  parseArguments, 
+  validateArguments, 
+  isValidSpecFolder,
+  SPEC_FOLDER_PATTERN,
+  SPEC_FOLDER_BASIC_PATTERN
+};

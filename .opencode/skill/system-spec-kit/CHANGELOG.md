@@ -5,6 +5,44 @@ All notable changes to the system-spec-kit skill will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2026-01-15
+
+*Environment version: 1.0.4.0*
+
+Major quality and architecture release with 231 bug fixes, anchor-based retrieval, modular server architecture, and Voyage 4 support.
+
+### New
+
+- **Anchor System (SK-005)** — `memory_search` now accepts `anchors` parameter for targeted section retrieval
+  - Token savings: 73% (summary-only), 87% (decisions-only), 61% (summary+decisions)
+  - Response includes `tokenMetrics` with `actualTokens`, `fullFileTokens`, `savingsPercent`
+  - Anchor format: `<!-- ANCHOR:id -->...<!-- /ANCHOR:id -->`
+- **Voyage 4 Embedding Support** — Added `voyage-4`, `voyage-4-large`, `voyage-4-lite` models
+  - Automatic database separation per model (no data loss on upgrade)
+  - Shared embedding space enables asymmetric retrieval
+
+### Changed
+
+- **Modular Architecture** — Decomposed `context-server.js` from 2,703 to 319 lines (88% reduction)
+  - 19 new modules across 5 directories: `core/`, `handlers/`, `formatters/`, `utils/`, `hooks/`
+  - All modules under 300 lines for AI-editable size
+- **Default Embedding Model** — Changed from `voyage-3.5` to `voyage-4`
+- **Documentation Accuracy** — Corrected ANCHOR token savings claims; standardized debug threshold to "3+"
+
+### Fixed
+
+- **Critical: Missing `await` on formatSearchResults()** — Lines 1085, 1140, 1161 returning Promise objects
+- **Critical: E429 Error Code** — Now defined in `errors.js` and documented
+- **Critical: Batch API Rate Limiting** — Added `BATCH_DELAY_MS` (100ms default)
+- **Critical: vec_memories Cleanup** — Fixed deletion order preventing orphaned rows
+- **Race Conditions** — Mutex for warmup; cache clearing on reinitialize; trigger invalidation
+- **Memory Leaks** — LRU cache for regex; timer cleanup in with_timeout
+- **Null Safety** — Null checks on database query results throughout codebase
+- **Cross-Platform** — `os.homedir()` and `os.tmpdir()` replacing hardcoded paths
+- **Config Cleanup** — Deleted unused `config-loader.js`; reduced `search-weights.json`
+- **parseInt Radix** — Added `, 10` to all parseInt calls
+- Plus 200+ additional fixes across templates, commands, references, and documentation
+
 ## [1.7.1] - 2026-01-15
 
 *Environment version: 1.0.3.6*

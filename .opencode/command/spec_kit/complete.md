@@ -93,56 +93,6 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 ---
 
-## 🔒 PHASE 3: MEMORY CONTEXT LOADING (Conditional)
-
-**STATUS: ☐ BLOCKED / ☐ N/A**
-
-> **Memory Context Loading:** This phase implements AGENTS.md Section 2 "Memory Context Loading". See that section for the `[1] [2] [3] [all] [skip]` selection format.
-
-```
-EXECUTE AFTER PHASE 2 PASSES:
-
-CHECK spec_choice value from Phase 2:
-
-├─ IF spec_choice == D (Skip):
-│   └─ SET STATUS: ⏭️ N/A (no spec folder, no memory)
-│
-├─ IF spec_choice == B (Create new):
-│   └─ SET STATUS: ⏭️ N/A (new folder has no memory)
-│
-└─ IF spec_choice == A or C (Use existing):
-    │
-    ├─ Check: Does spec_path/memory/ exist AND contain files?
-    │
-    ├─ IF memory/ is empty or missing:
-    │   └─ SET STATUS: ⏭️ N/A (no memory to load)
-    │
-    └─ IF memory/ has files:
-        │
-        ├─ ASK user:
-        │   ┌────────────────────────────────────────────────────┐
-        │   │ "Load previous context from this spec folder?"     │
-        │   │                                                    │
-        │   │ A) Load most recent memory file (quick refresh)     │
-        │   │ B) Load all recent files, up to 3 (comprehensive).  │
-        │   │ C) List all files and select specific                │
-        │   │ D) Skip (start fresh, no context)                  │
-        │   └────────────────────────────────────────────────────┘
-        │
-        ├─ WAIT for user response
-        ├─ Execute loading based on choice (use Read tool)
-        ├─ Acknowledge loaded context briefly
-        └─ SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select memory loading option before continuing.
-
-⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
-```
-
-**Phase 3 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
-
----
-
 ## 🔀 PHASE 2.5: OPTIONAL RESEARCH PHASE (Conditional)
 
 **STATUS: ☐ SKIP / ☐ TRIGGERED**
@@ -228,6 +178,56 @@ EXECUTE AFTER PHASE 2 PASSES:
 
 ---
 
+## 🔒 PHASE 3: MEMORY CONTEXT LOADING (Conditional)
+
+**STATUS: ☐ BLOCKED / ☐ N/A**
+
+> **Memory Context Loading:** This phase implements AGENTS.md Section 2 "Memory Context Loading". Uses A/B/C/D selection format as shown below.
+
+```
+EXECUTE AFTER PHASE 2.5 PASSES OR SKIPS:
+
+CHECK spec_choice value from Phase 2:
+
+├─ IF spec_choice == D (Skip):
+│   └─ SET STATUS: ⏭️ N/A (no spec folder, no memory)
+│
+├─ IF spec_choice == B (Create new):
+│   └─ SET STATUS: ⏭️ N/A (new folder has no memory)
+│
+└─ IF spec_choice == A or C (Use existing):
+    │
+    ├─ Check: Does spec_path/memory/ exist AND contain files?
+    │
+    ├─ IF memory/ is empty or missing:
+    │   └─ SET STATUS: ⏭️ N/A (no memory to load)
+    │
+    └─ IF memory/ has files:
+        │
+        ├─ ASK user:
+        │   ┌────────────────────────────────────────────────────┐
+        │   │ "Load previous context from this spec folder?"     │
+        │   │                                                    │
+        │   │ A) Load most recent memory file (quick refresh)     │
+        │   │ B) Load all recent files, up to 3 (comprehensive).  │
+        │   │ C) List all files and select specific                │
+        │   │ D) Skip (start fresh, no context)                  │
+        │   └────────────────────────────────────────────────────┘
+        │
+        ├─ WAIT for user response
+        ├─ Execute loading based on choice (use Read tool)
+        ├─ Acknowledge loaded context briefly
+        └─ SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select memory loading option before continuing.
+
+⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
+```
+
+**Phase 3 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
+
+---
+
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
 **Before continuing to the workflow, verify ALL phases:**
@@ -272,7 +272,7 @@ VERIFICATION CHECK:
 - **Proceeded with confidence <40% without asking clarifying question**
 - **Made technical decisions without citing sources**
 - **Claimed certainty without evidence (fabricated or guessed)**
-- **Failed to escalate after 2 failed attempts or 10 minutes**
+- **Failed to escalate after 3 failed attempts or 10 minutes**
 
 **Optional Workflow Violations:**
 - **Skipped checkpoint prompt after research phase completed**

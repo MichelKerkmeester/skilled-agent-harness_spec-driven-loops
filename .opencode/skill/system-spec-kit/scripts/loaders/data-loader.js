@@ -6,6 +6,7 @@
 
 const fs = require('fs/promises');
 const path = require('path');
+const os = require('os');
 
 const { CONFIG } = require('../core');
 const { structuredLog, sanitizePath } = require('../utils');
@@ -36,8 +37,10 @@ async function loadCollectedData() {
   if (CONFIG.DATA_FILE) {
     try {
       // SEC-001: Path traversal mitigation (CWE-22)
+      // Use os.tmpdir() for cross-platform temp directory support
+      const tmpDir = os.tmpdir();
       const dataFileAllowedBases = [
-        '/tmp',
+        tmpDir,
         process.cwd(),
         path.join(process.cwd(), 'specs'),
         path.join(process.cwd(), '.opencode')

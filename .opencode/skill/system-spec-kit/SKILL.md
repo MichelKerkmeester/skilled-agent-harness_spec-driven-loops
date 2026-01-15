@@ -198,6 +198,50 @@ Gate 1 triggers → DECAY → MATCH → ACTIVATE → CO-ACTIVATE → CLASSIFY �
 | "env", "environment", "configuration" | `references/config/` |
 | "scripts", "generate-context", "check-completion" | `scripts/` |
 
+### Shared Modules (`shared/`)
+
+The `shared/` directory contains canonical JavaScript modules shared between CLI scripts and MCP server:
+
+| Module | Purpose |
+|--------|---------|
+| `embeddings.js` | Multi-provider embedding generation (Voyage, OpenAI, HuggingFace local) |
+| `chunking.js` | Semantic text chunking for long documents |
+| `trigger-extractor.js` | TF-IDF + N-gram trigger phrase extraction (v11) |
+| `utils.js` | Common utility functions |
+| `embeddings/factory.js` | Provider selection with fallback logic |
+| `embeddings/profile.js` | Per-profile database path generation |
+| `embeddings/providers/` | Provider implementations (hf-local.js, openai.js, voyage.js) |
+
+**Architecture:** Both `scripts/lib/` and `mcp_server/lib/` re-export from `shared/` to ensure consistent behavior.
+
+**Key Functions:**
+- `generateDocumentEmbedding(text)` - For indexing content
+- `generateQueryEmbedding(text)` - For search queries  
+- `extractTriggerPhrases(text)` - Extract 8-25 normalized trigger phrases
+
+**Full documentation:** See [shared/README.md](./shared/README.md)
+
+### Configuration (`config/`)
+
+The `config/` directory contains runtime configuration for the memory system:
+
+| File | Purpose |
+|------|---------|
+| `config.jsonc` | Core memory system settings (search, decay, tiers, checkpoints) |
+| `filters.jsonc` | Content filtering pipeline (noise removal, deduplication, quality scoring) |
+
+**config.jsonc key settings:**
+- `semanticSearch` - Minimum similarity score, max results, embedding model
+- `memoryDecay` - Half-life decay (~62 days with scaleDays=90)
+- `importanceTiers` - Tier behaviors (constitutional, critical, important, normal, temporary, deprecated)
+- `hybridSearch` - FTS/vector weight balance (40%/60% default)
+- `checkpoints` - Max checkpoints, auto-cleanup
+
+**filters.jsonc pipeline stages:**
+1. `noise` - Pattern-based noise removal (min 15 chars, 3 unique words)
+2. `dedupe` - Duplicate removal (70% similarity threshold)
+3. `quality` - Content quality scoring (uniqueness, density, file refs, decisions)
+
 ### Resource Inventory
 
 **Templates by Level (`templates/`):**
@@ -485,6 +529,29 @@ memory_search({ concepts: ["auth", "session"], specFolder: "007-auth" })
 // memory_search({ specFolder: "007-auth" })
 ```
 
+**Anchor-Based Retrieval (Token-Efficient):**
+
+Use the `anchors` parameter to retrieve only specific sections from memory files, reducing token usage by ~90%:
+
+```javascript
+// Get only summary and decisions (~300 tokens vs ~2000 full file)
+memory_search({
+  query: "auth implementation",
+  anchors: ['summary', 'decisions']
+})
+
+// Resume work - get state and next steps
+memory_search({
+  query: "session context",
+  specFolder: "007-auth",
+  anchors: ['state', 'next-steps', 'blockers']
+})
+```
+
+**Common Anchors:** `summary`, `decisions`, `metadata`, `state`, `context`, `artifacts`, `blockers`, `next-steps`
+
+**Full documentation:** See [memory_system.md](./references/memory/memory_system.md#anchor-based-retrieval-token-efficient)
+
 **Key Concepts:**
 - **Constitutional tier** - Critical rules that ALWAYS surface at top of search results
 - **Decay scoring** - Recent memories rank higher (~62-day half-life)
@@ -532,6 +599,37 @@ STAGE 2: MEMORY LOADING
 - **C:** List up to 10 files, wait for selection
 - **D:** Proceed without loading context
 
+### Prior Work Search (Research Workflow Phase 3)
+
+When executing `/spec_kit:research`, Phase 3 automatically searches for related prior work before proceeding:
+
+```
+PHASE 3: PRIOR WORK SEARCH (Auto-execute after Phase 2)
+
+1. Call memory_match_triggers(prompt=research_topic) for fast keyword match
+2. Call memory_search(query=research_topic, includeConstitutional=true) for semantic search
+3. IF matches found:
+   ├─ Display: "Found [N] related memories from prior research"
+   ├─ ASK user:
+   │   ┌────────────────────────────────────────────────────┐
+   │   │ "Load related prior work?"                         │
+   │   │                                                    │
+   │   │ A) Load all matches (comprehensive context)        │
+   │   │ B) Load constitutional only (foundational rules)   │
+   │   │ C) Skip (start fresh)                              │
+   │   └────────────────────────────────────────────────────┘
+   └─ SET STATUS: ✅ PASSED
+4. IF no matches found:
+   └─ SET STATUS: ⏭️ N/A (no prior work)
+```
+
+**Key Behaviors:**
+- Constitutional tier memories are ALWAYS loaded regardless of choice (auto-surface with similarity: 100)
+- This phase is conditional - skipped if no prior work exists
+- Runs between Spec Folder Setup (Phase 2) and Memory Context Loading (Phase 4)
+
+**See also:** `/spec_kit:research` command for full 9-step research workflow.
+
 ### Debug Delegation Workflow
 
 **When to Trigger:**
@@ -539,7 +637,7 @@ STAGE 2: MEMORY LOADING
 - Auto-suggest when detecting:
   - Same error 3+ times after fix attempts
   - Frustration keywords: "stuck", "can't fix", "tried everything"
-  - Extended debugging: >15 minutes with 2+ fix attempts
+  - Extended debugging: >15 minutes with 3+ fix attempts
 
 **⚠️ MANDATORY: After 3 failed attempts on the same error, you MUST suggest `/spec_kit:debug`. Do not continue attempting fixes without offering debug delegation first.**
 

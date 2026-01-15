@@ -562,6 +562,8 @@ Narsil supports **three neural embedding backends** for semantic code search:
 | **OpenAI** | `text-embedding-3-small` | `OPENAI_API_KEY` | 1536 | General purpose |
 | **Local ONNX** | Built-in | None required | 384 | Offline/privacy |
 
+> **Note on Voyage 4**: While Voyage 4 is available for general text, `voyage-code-2` remains the recommended model for code search as of Jan 2026. You can test `voyage-4` by setting `--neural-model voyage-4`, but verify retrieval quality first.
+
 #### Option 1: Voyage AI (Recommended for Code)
 
 ```json

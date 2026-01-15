@@ -36,14 +36,21 @@ The Spec Kit Memory system provides context preservation across sessions through
 
 Six-tier system for prioritizing memory relevance:
 
-| Tier | Weight | Purpose | Auto-Surface |
-|------|--------|---------|--------------|
-| **Constitutional** | 1.0 | Critical rules that ALWAYS apply | Yes (top of every search) |
-| **Critical** | 1.0 | High-importance context | Yes (high relevance) |
-| **Important** | 0.8 | Significant decisions/context | Relevance-based |
-| **Normal** | 0.5 | Standard session context | Relevance-based |
-| **Temporary** | 0.3 | Short-term notes | Relevance-based |
-| **Deprecated** | 0.1 | Outdated (kept for history) | Never (excluded from search results) |
+| Tier | Weight | searchBoost | Purpose | Auto-Surface |
+|------|--------|-------------|---------|--------------|
+| **Constitutional** | 1.0 | 3.0 | Critical rules that ALWAYS apply | Yes (top of every search) |
+| **Critical** | 1.0 | 2.0 | High-importance context | Yes (high relevance) |
+| **Important** | 0.8 | 1.5 | Significant decisions/context | Relevance-based |
+| **Normal** | 0.5 | 1.0 | Standard session context | Relevance-based |
+| **Temporary** | 0.3 | 0.5 | Short-term notes | Relevance-based |
+| **Deprecated** | 0.1 | 0.0 | Outdated (kept for history) | Never (excluded from search) |
+
+**searchBoost Multipliers:** Applied to search scores to prioritize higher tiers:
+- Constitutional memories get 3x boost in search ranking
+- Critical memories get 2x boost
+- Important memories get 1.5x boost
+- Normal memories have no boost (1.0x)
+- Temporary and Deprecated get reduced visibility (0.5x and 0x respectively)
 
 ### Constitutional Tier Behavior
 
@@ -64,12 +71,19 @@ Six-tier system for prioritizing memory relevance:
 | Tool | Purpose | Example Use |
 |------|---------|-------------|
 | `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
-| `memory_match_triggers()` | Fast keyword matching (<50ms) | Gate enforcement |
-| `memory_save()` | Index a memory file. Re-generates embedding when **title** changes. Content changes without title changes do not trigger re-embedding. | After generate-context.js |
-| `memory_list()` | Browse stored memories | Review session history |
+| `memory_match_triggers()` | Fast keyword matching (<50ms) with cognitive features | Gate enforcement |
+| `memory_save()` | Index a memory file. Re-generates embedding when **content hash** changes. Title-only changes do not trigger re-embedding. | After generate-context.js |
+| `memory_list()` | Browse stored memories with pagination | Review session history |
+| `memory_delete()` | Delete memory by ID or bulk delete by spec folder | Remove outdated memories |
+| `memory_update()` | Update memory metadata (title, tier, triggers) | Correct memory properties |
 | `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
+| `memory_stats()` | Get memory system statistics | Check index health |
+| `memory_index_scan()` | Bulk scan and index memory files | After creating multiple files |
+| `memory_health()` | Check health status of memory system | Diagnose issues |
 | `checkpoint_create()` | Save named state snapshot | Before risky changes |
+| `checkpoint_list()` | List available checkpoints | Find restore points |
 | `checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
+| `checkpoint_delete()` | Delete a checkpoint | Clean up old snapshots |
 
 ---
 
@@ -87,6 +101,7 @@ Six-tier system for prioritizing memory relevance:
 - `specFolder`: Limit search to specific spec folder
 - `includeContent`: Include full file content in results
 - `includeConstitutional`: Include constitutional tier memories
+- `anchors`: Array of anchor IDs for targeted section retrieval (token-efficient)
 - `tier`: Filter by importance tier
 - `limit`: Maximum results to return
 - `useDecay`: Apply temporal decay scoring
@@ -101,6 +116,7 @@ Six-tier system for prioritizing memory relevance:
 | `includeConstitutional` | boolean | No | true | Include constitutional memories |
 | `includeContent` | boolean | No | false | Embed full file content in results |
 | `includeContiguity` | boolean | No | false | Include adjacent memories |
+| `anchors` | string[] | No | - | Anchor IDs to extract (e.g., `['summary', 'decisions']`) |
 | `tier` | string | No | - | Filter by importance tier |
 | `limit` | number | No | 10 | Maximum results to return |
 | `useDecay` | boolean | No | true | Apply temporal decay scoring |
@@ -122,27 +138,97 @@ Six-tier system for prioritizing memory relevance:
 memory_search({ query: "authentication decisions" })
 
 // Folder-scoped with content (query still required)
-memory_search({ 
-  query: "OAuth implementation", 
+memory_search({
+  query: "OAuth implementation",
   specFolder: "007-auth",
-  includeContent: true 
+  includeContent: true
 })
 
 // Multi-concept AND search (alternative to query)
-memory_search({ 
+memory_search({
   concepts: ["authentication", "session management"],
   specFolder: "007-auth"
 })
 
 // Exclude constitutional tier
-memory_search({ 
+memory_search({
   query: "login flow",
-  includeConstitutional: false 
+  includeConstitutional: false
 })
 
 // WRONG: specFolder alone is NOT sufficient
 // memory_search({ specFolder: "007-auth" })  // ERROR: E040
 ```
+
+### Anchor-Based Retrieval (Token-Efficient)
+
+The `anchors` parameter enables **targeted section retrieval** from memory files, reducing token usage by ~90% when you only need specific sections.
+
+**When to Use Anchors:**
+- You need only specific sections (summary, decisions) not full content
+- Token efficiency is important (large memory files)
+- Loading context for specific purposes (e.g., resume work, review decisions)
+
+**Common Anchor Patterns:**
+
+| Anchor ID | Content | Use Case |
+|-----------|---------|----------|
+| `summary` | High-level overview | Quick context refresh |
+| `decisions` | Key decisions made | Understanding rationale |
+| `metadata` | File metadata, dates, status | Filtering and sorting |
+| `state` | Project state snapshot | Resume work |
+| `context` | Project context | Understand scope |
+| `artifacts` | Modified/created files | Track changes |
+| `blockers` | Current blockers | Identify issues |
+| `next-steps` | Planned actions | Continue work |
+
+**Anchor Usage Examples:**
+
+```javascript
+// Get only summary and decisions (minimal tokens)
+memory_search({
+  query: "auth implementation",
+  anchors: ['summary', 'decisions']
+})
+
+// Resume work - get state and next steps
+memory_search({
+  query: "session context",
+  specFolder: "007-auth",
+  anchors: ['state', 'next-steps', 'blockers']
+})
+
+// Review what changed - artifacts only
+memory_search({
+  query: "recent changes",
+  anchors: ['artifacts', 'metadata']
+})
+
+// Full content (no anchors - default behavior)
+memory_search({
+  query: "complete context",
+  includeContent: true  // Returns entire file
+})
+```
+
+**Anchor Format in Memory Files:**
+
+Memory files use HTML comment anchors:
+```markdown
+<!-- ANCHOR:summary -->
+Brief summary of the session...
+<!-- /ANCHOR:summary -->
+
+<!-- ANCHOR:decisions -->
+- Decision 1: Chose approach X because...
+- Decision 2: Deferred Y until...
+<!-- /ANCHOR:decisions -->
+```
+
+**Token Savings:**
+- Full memory file: ~2000 tokens
+- With `anchors: ['summary']`: ~150 tokens (93% savings)
+- With `anchors: ['summary', 'decisions']`: ~300 tokens (85% savings)
 
 ---
 
@@ -166,7 +252,7 @@ Use exact folder names when filtering. This is intentional for precise filtering
 | `specFolder` | string | - | Filter by exact spec folder name |
 | `limit` | number | 20 | Maximum results (max 100) |
 | `offset` | number | 0 | Pagination offset |
-| `sortBy` | string | `created_at` | Sort order: created_at, updated_at, importance_weight |
+| `sortBy` | string | `created_at` DESC | Sort order: created_at, updated_at, importance_weight |
 
 ### Spec Folder Filtering
 
@@ -181,7 +267,7 @@ For consistent exact matching, use the full spec folder name.
 
 ## 6. ⏱️ DECAY SCORING
 
-Memories decay over time to prioritize recent context:
+Memories decay over conversation turns to prioritize recent context:
 
 ### Tier-Specific Decay Rates (v1.7.1)
 
@@ -194,18 +280,22 @@ Memories decay over time to prioritize recent context:
 | `temporary` | 0.60 | Fast decay |
 | `deprecated` | 1.0 | Never decays (but excluded from results) |
 
-**Formula:** `new_score = current_score × decay_rate^turns_elapsed`
+**Formula (TURN-BASED):** `new_score = current_score × (decay_rate ^ turns_elapsed)`
+
+Where `turns_elapsed` = current conversation turn - last mentioned turn.
 
 **Protected Tiers:** Constitutional, critical, important, and deprecated tiers are protected from decay (rate = 1.0). This ensures important context is preserved regardless of conversation length.
 
-### Decay Examples
+### Decay Examples (Normal Tier, decay_rate = 0.80)
 
-| Memory Age | Decay Factor | Effective Weight (Normal tier) |
-|------------|--------------|-------------------------------|
-| Today | 1.0 | 0.50 |
-| 1 week | 0.92 | 0.46 |
-| 1 month | 0.71 | 0.36 |
-| 3 months | 0.35 | 0.18 |
+| Turns Elapsed | Decay Factor | Effective Score (base 0.50) |
+|---------------|--------------|----------------------------|
+| 0 | 1.00 | 0.50 |
+| 5 | 0.33 | 0.16 |
+| 10 | 0.11 | 0.05 |
+| 15 | 0.04 | 0.02 |
+
+**Note:** Decay is per conversation TURN, not calendar time. Each new user message increments the turn counter.
 
 ### Disabling Decay
 

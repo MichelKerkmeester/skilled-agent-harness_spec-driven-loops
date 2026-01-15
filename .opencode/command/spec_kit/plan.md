@@ -312,7 +312,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 ### Eligible Phases (Plan Workflow)
 
 - Step 3: Specification
-- Step 6: Planning (includes automatic 4-agent exploration)
+- Step 5: Planning (includes automatic 4-agent exploration)
 
 ### Override Phrases
 

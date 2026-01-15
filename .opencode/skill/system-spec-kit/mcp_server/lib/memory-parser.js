@@ -282,13 +282,15 @@ function is_memory_file(file_path) {
 function validate_anchors(content) {
   const warnings = [];
   const unclosed_anchors = [];
-  
+
   // Find all opening anchor tags (case-insensitive)
   // Pattern: <!-- ANCHOR:id --> or <!-- anchor:id --> or <!-- ANCHOR: id -->
   const opening_pattern = /<!--\s*(?:ANCHOR|anchor):\s*([^>\s]+)\s*-->/gi;
-  
-  // Valid anchor ID pattern: alphanumeric and hyphens, must start with alphanumeric
-  const VALID_ANCHOR_PATTERN = /^[a-zA-Z0-9][-a-zA-Z0-9]*$/;
+
+  // Valid anchor ID pattern: alphanumeric, hyphens, and forward slashes
+  // Must start with alphanumeric. Slashes allowed for spec folder paths.
+  // e.g., "summary-session-xxx-003-memory-and-spec-kit/065-name"
+  const VALID_ANCHOR_PATTERN = /^[a-zA-Z0-9][a-zA-Z0-9-/]*$/;
   
   let match;
   while ((match = opening_pattern.exec(content)) !== null) {
@@ -317,6 +319,39 @@ function validate_anchors(content) {
     warnings,
     unclosedAnchors: unclosed_anchors,
   };
+}
+
+// Extract content from anchors
+function extract_anchors(content) {
+  const anchors = {};
+
+  // Find all opening anchor tags (case-insensitive)
+  // Pattern: <!-- ANCHOR:id --> or <!-- anchor:id -->
+  // NOTE: Anchor IDs can contain forward slashes from spec folder paths
+  //       e.g., "summary-session-xxx-003-memory-and-spec-kit/065-name"
+  const anchor_regex = /<!--\s*(?:ANCHOR|anchor):\s*([a-zA-Z0-9][a-zA-Z0-9-/]*)\s*-->/gi;
+  let match;
+  
+  while ((match = anchor_regex.exec(content)) !== null) {
+    const id = match[1];
+    const start_index = match.index + match[0].length;
+    
+    // Find the corresponding closing tag *after* the start tag
+    const closing_regex = new RegExp(`<!--\\s*/(?:ANCHOR|anchor):\\s*${escapeRegex(id)}\\s*-->`, 'i');
+    
+    // Search from start_index to avoid finding closing tags before opening ones (though regex exec handles order)
+    // We slice content to search only forward
+    const remaining_content = content.slice(start_index);
+    const close_match = remaining_content.match(closing_regex);
+    
+    if (close_match) {
+      // Extract content between tags
+      const inner_content = remaining_content.slice(0, close_match.index);
+      anchors[id] = inner_content.trim();
+    }
+  }
+  
+  return anchors;
 }
 
 // Validate parsed memory data
@@ -434,6 +469,7 @@ module.exports = {
   isMemoryFile: is_memory_file,
   validateParsedMemory: validate_parsed_memory,
   validateAnchors: validate_anchors,
+  extractAnchors: extract_anchors,
 
   // Directory scanning
   findMemoryFiles: find_memory_files,

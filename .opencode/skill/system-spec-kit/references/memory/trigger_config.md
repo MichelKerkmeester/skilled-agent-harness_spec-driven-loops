@@ -98,7 +98,7 @@ const result = await spec_kit_memory_memory_match_triggers({
 
 ### Gate 3 Enforcement Triggers
 
-The constitutional memory for Gate 3 enforcement (Memory #132) uses 33 trigger phrases to detect file modification intent:
+The constitutional memory for Gate 3 enforcement uses 33 trigger phrases to detect file modification intent:
 
 | Category | Trigger Phrases |
 |----------|-----------------|
@@ -124,7 +124,7 @@ The constitutional memory for Gate 3 enforcement (Memory #132) uses 33 trigger p
 const matches = await memory_match_triggers({
   prompt: "refactor the authentication module"
 });
-// Returns: Memory #132 (Gate 3 enforcement) 
+// Returns: Gate 3 enforcement constitutional memory 
 // matchedPhrases: ["refactor"]
 // AI then asks: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
 ```

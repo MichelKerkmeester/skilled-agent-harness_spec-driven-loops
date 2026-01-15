@@ -216,6 +216,10 @@ $ARGUMENTS
 
 ## 4. ⚡ INSTRUCTIONS
 
+After all phases pass, execute the workflow steps below. This command uses direct execution without YAML asset files due to its single-mode operation (no auto/confirm variants).
+
+> **Note:** Unlike other spec_kit commands, handover operates in a single mode and delegates to a sub-agent (see Section 7) rather than loading YAML prompts.
+
 ### Step 1: Validate Spec
 
 Confirm the spec folder path exists and contains relevant context files.
@@ -530,4 +534,4 @@ After handover is created, provide continuation instructions:
 | Want to save more context | `/memory:save [spec-folder-path]` | Preserve additional details |
 | Starting new work | `/spec_kit:complete [feature-description]` | Begin different feature |
 
-**ALWAYS** end with: "To continue in a new session, use: `/spec_kit:resume [spec-folder-path]`"
+**ALWAYS** end with: "What would you like to do next?"

@@ -9,7 +9,7 @@ Architecture Decision Record (ADR) documenting a significant technical decision 
 ## 1. METADATA
 
 - **Decision ID**: ADR-[FORMAT: ###]
-- **Status**: [NEEDS CLARIFICATION: What is the decision status? (a) Proposed - awaiting review (b) Accepted - approved and in effect (c) Deprecated - no longer recommended (d) Superseded - replaced by newer ADR]
+- **Status**: [FORMAT: Proposed | Accepted | Deprecated | Superseded]
 - **Date**: [FORMAT: YYYY-MM-DD]
 - **Deciders**: [YOUR_VALUE_HERE: names of decision makers]
 - **Related Feature**: [OPTIONAL: link to spec.md if applicable]

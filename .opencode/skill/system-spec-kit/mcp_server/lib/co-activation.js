@@ -30,14 +30,14 @@ let db = null;
 /**
  * Initialize the co-activation module with a database reference
  * @param {Database} database - better-sqlite3 database instance
+ * @throws {Error} If database is null or undefined (T016: consistent error handling)
  */
 function init(database) {
   if (!database) {
-    console.warn('[co-activation] init() called with null database');
-    return;
+    throw new Error('[co-activation] Database reference is required for initialization');
   }
   db = database;
-  console.error('[co-activation] Initialized with database reference');
+  console.log('[co-activation] Initialized with database reference');
 }
 
 /**
@@ -188,7 +188,7 @@ async function populate_related_memories(memoryId, vectorSearch) {
       WHERE id = ?
     `).run(relatedJson, memoryId);
 
-    console.error(`[co-activation] Populated ${relatedIds.length} related memories for memory ${memoryId}`);
+    console.log(`[co-activation] Populated ${relatedIds.length} related memories for memory ${memoryId}`);
     return relatedIds;
   } catch (error) {
     console.warn(`[co-activation] Error populating related memories for ${memoryId}:`, error.message);

@@ -27,7 +27,7 @@ Complete research documentation providing in-depth technical analysis, architect
 
 - **Research ID**: RESEARCH-[FORMAT: ###]
 - **Feature/Spec**: [YOUR_VALUE_HERE: link to related spec.md or feature name]
-- **Status**: [NEEDS CLARIFICATION: What is the research status? (a) In Progress - actively researching (b) Completed - findings documented (c) Archived - reference only, no longer maintained]
+- **Status**: [FORMAT: Draft | In Progress | Review | Complete | Archived]
 - **Date Started**: [FORMAT: YYYY-MM-DD]
 - **Date Completed**: [FORMAT: YYYY-MM-DD] [OPTIONAL: empty if in progress]
 - **Researcher(s)**: [YOUR_VALUE_HERE: names/roles]

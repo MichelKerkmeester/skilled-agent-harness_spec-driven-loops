@@ -46,7 +46,8 @@
     "deprecated": { "searchBoost": 0.0, "decay": false, "excludeFromSearch": true }
   },
 
-  // Hybrid search - combines FTS + vector similarity
+  // Hybrid search - uses RRF (Reciprocal Rank Fusion) to combine FTS + vector results
+  // Note: ftsWeight/vectorWeight are RESERVED for future weighted mode; currently RRF is used
   "hybridSearch": {
     "enabled": true,
     "ftsWeight": 0.4,

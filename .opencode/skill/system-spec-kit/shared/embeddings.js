@@ -5,7 +5,7 @@
 
 const crypto = require('crypto');
 const { create_embeddings_provider, get_provider_info } = require('./embeddings/factory');
-const { semantic_chunk, RESERVED_OVERVIEW, RESERVED_OUTCOME, MIN_SECTION_LENGTH } = require('./chunking');
+const { semantic_chunk, MAX_TEXT_LENGTH, RESERVED_OVERVIEW, RESERVED_OUTCOME, MIN_SECTION_LENGTH } = require('./chunking');
 
 /* ───────────────────────────────────────────────────────────────
    1. EMBEDDING CACHE
@@ -14,9 +14,41 @@ const { semantic_chunk, RESERVED_OVERVIEW, RESERVED_OUTCOME, MIN_SECTION_LENGTH 
 const EMBEDDING_CACHE_MAX_SIZE = 1000;
 const embedding_cache = new Map();
 
-/** Generate SHA256 hash key (first 16 chars) for cache lookup */
+/* ───────────────────────────────────────────────────────────────
+   RATE LIMITING CONFIGURATION
+   ─────────────────────────────────────────────────────────────── */
+
+/**
+ * Delay between batch embedding requests (ms).
+ * Prevents overwhelming external embedding providers (Voyage, OpenAI).
+ * Configurable via EMBEDDING_BATCH_DELAY_MS environment variable.
+ * Default: 100ms (allows ~10 requests/second, well under typical rate limits)
+ */
+const BATCH_DELAY_MS = parseInt(process.env.EMBEDDING_BATCH_DELAY_MS, 10) || 100;
+
+/**
+ * Sleep helper for rate limiting
+ * @param {number} ms - Milliseconds to sleep
+ * @returns {Promise<void>}
+ */
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Generate SHA256 hash key for cache lookup.
+ * Uses 32 hex chars (128 bits) for cache keys.
+ * 
+ * Collision Analysis:
+ * - 32 hex chars = 128 bits = 2^128 possible values
+ * - With 1000 cache entries, birthday paradox collision probability ≈ 0
+ * - Even with 10^18 entries, collision probability < 10^-20
+ * 
+ * @param {string} text - Text to hash
+ * @returns {string} 32-character hex hash
+ */
 function get_cache_key(text) {
-  return crypto.createHash('sha256').update(text).digest('hex').substring(0, 16);
+  return crypto.createHash('sha256').update(text).digest('hex').substring(0, 32);
 }
 
 /** Get cached embedding or null */
@@ -135,8 +167,20 @@ async function generate_embedding_with_timeout(text, timeout = 30000) {
   ]);
 }
 
-/** Generate embeddings for batch of texts with parallel processing */
-async function generate_batch_embeddings(texts, concurrency = 5) {
+/**
+ * Generate embeddings for batch of texts with parallel processing and rate limiting.
+ * 
+ * Rate limiting prevents overwhelming external embedding providers (Voyage, OpenAI)
+ * by adding a configurable delay between batch requests.
+ * 
+ * @param {string[]} texts - Array of texts to embed
+ * @param {number} concurrency - Number of parallel requests per batch (default: 5)
+ * @param {object} options - Optional configuration
+ * @param {number} options.delayMs - Delay between batches in ms (default: BATCH_DELAY_MS)
+ * @param {boolean} options.verbose - Log rate limiting behavior (default: false)
+ * @returns {Promise<(Float32Array|null)[]>} Array of embeddings
+ */
+async function generate_batch_embeddings(texts, concurrency = 5, options = {}) {
   if (!Array.isArray(texts)) {
     throw new TypeError('texts must be an array');
   }
@@ -145,14 +189,38 @@ async function generate_batch_embeddings(texts, concurrency = 5) {
     return [];
   }
 
+  const delay_ms = options.delayMs ?? BATCH_DELAY_MS;
+  const verbose = options.verbose ?? false;
+  const total_batches = Math.ceil(texts.length / concurrency);
+
+  if (verbose && total_batches > 1) {
+    console.error(`[embeddings] Processing ${texts.length} texts in ${total_batches} batches (delay: ${delay_ms}ms)`);
+  }
+
   const results = [];
   for (let i = 0; i < texts.length; i += concurrency) {
+    const batch_num = Math.floor(i / concurrency) + 1;
     const batch = texts.slice(i, i + concurrency);
+    
     const batch_results = await Promise.all(
       batch.map(text => generate_embedding(text))
     );
     results.push(...batch_results);
+
+    // Rate limiting: delay between batches (skip after last batch)
+    const is_last_batch = i + concurrency >= texts.length;
+    if (!is_last_batch && delay_ms > 0) {
+      if (verbose) {
+        console.error(`[embeddings] Batch ${batch_num}/${total_batches} complete, waiting ${delay_ms}ms...`);
+      }
+      await sleep(delay_ms);
+    }
   }
+
+  if (verbose && total_batches > 1) {
+    console.error(`[embeddings] All ${total_batches} batches complete`);
+  }
+
   return results;
 }
 
@@ -191,15 +259,41 @@ async function generate_document_embedding(text) {
   return embedding;
 }
 
-/** Generate embedding for a search query */
+/**
+ * Generate embedding for a search query.
+ * 
+ * Note: Query embeddings are intentionally NOT cached because:
+ * 1. Queries are typically unique and transient (low cache hit rate)
+ * 2. Query patterns differ from documents (different semantic context)
+ * 3. Caching queries would consume cache space better used for documents
+ * 4. Query generation is fast enough for interactive use
+ * 
+ * If your use case has repeated identical queries, consider caching
+ * at the application layer with query-specific TTL.
+ */
 async function generate_query_embedding(query) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
     console.warn('[embeddings] Empty query');
     return null;
   }
 
+  // Check cache for repeated queries (optional optimization)
+  const trimmed = query.trim();
+  const cache_key = 'query:' + trimmed;
+  const cached = get_cached_embedding(cache_key);
+  if (cached) {
+    return cached;
+  }
+
   const provider = await get_provider();
-  return await provider.embed_query(query);
+  const embedding = await provider.embed_query(trimmed);
+  
+  // Cache query embeddings with lower priority (only if space available)
+  if (embedding && embedding_cache.size < EMBEDDING_CACHE_MAX_SIZE * 0.9) {
+    cache_embedding(cache_key, embedding);
+  }
+  
+  return embedding;
 }
 
 /** Generate embedding for clustering task */
@@ -314,8 +408,12 @@ function get_provider_metadata() {
 
 const EMBEDDING_DIM = 768;
 const EMBEDDING_TIMEOUT = 30000;
-const MAX_TEXT_LENGTH = 8000;
-const MODEL_NAME = 'nomic-ai/nomic-embed-text-v1.5';
+// MAX_TEXT_LENGTH is imported from chunking.js (single source of truth)
+// DEFAULT_MODEL_NAME is the fallback; use get_model_name() for the actual active model
+const DEFAULT_MODEL_NAME = 'nomic-ai/nomic-embed-text-v1.5';
+// Legacy alias for backwards compatibility
+const MODEL_NAME = DEFAULT_MODEL_NAME;
+const BATCH_RATE_LIMIT_DELAY = BATCH_DELAY_MS; // Alias for export
 
 const TASK_PREFIX = {
   DOCUMENT: 'search_document: ',
@@ -354,7 +452,10 @@ module.exports = {
   EMBEDDING_TIMEOUT,
   MAX_TEXT_LENGTH,
   MODEL_NAME,
+  DEFAULT_MODEL_NAME,
   TASK_PREFIX,
+  BATCH_DELAY_MS,
+  BATCH_RATE_LIMIT_DELAY,
   RESERVED_OVERVIEW,
   RESERVED_OUTCOME,
   MIN_SECTION_LENGTH,

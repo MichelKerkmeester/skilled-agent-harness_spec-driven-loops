@@ -15,7 +15,7 @@ Complete feature specification defining requirements, user stories, and success 
 - **Priority**: [FORMAT: P0 | P1 | P2]
 - **Feature Branch**: `[FORMAT: ###-feature-name]`
 - **Created**: [FORMAT: YYYY-MM-DD]
-- **Status**: [FORMAT: Draft | In Review | Approved | In Progress | Complete]
+- **Status**: [FORMAT: Draft | In Progress | Review | Complete | Archived]
 - **Input**: [YOUR_VALUE_HERE: Original user request or requirement source]
 
 ### Stakeholders
@@ -63,6 +63,15 @@ Complete feature specification defining requirements, user stories, and success 
 
 [example: PDF export format - deferred to Phase 2]
 [example: Real-time metric streaming - different architectural approach needed]
+
+### Files to Change
+
+<!-- List files that will be modified or created -->
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| [YOUR_VALUE_HERE: path/to/file.js] | [Modify/Create/Delete] | [Brief description of change] |
+| [YOUR_VALUE_HERE: path/to/new.js] | [Modify/Create/Delete] | [Brief description of change] |
 
 ---
 

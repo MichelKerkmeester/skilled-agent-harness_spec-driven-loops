@@ -47,7 +47,7 @@ Think of constitutional memories as the "system prompt" for your memory system: 
 | **Fixed Similarity** | Returns `similarity: 100` regardless of query relevance |
 | **Response Flag** | `isConstitutional: true` in search results |
 | **Trigger Matching** | Fast phrase matching for proactive surfacing |
-| **ANCHOR Format** | Section-level retrieval for token efficiency |
+| **ANCHOR Format** | Section-level retrieval (implemented in v1.7.2) |
 
 ### How Constitutional Differs from Other Tiers
 
@@ -202,7 +202,9 @@ When a user says "fix the login bug", the memory with "fix" trigger surfaces imm
 
 ### 4.3 ANCHOR Format
 
-Constitutional memories use ANCHOR markers for **section-level retrieval**, enabling 93% token savings.
+Constitutional memories use ANCHOR markers for **section-level retrieval**.
+
+> **Implemented (v1.7.2):** ANCHOR tags are now fully indexed and support section-level retrieval. Use the `anchors` parameter in `memory_search()` to retrieve specific sections with 58-90% token savings.
 
 **Format:**
 

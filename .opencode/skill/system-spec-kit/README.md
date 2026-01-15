@@ -175,7 +175,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   └── workflows/                        # Workflow execution guides
 ├── mcp_server/                           # Spec Kit Memory MCP (v1.7.1 cognitive)
 │   ├── context-server.js                 # MCP server with vector search
-│   ├── lib/                              # Server libraries (28+ modules)
+│   ├── lib/                              # Server libraries (27 modules)
 │   ├── configs/                          # Server configuration
 │   └── README.md                         # MCP installation guide
 ├── database/
@@ -183,7 +183,7 @@ The result? Six months from now, you'll know exactly why you made that architect
 ├── constitutional/
 │   └── gate-enforcement.md               # Always-surface rules for gates
 └── scripts/
-    ├── generate-context.js               # Memory file generation (modular: 30 modules)
+    ├── generate-context.js               # Memory file generation (modular: 40 modules)
     ├── core/, extractors/, utils/...     # JS modules (see scripts/README.md)
     └── *.sh                              # Shell scripts for validation
 ```
@@ -247,9 +247,9 @@ cp src/component.js specs/042-feature/scratch/component-draft.js
 The `memory/` folder stores **conversation context and session history** for AI assistants.
 
 **Purpose:**
-- Saves conversation context with ANCHOR markers for section-level retrieval
+- Saves conversation context with ANCHOR markers for section-level retrieval (implemented v1.7.2)
 - Enables semantic search across all sessions (not just this spec folder)
-- Preserves decision rationale with 93% token savings via anchor-based loading
+- Preserves decision rationale with ANCHOR-based selective loading (58-90% token savings)
 
 **Git Behavior:**
 - Contents **ARE tracked** (committed to version control)
@@ -1315,7 +1315,7 @@ specs/122-skill-standardization/
 Context preservation uses the `/memory:save` command or "save context" trigger phrase. The system:
 1. Dispatches sub-agent via Task tool to gather context (for complex sessions)
 2. Runs `generate-context.js` to capture conversation context
-3. Generates ANCHOR markers for section-level retrieval (93% token savings)
+3. Generates ANCHOR markers for section-level retrieval (implemented v1.7.2)
 4. Auto-indexes into semantic memory database
 5. Embeds project state directly in memory file (no separate STATE.md)
 
@@ -1364,7 +1364,7 @@ The Spec Kit Memory system gives your AI assistant persistent, searchable memory
 **Key Capabilities:**
 - Hybrid search (vector + FTS5 + RRF fusion)
 - 6 importance tiers with configurable decay
-- ANCHOR format for 93% token savings
+- ANCHOR format for section marking (implemented v1.7.2, 58-90% token savings)
 - <50ms proactive trigger matching
 - Checkpoints for state snapshots
 
@@ -1390,7 +1390,9 @@ The memory system uses 6 importance tiers to prioritize what surfaces first:
 
 ### 8.3 ANCHOR Format
 
-Memory files use ANCHOR markers for section-level retrieval, enabling 93% token savings:
+Memory files use ANCHOR markers for section-level retrieval:
+
+> **Implemented (v1.7.2):** ANCHOR tags are now fully indexed and support section-level retrieval. Use the `anchors` parameter in `memory_search()` to retrieve specific sections (e.g., `memory_search({ query: "auth decisions", anchors: ["decisions", "context"] })`). Token savings of 58-90% depending on content structure. The `extractAnchors()` function is available for programmatic anchor extraction.
 
 ```markdown
 <!-- ANCHOR: decision-auth-flow -->
@@ -1445,7 +1447,7 @@ The memory system supports multiple embedding providers:
 
 | Provider | Dimensions | Requirements | Best For |
 |----------|------------|--------------|----------|
-| **Voyage** | 1024 | `VOYAGE_API_KEY` | Recommended, best retrieval quality |
+| **Voyage** | 1024 | `VOYAGE_API_KEY` | Recommended, best retrieval quality (`voyage-4`) |
 | **OpenAI** | 1536/3072 | `OPENAI_API_KEY` | Alternative cloud option |
 | **HF Local** | 768 | Node.js only | Privacy, offline, default fallback |
 | **Ollama** | 768 | Ollama + model | Optional (not yet available) |

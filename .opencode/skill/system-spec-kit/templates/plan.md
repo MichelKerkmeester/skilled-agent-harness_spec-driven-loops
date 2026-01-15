@@ -366,16 +366,16 @@ ios/ or android/
 ## WHEN TO USE THIS TEMPLATE
 
 **Use plan.md when:**
-- Creating Level 2 or Level 3 spec folders (moderate to complex features)
+- Creating Level 1, Level 2, or Level 3 spec folders (any feature complexity)
 - Need to define technical approach and architecture before implementation
 - Multiple phases of work requiring coordination
 - Team needs shared understanding of implementation strategy
 - Testing strategy and success metrics must be documented upfront
 
-**Never skip plan.md:**
-- plan.md is REQUIRED for ALL levels (Level 1, 2, and 3)
-- Even simple features benefit from documented technical approach
-- Use a minimal plan for straightforward features
+**Level requirements:**
+- plan.md is REQUIRED for Level 1, Level 2, and Level 3
+- Level 1: Use a minimal plan for straightforward features
+- Level 2/3: Full plan with all sections for moderate to complex features
 
 **Related templates:**
 - Start with `spec.md` for requirements and user stories

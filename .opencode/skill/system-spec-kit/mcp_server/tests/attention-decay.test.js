@@ -346,26 +346,26 @@ function test_db_dependent_without_db() {
 
   // Test applyDecay with invalid session
   const decayResult = attentionDecay.applyDecay('', 5);
-  if (decayResult === 0) {
-    pass('applyDecay with empty sessionId returns 0', `Result: ${decayResult}`);
+  if (decayResult && decayResult.decayedCount === 0) {
+    pass('applyDecay with empty sessionId returns {decayedCount: 0}', `Result: ${JSON.stringify(decayResult)}`);
   } else {
-    fail('applyDecay with empty sessionId returns 0', `Got: ${decayResult}`);
+    fail('applyDecay with empty sessionId returns {decayedCount: 0}', `Got: ${JSON.stringify(decayResult)}`);
   }
 
   // Test applyDecay with null session
   const nullSession = attentionDecay.applyDecay(null, 5);
-  if (nullSession === 0) {
-    pass('applyDecay with null sessionId returns 0', `Result: ${nullSession}`);
+  if (nullSession && nullSession.decayedCount === 0) {
+    pass('applyDecay with null sessionId returns {decayedCount: 0}', `Result: ${JSON.stringify(nullSession)}`);
   } else {
-    fail('applyDecay with null sessionId returns 0', `Got: ${nullSession}`);
+    fail('applyDecay with null sessionId returns {decayedCount: 0}', `Got: ${JSON.stringify(nullSession)}`);
   }
 
   // Test applyDecay with invalid turn
   const invalidTurn = attentionDecay.applyDecay('test-session', -1);
-  if (invalidTurn === 0) {
-    pass('applyDecay with negative turn returns 0', `Result: ${invalidTurn}`);
+  if (invalidTurn && invalidTurn.decayedCount === 0) {
+    pass('applyDecay with negative turn returns {decayedCount: 0}', `Result: ${JSON.stringify(invalidTurn)}`);
   } else {
-    fail('applyDecay with negative turn returns 0', `Got: ${invalidTurn}`);
+    fail('applyDecay with negative turn returns {decayedCount: 0}', `Got: ${JSON.stringify(invalidTurn)}`);
   }
 
   // Test activateMemory with invalid session

@@ -420,11 +420,12 @@ The resume workflow uses semantic memory MCP tools directly for context loading.
 
 ### Checkpoint Tools
 
-| Tool                | Purpose                              | Usage                                    |
-| ------------------- | ------------------------------------ | ---------------------------------------- |
-| `checkpoint_create` | Create named checkpoint of state     | Snapshot memory state before major work  |
-| `checkpoint_list`   | List all available checkpoints       | Browse saved checkpoints with metadata   |
-| `checkpoint_delete` | Delete a checkpoint                  | Clean up old or unused checkpoints       |
+| Tool                 | Purpose                              | Usage                                    |
+| -------------------- | ------------------------------------ | ---------------------------------------- |
+| `checkpoint_create`  | Create named checkpoint of state     | Snapshot memory state before major work  |
+| `checkpoint_list`    | List all available checkpoints       | Browse saved checkpoints with metadata   |
+| `checkpoint_restore` | Restore memory state from checkpoint | Rollback to a previous checkpoint state  |
+| `checkpoint_delete`  | Delete a checkpoint                  | Clean up old or unused checkpoints       |
 
 **Note:** There is no `memory_load` tool. Use `memory_search` with `includeContent: true` to load memory content directly in search results.
 
@@ -568,4 +569,4 @@ After resume completes, suggest relevant next steps based on progress:
 | Found issues | `/spec_kit:debug [spec-folder-path]` | Debug problems |
 | Session ending again | `/spec_kit:handover [spec-folder-path]` | Save progress for later |
 
-**ALWAYS** end with: "What would you like to work on?"
+**ALWAYS** end with: "What would you like to do next?"

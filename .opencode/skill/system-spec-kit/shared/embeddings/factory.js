@@ -112,8 +112,9 @@ async function create_embeddings_provider(options = {}) {
       if (!success) {
         console.warn(`[factory] Warmup failed for ${provider_name}`);
         
-        if (provider_name === 'openai' && !options.provider) {
-          console.warn('[factory] Attempting fallback to hf-local...');
+        // Fallback to hf-local for cloud providers when auto-detected (not explicitly set)
+        if ((provider_name === 'openai' || provider_name === 'voyage') && !options.provider) {
+          console.warn(`[factory] Attempting fallback from ${provider_name} to hf-local...`);
           provider = new HfLocalProvider({
             model: options.model,
             dim: options.dim,
@@ -128,8 +129,9 @@ async function create_embeddings_provider(options = {}) {
   } catch (error) {
     console.error(`[factory] Error creating provider ${provider_name}:`, error.message);
     
-    if (provider_name === 'openai' && !options.provider) {
-      console.warn('[factory] Fallback to hf-local due to OpenAI error');
+    // Fallback to hf-local for cloud providers when auto-detected (not explicitly set)
+    if ((provider_name === 'openai' || provider_name === 'voyage') && !options.provider) {
+      console.warn(`[factory] Fallback to hf-local due to ${provider_name} error`);
       provider = new HfLocalProvider({
         model: options.model,
         dim: options.dim,
@@ -160,7 +162,7 @@ function get_provider_info() {
     config: {
       EMBEDDINGS_PROVIDER: process.env.EMBEDDINGS_PROVIDER || 'auto',
       VOYAGE_API_KEY: process.env.VOYAGE_API_KEY ? '***set***' : 'not set',
-      VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-3.5',
+      VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-4',
       OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '***set***' : 'not set',
       OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small',
       HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || 'nomic-ai/nomic-embed-text-v1.5',

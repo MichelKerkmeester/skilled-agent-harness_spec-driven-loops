@@ -13,8 +13,8 @@ This command involves FILE MODIFICATIONS. Per AGENTS.md Section 2, Gate 3 MUST b
 
 **First Message Protocol:** If this command is invoked as the user's FIRST message requesting file modifications, the spec folder question is your FIRST response. No analysis first, no tool calls first.
 
-**Failure Pattern #19 Warning:**
-> "Skip Gate 3 on exciting tasks" - Triggers: "comprehensive", "fix all", "15 agents"
+**Failure Pattern #5 Warning (Skip Process):**
+> "I already know this" - Triggers: "straightforward", "comprehensive", "fix all", "15 agents"
 > Even exciting implementation requests MUST complete Phase 1-3 blocking gates.
 
 **Self-Verification:** Before proceeding to workflow:

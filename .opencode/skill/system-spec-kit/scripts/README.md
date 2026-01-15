@@ -394,7 +394,7 @@ P2: 60% (6/10)
 |--------|---------|
 | **Input** | JSON data file OR spec folder path |
 | **Output** | Memory file in `specs/###-feature/memory/` |
-| **Format** | ANCHOR-tagged sections for selective retrieval |
+| **Format** | ANCHOR-tagged sections (implemented v1.7.2, 58-90% token savings) |
 | **Architecture** | 142-line CLI entry point + 30 modules across 6 directories |
 
 **Modular Structure** (refactored from 4,837-line monolith):

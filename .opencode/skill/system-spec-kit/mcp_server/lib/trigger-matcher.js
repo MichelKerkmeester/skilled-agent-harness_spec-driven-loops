@@ -17,6 +17,7 @@ const CONFIG = {
   MAX_PROMPT_LENGTH: 5000,  // Max prompt length to process
   WARN_THRESHOLD_MS: 30,    // Warn if matching takes longer
   LOG_EXECUTION_TIME: true, // Log all execution times (CHK069)
+  MAX_REGEX_CACHE_SIZE: 100, // T015: Max regex objects to cache (LRU eviction)
 };
 
 /* ───────────────────────────────────────────────────────────────
@@ -56,6 +57,40 @@ function log_execution_time(operation, duration_ms, details = {}) {
 // Structure: Array<{phrase, memoryId, specFolder, filePath, importanceWeight, title}>
 let trigger_cache = null;
 let cache_timestamp = 0;
+
+// T015: LRU cache for regex objects to prevent memory leaks
+// Simple LRU implementation using Map (insertion order preserved)
+const regex_lru_cache = new Map();
+
+/**
+ * Get or create a cached regex for a phrase (T015: LRU with size limit)
+ * @param {string} phrase - The phrase to create regex for
+ * @returns {RegExp} Pre-compiled regex with word boundaries
+ */
+function get_cached_regex(phrase) {
+  // Check if already in cache
+  if (regex_lru_cache.has(phrase)) {
+    // Move to end (most recently used) by deleting and re-adding
+    const regex = regex_lru_cache.get(phrase);
+    regex_lru_cache.delete(phrase);
+    regex_lru_cache.set(phrase, regex);
+    return regex;
+  }
+
+  // Create new regex
+  const regex = new RegExp(`\\b${escapeRegex(phrase)}\\b`, 'iu');
+
+  // Evict oldest entry if at capacity (T015: LRU eviction)
+  if (regex_lru_cache.size >= CONFIG.MAX_REGEX_CACHE_SIZE) {
+    // Map.keys().next().value gives the oldest (first inserted) key
+    const oldest_key = regex_lru_cache.keys().next().value;
+    regex_lru_cache.delete(oldest_key);
+  }
+
+  // Add to cache
+  regex_lru_cache.set(phrase, regex);
+  return regex;
+}
 
 // Load all trigger phrases from the index into memory
 // Uses lazy loading with TTL-based cache refresh
@@ -109,7 +144,7 @@ function load_trigger_cache() {
         const phrase_lower = normalize_unicode(phrase, false);
         trigger_cache.push({
           phrase: phrase_lower, // Pre-normalized for fast comparison
-          regex: new RegExp(`\\b${escapeRegex(phrase_lower)}\\b`, 'iu'), // Pre-compiled regex with Unicode flag
+          regex: get_cached_regex(phrase_lower), // T015: Use LRU-cached regex
           memoryId: row.id,
           specFolder: row.spec_folder,
           filePath: row.file_path,
@@ -132,6 +167,7 @@ function load_trigger_cache() {
 function clear_cache() {
   trigger_cache = null;
   cache_timestamp = 0;
+  regex_lru_cache.clear(); // T015: Also clear the regex LRU cache
 }
 
 // Get cache statistics
@@ -140,6 +176,8 @@ function get_cache_stats() {
     size: trigger_cache ? trigger_cache.length : 0,
     timestamp: cache_timestamp,
     ageMs: cache_timestamp ? Date.now() - cache_timestamp : null,
+    regexCacheSize: regex_lru_cache.size, // T015: Include regex cache size
+    maxRegexCacheSize: CONFIG.MAX_REGEX_CACHE_SIZE,
   };
 }
 

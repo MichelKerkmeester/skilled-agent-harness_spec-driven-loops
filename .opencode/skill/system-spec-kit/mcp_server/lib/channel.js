@@ -14,6 +14,20 @@ const { execSync } = require('child_process');
 
 const DEFAULT_CHANNEL = 'default';
 
+/**
+ * T121: INTENTIONAL GLOBAL STATE PATTERN
+ * 
+ * These module-level variables are intentionally global for performance:
+ * - cached_branch: Caches the current git branch to avoid repeated execSync calls
+ * - cache_expiry: TTL timestamp for cache invalidation
+ * 
+ * This is a deliberate design choice because:
+ * 1. Git branch changes infrequently during a session
+ * 2. execSync is expensive (~50-100ms per call)
+ * 3. Cache provides 5-second TTL for freshness
+ * 
+ * To reset the cache externally, call clear_cache().
+ */
 let cached_branch = null;
 let cache_expiry = 0;
 const CACHE_TTL_MS = 5000;

@@ -64,8 +64,14 @@ function vector_search_with_contiguity(db, vector_search_fn, query_embedding, op
     `).all(...ids);
 
     for (const row of rows) {
+      // T121: Wrap JSON.parse in try-catch to handle parse errors gracefully
       if (row.trigger_phrases) {
-        row.trigger_phrases = JSON.parse(row.trigger_phrases);
+        try {
+          row.trigger_phrases = JSON.parse(row.trigger_phrases);
+        } catch (e) {
+          console.warn(`[temporal-contiguity] Failed to parse trigger_phrases for memory ${row.id}: ${e.message}`);
+          row.trigger_phrases = [];
+        }
       }
       contiguous.push({ ...row, contiguity_source: 'temporal' });
     }
@@ -104,9 +110,15 @@ function get_temporal_neighbors(db, memory_id, options = {}) {
     LIMIT ?
   `).all(source.spec_folder, source.created_at, memory_id, after);
 
+  // T121: Wrap JSON.parse in try-catch to handle parse errors gracefully
   const parse_row = row => {
     if (row.trigger_phrases) {
-      row.trigger_phrases = JSON.parse(row.trigger_phrases);
+      try {
+        row.trigger_phrases = JSON.parse(row.trigger_phrases);
+      } catch (e) {
+        console.warn(`[temporal-contiguity] Failed to parse trigger_phrases for memory ${row.id}: ${e.message}`);
+        row.trigger_phrases = [];
+      }
     }
     return row;
   };

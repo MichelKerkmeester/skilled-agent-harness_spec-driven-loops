@@ -1,67 +1,6 @@
 {
-  "_comment": "Search weight configuration for semantic memory v1.7.1",
-  "_version": "1.7.1",
-
-  "hybridSearch": {
-    "enabled": true,
-    "vectorWeight": 0.6,
-    "ftsWeight": 0.4,
-    "rrfK": 60,
-    "convergenceBonus": 0.1
-  },
-
-  "memoryDecay": {
-    "enabled": true,
-    "decayWeight": 0.3,
-    "scaleDays": 90
-  },
-
-  "compositeScoring": {
-    "enabled": true,
-    "weights": {
-      "similarity": 0.35,
-      "importance": 0.25,
-      "recency": 0.20,
-      "popularity": 0.10,
-      "tierBoost": 0.10
-    },
-    "recencyHalfLifeDays": 30
-  },
-
-  "importanceTiers": {
-    "constitutional": { "searchBoost": 3.0, "decay": false },
-    "critical": { "searchBoost": 2.0, "decay": false },
-    "important": { "searchBoost": 1.5, "decay": false },
-    "normal": { "searchBoost": 1.0, "decay": true },
-    "temporary": { "searchBoost": 0.5, "decay": true, "autoExpireDays": 7 },
-    "deprecated": { "searchBoost": 0.0, "decay": false, "excludeFromSearch": true }
-  },
-
-  "accessTracking": {
-    "enabled": true,
-    "boostPerAccess": 0.1,
-    "maxBoost": 0.5,
-    "threshold": 5
-  },
-
-  "tokenBudget": {
-    "maxTokens": 25000,
-    "safetyBuffer": 0.8,
-    "charsPerToken": 3.5,
-    "minItems": 1
-  },
-
-  "contiguity": {
-    "enabled": true,
-    "defaultWindow": 2,
-    "maxWindow": 10
-  },
-
-  "performance": {
-    "triggerMatchMaxMs": 50,
-    "hybridSearchMaxMs": 300,
-    "ftsSearchMaxMs": 100
-  },
+  "_comment": "Search weight configuration for semantic memory v1.7.2 - Reduced to only used sections per ADR-001",
+  "_version": "1.7.2",
 
   "maxTriggersPerMemory": 10,
 

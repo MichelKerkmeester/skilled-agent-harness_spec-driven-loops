@@ -20,6 +20,7 @@ const ErrorCodes = {
   MISSING_REQUIRED_PARAM: 'E031',
   SEARCH_FAILED: 'E040',
   VECTOR_SEARCH_UNAVAILABLE: 'E041',
+  RATE_LIMITED: 'E429',
 };
 
 /* ───────────────────────────────────────────────────────────────
@@ -43,17 +44,27 @@ class MemoryError extends Error {
    3. TIMEOUT WRAPPER
    ─────────────────────────────────────────────────────────────── */
 
+// T121: Fixed timer leak - now properly clears timeout on success or rejection
 function with_timeout(promise, ms, operation) {
-  return Promise.race([
-    promise,
-    new Promise((_, reject) =>
-      setTimeout(() => reject(new MemoryError(
-        ErrorCodes.SEARCH_FAILED,
-        `${operation} timed out after ${ms}ms`,
-        { timeout: ms, operation }
-      )), ms)
-    ),
-  ]);
+  let timeout_id;
+  
+  const timeout_promise = new Promise((_, reject) => {
+    timeout_id = setTimeout(() => reject(new MemoryError(
+      ErrorCodes.SEARCH_FAILED,
+      `${operation} timed out after ${ms}ms`,
+      { timeout: ms, operation }
+    )), ms);
+  });
+  
+  return Promise.race([promise, timeout_promise])
+    .then(result => {
+      clearTimeout(timeout_id);
+      return result;
+    })
+    .catch(error => {
+      clearTimeout(timeout_id);
+      throw error;
+    });
 }
 
 /* ───────────────────────────────────────────────────────────────

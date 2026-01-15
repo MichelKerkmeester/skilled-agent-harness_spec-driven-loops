@@ -858,7 +858,7 @@ function index_memory(params) {
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       specFolder, filePath, anchorId, title, triggers_json,
-      importanceWeight, now, now, 'nomic-ai/nomic-embed-text-v1.5', now, embedding_status
+      importanceWeight, now, now, get_embeddings_module().get_model_name(), now, embedding_status
     );
 
     const row_id = BigInt(result.lastInsertRowid);
@@ -909,7 +909,7 @@ function update_memory(params) {
       updates.push('embedding_model = ?');
       updates.push('embedding_generated_at = ?');
       updates.push('embedding_status = ?');
-      values.push('nomic-ai/nomic-embed-text-v1.5', now, 'success');
+      values.push(get_embeddings_module().get_model_name(), now, 'success');
     }
 
     values.push(id);
@@ -2318,7 +2318,11 @@ function delete_memories(memory_ids) {
   const delete_transaction = database.transaction(() => {
     for (const id of memory_ids) {
       try {
-        // Delete from vec_memories first (if it exists and sqlite-vec is available)
+        // T105 FIX: Delete from memory_history first (referential integrity)
+        database.prepare('DELETE FROM memory_history WHERE memory_id = ?').run(id);
+
+        // Delete from vec_memories second (if it exists and sqlite-vec is available)
+        // NOTE: vec_memories is a sqlite-vec virtual table - no FK CASCADE support
         if (sqlite_vec_available) {
           try {
             database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
@@ -2329,7 +2333,7 @@ function delete_memories(memory_ids) {
           }
         }
 
-        // Delete from memory_index
+        // Delete from memory_index last
         const result = database.prepare('DELETE FROM memory_index WHERE id = ?').run(id);
         if (result.changes > 0) {
           deleted++;

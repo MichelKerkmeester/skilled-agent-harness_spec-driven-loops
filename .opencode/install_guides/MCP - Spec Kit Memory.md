@@ -105,11 +105,14 @@ The Spec Kit Memory MCP Server provides AI assistants with conversation memory r
 
 | Specification      | Default (HF Local)               | Voyage AI                 | OpenAI                    |
 | ------------------ | -------------------------------- | ------------------------- | ------------------------- |
-| **Model Name**     | `nomic-ai/nomic-embed-text-v1.5` | `voyage-3.5`              | `text-embedding-3-small`  |
+| **Model Name**     | `nomic-ai/nomic-embed-text-v1.5` | `voyage-4`                | `text-embedding-3-small`  |
 | **Dimensions**     | 768                              | 1024                      | 1536                      |
 | **Context Window** | 8,192 tokens                     | 32,000 tokens             | 8,191 tokens              |
 | **Inference**      | Local (HuggingFace Transformers) | Cloud API                 | Cloud API                 |
 | **Storage**        | sqlite-vec (dynamic dimensions)  | sqlite-vec (auto-config)  | sqlite-vec (auto-config)  |
+
+**Voyage 4 Support:**
+The system supports the Voyage 4 model family (released Jan 2026), including `voyage-4-large`, `voyage-4`, and `voyage-4-lite`. These models share an embedding space, allowing asymmetric retrieval (e.g., embedding documents with `voyage-4-large` and querying with `voyage-4-lite`).
 
 **Note**: Dimensions are now auto-detected from the provider profile. Each provider uses its own database file to prevent dimension mismatches.
 
@@ -380,7 +383,8 @@ Add to `opencode.json` in your project root:
         "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
         "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, fallback)",
         "_NOTE_3_AUTO_DETECTION": "Priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local (no installation needed)",
-        "_NOTE_4_NEW_PROJECT": "When copying to new project, update command path to match new location"
+        "_NOTE_4_VOYAGE_4": "Defaults to 'voyage-4'. Override with VOYAGE_EMBEDDINGS_MODEL env var.",
+        "_NOTE_5_NEW_PROJECT": "When copying to new project, update command path to match new location"
       }
     }
   }

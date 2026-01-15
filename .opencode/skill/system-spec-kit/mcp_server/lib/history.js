@@ -112,15 +112,38 @@ function get_history(db, memory_id, options = {}) {
 
   const rows = db.prepare(query).all(...params);
 
-  return rows.map(row => ({
-    id: row.id,
-    memory_id: row.memory_id,
-    prev_value: row.prev_value ? JSON.parse(row.prev_value) : null,
-    new_value: row.new_value ? JSON.parse(row.new_value) : null,
-    event: row.event,
-    actor: row.actor,
-    timestamp: row.timestamp,
-  }));
+  return rows.map(row => {
+    let prev_value = null;
+    let new_value = null;
+    
+    // T121: Wrap JSON.parse in try-catch to handle parse errors gracefully
+    if (row.prev_value) {
+      try {
+        prev_value = JSON.parse(row.prev_value);
+      } catch (e) {
+        console.warn(`[history] Failed to parse prev_value for history entry ${row.id}: ${e.message}`);
+        prev_value = null;
+      }
+    }
+    if (row.new_value) {
+      try {
+        new_value = JSON.parse(row.new_value);
+      } catch (e) {
+        console.warn(`[history] Failed to parse new_value for history entry ${row.id}: ${e.message}`);
+        new_value = null;
+      }
+    }
+    
+    return {
+      id: row.id,
+      memory_id: row.memory_id,
+      prev_value,
+      new_value,
+      event: row.event,
+      actor: row.actor,
+      timestamp: row.timestamp,
+    };
+  });
 }
 
 function get_recent_history(db, options = {}) {
@@ -156,15 +179,38 @@ function get_recent_history(db, options = {}) {
 
   const rows = db.prepare(query).all(...params);
 
-  return rows.map(row => ({
-    id: row.id,
-    memory_id: row.memory_id,
-    prev_value: row.prev_value ? JSON.parse(row.prev_value) : null,
-    new_value: row.new_value ? JSON.parse(row.new_value) : null,
-    event: row.event,
-    actor: row.actor,
-    timestamp: row.timestamp,
-  }));
+  return rows.map(row => {
+    let prev_value = null;
+    let new_value = null;
+    
+    // T121: Wrap JSON.parse in try-catch to handle parse errors gracefully
+    if (row.prev_value) {
+      try {
+        prev_value = JSON.parse(row.prev_value);
+      } catch (e) {
+        console.warn(`[history] Failed to parse prev_value for history entry ${row.id}: ${e.message}`);
+        prev_value = null;
+      }
+    }
+    if (row.new_value) {
+      try {
+        new_value = JSON.parse(row.new_value);
+      } catch (e) {
+        console.warn(`[history] Failed to parse new_value for history entry ${row.id}: ${e.message}`);
+        new_value = null;
+      }
+    }
+    
+    return {
+      id: row.id,
+      memory_id: row.memory_id,
+      prev_value,
+      new_value,
+      event: row.event,
+      actor: row.actor,
+      timestamp: row.timestamp,
+    };
+  });
 }
 
 /* ───────────────────────────────────────────────────────────────
