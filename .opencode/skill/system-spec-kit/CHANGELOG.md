@@ -5,11 +5,11 @@ All notable changes to the system-spec-kit skill will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [17.1.0] - 2026-01-15
+## [1.7.1] - 2026-01-15
 
 *Environment version: 1.0.3.6*
 
-Cognitive Memory v17.1 with comprehensive bug fixes and MCP protocol fix.
+Cognitive Memory v1.7.1 with comprehensive bug fixes and MCP protocol fix.
 
 ### Fixed
 
@@ -34,7 +34,7 @@ Cognitive Memory v17.1 with comprehensive bug fixes and MCP protocol fix.
 - 226 comprehensive tests for cognitive memory modules
 - 5 cognitive memory modules: attention-decay, co-activation, tier-classifier, working-memory, summary-generator
 
-## [17.0.0] - 2026-01-14
+## [1.7.0] - 2026-01-14
 
 *Environment version: 1.0.3.4*
 
@@ -49,9 +49,9 @@ Major release introducing Cognitive Memory system with session-aware features.
 
 ### Changed
 
-- All package versions updated to 17.0.0
+- All package versions updated to 1.7.0
 
-## [16.0.0] - 2026-01-02
+## [1.6.0] - 2026-01-02
 
 *Environment version: 1.0.2.6*
 
@@ -70,7 +70,7 @@ Major architecture refactoring release.
 - Missing `collectSessionData` import in workflow.js
 - Empty catch blocks now log errors instead of silently swallowing
 
-## [15.0.0] - 2026-01-01
+## [1.5.0] - 2026-01-01
 
 *Environment version: 1.0.2.4*
 
@@ -96,7 +96,7 @@ Infrastructure release with critical bug fixes and security hardening.
 - **CWE-22**: Path traversal protection in CLI and DB-stored paths
 - **CWE-400**: Input length limits for MCP tool parameters
 
-## [14.0.0] - 2025-12-30
+## [1.4.0] - 2025-12-30
 
 *Environment version: 1.0.2.0*
 
@@ -111,7 +111,7 @@ Infrastructure release with critical bug fixes and security hardening.
 - Embedding dimension mismatch with Voyage/OpenAI providers
 - Empty catch blocks replaced with proper logging
 
-## [13.0.0] - 2025-12-29
+## [1.3.0] - 2025-12-29
 
 *Environment version: 1.0.0.0*
 
