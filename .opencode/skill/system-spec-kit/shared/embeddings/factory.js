@@ -55,7 +55,7 @@ async function create_embeddings_provider(options = {}) {
     ? resolution.name 
     : options.provider;
 
-  console.log(`[factory] Using provider: ${provider_name} (${resolution.reason})`);
+  console.error(`[factory] Using provider: ${provider_name} (${resolution.reason})`);
 
   let provider;
 
@@ -107,7 +107,7 @@ async function create_embeddings_provider(options = {}) {
     }
 
     if (options.warmup) {
-      console.log(`[factory] Warming up ${provider_name}...`);
+      console.error(`[factory] Warming up ${provider_name}...`);
       const success = await provider.warmup();
       if (!success) {
         console.warn(`[factory] Warmup failed for ${provider_name}`);

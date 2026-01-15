@@ -279,7 +279,7 @@ async function pre_warm_model() {
   try {
     const provider = await get_provider();
     await provider.warmup();
-    console.log('[embeddings] Provider warmed up successfully');
+    console.error('[embeddings] Provider warmed up successfully');
     return true;
   } catch (error) {
     console.error('[embeddings] Pre-warmup failed:', error.message);

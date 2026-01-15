@@ -7,6 +7,46 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.3.6**] - 2026-01-15
+
+Critical MCP protocol fix ensuring Cognitive Memory v17.1 functions correctly. Adds VS Code extension install guide and expands workflows-code skill with 16 new reference and asset files.
+
+---
+
+### Fixed
+- **Critical (MCP Protocol)**: Changed `console.log` → `console.error` in 3 locations to prevent "invalid character 'v'" JSON-RPC errors
+  - `embeddings.js:282` (Provider warmed up message)
+  - `factory.js:58` (Using provider message)
+  - `factory.js:110` (Warming up message)
+  - **Why**: MCP servers use stdout for JSON-RPC communication. Any `console.log()` output corrupts the protocol, causing Antigravity quota and other MCP tools to fail.
+
+---
+
+### Added
+- **VS Code Extension Install Guide**: Step-by-step installation guide for non-technical users (`OpenCode - VS Code Extension.md`)
+  - AI-first installation prompt for guided setup
+  - GitHub Copilot authentication walkthrough
+  - Model selection guidance
+
+- **Performance Patterns Asset**: `performance_patterns.js` with production-validated timing utilities
+  - Throttle/debounce constants (64ms pointermove, 180ms form validation, 200-250ms resize)
+  - IntersectionObserver patterns with 0.1 threshold
+
+- **15 New Reference Files** in workflows-code skill:
+  - `debugging/`: `debugging_workflows.md`, `error_recovery.md`
+  - `implementation/`: `animation_workflows.md`, `css_patterns.md`, `focus_management.md`, `implementation_workflows.md`, `observer_patterns.md`, `performance_patterns.md`, `security_patterns.md`, `swiper_patterns.md`, `third_party_integrations.md`, `webflow_patterns.md`
+  - `standards/`: `css_quick_reference.md`
+  - `verification/`: `verification_workflows.md`
+
+---
+
+### Note
+This release completes the Cognitive Memory v17.1 rollout by fixing the MCP protocol issue that could prevent the memory system from functioning. The cognitive features themselves (attention-decay, co-activation, tier-classifier, working-memory, summary-generator) were released in v1.0.3.4 and v1.0.3.5.
+
+**Full Changelog**: [v1.0.3.5...v1.0.3.6](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.5...v1.0.3.6)
+
+---
+
 ## [**1.0.3.5**] - 2026-01-15
 
 ### Fixed

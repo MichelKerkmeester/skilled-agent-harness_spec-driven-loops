@@ -1,6 +1,13 @@
-# AI Assistant Framework
+# AI Assistant Framework (Universal Template)
 
-> **Behavior framework** defining guardrails, standards, and decision protocols—tailored for anobel.com’s Webflow implementation.
+> **Universal behavior framework** defining guardrails, standards, and decision protocols.
+
+#### 👨‍🚀 HOW TO USE / ADAPT THIS FRAMEWORK
+
+1. Use this `AGENTS.md` as your starting point for SpecKit and memory workflows in any codebase.
+2. Adapt the framework to fit your project's code standards, workflows, etc.
+3. Update or extend rules, tools, and protocols as needed.
+4. For practical setup examples and detailed instructions, see `.opencode/install_guides/SET-UP - AGENTS.md`.
 
 ---
 
@@ -54,8 +61,6 @@ See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, 
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                  |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                            |
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                      |
-| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                                     |
-| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                            |
 
 ---
 
@@ -237,22 +242,18 @@ File modification planned? → Include Q1 (Spec Folder)
 - Memory Context Loading: "skip context", "fresh start", "skip memory", [skip]
 - Completion Verification: Level 1 tasks (no checklist.md required)
 
-#### ⚡ Code Quality Standards Compliance
+#### ⚡ Compliance Checkpoints
 
-**MANDATORY:** Compliance checkpoints:
-- Before **proposing solutions**: Verify approach aligns with code quality standards and webflow patterns 
+**MANDATORY:**
+- Before **proposing solutions**: Verify approach aligns with project patterns and conventions
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
-- Before **initialization code**: Follow initialization patterns from code quality standards
-- Before **animation implementation**: See animation workflow references
 - Before **code discovery**: Use mcp-narsil for ALL code intelligence (semantic via neural, structural, security) via Code Mode (MANDATORY)
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
-- Before **CDN deployment**: See cdn_deployment.md for version management and upload workflow
-- Before **JavaScript minification**: See minification_guide.md for safe minification with verification
-- **If conflict exists**: Code quality standards override general practices
+- **If conflict exists**: Project-specific patterns override general practices
 
-**Violation handling:** If proposed solution contradicts code quality standards, STOP and ask for clarification or revise approach.
+**Violation handling:** If proposed solution contradicts project patterns, STOP and ask for clarification or revise approach.
 
 #### ⚡ Common Failure Patterns 
 
