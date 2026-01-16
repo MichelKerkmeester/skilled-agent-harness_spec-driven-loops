@@ -7,6 +7,25 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.4.1**] - 2026-01-16
+
+Fixes a bug where README.md files in the constitutional directory were incorrectly indexed as memories. The documentation file's example YAML frontmatter was parsed as real metadata, creating ghost memory entries.
+
+---
+
+**Fixed**
+1. Constitutional indexer now skips `README.md` files (case-insensitive) in `find_constitutional_files()` to prevent documentation from being indexed as memories.
+2. `is_memory_file()` validator now excludes README.md files from constitutional directories during `memory_save` operations.
+
+---
+
+**Upgrade**
+No action required. Pull latest to get the fix. Any previously indexed README memories can be removed with `memory_delete({ id: <id> })`.
+
+**Full Changelog**: [v1.0.4.0...v1.0.4.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.4.0...v1.0.4.1)
+
+---
+
 ## [**1.0.4.0**] - 2026-01-15
 
 A major quality and architecture release focusing on system reliability, memory system optimization, and codebase maintainability. This version addresses 231 identified issues across the Spec Kit infrastructure, introduces targeted memory retrieval via the Anchor System (achieving 61-93% token savings), modularizes the core MCP server from 2,703 to 319 lines, and upgrades to Voyage 4 embeddings.

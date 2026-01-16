@@ -272,7 +272,8 @@ function is_memory_file(file_path) {
   const is_constitutional = (
     normalized_path.endsWith('.md') &&
     normalized_path.includes('/.opencode/skill/') &&
-    normalized_path.includes('/constitutional/')
+    normalized_path.includes('/constitutional/') &&
+    !normalized_path.toLowerCase().endsWith('readme.md')
   );
   
   return is_specs_memory || is_constitutional;
