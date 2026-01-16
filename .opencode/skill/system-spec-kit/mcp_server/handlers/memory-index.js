@@ -81,6 +81,8 @@ function find_constitutional_files(workspace_path) {
         const files = fs.readdirSync(constitutional_dir, { withFileTypes: true });
         for (const file of files) {
           if (file.isFile() && file.name.endsWith('.md')) {
+            // Ignore README files (case-insensitive) to prevent indexing documentation
+            if (file.name.toLowerCase() === 'readme.md') continue;
             results.push(path.join(constitutional_dir, file.name));
           }
         }
