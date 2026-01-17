@@ -9,29 +9,94 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.5.0*
 
-Validation system overhaul with all 13 rules functional, memory parser camelCase support, and documentation alignment.
+Major feature release implementing Memory Command Separation, Dynamic Complexity-Based Templates, and Composite Folder Ranking. Consolidates 5 specs (068-072) with ~3,000+ LOC new code, 300+ tests, and critical performance optimizations.
 
 ### New
 
-- **camelCase YAML Frontmatter** — Parser now accepts both formats:
+**Memory Command Separation (Spec 068)**
+
+- **`/memory:database` Command** — Dedicated management command with 9 operation modes:
+  - `stats` — Database dashboard (total memories, size, tier breakdown)
+  - `scan` / `scan --force` — Index new/all memory files
+  - `cleanup` — Bulk cleanup with safety gates and auto-checkpoint
+  - `tier <id> <tier>` — Change importance tier (constitutional→deprecated)
+  - `triggers <id>` — Edit trigger phrases
+  - `validate <id> useful|not` — Mark usefulness for confidence tracking
+  - `delete <id>` — Delete with confirmation gates
+  - `health` — Comprehensive health report
+- **Safety Gates** — Hard block confirmations for destructive operations
+- **Auto-Checkpoint** — Pre-cleanup checkpoint before bulk deletions
+
+**Dynamic Complexity-Based Templates (Spec 069)**
+
+- **5-Dimension Complexity Detection** — Weighted scoring algorithm:
+  - Scope (25%): Files, LOC, systems
+  - Risk (25%): Security, auth, breaking changes
+  - Research (20%): Investigation, unknowns
+  - Multi-Agent (15%): Parallel workstreams
+  - Coordination (15%): Dependencies, blocking
+- **Level Classification** — Score-to-level mapping:
+  - Level 1 (0-25): spec, plan, tasks, impl-summary
+  - Level 2 (26-55): + checklist
+  - Level 3 (56-79): + decision-record
+  - Level 3+ (80-100): + AI protocols, workstreams, DAGs
+- **Level-Specific Template Folders** — Pre-expanded templates in `level_1/`, `level_2/`, `level_3/`, `level_3+/`
+- **New CLI Tools**:
+  - `detect-complexity.js` — `--request`, `--file`, `--json`, `--quiet`
+  - `expand-template.js` — `--template`, `--level`, `--all`, `--dry-run`
+- **171 Tests** — 5 test suites with 100% pass rate
+
+**Composite Folder Ranking (Spec 070)**
+
+- **Ranking Algorithm** — `score = (recency × 0.40) + (importance × 0.30) + (activity × 0.20) + (validation × 0.10) × archive_multiplier`
+- **Archive Detection** — Auto-filtering with multipliers: z_archive (0.1×), scratch/test/prototype (0.2×)
+- **Recency Decay** — 10-day half-life with constitutional tier exemption
+- **New `memory_stats()` Parameters**:
+  - `folderRanking`: count | recency | importance | composite
+  - `excludePatterns`, `includeScores`, `includeArchived`, `limit`
+- **61 Tests** — All passing
+
+**Level Alignment (Spec 071)**
+
+- **`get_level_templates_dir()`** — Maps levels to folder paths in create-spec-folder.sh
+- **`selectLevelFolder()`** — JavaScript equivalent in preprocessor.js
+- **COMPLEXITY_GATE Cleanup** — Removed 6 orphaned markers from level_2/checklist.md
+
+**Infrastructure (Spec 072)**
+
+- **camelCase YAML Frontmatter** — Parser accepts both snake_case and camelCase:
   - `importanceTier` / `importance_tier`
   - `contextType` / `context_type`
   - `triggerPhrases` / `trigger_phrases`
-- **Level 3+ Documentation** — Extended level with AI execution protocols, sign-off sections, 100-150 item checklists
+- **Barrel Export Namespace Prefixes** — 58 explicit exports preventing collision
 
 ### Changed
 
-- All 13 validation rules implement consistent `run_check()` interface
-- MCP library reorganized into subdirectories: `cognitive/`, `parsing/`, `providers/`, `scoring/`, `search/`, `storage/`, `utils/`
-- 36 documentation files updated with correct `scripts/memory/generate-context.js` path
-- `complexity_decision_matrix.md` aligned with workflows-documentation standards
+- **`/memory:search` Now Read-Only** — Management operations moved to `/memory:database`
+- **Scripts Use Level Folders** — `create-spec-folder.sh`, `expand-template.js` copy from `level_N/`
+- **COMPLEXITY_GATE Deprecated** — Replaced with pre-expanded level templates
+- **Async File Reading** — `Promise.all()` for parallel I/O in vector-index.js
+- **RRF Fusion O(1) Lookups** — Map-based replacing O(n×m) linear search
+- **Checkpoint Restore Batch Dedup** — O(n) composite key approach
+- **Unified Recency Scoring** — Single implementation in `folder-scoring.js`
+- **MCP Library Reorganized** — Subdirectories: `cognitive/`, `parsing/`, `providers/`, `scoring/`, `search/`, `storage/`, `utils/`
+- **Database Reinitialization Mutex** — Promise-based race condition prevention
+- **Constitutional Double-Fetch Prevention** — Conditional check before redundant queries
+- **All 13 Validation Rules** — Implement consistent `run_check()` interface
+- **36 Path References** — Updated to `scripts/memory/generate-context.js`
+- **`complexity_decision_matrix.md`** — Aligned with workflows-documentation standards
 
 ### Fixed
 
-- `check-section-counts.sh` grep output sanitization for comparison operators
-- `check-complexity.sh`, `check-ai-protocols.sh`, `check-level-match.sh` rewritten with `run_check()` interface
-- Constitutional `gate-enforcement.md` indexing (tier: `constitutional`, 55 trigger phrases)
-- Database updated to reflect correct importance tier for constitutional files
+- **Barrel Export Collision** — Spread operators silently overwrote functions
+- **Database Reinitialization Race** — Mutex with finally-block release
+- **Sequential File Reads** — Blocking event loop (now async)
+- **~400 Lines Duplicate Code** — `rank-memories.js` imports from `folder-scoring.js`
+- **Checkpoint O(n²) Dedup** — Batch query approach
+- **`check-section-counts.sh`** — Grep output sanitization
+- **4 Validation Rules Rewritten** — check-complexity, check-section-counts, check-ai-protocols, check-level-match
+- **Constitutional `gate-enforcement.md`** — Now indexed with `constitutional` tier
+- **`level_2/checklist.md`** — Removed orphaned COMPLEXITY_GATE markers
 
 ## [1.7.2] - 2026-01-16
 

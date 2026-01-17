@@ -9,34 +9,122 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ## [**1.0.5.0**] - 2026-01-17
 
-SpecKit validation system overhaul with 13 rules now fully operational. Memory parser gains camelCase YAML frontmatter support. Comprehensive A-Z testing validates all system components. Documentation alignment with workflows-documentation standards.
+Major feature release introducing Memory Command Separation, Dynamic Complexity-Based Templates, and Composite Folder Ranking. Implements 5 specs (068-072) with ~3,000+ new lines of code, 300+ tests, and comprehensive performance optimizations.
 
 ---
 
-**New**
-1. **camelCase YAML Support** — Memory parser now accepts both snake_case and camelCase frontmatter fields (`importanceTier`, `contextType`, `triggerPhrases`).
-2. **Level 3+ Documentation** — Extended documentation level for complex multi-agent coordination with AI execution protocols.
-3. **Complexity Decision Matrix** — Quick reference asset aligned with workflows-documentation standards.
+### New
+
+**Memory Command Separation (Spec 068)**
+
+1. **`/memory:database` Command** — New dedicated command for database management with 9 modes:
+   - `stats` — Dashboard with total memories, database size, tier breakdown
+   - `scan` / `scan --force` — Index new memory files (force re-indexes all)
+   - `cleanup` — Bulk cleanup of old/deprecated memories with safety gates
+   - `tier <id> <tier>` — Change memory importance tier
+   - `triggers <id>` — Edit trigger phrases for a memory
+   - `validate <id> useful|not` — Mark memories as useful or not
+   - `delete <id>` — Delete individual memories with confirmation
+   - `health` — Comprehensive database health report
+2. **Safety Gates for Destructive Operations** — Hard block confirmations for cleanup and delete operations
+3. **Automatic Checkpoint Creation** — Pre-cleanup checkpoint created before bulk deletions
+
+**Dynamic Complexity-Based Templates (Spec 069)**
+
+4. **5-Dimension Complexity Detection** — Analyzes task descriptions across weighted dimensions:
+   - Scope (25%): Files affected, LOC estimate, systems touched
+   - Risk (25%): Security, auth, config, breaking changes
+   - Research (20%): Investigation keywords, unknowns, external deps
+   - Multi-Agent (15%): Parallel workstreams, agent coordination
+   - Coordination (15%): Cross-system dependencies, blocking relationships
+5. **Level Classification System** — Maps complexity scores to documentation levels:
+   - Level 1 (Baseline): 0-25 points → spec, plan, tasks, impl-summary
+   - Level 2 (Verification): 26-55 points → adds checklist
+   - Level 3 (Full): 56-79 points → adds decision-record
+   - Level 3+ (Extended): 80-100 points → AI protocols, workstreams, dependency DAGs
+6. **Level-Specific Template Folders** — Pre-expanded templates in `templates/level_1/`, `level_2/`, `level_3/`, `level_3+/`
+7. **New CLI Tools**:
+   - `detect-complexity.js` — Complexity detection with `--request`, `--file`, `--json`, `--quiet` flags
+   - `expand-template.js` — Template expansion with `--template`, `--level`, `--all`, `--spec-folder`, `--dry-run` flags
+8. **171 Tests** — Comprehensive test suite with 100% coverage across 5 test suites
+
+**Composite Folder Ranking (Spec 070)**
+
+9. **Composite Ranking Algorithm** — Multi-factor scoring replacing simple count-based ranking:
+   - Formula: `score = (recency × 0.40) + (importance × 0.30) + (activity × 0.20) + (validation × 0.10) × archive_multiplier`
+10. **Archive Detection & Filtering** — Automatic deprioritization of archived folders:
+    - `z_archive/` → 0.1× multiplier
+    - `scratch/`, `test-`, `prototype/` → 0.2× multiplier
+11. **Recency Decay System** — Time-based score decay with 10-day half-life
+12. **Constitutional Tier Decay Exemption** — Constitutional memories never decay (always 1.0)
+13. **New `memory_stats()` Parameters**:
+    - `folderRanking`: `'count'` | `'recency'` | `'importance'` | `'composite'`
+    - `excludePatterns`: Array of regex patterns
+    - `includeScores`: Boolean for score breakdown
+    - `includeArchived`: Boolean to include archived folders
+14. **61 Tests** — All passing for folder scoring system
 
 ---
 
-**Changed**
-1. All 13 validation rules now implement `run_check()` interface for consistent execution.
-2. Constitutional memory files properly indexed with correct tier and 55+ trigger phrases.
-3. 36 path references updated from `scripts/generate-context.js` to `scripts/memory/generate-context.js`.
-4. MCP server library reorganized into `/lib/cognitive/`, `/lib/parsing/`, `/lib/providers/`, `/lib/scoring/`, `/lib/search/`, `/lib/storage/`, `/lib/utils/` subdirectories.
+### Changed
+
+**Memory Search Refactoring**
+
+1. **`/memory:search` Now Read-Only** — Removed cleanup, tier, triggers, and validate operations (moved to `/memory:database`)
+2. **Simplified Actions** — Memory detail view shows only read operations: related, load anchor, search, back, quit
+
+**Template System Updates**
+
+3. **Scripts Use Level Folders** — `create-spec-folder.sh` and `expand-template.js` now copy from level-specific folders
+4. **COMPLEXITY_GATE Markers Deprecated** — Replaced with pre-expanded templates per level (markers still functional for backward compatibility)
+5. **18 Documentation Files Updated** — All copy commands reference `templates/level_N/` paths
+
+**Performance Optimizations (Spec 072)**
+
+6. **Async File Reading** — `safe_read_file_async()` with `Promise.all()` for parallel I/O
+7. **RRF Fusion O(1) Lookups** — Map-based lookups replacing O(n×m) linear search
+8. **Checkpoint Restore Batch Deduplication** — O(n) query approach replacing O(n²)
+9. **Unified Recency Scoring** — Single implementation in `folder-scoring.js` imported by all consumers
+10. **MCP Library Reorganization** — Organized into `cognitive/`, `parsing/`, `providers/`, `scoring/`, `search/`, `storage/`, `utils/`
+
+**Infrastructure**
+
+11. **Barrel Export Namespace Prefixes** — 58 explicit named exports replacing spread operators to prevent collision
+12. **Database Reinitialization Mutex** — Promise-based mutex preventing race conditions
+13. **Constitutional Memory Double-Fetch Prevention** — Conditional check before redundant queries
 
 ---
 
-**Fixed**
-1. `check-section-counts.sh` comparison syntax error (grep output sanitization).
-2. Four validation rules (check-complexity, check-section-counts, check-ai-protocols, check-level-match) completely rewritten.
-3. Constitutional `gate-enforcement.md` now indexed with `constitutional` tier (was `normal`).
+### Fixed
+
+**Critical Fixes**
+
+1. **Barrel Export Collision Risk** — Spread operators silently overwrote functions; replaced with namespace prefixes
+2. **Database Reinitialization Race Condition** — Added mutex with finally-block release
+3. **Sequential File Reads Blocking Event Loop** — Added async file reading with Promise.all()
+4. **RRF Fusion O(n×m) Complexity** — Map-based O(1) lookups
+5. **~400 Lines Duplicate Scoring Code** — `rank-memories.js` now imports from `folder-scoring.js`
+6. **Checkpoint Restore O(n²) Deduplication** — Batch query approach with composite keys
+
+**Validation System Fixes**
+
+7. **`check-section-counts.sh`** — Grep output sanitization for comparison operators
+8. **4 Validation Rules Rewritten** — check-complexity, check-section-counts, check-ai-protocols, check-level-match now implement `run_check()` interface
+9. **Constitutional `gate-enforcement.md`** — Now indexed with `constitutional` tier (was `normal`)
+
+**Template Fixes**
+
+10. **`level_2/checklist.md`** — Removed 6 orphaned COMPLEXITY_GATE markers
+11. **36 Path References** — Updated from `scripts/generate-context.js` to `scripts/memory/generate-context.js`
 
 ---
 
-**Upgrade**
-No action required. Pull latest to get validation system improvements.
+### Upgrade
+
+1. **Restart Required** — Restart OpenCode to load updated MCP server with new ranking and search features.
+2. **New Commands Available** — `/memory:database` provides management operations; `/memory:search` is now read-only.
+3. **Template Level Selection** — Use `--level N` flag with `create-spec-folder.sh` for level-appropriate templates.
+4. **No Breaking Changes** — All existing APIs maintain backward compatibility.
 
 **Full Changelog**: [v1.0.4.1...v1.0.5.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.4.1...v1.0.5.0)
 
