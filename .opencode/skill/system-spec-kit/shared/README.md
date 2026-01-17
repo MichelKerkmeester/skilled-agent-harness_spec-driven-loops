@@ -266,7 +266,7 @@ database/
 ### Example 1: CLI Script Usage
 
 ```javascript
-// In scripts/generate-context.js or similar
+// In scripts/memory/generate-context.js or similar
 const { generateDocumentEmbedding, getEmbeddingDimension } = require('../shared/embeddings');
 const { extractTriggerPhrases } = require('../shared/trigger-extractor');
 

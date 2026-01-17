@@ -42,7 +42,7 @@ See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, 
 - **Truth over agreement** - correct user misconceptions with evidence; do not agree for conversational flow
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
 - **Narsil MCP** for ALL code intelligence - semantic search (neural), structural queries, security scanning, call graphs. Accessed via Code Mode.
 
 ### Quick Reference: Common Workflows
@@ -53,7 +53,7 @@ See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, 
 | **Research/exploration** | `memory_match_triggers()` → `memory_search()` → Document findings                                                                         |
 | **Code search**          | `narsil.narsil_neural_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text |
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                         |
-| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed      |
+| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed      |
 | **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                              |
 | **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                                 |
 | **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                              |

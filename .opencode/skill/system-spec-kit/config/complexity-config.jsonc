@@ -1,0 +1,245 @@
+{
+  // ───────────────────────────────────────────────────────────────
+  // COMPLEXITY DETECTION CONFIGURATION
+  // ───────────────────────────────────────────────────────────────
+  // Weights and thresholds for the 5-dimension complexity scoring algorithm.
+  // Total weights must equal 100.
+
+  "version": "1.0.0",
+
+  // ───────────────────────────────────────────────────────────────
+  // DIMENSION WEIGHTS (must sum to 100)
+  // ───────────────────────────────────────────────────────────────
+  "weights": {
+    "scope": 25,        // Files affected, LOC estimate, systems touched
+    "risk": 25,         // Security, auth, config, breaking changes
+    "research": 20,     // Investigation keywords, unknowns, external deps
+    "multiAgent": 15,   // Parallel workstreams, agent coordination needs
+    "coordination": 15  // Cross-system deps, blocking relationships
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // LEVEL THRESHOLDS
+  // ───────────────────────────────────────────────────────────────
+  "levels": {
+    "level1Max": 25,    // 0-25 = Level 1 (Baseline)
+    "level2Max": 55,    // 26-55 = Level 2 (Verification)
+    "level3Max": 79,    // 56-79 = Level 3 (Full)
+    // 80-100 = Level 3+ (Extended)
+
+    "names": {
+      "1": "Baseline",
+      "2": "Verification",
+      "3": "Full",
+      "3+": "Extended"
+    }
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // SCOPE DIMENSION SIGNALS
+  // ───────────────────────────────────────────────────────────────
+  "scope": {
+    // LOC thresholds for scoring (0-100 within dimension)
+    "loc": {
+      "low": 50,        // < 50 LOC = 0-20% of dimension
+      "medium": 150,    // 50-150 LOC = 20-50% of dimension
+      "high": 400,      // 150-400 LOC = 50-80% of dimension
+      "max": 1000       // > 1000 LOC = 100% of dimension
+    },
+
+    // File count thresholds
+    "files": {
+      "low": 3,         // 1-3 files = low scope
+      "medium": 8,      // 4-8 files = medium scope
+      "high": 15,       // 9-15 files = high scope
+      "max": 30         // > 30 files = max scope
+    },
+
+    // System boundary keywords (each match adds points)
+    "systemKeywords": [
+      "database", "db", "api", "frontend", "backend", "cache",
+      "queue", "message", "event", "webhook", "storage", "cdn",
+      "search", "index", "migration", "schema"
+    ]
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // RISK DIMENSION SIGNALS
+  // ───────────────────────────────────────────────────────────────
+  "risk": {
+    // High-risk keywords (each match adds significant points)
+    "highRiskKeywords": [
+      "authentication", "auth", "login", "oauth", "sso", "jwt",
+      "authorization", "permission", "role", "access control",
+      "security", "encryption", "decrypt", "secret", "credential",
+      "password", "token", "session", "cookie"
+    ],
+    "highRiskPoints": 15,  // Points per high-risk keyword match
+
+    // Medium-risk keywords
+    "mediumRiskKeywords": [
+      "api", "endpoint", "route", "controller",
+      "database", "migration", "schema", "model",
+      "config", "configuration", "environment", "deploy",
+      "payment", "billing", "transaction"
+    ],
+    "mediumRiskPoints": 8,  // Points per medium-risk keyword match
+
+    // Breaking change indicators
+    "breakingKeywords": [
+      "breaking", "deprecate", "remove", "delete", "rename",
+      "refactor", "migrate", "upgrade", "major version"
+    ],
+    "breakingPoints": 10,
+
+    // Cap on risk points to prevent over-scoring
+    "maxRiskPoints": 100
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // RESEARCH DIMENSION SIGNALS
+  // ───────────────────────────────────────────────────────────────
+  "research": {
+    // Investigation keywords
+    "investigationKeywords": [
+      "investigate", "research", "explore", "analyze", "understand",
+      "figure out", "determine", "discover", "find out", "learn",
+      "study", "examine", "evaluate", "assess", "review"
+    ],
+    "investigationPoints": 12,
+
+    // Uncertainty keywords
+    "uncertaintyKeywords": [
+      "unknown", "unclear", "uncertain", "maybe", "might",
+      "possibly", "could be", "not sure", "need to check",
+      "tbd", "to be determined", "pending", "depends on"
+    ],
+    "uncertaintyPoints": 15,
+
+    // External dependency keywords
+    "externalKeywords": [
+      "third-party", "external", "api integration", "vendor",
+      "library", "package", "dependency", "sdk", "service"
+    ],
+    "externalPoints": 8,
+
+    "maxResearchPoints": 100
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // MULTI-AGENT DIMENSION SIGNALS
+  // ───────────────────────────────────────────────────────────────
+  "multiAgent": {
+    // Multi-agent keywords
+    "agentKeywords": [
+      "parallel", "concurrent", "simultaneous", "multi-step",
+      "orchestrate", "coordinate", "delegate", "dispatch",
+      "workstream", "phase", "stage", "track"
+    ],
+    "agentPoints": 15,
+
+    // Complexity indicators suggesting agent coordination
+    "complexityKeywords": [
+      "complex", "comprehensive", "full-stack", "end-to-end",
+      "complete", "entire", "all", "whole system",
+      "major", "large-scale", "enterprise", "platform"
+    ],
+    "complexityPoints": 10,
+
+    "maxMultiAgentPoints": 100
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // COORDINATION DIMENSION SIGNALS
+  // ───────────────────────────────────────────────────────────────
+  "coordination": {
+    // Dependency keywords
+    "dependencyKeywords": [
+      "depends on", "dependency", "requires", "prerequisite",
+      "blocks", "blocked by", "waiting for", "after",
+      "before", "sequence", "order", "chain"
+    ],
+    "dependencyPoints": 12,
+
+    // Cross-system keywords
+    "crossSystemKeywords": [
+      "integration", "interface", "connect", "bridge",
+      "sync", "synchronize", "coordinate", "align",
+      "cross-functional", "cross-team", "stakeholder"
+    ],
+    "crossSystemPoints": 10,
+
+    // Blocking relationship keywords
+    "blockingKeywords": [
+      "critical path", "blocker", "milestone", "deadline",
+      "priority", "urgent", "asap", "immediately"
+    ],
+    "blockingPoints": 8,
+
+    "maxCoordinationPoints": 100
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // LEVEL 3+ FEATURE TRIGGERS
+  // ───────────────────────────────────────────────────────────────
+  "features": {
+    "aiProtocol": {
+      "minLevel": 3,
+      "required": false,  // Optional at Level 3
+      "requiredAtLevel": "3+"  // Required at Level 3+
+    },
+    "dependencyGraph": {
+      "minLevel": 2,
+      "format": {
+        "2": "table",
+        "3": "ascii",
+        "3+": "dag"
+      }
+    },
+    "effortEstimation": {
+      "minLevel": 2
+    }
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // SECTION SCALING
+  // ───────────────────────────────────────────────────────────────
+  "sectionScaling": {
+    "userStories": {
+      "1": { "min": 1, "max": 2 },
+      "2": { "min": 2, "max": 4 },
+      "3": { "min": 4, "max": 8 },
+      "3+": { "min": 8, "max": 15 }
+    },
+    "phases": {
+      "1": { "min": 2, "max": 3 },
+      "2": { "min": 3, "max": 5 },
+      "3": { "min": 5, "max": 8 },
+      "3+": { "min": 8, "max": 12 }
+    },
+    "tasks": {
+      "1": { "min": 5, "max": 15 },
+      "2": { "min": 15, "max": 50 },
+      "3": { "min": 50, "max": 100 },
+      "3+": { "min": 100, "max": 200 }
+    },
+    "checklistItems": {
+      "1": { "min": 10, "max": 20 },
+      "2": { "min": 30, "max": 50 },
+      "3": { "min": 60, "max": 100 },
+      "3+": { "min": 100, "max": 150 }
+    }
+  },
+
+  // ───────────────────────────────────────────────────────────────
+  // CONFIDENCE CALCULATION
+  // ───────────────────────────────────────────────────────────────
+  "confidence": {
+    "baseConfidence": 60,
+    "bonusPerDimension": 8,    // Bonus for each dimension with data
+    "boundaryPenalty": 10,     // Penalty for scores near level boundaries
+    "boundaryRange": 5,        // Range around boundaries for penalty
+    "maxConfidence": 95,       // Never report 100% confidence
+    "minConfidence": 50        // Minimum confidence floor
+  }
+}

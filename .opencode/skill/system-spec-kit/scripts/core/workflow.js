@@ -39,7 +39,7 @@ function initializeLibraries() {
   ({ getFilterStats } = require('../lib/content-filter'));
   ({ generateImplementationSummary, formatSummaryAsMarkdown, extractFileChanges } = require('../lib/semantic-summarizer'));
   ({ generateEmbedding, EMBEDDING_DIM, MODEL_NAME } = require('../lib/embeddings'));
-  vectorIndex = require('../../mcp_server/lib/vector-index');
+  vectorIndex = require('../../mcp_server/lib/search/vector-index');
   retryManager = require('../lib/retry-manager');
   ({ extractTriggerPhrases } = require('../lib/trigger-extractor'));
   simFactory = require('../lib/simulation-factory');

@@ -30,11 +30,11 @@ const { calculate_token_metrics } = require('../formatters');
 
 // Lib modules
 const LIB_DIR = path.join(__dirname, '..', 'lib');
-const triggerMatcher = require(path.join(LIB_DIR, 'trigger-matcher.js'));
-const workingMemory = require(path.join(LIB_DIR, 'working-memory.js'));
-const attentionDecay = require(path.join(LIB_DIR, 'attention-decay.js'));
-const tierClassifier = require(path.join(LIB_DIR, 'tier-classifier.js'));
-const coActivation = require(path.join(LIB_DIR, 'co-activation.js'));
+const triggerMatcher = require(path.join(LIB_DIR, 'parsing', 'trigger-matcher.js'));
+const workingMemory = require(path.join(LIB_DIR, 'cognitive', 'working-memory.js'));
+const attentionDecay = require(path.join(LIB_DIR, 'cognitive', 'attention-decay.js'));
+const tierClassifier = require(path.join(LIB_DIR, 'cognitive', 'tier-classifier.js'));
+const coActivation = require(path.join(LIB_DIR, 'cognitive', 'co-activation.js'));
 
 /* ───────────────────────────────────────────────────────────────
    HANDLER: memory_match_triggers

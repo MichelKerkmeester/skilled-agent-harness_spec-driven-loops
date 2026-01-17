@@ -93,7 +93,7 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 
 | Step | Action              | Mechanism                                     |
 | ---- | ------------------- | --------------------------------------------- |
-| 1    | Check CLI argument  | `node .opencode/.../scripts/generate-context.js data.json [spec-folder]` |
+| 1    | Check CLI argument  | `node .opencode/.../scripts/memory/generate-context.js data.json [spec-folder]` |
 | 2    | Prompt if missing   | AI agent asks user for folder                 |
 | 3    | Validate path       | Confirm `specs/###-name/` exists              |
 | 4    | Calculate alignment | Score against conversation context            |
@@ -223,10 +223,10 @@ only, own, same, so, than, too, very, just, also
 
 ```bash
 # Explicit spec folder (recommended)
-node .opencode/skill/system-spec-kit/scripts/generate-context.js data.json "006-opencode/014-stateless-alignment"
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json "006-opencode/014-stateless-alignment"
 
 # With sub-folder
-node .opencode/skill/system-spec-kit/scripts/generate-context.js data.json "122-skill-standardization/002-api-refactor"
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json "122-skill-standardization/002-api-refactor"
 ```
 
 ### AI Agent Workflow
@@ -235,7 +235,7 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js data.json "122-
 2. AI agent determines spec folder from conversation context
 3. AI agent calls script with explicit path:
    ```bash
-   node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/context.json "014-stateless-alignment"
+   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/context.json "014-stateless-alignment"
    ```
 4. Memory file written to `specs/014-stateless-alignment/memory/`
 
@@ -322,14 +322,14 @@ Folders matching these patterns are automatically excluded:
 
 ```bash
 # Skip alignment prompts, use most recent folder
-AUTO_SAVE_MODE=true node .opencode/skill/system-spec-kit/scripts/generate-context.js data.json
+AUTO_SAVE_MODE=true node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json
 ```
 
 ### Explicit Folder Argument
 
 ```bash
 # Bypass scoring, use specified folder
-node .opencode/skill/system-spec-kit/scripts/generate-context.js data.json "122-specific-folder"
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json "122-specific-folder"
 ```
 
 ### Session Preferences
@@ -533,7 +533,7 @@ Available folders:
 **Example:**
 ```bash
 # Folder 003-new-work doesn't exist yet
-node .opencode/skill/system-spec-kit/scripts/generate-context.js data.json "122-feature/003-new-work"
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json "122-feature/003-new-work"
 # Creates: specs/122-feature/003-new-work/memory/
 ```
 

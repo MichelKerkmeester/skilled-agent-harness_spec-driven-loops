@@ -50,30 +50,37 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research
 ### Level 1: Baseline (ALL features start here)
 
 ```bash
-cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-name/spec.md
-cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-name/plan.md
-cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-name/tasks.md
-cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md specs/###-name/implementation-summary.md
 ```
 
-### Level 2: Add Verification (to Level 1)
+### Level 2: Verification (complete set)
 
 ```bash
-## First copy all Level 1 files, then add:
-cp .opencode/skill/system-spec-kit/templates/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_2/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_2/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_2/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/###-name/checklist.md
 ```
 
-### Level 3: Add Decision Record (to Level 2)
+### Level 3: Full Documentation (complete set)
 
 ```bash
-## First copy all Level 2 files, then add:
-cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/decision-record-[topic].md
+cp .opencode/skill/system-spec-kit/templates/level_3/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_3/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_3/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_3/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/###-name/decision-record-[topic].md
 ```
 
 ### Optional Templates (Level 3 Only)
 
 ```bash
-## Comprehensive Research:
+## Comprehensive Research (from root templates folder):
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```
 
@@ -112,7 +119,7 @@ Say: "save context" or "save conversation"
 
 **Required Argument:** Spec folder path is MANDATORY
 ```
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/007-feature/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/007-feature/
 ```
 
 Context saved to `specs/###-folder/memory/` or `memory/` (fallback).
@@ -382,7 +389,7 @@ Before presenting documentation to user:
 
 **MANDATORY:** Use generate-context.js for memory save:
 ```
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/###-folder/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/###-folder/
 ```
 
 ❌ DO NOT use Write/Edit tools to create memory files directly.
@@ -546,14 +553,28 @@ When in doubt:
 - [level_specifications.md](../templates/level_specifications.md) - Complete Level 1-3 requirements and migration
 - [path_scoped_rules.md](../validation/path_scoped_rules.md) - Path-scoped validation rules reference
 
-### Templates (10)
+### Templates (Organized by Level)
 
-**Core Templates (Level 1-3):**
-- [spec.md](../../templates/spec.md) - Requirements and user stories template
-- [plan.md](../../templates/plan.md) - Technical implementation plan template
-- [tasks.md](../../templates/tasks.md) - Task breakdown template
-- [checklist.md](../../templates/checklist.md) - Validation checklist template (Level 2+)
-- [decision-record.md](../../templates/decision-record.md) - Architecture Decision Records template (Level 3)
+**Level 1 Templates (Baseline):**
+- [spec.md](../../templates/level_1/spec.md) - Requirements and user stories template
+- [plan.md](../../templates/level_1/plan.md) - Technical implementation plan template
+- [tasks.md](../../templates/level_1/tasks.md) - Task breakdown template
+- [implementation-summary.md](../../templates/level_1/implementation-summary.md) - Completion summary template
+
+**Level 2 Templates (Verification):**
+- [spec.md](../../templates/level_2/spec.md) - Requirements template with extended sections
+- [plan.md](../../templates/level_2/plan.md) - Implementation plan with verification
+- [tasks.md](../../templates/level_2/tasks.md) - Task breakdown template
+- [implementation-summary.md](../../templates/level_2/implementation-summary.md) - Completion summary template
+- [checklist.md](../../templates/level_2/checklist.md) - Validation checklist template
+
+**Level 3 Templates (Full Documentation):**
+- [spec.md](../../templates/level_3/spec.md) - Comprehensive requirements template
+- [plan.md](../../templates/level_3/plan.md) - Full implementation plan template
+- [tasks.md](../../templates/level_3/tasks.md) - Detailed task breakdown template
+- [implementation-summary.md](../../templates/level_3/implementation-summary.md) - Completion summary template
+- [checklist.md](../../templates/level_3/checklist.md) - Full validation checklist template
+- [decision-record.md](../../templates/level_3/decision-record.md) - Architecture Decision Records template
 
 **Research Templates (Level 3 optional):**
 - [research.md](../../templates/research.md) - Comprehensive research template

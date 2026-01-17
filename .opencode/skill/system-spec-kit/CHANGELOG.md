@@ -5,6 +5,34 @@ All notable changes to the system-spec-kit skill will be documented in this file
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-01-17
+
+*Environment version: 1.0.5.0*
+
+Validation system overhaul with all 13 rules functional, memory parser camelCase support, and documentation alignment.
+
+### New
+
+- **camelCase YAML Frontmatter** — Parser now accepts both formats:
+  - `importanceTier` / `importance_tier`
+  - `contextType` / `context_type`
+  - `triggerPhrases` / `trigger_phrases`
+- **Level 3+ Documentation** — Extended level with AI execution protocols, sign-off sections, 100-150 item checklists
+
+### Changed
+
+- All 13 validation rules implement consistent `run_check()` interface
+- MCP library reorganized into subdirectories: `cognitive/`, `parsing/`, `providers/`, `scoring/`, `search/`, `storage/`, `utils/`
+- 36 documentation files updated with correct `scripts/memory/generate-context.js` path
+- `complexity_decision_matrix.md` aligned with workflows-documentation standards
+
+### Fixed
+
+- `check-section-counts.sh` grep output sanitization for comparison operators
+- `check-complexity.sh`, `check-ai-protocols.sh`, `check-level-match.sh` rewritten with `run_check()` interface
+- Constitutional `gate-enforcement.md` indexing (tier: `constitutional`, 55 trigger phrases)
+- Database updated to reflect correct importance tier for constitutional files
+
 ## [1.7.2] - 2026-01-16
 
 *Environment version: 1.0.4.1*

@@ -427,7 +427,7 @@ STEP 13 (Save Context) REQUIREMENTS:
 ├─ MUST include decisions made and implementation details
 ├─ **MANDATORY:** Use generate-context.js for memory save:
 │   ```
-│   node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]
+│   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]
 │   ```
 └─ ❌ DO NOT use Write/Edit tools to create memory files directly
 

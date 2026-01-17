@@ -50,21 +50,29 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 **Level 1 Copy Commands (Baseline):**
 ```bash
-cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-name/spec.md
-cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-name/plan.md
-cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md specs/###-name/implementation-summary.md
 ```
 
-**Level 2 Copy Commands (adds to Level 1):**
+**Level 2 Copy Commands (complete set):**
 ```bash
-# First copy all Level 1 files, then add:
-cp .opencode/skill/system-spec-kit/templates/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_2/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_2/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_2/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/###-name/checklist.md
 ```
 
-**Level 3 Copy Commands (adds to Level 2):**
+**Level 3 Copy Commands (complete set):**
 ```bash
-# First copy all Level 2 files, then add:
-cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/decision-record-[topic].md
+cp .opencode/skill/system-spec-kit/templates/level_3/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_3/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_3/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_3/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/###-name/decision-record-[topic].md
 # Optional:
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```
@@ -212,7 +220,7 @@ Content that will be indexed...
 - `next-steps` - Planned next actions
 - `context` - Background context
 
-**Generation:** Use `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]` to auto-generate properly formatted memory files.
+**Generation:** Use `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` to auto-generate properly formatted memory files.
 
 ---
 
@@ -251,25 +259,33 @@ Add 1 to get next number.
 mkdir -p specs/###-short-name/
 ```
 
-### Step 4: Copy Required Templates (Progressive)
+### Step 4: Copy Required Templates (Complete Sets)
 
 **Level 1 (Baseline) - ALL features start here:**
 ```bash
-cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-name/spec.md
-cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-name/plan.md
-cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md specs/###-name/implementation-summary.md
 ```
 
-**Level 2 (Verification) - Add to Level 1:**
+**Level 2 (Verification) - Complete set:**
 ```bash
-# Copy all Level 1 files first, then add:
-cp .opencode/skill/system-spec-kit/templates/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_2/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_2/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_2/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/###-name/checklist.md
 ```
 
-**Level 3 (Full) - Add to Level 2:**
+**Level 3 (Full) - Complete set:**
 ```bash
-# Copy all Level 2 files first, then add:
-cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/decision-record-[topic].md
+cp .opencode/skill/system-spec-kit/templates/level_3/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_3/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_3/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_3/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/###-name/decision-record-[topic].md
 ```
 
 ### Step 5: Copy Optional Templates (Level 3 Only - If Needed)
@@ -309,12 +325,31 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 - [level_specifications.md](../references/level_specifications.md) - Complete Level 1-3 requirements
 - [quick_reference.md](../references/quick_reference.md) - Commands, checklists, and troubleshooting
 
-### Templates
-- [spec.md](../templates/spec.md) - Requirements and user stories template
-- [plan.md](../templates/plan.md) - Technical implementation plan template
-- [tasks.md](../templates/tasks.md) - Task breakdown template
-- [checklist.md](../templates/checklist.md) - Validation checklist template (Level 2+)
-- [decision-record.md](../templates/decision-record.md) - Architecture Decision Records template (Level 3)
+### Templates (Organized by Level)
+
+**Level 1 Templates (Baseline):**
+- [spec.md](../templates/level_1/spec.md) - Requirements and user stories template
+- [plan.md](../templates/level_1/plan.md) - Technical implementation plan template
+- [tasks.md](../templates/level_1/tasks.md) - Task breakdown template
+- [implementation-summary.md](../templates/level_1/implementation-summary.md) - Completion summary template
+
+**Level 2 Templates (Verification):**
+- [spec.md](../templates/level_2/spec.md) - Requirements template with extended sections
+- [plan.md](../templates/level_2/plan.md) - Implementation plan with verification
+- [tasks.md](../templates/level_2/tasks.md) - Task breakdown template
+- [implementation-summary.md](../templates/level_2/implementation-summary.md) - Completion summary template
+- [checklist.md](../templates/level_2/checklist.md) - Validation checklist template
+
+**Level 3 Templates (Full Documentation):**
+- [spec.md](../templates/level_3/spec.md) - Comprehensive requirements template
+- [plan.md](../templates/level_3/plan.md) - Full implementation plan template
+- [tasks.md](../templates/level_3/tasks.md) - Detailed task breakdown template
+- [implementation-summary.md](../templates/level_3/implementation-summary.md) - Completion summary template
+- [checklist.md](../templates/level_3/checklist.md) - Full validation checklist template
+- [decision-record.md](../templates/level_3/decision-record.md) - Architecture Decision Records template
+
+**Optional Templates:**
+- [research.md](../templates/research.md) - Comprehensive research template (Level 3 only)
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator

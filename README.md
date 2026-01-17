@@ -267,6 +267,9 @@ specs/042-add-user-authentication/
 - **Level 3** (Level 2 + decision-record.md)
   Architecture changes, 500+ LOC
 
+- **Level 3+** (Level 3 + AI execution protocols)
+  Multi-agent coordination, large-scale migrations, complex orchestration
+
 **Rule of thumb:** When in doubt, go one level higher.
 
 

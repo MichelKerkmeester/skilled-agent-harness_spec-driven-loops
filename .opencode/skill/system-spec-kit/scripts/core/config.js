@@ -112,7 +112,7 @@ function loadConfig() {
 const userConfig = loadConfig();
 
 const CONFIG = {
-  SKILL_VERSION: '12.5.0',
+  SKILL_VERSION: '1.7.2',
   MESSAGE_COUNT_TRIGGER: 20,
   MAX_RESULT_PREVIEW: userConfig.maxResultPreview,
   MAX_CONVERSATION_MESSAGES: userConfig.maxConversationMessages,

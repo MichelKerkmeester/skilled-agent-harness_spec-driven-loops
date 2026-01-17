@@ -277,7 +277,7 @@ Show the created file path and continuation instructions.
 The handover file is created in the spec folder root, NOT in memory/.
 
 > **💡 Tip:** After creating the handover file, consider running:
-> `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`
+> `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`
 > to preserve full semantic context for future searches. Handover files are for quick continuation; memory files are for semantic retrieval.
 
 ### Handover Success

@@ -12,8 +12,8 @@ set -uo pipefail
 # ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-VALIDATOR="$SCRIPT_DIR/../validate-spec.sh"
-FIXTURES="$SCRIPT_DIR/test-fixtures"
+VALIDATOR="$SCRIPT_DIR/../spec/validate.sh"
+FIXTURES="$SCRIPT_DIR/../test-fixtures"
 
 # Colors
 RED='\033[0;31m'

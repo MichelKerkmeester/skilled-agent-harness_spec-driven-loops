@@ -1,0 +1,16 @@
+// ───────────────────────────────────────────────────────────────
+// search/index.js: Search and retrieval modules barrel export
+// ───────────────────────────────────────────────────────────────
+'use strict';
+
+const vectorIndex = require('./vector-index.js');
+const hybridSearch = require('./hybrid-search.js');
+const rrfFusion = require('./rrf-fusion.js');
+const reranker = require('./reranker.js');
+
+module.exports = {
+  ...vectorIndex,
+  ...hybridSearch,
+  ...rrfFusion,
+  ...reranker,
+};

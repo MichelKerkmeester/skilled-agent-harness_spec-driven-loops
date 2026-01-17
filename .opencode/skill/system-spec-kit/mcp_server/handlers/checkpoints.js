@@ -15,9 +15,9 @@ const path = require('path');
    ─────────────────────────────────────────────────────────────── */
 
 const LIB_DIR = path.join(__dirname, '..', 'lib');
-const checkpoints = require(path.join(LIB_DIR, 'checkpoints.js'));
-const vectorIndex = require(path.join(LIB_DIR, 'vector-index.js'));
-const confidenceTracker = require(path.join(LIB_DIR, 'confidence-tracker.js'));
+const checkpoints = require(path.join(LIB_DIR, 'storage', 'checkpoints.js'));
+const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
+const confidenceTracker = require(path.join(LIB_DIR, 'scoring', 'confidence-tracker.js'));
 
 /* ───────────────────────────────────────────────────────────────
    CHECKPOINT CREATE HANDLER

@@ -13,7 +13,7 @@
     "enabled": true,
     "minSimilarityScore": 50,
     "maxResults": 10,
-    "embeddingModel": "nomic-embed-text-v1.5"
+    "embeddingModel": "voyage-4"
   },
 
   "memoryIndex": {

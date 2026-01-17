@@ -247,12 +247,12 @@ MCP Client (Claude/OpenCode)
          ▼
 context-server.js  ───────────────────────────────────────┐
   │                                                       │
-  ├─ lib/embeddings.js      Local embedding generation    │
-  ├─ lib/vector-index.js    SQLite + sqlite-vec storage   │
-  ├─ lib/hybrid-search.js   FTS5 + vector fusion          │
-  ├─ lib/trigger-matcher.js Fast phrase matching          │
-  ├─ lib/memory-parser.js   File parsing + validation     │
-  └─ lib/checkpoints.js     State snapshots               │
+  ├─ lib/providers/embeddings.js    Local embedding gen   │
+  ├─ lib/search/vector-index.js     SQLite + sqlite-vec   │
+  ├─ lib/search/hybrid-search.js    FTS5 + vector fusion  │
+  ├─ lib/parsing/trigger-matcher.js Fast phrase matching  │
+  ├─ lib/parsing/memory-parser.js   File parsing + valid  │
+  └─ lib/storage/checkpoints.js     State snapshots       │
                                                           │
                                                           │
    Note: File watching not currently implemented          │
@@ -445,61 +445,61 @@ memory_index_scan({ includeConstitutional: false })
 
 ### Core Modules
 
-| Module                 | Purpose                                                            |
-| ---------------------- | ------------------------------------------------------------------ |
-| `embeddings.js`        | Local embedding generation using HuggingFace nomic-embed-text-v1.5 |
-| `vector-index.js`      | SQLite + sqlite-vec database operations (CRUD, search)             |
-| `memory-parser.js`     | Memory file parsing, validation, and metadata extraction           |
-| `trigger-matcher.js`   | Fast phrase matching for proactive memory surfacing                |
-| `trigger-extractor.js` | TF-IDF based automatic trigger phrase extraction                   |
+| Module                       | Purpose                                                            |
+| ---------------------------- | ------------------------------------------------------------------ |
+| `providers/embeddings.js`    | Local embedding generation using HuggingFace nomic-embed-text-v1.5 |
+| `search/vector-index.js`     | SQLite + sqlite-vec database operations (CRUD, search)             |
+| `parsing/memory-parser.js`   | Memory file parsing, validation, and metadata extraction           |
+| `parsing/trigger-matcher.js` | Fast phrase matching for proactive memory surfacing                |
+| `parsing/trigger-extractor.js` | TF-IDF based automatic trigger phrase extraction                 |
 
 ### Search Modules
 
-| Module             | Purpose                                     |
-| ------------------ | ------------------------------------------- |
-| `hybrid-search.js` | Combined FTS5 + vector search with fallback |
-| `rrf-fusion.js`    | Reciprocal Rank Fusion for result merging   |
-| `reranker.js`      | Result reranking based on relevance         |
+| Module                   | Purpose                                     |
+| ------------------------ | ------------------------------------------- |
+| `search/hybrid-search.js` | Combined FTS5 + vector search with fallback |
+| `search/rrf-fusion.js`   | Reciprocal Rank Fusion for result merging   |
+| `search/reranker.js`     | Result reranking based on relevance         |
 
 ### Scoring & Ranking Modules
 
-| Module                   | Purpose                                           |
-| ------------------------ | ------------------------------------------------- |
-| `scoring.js`             | Base relevance scoring algorithms                 |
-| `composite-scoring.js`   | Multi-factor composite score calculation          |
-| `importance-tiers.js`    | Six-tier importance system with boost multipliers |
-| `temporal-contiguity.js` | Adjacent memory linking and retrieval             |
+| Module                         | Purpose                                           |
+| ------------------------------ | ------------------------------------------------- |
+| `scoring/scoring.js`           | Base relevance scoring algorithms                 |
+| `scoring/composite-scoring.js` | Multi-factor composite score calculation          |
+| `scoring/importance-tiers.js`  | Six-tier importance system with boost multipliers |
+| `cognitive/temporal-contiguity.js` | Adjacent memory linking and retrieval         |
 
 ### State Management Modules
 
-| Module                  | Purpose                                   |
-| ----------------------- | ----------------------------------------- |
-| `checkpoints.js`        | Save/restore memory state snapshots       |
-| `history.js`            | Memory access and modification history    |
-| `access-tracker.js`     | Load count tracking for popularity boost  |
-| `confidence-tracker.js` | Validation feedback and confidence scores |
+| Module                       | Purpose                                   |
+| ---------------------------- | ----------------------------------------- |
+| `storage/checkpoints.js`     | Save/restore memory state snapshots       |
+| `storage/history.js`         | Memory access and modification history    |
+| `storage/access-tracker.js`  | Load count tracking for popularity boost  |
+| `scoring/confidence-tracker.js` | Validation feedback and confidence scores |
 
 ### Infrastructure Modules
 
-| Module             | Purpose                                         |
-| ------------------ | ----------------------------------------------- |
-| `config-loader.js` | Configuration file loading and validation       |
-| `channel.js`       | Communication channel management                |
-| `entity-scope.js`  | Entity and scope resolution                     |
-| `errors.js`        | Custom error types and error handling utilities |
-| `index-refresh.js` | Index refresh and maintenance                   |
-| `retry-manager.js` | Failed embedding retry with exponential backoff |
-| `token-budget.js`  | Token limit enforcement for responses           |
+| Module                      | Purpose                                         |
+| --------------------------- | ----------------------------------------------- |
+| `config-loader.js`          | Configuration file loading and validation       |
+| `channel.js`                | Communication channel management                |
+| `parsing/entity-scope.js`   | Entity and scope resolution                     |
+| `errors.js`                 | Custom error types and error handling utilities |
+| `storage/index-refresh.js`  | Index refresh and maintenance                   |
+| `providers/retry-manager.js` | Failed embedding retry with exponential backoff |
+| `utils/token-budget.js`     | Token limit enforcement for responses           |
 
 ### Cognitive Memory Modules (v1.7.1)
 
-| Module                | Purpose                                              |
-| --------------------- | ---------------------------------------------------- |
-| `working-memory.js`   | Session-based working memory with attention scores   |
-| `attention-decay.js`  | Turn-based decay mechanics for attention scores      |
-| `tier-classifier.js`  | HOT/WARM/COLD classification based on attention      |
-| `co-activation.js`    | Spreading activation graph for related memories      |
-| `summary-generator.js`| Summary generation for WARM tier content             |
+| Module                        | Purpose                                              |
+| ----------------------------- | ---------------------------------------------------- |
+| `cognitive/working-memory.js` | Session-based working memory with attention scores   |
+| `cognitive/attention-decay.js` | Turn-based decay mechanics for attention scores     |
+| `cognitive/tier-classifier.js` | HOT/WARM/COLD classification based on attention     |
+| `cognitive/co-activation.js`  | Spreading activation graph for related memories      |
+| `cognitive/summary-generator.js` | Summary generation for WARM tier content          |
 
 ---
 
@@ -626,7 +626,7 @@ See [MCP - Spec Kit Memory Install Guide](../../../install_guides/MCP%20-%20Spec
 **Symptom:** `Invalid anchor format` or `Missing required fields`
 **Solution:**
 - Ensure memory files use ANCHOR format: `<!-- ANCHOR: id -->`
-- Run validation: `node .opencode/skill/system-spec-kit/scripts/generate-context.js --validate`
+- Run validation: `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js --validate`
 
 ### Diagnostic Commands
 

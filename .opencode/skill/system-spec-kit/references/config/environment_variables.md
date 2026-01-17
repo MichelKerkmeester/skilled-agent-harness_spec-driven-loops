@@ -62,7 +62,7 @@ These variables control memory system behavior, token budgets, script execution,
 
 ```bash
 # Enable debug logging
-DEBUG=1 node scripts/generate-context.js specs/001-feature/
+DEBUG=1 node scripts/memory/generate-context.js specs/001-feature/
 
 # Use custom database location
 MEMORY_DB_PATH=/tmp/test-db.sqlite node mcp_server/context-server.js

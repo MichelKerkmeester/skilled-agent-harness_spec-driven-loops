@@ -36,10 +36,10 @@ const { validate_file_path } = require(path.join(SHARED_DIR, 'utils'));
 const validate_file_path_local = create_file_path_validator(ALLOWED_BASE_PATHS, validate_file_path);
 
 // Lib modules (loaded from lib directory)
-const vectorIndex = require(path.join(LIB_DIR, 'vector-index.js'));
-const embeddings = require(path.join(LIB_DIR, 'embeddings.js'));
-const memoryParser = require(path.join(LIB_DIR, 'memory-parser.js'));
-const triggerMatcher = require(path.join(LIB_DIR, 'trigger-matcher.js'));
+const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
+const embeddings = require(path.join(LIB_DIR, 'providers', 'embeddings.js'));
+const memoryParser = require(path.join(LIB_DIR, 'parsing', 'memory-parser.js'));
+const triggerMatcher = require(path.join(LIB_DIR, 'parsing', 'trigger-matcher.js'));
 
 /* ───────────────────────────────────────────────────────────────
    1. INDEX MEMORY FILE

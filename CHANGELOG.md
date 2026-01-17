@@ -7,6 +7,41 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.5.0**] - 2026-01-17
+
+SpecKit validation system overhaul with 13 rules now fully operational. Memory parser gains camelCase YAML frontmatter support. Comprehensive A-Z testing validates all system components. Documentation alignment with workflows-documentation standards.
+
+---
+
+**New**
+1. **camelCase YAML Support** — Memory parser now accepts both snake_case and camelCase frontmatter fields (`importanceTier`, `contextType`, `triggerPhrases`).
+2. **Level 3+ Documentation** — Extended documentation level for complex multi-agent coordination with AI execution protocols.
+3. **Complexity Decision Matrix** — Quick reference asset aligned with workflows-documentation standards.
+
+---
+
+**Changed**
+1. All 13 validation rules now implement `run_check()` interface for consistent execution.
+2. Constitutional memory files properly indexed with correct tier and 55+ trigger phrases.
+3. 36 path references updated from `scripts/generate-context.js` to `scripts/memory/generate-context.js`.
+4. MCP server library reorganized into `/lib/cognitive/`, `/lib/parsing/`, `/lib/providers/`, `/lib/scoring/`, `/lib/search/`, `/lib/storage/`, `/lib/utils/` subdirectories.
+
+---
+
+**Fixed**
+1. `check-section-counts.sh` comparison syntax error (grep output sanitization).
+2. Four validation rules (check-complexity, check-section-counts, check-ai-protocols, check-level-match) completely rewritten.
+3. Constitutional `gate-enforcement.md` now indexed with `constitutional` tier (was `normal`).
+
+---
+
+**Upgrade**
+No action required. Pull latest to get validation system improvements.
+
+**Full Changelog**: [v1.0.4.1...v1.0.5.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.4.1...v1.0.5.0)
+
+---
+
 ## [**1.0.4.1**] - 2026-01-16
 
 Fixes a bug where README.md files in the constitutional directory were incorrectly indexed as memories. The documentation file's example YAML frontmatter was parsed as real metadata, creating ghost memory entries.
