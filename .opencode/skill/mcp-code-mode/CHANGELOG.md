@@ -5,22 +5,35 @@ All notable changes to the mcp-code-mode skill are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+---
+
 ## [1.0.3.2] - 2026-01-05
 
 *Environment version: 1.0.3.2*
 
+Embedded MCP server source and prefixed variable documentation for improved portability.
+
+---
+
 ### Added
-- **Embedded MCP server source** - Code Mode source code now included in `mcp_server/` folder for portability
-- **Prefixed variable documentation** - Install guide updated with critical `{manual}_{VAR}` requirement
-- **`.env.example` template** - New template file with all prefixed variables documented
+
+1. **Embedded MCP Server Source** — Code Mode source code now included in `mcp_server/` folder for portability
+2. **Prefixed Variable Documentation** — Install guide updated with critical `{manual}_{VAR}` requirement
+3. **`.env.example` Template** — New template file with all prefixed variables documented
+
+---
 
 ### Changed
-- Install guide: Added "CRITICAL: Prefixed Environment Variables" section
-- Install guide: Updated `.env` template with prefixed versions
-- Install guide: New troubleshooting entry for "Variable not found" errors
+
+1. **Install Guide** — Added "CRITICAL: Prefixed Environment Variables" section
+2. **Install Guide** — Updated `.env` template with prefixed versions
+3. **Install Guide** — New troubleshooting entry for "Variable not found" errors
+
+---
 
 ### Fixed
-- Documentation gap: Code Mode requires prefixed environment variables (e.g., `narsil_VOYAGE_API_KEY`, `figma_FIGMA_API_KEY`)
+
+1. **Documentation Gap** — Code Mode requires prefixed environment variables (e.g., `narsil_VOYAGE_API_KEY`, `figma_FIGMA_API_KEY`)
 
 ---
 
@@ -28,14 +41,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.2.5*
 
+Security fix for hardcoded credentials and install script improvements.
+
+---
+
 ### Security
-- **CWE-798 (Hardcoded Credentials)**: Fixed hardcoded `VOYAGE_API_KEY` in `.utcp_config.json` - now uses `${VOYAGE_API_KEY}` variable reference
+
+1. **CWE-798 (Hardcoded Credentials)** — Fixed hardcoded `VOYAGE_API_KEY` in `.utcp_config.json` - now uses `${VOYAGE_API_KEY}` variable reference
+
+---
 
 ### Fixed
-- Install script generating invalid config with `_note`, `_neural_backends` fields
+
+1. **Install Script** — Fixed generating invalid config with `_note`, `_neural_backends` fields
+
+---
 
 ### Changed
-- API key references changed from hardcoded values to `${VOYAGE_API_KEY}` variable syntax
+
+1. **API Key References** — Changed from hardcoded values to `${VOYAGE_API_KEY}` variable syntax
 
 ---
 
@@ -43,11 +67,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.2.4*
 
+MCP Install Scripts Suite release with shared utilities library.
+
+---
+
 ### Added
-- MCP Install Scripts Suite with shared utilities library (33 functions)
+
+1. **MCP Install Scripts Suite** — Shared utilities library with 33 functions
+
+---
 
 ### Changed
-- 70 files standardized with snake_case naming
+
+1. **File Naming** — 70 files standardized with snake_case naming
 
 ---
 
@@ -55,9 +87,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.1.0*
 
+Narsil integration for Code Mode examples and tool routing.
+
+---
+
 ### Changed
-- Narsil added to Code Mode examples
-- Tool routing updated for Narsil integration
+
+1. **Code Mode Examples** — Narsil added to example patterns
+2. **Tool Routing** — Updated for Narsil integration
 
 ---
 
@@ -65,14 +102,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.4*
 
+Standardized skill structure with reduced SKILL.md size.
+
+---
+
 ### Added
-- Standardized skill structure
+
+1. **Standardized Skill Structure** — Consistent organization across skill components
+
+---
 
 ### Changed
-- SKILL.md reduced 24% through better organization
+
+1. **SKILL.md** — Reduced 24% through better organization
+
+---
 
 ### Fixed
-- Hardcoded paths replaced with environment variables
+
+1. **Hardcoded Paths** — Replaced with environment variables
 
 ---
 
@@ -80,14 +128,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.0*
 
+Initial release of mcp-code-mode skill for MCP orchestration via TypeScript execution.
+
+---
+
 ### Added
-- Initial skill release
-- MCP orchestration via TypeScript execution
-- Token-efficient multi-tool workflows
-- Type-safe invocation patterns
-- Integration with Webflow, Figma, GitHub, ClickUp, Narsil
-- 98.7% context reduction vs native MCP calls
-- 60% faster execution
+
+1. **Initial Skill Release** — MCP orchestration via TypeScript execution
+2. **Token-Efficient Workflows** — Multi-tool workflows with 98.7% context reduction vs native MCP calls
+3. **Type-Safe Invocation** — Type-safe patterns for tool invocation
+4. **Multi-Tool Integration** — Webflow, Figma, GitHub, ClickUp, Narsil support
+5. **60% Faster Execution** — Optimized execution pipeline
 
 ---
 

@@ -5,18 +5,25 @@ All notable changes to the workflows-git skill are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+---
+
 ## [1.5.0] - 2026-01-14
 
 *Environment version: 1.0.3.4*
 
+Git workflow orchestrator for complete development lifecycle.
+
+---
+
 ### Added
-- Git workflow orchestrator for complete development lifecycle
-- Workspace setup guidance via git-worktrees
-- Clean commit workflows with conventional commit conventions
-- Work completion flows for branch integration
-- Branch management and naming conventions
-- Pull request creation and review workflows
-- GitHub issue integration
+
+1. **Git Workflow Orchestrator** — Complete development lifecycle management
+2. **Workspace Setup Guidance** — Via git-worktrees
+3. **Clean Commit Workflows** — Conventional commit conventions
+4. **Work Completion Flows** — Branch integration workflows
+5. **Branch Management** — Naming conventions and organization
+6. **Pull Request Creation** — PR creation and review workflows
+7. **GitHub Issue Integration** — Issue tracking and linking
 
 ---
 
@@ -24,9 +31,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.3.1*
 
+Agent frontmatter migration to v1.1.1+ format.
+
+---
+
 ### Changed
-- Agent frontmatter migrated: `tools:` object → `permission:` object (v1.1.1+ format)
-- Updated examples and field references for OpenCode v1.1.1+
+
+1. **Agent Frontmatter Migrated** — `tools:` object → `permission:` object (v1.1.1+ format)
+2. **Examples Updated** — Field references for OpenCode v1.1.1+
 
 ---
 
@@ -34,12 +46,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.2.4*
 
+Auto/Confirm modes and session behavior modes.
+
+---
+
 ### Added
-- Auto/Confirm modes for workflow commands
-- Session behavior modes: `--brief`, `--verbose`, `--debug`
+
+1. **Auto/Confirm Modes** — Workflow command modes
+2. **Session Behavior Modes** — `--brief`, `--verbose`, `--debug`
+
+---
 
 ### Changed
-- Code style aligned with project standards (snake_case naming)
+
+1. **Code Style Aligned** — With project standards (snake_case naming)
 
 ---
 
@@ -47,13 +67,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.4*
 
+Standardized structure and path fixes.
+
+---
+
 ### Changed
-- Standardized structure across all skills
-- SKILL.md reduced through better organization
+
+1. **Standardized Structure** — Across all skills
+2. **SKILL.md Reduced** — Through better organization
+
+---
 
 ### Fixed
-- Hardcoded paths replaced with environment variables
-- Broken anchor links
+
+1. **Hardcoded Paths** — Replaced with environment variables
+2. **Broken Anchor Links** — Fixed
 
 ---
 
@@ -61,9 +89,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.1*
 
+Folder restructure and codebase-agnostic updates.
+
+---
+
 ### Changed
-- Moved to `.opencode/` folder structure
-- Made codebase-agnostic
+
+1. **Folder Structure** — Moved to `.opencode/` folder structure
+2. **Codebase-Agnostic** — Made universally applicable
 
 ---
 
@@ -71,14 +104,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.0*
 
+Initial release of workflows-git skill.
+
+---
+
 ### Added
-- Initial skill release
-- Git worktree management workflows
-- Conventional commit guidance
-- Branch naming conventions
-- Pull request templates
-- Work completion checklist
-- GitHub integration utilities
+
+1. **Initial Skill Release** — Git worktree management workflows
+2. **Conventional Commit Guidance** — Commit message standards
+3. **Branch Naming Conventions** — Naming patterns and rules
+4. **Pull Request Templates** — PR creation templates
+5. **Work Completion Checklist** — Completion verification
+6. **GitHub Integration Utilities** — GitHub CLI integration
 
 ---
 

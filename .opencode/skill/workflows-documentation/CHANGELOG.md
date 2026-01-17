@@ -5,21 +5,28 @@ All notable changes to the workflows-documentation skill are documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+---
+
 ## [5.1.0] - 2026-01-02
 
 *Environment version: 1.0.2.8*
 
+Asset folder reorganization for improved discoverability.
+
+---
+
 ### Changed
-- **Asset folder reorganization** for improved discoverability:
-  - `assets/components/` → `assets/opencode/` (OpenCode component templates)
-  - `assets/documents/` → `assets/documentation/` (document templates)
-- 250+ path references updated across 35+ files
-- New organizational principle established:
-  - `references/` = FLAT (no subfolders) for simpler AI agent discovery
-  - `assets/` = Subfolders ALLOWED for grouping related templates
-  - `scripts/` = Typically flat, subfolders OK for large collections
-- `skill_md_template.md` updated with "Folder Organization Principle" section
-- `skill_creation.md` updated with folder guidance
+
+1. **Asset Folder Reorganization** — Improved discoverability:
+   - `assets/components/` → `assets/opencode/` (OpenCode component templates)
+   - `assets/documents/` → `assets/documentation/` (document templates)
+2. **Path References Updated** — 250+ path references updated across 35+ files
+3. **Organizational Principle Established** — New folder structure guidance:
+   - `references/` = FLAT (no subfolders) for simpler AI agent discovery
+   - `assets/` = Subfolders ALLOWED for grouping related templates
+   - `scripts/` = Typically flat, subfolders OK for large collections
+4. **`skill_md_template.md` Updated** — Added "Folder Organization Principle" section
+5. **`skill_creation.md` Updated** — Added folder guidance
 
 ---
 
@@ -27,13 +34,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.1.7*
 
+Agent creation workflow and install guide improvements.
+
+---
+
 ### Added
-- `/create:agent` command with 5-phase workflow for agent creation
-- `agent_template.md` for consistent agent structure
+
+1. **`/create:agent` Command** — 5-phase workflow for agent creation
+2. **`agent_template.md`** — Consistent agent structure template
+
+---
 
 ### Changed
-- All MCP install guides now include detailed H1 descriptions
-- `command_template.md` reduced 27% by removing duplication
+
+1. **MCP Install Guides** — All now include detailed H1 descriptions
+2. **`command_template.md`** — Reduced 27% by removing duplication
 
 ---
 
@@ -41,11 +56,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.6*
 
+Write agent enforcement and skill creation validation.
+
+---
+
 ### Added
-- HARD BLOCK section for write agent enforcement
-- Prompt prefix requirement for skill creation
-- Prerequisite check validation
-- Validation command for skill creation
+
+1. **HARD BLOCK Section** — Write agent enforcement
+2. **Prompt Prefix Requirement** — Skill creation requirement
+3. **Prerequisite Check Validation** — Pre-creation validation
+4. **Validation Command** — Skill creation validation
 
 ---
 
@@ -53,14 +73,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.5*
 
+Write agent requirements and workflow updates.
+
+---
+
 ### Added
-- Skill creation requires `@write` agent prefix
-- HARD BLOCK enforcement for write agent
-- Prompt prefix and prerequisite checks
+
+1. **Skill Creation Requirement** — Requires `@write` agent prefix
+2. **HARD BLOCK Enforcement** — Write agent enforcement
+3. **Prompt Prefix and Prerequisite Checks** — Validation checks
+
+---
 
 ### Changed
-- Quick Reference updated with CDN deployment workflow
-- Quick Reference updated with JS minification workflow
+
+1. **Quick Reference** — Updated with CDN deployment workflow
+2. **Quick Reference** — Updated with JS minification workflow
 
 ---
 
@@ -68,17 +96,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.4*
 
+Skill creation guide and standardization.
+
+---
+
 ### Added
-- Skill Creation guide with required templates and file locations
-- Skill Advisor configuration documentation
+
+1. **Skill Creation Guide** — Required templates and file locations
+2. **Skill Advisor Configuration** — Documentation
+
+---
 
 ### Changed
-- Standardized structure across all skills (69 files total)
-- SKILL.md reduced 24% through better organization
+
+1. **Standardized Structure** — 69 files total across all skills
+2. **SKILL.md** — Reduced 24% through better organization
+
+---
 
 ### Fixed
-- Hardcoded paths throughout
-- Broken anchor links
+
+1. **Hardcoded Paths** — Replaced throughout
+2. **Broken Anchor Links** — Fixed
 
 ---
 
@@ -86,12 +125,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.0*
 
+Initial release of workflows-documentation skill.
+
+---
+
 ### Added
-- Initial skill release
-- Document quality pipeline with structure enforcement
-- Markdown validation and content optimization
-- Template system for README, frontmatter, and install guides
-- llms.txt generation for LLM navigation
+
+1. **Initial Skill Release** — Document quality pipeline with structure enforcement
+2. **Markdown Validation** — Content optimization for AI assistants
+3. **Template System** — README, frontmatter, and install guide templates
+4. **llms.txt Generation** — LLM navigation support
 
 ---
 

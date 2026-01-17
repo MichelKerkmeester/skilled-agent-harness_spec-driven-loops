@@ -5,18 +5,28 @@ All notable changes to the workflows-chrome-devtools skill are documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+---
+
 ## [2.1.0] - 2026-01-14
 
 *Environment version: 1.0.3.4*
 
+Chrome DevTools orchestrator with intelligent routing.
+
+---
+
 ### Added
-- Chrome DevTools orchestrator with intelligent routing
-- CLI (bdg) approach prioritized for speed and token efficiency
-- MCP fallback for multi-tool integration scenarios
-- Screenshot capture and network monitoring
-- Console log access and DOM queries
-- Cookie manipulation and JavaScript execution
-- Unix pipe composability for terminal-based automation
+
+1. **Chrome DevTools Orchestrator** — Intelligent routing between CLI and MCP approaches
+2. **CLI (bdg) Approach** — Prioritized for speed and token efficiency
+3. **MCP Fallback** — For multi-tool integration scenarios
+4. **Screenshot Capture** — Browser screenshot functionality
+5. **Network Monitoring** — Request/response tracking
+6. **Console Log Access** — Console output capture
+7. **DOM Queries** — Element inspection utilities
+8. **Cookie Manipulation** — Cookie management
+9. **JavaScript Execution** — Script execution in browser context
+10. **Unix Pipe Composability** — Terminal-based automation support
 
 ---
 
@@ -24,10 +34,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.2.4*
 
+Stack-agnostic debugging methodology.
+
+---
+
 ### Changed
-- Made stack-agnostic (removed frontend-specific tool references)
-- Universal debugging methodology integrated
-- 4-phase approach: Observe → Analyze → Hypothesize → Fix
+
+1. **Stack-Agnostic** — Removed frontend-specific tool references
+2. **Universal Debugging Methodology** — 4-phase approach integrated:
+   - Observe → Analyze → Hypothesize → Fix
 
 ---
 
@@ -35,14 +50,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *Environment version: 1.0.0.0*
 
+Initial release of workflows-chrome-devtools skill.
+
+---
+
 ### Added
-- Initial skill release
-- Chrome DevTools Protocol (CDP) integration
-- Browser debugger CLI (bdg) wrapper
-- Screenshot capture functionality
-- Network request monitoring
-- Console log streaming
-- DOM inspection utilities
+
+1. **Initial Skill Release** — Chrome DevTools Protocol (CDP) integration
+2. **Browser Debugger CLI (bdg)** — CLI wrapper for CDP
+3. **Screenshot Capture** — Functionality for visual debugging
+4. **Network Request Monitoring** — Request tracking
+5. **Console Log Streaming** — Real-time console output
+6. **DOM Inspection Utilities** — Element inspection tools
 
 ---
 
