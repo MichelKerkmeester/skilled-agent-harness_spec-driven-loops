@@ -11,21 +11,6 @@
 
 ---
 
-#### 📦 PUBLIC RELEASE
-
-The OpenCode development environment in this project is also available as a standalone public release.
-
-| Resource                | Location                                                              |
-| ----------------------- | --------------------------------------------------------------------- |
-| **Public Repo (local)** | `/Users/michelkerkmeester/MEGA/Development/Opencode Dev Environment/` |
-| **GitHub**              | https://github.com/MichelKerkmeester/Opencode_Dev_Environment         |
-
-**This project is the source of truth.** Changes are synced to the public repo for distribution.
-
-See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, and release management.
-
----
-
 ## 1. 🚨 CRITICAL RULES (MANDATORY)
 
 **HARD BLOCKERS (must do or stop):**
@@ -47,20 +32,20 @@ See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, 
 
 ### Quick Reference: Common Workflows
 
-| Task                     | Flow                                                                                                                                     |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                               |
-| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → Document findings                                                                         |
-| **Code search**          | `narsil.narsil_neural_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text |
-| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                         |
-| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed      |
-| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                              |
-| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                                 |
-| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                              |
-| **End session**          | /spec_kit:handover → Save context → Provide continuation prompt                                                                          |
-| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                  |
-| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                            |
-| **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                      |
+| Task                     | Flow                                                                                                                                       |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                                 |
+| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → Document findings                                                                          |
+| **Code search**          | `narsil.narsil_neural_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text   |
+| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                           |
+| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
+| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                                |
+| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                                   |
+| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                                |
+| **End session**          | /spec_kit:handover → Save context → Provide continuation prompt                                                                            |
+| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
+| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                              |
+| **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                        |
 
 ---
 
@@ -257,26 +242,26 @@ File modification planned? → Include Q1 (Spec Folder)
 
 #### ⚡ Common Failure Patterns 
 
-| #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                        |
-| --- | -------------- | ---------------------------- | -------------------------------------------- | ------------------------------------------------------ |
-| 1   | Understanding  | Task Misinterpretation       | N/A                                          | Parse request, confirm scope                           |
-| 2   | Understanding  | Assumptions                  | N/A                                          | Read existing code first                               |
-| 3   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                            |
-| 4   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                              |
-| 5   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                                |
-| 6   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                      |
-| 7   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                         |
-| 8   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                                |
-| 9   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                       |
-| 10  | Review         | Skip Verification            | "trivial edit"                               | Run ALL tests, no exceptions                           |
-| 11  | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                           |
-| 12  | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                   |
-| 13  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution  |
-| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Narsil for meaning + structure, Grep for text          |
-| 15  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                  |
-| 16  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                 |
-| 17  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response     |
-| 18  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response         |
+| #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                       |
+| --- | -------------- | ---------------------------- | -------------------------------------------- | ----------------------------------------------------- |
+| 1   | Understanding  | Task Misinterpretation       | N/A                                          | Parse request, confirm scope                          |
+| 2   | Understanding  | Assumptions                  | N/A                                          | Read existing code first                              |
+| 3   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                           |
+| 4   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                             |
+| 5   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                               |
+| 6   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                     |
+| 7   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                        |
+| 8   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                               |
+| 9   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                      |
+| 10  | Review         | Skip Verification            | "trivial edit"                               | Run ALL tests, no exceptions                          |
+| 11  | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
+| 12  | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                  |
+| 13  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
+| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Narsil for meaning + structure, Grep for text         |
+| 15  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
+| 16  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                |
+| 17  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response    |
+| 18  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response        |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
 
@@ -288,11 +273,11 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 ### Documentation Levels
 
-| Level | LOC     | Required Files                                            | Use When                     |
-| ----- | ------- | --------------------------------------------------------- | ---------------------------- |
-| **1** | <100    | spec.md, plan.md, tasks.md, implementation-summary.md     | All features (minimum)       |
-| **2** | 100-499 | Level 1 + checklist.md                                    | QA validation needed         |
-| **3** | ≥500    | Level 2 + decision-record.md (+ optional research.md)     | Complex/architecture changes |
+| Level | LOC     | Required Files                                        | Use When                     |
+| ----- | ------- | ----------------------------------------------------- | ---------------------------- |
+| **1** | <100    | spec.md, plan.md, tasks.md, implementation-summary.md | All features (minimum)       |
+| **2** | 100-499 | Level 1 + checklist.md                                | QA validation needed         |
+| **3** | ≥500    | Level 2 + decision-record.md (+ optional research.md) | Complex/architecture changes |
 
 > **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
 
