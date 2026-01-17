@@ -18,7 +18,7 @@
 const path = require('path');
 
 /* ───────────────────────────────────────────────────────────────
-   MODULE IMPORTS
+   1. MODULE IMPORTS
    ─────────────────────────────────────────────────────────────── */
 
 // MCP SDK
@@ -52,19 +52,19 @@ const { validate_input_lengths } = require('./utils');
 const { MEMORY_AWARE_TOOLS, extract_context_hint, auto_surface_memories, clear_constitutional_cache } = require('./hooks');
 
 // Lib modules (for initialization only)
-const vectorIndex = require(path.join(LIB_DIR, 'vector-index.js'));
-const embeddings = require(path.join(LIB_DIR, 'embeddings.js'));
-const checkpointsLib = require(path.join(LIB_DIR, 'checkpoints.js'));
-const accessTracker = require(path.join(LIB_DIR, 'access-tracker.js'));
-const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
-const memoryParser = require(path.join(LIB_DIR, 'memory-parser.js'));
-const workingMemory = require(path.join(LIB_DIR, 'working-memory.js'));
-const attentionDecay = require(path.join(LIB_DIR, 'attention-decay.js'));
-const coActivation = require(path.join(LIB_DIR, 'co-activation.js'));
+const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
+const embeddings = require(path.join(LIB_DIR, 'providers', 'embeddings.js'));
+const checkpointsLib = require(path.join(LIB_DIR, 'storage', 'checkpoints.js'));
+const accessTracker = require(path.join(LIB_DIR, 'storage', 'access-tracker.js'));
+const hybridSearch = require(path.join(LIB_DIR, 'search', 'hybrid-search.js'));
+const memoryParser = require(path.join(LIB_DIR, 'parsing', 'memory-parser.js'));
+const workingMemory = require(path.join(LIB_DIR, 'cognitive', 'working-memory.js'));
+const attentionDecay = require(path.join(LIB_DIR, 'cognitive', 'attention-decay.js'));
+const coActivation = require(path.join(LIB_DIR, 'cognitive', 'co-activation.js'));
 const { ErrorCodes } = require(path.join(LIB_DIR, 'errors.js'));
 
 /* ───────────────────────────────────────────────────────────────
-   SERVER INITIALIZATION
+   2. SERVER INITIALIZATION
    ─────────────────────────────────────────────────────────────── */
 
 const server = new Server(
@@ -73,7 +73,7 @@ const server = new Server(
 );
 
 /* ───────────────────────────────────────────────────────────────
-   TOOL DEFINITIONS
+   3. TOOL DEFINITIONS
    ─────────────────────────────────────────────────────────────── */
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
@@ -83,7 +83,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     { name: 'memory_delete', description: 'Delete a memory by ID or all memories in a spec folder. Use to remove incorrect or outdated information.', inputSchema: { type: 'object', properties: { id: { type: 'number', description: 'Memory ID to delete' }, specFolder: { type: 'string', description: 'Delete all memories in this spec folder' }, confirm: { type: 'boolean', description: 'Required for bulk delete (when specFolder is used without id)' } } } },
     { name: 'memory_update', description: 'Update an existing memory with corrections. Re-generates embedding if content changes.', inputSchema: { type: 'object', properties: { id: { type: 'number', description: 'Memory ID to update' }, title: { type: 'string', description: 'New title' }, triggerPhrases: { type: 'array', items: { type: 'string' }, description: 'Updated trigger phrases' }, importanceWeight: { type: 'number', description: 'New importance weight (0-1)' }, importanceTier: { type: 'string', enum: ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'], description: 'Set importance tier. Constitutional tier memories always surface at top of results.' } }, required: ['id'] } },
     { name: 'memory_list', description: 'Browse stored memories with pagination. Use to discover what is remembered and find IDs for delete/update.', inputSchema: { type: 'object', properties: { limit: { type: 'number', default: 20, description: 'Maximum results to return (max 100)' }, offset: { type: 'number', default: 0, description: 'Number of results to skip (for pagination)' }, specFolder: { type: 'string', description: 'Filter by spec folder' }, sortBy: { type: 'string', enum: ['created_at', 'updated_at', 'importance_weight'], description: 'Sort order (default: created_at DESC)' } } } },
-    { name: 'memory_stats', description: 'Get statistics about the memory system. Shows counts, dates, status breakdown, and top folders.', inputSchema: { type: 'object', properties: {} } },
+    { name: 'memory_stats', description: 'Get statistics about the memory system. Shows counts, dates, status breakdown, and top folders. Supports multiple ranking modes including composite scoring.', inputSchema: { type: 'object', properties: { folderRanking: { type: 'string', enum: ['count', 'recency', 'importance', 'composite'], description: 'How to rank folders: count (default, by memory count), recency (most recent first), importance (by tier), composite (weighted multi-factor score)', default: 'count' }, excludePatterns: { type: 'array', items: { type: 'string' }, description: 'Regex patterns to exclude folders (e.g., ["z_archive", "scratch"])' }, includeScores: { type: 'boolean', description: 'Include score breakdown for each folder', default: false }, includeArchived: { type: 'boolean', description: 'Include archived/test/scratch folders in results', default: false }, limit: { type: 'number', description: 'Maximum number of folders to return', default: 10 } } } },
     { name: 'checkpoint_create', description: 'Create a named checkpoint of current memory state for later restoration.', inputSchema: { type: 'object', properties: { name: { type: 'string', description: 'Unique checkpoint name' }, specFolder: { type: 'string', description: 'Limit to specific spec folder' }, metadata: { type: 'object', description: 'Additional metadata' } }, required: ['name'] } },
     { name: 'checkpoint_list', description: 'List all available checkpoints.', inputSchema: { type: 'object', properties: { specFolder: { type: 'string', description: 'Filter by spec folder' }, limit: { type: 'number', default: 50 } } } },
     { name: 'checkpoint_restore', description: 'Restore memory state from a checkpoint.', inputSchema: { type: 'object', properties: { name: { type: 'string', description: 'Checkpoint name to restore' }, clearExisting: { type: 'boolean', default: false } }, required: ['name'] } },
@@ -96,7 +96,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
 }));
 
 /* ───────────────────────────────────────────────────────────────
-   TOOL DISPATCH
+   4. TOOL DISPATCH
    ─────────────────────────────────────────────────────────────── */
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
@@ -152,7 +152,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   STARTUP SCAN
+   5. STARTUP SCAN
    ─────────────────────────────────────────────────────────────── */
 
 let startup_scan_in_progress = false;
@@ -209,7 +209,7 @@ async function startup_scan(base_path) {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   GRACEFUL SHUTDOWN
+   6. GRACEFUL SHUTDOWN
    ─────────────────────────────────────────────────────────────── */
 
 let shutting_down = false;
@@ -243,7 +243,7 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 /* ───────────────────────────────────────────────────────────────
-   MAIN
+   7. MAIN
    ─────────────────────────────────────────────────────────────── */
 
 async function main() {

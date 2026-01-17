@@ -124,19 +124,26 @@ ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 
 ```
 scripts/
-├── Shell Scripts (10)
-│   ├── validate-spec.sh          # Validate spec folder contents
-│   ├── create-spec-folder.sh     # Create new spec folders
-│   ├── check-prerequisites.sh    # Check required files exist
+├── Root Files
+│   ├── common.sh                 # Repository & branch utilities
+│   └── package.json              # Node.js dependencies
+│
+├── spec/                         # Spec folder operations (6 scripts)
+│   ├── create.sh                 # Create new spec folders
+│   ├── validate.sh               # Validate spec folder contents
 │   ├── check-completion.sh       # Verify checklist completion (Gate 6)
 │   ├── calculate-completeness.sh # Calculate checklist completion %
 │   ├── recommend-level.sh        # Recommend documentation level
-│   ├── archive-spec.sh           # Archive completed specs
-│   ├── setup.sh                  # Initial setup script
-│   └── common.sh                 # Repository & branch utilities
+│   └── archive.sh                # Archive completed specs
 │
-├── generate-context.js           # CLI entry point (142 lines) - routes to modular architecture
-├── cleanup-orphaned-vectors.js   # Database cleanup utility
+├── memory/                       # Memory/context operations (3 scripts)
+│   ├── generate-context.js       # CLI entry point - memory file generation
+│   ├── rank-memories.js          # Memory ranking utility
+│   └── cleanup-orphaned-vectors.js # Database cleanup utility
+│
+├── setup/                        # Setup & prerequisites (2 scripts)
+│   ├── setup.sh                  # Initial setup script
+│   └── check-prerequisites.sh    # Check required files exist
 │
 ├── tests/                        # Test scripts (3 files)
 │   ├── test-bug-fixes.js         # Bug fix regression tests
@@ -215,17 +222,12 @@ scripts/
 │   │   └── retry-manager.js      # Embedding retry logic
 │   └── README.md                 # Library documentation
 │
-├── test-fixtures/                # Validation test cases (10 dirs)
-│   ├── valid-level1/             # L1 spec structure tests
-│   ├── valid-level2/             # L2 spec structure tests
-│   ├── valid-level3/             # L3 spec structure tests
-│   ├── valid-anchors/            # Valid ANCHOR format tests
-│   ├── invalid-anchors/          # Invalid ANCHOR detection
-│   ├── valid-evidence/           # Evidence citation tests
-│   ├── valid-priority-tags/      # Priority tag tests
-│   ├── unfilled-placeholders/    # Placeholder detection tests
-│   ├── missing-required-files/   # Missing file detection
-│   └── empty-folder/             # Empty directory handling
+├── test-fixtures/                # Validation test cases (54 dirs)
+│   ├── 003-valid-level2/         # L2 spec structure tests
+│   ├── 004-valid-level3/         # L3 spec structure tests
+│   ├── 006-missing-required-files/ # Missing file detection
+│   ├── 007-valid-anchors/        # Valid ANCHOR format tests
+│   └── ...                       # 50+ fixture folders
 │
 └── README.md                     # This file
 ```

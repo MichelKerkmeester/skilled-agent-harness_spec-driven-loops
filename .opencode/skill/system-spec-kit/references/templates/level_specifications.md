@@ -18,6 +18,8 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research.md
+                              ↓
+Level 3+ (Extended):    Level 3 + AI protocols + dependency graphs + extended checklist
 ```
 
 **Key Points:**
@@ -41,10 +43,10 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 ### Required Files (Baseline)
 
-- `spec.md` - Requirements and user stories (copy template from `templates/spec.md`)
-- `plan.md` - Technical implementation plan (copy template from `templates/plan.md`)
-- `tasks.md` - Task breakdown by user story (copy template from `templates/tasks.md`)
-- `implementation-summary.md` - Post-implementation documentation (copy template from `templates/implementation-summary.md`)
+- `spec.md` - Requirements and user stories (copy template from `templates/level_1/spec.md`)
+- `plan.md` - Technical implementation plan (copy template from `templates/level_1/plan.md`)
+- `tasks.md` - Task breakdown by user story (copy template from `templates/level_1/tasks.md`)
+- `implementation-summary.md` - Post-implementation documentation (copy template from `templates/level_1/implementation-summary.md`)
 
 ### Optional Files
 
@@ -92,10 +94,10 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 ### Template Sources
 
-- `.opencode/skill/system-spec-kit/templates/spec.md`
-- `.opencode/skill/system-spec-kit/templates/plan.md`
-- `.opencode/skill/system-spec-kit/templates/tasks.md`
-- `.opencode/skill/system-spec-kit/templates/implementation-summary.md`
+- `.opencode/skill/system-spec-kit/templates/level_1/spec.md`
+- `.opencode/skill/system-spec-kit/templates/level_1/plan.md`
+- `.opencode/skill/system-spec-kit/templates/level_1/tasks.md`
+- `.opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md`
 
 ### Template Adaptation
 
@@ -168,11 +170,11 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 
 ### Template Sources
 
-- `.opencode/skill/system-spec-kit/templates/spec.md`
-- `.opencode/skill/system-spec-kit/templates/plan.md`
-- `.opencode/skill/system-spec-kit/templates/tasks.md`
-- `.opencode/skill/system-spec-kit/templates/implementation-summary.md`
-- `.opencode/skill/system-spec-kit/templates/checklist.md`
+- `.opencode/skill/system-spec-kit/templates/level_2/spec.md`
+- `.opencode/skill/system-spec-kit/templates/level_2/plan.md`
+- `.opencode/skill/system-spec-kit/templates/level_2/tasks.md`
+- `.opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md`
+- `.opencode/skill/system-spec-kit/templates/level_2/checklist.md`
 
 ### Template Adaptation
 
@@ -270,12 +272,12 @@ specs/012-user-profile-api/
 
 ### Template Sources
 
-- `.opencode/skill/system-spec-kit/templates/spec.md`
-- `.opencode/skill/system-spec-kit/templates/plan.md`
-- `.opencode/skill/system-spec-kit/templates/tasks.md`
-- `.opencode/skill/system-spec-kit/templates/checklist.md`
-- `.opencode/skill/system-spec-kit/templates/decision-record.md`
-- `.opencode/skill/system-spec-kit/templates/research.md` (optional)
+- `.opencode/skill/system-spec-kit/templates/level_3/spec.md`
+- `.opencode/skill/system-spec-kit/templates/level_3/plan.md`
+- `.opencode/skill/system-spec-kit/templates/level_3/tasks.md`
+- `.opencode/skill/system-spec-kit/templates/level_3/checklist.md`
+- `.opencode/skill/system-spec-kit/templates/level_3/decision-record.md`
+- `.opencode/skill/system-spec-kit/templates/research.md` (optional, copy from root templates/)
 
 ### Template Adaptation
 
@@ -293,7 +295,139 @@ specs/012-user-profile-api/
 
 ---
 
-## 5. 🔄 LEVEL MIGRATION
+## 5. 🟣 LEVEL 3+: EXTENDED DOCUMENTATION (Complexity score: 80-100)
+
+### When to Use
+
+Level 3+ is auto-detected via complexity scoring for highly complex tasks:
+- Multi-agent coordination required
+- Complex architectural changes with high stakes
+- Large-scale migrations or rewrites
+- Tasks requiring explicit AI execution protocols
+- High coordination needs across multiple systems
+
+### Required Files (Level 3 + Extended Features)
+
+- `spec.md` (from Level 3) - With Complexity Assessment section
+- `plan.md` (from Level 3) - With AI Execution Framework, dependency graphs
+- `tasks.md` (from Level 3) - With 3-Tier Task Format, AI Execution Protocol
+- `checklist.md` (from Level 3) - Extended (100-150 items) with sign-off section
+- `decision-record.md` (from Level 3) - Architecture Decision Records
+
+### Extended Features (Auto-Enabled)
+
+| Feature | Description | Template Section |
+|---------|-------------|------------------|
+| AI Execution Protocol | Pre-task checklist, execution rules, status format | tasks.md, plan.md |
+| Dependency Graph | Full DAG visualization of task dependencies | plan.md |
+| Effort Estimation | Story points/hours per phase with totals | plan.md |
+| Extended Checklist | 100-150 items with P0/P1/P2 prioritization | checklist.md |
+| Sign-Off Section | Technical Lead, Product Owner, QA Lead sign-offs | checklist.md |
+| Workstream Organization | Parallel workstream tracking and coordination | tasks.md |
+
+### AI Execution Protocol Components
+
+**Pre-Task Checklist (9 steps):**
+1. Load spec.md and verify scope hasn't changed
+2. Load plan.md and identify current phase
+3. Load tasks.md and find next uncompleted task
+4. Verify task dependencies are satisfied
+5. Load checklist.md and identify relevant P0/P1 items
+6. Check for blocking issues in decision-record.md
+7. Verify memory/ folder for context from previous sessions
+8. Confirm understanding of success criteria
+9. Begin implementation only after all checks pass
+
+**Execution Rules Table:**
+| Rule | Description |
+|------|-------------|
+| TASK-SEQ | Complete tasks in dependency order |
+| TASK-SCOPE | Stay within task boundary, no scope creep |
+| TASK-VERIFY | Verify each task against acceptance criteria |
+| TASK-DOC | Update status immediately on completion |
+
+**Status Reporting Format:**
+```
+## Status Update - [TIMESTAMP]
+- **Task**: T### - [Description]
+- **Status**: [IN_PROGRESS | COMPLETED | BLOCKED]
+- **Evidence**: [Link to code/test/artifact]
+- **Blockers**: [None | Description]
+- **Next**: T### - [Next task]
+```
+
+### Content Expectations
+
+**All Level 3 content expectations PLUS:**
+
+**spec.md additions:**
+- Complexity Assessment table with 5-dimension scores
+- Executive Summary (2-3 paragraphs for stakeholders)
+
+**plan.md additions:**
+- AI Execution Framework section
+- Full dependency graph (ASCII or DAG)
+- Effort estimation per phase
+- Phase execution flowcharts (complex phases)
+
+**tasks.md additions:**
+- 3-Tier Task Format with full metadata
+- AI Execution Protocol section
+- Workstream organization (if parallel work)
+- Status reporting format
+
+**checklist.md additions:**
+- Extended Verification section (Level 3+)
+- Sign-Off section with Technical Lead, Product Owner, QA Lead
+- Verification Summary table
+
+### Example Scenarios
+
+**Good fits for Level 3+:**
+- Multi-agent implementation with 10+ parallel workstreams
+- Platform migration affecting 50+ files
+- Security audit remediation with compliance requirements
+- Real-time collaboration feature with complex state management
+- Database migration with zero-downtime requirements
+- API versioning with backward compatibility constraints
+
+### Template Sources
+
+All Level 3 templates from `templates/level_3+/` plus conditional content:
+- `.opencode/skill/system-spec-kit/templates/level_3+/spec.md`
+- `.opencode/skill/system-spec-kit/templates/level_3+/plan.md`
+- `.opencode/skill/system-spec-kit/templates/level_3+/tasks.md`
+- `.opencode/skill/system-spec-kit/templates/level_3+/checklist.md`
+- `.opencode/skill/system-spec-kit/templates/level_3+/decision-record.md`
+- `.opencode/skill/system-spec-kit/templates/research.md` (optional, copy from root templates/)
+
+### Creating Level 3+ Spec Folder
+
+```bash
+# Auto-detect (will recommend 3+ if score >= 80)
+./scripts/create-spec-folder.sh "Complex multi-agent migration" --complexity
+
+# Or specify directly
+./scripts/create-spec-folder.sh "Complex migration" --level 3 --expand
+```
+
+### Template Adaptation
+
+**All Level 3 adaptations PLUS:**
+
+1. Fill Complexity Assessment table with actual scores
+2. Write Executive Summary for stakeholder communication
+3. Create AI Execution Protocol with project-specific rules
+4. Build dependency graph showing all task relationships
+5. Add effort estimates per phase
+6. Expand checklist to 100+ items covering all validation areas
+7. Add sign-off section with appropriate approvers
+8. Organize workstreams if parallel work streams exist
+9. Remove all sample content and placeholders
+
+---
+
+## 6. 🔄 LEVEL MIGRATION
 
 ### When Scope Grows During Implementation
 
@@ -333,7 +467,7 @@ If you discover mid-work that scope is larger than anticipated, escalate by addi
 
 ---
 
-## 6. 📌 STATUS FIELD CONVENTION
+## 7. 📌 STATUS FIELD CONVENTION
 
 Every spec.md should include a status field to track lifecycle:
 
@@ -375,7 +509,7 @@ active (resume)
 
 ---
 
-## 7. 🔀 RELATED SPECS: UPDATE VS CREATE
+## 8. 🔀 RELATED SPECS: UPDATE VS CREATE
 
 ### When to UPDATE Existing Spec
 
@@ -450,7 +584,7 @@ Search existing specs (folder names, titles)
 
 ---
 
-## 8. 📋 CROSS-CUTTING TEMPLATES (ANY LEVEL)
+## 9. 📋 CROSS-CUTTING TEMPLATES (ANY LEVEL)
 
 Some templates are not level-specific but can be used at any documentation level. These support session management, context preservation, and work summaries.
 
@@ -472,12 +606,16 @@ Some templates are not level-specific but can be used at any documentation level
 | `implementation-summary.md` | Post-implementation documentation | End of implementation phase (REQUIRED all levels) | Manual or context save |
 
 **Template Sources:**
-- `.opencode/skill/system-spec-kit/templates/implementation-summary.md`
+- Level 1: `.opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md`
+- Level 2: `.opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md`
+- Level 3: `.opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md`
+- Level 3+: `.opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md`
 
 **Why Required for ALL Levels:**
 - `implementation-summary.md` documents outcomes, lessons learned, and deviations from plan
 - Ensures proper documentation trail for future sessions, handoffs, and audits
 - Even simple Level 1 tasks benefit from documenting what was actually done
+- Each level's template is progressively more detailed to match the complexity expectations
 
 ### Auto-Generated Context (Not Templates)
 
@@ -488,34 +626,42 @@ Some templates are not level-specific but can be used at any documentation level
 
 **Important:**
 - Memory files are auto-generated and should NOT be created manually
-- Use `/memory:save` or `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder]`
+- Use `/memory:save` or `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder]`
 - Scratch folder contents are temporary and should be cleaned up after work completes
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 10. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [quick_reference.md](../workflows/quick_reference.md) - Commands, checklists, and troubleshooting
 - [template_guide.md](./template_guide.md) - Template selection, adaptation, and quality standards
+- [complexity_guide.md](./complexity_guide.md) - 5-dimension complexity scoring and auto-detection
 - [path_scoped_rules.md](../validation/path_scoped_rules.md) - Path-scoped validation rules reference
 
 ### Templates
 
-**Core Templates (Progressive Enhancement):**
-- [spec.md](../../templates/spec.md) - Requirements and user stories (Level 1+)
-- [plan.md](../../templates/plan.md) - Technical implementation plan (Level 1+)
-- [tasks.md](../../templates/tasks.md) - Task breakdown by user story (Level 1+)
-- [checklist.md](../../templates/checklist.md) - Validation checklist (Level 2+)
-- [decision-record.md](../../templates/decision-record.md) - Architecture Decision Records (Level 3)
-- [research.md](../../templates/research.md) - Comprehensive research (Level 3 optional)
+**Level 1 (Baseline):**
+- [spec.md](../../templates/level_1/spec.md) - Requirements and user stories
+- [plan.md](../../templates/level_1/plan.md) - Technical implementation plan
+- [tasks.md](../../templates/level_1/tasks.md) - Task breakdown by user story
+- [implementation-summary.md](../../templates/level_1/implementation-summary.md) - Post-implementation documentation
+
+**Level 2 (Verification Added):**
+- All Level 1 templates from `templates/level_2/`
+- [checklist.md](../../templates/level_2/checklist.md) - Validation checklist
+
+**Level 3 (Full Documentation):**
+- All Level 2 templates from `templates/level_3/`
+- [decision-record.md](../../templates/level_3/decision-record.md) - Architecture Decision Records
+- [research.md](../../templates/research.md) - Comprehensive research (optional, at root templates/)
+
+**Level 3+ (Extended):**
+- All templates from `templates/level_3+/` with extended content
 
 **Session Management Templates (Any Level):**
 - [handover.md](../../templates/handover.md) - Session context transfer
 - [debug-delegation.md](../../templates/debug-delegation.md) - Debug task delegation
-
-**Summary Templates (REQUIRED ALL Levels):**
-- [implementation-summary.md](../../templates/implementation-summary.md) - Post-implementation documentation (REQUIRED all levels)
 
 **Non-Template Folders:**
 - `memory/` - Context preservation (auto-generated via generate-context.js)

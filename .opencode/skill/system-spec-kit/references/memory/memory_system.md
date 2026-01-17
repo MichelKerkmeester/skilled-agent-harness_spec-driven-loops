@@ -20,7 +20,7 @@ The Spec Kit Memory system provides context preservation across sessions through
 | MCP Server | `mcp_server/context-server.js` | Spec Kit Memory MCP with vector search |
 | Database | `database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
 | Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
-| Scripts | `scripts/generate-context.js` | Memory file generation with ANCHOR format |
+| Scripts | `scripts/memory/generate-context.js` | Memory file generation with ANCHOR format |
 
 ### Core Capabilities
 
@@ -390,7 +390,7 @@ Constitutional files are stored in:
 - [environment_variables.md](../config/environment_variables.md) - Configuration options
 
 ### Scripts
-- `scripts/generate-context.js` - Memory file generation
+- `scripts/memory/generate-context.js` - Memory file generation
 - `mcp_server/context-server.js` - MCP server implementation
 
 ### Related Skills

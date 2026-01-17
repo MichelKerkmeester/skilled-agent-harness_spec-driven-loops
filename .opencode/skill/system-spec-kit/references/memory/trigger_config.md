@@ -338,7 +338,7 @@ Before deploying custom triggers:
 - [SKILL.md](../../SKILL.md) - Main workflow-memory skill documentation
 
 ### Scripts
-- [generate-context.js](../../scripts/generate-context.js) - Context generation script
+- [generate-context.js](../../scripts/memory/generate-context.js) - Context generation script
 
 ### Related Skills
 - `spec_kit_memory` - Integrated MCP tools for context preservation

@@ -2,18 +2,19 @@
  * @fileoverview Memory CRUD operation handlers for the MCP context server.
  * Provides delete, update, list, stats, and health check operations.
  * @module mcp_server/handlers/memory-crud
- * @version 1.0.0
+ * @version 1.7.2
  */
 'use strict';
 
 const path = require('path');
 const { check_database_updated } = require('../core');
-const vectorIndex = require('../lib/vector-index.js');
-const checkpoints = require('../lib/checkpoints.js');
-const embeddings = require('../lib/embeddings.js');
-const triggerMatcher = require('../lib/trigger-matcher.js');
-const { VALID_TIERS, isValidTier } = require('../lib/importance-tiers.js');
+const vectorIndex = require('../lib/search/vector-index.js');
+const checkpoints = require('../lib/storage/checkpoints.js');
+const embeddings = require('../lib/providers/embeddings.js');
+const triggerMatcher = require('../lib/parsing/trigger-matcher.js');
+const { VALID_TIERS, isValidTier } = require('../lib/scoring/importance-tiers.js');
 const { MemoryError, ErrorCodes } = require('../lib/errors.js');
+const folderScoring = require('../lib/scoring/folder-scoring.js');
 
 // Module-level flag for embedding model readiness
 let embedding_model_ready = false;
@@ -142,24 +143,155 @@ async function handle_memory_list(args) {
   return { content: [{ type: 'text', text: JSON.stringify({ total, offset: safe_offset, limit: safe_limit, count: memories.length, results: memories }, null, 2) }] };
 }
 
-/** Handle memory_stats - system-wide statistics */
+/**
+ * Handle memory_stats - system-wide statistics with optional ranking parameters
+ * 
+ * @param {Object} args - Configuration options
+ * @param {string} [args.folderRanking='count'] - Ranking mode: 'count' | 'recency' | 'importance' | 'composite'
+ * @param {string[]} [args.excludePatterns] - Regex patterns to exclude folders
+ * @param {boolean} [args.includeScores=false] - Return score breakdown in response
+ * @param {boolean} [args.includeArchived=false] - Include archived folders in results
+ * @param {number} [args.limit=10] - Maximum folders to return
+ */
 async function handle_memory_stats(args) {
   await check_database_updated();
   const database = vectorIndex.getDb();
 
+  // Extract new parameters with backward-compatible defaults
+  const {
+    folderRanking: folder_ranking = 'count',
+    excludePatterns: exclude_patterns = [],
+    includeScores: include_scores = false,
+    includeArchived: include_archived = false,
+    limit: raw_limit = 10
+  } = args || {};
+
+  // Validate parameters
+  const valid_rankings = ['count', 'recency', 'importance', 'composite'];
+  if (!valid_rankings.includes(folder_ranking)) {
+    throw new Error(`Invalid folderRanking: ${folder_ranking}. Valid options: ${valid_rankings.join(', ')}`);
+  }
+  if (exclude_patterns && !Array.isArray(exclude_patterns)) {
+    throw new Error('excludePatterns must be an array of regex pattern strings');
+  }
+  const safe_limit = Math.max(1, Math.min(raw_limit || 10, 100));
+
+  // Common queries (unchanged)
   const total_result = database.prepare('SELECT COUNT(*) as count FROM memory_index').get();
   const total = (total_result && typeof total_result.count === 'number') ? total_result.count : 0;
   const status_counts = vectorIndex.getStatusCounts();
   const dates = database.prepare('SELECT MIN(created_at) as oldest, MAX(created_at) as newest FROM memory_index').get() || { oldest: null, newest: null };
-  const top_folders = database.prepare('SELECT spec_folder, COUNT(*) as count FROM memory_index GROUP BY spec_folder ORDER BY count DESC LIMIT 10').all();
   const trigger_result = database.prepare("SELECT SUM(json_array_length(trigger_phrases)) as count FROM memory_index WHERE trigger_phrases IS NOT NULL AND trigger_phrases != '[]'").get();
   const trigger_count = (trigger_result && typeof trigger_result.count === 'number') ? trigger_result.count : 0;
 
-  return { content: [{ type: 'text', text: JSON.stringify({
-    totalMemories: total, byStatus: status_counts, oldestMemory: dates.oldest || null, newestMemory: dates.newest || null,
-    topFolders: top_folders.map(f => ({ folder: f.spec_folder, count: f.count })), totalTriggerPhrases: trigger_count,
-    sqliteVecAvailable: vectorIndex.isVectorSearchAvailable(), vectorSearchEnabled: vectorIndex.isVectorSearchAvailable()
-  }, null, 2) }] };
+  let top_folders;
+
+  if (folder_ranking === 'count') {
+    // Backward-compatible: simple count-based ranking
+    const folder_rows = database.prepare('SELECT spec_folder, COUNT(*) as count FROM memory_index GROUP BY spec_folder ORDER BY count DESC').all();
+    
+    // Apply exclude patterns and archive filtering
+    let filtered_folders = folder_rows;
+    if (!include_archived) {
+      filtered_folders = filtered_folders.filter(f => !folderScoring.is_archived(f.spec_folder));
+    }
+    if (exclude_patterns.length > 0) {
+      const regexes = exclude_patterns
+        .map(p => {
+          try { return new RegExp(p, 'i'); }
+          catch (err) {
+            console.warn(`[memory-stats] Invalid exclude pattern: ${p} - ${err.message}`);
+            return null;
+          }
+        })
+        .filter(Boolean);
+      if (regexes.length > 0) {
+        filtered_folders = filtered_folders.filter(f => !regexes.some(r => r.test(f.spec_folder)));
+      }
+    }
+
+    top_folders = filtered_folders.slice(0, safe_limit).map(f => ({
+      folder: f.spec_folder,
+      count: f.count
+    }));
+  } else {
+    // Composite/recency/importance ranking - fetch all memories for scoring
+    const all_memories = database.prepare(`
+      SELECT 
+        id, spec_folder, file_path, title, importance_weight, importance_tier,
+        created_at, updated_at, confidence, validation_count, access_count
+      FROM memory_index
+      WHERE embedding_status = 'success'
+    `).all();
+
+    // Compute folder scores using the scoring module
+    const scoring_options = {
+      ranking_mode: folder_ranking,
+      includeArchived: include_archived,
+      excludePatterns: exclude_patterns,
+      include_scores: include_scores || folder_ranking === 'composite',
+      limit: safe_limit
+    };
+
+    let scored_folders;
+    try {
+      scored_folders = folderScoring.compute_folder_scores(all_memories, scoring_options);
+    } catch (scoring_err) {
+      console.error(`[memory-stats] Scoring failed, falling back to count-based: ${scoring_err.message}`);
+      // Fallback to count-based ranking on error
+      const folder_counts = new Map();
+      for (const m of all_memories) {
+        const folder = m.spec_folder || 'unknown';
+        folder_counts.set(folder, (folder_counts.get(folder) || 0) + 1);
+      }
+      scored_folders = Array.from(folder_counts.entries())
+        .filter(([folder]) => include_archived || !folderScoring.is_archived(folder))
+        .map(([folder, count]) => ({ folder, simplified: folder.split('/').pop() || folder, count, score: 0, isArchived: folderScoring.is_archived(folder) }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, safe_limit);
+    }
+
+    // Format response based on include_scores flag
+    if (include_scores || folder_ranking === 'composite') {
+      top_folders = scored_folders.map(f => ({
+        folder: f.folder,
+        simplified: f.simplified,
+        count: f.count,
+        score: f.score,
+        recencyScore: f.recencyScore,
+        importanceScore: f.importanceScore,
+        activityScore: f.activityScore,
+        validationScore: f.validationScore,
+        lastActivity: f.lastActivity,
+        isArchived: f.isArchived,
+        topTier: f.topTier
+      }));
+    } else {
+      // Minimal response for non-composite modes
+      top_folders = scored_folders.map(f => ({
+        folder: f.folder,
+        simplified: f.simplified,
+        count: f.count,
+        score: f.score,
+        lastActivity: f.lastActivity,
+        isArchived: f.isArchived
+      }));
+    }
+  }
+
+  const response = {
+    totalMemories: total,
+    byStatus: status_counts,
+    oldestMemory: dates.oldest || null,
+    newestMemory: dates.newest || null,
+    topFolders: top_folders,
+    totalTriggerPhrases: trigger_count,
+    sqliteVecAvailable: vectorIndex.isVectorSearchAvailable(),
+    vectorSearchEnabled: vectorIndex.isVectorSearchAvailable(),
+    folderRanking: folder_ranking
+  };
+
+  return { content: [{ type: 'text', text: JSON.stringify(response, null, 2) }] };
 }
 
 /** Handle memory_health - check health status of the memory system */
@@ -174,7 +306,7 @@ async function handle_memory_health(args) {
 
   return { content: [{ type: 'text', text: JSON.stringify({
     status: embedding_model_ready && database ? 'healthy' : 'degraded', embeddingModelReady: embedding_model_ready, databaseConnected: !!database,
-    vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(), memoryCount: memory_count, uptime: process.uptime(), version: '1.7.1',
+    vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(), memoryCount: memory_count, uptime: process.uptime(), version: '1.7.2',
     embeddingProvider: { provider: provider_metadata.provider, model: provider_metadata.model, dimension: profile ? profile.dim : 768,
       healthy: provider_metadata.healthy !== false, databasePath: profile ? profile.get_database_path(path.resolve(__dirname, '../database')) : null }
   }, null, 2) }] };

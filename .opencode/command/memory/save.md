@@ -168,7 +168,7 @@ operating_mode:
 
 **Script Location:**
 ```
-.opencode/skill/system-spec-kit/scripts/generate-context.js
+.opencode/skill/system-spec-kit/scripts/memory/generate-context.js
 ```
 
 > **Tool Restriction (Gate 5 HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags (with opening AND closing markers), SESSION SUMMARY table, and MEMORY METADATA YAML block. Direct file creation bypasses these critical formatting features. See AGENTS.md Gate 5 for enforcement details.
@@ -310,7 +310,7 @@ memory_search({ query: "jwt auth", includeContent: true })
     "Decision 2: Selected A over B due to performance considerations"
   ],
   "filesModified": [
-    ".opencode/skill/system-spec-kit/scripts/generate-context.js",
+    ".opencode/skill/system-spec-kit/scripts/memory/generate-context.js",
     "specs/005-memory/010-feature-name/spec.md"
   ],
   "triggerPhrases": [
@@ -358,7 +358,7 @@ cat > /tmp/save-context-data.json << 'EOF'
 EOF
 
 # 2. Execute the script with the JSON file
-node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/save-context-data.json
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/save-context-data.json
 
 # 3. Clean up temp file
 rm /tmp/save-context-data.json
@@ -380,10 +380,10 @@ rm /tmp/save-context-data.json
 **Mode 2 (Direct Path) - Minimal save:**
 ```bash
 # Pass spec folder path directly (creates placeholder content)
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/005-memory
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/005-memory
 
 # Or with nested folder
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/005-memory/010-feature
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/005-memory/010-feature
 ```
 
 **When to use Mode 2:** Quick saves without rich context, testing, or when Mode 1 JSON construction fails.
@@ -622,7 +622,7 @@ DISPATCH SUB-AGENT:
        Write JSON to /tmp/save-context-data.json
     
     5. EXECUTE SCRIPT:
-       node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/save-context-data.json
+       node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/save-context-data.json
     
     6. CLEANUP:
        rm /tmp/save-context-data.json

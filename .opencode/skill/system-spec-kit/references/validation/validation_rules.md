@@ -116,7 +116,7 @@ Create the missing file(s) using the appropriate template:
 
 ```bash
 # Core files
-cp .opencode/skill/system-spec-kit/templates/spec.md specs/007-feature/
+cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/007-feature/
 
 # Implementation summary (required for all levels)
 # Create at end of implementation phase

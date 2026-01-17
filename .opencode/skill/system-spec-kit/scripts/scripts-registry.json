@@ -6,7 +6,7 @@
   "scripts": [
     {
       "name": "generate-context",
-      "path": "scripts/generate-context.js",
+      "path": "scripts/memory/generate-context.js",
       "type": "node",
       "description": "Generate memory files with ANCHOR format for Spec Kit Memory indexing",
       "trigger": ["save context", "save memory", "/memory:save"],
@@ -23,7 +23,7 @@
     },
     {
       "name": "validate-spec",
-      "path": "scripts/validate-spec.sh",
+      "path": "scripts/spec/validate.sh",
       "type": "bash",
       "description": "Validate spec folder contents against documentation level requirements",
       "trigger": ["validate spec", "check spec"],
@@ -40,7 +40,7 @@
     },
     {
       "name": "check-completion",
-      "path": "scripts/check-completion.sh",
+      "path": "scripts/spec/check-completion.sh",
       "type": "bash",
       "description": "Gate 6 enforcement - verify checklist items are complete before claiming done",
       "trigger": ["check completion", "verify complete", "claiming done"],
@@ -57,7 +57,7 @@
     },
     {
       "name": "check-prerequisites",
-      "path": "scripts/check-prerequisites.sh",
+      "path": "scripts/setup/check-prerequisites.sh",
       "type": "bash",
       "description": "Validate spec folder exists and contains required files for its level",
       "trigger": ["check prerequisites", "verify files"],
@@ -73,7 +73,7 @@
     },
     {
       "name": "calculate-completeness",
-      "path": "scripts/calculate-completeness.sh",
+      "path": "scripts/spec/calculate-completeness.sh",
       "type": "bash",
       "description": "Calculate percentage of template placeholders replaced with real content",
       "trigger": ["calculate progress", "completeness"],
@@ -106,7 +106,7 @@
     },
     {
       "name": "create-spec-folder",
-      "path": "scripts/create-spec-folder.sh",
+      "path": "scripts/spec/create.sh",
       "type": "bash",
       "description": "Create new spec folders with appropriate templates based on documentation level",
       "trigger": ["create spec", "new spec folder", "Option B"],
@@ -123,7 +123,7 @@
     },
     {
       "name": "recommend-level",
-      "path": "scripts/recommend-level.sh",
+      "path": "scripts/spec/recommend-level.sh",
       "type": "bash",
       "description": "Recommend documentation level based on task complexity factors",
       "trigger": ["recommend level", "what level"],
@@ -139,7 +139,7 @@
     },
     {
       "name": "archive-spec",
-      "path": "scripts/archive-spec.sh",
+      "path": "scripts/spec/archive.sh",
       "type": "bash",
       "description": "Move completed spec folders to archive, keeping specs/ directory clean",
       "trigger": ["archive spec", "move to archive"],
@@ -156,7 +156,7 @@
     },
     {
       "name": "setup",
-      "path": "scripts/setup.sh",
+      "path": "scripts/setup/setup.sh",
       "type": "bash",
       "description": "One-command setup for the semantic memory system",
       "trigger": ["setup memory", "install memory"],
@@ -187,7 +187,7 @@
     },
     {
       "name": "cleanup-orphaned-vectors",
-      "path": "scripts/cleanup-orphaned-vectors.js",
+      "path": "scripts/memory/cleanup-orphaned-vectors.js",
       "type": "node",
       "description": "Remove orphaned vector entries from the SQLite database",
       "trigger": ["cleanup vectors", "database cleanup"],
@@ -313,6 +313,42 @@
       "severity": "info",
       "essential": false,
       "version": "1.0.0"
+    },
+    {
+      "name": "check-complexity",
+      "path": "scripts/rules/check-complexity.sh",
+      "type": "bash",
+      "description": "COMPLEXITY_MATCH rule - validates declared complexity matches actual content metrics",
+      "severity": "warn",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-section-counts",
+      "path": "scripts/rules/check-section-counts.sh",
+      "type": "bash",
+      "description": "SECTION_COUNTS rule - validates section counts are within expected ranges for level",
+      "severity": "warn",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-ai-protocols",
+      "path": "scripts/rules/check-ai-protocols.sh",
+      "type": "bash",
+      "description": "AI_PROTOCOL rule - validates AI execution protocols present for Level 3+",
+      "severity": "warn",
+      "essential": false,
+      "version": "1.0.0"
+    },
+    {
+      "name": "check-level-match",
+      "path": "scripts/rules/check-level-match.sh",
+      "type": "bash",
+      "description": "LEVEL_MATCH rule - validates level consistency across all spec folder files",
+      "severity": "error",
+      "essential": true,
+      "version": "1.0.0"
     }
   ],
   "libraries": {
@@ -390,8 +426,8 @@
     "totalScripts": 14,
     "essentialScripts": 8,
     "optionalScripts": 6,
-    "totalRules": 9,
-    "essentialRules": 2,
+    "totalRules": 13,
+    "essentialRules": 3,
     "totalLibraries": 13,
     "categories": {
       "memory": ["generate-context", "cleanup-orphaned-vectors", "test-embeddings-factory", "setup"],

@@ -269,7 +269,7 @@ The `memory/` folder stores **conversation context and session history** for AI 
 | MCP Server     | `mcp_server/context-server.js`  | Semantic memory with vector search |
 | Database       | `database/context-index.sqlite` | SQLite + FTS5 + embeddings         |
 | Constitutional | `constitutional/`               | Always-surface rules               |
-| Scripts        | `scripts/generate-context.js`   | Memory file generation             |
+| Scripts        | `scripts/memory/generate-context.js`   | Memory file generation             |
 
 **Memory MCP Tools:**
 - `memory_search()` - Semantic search with vector similarity
@@ -409,7 +409,7 @@ All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEV
 
 **Copy Command**:
 ```bash
-cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/###-name/spec.md
 ```
 
 #### `plan.md` - Implementation Plan
@@ -425,7 +425,7 @@ cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-name/spec.md
 
 **Copy Command**:
 ```bash
-cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/###-name/plan.md
 ```
 
 #### `tasks.md` - Task Breakdown
@@ -440,7 +440,7 @@ cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-name/plan.md
 
 **Copy Command**:
 ```bash
-cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/###-name/tasks.md
 ```
 
 ### Level 2: Verification Template
@@ -463,7 +463,7 @@ cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-name/tasks.md
 
 **Copy Command**:
 ```bash
-cp .opencode/skill/system-spec-kit/templates/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/###-name/checklist.md
 ```
 
 ### Level 3: Full Documentation Templates
@@ -481,7 +481,7 @@ cp .opencode/skill/system-spec-kit/templates/checklist.md specs/###-name/checkli
 
 **Copy Command**:
 ```bash
-cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/###-name/decision-record-[topic].md
+cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/###-name/decision-record-[topic].md
 ```
 
 #### `research.md` - Comprehensive Research
@@ -999,10 +999,10 @@ test-fixtures/
 # 1. Create fixture directory
 mkdir test-fixtures/my-test-case
 
-# 2. Add minimum required files
-cp templates/spec.md test-fixtures/my-test-case/
-cp templates/plan.md test-fixtures/my-test-case/
-cp templates/tasks.md test-fixtures/my-test-case/
+# 2. Add minimum required files (Level 1)
+cp templates/level_1/spec.md test-fixtures/my-test-case/
+cp templates/level_1/plan.md test-fixtures/my-test-case/
+cp templates/level_1/tasks.md test-fixtures/my-test-case/
 
 # 3. Modify to create test condition
 # (e.g., leave placeholder unfilled, remove required section)
@@ -1550,16 +1550,16 @@ memory_match_triggers({
 
 ```bash
 # Level 1: Baseline (all features)
-cp .opencode/skill/system-spec-kit/templates/spec.md specs/042-feature/spec.md
-cp .opencode/skill/system-spec-kit/templates/plan.md specs/042-feature/plan.md
-cp .opencode/skill/system-spec-kit/templates/tasks.md specs/042-feature/tasks.md
-cp .opencode/skill/system-spec-kit/templates/implementation-summary.md specs/042-feature/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/042-feature/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/042-feature/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/042-feature/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md specs/042-feature/implementation-summary.md
 
-# Level 2: Add verification
-cp .opencode/skill/system-spec-kit/templates/checklist.md specs/042-feature/checklist.md
+# Level 2: Add verification (use level_2 templates)
+cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/042-feature/checklist.md
 
-# Level 3: Add decision documentation
-cp .opencode/skill/system-spec-kit/templates/decision-record.md specs/042-feature/decision-record-database.md
+# Level 3: Add decision documentation (use level_3 templates)
+cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/042-feature/decision-record-database.md
 
 # Optional research
 cp .opencode/skill/system-spec-kit/templates/research.md specs/042-feature/research.md
@@ -1651,10 +1651,10 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 # 3. Create your spec folder (replace ### with next number)
 mkdir -p specs/###-your-feature-name/
 
-# 4. Copy required templates
-cp .opencode/skill/system-spec-kit/templates/spec.md specs/###-your-feature-name/
-cp .opencode/skill/system-spec-kit/templates/plan.md specs/###-your-feature-name/
-cp .opencode/skill/system-spec-kit/templates/tasks.md specs/###-your-feature-name/
+# 4. Copy required templates (Level 1)
+cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/###-your-feature-name/
+cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/###-your-feature-name/
+cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/###-your-feature-name/
 ```
 
 ### Using Commands
@@ -1815,7 +1815,7 @@ grep -n "ANCHOR_START\|ANCHOR_END" specs/###-folder/memory/*.md
 
 ```bash
 # Correct way to create memory files
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/###-folder/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/###-folder/
 ```
 
 ### EVIDENCE_CITED Failures
@@ -1888,7 +1888,7 @@ A: Use this decision tree:
 **Q: Can I use Spec Kit without the slash commands?**
 
 A: Yes. Templates and scripts work independently. You can:
-- Copy templates manually: `cp templates/spec.md specs/042-feature/spec.md`
+- Copy templates manually: `cp templates/level_1/spec.md specs/042-feature/spec.md`
 - Run scripts directly: `./scripts/create-spec-folder.sh "feature name"`
 - Commands just orchestrate these components
 

@@ -34,9 +34,9 @@ const { process_batches } = require('../utils');
    ─────────────────────────────────────────────────────────────── */
 
 const LIB_DIR = path.join(__dirname, '..', 'lib');
-const memoryParser = require(path.join(LIB_DIR, 'memory-parser.js'));
-const embeddings = require(path.join(LIB_DIR, 'embeddings.js'));
-const triggerMatcher = require(path.join(LIB_DIR, 'trigger-matcher.js'));
+const memoryParser = require(path.join(LIB_DIR, 'parsing', 'memory-parser.js'));
+const embeddings = require(path.join(LIB_DIR, 'providers', 'embeddings.js'));
+const triggerMatcher = require(path.join(LIB_DIR, 'parsing', 'trigger-matcher.js'));
 
 /* ───────────────────────────────────────────────────────────────
    SHARED INDEXING LOGIC (from memory-save)

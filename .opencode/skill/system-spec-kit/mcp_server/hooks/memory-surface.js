@@ -13,8 +13,8 @@ const path = require('path');
 
 // Lib modules (resolved relative to parent mcp_server directory)
 const LIB_DIR = path.join(__dirname, '../lib');
-const vectorIndex = require(path.join(LIB_DIR, 'vector-index.js'));
-const triggerMatcher = require(path.join(LIB_DIR, 'trigger-matcher.js'));
+const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
+const triggerMatcher = require(path.join(LIB_DIR, 'parsing', 'trigger-matcher.js'));
 
 /* ───────────────────────────────────────────────────────────────
    SK-004: MEMORY SURFACE HOOK CONFIGURATION

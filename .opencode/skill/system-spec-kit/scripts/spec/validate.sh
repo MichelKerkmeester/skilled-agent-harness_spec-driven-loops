@@ -1,0 +1,360 @@
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# SPECKIT: VALIDATE SPEC
+# ───────────────────────────────────────────────────────────────
+# Spec Folder Validation Orchestrator - Bash 3.2+ compatible
+
+set -eo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+RULES_DIR="$SCRIPT_DIR/../rules"
+VERSION="2.0.0"
+
+# State
+FOLDER_PATH="" DETECTED_LEVEL=1 LEVEL_METHOD="inferred" CONFIG_FILE_PATH=""
+JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false
+ERRORS=0 WARNINGS=0 INFOS=0 RESULTS=""
+
+# Rule execution order (empty = alphabetical)
+RULE_ORDER=()
+
+# Timing helper - get current time in milliseconds
+get_time_ms() {
+    # Try nanoseconds first (Linux), then Python, then seconds only (macOS fallback)
+    if date +%s%N >/dev/null 2>&1; then
+        echo $(( $(date +%s%N) / 1000000 ))
+    elif command -v python3 >/dev/null 2>&1; then
+        python3 -c "import time; print(int(time.time() * 1000))" 2>/dev/null || echo $(( $(date +%s) * 1000 ))
+    else
+        echo $(( $(date +%s) * 1000 ))
+    fi
+}
+
+# JSON string escape - handles special characters for safe JSON embedding
+_json_escape() {
+    local str="$1"
+    # Order matters: backslash first, then other escapes
+    str="${str//\\/\\\\}"   # Backslash
+    str="${str//\"/\\\"}"   # Double quote
+    str="${str//$'\n'/\\n}" # Newline
+    str="${str//$'\r'/\\r}" # Carriage return
+    str="${str//$'\t'/\\t}" # Tab
+    printf '%s' "$str"
+}
+
+# Colors (disabled for non-TTY)
+if [[ -t 1 ]]; then
+    RED='\033[0;31m' GREEN='\033[0;32m' YELLOW='\033[1;33m' BLUE='\033[0;34m' BOLD='\033[1m' NC='\033[0m'
+else
+    RED='' GREEN='' YELLOW='' BLUE='' BOLD='' NC=''
+fi
+
+# Rule severity defaults (bash 3.2 compatible)
+RULE_SEVERITY_FILE_EXISTS="error" RULE_SEVERITY_FILES="error"
+RULE_SEVERITY_PLACEHOLDER_FILLED="error" RULE_SEVERITY_PLACEHOLDERS="error"
+RULE_SEVERITY_SECTIONS_PRESENT="warn" RULE_SEVERITY_SECTIONS="warn"
+RULE_SEVERITY_LEVEL_DECLARED="info" RULE_SEVERITY_LEVEL="info"
+RULE_SEVERITY_PRIORITY_TAGS="warn" RULE_SEVERITY_EVIDENCE_CITED="warn"
+RULE_SEVERITY_ANCHORS_VALID="error" RULE_SEVERITY_ANCHORS="error"
+RULE_SEVERITY_EVIDENCE="warn" RULE_SEVERITY_PRIORITY="warn"
+
+show_help() { cat << 'EOF'
+validate-spec.sh - Spec Folder Validation Orchestrator (v2.0)
+
+USAGE: ./validate-spec.sh <folder-path> [OPTIONS]
+
+OPTIONS:
+    --help, -h     Show help     --version, -v  Show version
+    --json         JSON output   --strict       Warnings as errors
+    --verbose      Detailed      --quiet, -q    Results only
+
+EXIT CODES: 0=pass, 1=warnings, 2=errors
+
+RULES: FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS_PRESENT, LEVEL_DECLARED,
+       PRIORITY_TAGS, EVIDENCE_CITED, ANCHORS_VALID
+
+LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+decision-record
+        *impl-summary required after tasks completed
+EOF
+exit 0; }
+
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --help|-h) show_help ;;
+            --version|-v) echo "validate-spec.sh version $VERSION"; exit 0 ;;
+            --json) JSON_MODE=true; shift ;;
+            --strict) STRICT_MODE=true; shift ;;
+            --verbose) VERBOSE=true; shift ;;
+            --quiet|-q) QUIET_MODE=true; shift ;;
+            -*) echo "ERROR: Unknown option '$1'" >&2; exit 2 ;;
+            *) [[ -z "$FOLDER_PATH" ]] && FOLDER_PATH="$1" || { echo "ERROR: Multiple paths" >&2; exit 2; }; shift ;;
+        esac
+    done
+    [[ -z "$FOLDER_PATH" ]] && { echo "ERROR: Folder path required" >&2; exit 2; }
+    FOLDER_PATH="${FOLDER_PATH%/}"
+    [[ ! -d "$FOLDER_PATH" ]] && { echo "ERROR: Folder not found: $FOLDER_PATH" >&2; exit 2; }
+    return 0
+}
+
+apply_env_overrides() {
+    [[ "${SPECKIT_VALIDATION:-}" == "false" ]] && { echo "Validation disabled"; exit 0; }
+    [[ "${SPECKIT_STRICT:-}" == "true" ]] && STRICT_MODE=true
+    [[ "${SPECKIT_VERBOSE:-}" == "true" ]] && VERBOSE=true
+    [[ "${SPECKIT_JSON:-}" == "true" ]] && JSON_MODE=true
+    [[ "${SPECKIT_QUIET:-}" == "true" ]] && QUIET_MODE=true
+    return 0
+}
+
+load_config() {
+    local folder="${1:-.}"
+    [[ -f "$folder/.speckit.yaml" ]] && { CONFIG_FILE_PATH="$folder/.speckit.yaml"; }
+    if [[ -z "$CONFIG_FILE_PATH" ]]; then
+        local root; root=$(git rev-parse --show-toplevel 2>/dev/null) || root="$(pwd)"
+        [[ -f "$root/.speckit.yaml" ]] && CONFIG_FILE_PATH="$root/.speckit.yaml"
+    fi
+    # Parse rule order if config exists
+    if [[ -n "$CONFIG_FILE_PATH" && -f "$CONFIG_FILE_PATH" ]]; then
+        local rule_order_str=""
+        if command -v yq >/dev/null 2>&1; then
+            rule_order_str=$(yq -r '.validation.rule_order[]? // empty' "$CONFIG_FILE_PATH" 2>/dev/null || true)
+        else
+            # Fallback: simple grep for rule_order entries
+            local in_order=false
+            while IFS= read -r line; do
+                if [[ "$line" =~ ^[[:space:]]*rule_order: ]]; then
+                    in_order=true; continue
+                elif [[ "$line" =~ ^[[:alpha:]] ]] && $in_order; then
+                    break
+                fi
+                if $in_order && [[ "$line" =~ ^[[:space:]]+-[[:space:]]+([A-Z_]+) ]]; then
+                    rule_order_str+="${BASH_REMATCH[1]}"$'\n'
+                fi
+            done < "$CONFIG_FILE_PATH"
+        fi
+        if [[ -n "$rule_order_str" ]]; then
+            RULE_ORDER=()
+            while IFS= read -r rule; do
+                [[ -n "$rule" ]] && RULE_ORDER+=("$rule")
+            done <<< "$rule_order_str"
+        fi
+    fi
+    return 0
+}
+
+# Template hash validation - checks if spec files match original templates
+# This is informational only; modifications are expected and not failures
+validate_template_hashes() {
+    local folder="$1"
+    local hash_file="$SCRIPT_DIR/../../templates/.hashes"
+    
+    # No hash file means skip validation
+    [[ ! -f "$hash_file" ]] && return 0
+    
+    while IFS='=' read -r template expected_hash; do
+        # Skip empty lines and comments
+        [[ -z "$template" || "$template" =~ ^# ]] && continue
+        
+        local actual_file="$folder/$template"
+        if [[ -f "$actual_file" ]]; then
+            # Calculate hash (macOS uses md5, Linux uses md5sum)
+            local actual_hash
+            if command -v md5 >/dev/null 2>&1; then
+                actual_hash=$(md5 -q "$actual_file" 2>/dev/null)
+            else
+                actual_hash=$(md5sum "$actual_file" 2>/dev/null | cut -d' ' -f1)
+            fi
+            # Note: We don't fail on mismatch - templates are meant to be customized
+            # This function is for informational/audit purposes only
+        fi
+    done < "$hash_file"
+    
+    return 0
+}
+
+detect_level() {
+    local folder="$1"
+    local spec_file="$folder/spec.md"
+    local level=""
+    
+    if [[ -f "$spec_file" ]]; then
+        # Pattern 1: Table format with bold (most common)
+        # | **Level** | 2 |
+        level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        
+        # Pattern 2: Table format without bold
+        # | Level | 2 |
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '\|\s*Level\s*\|\s*[123]\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        fi
+        
+        # Pattern 3: YAML frontmatter
+        # level: 2
+        if [[ -z "$level" ]]; then
+            level=$(grep -E '^level:\s*[123]' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        fi
+        
+        # Pattern 4: Inline "Level: N" or "Level N" (case insensitive)
+        # Level: 2 or Level 2
+        if [[ -z "$level" ]]; then
+            level=$(grep -iE 'level[:\s]+[123]' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        fi
+        
+        [[ -n "$level" ]] && { DETECTED_LEVEL="$level"; LEVEL_METHOD="explicit"; return; }
+    fi
+    
+    # Fallback: infer from existing files
+    [[ -f "$folder/decision-record.md" ]] && { DETECTED_LEVEL=3; LEVEL_METHOD="inferred"; return; }
+    [[ -f "$folder/checklist.md" ]] && { DETECTED_LEVEL=2; LEVEL_METHOD="inferred"; return; }
+    DETECTED_LEVEL=1; LEVEL_METHOD="inferred"
+}
+
+log_pass() {
+    ! $JSON_MODE && ! $QUIET_MODE && printf "${GREEN}✓${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
+    [[ -n "$RESULTS" ]] && RESULTS+=","
+    RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"pass\",\"message\":\"$(_json_escape "$2")\"}"
+}
+log_warn() {
+    ((WARNINGS++)) || true
+    ! $JSON_MODE && ! $QUIET_MODE && printf "${YELLOW}⚠${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
+    [[ -n "$RESULTS" ]] && RESULTS+=","; RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"warn\",\"message\":\"$(_json_escape "$2")\"}"
+}
+log_error() {
+    ((ERRORS++)) || true
+    ! $JSON_MODE && ! $QUIET_MODE && printf "${RED}✗${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
+    [[ -n "$RESULTS" ]] && RESULTS+=","; RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"error\",\"message\":\"$(_json_escape "$2")\"}"
+}
+log_info() {
+    ((INFOS++)) || true
+    ! $JSON_MODE && ! $QUIET_MODE && $VERBOSE && printf "${BLUE}ℹ${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
+    [[ -n "$RESULTS" ]] && RESULTS+=","; RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"info\",\"message\":\"$(_json_escape "$2")\"}"
+}
+log_detail() { ! $JSON_MODE && ! $QUIET_MODE && printf "    - %s\n" "$1"; true; }
+
+get_rule_severity() { local v="RULE_SEVERITY_$1"; eval "echo \"\${$v:-error}\""; }
+should_run_rule() { [[ "$(get_rule_severity "$1")" != "skip" ]]; }
+
+# Map rule name to script filename
+rule_name_to_script() {
+    local rule="$1"
+    case "$rule" in
+        FILE_EXISTS) echo "files" ;;
+        PLACEHOLDER_FILLED) echo "placeholders" ;;
+        SECTIONS_PRESENT) echo "sections" ;;
+        LEVEL_DECLARED) echo "level" ;;
+        PRIORITY_TAGS) echo "priority-tags" ;;
+        EVIDENCE_CITED) echo "evidence" ;;
+        ANCHORS_VALID) echo "anchors" ;;
+        *) echo "" ;;
+    esac
+}
+
+get_rule_scripts() {
+    local folder="$1"
+    # If RULE_ORDER is set, use that order; otherwise alphabetical
+    if [[ ${#RULE_ORDER[@]} -gt 0 ]]; then
+        for rule_name in "${RULE_ORDER[@]}"; do
+            local script_name; script_name=$(rule_name_to_script "$rule_name")
+            [[ -z "$script_name" ]] && continue
+            local script="$RULES_DIR/check-${script_name}.sh"
+            [[ -f "$script" ]] && echo "$script"
+        done
+    else
+        for script in "$RULES_DIR"/check-*.sh; do
+            [[ -f "$script" ]] && echo "$script"
+        done
+    fi
+}
+
+run_all_rules() {
+    local folder="$1" level="$2"
+    local rule_scripts; rule_scripts=$(get_rule_scripts "$folder")
+    
+    while IFS= read -r rule_script; do
+        [[ -z "$rule_script" ]] && continue
+        [[ ! -f "$rule_script" ]] && continue
+        local bn; bn=$(basename "$rule_script" .sh)
+        local rule_name; rule_name=$(echo "${bn#check-}" | tr '[:lower:]' '[:upper:]' | tr '-' '_')
+        should_run_rule "$rule_name" || continue
+        
+        # Capture start time for verbose timing
+        local start_ms; start_ms=$(get_time_ms)
+        
+        RULE_NAME="" RULE_STATUS="pass" RULE_MESSAGE="" RULE_DETAILS=() RULE_REMEDIATION=""
+        source "$rule_script"
+        type run_check >/dev/null 2>&1 || continue
+        run_check "$folder" "$level"
+        
+        # Calculate elapsed time
+        local end_ms; end_ms=$(get_time_ms)
+        local elapsed_ms=$(( end_ms - start_ms ))
+        local timing_str=""
+        if $VERBOSE && ! $JSON_MODE && ! $QUIET_MODE; then
+            if [[ $elapsed_ms -lt 1000 ]]; then
+                timing_str=" [${elapsed_ms}ms]"
+            else
+                timing_str=" [$((elapsed_ms / 1000)).$((elapsed_ms % 1000 / 100))s]"
+            fi
+        fi
+        
+        local sev; sev="$(get_rule_severity "$rule_name")"
+        case "${RULE_STATUS:-pass}" in
+            pass) log_pass "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-OK}${timing_str}" ;;
+            fail) case "$sev" in error) log_error "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Failed}${timing_str}" ;; warn) log_warn "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;; info) $VERBOSE && log_info "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;; esac ;;
+            warn) log_warn "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;;
+            info) $VERBOSE && log_info "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;;
+        esac
+        for d in "${RULE_DETAILS[@]}"; do log_detail "$d"; done
+        unset -f run_check 2>/dev/null || true
+    done <<< "$rule_scripts"
+}
+
+print_header() {
+    $JSON_MODE && return 0; $QUIET_MODE && return 0
+    echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}"
+    echo -e "${BLUE}  Spec Folder Validation v$VERSION${NC}"
+    echo -e "${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
+    echo -e "  ${BOLD}Folder:${NC} $FOLDER_PATH"
+    echo -e "  ${BOLD}Level:${NC}  $DETECTED_LEVEL ($LEVEL_METHOD)"
+    [[ -n "$CONFIG_FILE_PATH" ]] && echo -e "  ${BOLD}Config:${NC} $CONFIG_FILE_PATH" || true
+    echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
+}
+
+print_summary() {
+    $JSON_MODE && return 0; $QUIET_MODE && return 0
+    echo -e "\n${BLUE}───────────────────────────────────────────────────────────────${NC}\n"
+    echo -e "  ${BOLD}Summary:${NC} ${RED}Errors:${NC} $ERRORS  ${YELLOW}Warnings:${NC} $WARNINGS"
+    $VERBOSE && echo -e "  ${BLUE}Info:${NC} $INFOS" || true
+    echo ""
+    if [[ $ERRORS -gt 0 ]]; then echo -e "  ${RED}${BOLD}RESULT: FAILED${NC}"
+    elif [[ $WARNINGS -gt 0 ]]; then
+        if $STRICT_MODE; then echo -e "  ${RED}${BOLD}RESULT: FAILED${NC} (strict)"; else echo -e "  ${YELLOW}${BOLD}RESULT: PASSED WITH WARNINGS${NC}"; fi
+    else echo -e "  ${GREEN}${BOLD}RESULT: PASSED${NC}"; fi
+    echo ""
+}
+
+generate_json() {
+    local passed="true"
+    [[ $ERRORS -gt 0 ]] && passed="false"
+    [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && passed="false"
+    local cfg="null"; [[ -n "$CONFIG_FILE_PATH" ]] && cfg="\"$(_json_escape "$CONFIG_FILE_PATH")\""
+    local folder_escaped="$(_json_escape "$FOLDER_PATH")"
+    echo "{\"version\":\"$VERSION\",\"folder\":\"$folder_escaped\",\"level\":$DETECTED_LEVEL,\"levelMethod\":\"$LEVEL_METHOD\",\"config\":$cfg,\"results\":[$RESULTS],\"summary\":{\"errors\":$ERRORS,\"warnings\":$WARNINGS,\"info\":$INFOS},\"passed\":$passed,\"strict\":$STRICT_MODE}"
+}
+
+main() {
+    parse_args "$@"
+    load_config "$FOLDER_PATH"
+    apply_env_overrides
+    detect_level "$FOLDER_PATH"
+    validate_template_hashes "$FOLDER_PATH"
+    print_header
+    run_all_rules "$FOLDER_PATH" "$DETECTED_LEVEL"
+    if $JSON_MODE; then generate_json; else print_summary; fi
+    if [[ $ERRORS -gt 0 ]]; then exit 2; fi
+    if [[ $WARNINGS -gt 0 ]] && $STRICT_MODE; then exit 2; fi
+    if [[ $WARNINGS -gt 0 ]]; then exit 1; fi
+    exit 0
+}
+
+main "$@"

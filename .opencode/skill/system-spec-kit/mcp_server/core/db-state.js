@@ -26,6 +26,13 @@ const { DB_UPDATED_FILE } = require('./config');
 let last_db_check = 0;
 
 /**
+ * HIGH-002 FIX: Mutex for database reinitialization
+ * Prevents race condition when multiple concurrent requests trigger reinitialize_database()
+ * @type {Promise<void>|null}
+ */
+let reinitialize_mutex = null;
+
+/**
  * Flag indicating if the embedding model has been warmed up
  * @type {boolean}
  */
@@ -100,28 +107,48 @@ async function check_database_updated() {
 /**
  * Reinitialize the database connection after external changes
  * BUG-001: Closes and reopens DB to pick up external modifications.
+ * HIGH-002 FIX: Uses mutex to prevent race condition with concurrent requests.
  */
 async function reinitialize_database() {
   if (!vector_index) {
     throw new Error('db-state not initialized: vector_index is null');
   }
 
-  // Clear constitutional cache on reinitialize to prevent stale data
-  constitutional_cache = null;
-  constitutional_cache_time = 0;
-
-  if (typeof vector_index.closeDb === 'function') {
-    vector_index.closeDb();
+  // HIGH-002 FIX: If reinitialization is already in progress, wait for it to complete
+  if (reinitialize_mutex) {
+    console.log('[db-state] Reinitialization already in progress, waiting...');
+    await reinitialize_mutex;
+    return;
   }
-  // Database will be reinitialized on next access via initializeDb()
-  vector_index.initializeDb();
 
-  // Reinitialize dependent modules with new connection
-  const database = vector_index.getDb();
-  if (checkpoints) checkpoints.init(database);
-  if (access_tracker) access_tracker.init(database);
-  if (hybrid_search) hybrid_search.init(database, vector_index.vectorSearch);
-  console.log('[db-state] Database connection reinitialized');
+  // HIGH-002 FIX: Create mutex promise to block concurrent reinitializations
+  let resolve_mutex;
+  reinitialize_mutex = new Promise(resolve => {
+    resolve_mutex = resolve;
+  });
+
+  try {
+    // Clear constitutional cache on reinitialize to prevent stale data
+    constitutional_cache = null;
+    constitutional_cache_time = 0;
+
+    if (typeof vector_index.closeDb === 'function') {
+      vector_index.closeDb();
+    }
+    // Database will be reinitialized on next access via initializeDb()
+    vector_index.initializeDb();
+
+    // Reinitialize dependent modules with new connection
+    const database = vector_index.getDb();
+    if (checkpoints) checkpoints.init(database);
+    if (access_tracker) access_tracker.init(database);
+    if (hybrid_search) hybrid_search.init(database, vector_index.vectorSearch);
+    console.log('[db-state] Database connection reinitialized');
+  } finally {
+    // HIGH-002 FIX: Release mutex regardless of success/failure
+    reinitialize_mutex = null;
+    resolve_mutex();
+  }
 }
 
 /* ───────────────────────────────────────────────────────────────

@@ -18,7 +18,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"Think really hard about this... Use Sequential Thinking MCP\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Think really hard about this...\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"
@@ -35,7 +35,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "osascript -e 'set the clipboard to \"( ultrathink )\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
+                                        "shell_command": "osascript -e 'set the clipboard to \"Use Sequantial Thinking MCP\"' -e 'tell application \"System Events\" to keystroke \"v\" using command down'"
                                     }
                                 ],
                                 "type": "basic"

@@ -2,10 +2,10 @@
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3), template enforcement, validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
-version: 1.7.1
+version: 1.7.2
 ---
 
-> **Version Note:** The version number (1.7.1) tracks the skill's evolution including documentation, templates, scripts, and MCP server. All package.json files are aligned to this version.
+> **Version Note:** The version number (v1.7.2) tracks the skill's evolution including documentation, templates, scripts, and MCP server. All package.json files are aligned to this version.
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
 
@@ -113,7 +113,7 @@ User Request
 | "restore checkpoint", "rollback" | Restore from checkpoint | `spec_kit_memory_checkpoint_restore()` |
 | Gate enforcement (any file modification) | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()` |
 
-### Cognitive Memory Features (v1.7.1)
+### Cognitive Memory Features (v1.7.2)
 
 The `memory_match_triggers()` tool includes cognitive memory features for smarter context management. See [mcp_server/README.md](./mcp_server/README.md#cognitive-memory-v170) for full implementation details.
 
@@ -244,14 +244,22 @@ The `config/` directory contains runtime configuration for the memory system:
 
 ### Resource Inventory
 
-**Templates by Level (`templates/`):**
+**Template Folder Architecture (`templates/`):**
 
-| Level | Required Files | Optional |
-| ----- | -------------- | -------- |
-| 1     | spec.md, plan.md, tasks.md, implementation-summary.md | — |
-| 2     | Level 1 + checklist.md | — |
-| 3     | Level 2 + decision-record.md | research.md |
-| Any   | — | handover.md, debug-delegation.md |
+Templates are organized in level-specific folders with pre-expanded content:
+
+| Folder | Files | Description |
+| ------ | ----- | ----------- |
+| `level_1/` | spec.md, plan.md, tasks.md, implementation-summary.md (4 files) | Baseline documentation |
+| `level_2/` | Level 1 + checklist.md (5 files) | Adds verification/QA tracking |
+| `level_3/` | Level 2 + decision-record.md (6 files) | Full architecture documentation |
+| `level_3+/` | Level 3 with extended content, AI protocols (6 files) | Complex multi-agent workflows |
+| Root | handover.md, debug-delegation.md, context_template.md | Utility templates (any level) |
+
+**Key Benefits:**
+- **No runtime marker parsing** - Templates are pre-expanded for each level
+- **Backward compatibility** - Root templates maintained for legacy scripts
+- **Clear selection** - Copy from `templates/level_N/` based on complexity score
 
 **Internal Templates:**
 - `context_template.md` - Internal template for memory file generation (Mustache format)
@@ -345,6 +353,66 @@ When file modification detected, AI MUST ask:
 | **D) Skip**     | No spec folder (creates tech debt) | Trivial changes only            |
 
 **Enforcement:** Constitutional-tier memory surfaces automatically via `memory_match_triggers()`.
+
+### Complexity Detection (Option B Flow)
+
+When user selects **B) New**, AI can run complexity detection:
+
+```
+1. USER: "B" (create new spec folder)
+
+2. AI: [Estimates complexity based on task description]
+   → Estimates LOC, files, risk factors
+   → Recommends appropriate level (1, 2, 3, or 3+)
+
+3. AI DISPLAYS:
+   ┌─────────────────────────────────────────────────────────────┐
+   │ LEVEL RECOMMENDATION                                        │
+   │                                                             │
+   │   Recommended Level: 2 (Verification)                       │
+   │                                                             │
+   │   Rationale:                                                │
+   │   ├── ~300 LOC estimated                                    │
+   │   ├── Auth/API integration (risk factor)                    │
+   │   └── External dependencies                                 │
+   │                                                             │
+   │   Accept Level 2? (Y) or Override (1/2/3):                  │
+   └─────────────────────────────────────────────────────────────┘
+
+4. USER: "Y" (or 1/2/3 to override)
+
+5. AI: [Runs create-spec-folder.sh --level N]
+   → Copies pre-expanded templates from templates/level_N/
+   → No runtime marker parsing needed
+```
+
+**Level Guidelines:**
+| LOC       | Level | Name         | Template Folder                   |
+|-----------|-------|--------------|-----------------------------------|
+| <100      | 1     | Baseline     | `templates/level_1/` (4 files)    |
+| 100-499   | 2     | Verification | `templates/level_2/` (5 files)    |
+| ≥500      | 3     | Full         | `templates/level_3/` (6 files)    |
+| Complex   | 3+    | Extended     | `templates/level_3+/` (6 files)   |
+
+**Template Selection:**
+Templates are pre-expanded in level-specific folders. Simply copy from the appropriate level folder:
+
+```bash
+# Copy Level 2 templates to new spec folder
+cp templates/level_2/*.md specs/042-new-feature/
+
+# Create spec folder with specific level
+./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2
+```
+
+**CLI Tool:**
+```bash
+# Create spec folder with level 2 templates
+./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2
+
+# Create spec folder with level 3+ (extended) templates
+./scripts/spec/create.sh "Major platform migration" --level 3+
+```
 
 ### 3-Level Progressive Enhancement
 
@@ -463,7 +531,7 @@ specs/007-auth-system/
 
 **Manual context save (MANDATORY workflow):**
 - Trigger: `/memory:save`, "save context", or "save memory"
-- **MUST use:** `node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec-folder-path]`
+- **MUST use:** `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`
 - **NEVER:** Create memory files manually via Write/Edit (AGENTS.md Memory Save Rule)
 - Location: `specs/###-folder/memory/`
 - Filename: `DD-MM-YY_HH-MM__topic.md` (auto-generated by script)
@@ -690,7 +758,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 ### ✅ ALWAYS
 
 1. **Determine level (1/2/3) before ANY file changes** - Count LOC, assess complexity/risk
-2. **Copy templates from `templates/`** - NEVER create from scratch
+2. **Copy templates from `templates/level_N/`** - Use level folders, NEVER create from scratch
 3. **Fill ALL placeholders** - Remove `[PLACEHOLDER]` and sample content
 4. **Ask A/B/C/D when file modification detected** - Present options, wait for selection
 5. **Check for related specs before creating new folders** - Search keywords, review status
@@ -730,7 +798,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 Automated validation of spec folder contents via `validate-spec.sh`.
 
-**Usage:** `.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>`
+**Usage:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder>`
 
 ### Exit Codes
 
@@ -743,7 +811,7 @@ Automated validation of spec folder contents via `validate-spec.sh`.
 ### Completion Verification
 
 Before claiming "done":
-1. Run validation: `./scripts/validate-spec.sh <spec-folder>`
+1. Run validation: `./scripts/spec/validate.sh <spec-folder>`
 2. Exit 2 → FIX errors
 3. Exit 1 → ADDRESS warnings or document reason
 4. Exit 0 → Proceed with completion claim
@@ -846,7 +914,7 @@ Implementation complete
 | ----------------------------- | --------------------------------------- | ----------------------------------------- |
 | Skip Gate 3 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder → Wait for A/B/C/D |
 | Rush to code                  | "straightforward", "simple fix"         | Analyze → Verify → Simplest solution      |
-| Create docs from scratch      | Time pressure                           | Always copy from templates/               |
+| Create docs from scratch      | Time pressure                           | Always copy from templates/level_N/       |
 | Skip checklist verification   | "trivial edit"                          | Load checklist.md, verify ALL items       |
 | Manual memory file creation   | "quick save"                            | MUST use generate-context.js script       |
 | Autonomous update vs create   | "obvious choice"                        | Always ask user for A/B/C/D               |
@@ -855,17 +923,17 @@ Implementation complete
 
 **Create new spec folder:**
 ```bash
-./scripts/create-spec-folder.sh "Add feature description" --short-name feature-name --level 2
+./scripts/spec/create.sh "Add feature description" --short-name feature-name --level 2
 ```
 
 **Validate spec folder:**
 ```bash
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
 ```
 
 **Save context:**
 ```bash
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/007-feature/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/007-feature/
 ```
 
 **Find next spec number:**
@@ -875,7 +943,7 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 
 **Calculate documentation completeness:**
 ```bash
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh specs/007-feature/
+.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/
 ```
 
 ---
@@ -896,10 +964,14 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 
 | Resource       | Location                                                      | Purpose                      |
 | -------------- | ------------------------------------------------------------- | ---------------------------- |
-| Templates (10) | `templates/`                                                  | All spec folder templates    |
-| Validation     | `scripts/validate-spec.sh`                                    | Automated validation         |
+| Level 1 templates | `templates/level_1/` (4 files)                             | Baseline documentation       |
+| Level 2 templates | `templates/level_2/` (5 files)                             | Verification + checklist     |
+| Level 3 templates | `templates/level_3/` (6 files)                             | Full + decision record       |
+| Level 3+ templates | `templates/level_3+/` (6 files)                           | Extended + AI protocols      |
+| Utility templates | `templates/` root                                          | handover.md, debug-delegation.md |
+| Validation     | `scripts/spec/validate.sh`                                    | Automated validation         |
 | Gates          | `AGENTS.md` Section 2                                         | Gate definitions             |
-| Memory gen     | `.opencode/skill/system-spec-kit/scripts/generate-context.js` | Memory file creation         |
+| Memory gen     | `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js` | Memory file creation         |
 | MCP Server     | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`| Spec Kit Memory MCP          |
 | Database       | `.opencode/skill/system-spec-kit/database/context-index.sqlite`| Vector search index         |
 | Constitutional | `.opencode/skill/system-spec-kit/constitutional/`             | Always-surface rules         |

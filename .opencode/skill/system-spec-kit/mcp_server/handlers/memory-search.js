@@ -14,9 +14,9 @@ const path = require('path');
 const LIB_DIR = path.join(__dirname, '..', 'lib');
 
 // Import lib modules
-const vectorIndex = require(path.join(LIB_DIR, 'vector-index.js'));
-const embeddings = require(path.join(LIB_DIR, 'embeddings.js'));
-const hybridSearch = require(path.join(LIB_DIR, 'hybrid-search.js'));
+const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
+const embeddings = require(path.join(LIB_DIR, 'providers', 'embeddings.js'));
+const hybridSearch = require(path.join(LIB_DIR, 'search', 'hybrid-search.js'));
 
 // Import core utilities
 const { check_database_updated, is_embedding_model_ready, wait_for_embedding_model } = require('../core');
@@ -170,17 +170,33 @@ async function handle_memory_search(args) {
 
       // Handle constitutional memories based on includeConstitutional flag
       if (include_constitutional !== false && !tier) {
-        // Add constitutional memories when flag is true (default behavior)
-        const constitutional_results = vectorIndex.vectorSearch(query_embedding, {
-          limit: 5,
-          specFolder: spec_folder,
-          tier: 'constitutional',
-          useDecay: false
-        });
-        // Prepend constitutional results (deduplicated)
-        const existing_ids = new Set(filtered_results.map(r => r.id));
-        const unique_constitutional = constitutional_results.filter(r => !existing_ids.has(r.id));
-        filtered_results = [...unique_constitutional, ...filtered_results].slice(0, limit);
+        // HIGH-007 FIX: Check if constitutional memories already exist in hybrid results
+        // to avoid redundant database query. Hybrid search already includes constitutional
+        // memories from its vectorSearch call.
+        const existing_constitutional = filtered_results.filter(
+          r => r.importance_tier === 'constitutional'
+        );
+
+        // Only fetch additional constitutional memories if none were found in hybrid results
+        // This eliminates the double-fetch when constitutional memories are already present
+        if (existing_constitutional.length === 0) {
+          const constitutional_results = vectorIndex.vectorSearch(query_embedding, {
+            limit: 5,
+            specFolder: spec_folder,
+            tier: 'constitutional',
+            useDecay: false
+          });
+          // Prepend constitutional results (deduplicated)
+          const existing_ids = new Set(filtered_results.map(r => r.id));
+          const unique_constitutional = constitutional_results.filter(r => !existing_ids.has(r.id));
+          filtered_results = [...unique_constitutional, ...filtered_results].slice(0, limit);
+        } else {
+          // Constitutional memories already present - just ensure they're at the front
+          const non_constitutional = filtered_results.filter(
+            r => r.importance_tier !== 'constitutional'
+          );
+          filtered_results = [...existing_constitutional, ...non_constitutional].slice(0, limit);
+        }
       } else if (include_constitutional === false) {
         // Filter OUT constitutional memories when flag is explicitly false
         filtered_results = filtered_results.filter(r => r.importance_tier !== 'constitutional');

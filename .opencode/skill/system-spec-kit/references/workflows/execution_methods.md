@@ -74,10 +74,10 @@ Generates memory files from conversation context for future session recovery.
 **Usage:**
 ```bash
 # Direct mode - pass spec folder path
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/001-feature/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/001-feature/
 
 # JSON mode - pass data file
-node .opencode/skill/system-spec-kit/scripts/generate-context.js /tmp/context-data.json
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/context-data.json
 ```
 
 **Environment Variables:**

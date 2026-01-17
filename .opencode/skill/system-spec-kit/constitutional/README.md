@@ -708,7 +708,7 @@ memory_match_triggers({ prompt: "fix the bug" })
 | SKILL.md | `../SKILL.md` | Complete skill documentation |
 | README.md | `../README.md` | Skill overview (1800+ lines) |
 | MCP Server README | `../mcp_server/README.md` | MCP tools documentation |
-| Importance Tiers | `../mcp_server/lib/importance-tiers.js` | Tier configuration |
+| Importance Tiers | `../mcp_server/lib/scoring/importance-tiers.js` | Tier configuration |
 
 ### Reference Files
 
