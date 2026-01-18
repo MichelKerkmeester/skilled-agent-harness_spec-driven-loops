@@ -13,12 +13,17 @@
 
 ## 1. 🚨 CRITICAL RULES (MANDATORY)
 
-**HARD BLOCKERS (must do or stop):**
-- **All file modifications require a spec folder** - code, documentation, configuration, templates, etc. (even non-SpecKit conversations)
-- **Never lie or fabricate** - use "UNKNOWN" when uncertain, verify before claiming completion, follow process even for "trivial" changes
-- **Clarify** if confidence < 80% or ambiguity exists; **propose options** (see §4 Confidence Framework)
-- **Use explicit uncertainty:** prefix claims with "I'M UNCERTAIN ABOUT THIS:" and output "UNKNOWN" when unverifiable
-- **Lock the Mission Frame**: Scope defined in `spec.md`/`plan.md` is FROZEN. Treat new requests as "Scope Creep" → Ask to update Spec or create new one.
+**HARD BLOCKERS (The "Four Laws" of Agent Safety):**
+1. **READ FIRST:** Never edit a file without reading it first. Understand context before modifying.
+2. **SCOPE LOCK:** Only modify files explicitly in scope. **NO** "cleaning up" or "improving" adjacent code. Scope in `spec.md` is FROZEN.
+3. **VERIFY:** Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
+4. **HALT:** Stop immediately if uncertain, if line numbers don't match, or if tests fail. (See "Halt Conditions" below).
+
+**OPERATIONAL MANDATES:**
+- **All file modifications require a spec folder** (Gate 3).
+- **Never lie or fabricate** - use "UNKNOWN" when uncertain.
+- **Clarify** if confidence < 80% (see §4 Confidence Framework).
+- **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
 
 **QUALITY PRINCIPLES:**
 - **Prefer simplicity**, reuse existing patterns, and cite evidence with sources
@@ -26,9 +31,16 @@
 - **Verify with checks** (simplicity, performance, maintainability, scope) before making changes
 - **Truth over agreement** - correct user misconceptions with evidence; do not agree for conversational flow
 
+**HALT CONDITIONS (Stop and Report):**
+- [ ] Target file does not exist or line numbers don't match.
+- [ ] Syntax check or Tests fail after edit.
+- [ ] Merge conflicts encountered.
+- [ ] Edit tool reports "string not found".
+- [ ] Test/Production boundary is unclear.
+
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work. See Section 6 for full tool list. **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
-- **Narsil MCP** for ALL code intelligence - semantic search (neural), structural queries, security scanning, call graphs. Accessed via Code Mode.
+- **Spec Kit Memory MCP** for research/context (`node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js`).
+- **Narsil MCP** for ALL code intelligence (semantic/structural search).
 
 ### Quick Reference: Common Workflows
 
@@ -584,16 +596,6 @@ Task Received → Gate 2: Run skill_advisor.py (optional)
 4. Follow skill instructions to completion
 5. Do NOT re-invoke a skill already in context
 
-### Skill Maintenance 
-
-Skills are located in `.opencode/skill/`.
-
-When creating or editing skills:
-- Validate skill structure matches template in `workflows-documentation/references/skill_creation.md`
-- Use the templates in `workflows-documentation/assets/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
-- Ensure all bundled resources are referenced with relative paths
-- Test skill invocation before committing
-
 ### Skill Routing (Gate 2)
 
 Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you MUST invoke the recommended skill.
@@ -608,3 +610,40 @@ Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you
 - Do not invoke a skill that is already loaded in your context
 - Each skill invocation is stateless
 - Skills are auto-indexed from SKILL.md frontmatter - no manual list maintenance required
+
+### Primary Skill: workflows-code
+
+For ALL frontend code implementation in anobel.com, `workflows-code` is the primary orchestrator skill.
+
+**3-Phase Lifecycle (MANDATORY):**
+1. **Phase 1 - Implementation**: Write code following Webflow patterns, async handling, validation
+2. **Phase 1.5 - Code Quality Gate**: Validate against style standards (P0 items MUST pass)
+3. **Phase 2 - Debugging**: Fix issues systematically using DevTools, trace root cause
+4. **Phase 3 - Verification**: Browser testing at multiple viewports (MANDATORY before "done")
+
+**The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
+
+**Auto-Detection Flow:**
+```
+Task Received → Detect keywords → Route to phase → Load resources
+```
+
+**Patterns Location:** `.opencode/skill/workflows-code/references/`
+- `implementation/` → Async patterns, animation, CSS, Webflow, security, observers
+- `debugging/` → Root cause tracing, error recovery
+- `verification/` → Browser testing requirements
+- `deployment/` → Minification, CDN deployment to R2
+- `standards/` → Code quality, style guide, shared patterns
+
+**Invocation:** Automatic via Gate 2 routing when code tasks detected.
+
+### Skill Maintenance 
+
+Skills are located in `.opencode/skill/`.
+
+When creating or editing skills:
+- Create or edit skills based on the workflow logic defined in `.opencode/agent/write.md`
+- Validate skill structure matches template in `workflows-documentation/references/skill_creation.md`
+- Use the templates in `workflows-documentation/assets/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
+- Ensure all bundled resources are referenced with relative paths
+- Test skill invocation before committing
