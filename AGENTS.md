@@ -20,7 +20,7 @@
 4. **HALT:** Stop immediately if uncertain, if line numbers don't match, or if tests fail. (See "Halt Conditions" below).
 
 **OPERATIONAL MANDATES:**
-- **All file modifications require a spec folder** (Gate 3).
+- **All file modifications require a spec folder** (Gate 1).
 - **Never lie or fabricate** - use "UNKNOWN" when uncertain.
 - **Clarify** if confidence < 80% (see §4 Confidence Framework).
 - **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
@@ -39,14 +39,14 @@
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research/context (`node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js`).
-- **Narsil MCP** for ALL code intelligence (semantic/structural search).
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
+- **Narsil MCP** for ALL code intelligence (semantic/structural search). Accessed via Code Mode.
 
 ### Quick Reference: Common Workflows
 
 | Task                     | Flow                                                                                                                                       |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                                 |
+| **File modification**    | Gate 1 (spec folder) → Gate 2 → Gate 3 → Load memory context → Execute                                                                     |
 | **Research/exploration** | `memory_match_triggers()` → `memory_search()` → Document findings                                                                          |
 | **Code search**          | `narsil.narsil_neural_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text   |
 | **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                           |
@@ -55,7 +55,7 @@
 | **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                                   |
 | **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                                |
 | **End session**          | /spec_kit:handover → Save context → Provide continuation prompt                                                                            |
-| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
+| **New spec folder**      | Option B (Gate 1) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                              |
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                        |
 
@@ -69,33 +69,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT BLOCK]                      │
-│ Trigger: EACH new user message (re-evaluate even in ongoing conversations)  │
-│ Action:  1a. Call memory_match_triggers(prompt) → Surface relevant context  │
-│          1b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
-│          1c. Parse request → Check confidence (see §4)                       │
-│          1d. If <40%: ASK | 40-79%: PROCEED WITH CAUTION | ≥80%: PASS       │
-│                                                                             │
-│ ⚠️ PRIORITY NOTE: Gate 1 is SOFT - if file modification detected, Gate 3      │
-│    (HARD BLOCK) takes precedence. Ask spec folder question BEFORE analysis. │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓ PASS
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 2: SKILL ROUTING [ADVISORY]                                            │
-│ Action:  Optionally run: python3 .opencode/scripts/skill_advisor.py         │
-│ Logic:   IF task clearly matches a skill domain → invoke skill directly     │
-│          IF uncertain → run skill_advisor.py for recommendation             │
-│          IF confidence > 0.8 from advisor → invoke recommended skill         │
-│ Note:    Task-appropriate skills can be recognized without script call.     │
-│          Script is advisory, not mandatory per request.                     │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓ PASS
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 3: SPEC FOLDER QUESTION [HARD BLOCK] ⭐ PRIORITY GATE                  │
-│                                                                             │
-│ ⚠️ HARD BLOCK OVERRIDES SOFT BLOCKS: If file modification detected,           │
-│    Gate 3 question MUST be asked BEFORE Gates 1-2 analysis/tool calls.      │
-│    Sequence: Detect intent → Ask Gate 3 → Wait for A/B/C/D → Then analyze.  │
+│ GATE 1: SPEC FOLDER QUESTION [HARD BLOCK] ⭐ FIRST GATE                     │
 │                                                                             │
 │ FILE MODIFICATION TRIGGERS (if ANY match → Q1 REQUIRED):                    │
 │   □ "rename", "move", "delete", "create", "add", "remove"                   │
@@ -113,25 +87,28 @@
 │                                                                             │
 │ Block: HARD - Cannot use tools without answer                               │
 └─────────────────────────────────────────────────────────────────────────────┘
-
-### First Message Protocol
-
-**RULE**: If the user's FIRST message requests file modifications:
-1. Gate 3 question is your FIRST response
-2. No analysis first ("let me understand the scope")
-3. No tool calls first ("let me check what exists")
-4. Ask immediately:
-
-   **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
-
-5. Wait for answer, THEN proceed
-
-**Why**: Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
-
+                                    ↓ PASS
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ GATE 2: UNDERSTANDING + CONTEXT SURFACING [SOFT BLOCK]                      │
+│ Trigger: EACH new user message (re-evaluate even in ongoing conversations)  │
+│ Action:  2a. Call memory_match_triggers(prompt) → Surface relevant context  │
+│          2b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
+│          2c. Parse request → Check confidence (see §4)                       │
+│          2d. If <40%: ASK | 40-79%: PROCEED WITH CAUTION | ≥80%: PASS       │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    ↓ PASS
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ GATE 3: SKILL ROUTING [MANDATORY when confidence > 0.8]                      │
+│ Action:  Run: python3 .opencode/scripts/skill_advisor.py                    │
+│ Logic:   IF task clearly matches a skill domain → invoke skill directly     │
+│          IF uncertain → run skill_advisor.py for recommendation             │
+│          IF confidence > 0.8 from advisor → MUST invoke recommended skill    │
+│ Note:    Task-appropriate skills can be recognized without script call.     │
+└─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ MEMORY CONTEXT LOADING [SOFT]                                               │
-│ Trigger: User selected A or C in Gate 3 AND memory files exist               │
+│ Trigger: User selected A or C in Gate 1 AND memory files exist               │
 │ Action:  memory_search({ specFolder, includeContent: true })                │
 │          → Results include embedded content (no separate load needed)       │
 │          → Constitutional memories always appear first                       │
@@ -141,6 +118,20 @@
                                     ↓ PASS
                               ✅ EXECUTE TASK
 ```
+
+### First Message Protocol
+
+**RULE**: If the user's FIRST message requests file modifications:
+1. Gate 1 question is your FIRST response
+2. No analysis first ("let me understand the scope")
+3. No tool calls first ("let me check what exists")
+4. Ask immediately:
+
+   **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
+
+5. Wait for answer, THEN proceed
+
+**Why**: Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
 
 ### 🔒 POST-EXECUTION RULES (Behavioral - Not Numbered)
 
@@ -176,6 +167,7 @@
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓
                               ✅ CLAIM COMPLETION
+```
 
 ### 🔄 EDGE CASE: Compaction Recovery
 
@@ -252,28 +244,25 @@ File modification planned? → Include Q1 (Spec Folder)
 
 **Violation handling:** If proposed solution contradicts project patterns, STOP and ask for clarification or revise approach.
 
-#### ⚡ Common Failure Patterns 
+#### ⚡ Common Failure Patterns
 
 | #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                       |
 | --- | -------------- | ---------------------------- | -------------------------------------------- | ----------------------------------------------------- |
-| 1   | Understanding  | Task Misinterpretation       | N/A                                          | Parse request, confirm scope                          |
-| 2   | Understanding  | Assumptions                  | N/A                                          | Read existing code first                              |
-| 3   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                           |
-| 4   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                             |
-| 5   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                               |
-| 6   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                     |
-| 7   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                        |
-| 8   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                               |
-| 9   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                      |
-| 10  | Review         | Skip Verification            | "trivial edit"                               | Run ALL tests, no exceptions                          |
-| 11  | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
-| 12  | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                  |
-| 13  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
-| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Narsil for meaning + structure, Grep for text         |
-| 15  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
-| 16  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                |
-| 17  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response    |
-| 18  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response        |
+| 1   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                           |
+| 2   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                             |
+| 3   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                               |
+| 4   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                     |
+| 5   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                        |
+| 6   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                               |
+| 7   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                      |
+| 8   | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
+| 9   | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                  |
+| 10  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
+| 11  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Narsil for meaning + structure, Grep for text         |
+| 12  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
+| 13  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                |
+| 14  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response    |
+| 15  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response        |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
 
@@ -340,41 +329,6 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 - **40–79% (MEDIUM):** Proceed with caution - provide caveats and counter-evidence
 - **0–39% (LOW):** Ask for clarification with multiple-choice question or mark "UNKNOWN"
 - **Safety override:** If there's a blocker or conflicting instruction, ask regardless of score
-
-### Confidence Scoring (0–100%)
-
-**Formula:** Weighted sum of factor scores (0–1 each), rounded to whole percent.
-
-| Weight Category       | Frontend | Backend |
-| --------------------- | -------- | ------- |
-| Requirements clarity  | 25%      | 25%     |
-| API/Component design  | 15%      | 20%     |
-| State/Data flow       | 15%      | 15%     |
-| Type safety/Security  | 10%      | 15%     |
-| Performance           | 10%      | 10%     |
-| Accessibility/Testing | 10%      | 10%     |
-| Tooling/Risk          | 15%      | 5%      |
-
-**Result:** 0-100% → HIGH (≥80), MEDIUM (40-79), LOW (<40)
-
-### Standard Reply Format
-- **Confidence:** NN%
-- **Top factors:** 2–3 bullets
-- **Next action:** proceed | proceed with caution | ask for clarification
-- **If asking:** include one multiple-choice question
-- **Uncertainty:** brief note of unknowns (or "UNKNOWN" if data is missing)
-- **Sources/Citations:** files/lines or URLs used (name your evidence when you rely on it)
-- **Optional (when fact-checking):** JSON block
-
-```json
-{
-  "label": "TRUE | FALSE | UNKNOWN",
-  "truth_score": 0.0-1.0,
-  "uncertainty": 0.0-1.0,
-  "citations": ["..."],
-  "audit_hash": "sha256(...)"
-}
-```
 
 ### Clarification Question Format
 "I need clarity (confidence: [NN%]). Which approach:
@@ -465,56 +419,11 @@ PRE-CHANGE VALIDATION:
 ```
 
 **Verification loop:** Sense → Interpret → Verify → Reflect → Publish (label TRUE/FALSE/UNKNOWN)
-
 **STOP CONDITIONS:** □ unchecked | no spec folder | no user approval → STOP and address
-
-**Full details:** workflows-code skill (3-phase implementation lifecycle)
-
-#### Phase 7: Final Output Review
-**Verification Summary (Mandatory for Factual Content):**
-
-Before finalizing any factual response, complete this 3-part check:
-
-```markdown
-1. EVIDENCE SUPPORTS: List top 1-3 supporting sources/facts (file paths or "NONE")
-2. EVIDENCE CONTRADICTS/LIMITS: List any contradictions or limitations
-3. CONFIDENCE: Rate 0–100% + label (LOW/MED/HIGH) with brief justification
-```
-
-**Final Review Checklist:**
-
-Review response for:
-- Claims with confidence <40% (LOW) → Flag explicitly or convert to "UNKNOWN"
-- Unverified sources → Mark [STATUS: UNVERIFIED]
-- Missing counter-evidence for significant claims → Add caveats
-
-**Number Handling:** Prefer ranges or orders of magnitude unless confidence ≥80% and source is cited. Use qualifiers: "approximately," "range of," "circa." Never fabricate specific statistics to appear precise.
 
 ---
 
 ## 6. ⚙️ TOOL SYSTEM
-
-### Tool Routing Decision Tree
-
-```
-Known file path? → Read()
-Know what code DOES? → narsil.narsil_neural_search() [CODE MODE - MANDATORY]
-Research/prior work? → memory_search() [NATIVE MCP - MANDATORY]
-Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE - via call_tool_chain()]
-Security scan/vulnerabilities? → narsil.narsil_scan_security() [CODE MODE - via call_tool_chain()]
-Code analysis (dead code, complexity)? → narsil.narsil_* tools [CODE MODE - via call_tool_chain()]
-Text pattern? → Grep()
-File structure? → Glob()
-Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP - OPTIONAL]
-Browser debugging? → workflows-chrome-devtools skill
-External MCP tools? → call_tool_chain() [Code Mode - Webflow, Figma, ClickUp, Narsil, etc.]
-Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
-Stuck debugging 3+ attempts? → /spec_kit:debug → Model selection → Task tool dispatch
-Multi-step task? → Task tool for delegation
-New spec folder (Option B)? → Research task dispatch
-Browser debugging needed? → workflows-chrome-devtools skill
-Documentation generation? → workflows-documentation skill
-```
 
 ### Two "Semantic" Systems (DO NOT CONFUSE)
 
@@ -613,7 +522,7 @@ Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you
 
 ### Primary Skill: workflows-code
 
-For ALL frontend code implementation in anobel.com, `workflows-code` is the primary orchestrator skill.
+For ALL code implementation, `workflows-code` is the primary orchestrator skill.
 
 **3-Phase Lifecycle (MANDATORY):**
 1. **Phase 1 - Implementation**: Write code following Webflow patterns, async handling, validation
