@@ -1,8 +1,6 @@
-/**
- * @fileoverview Safe JSON parsing utilities for MCP context server
- * Provides defensive JSON operations with fallback values.
- * @module mcp_server/utils/json-helpers
- */
+// ───────────────────────────────────────────────────────────────
+// UTILS: JSON HELPERS
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 /* ───────────────────────────────────────────────────────────────

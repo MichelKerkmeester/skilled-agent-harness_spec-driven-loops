@@ -1,5 +1,10 @@
+// ───────────────────────────────────────────────────────────────
+// CONFIG: SPEC KIT SETTINGS
+// ───────────────────────────────────────────────────────────────
 {
-  // Legacy settings (v9.x)
+  // ─────────────────────────────────────────────────────────────
+  // 1. LEGACY SETTINGS
+  // ─────────────────────────────────────────────────────────────
   "maxResultPreview": 500,
   "maxConversationMessages": 100,
   "maxToolOutputLines": 100,
@@ -8,7 +13,9 @@
   "contextPreviewTailLines": 20,
   "timezoneOffsetHours": 1,
 
-  // Semantic search (v10.0)
+  // ─────────────────────────────────────────────────────────────
+  // 2. SEMANTIC SEARCH
+  // ─────────────────────────────────────────────────────────────
   "semanticSearch": {
     "enabled": true,
     "minSimilarityScore": 50,
@@ -17,7 +24,7 @@
   },
 
   "memoryIndex": {
-    "databasePath": ".opencode/skill/system-spec-kit/database/context-index.sqlite",
+    "databasePath": ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
     "autoRebuildOnSave": true,
     "verifyOnStartup": false
   },
@@ -29,14 +36,20 @@
     "performanceTargetMs": 50
   },
 
-  // Memory decay (v11.0) - half-life ≈ 62 days with scaleDays=90
+  // ─────────────────────────────────────────────────────────────
+  // 3. MEMORY DECAY
+  // ─────────────────────────────────────────────────────────────
+  // Half-life ≈ 62 days with scaleDays=90
   "memoryDecay": {
     "enabled": true,
     "scaleDays": 90,
     "decayWeight": 0.3
   },
 
-  // Importance tiers (DOCUMENTATION ONLY - actual behavior in importance-tiers.js)
+  // ─────────────────────────────────────────────────────────────
+  // 4. IMPORTANCE TIERS
+  // ─────────────────────────────────────────────────────────────
+  // Documentation only - actual behavior in importance-tiers.js
   "importanceTiers": {
     "constitutional": { "searchBoost": 3.0, "decay": false, "autoExpireDays": null, "alwaysSurface": true },
     "critical": { "searchBoost": 2.0, "decay": false, "autoExpireDays": null },
@@ -46,8 +59,11 @@
     "deprecated": { "searchBoost": 0.0, "decay": false, "excludeFromSearch": true }
   },
 
-  // Hybrid search - uses RRF (Reciprocal Rank Fusion) to combine FTS + vector results
-  // Note: ftsWeight/vectorWeight are RESERVED for future weighted mode; currently RRF is used
+  // ─────────────────────────────────────────────────────────────
+  // 5. HYBRID SEARCH
+  // ─────────────────────────────────────────────────────────────
+  // Uses RRF (Reciprocal Rank Fusion) to combine FTS + vector results
+  // ftsWeight/vectorWeight reserved for future weighted mode
   "hybridSearch": {
     "enabled": true,
     "ftsWeight": 0.4,
@@ -56,7 +72,9 @@
     "fallbackEnabled": true
   },
 
-  // Context type auto-detection
+  // ─────────────────────────────────────────────────────────────
+  // 6. CONTEXT TYPE DETECTION
+  // ─────────────────────────────────────────────────────────────
   "contextTypeDetection": {
     "enabled": true,
     "rules": {
@@ -68,7 +86,10 @@
     "defaultType": "general"
   },
 
-  // Access tracking (actual values in search-weights.json)
+  // ─────────────────────────────────────────────────────────────
+  // 7. ACCESS TRACKING
+  // ─────────────────────────────────────────────────────────────
+  // Actual values in search-weights.json
   "accessTracking": {
     "enabled": true,
     "boostPerAccess": 0.1,
@@ -76,24 +97,44 @@
     "threshold": 5
   },
 
-  // Checkpoints (behavior in checkpoint.js)
+  // ─────────────────────────────────────────────────────────────
+  // 8. CHECKPOINTS
+  // ─────────────────────────────────────────────────────────────
+  // Behavior in checkpoint.js
   "checkpoints": {
     "enabled": true,
     "maxCheckpoints": 10,
     "autoCleanupDays": 30
   },
 
-  // Constitutional tier (v11.1) - always surfaced at session start
+  // ─────────────────────────────────────────────────────────────
+  // 9. CONSTITUTIONAL TIER
+  // ─────────────────────────────────────────────────────────────
+  // Always surfaced at session start
   "constitutionalTier": {
     "enabled": true,
     "maxTokens": 2000,
     "alwaysSurface": true
   },
 
-  // Confidence tracking (behavior in validation.js)
+  // ─────────────────────────────────────────────────────────────
+  // 10. CONFIDENCE TRACKING
+  // ─────────────────────────────────────────────────────────────
+  // Behavior in validation.js
   "confidenceTracking": {
     "enabled": true,
     "promotionThreshold": 0.9,
     "minValidations": 5
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  // 11. TEMPLATES
+  // ─────────────────────────────────────────────────────────────
+  // Controls which template set is used when creating spec folders
+  "templates": {
+    "style": "minimal",           // "minimal" | "verbose"
+    "styleFallback": "minimal",   // Fallback if selected style not found
+    "verbosePath": "templates/verbose",  // Path to verbose templates
+    "minimalPath": "templates"    // Path to minimal templates (default)
   }
 }

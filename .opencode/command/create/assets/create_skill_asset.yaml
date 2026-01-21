@@ -1,6 +1,12 @@
 # ───────────────────────────────────────────────────────────────────
 # DOCUMENTATION: ASSET FILE CREATION WORKFLOW
 # ───────────────────────────────────────────────────────────────────
+# Version: 1.9.0 (SpecKit alignment)
+# Mode: confirm-only (interactive step-by-step approval)
+# Note: This workflow does NOT support :auto mode. All executions
+#       require user confirmation at checkpoints. When invoked with
+#       --chained flag from parent workflows, checkpoints still apply.
+# ───────────────────────────────────────────────────────────────────
 role: Expert Asset Creator using workflows-documentation skill
 purpose: Create asset files for existing skills (templates, lookups, examples, guides)
 action: Generate properly structured asset files with validation

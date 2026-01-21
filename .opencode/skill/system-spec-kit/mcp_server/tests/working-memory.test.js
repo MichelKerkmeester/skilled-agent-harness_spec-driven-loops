@@ -1,6 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: working-memory.js
-// Unit tests for session-based working memory module
+// TEST: WORKING MEMORY
 // ───────────────────────────────────────────────────────────────
 
 'use strict';
@@ -46,7 +45,7 @@ function skip(name, reason) {
    2. MODULE UNDER TEST
 ──────────────────────────────────────────────────────────────── */
 
-const LIB_PATH = path.join(__dirname, '..', 'lib');
+const LIB_PATH = path.join(__dirname, '..', 'lib', 'cognitive');
 const workingMemory = require(path.join(LIB_PATH, 'working-memory.js'));
 
 /* ─────────────────────────────────────────────────────────────

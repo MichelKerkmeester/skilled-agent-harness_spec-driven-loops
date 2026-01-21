@@ -241,7 +241,7 @@ These dependencies are required and typically available via shared node_modules:
 
 The memory database is stored at:
 ```
-.opencode/skill/system-spec-kit/database/context-index.sqlite
+.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 ```
 
 This location is within the skill folder for self-contained deployment.
@@ -380,7 +380,7 @@ Add to `opencode.json` in your project root:
         "EMBEDDINGS_PROVIDER": "auto",
         "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
         "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
-        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
+        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
         "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, fallback)",
         "_NOTE_3_AUTO_DETECTION": "Priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local (no installation needed)",
         "_NOTE_4_VOYAGE_4": "Defaults to 'voyage-4'. Override with VOYAGE_EMBEDDINGS_MODEL env var.",
@@ -410,7 +410,7 @@ The MCP server and database are bundled **inside the skill folder** for several 
 
 ### Database Path Configuration
 
-The default database path is `.opencode/skill/system-spec-kit/database/context-index.sqlite`. This can be overridden via environment variable:
+The default database path is `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`. This can be overridden via environment variable:
 
 ```json
 {
@@ -427,7 +427,7 @@ The default database path is `.opencode/skill/system-spec-kit/database/context-i
 ### One-Command Health Check
 
 ```bash
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT 'OK: ' || COUNT(*) || ' memories' FROM memory_index" 2>/dev/null || echo "Database not created yet (will be created on first save)"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT 'OK: ' || COUNT(*) || ' memories' FROM memory_index" 2>/dev/null || echo "Database not created yet (will be created on first save)"
 ```
 
 ### Check 1: Verify Server Files
@@ -486,11 +486,11 @@ opencode
 
 ```bash
 # Check database exists and has tables
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".tables"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".tables"
 # Expected: memory_index vec_memories
 
 # Count indexed memories
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
 ```
 
 ### Validation: `installation_complete`
@@ -505,7 +505,7 @@ sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT CO
 
 **Quick Verification:**
 ```bash
-ls .opencode/skill/system-spec-kit/mcp_server/context-server.js && python3 -m json.tool < .mcp.json > /dev/null && sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".tables" 2>/dev/null | grep -q "memory_index" && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/skill/system-spec-kit/mcp_server/context-server.js && python3 -m json.tool < .mcp.json > /dev/null && sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".tables" 2>/dev/null | grep -q "memory_index" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 > **Note:** This command checks `.mcp.json` (Claude Code). For OpenCode, verify `opencode.json` instead: `python3 -m json.tool < opencode.json`
@@ -532,18 +532,18 @@ The memory database stores all indexed memories and embeddings. Backup before ri
 
 **Create timestamped backup:**
 ```bash
-cp .opencode/skill/system-spec-kit/database/context-index.sqlite \
-   .opencode/skill/system-spec-kit/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
+cp .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
+   .opencode/skill/system-spec-kit/mcp_server/database/backup-$(date +%Y%m%d-%H%M%S).sqlite
 ```
 
 **Verify backup was created:**
 ```bash
-ls -la .opencode/skill/system-spec-kit/database/backup-*.sqlite
+ls -la .opencode/skill/system-spec-kit/mcp_server/database/backup-*.sqlite
 ```
 
 **Verify backup integrity:**
 ```bash
-sqlite3 .opencode/skill/system-spec-kit/database/backup-*.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/backup-*.sqlite "SELECT COUNT(*) FROM memory_index"
 ```
 
 ### Restore Procedure
@@ -552,13 +552,13 @@ sqlite3 .opencode/skill/system-spec-kit/database/backup-*.sqlite "SELECT COUNT(*
 
 **2. Restore from backup:**
 ```bash
-cp .opencode/skill/system-spec-kit/database/backup-YYYYMMDD-HHMMSS.sqlite \
-   .opencode/skill/system-spec-kit/database/context-index.sqlite
+cp .opencode/skill/system-spec-kit/mcp_server/database/backup-YYYYMMDD-HHMMSS.sqlite \
+   .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 ```
 
 **3. Verify restore:**
 ```bash
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
 ```
 
 **4. Restart OpenCode** to reload the MCP server with restored data
@@ -585,7 +585,7 @@ sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT CO
 
 **Quick Verification:**
 ```bash
-ls .opencode/skill/system-spec-kit/database/backup-*.sqlite 2>/dev/null && sqlite3 .opencode/skill/system-spec-kit/database/backup-*.sqlite "SELECT COUNT(*) FROM memory_index" 2>/dev/null | grep -q "[1-9]" && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/skill/system-spec-kit/mcp_server/database/backup-*.sqlite 2>/dev/null && sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/backup-*.sqlite "SELECT COUNT(*) FROM memory_index" 2>/dev/null | grep -q "[1-9]" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ❌ **STOP if validation fails** - Fix before continuing.
@@ -1283,16 +1283,16 @@ npm install
 **Fix**:
 ```bash
 # Check database exists
-ls .opencode/skill/system-spec-kit/database/context-index.sqlite
+ls .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 
 # Verify embeddings exist
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM vec_memories"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM vec_memories"
 ```
 
 **If that doesn't work**:
 ```bash
 # Check embedding status - most should show 'completed'
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
   "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
 ```
 
@@ -1317,7 +1317,7 @@ The `--scan` option recursively finds all memory files in nested specs structure
 **Fix**:
 ```bash
 # Verify WAL mode is enabled for better concurrency
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "PRAGMA journal_mode"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "PRAGMA journal_mode"
 # Should return: wal
 ```
 
@@ -1349,11 +1349,11 @@ python3 -m json.tool < .mcp.json
 **Option A - Restore from backup (preferred):**
 ```bash
 # List available backups
-ls -la .opencode/skill/system-spec-kit/database/backup-*.sqlite
+ls -la .opencode/skill/system-spec-kit/mcp_server/database/backup-*.sqlite
 
 # Restore most recent backup
-cp .opencode/skill/system-spec-kit/database/backup-YYYYMMDD-HHMMSS.sqlite \
-   .opencode/skill/system-spec-kit/database/context-index.sqlite
+cp .opencode/skill/system-spec-kit/mcp_server/database/backup-YYYYMMDD-HHMMSS.sqlite \
+   .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 
 # Restart OpenCode to clear MCP server cache
 ```
@@ -1361,11 +1361,11 @@ cp .opencode/skill/system-spec-kit/database/backup-YYYYMMDD-HHMMSS.sqlite \
 **Option B - Reset database (lose all memories):**
 ```bash
 # Backup first (just in case)
-cp .opencode/skill/system-spec-kit/database/context-index.sqlite \
-   .opencode/skill/system-spec-kit/database/backup-pre-reset-$(date +%Y%m%d).sqlite
+cp .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
+   .opencode/skill/system-spec-kit/mcp_server/database/backup-pre-reset-$(date +%Y%m%d).sqlite
 
 # Remove corrupted database
-rm .opencode/skill/system-spec-kit/database/context-index.sqlite
+rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 
 # Restart OpenCode - database will be recreated on first use
 
@@ -1376,13 +1376,13 @@ memory_index_scan({ force: true })
 **Option C - Repair database:**
 ```bash
 # Check database integrity
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "PRAGMA integrity_check"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "PRAGMA integrity_check"
 
 # If issues found, try to recover
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".recover" > recovered.sql
-sqlite3 .opencode/skill/system-spec-kit/database/context-index-new.sqlite < recovered.sql
-mv .opencode/skill/system-spec-kit/database/context-index-new.sqlite \
-   .opencode/skill/system-spec-kit/database/context-index.sqlite
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".recover" > recovered.sql
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index-new.sqlite < recovered.sql
+mv .opencode/skill/system-spec-kit/mcp_server/database/context-index-new.sqlite \
+   .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 ```
 
 ### MCP Server Cache Issues
@@ -1416,7 +1416,7 @@ memory_stats()
 **Diagnose:**
 ```bash
 # Check embedding status distribution
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
   "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
 
 # Expected: Most should be 'completed'
@@ -1583,13 +1583,13 @@ node .opencode/skill/system-spec-kit/mcp_server/context-server.js --version 2>&1
 node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 
 # Check database tables
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".tables"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".tables"
 
 # Count indexed memories
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
 
 # Check embedding statistics
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
   "SELECT embedding_status, COUNT(*) as count FROM memory_index GROUP BY embedding_status"
 ```
 
@@ -1658,13 +1658,13 @@ Slow operations are logged automatically:
 ```bash
 # Verify installation
 ls -la .opencode/skill/system-spec-kit/mcp_server/lib/
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite ".tables"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".tables"
 
 # Test server
 node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 
 # Check database stats
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
 ```
 
 ### Configuration Quick Copy
@@ -1693,7 +1693,7 @@ sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT CO
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
         "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
-        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
+        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
         "_NOTE_2_PROVIDERS": "Voyage (recommended), OpenAI, or HF Local (fallback)"
       }
     }

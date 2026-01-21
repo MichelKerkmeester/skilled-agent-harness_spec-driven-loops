@@ -3,7 +3,7 @@ title: Level Decision Matrix
 description: Quick reference for selecting the appropriate documentation level using progressive enhancement.
 ---
 
-# Level Decision Matrix
+# Level Decision Matrix - Complexity Scoring Guide
 
 Quick reference for selecting documentation levels (1-3) based on LOC guidance and complexity factors.
 
@@ -29,11 +29,11 @@ This matrix helps determine the appropriate documentation level for any task. Us
 
 ## 2. 📊 DECISION MATRIX TABLE (Progressive Enhancement)
 
-| Level               | LOC Guidance | Required Files                     | Adds To Previous        | Use When                             |
-| ------------------- | ------------ | ---------------------------------- | ----------------------- | ------------------------------------ |
-| **1: Baseline**     | <100         | `spec.md` + `plan.md` + `tasks.md` | (foundation)            | All features - minimum documentation |
-| **2: Verification** | 100-499      | Level 1 + `checklist.md`           | QA checklist            | Needs systematic validation          |
-| **3: Full**         | ≥500         | Level 2 + `decision-record.md`     | ADR + optional research | Complex/architectural changes        |
+| Level               | LOC Guidance | Required Files                                                      | Adds To Previous        | Use When                             |
+| ------------------- | ------------ | ------------------------------------------------------------------- | ----------------------- | ------------------------------------ |
+| **1: Baseline**     | <100         | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md`    | (foundation)            | All features - minimum documentation |
+| **2: Verification** | 100-499      | Level 1 + `checklist.md`                                            | QA checklist            | Needs systematic validation          |
+| **3: Full**         | ≥500         | Level 2 + `decision-record.md`                                      | ADR + optional research | Complex/architectural changes        |
 
 **Progressive Enhancement Model:**
 ```
@@ -119,9 +119,24 @@ These factors can push you to a higher level even if LOC suggests lower:
 - Easier to skip optional sections than add missing documentation later
 - Future you will thank present you for the extra context
 
+### Template Style Selection
+
+In addition to level, choose the appropriate template **style**:
+
+| Style | Best For | Path |
+|-------|----------|------|
+| **Core** (default) | Experienced users, clear requirements | `templates/level_N/` |
+| **Verbose** | New users, complex/uncertain requirements | `templates/verbose/core/` |
+
+**Choose Verbose templates when:**
+- First time using SpecKit
+- Requirements have many unknowns
+- Training team members
+- Need guidance on expected content quality
+
 ---
 
-## 6.1 📋 CHECKLIST QUALITY REQUIREMENTS
+## 7. 📋 CHECKLIST QUALITY REQUIREMENTS
 
 Level 2+ documentation requires `checklist.md` with specific quality standards:
 
@@ -178,7 +193,7 @@ Completed checklist items MUST include verification evidence:
 
 ---
 
-## 6.2 ✅ VALIDATION RULES REFERENCE
+## 8. ✅ VALIDATION RULES REFERENCE
 
 The spec validation system (`validate-spec.sh`) checks documentation quality using these rules:
 
@@ -234,7 +249,7 @@ The spec validation system (`validate-spec.sh`) checks documentation quality usi
 
 ---
 
-## 7. 🔄 LEVEL MIGRATION DURING IMPLEMENTATION
+## 9. 🔄 LEVEL MIGRATION DURING IMPLEMENTATION
 
 If scope grows during implementation, escalate by adding the required files:
 
@@ -255,7 +270,7 @@ If scope grows during implementation, escalate by adding the required files:
 
 ---
 
-## 8. 🚀 QUICK DECISION FLOWCHART
+## 10. 🚀 QUICK DECISION FLOWCHART
 
 ```
 Any file modification?
@@ -294,16 +309,22 @@ Architectural decision? ──YES──→ Level 3 (add decision-record.md)
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 11. 🔗 RELATED RESOURCES
 
 ### Asset Files
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch
 - [template_mapping.md](./template_mapping.md) - Template routing and task mapping
 
 ### Reference Files
-- [level_specifications.md](../references/level_specifications.md) - Complete Level 1-3 requirements
-- [quick_reference.md](../references/quick_reference.md) - Commands, checklists, and troubleshooting
+- [level_specifications.md](../references/templates/level_specifications.md) - Complete Level 1-3 requirements
+- [quick_reference.md](../references/workflows/quick_reference.md) - Commands, checklists, and troubleshooting
 - [template_guide.md](../references/template_guide.md) - Template selection and quality standards
+
+### Scripts
+- [compose.sh](../scripts/templates/compose.sh) - Template composition from core + addendum
+
+### Templates
+- [verbose/README.md](../templates/verbose/README.md) - Verbose template usage guide
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator

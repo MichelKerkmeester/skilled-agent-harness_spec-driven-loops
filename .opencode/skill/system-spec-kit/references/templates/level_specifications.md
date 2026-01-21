@@ -1,29 +1,78 @@
 ---
 title: Level Specifications
-description: Complete specifications for all three documentation levels using the progressive enhancement model.
+description: Complete specifications for all documentation levels using CORE + ADDENDUM architecture (v2.0).
 ---
 
-# Level Specifications - Complete Level 1-3 Requirements
+# Level Specifications - Complete Level 1-3+ Requirements
 
-Complete specifications for all three documentation levels using the progressive enhancement model.
+Complete specifications for all documentation levels using the CORE + ADDENDUM architecture (v2.0) where higher levels ADD VALUE, not just length.
 
 ---
 
 ## 1. 📖 OVERVIEW
 
-**Progressive Enhancement Model:**
+### Template Architecture: CORE + ADDENDUM (v2.0)
+
+Templates use a compositional model where core content is shared and addendums add level-specific VALUE:
+
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
-                              ↓
-Level 2 (Verification): Level 1 + checklist.md
-                              ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research.md
-                              ↓
-Level 3+ (Extended):    Level 3 + AI protocols + dependency graphs + extended checklist
+templates/
+├── core/                    # Shared foundation (~270 LOC total)
+│   ├── spec-core.md         # Essential what/why/how
+│   ├── plan-core.md         # Technical approach
+│   ├── tasks-core.md        # Task breakdown
+│   └── impl-summary-core.md # Outcomes documentation
+│
+├── addendum/                # Level-specific VALUE additions
+│   ├── level2-verify/       # +Verification (~120 LOC)
+│   ├── level3-arch/         # +Architecture (~150 LOC)
+│   └── level3plus-govern/   # +Governance (~100 LOC)
+│
+├── verbose/                 # Extended templates with guidance
+│   ├── core/                # Verbose versions of core templates
+│   └── README.md            # Verbose pattern documentation
+│
+├── level_1/                 # Composed Level 1: Core only (~270 LOC)
+├── level_2/                 # Composed Level 2: Core + L2 (~390 LOC)
+├── level_3/                 # Composed Level 3: Core + L2 + L3 (~540 LOC)
+└── level_3+/                # Composed Level 3+: All addendums (~640 LOC)
 ```
+
+### Template Paths - Quick Reference
+
+| Path | Purpose | When to Use |
+|------|---------|-------------|
+| `templates/level_N/` | Ready-to-use templates | **ALWAYS use this for new specs** (N = 1, 2, 3, or 3+) |
+| `templates/verbose/` | Guided templates | New users who need detailed guidance |
+| `templates/core/` | Source components | Reference only (understanding architecture) |
+| `templates/addendum/` | Level additions | Reference only (understanding architecture) |
+
+> **IMPORTANT:** Always copy templates from `templates/level_N/` (where N is 1, 2, 3, or 3+). The `core/` and `addendum/` folders are source components used to build the level templates via `scripts/templates/compose.sh` - do not use them directly for new spec folders.
+
+### Progressive Enhancement Model (Value-Based)
+
+```
+Level 1 (Core):         Essential what/why/how (~270 LOC)
+         ↓ +Verify
+Level 2 (Verification): +Quality gates, NFRs, edge cases (~390 LOC)
+         ↓ +Arch
+Level 3 (Full):         +Architecture decisions, ADRs, risk matrix (~540 LOC)
+         ↓ +Govern
+Level 3+ (Extended):    +Enterprise governance, AI protocols (~640 LOC)
+```
+
+### What Each Level ADDS (Value Scaling)
+
+| Level | Adds | New Content |
+|-------|------|-------------|
+| **L1 (Core)** | Essential what/why/how | Problem, scope, requirements, success criteria |
+| **L2 (+Verify)** | Quality gates | NFRs, edge cases, checklist, effort estimation |
+| **L3 (+Arch)** | Architecture decisions | Executive summary, ADRs, risk matrix, milestones |
+| **L3+ (+Govern)** | Enterprise governance | Approval workflow, compliance, AI protocols |
 
 **Key Points:**
 - LOC thresholds are **SOFT GUIDANCE** (not enforcement)
+- **Higher levels add VALUE** - not just more boilerplate
 - **Enforcement is MANUAL** - verify required templates exist before claiming completion
 - When in doubt, choose higher level
 
@@ -94,10 +143,17 @@ Level 3+ (Extended):    Level 3 + AI protocols + dependency graphs + extended ch
 
 ### Template Sources
 
+**Composed templates (ready to use):**
 - `.opencode/skill/system-spec-kit/templates/level_1/spec.md`
 - `.opencode/skill/system-spec-kit/templates/level_1/plan.md`
 - `.opencode/skill/system-spec-kit/templates/level_1/tasks.md`
 - `.opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md`
+
+**Core source (for reference):**
+- `.opencode/skill/system-spec-kit/templates/core/spec-core.md`
+- `.opencode/skill/system-spec-kit/templates/core/plan-core.md`
+- `.opencode/skill/system-spec-kit/templates/core/tasks-core.md`
+- `.opencode/skill/system-spec-kit/templates/core/impl-summary-core.md`
 
 ### Template Adaptation
 
@@ -170,11 +226,17 @@ Level 3+ (Extended):    Level 3 + AI protocols + dependency graphs + extended ch
 
 ### Template Sources
 
+**Composed templates (ready to use):**
 - `.opencode/skill/system-spec-kit/templates/level_2/spec.md`
 - `.opencode/skill/system-spec-kit/templates/level_2/plan.md`
 - `.opencode/skill/system-spec-kit/templates/level_2/tasks.md`
 - `.opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md`
 - `.opencode/skill/system-spec-kit/templates/level_2/checklist.md`
+
+**Addendum source (+Verify):**
+- `.opencode/skill/system-spec-kit/templates/addendum/level2-verify/spec-level2.md`
+- `.opencode/skill/system-spec-kit/templates/addendum/level2-verify/plan-level2.md`
+- `.opencode/skill/system-spec-kit/templates/addendum/level2-verify/checklist.md`
 
 ### Template Adaptation
 
@@ -272,12 +334,21 @@ specs/012-user-profile-api/
 
 ### Template Sources
 
+**Composed templates (ready to use):**
 - `.opencode/skill/system-spec-kit/templates/level_3/spec.md`
 - `.opencode/skill/system-spec-kit/templates/level_3/plan.md`
 - `.opencode/skill/system-spec-kit/templates/level_3/tasks.md`
 - `.opencode/skill/system-spec-kit/templates/level_3/checklist.md`
 - `.opencode/skill/system-spec-kit/templates/level_3/decision-record.md`
-- `.opencode/skill/system-spec-kit/templates/research.md` (optional, copy from root templates/)
+- `.opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md`
+
+**Addendum source (+Arch):**
+- `.opencode/skill/system-spec-kit/templates/addendum/level3-arch/spec-level3.md`
+- `.opencode/skill/system-spec-kit/templates/addendum/level3-arch/plan-level3.md`
+- `.opencode/skill/system-spec-kit/templates/addendum/level3-arch/decision-record.md`
+
+**Optional:**
+- `.opencode/skill/system-spec-kit/templates/research.md` (copy from root templates/)
 
 ### Template Adaptation
 
@@ -393,22 +464,30 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 ### Template Sources
 
-All Level 3 templates from `templates/level_3+/` plus conditional content:
+**Composed templates (ready to use):**
 - `.opencode/skill/system-spec-kit/templates/level_3+/spec.md`
 - `.opencode/skill/system-spec-kit/templates/level_3+/plan.md`
 - `.opencode/skill/system-spec-kit/templates/level_3+/tasks.md`
 - `.opencode/skill/system-spec-kit/templates/level_3+/checklist.md`
 - `.opencode/skill/system-spec-kit/templates/level_3+/decision-record.md`
-- `.opencode/skill/system-spec-kit/templates/research.md` (optional, copy from root templates/)
+- `.opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md`
+
+**Addendum source (+Govern):**
+- `.opencode/skill/system-spec-kit/templates/addendum/level3plus-govern/spec-level3plus.md`
+- `.opencode/skill/system-spec-kit/templates/addendum/level3plus-govern/plan-level3plus.md`
+- `.opencode/skill/system-spec-kit/templates/addendum/level3plus-govern/checklist-extended.md`
+
+**Optional:**
+- `.opencode/skill/system-spec-kit/templates/research.md` (copy from root templates/)
 
 ### Creating Level 3+ Spec Folder
 
 ```bash
 # Auto-detect (will recommend 3+ if score >= 80)
-./scripts/create-spec-folder.sh "Complex multi-agent migration" --complexity
+./scripts/spec/create.sh "Complex multi-agent migration" --complexity
 
 # Or specify directly
-./scripts/create-spec-folder.sh "Complex migration" --level 3 --expand
+./scripts/spec/create.sh "Complex migration" --level 3 --expand
 ```
 
 ### Template Adaptation
@@ -639,25 +718,32 @@ Some templates are not level-specific but can be used at any documentation level
 - [complexity_guide.md](./complexity_guide.md) - 5-dimension complexity scoring and auto-detection
 - [path_scoped_rules.md](../validation/path_scoped_rules.md) - Path-scoped validation rules reference
 
-### Templates
+### Templates (CORE + ADDENDUM v2.0)
 
-**Level 1 (Baseline):**
-- [spec.md](../../templates/level_1/spec.md) - Requirements and user stories
-- [plan.md](../../templates/level_1/plan.md) - Technical implementation plan
-- [tasks.md](../../templates/level_1/tasks.md) - Task breakdown by user story
-- [implementation-summary.md](../../templates/level_1/implementation-summary.md) - Post-implementation documentation
+**Core Templates (Foundation for all levels):**
+- [spec-core.md](../../templates/core/spec-core.md) - Essential what/why/how (~80 lines)
+- [plan-core.md](../../templates/core/plan-core.md) - Technical approach (~90 lines)
+- [tasks-core.md](../../templates/core/tasks-core.md) - Task breakdown (~60 lines)
+- [impl-summary-core.md](../../templates/core/impl-summary-core.md) - Outcomes (~40 lines)
 
-**Level 2 (Verification Added):**
-- All Level 1 templates from `templates/level_2/`
-- [checklist.md](../../templates/level_2/checklist.md) - Validation checklist
+**Composed Level 1 (Core only ~270 LOC):**
+- [spec.md](../../templates/level_1/spec.md) - Requirements and scope
+- [plan.md](../../templates/level_1/plan.md) - Technical plan
+- [tasks.md](../../templates/level_1/tasks.md) - Task breakdown
+- [implementation-summary.md](../../templates/level_1/implementation-summary.md) - Outcomes
 
-**Level 3 (Full Documentation):**
-- All Level 2 templates from `templates/level_3/`
-- [decision-record.md](../../templates/level_3/decision-record.md) - Architecture Decision Records
-- [research.md](../../templates/research.md) - Comprehensive research (optional, at root templates/)
+**Composed Level 2 (Core + Verify ~390 LOC):**
+- All Level 1 templates + quality gates, NFRs
+- [checklist.md](../../templates/level_2/checklist.md) - Verification checklist
 
-**Level 3+ (Extended):**
-- All templates from `templates/level_3+/` with extended content
+**Composed Level 3 (Core + Verify + Arch ~540 LOC):**
+- All Level 2 templates + architecture decisions
+- [decision-record.md](../../templates/level_3/decision-record.md) - ADRs
+- [research.md](../../templates/research.md) - Research (optional)
+
+**Composed Level 3+ (All addendums ~640 LOC):**
+- All Level 3 templates + enterprise governance
+- Extended checklist with sign-off, AI protocols
 
 **Session Management Templates (Any Level):**
 - [handover.md](../../templates/handover.md) - Session context transfer

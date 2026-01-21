@@ -591,7 +591,7 @@ Run the full 14-step SpecKit workflow: specification, clarification, planning, t
 $ARGUMENTS
 ```
 
-## 3. 📊 WORKFLOW-OVERVIEW
+## 3. 📊 WORKFLOW OVERVIEW
 
 | Step | Name                 | Purpose                                                                      | Outputs                   |
 | ---- | -------------------- | ---------------------------------------------------------------------------- | ------------------------- |
@@ -623,7 +623,38 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 5. 📌 REFERENCE
+## 5. 📊 OUTPUT FORMATS
+
+### Success Output
+```
+✅ SpecKit Complete Workflow Finished
+
+All 14 steps executed successfully.
+
+Artifacts Created:
+- spec.md (specification document)
+- plan.md (technical plan)
+- tasks.md (task breakdown)
+- checklist.md (validation checklist)
+- implementation-summary.md (completion summary)
+- memory/*.md (session context)
+
+STATUS=OK PATH=[spec-folder-path]
+```
+
+### Failure Output
+```
+❌ SpecKit Complete Workflow Failed
+
+Error: [error description]
+Step: [step number where failure occurred]
+
+STATUS=FAIL ERROR="[message]"
+```
+
+---
+
+## 6. 📌 REFERENCE
 
 **Full details in YAML prompts:**
 - Workflow steps and activities
@@ -640,7 +671,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 6. ✅ VALIDATION
+## 7. ✅ VALIDATION
 
 Before marking complete, validation runs automatically on the spec folder.
 
@@ -667,7 +698,7 @@ Before marking complete, validation runs automatically on the spec folder.
 
 ---
 
-## 7. 🔀 PARALLEL DISPATCH
+## 8. 🔀 PARALLEL DISPATCH
 
 This workflow supports smart parallel sub-agent dispatch for eligible phases using a 5-dimension complexity scoring algorithm.
 
@@ -712,7 +743,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 8. 🔗 COMMAND CHAIN
+## 9. 🔗 COMMAND CHAIN
 
 This command is the full SpecKit workflow with optional chained sub-workflows:
 
@@ -777,7 +808,7 @@ This command is the full SpecKit workflow with optional chained sub-workflows:
 
 ---
 
-## 9. 🔜 WHAT NEXT?
+## 10. 📌 NEXT STEPS
 
 After the complete workflow finishes, suggest relevant next steps:
 

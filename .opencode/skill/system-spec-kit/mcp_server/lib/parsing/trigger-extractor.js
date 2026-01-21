@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// trigger-extractor.js: Extract trigger phrases from memory files
+// PARSING: TRIGGER EXTRACTOR
 // ───────────────────────────────────────────────────────────────
 'use strict';
 

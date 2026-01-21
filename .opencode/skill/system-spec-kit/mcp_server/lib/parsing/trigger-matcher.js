@@ -1,14 +1,14 @@
 // ───────────────────────────────────────────────────────────────
-// trigger-matcher.js: Fast trigger phrase matching for memory retrieval
+// PARSING: TRIGGER MATCHER
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
 const vector_index = require('../search/vector-index');
 const { escape_regex: escapeRegex } = require('../../../shared/utils');
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 const CONFIG = {
   CACHE_TTL_MS: 60000,      // Refresh cache every 60 seconds
@@ -20,9 +20,9 @@ const CONFIG = {
   MAX_REGEX_CACHE_SIZE: 100, // T015: Max regex objects to cache (LRU eviction)
 };
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    2. EXECUTION TIME LOGGING
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Log hook execution time for monitoring and debugging
 function log_execution_time(operation, duration_ms, details = {}) {
@@ -49,9 +49,9 @@ function log_execution_time(operation, duration_ms, details = {}) {
   return log_entry;
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    3. TRIGGER CACHE
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // In-memory cache of trigger phrases for fast matching
 // Structure: Array<{phrase, memoryId, specFolder, filePath, importanceWeight, title}>
@@ -181,9 +181,9 @@ function get_cache_stats() {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    4. STRING MATCHING
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Normalize string for Unicode-safe comparison
 // - NFC normalization (canonical composition)
@@ -222,9 +222,9 @@ function match_phrase_with_boundary(text, phrase, precompiled_regex = null) {
   return regex.test(text);
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    5. MAIN MATCHING FUNCTION
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Match user prompt against trigger phrases using exact string matching
 // Uses case-insensitive substring matching with word boundary awareness
@@ -352,9 +352,9 @@ function refresh_trigger_cache() {
   return load_trigger_cache();
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    6. MODULE EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   matchTriggerPhrases: match_trigger_phrases,

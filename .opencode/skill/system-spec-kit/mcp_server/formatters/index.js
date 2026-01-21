@@ -1,11 +1,6 @@
-/**
- * @fileoverview Re-exports for formatters modules
- * @module mcp_server/formatters
- *
- * This module aggregates all formatter utilities:
- * - Token metrics: estimateTokens, calculateTokenMetrics
- * - Search results: formatSearchResults, validateFilePathLocal, safeJsonParse
- */
+// ───────────────────────────────────────────────────────────────
+// MODULE: FORMATTERS INDEX
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const tokenMetrics = require('./token-metrics');

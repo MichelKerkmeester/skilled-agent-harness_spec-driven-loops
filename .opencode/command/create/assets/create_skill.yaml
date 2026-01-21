@@ -1,6 +1,12 @@
 # ───────────────────────────────────────────────────────────────────
 # DOCUMENTATION: SKILL CREATION WORKFLOW
 # ───────────────────────────────────────────────────────────────────
+# Version: 1.9.0 (SpecKit alignment)
+# Mode: confirm-only (interactive step-by-step approval)
+# Note: This workflow does NOT support :auto mode due to its complex
+#       multi-phase nature requiring user decisions at each checkpoint.
+#       All executions use interactive confirmation gates.
+# ───────────────────────────────────────────────────────────────────
 role: Expert Skill Creator using workflows-documentation skill
 purpose: Create production-ready OpenCode skills with 9-step workflow
 action: Guide skill creation from understanding through packaging with DQI verification and resource routing

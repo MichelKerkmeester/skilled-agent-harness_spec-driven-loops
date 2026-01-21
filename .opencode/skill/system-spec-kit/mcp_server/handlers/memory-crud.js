@@ -1,9 +1,6 @@
-/**
- * @fileoverview Memory CRUD operation handlers for the MCP context server.
- * Provides delete, update, list, stats, and health check operations.
- * @module mcp_server/handlers/memory-crud
- * @version 1.7.2
- */
+// ───────────────────────────────────────────────────────────────
+// HANDLERS: MEMORY CRUD
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');

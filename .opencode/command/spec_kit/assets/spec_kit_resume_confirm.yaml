@@ -78,7 +78,16 @@ memory_loading:
   mcp_integration:
     tool: memory_search
     note: "Call MCP tools directly - NEVER through Code Mode"
-    query_pattern: "Load context for {spec_folder_name}"
+    parameters:
+      query: "resume context for {spec_folder_name}"
+      specFolder: "{spec_folder_path}"
+      anchors: ['summary', 'state', 'next-steps']
+    example: |
+      memory_search({
+        query: "resume context",
+        specFolder: "specs/007-feature-name",
+        anchors: ['summary', 'state', 'next-steps']
+      })
 
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
@@ -257,8 +266,19 @@ workflow:
     - Parse and summarize combined context
     mcp_tool:
       name: memory_search
-      note: "Call directly - NEVER through Code Mode. Use includeContent: true to embed memory content in results."
-      example: "spec_kit_memory_memory_search({ specFolder: 'xxx', includeContent: true })"
+      note: "Call directly - NEVER through Code Mode. Use anchors for targeted retrieval (~90% token savings)."
+      parameters:
+        query: "resume context"
+        specFolder: "{detected_spec_folder}"
+        anchors: ['summary', 'state', 'next-steps']
+        includeContent: true
+      example: |
+        memory_search({
+          query: "resume context",
+          specFolder: "specs/007-feature-name",
+          anchors: ['summary', 'state', 'next-steps'],
+          includeContent: true
+        })
     outputs:
     - memory_loaded: true
     - context_source: handover|memory|combined

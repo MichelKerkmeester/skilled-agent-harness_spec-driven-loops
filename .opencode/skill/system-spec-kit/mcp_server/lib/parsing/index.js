@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// parsing/index.js: Content parsing modules barrel export
+// MODULE: PARSING INDEX
 // ───────────────────────────────────────────────────────────────
 'use strict';
 

@@ -17,18 +17,24 @@ _level_extract_from_file() {
     local file="$1"
     if [[ -f "$file" ]]; then
         # Look for various level declaration patterns
-        local level
-        level=$(grep -E "^\- \*\*Level\*\*:" "$file" 2>/dev/null | head -1 | sed 's/.*Level.*: *//' | tr -d '[:space:]' | sed 's/\[.*\]//' | head -c 2)
-        if [[ -n "$level" ]]; then
-            echo "$level"
-            return 0
+        local level level_line
+        level_line=$(grep -E "^\- \*\*Level\*\*:" "$file" 2>/dev/null || true)
+        if [[ -n "$level_line" ]]; then
+            level=$(echo "$level_line" | head -1 | sed 's/.*Level.*: *//' | tr -d '[:space:]' | sed 's/\[.*\]//' | head -c 2)
+            if [[ -n "$level" ]]; then
+                echo "$level"
+                return 0
+            fi
         fi
 
         # Alternative: look for Level in checklist type
-        level=$(grep -E "Level [0-9]" "$file" 2>/dev/null | head -1 | grep -oE "Level [0-9]+" | sed 's/Level //' | head -c 2)
-        if [[ -n "$level" ]]; then
-            echo "$level"
-            return 0
+        level_line=$(grep -E "Level [0-9]" "$file" 2>/dev/null || true)
+        if [[ -n "$level_line" ]]; then
+            level=$(echo "$level_line" | head -1 | grep -oE "Level [0-9]+" | sed 's/Level //' | head -c 2)
+            if [[ -n "$level" ]]; then
+                echo "$level"
+                return 0
+            fi
         fi
     fi
     echo ""

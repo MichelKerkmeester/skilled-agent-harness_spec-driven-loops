@@ -27,7 +27,7 @@ let extractFileChanges, generateEmbedding, EMBEDDING_DIM, MODEL_NAME;
 let vectorIndex, retryManager, extractTriggerPhrases, simFactory;
 let loadCollectedData;
 
-const DB_UPDATED_FILE = path.join(__dirname, '../../database/.db-updated');
+const DB_UPDATED_FILE = path.join(__dirname, '../../mcp_server/database/.db-updated');
 
 /* ─────────────────────────────────────────────────────────────
    3. INITIALIZATION

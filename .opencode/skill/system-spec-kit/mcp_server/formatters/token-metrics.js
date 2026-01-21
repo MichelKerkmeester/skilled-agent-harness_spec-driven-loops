@@ -1,18 +1,11 @@
-/**
- * @fileoverview Token estimation and metrics calculation utilities
- * @module mcp_server/formatters/token-metrics
- *
- * Provides utilities for:
- * - Token count estimation (using ~4 chars/token approximation)
- * - Token savings calculation for tiered content injection
- *
- * @version 1.7.1 - Extracted from context-server.js
- */
+// ───────────────────────────────────────────────────────────────
+// FORMATTERS: TOKEN METRICS
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
-/* ───────────────────────────────────────────────────────────────
-   TOKEN ESTIMATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   1. TOKEN ESTIMATION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Estimate token count for text content
@@ -26,9 +19,9 @@ function estimate_tokens(text) {
   return Math.ceil(text.length / 4);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   TOKEN METRICS CALCULATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   2. TOKEN METRICS CALCULATION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Calculate token savings from tiered content injection
@@ -96,9 +89,9 @@ function calculate_token_metrics(all_matches, returned_results) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   3. EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // snake_case exports

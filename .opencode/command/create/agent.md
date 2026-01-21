@@ -1,6 +1,6 @@
 ---
 description: Create an OpenCode agent (primary or subagent) with proper frontmatter, tool permissions, and behavioral rules - supports :auto and :confirm modes
-argument-hint: "agent-name [--mode primary|subagent|all] [--global] [:auto|:confirm]"
+argument-hint: "<agent-name> [--mode primary|subagent|all] [--global] [:auto|:confirm]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, TodoWrite]
 ---
 
@@ -352,7 +352,7 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-# 📊 WORKFLOW EXECUTION (6 STEPS) - MANDATORY TRACKING
+# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
 
 **⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→6). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
@@ -584,7 +584,7 @@ Verify:
 **STEP 6: Save Context (if spec folder used)**
 If spec_path is not null:
 ```bash
-node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec_path]
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec_path]
 ```
 
 ---
@@ -682,7 +682,7 @@ This command creates standalone agents:
 
 ---
 
-## 7. 🔜 WHAT NEXT?
+## 7. 📌 NEXT STEPS
 
 After agent creation completes, suggest relevant next steps:
 

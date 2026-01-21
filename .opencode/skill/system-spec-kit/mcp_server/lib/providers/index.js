@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// providers/index.js: External service providers barrel export
+// MODULE: PROVIDERS INDEX
 // ───────────────────────────────────────────────────────────────
 'use strict';
 

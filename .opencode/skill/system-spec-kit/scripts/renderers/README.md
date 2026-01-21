@@ -1,0 +1,217 @@
+# Template Renderers
+
+> Lightweight template engine for populating spec folder templates with dynamic data.
+
+---
+
+## 1. 📖 OVERVIEW
+
+### What are Template Renderers?
+
+Template renderers provide a Mustache-like templating system for populating spec folder templates (spec.md, plan.md, tasks.md, checklist.md) with dynamic conversation data. They support conditionals, loops, and automatic cleanup.
+
+### Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Variable Substitution** | Replace `{{VAR}}` with data values |
+| **Conditional Blocks** | `{{#CONDITION}}...{{/CONDITION}}` for if/then logic |
+| **Inverted Sections** | `{{^CONDITION}}...{{/CONDITION}}` for if-not logic |
+| **Array Loops** | `{{#ARRAY}}...{{/ARRAY}}` to iterate over collections |
+| **Comment Stripping** | Remove template configuration comments from output |
+| **Newline Cleanup** | Collapse excessive whitespace (3+ newlines → 2) |
+
+### Requirements
+
+| Requirement | Minimum | Notes |
+|-------------|---------|-------|
+| Node.js | 18+ | For script execution |
+| fs/promises | Built-in | File system access |
+
+---
+
+## 2. 🚀 QUICK START
+
+### Basic Usage
+
+```javascript
+const { populateTemplate } = require('./renderers');
+
+// Render template with data
+const result = await populateTemplate('template.md', {
+  PROJECT_NAME: 'MyProject',
+  DESCRIPTION: 'A great project',
+  features: ['Fast', 'Simple', 'Reliable']
+});
+
+console.log(result);
+```
+
+### Template Syntax
+
+```markdown
+# {{PROJECT_NAME}}
+
+{{DESCRIPTION}}
+
+## Features
+{{#features}}
+- {{.}}
+{{/features}}
+
+{{#hasTests}}
+## Testing
+Tests are available.
+{{/hasTests}}
+
+{{^hasTests}}
+## Testing
+No tests yet.
+{{/hasTests}}
+```
+
+### Render Output
+
+```javascript
+const data = {
+  PROJECT_NAME: 'MyTool',
+  DESCRIPTION: 'Fast automation',
+  features: ['Speed', 'Ease'],
+  hasTests: false
+};
+
+// Result:
+// # MyTool
+//
+// Fast automation
+//
+// ## Features
+// - Speed
+// - Ease
+//
+// ## Testing
+// No tests yet.
+```
+
+---
+
+## 3. 📁 STRUCTURE
+
+```
+renderers/
+├── template-renderer.js    # Core template engine
+└── index.js               # Public API exports
+```
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `template-renderer.js` | Core rendering engine with conditionals, loops, and cleanup |
+| `index.js` | Module entry point, exports all renderer functions |
+
+---
+
+## 7. 🛠️ TROUBLESHOOTING
+
+### Common Issues
+
+#### Missing Template Variable
+
+**Symptom**: `⚠️ Missing template data for: {{VAR}}`
+
+**Cause**: Template references a variable not present in data object
+
+**Solution**:
+```javascript
+// Ensure all template variables are in data
+const data = {
+  PROJECT_NAME: 'MyProject',
+  DESCRIPTION: 'Description here',  // Don't forget this!
+  features: []
+};
+
+await populateTemplate('template.md', data);
+```
+
+#### Array Not Rendering
+
+**Symptom**: Loop section appears empty despite data
+
+**Cause**: Data value is not an array or is empty
+
+**Solution**:
+```javascript
+// Check array structure
+const data = {
+  features: ['Item 1', 'Item 2']  // Must be array with items
+};
+
+// For objects in array
+const data = {
+  items: [
+    { name: 'Item 1' },
+    { name: 'Item 2' }
+  ]
+};
+```
+
+#### Inverted Section Not Working
+
+**Symptom**: `{{^VAR}}` section doesn't display when expected
+
+**Cause**: Falsy value detection not matching expectation
+
+**Solution**:
+```javascript
+// Falsy values: undefined, null, false, 0, '', 'false', []
+const data = {
+  hasTests: false,     // ✅ Inverted section will show
+  hasDocs: undefined,  // ✅ Inverted section will show
+  items: []            // ✅ Inverted section will show
+};
+```
+
+### Quick Fixes
+
+| Problem | Quick Fix |
+|---------|-----------|
+| Missing variable | Add all template variables to data object |
+| Empty loop | Check array has items and is not undefined |
+| Extra newlines | Renderer auto-cleans 3+ newlines to 2 |
+| Template comments | Use `stripTemplateConfigComments()` to remove |
+
+### Diagnostic Commands
+
+```javascript
+// Test template rendering
+const { renderTemplate } = require('./renderers');
+
+const template = '{{#test}}Success{{/test}}';
+const data = { test: true };
+console.log(renderTemplate(template, data));
+
+// Check for missing variables
+const result = renderTemplate('{{MISSING}}', {});
+// Logs: ⚠️ Missing template data for: {{MISSING}}
+```
+
+---
+
+## 9. 📚 RELATED DOCUMENTS
+
+### Internal Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [Template Guide](../../references/templates/template_guide.md) | Complete template structure and usage |
+| [Template Style Guide](../../references/templates/template_style_guide.md) | Formatting conventions and patterns |
+| [Template Mapping](../../assets/template_mapping.md) | Which template to use for each document type |
+| [Level Specifications](../../references/templates/level_specifications.md) | Spec folder level requirements |
+
+### External Resources
+
+| Resource | Description |
+|----------|-------------|
+| [Mustache Documentation](https://mustache.github.io/) | Similar template syntax (reference) |
+| [Handlebars Guide](https://handlebarsjs.com/guide/) | Extended template patterns (reference) |

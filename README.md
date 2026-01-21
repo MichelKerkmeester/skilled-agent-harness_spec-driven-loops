@@ -109,11 +109,11 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 
 **This System**
 
-- 10 purpose-built templates
+- 10 core + 26 verbose templates (CORE + ADDENDUM v2.0)
 - 7 slash commands with `:auto`/`:confirm` modes
 - Memory lives IN spec folders (deep integration)
 - 001/002/003 sub-folder versioning
-- 11 scripts handle the boring work
+- 14 scripts handle the boring work (including compose.sh)
 - AI detects frustration, auto-suggests sub-agent
 - Stateless architecture (no STATE.md)
 - Completeness scoring (0-100%)
@@ -248,7 +248,7 @@ specs/042-add-user-authentication/
 **This Spec Kit**
 
 - **Enforcement**: Gate 3 blocks file changes without spec folder
-- **Templates**: 10 purpose-built templates ready to copy
+- **Templates**: 10 core + 26 verbose templates (CORE + ADDENDUM v2.0)
 - **Commands**: 7 slash commands with `:auto`/`:confirm` modes
 - **Memory Integration**: Deep integration, memories live IN spec folders
 - **Session Handover**: `:quick` (15 lines) or `:full` (150 lines)
@@ -288,18 +288,25 @@ specs/042-add-user-authentication/
 **Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
 
 
-### Templates (10 Total)
+### Templates (10 Core + 26 Verbose)
 
+The CORE + ADDENDUM v2.0 architecture provides 10 core templates (minimal) plus 26 verbose variants with extended guidance for new users.
+
+**Core Templates:**
 - **spec.md**: Feature specification with acceptance criteria
 - **plan.md**: Technical implementation plan
 - **tasks.md**: Task breakdown by user story
-- **checklist.md**: QA validation with P0/P1/P2 priorities
-- **decision-record.md**: Architecture Decision Records (ADRs)
+- **checklist.md**: QA validation with P0/P1/P2 priorities (Level 2+)
+- **decision-record.md**: Architecture Decision Records (Level 3+)
+- **implementation-summary.md**: Post-implementation summary
+
+**Utility Templates:**
 - **research.md**: Comprehensive technical research
 - **handover.md**: Session continuity for multi-session work
 - **debug-delegation.md**: Sub-agent debugging tasks
-- **implementation-summary.md**: Post-implementation summary of what was built
-- **context_template.md**: Memory file generation template (internal)
+- **context_template.md**: Memory file generation (internal)
+
+**Verbose Variants:** Set `SPECKIT_TEMPLATE_STYLE=verbose` for templates with `[YOUR_VALUE_HERE:]`, `[NEEDS CLARIFICATION:]`, and `[example:]` guidance patterns.
 
 
 ### Memory Integration

@@ -93,7 +93,7 @@ $ARGUMENTS
 
 ---
 
-## 4. 📊 DASHBOARD MODE (No Arguments)
+## 4. 📊 DASHBOARD MODE
 
 **Trigger:** `/search:index` with no arguments
 
@@ -389,7 +389,7 @@ Rust, Python, JavaScript, TypeScript, Go, C, C++, Java, C#, Bash, Ruby, Kotlin, 
 
 ---
 
-## 12. 🌐 HTTP SERVER MODE (Visualization UI)
+## 12. 🌐 HTTP SERVER MODE
 
 **Trigger:** `ui`, `viz`, `visual`, `frontend`, `http`, `server`
 

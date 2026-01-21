@@ -1,25 +1,12 @@
-/**
- * @fileoverview Memory trigger matching handler with cognitive features.
- * Implements fast phrase matching with attention decay, tiered content injection,
- * and co-activation for the memory_match_triggers tool.
- *
- * Cognitive Flow (when session_id provided):
- * 1. DECAY: Apply turn-based decay to all working memory scores
- * 2. MATCH: Find memories matching trigger phrases
- * 3. ACTIVATE: Set matched memories to score = 1.0
- * 4. CO-ACTIVATE: Boost related memories (+0.35)
- * 5. CLASSIFY: Assign HOT/WARM/COLD tiers
- * 6. RETURN: Tiered content (HOT=full, WARM=summary)
- *
- * @version 1.7.1 - Cognitive Memory Features
- * @module mcp_server/handlers/memory-triggers
- */
+// ───────────────────────────────────────────────────────────────
+// HANDLERS: MEMORY TRIGGERS
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');
 
 /* ───────────────────────────────────────────────────────────────
-   DEPENDENCIES
+   1. DEPENDENCIES
    ─────────────────────────────────────────────────────────────── */
 
 // Core utilities
@@ -37,12 +24,11 @@ const tierClassifier = require(path.join(LIB_DIR, 'cognitive', 'tier-classifier.
 const coActivation = require(path.join(LIB_DIR, 'cognitive', 'co-activation.js'));
 
 /* ───────────────────────────────────────────────────────────────
-   HANDLER: memory_match_triggers
+   2. HANDLER: memory_match_triggers
    ─────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_match_triggers tool - fast phrase matching with cognitive features
- * v1.7.1: Adds attention decay, tiered content injection, and co-activation
  *
  * @param {Object} args - Tool arguments
  * @param {string} args.prompt - User prompt to match against trigger phrases
@@ -80,9 +66,9 @@ async function handle_memory_match_triggers(args) {
 
   // Check if cognitive features are enabled and requested
   const use_cognitive = include_cognitive &&
-                       session_id &&
-                       workingMemory.isEnabled() &&
-                       workingMemory.getDb();
+    session_id &&
+    workingMemory.isEnabled() &&
+    workingMemory.getDb();
 
   // Step 1: DECAY - Apply decay to all working memory scores (if cognitive enabled)
   let decay_stats = null;
@@ -239,7 +225,7 @@ async function handle_memory_match_triggers(args) {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   EXPORTS
+   2. EXPORTS
    ─────────────────────────────────────────────────────────────── */
 
 module.exports = {

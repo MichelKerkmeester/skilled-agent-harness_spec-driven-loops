@@ -1,6 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: attention-decay.js
-// Unit tests for cognitive attention decay module
+// TEST: ATTENTION DECAY
 // ───────────────────────────────────────────────────────────────
 
 'use strict';
@@ -46,7 +45,7 @@ function skip(name, reason) {
    2. MODULE UNDER TEST
 ──────────────────────────────────────────────────────────────── */
 
-const LIB_PATH = path.join(__dirname, '..', 'lib');
+const LIB_PATH = path.join(__dirname, '..', 'lib', 'cognitive');
 const attentionDecay = require(path.join(LIB_PATH, 'attention-decay.js'));
 
 /* ─────────────────────────────────────────────────────────────

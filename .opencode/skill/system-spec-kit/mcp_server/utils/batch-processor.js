@@ -1,8 +1,6 @@
-/**
- * @fileoverview Batch processing utilities with retry logic for MCP context server
- * Provides controlled batch execution with exponential backoff for transient failures.
- * @module mcp_server/utils/batch-processor
- */
+// ───────────────────────────────────────────────────────────────
+// UTILS: BATCH PROCESSOR
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');

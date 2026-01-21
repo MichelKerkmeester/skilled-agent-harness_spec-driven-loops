@@ -3,11 +3,11 @@ title: Level Selection Guide
 description: Guide to selecting appropriate documentation levels based on task complexity.
 ---
 
-# Level Selection Guide
+# Level Selection Guide - Complexity Scoring Algorithm
 
 Guide to selecting appropriate documentation levels based on task complexity.
 
-> **Note:** This guide provides conceptual guidance for level selection. The automated detection scripts (`detect-complexity.js`, `expand-template.js`) have been deprecated in favor of pre-expanded level folders. Use `--level N` with `create-spec-folder.sh` to select a level directly.
+> **Note:** This guide provides conceptual guidance for level selection. The automated detection scripts (`detect-complexity.js`, `expand-template.js`) have been deprecated in favor of pre-expanded level folders. Use `--level N` with `scripts/spec/create.sh` to select a level directly.
 
 ---
 
@@ -100,23 +100,51 @@ Level 3+ includes everything from Level 3 plus:
 
 ## 4. 🔧 CLI TOOL
 
-### create-spec-folder.sh
+### spec/create.sh
 
 Create spec folder with pre-expanded templates from level-specific folders:
 
 ```bash
 # Create Level 1 spec folder (default)
-./scripts/create-spec-folder.sh "Simple bugfix"
+./scripts/spec/create.sh "Simple bugfix"
 
 # Create Level 2 spec folder
-./scripts/create-spec-folder.sh "Add OAuth2 authentication" --level 2
+./scripts/spec/create.sh "Add OAuth2 authentication" --level 2
 
 # Create Level 3 spec folder
-./scripts/create-spec-folder.sh "Major architecture redesign" --level 3
+./scripts/spec/create.sh "Major architecture redesign" --level 3
 
 # Create Level 3+ spec folder (extended)
-./scripts/create-spec-folder.sh "Platform migration" --level 3+
+./scripts/spec/create.sh "Platform migration" --level 3+
+
+# Use verbose templates (for new users or complex requirements)
+./scripts/spec/create.sh "Complex feature" --style verbose
 ```
+
+### Template Style Preference
+
+Templates are available in two styles:
+
+| Style | When to Use | Configuration |
+|-------|-------------|---------------|
+| **Minimal** (default) | Experienced users, quick iteration | `SPECKIT_TEMPLATE_STYLE=minimal` |
+| **Verbose** | New users, complex requirements, onboarding | `SPECKIT_TEMPLATE_STYLE=verbose` |
+
+**Configure preference:**
+```bash
+# Via environment variable (persistent)
+export SPECKIT_TEMPLATE_STYLE=verbose
+
+# Via CLI flag (per invocation)
+./scripts/spec/create.sh "Feature name" --style verbose
+```
+
+**Verbose templates include:**
+- `[YOUR_VALUE_HERE: description]` - Placeholders with guidance
+- `[NEEDS CLARIFICATION: (a) (b) (c)]` - Multiple-choice questions
+- `[example: content]` - Inline examples
+
+See `templates/verbose/README.md` for detailed pattern documentation.
 
 **Level Folders:**
 Templates are pre-expanded and ready to use in level-specific folders:

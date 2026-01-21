@@ -35,13 +35,13 @@ Skill Advisor is a Python script that analyzes user requests and recommends the 
 
 ### Key Features
 
-| Feature                     | Description                                                  |
-| --------------------------- | ------------------------------------------------------------ |
+| Feature                     | Description                                                 |
+| --------------------------- | ----------------------------------------------------------- |
 | **Dynamic Skill Discovery** | Automatically scans `.opencode/skill/` for available skills |
-| **Synonym Expansion**       | Maps user language to technical terms                        |
-| **Intent Boosting**         | High-confidence keywords directly map to specific skills     |
-| **Confidence Scoring**      | Returns 0-0.95 confidence score for each recommendation      |
-| **JSON Output**             | Machine-readable output for automation                       |
+| **Synonym Expansion**       | Maps user language to technical terms                       |
+| **Intent Boosting**         | High-confidence keywords directly map to specific skills    |
+| **Confidence Scoring**      | Returns 0-0.95 confidence score for each recommendation     |
+| **JSON Output**             | Machine-readable output for automation                      |
 
 ### How It Integrates with AGENTS.md
 
@@ -62,15 +62,15 @@ Skill Advisor is a Python script that analyzes user requests and recommends the 
 │  ┌─────────────────────────────────────────┐                     │
 │  │ [                                       │                     │
 │  │   {                                     │                     │
-│  │     "skill": "workflows-git",           │                     │
-│  │     "confidence": 0.92,                 │                     │
+│  │     "skill": "workflows-git",           │                      │
+│  │     "confidence": 0.92,                 │                      │
 │  │     "reason": "Matched: !commit, git"   │                     │
 │  │   }                                     │                     │
 │  │ ]                                       │                     │
 │  └────────────────────┬────────────────────┘                     │
 │                       │                                          │
 │                       ▼                                          │
-│  IF confidence > 0.8 → MUST invoke skill                         │
+│  IF confidence > 0.8 → MUST invoke skill                          │
 │  ELSE → Proceed with manual tool selection                       │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
@@ -163,7 +163,7 @@ fi
 │  │  3. Expand with synonyms                                     │ │
 │  │  4. Apply intent boosters                                    │ │
 │  │  5. Score against skill descriptions                         │ │
-│  │  6. Calculate confidence                                     │ │
+│  │  6. Calculate confidence                                      │ │
 │  │  7. Return sorted recommendations                            │ │
 │  └──────────────────────────────────────────────────────────────┘ │
 │                            │                                      │
@@ -171,7 +171,7 @@ fi
 │  ┌──────────────────────────────────────────────────────────────┐ │
 │  │                    get_skills()                              │ │
 │  │                                                              │ │
-│  │  • Scans .opencode/skill/*/SKILL.md                         │ │
+│  │  • Scans .opencode/skill/*/SKILL.md                          │ │
 │  │  • Parses YAML frontmatter (name, description)               │ │
 │  │  • Adds hardcoded command bridges                            │ │
 │  └──────────────────────────────────────────────────────────────┘ │
@@ -187,7 +187,7 @@ User Input: "help me fix the authentication bug"
          ▼
 ┌─────────────────────────────────────┐
 │ 1. TOKENIZE                         │
-│    ["help", "me", "fix", "the",     │
+│    ["help", "me", "fix", "the",      │
 │     "authentication", "bug"]        │
 └────────────────┬────────────────────┘
                  │
@@ -195,19 +195,19 @@ User Input: "help me fix the authentication bug"
 ┌─────────────────────────────────────┐
 │ 2. FILTER STOP WORDS                │
 │    Remove: "help", "me", "the"      │
-│    Keep: ["fix", "authentication",  │
+│    Keep: ["fix", "authentication",   │
 │           "bug"]                    │
 └────────────────┬────────────────────┘
                  │
                  ▼
 ┌─────────────────────────────────────┐
 │ 3. EXPAND SYNONYMS                  │
-│    "fix" → ["debug", "correct",     │
+│    "fix" → ["debug", "correct",      │
 │             "resolve", "code"]      │
 │    "bug" → ["debug", "error",       │
 │             "issue", "defect"]      │
 │                                     │
-│    Expanded: ["fix", "authentication│
+│    Expanded: ["fix", "authentication │
 │    "bug", "debug", "correct",       │
 │    "resolve", "code", "error",      │
 │    "issue", "defect", ...]          │
@@ -216,11 +216,11 @@ User Input: "help me fix the authentication bug"
                  ▼
 ┌─────────────────────────────────────┐
 │ 4. APPLY INTENT BOOSTERS            │
-│    "debug" → workflows-chrome-      │
+│    "debug" → workflows-chrome-       │
 │              devtools (+0.5)        │
 │                                     │
 │    Pre-calculated boost for         │
-│    workflows-chrome-devtools: 0.5   │
+│    workflows-chrome-devtools: 0.5    │
 └────────────────┬────────────────────┘
                  │
                  ▼
@@ -242,10 +242,10 @@ User Input: "help me fix the authentication bug"
 │    Two-tiered formula:              │
 │                                     │
 │    IF intent boost matched:         │
-│      confidence = min(0.50 + score  │
+│      confidence = min(0.50 + score   │
 │                       * 0.15, 0.95) │
 │    ELSE (corpus only):              │
-│      confidence = min(0.25 + score  │
+│      confidence = min(0.25 + score   │
 │                       * 0.15, 0.95) │
 │                                     │
 │    • With boost: score=2 → 0.80     │
@@ -258,10 +258,10 @@ User Input: "help me fix the authentication bug"
 │ 7. RETURN SORTED RECOMMENDATIONS    │
 │                                     │
 │    [                                │
-│      { "skill": "workflows-code",   │
-│        "confidence": 0.85,          │
+│      { "skill": "workflows-code",    │
+│        "confidence": 0.85,           │
 │        "reason": "Matched: debug,   │
-│                   code, fix" }      │
+│                   code, fix" }       │
 │    ]                                │
 └─────────────────────────────────────┘
 ```
@@ -355,10 +355,10 @@ These boost multiple skills simultaneously when the keyword is detected. The `(m
 
 The script uses a **two-tiered confidence formula** based on whether intent boosters matched:
 
-| Condition                | Formula                           | Purpose                        |
-| ------------------------ | --------------------------------- | ------------------------------ |
-| Intent booster matched   | `min(0.50 + score * 0.15, 0.95)`  | Higher confidence for explicit signals |
-| No intent booster        | `min(0.25 + score * 0.15, 0.95)`  | Conservative for corpus-only matches   |
+| Condition              | Formula                          | Purpose                                |
+| ---------------------- | -------------------------------- | -------------------------------------- |
+| Intent booster matched | `min(0.50 + score * 0.15, 0.95)` | Higher confidence for explicit signals |
+| No intent booster      | `min(0.25 + score * 0.15, 0.95)` | Conservative for corpus-only matches   |
 
 **Score → Confidence mapping (with intent boost):**
 
@@ -394,16 +394,16 @@ Slash commands exposed as pseudo-skills for routing:
 
 The script requires customization for each project. See [SET-UP_GUIDE.md](./SET-UP_GUIDE.md) for detailed instructions.
 
-| Component              | Location      | Purpose                          |
-| ---------------------- | ------------- | -------------------------------- |
-| `SKILLS_DIR`           | Line 17       | Path to skills directory         |
-| `STOP_WORDS`           | Lines 21-47   | Words filtered from queries      |
-| `SYNONYM_MAP`          | Lines 50-100  | User intent → technical terms    |
-| `INTENT_BOOSTERS`      | Lines 108-252 | Keyword → skill direct mappings  |
-| `MULTI_SKILL_BOOSTERS` | Lines 255-270 | Ambiguous keyword → multi-skill  |
-| `parse_frontmatter`    | Line 273      | YAML frontmatter parser          |
-| `get_skills`           | Line 292      | Skill discovery function         |
-| `analyze_request`      | Line 328      | Main analysis function           |
+| Component              | Location      | Purpose                         |
+| ---------------------- | ------------- | ------------------------------- |
+| `SKILLS_DIR`           | Line 17       | Path to skills directory        |
+| `STOP_WORDS`           | Lines 21-47   | Words filtered from queries     |
+| `SYNONYM_MAP`          | Lines 50-100  | User intent → technical terms   |
+| `INTENT_BOOSTERS`      | Lines 108-252 | Keyword → skill direct mappings |
+| `MULTI_SKILL_BOOSTERS` | Lines 255-270 | Ambiguous keyword → multi-skill |
+| `parse_frontmatter`    | Line 273      | YAML frontmatter parser         |
+| `get_skills`           | Line 292      | Skill discovery function        |
+| `analyze_request`      | Line 328      | Main analysis function          |
 
 ### SKILLS_DIR Configuration
 
@@ -522,15 +522,15 @@ $ python skill_advisor.py "hello"
 
 ### Common Patterns
 
-| User Intent        | Expected Skill            | Key Terms                                 |
-| ------------------ | ------------------------- | ----------------------------------------- |
+| User Intent        | Expected Skill            | Key Terms                                                |
+| ------------------ | ------------------------- | -------------------------------------------------------- |
 | Git operations     | workflows-git             | commit, push, branch, merge, worktree, github, pr, issue |
-| Browser debugging  | workflows-chrome-devtools | devtools, chrome, browser, debug, console |
-| Documentation      | workflows-documentation   | markdown, flowchart, diagram, readme      |
-| Code search        | mcp-narsil                | search, find, semantic, symbols, functions |
-| Structure analysis | mcp-narsil                | symbols, functions, classes, ast, security, call-graph |
-| Memory/context     | system-spec-kit           | remember, save, context, checkpoint       |
-| Specifications     | system-spec-kit           | spec, checklist, plan, specification      |
+| Browser debugging  | workflows-chrome-devtools | devtools, chrome, browser, debug, console                |
+| Documentation      | workflows-documentation   | markdown, flowchart, diagram, readme                     |
+| Code search        | mcp-narsil                | search, find, semantic, symbols, functions               |
+| Structure analysis | mcp-narsil                | symbols, functions, classes, ast, security, call-graph   |
+| Memory/context     | system-spec-kit           | remember, save, context, checkpoint                      |
+| Specifications     | system-spec-kit           | spec, checklist, plan, specification                     |
 
 **External MCP Tools:**
 ```bash

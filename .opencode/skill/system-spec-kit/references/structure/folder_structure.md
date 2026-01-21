@@ -13,6 +13,39 @@ Spec folder naming conventions, level requirements, and organization patterns.
 
 This document covers spec folder organization, naming conventions, and level-specific requirements for the Spec Kit system.
 
+### Template Directory Structure
+
+```
+templates/
+├── core/                    # Minimal templates (~60-90 LOC) - source components
+│   ├── spec-core.md
+│   ├── plan-core.md
+│   ├── tasks-core.md
+│   └── impl-summary-core.md
+│
+├── addendum/                # Level-specific additions
+│   ├── level2-verify/       # +Verification addendums
+│   ├── level3-arch/         # +Architecture addendums
+│   └── level3plus-govern/   # +Governance addendums
+│
+├── verbose/                 # Extended guidance templates (~200-300 LOC)
+│   ├── core/                # Verbose versions with guidance
+│   │   ├── spec-core-verbose.md
+│   │   ├── plan-core-verbose.md
+│   │   ├── tasks-core-verbose.md
+│   │   └── impl-summary-core-verbose.md
+│   └── README.md            # Verbose pattern documentation
+│
+├── level_1/                 # Pre-composed Level 1 (ALWAYS use for new specs)
+├── level_2/                 # Pre-composed Level 2
+├── level_3/                 # Pre-composed Level 3
+├── level_3+/                # Pre-composed Level 3+
+│
+└── [cross-level templates]  # handover.md, debug-delegation.md, research.md
+```
+
+> **IMPORTANT:** Always copy templates from `level_N/` folders for new specs. The `core/`, `addendum/`, and `verbose/` folders are source components.
+
 ---
 
 ## 2. 🏷️ NAMING CONVENTION

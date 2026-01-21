@@ -157,7 +157,7 @@ code_mode_call_tool_chain({
 
 ---
 
-## 5. 📊 DASHBOARD MODE (No Arguments)
+## 5. 📊 DASHBOARD MODE
 
 **Trigger:** `/search:code` with no arguments
 

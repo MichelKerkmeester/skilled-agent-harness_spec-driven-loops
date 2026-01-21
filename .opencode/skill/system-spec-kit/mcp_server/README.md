@@ -41,15 +41,15 @@ The `mcp_server/` folder is the standalone MCP server implementation for spec ki
 
 ### Key Features
 
-| Feature                  | Description                                                   |
-| ------------------------ | ------------------------------------------------------------- |
-| **14 MCP Tools**         | Complete CRUD + search operations for memory management       |
-| **Hybrid Search**        | FTS5 keyword + vector semantic search with RRF fusion         |
-| **Multi-Provider Embeddings** | HF Local (768d), Voyage AI (1024d), OpenAI (1536d) - auto-detected |
-| **Six Importance Tiers** | constitutional/critical/important/normal/temporary/deprecated |
-| **Checkpoints**          | Save/restore memory state for safety                          |
-| **Auto-Indexing**        | Startup scan for automatic indexing (file watcher not yet implemented) |
-| **Auto Memory Surfacing** | SK-004: Automatically surfaces constitutional + triggered memories on tool calls |
+| Feature                       | Description                                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------- |
+| **14 MCP Tools**              | Complete CRUD + search operations for memory management                          |
+| **Hybrid Search**             | FTS5 keyword + vector semantic search with RRF fusion                            |
+| **Multi-Provider Embeddings** | HF Local (768d), Voyage AI (1024d), OpenAI (1536d) - auto-detected               |
+| **Six Importance Tiers**      | constitutional/critical/important/normal/temporary/deprecated                    |
+| **Checkpoints**               | Save/restore memory state for safety                                             |
+| **Auto-Indexing**             | Startup scan for automatic indexing (file watcher not yet implemented)           |
+| **Auto Memory Surfacing**     | SK-004: Automatically surfaces constitutional + triggered memories on tool calls |
 
 ### Constitutional Tier
 
@@ -60,7 +60,7 @@ The **constitutional** tier is the highest importance level, designed for operat
 | **Always surfaces**  | Included at top of every `memory_search` result by default |
 | **Fixed similarity** | Returns `similarity: 100` regardless of query relevance    |
 | **Response flag**    | `isConstitutional: true` in search results                 |
-| **Token budget**     | ~2000 tokens max for constitutional memories per search     |
+| **Token budget**     | ~2000 tokens max for constitutional memories per search    |
 | **Control**          | Set `includeConstitutional: false` to disable              |
 
 **Use cases:**
@@ -74,12 +74,12 @@ The **constitutional** tier is the highest importance level, designed for operat
 
 The **SK-004 Memory Surface Hook** automatically injects relevant context when memory-aware tools are invoked. This provides bonus context without explicit searching.
 
-| Aspect | Details |
-| ------ | ------- |
-| **Trigger** | Any call to memory-aware tools (see below) |
-| **What surfaces** | Constitutional memories + triggered memories matching query |
-| **Response field** | `auto_surfaced_context` added to tool response |
-| **Cache TTL** | 60 seconds for constitutional memories |
+| Aspect             | Details                                                     |
+| ------------------ | ----------------------------------------------------------- |
+| **Trigger**        | Any call to memory-aware tools (see below)                  |
+| **What surfaces**  | Constitutional memories + triggered memories matching query |
+| **Response field** | `auto_surfaced_context` added to tool response              |
+| **Cache TTL**      | 60 seconds for constitutional memories                      |
 
 **Memory-Aware Tools:**
 - `memory_search`
@@ -108,9 +108,9 @@ The **SK-004 Memory Surface Hook** automatically injects relevant context when m
 
 **Reference:** See `specs/005-hooks/002-hook-analysis/implementation-summary.md` for implementation details.
 
-### v1.7.1: Cognitive Memory Features
+### Cognitive Memory Features
 
-The cognitive memory system (v1.7.1) implements a biologically-inspired working memory model with attention-based activation, decay, and spreading activation for related memories.
+The cognitive memory system implements a biologically-inspired working memory model with attention-based activation, decay, and spreading activation for related memories.
 
 #### Cognitive Memory Flow
 
@@ -157,14 +157,14 @@ WORKING_MEMORY_CONFIG = {
 
 **Importance Tier Decay Rates:**
 
-| Category | Tier | Decay Rate | Behavior |
-| -------- | ---- | ---------- | -------- |
-| **Protected** | `constitutional` | 1.0 | Never decays |
-| **Protected** | `critical` | 1.0 | Never decays |
-| **Protected** | `important` | 1.0 | Never decays |
-| **Protected** | `deprecated` | 1.0 | Never decays (but excluded from results) |
-| **Decaying** | `normal` | 0.80 | Standard decay per turn |
-| **Decaying** | `temporary` | 0.60 | Fast decay per turn |
+| Category      | Tier             | Decay Rate | Behavior                                 |
+| ------------- | ---------------- | ---------- | ---------------------------------------- |
+| **Protected** | `constitutional` | 1.0        | Never decays                             |
+| **Protected** | `critical`       | 1.0        | Never decays                             |
+| **Protected** | `important`      | 1.0        | Never decays                             |
+| **Protected** | `deprecated`     | 1.0        | Never decays (but excluded from results) |
+| **Decaying**  | `normal`         | 0.80       | Standard decay per turn                  |
+| **Decaying**  | `temporary`      | 0.60       | Fast decay per turn                      |
 
 **Note:** Decay rates determine how quickly memories fade from working memory. Protected tiers maintain full attention score indefinitely, while decaying tiers lose relevance over conversation turns.
 
@@ -176,11 +176,11 @@ WORKING_MEMORY_CONFIG = {
 
 #### New Parameters for memory_match_triggers
 
-| Parameter          | Type    | Default | Description                                |
-| ------------------ | ------- | ------- | ------------------------------------------ |
-| `session_id`       | string  | -       | Session identifier for cognitive features  |
-| `turn_number`      | number  | 1       | Current conversation turn for decay calc   |
-| `include_cognitive`| boolean | true    | Enable cognitive features when session set |
+| Parameter           | Type    | Default | Description                                |
+| ------------------- | ------- | ------- | ------------------------------------------ |
+| `session_id`        | string  | -       | Session identifier for cognitive features  |
+| `turn_number`       | number  | 1       | Current conversation turn for decay calc   |
+| `include_cognitive` | boolean | true    | Enable cognitive features when session set |
 
 #### Response Format Changes
 
@@ -206,10 +206,10 @@ When cognitive features are enabled, the response includes a `cognitive` field w
 
 #### Feature Flags
 
-| Flag                    | Default | Description                              |
-| ----------------------- | ------- | ---------------------------------------- |
-| `ENABLE_WORKING_MEMORY` | true    | Enable working memory system             |
-| `ENABLE_CO_ACTIVATION`  | true    | Enable spreading activation for related  |
+| Flag                    | Default | Description                             |
+| ----------------------- | ------- | --------------------------------------- |
+| `ENABLE_WORKING_MEMORY` | true    | Enable working memory system            |
+| `ENABLE_CO_ACTIVATION`  | true    | Enable spreading activation for related |
 
 #### Three-Layer Memory Model
 
@@ -232,12 +232,12 @@ When cognitive features are enabled, the response includes a `cognitive` field w
 
 #### Session Management
 
-| Aspect             | Behavior                                        |
-| ------------------ | ----------------------------------------------- |
-| **Isolation**      | Each session has isolated working memory state  |
-| **Turn Tracking**  | Counter advances on each `memory_match_triggers` call |
-| **Decay Rate**     | 0.80 per turn (configurable via config)         |
-| **Expiration**     | Sessions auto-expire after 1 hour of inactivity |
+| Aspect            | Behavior                                              |
+| ----------------- | ----------------------------------------------------- |
+| **Isolation**     | Each session has isolated working memory state        |
+| **Turn Tracking** | Counter advances on each `memory_match_triggers` call |
+| **Decay Rate**    | 0.80 per turn (configurable via config)               |
+| **Expiration**    | Sessions auto-expire after 1 hour of inactivity       |
 
 ### Architecture
 
@@ -361,24 +361,24 @@ Browse stored memories with pagination and filtering.
 
 Fast trigger phrase matching (<50ms) with optional cognitive memory features.
 
-| Parameter          | Type    | Default      | Description                                              |
-| ------------------ | ------- | ------------ | -------------------------------------------------------- |
-| `prompt`           | string  | **Required** | User prompt to match against trigger phrases             |
-| `limit`            | number  | 3            | Maximum matching memories to return                      |
-| `session_id`       | string  | -            | Session identifier for working memory (v1.7.1+)           |
-| `turn_number`      | number  | -            | Current turn for decay calculation (v1.7.1+)              |
-| `include_cognitive`| boolean | false        | Enable cognitive features (decay, co-activation) (v1.7.1+)|
+| Parameter           | Type    | Default      | Description                                                |
+| ------------------- | ------- | ------------ | ---------------------------------------------------------- |
+| `prompt`            | string  | **Required** | User prompt to match against trigger phrases               |
+| `limit`             | number  | 3            | Maximum matching memories to return                        |
+| `session_id`        | string  | -            | Session identifier for working memory (v1.7.1+)            |
+| `turn_number`       | number  | -            | Current turn for decay calculation (v1.7.1+)               |
+| `include_cognitive` | boolean | false        | Enable cognitive features (decay, co-activation) (v1.7.1+) |
 
 **Response includes:** `memoryId`, `matchedPhrases[]`, `title`, `importanceWeight`
 
 **Cognitive Response Fields (when `include_cognitive: true`):**
 
-| Field              | Type   | Description                                    |
-| ------------------ | ------ | ---------------------------------------------- |
-| `attention_score`  | number | Current attention score (0.0-1.0)              |
-| `tier`             | string | HOT, WARM, or COLD classification              |
-| `content`          | string | Full content (HOT) or summary (WARM)           |
-| `co_activated`     | array  | Related memories activated by spreading        |
+| Field             | Type   | Description                             |
+| ----------------- | ------ | --------------------------------------- |
+| `attention_score` | number | Current attention score (0.0-1.0)       |
+| `tier`            | string | HOT, WARM, or COLD classification       |
+| `content`         | string | Full content (HOT) or summary (WARM)    |
+| `co_activated`    | array  | Related memories activated by spreading |
 
 **Example with cognitive features:**
 ```typescript
@@ -395,11 +395,11 @@ memory_match_triggers({
 
 Delete memories by ID or spec folder.
 
-| Parameter    | Type    | Required | Description                                           |
-| ------------ | ------- | -------- | ----------------------------------------------------- |
-| `id`         | number  | No*      | Memory ID to delete                                   |
-| `specFolder` | string  | No*      | Delete all memories in spec folder                    |
-| `confirm`    | boolean | No       | Required for bulk delete (when specFolder is used)    |
+| Parameter    | Type    | Required | Description                                             |
+| ------------ | ------- | -------- | ------------------------------------------------------- |
+| `id`         | number  | No*      | Memory ID to delete                                     |
+| `specFolder` | string  | No*      | Delete all memories in spec folder                      |
+| `confirm`    | boolean | No       | Required for bulk delete (when specFolder is used)      |
 | `dryRun`     | boolean | No       | Preview what would be deleted without deleting (v12.6+) |
 
 *Either `id` or `specFolder` is required.
@@ -418,11 +418,11 @@ memory_delete({ specFolder: "old-feature", confirm: true })
 
 Scan workspace for memory files and index them.
 
-| Parameter              | Type    | Default | Description                                           |
-| ---------------------- | ------- | ------- | ----------------------------------------------------- |
-| `specFolder`           | string  | -       | Limit scan to specific spec folder                    |
-| `force`                | boolean | false   | Re-index all files (ignore content hash)              |
-| `includeConstitutional`| boolean | true    | Also scan `.opencode/skill/*/constitutional/` directories |
+| Parameter               | Type    | Default | Description                                               |
+| ----------------------- | ------- | ------- | --------------------------------------------------------- |
+| `specFolder`            | string  | -       | Limit scan to specific spec folder                        |
+| `force`                 | boolean | false   | Re-index all files (ignore content hash)                  |
+| `includeConstitutional` | boolean | true    | Also scan `.opencode/skill/*/constitutional/` directories |
 
 **Examples:**
 ```typescript
@@ -445,61 +445,61 @@ memory_index_scan({ includeConstitutional: false })
 
 ### Core Modules
 
-| Module                       | Purpose                                                            |
-| ---------------------------- | ------------------------------------------------------------------ |
-| `providers/embeddings.js`    | Local embedding generation using HuggingFace nomic-embed-text-v1.5 |
-| `search/vector-index.js`     | SQLite + sqlite-vec database operations (CRUD, search)             |
-| `parsing/memory-parser.js`   | Memory file parsing, validation, and metadata extraction           |
-| `parsing/trigger-matcher.js` | Fast phrase matching for proactive memory surfacing                |
-| `parsing/trigger-extractor.js` | TF-IDF based automatic trigger phrase extraction                 |
+| Module                         | Purpose                                                            |
+| ------------------------------ | ------------------------------------------------------------------ |
+| `providers/embeddings.js`      | Local embedding generation using HuggingFace nomic-embed-text-v1.5 |
+| `search/vector-index.js`       | SQLite + sqlite-vec database operations (CRUD, search)             |
+| `parsing/memory-parser.js`     | Memory file parsing, validation, and metadata extraction           |
+| `parsing/trigger-matcher.js`   | Fast phrase matching for proactive memory surfacing                |
+| `parsing/trigger-extractor.js` | TF-IDF based automatic trigger phrase extraction                   |
 
 ### Search Modules
 
-| Module                   | Purpose                                     |
-| ------------------------ | ------------------------------------------- |
+| Module                    | Purpose                                     |
+| ------------------------- | ------------------------------------------- |
 | `search/hybrid-search.js` | Combined FTS5 + vector search with fallback |
-| `search/rrf-fusion.js`   | Reciprocal Rank Fusion for result merging   |
-| `search/reranker.js`     | Result reranking based on relevance         |
+| `search/rrf-fusion.js`    | Reciprocal Rank Fusion for result merging   |
+| `search/reranker.js`      | Result reranking based on relevance         |
 
 ### Scoring & Ranking Modules
 
-| Module                         | Purpose                                           |
-| ------------------------------ | ------------------------------------------------- |
-| `scoring/scoring.js`           | Base relevance scoring algorithms                 |
-| `scoring/composite-scoring.js` | Multi-factor composite score calculation          |
-| `scoring/importance-tiers.js`  | Six-tier importance system with boost multipliers |
-| `cognitive/temporal-contiguity.js` | Adjacent memory linking and retrieval         |
+| Module                             | Purpose                                           |
+| ---------------------------------- | ------------------------------------------------- |
+| `scoring/scoring.js`               | Base relevance scoring algorithms                 |
+| `scoring/composite-scoring.js`     | Multi-factor composite score calculation          |
+| `scoring/importance-tiers.js`      | Six-tier importance system with boost multipliers |
+| `cognitive/temporal-contiguity.js` | Adjacent memory linking and retrieval             |
 
 ### State Management Modules
 
-| Module                       | Purpose                                   |
-| ---------------------------- | ----------------------------------------- |
-| `storage/checkpoints.js`     | Save/restore memory state snapshots       |
-| `storage/history.js`         | Memory access and modification history    |
-| `storage/access-tracker.js`  | Load count tracking for popularity boost  |
+| Module                          | Purpose                                   |
+| ------------------------------- | ----------------------------------------- |
+| `storage/checkpoints.js`        | Save/restore memory state snapshots       |
+| `storage/history.js`            | Memory access and modification history    |
+| `storage/access-tracker.js`     | Load count tracking for popularity boost  |
 | `scoring/confidence-tracker.js` | Validation feedback and confidence scores |
 
 ### Infrastructure Modules
 
-| Module                      | Purpose                                         |
-| --------------------------- | ----------------------------------------------- |
-| `config-loader.js`          | Configuration file loading and validation       |
-| `channel.js`                | Communication channel management                |
-| `parsing/entity-scope.js`   | Entity and scope resolution                     |
-| `errors.js`                 | Custom error types and error handling utilities |
-| `storage/index-refresh.js`  | Index refresh and maintenance                   |
+| Module                       | Purpose                                         |
+| ---------------------------- | ----------------------------------------------- |
+| `config-loader.js`           | Configuration file loading and validation       |
+| `channel.js`                 | Communication channel management                |
+| `parsing/entity-scope.js`    | Entity and scope resolution                     |
+| `errors.js`                  | Custom error types and error handling utilities |
+| `storage/index-refresh.js`   | Index refresh and maintenance                   |
 | `providers/retry-manager.js` | Failed embedding retry with exponential backoff |
-| `utils/token-budget.js`     | Token limit enforcement for responses           |
+| `utils/token-budget.js`      | Token limit enforcement for responses           |
 
 ### Cognitive Memory Modules (v1.7.1)
 
-| Module                        | Purpose                                              |
-| ----------------------------- | ---------------------------------------------------- |
-| `cognitive/working-memory.js` | Session-based working memory with attention scores   |
-| `cognitive/attention-decay.js` | Turn-based decay mechanics for attention scores     |
-| `cognitive/tier-classifier.js` | HOT/WARM/COLD classification based on attention     |
-| `cognitive/co-activation.js`  | Spreading activation graph for related memories      |
-| `cognitive/summary-generator.js` | Summary generation for WARM tier content          |
+| Module                           | Purpose                                            |
+| -------------------------------- | -------------------------------------------------- |
+| `cognitive/working-memory.js`    | Session-based working memory with attention scores |
+| `cognitive/attention-decay.js`   | Turn-based decay mechanics for attention scores    |
+| `cognitive/tier-classifier.js`   | HOT/WARM/COLD classification based on attention    |
+| `cognitive/co-activation.js`     | Spreading activation graph for related memories    |
+| `cognitive/summary-generator.js` | Summary generation for WARM tier content           |
 
 ---
 
@@ -526,21 +526,21 @@ memory_index_scan({ force: true })
 
 ### Features
 
-| Feature              | Description                        |
-| -------------------- | ---------------------------------- |
+| Feature              | Description                                                       |
+| -------------------- | ----------------------------------------------------------------- |
 | **Scan Pattern**     | `specs/**/memory/**/*.md` and `.opencode/specs/**/memory/**/*.md` |
-| **Content Hash**     | Skip unchanged files (SHA-256)     |
-| **Batch Processing** | 5 files per batch with 100ms delay |
-| **Retry Logic**      | Exponential backoff for failures   |
+| **Content Hash**     | Skip unchanged files (SHA-256)                                    |
+| **Batch Processing** | 5 files per batch with 100ms delay                                |
+| **Retry Logic**      | Exponential backoff for failures                                  |
 
 ### Specs Directory Locations
 
 The memory system supports specs folders in two locations (checked in priority order):
 
-| Priority | Location | Use Case |
-|----------|----------|----------|
-| 1 | `<project>/specs/` | Standard location, visible at project root |
-| 2 | `<project>/.opencode/specs/` | Hidden location, keeps project root clean |
+| Priority | Location                     | Use Case                                   |
+| -------- | ---------------------------- | ------------------------------------------ |
+| 1        | `<project>/specs/`           | Standard location, visible at project root |
+| 2        | `<project>/.opencode/specs/` | Hidden location, keeps project root clean  |
 
 If both locations exist, the project root location takes precedence. A warning is logged when multiple locations are detected.
 
@@ -550,28 +550,28 @@ If both locations exist, the project root location takes precedence. A warning i
 
 ### Environment Variables
 
-| Variable                | Default                                                         | Description                     |
-| ----------------------- | --------------------------------------------------------------- | ------------------------------- |
-| `MEMORY_DB_PATH`        | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | Database location               |
+| Variable                | Default                                                                    | Description                     |
+| ----------------------- | -------------------------------------------------------------------------- | ------------------------------- |
+| `MEMORY_DB_PATH`        | `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | Database location               |
 | `MEMORY_BASE_PATH`      | CWD                                                             | Workspace root for memory files |
 | `HUGGINGFACE_CACHE`     | `~/.cache/huggingface/`                                         | Model cache directory           |
 | `DEBUG_TRIGGER_MATCHER` | `false`                                                         | Enable verbose trigger logs     |
 
 **Tier Threshold Environment Variables:**
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `HOT_THRESHOLD` | 0.8 | Score threshold for HOT tier (0.0-1.0) |
-| `WARM_THRESHOLD` | 0.25 | Score threshold for WARM tier (0.0-1.0) |
-| `MAX_HOT_MEMORIES` | 5 | Maximum HOT tier memories to return |
-| `MAX_WARM_MEMORIES` | 10 | Maximum WARM tier memories to return |
+| Variable            | Default | Description                             |
+| ------------------- | ------- | --------------------------------------- |
+| `HOT_THRESHOLD`     | 0.8     | Score threshold for HOT tier (0.0-1.0)  |
+| `WARM_THRESHOLD`    | 0.25    | Score threshold for WARM tier (0.0-1.0) |
+| `MAX_HOT_MEMORIES`  | 5       | Maximum HOT tier memories to return     |
+| `MAX_WARM_MEMORIES` | 10      | Maximum WARM tier memories to return    |
 
 **Validation:** Invalid values automatically fall back to defaults. `HOT_THRESHOLD` must be greater than `WARM_THRESHOLD`.
 
 ### Database Location
 
 ```text
-{project}/.opencode/skill/system-spec-kit/database/context-index.sqlite
+{project}/.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 ```
 
 Contains:
@@ -613,7 +613,7 @@ See [MCP - Spec Kit Memory Install Guide](../../../install_guides/MCP%20-%20Spec
 #### Database Corruption
 **Symptom:** `SQLITE_CORRUPT` or search returns no results
 **Solution:**
-- Delete database: `rm .opencode/skill/system-spec-kit/database/context-index.sqlite`
+- Delete database: `rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`
 - Re-index: Run `memory_index_scan({ force: true })`
 
 #### Embedding Dimension Mismatch
@@ -632,7 +632,7 @@ See [MCP - Spec Kit Memory Install Guide](../../../install_guides/MCP%20-%20Spec
 
 ```bash
 # Check database status
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memories;"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM memories;"
 
 # Verify MCP server is running
 curl -s http://localhost:3000/health
@@ -647,11 +647,11 @@ memory_index_scan({ force: true })
 
 ### Parent Documentation
 
-| Document      | Location             | Purpose                                    |
-| ------------- | -------------------- | ------------------------------------------ |
-| Skill README  | `../README.md`       | Complete skill documentation (2000+ lines) |
-| SKILL.md      | `../SKILL.md`        | Workflow instructions for AI agents        |
-| Install Guide | `../../../install_guides/MCP - Spec Kit Memory.md` | Detailed installation steps |
+| Document      | Location                                           | Purpose                                    |
+| ------------- | -------------------------------------------------- | ------------------------------------------ |
+| Skill README  | `../README.md`                                     | Complete skill documentation (2000+ lines) |
+| SKILL.md      | `../SKILL.md`                                      | Workflow instructions for AI agents        |
+| Install Guide | `../../../install_guides/MCP - Spec Kit Memory.md` | Detailed installation steps                |
 
 ### Reference Files
 

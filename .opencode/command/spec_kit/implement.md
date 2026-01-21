@@ -271,7 +271,7 @@ If prerequisites are missing, guide user to run `/spec_kit:plan` first.
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW (9 STEPS)
+## 3. 📊 WORKFLOW OVERVIEW
 
 | Step | Name                   | Purpose                                                            | Outputs                   |
 | ---- | ---------------------- | ------------------------------------------------------------------ | ------------------------- |
@@ -298,7 +298,35 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 5. 📌 REFERENCE
+## 5. 📊 OUTPUT FORMATS
+
+### Success Output
+```
+✅ SpecKit Implementation Complete
+
+All 9 implementation steps executed successfully.
+
+Artifacts Created:
+- tasks.md (task breakdown with all items marked [x])
+- implementation-summary.md (completion summary)
+- memory/*.md (session context)
+
+STATUS=OK PATH=[spec-folder-path]
+```
+
+### Failure Output
+```
+❌ SpecKit Implementation Failed
+
+Error: [error description]
+Step: [step number where failure occurred]
+
+STATUS=FAIL ERROR="[message]"
+```
+
+---
+
+## 6. 📌 REFERENCE
 
 **Full details in YAML prompts:**
 - Workflow steps and activities
@@ -315,7 +343,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 6. 🔀 PARALLEL DISPATCH
+## 7. 🔀 PARALLEL DISPATCH
 
 The implement workflow supports parallel agent dispatch for complex phases. This is configured in the YAML prompts.
 
@@ -346,7 +374,7 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ---
 
-## 7. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 8. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Requires existing plan** - Won't create spec.md or plan.md
 - **Starts at implementation** - Skips specification and planning phases
@@ -354,7 +382,7 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ---
 
-## 8. ✅ VALIDATION DURING IMPLEMENTATION
+## 9. ✅ VALIDATION DURING IMPLEMENTATION
 
 Validation runs automatically to catch issues early.
 
@@ -365,7 +393,7 @@ Key rules for implementation phase:
 
 ---
 
-## 9. 🔍 EXAMPLES
+## 10. 🔍 EXAMPLES
 
 **Example 1: Execute Existing Plan (autonomous)**
 ```
@@ -384,7 +412,7 @@ Key rules for implementation phase:
 
 ---
 
-## 10. 🔗 COMMAND CHAIN
+## 11. 🔗 COMMAND CHAIN
 
 This command is part of the SpecKit workflow:
 
@@ -397,7 +425,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 11. 🔜 WHAT NEXT?
+## 12. 📌 NEXT STEPS
 
 After implementation completes, suggest relevant next steps:
 

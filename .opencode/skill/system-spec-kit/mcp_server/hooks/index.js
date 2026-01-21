@@ -1,18 +1,13 @@
-/**
- * @fileoverview Hooks module index - Re-exports all hook modules
- * @module mcp_server/hooks
- *
- * Centralized exports for all MCP server hooks.
- *
- * @version 1.0.0
- */
+// ───────────────────────────────────────────────────────────────
+// MODULE: HOOKS INDEX
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const memorySurface = require('./memory-surface');
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    RE-EXPORTS: MEMORY SURFACE HOOK (SK-004)
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // Constants

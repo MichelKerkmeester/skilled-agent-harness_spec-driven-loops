@@ -1,16 +1,14 @@
-/**
- * @fileoverview Configuration constants for the MCP context server.
- * Centralizes all path definitions, limits, and tuning parameters.
- * @module mcp_server/core/config
- */
+// ───────────────────────────────────────────────────────────────
+// CORE: CONFIG
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');
 const os = require('os');
 
-/* ───────────────────────────────────────────────────────────────
-   PATH CONSTANTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   1. PATH CONSTANTS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Server directory (standalone MCP server location)
@@ -40,7 +38,7 @@ const SHARED_DIR = path.join(SERVER_DIR, '..', 'shared');
  * Database directory path
  * @type {string}
  */
-const DATABASE_DIR = path.join(SERVER_DIR, '..', 'database');
+const DATABASE_DIR = path.join(SERVER_DIR, 'database');
 
 /**
  * Main SQLite database path
@@ -54,9 +52,9 @@ const DATABASE_PATH = path.join(DATABASE_DIR, 'context-index.sqlite');
  */
 const DB_UPDATED_FILE = path.join(DATABASE_DIR, '.db-updated');
 
-/* ───────────────────────────────────────────────────────────────
-   BATCH PROCESSING CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   2. BATCH PROCESSING CONFIGURATION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Number of items to process concurrently in memory_index_scan
@@ -72,9 +70,9 @@ const BATCH_SIZE = parseInt(process.env.SPEC_KIT_BATCH_SIZE || '5', 10);
  */
 const BATCH_DELAY_MS = parseInt(process.env.SPEC_KIT_BATCH_DELAY_MS || '100', 10);
 
-/* ───────────────────────────────────────────────────────────────
-   RATE LIMITING CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   3. RATE LIMITING CONFIGURATION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Cooldown period between index scans (1 minute)
@@ -83,9 +81,9 @@ const BATCH_DELAY_MS = parseInt(process.env.SPEC_KIT_BATCH_DELAY_MS || '100', 10
  */
 const INDEX_SCAN_COOLDOWN = 60000;
 
-/* ───────────────────────────────────────────────────────────────
-   QUERY VALIDATION LIMITS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   4. QUERY VALIDATION LIMITS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Maximum allowed length for search queries
@@ -109,9 +107,9 @@ const INPUT_LIMITS = {
   filePath: 500       // File paths
 };
 
-/* ───────────────────────────────────────────────────────────────
-   PATH VALIDATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   5. PATH VALIDATION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Default base path - use environment variable or current working directory
@@ -132,9 +130,9 @@ const ALLOWED_BASE_PATHS = [
   .filter(Boolean)
   .map(base => path.resolve(base));
 
-/* ───────────────────────────────────────────────────────────────
-   CACHE CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   6. CACHE CONFIGURATION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Cache TTL for constitutional memories (1 minute)
@@ -142,9 +140,9 @@ const ALLOWED_BASE_PATHS = [
  */
 const CONSTITUTIONAL_CACHE_TTL = 60000;
 
-/* ───────────────────────────────────────────────────────────────
-   MEMORY AWARE TOOLS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   7. MEMORY AWARE TOOLS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Set of tool names that support memory auto-surfacing (SK-004)
@@ -158,9 +156,9 @@ const MEMORY_AWARE_TOOLS = new Set([
   'memory_index_scan'
 ]);
 
-/* ───────────────────────────────────────────────────────────────
-   EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   8. EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // Path constants

@@ -256,7 +256,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW (9 STEPS)
+## 3. 📊 WORKFLOW OVERVIEW
 
 | Step | Name                   | Purpose                       | Outputs                              |
 | ---- | ---------------------- | ----------------------------- | ------------------------------------ |
@@ -272,7 +272,7 @@ $ARGUMENTS
 
 ---
 
-## 4. 📊 RESEARCH DOCUMENT SECTIONS (17 SECTIONS)
+## 4. 📊 RESEARCH DOCUMENT SECTIONS
 
 The generated `research.md` includes:
 
@@ -307,7 +307,36 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 6. 📌 REFERENCE
+## 6. 📊 OUTPUT FORMATS
+
+### Success Output
+```
+✅ SpecKit Research Complete
+
+All 9 research steps executed successfully.
+
+Artifacts Created:
+- research.md (17 sections of technical documentation)
+- memory/*.md (session context)
+
+Ready for: /spec_kit:plan [feature-description]
+
+STATUS=OK PATH=[spec-folder-path]
+```
+
+### Failure Output
+```
+❌ SpecKit Research Failed
+
+Error: [error description]
+Step: [step number where failure occurred]
+
+STATUS=FAIL ERROR="[message]"
+```
+
+---
+
+## 7. 📌 REFERENCE
 
 **Full details in YAML prompts:**
 - Workflow steps and activities
@@ -324,7 +353,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 7. 🔀 PARALLEL DISPATCH
+## 8. 🔀 PARALLEL DISPATCH
 
 The research workflow supports parallel agent dispatch for investigation-heavy phases. This is configured in the YAML prompts.
 
@@ -357,7 +386,7 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ---
 
-## 8. 🎭 KEY DIFFERENCES FROM OTHER COMMANDS
+## 9. 🎭 KEY DIFFERENCES FROM OTHER COMMANDS
 
 - **Does NOT proceed to implementation** - Terminates after research.md
 - **Primary output is research.md** - Comprehensive technical documentation
@@ -366,7 +395,7 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ---
 
-## 9. 🔍 EXAMPLES
+## 10. 🔍 EXAMPLES
 
 **Example 1: Multi-Integration Feature**
 ```
@@ -385,7 +414,7 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ---
 
-## 10. 🔗 COMMAND CHAIN
+## 11. 🔗 COMMAND CHAIN
 
 This command is part of the SpecKit workflow:
 
@@ -398,7 +427,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 11. 🔜 WHAT NEXT?
+## 12. 📌 NEXT STEPS
 
 After research completes, suggest relevant next steps:
 

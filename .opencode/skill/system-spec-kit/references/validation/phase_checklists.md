@@ -164,7 +164,7 @@ When debugging becomes prolonged or repetitive:
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 6. 🔗 RELATED RESOURCES
 
 ### Reference Files
 

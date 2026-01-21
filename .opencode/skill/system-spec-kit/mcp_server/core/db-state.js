@@ -1,23 +1,15 @@
-/**
- * @fileoverview Database state management for the MCP context server.
- * Handles external update detection, reinitialization, and rate limiting.
- *
- * Key responsibilities:
- * - BUG-001: External database change notification and reconnection
- * - BUG-005: Persistent rate limiting for index scans
- * - Embedding model readiness tracking
- *
- * @module mcp_server/core/db-state
- */
+// ───────────────────────────────────────────────────────────────
+// CORE: DATABASE STATE
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
 const { DB_UPDATED_FILE } = require('./config');
 
-/* ───────────────────────────────────────────────────────────────
-   STATE VARIABLES
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   1. STATE VARIABLES
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Timestamp of the last database check for external updates
@@ -50,10 +42,9 @@ let constitutional_cache = null;
  */
 let constitutional_cache_time = 0;
 
-/* ───────────────────────────────────────────────────────────────
-   VECTORINDEX MODULE REFERENCE
-   Must be set via init() before using database functions
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   2. VECTORINDEX MODULE REFERENCE
+──────────────────────────────────────────────────────────────── */
 
 let vector_index = null;
 let checkpoints = null;
@@ -76,9 +67,9 @@ function init(deps) {
   if (deps.hybridSearch) hybrid_search = deps.hybridSearch;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   BUG-001 FIX: DATABASE CHANGE NOTIFICATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   3. DATABASE CHANGE NOTIFICATION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Check if the database was updated externally (e.g., by generate-context.js)
@@ -151,9 +142,9 @@ async function reinitialize_database() {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   BUG-005 FIX: PERSISTENT RATE LIMITING
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   4. PERSISTENT RATE LIMITING
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Get the last index scan time from database config table
@@ -207,9 +198,9 @@ async function set_last_scan_time(time) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   EMBEDDING MODEL READINESS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   5. EMBEDDING MODEL READINESS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Check if the embedding model has been warmed up and is ready
@@ -248,9 +239,9 @@ async function wait_for_embedding_model(timeout_ms = 30000) {
   return true;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   CONSTITUTIONAL CACHE ACCESSORS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   6. CONSTITUTIONAL CACHE ACCESSORS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Get the constitutional cache
@@ -285,9 +276,9 @@ function clear_constitutional_cache() {
   constitutional_cache_time = 0;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   7. EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // Initialization

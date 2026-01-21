@@ -3,7 +3,7 @@ title: Trigger Configuration
 description: Complete configuration guide for memory trigger phrases and the fast trigger matching system.
 ---
 
-# Trigger Configuration - Keywords & Manual Save Settings
+# Trigger Configuration - Keywords and Manual Save Settings
 
 Complete configuration guide for memory trigger phrases and the fast trigger matching system.
 

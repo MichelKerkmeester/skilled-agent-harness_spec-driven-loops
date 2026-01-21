@@ -1,18 +1,14 @@
 # Spec Kit Framework
 
-Every feature you build should leave a trail. Not for bureaucracy, for your future self, your team, and the AI that helps you code. Spec Kit enforces one simple rule: *no code without a spec folder*.
+Spec Kit enforces documentation-first development by requiring a spec folder for every code change. This README covers installation, usage, configuration, and the complete template/script system.
 
-The result? Six months from now, you'll know exactly why you made that architectural decision. Your AI assistant will pick up where you left off. And onboarding new developers takes hours instead of weeks.
-
-**This isn't your basic Spec Kit.** This is a battle-tested, automation-first fork that treats documentation as a first-class citizen, not an afterthought.
-
-## Why This Fork Exists
+### Why This Fork Exists
 
 | Pain Point             | Original Spec Kit | This Enhanced Fork                               |
 | ---------------------- | ----------------- | ------------------------------------------------ |
 | **Context Loss**       | Manual recovery   | Auto-saved with ANCHOR format                    |
 | **Templates**          | ~5 basic files    | 10 purpose-built templates                       |
-| **Commands**           | Manual workflow   | 12 slash commands with `:auto`/`:confirm` modes  |
+| **Commands**           | Manual workflow   | 11 slash commands with `:auto`/`:confirm` modes  |
 | **Memory Integration** | None              | Deep integration via `generate-context.js`       |
 | **Quality Gates**      | None              | Mandatory gates enforce nothing slips through    |
 | **Debug Assistance**   | None              | AI detects frustration → auto-suggests sub-agent |
@@ -21,18 +17,16 @@ The result? Six months from now, you'll know exactly why you made that architect
 | **Folder Versioning**  | Overwrite         | Sub-folder patterns                              |
 | **Automation**         | None              | 11 scripts handle the boring work                |
 
-> **The bottom line:** 10 templates, 12 commands, 11 scripts, 0 excuses for losing context.
+> **The bottom line:** 10 templates, 11 commands, 11 scripts, 0 excuses for losing context.
 
 ---
-
-## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 DIRECTORY STRUCTURE](#2--directory-structure)
 - [3. 📊 DOCUMENTATION LEVELS (1-3)](#3--documentation-levels-1-3)
 - [4. 📝 TEMPLATES (10 TOTAL)](#4--templates-10-total)
 - [5. ⚙️ SCRIPTS](#5--scripts)
-- [6. 🎯 COMMANDS (7 TOTAL)](#6--commands-7-total)
+- [6. 🎯 COMMANDS (11 TOTAL)](#6--commands-11-total)
 - [7. 🔄 HOW IT WORKS](#7--how-it-works)
 - [8. 🧠 INTEGRATED MEMORY SYSTEM](#8--integrated-memory-system)
 - [9. 🔌 INTEGRATION POINTS](#9--integration-points)
@@ -40,6 +34,8 @@ The result? Six months from now, you'll know exactly why you made that architect
 - [11. 🚀 INSTALLATION & SETUP](#11--installation--setup)
 - [12. 🔧 TROUBLESHOOTING](#12--troubleshooting)
 - [13. ❓ FAQ](#13--faq)
+- [14. 💭 PHILOSOPHY](#14--philosophy)
+- [15. 🔗 RELATED RESOURCES](#15--related-resources)
 
 ---
 
@@ -59,27 +55,29 @@ The result? Six months from now, you'll know exactly why you made that architect
 
 | Category   | Count  | Details                                                                  |
 | ---------- | ------ | ------------------------------------------------------------------------ |
-| Templates  | 10     | Markdown templates for specs, plans, research, decisions, handover       |
-| Scripts    | 11     | Shell scripts for automation and validation                              |
-| Assets     | 3      | Decision support tools (level matrix, template mapping, parallel config) |
-| References | 18     | Detailed workflow documentation in 7 categories                          |
-| Checklists | 4      | Phase-specific checklists (research, planning, implementation, review)   |
-| **Total**  | **41** | Complete bundled resource set                                            |
-| Commands   | 12     | Slash commands (8 spec_kit + 4 memory)                                   |
+| Templates  | 10+26  | 10 core templates + 26 verbose templates (CORE + ADDENDUM v2.0)          |
+| Scripts    | 14     | Shell scripts for automation, validation, and template composition       |
+| Assets     | 4      | Decision support tools (level matrix, template mapping, complexity matrix, parallel config) |
+| References | 19     | Detailed workflow documentation in 7 categories                          |
+| Tests      | 557    | Comprehensive test suite with 97% pass rate across 5 test files          |
+| **Total**  | **55+** | Complete bundled resource set                                           |
+| Commands   | 11     | Slash commands (7 spec_kit + 4 memory)                                   |
 
-> **Automation Win**: These 41 resources eliminate the "blank page problem" — you're never starting from scratch.
+> **Automation Win**: These resources eliminate the "blank page problem" — you're never starting from scratch.
 
 ### Key Features
 
-**Template Management**:
-- 10 structured templates for documentation levels 1-3
-- Placeholder system with validation enforcement
-- Template source markers for traceability
+**Template Management** *(CORE + ADDENDUM v2.0)*:
+- 10 core templates + 26 verbose templates for all documentation levels
+- CORE + ADDENDUM architecture: 74-82% line reduction, value-based level scaling
+- Two variants: `minimal` (experienced users) and `verbose` (new users with guidance)
+- Placeholder system with validation enforcement and template source markers
 
 **Workflow Automation** *(Fork Exclusive)*:
 - Auto-create feature branches and spec folders in ~100ms
 - Prerequisite checking catches missing files before you hit errors
 - Completeness scoring (0-100%) tells you exactly when a spec is "done"
+- compose.sh script for automated template maintenance
 
 **Cognitive Memory** *(v1.7.1)*:
 - Attention decay fades stale context per turn
@@ -88,9 +86,9 @@ The result? Six months from now, you'll know exactly why you made that architect
 - Session-scoped working memory
 
 **Quality Enforcement**:
-- Integration with `validate-spec-final.sh` script
-- Template adaptation validation
-- Cross-reference checking
+- 557 tests across 5 test suites (97% pass rate)
+- 14 validation rules with consistent `run_check()` interface
+- Template adaptation validation and cross-reference checking
 
 ### Activation Triggers
 
@@ -116,12 +114,23 @@ The result? Six months from now, you'll know exactly why you made that architect
 ```
 .opencode/skill/system-spec-kit/
 ├── README.md               # This file (comprehensive documentation)
-├── templates/              # 10 markdown templates
-│   ├── spec.md             # Feature specification (Level 1+)
-│   ├── plan.md             # Implementation plan (Level 1+)
-│   ├── tasks.md            # Task breakdown (Level 1+)
-│   ├── checklist.md        # QA validation (Level 2+)
-│   ├── decision-record.md  # Architecture decisions (Level 3)
+├── templates/              # Template system (CORE + ADDENDUM architecture)
+│   ├── core/               # Core templates (foundation for all levels)
+│   │   ├── spec-core.md    # Essential what/why/how
+│   │   ├── plan-core.md    # Technical approach
+│   │   ├── tasks-core.md   # Task breakdown
+│   │   └── impl-summary-core.md # Outcomes documentation
+│   ├── addendum/           # Level-specific additions
+│   │   ├── level2-verify/  # +Verification (checklist)
+│   │   ├── level3-arch/    # +Architecture (decision-record)
+│   │   └── level3plus-govern/ # +Governance (extended checklist)
+│   ├── verbose/            # Extended templates with guidance
+│   │   ├── core/           # Verbose versions of core templates
+│   │   └── README.md       # Verbose pattern documentation
+│   ├── level_1/            # Composed Level 1 (Core only)
+│   ├── level_2/            # Composed Level 2 (Core + L2)
+│   ├── level_3/            # Composed Level 3 (Core + L2 + L3)
+│   ├── level_3+/           # Composed Level 3+ (all addendums)
 │   ├── research.md         # Comprehensive research (Level 3 optional)
 │   ├── handover.md         # Full session continuity (utility)
 │   └── debug-delegation.md # Sub-agent debugging (utility)
@@ -140,19 +149,27 @@ The result? Six months from now, you'll know exactly why you made that architect
     │   ├── check-placeholders.sh # Unfilled placeholder detection
     │   ├── check-priority-tags.sh # P0/P1/P2 tag validation
     │   └── check-sections.sh   # Required section validation
+    ├── templates/              # Template maintenance
+    │   └── compose.sh          # Compose level templates from core
     ├── test-fixtures/          # Test cases for validation rules
     │   ├── valid-level1/       # Valid Level 1 spec folder
     │   ├── valid-level3/       # Valid Level 3 spec folder
     │   ├── missing-plan/       # Missing required file test
     │   ├── unfilled-placeholders/ # Placeholder detection test
     │   └── ...                 # 36 test fixtures across 10 categories
+    ├── tests/                  # Test scripts
+    │   └── test-validation.sh  # Validation test runner
+    ├── spec/                   # Spec folder management scripts
+    │   ├── create.sh           # Create feature branch & spec folder
+    │   ├── validate.sh         # Validation orchestrator (v2.0)
+    │   ├── archive.sh          # Archive completed spec folders
+    │   ├── calculate-completeness.sh # Calculate completeness percentage
+    │   └── recommend-level.sh  # Recommend documentation level (1-3)
+    ├── setup/                  # Setup and prerequisite scripts
+    │   ├── check-prerequisites.sh  # Validate spec folder structure
+    │   └── setup.sh            # Initial setup script
     ├── common.sh               # Legacy compatibility (sources lib/)
-    ├── create-spec-folder.sh   # Create feature branch & spec folder
-    ├── check-prerequisites.sh  # Validate spec folder structure
-    ├── calculate-completeness.sh # Calculate completeness percentage
-    ├── recommend-level.sh      # Recommend documentation level (1-3)
-    ├── archive-spec.sh         # Archive completed spec folders
-    └── validate-spec.sh        # Validation orchestrator (v2.0)
+    └── registry-loader.sh      # Load validation rule registry
 ```
 
 ### Skill Resources (system-spec-kit)
@@ -164,8 +181,9 @@ The result? Six months from now, you'll know exactly why you made that architect
 ├── assets/
 │   ├── level_decision_matrix.md          # LOC thresholds, complexity factors
 │   ├── template_mapping.md               # Template-to-level mapping
+│   ├── complexity_decision_matrix.md     # Complexity scoring factors
 │   └── parallel_dispatch_config.md       # Complexity scoring, agent dispatch config
-├── references/                           # 18 reference documents in 7 categories
+├── references/                           # 19 reference documents in 7 categories
 │   ├── config/                           # Configuration (environment variables)
 │   ├── debugging/                        # Debugging guides (universal methodology, troubleshooting)
 │   ├── memory/                           # Memory system (save workflow, triggers)
@@ -177,13 +195,13 @@ The result? Six months from now, you'll know exactly why you made that architect
 │   ├── context-server.js                 # MCP server with vector search
 │   ├── lib/                              # Server libraries (27 modules)
 │   ├── configs/                          # Server configuration
+│   ├── database/                         # Vector search database
+│   │   └── context-index.sqlite
 │   └── README.md                         # MCP installation guide
-├── database/
-│   └── context-index.sqlite              # Vector search database
 ├── constitutional/
 │   └── gate-enforcement.md               # Always-surface rules for gates
 └── scripts/
-    ├── generate-context.js               # Memory file generation (modular: 40 modules)
+    ├── generate-context.js               # Memory file generation (modular: 44 modules)
     ├── core/, extractors/, utils/...     # JS modules (see scripts/README.md)
     └── *.sh                              # Shell scripts for validation
 ```
@@ -264,12 +282,12 @@ The `memory/` folder stores **conversation context and session history** for AI 
 - Cognitive features: attention decay, tiered content (HOT/WARM/COLD), co-activation
 
 **Integrated Components:**
-| Component      | Location                        | Purpose                            |
-| -------------- | ------------------------------- | ---------------------------------- |
-| MCP Server     | `mcp_server/context-server.js`  | Semantic memory with vector search |
-| Database       | `database/context-index.sqlite` | SQLite + FTS5 + embeddings         |
-| Constitutional | `constitutional/`               | Always-surface rules               |
-| Scripts        | `scripts/memory/generate-context.js`   | Memory file generation             |
+| Component      | Location                                    | Purpose                            |
+| -------------- | ------------------------------------------- | ---------------------------------- |
+| MCP Server     | `mcp_server/context-server.js`              | Semantic memory with vector search |
+| Database       | `mcp_server/database/context-index.sqlite`  | SQLite + FTS5 + embeddings         |
+| Constitutional | `constitutional/`                           | Always-surface rules               |
+| Scripts        | `scripts/memory/generate-context.js`        | Memory file generation             |
 
 **Memory MCP Tools:**
 - `memory_search()` - Semantic search with vector similarity
@@ -360,7 +378,7 @@ Utility (any level):    handover.md, debug-delegation.md
 
 ### LOC Thresholds Are SOFT GUIDANCE
 
-> **Pro Tip**: Use `recommend-level.sh --loc 250 --files 8` to get an AI-assisted recommendation.
+> **Pro Tip**: Use `spec/recommend-level.sh --loc 250 --files 8` to get an AI-assisted recommendation.
 
 These factors can override LOC and push to a higher level:
 
@@ -393,6 +411,30 @@ All templates are located in `.opencode/skill/system-spec-kit/templates/`. **NEV
 | `handover.md`               | Any   | Utility  | ~100  | Full session continuity (7 sections)    |
 | `debug-delegation.md`       | Any   | Utility  | ~64   | Sub-agent debugging delegation          |
 | `implementation-summary.md` | Any   | Utility  | ~50   | Implementation completion summary       |
+
+### Template Styles
+
+Spec Kit offers two template styles for different user needs:
+
+| Style | Location | Lines | Best For |
+|-------|----------|-------|----------|
+| **Core** | `templates/level_N/` | ~60-90 | Experienced users, simple features |
+| **Verbose** | `templates/verbose/` | ~200-300 | New users, complex requirements |
+
+**Core Templates** (default): Minimal scaffolding with essential placeholders. Use when you know what content to provide.
+
+**Verbose Templates**: Extended templates with comprehensive guidance:
+- `[YOUR_VALUE_HERE: description]` - Placeholders with contextual guidance
+- `[NEEDS CLARIFICATION: (a) (b) (c)]` - Multiple-choice questions for ambiguous requirements
+- `[example: specific content]` - Inline examples demonstrating expected quality
+
+**When to use verbose templates:**
+1. **New to SpecKit** - First-time users who need guidance
+2. **Complex Requirements** - Features with many unknowns requiring clarification
+3. **Team Onboarding** - Training team members on specification best practices
+4. **Uncertainty** - When you need prompts to ensure nothing is missed
+
+See `templates/verbose/README.md` for detailed verbose pattern documentation.
 
 ### Level 1: Baseline Templates
 
@@ -574,15 +616,16 @@ Eleven automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle t
 
 ### Script Overview
 
-| Script                      | Purpose                             | Time Saved           |
-| --------------------------- | ----------------------------------- | -------------------- |
-| `common.sh`                 | Shared utility functions            | N/A (sourced)        |
-| `create-spec-folder.sh`     | Create feature branch & spec folder | ~2 min/feature       |
-| `check-prerequisites.sh`    | Validate spec folder structure      | ~1 min/check         |
-| `calculate-completeness.sh` | Calculate completeness percentage   | Eliminates guesswork |
-| `recommend-level.sh`        | Recommend documentation level (1-3) | ~30 sec/decision     |
-| `archive-spec.sh`           | Archive completed spec folders      | ~1 min/archive       |
-| `validate-spec.sh`          | Validate spec folder quality        | Catches issues early |
+| Script                            | Purpose                             | Time Saved           |
+| --------------------------------- | ----------------------------------- | -------------------- |
+| `common.sh`                       | Shared utility functions            | N/A (sourced)        |
+| `spec/create.sh`                  | Create feature branch & spec folder | ~2 min/feature       |
+| `setup/check-prerequisites.sh`    | Validate spec folder structure      | ~1 min/check         |
+| `spec/calculate-completeness.sh`  | Calculate completeness percentage   | Eliminates guesswork |
+| `spec/recommend-level.sh`         | Recommend documentation level (1-3) | ~30 sec/decision     |
+| `spec/archive.sh`                 | Archive completed spec folders      | ~1 min/archive       |
+| `spec/validate.sh`                | Validate spec folder quality        | Catches issues early |
+| `templates/compose.sh`            | Compose level templates from core   | Template consistency |
 
 > **Automation Win**: These scripts execute in <200ms each. The time saved is in *not having to think* about folder naming, file structure, or "is this spec complete enough?"
 
@@ -600,7 +643,7 @@ Eleven automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle t
 
 **Usage**: Sourced by other scripts, not called directly
 
-### `create-spec-folder.sh` - Feature Creation
+### `spec/create.sh` - Feature Creation
 
 **Purpose**: Create new feature branch and spec folder with proper numbering
 
@@ -620,7 +663,7 @@ Eleven automation scripts in `.opencode/skill/system-spec-kit/scripts/` handle t
 
 **Example**:
 ```bash
-$ .opencode/skill/system-spec-kit/scripts/create-spec-folder.sh "Add user authentication" --level 2
+$ .opencode/skill/system-spec-kit/scripts/spec/create.sh "Add user authentication" --level 2
 
 ═══════════════════════════════════════════════════════════════════
   Spec Kit: Spec Folder Created Successfully
@@ -651,7 +694,7 @@ $ .opencode/skill/system-spec-kit/scripts/create-spec-folder.sh "Add user authen
 
 **Exit Codes**: `0` = Success | `1` = Invalid arguments | `2` = Git error
 
-### `check-prerequisites.sh` - Structure Validation
+### `setup/check-prerequisites.sh` - Structure Validation
 
 **Purpose**: Validate spec folder structure and list available documentation
 
@@ -665,7 +708,7 @@ $ .opencode/skill/system-spec-kit/scripts/create-spec-folder.sh "Add user authen
 
 **Example**:
 ```bash
-$ .opencode/skill/system-spec-kit/scripts/check-prerequisites.sh
+$ .opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh
 
 FEATURE_DIR: specs/042-user-auth
 AVAILABLE_DOCS:
@@ -677,7 +720,7 @@ AVAILABLE_DOCS:
 
 **Exit Codes**: `0` = All prerequisites met | `1` = Missing required files | `2` = No spec folder found
 
-### `calculate-completeness.sh` - Quality Assessment
+### `spec/calculate-completeness.sh` - Quality Assessment
 
 **Purpose**: Calculate spec folder completeness percentage for quality assessment
 
@@ -692,7 +735,7 @@ AVAILABLE_DOCS:
 
 **Example**:
 ```bash
-$ .opencode/skill/system-spec-kit/scripts/calculate-completeness.sh specs/042-user-auth
+$ .opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh specs/042-user-auth
 
 Completeness Score: 75%
 
@@ -708,7 +751,7 @@ Recommendations:
 
 **Exit Codes**: `0` = 80%+ complete | `1` = Below 80% | `2` = Spec folder not found
 
-### `recommend-level.sh` - Level Recommendation
+### `spec/recommend-level.sh` - Level Recommendation
 
 **Purpose**: Analyze feature complexity and recommend appropriate documentation level (1-3)
 
@@ -722,7 +765,7 @@ Recommendations:
 
 **Example**:
 ```bash
-$ .opencode/skill/system-spec-kit/scripts/recommend-level.sh --loc 250 --files 8
+$ .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --loc 250 --files 8
 
 Recommended Level: 2 (Verification)
 
@@ -738,7 +781,7 @@ Rationale:
 
 **Exit Codes**: `0` = Recommendation provided | `1` = Invalid arguments
 
-### `archive-spec.sh` - Spec Archival
+### `spec/archive.sh` - Spec Archival
 
 **Purpose**: Archive completed spec folders to reduce clutter and improve navigation
 
@@ -752,7 +795,7 @@ Rationale:
 
 **Example**:
 ```bash
-$ .opencode/skill/system-spec-kit/scripts/archive-spec.sh specs/042-user-auth
+$ .opencode/skill/system-spec-kit/scripts/spec/archive.sh specs/042-user-auth
 
 Archived: specs/042-user-auth → specs/z_archive/042-user-auth
 
@@ -764,7 +807,7 @@ Archive Summary:
 
 **Exit Codes**: `0` = Success | `1` = Invalid arguments | `2` = Folder not found
 
-### `validate-spec.sh` - Quality Validation
+### `spec/validate.sh` - Quality Validation
 
 **Purpose**: Validate spec folder contents against quality requirements based on documentation level. Checks for required files, unfilled placeholders, and proper markdown structure.
 
@@ -806,7 +849,7 @@ Archive Summary:
 
 **Example**:
 ```bash
-$ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth
+$ .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/042-user-auth
 
 ═══════════════════════════════════════════════════════════════
   Spec Folder Validation
@@ -833,7 +876,7 @@ $ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth
 
 **JSON Output** (for CI/tooling):
 ```bash
-$ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth --json
+$ .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/042-user-auth --json
 
 {
   "folder": "specs/042-user-auth",
@@ -854,7 +897,7 @@ $ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth -
 **Strict Mode** (for CI pipelines):
 ```bash
 # Warnings become errors in strict mode
-$ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth --strict
+$ .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/042-user-auth --strict
 ```
 
 **Exit Codes**: `0` = Passed | `1` = Passed with warnings | `2` = Failed (errors found)
@@ -865,7 +908,7 @@ $ .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/042-user-auth -
 
 **Architecture Overview**:
 ```
-validate-spec.sh (orchestrator)
+spec/validate.sh (orchestrator)
     │
     ├── lib/common.sh    ─── Core utilities (logging, path resolution)
     ├── lib/config.sh    ─── Configuration loading (.speckit.yaml)
@@ -897,7 +940,7 @@ cp rules/check-files.sh rules/check-custom.sh
 # 2. Implement run_check() function
 # Function receives: FOLDER_PATH, DETECTED_LEVEL, exports RESULT, SEVERITY, MESSAGE
 
-# 3. Register in validate-spec.sh orchestrator
+# 3. Register in spec/validate.sh orchestrator
 # Add to RULES array and call in main loop
 
 # 4. Add test fixtures
@@ -1029,13 +1072,62 @@ Testing: invalid-anchors ....................... PASS (expected fail)
 ───────────────────────────────────────────────────────────────
 ```
 
+### 5.11 Template Composer (`compose.sh`)
+
+> **Maintenance Script**: Ensures level-specific templates stay synchronized with core/addendum sources.
+
+The compose script (`scripts/templates/compose.sh`) automates template composition from core + addendum components to level-specific outputs.
+
+**Purpose:**
+- Composes level-specific templates from `core/` and `addendum/` sources
+- Ensures consistency when core templates are modified
+- Prevents drift between source components and composed outputs
+
+**Options:**
+| Flag | Description | Default |
+|------|-------------|---------|
+| `--dry-run, -n` | Preview changes without writing files | false |
+| `--verbose, -v` | Show detailed output during composition | false |
+| `--force, -f` | Overwrite existing files without prompting | false |
+| `--verify` | Check if composed templates match sources | false |
+| `--help, -h` | Show help message | - |
+
+**Composition Rules:**
+| Level | Sources | Output |
+|-------|---------|--------|
+| Level 1 | Core only | `templates/level_1/` |
+| Level 2 | Core + level2-verify addendum | `templates/level_2/` |
+| Level 3 | Core + level2-verify + level3-arch | `templates/level_3/` |
+| Level 3+ | All core + all addendums | `templates/level_3+/` |
+
+**Usage:**
+```bash
+# Compose all levels
+./scripts/templates/compose.sh
+
+# Compose specific levels
+./scripts/templates/compose.sh 2 3
+
+# Preview changes (dry run)
+./scripts/templates/compose.sh --dry-run
+
+# Verify templates are current
+./scripts/templates/compose.sh --verify
+```
+
+**When to Run:**
+- After modifying any file in `templates/core/`
+- After modifying any file in `templates/addendum/`
+- Before releasing a new version
+- When `--verify` reports drift
+
 ---
 
-## 6. 🎯 COMMANDS (7 TOTAL)
+## 6. 🎯 COMMANDS (11 TOTAL)
 
-> **Fork Exclusive**: The original Spec Kit has no slash commands. This fork has seven, each with `:auto` and `:confirm` mode variants.
+> **Fork Exclusive**: The original Spec Kit has no slash commands. This fork has eleven (7 spec_kit + 4 memory), each with `:auto` and `:confirm` mode variants.
 
-Twelve Spec Kit commands transform multi-step workflows into single invocations.
+Eleven Spec Kit commands transform multi-step workflows into single invocations.
 
 ### Command Overview
 
@@ -1454,7 +1546,7 @@ The memory system supports multiple embedding providers:
 
 **Local-First Option (HF Local):**
 - **Embeddings**: nomic-embed-text-v1.5 runs on YOUR machine via Transformers.js
-- **Storage**: SQLite database in YOUR project (`.opencode/skill/system-spec-kit/database/`)
+- **Storage**: SQLite database in YOUR project (`.opencode/skill/system-spec-kit/mcp_server/database/`)
 - **No external API calls** for memory operations
 - Works fully offline, no downloads required
 
@@ -1538,7 +1630,7 @@ memory_match_triggers({
 
 ```bash
 # Generate feature branch and spec folder
-.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh "Add user authentication system"
+.opencode/skill/system-spec-kit/scripts/spec/create.sh "Add user authentication system"
 
 # Result:
 # - Branch: 042-user-authentication-system
@@ -1573,7 +1665,7 @@ cp .opencode/skill/system-spec-kit/templates/debug-delegation.md specs/042-featu
 
 ```bash
 # Validate spec folder has required files
-.opencode/skill/system-spec-kit/scripts/check-prerequisites.sh
+.opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh
 
 # Output example:
 # FEATURE_DIR: specs/042-user-auth
@@ -1588,7 +1680,7 @@ cp .opencode/skill/system-spec-kit/templates/debug-delegation.md specs/042-featu
 
 ```bash
 # Calculate spec folder completeness
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh specs/042-user-auth
+.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh specs/042-user-auth
 
 # Output example:
 # Completeness Score: 75%
@@ -1728,7 +1820,7 @@ grep -r "\[YOUR_VALUE_HERE\]" specs/042-feature/
 
 ### Completeness Score Below Threshold
 
-**Symptom**: `calculate-completeness.sh` returns score below 80%
+**Symptom**: `spec/calculate-completeness.sh` returns score below 80%
 
 **Causes**:
 1. Missing required files (spec.md, plan.md)
@@ -1738,7 +1830,7 @@ grep -r "\[YOUR_VALUE_HERE\]" specs/042-feature/
 **Solutions**:
 ```bash
 # Run completeness check with details
-.opencode/skill/system-spec-kit/scripts/calculate-completeness.sh specs/042-feature/
+.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh specs/042-feature/
 
 # Address missing items in order of weight:
 # 1. Required files (30%)
@@ -1787,11 +1879,11 @@ cat specs/###-folder/memory/DD-MM-YY_HH-MM__description.md
 3. Ensure scripts have execute permission: `chmod +x .opencode/skill/system-spec-kit/scripts/*.sh`
 
 **Expected Performance**:
-| Script                      | Expected Time |
-| --------------------------- | ------------- |
-| `create-spec-folder.sh`     | <100ms        |
-| `check-prerequisites.sh`    | <50ms         |
-| `calculate-completeness.sh` | <200ms        |
+| Script                          | Expected Time |
+| ------------------------------- | ------------- |
+| `spec/create.sh`                | <100ms        |
+| `setup/check-prerequisites.sh`  | <50ms         |
+| `spec/calculate-completeness.sh`| <200ms        |
 
 ### ANCHORS_VALID Failures
 
@@ -1889,7 +1981,7 @@ A: Use this decision tree:
 
 A: Yes. Templates and scripts work independently. You can:
 - Copy templates manually: `cp templates/level_1/spec.md specs/042-feature/spec.md`
-- Run scripts directly: `./scripts/create-spec-folder.sh "feature name"`
+- Run scripts directly: `./scripts/spec/create.sh "feature name"`
 - Commands just orchestrate these components
 
 ---
@@ -1964,7 +2056,7 @@ A: The original Spec Kit is a concept. This fork is a complete system:
 
 ---
 
-## The Philosophy
+## 14. 💭 PHILOSOPHY
 
 This fork exists because documentation shouldn't be a tax on productivity—it should be invisible infrastructure that pays dividends when you need it most: resuming work after a break, onboarding a new team member, or debugging something you wrote 6 months ago.
 
@@ -1975,3 +2067,17 @@ This fork exists because documentation shouldn't be a tax on productivity—it s
 **Stateless by design.** V13.0 eliminated all marker files (.spec-skip, .spec-active, STATE.md) because they created more problems than they solved. Project state lives in memory files where it belongs—searchable, versionable, and actually useful.
 
 **Cognitive by V17.1.** Memory now behaves more like human memory: recently accessed context stays hot, stale context fades, and related memories surface together through co-activation.
+
+---
+
+## 15. 🔗 RELATED RESOURCES
+
+| Resource | Location | Description |
+|----------|----------|-------------|
+| **SKILL.md** | `.opencode/skill/system-spec-kit/SKILL.md` | Complete workflow documentation and AI instructions |
+| **Templates** | `.opencode/skill/system-spec-kit/templates/` | All 10 documentation templates |
+| **Scripts** | `.opencode/skill/system-spec-kit/scripts/` | Automation scripts for validation and setup |
+| **Memory MCP** | `.opencode/skill/system-spec-kit/mcp_server/` | Spec Kit Memory MCP server |
+| **References** | `.opencode/skill/system-spec-kit/references/` | 19 reference documents across 7 categories |
+| **CLAUDE.md** | `CLAUDE.md` | Project-level AI behavior framework |
+| **Commands** | `.opencode/command/spec_kit/` | Slash command definitions |

@@ -3,7 +3,7 @@ title: Path-Scoped Validation Rules
 description: Path-scoped validation system for differentiated validation based on file location, level, and type
 ---
 
-# Path-Scoped Validation Rules
+# Path-Scoped Validation Rules - Location-Based Validation
 
 Path-scoped validation for differentiated rules based on file location, level, and type.
 

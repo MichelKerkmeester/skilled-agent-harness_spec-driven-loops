@@ -720,7 +720,7 @@ This command can be used with any workflow:
 
 ---
 
-## 15. 🔜 WHAT NEXT?
+## 15. 📌 NEXT STEPS
 
 After context is saved, suggest relevant next steps:
 

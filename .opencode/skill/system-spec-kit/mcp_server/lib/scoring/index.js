@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// scoring/index.js: Ranking and scoring modules barrel export
+// MODULE: SCORING INDEX
 // ───────────────────────────────────────────────────────────────
 'use strict';
 

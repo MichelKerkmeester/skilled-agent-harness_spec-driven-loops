@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// memory-parser.js: Memory file parsing and metadata extraction
+// PARSING: MEMORY PARSER
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -8,9 +8,9 @@ const path = require('path');
 const crypto = require('crypto');
 const { escape_regex: escapeRegex } = require('../../../shared/utils');
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 const MEMORY_FILE_PATTERN = /specs\/([^/]+)(?:\/[^/]+)*\/memory\/[^/]+\.md$/;
 const CONTEXT_TYPE_MAP = {
@@ -31,9 +31,9 @@ const CONTEXT_TYPE_MAP = {
   'test': 'implementation',
 };
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    2. CORE PARSING FUNCTIONS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Read file with BOM detection for UTF-16 support
 function read_file_with_encoding(file_path) {
@@ -254,9 +254,9 @@ function compute_content_hash(content) {
   return crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    3. VALIDATION FUNCTIONS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Check if a file path is a valid memory file
 function is_memory_file(file_path) {
@@ -390,9 +390,9 @@ function validate_parsed_memory(parsed) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    4. DIRECTORY SCANNING
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Find all memory files in a workspace
 function find_memory_files(workspace_path, options = {}) {
@@ -453,9 +453,9 @@ function find_memory_files(workspace_path, options = {}) {
   return results;
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    5. MODULE EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // Core parsing

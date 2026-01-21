@@ -38,9 +38,12 @@ async function loadCollectedData() {
     try {
       // SEC-001: Path traversal mitigation (CWE-22)
       // Use os.tmpdir() for cross-platform temp directory support
+      // Also include /tmp for macOS where /tmp symlinks to /private/tmp
       const tmpDir = os.tmpdir();
       const dataFileAllowedBases = [
         tmpDir,
+        '/tmp',           // macOS: symlink to /private/tmp
+        '/private/tmp',   // macOS: actual tmp location
         process.cwd(),
         path.join(process.cwd(), 'specs'),
         path.join(process.cwd(), '.opencode')

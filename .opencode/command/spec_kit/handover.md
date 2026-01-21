@@ -523,7 +523,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 12. 🔜 WHAT NEXT?
+## 12. 📌 NEXT STEPS
 
 After handover is created, provide continuation instructions:
 

@@ -1,18 +1,13 @@
-/**
- * @fileoverview Memory index scanning handler for the MCP context server.
- * Handles batch scanning and indexing of memory files.
- *
- * Extracted from context-server.js for modularity and maintainability.
- *
- * @module mcp_server/handlers/memory-index
- */
+// ───────────────────────────────────────────────────────────────
+// HANDLERS: MEMORY INDEX
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
 
 /* ───────────────────────────────────────────────────────────────
-   CORE AND UTILS IMPORTS
+   1. CORE AND UTILS IMPORTS
    ─────────────────────────────────────────────────────────────── */
 
 const {
@@ -30,7 +25,7 @@ const {
 const { process_batches } = require('../utils');
 
 /* ───────────────────────────────────────────────────────────────
-   LIB MODULE IMPORTS
+   2. LIB MODULE IMPORTS
    ─────────────────────────────────────────────────────────────── */
 
 const LIB_DIR = path.join(__dirname, '..', 'lib');
@@ -39,7 +34,7 @@ const embeddings = require(path.join(LIB_DIR, 'providers', 'embeddings.js'));
 const triggerMatcher = require(path.join(LIB_DIR, 'parsing', 'trigger-matcher.js'));
 
 /* ───────────────────────────────────────────────────────────────
-   SHARED INDEXING LOGIC (from memory-save)
+   3. SHARED INDEXING LOGIC (from memory-save)
    ─────────────────────────────────────────────────────────────── */
 
 const { index_memory_file } = require('./memory-save');
@@ -57,7 +52,7 @@ async function index_single_file(file_path, force = false) {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   CONSTITUTIONAL FILE DISCOVERY
+   4. CONSTITUTIONAL FILE DISCOVERY
    ─────────────────────────────────────────────────────────────── */
 
 /**
@@ -97,7 +92,7 @@ function find_constitutional_files(workspace_path) {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   MEMORY INDEX SCAN HANDLER
+   5. MEMORY INDEX SCAN HANDLER
    ─────────────────────────────────────────────────────────────── */
 
 /**
@@ -261,7 +256,7 @@ async function handle_memory_index_scan(args) {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   EXPORTS
+   6. EXPORTS
    ─────────────────────────────────────────────────────────────── */
 
 module.exports = {

@@ -1,7 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// COMPOSITE-SCORING: Multi-factor relevance ranking for memories
-// ───────────────────────────────────────────────────────────────
-// HIGH-003 FIX: Unified recency scoring with folder-scoring.js
+// SCORING: COMPOSITE SCORING
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -10,9 +8,9 @@ const { calculate_popularity_score } = require('../storage/access-tracker');
 // HIGH-003 FIX: Import unified recency scoring from folder-scoring
 const { compute_recency_score, DECAY_RATE } = require('./folder-scoring');
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 const DEFAULT_WEIGHTS = {
   similarity: 0.35,
@@ -25,9 +23,9 @@ const DEFAULT_WEIGHTS = {
 // HIGH-003 FIX: Re-export DECAY_RATE for backward compatibility
 const RECENCY_SCALE_DAYS = 1 / DECAY_RATE; // Convert decay rate to equivalent scale (10 days)
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    2. SCORE CALCULATIONS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // HIGH-003 FIX: Wrapper around unified compute_recency_score from folder-scoring
 // Maintains backward compatibility with existing callers while using single implementation
@@ -70,9 +68,9 @@ function calculate_composite_score(row, options = {}) {
   return Math.min(1, composite);
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    3. BATCH OPERATIONS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 function apply_composite_scoring(results, options = {}) {
   const scored = results.map(row => {
@@ -117,9 +115,9 @@ function get_score_breakdown(row, options = {}) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    4. EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   DEFAULT_WEIGHTS,

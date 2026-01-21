@@ -1,21 +1,12 @@
-/**
- * @fileoverview Memory save handlers for the MCP context server.
- * Provides indexing and saving of individual memory files with
- * embedding generation and database storage.
- *
- * Key responsibilities:
- * - Index single memory files with vector embeddings
- * - Handle memory_save tool requests
- * - Validate memory file paths and content
- *
- * @module mcp_server/handlers/memory-save
- */
+// ───────────────────────────────────────────────────────────────
+// HANDLERS: MEMORY SAVE
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');
 
 /* ───────────────────────────────────────────────────────────────
-   DEPENDENCIES
+   1. DEPENDENCIES
    ─────────────────────────────────────────────────────────────── */
 
 // Core configuration and state
@@ -42,7 +33,7 @@ const memoryParser = require(path.join(LIB_DIR, 'parsing', 'memory-parser.js'));
 const triggerMatcher = require(path.join(LIB_DIR, 'parsing', 'trigger-matcher.js'));
 
 /* ───────────────────────────────────────────────────────────────
-   1. INDEX MEMORY FILE
+   2. INDEX MEMORY FILE
    ─────────────────────────────────────────────────────────────── */
 
 /**
@@ -137,7 +128,7 @@ async function index_memory_file(file_path, { force = false } = {}) {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   2. MEMORY SAVE HANDLER
+   3. MEMORY SAVE HANDLER
    ─────────────────────────────────────────────────────────────── */
 
 /**

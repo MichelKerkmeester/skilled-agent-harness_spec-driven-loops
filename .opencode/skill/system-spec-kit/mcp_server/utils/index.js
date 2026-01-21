@@ -1,8 +1,6 @@
-/**
- * @fileoverview Utils module barrel export for MCP context server
- * Re-exports all utility functions from sub-modules.
- * @module mcp_server/utils
- */
+// ───────────────────────────────────────────────────────────────
+// MODULE: UTILS INDEX
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const validators = require('./validators');
@@ -10,7 +8,7 @@ const jsonHelpers = require('./json-helpers');
 const batchProcessor = require('./batch-processor');
 
 /* ───────────────────────────────────────────────────────────────
-   VALIDATORS
+   1. VALIDATORS
    ─────────────────────────────────────────────────────────────── */
 
 // Constants
@@ -25,7 +23,7 @@ const {
 } = validators;
 
 /* ───────────────────────────────────────────────────────────────
-   JSON HELPERS
+   2. JSON HELPERS
    ─────────────────────────────────────────────────────────────── */
 
 const {
@@ -35,7 +33,7 @@ const {
 } = jsonHelpers;
 
 /* ───────────────────────────────────────────────────────────────
-   BATCH PROCESSOR
+   3. BATCH PROCESSOR
    ─────────────────────────────────────────────────────────────── */
 
 // Constants
@@ -49,7 +47,7 @@ const {
 } = batchProcessor;
 
 /* ───────────────────────────────────────────────────────────────
-   EXPORTS
+   4. EXPORTS
    ─────────────────────────────────────────────────────────────── */
 
 module.exports = {

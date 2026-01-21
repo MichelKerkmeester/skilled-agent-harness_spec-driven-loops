@@ -47,6 +47,13 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research
 
 ## 3. 💻 TEMPLATE COPY COMMANDS (Progressive)
 
+### Template Styles
+
+| Style | When to Use | Environment Variable |
+|-------|-------------|----------------------|
+| **Minimal** (default) | Experienced users, quick iteration | `SPECKIT_TEMPLATE_STYLE=minimal` |
+| **Verbose** | New users, complex requirements | `SPECKIT_TEMPLATE_STYLE=verbose` |
+
 ### Level 1: Baseline (ALL features start here)
 
 ```bash
@@ -100,6 +107,22 @@ Add 1 to the result to get your next number.
 
 ```bash
 mkdir -p specs/###-short-name/
+```
+
+### Template Composition (Maintainer)
+
+```bash
+# Compose all level templates from core + addendum
+./scripts/templates/compose.sh
+
+# Preview changes without writing
+./scripts/templates/compose.sh --dry-run
+
+# Verify templates are current
+./scripts/templates/compose.sh --verify
+
+# Compose specific levels
+./scripts/templates/compose.sh 2 3
 ```
 
 **Naming rules:**

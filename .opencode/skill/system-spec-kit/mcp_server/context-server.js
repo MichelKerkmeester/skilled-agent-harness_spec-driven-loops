@@ -1,25 +1,14 @@
 // ───────────────────────────────────────────────────────────────
-// context-server.js: MCP server for semantic memory operations (Entry Point)
+// SERVER: CONTEXT SERVER
 // ───────────────────────────────────────────────────────────────
-//
-// This is a thin entry point that imports handlers from modular components.
-// All business logic has been extracted to:
-//   - core/     : Configuration and database state management
-//   - handlers/ : Tool handler implementations
-//   - formatters/: Response formatting utilities
-//   - utils/    : Validation and batch processing utilities
-//   - hooks/    : Memory surfacing hooks
-//
-// @version 1.7.2 - Modular refactor
-// @module system-spec-kit/context-server
 
 'use strict';
 
 const path = require('path');
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. MODULE IMPORTS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // MCP SDK
 const { Server } = require('@modelcontextprotocol/sdk/server/index.js');
@@ -63,18 +52,18 @@ const attentionDecay = require(path.join(LIB_DIR, 'cognitive', 'attention-decay.
 const coActivation = require(path.join(LIB_DIR, 'cognitive', 'co-activation.js'));
 const { ErrorCodes } = require(path.join(LIB_DIR, 'errors.js'));
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    2. SERVER INITIALIZATION
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 const server = new Server(
   { name: 'context-server', version: '1.7.2' },
   { capabilities: { tools: {} } }
 );
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    3. TOOL DEFINITIONS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
@@ -95,9 +84,9 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   ]
 }));
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    4. TOOL DISPATCH
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
@@ -151,9 +140,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   }
 });
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    5. STARTUP SCAN
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 let startup_scan_in_progress = false;
 
@@ -208,9 +197,9 @@ async function startup_scan(base_path) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    6. GRACEFUL SHUTDOWN
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 let shutting_down = false;
 
@@ -242,9 +231,9 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('[context-server] Unhandled rejection at:', promise, 'reason:', reason);
 });
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    7. MAIN
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 async function main() {
   console.error('[context-server] Initializing database...');

@@ -4,6 +4,40 @@ argument-hint: "[query] | <id> | <spec-folder> [--anchor:<id>] [--tier:<tier>] [
 allowed-tools: Read, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers, spec_kit_memory_memory_list, spec_kit_memory_memory_stats
 ---
 
+# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+
+**BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
+
+```
+IF $ARGUMENTS is empty, undefined, or contains only whitespace:
+    → STOP IMMEDIATELY
+    → Present the user with this question:
+        question: "What would you like to search for in memory?"
+        options:
+          - label: "Search by query"
+            description: "Semantic search using natural language"
+          - label: "Load by ID"
+            description: "Load a specific memory by its ID"
+          - label: "Browse folder"
+            description: "List memories in a spec folder"
+          - label: "View triggers"
+            description: "Show configured trigger phrases"
+    → WAIT for user response
+    → Use their response to determine the search mode
+    → Only THEN continue with this workflow
+
+IF $ARGUMENTS contains search parameters:
+    → Continue reading this file
+```
+
+**CRITICAL RULES:**
+- **DO NOT** infer search terms from conversation context
+- **DO NOT** assume which memory the user wants
+- **DO NOT** proceed past this point without explicit input from the user
+- The search parameters MUST come from `$ARGUMENTS` or user's answer above
+
+---
+
 # Memory Search Command
 
 One command to search, browse, and load your conversation memories. **Read-only operations only.**

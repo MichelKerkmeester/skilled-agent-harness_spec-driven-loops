@@ -98,21 +98,31 @@
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 3: SKILL ROUTING [MANDATORY when confidence > 0.8]                      │
-│ Action:  Run: python3 .opencode/scripts/skill_advisor.py                    │
-│ Logic:   IF task clearly matches a skill domain → invoke skill directly     │
-│          IF uncertain → run skill_advisor.py for recommendation             │
-│          IF confidence > 0.8 from advisor → MUST invoke recommended skill    │
-│ Note:    Task-appropriate skills can be recognized without script call.     │
+│ GATE 3: SKILL ROUTING [ALWAYS REQUIRED for non-trivial tasks]               │
+│                                                                             │
+│ Action:  Verify skill routing via ONE of:                                   │
+│   A) Run: python3 .opencode/scripts/skill_advisor.py "[request]" --threshold 0.8│
+│   B) Cite user's explicit direction: "User specified: [exact quote]"         │
+│                                                                             │
+│ Logic:   Script confidence ≥ 0.8 → MUST invoke recommended skill             │
+│          Script confidence < 0.8 → Proceed with general approach             │
+│          User explicitly names skill/agent → Cite and proceed               │
+│                                                                             │
+│ Output:  First response MUST include either:                                │
+│          "SKILL ROUTING: [brief script result]" OR                          │
+│          "SKILL ROUTING: User directed → [skill/agent name]"                │
+│                                                                             │
+│ Skip:    Only for trivial queries (greetings, single-line questions)        │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ MEMORY CONTEXT LOADING [SOFT]                                               │
 │ Trigger: User selected A or C in Gate 1 AND memory files exist               │
-│ Action:  memory_search({ specFolder, includeContent: true })                │
-│          → Results include embedded content (no separate load needed)       │
+│ Action:  memory_search({ query, specFolder, anchors: ['summary', 'state'] })│
+│          → Use anchors for targeted retrieval (~90% token savings)          │
+│          → Common anchors: summary, decisions, state, context, artifacts    │
 │          → Constitutional memories always appear first                       │
-│          → Display relevant context directly from search results            │
+│          → Full content: omit anchors OR use includeContent: true           │
 │ Skip:    User can say "skip context" to proceed immediately                 │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
@@ -130,6 +140,9 @@
    **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
 
 5. Wait for answer, THEN proceed
+6. Verify skill routing (Gate 3) before substantive work:
+   - Run `python3 .opencode/scripts/skill_advisor.py "[request]" --threshold 0.8`
+   - OR cite user's explicit skill/agent direction if provided
 
 **Why**: Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
 
@@ -198,6 +211,7 @@ Run /spec_kit:handover to save handover context, then in new session:
 
 ```
 □ File modification detected? Did I ask spec folder question? If NO → Ask NOW.
+□ Skill routing verified? → Script output OR user direction citation required
 □ Am I saving memory/context? → Use generate-context.js script (not Write tool)
 □ Aligned with ORIGINAL request? → Check for scope drift from Turn 1 intent
 □ Claiming completion? → Verify checklist.md items first
@@ -263,6 +277,7 @@ File modification planned? → Include Q1 (Spec Folder)
 | 13  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                |
 | 14  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response    |
 | 15  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response        |
+| 16  | Understanding  | Skip Skill Routing           | "obvious which skill", "user specified"      | STOP → Run skill_advisor.py OR cite user direction    |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
 
@@ -274,11 +289,12 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 ### Documentation Levels
 
-| Level | LOC     | Required Files                                        | Use When                     |
-| ----- | ------- | ----------------------------------------------------- | ---------------------------- |
-| **1** | <100    | spec.md, plan.md, tasks.md, implementation-summary.md | All features (minimum)       |
-| **2** | 100-499 | Level 1 + checklist.md                                | QA validation needed         |
-| **3** | ≥500    | Level 2 + decision-record.md (+ optional research.md) | Complex/architecture changes |
+| Level  | LOC            | Required Files                                        | Use When                           |
+| ------ | -------------- | ----------------------------------------------------- | ---------------------------------- |
+| **1**  | <100           | spec.md, plan.md, tasks.md, implementation-summary.md | All features (minimum)             |
+| **2**  | 100-499        | Level 1 + checklist.md                                | QA validation needed               |
+| **3**  | ≥500           | Level 2 + decision-record.md (+ optional research.md) | Complex/architecture changes       |
+| **3+** | Complexity 80+ | Level 3 + AI protocols, extended checklist, sign-offs | Multi-agent, enterprise governance |
 
 > **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
 
@@ -482,7 +498,7 @@ Skills are specialized, on-demand capabilities that provide domain expertise. Un
 ### How Skills Work
 
 ```
-Task Received → Gate 2: Run skill_advisor.py (optional)
+Task Received → Gate 2: Run skill_advisor.py
                     ↓
     Confidence > 0.8 → MUST invoke recommended skill
                     ↓

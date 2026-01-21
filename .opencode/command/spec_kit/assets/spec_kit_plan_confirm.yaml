@@ -22,10 +22,6 @@ planning_philosophy:
 # USER INPUTS (Transformed from raw text)
 # ───────────────────────────────────────────────────────────────────
 user_inputs:
-  git_branch: |
-    [GIT_BRANCH]
-    Git branch name for the work. Leave empty to auto-create as feature-{NNN}.
-
   spec_folder: |
     [SPEC_FOLDER]
     Spec folder path. Leave empty to auto-create next available spec number.
@@ -59,7 +55,6 @@ field_handling:
     fallback: "Extract numeric portion or use timestamp if extraction fails"
 
   defaults:
-    git_branch_empty: "Auto-create feature-{NNN} from highest +001"
     spec_folder_empty: "Auto-create specs/{NNN} from highest +001"
     context_empty: "Infer from [REQUEST], [STAGING LINK], and codebase exploration"
     issues_empty: "Investigate and discover during workflow"
@@ -80,6 +75,7 @@ documentation_levels:
     - spec.md
     - plan.md
     - tasks.md
+    - implementation-summary.md
     loc_guidance: "<100 LOC"
     use_case: "Simple changes, bug fixes, minor features"
 
@@ -438,8 +434,6 @@ workflow:
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
     activities:
-    - Generate concise short name for branch
-    - Check for existing branches
     - Run create-spec-folder.sh script
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
@@ -449,7 +443,6 @@ workflow:
     - Generate functional requirements
     - Define success criteria
     outputs:
-    - feature_branch: created
     - spec.md: acceptance_criteria
     template: .opencode/skill/system-spec-kit/templates/spec.md
     
@@ -708,7 +701,7 @@ workflow:
       - label: "View Summary"
         description: "Show planning summary"
 
-    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    # ── SEMANTIC MEMORY INTEGRATION (v1.9.0) ───────────────────────
     post_save_indexing:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save

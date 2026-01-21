@@ -1,8 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// cognitive/index.js: Cognitive memory features barrel export
-// ───────────────────────────────────────────────────────────────
-// CRIT-002 FIX: Use explicit named exports to prevent silent name collisions.
-// Previously used spread operator which would silently overwrite duplicate names.
+// MODULE: COGNITIVE INDEX
 // ───────────────────────────────────────────────────────────────
 'use strict';
 

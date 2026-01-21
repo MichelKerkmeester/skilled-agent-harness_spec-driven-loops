@@ -1,11 +1,9 @@
 ---
 name: system-spec-kit
-description: "Unified documentation and context preservation: spec folder workflow (levels 1-3), template enforcement, validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
+description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.0), validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
-version: 1.7.2
+version: 1.9.0
 ---
-
-> **Version Note:** The version number (v1.7.2) tracks the skill's evolution including documentation, templates, scripts, and MCP server. All package.json files are aligned to this version.
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
 
@@ -104,58 +102,20 @@ User Request
 
 > **Note:** Tool names use the full `spec_kit_memory_*` prefix as required by OpenCode MCP integration.
 
-| Trigger Pattern | Action | MCP Tool |
-|-----------------|--------|----------|
-| "save context", "save memory", `/memory:save` | Generate + index memory file | `spec_kit_memory_memory_save()` |
-| "search memory", "find prior", "what did we decide" | Semantic search across sessions | `spec_kit_memory_memory_search({ query: "..." })` (query OR concepts required) |
-| "list memories", "show context" | Browse stored memories | `spec_kit_memory_memory_list()` |
-| "checkpoint", "save state" | Create named checkpoint | `spec_kit_memory_checkpoint_create()` |
-| "restore checkpoint", "rollback" | Restore from checkpoint | `spec_kit_memory_checkpoint_restore()` |
-| Gate enforcement (any file modification) | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()` |
+| Trigger Pattern                                     | Action                            | MCP Tool                                                                       |
+| --------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------ |
+| "save context", "save memory", `/memory:save`       | Generate + index memory file      | `spec_kit_memory_memory_save()`                                                |
+| "search memory", "find prior", "what did we decide" | Semantic search across sessions   | `spec_kit_memory_memory_search({ query: "..." })` (query OR concepts required) |
+| "list memories", "show context"                     | Browse stored memories            | `spec_kit_memory_memory_list()`                                                |
+| "checkpoint", "save state"                          | Create named checkpoint           | `spec_kit_memory_checkpoint_create()`                                          |
+| "restore checkpoint", "rollback"                    | Restore from checkpoint           | `spec_kit_memory_checkpoint_restore()`                                         |
+| Gate enforcement (any file modification)            | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()`                                      |
 
-### Cognitive Memory Features (v1.7.2)
+### Cognitive Memory Features
 
-The `memory_match_triggers()` tool includes cognitive memory features for smarter context management. See [mcp_server/README.md](./mcp_server/README.md#cognitive-memory-v170) for full implementation details.
+The `memory_match_triggers()` tool includes cognitive features for smarter context management: decay scoring, co-activation, and tiered content injection (HOT/WARM/COLD).
 
-**Cognitive Flow:**
-```
-Gate 1 triggers → DECAY → MATCH → ACTIVATE → CO-ACTIVATE → CLASSIFY → RETURN
-```
-
-1. **DECAY**: Apply turn-based decay to all working memory (retention rate: 0.80/turn)
-2. **MATCH**: Find memories matching trigger phrases
-3. **ACTIVATE**: Set matched memories to score = 1.0
-4. **CO-ACTIVATE**: Boost related memories (+0.35)
-5. **CLASSIFY**: Assign HOT/WARM/COLD tiers
-6. **RETURN**: Tiered content (HOT=full, WARM=summary)
-
-**Tiered Content Injection:**
-
-| Tier | Attention Score | Content Returned |
-|------|-----------------|------------------|
-| **HOT** | >= 0.8 | Full content |
-| **WARM** | 0.25-0.79 | Summary only |
-| **COLD** | < 0.25 | Not returned |
-
-**Key Behaviors:**
-- **Decay rates by tier:** Constitutional, critical, important, and deprecated tiers have decay rate = 1.0 (no decay). Only normal and temporary tiers decay (normal = 0.80/turn, temporary = 0.60/turn).
-- Each session has isolated working memory state
-- Sessions auto-expire after 1 hour of inactivity
-
-**New Parameters for `memory_match_triggers()`:**
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `session_id` | string | — | Session identifier for working memory |
-| `turn_number` | number | — | Current turn for decay calculation |
-| `include_cognitive` | boolean | `false` | Enable cognitive features (decay, co-activation) |
-
-**New Library Modules (v1.7.1):**
-- `working-memory.js` - Session-based working memory with attention scores
-- `attention-decay.js` - Turn-based decay mechanics
-- `tier-classifier.js` - HOT/WARM/COLD classification
-- `co-activation.js` - Spreading activation for related memories
-- `summary-generator.js` - Summary generation for WARM tier
+**Full documentation:** See [mcp_server/README.md](./mcp_server/README.md#cognitive-memory-v170) and [memory_system.md](./references/memory/memory_system.md).
 
 ### Resource Router
 
@@ -173,159 +133,107 @@ Gate 1 triggers → DECAY → MATCH → ACTIVATE → CO-ACTIVATE → CLASSIFY �
 
 ### Reference Sub-folders
 
-| Sub-folder | Purpose | Files |
-|------------|---------|-------|
-| `memory/` | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md |
-| `templates/` | Template system, level specs | level_specifications.md, template_guide.md, template_style_guide.md |
-| `validation/` | Validation rules, checklists | validation_rules.md, phase_checklists.md, path_scoped_rules.md |
-| `structure/` | Folder organization, routing | folder_structure.md, folder_routing.md, sub_folder_versioning.md |
-| `workflows/` | Usage workflows, examples | quick_reference.md, execution_methods.md, worked_examples.md |
-| `debugging/` | Troubleshooting, debugging | troubleshooting.md, universal_debugging_methodology.md |
-| `config/` | Configuration | environment_variables.md |
+| Sub-folder    | Purpose                         | Files                                                               |
+| ------------- | ------------------------------- | ------------------------------------------------------------------- |
+| `memory/`     | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md               |
+| `templates/`  | Template system, level specs    | level_specifications.md, template_guide.md, template_style_guide.md |
+| `validation/` | Validation rules, checklists    | validation_rules.md, phase_checklists.md, path_scoped_rules.md      |
+| `structure/`  | Folder organization, routing    | folder_structure.md, folder_routing.md, sub_folder_versioning.md    |
+| `workflows/`  | Usage workflows, examples       | quick_reference.md, execution_methods.md, worked_examples.md        |
+| `debugging/`  | Troubleshooting, debugging      | troubleshooting.md, universal_debugging_methodology.md              |
+| `config/`     | Configuration                   | environment_variables.md                                            |
 
 ### Keyword-Based Routing
 
-| Keywords | Route To |
-|----------|----------|
-| "memory", "save context", "MCP", "trigger" | `references/memory/` |
-| "embeddings", "vector", "semantic", "decay" | `references/memory/` |
-| "anchor", "snapshot" | `references/memory/` |
-| "template", "level 1/2/3", "spec.md format" | `references/templates/` |
-| "validate", "rules", "checklist", "P0/P1/P2" | `references/validation/` |
-| "folder", "naming", "structure", "versioning" | `references/structure/` |
-| "workflow", "example", "commands", "quick" | `references/workflows/` |
-| "debug", "error", "stuck", "troubleshoot" | `references/debugging/` |
-| "env", "environment", "configuration" | `references/config/` |
-| "scripts", "generate-context", "check-completion" | `scripts/` |
+| Keywords                                          | Route To                 |
+| ------------------------------------------------- | ------------------------ |
+| "memory", "save context", "MCP", "trigger"        | `references/memory/`     |
+| "embeddings", "vector", "semantic", "decay"       | `references/memory/`     |
+| "anchor", "snapshot"                              | `references/memory/`     |
+| "template", "level 1/2/3", "spec.md format"       | `references/templates/`  |
+| "validate", "rules", "checklist", "P0/P1/P2"      | `references/validation/` |
+| "folder", "naming", "structure", "versioning"     | `references/structure/`  |
+| "workflow", "example", "commands", "quick"        | `references/workflows/`  |
+| "debug", "error", "stuck", "troubleshoot"         | `references/debugging/`  |
+| "env", "environment", "configuration"             | `references/config/`     |
+| "scripts", "generate-context", "check-completion" | `scripts/`               |
 
 ### Shared Modules (`shared/`)
 
-The `shared/` directory contains canonical JavaScript modules shared between CLI scripts and MCP server:
-
-| Module | Purpose |
-|--------|---------|
-| `embeddings.js` | Multi-provider embedding generation (Voyage, OpenAI, HuggingFace local) |
-| `chunking.js` | Semantic text chunking for long documents |
-| `trigger-extractor.js` | TF-IDF + N-gram trigger phrase extraction (v11) |
-| `utils.js` | Common utility functions |
-| `embeddings/factory.js` | Provider selection with fallback logic |
-| `embeddings/profile.js` | Per-profile database path generation |
-| `embeddings/providers/` | Provider implementations (hf-local.js, openai.js, voyage.js) |
-
-**Architecture:** Both `scripts/lib/` and `mcp_server/lib/` re-export from `shared/` to ensure consistent behavior.
-
-**Key Functions:**
-- `generateDocumentEmbedding(text)` - For indexing content
-- `generateQueryEmbedding(text)` - For search queries  
-- `extractTriggerPhrases(text)` - Extract 8-25 normalized trigger phrases
+Canonical JavaScript modules shared between CLI scripts and MCP server. Key functions: `generateDocumentEmbedding()`, `generateQueryEmbedding()`, `extractTriggerPhrases()`.
 
 **Full documentation:** See [shared/README.md](./shared/README.md)
 
 ### Configuration (`config/`)
 
-The `config/` directory contains runtime configuration for the memory system:
+Runtime configuration for the memory system:
+- `config.jsonc` — Search, decay, tiers, checkpoints settings
+- `filters.jsonc` — Content filtering pipeline
 
-| File | Purpose |
-|------|---------|
-| `config.jsonc` | Core memory system settings (search, decay, tiers, checkpoints) |
-| `filters.jsonc` | Content filtering pipeline (noise removal, deduplication, quality scoring) |
-
-**config.jsonc key settings:**
-- `semanticSearch` - Minimum similarity score, max results, embedding model
-- `memoryDecay` - Half-life decay (~62 days with scaleDays=90)
-- `importanceTiers` - Tier behaviors (constitutional, critical, important, normal, temporary, deprecated)
-- `hybridSearch` - FTS/vector weight balance (40%/60% default)
-- `checkpoints` - Max checkpoints, auto-cleanup
-
-**filters.jsonc pipeline stages:**
-1. `noise` - Pattern-based noise removal (min 15 chars, 3 unique words)
-2. `dedupe` - Duplicate removal (70% similarity threshold)
-3. `quality` - Content quality scoring (uniqueness, density, file refs, decisions)
+**Full documentation:** See [environment_variables.md](./references/config/environment_variables.md)
 
 ### Resource Inventory
 
-**Template Folder Architecture (`templates/`):**
+**Template Architecture (CORE + ADDENDUM v2.0):**
 
-Templates are organized in level-specific folders with pre-expanded content:
+| Folder | Contents | When to Use |
+|--------|----------|-------------|
+| `templates/level_1/` | 4 files (~270 LOC) | **Default for new specs** |
+| `templates/level_2/` | 5 files (~390 LOC) | QA validation needed |
+| `templates/level_3/` | 6 files (~540 LOC) | Architecture decisions |
+| `templates/level_3+/` | 6 files (~640 LOC) | Enterprise governance |
+| `templates/verbose/` | Extended guidance | New users, complex requirements |
 
-| Folder | Files | Description |
-| ------ | ----- | ----------- |
-| `level_1/` | spec.md, plan.md, tasks.md, implementation-summary.md (4 files) | Baseline documentation |
-| `level_2/` | Level 1 + checklist.md (5 files) | Adds verification/QA tracking |
-| `level_3/` | Level 2 + decision-record.md (6 files) | Full architecture documentation |
-| `level_3+/` | Level 3 with extended content, AI protocols (6 files) | Complex multi-agent workflows |
-| Root | handover.md, debug-delegation.md, context_template.md | Utility templates (any level) |
-
-**Key Benefits:**
-- **No runtime marker parsing** - Templates are pre-expanded for each level
-- **Backward compatibility** - Root templates maintained for legacy scripts
-- **Clear selection** - Copy from `templates/level_N/` based on complexity score
-
-**Internal Templates:**
-- `context_template.md` - Internal template for memory file generation (Mustache format)
-
-**Auto-Generated Folders:**
-- `memory/` - Session context (via `generate-context.js`)
-- `scratch/` - Temporary workspace (manual creation)
+> **IMPORTANT:** Always copy from `templates/level_N/`. The `core/` and `addendum/` folders are source components only.
 
 **Key Scripts:**
 
 | Script | Purpose |
 |--------|---------|
-| `generate-context.js` | Generate memory files from conversation (modular: 44 modules in 10 dirs) |
-| `validate-spec.sh` | Validate spec folder structure |
-| `create-spec-folder.sh` | Create new spec folders with templates |
-| `check-completion.sh` | Verify checklist completion status |
-| `recommend-level.sh` | Suggest documentation level based on LOC |
-| `archive-spec.sh` | Archive completed spec folders |
-| `cleanup-orphaned-vectors.js` | Removes orphaned vector entries |
-| `check-prerequisites.sh` | Checks prerequisites before implementation |
-| `common.sh` | Shared shell utilities |
-| `setup.sh` | Initial setup script |
-| `calculate-completeness.sh` | Calculates spec completeness percentage |
-| `package.json` | Node.js dependencies |
-| `README.md` | Scripts documentation |
-| `tests/test-validation.sh` | Validation test runner |
-| `tests/test-embeddings-factory.js` | Test embedding provider configuration |
-| `tests/test-bug-fixes.js` | Bug fix regression tests |
+| `generate-context.js` | Generate memory files from conversation |
+| `spec/validate.sh` | Validate spec folder structure |
+| `spec/create.sh` | Create new spec folders with templates |
+| `templates/compose.sh` | Compose level templates from core + addendums |
+
+**Full documentation:** See [level_specifications.md](./references/templates/level_specifications.md) and [template_guide.md](./references/templates/template_guide.md)
 
 **References (`references/`):**
 
-| Sub-folder | File | Purpose | When to Load |
-|------------|------|---------|--------------|
-| `memory/` | `memory_system.md` | MCP tool behavior and config | Memory operations |
-| `memory/` | `save_workflow.md` | Memory save workflow docs | Context preservation |
-| `memory/` | `trigger_config.md` | Trigger phrase configuration | Setup |
-| `templates/` | `level_specifications.md` | Complete Level 1-3 requirements | Planning |
-| `templates/` | `template_guide.md` | Template selection and usage | Planning, Implementation |
-| `templates/` | `template_style_guide.md` | Template formatting conventions | Documentation |
-| `validation/` | `validation_rules.md` | All validation rules and fixes | Implementation, Completion |
-| `validation/` | `phase_checklists.md` | Per-phase validation | Completion |
-| `validation/` | `path_scoped_rules.md` | Path-scoped validation | Advanced |
-| `structure/` | `folder_structure.md` | Folder naming conventions | Planning |
-| `structure/` | `folder_routing.md` | Folder routing logic | Planning |
-| `structure/` | `sub_folder_versioning.md` | Sub-folder workflow | Reusing spec folders |
-| `workflows/` | `quick_reference.md` | Commands and checklists | Any phase |
-| `workflows/` | `execution_methods.md` | Script execution patterns | Operations |
-| `workflows/` | `worked_examples.md` | Real-world examples | Learning |
-| `debugging/` | `troubleshooting.md` | Common issues and solutions | Debugging |
-| `debugging/` | `universal_debugging_methodology.md` | Stack-agnostic 4-phase debugging | Debugging |
-| `config/` | `environment_variables.md` | Env var configuration | Setup |
+| Sub-folder    | File                                 | Purpose                          | When to Load               |
+| ------------- | ------------------------------------ | -------------------------------- | -------------------------- |
+| `memory/`     | `memory_system.md`                   | MCP tool behavior and config     | Memory operations          |
+| `memory/`     | `save_workflow.md`                   | Memory save workflow docs        | Context preservation       |
+| `memory/`     | `trigger_config.md`                  | Trigger phrase configuration     | Setup                      |
+| `templates/`  | `level_specifications.md`            | Complete Level 1-3 requirements  | Planning                   |
+| `templates/`  | `template_guide.md`                  | Template selection and usage     | Planning, Implementation   |
+| `templates/`  | `template_style_guide.md`            | Template formatting conventions  | Documentation              |
+| `validation/` | `validation_rules.md`                | All validation rules and fixes   | Implementation, Completion |
+| `validation/` | `phase_checklists.md`                | Per-phase validation             | Completion                 |
+| `validation/` | `path_scoped_rules.md`               | Path-scoped validation           | Advanced                   |
+| `structure/`  | `folder_structure.md`                | Folder naming conventions        | Planning                   |
+| `structure/`  | `folder_routing.md`                  | Folder routing logic             | Planning                   |
+| `structure/`  | `sub_folder_versioning.md`           | Sub-folder workflow              | Reusing spec folders       |
+| `workflows/`  | `quick_reference.md`                 | Commands and checklists          | Any phase                  |
+| `workflows/`  | `execution_methods.md`               | Script execution patterns        | Operations                 |
+| `workflows/`  | `worked_examples.md`                 | Real-world examples              | Learning                   |
+| `debugging/`  | `troubleshooting.md`                 | Common issues and solutions      | Debugging                  |
+| `debugging/`  | `universal_debugging_methodology.md` | Stack-agnostic 4-phase debugging | Debugging                  |
+| `config/`     | `environment_variables.md`           | Env var configuration            | Setup                      |
 
 **Assets (`assets/`):**
 
-| File | Purpose |
-|------|---------|
-| `level_decision_matrix.md` | LOC thresholds and complexity factors |
-| `template_mapping.md` | Template-to-level mapping rules |
-| `parallel_dispatch_config.md` | Agent dispatch configuration |
+| File                          | Purpose                               |
+| ----------------------------- | ------------------------------------- |
+| `level_decision_matrix.md`    | LOC thresholds and complexity factors |
+| `template_mapping.md`         | Template-to-level mapping rules       |
+| `parallel_dispatch_config.md` | Agent dispatch configuration          |
 
 **generate-context.js Input Modes:**
 
-| Mode | Usage | Description |
-|------|-------|-------------|
-| **Direct** | `node generate-context.js specs/007-feature/` | Auto-captures context from OpenCode session |
-| **JSON** | `node generate-context.js /tmp/context-data.json` | Manual context injection via JSON file |
+| Mode       | Usage                                             | Description                                 |
+| ---------- | ------------------------------------------------- | ------------------------------------------- |
+| **Direct** | `node generate-context.js specs/007-feature/`     | Auto-captures context from OpenCode session |
+| **JSON**   | `node generate-context.js /tmp/context-data.json` | Manual context injection via JSON file      |
 
 **Architecture:** The script uses a modular architecture (142-line CLI entry point + 44 modules across 10 directories: `core/`, `extractors/`, `lib/`, `loaders/`, `renderers/`, `rules/`, `spec-folder/`, `test-fixtures/`, `tests/`, `utils/`). See [scripts/README.md](./scripts/README.md) for module details and extension points.
 
@@ -356,54 +264,23 @@ When file modification detected, AI MUST ask:
 
 ### Complexity Detection (Option B Flow)
 
-When user selects **B) New**, AI can run complexity detection:
+When user selects **B) New**, AI estimates complexity and recommends a level:
 
-```
-1. USER: "B" (create new spec folder)
-
-2. AI: [Estimates complexity based on task description]
-   → Estimates LOC, files, risk factors
-   → Recommends appropriate level (1, 2, 3, or 3+)
-
-3. AI DISPLAYS:
-   ┌─────────────────────────────────────────────────────────────┐
-   │ LEVEL RECOMMENDATION                                        │
-   │                                                             │
-   │   Recommended Level: 2 (Verification)                       │
-   │                                                             │
-   │   Rationale:                                                │
-   │   ├── ~300 LOC estimated                                    │
-   │   ├── Auth/API integration (risk factor)                    │
-   │   └── External dependencies                                 │
-   │                                                             │
-   │   Accept Level 2? (Y) or Override (1/2/3):                  │
-   └─────────────────────────────────────────────────────────────┘
-
-4. USER: "Y" (or 1/2/3 to override)
-
-5. AI: [Runs create-spec-folder.sh --level N]
-   → Copies pre-expanded templates from templates/level_N/
-   → No runtime marker parsing needed
-```
+1. Estimate LOC, files affected, risk factors
+2. Recommend level (1, 2, 3, or 3+) with rationale
+3. User accepts or overrides
+4. Run `./scripts/spec/create.sh --level N`
 
 **Level Guidelines:**
-| LOC       | Level | Name         | Template Folder                   |
-|-----------|-------|--------------|-----------------------------------|
-| <100      | 1     | Baseline     | `templates/level_1/` (4 files)    |
-| 100-499   | 2     | Verification | `templates/level_2/` (5 files)    |
-| ≥500      | 3     | Full         | `templates/level_3/` (6 files)    |
-| Complex   | 3+    | Extended     | `templates/level_3+/` (6 files)   |
 
-**Template Selection:**
-Templates are pre-expanded in level-specific folders. Simply copy from the appropriate level folder:
+| LOC | Level | Template Folder |
+|-----|-------|-----------------|
+| <100 | 1 | `templates/level_1/` |
+| 100-499 | 2 | `templates/level_2/` |
+| ≥500 | 3 | `templates/level_3/` |
+| Complex | 3+ | `templates/level_3+/` |
 
-```bash
-# Copy Level 2 templates to new spec folder
-cp templates/level_2/*.md specs/042-new-feature/
-
-# Create spec folder with specific level
-./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2
-```
+**See:** [quick_reference.md](./references/workflows/quick_reference.md) for detailed examples.
 
 **CLI Tool:**
 ```bash
@@ -412,23 +289,34 @@ cp templates/level_2/*.md specs/042-new-feature/
 
 # Create spec folder with level 3+ (extended) templates
 ./scripts/spec/create.sh "Major platform migration" --level 3+
+
+# Create spec folder with verbose templates (detailed guidance)
+./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2 --verbose-templates
+
+# Create spec folder with minimal templates (default, concise)
+./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2 --minimal-templates
 ```
 
-### 3-Level Progressive Enhancement
+### 3-Level Progressive Enhancement (CORE + ADDENDUM v2.0)
+
+Higher levels ADD VALUE, not just length. Each level builds on the previous:
 
 ```
-Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
-         ↓
-Level 2 (Verification): Level 1 + checklist.md
-         ↓
-Level 3 (Full):         Level 2 + decision-record.md + optional research.md
+Level 1 (Core):         Essential what/why/how (~270 LOC)
+         ↓ +Verify
+Level 2 (Verification): +Quality gates, NFRs, edge cases (~390 LOC)
+         ↓ +Arch
+Level 3 (Full):         +Architecture decisions, ADRs, risk matrix (~540 LOC)
+         ↓ +Govern
+Level 3+ (Extended):    +Enterprise governance, AI protocols (~640 LOC)
 ```
 
-| Level | LOC Guidance | Required Files                                                           | Use When                     |
-| ----- | ------------ | ------------------------------------------------------------------------ | ---------------------------- |
-| **1** | <100         | spec.md, plan.md, tasks.md, implementation-summary.md                    | All features (minimum)       |
-| **2** | 100-499      | Level 1 + checklist.md                                                   | QA validation needed         |
-| **3** | ≥500         | Level 2 + decision-record.md                                             | Complex/architecture changes |
+| Level  | LOC Guidance | Required Files                                        | What It ADDS                                |
+| ------ | ------------ | ----------------------------------------------------- | ------------------------------------------- |
+| **1**  | <100         | spec.md, plan.md, tasks.md, implementation-summary.md | Essential what/why/how                      |
+| **2**  | 100-499      | Level 1 + checklist.md                                | Quality gates, verification, NFRs           |
+| **3**  | ≥500         | Level 2 + decision-record.md                          | Architecture decisions, ADRs                |
+| **3+** | Complex      | Level 3 + extended content                            | Governance, approval workflow, AI protocols |
 
 **Level Selection Examples:**
 
@@ -565,22 +453,22 @@ Context preservation across sessions via vector-based semantic search.
 
 **MCP Tools:**
 
-| Tool | Purpose |
-|------|---------|
-| `memory_search()` | Semantic search with vector similarity |
-| `memory_match_triggers()` | Fast keyword matching (<50ms) |
-| `memory_save()` | Index a memory file |
-| `memory_list()` | Browse stored memories with pagination |
-| `memory_delete()` | Delete memories by ID or spec folder |
-| `memory_update()` | Update memory metadata and importance tier |
-| `memory_stats()` | Get system statistics and counts |
-| `memory_validate()` | Record validation feedback for confidence |
-| `memory_index_scan()` | Bulk scan and index workspace |
-| `memory_health()` | Check system health status |
-| `checkpoint_create()` | Create named checkpoint |
-| `checkpoint_list()` | List all available checkpoints |
-| `checkpoint_restore()` | Restore from checkpoint |
-| `checkpoint_delete()` | Delete a checkpoint |
+| Tool                      | Purpose                                    |
+| ------------------------- | ------------------------------------------ |
+| `memory_search()`         | Semantic search with vector similarity     |
+| `memory_match_triggers()` | Fast keyword matching (<50ms)              |
+| `memory_save()`           | Index a memory file                        |
+| `memory_list()`           | Browse stored memories with pagination     |
+| `memory_delete()`         | Delete memories by ID or spec folder       |
+| `memory_update()`         | Update memory metadata and importance tier |
+| `memory_stats()`          | Get system statistics and counts           |
+| `memory_validate()`       | Record validation feedback for confidence  |
+| `memory_index_scan()`     | Bulk scan and index workspace              |
+| `memory_health()`         | Check system health status                 |
+| `checkpoint_create()`     | Create named checkpoint                    |
+| `checkpoint_list()`       | List all available checkpoints             |
+| `checkpoint_restore()`    | Restore from checkpoint                    |
+| `checkpoint_delete()`     | Delete a checkpoint                        |
 
 > **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search()`).
 
@@ -751,6 +639,28 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 **Full configuration:** See [parallel_dispatch_config.md](./assets/parallel_dispatch_config.md)
 
+### Validation Workflow
+
+Automated validation of spec folder contents via `validate-spec.sh`.
+
+**Usage:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder>`
+
+**Exit Codes:**
+
+| Code | Meaning                         | Action                       |
+| ---- | ------------------------------- | ---------------------------- |
+| 0    | Passed (no errors, no warnings) | Proceed with completion      |
+| 1    | Passed with warnings            | Address or document warnings |
+| 2    | Failed (errors found)           | MUST fix before completion   |
+
+**Completion Verification:**
+1. Run validation: `./scripts/spec/validate.sh <spec-folder>`
+2. Exit 2 → FIX errors
+3. Exit 1 → ADDRESS warnings or document reason
+4. Exit 0 → Proceed with completion claim
+
+**Full documentation:** See [validation_rules.md](./references/validation/validation_rules.md) for all rules, configuration, and troubleshooting.
+
 ---
 
 ## 4. 📋 RULES
@@ -794,33 +704,7 @@ SpecKit supports smart parallel sub-agent dispatch based on 5-dimension complexi
 
 ---
 
-## 5. ✅ VALIDATION
-
-Automated validation of spec folder contents via `validate-spec.sh`.
-
-**Usage:** `.opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder>`
-
-### Exit Codes
-
-| Code | Meaning                         | Action                       |
-| ---- | ------------------------------- | ---------------------------- |
-| 0    | Passed (no errors, no warnings) | Proceed with completion      |
-| 1    | Passed with warnings            | Address or document warnings |
-| 2    | Failed (errors found)           | MUST fix before completion   |
-
-### Completion Verification
-
-Before claiming "done":
-1. Run validation: `./scripts/spec/validate.sh <spec-folder>`
-2. Exit 2 → FIX errors
-3. Exit 1 → ADDRESS warnings or document reason
-4. Exit 0 → Proceed with completion claim
-
-**Full documentation:** See [validation_rules.md](./references/validation/validation_rules.md) for all rules, configuration, and troubleshooting.
-
----
-
-## 6. 🏆 SUCCESS CRITERIA
+## 5. 🏆 SUCCESS CRITERIA
 
 ### Documentation Created
 
@@ -865,7 +749,7 @@ Before claiming "done":
 
 ---
 
-## 7. 🔌 INTEGRATION POINTS
+## 6. 🔌 INTEGRATION POINTS
 
 ### Priority System
 
@@ -948,33 +832,39 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 7. 🔗 RELATED RESOURCES
 
 ### Related Skills
 
-| Direction      | Skill                   | Integration                                        |
-| -------------- | ----------------------- | -------------------------------------------------- |
-| **Upstream**   | None                    | This is the foundational workflow                  |
-| **Downstream** | workflows-code          | Uses spec folders for implementation tracking      |
-| **Downstream** | workflows-git           | References spec folders in commit messages and PRs |
-| **Downstream** | workflows-documentation | Validates spec folder documentation quality        |
+| Direction      | Skill                   | Integration                                           |
+| -------------- | ----------------------- | ----------------------------------------------------- |
+| **Upstream**   | None                    | This is the foundational workflow                     |
+| **Downstream** | workflows-code          | Uses spec folders for implementation tracking         |
+| **Downstream** | workflows-git           | References spec folders in commit messages and PRs    |
+| **Downstream** | workflows-documentation | Validates spec folder documentation quality           |
 | **Integrated** | Spec Kit Memory         | Context preservation via MCP (merged into this skill) |
 
 ### External Dependencies
 
-| Resource       | Location                                                      | Purpose                      |
-| -------------- | ------------------------------------------------------------- | ---------------------------- |
-| Level 1 templates | `templates/level_1/` (4 files)                             | Baseline documentation       |
-| Level 2 templates | `templates/level_2/` (5 files)                             | Verification + checklist     |
-| Level 3 templates | `templates/level_3/` (6 files)                             | Full + decision record       |
-| Level 3+ templates | `templates/level_3+/` (6 files)                           | Extended + AI protocols      |
-| Utility templates | `templates/` root                                          | handover.md, debug-delegation.md |
-| Validation     | `scripts/spec/validate.sh`                                    | Automated validation         |
-| Gates          | `AGENTS.md` Section 2                                         | Gate definitions             |
-| Memory gen     | `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js` | Memory file creation         |
-| MCP Server     | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`| Spec Kit Memory MCP          |
-| Database       | `.opencode/skill/system-spec-kit/database/context-index.sqlite`| Vector search index         |
-| Constitutional | `.opencode/skill/system-spec-kit/constitutional/`             | Always-surface rules         |
+| Resource          | Location                                                             | Purpose                           |
+| ----------------- | -------------------------------------------------------------------- | --------------------------------- |
+| Core templates    | `templates/core/` (4 files)                                          | Foundation shared by all levels   |
+| Verbose templates | `templates/verbose/` (4 files + README)                              | Extended guidance for new users   |
+| Level 2 addendum  | `templates/addendum/level2-verify/` (3 files)                        | +Verification, NFRs               |
+| Level 3 addendum  | `templates/addendum/level3-arch/` (3 files)                          | +Architecture, ADRs               |
+| Level 3+ addendum | `templates/addendum/level3plus-govern/` (3 files)                    | +Governance, compliance           |
+| Level 1           | `templates/level_1/` (4 files)                                       | Pre-merged core (~270 LOC)        |
+| Level 2           | `templates/level_2/` (5 files)                                       | Core + L2 (~390 LOC)              |
+| Level 3           | `templates/level_3/` (6 files)                                       | Core + L2 + L3 (~540 LOC)         |
+| Level 3+          | `templates/level_3+/` (6 files)                                      | All addendums (~640 LOC)          |
+| Utility templates | `templates/` root                                                    | handover.md, debug-delegation.md  |
+| Compose script    | `scripts/templates/compose.sh`                                       | Template composition from sources |
+| Validation        | `scripts/spec/validate.sh`                                           | Automated validation              |
+| Gates             | `AGENTS.md` Section 2                                                | Gate definitions                  |
+| Memory gen        | `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js` | Memory file creation              |
+| MCP Server        | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`       | Spec Kit Memory MCP               |
+| Database          | `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | Vector search index               |
+| Constitutional    | `.opencode/skill/system-spec-kit/constitutional/`                    | Always-surface rules              |
 
 ---
 

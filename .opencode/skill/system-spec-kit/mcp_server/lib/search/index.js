@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// search/index.js: Search and retrieval modules barrel export
+// MODULE: SEARCH INDEX
 // ───────────────────────────────────────────────────────────────
 'use strict';
 

@@ -1,9 +1,6 @@
-/**
- * @fileoverview Input validation utilities for MCP context server
- * Provides query validation, input length enforcement, and path validation
- * for security (CWE-400 mitigation) and data integrity.
- * @module mcp_server/utils/validators
- */
+// ───────────────────────────────────────────────────────────────
+// UTILS: VALIDATORS
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');

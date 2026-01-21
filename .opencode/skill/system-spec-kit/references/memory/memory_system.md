@@ -3,7 +3,7 @@ title: Memory System Reference
 description: Detailed documentation for Spec Kit Memory MCP tools, behavior notes, and configuration
 ---
 
-# Memory System Reference
+# Memory System Reference - MCP Tools & Behavior
 
 Spec Kit Memory MCP tools, behavior notes, and configuration options.
 
@@ -18,7 +18,7 @@ The Spec Kit Memory system provides context preservation across sessions through
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | MCP Server | `mcp_server/context-server.js` | Spec Kit Memory MCP with vector search |
-| Database | `database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
+| Database | `mcp_server/database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
 | Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
 | Scripts | `scripts/memory/generate-context.js` | Memory file generation with ANCHOR format |
 

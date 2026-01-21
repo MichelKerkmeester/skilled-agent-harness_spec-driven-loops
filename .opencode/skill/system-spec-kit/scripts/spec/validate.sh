@@ -197,7 +197,7 @@ detect_level() {
         # Pattern 4: Inline "Level: N" or "Level N" (case insensitive)
         # Level: 2 or Level 2
         if [[ -z "$level" ]]; then
-            level=$(grep -iE 'level[:\s]+[123]' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+            level=$(grep -iE 'level[: ]+[123]' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
         fi
         
         [[ -n "$level" ]] && { DETECTED_LEVEL="$level"; LEVEL_METHOD="explicit"; return; }

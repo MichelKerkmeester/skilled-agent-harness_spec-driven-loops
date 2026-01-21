@@ -3,7 +3,7 @@ title: Validation Rules Reference
 description: Complete reference for all validation rules used by the SpecKit validation system.
 ---
 
-# Validation Rules Reference
+# Validation Rules Reference - Complete Rule Reference
 
 Complete reference for all validation rules used by the SpecKit validation system.
 
@@ -45,6 +45,12 @@ This document provides comprehensive documentation for every validation rule enf
 | `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
 | `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
 | `ANCHORS_VALID`      | ERROR    | memory/*.md   | ANCHOR pairs properly opened and closed        |
+| `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
+| `FRONTMATTER_VALID`  | WARNING  | spec/plan.md  | YAML frontmatter properly structured           |
+| `COMPLEXITY_MATCH`   | WARNING  | All levels    | Content metrics match declared level           |
+| `AI_PROTOCOL`        | WARNING  | Level 3/3+    | AI execution protocols present                 |
+| `LEVEL_MATCH`        | ERROR    | All files     | Level consistent across all spec files         |
+| `SECTION_COUNTS`     | WARNING  | All levels    | Section counts within expected ranges          |
 
 ---
 
@@ -540,7 +546,312 @@ Content here...
 
 ---
 
-## 10. ⚙️ CONFIGURATION
+## 10. 📂 FOLDER_NAMING
+
+**Severity:** ERROR
+**Description:** Validates that the spec folder follows the `###-short-name` naming convention.
+
+### Naming Rules
+
+| Rule              | Valid                     | Invalid                   |
+| ----------------- | ------------------------- | ------------------------- |
+| 3-digit prefix    | `001-`, `042-`, `999-`    | `1-`, `01-`, `1234-`      |
+| Lowercase only    | `007-auth-feature`        | `007-Auth-Feature`        |
+| Hyphens only      | `007-my-feature`          | `007_my_feature`          |
+| No spaces         | `007-login-flow`          | `007-login flow`          |
+
+### Examples
+
+**Pass:**
+```
+specs/001-initial-setup/
+specs/042-user-authentication/
+specs/007-api-refactor/
+```
+
+**Fail:**
+```
+specs/1-setup/                  ← Missing 3-digit prefix
+specs/001-User-Auth/            ← Contains uppercase
+specs/001_login_flow/           ← Uses underscores
+specs/feature-without-number/   ← Missing numeric prefix
+```
+
+### How to Fix
+
+Rename the folder to follow the pattern `###-short-name`:
+
+```bash
+# From invalid
+mv specs/1-setup specs/001-setup
+mv specs/001_login_flow specs/001-login-flow
+mv specs/Feature specs/001-feature
+```
+
+---
+
+## 11. 📄 FRONTMATTER_VALID
+
+**Severity:** WARNING
+**Description:** Validates YAML frontmatter structure in markdown files and checks for template source markers.
+
+### Validation Checks
+
+| Check                     | Files Scanned    | Description                             |
+| ------------------------- | ---------------- | --------------------------------------- |
+| Frontmatter closure       | spec.md, plan.md | Opening `---` has matching closing `---`|
+| Template source marker    | spec.md, plan.md | Contains `SPECKIT_TEMPLATE_SOURCE`      |
+
+### Examples
+
+**Pass:**
+```markdown
+---
+title: My Feature Spec
+SPECKIT_TEMPLATE_SOURCE: level_1/spec.md
+---
+
+# Content here
+```
+
+**Warning (unclosed frontmatter):**
+```markdown
+---
+title: My Feature Spec
+                          ← Missing closing ---
+
+# Content here
+```
+
+**Warning (missing template marker):**
+```markdown
+---
+title: My Feature Spec
+---                       ← No SPECKIT_TEMPLATE_SOURCE
+
+# Content here
+```
+
+### How to Fix
+
+1. Ensure frontmatter has both opening and closing `---` markers
+2. Use templates from `.opencode/skill/system-spec-kit/templates/` which include the source marker
+
+```bash
+cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/007-feature/
+```
+
+---
+
+## 12. 📊 COMPLEXITY_MATCH
+
+**Severity:** WARNING
+**Description:** Validates that declared complexity level matches actual content metrics (user stories, phases, tasks).
+
+### Expected Ranges by Level
+
+| Level | User Stories | Phases  | Tasks     |
+| ----- | ------------ | ------- | --------- |
+| 1     | 1-2          | 2-3     | 5-15      |
+| 2     | 2-4          | 3-5     | 15-50     |
+| 3/3+  | 4-15         | 5-12    | 50-200    |
+
+### Detection Patterns
+
+| Metric       | Pattern Searched                           |
+| ------------ | ------------------------------------------ |
+| User Stories | `### User Story` headers in spec.md        |
+| Phases       | `### Phase` headers in plan.md             |
+| Tasks        | `- [ ] T##` or `- [ ] TASK-` in tasks.md   |
+
+### Examples
+
+**Warning (under-scoped for Level 2):**
+```
+Declared Level: 2
+Found: 1 user story, 2 phases, 8 tasks
+Expected: 2-4 stories, 3-5 phases, 15-50 tasks
+```
+
+**Warning (over-scoped for Level 1):**
+```
+Declared Level: 1
+Found: 5 user stories, 6 phases, 45 tasks
+Expected: 1-2 stories, 2-3 phases, 5-15 tasks
+```
+
+### How to Fix
+
+Either adjust the declared level or modify content to match:
+
+1. **Upgrade level:** If content is complex, change `| **Level** | 1 |` to `| **Level** | 2 |`
+2. **Reduce scope:** Split complex specs into multiple smaller specs
+3. **Add content:** For sparse specs, add missing user stories, phases, or tasks
+
+---
+
+## 13. 🤖 AI_PROTOCOL
+
+**Severity:** WARNING
+**Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance.
+
+### Required for Level 3+
+
+| Component             | Location        | Purpose                           |
+| --------------------- | --------------- | --------------------------------- |
+| AI Execution section  | plan/tasks.md   | Main protocol header              |
+| Pre-Task Checklist    | plan/tasks.md   | Steps before starting any task    |
+| Execution Rules       | plan/tasks.md   | TASK-SEQ, TASK-SCOPE constraints  |
+| Status Format         | plan/tasks.md   | How to report progress            |
+| Blocked Protocol      | plan/tasks.md   | What to do when stuck             |
+
+### Scoring
+
+- Level 3: Should have protocol section (warning if missing)
+- Level 3+: Must have at least 3/4 components (error if fewer)
+
+### Detection Patterns
+
+```markdown
+## AI EXECUTION PROTOCOL         ← Main section
+### Pre-Task Checklist           ← Component 1
+### Execution Rules              ← Component 2
+### Status Reporting Format      ← Component 3
+### Blocked Task Protocol        ← Component 4
+```
+
+### Examples
+
+**Pass (Level 3+):**
+```markdown
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- [ ] Read relevant files
+- [ ] Verify preconditions
+
+### Execution Rules
+| Rule | Description |
+|------|-------------|
+| TASK-SEQ | Complete tasks in order |
+| TASK-SCOPE | Only modify files in scope |
+
+### Status Reporting Format
+After each task: "Task T## complete. Files modified: [list]"
+
+### Blocked Task Protocol
+If blocked: Stop, document blocker, request help
+```
+
+### How to Fix
+
+Add the AI Execution Protocol section to plan.md or tasks.md. Reference the Level 3 templates:
+
+```bash
+# See protocol examples in templates
+cat .opencode/skill/system-spec-kit/templates/level_3/plan.md
+```
+
+---
+
+## 14. 🔗 LEVEL_MATCH
+
+**Severity:** ERROR
+**Description:** Validates that the declared level is consistent across all spec folder files and required files exist.
+
+### Consistency Checks
+
+| Check                  | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| Cross-file consistency | Level in spec.md matches level in plan.md, checklist  |
+| Required files         | All files required for declared level exist           |
+| File presence hints    | Warns if files suggest higher level than declared     |
+
+### Required Files by Level
+
+| Level | Required Files                                               |
+| ----- | ------------------------------------------------------------ |
+| 1     | spec.md, plan.md, tasks.md                                   |
+| 2     | Level 1 + checklist.md                                       |
+| 3/3+  | Level 2 + decision-record.md                                 |
+
+### Examples
+
+**Error (missing required file):**
+```
+Declared: Level 2
+Missing: checklist.md
+```
+
+**Error (inconsistent levels):**
+```
+spec.md declares: Level 2
+plan.md declares: Level 1
+```
+
+**Warning (file suggests higher level):**
+```
+Declared: Level 1
+Present: decision-record.md (suggests Level 3)
+```
+
+### How to Fix
+
+1. **Add missing files:** Create required files for your level
+2. **Fix level declarations:** Ensure all files declare the same level
+3. **Upgrade level:** If you have Level 3 files, declare Level 3
+
+```bash
+# Add checklist for Level 2
+cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/007-feature/
+```
+
+---
+
+## 15. 📈 SECTION_COUNTS
+
+**Severity:** WARNING
+**Description:** Validates that section counts are within expected ranges for the declared documentation level.
+
+### Expected Minimums by Level
+
+| Level | spec.md H2s | plan.md H2s | Requirements | Acceptance Scenarios |
+| ----- | ----------- | ----------- | ------------ | -------------------- |
+| 1     | 5           | 4           | 3            | 2                    |
+| 2     | 8           | 6           | 5            | 4                    |
+| 3/3+  | 10          | 8           | 8            | 6                    |
+
+### Detection Patterns
+
+| Metric               | Pattern                          |
+| -------------------- | -------------------------------- |
+| H2 sections          | Lines starting with `## `        |
+| Requirements         | `REQ-FUNC-`, `REQ-DATA-`, `REQ-` |
+| Acceptance Scenarios | `**Given**` blocks               |
+
+### Examples
+
+**Warning (sparse for Level 2):**
+```
+Level: 2
+spec.md: 4 sections (expected 8)
+plan.md: 3 sections (expected 6)
+Requirements: 2 (expected 5)
+Scenarios: 1 (expected 4)
+```
+
+### How to Fix
+
+Either expand content or reduce declared level:
+
+1. **Add sections:** Fill in missing spec sections (Problem Statement, Requirements, etc.)
+2. **Add requirements:** Define more `REQ-FUNC-###` identifiers
+3. **Add scenarios:** Write more `**Given**/**When**/**Then**` acceptance tests
+4. **Reduce level:** If spec is intentionally minimal, declare Level 1
+
+---
+
+## 16. ⚙️ CONFIGURATION
 
 ### Environment Variables
 
@@ -570,7 +881,7 @@ SPECKIT_JSON=true ./scripts/validate-spec.sh specs/007-feature/
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 17. 🔗 RELATED RESOURCES
 
 ### Reference Files
 
@@ -580,5 +891,5 @@ SPECKIT_JSON=true ./scripts/validate-spec.sh specs/007-feature/
 
 ### Scripts
 
-- `../../scripts/validate-spec.sh` - Main validation script
+- `../../scripts/spec/validate.sh` - Main validation script
 - `../../scripts/rules/` - Individual rule implementations

@@ -237,7 +237,7 @@ $ARGUMENTS
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW (7 STEPS)
+## 3. 📊 WORKFLOW OVERVIEW
 
 | Step | Name             | Purpose                      | Outputs                  |
 | ---- | ---------------- | ---------------------------- | ------------------------ |
@@ -262,7 +262,38 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 5. 📌 REFERENCE
+## 5. 📊 OUTPUT FORMATS
+
+### Success Output
+```
+✅ SpecKit Planning Complete
+
+All 7 planning steps executed successfully.
+
+Artifacts Created:
+- spec.md (feature specification)
+- plan.md (technical plan)
+- checklist.md (validation checklist, Level 2+)
+- memory/*.md (session context)
+
+Ready for: /spec_kit:implement [spec-folder-path]
+
+STATUS=OK PATH=[spec-folder-path]
+```
+
+### Failure Output
+```
+❌ SpecKit Planning Failed
+
+Error: [error description]
+Step: [step number where failure occurred]
+
+STATUS=FAIL ERROR="[message]"
+```
+
+---
+
+## 6. 📌 REFERENCE
 
 **Full details in YAML prompts:**
 - Workflow steps and activities
@@ -279,7 +310,7 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 6. 🔀 PARALLEL DISPATCH
+## 7. 🔀 PARALLEL DISPATCH
 
 This workflow supports smart parallel sub-agent dispatch for eligible phases using a 5-dimension complexity scoring algorithm.
 
@@ -322,7 +353,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 7. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 8. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Terminates after planning** - Does not include task breakdown, analysis, or implementation
 - **Next step guidance** - Recommends `/spec_kit:implement` when ready to build
@@ -330,7 +361,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 8. 🔍 EXAMPLES
+## 9. 🔍 EXAMPLES
 
 **Example 1: Simple Planning (autonomous)**
 ```
@@ -349,7 +380,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 9. 🔗 COMMAND CHAIN
+## 10. 🔗 COMMAND CHAIN
 
 This command is part of the SpecKit workflow:
 
@@ -362,7 +393,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 10. 🔜 WHAT NEXT?
+## 11. 📌 NEXT STEPS
 
 After planning completes, suggest relevant next steps:
 

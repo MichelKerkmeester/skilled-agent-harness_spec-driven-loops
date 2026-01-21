@@ -1,11 +1,11 @@
 // ───────────────────────────────────────────────────────────────
-// MCP: IMPORTANCE TIERS
+// SCORING: IMPORTANCE TIERS
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. TIER CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Importance tier configuration definitions
 // TierConfig: { value, searchBoost, decay, autoExpireDays, excludeFromSearch?, alwaysSurface?, maxTokens?, description }
@@ -60,9 +60,9 @@ const IMPORTANCE_TIERS = {
 const VALID_TIERS = Object.keys(IMPORTANCE_TIERS);
 const DEFAULT_TIER = 'normal';
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    2. TIER CONFIGURATION FUNCTIONS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Get tier configuration by name (returns normal tier if invalid)
 function get_tier_config(tier_name) {
@@ -113,9 +113,9 @@ function get_tier_value(tier) {
   return config.value;
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    3. SQL FILTER HELPERS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // SQL WHERE clause for finding expired temporary memories
 function get_expired_temporary_filter() {
@@ -146,9 +146,9 @@ function get_constitutional_filter() {
   return "importance_tier = 'constitutional'";
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    4. UTILITY FUNCTIONS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // Normalize tier input to valid tier name (returns default if invalid)
 function normalize_tier(tier) {
@@ -173,9 +173,9 @@ function get_tiers_by_importance() {
   });
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    5. MODULE EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // Constants

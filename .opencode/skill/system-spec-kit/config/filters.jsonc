@@ -1,18 +1,36 @@
+// ───────────────────────────────────────────────────────────────
+// CONFIG: CONTENT FILTERS
+// ───────────────────────────────────────────────────────────────
 {
+  // ─────────────────────────────────────────────────────────────
+  // 1. PIPELINE
+  // ─────────────────────────────────────────────────────────────
   "pipeline": {
     "enabled": true,
     "stages": ["noise", "dedupe", "quality"]
   },
+
+  // ─────────────────────────────────────────────────────────────
+  // 2. NOISE FILTER
+  // ─────────────────────────────────────────────────────────────
   "noise": {
     "enabled": true,
     "minContentLength": 15,
     "minUniqueWords": 3
   },
+
+  // ─────────────────────────────────────────────────────────────
+  // 3. DEDUPLICATION
+  // ─────────────────────────────────────────────────────────────
   "dedupe": {
     "enabled": true,
     "hashLength": 300,
     "similarityThreshold": 0.70
   },
+
+  // ─────────────────────────────────────────────────────────────
+  // 4. QUALITY SCORING
+  // ─────────────────────────────────────────────────────────────
   "quality": {
     "enabled": true,
     "warnThreshold": 20,
@@ -24,87 +42,3 @@
     }
   }
 }
-
-// ─────────────────────────────────────────────────────────────
-// CONTENT FILTERING CONFIGURATION
-// ─────────────────────────────────────────────────────────────
-// This file configures the content filtering pipeline that
-// removes noise, duplicates, and calculates quality scores
-// for save-context memory files.
-//
-// → pipeline.enabled (boolean, default: true)
-// ─────────────────────────────────────────────────────────────
-// Master switch for the filtering pipeline.
-// • true = Apply filtering stages
-// • false = Pass through all content unchanged
-//
-// → pipeline.stages (array, default: ["noise", "dedupe", "quality"])
-// ─────────────────────────────────────────────────────────────
-// Stages to apply in order. Available stages:
-// • "noise" - Pattern-based noise removal
-// • "dedupe" - Duplicate content removal
-// • "quality" - Content quality scoring
-//
-// → noise.enabled (boolean, default: true)
-// ─────────────────────────────────────────────────────────────
-// Enable/disable noise filtering stage.
-// Removes content matching these patterns:
-// • Placeholder text: "User message", "Assistant message"
-// • CLI tags: <command-name>, <local-command-stdout>, etc.
-// • System caveats: "Caveat: The messages below..."
-// • Hook output noise
-// • Single characters and whitespace-only content
-//
-// → noise.minContentLength (number, default: 15)
-// ─────────────────────────────────────────────────────────────
-// Minimum character length after trimming.
-// Content shorter than this is filtered out.
-//
-// → noise.minUniqueWords (number, default: 3)
-// ─────────────────────────────────────────────────────────────
-// Minimum number of unique words required.
-// Prevents content like "ok ok ok" from being saved.
-//
-// → dedupe.enabled (boolean, default: true)
-// ─────────────────────────────────────────────────────────────
-// Enable/disable deduplication stage.
-// Removes duplicate and near-duplicate content.
-//
-// → dedupe.hashLength (number, default: 300)
-// ─────────────────────────────────────────────────────────────
-// Number of characters to use for content hashing.
-// Higher values = more precise deduplication.
-// Lower values = faster but may miss subtle differences.
-// V5.4: Increased from 200 to 300 to match transform-transcript.js
-//
-// → dedupe.similarityThreshold (number, default: 0.70)
-// ─────────────────────────────────────────────────────────────
-// Similarity ratio (0-1) above which content is considered
-// a duplicate. Messages with similarity >= this value are
-// filtered as duplicates.
-// • 1.0 = Only exact matches
-// • 0.70 = 70% similar content counts as duplicate
-// • 0.5 = Very aggressive deduplication
-//
-// → quality.enabled (boolean, default: true)
-// ─────────────────────────────────────────────────────────────
-// Enable/disable quality scoring stage.
-// Calculates a 0-100 quality score based on content value.
-//
-// → quality.warnThreshold (number, default: 20)
-// ─────────────────────────────────────────────────────────────
-// Quality score below which a warning header is added.
-// Sessions with score < threshold get a warning note.
-//
-// → quality.factors (object)
-// ─────────────────────────────────────────────────────────────
-// Weights for quality score calculation. Must sum to 1.0.
-//
-// • uniqueness (0.30) - Percentage of non-duplicate content
-// • density (0.30) - Presence of concrete action terms
-//   (implement, create, fix, update, etc.)
-// • fileRefs (0.20) - References to actual files
-// • decisions (0.20) - Decision-related terms
-//   (decided, chose, because, rationale, etc.)
-//
-// ─────────────────────────────────────────────────────────────

@@ -1,6 +1,11 @@
 # ───────────────────────────────────────────────────────────────────
 # DOCUMENTATION: INSTALLATION GUIDE WORKFLOW
 # ───────────────────────────────────────────────────────────────────
+# Version: 1.9.0 (SpecKit alignment)
+# Mode: confirm-only (interactive step-by-step approval)
+# Note: This workflow does NOT support :auto mode. All executions
+#       require user confirmation at checkpoints for content review.
+# ───────────────────────────────────────────────────────────────────
 role: Expert Installation Guide Creator using workflows-documentation skill
 purpose: Create comprehensive AI-first installation guides with multi-platform support
 action: Generate step-by-step setup instructions with AI-assisted install prompt

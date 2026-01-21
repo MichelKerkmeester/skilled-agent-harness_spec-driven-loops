@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// storage/index.js: Data persistence modules barrel export
+// MODULE: STORAGE INDEX
 // ───────────────────────────────────────────────────────────────
 'use strict';
 

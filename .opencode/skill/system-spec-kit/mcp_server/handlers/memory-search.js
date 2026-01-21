@@ -1,11 +1,6 @@
-/**
- * @fileoverview Memory search handler for MCP server
- * Handles semantic search operations across indexed memories with support
- * for hybrid search (FTS5 + vector), multi-concept search, and constitutional memories.
- *
- * @module mcp_server/handlers/memory-search
- * @version 1.0.0
- */
+// ───────────────────────────────────────────────────────────────
+// HANDLERS: MEMORY SEARCH
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');

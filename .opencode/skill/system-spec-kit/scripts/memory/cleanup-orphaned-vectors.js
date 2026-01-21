@@ -13,7 +13,7 @@ const path = require('path');
    1. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
 
-const db_path = path.join(__dirname, '../../database/context-index.sqlite');
+const db_path = path.join(__dirname, '../../mcp_server/database/context-index.sqlite');
 
 /* ─────────────────────────────────────────────────────────────
    2. MAIN FUNCTION

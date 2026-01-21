@@ -557,7 +557,7 @@ This command continues work from a handover:
 
 ---
 
-## 11. 🔜 WHAT NEXT?
+## 11. 📌 NEXT STEPS
 
 After resume completes, suggest relevant next steps based on progress:
 

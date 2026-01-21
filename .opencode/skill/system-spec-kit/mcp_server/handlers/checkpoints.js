@@ -1,27 +1,22 @@
-/**
- * @fileoverview Checkpoint and validation handler functions for the MCP context server.
- * Handles checkpoint create/list/restore/delete and memory validation operations.
- *
- * Extracted from context-server.js for modularity and maintainability.
- *
- * @module mcp_server/handlers/checkpoints
- */
+// ───────────────────────────────────────────────────────────────
+// HANDLERS: CHECKPOINTS
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');
 
-/* ───────────────────────────────────────────────────────────────
-   LIB MODULE IMPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   1. LIB MODULE IMPORTS
+──────────────────────────────────────────────────────────────── */
 
 const LIB_DIR = path.join(__dirname, '..', 'lib');
 const checkpoints = require(path.join(LIB_DIR, 'storage', 'checkpoints.js'));
 const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
 const confidenceTracker = require(path.join(LIB_DIR, 'scoring', 'confidence-tracker.js'));
 
-/* ───────────────────────────────────────────────────────────────
-   CHECKPOINT CREATE HANDLER
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   2. CHECKPOINT CREATE HANDLER
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Handle checkpoint_create tool - create a new checkpoint
@@ -57,9 +52,9 @@ async function handle_checkpoint_create(args) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   CHECKPOINT LIST HANDLER
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   3. CHECKPOINT LIST HANDLER
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Handle checkpoint_list tool - list all checkpoints
@@ -94,9 +89,9 @@ async function handle_checkpoint_list(args) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   CHECKPOINT RESTORE HANDLER
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   4. CHECKPOINT RESTORE HANDLER
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Handle checkpoint_restore tool - restore from a checkpoint
@@ -126,9 +121,9 @@ async function handle_checkpoint_restore(args) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   CHECKPOINT DELETE HANDLER
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   5. CHECKPOINT DELETE HANDLER
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Handle checkpoint_delete tool - delete a checkpoint
@@ -158,9 +153,9 @@ async function handle_checkpoint_delete(args) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   MEMORY VALIDATE HANDLER
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   6. MEMORY VALIDATE HANDLER
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Handle memory_validate tool - record validation feedback for a memory
@@ -200,9 +195,9 @@ async function handle_memory_validate(args) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   7. EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // snake_case exports

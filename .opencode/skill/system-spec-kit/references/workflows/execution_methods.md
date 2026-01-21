@@ -1,17 +1,17 @@
 ---
 title: Execution Methods Reference
-description: How to execute spec folder operations - validation, completion checking, context saving
+description: How to execute spec folder operations - validation, completion checking, context saving, and template composition
 ---
 
 # Execution Methods Reference
 
-How to execute spec folder operations - validation, completion checking, context saving.
+How to execute spec folder operations - validation, completion checking, context saving, and template composition.
 
 ---
 
 ## 1. 📖 OVERVIEW
 
-This document covers validation, completion checking, context saving, and folder creation operations.
+This document covers validation, completion checking, context saving, folder creation, and template composition operations.
 
 ---
 
@@ -91,20 +91,20 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/con
 
 ## 5. 📁 SPEC FOLDER CREATION
 
-### create-spec-folder.sh
+### spec/create.sh
 
 Creates new spec folders with appropriate templates.
 
 **Usage:**
 ```bash
 # Interactive mode
-bash .opencode/skill/system-spec-kit/scripts/create-spec-folder.sh
+bash .opencode/skill/system-spec-kit/scripts/spec/create.sh
 
 # With arguments
-bash .opencode/skill/system-spec-kit/scripts/create-spec-folder.sh --level 2 --name "feature-name"
+bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --level 2 --name "feature-name"
 
 # Sub-folder mode
-bash .opencode/skill/system-spec-kit/scripts/create-spec-folder.sh --subfolder specs/001-parent/ --topic "iteration-2"
+bash .opencode/skill/system-spec-kit/scripts/spec/create.sh --subfolder specs/001-parent/ --topic "iteration-2"
 ```
 
 **Flags:**
@@ -143,8 +143,58 @@ bash .opencode/skill/system-spec-kit/scripts/recommend-level.sh --auth --api "Ad
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. 📦 TEMPLATE COMPOSITION
+
+### compose.sh
+
+Composes level-specific templates from core + addendum source components. Ensures consistency between source templates and composed outputs.
+
+**Usage:**
+```bash
+# Compose all level templates
+bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh
+
+# Preview changes without writing files
+bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --dry-run
+
+# Verbose output during composition
+bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --verbose
+
+# Verify composed templates match sources
+bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh --verify
+
+# Compose specific levels only
+bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh 2 3
+```
+
+**Flags:**
+| Flag | Purpose |
+|------|---------|
+| `--dry-run, -n` | Preview changes without writing files |
+| `--verbose, -v` | Show detailed output during composition |
+| `--force, -f` | Overwrite existing files without prompting |
+| `--verify` | Verify composed templates match sources |
+| `--help, -h` | Show help message |
+
+**Composition Rules:**
+| Level | Components |
+|-------|------------|
+| Level 1 | Core only |
+| Level 2 | Core + level2-verify addendum |
+| Level 3 | Core + level2-verify + level3-arch addendums |
+| Level 3+ | Core + all addendums |
+
+**When to Use:**
+- After modifying `core/` templates
+- After modifying `addendum/` templates
+- To verify template consistency in CI/CD
+- Before releasing template updates
+
+---
+
+## 8. 🔗 RELATED RESOURCES
 
 - [Validation Rules](../validation/validation_rules.md)
 - [Folder Routing](../structure/folder_routing.md)
 - [Quick Reference](../workflows/quick_reference.md)
+- [Template Guide](../templates/template_guide.md)

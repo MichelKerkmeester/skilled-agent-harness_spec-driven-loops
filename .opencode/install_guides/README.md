@@ -669,7 +669,7 @@ export EMBEDDINGS_PROVIDER=auto  # Default: auto-detect
 
 # Voyage config (recommended - best retrieval quality)
 export VOYAGE_API_KEY=pa-...
-export VOYAGE_EMBEDDINGS_MODEL=voyage-3.5  # Default
+export VOYAGE_EMBEDDINGS_MODEL=voyage-4  # Default
 
 # OpenAI config (if using OpenAI)
 export OPENAI_API_KEY=sk-...
@@ -678,7 +678,7 @@ export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
 # HF Local config (if using HF local)
 export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default
 
-# Database directory (optional - default: .opencode/skill/system-spec-kit/database/)
+# Database directory (optional - default: .opencode/skill/system-spec-kit/mcp_server/database/)
 export MEMORY_DB_DIR=/path/to/database
 ```
 
@@ -689,7 +689,7 @@ Each provider+model+dimension combination uses its own SQLite database. This pre
 ```bash
 # The database is created automatically on first run
 # Verify the directory exists
-ls -la .opencode/skill/system-spec-kit/database/
+ls -la .opencode/skill/system-spec-kit/mcp_server/database/
 ```
 
 ### Validation: `spec_kit_memory_check`
@@ -1027,7 +1027,7 @@ Emergency procedures for backup, recovery, and clean uninstallation of OpenCode 
 
 ```bash
 # Backup
-BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && cp -r .opencode/skill/system-spec-kit/database "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
+BACKUP="$HOME/.opencode-backup-$(date +%Y%m%d-%H%M%S)" && mkdir -p "$BACKUP" && cp opencode.json .utcp_config.json "$BACKUP/" 2>/dev/null && cp -r .opencode/skill/system-spec-kit/mcp_server/database "$BACKUP/" 2>/dev/null && echo "✅ Backed up to $BACKUP"
 
 # List backups
 ls -lhd ~/.opencode-backup-* 2>/dev/null || echo "No backups found"
@@ -1045,7 +1045,7 @@ BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$
 | **Code Mode**            | `npm uninstall -g utcp-mcp`                            | Remove from opencode.json + delete .utcp_config.json |
 
 | **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`                |                                                      |
-| **Spec Kit Memory**      | `rm .opencode/skill/system-spec-kit/database/*.sqlite` | Database will be recreated                           |
+| **Spec Kit Memory**      | `rm .opencode/skill/system-spec-kit/mcp_server/database/*.sqlite` | Database will be recreated                           |
 | **Sequential Thinking**  | Remove from `opencode.json`                            | No files to delete                                   |
 | **Narsil**               | Access via Code Mode - no separate config needed       | Accessed through Code Mode                           |
 | **Skills**               | `rm -rf .opencode/skill/<skill-name>/`                 | Remove specific skill folder                         |
@@ -1070,7 +1070,7 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 | ---------------------------- | ---------------------------------------------------------- |
 | MCP server hangs             | `pkill -f "server-name" && opencode`                       |
 | Ollama not responding        | `pkill ollama && ollama serve &`                           |
-| Database corruption (Memory) | `rm -rf .opencode/skill/system-spec-kit/database/`         |
+| Database corruption (Memory) | `rm -rf .opencode/skill/system-spec-kit/mcp_server/database/`         |
 
 | Config invalid JSON          | Restore from backup or regenerate from Section 8 templates |
 | npm packages broken          | `npm cache clean --force && npm install -g <package>`      |
@@ -1301,7 +1301,7 @@ npx utcp-mcp --list-tools
 ### Database not found
 ```bash
 # Create directory if missing
-mkdir -p .opencode/skill/system-spec-kit/database
+mkdir -p .opencode/skill/system-spec-kit/mcp_server/database
 
 # Database is created on first run
 node .opencode/skill/system-spec-kit/mcp_server/context-server.js
@@ -1315,7 +1315,7 @@ node .opencode/skill/system-spec-kit/mcp_server/context-server.js
 ### Memory search returns empty
 ```bash
 # Check database has content
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite "SELECT COUNT(*) FROM memories;"
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM memories;"
 ```
 
 </details>

@@ -15,7 +15,7 @@ const crypto = require('crypto');
 const ROOT = path.join(__dirname, '..', '..');
 const LIB_PATH = path.join(ROOT, 'mcp_server', 'lib');
 const SHARED_PATH = path.join(ROOT, 'shared');
-const DB_PATH = path.join(ROOT, 'database');
+const DB_PATH = path.join(ROOT, 'mcp_server', 'database');
 const CONFIG_PATH = path.join(ROOT, 'mcp_server', 'configs');
 
 // Test results

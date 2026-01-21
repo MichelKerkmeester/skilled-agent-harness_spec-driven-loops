@@ -22,10 +22,6 @@ research_philosophy:
 # USER INPUTS (Transformed from raw text)
 # ───────────────────────────────────────────────────────────────────
 user_inputs:
-  git_branch: |
-    [GIT_BRANCH]
-    Git branch name. Leave empty to auto-create as feature-{NNN}.
-
   spec_folder: |
     [SPEC_FOLDER]
     Spec folder path. Leave empty to auto-create next available.
@@ -59,7 +55,6 @@ field_handling:
     fallback: "Extract numeric portion or use timestamp if extraction fails"
 
   defaults:
-    git_branch_empty: "Auto-create feature-{NNN} from highest +001"
     spec_folder_empty: "Auto-create specs/{NNN} from highest +001"
     context_empty: "Infer from [REQUEST] and codebase exploration"
     issues_empty: "Investigate and discover during workflow"
@@ -744,6 +739,24 @@ workflow:
     outputs:
     - research.md: comprehensive_technical_documentation
     template: .opencode/skill/system-spec-kit/templates/research.md
+    research_sections:
+    - metadata
+    - investigation_report
+    - executive_overview
+    - core_architecture
+    - technical_specifications
+    - constraints_limitations
+    - integration_patterns
+    - implementation_guide
+    - code_examples
+    - testing_debugging
+    - performance
+    - security
+    - maintenance
+    - api_reference
+    - troubleshooting
+    - acknowledgements
+    - appendix_changelog
     validation: research_documented
     checkpoint:
       question: "Step 8 Complete: Research compiled. Review research.md?"
@@ -766,7 +779,9 @@ workflow:
     - Index memory file for immediate search availability
     tool_invocation:
       command: Read(".opencode/skill/system-spec-kit/SKILL.md")
-      note: 'Use command: Read(".opencode/skill/system-spec-kit/SKILL.md") to activate context saving'
+      note: 'Load skill for context saving - skill uses generate-context.js script'
+      script_path: 'node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]'
+      critical_rule: 'NEVER use Write tool directly for memory/ paths - ALWAYS use generate-context.js'
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__research_session.md"
     validation: context_saved_successfully
@@ -779,7 +794,7 @@ workflow:
       - label: "View Summary"
         description: "Show research summary"
 
-    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    # ── SEMANTIC MEMORY INTEGRATION (v1.9.0) ───────────────────────
     post_save_indexing:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save

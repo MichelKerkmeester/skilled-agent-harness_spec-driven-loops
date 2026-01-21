@@ -1,7 +1,7 @@
-/**
- * Master barrel export for lib/
- * Re-exports all modules from subfolders
- */
+// ───────────────────────────────────────────────────────────────
+// MODULE: LIB INDEX
+// ───────────────────────────────────────────────────────────────
+'use strict';
 
 // Search modules
 module.exports.search = require('./search');

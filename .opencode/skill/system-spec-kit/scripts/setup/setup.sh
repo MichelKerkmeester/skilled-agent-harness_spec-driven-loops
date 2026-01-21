@@ -141,7 +141,7 @@ try {
   const stats = vectorIndex.getStats();
 
   console.log('  Database initialized successfully');
-  console.log('  Location: .opencode/skill/system-spec-kit/database/context-index.sqlite');
+  console.log('  Location: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite');
   console.log('  Memories indexed: ' + (stats.total || 0));
 
   process.exit(0);

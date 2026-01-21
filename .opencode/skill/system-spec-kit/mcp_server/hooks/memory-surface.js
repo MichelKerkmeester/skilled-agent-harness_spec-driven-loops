@@ -1,12 +1,6 @@
-/**
- * @fileoverview SK-004 Memory Surface Hook - Auto-surfaces relevant memories
- * @module mcp_server/hooks/memory-surface
- *
- * Automatically surfaces constitutional and triggered memories for memory-aware
- * tools. Constitutional memories are cached for 1 minute to reduce database queries.
- *
- * @version 1.0.0
- */
+// ───────────────────────────────────────────────────────────────
+// HOOKS: MEMORY SURFACE
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');
@@ -16,9 +10,9 @@ const LIB_DIR = path.join(__dirname, '../lib');
 const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
 const triggerMatcher = require(path.join(LIB_DIR, 'parsing', 'trigger-matcher.js'));
 
-/* ───────────────────────────────────────────────────────────────
-   SK-004: MEMORY SURFACE HOOK CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   1. MEMORY SURFACE HOOK CONFIGURATION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Set of tools that trigger automatic memory surfacing
@@ -37,9 +31,9 @@ let constitutional_cache = null;
 let constitutional_cache_time = 0;
 const CONSTITUTIONAL_CACHE_TTL = 60000; // 1 minute
 
-/* ───────────────────────────────────────────────────────────────
-   SK-004: CONTEXT EXTRACTION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   2. CONTEXT EXTRACTION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Extract context hint from tool arguments for memory surfacing
@@ -64,9 +58,9 @@ function extract_context_hint(args) {
   return null;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   SK-004: CONSTITUTIONAL MEMORIES
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   3. CONSTITUTIONAL MEMORIES
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Get constitutional memories with caching
@@ -119,9 +113,9 @@ function clear_constitutional_cache() {
   constitutional_cache_time = 0;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   SK-004: AUTO-SURFACE MEMORIES
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   4. AUTO-SURFACE MEMORIES
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Auto-surface memories based on context hint
@@ -177,9 +171,9 @@ function is_memory_aware_tool(toolName) {
   return MEMORY_AWARE_TOOLS.has(toolName);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   5. EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // Constants

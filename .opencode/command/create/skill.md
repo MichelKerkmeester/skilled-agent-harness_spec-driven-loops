@@ -1,6 +1,6 @@
 ---
 description: Create a complete OpenCode skill with 9-step workflow including resource planning - supports :auto and :confirm modes
-argument-hint: "skill-name [--path output-dir] [:auto|:confirm]"
+argument-hint: "<skill-name> [--path output-dir] [:auto|:confirm]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task, TodoWrite]
 ---
 
@@ -303,7 +303,7 @@ FOR WORKFLOW VIOLATIONS:
 
 ---
 
-# 📊 WORKFLOW EXECUTION (9 STEPS) - MANDATORY TRACKING
+# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
 
 **⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→9). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
@@ -513,7 +513,7 @@ This command creates skills that may need additional resources:
 
 ---
 
-## 7. 🔜 WHAT NEXT?
+## 7. 📌 NEXT STEPS
 
 After skill creation completes, suggest relevant next steps:
 

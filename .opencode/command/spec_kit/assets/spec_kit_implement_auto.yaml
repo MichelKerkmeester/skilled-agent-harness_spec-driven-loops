@@ -40,10 +40,6 @@ implementation_philosophy:
 # USER INPUTS (Transformed from raw text)
 # ───────────────────────────────────────────────────────────────────
 user_inputs:
-  git_branch: |
-    [GIT_BRANCH]
-    Git branch name. Leave empty to use existing branch from spec folder.
-
   spec_folder: |
     [SPEC_FOLDER]
     Spec folder path. REQUIRED - must contain spec.md and plan.md.
@@ -77,7 +73,6 @@ field_handling:
     fallback: "Extract numeric portion or use timestamp if extraction fails"
 
   defaults:
-    git_branch_empty: "Use existing branch from spec folder or auto-create"
     spec_folder_empty: "REQUIRED - must be provided"
     context_empty: "Infer from [REQUEST] and codebase exploration"
     issues_empty: "Use issues from planning phase"
@@ -577,7 +572,6 @@ workflow:
     summary_document:
       location: "[SPEC_FOLDER]/implementation-summary.md"
       required_sections:
-      - feature_branch_name
       - files_modified_created
       - verification_steps_taken
       - deviations_from_plan

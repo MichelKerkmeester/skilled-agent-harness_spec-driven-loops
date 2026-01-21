@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// rrf-fusion.js: Reciprocal Rank Fusion for hybrid search
+// SEARCH: RRF FUSION
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -7,16 +7,16 @@
 // Formula: combined_rank = 1/(k + rank_vec) + 1/(k + rank_fts)
 // Ref: Cormack et al. "Reciprocal Rank Fusion outperforms Condorcet" (SIGIR 2009)
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 const DEFAULT_K = 60;           // Standard RRF constant from literature
 const CONVERGENCE_BONUS = 0.1;  // 10% boost for results in both methods
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    2. CORE FUNCTIONS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 // RRF fusion: robust combination that doesn't require score normalization
 function fuse_results(vector_results, fts_results, options = {}) {
@@ -101,9 +101,9 @@ function count_original_term_matches(query, content) {
   return matches;
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    3. EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   fuse_results,

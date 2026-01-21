@@ -19,7 +19,7 @@ These variables control memory system behavior, token budgets, script execution,
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `MEMORY_DB_PATH` | `database/context-index.sqlite` | Override database location |
+| `MEMORY_DB_PATH` | `mcp_server/database/context-index.sqlite` | Override database location |
 | `MEMORY_BASE_PATH` | Current working directory | Workspace root path |
 | `MEMORY_ALLOWED_PATHS` | `specs/,.opencode/` | Additional allowed paths (colon-separated) |
 | `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger matching logs |
@@ -46,6 +46,7 @@ These variables control memory system behavior, token budgets, script execution,
 | `AUTO_SAVE_MODE` | `false` | Skip alignment check in hooks |
 | `SPECKIT_QUIET` | `false` | Suppress non-essential output |
 | `SPECKIT_TEMPLATES_DIR` | Auto-detected | Override templates directory |
+| `SPECKIT_TEMPLATE_STYLE` | `minimal` | Template style: `minimal` or `verbose` |
 
 ---
 
@@ -72,6 +73,9 @@ ENABLE_RERANKER=true node mcp_server/context-server.js
 
 # Quiet mode for CI/CD
 SPECKIT_QUIET=true bash scripts/validate-spec.sh specs/001-feature/
+
+# Use verbose templates for new spec folders
+SPECKIT_TEMPLATE_STYLE=verbose bash scripts/spec/create.sh 'Add new feature'
 ```
 
 ---

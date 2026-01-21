@@ -1,8 +1,6 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: SPEC 066 MODULARIZATION VERIFICATION
+// TEST: MODULARIZATION
 // ───────────────────────────────────────────────────────────────
-// Verifies that all modules from the context-server.js modularization
-// are correctly structured and export expected functions.
 
 'use strict';
 

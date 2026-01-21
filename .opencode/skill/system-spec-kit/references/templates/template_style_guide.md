@@ -3,7 +3,7 @@ title: Template Style Guide
 description: Conventions and standards for system-spec-kit templates ensuring documentation consistency across all spec folders.
 ---
 
-# Template Style Guide
+# Template Style Guide - Formatting Standards
 
 Conventions and standards for system-spec-kit templates ensuring documentation consistency across all spec folders.
 

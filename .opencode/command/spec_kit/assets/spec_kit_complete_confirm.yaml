@@ -129,11 +129,6 @@ development_philosophy:
 # USER INPUTS (Transformed from raw text)
 # ───────────────────────────────────────────────────────────────────
 user_inputs:
-  git_branch: |
-    [GIT_BRANCH]
-    Git branch name for the work. Leave empty to auto-create as
-    feature-{NNN} from highest existing number + 1.
-
   spec_folder: |
     [SPEC_FOLDER]
     Spec folder path. Leave empty to auto-create next available.
@@ -167,7 +162,6 @@ field_handling:
     fallback: "Extract numeric portion or use timestamp if extraction fails"
 
   defaults:
-    git_branch_empty: "Auto-create feature-{NNN} from highest +001"
     spec_folder_empty: "Auto-create specs/{NNN} from highest +001"
     context_empty: "Infer from [REQUEST], [STAGING LINK], and codebase exploration"
     issues_empty: "Investigate and discover during workflow"
@@ -653,8 +647,6 @@ workflow:
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
     activities:
-    - Generate concise short name for branch
-    - Check for existing branches
     - Run create-spec-folder.sh script
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
@@ -664,7 +656,6 @@ workflow:
     - Generate functional requirements
     - Define success criteria
     outputs:
-    - feature_branch: created
     - spec.md: acceptance_criteria
     template: .opencode/skill/system-spec-kit/templates/spec.md
 
@@ -1216,7 +1207,6 @@ workflow:
     summary_document:
       location: "[SPEC_FOLDER]/implementation-summary.md"
       required_sections:
-      - feature_branch_name
       - files_modified_created
       - verification_steps_taken
       - deviations_from_plan

@@ -681,7 +681,7 @@ ls -la .opencode/skill/system-spec-kit/constitutional/
 head -20 .opencode/skill/system-spec-kit/constitutional/gate-enforcement.md
 
 # Check database for constitutional memories
-sqlite3 .opencode/skill/system-spec-kit/database/context-index.sqlite \
+sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
   "SELECT id, title, importance_tier FROM memory_index WHERE importance_tier = 'constitutional';"
 
 # Test trigger matching

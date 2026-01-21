@@ -101,7 +101,7 @@ configure_mcp() {
             "EMBEDDINGS_PROVIDER": "auto",
             "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
             "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
-            "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
+            "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
             "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, fallback)",
             "_NOTE_3_AUTO_DETECTION": "Priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local (no installation needed)",
             "_NOTE_4_PORTABLE": "Uses relative path - works when copying project to new location"
@@ -161,7 +161,7 @@ verify_installation() {
     fi
     
     # Note about database creation
-    local db_dir="${project_root}/.opencode/skill/system-spec-kit/database"
+    local db_dir="${project_root}/.opencode/skill/system-spec-kit/mcp_server/database"
     if [[ -f "${db_dir}/context-index.sqlite" ]]; then
         log_info "Database already exists at: ${db_dir}/context-index.sqlite"
     else

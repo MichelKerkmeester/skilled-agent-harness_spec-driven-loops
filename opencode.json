@@ -24,7 +24,7 @@
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
-        "VOYAGE_API_KEY": "pa-1C0kMn_ucXXWcCm-4baFdnX1x-BjsQllWyU3tuecBm8",
+        "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
         "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
         "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/database/context-index.sqlite",
         "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",

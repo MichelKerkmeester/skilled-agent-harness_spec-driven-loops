@@ -215,8 +215,8 @@ function validateInputData(data, specFolderArg = null) {
   if (errors.length > 0) {
     throw new Error(`Input validation failed: ${errors.join('; ')}`);
   }
-  
-  return true;
+
+  // Validation passed - function returns void on success, throws on failure
 }
 
 /* ─────────────────────────────────────────────────────────────

@@ -24,11 +24,11 @@ Validation rules are modular shell scripts that check spec folders for structura
 
 ### Key Statistics
 
-| Category             | Count | Details                                  |
-| -------------------- | ----- | ---------------------------------------- |
-| Rules                | 9     | Modular validation scripts               |
-| Severity Levels      | 3     | error, warn, info                        |
-| Documentation Levels | 3     | L1, L2, L3 with progressive requirements |
+| Category             | Count | Details                                       |
+| -------------------- | ----- | --------------------------------------------- |
+| Rules                | 14    | Modular validation scripts                    |
+| Severity Levels      | 3     | error, warn, info                             |
+| Documentation Levels | 4     | L1, L2, L3, L3+ with progressive requirements |
 
 ### Key Features
 
@@ -69,9 +69,10 @@ cd specs/003-memory-and-spec-kit/046-post-release-refinement-1/
 # Check that rules are executable
 ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
-# Expected: 9 .sh files with execute permissions
+# Expected: 14 .sh files with execute permissions
 # -rwxr-xr-x check-files.sh
 # -rwxr-xr-x check-priority-tags.sh
+# -rwxr-xr-x check-complexity.sh
 # ...
 ```
 
@@ -88,27 +89,35 @@ ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
 ```
 rules/
+├── check-ai-protocols.sh   # AI_PROTOCOL - AI execution protocols (L3+)
 ├── check-anchors.sh        # ANCHORS_VALID - Memory file anchor pairs
+├── check-complexity.sh     # COMPLEXITY_MATCH - Level vs content validation
 ├── check-evidence.sh       # EVIDENCE_CITED - P0/P1 completion evidence
 ├── check-files.sh          # FILE_EXISTS - Required files by level
 ├── check-folder-naming.sh  # FOLDER_NAMING - ###-short-name pattern validation
 ├── check-frontmatter.sh    # FRONTMATTER_VALID - YAML frontmatter validation
 ├── check-level.sh          # LEVEL_DECLARED - Explicit vs inferred level
+├── check-level-match.sh    # LEVEL_MATCH - Required files match declared level
 ├── check-placeholders.sh   # PLACEHOLDER_FILLED - Unfilled placeholders
 ├── check-priority-tags.sh  # PRIORITY_TAGS - Checklist priority context
+├── check-section-counts.sh # SECTION_COUNTS - Section count validation
 ├── check-sections.sh       # SECTIONS_PRESENT - Required markdown sections
 └── README.md               # This file
 ```
 
 ### Key Files
 
-| File                     | Purpose                                                                |
-| ------------------------ | ---------------------------------------------------------------------- |
-| `check-files.sh`         | Core validation - ensures required files exist for documentation level |
-| `check-folder-naming.sh` | Structure validation - ensures ###-short-name pattern                  |
-| `check-frontmatter.sh`   | Metadata validation - validates YAML frontmatter structure             |
-| `check-priority-tags.sh` | Quality validation - ensures checklist items have P0/P1/P2 context     |
-| `check-evidence.sh`      | Completion validation - ensures completed items cite evidence          |
+| File                      | Purpose                                                                   |
+| ------------------------- | ------------------------------------------------------------------------- |
+| `check-files.sh`          | Core validation - ensures required files exist for documentation level    |
+| `check-folder-naming.sh`  | Structure validation - ensures ###-short-name pattern                     |
+| `check-complexity.sh`     | Level validation - ensures declared level matches content complexity      |
+| `check-level-match.sh`    | File validation - ensures required files match declared level             |
+| `check-ai-protocols.sh`   | Protocol validation - ensures L3+ specs have AI execution protocols       |
+| `check-section-counts.sh` | Content validation - validates section counts are within expected ranges  |
+| `check-frontmatter.sh`    | Metadata validation - validates YAML frontmatter structure                |
+| `check-priority-tags.sh`  | Quality validation - ensures checklist items have P0/P1/P2 context        |
+| `check-evidence.sh`       | Completion validation - ensures completed items cite evidence             |
 
 ---
 
@@ -192,6 +201,85 @@ All rules implement a standardized interface:
 - Reports line numbers for mismatches
 
 **Severity**: fail (blocks validation)
+
+---
+
+#### COMPLEXITY_MATCH (check-complexity.sh)
+
+**Purpose**: Validates that declared complexity level matches actual content
+
+**Complexity Calculation**:
+- Counts user stories, phases, tasks, requirements
+- Checks for AI protocol presence (L3+ indicator)
+- Compares against level thresholds
+
+**Complexity Scoring**:
+```
+Score = User Stories × 10 + Phases × 5 + Tasks × 2 + Requirements × 1
+```
+
+**Thresholds**:
+- L1: Score 0-30 (simple, <100 LOC)
+- L2: Score 31-70 (moderate, 100-499 LOC)
+- L3: Score 71+ (complex, ≥500 LOC)
+- L3+: Score 80+ with AI protocols
+
+**Severity**: warn (advisory)
+
+---
+
+#### LEVEL_MATCH (check-level-match.sh)
+
+**Purpose**: Validates that required files match declared documentation level
+
+**Checks**:
+- L1: Requires spec.md, plan.md, tasks.md
+- L2: L1 + checklist.md
+- L3: L2 + decision-record.md
+- L3+: L3 + AI protocols, extended checklists
+
+**Severity**: error (blocks validation)
+
+---
+
+#### SECTION_COUNTS (check-section-counts.sh)
+
+**Purpose**: Validates section counts are within expected ranges for level
+
+**Counts Tracked**:
+- H2 headers (##) in spec.md, plan.md
+- H3 headers (###) in spec.md, plan.md
+- Functional requirements (REQ-FUNC-, REQ-DATA-)
+- Acceptance scenarios (**Given** patterns)
+
+**Expected Ranges**:
+```
+L1: 3-8 major sections, minimal requirements
+L2: 5-12 major sections, defined requirements
+L3: 8+ major sections, comprehensive requirements
+L3+: 10+ major sections, detailed acceptance scenarios
+```
+
+**Severity**: warn (advisory)
+
+---
+
+#### AI_PROTOCOL (check-ai-protocols.sh)
+
+**Purpose**: Validates AI execution protocols are present for Level 3+ specs
+
+**Required Protocol Sections** (L3+):
+- `AI EXECUTION` section header
+- `Pre-Task Checklist` subsection
+- `Task Execution Rules` (TASK-SEQ, TASK-SCOPE)
+- `Status Reporting` format
+- `Blocked Task Protocol`
+
+**Locations Checked**:
+- `plan.md` (recommended)
+- `tasks.md` (alternative)
+
+**Severity**: warn (advisory for L3, info for L1/L2)
 
 ---
 

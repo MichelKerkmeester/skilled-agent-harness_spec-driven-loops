@@ -1,7 +1,6 @@
-/**
- * @fileoverview Re-exports for handlers modules
- * @module mcp_server/handlers
- */
+// ───────────────────────────────────────────────────────────────
+// MODULE: HANDLERS INDEX
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const memorySearch = require('./memory-search');

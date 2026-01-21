@@ -3,7 +3,7 @@ title: Parallel Dispatch Configuration
 description: Complexity scoring and agent dispatch configuration for parallel task execution.
 ---
 
-# Parallel Dispatch Configuration
+# Parallel Dispatch Configuration - Agent Parallelization Settings
 
 Configuration for smart parallel sub-agent dispatch based on task complexity scoring.
 
@@ -62,7 +62,71 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 5. 🔧 OVERRIDE PHRASES
+## 5. 🚀 TIERED SPEC CREATION ARCHITECTURE
+
+### Workstream Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| [W-A] | Workstream A (same agent) |
+| [W-B] | Workstream B (parallel agent) |
+| [SYNC] | Sync point (all must complete) |
+
+### Tiered Creation Flow
+
+```yaml
+spec_creation_parallel:
+  enabled: true
+  auto_dispatch_mode: true
+
+  # Tier 1: Sequential Foundation (~60s)
+  tier1:
+    agent: spec_core_drafter
+    files: [spec.md sections 1-3]
+    mode: sequential
+
+  # Tier 2: Parallel Execution (~90s)
+  tier2:
+    agents:
+      - name: plan_agent
+        files: [plan.md]
+        focus: "Technical approach and phases"
+      - name: checklist_agent
+        files: [checklist.md]
+        focus: "Verification items"
+      - name: requirements_agent
+        files: [spec.md sections 4-6]
+        focus: "Requirements detail"
+    mode: parallel
+
+  # Tier 3: Integration (~60s)
+  tier3:
+    agent: tasks_integrator
+    files: [tasks.md]
+    mode: sequential
+    depends_on: [tier1, tier2]
+```
+
+### Workstream File Ownership
+
+| Workstream | Owner | Files | Rules |
+|------------|-------|-------|-------|
+| W-SPEC | Primary | spec.md | Sequential in tiers |
+| W-PLAN | Plan Agent | plan.md | Independent |
+| W-CHECK | Checklist Agent | checklist.md | Independent |
+| W-TASKS | Tasks Integrator | tasks.md | After SYNC |
+
+### Sync Points
+
+| Sync ID | Trigger | Participants | Output |
+|---------|---------|--------------|--------|
+| SYNC-T1 | Tier 1 complete | Primary | Foundation ready |
+| SYNC-T2 | Tier 2 complete | All T2 agents | Merge outputs |
+| SYNC-T3 | Tier 3 complete | Integrator | Final tasks.md |
+
+---
+
+## 6. 🔧 OVERRIDE PHRASES
 
 | Intent                    | Phrases                                                |
 | ------------------------- | ------------------------------------------------------ |
@@ -74,15 +138,19 @@ Defines when and how to dispatch parallel agents for complex tasks. Use this con
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 7. 🔗 RELATED RESOURCES
 
 ### Asset Files
 - [template_mapping.md](./template_mapping.md) - Template routing and task mapping
 - [level_decision_matrix.md](./level_decision_matrix.md) - Level selection decision matrix
+- [complexity_decision_matrix.md](./complexity_decision_matrix.md) - Complexity-based level selection
 
 ### Reference Files
-- [quick_reference.md](../references/quick_reference.md) - Commands, checklists, and troubleshooting
-- [level_specifications.md](../references/level_specifications.md) - Complete Level 1-3 requirements
+- [quick_reference.md](../references/workflows/quick_reference.md) - Commands, checklists, and troubleshooting
+- [level_specifications.md](../references/templates/level_specifications.md) - Complete Level 1-3 requirements
+
+### Scripts
+- [compose.sh](../scripts/templates/compose.sh) - Template composition from core + addendum
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator

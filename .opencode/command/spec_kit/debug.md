@@ -470,7 +470,7 @@ This command can be invoked from any workflow:
 
 ---
 
-## 12. 🔜 WHAT NEXT?
+## 12. 📌 NEXT STEPS
 
 After debugging completes, suggest relevant next steps:
 

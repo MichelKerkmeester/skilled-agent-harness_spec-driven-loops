@@ -1,16 +1,14 @@
-/**
- * @fileoverview Core module exports for the MCP context server.
- * Re-exports all core modules for convenient single-import access.
- * @module mcp_server/core
- */
+// ───────────────────────────────────────────────────────────────
+// MODULE: CORE INDEX
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const config = require('./config');
 const dbState = require('./db-state');
 
-/* ───────────────────────────────────────────────────────────────
-   RE-EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   1. RE-EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // Config module - all constants

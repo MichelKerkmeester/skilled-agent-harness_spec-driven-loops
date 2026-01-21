@@ -1,20 +1,6 @@
-/**
- * @fileoverview Search results formatting for MCP responses
- * @module mcp_server/formatters/search-results
- *
- * Provides formatting utilities for:
- * - Vector search results
- * - Hybrid search results
- * - Multi-concept search results
- *
- * Features:
- * - SK-005 anchor extraction support
- * - Token metrics calculation
- * - File content embedding
- * - Path validation (SEC-002)
- *
- * @version 1.7.1 - Extracted from context-server.js
- */
+// ───────────────────────────────────────────────────────────────
+// FORMATTERS: SEARCH RESULTS
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 const fs = require('fs');
@@ -27,9 +13,9 @@ const { estimate_tokens } = require('./token-metrics');
 // Import shared utilities
 const { validate_file_path } = require('../../shared/utils');
 
-/* ───────────────────────────────────────────────────────────────
-   PATH VALIDATION CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   1. PATH VALIDATION CONFIGURATION
+──────────────────────────────────────────────────────────────── */
 
 // Default base path - use environment variable or current working directory
 const DEFAULT_BASE_PATH = process.env.MEMORY_BASE_PATH || process.cwd();
@@ -60,9 +46,9 @@ function validate_file_path_local(file_path) {
   return result;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   HELPER UTILITIES
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   2. HELPER UTILITIES
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Safely parse JSON with fallback
@@ -79,9 +65,9 @@ function safe_json_parse(str, fallback = []) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   SEARCH RESULTS FORMATTING
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   3. SEARCH RESULTS FORMATTING
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Format search results for MCP response
@@ -215,9 +201,9 @@ async function format_search_results(results, search_type, include_content = fal
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   4. EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 module.exports = {
   // snake_case exports

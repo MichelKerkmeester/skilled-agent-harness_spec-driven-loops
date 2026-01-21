@@ -382,7 +382,7 @@ await preWarmModel();
 **Solution**: Per-profile databases should prevent this. If it occurs:
 ```bash
 # Delete old database and let system create new one
-rm .opencode/skill/system-spec-kit/database/context-index.sqlite
+rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 ```
 
 ---

@@ -17,7 +17,11 @@ _section_get_declared_level() {
     local folder="$1"
     local spec_file="$folder/spec.md"
     if [[ -f "$spec_file" ]]; then
-        grep -E "^\- \*\*Level\*\*:" "$spec_file" 2>/dev/null | head -1 | sed 's/.*Level.*: *//' | tr -d '[:space:]' | sed 's/\[.*\]//' | head -c 2
+        local level_line
+        level_line=$(grep -E "^\- \*\*Level\*\*:" "$spec_file" 2>/dev/null || true)
+        if [[ -n "$level_line" ]]; then
+            echo "$level_line" | head -1 | sed 's/.*Level.*: *//' | tr -d '[:space:]' | sed 's/\[.*\]//' | head -c 2
+        fi
     fi
 }
 

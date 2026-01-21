@@ -89,7 +89,7 @@ cd /path/to/project
 .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/
 
 # Create a new spec folder
-.opencode/skill/system-spec-kit/scripts/create-spec-folder.sh "Add user authentication" --level 2
+.opencode/skill/system-spec-kit/scripts/spec/create.sh "Add user authentication" --level 2
 ```
 
 ### Verify Installation
@@ -98,9 +98,9 @@ cd /path/to/project
 # Check scripts are executable
 ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 
-# Expected: 10 .sh files with execute permissions
+# Expected: .sh files with execute permissions
 # -rwxr-xr-x validate-spec.sh
-# -rwxr-xr-x create-spec-folder.sh
+# -rwxr-xr-x spec/create.sh
 # -rwxr-xr-x setup.sh
 # -rwxr-xr-x check-completion.sh
 # ...
@@ -237,7 +237,7 @@ scripts/
 | File | Purpose |
 |------|---------|
 | `validate-spec.sh` | Main validation orchestrator - invokes all 9 rules |
-| `create-spec-folder.sh` | Create new spec folders with templates |
+| `spec/create.sh` | Create new spec folders with templates |
 | `generate-context.js` | Memory file generation with ANCHOR format |
 | `check-completion.sh` | Gate 6 enforcement - verify checklist completion |
 | `setup.sh` | One-command setup for memory system dependencies |
@@ -280,7 +280,7 @@ scripts/
 
 ---
 
-### create-spec-folder.sh
+### spec/create.sh
 
 **Purpose**: Create new spec folders with appropriate templates
 
@@ -524,7 +524,7 @@ SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
 
 ```bash
 # Create with auto-generated name
-./create-spec-folder.sh "Add user authentication system" --level 2
+./spec/create.sh "Add user authentication system" --level 2
 
 # Output:
 # Created: specs/008-add-user-authentication/
@@ -574,7 +574,7 @@ SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
 |---------|---------|-------------|
 | Quick validation | `validate-spec.sh <folder>` | Before committing |
 | Strict validation | `validate-spec.sh <folder> --strict` | CI pipelines |
-| Create L2 spec | `create-spec-folder.sh "desc" --level 2` | Medium features |
+| Create L2 spec | `spec/create.sh "desc" --level 2` | Medium features |
 | Check progress | `calculate-completeness.sh <folder>` | During development |
 
 ---
@@ -612,7 +612,7 @@ apt install bc
 cd /path/to/project
 
 # Or set templates directory explicitly
-SPECKIT_TEMPLATES_DIR=.opencode/skill/system-spec-kit/templates ./create-spec-folder.sh "..."
+SPECKIT_TEMPLATES_DIR=.opencode/skill/system-spec-kit/templates ./spec/create.sh "..."
 ```
 
 ---

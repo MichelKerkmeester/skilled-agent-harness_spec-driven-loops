@@ -3,7 +3,20 @@
 # SPECKIT: CREATE SPEC FOLDER
 # ───────────────────────────────────────────────────────────────
 # Creates spec folder with templates based on documentation level.
-# Levels: 1=spec+plan+tasks, 2=+checklist, 3=+decision-record
+#
+# TEMPLATE ARCHITECTURE (v2.0 - CORE + ADDENDUM):
+#   templates/
+#   ├── level_1/        # Core only (~270 LOC total)
+#   ├── level_2/        # Core + Verification (~390 LOC)
+#   ├── level_3/        # Core + Verification + Architecture (~540 LOC)
+#   └── level_3+/       # All addendums (~640 LOC)
+#
+# LEVEL SCALING (Value-based, not just length):
+#   L1: Essential what/why/how - spec, plan, tasks, impl-summary
+#   L2: +Quality gates, verification - checklist.md
+#   L3: +Architecture decisions - decision-record.md
+#   L3+: +Enterprise governance - extended content
+#
 # Also creates scratch/ and memory/ directories.
 
 set -euo pipefail
@@ -17,6 +30,14 @@ SHARDED=false  # Enable sharded spec sections for Level 3
 SUBFOLDER_MODE=false  # Enable versioned sub-folder creation
 SUBFOLDER_BASE=""     # Base folder for sub-folder mode
 SUBFOLDER_TOPIC=""    # Topic name for the sub-folder
+TEMPLATE_STYLE="${SPECKIT_TEMPLATE_STYLE:-minimal}"  # Template style: minimal | verbose
+
+# Initialize variables used in JSON output (prevents "unbound variable" errors with set -u)
+DETECTED_LEVEL=""
+DETECTED_SCORE=""
+DETECTED_CONF=""
+EXPAND_TEMPLATES=false
+
 ARGS=()
 i=1
 while [ $i -le $# ]; do
@@ -75,6 +96,12 @@ while [ $i -le $# ]; do
             fi
             SUBFOLDER_TOPIC="$next_arg"
             ;;
+        --verbose-templates)
+            TEMPLATE_STYLE="verbose"
+            ;;
+        --minimal-templates)
+            TEMPLATE_STYLE="minimal"
+            ;;
         --short-name)
             if [ $((i + 1)) -gt $# ]; then
                 echo 'Error: --short-name requires a value' >&2
@@ -118,16 +145,32 @@ while [ $i -le $# ]; do
             echo "                      Auto-increments version (001, 002, etc.)"
             echo "  --topic <name>      Topic name for sub-folder (used with --subfolder)"
             echo "                      If not provided, uses feature_description"
+            echo "  --verbose-templates Use verbose templates (detailed guidance)"
+            echo "  --minimal-templates Use minimal templates (default, concise)"
+            echo "                      Can also set via SPECKIT_TEMPLATE_STYLE env var"
             echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
             echo "  --number N          Specify branch number manually (overrides auto-detection)"
             echo "  --skip-branch       Create spec folder only, don't create git branch"
             echo "  --help, -h          Show this help message"
             echo ""
-            echo "Documentation Levels:"
-            echo "  Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md"
-            echo "  Level 2 (Verification): Level 1 + checklist.md"
-            echo "  Level 3 (Full):         Level 2 + decision-record.md"
-            echo "  Level 3+ (Extended):    Level 3 with extended content and AI protocols"
+            echo "Documentation Levels (CORE + ADDENDUM architecture v2.0):"
+            echo ""
+            echo "  Level 1 (Core ~270 LOC):     Essential what/why/how"
+            echo "    Files: spec.md, plan.md, tasks.md, implementation-summary.md"
+            echo ""
+            echo "  Level 2 (Core + Verify):     +Quality gates, verification"
+            echo "    Adds: checklist.md, NFRs, edge cases, effort estimation"
+            echo ""
+            echo "  Level 3 (Core + Verify + Arch): +Architecture decisions"
+            echo "    Adds: decision-record.md, executive summary, risk matrix, ADRs"
+            echo ""
+            echo "  Level 3+ (All addendums):    +Enterprise governance"
+            echo "    Adds: approval workflow, compliance, stakeholder matrix, AI protocols"
+            echo ""
+            echo "Template Composition:"
+            echo "  Core templates (~270 LOC) are shared across all levels."
+            echo "  Higher levels ADD value, not just length."
+            echo "  Templates located in: .opencode/skill/system-spec-kit/templates/"
             echo ""
             echo "All levels include: scratch/ (git-ignored) + memory/ (context preservation)"
             echo ""
@@ -373,7 +416,17 @@ if [ "$SUBFOLDER_MODE" = true ]; then
     SUBFOLDER_NAME=$(basename "$SUBFOLDER_PATH")
     
     # Copy templates based on documentation level from level-specific folder
-    TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+    # Determine templates base path based on style preference
+    if [ "$TEMPLATE_STYLE" = "verbose" ]; then
+        TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/verbose"
+        # Fallback to minimal if verbose doesn't exist
+        if [ ! -d "$TEMPLATES_BASE" ]; then
+            >&2 echo "[speckit] Warning: Verbose templates not found, falling back to minimal"
+            TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+        fi
+    else
+        TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+    fi
     # Normalize DOC_LEVEL for numeric comparisons (3+ becomes 3)
     DOC_LEVEL_NUM="${DOC_LEVEL/+/}"
     LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
@@ -503,7 +556,19 @@ fi
 # ───────────────────────────────────────────────────────────────
 
 FEATURE_DIR="$SPECS_DIR/$BRANCH_NAME"
-TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+
+# Determine templates base path based on style preference
+if [ "$TEMPLATE_STYLE" = "verbose" ]; then
+    TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/verbose"
+    # Fallback to minimal if verbose doesn't exist
+    if [ ! -d "$TEMPLATES_BASE" ]; then
+        >&2 echo "[speckit] Warning: Verbose templates not found, falling back to minimal"
+        TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+    fi
+else
+    TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
+fi
+
 # Normalize DOC_LEVEL for numeric comparisons (3+ becomes 3)
 DOC_LEVEL_NUM="${DOC_LEVEL/+/}"
 LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
@@ -840,16 +905,21 @@ else
     echo "      └── memory/           (context preservation)"
     echo "          └── .gitkeep"
     echo ""
-    echo "  Level $DOC_LEVEL Documentation:"
+    echo "  Level $DOC_LEVEL Documentation (CORE + ADDENDUM v2.0):"
     case $DOC_LEVEL in
-        1) echo "    ✓ Baseline: spec.md + plan.md + tasks.md" ;;
-        2) echo "    ✓ Baseline: spec.md + plan.md + tasks.md"
-           echo "    ✓ Verification: checklist.md" ;;
-        3|"3+") echo "    ✓ Baseline: spec.md + plan.md + tasks.md"
-           echo "    ✓ Verification: checklist.md"
-           echo "    ✓ Full: decision-record.md"
+        1) echo "    ✓ Core: spec.md + plan.md + tasks.md + implementation-summary.md"
+           echo "      (Essential what/why/how - ~270 LOC)" ;;
+        2) echo "    ✓ Core: spec.md + plan.md + tasks.md + implementation-summary.md"
+           echo "    ✓ +Verify: checklist.md, NFRs, edge cases, effort estimation"
+           echo "      (Quality gates - adds ~120 LOC)" ;;
+        3|"3+") echo "    ✓ Core: spec.md + plan.md + tasks.md + implementation-summary.md"
+           echo "    ✓ +Verify: checklist.md, NFRs, edge cases"
+           echo "    ✓ +Arch: decision-record.md, executive summary, risk matrix"
            if [ "$DOC_LEVEL" = "3+" ]; then
-               echo "    ✓ Extended: enhanced content and AI protocols"
+               echo "    ✓ +Govern: approval workflow, compliance, AI protocols"
+               echo "      (Full governance - adds ~100 LOC)"
+           else
+               echo "      (Architecture decisions - adds ~150 LOC)"
            fi
            if [ "$SHARDED" = true ]; then
                echo "    ✓ Sharded: spec-sections/ (modular documentation)"

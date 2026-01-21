@@ -86,6 +86,17 @@ EXECUTE THIS CHECK:
 
 ---
 
+## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+
+**Before proceeding, verify you have NOT:**
+- [ ] Skipped confirmation for destructive operations (cleanup/delete)
+- [ ] Proceeded without creating pre-cleanup checkpoint
+- [ ] Used tools before completing mandatory phases
+
+**If ANY violation:** STOP → State violation → Return to phase → Complete properly
+
+---
+
 # Memory Database Management Command
 
 Manage the memory database: scan for new files, cleanup old memories, change tiers, edit triggers, validate usefulness, delete entries, and check health.
@@ -390,7 +401,7 @@ Checkpoint created: pre-cleanup-2025-01-15T10-30-00
 Removed: <N> memories | Kept: <N> memories
 
 To undo this cleanup, run:
-  /memory:database restore pre-cleanup-2025-01-15T10-30-00
+  /memory:checkpoint restore pre-cleanup-2025-01-15T10-30-00
 
 STATUS=OK REMOVED=<N> KEPT=<N> CHECKPOINT=<name>
 ```

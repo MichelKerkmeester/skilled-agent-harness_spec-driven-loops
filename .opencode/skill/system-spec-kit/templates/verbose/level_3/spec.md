@@ -1,0 +1,358 @@
+# Feature Specification: [YOUR_VALUE_HERE: Feature-Name]
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-level3-verbose | v2.0-verbose -->
+
+---
+
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 (500+ LOC) |
+| **Priority** | [NEEDS CLARIFICATION: What is the implementation priority? (a) P0 - HARD BLOCKER, must complete before launch (b) P1 - Must complete OR user-approved deferral (c) P2 - Can defer without approval, nice-to-have] |
+| **Status** | [YOUR_VALUE_HERE: Draft / In Progress / Review / Complete] |
+| **Created** | [YOUR_VALUE_HERE: YYYY-MM-DD format] |
+| **Branch** | `[YOUR_VALUE_HERE: ###-feature-name, e.g., 042-user-auth]` |
+
+---
+
+## L3: EXECUTIVE SUMMARY
+
+[YOUR_VALUE_HERE: 2-3 sentence high-level overview for stakeholders who need quick context. Level 3 features require executive summary due to complexity.]
+
+[example: This feature implements a comprehensive metrics dashboard enabling users to track API usage, set alerts, and export data for analysis. It addresses the #1 support ticket driver (billing questions) and is critical for enterprise customer retention. Expected to reduce support load by 50% and improve NPS by 10 points.]
+
+**Key Decisions**:
+- [YOUR_VALUE_HERE: Major architectural or technical decision 1]
+- [YOUR_VALUE_HERE: Major architectural or technical decision 2]
+
+[example:
+- Using TanStack Query for data fetching with aggressive caching
+- Client-side CSV generation for simplicity; server-side deferred to Phase 2]
+
+**Critical Dependencies**:
+- [YOUR_VALUE_HERE: Blocking dependency 1 - what happens if unavailable]
+- [YOUR_VALUE_HERE: Blocking dependency 2 - what happens if unavailable]
+
+[example:
+- Billing API access - feature cannot launch without this
+- Design system components - can proceed with existing but iteration needed]
+
+**Timeline**: [YOUR_VALUE_HERE: Expected duration, key milestones, or target date]
+
+[example: 2-3 weeks implementation, targeting Q1 release. Milestone: API integration by end of week 1.]
+
+---
+
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+
+[YOUR_VALUE_HERE: Describe the specific problem, pain point, or gap that this feature addresses. What is broken, missing, or inefficient today? Be specific about user impact. 2-3 sentences.]
+
+[example: Users currently have no visibility into their API usage patterns, leading to unexpected billing overages and inability to optimize their consumption. Support receives 50+ tickets monthly asking "why was I charged for X?"]
+
+### Purpose
+
+[YOUR_VALUE_HERE: One-sentence outcome statement describing what this achieves. Keep technology-agnostic and focus on user/business value. What does success look like?]
+
+[example: Enable users to track their usage metrics in real-time and export data for analysis, reducing support tickets by 80% and increasing user satisfaction.]
+
+---
+
+## 3. SCOPE
+
+### In Scope
+
+[YOUR_VALUE_HERE: List specific deliverables or feature components. Be explicit about what will be delivered. Each item should be independently verifiable.]
+
+- [YOUR_VALUE_HERE: Specific deliverable 1 - e.g., "User interface for viewing metrics dashboard"]
+- [YOUR_VALUE_HERE: Specific deliverable 2 - e.g., "API endpoints for fetching metric data"]
+- [YOUR_VALUE_HERE: Specific deliverable 3 - e.g., "Export functionality for CSV format"]
+
+[example:
+- User interface for viewing daily/weekly/monthly usage metrics
+- REST API endpoints for fetching metric data with date range filtering
+- CSV export functionality for external analysis
+- Real-time usage notifications when thresholds are reached]
+
+### Out of Scope
+
+[YOUR_VALUE_HERE: Explicitly excluded items with brief explanation why. This prevents scope creep and sets clear expectations.]
+
+- [YOUR_VALUE_HERE: Excluded item 1] - [reason why excluded]
+- [YOUR_VALUE_HERE: Excluded item 2] - [reason why excluded]
+
+[example:
+- PDF export format - deferred to Phase 2 due to complex formatting requirements
+- Real-time streaming updates - different architectural approach needed, separate initiative
+- Historical data older than 90 days - data retention policy limitation]
+
+### Files to Change
+
+[YOUR_VALUE_HERE: List files that will be modified or created. Include the change type and brief description of what changes.]
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| [YOUR_VALUE_HERE: path/to/file.js] | [NEEDS CLARIFICATION: (a) Modify - editing existing file (b) Create - new file (c) Delete - removing file] | [YOUR_VALUE_HERE: Brief description of change] |
+| [YOUR_VALUE_HERE: path/to/another.js] | [Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+
+[example:
+| src/components/MetricsDashboard.tsx | Create | New dashboard component for displaying usage metrics |
+| src/api/metrics.ts | Create | API client for fetching metrics data |
+| src/types/metrics.ts | Create | TypeScript interfaces for metric data structures |
+| src/pages/Settings.tsx | Modify | Add navigation link to metrics dashboard |]
+
+---
+
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+[YOUR_VALUE_HERE: P0 requirements are HARD BLOCKERS. Feature cannot ship without these. Each requirement should be specific, testable, and have clear acceptance criteria.]
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | [YOUR_VALUE_HERE: Specific capability the system MUST have] | [YOUR_VALUE_HERE: How to verify this requirement is met - what can be tested/observed] |
+| REQ-002 | [YOUR_VALUE_HERE: Another required capability] | [YOUR_VALUE_HERE: Verification criteria] |
+
+[example:
+| REQ-001 | System MUST display daily API call count on dashboard | Dashboard shows accurate count matching billing system within 5 minutes of real-time |
+| REQ-002 | System MUST allow users to export usage data as CSV | Export button generates valid CSV file with all displayed metrics within 10 seconds |]
+
+### P1 - Required (complete OR user-approved deferral)
+
+[YOUR_VALUE_HERE: P1 requirements are important but can be deferred with explicit user approval. Include rationale for P1 vs P0 classification.]
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-003 | [YOUR_VALUE_HERE: Important capability that could potentially be deferred] | [YOUR_VALUE_HERE: Verification criteria] |
+
+[example:
+| REQ-003 | System SHOULD allow custom date range selection (up to 90 days) | Date picker allows start/end selection, data updates within 3 seconds |
+| REQ-004 | System SHOULD send email notifications when usage exceeds threshold | Email sent within 1 minute of threshold breach with accurate data |]
+
+### Requirements Needing Clarification
+
+[YOUR_VALUE_HERE: Requirements that cannot be fully specified without stakeholder input. Use NEEDS CLARIFICATION format.]
+
+- **REQ-005**: System MUST support [NEEDS CLARIFICATION: What data granularity is required? (a) Hourly aggregations - more storage, higher precision (b) Daily aggregations - less storage, sufficient for billing (c) Both with user toggle - flexible but more complex (d) Other - specify]
+
+- **REQ-006**: Users MUST be able to [NEEDS CLARIFICATION: What export formats are required for MVP? (a) CSV only - simplest implementation (b) CSV + JSON - programmatic access (c) CSV + JSON + Excel - enterprise users (d) Other - specify]
+
+---
+
+## 5. SUCCESS CRITERIA
+
+[YOUR_VALUE_HERE: Define measurable outcomes that determine if the feature is successful. Include specific metrics, thresholds, and measurement methods.]
+
+- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome with specific target]
+
+  [NEEDS CLARIFICATION: What is the primary success metric?
+    (a) User adoption rate - % of users accessing feature within 30 days
+    (b) Support ticket reduction - % decrease in usage-related tickets
+    (c) Task completion time - time to find usage information
+    (d) User satisfaction - NPS or CSAT score improvement]
+
+- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+
+[example:
+- **SC-001**: 60% of active users access the metrics dashboard within 30 days of launch (measured via analytics)
+- **SC-002**: Support tickets related to usage questions decrease by 50% within 60 days (measured via ticket tagging)
+- **SC-003**: Users can find their daily usage count in under 10 seconds (measured via user testing)]
+
+---
+
+## 6. RISKS & DEPENDENCIES
+
+[YOUR_VALUE_HERE: Identify dependencies that could block progress and risks that could derail the feature. Include mitigation strategies.]
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | [YOUR_VALUE_HERE: System, API, or team this depends on] | [YOUR_VALUE_HERE: What happens if this is blocked or delayed] | [YOUR_VALUE_HERE: Fallback plan or alternative approach] |
+| Risk | [YOUR_VALUE_HERE: What could go wrong] | [NEEDS CLARIFICATION: Impact level? (a) High - blocks launch (b) Medium - delays launch (c) Low - minor inconvenience] | [YOUR_VALUE_HERE: How to prevent or address] |
+
+[example:
+| Dependency | Billing API for usage data | Cannot display accurate metrics without billing data access | Use cached data with "last updated" timestamp; escalate API access to priority |
+| Dependency | Design team for dashboard mockups | Cannot implement UI without approved designs | Start with wireframes; iterate based on design feedback |
+| Risk | Data query performance at scale | High | Implement pagination, caching, and query optimization from start |
+| Risk | Scope creep from stakeholder requests | Medium | Document all requests in this spec; defer to Phase 2 unless P0 |]
+
+---
+
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+[YOUR_VALUE_HERE: Level 2+ features require explicit non-functional requirements. These define quality attributes beyond core functionality.]
+
+### Performance
+
+- **NFR-P01**: [YOUR_VALUE_HERE: Response time target]
+  [NEEDS CLARIFICATION: What response time is acceptable?
+    (a) <100ms p95 - real-time interactive
+    (b) <200ms p95 - standard interactive
+    (c) <500ms p95 - acceptable for dashboards
+    (d) <2s p95 - batch/reporting acceptable]
+
+- **NFR-P02**: [YOUR_VALUE_HERE: Throughput target]
+  [NEEDS CLARIFICATION: What throughput is required?
+    (a) <10 req/sec - low traffic
+    (b) 10-100 req/sec - moderate traffic
+    (c) 100-1000 req/sec - high traffic
+    (d) >1000 req/sec - extreme scale]
+
+### Security
+
+- **NFR-S01**: [YOUR_VALUE_HERE: Authentication requirement]
+- **NFR-S02**: [YOUR_VALUE_HERE: Data protection requirement]
+
+### Reliability
+
+- **NFR-R01**: [YOUR_VALUE_HERE: Uptime target]
+- **NFR-R02**: [YOUR_VALUE_HERE: Error rate target]
+
+---
+
+## L2: EDGE CASES
+
+### Data Boundaries
+
+- **Empty input**: [YOUR_VALUE_HERE: What happens with no data?]
+- **Maximum length**: [YOUR_VALUE_HERE: What are the limits and behavior when exceeded?]
+- **Invalid format**: [YOUR_VALUE_HERE: How is invalid input handled?]
+
+### Error Scenarios
+
+- **External service failure**: [YOUR_VALUE_HERE: What happens when dependencies are unavailable?]
+- **Network timeout**: [YOUR_VALUE_HERE: Retry strategy]
+- **Concurrent access**: [YOUR_VALUE_HERE: How are conflicts handled?]
+
+### State Transitions
+
+- **Partial completion**: [YOUR_VALUE_HERE: What happens if operation is interrupted?]
+- **Session expiry**: [YOUR_VALUE_HERE: What is the user experience?]
+
+---
+
+## L3: FULL COMPLEXITY ASSESSMENT
+
+[YOUR_VALUE_HERE: Level 3 uses full complexity assessment including multi-agent and coordination dimensions. Total should be 50+ for Level 3.]
+
+| Dimension | Score | Triggers |
+|-----------|-------|----------|
+| Scope | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Files: X, LOC: Y, Systems: Z] |
+| Risk | [YOUR_VALUE_HERE: /25] | [YOUR_VALUE_HERE: Auth: Y/N, API: Y/N, Breaking: Y/N] |
+| Research | [YOUR_VALUE_HERE: /20] | [YOUR_VALUE_HERE: Investigation needs, unknowns] |
+| Multi-Agent | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Workstreams: X, parallel tasks] |
+| Coordination | [YOUR_VALUE_HERE: /15] | [YOUR_VALUE_HERE: Dependencies: X, sync points] |
+| **Total** | **[YOUR_VALUE_HERE: /100]** | **Level 3 (50+)** |
+
+[example:
+| Scope | 20/25 | Files: 15+, LOC: ~800, Systems: 3 (frontend, API, billing) |
+| Risk | 15/25 | Auth: No, API: Yes (new + existing), Breaking: Possible |
+| Research | 12/20 | New charting library, billing API integration, caching strategy |
+| Multi-Agent | 8/15 | 2 workstreams (UI, API), can parallelize |
+| Coordination | 7/15 | 3 dependencies (design, billing API, QA), weekly syncs |
+| **Total** | **62/100** | **Level 3** |]
+
+---
+
+## L3: RISK MATRIX
+
+[YOUR_VALUE_HERE: Level 3 features require detailed risk analysis with ownership and mitigation tracking.]
+
+| Risk ID | Description | Impact | Likelihood | Mitigation | Owner |
+|---------|-------------|--------|------------|------------|-------|
+| R-001 | [YOUR_VALUE_HERE: Risk description] | [NEEDS CLARIFICATION: (a) High - blocks launch (b) Medium - delays launch (c) Low - minor impact] | [NEEDS CLARIFICATION: (a) High - very likely (b) Medium - possible (c) Low - unlikely] | [YOUR_VALUE_HERE: How to prevent or address] | [YOUR_VALUE_HERE: Who is responsible for monitoring] |
+| R-002 | [YOUR_VALUE_HERE: Risk description] | [H/M/L] | [H/M/L] | [YOUR_VALUE_HERE: Strategy] | [YOUR_VALUE_HERE: Owner] |
+
+[example:
+| R-001 | Billing API unavailable during development | High | Low | Use mock data, escalate API access | @backend-lead |
+| R-002 | Performance issues at scale | Medium | Medium | Load test early, implement caching | @infra |
+| R-003 | Scope creep from stakeholders | Medium | High | Weekly scope reviews, document all requests | @product |
+| R-004 | Design iteration delays | Low | Medium | Start with wireframes, parallel UI/API work | @frontend-lead |]
+
+---
+
+## L3: USER STORIES (Extended)
+
+[YOUR_VALUE_HERE: Level 3 features benefit from detailed user stories with Gherkin-style acceptance criteria.]
+
+### US-001: [YOUR_VALUE_HERE: Story Title] (Priority: P0)
+
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: capability], **so that** [YOUR_VALUE_HERE: benefit].
+
+**Acceptance Criteria**:
+1. Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: outcome]
+2. Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: outcome]
+
+**Independent Test**: [YOUR_VALUE_HERE: How to verify this story in isolation]
+
+[example:
+### US-001: View Daily Usage (Priority: P0)
+
+**As a** developer, **I want** to see my daily API call count, **so that** I can monitor my usage and avoid overages.
+
+**Acceptance Criteria**:
+1. Given I am logged in, When I navigate to the dashboard, Then I see today's API call count
+2. Given the dashboard is displayed, When I hover over a data point, Then I see detailed breakdown
+
+**Independent Test**: Load dashboard with test user, verify count matches API query response]
+
+---
+
+### US-002: [YOUR_VALUE_HERE: Story Title] (Priority: P1)
+
+**As a** [YOUR_VALUE_HERE: user type], **I want** [YOUR_VALUE_HERE: capability], **so that** [YOUR_VALUE_HERE: benefit].
+
+**Acceptance Criteria**:
+1. Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: outcome]
+
+---
+
+## 7. OPEN QUESTIONS
+
+[YOUR_VALUE_HERE: Questions that need answers before or during implementation. Each question should specify who can answer it and impact of not knowing.]
+
+- [NEEDS CLARIFICATION: Question 1 - provide specific details needed and who should answer]
+- [NEEDS CLARIFICATION: Question 2 - provide specific details needed and who should answer]
+
+[example:
+- Should historical data include metrics from before this feature launches? (Product Owner - impacts data migration scope)
+- What is the acceptable latency for dashboard data refresh? (Engineering Lead - impacts architecture decisions)
+- Are there compliance requirements for data export (GDPR, SOC2)? (Legal/Security - impacts implementation)]
+
+---
+
+## 8. ASSUMPTIONS
+
+[YOUR_VALUE_HERE: Document assumptions being made. Invalid assumptions are a major source of project failure.]
+
+- [NEEDS CLARIFICATION: What browser/platform support is required?
+    (a) Modern browsers only (Chrome, Firefox, Safari, Edge - last 2 versions)
+    (b) Including older browsers (IE11 support required)
+    (c) Mobile-first responsive design required
+    (d) Desktop only acceptable]
+
+- [NEEDS CLARIFICATION: What existing systems can this feature depend on?
+    (a) Existing authentication system
+    (b) Existing database and ORM
+    (c) Existing API gateway and rate limiting
+    (d) None - greenfield implementation]
+
+[example:
+- Users are already authenticated when accessing the metrics dashboard
+- Billing API returns data within 500ms for 90-day queries
+- Maximum 10,000 API calls per day per user (determines data volume)
+- Feature will be behind feature flag for gradual rollout]
+
+---
+
+<!--
+VERBOSE LEVEL 3 TEMPLATE - SPECIFICATION (~450 lines)
+- Extended guidance with [YOUR_VALUE_HERE], [NEEDS CLARIFICATION], and [example] patterns
+- Level 3: Large features (500+ LOC), complex/architecture changes
+- Includes L2 + L3 addendum sections: Executive Summary, Full Complexity Assessment, Risk Matrix, Extended User Stories
+- Use for major features requiring comprehensive planning
+- After completion, can be simplified to core format by removing guidance
+-->

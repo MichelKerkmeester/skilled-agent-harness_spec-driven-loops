@@ -2,7 +2,7 @@
 # DOCUMENTATION: AGENT CREATION WORKFLOW
 # ───────────────────────────────────────────────────────────────────
 role: Expert Agent Creator using workflows-documentation skill
-purpose: Create production-ready OpenCode agents (primary or subagent)
+purpose: Create production-ready OpenCode agents (primary or secondary)
 action: Guide agent creation from understanding through validation
 
 # ─────────────────────────────────────────────────────────────────
@@ -20,6 +20,8 @@ action: Guide agent creation from understanding through validation
 # To invoke correctly: @write /create:agent [agent-name]
 # ─────────────────────────────────────────────────────────────────
 
+version: "1.9.0"
+
 operating_mode:
   workflow: sequential_6_step
   workflow_compliance: MANDATORY
@@ -27,6 +29,22 @@ operating_mode:
   approvals: step_by_step
   tracking: progressive_task_checklists
   validation: yaml_frontmatter_check
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION MODES (v1.9.0)
+# ─────────────────────────────────────────────────────────────────
+execution_modes:
+  auto:
+    description: "Execute all steps without user approval checkpoints"
+    checkpoint_behavior: "Skip user prompts, proceed automatically"
+    use_case: "Experienced users, batch creation, CI/CD integration"
+    invocation: "/create:agent:auto [agent-name]"
+
+  confirm:
+    description: "Require user approval at each checkpoint (default)"
+    checkpoint_behavior: "Pause and wait for user choice"
+    use_case: "First-time users, learning, careful review"
+    invocation: "/create:agent [agent-name] or /create:agent:confirm [agent-name]"
 
 development_philosophy:
   principle: "Understand purpose before defining configuration"
@@ -65,8 +83,8 @@ user_inputs:
 
   agent_mode: |
     [AGENT_MODE]
-    Agent type: primary, subagent, or all.
-    FROM PHASE 2 OUTPUT (user choice A/B/C).
+    Agent type: primary or secondary.
+    FROM PHASE 2 OUTPUT (user choice A/B).
 
   agent_path: |
     [AGENT_PATH]
@@ -87,8 +105,8 @@ field_handling:
     required: true
 
   agent_mode:
-    validation: "must be one of: primary, subagent, all"
-    default: "subagent"
+    validation: "must be one of: primary, secondary"
+    default: "secondary"
 
   defaults:
     agent_path_local: ".opencode/agent/"
@@ -106,56 +124,61 @@ agent_modes:
     automatic_invocation: false
     use_case: "Main conversation handler"
 
-  subagent:
+  secondary:
     description: "Specialized assistant, invoked via @ mention or automatically"
     tab_cycle: false
     at_mention: true
     automatic_invocation: true
     use_case: "Specialized tasks delegated by primary agents"
 
-  all:
-    description: "Can be used as both primary and subagent"
-    tab_cycle: true
-    at_mention: true
-    automatic_invocation: true
-    use_case: "Maximum flexibility"
-
-available_tools:
+# ─────────────────────────────────────────────────────────────────
+# PERMISSION REFERENCE (v1.9.0 Unified Format)
+# ─────────────────────────────────────────────────────────────────
+# NOTE: The separate `tools:` object is DEPRECATED.
+# Use unified `permission:` object with allow/deny/ask values.
+# ─────────────────────────────────────────────────────────────────
+permission_reference:
   read:
     purpose: "Read files"
-    default: true
+    default: allow
   write:
     purpose: "Create files"
-    default: true
+    default: allow
   edit:
     purpose: "Modify files"
-    default: true
+    default: allow
   bash:
     purpose: "Execute commands"
-    default: true
+    default: allow
   grep:
     purpose: "Search content"
-    default: true
+    default: allow
   glob:
     purpose: "Find files"
-    default: true
+    default: allow
   webfetch:
     purpose: "Fetch URLs"
-    default: false
+    default: deny
   narsil:
     purpose: "Semantic + structural code analysis"
-    default: true
+    default: allow
   memory:
     purpose: "Spec Kit Memory"
-    default: true
+    default: allow
   chrome_devtools:
     purpose: "Browser debugging"
-    default: false
+    default: deny
+  task:
+    purpose: "Delegate to sub-agents"
+    default: deny
+  external_directory:
+    purpose: "Access files outside project"
+    default: allow
 
 permission_values:
-- allow # Allow all operations without approval
-- deny # Disable the tool
-- ask # Prompt for approval before running
+  allow: "Allow all operations without approval"
+  deny: "Disable the tool"
+  ask: "Prompt for approval before running"
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT (CRITICAL)
@@ -235,23 +258,24 @@ workflow:
     - "Define BEHAVIORAL RULES (ALWAYS/NEVER/ESCALATE)"
     - "Identify SKILLS to integrate"
     questions:
-      tools: |
-        Based on the use cases, which tools does this agent need?
-        - read: Examine files
-        - write: Create files
-        - edit: Modify files
-        - bash: Run commands
-        - grep: Search content
-        - glob: Find files
-        - webfetch: Fetch URLs
-        - narsil: Semantic + structural code analysis
-        - memory: Spec Kit Memory
-        - chrome_devtools: Browser debugging
       permissions: |
-        What permissions should this agent have?
-        - edit: allow/deny/ask
-        - bash: allow/deny/ask
-        - webfetch: allow/deny/ask
+        What permissions should this agent have for each tool? (v1.9.0 unified format)
+
+        Core file tools:
+        - read: allow/deny/ask (Examine files)
+        - write: allow/deny/ask (Create files)
+        - edit: allow/deny/ask (Modify files)
+        - bash: allow/deny/ask (Run commands)
+        - grep: allow/deny/ask (Search content)
+        - glob: allow/deny/ask (Find files)
+
+        Extended tools:
+        - webfetch: allow/deny/ask (Fetch URLs)
+        - narsil: allow/deny/ask (Semantic + structural code analysis)
+        - memory: allow/deny/ask (Spec Kit Memory)
+        - chrome_devtools: allow/deny/ask (Browser debugging)
+        - task: allow/deny/ask (Delegate to sub-agents - orchestrators only)
+        - external_directory: allow/deny/ask (Access files outside project)
       rules: |
         What behavioral rules should this agent follow?
         - ✅ ALWAYS: What must it always do?
@@ -261,13 +285,12 @@ workflow:
         Which skills should this agent invoke?
         (e.g., workflows-code, system-spec-kit, workflows-documentation)
     outputs:
-    - tools_configured
     - permissions_configured
     - rules_defined
     - skills_identified
     checkpoint:
       prompt: "Configuration planned. Ready to generate agent file?"
-      options: [ "Approve", "Modify tools", "Modify permissions", "Modify rules" ]
+      options: [ "Approve", "Modify permissions", "Modify rules" ]
 
   - step: 4
     name: "Generation"
@@ -277,27 +300,26 @@ workflow:
     - "Generate YAML frontmatter with all fields"
     - "Generate markdown body with required sections"
     - "Write file to agent_path"
+    # v1.9.0 Unified Permission Format Template
     template: |
       ---
       name: [agent_name]
       description: "[description from purpose]"
       mode: [agent_mode]
       temperature: 0.1
-      tools:
-        read: [true/false]
-        write: [true/false]
-        edit: [true/false]
-        bash: [true/false]
-        grep: [true/false]
-        glob: [true/false]
-        webfetch: [true/false]
-        narsil: [true/false]
-        memory: [true/false]
-        chrome_devtools: [true/false]
       permission:
+        read: [allow/deny/ask]
+        write: [allow/deny/ask]
         edit: [allow/deny/ask]
         bash: [allow/deny/ask]
+        grep: [allow/deny/ask]
+        glob: [allow/deny/ask]
         webfetch: [allow/deny/ask]
+        narsil: [allow/deny/ask]
+        memory: [allow/deny/ask]
+        chrome_devtools: [allow/deny/ask]
+        task: [allow/deny/ask]
+        external_directory: [allow/deny/ask]
       ---
 
       # [Agent Title]
@@ -341,17 +363,18 @@ workflow:
     activities:
     - "Parse YAML frontmatter with Python yaml module"
     - "Verify required fields present (name, description)"
-    - "Verify mode is valid (primary/subagent/all)"
-    - "Verify tools and permissions have valid values"
+    - "Verify mode is valid (primary/secondary)"
+    - "Verify permission object has valid values (allow/deny/ask)"
     validation_command: |
       python3 -c "import yaml; yaml.safe_load(open('[agent_path]').read().split('---')[1])"
     checks:
     - "YAML parses without errors"
     - "name field matches file name"
     - "description is present and single-line"
-    - "mode is one of: primary, subagent, all"
-    - "tools object has valid boolean values"
-    - "permission object has valid values"
+    - "mode is one of: primary, secondary"
+    - "permission object present (unified v1.9.0 format)"
+    - "permission values are allow/deny/ask"
+    - "NO deprecated 'tools' object present"
     outputs:
     - validation_passed
     checkpoint:
@@ -367,7 +390,7 @@ workflow:
     - "Run generate-context.js to save context"
     - "Verify memory file created"
     command: |
-      node .opencode/skill/system-spec-kit/scripts/generate-context.js [spec_path]
+      node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec_path]
     outputs:
     - context_saved
     checkpoint:
@@ -393,7 +416,7 @@ completion_report_template: |
   - Press **Tab** to cycle to this agent
   [ENDIF]
 
-  [IF mode == subagent OR mode == all]
+  [IF mode == secondary]
   - Type `@[agent_name]` to invoke
   - Primary agents can invoke automatically based on description
   [ENDIF]
@@ -415,7 +438,7 @@ error_handling:
     message: "Required field missing: [field_name]"
     action: "Add the missing field and re-validate"
   invalid_mode:
-    message: "Invalid mode: [mode]. Must be primary, subagent, or all"
+    message: "Invalid mode: [mode]. Must be primary or secondary"
     action: "Correct the mode value and re-validate"
   file_exists:
     message: "Agent file already exists at [path]"

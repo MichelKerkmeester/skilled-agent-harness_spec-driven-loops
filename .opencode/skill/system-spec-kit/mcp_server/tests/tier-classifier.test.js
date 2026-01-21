@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: tier-classifier.js - HOT/WARM/COLD tier classification
+// TEST: TIER CLASSIFIER
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -11,7 +11,7 @@ const os = require('os');
    1. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
 
-const LIB_PATH = path.join(__dirname, '..', 'lib');
+const LIB_PATH = path.join(__dirname, '..', 'lib', 'cognitive');
 
 // Test results
 const results = {

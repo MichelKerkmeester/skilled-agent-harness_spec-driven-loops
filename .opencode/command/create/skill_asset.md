@@ -287,7 +287,7 @@ VERIFICATION CHECK:
 
 ---
 
-# 📊 WORKFLOW EXECUTION (5 STEPS) - MANDATORY TRACKING
+# 📊 WORKFLOW EXECUTION - MANDATORY TRACKING
 
 **⛔ ENFORCEMENT RULE:** Execute steps IN ORDER (1→5). Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
 
@@ -497,7 +497,7 @@ This command is often used after skill creation:
 
 ---
 
-## 7. 🔜 WHAT NEXT?
+## 7. 📌 NEXT STEPS
 
 After asset creation completes, suggest relevant next steps:
 

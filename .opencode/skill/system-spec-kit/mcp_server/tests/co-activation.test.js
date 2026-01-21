@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: co-activation.js - Spreading activation for related memories
+// TEST: CO-ACTIVATION
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -10,7 +10,7 @@ const fs = require('fs');
    1. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
 
-const LIB_PATH = path.join(__dirname, '..', 'lib');
+const LIB_PATH = path.join(__dirname, '..', 'lib', 'cognitive');
 
 // Test results
 const results = {

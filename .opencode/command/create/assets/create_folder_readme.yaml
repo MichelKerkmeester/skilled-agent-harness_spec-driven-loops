@@ -1,6 +1,11 @@
 # ───────────────────────────────────────────────────────────────────
 # DOCUMENTATION: README CREATION WORKFLOW
 # ───────────────────────────────────────────────────────────────────
+# Version: 1.9.0 (SpecKit alignment)
+# Mode: confirm-only (interactive step-by-step approval)
+# Note: This workflow does NOT support :auto mode. All executions
+#       require user confirmation at checkpoints for content review.
+# ───────────────────────────────────────────────────────────────────
 role: Expert README Creator using workflows-documentation skill
 purpose: Create comprehensive README files with proper structure and AI-optimization
 action: Generate scannable, well-organized README with table of contents
