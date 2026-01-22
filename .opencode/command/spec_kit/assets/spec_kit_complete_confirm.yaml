@@ -211,22 +211,50 @@ documentation_levels:
     default: "Level 1 for simple tasks, escalate based on analysis"
 
 # ─────────────────────────────────────────────────────────────────
-# AVAILABLE TEMPLATES
+# AVAILABLE TEMPLATES (Level-Specific)
 # ─────────────────────────────────────────────────────────────────
 available_templates:
-  # Level 1+ (Baseline - required at all levels)
-  spec: .opencode/skill/system-spec-kit/templates/spec.md
-  plan: .opencode/skill/system-spec-kit/templates/plan.md
-  tasks: .opencode/skill/system-spec-kit/templates/tasks.md
-  # Level 2+ (Verification)
-  checklist: .opencode/skill/system-spec-kit/templates/checklist.md
-  # Level 3 (Full)
-  decision_record: .opencode/skill/system-spec-kit/templates/decision-record.md
-  # Optional (any level)
-  research: .opencode/skill/system-spec-kit/templates/research.md
-  # Utility (any level)
-  handover: .opencode/skill/system-spec-kit/templates/handover.md
-  debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
+  # Default level when not explicitly specified
+  default_level: level_2
+
+  # Level 1 - Baseline (<100 LOC)
+  level_1:
+    spec: .opencode/skill/system-spec-kit/templates/level_1/spec.md
+    plan: .opencode/skill/system-spec-kit/templates/level_1/plan.md
+    tasks: .opencode/skill/system-spec-kit/templates/level_1/tasks.md
+    implementation_summary: .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md
+
+  # Level 2 - Verification (100-499 LOC)
+  level_2:
+    spec: .opencode/skill/system-spec-kit/templates/level_2/spec.md
+    plan: .opencode/skill/system-spec-kit/templates/level_2/plan.md
+    tasks: .opencode/skill/system-spec-kit/templates/level_2/tasks.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_2/checklist.md
+    implementation_summary: .opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md
+
+  # Level 3 - Full (>=500 LOC)
+  level_3:
+    spec: .opencode/skill/system-spec-kit/templates/level_3/spec.md
+    plan: .opencode/skill/system-spec-kit/templates/level_3/plan.md
+    tasks: .opencode/skill/system-spec-kit/templates/level_3/tasks.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_3/checklist.md
+    decision_record: .opencode/skill/system-spec-kit/templates/level_3/decision-record.md
+    implementation_summary: .opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md
+
+  # Level 3+ - Extended (Complex/Enterprise)
+  level_3_plus:
+    spec: .opencode/skill/system-spec-kit/templates/level_3+/spec.md
+    plan: .opencode/skill/system-spec-kit/templates/level_3+/plan.md
+    tasks: .opencode/skill/system-spec-kit/templates/level_3+/tasks.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_3+/checklist.md
+    decision_record: .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md
+    implementation_summary: .opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md
+
+  # Shared templates (available at any level)
+  shared:
+    research: .opencode/skill/system-spec-kit/templates/research.md
+    handover: .opencode/skill/system-spec-kit/templates/handover.md
+    debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
 
 # ─────────────────────────────────────────────────────────────────
 # PARALLEL DISPATCH CONFIGURATION
@@ -657,7 +685,7 @@ workflow:
     - Define success criteria
     outputs:
     - spec.md: acceptance_criteria
-    template: .opencode/skill/system-spec-kit/templates/spec.md
+    template: .opencode/skill/system-spec-kit/templates/level_2/spec.md  # Use level from available_templates based on complexity
 
     # CONFIDENCE CHECKPOINT
     confidence_checkpoint:
@@ -744,7 +772,7 @@ workflow:
     - verified_items_count: "X/Y items verified"
     - p0_status: "all_complete or blocked"
     - deferred_items: list_of_deferred_p2_items
-    template: .opencode/skill/system-spec-kit/templates/checklist.md
+    template: .opencode/skill/system-spec-kit/templates/level_2/checklist.md  # Use level from available_templates based on complexity
     validation: checklist_verified_and_marked
     checkpoint:
       question: "Step 5 Complete: Checklist verified. How would you like to proceed?"
@@ -873,7 +901,7 @@ workflow:
     outputs:
     - plan.md: technical_approach
     - research.md: resolved_unknowns
-    template: .opencode/skill/system-spec-kit/templates/plan.md
+    template: .opencode/skill/system-spec-kit/templates/level_2/plan.md  # Use level from available_templates based on complexity
 
     # CONFIDENCE CHECKPOINT
     confidence_checkpoint:
@@ -947,7 +975,7 @@ workflow:
     - Create tasks.md (required at all levels)
     outputs:
     - tasks.md: implementation_breakdown
-    template: .opencode/skill/system-spec-kit/templates/tasks.md
+    template: .opencode/skill/system-spec-kit/templates/level_2/tasks.md  # Use level from available_templates based on complexity
     validation: tasks_documented
     checkpoint:
       question: "Step 7 Complete: Tasks broken down. Review tasks.md?"

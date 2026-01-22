@@ -142,16 +142,39 @@ prerequisites:
   note: This workflow assumes planning completed via /spec_kit:plan
 
 # ─────────────────────────────────────────────────────────────────
-# AVAILABLE TEMPLATES
+# AVAILABLE TEMPLATES (Level-Specific)
 # ─────────────────────────────────────────────────────────────────
 available_templates:
-  # Level 1+ (Baseline - required at all levels)
-  tasks: .opencode/skill/system-spec-kit/templates/tasks.md
-  # Level 2+ (Verification)
-  checklist: .opencode/skill/system-spec-kit/templates/checklist.md
-  # Utility (any level)
-  handover: .opencode/skill/system-spec-kit/templates/handover.md
-  debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
+  # Default level when not explicitly specified
+  default_level: level_2
+
+  # Level 1 - Baseline (<100 LOC)
+  level_1:
+    tasks: .opencode/skill/system-spec-kit/templates/level_1/tasks.md
+    implementation_summary: .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md
+
+  # Level 2 - Verification (100-499 LOC)
+  level_2:
+    tasks: .opencode/skill/system-spec-kit/templates/level_2/tasks.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_2/checklist.md
+    implementation_summary: .opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md
+
+  # Level 3 - Full (>=500 LOC)
+  level_3:
+    tasks: .opencode/skill/system-spec-kit/templates/level_3/tasks.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_3/checklist.md
+    implementation_summary: .opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md
+
+  # Level 3+ - Extended (Complex/Enterprise)
+  level_3_plus:
+    tasks: .opencode/skill/system-spec-kit/templates/level_3+/tasks.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_3+/checklist.md
+    implementation_summary: .opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md
+
+  # Shared templates (available at any level)
+  shared:
+    handover: .opencode/skill/system-spec-kit/templates/handover.md
+    debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
 
 # ─────────────────────────────────────────────────────────────────
 # PARALLEL DISPATCH CONFIGURATION
@@ -407,7 +430,7 @@ workflow:
     - Create/validate tasks.md (required at all levels)
     outputs:
     - tasks.md: implementation_breakdown
-    template: .opencode/skill/system-spec-kit/templates/tasks.md
+    template: .opencode/skill/system-spec-kit/templates/level_2/tasks.md  # Use level from available_templates based on complexity
     validation: tasks_documented
     checkpoint:
       question: "Step 2 Complete: Tasks defined. Review tasks.md?"

@@ -104,20 +104,38 @@ documentation_levels:
     default: "Research workflow typically supports Level 2+ or Level 3 features"
 
 # ─────────────────────────────────────────────────────────────────
-# AVAILABLE TEMPLATES
+# AVAILABLE TEMPLATES (Level-Specific)
 # ─────────────────────────────────────────────────────────────────
 available_templates:
-  # Research workflow primary outputs
-  research: .opencode/skill/system-spec-kit/templates/research.md
-  # Level 3 (Full)
-  decision_record: .opencode/skill/system-spec-kit/templates/decision-record.md
-  # Level 2+ (Verification)
-  checklist: .opencode/skill/system-spec-kit/templates/checklist.md
-  # Level 1+ (Baseline)
-  spec: .opencode/skill/system-spec-kit/templates/spec.md
-  # Utility (any level)
-  handover: .opencode/skill/system-spec-kit/templates/handover.md
-  debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
+  # Default level when not explicitly specified
+  default_level: level_2
+
+  # Level 1 - Baseline (<100 LOC)
+  level_1:
+    spec: .opencode/skill/system-spec-kit/templates/level_1/spec.md
+
+  # Level 2 - Verification (100-499 LOC)
+  level_2:
+    spec: .opencode/skill/system-spec-kit/templates/level_2/spec.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_2/checklist.md
+
+  # Level 3 - Full (>=500 LOC)
+  level_3:
+    spec: .opencode/skill/system-spec-kit/templates/level_3/spec.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_3/checklist.md
+    decision_record: .opencode/skill/system-spec-kit/templates/level_3/decision-record.md
+
+  # Level 3+ - Extended (Complex/Enterprise)
+  level_3_plus:
+    spec: .opencode/skill/system-spec-kit/templates/level_3+/spec.md
+    checklist: .opencode/skill/system-spec-kit/templates/level_3+/checklist.md
+    decision_record: .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md
+
+  # Shared templates (available at any level)
+  shared:
+    research: .opencode/skill/system-spec-kit/templates/research.md
+    handover: .opencode/skill/system-spec-kit/templates/handover.md
+    debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
 
 # ─────────────────────────────────────────────────────────────────
 # PARALLEL DISPATCH CONFIGURATION
@@ -657,7 +675,7 @@ workflow:
     - Include documentation quality checks
     outputs:
     - quality_checklist: generated
-    template: .opencode/skill/system-spec-kit/templates/checklist.md
+    template: .opencode/skill/system-spec-kit/templates/level_2/checklist.md  # Use level from available_templates based on complexity
     validation: checklist_generated
     
     # CONFIDENCE CHECKPOINT
@@ -704,7 +722,7 @@ workflow:
     - decision_rationale
     level_3_documents:
     - decision-record-[name].md: "For significant architecture decisions (Level 3 requirement)"
-    template: .opencode/skill/system-spec-kit/templates/decision-record.md
+    template: .opencode/skill/system-spec-kit/templates/level_3/decision-record.md  # Level 3+ only
     validation: solution_designed
     checkpoint:
       question: "Step 7 Complete: Solution designed. Review architecture?"

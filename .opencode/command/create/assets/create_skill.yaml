@@ -302,8 +302,9 @@ workflow:
     - Initialize spec.md with skill creation context
     - Create plan.md with approach
     templates:
-    - .opencode/skill/system-spec-kit/templates/spec.md
-    - .opencode/skill/system-spec-kit/templates/plan.md
+    # Use Level 2 templates as default for skill creation
+    - .opencode/skill/system-spec-kit/templates/level_2/spec.md
+    - .opencode/skill/system-spec-kit/templates/level_2/plan.md
     outputs:
     - spec.md: created_with_context
     - plan.md: created_with_approach
