@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.1] - 2026-01-22
+
+*Environment version: 1.0.6.1*
+
+Fixes template path references in YAML workflow configs, resolving "File not found" errors when spec_kit workflows attempted to read non-existent root-level templates.
+
+---
+
+### Fixed
+
+1. **Level-specific template paths** — 9 YAML config files updated with correct template references:
+   - `spec_kit_plan_auto.yaml` · `spec_kit_plan_confirm.yaml`
+   - `spec_kit_complete_auto.yaml` · `spec_kit_complete_confirm.yaml`
+   - `spec_kit_research_auto.yaml` · `spec_kit_research_confirm.yaml`
+   - `spec_kit_implement_auto.yaml` · `spec_kit_implement_confirm.yaml`
+   - `create_skill.yaml`
+2. **Template path format** — `templates/spec.md` → `templates/level_2/spec.md` (and similar for all template types)
+
+---
+
 ## [2.0.0] - 2026-01-21
 
 *Environment version: 1.0.6.0*
