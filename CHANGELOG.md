@@ -7,6 +7,30 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.6.1**] - 2026-01-22
+
+Fixes template path references in YAML workflow configs. The `available_templates:` section now correctly points to level-specific template directories, resolving "File not found" errors when spec_kit workflows attempted to read non-existent root-level templates.
+
+---
+
+### Fixed
+
+1. **Level-specific template paths** — 9 YAML config files updated with correct template references:
+   - `spec_kit_plan_auto.yaml` · `spec_kit_plan_confirm.yaml`
+   - `spec_kit_complete_auto.yaml` · `spec_kit_complete_confirm.yaml`
+   - `spec_kit_research_auto.yaml` · `spec_kit_research_confirm.yaml`
+   - `spec_kit_implement_auto.yaml` · `spec_kit_implement_confirm.yaml`
+   - `create_skill.yaml`
+2. **Template path format** — `templates/spec.md` → `templates/level_2/spec.md` (and similar for all template types)
+
+---
+
+### Upgrade
+
+No action required. Pull latest to get corrected template paths.
+
+---
+
 ## [**1.0.6.0**] - 2026-01-21
 
 Major template architecture overhaul introducing CORE + ADDENDUM v2.0. This release achieves 74-82% template line reduction through a compositional model, adds 26 verbose templates with extended guidance for new users, creates a comprehensive 557-test validation suite, and standardizes all 19 commands across 4 namespaces. The result: templates that add genuine value at each documentation level instead of boilerplate, with full backward compatibility. Implements specs 073-076.
