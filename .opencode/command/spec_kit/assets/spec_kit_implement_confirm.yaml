@@ -239,6 +239,126 @@ parallel_dispatch_config:
     - step_6_development
 
 # ─────────────────────────────────────────────────────────────────
+# MULTI-AGENT DISPATCH CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+multi_agent_config:
+  enabled: true
+
+  dispatch_modes:
+    single:
+      id: A
+      label: "Single Agent"
+      description: "Execute with one primary agent (default)"
+      agent_count: 1
+      model: "opus"
+
+    multi_small:
+      id: B
+      label: "Multi-Agent (1+2)"
+      description: "1 Opus orchestrator + 2 Sonnet parallel workers"
+      orchestrator:
+        model: "opus"
+        role: "coordinator"
+        responsibilities:
+          - "Coordinate worker dispatch for implementation tasks"
+          - "Synthesize worker outputs"
+          - "Execute integration and verification steps"
+          - "Create implementation-summary.md"
+      workers:
+        - model: "sonnet"
+          role: "implementation_agent"
+          focus: "Core Implementation"
+          step: 6
+          responsibilities:
+            - "Execute core implementation tasks from tasks.md"
+            - "Follow TDD approach where applicable"
+            - "Implement models, services, endpoints"
+            - "Update task checklist progressively"
+        - model: "sonnet"
+          role: "test_agent"
+          focus: "Test Implementation"
+          step: 6
+          responsibilities:
+            - "Write unit tests for implemented features"
+            - "Validate against acceptance criteria"
+            - "Execute test suite and report results"
+            - "Document test coverage"
+
+    multi_large:
+      id: C
+      label: "Multi-Agent (1+3)"
+      description: "1 Opus orchestrator + 3 Sonnet parallel workers"
+      orchestrator:
+        model: "opus"
+        role: "coordinator"
+        responsibilities:
+          - "Coordinate worker dispatch for implementation tasks"
+          - "Synthesize worker outputs"
+          - "Execute integration and verification steps"
+          - "Create implementation-summary.md"
+      workers:
+        - model: "sonnet"
+          role: "implementation_agent"
+          focus: "Core Implementation"
+          step: 6
+          responsibilities:
+            - "Execute core implementation tasks from tasks.md"
+            - "Follow TDD approach where applicable"
+            - "Implement models, services, endpoints"
+            - "Update task checklist progressively"
+        - model: "sonnet"
+          role: "test_agent"
+          focus: "Test Implementation"
+          step: 6
+          responsibilities:
+            - "Write unit tests for implemented features"
+            - "Validate against acceptance criteria"
+            - "Execute test suite and report results"
+            - "Document test coverage"
+        - model: "sonnet"
+          role: "integration_agent"
+          focus: "Integration and Polish"
+          step: 6
+          responsibilities:
+            - "Handle database and middleware integration"
+            - "Implement logging and error handling"
+            - "Optimize performance-critical paths"
+            - "Document integration points"
+
+  worker_output_format:
+    structure:
+      role: "string - worker role identifier"
+      focus: "string - assigned focus area"
+      tasks_completed: "array - completed task IDs"
+      files_modified: "array - file paths modified"
+      tests_status: "object - test results summary"
+      blockers: "array - any blocking issues"
+      confidence: "number - 0-100 confidence score"
+    example: |
+      {
+        "role": "implementation_agent",
+        "focus": "Core Implementation",
+        "tasks_completed": ["TASK-001", "TASK-002"],
+        "files_modified": [
+          "src/components/Feature.ts",
+          "src/utils/helpers.ts"
+        ],
+        "tests_status": {
+          "passed": 5,
+          "failed": 0,
+          "skipped": 1
+        },
+        "blockers": [],
+        "confidence": 90
+      }
+
+  fallback_behavior:
+    on_worker_timeout: "Continue with available outputs, note incomplete tasks"
+    on_all_workers_fail: "Fall back to single-agent mode"
+    on_orchestrator_fail: "Save partial results to scratch/"
+    worker_timeout_seconds: 60
+
+# ─────────────────────────────────────────────────────────────────
 # AGENT ROUTING CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
 agent_routing:

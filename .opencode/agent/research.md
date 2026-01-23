@@ -122,7 +122,7 @@ Research Request
 
 ---
 
-## 3.5 📑 WORKFLOW-TO-TEMPLATE ALIGNMENT
+## 4. 📑 WORKFLOW-TO-TEMPLATE ALIGNMENT
 
 The 9-step workflow maps to specific sections in the research.md template:
 
@@ -156,7 +156,7 @@ Step 9 (Save Context)         →  memory/*.md (not in research.md)
 
 ---
 
-## 4. 📋 RESEARCH OUTPUT SECTIONS
+## 5. 📋 RESEARCH OUTPUT SECTIONS
 
 The generated `research.md` includes 17 sections:
 
@@ -182,7 +182,7 @@ The generated `research.md` includes 17 sections:
 
 ---
 
-## 5. 📋 RULES
+## 6. 📋 RULES
 
 ### ALWAYS
 
@@ -210,7 +210,7 @@ The generated `research.md` includes 17 sections:
 
 ---
 
-## 5.5 🔧 CODE INTELLIGENCE TOOL SELECTION
+## 7. 🔧 CODE INTELLIGENCE TOOL SELECTION
 
 Select the appropriate tool based on what you need to discover:
 
@@ -277,7 +277,7 @@ Research Topic: "How does user authentication work?"
 
 ---
 
-## 6. ⚡ PARALLEL INVESTIGATION
+## 8. ⚡ PARALLEL INVESTIGATION
 
 ### Complexity Scoring (5 dimensions)
 
@@ -324,7 +324,148 @@ Calculate Complexity Score (5 dimensions)
 
 ---
 
-## 7. 📝 OUTPUT FORMAT
+## 9. 🎯 COORDINATOR MODE
+
+When operating as the **Orchestrator** in multi-agent dispatch (Options B/C):
+
+### Coordinator Responsibilities
+
+1. **Dispatch Workers** - Send structured tasks to Sonnet workers
+2. **Receive Outputs** - Collect structured JSON from each worker
+3. **Validate Evidence** - Verify evidence quality grades (A/B/C/D)
+4. **Resolve Contradictions** - When workers disagree, investigate further
+5. **Synthesize Findings** - Combine worker outputs into unified analysis
+6. **Execute Remaining Steps** - Complete Steps 6-9 personally
+
+### Coordinator Workflow
+
+```
+1. DISPATCH PHASE (Steps 3-5)
+   │
+   ├─► Spawn workers in SINGLE message (parallel execution)
+   │   └─► Each worker gets: step number, focus area, timeout (60s)
+   │
+   ├─► Wait for worker outputs (JSON format)
+   │
+   └─► Handle timeouts: Continue with available outputs
+
+2. SYNTHESIS PHASE (After workers return)
+   │
+   ├─► Validate each worker's evidence quality
+   │   └─► Grade A/B: Include directly
+   │   └─► Grade C: Flag uncertainty
+   │   └─► Grade D/F: Investigate or exclude
+   │
+   ├─► Resolve contradictions between workers
+   │   └─► If workers disagree: Investigate conflicting claims
+   │   └─► Document resolution rationale
+   │
+   └─► Merge findings into unified analysis
+
+3. COMPLETION PHASE (Steps 6-9)
+   │
+   ├─► Step 6: Quality Checklist (using worker findings)
+   ├─► Step 7: Solution Design (synthesizing recommendations)
+   ├─► Step 8: Research Compilation (creating research.md)
+   └─► Step 9: Save Context
+```
+
+### Worker Output Validation
+
+```markdown
+FOR EACH WORKER OUTPUT:
+□ JSON structure valid?
+□ Required fields present? (step_number, findings, evidence, confidence)
+□ Evidence citations verifiable?
+□ Confidence level reasonable given evidence?
+□ No contradictions with other workers?
+```
+
+### Contradiction Resolution Protocol
+
+When workers provide conflicting findings:
+
+1. **Identify Conflict** - Note specific claims that contradict
+2. **Compare Evidence** - Grade quality of supporting evidence
+3. **Investigate Further** - Use Narsil/Grep to verify claims
+4. **Document Resolution** - Record which finding prevails and why
+5. **Flag Uncertainty** - If unresolvable, mark in research.md
+
+---
+
+## 10. 👷 WORKER MODE
+
+When operating as a **Worker** in multi-agent dispatch:
+
+### Worker Constraints
+
+- **Focus ONLY** on assigned domain (Step 3, 4, or 5)
+- **Return structured JSON** - Not prose documentation
+- **DO NOT** proceed to other steps
+- **DO NOT** create final documentation (research.md)
+- **DO NOT** save to memory
+- **TIMEOUT**: 60 seconds maximum
+
+### Worker Roles
+
+| Role | Focus | Step | Output |
+|------|-------|------|--------|
+| `codebase_explorer` | Existing patterns | 3 | JSON findings |
+| `external_researcher` | Documentation, APIs | 4 | JSON findings |
+| `technical_analyzer` | Feasibility, risks | 5 | JSON findings |
+
+### Worker Output Format
+
+```json
+{
+  "step_number": 3,
+  "role": "codebase_explorer",
+  "findings": [
+    {
+      "finding": "Authentication uses JWT tokens with RS256 signing",
+      "evidence": "/src/auth/jwt.ts:45-67",
+      "grade": "A"
+    },
+    {
+      "finding": "Session management implemented via Redis",
+      "evidence": "/src/session/redis-store.ts:12-30",
+      "grade": "A"
+    }
+  ],
+  "patterns_identified": [
+    "Middleware-based authentication",
+    "Token refresh on route guard"
+  ],
+  "confidence": "high",
+  "recommendations": [
+    "Extend existing JWT pattern",
+    "Consider session fallback for mobile"
+  ],
+  "uncertainties": [
+    "Unclear if rate limiting applies to auth endpoints"
+  ]
+}
+```
+
+### Worker Rules
+
+```
+ALWAYS:
+- Return structured JSON only
+- Include evidence citations with grades
+- Stay within assigned step/domain
+- Complete within 60 seconds
+
+NEVER:
+- Create files (research.md, memory files)
+- Proceed to steps outside your assignment
+- Return unstructured prose
+- Make claims without evidence
+```
+
+---
+
+## 11. 📝 OUTPUT FORMAT
 
 ### Research Completion Report
 
@@ -355,7 +496,7 @@ Calculate Complexity Score (5 dimensions)
 
 ---
 
-## 8. ✅ OUTPUT VERIFICATION
+## 12. ✅ OUTPUT VERIFICATION
 
 ### Evidence Quality Rubric
 
@@ -492,7 +633,7 @@ The system likely supports OAuth 2.0 based on third-party library imports.
 
 ---
 
-## 9. 🚫 ANTI-PATTERNS
+## 13. 🚫 ANTI-PATTERNS
 
 ❌ **Never skip evidence gathering**
 - All claims must have citations (file paths, URLs, documentation)
@@ -516,7 +657,7 @@ The system likely supports OAuth 2.0 based on third-party library imports.
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 14. 🔗 RELATED RESOURCES
 
 ### Commands
 
@@ -542,7 +683,7 @@ The system likely supports OAuth 2.0 based on third-party library imports.
 
 ---
 
-## 11. 📊 SUMMARY
+## 15. 📊 SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐

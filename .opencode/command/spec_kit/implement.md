@@ -136,12 +136,54 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 ---
 
-## 🔒 PHASE 3: MEMORY CONTEXT LOADING (Conditional)
+## 🔒 PHASE 3: DISPATCH MODE SELECTION
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE AFTER PHASE 2 PASSES:
+
+1. DISPLAY dispatch mode options:
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Dispatch Mode** (required):                                  │
+   │                                                                │
+   │ A) Single Agent - Execute with one Opus agent (default)        │
+   │ B) Multi-Agent (1+2) - 1 Opus orchestrator + 2 Sonnet workers  │
+   │ C) Multi-Agent (1+3) - 1 Opus orchestrator + 3 Sonnet workers  │
+   │                                                                │
+   │ Reply with A, B, or C                                          │
+   └────────────────────────────────────────────────────────────────┘
+
+2. WAIT for user response (DO NOT PROCEED)
+
+3. Parse response and store:
+   ├─ "A" or "single" → dispatch_mode = "single"
+   ├─ "B" or "1+2" → dispatch_mode = "multi_small"
+   ├─ "C" or "1+3" → dispatch_mode = "multi_large"
+   └─ Invalid → Re-prompt with options
+
+4. IF dispatch_mode == "multi_small" or "multi_large":
+   ├─ Acknowledge: "Multi-agent mode selected. Workers will be dispatched for parallel implementation."
+   └─ Note: Orchestrator (Opus) coordinates, Workers (Sonnet) execute focused domains
+
+5. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select dispatch mode before continuing.
+
+⛔ HARD STOP: DO NOT proceed until dispatch mode is selected
+```
+
+**Phase 3 Output:** `dispatch_mode = [single/multi_small/multi_large]`
+
+---
+
+## 🔒 PHASE 4: MEMORY CONTEXT LOADING (Conditional)
 
 **STATUS: ☐ BLOCKED / ☐ N/A**
 
 ```
-EXECUTE AFTER PHASE 2 PASSES:
+EXECUTE AFTER PHASE 3 PASSES:
 
 1. Check: Does spec_path/memory/ exist AND contain files?
 
@@ -170,7 +212,7 @@ EXECUTE AFTER PHASE 2 PASSES:
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
 ```
 
-**Phase 3 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
+**Phase 4 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
 
 ---
 
@@ -182,7 +224,8 @@ EXECUTE AFTER PHASE 2 PASSES:
 | --------------------------- | ----------------- | ----------- | --------------------------------------- |
 | PHASE 1: INPUT              | ✅ PASSED          | ______      | spec_folder_input: ______               |
 | PHASE 2: SETUP (Valid+Mode) | ✅ PASSED          | ______      | spec_path: ___ / valid: ___ / mode: ___ |
-| PHASE 3: MEMORY             | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                   |
+| PHASE 3: DISPATCH MODE      | ✅ PASSED          | ______      | dispatch_mode: ______                   |
+| PHASE 4: MEMORY             | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                   |
 
 ```
 VERIFICATION CHECK:
@@ -200,7 +243,9 @@ VERIFICATION CHECK:
 - Proceeded without asking user for spec folder (Phase 1)
 - Asked validation confirmation and execution mode as SEPARATE questions instead of consolidated (Phase 2)
 - Started implementation without validating spec folder has required files (Phase 2)
-- Skipped memory prompt when memory files exist (Phase 3)
+- Skipped dispatch mode selection (Phase 3)
+- Assumed single-agent mode without explicit user choice (Phase 3)
+- Skipped memory prompt when memory files exist (Phase 4)
 - Inferred spec folder from .spec-active or context instead of explicit user input
 - Auto-selected execution mode without suffix or explicit user choice
 

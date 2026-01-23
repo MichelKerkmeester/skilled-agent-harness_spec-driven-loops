@@ -8,7 +8,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, WebSearch
 
 **These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
 
-**Round-trip optimization:** This workflow requires 2-3 user interactions (down from 4).
+**Round-trip optimization:** This workflow requires 3-4 user interactions (spec folder, dispatch mode, prior work, memory).
 
 ---
 
@@ -97,12 +97,54 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 ---
 
-## 🔒 PHASE 3: PRIOR WORK SEARCH (Conditional)
+## 🔒 PHASE 3: DISPATCH MODE SELECTION
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE AFTER PHASE 2 PASSES:
+
+1. DISPLAY dispatch mode options:
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Dispatch Mode** (required):                                  │
+   │                                                                │
+   │ A) Single Agent - Execute with one Opus agent (default)        │
+   │ B) Multi-Agent (1+2) - 1 Opus orchestrator + 2 Sonnet workers  │
+   │ C) Multi-Agent (1+3) - 1 Opus orchestrator + 3 Sonnet workers  │
+   │                                                                │
+   │ Reply with A, B, or C                                          │
+   └────────────────────────────────────────────────────────────────┘
+
+2. WAIT for user response (DO NOT PROCEED)
+
+3. Parse response and store:
+   ├─ "A" or "single" → dispatch_mode = "single"
+   ├─ "B" or "1+2" → dispatch_mode = "multi_small"
+   ├─ "C" or "1+3" → dispatch_mode = "multi_large"
+   └─ Invalid → Re-prompt with options
+
+4. IF dispatch_mode == "multi_small" or "multi_large":
+   ├─ Acknowledge: "Multi-agent mode selected. Workers will be dispatched for parallel research."
+   └─ Note: Orchestrator (Opus) coordinates, Workers (Sonnet) execute focused domains
+
+5. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select dispatch mode before continuing.
+
+⛔ HARD STOP: DO NOT proceed until dispatch mode is selected
+```
+
+**Phase 3 Output:** `dispatch_mode = [single/multi_small/multi_large]`
+
+---
+
+## 🔒 PHASE 4: PRIOR WORK SEARCH (Conditional)
 
 **STATUS: ☐ AUTO-EXECUTE**
 
 ```
-EXECUTE AFTER PHASE 2 PASSES:
+EXECUTE AFTER PHASE 3 PASSES:
 
 1. Call memory_match_triggers(prompt=research_topic) for fast keyword match
 2. Call memory_search(query=research_topic, includeConstitutional=true) for semantic search
@@ -125,12 +167,12 @@ EXECUTE AFTER PHASE 2 PASSES:
 
 ---
 
-## 🔒 PHASE 4: MEMORY CONTEXT LOADING (Conditional)
+## 🔒 PHASE 5: MEMORY CONTEXT LOADING (Conditional)
 
 **STATUS: ☐ BLOCKED / ☐ N/A**
 
 ```
-EXECUTE AFTER PHASE 2 PASSES:
+EXECUTE AFTER PHASE 4 PASSES:
 
 CHECK spec_choice value from Phase 2:
 
@@ -169,7 +211,7 @@ CHECK spec_choice value from Phase 2:
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
 ```
 
-**Phase 4 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
+**Phase 5 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
 
 ---
 
@@ -181,8 +223,9 @@ CHECK spec_choice value from Phase 2:
 | -------------------------- | ----------------- | ----------- | --------------------------------------------- |
 | PHASE 1: INPUT             | ✅ PASSED          | ______      | research_topic: ______                        |
 | PHASE 2: SETUP (Spec+Mode) | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
-| PHASE 3: PRIOR WORK        | ✅ PASSED or ⏭️ N/A | ______      | prior_work_loaded: ______                     |
-| PHASE 4: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
+| PHASE 3: DISPATCH MODE     | ✅ PASSED          | ______      | dispatch_mode: ______                         |
+| PHASE 4: PRIOR WORK        | ✅ PASSED or ⏭️ N/A | ______      | prior_work_loaded: ______                     |
+| PHASE 5: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
 
 ```
 VERIFICATION CHECK:
@@ -200,7 +243,9 @@ VERIFICATION CHECK:
 - Proceeded without asking user for research topic (Phase 1)
 - Asked spec folder and execution mode as SEPARATE questions instead of consolidated (Phase 2)
 - Auto-created or assumed a spec folder without A/B/C/D choice (Phase 2)
-- Skipped memory prompt when using existing folder with memory files (Phase 3)
+- Skipped dispatch mode selection (Phase 3)
+- Assumed single-agent mode without explicit user choice (Phase 3)
+- Skipped memory prompt when using existing folder with memory files (Phase 5)
 - Inferred topic from context instead of explicit user input
 - Auto-selected execution mode without suffix or explicit user choice
 

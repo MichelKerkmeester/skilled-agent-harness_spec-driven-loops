@@ -235,7 +235,152 @@ Error location known?
 
 ---
 
-## 4. 🛠️ TOOL ROUTING
+## 4. 🎯 COORDINATOR MODE
+
+When operating as the **Orchestrator** in multi-agent dispatch (Options B/C):
+
+### Coordinator Responsibilities
+
+1. **Execute OBSERVE** - Read error, categorize, map scope (Phase 1)
+2. **Dispatch Workers** - Send analysis tasks to Sonnet workers
+3. **Receive Hypotheses** - Collect structured JSON from workers
+4. **Validate Evidence** - Verify hypothesis evidence quality
+5. **Rank Hypotheses** - Combine and prioritize all hypotheses
+6. **Execute FIX** - Implement and verify the best hypothesis (Phase 4)
+
+### Coordinator Workflow
+
+```
+1. OBSERVE PHASE (Coordinator executes directly)
+   │
+   ├─► Read error messages carefully
+   ├─► Identify error category
+   ├─► Map affected files and dependencies
+   └─► Note what is NOT failing (narrow scope)
+
+2. DISPATCH PHASE (ANALYZE + HYPOTHESIZE)
+   │
+   ├─► Spawn workers in SINGLE message (parallel execution)
+   │   ├─► Call Path Tracer: Trace execution paths
+   │   ├─► Pattern Searcher: Find similar working code
+   │   └─► Edge Case Hunter: Analyze boundary conditions (Option C)
+   │
+   ├─► Wait for worker outputs (JSON format)
+   │
+   └─► Handle timeouts: Continue with available hypotheses
+
+3. SYNTHESIS PHASE (After workers return)
+   │
+   ├─► Collect all worker hypotheses
+   ├─► Validate evidence quality for each
+   ├─► Resolve conflicting hypotheses
+   └─► Rank by: confidence × evidence strength
+
+4. FIX PHASE (Coordinator executes directly)
+   │
+   ├─► Implement highest-ranked hypothesis
+   ├─► Verify fix with tests
+   ├─► If fails: Try next hypothesis
+   └─► If all fail: ESCALATE
+```
+
+### Worker Output Validation
+
+```markdown
+FOR EACH WORKER OUTPUT:
+□ JSON structure valid?
+□ Required fields present? (phase, findings, hypothesis, confidence)
+□ Hypothesis is testable and specific?
+□ Evidence supports the hypothesis?
+□ No contradictions with observation phase?
+```
+
+### Hypothesis Ranking
+
+Rank all worker hypotheses by combined score:
+
+| Factor | Weight | Assessment |
+|--------|--------|------------|
+| Confidence Level | 40% | high=1.0, medium=0.6, low=0.3 |
+| Evidence Strength | 30% | direct=1.0, circumstantial=0.5 |
+| Simplicity | 20% | simple=1.0, complex=0.5 |
+| Reversibility | 10% | easily undone=1.0, permanent=0.5 |
+
+---
+
+## 5. 👷 WORKER MODE
+
+When operating as a **Worker** in multi-agent dispatch:
+
+### Worker Constraints
+
+- **Focus ONLY** on assigned phase (ANALYZE or HYPOTHESIZE)
+- **Return structured JSON** - Not resolution attempts
+- **DO NOT** implement fixes (Phase 4)
+- **DO NOT** create final reports
+- **TIMEOUT**: 60 seconds maximum
+
+### Worker Roles
+
+| Role | Focus | Phase | Output |
+|------|-------|-------|--------|
+| `call_path_tracer` | Execution path analysis | ANALYZE | JSON findings + hypothesis |
+| `pattern_searcher` | Similar working code | ANALYZE | JSON findings + hypothesis |
+| `edge_case_hunter` | Boundary conditions | HYPOTHESIZE | JSON hypothesis |
+
+### Worker Output Format
+
+```json
+{
+  "phase": "ANALYZE",
+  "role": "call_path_tracer",
+  "findings": [
+    {
+      "finding": "Error occurs when validateUser() receives null",
+      "evidence": "auth.ts:123 -> user.ts:45",
+      "trace": "login() -> validateUser() -> null reference"
+    }
+  ],
+  "hypothesis": {
+    "title": "Missing null check in validateUser",
+    "root_cause": "validateUser() doesn't check for null input before accessing .email property",
+    "evidence": [
+      "Call trace shows null passed at auth.ts:123",
+      "user.ts:45 immediately accesses input.email"
+    ],
+    "validation_test": "Add console.log before line 45 to confirm null",
+    "confidence": "high"
+  },
+  "alternative_hypotheses": [
+    {
+      "title": "Incorrect type assertion upstream",
+      "confidence": "medium"
+    }
+  ]
+}
+```
+
+### Worker Rules
+
+```
+ALWAYS:
+- Return structured JSON only
+- Include at least one hypothesis with evidence
+- Stay within assigned phase
+- Complete within 60 seconds
+- Provide validation test for hypothesis
+
+NEVER:
+- Implement fixes (leave that to coordinator)
+- Create files or reports
+- Proceed to phases outside your assignment
+- Return unstructured prose
+- Make claims without evidence trail
+```
+
+---
+
+## 6. 🛠️ TOOL ROUTING
 
 | Task                   | Primary Tool                     | Fallback        |
 | ---------------------- | -------------------------------- | --------------- |
@@ -264,7 +409,7 @@ What do you need?
 
 ---
 
-## 5. 📤 RESPONSE FORMATS
+## 7. 📤 RESPONSE FORMATS
 
 ### Success Response (Debug Resolved)
 
@@ -341,7 +486,7 @@ What do you need?
 
 ---
 
-## 6. 🚫 ANTI-PATTERNS
+## 8. 🚫 ANTI-PATTERNS
 
 ❌ **Never make changes without understanding root cause**
 - Symptom-fixing leads to recurring bugs
@@ -369,7 +514,7 @@ What do you need?
 
 ---
 
-## 7. ⚡ ESCALATION PROTOCOL
+## 9. ⚡ ESCALATION PROTOCOL
 
 **Trigger:** 3+ hypotheses tested and rejected
 
@@ -394,7 +539,7 @@ Tested 3 hypotheses without resolution. Escalating for:
 
 ---
 
-## 8. ✅ OUTPUT VERIFICATION
+## 10. ✅ OUTPUT VERIFICATION
 
 ### Pre-Delivery Checklist
 
@@ -423,7 +568,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 11. 🔗 RELATED RESOURCES
 
 ### Commands
 
@@ -442,7 +587,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 10. 📊 SUMMARY
+## 12. 📊 SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
