@@ -8,230 +8,145 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 This command involves FILE MODIFICATIONS. Per AGENTS.md Section 2, Gate 3 MUST be satisfied before implementation.
 
-**Standard Gate 3 Question Format:**
-> **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
-
-**First Message Protocol:** If this command is invoked as the user's FIRST message requesting file modifications, the spec folder question is your FIRST response. No analysis first, no tool calls first.
+**First Message Protocol:** If this command is invoked as the user's FIRST message requesting file modifications, the consolidated setup prompt is your FIRST response. No analysis first, no tool calls first.
 
 **Failure Pattern #5 Warning (Skip Process):**
 > "I already know this" - Triggers: "straightforward", "comprehensive", "fix all", "15 agents"
-> Even exciting implementation requests MUST complete Phase 1-3 blocking gates.
+> Even exciting implementation requests MUST complete the unified setup phase.
 
 **Self-Verification:** Before proceeding to workflow:
-> □ STOP. File modification detected? Did I ask spec folder question? If NO → Ask NOW.
+> □ STOP. File modification detected? Did I ask the consolidated setup prompt? If NO → Ask NOW.
 
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** This workflow requires 2-3 user interactions (down from 4).
+**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together).
 
 ---
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only (ignoring :auto/:confirm flags):
-│   │
-│   ├─ Search for available spec folders with plan.md:
-│   │   $ ls -d specs/*/ 2>/dev/null | tail -10
-│   │
-│   ├─ ASK user: "Which spec folder would you like to implement?"
-│   │   Present found folders with plan.md status
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Store response as: spec_folder_input
-│   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-│
-└─ IF $ARGUMENTS contains a spec folder path:
-    ├─ Store as: spec_folder_input
-    └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
+1. CHECK for mode suffix in command invocation:
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
+   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-**STOP HERE** - Wait for user to specify or select a spec folder before continuing.
+2. CHECK if $ARGUMENTS contains a spec folder path:
+   ├─ IF $ARGUMENTS has a path → spec_folder_input = $ARGUMENTS
+   └─ IF $ARGUMENTS is empty → include Q0 with available folders
 
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
-⛔ NEVER infer spec folder from context, .spec-active, or conversation history
-```
+3. Search for available spec folders with plan.md:
+   $ ls -d specs/*/ 2>/dev/null | tail -10
+   Check each for: spec.md, plan.md (required), checklist.md (optional)
 
-**Phase 1 Output:** `spec_folder_input = ________________`
-
----
-
-## 🔒 PHASE 2: CONSOLIDATED SETUP (Validation + Execution Mode)
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
-
-1. Validate spec_folder_input exists and has required files:
+4. IF spec_folder_input provided, validate prerequisites:
    $ ls -la [spec_folder_input]/
-
-   Check for:
    - spec.md (REQUIRED)
    - plan.md (REQUIRED)
    - tasks.md (will create if missing)
    - checklist.md (REQUIRED for Level 2+)
 
-2. IF required files missing:
-   ├─ INFORM user: "Missing required files: [list]"
-   ├─ ASK: "Run /spec_kit:plan first, or select different folder?"
-   │   - A) Run /spec_kit:plan to create planning artifacts
-   │   - B) Select a different spec folder
-   └─ WAIT and redirect accordingly
+5. Check if memory/ exists and has files for the spec folder
 
-3. CHECK for mode suffix in command invocation:
-   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, still ask Q1)
-   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, still ask Q1)
-   └─ No suffix → execution_mode = "ASK" (include Q2 in consolidated prompt)
-
-4. IF files exist, ASK user with CONSOLIDATED prompt:
+6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
    │                                                                │
-   │ **1. Confirm Spec Folder** (required):                          │
+   │ **Q0. Spec Folder** (if not provided in command):              │
+   │    Available folders with plan.md:                             │
+   │    [list folders with status indicators]                       │
+   │    Enter folder path or number:                                │
+   │                                                                │
+   │ **Q1. Confirm Spec Folder** (if path provided):                 │
    │    Folder: [spec_folder_input]                                 │
-   │    ├─ spec.md ✓                                                │
-   │    ├─ plan.md ✓                                                │
-   │    └─ [other files status]                                      │
+   │    ├─ spec.md [✓/✗]                                            │
+   │    ├─ plan.md [✓/✗]                                            │
+   │    └─ checklist.md [✓/✗/optional]                              │
    │                                                                │
    │    A) Yes, implement this spec folder                          │
    │    B) No, select a different spec folder                       │
    │    C) Cancel - I need to plan first                             │
    │                                                                │
-   │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
+   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
    │    A) Autonomous - Execute all 9 steps without approval        │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
-   │ Reply with choices, e.g.: "A, A" or "A" (if mode pre-set)      │
+   │ **Q3. Dispatch Mode** (required):                              │
+   │    A) Single Agent - Execute with one agent (Recommended)      │
+   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
+   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
+   │                                                                │
+   │ **Q4. Memory Context** (if memory/ has files):                  │
+   │    A) Load most recent memory file                              │
+   │    B) Load all recent files, up to 3                            │
+   │    C) Skip (start fresh)                                       │
+   │                                                                │
+   │ Reply with answers, e.g.: "A, A, A" or "specs/007-auth/, A, A, A, B" │
    └────────────────────────────────────────────────────────────────┘
 
-5. WAIT for user response (DO NOT PROCEED)
+7. WAIT for user response (DO NOT PROCEED)
 
-6. Parse response:
-   ├─ IF user selects B or C for Q1 → redirect accordingly
-   └─ IF user selects A for Q1 → store and continue
+8. Parse response and store ALL results:
+   - spec_path = [from Q0/Q1 or $ARGUMENTS]
+   - confirm_choice = [A/B/C from Q1]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
+   - dispatch_mode = [single/multi_small/multi_large from Q3]
+   - memory_choice = [A/B/C from Q4, or N/A if no memory files]
 
-7. Store results:
-   - spec_path = [confirmed path]
-   - prerequisites_valid = yes
-   - execution_mode = [AUTONOMOUS/INTERACTIVE] (from suffix or Q2 answer)
+9. Handle redirects if needed:
+   - IF confirm_choice == B → Re-prompt with folder selection only
+   - IF confirm_choice == C → Redirect to /spec_kit:plan
 
-8. SET STATUS: ✅ PASSED (Stateless - no .spec-active file created)
+10. Execute background operations based on choices:
+    - IF memory_choice == A: Load most recent memory file
+    - IF memory_choice == B: Load up to 3 recent memory files
+    - IF dispatch_mode is multi_*: Note parallel dispatch will be used
 
-**STOP HERE** - Wait for user to confirm spec folder and select execution mode before continuing.
+11. SET STATUS: ✅ PASSED
 
-⛔ HARD STOP: DO NOT proceed until user explicitly confirms
-⛔ NEVER assume spec folder is correct without validation
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
+⛔ NEVER assume spec folder is correct without user confirmation
 ⛔ NEVER auto-select execution mode without suffix or explicit choice
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 2 Output:** `spec_path = ________________` | `prerequisites_valid = [yes/no]` | `execution_mode = ________________`
-
----
-
-## 🔒 PHASE 3: DISPATCH MODE SELECTION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 2 PASSES:
-
-1. DISPLAY dispatch mode options:
-
-   ┌────────────────────────────────────────────────────────────────┐
-   │ **Dispatch Mode** (required):                                  │
-   │                                                                │
-   │ A) Single Agent - Execute with one Opus agent (default)        │
-   │ B) Multi-Agent (1+2) - 1 Opus orchestrator + 2 Sonnet workers  │
-   │ C) Multi-Agent (1+3) - 1 Opus orchestrator + 3 Sonnet workers  │
-   │                                                                │
-   │ Reply with A, B, or C                                          │
-   └────────────────────────────────────────────────────────────────┘
-
-2. WAIT for user response (DO NOT PROCEED)
-
-3. Parse response and store:
-   ├─ "A" or "single" → dispatch_mode = "single"
-   ├─ "B" or "1+2" → dispatch_mode = "multi_small"
-   ├─ "C" or "1+3" → dispatch_mode = "multi_large"
-   └─ Invalid → Re-prompt with options
-
-4. IF dispatch_mode == "multi_small" or "multi_large":
-   ├─ Acknowledge: "Multi-agent mode selected. Workers will be dispatched for parallel implementation."
-   └─ Note: Orchestrator (Opus) coordinates, Workers (Sonnet) execute focused domains
-
-5. SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select dispatch mode before continuing.
-
-⛔ HARD STOP: DO NOT proceed until dispatch mode is selected
-```
-
-**Phase 3 Output:** `dispatch_mode = [single/multi_small/multi_large]`
-
----
-
-## 🔒 PHASE 4: MEMORY CONTEXT LOADING (Conditional)
-
-**STATUS: ☐ BLOCKED / ☐ N/A**
-
-```
-EXECUTE AFTER PHASE 3 PASSES:
-
-1. Check: Does spec_path/memory/ exist AND contain files?
-
-├─ IF memory/ is empty or missing:
-│   └─ SET STATUS: ⏭️ N/A (no memory to load)
-│
-└─ IF memory/ has files:
-    │
-    ├─ ASK user:
-    │   ┌────────────────────────────────────────────────────┐
-    │   │ "Load previous context from this spec folder?"     │
-    │   │                                                    │
-    │   │ A) Load most recent memory file (quick refresh)     │
-    │   │ B) Load all recent files, up to 3 (comprehensive)   │
-    │   │ C) List all files and select specific                │
-    │   │ D) Skip (start fresh, no context)                  │
-    │   └────────────────────────────────────────────────────┘
-    │
-    ├─ WAIT for user response
-    ├─ Execute loading based on choice (use Read tool)
-    ├─ Acknowledge loaded context briefly
-    └─ SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select memory loading option before continuing.
-
-⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
-```
-
-**Phase 4 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
+**Phase Output:**
+- `spec_path = ________________`
+- `prerequisites_valid = ________________`
+- `execution_mode = ________________`
+- `dispatch_mode = ________________`
+- `memory_loaded = ________________`
 
 ---
 
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                       | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                            |
-| --------------------------- | ----------------- | ----------- | --------------------------------------- |
-| PHASE 1: INPUT              | ✅ PASSED          | ______      | spec_folder_input: ______               |
-| PHASE 2: SETUP (Valid+Mode) | ✅ PASSED          | ______      | spec_path: ___ / valid: ___ / mode: ___ |
-| PHASE 3: DISPATCH MODE      | ✅ PASSED          | ______      | dispatch_mode: ______                   |
-| PHASE 4: MEMORY             | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                   |
+| FIELD               | REQUIRED      | YOUR VALUE | SOURCE                |
+| ------------------- | ------------- | ---------- | --------------------- |
+| spec_path           | ✅ Yes         | ______     | Q0/Q1 or $ARGUMENTS   |
+| prerequisites_valid | ✅ Yes         | ______     | Validation check      |
+| execution_mode      | ✅ Yes         | ______     | Suffix or Q2          |
+| dispatch_mode       | ✅ Yes         | ______     | Q3                    |
+| memory_loaded       | ○ Conditional | ______     | Q4 (if memory exists) |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED or ⏭️ N/A?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# SpecKit Implement" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -239,23 +154,20 @@ VERIFICATION CHECK:
 ## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
-- Started reading the workflow section before all phases passed
-- Proceeded without asking user for spec folder (Phase 1)
-- Asked validation confirmation and execution mode as SEPARATE questions instead of consolidated (Phase 2)
-- Started implementation without validating spec folder has required files (Phase 2)
-- Skipped dispatch mode selection (Phase 3)
-- Assumed single-agent mode without explicit user choice (Phase 3)
-- Skipped memory prompt when memory files exist (Phase 4)
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Started implementation without validating spec folder has required files
+- Auto-selected dispatch mode without explicit user choice
 - Inferred spec folder from .spec-active or context instead of explicit user input
 - Auto-selected execution mode without suffix or explicit user choice
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately - do not continue current action
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly (ask user, wait for response)
-5. RESUME only after all phases pass verification
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 ```
 
 ---
@@ -423,8 +335,8 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 This command routes Step 11 (Checklist Verification) to the specialized `@review` agent when available.
 
-| Step | Agent | Fallback | Purpose |
-|------|-------|----------|---------|
+| Step                             | Agent     | Fallback  | Purpose                                           |
+| -------------------------------- | --------- | --------- | ------------------------------------------------- |
 | Step 7 (Completion/Verification) | `@review` | `general` | P0/P1 checklist verification with quality scoring |
 
 ### How Agent Routing Works
@@ -480,11 +392,11 @@ Quality gates enforce minimum standards at key workflow transitions.
 
 ### Gate Configuration
 
-| Gate | Location | Threshold | Blocking |
-|------|----------|-----------|----------|
-| Pre-Implementation | Before Step 6 | 70 | Yes |
-| Mid-Implementation | After Step 6.5 | 65 | No (warning only) |
-| Post-Implementation | Before Step 7 completion | 70 | Yes |
+| Gate                | Location                 | Threshold | Blocking          |
+| ------------------- | ------------------------ | --------- | ----------------- |
+| Pre-Implementation  | Before Step 6            | 70        | Yes               |
+| Mid-Implementation  | After Step 6.5           | 65        | No (warning only) |
+| Post-Implementation | Before Step 7 completion | 70        | Yes               |
 
 ### Gate Behavior
 
@@ -535,19 +447,19 @@ The circuit breaker isolates failing operations to prevent cascading failures.
 
 ### States
 
-| State | Condition | Behavior |
-|-------|-----------|----------|
-| CLOSED | Normal operation | All operations proceed |
-| OPEN | 3+ consecutive failures | Operations fail-fast, skip affected step |
-| HALF-OPEN | After cooldown (30s) | Single test operation allowed |
+| State     | Condition               | Behavior                                 |
+| --------- | ----------------------- | ---------------------------------------- |
+| CLOSED    | Normal operation        | All operations proceed                   |
+| OPEN      | 3+ consecutive failures | Operations fail-fast, skip affected step |
+| HALF-OPEN | After cooldown (30s)    | Single test operation allowed            |
 
 ### Configuration
 
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| failure_threshold | 3 | Failures before OPEN state |
-| cooldown_seconds | 30 | Time before HALF-OPEN |
-| success_to_close | 1 | Successes in HALF-OPEN to return to CLOSED |
+| Parameter         | Value | Description                                |
+| ----------------- | ----- | ------------------------------------------ |
+| failure_threshold | 3     | Failures before OPEN state                 |
+| cooldown_seconds  | 30    | Time before HALF-OPEN                      |
+| success_to_close  | 1     | Successes in HALF-OPEN to return to CLOSED |
 
 ### Behavior by Step
 
@@ -634,12 +546,12 @@ This command is part of the SpecKit workflow:
 
 After implementation completes, suggest relevant next steps:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| Implementation complete | Verify in browser | Test functionality works |
-| Need to save progress | `/memory:save [spec-folder-path]` | Preserve implementation context |
-| Ending session | `/spec_kit:handover [spec-folder-path]` | Create continuation document |
-| Found bugs during testing | `/spec_kit:debug [spec-folder-path]` | Delegate debugging to fresh agent |
-| Ready for next feature | `/spec_kit:complete [feature-description]` | Start new workflow |
+| Condition                 | Suggested Command                          | Reason                            |
+| ------------------------- | ------------------------------------------ | --------------------------------- |
+| Implementation complete   | Verify in browser                          | Test functionality works          |
+| Need to save progress     | `/memory:save [spec-folder-path]`          | Preserve implementation context   |
+| Ending session            | `/spec_kit:handover [spec-folder-path]`    | Create continuation document      |
+| Found bugs during testing | `/spec_kit:debug [spec-folder-path]`       | Delegate debugging to fresh agent |
+| Ready for next feature    | `/spec_kit:complete [feature-description]` | Start new workflow                |
 
 **ALWAYS** end with: "What would you like to do next?"

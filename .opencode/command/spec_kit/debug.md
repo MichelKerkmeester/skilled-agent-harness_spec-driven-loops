@@ -4,148 +4,100 @@ argument-hint: "[spec-folder-path]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Key Rule:** Model selection is MANDATORY. You MUST ask the user which model to use before dispatching the sub-agent.
+**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together).
+
+**Key Rule:** Model selection is MANDATORY and included in the consolidated prompt.
 
 ---
 
-## 🔒 PHASE 1: CONTEXT DETECTION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1. CHECK for spec folder in $ARGUMENTS:
+   ├─ IF $ARGUMENTS contains a spec folder path → validate and store
+   └─ IF $ARGUMENTS is empty → auto-detect from recent memory files
 
-├─ IF $ARGUMENTS contains a spec folder path:
-│   │
-│   ├─ Validate path exists: ls -d [spec_folder_input] 2>/dev/null
-│   │
-│   ├─ IF path exists:
-│   │   ├─ Store as: spec_path
-│   │   ├─ detection_method = "provided"
-│   │   └─ Continue to error context gathering
-│   │
-│   └─ IF path NOT found:
-│       ├─ SHOW: "Spec folder not found: [path]"
-│       ├─ ASK: "Would you like to:"
-│       │   ┌────────────────────────────────────────────────────────────┐
-│       │   │ A) Try auto-detection (search for recent sessions)         │
-│       │   │ B) Provide a different path                                │
-│       │   │ C) Cancel                                                  │
-│       │   └────────────────────────────────────────────────────────────┘
-│       └─ WAIT for user response
-│
-└─ IF $ARGUMENTS is empty (auto-detect mode):
-    │
-    ├─ Find most recent memory file:
-    │   Glob("specs/**/memory/*.md") → Results sorted by modification time, take first
-    │
-    ├─ IF session found:
-    │   ├─ Store as: spec_path (extract from memory file path)
-    │   ├─ detection_method = "recent"
-    │   └─ Continue to error context gathering
-    │
-    └─ IF NO session found:
-        ├─ SHOW: "No active session detected"
-        ├─ ASK: "Would you like to:"
-        │   ┌────────────────────────────────────────────────────────────┐
-        │   │ A) List available spec folders and select one              │
-        │   │ B) Debug without a spec folder (ad-hoc mode)               │
-        │   │ C) Cancel                                                  │
-        │   └────────────────────────────────────────────────────────────┘
-        └─ WAIT for user response
+2. Auto-detect spec folder if needed:
+   - Glob("specs/**/memory/*.md") → Sort by modification time, take first
+   - IF found: spec_path = extracted path, detection_method = "recent"
+   - IF not found: detection_method = "none" (include Q0 in prompt)
 
-2. GATHER ERROR CONTEXT from conversation:
+3. GATHER ERROR CONTEXT from conversation (background scan):
+   - Scan for: error messages, stack traces, affected files, previous attempts
+   - IF found: Store as error_message, affected_files, previous_attempts
+   - IF not found: Include Q1 in prompt
 
-├─ Scan recent conversation for:
-│   ├─ Error messages (look for stack traces, error codes, exceptions)
-│   ├─ Affected file paths (files mentioned in errors or recent edits)
-│   ├─ Previous fix attempts (code changes, commands run)
-│   └─ Reproduction steps (how the error was triggered)
-│
-├─ Store extracted context:
-│   ├─ error_message = [extracted error text]
-│   ├─ affected_files = [list of file paths]
-│   ├─ previous_attempts = [list of attempted fixes]
-│   └─ reproduction_steps = [how to reproduce]
-│
-└─ IF no error context found in conversation:
-    ├─ ASK: "What error are you debugging? Please provide:"
-    │   ┌────────────────────────────────────────────────────────────┐
-    │   │ • The error message or unexpected behavior                 │
-    │   │ • Which file(s) are affected                                │
-    │   │ • What you've already tried (if anything)                  │
-    │   └────────────────────────────────────────────────────────────┘
-    └─ WAIT for user response
+4. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
-**STOP HERE** - Wait for user to confirm spec folder and provide error context before continuing.
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Spec Folder** (if not detected/provided):                │
+   │    Available spec folders: [list if found]                     │
+   │    A) Use: [most recent if detected]                           │
+   │    B) Select different folder (specify path)                   │
+   │    C) Debug without spec folder (ad-hoc mode)                  │
+   │    D) Cancel                                                   │
+   │                                                                │
+   │ **Q1. Error Context** (if not found in conversation):          │
+   │    What error are you debugging? Please provide:               │
+   │    • The error message or unexpected behavior                  │
+   │    • Which file(s) are affected                                 │
+   │    • What you've already tried (if anything)                   │
+   │                                                                │
+   │ **Q2. AI Model** (required):                                   │
+   │    A) Claude - Anthropic (Recommended)                         │
+   │    B) Gemini - Google                                          │
+   │    C) Codex - OpenAI                                           │
+   │    D) Other - Specify                                          │
+   │                                                                │
+   │ **Q3. Dispatch Mode** (required):                              │
+   │    A) Single Agent - One agent (Recommended)                   │
+   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 hypothesis gen    │
+   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 hypothesis gen    │
+   │                                                                │
+   │ Reply with answers, e.g.: "A, A, A" or "A, [error desc], A, A" │
+   └────────────────────────────────────────────────────────────────┘
 
-⛔ HARD STOP: DO NOT proceed until spec_path is confirmed AND error context is gathered
+5. WAIT for user response (DO NOT PROCEED)
+
+6. Parse response and store ALL results:
+   - spec_path = [from Q0 or auto-detected or $ARGUMENTS]
+   - detection_method = [provided/recent/ad-hoc]
+   - error_message = [from Q1 or extracted from conversation]
+   - affected_files = [extracted or from Q1]
+   - previous_attempts = [extracted or from Q1]
+   - selected_model = [from Q2]
+   - dispatch_mode = [single/multi_small/multi_large from Q3]
+
+7. IF dispatch_mode is multi_*:
+   - Note: Orchestrator handles OBSERVE + FIX phases
+   - Note: Workers handle parallel hypothesis generation in ANALYZE phase
+
+8. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
+⛔ NEVER skip model selection - it is MANDATORY
+⛔ NEVER skip dispatch mode selection - it is MANDATORY
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 1 Output:** `spec_path = ___` | `detection_method = [recent/provided/ad-hoc]` | `error_message = ___` | `affected_files = ___`
-
----
-
-## 🔒 PHASE 2: MODEL + DISPATCH SELECTION [MANDATORY - ALWAYS ASK]
-
-**STATUS: ☐ BLOCKED**
-
-⛔ HARD STOP: You MUST ask the user which model AND dispatch mode to use. DO NOT skip this phase.
-
-```
-DISPLAY EXACTLY:
-
-┌────────────────────────────────────────────────────────────────┐
-│ 🤖 Debug Configuration                                          │
-│                                                                │
-│ **1. Which AI model?**                                         │
-│    A) Claude - Anthropic models                                │
-│    B) Gemini - Google models (Pro/Ultra)                       │
-│    C) Codex - OpenAI models (GPT-4/o1)                         │
-│    D) Other - Specify a different model                        │
-│                                                                │
-│ **2. How should agents be dispatched?**                        │
-│    A) Single Agent - One agent (default)                       │
-│    B) Multi-Agent (1+2) - 1 Opus + 2 Sonnet hypothesis gen     │
-│    C) Multi-Agent (1+3) - 1 Opus + 3 Sonnet hypothesis gen     │
-│                                                                │
-│ Reply with two choices, e.g.: "A, A" or "Claude, B"            │
-└────────────────────────────────────────────────────────────────┘
-
-WAIT for user response.
-
-Parse response:
-├─ First choice → selected_model:
-│   ├─ "A" or "claude" → selected_model = "claude"
-│   ├─ "B" or "gemini" → selected_model = "gemini"
-│   ├─ "C" or "codex" or "gpt" or "openai" → selected_model = "codex"
-│   └─ "D [model]" → selected_model = [user-specified model]
-│
-└─ Second choice → dispatch_mode:
-    ├─ "A" or "single" → dispatch_mode = "single"
-    ├─ "B" or "1+2" → dispatch_mode = "multi_small"
-    └─ "C" or "1+3" → dispatch_mode = "multi_large"
-
-Store: selected_model = ________________
-Store: dispatch_mode = ________________
-
-IF dispatch_mode == "multi_small" or "multi_large":
-├─ Acknowledge: "Multi-agent mode selected."
-├─ Note: Orchestrator (Opus) handles OBSERVE + FIX phases
-└─ Note: Workers (Sonnet) handle parallel hypothesis generation in ANALYZE phase
-
-**STOP HERE** - Wait for user to select model AND dispatch mode before continuing.
-
-⛔ HARD STOP: DO NOT proceed until BOTH selections are made
-```
-
-**Phase 2 Output:** `selected_model = ___` | `dispatch_mode = ___`
+**Phase Output:**
+- `spec_path = ________________` | `detection_method = ________________`
+- `error_message = ________________`
+- `affected_files = ________________`
+- `selected_model = ________________`
+- `dispatch_mode = ________________`
 
 ---
 
@@ -153,7 +105,7 @@ IF dispatch_mode == "multi_small" or "multi_large":
 
 **When Gate 3 applies:** When debugging leads to file modifications (Step 5, Option A "Apply the fix").
 
-- If a spec folder was established in Phase 1 → Gate 3 is satisfied
+- If a spec folder was established in unified setup → Gate 3 is satisfied
 - If ad-hoc mode was selected → Gate 3 MUST be asked before applying fixes:
   > **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
 
@@ -164,18 +116,21 @@ IF dispatch_mode == "multi_small" or "multi_large":
 
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                     | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                                  |
-| ------------------------- | --------------- | ----------- | --------------------------------------------- |
-| PHASE 1: CONTEXT          | ✅ PASSED        | ______      | spec_path: ______ / error: ______             |
-| PHASE 2: MODEL + DISPATCH | ✅ PASSED        | ______      | selected_model: ______ / dispatch_mode: _____ |
+| FIELD            | REQUIRED      | YOUR VALUE | SOURCE                     |
+| ---------------- | ------------- | ---------- | -------------------------- |
+| spec_path        | ○ Conditional | ______     | Q0 or auto-detect or $ARGS |
+| detection_method | ✅ Yes         | ______     | Auto-determined            |
+| error_message    | ✅ Yes         | ______     | Q1 or conversation scan    |
+| selected_model   | ✅ Yes         | ______     | Q2                         |
+| dispatch_mode    | ✅ Yes         | ______     | Q3                         |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# /spec_kit:debug" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -183,22 +138,21 @@ VERIFICATION CHECK:
 ## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
-- Started reading the workflow section before all phases passed
-- Skipped model selection (Phase 2 is MANDATORY)
-- Skipped dispatch mode selection (Phase 2 is MANDATORY)
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Skipped model selection (Q2 is MANDATORY)
+- Skipped dispatch mode selection (Q3 is MANDATORY)
 - Assumed single-agent mode without explicit user choice
-- Assumed error context without extracting from conversation
-- Proceeded without asking user about model AND dispatch mode selection
 - Dispatched sub-agent without creating debug-delegation.md first
 - Did not wait for user response on integration options
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately - do not continue current action
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly (ask user, wait for response)
-5. RESUME only after all phases pass verification
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 ```
 
 ---

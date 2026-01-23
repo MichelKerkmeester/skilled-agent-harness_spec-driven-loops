@@ -4,203 +4,122 @@ argument-hint: "<feature-description> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** This workflow requires 2-3 user interactions (down from 4).
+**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together).
 
 ---
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## 🔒 UNIFIED SETUP PHASE
+
+**⚠️ FIRST MESSAGE PROTOCOL**: This consolidated prompt MUST be your FIRST response if the command is invoked. No analysis, no tool calls - ask ALL questions immediately in ONE prompt, then wait.
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
-
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only (ignoring :auto/:confirm flags):
-│   │
-│   ├─ ASK user: "What feature would you like to plan?"
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Store response as: feature_description
-│   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-│
-└─ IF $ARGUMENTS contains content:
-    ├─ Store as: feature_description
-    └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-
-**STOP HERE** - Wait for user to provide the feature description before continuing.
-
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
-⛔ NEVER infer features from context, screenshots, or conversation history
-```
-
-**Phase 1 Output:** `feature_description = ________________`
-
----
-
-## 🔒 PHASE 2: CONSOLIDATED SETUP (Spec Folder + Execution Mode)
-
-**⚠️ FIRST MESSAGE PROTOCOL**: This phase MUST be your FIRST response if the command is invoked. No analysis, no tool calls - ask the consolidated question immediately, then wait.
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1. CHECK for mode suffix in command invocation:
-   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, still ask Q1)
-   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, still ask Q1)
-   └─ No suffix → execution_mode = "ASK" (include Q2 in consolidated prompt)
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
+   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-2. Search for related spec folders:
+2. CHECK if $ARGUMENTS contains a feature description:
+   ├─ IF $ARGUMENTS has content (ignoring :auto/:confirm) → feature_description = $ARGUMENTS, omit Q0
+   └─ IF $ARGUMENTS is empty → include Q0 in prompt
+
+3. Search for related spec folders:
    $ ls -d specs/*/ 2>/dev/null | tail -10
 
-3. ASK user with CONSOLIDATED prompt (bundle applicable questions):
+4. Determine if memory loading question is needed:
+   - Will be asked ONLY if user selects A or C for spec folder AND memory/ has files
+   - Include Q4 placeholder with note "(if using existing spec with memory files)"
+
+5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
    │                                                                │
-   │ **1. Spec Folder** (required):                                 │
+   │ **Q0. Feature Description** (if not provided in command):      │
+   │    What feature would you like to plan?                        │
+   │                                                                │
+   │ **Q1. Spec Folder** (required):                                │
    │    A) Use existing: [suggest if related found]                 │
-   │    B) Create new spec folder                                   │
+   │    B) Create new spec folder: specs/[###]-[feature-slug]/      │
    │    C) Update related spec: [if partial match found]            │
    │    D) Skip documentation                                       │
    │                                                                │
-   │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
-   │    A) Autonomous - Execute all steps without approval          │
+   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
+   │    A) Autonomous - Execute all 7 steps without approval        │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
-   │ Reply with choices, e.g.: "B, A" or "A" (if mode pre-set)      │
+   │ **Q3. Dispatch Mode** (required):                              │
+   │    A) Single Agent - Execute with one agent (Recommended)      │
+   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
+   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
+   │                                                                │
+   │ **Q4. Memory Context** (if using existing spec with memory/):  │
+   │    A) Load most recent memory file                              │
+   │    B) Load all recent files, up to 3                            │
+   │    C) Skip (start fresh)                                       │
+   │                                                                │
+   │ Reply with answers, e.g.: "B, A, A" or "Add auth, B, A, A, C"  │
    └────────────────────────────────────────────────────────────────┘
 
-4. WAIT for user response (DO NOT PROCEED)
+6. WAIT for user response (DO NOT PROCEED)
 
-5. Parse response and store results:
-   - spec_choice = [A/B/C/D] (first answer)
-   - spec_path = [path or null if D]
-   - execution_mode = [AUTONOMOUS/INTERACTIVE] (from suffix or second answer)
+7. Parse response and store ALL results:
+   - feature_description = [from Q0 or $ARGUMENTS]
+   - spec_choice = [A/B/C/D from Q1]
+   - spec_path = [derived path or null if D]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
+   - dispatch_mode = [single/multi_small/multi_large from Q3]
+   - memory_choice = [A/B/C from Q4, or N/A if not applicable]
 
-6. SET STATUS: ✅ PASSED (Stateless - no .spec-active file created)
+8. Execute background operations based on choices:
+   - IF memory_choice == A: Load most recent memory file
+   - IF memory_choice == B: Load up to 3 recent memory files
+   - IF dispatch_mode is multi_*: Note parallel dispatch will be used
 
-**STOP HERE** - Wait for user to select A/B/C/D and execution mode before continuing.
+9. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly answers
 ⛔ NEVER auto-create spec folders without user confirmation
 ⛔ NEVER auto-select execution mode without suffix or explicit choice
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 2 Output:** `spec_choice = ___` | `spec_path = ________________` | `execution_mode = ________________`
-
----
-
-## 🔒 PHASE 3: DISPATCH MODE SELECTION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 2 PASSES:
-
-1. DISPLAY dispatch mode options:
-
-   ┌────────────────────────────────────────────────────────────────┐
-   │ **Dispatch Mode** (required):                                  │
-   │                                                                │
-   │ A) Single Agent - Execute with one Opus agent (default)        │
-   │ B) Multi-Agent (1+2) - 1 Opus orchestrator + 2 Sonnet workers  │
-   │ C) Multi-Agent (1+3) - 1 Opus orchestrator + 3 Sonnet workers  │
-   │                                                                │
-   │ Reply with A, B, or C                                          │
-   └────────────────────────────────────────────────────────────────┘
-
-2. WAIT for user response (DO NOT PROCEED)
-
-3. Parse response and store:
-   ├─ "A" or "single" → dispatch_mode = "single"
-   ├─ "B" or "1+2" → dispatch_mode = "multi_small"
-   ├─ "C" or "1+3" → dispatch_mode = "multi_large"
-   └─ Invalid → Re-prompt with options
-
-4. IF dispatch_mode == "multi_small" or "multi_large":
-   ├─ Acknowledge: "Multi-agent mode selected. Workers will be dispatched for parallel exploration."
-   └─ Note: Orchestrator (Opus) coordinates, Workers (Sonnet) execute focused domains
-
-5. SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select dispatch mode before continuing.
-
-⛔ HARD STOP: DO NOT proceed until dispatch mode is selected
-```
-
-**Phase 3 Output:** `dispatch_mode = [single/multi_small/multi_large]`
-
----
-
-## 🔒 PHASE 4: MEMORY CONTEXT LOADING (Conditional)
-
-**STATUS: ☐ BLOCKED / ☐ N/A**
-
-```
-EXECUTE AFTER PHASE 3 PASSES:
-
-CHECK spec_choice value from Phase 2:
-
-├─ IF spec_choice == D (Skip):
-│   └─ SET STATUS: ⏭️ N/A (no spec folder, no memory)
-│
-├─ IF spec_choice == B (Create new):
-│   └─ SET STATUS: ⏭️ N/A (new folder has no memory)
-│
-└─ IF spec_choice == A or C (Use existing):
-    │
-    ├─ Check: Does spec_path/memory/ exist AND contain files?
-    │
-    ├─ IF memory/ is empty or missing:
-    │   └─ SET STATUS: ⏭️ N/A (no memory to load)
-    │
-    └─ IF memory/ has files:
-        │
-        ├─ ASK user:
-        │   ┌────────────────────────────────────────────────────┐
-        │   │ "Load previous context from this spec folder?"     │
-        │   │                                                    │
-        │   │ A) Load most recent memory file (quick refresh)     │
-        │   │ B) Load all recent files, up to 3 (comprehensive)   │
-        │   │ C) List all files and select specific                │
-        │   │ D) Skip (start fresh, no context)                  │
-        │   └────────────────────────────────────────────────────┘
-        │
-        ├─ WAIT for user response
-        ├─ Execute loading based on choice (use Read tool)
-        ├─ Acknowledge loaded context briefly
-        └─ SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select memory loading option before continuing.
-
-⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
-```
-
-**Phase 4 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
+**Phase Output:**
+- `feature_description = ________________`
+- `spec_choice = ___` | `spec_path = ________________`
+- `execution_mode = ________________`
+- `dispatch_mode = ________________`
+- `memory_loaded = ________________`
 
 ---
 
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                      | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                                  |
-| -------------------------- | ----------------- | ----------- | --------------------------------------------- |
-| PHASE 1: INPUT             | ✅ PASSED          | ______      | feature_description: ______                   |
-| PHASE 2: SETUP (Spec+Mode) | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
-| PHASE 3: DISPATCH MODE     | ✅ PASSED          | ______      | dispatch_mode: ______                         |
-| PHASE 4: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
+| FIELD               | REQUIRED      | YOUR VALUE | SOURCE                |
+| ------------------- | ------------- | ---------- | --------------------- |
+| feature_description | ✅ Yes         | ______     | Q0 or $ARGUMENTS      |
+| spec_choice         | ✅ Yes         | ______     | Q1                    |
+| spec_path           | ○ Conditional | ______     | Derived from Q1       |
+| execution_mode      | ✅ Yes         | ______     | Suffix or Q2          |
+| dispatch_mode       | ✅ Yes         | ______     | Q3                    |
+| memory_loaded       | ○ Conditional | ______     | Q4 (if existing spec) |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED or ⏭️ N/A?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# SpecKit Plan" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -208,23 +127,21 @@ VERIFICATION CHECK:
 ## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
-- Started reading the workflow section before all phases passed
-- Proceeded without asking user for feature description (Phase 1)
-- Asked spec folder and execution mode as SEPARATE questions instead of consolidated (Phase 2)
-- Auto-created or assumed a spec folder without A/B/C/D choice (Phase 2)
-- Skipped dispatch mode selection (Phase 3)
-- Assumed single-agent mode without explicit user choice (Phase 3)
-- Skipped memory prompt when using existing folder with memory files (Phase 4)
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Proceeded without asking user for feature description when not in $ARGUMENTS
+- Auto-created or assumed a spec folder without user confirmation
+- Auto-selected dispatch mode without explicit user choice
 - Inferred feature from context instead of explicit user input
 - Auto-selected execution mode without suffix or explicit user choice
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately - do not continue current action
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly (ask user, wait for response)
-5. RESUME only after all phases pass verification
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 ```
 
 > **Cross-reference**: These mandatory phases implement AGENTS.md Section 2 "Gate 3: Spec Folder Question" and "First Message Protocol". The canonical gate definitions are in AGENTS.md.
@@ -376,7 +293,7 @@ This workflow supports smart parallel sub-agent dispatch for eligible phases usi
 
 ### Planning Step: 4-Agent Parallel Exploration (Automatic)
 
-The Planning step automatically dispatches 4 Sonnet agents in parallel via the Task tool:
+The Planning step automatically dispatches 4 agents in parallel via the Task tool:
 
 1. **Architecture Explorer** - Project structure, entry points, component connections
 2. **Feature Explorer** - Similar features, related patterns
@@ -402,19 +319,18 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 This command routes Step 3 (Specification) to the specialized `@speckit` agent when available.
 
-| Step | Agent | Model | Fallback | Purpose |
-|------|-------|-------|----------|---------|
-| Step 3 (Specification) | `@speckit` | **sonnet** | `general` | Template-first spec folder creation with validation |
+| Step                   | Agent      | Fallback  | Purpose                                             |
+| ---------------------- | ---------- | --------- | --------------------------------------------------- |
+| Step 3 (Specification) | `@speckit` | `general` | Template-first spec folder creation with validation |
 
 ### Model Preference
 
-**Default**: Sonnet (cost-effective, fast)
-**Override**: Use Opus ONLY when user explicitly requests ("use opus", "use most capable model")
+Model selection is handled automatically by the system based on task complexity.
 
 ### How Agent Routing Works
 
 1. **Detection**: When Step 3 is reached, the system checks if `@speckit` agent is available
-2. **Dispatch**: If available, dispatches to `@speckit` agent with `model: sonnet` and feature description
+2. **Dispatch**: If available, dispatches to `@speckit` agent with feature description
 3. **Fallback**: If agent unavailable, falls back to `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode) with warning
 4. **Output**: Agent returns confirmation of created files with validation status
 
@@ -451,11 +367,11 @@ Quality gates enforce minimum standards at workflow checkpoints.
 
 ### Gate Configuration
 
-| Gate Type | Trigger Point | Threshold | Behavior |
-|-----------|---------------|-----------|----------|
-| Pre-execution | Before Step 1 starts | 70 | Validates inputs and prerequisites |
-| Mid-execution | After Step 3 (Specification) | 70 | Validates spec.md quality |
-| Post-execution | After Step 7 (Handover Check) | 70 | Validates all artifacts complete |
+| Gate Type      | Trigger Point                 | Threshold | Behavior                           |
+| -------------- | ----------------------------- | --------- | ---------------------------------- |
+| Pre-execution  | Before Step 1 starts          | 70        | Validates inputs and prerequisites |
+| Mid-execution  | After Step 3 (Specification)  | 70        | Validates spec.md quality          |
+| Post-execution | After Step 7 (Handover Check) | 70        | Validates all artifacts complete   |
 
 ### Gate Behavior
 
@@ -487,18 +403,18 @@ Circuit breaker pattern prevents cascading failures during workflow execution.
 
 ### States
 
-| State | Description | Behavior |
-|-------|-------------|----------|
-| CLOSED | Normal operation | Errors tracked, workflow continues |
-| OPEN | Failure threshold exceeded | Workflow halted, recovery required |
-| HALF-OPEN | Recovery attempted | Single retry allowed, success resets to CLOSED |
+| State     | Description                | Behavior                                       |
+| --------- | -------------------------- | ---------------------------------------------- |
+| CLOSED    | Normal operation           | Errors tracked, workflow continues             |
+| OPEN      | Failure threshold exceeded | Workflow halted, recovery required             |
+| HALF-OPEN | Recovery attempted         | Single retry allowed, success resets to CLOSED |
 
 ### Configuration
 
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| failure_threshold | 3 | Consecutive failures before OPEN state |
-| recovery_timeout | 60 | Seconds before attempting HALF-OPEN |
+| Parameter         | Value | Description                            |
+| ----------------- | ----- | -------------------------------------- |
+| failure_threshold | 3     | Consecutive failures before OPEN state |
+| recovery_timeout  | 60    | Seconds before attempting HALF-OPEN    |
 
 ### Tracked Errors
 

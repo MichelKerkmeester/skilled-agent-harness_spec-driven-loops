@@ -4,124 +4,104 @@ argument-hint: "[spec-folder-path]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** Handover uses 1-2 user interactions maximum.
+**Round-trip optimization:** Handover uses only 1 user interaction (all questions asked together).
 
 ---
 
-## 🔒 PHASE 1: INPUT & SPEC DETECTION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1. CHECK for spec folder in $ARGUMENTS:
+   ├─ IF $ARGUMENTS has path → validate path exists
+   └─ IF $ARGUMENTS is empty → auto-detect from recent memory files
 
-├─ IF $ARGUMENTS contains a spec folder path:
-│   │
-│   ├─ Validate path exists: ls -d [spec_folder_input] 2>/dev/null
-│   │
-│   ├─ IF path exists:
-│   │   ├─ Store as: spec_path
-│   │   ├─ detection_method = "provided"
-│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-│   │
-│   └─ IF path NOT found:
-│       ├─ SHOW: "Spec folder not found: [path]"
-│       ├─ ASK: "Would you like to:"
-│       │   ┌────────────────────────────────────────────────────────────┐
-│       │   │ A) Try auto-detection (search for recent sessions)         │
-│       │   │ B) Provide a different path                                │
-│       │   │ C) Cancel                                                  │
-│       │   └────────────────────────────────────────────────────────────┘
-│       └─ WAIT for user response
-│
-└─ IF $ARGUMENTS is empty (auto-detect mode):
-    │
-    ├─ Find most recent memory file (Stateless - no .spec-active marker)
-    │   Glob("specs/**/memory/*.md") → Results sorted by modification time, take first
-    │
-    ├─ IF session found:
-    │   ├─ Store as: spec_path (extract from memory file path)
-    │   ├─ detection_method = "recent"
-    │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-    │
-    └─ IF NO session found:
-        ├─ SHOW: "No active session detected"
-        ├─ ASK: "Would you like to:"
-        │   ┌────────────────────────────────────────────────────────────┐
-        │   │ A) List available spec folders and select one              │
-        │   │ B) Cancel handover                                         │
-        │   └────────────────────────────────────────────────────────────┘
-        └─ WAIT for user response
+2. Auto-detect spec folder if needed:
+   - Glob("specs/**/memory/*.md") → Sort by modification time, take first
+   - IF found: spec_path = extracted path, detection_method = "recent"
+   - IF not found: detection_method = "none" (include Q0 in prompt)
 
-**STOP HERE** - Wait for user to provide or confirm a valid spec folder path before continuing.
+3. Run pre-handover validation (background, strict mode):
+   - Check: ANCHORS_VALID, PRIORITY_TAGS, PLACEHOLDER_FILLED
+   - Store: validation_status = [passed/warnings/errors]
 
-⛔ HARD STOP: DO NOT proceed until a valid spec_path is confirmed
+4. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Spec Folder** (if not detected/provided):                │
+   │    No active session detected. Available spec folders:         │
+   │    [list folders if found]                                     │
+   │    A) List available spec folders and select one               │
+   │    B) Cancel handover                                          │
+   │                                                                │
+   │ **Q1. Confirm Detected Session** (if auto-detected):            │
+   │    Detected: [spec_path] (last activity: [date])               │
+   │    A) Yes, create handover for this session                    │
+   │    B) No, select a different spec folder                       │
+   │    C) Cancel                                                   │
+   │                                                                │
+   │ **Q2. Validation Issues** (if validation found warnings/errors)│
+   │    Pre-handover validation found issues:                       │
+   │    [list warnings/errors]                                      │
+   │    A) Fix issues before handover                               │
+   │    B) Proceed anyway (warnings transfer to next session)       │
+   │    C) Cancel                                                   │
+   │                                                                │
+   │ Reply with answers, e.g.: "A" or "A, B"                        │
+   └────────────────────────────────────────────────────────────────┘
+
+5. WAIT for user response (DO NOT PROCEED)
+
+6. Parse response and store ALL results:
+   - spec_path = [from Q0/Q1 or auto-detected or $ARGUMENTS]
+   - detection_method = [provided/recent]
+   - validation_choice = [from Q2: FIX/BYPASS, or N/A if passed]
+
+7. Handle redirects if needed:
+   - IF validation_choice == FIX → Fix issues, then re-run validation
+   - IF Q0/Q1 == B → Re-prompt with folder selection only
+   - IF Q0/Q1 == C or Q2 == C → Cancel workflow
+
+8. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
+⛔ NEVER assume spec folder without user confirmation when path was invalid
+⛔ NEVER skip pre-handover validation
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 1 Output:** `spec_path = ________________` | `detection_method = [recent/provided]`
-
----
-
-## 🔒 PHASE 2: PRE-HANDOVER VALIDATION
-
-**STATUS: ☐ BLOCKED**
-
-Before creating handover, validation runs automatically to ensure clean state.
-
-Strict mode is used to ensure no warnings are passed to the next session.
-
-**Key checks before handover:**
-- **ANCHORS_VALID** - Memory files have balanced anchors
-- **PRIORITY_TAGS** - Remaining tasks are prioritized  
-- **PLACEHOLDER_FILLED** - No incomplete placeholders
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
-
-1. Validation runs automatically (strict mode)
-
-2. IF validation passes:
-   └─ SET STATUS: ✅ PASSED → Proceed to workflow
-
-3. IF validation fails (exit 1 or 2):
-   ├─ SHOW: Validation warnings/errors
-   ├─ ASK: "Would you like to:"
-   │   ┌────────────────────────────────────────────────────────────┐
-   │   │ A) Fix issues before handover                              │
-   │   │ B) Proceed anyway (warnings will transfer to next session) │
-   │   │ C) Cancel                                                  │
-   │   └────────────────────────────────────────────────────────────┘
-   └─ WAIT for user response
-
-**STOP HERE** - Wait for validation to complete or user to confirm bypass before continuing.
-
-⛔ HARD STOP: DO NOT proceed until validation is complete or user confirms bypass
-```
-
-**Phase 2 Output:** `validation = [PASSED/BYPASSED/FIXED]`
+**Phase Output:**
+- `spec_path = ________________` | `detection_method = ________________`
+- `validation_status = ________________`
 
 ---
 
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                 | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                       |
-| --------------------- | --------------- | ----------- | ---------------------------------- |
-| PHASE 1: INPUT & SPEC | ✅ PASSED        | ______      | spec_path: ______ / method: ______ |
-| PHASE 2: VALIDATION   | ✅ PASSED        | ______      | validation: ______                 |
+| FIELD             | REQUIRED | YOUR VALUE | SOURCE                          |
+| ----------------- | -------- | ---------- | ------------------------------- |
+| spec_path         | ✅ Yes    | ______     | Q0/Q1 or auto-detect or $ARGS   |
+| detection_method  | ✅ Yes    | ______     | Auto-determined                 |
+| validation_status | ✅ Yes    | ______     | Validation check (Q2 if issues) |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# SpecKit Handover" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -129,20 +109,20 @@ VERIFICATION CHECK:
 ## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
-- Started reading the workflow section before all phases passed
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
 - Assumed a spec folder without user confirmation when path was invalid
-- Proceeded without validating spec path exists (Phase 1)
-- Skipped pre-handover validation (Phase 2)
+- Skipped pre-handover validation
 - Created handover without gathering context first
 - Did not display the created file path and continuation instructions
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately - do not continue current action
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly (ask user, wait for response)
-5. RESUME only after all phases pass verification
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 ```
 
 ---
@@ -331,7 +311,6 @@ The handover file is created in the spec folder root, NOT in memory/.
 The handover workflow delegates execution work to the dedicated `@handover` agent for token efficiency. The main agent handles validation and user interaction; the sub-agent handles context gathering and file generation.
 
 **Agent File:** `.opencode/agent/handover.md`
-**Model:** Sonnet (cost-efficient for structured handover tasks)
 **Symlink:** `.claude/agents/handover.md`
 
 ### Delegation Architecture
@@ -454,14 +433,14 @@ fallback:
 
 ### Why Dedicated @handover Agent?
 
-| Benefit | Description |
-|---------|-------------|
-| Token efficiency | Heavy context analysis happens in sub-agent context |
-| Cost optimization | Sonnet model for structured tasks (vs Opus for complex) |
+| Benefit               | Description                                                |
+| --------------------- | ---------------------------------------------------------- |
+| Token efficiency      | Heavy context analysis happens in sub-agent context        |
+| Cost optimization     | Model selected automatically based on task complexity      |
 | Specialized prompting | Agent has handover-specific instructions and anti-patterns |
-| Main agent responsive | User can see progress without waiting |
-| Fallback safety | Commands always work, even without Task tool |
-| Output verification | Agent enforces JSON response format and content validation |
+| Main agent responsive | User can see progress without waiting                      |
+| Fallback safety       | Commands always work, even without Task tool               |
+| Output verification   | Agent enforces JSON response format and content validation |
 
 ---
 
@@ -493,19 +472,19 @@ fallback:
 
 ### Agents
 
-| Agent        | Relationship                                     |
-| ------------ | ------------------------------------------------ |
-| `@handover`  | Dedicated sub-agent for this command             |
+| Agent          | Relationship                                     |
+| -------------- | ------------------------------------------------ |
+| `@handover`    | Dedicated sub-agent for this command             |
 | `@orchestrate` | May coordinate handover in multi-agent workflows |
-| `@speckit`   | Works with spec folders this command reads       |
+| `@speckit`     | Works with spec folders this command reads       |
 
 ### Files
 
-| File | Purpose |
-| ---- | ------- |
-| `.opencode/agent/handover.md` | Agent definition |
+| File                                                            | Purpose            |
+| --------------------------------------------------------------- | ------------------ |
+| `.opencode/agent/handover.md`                                   | Agent definition   |
 | `.opencode/command/spec_kit/assets/spec_kit_handover_full.yaml` | YAML configuration |
-| `.opencode/skill/system-spec-kit/templates/handover.md` | Output template |
+| `.opencode/skill/system-spec-kit/templates/handover.md`         | Output template    |
 
 ---
 
@@ -558,11 +537,11 @@ This command is part of the SpecKit workflow:
 
 After handover is created, provide continuation instructions:
 
-| Condition | Suggested Action | Reason |
-|-----------|------------------|--------|
-| Handover created | Copy continuation prompt | Ready for new session |
-| Ready to continue now | `/spec_kit:resume [spec-folder-path]` | Load context and continue |
-| Want to save more context | `/memory:save [spec-folder-path]` | Preserve additional details |
-| Starting new work | `/spec_kit:complete [feature-description]` | Begin different feature |
+| Condition                 | Suggested Action                           | Reason                      |
+| ------------------------- | ------------------------------------------ | --------------------------- |
+| Handover created          | Copy continuation prompt                   | Ready for new session       |
+| Ready to continue now     | `/spec_kit:resume [spec-folder-path]`      | Load context and continue   |
+| Want to save more context | `/memory:save [spec-folder-path]`          | Preserve additional details |
+| Starting new work         | `/spec_kit:complete [feature-description]` | Begin different feature     |
 
 **ALWAYS** end with: "What would you like to do next?"

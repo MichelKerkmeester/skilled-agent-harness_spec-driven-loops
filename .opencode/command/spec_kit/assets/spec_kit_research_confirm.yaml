@@ -218,7 +218,7 @@ multi_agent_config:
     multi_small:
       id: B
       label: "Multi-Agent (1+2)"
-      description: "1 Opus orchestrator + 2 Sonnet parallel workers"
+      description: "1 orchestrator + 2 parallel workers"
       orchestrator:
         model: "opus"
         role: "coordinator"
@@ -250,7 +250,7 @@ multi_agent_config:
     multi_large:
       id: C
       label: "Multi-Agent (1+3)"
-      description: "1 Opus orchestrator + 3 Sonnet parallel workers"
+      description: "1 orchestrator + 3 parallel workers"
       orchestrator:
         model: "opus"
         role: "coordinator"
@@ -294,13 +294,13 @@ multi_agent_config:
     options:
       - id: A
         label: "Single Agent"
-        description: "Execute with one Opus agent (default)"
+        description: "Execute with one agent (default)"
       - id: B
         label: "Multi-Agent (1+2)"
-        description: "1 Opus orchestrator + 2 Sonnet workers"
+        description: "1 orchestrator + 2 workers"
       - id: C
         label: "Multi-Agent (1+3)"
-        description: "1 Opus orchestrator + 3 Sonnet workers"
+        description: "1 orchestrator + 3 workers"
 
   worker_output_format:
     structure: json

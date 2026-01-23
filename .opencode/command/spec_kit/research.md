@@ -4,234 +4,131 @@ argument-hint: "<research-topic> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, WebSearch
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** This workflow requires 3-4 user interactions (spec folder, dispatch mode, prior work, memory).
+**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together).
 
 ---
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
-
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only (ignoring :auto/:confirm flags):
-│   │
-│   ├─ ASK user: "What topic would you like to research?"
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Store response as: research_topic
-│   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-│
-└─ IF $ARGUMENTS contains content:
-    ├─ Store as: research_topic
-    └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-
-**STOP HERE** - Wait for user to provide the research topic before continuing.
-
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
-⛔ NEVER infer topics from context, screenshots, or conversation history
-```
-
-**Phase 1 Output:** `research_topic = ________________`
-
----
-
-## 🔒 PHASE 2: CONSOLIDATED SETUP (Spec Folder + Execution Mode)
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1. CHECK for mode suffix in command invocation:
-   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, still ask Q1)
-   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, still ask Q1)
-   └─ No suffix → execution_mode = "ASK" (include Q2 in consolidated prompt)
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
+   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-2. Search for related spec folders:
+2. CHECK if $ARGUMENTS contains a research topic:
+   ├─ IF $ARGUMENTS has content (ignoring :auto/:confirm) → research_topic = $ARGUMENTS, omit Q0
+   └─ IF $ARGUMENTS is empty → include Q0 in prompt
+
+3. Search for related spec folders:
    $ ls -d specs/*/ 2>/dev/null | tail -10
 
-3. ASK user with CONSOLIDATED prompt (bundle applicable questions):
+4. Search for prior work (background, no user wait):
+   - memory_match_triggers(prompt=research_topic OR "research")
+   - memory_search(query=research_topic OR "research", includeConstitutional=true)
+   - Store: prior_work_found = [yes/no], prior_work_count = [N]
+
+5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
    │                                                                │
-   │ **1. Spec Folder** (required):                                 │
+   │ **Q0. Research Topic** (if not provided in command):           │
+   │    What topic would you like to research?                      │
+   │                                                                │
+   │ **Q1. Spec Folder** (required):                                │
    │    A) Use existing: [suggest if related found]                 │
    │    B) Create new spec folder: specs/[###]-[topic-slug]/        │
    │    C) Update related spec: [if partial match found]            │
    │    D) Skip documentation (research only, no artifacts)         │
    │                                                                │
-   │ **2. Execution Mode** (if no :auto/:confirm suffix):             │
+   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
    │    A) Autonomous - Execute all 9 steps without approval        │
    │    B) Interactive - Pause at each step for approval            │
    │                                                                │
-   │ Reply with choices, e.g.: "B, A" or "A" (if mode pre-set)      │
+   │ **Q3. Dispatch Mode** (required):                              │
+   │    A) Single Agent - Execute with one agent (Recommended)      │
+   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
+   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
+   │                                                                │
+   │ **Q4. Prior Work** (if [N] related memories found):            │
+   │    A) Load all matches (comprehensive context)                 │
+   │    B) Load constitutional only (foundational rules)            │
+   │    C) Skip (start fresh)                                       │
+   │                                                                │
+   │ **Q5. Memory Context** (if using existing spec with memory/):  │
+   │    A) Load most recent memory file                              │
+   │    B) Load all recent files, up to 3                           │
+   │    C) Skip (start fresh)                                       │
+   │                                                                │
+   │ Reply with answers, e.g.: "B, A, A" or "AI chat, B, A, A, C"   │
    └────────────────────────────────────────────────────────────────┘
 
-4. WAIT for user response (DO NOT PROCEED)
+6. WAIT for user response (DO NOT PROCEED)
 
-5. Parse response and store results:
-   - spec_choice = [A/B/C/D] (first answer)
-   - spec_path = [path or null if D]
-   - execution_mode = [AUTONOMOUS/INTERACTIVE] (from suffix or second answer)
+7. Parse response and store ALL results:
+   - research_topic = [from Q0 or $ARGUMENTS]
+   - spec_choice = [A/B/C/D from Q1]
+   - spec_path = [derived path or null if D]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
+   - dispatch_mode = [single/multi_small/multi_large from Q3]
+   - prior_work_choice = [A/B/C from Q4, or N/A if no matches]
+   - memory_choice = [A/B/C from Q5, or N/A if not applicable]
 
-6. UPDATE SPEC MARKER:
-   ├─ Stateless architecture - no .spec-active marker file
-   └─ Spec folder is passed via CLI argument
+8. Execute background operations based on choices:
+   - IF prior_work_choice == A: Load all prior work matches
+   - IF prior_work_choice == B: Load constitutional only
+   - IF memory_choice == A: Load most recent memory file
+   - IF memory_choice == B: Load up to 3 recent memory files
+   - IF dispatch_mode is multi_*: Note parallel dispatch will be used
 
-7. SET STATUS: ✅ PASSED
+9. SET STATUS: ✅ PASSED
 
-**STOP HERE** - Wait for user to select A/B/C/D and execution mode before continuing.
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly answers
 ⛔ NEVER auto-create spec folders without user confirmation
 ⛔ NEVER auto-select execution mode without suffix or explicit choice
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 2 Output:** `spec_choice = ___` | `spec_path = ________________` | `execution_mode = ________________`
-
----
-
-## 🔒 PHASE 3: DISPATCH MODE SELECTION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 2 PASSES:
-
-1. DISPLAY dispatch mode options:
-
-   ┌────────────────────────────────────────────────────────────────┐
-   │ **Dispatch Mode** (required):                                  │
-   │                                                                │
-   │ A) Single Agent - Execute with one Opus agent (default)        │
-   │ B) Multi-Agent (1+2) - 1 Opus orchestrator + 2 Sonnet workers  │
-   │ C) Multi-Agent (1+3) - 1 Opus orchestrator + 3 Sonnet workers  │
-   │                                                                │
-   │ Reply with A, B, or C                                          │
-   └────────────────────────────────────────────────────────────────┘
-
-2. WAIT for user response (DO NOT PROCEED)
-
-3. Parse response and store:
-   ├─ "A" or "single" → dispatch_mode = "single"
-   ├─ "B" or "1+2" → dispatch_mode = "multi_small"
-   ├─ "C" or "1+3" → dispatch_mode = "multi_large"
-   └─ Invalid → Re-prompt with options
-
-4. IF dispatch_mode == "multi_small" or "multi_large":
-   ├─ Acknowledge: "Multi-agent mode selected. Workers will be dispatched for parallel research."
-   └─ Note: Orchestrator (Opus) coordinates, Workers (Sonnet) execute focused domains
-
-5. SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select dispatch mode before continuing.
-
-⛔ HARD STOP: DO NOT proceed until dispatch mode is selected
-```
-
-**Phase 3 Output:** `dispatch_mode = [single/multi_small/multi_large]`
-
----
-
-## 🔒 PHASE 4: PRIOR WORK SEARCH (Conditional)
-
-**STATUS: ☐ AUTO-EXECUTE**
-
-```
-EXECUTE AFTER PHASE 3 PASSES:
-
-1. Call memory_match_triggers(prompt=research_topic) for fast keyword match
-2. Call memory_search(query=research_topic, includeConstitutional=true) for semantic search
-3. IF matches found:
-   ├─ Display: "Found [N] related memories from prior research"
-   ├─ ASK user:
-   │   ┌────────────────────────────────────────────────────┐
-   │   │ "Load related prior work?"                         │
-   │   │                                                    │
-   │   │ A) Load all matches (comprehensive context)        │
-   │   │ B) Load constitutional only (foundational rules)   │
-   │   │ C) Skip (start fresh)                              │
-   │   └────────────────────────────────────────────────────┘
-   └─ SET STATUS: ✅ PASSED
-4. IF no matches found:
-   └─ SET STATUS: ⏭️ N/A (no prior work)
-
-⛔ Constitutional tier memories are ALWAYS loaded regardless of choice (they surface automatically with similarity: 100)
-```
-
----
-
-## 🔒 PHASE 5: MEMORY CONTEXT LOADING (Conditional)
-
-**STATUS: ☐ BLOCKED / ☐ N/A**
-
-```
-EXECUTE AFTER PHASE 4 PASSES:
-
-CHECK spec_choice value from Phase 2:
-
-├─ IF spec_choice == D (Skip):
-│   └─ SET STATUS: ⏭️ N/A (no spec folder, no memory)
-│
-├─ IF spec_choice == B (Create new):
-│   └─ SET STATUS: ⏭️ N/A (new folder has no memory)
-│
-└─ IF spec_choice == A or C (Use existing):
-    │
-    ├─ Check: Does spec_path/memory/ exist AND contain files?
-    │
-    ├─ IF memory/ is empty or missing:
-    │   └─ SET STATUS: ⏭️ N/A (no memory to load)
-    │
-    └─ IF memory/ has files:
-        │
-        ├─ ASK user:
-        │   ┌────────────────────────────────────────────────────┐
-        │   │ "Load previous context from this spec folder?"     │
-        │   │                                                    │
-        │   │ A) Load most recent memory file (quick refresh)     │
-        │   │ B) Load all recent files, up to 3 (comprehensive)   │
-        │   │ C) List all files and select specific                │
-        │   │ D) Skip (start fresh, no context)                  │
-        │   └────────────────────────────────────────────────────┘
-        │
-        ├─ WAIT for user response
-        ├─ Execute loading based on choice (use Read tool)
-        ├─ Acknowledge loaded context briefly
-        └─ SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select memory loading option before continuing.
-
-⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
-```
-
-**Phase 5 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
+**Phase Output:**
+- `research_topic = ________________`
+- `spec_choice = ___` | `spec_path = ________________`
+- `execution_mode = ________________`
+- `dispatch_mode = ________________`
+- `prior_work_loaded = ________________`
+- `memory_loaded = ________________`
 
 ---
 
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                      | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                                  |
-| -------------------------- | ----------------- | ----------- | --------------------------------------------- |
-| PHASE 1: INPUT             | ✅ PASSED          | ______      | research_topic: ______                        |
-| PHASE 2: SETUP (Spec+Mode) | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
-| PHASE 3: DISPATCH MODE     | ✅ PASSED          | ______      | dispatch_mode: ______                         |
-| PHASE 4: PRIOR WORK        | ✅ PASSED or ⏭️ N/A | ______      | prior_work_loaded: ______                     |
-| PHASE 5: MEMORY            | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                         |
+| FIELD             | REQUIRED      | YOUR VALUE | SOURCE                |
+| ----------------- | ------------- | ---------- | --------------------- |
+| research_topic    | ✅ Yes         | ______     | Q0 or $ARGUMENTS      |
+| spec_choice       | ✅ Yes         | ______     | Q1                    |
+| spec_path         | ○ Conditional | ______     | Derived from Q1       |
+| execution_mode    | ✅ Yes         | ______     | Suffix or Q2          |
+| dispatch_mode     | ✅ Yes         | ______     | Q3                    |
+| prior_work_loaded | ○ Conditional | ______     | Q4 (if matches found) |
+| memory_loaded     | ○ Conditional | ______     | Q5 (if existing spec) |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED or ⏭️ N/A?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# SpecKit Research" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -239,23 +136,21 @@ VERIFICATION CHECK:
 ## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
-- Started reading the workflow section before all phases passed
-- Proceeded without asking user for research topic (Phase 1)
-- Asked spec folder and execution mode as SEPARATE questions instead of consolidated (Phase 2)
-- Auto-created or assumed a spec folder without A/B/C/D choice (Phase 2)
-- Skipped dispatch mode selection (Phase 3)
-- Assumed single-agent mode without explicit user choice (Phase 3)
-- Skipped memory prompt when using existing folder with memory files (Phase 5)
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Proceeded without asking user for research topic when not in $ARGUMENTS
+- Auto-created or assumed a spec folder without user confirmation
+- Auto-selected dispatch mode without explicit user choice
 - Inferred topic from context instead of explicit user input
 - Auto-selected execution mode without suffix or explicit user choice
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately - do not continue current action
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly (ask user, wait for response)
-5. RESUME only after all phases pass verification
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 ```
 
 ---
@@ -317,11 +212,11 @@ $ARGUMENTS
 
 ### Execution Mode Behaviors
 
-| Mode        | Invocation              | Behavior                                          |
-| ----------- | ----------------------- | ------------------------------------------------- |
-| `:auto`     | `/spec_kit:research:auto "topic"` | Execute all 9 steps without approval gates |
-| `:confirm`  | `/spec_kit:research:confirm "topic"` | Pause at each step for user approval |
-| (default)   | `/spec_kit:research "topic"` | Ask user to choose mode during Phase 2 |
+| Mode       | Invocation                           | Behavior                                   |
+| ---------- | ------------------------------------ | ------------------------------------------ |
+| `:auto`    | `/spec_kit:research:auto "topic"`    | Execute all 9 steps without approval gates |
+| `:confirm` | `/spec_kit:research:confirm "topic"` | Pause at each step for user approval       |
+| (default)  | `/spec_kit:research "topic"`         | Ask user to choose mode during Phase 2     |
 
 ### Mode Examples
 
@@ -364,13 +259,13 @@ Behavior:
 
 ### Mode Selection Guidance
 
-| Scenario                                      | Recommended Mode |
-| --------------------------------------------- | ---------------- |
-| Quick research, known domain                  | `:auto`          |
-| Complex topic, need validation at each step   | `:confirm`       |
-| First time researching unfamiliar area        | `:confirm`       |
-| Re-running research with minor scope changes  | `:auto`          |
-| Multi-stakeholder decision requiring review   | `:confirm`       |
+| Scenario                                     | Recommended Mode |
+| -------------------------------------------- | ---------------- |
+| Quick research, known domain                 | `:auto`          |
+| Complex topic, need validation at each step  | `:confirm`       |
+| First time researching unfamiliar area       | `:confirm`       |
+| Re-running research with minor scope changes | `:auto`          |
+| Multi-stakeholder decision requiring review  | `:confirm`       |
 
 ---
 
@@ -534,12 +429,12 @@ Memory integration ensures research builds on prior work and preserves findings 
 
 ### Memory Search Patterns for Research
 
-| Research Phase      | Memory Query                                           | Purpose                       |
-| ------------------- | ------------------------------------------------------ | ----------------------------- |
-| Before Step 1       | `memory_search({ query: topic })`                      | Find prior related research   |
-| During Step 3       | `memory_search({ anchors: ['architecture'] })`         | Existing patterns/decisions   |
-| During Step 4       | `memory_search({ anchors: ['external-research'] })`    | Prior external source findings |
-| After Step 9        | `generate-context.js [spec-folder]`                    | Preserve current research     |
+| Research Phase | Memory Query                                        | Purpose                        |
+| -------------- | --------------------------------------------------- | ------------------------------ |
+| Before Step 1  | `memory_search({ query: topic })`                   | Find prior related research    |
+| During Step 3  | `memory_search({ anchors: ['architecture'] })`      | Existing patterns/decisions    |
+| During Step 4  | `memory_search({ anchors: ['external-research'] })` | Prior external source findings |
+| After Step 9   | `generate-context.js [spec-folder]`                 | Preserve current research      |
 
 ### Memory Integration Example
 
@@ -575,8 +470,8 @@ Research Topic: "WebSocket implementation patterns"
 
 This command routes Steps 3-7 to the specialized `@research` agent when available.
 
-| Step | Agent | Fallback | Purpose |
-|------|-------|----------|---------|
+| Step                      | Agent       | Fallback  | Purpose                                              |
+| ------------------------- | ----------- | --------- | ---------------------------------------------------- |
 | Steps 3-7 (Investigation) | `@research` | `general` | 9-step research workflow with comprehensive findings |
 
 ### How Agent Routing Works
@@ -622,11 +517,11 @@ Quality gates enforce validation at critical workflow stages to ensure research 
 
 ### Gate Configuration
 
-| Gate           | Location         | Purpose                                      | Threshold |
-| -------------- | ---------------- | -------------------------------------------- | --------- |
-| Pre-execution  | Before Step 1    | Validate inputs and prerequisites            | Score ≥70 |
-| Mid-execution  | After Step 5     | Verify research progress and quality         | Score ≥70 |
-| Post-execution | After Step 9     | Confirm all deliverables meet standards      | Score ≥70 |
+| Gate           | Location      | Purpose                                 | Threshold |
+| -------------- | ------------- | --------------------------------------- | --------- |
+| Pre-execution  | Before Step 1 | Validate inputs and prerequisites       | Score ≥70 |
+| Mid-execution  | After Step 5  | Verify research progress and quality    | Score ≥70 |
+| Post-execution | After Step 9  | Confirm all deliverables meet standards | Score ≥70 |
 
 ### Gate Behavior
 
@@ -668,11 +563,11 @@ The circuit breaker prevents cascading failures by isolating problematic operati
 
 ### States
 
-| State     | Behavior                                             | Transition Trigger              |
-| --------- | ---------------------------------------------------- | ------------------------------- |
-| CLOSED    | Normal operation, all requests processed             | Default state                   |
-| OPEN      | All requests blocked, fast-fail immediately          | failure_threshold (3) reached   |
-| HALF-OPEN | Limited requests allowed to test recovery            | recovery_timeout (60s) elapsed  |
+| State     | Behavior                                    | Transition Trigger             |
+| --------- | ------------------------------------------- | ------------------------------ |
+| CLOSED    | Normal operation, all requests processed    | Default state                  |
+| OPEN      | All requests blocked, fast-fail immediately | failure_threshold (3) reached  |
+| HALF-OPEN | Limited requests allowed to test recovery   | recovery_timeout (60s) elapsed |
 
 ### Configuration
 
@@ -861,12 +756,12 @@ This command is part of the SpecKit workflow:
 
 After research completes, suggest relevant next steps:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| Research complete, ready to plan | `/spec_kit:plan [feature-description]` | Use findings to create spec and plan |
-| Need more investigation | `/spec_kit:research [new-topic]` | Deeper dive on specific area |
-| Research reveals blockers | Document in research.md | Capture constraints before planning |
-| Need to pause work | `/spec_kit:handover [spec-folder-path]` | Save context for later |
-| Want to save context | `/memory:save [spec-folder-path]` | Preserve research findings |
+| Condition                        | Suggested Command                       | Reason                               |
+| -------------------------------- | --------------------------------------- | ------------------------------------ |
+| Research complete, ready to plan | `/spec_kit:plan [feature-description]`  | Use findings to create spec and plan |
+| Need more investigation          | `/spec_kit:research [new-topic]`        | Deeper dive on specific area         |
+| Research reveals blockers        | Document in research.md                 | Capture constraints before planning  |
+| Need to pause work               | `/spec_kit:handover [spec-folder-path]` | Save context for later               |
+| Want to save context             | `/memory:save [spec-folder-path]`       | Preserve research findings           |
 
 **ALWAYS** end with: "What would you like to do next?"

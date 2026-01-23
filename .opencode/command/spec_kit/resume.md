@@ -11,225 +11,139 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 > - `/spec_kit:resume specs/007-feature/ :auto` - Auto mode
 > - `/spec_kit:resume:auto specs/007-feature/` - Also valid (mode as suffix)
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** Resume uses 1-2 user interactions. Mode defaults to INTERACTIVE without asking.
-
----
-
-## 🔒 PHASE 1: INPUT & SESSION DETECTION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE THIS CHECK FIRST:
-
-1. CHECK for spec folder in $ARGUMENTS:
-
-├─ IF $ARGUMENTS contains a spec folder path:
-│   │
-│   ├─ Validate path exists: ls -d [spec_folder_input] 2>/dev/null
-│   │
-│   ├─ IF path exists:
-│   │   ├─ Store as: spec_path
-│   │   ├─ detection_method = "provided"
-│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 3
-│   │
-│   └─ IF path NOT found:
-│       ├─ SHOW: "Spec folder not found: [path]"
-│       ├─ ASK: "Would you like to:"
-│       │   ┌────────────────────────────────────────────────────────────┐
-│       │   │ A) Try auto-detection (search for recent sessions)         │
-│       │   │ B) Provide a different path                                │
-│       │   │ C) Cancel                                                  │
-│       │   └────────────────────────────────────────────────────────────┘
-│       └─ WAIT for user response
-│
-└─ IF $ARGUMENTS is empty (auto-detect mode):
-    │
-    ├─ Find most recent memory file (Stateless - no .spec-active marker)
-    │   Glob("specs/**/memory/*.md") → Results sorted by modification time, take first
-    │
-    ├─ IF session found:
-    │   ├─ Store as: spec_path (extract from memory file path)
-    │   ├─ detection_method = "recent"
-    │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 3
-    │
-    └─ IF NO session found:
-        ├─ SHOW: "No active session detected"
-        ├─ ASK: "Would you like to:"
-        │   ┌────────────────────────────────────────────────────────────┐
-        │   │ A) List available spec folders and select one              │
-        │   │ B) Start new workflow with /spec_kit:complete               │
-        │   │ C) Cancel                                                  │
-        │   └────────────────────────────────────────────────────────────┘
-        └─ WAIT for user response
-
-**STOP HERE** - Wait for user to provide or confirm a valid spec folder path before continuing.
-
-⛔ HARD STOP: DO NOT proceed until a valid spec_path is confirmed
-```
-
-**Phase 1 Output:** `spec_path = ________________` | `detection_method = [recent/provided]`
-
----
-
-## 🔒 PHASE 2: CONTINUATION VALIDATION
-
-**STATUS: ☐ CONDITIONAL**
-
-```
-EXECUTE IF handoff pattern detected in $ARGUMENTS or recent user messages:
-
-1. CHECK for "CONTINUATION - Attempt" pattern:
-   ├─ IF detected:
-   │   ├─ Parse: Spec folder path, Last Completed, Next Action
-   │   │
-│   ├─ VALIDATE against most recent memory file:
-│   │   Glob("[spec_path]/memory/*.md") → Results sorted by modification time, take first
-   │   │   $ Read memory file → Extract "Project State Snapshot" section
-   │   │
-   │   ├─ COMPARE claimed progress vs actual progress:
-   │   │   - Claimed "Last Completed" matches memory "Last Action"?
-   │   │   - Claimed "Next Action" matches memory "Next Action"?
-   │   │
-   │   ├─ IF mismatch:
-   │   │   ├─ SHOW: "⚠️ State mismatch detected"
-   │   │   │   Claimed: Last=[X], Next=[Y]
-   │   │   │   Memory:  Last=[A], Next=[B]
-   │   │   ├─ ASK: "Which is correct?"
-   │   │   │   ┌──────────────────────────────────────────────────┐
-   │   │   │   │ A) Use handoff claims                            │
-   │   │   │   │ B) Use memory file state                          │
-   │   │   │   │ C) Investigate first                              │
-   │   │   │   └──────────────────────────────────────────────────┘
-   │   │   └─ WAIT for user response
-   │   │
-   │   └─ IF validated OR no memory files:
-   │       ├─ SHOW: "✅ Continuation validated"
-   │       └─ SET STATUS: ✅ PASSED
-   │
-   └─ IF NO handoff pattern:
-       └─ SET STATUS: ⏭️ N/A (not a continuation)
-
-⛔ SOFT STOP: Can proceed after acknowledgment
-```
+**Round-trip optimization:** Resume uses only 1 user interaction (all questions asked together). Mode defaults to INTERACTIVE unless :auto suffix is used.
 
 > **Gate 3 Note:** The resume command inherently satisfies Gate 3 because it REQUIRES a spec folder (either provided or detected). No separate Gate 3 question needed.
 
 ---
 
-## 🔒 PHASE 3: ARTIFACT VALIDATION & MODE SELECTION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE AFTER PHASE 2 PASSES:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-1. Check for required artifacts in spec_path:
-   $ ls -la [spec_path]/
-
-   Required (at least ONE must exist):
-   - spec.md
-   - plan.md OR tasks.md
-
-2. CHECK command invocation for mode suffix:
+1. CHECK for mode suffix in command invocation:
    ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
    ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
    └─ No suffix → execution_mode = "INTERACTIVE" (default for resume - safer)
 
-3. IF required artifacts missing:
-   ├─ SHOW: "Spec folder exists but missing required artifacts"
-   ├─ ASK: "Would you like to:"
-   │   ┌────────────────────────────────────────────────────────────┐
-   │   │ A) Run /spec_kit:plan to create planning artifacts         │
-   │   │ B) Select a different spec folder                          │
-   │   │ C) Continue anyway (limited resume)                        │
-   │   └────────────────────────────────────────────────────────────┘
-   └─ WAIT for user response
+2. CHECK for spec folder in $ARGUMENTS:
+   ├─ IF $ARGUMENTS has path → validate path exists
+   └─ IF $ARGUMENTS is empty → auto-detect from recent memory files
 
-4. IF artifacts exist:
-   ├─ Store artifact status
-   ├─ Store execution_mode
-   └─ SET STATUS: ✅ PASSED
+3. Auto-detect spec folder if needed:
+   - Glob("specs/**/memory/*.md") → Sort by modification time, take first
+   - IF found: spec_path = extracted path, detection_method = "recent"
+   - IF not found: detection_method = "none" (include Q0 in prompt)
 
-Note: Unlike other workflows, resume defaults to INTERACTIVE without asking,
-since it's a context-recovery operation where user review is beneficial.
+4. Check for "CONTINUATION - Attempt" handoff pattern in recent messages:
+   - IF detected: continuation_detected = TRUE, parse Last/Next values
+   - IF not detected: continuation_detected = FALSE
 
-**STOP HERE** - Wait for artifact validation or user selection before continuing.
+5. Validate artifacts in detected/provided spec folder:
+   - Check for: spec.md, plan.md, tasks.md
+   - Store: artifacts_valid = [yes/partial/no]
 
-⛔ HARD STOP: DO NOT proceed until artifacts are validated or user chooses option
+6. Check for memory files:
+   - $ ls [spec_path]/memory/*.md 2>/dev/null
+   - Store: memory_files_exist = [yes/no], memory_count = [N]
+
+7. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Spec Folder** (if not detected/provided):                │
+   │    No active session detected. Available spec folders:         │
+   │    [list folders if found]                                     │
+   │    A) List available spec folders and select one               │
+   │    B) Start new workflow with /spec_kit:complete                │
+   │    C) Cancel                                                   │
+   │                                                                │
+   │ **Q1. Confirm Detected Session** (if auto-detected):            │
+   │    Detected: [spec_path] (last activity: [date])               │
+   │    A) Yes, resume this session                                 │
+   │    B) No, select a different spec folder                       │
+   │    C) Cancel                                                   │
+   │                                                                │
+   │ **Q2. Continuation Validation** (if handoff pattern detected): │
+   │    Handoff claims: Last=[X], Next=[Y]                          │
+   │    Memory shows:   Last=[A], Next=[B]                          │
+   │    A) Use handoff claims                                       │
+   │    B) Use memory file state                                     │
+   │    C) Investigate first                                         │
+   │    [Skip if no mismatch OR no handoff pattern]                 │
+   │                                                                │
+   │ **Q3. Missing Artifacts** (if artifacts_valid != yes):         │
+   │    Spec folder exists but missing: [list]                      │
+   │    A) Run /spec_kit:plan to create planning artifacts          │
+   │    B) Select a different spec folder                           │
+   │    C) Continue anyway (limited resume)                         │
+   │                                                                │
+   │ **Q4. Memory Loading** (if memory files exist):                 │
+   │    Found [N] memory file(s) in [spec_path]/memory/              │
+   │    A) Load most recent memory                                  │
+   │    B) Load all memories (1-3 max)                              │
+   │    C) Skip memory loading                                      │
+   │                                                                │
+   │ Reply with answers, e.g.: "A, A" or "A, A, B"                  │
+   └────────────────────────────────────────────────────────────────┘
+
+8. WAIT for user response (DO NOT PROCEED)
+
+9. Parse response and store ALL results:
+   - spec_path = [from Q0/Q1 or auto-detected or $ARGUMENTS]
+   - detection_method = [provided/recent]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix]
+   - continuation_choice = [from Q2, or N/A if no mismatch]
+   - artifacts_valid = [yes/partial/no]
+   - memory_choice = [A/B/C from Q4, or N/A if no memory files]
+
+10. Execute background operations based on choices:
+    - IF memory_choice == A: Load most recent memory file
+    - IF memory_choice == B: Load up to 3 recent memory files
+    - Calculate progress percentages from tasks.md/checklist.md
+
+11. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
+⛔ NEVER assume spec folder without user confirmation when path was invalid
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 3 Output:** `artifacts_valid = [yes/partial/no]` | `available_artifacts = [list]` | `execution_mode = ________________`
-
----
-
-## 🔒 PHASE 4: MEMORY LOADING
-
-**STATUS: ☐ CONDITIONAL**
-
-```
-EXECUTE AFTER PHASE 3 PASSES:
-
-1. CHECK for memory files in spec folder:
-   $ ls -la [spec_path]/memory/*.md 2>/dev/null
-
-2. IF memory files exist:
-   │
-   ├─ IF execution_mode = "AUTONOMOUS":
-   │   ├─ Auto-load most recent memory file
-   │   ├─ SHOW: "📚 Auto-loaded: [filename]"
-   │   └─ SET STATUS: ✅ PASSED
-   │
-   └─ IF execution_mode = "INTERACTIVE":
-       ├─ Count available memory files
-       ├─ SHOW: "Found [N] memory file(s) in [spec_path]/memory/"
-       ├─ ASK: "Memory Loading:"
-       │   ┌────────────────────────────────────────────────────────────┐
-       │   │ A) Load most recent memory                                 │
-       │   │ B) Load all memories (1-3 max)                             │
-       │   │ C) Select specific memory                                   │
-       │   │ D) Skip memory loading                                     │
-       │   └────────────────────────────────────────────────────────────┘
-       ├─ WAIT for user response
-       │
-       ├─ IF A: Load most recent memory file → Display summary
-       ├─ IF B: Load up to 3 most recent files → Display summaries
-       ├─ IF C: List all memory files → Wait for selection → Load
-       └─ IF D: Skip → Proceed without memory context
-       │
-       └─ SET STATUS: ✅ PASSED
-
-3. IF NO memory files exist:
-   ├─ SHOW: "ℹ️  No memory files found in [spec_path]/memory/"
-   └─ SET STATUS: ⏭️ N/A (no memories to load)
-
-Note: This implements Memory Context Loading from AGENTS.md Section 2.
-```
-
-**Phase 4 Output:** `memory_loaded = [yes/no/skipped]` | `memory_files = [list or none]`
+**Phase Output:**
+- `spec_path = ________________` | `detection_method = ________________`
+- `execution_mode = ________________`
+- `artifacts_valid = ________________`
+- `memory_loaded = ________________`
 
 ---
 
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                       | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                       |
-| --------------------------- | ----------------- | ----------- | ---------------------------------- |
-| PHASE 1: INPUT & SESSION    | ✅ PASSED          | ______      | spec_path: ______ / method: ______ |
-| PHASE 2: CONTINUATION CHECK | ✅ PASSED or ⏭️ N/A | ______      | validated: ______ / source: ______ |
-| PHASE 3: ARTIFACTS & MODE   | ✅ PASSED          | ______      | artifacts: ______ / mode: ______   |
-| PHASE 4: MEMORY LOADING     | ✅ PASSED or ⏭️ N/A | ______      | memory: ______ / files: ______     |
+| FIELD            | REQUIRED      | YOUR VALUE | SOURCE                        |
+| ---------------- | ------------- | ---------- | ----------------------------- |
+| spec_path        | ✅ Yes         | ______     | Q0/Q1 or auto-detect or $ARGS |
+| detection_method | ✅ Yes         | ______     | Auto-determined               |
+| execution_mode   | ✅ Yes         | ______     | Suffix (defaults INTERACTIVE) |
+| artifacts_valid  | ✅ Yes         | ______     | Validation check              |
+| memory_loaded    | ○ Conditional | ______     | Q4 (if memory files exist)    |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED or ⏭️ N/A?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# SpecKit Resume" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -237,21 +151,20 @@ VERIFICATION CHECK:
 ## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
 
 **YOU ARE IN VIOLATION IF YOU:**
-- Started reading the workflow section before all phases passed
-- Proceeded without validating artifacts exist (Phase 3)
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Proceeded without validating artifacts exist
 - Assumed a spec folder without user confirmation when path was invalid
-- Skipped memory loading question when memory files exist (Phase 4)
-- Did not wait for user A/B/C/D response before loading memories in interactive mode
 - Did not display progress calculation
 - Claimed "resumed" without showing continuation options
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately - do not continue current action
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly (ask user, wait for response)
-5. RESUME only after all phases pass verification
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 ```
 
 ---
@@ -420,12 +333,12 @@ The resume workflow uses semantic memory MCP tools directly for context loading.
 
 ### Checkpoint Tools
 
-| Tool                 | Purpose                              | Usage                                    |
-| -------------------- | ------------------------------------ | ---------------------------------------- |
-| `checkpoint_create`  | Create named checkpoint of state     | Snapshot memory state before major work  |
-| `checkpoint_list`    | List all available checkpoints       | Browse saved checkpoints with metadata   |
-| `checkpoint_restore` | Restore memory state from checkpoint | Rollback to a previous checkpoint state  |
-| `checkpoint_delete`  | Delete a checkpoint                  | Clean up old or unused checkpoints       |
+| Tool                 | Purpose                              | Usage                                   |
+| -------------------- | ------------------------------------ | --------------------------------------- |
+| `checkpoint_create`  | Create named checkpoint of state     | Snapshot memory state before major work |
+| `checkpoint_list`    | List all available checkpoints       | Browse saved checkpoints with metadata  |
+| `checkpoint_restore` | Restore memory state from checkpoint | Rollback to a previous checkpoint state |
+| `checkpoint_delete`  | Delete a checkpoint                  | Clean up old or unused checkpoints      |
 
 **Note:** There is no `memory_load` tool. Use `memory_search` with `includeContent: true` to load memory content directly in search results.
 
@@ -561,12 +474,12 @@ This command continues work from a handover:
 
 After resume completes, suggest relevant next steps based on progress:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| Planning incomplete | `/spec_kit:plan [feature-description]` | Complete planning phase |
-| Ready to implement | `/spec_kit:implement [spec-folder-path]` | Continue implementation |
-| Implementation in progress | Continue from last task | Resume where you left off |
-| Found issues | `/spec_kit:debug [spec-folder-path]` | Debug problems |
-| Session ending again | `/spec_kit:handover [spec-folder-path]` | Save progress for later |
+| Condition                  | Suggested Command                        | Reason                    |
+| -------------------------- | ---------------------------------------- | ------------------------- |
+| Planning incomplete        | `/spec_kit:plan [feature-description]`   | Complete planning phase   |
+| Ready to implement         | `/spec_kit:implement [spec-folder-path]` | Continue implementation   |
+| Implementation in progress | Continue from last task                  | Resume where you left off |
+| Found issues               | `/spec_kit:debug [spec-folder-path]`     | Debug problems            |
+| Session ending again       | `/spec_kit:handover [spec-folder-path]`  | Save progress for later   |
 
 **ALWAYS** end with: "What would you like to do next?"
