@@ -374,7 +374,167 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ---
 
-## 8. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 8. 🤖 AGENT ROUTING
+
+This command routes Step 11 (Checklist Verification) to the specialized `@review` agent when available.
+
+| Step | Agent | Fallback | Purpose |
+|------|-------|----------|---------|
+| Step 7 (Completion/Verification) | `@review` | `general` | P0/P1 checklist verification with quality scoring |
+
+### How Agent Routing Works
+
+1. **Detection**: When Step 7 (Completion) is reached, the system checks if `@review` agent is available
+2. **Dispatch**: If available, dispatches to `@review` agent with spec path and checklist
+3. **Fallback**: If agent unavailable, falls back to `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode) with warning
+4. **Output**: Agent returns structured verification result with P0/P1 status and quality score
+
+### Agent Dispatch Template
+
+```
+Task tool with prompt:
+---
+You are the @review agent. Verify implementation completeness.
+
+Spec Folder: {spec_path}
+Checklist: {spec_path}/checklist.md
+
+Execute:
+1. Load checklist.md
+2. Verify ALL P0 items are [x] with evidence
+3. Verify ALL P1 items are [x] or have deferral approval
+4. Score against quality rubric (100-point scale)
+
+Return:
+- P0 status: [PASS/FAIL]
+- P1 status: [PASS/PARTIAL/FAIL]
+- Quality score: [0-100]
+- Blocking issues: [list]
+---
+```
+
+### Blocking Behavior
+
+**IMPORTANT**: The `@review` agent routing uses `blocking: true`:
+- If P0 status is FAIL, workflow **CANNOT** proceed to completion claims
+- Clear message shows which P0 items are incomplete
+- User must address P0 items before claiming "done"
+
+### Fallback Behavior
+
+When `@review` agent is unavailable:
+- Warning message: "Review agent unavailable, using general dispatch"
+- Workflow continues with `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode)
+- Same verification executed, may have less rigorous scoring
+
+---
+
+## 9. ✅ QUALITY GATES
+
+Quality gates enforce minimum standards at key workflow transitions.
+
+### Gate Configuration
+
+| Gate | Location | Threshold | Blocking |
+|------|----------|-----------|----------|
+| Pre-Implementation | Before Step 6 | 70 | Yes |
+| Mid-Implementation | After Step 6.5 | 65 | No (warning only) |
+| Post-Implementation | Before Step 7 completion | 70 | Yes |
+
+### Gate Behavior
+
+**Pre-Implementation Gate (Step 5 → Step 6)**
+- Evaluates: Prerequisites complete, plan clarity, task breakdown quality
+- Score < 70: BLOCK - Cannot start development
+- Score ≥ 70: PASS - Proceed to development
+
+**Mid-Implementation Gate (Step 6.5)**
+- Evaluates: Code quality, test coverage, task completion rate
+- Score < 65: WARNING - Log concern, continue with caution
+- Score ≥ 65: PASS - Continue normally
+
+**Post-Implementation Gate (Step 7)**
+- Evaluates: All tasks complete, tests pass, checklist verified
+- Score < 70: BLOCK - Cannot claim completion
+- Score ≥ 70: PASS - Generate implementation-summary.md
+
+**IMPORTANT: @review Agent Blocking**
+
+The `@review` agent routing (Section 8) provides **additional blocking** beyond quality gates:
+- Quality gates check score thresholds (numeric)
+- `@review` agent checks P0/P1 checklist items (categorical)
+- BOTH must pass for completion claims
+- `@review` blocking is separate from circuit breaker behavior
+
+### Gate Check Lists
+
+**Pre-Implementation Checklist:**
+- [ ] spec.md exists and is complete
+- [ ] plan.md exists with clear technical approach
+- [ ] tasks.md exists with actionable items
+- [ ] checklist.md exists (Level 2+)
+- [ ] No unresolved P0 blockers
+
+**Post-Implementation Checklist:**
+- [ ] All tasks marked [x] in tasks.md
+- [ ] All P0 checklist items verified with evidence
+- [ ] All P1 items complete or deferred with approval
+- [ ] Tests pass (if applicable)
+- [ ] implementation-summary.md created
+
+---
+
+## 10. 🔌 CIRCUIT BREAKER
+
+The circuit breaker isolates failing operations to prevent cascading failures.
+
+### States
+
+| State | Condition | Behavior |
+|-------|-----------|----------|
+| CLOSED | Normal operation | All operations proceed |
+| OPEN | 3+ consecutive failures | Operations fail-fast, skip affected step |
+| HALF-OPEN | After cooldown (30s) | Single test operation allowed |
+
+### Configuration
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| failure_threshold | 3 | Failures before OPEN state |
+| cooldown_seconds | 30 | Time before HALF-OPEN |
+| success_to_close | 1 | Successes in HALF-OPEN to return to CLOSED |
+
+### Behavior by Step
+
+- **Steps 1-5**: Circuit breaker active - failures trigger state changes
+- **Step 6**: Per-task circuit breaker - isolates failing tasks
+- **Step 7**: Critical step - circuit breaker disabled (must complete or fail explicitly)
+- **Steps 8-9**: Circuit breaker active - non-critical, can skip on OPEN
+
+### Recovery Actions
+
+When circuit opens:
+1. Log failure pattern and affected step
+2. Skip to next non-dependent step if possible
+3. Report to user with options:
+   - A) Retry after cooldown
+   - B) Skip affected step
+   - C) Abort workflow
+
+**NOTE: @review Agent Blocking vs Circuit Breaker**
+
+These are SEPARATE mechanisms:
+- **Circuit breaker**: Handles operational failures (errors, timeouts, crashes)
+- **@review blocking**: Handles quality failures (incomplete P0 items)
+
+A workflow can have:
+- Circuit CLOSED + @review BLOCKED = Quality issue, not operational issue
+- Circuit OPEN + @review PASS = Operational issue, quality was fine
+- Both mechanisms must be satisfied for successful completion
+
+---
+
+## 11. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Requires existing plan** - Won't create spec.md or plan.md
 - **Starts at implementation** - Skips specification and planning phases
@@ -382,7 +542,7 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 
 ---
 
-## 9. ✅ VALIDATION DURING IMPLEMENTATION
+## 12. ✅ VALIDATION DURING IMPLEMENTATION
 
 Validation runs automatically to catch issues early.
 
@@ -393,7 +553,7 @@ Key rules for implementation phase:
 
 ---
 
-## 10. 🔍 EXAMPLES
+## 13. 🔍 EXAMPLES
 
 **Example 1: Execute Existing Plan (autonomous)**
 ```
@@ -412,7 +572,7 @@ Key rules for implementation phase:
 
 ---
 
-## 11. 🔗 COMMAND CHAIN
+## 14. 🔗 COMMAND CHAIN
 
 This command is part of the SpecKit workflow:
 
@@ -425,7 +585,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 12. 📌 NEXT STEPS
+## 15. 📌 NEXT STEPS
 
 After implementation completes, suggest relevant next steps:
 

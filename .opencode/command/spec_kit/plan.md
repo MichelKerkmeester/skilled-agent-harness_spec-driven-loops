@@ -353,7 +353,126 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 8. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 8. 🤖 AGENT ROUTING
+
+This command routes Step 3 (Specification) to the specialized `@speckit` agent when available.
+
+| Step | Agent | Model | Fallback | Purpose |
+|------|-------|-------|----------|---------|
+| Step 3 (Specification) | `@speckit` | **sonnet** | `general` | Template-first spec folder creation with validation |
+
+### Model Preference
+
+**Default**: Sonnet (cost-effective, fast)
+**Override**: Use Opus ONLY when user explicitly requests ("use opus", "use most capable model")
+
+### How Agent Routing Works
+
+1. **Detection**: When Step 3 is reached, the system checks if `@speckit` agent is available
+2. **Dispatch**: If available, dispatches to `@speckit` agent with `model: sonnet` and feature description
+3. **Fallback**: If agent unavailable, falls back to `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode) with warning
+4. **Output**: Agent returns confirmation of created files with validation status
+
+### Agent Dispatch Template
+
+```
+Task tool with prompt:
+---
+You are the @speckit agent. Create spec folder documentation.
+
+Feature: {feature_description}
+Level: {documentation_level}
+Folder: {spec_path}
+
+Create spec.md using template-first approach.
+Validate structure against templates.
+
+Return confirmation of created files.
+---
+```
+
+### Fallback Behavior
+
+When `@speckit` agent is unavailable:
+- Warning message: "Speckit agent unavailable, using general dispatch"
+- Workflow continues with `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode)
+- Same step executed, may have less template validation
+
+---
+
+## 9. ✅ QUALITY GATES
+
+Quality gates enforce minimum standards at workflow checkpoints.
+
+### Gate Configuration
+
+| Gate Type | Trigger Point | Threshold | Behavior |
+|-----------|---------------|-----------|----------|
+| Pre-execution | Before Step 1 starts | 70 | Validates inputs and prerequisites |
+| Mid-execution | After Step 3 (Specification) | 70 | Validates spec.md quality |
+| Post-execution | After Step 7 (Handover Check) | 70 | Validates all artifacts complete |
+
+### Gate Behavior
+
+- **Score >= Threshold**: Gate passes, workflow continues
+- **Score < Threshold**: Gate fails, workflow pauses for remediation
+
+### Gate Checks
+
+**Pre-execution Gate:**
+- [ ] Feature description provided and clear
+- [ ] Spec folder path valid or auto-creation possible
+- [ ] No blocking prerequisites missing
+
+**Mid-execution Gate:**
+- [ ] spec.md created with all required sections
+- [ ] Acceptance criteria defined and measurable
+- [ ] No unresolved [NEEDS CLARIFICATION] markers
+
+**Post-execution Gate:**
+- [ ] All planning artifacts exist (spec.md, plan.md)
+- [ ] Memory context saved successfully
+- [ ] Handover check completed
+
+---
+
+## 10. 🔌 CIRCUIT BREAKER
+
+Circuit breaker pattern prevents cascading failures during workflow execution.
+
+### States
+
+| State | Description | Behavior |
+|-------|-------------|----------|
+| CLOSED | Normal operation | Errors tracked, workflow continues |
+| OPEN | Failure threshold exceeded | Workflow halted, recovery required |
+| HALF-OPEN | Recovery attempted | Single retry allowed, success resets to CLOSED |
+
+### Configuration
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| failure_threshold | 3 | Consecutive failures before OPEN state |
+| recovery_timeout | 60 | Seconds before attempting HALF-OPEN |
+
+### Tracked Errors
+
+- Task tool dispatch failures
+- File creation/write failures
+- Agent routing failures
+- Memory save failures
+
+### Recovery Protocol
+
+1. **OPEN state triggered**: Workflow halts with error summary
+2. **Wait recovery_timeout**: System waits 60 seconds
+3. **HALF-OPEN attempt**: Single retry of failed operation
+4. **Success**: Reset to CLOSED, continue workflow
+5. **Failure**: Return to OPEN, escalate to user
+
+---
+
+## 11. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Terminates after planning** - Does not include task breakdown, analysis, or implementation
 - **Next step guidance** - Recommends `/spec_kit:implement` when ready to build
@@ -361,7 +480,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 9. 🔍 EXAMPLES
+## 12. 🔍 EXAMPLES
 
 **Example 1: Simple Planning (autonomous)**
 ```
@@ -380,7 +499,7 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 10. 🔗 COMMAND CHAIN
+## 13. 🔗 COMMAND CHAIN
 
 This command is part of the SpecKit workflow:
 
@@ -393,7 +512,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 11. 📌 NEXT STEPS
+## 14. 📌 NEXT STEPS
 
 After planning completes, suggest relevant next steps:
 

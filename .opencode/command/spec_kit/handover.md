@@ -328,7 +328,11 @@ The handover file is created in the spec folder root, NOT in memory/.
 
 ## 7. 🔀 SUB-AGENT DELEGATION
 
-The handover workflow delegates execution work to a sub-agent for token efficiency. The main agent handles validation and user interaction; the sub-agent handles context gathering and file generation.
+The handover workflow delegates execution work to the dedicated `@handover` agent for token efficiency. The main agent handles validation and user interaction; the sub-agent handles context gathering and file generation.
+
+**Agent File:** `.opencode/agent/handover.md`
+**Model:** Sonnet (cost-efficient for structured handover tasks)
+**Symlink:** `.claude/agents/handover.md`
 
 ### Delegation Architecture
 
@@ -352,53 +356,60 @@ Main Agent (reads command):
 ```
 DISPATCH SUB-AGENT:
   tool: Task
-  subagent_type: general
+  subagent_type: handover
+  model: sonnet
   description: "Create handover document"
   prompt: |
     Create a handover document for spec folder: {spec_path}
-    
+
     VALIDATED INPUTS:
     - spec_path: {spec_path}
     - detection_method: {detection_method}
-    
-    TASKS TO EXECUTE:
-    1. Load context from spec folder:
-       - Read spec.md, plan.md, tasks.md, checklist.md (if exist)
-       - Read memory/*.md files for session context
-       - Extract current phase, blockers, key decisions
-    
-    2. Determine attempt number:
-       - Check if {spec_path}/handover.md exists
-       - If exists: extract current attempt N, increment to N+1
-       - If not exists: start at attempt 1
-    
-    3. Generate handover.md using template:
-       - Template: .opencode/skill/system-spec-kit/templates/handover.md
-       - Include: session summary, context transfer, next steps, validation checklist
-    
-    4. Write file to: {spec_path}/handover.md
-    
+    - validation_status: {validation}
+
+    CONTEXT SOURCES (read in this priority):
+    1. spec.md, plan.md, tasks.md (core definition - HIGH priority)
+    2. checklist.md (progress tracking - MEDIUM priority)
+    3. memory/*.md files (session context - HIGH priority)
+    4. implementation-summary.md (completion status - MEDIUM priority)
+
+    WORKFLOW:
+    1. GATHER - Load context from spec folder files
+    2. EXTRACT - Identify current phase, last action, next action, blockers, decisions
+    3. DETERMINE - Check for existing handover.md, calculate attempt number
+    4. GENERATE - Create handover.md using template
+    5. WRITE - Save file to spec folder
+
+    TEMPLATE: .opencode/skill/system-spec-kit/templates/handover.md
+
+    REQUIRED SECTIONS:
+    - Handover Summary (session ID, phase, timestamp)
+    - Context Transfer (key decisions, blockers, files modified)
+    - For Next Session (starting point, priority tasks)
+    - Validation Checklist (pre-handover verification)
+    - Session Notes (observations)
+
     RETURN (as your final message):
     ```json
     {
       "status": "OK",
       "file_path": "{spec_path}/handover.md",
       "attempt_number": [N],
-      "last_action": "[extracted from context]",
-      "next_action": "[extracted from context]",
+      "last_action": "[actual value from context]",
+      "next_action": "[actual value from context]",
       "spec_folder": "{spec_path}"
     }
     ```
-    
+
     If any step fails, return:
     ```json
     {
       "status": "FAIL",
-      "error": "[error description]"
+      "error": "[specific error description]"
     }
     ```
-    
-    Tools you can use: Read, Write, Glob, Bash
+
+    CRITICAL: Never fabricate context. Read actual files. Replace all placeholders.
 ```
 
 ### Fallback Logic
@@ -421,7 +432,7 @@ WHEN fallback triggers:
 ```
 IF phases passed:
   TRY:
-    result = Task(subagent_type="general", prompt=SUB_AGENT_PROMPT)
+    result = Task(subagent_type="handover", model="sonnet", prompt=SUB_AGENT_PROMPT)
     IF result.status == "OK":
       file_path = result.file_path
       attempt_number = result.attempt_number
@@ -441,14 +452,16 @@ fallback:
   → Proceed to Step 4: Display Result
 ```
 
-### Why Sub-Agent?
+### Why Dedicated @handover Agent?
 
 | Benefit | Description |
 |---------|-------------|
 | Token efficiency | Heavy context analysis happens in sub-agent context |
+| Cost optimization | Sonnet model for structured tasks (vs Opus for complex) |
+| Specialized prompting | Agent has handover-specific instructions and anti-patterns |
 | Main agent responsive | User can see progress without waiting |
 | Fallback safety | Commands always work, even without Task tool |
-| Parallel potential | Future: multiple handovers could run in parallel |
+| Output verification | Agent enforces JSON response format and content validation |
 
 ---
 
@@ -468,13 +481,31 @@ fallback:
 
 ---
 
-## 9. 🔗 RELATED COMMANDS
+## 9. 🔗 RELATED RESOURCES
+
+### Commands
 
 | Command              | Relationship                                       |
 | -------------------- | -------------------------------------------------- |
 | `/spec_kit:resume`   | Loads handover document to continue work           |
 | `/spec_kit:complete` | Start new feature (handover captures in-progress)  |
 | `/memory:save`       | Save context to memory (handover is for branching) |
+
+### Agents
+
+| Agent        | Relationship                                     |
+| ------------ | ------------------------------------------------ |
+| `@handover`  | Dedicated sub-agent for this command             |
+| `@orchestrate` | May coordinate handover in multi-agent workflows |
+| `@speckit`   | Works with spec folders this command reads       |
+
+### Files
+
+| File | Purpose |
+| ---- | ------- |
+| `.opencode/agent/handover.md` | Agent definition |
+| `.opencode/command/spec_kit/assets/spec_kit_handover_full.yaml` | YAML configuration |
+| `.opencode/skill/system-spec-kit/templates/handover.md` | Output template |
 
 ---
 

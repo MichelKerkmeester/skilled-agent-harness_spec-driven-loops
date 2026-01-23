@@ -1,6 +1,6 @@
-# Agent Template
+# Agent Template - Specialist Agent Structure
 
-> Template for creating OpenCode agent files with proper frontmatter, permissions, and behavioral structure.
+> Template for creating OpenCode agent files with proper frontmatter, permissions, and behavioral structure. Updated to reflect current agent patterns (v2.0).
 
 ---
 
@@ -13,7 +13,7 @@ Agents are specialized AI personas with defined authorities, tool permissions, a
 | Aspect          | Agent                                   | Skill                        |
 | --------------- | --------------------------------------- | ---------------------------- |
 | **Purpose**     | Persona with authority to act           | Knowledge/workflow bundle    |
-| **Location**    | `.opencode/agent/`                      | `.opencode/skill/`           |
+| **Location**    | `.opencode/agent/` or `.claude/agents/` | `.opencode/skill/`           |
 | **Invocation**  | `@agent-name` or automatic routing      | `skill("name")` or automatic |
 | **Has Tools**   | Yes (permission object)                 | No (uses agent's tools)      |
 | **Frontmatter** | name, mode, temperature, permission     | name, allowed-tools          |
@@ -25,6 +25,7 @@ Create an agent when you need:
 - **Behavioral constraints** - Rules that govern how the agent operates
 - **Delegation capability** - Ability to spawn sub-agents (orchestrator pattern)
 - **Specialized persona** - A distinct role with defined authority
+- **Model preference** - Control over which model should be used for dispatch
 
 **Do NOT create an agent when:**
 - You only need knowledge/workflows → Create a skill instead
@@ -41,7 +42,7 @@ Create an agent when you need:
 ---
 name: agent-name                    # REQUIRED: Identifier (must match filename)
 description: One-line description   # REQUIRED: Purpose statement
-mode: primary                       # REQUIRED: primary | secondary
+mode: subagent                      # REQUIRED: subagent | agent | all
 temperature: 0.1                    # REQUIRED: 0.0-1.0 (lower = deterministic)
 permission:                         # REQUIRED: Unified permission object (v1.1.1+)
   read: allow
@@ -54,12 +55,14 @@ permission:                         # REQUIRED: Unified permission object (v1.1.
   narsil: allow
   memory: allow
   chrome_devtools: deny
-  task: deny
+  task: deny                        # deny for sub-agents, allow for orchestrators
+  list: allow
+  patch: deny
   external_directory: allow
 ---
 ```
 
-> **Note:** The separate `tools:` object is deprecated as of OpenCode v1.1.1. Use the unified `permission:` object with `allow`/`deny`/`ask` values instead. The old format still works for backwards compatibility but should not be used for new agents.
+> **Note:** The separate `tools:` object is deprecated as of OpenCode v1.1.1. Use the unified `permission:` object with `allow`/`deny`/`ask` values instead.
 
 ### Field Reference
 
@@ -67,29 +70,36 @@ permission:                         # REQUIRED: Unified permission object (v1.1.
 | ------------- | ------ | -------- | --------------------------------------------------- |
 | `name`        | string | Yes      | Agent identifier (used in `@name` invocation)       |
 | `description` | string | Yes      | One-line purpose description                        |
-| `mode`        | string | Yes      | `primary` (full authority) or `secondary` (limited) |
+| `mode`        | string | Yes      | `subagent` (dispatched), `agent` (primary), `all`   |
 | `temperature` | float  | Yes      | 0.0-1.0, lower = more deterministic                 |
 | `permission`  | object | Yes      | Unified tool & action permissions (allow/deny/ask)  |
-| `steps`       | int    | No       | Max agentic iterations (replaces deprecated maxSteps) |
+
+### Mode Reference
+
+| Mode       | Use Case                                      | task Permission |
+| ---------- | --------------------------------------------- | --------------- |
+| `subagent` | Specialized agents dispatched by orchestrator | deny            |
+| `agent`    | Primary agents that orchestrate others        | allow           |
+| `all`      | Can operate in any mode                       | varies          |
 
 ### Permission Reference
 
-| Permission          | Purpose                             | Typical Setting  |
-| ------------------- | ----------------------------------- | ---------------- |
-| `read`              | Read files                          | allow            |
-| `write`             | Create files                        | allow            |
-| `edit`              | Modify files                        | allow            |
-| `bash`              | Execute commands                    | allow (caution)  |
-| `grep`              | Search content                      | allow            |
-| `glob`              | Find files                          | allow            |
+| Permission          | Purpose                             | Typical Setting      |
+| ------------------- | ----------------------------------- | -------------------- |
+| `read`              | Read files                          | allow                |
+| `write`             | Create files                        | allow                |
+| `edit`              | Modify files                        | allow                |
+| `bash`              | Execute commands                    | allow (caution)      |
+| `grep`              | Search content                      | allow                |
+| `glob`              | Find files                          | allow                |
 | `webfetch`          | Fetch URLs                          | deny (unless needed) |
-| `narsil`            | Semantic + structural code analysis | allow            |
-| `memory`            | Spec Kit Memory                     | allow            |
+| `narsil`            | Semantic + structural code analysis | allow                |
+| `memory`            | Spec Kit Memory                     | allow                |
 | `chrome_devtools`   | Browser debugging                   | deny (unless needed) |
-| `task`              | Delegate to sub-agents              | deny (orchestrators only) |
-| `list`              | List directory contents             | allow            |
+| `task`              | Delegate to sub-agents              | deny (subagents)     |
+| `list`              | List directory contents             | allow                |
 | `patch`             | Apply patches                       | deny (unless needed) |
-| `external_directory`| Access files outside project        | allow            |
+| `external_directory`| Access files outside project        | allow                |
 
 ### Permission Values
 
@@ -99,39 +109,55 @@ permission:                         # REQUIRED: Unified permission object (v1.1.
 | `deny`  | Automatically reject (blocked)              |
 | `ask`   | Prompt the user for approval each time      |
 
-### Granular Permissions (Advanced)
-
-v1.1.1+ supports pattern-based granular control:
-
-```yaml
-permission:
-  bash:
-    "npm *": allow      # Allow npm commands
-    "git *": allow      # Allow git commands
-    "rm -rf *": deny    # Block dangerous deletions
-    "*": ask            # Ask for all other commands
-  edit:
-    "*.md": allow       # Allow markdown edits
-    "*.ts": ask         # Ask for TypeScript edits
-    "*": deny           # Block all other edits
-```
-
 ---
 
 ## 3. 🏗️ REQUIRED SECTIONS
 
-Every agent file MUST include these sections:
+Every agent file MUST include these sections in order:
+
+### Section 0: Model Preference (NEW - MANDATORY)
+
+```markdown
+## 0. 🤖 MODEL PREFERENCE
+
+### Default Model: [Sonnet/Opus 4.5]
+
+This agent defaults to **[Model]** for [rationale].
+
+| Model | Use When | Task Examples |
+|-------|----------|---------------|
+| **[Default]** (default) | [Condition] | [Examples] |
+| **[Alternative]** | [Condition] | [Examples] |
+
+### Dispatch Instructions
+
+When dispatching this agent via Task tool:
+
+\`\`\`
+# Default ([Model]) - use for [use case]
+Task(subagent_type: "[agent]", model: "[model]", prompt: "...")
+
+# [Alternative] - for [use case]
+Task(subagent_type: "[agent]", model: "[model]", prompt: "...")
+\`\`\`
+
+**Rule**: Use [Default] by default for:
+- [Criterion 1]
+- [Criterion 2]
+```
 
 ### Section 1: Core Workflow
 
 ```markdown
 ## 1. 🔄 CORE WORKFLOW
 
-[Numbered steps the agent follows for every task]
+### [Workflow Name]
 
 1. **STEP** → Description
 2. **STEP** → Description
 3. **STEP** → Description
+
+**Key Principle**: [Summary of critical workflow behavior]
 ```
 
 ### Section 2: Capability Scan
@@ -152,16 +178,56 @@ Every agent file MUST include these sections:
 | ...  | ...     | ...         |
 ```
 
+### Section N-2: Output Verification (NEW - MANDATORY)
+
+```markdown
+## N. ✅ OUTPUT VERIFICATION
+
+**CRITICAL**: Before claiming completion, you MUST verify output against actual evidence.
+
+### Pre-Delivery Verification Checklist
+
+\`\`\`
+[DOMAIN]-SPECIFIC VERIFICATION (MANDATORY):
+□ [Check 1 specific to agent domain]
+□ [Check 2 specific to agent domain]
+□ [Check 3 specific to agent domain]
+
+EVIDENCE VALIDATION (MANDATORY):
+□ All claims have citations (file:line OR URL OR explicit "CITATION: NONE")
+□ Cited files exist (verify with Read or Glob)
+□ No placeholder content ("[TODO]", "[TBD]")
+\`\`\`
+
+### Self-Validation Protocol
+
+**Run BEFORE claiming completion:**
+
+\`\`\`
+SELF-CHECK (N questions):
+1. Did I [verification step]? (YES/NO)
+2. Did I [verification step]? (YES/NO)
+3. Did I [verification step]? (YES/NO)
+
+If ANY answer is NO → DO NOT CLAIM COMPLETION
+Fix verification gaps first
+\`\`\`
+
+### The Iron Law
+
+> **NEVER CLAIM COMPLETION WITHOUT VERIFICATION EVIDENCE**
+```
+
 ### Section N-1: Anti-Patterns
 
 ```markdown
 ## N. 🚫 ANTI-PATTERNS
 
-❌ **Never do X**
-- Reason why this is problematic
+❌ **Never [anti-pattern]**
+- [Reason why this is problematic]
 
-❌ **Never do Y**
-- Reason why this is problematic
+❌ **Never [anti-pattern]**
+- [Reason why this is problematic]
 ```
 
 ### Section N: Related Resources
@@ -169,9 +235,49 @@ Every agent file MUST include these sections:
 ```markdown
 ## N. 🔗 RELATED RESOURCES
 
-| Resource | Location | Purpose |
-| -------- | -------- | ------- |
-| ...      | ...      | ...     |
+### Commands
+
+| Command | Purpose | Path |
+| ------- | ------- | ---- |
+| ...     | ...     | ...  |
+
+### Skills
+
+| Skill | Purpose |
+| ----- | ------- |
+| ...   | ...     |
+
+### Agents
+
+| Agent | Purpose |
+| ----- | ------- |
+| ...   | ...     |
+```
+
+### Final Section: Summary (RECOMMENDED)
+
+```markdown
+## N. 📊 SUMMARY
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    THE [ROLE]: [SUBTITLE]                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► [Authority 1]                                                      │
+│  ├─► [Authority 2]                                                      │
+│  └─► [Authority 3]                                                      │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. [Step]                                                          │
+│  ├─► 2. [Step]                                                          │
+│  └─► 3. [Step]                                                          │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► [Limitation 1]                                                     │
+│  └─► [Limitation 2]                                                     │
+└─────────────────────────────────────────────────────────────────────────┘
+\`\`\`
 ```
 
 ---
@@ -180,7 +286,7 @@ Every agent file MUST include these sections:
 
 Include these sections based on agent type:
 
-### For Orchestrator Agents (task: true)
+### For Orchestrator Agents (task: allow)
 
 ```markdown
 ## N. 🗺️ AGENT CAPABILITY MAP
@@ -203,34 +309,81 @@ Include these sections based on agent type:
 ### For Specialist Agents
 
 ```markdown
-## N. 🗺️ [DOMAIN] MODES
-
-[Different operational modes for the specialist]
-
-## N. 📋 [DOMAIN] ROUTING
+## N. 🗺️ [DOMAIN] ROUTING
 
 [Decision tree for handling different request types]
 
 ## N. 📝 OUTPUT FORMAT
 
 [Standard output format for deliverables]
+
+## N. 📤 RESPONSE FORMATS
+
+### Success Response
+[Template for successful completion]
+
+### Blocked Response
+[Template for when blocked]
+
+### Escalation Response
+[Template for escalation]
 ```
 
-### For All Agents (Recommended)
+### For Sub-Agents (mode: subagent)
 
 ```markdown
-## N. 📝 CONTEXT PRESERVATION
+## N. 📥 CONTEXT HANDOFF FORMAT
 
-[How to save and restore context]
+[Expected input format when dispatched]
 
-## N. 📊 SUMMARY
+## N. ⚡ ESCALATION PROTOCOL
 
-[ASCII box summarizing agent capabilities]
+[When and how to escalate to orchestrator]
 ```
 
 ---
 
-## 5. 📝 COMPLETE TEMPLATE
+## 5. 📝 INTRO PARAGRAPH PATTERNS
+
+After the H1 title, include 1-2 sentence description followed by critical statements:
+
+```markdown
+# The [Role Name]: [Subtitle]
+
+[1-2 sentence description of the agent's purpose and authority.]
+
+**CRITICAL**: [Most important behavioral constraint - what defines this agent's core behavior]
+
+**IMPORTANT**: [Secondary constraint or codebase-agnostic note]
+
+---
+```
+
+**Examples from production agents:**
+
+```markdown
+# The Researcher: Technical Investigation Specialist
+
+Technical investigation specialist for evidence gathering, pattern analysis, and research documentation.
+
+**CRITICAL**: Focus on INVESTIGATION, not implementation. Output is research documentation (research.md), not code changes.
+
+**IMPORTANT**: This agent is codebase-agnostic. Works with any project structure.
+```
+
+```markdown
+# The Reviewer: Code Quality Guardian
+
+Code review specialist with full authority over pattern validation, quality scoring, and standards enforcement.
+
+**CRITICAL**: You have READ-ONLY file access. You CANNOT modify files - only analyze, score, and report.
+
+**IMPORTANT**: This agent is codebase-agnostic. Quality standards are loaded dynamically.
+```
+
+---
+
+## 6. 📝 COMPLETE TEMPLATE
 
 Copy this template to create a new agent:
 
@@ -238,7 +391,7 @@ Copy this template to create a new agent:
 ---
 name: [agent-name]
 description: [One-line description of agent purpose and authority]
-mode: primary
+mode: subagent
 temperature: 0.1
 permission:
   read: allow
@@ -252,6 +405,8 @@ permission:
   memory: allow
   chrome_devtools: deny
   task: deny
+  list: allow
+  patch: deny
   external_directory: allow
 ---
 
@@ -259,15 +414,52 @@ permission:
 
 [1-2 sentence description of the agent's purpose and authority.]
 
+**CRITICAL**: [Most important behavioral constraint]
+
+**IMPORTANT**: This agent is codebase-agnostic. [Adaptability statement]
+
+---
+
+## 0. 🤖 MODEL PREFERENCE
+
+### Default Model: Sonnet
+
+This agent defaults to **Sonnet** for [rationale].
+
+| Model | Use When | Task Examples |
+|-------|----------|---------------|
+| **Sonnet** (default) | [Condition] | [Examples] |
+| **Opus** | User explicitly requests | [Complex examples] |
+
+### Dispatch Instructions
+
+When dispatching this agent via Task tool:
+
+\`\`\`
+# Default (Sonnet) - use for most tasks
+Task(subagent_type: "[agent-name]", model: "sonnet", prompt: "...")
+
+# Opus - when user explicitly requests
+Task(subagent_type: "[agent-name]", model: "opus", prompt: "...")
+\`\`\`
+
+**Rule**: Use Opus when:
+- User explicitly says "use opus" or "use the most capable model"
+- [Domain-specific complexity threshold]
+
 ---
 
 ## 1. 🔄 CORE WORKFLOW
+
+### [N]-Step [Domain] Process
 
 1. **RECEIVE** → Parse request, identify intent
 2. **ANALYZE** → Gather context, check constraints
 3. **EXECUTE** → Perform task using permitted tools
 4. **VALIDATE** → Verify output meets requirements
-5. **DELIVER** → Present results to user
+5. **DELIVER** → Present results in structured format
+
+**Key Principle**: [Summary of critical workflow behavior]
 
 ---
 
@@ -289,126 +481,278 @@ permission:
 
 ## 3. 🗺️ [DOMAIN] ROUTING
 
-```text
-[ASCII flowchart or decision tree for routing]
-```
+\`\`\`
+[Request Type]
+    │
+    ├─► [Condition 1]
+    │   └─► [Action/Mode]
+    │
+    ├─► [Condition 2]
+    │   └─► [Action/Mode]
+    │
+    └─► [Default]
+        └─► [Action/Mode]
+\`\`\`
 
 ---
 
 ## 4. 📋 RULES
 
-### ✅ ALWAYS
+### ALWAYS
 
 - [Rule 1]
 - [Rule 2]
+- [Rule 3]
 
-### ❌ NEVER
+### NEVER
 
 - [Rule 1]
 - [Rule 2]
+- [Rule 3]
 
-### ⚠️ ESCALATE IF
+### ESCALATE IF
 
 - [Condition 1]
 - [Condition 2]
 
 ---
 
-## 5. 🚫 ANTI-PATTERNS
+## 5. 📝 OUTPUT FORMAT
 
-❌ **Never [anti-pattern]**
-- [Reason]
+### [Output Type] Report
 
-❌ **Never [anti-pattern]**
-- [Reason]
+\`\`\`markdown
+## [Output Title]: [Topic]
+
+### Summary
+[2-3 sentence overview]
+
+### Key Findings
+1. [Finding with evidence citation]
+2. [Finding with evidence citation]
+
+### [Domain-Specific Section]
+[Content]
+
+### Next Steps
+→ [Recommended action]
+\`\`\`
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. ✅ OUTPUT VERIFICATION
+
+**CRITICAL**: Before claiming completion, you MUST verify output against actual evidence.
+
+### Pre-Delivery Verification Checklist
+
+\`\`\`
+[DOMAIN] VERIFICATION (MANDATORY):
+□ [Domain-specific check 1]
+□ [Domain-specific check 2]
+□ [Domain-specific check 3]
+
+EVIDENCE VALIDATION (MANDATORY):
+□ All claims have citations (file:line OR URL OR "CITATION: NONE")
+□ Cited files verified to exist
+□ No placeholder content ("[TODO]", "[TBD]")
+□ Output follows structured format
+\`\`\`
+
+### Self-Validation Protocol
+
+**Run BEFORE claiming completion:**
+
+\`\`\`
+SELF-CHECK:
+1. Did I complete all workflow steps? (YES/NO)
+2. Did I verify evidence for all claims? (YES/NO)
+3. Does output follow required format? (YES/NO)
+4. Are all placeholders replaced with content? (YES/NO)
+
+If ANY answer is NO → DO NOT CLAIM COMPLETION
+Fix verification gaps first
+\`\`\`
+
+### The Iron Law
+
+> **NEVER CLAIM COMPLETION WITHOUT VERIFICATION EVIDENCE**
+
+---
+
+## 7. 🚫 ANTI-PATTERNS
+
+❌ **Never [anti-pattern 1]**
+- [Reason why this is problematic]
+
+❌ **Never [anti-pattern 2]**
+- [Reason why this is problematic]
+
+❌ **Never [anti-pattern 3]**
+- [Reason why this is problematic]
+
+---
+
+## 8. 🔗 RELATED RESOURCES
+
+### Commands
+
+| Command     | Purpose           | Path                         |
+| ----------- | ----------------- | ---------------------------- |
+| [/command]  | [Purpose]         | `.opencode/command/.../`     |
 
 ### Skills
 
-| Skill        | Location                        | Purpose   |
-| ------------ | ------------------------------- | --------- |
-| [skill-name] | `.opencode/skill/[skill-name]/` | [Purpose] |
+| Skill          | Purpose                |
+| -------------- | ---------------------- |
+| [skill-name]   | [Purpose]              |
 
 ### Agents
 
-| Agent        | Location                          | Purpose   |
-| ------------ | --------------------------------- | --------- |
-| [agent-name] | `.opencode/agent/[agent-name].md` | [Purpose] |
+| Agent       | Purpose                     |
+| ----------- | --------------------------- |
+| orchestrate | Delegates tasks             |
+| [related]   | [Relationship description]  |
+
+---
+
+## 9. 📊 SUMMARY
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    THE [ROLE]: [SUBTITLE]                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► [Authority 1]                                                      │
+│  ├─► [Authority 2]                                                      │
+│  └─► [Authority 3]                                                      │
+│                                                                         │
+│  WORKFLOW ([N] Steps)                                                   │
+│  ├─► 1. [Step] → [Output]                                               │
+│  ├─► 2. [Step] → [Output]                                               │
+│  ├─► 3. [Step] → [Output]                                               │
+│  └─► N. [Step] → [Output]                                               │
+│                                                                         │
+│  OUTPUT                                                                 │
+│  ├─► [Primary deliverable]                                              │
+│  └─► [Secondary deliverable]                                            │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► [Limitation 1]                                                     │
+│  └─► [Limitation 2]                                                     │
+└─────────────────────────────────────────────────────────────────────────┘
+\`\`\`
 ```
 
 ---
 
-## 6. 💡 EXAMPLES
+## 7. 💡 PRODUCTION EXAMPLES
 
-### Production Agents
+### Current Production Agents
 
-| Agent           | File             | Type         | Key Pattern                         |
-| --------------- | ---------------- | ------------ | ----------------------------------- |
-| **orchestrate** | `orchestrate.md` | Orchestrator | Task delegation, parallel execution |
-| **write**       | `write.md`       | Specialist   | Template-first, DQI scoring         |
+| Agent       | File          | Type       | Key Patterns                                    |
+| ----------- | ------------- | ---------- | ----------------------------------------------- |
+| @research   | research.md   | Subagent   | 9-step workflow, evidence grading, tool routing |
+| @review     | review.md     | Subagent   | Quality rubric, orchestrator integration        |
+| @debug      | debug.md      | Subagent   | 4-phase methodology, structured handoff         |
+| @speckit    | speckit.md    | Subagent   | Template-first, level-based documentation       |
+| @write      | write.md      | Subagent   | DQI scoring, template alignment                 |
+| orchestrate | orchestrate.md| Primary    | Task decomposition, circuit breaker             |
+
+### Key Patterns by Agent Type
+
+**Research/Investigation Agents:**
+- Evidence quality rubric (A/B/C/D/F grades)
+- Tool selection decision tree
+- Parallel investigation thresholds
+- Memory integration for context preservation
+
+**Review/Validation Agents:**
+- Quality scoring rubric (100 points, 5 dimensions)
+- Gate validation protocol (pass/fail threshold)
+- Structured issue categorization (P0/P1/P2)
+- Circuit breaker interaction
+
+**Debug/Fix Agents:**
+- Structured context handoff (no conversation history)
+- Multi-phase methodology (Observe/Analyze/Hypothesize/Fix)
+- Escalation protocol (3 failures → escalate)
+- Response formats (Success/Blocked/Escalation)
 
 ### Examine Existing Agents
 
 ```bash
-# View orchestrator pattern
-cat .opencode/agent/orchestrate.md | head -100
+# View research pattern (evidence-based investigation)
+head -100 .opencode/agent/research.md
 
-# View specialist pattern
-cat .opencode/agent/write.md | head -100
+# View review pattern (quality scoring)
+head -100 .opencode/agent/review.md
+
+# View debug pattern (structured handoff)
+head -100 .opencode/agent/debug.md
 ```
 
 ---
 
-## 7. ✅ VALIDATION CHECKLIST
+## 8. ✅ VALIDATION CHECKLIST
 
 Before deploying an agent, verify:
 
 **Frontmatter:**
 - [ ] `name` matches filename (without .md)
 - [ ] `description` is one-line, specific
-- [ ] `mode` is `primary` or `secondary`
-- [ ] `temperature` is 0.0-1.0
+- [ ] `mode` is `subagent`, `agent`, or `all`
+- [ ] `temperature` is 0.0-1.0 (typically 0.1 for determinism)
 - [ ] `permission` object has all tool/action settings (v1.1.1+ format)
-- [ ] No deprecated `tools` object present
+- [ ] `task: deny` for subagents, `task: allow` for orchestrators
 
 **Structure:**
 - [ ] H1 title follows "# The [Role]: [Subtitle]" pattern
+- [ ] Intro has **CRITICAL** and **IMPORTANT** statements
+- [ ] Section 0 is "🤖 MODEL PREFERENCE" (mandatory)
 - [ ] Section 1 is "🔄 CORE WORKFLOW"
 - [ ] Has "🔍 CAPABILITY SCAN" section
+- [ ] Has "✅ OUTPUT VERIFICATION" section (mandatory)
 - [ ] Has "🚫 ANTI-PATTERNS" section
-- [ ] Last section is "🔗 RELATED RESOURCES"
+- [ ] Has "📊 SUMMARY" section (recommended)
+- [ ] Last numbered section is "🔗 RELATED RESOURCES"
 - [ ] All H2 sections have emoji and number
 
 **Content:**
-- [ ] Core workflow has numbered steps
+- [ ] Model preference table has Sonnet and Opus options (no Haiku)
+- [ ] Dispatch instructions show Task tool syntax
+- [ ] Core workflow has numbered steps with verbs
 - [ ] Skills and tools tables are populated
+- [ ] Output verification has domain-specific checks
 - [ ] Anti-patterns explain WHY (not just WHAT)
+- [ ] Summary ASCII box captures authority, workflow, limits
 - [ ] Related resources link to actual files
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 9. 🔗 RELATED RESOURCES
 
 ### Templates
 
-| Template               | Purpose            | Path                                                     |
-| ---------------------- | ------------------ | -------------------------------------------------------- |
-| `skill_md_template.md` | SKILL.md structure | `workflows-documentation/assets/opencode/`    |
-| `command_template.md`  | Command files      | `workflows-documentation/assets/opencode/`    |
+| Template               | Purpose            | Path                                       |
+| ---------------------- | ------------------ | ------------------------------------------ |
+| `skill_md_template.md` | SKILL.md structure | `workflows-documentation/assets/opencode/` |
+| `command_template.md`  | Command files      | `workflows-documentation/assets/opencode/` |
 
 ### Agent Files
 
 | Agent       | Location                         | Purpose                         |
 | ----------- | -------------------------------- | ------------------------------- |
-| orchestrate | `.opencode/agent/orchestrate.md` | Task decomposition & delegation |
+| research    | `.opencode/agent/research.md`    | Technical investigation         |
+| review      | `.opencode/agent/review.md`      | Code quality validation         |
+| debug       | `.opencode/agent/debug.md`       | Fresh perspective debugging     |
+| speckit     | `.opencode/agent/speckit.md`     | Spec folder documentation       |
 | write       | `.opencode/agent/write.md`       | Documentation creation          |
+| orchestrate | `.opencode/agent/orchestrate.md` | Task decomposition & delegation |
 
 ### Documentation
 
-| Document           | Location                                               | Purpose            |
-| ------------------ | ------------------------------------------------------ | ------------------ |
-| Agent System Guide | `.opencode/install_guides/SET-UP - Opencode Agents.md` | Setup and usage    |
-| AGENTS.md          | `AGENTS.md`                                            | AI behavior config |
+| Document           | Location    | Purpose            |
+| ------------------ | ----------- | ------------------ |
+| AGENTS.md          | `AGENTS.md` | AI behavior config |
+| CLAUDE.md          | `CLAUDE.md` | Project guidelines |
