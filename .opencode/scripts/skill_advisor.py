@@ -26,16 +26,16 @@ SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skill")
 # Comprehensive stop words - filtered from BOTH query AND corpus
 # These words have no semantic meaning for skill matching
 STOP_WORDS = {
-    'a', 'about', 'able', 'actually', 'agent', 'all', 'also', 'an', 'and', 'any', 
-    'are', 'as', 'at', 'be', 'been', 'being', 'but', 'by', 'can', 'could', 'did', 
-    'do', 'does', 'even', 'for', 'from', 'get', 'give', 'go', 'going', 'had', 
-    'has', 'have', 'he', 'help', 'her', 'him', 'how', 'i', 'if', 'in', 'into', 
-    'is', 'it', 'its', 'just', 'let', 'like', 'may', 'me', 'might', 'more', 
-    'most', 'must', 'my', 'need', 'no', 'not', 'now', 'of', 'on', 'only', 'or', 
-    'other', 'our', 'please', 'really', 'run', 'she', 'should', 'show', 'skill', 
-    'so', 'some', 'tell', 'that', 'the', 'them', 'then', 'these', 'they', 
-    'thing', 'things', 'this', 'those', 'to', 'tool', 'try', 'us', 'use', 
-    'used', 'using', 'very', 'want', 'was', 'way', 'we', 'were', 'what', 'when', 
+    'a', 'about', 'able', 'actually', 'agent', 'all', 'also', 'an', 'and', 'any',
+    'are', 'as', 'at', 'be', 'been', 'being', 'but', 'by', 'can', 'could', 'did',
+    'do', 'does', 'even', 'for', 'from', 'get', 'give', 'go', 'going', 'had',
+    'has', 'have', 'he', 'help', 'her', 'him', 'how', 'i', 'if', 'in', 'into',
+    'is', 'it', 'its', 'just', 'let', 'like', 'may', 'me', 'might', 'more',
+    'most', 'must', 'my', 'need', 'no', 'not', 'now', 'of', 'on', 'only', 'or',
+    'other', 'our', 'please', 'really', 'run', 'she', 'should', 'show', 'skill',
+    'so', 'some', 'tell', 'that', 'the', 'them', 'then', 'these', 'they',
+    'thing', 'things', 'this', 'those', 'to', 'tool', 'try', 'us', 'use',
+    'used', 'using', 'very', 'want', 'was', 'way', 'we', 'were', 'what', 'when',
     'where', 'which', 'who', 'why', 'will', 'with', 'work', 'would', 'you', 'your'
 }
 
@@ -47,7 +47,7 @@ SYNONYM_MAP = {
     "functions": ["methods", "definitions", "symbols"],
     "classes": ["types", "definitions", "structure"],
     "symbols": ["definitions", "functions", "classes", "exports"],
-    
+
     # Git & version control
     "branch": ["git", "commit", "merge", "checkout"],
     "commit": ["git", "version", "push", "branch", "changes"],
@@ -59,7 +59,7 @@ SYNONYM_MAP = {
     "git": ["commit", "branch", "version", "push", "merge", "worktree"],
     "pull": ["git", "fetch", "merge", "remote"],
     "clone": ["git", "repository", "download"],
-    
+
     # Memory & context preservation
     "context": ["memory", "session", "save"],
     "remember": ["memory", "context", "save", "store"],
@@ -71,7 +71,7 @@ SYNONYM_MAP = {
     "session": ["memory", "context", "conversation"],
     "preserve": ["memory", "save", "context", "store"],
     "store": ["memory", "save", "context", "persist"],
-    
+
     # Documentation
     "doc": ["documentation", "explain", "describe", "markdown"],
     "docs": ["documentation", "explain", "describe", "markdown"],
@@ -80,14 +80,14 @@ SYNONYM_MAP = {
     "readme": ["documentation", "markdown", "explain"],
     "flowchart": ["documentation", "diagram", "ascii"],
     "diagram": ["documentation", "flowchart", "visual"],
-    
+
     # Spec & planning
     "plan": ["spec", "architect", "design", "roadmap", "breakdown"],
     "spec": ["specification", "plan", "document", "folder"],
     "folder": ["spec", "directory", "create", "organize"],
     "scaffold": ["create", "generate", "new", "template"],
     "template": ["scaffold", "create", "generate"],
-    
+
     # Debugging & browser
     "bug": ["debug", "error", "issue", "defect", "verification"],
     "console": ["chrome", "browser", "debug", "log"],
@@ -97,7 +97,7 @@ SYNONYM_MAP = {
     "breakpoint": ["debug", "chrome", "devtools"],
     "error": ["bug", "debug", "fix", "issue"],
     "issue": ["bug", "debug", "error", "problem"],
-    
+
     # Search & discovery
     "find": ["search", "locate", "explore", "lookup"],
     "search": ["find", "locate", "explore", "query", "lookup"],
@@ -106,7 +106,7 @@ SYNONYM_MAP = {
     "explore": ["search", "find", "navigate", "discover"],
     "navigate": ["find", "search", "locate", "goto"],
     "locate": ["find", "search", "where"],
-    
+
     # Actions & creation
     "create": ["implement", "build", "generate", "new", "add", "scaffold"],
     "make": ["create", "implement", "build", "generate"],
@@ -114,7 +114,7 @@ SYNONYM_MAP = {
     "add": ["create", "implement", "new", "insert"],
     "build": ["create", "implement", "generate"],
     "generate": ["create", "build", "scaffold"],
-    
+
     # Code quality & fixes
     "check": ["verify", "validate", "test"],
     "fix": ["debug", "correct", "resolve", "code", "implementation"],
@@ -122,7 +122,7 @@ SYNONYM_MAP = {
     "test": ["verify", "validate", "check", "spec", "quality"],
     "verify": ["check", "validate", "test", "confirm"],
     "validate": ["check", "verify", "test"],
-    
+
     # Understanding & explanation
     "help": ["guide", "assist", "documentation", "explain"],
     "how": ["understand", "explain", "works", "meaning"],
@@ -131,7 +131,7 @@ SYNONYM_MAP = {
     "explain": ["understand", "how", "works", "describe"],
     "understand": ["how", "explain", "learn", "works"],
     "works": ["how", "understand", "explain", "function"],
-    
+
     # Display & output
     "show": ["list", "display", "outline", "tree"],
     "list": ["show", "display", "enumerate"],
@@ -163,7 +163,7 @@ INTENT_BOOSTERS = {
     "restore": ("system-spec-kit", 0.4),
     "session": ("system-spec-kit", 0.4),
     "store": ("system-spec-kit", 0.4),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # MCP-NARSIL: Semantic + structural code search (meaning-based)
     # ─────────────────────────────────────────────────────────────────
@@ -191,7 +191,7 @@ INTENT_BOOSTERS = {
     "why": ("mcp-narsil", 1.5),
     "work": ("mcp-narsil", 1.0),
     "works": ("mcp-narsil", 1.0),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # MCP-NARSIL: Structural analysis, security scanning, call graphs
     # (Additional structural and security keywords)
@@ -211,7 +211,7 @@ INTENT_BOOSTERS = {
     "symbols": ("mcp-narsil", 0.5),
     "tree": ("mcp-narsil", 0.5),
     "treesitter": ("mcp-narsil", 0.7),
-    
+
     # Security scanning
     "vulnerability": ("mcp-narsil", 0.8),
     "vulnerabilities": ("mcp-narsil", 0.8),
@@ -226,7 +226,7 @@ INTENT_BOOSTERS = {
     "xss": ("mcp-narsil", 0.9),
     "sqli": ("mcp-narsil", 0.9),
     "csrf": ("mcp-narsil", 0.8),
-    
+
     # Code analysis
     "deadcode": ("mcp-narsil", 0.8),
     "dead-code": ("mcp-narsil", 0.8),  # kept for documentation (unreachable due to tokenization)
@@ -240,13 +240,13 @@ INTENT_BOOSTERS = {
     "callees": ("mcp-narsil", 0.7),
     "cfg": ("mcp-narsil", 0.7),
     "dfg": ("mcp-narsil", 0.7),
-    
+
     # Supply chain
     "sbom": ("mcp-narsil", 0.8),
     "license": ("mcp-narsil", 0.5),
     "dependency": ("mcp-narsil", 0.5),
     "dependencies": ("mcp-narsil", 0.5),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # SYSTEM-SPEC-KIT: Specification and planning
     # ─────────────────────────────────────────────────────────────────
@@ -259,7 +259,7 @@ INTENT_BOOSTERS = {
     "speckit": ("system-spec-kit", 0.8),
     "task": ("system-spec-kit", 0.3),
     "tasks": ("system-spec-kit", 0.4),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-GIT: Version control operations
     # ─────────────────────────────────────────────────────────────────
@@ -284,7 +284,7 @@ INTENT_BOOSTERS = {
     "review": ("workflows-git", 0.8),
     "stash": ("workflows-git", 0.5),
     "worktree": ("workflows-git", 1.2),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CHROME-DEVTOOLS: Browser debugging
     # ─────────────────────────────────────────────────────────────────
@@ -303,7 +303,7 @@ INTENT_BOOSTERS = {
     "network": ("workflows-chrome-devtools", 0.8),
     "performance": ("workflows-chrome-devtools", 0.5),
     "screenshot": ("workflows-chrome-devtools", 0.5),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-DOCUMENTATION: Documentation and diagrams
     # ─────────────────────────────────────────────────────────────────
@@ -315,7 +315,7 @@ INTENT_BOOSTERS = {
     "markdown": ("workflows-documentation", 0.5),
     "readme": ("workflows-documentation", 0.5),
     "template": ("workflows-documentation", 0.4),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CODE: Implementation and verification
     # ─────────────────────────────────────────────────────────────────
@@ -324,7 +324,7 @@ INTENT_BOOSTERS = {
     "implement": ("workflows-code", 0.6),
     "refactor": ("workflows-code", 0.5),
     "verification": ("workflows-code", 0.5),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # MCP-CODE-MODE: External tool integration
     # ─────────────────────────────────────────────────────────────────
@@ -386,7 +386,7 @@ def parse_frontmatter(file_path):
 def get_skills():
     """Dynamically scan the skills directory and return skill configs."""
     skills = {}
-    
+
     if os.path.exists(SKILLS_DIR):
         for skill_file in glob.glob(os.path.join(SKILLS_DIR, "*/SKILL.md")):
             meta = parse_frontmatter(skill_file)
@@ -395,13 +395,13 @@ def get_skills():
                     "description": meta.get('description', ''),
                     "weight": 1.0  # Equal weight for all skills
                 }
-    
+
     # Hardcoded command bridges (slash commands)
     skills["command-spec-kit"] = {
         "description": "Create specifications and plans using /spec_kit slash command for new features or complex changes.",
         "weight": 1.0
     }
-    
+
     skills["command-memory-save"] = {
         "description": "Save conversation context to memory using /memory:save.",
         "weight": 1.0
@@ -422,17 +422,17 @@ def expand_query(prompt_tokens):
 def calculate_confidence(score, has_intent_boost, weight=1.0):
     """
     Calculate confidence score using two-tiered formula.
-    
+
     The formula distinguishes between queries that match explicit intent keywords
     (INTENT_BOOSTERS) versus those that only match description corpus terms.
-    
+
     With intent boost (keyword directly matched in INTENT_BOOSTERS):
         confidence = min(0.50 + score * 0.15, 0.95)
         Examples:
         - score=2.0 → 0.80 (meets 0.8 threshold)
         - score=3.0 → 0.95 (max)
         - score=4.0 → 0.95 (capped)
-    
+
     Without intent boost (corpus matching only):
         confidence = min(0.25 + score * 0.15, 0.95)
         Examples:
@@ -440,14 +440,14 @@ def calculate_confidence(score, has_intent_boost, weight=1.0):
         - score=3.0 → 0.70 (below threshold)
         - score=4.0 → 0.85 (meets threshold)
         - score=5.0 → 0.95 (capped)
-    
+
     The 0.8 threshold in Gate 2 means:
     - With intent boost: Only needs score >= 2.0 to trigger skill routing
     - Without intent boost: Needs score >= 4.0 to trigger skill routing
-    
+
     This design favors explicit domain keywords while remaining conservative
     for generic corpus matches that may be coincidental.
-    
+
     Args:
         score: Accumulated match score from corpus matching and intent boosters.
                Higher scores come from matching more terms or important keywords.
@@ -455,7 +455,7 @@ def calculate_confidence(score, has_intent_boost, weight=1.0):
                          True enables the higher-confidence formula.
         weight: Skill weight multiplier (default 1.0, currently unused but
                 reserved for future skill prioritization).
-    
+
     Returns:
         float: Confidence score between 0.0 and 0.95 (or 1.0 if weight > 1.0)
     """
@@ -465,8 +465,81 @@ def calculate_confidence(score, has_intent_boost, weight=1.0):
     else:
         # No explicit boosters - conservative (corpus matches only)
         confidence = min(0.25 + score * 0.15, 0.95)
-    
+
     return min(confidence * weight, 1.0)
+
+
+def calculate_uncertainty(num_matches, has_intent_boost, num_ambiguous_matches):
+    """
+    Calculate uncertainty score for skill recommendation.
+
+    Uncertainty measures "how much we don't know" - separate from confidence.
+    High confidence + high uncertainty = "confident ignorance" (dangerous state).
+
+    Formula factors:
+    - Fewer matches = higher uncertainty (less evidence)
+    - No intent boost = higher uncertainty (less clear intent)
+    - More ambiguous matches = higher uncertainty (competing interpretations)
+
+    Examples:
+    - 5 matches, intent boost, 0 ambiguous: 0.15 (LOW - proceed)
+    - 3 matches, intent boost, 1 ambiguous: 0.35 (LOW - proceed)
+    - 1 match, no intent boost, 0 ambiguous: 0.55 (MEDIUM - verify)
+    - 1 match, no intent boost, 2 ambiguous: 0.75 (HIGH - clarify)
+    - 0 matches, no intent boost, 0 ambiguous: 0.85 (HIGH - clarify)
+
+    Args:
+        num_matches: Total number of keyword/corpus matches found.
+        has_intent_boost: Whether an INTENT_BOOSTER keyword was matched.
+        num_ambiguous_matches: Count of MULTI_SKILL_BOOSTER matches (ambiguous keywords).
+
+    Returns:
+        float: Uncertainty score between 0.0 and 1.0
+               <= 0.35: LOW (proceed)
+               0.36-0.60: MEDIUM (verify first)
+               > 0.60: HIGH (require clarification)
+    """
+    # Base uncertainty decreases with more matches
+    if num_matches >= 5:
+        base_uncertainty = 0.15
+    elif num_matches >= 3:
+        base_uncertainty = 0.25
+    elif num_matches >= 1:
+        base_uncertainty = 0.40
+    else:
+        base_uncertainty = 0.70
+
+    # No intent boost increases uncertainty (less clear intent)
+    intent_penalty = 0.0 if has_intent_boost else 0.15
+
+    # Ambiguous matches increase uncertainty (competing interpretations)
+    ambiguity_penalty = min(num_ambiguous_matches * 0.10, 0.30)
+
+    uncertainty = min(base_uncertainty + intent_penalty + ambiguity_penalty, 1.0)
+    return round(uncertainty, 2)
+
+
+def passes_dual_threshold(confidence, uncertainty, conf_threshold=0.8, uncert_threshold=0.35):
+    """
+    Check if recommendation passes dual-threshold validation.
+
+    READINESS = (confidence >= threshold) AND (uncertainty <= uncert_threshold)
+
+    Note on thresholds:
+    - AGENTS.md Section 4 defines READINESS as: (confidence >= 0.70) AND (uncertainty <= 0.35)
+    - Gate 3 skill routing uses conf_threshold=0.8 (stricter for routing decisions)
+    - The uncertainty threshold of 0.35 matches AGENTS.md exactly
+
+    Args:
+        confidence: Confidence score (0.0-1.0)
+        uncertainty: Uncertainty score (0.0-1.0)
+        conf_threshold: Minimum confidence required (default 0.8 for skill routing)
+        uncert_threshold: Maximum uncertainty allowed (default 0.35 per AGENTS.md)
+
+    Returns:
+        bool: True if both thresholds pass
+    """
+    return confidence >= conf_threshold and uncertainty <= uncert_threshold
 
 
 def analyze_request(prompt):
@@ -475,10 +548,10 @@ def analyze_request(prompt):
         return []
 
     prompt_lower = prompt.lower()
-    
+
     # Tokenize: extract words
     all_tokens = re.findall(r'\b\w+\b', prompt_lower)
-    
+
     # Pre-calculate intent boosts from ALL original tokens BEFORE stop word filtering
     # This is critical because question words (how, why, what) and "work/does" are
     # important signals for semantic search but would be filtered as stop words
@@ -492,7 +565,7 @@ def analyze_request(prompt):
             if skill not in boost_reasons:
                 boost_reasons[skill] = []
             boost_reasons[skill].append(f"!{token}")
-        
+
         # Multi-skill boosters (ambiguous keywords that boost multiple skills)
         if token in MULTI_SKILL_BOOSTERS:
             for skill, boost in MULTI_SKILL_BOOSTERS[token]:
@@ -500,18 +573,18 @@ def analyze_request(prompt):
                 if skill not in boost_reasons:
                     boost_reasons[skill] = []
                 boost_reasons[skill].append(f"!{token}(multi)")
-    
+
     # NOW filter stop words and short terms for corpus matching
     # This prevents "me", "help", "a" etc. from polluting description matches
     tokens = [t for t in all_tokens if t not in STOP_WORDS and len(t) > 2]
-    
+
     # Handle empty tokens after filtering - but still allow if we have boosts
     if not tokens and not skill_boosts:
         return []
-    
+
     # Expand query with synonyms (only for non-stop-word tokens)
     search_terms = expand_query(tokens) if tokens else []
-    
+
     recommendations = []
     skills = get_skills()
 
@@ -519,18 +592,18 @@ def analyze_request(prompt):
         # Start with intent boost if any (from pre-calculated boosts)
         score = skill_boosts.get(name, 0)
         matches = boost_reasons.get(name, []).copy()
-        
+
         # Prepare skill keywords from name and description
         name_parts = name.replace('-', ' ').split()
         desc_parts = re.findall(r'\b\w+\b', config['description'].lower())
-        
+
         # Build corpus (description terms only, name checked separately)
         corpus = set(desc_parts)
         corpus = {k for k in corpus if len(k) > 2 and k not in STOP_WORDS}
-        
+
         # Also filter name_parts for stop words
         name_parts_filtered = [p for p in name_parts if p not in STOP_WORDS and len(p) > 2]
-        
+
         # Score each search term
         for term in search_terms:
             # Priority 1: Term matches skill NAME (highest value)
@@ -548,19 +621,34 @@ def analyze_request(prompt):
                         score += 0.5
                         matches.append(f"{term}~")
                         break
-        
+
         if score > 0:
             # Use the documented two-tiered confidence formula
             total_intent_boost = skill_boosts.get(name, 0)
+            has_boost = total_intent_boost > 0
             confidence = calculate_confidence(
                 score=score,
-                has_intent_boost=(total_intent_boost > 0),
+                has_intent_boost=has_boost,
                 weight=config['weight']
             )
-            
+
+            # Calculate uncertainty (separate from confidence)
+            num_matches = len(matches)
+            num_ambiguous = sum(1 for m in matches if '(multi)' in m)
+            uncertainty = calculate_uncertainty(
+                num_matches=num_matches,
+                has_intent_boost=has_boost,
+                num_ambiguous_matches=num_ambiguous
+            )
+
+            # Check dual-threshold validation
+            passes = passes_dual_threshold(confidence, uncertainty)
+
             recommendations.append({
                 "skill": name,
                 "confidence": round(confidence, 2),
+                "uncertainty": uncertainty,
+                "passes_threshold": passes,
                 "reason": f"Matched: {', '.join(list(set(matches))[:5])}"
             })
 
@@ -607,21 +695,33 @@ Examples:
                         help='Run health check diagnostics')
     parser.add_argument('--threshold', type=float, default=0.0,
                         help='Confidence threshold for recommendations (default: 0.0, typical: 0.8)')
-    
+    parser.add_argument('--uncertainty', type=float, default=1.0,
+                        help='Maximum uncertainty threshold for recommendations (default: 1.0, typical: 0.5)')
+    parser.add_argument('--show-rejections', action='store_true',
+                        help='Include recommendations that failed dual-threshold validation')
+
     args = parser.parse_args()
-    
+
     if args.health:
         print(json.dumps(health_check(), indent=2))
         sys.exit(0)
-    
+
     if not args.prompt:
         print(json.dumps([]))
         sys.exit(0)
-    
+
     results = analyze_request(args.prompt)
-    
+
     # Apply threshold filtering if specified
     if args.threshold > 0:
         results = [r for r in results if r['confidence'] >= args.threshold]
-    
+
+    # Apply uncertainty threshold filtering
+    if args.uncertainty < 1.0:
+        results = [r for r in results if r['uncertainty'] <= args.uncertainty]
+
+    # Filter out rejections unless --show-rejections is set
+    if not args.show_rejections:
+        results = [r for r in results if r.get('passes_threshold', True)]
+
     print(json.dumps(results, indent=2))

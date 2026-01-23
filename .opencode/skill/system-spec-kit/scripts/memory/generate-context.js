@@ -42,6 +42,35 @@ Examples:
 Output:
   Creates a memory file in <spec-folder>/memory/ with ANCHOR format
   for indexing by the Spec Kit Memory system.
+
+JSON Data Format (with preflight/postflight support):
+  {
+    "user_prompts": [...],
+    "observations": [...],
+    "recent_context": [...],
+    "preflight": {
+      "knowledgeScore": 40,           // 0-100: Initial knowledge level
+      "uncertaintyScore": 60,         // 0-100: Initial uncertainty level
+      "contextScore": 50,             // 0-100: Initial context quality
+      "timestamp": "ISO-8601",        // Session start timestamp
+      "gaps": ["gap1", "gap2"],       // Initial knowledge gaps
+      "confidence": 45,               // Overall confidence %
+      "readiness": "Needs research"   // Readiness assessment
+    },
+    "postflight": {
+      "knowledgeScore": 75,           // Final knowledge level
+      "uncertaintyScore": 25,         // Final uncertainty level
+      "contextScore": 80,             // Final context quality
+      "gapsClosed": ["gap1"],         // Gaps resolved during session
+      "newGaps": ["new-gap"]          // New gaps discovered
+    }
+  }
+
+  Learning Delta Calculation:
+  - Knowledge Delta = postflight.knowledgeScore - preflight.knowledgeScore
+  - Uncertainty Reduction = preflight.uncertaintyScore - postflight.uncertaintyScore
+  - Context Delta = postflight.contextScore - preflight.contextScore
+  - Learning Index = (Know × 0.4) + (Uncert × 0.35) + (Context × 0.25)
 `;
 
 if (process.argv.includes('--help') || process.argv.includes('-h')) {

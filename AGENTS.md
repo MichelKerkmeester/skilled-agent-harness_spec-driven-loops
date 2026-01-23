@@ -49,7 +49,7 @@
 | **File modification**    | Gate 1 (spec folder) → Gate 2 → Gate 3 → Load memory context → Execute                                                                     |
 | **Research/exploration** | `memory_match_triggers()` → `memory_search()` → Document findings                                                                          |
 | **Code search**          | `narsil.narsil_neural_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text   |
-| **Resume prior work**    | Load memory files from spec folder → Review checklist → Continue                                                                           |
+| **Resume prior work**    | `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue                                     |
 | **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
 | **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                                |
 | **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                                   |
@@ -93,8 +93,16 @@
 │ Trigger: EACH new user message (re-evaluate even in ongoing conversations)  │
 │ Action:  2a. Call memory_match_triggers(prompt) → Surface relevant context  │
 │          2b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
-│          2c. Parse request → Check confidence (see §4)                       │
-│          2d. If <40%: ASK | 40-79%: PROCEED WITH CAUTION | ≥80%: PASS       │
+│          2c. Parse request → Check confidence AND uncertainty (see §4)       │
+│          2d. DUAL-THRESHOLD VALIDATION (see below)                          │
+│                                                                             │
+│ READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)                   │
+│   - BOTH pass → PROCEED                                                     │
+│   - Either fails → INVESTIGATE (max 3 iterations)                           │
+│   - 3 failures → ESCALATE to user with options                              │
+│                                                                             │
+│ Legacy thresholds (confidence-only, still valid for simple queries):         │
+│   If <40%: ASK | 40-79%: PROCEED WITH CAUTION | ≥80%: PASS                  │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -222,7 +230,7 @@ Run /spec_kit:handover to save handover context, then in new session:
 If you catch yourself about to skip the gates:
 1. **STOP** immediately
 2. **State**: "Before I proceed, I need to ask about documentation:"
-3. **Ask** the applicable Gate 3 questions
+3. **Ask** the applicable Gate 1 questions
 4. **Wait** for response, then continue
 
 #### 🔄 Consolidated Question Protocol
@@ -245,18 +253,18 @@ File modification planned? → Include Q1 (Spec Folder)
 - Memory Context Loading: "skip context", "fresh start", "skip memory", [skip]
 - Completion Verification: Level 1 tasks (no checklist.md required)
 
-#### ⚡ Compliance Checkpoints
+#### ⚡ Code Quality Standards Compliance
 
-**MANDATORY:**
-- Before **proposing solutions**: Verify approach aligns with project patterns and conventions
-- Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
+**MANDATORY:** Compliance checkpoints:
+- Before **proposing solutions**: Verify approach aligns with project code standards
+- Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement
 - Before **code discovery**: Use mcp-narsil for ALL code intelligence (semantic via neural, structural, security) via Code Mode (MANDATORY)
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
-- **If conflict exists**: Project-specific patterns override general practices
+- **If conflict exists**: Project code standards override general practices
 
-**Violation handling:** If proposed solution contradicts project patterns, STOP and ask for clarification or revise approach.
+**Violation handling:** If proposed solution contradicts code standards, STOP and ask for clarification or revise approach.
 
 #### ⚡ Common Failure Patterns
 
@@ -270,7 +278,7 @@ File modification planned? → Include Q1 (Spec Folder)
 | 6   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                               |
 | 7   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                      |
 | 8   | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
-| 9   | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                  |
+| 9   | Completion     | No Verification              | "works", "done"                              | Verify first                                          |
 | 10  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
 | 11  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Narsil for meaning + structure, Grep for text         |
 | 12  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
@@ -298,7 +306,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 > **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
 
-**Rules:** 
+**Rules:**
 - When in doubt → higher level
 - LOC is soft guidance (risk/complexity can override)
 - Single typo/whitespace fixes (<5 characters in one file) are exempt from spec folder requirements
@@ -419,6 +427,20 @@ FORENSIC CONTEXT (Evidence Levels):
    - Obviously correct approach > clever tricks
    - Scope discipline: Solve ONLY stated problem, no gold-plating
 
+### Five Checks Framework (>100 LOC or architectural)
+
+**For substantial changes (>100 LOC or architectural decisions), validate against these five checks:**
+
+| #   | Check                    | Question                 | Pass Criteria                              |
+| --- | ------------------------ | ------------------------ | ------------------------------------------ |
+| 1   | **Necessary?**           | Solving ACTUAL need NOW? | Clear requirement exists, not speculative  |
+| 2   | **Beyond Local Maxima?** | Explored alternatives?   | ≥2 alternatives considered with trade-offs |
+| 3   | **Sufficient?**          | Simplest approach?       | No simpler solution achieves the goal      |
+| 4   | **Fits Goal?**           | On critical path?        | Directly advances stated objective         |
+| 5   | **Open Horizons?**       | Long-term aligned?       | Doesn't create technical debt or lock-in   |
+
+**Usage:** Required for Level 3/3+ spec folders. Optional for Level 2. Record in decision-record.md for architectural changes.
+
 #### Phases 5-6: Validation Checklist (Before Changes)
 ```markdown
 PRE-CHANGE VALIDATION:
@@ -453,6 +475,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 | `@review`      | `.opencode/agent/review.md`      | Code review, PRs, quality gates (READ-ONLY)      |
 | `@speckit`     | `.opencode/agent/speckit.md`     | Spec folder creation Level 1-3+                  |
 | `@debug`       | `.opencode/agent/debug.md`       | Fresh perspective debugging, root cause analysis |
+| `@handover`    | `.opencode/agent/handover.md`    | Session continuation, context preservation       |
 
 **Agent Selection Quick Reference:**
 - **Code changes needed** → `@general`
@@ -462,6 +485,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 - **Debugging (3+ failed attempts)** → `@debug`
 - **Documentation creation** → `@write`
 - **Multi-agent orchestration** → `@orchestrate`
+- **Session handover** → `@handover`
 
 ---
 
@@ -469,10 +493,10 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 
 ### Two "Semantic" Systems (DO NOT CONFUSE)
 
-| System              | MCP Name             | Database Location                                               | Purpose                               |
-| ------------------- | -------------------- | --------------------------------------------------------------- | ------------------------------------- |
-| **Narsil**          | `narsil` (Code Mode) | Managed by Narsil (--persist flag)                              | **Code** semantic + structural search |
-| **Spec Kit Memory** | `spec_kit_memory`    | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
+| System              | MCP Name             | Database Location                                                          | Purpose                               |
+| ------------------- | -------------------- | -------------------------------------------------------------------------- | ------------------------------------- |
+| **Narsil**          | `narsil` (Code Mode) | Managed by Narsil (--persist flag)                                         | **Code** semantic + structural search |
+| **Spec Kit Memory** | `spec_kit_memory`    | `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | **Conversation** context preservation |
 
 **Common Confusion Points:**
 - Both use vector embeddings for semantic search
@@ -481,7 +505,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 
 **When cleaning/resetting databases:**
 - Code search issues → Use `narsil.narsil_reindex()` or restart MCP
-- Memory issues → Delete `.opencode/skill/system-spec-kit/database/context-index.sqlite`
+- Memory issues → Delete `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`
 - **IMPORTANT**: After deletion, restart OpenCode to clear the MCP server's in-memory cache
 
 ### Code Search Tools (COMPLEMENTARY - NOT COMPETING)
@@ -511,10 +535,10 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
    - Sequential Thinking, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - Webflow, Figma, Github, ClickUp, Chrome DevTools, Narsil, etc.
-   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`, `narsil.narsil_find_symbols({})`)
+   - External services (Figma, Github, ClickUp, Chrome DevTools, Narsil, etc.)
+   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `narsil.narsil_find_symbols({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
-  
+
 ---
 
 ## 8. 🧩 SKILLS SYSTEM
@@ -524,7 +548,7 @@ Skills are specialized, on-demand capabilities that provide domain expertise. Un
 ### How Skills Work
 
 ```
-Task Received → Gate 2: Run skill_advisor.py
+Task Received → Gate 3: Run skill_advisor.py
                     ↓
     Confidence > 0.8 → MUST invoke recommended skill
                     ↓
@@ -541,15 +565,15 @@ Task Received → Gate 2: Run skill_advisor.py
 
 ### Skill Loading Protocol
 
-1. Gate 2 provides skill recommendation via `skill_advisor.py`
+1. Gate 3 provides skill recommendation via `skill_advisor.py`
 2. Invoke using appropriate method for your environment
 3. Read bundled resources from `references/`, `scripts/`, `assets/` paths
 4. Follow skill instructions to completion
 5. Do NOT re-invoke a skill already in context
 
-### Skill Routing (Gate 2)
+### Skill Routing (Gate 3)
 
-Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you MUST invoke the recommended skill.
+Gate 3 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you MUST invoke the recommended skill.
 
 **How to use skills:**
 - OpenCode v1.0.190+ auto-discovers skills from `.opencode/skill/*/SKILL.md` frontmatter
@@ -562,33 +586,7 @@ Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you
 - Each skill invocation is stateless
 - Skills are auto-indexed from SKILL.md frontmatter - no manual list maintenance required
 
-### Primary Skill: workflows-code
-
-For ALL code implementation, `workflows-code` is the primary orchestrator skill.
-
-**3-Phase Lifecycle (MANDATORY):**
-1. **Phase 1 - Implementation**: Write code following Webflow patterns, async handling, validation
-2. **Phase 1.5 - Code Quality Gate**: Validate against style standards (P0 items MUST pass)
-3. **Phase 2 - Debugging**: Fix issues systematically using DevTools, trace root cause
-4. **Phase 3 - Verification**: Browser testing at multiple viewports (MANDATORY before "done")
-
-**The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
-
-**Auto-Detection Flow:**
-```
-Task Received → Detect keywords → Route to phase → Load resources
-```
-
-**Patterns Location:** `.opencode/skill/workflows-code/references/`
-- `implementation/` → Async patterns, animation, CSS, Webflow, security, observers
-- `debugging/` → Root cause tracing, error recovery
-- `verification/` → Browser testing requirements
-- `deployment/` → Minification, CDN deployment to R2
-- `standards/` → Code quality, style guide, shared patterns
-
-**Invocation:** Automatic via Gate 2 routing when code tasks detected.
-
-### Skill Maintenance 
+### Skill Maintenance
 
 Skills are located in `.opencode/skill/`.
 

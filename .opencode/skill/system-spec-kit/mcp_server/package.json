@@ -4,12 +4,10 @@
   "description": "Semantic Memory MCP Server - provides 13 tools for semantic search, memory management, validation, checkpoints, and auto-indexing",
   "main": "context-server.js",
   "bin": {
-    "context-server": "./context-server.js",
-    "memory-index": "./scripts/index-cli.js"
+    "context-server": "./context-server.js"
   },
   "scripts": {
     "start": "node context-server.js",
-    "index": "node scripts/index-cli.js",
     "test": "node -e \"require('./context-server.js')\""
   },
   "keywords": [

@@ -7,6 +7,132 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.8.0**] - 2026-01-23
+
+Comprehensive SpecKit intelligence upgrade introducing **dual-threshold validation** (confidence + uncertainty), **Five Checks Framework** for architectural decisions, and major script reorganization. Includes **34 file changes** across AGENTS.md, skill_advisor.py, documentation overhaul, and new reference materials for epistemic reasoning.
+
+---
+
+## Highlights
+
+### ✨ Dual-Threshold Validation
+- **READINESS formula**: `(confidence >= 0.70) AND (uncertainty <= 0.35)`
+- **"Confident Ignorance" detection**: High confidence + high uncertainty triggers investigation
+- **4-factor uncertainty model**: Epistemic gaps (0.30), Model boundaries (0.25), Temporal variability (0.20), Situational completeness (0.25)
+- **skill_advisor.py**: New `calculate_uncertainty()` and `passes_dual_threshold()` functions
+
+### 📋 Five Checks Framework
+- **Architectural validation**: Required for Level 3/3+ specs, recommended for Level 2
+- **5 checks**: Necessary? · Beyond Local Maxima? · Sufficient? · Fits Goal? · Open Horizons?
+- **New reference**: `references/validation/five-checks.md`
+
+### 🏗️ Script Reorganization
+- **decision-tree-generator.js**: `extractors/` → `lib/` (generator, not extractor)
+- **opencode-capture.js**: `lib/` → `extractors/` (captures session data)
+- **Import paths**: Updated in 5 files (decision-extractor, diagram-extractor, data-loader, index.js, test file)
+
+### 📝 Documentation Overhaul
+- **README.md**: Streamlined with -623 lines net reduction
+- **AGENTS.md**: Agent Routing now Section 6, Tool System → 7, Skills System → 8
+- **New references**: `epistemic-vectors.md`, `decision-format.md`, `five-checks.md`
+- **New handler**: `session-learning.js` for cognitive memory
+
+---
+
+### New
+
+**AGENTS.md Framework**
+
+1. **Dual-Threshold Validation (Gate 2)** — Confidence alone is insufficient; now requires BOTH:
+   - Confidence >= 0.70 (how sure about what you know)
+   - Uncertainty <= 0.35 (how much you don't know)
+   - Investigation protocol (max 3 iterations before escalate)
+
+2. **Five Checks Framework** — Architectural validation checklist:
+   - Necessary? (solving actual need)
+   - Beyond Local Maxima? (alternatives explored)
+   - Sufficient? (simplest approach)
+   - Fits Goal? (on critical path)
+   - Open Horizons? (long-term aligned)
+
+3. **Agent Routing Section (Section 6)** — Dedicated section with 9 agents and selection quick reference
+
+**skill_advisor.py**
+
+4. **`calculate_uncertainty()`** — Weighted uncertainty score from 4 factors
+5. **`passes_dual_threshold()`** — Validates both confidence and uncertainty thresholds
+
+**New Reference Files**
+
+6. **`epistemic-vectors.md`** — Uncertainty tracking documentation
+7. **`decision-format.md`** — Decision record formatting
+8. **`five-checks.md`** — Five Checks Framework reference
+
+**New MCP Handler**
+
+9. **`session-learning.js`** — Cognitive memory session learning
+
+---
+
+### Changed
+
+**Script Organization**
+
+1. **decision-tree-generator.js**: Moved `extractors/` → `lib/` (it's a generator utility, not an extractor)
+2. **opencode-capture.js**: Moved `lib/` → `extractors/` (it captures session data)
+3. **Import paths updated** in 5 files to reflect new locations
+
+**AGENTS.md Structure**
+
+4. **Section Renumbering**:
+   - Agent Routing → Section 6 (NEW)
+   - Tool System → Section 7 (was 6)
+   - Skills System → Section 8 (was 7)
+
+5. **Gate 2 Enhancement** — Includes dual-threshold validation with READINESS formula
+
+**Documentation**
+
+6. **README.md**: Major streamlining (-1,623 lines added, +2,248 removed = -625 net)
+7. **MCP Server README**: Reorganized with clearer tool documentation
+8. **Templates**: Enhanced context_template.md, decision-record.md, tasks.md
+
+---
+
+### Fixed
+
+1. **Gate Numbering** — Consistent sequential numbering throughout documentation
+2. **gate-enforcement.md line 199** — "Gate 3" → "Gate 1" for Memory Context Loading
+3. **SKILL.md line 855** — "4 files + README" → "5 subdirs + README" for templates/verbose/
+4. **package.json** — Removed reference to non-existent index-cli.js
+5. **scripts-registry.json** — Updated opencode-capture path to extractors/
+
+---
+
+## Files Changed
+
+**Core Files (4)**
+- `AGENTS.md` · `README.md` · `CHANGELOG.md` · `skill_advisor.py`
+
+**System-Spec-Kit (30)**
+- `SKILL.md` · `mcp_server/package.json` · `constitutional/gate-enforcement.md`
+- `scripts/extractors/` (6 files) · `scripts/lib/` (2 files) · `scripts/loaders/` (1 file)
+- `references/` (4 new + 4 modified) · `templates/` (3 files)
+- `mcp_server/handlers/` (2 files) · `mcp_server/README.md`
+
+---
+
+## Upgrade
+
+No action required. Pull latest to get:
+- Dual-threshold validation in skill routing
+- Five Checks Framework for architectural decisions
+- Reorganized scripts with correct import paths
+
+**Full Changelog**: [v1.0.7.2...v1.0.8.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.7.2...v1.0.8.0)
+
+---
+
 ## [**1.0.7.2**] - 2026-01-23
 
 Removes **outdated model version references** from all SpecKit commands and YAML configurations. Model selection now uses generic provider names (Claude, Gemini, Codex) instead of specific versions like GPT-4/o1 or Pro/Ultra.

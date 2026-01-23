@@ -387,7 +387,7 @@
       },
       {
         "name": "opencode-capture",
-        "path": "scripts/lib/opencode-capture.js",
+        "path": "scripts/extractors/opencode-capture.js",
         "description": "OpenCode session capture"
       },
       {

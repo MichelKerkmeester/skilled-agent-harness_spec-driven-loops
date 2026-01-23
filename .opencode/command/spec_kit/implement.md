@@ -237,8 +237,10 @@ If prerequisites are missing, guide user to run `/spec_kit:plan` first.
 | 3    | Analysis               | Verify consistency                                                 | consistency_report        |
 | 4    | Quality Checklist      | Validate checklists (ACTIVELY USED for verification at completion) | checklist_status          |
 | 5    | Implementation Check   | Verify prerequisites                                               | greenlight                |
+| 5.5  | **PREFLIGHT Capture**  | Capture epistemic baseline for learning measurement                | preflight_baseline        |
 | 6    | Development            | Execute implementation                                             | code changes              |
 | 7    | Completion             | Generate summary (MANDATORY for Level 2+)                          | implementation-summary.md |
+| 7.5  | **POSTFLIGHT Capture** | Capture learning delta and calculate improvement                   | postflight_delta          |
 | 8    | Save Context           | Preserve conversation                                              | memory/*.md               |
 | 9    | Session Handover Check | Prompt for handover document                                       | handover.md (optional)    |
 
@@ -441,7 +443,155 @@ The `@review` agent routing (Section 8) provides **additional blocking** beyond 
 
 ---
 
-## 10. 🔌 CIRCUIT BREAKER
+## 10. 🚀 PREFLIGHT BASELINE CAPTURE (Step 5.5)
+
+**Purpose:** Capture epistemic baseline for learning measurement before implementation begins.
+
+### When to Execute
+
+- **Execute:** After Step 5 (Implementation Check) passes, before Step 6 (Development) begins
+- **Skip if:** Quick fix (<10 LOC) or continuation of prior session with existing PREFLIGHT
+
+### PREFLIGHT Action Protocol
+
+1. **Assess Knowledge Level (0-100):**
+   - What do I already know about this task?
+   - Which files/code am I already familiar with?
+   - Have I worked on similar implementations before?
+
+2. **Assess Uncertainty Level (0-100):**
+   - What don't I know that I need to know?
+   - Are there architectural unknowns?
+   - Are there external dependencies I'm unsure about?
+
+3. **Assess Context Completeness (0-100):**
+   - Is the spec.md clear and complete?
+   - Do I have all dependencies identified?
+   - Is the plan.md actionable?
+
+### Recording PREFLIGHT
+
+**Option A - MCP Tool (Recommended):**
+```
+Call task_preflight() with:
+- specFolder: [spec-folder-path]
+- taskId: [task-identifier, e.g., "T1" or "implementation"]
+- knowledgeScore: [0-100]
+- uncertaintyScore: [0-100]
+- contextScore: [0-100]
+- knowledgeGaps: [optional list of identified gaps]
+```
+
+**Option B - Implementation Log:**
+If MCP tool unavailable, record in implementation log or scratch/:
+```markdown
+## PREFLIGHT Baseline - [timestamp]
+- Knowledge: [score]/100 - [brief rationale]
+- Uncertainty: [score]/100 - [brief rationale]
+- Context: [score]/100 - [brief rationale]
+```
+
+### Skip Conditions
+
+User can say:
+- `"skip preflight"` → Proceed directly to Step 6
+- `"quick fix"` → Auto-skip if LOC < 10
+- `"continuation"` → Auto-skip if prior session PREFLIGHT exists
+
+---
+
+## 11. 📊 POSTFLIGHT LEARNING DELTA (Step 7.5)
+
+**Purpose:** Capture learning measurement and calculate improvement after implementation completes.
+
+### When to Execute
+
+- **Execute:** After Step 7 (Completion) verification passes, before Step 8 (Save Context)
+- **Skip if:** Quick fix (<10 LOC) or no PREFLIGHT was captured
+
+### POSTFLIGHT Action Protocol
+
+1. **Re-assess Knowledge Level (0-100):**
+   - What did I learn during implementation?
+   - Which files/patterns do I now understand better?
+   - What insights emerged from the work?
+
+2. **Re-assess Uncertainty Level (0-100):**
+   - What uncertainties were resolved?
+   - What new uncertainties emerged?
+   - Are there follow-up questions?
+
+3. **Re-assess Context Completeness (0-100):**
+   - How did my understanding evolve?
+   - Were there gaps in the spec/plan?
+   - What context would help future sessions?
+
+4. **List Learning Artifacts:**
+   - Gaps closed during implementation
+   - New gaps discovered
+   - Patterns learned
+   - Decisions made and rationale
+
+### Recording POSTFLIGHT
+
+**Option A - MCP Tool (Recommended):**
+```
+Call task_postflight() with:
+- specFolder: [spec-folder-path]
+- taskId: [task-identifier, must match preflight]
+- knowledgeScore: [0-100]
+- uncertaintyScore: [0-100]
+- contextScore: [0-100]
+- gapsClosed: [list of resolved uncertainties]
+- newGapsDiscovered: [list of new questions/unknowns]
+```
+
+**Option B - Implementation Log:**
+If MCP tool unavailable, record in implementation log or memory/:
+```markdown
+## POSTFLIGHT Delta - [timestamp]
+- Knowledge: [score]/100 (delta: +/-[change])
+- Uncertainty: [score]/100 (delta: +/-[change])
+- Context: [score]/100 (delta: +/-[change])
+- Gaps Closed: [list]
+- Gaps Discovered: [list]
+```
+
+### Learning Index Calculation
+
+The Learning Index is calculated automatically when both PREFLIGHT and POSTFLIGHT are captured:
+
+```
+Learning Index = (Knowledge Delta × 0.4) + (Uncertainty Reduction × 0.35) + (Context Improvement × 0.25)
+
+Where (all scores on 0-100 scale):
+- Knowledge Delta = POSTFLIGHT.knowledge - PREFLIGHT.knowledge
+- Uncertainty Reduction = PREFLIGHT.uncertainty - POSTFLIGHT.uncertainty (positive = good)
+- Context Improvement = POSTFLIGHT.context - PREFLIGHT.context
+```
+
+**Interpretation (0-100 scale):**
+- **40+**: Significant learning session
+- **15-40**: Moderate learning
+- **5-15**: Incremental learning
+- **<5**: Execution-focused (low learning, not necessarily bad)
+- **Negative**: Knowledge regression detected (may indicate scope expansion)
+
+### Skip Conditions
+
+User can say:
+- `"skip postflight"` → Proceed directly to Step 8
+- `"quick fix"` → Auto-skip if LOC < 10
+
+### Reference Documents
+
+For detailed epistemic measurement theory, see:
+- `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md` - Full epistemic measurement framework
+- `.opencode/skill/system-spec-kit/references/validation/five-checks.md` - Five validation checks including learning measurement
+
+---
+
+## 12. 🔌 CIRCUIT BREAKER
 
 The circuit breaker isolates failing operations to prevent cascading failures.
 
@@ -491,7 +641,7 @@ A workflow can have:
 
 ---
 
-## 11. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 13. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
 - **Requires existing plan** - Won't create spec.md or plan.md
 - **Starts at implementation** - Skips specification and planning phases
@@ -499,7 +649,7 @@ A workflow can have:
 
 ---
 
-## 12. ✅ VALIDATION DURING IMPLEMENTATION
+## 14. ✅ VALIDATION DURING IMPLEMENTATION
 
 Validation runs automatically to catch issues early.
 
@@ -510,7 +660,7 @@ Key rules for implementation phase:
 
 ---
 
-## 13. 🔍 EXAMPLES
+## 15. 🔍 EXAMPLES
 
 **Example 1: Execute Existing Plan (autonomous)**
 ```
@@ -529,7 +679,7 @@ Key rules for implementation phase:
 
 ---
 
-## 14. 🔗 COMMAND CHAIN
+## 16. 🔗 COMMAND CHAIN
 
 This command is part of the SpecKit workflow:
 
@@ -542,7 +692,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 15. 📌 NEXT STEPS
+## 17. 📌 NEXT STEPS
 
 After implementation completes, suggest relevant next steps:
 
