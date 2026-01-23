@@ -508,6 +508,43 @@ Without guardrails, AI assistants:
 **AGENTS.md prevents all of this.**
 
 
+### Specialized Agents (7 Total)
+
+The system includes 7 specialized agents that handle specific tasks. Five are **sub-agents** integrated into commands, two are **enhanced orchestration agents**.
+
+**Sub-Agents** (integrated into commands):
+
+| Agent | Purpose | Integrated With |
+|-------|---------|-----------------|
+| `@research` | Technical investigation with evidence gathering | `/spec_kit:research` |
+| `@speckit` | Spec folder documentation for Level 1-3+ | `/spec_kit:plan` |
+| `@review` | Code review with pattern validation (READ-ONLY) | `/spec_kit:implement` |
+| `@debug` | 4-phase debugging (Observe → Analyze → Hypothesize → Fix) | `/spec_kit:debug` |
+| `@handover` | Session continuation and context preservation | `/spec_kit:handover` |
+
+**Orchestration Agents**:
+
+| Agent | Purpose |
+|-------|---------|
+| `@orchestrate` | Senior orchestration with task decomposition, delegation, quality evaluation |
+| `@write` | Documentation generation and maintenance |
+
+**Model Defaults:** Opus 4.5 for complex analysis, Sonnet for cost-efficient structured tasks.
+
+
+### Enterprise Orchestration Patterns
+
+The `@orchestrate` agent includes enterprise-grade patterns for reliable multi-agent workflows:
+
+| Pattern | Description |
+|---------|-------------|
+| **Circuit Breaker** | Isolates failing agents (3 failures → OPEN state, 60s timeout) |
+| **Saga Compensation** | Reverse-order rollback on multi-task failures |
+| **Quality Gates** | Pre/mid/post execution scoring with 70-point threshold |
+| **Resource Budgeting** | 50K token default, 80% warning, 100% halt |
+| **Conditional Branching** | IF/THEN/ELSE logic with 3-level nesting |
+| **Checkpointing** | Recovery snapshots every 5 tasks or 10 tool calls |
+
 
 #### Confidence & Clarification Framework
 
