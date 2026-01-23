@@ -7,6 +7,52 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.7.2**] - 2026-01-23
+
+Removes **outdated model version references** from all SpecKit commands and YAML configurations. Model selection now uses generic provider names (Claude, Gemini, Codex) instead of specific versions like GPT-4/o1 or Pro/Ultra.
+
+---
+
+### Changed
+
+**User-Facing Model Selection (debug.md)**
+1. **Q2 AI Model options** simplified:
+   - `B) Gemini - Google models (Pro/Ultra)` → `B) Gemini - Google`
+   - `C) Codex - OpenAI models (GPT-4/o1)` → `C) Codex - OpenAI`
+
+**Dispatch Mode Descriptions (All YAML Configs)**
+2. **Mode descriptions** made model-agnostic:
+   - `1 Opus orchestrator + 2 Sonnet parallel workers` → `1 orchestrator + 2 parallel workers`
+   - `1 Opus orchestrator + 3 Sonnet parallel workers` → `1 orchestrator + 3 parallel workers`
+
+**Internal Documentation (Command .md Files)**
+3. **Agent routing tables** simplified — removed Model column, added note about automatic selection
+4. **Parallel dispatch notes** — removed specific model tier references
+
+---
+
+### Files Changed
+
+**Commands (4)**
+- `debug.md` · `complete.md` · `plan.md` · `handover.md`
+
+**YAML Configs (10)**
+- `spec_kit_debug_auto.yaml` · `spec_kit_debug_confirm.yaml`
+- `spec_kit_complete_auto.yaml` · `spec_kit_complete_confirm.yaml`
+- `spec_kit_plan_auto.yaml` · `spec_kit_plan_confirm.yaml`
+- `spec_kit_implement_auto.yaml` · `spec_kit_implement_confirm.yaml`
+- `spec_kit_research_auto.yaml` · `spec_kit_research_confirm.yaml`
+
+---
+
+### Upgrade
+
+No action required. Pull latest to get model-agnostic naming.
+
+**Full Changelog**: [v1.0.7.1...v1.0.7.2](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.7.1...v1.0.7.2)
+
+---
+
 ## [**1.0.7.1**] - 2026-01-23
 
 Adds **user-selectable multi-agent dispatch** to all 5 spec_kit work-execution commands, enabling 1 Opus orchestrator + 2-3 Sonnet parallel workers. Includes Coordinator/Worker mode instructions in agent files and `multi_agent_config` sections in **12 YAML configs**.
