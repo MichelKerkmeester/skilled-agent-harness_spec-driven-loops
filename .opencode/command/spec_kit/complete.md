@@ -93,7 +93,7 @@ EXECUTE AFTER PHASE 1 PASSES:
 
 ---
 
-## 🔀 PHASE 2.5: OPTIONAL RESEARCH PHASE (Conditional)
+## 🔀 PHASE 3: OPTIONAL RESEARCH PHASE (Conditional)
 
 **STATUS: ☐ SKIP / ☐ TRIGGERED**
 
@@ -150,7 +150,7 @@ EXECUTE AFTER PHASE 2 PASSES:
 │   │                                                                │
 │   │ Current workflow progress:                                      │
 │   │ ✅ Phase 1-2: Input + Setup complete                           │
-│   │ ✅ Phase 2.5: Research complete                                │
+│   │ ✅ Phase 3: Research complete                                  │
 │   │ ☐ Steps 1-14: Main workflow pending                             │
 │   │                                                                │
 │   │ Continue to Step 1 (Request Analysis)? [Y/n/review]            │
@@ -174,18 +174,60 @@ EXECUTE AFTER PHASE 2 PASSES:
 ⛔ DO NOT skip checkpoint prompt after research completes
 ```
 
-**Phase 2.5 Output:** `research_triggered = [yes/no]` | `research_findings = ________________`
+**Phase 3 Output:** `research_triggered = [yes/no]` | `research_findings = ________________`
 
 ---
 
-## 🔒 PHASE 3: MEMORY CONTEXT LOADING (Conditional)
+## 🔒 PHASE 4: DISPATCH MODE SELECTION
+
+**STATUS: ☐ BLOCKED**
+
+```
+EXECUTE AFTER PHASE 3 PASSES OR SKIPS:
+
+1. DISPLAY dispatch mode options:
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Dispatch Mode** (required):                                  │
+   │                                                                │
+   │ A) Single Agent - Execute with one Opus agent (default)        │
+   │ B) Multi-Agent (1+2) - 1 Opus orchestrator + 2 Sonnet workers  │
+   │ C) Multi-Agent (1+3) - 1 Opus orchestrator + 3 Sonnet workers  │
+   │                                                                │
+   │ Reply with A, B, or C                                          │
+   └────────────────────────────────────────────────────────────────┘
+
+2. WAIT for user response (DO NOT PROCEED)
+
+3. Parse response and store:
+   ├─ "A" or "single" → dispatch_mode = "single"
+   ├─ "B" or "1+2" → dispatch_mode = "multi_small"
+   ├─ "C" or "1+3" → dispatch_mode = "multi_large"
+   └─ Invalid → Re-prompt with options
+
+4. IF dispatch_mode == "multi_small" or "multi_large":
+   ├─ Acknowledge: "Multi-agent mode selected. Workers will be dispatched for parallel exploration."
+   └─ Note: Orchestrator (Opus) coordinates, Workers (Sonnet) execute focused domains
+
+5. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to select dispatch mode before continuing.
+
+⛔ HARD STOP: DO NOT proceed until dispatch mode is selected
+```
+
+**Phase 4 Output:** `dispatch_mode = [single/multi_small/multi_large]`
+
+---
+
+## 🔒 PHASE 5: MEMORY CONTEXT LOADING (Conditional)
 
 **STATUS: ☐ BLOCKED / ☐ N/A**
 
 > **Memory Context Loading:** This phase implements AGENTS.md Section 2 "Memory Context Loading". Uses A/B/C/D selection format as shown below.
 
 ```
-EXECUTE AFTER PHASE 2.5 PASSES OR SKIPS:
+EXECUTE AFTER PHASE 4 PASSES:
 
 CHECK spec_choice value from Phase 2:
 
@@ -224,7 +266,7 @@ CHECK spec_choice value from Phase 2:
 ⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
 ```
 
-**Phase 3 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
+**Phase 5 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
 
 ---
 
@@ -236,8 +278,9 @@ CHECK spec_choice value from Phase 2:
 | -------------------------- | ------------------ | ----------- | --------------------------------------------- |
 | PHASE 1: INPUT             | ✅ PASSED           | ______      | feature_description: ______                   |
 | PHASE 2: SETUP (Spec+Mode) | ✅ PASSED           | ______      | spec_choice: ___ / spec_path: ___ / mode: ___ |
-| PHASE 2.5: RESEARCH        | ✅ PASSED or ⏭️ SKIP | ______      | research_triggered: ______                    |
-| PHASE 3: MEMORY            | ✅ PASSED or ⏭️ N/A  | ______      | memory_loaded: ______                         |
+| PHASE 3: RESEARCH          | ✅ PASSED or ⏭️ SKIP | ______      | research_triggered: ______                    |
+| PHASE 4: DISPATCH MODE     | ✅ PASSED           | ______      | dispatch_mode: ______                         |
+| PHASE 5: MEMORY            | ✅ PASSED or ⏭️ N/A  | ______      | memory_loaded: ______                         |
 
 ```
 VERIFICATION CHECK:
@@ -257,7 +300,9 @@ VERIFICATION CHECK:
 - Proceeded without asking user for feature description (Phase 1)
 - Asked spec folder and execution mode as SEPARATE questions instead of consolidated (Phase 2)
 - Auto-created or assumed a spec folder without A/B/C/D choice (Phase 2)
-- Skipped memory prompt when using existing folder with memory files (Phase 3)
+- Skipped dispatch mode selection (Phase 4)
+- Assumed single-agent mode without explicit user choice (Phase 4)
+- Skipped memory prompt when using existing folder with memory files (Phase 5)
 - Inferred feature from context instead of explicit user input
 - Auto-selected execution mode without suffix or explicit user choice
 
@@ -330,15 +375,15 @@ FOR CONFIDENCE VIOLATIONS:
 
 ## PHASE A: PLANNING (Steps 1-7)
 
-| STEP | NAME              | STATUS | REQUIRED OUTPUT                            | VERIFICATION                          |
-| ---- | ----------------- | ------ | ------------------------------------------ | ------------------------------------- |
-| 1    | Request Analysis  | ☐      | requirement_summary                        | Scope defined                         |
-| 2    | Pre-Work Review   | ☐      | coding_standards_summary                   | AGENTS.md reviewed                    |
-| 3    | Specification     | ☐      | `spec.md` created                          | File exists, no [NEEDS CLARIFICATION] |
-| 4    | Clarification     | ☐      | updated `spec.md`                          | Ambiguities resolved                  |
-| 5    | Quality Checklist | ☐      | `checklist.md` (Level 2+)                  | Checklist items defined               |
-| 6    | Planning          | ☐      | `plan.md` (+ research.md if Phase 2.5 ran) | Technical approach documented         |
-| 7    | Task Breakdown    | ☐      | `tasks.md` created                         | All tasks listed with IDs             |
+| STEP | NAME              | STATUS | REQUIRED OUTPUT                          | VERIFICATION                          |
+| ---- | ----------------- | ------ | ---------------------------------------- | ------------------------------------- |
+| 1    | Request Analysis  | ☐      | requirement_summary                      | Scope defined                         |
+| 2    | Pre-Work Review   | ☐      | coding_standards_summary                 | AGENTS.md reviewed                    |
+| 3    | Specification     | ☐      | `spec.md` created                        | File exists, no [NEEDS CLARIFICATION] |
+| 4    | Clarification     | ☐      | updated `spec.md`                        | Ambiguities resolved                  |
+| 5    | Quality Checklist | ☐      | `checklist.md` (Level 2+)                | Checklist items defined               |
+| 6    | Planning          | ☐      | `plan.md` (+ research.md if Phase 3 ran) | Technical approach documented         |
+| 7    | Task Breakdown    | ☐      | `tasks.md` created                       | All tasks listed with IDs             |
 
 ---
 
@@ -747,29 +792,29 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 This command routes to multiple specialized agents at different steps:
 
-| Step/Phase | Agent | Model | Fallback | Purpose |
-|------------|-------|-------|----------|---------|
-| Phase 2.5 (Research) | `@research` | sonnet | `general` | 9-step research workflow (if triggered) |
-| Step 3 (Specification) | `@speckit` | **sonnet** | `general` | Template-first spec folder creation |
-| Step 11 (Verification) | `@review` | sonnet | `general` | P0/P1 checklist verification (blocking) |
+| Step/Phase             | Agent       | Model      | Fallback  | Purpose                                 |
+| ---------------------- | ----------- | ---------- | --------- | --------------------------------------- |
+| Phase 3 (Research)     | `@research` | sonnet     | `general` | 9-step research workflow (if triggered) |
+| Step 3 (Specification) | `@speckit`  | **sonnet** | `general` | Template-first spec folder creation     |
+| Step 11 (Verification) | `@review`   | sonnet     | `general` | P0/P1 checklist verification (blocking) |
 
 ### Model Preferences
 
-| Agent | Default Model | Use Opus When |
-|-------|---------------|---------------|
-| `@speckit` | **Sonnet** | User explicitly requests ("use opus") |
-| `@research` | Sonnet | Complex multi-system architecture |
-| `@review` | Sonnet | Level 3+ governance review |
+| Agent       | Default Model | Use Opus When                         |
+| ----------- | ------------- | ------------------------------------- |
+| `@speckit`  | **Sonnet**    | User explicitly requests ("use opus") |
+| `@research` | Sonnet        | Complex multi-system architecture     |
+| `@review`   | Sonnet        | Level 3+ governance review            |
 
 ### How Multi-Agent Routing Works
 
-1. **Phase 2.5 (Optional Research)**: When `:with-research` flag is present OR confidence < 60%, dispatches to `@research` agent for comprehensive technical investigation
+1. **Phase 3 (Optional Research)**: When `:with-research` flag is present OR confidence < 60%, dispatches to `@research` agent for comprehensive technical investigation
 2. **Step 3 (Specification)**: Dispatches to `@speckit` agent with `model: sonnet` for template-first spec creation
 3. **Step 11 (Checklist Verification)**: Dispatches to `@review` agent with `blocking: true` - P0 failures halt workflow
 
 ### Agent Dispatch Templates
 
-**Research Agent** (Phase 2.5):
+**Research Agent** (Phase 3):
 ```
 Task tool with prompt:
 ---
@@ -835,11 +880,11 @@ Quality gates ensure workflow integrity by validating state at critical transiti
 
 ### Gate Configuration
 
-| Gate | Location | Purpose | Threshold | Blocking |
-|------|----------|---------|-----------|----------|
-| **Pre-execution** | Before Step 1 | Validate inputs and prerequisites | Score ≥ 60 | Soft |
-| **Planning Gate** | Between Step 7 and Step 8 | Verify planning artifacts complete | Score ≥ 70 | **HARD** |
-| **Post-execution** | After Step 12 | Verify all deliverables exist | Score ≥ 70 | Hard |
+| Gate               | Location                  | Purpose                            | Threshold  | Blocking |
+| ------------------ | ------------------------- | ---------------------------------- | ---------- | -------- |
+| **Pre-execution**  | Before Step 1             | Validate inputs and prerequisites  | Score ≥ 60 | Soft     |
+| **Planning Gate**  | Between Step 7 and Step 8 | Verify planning artifacts complete | Score ≥ 70 | **HARD** |
+| **Post-execution** | After Step 12             | Verify all deliverables exist      | Score ≥ 70 | Hard     |
 
 ### Planning Gate (CRITICAL)
 
@@ -852,13 +897,13 @@ The Planning Gate separates **Phase A (Planning)** from **Phase B (Implementatio
 │ MUST PASS before proceeding to Step 8:                                      │
 │                                                                             │
 │ □ spec.md exists and has NO [NEEDS CLARIFICATION] markers                   │
-│ □ plan.md exists with technical approach defined                            │
+│ □ plan.md exists with technical approach defined                             │
 │ □ tasks.md exists with all tasks listed (T### format)                       │
-│ □ All P0 checklist items verified (Level 2+)                                │
+│ □ All P0 checklist items verified (Level 2+)                                 │
 │ □ @review agent approval obtained (if blocking: true)                       │
 │                                                                             │
 │ IF any check fails:                                                         │
-│   → STOP workflow                                                           │
+│   → STOP workflow                                                            │
 │   → Return to appropriate step (3, 5, 6, or 7)                              │
 │   → Complete missing artifacts                                              │
 │   → Re-attempt gate passage                                                 │
@@ -867,7 +912,7 @@ The Planning Gate separates **Phase A (Planning)** from **Phase B (Implementatio
 │   - spec.md complete: 25 points                                             │
 │   - plan.md complete: 25 points                                             │
 │   - tasks.md complete: 25 points                                            │
-│   - checklist verified: 15 points                                           │
+│   - checklist verified: 15 points                                            │
 │   - @review approval: 10 points                                             │
 │   TOTAL: 100 points (threshold: 70)                                         │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -933,20 +978,20 @@ Circuit breaker pattern prevents cascading failures when agents fail repeatedly.
 
 ### States
 
-| State | Description | Behavior |
-|-------|-------------|----------|
-| **CLOSED** | Normal operation | Requests pass through to agent |
-| **OPEN** | Agent failing | Requests immediately use fallback |
+| State         | Description      | Behavior                          |
+| ------------- | ---------------- | --------------------------------- |
+| **CLOSED**    | Normal operation | Requests pass through to agent    |
+| **OPEN**      | Agent failing    | Requests immediately use fallback |
 | **HALF-OPEN** | Testing recovery | One request allowed to test agent |
 
 ### Configuration
 
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| `failure_threshold` | 3 | Consecutive failures before OPEN |
-| `recovery_timeout_ms` | 60000 | Time in OPEN before HALF-OPEN |
-| `success_threshold` | 2 | Successes in HALF-OPEN to close |
-| `monitoring_window_ms` | 300000 | Window for failure counting |
+| Parameter              | Value  | Description                      |
+| ---------------------- | ------ | -------------------------------- |
+| `failure_threshold`    | 3      | Consecutive failures before OPEN |
+| `recovery_timeout_ms`  | 60000  | Time in OPEN before HALF-OPEN    |
+| `success_threshold`    | 2      | Successes in HALF-OPEN to close  |
+| `monitoring_window_ms` | 300000 | Window for failure counting      |
 
 ### Per-Agent Circuit Tracking
 

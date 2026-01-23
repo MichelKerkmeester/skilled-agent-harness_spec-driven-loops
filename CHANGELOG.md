@@ -7,6 +7,78 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.7.1**] - 2026-01-23
+
+Adds **user-selectable multi-agent dispatch** to all 5 spec_kit work-execution commands, enabling 1 Opus orchestrator + 2-3 Sonnet parallel workers. Includes Coordinator/Worker mode instructions in agent files and `multi_agent_config` sections in **12 YAML configs**.
+
+---
+
+### New
+
+**Multi-Agent Dispatch (A/B/C Selection)**
+1. **Dispatch Mode Phase** — New mandatory phase added to 5 commands:
+   - `/spec_kit:complete` → Phase 4 (Dispatch Mode Selection)
+   - `/spec_kit:plan` → Phase 3 (Dispatch Mode Selection)
+   - `/spec_kit:implement` → Phase 3 (Dispatch Mode Selection)
+   - `/spec_kit:research` → Phase 3 (Dispatch Mode Selection)
+   - `/spec_kit:debug` → Phase 2 (combined with Model Selection)
+
+2. **Dispatch Options**:
+   - **A) Single Agent** — Execute with one Opus agent (default)
+   - **B) Multi-Agent (1+2)** — 1 Opus orchestrator + 2 Sonnet workers
+   - **C) Multi-Agent (1+3)** — 1 Opus orchestrator + 3 Sonnet workers
+
+**Agent Mode Instructions**
+3. **Coordinator Mode** — Added to `research.md` (Section 9) and `debug.md` (Section 4):
+   - Dispatch workers, receive outputs, validate evidence, synthesize findings
+   - Worker Output Validation checklist
+   - Contradiction Resolution Protocol
+
+4. **Worker Mode** — Added to `research.md` (Section 10) and `debug.md` (Section 5):
+   - Focused domain execution with structured JSON output
+   - Worker roles table with responsibilities
+   - ALWAYS/NEVER rules for worker constraints
+
+---
+
+### Changed
+
+**Command Phase Structure (Sequential Numbering)**
+1. **complete.md**: Phase 2.5 → Phase 3 (Research), new Phase 4 (Dispatch), Phase 3 → Phase 5 (Memory)
+2. **plan.md**: New Phase 3 (Dispatch), Phase 3 → Phase 4 (Memory)
+3. **implement.md**: New Phase 3 (Dispatch), Phase 3 → Phase 4 (Memory)
+4. **research.md**: New Phase 3 (Dispatch), Phase 3 → Phase 4 (Prior Work), Phase 4 → Phase 5 (Memory)
+
+**YAML Configuration**
+5. **12 YAML configs** updated with `multi_agent_config` section:
+   - `spec_kit_research_auto.yaml` · `spec_kit_research_confirm.yaml`
+   - `spec_kit_debug_auto.yaml` · `spec_kit_debug_confirm.yaml`
+   - `spec_kit_complete_auto.yaml` · `spec_kit_complete_confirm.yaml`
+   - `spec_kit_plan_auto.yaml` · `spec_kit_plan_confirm.yaml`
+   - `spec_kit_implement_auto.yaml` · `spec_kit_implement_confirm.yaml`
+
+6. **Worker Definitions per Workflow**:
+   - **Research**: codebase_explorer, external_researcher, technical_analyzer
+   - **Debug**: call_path_tracer, pattern_searcher, edge_case_hunter
+   - **Complete/Plan/Implement**: architecture_explorer, feature_explorer, dependency_explorer
+
+---
+
+### Fixed
+
+1. **Phase Numbering** — All commands now use sequential integers (no 2.5 or 3.5)
+2. **YAML Phase References** — `phase_2_5_research` → `phase_3_research` in complete YAMLs
+
+---
+
+### Upgrade
+
+No action required. Pull latest to get multi-agent dispatch. Commands will now prompt for dispatch mode (A/B/C) before execution.
+
+**Full Changelog**: [v1.0.7.0...v1.0.7.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.7.0...v1.0.7.1)
+
+---
+
 ## [**1.0.7.0**] - 2026-01-23
 
 Comprehensive multi-agent system upgrade introducing **7 specialized agents** with enterprise orchestration patterns. Adds Circuit Breaker isolation, Saga Compensation for rollback, Quality Gates at execution checkpoints, and dedicated agents for review, research, debugging, and session handover.
@@ -15,15 +87,16 @@ Comprehensive multi-agent system upgrade introducing **7 specialized agents** wi
 
 ### New
 
-**Agent System (7 Agents)**
+**5 New Sub-Agents** (integrated into commands):
+- **@research**: Technical investigation with evidence gathering → `/spec_kit:research` (Steps 3-7)
+- **@speckit**: Spec folder documentation for Level 1-3+ → `/spec_kit:plan` (Step 3)
+- **@review**: Code review with pattern validation (READ-ONLY) → `/spec_kit:implement` (Step 11)
+- **@debug**: 4-phase methodology (Observe → Analyze → Hypothesize → Fix) → `/spec_kit:debug`
+- **@handover**: Session continuation specialist (Sonnet default) → `/spec_kit:handover`
 
-1. **@review Agent** — Code review specialist with pattern validation, quality scoring, and standards enforcement (READ-ONLY)
-2. **@research Agent** — Technical investigation with evidence gathering, pattern analysis, and research documentation
-3. **@speckit Agent** — Spec folder documentation specialist for Level 1-3+ with template enforcement (Sonnet default)
-4. **@debug Agent** — 4-phase debugging methodology (Observe → Analyze → Hypothesize → Fix) with structured handoff
-5. **@handover Agent** — Session continuation specialist for context preservation and seamless session branching (Sonnet default)
-6. **@orchestrate Agent** — Senior orchestration with task decomposition, delegation, quality evaluation (enhanced)
-7. **@write Agent** — Documentation generation and maintenance (enhanced)
+**2 Enhanced Agents**:
+- **@orchestrate**: Senior orchestration with task decomposition, delegation, quality evaluation
+- **@write**: Documentation generation and maintenance
 
 **Enterprise Orchestration Patterns**
 

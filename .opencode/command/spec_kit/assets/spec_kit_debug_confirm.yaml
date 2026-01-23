@@ -90,6 +90,131 @@ available_templates:
   universal_debugging: .opencode/skill/system-spec-kit/references/debugging/universal_debugging_methodology.md
 
 # ───────────────────────────────────────────────────────────────────
+# MULTI-AGENT DISPATCH CONFIGURATION
+# ───────────────────────────────────────────────────────────────────
+multi_agent_config:
+  enabled: true
+
+  dispatch_modes:
+    single:
+      id: A
+      label: "Single Agent"
+      description: "Execute with one primary agent (default)"
+      agent_count: 1
+      model: "opus"
+
+    multi_small:
+      id: B
+      label: "Multi-Agent (1+2)"
+      description: "1 Opus orchestrator + 2 Sonnet parallel workers"
+      orchestrator:
+        model: "opus"
+        role: "coordinator"
+        responsibilities:
+          - "Execute OBSERVE phase (read error, categorize, map scope)"
+          - "Synthesize worker hypothesis outputs"
+          - "Execute FIX phase (minimal change, verify)"
+          - "Generate final resolution report"
+      workers:
+        - model: "sonnet"
+          role: "call_path_tracer"
+          focus: "Execution Path Analysis"
+          phase: "ANALYZE"
+          responsibilities:
+            - "Trace call paths to error location"
+            - "Understand data flow through affected code"
+            - "Check for recent changes (git)"
+            - "Map execution sequence"
+        - model: "sonnet"
+          role: "pattern_searcher"
+          focus: "Similar Working Code"
+          phase: "ANALYZE"
+          responsibilities:
+            - "Find similar patterns that work correctly"
+            - "Identify differences between working and broken code"
+            - "Search for related implementations"
+            - "Document reference patterns"
+
+    multi_large:
+      id: C
+      label: "Multi-Agent (1+3)"
+      description: "1 Opus orchestrator + 3 Sonnet parallel workers"
+      orchestrator:
+        model: "opus"
+        role: "coordinator"
+        responsibilities:
+          - "Execute OBSERVE phase (read error, categorize, map scope)"
+          - "Synthesize worker hypothesis outputs"
+          - "Execute FIX phase (minimal change, verify)"
+          - "Generate final resolution report"
+      workers:
+        - model: "sonnet"
+          role: "call_path_tracer"
+          focus: "Execution Path Analysis"
+          phase: "ANALYZE"
+          responsibilities:
+            - "Trace call paths to error location"
+            - "Understand data flow through affected code"
+            - "Check for recent changes (git)"
+            - "Map execution sequence"
+        - model: "sonnet"
+          role: "pattern_searcher"
+          focus: "Similar Working Code"
+          phase: "ANALYZE"
+          responsibilities:
+            - "Find similar patterns that work correctly"
+            - "Identify differences between working and broken code"
+            - "Search for related implementations"
+            - "Document reference patterns"
+        - model: "sonnet"
+          role: "edge_case_hunter"
+          focus: "Boundary Conditions"
+          phase: "HYPOTHESIZE"
+          responsibilities:
+            - "Analyze edge cases and boundary conditions"
+            - "Test hypothesis with extreme inputs"
+            - "Identify race conditions or timing issues"
+            - "Check error handling paths"
+
+  user_prompt:
+    question: "How should agents be dispatched?"
+    header: "Dispatch Mode"
+    options:
+      - id: A
+        label: "Single Agent"
+        description: "One agent handles all phases (default)"
+      - id: B
+        label: "Multi-Agent (1+2)"
+        description: "1 Opus + 2 Sonnet for parallel hypothesis generation"
+      - id: C
+        label: "Multi-Agent (1+3)"
+        description: "1 Opus + 3 Sonnet for comprehensive analysis"
+
+  worker_output_format:
+    structure: json
+    required_fields:
+      - phase
+      - findings
+      - evidence
+      - hypothesis
+      - confidence
+    example: |
+      {
+        "phase": "ANALYZE",
+        "findings": [
+          { "finding": "Call path identified", "evidence": "auth.ts:123 -> user.ts:45" }
+        ],
+        "hypothesis": "Null check missing at auth.ts:125",
+        "confidence": "high"
+      }
+
+  fallback_behavior:
+    worker_timeout_seconds: 60
+    on_worker_timeout: "Continue with available hypotheses"
+    on_all_workers_fail: "Fall back to single-agent mode"
+    on_orchestrator_fail: "Save partial results to scratch/"
+
+# ───────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS (Standard)
 # ───────────────────────────────────────────────────────────────────
 checkpoint_options:

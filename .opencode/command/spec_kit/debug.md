@@ -92,43 +92,60 @@ EXECUTE THIS CHECK FIRST:
 
 ---
 
-## 🔒 PHASE 2: MODEL SELECTION [MANDATORY - ALWAYS ASK]
+## 🔒 PHASE 2: MODEL + DISPATCH SELECTION [MANDATORY - ALWAYS ASK]
 
 **STATUS: ☐ BLOCKED**
 
-⛔ HARD STOP: You MUST ask the user which model to use. DO NOT skip this phase.
+⛔ HARD STOP: You MUST ask the user which model AND dispatch mode to use. DO NOT skip this phase.
 
 ```
 DISPLAY EXACTLY:
 
 ┌────────────────────────────────────────────────────────────────┐
-│ 🤖 Which AI model should handle this debugging task?           │
+│ 🤖 Debug Configuration                                          │
 │                                                                │
-│ A) Claude - Anthropic models                                   │
-│ B) Gemini - Google models (Pro/Ultra)                          │
-│ C) Codex - OpenAI models (GPT-4/o1)                            │
-│ D) Other - Specify a different model                           │
+│ **1. Which AI model?**                                         │
+│    A) Claude - Anthropic models                                │
+│    B) Gemini - Google models (Pro/Ultra)                       │
+│    C) Codex - OpenAI models (GPT-4/o1)                         │
+│    D) Other - Specify a different model                        │
 │                                                                │
-│ Reply with A, B, C, or D (with model name if D)                │
+│ **2. How should agents be dispatched?**                        │
+│    A) Single Agent - One agent (default)                       │
+│    B) Multi-Agent (1+2) - 1 Opus + 2 Sonnet hypothesis gen     │
+│    C) Multi-Agent (1+3) - 1 Opus + 3 Sonnet hypothesis gen     │
+│                                                                │
+│ Reply with two choices, e.g.: "A, A" or "Claude, B"            │
 └────────────────────────────────────────────────────────────────┘
 
 WAIT for user response.
 
 Parse response:
-├─ "A" or "claude" → selected_model = "claude"
-├─ "B" or "gemini" → selected_model = "gemini"
-├─ "C" or "codex" or "gpt" or "openai" → selected_model = "codex"
-├─ "D [model]" → selected_model = [user-specified model]
-└─ Invalid → Re-prompt with options
+├─ First choice → selected_model:
+│   ├─ "A" or "claude" → selected_model = "claude"
+│   ├─ "B" or "gemini" → selected_model = "gemini"
+│   ├─ "C" or "codex" or "gpt" or "openai" → selected_model = "codex"
+│   └─ "D [model]" → selected_model = [user-specified model]
+│
+└─ Second choice → dispatch_mode:
+    ├─ "A" or "single" → dispatch_mode = "single"
+    ├─ "B" or "1+2" → dispatch_mode = "multi_small"
+    └─ "C" or "1+3" → dispatch_mode = "multi_large"
 
 Store: selected_model = ________________
+Store: dispatch_mode = ________________
 
-**STOP HERE** - Wait for user to select a model (A/B/C/D) before continuing.
+IF dispatch_mode == "multi_small" or "multi_large":
+├─ Acknowledge: "Multi-agent mode selected."
+├─ Note: Orchestrator (Opus) handles OBSERVE + FIX phases
+└─ Note: Workers (Sonnet) handle parallel hypothesis generation in ANALYZE phase
 
-⛔ HARD STOP: DO NOT proceed until model is selected
+**STOP HERE** - Wait for user to select model AND dispatch mode before continuing.
+
+⛔ HARD STOP: DO NOT proceed until BOTH selections are made
 ```
 
-**Phase 2 Output:** `selected_model = ___`
+**Phase 2 Output:** `selected_model = ___` | `dispatch_mode = ___`
 
 ---
 
@@ -149,10 +166,10 @@ Store: selected_model = ________________
 
 **Before continuing to the workflow, verify ALL phases:**
 
-| PHASE                    | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                      |
-| ------------------------ | --------------- | ----------- | --------------------------------- |
-| PHASE 1: CONTEXT         | ✅ PASSED        | ______      | spec_path: ______ / error: ______ |
-| PHASE 2: MODEL SELECTION | ✅ PASSED        | ______      | selected_model: ______            |
+| PHASE                     | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                                  |
+| ------------------------- | --------------- | ----------- | --------------------------------------------- |
+| PHASE 1: CONTEXT          | ✅ PASSED        | ______      | spec_path: ______ / error: ______             |
+| PHASE 2: MODEL + DISPATCH | ✅ PASSED        | ______      | selected_model: ______ / dispatch_mode: _____ |
 
 ```
 VERIFICATION CHECK:
@@ -168,8 +185,10 @@ VERIFICATION CHECK:
 **YOU ARE IN VIOLATION IF YOU:**
 - Started reading the workflow section before all phases passed
 - Skipped model selection (Phase 2 is MANDATORY)
+- Skipped dispatch mode selection (Phase 2 is MANDATORY)
+- Assumed single-agent mode without explicit user choice
 - Assumed error context without extracting from conversation
-- Proceeded without asking user about model selection
+- Proceeded without asking user about model AND dispatch mode selection
 - Dispatched sub-agent without creating debug-delegation.md first
 - Did not wait for user response on integration options
 
@@ -357,9 +376,9 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 
 ### Related Templates
 
-| Template            | Path                                                                            |
-| ------------------- | ------------------------------------------------------------------------------- |
-| Debug delegation    | `.opencode/skill/system-spec-kit/templates/debug-delegation.md`                 |
+| Template            | Path                                                                                      |
+| ------------------- | ----------------------------------------------------------------------------------------- |
+| Debug delegation    | `.opencode/skill/system-spec-kit/templates/debug-delegation.md`                           |
 | Universal debugging | `.opencode/skill/system-spec-kit/references/debugging/universal_debugging_methodology.md` |
 
 ### Validation Integration
@@ -435,13 +454,13 @@ The `@debug` agent does NOT have access to conversation history. This is intenti
 
 The debug-delegation.md report MUST include:
 
-| Section | Required | Purpose |
-|---------|----------|---------|
-| Error Description | ✓ | Exact error message, symptoms |
-| Files Involved | ✓ | Affected files with roles |
-| Reproduction Steps | ✓ | How to trigger the error |
-| Prior Attempts | ✓ | What was tried and why it failed |
-| Environment | ○ | Runtime, versions, config |
+| Section            | Required | Purpose                          |
+| ------------------ | -------- | -------------------------------- |
+| Error Description  | ✓        | Exact error message, symptoms    |
+| Files Involved     | ✓        | Affected files with roles        |
+| Reproduction Steps | ✓        | How to trigger the error         |
+| Prior Attempts     | ✓        | What was tried and why it failed |
+| Environment        | ○        | Runtime, versions, config        |
 
 ### Model Hint
 
@@ -501,11 +520,11 @@ The debug command dispatches to the specialized `@debug` agent (`.opencode/agent
 
 ### @debug Agent Response Types
 
-| Response | Meaning | Next Action |
-|----------|---------|-------------|
-| **Success** | Root cause found, fix applied | Verify fix, continue work |
-| **Blocked** | Missing info or access issue | Provide requested info |
-| **Escalation** | 3+ hypotheses failed | Try different model or manual review |
+| Response       | Meaning                       | Next Action                          |
+| -------------- | ----------------------------- | ------------------------------------ |
+| **Success**    | Root cause found, fix applied | Verify fix, continue work            |
+| **Blocked**    | Missing info or access issue  | Provide requested info               |
+| **Escalation** | 3+ hypotheses failed          | Try different model or manual review |
 
 ### Memory Integration
 

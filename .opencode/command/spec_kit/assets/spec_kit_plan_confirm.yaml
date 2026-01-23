@@ -214,6 +214,126 @@ parallel_dispatch_config:
     - step_5_planning  # Has inline_parallel_exploration - 4 agents dispatched directly
 
 # ─────────────────────────────────────────────────────────────────
+# MULTI-AGENT DISPATCH CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+multi_agent_config:
+  enabled: true
+
+  dispatch_modes:
+    single:
+      id: A
+      label: "Single Agent"
+      description: "Execute with one primary agent (default)"
+      agent_count: 1
+      model: "opus"
+
+    multi_small:
+      id: B
+      label: "Multi-Agent (1+2)"
+      description: "1 Opus orchestrator + 2 Sonnet parallel workers"
+      orchestrator:
+        model: "opus"
+        role: "coordinator"
+        responsibilities:
+          - "Coordinate worker dispatch for exploration and analysis"
+          - "Synthesize worker outputs into unified findings"
+          - "Execute specification and planning steps"
+          - "Create final documentation artifacts"
+      workers:
+        - model: "sonnet"
+          role: "architecture_explorer"
+          focus: "Project Structure Analysis"
+          step: 5
+          responsibilities:
+            - "Analyze project structure and entry points"
+            - "Map component connections and dependencies"
+            - "Identify architectural patterns"
+            - "Document infrastructure layout"
+        - model: "sonnet"
+          role: "feature_explorer"
+          focus: "Feature Pattern Analysis"
+          step: 5
+          responsibilities:
+            - "Find similar features in codebase"
+            - "Identify related patterns and implementations"
+            - "Map feature interdependencies"
+            - "Document reusable components"
+
+    multi_large:
+      id: C
+      label: "Multi-Agent (1+3)"
+      description: "1 Opus orchestrator + 3 Sonnet parallel workers"
+      orchestrator:
+        model: "opus"
+        role: "coordinator"
+        responsibilities:
+          - "Coordinate worker dispatch for exploration and analysis"
+          - "Synthesize worker outputs into unified findings"
+          - "Execute specification and planning steps"
+          - "Create final documentation artifacts"
+      workers:
+        - model: "sonnet"
+          role: "architecture_explorer"
+          focus: "Project Structure Analysis"
+          step: 5
+          responsibilities:
+            - "Analyze project structure and entry points"
+            - "Map component connections and dependencies"
+            - "Identify architectural patterns"
+            - "Document infrastructure layout"
+        - model: "sonnet"
+          role: "feature_explorer"
+          focus: "Feature Pattern Analysis"
+          step: 5
+          responsibilities:
+            - "Find similar features in codebase"
+            - "Identify related patterns and implementations"
+            - "Map feature interdependencies"
+            - "Document reusable components"
+        - model: "sonnet"
+          role: "dependency_explorer"
+          focus: "Dependency and Test Analysis"
+          step: 5
+          responsibilities:
+            - "Map imports and module dependencies"
+            - "Identify affected areas by proposed changes"
+            - "Review test patterns and infrastructure"
+            - "Document testing requirements"
+
+  worker_output_format:
+    structure:
+      role: "string - worker role identifier"
+      focus: "string - assigned focus area"
+      findings: "array - key discoveries"
+      evidence: "array - file paths and line references"
+      recommendations: "array - actionable suggestions"
+      confidence: "number - 0-100 confidence score"
+    example: |
+      {
+        "role": "architecture_explorer",
+        "focus": "Project Structure Analysis",
+        "findings": [
+          "Main entry point is src/index.ts",
+          "Component architecture follows Webflow patterns"
+        ],
+        "evidence": [
+          "src/index.ts:1-50 - initialization logic",
+          "src/components/ - component directory"
+        ],
+        "recommendations": [
+          "Follow existing component pattern for new feature",
+          "Add initialization to main entry point"
+        ],
+        "confidence": 85
+      }
+
+  fallback_behavior:
+    on_worker_timeout: "Continue with available outputs, note incomplete analysis"
+    on_all_workers_fail: "Fall back to single-agent mode"
+    on_orchestrator_fail: "Save partial results to scratch/"
+    worker_timeout_seconds: 60
+
+# ─────────────────────────────────────────────────────────────────
 # AGENT ROUTING CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
 agent_routing:

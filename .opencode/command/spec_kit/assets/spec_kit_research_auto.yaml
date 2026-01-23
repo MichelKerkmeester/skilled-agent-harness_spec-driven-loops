@@ -203,6 +203,131 @@ parallel_dispatch_config:
     - step_5_technical_analysis
 
 # ─────────────────────────────────────────────────────────────────
+# MULTI-AGENT DISPATCH CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+multi_agent_config:
+  enabled: true
+
+  dispatch_modes:
+    single:
+      id: A
+      label: "Single Agent"
+      description: "Execute with one primary agent (default)"
+      agent_count: 1
+      model: "opus"
+
+    multi_small:
+      id: B
+      label: "Multi-Agent (1+2)"
+      description: "1 Opus orchestrator + 2 Sonnet parallel workers"
+      orchestrator:
+        model: "opus"
+        role: "coordinator"
+        responsibilities:
+          - "Coordinate worker dispatch"
+          - "Synthesize worker outputs"
+          - "Execute Steps 6-9 (Quality Checklist through Save Context)"
+          - "Create final research.md"
+      workers:
+        - model: "sonnet"
+          role: "codebase_explorer"
+          focus: "Codebase Investigation"
+          step: 3
+          responsibilities:
+            - "Search for related code patterns"
+            - "Analyze existing implementations"
+            - "Document current architecture"
+            - "Map dependencies"
+        - model: "sonnet"
+          role: "external_researcher"
+          focus: "External Research"
+          step: 4
+          responsibilities:
+            - "Search official documentation"
+            - "Review API references"
+            - "Analyze community best practices"
+            - "Compare alternative approaches"
+
+    multi_large:
+      id: C
+      label: "Multi-Agent (1+3)"
+      description: "1 Opus orchestrator + 3 Sonnet parallel workers"
+      orchestrator:
+        model: "opus"
+        role: "coordinator"
+        responsibilities:
+          - "Coordinate worker dispatch"
+          - "Synthesize worker outputs"
+          - "Execute Steps 6-9 (Quality Checklist through Save Context)"
+          - "Create final research.md"
+      workers:
+        - model: "sonnet"
+          role: "codebase_explorer"
+          focus: "Codebase Investigation"
+          step: 3
+          responsibilities:
+            - "Search for related code patterns"
+            - "Analyze existing implementations"
+            - "Document current architecture"
+            - "Map dependencies"
+        - model: "sonnet"
+          role: "external_researcher"
+          focus: "External Research"
+          step: 4
+          responsibilities:
+            - "Search official documentation"
+            - "Review API references"
+            - "Analyze community best practices"
+            - "Compare alternative approaches"
+        - model: "sonnet"
+          role: "technical_analyzer"
+          focus: "Technical Analysis"
+          step: 5
+          responsibilities:
+            - "Evaluate technical feasibility"
+            - "Assess performance implications"
+            - "Analyze security considerations"
+            - "Identify risks and mitigations"
+
+  user_prompt:
+    question: "How would you like to execute this workflow?"
+    header: "Dispatch Mode"
+    options:
+      - id: A
+        label: "Single Agent"
+        description: "Execute with one Opus agent (default)"
+      - id: B
+        label: "Multi-Agent (1+2)"
+        description: "1 Opus orchestrator + 2 Sonnet workers"
+      - id: C
+        label: "Multi-Agent (1+3)"
+        description: "1 Opus orchestrator + 3 Sonnet workers"
+
+  worker_output_format:
+    structure: json
+    required_fields:
+      - step_number
+      - findings
+      - evidence
+      - confidence
+      - recommendations
+    example: |
+      {
+        "step_number": 3,
+        "findings": [
+          { "finding": "Pattern X identified", "evidence": "file.ts:45-67" }
+        ],
+        "confidence": "high",
+        "recommendations": ["Use existing pattern", "Extend with Y"]
+      }
+
+  fallback_behavior:
+    worker_timeout_seconds: 60
+    on_worker_timeout: "Continue with available outputs"
+    on_all_workers_fail: "Fall back to single-agent mode"
+    on_orchestrator_fail: "Save partial results to scratch/"
+
+# ─────────────────────────────────────────────────────────────────
 # AGENT ROUTING CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
 agent_routing:
