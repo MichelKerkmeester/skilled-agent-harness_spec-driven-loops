@@ -1,0 +1,1 @@
+../../.opencode/scripts/SET-UP_GUIDE.md

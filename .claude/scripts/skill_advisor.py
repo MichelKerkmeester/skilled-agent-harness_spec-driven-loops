@@ -1,0 +1,1 @@
+../../.opencode/scripts/skill_advisor.py

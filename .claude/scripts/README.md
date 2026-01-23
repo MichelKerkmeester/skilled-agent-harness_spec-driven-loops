@@ -1,0 +1,1 @@
+../../.opencode/scripts/README.md
