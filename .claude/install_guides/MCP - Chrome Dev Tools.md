@@ -1,0 +1,1 @@
+../../.opencode/install_guides/MCP - Chrome Dev Tools.md

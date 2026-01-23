@@ -1,0 +1,1 @@
+../../.opencode/install_guides/MCP - Sequential Thinking.md

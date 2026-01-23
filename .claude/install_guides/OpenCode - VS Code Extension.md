@@ -1,0 +1,1 @@
+../../.opencode/install_guides/OpenCode - VS Code Extension.md

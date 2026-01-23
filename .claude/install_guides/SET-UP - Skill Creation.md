@@ -1,0 +1,1 @@
+../../.opencode/install_guides/SET-UP - Skill Creation.md
