@@ -85,7 +85,8 @@ A custom MCP server that gives your AI assistant persistent, searchable memory a
 - Multiple embedding providers (Voyage recommended, OpenAI, HF Local)
 - ANCHOR format = 93% token savings
 - <50ms proactive surfacing before you ask
-- Checkpoints = undo button for your index
+- Checkpoints = undo button with embedding preservation
+- Session Learning = quantified knowledge improvement
 
 ---
 
@@ -93,7 +94,7 @@ A custom MCP server that gives your AI assistant persistent, searchable memory a
 
 Originally inspired by [GitHub Spec Kit](https://github.com/github/spec-kit), this system takes the concept far beyond basic templates. Documentation isn't just a suggestion: it's a requirement, enforced by design.
 
-Key enhancements: gate enforcement, slash commands for every workflow, deep memory integration, sub-folder versioning, delegated debugging, and stateless architecture.
+Key enhancements: gate enforcement, slash commands for every workflow, deep memory integration, sub-folder versioning, delegated debugging, stateless architecture, cognitive memory, session learning metrics, and 13 pluggable validation rules.
 
 **Original Spec Kit**
 
@@ -113,7 +114,7 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 - 7 slash commands with `:auto`/`:confirm` modes
 - Memory lives IN spec folders (deep integration)
 - 001/002/003 sub-folder versioning
-- 14 scripts handle the boring work (including compose.sh)
+- 77 scripts handle the boring work (48 JS + 29 shell)
 - AI detects frustration, auto-suggests sub-agent
 - Stateless architecture (no STATE.md)
 - Completeness scoring (0-100%)
@@ -123,9 +124,24 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 These systems aren't just bundled: they're *woven together*:
 
 - Memory files live inside spec folders (`specs/###-feature/memory/`)
-- Gate 5 enforces `generate-context.js` for every save
+- Gate enforcement ensures `generate-context.js` for every save
 - `/spec_kit:resume` auto-loads relevant memories
 - Sub-folder versioning preserves independent memory per version
+
+### Innovations You Won't Find Elsewhere
+
+| Innovation | Impact | Description |
+|------------|--------|-------------|
+| **ANCHOR retrieval** | 93% token savings | Section-level memory extraction, not full files |
+| **Proactive triggers** | <50ms surfacing | Context surfaces BEFORE you ask |
+| **Stateless state** | No stale files | State versioned in memory files, not STATE.md |
+| **Epistemic vectors** | Smarter gates | Dual-threshold: confidence AND uncertainty |
+| **Constitutional tier** | Rules never forgotten | Critical rules always surface, never decay |
+| **Session learning** | Quantified growth | Preflight/postflight tracks actual learning |
+| **Cognitive memory** | Biologically-inspired | HOT/WARM/COLD with spreading activation |
+| **Template composition** | Zero duplication | CORE + ADDENDUM architecture |
+| **Debug delegation** | Model selection | Fresh perspective with full context handoff |
+| **Parallel dispatch** | 5-dimension scoring | Complexity-based agent orchestration |
 
 ### How It All Works Together
 
@@ -288,9 +304,23 @@ specs/042-add-user-authentication/
 **Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
 
 
-### Templates (10 Core + 26 Verbose)
+### Templates (CORE + ADDENDUM v2.0)
 
-The CORE + ADDENDUM v2.0 architecture provides 10 core templates (minimal) plus 26 verbose variants with extended guidance for new users.
+Most documentation systems duplicate content across templates. This system uses a **composition model**: core templates are shared, level-specific addendums extend them.
+
+**How Template Composition Works:**
+```
+Level 1:  [CORE templates only]        → 4 files, ~270 LOC
+Level 2:  [CORE] + [L2-VERIFY]         → 5 files, ~390 LOC
+Level 3:  [CORE] + [L2] + [L3-ARCH]    → 6 files, ~540 LOC
+Level 3+: [CORE] + [all addendums]     → 6 files, ~640 LOC
+```
+
+**Why This Matters:**
+- Update CORE once → all levels inherit changes
+- No content duplication
+- `scripts/templates/compose.sh` automates composition
+- `--verify` mode detects template drift
 
 **Core Templates:**
 - **spec.md**: Feature specification with acceptance criteria
@@ -307,6 +337,33 @@ The CORE + ADDENDUM v2.0 architecture provides 10 core templates (minimal) plus 
 - **context_template.md**: Memory file generation (internal)
 
 **Verbose Variants:** Set `SPECKIT_TEMPLATE_STYLE=verbose` for templates with `[YOUR_VALUE_HERE:]`, `[NEEDS CLARIFICATION:]`, and `[example:]` guidance patterns.
+
+
+### Validation System (13 Pluggable Rules)
+
+Every spec folder runs through automated validation before you can claim "done."
+
+**Rules:**
+| Rule | Severity | What It Checks |
+|------|----------|----------------|
+| FILE_EXISTS | ERROR | Required files present for level |
+| PLACEHOLDER_FILLED | ERROR | No unfilled `[YOUR_VALUE_HERE:]` patterns |
+| SECTIONS_PRESENT | WARNING | Required markdown sections exist |
+| LEVEL_DECLARED | INFO | Level explicitly stated |
+| PRIORITY_TAGS | WARNING | P0/P1/P2 format validated |
+| EVIDENCE_CITED | WARNING | Non-P2 items cite evidence |
+| ANCHORS_VALID | ERROR | Memory file anchor pairs matched |
+| FOLDER_NAMING | ERROR | Follows `###-short-name` convention |
+| FRONTMATTER_VALID | WARNING | YAML frontmatter structured correctly |
+| COMPLEXITY_MATCH | WARNING | Content metrics match declared level |
+| AI_PROTOCOL | WARNING | Level 3/3+ has AI execution protocols |
+| LEVEL_MATCH | ERROR | Level consistent across all files |
+| SECTION_COUNTS | WARNING | Section counts within expected ranges |
+
+**Exit Codes:**
+- `0` = Pass → Proceed with completion
+- `1` = Warnings → Address or document
+- `2` = Errors → Must fix before completion
 
 
 ### Memory Integration
@@ -422,24 +479,93 @@ We chose JWT with refresh tokens because:
 4. Agent loads only relevant anchors (93% token savings)
 
 
-### The 14 MCP Tools
+### Cognitive Memory (Biologically-Inspired)
 
-| Tool                    | Purpose                                |
-| ----------------------- | -------------------------------------- |
-| `memory_search`         | Semantic search with vector similarity |
-| `memory_match_triggers` | Fast keyword matching (<50ms)          |
-| `memory_save`           | Index memory files                     |
-| `memory_list`           | Browse stored memories                 |
-| `memory_stats`          | Database statistics                    |
-| `memory_update`         | Update existing memory                 |
-| `memory_delete`         | Delete by ID or spec folder            |
-| `memory_validate`       | Record validation feedback             |
-| `memory_index_scan`     | Bulk index new files                   |
-| `memory_health`         | Check memory system health status      |
-| `checkpoint_create`     | Snapshot current state                 |
-| `checkpoint_list`       | List available checkpoints             |
-| `checkpoint_restore`    | Restore from checkpoint                |
-| `checkpoint_delete`     | Remove checkpoint                      |
+This isn't basic memory storage. The system implements a biologically-inspired working memory model with attention dynamics:
+
+**HOT/WARM/COLD Tiers:**
+| Tier | Score Range | Content Returned | Max Items |
+|------|-------------|------------------|-----------|
+| **HOT** | >= 0.8 | Full content | 5 |
+| **WARM** | 0.25-0.79 | Summary only | 10 |
+| **COLD** | < 0.25 | Not returned | - |
+
+**Attention Decay:**
+```
+new_score = current_score × (decay_rate ^ turns_elapsed)
+```
+- Constitutional tier: Never decays (always HOT)
+- Normal tier: 0.80 decay per turn
+- Temporary tier: 0.60 decay per turn (fast fade)
+
+**Spreading Activation:**
+When a primary memory is activated, related memories get a 0.35 score boost automatically. Neural-inspired co-activation surfaces context you didn't explicitly ask for but need.
+
+
+### Session Learning Metrics
+
+Track what your AI assistant actually *learned*, not just what it did.
+
+**Preflight/Postflight Workflow:**
+1. `task_preflight()` → Capture baseline: knowledge, uncertainty, context scores
+2. Execute task
+3. `task_postflight()` → Capture result, calculate Learning Index
+
+**Learning Index Formula:**
+```
+LI = (Knowledge Delta × 0.4) + (Uncertainty Reduction × 0.35) + (Context Improvement × 0.25)
+```
+
+**Interpretation:**
+| Learning Index | Meaning |
+|----------------|---------|
+| >= 40 | Significant learning session |
+| >= 15 | Moderate learning |
+| >= 5 | Incremental learning |
+| >= 0 | Execution-focused (minimal learning) |
+| < 0 | Knowledge regression (investigate) |
+
+This enables measuring productivity by *learning*, not just output.
+
+
+### The 17 MCP Tools
+
+**Search & Retrieval (4 tools)**
+| Tool | Purpose |
+|------|---------|
+| `memory_search` | Semantic search with hybrid vector + FTS5 fusion |
+| `memory_match_triggers` | Fast keyword matching (<50ms proactive surfacing) |
+| `memory_list` | Browse stored memories with pagination |
+| `memory_stats` | Database statistics with composite ranking |
+
+**CRUD Operations (5 tools)**
+| Tool | Purpose |
+|------|---------|
+| `memory_save` | Index memory files |
+| `memory_index_scan` | Bulk scan and index workspace |
+| `memory_update` | Update metadata and importance tier |
+| `memory_delete` | Delete by ID or spec folder |
+| `memory_validate` | Record validation feedback |
+
+**Checkpoints (4 tools)**
+| Tool | Purpose |
+|------|---------|
+| `checkpoint_create` | Snapshot current state with embeddings |
+| `checkpoint_list` | List available checkpoints |
+| `checkpoint_restore` | Restore from checkpoint (soft or hard mode) |
+| `checkpoint_delete` | Remove checkpoint |
+
+**Session Learning (3 tools)**
+| Tool | Purpose |
+|------|---------|
+| `task_preflight` | Capture epistemic baseline before task |
+| `task_postflight` | Capture post-task state, calculate Learning Index |
+| `memory_get_learning_history` | Get learning trends and summaries |
+
+**System (1 tool)**
+| Tool | Purpose |
+|------|---------|
+| `memory_health` | Check memory system health status |
 
 > **Note:** Full MCP names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search`).
 
@@ -816,7 +942,7 @@ MCP servers extend your AI with specialized capabilities. This environment inclu
 - **Sequential Thinking**: Structured multi-step reasoning for complex problems
   [Guide](.opencode/install_guides/MCP - Sequential Thinking.md)
 
-- **Spec Kit Memory**: Local vector-based conversation memory (13 MCP tools)
+- **Spec Kit Memory**: Local vector-based conversation memory (17 MCP tools)
   [Guide](.opencode/install_guides/MCP - Spec Kit Memory.md)
 
 - **Code Mode**: External tool orchestration (Figma, GitHub, ClickUp, Chrome DevTools, Narsil, etc.)
