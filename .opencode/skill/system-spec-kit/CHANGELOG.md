@@ -7,6 +7,95 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.0] - 2026-01-23
+
+*Environment version: 1.0.8.0*
+
+Major intelligence upgrade introducing **dual-threshold validation** (confidence + uncertainty), **Five Checks Framework** for architectural decisions, and script reorganization for correct module placement.
+
+---
+
+### New
+
+**Dual-Threshold Validation**
+1. **READINESS formula** — `(confidence >= 0.70) AND (uncertainty <= 0.35)`
+2. **"Confident Ignorance" detection** — High confidence + high uncertainty triggers investigation
+3. **4-factor uncertainty model** — Epistemic gaps (0.30), Model boundaries (0.25), Temporal variability (0.20), Situational completeness (0.25)
+4. **skill_advisor.py** — New `calculate_uncertainty()` and `passes_dual_threshold()` functions
+
+**Five Checks Framework**
+5. **Architectural validation** — Required for Level 3/3+ specs, recommended for Level 2
+6. **5 checks**: Necessary? · Beyond Local Maxima? · Sufficient? · Fits Goal? · Open Horizons?
+7. **New reference** — `references/validation/five-checks.md`
+
+**New Reference Files**
+8. **`epistemic-vectors.md`** — Uncertainty tracking documentation
+9. **`decision-format.md`** — Decision record formatting
+10. **`five-checks.md`** — Five Checks Framework reference
+
+**New MCP Handler**
+11. **`session-learning.js`** — Cognitive memory session learning
+
+---
+
+### Changed
+
+**Script Organization**
+1. **decision-tree-generator.js** — Moved `extractors/` → `lib/` (generator utility, not extractor)
+2. **opencode-capture.js** — Moved `lib/` → `extractors/` (captures session data)
+3. **Import paths updated** — 5 files updated: decision-extractor.js, diagram-extractor.js, data-loader.js, index.js, test file
+
+**Documentation**
+4. **gate-enforcement.md line 199** — "Gate 3" → "Gate 1" for Memory Context Loading
+5. **SKILL.md line 855** — "4 files + README" → "5 subdirs + README" for templates/verbose/
+6. **scripts-registry.json** — Updated opencode-capture path to extractors/
+
+---
+
+### Fixed
+
+1. **package.json** — Removed reference to non-existent index-cli.js
+2. **Import path consistency** — All extractors now import decision-tree-generator from lib/
+
+---
+
+## [2.0.3] - 2026-01-23
+
+*Environment version: 1.0.7.2*
+
+Consolidates all setup questions into a **single prompt** across 7 SpecKit commands and removes outdated model version references.
+
+---
+
+### Changed
+
+1. **Single Consolidated Prompt** — All 7 commands (research, plan, implement, complete, debug, resume, handover) now ask ALL questions in ONE prompt
+2. **Before**: 3-5 separate interactions (spec folder → execution mode → dispatch mode → memory context)
+3. **After**: Single prompt with Q0-Q5, reply with "A, B, A" format
+4. **Model selection** — Simplified to generic provider names (Claude, Gemini, Codex)
+5. **Dispatch mode descriptions** — Made model-agnostic
+
+---
+
+## [2.0.2] - 2026-01-23
+
+*Environment version: 1.0.7.1*
+
+Adds **user-selectable multi-agent dispatch** to 5 spec_kit work-execution commands, enabling orchestrator + parallel worker patterns.
+
+---
+
+### New
+
+1. **Dispatch Mode Phase** — New mandatory phase in 5 commands (complete, plan, implement, research, debug)
+2. **Dispatch Options**:
+   - **A) Single Agent** — Execute with one agent (default)
+   - **B) Multi-Agent (1+2)** — 1 orchestrator + 2 parallel workers
+   - **C) Multi-Agent (1+3)** — 1 orchestrator + 3 parallel workers
+3. **YAML configs** — 12 configs updated with `multi_agent_config` sections
+
+---
+
 ## [2.0.1] - 2026-01-22
 
 *Environment version: 1.0.6.1*

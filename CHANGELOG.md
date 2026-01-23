@@ -135,32 +135,34 @@ No action required. Pull latest to get:
 
 ## [**1.0.7.2**] - 2026-01-23
 
-Removes **outdated model version references** from all SpecKit commands and YAML configurations. Model selection now uses generic provider names (Claude, Gemini, Codex) instead of specific versions like GPT-4/o1 or Pro/Ultra.
+Consolidates **all setup questions into a single prompt** across 7 SpecKit commands, reducing user interactions from 3-5 round-trips to **just 1**. Also removes outdated model version references like **GPT-4/o1** and **Pro/Ultra**.
 
 ---
 
-### Changed
+## Highlights
 
-**User-Facing Model Selection (debug.md)**
-1. **Q2 AI Model options** simplified:
-   - `B) Gemini - Google models (Pro/Ultra)` → `B) Gemini - Google`
-   - `C) Codex - OpenAI models (GPT-4/o1)` → `C) Codex - OpenAI`
+### ✨ Single Consolidated Prompt
+- **All 7 commands** now ask ALL questions in ONE prompt instead of multiple phases
+- **Before**: 3-5 separate interactions (spec folder → execution mode → dispatch mode → memory context)
+- **After**: Single consolidated prompt with Q0-Q5, reply with "A, B, A" format
+- **Commands updated**: research, plan, implement, complete, debug, resume, handover
 
-**Dispatch Mode Descriptions (All YAML Configs)**
-2. **Mode descriptions** made model-agnostic:
-   - `1 Opus orchestrator + 2 Sonnet parallel workers` → `1 orchestrator + 2 parallel workers`
-   - `1 Opus orchestrator + 3 Sonnet parallel workers` → `1 orchestrator + 3 parallel workers`
+### 🔧 User-Facing Model Selection
+- **Q2 AI Model options** in debug.md simplified:
+  - `B) Gemini - Google models (Pro/Ultra)` → `B) Gemini - Google`
+  - `C) Codex - OpenAI models (GPT-4/o1)` → `C) Codex - OpenAI`
 
-**Internal Documentation (Command .md Files)**
-3. **Agent routing tables** simplified — removed Model column, added note about automatic selection
-4. **Parallel dispatch notes** — removed specific model tier references
+### 📋 Dispatch Mode Descriptions
+- **Mode descriptions** made model-agnostic across all YAML configs:
+  - `1 Opus orchestrator + 2 Sonnet parallel workers` → `1 orchestrator + 2 parallel workers`
+  - `1 Opus orchestrator + 3 Sonnet parallel workers` → `1 orchestrator + 3 parallel workers`
 
 ---
 
 ### Files Changed
 
-**Commands (4)**
-- `debug.md` · `complete.md` · `plan.md` · `handover.md`
+**Commands (7)**
+- `research.md` · `plan.md` · `implement.md` · `complete.md` · `debug.md` · `resume.md` · `handover.md`
 
 **YAML Configs (10)**
 - `spec_kit_debug_auto.yaml` · `spec_kit_debug_confirm.yaml`
@@ -173,7 +175,7 @@ Removes **outdated model version references** from all SpecKit commands and YAML
 
 ### Upgrade
 
-No action required. Pull latest to get model-agnostic naming.
+No action required. Pull latest to get consolidated prompts and model-agnostic naming.
 
 **Full Changelog**: [v1.0.7.1...v1.0.7.2](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.7.1...v1.0.7.2)
 
