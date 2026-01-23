@@ -133,11 +133,11 @@ The `memory_match_triggers()` tool includes cognitive features for smarter conte
 
 ### Reference Sub-folders
 
-| Sub-folder    | Purpose                         | Files                                                               |
-| ------------- | ------------------------------- | ------------------------------------------------------------------- |
-| `memory/`     | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md               |
-| `templates/`  | Template system, level specs    | level_specifications.md, template_guide.md, template_style_guide.md |
-| `validation/` | Validation rules, checklists    | validation_rules.md, phase_checklists.md, path_scoped_rules.md      |
+| Sub-folder    | Purpose                         | Files                                                                            |
+| ------------- | ------------------------------- | -------------------------------------------------------------------------------- |
+| `memory/`     | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md, epistemic-vectors.md      |
+| `templates/`  | Template system, level specs    | level_specifications.md, template_guide.md, template_style_guide.md, decision-format.md |
+| `validation/` | Validation rules, checklists    | validation_rules.md, phase_checklists.md, path_scoped_rules.md, five-checks.md   |
 | `structure/`  | Folder organization, routing    | folder_structure.md, folder_routing.md, sub_folder_versioning.md    |
 | `workflows/`  | Usage workflows, examples       | quick_reference.md, execution_methods.md, worked_examples.md        |
 | `debugging/`  | Troubleshooting, debugging      | troubleshooting.md, universal_debugging_methodology.md              |
@@ -204,12 +204,15 @@ Runtime configuration for the memory system:
 | `memory/`     | `memory_system.md`                   | MCP tool behavior and config     | Memory operations          |
 | `memory/`     | `save_workflow.md`                   | Memory save workflow docs        | Context preservation       |
 | `memory/`     | `trigger_config.md`                  | Trigger phrase configuration     | Setup                      |
+| `memory/`     | `epistemic-vectors.md`               | Uncertainty tracking framework   | Gate decisions, planning   |
 | `templates/`  | `level_specifications.md`            | Complete Level 1-3 requirements  | Planning                   |
 | `templates/`  | `template_guide.md`                  | Template selection and usage     | Planning, Implementation   |
 | `templates/`  | `template_style_guide.md`            | Template formatting conventions  | Documentation              |
+| `templates/`  | `decision-format.md`                 | Structured gate decision format  | Gate decisions, logging    |
 | `validation/` | `validation_rules.md`                | All validation rules and fixes   | Implementation, Completion |
 | `validation/` | `phase_checklists.md`                | Per-phase validation             | Completion                 |
 | `validation/` | `path_scoped_rules.md`               | Path-scoped validation           | Advanced                   |
+| `validation/` | `five-checks.md`                     | Five Checks evaluation framework | Planning, decisions        |
 | `structure/`  | `folder_structure.md`                | Folder naming conventions        | Planning                   |
 | `structure/`  | `folder_routing.md`                  | Folder routing logic             | Planning                   |
 | `structure/`  | `sub_folder_versioning.md`           | Sub-folder workflow              | Reusing spec folders       |
@@ -849,7 +852,7 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 | Resource          | Location                                                             | Purpose                           |
 | ----------------- | -------------------------------------------------------------------- | --------------------------------- |
 | Core templates    | `templates/core/` (4 files)                                          | Foundation shared by all levels   |
-| Verbose templates | `templates/verbose/` (4 files + README)                              | Extended guidance for new users   |
+| Verbose templates | `templates/verbose/` (5 subdirs + README)                            | Extended guidance mirrors by level |
 | Level 2 addendum  | `templates/addendum/level2-verify/` (3 files)                        | +Verification, NFRs               |
 | Level 3 addendum  | `templates/addendum/level3-arch/` (3 files)                          | +Architecture, ADRs               |
 | Level 3+ addendum | `templates/addendum/level3plus-govern/` (3 files)                    | +Governance, compliance           |

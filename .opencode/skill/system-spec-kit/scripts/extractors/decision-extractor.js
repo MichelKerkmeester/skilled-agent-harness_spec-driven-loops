@@ -7,7 +7,7 @@
 const { formatTimestamp } = require('../utils/message-utils');
 const { validateDataStructure } = require('../utils/data-validator');
 const { generateAnchorId, validateAnchorUniqueness, extractSpecNumber } = require('../lib/anchor-generator');
-const { generateDecisionTree } = require('./decision-tree-generator');
+const { generateDecisionTree } = require('../lib/decision-tree-generator');
 const simFactory = require('../lib/simulation-factory');
 
 /* ─────────────────────────────────────────────────────────────

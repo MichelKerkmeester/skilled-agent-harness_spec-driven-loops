@@ -9,6 +9,7 @@ const memorySave = require('./memory-save');
 const memoryCrud = require('./memory-crud');
 const memoryIndex = require('./memory-index');
 const checkpoints = require('./checkpoints');
+const sessionLearning = require('./session-learning');
 
 // All handler modules now extracted
 module.exports = {
@@ -30,11 +31,15 @@ module.exports = {
   // Checkpoint handlers
   ...checkpoints,
 
+  // Session learning handlers
+  ...sessionLearning,
+
   // Sub-module references for direct access
   memorySearch,
   memoryTriggers,
   memorySave,
   memoryCrud,
   memoryIndex,
-  checkpoints
+  checkpoints,
+  sessionLearning
 };

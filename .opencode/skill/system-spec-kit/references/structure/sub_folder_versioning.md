@@ -1,11 +1,11 @@
 ---
 title: Sub-Folder Versioning
-description: Pattern for separating iterative work within existing spec folders while maintaining independent memory contexts.
+description: Manual pattern for organizing iterative work within existing spec folders using memory-based context preservation.
 ---
 
-# Sub-Folder Versioning - Iterative Work Separation Pattern
+# Sub-Folder Versioning - Iterative Work Organization Pattern
 
-Pattern for separating iterative work within existing spec folders while maintaining independent memory contexts.
+Manual pattern for organizing iterative work within existing spec folders using memory-based context preservation.
 
 ---
 
@@ -13,13 +13,18 @@ Pattern for separating iterative work within existing spec folders while maintai
 
 ### Purpose
 
-Enable clean separation of iterative work within a single spec folder while preserving historical context and maintaining independent memory directories for each iteration.
+Enable clean separation of iterative work within a single spec folder while preserving historical context through memory files. Each iteration maintains its own memory directory for independent conversation history.
 
-### When This Triggers
+### Important Note
 
-- User selects **Option A** (use existing folder)
-- Spec folder has root-level content (spec.md, plan.md, etc.)
-- AI agent detects need for iteration separation
+Sub-folder versioning is a **manual organizational pattern** - there is no automatic archiving. The AI agent guides users through the process but all file operations are explicit.
+
+### When to Use
+
+- Working on distinct phases of the same feature
+- Separating unrelated tasks within a parent spec folder
+- Creating clear boundaries between implementation iterations
+- Preserving context when returning to old work
 
 ---
 
@@ -27,7 +32,7 @@ Enable clean separation of iterative work within a single spec folder while pres
 
 ```
 specs/###-name/
-├── 001-original-topic/   # Auto-archived first iteration
+├── 001-original-topic/   # First iteration
 │   ├── spec.md
 │   ├── plan.md
 │   └── memory/
@@ -48,29 +53,24 @@ specs/###-name/
 
 ## 3. 🔄 WORKFLOW STEPS
 
-### Step 1: Detection
+### Step 1: Recognition
 
-AI detects root-level files in existing spec folder when user selects Option A.
+When selecting Option A (existing folder), the AI agent checks for root-level content and suggests sub-folder organization if appropriate.
 
-### Step 2: User Prompt
+### Step 2: User Decision
 
-AI displays: "📦 SUB-FOLDER VERSIONING WILL BE APPLIED"
+User decides whether to:
+- **Create sub-folder**: Organize new work in a numbered sub-folder
+- **Continue in root**: Keep working in the existing structure
 
-AI asks: "Please provide a name for the new sub-folder (e.g., 'api-refactor')"
+### Step 3: Manual Organization
 
-### Step 3: Archive Creation
+If creating a sub-folder, the user (with AI guidance):
+1. Chooses a descriptive name for the sub-folder
+2. Creates the folder structure manually or via `scripts/spec/create.sh --subfolder`
+3. Copies templates as needed
 
-Existing root-level files moved to `001-{topic}/` (numbered based on spec folder name).
-
-### Step 4: New Sub-Folder
-
-New sub-folder created with user-provided name: `002-{user-provided-name}/`
-
-### Step 5: Template Copy
-
-Fresh templates copied to new sub-folder from `.opencode/skill/system-spec-kit/templates/`.
-
-### Step 6: Path Tracking
+### Step 4: Path Tracking
 
 Spec folder path passed via CLI argument to generate-context.js (stateless - no marker file).
 
@@ -78,10 +78,8 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ## 4. 🏷️ NAMING CONVENTION
 
-- **Sub-folder format**: `{###}-{descriptive-name}` (automatic numbering)
+- **Sub-folder format**: `{###}-{descriptive-name}` (manually numbered)
 - **Numbers**: 001, 002, 003, etc. (3-digit padded, sequential)
-- **Archive**: `001-{original-topic}` (automatic, based on spec folder name)
-- **New**: `002-{user-provided-name}` (user provides descriptive name)
 - **Name rules**: lowercase, hyphens, 2-3 words (shorter is better)
 - **Examples**: `001-mcp-code-mode`, `002-api-refactor`, `003-bug-fixes`
 
@@ -98,9 +96,9 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 
 ## 6. 💡 EXAMPLE USE CASE
 
-### Correct Versioning Flow
+### Manual Sub-Folder Organization
 
-**Scenario:** User selects Option A for existing spec folder with content
+**Scenario:** User wants to organize iterative work within an existing spec folder
 
 1. **Initial State:**
    ```
@@ -110,10 +108,10 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
    └── memory/
    ```
 
-2. **After Option A + Archive:**
+2. **After Manual Organization:**
    ```
    specs/007-auth-system/
-   ├── 001-initial-implementation/    # Archived original content
+   ├── 001-initial-implementation/    # Original content (manually moved)
    │   ├── spec.md
    │   ├── plan.md
    │   └── memory/
@@ -124,8 +122,8 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
    ```
 
 **Key Points:**
-- Original content moves to `001-{descriptive-name}/`
-- New work goes in `002-{new-topic}/`
+- User manually creates and organizes sub-folders
+- Original content can be moved to a sub-folder if desired
 - Each sub-folder has independent memory/ context
 - Numbering is sequential within the spec folder
 
@@ -134,15 +132,13 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 1. User runs `/spec_kit:complete` or similar
 2. Gate 3 asks: "Spec folder?" → User selects **A) Existing**
 3. User selects `specs/007-auth-system/`
-4. System detects root-level content (spec.md exists)
-5. System prompts: "Archive existing content? [Y/n]"
-6. If Y: 
-   - Prompt for archive name: "001-initial-implementation"
-   - Move root files to `001-initial-implementation/`
-   - Prompt for new sub-folder name: "002-oauth-addition"
-   - Create new sub-folder with fresh templates
-7. If N:
-   - Continue working in root (not recommended for distinct features)
+4. AI suggests: "This folder has existing content. Would you like to organize work in a sub-folder?"
+5. If yes:
+   - User provides sub-folder name: "002-oauth-addition"
+   - AI helps create the sub-folder with templates
+   - Memory saves go to the sub-folder's memory/ directory
+6. If no:
+   - Continue working in root folder
 
 ---
 
@@ -151,8 +147,8 @@ Spec folder path passed via CLI argument to generate-context.js (stateless - no 
 - Clean separation of iterative work
 - Preserves all historical work (no data loss)
 - Independent memory/ contexts per iteration
-- Automatic archival with timestamps
 - Backward compatible (works with non-versioned folders)
+- Flexible organization based on project needs
 
 ---
 

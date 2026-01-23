@@ -13,11 +13,11 @@
 
 module.exports = {
   ...require('./file-extractor'),
-  ...require('./decision-tree-generator'),
   ...require('./diagram-extractor'),
   ...require('./conversation-extractor'),
   ...require('./decision-extractor'),
   ...require('./session-extractor'),
   ...require('./implementation-guide-extractor'),
-  ...require('./collect-session-data')
+  ...require('./collect-session-data'),
+  ...require('./opencode-capture')
 };

@@ -1577,10 +1577,10 @@ async function test_core_workflow_additional() {
 ──────────────────────────────────────────────────────────────── */
 
 async function test_lib_opencode_capture() {
-  log('\n🔬 LIB: opencode-capture.js');
+  log('\n🔬 EXTRACTORS: opencode-capture.js');
 
   try {
-    const capture = require(path.join(SCRIPTS_DIR, 'lib', 'opencode-capture'));
+    const capture = require(path.join(SCRIPTS_DIR, 'extractors', 'opencode-capture'));
 
     // Test 1: get_recent_prompts is a function
     assertType(capture.get_recent_prompts, 'function', 'T-025a: get_recent_prompts exported');
@@ -3070,10 +3070,10 @@ async function test_extractors_diagram() {
 ──────────────────────────────────────────────────────────────── */
 
 async function test_extractors_decision_tree() {
-  log('\n🔬 EXTRACTORS: decision-tree-generator.js');
+  log('\n🔬 LIB: decision-tree-generator.js');
 
   try {
-    const { generateDecisionTree } = require(path.join(SCRIPTS_DIR, 'extractors', 'decision-tree-generator'));
+    const { generateDecisionTree } = require(path.join(SCRIPTS_DIR, 'lib', 'decision-tree-generator'));
 
     // Test 1: generateDecisionTree is a function
     assertType(generateDecisionTree, 'function', 'T-041a: generateDecisionTree is a function');

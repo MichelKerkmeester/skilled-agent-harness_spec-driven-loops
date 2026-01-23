@@ -27,7 +27,49 @@ These variables control memory system behavior, token budgets, script execution,
 
 ---
 
-## 3. 🎯 TOKEN BUDGET
+## 3. 🤖 EMBEDDING PROVIDERS
+
+The MCP server supports multiple embedding providers for semantic search. Provider selection follows this precedence:
+1. Explicit `EMBEDDINGS_PROVIDER` setting
+2. `VOYAGE_API_KEY` detected (auto-selects Voyage)
+3. `OPENAI_API_KEY` detected (auto-selects OpenAI)
+4. Falls back to `hf-local` (Hugging Face local inference)
+
+### Provider Selection
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `EMBEDDINGS_PROVIDER` | `auto` | Explicit provider: `voyage`, `openai`, `hf-local`, or `auto` |
+
+### Voyage AI Provider
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `VOYAGE_API_KEY` | - | API key for Voyage AI embeddings (required for `voyage` provider) |
+| `VOYAGE_EMBEDDINGS_MODEL` | `voyage-4` | Voyage model name (1024 dimensions) |
+
+### OpenAI Provider
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `OPENAI_API_KEY` | - | API key for OpenAI embeddings (required for `openai` provider) |
+| `OPENAI_EMBEDDINGS_MODEL` | `text-embedding-3-small` | OpenAI model name (1536 dimensions) |
+
+### Hugging Face Local Provider
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `HF_EMBEDDINGS_MODEL` | `nomic-ai/nomic-embed-text-v1.5` | Local model name (768 dimensions) |
+
+### Rate Limiting
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `EMBEDDING_BATCH_DELAY_MS` | `100` | Delay between batch embedding requests (ms) |
+
+---
+
+## 4. 🎯 TOKEN BUDGET
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -38,7 +80,7 @@ These variables control memory system behavior, token budgets, script execution,
 
 ---
 
-## 4. 📜 SCRIPTS
+## 5. 📜 SCRIPTS
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -50,7 +92,7 @@ These variables control memory system behavior, token budgets, script execution,
 
 ---
 
-## 5. ⚡ BATCH PROCESSING
+## 6. ⚡ BATCH PROCESSING
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -59,7 +101,7 @@ These variables control memory system behavior, token budgets, script execution,
 
 ---
 
-## 6. 💡 USAGE EXAMPLES
+## 7. 💡 USAGE EXAMPLES
 
 ```bash
 # Enable debug logging
@@ -76,11 +118,23 @@ SPECKIT_QUIET=true bash scripts/validate-spec.sh specs/001-feature/
 
 # Use verbose templates for new spec folders
 SPECKIT_TEMPLATE_STYLE=verbose bash scripts/spec/create.sh 'Add new feature'
+
+# Use Voyage AI embeddings (high quality, cloud-based)
+VOYAGE_API_KEY=your-key-here node mcp_server/context-server.js
+
+# Use OpenAI embeddings
+OPENAI_API_KEY=your-key-here node mcp_server/context-server.js
+
+# Force local embeddings (no API key required)
+EMBEDDINGS_PROVIDER=hf-local node mcp_server/context-server.js
+
+# Use specific embedding model
+VOYAGE_EMBEDDINGS_MODEL=voyage-3-large VOYAGE_API_KEY=your-key node mcp_server/context-server.js
 ```
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 8. 🔗 RELATED RESOURCES
 
 - [Execution Methods](../workflows/execution_methods.md)
 - [Troubleshooting](../debugging/troubleshooting.md)

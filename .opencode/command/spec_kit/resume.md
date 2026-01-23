@@ -386,8 +386,47 @@ spec_kit_memory_memory_load(...)              // NO - tool doesn't exist
 
 ### Session Detection Priority
 
-1. CLI argument (explicit path provided)
-2. Most recent memory file in `specs/*/memory/`
+**Priority order for spec folder detection:**
+
+1. **CLI argument** (explicit path provided) - Highest priority, user intent is clear
+2. **Semantic memory search** with decay scoring via `memory_search()`:
+   ```typescript
+   spec_kit_memory_memory_search({
+     query: "[user's request context]",
+     limit: 5,
+     includeContent: false  // metadata only for speed
+   })
+   ```
+   - Returns memories ranked by semantic relevance × recency decay
+   - Decay formula: `score = semantic_score × (0.95 ^ days_since_access)`
+3. **Trigger phrase matching** via `memory_match_triggers()`:
+   ```typescript
+   spec_kit_memory_memory_match_triggers({ prompt: "[user request]" })
+   ```
+   - Fast (<50ms) exact phrase matching against indexed triggers
+   - Good for resuming by keywords like "auth system", "speckit upgrade"
+4. **Fallback: Glob by modification time**:
+   ```bash
+   ls -t specs/**/memory/*.md | head -5
+   ```
+   - Used only when semantic search returns no results
+   - Sorted by file modification time, most recent first
+
+**Selection Logic:**
+```
+IF CLI argument provided:
+  validate_path() → use if valid
+ELSE:
+  results = memory_search(query, limit=5)
+  IF results.length > 0 AND results[0].score > 0.6:
+    use results[0].specFolder
+  ELSE:
+    triggers = memory_match_triggers(prompt)
+    IF triggers.length > 0:
+      use triggers[0].specFolder
+    ELSE:
+      fallback to glob by mtime
+```
 
 ### Context Loading Priority
 

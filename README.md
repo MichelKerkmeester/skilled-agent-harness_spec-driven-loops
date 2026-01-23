@@ -546,7 +546,26 @@ The `@orchestrate` agent includes enterprise-grade patterns for reliable multi-a
 | **Checkpointing** | Recovery snapshots every 5 tasks or 10 tool calls |
 
 
-#### Confidence & Clarification Framework
+#### Confidence & Dual-Threshold Validation
+
+The framework uses a sophisticated dual-threshold system to decide when to proceed:
+
+**READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)**
+
+| Confidence | Uncertainty | State | Action |
+|------------|-------------|-------|--------|
+| >=0.70 | <=0.35 | READY | Proceed |
+| >=0.70 | >0.35 | Confident Ignorance | INVESTIGATE - reduce unknowns |
+| <0.70 | <=0.35 | Low Confidence | INVESTIGATE - gather evidence |
+| <0.70 | >0.35 | Lost | ESCALATE - ask user |
+
+**Uncertainty factors:**
+- Epistemic gaps (what don't I know?)
+- Model boundaries (at capability limits?)
+- Temporal variability (how stable is this knowledge?)
+- Situational completeness (context sufficient?)
+
+**Investigation Protocol:** Max 3 iterations of evidence gathering before escalating to user with options.
 
 - Explicit confidence scoring (0-100%)
 - Mandatory clarification when confidence < 80%
@@ -559,6 +578,20 @@ The `@orchestrate` agent includes enterprise-grade patterns for reliable multi-a
 - Evidence-based decisions with citations
 - Scope discipline: solves only what's asked
 - Browser verification before completion claims
+
+#### Five Checks Framework
+
+For substantial changes (>100 LOC or architectural decisions), the AI validates against five checks:
+
+| # | Check | Question | Pass Criteria |
+|---|-------|----------|---------------|
+| 1 | **Necessary?** | Solving ACTUAL need NOW? | Clear requirement exists, not speculative |
+| 2 | **Beyond Local Maxima?** | Explored alternatives? | >=2 alternatives considered with trade-offs |
+| 3 | **Sufficient?** | Simplest approach? | No simpler solution achieves the goal |
+| 4 | **Fits Goal?** | On critical path? | Directly advances stated objective |
+| 5 | **Open Horizons?** | Long-term aligned? | Doesn't create technical debt or lock-in |
+
+**Usage:** Required for Level 3/3+ spec folders. Optional but recommended for Level 2. Recorded in decision-record.md for architectural changes.
 
 #### The Gate System
 

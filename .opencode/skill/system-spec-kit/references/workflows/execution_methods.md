@@ -17,20 +17,20 @@ This document covers validation, completion checking, context saving, folder cre
 
 ## 2. ✅ VALIDATION
 
-### validate-spec.sh
+### validate.sh
 
 Validates spec folder structure and content against level requirements.
 
 **Usage:**
 ```bash
 # Basic validation
-bash .opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/001-feature/
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/001-feature/
 
 # Quiet mode (suppress non-essential output)
-bash .opencode/skill/system-spec-kit/scripts/validate-spec.sh --quiet specs/001-feature/
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --quiet specs/001-feature/
 
 # JSON output
-bash .opencode/skill/system-spec-kit/scripts/validate-spec.sh --json specs/001-feature/
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh --json specs/001-feature/
 ```
 
 **Exit Codes:**
@@ -51,10 +51,10 @@ Verifies all checklist items are marked complete before claiming "done".
 **Usage:**
 ```bash
 # Check completion status
-bash .opencode/skill/system-spec-kit/scripts/check-completion.sh specs/001-feature/
+bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh specs/001-feature/
 
 # JSON output for automation
-bash .opencode/skill/system-spec-kit/scripts/check-completion.sh --json specs/001-feature/
+bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh --json specs/001-feature/
 ```
 
 **Requirements:**
@@ -127,10 +127,10 @@ Recommends appropriate documentation level based on feature characteristics.
 **Usage:**
 ```bash
 # Basic recommendation
-bash .opencode/skill/system-spec-kit/scripts/recommend-level.sh "Add user authentication"
+bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh "Add user authentication"
 
 # With feature flags
-bash .opencode/skill/system-spec-kit/scripts/recommend-level.sh --auth --api "Add OAuth login"
+bash .opencode/skill/system-spec-kit/scripts/spec/recommend-level.sh --auth --api "Add OAuth login"
 ```
 
 **Feature Flags:**
@@ -192,7 +192,62 @@ bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh 2 3
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. 🔄 MEMORY WORKFLOW (12 Steps)
+
+The `generate-context.js` script orchestrates a 12-step workflow via `workflow.js`:
+
+### Workflow Steps
+
+| Step | Name | Description |
+|------|------|-------------|
+| **1** | Load Data | Load collected data from JSON file or preloaded data |
+| **2** | Detect Spec Folder | Find target spec folder with alignment validation |
+| **3** | Setup Context Directory | Create memory directory structure |
+| **4-7** | Parallel Extraction | Extract session data, conversations, decisions, diagrams, and workflow flowchart (parallel execution) |
+| **7.5** | Semantic Summary | Generate implementation summary with file change analysis |
+| **8** | Populate Template | Fill context template with extracted data |
+| **9** | Write Files | Atomic file writes with rollback on failure |
+| **9.5** | State Embedding | Embed state in memory file (V13.0 format) |
+| **10** | Success Confirmation | Log summary of saved content |
+| **11** | Semantic Indexing | Generate embeddings and index in vector database |
+| **12** | Retry Processing | Process any pending embeddings from retry queue |
+
+### Parallel Extraction (Steps 4-7)
+
+Steps 4-7 run in parallel for performance:
+
+```
+┌─────────────────────────────────────────────────┐
+│              PARALLEL EXTRACTION                │
+├─────────────────────────────────────────────────┤
+│  📋 Session data collection                     │
+│  💬 Conversation extraction                     │
+│  🧠 Decision extraction                         │
+│  📊 Diagram extraction                          │
+│  🔀 Workflow flowchart generation               │
+└─────────────────────────────────────────────────┘
+```
+
+### Output Files
+
+| File | Purpose |
+|------|---------|
+| `{date}_{time}__{topic}.md` | Main memory file with ANCHOR format |
+| `metadata.json` | Statistics and embedding info |
+
+### Quality Scoring
+
+The workflow calculates a quality score (0-100) based on:
+- Content length and depth
+- Number of anchors
+- Recency factors
+- Message statistics
+
+Low quality sessions (<20 score) receive a warning header in the output.
+
+---
+
+## 9. 🔗 RELATED RESOURCES
 
 - [Validation Rules](../validation/validation_rules.md)
 - [Folder Routing](../structure/folder_routing.md)

@@ -26,7 +26,7 @@ try {
   process.exit(1);
 }
 
-const { generateDecisionTree } = require('./decision-tree-generator');
+const { generateDecisionTree } = require('../lib/decision-tree-generator');
 
 /* ─────────────────────────────────────────────────────────────
    2. PHASE EXTRACTION

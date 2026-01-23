@@ -20,7 +20,7 @@ const {
 // Lazy load to handle missing dependencies
 let opencodeCapture;
 try {
-  opencodeCapture = require('../lib/opencode-capture');
+  opencodeCapture = require('../extractors/opencode-capture');
 } catch (err) {
   structuredLog('warn', 'opencode-capture library not available', {
     error: err.message

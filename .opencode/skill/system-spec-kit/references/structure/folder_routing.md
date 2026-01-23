@@ -105,49 +105,44 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 
 When saving context, the system calculates an **alignment score** (0-100%) to determine which spec folder best matches the conversation topic.
 
-### Score Components
+### How It Works
 
-| Component           | Weight | Description                     |
-| ------------------- | ------ | ------------------------------- |
-| **Topic Match**     | 40%    | Keyword overlap with spec topic |
-| **File Context**    | 30%    | Referenced files in spec folder |
-| **Phase Alignment** | 20%    | Current work phase matches spec |
-| **Recency**         | 10%    | Recent activity in folder       |
+The alignment score uses **topic matching** to compare conversation keywords against the spec folder name:
 
-### Calculation Formula
+1. **Extract conversation topics**: Keywords from user requests and observation titles
+2. **Parse spec folder topic**: Split the folder name (minus number prefix) into words
+3. **Calculate overlap**: Count how many spec folder words appear in conversation topics
+4. **Score**: `(matches / spec_folder_words) * 100`
 
-```python
-def calculate_alignment_score(conversation, spec_folder):
-    topic_score = match_keywords(conversation.topics, spec_folder.name) * 0.40
-    file_score = match_files(conversation.files, spec_folder.files) * 0.30
-    phase_score = match_phase(conversation.phase, spec_folder.workflow) * 0.20
-    recency_score = calculate_recency(spec_folder.modified_date) * 0.10
+### Calculation Logic
 
-    return (topic_score + file_score + phase_score + recency_score) * 100
+```javascript
+function calculateAlignmentScore(conversationTopics, specFolderName) {
+  // Parse folder name: "007-auth-system" → ["auth", "system"]
+  const specTopics = specFolderName.replace(/^\d+-/, '').split(/[-_]/);
+
+  // Count matches using substring matching
+  let matches = 0;
+  for (const specTopic of specTopics) {
+    if (conversationTopics.some(ct =>
+      ct.includes(specTopic) || specTopic.includes(ct)
+    )) {
+      matches++;
+    }
+  }
+
+  return Math.round((matches / specTopics.length) * 100);
+}
 ```
 
-### Component Details
+### Topic Sources
 
-**Topic Match (40%)**
-- Extracts keywords from conversation
-- Compares against spec folder name segments
-- Uses fuzzy matching for partial matches
+Topics are extracted from:
+- **User request**: First conversation request in `recent_context`
+- **Observation titles**: Titles from recent observations (top 3-10)
+- **File names**: Parsed from file paths in observations
 
-**File Context (30%)**
-- Tracks files mentioned or modified in conversation
-- Checks if files exist within spec folder's scope
-- Higher weight for recently modified files
-
-**Phase Alignment (20%)**
-- Maps conversation activities to workflow phases
-- Planning → spec.md, plan.md
-- Implementation → code files, tasks.md
-- Verification → checklist.md, testing
-
-**Recency (10%)**
-- Exponential decay based on last modification
-- 7-day half-life
-- Prevents stale folders from scoring high
+Stopwords are filtered: `the`, `this`, `that`, `with`, `for`, `and`, `from`, `fix`, `update`, `add`, `remove`
 
 ---
 
@@ -348,43 +343,29 @@ Users can set preferences that persist within a session:
 
 Three practical examples demonstrating each alignment tier and the expected behavior.
 
-### Example 1: Good Alignment (≥70%) - Auto-Proceed
+### Example 1: Good Alignment (>=70%) - Auto-Proceed
 
 **Scenario:** Conversation about fixing memory alignment validation
 
 ```
-Conversation Topic: "Fix memory alignment validation and add three-tier scoring"
-Target Folder:      specs/005-memory/016-memory-alignment-fix/
+Conversation Topic: "Fix memory alignment validation"
+Target Folder:      specs/016-memory-alignment-fix/
 ```
 
 **Keyword Analysis:**
 
 ```
-Conversation keywords: ["memory", "alignment", "validation", "three-tier", "scoring"]
+Conversation keywords: ["memory", "alignment", "validation", "fix"]
 Folder keywords:       ["memory", "alignment", "fix"]
-Overlap:               3/5 keywords match → HIGH
-```
-
-**Score Breakdown:**
-
-```
-Component Breakdown:
-├─ Topic Match:    "memory alignment" ↔ "memory-alignment-fix" = 92%
-├─ File Context:   generate-context.js discussed, in scope     = 88%
-├─ Phase Alignment: implementation activity ↔ implementation   = 85%
-└─ Recency:        modified today                              = 95%
-
-Weighted Calculation:
-  (0.92 × 0.40) + (0.88 × 0.30) + (0.85 × 0.20) + (0.95 × 0.10)
-= 0.368 + 0.264 + 0.170 + 0.095
-= 0.897 → 89.7%
+Overlap:               3/3 folder words match
+Score:                 (3/3) × 100 = 100%
 ```
 
 **Console Output:**
 
 ```
-📊 Alignment check: 89.7% (GOOD)
-✅ Proceeding with folder: specs/005-memory/016-memory-alignment-fix/
+📊 Alignment check: 016-memory-alignment-fix (100% match)
+✓ Good alignment with selected folder
 ```
 
 **Result:** Auto-proceed without user intervention.
@@ -393,101 +374,69 @@ Weighted Calculation:
 
 ### Example 2: Moderate Alignment (50-69%) - Warning + Proceed
 
-**Scenario:** Conversation about semantic search improvements saved to memory alignment folder
+**Scenario:** Conversation about semantic memory search saved to memory alignment folder
 
 ```
-Conversation Topic: "Improve semantic memory search with better vector indexing"
-Target Folder:      specs/005-memory/016-memory-alignment-fix/
+Conversation Topic: "Improve semantic memory search"
+Target Folder:      specs/016-memory-alignment-fix/
 ```
 
 **Keyword Analysis:**
 
 ```
-Conversation keywords: ["semantic", "memory", "search", "vector", "indexing"]
+Conversation keywords: ["semantic", "memory", "search", "improve"]
 Folder keywords:       ["memory", "alignment", "fix"]
-Overlap:               1/5 keywords match ("memory") → PARTIAL
-```
-
-**Score Breakdown:**
-
-```
-Component Breakdown:
-├─ Topic Match:    "memory" partial match only               = 45%
-├─ File Context:   different memory files, partial overlap   = 55%
-├─ Phase Alignment: research activity ↔ implementation       = 50%
-└─ Recency:        modified 3 days ago                       = 75%
-
-Weighted Calculation:
-  (0.45 × 0.40) + (0.55 × 0.30) + (0.50 × 0.20) + (0.75 × 0.10)
-= 0.180 + 0.165 + 0.100 + 0.075
-= 0.520 → 52.0%
+Overlap:               1/3 ("memory" matches)
+Score:                 (1/3) × 100 = 33%
 ```
 
 **Console Output:**
 
 ```
-📊 Alignment check: 52.0% (MODERATE)
-⚠️  MODERATE ALIGNMENT - proceeding with caution
-    Selected folder: specs/005-memory/016-memory-alignment-fix/
-    Consider: Is this the right folder for "semantic search" work?
-✅ Proceeding with folder: specs/005-memory/016-memory-alignment-fix/
+📊 Alignment check: 016-memory-alignment-fix (33% match)
+⚠️  Moderate alignment - proceeding with caution
 ```
 
-**Result:** Warning displayed but proceeds automatically. User can review if the folder choice seems wrong.
+**Result:** Warning displayed but proceeds automatically.
 
 ---
 
 ### Example 3: Low Alignment (<50%) - Interactive Prompt
 
-**Scenario:** Conversation about CSS styling saved to unrelated memory folder
+**Scenario:** Conversation about CSS styling saved to unrelated folder
 
 ```
-Conversation Topic: "Add CSS hover animation to download buttons"
-Target Folder:      specs/005-memory/016-memory-alignment-fix/
+Conversation Topic: "Add CSS hover animation to buttons"
+Target Folder:      specs/016-memory-alignment-fix/
 ```
 
 **Keyword Analysis:**
 
 ```
-Conversation keywords: ["CSS", "hover", "animation", "download", "buttons"]
+Conversation keywords: ["css", "hover", "animation", "buttons"]
 Folder keywords:       ["memory", "alignment", "fix"]
-Overlap:               0/5 keywords match → NONE
-```
-
-**Score Breakdown:**
-
-```
-Component Breakdown:
-├─ Topic Match:    no keyword overlap                        = 12%
-├─ File Context:   CSS files not in memory spec scope        = 8%
-├─ Phase Alignment: implementation ↔ implementation (only)   = 70%
-└─ Recency:        modified 5 days ago                       = 60%
-
-Weighted Calculation:
-  (0.12 × 0.40) + (0.08 × 0.30) + (0.70 × 0.20) + (0.60 × 0.10)
-= 0.048 + 0.024 + 0.140 + 0.060
-= 0.272 → 27.2%
+Overlap:               0/3 (no matches)
+Score:                 (0/3) × 100 = 0%
 ```
 
 **Console Output:**
 
 ```
-📊 Alignment check: 27.2% (LOW)
+📊 Alignment check: 016-memory-alignment-fix (0% match)
 
-⚠️  LOW ALIGNMENT WARNING
-    Selected folder: specs/005-memory/016-memory-alignment-fix/
-    Alignment score: 27%
+⚠️  LOW ALIGNMENT WARNING (0% match)
+The selected folder "016-memory-alignment-fix" may not match conversation content.
 
-📋 Top 3 alternative folders:
-    1. specs/007-anobel.com/003-btn-download-alignment/ (78%)
-    2. specs/007-anobel.com/006-video-play-pause-hover/ (65%)
-    3. specs/001-css-components/005-button-animations/  (62%)
+Better matching alternatives:
+  1. 003-btn-download-alignment (67% match)
+  2. 006-css-components (50% match)
+  3. Continue with "016-memory-alignment-fix" anyway
+  4. Abort and specify different folder
 
-Choose: [1-3] select alternative | [c] continue anyway | [n] cancel
-> _
+Select option (1-4):
 ```
 
-**Result:** Interactive prompt requires user decision. Top 3 alternatives are suggested based on better keyword matches.
+**Result:** Interactive prompt requires user decision.
 
 ---
 

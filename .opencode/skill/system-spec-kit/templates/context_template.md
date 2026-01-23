@@ -125,6 +125,34 @@
 
 ---
 
+<!-- ANCHOR:preflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+## PREFLIGHT BASELINE
+
+**Epistemic state captured at session start for learning delta calculation.**
+
+| Metric | Value | Assessment |
+|--------|-------|------------|
+| Knowledge Score | {{PREFLIGHT_KNOW_SCORE}}/100 | {{PREFLIGHT_KNOW_ASSESSMENT}} |
+| Uncertainty Score | {{PREFLIGHT_UNCERTAINTY_SCORE}}/100 | {{PREFLIGHT_UNCERTAINTY_ASSESSMENT}} |
+| Context Score | {{PREFLIGHT_CONTEXT_SCORE}}/100 | {{PREFLIGHT_CONTEXT_ASSESSMENT}} |
+| Timestamp | {{PREFLIGHT_TIMESTAMP}} | Session start |
+
+**Initial Gaps Identified:**
+{{#PREFLIGHT_GAPS}}
+- {{GAP_DESCRIPTION}}
+{{/PREFLIGHT_GAPS}}
+{{^PREFLIGHT_GAPS}}
+- No significant gaps identified at session start
+{{/PREFLIGHT_GAPS}}
+
+**Dual-Threshold Status at Start:**
+- Confidence: {{PREFLIGHT_CONFIDENCE}}%
+- Uncertainty: {{PREFLIGHT_UNCERTAINTY_RAW}}
+- Readiness: {{PREFLIGHT_READINESS}}
+<!-- /ANCHOR:preflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+
+---
+
 ## Table of Contents
 
 - [Project State Snapshot](#project-state-snapshot)
@@ -489,6 +517,53 @@ No conversation messages were captured. This may indicate an issue with data col
 ---
 {{/MESSAGES}}
 <!-- /ANCHOR:session-history-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+
+---
+
+<!-- ANCHOR:postflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<a id="postflight-learning-delta"></a>
+
+## POSTFLIGHT LEARNING DELTA
+
+**Epistemic state comparison showing knowledge gained during session.**
+
+<!-- Delta Calculation Formulas:
+  DELTA_KNOW_SCORE = POSTFLIGHT_KNOW_SCORE - PREFLIGHT_KNOW_SCORE (positive = improvement)
+  DELTA_UNCERTAINTY_SCORE = PREFLIGHT_UNCERTAINTY_SCORE - POSTFLIGHT_UNCERTAINTY_SCORE (positive = reduction, which is good)
+  DELTA_CONTEXT_SCORE = POSTFLIGHT_CONTEXT_SCORE - PREFLIGHT_CONTEXT_SCORE (positive = improvement)
+  DELTA_*_TREND = "↑" if delta > 0, "↓" if delta < 0, "→" if delta == 0
+-->
+
+| Metric | Before | After | Delta | Trend |
+|--------|--------|-------|-------|-------|
+| Knowledge | {{PREFLIGHT_KNOW_SCORE}} | {{POSTFLIGHT_KNOW_SCORE}} | {{DELTA_KNOW_SCORE}} | {{DELTA_KNOW_TREND}} |
+| Uncertainty | {{PREFLIGHT_UNCERTAINTY_SCORE}} | {{POSTFLIGHT_UNCERTAINTY_SCORE}} | {{DELTA_UNCERTAINTY_SCORE}} | {{DELTA_UNCERTAINTY_TREND}} |
+| Context | {{PREFLIGHT_CONTEXT_SCORE}} | {{POSTFLIGHT_CONTEXT_SCORE}} | {{DELTA_CONTEXT_SCORE}} | {{DELTA_CONTEXT_TREND}} |
+
+**Learning Index:** {{LEARNING_INDEX}}/100
+
+> Learning Index = (Knowledge Delta × 0.4) + (Uncertainty Reduction × 0.35) + (Context Improvement × 0.25)
+> Higher is better. Target: ≥25 for productive sessions.
+
+**Gaps Closed:**
+{{#GAPS_CLOSED}}
+- ✅ {{GAP_DESCRIPTION}}
+{{/GAPS_CLOSED}}
+{{^GAPS_CLOSED}}
+- No gaps explicitly closed during session
+{{/GAPS_CLOSED}}
+
+**New Gaps Discovered:**
+{{#NEW_GAPS}}
+- ❓ {{GAP_DESCRIPTION}}
+{{/NEW_GAPS}}
+{{^NEW_GAPS}}
+- No new gaps discovered
+{{/NEW_GAPS}}
+
+**Session Learning Summary:**
+{{LEARNING_SUMMARY}}
+<!-- /ANCHOR:postflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
 
 ---
 
