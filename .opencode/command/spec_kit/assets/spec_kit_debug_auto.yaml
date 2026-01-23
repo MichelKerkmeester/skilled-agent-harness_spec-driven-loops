@@ -160,47 +160,49 @@ workflow:
     validation: file_created_successfully
 
   step_3_dispatch_subagent:
-    purpose: Dispatch debug agent with full context via Task tool
+    purpose: Dispatch @debug agent with structured handoff via Task tool
+    agent: "@debug"
+    agent_file: ".opencode/agent/debug.md"
     task_parameters:
       description: "Debug: [brief error summary - max 50 chars]"
-      subagent_type: "general"
+      subagent_type: "debug"
       prompt: "[sub_agent_prompt_template]"
     sub_agent_prompt_template: |
-      # Debug Task Delegation
-      
-      You are a specialized debugging agent. A primary agent has encountered a persistent issue and is delegating to you for fresh analysis.
-      
-      ## Selected Model
-      {selected_model} - chosen for this debugging task.
-      
-      ## Your Task
-      Analyze the following debug report and provide:
-      1. Root cause analysis
-      2. Proposed fix with code
-      3. Verification steps
-      4. Prevention recommendations
-      
-      ## Debug Report
-      {debug_delegation_md_content}
-      
+      # Debug Agent Dispatch
+
+      You are the @debug agent. Execute your 4-phase debugging methodology:
+      OBSERVE → ANALYZE → HYPOTHESIZE → FIX
+
+      ## Debug Context Handoff
+
+      ### Error Description
+      {error_message}
+
+      ### Files Involved
+      {affected_files}
+
+      ### Reproduction Steps
+      {reproduction_steps}
+
+      ### Prior Attempts (What Was Tried)
+      {previous_attempts}
+
+      ### Environment
+      - Model: {selected_model}
+      - Spec Folder: {spec_path}
+
       ## Instructions
-      - Focus on the error, not general code quality
-      - Provide executable fix code with exact file paths
-      - Explain your reasoning step by step
-      - If you need more context, specify exactly what files/info you need
-      - Consider edge cases the primary agent may have missed
-      
-      ## Response Format
-      
-      ### Root Cause
-      [Your analysis - be specific about the mechanism]
-      
-      ### Proposed Fix
-      ```[language]
-      // File: [exact file path]
-      [Code changes - show before/after or patch format]
-      ```
-      
+      - Follow your 4-phase methodology exactly
+      - Form 2-3 ranked hypotheses with evidence
+      - Make minimal, targeted fixes
+      - Return structured response (Success/Blocked/Escalation format)
+
+      ## Full Debug Report
+      {debug_delegation_md_content}
+    fallback:
+      subagent_type: "general-purpose"  # Claude Code: "general-purpose" | OpenCode: "general"
+      fallback_reason: "If @debug agent file unavailable or dispatch fails"
+
       ### Verification
       1. [Step 1]
       2. [Step 2]

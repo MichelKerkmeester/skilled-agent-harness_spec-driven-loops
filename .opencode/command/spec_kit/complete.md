@@ -743,7 +743,292 @@ After agents return, hypotheses are verified by reading identified files and bui
 
 ---
 
-## 9. 🔗 COMMAND CHAIN
+## 9. 🤖 AGENT ROUTING
+
+This command routes to multiple specialized agents at different steps:
+
+| Step/Phase | Agent | Model | Fallback | Purpose |
+|------------|-------|-------|----------|---------|
+| Phase 2.5 (Research) | `@research` | sonnet | `general` | 9-step research workflow (if triggered) |
+| Step 3 (Specification) | `@speckit` | **sonnet** | `general` | Template-first spec folder creation |
+| Step 11 (Verification) | `@review` | sonnet | `general` | P0/P1 checklist verification (blocking) |
+
+### Model Preferences
+
+| Agent | Default Model | Use Opus When |
+|-------|---------------|---------------|
+| `@speckit` | **Sonnet** | User explicitly requests ("use opus") |
+| `@research` | Sonnet | Complex multi-system architecture |
+| `@review` | Sonnet | Level 3+ governance review |
+
+### How Multi-Agent Routing Works
+
+1. **Phase 2.5 (Optional Research)**: When `:with-research` flag is present OR confidence < 60%, dispatches to `@research` agent for comprehensive technical investigation
+2. **Step 3 (Specification)**: Dispatches to `@speckit` agent with `model: sonnet` for template-first spec creation
+3. **Step 11 (Checklist Verification)**: Dispatches to `@review` agent with `blocking: true` - P0 failures halt workflow
+
+### Agent Dispatch Templates
+
+**Research Agent** (Phase 2.5):
+```
+Task tool with prompt:
+---
+You are the @research agent. Execute your 9-step research workflow.
+
+Topic: {feature_description}
+Spec Folder: {spec_path}
+
+Return structured findings for research.md compilation.
+---
+```
+
+**Speckit Agent** (Step 3):
+```
+Task tool with prompt:
+---
+You are the @speckit agent. Create spec folder documentation.
+
+Feature: {feature_description}
+Level: {documentation_level}
+Folder: {spec_path}
+
+Create spec.md using template-first approach.
+---
+```
+
+**Review Agent** (Step 11):
+```
+Task tool with prompt:
+---
+You are the @review agent. Verify implementation completeness.
+
+Spec Folder: {spec_path}
+Checklist: {spec_path}/checklist.md
+
+Return:
+- P0 status: [PASS/FAIL]
+- P1 status: [PASS/PARTIAL/FAIL]
+- Quality score: [0-100]
+- Blocking issues: [list]
+---
+```
+
+### Blocking Behavior (Step 11)
+
+**IMPORTANT**: The `@review` agent routing uses `blocking: true`:
+- If P0 status is FAIL, workflow **CANNOT** proceed to Step 12 (Completion)
+- Clear message shows which P0 items are incomplete
+- User must address P0 items before claiming "done"
+
+### Fallback Behavior
+
+When any specialized agent is unavailable:
+- Warning message displayed (e.g., "Research agent unavailable, using general dispatch")
+- Workflow continues with `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode)
+- Same steps executed, may have less specialized output
+
+---
+
+## 10. ✅ QUALITY GATES
+
+Quality gates ensure workflow integrity by validating state at critical transition points.
+
+### Gate Configuration
+
+| Gate | Location | Purpose | Threshold | Blocking |
+|------|----------|---------|-----------|----------|
+| **Pre-execution** | Before Step 1 | Validate inputs and prerequisites | Score ≥ 60 | Soft |
+| **Planning Gate** | Between Step 7 and Step 8 | Verify planning artifacts complete | Score ≥ 70 | **HARD** |
+| **Post-execution** | After Step 12 | Verify all deliverables exist | Score ≥ 70 | Hard |
+
+### Planning Gate (CRITICAL)
+
+The Planning Gate separates **Phase A (Planning)** from **Phase B (Implementation)**. This is the most important quality checkpoint.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ PLANNING GATE - HARD BLOCK                                                  │
+│                                                                             │
+│ MUST PASS before proceeding to Step 8:                                      │
+│                                                                             │
+│ □ spec.md exists and has NO [NEEDS CLARIFICATION] markers                   │
+│ □ plan.md exists with technical approach defined                            │
+│ □ tasks.md exists with all tasks listed (T### format)                       │
+│ □ All P0 checklist items verified (Level 2+)                                │
+│ □ @review agent approval obtained (if blocking: true)                       │
+│                                                                             │
+│ IF any check fails:                                                         │
+│   → STOP workflow                                                           │
+│   → Return to appropriate step (3, 5, 6, or 7)                              │
+│   → Complete missing artifacts                                              │
+│   → Re-attempt gate passage                                                 │
+│                                                                             │
+│ Gate Score Calculation:                                                     │
+│   - spec.md complete: 25 points                                             │
+│   - plan.md complete: 25 points                                             │
+│   - tasks.md complete: 25 points                                            │
+│   - checklist verified: 15 points                                           │
+│   - @review approval: 10 points                                             │
+│   TOTAL: 100 points (threshold: 70)                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Gate Behavior
+
+**Pre-execution Gate:**
+- Validates feature description is provided
+- Checks spec folder exists or can be created
+- Verifies execution mode is set
+- Soft block: Warns but allows continuation with user acknowledgment
+
+**Planning Gate (with @review blocking):**
+- Dispatches `@review` agent to verify planning artifacts
+- `@review` returns quality score (0-100)
+- If score < 70: **WORKFLOW BLOCKED**
+- Agent must identify which artifacts are incomplete
+- User cannot bypass without explicit override ("force proceed")
+
+**Post-execution Gate:**
+- Validates all required files created
+- Verifies tasks.md shows all items [x]
+- Confirms implementation-summary.md exists
+- Ensures memory context saved
+
+### Gate Check Lists
+
+**Pre-execution (Score ≥ 60 to pass):**
+```
+□ feature_description is not empty (30 points)
+□ spec_path is valid or can be created (30 points)
+□ execution_mode is set (20 points)
+□ memory context loaded (if applicable) (20 points)
+```
+
+**Planning Gate (Score ≥ 70 to pass):**
+```
+□ spec.md exists (20 points)
+□ spec.md has no [NEEDS CLARIFICATION] markers (5 points)
+□ plan.md exists (20 points)
+□ plan.md has technical approach (5 points)
+□ tasks.md exists (20 points)
+□ tasks.md has T### formatted tasks (5 points)
+□ checklist.md verified - Level 2+ (15 points)
+□ @review agent approval (10 points)
+```
+
+**Post-execution (Score ≥ 70 to pass):**
+```
+□ All tasks in tasks.md marked [x] (30 points)
+□ implementation-summary.md exists (25 points)
+□ implementation-summary.md has required sections (15 points)
+□ memory/*.md context saved (20 points)
+□ Validation script passed (10 points)
+```
+
+---
+
+## 11. 🔌 CIRCUIT BREAKER
+
+Circuit breaker pattern prevents cascading failures when agents fail repeatedly.
+
+### States
+
+| State | Description | Behavior |
+|-------|-------------|----------|
+| **CLOSED** | Normal operation | Requests pass through to agent |
+| **OPEN** | Agent failing | Requests immediately use fallback |
+| **HALF-OPEN** | Testing recovery | One request allowed to test agent |
+
+### Configuration
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+| `failure_threshold` | 3 | Consecutive failures before OPEN |
+| `recovery_timeout_ms` | 60000 | Time in OPEN before HALF-OPEN |
+| `success_threshold` | 2 | Successes in HALF-OPEN to close |
+| `monitoring_window_ms` | 300000 | Window for failure counting |
+
+### Per-Agent Circuit Tracking
+
+Each agent has an **independent** circuit breaker:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ CIRCUIT BREAKER STATE - PER AGENT                                           │
+│                                                                             │
+│ @research circuit:                                                          │
+│   State: [CLOSED | OPEN | HALF-OPEN]                                        │
+│   Failures: [0-3]                                                           │
+│   Last failure: [timestamp]                                                 │
+│   Fallback: "general" agent                                                 │
+│                                                                             │
+│ @speckit circuit:                                                           │
+│   State: [CLOSED | OPEN | HALF-OPEN]                                        │
+│   Failures: [0-3]                                                           │
+│   Last failure: [timestamp]                                                 │
+│   Fallback: "general" agent                                                 │
+│                                                                             │
+│ @review circuit:                                                            │
+│   State: [CLOSED | OPEN | HALF-OPEN]                                        │
+│   Failures: [0-3]                                                           │
+│   Last failure: [timestamp]                                                 │
+│   Fallback: "general" agent                                                 │
+│   ⚠️ SPECIAL: blocking behavior preserved even on fallback                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Recovery Protocol
+
+```
+ON agent dispatch:
+  IF circuit[agent].state == OPEN:
+    IF current_time - circuit[agent].last_failure > recovery_timeout_ms:
+      circuit[agent].state = HALF_OPEN
+      ALLOW single request
+    ELSE:
+      USE fallback immediately
+      LOG "Circuit OPEN for {agent}, using fallback"
+
+  IF circuit[agent].state == HALF_OPEN:
+    IF request succeeds:
+      circuit[agent].success_count++
+      IF circuit[agent].success_count >= success_threshold:
+        circuit[agent].state = CLOSED
+        circuit[agent].failures = 0
+        LOG "Circuit CLOSED for {agent}"
+    ELSE:
+      circuit[agent].state = OPEN
+      circuit[agent].last_failure = current_time
+      LOG "Circuit re-OPENED for {agent}"
+
+ON agent failure:
+  circuit[agent].failures++
+  IF circuit[agent].failures >= failure_threshold:
+    circuit[agent].state = OPEN
+    circuit[agent].last_failure = current_time
+    LOG "Circuit OPENED for {agent} after {failures} failures"
+```
+
+### Special Handling: @review Blocking
+
+When `@review` circuit is OPEN and falls back to general agent:
+
+```
+⚠️ @review Circuit OPEN - Falling back to general agent
+
+The @review agent is unavailable. Using general agent for verification.
+
+IMPORTANT: blocking: true behavior is PRESERVED:
+- General agent will still perform P0/P1 verification
+- P0 failures still block workflow progression
+- Quality score still required (threshold: 70)
+
+This ensures workflow integrity even during agent failures.
+```
+
+---
+
+## 12. 🔗 COMMAND CHAIN
 
 This command is the full SpecKit workflow with optional chained sub-workflows:
 
@@ -808,7 +1093,7 @@ This command is the full SpecKit workflow with optional chained sub-workflows:
 
 ---
 
-## 10. 📌 NEXT STEPS
+## 13. 📌 NEXT STEPS
 
 After the complete workflow finishes, suggest relevant next steps:
 

@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.2.0] - 2026-01-23
+
+*Environment version: 1.0.7.0*
+
+Agent template updates for new agent system architecture.
+
+---
+
+### Changed
+
+1. **`agent_template.md` Updated** — Enhanced with:
+   - Model preference section (Section 0) with Opus/Sonnet guidance
+   - Dispatch instructions for Task tool invocation
+   - Output verification section with anti-hallucination rules
+   - Related resources section with command/agent cross-references
+2. **Agent File Structure v2.0** — All agent files now follow consistent 10-section structure
+
+---
+
 ## [5.1.0] - 2026-01-02
 
 *Environment version: 1.0.2.8*

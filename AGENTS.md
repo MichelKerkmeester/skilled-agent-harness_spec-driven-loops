@@ -439,7 +439,33 @@ PRE-CHANGE VALIDATION:
 
 ---
 
-## 6. ⚙️ TOOL SYSTEM
+## 6. 🤖 AGENT ROUTING
+
+When using the orchestrate agent or Task tool for complex multi-step workflows, route to specialized agents:
+
+| Agent          | File                             | Use When                                         |
+| -------------- | -------------------------------- | ------------------------------------------------ |
+| `@general`     | Built-in                         | Implementation, complex tasks                    |
+| `@explore`     | Built-in                         | Quick codebase exploration, file discovery       |
+| `@orchestrate` | `.opencode/agent/orchestrate.md` | Multi-agent coordination, complex workflows      |
+| `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 4 Option B    |
+| `@write`       | `.opencode/agent/write.md`       | Creating READMEs, Skills, Guides                 |
+| `@review`      | `.opencode/agent/review.md`      | Code review, PRs, quality gates (READ-ONLY)      |
+| `@speckit`     | `.opencode/agent/speckit.md`     | Spec folder creation Level 1-3+                  |
+| `@debug`       | `.opencode/agent/debug.md`       | Fresh perspective debugging, root cause analysis |
+
+**Agent Selection Quick Reference:**
+- **Code changes needed** → `@general`
+- **Research/planning** → `@research`
+- **Quality evaluation** → `@review`
+- **Spec documentation** → `@speckit`
+- **Debugging (3+ failed attempts)** → `@debug`
+- **Documentation creation** → `@write`
+- **Multi-agent orchestration** → `@orchestrate`
+
+---
+
+## 7. ⚙️ TOOL SYSTEM
 
 ### Two "Semantic" Systems (DO NOT CONFUSE)
 
@@ -491,7 +517,7 @@ PRE-CHANGE VALIDATION:
   
 ---
 
-## 7. 🧩 SKILLS SYSTEM
+## 8. 🧩 SKILLS SYSTEM
 
 Skills are specialized, on-demand capabilities that provide domain expertise. Unlike knowledge files (passive references), skills are explicitly invoked to handle complex, multi-step workflows.
 

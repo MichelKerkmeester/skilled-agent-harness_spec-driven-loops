@@ -203,6 +203,121 @@ parallel_dispatch_config:
     - step_5_technical_analysis
 
 # ─────────────────────────────────────────────────────────────────
+# AGENT ROUTING CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+agent_routing:
+  research_phase:
+    steps: [3, 4, 5, 6, 7]
+    agent: "@research"
+    agent_file: ".opencode/agent/research.md"
+    dispatch_method: |
+      Task tool with prompt:
+      ---
+      You are the @research agent. Execute your 9-step research workflow.
+      
+      Topic: {research_topic}
+      Spec Folder: {spec_path}
+      
+      Execute Steps 3-7 of your workflow:
+      - Step 3: Codebase Investigation
+      - Step 4: External Research
+      - Step 5: Technical Analysis
+      - Step 6: Quality Checklist
+      - Step 7: Solution Design
+      
+      Return structured findings for research.md compilation.
+      ---
+    fallback: "general"
+    fallback_reason: "If @research agent file unavailable or dispatch fails"
+    on_fallback: |
+      Warning: Research agent unavailable, using general dispatch.
+      Workflow will continue with standard Task execution.
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────
+quality_gates:
+  enabled: true
+  threshold: 70
+
+  pre_execution:
+    location: "Before Step 1"
+    checks:
+      - "Research topic clearly defined and scoped"
+      - "Spec folder path valid or auto-creation confirmed"
+      - "No blocking dependencies or missing prerequisites"
+      - "Execution mode (auto/confirm) established"
+    action_on_fail: "BLOCK - Cannot proceed until all pre-execution checks pass"
+
+  mid_execution:
+    location: "After Step 5"
+    checks:
+      - "Steps 1-5 completed with documented outputs"
+      - "Technical analysis has verifiable findings"
+      - "No unresolved critical blockers"
+      - "Research direction validated (confidence ≥40%)"
+    action_on_fail: "BLOCK - Return to incomplete step and remediate"
+
+  post_execution:
+    location: "After Step 9"
+    checks:
+      - "research.md exists with all 17 sections populated"
+      - "Key questions from Step 1 are answered"
+      - "Quality checklist items verified (Level 2+)"
+      - "Context saved to memory/ folder"
+    action_on_fail: "BLOCK - Cannot claim completion until all checks pass"
+
+  scoring:
+    pass_threshold: 70
+    behavior:
+      pass: "Score ≥70 - Proceed to next phase"
+      fail: "Score <70 - Block progression, require remediation"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  enabled: true
+  failure_threshold: 3
+  recovery_timeout: 60
+  half_open_requests: 1
+
+  states:
+    closed:
+      behavior: "Normal operation, all requests processed"
+      transition: "Default state"
+    open:
+      behavior: "All requests blocked, fast-fail immediately"
+      transition: "failure_threshold (3) reached"
+    half_open:
+      behavior: "Limited requests allowed to test recovery"
+      transition: "recovery_timeout (60s) elapsed"
+
+  tracked_errors:
+    - tool_timeout
+    - tool_error
+    - validation_failure
+    - agent_dispatch_failure
+    - memory_operation_failure
+
+  on_open: |
+    Circuit breaker OPEN - research workflow paused.
+    Saving current progress to checkpoint.
+    Recovery options:
+    A) Retry - Reset circuit breaker and retry failed operation
+    B) Skip - Skip failed step and continue (if non-critical)
+    C) Abort - Save context and terminate workflow gracefully
+    D) Debug - Invoke /spec_kit:debug for detailed analysis
+
+  on_half_open: |
+    Circuit breaker HALF-OPEN - testing recovery.
+    Allowing 1 test request to verify stability.
+
+  on_close: |
+    Circuit breaker CLOSED - normal operation resumed.
+    Workflow continuing from last checkpoint.
+
+# ─────────────────────────────────────────────────────────────────
 # CONFIDENCE CHECKPOINTS (Quick Reference)
 # ─────────────────────────────────────────────────────────────────
 confidence_checkpoints:

@@ -321,6 +321,296 @@ parallel_dispatch_config:
   - step_10_development
 
 # ─────────────────────────────────────────────────────────────────
+# AGENT ROUTING CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+agent_routing:
+  # Phase 2.5 (Optional Research)
+  research_phase:
+    condition: ":with-research flag OR confidence < 60%"
+    agent: "@research"
+    agent_file: ".opencode/agent/research.md"
+    dispatch_method: |
+      Task tool with prompt:
+      ---
+      You are the @research agent. Execute your 9-step research workflow.
+      
+      Topic: {feature_description}
+      Spec Folder: {spec_path}
+      
+      Execute your full workflow:
+      - Step 1-2: Analysis and Pre-Work Review
+      - Step 3-7: Investigation and Analysis
+      - Step 8-9: Compilation and Context Save
+      
+      Return structured findings for research.md compilation.
+      ---
+    fallback: "general"
+    fallback_reason: "If @research agent file unavailable or dispatch fails"
+    on_fallback: |
+      Warning: Research agent unavailable, using general dispatch.
+      Research workflow will continue with standard Task execution.
+
+  # Step 3 (Specification)
+  specification_phase:
+    step: 3
+    agent: "@speckit"
+    agent_file: ".opencode/agent/speckit.md"
+    model: sonnet  # Default model - use opus ONLY if user explicitly requests
+    dispatch_method: |
+      Task tool with prompt:
+      ---
+      You are the @speckit agent. Create spec folder documentation.
+      
+      Feature: {feature_description}
+      Level: {documentation_level}
+      Folder: {spec_path}
+      
+      Create spec.md using template-first approach.
+      Validate structure against templates.
+      
+      Return confirmation of created files.
+      ---
+    fallback: "general"
+    fallback_reason: "If @speckit agent file unavailable or dispatch fails"
+    on_fallback: |
+      Warning: Speckit agent unavailable, using general dispatch.
+      Specification will continue with standard Task execution.
+
+  # Step 11 (Checklist Verification)
+  verification_phase:
+    step: 11
+    agent: "@review"
+    agent_file: ".opencode/agent/review.md"
+    dispatch_method: |
+      Task tool with prompt:
+      ---
+      You are the @review agent. Verify implementation completeness.
+      
+      Spec Folder: {spec_path}
+      Checklist: {spec_path}/checklist.md
+      
+      Execute:
+      1. Load checklist.md
+      2. Verify ALL P0 items are [x] with evidence
+      3. Verify ALL P1 items are [x] or have deferral approval
+      4. Score against quality rubric (100-point scale)
+      
+      Return:
+      - P0 status: [PASS/FAIL]
+      - P1 status: [PASS/PARTIAL/FAIL]
+      - Quality score: [0-100]
+      - Blocking issues: [list]
+      ---
+    fallback: "general"
+    fallback_reason: "If @review agent file unavailable or dispatch fails"
+    blocking: true
+    on_block: |
+      ⛔ BLOCKED: P0 checklist items incomplete.
+      Review agent found the following blocking issues:
+      {blocking_issues}
+      
+      Address these P0 items before claiming completion.
+    on_fallback: |
+      Warning: Review agent unavailable, using general dispatch.
+      Verification will continue with standard Task execution.
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY GATES CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+# Quality gates ensure workflow integrity at critical transition points.
+# Gates validate state before allowing progression.
+quality_gates:
+  enabled: true
+
+  pre_execution:
+    location: "Before Step 1"
+    purpose: "Validate inputs and prerequisites"
+    threshold: 60
+    blocking: soft
+    checks:
+      - id: "feature_description"
+        description: "Feature description is not empty"
+        points: 30
+      - id: "spec_path_valid"
+        description: "Spec path is valid or can be created"
+        points: 30
+      - id: "execution_mode_set"
+        description: "Execution mode is set (auto/confirm)"
+        points: 20
+      - id: "memory_context"
+        description: "Memory context loaded (if applicable)"
+        points: 20
+    on_fail: |
+      ⚠️ Pre-execution gate score below threshold ({score}/100, need 60).
+      Missing: {missing_checks}
+      Proceeding with warning (soft block).
+
+  planning_gate:
+    location: "Between Step 7 and Step 8"
+    purpose: "Verify planning artifacts complete before implementation"
+    threshold: 70
+    blocking: hard
+    critical: true  # This is the most important gate
+    checks:
+      - id: "spec_exists"
+        description: "spec.md exists in spec folder"
+        points: 20
+      - id: "spec_no_clarification"
+        description: "spec.md has no [NEEDS CLARIFICATION] markers"
+        points: 5
+      - id: "plan_exists"
+        description: "plan.md exists in spec folder"
+        points: 20
+      - id: "plan_has_approach"
+        description: "plan.md has technical approach defined"
+        points: 5
+      - id: "tasks_exists"
+        description: "tasks.md exists in spec folder"
+        points: 20
+      - id: "tasks_has_format"
+        description: "tasks.md has T### formatted tasks"
+        points: 5
+      - id: "checklist_verified"
+        description: "checklist.md items verified (Level 2+)"
+        points: 15
+      - id: "review_approval"
+        description: "@review agent approval obtained"
+        points: 10
+    on_fail: |
+      ⛔ PLANNING GATE BLOCKED (score: {score}/100, need 70)
+
+      Missing artifacts:
+      {missing_checks}
+
+      WORKFLOW HALTED. Return to incomplete step and address issues.
+      Use "force proceed" to bypass (not recommended).
+    review_integration:
+      dispatch: true
+      agent: "@review"
+      blocking: true
+      on_review_fail: |
+        ⛔ @review agent found blocking issues:
+        {blocking_issues}
+
+        Address P0 items before proceeding to implementation.
+
+  post_execution:
+    location: "After Step 12"
+    purpose: "Verify all deliverables exist"
+    threshold: 70
+    blocking: hard
+    checks:
+      - id: "tasks_complete"
+        description: "All tasks in tasks.md marked [x]"
+        points: 30
+      - id: "summary_exists"
+        description: "implementation-summary.md exists"
+        points: 25
+      - id: "summary_sections"
+        description: "implementation-summary.md has required sections"
+        points: 15
+      - id: "memory_saved"
+        description: "memory/*.md context saved"
+        points: 20
+      - id: "validation_passed"
+        description: "Validation script passed"
+        points: 10
+    on_fail: |
+      ⛔ Post-execution gate score below threshold ({score}/100, need 70).
+      Missing deliverables:
+      {missing_checks}
+
+      Complete missing items before claiming workflow done.
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+# Circuit breaker prevents cascading failures when agents fail repeatedly.
+# Each agent has an independent circuit.
+circuit_breaker:
+  enabled: true
+
+  # Global settings
+  failure_threshold: 3          # Consecutive failures before OPEN
+  recovery_timeout_ms: 60000    # Time in OPEN before HALF-OPEN (1 minute)
+  success_threshold: 2          # Successes in HALF-OPEN to CLOSE
+  monitoring_window_ms: 300000  # Window for failure counting (5 minutes)
+
+  # States: CLOSED (normal), OPEN (failing), HALF_OPEN (testing)
+  states:
+    CLOSED:
+      description: "Normal operation - requests pass through"
+      behavior: "dispatch_to_agent"
+    OPEN:
+      description: "Agent failing - use fallback immediately"
+      behavior: "use_fallback"
+    HALF_OPEN:
+      description: "Testing recovery - allow single request"
+      behavior: "test_single_request"
+
+  # Per-agent circuit tracking
+  per_agent_tracking:
+    research:
+      agent: "@research"
+      fallback: "general"
+      initial_state: "CLOSED"
+      preserve_on_fallback: []  # No special behavior preserved
+
+    speckit:
+      agent: "@speckit"
+      fallback: "general"
+      initial_state: "CLOSED"
+      preserve_on_fallback: []  # No special behavior preserved
+
+    review:
+      agent: "@review"
+      fallback: "general"
+      initial_state: "CLOSED"
+      preserve_on_fallback:
+        - "blocking"  # CRITICAL: blocking behavior preserved even on fallback
+      special_handling: |
+        When @review circuit is OPEN:
+        - Fall back to general agent
+        - PRESERVE blocking: true behavior
+        - General agent still performs P0/P1 verification
+        - P0 failures still block workflow progression
+        - Quality score threshold (70) still enforced
+
+  # Recovery protocol
+  recovery_protocol:
+    on_dispatch: |
+      IF circuit[agent].state == OPEN:
+        IF time_since_last_failure > recovery_timeout_ms:
+          SET circuit[agent].state = HALF_OPEN
+          ALLOW single request
+        ELSE:
+          USE fallback
+          LOG "Circuit OPEN for {agent}, using {fallback}"
+
+      IF circuit[agent].state == HALF_OPEN:
+        IF request succeeds:
+          INCREMENT circuit[agent].success_count
+          IF success_count >= success_threshold:
+            SET circuit[agent].state = CLOSED
+            RESET circuit[agent].failures = 0
+        ELSE:
+          SET circuit[agent].state = OPEN
+          UPDATE circuit[agent].last_failure
+
+    on_failure: |
+      INCREMENT circuit[agent].failures
+      IF failures >= failure_threshold:
+        SET circuit[agent].state = OPEN
+        UPDATE circuit[agent].last_failure
+        LOG "Circuit OPENED for {agent}"
+
+  # Logging
+  logging:
+    on_state_change: true
+    on_fallback_used: true
+    include_failure_details: true
+
+# ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK
 # ─────────────────────────────────────────────────────────────────
 # Core Principle: If not sure or confidence < 80%, pause and ask for clarification.
@@ -1280,7 +1570,7 @@ workflow:
             D) Pause - Stop workflow and review
 
       debug_dispatch:
-        subagent_type: "general"
+        subagent_type: "general-purpose"  # Claude Code: "general-purpose" | OpenCode: "general"
         timeout_ms: 120000
         context_includes:
         - error_message

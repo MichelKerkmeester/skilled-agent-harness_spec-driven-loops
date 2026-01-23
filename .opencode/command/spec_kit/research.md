@@ -270,6 +270,63 @@ $ARGUMENTS
 | 8    | Research Compilation   | Create research.md            | research.md                          |
 | 9    | Save Context           | Preserve conversation         | memory/*.md                          |
 
+### Execution Mode Behaviors
+
+| Mode        | Invocation              | Behavior                                          |
+| ----------- | ----------------------- | ------------------------------------------------- |
+| `:auto`     | `/spec_kit:research:auto "topic"` | Execute all 9 steps without approval gates |
+| `:confirm`  | `/spec_kit:research:confirm "topic"` | Pause at each step for user approval |
+| (default)   | `/spec_kit:research "topic"` | Ask user to choose mode during Phase 2 |
+
+### Mode Examples
+
+**:auto mode** - Full autonomy, no confirmation gates:
+```
+/spec_kit:research:auto "How does the authentication system work?"
+
+Behavior:
+- Phase 1: Parses "How does the authentication system work?" as topic
+- Phase 2: Asks spec folder question ONLY (mode pre-set to AUTONOMOUS)
+- Steps 1-9: Execute sequentially without pausing for approval
+- Output: Complete research.md with all 17 sections
+```
+
+**:confirm mode** - Pause at each phase for approval:
+```
+/spec_kit:research:confirm "Evaluate migration options for Postgres to MySQL"
+
+Behavior:
+- Phase 1: Parses topic
+- Phase 2: Asks spec folder question ONLY (mode pre-set to INTERACTIVE)
+- Step 1: Shows scope analysis → "Approve scope? [Y/n]"
+- Step 3: Shows codebase findings → "Proceed to external research? [Y/n]"
+- Step 5: Shows technical analysis → "Approve recommendations? [Y/n]"
+- ...continues with approval gates at each step
+```
+
+**Default mode** - User chooses during setup:
+```
+/spec_kit:research "Compare WebSocket vs SSE for real-time updates"
+
+Behavior:
+- Phase 1: Parses topic
+- Phase 2: Asks BOTH questions:
+  1. Spec Folder: A/B/C/D
+  2. Execution Mode: A) Autonomous or B) Interactive
+- User responds: "B, A" (new spec folder, autonomous execution)
+- Proceeds with autonomous execution
+```
+
+### Mode Selection Guidance
+
+| Scenario                                      | Recommended Mode |
+| --------------------------------------------- | ---------------- |
+| Quick research, known domain                  | `:auto`          |
+| Complex topic, need validation at each step   | `:confirm`       |
+| First time researching unfamiliar area        | `:confirm`       |
+| Re-running research with minor scope changes  | `:auto`          |
+| Multi-stakeholder decision requiring review   | `:confirm`       |
+
 ---
 
 ## 4. 📊 RESEARCH DOCUMENT SECTIONS
@@ -386,7 +443,335 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ---
 
-## 9. 🎭 KEY DIFFERENCES FROM OTHER COMMANDS
+## 8.5 🧠 MEMORY INTEGRATION
+
+Memory integration ensures research builds on prior work and preserves findings for future sessions.
+
+### Before Starting Research
+
+```
+1. TRIGGER CHECK:
+   memory_match_triggers(prompt=research_topic)
+   → Returns: keywords that match existing memories
+
+2. SEMANTIC SEARCH:
+   memory_search({
+     query: research_topic,
+     anchors: ['research', 'findings', 'decisions'],
+     includeConstitutional: true
+   })
+   → Returns: Relevant prior research with similarity scores
+
+3. LOAD CONTEXT:
+   IF matches found with similarity > 70:
+     - Display summary of prior findings
+     - Ask user: "Build on this or start fresh?"
+   IF constitutional memories found:
+     - Always load (these are foundational rules)
+```
+
+### After Completing Research
+
+```
+1. GENERATE CONTEXT:
+   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder]
+
+2. ANCHOR TAGGING:
+   The script automatically extracts and indexes:
+   - ANCHOR:research-[topic] → Identifies the research topic
+   - ANCHOR:findings → Key discoveries
+   - ANCHOR:recommendations → Action items
+   - ANCHOR:decisions → Choices made and rationale
+
+3. VERIFY SAVE:
+   Check memory/*.md file created with proper anchors
+```
+
+### Memory Search Patterns for Research
+
+| Research Phase      | Memory Query                                           | Purpose                       |
+| ------------------- | ------------------------------------------------------ | ----------------------------- |
+| Before Step 1       | `memory_search({ query: topic })`                      | Find prior related research   |
+| During Step 3       | `memory_search({ anchors: ['architecture'] })`         | Existing patterns/decisions   |
+| During Step 4       | `memory_search({ anchors: ['external-research'] })`    | Prior external source findings |
+| After Step 9        | `generate-context.js [spec-folder]`                    | Preserve current research     |
+
+### Memory Integration Example
+
+```
+Research Topic: "WebSocket implementation patterns"
+
+1. Pre-Research Check:
+   memory_match_triggers("WebSocket implementation patterns")
+   → Matches: ["websocket", "real-time", "connections"]
+
+2. Semantic Search:
+   memory_search({
+     query: "WebSocket implementation patterns",
+     anchors: ["research", "architecture"]
+   })
+   → Found: "2025-01-15__websocket-evaluation.md" (similarity: 85)
+
+3. User Prompt:
+   "Found prior research on WebSocket evaluation from Jan 15.
+    A) Build on prior findings
+    B) Start fresh (ignore prior work)
+    C) Review prior findings first"
+
+4. Post-Research Save:
+   node generate-context.js specs/007-websocket-impl/
+   → Creates: memory/2025-01-23__websocket-patterns.md
+   → Indexed with anchors: research-websocket, findings, recommendations
+```
+
+---
+
+## 9. 🤖 AGENT ROUTING
+
+This command routes Steps 3-7 to the specialized `@research` agent when available.
+
+| Step | Agent | Fallback | Purpose |
+|------|-------|----------|---------|
+| Steps 3-7 (Investigation) | `@research` | `general` | 9-step research workflow with comprehensive findings |
+
+### How Agent Routing Works
+
+1. **Detection**: When Steps 3-7 are reached, the system checks if `@research` agent is available
+2. **Dispatch**: If available, dispatches to `@research` agent with research topic and spec path
+3. **Fallback**: If agent unavailable, falls back to `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode) with warning
+4. **Output**: Agent returns structured findings for research.md compilation
+
+### Agent Dispatch Template
+
+```
+Task tool with prompt:
+---
+You are the @research agent. Execute your 9-step research workflow.
+
+Topic: {research_topic}
+Spec Folder: {spec_path}
+
+Execute Steps 3-7 of your workflow:
+- Step 3: Codebase Investigation
+- Step 4: External Research
+- Step 5: Technical Analysis
+- Step 6: Quality Checklist
+- Step 7: Solution Design
+
+Return structured findings for research.md compilation.
+---
+```
+
+### Fallback Behavior
+
+When `@research` agent is unavailable:
+- Warning message: "Research agent unavailable, using general dispatch"
+- Workflow continues with `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode)
+- Same steps executed, potentially less specialized output
+
+---
+
+## 10. ✅ QUALITY GATES
+
+Quality gates enforce validation at critical workflow stages to ensure research quality and completeness.
+
+### Gate Configuration
+
+| Gate           | Location         | Purpose                                      | Threshold |
+| -------------- | ---------------- | -------------------------------------------- | --------- |
+| Pre-execution  | Before Step 1    | Validate inputs and prerequisites            | Score ≥70 |
+| Mid-execution  | After Step 5     | Verify research progress and quality         | Score ≥70 |
+| Post-execution | After Step 9     | Confirm all deliverables meet standards      | Score ≥70 |
+
+### Gate Behavior
+
+- **Score ≥ 70** = PASS - Proceed to next phase
+- **Score < 70** = FAIL - Block progression, require remediation
+
+### Pre-Execution Gate Checks
+
+```
+□ Research topic clearly defined and scoped
+□ Spec folder path valid or auto-creation confirmed
+□ No blocking dependencies or missing prerequisites
+□ Execution mode (auto/confirm) established
+```
+
+### Mid-Execution Gate Checks
+
+```
+□ Steps 1-5 completed with documented outputs
+□ Technical analysis has verifiable findings
+□ No unresolved critical blockers
+□ Research direction validated (confidence ≥40%)
+```
+
+### Post-Execution Gate Checks
+
+```
+□ research.md exists with all 17 sections populated
+□ Key questions from Step 1 are answered
+□ Quality checklist items verified (Level 2+)
+□ Context saved to memory/ folder
+```
+
+---
+
+## 11. 🔌 CIRCUIT BREAKER
+
+The circuit breaker prevents cascading failures by isolating problematic operations and enabling graceful recovery.
+
+### States
+
+| State     | Behavior                                             | Transition Trigger              |
+| --------- | ---------------------------------------------------- | ------------------------------- |
+| CLOSED    | Normal operation, all requests processed             | Default state                   |
+| OPEN      | All requests blocked, fast-fail immediately          | failure_threshold (3) reached   |
+| HALF-OPEN | Limited requests allowed to test recovery            | recovery_timeout (60s) elapsed  |
+
+### Configuration
+
+| Parameter          | Value | Description                              |
+| ------------------ | ----- | ---------------------------------------- |
+| failure_threshold  | 3     | Consecutive failures before OPEN state   |
+| recovery_timeout   | 60    | Seconds before attempting recovery       |
+| half_open_requests | 1     | Test requests allowed in HALF-OPEN state |
+
+### Tracked Errors
+
+The circuit breaker monitors these error categories:
+
+- `tool_timeout` - Tool execution exceeds timeout limit
+- `tool_error` - Tool returns error response
+- `validation_failure` - Output fails validation checks
+- `agent_dispatch_failure` - Sub-agent dispatch fails
+- `memory_operation_failure` - Memory save/load operations fail
+
+### Recovery Protocol
+
+```
+1. OPEN state entered:
+   - Log: "Circuit breaker OPEN - research workflow paused"
+   - Action: Save current progress to checkpoint
+   - Notify: Present recovery options to user
+
+2. After recovery_timeout (60s):
+   - Transition to HALF-OPEN
+   - Log: "Circuit breaker HALF-OPEN - testing recovery"
+   - Allow 1 test request
+
+3. Test request result:
+   - SUCCESS → Transition to CLOSED, resume workflow
+   - FAILURE → Return to OPEN, reset recovery_timeout
+```
+
+### User Recovery Options (OPEN State)
+
+```
+A) Retry - Reset circuit breaker and retry failed operation
+B) Skip - Skip failed step and continue (if non-critical)
+C) Abort - Save context and terminate workflow gracefully
+D) Debug - Invoke /spec_kit:debug for detailed analysis
+```
+
+### Circuit Breaker Example Scenarios
+
+**Scenario 1: Source Unavailable (tool_error)**
+
+```
+Attempt 1: WebFetch("https://api.example.com/docs") → 404 Not Found
+           Action: Log error, try alternate source (cache, mirror)
+           State: CLOSED (failure count: 1)
+
+Attempt 2: WebFetch("https://docs.example.com/api") → Connection timeout
+           Action: Log error, try local cache
+           State: CLOSED (failure count: 2)
+
+Attempt 3: Read("/docs/cached-api-docs.md") → File not found
+           Action: Circuit OPENS, present recovery options
+           State: OPEN (failure threshold reached)
+
+Recovery: After 60s → HALF-OPEN
+          Test: WebFetch original URL
+          Success → CLOSED, continue research
+          Failure → Return to OPEN, extend timeout to 90s
+```
+
+**Scenario 2: Conflicting Evidence (validation_failure)**
+
+```
+Step 3 (Codebase Investigation):
+  Finding A: "Auth uses JWT" [SOURCE: src/auth/token.ts:15]
+  Grade: A (Primary, verified)
+
+Step 4 (External Research):
+  Finding B: "System uses session-based auth" [DOC: internal-wiki/auth]
+  Grade: B (Secondary, documentation)
+
+Conflict Detected: Contradictory authentication claims
+  Action: Circuit transitions to HALF-OPEN
+  Behavior: Pause, request user resolution
+
+User Prompt:
+  "Conflicting evidence detected:
+   - Code shows JWT tokens (Grade A evidence)
+   - Wiki says session-based (Grade B evidence)
+
+   A) Trust codebase (JWT) - code is source of truth
+   B) Trust documentation - code may be outdated
+   C) Investigate further - need more evidence"
+
+Resolution: User selects A
+  Action: CLOSED, mark wiki as Grade D (outdated)
+  Continue: Research proceeds with JWT as confirmed approach
+```
+
+**Scenario 3: Agent Dispatch Failure (agent_dispatch_failure)**
+
+```
+Task: Dispatch @research agent for Step 4
+
+Attempt 1: Task tool timeout (120s exceeded)
+           Action: Log, retry with smaller scope
+           State: CLOSED (failure count: 1)
+
+Attempt 2: Task tool returns partial result
+           Action: Accept partial, retry remainder
+           State: CLOSED (failure count: 2)
+
+Attempt 3: Task tool returns error "context exceeded"
+           Action: Circuit OPENS
+           State: OPEN
+
+Recovery Options Presented:
+  A) Retry with reduced scope (split into sub-tasks)
+  B) Skip external research, use cached data
+  C) Abort and save progress
+  D) Debug with /spec_kit:debug
+```
+
+**Scenario 4: Memory Operation Failure (memory_operation_failure)**
+
+```
+Step 9 (Save Context): generate-context.js execution
+
+Attempt 1: Script error "Database locked"
+           Action: Wait 5s, retry
+           State: CLOSED (failure count: 1)
+
+Attempt 2: Script error "Disk full"
+           Action: Circuit OPENS immediately (critical failure)
+           State: OPEN
+
+Recovery:
+  - Alert: "Memory save failed - disk may be full"
+  - Offer: "Export findings to clipboard instead?"
+  - Action: Save to scratch/ as backup if user approves
+```
+
+---
+
+## 12. 🎭 KEY DIFFERENCES FROM OTHER COMMANDS
 
 - **Does NOT proceed to implementation** - Terminates after research.md
 - **Primary output is research.md** - Comprehensive technical documentation
@@ -395,7 +780,7 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ---
 
-## 10. 🔍 EXAMPLES
+## 13. 🔍 EXAMPLES
 
 **Example 1: Multi-Integration Feature**
 ```
@@ -414,7 +799,7 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 
 ---
 
-## 11. 🔗 COMMAND CHAIN
+## 14. 🔗 COMMAND CHAIN
 
 This command is part of the SpecKit workflow:
 
@@ -427,7 +812,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 12. 📌 NEXT STEPS
+## 15. 📌 NEXT STEPS
 
 After research completes, suggest relevant next steps:
 

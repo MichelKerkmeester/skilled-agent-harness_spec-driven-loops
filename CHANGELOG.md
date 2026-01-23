@@ -7,6 +7,75 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.7.0**] - 2026-01-23
+
+Comprehensive multi-agent system upgrade introducing **7 specialized agents** with enterprise orchestration patterns. Adds Circuit Breaker isolation, Saga Compensation for rollback, Quality Gates at execution checkpoints, and dedicated agents for review, research, debugging, and session handover.
+
+---
+
+### New
+
+**Agent System (7 Agents)**
+
+1. **@review Agent** — Code review specialist with pattern validation, quality scoring, and standards enforcement (READ-ONLY)
+2. **@research Agent** — Technical investigation with evidence gathering, pattern analysis, and research documentation
+3. **@speckit Agent** — Spec folder documentation specialist for Level 1-3+ with template enforcement (Sonnet default)
+4. **@debug Agent** — 4-phase debugging methodology (Observe → Analyze → Hypothesize → Fix) with structured handoff
+5. **@handover Agent** — Session continuation specialist for context preservation and seamless session branching (Sonnet default)
+6. **@orchestrate Agent** — Senior orchestration with task decomposition, delegation, quality evaluation (enhanced)
+7. **@write Agent** — Documentation generation and maintenance (enhanced)
+
+**Enterprise Orchestration Patterns**
+
+8. **Circuit Breaker** — Isolates failing agents with 3-state system (CLOSED → OPEN → HALF_OPEN), 3-failure threshold, 60-second timeout
+9. **Saga Compensation** — Reverse-order rollback on multi-task failures with logged compensation actions
+10. **Quality Gates** — Pre/mid/post execution scoring with 70-point threshold rubrics
+11. **Resource Budgeting** — 50K token default budget with 80% warning and 100% halt thresholds
+12. **Conditional Branching** — IF/THEN/ELSE logic in task decomposition with 3-level nesting support
+13. **Incremental Checkpointing** — Every 5 tasks or 10 tool calls for recovery
+
+---
+
+### Changed
+
+**Command Integration**
+
+1. **Agent Routing in Commands** — 4 commands now route to specialized agents:
+   - `/spec_kit:research` → `@research` (Steps 3-7)
+   - `/spec_kit:plan` → `@speckit` (Step 3)
+   - `/spec_kit:implement` → `@review` (Step 11)
+   - `/spec_kit:handover` → `@handover` (dedicated Sonnet agent)
+2. **13 YAML Config Files Updated** — All spec_kit workflow configs now include:
+   - `agent_routing` block with primary agent and dispatch points
+   - `quality_gates` block with pre/mid/post thresholds
+   - `circuit_breaker` block with failure thresholds and states
+3. **Model Standardization** — All agents default to Opus 4.5 for complex analysis, Sonnet for cost-efficient structured tasks
+
+**Agent Infrastructure**
+
+4. **7 Symlinks** — All agents linked in `.claude/agents/` for Claude Code discovery
+5. **Dual subagent_type References** — 10 files updated with cross-environment compatibility:
+   - `general-purpose` for Claude Code
+   - `general` for OpenCode
+   - Comment format: `# Claude Code: "general-purpose" | OpenCode: "general"`
+
+---
+
+### Fixed
+
+1. **Agent Routing Alignment** — AGENTS.md routing table now includes all 7 agents with correct names
+2. **YAML File Count Documentation** — Updated from 8 to 13 files across implementation docs
+
+---
+
+### Upgrade
+
+No action required. Pull latest to get the new agent system. The `/spec_kit:debug` command now prompts for model selection before delegating to the debug agent.
+
+**Full Changelog**: [v1.0.6.1...v1.0.7.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.6.1...v1.0.7.0)
+
+---
+
 ## [**1.0.6.1**] - 2026-01-22
 
 Fixes template path references in YAML workflow configs. The `available_templates:` section now correctly points to level-specific template directories, resolving "File not found" errors when spec_kit workflows attempted to read non-existent root-level templates.

@@ -239,6 +239,171 @@ parallel_dispatch_config:
     - step_6_development
 
 # ─────────────────────────────────────────────────────────────────
+# AGENT ROUTING CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+agent_routing:
+  verification_phase:
+    step: 7  # Completion/Verification step
+    agent: "@review"
+    agent_file: ".opencode/agent/review.md"
+    dispatch_method: |
+      Task tool with prompt:
+      ---
+      You are the @review agent. Verify implementation completeness.
+      
+      Spec Folder: {spec_path}
+      Checklist: {spec_path}/checklist.md
+      
+      Execute:
+      1. Load checklist.md
+      2. Verify ALL P0 items are [x] with evidence
+      3. Verify ALL P1 items are [x] or have deferral approval
+      4. Score against quality rubric (100-point scale)
+      
+      Return:
+      - P0 status: [PASS/FAIL]
+      - P1 status: [PASS/PARTIAL/FAIL]
+      - Quality score: [0-100]
+      - Blocking issues: [list]
+      ---
+    fallback: "general"
+    fallback_reason: "If @review agent file unavailable or dispatch fails"
+    blocking: true
+    on_block: |
+      ⛔ BLOCKED: P0 checklist items incomplete.
+      Review agent found the following blocking issues:
+      {blocking_issues}
+      
+      Address these P0 items before claiming completion.
+    on_fallback: |
+      Warning: Review agent unavailable, using general dispatch.
+      Verification will continue with standard Task execution.
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY GATES CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+quality_gates:
+  enabled: true
+
+  gates:
+    pre_implementation:
+      location: "Step 5 → Step 6 transition"
+      threshold: 70
+      blocking: true
+      evaluates:
+        - prerequisites_complete
+        - plan_clarity
+        - task_breakdown_quality
+      on_fail: |
+        ⛔ PRE-IMPLEMENTATION GATE FAILED (Score: {score}/100)
+        Cannot start development until score >= 70.
+
+        Issues:
+        {issues_list}
+
+        Actions:
+        - A) Fix issues and re-evaluate
+        - B) Override gate (requires justification)
+
+    mid_implementation:
+      location: "Step 6.5 checkpoint"
+      threshold: 65
+      blocking: false  # Warning only
+      evaluates:
+        - code_quality
+        - test_coverage
+        - task_completion_rate
+      on_fail: |
+        ⚠️ MID-IMPLEMENTATION GATE WARNING (Score: {score}/100)
+        Threshold: 65. Continuing with caution.
+
+        Concerns:
+        {issues_list}
+
+    post_implementation:
+      location: "Before Step 7 completion"
+      threshold: 70
+      blocking: true
+      evaluates:
+        - all_tasks_complete
+        - tests_pass
+        - checklist_verified
+      on_fail: |
+        ⛔ POST-IMPLEMENTATION GATE FAILED (Score: {score}/100)
+        Cannot claim completion until score >= 70.
+
+        Blocking issues:
+        {issues_list}
+
+  special_handling:
+    review_agent_blocking:
+      note: "@review agent blocking (Section 8) is SEPARATE from quality gates"
+      relationship: |
+        - Quality gates: Check numeric score thresholds
+        - @review agent: Checks categorical P0/P1 items
+        - BOTH must pass for completion claims
+      example: |
+        Quality gate PASS (score: 75) + @review BLOCKED (P0 incomplete)
+        = Cannot complete (must fix P0 items)
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  enabled: true
+
+  thresholds:
+    failure_threshold: 3      # Failures before OPEN state
+    cooldown_seconds: 30      # Time before HALF-OPEN
+    success_to_close: 1       # Successes in HALF-OPEN to return to CLOSED
+
+  states:
+    closed:
+      description: "Normal operation - all operations proceed"
+      behavior: "Execute operations normally"
+    open:
+      description: "3+ consecutive failures - operations fail-fast"
+      behavior: "Skip affected step, report to user"
+    half_open:
+      description: "After cooldown - single test operation allowed"
+      behavior: "Allow one operation, monitor result"
+
+  step_behavior:
+    steps_1_to_5:
+      circuit_active: true
+      on_open: "Skip to next non-dependent step"
+    step_6_development:
+      circuit_active: true
+      granularity: "per_task"
+      on_open: "Isolate failing task, continue with others"
+    step_7_completion:
+      circuit_active: false
+      reason: "Critical step - must complete or fail explicitly"
+    steps_8_to_9:
+      circuit_active: true
+      on_open: "Skip step, log warning"
+
+  recovery_options:
+    on_circuit_open:
+      prompt: |
+        🔌 Circuit breaker OPEN for {step_name}
+        Consecutive failures: {failure_count}
+        Last error: {last_error}
+
+        Options:
+        - A) Retry after cooldown ({cooldown_seconds}s)
+        - B) Skip affected step
+        - C) Abort workflow
+      interactive_action: "present_options"  # Interactive mode asks user
+
+  special_handling:
+    review_agent_distinction:
+      note: "Circuit breaker and @review blocking are SEPARATE mechanisms"
+      circuit_breaker: "Handles operational failures (errors, timeouts, crashes)"
+      review_blocking: "Handles quality failures (incomplete P0 items)"
+      both_required: "Both must be satisfied for successful completion"
+
+# ─────────────────────────────────────────────────────────────────
 # CONFIDENCE CHECKPOINTS (Quick Reference)
 # ─────────────────────────────────────────────────────────────────
 confidence_checkpoints:

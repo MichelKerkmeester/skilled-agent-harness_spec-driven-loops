@@ -655,8 +655,11 @@ Several commands leverage sub-agents for complex tasks:
 
 | Command | Delegation | Purpose |
 |---------|------------|---------|
-| `/spec_kit:debug` | Model selection prompt | Routes debugging to specialized model (Gemini/Claude/GPT) |
-| `/spec_kit:handover` | Task tool dispatch | Delegates context gathering to sub-agent |
+| `/spec_kit:debug` | `@debug` agent | Routes to 4-phase debugging methodology (model selection prompt) |
+| `/spec_kit:handover` | `@handover` agent | Dedicated Sonnet agent for context gathering |
+| `/spec_kit:research` | `@research` agent | Technical investigation with evidence gathering |
+| `/spec_kit:plan` | `@speckit` agent | Spec folder creation with template enforcement |
+| `/spec_kit:implement` | `@review` agent | Code review at completion (READ-ONLY) |
 | `/memory:save` | Task tool dispatch | Delegates memory extraction to sub-agent |
 
 **Model Selection (Debug):** When stuck 3+ attempts, `/spec_kit:debug` prompts you to select a model, then dispatches to that model via Task tool for fresh perspective.

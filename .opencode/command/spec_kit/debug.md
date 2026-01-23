@@ -278,7 +278,8 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 
 **Step 3 - Dispatch Sub-Agent:**
 - Tool: Task
-- subagent_type: "general"
+- subagent_type: "debug" (routes to `@debug` agent)
+- Agent file: `.opencode/agent/debug.md`
 - Timeout: 2 minutes (standard)
 
 **Step 5 - Integration Options:**
@@ -373,7 +374,7 @@ Before or during debugging, validation runs automatically to catch common issues
 
 ## 7. 🔀 SUB-AGENT DELEGATION
 
-This command uses the Task tool to dispatch a parallel sub-agent for debugging. The sub-agent runs independently and returns findings.
+This command uses the Task tool to dispatch the specialized `@debug` agent for debugging. The sub-agent runs independently with fresh perspective and returns structured findings.
 
 ### Delegation Architecture
 
@@ -381,16 +382,66 @@ This command uses the Task tool to dispatch a parallel sub-agent for debugging. 
 Main Agent (reads command):
 ├── PHASE 1: Context Detection (validation)
 ├── PHASE 2: Model Selection (mandatory)
-├── DISPATCH: Task tool with sub-agent
-│   ├── Sub-agent analyzes debug report
-│   ├── Sub-agent proposes fix
-│   └── Sub-agent returns findings
+├── Step 2: Generate debug-delegation.md (context handoff)
+├── DISPATCH: Task tool with @debug agent
+│   ├── @debug receives structured handoff (NOT conversation history)
+│   ├── @debug executes 4-phase methodology
+│   │   ├── Phase 1: OBSERVE (read error, categorize, map scope)
+│   │   ├── Phase 2: ANALYZE (trace paths, understand flow)
+│   │   ├── Phase 3: HYPOTHESIZE (form 2-3 ranked theories)
+│   │   └── Phase 4: FIX (minimal change, verify)
+│   └── @debug returns structured response (Success/Blocked/Escalation)
 └── Step 5: Integration (always main agent)
 ```
 
-### Sub-Agent Isolation
+### @debug Agent Dispatch Template
 
-The debugging sub-agent does NOT have access to the conversation history. All context must be passed via the debug-delegation.md report.
+```
+Task tool with prompt:
+---
+You are the @debug agent. Follow your 4-phase debugging methodology.
+
+## Debug Context Handoff
+
+### Error Description
+{error_message}
+
+### Files Involved
+{affected_files}
+
+### Reproduction Steps
+{reproduction_steps}
+
+### Prior Attempts (What Was Tried)
+{previous_attempts}
+
+### Environment
+{environment_context}
+
+Execute your OBSERVE → ANALYZE → HYPOTHESIZE → FIX methodology.
+Return your findings in structured format (Success/Blocked/Escalation).
+---
+subagent_type: "debug"
+```
+
+### Sub-Agent Isolation (By Design)
+
+The `@debug` agent does NOT have access to conversation history. This is intentional:
+- **Prevents inherited assumptions** from failed attempts
+- **Fresh perspective** may see what others missed
+- **All context** must be passed via structured handoff format
+
+### Context Handoff Format
+
+The debug-delegation.md report MUST include:
+
+| Section | Required | Purpose |
+|---------|----------|---------|
+| Error Description | ✓ | Exact error message, symptoms |
+| Files Involved | ✓ | Affected files with roles |
+| Reproduction Steps | ✓ | How to trigger the error |
+| Prior Attempts | ✓ | What was tried and why it failed |
+| Environment | ○ | Runtime, versions, config |
 
 ### Model Hint
 
@@ -400,6 +451,7 @@ The selected model (Claude/Gemini/Codex) is passed as context to help route to a
 
 - **Timeout:** 2 minutes (standard)
 - **Retry Limit:** Maximum 3 re-dispatch attempts before forcing escalation
+- **Escalation:** After 3 failed hypotheses, @debug returns ESCALATION response
 
 ---
 
@@ -439,13 +491,21 @@ Agent: Let me delegate this to a fresh debugging agent...
 
 ## 10. 📌 INTEGRATION
 
-### workflows-code Skill Integration
+### @debug Agent Integration
 
-The debug command uses universal debugging methodology applicable to any technology stack:
-- Follows 4-phase approach: Observe → Analyze → Hypothesize → Fix
-- Use /spec_kit:debug when stuck after multiple attempts (any stack)
-- Debug delegation creates permanent record in debug-delegation.md
-- Sub-agent adapts debugging approach based on error context and file types
+The debug command dispatches to the specialized `@debug` agent (`.opencode/agent/debug.md`):
+- **4-phase methodology:** Observe → Analyze → Hypothesize → Fix
+- **Codebase-agnostic:** Works with any technology stack
+- **Isolation by design:** No conversation history, only structured handoff
+- **Structured responses:** Success, Blocked, or Escalation format
+
+### @debug Agent Response Types
+
+| Response | Meaning | Next Action |
+|----------|---------|-------------|
+| **Success** | Root cause found, fix applied | Verify fix, continue work |
+| **Blocked** | Missing info or access issue | Provide requested info |
+| **Escalation** | 3+ hypotheses failed | Try different model or manual review |
 
 ### Memory Integration
 

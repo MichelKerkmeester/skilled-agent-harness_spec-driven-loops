@@ -218,6 +218,103 @@ parallel_dispatch_config:
     - step_5_planning  # Has inline_parallel_exploration - 4 agents dispatched directly
 
 # ─────────────────────────────────────────────────────────────────
+# AGENT ROUTING CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+agent_routing:
+  specification_phase:
+    step: 3
+    agent: "@speckit"
+    agent_file: ".opencode/agent/speckit.md"
+    model: sonnet  # Default model - use opus ONLY if user explicitly requests
+    dispatch_method: |
+      Task tool with prompt:
+      ---
+      You are the @speckit agent. Create spec folder documentation.
+      
+      Feature: {feature_description}
+      Level: {documentation_level}
+      Folder: {spec_path}
+      
+      Create spec.md using template-first approach.
+      Validate structure against templates.
+      
+      Return confirmation of created files.
+      ---
+    fallback: "general"
+    fallback_reason: "If @speckit agent file unavailable or dispatch fails"
+    on_fallback: |
+      Warning: Speckit agent unavailable, using general dispatch.
+      Workflow will continue with standard Task execution.
+
+# ─────────────────────────────────────────────────────────────────
+# QUALITY GATES CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+quality_gates:
+  enabled: true
+  threshold: 70
+
+  pre_execution:
+    trigger: "Before Step 1 starts"
+    checks:
+      - "Feature description provided and clear"
+      - "Spec folder path valid or auto-creation possible"
+      - "No blocking prerequisites missing"
+    on_fail: "Halt workflow, report missing prerequisites"
+
+  mid_execution:
+    trigger: "After Step 3 (Specification)"
+    checks:
+      - "spec.md created with all required sections"
+      - "Acceptance criteria defined and measurable"
+      - "No unresolved [NEEDS CLARIFICATION] markers"
+    on_fail: "Return to Step 3, resolve issues before proceeding"
+
+  post_execution:
+    trigger: "After Step 7 (Handover Check)"
+    checks:
+      - "All planning artifacts exist (spec.md, plan.md)"
+      - "Memory context saved successfully"
+      - "Handover check completed"
+    on_fail: "Report incomplete artifacts, suggest remediation"
+
+# ─────────────────────────────────────────────────────────────────
+# CIRCUIT BREAKER CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
+circuit_breaker:
+  enabled: true
+  failure_threshold: 3
+  recovery_timeout: 60
+
+  states:
+    closed:
+      description: "Normal operation"
+      behavior: "Errors tracked, workflow continues"
+    open:
+      description: "Failure threshold exceeded"
+      behavior: "Workflow halted, recovery required"
+    half_open:
+      description: "Recovery attempted"
+      behavior: "Single retry allowed, success resets to CLOSED"
+
+  tracked_errors:
+    - "Task tool dispatch failures"
+    - "File creation/write failures"
+    - "Agent routing failures"
+    - "Memory save failures"
+
+  recovery_protocol:
+    - step: 1
+      action: "OPEN state triggered - workflow halts with error summary"
+    - step: 2
+      action: "Wait recovery_timeout (60 seconds)"
+    - step: 3
+      action: "HALF-OPEN attempt - single retry of failed operation"
+    - step: 4
+      action: "Success - reset to CLOSED, continue workflow"
+    - step: 5
+      action: "Failure - return to OPEN, escalate to user"
+
+# ─────────────────────────────────────────────────────────────────
 # CONFIDENCE CHECKPOINTS (Quick Reference)
 # ─────────────────────────────────────────────────────────────────
 confidence_checkpoints:

@@ -584,7 +584,7 @@ Main Agent (reads command):
 ```
 DISPATCH SUB-AGENT:
   tool: Task
-  subagent_type: general
+  subagent_type: general-purpose  # Claude Code: "general-purpose" | OpenCode: "general"
   description: "Save memory context"
   prompt: |
     Save conversation context to memory for spec folder: {target_folder}
@@ -674,7 +674,7 @@ WHEN fallback triggers:
 ```
 IF phases passed:
   TRY:
-    result = Task(subagent_type="general", prompt=SUB_AGENT_PROMPT)
+    result = Task(subagent_type="general-purpose", prompt=SUB_AGENT_PROMPT)  # or "general" for OpenCode
     IF result.status == "OK":
       file_path = result.file_path
       memory_id = result.memory_id
