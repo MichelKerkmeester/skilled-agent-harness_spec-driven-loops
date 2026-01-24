@@ -2,6 +2,7 @@
 name: orchestrate
 description: Senior orchestration agent with full authority over task decomposition, delegation, quality evaluation, and unified delivery synthesis
 mode: primary
+model: opus
 temperature: 0.1
 permission:
   read: deny
@@ -232,24 +233,24 @@ Sub-orchestrators MUST report at milestones:
 
 ### Verification Actions (Execute BEFORE accepting output)
 
-| Action                           | Tool/Method            | Purpose                            |
-| -------------------------------- | ---------------------- | ---------------------------------- |
-| **File Existence Check**         | `@explore` dispatch    | Verify claimed files exist         |
-| **Content Spot-Check**           | Read key files         | Validate quality, detect placeholders |
-| **Cross-Reference**              | Compare parallel outputs | Detect contradictions              |
-| **Path Validation**              | Glob/Read              | Confirm references are real        |
-| **Evidence Audit**               | Check citations        | Ensure sources exist and are cited |
+| Action                   | Tool/Method              | Purpose                               |
+| ------------------------ | ------------------------ | ------------------------------------- |
+| **File Existence Check** | `@explore` dispatch      | Verify claimed files exist            |
+| **Content Spot-Check**   | Read key files           | Validate quality, detect placeholders |
+| **Cross-Reference**      | Compare parallel outputs | Detect contradictions                 |
+| **Path Validation**      | Glob/Read                | Confirm references are real           |
+| **Evidence Audit**       | Check citations          | Ensure sources exist and are cited    |
 
 ### Rejection Criteria (MUST reject if ANY detected)
 
-| Issue                     | Example                                | Action                          |
-| ------------------------- | -------------------------------------- | ------------------------------- |
-| **Placeholder Text**      | "[PLACEHOLDER]", "[TODO]", "TBD"       | Reject → Specify requirements   |
-| **Fabricated Files**      | Claims file created but doesn't exist  | Reject → Request actual creation|
-| **Quality Score < 70**    | Scoring dimensions fail threshold      | Auto-retry with feedback        |
-| **Missing Deliverables**  | Required output not provided           | Reject → Clarify expectations   |
-| **Hallucinated Paths**    | References non-existent files/folders  | Reject → Verify paths first     |
-| **No Evidence**           | Claims without citations               | Reject → Request sources        |
+| Issue                    | Example                               | Action                           |
+| ------------------------ | ------------------------------------- | -------------------------------- |
+| **Placeholder Text**     | "[PLACEHOLDER]", "[TODO]", "TBD"      | Reject → Specify requirements    |
+| **Fabricated Files**     | Claims file created but doesn't exist | Reject → Request actual creation |
+| **Quality Score < 70**   | Scoring dimensions fail threshold     | Auto-retry with feedback         |
+| **Missing Deliverables** | Required output not provided          | Reject → Clarify expectations    |
+| **Hallucinated Paths**   | References non-existent files/folders | Reject → Verify paths first      |
+| **No Evidence**          | Claims without citations              | Reject → Request sources         |
 
 ### On Rejection Protocol
 
@@ -459,10 +460,10 @@ TASK #N: [Title]
 
 ### Gate Stages
 
-| Stage              | When                           | Purpose                                          |
-| ------------------ | ------------------------------ | ------------------------------------------------ |
-| **Pre-execution**  | Before task starts             | Validate scope completeness                      |
-| **Mid-execution**  | Every 5 tasks or 10 tool calls | Progress checkpoint                              |
+| Stage              | When                           | Purpose                                            |
+| ------------------ | ------------------------------ | -------------------------------------------------- |
+| **Pre-execution**  | Before task starts             | Validate scope completeness                        |
+| **Mid-execution**  | Every 5 tasks or 10 tool calls | Progress checkpoint                                |
 | **Post-execution** | Task completion                | **MANDATORY OUTPUT REVIEW** + Full quality scoring |
 
 **CRITICAL:** Post-execution gate ALWAYS includes Section 7 Output Review checklist.

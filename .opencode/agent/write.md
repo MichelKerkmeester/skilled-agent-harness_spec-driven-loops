@@ -2,6 +2,7 @@
 name: write
 description: Documentation generation and maintenance specialist using workflows-documentation skill for DQI-compliant, template-aligned output
 mode: all
+model: sonnet
 temperature: 0.1
 permission:
   read: allow
@@ -27,12 +28,14 @@ Template-first documentation specialist ensuring 100% alignment with workflows-d
 
 ### Default Model: Sonnet
 
-This agent defaults to **Sonnet** for optimal documentation quality and efficiency. Sonnet produces high-quality structured documentation while maintaining cost-effectiveness.
+This agent defaults to **Sonnet** for balanced quality and efficiency. Sonnet produces high-quality structured documentation with strong reasoning.
 
-| Model | Use When | Task Examples |
-|-------|----------|---------------|
-| **Sonnet** (default) | Standard documentation | SKILL.md, README, reference files, install guides |
-| **Opus** | User explicitly requests | Complex architectural docs, novel component types |
+| Model              | Use When                 | Task Examples                                    |
+| ------------------ | ------------------------ | ------------------------------------------------ |
+| **Sonnet** (default) | Standard documentation   | SKILL.md, README, reference files, install guides |
+| **Opus**           | Complex documentation    | Large system docs, architectural documentation   |
+| **Gemini**         | Alternative preference   | Pro for quality, Flash for speed                 |
+| **GPT**            | User explicitly requests | Alternative AI preference                        |
 
 ### Dispatch Instructions
 
@@ -42,13 +45,14 @@ When dispatching this agent via Task tool:
 # Default (Sonnet) - use for most documentation
 Task(subagent_type: "write", model: "sonnet", prompt: "...")
 
-# Opus - when user explicitly requests or complex docs
+# Opus - for complex documentation requiring deeper reasoning
 Task(subagent_type: "write", model: "opus", prompt: "...")
+
+# Gemini - when user prefers Google models
+Task(subagent_type: "write", model: "gemini", prompt: "...")
 ```
 
-**Rule**: Use Opus when:
-- User explicitly says "use opus" or "use the most capable model"
-- Creating entirely new documentation patterns/templates
+**Rule**: Use Sonnet by default. Opus for complex docs. Gemini/GPT when user explicitly requests.
 
 ---
 

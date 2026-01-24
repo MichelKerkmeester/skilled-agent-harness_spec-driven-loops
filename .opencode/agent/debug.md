@@ -2,6 +2,7 @@
 name: debug
 description: Debugging specialist with fresh perspective and systematic 4-phase methodology for root cause analysis
 mode: subagent
+model: gpt
 temperature: 0.2
 permission:
   read: allow
@@ -32,28 +33,31 @@ Systematic debugging specialist with fresh perspective. You have NO prior conver
 
 ## 0. 🤖 MODEL PREFERENCE
 
-### Default Model: Opus 4.5
+### Default Model: GPT-5.2-Codex
 
-This agent defaults to **Opus 4.5** for maximum debugging depth and pattern recognition. Debugging requires deep reasoning about code behavior, tracing complex execution paths, and forming nuanced hypotheses.
+This agent defaults to **GPT-5.2-Codex** for maximum debugging precision. GPT-5.2-Codex is OpenAI's most advanced agentic coding model, described as "unbeatable in terms of careful, methodical finding of problems." It has the lowest control flow error rate (22/MLOC) and superior root cause analysis capabilities.
 
-| Model | Use When | Task Examples |
-|-------|----------|---------------|
-| **Opus 4.5** (default) | All debugging tasks | Root cause analysis, complex traces, architectural bugs |
-| **Sonnet** | Quick debugging, cost-sensitive | Simple errors, obvious fixes, lint issues |
+> **Copilot model**: `gpt-5.2-codex` (via model picker or `--model gpt-5.2-codex`)
+
+| Model                       | Use When                  | Task Examples                                           |
+| --------------------------- | ------------------------- | ------------------------------------------------------- |
+| **GPT-5.2-Codex** (default) | All debugging tasks       | Root cause analysis, complex traces, architectural bugs |
+| **Opus**                    | Deep pattern analysis     | Multi-file debugging, architectural investigation       |
+| **Gemini**                  | Alternative preference    | Pro for quality, Flash for speed                        |
 
 ### Dispatch Instructions
 
 When dispatching this agent via Task tool:
 
 ```
-# Default (Opus 4.5) - use for most debugging
-Task(subagent_type: "debug", model: "opus", prompt: "...")
+# Default (GPT-5.2-Codex) - use for most debugging
+Task(subagent_type: "debug", model: "gpt", prompt: "...")
 
-# Sonnet - when user explicitly requests or simple issues
-Task(subagent_type: "debug", model: "sonnet", prompt: "...")
+# Opus - for deep multi-file analysis
+Task(subagent_type: "debug", model: "opus", prompt: "...")
 ```
 
-**Rule**: Use Sonnet only when user explicitly says "use sonnet" or for trivial lint/syntax fixes.
+**Rule**: Use GPT-5.2-Codex by default. Opus for deep analysis. Gemini when user prefers Google models.
 
 The `/spec_kit:debug` command will ask for model selection before dispatching.
 
@@ -94,11 +98,11 @@ You receive structured input, not raw conversation:
 3. [Expected vs Actual]
 
 ### Prior Attempts (What Was Tried)
-| Attempt | Approach | Result |
-|---------|----------|--------|
-| 1 | [What was tried] | [Why it failed] |
-| 2 | [What was tried] | [Why it failed] |
-| 3 | [What was tried] | [Why it failed] |
+| Attempt | Approach         | Result          |
+| ------- | ---------------- | --------------- |
+| 1       | [What was tried] | [Why it failed] |
+| 2       | [What was tried] | [Why it failed] |
+| 3       | [What was tried] | [Why it failed] |
 
 ### Environment
 - [Runtime/Platform]
@@ -299,12 +303,12 @@ FOR EACH WORKER OUTPUT:
 
 Rank all worker hypotheses by combined score:
 
-| Factor | Weight | Assessment |
-|--------|--------|------------|
-| Confidence Level | 40% | high=1.0, medium=0.6, low=0.3 |
-| Evidence Strength | 30% | direct=1.0, circumstantial=0.5 |
-| Simplicity | 20% | simple=1.0, complex=0.5 |
-| Reversibility | 10% | easily undone=1.0, permanent=0.5 |
+| Factor            | Weight | Assessment                       |
+| ----------------- | ------ | -------------------------------- |
+| Confidence Level  | 40%    | high=1.0, medium=0.6, low=0.3    |
+| Evidence Strength | 30%    | direct=1.0, circumstantial=0.5   |
+| Simplicity        | 20%    | simple=1.0, complex=0.5          |
+| Reversibility     | 10%    | easily undone=1.0, permanent=0.5 |
 
 ---
 
@@ -322,11 +326,11 @@ When operating as a **Worker** in multi-agent dispatch:
 
 ### Worker Roles
 
-| Role | Focus | Phase | Output |
-|------|-------|-------|--------|
-| `call_path_tracer` | Execution path analysis | ANALYZE | JSON findings + hypothesis |
-| `pattern_searcher` | Similar working code | ANALYZE | JSON findings + hypothesis |
-| `edge_case_hunter` | Boundary conditions | HYPOTHESIZE | JSON hypothesis |
+| Role               | Focus                   | Phase       | Output                     |
+| ------------------ | ----------------------- | ----------- | -------------------------- |
+| `call_path_tracer` | Execution path analysis | ANALYZE     | JSON findings + hypothesis |
+| `pattern_searcher` | Similar working code    | ANALYZE     | JSON findings + hypothesis |
+| `edge_case_hunter` | Boundary conditions     | HYPOTHESIZE | JSON hypothesis            |
 
 ### Worker Output Format
 
@@ -382,14 +386,14 @@ NEVER:
 
 ## 6. 🛠️ TOOL ROUTING
 
-| Task                   | Primary Tool                     | Fallback        |
-| ---------------------- | -------------------------------- | --------------- |
-| Understand error context | `narsil.narsil_neural_search()` | Grep + Read     |
-| Map code structure     | `narsil.narsil_find_symbols()`   | Glob + Read     |
-| Trace call paths       | `narsil.narsil_get_callers()`    | Manual trace    |
-| Find similar patterns  | `narsil.narsil_neural_search()`  | Grep            |
-| Verify fix             | `Bash` (run tests)               | Manual verification |
-| Check recent changes   | `Bash` (git log/diff)            | Read file history |
+| Task                     | Primary Tool                    | Fallback            |
+| ------------------------ | ------------------------------- | ------------------- |
+| Understand error context | `narsil.narsil_neural_search()` | Grep + Read         |
+| Map code structure       | `narsil.narsil_find_symbols()`  | Glob + Read         |
+| Trace call paths         | `narsil.narsil_get_callers()`   | Manual trace        |
+| Find similar patterns    | `narsil.narsil_neural_search()` | Grep                |
+| Verify fix               | `Bash` (run tests)              | Manual verification |
+| Check recent changes     | `Bash` (git log/diff)           | Read file history   |
 
 ### Tool Selection Flow
 
@@ -420,9 +424,9 @@ What do you need?
 **Category:** [syntax_error|type_error|runtime_error|test_failure|build_error|lint_error]
 
 ### Changes Made
-| File | Line | Change |
-|------|------|--------|
-| `path/to/file.ts` | 123 | [Brief description] |
+| File              | Line | Change              |
+| ----------------- | ---- | ------------------- |
+| `path/to/file.ts` | 123  | [Brief description] |
 
 ### Verification
 - [x] Error no longer reproduces
@@ -448,10 +452,10 @@ What do you need?
 [What is blocking progress]
 
 ### Hypotheses Tested
-| # | Hypothesis | Result |
-|---|------------|--------|
-| 1 | [Theory] | [Why it was rejected] |
-| 2 | [Theory] | [Why it was rejected] |
+| #   | Hypothesis | Result                |
+| --- | ---------- | --------------------- |
+| 1   | [Theory]   | [Why it was rejected] |
+| 2   | [Theory]   | [Why it was rejected] |
 
 ### Information Needed
 1. [Specific question or request]
@@ -558,13 +562,13 @@ PRE-DELIVERY VERIFICATION:
 
 ### Quality Criteria
 
-| Criteria               | Requirement                              |
-| ---------------------- | ---------------------------------------- |
-| Root Cause Evidence    | At least 1 concrete observation          |
-| Fix Minimality         | Single logical change (may span files)   |
-| Verification           | Actual test output, not assumption       |
-| Explanation Clarity    | Non-expert could understand              |
-| Format Compliance      | Uses success/blocked/escalation template |
+| Criteria            | Requirement                              |
+| ------------------- | ---------------------------------------- |
+| Root Cause Evidence | At least 1 concrete observation          |
+| Fix Minimality      | Single logical change (may span files)   |
+| Verification        | Actual test output, not assumption       |
+| Explanation Clarity | Non-expert could understand              |
+| Format Compliance   | Uses success/blocked/escalation template |
 
 ---
 
@@ -572,18 +576,18 @@ PRE-DELIVERY VERIFICATION:
 
 ### Commands
 
-| Command           | Purpose                          |
-| ----------------- | -------------------------------- |
-| `/spec_kit:debug` | Invoke debug agent with model selection |
-| `/spec_kit:complete` | Return to full workflow after debug |
+| Command              | Purpose                                 |
+| -------------------- | --------------------------------------- |
+| `/spec_kit:debug`    | Invoke debug agent with model selection |
+| `/spec_kit:complete` | Return to full workflow after debug     |
 
 ### Agents
 
-| Agent       | Relationship                          |
-| ----------- | ------------------------------------- |
-| @general    | May call debug for stuck issues       |
-| @research   | Provides context that informs debug   |
-| orchestrate | Dispatches debug after 3 failures     |
+| Agent       | Relationship                        |
+| ----------- | ----------------------------------- |
+| @general    | May call debug for stuck issues     |
+| @research   | Provides context that informs debug |
+| orchestrate | Dispatches debug after 3 failures   |
 
 ---
 
@@ -591,7 +595,7 @@ PRE-DELIVERY VERIFICATION:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                   THE DEBUGGER: FRESH PERSPECTIVE SPECIALIST             │
+│                   THE DEBUGGER: FRESH PERSPECTIVE SPECIALIST            │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  ISOLATION (By Design)                                                  │
 │  ├─► NO conversation history - prevents inherited assumptions           │
@@ -600,7 +604,7 @@ PRE-DELIVERY VERIFICATION:
 │                                                                         │
 │  4-PHASE METHODOLOGY                                                    │
 │  ├─► 1. OBSERVE   → Read error, categorize, map scope                   │
-│  ├─► 2. ANALYZE   → Trace paths, understand flow, find patterns         │
+│  ├─► 2. ANALYZE   → Trace paths, understand flow, find patterns           │
 │  ├─► 3. HYPOTHESIZE → Form 2-3 ranked theories with evidence            │
 │  └─► 4. FIX       → Minimal change, verify, document                    │
 │                                                                         │
@@ -609,13 +613,13 @@ PRE-DELIVERY VERIFICATION:
 │  └─► test_failure, build_error, lint_error                              │
 │                                                                         │
 │  RESPONSE TYPES                                                         │
-│  ├─► Success → Root cause + changes + verification                      │
-│  ├─► Blocked → Blocker type + partial findings + info needed            │
+│  ├─► Success → Root cause + changes + verification                       │
+│  ├─► Blocked → Blocker type + partial findings + info needed             │
 │  └─► Escalation → Exhausted hypotheses + handoff package                │
 │                                                                         │
 │  LIMITS                                                                 │
 │  ├─► Max 3 hypotheses before escalation                                 │
-│  ├─► No multi-change fixes without explanation                          │
-│  └─► Cannot skip verification step                                      │
+│  ├─► No multi-change fixes without explanation                           │
+│  └─► Cannot skip verification step                                       │
 └─────────────────────────────────────────────────────────────────────────┘
 ```

@@ -240,7 +240,7 @@ multi_agent_config:
           - "Execute specification and planning steps"
           - "Create final documentation artifacts"
       workers:
-        - model: "sonnet"
+        - model: "{worker_model|opus}"
           role: "architecture_explorer"
           focus: "Project Structure Analysis"
           step: 5
@@ -249,7 +249,7 @@ multi_agent_config:
             - "Map component connections and dependencies"
             - "Identify architectural patterns"
             - "Document infrastructure layout"
-        - model: "sonnet"
+        - model: "{worker_model|opus}"
           role: "feature_explorer"
           focus: "Feature Pattern Analysis"
           step: 5
@@ -272,7 +272,7 @@ multi_agent_config:
           - "Execute specification and planning steps"
           - "Create final documentation artifacts"
       workers:
-        - model: "sonnet"
+        - model: "{worker_model|opus}"
           role: "architecture_explorer"
           focus: "Project Structure Analysis"
           step: 5
@@ -281,7 +281,7 @@ multi_agent_config:
             - "Map component connections and dependencies"
             - "Identify architectural patterns"
             - "Document infrastructure layout"
-        - model: "sonnet"
+        - model: "{worker_model|opus}"
           role: "feature_explorer"
           focus: "Feature Pattern Analysis"
           step: 5
@@ -290,7 +290,7 @@ multi_agent_config:
             - "Identify related patterns and implementations"
             - "Map feature interdependencies"
             - "Document reusable components"
-        - model: "sonnet"
+        - model: "{worker_model|opus}"
           role: "dependency_explorer"
           focus: "Dependency and Test Analysis"
           step: 5
@@ -341,7 +341,7 @@ agent_routing:
     step: 3
     agent: "@speckit"
     agent_file: ".opencode/agent/speckit.md"
-    model: sonnet  # Default model - use opus ONLY if user explicitly requests
+    model: opus  # Default model - use opus ONLY if user explicitly requests
     dispatch_method: |
       Task tool with prompt:
       ---
@@ -671,10 +671,10 @@ workflow:
         agents:
           - name: "spec_explorer"
             focus: "Existing specifications and patterns in codebase"
-            model: "sonnet"
+            model: "{worker_model|opus}"
           - name: "requirement_analyzer"
             focus: "Similar features and their requirements"
-            model: "sonnet"
+            model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
@@ -780,7 +780,7 @@ workflow:
       execution:
         tool: Task
         subagent_type: explore
-        model: sonnet  # Fast, cost-effective exploration
+        model: opus  # Fast, cost-effective exploration
         parallel: true  # All 4 agents spawn in single message
 
       agents:

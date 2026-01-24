@@ -7,6 +7,47 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.8.3**] - 2026-01-24
+
+Multi-model agent configuration overhaul optimizing **7 agents** for GitHub Copilot model selection. Introduces **GPT-5.2-Codex** as default for debug/review agents (lowest error rate), standardizes model options to **opus/gemini/gpt**, and adds Copilot model identifiers.
+
+---
+
+### New
+
+1. **GPT-5.2-Codex support** — Debug and review agents now default to GPT-5.2-Codex for superior bug finding precision (22 errors/MLOC)
+2. **Copilot model identifiers** — Added `gpt-5.2-codex` model picker reference in agent MODEL PREFERENCE sections
+3. **Model frontmatter** — All 7 agents now have explicit `model:` parameter in YAML frontmatter
+
+---
+
+### Changed
+
+1. **Agent model defaults**:
+   - `debug.md`: opus → **gpt** (GPT-5.2-Codex for root cause analysis)
+   - `review.md`: opus → **gpt** (GPT-5.2-Codex for security vulnerability detection)
+   - `orchestrate.md`: added **opus** (complex task decomposition)
+   - `research.md`: added **opus** (deep investigation, 200K context)
+   - `write.md`: added **sonnet** (balanced documentation quality)
+   - `speckit.md`: **sonnet** (balanced spec documentation)
+   - `handover.md`: **sonnet** (context extraction)
+
+2. **Model options standardized** — Replaced `haiku/sonnet/opus` with `opus/gemini/gpt` across all commands and YAMLs
+
+3. **Gemini description updated** — Changed from "cost-sensitive, simple tasks" to "Pro for quality, Flash for speed" (reflecting Gemini Pro/Flash capabilities)
+
+4. **debug.md Q2 model selection** — Codex now recommended (option A), moved Claude to option B
+
+5. **handover dispatch model** — Changed from `model: opus` to `model: sonnet` in command and YAML configs
+
+---
+
+### Fixed
+
+1. **Model alignment** — All spec_kit commands now match their corresponding agent model defaults
+
+---
+
 ## [**1.0.8.2**] - 2026-01-24
 
 Comprehensive test suite for system-spec-kit adding **1,087 tests** across **8 new test files**, covering cognitive memory, MCP handlers, session learning, validation rules, and the Five Checks Framework.

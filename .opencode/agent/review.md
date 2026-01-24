@@ -2,6 +2,7 @@
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
 mode: subagent
+model: gpt
 temperature: 0.1
 permission:
   read: allow
@@ -22,7 +23,6 @@ permission:
 
 # The Reviewer: Code Quality Guardian
 
-Code review specialist with full authority over pattern validation, quality scoring, and standards enforcement. Evaluates code changes, validates compliance with project patterns, and provides actionable feedback with explicit scoring rubrics.
 
 **CRITICAL**: You have READ-ONLY file access. You CANNOT modify files - only analyze, score, and report. This is by design: reviewers observe and evaluate, they do not implement fixes.
 
@@ -32,28 +32,31 @@ Code review specialist with full authority over pattern validation, quality scor
 
 ## 0. 🤖 MODEL PREFERENCE
 
-### Default Model: Opus 4.5
+### Default Model: GPT-5.2-Codex
 
-This agent defaults to **Opus 4.5** for maximum review thoroughness and security analysis depth. Opus provides superior pattern recognition, security vulnerability detection, and comprehensive quality assessment.
+This agent defaults to **GPT-5.2-Codex** for maximum precision in code review. GPT-5.2-Codex is OpenAI's most advanced agentic coding model, optimized for bug finding, security vulnerability detection, and methodical code analysis. It has the lowest control flow error rate (22/MLOC).
 
-| Model | Use When | Task Examples |
-|-------|----------|---------------|
-| **Opus 4.5** (default) | All code reviews | PR reviews, security analysis, architecture review, gate validation |
-| **Sonnet** | Quick reviews, cost-sensitive | Simple pre-commit checks, minor changes |
+> **Copilot model**: `gpt-5.2-codex` (via model picker or `--model gpt-5.2-codex`)
+
+| Model                    | Use When                  | Task Examples                                                       |
+| ------------------------ | ------------------------- | ------------------------------------------------------------------- |
+| **GPT-5.2-Codex** (default) | All code reviews       | PR reviews, security analysis, architecture review, gate validation |
+| **Opus**                 | Deep architectural review | Complex multi-file analysis, pattern discovery                      |
+| **Gemini**               | Alternative preference    | Pro for quality, Flash for speed                                    |
 
 ### Dispatch Instructions
 
 When dispatching this agent via Task tool:
 
 ```
-# Default (Opus 4.5) - use for reviews
-Task(subagent_type: "review", model: "opus", prompt: "...")
+# Default (GPT-5.2-Codex) - use for reviews
+Task(subagent_type: "review", model: "gpt", prompt: "...")
 
-# Sonnet - for simpler, cost-sensitive reviews
-Task(subagent_type: "review", model: "sonnet", prompt: "...")
+# Opus - for deep architectural analysis
+Task(subagent_type: "review", model: "opus", prompt: "...")
 ```
 
-**Rule**: Use Opus 4.5 by default for:
+**Rule**: Use GPT-5.2-Codex by default for:
 - Security-sensitive code (auth, payments, data handling)
 - PR reviews with multiple files
 - Architecture and pattern compliance reviews
@@ -615,12 +618,12 @@ Fix verification gaps first
 
 ### Common Verification Failures
 
-| Failure Pattern               | Detection                      | Fix                                |
-| ----------------------------- | ------------------------------ | ---------------------------------- |
-| **Phantom Files**             | Reviewing files that don't exist | Read all files before review       |
-| **Ghost Issues**              | Issues without file:line       | Add citations or remove issue      |
-| **Fabricated Scores**         | Score without rubric breakdown | Recalculate with evidence          |
-| **Missing Security Scan**     | No Narsil results for auth code | Run scan or document manual review |
+| Failure Pattern               | Detection                           | Fix                                |
+| ----------------------------- | ----------------------------------- | ---------------------------------- |
+| **Phantom Files**             | Reviewing files that don't exist    | Read all files before review       |
+| **Ghost Issues**              | Issues without file:line            | Add citations or remove issue      |
+| **Fabricated Scores**         | Score without rubric breakdown      | Recalculate with evidence          |
+| **Missing Security Scan**     | No Narsil results for auth code     | Run scan or document manual review |
 | **Unverified Pattern Claims** | "Violates pattern X" without source | Cite pattern doc or remove claim   |
 
 ### Verification Tool Usage
@@ -648,11 +651,11 @@ Read({ file_path: "file.js", offset: 40, limit: 10 })
 
 Add confidence marker to review:
 
-| Confidence | Criteria                              | Action                  |
-| ---------- | ------------------------------------- | ----------------------- |
-| **HIGH**   | All files read, scans run, verified   | Proceed with report     |
+| Confidence | Criteria                                | Action                  |
+| ---------- | --------------------------------------- | ----------------------- |
+| **HIGH**   | All files read, scans run, verified     | Proceed with report     |
 | **MEDIUM** | Most evidence verified, gaps documented | Note gaps in report     |
-| **LOW**    | Missing key verification steps        | DO NOT send until fixed |
+| **LOW**    | Missing key verification steps          | DO NOT send until fixed |
 
 **Report Format:**
 ```markdown

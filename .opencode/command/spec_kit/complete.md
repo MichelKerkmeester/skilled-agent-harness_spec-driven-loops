@@ -64,15 +64,20 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │                                                                │
    │ **Q4. Dispatch Mode** (required):                              │
    │    A) Single Agent - Execute with one agent (Recommended)      │
-   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
-   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
+   │    B) Multi-Agent (1+2) - 1 orchestrator (opus) + 2 workers (opus) │
+   │    C) Multi-Agent (1+3) - 1 orchestrator (opus) + 3 workers (opus) │
    │                                                                │
-   │ **Q5. Memory Context** (if using existing spec with memory/):  │
+   │ **Q5. Worker Model** (if B or C selected above):               │
+   │    Default: opus                                               │
+   │    To use different model, type: opus, gemini, gpt             │
+   │    or leave blank for default                                  │
+   │                                                                │
+   │ **Q6. Memory Context** (if using existing spec with memory/):  │
    │    A) Load most recent memory file                              │
    │    B) Load all recent files, up to 3                            │
    │    C) Skip (start fresh)                                       │
    │                                                                │
-   │ Reply with answers, e.g.: "B, A, A, A" or "Add auth, B, A, A, A, C" │
+   │ Reply with answers, e.g.: "B, A, A, A, , C" or "Add auth, B, A, A, gemini, C" │
    └────────────────────────────────────────────────────────────────┘
 
 7. WAIT for user response (DO NOT PROCEED)
@@ -84,7 +89,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - research_triggered = [yes/no from :with-research flag or Q3]
    - dispatch_mode = [single/multi_small/multi_large from Q4]
-   - memory_choice = [A/B/C from Q5, or N/A if not applicable]
+   - worker_model = [from Q5: opus/gemini/gpt, default opus if blank]
+   - memory_choice = [A/B/C from Q6, or N/A if not applicable]
 
 9. Execute background operations based on choices:
    - IF memory_choice == A: Load most recent memory file
@@ -107,6 +113,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `execution_mode = ________________`
 - `research_triggered = ________________`
 - `dispatch_mode = ________________`
+- `worker_model = ________________` (default: opus)
 - `memory_loaded = ________________`
 
 ---
@@ -162,7 +169,8 @@ IF research_triggered == FALSE:
 | execution_mode      | ✅ Yes         | ______     | Suffix or Q2              |
 | research_triggered  | ✅ Yes         | ______     | :with-research flag or Q3 |
 | dispatch_mode       | ✅ Yes         | ______     | Q4                        |
-| memory_loaded       | ○ Conditional | ______     | Q5 (if existing spec)     |
+| worker_model        | ○ Conditional | ______     | Q5 (default: opus)        |
+| memory_loaded       | ○ Conditional | ______     | Q6 (if existing spec)     |
 
 ```
 VERIFICATION CHECK:

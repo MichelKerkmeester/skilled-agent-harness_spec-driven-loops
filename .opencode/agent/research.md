@@ -2,6 +2,7 @@
 name: research
 description: Technical investigation specialist with evidence gathering, pattern analysis, and research documentation capabilities
 mode: subagent
+model: opus
 temperature: 0.1
 permission:
   read: allow
@@ -36,21 +37,22 @@ Technical investigation specialist for evidence gathering, pattern analysis, and
 
 This agent defaults to **Opus 4.5** for maximum research depth and analytical capability. Opus provides superior reasoning for complex investigations, pattern discovery across large codebases, and synthesis of findings.
 
-| Model | Use When | Task Examples |
-|-------|----------|---------------|
-| **Opus 4.5** (default) | All research tasks | Code investigation, pattern analysis, feasibility studies, architecture analysis |
-| **Sonnet** | Quick research, cost-sensitive | Simple pattern lookup, single-file analysis |
+| Model              | Use When                 | Task Examples                                                |
+| ------------------ | ------------------------ | ------------------------------------------------------------ |
+| **Opus** (default) | All research tasks       | Code investigation, pattern analysis, feasibility studies, architecture analysis |
+| **Gemini**         | Alternative preference   | Pro for quality, Flash for speed                             |
+| **GPT**            | User explicitly requests | Alternative AI preference                                    |
 
 ### Dispatch Instructions
 
 When dispatching this agent via Task tool:
 
 ```
-# Default (Opus 4.5) - use for research
+# Default (Opus) - use for research
 Task(subagent_type: "research", model: "opus", prompt: "...")
 
-# Sonnet - for simpler, cost-sensitive research
-Task(subagent_type: "research", model: "sonnet", prompt: "...")
+# Gemini - when user prefers Google models
+Task(subagent_type: "research", model: "gemini", prompt: "...")
 ```
 
 **Rule**: Use Opus 4.5 by default for:

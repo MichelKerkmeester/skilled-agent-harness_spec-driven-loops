@@ -54,17 +54,22 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    • What you've already tried (if anything)                   │
    │                                                                │
    │ **Q2. AI Model** (required):                                   │
-   │    A) Claude - Anthropic (Recommended)                         │
-   │    B) Gemini - Google                                          │
-   │    C) Codex - OpenAI                                           │
+   │    A) Codex - OpenAI GPT-5.2-Codex (Recommended)               │
+   │    B) Claude - Anthropic                                       │
+   │    C) Gemini - Google                                          │
    │    D) Other - Specify                                          │
    │                                                                │
    │ **Q3. Dispatch Mode** (required):                              │
    │    A) Single Agent - One agent (Recommended)                   │
-   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 hypothesis gen    │
-   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 hypothesis gen    │
+   │    B) Multi-Agent (1+2) - 1 orchestrator (opus) + 2 workers (opus) │
+   │    C) Multi-Agent (1+3) - 1 orchestrator (opus) + 3 workers (opus) │
    │                                                                │
-   │ Reply with answers, e.g.: "A, A, A" or "A, [error desc], A, A" │
+   │ **Q4. Worker Model** (if B or C selected above):               │
+   │    Default: opus                                               │
+   │    To use different model, type: opus, gemini, gpt             │
+   │    for default                                                 │
+   │                                                                │
+   │ Reply with answers, e.g.: "A, A, A, " or "A, [error desc], A, B, gemini" │
    └────────────────────────────────────────────────────────────────┘
 
 5. WAIT for user response (DO NOT PROCEED)
@@ -77,6 +82,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - previous_attempts = [extracted or from Q1]
    - selected_model = [from Q2]
    - dispatch_mode = [single/multi_small/multi_large from Q3]
+   - worker_model = [from Q4: opus/gemini/gpt, default opus if blank]
 
 7. IF dispatch_mode is multi_*:
    - Note: Orchestrator handles OBSERVE + FIX phases
@@ -98,6 +104,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `affected_files = ________________`
 - `selected_model = ________________`
 - `dispatch_mode = ________________`
+- `worker_model = ________________` (default: opus)
 
 ---
 
@@ -125,6 +132,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | error_message    | ✅ Yes         | ______     | Q1 or conversation scan    |
 | selected_model   | ✅ Yes         | ______     | Q2                         |
 | dispatch_mode    | ✅ Yes         | ______     | Q3                         |
+| worker_model     | ○ Conditional | ______     | Q4 (default: opus)         |
 
 ```
 VERIFICATION CHECK:

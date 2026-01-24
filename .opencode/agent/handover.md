@@ -35,26 +35,31 @@ Session handover specialist responsible for creating continuation documents that
 
 ### Default Model: Sonnet
 
-This agent defaults to **Sonnet** for optimal cost-efficiency and speed. Handover document creation is a structured task that Sonnet handles effectively.
+This agent defaults to **Sonnet** for balanced quality and efficiency. Handover document creation benefits from strong reasoning for context extraction.
 
 | Model                | Use When                 | Task Examples                                         |
 | -------------------- | ------------------------ | ----------------------------------------------------- |
-| **Sonnet** (default) | All handover tasks       | Context gathering, handover creation, file generation |
-| **Opus**             | User explicitly requests | Complex multi-spec handovers (rare)                   |
+| **Sonnet** (default) | Standard handover tasks  | Context gathering, handover creation, file generation |
+| **Opus**             | Complex context analysis | Large specs with extensive history                    |
+| **Gemini**           | Alternative preference   | Pro for quality, Flash for speed                      |
+| **GPT**              | User explicitly requests | Alternative AI preference                             |
 
 ### Dispatch Instructions
 
 When dispatching this agent via Task tool:
 
 ```
-# Default (Sonnet) - use for all handover work
+# Default (Sonnet) - use for most handover work
 Task(subagent_type: "handover", model: "sonnet", prompt: "...")
 
-# Opus - only when user explicitly requests
+# Opus - for complex handovers requiring deeper analysis
 Task(subagent_type: "handover", model: "opus", prompt: "...")
+
+# Gemini - when user prefers Google models
+Task(subagent_type: "handover", model: "gemini", prompt: "...")
 ```
 
-**Rule**: Use Sonnet for all handover tasks. Opus only if user explicitly requests.
+**Rule**: Use Sonnet by default. Opus for complex handovers. Gemini/GPT when user explicitly requests.
 
 ---
 

@@ -153,6 +153,11 @@ user_inputs:
     [FILES]
     Files or folders to work with.
 
+  worker_model: |
+    [WORKER_MODEL]
+    Model for parallel worker agents. Options: opus | gemini | gpt
+    Default: opus
+
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
 # ─────────────────────────────────────────────────────────────────
@@ -335,6 +340,12 @@ parallel_dispatch_config:
 multi_agent_config:
   enabled: true
 
+  # Worker model configuration
+  worker_model_config:
+    default: "opus"
+    allowed: ["opus", "gemini", "gpt"]
+    source: "[WORKER_MODEL] input or default"
+
   dispatch_modes:
     single:
       id: A
@@ -356,7 +367,7 @@ multi_agent_config:
           - "Execute specification and planning steps"
           - "Create final documentation artifacts"
       workers:
-        - model: "sonnet"
+        - model: "{worker_model|opus}"  # User-configurable, default: opus
           role: "architecture_explorer"
           focus: "Project Structure Analysis"
           step: 6
@@ -365,7 +376,7 @@ multi_agent_config:
             - "Map component connections and dependencies"
             - "Identify architectural patterns"
             - "Document infrastructure layout"
-        - model: "sonnet"
+        - model: "{worker_model|opus}"  # User-configurable, default: opus
           role: "feature_explorer"
           focus: "Feature Pattern Analysis"
           step: 6
@@ -388,7 +399,7 @@ multi_agent_config:
           - "Execute specification and planning steps"
           - "Create final documentation artifacts"
       workers:
-        - model: "sonnet"
+        - model: "{worker_model|opus}"
           role: "architecture_explorer"
           focus: "Project Structure Analysis"
           step: 6
@@ -397,7 +408,7 @@ multi_agent_config:
             - "Map component connections and dependencies"
             - "Identify architectural patterns"
             - "Document infrastructure layout"
-        - model: "sonnet"
+        - model: "{worker_model|opus}"
           role: "feature_explorer"
           focus: "Feature Pattern Analysis"
           step: 6
@@ -406,7 +417,7 @@ multi_agent_config:
             - "Identify related patterns and implementations"
             - "Map feature interdependencies"
             - "Document reusable components"
-        - model: "sonnet"
+        - model: "{worker_model|opus}"
           role: "dependency_explorer"
           focus: "Dependency and Test Analysis"
           step: 6
@@ -484,7 +495,7 @@ agent_routing:
     step: 3
     agent: "@speckit"
     agent_file: ".opencode/agent/speckit.md"
-    model: sonnet  # Default model - use opus ONLY if user explicitly requests
+    model: opus  # Default model - use opus ONLY if user explicitly requests
     dispatch_method: |
       Task tool with prompt:
       ---
@@ -1077,10 +1088,10 @@ workflow:
         agents:
         - name: "spec_explorer"
           focus: "Existing specifications and patterns in codebase"
-          model: "sonnet"
+          model: "{worker_model|opus}"
         - name: "requirement_analyzer"
           focus: "Similar features and their requirements"
-          model: "sonnet"
+          model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
@@ -1219,7 +1230,7 @@ workflow:
       execution:
         tool: Task
         subagent_type: explore
-        model: sonnet # Fast, cost-effective exploration
+        model: opus # Fast, cost-effective exploration
         parallel: true # All 4 agents spawn in single message
 
       agents:
@@ -1427,10 +1438,10 @@ workflow:
         agents:
         - name: "consistency_analyzer"
           focus: "Cross-artifact consistency and requirement coverage"
-          model: "sonnet"
+          model: "{worker_model|opus}"
         - name: "gap_detector"
           focus: "Missing requirements, underspecification, edge cases"
-          model: "sonnet"
+          model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
@@ -1494,10 +1505,10 @@ workflow:
         agents:
         - name: "implementation_agent"
           focus: "Core implementation tasks from tasks.md"
-          model: "sonnet"
+          model: "{worker_model|opus}"
         - name: "test_agent"
           focus: "Test implementation and validation"
-          model: "sonnet"
+          model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"

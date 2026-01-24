@@ -35,12 +35,14 @@ Spec folder documentation specialist responsible for creating, maintaining, and 
 
 ### Default Model: Sonnet
 
-This agent defaults to **Sonnet** for optimal cost-efficiency and speed. Sonnet handles spec folder documentation tasks effectively.
+This agent defaults to **Sonnet** for balanced quality and efficiency. Sonnet handles spec folder documentation tasks with strong reasoning.
 
-| Model | Use When | Task Examples |
-|-------|----------|---------------|
-| **Sonnet** (default) | Standard spec work | Level 1-3 specs, template filling, validation |
-| **Opus** | User explicitly requests | Complex Level 3+ governance, multi-system architecture |
+| Model                | Use When                 | Task Examples                              |
+| -------------------- | ------------------------ | ------------------------------------------ |
+| **Sonnet** (default) | Standard spec work       | Level 1-3 specs, template filling, validation |
+| **Opus**             | Complex specs            | Level 3+ with extensive architecture       |
+| **Gemini**           | Alternative preference   | Pro for quality, Flash for speed           |
+| **GPT**              | User explicitly requests | Alternative AI preference                  |
 
 ### Dispatch Instructions
 
@@ -50,11 +52,14 @@ When dispatching this agent via Task tool:
 # Default (Sonnet) - use for most spec work
 Task(subagent_type: "speckit", model: "sonnet", prompt: "...")
 
-# Opus - when user explicitly requests or complex governance
+# Opus - for complex Level 3+ specs
 Task(subagent_type: "speckit", model: "opus", prompt: "...")
+
+# Gemini - when user prefers Google models
+Task(subagent_type: "speckit", model: "gemini", prompt: "...")
 ```
 
-**Rule**: Use Opus when user explicitly says "use opus" or for complex Level 3+ governance.
+**Rule**: Use Sonnet by default. Opus for complex Level 3+ specs. Gemini/GPT when user explicitly requests.
 
 ---
 
