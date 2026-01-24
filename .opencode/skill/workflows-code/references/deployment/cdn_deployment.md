@@ -187,8 +187,8 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 ```
 □ JavaScript changes made and tested locally
 □ Minified using terser (see minification_guide.md)
-□ AST verification passed (node scripts/verify-minification.mjs)
-□ Runtime test passed (node scripts/test-minified-runtime.mjs)
+□ AST verification passed (node .opencode/skill/workflows-code/scripts/verify-minification.mjs)
+□ Runtime test passed (node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs)
 □ Browser test passed (no console errors)
 ```
 
@@ -215,8 +215,8 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 ```
 1. Edit JS      → src/2_javascript/[folder]/[file].js
 2. Minify       → npx terser [source] --compress --mangle -o z_minified/[folder]/[file].js
-3. Verify       → node scripts/verify-minification.mjs
-4. Test         → node scripts/test-minified-runtime.mjs
+3. Verify       → node .opencode/skill/workflows-code/scripts/verify-minification.mjs
+4. Test         → node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs
 5. Update HTML  → Increment ?v=X.X.X in all referencing HTML files
 6. Upload       → Cloudflare Dashboard → R2 → Upload minified file
 7. Verify live  → Hard refresh, check console, test functionality
@@ -307,9 +307,9 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 
 ### Scripts
 
-- `scripts/verify-minification.mjs` - AST verification
-- `scripts/test-minified-runtime.mjs` - Runtime testing
-- `scripts/minify-webflow.mjs` - Batch minification
+- `.opencode/skill/workflows-code/scripts/verify-minification.mjs` - AST verification
+- `.opencode/skill/workflows-code/scripts/test-minified-runtime.mjs` - Runtime testing
+- `.opencode/skill/workflows-code/scripts/minify-webflow.mjs` - Batch minification
 
 ### External
 

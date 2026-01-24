@@ -52,6 +52,7 @@ This orchestrator operates in three primary phases:
 | Phase                       | Purpose                                                     | Trigger                               |
 | --------------------------- | ----------------------------------------------------------- | ------------------------------------- |
 | **Phase 1: Implementation** | Writing code with async handling, validation, cache-busting | Starting new code, modifying existing |
+| **Phase 1.5: Code Quality** | Validate against style standards                            | P0 items pass                         |
 | **Phase 2: Debugging**      | Fixing issues systematically using DevTools                 | Console errors, unexpected behavior   |
 | **Phase 3: Verification**   | Browser testing before completion claims                    | Before ANY "done" or "works" claim    |
 
@@ -614,6 +615,7 @@ Key integrations:
 | Phase | You're here if... | Exit criteria |
 |-------|-------------------|---------------|
 | **1: Implementation** | Writing/modifying code | Code written, builds |
+| **1.5: Code Quality** | Implementation done, running checklist | All P0 items passing |
 | **2: Debugging** | Code has bugs/failing tests | All tests passing |
 | **3: Verification** | Tests pass, final validation | Verified in browser |
 
@@ -703,12 +705,16 @@ const observer = new IntersectionObserver(
 ### Common Commands
 
 ```bash
-# Minification pipeline
-node scripts/minify-webflow.mjs src/2_javascript/[file].js
-node scripts/verify-minification.mjs src/2_javascript/[file].js
-node scripts/test-minified-runtime.mjs src/2_javascript/z_minified/[file].min.js
+# Minification workflow (scripts located in .opencode/skill/workflows-code/scripts/)
+node .opencode/skill/workflows-code/scripts/minify-webflow.mjs          # Batch minify all JS
+node .opencode/skill/workflows-code/scripts/verify-minification.mjs     # AST verification
+node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs   # Runtime testing
 
-# CDN deployment
+# Single file minification
+npx terser src/2_javascript/[folder]/[file].js --compress --mangle \
+  -o src/2_javascript/z_minified/[folder]/[file].js
+
+# CDN deployment (after minification)
 wrangler r2 object put anobel-cdn/js/[file].min.js --file src/2_javascript/z_minified/[file].min.js
 
 # Version check

@@ -532,6 +532,21 @@ function init_collection_items() {
 | **Nested lists** | Minimize depth and count | Performance degrades, 10 list limit |
 | **CSS scope** | Inline critical styles | Per-page CSS, no global cascade |
 
+### DOM Attribute Hygiene
+
+**Maintain clean HTML by removing empty attributes:**
+
+| Attribute Type | Issue | Action |
+|----------------|-------|--------|
+| **Empty IDs** (`id=""`) | Invalid HTML, selector bugs | **Always Remove** |
+| **Empty Config** (`data-type=""`) | DOM bloat, noise | **Remove** (Allowlist only) |
+| **Empty Markers** (`data-active`) | Boolean flag logic | **Keep** (Never remove) |
+
+**Strategy:**
+- Use a global cleanup script (see `attribute_cleanup.js`)
+- **Allowlist approach:** Only remove specific attributes known to be value-based
+- **Never** blindly remove all empty attributes (breaks boolean flags)
+
 ### Quick Validation Script
 
 **Check your page against Webflow limits:**

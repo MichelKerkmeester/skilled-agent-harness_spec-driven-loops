@@ -558,7 +558,7 @@ open(id, reason) {
 
 ### Reference Files
 - [implementation_workflows.md](./implementation_workflows.md) - Defense-in-depth validation
-- [verification_workflows.md](./verification_workflows.md) - Security testing
+- [verification_workflows.md](../verification/verification_workflows.md) - Security testing
 - See `workflows-chrome-devtools` skill for DevTools security audits
 
 ### External Resources

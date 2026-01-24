@@ -597,9 +597,9 @@ across all tested viewports."
 ## 9. 🔗 RELATED RESOURCES
 
 ### Reference Files
-- [implementation_workflows.md](./implementation_workflows.md) - Verify implementations work correctly
-- [debugging_workflows.md](./debugging_workflows.md) - Verify fixes work after debugging
-- [shared_patterns.md](./shared_patterns.md) - Use standard DevTools verification patterns
+- [implementation_workflows.md](../implementation/implementation_workflows.md) - Verify implementations work correctly
+- [debugging_workflows.md](../debugging/debugging_workflows.md) - Verify fixes work after debugging
+- [shared_patterns.md](../standards/shared_patterns.md) - Use standard DevTools verification patterns
 
 ### Templates
 - [verification_checklist.md](../../assets/checklists/verification_checklist.md) - Printable verification checklist

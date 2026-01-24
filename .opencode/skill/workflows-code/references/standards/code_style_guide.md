@@ -748,9 +748,9 @@ Before committing any code, verify:
 
 ### Workflow Files
 
-- [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting and validation patterns
-- [debugging_workflows.md](./debugging_workflows.md) - Debugging workflows for style compliance
-- [verification_workflows.md](./verification_workflows.md) - Verification workflows for code standards
+- [implementation_workflows.md](../implementation/implementation_workflows.md) - Condition-based waiting and validation patterns
+- [debugging_workflows.md](../debugging/debugging_workflows.md) - Debugging workflows for style compliance
+- [verification_workflows.md](../verification/verification_workflows.md) - Verification workflows for code standards
 
 ### Production Examples
 

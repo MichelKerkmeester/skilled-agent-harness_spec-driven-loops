@@ -1,13 +1,21 @@
-# AI Assistant Framework (Universal Template)
+# AI Assistant Framework
 
-> **Universal behavior framework** defining guardrails, standards, and decision protocols.
+> **Behavior framework** defining guardrails, standards, and decision protocols—tailored for anobel.com’s Webflow implementation.
 
-#### 👨‍🚀 HOW TO USE / ADAPT THIS FRAMEWORK
+---
 
-1. Use this `AGENTS.md` as your starting point for SpecKit and memory workflows in any codebase.
-2. Adapt the framework to fit your project's code standards, workflows, etc.
-3. Update or extend rules, tools, and protocols as needed.
-4. For practical setup examples and detailed instructions, see `.opencode/install_guides/SET-UP - AGENTS.md`.
+#### 📦 PUBLIC RELEASE
+
+The OpenCode development environment in this project is also available as a standalone public release.
+
+| Resource                | Location                                                              |
+| ----------------------- | --------------------------------------------------------------------- |
+| **Public Repo (local)** | `/Users/michelkerkmeester/MEGA/Development/Opencode Dev Environment/` |
+| **GitHub**              | https://github.com/MichelKerkmeester/Opencode_Dev_Environment         |
+
+**This project is the source of truth.** Changes are synced to the public repo for distribution.
+
+See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, and release management.
 
 ---
 
@@ -20,7 +28,7 @@
 4. **HALT:** Stop immediately if uncertain, if line numbers don't match, or if tests fail. (See "Halt Conditions" below).
 
 **OPERATIONAL MANDATES:**
-- **All file modifications require a spec folder** (Gate 1).
+- **All file modifications require a spec folder** (Gate 3).
 - **Never lie or fabricate** - use "UNKNOWN" when uncertain.
 - **Clarify** if confidence < 80% (see §4 Confidence Framework).
 - **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
@@ -46,7 +54,7 @@
 
 | Task                     | Flow                                                                                                                                       |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **File modification**    | Gate 1 (spec folder) → Gate 2 → Gate 3 → Load memory context → Execute                                                                     |
+| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                                 |
 | **Research/exploration** | `memory_match_triggers()` → `memory_search()` → Document findings                                                                          |
 | **Code search**          | `narsil.narsil_neural_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text   |
 | **Resume prior work**    | `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue                                     |
@@ -55,9 +63,11 @@
 | **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                                   |
 | **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                                |
 | **End session**          | /spec_kit:handover → Save context → Provide continuation prompt                                                                            |
-| **New spec folder**      | Option B (Gate 1) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
+| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                              |
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                        |
+| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                                       |
+| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                              |
 
 ---
 
@@ -230,7 +240,7 @@ Run /spec_kit:handover to save handover context, then in new session:
 If you catch yourself about to skip the gates:
 1. **STOP** immediately
 2. **State**: "Before I proceed, I need to ask about documentation:"
-3. **Ask** the applicable Gate 1 questions
+3. **Ask** the applicable Gate 3 questions
 4. **Wait** for response, then continue
 
 #### 🔄 Consolidated Question Protocol
@@ -256,17 +266,21 @@ File modification planned? → Include Q1 (Spec Folder)
 #### ⚡ Code Quality Standards Compliance
 
 **MANDATORY:** Compliance checkpoints:
-- Before **proposing solutions**: Verify approach aligns with project code standards
-- Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement
+- Before **proposing solutions**: Verify approach aligns with code quality standards and webflow patterns 
+- Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
+- Before **initialization code**: Follow initialization patterns from code quality standards
+- Before **animation implementation**: See animation workflow references
 - Before **code discovery**: Use mcp-narsil for ALL code intelligence (semantic via neural, structural, security) via Code Mode (MANDATORY)
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
-- **If conflict exists**: Project code standards override general practices
+- Before **CDN deployment**: See cdn_deployment.md for version management and upload workflow
+- Before **JavaScript minification**: See minification_guide.md for safe minification with verification
+- **If conflict exists**: Code quality standards override general practices
 
-**Violation handling:** If proposed solution contradicts code standards, STOP and ask for clarification or revise approach.
+**Violation handling:** If proposed solution contradicts code quality standards, STOP and ask for clarification or revise approach.
 
-#### ⚡ Common Failure Patterns
+#### ⚡ Common Failure Patterns 
 
 | #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                       |
 | --- | -------------- | ---------------------------- | -------------------------------------------- | ----------------------------------------------------- |
@@ -278,7 +292,7 @@ File modification planned? → Include Q1 (Spec Folder)
 | 6   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                               |
 | 7   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                      |
 | 8   | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
-| 9   | Completion     | No Verification              | "works", "done"                              | Verify first                                          |
+| 9   | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                  |
 | 10  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
 | 11  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Narsil for meaning + structure, Grep for text         |
 | 12  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
@@ -306,7 +320,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 > **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
 
-**Rules:**
+**Rules:** 
 - When in doubt → higher level
 - LOC is soft guidance (risk/complexity can override)
 - Single typo/whitespace fixes (<5 characters in one file) are exempt from spec folder requirements
@@ -535,10 +549,10 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
    - Sequential Thinking, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - External services (Figma, Github, ClickUp, Chrome DevTools, Narsil, etc.)
-   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `narsil.narsil_find_symbols({})`)
+   - Webflow, Figma, Github, ClickUp, Chrome DevTools, Narsil, etc.
+   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`, `narsil.narsil_find_symbols({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
-
+  
 ---
 
 ## 8. 🧩 SKILLS SYSTEM
@@ -548,7 +562,7 @@ Skills are specialized, on-demand capabilities that provide domain expertise. Un
 ### How Skills Work
 
 ```
-Task Received → Gate 3: Run skill_advisor.py
+Task Received → Gate 2: Run skill_advisor.py
                     ↓
     Confidence > 0.8 → MUST invoke recommended skill
                     ↓
@@ -565,15 +579,15 @@ Task Received → Gate 3: Run skill_advisor.py
 
 ### Skill Loading Protocol
 
-1. Gate 3 provides skill recommendation via `skill_advisor.py`
+1. Gate 2 provides skill recommendation via `skill_advisor.py`
 2. Invoke using appropriate method for your environment
 3. Read bundled resources from `references/`, `scripts/`, `assets/` paths
 4. Follow skill instructions to completion
 5. Do NOT re-invoke a skill already in context
 
-### Skill Routing (Gate 3)
+### Skill Routing (Gate 2)
 
-Gate 3 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you MUST invoke the recommended skill.
+Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you MUST invoke the recommended skill.
 
 **How to use skills:**
 - OpenCode v1.0.190+ auto-discovers skills from `.opencode/skill/*/SKILL.md` frontmatter
@@ -585,6 +599,32 @@ Gate 3 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you
 - Do not invoke a skill that is already loaded in your context
 - Each skill invocation is stateless
 - Skills are auto-indexed from SKILL.md frontmatter - no manual list maintenance required
+
+### Primary Skill: workflows-code
+
+For ALL frontend code implementation in anobel.com, `workflows-code` is the primary orchestrator skill.
+
+**3-Phase Lifecycle (MANDATORY):**
+1. **Phase 1 - Implementation**: Write code following Webflow patterns, async handling, validation
+2. **Phase 1.5 - Code Quality Gate**: Validate against style standards (P0 items MUST pass)
+3. **Phase 2 - Debugging**: Fix issues systematically using DevTools, trace root cause
+4. **Phase 3 - Verification**: Browser testing at multiple viewports (MANDATORY before "done")
+
+**The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
+
+**Auto-Detection Flow:**
+```
+Task Received → Detect keywords → Route to phase → Load resources
+```
+
+**Patterns Location:** `.opencode/skill/workflows-code/references/`
+- `implementation/` → Async patterns, animation, CSS, Webflow, security, observers
+- `debugging/` → Root cause tracing, error recovery
+- `verification/` → Browser testing requirements
+- `deployment/` → Minification, CDN deployment to R2
+- `standards/` → Code quality, style guide, shared patterns
+
+**Invocation:** Automatic via Gate 2 routing when code tasks detected.
 
 ### Skill Maintenance
 

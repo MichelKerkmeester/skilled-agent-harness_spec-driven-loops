@@ -489,8 +489,8 @@ echo "✅ PASS: Animation performance budgets met"
 ## 5. 🔗 RELATED RESOURCES
 
 ### Reference Files
-- [debugging_workflows.md](./debugging_workflows.md) - Performance debugging workflows for identifying bottlenecks
-- [verification_workflows.md](./verification_workflows.md) - Browser testing and verification workflows
+- [debugging_workflows.md](../debugging/debugging_workflows.md) - Performance debugging workflows for identifying bottlenecks
+- [verification_workflows.md](../verification/verification_workflows.md) - Browser testing and verification workflows
 - [animation_workflows.md](./animation_workflows.md) - Animation performance patterns for GPU-accelerated properties
 - [webflow_patterns.md](./webflow_patterns.md) - Webflow-specific performance considerations for collection lists
 

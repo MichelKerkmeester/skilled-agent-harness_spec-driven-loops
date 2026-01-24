@@ -7,6 +7,29 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.8.4**] - 2026-01-24
+
+Bug fixes for workflows-code skill restoring **3 missing minification scripts** and updating **25+ broken path references** across SKILL.md and deployment guides.
+
+---
+
+### New
+
+1. **Minification scripts** — Created 3 scripts in `.opencode/skill/workflows-code/scripts/`:
+   - `minify-webflow.mjs` (batch minification with manifest tracking)
+   - `verify-minification.mjs` (AST-based pattern verification)
+   - `test-minified-runtime.mjs` (mock browser runtime testing)
+
+---
+
+### Fixed
+
+1. **Missing scripts directory** — Scripts now bundled with workflows-code skill instead of project root
+2. **25+ broken path references** — Updated all `scripts/` paths to `.opencode/skill/workflows-code/scripts/`
+3. **Phase 1.5 missing** — Added Code Quality Gate phase to SKILL.md overview tables
+
+---
+
 ## [**1.0.8.3**] - 2026-01-24
 
 Multi-model agent configuration overhaul optimizing **7 agents** for GitHub Copilot model selection. Introduces **GPT-5.2-Codex** as default for debug/review agents (lowest error rate), standardizes model options to **opus/gemini/gpt**, and adds Copilot model identifiers.

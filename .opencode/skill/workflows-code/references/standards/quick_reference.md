@@ -379,9 +379,9 @@ const userId = validate(input, 'string', 'anonymous');
 ### Reference Files
 - [implementation_workflows.md](../implementation/implementation_workflows.md) - Phase 1 workflows for condition-based waiting, validation, and CDN versioning
 - [animation_workflows.md](../implementation/animation_workflows.md) - Animation implementation guide for CSS and Motion.dev
-- [webflow_patterns.md](./webflow_patterns.md) - Webflow platform patterns for collection lists and async rendering
-- [performance_patterns.md](./performance_patterns.md) - Performance optimization checklist for animations, assets, and requests
-- [security_patterns.md](./security_patterns.md) - OWASP security patterns for input validation and XSS prevention
+- [webflow_patterns.md](../implementation/webflow_patterns.md) - Webflow platform patterns for collection lists and async rendering
+- [performance_patterns.md](../implementation/performance_patterns.md) - Performance optimization checklist for animations, assets, and requests
+- [security_patterns.md](../implementation/security_patterns.md) - OWASP security patterns for input validation and XSS prevention
 - [debugging_workflows.md](../debugging/debugging_workflows.md) - Phase 2 workflows for systematic debugging
 - [verification_workflows.md](../verification/verification_workflows.md) - Phase 3 workflows for browser testing (MANDATORY)
 - [code_quality_standards.md](./code_quality_standards.md) - Naming conventions, initialization patterns, and standards

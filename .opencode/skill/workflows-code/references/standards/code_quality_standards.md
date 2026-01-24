@@ -1060,7 +1060,7 @@ Before deploying any component:
 
 ### Reference Files
 - [animation_workflows.md](../implementation/animation_workflows.md) - Complete animation implementation guide for CSS and Motion.dev patterns
-- [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting and validation patterns
+- [implementation_workflows.md](../implementation/implementation_workflows.md) - Condition-based waiting and validation patterns
 - [webflow_patterns.md](../implementation/webflow_patterns.md) - Webflow-specific patterns requiring CDN-safe initialization
 - [debugging_workflows.md](../debugging/debugging_workflows.md) - Debugging workflows for pattern compliance
 - [verification_workflows.md](../verification/verification_workflows.md) - Verification workflows for code standards and accessibility testing
