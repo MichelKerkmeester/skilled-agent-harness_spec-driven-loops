@@ -7,6 +7,27 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.8.1**] - 2026-01-24
+
+Cleanup release removing redundant verbose templates. AI assistants can dynamically provide equivalent guidance when filling minimal templates, making static verbose templates **~5,000 lines** of unnecessary maintenance overhead.
+
+---
+
+### Removed
+
+1. **`templates/verbose/` directory** — 26 files (~5,000+ lines) completely removed
+2. **`SPECKIT_TEMPLATE_STYLE` environment variable** — Deprecated (no effect)
+3. **`--verbose-templates` flag** — Removed from `create.sh` script
+
+---
+
+### Changed
+
+1. **Documentation** — 23 files updated to remove verbose template references
+2. **Template architecture** — Simplified to single "core" style for all users
+
+---
+
 ## [**1.0.8.0**] - 2026-01-23
 
 Comprehensive SpecKit intelligence upgrade introducing **dual-threshold validation** (confidence + uncertainty), **Five Checks Framework** for architectural decisions, and major script reorganization. Includes **34 file changes** across AGENTS.md, skill_advisor.py, documentation overhaul, and new reference materials for epistemic reasoning.

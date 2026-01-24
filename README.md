@@ -110,7 +110,7 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 
 **This System**
 
-- 10 core + 26 verbose templates (CORE + ADDENDUM v2.0)
+- 10 core templates (CORE + ADDENDUM v2.0)
 - 7 slash commands with `:auto`/`:confirm` modes
 - Memory lives IN spec folders (deep integration)
 - 001/002/003 sub-folder versioning
@@ -264,7 +264,7 @@ specs/042-add-user-authentication/
 **This Spec Kit**
 
 - **Enforcement**: Gate 3 blocks file changes without spec folder
-- **Templates**: 10 core + 26 verbose templates (CORE + ADDENDUM v2.0)
+- **Templates**: 10 core templates (CORE + ADDENDUM v2.0)
 - **Commands**: 7 slash commands with `:auto`/`:confirm` modes
 - **Memory Integration**: Deep integration, memories live IN spec folders
 - **Session Handover**: `:quick` (15 lines) or `:full` (150 lines)
@@ -335,8 +335,6 @@ Level 3+: [CORE] + [all addendums]     → 6 files, ~640 LOC
 - **handover.md**: Session continuity for multi-session work
 - **debug-delegation.md**: Sub-agent debugging tasks
 - **context_template.md**: Memory file generation (internal)
-
-**Verbose Variants:** Set `SPECKIT_TEMPLATE_STYLE=verbose` for templates with `[YOUR_VALUE_HERE:]`, `[NEEDS CLARIFICATION:]`, and `[example:]` guidance patterns.
 
 
 ### Validation System (13 Pluggable Rules)
