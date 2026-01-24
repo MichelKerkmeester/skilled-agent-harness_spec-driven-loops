@@ -14,9 +14,9 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Test Files | 7 | Covering cognitive, handlers, and integration |
-| Test Categories | 12+ | Per file, organized by feature domain |
-| Total Tests | 200+ | Across all test files |
+| Test Files | 11 | Covering cognitive, handlers, memory, and integration |
+| Test Categories | 20+ | Per file, organized by feature domain |
+| Total Tests | 700+ | Across all test files |
 | Test Modes | 2 | Normal and Quick mode (skips embedding tests) |
 
 ### Key Features
@@ -89,25 +89,31 @@ node working-memory.test.js
 tests/
 ├── attention-decay.test.js      # Time-based attention decay tests
 ├── co-activation.test.js        # Related memory activation tests
-├── working-memory.test.js       # Session working memory tests
-├── tier-classifier.test.js      # Importance tier classification tests
-├── summary-generator.test.js    # Auto-summary generation tests
 ├── modularization.test.js       # Module structure and exports tests
+├── summary-generator.test.js    # Auto-summary generation tests
+├── test-cognitive-integration.js # Cognitive system integration tests (NEW)
 ├── test-mcp-tools.js            # Comprehensive MCP handler tests
+├── test-memory-handlers.js      # Memory handler tests (NEW)
+├── test-session-learning.js     # Session learning handler tests (NEW)
+├── tier-classifier.test.js      # Importance tier classification tests
+├── working-memory.test.js       # Session working memory tests
 └── README.md                    # This file
 ```
 
 ### Key Files
 
-| File | Purpose |
-|------|---------|
-| `test-mcp-tools.js` | Main test runner for all MCP handlers and integration tests |
-| `attention-decay.test.js` | Tests time-based forgetting simulation |
-| `co-activation.test.js` | Tests related memory boosting and spreading activation |
-| `working-memory.test.js` | Tests session-scoped memory capacity and eviction |
-| `tier-classifier.test.js` | Tests six-tier importance classification |
-| `summary-generator.test.js` | Tests automatic content summarization |
-| `modularization.test.js` | Tests module structure, exports, and dependencies |
+| File | Purpose | Tests |
+|------|---------|-------|
+| `test-mcp-tools.js` | Main test runner for all MCP handlers and integration tests | ~100 |
+| `test-session-learning.js` | **NEW** - Tests session learning handler (preflight/postflight) | 161 |
+| `test-memory-handlers.js` | **NEW** - Tests all memory MCP handlers (search, triggers, crud, save, index) | 162 |
+| `test-cognitive-integration.js` | **NEW** - Integration tests for cognitive memory subsystem | 96 |
+| `attention-decay.test.js` | Tests time-based forgetting simulation | ~35 |
+| `co-activation.test.js` | Tests related memory boosting and spreading activation | ~30 |
+| `working-memory.test.js` | Tests session-scoped memory capacity and eviction | ~40 |
+| `tier-classifier.test.js` | Tests six-tier importance classification | ~40 |
+| `summary-generator.test.js` | Tests automatic content summarization | ~45 |
+| `modularization.test.js` | Tests module structure, exports, and dependencies | ~30 |
 
 ---
 
@@ -391,12 +397,16 @@ node -e "const lib = require('../lib'); console.log(Object.keys(lib))"
 
 | Module | Test File | Coverage |
 |--------|-----------|----------|
+| Session Learning | `test-session-learning.js` | **NEW** - Preflight, postflight, learning history, learning index |
+| Memory Handlers | `test-memory-handlers.js` | **NEW** - Search, triggers, CRUD, save, index operations |
+| Cognitive Integration | `test-cognitive-integration.js` | **NEW** - Full pipeline, session lifecycle, cross-component |
 | Attention Decay | `attention-decay.test.js` | Decay rates, tier-based behavior, edge cases |
 | Co-Activation | `co-activation.test.js` | Related memory boosting, spreading activation |
 | Working Memory | `working-memory.test.js` | Capacity limits, eviction, session management |
 | Tier Classifier | `tier-classifier.test.js` | Six-tier classification, keyword detection |
 | Summary Generator | `summary-generator.test.js` | Auto-summarization, length limits, formatting |
 | MCP Tools | `test-mcp-tools.js` | All handlers, integration, error handling |
+| Modularization | `modularization.test.js` | Module structure, exports, line counts |
 
 ### External Resources
 
@@ -408,4 +418,4 @@ node -e "const lib = require('../lib'); console.log(Object.keys(lib))"
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2025-01-21*
+*Documentation version: 1.1 | Last updated: 2026-01-24*

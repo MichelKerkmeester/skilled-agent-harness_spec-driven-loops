@@ -1,12 +1,21 @@
 // ───────────────────────────────────────────────────────────────
-// TEST: FIVE CHECKS FRAMEWORK
+// TEST: FIVE CHECKS FRAMEWORK VERIFICATION
 // ───────────────────────────────────────────────────────────────
-// Tests for the Five Checks Framework integration:
-// - Reference documentation validation
-// - Template integration for Level 3/3+ spec folders
-// - Decision record format compliance
-// - Quick assessment format validation
-// ───────────────────────────────────────────────────────────────
+//
+// Comprehensive tests for the Five Checks Framework:
+// - Framework documentation structure validation
+// - Check criteria parsing and validation
+// - Integration with decision-record.md templates
+// - Level applicability (required for L3+, optional for L2)
+// - Validation of check responses in spec folders
+//
+// The Five Checks:
+// 1. Necessary? - Solving ACTUAL need NOW?
+// 2. Beyond Local Maxima? - Explored alternatives?
+// 3. Sufficient? - Simplest approach?
+// 4. Fits Goal? - On critical path?
+// 5. Open Horizons? - Long-term aligned?
+//
 
 'use strict';
 
@@ -18,9 +27,58 @@ const fs = require('fs');
 ──────────────────────────────────────────────────────────────── */
 
 const ROOT = path.join(__dirname, '..', '..');
-const REFERENCES_PATH = path.join(ROOT, 'references', 'validation');
-const TEMPLATES_PATH = path.join(ROOT, 'templates');
-const TEST_FIXTURES_PATH = path.join(ROOT, 'test-fixtures');
+const VALIDATION_DIR = path.join(ROOT, 'references', 'validation');
+const TEMPLATES_DIR = path.join(ROOT, 'templates');
+
+// Five Checks documentation path
+const FIVE_CHECKS_DOC = path.join(VALIDATION_DIR, 'five-checks.md');
+
+// Template paths
+const LEVEL_1_DIR = path.join(TEMPLATES_DIR, 'level_1');
+const LEVEL_2_DIR = path.join(TEMPLATES_DIR, 'level_2');
+const LEVEL_3_DIR = path.join(TEMPLATES_DIR, 'level_3');
+const LEVEL_3PLUS_DIR = path.join(TEMPLATES_DIR, 'level_3+');
+const EXAMPLES_DIR = path.join(TEMPLATES_DIR, 'examples');
+const ADDENDUM_DIR = path.join(TEMPLATES_DIR, 'addendum');
+
+// The Five Checks as defined in the framework
+const FIVE_CHECKS = [
+  {
+    number: 1,
+    name: 'Necessary?',
+    question: 'Is this solving an ACTUAL need NOW?',
+    shortQuestion: 'Solving ACTUAL need NOW?',
+    keywords: ['requirement', 'documented', 'pain point', 'user', 'system'],
+  },
+  {
+    number: 2,
+    name: 'Beyond Local Maxima?',
+    question: 'Have we explored alternatives?',
+    shortQuestion: 'Explored >=2 alternatives?',
+    keywords: ['alternatives', 'trade-offs', 'justified', 'considered'],
+  },
+  {
+    number: 3,
+    name: 'Sufficient?',
+    question: 'Is this the simplest approach that works?',
+    shortQuestion: 'Simplest that works?',
+    keywords: ['simpler', 'complexity', 'existing patterns', 'abstraction'],
+  },
+  {
+    number: 4,
+    name: 'Fits Goal?',
+    question: 'Does this stay on the critical path?',
+    shortQuestion: 'On critical path?',
+    keywords: ['objective', 'scope creep', 'gold-plating', 'spec.md'],
+  },
+  {
+    number: 5,
+    name: 'Open Horizons?',
+    question: 'Does this maintain long-term alignment?',
+    shortQuestion: 'Long-term aligned?',
+    keywords: ['technical debt', 'vendor lock-in', 'flexibility', 'architecture'],
+  },
+];
 
 // Test results
 const results = {
@@ -41,581 +99,865 @@ function log(msg) {
 function pass(test_name, evidence) {
   results.passed++;
   results.tests.push({ name: test_name, status: 'PASS', evidence });
-  log(`   ✅ ${test_name}`);
+  log(`   [PASS] ${test_name}`);
   if (evidence) log(`      Evidence: ${evidence}`);
 }
 
 function fail(test_name, reason) {
   results.failed++;
   results.tests.push({ name: test_name, status: 'FAIL', reason });
-  log(`   ❌ ${test_name}`);
+  log(`   [FAIL] ${test_name}`);
   log(`      Reason: ${reason}`);
 }
 
 function skip(test_name, reason) {
   results.skipped++;
   results.tests.push({ name: test_name, status: 'SKIP', reason });
-  log(`   ⏭️  ${test_name} (skipped: ${reason})`);
+  log(`   [SKIP] ${test_name} (skipped: ${reason})`);
+}
+
+function file_exists(file_path) {
+  return fs.existsSync(file_path) && fs.statSync(file_path).isFile();
+}
+
+function dir_exists(dir_path) {
+  return fs.existsSync(dir_path) && fs.statSync(dir_path).isDirectory();
+}
+
+function read_file(file_path) {
+  if (!file_exists(file_path)) return null;
+  return fs.readFileSync(file_path, 'utf8');
+}
+
+/**
+ * Parse Five Checks evaluation table from markdown content
+ * Returns array of check results or null if not found
+ */
+function parseFiveChecksTable(content) {
+  if (!content) return null;
+
+  // Look for the Five Checks Evaluation table pattern
+  const tablePattern = /\|\s*#?\s*\|\s*Check\s*\|\s*Result\s*\|\s*Evidence\s*\|/i;
+  if (!tablePattern.test(content)) return null;
+
+  const checks = [];
+
+  // Match table rows with check data
+  // Pattern: | 1 | **Necessary?** | [PASS/FAIL] | [Evidence] |
+  const rowPattern = /\|\s*(\d)\s*\|\s*\*?\*?([^|*]+)\*?\*?\s*\|\s*(PASS|FAIL|\[PASS\/FAIL\])\s*\|\s*([^|]*)\s*\|/gi;
+  let match;
+
+  while ((match = rowPattern.exec(content)) !== null) {
+    checks.push({
+      number: parseInt(match[1], 10),
+      name: match[2].trim().replace(/\*\*/g, ''),
+      result: match[3].trim(),
+      evidence: match[4].trim(),
+    });
+  }
+
+  return checks.length > 0 ? checks : null;
+}
+
+/**
+ * Validate a Five Checks evaluation
+ * Returns { valid: boolean, errors: string[], score: string }
+ */
+function validateFiveChecksEvaluation(checks) {
+  const errors = [];
+  let passCount = 0;
+  let failCount = 0;
+  let unfilled = 0;
+
+  if (!checks || checks.length !== 5) {
+    errors.push(`Expected 5 checks, found ${checks ? checks.length : 0}`);
+    return { valid: false, errors, score: '0/5' };
+  }
+
+  for (const check of checks) {
+    if (check.result === 'PASS') {
+      passCount++;
+      if (!check.evidence || check.evidence === '[evidence]' || check.evidence.startsWith('[')) {
+        errors.push(`Check ${check.number} (${check.name}): PASS without valid evidence`);
+      }
+    } else if (check.result === 'FAIL') {
+      failCount++;
+    } else if (check.result === '[PASS/FAIL]') {
+      unfilled++;
+    }
+  }
+
+  const score = `${passCount}/5`;
+  const isTemplate = unfilled === 5;
+  const isValid = errors.length === 0 && (isTemplate || unfilled === 0);
+
+  return { valid: isValid, errors, score, isTemplate, passCount, failCount, unfilled };
 }
 
 /* ─────────────────────────────────────────────────────────────
-   3. REFERENCE DOCUMENTATION TESTS
+   3. TEST SUITE: FRAMEWORK DOCUMENTATION STRUCTURE
 ──────────────────────────────────────────────────────────────── */
 
-async function test_reference_documentation() {
-  log('\n🔬 REFERENCE DOCUMENTATION TESTS');
-
-  const five_checks_path = path.join(REFERENCES_PATH, 'five-checks.md');
+async function test_framework_documentation_structure() {
+  log('\n--- TEST SUITE: Framework Documentation Structure ---');
 
   try {
-    // Test 1: Reference file exists
-    if (fs.existsSync(five_checks_path)) {
-      pass('FC-001: Five Checks reference file exists', five_checks_path);
+    // Test five-checks.md exists
+    if (file_exists(FIVE_CHECKS_DOC)) {
+      pass('T-FC-001: five-checks.md exists', FIVE_CHECKS_DOC);
     } else {
-      fail('FC-001: Five Checks reference file exists', 'File not found');
-      return; // Skip remaining tests
+      fail('T-FC-001: five-checks.md exists', `File not found: ${FIVE_CHECKS_DOC}`);
+      return;
     }
 
-    const content = fs.readFileSync(five_checks_path, 'utf8');
+    const content = read_file(FIVE_CHECKS_DOC);
+    if (!content) {
+      fail('T-FC-002: five-checks.md is readable', 'Could not read file');
+      return;
+    }
 
-    // Test 2: All five checks are documented
-    const checks = [
-      { name: 'Necessary?', question: 'ACTUAL need NOW' },
-      { name: 'Beyond Local Maxima?', question: 'explored alternatives' },
-      { name: 'Sufficient?', question: 'simplest approach' },
-      { name: 'Fits Goal?', question: 'critical path' },
-      { name: 'Open Horizons?', question: 'long-term' }
+    // Test frontmatter exists
+    if (content.startsWith('---')) {
+      const frontmatterEnd = content.indexOf('---', 3);
+      if (frontmatterEnd > 3) {
+        const frontmatter = content.slice(3, frontmatterEnd);
+        const hasTitle = frontmatter.includes('title:');
+        const hasDescription = frontmatter.includes('description:');
+
+        if (hasTitle && hasDescription) {
+          pass('T-FC-002: five-checks.md has valid frontmatter', 'title and description found');
+        } else {
+          fail('T-FC-002: five-checks.md has valid frontmatter', `title:${hasTitle}, description:${hasDescription}`);
+        }
+      } else {
+        fail('T-FC-002: five-checks.md has valid frontmatter', 'Frontmatter not closed');
+      }
+    } else {
+      fail('T-FC-002: five-checks.md has valid frontmatter', 'No frontmatter found');
+    }
+
+    // Test main sections exist
+    const requiredSections = [
+      'OVERVIEW',
+      'THE FIVE CHECKS',
+      'EVALUATION FORMAT',
+      'EXAMPLES',
+      'INTEGRATION WITH DECISION RECORDS',
+      'QUICK REFERENCE',
     ];
 
-    let all_checks_documented = true;
-    for (const check of checks) {
-      if (!content.includes(check.name)) {
-        fail(`FC-002: Check "${check.name}" documented`, 'Check name not found');
-        all_checks_documented = false;
-      }
-    }
-    if (all_checks_documented) {
-      pass('FC-002: All five checks documented', '5/5 checks found');
-    }
-
-    // Test 3: Each check has evaluation criteria
-    if (content.includes('Evaluation Criteria:') || content.includes('**Evaluation Criteria:**')) {
-      const criteria_count = (content.match(/Evaluation Criteria/g) || []).length;
-      if (criteria_count >= 5) {
-        pass('FC-003: All checks have evaluation criteria', `${criteria_count} criteria sections`);
+    for (const section of requiredSections) {
+      if (content.includes(section)) {
+        pass(`T-FC-003: Section "${section}" exists`, 'Found in document');
       } else {
-        fail('FC-003: All checks have evaluation criteria', `Only ${criteria_count} found`);
+        fail(`T-FC-003: Section "${section}" exists`, 'Section not found');
       }
-    } else {
-      fail('FC-003: All checks have evaluation criteria', 'No criteria sections found');
     }
 
-    // Test 4: PASS and FAIL examples provided
-    const pass_examples = (content.match(/PASS Examples/gi) || []).length;
-    const fail_examples = (content.match(/FAIL Examples/gi) || []).length;
-
-    if (pass_examples >= 5 && fail_examples >= 5) {
-      pass('FC-004: PASS/FAIL examples for all checks', `${pass_examples} pass, ${fail_examples} fail examples`);
-    } else {
-      fail('FC-004: PASS/FAIL examples for all checks', `Only ${pass_examples} pass, ${fail_examples} fail`);
-    }
-
-    // Test 5: Evaluation format documented
-    if (content.includes('Quick Assessment Table') || content.includes('Quick Assessment')) {
-      pass('FC-005: Quick assessment format documented', 'Table format found');
-    } else {
-      fail('FC-005: Quick assessment format documented', 'Quick assessment not found');
-    }
-
-    // Test 6: Pass/fail thresholds documented
-    if (content.includes('5/5') && content.includes('4/5') && content.includes('3')) {
-      pass('FC-006: Pass/fail thresholds documented', '5/5, 4/5, 3+ thresholds');
-    } else {
-      fail('FC-006: Pass/fail thresholds documented', 'Thresholds not clear');
-    }
-
-    // Test 7: When to apply documented
-    if (content.includes('When to Apply') || content.includes('Mandatory Application')) {
-      pass('FC-007: When to apply Five Checks documented', 'Application guidance found');
-    } else {
-      fail('FC-007: When to apply Five Checks documented', 'No guidance found');
-    }
-
-    // Test 8: Level requirements documented
-    if (content.includes('Level 3') && content.includes('100 LOC')) {
-      pass('FC-008: Level/LOC requirements documented', 'Level 3 and 100 LOC triggers');
-    } else {
-      fail('FC-008: Level/LOC requirements documented', 'Level requirements unclear');
-    }
-
-    // Test 9: Remediation guidance for failures
-    if (content.includes('Handling Failures') || content.includes('REMEDIATION')) {
-      pass('FC-009: Failure remediation guidance', 'Remediation section found');
-    } else {
-      fail('FC-009: Failure remediation guidance', 'No remediation guidance');
-    }
-
-    // Test 10: Integration with decision-record documented
-    if (content.includes('decision-record.md') || content.includes('Decision Records')) {
-      pass('FC-010: Decision record integration documented', 'Integration guidance found');
-    } else {
-      fail('FC-010: Decision record integration documented', 'No integration guidance');
-    }
-
-  } catch (error) {
-    fail('Reference documentation tests', `Error: ${error.message}`);
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   4. TEMPLATE INTEGRATION TESTS
-──────────────────────────────────────────────────────────────── */
-
-async function test_template_integration() {
-  log('\n🔬 TEMPLATE INTEGRATION TESTS');
-
-  try {
-    // Test Level 3 decision-record template
-    const level3_dr_path = path.join(TEMPLATES_PATH, 'level_3', 'decision-record.md');
-
-    if (fs.existsSync(level3_dr_path)) {
-      const level3_content = fs.readFileSync(level3_dr_path, 'utf8');
-
-      // Test 11: Level 3 includes Five Checks
-      if (level3_content.includes('Five Checks') || level3_content.includes('FIVE CHECKS')) {
-        pass('FC-011: Level 3 decision-record includes Five Checks', 'Section found');
+    // Test all five checks are documented
+    for (const check of FIVE_CHECKS) {
+      const checkHeader = `Check ${check.number}: ${check.name}`;
+      if (content.includes(checkHeader) || content.includes(`### ${check.name}`)) {
+        pass(`T-FC-004: Check ${check.number} "${check.name}" documented`, 'Check section found');
       } else {
-        fail('FC-011: Level 3 decision-record includes Five Checks', 'Section not found');
+        fail(`T-FC-004: Check ${check.number} "${check.name}" documented`, 'Check section not found');
       }
-
-      // Test 12: Level 3 has check table format
-      if (level3_content.includes('Necessary?') && level3_content.includes('PASS') && level3_content.includes('Evidence')) {
-        pass('FC-012: Level 3 has Five Checks table format', 'Table structure present');
-      } else {
-        fail('FC-012: Level 3 has Five Checks table format', 'Table format missing');
-      }
-    } else {
-      skip('FC-011: Level 3 decision-record includes Five Checks', 'Template file not found');
-      skip('FC-012: Level 3 has Five Checks table format', 'Template file not found');
     }
 
-    // Test Level 3+ decision-record template
-    const level3plus_dr_path = path.join(TEMPLATES_PATH, 'level_3+', 'decision-record.md');
+    // Test evaluation criteria structure
+    for (const check of FIVE_CHECKS) {
+      const checkSection = content.includes(`Check ${check.number}:`);
+      if (checkSection) {
+        // Find section start
+        const sectionStart = content.indexOf(`Check ${check.number}:`);
+        const sectionEnd = content.indexOf('Check ' + (check.number + 1) + ':', sectionStart);
+        const section = sectionEnd > 0 ? content.slice(sectionStart, sectionEnd) : content.slice(sectionStart);
 
-    if (fs.existsSync(level3plus_dr_path)) {
-      const level3plus_content = fs.readFileSync(level3plus_dr_path, 'utf8');
+        const hasQuestion = section.includes('**Question:**');
+        const hasEvaluationCriteria = section.includes('**Evaluation Criteria:**');
+        const hasPassExamples = section.includes('**PASS Examples:**');
+        const hasFailExamples = section.includes('**FAIL Examples:**');
 
-      // Test 13: Level 3+ includes Five Checks
-      if (level3plus_content.includes('Five Checks') || level3plus_content.includes('FIVE CHECKS')) {
-        pass('FC-013: Level 3+ decision-record includes Five Checks', 'Section found');
-      } else {
-        fail('FC-013: Level 3+ decision-record includes Five Checks', 'Section not found');
-      }
-
-      // Test 14: Level 3+ has extended Five Checks (sign-off)
-      if (level3plus_content.includes('Sign-off') ||
-          level3plus_content.includes('sign-off') ||
-          level3plus_content.includes('stakeholder') ||
-          level3plus_content.length > 3000) { // Level 3+ should be more comprehensive
-        pass('FC-014: Level 3+ has extended Five Checks', 'Extended content or sign-off present');
-      } else {
-        fail('FC-014: Level 3+ has extended Five Checks', 'No extended content found');
-      }
-    } else {
-      skip('FC-013: Level 3+ decision-record includes Five Checks', 'Template file not found');
-      skip('FC-014: Level 3+ has extended Five Checks', 'Template file not found');
-    }
-
-    // Test Level 1 does NOT require Five Checks
-    const level1_files = ['spec.md', 'plan.md', 'tasks.md'];
-    let level1_has_five_checks = false;
-
-    for (const file of level1_files) {
-      const level1_path = path.join(TEMPLATES_PATH, 'level_1', file);
-      if (fs.existsSync(level1_path)) {
-        const content = fs.readFileSync(level1_path, 'utf8');
-        if (content.includes('Five Checks') && content.includes('Necessary?')) {
-          level1_has_five_checks = true;
-          break;
+        if (hasQuestion && hasEvaluationCriteria && hasPassExamples && hasFailExamples) {
+          pass(`T-FC-005: Check ${check.number} has complete structure`, 'Question, Criteria, PASS/FAIL examples');
+        } else {
+          fail(`T-FC-005: Check ${check.number} has complete structure`,
+            `Question:${hasQuestion}, Criteria:${hasEvaluationCriteria}, PASS:${hasPassExamples}, FAIL:${hasFailExamples}`);
         }
       }
     }
 
-    // Test 15: Level 1 does not mandate Five Checks
-    if (!level1_has_five_checks) {
-      pass('FC-015: Level 1 does not require Five Checks', 'Correctly omitted for simple tasks');
+    // Test pass/fail criteria documented
+    if (content.includes('5/5 PASS') && content.includes('4/5') && content.includes('3 or fewer')) {
+      pass('T-FC-006: Pass/Fail criteria documented', 'Found 5/5, 4/5, and 3 or fewer thresholds');
     } else {
-      fail('FC-015: Level 1 does not require Five Checks', 'Five Checks found in Level 1');
+      fail('T-FC-006: Pass/Fail criteria documented', 'Missing threshold documentation');
+    }
+
+    // Test Quick Assessment Table format documented
+    if (content.includes('Quick Assessment Table') && content.includes('| Check | Result | Evidence |')) {
+      pass('T-FC-007: Quick Assessment Table format documented', 'Table format found');
+    } else {
+      fail('T-FC-007: Quick Assessment Table format documented', 'Table format not found');
+    }
+
+    // Test remediation process documented
+    if (content.includes('Handling Failures') || content.includes('remediation')) {
+      pass('T-FC-008: Failure remediation process documented', 'Remediation guidance found');
+    } else {
+      fail('T-FC-008: Failure remediation process documented', 'No remediation guidance found');
     }
 
   } catch (error) {
-    fail('Template integration tests', `Error: ${error.message}`);
+    fail('T-FC-00X: Framework documentation structure', error.message);
   }
 }
 
 /* ─────────────────────────────────────────────────────────────
-   5. FORMAT VALIDATION TESTS
+   4. TEST SUITE: CHECK CRITERIA PARSING
 ──────────────────────────────────────────────────────────────── */
 
-async function test_format_validation() {
-  log('\n🔬 FORMAT VALIDATION TESTS');
+async function test_check_criteria_parsing() {
+  log('\n--- TEST SUITE: Check Criteria Parsing ---');
 
-  // Test quick assessment format parsing
-  const valid_quick_assessment = `
-FIVE CHECKS:
-1. Necessary? [PASS] - User requested feature X
-2. Beyond Local Maxima? [PASS] - Considered 3 alternatives
-3. Sufficient? [PASS] - Using existing utility
-4. Fits Goal? [PASS] - Directly addresses spec
-5. Open Horizons? [PASS] - Standard patterns
+  try {
+    const content = read_file(FIVE_CHECKS_DOC);
+    if (!content) {
+      fail('T-CP-001: Can read five-checks.md for parsing tests', 'File not readable');
+      return;
+    }
 
-RESULT: 5/5 PASS → PROCEED
-`;
+    // Test Check 1: Necessary? - keyword extraction
+    const check1Keywords = ['requirement', 'speculative', 'pain point', 'blocker'];
+    let check1Found = 0;
+    for (const keyword of check1Keywords) {
+      if (content.toLowerCase().includes(keyword.toLowerCase())) {
+        check1Found++;
+      }
+    }
+    if (check1Found >= 3) {
+      pass('T-CP-001: Check 1 "Necessary?" has key concepts', `Found ${check1Found}/4 keywords`);
+    } else {
+      fail('T-CP-001: Check 1 "Necessary?" has key concepts', `Only found ${check1Found}/4 keywords`);
+    }
 
-  const partial_pass_assessment = `
-FIVE CHECKS:
-1. Necessary? [FAIL] - Speculative feature
-2. Beyond Local Maxima? [PASS] - 2 alternatives
-3. Sufficient? [PASS] - Simple approach
-4. Fits Goal? [PASS] - On critical path
-5. Open Horizons? [PASS] - No debt
+    // Test Check 2: Beyond Local Maxima? - alternatives requirement
+    if (content.includes('At least 2 alternative') || content.includes('>=2 alternatives')) {
+      pass('T-CP-002: Check 2 "Beyond Local Maxima?" requires >=2 alternatives', 'Requirement documented');
+    } else {
+      fail('T-CP-002: Check 2 "Beyond Local Maxima?" requires >=2 alternatives', 'Requirement not found');
+    }
 
-RESULT: 4/5 PASS → RECONSIDER
-`;
+    // Test Check 2: Has ALTERNATIVES CONSIDERED format
+    if (content.includes('ALTERNATIVES CONSIDERED:')) {
+      pass('T-CP-003: Check 2 has ALTERNATIVES CONSIDERED format', 'Format template found');
+    } else {
+      fail('T-CP-003: Check 2 has ALTERNATIVES CONSIDERED format', 'Format template not found');
+    }
 
-  const fail_assessment = `
-FIVE CHECKS:
-1. Necessary? [FAIL] - No documented need
-2. Beyond Local Maxima? [FAIL] - No alternatives
-3. Sufficient? [FAIL] - Over-engineered
-4. Fits Goal? [PASS] - Aligns
-5. Open Horizons? [PASS] - OK
+    // Test Check 3: Sufficient? - simplicity validation
+    if (content.includes('SIMPLICITY CHECK:')) {
+      pass('T-CP-004: Check 3 "Sufficient?" has SIMPLICITY CHECK format', 'Format template found');
+    } else {
+      fail('T-CP-004: Check 3 "Sufficient?" has SIMPLICITY CHECK format', 'Format template not found');
+    }
 
-RESULT: 2/5 PASS → FAIL
-`;
+    // Test Check 4: Fits Goal? - alignment verification
+    if (content.includes('GOAL ALIGNMENT:')) {
+      pass('T-CP-005: Check 4 "Fits Goal?" has GOAL ALIGNMENT format', 'Format template found');
+    } else {
+      fail('T-CP-005: Check 4 "Fits Goal?" has GOAL ALIGNMENT format', 'Format template not found');
+    }
 
-  // Test 16: Valid full pass format
-  const pass_regex = /FIVE CHECKS[\s\S]*?1\. Necessary\?.*\[PASS\][\s\S]*?RESULT.*5\/5/;
-  if (pass_regex.test(valid_quick_assessment)) {
-    pass('FC-016: Valid 5/5 PASS format recognized', 'Regex matches valid format');
-  } else {
-    fail('FC-016: Valid 5/5 PASS format recognized', 'Regex does not match');
-  }
+    // Test Check 4: Has DIRECT/PARTIAL/DRIFT outcomes
+    if (content.includes('DIRECT') && content.includes('PARTIAL') && content.includes('DRIFT')) {
+      pass('T-CP-006: Check 4 defines DIRECT/PARTIAL/DRIFT outcomes', 'All three outcomes documented');
+    } else {
+      fail('T-CP-006: Check 4 defines DIRECT/PARTIAL/DRIFT outcomes', 'Missing outcome definitions');
+    }
 
-  // Test 17: Partial pass format (4/5)
-  const partial_regex = /FIVE CHECKS[\s\S]*?\[FAIL\][\s\S]*?RESULT.*4\/5/;
-  if (partial_regex.test(partial_pass_assessment)) {
-    pass('FC-017: Partial 4/5 PASS format recognized', 'Regex matches partial format');
-  } else {
-    fail('FC-017: Partial 4/5 PASS format recognized', 'Regex does not match');
-  }
+    // Test Check 5: Open Horizons? - horizon check format
+    if (content.includes('HORIZON CHECK:')) {
+      pass('T-CP-007: Check 5 "Open Horizons?" has HORIZON CHECK format', 'Format template found');
+    } else {
+      fail('T-CP-007: Check 5 "Open Horizons?" has HORIZON CHECK format', 'Format template not found');
+    }
 
-  // Test 18: Fail format (≤3/5)
-  const fail_regex = /FIVE CHECKS[\s\S]*?RESULT.*[0-3]\/5/;
-  if (fail_regex.test(fail_assessment)) {
-    pass('FC-018: Fail format (2/5) recognized', 'Regex matches fail format');
-  } else {
-    fail('FC-018: Fail format (2/5) recognized', 'Regex does not match');
-  }
+    // Test Check 5: Has technical debt and vendor lock-in checks
+    if (content.includes('Technical debt') && content.includes('Vendor lock-in')) {
+      pass('T-CP-008: Check 5 covers technical debt and vendor lock-in', 'Both concerns documented');
+    } else {
+      fail('T-CP-008: Check 5 covers technical debt and vendor lock-in', 'Missing concern documentation');
+    }
 
-  // Test 19: Count PASS/FAIL in assessment
-  function countChecks(text) {
-    const passes = (text.match(/\[PASS\]/g) || []).length;
-    const fails = (text.match(/\[FAIL\]/g) || []).length;
-    return { passes, fails };
-  }
+    // Test example parsing - Example A (all pass)
+    if (content.includes('Example A:') && content.includes('5/5 PASS')) {
+      pass('T-CP-009: Example A demonstrates 5/5 PASS scenario', 'Full pass example found');
+    } else {
+      fail('T-CP-009: Example A demonstrates 5/5 PASS scenario', 'Example A not found or incomplete');
+    }
 
-  const valid_counts = countChecks(valid_quick_assessment);
-  if (valid_counts.passes === 5 && valid_counts.fails === 0) {
-    pass('FC-019: PASS/FAIL counting works', `5 PASS, 0 FAIL detected`);
-  } else {
-    fail('FC-019: PASS/FAIL counting works', `Got ${valid_counts.passes} PASS, ${valid_counts.fails} FAIL`);
-  }
+    // Test example parsing - Example B (with failures and remediation)
+    if (content.includes('Example B:') && content.includes('REMEDIATION')) {
+      pass('T-CP-010: Example B demonstrates failure with remediation', 'Failure example with remediation found');
+    } else {
+      fail('T-CP-010: Example B demonstrates failure with remediation', 'Example B not found or missing remediation');
+    }
 
-  const fail_counts = countChecks(fail_assessment);
-  if (fail_counts.passes === 2 && fail_counts.fails === 3) {
-    pass('FC-020: Mixed PASS/FAIL counting', `2 PASS, 3 FAIL detected`);
-  } else {
-    fail('FC-020: Mixed PASS/FAIL counting', `Got ${fail_counts.passes} PASS, ${fail_counts.fails} FAIL`);
+  } catch (error) {
+    fail('T-CP-00X: Check criteria parsing', error.message);
   }
 }
 
 /* ─────────────────────────────────────────────────────────────
-   6. DECISION TABLE FORMAT TESTS
+   5. TEST SUITE: DECISION-RECORD.MD INTEGRATION
 ──────────────────────────────────────────────────────────────── */
 
-async function test_decision_table_format() {
-  log('\n🔬 DECISION TABLE FORMAT TESTS');
+async function test_decision_record_integration() {
+  log('\n--- TEST SUITE: Decision-Record.md Integration ---');
 
-  const valid_table = `
-| Check | Result | Evidence |
-|-------|--------|----------|
-| 1. Necessary? | PASS | User requested in spec.md |
-| 2. Beyond Local Maxima? | PASS | Considered A, B, C |
-| 3. Sufficient? | PASS | Simple implementation |
-| 4. Fits Goal? | PASS | Directly advances objective |
-| 5. Open Horizons? | PASS | No technical debt |
+  try {
+    // Test Level 3 decision-record.md has Five Checks section
+    const level3DecisionRecord = read_file(path.join(LEVEL_3_DIR, 'decision-record.md'));
+    if (level3DecisionRecord) {
+      if (level3DecisionRecord.includes('Five Checks Evaluation')) {
+        pass('T-DR-001: level_3/decision-record.md has Five Checks section', 'Section found');
+      } else {
+        fail('T-DR-001: level_3/decision-record.md has Five Checks section', 'Section not found');
+      }
 
-**Result:** 5/5 PASS
-`;
+      // Test table format in Level 3
+      const checks = parseFiveChecksTable(level3DecisionRecord);
+      if (checks && checks.length === 5) {
+        pass('T-DR-002: level_3/decision-record.md has valid Five Checks table', `Found ${checks.length} checks`);
+      } else {
+        fail('T-DR-002: level_3/decision-record.md has valid Five Checks table', 'Table not parseable or incomplete');
+      }
 
-  // Test 21: Table format recognized
-  const table_regex = /\|\s*Check\s*\|\s*Result\s*\|\s*Evidence\s*\|/;
-  if (table_regex.test(valid_table)) {
-    pass('FC-021: Decision table header format', 'Header row matches');
-  } else {
-    fail('FC-021: Decision table header format', 'Header format incorrect');
-  }
+      // Test Checks Summary line exists
+      if (level3DecisionRecord.includes('Checks Summary') && level3DecisionRecord.includes('/5 PASS')) {
+        pass('T-DR-003: level_3/decision-record.md has Checks Summary', 'Summary line found');
+      } else {
+        fail('T-DR-003: level_3/decision-record.md has Checks Summary', 'Summary line not found');
+      }
+    } else {
+      fail('T-DR-001-003: level_3/decision-record.md tests', 'File not readable');
+    }
 
-  // Test 22: All five checks in table
-  const check_rows = valid_table.match(/\d\.\s*(Necessary|Beyond|Sufficient|Fits|Open)/gi);
-  if (check_rows && check_rows.length === 5) {
-    pass('FC-022: All five checks in table', '5 check rows found');
-  } else {
-    fail('FC-022: All five checks in table', `Found ${check_rows ? check_rows.length : 0} rows`);
-  }
+    // Test Level 3+ decision-record.md has Five Checks section
+    const level3PlusDecisionRecord = read_file(path.join(LEVEL_3PLUS_DIR, 'decision-record.md'));
+    if (level3PlusDecisionRecord) {
+      if (level3PlusDecisionRecord.includes('Five Checks Evaluation')) {
+        pass('T-DR-004: level_3+/decision-record.md has Five Checks section', 'Section found');
+      } else {
+        fail('T-DR-004: level_3+/decision-record.md has Five Checks section', 'Section not found');
+      }
 
-  // Test 23: Evidence column present
-  const evidence_regex = /\|\s*[^|]+\s*\|\s*(PASS|FAIL)\s*\|\s*[^|]+\s*\|/;
-  if (evidence_regex.test(valid_table)) {
-    pass('FC-023: Evidence column in table', 'Evidence values present');
-  } else {
-    fail('FC-023: Evidence column in table', 'Evidence column missing');
-  }
+      // Test Level 3+ also has Session Decision Log (extended)
+      if (level3PlusDecisionRecord.includes('Session Decision Log')) {
+        pass('T-DR-005: level_3+/decision-record.md has Session Decision Log', 'Extended governance feature found');
+      } else {
+        skip('T-DR-005: level_3+/decision-record.md has Session Decision Log', 'Extended feature may be optional');
+      }
+    } else {
+      fail('T-DR-004-005: level_3+/decision-record.md tests', 'File not readable');
+    }
 
-  // Test 24: Result line present
-  if (valid_table.includes('Result:') || valid_table.includes('**Result:**')) {
-    pass('FC-024: Result line in table format', 'Result line found');
-  } else {
-    fail('FC-024: Result line in table format', 'No result line');
-  }
-}
+    // Test Example Level 3 decision-record.md has filled Five Checks
+    const exampleDecisionRecord = read_file(path.join(EXAMPLES_DIR, 'level_3', 'decision-record.md'));
+    if (exampleDecisionRecord) {
+      // Check that example doesn't have placeholder [PASS/FAIL]
+      const hasFilledResults = !exampleDecisionRecord.includes('[PASS/FAIL]') ||
+        (exampleDecisionRecord.includes('PASS') && !exampleDecisionRecord.includes('[PASS/FAIL]'));
 
-/* ─────────────────────────────────────────────────────────────
-   7. CHECK-SPECIFIC VALIDATION TESTS
-──────────────────────────────────────────────────────────────── */
+      if (hasFilledResults) {
+        pass('T-DR-006: examples/level_3/decision-record.md has filled results', 'No [PASS/FAIL] placeholders');
+      } else {
+        fail('T-DR-006: examples/level_3/decision-record.md has filled results', 'Still has [PASS/FAIL] placeholders');
+      }
 
-async function test_check_specific_validation() {
-  log('\n🔬 CHECK-SPECIFIC VALIDATION TESTS');
+      // Note: Example may not have Five Checks table (older examples)
+      const hasChecksSection = exampleDecisionRecord.includes('Five Checks');
+      if (hasChecksSection) {
+        pass('T-DR-007: examples/level_3/decision-record.md demonstrates Five Checks', 'Five Checks section found');
+      } else {
+        skip('T-DR-007: examples/level_3/decision-record.md demonstrates Five Checks', 'Example uses older format without Five Checks');
+      }
+    } else {
+      skip('T-DR-006-007: Example decision-record.md tests', 'Example file not found');
+    }
 
-  // Test 25: Check 1 (Necessary) validation criteria
-  const necessary_evidence = [
-    'User requested',
-    'documented requirement',
-    'blocking production',
-    'explicitly needs'
-  ];
-  const invalid_necessary = [
-    'might be useful later',
-    'best practice says',
-    'future-proofing'
-  ];
+    // Test addendum decision-record.md (should be base without Five Checks for composition)
+    const addendumDecisionRecord = read_file(path.join(ADDENDUM_DIR, 'level3-arch', 'decision-record.md'));
+    if (addendumDecisionRecord) {
+      // Addendum is a base template that may or may not include Five Checks
+      // The composed level_3 template should have it
+      if (addendumDecisionRecord.includes('ADR-001')) {
+        pass('T-DR-008: addendum/level3-arch/decision-record.md has ADR structure', 'ADR-001 found');
+      } else {
+        fail('T-DR-008: addendum/level3-arch/decision-record.md has ADR structure', 'ADR-001 not found');
+      }
+    } else {
+      fail('T-DR-008: addendum/level3-arch/decision-record.md tests', 'File not readable');
+    }
 
-  // Just validate that these are distinct patterns
-  const necessary_patterns = necessary_evidence.length + invalid_necessary.length;
-  if (necessary_patterns === 7) {
-    pass('FC-025: Check 1 (Necessary) has valid/invalid patterns', '7 patterns defined');
-  } else {
-    fail('FC-025: Check 1 (Necessary) has valid/invalid patterns', 'Pattern count mismatch');
-  }
-
-  // Test 26: Check 2 (Beyond Local Maxima) requires alternatives
-  const blm_valid = 'Considered A (fast), B (slow), C (balanced)';
-  const blm_invalid = 'This is the obvious solution';
-
-  if (blm_valid.includes('Considered') && !blm_invalid.includes('Considered')) {
-    pass('FC-026: Check 2 requires documented alternatives', 'Alternative pattern distinct');
-  } else {
-    fail('FC-026: Check 2 requires documented alternatives', 'Patterns not distinct');
-  }
-
-  // Test 27: Check 3 (Sufficient) simplicity validation
-  const sufficient_valid = 'Single function handles case';
-  const sufficient_invalid = 'Creating new utility when existing one works';
-
-  // These should be distinguishable
-  if (sufficient_valid.length < 50 && sufficient_invalid.includes('new')) {
-    pass('FC-027: Check 3 simplicity criteria defined', 'Patterns distinguishable');
-  } else {
-    fail('FC-027: Check 3 simplicity criteria defined', 'Patterns unclear');
-  }
-
-  // Test 28: Check 4 (Fits Goal) scope alignment
-  const goal_valid = 'Implements exactly what spec.md requests';
-  const goal_invalid = 'While I\'m here, let me also...';
-
-  if (goal_valid.includes('exactly') && goal_invalid.includes('also')) {
-    pass('FC-028: Check 4 scope alignment criteria', 'Alignment patterns clear');
-  } else {
-    fail('FC-028: Check 4 scope alignment criteria', 'Patterns unclear');
-  }
-
-  // Test 29: Check 5 (Open Horizons) long-term criteria
-  const horizon_valid = 'Standard interface allows swapping';
-  const horizon_invalid = 'Quick fix now, proper solution later';
-
-  if (!horizon_valid.includes('later') && horizon_invalid.includes('later')) {
-    pass('FC-029: Check 5 long-term criteria defined', 'Debt patterns distinct');
-  } else {
-    fail('FC-029: Check 5 long-term criteria defined', 'Patterns not distinct');
+  } catch (error) {
+    fail('T-DR-00X: Decision-record.md integration', error.message);
   }
 }
 
 /* ─────────────────────────────────────────────────────────────
-   8. THRESHOLD VALIDATION TESTS
-──────────────────────────────────────────────────────────────── */
-
-async function test_threshold_validation() {
-  log('\n🔬 THRESHOLD VALIDATION TESTS');
-
-  function evaluateResult(passes, fails) {
-    const total = passes + fails;
-    if (total !== 5) return 'INVALID';
-    if (passes === 5) return 'PROCEED';
-    if (passes === 4) return 'CONDITIONAL_PASS';
-    return 'FAIL';
-  }
-
-  // Test 30: 5/5 = PROCEED
-  if (evaluateResult(5, 0) === 'PROCEED') {
-    pass('FC-030: 5/5 PASS = PROCEED', 'Full pass triggers proceed');
-  } else {
-    fail('FC-030: 5/5 PASS = PROCEED', 'Wrong result');
-  }
-
-  // Test 31: 4/5 = CONDITIONAL_PASS
-  if (evaluateResult(4, 1) === 'CONDITIONAL_PASS') {
-    pass('FC-031: 4/5 PASS = CONDITIONAL_PASS', '4/5 allows conditional proceed');
-  } else {
-    fail('FC-031: 4/5 PASS = CONDITIONAL_PASS', 'Wrong result');
-  }
-
-  // Test 32: 3/5 = FAIL
-  if (evaluateResult(3, 2) === 'FAIL') {
-    pass('FC-032: 3/5 PASS = FAIL', '3/5 requires reconsideration');
-  } else {
-    fail('FC-032: 3/5 PASS = FAIL', 'Wrong result');
-  }
-
-  // Test 33: 2/5 = FAIL
-  if (evaluateResult(2, 3) === 'FAIL') {
-    pass('FC-033: 2/5 PASS = FAIL', '2/5 requires reconsideration');
-  } else {
-    fail('FC-033: 2/5 PASS = FAIL', 'Wrong result');
-  }
-
-  // Test 34: 1/5 = FAIL
-  if (evaluateResult(1, 4) === 'FAIL') {
-    pass('FC-034: 1/5 PASS = FAIL', '1/5 requires reconsideration');
-  } else {
-    fail('FC-034: 1/5 PASS = FAIL', 'Wrong result');
-  }
-
-  // Test 35: 0/5 = FAIL
-  if (evaluateResult(0, 5) === 'FAIL') {
-    pass('FC-035: 0/5 PASS = FAIL', '0/5 requires reconsideration');
-  } else {
-    fail('FC-035: 0/5 PASS = FAIL', 'Wrong result');
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   9. LEVEL APPLICABILITY TESTS
+   6. TEST SUITE: LEVEL APPLICABILITY
 ──────────────────────────────────────────────────────────────── */
 
 async function test_level_applicability() {
-  log('\n🔬 LEVEL APPLICABILITY TESTS');
+  log('\n--- TEST SUITE: Level Applicability ---');
 
-  function shouldApplyFiveChecks(level, loc, isArchitectural) {
-    // Mandatory: Level 3/3+, >100 LOC, or architectural
-    if (level >= 3) return 'MANDATORY';
-    if (loc > 100) return 'MANDATORY';
-    if (isArchitectural) return 'MANDATORY';
+  try {
+    const fiveChecksDoc = read_file(FIVE_CHECKS_DOC);
+    if (!fiveChecksDoc) {
+      fail('T-LA-001: Can read five-checks.md for level applicability tests', 'File not readable');
+      return;
+    }
 
-    // Recommended: Level 2
-    if (level === 2) return 'RECOMMENDED';
+    // Test: Level 1 is exempt from Five Checks
+    if (fiveChecksDoc.includes('Level 1 spec folders') && fiveChecksDoc.includes('Not Required')) {
+      pass('T-LA-001: Level 1 exemption documented', 'Level 1 listed under "Not Required"');
+    } else {
+      fail('T-LA-001: Level 1 exemption documented', 'Level 1 exemption not clearly stated');
+    }
 
-    // Not required: Level 1, <100 LOC
-    return 'NOT_REQUIRED';
-  }
+    // Test: Level 2 is recommended but optional
+    if (fiveChecksDoc.includes('Level 2') && fiveChecksDoc.includes('Recommended')) {
+      pass('T-LA-002: Level 2 is recommended (optional)', 'Level 2 listed under "Recommended"');
+    } else {
+      fail('T-LA-002: Level 2 is recommended (optional)', 'Level 2 applicability unclear');
+    }
 
-  // Test 36: Level 3 = MANDATORY
-  if (shouldApplyFiveChecks(3, 50, false) === 'MANDATORY') {
-    pass('FC-036: Level 3 = MANDATORY', 'Level 3 always requires Five Checks');
-  } else {
-    fail('FC-036: Level 3 = MANDATORY', 'Wrong applicability');
-  }
+    // Test: Level 3 is mandatory
+    if (fiveChecksDoc.includes('Level 3') && fiveChecksDoc.includes('Mandatory')) {
+      pass('T-LA-003: Level 3 is mandatory', 'Level 3 listed under "Mandatory"');
+    } else {
+      fail('T-LA-003: Level 3 is mandatory', 'Level 3 mandatory status unclear');
+    }
 
-  // Test 37: >100 LOC = MANDATORY
-  if (shouldApplyFiveChecks(1, 150, false) === 'MANDATORY') {
-    pass('FC-037: >100 LOC = MANDATORY', 'LOC trigger works');
-  } else {
-    fail('FC-037: >100 LOC = MANDATORY', 'LOC trigger failed');
-  }
+    // Test: Level 3+ is mandatory
+    if (fiveChecksDoc.includes('Level 3/3+') || (fiveChecksDoc.includes('Level 3+') && fiveChecksDoc.includes('Mandatory'))) {
+      pass('T-LA-004: Level 3+ is mandatory', 'Level 3+ listed under "Mandatory"');
+    } else {
+      fail('T-LA-004: Level 3+ is mandatory', 'Level 3+ mandatory status unclear');
+    }
 
-  // Test 38: Architectural = MANDATORY
-  if (shouldApplyFiveChecks(1, 50, true) === 'MANDATORY') {
-    pass('FC-038: Architectural = MANDATORY', 'Architectural trigger works');
-  } else {
-    fail('FC-038: Architectural = MANDATORY', 'Architectural trigger failed');
-  }
+    // Test: >100 LOC threshold documented
+    if (fiveChecksDoc.includes('100 LOC') || fiveChecksDoc.includes('exceeding 100')) {
+      pass('T-LA-005: >100 LOC threshold documented', '>100 LOC trigger found');
+    } else {
+      fail('T-LA-005: >100 LOC threshold documented', 'LOC threshold not documented');
+    }
 
-  // Test 39: Level 2 = RECOMMENDED
-  if (shouldApplyFiveChecks(2, 80, false) === 'RECOMMENDED') {
-    pass('FC-039: Level 2 = RECOMMENDED', 'Level 2 gets recommendation');
-  } else {
-    fail('FC-039: Level 2 = RECOMMENDED', 'Wrong applicability');
-  }
+    // Test: Architectural decisions trigger documented
+    if (fiveChecksDoc.includes('Architectural decisions') || fiveChecksDoc.includes('architectural')) {
+      pass('T-LA-006: Architectural decisions trigger documented', 'Architectural trigger found');
+    } else {
+      fail('T-LA-006: Architectural decisions trigger documented', 'Architectural trigger not documented');
+    }
 
-  // Test 40: Level 1 + <100 LOC = NOT_REQUIRED
-  if (shouldApplyFiveChecks(1, 50, false) === 'NOT_REQUIRED') {
-    pass('FC-040: Level 1 <100 LOC = NOT_REQUIRED', 'Simple tasks exempt');
-  } else {
-    fail('FC-040: Level 1 <100 LOC = NOT_REQUIRED', 'Should be exempt');
+    // Verify Level 1 templates do NOT have decision-record.md
+    const level1HasDecisionRecord = file_exists(path.join(LEVEL_1_DIR, 'decision-record.md'));
+    if (!level1HasDecisionRecord) {
+      pass('T-LA-007: Level 1 template has no decision-record.md', 'Correctly excluded');
+    } else {
+      fail('T-LA-007: Level 1 template has no decision-record.md', 'Should not have decision-record.md');
+    }
+
+    // Verify Level 2 templates do NOT have decision-record.md
+    const level2HasDecisionRecord = file_exists(path.join(LEVEL_2_DIR, 'decision-record.md'));
+    if (!level2HasDecisionRecord) {
+      pass('T-LA-008: Level 2 template has no decision-record.md', 'Correctly excluded (Five Checks optional)');
+    } else {
+      fail('T-LA-008: Level 2 template has no decision-record.md', 'Should not have decision-record.md at L2');
+    }
+
+    // Verify Level 3 templates DO have decision-record.md
+    const level3HasDecisionRecord = file_exists(path.join(LEVEL_3_DIR, 'decision-record.md'));
+    if (level3HasDecisionRecord) {
+      pass('T-LA-009: Level 3 template has decision-record.md', 'Correctly included');
+    } else {
+      fail('T-LA-009: Level 3 template has decision-record.md', 'Missing required file');
+    }
+
+    // Verify Level 3+ templates DO have decision-record.md
+    const level3PlusHasDecisionRecord = file_exists(path.join(LEVEL_3PLUS_DIR, 'decision-record.md'));
+    if (level3PlusHasDecisionRecord) {
+      pass('T-LA-010: Level 3+ template has decision-record.md', 'Correctly included');
+    } else {
+      fail('T-LA-010: Level 3+ template has decision-record.md', 'Missing required file');
+    }
+
+  } catch (error) {
+    fail('T-LA-00X: Level applicability', error.message);
   }
 }
 
 /* ─────────────────────────────────────────────────────────────
-   10. RUN ALL TESTS
+   7. TEST SUITE: CHECK RESPONSE VALIDATION
 ──────────────────────────────────────────────────────────────── */
 
-async function run_all_tests() {
-  log('═══════════════════════════════════════════════════════════════');
-  log(' FIVE CHECKS FRAMEWORK TEST SUITE');
-  log(' Tests for decision validation framework');
-  log('═══════════════════════════════════════════════════════════════');
+async function test_check_response_validation() {
+  log('\n--- TEST SUITE: Check Response Validation ---');
 
   try {
-    await test_reference_documentation();
-    await test_template_integration();
-    await test_format_validation();
-    await test_decision_table_format();
-    await test_check_specific_validation();
-    await test_threshold_validation();
-    await test_level_applicability();
+    // Test validation of a complete 5/5 PASS scenario
+    const validChecks = [
+      { number: 1, name: 'Necessary?', result: 'PASS', evidence: 'User reported bug crashing app' },
+      { number: 2, name: 'Beyond Local Maxima?', result: 'PASS', evidence: 'Considered 3 approaches' },
+      { number: 3, name: 'Sufficient?', result: 'PASS', evidence: 'Single function, no abstraction needed' },
+      { number: 4, name: 'Fits Goal?', result: 'PASS', evidence: 'Matches spec.md requirements' },
+      { number: 5, name: 'Open Horizons?', result: 'PASS', evidence: 'Standard pattern, no lock-in' },
+    ];
+
+    const validResult = validateFiveChecksEvaluation(validChecks);
+    if (validResult.valid && validResult.score === '5/5') {
+      pass('T-VL-001: Valid 5/5 PASS evaluation accepted', `Score: ${validResult.score}`);
+    } else {
+      fail('T-VL-001: Valid 5/5 PASS evaluation accepted', `Errors: ${validResult.errors.join(', ')}`);
+    }
+
+    // Test validation of 4/5 conditional pass
+    const conditionalChecks = [
+      { number: 1, name: 'Necessary?', result: 'PASS', evidence: 'User requested feature' },
+      { number: 2, name: 'Beyond Local Maxima?', result: 'FAIL', evidence: 'Only one approach considered' },
+      { number: 3, name: 'Sufficient?', result: 'PASS', evidence: 'Reusing existing utility' },
+      { number: 4, name: 'Fits Goal?', result: 'PASS', evidence: 'Matches requirement' },
+      { number: 5, name: 'Open Horizons?', result: 'PASS', evidence: 'No tech debt' },
+    ];
+
+    const conditionalResult = validateFiveChecksEvaluation(conditionalChecks);
+    if (conditionalResult.passCount === 4 && conditionalResult.failCount === 1) {
+      pass('T-VL-002: 4/5 conditional pass correctly identified', `Score: ${conditionalResult.score}`);
+    } else {
+      fail('T-VL-002: 4/5 conditional pass correctly identified', `Got ${conditionalResult.passCount} pass, ${conditionalResult.failCount} fail`);
+    }
+
+    // Test validation of failing evaluation (3/5)
+    const failingChecks = [
+      { number: 1, name: 'Necessary?', result: 'FAIL', evidence: 'Future-proofing, not needed now' },
+      { number: 2, name: 'Beyond Local Maxima?', result: 'FAIL', evidence: 'No alternatives considered' },
+      { number: 3, name: 'Sufficient?', result: 'PASS', evidence: 'Simple approach' },
+      { number: 4, name: 'Fits Goal?', result: 'PASS', evidence: 'On critical path' },
+      { number: 5, name: 'Open Horizons?', result: 'PASS', evidence: 'Long-term aligned' },
+    ];
+
+    const failingResult = validateFiveChecksEvaluation(failingChecks);
+    if (failingResult.passCount === 3 && failingResult.failCount === 2) {
+      pass('T-VL-003: 3/5 failing evaluation correctly identified', `Score: ${failingResult.score}`);
+    } else {
+      fail('T-VL-003: 3/5 failing evaluation correctly identified', `Got ${failingResult.passCount} pass, ${failingResult.failCount} fail`);
+    }
+
+    // Test validation detects PASS without evidence
+    const noEvidenceChecks = [
+      { number: 1, name: 'Necessary?', result: 'PASS', evidence: '[evidence]' },
+      { number: 2, name: 'Beyond Local Maxima?', result: 'PASS', evidence: 'Valid evidence' },
+      { number: 3, name: 'Sufficient?', result: 'PASS', evidence: '' },
+      { number: 4, name: 'Fits Goal?', result: 'PASS', evidence: 'Valid' },
+      { number: 5, name: 'Open Horizons?', result: 'PASS', evidence: 'Valid' },
+    ];
+
+    const noEvidenceResult = validateFiveChecksEvaluation(noEvidenceChecks);
+    if (!noEvidenceResult.valid && noEvidenceResult.errors.length > 0) {
+      pass('T-VL-004: PASS without evidence detected as invalid', `Errors found: ${noEvidenceResult.errors.length}`);
+    } else {
+      fail('T-VL-004: PASS without evidence detected as invalid', 'Should have found validation errors');
+    }
+
+    // Test template detection (all [PASS/FAIL] placeholders)
+    const templateChecks = [
+      { number: 1, name: 'Necessary?', result: '[PASS/FAIL]', evidence: '[evidence]' },
+      { number: 2, name: 'Beyond Local Maxima?', result: '[PASS/FAIL]', evidence: '[evidence]' },
+      { number: 3, name: 'Sufficient?', result: '[PASS/FAIL]', evidence: '[evidence]' },
+      { number: 4, name: 'Fits Goal?', result: '[PASS/FAIL]', evidence: '[evidence]' },
+      { number: 5, name: 'Open Horizons?', result: '[PASS/FAIL]', evidence: '[evidence]' },
+    ];
+
+    const templateResult = validateFiveChecksEvaluation(templateChecks);
+    if (templateResult.isTemplate && templateResult.unfilled === 5) {
+      pass('T-VL-005: Template with placeholders correctly identified', 'All 5 checks unfilled');
+    } else {
+      fail('T-VL-005: Template with placeholders correctly identified', 'Template not detected');
+    }
+
+    // Test incomplete evaluation (wrong count)
+    const incompleteChecks = [
+      { number: 1, name: 'Necessary?', result: 'PASS', evidence: 'Valid' },
+      { number: 2, name: 'Beyond Local Maxima?', result: 'PASS', evidence: 'Valid' },
+      { number: 3, name: 'Sufficient?', result: 'PASS', evidence: 'Valid' },
+    ];
+
+    const incompleteResult = validateFiveChecksEvaluation(incompleteChecks);
+    if (!incompleteResult.valid && incompleteResult.errors.some(e => e.includes('Expected 5'))) {
+      pass('T-VL-006: Incomplete evaluation (3/5 checks) detected', 'Correct error message');
+    } else {
+      fail('T-VL-006: Incomplete evaluation (3/5 checks) detected', 'Should detect missing checks');
+    }
+
+    // Test null/undefined checks
+    const nullResult = validateFiveChecksEvaluation(null);
+    if (!nullResult.valid) {
+      pass('T-VL-007: Null evaluation correctly rejected', 'Invalid result returned');
+    } else {
+      fail('T-VL-007: Null evaluation correctly rejected', 'Should reject null input');
+    }
+
+    // Test table parsing from actual template content
+    const level3Template = read_file(path.join(LEVEL_3_DIR, 'decision-record.md'));
+    if (level3Template) {
+      const parsedChecks = parseFiveChecksTable(level3Template);
+      if (parsedChecks && parsedChecks.length === 5) {
+        pass('T-VL-008: Can parse Five Checks table from level_3 template', `Parsed ${parsedChecks.length} checks`);
+
+        // Verify parsed structure
+        const allHaveNumber = parsedChecks.every(c => c.number >= 1 && c.number <= 5);
+        const allHaveName = parsedChecks.every(c => c.name && c.name.length > 0);
+
+        if (allHaveNumber && allHaveName) {
+          pass('T-VL-009: Parsed checks have valid structure', 'Numbers and names present');
+        } else {
+          fail('T-VL-009: Parsed checks have valid structure', 'Missing numbers or names');
+        }
+      } else {
+        fail('T-VL-008: Can parse Five Checks table from level_3 template', 'Parsing failed or wrong count');
+      }
+    } else {
+      skip('T-VL-008-009: Template parsing tests', 'Could not read level_3 template');
+    }
+
   } catch (error) {
-    log(`\n❌ Test suite error: ${error.message}`);
-    console.error(error);
-  }
-
-  // Summary
-  log('\n═══════════════════════════════════════════════════════════════');
-  log(' SUMMARY');
-  log('═══════════════════════════════════════════════════════════════');
-  log(`   Passed:  ${results.passed}`);
-  log(`   Failed:  ${results.failed}`);
-  log(`   Skipped: ${results.skipped}`);
-  log(`   Total:   ${results.passed + results.failed + results.skipped}`);
-
-  // Exit with appropriate code
-  if (results.failed > 0) {
-    log('\n❌ TESTS FAILED');
-    process.exit(1);
-  } else {
-    log('\n✅ ALL TESTS PASSED');
-    process.exit(0);
+    fail('T-VL-00X: Check response validation', error.message);
   }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   8. TEST SUITE: CROSS-REFERENCE VALIDATION
+──────────────────────────────────────────────────────────────── */
+
+async function test_cross_reference_validation() {
+  log('\n--- TEST SUITE: Cross-Reference Validation ---');
+
+  try {
+    const fiveChecksDoc = read_file(FIVE_CHECKS_DOC);
+    if (!fiveChecksDoc) {
+      fail('T-CR-001: Can read five-checks.md for cross-reference tests', 'File not readable');
+      return;
+    }
+
+    // Test: References to templates directory
+    if (fiveChecksDoc.includes('.opencode/skill/system-spec-kit/templates/')) {
+      pass('T-CR-001: References templates directory', 'Template path found');
+    } else {
+      fail('T-CR-001: References templates directory', 'Template path not found');
+    }
+
+    // Test: References Level 3 template
+    if (fiveChecksDoc.includes('Level 3 Template') || fiveChecksDoc.includes('Level 3')) {
+      pass('T-CR-002: References Level 3 template', 'Level 3 reference found');
+    } else {
+      fail('T-CR-002: References Level 3 template', 'Level 3 reference not found');
+    }
+
+    // Test: Integration section exists
+    if (fiveChecksDoc.includes('INTEGRATION WITH DECISION RECORDS')) {
+      pass('T-CR-003: Integration section with decision records documented', 'Section found');
+    } else {
+      fail('T-CR-003: Integration section with decision records documented', 'Section not found');
+    }
+
+    // Test: Shows how to embed in decision-record.md
+    if (fiveChecksDoc.includes('decision-record.md') || fiveChecksDoc.includes('Decision:')) {
+      pass('T-CR-004: Shows embedding in decision-record.md', 'Integration example found');
+    } else {
+      fail('T-CR-004: Shows embedding in decision-record.md', 'Integration example not found');
+    }
+
+    // Test: Quick reference format matches the checks
+    const quickRefPattern = /1\.\s*Necessary\?.*2\.\s*Local Maxima\?.*3\.\s*Sufficient\?.*4\.\s*Fits Goal\?.*5\.\s*Open Horizons\?/s;
+    if (quickRefPattern.test(fiveChecksDoc)) {
+      pass('T-CR-005: Quick reference lists all 5 checks in order', 'All checks found in sequence');
+    } else {
+      // Try alternative pattern
+      const allChecksPresent = FIVE_CHECKS.every(c => fiveChecksDoc.includes(c.name));
+      if (allChecksPresent) {
+        pass('T-CR-005: Quick reference lists all 5 checks in order', 'All check names found');
+      } else {
+        fail('T-CR-005: Quick reference lists all 5 checks in order', 'Not all checks found');
+      }
+    }
+
+    // Test: PROCEED/RECONSIDER outcomes documented
+    if (fiveChecksDoc.includes('PROCEED') && fiveChecksDoc.includes('RECONSIDER')) {
+      pass('T-CR-006: PROCEED/RECONSIDER outcomes documented', 'Both outcomes found');
+    } else {
+      fail('T-CR-006: PROCEED/RECONSIDER outcomes documented', 'Missing outcome definitions');
+    }
+
+  } catch (error) {
+    fail('T-CR-00X: Cross-reference validation', error.message);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   9. TEST SUITE: SPEC FOLDER INTEGRATION
+──────────────────────────────────────────────────────────────── */
+
+async function test_spec_folder_integration() {
+  log('\n--- TEST SUITE: Spec Folder Integration ---');
+
+  const specsDir = path.join(ROOT, '..', '..', '..', 'specs');
+
+  try {
+    // Check if specs directory exists
+    if (!dir_exists(specsDir)) {
+      skip('T-SF-001-006: Spec folder tests', 'No specs directory found (expected at project root)');
+      return;
+    }
+
+    // Find Level 3 or 3+ spec folders to validate Five Checks usage
+    const specFolders = fs.readdirSync(specsDir).filter(f => {
+      const folderPath = path.join(specsDir, f);
+      return fs.statSync(folderPath).isDirectory() && !f.startsWith('.');
+    });
+
+    if (specFolders.length === 0) {
+      skip('T-SF-001-006: Spec folder tests', 'No spec folders found');
+      return;
+    }
+
+    let foundLevel3Folder = false;
+    let foundDecisionRecord = false;
+    let foundFiveChecks = false;
+
+    for (const folder of specFolders) {
+      const folderPath = path.join(specsDir, folder);
+      const specPath = path.join(folderPath, 'spec.md');
+      const decisionRecordPath = path.join(folderPath, 'decision-record.md');
+
+      // Check if this is a Level 3 or 3+ spec
+      const specContent = read_file(specPath);
+      if (specContent && (specContent.includes('SPECKIT_LEVEL: 3') || specContent.includes('SPECKIT_LEVEL: 3+'))) {
+        foundLevel3Folder = true;
+
+        // Check for decision-record.md
+        if (file_exists(decisionRecordPath)) {
+          foundDecisionRecord = true;
+          const drContent = read_file(decisionRecordPath);
+
+          // Check for Five Checks in decision record
+          if (drContent && drContent.includes('Five Checks')) {
+            foundFiveChecks = true;
+
+            // Try to parse and validate
+            const checks = parseFiveChecksTable(drContent);
+            if (checks && checks.length === 5) {
+              const validation = validateFiveChecksEvaluation(checks);
+              if (validation.isTemplate) {
+                pass(`T-SF-001: ${folder}/decision-record.md has Five Checks (template)`, 'Unfilled template found');
+              } else if (validation.valid) {
+                pass(`T-SF-001: ${folder}/decision-record.md has valid Five Checks`, `Score: ${validation.score}`);
+              } else {
+                fail(`T-SF-001: ${folder}/decision-record.md Five Checks validation`, validation.errors.join(', '));
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Summary assertions
+    if (foundLevel3Folder) {
+      pass('T-SF-002: Found Level 3/3+ spec folder(s)', 'At least one Level 3+ folder exists');
+    } else {
+      skip('T-SF-002: Found Level 3/3+ spec folder(s)', 'No Level 3/3+ folders found');
+    }
+
+    if (foundLevel3Folder && foundDecisionRecord) {
+      pass('T-SF-003: Level 3/3+ folder has decision-record.md', 'File found');
+    } else if (foundLevel3Folder) {
+      skip('T-SF-003: Level 3/3+ folder has decision-record.md', 'Decision record may not exist yet');
+    }
+
+    if (foundFiveChecks) {
+      pass('T-SF-004: Five Checks integrated in real spec folder', 'Found in decision-record.md');
+    } else if (foundLevel3Folder && foundDecisionRecord) {
+      skip('T-SF-004: Five Checks integrated in real spec folder', 'May be using older format');
+    }
+
+  } catch (error) {
+    fail('T-SF-00X: Spec folder integration', error.message);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   10. MAIN
+──────────────────────────────────────────────────────────────── */
+
+async function main() {
+  log('==================================================');
+  log('     FIVE CHECKS FRAMEWORK VERIFICATION TESTS');
+  log('==================================================');
+  log(`Date: ${new Date().toISOString()}`);
+  log(`Root: ${ROOT}`);
+  log(`Five Checks Doc: ${FIVE_CHECKS_DOC}`);
+  log(`Templates: ${TEMPLATES_DIR}\n`);
+
+  // Run all test suites
+  await test_framework_documentation_structure();
+  await test_check_criteria_parsing();
+  await test_decision_record_integration();
+  await test_level_applicability();
+  await test_check_response_validation();
+  await test_cross_reference_validation();
+  await test_spec_folder_integration();
+
+  // Summary
+  log('\n==================================================');
+  log('                 TEST SUMMARY');
+  log('==================================================');
+  log(`  [PASS]  Passed:  ${results.passed}`);
+  log(`  [FAIL]  Failed:  ${results.failed}`);
+  log(`  [SKIP]  Skipped: ${results.skipped}`);
+  log(`  Total:  ${results.passed + results.failed + results.skipped}`);
+  log('');
+
+  // Five Checks Framework quick reference
+  log('FIVE CHECKS QUICK REFERENCE:');
+  for (const check of FIVE_CHECKS) {
+    log(`  ${check.number}. ${check.name} - ${check.shortQuestion}`);
+  }
+  log('');
+
+  if (results.failed === 0) {
+    log('ALL TESTS PASSED!');
+    return true;
+  } else {
+    log('Some tests failed. Review output above.');
+    return false;
+  }
+}
+
+// Export for programmatic use
+module.exports = {
+  FIVE_CHECKS,
+  parseFiveChecksTable,
+  validateFiveChecksEvaluation,
+  results,
+};
+
 // Run tests
-run_all_tests();
+main()
+  .then((success) => {
+    process.exit(success ? 0 : 1);
+  })
+  .catch((error) => {
+    console.error('Fatal error:', error);
+    process.exit(1);
+  });

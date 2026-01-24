@@ -3,7 +3,7 @@ title: Commit Message Template
 description: Templates and examples for writing professional commit messages following Conventional Commits specification.
 ---
 
-# Commit Message Template
+# Commit Message Template - Conventional Format Guide
 
 Templates for professional commit messages following Conventional Commits.
 

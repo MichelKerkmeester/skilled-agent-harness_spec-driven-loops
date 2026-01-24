@@ -665,10 +665,10 @@ Use the `generate-context.js` script to create properly formatted memory files:
 
 ```bash
 # Standard location (project root)
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/[###-name]/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/[###-name]/
 
 # Alternative location (inside .opencode)
-node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/[###-name]/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js .opencode/specs/[###-name]/
 ```
 
 The script:
@@ -681,11 +681,11 @@ The script:
 
 ```bash
 # After completing auth implementation work (standard location)
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/049-auth-system/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/049-auth-system/
 # Creates: specs/049-auth-system/memory/24-12-25_14-30__auth.md
 
 # Or using alternative location
-node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/049-auth-system/
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js .opencode/specs/049-auth-system/
 # Creates: .opencode/specs/049-auth-system/memory/24-12-25_14-30__auth.md
 
 # Auto-indexed with extracted trigger phrases
@@ -1184,7 +1184,7 @@ Constitutional memories are special memories that ALWAYS appear at the top of se
 
 2. **Generate memory file:**
    ```bash
-   node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/[folder]/
+   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/[folder]/
    ```
 
 3. **Index the memory** (if not auto-indexed):

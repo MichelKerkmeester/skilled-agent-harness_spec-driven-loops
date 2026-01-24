@@ -105,12 +105,13 @@ Task(subagent_type: "speckit", model: "opus", prompt: "...")
 
 ### Templates
 
-| Path                  | Content            | When to Use            |
-| --------------------- | ------------------ | ---------------------- |
-| `templates/level_1/`  | 4 files (~270 LOC) | Default for new specs  |
-| `templates/level_2/`  | 5 files (~390 LOC) | QA validation needed   |
-| `templates/level_3/`  | 6 files (~540 LOC) | Architecture decisions |
-| `templates/level_3+/` | 6 files (~640 LOC) | Enterprise governance  |
+| Path                  | Content            | When to Use                     |
+| --------------------- | ------------------ | ------------------------------- |
+| `templates/level_1/`  | 4 files (~270 LOC) | Default for new specs           |
+| `templates/level_2/`  | 5 files (~390 LOC) | QA validation needed            |
+| `templates/level_3/`  | 6 files (~540 LOC) | Architecture decisions          |
+| `templates/level_3+/` | 6 files (~640 LOC) | Enterprise governance           |
+| `templates/verbose/`  | Extended guidance  | New users, complex requirements |
 
 ---
 

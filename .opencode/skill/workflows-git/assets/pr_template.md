@@ -3,7 +3,7 @@ title: Pull Request Template
 description: Templates and examples for creating professional pull requests with clear summaries and test plans.
 ---
 
-# Pull Request Template
+# Pull Request Template - PR Description Standard
 
 Templates for creating professional pull requests following best practices.
 

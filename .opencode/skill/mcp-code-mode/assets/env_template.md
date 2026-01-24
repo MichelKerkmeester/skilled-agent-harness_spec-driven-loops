@@ -3,7 +3,7 @@ title: Environment Variables Template
 description: Complete .env file template with placeholders for all MCP server credentials and API tokens.
 ---
 
-# Environment Variables Template
+# Environment Variables Template - Runtime Configuration
 
 Copy-ready `.env` template for Code Mode UTCP authentication with all supported MCP servers.
 

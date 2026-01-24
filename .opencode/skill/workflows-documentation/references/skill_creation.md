@@ -3,7 +3,7 @@ title: Skill Creation Workflow
 description: Complete guide for creating, validating, and distributing AI agent skills with bundled resources.
 ---
 
-# Skill Creation Workflow
+# Skill Creation Workflow - Complete Development Guide
 
 Step-by-step guide from concept to packaged skill with validation standards and best practices.
 

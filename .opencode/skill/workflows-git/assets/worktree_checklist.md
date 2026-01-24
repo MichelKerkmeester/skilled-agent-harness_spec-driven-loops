@@ -3,7 +3,7 @@ title: Worktree Creation Checklist
 description: Step-by-step checklist for creating git worktrees safely and reliably.
 ---
 
-# Worktree Creation Checklist
+# Worktree Creation Checklist - Branch Isolation Setup
 
 Step-by-step checklist for safe and reliable git worktree creation.
 

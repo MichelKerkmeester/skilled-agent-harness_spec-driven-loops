@@ -7,6 +7,38 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.8.2**] - 2026-01-24
+
+Comprehensive test suite for system-spec-kit adding **1,087 tests** across **8 new test files**, covering cognitive memory, MCP handlers, session learning, validation rules, and the Five Checks Framework.
+
+---
+
+### New
+
+1. **test-session-learning.js** — 161 tests for preflight/postflight handlers, Learning Index formula validation
+2. **test-memory-handlers.js** — 162 tests for memory_search, triggers, CRUD, save, and index operations
+3. **test-cognitive-integration.js** — 96 integration tests for cognitive memory subsystem pipeline
+4. **test-validation-system.js** — 99 tests for all 13 validation rules, level detection, exit codes
+5. **test-template-comprehensive.js** — 154 tests for template rendering, ADDENDUM integration, compose.sh
+6. **test_dual_threshold.py** — 71 pytest tests for dual-threshold validation (confidence + uncertainty)
+7. **test-extractors-loaders.js** — 279 tests for session extractors and data loaders
+8. **test-five-checks.js** — 65 tests for Five Checks Framework documentation and validation
+
+---
+
+### Fixed
+
+1. **memory-crud.js import mismatch** — Changed `isValidTier` to `is_valid_tier` (snake_case) to match module exports
+
+---
+
+### Changed
+
+1. **mcp_server/tests/README.md** — Updated to include 3 new test files (session-learning, memory-handlers, cognitive-integration)
+2. **scripts/tests/README.md** — Updated to include 5 new test files, corrected count from 13 to 12
+
+---
+
 ## [**1.0.8.1**] - 2026-01-24
 
 Cleanup release removing redundant verbose templates. AI assistants can dynamically provide equivalent guidance when filling minimal templates, making static verbose templates **~5,000 lines** of unnecessary maintenance overhead.

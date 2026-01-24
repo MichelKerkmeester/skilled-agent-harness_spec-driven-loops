@@ -9,7 +9,7 @@ const vectorIndex = require('../lib/search/vector-index.js');
 const checkpoints = require('../lib/storage/checkpoints.js');
 const embeddings = require('../lib/providers/embeddings.js');
 const triggerMatcher = require('../lib/parsing/trigger-matcher.js');
-const { VALID_TIERS, isValidTier } = require('../lib/scoring/importance-tiers.js');
+const { VALID_TIERS, is_valid_tier } = require('../lib/scoring/importance-tiers.js');
 const { MemoryError, ErrorCodes } = require('../lib/errors.js');
 const folderScoring = require('../lib/scoring/folder-scoring.js');
 
@@ -75,7 +75,7 @@ async function handle_memory_update(args) {
   if (importance_weight !== undefined && (typeof importance_weight !== 'number' || importance_weight < 0 || importance_weight > 1)) {
     throw new MemoryError(ErrorCodes.INVALID_PARAMETER, 'importanceWeight must be a number between 0 and 1', { param: 'importanceWeight', value: importance_weight });
   }
-  if (importance_tier !== undefined && !isValidTier(importance_tier)) {
+  if (importance_tier !== undefined && !is_valid_tier(importance_tier)) {
     throw new MemoryError(ErrorCodes.INVALID_PARAMETER, `Invalid importance tier: ${importance_tier}. Valid tiers: ${VALID_TIERS.join(', ')}`, { param: 'importanceTier', value: importance_tier });
   }
 

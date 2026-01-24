@@ -3,7 +3,7 @@ title: Skill Asset File Templates
 description: Templates and guidelines for creating asset files in AI agent skills.
 ---
 
-# Skill Asset File Templates
+# Skill Asset File Templates - Creation Guidelines
 
 Templates and guidelines for creating asset files in AI agent skills.
 

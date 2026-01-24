@@ -26,16 +26,16 @@ SKILLS_DIR = os.path.join(PROJECT_ROOT, ".opencode/skill")
 # Comprehensive stop words - filtered from BOTH query AND corpus
 # These words have no semantic meaning for skill matching
 STOP_WORDS = {
-    'a', 'about', 'able', 'actually', 'agent', 'all', 'also', 'an', 'and', 'any',
-    'are', 'as', 'at', 'be', 'been', 'being', 'but', 'by', 'can', 'could', 'did',
-    'do', 'does', 'even', 'for', 'from', 'get', 'give', 'go', 'going', 'had',
-    'has', 'have', 'he', 'help', 'her', 'him', 'how', 'i', 'if', 'in', 'into',
-    'is', 'it', 'its', 'just', 'let', 'like', 'may', 'me', 'might', 'more',
-    'most', 'must', 'my', 'need', 'no', 'not', 'now', 'of', 'on', 'only', 'or',
-    'other', 'our', 'please', 'really', 'run', 'she', 'should', 'show', 'skill',
-    'so', 'some', 'tell', 'that', 'the', 'them', 'then', 'these', 'they',
-    'thing', 'things', 'this', 'those', 'to', 'tool', 'try', 'us', 'use',
-    'used', 'using', 'very', 'want', 'was', 'way', 'we', 'were', 'what', 'when',
+    'a', 'about', 'able', 'actually', 'agent', 'all', 'also', 'an', 'and', 'any', 
+    'are', 'as', 'at', 'be', 'been', 'being', 'but', 'by', 'can', 'could', 'did', 
+    'do', 'does', 'even', 'for', 'from', 'get', 'give', 'go', 'going', 'had', 
+    'has', 'have', 'he', 'help', 'her', 'him', 'how', 'i', 'if', 'in', 'into', 
+    'is', 'it', 'its', 'just', 'let', 'like', 'may', 'me', 'might', 'more', 
+    'most', 'must', 'my', 'need', 'no', 'not', 'now', 'of', 'on', 'only', 'or', 
+    'other', 'our', 'please', 'really', 'run', 'she', 'should', 'show', 'skill', 
+    'so', 'some', 'tell', 'that', 'the', 'them', 'then', 'these', 'they', 
+    'thing', 'things', 'this', 'those', 'to', 'tool', 'try', 'us', 'use', 
+    'used', 'using', 'very', 'want', 'was', 'way', 'we', 'were', 'what', 'when', 
     'where', 'which', 'who', 'why', 'will', 'with', 'work', 'would', 'you', 'your'
 }
 
@@ -47,7 +47,7 @@ SYNONYM_MAP = {
     "functions": ["methods", "definitions", "symbols"],
     "classes": ["types", "definitions", "structure"],
     "symbols": ["definitions", "functions", "classes", "exports"],
-
+    
     # Git & version control
     "branch": ["git", "commit", "merge", "checkout"],
     "commit": ["git", "version", "push", "branch", "changes"],
@@ -59,7 +59,7 @@ SYNONYM_MAP = {
     "git": ["commit", "branch", "version", "push", "merge", "worktree"],
     "pull": ["git", "fetch", "merge", "remote"],
     "clone": ["git", "repository", "download"],
-
+    
     # Memory & context preservation
     "context": ["memory", "session", "save"],
     "remember": ["memory", "context", "save", "store"],
@@ -71,7 +71,7 @@ SYNONYM_MAP = {
     "session": ["memory", "context", "conversation"],
     "preserve": ["memory", "save", "context", "store"],
     "store": ["memory", "save", "context", "persist"],
-
+    
     # Documentation
     "doc": ["documentation", "explain", "describe", "markdown"],
     "docs": ["documentation", "explain", "describe", "markdown"],
@@ -80,14 +80,14 @@ SYNONYM_MAP = {
     "readme": ["documentation", "markdown", "explain"],
     "flowchart": ["documentation", "diagram", "ascii"],
     "diagram": ["documentation", "flowchart", "visual"],
-
+    
     # Spec & planning
     "plan": ["spec", "architect", "design", "roadmap", "breakdown"],
     "spec": ["specification", "plan", "document", "folder"],
     "folder": ["spec", "directory", "create", "organize"],
     "scaffold": ["create", "generate", "new", "template"],
     "template": ["scaffold", "create", "generate"],
-
+    
     # Debugging & browser
     "bug": ["debug", "error", "issue", "defect", "verification"],
     "console": ["chrome", "browser", "debug", "log"],
@@ -97,7 +97,7 @@ SYNONYM_MAP = {
     "breakpoint": ["debug", "chrome", "devtools"],
     "error": ["bug", "debug", "fix", "issue"],
     "issue": ["bug", "debug", "error", "problem"],
-
+    
     # Search & discovery
     "find": ["search", "locate", "explore", "lookup"],
     "search": ["find", "locate", "explore", "query", "lookup"],
@@ -106,7 +106,7 @@ SYNONYM_MAP = {
     "explore": ["search", "find", "navigate", "discover"],
     "navigate": ["find", "search", "locate", "goto"],
     "locate": ["find", "search", "where"],
-
+    
     # Actions & creation
     "create": ["implement", "build", "generate", "new", "add", "scaffold"],
     "make": ["create", "implement", "build", "generate"],
@@ -114,7 +114,7 @@ SYNONYM_MAP = {
     "add": ["create", "implement", "new", "insert"],
     "build": ["create", "implement", "generate"],
     "generate": ["create", "build", "scaffold"],
-
+    
     # Code quality & fixes
     "check": ["verify", "validate", "test"],
     "fix": ["debug", "correct", "resolve", "code", "implementation"],
@@ -122,7 +122,7 @@ SYNONYM_MAP = {
     "test": ["verify", "validate", "check", "spec", "quality"],
     "verify": ["check", "validate", "test", "confirm"],
     "validate": ["check", "verify", "test"],
-
+    
     # Understanding & explanation
     "help": ["guide", "assist", "documentation", "explain"],
     "how": ["understand", "explain", "works", "meaning"],
@@ -131,7 +131,7 @@ SYNONYM_MAP = {
     "explain": ["understand", "how", "works", "describe"],
     "understand": ["how", "explain", "learn", "works"],
     "works": ["how", "understand", "explain", "function"],
-
+    
     # Display & output
     "show": ["list", "display", "outline", "tree"],
     "list": ["show", "display", "enumerate"],
@@ -163,7 +163,7 @@ INTENT_BOOSTERS = {
     "restore": ("system-spec-kit", 0.4),
     "session": ("system-spec-kit", 0.4),
     "store": ("system-spec-kit", 0.4),
-
+    
     # ─────────────────────────────────────────────────────────────────
     # MCP-NARSIL: Semantic + structural code search (meaning-based)
     # ─────────────────────────────────────────────────────────────────
@@ -191,7 +191,7 @@ INTENT_BOOSTERS = {
     "why": ("mcp-narsil", 1.5),
     "work": ("mcp-narsil", 1.0),
     "works": ("mcp-narsil", 1.0),
-
+    
     # ─────────────────────────────────────────────────────────────────
     # MCP-NARSIL: Structural analysis, security scanning, call graphs
     # (Additional structural and security keywords)
@@ -211,7 +211,7 @@ INTENT_BOOSTERS = {
     "symbols": ("mcp-narsil", 0.5),
     "tree": ("mcp-narsil", 0.5),
     "treesitter": ("mcp-narsil", 0.7),
-
+    
     # Security scanning
     "vulnerability": ("mcp-narsil", 0.8),
     "vulnerabilities": ("mcp-narsil", 0.8),
@@ -226,7 +226,7 @@ INTENT_BOOSTERS = {
     "xss": ("mcp-narsil", 0.9),
     "sqli": ("mcp-narsil", 0.9),
     "csrf": ("mcp-narsil", 0.8),
-
+    
     # Code analysis
     "deadcode": ("mcp-narsil", 0.8),
     "dead-code": ("mcp-narsil", 0.8),  # kept for documentation (unreachable due to tokenization)
@@ -240,13 +240,13 @@ INTENT_BOOSTERS = {
     "callees": ("mcp-narsil", 0.7),
     "cfg": ("mcp-narsil", 0.7),
     "dfg": ("mcp-narsil", 0.7),
-
+    
     # Supply chain
     "sbom": ("mcp-narsil", 0.8),
     "license": ("mcp-narsil", 0.5),
     "dependency": ("mcp-narsil", 0.5),
     "dependencies": ("mcp-narsil", 0.5),
-
+    
     # ─────────────────────────────────────────────────────────────────
     # SYSTEM-SPEC-KIT: Specification and planning
     # ─────────────────────────────────────────────────────────────────
@@ -259,7 +259,7 @@ INTENT_BOOSTERS = {
     "speckit": ("system-spec-kit", 0.8),
     "task": ("system-spec-kit", 0.3),
     "tasks": ("system-spec-kit", 0.4),
-
+    
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-GIT: Version control operations
     # ─────────────────────────────────────────────────────────────────
@@ -284,7 +284,7 @@ INTENT_BOOSTERS = {
     "review": ("workflows-git", 0.8),
     "stash": ("workflows-git", 0.5),
     "worktree": ("workflows-git", 1.2),
-
+    
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CHROME-DEVTOOLS: Browser debugging
     # ─────────────────────────────────────────────────────────────────
@@ -303,7 +303,7 @@ INTENT_BOOSTERS = {
     "network": ("workflows-chrome-devtools", 0.8),
     "performance": ("workflows-chrome-devtools", 0.5),
     "screenshot": ("workflows-chrome-devtools", 0.5),
-
+    
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-DOCUMENTATION: Documentation and diagrams
     # ─────────────────────────────────────────────────────────────────
@@ -315,7 +315,7 @@ INTENT_BOOSTERS = {
     "markdown": ("workflows-documentation", 0.5),
     "readme": ("workflows-documentation", 0.5),
     "template": ("workflows-documentation", 0.4),
-
+    
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CODE: Implementation and verification
     # ─────────────────────────────────────────────────────────────────
@@ -324,7 +324,7 @@ INTENT_BOOSTERS = {
     "implement": ("workflows-code", 0.6),
     "refactor": ("workflows-code", 0.5),
     "verification": ("workflows-code", 0.5),
-
+    
     # ─────────────────────────────────────────────────────────────────
     # MCP-CODE-MODE: External tool integration
     # ─────────────────────────────────────────────────────────────────
@@ -386,7 +386,7 @@ def parse_frontmatter(file_path):
 def get_skills():
     """Dynamically scan the skills directory and return skill configs."""
     skills = {}
-
+    
     if os.path.exists(SKILLS_DIR):
         for skill_file in glob.glob(os.path.join(SKILLS_DIR, "*/SKILL.md")):
             meta = parse_frontmatter(skill_file)
@@ -395,13 +395,13 @@ def get_skills():
                     "description": meta.get('description', ''),
                     "weight": 1.0  # Equal weight for all skills
                 }
-
+    
     # Hardcoded command bridges (slash commands)
     skills["command-spec-kit"] = {
         "description": "Create specifications and plans using /spec_kit slash command for new features or complex changes.",
         "weight": 1.0
     }
-
+    
     skills["command-memory-save"] = {
         "description": "Save conversation context to memory using /memory:save.",
         "weight": 1.0
@@ -548,10 +548,10 @@ def analyze_request(prompt):
         return []
 
     prompt_lower = prompt.lower()
-
+    
     # Tokenize: extract words
     all_tokens = re.findall(r'\b\w+\b', prompt_lower)
-
+    
     # Pre-calculate intent boosts from ALL original tokens BEFORE stop word filtering
     # This is critical because question words (how, why, what) and "work/does" are
     # important signals for semantic search but would be filtered as stop words
@@ -565,7 +565,7 @@ def analyze_request(prompt):
             if skill not in boost_reasons:
                 boost_reasons[skill] = []
             boost_reasons[skill].append(f"!{token}")
-
+        
         # Multi-skill boosters (ambiguous keywords that boost multiple skills)
         if token in MULTI_SKILL_BOOSTERS:
             for skill, boost in MULTI_SKILL_BOOSTERS[token]:
@@ -573,18 +573,18 @@ def analyze_request(prompt):
                 if skill not in boost_reasons:
                     boost_reasons[skill] = []
                 boost_reasons[skill].append(f"!{token}(multi)")
-
+    
     # NOW filter stop words and short terms for corpus matching
     # This prevents "me", "help", "a" etc. from polluting description matches
     tokens = [t for t in all_tokens if t not in STOP_WORDS and len(t) > 2]
-
+    
     # Handle empty tokens after filtering - but still allow if we have boosts
     if not tokens and not skill_boosts:
         return []
-
+    
     # Expand query with synonyms (only for non-stop-word tokens)
     search_terms = expand_query(tokens) if tokens else []
-
+    
     recommendations = []
     skills = get_skills()
 
@@ -592,18 +592,18 @@ def analyze_request(prompt):
         # Start with intent boost if any (from pre-calculated boosts)
         score = skill_boosts.get(name, 0)
         matches = boost_reasons.get(name, []).copy()
-
+        
         # Prepare skill keywords from name and description
         name_parts = name.replace('-', ' ').split()
         desc_parts = re.findall(r'\b\w+\b', config['description'].lower())
-
+        
         # Build corpus (description terms only, name checked separately)
         corpus = set(desc_parts)
         corpus = {k for k in corpus if len(k) > 2 and k not in STOP_WORDS}
-
+        
         # Also filter name_parts for stop words
         name_parts_filtered = [p for p in name_parts if p not in STOP_WORDS and len(p) > 2]
-
+        
         # Score each search term
         for term in search_terms:
             # Priority 1: Term matches skill NAME (highest value)
@@ -621,7 +621,7 @@ def analyze_request(prompt):
                         score += 0.5
                         matches.append(f"{term}~")
                         break
-
+        
         if score > 0:
             # Use the documented two-tiered confidence formula
             total_intent_boost = skill_boosts.get(name, 0)
@@ -701,15 +701,15 @@ Examples:
                         help='Include recommendations that failed dual-threshold validation')
 
     args = parser.parse_args()
-
+    
     if args.health:
         print(json.dumps(health_check(), indent=2))
         sys.exit(0)
-
+    
     if not args.prompt:
         print(json.dumps([]))
         sys.exit(0)
-
+    
     results = analyze_request(args.prompt)
 
     # Apply threshold filtering if specified

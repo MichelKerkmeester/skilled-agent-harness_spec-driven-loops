@@ -669,7 +669,7 @@ export EMBEDDINGS_PROVIDER=auto  # Default: auto-detect
 
 # Voyage config (recommended - best retrieval quality)
 export VOYAGE_API_KEY=pa-...
-export VOYAGE_EMBEDDINGS_MODEL=voyage-4  # Default
+export VOYAGE_EMBEDDINGS_MODEL=voyage-3.5  # Default
 
 # OpenAI config (if using OpenAI)
 export OPENAI_API_KEY=sk-...

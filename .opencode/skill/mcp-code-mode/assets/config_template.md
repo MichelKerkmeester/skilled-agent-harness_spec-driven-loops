@@ -3,7 +3,7 @@ title: Configuration Template
 description: Complete .utcp_config.json template for Code Mode UTCP setup with multiple MCP servers.
 ---
 
-# Configuration Template
+# Configuration Template - MCP Server Settings
 
 Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured MCP servers.
 

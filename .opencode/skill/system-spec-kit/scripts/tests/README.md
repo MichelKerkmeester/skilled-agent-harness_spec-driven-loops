@@ -24,9 +24,10 @@ The test suite provides comprehensive validation for all system-spec-kit functio
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Test Files | 8 | JavaScript and Bash tests |
-| Test Types | 4 | Module, integration, template, validation |
-| Coverage Areas | 10+ | Scripts, loaders, validators, templates, memory system |
+| Test Files | 12 | JavaScript, Python, and Bash tests |
+| Test Types | 6 | Module, integration, template, validation, framework, extractors |
+| Coverage Areas | 15+ | Scripts, loaders, validators, templates, memory system, dual-threshold, Five Checks |
+| Total Tests | 800+ | Across all test files |
 
 ### Key Features
 
@@ -44,6 +45,8 @@ The test suite provides comprehensive validation for all system-spec-kit functio
 | Requirement | Minimum | Recommended |
 |-------------|---------|-------------|
 | Node.js | 18+ | 20+ |
+| Python | 3.9+ | 3.11+ |
+| pytest | 7+ | Latest |
 | Bash | 3.2+ | 5.0+ (macOS compatible with default) |
 
 ---
@@ -62,6 +65,11 @@ cd /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill
 node test-scripts-modules.js && \
 node test-integration.js && \
 node test-template-system.js && \
+node test-template-comprehensive.js && \
+node test-validation-system.js && \
+node test-extractors-loaders.js && \
+node test-five-checks.js && \
+pytest test_dual_threshold.py -v && \
 ./test-validation.sh
 ```
 
@@ -98,27 +106,37 @@ node test-integration.js
 tests/
 ├── test-bug-fixes.js              # Regression tests for fixed bugs
 ├── test-embeddings-factory.js     # Cognitive memory embedding tests
+├── test-extractors-loaders.js     # Extractor and loader module tests (NEW)
+├── test-five-checks.js            # Five Checks Framework validation (NEW)
 ├── test-fixtures/                 # Symlink to test fixture spec folders
 ├── test-integration.js            # End-to-end workflow tests
 ├── test-scripts-modules.js        # Module-level unit tests
+├── test-template-comprehensive.js # Comprehensive template tests (NEW)
 ├── test-template-system.js        # Template validation tests
 ├── test-validation-extended.sh    # Extended validation test suite
+├── test-validation-system.js      # JavaScript validation tests (NEW)
 ├── test-validation.sh             # Core validation tests (bash)
+├── test_dual_threshold.py         # Python dual-threshold tests (NEW)
 └── README.md                      # This file
 ```
 
 ### Key Files
 
-| File | Purpose |
-|------|---------|
-| `test-scripts-modules.js` | Tests individual script modules (loaders, validators, utils) in isolation |
-| `test-integration.js` | End-to-end tests for memory save, validation, checkpoints, spec creation |
-| `test-template-system.js` | Validates template system, level detection, folder structure |
-| `test-validation.sh` | Bash-based validation against fixture spec folders |
-| `test-validation-extended.sh` | Extended validation suite with additional edge cases |
-| `test-bug-fixes.js` | Regression tests ensuring previously fixed bugs stay fixed |
-| `test-embeddings-factory.js` | Tests embedding generation and cognitive memory features |
-| `test-fixtures/` | Symlink to `../test-fixtures` containing sample spec folders |
+| File | Purpose | Tests |
+|------|---------|-------|
+| `test-scripts-modules.js` | Tests individual script modules (loaders, validators, utils) in isolation | ~450 |
+| `test-integration.js` | End-to-end tests for memory save, validation, checkpoints, spec creation | ~40 |
+| `test-template-system.js` | Validates template system, level detection, folder structure | ~50 |
+| `test-template-comprehensive.js` | **NEW** - Extended template tests with rendering, addendum, compose.sh | 154 |
+| `test-validation.sh` | Bash-based validation against fixture spec folders | ~55 |
+| `test-validation-extended.sh` | Extended validation suite with additional edge cases | ~65 |
+| `test-validation-system.js` | **NEW** - JavaScript validation tests for all 13 rules | 99 |
+| `test-bug-fixes.js` | Regression tests ensuring previously fixed bugs stay fixed | ~35 |
+| `test-embeddings-factory.js` | Tests embedding generation and cognitive memory features | ~12 |
+| `test-extractors-loaders.js` | **NEW** - Tests all extractor and loader modules | 279 |
+| `test-five-checks.js` | **NEW** - Five Checks Framework documentation and validation | 65 |
+| `test_dual_threshold.py` | **NEW** - Python pytest for skill_advisor.py dual-threshold | 71 |
+| `test-fixtures/` | Symlink to `../test-fixtures` containing sample spec folders | - |
 
 ---
 
@@ -232,4 +250,4 @@ ls -la .test-workspace/specs/
 
 ---
 
-*Documentation for system-spec-kit test suite v2.0*
+*Documentation for system-spec-kit test suite v2.1 | Last updated: 2026-01-24*
