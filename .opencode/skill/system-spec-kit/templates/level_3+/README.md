@@ -104,9 +104,6 @@ Before claiming completion, ensure:
 - [Level 3 Templates](../level_3/) - Standard complex features without governance
 - [Level Specifications](../../references/templates/level_specifications.md) - Complete level requirements
 
-### Verbose Templates
-- [Verbose Level 3+ Templates](../verbose/level_3+/) - Extended guidance versions
-
 ### Addendum Components
 - [Level 3+ Governance Addendum](../addendum/level3plus-govern/) - Source components for L3+ additions
 

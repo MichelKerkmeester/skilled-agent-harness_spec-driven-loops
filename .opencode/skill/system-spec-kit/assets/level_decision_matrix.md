@@ -123,16 +123,7 @@ These factors can push you to a higher level even if LOC suggests lower:
 
 In addition to level, choose the appropriate template **style**:
 
-| Style | Best For | Path |
-|-------|----------|------|
-| **Core** (default) | Experienced users, clear requirements | `templates/level_N/` |
-| **Verbose** | New users, complex/uncertain requirements | `templates/verbose/core/` |
-
-**Choose Verbose templates when:**
-- First time using SpecKit
-- Requirements have many unknowns
-- Training team members
-- Need guidance on expected content quality
+Templates are located at `templates/level_N/` (e.g., `templates/level_1/`, `templates/level_2/`, `templates/level_3/`).
 
 ---
 
@@ -322,9 +313,6 @@ Architectural decision? ──YES──→ Level 3 (add decision-record.md)
 
 ### Scripts
 - [compose.sh](../scripts/templates/compose.sh) - Template composition from core + addendum
-
-### Templates
-- [verbose/README.md](../templates/verbose/README.md) - Verbose template usage guide
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator

@@ -182,7 +182,6 @@ Runtime configuration for the memory system:
 | `templates/level_2/` | 5 files (~390 LOC) | QA validation needed |
 | `templates/level_3/` | 6 files (~540 LOC) | Architecture decisions |
 | `templates/level_3+/` | 6 files (~640 LOC) | Enterprise governance |
-| `templates/verbose/` | Extended guidance | New users, complex requirements |
 
 > **IMPORTANT:** Always copy from `templates/level_N/`. The `core/` and `addendum/` folders are source components only.
 
@@ -292,12 +291,6 @@ When user selects **B) New**, AI estimates complexity and recommends a level:
 
 # Create spec folder with level 3+ (extended) templates
 ./scripts/spec/create.sh "Major platform migration" --level 3+
-
-# Create spec folder with verbose templates (detailed guidance)
-./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2 --verbose-templates
-
-# Create spec folder with minimal templates (default, concise)
-./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2 --minimal-templates
 ```
 
 ### 3-Level Progressive Enhancement (CORE + ADDENDUM v2.0)
@@ -852,7 +845,6 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 | Resource          | Location                                                             | Purpose                           |
 | ----------------- | -------------------------------------------------------------------- | --------------------------------- |
 | Core templates    | `templates/core/` (4 files)                                          | Foundation shared by all levels   |
-| Verbose templates | `templates/verbose/` (5 subdirs + README)                            | Extended guidance mirrors by level |
 | Level 2 addendum  | `templates/addendum/level2-verify/` (3 files)                        | +Verification, NFRs               |
 | Level 3 addendum  | `templates/addendum/level3-arch/` (3 files)                          | +Architecture, ADRs               |
 | Level 3+ addendum | `templates/addendum/level3plus-govern/` (3 files)                    | +Governance, compliance           |

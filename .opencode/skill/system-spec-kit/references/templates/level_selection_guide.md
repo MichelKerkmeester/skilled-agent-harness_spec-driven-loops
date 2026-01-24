@@ -116,35 +116,7 @@ Create spec folder with pre-expanded templates from level-specific folders:
 
 # Create Level 3+ spec folder (extended)
 ./scripts/spec/create.sh "Platform migration" --level 3+
-
-# Use verbose templates (for new users or complex requirements)
-./scripts/spec/create.sh "Complex feature" --style verbose
 ```
-
-### Template Style Preference
-
-Templates are available in two styles:
-
-| Style | When to Use | Configuration |
-|-------|-------------|---------------|
-| **Minimal** (default) | Experienced users, quick iteration | `SPECKIT_TEMPLATE_STYLE=minimal` |
-| **Verbose** | New users, complex requirements, onboarding | `SPECKIT_TEMPLATE_STYLE=verbose` |
-
-**Configure preference:**
-```bash
-# Via environment variable (persistent)
-export SPECKIT_TEMPLATE_STYLE=verbose
-
-# Via CLI flag (per invocation)
-./scripts/spec/create.sh "Feature name" --style verbose
-```
-
-**Verbose templates include:**
-- `[YOUR_VALUE_HERE: description]` - Placeholders with guidance
-- `[NEEDS CLARIFICATION: (a) (b) (c)]` - Multiple-choice questions
-- `[example: content]` - Inline examples
-
-See `templates/verbose/README.md` for detailed pattern documentation.
 
 **Level Folders:**
 Templates are pre-expanded and ready to use in level-specific folders:

@@ -145,15 +145,9 @@ This matrix provides quick-reference guidance for selecting the appropriate docu
 
 Choose the appropriate template **style** based on user experience and requirement clarity:
 
-| Style       | Lines    | Best For                                  | Path                      |
-| ----------- | -------- | ----------------------------------------- | ------------------------- |
-| **Core**    | ~60-90   | Experienced users, clear requirements     | `templates/level_N/`      |
-| **Verbose** | ~200-300 | New users, complex/uncertain requirements | `templates/verbose/core/` |
-
-**Verbose template features:**
-- `[YOUR_VALUE_HERE: description]` - Contextual guidance for each field
-- `[NEEDS CLARIFICATION: (a) (b) (c)]` - Multiple-choice for ambiguous requirements
-- `[example: content]` - Inline examples showing expected quality
+| Style    | Lines  | Best For                              | Path                 |
+| -------- | ------ | ------------------------------------- | -------------------- |
+| **Core** | ~60-90 | Experienced users, clear requirements | `templates/level_N/` |
 
 ### Confidence Thresholds
 
@@ -221,9 +215,6 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ### Scripts
 - [compose.sh](../scripts/templates/compose.sh) - Template composition from core + addendum
-
-### Templates
-- [verbose/README.md](../templates/verbose/README.md) - Verbose template usage guide (when to use, patterns)
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator

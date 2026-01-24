@@ -47,13 +47,6 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research
 
 ## 3. 💻 TEMPLATE COPY COMMANDS (Progressive)
 
-### Template Styles
-
-| Style | When to Use | Environment Variable |
-|-------|-------------|----------------------|
-| **Minimal** (default) | Experienced users, quick iteration | `SPECKIT_TEMPLATE_STYLE=minimal` |
-| **Verbose** | New users, complex requirements | `SPECKIT_TEMPLATE_STYLE=verbose` |
-
 ### Level 1: Baseline (ALL features start here)
 
 ```bash

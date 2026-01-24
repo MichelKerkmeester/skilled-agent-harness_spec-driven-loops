@@ -118,7 +118,6 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-feature-name/
 ### Template Variants
 - [Level 2 Templates](../level_2/) - Medium features (100-499 LOC)
 - [Level 3+ Templates](../level_3+/) - Governance and multi-agent coordination
-- [Verbose Level 3](../verbose/level_3/) - Extended guidance for new users
 
 ### Addendum Sections
 - [Level 3 Architecture Addendum](../addendum/level3-arch/) - Additional sections for spec.md and plan.md

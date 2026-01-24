@@ -30,7 +30,7 @@ SHARDED=false  # Enable sharded spec sections for Level 3
 SUBFOLDER_MODE=false  # Enable versioned sub-folder creation
 SUBFOLDER_BASE=""     # Base folder for sub-folder mode
 SUBFOLDER_TOPIC=""    # Topic name for the sub-folder
-TEMPLATE_STYLE="${SPECKIT_TEMPLATE_STYLE:-minimal}"  # Template style: minimal | verbose
+TEMPLATE_STYLE="minimal"  # Only minimal templates supported
 
 # Initialize variables used in JSON output (prevents "unbound variable" errors with set -u)
 DETECTED_LEVEL=""
@@ -96,12 +96,6 @@ while [ $i -le $# ]; do
             fi
             SUBFOLDER_TOPIC="$next_arg"
             ;;
-        --verbose-templates)
-            TEMPLATE_STYLE="verbose"
-            ;;
-        --minimal-templates)
-            TEMPLATE_STYLE="minimal"
-            ;;
         --short-name)
             if [ $((i + 1)) -gt $# ]; then
                 echo 'Error: --short-name requires a value' >&2
@@ -145,9 +139,6 @@ while [ $i -le $# ]; do
             echo "                      Auto-increments version (001, 002, etc.)"
             echo "  --topic <name>      Topic name for sub-folder (used with --subfolder)"
             echo "                      If not provided, uses feature_description"
-            echo "  --verbose-templates Use verbose templates (detailed guidance)"
-            echo "  --minimal-templates Use minimal templates (default, concise)"
-            echo "                      Can also set via SPECKIT_TEMPLATE_STYLE env var"
             echo "  --short-name <name> Provide a custom short name (2-4 words) for the branch"
             echo "  --number N          Specify branch number manually (overrides auto-detection)"
             echo "  --skip-branch       Create spec folder only, don't create git branch"
@@ -416,17 +407,7 @@ if [ "$SUBFOLDER_MODE" = true ]; then
     SUBFOLDER_NAME=$(basename "$SUBFOLDER_PATH")
     
     # Copy templates based on documentation level from level-specific folder
-    # Determine templates base path based on style preference
-    if [ "$TEMPLATE_STYLE" = "verbose" ]; then
-        TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/verbose"
-        # Fallback to minimal if verbose doesn't exist
-        if [ ! -d "$TEMPLATES_BASE" ]; then
-            >&2 echo "[speckit] Warning: Verbose templates not found, falling back to minimal"
-            TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
-        fi
-    else
-        TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
-    fi
+    TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
     # Normalize DOC_LEVEL for numeric comparisons (3+ becomes 3)
     DOC_LEVEL_NUM="${DOC_LEVEL/+/}"
     LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
@@ -557,17 +538,7 @@ fi
 
 FEATURE_DIR="$SPECS_DIR/$BRANCH_NAME"
 
-# Determine templates base path based on style preference
-if [ "$TEMPLATE_STYLE" = "verbose" ]; then
-    TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates/verbose"
-    # Fallback to minimal if verbose doesn't exist
-    if [ ! -d "$TEMPLATES_BASE" ]; then
-        >&2 echo "[speckit] Warning: Verbose templates not found, falling back to minimal"
-        TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
-    fi
-else
-    TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
-fi
+TEMPLATES_BASE="$REPO_ROOT/.opencode/skill/system-spec-kit/templates"
 
 # Normalize DOC_LEVEL for numeric comparisons (3+ becomes 3)
 DOC_LEVEL_NUM="${DOC_LEVEL/+/}"

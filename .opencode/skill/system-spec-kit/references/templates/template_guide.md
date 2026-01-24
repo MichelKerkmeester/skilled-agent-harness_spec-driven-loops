@@ -11,31 +11,6 @@ Guide to template selection, copying, adaptation, and quality standards.
 
 ## 1. 📖 OVERVIEW
 
-### Template Styles: Minimal vs Verbose
-
-Templates are available in two styles to match different user needs:
-
-| Style | When to Use | Path | LOC |
-|-------|-------------|------|-----|
-| **Minimal** (default) | Experienced users, quick iteration | `templates/core/` | ~60-90 |
-| **Verbose** | New users, complex requirements, onboarding | `templates/verbose/core/` | ~200-300 |
-
-**Verbose templates include:**
-- `[YOUR_VALUE_HERE: description]` - Placeholders with contextual guidance
-- `[NEEDS CLARIFICATION: (a) (b) (c)]` - Multiple-choice clarifications
-- `[example: specific content]` - Inline examples showing expected quality
-
-**Preference Configuration:**
-```bash
-# Set preference via environment variable
-export SPECKIT_TEMPLATE_STYLE=verbose  # or "minimal" (default)
-
-# Or pass to create script
-./scripts/spec/create.sh "Feature name" --style verbose
-```
-
-See `templates/verbose/README.md` for detailed verbose pattern documentation.
-
 ### Progressive Enhancement Model
 
 ```
@@ -1043,13 +1018,8 @@ See each sub-folder's README.md for details.
 - [quick_reference.md](../workflows/quick_reference.md) - Commands, checklists, and troubleshooting
 - [level_specifications.md](./level_specifications.md) - Complete Level 1-3 requirements and migration
 - [path_scoped_rules.md](../validation/path_scoped_rules.md) - Path-scoped validation rules reference
-- [Verbose Templates README](../../templates/verbose/README.md) - Verbose template patterns and guidance
 
 ### Templates
-
-**Template Styles:**
-- **Minimal** (default): `templates/core/` - Experienced users, quick iteration
-- **Verbose**: `templates/verbose/core/` - New users, complex requirements
 
 **Core Templates (Level-Based):**
 

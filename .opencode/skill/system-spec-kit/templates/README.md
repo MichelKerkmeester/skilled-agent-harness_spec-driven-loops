@@ -58,13 +58,6 @@ templates/
 │   ├── checklist.md                   # L2 + L3 + L3+ verification
 │   └── decision-record.md             # L3 ADR + governance notes
 │
-├── verbose/                           # Verbose templates with guidance
-│   ├── core/                          # Verbose core templates
-│   ├── level_1/                       # Verbose L1 templates
-│   ├── level_2/                       # Verbose L2 templates
-│   ├── level_3/                       # Verbose L3 templates
-│   └── level_3+/                      # Verbose L3+ templates
-│
 ├── examples/                          # Filled examples for reference
 │   ├── level_1/                       # L1 example spec folder
 │   ├── level_2/                       # L2 example spec folder
@@ -106,26 +99,7 @@ Choose the documentation level based on **LOC (Lines of Code)**, **complexity**,
 
 ---
 
-## 4. 📋 TEMPLATE VARIANTS
-
-### Standard vs. Verbose
-
-| Variant | Lines | Guidance Level | Best For |
-|---------|-------|----------------|----------|
-| **Standard** | 60-90 | Minimal | Experienced users, clear requirements |
-| **Verbose** | 200-300 | Comprehensive | New users, complex requirements, team onboarding |
-
-**Verbose templates include:**
-- `[YOUR_VALUE_HERE: description]` placeholders with contextual guidance
-- `[NEEDS CLARIFICATION: (a) (b) (c)]` multiple-choice questions
-- `[example: ...]` inline examples demonstrating expected quality
-- Additional sections: ASSUMPTIONS, COMPLEXITY JUSTIFICATION
-
-See `verbose/README.md` for full verbose template documentation.
-
----
-
-## 5. 📝 STANDALONE TEMPLATES
+## 4. 📝 STANDALONE TEMPLATES
 
 These templates are used independently, not as part of a spec folder level.
 
@@ -143,9 +117,9 @@ These templates are used independently, not as part of a spec folder level.
 
 ---
 
-## 6. 💡 USAGE GUIDE
+## 5. 💡 USAGE GUIDE
 
-### For Standard Templates
+### For Templates
 
 1. **Determine level** using LOC count and complexity assessment
 2. **Use templates from `level_N/` folder** corresponding to chosen level
@@ -158,17 +132,6 @@ These templates are used independently, not as part of a spec folder level.
 # For a Level 2 feature (100-499 LOC)
 cp templates/level_2/*.md specs/042-new-feature/
 ```
-
-### For Verbose Templates
-
-1. **Choose verbose variant** when new to SpecKit or requirements are complex
-2. **Use templates from `verbose/level_N/` folder**
-3. **Fill in all `[YOUR_VALUE_HERE: ...]` placeholders**
-4. **Answer all `[NEEDS CLARIFICATION: ...]` questions**
-5. **Review `[example: ...]` sections for guidance**
-6. **Optionally convert to standard** by removing guidance after completion
-
-See `verbose/README.md` for detailed verbose template usage.
 
 ### For Standalone Templates
 
@@ -206,11 +169,10 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/04
 
 ---
 
-## 7. 📚 RELATED DOCUMENTS
+## 6. 📚 RELATED DOCUMENTS
 
 - **Template Mapping**: See `references/templates/template_guide.md` for selection logic
 - **Template Style Guide**: See `references/templates/template_style_guide.md` for formatting rules
 - **Level Specifications**: See `references/templates/level_specifications.md` for level requirements
 - **Validation Rules**: See `references/validation/validation_rules.md` for quality checks
-- **Verbose Templates**: See `verbose/README.md` for verbose variant documentation
 - **Example Spec Folders**: See `examples/` for filled-in reference implementations

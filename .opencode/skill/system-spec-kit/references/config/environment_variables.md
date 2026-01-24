@@ -88,7 +88,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 | `AUTO_SAVE_MODE` | `false` | Skip alignment check in hooks |
 | `SPECKIT_QUIET` | `false` | Suppress non-essential output |
 | `SPECKIT_TEMPLATES_DIR` | Auto-detected | Override templates directory |
-| `SPECKIT_TEMPLATE_STYLE` | `minimal` | Template style: `minimal` or `verbose` |
+| `SPECKIT_TEMPLATE_STYLE` | `minimal` | Template style (currently only `minimal` supported) |
 
 ---
 
@@ -115,9 +115,6 @@ ENABLE_RERANKER=true node mcp_server/context-server.js
 
 # Quiet mode for CI/CD
 SPECKIT_QUIET=true bash scripts/validate-spec.sh specs/001-feature/
-
-# Use verbose templates for new spec folders
-SPECKIT_TEMPLATE_STYLE=verbose bash scripts/spec/create.sh 'Add new feature'
 
 # Use Voyage AI embeddings (high quality, cloud-based)
 VOYAGE_API_KEY=your-key-here node mcp_server/context-server.js

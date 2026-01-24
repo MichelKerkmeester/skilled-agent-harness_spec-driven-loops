@@ -74,18 +74,6 @@ cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md s
 
 ## 3. ⚡ FEATURES
 
-### Template Versions
-
-| Version | Guidance Level | Best For |
-|---------|----------------|----------|
-| **Minimal** (this folder) | Brief prompts | Experienced users, simple features |
-| **Verbose** (`verbose/level_1/`) | Comprehensive guidance | New users, unclear requirements |
-
-**Use verbose templates if you need**:
-- Inline examples showing expected content
-- Multiple-choice clarification prompts
-- Detailed guidance on what to provide
-
 ### Characteristics
 
 - **Lightweight** - Minimal overhead for simple changes
@@ -124,7 +112,6 @@ cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md s
 | Problem | Quick Fix |
 |---------|-----------|
 | Forgot which templates to copy | See Quick Start section above |
-| Need more guidance | Use verbose templates: `templates/verbose/level_1/` |
 | Task grew beyond 100 LOC | Migrate to Level 2 templates |
 
 ---
@@ -136,7 +123,6 @@ cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md s
 | Document | Purpose |
 |----------|---------|
 | [Level 2 Templates](../level_2/) | When to escalate (100-499 LOC, QA validation) |
-| [Verbose Level 1 Templates](../verbose/level_1/) | Extended guidance for new users |
 | [Template Mapping Reference](../../references/templates/template_guide.md) | Complete template selection guide |
 | [Level Decision Matrix](../../assets/level_decision_matrix.md) | Choosing the right level |
 

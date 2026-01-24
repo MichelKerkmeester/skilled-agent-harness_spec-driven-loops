@@ -110,7 +110,6 @@ cp .opencode/skill/system-spec-kit/templates/addendum/level2-verify/spec-level2.
 - `../level_2/` - Medium features (100-499 LOC)
 - `../level_3/` - Large features (500+ LOC)
 - `../level_3+/` - Enterprise features (Complexity 80+)
-- `../verbose/` - Extended guidance versions for new users
 
 **Documentation:**
 - `../../references/templates/template_guide.md` - Complete template usage guide

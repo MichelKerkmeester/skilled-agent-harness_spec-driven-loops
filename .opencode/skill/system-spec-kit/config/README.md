@@ -32,13 +32,13 @@ This directory contains the JSON configuration files that control how the Spec K
 8. **Context Type Detection** - Auto-classify context types (research, implementation, decision, discovery)
 9. **Access Tracking** - Boost frequently accessed memories (0.1 per access, max 0.5)
 10. **Checkpoints** - Save/restore memory states (max: 10, cleanup: 30 days)
-11. **Templates** - Control template style (minimal vs verbose)
+11. **Templates** - Template configuration settings
 
 **Key Settings:**
 - `semanticSearch.enabled: true` - Enable vector similarity search
 - `memoryDecay.enabled: true` - Apply time-based relevance decay
 - `hybridSearch.enabled: true` - Combine FTS and vector search with RRF
-- `templates.style: "minimal"` - Default to minimal spec templates
+- `templates.path: "templates"` - Path to spec templates
 
 ### complexity-config.jsonc
 
@@ -141,19 +141,6 @@ The loader strips JSONC comments and parses JSON safely with fallback to default
 ```jsonc
 "pipeline": {
   "enabled": false    // Bypass all filters (default: true)
-}
-```
-
-### Template Style Selection
-
-Control which template set is used when creating spec folders:
-
-```jsonc
-"templates": {
-  "style": "minimal",           // "minimal" | "verbose"
-  "styleFallback": "minimal",   // Fallback if selected style not found
-  "verbosePath": "templates/verbose",
-  "minimalPath": "templates"    // Default location
 }
 ```
 

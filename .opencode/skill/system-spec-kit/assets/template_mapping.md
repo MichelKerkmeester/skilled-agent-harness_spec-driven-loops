@@ -18,10 +18,9 @@ This asset provides the definitive source for which templates are required at ea
 ### Usage
 
 1. Determine your documentation level (1, 2, or 3)
-2. Choose template style: **Core** (minimal) or **Verbose** (comprehensive guidance)
-3. Copy the required templates using the provided bash commands
-4. Follow the step-by-step template usage guide for proper folder setup
-5. Verify all placeholders are filled before proceeding
+2. Copy the required templates using the provided bash commands
+3. Follow the step-by-step template usage guide for proper folder setup
+4. Verify all placeholders are filled before proceeding
 
 ---
 
@@ -33,8 +32,6 @@ This asset provides the definitive source for which templates are required at ea
 templates/
 ├── core/                    # Source components (DO NOT USE DIRECTLY)
 ├── addendum/                # Level additions (DO NOT USE DIRECTLY)
-├── verbose/                 # Verbose templates with full guidance
-│   └── core/                # Verbose core templates
 ├── level_1/                 # Composed Level 1 (ready to use)
 ├── level_2/                 # Composed Level 2 (ready to use)
 ├── level_3/                 # Composed Level 3 (ready to use)
@@ -46,25 +43,12 @@ templates/
 | Path | Purpose | When to Use |
 |------|---------|-------------|
 | `templates/level_N/` | Ready-to-use composed templates | **ALWAYS use this for new specs** |
-| `templates/verbose/core/` | Verbose templates with guidance | New users who need detailed guidance |
 | `templates/core/` | Source components | Reference only (compose script uses these) |
 | `templates/addendum/` | Level-specific additions | Reference only (compose script uses these) |
 
 **Primary Path:** `.opencode/skill/system-spec-kit/templates/level_N/` (where N is 1, 2, 3, or 3+)
 
 **Critical Rule:** ALWAYS copy templates from `level_N/` directories - NEVER create documentation files from scratch.
-
-### Template Style Options
-
-| Style | Best For | Templates Path |
-|-------|----------|----------------|
-| **Core** (default) | Experienced users, simple features | `templates/level_N/` |
-| **Verbose** | New users, complex requirements, training | `templates/verbose/core/` |
-
-**Verbose Template Features:**
-- `[YOUR_VALUE_HERE: description]` - Contextual guidance for each field
-- `[NEEDS CLARIFICATION: (a) (b) (c)]` - Multiple-choice for ambiguous requirements
-- `[example: content]` - Inline examples showing expected quality
 
 ### Compose Script
 
@@ -108,20 +92,12 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 | **2: Verification** | Level 1 + `checklist.md`           | QA checklist            | See Level 2 commands below |
 | **3: Full**         | Level 2 + `decision-record.md`     | ADR + optional research | See Level 3 commands below |
 
-**Level 1 Copy Commands (Baseline) - Core Style:**
+**Level 1 Copy Commands (Baseline):**
 ```bash
 cp .opencode/skill/system-spec-kit/templates/level_1/spec.md specs/###-name/spec.md
 cp .opencode/skill/system-spec-kit/templates/level_1/plan.md specs/###-name/plan.md
 cp .opencode/skill/system-spec-kit/templates/level_1/tasks.md specs/###-name/tasks.md
 cp .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md specs/###-name/implementation-summary.md
-```
-
-**Level 1 Copy Commands (Baseline) - Verbose Style:**
-```bash
-cp .opencode/skill/system-spec-kit/templates/verbose/core/spec-core-verbose.md specs/###-name/spec.md
-cp .opencode/skill/system-spec-kit/templates/verbose/core/plan-core-verbose.md specs/###-name/plan.md
-cp .opencode/skill/system-spec-kit/templates/verbose/core/tasks-core-verbose.md specs/###-name/tasks.md
-cp .opencode/skill/system-spec-kit/templates/verbose/core/impl-summary-core-verbose.md specs/###-name/implementation-summary.md
 ```
 
 **Level 2 Copy Commands (complete set):**
@@ -382,51 +358,7 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 
 ---
 
-## 9. 📚 WHEN TO USE EACH TEMPLATE STYLE
-
-### Core Templates (Default)
-
-Use **Core templates** when:
-- You are familiar with SpecKit documentation conventions
-- The requirements are well-understood and straightforward
-- You want minimal template overhead
-- The feature scope is clear and well-defined
-
-**Characteristics:**
-- ~60-90 lines per template
-- Minimal inline guidance
-- Standard placeholders like `[NAME]`, `[PLACEHOLDER]`
-- Focused on structure, not explanation
-
-### Verbose Templates
-
-Use **Verbose templates** when:
-- **New to SpecKit** - First-time users who need guidance on what content to provide
-- **Complex Requirements** - Features with many unknowns requiring clarification
-- **Team Onboarding** - Training team members on specification best practices
-- **Stakeholder Alignment** - Features requiring detailed requirements gathering
-- **Uncertainty** - When you need prompts to ensure nothing is missed
-
-**Characteristics:**
-- ~200-300 lines per template
-- Comprehensive inline guidance with examples
-- `[YOUR_VALUE_HERE: detailed description]` format
-- `[NEEDS CLARIFICATION: (a) (b) (c)]` multiple-choice questions
-- `[example: concrete content]` inline demonstrations
-
-### Migration: Verbose to Core
-
-After completing a verbose template, optionally convert to core format:
-
-1. Remove all `[example: ...]` lines
-2. Replace `[YOUR_VALUE_HERE: ...]` with actual content
-3. Resolve all `[NEEDS CLARIFICATION: ...]` items
-4. Delete guidance comments
-5. Result: Clean core-format document
-
----
-
-## 10. 🔗 RELATED RESOURCES
+## 9. 🔗 RELATED RESOURCES
 
 ### Asset Files
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch
@@ -462,12 +394,6 @@ After completing a verbose template, optionally convert to core format:
 - [implementation-summary.md](../templates/level_3/implementation-summary.md) - Completion summary template
 - [checklist.md](../templates/level_3/checklist.md) - Full validation checklist template
 - [decision-record.md](../templates/level_3/decision-record.md) - Architecture Decision Records template
-
-**Verbose Templates (With Full Guidance):**
-- [spec-core-verbose.md](../templates/verbose/core/spec-core-verbose.md) - Specification with comprehensive guidance
-- [plan-core-verbose.md](../templates/verbose/core/plan-core-verbose.md) - Implementation plan with guidance
-- [tasks-core-verbose.md](../templates/verbose/core/tasks-core-verbose.md) - Task breakdown with guidance
-- [impl-summary-core-verbose.md](../templates/verbose/core/impl-summary-core-verbose.md) - Summary with guidance
 
 **Optional Templates:**
 - [research.md](../templates/research.md) - Comprehensive research template (Level 3 only)

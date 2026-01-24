@@ -69,6 +69,5 @@ This modular approach allows:
 ## 5. 📚 RELATED DOCUMENTS
 
 - **Level-specific templates**: `../level_1/`, `../level_2/`, `../level_3/`, `../level_3+/`
-- **Verbose versions**: `../verbose/core/` - Extended templates with guidance for new users
 - **Template mapping**: `../../assets/template_mapping.md` - Full composition rules
 - **Style guide**: `../../references/templates/template_style_guide.md` - Formatting standards

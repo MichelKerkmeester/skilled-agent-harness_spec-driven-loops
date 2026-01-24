@@ -170,7 +170,7 @@ node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-
 
 **Cause**: Need examples of good verification items
 
-**Solution**: Review existing Level 2 spec folders for examples, or use verbose templates with inline guidance.
+**Solution**: Review existing Level 2 spec folders for examples, or consult the template guide for inline guidance.
 
 ### Quick Fixes
 
@@ -179,7 +179,6 @@ node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-
 | Missing NFRs section | Add "## Non-Functional Requirements" to spec.md |
 | Missing edge cases | Add "## Edge Cases" to spec.md |
 | Validation warnings | Check exit code: 1 = warnings (non-blocking), 2 = errors (must fix) |
-| Need more guidance | Use verbose templates: `templates/verbose/level_2/` |
 
 ### Diagnostic Commands
 
@@ -204,7 +203,6 @@ diff specs/###-feature-name/checklist.md .opencode/skill/system-spec-kit/templat
 |----------|---------|
 | [Level 1 Templates](../level_1/) | Simple features (<100 LOC) |
 | [Level 3 Templates](../level_3/) | Large features (500+ LOC) with decision records |
-| [Verbose Level 2](../verbose/level_2/) | Extended templates with comprehensive guidance |
 | [Level 2 Addendum](../addendum/level2-verify/) | Additional verification sections |
 | [Template Guide](../../references/templates/template_guide.md) | Complete template usage guide |
 | [Level Decision Matrix](../../assets/level_decision_matrix.md) | How to choose the right level |

@@ -154,7 +154,6 @@ ls specs/###-user-authentication/
 │   │   ├── level2-verify/     # +Verification (checklist)
 │   │   ├── level3-arch/       # +Architecture (decision-record)
 │   │   └── level3plus-govern/ # +Governance
-│   ├── verbose/               # Extended templates with guidance
 │   ├── level_1/               # Composed Level 1 (~270 LOC)
 │   ├── level_2/               # Composed Level 2 (~390 LOC)
 │   ├── level_3/               # Composed Level 3 (~540 LOC)
@@ -358,8 +357,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~640 LOC)
 
 | Style | Location | Best For |
 |-------|----------|----------|
-| **Core** | `templates/level_N/` | Experienced users, simple features |
-| **Verbose** | `templates/verbose/` | New users, complex requirements |
+| **Core** | `templates/level_N/` | All users, pre-composed by level |
 
 ### Copy Commands
 
@@ -406,9 +404,6 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 ```bash
 # Create spec folder with level 2 templates
 ./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2
-
-# With verbose templates
-./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2 --verbose-templates
 
 # Skip git branch creation
 ./scripts/spec/create.sh "Add OAuth2" --level 1 --skip-branch

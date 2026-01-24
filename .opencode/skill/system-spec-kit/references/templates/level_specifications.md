@@ -28,10 +28,6 @@ templates/
 │   ├── level3-arch/         # +Architecture (~150 LOC)
 │   └── level3plus-govern/   # +Governance (~100 LOC)
 │
-├── verbose/                 # Extended templates with guidance
-│   ├── core/                # Verbose versions of core templates
-│   └── README.md            # Verbose pattern documentation
-│
 ├── level_1/                 # Composed Level 1: Core only (~270 LOC)
 ├── level_2/                 # Composed Level 2: Core + L2 (~390 LOC)
 ├── level_3/                 # Composed Level 3: Core + L2 + L3 (~540 LOC)
@@ -43,7 +39,6 @@ templates/
 | Path | Purpose | When to Use |
 |------|---------|-------------|
 | `templates/level_N/` | Ready-to-use templates | **ALWAYS use this for new specs** (N = 1, 2, 3, or 3+) |
-| `templates/verbose/` | Guided templates | New users who need detailed guidance |
 | `templates/core/` | Source components | Reference only (understanding architecture) |
 | `templates/addendum/` | Level additions | Reference only (understanding architecture) |
 
