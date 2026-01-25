@@ -6,8 +6,7 @@
 [![License](https://img.shields.io/github/license/MichelKerkmeester/opencode-dev-environment?style=for-the-badge&color=7bd88f&labelColor=222222)](LICENSE)
 [![Latest Release](https://img.shields.io/github/v/release/MichelKerkmeester/opencode-dev-environment?style=for-the-badge&color=5ad4e6&labelColor=222222)](https://github.com/MichelKerkmeester/opencode-dev-environment/releases)
 
-> - 99.999% of people will keep blaming AI for not being good enough 'yet' 
-> - Beat the odds with this system?
+> - 99.999% of people won't try these systems. Beat the odds?
 > - https://buymeacoffee.com/michelkerkmeester
 
 </div>
