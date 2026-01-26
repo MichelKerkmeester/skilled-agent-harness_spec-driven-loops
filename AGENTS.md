@@ -610,7 +610,7 @@ The `workflows-code` skills serve as domain orchestrators for code implementatio
 | `workflows-code--web-dev`    | Single-stack web projects (Webflow, vanilla JS)                | `.opencode/skill/workflows-code--web-dev/`    |
 | `workflows-code--full-stack` | Multi-stack projects (Go, Node.js, React, React Native, Swift) | `.opencode/skill/workflows-code--full-stack/` |
 
--
+---
 
 ### Single-Stack: workflows-code--web-dev
 
@@ -646,7 +646,7 @@ For web-only projects (e.g., Webflow, vanilla JavaScript).
 1. Add website specfiic patterns to `references/`, `assets/` and `scripts/`.
 2. Update and allign the SKILL.md routing and logic.
 
--
+---
 
 ### Multi-Stack: workflows-code--full-stack
 
