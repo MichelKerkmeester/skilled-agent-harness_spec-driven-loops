@@ -45,14 +45,14 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
 □ Safari Desktop (1920px) - if macOS available
 □ Mobile Chrome (375px) - via DevTools device emulation
 □ Mobile Safari (375px) - via DevTools device emulation
-□ Tablet viewport (768px) - iPad size
+□ Tablet viewport (991px) - Webflow tablet breakpoint
 
 ### Critical Fixes (High-Stakes Changes)
 □ All standard testing above
 □ Real mobile device (not just emulation)
 □ Slow network simulation (Slow 3G in DevTools)
 □ Different viewport transition points
-- Edge cases (ad blockers, cache disabled)
+□ Edge cases (ad blockers, cache disabled)
 
 ---
 
@@ -64,7 +64,7 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
   - No horizontal overflow
   - Touch targets large enough
 
-□ Tablet viewport (768px)
+□ Tablet viewport (991px)
   - Layout adapts correctly
   - Navigation usable
   - Content readable
@@ -75,8 +75,8 @@ Use this checklist BEFORE claiming any work is complete, fixed, or working. Comp
   - Performance acceptable
 
 □ Breakpoint transitions (resize browser slowly)
-  - 320px → 768px smooth
-  - 768px → 1024px smooth
+  - 320px → 991px smooth
+  - 991px → 1024px smooth
   - 1024px → 1920px smooth
   - No awkward intermediate states
 

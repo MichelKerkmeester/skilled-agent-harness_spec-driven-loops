@@ -47,14 +47,15 @@ Unified workflow guidance across 6 specialized code quality skills for frontend 
 
 ### Phase Overview
 
-This orchestrator operates in three primary phases:
+This orchestrator operates in four primary phases:
 
-| Phase                       | Purpose                                                     | Trigger                               |
-| --------------------------- | ----------------------------------------------------------- | ------------------------------------- |
-| **Phase 1: Implementation** | Writing code with async handling, validation, cache-busting | Starting new code, modifying existing |
-| **Phase 1.5: Code Quality** | Validate against style standards                            | P0 items pass                         |
-| **Phase 2: Debugging**      | Fixing issues systematically using DevTools                 | Console errors, unexpected behavior   |
-| **Phase 3: Verification**   | Browser testing before completion claims                    | Before ANY "done" or "works" claim    |
+| Phase                       | Purpose                                                     | Trigger                                          |
+| --------------------------- | ----------------------------------------------------------- | ------------------------------------------------ |
+| **Phase 0: Research**       | Systematic analysis before complex implementation           | Performance issues, unfamiliar codebases         |
+| **Phase 1: Implementation** | Writing code with async handling, validation, cache-busting | Starting new code, modifying existing            |
+| **Phase 1.5: Code Quality** | Validate against style standards                            | P0 items pass                                    |
+| **Phase 2: Debugging**      | Fixing issues systematically using DevTools                 | Console errors, unexpected behavior              |
+| **Phase 3: Verification**   | Browser testing before completion claims                    | Before ANY "done" or "works" claim               |
 
 **The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
 
@@ -135,7 +136,6 @@ def route_frontend_resources(task):
         # CONDITIONAL: Load if CSS keywords detected (css, style, layout, responsive)
         if task.has_css_work:
             load("references/implementation/css_patterns.md")  # CONDITIONAL: CSS architecture
-            load("references/standards/css_quick_reference.md")  # CONDITIONAL: CSS quick lookups
 
         # CONDITIONAL: Load if carousel/slider keywords detected
         if task.has_carousel or task.has_slider:
@@ -219,9 +219,7 @@ def route_frontend_resources(task):
     # Quick Reference
     # ──────────────────────────────────────────────────────────────────
     if task.needs_quick_reference:
-        load("references/standards/quick_reference.md")  # one-page cheat sheet
-        if task.has_css_work:
-            load("references/standards/css_quick_reference.md")  # CSS quick reference
+        load("references/standards/quick_reference.md")  # one-page cheat sheet (includes CSS patterns)
         return True
 
 # See "The Iron Law" in Section 1 - Phase 3: Verification
@@ -240,7 +238,6 @@ def route_frontend_resources(task):
 | CDN deployment, version management, Cloudflare R2         | [cdn_deployment.md](./references/deployment/cdn_deployment.md)                                                                                     | CONDITIONAL |
 | CSS vs Motion.dev, entrance animations, scroll triggers   | [animation_workflows.md](./references/implementation/animation_workflows.md)                                                                       | CONDITIONAL |
 | CSS architecture, custom properties, responsive patterns  | [css_patterns.md](./references/implementation/css_patterns.md)                                                                                     | CONDITIONAL |
-| CSS quick lookups, property references                    | [css_quick_reference.md](./references/standards/css_quick_reference.md)                                                                            | CONDITIONAL |
 | Carousel, slider, Swiper.js integration                   | [swiper_patterns.md](./references/implementation/swiper_patterns.md)                                                                               | CONDITIONAL |
 | Focus management, keyboard navigation, accessibility      | [focus_management.md](./references/implementation/focus_management.md)                                                                             | CONDITIONAL |
 | Webflow collection lists, platform limits, ID duplication | [webflow_patterns.md](./references/implementation/webflow_patterns.md)                                                                             | CONDITIONAL |
@@ -279,8 +276,56 @@ def route_frontend_resources(task):
 Frontend development flows through phases with a mandatory quality gate:
 
 ```
-Implementation → Code Quality Gate → Debugging (if issues) → Verification (MANDATORY)
+Research (optional) → Implementation → Code Quality Gate → Debugging (if issues) → Verification (MANDATORY)
 ```
+
+### Phase 0: Research (Optional)
+
+**When to Use:** Complex performance issues, unfamiliar codebases, architectural decisions.
+
+#### Performance Audit Workflow
+
+Before implementing performance fixes, conduct systematic analysis:
+
+1. **Capture Baseline Metrics**
+   - Run PageSpeed Insights (Mobile + Desktop)
+   - Record: LCP, FCP, TBT, CLS, Speed Index
+   - Screenshot the waterfall diagram
+
+2. **Identify Root Cause**
+   - Use 10-agent research methodology for comprehensive analysis
+   - Map the critical rendering path
+   - Identify blocking resources
+
+3. **Document Constraints**
+   - Platform limitations (Webflow, CMS, etc.)
+   - Third-party dependencies
+   - Business requirements
+
+#### 10-Agent Research Methodology
+
+For complex codebase analysis, dispatch parallel agents:
+
+| Agent | Focus Area |
+|-------|------------|
+| 1 | HTML loading strategy |
+| 2 | JavaScript bundle inventory |
+| 3 | Third-party scripts |
+| 4 | CSS performance |
+| 5 | LCP/Images analysis |
+| 6 | Above-fold resources |
+| 7 | Animation performance |
+| 8 | Initialization patterns |
+| 9 | External libraries |
+| 10 | Network waterfall |
+
+See: `references/research/multi_agent_patterns.md`
+
+#### Skip Phase 0 When
+- Simple, isolated fixes
+- Clear requirements with known solution
+- Time-critical hotfixes
+
 
 ### Phase 1: Implementation
 
@@ -381,7 +426,7 @@ See [debugging_workflows.md](./references/debugging/debugging_workflows.md) for 
 
 **Standard** (Production work):
 - Chrome Desktop (1920px)
-- Chrome Tablet emulation (768px)
+- Chrome Tablet emulation (991px)
 - Chrome Mobile emulation (375px)
 - DevTools console clear at all viewports
 
@@ -548,6 +593,14 @@ Key integrations:
 - [code_style_guide.md](./references/standards/code_style_guide.md) - Naming, formatting, comments
 - [shared_patterns.md](./references/standards/shared_patterns.md) - Common patterns across workflows
 
+### Performance References
+
+- [cwv_remediation.md](./references/performance/cwv_remediation.md) - Core Web Vitals patterns
+- [resource_loading.md](./references/performance/resource_loading.md) - Preconnect, preload, async patterns
+- [webflow_constraints.md](./references/performance/webflow_constraints.md) - Platform limitations
+- [third_party.md](./references/performance/third_party.md) - GTM, analytics optimization
+- [performance_checklist.md](./references/verification/performance_checklist.md) - Before/after verification
+
 ### External Tools
 
 | Tool | Purpose |
@@ -614,12 +667,13 @@ Key integrations:
 
 | Phase | You're here if... | Exit criteria |
 |-------|-------------------|---------------|
+| **0: Research** | Complex issue, unfamiliar codebase | Constraints documented, plan ready |
 | **1: Implementation** | Writing/modifying code | Code written, builds |
 | **1.5: Code Quality** | Implementation done, running checklist | All P0 items passing |
 | **2: Debugging** | Code has bugs/failing tests | All tests passing |
 | **3: Verification** | Tests pass, final validation | Verified in browser |
 
-**Transitions:** 1→2 (bugs found) | 2→1 (missing code) | 2→3 (fixed) | 3→1/2 (issues found). Always end with Phase 3.
+**Transitions:** 0→1 (plan ready) | 1→2 (bugs found) | 2→1 (missing code) | 2→3 (fixed) | 3→1/2 (issues found). Always end with Phase 3.
 
 ---
 
@@ -687,11 +741,11 @@ const observer = new IntersectionObserver(
 
 ### Browser Testing Matrix
 
-| Viewport | Width  | Required | Notes              |
-| -------- | ------ | -------- | ------------------ |
-| Mobile   | 375px  | ALWAYS   | iPhone SE baseline |
-| Tablet   | 768px  | Standard | iPad portrait      |
-| Desktop  | 1920px | ALWAYS   | Full HD reference  |
+| Viewport | Width  | Required | Notes                    |
+| -------- | ------ | -------- | ------------------------ |
+| Mobile   | 375px  | ALWAYS   | iPhone SE baseline       |
+| Tablet   | 991px  | Standard | Webflow tablet breakpoint|
+| Desktop  | 1920px | ALWAYS   | Full HD reference        |
 
 ### Performance Targets (Summary)
 

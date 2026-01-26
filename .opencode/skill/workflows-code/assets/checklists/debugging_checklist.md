@@ -66,7 +66,7 @@ Use this checklist for ANY frontend technical issue. Complete all applicable pha
 □ Used browser debugger (breakpoints)
 □ Stepped through code execution
 □ Inspected variable values at each step
-- Reviewed call stack panel
+□ Reviewed call stack panel
 □ Traced backward from error to source
 
 ---

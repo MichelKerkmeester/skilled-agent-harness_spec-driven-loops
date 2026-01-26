@@ -1,21 +1,24 @@
 #!/usr/bin/env node
-/**
- * minify-webflow.mjs - Batch minification for Webflow JavaScript files
- *
- * Usage:
- *   node scripts/minify-webflow.mjs          # Normal run (skip unchanged)
- *   node scripts/minify-webflow.mjs --force  # Force re-minify all
- *
- * Minifies all JavaScript files from src/2_javascript/ to src/2_javascript/z_minified/
- * Uses terser with --compress --mangle for safe minification.
- */
+// ───────────────────────────────────────────────────────────────
+// BUILD: MINIFY WEBFLOW JAVASCRIPT
+// ───────────────────────────────────────────────────────────────
+//
+// Usage:
+//   node scripts/minify-webflow.mjs          # Normal run (skip unchanged)
+//   node scripts/minify-webflow.mjs --force  # Force re-minify all
+//
+// Minifies all JavaScript files from src/2_javascript/ to src/2_javascript/z_minified/
+// Uses terser with --compress --mangle for safe minification.
 
 import { execSync } from 'child_process';
 import { readdirSync, statSync, existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
 import { join, dirname, relative } from 'path';
 import { createHash } from 'crypto';
 
-// Configuration
+/* ─────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+──────────────────────────────────────────────────────────────── */
+
 const SOURCE_DIR = 'src/2_javascript';
 const OUTPUT_DIR = 'src/2_javascript/z_minified';
 const MANIFEST_FILE = join(OUTPUT_DIR, 'manifest.tsv');
@@ -27,18 +30,18 @@ const SKIP_FOLDERS = ['z_minified', 'node_modules', '.git'];
 const args = process.argv.slice(2);
 const FORCE_MODE = args.includes('--force');
 
-/**
- * Get MD5 hash of file content
- */
-function getFileHash(filePath) {
-  const content = readFileSync(filePath, 'utf-8');
+/* ─────────────────────────────────────────────────────────────
+   2. UTILITIES
+──────────────────────────────────────────────────────────────── */
+
+// Get MD5 hash of file content
+function get_file_hash(file_path) {
+  const content = readFileSync(file_path, 'utf-8');
   return createHash('md5').update(content).digest('hex');
 }
 
-/**
- * Recursively find all .js files in directory
- */
-function findJsFiles(dir, baseDir = dir) {
+// Recursively find all .js files in directory
+function find_js_files(dir, base_dir = dir) {
   const files = [];
 
   if (!existsSync(dir)) {
@@ -49,64 +52,64 @@ function findJsFiles(dir, baseDir = dir) {
   const entries = readdirSync(dir, { withFileTypes: true });
 
   for (const entry of entries) {
-    const fullPath = join(dir, entry.name);
+    const full_path = join(dir, entry.name);
 
     if (entry.isDirectory()) {
       if (!SKIP_FOLDERS.includes(entry.name)) {
-        files.push(...findJsFiles(fullPath, baseDir));
+        files.push(...find_js_files(full_path, base_dir));
       }
     } else if (entry.isFile() && entry.name.endsWith('.js')) {
-      files.push(relative(baseDir, fullPath));
+      files.push(relative(base_dir, full_path));
     }
   }
 
   return files;
 }
 
-/**
- * Minify a single file using terser
- */
-function minifyFile(relativePath) {
-  const sourcePath = join(SOURCE_DIR, relativePath);
-  const outputPath = join(OUTPUT_DIR, relativePath);
-  const outputDir = dirname(outputPath);
+/* ─────────────────────────────────────────────────────────────
+   3. CORE FUNCTIONS
+──────────────────────────────────────────────────────────────── */
+
+// Minify a single file using terser
+function minify_file(relative_path) {
+  const source_path = join(SOURCE_DIR, relative_path);
+  const output_path = join(OUTPUT_DIR, relative_path);
+  const output_dir = dirname(output_path);
 
   // Ensure output directory exists
-  if (!existsSync(outputDir)) {
-    mkdirSync(outputDir, { recursive: true });
+  if (!existsSync(output_dir)) {
+    mkdirSync(output_dir, { recursive: true });
   }
 
   // Get source file size
-  const sourceSize = statSync(sourcePath).size;
+  const source_size = statSync(source_path).size;
 
   try {
     // Run terser
-    execSync(`npx terser "${sourcePath}" --compress --mangle -o "${outputPath}"`, {
-      stdio: 'pipe'
+    execSync(`npx terser "${source_path}" --compress --mangle -o "${output_path}"`, {
+      stdio: 'pipe',
     });
 
     // Get output file size
-    const outputSize = statSync(outputPath).size;
-    const reduction = ((1 - outputSize / sourceSize) * 100).toFixed(1);
+    const output_size = statSync(output_path).size;
+    const reduction = ((1 - output_size / source_size) * 100).toFixed(1);
 
     return {
       success: true,
-      sourceSize,
-      outputSize,
-      reduction
+      source_size,
+      output_size,
+      reduction,
     };
   } catch (error) {
     return {
       success: false,
-      error: error.message
+      error: error.message,
     };
   }
 }
 
-/**
- * Load existing manifest (hash tracking)
- */
-function loadManifest() {
+// Load existing manifest (hash tracking)
+function load_manifest() {
   const manifest = new Map();
 
   if (existsSync(MANIFEST_FILE)) {
@@ -124,24 +127,25 @@ function loadManifest() {
   return manifest;
 }
 
-/**
- * Save manifest
- */
-function saveManifest(manifest) {
+// Save manifest
+function save_manifest(manifest) {
   const lines = ['file\thash'];
   for (const [file, hash] of manifest.entries()) {
     lines.push(`${file}\t${hash}`);
   }
 
-  const outputDir = dirname(MANIFEST_FILE);
-  if (!existsSync(outputDir)) {
-    mkdirSync(outputDir, { recursive: true });
+  const output_dir = dirname(MANIFEST_FILE);
+  if (!existsSync(output_dir)) {
+    mkdirSync(output_dir, { recursive: true });
   }
 
   writeFileSync(MANIFEST_FILE, lines.join('\n') + '\n');
 }
 
-// Main execution
+/* ─────────────────────────────────────────────────────────────
+   4. MAIN EXECUTION
+──────────────────────────────────────────────────────────────── */
+
 async function main() {
   console.log('=== MINIFY-WEBFLOW ===\n');
   console.log(`Mode: ${FORCE_MODE ? 'FORCE (re-minify all)' : 'NORMAL (skip unchanged)'}`);
@@ -149,7 +153,7 @@ async function main() {
   console.log(`Output: ${OUTPUT_DIR}\n`);
 
   // Find all JS files
-  const files = findJsFiles(SOURCE_DIR);
+  const files = find_js_files(SOURCE_DIR);
   console.log(`Found ${files.length} JavaScript files\n`);
 
   if (files.length === 0) {
@@ -158,26 +162,26 @@ async function main() {
   }
 
   // Load manifest for change detection
-  const manifest = loadManifest();
+  const manifest = load_manifest();
 
   let updated = 0;
   let unchanged = 0;
   let failed = 0;
-  let totalSourceSize = 0;
-  let totalOutputSize = 0;
+  let total_source_size = 0;
+  let total_output_size = 0;
 
   for (const file of files) {
-    const sourcePath = join(SOURCE_DIR, file);
-    const outputPath = join(OUTPUT_DIR, file);
-    const currentHash = getFileHash(sourcePath);
-    const previousHash = manifest.get(file);
+    const source_path = join(SOURCE_DIR, file);
+    const output_path = join(OUTPUT_DIR, file);
+    const current_hash = get_file_hash(source_path);
+    const previous_hash = manifest.get(file);
 
     // Skip if unchanged (unless force mode)
-    if (!FORCE_MODE && previousHash === currentHash && existsSync(outputPath)) {
-      const sourceSize = statSync(sourcePath).size;
-      const outputSize = statSync(outputPath).size;
-      totalSourceSize += sourceSize;
-      totalOutputSize += outputSize;
+    if (!FORCE_MODE && previous_hash === current_hash && existsSync(output_path)) {
+      const source_size = statSync(source_path).size;
+      const output_size = statSync(output_path).size;
+      total_source_size += source_size;
+      total_output_size += output_size;
 
       console.log(`= ${file} [unchanged]`);
       unchanged++;
@@ -185,14 +189,14 @@ async function main() {
     }
 
     // Minify the file
-    const result = minifyFile(file);
+    const result = minify_file(file);
 
     if (result.success) {
-      totalSourceSize += result.sourceSize;
-      totalOutputSize += result.outputSize;
-      manifest.set(file, currentHash);
+      total_source_size += result.source_size;
+      total_output_size += result.output_size;
+      manifest.set(file, current_hash);
 
-      console.log(`→ ${file} (${result.sourceSize}B → ${result.outputSize}B) [-${result.reduction}%]`);
+      console.log(`→ ${file} (${result.source_size}B → ${result.output_size}B) [-${result.reduction}%]`);
       updated++;
     } else {
       console.log(`✗ ${file} - ERROR: ${result.error}`);
@@ -201,27 +205,27 @@ async function main() {
   }
 
   // Save updated manifest
-  const manifestDir = dirname(MANIFEST_FILE);
-  if (!existsSync(manifestDir)) {
-    mkdirSync(manifestDir, { recursive: true });
+  const manifest_dir = dirname(MANIFEST_FILE);
+  if (!existsSync(manifest_dir)) {
+    mkdirSync(manifest_dir, { recursive: true });
   }
 
-  const manifestLines = ['file\thash'];
+  const manifest_lines = ['file\thash'];
   for (const [file, hash] of manifest.entries()) {
-    manifestLines.push(`${file}\t${hash}`);
+    manifest_lines.push(`${file}\t${hash}`);
   }
-  writeFileSync(MANIFEST_FILE, manifestLines.join('\n') + '\n');
+  writeFileSync(MANIFEST_FILE, manifest_lines.join('\n') + '\n');
 
   // Summary
-  const totalReduction = totalSourceSize > 0
-    ? ((1 - totalOutputSize / totalSourceSize) * 100).toFixed(2)
+  const total_reduction = total_source_size > 0
+    ? ((1 - total_output_size / total_source_size) * 100).toFixed(2)
     : 0;
 
   console.log('\n=== SUMMARY ===');
   console.log(`Updated:   ${updated}`);
   console.log(`Unchanged: ${unchanged}`);
   console.log(`Failed:    ${failed}`);
-  console.log(`Total reduction: ${totalReduction}%`);
+  console.log(`Total reduction: ${total_reduction}%`);
 
   if (failed > 0) {
     console.log('\n⚠️  Some files failed to minify. Check errors above.');
@@ -232,7 +236,7 @@ async function main() {
   console.log('Next: Run verify-minification.mjs to validate');
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error('Fatal error:', err);
   process.exit(1);
 });

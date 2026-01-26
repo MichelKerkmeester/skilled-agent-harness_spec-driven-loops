@@ -55,7 +55,7 @@ If you haven't opened the browser and tested in this message, you cannot claim i
 6. RECORD: Note what you saw
    - If NO: State actual status with evidence
    - If YES: State claim WITH evidence
-8. ONLY THEN: Make the claim
+7. ONLY THEN: Make the claim
 ```
 
 Skip any step = lying, not verifying.
@@ -151,9 +151,9 @@ Expected result: Empty error array = no console errors ✅
    [Use tool: mcp__chrome_devtools_2__take_screenshot]
    - Save screenshot for visual review
 
-3. Tablet viewport (768px):
+3. Tablet viewport (991px):
    [Use tool: mcp__chrome_devtools_2__resize_page]
-   - width: 768
+   - width: 991
    - height: 1024
    [Use tool: mcp__chrome_devtools_2__take_screenshot]
    - Save screenshot for visual review
@@ -384,7 +384,7 @@ bdg stop 2>&1
 **Standard verification for production-ready work:**
 ```markdown
 □ Chrome Desktop (1920px)
-□ Chrome Tablet emulation (768px) - iPad viewport
+□ Chrome Tablet emulation (991px) - Webflow tablet breakpoint
 □ Chrome Mobile emulation (375px) - iPhone viewport
 □ DevTools Console clear at all viewports
 □ Network tab shows no failed requests
@@ -594,22 +594,7 @@ across all tested viewports."
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
-
-### Reference Files
-- [implementation_workflows.md](../implementation/implementation_workflows.md) - Verify implementations work correctly
-- [debugging_workflows.md](../debugging/debugging_workflows.md) - Verify fixes work after debugging
-- [shared_patterns.md](../standards/shared_patterns.md) - Use standard DevTools verification patterns
-
-### Templates
-- [verification_checklist.md](../../assets/checklists/verification_checklist.md) - Printable verification checklist
-
-### Related Skills
-- `workflows-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
-
----
-
-## 10. ✅ VERIFICATION CHECKLIST
+## 9. ✅ VERIFICATION CHECKLIST
 
 **Before claiming any work complete, verify:**
 
@@ -621,7 +606,7 @@ BROWSER TESTING:
 
 VIEWPORT TESTING:
 □ Tested at mobile viewport (375px minimum)
-□ Tested at tablet viewport (768px)
+□ Tested at tablet viewport (991px)
 □ Tested at desktop viewport (1920px)
 □ Verified responsive transitions smooth
 
@@ -649,6 +634,21 @@ EVIDENCE:
 ```
 
 **If you cannot check ALL boxes, your claim is premature. Verify first, claim second.**
+
+---
+
+## 10. 🔗 RELATED RESOURCES
+
+### Reference Files
+- [implementation_workflows.md](../implementation/implementation_workflows.md) - Verify implementations work correctly
+- [debugging_workflows.md](../debugging/debugging_workflows.md) - Verify fixes work after debugging
+- [shared_patterns.md](../standards/shared_patterns.md) - Use standard DevTools verification patterns
+
+### Templates
+- [verification_checklist.md](../../assets/checklists/verification_checklist.md) - Printable verification checklist
+
+### Related Skills
+- `workflows-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
 
 ---
 

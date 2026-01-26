@@ -1,6 +1,6 @@
 # AI Assistant Framework
 
-> **Behavior framework** defining guardrails, standards, and decision protocols—tailored for anobel.com’s Webflow implementation.
+> **Behavior framework** defining guardrails, standards, and decision protocols for AI-assisted development.
 
 ---
 
@@ -66,8 +66,6 @@ See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, 
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                              |
 | **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                        |
-| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                                       |
-| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                              |
 
 ---
 
@@ -266,7 +264,7 @@ File modification planned? → Include Q1 (Spec Folder)
 #### ⚡ Code Quality Standards Compliance
 
 **MANDATORY:** Compliance checkpoints:
-- Before **proposing solutions**: Verify approach aligns with code quality standards and webflow patterns 
+- Before **proposing solutions**: Verify approach aligns with code quality standards and established patterns 
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
 - Before **initialization code**: Follow initialization patterns from code quality standards
 - Before **animation implementation**: See animation workflow references
@@ -274,8 +272,6 @@ File modification planned? → Include Q1 (Spec Folder)
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
-- Before **CDN deployment**: See cdn_deployment.md for version management and upload workflow
-- Before **JavaScript minification**: See minification_guide.md for safe minification with verification
 - **If conflict exists**: Code quality standards override general practices
 
 **Violation handling:** If proposed solution contradicts code quality standards, STOP and ask for clarification or revise approach.
@@ -600,32 +596,6 @@ Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you
 - Each skill invocation is stateless
 - Skills are auto-indexed from SKILL.md frontmatter - no manual list maintenance required
 
-### Primary Skill: workflows-code
-
-For ALL frontend code implementation in anobel.com, `workflows-code` is the primary orchestrator skill.
-
-**3-Phase Lifecycle (MANDATORY):**
-1. **Phase 1 - Implementation**: Write code following Webflow patterns, async handling, validation
-2. **Phase 1.5 - Code Quality Gate**: Validate against style standards (P0 items MUST pass)
-3. **Phase 2 - Debugging**: Fix issues systematically using DevTools, trace root cause
-4. **Phase 3 - Verification**: Browser testing at multiple viewports (MANDATORY before "done")
-
-**The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
-
-**Auto-Detection Flow:**
-```
-Task Received → Detect keywords → Route to phase → Load resources
-```
-
-**Patterns Location:** `.opencode/skill/workflows-code/references/`
-- `implementation/` → Async patterns, animation, CSS, Webflow, security, observers
-- `debugging/` → Root cause tracing, error recovery
-- `verification/` → Browser testing requirements
-- `deployment/` → Minification, CDN deployment to R2
-- `standards/` → Code quality, style guide, shared patterns
-
-**Invocation:** Automatic via Gate 2 routing when code tasks detected.
-
 ### Skill Maintenance
 
 Skills are located in `.opencode/skill/`.
@@ -636,3 +606,85 @@ When creating or editing skills:
 - Use the templates in `workflows-documentation/assets/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
 - Ensure all bundled resources are referenced with relative paths
 - Test skill invocation before committing
+
+---
+
+## 9. 💻 CODE IMPLEMENTATION (workflows-code)
+
+The `workflows-code` skill serves as a domain orchestrator for code implementation. It supports **single-stack** or **multi-stack** projects.
+
+### 3-Phase Lifecycle (MANDATORY)
+
+1. **Phase 1 - Implementation**: Write code following stack-specific patterns
+2. **Phase 2 - Testing/Debugging**: Run tests, fix failures, debug issues
+3. **Phase 3 - Verification**: Run verification suite (MANDATORY before "done")
+
+**The Iron Law**: NO COMPLETION CLAIMS WITHOUT STACK-APPROPRIATE VERIFICATION
+
+**Invocation:** Automatic via Gate 3 routing when code tasks detected.
+
+### Single-Stack Example (Frontend)
+
+For frontend-only projects (e.g., Webflow, React, Vue):
+
+**Skill Structure:**
+```
+.opencode/skill/workflows-code/
+├── SKILL.md              # Entry point with routing logic
+├── references/
+│   ├── implementation/   # Framework patterns, async, validation
+│   ├── debugging/        # DevTools, error recovery
+│   ├── verification/     # Browser testing requirements
+│   └── standards/        # Code quality, style guide
+├── assets/               # Checklists, templates
+└── scripts/              # Build/deploy automation
+```
+
+**Verification:** Browser testing at multiple viewports + console clean.
+
+### Multi-Stack Example (Full-Stack / Monorepo)
+
+For projects with multiple technology stacks:
+
+**Stack Detection via Marker Files:**
+
+| Stack | Detection Marker | Example Patterns |
+|-------|------------------|------------------|
+| **Go** | `go.mod` | Domain layers, table-driven tests |
+| **Node.js** | `package.json` | Express routes, async/await |
+| **Python** | `pyproject.toml` | Flask blueprints, pytest |
+| **Angular** | `angular.json` | Standalone components, RxJS |
+| **React Native** | `app.json` + expo | Hooks, navigation |
+| **DevOps** | `Makefile` | Scripts, deployment |
+
+**How Auto-Detection Works:**
+1. `workflows-code` checks for marker files at session start
+2. Stack-specific patterns load from `references/{stack}/`
+3. Verification commands auto-adjust per stack
+
+**Multi-Stack Skill Structure:**
+```
+.opencode/skill/workflows-code/
+├── SKILL.md              # Entry point with stack detection
+├── references/
+│   ├── go/               # Go-specific patterns
+│   ├── node/             # Node.js patterns
+│   ├── python/           # Python patterns
+│   ├── angular/          # Angular patterns
+│   ├── react-native/     # React Native patterns
+│   └── shared/           # Cross-stack standards
+└── assets/
+    └── checklists/       # Stack-specific verification
+```
+
+**Stack-Specific Verification Commands:**
+
+| Stack | Verification Command |
+|-------|---------------------|
+| Go | `go test ./...` → `golangci-lint run` → `go build ./...` |
+| Node.js | `npm test` → `npm run lint` → `npm run build` |
+| Python | `pytest` → `ruff check` → `mypy .` |
+| Angular | `ng test` → `ng lint` → `ng build` |
+| React Native | `npm test` → `npx eslint .` → `npx expo export` |
+
+> **Customize for your project:** Add stack-specific patterns to `references/{stack}/` and update the SKILL.md routing logic.

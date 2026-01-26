@@ -181,7 +181,7 @@ BROWSER TESTING:
 
 VIEWPORT TESTING:
 □ Mobile (375px)
-□ Tablet (768px)
+□ Tablet (991px)
 □ Desktop (1920px)
 □ Breakpoint transitions
 
@@ -207,7 +207,7 @@ PERFORMANCE:
 **Chrome DevTools Device Toolbar (Cmd+Shift+M):**
 - iPhone SE (375x667) - Small mobile
 - iPhone 12 Pro (390x844) - Modern mobile
-- iPad (768x1024) - Tablet
+- iPad (991x1024) - Tablet (Webflow breakpoint)
 - Responsive - Custom dimensions
 
 **Network Throttling:**
@@ -260,9 +260,9 @@ Expected result: No errors found
    - width: 375, height: 667
    [Use tool: mcp__chrome_devtools_2__take_screenshot]
 
-3. Tablet (768px):
+3. Tablet (991px):
    [Use tool: mcp__chrome_devtools_2__resize_page]
-   - width: 768, height: 1024
+   - width: 991, height: 1024
    [Use tool: mcp__chrome_devtools_2__take_screenshot]
 
 4. Desktop (1920px):
@@ -342,7 +342,7 @@ Expected result: No failed requests
    - Report: ✅ Pass or ⚠️ Warning with metrics
 
 5. Capture all viewports:
-   [Resize + Screenshot for 375px, 768px, 1920px]
+   [Resize + Screenshot for 375px, 991px, 1920px]
    - Save screenshots for manual review
 
 Final report:

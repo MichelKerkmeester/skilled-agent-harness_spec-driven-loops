@@ -344,9 +344,9 @@ if (window.Webflow?.push) {
 
 ### BEM Naming
 
-- [ ] **[P0] CHK-CSS-06**: Class names follow BEM convention: `.block`, `.block--element`, `.block-modifier`
-- [ ] **[P1] CHK-CSS-07**: Elements use double-dash separator (`--`) 
-- [ ] **[P1] CHK-CSS-08**: Modifiers use single-dash separator (`-`)
+- [ ] **[P0] CHK-CSS-06**: Class names follow BEM convention: `.block`, `.block__element`, `.block--modifier`
+- [ ] **[P1] CHK-CSS-07**: Elements use double-underscore separator (`__`)
+- [ ] **[P1] CHK-CSS-08**: Modifiers use double-dash separator (`--`)
 
 ### Animation Properties
 
@@ -379,9 +379,9 @@ if (window.Webflow?.push) {
 
 /* BEM Naming */
 .hero { }                    /* Block */
-.hero--title { }             /* Element (double-dash) */
-.hero--overlay { }           /* Element */
-.hero-featured { }           /* Modifier (single-dash) */
+.hero__title { }             /* Element (double-underscore) */
+.hero__overlay { }           /* Element */
+.hero--featured { }          /* Modifier (double-dash) */
 
 /* GPU-Accelerated Animation */
 .animated-element {
@@ -407,8 +407,8 @@ if (window.Webflow?.push) {
 }
 
 /* WRONG: Inconsistent BEM */
-.heroTitle { }             /* Should be: .hero--title (BEM element) */
-.hero_overlay { }          /* Should be: .hero--overlay (no underscores) */
+.heroTitle { }             /* Should be: .hero__title (BEM element) */
+.hero_overlay { }          /* Should be: .hero__overlay (double-underscore) */
 
 /* WRONG: Animating layout properties */
 .slide-in {
@@ -434,7 +434,7 @@ After completing validation, document the results using the appropriate template
 ### Results
 
 | Category | P0 | P1 | P2 | Status |
-|----------|----|----|----|---------
+|----------|----|----|----|----|
 | File Header | X/3 | X/2 | X/1 | ✅/❌ |
 | Section Organization | X/3 | X/4 | X/1 | ✅/❌ |
 | Comment Quality | X/1 | X/4 | X/1 | ✅/❌ |
@@ -461,7 +461,7 @@ After completing validation, document the results using the appropriate template
 ### Results
 
 | Category | P0 | P1 | P2 | Status |
-|----------|----|----|----|---------
+|----------|----|----|----|----|
 | Custom Property Naming | X/1 | X/1 | X/1 | ✅/❌ |
 | Attribute Selectors | X/1 | X/1 | X/0 | ✅/❌ |
 | BEM Naming | X/1 | X/2 | X/0 | ✅/❌ |

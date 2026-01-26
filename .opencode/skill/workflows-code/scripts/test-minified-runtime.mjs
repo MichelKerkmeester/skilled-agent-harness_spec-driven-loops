@@ -1,33 +1,38 @@
 #!/usr/bin/env node
-/**
- * test-minified-runtime.mjs - Runtime testing for minified JavaScript
- *
- * Usage:
- *   node scripts/test-minified-runtime.mjs
- *
- * Executes each minified script in a mock browser environment to catch:
- * - Syntax errors
- * - ReferenceError for undefined variables
- * - Runtime exceptions
- * - Missing dependencies
- */
+// ───────────────────────────────────────────────────────────────
+// BUILD: TEST MINIFIED RUNTIME
+// ───────────────────────────────────────────────────────────────
+//
+// Usage:
+//   node scripts/test-minified-runtime.mjs
+//
+// Executes each minified script in a mock browser environment to catch:
+// - Syntax errors
+// - ReferenceError for undefined variables
+// - Runtime exceptions
+// - Missing dependencies
 
 import { readdirSync, existsSync, readFileSync } from 'fs';
 import { join, relative } from 'path';
 import vm from 'vm';
 
-// Configuration
+/* ─────────────────────────────────────────────────────────────
+   1. CONFIGURATION
+──────────────────────────────────────────────────────────────── */
+
 const OUTPUT_DIR = 'src/2_javascript/z_minified';
 
 // Folders to skip
 const SKIP_FOLDERS = ['node_modules', '.git'];
 
-/**
- * Create mock browser environment
- */
-function createMockEnvironment() {
+/* ─────────────────────────────────────────────────────────────
+   2. MOCK ENVIRONMENT
+──────────────────────────────────────────────────────────────── */
+
+// Create mock browser environment
+function create_mock_environment() {
   // Mock element
-  const mockElement = {
+  const mock_element = {
     style: {},
     classList: {
       add: () => {},
@@ -41,9 +46,9 @@ function createMockEnvironment() {
     removeAttribute: () => {},
     addEventListener: () => {},
     removeEventListener: () => {},
-    appendChild: () => mockElement,
-    removeChild: () => mockElement,
-    insertBefore: () => mockElement,
+    appendChild: () => mock_element,
+    removeChild: () => mock_element,
+    insertBefore: () => mock_element,
     querySelector: () => null,
     querySelectorAll: () => [],
     closest: () => null,
@@ -62,17 +67,17 @@ function createMockEnvironment() {
   };
 
   // Mock document
-  const mockDocument = {
+  const mock_document = {
     getElementById: () => null,
     getElementsByClassName: () => [],
     getElementsByTagName: () => [],
     querySelector: () => null,
     querySelectorAll: () => [],
-    createElement: () => ({ ...mockElement }),
+    createElement: () => ({ ...mock_element }),
     createTextNode: () => ({}),
-    body: { ...mockElement },
-    head: { ...mockElement },
-    documentElement: { ...mockElement },
+    body: { ...mock_element },
+    head: { ...mock_element },
+    documentElement: { ...mock_element },
     addEventListener: () => {},
     removeEventListener: () => {},
     readyState: 'complete',
@@ -83,15 +88,25 @@ function createMockEnvironment() {
   };
 
   // Mock window
-  const mockWindow = {
-    document: mockDocument,
+  const mock_window = {
+    document: mock_document,
     addEventListener: () => {},
     removeEventListener: () => {},
-    setTimeout: (fn) => { try { fn(); } catch (e) {} return 1; },
+    setTimeout: (fn) => {
+      try {
+        fn();
+      } catch (e) {}
+      return 1;
+    },
     clearTimeout: () => {},
     setInterval: () => 1,
     clearInterval: () => {},
-    requestAnimationFrame: (fn) => { try { fn(0); } catch (e) {} return 1; },
+    requestAnimationFrame: (fn) => {
+      try {
+        fn(0);
+      } catch (e) {}
+      return 1;
+    },
     cancelAnimationFrame: () => {},
     getComputedStyle: () => ({}),
     matchMedia: () => ({
@@ -144,7 +159,11 @@ function createMockEnvironment() {
 
     // Library mocks
     Webflow: {
-      push: (fn) => { try { fn(); } catch (e) {} },
+      push: (fn) => {
+        try {
+          fn();
+        } catch (e) {}
+      },
     },
     Motion: {
       animate: () => ({ finished: Promise.resolve() }),
@@ -184,7 +203,9 @@ function createMockEnvironment() {
       destroy() {}
     },
     Hls: class MockHls {
-      static isSupported() { return true; }
+      static isSupported() {
+        return true;
+      }
       constructor() {}
       loadSource() {}
       attachMedia() {}
@@ -195,44 +216,55 @@ function createMockEnvironment() {
 
     // Observer mocks
     IntersectionObserver: class MockIntersectionObserver {
-      constructor(callback) { this.callback = callback; }
+      constructor(callback) {
+        this.callback = callback;
+      }
       observe() {}
       unobserve() {}
       disconnect() {}
     },
     ResizeObserver: class MockResizeObserver {
-      constructor(callback) { this.callback = callback; }
+      constructor(callback) {
+        this.callback = callback;
+      }
       observe() {}
       unobserve() {}
       disconnect() {}
     },
     MutationObserver: class MockMutationObserver {
-      constructor(callback) { this.callback = callback; }
+      constructor(callback) {
+        this.callback = callback;
+      }
       observe() {}
       disconnect() {}
-      takeRecords() { return []; }
+      takeRecords() {
+        return [];
+      }
     },
 
     // Fetch mock
-    fetch: () => Promise.resolve({
-      ok: true,
-      json: () => Promise.resolve({}),
-      text: () => Promise.resolve(''),
-    }),
+    fetch: () =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({}),
+        text: () => Promise.resolve(''),
+      }),
   };
 
   // Add self-reference
-  mockWindow.window = mockWindow;
-  mockWindow.self = mockWindow;
-  mockWindow.globalThis = mockWindow;
+  mock_window.window = mock_window;
+  mock_window.self = mock_window;
+  mock_window.globalThis = mock_window;
 
-  return mockWindow;
+  return mock_window;
 }
 
-/**
- * Recursively find all .js files in directory
- */
-function findJsFiles(dir, baseDir = dir) {
+/* ─────────────────────────────────────────────────────────────
+   3. UTILITIES
+──────────────────────────────────────────────────────────────── */
+
+// Recursively find all .js files in directory
+function find_js_files(dir, base_dir = dir) {
   const files = [];
 
   if (!existsSync(dir)) {
@@ -242,59 +274,61 @@ function findJsFiles(dir, baseDir = dir) {
   const entries = readdirSync(dir, { withFileTypes: true });
 
   for (const entry of entries) {
-    const fullPath = join(dir, entry.name);
+    const full_path = join(dir, entry.name);
 
     if (entry.isDirectory()) {
       if (!SKIP_FOLDERS.includes(entry.name)) {
-        files.push(...findJsFiles(fullPath, baseDir));
+        files.push(...find_js_files(full_path, base_dir));
       }
     } else if (entry.isFile() && entry.name.endsWith('.js')) {
-      files.push(relative(baseDir, fullPath));
+      files.push(relative(base_dir, full_path));
     }
   }
 
   return files;
 }
 
-/**
- * Test a single minified file
- */
-function testFile(relativePath) {
-  const filePath = join(OUTPUT_DIR, relativePath);
+/* ─────────────────────────────────────────────────────────────
+   4. TESTING
+──────────────────────────────────────────────────────────────── */
 
-  if (!existsSync(filePath)) {
+// Test a single minified file
+function test_file(relative_path) {
+  const file_path = join(OUTPUT_DIR, relative_path);
+
+  if (!existsSync(file_path)) {
     return { status: 'SKIP', message: 'File not found' };
   }
 
-  const code = readFileSync(filePath, 'utf-8');
+  const code = readFileSync(file_path, 'utf-8');
 
   // Create fresh mock environment
-  const mockEnv = createMockEnvironment();
+  const mock_env = create_mock_environment();
 
   try {
     // Create VM context
-    const context = vm.createContext(mockEnv);
+    const context = vm.createContext(mock_env);
 
     // Execute the script
     vm.runInContext(code, context, {
-      filename: relativePath,
+      filename: relative_path,
       timeout: 5000, // 5 second timeout
     });
 
     // Check for init flags that should be set
-    const initFlagPattern = /__[a-zA-Z_]+Init/g;
-    const expectedFlags = code.match(initFlagPattern) || [];
-    const setFlags = [];
+    const init_flag_pattern = /__[a-zA-Z_]+Init/g;
+    const expected_flags = code.match(init_flag_pattern) || [];
+    const set_flags = [];
 
-    for (const flag of expectedFlags) {
+    for (const flag of expected_flags) {
       if (context[flag] || context.window?.[flag]) {
-        setFlags.push(flag);
+        set_flags.push(flag);
       }
     }
 
     return {
       status: 'PASS',
-      setFlags,
+      set_flags,
     };
   } catch (error) {
     return {
@@ -305,12 +339,15 @@ function testFile(relativePath) {
   }
 }
 
-// Main execution
+/* ─────────────────────────────────────────────────────────────
+   5. MAIN EXECUTION
+──────────────────────────────────────────────────────────────── */
+
 function main() {
   console.log('=== RUNTIME TEST REPORT ===\n');
 
   // Find all minified files
-  const files = findJsFiles(OUTPUT_DIR);
+  const files = find_js_files(OUTPUT_DIR);
 
   if (files.length === 0) {
     console.log('No minified files found in', OUTPUT_DIR);
@@ -323,7 +360,7 @@ function main() {
   let skipped = 0;
 
   for (const file of files) {
-    const result = testFile(file);
+    const result = test_file(file);
 
     console.log(file);
 
@@ -336,8 +373,8 @@ function main() {
     if (result.status === 'PASS') {
       console.log('  ✓ Script executed without errors');
 
-      if (result.setFlags.length > 0) {
-        for (const flag of result.setFlags) {
+      if (result.set_flags.length > 0) {
+        for (const flag of result.set_flags) {
           console.log(`  ✓ Init flag set: ${flag}`);
         }
       }
@@ -347,8 +384,8 @@ function main() {
     } else {
       console.log(`  ✗ FAIL: ${result.error}`);
       if (result.stack) {
-        const stackLines = result.stack.split('\n').slice(1, 4);
-        for (const line of stackLines) {
+        const stack_lines = result.stack.split('\n').slice(1, 4);
+        for (const line of stack_lines) {
           console.log(`    ${line.trim()}`);
         }
       }

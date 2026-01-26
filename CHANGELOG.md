@@ -7,6 +7,70 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.8.5**] - 2026-01-26
+
+Performance patterns series adding **Phase 0: Research** to workflows-code, **6 new performance references**, and **AGENTS.md Section 9** for multi-stack code implementation guidance. All **27 documents** verified by 5 parallel Opus agents with P0/P1/P2 quality fixes applied.
+
+---
+
+## Highlights
+
+### ✨ Phase 0: Research Stage
+- **Pre-implementation analysis** — New optional phase in workflows-code for complex performance work
+- **10-agent methodology** — Reference for parallel analysis covering HTML, JS, CSS, third-party, LCP, animations, network
+- **Research-first approach** — Prevents "fix symptoms, miss root cause" anti-pattern
+
+### 📝 Performance References (6 New Files)
+- **cwv_remediation.md** — LCP safety timeout (3s), FCP preconnects, TBT requestIdleCallback, CLS prevention
+- **resource_loading.md** — Preconnect with crossorigin, async CSS (`onload="this.rel='stylesheet'"`), script defer/async
+- **webflow_constraints.md** — TypeKit sync loading, jQuery auto-injection, CSS generation limits, workarounds table
+- **third_party.md** — GTM delay with Safari fallback, analytics deferral, consent script optimization
+- **performance_checklist.md** — PageSpeed Insights capture protocol, before/after comparison, regression prevention
+- **multi_agent_patterns.md** — 10-agent specialization model for comprehensive codebase analysis
+
+### 🏗️ AGENTS.md Enhancement
+- **Section 9: CODE IMPLEMENTATION** — New dedicated section for workflows-code guidance
+- **Multi-stack examples** — Detection markers table (Go, Node.js, Python, Angular, React Native, DevOps)
+- **Stack-specific verification** — Commands table with `go test`, `npm test`, `pytest`, `ng test`
+- **Universal template** — Removed project-specific references for broader applicability
+
+### 🔧 Quality Fixes (27 Files)
+- **P0: validation_patterns.js** — 44 methods + 45 variables converted camelCase → snake_case
+- **P1: BEM convention** — Fixed `.block--element` → `.block__element` in code_quality_checklist.md
+- **P1: Broken links** — Fixed `./performance_patterns.md` → `../implementation/performance_patterns.md`
+- **P2: Checkbox markers** — Standardized `□` across debugging/verification checklists
+- **SKILL.md routing** — Fixed 6 kebab-case → snake_case file references
+
+### 📋 async_patterns.md Expansion
+- **Lines: 104 → 511** — Comprehensive scheduling patterns documentation
+- **New sections**: requestAnimationFrame, queueMicrotask, scheduler.postTask
+- **Browser compatibility** — Support tables for scheduling APIs
+- **Webflow-specific** — Timing patterns for platform integration
+
+---
+
+## Files Changed
+
+**workflows-code skill (17 files):**
+- `SKILL.md` · `validation_patterns.js` · `async_patterns.md`
+- `code_quality_checklist.md` · `debugging_checklist.md` · `verification_checklist.md`
+- `verification_workflows.md` · `quick_reference.md` · `shared_patterns.md`
+- `minify-webflow.mjs` · `verify-minification.mjs` · `test-minified-runtime.mjs`
+- New: `cwv_remediation.md` · `resource_loading.md` · `webflow_constraints.md` · `third_party.md` · `performance_checklist.md` · `multi_agent_patterns.md`
+
+**Root files:**
+- `AGENTS.md` — Added Section 9 with multi-stack guidance
+
+---
+
+## Upgrade
+
+No action required. Pull latest to get performance patterns and AGENTS.md enhancements.
+
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.8.4...v1.0.8.5
+
+---
+
 ## [**1.0.8.4**] - 2026-01-24
 
 Bug fixes for workflows-code skill restoring **3 missing minification scripts** and updating **25+ broken path references** across SKILL.md and deployment guides.

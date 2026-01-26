@@ -122,9 +122,9 @@ See: .opencode/skill/workflows-chrome-devtools/ for complete CLI automation patt
 ```markdown
 □ Chrome (via Chrome DevTools MCP)
 □ Mobile viewport (375px) - use Chrome DevTools emulation
-□ Tablet viewport (768px) - use Chrome DevTools emulation
+□ Tablet viewport (991px) - use Chrome DevTools emulation
 □ Desktop viewport (1920px)
-□ Test all key viewport transitions (320px, 375px, 768px, 1920px)
+□ Test all key viewport transitions (320px, 375px, 991px, 1920px)
 ```
 
 **Note:** All browser testing done via Chrome. Cross-browser testing beyond Chrome is out of scope (MCP is Chrome-only).
@@ -474,7 +474,7 @@ Discuss with project lead before attempting more fixes.
 - Open browser DevTools console BEFORE attempting fixes
 - Read complete error messages and stack traces
 - Test across multiple browsers
-- Test on mobile viewports (320px, 768px minimum)
+- Test on mobile viewports (320px, 991px minimum)
 - Check Network tab for failed resource loads
 - Add console.log statements to trace execution
 - Test one change at a time

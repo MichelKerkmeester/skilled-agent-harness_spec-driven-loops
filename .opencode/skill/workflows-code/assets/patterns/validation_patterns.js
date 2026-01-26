@@ -14,55 +14,55 @@
  * Example implementation of defense-in-depth for form handling
  */
 class ContactForm {
-  constructor(formElement) {
+  constructor(form_element) {
     // Layer 1: Constructor validation
-    if (!formElement) {
+    if (!form_element) {
       throw new Error('[ContactForm] Form element required');
     }
 
-    this.form = formElement;
-    this.setupValidation();
+    this.form = form_element;
+    this.setup_validation();
   }
 
-  setupValidation() {
+  setup_validation() {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault();
-      this.handleSubmit();
+      this.handle_submit();
     });
 
     // Real-time validation
     const inputs = this.form.querySelectorAll('input, textarea');
     inputs.forEach(input => {
-      input.addEventListener('blur', () => this.validateField(input));
+      input.addEventListener('blur', () => this.validate_field(input));
     });
   }
 
-  validateField(field) {
+  validate_field(field) {
     // Layer 2: Field-level validation
     const value = field.value?.trim();
-    const fieldName = field.name;
+    const field_name = field.name;
 
     // Clear previous errors
-    this.clearFieldError(field);
+    this.clear_field_error(field);
 
     // Required field check
     if (field.hasAttribute('required') && !value) {
-      this.showFieldError(field, `${fieldName} is required`);
+      this.show_field_error(field, `${field_name} is required`);
       return false;
     }
 
     // Type-specific validation
     switch (field.type) {
       case 'email':
-        if (value && !this.isValidEmail(value)) {
-          this.showFieldError(field, 'Invalid email address');
+        if (value && !this.is_valid_email(value)) {
+          this.show_field_error(field, 'Invalid email address');
           return false;
         }
         break;
 
       case 'tel':
-        if (value && !this.isValidPhone(value)) {
-          this.showFieldError(field, 'Invalid phone number');
+        if (value && !this.is_valid_phone(value)) {
+          this.show_field_error(field, 'Invalid phone number');
           return false;
         }
         break;
@@ -71,57 +71,57 @@ class ContactForm {
     return true;
   }
 
-  isValidEmail(email) {
+  is_valid_email(email) {
     // Layer 3: Format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return email_regex.test(email);
   }
 
-  isValidPhone(phone) {
+  is_valid_phone(phone) {
     const cleaned = phone.replace(/[\s\-\(\)]/g, '');
     return /^\d{10,15}$/.test(cleaned);
   }
 
-  async handleSubmit() {
+  async handle_submit() {
     console.log('[ContactForm] Submitting...');
 
     // Layer 2: Validate all fields
     const fields = this.form.querySelectorAll('input, textarea');
-    let isValid = true;
+    let is_valid = true;
 
     fields.forEach(field => {
-      if (!this.validateField(field)) {
-        isValid = false;
+      if (!this.validate_field(field)) {
+        is_valid = false;
       }
     });
 
-    if (!isValid) {
+    if (!is_valid) {
       console.warn('[ContactForm] Validation failed');
       return;
     }
 
     // Layer 3: Collect and sanitize data
-    const formData = new FormData(this.form);
+    const form_data = new FormData(this.form);
     const data = {
-      name: this.sanitizeText(formData.get('name')),
-      email: this.sanitizeEmail(formData.get('email')),
-      message: this.sanitizeText(formData.get('message'))
+      name: this.sanitize_text(form_data.get('name')),
+      email: this.sanitize_email(form_data.get('email')),
+      message: this.sanitize_text(form_data.get('message'))
     };
 
     // Final validation
     if (!data.name || !data.email || !data.message) {
       console.error('[ContactForm] Sanitization removed all content');
-      this.showFormError('Please check your input and try again');
+      this.show_form_error('Please check your input and try again');
       return;
     }
 
     // Submit
     try {
-      const result = await this.submitToAPI(data);
+      const result = await this.submit_to_api(data);
 
       // Layer 4: Validate API response
       if (result && result.success) {
-        this.showFormSuccess('Message sent successfully!');
+        this.show_form_success('Message sent successfully!');
         this.form.reset();
       } else {
         throw new Error(result?.message || 'Submission failed');
@@ -129,11 +129,11 @@ class ContactForm {
 
     } catch (error) {
       console.error('[ContactForm] Submission failed:', error);
-      this.showFormError('Failed to send message. Please try again.');
+      this.show_form_error('Failed to send message. Please try again.');
     }
   }
 
-  sanitizeText(text) {
+  sanitize_text(text) {
     if (!text || typeof text !== 'string') return '';
 
     return text
@@ -143,7 +143,7 @@ class ContactForm {
       .slice(0, 1000);
   }
 
-  sanitizeEmail(email) {
+  sanitize_email(email) {
     if (!email || typeof email !== 'string') return '';
 
     return email
@@ -152,7 +152,7 @@ class ContactForm {
       .slice(0, 254);
   }
 
-  async submitToAPI(data) {
+  async submit_to_api(data) {
     const response = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -166,31 +166,31 @@ class ContactForm {
     return response.json();
   }
 
-  showFieldError(field, message) {
+  show_field_error(field, message) {
     field.classList.add('error');
-    const errorEl = field.parentElement.querySelector('.error-message');
-    if (errorEl) errorEl.textContent = message;
+    const error_el = field.parentElement.querySelector('.error-message');
+    if (error_el) error_el.textContent = message;
   }
 
-  clearFieldError(field) {
+  clear_field_error(field) {
     field.classList.remove('error');
-    const errorEl = field.parentElement.querySelector('.error-message');
-    if (errorEl) errorEl.textContent = '';
+    const error_el = field.parentElement.querySelector('.error-message');
+    if (error_el) error_el.textContent = '';
   }
 
-  showFormSuccess(message) {
-    const successEl = this.form.querySelector('[form-success]');
-    if (successEl) {
-      successEl.textContent = message;
-      successEl.style.display = 'block';
+  show_form_success(message) {
+    const success_el = this.form.querySelector('[form-success]');
+    if (success_el) {
+      success_el.textContent = message;
+      success_el.style.display = 'block';
     }
   }
 
-  showFormError(message) {
-    const errorEl = this.form.querySelector('[form-error]');
-    if (errorEl) {
-      errorEl.textContent = message;
-      errorEl.style.display = 'block';
+  show_form_error(message) {
+    const error_el = this.form.querySelector('[form-error]');
+    if (error_el) {
+      error_el.textContent = message;
+      error_el.style.display = 'block';
     }
   }
 }
@@ -199,13 +199,13 @@ class ContactForm {
  * API Client with Multi-Layer Error Handling
  */
 class APIClient {
-  constructor(baseURL) {
+  constructor(base_url) {
     // Layer 1: Constructor validation
-    if (!baseURL || typeof baseURL !== 'string') {
+    if (!base_url || typeof base_url !== 'string') {
       throw new Error('[API] Base URL required');
     }
 
-    this.baseURL = baseURL.replace(/\/$/, '');
+    this.base_url = base_url.replace(/\/$/, '');
   }
 
   async get(endpoint, params = {}) {
@@ -218,8 +218,8 @@ class APIClient {
 
   async request(method, endpoint, data = null, params = {}) {
     // Layer 1: Method validation
-    const allowedMethods = ['GET', 'POST', 'PUT', 'DELETE'];
-    if (!allowedMethods.includes(method)) {
+    const allowed_methods = ['GET', 'POST', 'PUT', 'DELETE'];
+    if (!allowed_methods.includes(method)) {
       throw new Error(`[API] Invalid HTTP method: ${method}`);
     }
 
@@ -228,7 +228,7 @@ class APIClient {
       throw new Error('[API] Endpoint required');
     }
 
-    const url = new URL(`${this.baseURL}${endpoint}`);
+    const url = new URL(`${this.base_url}${endpoint}`);
 
     // Add query parameters
     if (method === 'GET' && params) {
@@ -284,9 +284,9 @@ class APIClient {
  * Singleton pattern ensures SDK loads only once per page.
  *
  * @example
- * const protection = new BotpoisonProtection({ publicKey: 'pk_xxx' });
- * const token = await protection.getToken();
- * if (token) formData.set('_botpoison', token);
+ * const protection = new BotpoisonProtection({ public_key: 'pk_xxx' });
+ * const token = await protection.get_token();
+ * if (token) form_data.set('_botpoison', token);
  */
 class BotpoisonProtection {
   static SDK_URL = 'https://unpkg.com/@botpoison/browser';
@@ -294,54 +294,54 @@ class BotpoisonProtection {
   static DEFAULT_TIMEOUT_MS = 10000;
 
   /** @type {Promise<boolean>|null} */
-  static sdkLoader = null;
+  static sdk_loader = null;
 
   /** @type {Map<string, object>} */
   static clients = new Map();
 
   /**
    * @param {Object} config
-   * @param {string} config.publicKey - Botpoison public key
-   * @param {number} [config.timeoutMs=10000] - Challenge timeout in ms
+   * @param {string} config.public_key - Botpoison public key
+   * @param {number} [config.timeout_ms=10000] - Challenge timeout in ms
    */
   constructor(config = {}) {
-    if (!config.publicKey || typeof config.publicKey !== 'string') {
-      throw new Error('[BotpoisonProtection] publicKey required');
+    if (!config.public_key || typeof config.public_key !== 'string') {
+      throw new Error('[BotpoisonProtection] public_key required');
     }
 
-    this.publicKey = config.publicKey.trim();
-    this.timeoutMs = config.timeoutMs || BotpoisonProtection.DEFAULT_TIMEOUT_MS;
+    this.public_key = config.public_key.trim();
+    this.timeout_ms = config.timeout_ms || BotpoisonProtection.DEFAULT_TIMEOUT_MS;
   }
 
   /**
    * Load Botpoison SDK asynchronously (singleton)
    * @returns {Promise<boolean>} - True if SDK loaded successfully
    */
-  static async loadSDK() {
+  static async load_sdk() {
     // Already loaded
     if (typeof window.Botpoison !== 'undefined') {
       return true;
     }
 
     // Loading in progress
-    if (BotpoisonProtection.sdkLoader) {
-      return BotpoisonProtection.sdkLoader;
+    if (BotpoisonProtection.sdk_loader) {
+      return BotpoisonProtection.sdk_loader;
     }
 
     // Start loading
-    BotpoisonProtection.sdkLoader = new Promise((resolve) => {
+    BotpoisonProtection.sdk_loader = new Promise((resolve) => {
       const script = document.createElement('script');
       script.src = BotpoisonProtection.SDK_URL;
       script.async = true;
       script.onload = () => resolve(true);
       script.onerror = () => {
-        BotpoisonProtection.sdkLoader = null; // Allow retry
+        BotpoisonProtection.sdk_loader = null; // Allow retry
         resolve(false);
       };
       document.head.appendChild(script);
     });
 
-    return BotpoisonProtection.sdkLoader;
+    return BotpoisonProtection.sdk_loader;
   }
 
   /**
@@ -349,36 +349,36 @@ class BotpoisonProtection {
    * Uses LRU-style eviction when max clients reached
    * @returns {object|null}
    */
-  getClient() {
-    if (!BotpoisonProtection.clients.has(this.publicKey)) {
+  get_client() {
+    if (!BotpoisonProtection.clients.has(this.public_key)) {
       // Evict oldest if at capacity
       if (BotpoisonProtection.clients.size >= BotpoisonProtection.MAX_CLIENTS) {
-        const firstKey = BotpoisonProtection.clients.keys().next().value;
-        BotpoisonProtection.clients.delete(firstKey);
+        const first_key = BotpoisonProtection.clients.keys().next().value;
+        BotpoisonProtection.clients.delete(first_key);
       }
 
       BotpoisonProtection.clients.set(
-        this.publicKey,
-        new window.Botpoison({ publicKey: this.publicKey })
+        this.public_key,
+        new window.Botpoison({ public_key: this.public_key })
       );
     }
 
-    return BotpoisonProtection.clients.get(this.publicKey);
+    return BotpoisonProtection.clients.get(this.public_key);
   }
 
   /**
    * Solve the Botpoison challenge and return token
    * @returns {Promise<string|null>} - Token string or null on failure
    */
-  async getToken() {
-    const sdkLoaded = await BotpoisonProtection.loadSDK();
+  async get_token() {
+    const sdk_loaded = await BotpoisonProtection.load_sdk();
 
-    if (!sdkLoaded || typeof window.Botpoison === 'undefined') {
+    if (!sdk_loaded || typeof window.Botpoison === 'undefined') {
       console.warn('[BotpoisonProtection] SDK failed to load');
       return null;
     }
 
-    const client = this.getClient();
+    const client = this.get_client();
     if (!client) {
       return null;
     }
@@ -387,7 +387,7 @@ class BotpoisonProtection {
       // Race challenge against timeout
       const challenge = client.challenge();
       const timeout = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Botpoison timeout')), this.timeoutMs)
+        setTimeout(() => reject(new Error('Botpoison timeout')), this.timeout_ms)
       );
 
       const result = await Promise.race([challenge, timeout]);
@@ -415,7 +415,7 @@ class BotpoisonProtection {
    * @param {HTMLFormElement} form
    * @returns {boolean}
    */
-  static isRequired(form) {
+  static is_required(form) {
     const key = (
       form.getAttribute('data-botpoison-public-key') ||
       form.getAttribute('data-botpoison-key') ||
@@ -429,7 +429,7 @@ class BotpoisonProtection {
    * @param {HTMLFormElement} form
    * @returns {BotpoisonProtection|null}
    */
-  static fromForm(form) {
+  static from_form(form) {
     const key = (
       form.getAttribute('data-botpoison-public-key') ||
       form.getAttribute('data-botpoison-key') ||
@@ -440,7 +440,7 @@ class BotpoisonProtection {
       return null;
     }
 
-    return new BotpoisonProtection({ publicKey: key });
+    return new BotpoisonProtection({ public_key: key });
   }
 }
 
@@ -453,10 +453,10 @@ class BotpoisonProtection {
  * Webflow's DOM structure.
  *
  * @example
- * const stateManager = new WebflowFormState(formElement);
- * stateManager.showSuccess();  // Shows .w-form-done, hides form
- * stateManager.showError();    // Shows .w-form-fail
- * stateManager.reset();        // Restores initial state
+ * const state_manager = new WebflowFormState(form_element);
+ * state_manager.show_success();  // Shows .w-form-done, hides form
+ * state_manager.show_error();    // Shows .w-form-fail
+ * state_manager.reset();        // Restores initial state
  */
 class WebflowFormState {
   /**
@@ -468,31 +468,31 @@ class WebflowFormState {
     }
 
     this.form = form;
-    this.formBlock = form.closest('.w-form') || form.parentElement;
-    this.doneEl = this.formBlock?.querySelector('.w-form-done');
-    this.failEl = this.formBlock?.querySelector('.w-form-fail');
+    this.form_block = form.closest('.w-form') || form.parentElement;
+    this.done_el = this.form_block?.querySelector('.w-form-done');
+    this.fail_el = this.form_block?.querySelector('.w-form-fail');
   }
 
   /**
    * Show success state (Webflow .w-form-done)
    * @param {Object} options
-   * @param {boolean} [options.hideForm=false] - Hide the form element
-   * @param {boolean} [options.hideError=true] - Hide error message
+   * @param {boolean} [options.hide_form=false] - Hide the form element
+   * @param {boolean} [options.hide_error=true] - Hide error message
    */
-  showSuccess(options = {}) {
-    const { hideForm = false, hideError = true } = options;
+  show_success(options = {}) {
+    const { hide_form = false, hide_error = true } = options;
 
-    if (hideError && this.failEl) {
-      this.failEl.style.display = 'none';
-      this.failEl.setAttribute('aria-hidden', 'true');
+    if (hide_error && this.fail_el) {
+      this.fail_el.style.display = 'none';
+      this.fail_el.setAttribute('aria-hidden', 'true');
     }
 
-    if (this.doneEl) {
-      this.doneEl.style.display = 'block';
-      this.doneEl.setAttribute('aria-hidden', 'false');
+    if (this.done_el) {
+      this.done_el.style.display = 'block';
+      this.done_el.setAttribute('aria-hidden', 'false');
     }
 
-    if (hideForm) {
+    if (hide_form) {
       this.form.style.display = 'none';
       this.form.setAttribute('aria-hidden', 'true');
     }
@@ -501,28 +501,28 @@ class WebflowFormState {
   /**
    * Show error state (Webflow .w-form-fail)
    * @param {Object} options
-   * @param {boolean} [options.hideSuccess=true] - Hide success message
+   * @param {boolean} [options.hide_success=true] - Hide success message
    * @param {string} [options.message] - Custom error message
    */
-  showError(options = {}) {
-    const { hideSuccess = true, message } = options;
+  show_error(options = {}) {
+    const { hide_success = true, message } = options;
 
-    if (hideSuccess && this.doneEl) {
-      this.doneEl.style.display = 'none';
-      this.doneEl.setAttribute('aria-hidden', 'true');
+    if (hide_success && this.done_el) {
+      this.done_el.style.display = 'none';
+      this.done_el.setAttribute('aria-hidden', 'true');
     }
 
-    if (this.failEl) {
-      this.failEl.style.display = 'block';
-      this.failEl.setAttribute('aria-hidden', 'false');
+    if (this.fail_el) {
+      this.fail_el.style.display = 'block';
+      this.fail_el.setAttribute('aria-hidden', 'false');
 
       // Update message if provided
       if (message) {
-        const msgEl = this.failEl.querySelector('[data-error-message]') ||
-                      this.failEl.querySelector('.w-form-fail-msg') ||
-                      this.failEl;
-        if (msgEl.textContent !== undefined) {
-          msgEl.textContent = message;
+        const msg_el = this.fail_el.querySelector('[data-error-message]') ||
+                      this.fail_el.querySelector('.w-form-fail-msg') ||
+                      this.fail_el;
+        if (msg_el.textContent !== undefined) {
+          msg_el.textContent = message;
         }
       }
     }
@@ -532,14 +532,14 @@ class WebflowFormState {
    * Reset to initial state (form visible, messages hidden)
    */
   reset() {
-    if (this.doneEl) {
-      this.doneEl.style.display = 'none';
-      this.doneEl.setAttribute('aria-hidden', 'true');
+    if (this.done_el) {
+      this.done_el.style.display = 'none';
+      this.done_el.setAttribute('aria-hidden', 'true');
     }
 
-    if (this.failEl) {
-      this.failEl.style.display = 'none';
-      this.failEl.setAttribute('aria-hidden', 'true');
+    if (this.fail_el) {
+      this.fail_el.style.display = 'none';
+      this.fail_el.setAttribute('aria-hidden', 'true');
     }
 
     this.form.style.display = '';
@@ -550,8 +550,8 @@ class WebflowFormState {
    * Check if Webflow form structure is present
    * @returns {boolean}
    */
-  hasWebflowStructure() {
-    return Boolean(this.formBlock?.classList.contains('w-form'));
+  has_webflow_structure() {
+    return Boolean(this.form_block?.classList.contains('w-form'));
   }
 }
 
@@ -575,8 +575,8 @@ class WebflowFormState {
  * const form = document.querySelector('form[data-formspark-url]');
  * const controller = new WebflowForm(form, {
  *   endpoint: 'https://submit-form.com/xxx',
- *   botpoisonKey: 'pk_xxx',
- *   resetOnSuccess: true
+ *   botpoison_key: 'pk_xxx',
+ *   reset_on_success: true
  * });
  */
 class WebflowForm {
@@ -591,14 +591,14 @@ class WebflowForm {
 
   /** Default configuration */
   static DEFAULTS = {
-    timeoutMs: 30000,
-    retryCount: 2,
-    retryDelayMs: 1000,
-    resetDelayMs: 200,
-    botpoisonTimeoutMs: 10000,
-    enableFallback: true,
-    validateOnBlur: true,
-    debounceMs: 300
+    timeout_ms: 30000,
+    retry_count: 2,
+    retry_delay_ms: 1000,
+    reset_delay_ms: 200,
+    botpoison_timeout_ms: 10000,
+    enable_fallback: true,
+    validate_on_blur: true,
+    debounce_ms: 300
   };
 
   /** @type {Map<HTMLFormElement, WebflowForm>} */
@@ -608,12 +608,12 @@ class WebflowForm {
    * @param {HTMLFormElement} form
    * @param {Object} [config]
    * @param {string} [config.endpoint] - Form submission URL
-   * @param {string} [config.botpoisonKey] - Botpoison public key
-   * @param {boolean} [config.resetOnSuccess=true] - Reset form after success
-   * @param {number} [config.resetDelayMs=200] - Delay before reset
-   * @param {boolean} [config.enableFallback=true] - Enable native fallback
-   * @param {boolean} [config.validateOnBlur=true] - Validate fields on blur
-   * @param {number} [config.debounceMs=300] - Validation debounce delay
+   * @param {string} [config.botpoison_key] - Botpoison public key
+   * @param {boolean} [config.reset_on_success=true] - Reset form after success
+   * @param {number} [config.reset_delay_ms=200] - Delay before reset
+   * @param {boolean} [config.enable_fallback=true] - Enable native fallback
+   * @param {boolean} [config.validate_on_blur=true] - Validate fields on blur
+   * @param {number} [config.debounce_ms=300] - Validation debounce delay
    */
   constructor(form, config = {}) {
     if (!form || !(form instanceof HTMLFormElement)) {
@@ -621,17 +621,17 @@ class WebflowForm {
     }
 
     this.form = form;
-    this.config = this.resolveConfig(config);
+    this.config = this.resolve_config(config);
     this.state = 'idle'; // idle | submitting | success | error
-    this.stateManager = new WebflowFormState(form);
-    this.submitButtons = Array.from(form.querySelectorAll(WebflowForm.SUBMIT_SELECTOR));
-    this.nativeSubmit = typeof form.submit === 'function' ? form.submit.bind(form) : null;
-    this.resetTimeout = null;
-    this.debounceTimers = new Map();
+    this.state_manager = new WebflowFormState(form);
+    this.submit_buttons = Array.from(form.querySelectorAll(WebflowForm.SUBMIT_SELECTOR));
+    this.native_submit = typeof form.submit === 'function' ? form.submit.bind(form) : null;
+    this.reset_timeout = null;
+    this.debounce_timers = new Map();
 
     // Bind event handlers
-    this.onSubmit = this.handleSubmit.bind(this);
-    this.bindEvents();
+    this.on_submit = this.handle_submit.bind(this);
+    this.bind_events();
 
     // Mark as enhanced
     this.form.dataset.webflowFormEnhanced = 'true';
@@ -642,7 +642,7 @@ class WebflowForm {
    * @param {Object} config
    * @returns {Object}
    */
-  resolveConfig(config) {
+  resolve_config(config) {
     const endpoint = (
       config.endpoint ||
       this.form.getAttribute('data-formspark-url') ||
@@ -650,8 +650,8 @@ class WebflowForm {
       ''
     ).trim();
 
-    const botpoisonKey = (
-      config.botpoisonKey ||
+    const botpoison_key = (
+      config.botpoison_key ||
       this.form.getAttribute('data-botpoison-public-key') ||
       this.form.getAttribute('data-botpoison-key') ||
       ''
@@ -659,31 +659,31 @@ class WebflowForm {
 
     return {
       endpoint,
-      botpoisonKey,
-      resetOnSuccess: config.resetOnSuccess ?? true,
-      resetDelayMs: config.resetDelayMs ?? WebflowForm.DEFAULTS.resetDelayMs,
-      enableFallback: config.enableFallback ?? WebflowForm.DEFAULTS.enableFallback,
-      validateOnBlur: config.validateOnBlur ?? WebflowForm.DEFAULTS.validateOnBlur,
-      debounceMs: config.debounceMs ?? WebflowForm.DEFAULTS.debounceMs,
-      timeoutMs: WebflowForm.DEFAULTS.timeoutMs,
-      retryCount: WebflowForm.DEFAULTS.retryCount,
-      retryDelayMs: WebflowForm.DEFAULTS.retryDelayMs
+      botpoison_key,
+      reset_on_success: config.reset_on_success ?? true,
+      reset_delay_ms: config.reset_delay_ms ?? WebflowForm.DEFAULTS.reset_delay_ms,
+      enable_fallback: config.enable_fallback ?? WebflowForm.DEFAULTS.enable_fallback,
+      validate_on_blur: config.validate_on_blur ?? WebflowForm.DEFAULTS.validate_on_blur,
+      debounce_ms: config.debounce_ms ?? WebflowForm.DEFAULTS.debounce_ms,
+      timeout_ms: WebflowForm.DEFAULTS.timeout_ms,
+      retry_count: WebflowForm.DEFAULTS.retry_count,
+      retry_delay_ms: WebflowForm.DEFAULTS.retry_delay_ms
     };
   }
 
   /**
    * Bind form events
    */
-  bindEvents() {
+  bind_events() {
     // Intercept submit
-    this.form.addEventListener('submit', this.onSubmit, { capture: true });
+    this.form.addEventListener('submit', this.on_submit, { capture: true });
 
     // Real-time validation on blur (debounced)
-    if (this.config.validateOnBlur) {
+    if (this.config.validate_on_blur) {
       const inputs = this.form.querySelectorAll('input, textarea, select');
       inputs.forEach(input => {
-        input.addEventListener('blur', () => this.debouncedValidate(input));
-        input.addEventListener('input', () => this.clearFieldError(input));
+        input.addEventListener('blur', () => this.debounced_validate(input));
+        input.addEventListener('input', () => this.clear_field_error(input));
       });
     }
 
@@ -700,18 +700,18 @@ class WebflowForm {
    * Debounced field validation
    * @param {HTMLElement} field
    */
-  debouncedValidate(field) {
-    const existingTimer = this.debounceTimers.get(field);
-    if (existingTimer) {
-      clearTimeout(existingTimer);
+  debounced_validate(field) {
+    const existing_timer = this.debounce_timers.get(field);
+    if (existing_timer) {
+      clearTimeout(existing_timer);
     }
 
     const timer = setTimeout(() => {
-      this.validateField(field);
-      this.debounceTimers.delete(field);
-    }, this.config.debounceMs);
+      this.validate_field(field);
+      this.debounce_timers.delete(field);
+    }, this.config.debounce_ms);
 
-    this.debounceTimers.set(field, timer);
+    this.debounce_timers.set(field, timer);
   }
 
   /**
@@ -719,14 +719,14 @@ class WebflowForm {
    * @param {HTMLElement} field
    * @returns {boolean}
    */
-  validateField(field) {
+  validate_field(field) {
     const value = field.value?.trim() || '';
 
-    this.clearFieldError(field);
+    this.clear_field_error(field);
 
     // Required check
     if (field.hasAttribute('required') && !value) {
-      this.showFieldError(field, 'This field is required');
+      this.show_field_error(field, 'This field is required');
       return false;
     }
 
@@ -735,7 +735,7 @@ class WebflowForm {
       switch (field.type) {
         case 'email':
           if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-            this.showFieldError(field, 'Please enter a valid email');
+            this.show_field_error(field, 'Please enter a valid email');
             return false;
           }
           break;
@@ -743,7 +743,7 @@ class WebflowForm {
         case 'tel':
           const cleaned = value.replace(/[\s\-\(\)\.]/g, '');
           if (!/^\+?\d{7,15}$/.test(cleaned)) {
-            this.showFieldError(field, 'Please enter a valid phone number');
+            this.show_field_error(field, 'Please enter a valid phone number');
             return false;
           }
           break;
@@ -753,11 +753,11 @@ class WebflowForm {
             const url = new URL(value);
             // Security: Only allow safe URL schemes
             if (!['http:', 'https:'].includes(url.protocol)) {
-              this.showFieldError(field, 'Only HTTP and HTTPS URLs are allowed');
+              this.show_field_error(field, 'Only HTTP and HTTPS URLs are allowed');
               return false;
             }
           } catch {
-            this.showFieldError(field, 'Please enter a valid URL');
+            this.show_field_error(field, 'Please enter a valid URL');
             return false;
           }
           break;
@@ -769,7 +769,7 @@ class WebflowForm {
       const regex = new RegExp(field.pattern);
       if (!regex.test(value)) {
         const message = field.getAttribute('data-error-message') || 'Invalid format';
-        this.showFieldError(field, message);
+        this.show_field_error(field, message);
         return false;
       }
     }
@@ -782,20 +782,20 @@ class WebflowForm {
    * @param {HTMLElement} field
    * @param {string} message
    */
-  showFieldError(field, message) {
+  show_field_error(field, message) {
     field.classList.add('error', 'w-input-error');
     field.setAttribute('aria-invalid', 'true');
 
     // Find or create error element
-    const errorId = `${field.id || field.name}-error`;
-    let errorEl = field.parentElement?.querySelector(`[data-error-for="${field.name}"]`) ||
+    const error_id = `${field.id || field.name}-error`;
+    let error_el = field.parentElement?.querySelector(`[data-error-for="${field.name}"]`) ||
                   field.parentElement?.querySelector('.field-error-message') ||
-                  document.getElementById(errorId);
+                  document.getElementById(error_id);
 
-    if (errorEl) {
-      errorEl.textContent = message;
-      errorEl.style.display = 'block';
-      field.setAttribute('aria-describedby', errorEl.id || errorId);
+    if (error_el) {
+      error_el.textContent = message;
+      error_el.style.display = 'block';
+      field.setAttribute('aria-describedby', error_el.id || error_id);
     }
   }
 
@@ -803,17 +803,17 @@ class WebflowForm {
    * Clear field-level error
    * @param {HTMLElement} field
    */
-  clearFieldError(field) {
+  clear_field_error(field) {
     field.classList.remove('error', 'w-input-error');
     field.removeAttribute('aria-invalid');
     field.removeAttribute('aria-describedby');
 
-    const errorEl = field.parentElement?.querySelector(`[data-error-for="${field.name}"]`) ||
+    const error_el = field.parentElement?.querySelector(`[data-error-for="${field.name}"]`) ||
                     field.parentElement?.querySelector('.field-error-message');
 
-    if (errorEl) {
-      errorEl.textContent = '';
-      errorEl.style.display = 'none';
+    if (error_el) {
+      error_el.textContent = '';
+      error_el.style.display = 'none';
     }
   }
 
@@ -821,7 +821,7 @@ class WebflowForm {
    * Handle form submission
    * @param {SubmitEvent} event
    */
-  async handleSubmit(event) {
+  async handle_submit(event) {
     if (event) {
       event.preventDefault();
       event.stopImmediatePropagation?.() || event.stopPropagation?.();
@@ -834,11 +834,11 @@ class WebflowForm {
 
     // Validate all fields
     const fields = this.form.querySelectorAll('input, textarea, select');
-    let isValid = true;
+    let is_valid = true;
 
     fields.forEach(field => {
-      if (!this.validateField(field)) {
-        isValid = false;
+      if (!this.validate_field(field)) {
+        is_valid = false;
       }
     });
 
@@ -848,81 +848,81 @@ class WebflowForm {
       return;
     }
 
-    if (!isValid) {
+    if (!is_valid) {
       return;
     }
 
     // Begin submission
     this.state = 'submitting';
-    this.setLoadingState(true);
+    this.set_loading_state(true);
 
     try {
       // Collect form data
-      const formData = new FormData(this.form);
+      const form_data = new FormData(this.form);
 
       // Solve Botpoison challenge if configured
-      if (this.config.botpoisonKey) {
+      if (this.config.botpoison_key) {
         const protection = new BotpoisonProtection({
-          publicKey: this.config.botpoisonKey
+          public_key: this.config.botpoison_key
         });
 
-        const token = await protection.getToken();
+        const token = await protection.get_token();
 
         if (!token) {
           throw new Error('Spam protection challenge failed');
         }
 
-        formData.set('_botpoison', token);
+        form_data.set('_botpoison', token);
       }
 
       // Submit with retry
-      const response = await this.submitWithRetry(formData);
+      const response = await this.submit_with_retry(form_data);
 
       if (!response.ok) {
         throw new Error(`Submission failed: ${response.status}`);
       }
 
       // Success
-      await this.handleSuccess();
+      await this.handle_success();
 
     } catch (error) {
       console.error('[WebflowForm] Submission error:', error);
 
       // Check for CORS/network errors that might benefit from fallback
-      const isCorsError = error.message && (
+      const is_cors_error = error.message && (
         error.message.includes('Failed to fetch') ||
         error.message.includes('NetworkError') ||
         error.message.includes('CORS')
       );
 
-      if (this.config.enableFallback && isCorsError && this.nativeSubmit) {
+      if (this.config.enable_fallback && is_cors_error && this.native_submit) {
         console.warn('[WebflowForm] Falling back to native submission');
         this.state = 'idle';
-        this.setLoadingState(false);
-        this.nativeSubmit.call(this.form);
+        this.set_loading_state(false);
+        this.native_submit.call(this.form);
         return;
       }
 
-      this.handleError(error);
+      this.handle_error(error);
 
     } finally {
       if (this.state === 'submitting') {
         this.state = 'idle';
       }
-      this.setLoadingState(false);
+      this.set_loading_state(false);
     }
   }
 
   /**
    * Submit form data with retry/backoff
-   * @param {FormData} formData
+   * @param {FormData} form_data
    * @param {number} [attempt=0]
    * @returns {Promise<Response>}
    */
-  async submitWithRetry(formData, attempt = 0) {
+  async submit_with_retry(form_data, attempt = 0) {
     // Convert FormData to JSON
     const json = {};
-    for (const [key, value] of formData.entries()) {
+    for (const [key, value] of form_data.entries()) {
       if (value instanceof File) {
         console.warn(`[WebflowForm] File field "${key}" skipped (JSON mode)`);
         continue;
@@ -940,9 +940,9 @@ class WebflowForm {
     }
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(
+    const timeout_id = setTimeout(
       () => controller.abort(),
-      this.config.timeoutMs
+      this.config.timeout_ms
     );
 
     try {
@@ -956,7 +956,7 @@ class WebflowForm {
         signal: controller.signal
       });
 
-      clearTimeout(timeoutId);
+      clearTimeout(timeout_id);
 
       if (response.ok) {
         return response;
@@ -964,22 +964,22 @@ class WebflowForm {
 
       // Retry for transient errors
       if (WebflowForm.RETRYABLE_STATUS.has(response.status) &&
-          attempt < this.config.retryCount) {
-        const delay = this.config.retryDelayMs * Math.pow(2, attempt);
+          attempt < this.config.retry_count) {
+        const delay = this.config.retry_delay_ms * Math.pow(2, attempt);
         await this.wait(delay);
-        return this.submitWithRetry(formData, attempt + 1);
+        return this.submit_with_retry(form_data, attempt + 1);
       }
 
       return response;
 
     } catch (error) {
-      clearTimeout(timeoutId);
+      clearTimeout(timeout_id);
 
       // Retry on abort/network errors
-      if (attempt < this.config.retryCount) {
-        const delay = this.config.retryDelayMs * Math.pow(2, attempt);
+      if (attempt < this.config.retry_count) {
+        const delay = this.config.retry_delay_ms * Math.pow(2, attempt);
         await this.wait(delay);
-        return this.submitWithRetry(formData, attempt + 1);
+        return this.submit_with_retry(form_data, attempt + 1);
       }
 
       throw error;
@@ -989,12 +989,12 @@ class WebflowForm {
   /**
    * Handle successful submission
    */
-  async handleSuccess() {
+  async handle_success() {
     this.state = 'success';
     this.form.setAttribute('data-state', 'success');
 
     // Show Webflow success state
-    this.stateManager.showSuccess();
+    this.state_manager.show_success();
 
     // Dispatch custom events
     this.form.dispatchEvent(new CustomEvent('webflowform:success', {
@@ -1003,10 +1003,10 @@ class WebflowForm {
     }));
 
     // Reset form after delay
-    if (this.config.resetOnSuccess) {
-      this.resetTimeout = setTimeout(() => {
-        this.resetForm();
-      }, this.config.resetDelayMs);
+    if (this.config.reset_on_success) {
+      this.reset_timeout = setTimeout(() => {
+        this.reset_form();
+      }, this.config.reset_delay_ms);
     }
   }
 
@@ -1014,12 +1014,12 @@ class WebflowForm {
    * Handle submission error
    * @param {Error} error
    */
-  handleError(error) {
+  handle_error(error) {
     this.state = 'error';
     this.form.setAttribute('data-state', 'error');
 
     // Show Webflow error state
-    this.stateManager.showError({
+    this.state_manager.show_error({
       message: 'Something went wrong. Please try again.'
     });
 
@@ -1032,35 +1032,35 @@ class WebflowForm {
 
   /**
    * Set loading state on form and buttons
-   * @param {boolean} isLoading
+   * @param {boolean} is_loading
    */
-  setLoadingState(isLoading) {
-    this.form.toggleAttribute('aria-busy', isLoading);
-    this.form.setAttribute('data-state', isLoading ? 'submitting' : this.state);
+  set_loading_state(is_loading) {
+    this.form.toggleAttribute('aria-busy', is_loading);
+    this.form.setAttribute('data-state', is_loading ? 'submitting' : this.state);
 
-    this.submitButtons.forEach(button => {
-      button.disabled = isLoading;
-      button.classList.toggle('is-loading', isLoading);
+    this.submit_buttons.forEach(button => {
+      button.disabled = is_loading;
+      button.classList.toggle('is-loading', is_loading);
     });
   }
 
   /**
    * Reset form to initial state
    */
-  resetForm() {
-    if (this.resetTimeout) {
-      clearTimeout(this.resetTimeout);
-      this.resetTimeout = null;
+  reset_form() {
+    if (this.reset_timeout) {
+      clearTimeout(this.reset_timeout);
+      this.reset_timeout = null;
     }
 
     this.form.reset();
-    this.stateManager.reset();
+    this.state_manager.reset();
     this.state = 'idle';
     this.form.removeAttribute('data-state');
 
     // Clear all field errors
     const fields = this.form.querySelectorAll('input, textarea, select');
-    fields.forEach(field => this.clearFieldError(field));
+    fields.forEach(field => this.clear_field_error(field));
   }
 
   /**
@@ -1076,14 +1076,14 @@ class WebflowForm {
    * Cleanup and destroy instance
    */
   destroy() {
-    if (this.resetTimeout) {
-      clearTimeout(this.resetTimeout);
+    if (this.reset_timeout) {
+      clearTimeout(this.reset_timeout);
     }
 
-    this.debounceTimers.forEach(timer => clearTimeout(timer));
-    this.debounceTimers.clear();
+    this.debounce_timers.forEach(timer => clearTimeout(timer));
+    this.debounce_timers.clear();
 
-    this.form.removeEventListener('submit', this.onSubmit, { capture: true });
+    this.form.removeEventListener('submit', this.on_submit, { capture: true });
     this.form.removeAttribute('data-webflow-form-enhanced');
     this.state = 'idle';
 
@@ -1110,7 +1110,7 @@ class WebflowForm {
   /**
    * Destroy all instances
    */
-  static destroyAll() {
+  static destroy_all() {
     WebflowForm.instances.forEach(controller => controller.destroy());
     WebflowForm.instances.clear();
   }
@@ -1120,7 +1120,7 @@ class WebflowForm {
    * @param {HTMLFormElement} form
    * @returns {WebflowForm|undefined}
    */
-  static getInstance(form) {
+  static get_instance(form) {
     return WebflowForm.instances.get(form);
   }
 }
@@ -1161,10 +1161,10 @@ class WebflowForm {
  * const form = document.querySelector('form');
  * const controller = new WebflowForm(form, {
  *   endpoint: 'https://submit-form.com/xxx',
- *   botpoisonKey: 'pk_xxx',
- *   resetOnSuccess: true,
- *   resetDelayMs: 500,
- *   validateOnBlur: true
+ *   botpoison_key: 'pk_xxx',
+ *   reset_on_success: true,
+ *   reset_delay_ms: 500,
+ *   validate_on_blur: true
  * });
  *
  * // Listen for events
@@ -1186,7 +1186,7 @@ class WebflowForm {
  * - data-form-reset-delay: Milliseconds before reset (default: 200)
  * - data-form-fallback: Enable native fallback on CORS errors (default: true)
  * - data-error-message: Custom validation error message for field
- * - data-error-for="fieldName": Associate error element with field
+ * - data-error-for="field_name": Associate error element with field
  */
 
 
@@ -1206,7 +1206,7 @@ class WebflowForm {
  * formatter.format('0612345678');     // '+31 6 1234 5678'
  * formatter.format('+31612345678');   // '+31 6 1234 5678'
  * formatter.format('31612345678');    // '+31 6 1234 5678'
- * formatter.isValid('+31 6 1234 5678'); // true
+ * formatter.is_valid('+31 6 1234 5678'); // true
  *
  * @see /src/2_javascript/form/form_validation.js:163-340
  */
@@ -1225,39 +1225,39 @@ class DutchPhoneFormatter {
    * @returns {{ digits: string, national: string }}
    *
    * @example
-   * extractDigits('+31 6 1234 5678') // { digits: '31612345678', national: '612345678' }
-   * extractDigits('0612345678')      // { digits: '0612345678', national: '612345678' }
-   * extractDigits('06-1234-5678')    // { digits: '0612345678', national: '612345678' }
+   * extract_digits('+31 6 1234 5678') // { digits: '31612345678', national: '612345678' }
+   * extract_digits('0612345678')      // { digits: '0612345678', national: '612345678' }
+   * extract_digits('06-1234-5678')    // { digits: '0612345678', national: '612345678' }
    */
-  extractDigits(raw) {
+  extract_digits(raw) {
     const text = raw || '';
-    const digitsOnly = text.replace(/\D+/g, '');
+    const digits_only = text.replace(/\D+/g, '');
 
-    if (!digitsOnly) {
+    if (!digits_only) {
       return { digits: '', national: '' };
     }
 
-    let national = digitsOnly;
+    let national = digits_only;
 
     // Handle +31 prefix
     if (text.trim().startsWith('+')) {
-      if (digitsOnly.startsWith('31')) {
-        national = digitsOnly.slice(2);
+      if (digits_only.startsWith('31')) {
+        national = digits_only.slice(2);
       } else {
-        national = digitsOnly.replace(/^31/, '');
+        national = digits_only.replace(/^31/, '');
       }
     }
     // Handle 31 without +
-    else if (digitsOnly.startsWith('31')) {
-      national = digitsOnly.slice(2);
+    else if (digits_only.startsWith('31')) {
+      national = digits_only.slice(2);
     }
     // Handle leading 0 (national format)
-    else if (digitsOnly.startsWith('0')) {
-      national = digitsOnly.slice(1);
+    else if (digits_only.startsWith('0')) {
+      national = digits_only.slice(1);
     }
 
     return {
-      digits: digitsOnly,
+      digits: digits_only,
       national: national.slice(0, DutchPhoneFormatter.MAX_DIGITS)
     };
   }
@@ -1266,21 +1266,21 @@ class DutchPhoneFormatter {
    * Format digits into +31 mobile layout with caret position tracking
    *
    * @param {string} raw - Raw phone input value
-   * @returns {{ formatted: string, digits: string, positions: number[], prefixLength: number }}
+   * @returns {{ formatted: string, digits: string, positions: number[], prefix_length: number }}
    *
    * @example
-   * formatValue('0612345678')
-   * // { formatted: '+31 6 1234 5678', digits: '612345678', positions: [...], prefixLength: 4 }
+   * format_value('0612345678')
+   * // { formatted: '+31 6 1234 5678', digits: '612345678', positions: [...], prefix_length: 4 }
    */
-  formatValue(raw) {
-    const { national: digits } = this.extractDigits(raw);
+  format_value(raw) {
+    const { national: digits } = this.extract_digits(raw);
 
     if (!digits.length) {
       return {
         formatted: raw,
         digits,
         positions: [],
-        prefixLength: raw.length
+        prefix_length: raw.length
       };
     }
 
@@ -1315,7 +1315,7 @@ class DutchPhoneFormatter {
       formatted,
       digits,
       positions,
-      prefixLength: 4 // '+31 '
+      prefix_length: 4 // '+31 '
     };
   }
 
@@ -1326,7 +1326,7 @@ class DutchPhoneFormatter {
    * @returns {string} Formatted as +31 6 XXXX XXXX
    */
   format(value) {
-    return this.formatValue(value).formatted;
+    return this.format_value(value).formatted;
   }
 
   /**
@@ -1336,28 +1336,28 @@ class DutchPhoneFormatter {
    * @param {number} caret - Current caret position
    * @returns {number} Number of national digits before caret
    */
-  countDigitsBeforeCaret(raw, caret) {
+  count_digits_before_caret(raw, caret) {
     const slice = raw.slice(0, caret);
-    return this.extractDigits(slice).national.length;
+    return this.extract_digits(slice).national.length;
   }
 
   /**
    * Calculate new caret position after formatting
    *
-   * @param {{ formatted: string, digits: string, positions: number[], prefixLength: number }} result
-   * @param {number} digitCount - Number of digits before caret
+   * @param {{ formatted: string, digits: string, positions: number[], prefix_length: number }} result
+   * @param {number} digit_count - Number of digits before caret
    * @returns {number} New caret position in formatted string
    */
-  caretFromDigitPositions(result, digitCount) {
-    if (digitCount <= 0) {
-      return Math.min(result.prefixLength, result.formatted.length);
+  caret_from_digit_positions(result, digit_count) {
+    if (digit_count <= 0) {
+      return Math.min(result.prefix_length, result.formatted.length);
     }
 
-    if (digitCount > result.digits.length) {
+    if (digit_count > result.digits.length) {
       return result.formatted.length;
     }
 
-    const index = result.positions[digitCount - 1];
+    const index = result.positions[digit_count - 1];
     return typeof index === 'number' ? index : result.formatted.length;
   }
 
@@ -1367,7 +1367,7 @@ class DutchPhoneFormatter {
    * @param {string} value - Phone input value
    * @returns {boolean} True if probably Dutch number
    */
-  isProbablyDutch(value) {
+  is_probably_dutch(value) {
     const text = String(value || '').replace(/\s+/g, '');
     if (!text) return true;
 
@@ -1387,12 +1387,12 @@ class DutchPhoneFormatter {
    * @returns {boolean} True if valid Dutch mobile number
    *
    * @example
-   * isValid('+31 6 1234 5678') // true
-   * isValid('0612345678')       // true
-   * isValid('+31 20 123 4567')  // false (landline, not mobile)
+   * is_valid('+31 6 1234 5678') // true
+   * is_valid('0612345678')       // true
+   * is_valid('+31 20 123 4567')  // false (landline, not mobile)
    */
-  isValid(value) {
-    const { national } = this.extractDigits(value || '');
+  is_valid(value) {
+    const { national } = this.extract_digits(value || '');
 
     // Must have exactly 9 digits after country code
     if (national.length !== DutchPhoneFormatter.MAX_DIGITS) {
@@ -1409,7 +1409,7 @@ class DutchPhoneFormatter {
    * @param {string} value - Phone number to validate
    * @returns {boolean} True if valid E.164 format
    */
-  isValidE164(value) {
+  is_valid_e164(value) {
     const normalized = String(value || '').replace(/[\s()-]/g, '');
     return /^\+[1-9][0-9]{6,14}$/.test(normalized);
   }
@@ -1433,7 +1433,7 @@ class InternationalPhoneFormatter {
    * @param {string} formatted - Formatted phone string
    * @returns {number[]} Array of positions for each digit
    */
-  mapDigitPositions(formatted) {
+  map_digit_positions(formatted) {
     const positions = [];
     for (let i = 0; i < formatted.length; i++) {
       if (/\d/.test(formatted[i])) {
@@ -1447,35 +1447,35 @@ class InternationalPhoneFormatter {
    * Format international phone number with smart grouping
    *
    * @param {string} raw - Raw phone input
-   * @returns {{ formatted: string, digits: string, positions: number[], prefixLength: number }}
+   * @returns {{ formatted: string, digits: string, positions: number[], prefix_length: number }}
    */
-  formatValue(raw) {
+  format_value(raw) {
     const text = raw || '';
     const trimmed = text.trim();
-    const digitsOnly = text.replace(/\D+/g, '');
+    const digits_only = text.replace(/\D+/g, '');
 
     // Return as-is if not international format
-    if (!trimmed.startsWith('+') || !digitsOnly.length) {
+    if (!trimmed.startsWith('+') || !digits_only.length) {
       return {
         formatted: text,
-        digits: digitsOnly,
-        positions: this.mapDigitPositions(text),
-        prefixLength: trimmed.startsWith('+') ? 1 : 0
+        digits: digits_only,
+        positions: this.map_digit_positions(text),
+        prefix_length: trimmed.startsWith('+') ? 1 : 0
       };
     }
 
     // Determine country code length (1 for US/Russia, 2 for most others)
-    let countryLength;
-    if (digitsOnly[0] === '1' || digitsOnly[0] === '7') {
-      countryLength = 1;
-    } else if (digitsOnly.length >= 2) {
-      countryLength = 2;
+    let country_length;
+    if (digits_only[0] === '1' || digits_only[0] === '7') {
+      country_length = 1;
+    } else if (digits_only.length >= 2) {
+      country_length = 2;
     } else {
-      countryLength = digitsOnly.length;
+      country_length = digits_only.length;
     }
 
-    const country = digitsOnly.slice(0, countryLength);
-    let remainder = digitsOnly.slice(countryLength);
+    const country = digits_only.slice(0, country_length);
+    let remainder = digits_only.slice(country_length);
 
     // Group remaining digits in chunks of 3-4
     const groups = [];
@@ -1493,17 +1493,17 @@ class InternationalPhoneFormatter {
       formatted += ' ' + groups.join(' ');
     }
 
-    const positions = this.mapDigitPositions(formatted);
-    const prefixSpaceIndex = formatted.indexOf(' ');
-    const prefixLength = prefixSpaceIndex === -1
+    const positions = this.map_digit_positions(formatted);
+    const prefix_space_index = formatted.indexOf(' ');
+    const prefix_length = prefix_space_index === -1
       ? formatted.length
-      : Math.min(formatted.length, prefixSpaceIndex + 1);
+      : Math.min(formatted.length, prefix_space_index + 1);
 
     return {
       formatted,
-      digits: digitsOnly,
+      digits: digits_only,
       positions,
-      prefixLength
+      prefix_length
     };
   }
 
@@ -1513,7 +1513,7 @@ class InternationalPhoneFormatter {
    * @returns {string} Formatted phone number
    */
   format(value) {
-    return this.formatValue(value).formatted;
+    return this.format_value(value).formatted;
   }
 }
 
@@ -1538,7 +1538,7 @@ class InternationalPhoneFormatter {
  * // Or with callback
  * detector.init((input) => {
  *   console.log('Autofill detected on:', input.name);
- *   validateField(input);
+ *   validate_field(input);
  * });
  *
  * @see /src/2_javascript/form/form_validation.js:1264-1321
@@ -1551,13 +1551,13 @@ class AutofillDetector {
   static ANIMATION_NAME = 'autofilldetect';
 
   /** WeakSet to track bound inputs (prevents double-binding) */
-  boundInputs = new WeakSet();
+  bound_inputs = new WeakSet();
 
   /**
    * Inject CSS animation styles for autofill detection
    * @private
    */
-  injectStyles() {
+  inject_styles() {
     if (document.getElementById(AutofillDetector.STYLE_ID)) {
       return;
     }
@@ -1581,26 +1581,26 @@ class AutofillDetector {
    * Bind autofill detection to input element
    *
    * @param {HTMLInputElement|HTMLTextAreaElement} input - Input to monitor
-   * @param {Function} [onAutofill] - Callback when autofill detected
+   * @param {Function} [on_autofill] - Callback when autofill detected
    */
-  bindInput(input, onAutofill) {
+  bind_input(input, on_autofill) {
     // Skip if already bound (WeakSet prevents double-binding)
-    if (this.boundInputs.has(input)) {
+    if (this.bound_inputs.has(input)) {
       return;
     }
-    this.boundInputs.add(input);
+    this.bound_inputs.add(input);
 
     // Listen for animation triggered by autofill
     input.addEventListener('animationstart', (event) => {
       if (event.animationName === AutofillDetector.ANIMATION_NAME) {
         // Small delay to ensure autofill value is set
         setTimeout(() => {
-          if (onAutofill) {
-            onAutofill(input);
+          if (on_autofill) {
+            on_autofill(input);
           } else {
             // Default: dispatch input event to trigger validation
-            const inputEvent = new Event('input', { bubbles: true });
-            input.dispatchEvent(inputEvent);
+            const input_event = new Event('input', { bubbles: true });
+            input.dispatchEvent(input_event);
           }
         }, 50);
       }
@@ -1613,7 +1613,7 @@ class AutofillDetector {
    * @param {HTMLInputElement|HTMLTextAreaElement} input - Input to check
    * @returns {boolean} True if autofilled
    */
-  isAutofilled(input) {
+  is_autofilled(input) {
     try {
       return input.matches(':-webkit-autofill') || input.matches(':autofill');
     } catch (e) {
@@ -1625,35 +1625,35 @@ class AutofillDetector {
   /**
    * Initialize autofill detection on all inputs
    *
-   * @param {Function} [onAutofill] - Callback when autofill detected
+   * @param {Function} [on_autofill] - Callback when autofill detected
    */
-  init(onAutofill) {
-    this.injectStyles();
+  init(on_autofill) {
+    this.inject_styles();
 
     const inputs = document.querySelectorAll('input, textarea');
     inputs.forEach((input) => {
-      this.bindInput(input, onAutofill);
+      this.bind_input(input, on_autofill);
     });
 
     // Fallback: Check for autofill pseudo-class at various intervals
     // (catches autofill that happens before our listeners are bound)
-    const checkAutofill = () => {
+    const check_autofill = () => {
       inputs.forEach((input) => {
-        if (this.isAutofilled(input)) {
-          if (onAutofill) {
-            onAutofill(input);
+        if (this.is_autofilled(input)) {
+          if (on_autofill) {
+            on_autofill(input);
           } else {
-            const inputEvent = new Event('input', { bubbles: true });
-            input.dispatchEvent(inputEvent);
+            const input_event = new Event('input', { bubbles: true });
+            input.dispatchEvent(input_event);
           }
         }
       });
     };
 
     // Check at various intervals to catch different autofill timings
-    setTimeout(checkAutofill, 100);
-    setTimeout(checkAutofill, 500);
-    setTimeout(checkAutofill, 1000);
+    setTimeout(check_autofill, 100);
+    setTimeout(check_autofill, 500);
+    setTimeout(check_autofill, 1000);
   }
 }
 
@@ -1674,10 +1674,10 @@ class AutofillDetector {
  * const tracker = new FieldBindingTracker();
  *
  * function bindValidation(input) {
- *   if (tracker.isBound(input, 'validation')) return;
- *   tracker.markBound(input, 'validation');
+ *   if (tracker.is_bound(input, 'validation')) return;
+ *   tracker.mark_bound(input, 'validation');
  *
- *   input.addEventListener('blur', validateField);
+ *   input.addEventListener('blur', validate_field);
  * }
  *
  * @see /src/2_javascript/form/form_validation.js:28-29
@@ -1687,61 +1687,61 @@ class FieldBindingTracker {
    * Map of binding type to WeakSet
    * @type {Map<string, WeakSet>}
    */
-  bindingSets = new Map();
+  binding_sets = new Map();
 
   /**
    * Get or create WeakSet for binding type
    *
-   * @param {string} bindingType - Type identifier (e.g., 'validation', 'formatter')
+   * @param {string} binding_type - Type identifier (e.g., 'validation', 'formatter')
    * @returns {WeakSet}
    * @private
    */
-  getSet(bindingType) {
-    if (!this.bindingSets.has(bindingType)) {
-      this.bindingSets.set(bindingType, new WeakSet());
+  get_set(binding_type) {
+    if (!this.binding_sets.has(binding_type)) {
+      this.binding_sets.set(binding_type, new WeakSet());
     }
-    return this.bindingSets.get(bindingType);
+    return this.binding_sets.get(binding_type);
   }
 
   /**
    * Check if element is already bound for given type
    *
    * @param {Element} element - DOM element to check
-   * @param {string} bindingType - Type of binding to check
+   * @param {string} binding_type - Type of binding to check
    * @returns {boolean} True if already bound
    */
-  isBound(element, bindingType) {
-    return this.getSet(bindingType).has(element);
+  is_bound(element, binding_type) {
+    return this.get_set(binding_type).has(element);
   }
 
   /**
    * Mark element as bound for given type
    *
    * @param {Element} element - DOM element to mark
-   * @param {string} bindingType - Type of binding
+   * @param {string} binding_type - Type of binding
    */
-  markBound(element, bindingType) {
-    this.getSet(bindingType).add(element);
+  mark_bound(element, binding_type) {
+    this.get_set(binding_type).add(element);
   }
 
   /**
    * Clear binding for element (useful for re-initialization)
    *
    * @param {Element} element - DOM element
-   * @param {string} bindingType - Type of binding to clear
+   * @param {string} binding_type - Type of binding to clear
    */
-  clearBinding(element, bindingType) {
-    this.getSet(bindingType).delete(element);
+  clear_binding(element, binding_type) {
+    this.get_set(binding_type).delete(element);
   }
 
   /**
    * Clear all bindings of a type
    * Note: WeakSet doesn't support iteration, so this creates a new set
    *
-   * @param {string} bindingType - Type to clear
+   * @param {string} binding_type - Type to clear
    */
-  clearAllOfType(bindingType) {
-    this.bindingSets.set(bindingType, new WeakSet());
+  clear_all_of_type(binding_type) {
+    this.binding_sets.set(binding_type, new WeakSet());
   }
 }
 

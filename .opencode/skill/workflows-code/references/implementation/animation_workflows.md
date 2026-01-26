@@ -666,7 +666,7 @@ fi
 #!/bin/bash
 # Test animations at all viewports
 
-VIEWPORTS=("1920:1080:desktop" "768:1024:tablet" "375:667:mobile")
+VIEWPORTS=("1920:1080:desktop" "991:1024:tablet" "375:667:mobile")
 URL="https://anobel.com"
 
 for viewport in "${VIEWPORTS[@]}"; do
