@@ -720,6 +720,36 @@ For substantial changes (>100 LOC or architectural decisions), the AI validates 
 
 The gate system is a series of automated checks that every request passes through to ensure quality, context retention, and workflow integrity. Each gate enforces a specific rule—such as verifying understanding, routing to the right skill, requiring documentation, validating memory saves, and confirming completion—so that nothing falls through the cracks. This layered approach prevents common issues like context loss, incomplete documentation, and unverified work, making the development process more reliable and efficient.
 
+
+#### Section 9: CODE IMPLEMENTATION (Multi-Stack Support)
+
+AGENTS.md includes dedicated guidance for code implementation across different technology stacks:
+
+**3-Phase Lifecycle:**
+1. **Phase 1 - Implementation**: Write code following stack-specific patterns
+2. **Phase 2 - Testing/Debugging**: Run tests, fix failures, debug issues
+3. **Phase 3 - Verification**: Run verification suite (MANDATORY before "done")
+
+**Stack Detection via Marker Files:**
+| Stack | Detection Marker | Example Patterns |
+|-------|------------------|------------------|
+| **Go** | `go.mod` | Domain layers, table-driven tests |
+| **Node.js** | `package.json` | Express routes, async/await |
+| **Python** | `pyproject.toml` | Flask blueprints, pytest |
+| **Angular** | `angular.json` | Standalone components, RxJS |
+| **React Native** | `app.json` + expo | Hooks, navigation |
+| **DevOps** | `Makefile` | Scripts, deployment |
+
+**Stack-Specific Verification:**
+| Stack | Command | Focus |
+|-------|---------|-------|
+| Go | `go test ./...` | Table-driven tests, race detection |
+| Node.js | `npm test` | Jest/Mocha, async assertions |
+| Python | `pytest` | Fixtures, parametrized tests |
+| Angular | `ng test` | Component tests, service mocks |
+
+This enables the AI to automatically adapt its workflow based on your project's tech stack.
+
 ---
 
 
@@ -762,8 +792,8 @@ Figma design integration: file operations, components, styles, variables, commen
 > Example: "Get Figma file nodes" or "List team components" or "Post comment on design"
 
 **workflows-code**
-Implementation lifecycle (plan, code, verify), CDN deployment, JavaScript minification
-> Example: "Implement this feature" or "Minify and deploy JavaScript"
+Implementation lifecycle with optional Phase 0: Research for complex analysis. Includes 6 performance references (CWV remediation, resource loading, Webflow constraints, third-party optimization), 10-agent research methodology, and JavaScript minification workflow.
+> Example: "Implement this feature" or "Analyze performance" or "Minify JavaScript"
 
 **workflows-documentation**
 Document quality, skill creation
