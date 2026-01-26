@@ -1,8 +1,29 @@
-# Changelog - workflows-code
+# Changelog - workflows-code--web-dev
 
-All notable changes to the workflows-code skill.
+All notable changes to the workflows-code--web-dev skill (formerly `workflows-code`).
 
 > Part of [OpenCode Dev Environment](https://github.com/MichelKerkmeester/opencode-dev-environment)
+
+---
+
+## [**1.0.9.0**] - 2026-01-26
+
+Skill renamed from `workflows-code` to `workflows-code--web-dev` to distinguish from the new multi-stack variant `workflows-code--full-stack`.
+
+---
+
+### Changed
+
+1. **Skill renamed** — `workflows-code` → `workflows-code--web-dev` for clarity
+2. **Scope clarified** — Now explicitly for single-stack web projects (Webflow, vanilla JavaScript)
+
+---
+
+### Notes
+
+- No functional changes to the skill itself
+- All references, assets, and patterns remain identical
+- For multi-stack projects (Go, Node.js, React, React Native, Swift), use `workflows-code--full-stack`
 
 ---
 

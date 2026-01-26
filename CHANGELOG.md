@@ -7,6 +7,59 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.0.9.0**] - 2026-01-26
+
+New **workflows-code--full-stack** skill for multi-stack projects supporting **5 technology stacks** (Go, Node.js, React, React Native, Swift). Existing `workflows-code` renamed to `workflows-code--web-dev` for clarity. **AGENTS.md Section 9** updated to document both skill variants.
+
+---
+
+## Highlights
+
+### ✨ New Skill: workflows-code--full-stack
+- **5 technology stacks** — Go, Node.js, React, React Native, Swift with automatic detection
+- **Stack detection via marker files** — `go.mod`, `Package.swift`, `app.json`, `next.config.js`, `package.json`
+- **Hierarchical structure** — `references/{category}/{stack}/` and `assets/{category}/{stack}/`
+- **Smart resource routing** — 7 task keywords, 4 load levels, dynamic resource discovery
+- **66 bundled resources** — 36 reference files + 30 asset files (checklists + patterns)
+
+### 📝 Skill Rename: workflows-code → workflows-code--web-dev
+- **Clarified scope** — Now explicitly for single-stack web projects (Webflow, vanilla JS)
+- **No functional changes** — All references, assets, and patterns remain identical
+- **Clear distinction** — Use `--web-dev` for web, `--full-stack` for multi-stack projects
+
+### 🏗️ AGENTS.md Section 9 Update
+- **Skills variant table** — Documents both `workflows-code--web-dev` and `workflows-code--full-stack`
+- **Corrected stack detection** — Updated markers table (Go, Node.js, React, React Native, Swift)
+- **Accurate directory structure** — Reflects actual `{category}/{stack}/` path pattern
+
+---
+
+## Files Changed
+
+**New skill:**
+- `.opencode/skill/workflows-code--full-stack/` — Complete skill with 66 resources
+
+**Renamed skill:**
+- `.opencode/skill/workflows-code/` → `.opencode/skill/workflows-code--web-dev/`
+
+**Updated:**
+- `AGENTS.md` — Section 9 rewritten for skill variants
+- `README.md` — Skills Library section updated
+
+---
+
+## Upgrade
+
+1. **Update skill references** — If you reference `workflows-code`, choose the appropriate variant:
+   - Web projects (Webflow, vanilla JS): `workflows-code--web-dev`
+   - Multi-stack projects: `workflows-code--full-stack`
+
+2. **No breaking changes** — Existing web projects continue working with `--web-dev`
+
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.8.5...v1.0.9.0
+
+---
+
 ## [**1.0.8.5**] - 2026-01-26
 
 Performance patterns series adding **Phase 0: Research** to workflows-code, **6 new performance references**, and **AGENTS.md Section 9** for multi-stack code implementation guidance. All **27 documents** verified by 5 parallel Opus agents with P0/P1/P2 quality fixes applied.

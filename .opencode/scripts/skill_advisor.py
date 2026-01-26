@@ -317,13 +317,34 @@ INTENT_BOOSTERS = {
     "template": ("workflows-documentation", 0.4),
     
     # ─────────────────────────────────────────────────────────────────
-    # WORKFLOWS-CODE: Implementation and verification
+    # WORKFLOWS-CODE: Implementation and verification (frontend)
     # ─────────────────────────────────────────────────────────────────
     "bug": ("workflows-code", 0.5),
     "error": ("workflows-code", 0.4),
     "implement": ("workflows-code", 0.6),
     "refactor": ("workflows-code", 0.5),
     "verification": ("workflows-code", 0.5),
+
+    # ─────────────────────────────────────────────────────────────────
+    # WORKFLOWS-CODE-MULTI-STACK: Multi-stack implementation
+    # (Go, Node.js, Python, Angular, React Native, DevOps)
+    # Note: Higher boost values (2.5+) help pass dual-threshold validation
+    # ─────────────────────────────────────────────────────────────────
+    "golang": ("workflows-code-multi-stack", 2.5),
+    "python": ("workflows-code-multi-stack", 2.0),
+    "pytest": ("workflows-code-multi-stack", 1.5),
+    "nodejs": ("workflows-code-multi-stack", 2.0),
+    "angular": ("workflows-code-multi-stack", 2.0),
+    "devops": ("workflows-code-multi-stack", 1.5),
+    "backend": ("workflows-code-multi-stack", 1.5),
+    "flask": ("workflows-code-multi-stack", 1.5),
+    "express": ("workflows-code-multi-stack", 1.5),
+    "monorepo": ("workflows-code-multi-stack", 1.5),
+    "microservice": ("workflows-code-multi-stack", 1.5),
+    "microservices": ("workflows-code-multi-stack", 1.5),
+    "ruff": ("workflows-code-multi-stack", 1.2),
+    "mypy": ("workflows-code-multi-stack", 1.2),
+    "golangci": ("workflows-code-multi-stack", 1.2),
     
     # ─────────────────────────────────────────────────────────────────
     # MCP-CODE-MODE: External tool integration

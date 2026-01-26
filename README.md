@@ -723,30 +723,35 @@ The gate system is a series of automated checks that every request passes throug
 
 #### Workflows Code (Section: 9)
 
-AGENTS.md includes dedicated guidance for code implementation across different technology stacks:
+AGENTS.md includes dedicated guidance for code implementation with two skill variants:
+
+| Skill                        | Use Case                                                       | Path                                          |
+| ---------------------------- | -------------------------------------------------------------- | --------------------------------------------- |
+| `workflows-code--web-dev`    | Single-stack web projects (Webflow, vanilla JS)                | `.opencode/skill/workflows-code--web-dev/`    |
+| `workflows-code--full-stack` | Multi-stack projects (Go, Node.js, React, React Native, Swift) | `.opencode/skill/workflows-code--full-stack/` |
 
 **3-Phase Lifecycle:**
 1. **Phase 1 - Implementation**: Write code following stack-specific patterns
 2. **Phase 2 - Testing/Debugging**: Run tests, fix failures, debug issues
 3. **Phase 3 - Verification**: Run verification suite (MANDATORY before "done")
 
-**Stack Detection via Marker Files:**
-| Stack            | Detection Marker  | Example Patterns                  |
-| ---------------- | ----------------- | --------------------------------- |
-| **Go**           | `go.mod`          | Domain layers, table-driven tests |
-| **Node.js**      | `package.json`    | Express routes, async/await       |
-| **Python**       | `pyproject.toml`  | Flask blueprints, pytest          |
-| **Angular**      | `angular.json`    | Standalone components, RxJS       |
-| **React Native** | `app.json` + expo | Hooks, navigation                 |
-| **DevOps**       | `Makefile`        | Scripts, deployment               |
+**Stack Detection via Marker Files (full-stack):**
+| Stack            | Category | Detection Marker              | Example Patterns                  |
+| ---------------- | -------- | ----------------------------- | --------------------------------- |
+| **Go**           | backend  | `go.mod`                      | Domain layers, table-driven tests |
+| **Node.js**      | backend  | `package.json` with "express" | Express routes, async/await       |
+| **React**        | frontend | `next.config.js`              | Server/Client components, hooks   |
+| **React Native** | mobile   | `app.json` with "expo"        | Navigation, hooks, platform APIs  |
+| **Swift**        | mobile   | `Package.swift`               | SwiftUI, Combine, async/await     |
 
 **Stack-Specific Verification:**
-| Stack   | Command         | Focus                              |
-| ------- | --------------- | ---------------------------------- |
-| Go      | `go test ./...` | Table-driven tests, race detection |
-| Node.js | `npm test`      | Jest/Mocha, async assertions       |
-| Python  | `pytest`        | Fixtures, parametrized tests       |
-| Angular | `ng test`       | Component tests, service mocks     |
+| Stack        | Command                                                  |
+| ------------ | -------------------------------------------------------- |
+| Go           | `go test ./...` → `golangci-lint run` → `go build ./...` |
+| Node.js      | `npm test` → `npm run lint` → `npm run build`            |
+| React        | `npm test` → `npm run lint` → `npm run build`            |
+| React Native | `npm test` → `npx eslint .` → `npx expo export`          |
+| Swift        | `swift test` → `swiftlint` → `swift build`               |
 
 This enables the AI to automatically adapt its workflow based on your project's tech stack.
 
@@ -773,7 +778,7 @@ Your Request → python3 .opencode/scripts/skill_advisor.py analyzes keywords
 **Native Discovery:** OpenCode v1.0.190+ automatically finds skills in `.opencode/skill/*/SKILL.md`. No plugin required.
 
 
-### Available Skills (8 Total)
+### Available Skills (9 Total)
 
 **system-spec-kit**
 Unified documentation enforcement, templates, and context preservation across sessions
@@ -791,9 +796,13 @@ External tool orchestration (Figma, GitHub, ClickUp, etc.)
 Figma design integration: file operations, components, styles, variables, comments, projects, versioning (via Code Mode)
 > Example: "Get Figma file nodes" or "List team components" or "Post comment on design"
 
-**workflows-code**
-Implementation lifecycle with optional Phase 0: Research for complex analysis. Includes 6 performance references (CWV remediation, resource loading, Webflow constraints, third-party optimization), 10-agent research methodology, and JavaScript minification workflow.
+**workflows-code--web-dev**
+Single-stack web implementation. Includes 6 performance references (CWV remediation, resource loading, Webflow constraints, third-party optimization), 10-agent research methodology, and JavaScript minification workflow. For Webflow and vanilla JavaScript projects.
 > Example: "Implement this feature" or "Analyze performance" or "Minify JavaScript"
+
+**workflows-code--full-stack**
+Multi-stack code implementation for 5 technology stacks (Go, Node.js, React, React Native, Swift). Automatic stack detection via marker files, hierarchical resource structure, 3-phase lifecycle, and stack-specific verification commands.
+> Example: "Implement Go service" or "Add React component" or "Debug Node.js API"
 
 **workflows-documentation**
 Document quality, skill creation

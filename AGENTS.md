@@ -1,21 +1,13 @@
-# AI Assistant Framework
+# AI Assistant Framework (Universal Template)
 
-> **Behavior framework** defining guardrails, standards, and decision protocols for AI-assisted development.
+> **Universal behavior framework** defining guardrails, standards, and decision protocols.
 
----
+#### 👨‍🚀 HOW TO USE / ADAPT THIS FRAMEWORK
 
-#### 📦 PUBLIC RELEASE
-
-The OpenCode development environment in this project is also available as a standalone public release.
-
-| Resource                | Location                                                              |
-| ----------------------- | --------------------------------------------------------------------- |
-| **Public Repo (local)** | `/Users/michelkerkmeester/MEGA/Development/Opencode Dev Environment/` |
-| **GitHub**              | https://github.com/MichelKerkmeester/Opencode_Dev_Environment         |
-
-**This project is the source of truth.** Changes are synced to the public repo for distribution.
-
-See [`PUBLIC_RELEASE.md`](PUBLIC_RELEASE.md) for sync process, what's included, and release management.
+1. Use this `AGENTS.md` as your starting point for SpecKit and memory workflows in any codebase.
+2. Adapt the framework to fit your project's code standards, workflows, etc.
+3. Update or extend rules, tools, and protocols as needed.
+4. For practical setup examples and detailed instructions, see `.opencode/install_guides/SET-UP - AGENTS.md`.
 
 ---
 
@@ -609,82 +601,101 @@ When creating or editing skills:
 
 ---
 
-## 9. 💻 CODE IMPLEMENTATION (workflows-code)
+## 9. 💻 WORKFLOWS CODE
 
-The `workflows-code` skill serves as a domain orchestrator for code implementation. It supports **single-stack** or **multi-stack** projects.
+The `workflows-code` skills serve as domain orchestrators for code implementation. Two variants exist:
 
-### 3-Phase Lifecycle (MANDATORY)
+| Skill                        | Use Case                                                       | Path                                          |
+| ---------------------------- | -------------------------------------------------------------- | --------------------------------------------- |
+| `workflows-code--web-dev`    | Single-stack web projects (Webflow, vanilla JS)                | `.opencode/skill/workflows-code--web-dev/`    |
+| `workflows-code--full-stack` | Multi-stack projects (Go, Node.js, React, React Native, Swift) | `.opencode/skill/workflows-code--full-stack/` |
+
+-
+
+### Single-Stack: workflows-code--web-dev
+
+For web-only projects (e.g., Webflow, vanilla JavaScript).
+
+**3-Phase Lifecycle (MANDATORY)**
 
 1. **Phase 1 - Implementation**: Write code following stack-specific patterns
 2. **Phase 2 - Testing/Debugging**: Run tests, fix failures, debug issues
 3. **Phase 3 - Verification**: Run verification suite (MANDATORY before "done")
 
 **The Iron Law**: NO COMPLETION CLAIMS WITHOUT STACK-APPROPRIATE VERIFICATION
-
 **Invocation:** Automatic via Gate 3 routing when code tasks detected.
+**Verification:** Browser testing at multiple viewports + console clean.
 
-### Single-Stack Example (Frontend)
-
-For frontend-only projects (e.g., Webflow, React, Vue):
-
-**Skill Structure:**
+**Skill Structure**
 ```
-.opencode/skill/workflows-code/
+.opencode/skill/workflows-code--web-dev/
 ├── SKILL.md              # Entry point with routing logic
 ├── references/
 │   ├── implementation/   # Framework patterns, async, validation
 │   ├── debugging/        # DevTools, error recovery
 │   ├── verification/     # Browser testing requirements
+│   ├── deployment/       # CDN deployment, minification
 │   └── standards/        # Code quality, style guide
-├── assets/               # Checklists, templates
+├── assets/
+│   └── checklists/       # Quality gate checklists
 └── scripts/              # Build/deploy automation
 ```
 
-**Verification:** Browser testing at multiple viewports + console clean.
+#### Customize for your project
 
-### Multi-Stack Example (Full-Stack / Monorepo)
+1. Add website specfiic patterns to `references/`, `assets/` and `scripts/`.
+2. Update and allign the SKILL.md routing and logic.
 
-For projects with multiple technology stacks:
+-
 
-**Stack Detection via Marker Files:**
+### Multi-Stack: workflows-code--full-stack
 
-| Stack | Detection Marker | Example Patterns |
-|-------|------------------|------------------|
-| **Go** | `go.mod` | Domain layers, table-driven tests |
-| **Node.js** | `package.json` | Express routes, async/await |
-| **Python** | `pyproject.toml` | Flask blueprints, pytest |
-| **Angular** | `angular.json` | Standalone components, RxJS |
-| **React Native** | `app.json` + expo | Hooks, navigation |
-| **DevOps** | `Makefile` | Scripts, deployment |
+For projects with multiple technology stacks.
 
-**How Auto-Detection Works:**
-1. `workflows-code` checks for marker files at session start
-2. Stack-specific patterns load from `references/{stack}/`
+**Stack Detection via Marker Files**
+
+| Stack            | Category | Detection Marker                                | Example Patterns                  |
+| ---------------- | -------- | ----------------------------------------------- | --------------------------------- |
+| **Go**           | backend  | `go.mod`                                        | Domain layers, table-driven tests |
+| **Node.js**      | backend  | `package.json` with "express"                   | Express routes, async/await       |
+| **React**        | frontend | `next.config.js` or `package.json` with "react" | Server/Client components, hooks   |
+| **React Native** | mobile   | `app.json` with "expo"                          | Navigation, hooks, platform APIs  |
+| **Swift**        | mobile   | `Package.swift`                                 | SwiftUI, Combine, async/await     |
+
+**How Auto-Detection Works**
+1. Skill checks for marker files at session start
+2. Stack-specific patterns load from `references/{category}/{stack}/`
 3. Verification commands auto-adjust per stack
 
-**Multi-Stack Skill Structure:**
+**Multi-Stack Skill Structure**
 ```
-.opencode/skill/workflows-code/
-├── SKILL.md              # Entry point with stack detection
+.opencode/skill/workflows-code--full-stack/
+├── SKILL.md              # Entry point with stack detection router
 ├── references/
-│   ├── go/               # Go-specific patterns
-│   ├── node/             # Node.js patterns
-│   ├── python/           # Python patterns
-│   ├── angular/          # Angular patterns
-│   ├── react-native/     # React Native patterns
-│   └── shared/           # Cross-stack standards
+│   ├── backend/go/       # Go standards and patterns
+│   ├── backend/nodejs/   # Node.js standards and patterns
+│   ├── frontend/react/   # React/Next.js standards and patterns
+│   ├── mobile/react-native/  # React Native standards and patterns
+│   └── mobile/swift/     # Swift standards and patterns
 └── assets/
-    └── checklists/       # Stack-specific verification
+    ├── backend/go/checklists/ + patterns/
+    ├── backend/nodejs/checklists/ + patterns/
+    ├── frontend/react/checklists/ + patterns/
+    ├── mobile/react-native/checklists/ + patterns/
+    └── mobile/swift/checklists/ + patterns/
 ```
 
-**Stack-Specific Verification Commands:**
+**Stack-Specific Verification Commands**
 
-| Stack | Verification Command |
-|-------|---------------------|
-| Go | `go test ./...` → `golangci-lint run` → `go build ./...` |
-| Node.js | `npm test` → `npm run lint` → `npm run build` |
-| Python | `pytest` → `ruff check` → `mypy .` |
-| Angular | `ng test` → `ng lint` → `ng build` |
-| React Native | `npm test` → `npx eslint .` → `npx expo export` |
+| Stack        | Verification Command                                     |
+| ------------ | -------------------------------------------------------- |
+| Go           | `go test ./...` → `golangci-lint run` → `go build ./...` |
+| Node.js      | `npm test` → `npm run lint` → `npm run build`            |
+| React        | `npm test` → `npm run lint` → `npm run build`            |
+| React Native | `npm test` → `npx eslint .` → `npx expo export`          |
+| Swift        | `swift test` → `swiftlint` → `swift build`               |
 
-> **Customize for your project:** Add stack-specific patterns to `references/{stack}/` and update the SKILL.md routing logic.
+#### Customize for your project
+
+1. Add stack-specific patterns to `references/{category}/{stack}/`, `assets/{category}/{stack}/`. 
+2. Update and allign the SKILL.md routing and logic.
