@@ -129,18 +129,18 @@ These systems aren't just bundled: they're *woven together*:
 
 ### Innovations You Won't Find Elsewhere
 
-| Innovation | Impact | Description |
-|------------|--------|-------------|
-| **ANCHOR retrieval** | 93% token savings | Section-level memory extraction, not full files |
-| **Proactive triggers** | <50ms surfacing | Context surfaces BEFORE you ask |
-| **Stateless state** | No stale files | State versioned in memory files, not STATE.md |
-| **Epistemic vectors** | Smarter gates | Dual-threshold: confidence AND uncertainty |
-| **Constitutional tier** | Rules never forgotten | Critical rules always surface, never decay |
-| **Session learning** | Quantified growth | Preflight/postflight tracks actual learning |
-| **Cognitive memory** | Biologically-inspired | HOT/WARM/COLD with spreading activation |
-| **Template composition** | Zero duplication | CORE + ADDENDUM architecture |
-| **Debug delegation** | Model selection | Fresh perspective with full context handoff |
-| **Parallel dispatch** | 5-dimension scoring | Complexity-based agent orchestration |
+| Innovation               | Impact                | Description                                     |
+| ------------------------ | --------------------- | ----------------------------------------------- |
+| **ANCHOR retrieval**     | 93% token savings     | Section-level memory extraction, not full files |
+| **Proactive triggers**   | <50ms surfacing       | Context surfaces BEFORE you ask                 |
+| **Stateless state**      | No stale files        | State versioned in memory files, not STATE.md   |
+| **Epistemic vectors**    | Smarter gates         | Dual-threshold: confidence AND uncertainty      |
+| **Constitutional tier**  | Rules never forgotten | Critical rules always surface, never decay      |
+| **Session learning**     | Quantified growth     | Preflight/postflight tracks actual learning     |
+| **Cognitive memory**     | Biologically-inspired | HOT/WARM/COLD with spreading activation         |
+| **Template composition** | Zero duplication      | CORE + ADDENDUM architecture                    |
+| **Debug delegation**     | Model selection       | Fresh perspective with full context handoff     |
+| **Parallel dispatch**    | 5-dimension scoring   | Complexity-based agent orchestration            |
 
 ### How It All Works Together
 
@@ -167,7 +167,7 @@ When you make a request, the system:
 ┌─────────────────────────────────────┐
 │  GATE SYSTEM ACTIVATES              │
 │                                     │
-│  • Confidence check (≥80%?)         │
+│  • Confidence check (≥80%?)          │
 │  • Asks: Spec folder? Git branch?   │
 │  • Loads relevant memories          │
 └────────────────┬────────────────────┘
@@ -341,21 +341,21 @@ Level 3+: [CORE] + [all addendums]     → 6 files, ~640 LOC
 Every spec folder runs through automated validation before you can claim "done."
 
 **Rules:**
-| Rule | Severity | What It Checks |
-|------|----------|----------------|
-| FILE_EXISTS | ERROR | Required files present for level |
-| PLACEHOLDER_FILLED | ERROR | No unfilled `[YOUR_VALUE_HERE:]` patterns |
-| SECTIONS_PRESENT | WARNING | Required markdown sections exist |
-| LEVEL_DECLARED | INFO | Level explicitly stated |
-| PRIORITY_TAGS | WARNING | P0/P1/P2 format validated |
-| EVIDENCE_CITED | WARNING | Non-P2 items cite evidence |
-| ANCHORS_VALID | ERROR | Memory file anchor pairs matched |
-| FOLDER_NAMING | ERROR | Follows `###-short-name` convention |
-| FRONTMATTER_VALID | WARNING | YAML frontmatter structured correctly |
-| COMPLEXITY_MATCH | WARNING | Content metrics match declared level |
-| AI_PROTOCOL | WARNING | Level 3/3+ has AI execution protocols |
-| LEVEL_MATCH | ERROR | Level consistent across all files |
-| SECTION_COUNTS | WARNING | Section counts within expected ranges |
+| Rule               | Severity | What It Checks                            |
+| ------------------ | -------- | ----------------------------------------- |
+| FILE_EXISTS        | ERROR    | Required files present for level          |
+| PLACEHOLDER_FILLED | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` patterns |
+| SECTIONS_PRESENT   | WARNING  | Required markdown sections exist          |
+| LEVEL_DECLARED     | INFO     | Level explicitly stated                   |
+| PRIORITY_TAGS      | WARNING  | P0/P1/P2 format validated                 |
+| EVIDENCE_CITED     | WARNING  | Non-P2 items cite evidence                |
+| ANCHORS_VALID      | ERROR    | Memory file anchor pairs matched          |
+| FOLDER_NAMING      | ERROR    | Follows `###-short-name` convention       |
+| FRONTMATTER_VALID  | WARNING  | YAML frontmatter structured correctly     |
+| COMPLEXITY_MATCH   | WARNING  | Content metrics match declared level      |
+| AI_PROTOCOL        | WARNING  | Level 3/3+ has AI execution protocols     |
+| LEVEL_MATCH        | ERROR    | Level consistent across all files         |
+| SECTION_COUNTS     | WARNING  | Section counts within expected ranges     |
 
 **Exit Codes:**
 - `0` = Pass → Proceed with completion
@@ -481,11 +481,11 @@ We chose JWT with refresh tokens because:
 This isn't basic memory storage. The system implements a biologically-inspired working memory model with attention dynamics:
 
 **HOT/WARM/COLD Tiers:**
-| Tier | Score Range | Content Returned | Max Items |
-|------|-------------|------------------|-----------|
-| **HOT** | >= 0.8 | Full content | 5 |
-| **WARM** | 0.25-0.79 | Summary only | 10 |
-| **COLD** | < 0.25 | Not returned | - |
+| Tier     | Score Range | Content Returned | Max Items |
+| -------- | ----------- | ---------------- | --------- |
+| **HOT**  | >= 0.8      | Full content     | 5         |
+| **WARM** | 0.25-0.79   | Summary only     | 10        |
+| **COLD** | < 0.25      | Not returned     | -         |
 
 **Attention Decay:**
 ```
@@ -514,13 +514,13 @@ LI = (Knowledge Delta × 0.4) + (Uncertainty Reduction × 0.35) + (Context Impro
 ```
 
 **Interpretation:**
-| Learning Index | Meaning |
-|----------------|---------|
-| >= 40 | Significant learning session |
-| >= 15 | Moderate learning |
-| >= 5 | Incremental learning |
-| >= 0 | Execution-focused (minimal learning) |
-| < 0 | Knowledge regression (investigate) |
+| Learning Index | Meaning                              |
+| -------------- | ------------------------------------ |
+| >= 40          | Significant learning session         |
+| >= 15          | Moderate learning                    |
+| >= 5           | Incremental learning                 |
+| >= 0           | Execution-focused (minimal learning) |
+| < 0            | Knowledge regression (investigate)   |
 
 This enables measuring productivity by *learning*, not just output.
 
@@ -528,40 +528,40 @@ This enables measuring productivity by *learning*, not just output.
 ### The 17 MCP Tools
 
 **Search & Retrieval (4 tools)**
-| Tool | Purpose |
-|------|---------|
-| `memory_search` | Semantic search with hybrid vector + FTS5 fusion |
+| Tool                    | Purpose                                           |
+| ----------------------- | ------------------------------------------------- |
+| `memory_search`         | Semantic search with hybrid vector + FTS5 fusion  |
 | `memory_match_triggers` | Fast keyword matching (<50ms proactive surfacing) |
-| `memory_list` | Browse stored memories with pagination |
-| `memory_stats` | Database statistics with composite ranking |
+| `memory_list`           | Browse stored memories with pagination            |
+| `memory_stats`          | Database statistics with composite ranking        |
 
 **CRUD Operations (5 tools)**
-| Tool | Purpose |
-|------|---------|
-| `memory_save` | Index memory files |
-| `memory_index_scan` | Bulk scan and index workspace |
-| `memory_update` | Update metadata and importance tier |
-| `memory_delete` | Delete by ID or spec folder |
-| `memory_validate` | Record validation feedback |
+| Tool                | Purpose                             |
+| ------------------- | ----------------------------------- |
+| `memory_save`       | Index memory files                  |
+| `memory_index_scan` | Bulk scan and index workspace       |
+| `memory_update`     | Update metadata and importance tier |
+| `memory_delete`     | Delete by ID or spec folder         |
+| `memory_validate`   | Record validation feedback          |
 
 **Checkpoints (4 tools)**
-| Tool | Purpose |
-|------|---------|
-| `checkpoint_create` | Snapshot current state with embeddings |
-| `checkpoint_list` | List available checkpoints |
+| Tool                 | Purpose                                     |
+| -------------------- | ------------------------------------------- |
+| `checkpoint_create`  | Snapshot current state with embeddings      |
+| `checkpoint_list`    | List available checkpoints                  |
 | `checkpoint_restore` | Restore from checkpoint (soft or hard mode) |
-| `checkpoint_delete` | Remove checkpoint |
+| `checkpoint_delete`  | Remove checkpoint                           |
 
 **Session Learning (3 tools)**
-| Tool | Purpose |
-|------|---------|
-| `task_preflight` | Capture epistemic baseline before task |
-| `task_postflight` | Capture post-task state, calculate Learning Index |
-| `memory_get_learning_history` | Get learning trends and summaries |
+| Tool                          | Purpose                                           |
+| ----------------------------- | ------------------------------------------------- |
+| `task_preflight`              | Capture epistemic baseline before task            |
+| `task_postflight`             | Capture post-task state, calculate Learning Index |
+| `memory_get_learning_history` | Get learning trends and summaries                 |
 
 **System (1 tool)**
-| Tool | Purpose |
-|------|---------|
+| Tool            | Purpose                           |
+| --------------- | --------------------------------- |
 | `memory_health` | Check memory system health status |
 
 > **Note:** Full MCP names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search`).
@@ -573,12 +573,12 @@ This enables measuring productivity by *learning*, not just output.
 
 Spec Kit Memory supports multiple embedding providers with automatic detection:
 
-| Provider | Dimensions | Requirements | Best For |
-|----------|------------|--------------|----------|
-| **Voyage** | 1024 | `VOYAGE_API_KEY` | Recommended, 8% better retrieval |
-| **OpenAI** | 1536/3072 | `OPENAI_API_KEY` | Cloud-based alternative |
-| **HF Local** | 768 | Node.js only | Privacy, offline, default fallback |
-| **Ollama** | 768 | Ollama + model | Optional (not yet available) |
+| Provider     | Dimensions | Requirements     | Best For                           |
+| ------------ | ---------- | ---------------- | ---------------------------------- |
+| **Voyage**   | 1024       | `VOYAGE_API_KEY` | Recommended, 8% better retrieval   |
+| **OpenAI**   | 1536/3072  | `OPENAI_API_KEY` | Cloud-based alternative            |
+| **HF Local** | 768        | Node.js only     | Privacy, offline, default fallback |
+| **Ollama**   | 768        | Ollama + model   | Optional (not yet available)       |
 
 **Auto-detection:**
 - If `VOYAGE_API_KEY` exists → Uses Voyage automatically (recommended)
@@ -637,20 +637,20 @@ The system includes 7 specialized agents that handle specific tasks. Five are **
 
 **Sub-Agents** (integrated into commands):
 
-| Agent | Purpose | Integrated With |
-|-------|---------|-----------------|
-| `@research` | Technical investigation with evidence gathering | `/spec_kit:research` |
-| `@speckit` | Spec folder documentation for Level 1-3+ | `/spec_kit:plan` |
-| `@review` | Code review with pattern validation (READ-ONLY) | `/spec_kit:implement` |
-| `@debug` | 4-phase debugging (Observe → Analyze → Hypothesize → Fix) | `/spec_kit:debug` |
-| `@handover` | Session continuation and context preservation | `/spec_kit:handover` |
+| Agent       | Purpose                                                   | Integrated With       |
+| ----------- | --------------------------------------------------------- | --------------------- |
+| `@research` | Technical investigation with evidence gathering           | `/spec_kit:research`  |
+| `@speckit`  | Spec folder documentation for Level 1-3+                  | `/spec_kit:plan`      |
+| `@review`   | Code review with pattern validation (READ-ONLY)           | `/spec_kit:implement` |
+| `@debug`    | 4-phase debugging (Observe → Analyze → Hypothesize → Fix) | `/spec_kit:debug`     |
+| `@handover` | Session continuation and context preservation             | `/spec_kit:handover`  |
 
 **Orchestration Agents**:
 
-| Agent | Purpose |
-|-------|---------|
+| Agent          | Purpose                                                                      |
+| -------------- | ---------------------------------------------------------------------------- |
 | `@orchestrate` | Senior orchestration with task decomposition, delegation, quality evaluation |
-| `@write` | Documentation generation and maintenance |
+| `@write`       | Documentation generation and maintenance                                     |
 
 **Model Defaults:** Opus 4.5 for complex analysis, Sonnet for cost-efficient structured tasks.
 
@@ -659,14 +659,14 @@ The system includes 7 specialized agents that handle specific tasks. Five are **
 
 The `@orchestrate` agent includes enterprise-grade patterns for reliable multi-agent workflows:
 
-| Pattern | Description |
-|---------|-------------|
-| **Circuit Breaker** | Isolates failing agents (3 failures → OPEN state, 60s timeout) |
-| **Saga Compensation** | Reverse-order rollback on multi-task failures |
-| **Quality Gates** | Pre/mid/post execution scoring with 70-point threshold |
-| **Resource Budgeting** | 50K token default, 80% warning, 100% halt |
-| **Conditional Branching** | IF/THEN/ELSE logic with 3-level nesting |
-| **Checkpointing** | Recovery snapshots every 5 tasks or 10 tool calls |
+| Pattern                   | Description                                                    |
+| ------------------------- | -------------------------------------------------------------- |
+| **Circuit Breaker**       | Isolates failing agents (3 failures → OPEN state, 60s timeout) |
+| **Saga Compensation**     | Reverse-order rollback on multi-task failures                  |
+| **Quality Gates**         | Pre/mid/post execution scoring with 70-point threshold         |
+| **Resource Budgeting**    | 50K token default, 80% warning, 100% halt                      |
+| **Conditional Branching** | IF/THEN/ELSE logic with 3-level nesting                        |
+| **Checkpointing**         | Recovery snapshots every 5 tasks or 10 tool calls              |
 
 
 #### Confidence & Dual-Threshold Validation
@@ -675,12 +675,12 @@ The framework uses a sophisticated dual-threshold system to decide when to proce
 
 **READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)**
 
-| Confidence | Uncertainty | State | Action |
-|------------|-------------|-------|--------|
-| >=0.70 | <=0.35 | READY | Proceed |
-| >=0.70 | >0.35 | Confident Ignorance | INVESTIGATE - reduce unknowns |
-| <0.70 | <=0.35 | Low Confidence | INVESTIGATE - gather evidence |
-| <0.70 | >0.35 | Lost | ESCALATE - ask user |
+| Confidence | Uncertainty | State               | Action                        |
+| ---------- | ----------- | ------------------- | ----------------------------- |
+| >=0.70     | <=0.35      | READY               | Proceed                       |
+| >=0.70     | >0.35       | Confident Ignorance | INVESTIGATE - reduce unknowns |
+| <0.70      | <=0.35      | Low Confidence      | INVESTIGATE - gather evidence |
+| <0.70      | >0.35       | Lost                | ESCALATE - ask user           |
 
 **Uncertainty factors:**
 - Epistemic gaps (what don't I know?)
@@ -706,13 +706,13 @@ The framework uses a sophisticated dual-threshold system to decide when to proce
 
 For substantial changes (>100 LOC or architectural decisions), the AI validates against five checks:
 
-| # | Check | Question | Pass Criteria |
-|---|-------|----------|---------------|
-| 1 | **Necessary?** | Solving ACTUAL need NOW? | Clear requirement exists, not speculative |
-| 2 | **Beyond Local Maxima?** | Explored alternatives? | >=2 alternatives considered with trade-offs |
-| 3 | **Sufficient?** | Simplest approach? | No simpler solution achieves the goal |
-| 4 | **Fits Goal?** | On critical path? | Directly advances stated objective |
-| 5 | **Open Horizons?** | Long-term aligned? | Doesn't create technical debt or lock-in |
+| #   | Check                    | Question                 | Pass Criteria                               |
+| --- | ------------------------ | ------------------------ | ------------------------------------------- |
+| 1   | **Necessary?**           | Solving ACTUAL need NOW? | Clear requirement exists, not speculative   |
+| 2   | **Beyond Local Maxima?** | Explored alternatives?   | >=2 alternatives considered with trade-offs |
+| 3   | **Sufficient?**          | Simplest approach?       | No simpler solution achieves the goal       |
+| 4   | **Fits Goal?**           | On critical path?        | Directly advances stated objective          |
+| 5   | **Open Horizons?**       | Long-term aligned?       | Doesn't create technical debt or lock-in    |
 
 **Usage:** Required for Level 3/3+ spec folders. Optional but recommended for Level 2. Recorded in decision-record.md for architectural changes.
 
@@ -721,7 +721,7 @@ For substantial changes (>100 LOC or architectural decisions), the AI validates 
 The gate system is a series of automated checks that every request passes through to ensure quality, context retention, and workflow integrity. Each gate enforces a specific rule—such as verifying understanding, routing to the right skill, requiring documentation, validating memory saves, and confirming completion—so that nothing falls through the cracks. This layered approach prevents common issues like context loss, incomplete documentation, and unverified work, making the development process more reliable and efficient.
 
 
-#### Section 9: CODE IMPLEMENTATION (Multi-Stack Support)
+#### Workflows Code (Section: 9)
 
 AGENTS.md includes dedicated guidance for code implementation across different technology stacks:
 
@@ -731,22 +731,22 @@ AGENTS.md includes dedicated guidance for code implementation across different t
 3. **Phase 3 - Verification**: Run verification suite (MANDATORY before "done")
 
 **Stack Detection via Marker Files:**
-| Stack | Detection Marker | Example Patterns |
-|-------|------------------|------------------|
-| **Go** | `go.mod` | Domain layers, table-driven tests |
-| **Node.js** | `package.json` | Express routes, async/await |
-| **Python** | `pyproject.toml` | Flask blueprints, pytest |
-| **Angular** | `angular.json` | Standalone components, RxJS |
-| **React Native** | `app.json` + expo | Hooks, navigation |
-| **DevOps** | `Makefile` | Scripts, deployment |
+| Stack            | Detection Marker  | Example Patterns                  |
+| ---------------- | ----------------- | --------------------------------- |
+| **Go**           | `go.mod`          | Domain layers, table-driven tests |
+| **Node.js**      | `package.json`    | Express routes, async/await       |
+| **Python**       | `pyproject.toml`  | Flask blueprints, pytest          |
+| **Angular**      | `angular.json`    | Standalone components, RxJS       |
+| **React Native** | `app.json` + expo | Hooks, navigation                 |
+| **DevOps**       | `Makefile`        | Scripts, deployment               |
 
 **Stack-Specific Verification:**
-| Stack | Command | Focus |
-|-------|---------|-------|
-| Go | `go test ./...` | Table-driven tests, race detection |
-| Node.js | `npm test` | Jest/Mocha, async assertions |
-| Python | `pytest` | Fixtures, parametrized tests |
-| Angular | `ng test` | Component tests, service mocks |
+| Stack   | Command         | Focus                              |
+| ------- | --------------- | ---------------------------------- |
+| Go      | `go test ./...` | Table-driven tests, race detection |
+| Node.js | `npm test`      | Jest/Mocha, async assertions       |
+| Python  | `pytest`        | Fixtures, parametrized tests       |
+| Angular | `ng test`       | Component tests, service mocks     |
 
 This enables the AI to automatically adapt its workflow based on your project's tech stack.
 
@@ -857,13 +857,13 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 - Minimal quota cost
 
 
-### Available Commands (18 Total)
+### Available Commands (19 Total)
 
 **spec_kit/** (7 commands)
 `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:debug`, `/spec_kit:handover`
 
-**memory/** (3 commands)
-`/memory:save`, `/memory:search`, `/memory:checkpoint`
+**memory/** (4 commands)
+`/memory:save`, `/memory:search`, `/memory:checkpoint`, `/memory:database`
 
 **create/** (6 commands)
 `/create:agent`, `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`
@@ -876,14 +876,14 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 
 Several commands leverage sub-agents for complex tasks:
 
-| Command | Delegation | Purpose |
-|---------|------------|---------|
-| `/spec_kit:debug` | `@debug` agent | Routes to 4-phase debugging methodology (model selection prompt) |
-| `/spec_kit:handover` | `@handover` agent | Dedicated Sonnet agent for context gathering |
-| `/spec_kit:research` | `@research` agent | Technical investigation with evidence gathering |
-| `/spec_kit:plan` | `@speckit` agent | Spec folder creation with template enforcement |
-| `/spec_kit:implement` | `@review` agent | Code review at completion (READ-ONLY) |
-| `/memory:save` | Task tool dispatch | Delegates memory extraction to sub-agent |
+| Command               | Delegation         | Purpose                                                          |
+| --------------------- | ------------------ | ---------------------------------------------------------------- |
+| `/spec_kit:debug`     | `@debug` agent     | Routes to 4-phase debugging methodology (model selection prompt) |
+| `/spec_kit:handover`  | `@handover` agent  | Dedicated Sonnet agent for context gathering                     |
+| `/spec_kit:research`  | `@research` agent  | Technical investigation with evidence gathering                  |
+| `/spec_kit:plan`      | `@speckit` agent   | Spec folder creation with template enforcement                   |
+| `/spec_kit:implement` | `@review` agent    | Code review at completion (READ-ONLY)                            |
+| `/memory:save`        | Task tool dispatch | Delegates memory extraction to sub-agent                         |
 
 **Model Selection (Debug):** When stuck 3+ attempts, `/spec_kit:debug` prompts you to select a model, then dispatches to that model via Task tool for fresh perspective.
 
@@ -1032,11 +1032,11 @@ Skills are **natively supported** in OpenCode v1.0.190+. Auto-discovered from `.
 
 Commands support session-wide behavior flags that affect response verbosity:
 
-| Flag | Effect | Use When |
-|------|--------|----------|
-| `--brief` | Concise responses, minimal explanations | Quick tasks, experienced users |
-| `--verbose` | Detailed explanations, reasoning shown | Learning, complex debugging |
-| `--debug` | Maximum diagnostic output, all tool calls | Troubleshooting, verification |
+| Flag        | Effect                                    | Use When                       |
+| ----------- | ----------------------------------------- | ------------------------------ |
+| `--brief`   | Concise responses, minimal explanations   | Quick tasks, experienced users |
+| `--verbose` | Detailed explanations, reasoning shown    | Learning, complex debugging    |
+| `--debug`   | Maximum diagnostic output, all tool calls | Troubleshooting, verification  |
 
 **Example:** `/spec_kit:implement --brief "add validation"` or `/spec_kit:debug --verbose`
 
