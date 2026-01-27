@@ -1,6 +1,8 @@
-# Spec Kit Framework
+# MemSpec
 
-> Documentation-first development framework with integrated memory system, 17+ MCP tools, and mandatory gates for AI-assisted workflows.
+**A Cognitive Spec Kit Framework**
+
+> Documentation-first development framework with integrated cognitive memory system, 17+ MCP tools, and mandatory gates for AI-assisted workflows.
 
 ---
 
@@ -12,68 +14,120 @@
 - [4. ⚡ FEATURES](#4--features)
 - [5. 📊 DOCUMENTATION LEVELS](#5--documentation-levels)
 - [6. 📝 TEMPLATES](#6--templates)
-- [7. ⚙️ SCRIPTS](#7--scripts)
-- [8. 🎯 COMMANDS](#8--commands)
-- [9. 🧠 MEMORY SYSTEM](#9--memory-system)
-- [10. 💡 USAGE EXAMPLES](#10--usage-examples)
-- [11. 🛠️ TROUBLESHOOTING](#11--troubleshooting)
-- [12. ❓ FAQ](#12--faq)
-- [13. 🔗 RELATED RESOURCES](#13--related-resources)
+- [7. 🎯 COMMANDS](#7--commands)
+- [8. 🧠 MEMORY SYSTEM](#8--memory-system)
+- [9. 💡 USAGE EXAMPLES](#9--usage-examples)
+- [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
+- [11. ❓ FAQ](#11--faq)
+- [12. 🔗 RELATED RESOURCES](#12--related-resources)
 
 ---
 
 ## 1. 📖 OVERVIEW
 
-### What is Spec Kit?
+### What is MemSpec?
 
-**Spec Kit** is a documentation-first development framework that enforces structured workflows for AI-assisted development. It combines mandatory spec folders, integrated memory preservation, and quality gates to ensure context is never lost between sessions.
+**MemSpec** is a documentation-first development framework that enforces structured workflows for AI-assisted development. It combines mandatory spec folders, integrated memory preservation, and quality gates to ensure context is never lost between sessions.
 
 ### Why This Fork Exists
 
-| Pain Point | Original Spec Kit | This Enhanced Fork |
-|------------|-------------------|-------------------|
-| **Context Loss** | Manual recovery | Auto-saved with ANCHOR format |
-| **Templates** | ~5 basic files | 10 purpose-built templates |
-| **Commands** | Manual workflow | 11 slash commands with `:auto`/`:confirm` modes |
-| **Memory Integration** | None | Deep integration via MCP (17+ tools) |
-| **Quality Gates** | None | PREFLIGHT/POSTFLIGHT validation |
-| **Debug Assistance** | None | AI detects frustration → auto-suggests sub-agent |
-| **Session Handover** | None | `:quick` (15 lines) or `:full` (150 lines) |
-| **Quality Metrics** | Guesswork | Completeness scoring (0-100%) |
-| **Uncertainty Tracking** | None | Epistemic vectors for decision confidence |
-| **Five Checks** | None | Structured solution validation framework |
+| Pain Point               | Original Spec Kit | MemSpec                                          |
+| ------------------------ | ----------------- | ------------------------------------------------ |
+| **Context Loss**         | Manual recovery   | Auto-saved with ANCHOR format                    |
+| **Templates**            | ~5 basic files    | 10 purpose-built templates                       |
+| **Commands**             | Manual workflow   | 11 slash commands with `:auto`/`:confirm` modes  |
+| **Memory Integration**   | None              | Deep integration via MCP (17+ tools)             |
+| **Quality Gates**        | None              | PREFLIGHT/POSTFLIGHT validation                  |
+| **Debug Assistance**     | None              | AI detects frustration → auto-suggests sub-agent |
+| **Session Handover**     | None              | `:quick` (15 lines) or `:full` (150 lines)       |
+| **Quality Metrics**      | Guesswork         | Completeness scoring (0-100%)                    |
+| **Uncertainty Tracking** | None              | Epistemic vectors for decision confidence        |
+| **Five Checks**          | None              | Structured solution validation framework         |
 
 ### Key Statistics
 
-| Category | Count | Details |
-|----------|-------|---------|
-| **MCP Tools** | 17+ | Memory, checkpoint, validation, health tools |
-| **Templates** | 10 | Markdown templates for specs, plans, research, decisions |
-| **Scripts** | 11 | Shell scripts for automation and validation |
-| **Commands** | 11 | Slash commands (7 spec_kit + 4 memory) |
-| **References** | 19 | Detailed workflow documentation in 7 categories |
-| **Importance Tiers** | 6 | Constitutional → deprecated memory ranking |
+| Category             | Count | Details                                                  |
+| -------------------- | ----- | -------------------------------------------------------- |
+| **MCP Tools**        | 17+   | Memory, checkpoint, validation, health tools             |
+| **Templates**        | 10    | Markdown templates for specs, plans, research, decisions |
+| **Scripts**          | 11    | Shell scripts for automation and validation              |
+| **Commands**         | 11    | Slash commands (7 spec_kit + 4 memory)                   |
+| **References**       | 19    | Detailed workflow documentation in 7 categories          |
+| **Importance Tiers** | 6     | Constitutional → deprecated memory ranking               |
 
 ### Key Features
 
-| Feature | Description |
-|---------|-------------|
-| **Six-Tier Importance** | Constitutional, critical, important, normal, temporary, deprecated memory tiers |
-| **PREFLIGHT/POSTFLIGHT** | Automatic validation before and after operations |
-| **Five Checks Framework** | Necessary? Beyond local maxima? Sufficient? Fits goal? Open horizons? |
-| **Uncertainty Tracking** | Epistemic vectors measure confidence in decisions |
-| **Learning Delta** | Track knowledge gained during implementation |
-| **ANCHOR-Based Retrieval** | 58-90% token savings via section-level memory retrieval |
-| **Cognitive Memory** | Attention decay, tiered content (HOT/WARM/COLD), co-activation |
-| **Debug Delegation** | AI detects frustration and auto-suggests debug sub-agent |
+| Feature                    | Description                                                                     |
+| -------------------------- | ------------------------------------------------------------------------------- |
+| **Six-Tier Importance**    | Constitutional, critical, important, normal, temporary, deprecated memory tiers |
+| **PREFLIGHT/POSTFLIGHT**   | Automatic validation before and after operations                                |
+| **Five Checks Framework**  | Necessary? Beyond local maxima? Sufficient? Fits goal? Open horizons?           |
+| **Uncertainty Tracking**   | Epistemic vectors measure confidence in decisions                               |
+| **Learning Delta**         | Track knowledge gained during implementation                                    |
+| **ANCHOR-Based Retrieval** | 58-90% token savings via section-level memory retrieval                         |
+| **Cognitive Memory**       | Attention decay, tiered content (HOT/WARM/COLD), co-activation                  |
+| **Debug Delegation**       | AI detects frustration and auto-suggests debug sub-agent                        |
+
+### Command Systems
+
+MemSpec provides **two integrated command families** that work together:
+
+#### Spec Kit Commands (`/spec_kit:*`)
+Workflow orchestration for documentation-first development:
+
+| Command | Purpose |
+|---------|---------|
+| `/spec_kit:complete` | Full end-to-end workflow (research → plan → implement → verify) |
+| `/spec_kit:plan` | Planning only - spec through plan, no implementation |
+| `/spec_kit:implement` | Execute pre-planned work from existing plan.md |
+| `/spec_kit:research` | Technical investigation and evidence gathering |
+| `/spec_kit:resume` | Resume work on existing spec folder |
+| `/spec_kit:handover` | Create session continuation document |
+| `/spec_kit:debug` | Delegate debugging to fresh-perspective sub-agent |
+
+#### Memory Commands (`/memory:*`)
+Context preservation and retrieval:
+
+| Command | Purpose |
+|---------|---------|
+| `/memory:save` | Save current context to spec folder's memory/ |
+| `/memory:search` | Semantic search across all saved memories |
+| `/memory:checkpoint` | Create/restore named state snapshots |
+| `/memory:database` | Index management, cleanup, health checks |
+
+#### How They Integrate
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    SPEC KIT WORKFLOW                        │
+│  /spec_kit:complete → creates spec folder → implements      │
+│         │                                                   │
+│         ▼                                                   │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │              MEMORY SYSTEM (automatic)               │   │
+│  │  • Auto-surfaces relevant context at task start      │   │
+│  │  • Saves decisions/blockers during work              │   │
+│  │  • Preserves session state for /spec_kit:resume      │   │
+│  └─────────────────────────────────────────────────────┘   │
+│         │                                                   │
+│         ▼                                                   │
+│  /spec_kit:handover → /memory:save → next session          │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key Integration Points:**
+- **Gate 2** automatically calls `memory_match_triggers()` to surface relevant context
+- **Spec folders** contain `memory/` subdirectory for persistent context
+- **/spec_kit:resume** loads memory context to continue previous work
+- **/spec_kit:handover** saves context before ending session
 
 ### Requirements
 
-| Requirement | Minimum | Recommended |
-|-------------|---------|-------------|
-| Node.js | 18+ | 20+ |
-| OpenCode | 1.0.190+ | Latest |
-| Bash | 4.0+ | 5.0+ |
+| Requirement | Minimum  | Recommended |
+| ----------- | -------- | ----------- |
+| Node.js     | 18+      | 20+         |
+| OpenCode    | 1.0.190+ | Latest      |
+| Bash        | 4.0+     | 5.0+        |
 
 ### Activation Triggers
 
@@ -131,12 +185,12 @@ ls specs/###-user-authentication/
 
 ### Level Selection Quick Guide
 
-| LOC Estimate | Level | What You Get |
-|--------------|-------|--------------|
-| <100 | 1 | spec.md + plan.md + tasks.md + implementation-summary.md |
-| 100-499 | 2 | Level 1 + checklist.md |
-| ≥500 | 3 | Level 2 + decision-record.md |
-| Complex | 3+ | Level 3 + extended governance |
+| LOC Estimate | Level | What You Get                                             |
+| ------------ | ----- | -------------------------------------------------------- |
+| <100         | 1     | spec.md + plan.md + tasks.md + implementation-summary.md |
+| 100-499      | 2     | Level 1 + checklist.md                                   |
+| ≥500         | 3     | Level 2 + decision-record.md                             |
+| Complex      | 3+    | Level 3 + extended governance                            |
 
 ---
 
@@ -204,13 +258,13 @@ specs/042-user-authentication/
 
 ### Key Files
 
-| File | Purpose |
-|------|---------|
-| `SKILL.md` | Complete AI workflow instructions |
-| `templates/level_N/` | Pre-composed templates by level |
-| `scripts/spec/validate.sh` | Validation orchestrator |
-| `scripts/memory/generate-context.js` | Memory file generation |
-| `mcp_server/context-server.js` | Memory MCP server |
+| File                                 | Purpose                           |
+| ------------------------------------ | --------------------------------- |
+| `SKILL.md`                           | Complete AI workflow instructions |
+| `templates/level_N/`                 | Pre-composed templates by level   |
+| `scripts/spec/validate.sh`           | Validation orchestrator           |
+| `scripts/memory/generate-context.js` | Memory file generation            |
+| `mcp_server/context-server.js`       | Memory MCP server                 |
 
 ---
 
@@ -220,14 +274,14 @@ specs/042-user-authentication/
 
 Memory files are ranked by importance tier for smarter retrieval:
 
-| Tier | Boost | Decay | Use Case |
-|------|-------|-------|----------|
-| **constitutional** | 3.0x | Never | Project rules, always-surface (~2000 tokens max) |
-| **critical** | 2.0x | Never | Architecture decisions, breaking changes |
-| **important** | 1.5x | Never | Key implementations, major features |
-| **normal** | 1.0x | 90-day | Standard development context (default) |
-| **temporary** | 0.5x | 7-day | Debug sessions, experiments |
-| **deprecated** | 0.0x | Excluded | Outdated information (preserved but hidden) |
+| Tier               | Boost | Decay    | Use Case                                         |
+| ------------------ | ----- | -------- | ------------------------------------------------ |
+| **constitutional** | 3.0x  | Never    | Project rules, always-surface (~2000 tokens max) |
+| **critical**       | 2.0x  | Never    | Architecture decisions, breaking changes         |
+| **important**      | 1.5x  | Never    | Key implementations, major features              |
+| **normal**         | 1.0x  | 90-day   | Standard development context (default)           |
+| **temporary**      | 0.5x  | 7-day    | Debug sessions, experiments                      |
+| **deprecated**     | 0.0x  | Excluded | Outdated information (preserved but hidden)      |
 
 ### PREFLIGHT/POSTFLIGHT Validation
 
@@ -251,24 +305,24 @@ POSTFLIGHT (after execution):
 
 For substantial changes (>100 LOC or architectural decisions):
 
-| # | Check | Question |
-|---|-------|----------|
-| 1 | **Necessary?** | Solving ACTUAL need NOW? |
-| 2 | **Beyond Local Maxima?** | Explored 2+ alternatives? |
-| 3 | **Sufficient?** | Simplest approach possible? |
-| 4 | **Fits Goal?** | On critical path? |
-| 5 | **Open Horizons?** | Long-term aligned? |
+| #   | Check                    | Question                    |
+| --- | ------------------------ | --------------------------- |
+| 1   | **Necessary?**           | Solving ACTUAL need NOW?    |
+| 2   | **Beyond Local Maxima?** | Explored 2+ alternatives?   |
+| 3   | **Sufficient?**          | Simplest approach possible? |
+| 4   | **Fits Goal?**           | On critical path?           |
+| 5   | **Open Horizons?**       | Long-term aligned?          |
 
 ### Uncertainty Tracking
 
 Epistemic vectors measure confidence in decisions:
 
-| Factor | Weight | Question |
-|--------|--------|----------|
-| Epistemic gaps | 0.30 | What don't I know? |
-| Model boundaries | 0.25 | At capability limits? |
-| Temporal variability | 0.20 | How stable is this knowledge? |
-| Situational completeness | 0.25 | Context sufficient? |
+| Factor                   | Weight | Question                      |
+| ------------------------ | ------ | ----------------------------- |
+| Epistemic gaps           | 0.30   | What don't I know?            |
+| Model boundaries         | 0.25   | At capability limits?         |
+| Temporal variability     | 0.20   | How stable is this knowledge? |
+| Situational completeness | 0.25   | Context sufficient?           |
 
 **Thresholds:** <=0.35 (LOW) proceed | 0.36-0.60 (MEDIUM) verify | >0.60 (HIGH) clarify
 
@@ -284,16 +338,16 @@ Track knowledge gained during implementation:
 - **New Questions**: [Follow-up research needed]
 ```
 
-### Cognitive Memory (v1.7.1)
+### Cognitive Memory
 
-Advanced memory features for smarter context:
+Advanced memory features for smarter context management:
 
-| Feature | Description |
-|---------|-------------|
-| **Attention Decay** | Memory scores decay per turn (stale context fades) |
-| **Tiered Content** | HOT=full, WARM=summary, COLD=excluded |
-| **Co-Activation** | Related memories surface together |
-| **ANCHOR Retrieval** | 58-90% token savings via section targeting |
+| Feature              | Description                                        |
+| -------------------- | -------------------------------------------------- |
+| **Attention Decay**  | Memory scores decay per turn (stale context fades) |
+| **Tiered Content**   | HOT=full, WARM=summary, COLD=excluded              |
+| **Co-Activation**    | Related memories surface together                  |
+| **ANCHOR Retrieval** | 58-90% token savings via section targeting         |
 
 ---
 
@@ -313,22 +367,22 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~640 LOC)
 
 ### Level Specifications
 
-| Level | LOC | Required Files | What It ADDS |
-|-------|-----|----------------|--------------|
-| **1** | <100 | spec.md, plan.md, tasks.md, implementation-summary.md | Essential what/why/how |
-| **2** | 100-499 | Level 1 + checklist.md | Quality gates, verification |
-| **3** | ≥500 | Level 2 + decision-record.md | Architecture decisions, ADRs |
-| **3+** | Complex | Level 3 + extended content | Governance, AI protocols |
+| Level  | LOC     | Required Files                                        | What It ADDS                 |
+| ------ | ------- | ----------------------------------------------------- | ---------------------------- |
+| **1**  | <100    | spec.md, plan.md, tasks.md, implementation-summary.md | Essential what/why/how       |
+| **2**  | 100-499 | Level 1 + checklist.md                                | Quality gates, verification  |
+| **3**  | ≥500    | Level 2 + decision-record.md                          | Architecture decisions, ADRs |
+| **3+** | Complex | Level 3 + extended content                            | Governance, AI protocols     |
 
 ### Level Selection Examples
 
-| Task | LOC Est. | Level | Rationale |
-|------|----------|-------|-----------|
-| Fix CSS alignment | 10 | 1 | Simple, low risk |
-| Add form validation | 80 | 1-2 | Borderline, low complexity |
-| Modal component | 200 | 2 | Multiple files, needs QA |
-| Auth system refactor | 600 | 3 | Architecture change, high risk |
-| Database migration | 150 | 3 | High risk overrides LOC |
+| Task                 | LOC Est. | Level | Rationale                      |
+| -------------------- | -------- | ----- | ------------------------------ |
+| Fix CSS alignment    | 10       | 1     | Simple, low risk               |
+| Add form validation  | 80       | 1-2   | Borderline, low complexity     |
+| Modal component      | 200      | 2     | Multiple files, needs QA       |
+| Auth system refactor | 600      | 3     | Architecture change, high risk |
+| Database migration   | 150      | 3     | High risk overrides LOC        |
 
 **Override Factors:** Complexity, risk, security implications, multiple systems affected.
 
@@ -340,23 +394,23 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~640 LOC)
 
 ### Template Summary
 
-| Template | Level | Lines | Description |
-|----------|-------|-------|-------------|
-| `spec.md` | 1+ | ~150 | Feature specification with user stories |
-| `plan.md` | 1+ | ~120 | Implementation plan with architecture |
-| `tasks.md` | 1+ | ~80 | Task breakdown by user story |
-| `implementation-summary.md` | 1+ | ~50 | Post-implementation summary |
-| `checklist.md` | 2+ | ~100 | Validation/QA checklists (P0/P1/P2) |
-| `decision-record.md` | 3 | ~90 | Architecture Decision Records |
-| `research.md` | 3 | ~878 | Comprehensive multi-domain research |
-| `handover.md` | Any | ~100 | Full session continuity |
-| `debug-delegation.md` | Any | ~64 | Sub-agent debugging delegation |
-| `context_template.md` | Any | ~80 | Memory context template |
+| Template                    | Level | Lines | Description                             |
+| --------------------------- | ----- | ----- | --------------------------------------- |
+| `spec.md`                   | 1+    | ~150  | Feature specification with user stories |
+| `plan.md`                   | 1+    | ~120  | Implementation plan with architecture   |
+| `tasks.md`                  | 1+    | ~80   | Task breakdown by user story            |
+| `implementation-summary.md` | 1+    | ~50   | Post-implementation summary             |
+| `checklist.md`              | 2+    | ~100  | Validation/QA checklists (P0/P1/P2)     |
+| `decision-record.md`        | 3     | ~90   | Architecture Decision Records           |
+| `research.md`               | 3     | ~878  | Comprehensive multi-domain research     |
+| `handover.md`               | Any   | ~100  | Full session continuity                 |
+| `debug-delegation.md`       | Any   | ~64   | Sub-agent debugging delegation          |
+| `context_template.md`       | Any   | ~80   | Memory context template                 |
 
 ### Template Styles
 
-| Style | Location | Best For |
-|-------|----------|----------|
+| Style    | Location             | Best For                         |
+| -------- | -------------------- | -------------------------------- |
 | **Core** | `templates/level_N/` | All users, pre-composed by level |
 
 ### Copy Commands
@@ -377,119 +431,42 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 
 ### Priority System (checklist.md)
 
-| Priority | Meaning | Deferral Rules |
-|----------|---------|----------------|
-| **P0** | HARD BLOCKER | MUST complete, cannot defer |
-| **P1** | Required | MUST complete OR user-approved deferral |
-| **P2** | Optional | Can defer without approval |
+| Priority | Meaning      | Deferral Rules                          |
+| -------- | ------------ | --------------------------------------- |
+| **P0**   | HARD BLOCKER | MUST complete, cannot defer             |
+| **P1**   | Required     | MUST complete OR user-approved deferral |
+| **P2**   | Optional     | Can defer without approval              |
 
 ---
 
-## 7. ⚙️ SCRIPTS
-
-### Script Overview
-
-| Script | Purpose | Time Saved |
-|--------|---------|------------|
-| `spec/create.sh` | Create feature branch & spec folder | ~2 min/feature |
-| `spec/validate.sh` | Validation orchestrator (v2.0) | Catches issues early |
-| `spec/calculate-completeness.sh` | Calculate completeness % | Eliminates guesswork |
-| `spec/recommend-level.sh` | Recommend documentation level | ~30 sec/decision |
-| `spec/archive.sh` | Archive completed spec folders | ~1 min/archive |
-| `memory/generate-context.js` | Memory file generation | Context preservation |
-| `templates/compose.sh` | Compose level templates | Template consistency |
-
-### spec/create.sh - Feature Creation
-
-```bash
-# Create spec folder with level 2 templates
-./scripts/spec/create.sh "Add OAuth2 with MFA" --level 2
-
-# Skip git branch creation
-./scripts/spec/create.sh "Add OAuth2" --level 1 --skip-branch
-```
-
-**Output:**
-```
-═══════════════════════════════════════════════════════════════
-  Spec Kit: Spec Folder Created Successfully
-═══════════════════════════════════════════════════════════════
-  BRANCH_NAME:  042-oauth2-mfa
-  DOC_LEVEL:    Level 2
-  SPEC_FOLDER:  specs/042-oauth2-mfa/
-```
-
-### spec/validate.sh - Quality Validation
-
-```bash
-# Standard validation
-./scripts/spec/validate.sh specs/042-feature/
-
-# Strict mode (warnings become errors)
-./scripts/spec/validate.sh specs/042-feature/ --strict
-
-# JSON output for tooling
-./scripts/spec/validate.sh specs/042-feature/ --json
-```
-
-**Validation Rules (9 total):**
-
-| Rule | Severity | Description |
-|------|----------|-------------|
-| `FILE_EXISTS` | error | Required files present |
-| `PLACEHOLDER_FILLED` | error | No unfilled placeholders |
-| `SECTIONS_PRESENT` | warn | Required sections exist |
-| `FOLDER_NAMING` | error | ###-short-name pattern |
-| `FRONTMATTER_VALID` | warn | YAML structure correct |
-| `LEVEL_DECLARED` | info | Level in spec.md |
-| `PRIORITY_TAGS` | warn | P0/P1/P2 formatting |
-| `EVIDENCE_CITED` | warn | Evidence for completed items |
-| `ANCHORS_VALID` | error | ANCHOR tag pairs match |
-
-**Exit Codes:** 0 = Pass | 1 = Warnings | 2 = Errors
-
-### memory/generate-context.js - Memory Generation
-
-```bash
-# Generate memory file for spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/042-feature/
-
-# Using JSON input mode
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/context-data.json
-```
-
-**IMPORTANT:** Memory files MUST be created via this script, not manually.
-
----
-
-## 8. 🎯 COMMANDS
+## 7. 🎯 COMMANDS
 
 ### Command Overview
 
-| Command | Steps | Purpose |
-|---------|-------|---------|
-| `/spec_kit:complete` | 12 | Full end-to-end workflow |
-| `/spec_kit:plan` | 7 | Planning only (no implementation) |
-| `/spec_kit:implement` | 8 | Execute pre-planned work |
-| `/spec_kit:research` | 9 | Technical investigation |
-| `/spec_kit:resume` | 4-5 | Resume previous session |
-| `/spec_kit:handover` | 4-5 | Create session handover document |
-| `/spec_kit:debug` | 4-5 | Delegate debugging to sub-agent |
+| Command               | Steps | Purpose                           |
+| --------------------- | ----- | --------------------------------- |
+| `/spec_kit:complete`  | 12    | Full end-to-end workflow          |
+| `/spec_kit:plan`      | 7     | Planning only (no implementation) |
+| `/spec_kit:implement` | 8     | Execute pre-planned work          |
+| `/spec_kit:research`  | 9     | Technical investigation           |
+| `/spec_kit:resume`    | 4-5   | Resume previous session           |
+| `/spec_kit:handover`  | 4-5   | Create session handover document  |
+| `/spec_kit:debug`     | 4-5   | Delegate debugging to sub-agent   |
 
 ### Mode Suffixes
 
-| Suffix | Mode | Behavior |
-|--------|------|----------|
-| `:auto` | Autonomous | Execute without approval gates |
+| Suffix     | Mode        | Behavior                        |
+| ---------- | ----------- | ------------------------------- |
+| `:auto`    | Autonomous  | Execute without approval gates  |
 | `:confirm` | Interactive | Pause at each step for approval |
 
 ### Memory Commands
 
-| Command | Purpose |
-|---------|---------|
-| `/memory:save [folder]` | Save context via generate-context.js |
-| `/memory:search <query>` | Semantic search across sessions |
-| `/memory:checkpoint create` | Create named checkpoint |
+| Command                     | Purpose                              |
+| --------------------------- | ------------------------------------ |
+| `/memory:save [folder]`     | Save context via generate-context.js |
+| `/memory:search <query>`    | Semantic search across sessions      |
+| `/memory:checkpoint create` | Create named checkpoint              |
 
 ### Workflow Decision Guide
 
@@ -521,26 +498,26 @@ Do you understand requirements clearly?
 
 ---
 
-## 9. 🧠 MEMORY SYSTEM
+## 8. 🧠 MEMORY SYSTEM
 
 ### MCP Tools (17+)
 
-| Tool | Purpose |
-|------|---------|
-| `memory_search()` | Semantic search with vector similarity |
-| `memory_match_triggers()` | Fast keyword matching (<50ms) |
-| `memory_save()` | Index a memory file |
-| `memory_list()` | Browse stored memories |
-| `memory_delete()` | Delete memories by ID or folder |
-| `memory_update()` | Update memory metadata and tier |
-| `memory_stats()` | Get system statistics |
-| `memory_validate()` | Record validation feedback |
-| `memory_index_scan()` | Bulk scan and index workspace |
-| `memory_health()` | Check system health |
-| `checkpoint_create()` | Create named checkpoint |
-| `checkpoint_list()` | List all checkpoints |
-| `checkpoint_restore()` | Restore from checkpoint |
-| `checkpoint_delete()` | Delete a checkpoint |
+| Tool                      | Purpose                                |
+| ------------------------- | -------------------------------------- |
+| `memory_search()`         | Semantic search with vector similarity |
+| `memory_match_triggers()` | Fast keyword matching (<50ms)          |
+| `memory_save()`           | Index a memory file                    |
+| `memory_list()`           | Browse stored memories                 |
+| `memory_delete()`         | Delete memories by ID or folder        |
+| `memory_update()`         | Update memory metadata and tier        |
+| `memory_stats()`          | Get system statistics                  |
+| `memory_validate()`       | Record validation feedback             |
+| `memory_index_scan()`     | Bulk scan and index workspace          |
+| `memory_health()`         | Check system health                    |
+| `checkpoint_create()`     | Create named checkpoint                |
+| `checkpoint_list()`       | List all checkpoints                   |
+| `checkpoint_restore()`    | Restore from checkpoint                |
+| `checkpoint_delete()`     | Delete a checkpoint                    |
 
 > **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search()`).
 
@@ -568,27 +545,27 @@ memory_search({
 
 ### Hybrid Search
 
-| Strategy | Speed | Best For |
-|----------|-------|----------|
-| **Vector** | ~100ms | Semantic queries ("How does auth work?") |
-| **FTS5** | <10ms | Exact keywords ("JWT", "refresh token") |
-| **Trigger** | <50ms | Proactive surfacing (phrase matching) |
+| Strategy    | Speed  | Best For                                 |
+| ----------- | ------ | ---------------------------------------- |
+| **Vector**  | ~100ms | Semantic queries ("How does auth work?") |
+| **FTS5**    | <10ms  | Exact keywords ("JWT", "refresh token")  |
+| **Trigger** | <50ms  | Proactive surfacing (phrase matching)    |
 
 Results are merged using RRF (Reciprocal Rank Fusion).
 
 ### Embedding Providers
 
-| Provider | Dimensions | Best For |
-|----------|------------|----------|
-| **Voyage** | 1024 | Recommended, best retrieval |
-| **OpenAI** | 1536/3072 | Alternative cloud option |
-| **HF Local** | 768 | Privacy, offline, default fallback |
+| Provider     | Dimensions | Best For                           |
+| ------------ | ---------- | ---------------------------------- |
+| **Voyage**   | 1024       | Recommended, best retrieval        |
+| **OpenAI**   | 1536/3072  | Alternative cloud option           |
+| **HF Local** | 768        | Privacy, offline, default fallback |
 
 **Priority:** Voyage → OpenAI → HF Local (auto-detection)
 
 ---
 
-## 10. 💡 USAGE EXAMPLES
+## 9. 💡 USAGE EXAMPLES
 
 ### Creating a New Feature
 
@@ -659,7 +636,7 @@ specs/042-user-auth/
 
 ---
 
-## 11. 🛠️ TROUBLESHOOTING
+## 10. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -724,12 +701,12 @@ grep -n "ANCHOR_START\|ANCHOR_END" specs/###-folder/memory/*.md
 
 ### Quick Fixes
 
-| Problem | Quick Fix |
-|---------|-----------|
-| Spec folder not found | `./scripts/spec/create.sh "name" --level 1` |
-| Validation failing | `./scripts/spec/validate.sh <folder> --verbose` |
-| Memory not indexing | `memory_index_scan({ specFolder: "..." })` |
-| Old version | Pull latest from repository |
+| Problem               | Quick Fix                                       |
+| --------------------- | ----------------------------------------------- |
+| Spec folder not found | `./scripts/spec/create.sh "name" --level 1`     |
+| Validation failing    | `./scripts/spec/validate.sh <folder> --verbose` |
+| Memory not indexing   | `memory_index_scan({ specFolder: "..." })`      |
+| Old version           | Pull latest from repository                     |
 
 ### Diagnostic Commands
 
@@ -746,7 +723,7 @@ grep -n "ANCHOR_START\|ANCHOR_END" specs/###-folder/memory/*.md
 
 ---
 
-## 12. ❓ FAQ
+## 11. ❓ FAQ
 
 ### General Questions
 
@@ -765,7 +742,7 @@ A: Use this guide:
 
 ---
 
-**Q: Can I use Spec Kit without the slash commands?**
+**Q: Can I use MemSpec without the slash commands?**
 
 A: Yes. Copy templates manually and run scripts directly. Commands just orchestrate these components.
 
@@ -803,36 +780,39 @@ A: Scripts are CLI tools for automation. MCP tools are AI-callable functions for
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 12. 🔗 RELATED RESOURCES
 
 ### Internal Documentation
 
-| Document | Purpose |
-|----------|---------|
-| [SKILL.md](./SKILL.md) | Complete workflow documentation and AI instructions |
-| [mcp_server/README.md](./mcp_server/README.md) | Memory MCP installation and configuration |
-| [references/memory/memory_system.md](./references/memory/memory_system.md) | Memory system deep dive |
-| [references/validation/validation_rules.md](./references/validation/validation_rules.md) | All validation rules and fixes |
-| [references/validation/five-checks.md](./references/validation/five-checks.md) | Five Checks evaluation framework |
+| Document                                                                                 | Purpose                                             |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [SKILL.md](./SKILL.md)                                                                   | Complete workflow documentation and AI instructions |
+| [mcp_server/README.md](./mcp_server/README.md)                                           | Memory MCP installation and configuration           |
+| [references/memory/memory_system.md](./references/memory/memory_system.md)               | Memory system deep dive                             |
+| [references/validation/validation_rules.md](./references/validation/validation_rules.md) | All validation rules and fixes                      |
+| [references/validation/five-checks.md](./references/validation/five-checks.md)           | Five Checks evaluation framework                    |
 
 ### Key Locations
 
-| Resource | Location |
-|----------|----------|
-| **Templates** | `.opencode/skill/system-spec-kit/templates/` |
-| **Scripts** | `.opencode/skill/system-spec-kit/scripts/` |
+| Resource       | Location                                      |
+| -------------- | --------------------------------------------- |
+| **Templates**  | `.opencode/skill/system-spec-kit/templates/`  |
+| **Scripts**    | `.opencode/skill/system-spec-kit/scripts/`    |
 | **Memory MCP** | `.opencode/skill/system-spec-kit/mcp_server/` |
 | **References** | `.opencode/skill/system-spec-kit/references/` |
-| **Commands** | `.opencode/command/spec_kit/` |
+| **Commands**   | `.opencode/command/spec_kit/`                 |
 
 ### External Dependencies
 
-| Resource | Purpose |
-|----------|---------|
+| Resource    | Purpose                             |
+| ----------- | ----------------------------------- |
 | `CLAUDE.md` | Project-level AI behavior framework |
-| `AGENTS.md` | Gate definitions and enforcement |
-| `specs/` | Directory for all spec folders |
+| `AGENTS.md` | Gate definitions and enforcement    |
+| `specs/`    | Directory for all spec folders      |
 
 ---
 
-*Documentation version: 1.9.0 | Spec 077 upgrade*
+**MemSpec** - A Cognitive Spec Kit Framework
+GitHub: [github.com/MichelKerkmeester/memspec-a-cognitive-spec-kit-framework](https://github.com/MichelKerkmeester/memspec-a-cognitive-spec-kit-framework)
+
+*Documentation version: 2.0.0*
