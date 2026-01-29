@@ -29,7 +29,7 @@ MCP Install Scripts automate the installation and configuration of Model Context
 | Category | Count | Details |
 |----------|-------|---------|
 | Install Scripts | 6 | One per MCP server |
-| Shared Utilities | 33 | Functions in `_utils.sh` |
+| Shared Utilities | 36 | Functions in `_utils.sh` |
 | Platforms | 3 | macOS, Linux, Windows (WSL) |
 | Install Time | 2-10 min | Per MCP, depending on complexity |
 
@@ -95,13 +95,13 @@ opencode
 
 ```
 install_scripts/
-├── _utils.sh                      # Shared utility functions (33 functions)
+├── _utils.sh                      # Shared utility functions (36 functions)
 ├── install-sequential-thinking.sh # Sequential Thinking MCP
 ├── install-spec-kit-memory.sh     # Spec Kit Memory MCP
 ├── install-code-mode.sh           # Code Mode MCP
 ├── install-chrome-devtools.sh     # Chrome DevTools MCP (bdg CLI)
 ├── install-figma.sh               # Figma MCP (Official or Framelink)
-├── install-narsil.sh              # Narsil MCP (76 code intelligence tools)
+├── install-narsil.sh              # Narsil MCP (90 code intelligence tools)
 ├── install-all.sh                 # Master installer with --skip/--only flags
 ├── logs/                          # Installation logs
 ├── test/                          # Docker test environment
@@ -114,7 +114,7 @@ install_scripts/
 
 | File | Purpose |
 |------|---------|
-| `_utils.sh` | 33 shared functions for logging, JSON, prerequisites |
+| `_utils.sh` | 36 shared functions for logging, JSON, prerequisites |
 | `install-all.sh` | Master installer with `--skip` and `--only` flags |
 | `test/Dockerfile` | Docker image for clean environment testing |
 
@@ -131,19 +131,21 @@ install_scripts/
 | `install-code-mode.sh` | Code Mode | MCP orchestration via TypeScript execution | Node.js 18+ |
 | `install-chrome-devtools.sh` | Chrome DevTools | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
 | `install-figma.sh` | Figma | Design file access (Official or Framelink) | Node.js 18+ |
-| `install-narsil.sh` | Narsil | Deep code intelligence (76 tools) | Code Mode |
+| `install-narsil.sh` | Narsil | Deep code intelligence (90 tools) | Code Mode |
 
 ### Shared Utilities (_utils.sh)
 
 | Category | Functions | Purpose |
 |----------|-----------|---------|
-| **Logging** | `log_info`, `log_success`, `log_error`, `log_warn`, `log_step` | Colored terminal output |
-| **Prerequisites** | `check_node_version`, `check_npx`, `check_npm`, `check_command` | Dependency verification |
-| **JSON** | `json_validate`, `json_has_key`, `json_set_value`, `json_get_value` | Config file manipulation |
-| **Files** | `backup_file`, `find_project_root`, `ensure_dir` | File operations |
-| **User Input** | `confirm`, `prompt_value`, `prompt_secret` | Interactive prompts |
-| **Platform** | `detect_platform`, `detect_arch`, `is_wsl` | Environment detection |
-| **Environment** | `env_add_var`, `env_has_var`, `env_get_var` | .env file management |
+| **Logging** | `_log`, `log_info`, `log_success`, `log_error`, `log_warn`, `log_step`, `log_debug` | Colored terminal output |
+| **Prerequisites** | `check_command`, `check_node_version`, `check_npx`, `check_npm`, `check_jq`, `check_code_mode` | Dependency verification |
+| **JSON** | `json_validate`, `json_has_key`, `json_set_value`, `json_add_mcp_entry`, `json_add_utcp_entry` | Config file manipulation |
+| **Files** | `backup_file`, `find_project_root`, `get_project_root`, `ensure_dir`, `mcp_entry_exists`, `add_mcp_entry` | File operations |
+| **User Input** | `confirm`, `confirm_action`, `prompt_value`, `prompt_secret`, `prompt_choice` | Interactive prompts |
+| **Platform** | `detect_platform`, `detect_arch` | Environment detection |
+| **Environment** | `env_add_var`, `env_has_var` | .env file management |
+| **Verification** | `verify_command` | Command verification |
+| **Help** | `show_header`, `show_help_footer` | Usage display |
 
 ### Master Installer (install-all.sh)
 
@@ -157,8 +159,8 @@ install_scripts/
 # Install only specific MCPs
 ./install-all.sh --only code-mode --only spec-kit-memory
 
-# Non-interactive mode (for CI/CD)
-./install-all.sh --non-interactive
+# Dry-run mode (preview without installing)
+./install-all.sh --dry-run
 ```
 
 ---
@@ -247,14 +249,17 @@ All scripts support these standard options:
 ### Example 4: CI/CD Installation
 
 ```bash
-# Non-interactive installation of all MCPs
-./install-all.sh --non-interactive
+# Dry-run to preview installation
+./install-all.sh --dry-run
 
-# Or specific MCPs only
-./install-all.sh --only code-mode --only sequential-thinking --non-interactive
+# Install specific MCPs only (Figma and Narsil use non-interactive flags automatically)
+./install-all.sh --only code-mode --only sequential-thinking
+
+# Verbose mode to see all output
+./install-all.sh -v
 ```
 
-**Result**: MCPs installed without prompts, suitable for automation.
+**Result**: MCPs installed with appropriate flags for automation.
 
 ### Common Patterns
 
@@ -413,12 +418,13 @@ See the Contributing section in the source for the full template.
 
 **Q: Can I run these in Docker/CI?**
 
-A: Yes, use `--non-interactive` flag or the test Docker environment:
+A: Yes, use `--dry-run` to preview or the test Docker environment:
 ```bash
 cd test/
 docker build -t mcp-install-test .
 docker run -it mcp-install-test
 ```
+Note: The master installer (`install-all.sh`) automatically uses non-interactive flags for Figma (`-a`) and Narsil (`-m 1 --skip-wizard`) when running.
 
 ---
 

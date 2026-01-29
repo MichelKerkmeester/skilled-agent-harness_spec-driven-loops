@@ -48,7 +48,7 @@ WHAT THIS SCRIPT DOES:
     2. Creates .utcp_config.json template (if not exists)
     3. Creates .env.example with placeholder API keys (if not exists)
     4. Adds code_mode to opencode.json MCP configuration
-    5. Verifies the package can be executed via npx
+    5. Verifies the embedded MCP server at .opencode/skill/mcp-code-mode/
 
 FILES CREATED/MODIFIED:
     .utcp_config.json    - UTCP configuration file (created if missing)
@@ -258,13 +258,13 @@ add_to_opencode_json() {
     backup_file "${config_file}"
     
     # MCP configuration for opencode.json
-    # Note: Uses relative path for UTCP_CONFIG_FILE for portability
+    # Uses embedded source from .opencode/skill/mcp-code-mode/mcp_server/
+    # This requires: npm install in mcp_server/ directory (done in verify step)
     local mcp_config='{
         "type": "local",
-        "command": ["npx", "@utcp/code-mode-mcp"],
+        "command": ["node", ".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"],
         "environment": {
-            "UTCP_CONFIG_FILE": ".utcp_config.json",
-            "_NOTE_CONFIG": "UTCP config uses relative path - portable across project copies"
+            "UTCP_CONFIG_FILE": ".utcp_config.json"
         }
     }'
     
@@ -285,53 +285,62 @@ add_to_opencode_json() {
 
 verify_installation() {
     log_step "5" "Verifying installation..."
-    
+
+    local project_root
+    project_root=$(find_project_root) || return 1
+    local mcp_server_dir="${project_root}/.opencode/skill/mcp-code-mode/mcp_server"
+    local entry_point="${mcp_server_dir}/dist/index.js"
+
     if [[ "${DRY_RUN}" == "true" ]]; then
-        log_info "[DRY-RUN] Would verify: npx ${MCP_PACKAGE} --help"
+        log_info "[DRY-RUN] Would verify: ${entry_point} exists"
         return 0
     fi
-    
-    log_info "Testing npx ${MCP_PACKAGE}..."
-    
-    # Try to run the package with --help (should exit quickly)
-    # Use timeout to prevent hanging
-    if timeout 30 npx -y "${MCP_PACKAGE}" --help &>/dev/null; then
-        log_success "Package ${MCP_PACKAGE} is working"
-        return 0
+
+    # Check if the embedded MCP server exists
+    if [[ ! -d "${mcp_server_dir}" ]]; then
+        log_error "MCP server directory not found: ${mcp_server_dir}"
+        log_info "This script requires the mcp-code-mode skill to be bundled in the project"
+        log_info "Alternative: Use 'npx @utcp/code-mode-mcp' directly in opencode.json"
+        return 1
     fi
-    
-    # Some MCP servers don't support --help, try --version
-    if timeout 30 npx -y "${MCP_PACKAGE}" --version &>/dev/null; then
-        log_success "Package ${MCP_PACKAGE} is working"
-        return 0
+
+    # Check if node_modules exists, if not run npm install
+    if [[ ! -d "${mcp_server_dir}/node_modules" ]]; then
+        log_info "Installing dependencies in ${mcp_server_dir}..."
+        if ! (cd "${mcp_server_dir}" && npm install --silent); then
+            log_error "Failed to install dependencies"
+            return 1
+        fi
+        log_success "Dependencies installed"
     fi
-    
-    # If neither works, just verify the package can be fetched
-    log_warn "Could not verify via --help or --version"
-    log_info "Verifying package can be fetched from npm..."
-    
-    if npm view "${MCP_PACKAGE}" version &>/dev/null; then
-        log_success "Package ${MCP_PACKAGE} exists on npm"
-        return 0
+
+    # Check if dist/index.js exists
+    if [[ ! -f "${entry_point}" ]]; then
+        log_error "Entry point not found: ${entry_point}"
+        log_info "The MCP server may need to be built first"
+        return 1
     fi
-    
-    log_error "Could not verify package ${MCP_PACKAGE}"
-    return 1
+
+    log_success "Embedded MCP server verified at: ${entry_point}"
+    return 0
 }
 
 print_summary() {
     local project_root
     project_root=$(find_project_root 2>/dev/null) || project_root="."
-    
+
     echo ""
     echo "───────────────────────────────────────────────────────────────────"
     log_success "${MCP_DISPLAY_NAME} installation complete!"
     echo "───────────────────────────────────────────────────────────────────"
     echo ""
     echo "Configuration files:"
-    echo "  - opencode.json     : MCP server entry added"
+    echo "  - opencode.json     : MCP server entry added (embedded source)"
     echo "  - .utcp_config.json : UTCP configuration (add MCP tools here)"
     echo "  - .env.example      : API key templates"
+    echo ""
+    echo "MCP Server location:"
+    echo "  - .opencode/skill/mcp-code-mode/mcp_server/dist/index.js"
     echo ""
     echo "Next steps:"
     echo "  1. Copy API keys from .env.example to .env"

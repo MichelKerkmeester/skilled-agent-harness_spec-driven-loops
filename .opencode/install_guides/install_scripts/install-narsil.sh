@@ -3,7 +3,7 @@
 # install-narsil.sh: Install Narsil MCP Server
 # ───────────────────────────────────────────────────────────────────
 
-# Narsil provides deep code intelligence with 76 tools including:
+# Narsil provides deep code intelligence with 90 tools including:
 # - Neural/semantic code search (via Voyage AI, OpenAI, or local ONNX)
 # - Structural queries (symbols, definitions, references)
 # - Security scanning (OWASP, CWE, taint analysis)

@@ -99,7 +99,7 @@ configure_mcp() {
         "command": ["node", "'"${MCP_SERVER_DIR}/${MCP_SERVER_SCRIPT}"'"],
         "environment": {
             "EMBEDDINGS_PROVIDER": "auto",
-            "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
+            "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
             "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
             "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
             "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, fallback)",
