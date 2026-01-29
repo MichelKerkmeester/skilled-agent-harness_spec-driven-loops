@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to the OpenCode Dev Environment are documented in this file.
-Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
+Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 > The format is based on [Keep a Changelog](https://keepachangelog.com/)
 
@@ -60,7 +60,7 @@ Major Spec Kit Memory upgrade implementing **cognitive memory** with FSRS algori
 2. **No breaking changes** — Existing memories receive default values (stability=1.0, difficulty=5.0)
 3. **FSRS active** — Memory decay now uses validated power-law formula
 
-**Full Changelog**: https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.9.0...v1.1.0.0
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.9.0...v1.1.0.0
 
 ---
 
@@ -113,7 +113,7 @@ New **workflows-code--full-stack** skill for multi-stack projects supporting **5
 
 2. **No breaking changes** — Existing web projects continue working with `--web-dev`
 
-**Full Changelog**: https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.8.5...v1.0.9.0
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.8.5...v1.0.9.0
 
 ---
 
@@ -177,7 +177,7 @@ Performance patterns series adding **Phase 0: Research** to workflows-code, **6 
 
 No action required. Pull latest to get performance patterns and AGENTS.md enhancements.
 
-**Full Changelog**: https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.8.4...v1.0.8.5
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.8.4...v1.0.8.5
 
 ---
 
@@ -420,7 +420,7 @@ No action required. Pull latest to get:
 - Five Checks Framework for architectural decisions
 - Reorganized scripts with correct import paths
 
-**Full Changelog**: [v1.0.7.2...v1.0.8.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.7.2...v1.0.8.0)
+**Full Changelog**: [v1.0.7.2...v1.0.8.0](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.7.2...v1.0.8.0)
 
 ---
 
@@ -468,7 +468,7 @@ Consolidates **all setup questions into a single prompt** across 7 SpecKit comma
 
 No action required. Pull latest to get consolidated prompts and model-agnostic naming.
 
-**Full Changelog**: [v1.0.7.1...v1.0.7.2](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.7.1...v1.0.7.2)
+**Full Changelog**: [v1.0.7.1...v1.0.7.2](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.7.1...v1.0.7.2)
 
 ---
 
@@ -540,7 +540,7 @@ Adds **user-selectable multi-agent dispatch** to all 5 spec_kit work-execution c
 
 No action required. Pull latest to get multi-agent dispatch. Commands will now prompt for dispatch mode (A/B/C) before execution.
 
-**Full Changelog**: [v1.0.7.0...v1.0.7.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.7.0...v1.0.7.1)
+**Full Changelog**: [v1.0.7.0...v1.0.7.1](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.7.0...v1.0.7.1)
 
 ---
 
@@ -610,7 +610,7 @@ Comprehensive multi-agent system upgrade introducing **7 specialized agents** wi
 
 No action required. Pull latest to get the new agent system. The `/spec_kit:debug` command now prompts for model selection before delegating to the debug agent.
 
-**Full Changelog**: [v1.0.6.1...v1.0.7.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.6.1...v1.0.7.0)
+**Full Changelog**: [v1.0.6.1...v1.0.7.0](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.6.1...v1.0.7.0)
 
 ---
 
@@ -872,7 +872,7 @@ Major template architecture overhaul introducing CORE + ADDENDUM v2.0. This rele
    - Copy verbose templates: `cp templates/verbose/level_2/* specs/###-feature/`
    - Fill in guidance patterns, then simplify to core format
 
-**Full Changelog**: [v1.0.5.0...v1.0.6.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.5.0...v1.0.6.0)
+**Full Changelog**: [v1.0.5.0...v1.0.6.0](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.5.0...v1.0.6.0)
 
 ---
 
@@ -995,7 +995,7 @@ Major feature release introducing Memory Command Separation, Dynamic Complexity-
 3. **Template Level Selection** — Use `--level N` flag with `create-spec-folder.sh` for level-appropriate templates.
 4. **No Breaking Changes** — All existing APIs maintain backward compatibility.
 
-**Full Changelog**: [v1.0.4.1...v1.0.5.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.4.1...v1.0.5.0)
+**Full Changelog**: [v1.0.4.1...v1.0.5.0](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.4.1...v1.0.5.0)
 
 ---
 
@@ -1016,7 +1016,7 @@ Fixes a bug where README.md files in the constitutional directory were incorrect
 
 No action required. Pull latest to get the fix. Any previously indexed README memories can be removed with `memory_delete({ id: <id> })`.
 
-**Full Changelog**: [v1.0.4.0...v1.0.4.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.4.0...v1.0.4.1)
+**Full Changelog**: [v1.0.4.0...v1.0.4.1](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.4.0...v1.0.4.1)
 
 ---
 
@@ -1071,7 +1071,7 @@ A major quality and architecture release focusing on system reliability, memory 
 3. **Optional Re-indexing** — Run `memory_index_scan({ force: true })` to bulk re-index existing memory files.
 4. **No Breaking Changes** — All 14 MCP tools maintain identical interfaces.
 
-**Full Changelog**: [v1.0.3.6...v1.0.4.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.6...v1.0.4.0)
+**Full Changelog**: [v1.0.3.6...v1.0.4.0](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.3.6...v1.0.4.0)
 
 ---
 
@@ -1112,7 +1112,7 @@ Critical MCP protocol fix ensuring Cognitive Memory v17.1 functions correctly. A
 
 This release completes the Cognitive Memory v17.1 rollout by fixing the MCP protocol issue that could prevent the memory system from functioning. The cognitive features themselves (attention-decay, co-activation, tier-classifier, working-memory, summary-generator) were released in v1.0.3.4 and v1.0.3.5.
 
-**Full Changelog**: [v1.0.3.5...v1.0.3.6](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.5...v1.0.3.6)
+**Full Changelog**: [v1.0.3.5...v1.0.3.6](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.3.5...v1.0.3.6)
 
 ---
 
@@ -1141,7 +1141,7 @@ This release completes the Cognitive Memory v17.1 rollout by fixing the MCP prot
 
 1. Updated `.gitignore` to override global gitignore pattern for `.opencode/` directory
 
-**Full Changelog**: [v1.0.3.4...v1.0.3.5](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.4...v1.0.3.5)
+**Full Changelog**: [v1.0.3.4...v1.0.3.5](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.3.4...v1.0.3.5)
 
 ---
 
@@ -1226,7 +1226,7 @@ Cognitive Memory v17.1 delivers comprehensive bug fixes to the session-aware mem
 
 No action required. Pull latest to get bug fixes and cognitive memory improvements.
 
-**Full Changelog**: [v1.0.3.3...v1.0.3.4](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.3...v1.0.3.4)
+**Full Changelog**: [v1.0.3.3...v1.0.3.4](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.3.3...v1.0.3.4)
 
 ---
 
@@ -1259,7 +1259,7 @@ Security hardening and documentation quality improvements for workflows-code ski
 
 No action required. Pull latest to get security improvements.
 
-**Full Changelog**: [v1.0.3.2...v1.0.3.3](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.2...v1.0.3.3)
+**Full Changelog**: [v1.0.3.2...v1.0.3.3](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.3.2...v1.0.3.3)
 
 ---
 
@@ -1305,7 +1305,7 @@ narsil_VOYAGE_API_KEY=pa-your-key
 
 See `.env.example` for complete template.
 
-**Full Changelog**: [v1.0.3.1...v1.0.3.2](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.1...v1.0.3.2)
+**Full Changelog**: [v1.0.3.1...v1.0.3.2](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.3.1...v1.0.3.2)
 
 ---
 
@@ -1329,7 +1329,7 @@ Updates agent configuration to OpenCode v1.1.1+ format. Migrates deprecated `too
 
 Existing agents with `tools:` format continue to work (backwards compatible). New agents should use the `permission:` format. See `agent_template.md` for migration examples.
 
-**Full Changelog**: [v1.0.3.0...v1.0.3.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.3.0...v1.0.3.1)
+**Full Changelog**: [v1.0.3.0...v1.0.3.1](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.3.0...v1.0.3.1)
 
 ---
 
@@ -1372,7 +1372,7 @@ Adds support for alternative specs folder location inside `.opencode/`. Memory f
 
 No action required. Existing `specs/` folders continue to work unchanged.
 
-**Full Changelog**: [v1.0.2.9...v1.0.3.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.9...v1.0.3.0)
+**Full Changelog**: [v1.0.2.9...v1.0.3.0](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.9...v1.0.3.0)
 
 ---
 
@@ -1398,7 +1398,7 @@ Fixes critical MCP server bugs preventing Spec Kit Memory operations. Multiple i
 
 **Root Cause:** During snake_case refactoring, exports in source modules (`shared/utils.js`, `lib/errors.js`) were renamed but imports in consuming files retained camelCase names. Fixed using import aliasing: `const { snake_case: camelCase } = require(...)`
 
-**Full Changelog**: [v1.0.2.8...v1.0.2.9](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.8...v1.0.2.9)
+**Full Changelog**: [v1.0.2.8...v1.0.2.9](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.8...v1.0.2.9)
 
 ---
 
@@ -1427,7 +1427,7 @@ Reorganizes the workflows-documentation skill's asset folder structure for impro
 1. **Duplicate File** — Deleted duplicate `INSTALL_GUIDE.md` in mcp-figma skill root
 2. **Broken Paths** — Fixed 3 broken paths in mcp-figma (removed erroneous `/MCP/` from paths)
 
-**Full Changelog**: [v1.0.2.7...v1.0.2.8](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.7...v1.0.2.8)
+**Full Changelog**: [v1.0.2.7...v1.0.2.8](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.7...v1.0.2.8)
 
 ---
 
@@ -1472,7 +1472,7 @@ Addresses critical runtime errors, code quality issues, and documentation misali
 - Integration test passes (generate-context.js --help)
 - All 3 repos (anobel.com, Public, Barter) verified in sync
 
-**Full Changelog**: [v1.0.2.6...v1.0.2.7](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.6...v1.0.2.7)
+**Full Changelog**: [v1.0.2.6...v1.0.2.7](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.6...v1.0.2.7)
 
 ---
 
@@ -1530,7 +1530,7 @@ Major architectural refactoring release for the Spec Kit Memory system. The gene
 - All module imports resolve correctly
 - Integration test creates valid memory output file
 
-**Full Changelog**: [v1.0.2.5...v1.0.2.6](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.5...v1.0.2.6)
+**Full Changelog**: [v1.0.2.5...v1.0.2.6](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.5...v1.0.2.6)
 
 ---
 
@@ -1568,7 +1568,7 @@ Security and documentation release fixing hardcoded API key exposure in `.utcp_c
 2. API key references changed from hardcoded values to `${VOYAGE_API_KEY}` variable syntax
 3. Install script help text expanded with Neural Search Backends section
 
-**Full Changelog**: [v1.0.2.4...v1.0.2.5](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.4...v1.0.2.5)
+**Full Changelog**: [v1.0.2.4...v1.0.2.5](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.4...v1.0.2.5)
 
 ---
 
@@ -1636,7 +1636,7 @@ Major infrastructure release with critical bug fixes, security hardening, MCP in
 8. `implementation-summary.md` now required for all spec levels
 9. Template priority standardized to P0/P1/P2 only
 
-**Full Changelog**: [v1.0.2.3...v1.0.2.4](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.3...v1.0.2.4)
+**Full Changelog**: [v1.0.2.3...v1.0.2.4](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.3...v1.0.2.4)
 
 ---
 
@@ -1678,7 +1678,7 @@ Comprehensive Spec Kit & Memory system audit with test suite fixes, documentatio
 
 1. Deprecated `mcp_server/INSTALL_GUIDE.md` (duplicate of install_guides/MCP/MCP - Spec Kit Memory.md)
 
-**Full Changelog**: [v1.0.2.2...v1.0.2.3](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.2...v1.0.2.3)
+**Full Changelog**: [v1.0.2.2...v1.0.2.3](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.2...v1.0.2.3)
 
 ---
 
@@ -1701,7 +1701,7 @@ Security patch fixing HIGH severity DoS vulnerability in `qs` dependency. Docume
    - Checkpoint tools: `checkpoint_create`, `checkpoint_list`, `checkpoint_delete`
 2. Added example invocations for all new MCP tools
 
-**Full Changelog**: [v1.0.2.1...v1.0.2.2](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.1...v1.0.2.2)
+**Full Changelog**: [v1.0.2.1...v1.0.2.2](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.1...v1.0.2.2)
 
 ---
 
@@ -1761,7 +1761,7 @@ Comprehensive system hardening release with critical bug fixes, security improve
 4. Removed personal path references from public release
 5. Fixed symlinks pointing to personal directories
 
-**Full Changelog**: [v1.0.2.0...v1.0.2.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.2.0...v1.0.2.1)
+**Full Changelog**: [v1.0.2.0...v1.0.2.1](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.0...v1.0.2.1)
 
 ---
 
@@ -1794,7 +1794,7 @@ Technical debt remediation for Spec Kit Memory system with 6 infrastructure impr
 4. Deprecated JS validators removed
 5. `memory_delete` now supports `dryRun: true` for safe preview
 
-**Full Changelog**: [v1.0.1.7...v1.0.2.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.1.7...v1.0.2.0)
+**Full Changelog**: [v1.0.1.7...v1.0.2.0](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.1.7...v1.0.2.0)
 
 ---
 
@@ -1816,7 +1816,7 @@ Enhanced install guides with comprehensive H1 descriptions for all MCP servers. 
 1. All MCP install guides now include detailed H1 descriptions
 2. `command_template.md` reduced 27% by removing duplication
 
-**Full Changelog**: [v1.0.1.6...v1.0.1.7](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.1.6...v1.0.1.7)
+**Full Changelog**: [v1.0.1.6...v1.0.1.7](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.1.6...v1.0.1.7)
 
 ---
 
@@ -1842,7 +1842,7 @@ Parameter names changed in all Narsil tools:
 - `function_name` → `function` in call graph tools
 - Added `repo: "unknown"` requirement for all tools
 
-**Full Changelog**: [v1.0.1.5...v1.0.1.6](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.1.5...v1.0.1.6)
+**Full Changelog**: [v1.0.1.5...v1.0.1.6](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.1.5...v1.0.1.6)
 
 ---
 
@@ -1867,7 +1867,7 @@ Documents JavaScript-specific Narsil limitations discovered during testing.
 3. `get_file` for file content
 4. Git integration features
 
-**Full Changelog**: [v1.0.1.4...v1.0.1.5](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.1.4...v1.0.1.5)
+**Full Changelog**: [v1.0.1.4...v1.0.1.5](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.1.4...v1.0.1.5)
 
 ---
 
@@ -1889,7 +1889,7 @@ Documents discovered Narsil bugs and limitations with workarounds.
 1. Persistence bug: indexes regenerate ~45-60s on startup
 2. Unicode bug: box-drawing characters crash chunking
 
-**Full Changelog**: [v1.0.1.3...v1.0.1.4](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.1.3...v1.0.1.4)
+**Full Changelog**: [v1.0.1.3...v1.0.1.4](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.1.3...v1.0.1.4)
 
 ---
 
@@ -1912,7 +1912,7 @@ Documents Narsil's HTTP server and React frontend for interactive code graph vis
 1. Tool names corrected in documentation
 2. Language count: 16 → 15
 
-**Full Changelog**: [v1.0.1.2...v1.0.1.3](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.1.2...v1.0.1.3)
+**Full Changelog**: [v1.0.1.2...v1.0.1.3](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.1.2...v1.0.1.3)
 
 ---
 
@@ -1930,7 +1930,7 @@ Adds project-local Narsil index support for isolated per-project indexing.
 4. **Manual Save** — `save_index` tool for manual saves
 5. **HTTP Server Mode** — Documentation
 
-**Full Changelog**: [v1.0.1.1...v1.0.1.2](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.1.1...v1.0.1.2)
+**Full Changelog**: [v1.0.1.1...v1.0.1.2](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.1.1...v1.0.1.2)
 
 ---
 
@@ -1945,7 +1945,7 @@ Fixes Narsil neural search configuration for embedding dimension compatibility.
 1. **Embedding Model** — `voyage-code-3` (1024-dim) → `voyage-code-2` (1536-dim) for correct embedding dimensions
 2. **Frontmatter** — Invalid frontmatter in search commands
 
-**Full Changelog**: [v1.0.1.0...v1.0.1.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.1.0...v1.0.1.1)
+**Full Changelog**: [v1.0.1.0...v1.0.1.1](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.1.0...v1.0.1.1)
 
 ---
 
@@ -1964,7 +1964,7 @@ Complete migration from LEANN to Narsil for unified code intelligence. Adds 76 s
 5. MLX embeddings → Voyage/OpenAI/ONNX backends
 6. Skills reduced from 8 to 7
 
-**Full Changelog**: [v1.0.0.8...v1.0.1.0](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.8...v1.0.1.0)
+**Full Changelog**: [v1.0.0.8...v1.0.1.0](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.8...v1.0.1.0)
 
 ---
 
@@ -1980,7 +1980,7 @@ Consolidates embedding options to MLX + Qwen3 as the single path.
 2. Spec Kit Memory for document search (`specs/`, `.opencode/`)
 3. Removed Voyage, Gemini, and Contriever embedding options
 
-**Full Changelog**: [v1.0.0.7...v1.0.0.8](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.7...v1.0.0.8)
+**Full Changelog**: [v1.0.0.7...v1.0.0.8](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.7...v1.0.0.8)
 
 ---
 
@@ -2001,7 +2001,7 @@ Major semantic search upgrade with Qwen3 embedding model.
 
 1. AGENTS.md made frontend/backend agnostic
 
-**Full Changelog**: [v1.0.0.6...v1.0.0.7](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.6...v1.0.0.7)
+**Full Changelog**: [v1.0.0.6...v1.0.0.7](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.6...v1.0.0.7)
 
 ---
 
@@ -2018,7 +2018,7 @@ Strengthens write agent enforcement for /create commands.
 3. Prerequisite check validation
 4. Validation command for skill creation
 
-**Full Changelog**: [v1.0.0.5...v1.0.0.6](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.5...v1.0.0.6)
+**Full Changelog**: [v1.0.0.5...v1.0.0.6](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.5...v1.0.0.6)
 
 ---
 
@@ -2042,7 +2042,7 @@ Enforces @write agent for skill creation with multi-layer enforcement.
 2. Quick Reference updated with JS minification workflow
 3. Narsil added to Code Mode examples
 
-**Full Changelog**: [v1.0.0.4...v1.0.0.5](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.4...v1.0.0.5)
+**Full Changelog**: [v1.0.0.4...v1.0.0.5](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.4...v1.0.0.5)
 
 ---
 
@@ -2075,7 +2075,7 @@ Complete skill system overhaul standardizing 69 reference/asset files across all
 1. Hardcoded paths throughout skills
 2. Broken anchor links
 
-**Full Changelog**: [v1.0.0.3...v1.0.0.4](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.3...v1.0.0.4)
+**Full Changelog**: [v1.0.0.3...v1.0.0.4](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.3...v1.0.0.4)
 
 ---
 
@@ -2100,7 +2100,7 @@ Constitutional memory system improvements with 4x token budget increase.
 3. 4-step Violation Recovery process
 4. 5 ANCHOR sections for memory format
 
-**Full Changelog**: [v1.0.0.2...v1.0.0.3](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.2...v1.0.0.3)
+**Full Changelog**: [v1.0.0.2...v1.0.0.3](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.2...v1.0.0.3)
 
 ---
 
@@ -2131,7 +2131,7 @@ Continued post-release refinement with 80+ bug fixes.
 1. AGENTS.md made fully universal (no project-specific patterns)
 2. Symlinks converted to relative paths
 
-**Full Changelog**: [v1.0.0.1...v1.0.0.2](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.1...v1.0.0.2)
+**Full Changelog**: [v1.0.0.1...v1.0.0.2](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.1...v1.0.0.2)
 
 ---
 
@@ -2161,7 +2161,7 @@ First post-release refinement focusing on structural reorganization and critical
 9. **P1**: LEANN naming consistency
 10. **P1**: Error codes standardized
 
-**Full Changelog**: [v1.0.0.0...v1.0.0.1](https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.0.0...v1.0.0.1)
+**Full Changelog**: [v1.0.0.0...v1.0.0.1](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.0.0...v1.0.0.1)
 
 ---
 
