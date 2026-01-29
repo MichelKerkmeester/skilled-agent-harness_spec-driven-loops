@@ -71,7 +71,7 @@ nano .opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json
 
 ```
 configs/
-└── search-weights.json    # Search ranking configuration (v1.7.2)
+└── search-weights.json    # Search ranking configuration (v1.8.0)
 ```
 
 ### Key Files
@@ -90,13 +90,14 @@ configs/
 
 ```json
 {
-  "_comment": "Search weight configuration for semantic memory v1.7.2",
-  "_version": "1.7.2",
+  "_comment": "Search weight configuration for semantic memory v1.8.0",
+  "_version": "1.8.0",
   "maxTriggersPerMemory": 10,
   "smartRanking": {
-    "recencyWeight": 0.5,
-    "accessWeight": 0.3,
-    "relevanceWeight": 0.2
+    "recencyWeight": 0.35,
+    "accessWeight": 0.25,
+    "retrievabilityWeight": 0.15,
+    "relevanceWeight": 0.25
   }
 }
 ```
@@ -106,9 +107,10 @@ configs/
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `maxTriggersPerMemory` | number | 10 | Maximum trigger phrases to store per memory file |
-| `smartRanking.recencyWeight` | number | 0.5 | Weight for temporal recency (0.0-1.0) |
-| `smartRanking.accessWeight` | number | 0.3 | Weight for access count popularity (0.0-1.0) |
-| `smartRanking.relevanceWeight` | number | 0.2 | Weight for semantic similarity (0.0-1.0) |
+| `smartRanking.recencyWeight` | number | 0.35 | Weight for temporal recency (0.0-1.0) |
+| `smartRanking.accessWeight` | number | 0.25 | Weight for access count popularity (0.0-1.0) |
+| `smartRanking.retrievabilityWeight` | number | 0.15 | Weight for cognitive retrievability (anchor quality, 0.0-1.0) |
+| `smartRanking.relevanceWeight` | number | 0.25 | Weight for semantic similarity (0.0-1.0) |
 
 ### Weight Tuning Guidelines
 
@@ -116,10 +118,11 @@ configs/
 
 | Use Case | Recommended Settings |
 |----------|---------------------|
-| **Prefer recent memories** | `recencyWeight: 0.6`, `accessWeight: 0.2`, `relevanceWeight: 0.2` |
-| **Prefer frequently accessed** | `recencyWeight: 0.2`, `accessWeight: 0.6`, `relevanceWeight: 0.2` |
-| **Pure semantic search** | `recencyWeight: 0.1`, `accessWeight: 0.1`, `relevanceWeight: 0.8` |
-| **Balanced (default)** | `recencyWeight: 0.5`, `accessWeight: 0.3`, `relevanceWeight: 0.2` |
+| **Prefer recent memories** | `recencyWeight: 0.5`, `accessWeight: 0.2`, `retrievabilityWeight: 0.1`, `relevanceWeight: 0.2` |
+| **Prefer frequently accessed** | `recencyWeight: 0.2`, `accessWeight: 0.5`, `retrievabilityWeight: 0.1`, `relevanceWeight: 0.2` |
+| **Pure semantic search** | `recencyWeight: 0.1`, `accessWeight: 0.1`, `retrievabilityWeight: 0.1`, `relevanceWeight: 0.7` |
+| **Balanced (default)** | `recencyWeight: 0.35`, `accessWeight: 0.25`, `retrievabilityWeight: 0.15`, `relevanceWeight: 0.25` |
+| **Quality-focused** | `recencyWeight: 0.2`, `accessWeight: 0.2`, `retrievabilityWeight: 0.4`, `relevanceWeight: 0.2` |
 
 ---
 
@@ -130,11 +133,12 @@ configs/
 ```json
 {
   "_comment": "Prioritize semantic similarity over recency",
-  "_version": "1.7.2",
+  "_version": "1.8.0",
   "maxTriggersPerMemory": 10,
   "smartRanking": {
-    "recencyWeight": 0.2,
-    "accessWeight": 0.2,
+    "recencyWeight": 0.15,
+    "accessWeight": 0.15,
+    "retrievabilityWeight": 0.1,
     "relevanceWeight": 0.6
   }
 }
@@ -147,12 +151,13 @@ configs/
 ```json
 {
   "_comment": "Reduce triggers for faster matching",
-  "_version": "1.7.2",
+  "_version": "1.8.0",
   "maxTriggersPerMemory": 5,
   "smartRanking": {
-    "recencyWeight": 0.5,
-    "accessWeight": 0.3,
-    "relevanceWeight": 0.2
+    "recencyWeight": 0.35,
+    "accessWeight": 0.25,
+    "retrievabilityWeight": 0.15,
+    "relevanceWeight": 0.25
   }
 }
 ```
@@ -164,11 +169,12 @@ configs/
 ```json
 {
   "_comment": "Favor recent memories for active projects",
-  "_version": "1.7.2",
+  "_version": "1.8.0",
   "maxTriggersPerMemory": 10,
   "smartRanking": {
-    "recencyWeight": 0.7,
+    "recencyWeight": 0.6,
     "accessWeight": 0.2,
+    "retrievabilityWeight": 0.1,
     "relevanceWeight": 0.1
   }
 }
@@ -180,10 +186,11 @@ configs/
 
 | Pattern | Configuration | When to Use |
 |---------|--------------|-------------|
-| Default | `0.5, 0.3, 0.2` | General purpose search |
-| Research | `0.1, 0.1, 0.8` | Deep semantic exploration |
-| Active Dev | `0.7, 0.2, 0.1` | Current project focus |
-| Popular First | `0.2, 0.7, 0.1` | Frequently referenced docs |
+| Default | `0.35, 0.25, 0.15, 0.25` | General purpose search |
+| Research | `0.1, 0.1, 0.1, 0.7` | Deep semantic exploration |
+| Active Dev | `0.5, 0.2, 0.1, 0.2` | Current project focus |
+| Popular First | `0.15, 0.6, 0.1, 0.15` | Frequently referenced docs |
+| Quality Focus | `0.2, 0.2, 0.4, 0.2` | Well-structured memories |
 
 ---
 
@@ -254,7 +261,7 @@ node -e "JSON.parse(require('fs').readFileSync('.opencode/skill/system-spec-kit/
 |----------|---------|
 | [MCP Server README](../README.md) | Complete MCP server documentation |
 | [Hybrid Search Module](../lib/search/hybrid-search.js) | Implementation of search weight application |
-| [Composite Scoring Module](../lib/scoring/composite-scoring.js) | Score calculation using these weights |
+| [Composite Scoring Module](../lib/scoring/composite-scoring.js) | Score calculation using these weights (includes retrievability) |
 
 ### External Resources
 
@@ -265,4 +272,4 @@ node -e "JSON.parse(require('fs').readFileSync('.opencode/skill/system-spec-kit/
 
 ---
 
-*Configuration version: 1.7.2 | Last updated: 2026-01-15*
+*Configuration version: 1.8.0 | Last updated: 2026-01-27*

@@ -1,7 +1,6 @@
 # ───────────────────────────────────────────────────────────────────
 # DOCUMENTATION: SKILL CREATION WORKFLOW
 # ───────────────────────────────────────────────────────────────────
-# Version: 1.9.0 (SpecKit alignment)
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow does NOT support :auto mode due to its complex
 #       multi-phase nature requiring user decisions at each checkpoint.
@@ -96,22 +95,22 @@ user_inputs:
   skill_name: |
     [SKILL_NAME]
     Name for the skill in hyphen-case (e.g., my-awesome-skill).
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
 
   skill_path: |
     [SKILL_PATH]
     Output directory. Default: .opencode/skill/
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (--path flag or default).
 
   spec_path: |
     [SPEC_PATH]
     Spec folder for tracking this work.
-    FROM PHASE 2 OUTPUT (user choice A/B/C/D).
+    FROM UNIFIED SETUP PHASE (Q1 choice A/B/C/D).
 
   memory_loaded: |
     [MEMORY_LOADED]
     Whether previous context was loaded.
-    FROM PHASE 3 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q3 if applicable).
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -210,12 +209,12 @@ workflow:
   # ═══════════════════════════════════════════════════════════════
 
   step_1_request_analysis:
-    purpose: Parse inputs and validate skill name (from phase outputs)
+    purpose: Parse inputs and validate skill name (from UNIFIED SETUP PHASE)
     activities:
-    - Confirm skill_name from PHASE 1
-    - Confirm skill_path from PHASE 1 (default: .opencode/skill/)
-    - Confirm spec_path from PHASE 2 (user choice A/B/C/D)
-    - Confirm memory_loaded from PHASE 3
+    - Confirm skill_name from UNIFIED SETUP PHASE (Q0 or argument)
+    - Confirm skill_path from UNIFIED SETUP PHASE (--path flag or default)
+    - Confirm spec_path from UNIFIED SETUP PHASE (Q1 choice A/B/C/D)
+    - Confirm memory_loaded from UNIFIED SETUP PHASE (Q3 if applicable)
     - Verify skill name format (hyphen-case, 2-4 words)
     - Check if skill already exists at target path
     validation:
@@ -290,7 +289,7 @@ workflow:
     skip_condition: "No Narsil index available OR user explicitly skips discovery"
 
   step_2_spec_folder_setup:
-    purpose: Create documentation folder for tracking (if user chose B or C in Phase 2)
+    purpose: Create documentation folder for tracking (if user chose B or C in Q1)
     condition: "spec_choice != D (Skip)"
     activities:
     - IF spec_choice == B (Create new):
@@ -682,7 +681,7 @@ workflow:
       - label: "View summary"
         description: "Show final summary"
 
-    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
     post_save_indexing:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save

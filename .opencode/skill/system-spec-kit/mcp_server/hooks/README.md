@@ -336,4 +336,4 @@ const MEMORY_AWARE_TOOLS = new Set([
 
 ---
 
-*Module version: 1.7.2 | Last updated: 2026-01-21*
+*Module version: 1.8.0 | Last updated: 2026-01-27*

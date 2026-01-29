@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// EXTRACTORS: DECISION EXTRACTOR
+// ───────────────────────────────────────────────────────────────
+
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────
@@ -14,35 +18,35 @@ const simFactory = require('../lib/simulation-factory');
    2. DECISION EXTRACTION
 ──────────────────────────────────────────────────────────────── */
 
-async function extractDecisions(collectedData) {
-  const manualDecisions = collectedData?._manualDecisions || [];
-  
-  if (!collectedData) {
+async function extract_decisions(collected_data) {
+  const manual_decisions = collected_data?._manualDecisions || [];
+
+  if (!collected_data) {
     console.log('   ⚠️  Using simulation data for decisions');
     return simFactory.createDecisionData();
   }
 
   // Process manual decisions from normalized input (from keyDecisions array)
-  if (manualDecisions.length > 0) {
-    console.log(`   📋 Processing ${manualDecisions.length} manual decision(s)`);
-    
-    const specNumber = extractSpecNumber(collectedData.SPEC_FOLDER || '000-unknown');
-    const usedAnchorIds = [];
-    
-    const processedDecisions = manualDecisions.map((manualDec, index) => {
-      let decisionText;
-      if (typeof manualDec === 'string') {
-        decisionText = manualDec;
-      } else if (typeof manualDec === 'object' && manualDec !== null) {
-        decisionText = manualDec.decision || manualDec.title || JSON.stringify(manualDec);
+  if (manual_decisions.length > 0) {
+    console.log(`   📋 Processing ${manual_decisions.length} manual decision(s)`);
+
+    const spec_number = extractSpecNumber(collected_data.SPEC_FOLDER || '000-unknown');
+    const used_anchor_ids = [];
+
+    const processed_decisions = manual_decisions.map((manual_dec, index) => {
+      let decision_text;
+      if (typeof manual_dec === 'string') {
+        decision_text = manual_dec;
+      } else if (typeof manual_dec === 'object' && manual_dec !== null) {
+        decision_text = manual_dec.decision || manual_dec.title || JSON.stringify(manual_dec);
       } else {
-        decisionText = `Decision ${index + 1}`;
+        decision_text = `Decision ${index + 1}`;
       }
-      
-      const titleMatch = decisionText.match(/^(?:Decision\s*\d+:\s*)?(.+?)(?:\s*[-–—]\s*(.+))?$/i);
-      const title = titleMatch?.[1]?.trim() || `Decision ${index + 1}`;
-      const rationale = titleMatch?.[2]?.trim() || decisionText;
-      
+
+      const title_match = decision_text.match(/^(?:Decision\s*\d+:\s*)?(.+?)(?:\s*[-–—]\s*(.+))?$/i);
+      const title = title_match?.[1]?.trim() || `Decision ${index + 1}`;
+      const rationale = title_match?.[2]?.trim() || decision_text;
+
       const OPTIONS = [{
         OPTION_NUMBER: 1,
         LABEL: 'Chosen Approach',
@@ -51,11 +55,11 @@ async function extractDecisions(collectedData) {
         PROS: [],
         CONS: []
       }];
-      
-      let anchorId = generateAnchorId(title, 'decision', specNumber);
-      anchorId = validateAnchorUniqueness(anchorId, usedAnchorIds);
-      usedAnchorIds.push(anchorId);
-      
+
+      let anchor_id = generateAnchorId(title, 'decision', spec_number);
+      anchor_id = validateAnchorUniqueness(anchor_id, used_anchor_ids);
+      used_anchor_ids.push(anchor_id);
+
       return {
         INDEX: index + 1,
         TITLE: title,
@@ -77,43 +81,43 @@ async function extractDecisions(collectedData) {
         FOLLOWUP: [],
         DECISION_TREE: '',
         HAS_DECISION_TREE: false,
-        DECISION_ANCHOR_ID: anchorId,
+        DECISION_ANCHOR_ID: anchor_id,
         DECISION_IMPORTANCE: 'medium'
       };
     });
-    
+
     return {
-      DECISIONS: processedDecisions.map(validateDataStructure),
-      DECISION_COUNT: processedDecisions.length,
-      HIGH_CONFIDENCE_COUNT: processedDecisions.filter(d => d.CONFIDENCE >= 80).length,
-      MEDIUM_CONFIDENCE_COUNT: processedDecisions.filter(d => d.CONFIDENCE >= 50 && d.CONFIDENCE < 80).length,
-      LOW_CONFIDENCE_COUNT: processedDecisions.filter(d => d.CONFIDENCE < 50).length,
+      DECISIONS: processed_decisions.map(validateDataStructure),
+      DECISION_COUNT: processed_decisions.length,
+      HIGH_CONFIDENCE_COUNT: processed_decisions.filter(d => d.CONFIDENCE >= 80).length,
+      MEDIUM_CONFIDENCE_COUNT: processed_decisions.filter(d => d.CONFIDENCE >= 50 && d.CONFIDENCE < 80).length,
+      LOW_CONFIDENCE_COUNT: processed_decisions.filter(d => d.CONFIDENCE < 50).length,
       FOLLOWUP_COUNT: 0
     };
   }
 
   // Process MCP data - extract decision observations
-  const decisionObservations = (collectedData.observations || [])
+  const decision_observations = (collected_data.observations || [])
     .filter(obs => obs.type === 'decision');
 
-  const decisions = decisionObservations.map((obs, index) => {
+  const decisions = decision_observations.map((obs, index) => {
     const narrative = obs.narrative || '';
     const facts = obs.facts || [];
 
-    const optionMatches = facts.filter(f => f.includes('Option') || f.includes('Alternative'));
-    const OPTIONS = optionMatches.map((opt, i) => {
-      const labelMatch = opt.match(/Option\s+([A-Za-z0-9]+):?/)
+    const option_matches = facts.filter(f => f.includes('Option') || f.includes('Alternative'));
+    const OPTIONS = option_matches.map((opt, i) => {
+      const label_match = opt.match(/Option\s+([A-Za-z0-9]+):?/)
         || opt.match(/Alternative\s+([A-Za-z0-9]+):?/)
         || opt.match(/^(\d+)\./);
 
-      const label = labelMatch?.[1] || `${i + 1}`;
+      const label = label_match?.[1] || `${i + 1}`;
 
       let description = opt;
       if (opt.includes(':')) {
         const parts = opt.split(':');
         description = parts.slice(1).join(':').trim();
-      } else if (labelMatch) {
-        description = opt.replace(labelMatch[0], '').trim();
+      } else if (label_match) {
+        description = opt.replace(label_match[0], '').trim();
       }
 
       if (!description || description.length < 3) {
@@ -132,25 +136,25 @@ async function extractDecisions(collectedData) {
 
     // Ensure at least one option for template rendering
     if (OPTIONS.length === 0 && narrative.trim()) {
-      const impliedDescription = narrative.substring(0, 100) + (narrative.length > 100 ? '...' : '');
+      const implied_description = narrative.substring(0, 100) + (narrative.length > 100 ? '...' : '');
       OPTIONS.push({
         OPTION_NUMBER: 1,
         LABEL: 'Chosen Approach',
-        DESCRIPTION: impliedDescription,
+        DESCRIPTION: implied_description,
         HAS_PROS_CONS: false,
         PROS: [],
         CONS: []
       });
     }
 
-    const chosenMatch = narrative.match(/chose|selected|decided on|went with:?\s+([^\.\n]+)/i);
-    const CHOSEN = chosenMatch?.[1]?.trim() || (OPTIONS.length > 0 ? OPTIONS[0].LABEL : 'N/A');
+    const chosen_match = narrative.match(/chose|selected|decided on|went with:?\s+([^\.\n]+)/i);
+    const CHOSEN = chosen_match?.[1]?.trim() || (OPTIONS.length > 0 ? OPTIONS[0].LABEL : 'N/A');
 
-    const rationaleMatch = narrative.match(/because|rationale|reason:?\s+([^\.\n]+)/i);
-    const RATIONALE = rationaleMatch?.[1]?.trim() || narrative.substring(0, 200);
+    const rationale_match = narrative.match(/because|rationale|reason:?\s+([^\.\n]+)/i);
+    const RATIONALE = rationale_match?.[1]?.trim() || narrative.substring(0, 200);
 
-    const confidenceMatch = narrative.match(/confidence:?\s*(\d+)%?/i);
-    const CONFIDENCE = confidenceMatch ? parseInt(confidenceMatch[1]) : 75;
+    const confidence_match = narrative.match(/confidence:?\s*(\d+)%?/i);
+    const CONFIDENCE = confidence_match ? parseInt(confidence_match[1]) : 75;
 
     // Use word boundaries to avoid "disadvantage" matching "advantage"
     const PROS = facts
@@ -237,26 +241,26 @@ async function extractDecisions(collectedData) {
     return decision;
   });
 
-  const highConfidence = decisions.filter(d => d.CONFIDENCE >= 80).length;
-  const mediumConfidence = decisions.filter(d => d.CONFIDENCE >= 50 && d.CONFIDENCE < 80).length;
-  const lowConfidence = decisions.filter(d => d.CONFIDENCE < 50).length;
-  const followupCount = decisions.reduce((count, d) => count + d.FOLLOWUP.length, 0);
+  const high_confidence = decisions.filter(d => d.CONFIDENCE >= 80).length;
+  const medium_confidence = decisions.filter(d => d.CONFIDENCE >= 50 && d.CONFIDENCE < 80).length;
+  const low_confidence = decisions.filter(d => d.CONFIDENCE < 50).length;
+  const followup_count = decisions.reduce((count, d) => count + d.FOLLOWUP.length, 0);
 
   // Add anchor IDs for searchable decision retrieval
-  const usedAnchorIds = [];
-  const specNumber = extractSpecNumber(collectedData.SPEC_FOLDER || '000-unknown');
+  const used_anchor_ids = [];
+  const spec_number = extractSpecNumber(collected_data.SPEC_FOLDER || '000-unknown');
 
-  const decisionsWithAnchors = decisions.map(decision => {
+  const decisions_with_anchors = decisions.map(decision => {
     const category = 'decision';
 
-    let anchorId = generateAnchorId(
+    let anchor_id = generateAnchorId(
       decision.TITLE || 'Decision',
       category,
-      specNumber
+      spec_number
     );
 
-    anchorId = validateAnchorUniqueness(anchorId, usedAnchorIds);
-    usedAnchorIds.push(anchorId);
+    anchor_id = validateAnchorUniqueness(anchor_id, used_anchor_ids);
+    used_anchor_ids.push(anchor_id);
 
     const importance = decision.CONFIDENCE >= 80 ? 'high' 
       : decision.CONFIDENCE >= 50 ? 'medium' 
@@ -264,18 +268,18 @@ async function extractDecisions(collectedData) {
     
     return {
       ...decision,
-      DECISION_ANCHOR_ID: anchorId,
+      DECISION_ANCHOR_ID: anchor_id,
       DECISION_IMPORTANCE: importance
     };
   });
 
   return {
-    DECISIONS: decisionsWithAnchors.map(validateDataStructure),
+    DECISIONS: decisions_with_anchors.map(validateDataStructure),
     DECISION_COUNT: decisions.length,
-    HIGH_CONFIDENCE_COUNT: highConfidence,
-    MEDIUM_CONFIDENCE_COUNT: mediumConfidence,
-    LOW_CONFIDENCE_COUNT: lowConfidence,
-    FOLLOWUP_COUNT: followupCount
+    HIGH_CONFIDENCE_COUNT: high_confidence,
+    MEDIUM_CONFIDENCE_COUNT: medium_confidence,
+    LOW_CONFIDENCE_COUNT: low_confidence,
+    FOLLOWUP_COUNT: followup_count
   };
 }
 
@@ -284,5 +288,8 @@ async function extractDecisions(collectedData) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  extractDecisions
+  // Primary export (snake_case)
+  extract_decisions,
+  // Backward-compatible alias (camelCase)
+  extractDecisions: extract_decisions
 };

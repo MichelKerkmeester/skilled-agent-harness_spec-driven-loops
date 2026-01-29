@@ -2,7 +2,6 @@
 name: handover
 description: Session handover specialist for creating continuation documents with context preservation and seamless session branching
 mode: subagent
-model: sonnet
 temperature: 0.1
 permission:
   read: allow
@@ -85,6 +84,36 @@ Task(subagent_type: "handover", model: "gemini", prompt: "...")
 | `checklist.md`              | Quality gates, verification | Medium   |
 | `memory/*.md`               | Session context, decisions  | High     |
 | `implementation-summary.md` | Completion status           | Medium   |
+
+### Workflow Diagram
+
+```mermaid
+flowchart TD
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+
+    START([Spec Folder Path]) --> R1[1. RECEIVE]:::core
+    R1 --> R2[2. GATHER]:::core
+
+    subgraph GATHER["Context Gathering"]
+        G1[spec.md] --> G5[Extract Info]
+        G2[plan.md] --> G5
+        G3[tasks.md] --> G5
+        G4[memory/*.md] --> G5
+    end
+
+    R2 --> GATHER
+    GATHER --> R3[3. EXTRACT]:::core
+    R3 --> R4[4. DETERMINE]:::core
+    R4 --> CHECK{Existing handover.md?}
+    CHECK -->|Yes| INC[Increment Attempt #]
+    CHECK -->|No| NEW[Attempt = 1]
+    INC --> R5[5. GENERATE]:::core
+    NEW --> R5
+    R5 --> R6[6. WRITE]:::verify
+    R6 --> R7[7. RETURN]:::core
+    R7 --> DONE([JSON Result])
+```
 
 ---
 

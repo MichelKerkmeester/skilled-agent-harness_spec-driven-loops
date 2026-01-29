@@ -248,6 +248,92 @@ The YAML contains detailed step-by-step workflow, output formats, and all config
 
 ---
 
+## 3.1 📊 WORKFLOW DIAGRAM
+
+```mermaid
+flowchart TB
+    subgraph INPUT["📥 INPUT PROCESSING"]
+        START(["/spec_kit:resume"]) --> MODE{"Mode Suffix?"}
+        MODE -->|":auto"| AUTO["execution_mode = AUTONOMOUS"]
+        MODE -->|":confirm"| CONFIRM["execution_mode = INTERACTIVE"]
+        MODE -->|"none"| DEFAULT["execution_mode = INTERACTIVE<br/>(default - safer)"]
+        AUTO --> ARGS
+        CONFIRM --> ARGS
+        DEFAULT --> ARGS
+        ARGS{"Spec folder<br/>in $ARGUMENTS?"}
+    end
+
+    subgraph DETECTION["🔍 SESSION DETECTION (Priority Order)"]
+        ARGS -->|"Yes"| VALIDATE["Validate path exists"]
+        ARGS -->|"No"| SEMANTIC["1. memory_search()<br/>Semantic + decay scoring"]
+        VALIDATE --> VALID{"Path valid?"}
+        VALID -->|"Yes"| FOUND
+        VALID -->|"No"| SEMANTIC
+        SEMANTIC --> SEMRES{"Score > 0.6?"}
+        SEMRES -->|"Yes"| FOUND
+        SEMRES -->|"No"| TRIGGER["2. memory_match_triggers()<br/>Fast phrase matching"]
+        TRIGGER --> TRIGRES{"Triggers found?"}
+        TRIGRES -->|"Yes"| FOUND
+        TRIGRES -->|"No"| GLOB["3. Glob by mtime<br/>ls -t specs/**/memory/*.md"]
+        GLOB --> GLOBRES{"Files found?"}
+        GLOBRES -->|"Yes"| FOUND
+        GLOBRES -->|"No"| NOSESSION["⚠️ NO ACTIVE SESSION<br/>Offer: complete / specify path"]
+    end
+
+    subgraph CONTEXT["📂 CONTEXT LOADING (Priority Order)"]
+        FOUND["spec_path confirmed"] --> STALE{"Last activity<br/>>7 days?"}
+        STALE -->|"Yes"| STALEWARN["⚠️ STALE SESSION<br/>Options: Resume / Fresh / Review"]
+        STALE -->|"No"| LOADCTX
+        STALEWARN --> STALECHOICE{"User choice"}
+        STALECHOICE -->|"Resume"| LOADCTX
+        STALECHOICE -->|"Fresh/Review"| ALTERNATE["Alternative workflow"]
+        LOADCTX["Load Context Priority:"] --> HANDOVER{"1. handover.md<br/>exists & <24h?"}
+        HANDOVER -->|"Yes"| USEHANDOVER["Use handover context"]
+        HANDOVER -->|"No"| MEMORY{"2. memory/*.md<br/>files exist?"}
+        MEMORY -->|"Yes"| USEMEMORY["memory_search()<br/>includeContent: true"]
+        MEMORY -->|"No"| CHECKLIST["3. checklist.md<br/>for progress state"]
+        USEHANDOVER --> PROGRESS
+        USEMEMORY --> PROGRESS
+        CHECKLIST --> PROGRESS
+    end
+
+    subgraph CALCULATION["📊 PROGRESS CALCULATION"]
+        PROGRESS["Calculate Progress"] --> TASKS["Parse tasks.md<br/>Count: done/total"]
+        TASKS --> CHKLIST["Parse checklist.md<br/>Count: [x]/total"]
+        CHKLIST --> PERCENT["progress = (done/total) × 100"]
+    end
+
+    subgraph OUTPUT["✅ RESUME OUTPUT"]
+        PERCENT --> MODECHECK{"execution_mode?"}
+        MODECHECK -->|"AUTONOMOUS"| AUTOOUT["Auto: 4 steps<br/>1. Detect → 2. Load<br/>3. Calculate → 4. Present"]
+        MODECHECK -->|"INTERACTIVE"| CONFIRMOUT["Confirm: 5 steps<br/>1. Detect → 2. Select<br/>3. Load → 4. Calculate<br/>5. Present"]
+        AUTOOUT --> DISPLAY
+        CONFIRMOUT --> DISPLAY
+        DISPLAY["📊 SESSION RESUMED<br/>Spec: [path]<br/>Context: [source]<br/>Progress: [X]%"]
+        DISPLAY --> NEXTSTEPS["Suggest next steps<br/>based on progress state"]
+    end
+
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef warning fill:#92400e,stroke:#f59e0b,color:#fff
+    classDef input fill:#312e81,stroke:#6366f1,color:#fff
+
+    class START,ARGS,MODE input
+    class SEMANTIC,TRIGGER,GLOB,VALIDATE,LOADCTX,HANDOVER,MEMORY core
+    class STALE,STALEWARN gate
+    class FOUND,PROGRESS,DISPLAY,NEXTSTEPS verify
+    class NOSESSION,STALECHOICE warning
+```
+
+**Diagram Legend:**
+- **Blue (core)**: Memory MCP tools and detection logic
+- **Orange (gate)**: Stale session warnings and validation gates
+- **Green (verify)**: Successful path and output states
+- **Purple (input)**: User input and mode selection
+
+---
+
 ## 4. 📊 OUTPUT FORMATS
 
 ### Success Output

@@ -1,6 +1,6 @@
-/* ─────────────────────────────────────────────────────────────────
-   SPEC-FOLDER: FOLDER DETECTOR
-──────────────────────────────────────────────────────────────────── */
+// ───────────────────────────────────────────────────────────────
+// SPEC-FOLDER: FOLDER DETECTOR
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────────
@@ -13,17 +13,17 @@ const { promptUser, promptUserChoice } = require('../utils/prompt-utils');
 const { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs } = require('../core');
 const {
   ALIGNMENT_CONFIG,
-  extractConversationTopics,
-  calculateAlignmentScore,
-  validateContentAlignment,
-  validateFolderAlignment
+  extract_conversation_topics,
+  calculate_alignment_score,
+  validate_content_alignment,
+  validate_folder_alignment
 } = require('./alignment-validator');
 
 /* ─────────────────────────────────────────────────────────────────
    2. HELPER FUNCTIONS
 ──────────────────────────────────────────────────────────────────── */
 
-function filterArchiveFolders(folders) {
+function filter_archive_folders(folders) {
   return folders.filter(folder => {
     const lowerFolder = folder.toLowerCase();
     return !ALIGNMENT_CONFIG.ARCHIVE_PATTERNS.some(pattern =>
@@ -36,9 +36,9 @@ function filterArchiveFolders(folders) {
    3. FOLDER DETECTION
 ──────────────────────────────────────────────────────────────────── */
 
-async function detectSpecFolder(collectedData = null) {
+async function detect_spec_folder(collectedData = null) {
   const cwd = process.cwd();
-  
+
   // Check for dual specs directory locations
   const existingSpecsDirs = getAllExistingSpecsDirs();
   if (existingSpecsDirs.length > 1) {
@@ -61,21 +61,21 @@ async function detectSpecFolder(collectedData = null) {
     try {
       await fs.access(specFolderPath);
       console.log(`   Using spec folder from CLI argument: ${path.basename(specFolderPath)}`);
-      
+
       if (collectedData) {
         const folderName = path.basename(specFolderPath);
-        const alignmentResult = await validateContentAlignment(collectedData, folderName, specsDir || defaultSpecsDir);
-        
+        const alignmentResult = await validate_content_alignment(collectedData, folderName, specsDir || defaultSpecsDir);
+
         if (alignmentResult.useAlternative && alignmentResult.selectedFolder) {
           return path.join(specsDir || defaultSpecsDir, alignmentResult.selectedFolder);
         }
       }
-      
+
       return specFolderPath;
     } catch {
       console.error(`\n Specified spec folder not found: ${CONFIG.SPEC_FOLDER_ARG}\n`);
       console.error('Expected format: ###-feature-name (e.g., "122-skill-standardization")\n');
-      
+
       try {
         const searchDir = specsDir || defaultSpecsDir;
         const entries = await fs.readdir(searchDir);
@@ -109,7 +109,7 @@ async function detectSpecFolder(collectedData = null) {
     try {
       await fs.access(specFolderPath);
       console.log(`   Using spec folder from data: ${specFolderFromData}`);
-      const alignmentResult = await validateFolderAlignment(collectedData, specFolderFromData, activeDir);
+      const alignmentResult = await validate_folder_alignment(collectedData, specFolderFromData, activeDir);
       if (alignmentResult.proceed) {
         return alignmentResult.useAlternative ? path.join(activeDir, alignmentResult.selectedFolder) : specFolderPath;
       }
@@ -145,7 +145,7 @@ async function detectSpecFolder(collectedData = null) {
       .sort()
       .reverse();
 
-    specFolders = filterArchiveFolders(specFolders);
+    specFolders = filter_archive_folders(specFolders);
 
     if (specFolders.length === 0) {
       console.error('\n Cannot save context: No spec folder found\n');
@@ -166,9 +166,9 @@ async function detectSpecFolder(collectedData = null) {
       return path.join(specsDir, specFolders[0]);
     }
 
-    const conversationTopics = extractConversationTopics(collectedData);
+    const conversationTopics = extract_conversation_topics(collectedData);
     const mostRecent = specFolders[0];
-    const alignmentScore = calculateAlignmentScore(conversationTopics, mostRecent);
+    const alignmentScore = calculate_alignment_score(conversationTopics, mostRecent);
 
     if (alignmentScore >= ALIGNMENT_CONFIG.THRESHOLD) {
       return path.join(specsDir, mostRecent);
@@ -179,7 +179,7 @@ async function detectSpecFolder(collectedData = null) {
 
     const alternatives = specFolders.slice(0, Math.min(5, specFolders.length)).map(folder => ({
       folder,
-      score: calculateAlignmentScore(conversationTopics, folder)
+      score: calculate_alignment_score(conversationTopics, folder)
     }));
 
     alternatives.sort((a, b) => b.score - a.score);
@@ -203,7 +203,7 @@ async function detectSpecFolder(collectedData = null) {
     }
 
   } catch (error) {
-    if (error.message.includes('retry attempts') || 
+    if (error.message.includes('retry attempts') ||
         error.message.includes('Spec folder not found') ||
         error.message.includes('No spec folders found') ||
         error.message.includes('No specs/ directory found')) {
@@ -225,7 +225,11 @@ async function detectSpecFolder(collectedData = null) {
 ──────────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  detectSpecFolder,
-  filterArchiveFolders,
-  ALIGNMENT_CONFIG
+  ALIGNMENT_CONFIG,
+  // Primary exports (snake_case)
+  detect_spec_folder,
+  filter_archive_folders,
+  // Backwards compatibility aliases (camelCase)
+  detectSpecFolder: detect_spec_folder,
+  filterArchiveFolders: filter_archive_folders
 };

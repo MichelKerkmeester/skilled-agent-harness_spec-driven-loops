@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// COGNITIVE: TIER CLASSIFIER
+// COGNITIVE: TIER CLASSIFIER (5-STATE MODEL)
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -10,97 +10,229 @@ const path = require('path');
    1. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
 
-/**
- * Parse threshold from env var with validation
- * Falls back to default if invalid or NaN
- * @param {string} envVar - Environment variable name
- * @param {number} defaultVal - Default value if invalid
- * @returns {number} Validated threshold between 0 and 1
- */
+/** Parse threshold from env var with validation */
 function parse_threshold(envVar, defaultVal) {
   const parsed = parseFloat(process.env[envVar]);
   return !isNaN(parsed) && parsed >= 0 && parsed <= 1 ? parsed : defaultVal;
 }
 
-/**
- * Parse integer limit from env var with validation
- * Falls back to default if invalid or NaN
- * @param {string} envVar - Environment variable name
- * @param {number} defaultVal - Default value if invalid
- * @returns {number} Validated positive integer
- */
+/** Parse integer limit from env var with validation */
 function parse_limit(envVar, defaultVal) {
   const parsed = parseInt(process.env[envVar], 10);
   return !isNaN(parsed) && parsed > 0 ? parsed : defaultVal;
 }
 
-/**
- * Tier configuration with environment variable overrides
- * HOT_THRESHOLD: Controls how long memories stay in HOT tier (default: 0.8)
- *   - Lower values (e.g., 0.7) = memories stay HOT longer (more full content, more tokens)
- *   - Higher values (e.g., 0.85) = memories drop to WARM faster (more summaries, fewer tokens)
- *   - With decay rate 0.80: 0.8 threshold = ~1 turn HOT, 0.7 threshold = ~2 turns HOT
- * WARM_THRESHOLD: Controls when memories become COLD and are excluded (default: 0.25)
- */
-const TIER_CONFIG = {
-  hotThreshold: parse_threshold('HOT_THRESHOLD', 0.8),
-  warmThreshold: parse_threshold('WARM_THRESHOLD', 0.25),
-  // score < warmThreshold = COLD (not returned)
-  maxHotMemories: parse_limit('MAX_HOT_MEMORIES', 5),
-  maxWarmMemories: parse_limit('MAX_WARM_MEMORIES', 10),
-  summaryFallbackLength: 150,  // First N chars if no summary field
+// COGNITIVE-081: 5-State Model Thresholds based on retrievability R = e^(-t/S)
+const STATE_THRESHOLDS = {
+  HOT: 0.80,
+  WARM: 0.25,
+  COLD: 0.05,
+  DORMANT: 0.02,
 };
 
-// BUG-011: Validate threshold ordering (HOT must be > WARM)
+const ARCHIVED_DAYS_THRESHOLD = 90;
+
+// COGNITIVE-081: Tier config with env var overrides for tuning
+const TIER_CONFIG = {
+  hotThreshold: parse_threshold('HOT_THRESHOLD', STATE_THRESHOLDS.HOT),
+  warmThreshold: parse_threshold('WARM_THRESHOLD', STATE_THRESHOLDS.WARM),
+  coldThreshold: parse_threshold('COLD_THRESHOLD', STATE_THRESHOLDS.COLD),
+  archivedDaysThreshold: parse_limit('ARCHIVED_DAYS_THRESHOLD', ARCHIVED_DAYS_THRESHOLD),
+  maxHotMemories: parse_limit('MAX_HOT_MEMORIES', 5),
+  maxWarmMemories: parse_limit('MAX_WARM_MEMORIES', 10),
+  summaryFallbackLength: 150,
+};
+
+// Validate threshold ordering (HOT > WARM > COLD)
 if (TIER_CONFIG.hotThreshold <= TIER_CONFIG.warmThreshold) {
   console.warn('[tier-classifier] Invalid thresholds: HOT must be > WARM. Using defaults.');
-  TIER_CONFIG.hotThreshold = 0.8;
-  TIER_CONFIG.warmThreshold = 0.25;
+  TIER_CONFIG.hotThreshold = STATE_THRESHOLDS.HOT;
+  TIER_CONFIG.warmThreshold = STATE_THRESHOLDS.WARM;
+}
+if (TIER_CONFIG.warmThreshold <= TIER_CONFIG.coldThreshold) {
+  console.warn('[tier-classifier] Invalid thresholds: WARM must be > COLD. Using defaults.');
+  TIER_CONFIG.warmThreshold = STATE_THRESHOLDS.WARM;
+  TIER_CONFIG.coldThreshold = STATE_THRESHOLDS.COLD;
 }
 
 /* ─────────────────────────────────────────────────────────────
-   2. TIER CLASSIFICATION
+   2. FSRS INTEGRATION (LAZY LOADED)
 ──────────────────────────────────────────────────────────────── */
 
-/**
- * Classify a memory into HOT, WARM, or COLD tier based on attention score
- * @param {number} attentionScore - Score between 0.0 and 1.0
- * @returns {'HOT' | 'WARM' | 'COLD'} The tier classification
- */
+let fsrsScheduler = null;
+
+/** Attempt to load FSRS scheduler module (lazy to avoid circular deps) */
+function get_fsrs_scheduler() {
+  if (fsrsScheduler !== null) {
+    return fsrsScheduler;
+  }
+
+  try {
+    fsrsScheduler = require('./fsrs-scheduler');
+    return fsrsScheduler;
+  } catch (error) {
+    fsrsScheduler = false;
+    return null;
+  }
+}
+
+/** Calculate retrievability score using FSRS or fallback */
+function calculate_retrievability(memory) {
+  if (!memory || typeof memory !== 'object') {
+    return 0;
+  }
+
+  // Check pre-computed retrievability FIRST (highest priority)
+  if (typeof memory.retrievability === 'number' && !isNaN(memory.retrievability)) {
+    return Math.max(0, Math.min(1, memory.retrievability));
+  }
+
+  // FSRS calculation (second priority) - only if we have timestamp data
+  const lastReview = memory.last_review || memory.lastReview || memory.updated_at || memory.created_at;
+  if (lastReview) {
+    const scheduler = get_fsrs_scheduler();
+    if (scheduler && typeof scheduler.calculate_retrievability === 'function') {
+      try {
+        const elapsedDays = scheduler.calculate_elapsed_days(lastReview);
+        return scheduler.calculate_retrievability(memory.stability || 1.0, elapsedDays);
+      } catch (error) {
+        console.warn(`[tier-classifier] FSRS calculation failed: ${error.message}`);
+      }
+    }
+  }
+
+  // COGNITIVE-081: Fallback using stability and elapsed time
+  if (typeof memory.stability === 'number' && memory.stability > 0) {
+    const lastAccess = memory.lastAccess || memory.last_access || memory.lastReview || memory.created_at;
+    if (lastAccess) {
+      const elapsedDays = calculate_days_since(lastAccess);
+      return Math.exp(-elapsedDays / memory.stability);
+    }
+  }
+
+  if (typeof memory.attentionScore === 'number' && !isNaN(memory.attentionScore)) {
+    return Math.max(0, Math.min(1, memory.attentionScore));
+  }
+
+  return 0;
+}
+
+/** Calculate days elapsed since a timestamp */
+function calculate_days_since(timestamp) {
+  if (!timestamp) {
+    return Infinity;
+  }
+
+  try {
+    const date = new Date(timestamp);
+    if (isNaN(date.getTime())) {
+      return Infinity;
+    }
+    const now = Date.now();
+    const elapsed = now - date.getTime();
+    return elapsed / (1000 * 60 * 60 * 24);
+  } catch (error) {
+    return Infinity;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   3. STATE CLASSIFICATION (5-STATE MODEL)
+──────────────────────────────────────────────────────────────── */
+
+/** Classify memory into one of 5 states: HOT, WARM, COLD, DORMANT, ARCHIVED */
+function classify_state(memory) {
+  if (!memory || typeof memory !== 'object') {
+    return 'DORMANT';
+  }
+
+  // COGNITIVE-081: Check ARCHIVED first (90+ days inactive)
+  const lastAccess = memory.lastAccess || memory.last_access || memory.lastReview || memory.created_at;
+  if (lastAccess) {
+    const daysSinceAccess = calculate_days_since(lastAccess);
+    if (daysSinceAccess >= TIER_CONFIG.archivedDaysThreshold) {
+      return 'ARCHIVED';
+    }
+  }
+
+  const retrievability = calculate_retrievability(memory);
+
+  if (retrievability >= TIER_CONFIG.hotThreshold) {
+    return 'HOT';
+  }
+  if (retrievability >= TIER_CONFIG.warmThreshold) {
+    return 'WARM';
+  }
+  if (retrievability >= TIER_CONFIG.coldThreshold) {
+    return 'COLD';
+  }
+  return 'DORMANT';
+}
+
+/** Legacy: Classify into HOT, WARM, or COLD (3-tier backward compatible) */
 function classify_tier(attentionScore) {
-  // Handle edge cases
   if (typeof attentionScore !== 'number' || isNaN(attentionScore)) {
     return 'COLD';
   }
 
-  // Clamp score to valid range
   const score = Math.max(0, Math.min(1, attentionScore));
 
   if (score >= TIER_CONFIG.hotThreshold) {
     return 'HOT';
   }
-
   if (score >= TIER_CONFIG.warmThreshold) {
     return 'WARM';
   }
-
   return 'COLD';
 }
 
+/** Map 5-state to 3-tier for backward compatibility */
+function state_to_tier(state) {
+  switch (state) {
+    case 'HOT':
+      return 'HOT';
+    case 'WARM':
+      return 'WARM';
+    case 'COLD':
+    case 'DORMANT':
+    case 'ARCHIVED':
+    default:
+      return 'COLD';
+  }
+}
+
 /* ─────────────────────────────────────────────────────────────
-   3. CONTENT RETRIEVAL BY TIER
+   4. CONTENT RETRIEVAL BY STATE
 ──────────────────────────────────────────────────────────────── */
 
-/**
- * Get appropriate content for a memory based on its tier
- * - HOT: Full content (read from file)
- * - WARM: Summary field (or first N chars if no summary)
- * - COLD: null (not returned)
- *
- * @param {object} memory - Memory object with filePath and summary fields
- * @param {'HOT' | 'WARM' | 'COLD'} tier - The tier classification
- * @returns {string | null} Content appropriate for the tier
- */
+// COGNITIVE-081: Content delivery rules - HOT=full, WARM=summary, others=null
+const CONTENT_RULES = {
+  HOT: 'full',
+  WARM: 'summary',
+  COLD: null,
+  DORMANT: null,
+  ARCHIVED: null,
+};
+
+/** Get content for memory based on its state */
+function get_state_content(memory, state) {
+  if (!memory || typeof memory !== 'object') {
+    return null;
+  }
+
+  const contentRule = CONTENT_RULES[state];
+
+  switch (contentRule) {
+    case 'full':
+      return get_full_content(memory);
+    case 'summary':
+      return get_summary_content(memory);
+    default:
+      return null;
+  }
+}
+
+/** Legacy: Get content based on tier */
 function get_tiered_content(memory, tier) {
   if (!memory || typeof memory !== 'object') {
     return null;
@@ -109,33 +241,25 @@ function get_tiered_content(memory, tier) {
   switch (tier) {
     case 'HOT':
       return get_full_content(memory);
-
     case 'WARM':
       return get_summary_content(memory);
-
     case 'COLD':
     default:
       return null;
   }
 }
 
-/**
- * Read full content from memory file
- * @param {object} memory - Memory object with filePath
- * @returns {string | null} Full file content or null if unavailable
- */
+/** Read full content from memory file */
 function get_full_content(memory) {
   if (!memory.filePath) {
     return null;
   }
 
   try {
-    // Check if file exists
     if (!fs.existsSync(memory.filePath)) {
       console.warn(`[tier-classifier] File not found: ${memory.filePath}`);
       return null;
     }
-
     const content = fs.readFileSync(memory.filePath, 'utf-8');
     return content;
   } catch (error) {
@@ -144,30 +268,22 @@ function get_full_content(memory) {
   }
 }
 
-/**
- * Get summary content for WARM tier
- * Uses summary field if available, otherwise first N characters of content
- * @param {object} memory - Memory object with summary and/or filePath
- * @returns {string | null} Summary content or null if unavailable
- */
+/** Get summary content - uses summary field or truncates full content */
 function get_summary_content(memory) {
-  // Prefer explicit summary field
   if (memory.summary && typeof memory.summary === 'string' && memory.summary.trim()) {
     return memory.summary.trim();
   }
 
-  // Fallback: Read file and truncate
   const fullContent = get_full_content(memory);
   if (!fullContent) {
     return null;
   }
 
-  // Return first N characters with ellipsis if truncated
   if (fullContent.length <= TIER_CONFIG.summaryFallbackLength) {
     return fullContent;
   }
 
-  // Find a good break point (word boundary)
+  // COGNITIVE-081: Find word boundary for clean truncation
   let truncated = fullContent.substring(0, TIER_CONFIG.summaryFallbackLength);
   const lastSpace = truncated.lastIndexOf(' ');
 
@@ -179,24 +295,60 @@ function get_summary_content(memory) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   4. FILTERING AND LIMITING
+   5. FILTERING AND LIMITING (5-STATE)
 ──────────────────────────────────────────────────────────────── */
 
-/**
- * Filter out COLD memories and limit HOT/WARM counts
- * - Filters out COLD tier memories (not returned)
- * - Limits HOT to maxHotMemories (default 5)
- * - Limits WARM to maxWarmMemories (default 10)
- *
- * @param {Array<object>} memories - Array of memories with attentionScore
- * @returns {Array<object>} Filtered and limited memories with tier assigned
- */
+/** Filter memories by state and apply limits (HOT max 5, WARM max 10) */
+function filter_and_limit_by_state(memories) {
+  if (!Array.isArray(memories)) {
+    return [];
+  }
+
+  const hotMemories = [];
+  const warmMemories = [];
+  const coldMemories = [];
+  const dormantMemories = [];
+  const archivedMemories = [];
+
+  for (const memory of memories) {
+    const state = classify_state(memory);
+    const retrievability = calculate_retrievability(memory);
+    const enriched = { ...memory, state, retrievability };
+
+    switch (state) {
+      case 'HOT':
+        hotMemories.push(enriched);
+        break;
+      case 'WARM':
+        warmMemories.push(enriched);
+        break;
+      case 'COLD':
+        coldMemories.push(enriched);
+        break;
+      case 'DORMANT':
+        dormantMemories.push(enriched);
+        break;
+      case 'ARCHIVED':
+        archivedMemories.push(enriched);
+        break;
+    }
+  }
+
+  hotMemories.sort((a, b) => b.retrievability - a.retrievability);
+  warmMemories.sort((a, b) => b.retrievability - a.retrievability);
+
+  const limitedHot = hotMemories.slice(0, TIER_CONFIG.maxHotMemories);
+  const limitedWarm = warmMemories.slice(0, TIER_CONFIG.maxWarmMemories);
+
+  return [...limitedHot, ...limitedWarm];
+}
+
+/** Legacy: Filter and limit by tier */
 function filter_and_limit_by_tier(memories) {
   if (!Array.isArray(memories)) {
     return [];
   }
 
-  // Classify and separate by tier
   const hotMemories = [];
   const warmMemories = [];
 
@@ -209,32 +361,57 @@ function filter_and_limit_by_tier(memories) {
     } else if (tier === 'WARM') {
       warmMemories.push({ ...memory, tier, attentionScore });
     }
-    // COLD memories are not included
   }
 
-  // Sort by attention score (descending) within each tier
   hotMemories.sort((a, b) => b.attentionScore - a.attentionScore);
   warmMemories.sort((a, b) => b.attentionScore - a.attentionScore);
 
-  // Apply limits
   const limitedHot = hotMemories.slice(0, TIER_CONFIG.maxHotMemories);
   const limitedWarm = warmMemories.slice(0, TIER_CONFIG.maxWarmMemories);
 
-  // Combine: HOT first, then WARM
   return [...limitedHot, ...limitedWarm];
 }
 
 /* ─────────────────────────────────────────────────────────────
-   5. RESPONSE FORMATTING
+   6. RESPONSE FORMATTING
 ──────────────────────────────────────────────────────────────── */
 
-/**
- * Format memories into tiered response format
- * Each memory includes tier info and appropriate content depth
- *
- * @param {Array<object>} memories - Array of memories with tier and attentionScore
- * @returns {Array<object>} Formatted response array
- */
+/** Format memories into state-aware response (5-state) */
+function format_state_response(memories) {
+  if (!Array.isArray(memories)) {
+    return [];
+  }
+
+  const response = [];
+
+  for (const memory of memories) {
+    const state = memory.state || classify_state(memory);
+
+    if (state === 'COLD' || state === 'DORMANT' || state === 'ARCHIVED') {
+      continue;
+    }
+
+    const content = get_state_content(memory, state);
+    const retrievability = memory.retrievability || calculate_retrievability(memory);
+
+    response.push({
+      id: memory.id || memory.memoryId,
+      specFolder: memory.specFolder || memory.spec_folder,
+      filePath: memory.filePath || memory.file_path,
+      title: memory.title,
+      state,
+      tier: state_to_tier(state),
+      retrievability,
+      attentionScore: memory.attentionScore || retrievability,
+      content,
+      matchedPhrases: memory.matchedPhrases || [],
+    });
+  }
+
+  return response;
+}
+
+/** Legacy: Format memories into tiered response */
 function format_tiered_response(memories) {
   if (!Array.isArray(memories)) {
     return [];
@@ -245,7 +422,6 @@ function format_tiered_response(memories) {
   for (const memory of memories) {
     const tier = memory.tier || classify_tier(memory.attentionScore || 0);
 
-    // Skip COLD memories
     if (tier === 'COLD') {
       continue;
     }
@@ -268,14 +444,56 @@ function format_tiered_response(memories) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   6. UTILITY FUNCTIONS
+   7. UTILITY FUNCTIONS
 ──────────────────────────────────────────────────────────────── */
 
-/**
- * Get tier statistics for a set of memories
- * @param {Array<object>} memories - Array of memories with attentionScore
- * @returns {object} Statistics about tier distribution
- */
+/** Get state statistics for a set of memories */
+function get_state_stats(memories) {
+  if (!Array.isArray(memories)) {
+    return { hot: 0, warm: 0, cold: 0, dormant: 0, archived: 0, total: 0 };
+  }
+
+  let hot = 0;
+  let warm = 0;
+  let cold = 0;
+  let dormant = 0;
+  let archived = 0;
+
+  for (const memory of memories) {
+    const state = classify_state(memory);
+
+    switch (state) {
+      case 'HOT':
+        hot++;
+        break;
+      case 'WARM':
+        warm++;
+        break;
+      case 'COLD':
+        cold++;
+        break;
+      case 'DORMANT':
+        dormant++;
+        break;
+      case 'ARCHIVED':
+        archived++;
+        break;
+    }
+  }
+
+  return {
+    hot,
+    warm,
+    cold,
+    dormant,
+    archived,
+    total: memories.length,
+    active: hot + warm,
+    tracked: hot + warm + cold,
+  };
+}
+
+/** Legacy: Get tier statistics */
 function get_tier_stats(memories) {
   if (!Array.isArray(memories)) {
     return { hot: 0, warm: 0, cold: 0, total: 0 };
@@ -306,24 +524,38 @@ function get_tier_stats(memories) {
     warm,
     cold,
     total: memories.length,
-    filtered: hot + warm, // Memories that would be returned
+    filtered: hot + warm,
   };
 }
 
-/**
- * Check if attention score qualifies for inclusion (not COLD)
- * @param {number} attentionScore - Score between 0.0 and 1.0
- * @returns {boolean} True if memory should be included
- */
+/** Check if memory qualifies for context inclusion */
+function is_context_included(memory) {
+  const state = classify_state(memory);
+  return state === 'HOT' || state === 'WARM';
+}
+
+/** Legacy: Check if attention score qualifies for inclusion */
 function is_included(attentionScore) {
   return classify_tier(attentionScore) !== 'COLD';
 }
 
-/**
- * Get the threshold for a specific tier
- * @param {'HOT' | 'WARM'} tier - The tier to get threshold for
- * @returns {number} The threshold value
- */
+/** Get the threshold for a specific state */
+function get_state_threshold(state) {
+  switch (state) {
+    case 'HOT':
+      return TIER_CONFIG.hotThreshold;
+    case 'WARM':
+      return TIER_CONFIG.warmThreshold;
+    case 'COLD':
+      return TIER_CONFIG.coldThreshold;
+    case 'DORMANT':
+      return 0;
+    default:
+      return 0;
+  }
+}
+
+/** Legacy: Get the threshold for a tier */
 function get_tier_threshold(tier) {
   switch (tier) {
     case 'HOT':
@@ -335,26 +567,67 @@ function get_tier_threshold(tier) {
   }
 }
 
+/** Check if memory should be archived (90+ days inactive) */
+function should_archive(memory) {
+  if (!memory || typeof memory !== 'object') {
+    return false;
+  }
+
+  const lastAccess = memory.lastAccess || memory.last_access || memory.lastReview || memory.created_at;
+  if (!lastAccess) {
+    return false;
+  }
+
+  const daysSinceAccess = calculate_days_since(lastAccess);
+  return daysSinceAccess >= TIER_CONFIG.archivedDaysThreshold;
+}
+
+/** Get all archived memories from a set */
+function get_archived_memories(memories) {
+  if (!Array.isArray(memories)) {
+    return [];
+  }
+  return memories.filter(memory => classify_state(memory) === 'ARCHIVED');
+}
+
+/** Get all dormant memories from a set */
+function get_dormant_memories(memories) {
+  if (!Array.isArray(memories)) {
+    return [];
+  }
+  return memories.filter(memory => classify_state(memory) === 'DORMANT');
+}
+
 /* ─────────────────────────────────────────────────────────────
-   7. MODULE EXPORTS
+   8. MODULE EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  // Main functions
+  classifyState: classify_state,
+  calculateRetrievability: calculate_retrievability,
+  getStateContent: get_state_content,
+  filterAndLimitByState: filter_and_limit_by_state,
+  formatStateResponse: format_state_response,
+  getStateStats: get_state_stats,
+  isContextIncluded: is_context_included,
+  getStateThreshold: get_state_threshold,
+  stateToTier: state_to_tier,
+  shouldArchive: should_archive,
+  getArchivedMemories: get_archived_memories,
+  getDormantMemories: get_dormant_memories,
+  calculateDaysSince: calculate_days_since,
   classifyTier: classify_tier,
   getTieredContent: get_tiered_content,
   filterAndLimitByTier: filter_and_limit_by_tier,
   formatTieredResponse: format_tiered_response,
-
-  // Utility functions
   getTierStats: get_tier_stats,
   isIncluded: is_included,
   getTierThreshold: get_tier_threshold,
-
-  // Internal functions (exposed for testing)
   getFullContent: get_full_content,
   getSummaryContent: get_summary_content,
-
-  // Configuration
+  getFsrsScheduler: get_fsrs_scheduler,
   TIER_CONFIG,
+  STATE_THRESHOLDS,
+  ARCHIVED_DAYS_THRESHOLD,
+  CONTENT_RULES,
 };

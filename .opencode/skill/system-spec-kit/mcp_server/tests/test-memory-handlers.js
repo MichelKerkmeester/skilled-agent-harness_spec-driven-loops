@@ -1071,8 +1071,10 @@ async function test_memory_crud_handler() {
   );
 
   // Test 20: memory_delete - single id deletion
+  // Note: memory IDs must be numeric (SQLite auto-increment integers)
+  // Use a large number that won't exist rather than a non-numeric string
   try {
-    const result = await handlers.handle_memory_delete({ id: 'nonexistent-id-12345' });
+    const result = await handlers.handle_memory_delete({ id: 999999999 });
     if (result && result.content) {
       const data = parseResponse(result);
       if (data) {

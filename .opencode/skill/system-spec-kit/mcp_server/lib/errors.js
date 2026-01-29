@@ -85,7 +85,11 @@ function user_friendly_error(error) {
   for (const { pattern, message } of internal_patterns) {
     if (pattern.test(error.message)) return message;
   }
-  return error.message;
+
+  // BUG-029 FIX: Generic fallback instead of raw error
+  // Log the actual error for debugging, return generic message to user
+  console.error('[errors] Unmatched error:', error.message);
+  return 'An unexpected error occurred. Please try again.';
 }
 
 /* ─────────────────────────────────────────────────────────────

@@ -1,0 +1,147 @@
+{
+  "cases": [
+    {
+      "a": "Use FSRS algorithm",
+      "b": "Use FSRS algorithm",
+      "expectedRange": [0.95, 1.0],
+      "category": "identical",
+      "description": "Identical strings should have near-perfect similarity"
+    },
+    {
+      "a": "Use FSRS algorithm",
+      "b": "Apply FSRS method",
+      "expectedRange": [0.85, 0.95],
+      "category": "semantic-equivalent",
+      "description": "Semantically equivalent with different phrasing"
+    },
+    {
+      "a": "Use FSRS algorithm",
+      "b": "Use FSRS for spaced repetition",
+      "expectedRange": [0.80, 0.92],
+      "category": "semantic-related",
+      "description": "Related concept with additional context"
+    },
+    {
+      "a": "Memory importance tier 5",
+      "b": "Constitutional memory importance",
+      "expectedRange": [0.75, 0.88],
+      "category": "domain-related",
+      "description": "Domain-specific related concepts"
+    },
+    {
+      "a": "Always validate inputs",
+      "b": "Input validation is required",
+      "expectedRange": [0.80, 0.92],
+      "category": "paraphrase",
+      "description": "Paraphrased statement with same meaning"
+    },
+    {
+      "a": "Use async/await pattern",
+      "b": "Handle asynchronous operations",
+      "expectedRange": [0.65, 0.80],
+      "category": "conceptual-overlap",
+      "description": "Related but different level of specificity"
+    },
+    {
+      "a": "Save context to memory",
+      "b": "Store session state",
+      "expectedRange": [0.60, 0.78],
+      "category": "functional-similar",
+      "description": "Functionally similar but different terminology"
+    },
+    {
+      "a": "Use FSRS algorithm",
+      "b": "Configure database connection",
+      "expectedRange": [0.15, 0.35],
+      "category": "unrelated",
+      "description": "Completely unrelated topics"
+    },
+    {
+      "a": "Constitutional rules are immutable",
+      "b": "The weather is nice today",
+      "expectedRange": [0.0, 0.20],
+      "category": "completely-different",
+      "description": "No semantic relationship"
+    },
+    {
+      "a": "Prediction error gate threshold",
+      "b": "PE gate threshold value",
+      "expectedRange": [0.82, 0.95],
+      "category": "abbreviation",
+      "description": "Same concept with abbreviation"
+    },
+    {
+      "a": "Memory consolidation during retrieval",
+      "b": "Consolidate memories when retrieved",
+      "expectedRange": [0.88, 0.97],
+      "category": "grammatical-variation",
+      "description": "Same meaning with grammatical changes"
+    },
+    {
+      "a": "Use vector embeddings for search",
+      "b": "Semantic search with embeddings",
+      "expectedRange": [0.78, 0.90],
+      "category": "technical-equivalent",
+      "description": "Technical concepts with equivalent meaning"
+    },
+    {
+      "a": "Tier 1 ephemeral memories",
+      "b": "Short-term temporary memories",
+      "expectedRange": [0.70, 0.85],
+      "category": "synonym-usage",
+      "description": "Domain term vs common language"
+    },
+    {
+      "a": "Attention decay follows power law",
+      "b": "Attention decreases exponentially",
+      "expectedRange": [0.55, 0.72],
+      "category": "conceptual-difference",
+      "description": "Related concept but different model"
+    },
+    {
+      "a": "Spec folder required for modifications",
+      "b": "Documentation needed before changes",
+      "expectedRange": [0.60, 0.78],
+      "category": "abstract-concrete",
+      "description": "Concrete vs abstract description"
+    }
+  ],
+  "thresholds": {
+    "identical": {
+      "min": 0.95,
+      "description": "Exact or near-exact matches"
+    },
+    "highly_similar": {
+      "min": 0.85,
+      "description": "Semantic equivalents, paraphrases"
+    },
+    "similar": {
+      "min": 0.70,
+      "description": "Related concepts, same domain"
+    },
+    "somewhat_related": {
+      "min": 0.50,
+      "description": "Conceptual overlap"
+    },
+    "different": {
+      "min": 0.30,
+      "description": "Minimal relationship"
+    },
+    "unrelated": {
+      "min": 0.0,
+      "description": "No meaningful relationship"
+    }
+  },
+  "metadata": {
+    "description": "Test cases for semantic similarity scoring validation",
+    "version": "1.0.0",
+    "created": "2026-01-28",
+    "embeddingModel": "all-MiniLM-L6-v2",
+    "dimensions": 384,
+    "notes": [
+      "Expected ranges are approximate based on typical embedding model behavior",
+      "Actual values may vary slightly between runs due to model precision",
+      "Use epsilon of 0.05 for boundary comparisons"
+    ]
+  }
+}

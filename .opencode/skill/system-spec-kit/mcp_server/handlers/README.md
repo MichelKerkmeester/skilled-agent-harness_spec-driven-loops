@@ -30,6 +30,7 @@ Receive args → Validate → Coordinate modules → Format response → Return 
 | `trigger_phrases` | memory-triggers | Fast phrase matching |
 | `checkpoints` | checkpoints | Database snapshots |
 | `session_learning` | session-learning | Epistemic tracking |
+| `memory_conflicts` | memory-save | PE gate audit logging |
 
 ---
 
@@ -92,9 +93,9 @@ handlers/
 | File | Handlers | Purpose |
 |------|----------|---------|
 | `index.js` | - | Aggregates all handlers and exposes unified interface |
-| `memory-search.js` | `handle_memory_search` | Vector/hybrid/multi-concept search with relevance ranking |
+| `memory-search.js` | `handle_memory_search` | Vector/hybrid/multi-concept search with relevance ranking + Testing Effect integration |
 | `memory-triggers.js` | `handle_memory_match_triggers` | Fast trigger phrase matching (SK-004 Memory Surface) |
-| `memory-save.js` | `handle_memory_save`, `index_memory_file` | Memory creation with embedding generation |
+| `memory-save.js` | `handle_memory_save`, `index_memory_file` | Memory creation with embedding generation + Prediction Error Gating (exports: `find_similar_memories`, `reinforce_existing_memory`, `mark_memory_superseded`, `log_pe_decision`) |
 | `memory-crud.js` | `handle_memory_delete`, `handle_memory_update`, `handle_memory_list`, `handle_memory_stats`, `handle_memory_health`, `handle_memory_validate` | Update, delete, list, stats, health, validation |
 | `memory-index.js` | `handle_memory_index_scan`, `index_single_file`, `find_constitutional_files` | Index scanning, re-indexing, status management |
 | `checkpoints.js` | `handle_checkpoint_create`, `handle_checkpoint_list`, `handle_checkpoint_restore`, `handle_checkpoint_delete` | Database snapshots for recovery and context switching |
@@ -103,6 +104,29 @@ handlers/
 ---
 
 ## 4. ⚡ FEATURES
+
+### Prediction Error Gating (memory-save.js)
+
+**Purpose**: Prevents duplicate memories and handles conflicts intelligently using similarity thresholds.
+
+| Similarity | Action | Description |
+|------------|--------|-------------|
+| >= 0.95 | REINFORCE | Strengthen existing memory, skip create |
+| 0.90-0.94 | CHECK | Check for contradiction, then UPDATE or SUPERSEDE |
+| 0.70-0.89 | MEDIUM_MATCH | Context-dependent linking |
+| 0.50-0.69 | LOW_MATCH | Create with similarity note |
+| < 0.50 | CREATE | Create new memory |
+
+**Exports**: `find_similar_memories`, `reinforce_existing_memory`, `mark_memory_superseded`, `log_pe_decision` for internal coordination with cognitive memory upgrade.
+
+### Testing Effect (memory-search.js)
+
+**Purpose**: Accessing memories strengthens them via "desirable difficulty" principle from cognitive science.
+
+- Lower retrievability at access time = greater stability boost
+- Automatically applied on search results retrieval
+- Implements spacing effect for long-term retention
+- Uses `strengthen_on_access` function from `lib/cognitive/`
 
 ### Memory Search
 
@@ -492,4 +516,4 @@ await handle_task_postflight({
 
 ---
 
-*Module version: 1.8.0 | Last updated: 2026-01-23*
+*Module version: 1.9.1 | Last updated: 2026-01-28*

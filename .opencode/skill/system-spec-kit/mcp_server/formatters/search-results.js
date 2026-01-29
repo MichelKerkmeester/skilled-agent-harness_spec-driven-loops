@@ -13,6 +13,9 @@ const { estimate_tokens } = require('./token-metrics');
 // Import shared utilities
 const { validate_file_path } = require('../../shared/utils');
 
+// Import memory parser for anchor extraction (SK-005)
+const memory_parser = require('../lib/parsing/memory-parser');
+
 /* ─────────────────────────────────────────────────────────────
    1. PATH VALIDATION CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
@@ -82,10 +85,10 @@ function safe_json_parse(str, fallback = []) {
  * @param {string} search_type - Type of search performed (hybrid, vector, multi-concept)
  * @param {boolean} include_content - If true, include full file content in each result
  * @param {Array<string>} anchors - Optional list of anchor IDs to filter content
- * @param {Object} memory_parser - Memory parser module for anchor extraction
+ * @param {Object} parser_override - Optional memory parser override (uses module default if null)
  * @returns {Promise<Object>} MCP-formatted response with content array
  */
-async function format_search_results(results, search_type, include_content = false, anchors = null, memory_parser = null) {
+async function format_search_results(results, search_type, include_content = false, anchors = null, parser_override = null) {
   if (!results || results.length === 0) {
     return {
       content: [
@@ -99,7 +102,8 @@ async function format_search_results(results, search_type, include_content = fal
             message: 'No matching memories found'
           }, null, 2)
         }
-      ]
+      ],
+      isError: false  // BUG-030 FIX: Explicit success flag for MCP consistency
     };
   }
 
@@ -128,8 +132,13 @@ async function format_search_results(results, search_type, include_content = fal
         let content = await fs.promises.readFile(validated_path, 'utf-8');
 
         // SK-005: Anchor System Implementation
-        if (anchors && Array.isArray(anchors) && anchors.length > 0 && memory_parser) {
-          const extracted = memory_parser.extractAnchors(content);
+        // Uses module-level memory_parser import, with optional override
+        const parser = parser_override || memory_parser;
+        if (anchors && Array.isArray(anchors) && anchors.length > 0 && parser) {
+          // BUG-017 FIX: Capture original tokens BEFORE any content reassignment
+          const original_tokens = estimate_tokens(content);
+
+          const extracted = parser.extractAnchors(content);
           const filtered_parts = [];
           let found_count = 0;
 
@@ -148,7 +157,6 @@ async function format_search_results(results, search_type, include_content = fal
               filtered_parts.push(`<!-- WARNING: Requested anchors not found: ${missing_anchors.join(', ')} -->`);
             }
 
-            const original_tokens = estimate_tokens(content);
             content = filtered_parts.join('\n\n');
             const new_tokens = estimate_tokens(content);
             const savings = Math.round((1 - new_tokens / Math.max(original_tokens, 1)) * 100);
@@ -162,9 +170,10 @@ async function format_search_results(results, search_type, include_content = fal
             };
           } else {
             // No anchors found - return warning
+            // BUG-017 FIX: Use captured original_tokens, not tokens from warning message
             content = `<!-- WARNING: Requested anchors not found: ${anchors.join(', ')} -->`;
             result.tokenMetrics = {
-              originalTokens: estimate_tokens(content),
+              originalTokens: original_tokens,
               returnedTokens: 0,
               savingsPercent: 100,
               anchorsRequested: anchors.length,
@@ -176,10 +185,13 @@ async function format_search_results(results, search_type, include_content = fal
         result.content = content;
       } catch (err) {
         result.content = null;
+        // BUG-023 FIX: Sanitize error messages to prevent information leakage
         // Don't expose validation failure details (could leak path info)
         result.contentError = err.message.includes('Access denied')
           ? 'Security: Access denied'
-          : `Failed to read file: ${err.message}`;
+          : err.message.includes('ENOENT')
+            ? 'File not found'
+            : 'Failed to read file';  // Generic message for other errors
       }
     }
 
@@ -197,7 +209,8 @@ async function format_search_results(results, search_type, include_content = fal
           results: formatted
         }, null, 2)
       }
-    ]
+    ],
+    isError: false  // BUG-030 FIX: Explicit success flag for MCP consistency
   };
 }
 

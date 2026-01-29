@@ -15,9 +15,9 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 | Category | Count | Details |
 |----------|-------|---------|
 | Module Categories | 7 | search, scoring, cognitive, storage, parsing, providers, utils |
-| Cognitive Features | 6 | Attention decay, working memory, tier classification, co-activation, temporal contiguity, summary generation |
+| Cognitive Features | 8 | FSRS scheduler, attention decay, prediction error gating, working memory, tier classification, co-activation, temporal contiguity, summary generation |
 | Search Methods | 4 | Vector similarity, hybrid search, RRF fusion, reranking |
-| Total Modules | 30+ | Organized into domain-specific folders |
+| Total Modules | 32+ | Organized into domain-specific folders |
 
 ### Key Features
 
@@ -97,9 +97,11 @@ lib/
 │   └── index.js                # Barrel export
 │
 ├── cognitive/                  # Cognitive memory features
-│   ├── attention-decay.js      # Time-based attention decay
+│   ├── attention-decay.js      # FSRS-based attention decay
+│   ├── fsrs-scheduler.js       # FSRS algorithm (NEW)
+│   ├── prediction-error-gate.js # PE gating for duplicates (NEW)
 │   ├── working-memory.js       # Session working memory
-│   ├── tier-classifier.js      # Content tier classification
+│   ├── tier-classifier.js      # 5-state memory classification
 │   ├── co-activation.js        # Related memory activation
 │   ├── temporal-contiguity.js  # Temporal memory linking
 │   ├── summary-generator.js    # Auto-summary generation
@@ -144,7 +146,9 @@ lib/
 | `errors.js` | Custom error classes for error handling |
 | `channel.js` | Communication channel for MCP messages |
 | `search/vector-index.js` | Core vector similarity search implementation |
-| `cognitive/attention-decay.js` | Time-based attention decay calculation |
+| `cognitive/attention-decay.js` | FSRS-based attention decay calculation |
+| `cognitive/fsrs-scheduler.js` | FSRS power-law forgetting curve algorithm |
+| `cognitive/prediction-error-gate.js` | Three-tier similarity gating to prevent duplicates |
 | `scoring/importance-tiers.js` | Six-tier importance classification system |
 | `utils/validators.js` | Input validation and security checks |
 
@@ -172,14 +176,58 @@ lib/
 
 ### Cognitive Features
 
-**Attention Decay**: Simulates human-like forgetting over time
+**FSRS Power-Law Decay**: Research-backed forgetting curve using formula R(t,S) = (1 + 0.235 × t/S)^(-0.5)
 
 ```javascript
-// Calculate attention score for a memory based on age and importance
-const score = cognitive.attentionDecay.calculate_attention_score(
-  accessedAt,     // When memory was last accessed
-  importanceTier, // Tier: constitutional, critical, important, normal, temporary, deprecated
-  baseScore       // Starting relevance score
+// Calculate retrievability using FSRS algorithm
+const { cognitive } = require('./lib');
+
+const retrievability = cognitive.fsrsScheduler.calculate_retrievability(
+  lastAccessTimestamp, // When memory was last accessed
+  stability            // Memory stability (days) - higher = slower decay
+);
+
+// Memory states based on retrievability:
+// HOT (R ≥ 0.80)      - Active working memory, full content
+// WARM (0.25 ≤ R < 0.80) - Accessible background, summary only
+// COLD (0.05 ≤ R < 0.25) - Inactive but retrievable
+// DORMANT (0.02 ≤ R < 0.05) - Very weak, needs revival
+// ARCHIVED (R < 0.02)  - Effectively forgotten, time-based archival
+```
+
+**Retrievability Calculation Priority** (tier-classifier.js):
+
+The tier classifier uses this priority order when calculating retrievability:
+
+1. **Pre-computed `retrievability`** - If memory has a numeric `retrievability` field, use it directly (highest priority)
+2. **FSRS calculation** - If timestamps exist (`last_review`, `lastReview`, `updated_at`, or `created_at`), calculate using FSRS formula
+3. **Stability fallback** - If only `stability` exists but no timestamps, use `min(1, stability / 10)`
+4. **Attention score fallback** - If `attentionScore` exists, use it directly
+5. **Default** - Returns 0 if no data available
+
+**Prediction Error Gating**: Prevents duplicate memories using three-tier similarity thresholds
+
+```javascript
+// Check if new memory is too similar to existing memories
+const isDuplicate = await cognitive.predictionErrorGate.is_duplicate(
+  newContent,         // New memory content
+  existingMemories,   // Array of existing memories in same folder
+  {
+    tier1Threshold: 0.95,  // Near-identical threshold (BLOCK)
+    tier2Threshold: 0.90,  // High similarity (WARN)
+    tier3Threshold: 0.70,  // Medium similarity (LINK)
+    tier4Threshold: 0.50   // Low similarity (NOTE)
+  }
+);
+```
+
+**Testing Effect**: Accessing memories strengthens them (desirable difficulty)
+
+```javascript
+// Update stability when memory is accessed
+const newStability = cognitive.fsrsScheduler.update_stability(
+  currentStability,   // Current memory stability
+  grade              // Performance grade (1-4): 1=forgot, 4=easy recall
 );
 ```
 
@@ -289,24 +337,33 @@ results.forEach(r => {
 
 **Result**: Returns top 5 memories ranked by semantic similarity and importance
 
-### Example 2: Attention Decay Calculation
+### Example 2: FSRS-Based Memory State Calculation
 
 ```javascript
-// Calculate how attention decays over time
+// Calculate memory state using FSRS retrievability
 const { cognitive } = require('./lib');
 
-const lastAccessed = new Date('2025-01-15');
-const tier = 'normal';
-const baseScore = 0.85;
+const lastAccessed = new Date('2025-01-15').getTime();
+const stability = 7.0; // Memory stability in days
+const now = Date.now();
 
-const decayedScore = cognitive.attentionDecay.calculate_attention_score(
+// Calculate retrievability using FSRS power-law formula
+const retrievability = cognitive.fsrsScheduler.calculate_retrievability(
   lastAccessed,
-  tier,
-  baseScore
+  stability,
+  now
 );
 
-console.log(`Score after decay: ${decayedScore.toFixed(2)}`);
-// Output: Score after decay: 0.68 (example, depends on time elapsed)
+// Determine memory state (matches 5-state model)
+let state;
+if (retrievability >= 0.80) state = 'HOT';
+else if (retrievability >= 0.25) state = 'WARM';
+else if (retrievability >= 0.05) state = 'COLD';
+else if (retrievability >= 0.02) state = 'DORMANT';
+else state = 'ARCHIVED';
+
+console.log(`Retrievability: ${retrievability.toFixed(2)}, State: ${state}`);
+// Output: Retrievability: 0.76, State: WARM
 ```
 
 ### Example 3: Hybrid Search with Fusion
@@ -472,4 +529,4 @@ console.log('Embedding dimensions:', embedding.length);
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2025-01-21*
+*Documentation version: 1.3 | Last updated: 2026-01-28*

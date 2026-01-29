@@ -1,12 +1,7 @@
 # Spec Kit Memory MCP Server
 
-> Context preservation with **spec kit memory** (v1.7.2): six-tier importance system, hybrid search (FTS5 + vector), exponential decay for recency boosting, checkpoint save/restore, session-based learning metrics, and **cognitive memory features** (working memory with HOT/WARM/COLD tiers, turn-based attention decay, spreading co-activation). Provides **17 MCP tools** and **28 library modules** for intelligent memory management. This is a **Native MCP tool** - call it directly.
-
-> **Navigation**:
-> - New to Spec Kit Memory? Start with [Overview](#1--overview)
-> - Need tool reference? See [MCP Tools](#2--mcp-tools-17)
-> - Configuration help? See [Configuration](#6--configuration)
-> - Troubleshooting? See [Troubleshooting](#8--troubleshooting)
+> AI memory that actually persists without poisoning your context window.
+> Semantic search, FSRS-powered decay, and cognitive features that make context work across sessions, models, and projects.
 
 [![MCP](https://img.shields.io/badge/MCP-compatible-blue.svg)](https://modelcontextprotocol.io)
 
@@ -16,50 +11,71 @@
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🔧 MCP TOOLS (17)](#2--mcp-tools-17)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 🚀 QUICK START](#5--quick-start)
-- [6. ⚙️ CONFIGURATION](#6--configuration)
-- [7. 💡 USAGE EXAMPLES](#7--usage-examples)
-- [8. 🛠️ TROUBLESHOOTING](#8--troubleshooting)
-- [9. 📚 RELATED RESOURCES](#9--related-resources)
+- [3. 🧠 COGNITIVE MEMORY](#3--cognitive-memory)
+- [4. 🔍 SEARCH SYSTEM](#4--search-system)
+- [5. 📊 IMPORTANCE TIERS](#5--importance-tiers)
+- [6. 📁 STRUCTURE](#6--structure)
+- [7. 🚀 QUICK START](#7--quick-start)
+- [8. ⚙️ CONFIGURATION](#8--configuration)
+- [9. 💡 USAGE EXAMPLES](#9--usage-examples)
+- [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
+- [11. 📚 RELATED RESOURCES](#11--related-resources)
 
 ---
 
 ## 1. 📖 OVERVIEW
 
-### What This Server Does
+### Why This Memory System?
 
-The `mcp_server/` folder contains a standalone MCP server implementation for spec kit memory operations. It exposes memory tools via the Model Context Protocol for use by AI assistants like Claude and OpenCode.
+AI assistants suffer from session amnesia. Every conversation starts fresh. You explain your architecture, make decisions, build context—and it's all gone next session.
+
+This MCP server fixes that with persistent semantic memory, intelligent decay, and cognitive features that prioritize what matters.
+
+**Without This**
+
+- **Search**: Ctrl+F through conversation history
+- **Prioritization**: Everything has equal weight
+- **Decay**: Either keep forever or delete
+- **Duplicates**: Same context indexed multiple times
+- **Recovery**: Hope your chat logs aren't corrupted
+
+**With This Memory System**
+
+- **Search**: Hybrid semantic + keyword with RRF fusion
+- **Prioritization**: 6-tier importance (constitutional to deprecated)
+- **Decay**: FSRS power-law (validated on 100M+ users)
+- **Duplicates**: Prediction Error Gating blocks duplicates
+- **Recovery**: Checkpoints with full embedding backup
+
+### What Makes This Different
+
+| Capability     | Basic RAG           | This MCP Server                                          |
+| -------------- | ------------------- | -------------------------------------------------------- |
+| **Search**     | Vector only         | Hybrid FTS5 + vector with RRF fusion                     |
+| **Decay**      | None or exponential | FSRS power-law (scientifically validated)                |
+| **Duplicates** | Index everything    | Prediction Error Gating (0.95/0.90/0.70/0.50 thresholds) |
+| **Tiers**      | None                | 6-tier importance with configurable boosts               |
+| **Context**    | Full documents      | ANCHOR-based section retrieval (93% token savings)       |
+| **Learning**   | None                | Epistemic tracking with preflight/postflight             |
+| **State**      | Stateless           | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
 
 ### Key Statistics
 
-| Category | Count | Details |
-|----------|-------|---------|
-| **MCP Tools** | 17 | Search, CRUD, checkpoints, session learning |
-| **Library Modules** | 28 | Parsing, scoring, cognitive, storage |
-| **Handler Modules** | 7 | Organized by function domain |
-| **Embedding Providers** | 3 | HF Local, Voyage AI, OpenAI |
-
-### Key Features
-
-| Feature | Description |
-|---------|-------------|
-| **17 MCP Tools** | Complete CRUD + search + checkpoints + session learning |
-| **Hybrid Search** | FTS5 keyword + vector semantic search with RRF fusion |
-| **Multi-Provider Embeddings** | HF Local (768d), Voyage AI (1024d), OpenAI (1536d) - auto-detected |
-| **Six Importance Tiers** | constitutional/critical/important/normal/temporary/deprecated |
-| **Checkpoints** | Save/restore memory state for safety |
-| **Session Learning** | Track knowledge improvement with preflight/postflight metrics |
-| **Auto-Indexing** | Startup scan for automatic indexing |
-| **Cognitive Memory** | Working memory with HOT/WARM/COLD tiers, attention decay |
+| Category                | Count | Details                                       |
+| ----------------------- | ----- | --------------------------------------------- |
+| **MCP Tools**           | 17    | Search, CRUD, checkpoints, session learning   |
+| **Library Modules**     | 32+   | Parsing, scoring, cognitive, storage, search  |
+| **Handler Modules**     | 7     | Organized by function domain                  |
+| **Embedding Providers** | 3     | HF Local, Voyage AI, OpenAI                   |
+| **Cognitive Features**  | 8     | FSRS, PE gating, 5-state, co-activation, etc. |
+| **Test Coverage**       | 1,292 | Tests across 17 test files                    |
 
 ### Requirements
 
 | Requirement | Minimum | Recommended |
-|-------------|---------|-------------|
-| Node.js | 18.0.0 | 20+ |
-| npm | 9+ | 10+ |
+| ----------- | ------- | ----------- |
+| Node.js     | 18.0.0  | 20+         |
+| npm         | 9+      | 10+         |
 
 ---
 
@@ -67,276 +83,466 @@ The `mcp_server/` folder contains a standalone MCP server implementation for spe
 
 ### Tool Categories Overview
 
-| Category | Tools | Purpose |
-|----------|-------|---------|
-| **Search & Retrieval** | 4 | Find and match memories |
-| **CRUD Operations** | 5 | Create, update, delete, validate |
-| **Checkpoints** | 4 | State snapshots for recovery |
-| **Session Learning** | 3 | Knowledge tracking across tasks |
-| **System** | 1 | Health monitoring |
+| Category               | Tools | Purpose                          |
+| ---------------------- | ----- | -------------------------------- |
+| **Search & Retrieval** | 4     | Find and match memories          |
+| **CRUD Operations**    | 5     | Create, update, delete, validate |
+| **Checkpoints**        | 4     | State snapshots for recovery     |
+| **Session Learning**   | 3     | Knowledge tracking across tasks  |
+| **System**             | 1     | Health monitoring                |
 
 ### Search & Retrieval Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `memory_search` | Semantic vector search with hybrid FTS5 fusion | ~500ms |
-| `memory_match_triggers` | Fast trigger phrase matching with cognitive features | <50ms |
-| `memory_list` | Browse memories with pagination | <50ms |
-| `memory_stats` | System statistics and folder rankings | <10ms |
+| Tool                    | Purpose                                              | Latency |
+| ----------------------- | ---------------------------------------------------- | ------- |
+| `memory_search`         | Semantic vector search with hybrid FTS5 fusion       | ~500ms  |
+| `memory_match_triggers` | Fast trigger phrase matching with cognitive features | <50ms   |
+| `memory_list`           | Browse memories with pagination                      | <50ms   |
+| `memory_stats`          | System statistics and folder rankings                | <10ms   |
 
 ### CRUD Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `memory_save` | Index a single memory file | ~1s |
-| `memory_index_scan` | Bulk scan and index workspace | varies |
-| `memory_update` | Update metadata/tier/triggers | <50ms* |
-| `memory_delete` | Delete by ID or spec folder | <50ms |
-| `memory_validate` | Record validation feedback | <50ms |
+| Tool                | Purpose                       | Latency |
+| ------------------- | ----------------------------- | ------- |
+| `memory_save`       | Index a single memory file    | ~1s     |
+| `memory_index_scan` | Bulk scan and index workspace | varies  |
+| `memory_update`     | Update metadata/tier/triggers | <50ms*  |
+| `memory_delete`     | Delete by ID or spec folder   | <50ms   |
+| `memory_validate`   | Record validation feedback    | <50ms   |
 
 *+~400ms if title changed (triggers embedding regeneration)
 
 ### Checkpoint Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `checkpoint_create` | Create named state snapshot | <100ms |
-| `checkpoint_list` | List available checkpoints | <50ms |
-| `checkpoint_restore` | Restore from checkpoint | varies |
-| `checkpoint_delete` | Delete a checkpoint | <50ms |
+| Tool                 | Purpose                     | Latency |
+| -------------------- | --------------------------- | ------- |
+| `checkpoint_create`  | Create named state snapshot | <100ms  |
+| `checkpoint_list`    | List available checkpoints  | <50ms   |
+| `checkpoint_restore` | Restore from checkpoint     | varies  |
+| `checkpoint_delete`  | Delete a checkpoint         | <50ms   |
 
-### Session Learning Tools (New in v1.7.2)
+### Session Learning Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `task_preflight` | Capture epistemic baseline before task execution | <50ms |
-| `task_postflight` | Capture state after task, calculate learning delta | <50ms |
-| `memory_get_learning_history` | Get learning history with trends for a spec folder | <50ms |
+| Tool                          | Purpose                                            | Latency |
+| ----------------------------- | -------------------------------------------------- | ------- |
+| `task_preflight`              | Capture epistemic baseline before task execution   | <50ms   |
+| `task_postflight`             | Capture state after task, calculate learning delta | <50ms   |
+| `memory_get_learning_history` | Get learning history with trends for a spec folder | <50ms   |
 
 ### System Tools
 
-| Tool | Purpose | Latency |
-|------|---------|---------|
-| `memory_health` | Check health status of the memory system | <10ms |
+| Tool            | Purpose                                  | Latency |
+| --------------- | ---------------------------------------- | ------- |
+| `memory_health` | Check health status of the memory system | <10ms   |
 
-### Tool Parameters Reference
+### Key Tool Parameters
 
 #### memory_search
 
-Search memories semantically using vector similarity.
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `query` | string | - | Natural language search query |
-| `concepts` | string[] | - | Multi-concept AND search (2-5 concepts) |
-| `specFolder` | string | - | Limit search to specific spec folder |
-| `limit` | number | 10 | Maximum results to return (1-20) |
-| `tier` | string | - | Filter by importance tier |
-| `contextType` | string | - | Filter by context type |
-| `useDecay` | boolean | true | Apply temporal decay scoring |
-| `includeContiguity` | boolean | false | Include adjacent/contiguous memories |
-| `includeConstitutional` | boolean | **true** | Include constitutional tier at top of results |
-| `includeContent` | boolean | false | Embed memory file content directly in results |
-| `anchors` | string[] | - | Specific anchor IDs to extract from content |
+| Parameter               | Type     | Default  | Description                             |
+| ----------------------- | -------- | -------- | --------------------------------------- |
+| `query`                 | string   | -        | Natural language search query           |
+| `concepts`              | string[] | -        | Multi-concept AND search (2-5 concepts) |
+| `specFolder`            | string   | -        | Limit search to specific spec folder    |
+| `limit`                 | number   | 10       | Maximum results (1-20)                  |
+| `includeConstitutional` | boolean  | **true** | Include constitutional tier at top      |
+| `includeContent`        | boolean  | false    | Embed file content in results           |
+| `anchors`               | string[] | -        | Specific anchor IDs to extract          |
+| `searchType`            | string   | "hybrid" | "vector", "hybrid", or "multi-concept"  |
 
 #### memory_match_triggers
 
-Fast trigger phrase matching (<50ms) with optional cognitive memory features.
+| Parameter           | Type    | Default      | Description                    |
+| ------------------- | ------- | ------------ | ------------------------------ |
+| `prompt`            | string  | **Required** | User prompt to match           |
+| `limit`             | number  | 3            | Maximum matches                |
+| `session_id`        | string  | -            | Session for cognitive features |
+| `turn_number`       | number  | -            | Turn for decay calculation     |
+| `include_cognitive` | boolean | true         | Enable cognitive features      |
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `prompt` | string | **Required** | User prompt to match against trigger phrases |
-| `limit` | number | 3 | Maximum matching memories to return |
-| `session_id` | string | - | Session identifier for cognitive features |
-| `turn_number` | number | - | Current turn for decay calculation |
-| `include_cognitive` | boolean | true | Enable cognitive features (decay, tiers, co-activation) |
+#### memory_update
 
-#### task_preflight
-
-Capture epistemic baseline before task execution.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `specFolder` | string | **Yes** | Path to spec folder |
-| `taskId` | string | **Yes** | Task identifier (e.g., "T1", "implementation") |
-| `knowledgeScore` | number | **Yes** | Current knowledge level (0-100) |
-| `uncertaintyScore` | number | **Yes** | Current uncertainty level (0-100) |
-| `contextScore` | number | **Yes** | Context completeness (0-100) |
-| `knowledgeGaps` | string[] | No | List of identified knowledge gaps |
-| `sessionId` | string | No | Optional session identifier |
-
-#### task_postflight
-
-Capture epistemic state after task execution and calculate learning delta.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `specFolder` | string | **Yes** | Path to spec folder (must match preflight) |
-| `taskId` | string | **Yes** | Task identifier (must match preflight) |
-| `knowledgeScore` | number | **Yes** | Post-task knowledge level (0-100) |
-| `uncertaintyScore` | number | **Yes** | Post-task uncertainty level (0-100) |
-| `contextScore` | number | **Yes** | Post-task context completeness (0-100) |
-| `gapsClosed` | string[] | No | List of knowledge gaps closed during task |
-| `newGapsDiscovered` | string[] | No | List of new gaps discovered during task |
-
-**Learning Index Formula:**
-```
-LI = (KnowledgeDelta x 0.4) + (UncertaintyReduction x 0.35) + (ContextImprovement x 0.25)
-```
-
-#### memory_get_learning_history
-
-Get learning history for a spec folder.
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `specFolder` | string | **Required** | Spec folder path to get learning history for |
-| `sessionId` | string | - | Filter by session ID |
-| `limit` | number | 10 | Maximum records to return (max: 100) |
-| `onlyComplete` | boolean | false | Only return complete learning cycles |
-| `includeSummary` | boolean | true | Include summary statistics in response |
+| Parameter            | Type     | Default | Description                                 |
+| -------------------- | -------- | ------- | ------------------------------------------- |
+| `id`                 | number   | **Req** | Memory ID to update                         |
+| `title`              | string   | -       | New title (triggers embedding regeneration) |
+| `importanceTier`     | string   | -       | New tier (constitutional to deprecated)     |
+| `importanceWeight`   | number   | -       | Custom weight (0-1)                         |
+| `triggerPhrases`     | string[] | -       | Trigger phrases for fast matching           |
+| `allowPartialUpdate` | boolean  | false   | Continue if embedding regeneration fails    |
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. 🧠 COGNITIVE MEMORY
+
+### FSRS Power-Law Decay
+
+Memory strength follows the Free Spaced Repetition Scheduler formula, validated on 100M+ Anki users:
+
+```
+R(t, S) = (1 + 0.235 × t/S)^(-0.5)
+```
+
+Where:
+- `R(t, S)` = Retrievability (probability of recall) at time t with stability S
+- `t` = Time elapsed since last access (in days)
+- `S` = Stability (memory strength in days)—higher = slower decay
+- `0.235` and `-0.5` are empirically validated constants
+
+**Why FSRS?**
+- Exponential decay (e^-kt) underestimates long-term retention
+- Power-law decay matches human memory research
+- Validated on 100M+ real-world users via Anki spaced repetition
+
+### 5-State Memory Model
+
+Memories transition between states based on their retrievability score:
+
+| State        | Retrievability   | Content Returned | Max Items | Behavior                                   |
+| ------------ | ---------------- | ---------------- | --------- | ------------------------------------------ |
+| **HOT**      | R >= 0.80        | Full content     | 5         | Active working memory, top priority        |
+| **WARM**     | 0.25 <= R < 0.80 | Summary only     | 10        | Accessible background context              |
+| **COLD**     | 0.05 <= R < 0.25 | None             | -         | Inactive but retrievable on demand         |
+| **DORMANT**  | 0.02 <= R < 0.05 | None             | -         | Very weak, needs explicit revival          |
+| **ARCHIVED** | R < 0.02 or 90d+ | None             | -         | Time-based archival, effectively forgotten |
+
+**State Transitions:**
+```
+HOT (fresh) → WARM (days) → COLD (weeks) → DORMANT (months) → ARCHIVED
+     ↑__________________|__________________|__________________|
+              Accessing a memory "revives" it (Testing Effect)
+```
+
+### Retrievability Calculation Priority
+
+The tier classifier uses this priority order when calculating retrievability:
+
+1. **Pre-computed `retrievability`** - If memory has a numeric `retrievability` field, use it directly (highest priority)
+2. **FSRS calculation** - If timestamps exist (`last_review`, `lastReview`, `updated_at`, or `created_at`), calculate using FSRS formula
+3. **Stability fallback** - If only `stability` exists but no timestamps, use `min(1, stability / 10)`
+4. **Attention score fallback** - If `attentionScore` exists (from working memory), use it directly
+5. **Default** - Returns 0 if no data available
+
+### Prediction Error Gating
+
+Prevents duplicate memories from polluting the index using a four-tier similarity threshold system:
+
+| Similarity | Category         | Action                                                |
+| ---------- | ---------------- | ----------------------------------------------------- |
+| >= 0.95    | **DUPLICATE**    | Block save, reinforce existing memory instead         |
+| 0.90-0.94  | **HIGH_MATCH**   | Check for contradiction; UPDATE or SUPERSEDE existing |
+| 0.70-0.89  | **MEDIUM_MATCH** | Create with link to related memory                    |
+| 0.50-0.69  | **LOW_MATCH**    | Create new, note similarity in metadata               |
+| < 0.50     | **UNIQUE**       | Create new memory normally                            |
+
+**Contradiction Detection:**
+- Boolean contradictions: "always" vs "never", "true" vs "false"
+- Numeric contradictions: Different values for same metric
+- Temporal contradictions: Different timestamps for same event
+
+**Audit Trail:**
+All PE decisions are logged to `memory_conflicts` table for debugging and analysis.
+
+### Testing Effect (Desirable Difficulty)
+
+Accessing memories strengthens them—the harder the recall, the greater the benefit:
+
+| Retrievability at Access | Stability Boost | Why                                                |
+| ------------------------ | --------------- | -------------------------------------------------- |
+| R >= 0.90 (easy recall)  | +5%             | Memory was strong, minimal benefit                 |
+| R = 0.70 (moderate)      | +10%            | Standard reinforcement                             |
+| R = 0.50 (challenging)   | +15%            | "Desirable difficulty"—greater retention           |
+| R < 0.30 (hard recall)   | +20%            | Successfully retrieving weak memory = strong boost |
+
+**Auto-applied:** Testing Effect runs automatically when memories are accessed via `memory_search`.
+
+### Co-Activation
+
+When one memory is retrieved, related memories get a boost:
+
+| Relationship        | Boost | Description                               |
+| ------------------- | ----- | ----------------------------------------- |
+| Same spec folder    | +0.2  | Memories in same project context          |
+| Temporal proximity  | +0.15 | Created/accessed within same time window  |
+| Shared entities     | +0.1  | Reference same files, functions, concepts |
+| Semantic similarity | +0.05 | High vector similarity (>0.8)             |
+
+**Working Memory Capacity:** Limited to ~7 active items (Miller's Law) + 10 WARM items.
+
+### Session Learning (Epistemic Tracking)
+
+Track knowledge improvement across task execution with the preflight/postflight pattern:
+
+```javascript
+// 1. BEFORE starting work - capture baseline
+task_preflight({
+  specFolder: "specs/077-upgrade",
+  taskId: "T1",
+  knowledgeScore: 40,      // 0-100: How well do you understand?
+  uncertaintyScore: 70,    // 0-100: How uncertain about approach?
+  contextScore: 50,        // 0-100: How complete is your context?
+  knowledgeGaps: ["database schema", "API endpoints"]
+})
+
+// 2. DO THE WORK
+
+// 3. AFTER completing work - measure delta
+task_postflight({
+  specFolder: "specs/077-upgrade",
+  taskId: "T1",
+  knowledgeScore: 85,      // Improved!
+  uncertaintyScore: 20,    // Reduced!
+  contextScore: 90,        // Better!
+  gapsClosed: ["database schema", "API endpoints"],
+  newGapsDiscovered: ["edge case handling"]
+})
+```
+
+**Learning Index Formula:**
+```
+LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)
+```
+
+Example: `LI = (45 × 0.4) + (50 × 0.35) + (40 × 0.25) = 45.5`
+
+**Interpretation:**
+- LI > 30: Strong learning session
+- LI 10-30: Moderate learning
+- LI < 10: Minimal learning or rework
+
+---
+
+## 4. 🔍 SEARCH SYSTEM
+
+### Hybrid Search (FTS5 + Vector)
+
+The default search combines full-text search (FTS5) with vector similarity using Reciprocal Rank Fusion (RRF):
+
+```
+RRF_score = Σ 1 / (k + rank_i)
+```
+
+Where `k=60` (standard RRF constant) and `rank_i` is the rank from each search method.
+
+**Why Hybrid?**
+- FTS5 catches exact keyword matches ("TODO", "BUG-123")
+- Vector catches semantic matches ("authentication" finds "login", "OAuth", "session")
+- RRF combines both without manual weight tuning
+
+### Search Types
+
+| Type              | Best For                    | Example Query                  |
+| ----------------- | --------------------------- | ------------------------------ |
+| **hybrid**        | General queries (default)   | "how does auth work"           |
+| **vector**        | Pure semantic similarity    | "security concerns"            |
+| **multi-concept** | Multiple independent topics | concepts: ["auth", "database"] |
+
+### ANCHOR Format (93% Token Savings)
+
+Memory files use ANCHOR markers for section-level retrieval instead of loading entire documents:
+
+```markdown
+<!-- ANCHOR: decisions -->
+## Authentication Decision
+We chose JWT with refresh tokens because:
+1. Stateless authentication scales better
+2. Refresh tokens allow session extension without re-login
+<!-- ANCHOR_END: decisions -->
+
+<!-- ANCHOR: context -->
+## Implementation Context
+The auth system uses Express middleware...
+<!-- ANCHOR_END: context -->
+```
+
+**Retrieval:**
+```javascript
+memory_search({
+  query: "auth decisions",
+  anchors: ['decisions', 'context']  // Only return these sections
+})
+```
+
+**Common Anchors:**
+| Anchor       | Purpose                         |
+| ------------ | ------------------------------- |
+| `summary`    | Executive summary of the memory |
+| `decisions`  | Key decisions and rationale     |
+| `context`    | Background context              |
+| `state`      | Current state/progress          |
+| `artifacts`  | Code snippets, file references  |
+| `blockers`   | Known issues, blockers          |
+| `next-steps` | Planned work, continuations     |
+| `metadata`   | Technical metadata              |
+
+**Token Savings:**
+- Full document: ~3000 tokens
+- Summary anchor only: ~200 tokens
+- Savings: **93%**
+
+### Constitutional Tier (Always Surfaces)
+
+The **constitutional** tier is special—these memories ALWAYS appear at the top of search results:
+
+| Behavior             | Description                                         |
+| -------------------- | --------------------------------------------------- |
+| **Always surfaces**  | Included at top of every `memory_search` by default |
+| **Fixed similarity** | Returns `similarity: 100` regardless of query match |
+| **Token budget**     | ~2000 tokens max for constitutional memories        |
+| **Use cases**        | Project rules, coding standards, critical context   |
+| **Control**          | Set `includeConstitutional: false` to disable       |
+
+---
+
+## 5. 📊 IMPORTANCE TIERS
+
+### The Six-Tier System
+
+| Tier               | Boost | Decay Rate | Auto-Clean | Use Case                                         |
+| ------------------ | ----- | ---------- | ---------- | ------------------------------------------------ |
+| **constitutional** | 10.0x | Never      | Never      | Project rules, always-surface (~2000 tokens max) |
+| **critical**       | 5.0x  | Never      | Never      | Architecture decisions, breaking changes         |
+| **important**      | 2.0x  | Never      | Never      | Key implementations, major features              |
+| **normal**         | 1.0x  | 0.80/turn  | 90 days    | Standard development context (default)           |
+| **temporary**      | 0.5x  | 0.60/turn  | 7 days     | Debug sessions, experiments                      |
+| **deprecated**     | 0.1x  | Never      | Manual     | Outdated info (preserved but rarely surfaces)    |
+
+### Tier Selection Guide
+
+| Content Type                     | Recommended Tier   |
+| -------------------------------- | ------------------ |
+| Coding standards, project rules  | `constitutional`   |
+| Breaking changes, migration docs | `critical`         |
+| Feature specs, architecture ADRs | `important`        |
+| Implementation notes             | `normal` (default) |
+| Debug logs, experiments          | `temporary`        |
+| Replaced/outdated docs           | `deprecated`       |
+
+### Tier Behaviors
+
+**Protected Tiers** (constitutional, critical, important):
+- Never automatically decay
+- Never auto-cleaned
+- Always considered in search ranking
+
+**Decaying Tiers** (normal, temporary):
+- Decay rate applied each turn (0.80 for normal, 0.60 for temporary)
+- Auto-cleaned after inactivity period
+- Can transition to COLD/DORMANT/ARCHIVED states
+
+---
+
+## 6. 📁 STRUCTURE
 
 ```
 mcp_server/
-├── context-server.js       # Main MCP server entry point
+├── context-server.js       # Main MCP server entry point (17 tools)
 ├── package.json            # Dependencies and scripts
 ├── README.md               # This file
-├── LICENSE                 # MIT license
 │
-├── core/                   # Core initialization modules
+├── core/                   # Core initialization
 │   ├── index.js            # Core exports
 │   ├── config.js           # Configuration management
-│   └── db-state.js         # Database state management
+│   └── db-state.js         # Database connection state
 │
 ├── handlers/               # MCP tool handlers (7 modules)
-│   ├── index.js            # Handler exports
-│   ├── memory-search.js    # memory_search handler
-│   ├── memory-triggers.js  # memory_match_triggers handler
-│   ├── memory-save.js      # memory_save handler
-│   ├── memory-crud.js      # update/delete/list/stats/validate handlers
-│   ├── memory-index.js     # memory_index_scan handler
-│   ├── checkpoints.js      # checkpoint_* handlers
-│   └── session-learning.js # task_preflight/postflight/learning_history
+│   ├── index.js            # Handler aggregator
+│   ├── memory-search.js    # memory_search + Testing Effect
+│   ├── memory-triggers.js  # memory_match_triggers + cognitive
+│   ├── memory-save.js      # memory_save + PE gating
+│   ├── memory-crud.js      # update/delete/list/stats/health/validate
+│   ├── memory-index.js     # memory_index_scan + constitutional discovery
+│   ├── checkpoints.js      # checkpoint_create/list/restore/delete
+│   └── session-learning.js # preflight/postflight/learning history
 │
-├── hooks/                  # Auto-surface hooks
-│   ├── index.js            # Hook exports
-│   └── memory-surface.js   # SK-004 auto-surface implementation
-│
-├── lib/                    # Library modules (28 total)
-│   ├── cognitive/          # Cognitive memory (5 modules)
-│   ├── parsing/            # File parsing (4 modules)
-│   ├── providers/          # Embedding providers (2 modules)
+├── lib/                    # Library modules (32+ total)
+│   ├── cognitive/          # Cognitive memory (8 modules)
+│   │   ├── fsrs-scheduler.js       # FSRS power-law algorithm
+│   │   ├── prediction-error-gate.js # Duplicate detection
+│   │   ├── tier-classifier.js      # 5-state classification
+│   │   ├── attention-decay.js      # Turn-based decay
+│   │   ├── co-activation.js        # Related memory boosting
+│   │   ├── working-memory.js       # Session-scoped activation
+│   │   ├── temporal-contiguity.js  # Time-based linking
+│   │   ├── summary-generator.js    # Auto-summary generation
+│   │   └── index.js                # Module aggregator
+│   │
 │   ├── scoring/            # Scoring algorithms (5 modules)
+│   │   ├── composite-scoring.js    # Multi-factor scoring (R weight 0.15)
+│   │   ├── importance-tiers.js     # Tier boost values
+│   │   ├── folder-scoring.js       # Spec folder ranking
+│   │   ├── confidence-tracker.js   # Confidence scoring
+│   │   └── index.js
+│   │
 │   ├── search/             # Search engines (4 modules)
+│   │   ├── vector-index.js         # sqlite-vec vector search
+│   │   ├── hybrid-search.js        # FTS5 + vector fusion
+│   │   ├── rrf-fusion.js           # Reciprocal Rank Fusion
+│   │   ├── reranker.js             # Result reranking
+│   │   └── index.js
+│   │
+│   ├── parsing/            # File parsing (4 modules)
+│   │   ├── memory-parser.js        # Memory file parsing
+│   │   ├── trigger-matcher.js      # Trigger phrase matching
+│   │   ├── trigger-extractor.js    # Extract triggers from content
+│   │   ├── entity-scope.js         # Entity scope detection
+│   │   └── index.js
+│   │
+│   ├── providers/          # Embedding providers (2 modules)
+│   │   ├── embeddings.js           # Provider abstraction
+│   │   ├── retry-manager.js        # API retry logic
+│   │   └── index.js
+│   │
 │   ├── storage/            # Persistence (4 modules)
-│   └── utils/              # Utilities (4 modules)
+│   │   ├── access-tracker.js       # Access history
+│   │   ├── checkpoints.js          # State snapshots
+│   │   ├── history.js              # Modification history
+│   │   ├── index-refresh.js        # Index maintenance
+│   │   └── index.js
+│   │
+│   ├── utils/              # Utilities (4 modules)
+│   │   ├── validators.js           # Input validation
+│   │   ├── json-helpers.js         # Safe JSON operations
+│   │   ├── batch-processor.js      # Batch operations
+│   │   └── index.js
+│   │
+│   ├── errors.js           # Custom error classes
+│   ├── channel.js          # MCP communication
+│   └── index.js            # Root barrel export
 │
-├── formatters/             # Response formatters
-│   ├── search-results.js   # Search result formatting
-│   └── token-metrics.js    # Token counting/metrics
+├── formatters/             # Output formatting (2 modules)
+│   ├── search-results.js   # Format search results + token metrics
+│   └── token-metrics.js    # Token estimation
 │
-├── utils/                  # Server utilities
-│   ├── batch-processor.js  # Batch operation handling
-│   ├── json-helpers.js     # JSON parsing utilities
-│   └── validators.js       # Input validation (SEC-003)
-│
-├── configs/                # Configuration files
-│   └── search-weights.json # Search scoring weights
+├── tests/                  # Test suite (1,292 tests across 17 files)
+│   ├── fsrs-scheduler.test.js
+│   ├── prediction-error-gate.test.js
+│   ├── tier-classifier.test.js
+│   ├── attention-decay.test.js
+│   ├── composite-scoring.test.js
+│   ├── co-activation.test.js
+│   ├── working-memory.test.js
+│   ├── summary-generator.test.js
+│   ├── memory-save-integration.test.js
+│   ├── memory-search-integration.test.js
+│   ├── schema-migration.test.js
+│   ├── modularization.test.js
+│   ├── test-cognitive-integration.js
+│   ├── test-memory-handlers.js
+│   ├── test-mcp-tools.js
+│   ├── test-session-learning.js
+│   └── verify-cognitive-upgrade.js
 │
 ├── database/               # SQLite database storage
 │   └── context-index.sqlite
 │
-├── scripts/                # CLI utilities
-│   └── index-cli.js        # Manual indexing CLI
-│
-└── tests/                  # Test files
+└── configs/                # Configuration files
+    └── search-weights.json
 ```
-
-### Key Files
-
-| File | Purpose |
-|------|---------|
-| `context-server.js` | Main entry point - MCP server with 17 tools |
-| `package.json` | Dependencies: @modelcontextprotocol/sdk, better-sqlite3, sqlite-vec |
-| `handlers/index.js` | Aggregates all handler exports |
-| `lib/search/vector-index.js` | SQLite + sqlite-vec database operations |
-| `lib/providers/embeddings.js` | Multi-provider embedding generation |
 
 ---
 
-## 4. ⚡ FEATURES
-
-### Constitutional Tier
-
-The **constitutional** tier is the highest importance level, designed for operational rules and critical context that must ALWAYS be visible to the AI agent.
-
-| Behavior | Description |
-|----------|-------------|
-| **Always surfaces** | Included at top of every `memory_search` result by default |
-| **Fixed similarity** | Returns `similarity: 100` regardless of query relevance |
-| **Response flag** | `isConstitutional: true` in search results |
-| **Token budget** | ~2000 tokens max for constitutional memories per search |
-| **Control** | Set `includeConstitutional: false` to disable |
-
-### Session Learning (New in v1.7.2)
-
-Track knowledge improvement across task execution with structured pre/post metrics.
-
-**Workflow:**
-```
-1. task_preflight  → Record knowledge/uncertainty/context before task
-2. [Execute Task]  → Do the implementation work
-3. task_postflight → Record post-task state, calculate Learning Index
-4. memory_get_learning_history → View trends over time
-```
-
-**Learning Index Components:**
-| Component | Weight | Measures |
-|-----------|--------|----------|
-| Knowledge Delta | 40% | How much knowledge increased |
-| Uncertainty Reduction | 35% | How much uncertainty decreased |
-| Context Improvement | 25% | How much context improved |
-
-### Cognitive Memory System
-
-The cognitive memory system implements a biologically-inspired working memory model.
-
-#### Tier System
-
-| Tier | Score Range | Content Returned | Max Items |
-|------|-------------|------------------|-----------|
-| HOT | >= 0.8 | Full content | 5 |
-| WARM | 0.25-0.79 | Summary only | 10 |
-| COLD | < 0.25 | Not returned | - |
-
-#### Importance Tier Decay Rates
-
-| Category | Tier | Decay Rate | Behavior |
-|----------|------|------------|----------|
-| **Protected** | `constitutional` | 1.0 | Never decays |
-| **Protected** | `critical` | 1.0 | Never decays |
-| **Protected** | `important` | 1.0 | Never decays |
-| **Decaying** | `normal` | 0.80 | Standard decay per turn |
-| **Decaying** | `temporary` | 0.60 | Fast decay per turn |
-
-### Auto Memory Surfacing (SK-004)
-
-Automatically injects relevant context when memory-aware tools are invoked.
-
-**Memory-Aware Tools:**
-- `memory_search`
-- `memory_match_triggers`
-- `memory_list`
-- `memory_save`
-- `memory_index_scan`
-
----
-
-## 5. 🚀 QUICK START
+## 7. 🚀 QUICK START
 
 ### 30-Second Setup
 
@@ -346,10 +552,10 @@ The server is typically started via MCP configuration, not manually.
 # 1. Navigate to mcp_server directory
 cd .opencode/skill/system-spec-kit/mcp_server
 
-# 2. Install dependencies (if not already installed)
+# 2. Install dependencies
 npm install
 
-# 3. Start server (for testing - normally launched by MCP client)
+# 3. Start server (for testing)
 npm start
 ```
 
@@ -362,7 +568,10 @@ node --version
 
 # Check dependencies installed
 ls node_modules/@modelcontextprotocol/sdk
-# Should exist
+
+# Run test suite
+npm test
+# Expected: 1,292 tests passing
 ```
 
 ### MCP Configuration
@@ -383,87 +592,130 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 ---
 
-## 6. ⚙️ CONFIGURATION
+## 8. ⚙️ CONFIGURATION
 
 ### Environment Variables
 
 #### Core Configuration
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `MEMORY_DB_PATH` | `./database/context-index.sqlite` | Database location |
-| `MEMORY_BASE_PATH` | CWD | Workspace root for memory files |
-| `DEBUG_TRIGGER_MATCHER` | `false` | Enable verbose trigger logs |
+| Variable                | Default                           | Description                     |
+| ----------------------- | --------------------------------- | ------------------------------- |
+| `MEMORY_DB_PATH`        | `./database/context-index.sqlite` | Database location               |
+| `MEMORY_BASE_PATH`      | CWD                               | Workspace root for memory files |
+| `DEBUG_TRIGGER_MATCHER` | `false`                           | Enable verbose trigger logs     |
 
 #### Embedding Provider Configuration
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `EMBEDDINGS_PROVIDER` | No | Force provider: `voyage`, `openai`, or `hf-local` |
-| `VOYAGE_API_KEY` | For Voyage | Voyage AI API key (1024 dimensions) |
-| `OPENAI_API_KEY` | For OpenAI | OpenAI API key (1536 dimensions) |
-| `EMBEDDING_BATCH_DELAY_MS` | No | Delay between batch requests (default: 100ms) |
+| Variable              | Required   | Description                              |
+| --------------------- | ---------- | ---------------------------------------- |
+| `EMBEDDINGS_PROVIDER` | No         | Force: `voyage`, `openai`, or `hf-local` |
+| `VOYAGE_API_KEY`      | For Voyage | Voyage AI API key                        |
+| `OPENAI_API_KEY`      | For OpenAI | OpenAI API key                           |
 
-**Provider Auto-Detection Priority:**
-1. Explicit `EMBEDDINGS_PROVIDER` variable
-2. `VOYAGE_API_KEY` detected -> Voyage (1024d)
-3. `OPENAI_API_KEY` detected -> OpenAI (1536d)
-4. Default -> HuggingFace Local (768d)
+### Embedding Providers
+
+| Provider              | Dimensions | Speed | Quality   | Privacy   | Best For                     |
+| --------------------- | ---------- | ----- | --------- | --------- | ---------------------------- |
+| **Voyage AI**         | 1024       | Fast  | Excellent | Cloud     | Production (recommended)     |
+| **OpenAI**            | 1536/3072  | Fast  | Very Good | Cloud     | Alternative cloud option     |
+| **HuggingFace Local** | 768        | Slow* | Good      | **Local** | Privacy, offline, air-gapped |
+
+*First run downloads model (~400MB), subsequent runs faster
+
+**Auto-Detection Priority:**
+1. Explicit `EMBEDDINGS_PROVIDER` environment variable
+2. `VOYAGE_API_KEY` detected → Voyage (1024d)
+3. `OPENAI_API_KEY` detected → OpenAI (1536d)
+4. Default → HuggingFace Local (768d)
 
 #### Cognitive Memory Thresholds
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `HOT_THRESHOLD` | 0.8 | Score threshold for HOT tier |
-| `WARM_THRESHOLD` | 0.25 | Score threshold for WARM tier |
-| `MAX_HOT_MEMORIES` | 5 | Maximum HOT tier memories to return |
-| `MAX_WARM_MEMORIES` | 10 | Maximum WARM tier memories to return |
+| Variable            | Default | Description                          |
+| ------------------- | ------- | ------------------------------------ |
+| `HOT_THRESHOLD`     | 0.80    | Retrievability threshold for HOT     |
+| `WARM_THRESHOLD`    | 0.25    | Retrievability threshold for WARM    |
+| `COLD_THRESHOLD`    | 0.05    | Retrievability threshold for COLD    |
+| `DORMANT_THRESHOLD` | 0.02    | Retrievability threshold for DORMANT |
+| `MAX_HOT_MEMORIES`  | 5       | Maximum HOT tier memories            |
+| `MAX_WARM_MEMORIES` | 10      | Maximum WARM tier memories           |
 
 ### Database Schema
 
-The SQLite database contains these tables:
+| Table              | Purpose                                 |
+| ------------------ | --------------------------------------- |
+| `memory_index`     | Memory metadata (title, tier, triggers) |
+| `vec_memories`     | Vector embeddings (sqlite-vec)          |
+| `memory_fts`       | Full-text search index (FTS5)           |
+| `checkpoints`      | State snapshots                         |
+| `memory_history`   | Access and modification history         |
+| `learning_records` | Session learning preflight/postflight   |
+| `working_memory`   | Session-scoped attention scores         |
+| `memory_conflicts` | PE gating decisions (audit trail)       |
 
-| Table | Purpose |
-|-------|---------|
-| `memory_index` | Memory metadata (title, tier, triggers, file path) |
-| `vec_memories` | Vector embeddings (sqlite-vec virtual table) |
-| `memory_fts` | Full-text search index (FTS5 virtual table) |
-| `checkpoints` | State snapshots for recovery |
-| `memory_history` | Access and modification history |
-| `learning_records` | Session learning preflight/postflight data |
-| `working_memory` | Session-scoped attention scores |
+### Composite Scoring Weights
+
+Search results are ranked using multi-factor composite scoring:
+
+| Factor             | Weight | Description                       |
+| ------------------ | ------ | --------------------------------- |
+| **Similarity**     | 0.30   | Vector similarity to query        |
+| **Importance**     | 0.25   | Tier boost (constitutional = 10x) |
+| **Retrievability** | 0.15   | FSRS-calculated memory strength   |
+| **Recency**        | 0.15   | Time since last access            |
+| **Popularity**     | 0.10   | Access frequency                  |
+| **Tier Boost**     | 0.05   | Additional tier-based adjustment  |
 
 ### Dependencies
 
-| Dependency | Version | Purpose |
-|------------|---------|---------|
-| `@modelcontextprotocol/sdk` | ^1.24.3 | MCP protocol implementation |
-| `@huggingface/transformers` | ^3.8.1 | Local embedding generation |
-| `better-sqlite3` | ^12.5.0 | SQLite database |
-| `sqlite-vec` | ^0.1.7-alpha.2 | Vector similarity search |
-| `chokidar` | ^3.6.0 | File watching (optional) |
-| `lru-cache` | ^11.2.4 | In-memory caching |
+| Dependency                  | Version        | Purpose                  |
+| --------------------------- | -------------- | ------------------------ |
+| `@modelcontextprotocol/sdk` | ^1.24.3        | MCP protocol             |
+| `@huggingface/transformers` | ^3.8.1         | Local embeddings         |
+| `better-sqlite3`            | ^12.5.0        | SQLite database          |
+| `sqlite-vec`                | ^0.1.7-alpha.2 | Vector similarity search |
 
 ---
 
-## 7. 💡 USAGE EXAMPLES
+## 9. 💡 USAGE EXAMPLES
 
 ### Example 1: Basic Memory Search
 
 ```javascript
-// Search for authentication-related memories
+// Simple semantic search
 memory_search({
   query: "how does authentication work",
   limit: 5
 })
-
-// Result includes constitutional memories at top + semantic matches
+// Returns: constitutional memories at top + semantic matches
 ```
 
-### Example 2: Session Learning Workflow
+### Example 2: ANCHOR-Based Retrieval (Token Efficient)
 
 ```javascript
-// 1. Before starting implementation
+// Only retrieve specific sections
+memory_search({
+  query: "auth decisions",
+  anchors: ['decisions', 'context'],
+  includeContent: true
+})
+// Returns: Only decision and context sections (~93% token savings)
+```
+
+### Example 3: Multi-Concept Search
+
+```javascript
+// Find memories about BOTH auth AND database
+memory_search({
+  concepts: ["authentication", "database migration"],
+  limit: 10
+})
+// Returns: Memories that match both concepts
+```
+
+### Example 4: Session Learning Workflow
+
+```javascript
+// 1. Before starting implementation - capture baseline
 task_preflight({
   specFolder: "specs/077-upgrade",
   taskId: "T1",
@@ -473,59 +725,76 @@ task_preflight({
   knowledgeGaps: ["database schema", "API endpoints"]
 })
 
-// 2. After completing implementation
+// 2. Do the implementation work...
+
+// 3. After completing - measure improvement
 task_postflight({
   specFolder: "specs/077-upgrade",
   taskId: "T1",
   knowledgeScore: 85,
   uncertaintyScore: 20,
   contextScore: 90,
-  gapsClosed: ["database schema", "API endpoints"]
+  gapsClosed: ["database schema", "API endpoints"],
+  newGapsDiscovered: ["edge case handling"]
 })
-
-// Result: Learning Index calculated from deltas
-// LI = (45 x 0.4) + (50 x 0.35) + (40 x 0.25) = 45.5
+// Result: Learning Index = 45.5 (strong learning session)
 ```
 
-### Example 3: Cognitive Memory with Session
+### Example 5: Cognitive Memory with Session Tracking
 
 ```javascript
-// Match triggers with cognitive features enabled
+// Fast trigger matching with cognitive features
 memory_match_triggers({
   prompt: "implement authentication feature",
   session_id: "session-abc",
   turn_number: 5,
   include_cognitive: true
 })
-
-// Returns memories with attention scores, HOT/WARM tiers, and co-activated related memories
+// Returns: memories with attention scores, HOT/WARM tiers, co-activated related memories
 ```
 
-### Example 4: Bulk Indexing
+### Example 6: Checkpoint Recovery
 
 ```javascript
-// Scan and index all memory files
-memory_index_scan({})
+// Before risky operation
+checkpoint_create({
+  name: "pre-cleanup",
+  metadata: { reason: "Safety before bulk delete" }
+})
 
-// Scan specific folder with force re-index
-memory_index_scan({
-  specFolder: "049-auth-system",
-  force: true
+// Do risky operation...
+memory_delete({ specFolder: "specs/old-project", confirm: true })
+
+// If something went wrong
+checkpoint_restore({ name: "pre-cleanup" })
+// Database restored to pre-delete state
+```
+
+### Example 7: Update Memory Tier
+
+```javascript
+// Promote a memory to critical tier
+memory_update({
+  id: 123,
+  importanceTier: "critical",
+  triggerPhrases: ["breaking change", "migration required"]
 })
 ```
 
 ### Common Patterns
 
-| Pattern | Tool Call | When to Use |
-|---------|-----------|-------------|
-| Find related context | `memory_search({ query: "..." })` | Before starting work |
-| Track learning | `task_preflight` -> work -> `task_postflight` | Implementation tasks |
-| Check system health | `memory_health({})` | Debugging issues |
-| Recover state | `checkpoint_restore({ name: "..." })` | After errors |
+| Pattern                   | Tool Call                                   | When to Use                   |
+| ------------------------- | ------------------------------------------- | ----------------------------- |
+| Find related context      | `memory_search({ query: "..." })`           | Before starting work          |
+| Token-efficient retrieval | `memory_search({ anchors: ['summary'] })`   | Large context, limited budget |
+| Track learning            | `task_preflight` → work → `task_postflight` | Implementation tasks          |
+| Check system health       | `memory_health({})`                         | Debugging issues              |
+| Recover from error        | `checkpoint_restore({ name: "..." })`       | After mistakes                |
+| Fast phrase matching      | `memory_match_triggers({ prompt: "..." })`  | Real-time suggestions         |
 
 ---
 
-## 8. 🛠️ TROUBLESHOOTING
+## 10. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -533,28 +802,24 @@ memory_index_scan({
 
 **Symptom:** `Error: Failed to download embedding model`
 
-**Cause:** Network issues or HuggingFace cache problems
-
 **Solution:**
 ```bash
-# Check internet connectivity
-# Clear cache and retry
+# Clear HuggingFace cache
 rm -rf ~/.cache/huggingface/
-# Server will re-download on next start
+# Server re-downloads on next start
 ```
 
 #### Database Corruption
 
 **Symptom:** `SQLITE_CORRUPT` or search returns no results
 
-**Cause:** Database file corrupted or incomplete shutdown
-
 **Solution:**
 ```bash
 # Delete database
 rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 
-# Re-index via MCP tool
+# Restart MCP server (recreates database)
+# Then re-index
 memory_index_scan({ force: true })
 ```
 
@@ -562,90 +827,115 @@ memory_index_scan({ force: true })
 
 **Symptom:** `Error: Vector dimension mismatch`
 
-**Cause:** Switched embedding providers (e.g., from HF Local to Voyage)
+**Cause:** Switched embedding providers mid-project
 
 **Solution:**
 ```bash
-# Delete database to clear old embeddings
+# Delete database (clears old embeddings)
 rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 
 # Re-index with new provider
 memory_index_scan({ force: true })
 ```
 
-#### Server Not Responding
+#### Empty Search Results
 
-**Symptom:** MCP calls timeout or fail
+**Symptom:** `memory_search` returns no results
 
-**Cause:** Server crashed or not started
+**Causes & Solutions:**
+1. **Database empty:** Run `memory_index_scan({ force: true })`
+2. **Embedding model not ready:** Check `memory_health({})` for `embeddingModelReady: true`
+3. **Query too specific:** Try broader search terms
+4. **Wrong specFolder:** Check `memory_list({})` for available folders
 
-**Solution:**
-```bash
-# Check if process is running
-ps aux | grep context-server
+#### Preflight Record Not Found
 
-# Restart MCP client (Claude Desktop, OpenCode, etc.)
-# Server starts automatically via MCP configuration
-```
+**Symptom:** `task_postflight` fails with "No preflight record found"
+
+**Cause:** Calling `task_postflight` without prior `task_preflight`, or mismatched `specFolder`/`taskId`
+
+**Solution:** Ensure `task_preflight` is called first with matching `specFolder` and `taskId`.
 
 ### Quick Fixes
 
-| Problem | Quick Fix |
-|---------|-----------|
-| Empty search results | `memory_index_scan({ force: true })` |
-| Slow embeddings | Set `VOYAGE_API_KEY` or `OPENAI_API_KEY` for faster API-based embeddings |
-| Missing constitutional | Check file is in `constitutional/` directory |
-| Learning not tracked | Ensure `specFolder` and `taskId` match in preflight/postflight |
+| Problem                | Quick Fix                                      |
+| ---------------------- | ---------------------------------------------- |
+| Empty search results   | `memory_index_scan({ force: true })`           |
+| Slow embeddings        | Set `VOYAGE_API_KEY` for faster API embeddings |
+| Missing constitutional | Check files in `constitutional/` directory     |
+| Learning not tracked   | Ensure `specFolder` and `taskId` match exactly |
+| Duplicate detection    | Check `memory_conflicts` table for decisions   |
+| Tier not updating      | Verify valid tier name (6 options)             |
 
 ### Diagnostic Commands
 
 ```bash
 # Check database status
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
-  "SELECT COUNT(*) FROM memory_index;"
+sqlite3 database/context-index.sqlite "SELECT COUNT(*) FROM memory_index;"
 
 # Check schema version
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
-  "PRAGMA user_version;"
+sqlite3 database/context-index.sqlite "PRAGMA user_version;"
+
+# Check recent PE gating decisions
+sqlite3 database/context-index.sqlite "SELECT * FROM memory_conflicts ORDER BY created_at DESC LIMIT 5;"
+
+# Check memory states
+sqlite3 database/context-index.sqlite "SELECT importance_tier, COUNT(*) FROM memory_index GROUP BY importance_tier;"
 
 # Check learning records
-sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
-  "SELECT * FROM learning_records LIMIT 5;"
+sqlite3 database/context-index.sqlite "SELECT spec_folder, COUNT(*) FROM learning_records GROUP BY spec_folder;"
+```
+
+### Run Tests
+
+```bash
+# Run full test suite
+cd .opencode/skill/system-spec-kit/mcp_server
+npm test
+
+# Run specific test file
+node tests/fsrs-scheduler.test.js
+node tests/tier-classifier.test.js
 ```
 
 ---
 
-## 9. 📚 RELATED RESOURCES
+## 11. 📚 RELATED RESOURCES
 
 ### Parent Documentation
 
-| Document | Location | Purpose |
-|----------|----------|---------|
-| Skill README | `../README.md` | Complete skill documentation |
-| SKILL.md | `../SKILL.md` | Workflow instructions for AI agents |
-| Install Guide | `../../../install_guides/MCP - Spec Kit Memory.md` | Detailed installation steps |
+| Document      | Location                                           | Purpose                             |
+| ------------- | -------------------------------------------------- | ----------------------------------- |
+| Skill README  | `../README.md`                                     | Complete skill documentation        |
+| SKILL.md      | `../SKILL.md`                                      | Workflow instructions for AI agents |
+| Install Guide | `../../../install_guides/MCP - Spec Kit Memory.md` | Detailed installation               |
 
 ### Sub-Folder Documentation
 
-| Document | Location | Purpose |
-|----------|----------|---------|
-| Handlers README | `./handlers/README.md` | Handler module organization |
-| Library README | `./lib/README.md` | Library module documentation |
-| Core README | `./core/README.md` | Core module documentation |
-| Utils README | `./utils/README.md` | Utility module documentation |
-| Hooks README | `./hooks/README.md` | Auto-surface hook documentation |
-| Formatters README | `./formatters/README.md` | Response formatter documentation |
-| Configs README | `./configs/README.md` | Configuration file documentation |
+| Folder        | README                 | Purpose                              |
+| ------------- | ---------------------- | ------------------------------------ |
+| `handlers/`   | `handlers/README.md`   | MCP tool handler implementations     |
+| `lib/`        | `lib/README.md`        | Library modules (cognitive, scoring) |
+| `formatters/` | `formatters/README.md` | Output formatting and token metrics  |
+
+### Key Module Files
+
+| Module                                   | Purpose                                 |
+| ---------------------------------------- | --------------------------------------- |
+| `lib/cognitive/fsrs-scheduler.js`        | FSRS power-law decay algorithm          |
+| `lib/cognitive/tier-classifier.js`       | 5-state memory classification           |
+| `lib/cognitive/prediction-error-gate.js` | Duplicate detection and PE gating       |
+| `lib/scoring/composite-scoring.js`       | Multi-factor ranking with R weight      |
+| `lib/search/hybrid-search.js`            | FTS5 + vector fusion with RRF           |
+| `handlers/memory-save.js`                | Save handler with PE gating integration |
+| `handlers/session-learning.js`           | Epistemic tracking implementation       |
 
 ### External Resources
 
-| Resource | URL |
-|----------|-----|
-| MCP Protocol Spec | https://modelcontextprotocol.io/ |
-| nomic-embed-text-v1.5 | https://huggingface.co/nomic-ai/nomic-embed-text-v1.5 |
-| sqlite-vec | https://github.com/asg017/sqlite-vec |
-| Voyage AI | https://www.voyageai.com/ |
-
----
-
-*Documentation version: 1.7.2 | Last updated: 2026-01-23*
+| Resource          | URL                                                      |
+| ----------------- | -------------------------------------------------------- |
+| MCP Protocol Spec | https://modelcontextprotocol.io/                         |
+| FSRS Algorithm    | https://github.com/open-spaced-repetition/fsrs4anki/wiki |
+| sqlite-vec        | https://github.com/asg017/sqlite-vec                     |
+| Voyage AI         | https://www.voyageai.com/                                |
+| FTS5 Docs         | https://www.sqlite.org/fts5.html                         |

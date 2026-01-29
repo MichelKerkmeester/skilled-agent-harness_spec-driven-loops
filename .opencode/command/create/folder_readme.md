@@ -16,132 +16,136 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** This workflow requires 1-2 user interactions.
-
----
-
-## 🔒 PHASE 0: WRITE AGENT VERIFICATION [PRIORITY GATE]
-
-**STATUS: ☐ BLOCKED** (Must pass BEFORE all other phases)
-
-> **⚠️ CRITICAL:** This command REQUIRES the `@write` agent for template enforcement, DQI scoring, and quality gates.
-
-```
-EXECUTE THIS CHECK FIRST:
-
-├─ SELF-CHECK: Are you operating as the @write agent?
-│   │
-│   ├─ INDICATORS that you ARE @write agent:
-│   │   ├─ You were invoked with "@write" prefix
-│   │   ├─ You have template-first workflow capabilities
-│   │   ├─ You load templates BEFORE creating content
-│   │   ├─ You validate template alignment AFTER creating
-│   │
-│   ├─ IF YES (all indicators present):
-│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 1
-│   │
-│   └─ IF NO or UNCERTAIN:
-│       │
-│       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-│       │
-│       ├─ DISPLAY to user:
-│       │   ┌────────────────────────────────────────────────────────────┐
-│       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-│       │   │                                                            │
-│       │   │ This command requires the @write agent for:                │
-│       │   │   • Template-first workflow (loads before creating)          │
-│       │   │   • DQI scoring (target: 90+ Excellent)                    │
-│       │   │   • workflows-documentation skill integration               │
-│       │   │                                                            │
-│       │   │ To proceed, restart with:                                  │
-│       │   │   @write /create:folder_readme [target-path]               │
-│       │   │                                                            │
-│       │   │ Reference: .opencode/agent/write.md                        │
-│       │   └────────────────────────────────────────────────────────────┘
-│       │
-│       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
-
-**STOP HERE** - Verify you are operating as @write agent before continuing. If not, instruct user to restart with @write prefix.
-
-⛔ HARD STOP: DO NOT proceed to PHASE 1 until STATUS = ✅ PASSED
-```
-
-**Phase 0 Output:** `write_agent_verified = [yes/no]`
+**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together), with an optional follow-up only if README already exists.
 
 ---
 
-## 🔒 PHASE 1: INPUT VALIDATION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only:
-│   │
-│   ├─ ASK user:
-│   │   ┌────────────────────────────────────────────────────────────┐
-│   │   │ "Where should the README be created, and what type?"       │
-│   │   │                                                            │
-│   │   │ A) Project README                                          │
-│   │   │    Main project documentation at root level                │
-│   │   │                                                            │
-│   │   │ B) Component README                                        │
-│   │   │    Documentation for a module/package/skill                │
-│   │   │                                                            │
-│   │   │ C) Feature README                                          │
-│   │   │    Documentation for a specific feature/system              │
-│   │   │                                                            │
-│   │   │ D) Skill README                                            │
-│   │   │    Documentation for an OpenCode skill                     │
-│   │   └────────────────────────────────────────────────────────────┘
-│   │
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Based on choice, ask for target path
-│   ├─ Store as: target_path, readme_type
-│   └─ SET STATUS: ✅ PASSED
-│
-└─ IF $ARGUMENTS contains content:
-    │
-    ├─ Parse first argument as: target_path
-    ├─ Parse --type flag if present (default: project)
-    │
-    ├─ VALIDATE readme_type:
-    │   ├─ Must be one of: project, component, feature, skill
-    │   │
-    │   ├─ IF invalid or missing:
-    │   │   └─ Set default: readme_type = "project"
-    │   │
-    │   └─ Store as: readme_type
-    │
-    └─ SET STATUS: ✅ PASSED
+1. CHECK Phase 0: @write agent verification (automatic)
+   ├─ SELF-CHECK: Are you operating as the @write agent?
+   │   │
+   │   ├─ INDICATORS that you ARE @write agent:
+   │   │   ├─ You were invoked with "@write" prefix
+   │   │   ├─ You have template-first workflow capabilities
+   │   │   ├─ You load templates BEFORE creating content
+   │   │   ├─ You validate template alignment AFTER creating
+   │   │
+   │   ├─ IF YES (all indicators present):
+   │   │   └─ write_agent_verified = TRUE → Continue to step 2
+   │   │
+   │   └─ IF NO or UNCERTAIN:
+   │       │
+   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+   │       │
+   │       ├─ DISPLAY to user:
+   │       │   ┌────────────────────────────────────────────────────────────┐
+   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
+   │       │   │                                                            │
+   │       │   │ This command requires the @write agent for:                │
+   │       │   │   • Template-first workflow (loads before creating)          │
+   │       │   │   • DQI scoring (target: 90+ Excellent)                    │
+   │       │   │   • workflows-documentation skill integration               │
+   │       │   │                                                            │
+   │       │   │ To proceed, restart with:                                  │
+   │       │   │   @write /create:folder_readme [target-path]               │
+   │       │   │                                                            │
+   │       │   │ Reference: .opencode/agent/write.md                        │
+   │       │   └────────────────────────────────────────────────────────────┘
+   │       │
+   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
 
-**STOP HERE** - Wait for user to provide target path and README type before continuing.
+2. CHECK for mode suffix in command invocation:
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
+   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
+3. CHECK if $ARGUMENTS contains target path:
+   ├─ IF $ARGUMENTS has path content (ignoring flags) → target_path = $ARGUMENTS, omit Q0
+   └─ IF $ARGUMENTS is empty → include Q0 in prompt
+
+4. CHECK if $ARGUMENTS contains --type flag:
+   ├─ IF --type flag present → readme_type = [parsed value], omit Q1
+   └─ IF no --type flag → include Q1 in prompt
+
+5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Target Path** (if not provided in command):              │
+   │    Where should the README be created?                         │
+   │    (e.g., .opencode/skill/my-skill, src/components, ./)        │
+   │                                                                │
+   │ **Q1. README Type** (required):                                │
+   │    A) Project - Main project documentation at root level       │
+   │    B) Component - Documentation for a module/package/skill     │
+   │    C) Feature - Documentation for a specific feature/system     │
+   │    D) Skill - Documentation for an OpenCode skill              │
+   │                                                                │
+   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
+   │    A) Interactive - Pause at each step for approval            │
+   │    B) Autonomous - Execute all steps without prompts           │
+   │                                                                │
+   │ Reply with answers, e.g.: "B, A" or "src/components, B, A"     │
+   └────────────────────────────────────────────────────────────────┘
+
+6. WAIT for user response (DO NOT PROCEED)
+
+7. Parse response and store ALL results:
+   - target_path = [from Q0 or $ARGUMENTS]
+   - readme_type = [A/B/C/D from Q1 or --type flag → project/component/feature/skill]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
+
+8. VERIFY target and check for existing README:
+   ├─ Check if target path exists:
+   │   $ ls -la [target_path] 2>/dev/null
+   │
+   ├─ IF target path does not exist:
+   │   └─ Create directory: mkdir -p [target_path]
+   │
+   ├─ Check for existing README:
+   │   $ ls -la [target_path]/README.md 2>/dev/null
+   │
+   └─ IF README.md already exists:
+       ├─ ASK user (ONLY conditional follow-up):
+       │   ┌────────────────────────────────────────────────────────────┐
+       │   │ **README.md already exists at [path].**                    │
+       │   │                                                            │
+       │   │ **Q3. How should we proceed?**                             │
+       │   │    A) Overwrite existing file                               │
+       │   │    B) Create backup and overwrite                          │
+       │   │    C) Merge/update existing content                        │
+       │   │    D) Cancel                                               │
+       │   └────────────────────────────────────────────────────────────┘
+       ├─ WAIT for user response
+       └─ Process based on choice (D = RETURN STATUS=CANCELLED)
+
+9. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
 ⛔ NEVER infer README location from context
 ⛔ NEVER overwrite existing README without confirmation
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 1 Output:** `target_path = ________________` | `readme_type = ________________`
-
----
-
-## 🔒 MODE DETECTION
-
-```
-CHECK for mode suffix in $ARGUMENTS or command invocation:
-
-├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
-├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
-└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
-```
-
-**Mode Output:** `execution_mode = ________________`
+**Phase Output:**
+- `write_agent_verified = ________________`
+- `target_path = ________________`
+- `readme_type = ________________`
+- `execution_mode = ________________`
+- `existing_readme_action = ________________` (if applicable)
 
 ---
 
@@ -162,71 +166,23 @@ CHECK for mode suffix in $ARGUMENTS or command invocation:
 
 ---
 
-## 🔒 PHASE 2: TARGET VERIFICATION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
-
-1. Check if target path exists:
-   $ ls -la [target_path] 2>/dev/null
-
-2. Check for existing README:
-   $ ls -la [target_path]/README.md 2>/dev/null
-
-3. Process result:
-   ├─ IF target path does not exist:
-   │   ├─ ASK user:
-   │   │   ┌────────────────────────────────────────────────────────────┐
-   │   │   │ "Path '[target_path]' does not exist."                     │
-   │   │   │                                                            │
-   │   │   │ A) Create directory and proceed                            │
-   │   │   │ B) Choose different path                                   │
-   │   │   │ C) Cancel                                                  │
-   │   │   └────────────────────────────────────────────────────────────┘
-   │   └─ Process based on choice
-   │
-   ├─ IF README.md already exists:
-   │   ├─ ASK user:
-   │   │   ┌────────────────────────────────────────────────────────────┐
-   │   │   │ "README.md already exists at [path]."                      │
-   │   │   │                                                            │
-   │   │   │ A) Overwrite existing file                                  │
-   │   │   │ B) Create backup and overwrite                             │
-   │   │   │ C) Merge/update existing content                           │
-   │   │   │ D) Cancel                                                  │
-   │   │   └────────────────────────────────────────────────────────────┘
-   │   └─ Process based on choice
-   │
-   └─ IF path exists and no README:
-       └─ SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for target path verification or user to resolve existing README conflict before continuing.
-
-⛔ HARD STOP: DO NOT proceed without confirmed target
-```
-
-**Phase 2 Output:** `path_verified = [yes/no]` | `existing_readme = [yes/no]`
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                           |
-| -------------------- | --------------- | ----------- | -------------------------------------- |
-| PHASE 0: WRITE AGENT | ✅ PASSED        | ______      | write_agent_verified: ______           |
-| PHASE 1: INPUT       | ✅ PASSED        | ______      | target_path: ______ / type: __________ |
-| MODE DETECTION       | ✅ SET           | ______      | execution_mode: ______                 |
-| PHASE 2: TARGET      | ✅ PASSED        | ______      | path_verified: ______ / existing: ____ |
+| FIELD                  | REQUIRED      | YOUR VALUE | SOURCE                |
+| ---------------------- | ------------- | ---------- | --------------------- |
+| write_agent_verified   | ✅ Yes         | ______     | Auto-check (Step 1)   |
+| target_path            | ✅ Yes         | ______     | Q0 or $ARGUMENTS      |
+| readme_type            | ✅ Yes         | ______     | Q1 or --type flag     |
+| execution_mode         | ✅ Yes         | ______     | Suffix or Q2          |
+| existing_readme_action | ○ Conditional | ______     | Q3 (if README exists) |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# README Creation Workflow" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -236,10 +192,12 @@ VERIFICATION CHECK:
 **YOU ARE IN VIOLATION IF YOU:**
 
 **Phase Violations:**
-- Executed command without @write agent verification (Phase 0)
-- Started reading the workflow section before all phases passed
-- Proceeded without explicit target path (Phase 1)
-- Overwrote existing README without confirmation (Phase 2)
+- Executed command without @write agent verification
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Started reading the workflow section before all fields are set
+- Proceeded without explicit target path
+- Overwrote existing README without confirmation
+- Inferred README location from context instead of explicit user input
 
 **Workflow Violations (Steps 1-5):**
 - Skipped content discovery and jumped to generation
@@ -248,11 +206,21 @@ VERIFICATION CHECK:
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
+FOR PHASE VIOLATIONS:
+1. STOP immediately - do not continue current action
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
+
+FOR WORKFLOW VIOLATIONS:
 1. STOP immediately
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly
-5. RESUME only after all phases pass
+2. STATE: "I skipped STEP [X] by [specific action]. Correcting now."
+3. RETURN to the skipped step
+4. COMPLETE all activities for that step
+5. VERIFY outputs exist
+6. MARK step ✅ in tracking table
+7. CONTINUE to next step in sequence
 ```
 
 ---
@@ -272,6 +240,50 @@ VERIFICATION CHECK:
 | 3    | Structure  | ☐      | Section structure   | Template selected           |
 | 4    | Generation | ☐      | README.md           | Complete README written     |
 | 5    | Validation | ☐      | Validated README    | Structure verified          |
+
+---
+
+## 📊 WORKFLOW DIAGRAM
+
+```mermaid
+flowchart TD
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef wait fill:#4a1d6b,stroke:#a855f7,color:#fff
+
+    START(["/create:folder_readme"]) --> SETUP
+
+    subgraph SETUP["UNIFIED SETUP PHASE"]
+        S1[@write check] --> S2[Parse mode suffix] --> S3[Check $ARGUMENTS] --> S4{{"Q0-Q2<br/>(consolidated)"}}
+        S4 --> S5[Parse response]
+    end
+
+    SETUP --> WRITE_CHECK{@write<br/>agent?}
+    WRITE_CHECK -->|No| BLOCK[/"⛔ HARD BLOCK<br/>Restart with @write"/]
+    BLOCK --> END_FAIL([End - User Action Required])
+    WRITE_CHECK -->|Yes| README_CHECK{README<br/>exists?}
+    README_CHECK -->|Yes| CONFLICT[/"Q3: Overwrite?<br/>(A-D options)"/]
+    README_CHECK -->|No| WORKFLOW
+    CONFLICT --> WAIT_Q3{{Wait for User}}
+    WAIT_Q3 --> WORKFLOW
+
+    subgraph WORKFLOW["Steps 1-5: README Creation"]
+        W1[Step 1: Analysis<br/>Confirm type + path]
+        W2[Step 2: Discovery<br/>Gather project info]
+        W3[Step 3: Structure<br/>Select template]
+        W4[Step 4: Generation<br/>Write README.md]
+        W5[Step 5: Validation<br/>Verify structure]
+
+        W1 --> W2 --> W3 --> W4 --> W5
+        W5 --> DONE([/"✅ README Complete"/])
+    end
+
+    class WRITE_CHECK,README_CHECK gate
+    class DONE verify
+    class S1,S2,S3,S5,W1,W2,W3,W4,W5 phase
+    class S4,WAIT_Q3 wait
+```
 
 ---
 
@@ -341,15 +353,16 @@ $ARGUMENTS
 
 ## 3. ⚡ INSTRUCTIONS
 
-### Step 4: Verify All Phases Passed
+### Step 4: Verify Unified Setup Phase Passed
 
-Confirm you have these values from the phases:
-- `target_path` from PHASE 1
-- `readme_type` from PHASE 1 (project|component|feature|skill)
-- `path_verified` from PHASE 2
-- `existing_readme` handling from PHASE 2
+Confirm you have these values from the unified setup phase:
+- `write_agent_verified` (must be TRUE)
+- `target_path` (from Q0 or $ARGUMENTS)
+- `readme_type` (from Q1 or --type flag: project|component|feature|skill)
+- `execution_mode` (from suffix or Q2: AUTONOMOUS|INTERACTIVE)
+- `existing_readme_action` (from Q3, if applicable)
 
-**If ANY phase is incomplete, STOP and return to the MANDATORY PHASES section.**
+**If ANY required field is missing, STOP and return to the UNIFIED SETUP PHASE section.**
 
 ### Step 5: Load & Execute Workflow
 
@@ -439,11 +452,11 @@ This command creates standalone documentation:
 
 After README creation completes, suggest relevant next steps:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| README created | Review and verify links work | Confirm TOC links correctly |
-| Need install guide | `/create:install_guide [project]` | Add installation documentation |
-| Create another README | `/create:folder_readme [path]` | Document related component |
-| Want to save context | `/memory:save [spec-folder-path]` | Preserve documentation context |
+| Condition             | Suggested Command                 | Reason                         |
+| --------------------- | --------------------------------- | ------------------------------ |
+| README created        | Review and verify links work      | Confirm TOC links correctly    |
+| Need install guide    | `/create:install_guide [project]` | Add installation documentation |
+| Create another README | `/create:folder_readme [path]`    | Document related component     |
+| Want to save context  | `/memory:save [spec-folder-path]` | Preserve documentation context |
 
 **ALWAYS** end with: "What would you like to do next?"

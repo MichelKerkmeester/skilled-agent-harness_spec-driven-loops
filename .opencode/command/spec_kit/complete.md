@@ -543,6 +543,39 @@ $ARGUMENTS
 | 13   | Save Context         | Preserve conversation                                                        | memory/*.md               |
 | 14   | Handover Check       | Offer handover before completion                                             | User prompted             |
 
+### Workflow Diagram
+
+```mermaid
+flowchart TD
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+
+    START(["/spec_kit:complete"]) --> SETUP
+
+    subgraph SETUP["UNIFIED SETUP PHASE"]
+        S1[Parse mode] --> S2[Check flags] --> S3[Search specs] --> S4{{"Q1-Q6"}}
+    end
+
+    SETUP --> RESEARCH_CHECK{research?}
+    RESEARCH_CHECK -->|Yes| RESEARCH[Research Phase]
+    RESEARCH_CHECK -->|No| PHASE_A
+    RESEARCH --> PHASE_A
+
+    subgraph PHASE_A["PLANNING (Steps 1-7)"]
+        P1[Analysis] --> P2[Review] --> P3[Spec] --> P4[Clarify] --> P5[Checklist] --> P6[Plan] --> P7[Tasks]
+    end
+
+    PHASE_A --> GATE{{"PHASE GATE<br/>Score >= 70?"}}:::gate
+    GATE -->|Fail| PHASE_A
+    GATE -->|Pass| PHASE_B
+
+    subgraph PHASE_B["IMPLEMENTATION (Steps 8-14)"]
+        I8[Analysis] --> I9[Check] --> I10[Dev] --> I11[Verify] --> I12[Complete] --> I13[Save] --> I14[Handover?]
+    end
+
+    I14 --> DONE([STATUS=OK])
+```
+
 ---
 
 ## 4. ⚡ INSTRUCTIONS

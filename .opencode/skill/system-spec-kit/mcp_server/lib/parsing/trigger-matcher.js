@@ -64,8 +64,10 @@ const regex_lru_cache = new Map();
 
 /**
  * Get or create a cached regex for a phrase (T015: LRU with size limit)
+ * BUG-026 FIX: Unicode-aware word boundary using extended Latin character class
+ * JavaScript \b is ASCII-only, fails for accented chars and non-Latin scripts
  * @param {string} phrase - The phrase to create regex for
- * @returns {RegExp} Pre-compiled regex with word boundaries
+ * @returns {RegExp} Pre-compiled regex with Unicode-aware word boundaries
  */
 function get_cached_regex(phrase) {
   // Check if already in cache
@@ -77,8 +79,14 @@ function get_cached_regex(phrase) {
     return regex;
   }
 
-  // Create new regex
-  const regex = new RegExp(`\\b${escapeRegex(phrase)}\\b`, 'iu');
+  // BUG-026 FIX: Unicode-aware word boundary
+  // Uses extended Latin range (À-ÿ covers most Western European accented chars)
+  // Pattern matches: start of string OR non-word char, then phrase, then non-word char OR end of string
+  const escaped = escapeRegex(phrase);
+  const regex = new RegExp(
+    `(?:^|[^a-zA-Z0-9À-ÿ])${escaped}(?:[^a-zA-Z0-9À-ÿ]|$)`,
+    'iu'
+  );
 
   // Evict oldest entry if at capacity (T015: LRU eviction)
   if (regex_lru_cache.size >= CONFIG.MAX_REGEX_CACHE_SIZE) {
@@ -211,14 +219,19 @@ function normalize_unicode(str, strip_accents = false) {
 }
 
 // Check if a phrase exists in text with word boundaries
+// BUG-026 FIX: Unicode-aware word boundary for fallback path
 function match_phrase_with_boundary(text, phrase, precompiled_regex = null) {
   // Use pre-compiled regex if available (from cache), otherwise compile on-the-fly
   if (precompiled_regex) {
     return precompiled_regex.test(text);
   }
   // Fallback for direct calls without pre-compiled regex
+  // BUG-026 FIX: Unicode-aware word boundary using extended Latin character class
   const escaped = escapeRegex(phrase);
-  const regex = new RegExp(`\\b${escaped}\\b`, 'iu');
+  const regex = new RegExp(
+    `(?:^|[^a-zA-Z0-9À-ÿ])${escaped}(?:[^a-zA-Z0-9À-ÿ]|$)`,
+    'iu'
+  );
   return regex.test(text);
 }
 

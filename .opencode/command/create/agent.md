@@ -16,17 +16,17 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, TodoWrite]
 
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** This workflow requires 2-3 user interactions.
+**Round-trip optimization:** This workflow requires only 1 user interaction.
 
 ---
 
 ## 🔒 PHASE 0: WRITE AGENT VERIFICATION [PRIORITY GATE]
 
-**STATUS: ☐ BLOCKED** (Must pass BEFORE all other phases)
+**STATUS: ☐ BLOCKED** (Must pass BEFORE unified setup phase)
 
 > **⚠️ CRITICAL:** This command REQUIRES the `@write` agent for template enforcement and quality gates.
 
@@ -42,7 +42,7 @@ EXECUTE THIS CHECK FIRST:
 │   │   ├─ You validate template alignment AFTER creating
 │   │
 │   ├─ IF YES (all indicators present):
-│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 1
+│   │   └─ SET STATUS: ✅ PASSED → Proceed to UNIFIED SETUP PHASE
 │   │
 │   └─ IF NO or UNCERTAIN:
 │       │
@@ -65,84 +65,124 @@ EXECUTE THIS CHECK FIRST:
 │       │
 │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
 
-⛔ HARD STOP: DO NOT proceed to PHASE 1 until STATUS = ✅ PASSED
+⛔ HARD STOP: DO NOT proceed to UNIFIED SETUP PHASE until STATUS = ✅ PASSED
 ```
 
 **Phase 0 Output:** `write_agent_verified = [yes/no]`
 
 ---
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only:
-│   │
-│   ├─ ASK user:
-│   │   ┌────────────────────────────────────────────────────────────┐
-│   │   │ "What agent would you like to create?"                     │
-│   │   │                                                            │
-│   │   │ Please provide an agent name                               │
-│   │   │ (e.g., review, security-audit, test-runner)                │
-│   │   │                                                            │
-│   │   │ Format: lowercase, single word or hyphenated               │
-│   │   └────────────────────────────────────────────────────────────┘
-│   │
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Store response as: agent_name
-│   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-│
-└─ IF $ARGUMENTS contains content:
-    │
-    ├─ Extract agent name (first argument)
-    ├─ Extract --mode flag if present (default: subagent)
-    ├─ Extract --global flag if present (default: false)
-    ├─ VALIDATE agent name format:
-    │   ├─ Must be lowercase
-    │   ├─ Only letters, numbers, and hyphens allowed
-    │   ├─ No uppercase, underscores, or special characters
-    │   │
-    │   ├─ IF invalid format:
-    │   │   ├─ SHOW: "Invalid agent name format. Expected: lowercase-hyphenated"
-    │   │   ├─ ASK for corrected name
-    │   │   └─ WAIT for response
-    │   │
-    │   └─ IF valid:
-    │       └─ Store as: agent_name
-    │
-    ├─ VALIDATE mode (if provided):
-    │   ├─ Must be one of: primary, subagent, all
-    │   ├─ IF invalid: Set default: mode = "subagent"
-    │   └─ Store as: agent_mode
-    │
-    ├─ Store global flag as: is_global (default: false)
-    └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
+1. CHECK for mode suffix in command invocation:
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q3)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q3)
+   └─ No suffix → execution_mode = "ASK" (include Q3 in prompt)
 
-**STOP HERE** - Wait for user to provide a valid agent name before continuing.
+2. CHECK if $ARGUMENTS contains an agent name:
+   ├─ IF $ARGUMENTS has content (ignoring flags like --mode, --global) → agent_name = $ARGUMENTS, omit Q0
+   │   └─ VALIDATE agent name format:
+   │       ├─ Must be lowercase
+   │       ├─ Only letters, numbers, and hyphens allowed
+   │       ├─ No uppercase, underscores, or special characters
+   │       └─ IF invalid: include Q0 in prompt with error message
+   └─ IF $ARGUMENTS is empty → include Q0 in prompt
 
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
-⛔ NEVER infer agent names from context
-⛔ NEVER proceed without explicit agent name from user
+3. CHECK for --mode flag:
+   ├─ IF --mode primary → agent_mode = "primary", omit Q1
+   ├─ IF --mode subagent → agent_mode = "subagent", omit Q1
+   ├─ IF --mode all → agent_mode = "all", omit Q1
+   └─ IF no --mode flag → include Q1 in prompt
+
+4. CHECK for --global flag:
+   ├─ IF --global present → is_global = true, location = "~/.config/opencode/agent/", omit Q2
+   └─ IF no --global → include Q2 in prompt
+
+5. Check if agent already exists at target location:
+   $ ls -la [determined_path]/[agent_name].md 2>/dev/null
+   └─ IF exists → Note for display after user answers
+
+6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Agent Name** (if not provided or invalid):               │
+   │    What agent would you like to create?                        │
+   │    Format: lowercase, hyphenated (e.g., review, security-audit)│
+   │                                                                │
+   │ **Q1. Agent Type** (if no --mode flag):                         │
+   │    A) Primary - Tab cycle main assistant                       │
+   │    B) Subagent - Invoked via @ mention (Recommended)           │
+   │    C) Both (mode: all)                                         │
+   │                                                                │
+   │ **Q2. Location** (if no --global flag):                         │
+   │    A) Project (.opencode/agent/) (Recommended)                 │
+   │    B) Global (~/.config/opencode/agent/)                        │
+   │                                                                │
+   │ **Q3. Execution Mode** (if no :auto/:confirm suffix):            │
+   │    A) Interactive - Confirm at each step (Recommended)          │
+   │    B) Autonomous - Execute without prompts                     │
+   │                                                                │
+   │ **Q4. Spec Folder** (optional):                                │
+   │    A) Create new spec folder                                   │
+   │    B) Skip documentation (simple agent)                        │
+   │                                                                │
+   │ Reply with answers, e.g.: "B, A, A, B" or "review, B, A, A, B" │
+   └────────────────────────────────────────────────────────────────┘
+
+7. WAIT for user response (DO NOT PROCEED)
+
+8. Parse response and store ALL results:
+   - agent_name = [from Q0 or $ARGUMENTS]
+   - agent_mode = [primary/subagent/all from --mode flag or Q1]
+   - is_global = [true/false from --global flag or Q2]
+   - agent_path = [derived: is_global ? "~/.config/opencode/agent/" : ".opencode/agent/"] + agent_name + ".md"
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q3]
+   - spec_choice = [A/B from Q4]
+   - spec_path = [if A: determine next spec folder number, if B: null]
+
+9. Handle conditional checks:
+   - IF agent already exists at agent_path:
+       ├─ DISPLAY inline:
+       │   ┌────────────────────────────────────────────────────────────┐
+       │   │ ⚠️ Agent '[agent_name]' already exists at [path].          │
+       │   │                                                            │
+       │   │ A) Overwrite existing file                                  │
+       │   │ B) Create with different name                              │
+       │   │ C) Cancel                                                  │
+       │   └────────────────────────────────────────────────────────────┘
+       ├─ WAIT for user response
+       └─ Process based on choice
+
+10. Execute spec folder creation if spec_choice == A:
+    ├─ Find next number: ls -d specs/[0-9]*/ | sort -n | tail -1
+    ├─ Create: specs/[NNN]-[agent-name]-agent/
+    └─ Store as: spec_path
+
+11. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
+⛔ NEVER auto-create agents without user confirmation
+⛔ NEVER auto-select execution mode without suffix or explicit choice
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 1 Output:** `agent_name = ________________` | `agent_mode = ________________` | `is_global = ________________`
-
----
-
-## 🔒 MODE DETECTION
-
-```
-CHECK for mode suffix in $ARGUMENTS or command invocation:
-
-├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
-├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
-└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
-```
-
-**Mode Output:** `execution_mode = ________________`
+**Phase Output:**
+- `agent_name = ________________`
+- `agent_mode = ________________`
+- `is_global = ________________`
+- `agent_path = ________________`
+- `execution_mode = ________________`
+- `spec_choice = ___` | `spec_path = ________________`
+- `existing_agent = [yes/no]`
 
 ---
 
@@ -163,153 +203,26 @@ CHECK for mode suffix in $ARGUMENTS or command invocation:
 
 ---
 
-## 🔒 PHASE 2: AGENT TYPE SELECTION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
-
-1. IF agent_mode was NOT provided in arguments, ASK user:
-   ┌────────────────────────────────────────────────────────────┐
-   │ "What type of agent should this be?"                       │
-   │                                                            │
-   │ A) Primary agent                                           │
-   │    • Appears in Tab cycle as main assistant                │
-   │    • Handles main conversation                             │
-   │    • Example: Build, Plan                                  │
-   │                                                            │
-   │ B) Subagent                                                │
-   │    • Invoked via @ mention (e.g., @review)                 │
-   │    • Can be invoked automatically by primary agents        │
-   │    • Example: General, Explore                             │
-   │                                                            │
-   │ C) Both (mode: all)                                        │
-   │    • Can be used as primary or subagent                    │
-   │    • Maximum flexibility                                    │
-   └────────────────────────────────────────────────────────────┘
-
-2. WAIT for explicit user choice (A, B, or C)
-
-3. Process choice:
-   ├─ IF A: agent_mode = "primary"
-   ├─ IF B: agent_mode = "subagent"
-   └─ IF C: agent_mode = "all"
-
-4. SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select agent type (A/B/C) before continuing.
-
-⛔ HARD STOP: DO NOT proceed until user explicitly selects A, B, or C
-```
-
-**Phase 2 Output:** `agent_mode = ________________`
-
----
-
-## 🔒 PHASE 3: OUTPUT LOCATION VERIFICATION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 2 PASSES:
-
-1. Determine output location:
-   ├─ IF is_global == true:
-   │   └─ agent_path = ~/.config/opencode/agent/[agent_name].md
-   │
-   └─ IF is_global == false (default):
-       └─ agent_path = .opencode/agent/[agent_name].md
-
-2. Check if agent already exists:
-   $ ls -la [agent_path] 2>/dev/null
-
-3. Process result:
-   ├─ IF agent file already exists:
-   │   ├─ ASK user:
-   │   │   ┌────────────────────────────────────────────────────────────┐
-   │   │   │ "Agent '[agent_name]' already exists at [path]."           │
-   │   │   │                                                            │
-   │   │   │ A) Overwrite existing file                                  │
-   │   │   │ B) Create with different name                              │
-   │   │   │ C) Cancel                                                  │
-   │   │   └────────────────────────────────────────────────────────────┘
-   │   └─ Process based on choice
-   │
-   └─ IF no existing file:
-       └─ SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to confirm output location or resolve existing file conflict before continuing.
-
-⛔ HARD STOP: DO NOT proceed without confirmed output location
-```
-
-**Phase 3 Output:** `agent_path = ________________` | `existing_agent = [yes/no]`
-
----
-
-## 🔒 PHASE 4: SPEC FOLDER SELECTION (Optional)
-
-**STATUS: ☐ BLOCKED / ☐ N/A**
-
-```
-EXECUTE AFTER PHASE 3 PASSES:
-
-1. ASK user:
-   ┌────────────────────────────────────────────────────────────┐
-   │ "Would you like to track this agent creation in a spec     │
-   │ folder? (Recommended for complex agents)"                  │
-   │                                                            │
-   │ A) Use existing spec folder                                │
-   │ B) Create new spec folder                                  │
-   │ C) Skip documentation (simple agent)                       │
-   └────────────────────────────────────────────────────────────┘
-
-2. WAIT for explicit user choice (A, B, or C)
-
-3. Process choice:
-   ├─ IF A (Use existing):
-   │   ├─ List available spec folders
-   │   ├─ Confirm which folder
-   │   └─ Store as: spec_path
-   │
-   ├─ IF B (Create new):
-   │   ├─ Find next number: ls -d specs/[0-9]*/ | sort -n | tail -1
-   │   ├─ Create: specs/[NNN]-[agent-name]-agent/
-   │   └─ Store as: spec_path
-   │
-   └─ IF C (Skip):
-       └─ spec_path = null
-
-4. SET STATUS: ✅ PASSED or ⏭️ N/A
-
-**STOP HERE** - Wait for user to select spec folder option (A/B/C) before continuing.
-
-⛔ HARD STOP: DO NOT proceed until user explicitly selects A, B, or C
-```
-
-**Phase 4 Output:** `spec_choice = ___` | `spec_path = ________________`
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                          |
-| -------------------- | ----------------- | ----------- | ------------------------------------- |
-| PHASE 0: WRITE AGENT | ✅ PASSED          | ______      | write_agent_verified: ______          |
-| PHASE 1: INPUT       | ✅ PASSED          | ______      | agent_name: ______ / mode: ______     |
-| MODE DETECTION       | ✅ SET             | ______      | execution_mode: ______                |
-| PHASE 2: AGENT TYPE  | ✅ PASSED          | ______      | agent_mode: ______                    |
-| PHASE 3: OUTPUT      | ✅ PASSED          | ______      | agent_path: ______ / existing: ______ |
-| PHASE 4: SPEC FOLDER | ✅ PASSED or ⏭️ N/A | ______      | spec_path: ______                     |
+| FIELD          | REQUIRED      | YOUR VALUE | SOURCE                   |
+| -------------- | ------------- | ---------- | ------------------------ |
+| write_verified | ✅ Yes         | ______     | Phase 0                  |
+| agent_name     | ✅ Yes         | ______     | Q0 or $ARGUMENTS         |
+| agent_mode     | ✅ Yes         | ______     | Q1 or --mode flag        |
+| is_global      | ✅ Yes         | ______     | Q2 or --global flag      |
+| agent_path     | ✅ Yes         | ______     | Derived from above       |
+| execution_mode | ✅ Yes         | ______     | Suffix or Q3             |
+| spec_choice    | ✅ Yes         | ______     | Q4                       |
+| spec_path      | ○ Conditional | ______     | Derived if spec_choice=A |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED or ⏭️ N/A?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# Agent Creation Workflow" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -320,10 +233,11 @@ VERIFICATION CHECK:
 
 **Phase Violations:**
 - Executed command without @write agent verification (Phase 0)
-- Started reading the workflow section before all phases passed
-- Proceeded without asking user for agent name (Phase 1)
-- Auto-selected agent type without A/B/C choice (Phase 2)
-- Overwrote existing agent without confirmation (Phase 3)
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Proceeded without asking user for agent name when not in $ARGUMENTS
+- Auto-selected agent type without explicit user choice
+- Overwrote existing agent without confirmation
 
 **Workflow Violations (Steps 1-6):**
 - Skipped understanding phase and jumped to generation
@@ -335,10 +249,10 @@ VERIFICATION CHECK:
 ```
 FOR PHASE VIOLATIONS:
 1. STOP immediately - do not continue current action
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly (ask user, wait for response)
-5. RESUME only after all phases pass verification
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 
 FOR WORKFLOW VIOLATIONS:
 1. STOP immediately
@@ -368,6 +282,55 @@ FOR WORKFLOW VIOLATIONS:
 | 4    | Generation    | ☐      | [agent_name].md               | File created with content      |
 | 5    | Validation    | ☐      | YAML syntax verified          | Frontmatter valid              |
 | 6    | Save Context  | ☐      | memory/*.md (if spec folder)  | Context preserved              |
+
+---
+
+## WORKFLOW DIAGRAM
+
+```mermaid
+flowchart TD
+    subgraph phase0["Phase 0: @write Agent Verification"]
+        P0[/"@write Agent Check"/]
+        P0_GATE{{"Is @write agent?"}}
+        P0_FAIL["⛔ HARD BLOCK<br/>Restart with @write"]
+    end
+
+    subgraph workflow["6-Step Agent Creation Workflow"]
+        S1["Step 1: Analysis<br/>Validate name & path"]
+        S2["Step 2: Understanding<br/>Purpose, use cases, authority"]
+        S3["Step 3: Planning<br/>Tools, permissions, rules"]
+        S4["Step 4: Generation<br/>Create agent file"]
+        S5["Step 5: Validation<br/>YAML syntax check"]
+        S5_GATE{{"YAML valid?"}}
+        S5_FIX["Fix frontmatter<br/>errors"]
+        S6["Step 6: Save Context<br/>Generate memory"]
+    end
+
+    DONE(["✅ Agent Created"])
+
+    P0 --> P0_GATE
+    P0_GATE -->|No| P0_FAIL
+    P0_GATE -->|Yes| S1
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S5_GATE
+    S5_GATE -->|No| S5_FIX
+    S5_FIX --> S5
+    S5_GATE -->|Yes| S6
+    S6 --> DONE
+
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef fail fill:#7f1d1d,stroke:#dc2626,color:#fff
+
+    class P0,S1,S2,S3,S4,S6 phase
+    class P0_GATE,S5_GATE gate
+    class S5,DONE verify
+    class P0_FAIL,S5_FIX fail
+```
 
 ---
 
@@ -457,13 +420,14 @@ $ARGUMENTS
 
 ### Step 4: Verify All Phases Passed
 
-Confirm you have these values from the phases:
-- `agent_name` from PHASE 1
-- `agent_mode` from PHASE 2 (primary/subagent/all)
-- `agent_path` from PHASE 3
-- `spec_path` from PHASE 4 (or null if skipped)
+Confirm you have these values from the unified setup phase:
+- `agent_name` from Q0 or $ARGUMENTS
+- `agent_mode` from Q1 or --mode flag (primary/subagent/all)
+- `agent_path` derived from Q2 or --global flag
+- `execution_mode` from suffix or Q3
+- `spec_path` from Q4 (or null if skipped)
 
-**If ANY phase is incomplete, STOP and return to the MANDATORY PHASES section.**
+**If ANY value is missing, STOP and return to the UNIFIED SETUP PHASE.**
 
 ### Step 5: Execute Workflow
 
@@ -472,7 +436,7 @@ Execute the 6-step workflow:
 **STEP 1: Analysis**
 - Validate agent name format (lowercase, hyphenated)
 - Confirm output location
-- Check for existing agent (handled in Phase 3)
+- Check for existing agent (handled in unified setup)
 
 **STEP 2: Understanding**
 Ask user these questions (one at a time):
@@ -651,7 +615,7 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec_pa
 ```
 /create:agent
 ```
-→ Prompts: "What agent would you like to create?"
+→ Prompts: Single consolidated prompt with Q0-Q4
 → Interactive workflow guides through all decisions
 
 **Example 5: Auto mode (no prompts)**
@@ -686,11 +650,11 @@ This command creates standalone agents:
 
 After agent creation completes, suggest relevant next steps:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| Agent created | Test with `@[agent-name]` | Verify agent works as expected |
-| Need to modify | Edit `.opencode/agent/[agent-name].md` | Adjust behavior or permissions |
-| Create another agent | `/create:agent [name]` | Build related agent |
-| Want to save context | `/memory:save [spec-folder-path]` | Preserve agent design decisions |
+| Condition            | Suggested Command                      | Reason                          |
+| -------------------- | -------------------------------------- | ------------------------------- |
+| Agent created        | Test with `@[agent-name]`              | Verify agent works as expected  |
+| Need to modify       | Edit `.opencode/agent/[agent-name].md` | Adjust behavior or permissions  |
+| Create another agent | `/create:agent [name]`                 | Build related agent             |
+| Want to save context | `/memory:save [spec-folder-path]`      | Preserve agent design decisions |
 
 **ALWAYS** end with: "What would you like to do next?"

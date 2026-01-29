@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// UTILS: INPUT NORMALIZER
+// ───────────────────────────────────────────────────────────────
+
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -7,9 +11,9 @@
    2. DECISION TRANSFORMATION
 ──────────────────────────────────────────────────────────────── */
 
-function transformKeyDecision(decisionItem) {
+function transform_key_decision(decisionItem) {
   let decisionText, chosenApproach, rationale, alternatives;
-  
+
   if (typeof decisionItem === 'string') {
     decisionText = decisionItem;
     const choiceMatch = decisionText.match(/(?:chose|selected|decided on|using|went with|opted for|implemented)\s+([^.,]+)/i);
@@ -21,7 +25,7 @@ function transformKeyDecision(decisionItem) {
     chosenApproach = decisionItem.chosenOption || decisionItem.chosen || decisionItem.decision;
     rationale = decisionItem.rationale || decisionItem.reason || decisionText;
     alternatives = decisionItem.alternatives || [];
-    
+
     if (decisionItem.rationale) {
       decisionText = `${decisionText} - ${decisionItem.rationale}`;
     }
@@ -31,24 +35,24 @@ function transformKeyDecision(decisionItem) {
   } else {
     return null;
   }
-  
+
   const titleMatch = decisionText.match(/^([^.!?]+[.!?]?)/);
-  const title = titleMatch 
+  const title = titleMatch
     ? titleMatch[1].substring(0, 80).trim()
     : decisionText.substring(0, 80).trim();
-  
+
   const finalChosenApproach = chosenApproach || title;
-  
+
   const facts = [
     `Option 1: ${finalChosenApproach}`,
     `Chose: ${finalChosenApproach}`,
     `Rationale: ${rationale}`
   ];
-  
+
   alternatives.forEach((alt, i) => {
     facts.push(`Alternative ${i + 2}: ${alt}`);
   });
-  
+
   return {
     type: 'decision',
     title: title,
@@ -66,11 +70,11 @@ function transformKeyDecision(decisionItem) {
    3. OBSERVATION BUILDERS
 ──────────────────────────────────────────────────────────────── */
 
-function buildSessionSummaryObservation(summary, triggerPhrases = []) {
-  const summaryTitle = summary.length > 100 
+function build_session_summary_observation(summary, triggerPhrases = []) {
+  const summaryTitle = summary.length > 100
     ? summary.substring(0, 100).replace(/\s+\S*$/, '') + '...'
     : summary;
-  
+
   return {
     type: 'feature',
     title: summaryTitle,
@@ -79,11 +83,11 @@ function buildSessionSummaryObservation(summary, triggerPhrases = []) {
   };
 }
 
-function buildTechnicalContextObservation(techContext) {
+function build_technical_context_observation(techContext) {
   const techDetails = Object.entries(techContext)
     .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
     .join('; ');
-  
+
   return {
     type: 'implementation',
     title: 'Technical Implementation Details',
@@ -96,63 +100,63 @@ function buildTechnicalContextObservation(techContext) {
    4. INPUT NORMALIZATION
 ──────────────────────────────────────────────────────────────── */
 
-function normalizeInputData(data) {
+function normalize_input_data(data) {
   if (data.user_prompts || data.observations || data.recent_context) {
     return data;
   }
-  
+
   const normalized = {};
-  
+
   if (data.specFolder) {
     normalized.SPEC_FOLDER = data.specFolder;
   }
-  
+
   if (data.filesModified && Array.isArray(data.filesModified)) {
     normalized.FILES = data.filesModified.map(filePath => ({
       FILE_PATH: filePath,
       DESCRIPTION: 'File modified (description pending)'
     }));
   }
-  
+
   const observations = [];
-  
+
   if (data.sessionSummary) {
-    observations.push(buildSessionSummaryObservation(data.sessionSummary, data.triggerPhrases));
+    observations.push(build_session_summary_observation(data.sessionSummary, data.triggerPhrases));
   }
-  
+
   if (data.keyDecisions && Array.isArray(data.keyDecisions)) {
     for (const decisionItem of data.keyDecisions) {
-      const observation = transformKeyDecision(decisionItem);
+      const observation = transform_key_decision(decisionItem);
       if (observation) {
         observations.push(observation);
       }
     }
   }
-  
+
   if (data.technicalContext && typeof data.technicalContext === 'object') {
-    observations.push(buildTechnicalContextObservation(data.technicalContext));
+    observations.push(build_technical_context_observation(data.technicalContext));
   }
-  
+
   normalized.observations = observations;
-  
+
   normalized.user_prompts = [{
     prompt: data.sessionSummary || 'Manual context save',
     timestamp: new Date().toISOString()
   }];
-  
+
   normalized.recent_context = [{
     request: data.sessionSummary || 'Manual context save',
     learning: data.sessionSummary || ''
   }];
-  
+
   if (data.triggerPhrases) {
     normalized._manualTriggerPhrases = data.triggerPhrases;
   }
-  
+
   if (data.keyDecisions && Array.isArray(data.keyDecisions)) {
     normalized._manualDecisions = data.keyDecisions;
   }
-  
+
   console.log('   ✓ Transformed manual format to MCP-compatible structure');
   return normalized;
 }
@@ -161,36 +165,36 @@ function normalizeInputData(data) {
    5. INPUT VALIDATION
 ──────────────────────────────────────────────────────────────── */
 
-function validateInputData(data, specFolderArg = null) {
+function validate_input_data(data, specFolderArg = null) {
   const errors = [];
-  
+
   if (typeof data !== 'object' || data === null) {
     throw new Error('Input validation failed: data must be a non-null object');
   }
-  
+
   if (specFolderArg === null && !data.specFolder && !data.SPEC_FOLDER) {
     if (!data.user_prompts && !data.observations && !data.recent_context) {
       errors.push('Missing required field: specFolder (or use CLI argument)');
     }
   }
-  
+
   if (data.triggerPhrases !== undefined && !Array.isArray(data.triggerPhrases)) {
     errors.push('triggerPhrases must be an array');
   }
-  
+
   if (data.keyDecisions !== undefined && !Array.isArray(data.keyDecisions)) {
     errors.push('keyDecisions must be an array');
   }
-  
+
   if (data.filesModified !== undefined && !Array.isArray(data.filesModified)) {
     errors.push('filesModified must be an array');
   }
-  
+
   const validTiers = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
   if (data.importanceTier !== undefined && !validTiers.includes(data.importanceTier)) {
     errors.push(`Invalid importanceTier: ${data.importanceTier}. Valid values: ${validTiers.join(', ')}`);
   }
-  
+
   if (data.FILES !== undefined) {
     if (!Array.isArray(data.FILES)) {
       errors.push('FILES must be an array');
@@ -205,13 +209,13 @@ function validateInputData(data, specFolderArg = null) {
       }
     }
   }
-  
+
   if (data.observations !== undefined) {
     if (!Array.isArray(data.observations)) {
       errors.push('observations must be an array');
     }
   }
-  
+
   if (errors.length > 0) {
     throw new Error(`Input validation failed: ${errors.join('; ')}`);
   }
@@ -223,7 +227,7 @@ function validateInputData(data, specFolderArg = null) {
    6. OPENCODE CAPTURE TRANSFORMATION
 ──────────────────────────────────────────────────────────────── */
 
-function transformOpenCodeCapture(capture) {
+function transform_opencode_capture(capture) {
   const { exchanges, toolCalls, metadata, sessionTitle } = capture;
 
   const user_prompts = exchanges.map(ex => ({
@@ -232,19 +236,19 @@ function transformOpenCodeCapture(capture) {
   }));
 
   const observations = [];
-  
+
   const placeholderPatterns = [
     '[response]',
     'Assistant processed request',
     'placeholder',
     'simulation mode'
   ];
-  
+
   for (const ex of exchanges) {
     if (ex.assistantResponse) {
       const lowerResponse = ex.assistantResponse.toLowerCase();
       const isPlaceholder = placeholderPatterns.some(p => lowerResponse.includes(p.toLowerCase()));
-      
+
       if (!isPlaceholder && ex.assistantResponse.length > 20) {
         observations.push({
           type: 'feature',
@@ -288,7 +292,7 @@ function transformOpenCodeCapture(capture) {
 
   const FILES = [];
   const seenPaths = new Set();
-  
+
   for (const tool of toolCalls || []) {
     if ((tool.tool === 'edit' || tool.tool === 'write') && tool.input) {
       const filePath = tool.input.filePath || tool.input.file_path || tool.input.path;
@@ -318,10 +322,18 @@ function transformOpenCodeCapture(capture) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  transformKeyDecision,
-  buildSessionSummaryObservation,
-  buildTechnicalContextObservation,
-  normalizeInputData,
-  validateInputData,
-  transformOpenCodeCapture
+  // Primary exports (snake_case)
+  transform_key_decision,
+  build_session_summary_observation,
+  build_technical_context_observation,
+  normalize_input_data,
+  validate_input_data,
+  transform_opencode_capture,
+  // Backwards compatibility aliases (camelCase)
+  transformKeyDecision: transform_key_decision,
+  buildSessionSummaryObservation: build_session_summary_observation,
+  buildTechnicalContextObservation: build_technical_context_observation,
+  normalizeInputData: normalize_input_data,
+  validateInputData: validate_input_data,
+  transformOpenCodeCapture: transform_opencode_capture
 };

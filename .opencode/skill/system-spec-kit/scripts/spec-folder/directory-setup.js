@@ -1,6 +1,6 @@
-/* ─────────────────────────────────────────────────────────────────
-   SPEC-FOLDER: DIRECTORY SETUP
-──────────────────────────────────────────────────────────────────── */
+// ───────────────────────────────────────────────────────────────
+// SPEC-FOLDER: DIRECTORY SETUP
+// ───────────────────────────────────────────────────────────────
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────────
@@ -16,7 +16,7 @@ const { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs, getSpecsDirectories
    2. DIRECTORY SETUP
 ──────────────────────────────────────────────────────────────────── */
 
-async function setupContextDirectory(specFolder) {
+async function setup_context_directory(specFolder) {
   let sanitizedPath;
   try {
     sanitizedPath = sanitizePath(specFolder, [
@@ -30,7 +30,7 @@ async function setupContextDirectory(specFolder) {
     });
     throw new Error(`Invalid spec folder path: ${sanitizeError.message}`);
   }
-  
+
   try {
     const stats = await fs.stat(sanitizedPath);
     if (!stats.isDirectory()) {
@@ -49,7 +49,7 @@ async function setupContextDirectory(specFolder) {
       } catch {
         // specs/ doesn't exist or can't be read
       }
-      
+
       const existingDirs = getAllExistingSpecsDirs();
       let errorMsg = `Spec folder does not exist: ${sanitizedPath}`;
       errorMsg += '\nPlease create the spec folder first or check the path.';
@@ -78,7 +78,7 @@ async function setupContextDirectory(specFolder) {
       error: mkdirError.message,
       code: mkdirError.code
     });
-    
+
     let errorMsg = `Failed to create memory directory: ${contextDir}`;
     if (mkdirError.code === 'EACCES') {
       errorMsg += ' (Permission denied. Check directory permissions.)';
@@ -96,5 +96,8 @@ async function setupContextDirectory(specFolder) {
 ──────────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  setupContextDirectory
+  // Primary export (snake_case)
+  setup_context_directory,
+  // Backwards compatibility alias (camelCase)
+  setupContextDirectory: setup_context_directory
 };

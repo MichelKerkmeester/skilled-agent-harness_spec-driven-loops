@@ -12,6 +12,7 @@ const LIB_DIR = path.join(__dirname, '..', 'lib');
 const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
 const embeddings = require(path.join(LIB_DIR, 'providers', 'embeddings.js'));
 const hybridSearch = require(path.join(LIB_DIR, 'search', 'hybrid-search.js'));
+const fsrsScheduler = require(path.join(LIB_DIR, 'cognitive', 'fsrs-scheduler.js'));
 
 // Import core utilities
 const { check_database_updated, is_embedding_model_ready, wait_for_embedding_model } = require('../core');
@@ -21,6 +22,101 @@ const { validate_query } = require('../utils');
 
 // Import formatters
 const { format_search_results } = require('../formatters');
+
+/**
+ * Strengthen memory on access (testing effect)
+ * Lower retrievability at access = greater stability boost (desirable difficulty)
+ *
+ * @param {Object} db - Database instance
+ * @param {number} memory_id - Memory to strengthen
+ * @param {number} current_retrievability - R at time of access
+ * @returns {Object|null} - Updated stability and difficulty, or null if memory not found
+ */
+function strengthen_on_access(db, memory_id, current_retrievability) {
+  // Guard: validate database
+  if (!db) return null;
+
+  // Guard: validate memory_id
+  if (typeof memory_id !== 'number' || !Number.isFinite(memory_id)) {
+    return null;
+  }
+
+  // Guard: validate retrievability
+  if (typeof current_retrievability !== 'number' ||
+      current_retrievability < 0 ||
+      current_retrievability > 1) {
+    current_retrievability = 0.9;
+  }
+
+  try {
+    // Get current memory stats
+    const memory = db.prepare(`
+      SELECT stability, difficulty, review_count FROM memory_index WHERE id = ?
+    `).get(memory_id);
+
+    if (!memory) return null;
+
+    // Desirable difficulty bonus: lower R = greater boost
+    // Grade 3 (Good) for retrieval, bonus based on difficulty of retrieval
+    const grade = fsrsScheduler.GRADE_GOOD;
+    const difficulty_bonus = Math.max(0, (0.9 - current_retrievability) * 0.5);
+
+    // Calculate new stability using FSRS algorithm
+    const new_stability = fsrsScheduler.update_stability(
+      memory.stability || fsrsScheduler.DEFAULT_STABILITY,
+      memory.difficulty || fsrsScheduler.DEFAULT_DIFFICULTY,
+      current_retrievability,
+      grade
+    ) * (1 + difficulty_bonus);
+
+    // Update memory with new stability and access metadata
+    db.prepare(`
+      UPDATE memory_index
+      SET stability = ?,
+          last_review = CURRENT_TIMESTAMP,
+          review_count = review_count + 1,
+          access_count = access_count + 1,
+          last_accessed = ?
+      WHERE id = ?
+    `).run(new_stability, Date.now(), memory_id);
+
+    return { stability: new_stability, difficulty: memory.difficulty };
+  } catch (e) {
+    // Silent fail - log for debugging but don't break search
+    console.warn('[memory-search] strengthen_on_access error:', e.message);
+    return null;
+  }
+}
+
+/**
+ * Apply testing effect to search results
+ * Strengthens each accessed memory based on current retrievability
+ *
+ * @param {Object} db - Database instance
+ * @param {Array} results - Search results with id, stability, last_review, created_at
+ */
+function apply_testing_effect(db, results) {
+  if (!db || !results || !Array.isArray(results)) return;
+
+  for (const result of results) {
+    try {
+      // Calculate current retrievability for desirable difficulty
+      const last_review = result.last_review || result.created_at;
+      if (!last_review) continue;
+
+      const elapsed_days = fsrsScheduler.calculate_elapsed_days(last_review);
+      const current_r = fsrsScheduler.calculate_retrievability(
+        result.stability || fsrsScheduler.DEFAULT_STABILITY,
+        Math.max(0, elapsed_days)
+      );
+
+      strengthen_on_access(db, result.id, current_r);
+    } catch (e) {
+      // Silent fail - don't break search for testing effect
+      console.warn('[memory-search] apply_testing_effect error for id', result.id, ':', e.message);
+    }
+  }
+}
 
 /**
  * Handle memory_search tool requests
@@ -110,6 +206,13 @@ async function handle_memory_search(args) {
       throw new Error('Maximum 5 concepts allowed');
     }
 
+    // BUG-022 FIX: Validate each concept is a non-empty string
+    for (const concept of concepts) {
+      if (typeof concept !== 'string' || concept.trim().length === 0) {
+        throw new Error('Each concept must be a non-empty string');
+      }
+    }
+
     // Generate embeddings for all concepts (using query prefix for search)
     const concept_embeddings = [];
     for (const concept of concepts) {
@@ -125,6 +228,10 @@ async function handle_memory_search(args) {
       limit,
       specFolder: spec_folder
     });
+
+    // T043-T047: Apply testing effect to strengthen accessed memories
+    const database = vectorIndex.getDb();
+    apply_testing_effect(database, results);
 
     return await format_search_results(results, 'multi-concept', include_content, anchors);
   }
@@ -197,6 +304,10 @@ async function handle_memory_search(args) {
         filtered_results = filtered_results.filter(r => r.importance_tier !== 'constitutional');
       }
 
+      // T043-T047: Apply testing effect to strengthen accessed memories
+      const database = vectorIndex.getDb();
+      apply_testing_effect(database, filtered_results);
+
       return await format_search_results(filtered_results, 'hybrid', include_content, anchors);
     }
   } catch (err) {
@@ -217,6 +328,10 @@ async function handle_memory_search(args) {
   if (!include_constitutional) {
     results = results.filter(r => r.importance_tier !== 'constitutional');
   }
+
+  // T043-T047: Apply testing effect to strengthen accessed memories
+  const database = vectorIndex.getDb();
+  apply_testing_effect(database, results);
 
   return await format_search_results(results, 'vector', include_content, anchors);
 }

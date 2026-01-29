@@ -101,7 +101,7 @@ function resolve_database_path() {
 }
 
 // Schema version for migration tracking
-const SCHEMA_VERSION = 3;
+const SCHEMA_VERSION = 4;
 
 /* ───────────────────────────────────────────────────────────────
    2. SECURITY HELPERS (CWE-22, CWE-502 mitigations)
@@ -200,6 +200,10 @@ let shutting_down = false;
 let constitutional_cache = new Map();
 const CONSTITUTIONAL_CACHE_TTL = 300000; // 5 minute TTL
 
+// BUG-012 FIX: Track which cache keys are currently being loaded
+// This prevents thundering herd when multiple concurrent calls hit cache expiry
+let constitutional_cache_loading = new Map();
+
 // Track database file modification time for cache invalidation
 let last_db_mod_time = 0;
 
@@ -260,49 +264,64 @@ function clear_prepared_statements() {
 
 // Get cached constitutional memories or fetch from database
 // BUG-004: Now checks for external database modifications before using cache
+// BUG-012 FIX: Prevent thundering herd when cache expires by tracking loading state
 function get_constitutional_memories(database, spec_folder = null) {
   const cache_key = spec_folder || 'global';
   const now = Date.now();
   const cached = constitutional_cache.get(cache_key);
-  
+
   // BUG-004: Check both TTL and external DB modifications
   if (cached && (now - cached.timestamp) < CONSTITUTIONAL_CACHE_TTL && is_constitutional_cache_valid()) {
     return cached.data;
   }
-  
-  // Fetch from database
-  const constitutional_sql = `
-    SELECT m.*, 100.0 as similarity, 1.0 as effective_importance,
-           'constitutional' as source_type
-    FROM memory_index m
-    WHERE m.importance_tier = 'constitutional'
-      AND m.embedding_status = 'success'
-      ${spec_folder ? 'AND m.spec_folder = ?' : ''}
-    ORDER BY m.importance_weight DESC, m.created_at DESC
-  `;
-  
-  const params = spec_folder ? [spec_folder] : [];
-  let results = database.prepare(constitutional_sql).all(...params);
-  
-  // Limit constitutional results to ~2000 tokens (~8000 chars, ~20 memories avg)
-  const MAX_CONSTITUTIONAL_TOKENS = 2000;
-  const TOKENS_PER_MEMORY = 100;
-  const max_constitutional_count = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
-  results = results.slice(0, max_constitutional_count);
-  
-  // Mark as constitutional for client identification
-  results = results.map(row => {
-    if (row.trigger_phrases) {
-      row.trigger_phrases = JSON.parse(row.trigger_phrases);
-    }
-    row.isConstitutional = true;
-    return row;
-  });
-  
-  // Cache the results
-  constitutional_cache.set(cache_key, { data: results, timestamp: now });
-  
-  return results;
+
+  // BUG-012 FIX: If another call is already loading this cache key,
+  // return stale data (if available) or empty array to prevent thundering herd
+  if (constitutional_cache_loading.get(cache_key)) {
+    return cached?.data || [];
+  }
+
+  // BUG-012 FIX: Mark this cache key as loading
+  constitutional_cache_loading.set(cache_key, true);
+
+  try {
+    // Fetch from database
+    const constitutional_sql = `
+      SELECT m.*, 100.0 as similarity, 1.0 as effective_importance,
+             'constitutional' as source_type
+      FROM memory_index m
+      WHERE m.importance_tier = 'constitutional'
+        AND m.embedding_status = 'success'
+        ${spec_folder ? 'AND m.spec_folder = ?' : ''}
+      ORDER BY m.importance_weight DESC, m.created_at DESC
+    `;
+
+    const params = spec_folder ? [spec_folder] : [];
+    let results = database.prepare(constitutional_sql).all(...params);
+
+    // Limit constitutional results to ~2000 tokens (~8000 chars, ~20 memories avg)
+    const MAX_CONSTITUTIONAL_TOKENS = 2000;
+    const TOKENS_PER_MEMORY = 100;
+    const max_constitutional_count = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
+    results = results.slice(0, max_constitutional_count);
+
+    // Mark as constitutional for client identification
+    results = results.map(row => {
+      if (row.trigger_phrases) {
+        row.trigger_phrases = JSON.parse(row.trigger_phrases);
+      }
+      row.isConstitutional = true;
+      return row;
+    });
+
+    // Cache the results
+    constitutional_cache.set(cache_key, { data: results, timestamp: now });
+
+    return results;
+  } finally {
+    // BUG-012 FIX: Always clear the loading flag when done
+    constitutional_cache_loading.delete(cache_key);
+  }
 }
 
 // Clear constitutional cache (call when tier changes)
@@ -320,6 +339,7 @@ function clear_constitutional_cache(spec_folder = null) {
 
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
+// BUG-019 FIX: Wrap migrations in transaction for atomicity
 function run_migrations(database, from_version, to_version) {
   const migrations = {
     1: () => {
@@ -346,14 +366,78 @@ function run_migrations(database, from_version, to_version) {
           console.warn('[VectorIndex] Migration v3 warning:', e.message);
         }
       }
+    },
+    4: () => {
+      // v3 -> v4: Add FSRS (Free Spaced Repetition Scheduler) columns for cognitive memory
+      // These columns enable spaced repetition-based memory retrieval prioritization
+      const fsrs_columns = [
+        { name: 'stability', sql: 'ALTER TABLE memory_index ADD COLUMN stability REAL DEFAULT 1.0' },
+        { name: 'difficulty', sql: 'ALTER TABLE memory_index ADD COLUMN difficulty REAL DEFAULT 5.0' },
+        { name: 'last_review', sql: 'ALTER TABLE memory_index ADD COLUMN last_review TEXT' },
+        { name: 'review_count', sql: 'ALTER TABLE memory_index ADD COLUMN review_count INTEGER DEFAULT 0' }
+      ];
+
+      for (const col of fsrs_columns) {
+        try {
+          database.exec(col.sql);
+          console.log(`[VectorIndex] Migration v4: Added ${col.name} column (FSRS)`);
+        } catch (e) {
+          if (!e.message.includes('duplicate column')) {
+            console.warn(`[VectorIndex] Migration v4 warning (${col.name}):`, e.message);
+          }
+        }
+      }
+
+      // Create memory_conflicts table for prediction error gating audit
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS memory_conflicts (
+            id INTEGER PRIMARY KEY,
+            timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
+            new_memory_hash TEXT NOT NULL,
+            existing_memory_id INTEGER,
+            similarity_score REAL,
+            action TEXT CHECK(action IN ('CREATE', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
+            contradiction_detected INTEGER DEFAULT 0,
+            notes TEXT,
+            FOREIGN KEY (existing_memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
+          )
+        `);
+        console.log('[VectorIndex] Migration v4: Created memory_conflicts table');
+      } catch (e) {
+        if (!e.message.includes('already exists')) {
+          console.warn('[VectorIndex] Migration v4 warning (memory_conflicts):', e.message);
+        }
+      }
+
+      // Create indexes for FSRS columns
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_stability ON memory_index(stability DESC)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review)');
+        console.log('[VectorIndex] Migration v4: Created FSRS indexes');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v4 warning (indexes):', e.message);
+      }
     }
   };
 
-  for (let v = from_version + 1; v <= to_version; v++) {
-    if (migrations[v]) {
-      console.log(`[VectorIndex] Running migration v${v}`);
-      migrations[v]();
+  // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
+  // If any migration fails, all changes are rolled back preventing partial schema corruption
+  const run_all_migrations = database.transaction(() => {
+    for (let v = from_version + 1; v <= to_version; v++) {
+      if (migrations[v]) {
+        console.log(`[VectorIndex] Running migration v${v}`);
+        migrations[v]();
+      }
     }
+  });
+
+  try {
+    run_all_migrations();
+  } catch (err) {
+    console.error('[VectorIndex] Migration failed, rolled back:', err.message);
+    throw err;
   }
 }
 
@@ -573,6 +657,44 @@ function migrate_confidence_columns(database) {
       if (!e.message.includes('duplicate column')) throw e;
     }
   }
+
+  // FSRS (Free Spaced Repetition Scheduler) columns for cognitive memory
+  // These enable spaced repetition-based memory retrieval prioritization
+  if (!column_names.includes('stability')) {
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN stability REAL DEFAULT 1.0`);
+      console.warn('[vector-index] Migration: Added stability column (FSRS)');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
+  }
+
+  if (!column_names.includes('difficulty')) {
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN difficulty REAL DEFAULT 5.0`);
+      console.warn('[vector-index] Migration: Added difficulty column (FSRS)');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
+  }
+
+  if (!column_names.includes('last_review')) {
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN last_review TEXT`);
+      console.warn('[vector-index] Migration: Added last_review column (FSRS)');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
+  }
+
+  if (!column_names.includes('review_count')) {
+    try {
+      database.exec(`ALTER TABLE memory_index ADD COLUMN review_count INTEGER DEFAULT 0`);
+      console.warn('[vector-index] Migration: Added review_count column (FSRS)');
+    } catch (e) {
+      if (!e.message.includes('duplicate column')) throw e;
+    }
+  }
 }
 
 // Migrate existing database to support constitutional tier
@@ -716,6 +838,11 @@ function create_schema(database) {
       expires_at DATETIME,
       confidence REAL DEFAULT 0.5,
       validation_count INTEGER DEFAULT 0,
+      -- FSRS (Free Spaced Repetition Scheduler) columns for cognitive memory
+      stability REAL DEFAULT 1.0,        -- FSRS stability: days until 90% retrievability
+      difficulty REAL DEFAULT 5.0,       -- FSRS difficulty: 1-10 scale
+      last_review TEXT,                  -- ISO timestamp of last review/access
+      review_count INTEGER DEFAULT 0,    -- Number of reviews/accesses
       UNIQUE(spec_folder, file_path, anchor_id)
     )
   `);
@@ -790,6 +917,21 @@ function create_schema(database) {
     )
   `);
 
+  // Create memory_conflicts table for prediction error gating audit (cognitive memory)
+  database.exec(`
+    CREATE TABLE IF NOT EXISTS memory_conflicts (
+      id INTEGER PRIMARY KEY,
+      timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
+      new_memory_hash TEXT NOT NULL,
+      existing_memory_id INTEGER,
+      similarity_score REAL,
+      action TEXT CHECK(action IN ('CREATE', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
+      contradiction_detected INTEGER DEFAULT 0,
+      notes TEXT,
+      FOREIGN KEY (existing_memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
+    )
+  `);
+
   // Create indexes
   database.exec(`
     CREATE INDEX idx_spec_folder ON memory_index(spec_folder);
@@ -813,6 +955,15 @@ function create_schema(database) {
     CREATE INDEX IF NOT EXISTS idx_file_path ON memory_index(file_path);
     CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash);
     CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
+  `);
+
+  // FSRS (Free Spaced Repetition Scheduler) indexes for cognitive memory retrieval
+  database.exec(`
+    CREATE INDEX IF NOT EXISTS idx_stability ON memory_index(stability DESC);
+    CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review);
+    CREATE INDEX IF NOT EXISTS idx_fsrs_retrieval ON memory_index(stability, difficulty, last_review);
+    CREATE INDEX IF NOT EXISTS idx_conflicts_memory ON memory_conflicts(existing_memory_id);
+    CREATE INDEX IF NOT EXISTS idx_conflicts_timestamp ON memory_conflicts(timestamp DESC);
   `);
 
   console.warn('[vector-index] Schema created successfully');
@@ -967,7 +1118,8 @@ function delete_memory(id) {
       try {
         database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
       } catch (e) {
-        // Vector may not exist for this memory
+        // BUG-011 FIX: Log vector deletion failures (was silent)
+        console.warn(`[vector-index] Vector deletion failed for memory ${id}: ${e.message}`);
       }
     }
 
@@ -2000,6 +2152,22 @@ class LRUCache {
     this.tail.prev = this.head;
   }
 
+  // BUG-004 fix: Add keys() method for iteration support in clear_search_cache
+  keys() {
+    return this.cache.keys();
+  }
+
+  // BUG-004 fix: Add delete() method for granular cache invalidation
+  delete(key) {
+    const node = this.cache.get(key);
+    if (node) {
+      this._remove(node);
+      this.cache.delete(key);
+      return true;
+    }
+    return false;
+  }
+
   get size() { return this.cache.size; }
 }
 
@@ -2112,16 +2280,17 @@ function clear_search_cache(spec_folder = null) {
 
   if (spec_folder) {
     // Granular invalidation: only clear entries containing this spec folder
-    let cleared = 0;
-    for (const [key, node] of query_cache.cache) {
+    // Collect keys first to avoid modifying Map during iteration
+    const keys_to_delete = [];
+    for (const key of query_cache.keys()) {
       if (key.includes(spec_folder)) {
-        query_cache.cache.delete(key);
-        // Also remove from linked list
-        query_cache._remove(node);
-        cleared++;
+        keys_to_delete.push(key);
       }
     }
-    return cleared;
+    for (const key of keys_to_delete) {
+      query_cache.delete(key);
+    }
+    return keys_to_delete.length;
   } else {
     // Clear entire cache
     const size = query_cache.size;
@@ -2340,6 +2509,9 @@ function delete_memories(memory_ids) {
   let deleted = 0;
   let failed = 0;
 
+  // BUG-016 FIX: Track failed IDs to rollback entire transaction on any failure
+  const failed_ids = [];
+
   const delete_transaction = database.transaction(() => {
     for (const id of memory_ids) {
       try {
@@ -2364,11 +2536,18 @@ function delete_memories(memory_ids) {
           deleted++;
         } else {
           failed++;
+          failed_ids.push(id);
         }
       } catch (e) {
         console.warn(`[vector-index] Failed to delete memory ${id}: ${e.message}`);
         failed++;
+        failed_ids.push(id);
       }
+    }
+
+    // BUG-016 FIX: Rollback entire transaction if any failures
+    if (failed_ids.length > 0) {
+      throw new Error(`Failed to delete memories: ${failed_ids.join(', ')}. Transaction rolled back.`);
     }
   });
 

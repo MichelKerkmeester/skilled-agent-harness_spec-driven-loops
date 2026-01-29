@@ -125,7 +125,7 @@ operating_mode:
 
 ---
 
-## MCP ENFORCEMENT MATRIX
+## 🔧 MCP ENFORCEMENT MATRIX
 
 **CRITICAL:** This command uses MCP tools directly. Native MCP only - NEVER Code Mode.
 
@@ -435,7 +435,7 @@ Restore behavior depends on the options you pass:
 
 ---
 
-## 11. 📊 USE CASES
+## 11. 💡 USE CASES
 
 ### Before Major Refactors
 ```
@@ -473,7 +473,7 @@ AI: /memory:checkpoint restore "approach-a"
 
 ---
 
-## 12. 📁 CONFIGURATION
+## 12. ⚙️ CONFIGURATION
 
 Configuration is handled internally by the MCP server. Default values:
 
@@ -497,7 +497,7 @@ These defaults are enforced by the Spec Kit Memory MCP server and cannot be over
 
 ---
 
-## 14. 📌 RELATED COMMANDS
+## 14. 🔗 RELATED COMMANDS
 
 - `/memory:save` - Save conversation context to memory
 - `/memory:search` - Unified memory dashboard (search, browse, cleanup, triggers)

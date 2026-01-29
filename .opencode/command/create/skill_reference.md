@@ -16,185 +16,159 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 ---
 
-<!-- 
-REFERENCE FILE REQUIREMENTS:
-- Location: .opencode/skill/[skill-name]/references/
-- Naming: snake_case only (e.g., implementation_workflows.md, tool_catalog.md)
-- Extension: .md only
-- Purpose: Deep-dive documentation loaded as needed (Level 3 progressive disclosure)
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-WHEN TO CREATE:
-- Multi-phase workflows with validation checkpoints
-- Decision trees with multiple branches  
-- Pattern libraries with 5+ variations
-- Systematic debugging procedures
-- Tool integration details
-- Content exceeds 200 lines
--->
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+**Round-trip optimization:** This workflow requires only 1 user interaction (0 if --chained).
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
-
-**⚡ CHAINED EXECUTION MODE:** If invoked with `--chained` flag from a parent workflow, Phase 0 and Phases 1-2 are PRE-VERIFIED. Skip directly to the workflow section with provided parameters.
+**⚡ CHAINED EXECUTION MODE:** If invoked with `--chained` flag, skip to workflow with provided parameters.
 
 ---
 
-## 🔒 PHASE 0: WRITE AGENT VERIFICATION [PRIORITY GATE]
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED / ⏭️ N/A if chained**
 
-> **⚠️ CRITICAL:** This command REQUIRES the `@write` agent unless invoked via `--chained` from a parent workflow.
-
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE SETUP PHASE:
 
-├─ IF invoked with --chained flag:
-│   └─ SET STATUS: ⏭️ N/A (parent workflow verified @write agent)
-│
-└─ IF NOT chained:
-    │
-    ├─ SELF-CHECK: Are you operating as the @write agent?
-    │   │
-    │   ├─ INDICATORS that you ARE @write agent:
-    │   │   ├─ You were invoked with "@write" prefix
-    │   │   ├─ You have template-first workflow capabilities
-    │   │   ├─ You load templates BEFORE creating content
-    │   │
-    │   ├─ IF YES (all indicators present):
-    │   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE C
-    │   │
-    │   └─ IF NO or UNCERTAIN:
-    │       │
-    │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-    │       │
-    │       ├─ DISPLAY to user:
-    │       │   ┌────────────────────────────────────────────────────────────┐
-    │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-    │       │   │                                                            │
-    │       │   │ This command requires the @write agent for:                │
-    │       │   │   • Template-first workflow                                  │
-    │       │   │   • DQI scoring                                            │
-    │       │   │   • workflows-documentation skill integration               │
-    │       │   │                                                            │
-    │       │   │ To proceed, restart with:                                  │
-    │       │   │   @write /create:skill_reference [args]                    │
-    │       │   │                                                            │
-    │       │   │ Reference: .opencode/agent/write.md                        │
-    │       │   └────────────────────────────────────────────────────────────┘
-    │       │
-    │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+1. CHECK for --chained flag FIRST (PRIORITY):
+   ├─ IF invoked with --chained flag OR called from skill.md Step 8:
+   │   │
+   │   ├─ VERIFY parent workflow provided:
+   │   │   ├─ skill_name (from parent)
+   │   │   ├─ skill_path (from parent - already verified)
+   │   │   ├─ reference_type (from parent selection)
+   │   │   ├─ execution_mode (inherited from parent)
+   │   │
+   │   ├─ IF all parameters present:
+   │   │   ├─ SET write_agent_verified = "skipped-chained"
+   │   │   ├─ SET STATUS: ⏭️ N/A (parent verified)
+   │   │   └─ SKIP directly to "# Reference Creation" workflow
+   │   │
+   │   └─ IF parameters missing:
+   │       └─ FALL THROUGH to step 2 (normal execution)
+   │
+   └─ IF NOT chained:
+       └─ CONTINUE to step 2
 
-**STOP HERE** - Verify you are operating as @write agent (or in chained mode) before continuing.
+2. CHECK Phase 0: @write Agent Verification (automatic):
+   │
+   ├─ SELF-CHECK: Are you operating as the @write agent?
+   │   │
+   │   ├─ INDICATORS that you ARE @write agent:
+   │   │   ├─ You were invoked with "@write" prefix
+   │   │   ├─ You have template-first workflow capabilities
+   │   │   ├─ You load templates BEFORE creating content
+   │   │
+   │   ├─ IF YES (all indicators present):
+   │   │   └─ SET write_agent_verified = "yes" → Continue to step 3
+   │   │
+   │   └─ IF NO or UNCERTAIN:
+   │       │
+   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+   │       │
+   │       ├─ DISPLAY to user:
+   │       │   ┌────────────────────────────────────────────────────────────┐
+   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
+   │       │   │                                                            │
+   │       │   │ This command requires the @write agent for:                │
+   │       │   │   • Template-first workflow                                  │
+   │       │   │   • DQI scoring                                            │
+   │       │   │   • workflows-documentation skill integration               │
+   │       │   │                                                            │
+   │       │   │ To proceed, restart with:                                  │
+   │       │   │   @write /create:skill_reference [args]                    │
+   │       │   │                                                            │
+   │       │   │ Reference: .opencode/agent/write.md                        │
+   │       │   └────────────────────────────────────────────────────────────┘
+   │       │
+   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
 
-⛔ HARD STOP: DO NOT proceed to PHASE C until STATUS = ✅ PASSED or ⏭️ N/A
-```
+3. CHECK for mode suffix in $ARGUMENTS or command invocation:
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
+   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-**Phase 0 Output:** `write_agent_verified = [yes/no/skipped-chained]`
+4. CHECK if $ARGUMENTS contains skill name and reference type:
+   ├─ Parse first argument as: skill_name (if present, omit Q0)
+   ├─ Parse second argument as: reference_type (if present AND valid, omit Q1)
+   │   └─ Valid types: workflow, patterns, debugging, tools, quick_ref
+   └─ IF either missing or invalid → include in prompt
 
----
+5. List available skills:
+   $ ls .opencode/skill/*/SKILL.md 2>/dev/null | sed 's|.*/skill/||;s|/SKILL.md||'
 
-## 🔒 PHASE C: CHAINED EXECUTION CHECK (PRIORITY)
+6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
-**STATUS: ☐ CHECK FIRST**
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Skill Name** (if not provided in command):               │
+   │    Which existing skill needs a reference file?                 │
+   │    Available: [list from ls command]                           │
+   │                                                                │
+   │ **Q1. Reference Type** (if not provided or invalid):           │
+   │    A) Workflow - Multi-phase processes                          │
+   │    B) Patterns - Code patterns library                         │
+   │    C) Debugging - Troubleshooting guide                        │
+   │    D) Tools - External tool integration                        │
+   │    E) Quick_ref - Commands/shortcuts                           │
+   │                                                                │
+   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
+   │    A) Interactive - Confirm at each step (Recommended)          │
+   │    B) Autonomous - Execute without prompts                     │
+   │                                                                │
+   │ Reply with answers, e.g.: "A, A" or "my-skill, A, A"           │
+   └────────────────────────────────────────────────────────────────┘
 
-```
-EXECUTE THIS CHECK BEFORE PHASE 1:
+7. WAIT for user response (DO NOT PROCEED)
 
-├─ IF invoked with --chained flag OR called from skill.md Step 8:
-│   │
-│   ├─ VERIFY parent workflow provided:
-│   │   ├─ skill_name (from parent)
-│   │   ├─ skill_path (from parent - already verified)
-│   │   ├─ reference_type (from parent selection)
-│   │
-│   ├─ IF all parameters present:
-│   │   ├─ SET PHASE 1: ⏭️ SKIPPED (parent verified)
-│   │   ├─ SET PHASE 2: ⏭️ SKIPPED (parent verified)
-│   │   └─ PROCEED directly to "# Reference Creation" workflow
-│   │
-│   └─ IF parameters missing:
-│       └─ FALL THROUGH to Phase 1 (normal execution)
-│
-└─ IF NOT chained:
-    └─ PROCEED to Phase 1 (normal execution)
+8. Parse response and store ALL results:
+   - skill_name = [from Q0 or $ARGUMENTS]
+   - reference_type = [from Q1 or $ARGUMENTS: workflow/patterns/debugging/tools/quick_ref]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
 
-⚡ CHAINED MODE: Enables efficient resource creation from parent workflows
-⚡ Parent workflow has already verified skill exists and is valid
-```
+9. VERIFY skill exists (inline check):
+   │
+   ├─ Run: ls -d .opencode/skill/[skill_name] 2>/dev/null
+   │
+   ├─ IF skill found:
+   │   ├─ Store path as: skill_path
+   │   ├─ Verify SKILL.md exists
+   │   └─ Check for existing references/ directory
+   │
+   └─ IF skill NOT found:
+       │
+       ├─ DISPLAY:
+       │   ┌────────────────────────────────────────────────────────────┐
+       │   │ "Skill '[skill_name]' not found at expected location."     │
+       │   │                                                            │
+       │   │ A) Provide correct skill name                              │
+       │   │ B) Provide full path to skill                              │
+       │   │ C) Create new skill first (/create:skill)                   │
+       │   └────────────────────────────────────────────────────────────┘
+       │
+       └─ WAIT for response and process based on choice
 
----
+10. SET STATUS: ✅ PASSED
 
-## 🔒 PHASE 1: INPUT VALIDATION
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE THIS CHECK FIRST:
-
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only:
-│   │
-│   ├─ ASK user:
-│   │   ┌────────────────────────────────────────────────────────────┐
-│   │   │ "Which skill needs a reference file, and what type?"        │
-│   │   │                                                            │
-│   │   │ Format: <skill-name> <reference-type>                      │
-│   │   │                                                            │
-│   │   │ Reference types:                                           │
-│   │   │   - workflow    (multi-phase processes)                     │
-│   │   │   - patterns    (code patterns library)                    │
-│   │   │   - debugging   (troubleshooting guide)                    │
-│   │   │   - tools       (external tool integration)                │
-│   │   │   - quick_ref   (commands/shortcuts)                       │
-│   │   └────────────────────────────────────────────────────────────┘
-│   │
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Parse response for skill_name and reference_type
-│   └─ SET STATUS: ✅ PASSED
-│
-└─ IF $ARGUMENTS contains content:
-    │
-    ├─ Parse first argument as: skill_name
-    ├─ Parse second argument as: reference_type
-    │
-    ├─ VALIDATE reference_type:
-    │   ├─ Must be one of: workflow, patterns, debugging, tools, quick_ref
-    │   │
-    │   ├─ IF invalid:
-    │   │   ├─ SHOW: "Invalid reference type."
-    │   │   ├─ SHOW: "Valid: workflow, patterns, debugging, tools, quick_ref"
-    │   │   ├─ ASK for correct type
-    │   │   └─ WAIT for response
-    │   │
-    │   └─ IF valid:
-    │       └─ Store as: reference_type
-    │
-    └─ SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to provide skill name and reference type before continuing.
-
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
+⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED
 ⛔ NEVER infer skill name from context or conversation history
 ⛔ NEVER assume reference type without explicit input
+⛔ NEVER create references for non-existent skills
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 1 Output:** `skill_name = ________________` | `reference_type = ________________`
-
----
-
-## 🔒 MODE DETECTION
-
-```
-CHECK for mode suffix in $ARGUMENTS or command invocation:
-
-├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
-├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
-└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
-
-Note: When --chained flag is present, mode inherits from parent workflow.
-```
-
-**Mode Output:** `execution_mode = ________________`
+**Phase Output:**
+- `write_agent_verified = ________________`
+- `skill_name = ________________`
+- `reference_type = ________________`
+- `execution_mode = ________________`
+- `skill_path = ________________`
 
 ---
 
@@ -215,71 +189,23 @@ Note: When --chained flag is present, mode inherits from parent workflow.
 
 ---
 
-## 🔒 PHASE 2: SKILL VERIFICATION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
-
-1. Check if skill exists at expected path:
-   └─ .opencode/skill/[skill-name]/
-
-2. Run verification:
-   $ ls -d .opencode/skill/[skill-name] 2>/dev/null
-
-3. Process result:
-   ├─ IF skill found:
-   │   ├─ Store path as: skill_path
-   │   ├─ Verify SKILL.md exists
-   │   ├─ Check for existing references/ directory
-   │   └─ SET STATUS: ✅ PASSED
-   │
-   └─ IF skill NOT found:
-       │
-       ├─ ASK user:
-       │   ┌────────────────────────────────────────────────────────────┐
-       │   │ "Skill '[skill-name]' not found at expected locations."    │
-       │   │                                                            │
-       │   │ A) Provide correct skill name                              │
-       │   │ B) Provide full path to skill                              │
-       │   │ C) Create new skill first                                   │
-       │   └────────────────────────────────────────────────────────────┘
-       │
-       ├─ WAIT for response
-       └─ Process based on choice
-
-**STOP HERE** - Wait for skill verification to complete or user to provide correct skill path before continuing.
-
-⛔ HARD STOP: DO NOT proceed without verified skill path
-⛔ NEVER create references for non-existent skills
-```
-
-**Phase 2 Output:** `skill_path = ________________` | `skill_verified = [yes/no]`
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                 | REQUIRED STATUS       | YOUR STATUS | OUTPUT VALUE                              |
-| --------------------- | --------------------- | ----------- | ----------------------------------------- |
-| PHASE 0: WRITE AGENT  | ✅ PASSED or ⏭️ N/A     | ______      | write_agent_verified: ______              |
-| PHASE C: CHAINED      | ⏭️ SKIPPED or N/A      | ______      | chained_mode: [yes/no]                    |
-| PHASE 1: INPUT        | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_name: ______ / reference_type: ____ |
-| MODE DETECTION        | ✅ SET                 | ______      | execution_mode: ______                    |
-| PHASE 2: SKILL VERIFY | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_path: ______                        |
+| FIELD                | REQUIRED | YOUR VALUE | SOURCE                     |
+| -------------------- | -------- | ---------- | -------------------------- |
+| write_agent_verified | ✅ Yes    | ______     | Step 1 (chained) or Step 2 |
+| skill_name           | ✅ Yes    | ______     | Q0 or $ARGUMENTS           |
+| reference_type       | ✅ Yes    | ______     | Q1 or $ARGUMENTS           |
+| execution_mode       | ✅ Yes    | ______     | Suffix or Q2               |
+| skill_path           | ✅ Yes    | ______     | Step 9 verification        |
 
 ```
 VERIFICATION CHECK:
-├─ IF chained_mode == yes:
-│   └─ Phases 1-2 show ⏭️ SKIPPED? → Proceed to workflow
-│
-├─ IF chained_mode == no:
-│   └─ ALL phases show ✅ PASSED? → Proceed to workflow
-│
-└─ OTHERWISE → STOP and complete the blocked phase
+├─ ALL required fields have values?
+│   ├─ YES → Proceed to "# Reference Creation" section below
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -288,20 +214,21 @@ VERIFICATION CHECK:
 
 **YOU ARE IN VIOLATION IF YOU:**
 
-- Executed command without @write agent verification (Phase 0) when not chained
-- Started reading the workflow section before all phases passed (unless chained)
-- Proceeded without both skill name AND reference type (Phase 1) when not chained
-- Attempted to create reference for non-existent skill (Phase 2) when not chained
-- Inferred inputs from context instead of explicit user input (when not chained)
+- Executed command without @write agent verification when not chained
+- Started reading the workflow section before all fields are set
+- Proceeded without both skill name AND reference type
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Attempted to create reference for non-existent skill
+- Inferred inputs from context instead of explicit user input
 - Claimed chained mode without valid parent workflow parameters
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly
-5. RESUME only after all phases pass
+2. STATE: "I violated the UNIFIED SETUP PHASE by [specific action]. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 ```
 
 ---
@@ -321,6 +248,71 @@ VERIFICATION CHECK:
 | 3    | Template Load | ☐      | Structure patterns    | Template loaded            |
 | 4    | Content       | ☐      | [reference_name].md   | Reference file created     |
 | 5    | Validation    | ☐      | Updated SKILL.md      | Integration complete       |
+
+---
+
+## 📊 WORKFLOW DIAGRAM
+
+```mermaid
+flowchart TD
+    subgraph setup["Unified Setup Phase"]
+        CHAIN{"--chained flag?"}
+        P0["@write Agent Check"]
+        MODE["Mode Detection"]
+        ARGS["Parse Arguments"]
+        PROMPT["Consolidated Prompt"]
+        VERIFY["Skill Verification"]
+    end
+
+    subgraph workflow["5-Step Workflow"]
+        S1["Step 1: Analysis"]
+        S2["Step 2: Planning"]
+        S3["Step 3: Template Load"]
+        S4["Step 4: Content Creation"]
+        S5["Step 5: Validation"]
+    end
+
+    START(["/create:skill_reference"]) --> CHAIN
+
+    CHAIN -->|Yes + params| SKIP_SETUP["Skip to Workflow<br/>(Parent verified)"]
+    CHAIN -->|No| P0
+
+    P0 -->|"✅ @write agent"| MODE
+    P0 -->|"❌ Not @write"| BLOCK0[/"⛔ HARD BLOCK<br/>Restart with @write"/]
+
+    MODE --> ARGS
+    ARGS -->|"Has values"| VERIFY
+    ARGS -->|"Missing values"| PROMPT
+
+    PROMPT --> WAIT[/"Wait for response"/]
+    WAIT --> VERIFY
+
+    VERIFY -->|"✅ Skill found"| GATE{"All Fields<br/>Set?"}
+    VERIFY -->|"❌ Not found"| ASK[/"Ask: Correct path?"/]
+    ASK --> VERIFY
+
+    SKIP_SETUP --> S1
+    GATE -->|Yes| S1
+    GATE -->|No| PROMPT
+
+    S1 -->|"Skill verified"| S2
+    S2 -->|"Structure defined"| S3
+    S3 -->|"Template loaded"| S4
+    S4 -->|"File created"| S5
+    S5 -->|"SKILL.md updated"| DONE([✅ Complete])
+
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef step fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef block fill:#7f1d1d,stroke:#dc2626,color:#fff
+
+    class CHAIN,MODE,ARGS,PROMPT,VERIFY,P0 phase
+    class GATE gate
+    class S1,S2,S3,S4,S5 step
+    class DONE verify
+    class BLOCK0 block
+```
 
 ---
 
@@ -401,14 +393,14 @@ $ARGUMENTS
 
 ## 3. ⚡ INSTRUCTIONS
 
-### Step 4: Verify All Phases Passed
+### Step 4: Verify All Fields Set
 
-Confirm you have these values from the phases:
-- `skill_name` from PHASE 1
-- `reference_type` from PHASE 1
-- `skill_path` from PHASE 2
+Confirm you have these values from the Unified Setup Phase:
+- `skill_name` from Q0 or $ARGUMENTS
+- `reference_type` from Q1 or $ARGUMENTS
+- `skill_path` from Step 9 verification
 
-**If ANY phase is incomplete, STOP and return to the MANDATORY PHASES section.**
+**If ANY field is incomplete, STOP and return to the UNIFIED SETUP PHASE section.**
 
 ### Step 5: Load & Execute Workflow
 
@@ -497,11 +489,11 @@ This command is often used after skill creation:
 
 After reference creation completes, suggest relevant next steps:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| Skill needs more references | `/create:skill_reference [skill-name] [type]` | Add another reference |
-| Skill needs assets | `/create:skill_asset [skill-name] template` | Add templates or examples |
-| Reference complete | Verify SKILL.md Navigation Guide updated | Confirm routing works |
-| Want to save context | `/memory:save [spec-folder-path]` | Preserve creation context |
+| Condition                   | Suggested Command                             | Reason                    |
+| --------------------------- | --------------------------------------------- | ------------------------- |
+| Skill needs more references | `/create:skill_reference [skill-name] [type]` | Add another reference     |
+| Skill needs assets          | `/create:skill_asset [skill-name] template`   | Add templates or examples |
+| Reference complete          | Verify SKILL.md Navigation Guide updated      | Confirm routing works     |
+| Want to save context        | `/memory:save [spec-folder-path]`             | Preserve creation context |
 
 **ALWAYS** end with: "What would you like to do next?"

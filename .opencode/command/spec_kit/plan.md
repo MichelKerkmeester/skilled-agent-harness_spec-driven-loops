@@ -219,6 +219,77 @@ $ARGUMENTS
 | 6    | Save Context     | Save conversation context    | memory/*.md              |
 | 7    | Handover Check   | Prompt for session handover  | handover.md (optional)   |
 
+### Workflow Diagram
+
+```mermaid
+flowchart TD
+    subgraph SETUP["🔒 UNIFIED SETUP PHASE"]
+        START(["/spec_kit:plan"]) --> PROMPT["Consolidated Prompt<br/>(Q0-Q5)"]
+        PROMPT --> WAIT{"User<br/>Response?"}
+        WAIT -->|"No"| BLOCK[/"⛔ HARD STOP"/]
+        WAIT -->|"Yes"| VERIFY["Verify All Fields"]
+    end
+
+    subgraph WORKFLOW["📊 PLANNING WORKFLOW"]
+        S1["Step 1: Request Analysis<br/>→ requirement_summary"]
+        S2["Step 2: Pre-Work Review<br/>→ coding_standards_summary"]
+        S3["Step 3: Specification<br/>→ spec.md"]
+        S4["Step 4: Clarification<br/>→ updated spec.md"]
+        S5["Step 5: Planning<br/>→ plan.md, checklist.md"]
+        S6["Step 6: Save Context<br/>→ memory/*.md"]
+        S7["Step 7: Handover Check<br/>→ handover.md"]
+    end
+
+    subgraph GATES["✅ QUALITY GATES"]
+        PRE_GATE{{"Pre-execution<br/>Gate (70)"}}
+        MID_GATE{{"Mid-execution<br/>Gate (70)"}}
+        POST_GATE{{"Post-execution<br/>Gate (70)"}}
+    end
+
+    subgraph DISPATCH["🤖 AGENT ROUTING"]
+        SPECKIT["@speckit Agent<br/>(template-first)"]
+        FALLBACK["General Agent<br/>(fallback)"]
+    end
+
+    VERIFY --> PRE_GATE
+    PRE_GATE -->|"Pass"| S1
+    PRE_GATE -->|"Fail"| REMEDIATE1[/"Remediate"/]
+    REMEDIATE1 --> PRE_GATE
+
+    S1 --> S2
+    S2 --> S3
+
+    S3 -.->|"dispatch"| SPECKIT
+    SPECKIT -.->|"unavailable"| FALLBACK
+    SPECKIT --> MID_GATE
+    FALLBACK --> MID_GATE
+
+    MID_GATE -->|"Pass"| S4
+    MID_GATE -->|"Fail"| REMEDIATE2[/"Remediate"/]
+    REMEDIATE2 --> MID_GATE
+
+    S4 --> S5
+    S5 --> S6
+    S6 --> S7
+
+    S7 --> POST_GATE
+    POST_GATE -->|"Pass"| SUCCESS([/"✅ Planning Complete<br/>→ /spec_kit:implement"/])
+    POST_GATE -->|"Fail"| REMEDIATE3[/"Remediate"/]
+    REMEDIATE3 --> POST_GATE
+
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef dispatch fill:#4c1d95,stroke:#8b5cf6,color:#fff
+    classDef block fill:#7f1d1d,stroke:#ef4444,color:#fff
+
+    class START,SUCCESS core
+    class PRE_GATE,MID_GATE,POST_GATE gate
+    class VERIFY,S1,S2,S3,S4,S5,S6,S7 verify
+    class SPECKIT,FALLBACK dispatch
+    class BLOCK,REMEDIATE1,REMEDIATE2,REMEDIATE3 block
+```
+
 ---
 
 ## 4. ⚡ INSTRUCTIONS

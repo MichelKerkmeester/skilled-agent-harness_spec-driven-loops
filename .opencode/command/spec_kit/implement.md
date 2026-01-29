@@ -88,7 +88,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ **Q4. Worker Model** (if B or C selected above):               │
    │    Default: opus                                               │
    │    To use different model, type: opus, gemini, gpt             │
-   │    for default                                                 │
+   │    or leave blank for default                                  │
    │                                                                │
    │ **Q5. Memory Context** (if memory/ has files):                  │
    │    A) Load most recent memory file                              │
@@ -251,6 +251,69 @@ If prerequisites are missing, guide user to run `/spec_kit:plan` first.
 | 7.5  | **POSTFLIGHT Capture** | Capture learning delta and calculate improvement                   | postflight_delta          |
 | 8    | Save Context           | Preserve conversation                                              | memory/*.md               |
 | 9    | Session Handover Check | Prompt for handover document                                       | handover.md (optional)    |
+
+### Workflow Diagram
+
+```mermaid
+flowchart TD
+    subgraph SETUP["Setup Phase"]
+        A[Start: /spec_kit:implement] --> B{Prerequisites<br/>Valid?}
+        B -->|No| B1[Redirect to<br/>/spec_kit:plan]
+        B -->|Yes| C[Load Memory<br/>Context]
+    end
+
+    subgraph PREP["Preparation Phase"]
+        C --> S1[Step 1: Review<br/>Plan & Spec]
+        S1 --> S2[Step 2: Task<br/>Breakdown]
+        S2 --> S3[Step 3: Analysis<br/>Verify Consistency]
+        S3 --> S4[Step 4: Quality<br/>Checklist]
+        S4 --> S5[Step 5: Implementation<br/>Check]
+    end
+
+    subgraph GATE1["Pre-Implementation Gate"]
+        S5 --> G1{Score >= 70?}
+        G1 -->|No| G1F[BLOCKED:<br/>Cannot Start]
+        G1F --> S4
+        G1 -->|Yes| S55[Step 5.5: PREFLIGHT<br/>Baseline Capture]
+    end
+
+    subgraph DEV["Development Phase"]
+        S55 --> S6[Step 6: Development<br/>Execute Implementation]
+    end
+
+    subgraph VERIFY["Verification Phase"]
+        S6 --> S7[Step 7: Completion<br/>Generate Summary]
+        S7 --> RG{@review Agent<br/>Gate}
+        RG -->|P0 FAIL| RGF[BLOCKED:<br/>Fix P0 Items]
+        RGF --> S6
+        RG -->|P0 PASS| G2{Post-Impl<br/>Score >= 70?}
+        G2 -->|No| G2F[BLOCKED:<br/>Quality Issues]
+        G2F --> S6
+        G2 -->|Yes| S75[Step 7.5: POSTFLIGHT<br/>Learning Delta]
+    end
+
+    subgraph COMPLETE["Completion Phase"]
+        S75 --> S8[Step 8: Save<br/>Context]
+        S8 --> S9[Step 9: Session<br/>Handover Check]
+        S9 --> END[STATUS=OK<br/>Implementation Complete]
+    end
+
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef blocked fill:#7f1d1d,stroke:#dc2626,color:#fff
+
+    class A,S1,S2,S3,S4,S5,S55,S6,S75,S8,S9 core
+    class G1,G2,RG gate
+    class S7,END verify
+    class B1,G1F,RGF,G2F blocked
+```
+
+**Diagram Legend:**
+- **Blue nodes**: Core workflow steps
+- **Orange borders**: Quality gates (score thresholds)
+- **Green nodes**: Verification/completion steps
+- **Red nodes**: Blocked states (require fixes before proceeding)
 
 ---
 

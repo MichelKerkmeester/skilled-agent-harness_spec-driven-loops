@@ -1,17 +1,21 @@
-/* ─────────────────────────────────────────────────────────────
-   1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+// ───────────────────────────────────────────────────────────────
+// RENDERERS: TEMPLATE RENDERER
+// ───────────────────────────────────────────────────────────────
 'use strict';
+
+/* ─────────────────────────────────────────────────────────────────
+   1. IMPORTS
+──────────────────────────────────────────────────────────────────── */
 
 const fs = require('fs/promises');
 const path = require('path');
 const { CONFIG } = require('../core');
 
-/* ─────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────────
    2. HELPER FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────────── */
 
-function isFalsy(value) {
+function is_falsy(value) {
   // "false" strings and empty arrays treated as falsy for template conditionals
   if (value === undefined || value === null || value === false) return true;
   if (typeof value === 'string' && value.toLowerCase() === 'false') return true;
@@ -21,11 +25,11 @@ function isFalsy(value) {
   return false;
 }
 
-function cleanupExcessiveNewlines(text) {
+function cleanup_excessive_newlines(text) {
   return text.replace(/\n{3,}/g, '\n\n');
 }
 
-function stripTemplateConfigComments(text) {
+function strip_template_config_comments(text) {
   let result = text.replace(/<!--\s*Template Configuration Comments[\s\S]*?-->\s*\n*/g, '');
   result = result.replace(/<!--\s*Context Type Detection:[\s\S]*?-->\s*\n*/g, '');
   result = result.replace(/<!--\s*Importance Tier Guidelines:[\s\S]*?-->\s*\n*/g, '');
@@ -34,11 +38,11 @@ function stripTemplateConfigComments(text) {
   return result.replace(/\n{3,}/g, '\n\n');
 }
 
-/* ─────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────────
    3. CORE RENDERING
-──────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────────── */
 
-function renderTemplate(template, data, parentData = {}) {
+function render_template(template, data, parentData = {}) {
   let result = template;
   const mergedData = { ...parentData, ...data };
 
@@ -47,15 +51,15 @@ function renderTemplate(template, data, parentData = {}) {
     const value = mergedData[key];
 
     if (typeof value === 'boolean') {
-      return value ? renderTemplate(content, mergedData, parentData) : '';
+      return value ? render_template(content, mergedData, parentData) : '';
     }
 
-    if (isFalsy(value)) {
+    if (is_falsy(value)) {
       return '';
     }
 
     if (!Array.isArray(value)) {
-      return renderTemplate(content, mergedData, parentData);
+      return render_template(content, mergedData, parentData);
     }
 
     if (value.length === 0) {
@@ -64,17 +68,17 @@ function renderTemplate(template, data, parentData = {}) {
 
     return value.map(item => {
       if (typeof item === 'object' && item !== null) {
-        return renderTemplate(content, item, mergedData);
+        return render_template(content, item, mergedData);
       }
-      return renderTemplate(content, { ITEM: item, '.': item }, mergedData);
+      return render_template(content, { ITEM: item, '.': item }, mergedData);
     }).join('');
   });
 
   // Inverted sections: {{^ARRAY}}...{{/ARRAY}}
   result = result.replace(/\{\{\^(\w+)\}\}([\s\S]*?)\{\{\/\1\}\}/g, (match, key, content) => {
     const value = mergedData[key];
-    if (isFalsy(value)) {
-      return renderTemplate(content, mergedData, parentData);
+    if (is_falsy(value)) {
+      return render_template(content, mergedData, parentData);
     }
     return '';
   });
@@ -110,16 +114,16 @@ function renderTemplate(template, data, parentData = {}) {
     return String(value);
   });
 
-  return cleanupExcessiveNewlines(result);
+  return cleanup_excessive_newlines(result);
 }
 
-/* ─────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────────
    4. PUBLIC API
-──────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────────── */
 
-async function populateTemplate(templateName, data) {
+async function populate_template(templateName, data) {
   const templatePath = path.join(CONFIG.TEMPLATE_DIR, `${templateName}_template.md`);
-  
+
   // T029 FIX: Add error handling for template not found scenario
   try {
     // Check if template exists before reading
@@ -130,7 +134,7 @@ async function populateTemplate(templateName, data) {
       `Available templates should be in: ${CONFIG.TEMPLATE_DIR}`
     );
   }
-  
+
   let template;
   try {
     template = await fs.readFile(templatePath, 'utf-8');
@@ -139,19 +143,26 @@ async function populateTemplate(templateName, data) {
       `Failed to read template "${templateName}": ${readError.message}`
     );
   }
-  
-  const rendered = renderTemplate(template, data);
-  return stripTemplateConfigComments(rendered);
+
+  const rendered = render_template(template, data);
+  return strip_template_config_comments(rendered);
 }
 
-/* ─────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────────
    5. EXPORTS
-──────────────────────────────────────────────────────────────── */
+──────────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  populateTemplate,
-  renderTemplate,
-  cleanupExcessiveNewlines,
-  stripTemplateConfigComments,
-  isFalsy
+  // Primary exports (snake_case)
+  populate_template,
+  render_template,
+  cleanup_excessive_newlines,
+  strip_template_config_comments,
+  is_falsy,
+  // Backwards compatibility aliases (camelCase)
+  populateTemplate: populate_template,
+  renderTemplate: render_template,
+  cleanupExcessiveNewlines: cleanup_excessive_newlines,
+  stripTemplateConfigComments: strip_template_config_comments,
+  isFalsy: is_falsy
 };

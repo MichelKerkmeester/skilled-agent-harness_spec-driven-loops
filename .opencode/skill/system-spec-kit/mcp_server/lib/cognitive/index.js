@@ -9,6 +9,8 @@ const tierClassifier = require('./tier-classifier.js');
 const coActivation = require('./co-activation.js');
 const temporalContiguity = require('./temporal-contiguity.js');
 const summaryGenerator = require('./summary-generator.js');
+const fsrsScheduler = require('./fsrs-scheduler.js');
+const predictionErrorGate = require('./prediction-error-gate.js');
 
 module.exports = {
   // ─────────────────────────────────────────────────────────────
@@ -88,6 +90,48 @@ module.exports = {
   SUMMARY_CONFIG: summaryGenerator.SUMMARY_CONFIG,
 
   // ─────────────────────────────────────────────────────────────
+  // FSRS Scheduler (no collisions)
+  // ─────────────────────────────────────────────────────────────
+  calculateRetrievability: fsrsScheduler.calculate_retrievability,
+  updateStability: fsrsScheduler.update_stability,
+  calculateOptimalInterval: fsrsScheduler.calculate_optimal_interval,
+  updateDifficulty: fsrsScheduler.update_difficulty,
+  calculateElapsedDays: fsrsScheduler.calculate_elapsed_days,
+  getNextReviewDate: fsrsScheduler.get_next_review_date,
+  createInitialParams: fsrsScheduler.create_initial_params,
+  FSRS_FACTOR: fsrsScheduler.FSRS_FACTOR,
+  FSRS_DECAY: fsrsScheduler.FSRS_DECAY,
+  DEFAULT_STABILITY: fsrsScheduler.DEFAULT_STABILITY,
+  DEFAULT_DIFFICULTY: fsrsScheduler.DEFAULT_DIFFICULTY,
+  TARGET_RETRIEVABILITY: fsrsScheduler.TARGET_RETRIEVABILITY,
+  GRADE_AGAIN: fsrsScheduler.GRADE_AGAIN,
+  GRADE_HARD: fsrsScheduler.GRADE_HARD,
+  GRADE_GOOD: fsrsScheduler.GRADE_GOOD,
+  GRADE_EASY: fsrsScheduler.GRADE_EASY,
+
+  // ─────────────────────────────────────────────────────────────
+  // Prediction Error Gate (prefixed to avoid collisions)
+  // ─────────────────────────────────────────────────────────────
+  predictionErrorGate_init: predictionErrorGate.init,
+  predictionErrorGate_getDb: predictionErrorGate.getDb,
+  predictionErrorGate_ensureConflictsTable: predictionErrorGate.ensureConflictsTable,
+  evaluateMemory: predictionErrorGate.evaluate_memory,
+  detectContradiction: predictionErrorGate.detect_contradiction,
+  formatConflictRecord: predictionErrorGate.format_conflict_record,
+  shouldLogConflict: predictionErrorGate.should_log_conflict,
+  logConflict: predictionErrorGate.log_conflict,
+  getConflictStats: predictionErrorGate.get_conflict_stats,
+  getRecentConflicts: predictionErrorGate.get_recent_conflicts,
+  batchEvaluate: predictionErrorGate.batch_evaluate,
+  calculateSimilarityStats: predictionErrorGate.calculate_similarity_stats,
+  filterRelevantCandidates: predictionErrorGate.filter_relevant_candidates,
+  getActionPriority: predictionErrorGate.get_action_priority,
+  truncateContent: predictionErrorGate.truncate_content,
+  PE_THRESHOLD: predictionErrorGate.THRESHOLD,
+  PE_ACTION: predictionErrorGate.ACTION,
+  CONTRADICTION_PATTERNS: predictionErrorGate.CONTRADICTION_PATTERNS,
+
+  // ─────────────────────────────────────────────────────────────
   // Module References (for direct access when needed)
   // ─────────────────────────────────────────────────────────────
   attentionDecay,
@@ -96,4 +140,6 @@ module.exports = {
   coActivation,
   temporalContiguity,
   summaryGenerator,
+  fsrsScheduler,
+  predictionErrorGate,
 };

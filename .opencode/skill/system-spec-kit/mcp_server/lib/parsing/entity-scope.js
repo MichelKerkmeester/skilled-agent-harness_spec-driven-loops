@@ -65,6 +65,13 @@ function detect_context_type_from_tools(tool_calls) {
     return 'decision';
   }
 
+  // BUG-028 FIX: Guard against division by zero
+  // Although early return handles empty arrays, counts.total could theoretically
+  // be 0 if tool_calls contains objects without valid 'tool' property
+  if (counts.total === 0) {
+    return 'general';
+  }
+
   // Research: >50% Read/Grep/Glob, minimal writes
   if (counts.read / counts.total > 0.5 && counts.write / counts.total < 0.1) {
     return 'research';

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// UTILS: FILE HELPERS
+// ───────────────────────────────────────────────────────────────
+
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -7,7 +11,7 @@
    2. PATH UTILITIES
 ──────────────────────────────────────────────────────────────── */
 
-function toRelativePath(filePath, projectRoot) {
+function to_relative_path(filePath, projectRoot) {
   if (!filePath) return '';
   let cleaned = filePath;
 
@@ -32,7 +36,7 @@ function toRelativePath(filePath, projectRoot) {
    3. DESCRIPTION UTILITIES
 ──────────────────────────────────────────────────────────────── */
 
-function isDescriptionValid(description) {
+function is_description_valid(description) {
   if (!description || description.length < 8) return false;
 
   const garbagePatterns = [
@@ -49,7 +53,7 @@ function isDescriptionValid(description) {
   return !garbagePatterns.some(p => p.test(description));
 }
 
-function cleanDescription(desc) {
+function clean_description(desc) {
   if (!desc) return '';
   let cleaned = desc.trim();
 
@@ -75,7 +79,12 @@ function cleanDescription(desc) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  toRelativePath,
-  isDescriptionValid,
-  cleanDescription
+  // Primary exports (snake_case)
+  to_relative_path,
+  is_description_valid,
+  clean_description,
+  // Backwards compatibility aliases (camelCase)
+  toRelativePath: to_relative_path,
+  isDescriptionValid: is_description_valid,
+  cleanDescription: clean_description
 };

@@ -192,6 +192,65 @@ $ARGUMENTS
 | 3    | Create Handover | Generate handover.md                 | handover.md       |
 | 4    | Display Result  | Show file path and continuation info | user_instructions |
 
+### Workflow Diagram
+
+```mermaid
+flowchart TD
+    subgraph SETUP["🔒 UNIFIED SETUP PHASE"]
+        A["/spec_kit:handover"] --> B{"$ARGUMENTS<br/>has path?"}
+        B -->|Yes| C["Validate path exists"]
+        B -->|No| D["Auto-detect from<br/>recent memory files"]
+        C --> E["Pre-handover validation"]
+        D --> E
+        E --> F{"Validation<br/>passed?"}
+        F -->|Errors/Warnings| G["Ask Q2: Fix or Bypass"]
+        F -->|Passed| H["Consolidated prompt<br/>Q0/Q1 as needed"]
+        G --> H
+    end
+
+    subgraph GATE["⛔ PHASE STATUS VERIFICATION"]
+        H --> I{"All fields set?<br/>spec_path, detection_method,<br/>validation_status"}
+        I -->|No| J["Re-prompt for<br/>missing values"]
+        J --> I
+        I -->|Yes| K["✅ PHASES PASSED"]
+    end
+
+    subgraph DISPATCH["🔀 SUB-AGENT DELEGATION"]
+        K --> L{"Task tool<br/>available?"}
+        L -->|Yes| M["Dispatch @handover<br/>via Task tool"]
+        M --> N{"Sub-agent<br/>result?"}
+        N -->|status: OK| O["Extract:<br/>file_path, attempt_number,<br/>last_action, next_action"]
+        N -->|status: FAIL| P["FALLBACK"]
+        N -->|Timeout/Error| P
+        L -->|No| P
+    end
+
+    subgraph FALLBACK["⚡ FALLBACK EXECUTION"]
+        P --> Q["Log: Sub-agent unavailable"]
+        Q --> R["Step 1: Validate Spec<br/>(use phase outputs)"]
+        R --> S["Step 2: Gather Context<br/>spec.md, plan.md, memory/*.md"]
+        S --> T["Step 3: Create Handover<br/>Check existing, calc attempt #"]
+    end
+
+    subgraph RESULT["📊 DISPLAY RESULT"]
+        O --> U["Step 4: Display Result"]
+        T --> U
+        U --> V["Show handover.md path"]
+        V --> W["Show continuation prompt:<br/>CONTINUATION - Attempt N"]
+        W --> X["Suggest /spec_kit:resume"]
+        X --> Y["✅ STATUS=OK"]
+    end
+
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+
+    class A,B,C,D,E,F,G,H core
+    class I,J,K gate
+    class L,M,N,O,P,Q,R,S,T verify
+    class U,V,W,X,Y core
+```
+
 ---
 
 ## 4. ⚡ INSTRUCTIONS

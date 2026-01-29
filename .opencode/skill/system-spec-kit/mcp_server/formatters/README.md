@@ -284,4 +284,4 @@ format_search_results(results, type, true, ['summary'], parser);
 
 ---
 
-*Module version: 1.7.2 | Last updated: 2026-01-21*
+*Module version: 1.8.1 | Last updated: 2026-01-28*

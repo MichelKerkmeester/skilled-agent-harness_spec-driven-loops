@@ -1,7 +1,6 @@
 # ───────────────────────────────────────────────────────────────────
 # DOCUMENTATION: README CREATION WORKFLOW
 # ───────────────────────────────────────────────────────────────────
-# Version: 1.9.0 (SpecKit alignment)
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow does NOT support :auto mode. All executions
 #       require user confirmation at checkpoints for content review.
@@ -92,22 +91,22 @@ user_inputs:
   target_path: |
     [TARGET_PATH]
     Where to create README.
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
 
   readme_type: |
     [README_TYPE]
     Type: project | component | feature | skill
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q1).
 
   path_verified: |
     [PATH_VERIFIED]
     Whether target path exists.
-    FROM PHASE 2 OUTPUT.
+    FROM UNIFIED SETUP PHASE (automatic verification).
 
   existing_readme: |
     [EXISTING_README]
     Whether README.md already exists at path.
-    FROM PHASE 2 OUTPUT.
+    FROM UNIFIED SETUP PHASE (automatic detection).
 
 # ─────────────────────────────────────────────────────────────────
 # README TYPES
@@ -234,12 +233,12 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
-    purpose: Determine scope and location (from phase outputs)
+    purpose: Determine scope and location (from UNIFIED SETUP PHASE)
     activities:
-    - Confirm target_path from PHASE 1
-    - Confirm readme_type from PHASE 1
-    - Confirm path_verified from PHASE 2
-    - Confirm existing_readme handling from PHASE 2
+    - Confirm target_path from UNIFIED SETUP PHASE
+    - Confirm readme_type from UNIFIED SETUP PHASE
+    - Confirm path_verified from UNIFIED SETUP PHASE
+    - Confirm existing_readme handling from UNIFIED SETUP PHASE
     - Validate readme_type is one of: project, component, feature, skill
     type_reference:
       project: "Entire project - overview, installation, configuration, usage"
@@ -450,7 +449,7 @@ workflow:
       - label: "View summary"
         description: "Show final summary"
 
-    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
     post_save_indexing:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save

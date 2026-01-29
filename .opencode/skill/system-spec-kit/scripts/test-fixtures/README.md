@@ -445,4 +445,74 @@ ls test-fixtures/ | grep "priority"
 
 ---
 
-*Test fixtures for SpecKit v2.0 validation system | Last updated: 2026-01-21*
+---
+
+## 8. 🧠 COGNITIVE MEMORY FIXTURES
+
+### Overview
+
+Additional fixtures for testing the Cognitive Memory Upgrade features including FSRS scheduling, prediction error gating, tier classification, and semantic similarity.
+
+### Cognitive Memory Fixtures
+
+| File | Purpose |
+|------|---------|
+| `sample-memories.json` | Sample memory objects for all 5 importance tiers |
+| `contradiction-pairs.json` | Statement pairs for contradiction detection testing |
+| `similarity-test-cases.json` | Semantic similarity scoring validation cases |
+
+### sample-memories.json
+
+Sample memory objects representing different tiers and states.
+
+**Structure:**
+```json
+{
+  "memories": [
+    {
+      "id": 1,
+      "content": "Memory content text",
+      "summary": "Brief summary",
+      "importance": 1-5,
+      "stability": 0.0-30.0,
+      "difficulty": 1.0-10.0,
+      "created_at": "ISO date"
+    }
+  ]
+}
+```
+
+**Coverage:**
+- All 5 importance tiers (1=Ephemeral to 5=Constitutional)
+- Various stability levels (new to well-established)
+- Different difficulty ratings
+
+### contradiction-pairs.json
+
+Pairs of statements for testing contradiction detection.
+
+**Categories:**
+| Category | Description |
+|----------|-------------|
+| `always-never` | Direct always/never conflicts |
+| `enable-disable` | State toggle conflicts |
+| `must-must-not` | Mandatory vs prohibited |
+| `approach-conflict` | Different approaches |
+| `semantic-similarity` | Similar meaning (not contradiction) |
+
+### similarity-test-cases.json
+
+Test cases for semantic similarity scoring validation.
+
+**Threshold Ranges:**
+| Category | Expected Range |
+|----------|---------------|
+| `identical` | [0.95, 1.0] |
+| `semantic-equivalent` | [0.85, 0.95] |
+| `semantic-related` | [0.80, 0.92] |
+| `unrelated` | [0.15, 0.35] |
+| `completely-different` | [0.0, 0.20] |
+
+---
+
+*Test fixtures for SpecKit v2.0 validation system | Last updated: 2026-01-28*

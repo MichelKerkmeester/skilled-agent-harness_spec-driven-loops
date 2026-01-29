@@ -2,7 +2,6 @@
 name: speckit
 description: Spec folder documentation specialist for creating and maintaining Level 1-3+ documentation with template enforcement
 mode: subagent
-model: sonnet
 temperature: 0.1
 permission:
   read: allow
@@ -37,12 +36,12 @@ Spec folder documentation specialist responsible for creating, maintaining, and 
 
 This agent defaults to **Sonnet** for balanced quality and efficiency. Sonnet handles spec folder documentation tasks with strong reasoning.
 
-| Model                | Use When                 | Task Examples                              |
-| -------------------- | ------------------------ | ------------------------------------------ |
+| Model                | Use When                 | Task Examples                                 |
+| -------------------- | ------------------------ | --------------------------------------------- |
 | **Sonnet** (default) | Standard spec work       | Level 1-3 specs, template filling, validation |
-| **Opus**             | Complex specs            | Level 3+ with extensive architecture       |
-| **Gemini**           | Alternative preference   | Pro for quality, Flash for speed           |
-| **GPT**              | User explicitly requests | Alternative AI preference                  |
+| **Opus**             | Complex specs            | Level 3+ with extensive architecture          |
+| **Gemini**           | Alternative preference   | Pro for quality, Flash for speed              |
+| **GPT**              | User explicitly requests | Alternative AI preference                     |
 
 ### Dispatch Instructions
 
@@ -89,6 +88,91 @@ Task(subagent_type: "speckit", model: "gemini", prompt: "...")
 - Security-sensitive (auth, payments, PII)
 - Multiple systems affected (>5 files)
 - Integration requirements
+
+### Workflow Diagram
+
+```mermaid
+flowchart TB
+    subgraph INPUT["INPUT"]
+        A[Feature Request]
+    end
+
+    subgraph ASSESS["LEVEL ASSESSMENT"]
+        B{Estimate LOC}
+        B --> |"<100"| L1[Level 1]
+        B --> |"100-499"| L2[Level 2]
+        B --> |"≥500"| L3[Level 3]
+        B --> |"Complex + Governance"| L3P[Level 3+]
+
+        C{Override Factors?}
+        L1 --> C
+        L2 --> C
+        L3 --> C
+        L3P --> C
+
+        C --> |"Security/Architecture/Multi-file"| BUMP[Bump Level +1]
+        C --> |"No overrides"| PROCEED[Proceed with Level]
+        BUMP --> PROCEED
+    end
+
+    subgraph CREATE["SPEC FOLDER CREATION"]
+        D[Find Next Spec Number]
+        E[Run create.sh]
+        F[Copy Level Templates]
+        D --> E --> F
+    end
+
+    subgraph FILL["TEMPLATE POPULATION"]
+        G[Fill spec.md]
+        H[Fill plan.md]
+        I[Fill tasks.md]
+        J{Level 2+?}
+        K[Fill checklist.md]
+        L{Level 3+?}
+        M[Fill decision-record.md]
+
+        G --> H --> I --> J
+        J --> |Yes| K --> L
+        J --> |No| VALIDATE
+        L --> |Yes| M --> VALIDATE
+        L --> |No| VALIDATE
+    end
+
+    subgraph VALIDATE["VALIDATION GATE"]
+        N[Run validate.sh]
+        O{Exit Code?}
+        P[Report Success]
+        Q[Fix Issues]
+
+        N --> O
+        O --> |"0 = Pass"| P
+        O --> |"1 = Warnings"| P
+        O --> |"2 = Errors"| Q
+        Q --> N
+    end
+
+    subgraph OUTPUT["OUTPUT"]
+        R[Deliver Spec Folder]
+        S[Report Artifacts]
+        T[Next Steps]
+        R --> S --> T
+    end
+
+    A --> B
+    PROCEED --> D
+    F --> G
+    P --> R
+
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef level fill:#4c1d95,stroke:#8b5cf6,color:#fff
+
+    class A,D,E,F,G,H,I,K,M,R,S,T core
+    class B,C,J,L,O gate
+    class N,P,Q,VALIDATE verify
+    class L1,L2,L3,L3P,BUMP,PROCEED level
+```
 
 ---
 

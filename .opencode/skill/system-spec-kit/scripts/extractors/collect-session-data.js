@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// EXTRACTORS: COLLECT SESSION DATA
+// ───────────────────────────────────────────────────────────────
+
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────
@@ -39,7 +43,7 @@ const {
  * @param {string} metric - Metric name for context
  * @returns {string} Human-readable assessment
  */
-function getScoreAssessment(score, metric) {
+function get_score_assessment(score, metric) {
   if (score === null || score === undefined || isNaN(score)) {
     return '[Not assessed]';
   }
@@ -65,11 +69,11 @@ function getScoreAssessment(score, metric) {
  * @param {boolean} invertedBetter - If true, negative delta is good (for uncertainty)
  * @returns {string} Trend arrow indicator
  */
-function getTrendIndicator(delta, invertedBetter = false) {
+function get_trend_indicator(delta, inverted_better = false) {
   if (delta === null || delta === undefined || isNaN(delta)) {
     return '→';
   }
-  if (invertedBetter) {
+  if (inverted_better) {
     // For uncertainty reduction: positive delta (reduction) is good
     if (delta > 0) return '↓'; // Uncertainty went down (good)
     if (delta < 0) return '↑'; // Uncertainty went up (bad)
@@ -89,10 +93,10 @@ function getTrendIndicator(delta, invertedBetter = false) {
  * @param {number} deltaContext - Context delta
  * @returns {number} Learning Index (0-100)
  */
-function calculateLearningIndex(deltaKnow, deltaUncert, deltaContext) {
-  const dk = deltaKnow ?? 0;
-  const du = deltaUncert ?? 0;
-  const dc = deltaContext ?? 0;
+function calculate_learning_index(delta_know, delta_uncert, delta_context) {
+  const dk = delta_know ?? 0;
+  const du = delta_uncert ?? 0;
+  const dc = delta_context ?? 0;
   const index = (dk * 0.4) + (du * 0.35) + (dc * 0.25);
   return Math.round(Math.max(0, Math.min(100, index)));
 }
@@ -102,9 +106,9 @@ function calculateLearningIndex(deltaKnow, deltaUncert, deltaContext) {
  * @param {Object} collectedData - Raw collected data from JSON input
  * @returns {Object} Processed preflight/postflight template data
  */
-function extractPreflightPostflightData(collectedData) {
-  const preflight = collectedData?.preflight;
-  const postflight = collectedData?.postflight;
+function extract_preflight_postflight_data(collected_data) {
+  const preflight = collected_data?.preflight;
+  const postflight = collected_data?.postflight;
 
   // Default values when data not provided
   const DEFAULT_VALUE = '[TBD]';
@@ -114,9 +118,9 @@ function extractPreflightPostflightData(collectedData) {
     PREFLIGHT_KNOW_SCORE: preflight?.knowledgeScore ?? DEFAULT_VALUE,
     PREFLIGHT_UNCERTAINTY_SCORE: preflight?.uncertaintyScore ?? DEFAULT_VALUE,
     PREFLIGHT_CONTEXT_SCORE: preflight?.contextScore ?? DEFAULT_VALUE,
-    PREFLIGHT_KNOW_ASSESSMENT: getScoreAssessment(preflight?.knowledgeScore, 'knowledge'),
-    PREFLIGHT_UNCERTAINTY_ASSESSMENT: getScoreAssessment(preflight?.uncertaintyScore, 'uncertainty'),
-    PREFLIGHT_CONTEXT_ASSESSMENT: getScoreAssessment(preflight?.contextScore, 'context'),
+    PREFLIGHT_KNOW_ASSESSMENT: get_score_assessment(preflight?.knowledgeScore, 'knowledge'),
+    PREFLIGHT_UNCERTAINTY_ASSESSMENT: get_score_assessment(preflight?.uncertaintyScore, 'uncertainty'),
+    PREFLIGHT_CONTEXT_ASSESSMENT: get_score_assessment(preflight?.contextScore, 'context'),
     PREFLIGHT_TIMESTAMP: preflight?.timestamp ?? DEFAULT_VALUE,
     PREFLIGHT_GAPS: preflight?.gaps?.map(g => ({ GAP_DESCRIPTION: g })) ?? [],
     PREFLIGHT_CONFIDENCE: preflight?.confidence ?? DEFAULT_VALUE,
@@ -157,7 +161,7 @@ function extractPreflightPostflightData(collectedData) {
     const deltaContext = postflight.contextScore - preflight.contextScore;
 
     // Calculate learning index
-    const learningIndex = calculateLearningIndex(deltaKnow, deltaUncert, deltaContext);
+    const learningIndex = calculate_learning_index(deltaKnow, deltaUncert, deltaContext);
 
     // Format delta display with sign
     const formatDelta = (d) => d >= 0 ? `+${d}` : `${d}`;
@@ -166,11 +170,11 @@ function extractPreflightPostflightData(collectedData) {
       DELTA_KNOW_SCORE: formatDelta(deltaKnow),
       DELTA_UNCERTAINTY_SCORE: formatDelta(deltaUncert),
       DELTA_CONTEXT_SCORE: formatDelta(deltaContext),
-      DELTA_KNOW_TREND: getTrendIndicator(deltaKnow, false),
-      DELTA_UNCERTAINTY_TREND: getTrendIndicator(deltaUncert, true),
-      DELTA_CONTEXT_TREND: getTrendIndicator(deltaContext, false),
+      DELTA_KNOW_TREND: get_trend_indicator(deltaKnow, false),
+      DELTA_UNCERTAINTY_TREND: get_trend_indicator(deltaUncert, true),
+      DELTA_CONTEXT_TREND: get_trend_indicator(deltaContext, false),
       LEARNING_INDEX: learningIndex,
-      LEARNING_SUMMARY: generateLearningSummary(deltaKnow, deltaUncert, deltaContext, learningIndex)
+      LEARNING_SUMMARY: generate_learning_summary(deltaKnow, deltaUncert, deltaContext, learningIndex)
     };
   }
 
@@ -196,37 +200,37 @@ function extractPreflightPostflightData(collectedData) {
  * @param {number} learningIndex - Calculated learning index
  * @returns {string} Learning summary text
  */
-function generateLearningSummary(deltaKnow, deltaUncert, deltaContext, learningIndex) {
+function generate_learning_summary(delta_know, delta_uncert, delta_context, learning_index) {
   const parts = [];
 
-  if (deltaKnow > 20) {
-    parts.push(`Significant knowledge gain (+${deltaKnow} points)`);
-  } else if (deltaKnow > 10) {
-    parts.push(`Moderate knowledge improvement (+${deltaKnow} points)`);
-  } else if (deltaKnow > 0) {
-    parts.push(`Slight knowledge increase (+${deltaKnow} points)`);
-  } else if (deltaKnow < -10) {
-    parts.push(`Knowledge score decreased (${deltaKnow} points) - may indicate scope expansion`);
+  if (delta_know > 20) {
+    parts.push(`Significant knowledge gain (+${delta_know} points)`);
+  } else if (delta_know > 10) {
+    parts.push(`Moderate knowledge improvement (+${delta_know} points)`);
+  } else if (delta_know > 0) {
+    parts.push(`Slight knowledge increase (+${delta_know} points)`);
+  } else if (delta_know < -10) {
+    parts.push(`Knowledge score decreased (${delta_know} points) - may indicate scope expansion`);
   }
 
-  if (deltaUncert > 20) {
-    parts.push(`Major uncertainty reduction (-${deltaUncert} points)`);
-  } else if (deltaUncert > 10) {
-    parts.push(`Good uncertainty reduction (-${deltaUncert} points)`);
-  } else if (deltaUncert < -10) {
-    parts.push(`Uncertainty increased (+${Math.abs(deltaUncert)} points) - new unknowns discovered`);
+  if (delta_uncert > 20) {
+    parts.push(`Major uncertainty reduction (-${delta_uncert} points)`);
+  } else if (delta_uncert > 10) {
+    parts.push(`Good uncertainty reduction (-${delta_uncert} points)`);
+  } else if (delta_uncert < -10) {
+    parts.push(`Uncertainty increased (+${Math.abs(delta_uncert)} points) - new unknowns discovered`);
   }
 
-  if (deltaContext > 15) {
-    parts.push(`Substantial context enrichment (+${deltaContext} points)`);
-  } else if (deltaContext > 5) {
-    parts.push(`Context improved (+${deltaContext} points)`);
+  if (delta_context > 15) {
+    parts.push(`Substantial context enrichment (+${delta_context} points)`);
+  } else if (delta_context > 5) {
+    parts.push(`Context improved (+${delta_context} points)`);
   }
 
   if (parts.length === 0) {
-    if (learningIndex >= 25) {
+    if (learning_index >= 25) {
       return 'Productive session with balanced learning across metrics.';
-    } else if (learningIndex >= 10) {
+    } else if (learning_index >= 10) {
       return 'Moderate learning session - incremental progress made.';
     } else {
       return 'Low learning delta - session may have focused on execution rather than exploration.';
@@ -235,11 +239,11 @@ function generateLearningSummary(deltaKnow, deltaUncert, deltaContext, learningI
 
   let summary = parts.join('. ') + '.';
 
-  if (learningIndex >= 40) {
+  if (learning_index >= 40) {
     summary += ' Overall: Highly productive learning session.';
-  } else if (learningIndex >= 25) {
+  } else if (learning_index >= 25) {
     summary += ' Overall: Good learning session with meaningful progress.';
-  } else if (learningIndex >= 10) {
+  } else if (learning_index >= 10) {
     summary += ' Overall: Moderate learning session.';
   }
 
@@ -251,57 +255,58 @@ function generateLearningSummary(deltaKnow, deltaUncert, deltaContext, learningI
 ──────────────────────────────────────────────────────────────── */
 
 let simFactory;
-function getSimFactory() {
+function get_sim_factory() {
   if (!simFactory) {
     simFactory = require('../lib/simulation-factory');
   }
   return simFactory;
 }
+const getSimFactory = get_sim_factory;
 
 /* ─────────────────────────────────────────────────────────────
    3. AUTO-SAVE DETECTION
 ──────────────────────────────────────────────────────────────── */
 
-function shouldAutoSave(messageCount) {
-  return messageCount > 0 && messageCount % CONFIG.MESSAGE_COUNT_TRIGGER === 0;
+function should_auto_save(message_count) {
+  return message_count > 0 && message_count % CONFIG.MESSAGE_COUNT_TRIGGER === 0;
 }
 
 /* ─────────────────────────────────────────────────────────────
    4. SESSION DATA COLLECTION
 ──────────────────────────────────────────────────────────────── */
 
-async function collectSessionData(collectedData, specFolderName = null) {
+async function collect_session_data(collected_data, spec_folder_name = null) {
   const now = new Date();
   
-  let folderName = specFolderName;
-  if (!folderName) {
-    const detectedFolder = await detectSpecFolder();
-    const specsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
-    folderName = path.relative(specsDir, detectedFolder);
+  let folder_name = spec_folder_name;
+  if (!folder_name) {
+    const detected_folder = await detectSpecFolder();
+    const specs_dir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
+    folder_name = path.relative(specs_dir, detected_folder);
   }
-  const dateOnly = formatTimestamp(now, 'date-dutch');
-  const timeOnly = formatTimestamp(now, 'time-short');
+  const date_only = formatTimestamp(now, 'date-dutch');
+  const time_only = formatTimestamp(now, 'time-short');
 
-  if (!collectedData) {
+  if (!collected_data) {
     console.log('   ⚠️  Using simulation data');
-    return getSimFactory().createSessionData({
-      specFolder: folderName,
+    return get_sim_factory().createSessionData({
+      specFolder: folder_name,
       channel: getChannel(),
       skillVersion: CONFIG.SKILL_VERSION
     });
   }
 
-  const sessionInfo = collectedData.recent_context?.[0] || {};
-  const observations = collectedData.observations || [];
-  const userPrompts = collectedData.user_prompts || [];
-  const messageCount = userPrompts.length || 0;
+  const session_info = collected_data.recent_context?.[0] || {};
+  const observations = collected_data.observations || [];
+  const user_prompts = collected_data.user_prompts || [];
+  const message_count = user_prompts.length || 0;
 
-  if (shouldAutoSave(messageCount)) {
-    console.log(`\n   📊 Context Budget: ${messageCount} messages reached. Auto-saving context...\n`);
+  if (should_auto_save(message_count)) {
+    console.log(`\n   📊 Context Budget: ${message_count} messages reached. Auto-saving context...\n`);
   }
 
-  const duration = calculateSessionDuration(userPrompts, now);
-  const FILES = extractFilesFromData(collectedData, observations);
+  const duration = calculateSessionDuration(user_prompts, now);
+  const FILES = extractFilesFromData(collected_data, observations);
 
   const OUTCOMES = observations
     .slice(0, 10)
@@ -310,65 +315,65 @@ async function collectSessionData(collectedData, specFolderName = null) {
       TYPE: detectObservationType(obs)
     }));
 
-  const SUMMARY = sessionInfo.learning
+  const SUMMARY = session_info.learning
     || observations.slice(0, 3).map(o => o.narrative).join(' ')
     || 'Session focused on implementing and testing features.';
 
-  const { contextType, importanceTier, decisionCount, toolCounts } = 
-    detectSessionCharacteristics(observations, userPrompts, FILES);
+  const { contextType, importanceTier, decisionCount, toolCounts } =
+    detectSessionCharacteristics(observations, user_prompts, FILES);
   
   const TOOL_COUNT = Object.values(toolCounts).reduce((sum, count) => sum + count, 0);
 
-  const firstPrompt = userPrompts[0]?.prompt || '';
-  const taskFromPrompt = firstPrompt.match(/^(.{20,100}?)(?:[.!?\n]|$)/)?.[1];
+  const first_prompt = user_prompts[0]?.prompt || '';
+  const task_from_prompt = first_prompt.match(/^(.{20,100}?)(?:[.!?\n]|$)/)?.[1];
 
   const OBSERVATIONS_DETAILED = buildObservationsWithAnchors(
-    observations, 
-    collectedData.SPEC_FOLDER || folderName
+    observations,
+    collected_data.SPEC_FOLDER || folder_name
   );
 
-  const sessionId = generateSessionId();
+  const session_id = generateSessionId();
   const channel = getChannel();
-  const createdAtEpoch = Math.floor(Date.now() / 1000);
+  const created_at_epoch = Math.floor(Date.now() / 1000);
 
   let SPEC_FILES = [];
-  const activeSpecsDir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
-  const specFolderPath = collectedData.SPEC_FOLDER
-    ? path.join(activeSpecsDir, collectedData.SPEC_FOLDER)
+  const active_specs_dir = findActiveSpecsDir() || path.join(CONFIG.PROJECT_ROOT, 'specs');
+  const spec_folder_path = collected_data.SPEC_FOLDER
+    ? path.join(active_specs_dir, collected_data.SPEC_FOLDER)
     : null;
 
-  if (specFolderPath) {
+  if (spec_folder_path) {
     try {
-      SPEC_FILES = await detectRelatedDocs(specFolderPath);
-    } catch (docError) {
-      console.warn(`   ⚠️  Could not detect related docs: ${docError.message}`);
+      SPEC_FILES = await detectRelatedDocs(spec_folder_path);
+    } catch (doc_error) {
+      console.warn(`   ⚠️  Could not detect related docs: ${doc_error.message}`);
       SPEC_FILES = [];
     }
   }
 
-  const implementationGuide = buildImplementationGuideData(observations, FILES, folderName);
+  const implementation_guide = buildImplementationGuideData(observations, FILES, folder_name);
 
-  const { projectPhase, activeFile, lastAction, nextAction, blockers, fileProgress } = 
+  const { projectPhase, activeFile, lastAction, nextAction, blockers, fileProgress } =
     buildProjectStateSnapshot({
       toolCounts,
       observations,
-      messageCount,
+      messageCount: message_count,
       FILES,
       SPEC_FILES,
-      specFolderPath,
-      recentContext: collectedData.recent_context
+      specFolderPath: spec_folder_path,
+      recentContext: collected_data.recent_context
     });
 
-  const expiresAtEpoch = calculateExpiryEpoch(importanceTier, createdAtEpoch);
+  const expires_at_epoch = calculateExpiryEpoch(importanceTier, created_at_epoch);
 
   // Extract preflight/postflight data for learning delta tracking
-  const preflightPostflightData = extractPreflightPostflightData(collectedData);
+  const preflight_postflight_data = extract_preflight_postflight_data(collected_data);
 
   return {
-    TITLE: folderName.replace(/^\d{3}-/, '').replace(/-/g, ' '),
-    DATE: dateOnly,
-    TIME: timeOnly,
-    SPEC_FOLDER: folderName,
+    TITLE: folder_name.replace(/^\d{3}-/, '').replace(/-/g, ' '),
+    DATE: date_only,
+    TIME: time_only,
+    SPEC_FOLDER: folder_name,
     DURATION: duration,
     SUMMARY: SUMMARY,
     FILES: FILES.length > 0 ? FILES : [],
@@ -376,21 +381,21 @@ async function collectSessionData(collectedData, specFolderName = null) {
     FILE_COUNT: FILES.length,
     OUTCOMES: OUTCOMES.length > 0 ? OUTCOMES : [{ OUTCOME: 'Session in progress' }],
     TOOL_COUNT,
-    MESSAGE_COUNT: messageCount,
-    QUICK_SUMMARY: observations[0]?.title || sessionInfo.request || taskFromPrompt?.trim() || 'Development session',
+    MESSAGE_COUNT: message_count,
+    QUICK_SUMMARY: observations[0]?.title || session_info.request || task_from_prompt?.trim() || 'Development session',
     SKILL_VERSION: CONFIG.SKILL_VERSION,
     OBSERVATIONS: OBSERVATIONS_DETAILED,
     HAS_OBSERVATIONS: OBSERVATIONS_DETAILED.length > 0,
     SPEC_FILES: SPEC_FILES,
     HAS_SPEC_FILES: SPEC_FILES.length > 0,
-    ...implementationGuide,
-    SESSION_ID: sessionId,
+    ...implementation_guide,
+    SESSION_ID: session_id,
     CHANNEL: channel,
     IMPORTANCE_TIER: importanceTier,
     CONTEXT_TYPE: contextType,
-    CREATED_AT_EPOCH: createdAtEpoch,
-    LAST_ACCESSED_EPOCH: createdAtEpoch,
-    EXPIRES_AT_EPOCH: expiresAtEpoch,
+    CREATED_AT_EPOCH: created_at_epoch,
+    LAST_ACCESSED_EPOCH: created_at_epoch,
+    EXPIRES_AT_EPOCH: expires_at_epoch,
     TOOL_COUNTS: toolCounts,
     DECISION_COUNT: decisionCount,
     ACCESS_COUNT: 1,
@@ -404,7 +409,7 @@ async function collectSessionData(collectedData, specFolderName = null) {
     FILE_PROGRESS: fileProgress,
     HAS_FILE_PROGRESS: fileProgress.length > 0,
     // Preflight/Postflight learning delta data
-    ...preflightPostflightData
+    ...preflight_postflight_data
   };
 }
 
@@ -413,12 +418,20 @@ async function collectSessionData(collectedData, specFolderName = null) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  collectSessionData,
-  shouldAutoSave,
-  // Exported for testing and direct use
-  extractPreflightPostflightData,
-  calculateLearningIndex,
-  getScoreAssessment,
-  getTrendIndicator,
-  generateLearningSummary
+  // Primary exports (snake_case)
+  collect_session_data,
+  should_auto_save,
+  extract_preflight_postflight_data,
+  calculate_learning_index,
+  get_score_assessment,
+  get_trend_indicator,
+  generate_learning_summary,
+  // Backward-compatible aliases (camelCase)
+  collectSessionData: collect_session_data,
+  shouldAutoSave: should_auto_save,
+  extractPreflightPostflightData: extract_preflight_postflight_data,
+  calculateLearningIndex: calculate_learning_index,
+  getScoreAssessment: get_score_assessment,
+  getTrendIndicator: get_trend_indicator,
+  generateLearningSummary: generate_learning_summary
 };

@@ -56,10 +56,19 @@ function read_file_with_encoding(file_path) {
   }
   
   // UTF-16 BE BOM: FE FF
+  // BUG-020 FIX: Node.js Buffer doesn't support 'utf16be' encoding natively.
+  // Convert UTF-16 BE to LE by swapping bytes, then decode as utf16le.
   if (buffer.length >= 2 &&
       buffer[0] === 0xFE &&
       buffer[1] === 0xFF) {
-    return buffer.toString('utf16be').slice(1); // UTF-16 BE
+    // Skip BOM (2 bytes), then swap remaining bytes for BE->LE conversion
+    const content_buffer = buffer.slice(2);
+    for (let i = 0; i < content_buffer.length - 1; i += 2) {
+      const temp = content_buffer[i];
+      content_buffer[i] = content_buffer[i + 1];
+      content_buffer[i + 1] = temp;
+    }
+    return content_buffer.toString('utf16le');
   }
   
   // No BOM detected, assume UTF-8
@@ -164,18 +173,36 @@ function extract_trigger_phrases(content) {
   }
 
   // Method 1b: Check YAML frontmatter multi-line format (support both snake_case and camelCase)
+  // Uses line-by-line parsing to avoid ReDoS vulnerability (BUG-009)
   if (triggers.length === 0) {
-    const multi_line_match = content.match(/(?:trigger_phrases|triggerPhrases):\s*\n((?:\s+(?:-\s+)?(?:#[^\n]*\n\s+)*[-]?\s*["']?[^"'\n#]+["']?\n?)+)/i);
-    if (multi_line_match) {
-      const multi_line_phrases = multi_line_match[1]
-        .split('\n')
-        .map(line => line.replace(/^\s+-\s+/, '').replace(/^\s+/, '').trim().replace(/^["']|["']$/g, ''))
-        .filter(line => line && !line.startsWith('#')); // Filter out YAML comments
-      multi_line_phrases.forEach(phrase => {
-        if (phrase.length > 0 && phrase.length < 100 && !triggers.includes(phrase)) {
-          triggers.push(phrase);
+    const lines = content.split('\n');
+    let in_trigger_block = false;
+
+    for (const line of lines) {
+      // Check for trigger_phrases: or triggerPhrases: header (with optional empty value)
+      if (/^\s*(?:trigger_phrases|triggerPhrases):\s*$/i.test(line)) {
+        in_trigger_block = true;
+        continue;
+      }
+
+      if (in_trigger_block) {
+        // Stop at YAML frontmatter delimiter
+        if (/^---\s*$/.test(line)) {
+          break;
         }
-      });
+        // Match list items: - "phrase" or - 'phrase' or - phrase
+        const item_match = line.match(/^\s*-\s*["']?([^"'\n#]+?)["']?\s*(?:#.*)?$/);
+        if (item_match) {
+          const phrase = item_match[1].trim();
+          // Skip if phrase is just dashes (leftover from --- delimiter partial match)
+          if (phrase.length > 0 && phrase.length < 100 && !/^-+$/.test(phrase) && !triggers.includes(phrase)) {
+            triggers.push(phrase);
+          }
+        } else if (!/^\s*$/.test(line) && !/^\s*#/.test(line) && !/^\s+-/.test(line)) {
+          // Non-empty, non-comment, non-list line = end of block
+          break;
+        }
+      }
     }
   }
 
@@ -406,6 +433,7 @@ function find_memory_files(workspace_path, options = {}) {
   ];
 
   // Recursive directory walker
+  // BUG-027 FIX: Skip symbolic links to prevent infinite loops
   function walk_dir(dir, depth = 0) {
     if (depth > 10) {
       return; // Prevent infinite recursion
@@ -419,6 +447,11 @@ function find_memory_files(workspace_path, options = {}) {
     }
 
     for (const entry of entries) {
+      // BUG-027 FIX: Skip symbolic links to prevent loops and duplicate scanning
+      if (entry.isSymbolicLink()) {
+        continue;
+      }
+
       const full_path = path.join(dir, entry.name);
 
       if (entry.isDirectory()) {

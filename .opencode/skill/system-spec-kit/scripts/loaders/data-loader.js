@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// LOADERS: DATA LOADER
+// ───────────────────────────────────────────────────────────────
+
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -12,9 +16,9 @@ const { CONFIG } = require('../core');
 const { structuredLog, sanitizePath } = require('../utils');
 
 const {
-  validateInputData,
-  normalizeInputData,
-  transformOpenCodeCapture
+  validate_input_data,
+  normalize_input_data,
+  transform_opencode_capture
 } = require('../utils/input-normalizer');
 
 // Lazy load to handle missing dependencies
@@ -32,7 +36,7 @@ try {
    2. LOADER FUNCTIONS
 ──────────────────────────────────────────────────────────────── */
 
-async function loadCollectedData() {
+async function load_collected_data() {
   // Priority 1: Data file provided via command line
   if (CONFIG.DATA_FILE) {
     try {
@@ -48,7 +52,7 @@ async function loadCollectedData() {
         path.join(process.cwd(), 'specs'),
         path.join(process.cwd(), '.opencode')
       ];
-      
+
       let validatedDataFilePath;
       try {
         validatedDataFilePath = sanitizePath(CONFIG.DATA_FILE, dataFileAllowedBases);
@@ -59,34 +63,34 @@ async function loadCollectedData() {
         });
         throw new Error(`Security: Invalid data file path: ${pathError.message}`);
       }
-      
+
       const dataContent = await fs.readFile(validatedDataFilePath, 'utf-8');
       const rawData = JSON.parse(dataContent);
-      
-      validateInputData(rawData, CONFIG.SPEC_FOLDER_ARG);
+
+      validate_input_data(rawData, CONFIG.SPEC_FOLDER_ARG);
       console.log('   ✓ Loaded and validated conversation data from file');
-      
-      const data = normalizeInputData(rawData);
+
+      const data = normalize_input_data(rawData);
       console.log(`   ✓ Loaded data from data file`);
       return data;
     } catch (error) {
       if (error.code === 'ENOENT') {
-        structuredLog('warn', 'Data file not found', { 
-          filePath: CONFIG.DATA_FILE, 
-          error: error.message 
+        structuredLog('warn', 'Data file not found', {
+          filePath: CONFIG.DATA_FILE,
+          error: error.message
         });
         console.log(`   ⚠️  Data file not found: ${CONFIG.DATA_FILE}`);
       } else if (error instanceof SyntaxError) {
-        structuredLog('warn', 'Invalid JSON in data file', { 
-          filePath: CONFIG.DATA_FILE, 
+        structuredLog('warn', 'Invalid JSON in data file', {
+          filePath: CONFIG.DATA_FILE,
           error: error.message,
           position: error.message.match(/position (\d+)/)?.[1] || 'unknown'
         });
         console.log(`   ⚠️  Invalid JSON in data file ${CONFIG.DATA_FILE}: ${error.message}`);
       } else {
-        structuredLog('warn', 'Failed to load data file', { 
-          filePath: CONFIG.DATA_FILE, 
-          error: error.message 
+        structuredLog('warn', 'Failed to load data file', {
+          filePath: CONFIG.DATA_FILE,
+          error: error.message
         });
         console.log(`   ⚠️  Failed to load data file ${CONFIG.DATA_FILE}: ${error.message}`);
       }
@@ -95,32 +99,32 @@ async function loadCollectedData() {
 
   // Priority 2: OpenCode session capture
   console.log('   🔍 Attempting OpenCode session capture...');
-  
+
   if (!opencodeCapture) {
-    structuredLog('debug', 'OpenCode capture not available', { 
-      projectRoot: CONFIG.PROJECT_ROOT 
+    structuredLog('debug', 'OpenCode capture not available', {
+      projectRoot: CONFIG.PROJECT_ROOT
     });
     console.log('   ⚠️  OpenCode capture not available');
   } else {
     try {
       const conversation = await opencodeCapture.captureConversation(20, CONFIG.PROJECT_ROOT);
-      
+
       if (conversation && conversation.exchanges && conversation.exchanges.length > 0) {
         console.log(`   ✓ Captured ${conversation.exchanges.length} exchanges from OpenCode`);
         console.log(`   ✓ Session: ${conversation.sessionTitle || 'Unnamed'}`);
-        
-        const data = transformOpenCodeCapture(conversation);
+
+        const data = transform_opencode_capture(conversation);
         return data;
       } else {
-        structuredLog('debug', 'OpenCode capture returned empty data', { 
-          projectRoot: CONFIG.PROJECT_ROOT 
+        structuredLog('debug', 'OpenCode capture returned empty data', {
+          projectRoot: CONFIG.PROJECT_ROOT
         });
         console.log('   ⚠️  OpenCode capture returned empty data');
       }
     } catch (captureError) {
-      structuredLog('debug', 'OpenCode capture failed', { 
-        projectRoot: CONFIG.PROJECT_ROOT, 
-        error: captureError.message 
+      structuredLog('debug', 'OpenCode capture failed', {
+        projectRoot: CONFIG.PROJECT_ROOT,
+        error: captureError.message
       });
       console.log(`   ⚠️  OpenCode capture unavailable: ${captureError.message}`);
     }
@@ -140,5 +144,8 @@ async function loadCollectedData() {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  loadCollectedData
+  // Primary exports (snake_case)
+  load_collected_data,
+  // Backwards compatibility aliases (camelCase)
+  loadCollectedData: load_collected_data
 };

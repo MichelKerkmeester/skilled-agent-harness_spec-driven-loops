@@ -14,9 +14,9 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Test Files | 11 | Covering cognitive, handlers, memory, and integration |
+| Test Files | 17 | Covering cognitive, handlers, memory, and integration |
 | Test Categories | 20+ | Per file, organized by feature domain |
-| Total Tests | 700+ | Across all test files |
+| Total Tests | 634+ | Across all test files |
 | Test Modes | 2 | Normal and Quick mode (skips embedding tests) |
 
 ### Key Features
@@ -87,33 +87,49 @@ node working-memory.test.js
 
 ```
 tests/
-├── attention-decay.test.js      # Time-based attention decay tests
-├── co-activation.test.js        # Related memory activation tests
-├── modularization.test.js       # Module structure and exports tests
-├── summary-generator.test.js    # Auto-summary generation tests
-├── test-cognitive-integration.js # Cognitive system integration tests (NEW)
-├── test-mcp-tools.js            # Comprehensive MCP handler tests
-├── test-memory-handlers.js      # Memory handler tests (NEW)
-├── test-session-learning.js     # Session learning handler tests (NEW)
-├── tier-classifier.test.js      # Importance tier classification tests
-├── working-memory.test.js       # Session working memory tests
-└── README.md                    # This file
+├── attention-decay.test.js         # Time-based attention decay tests
+├── co-activation.test.js           # Related memory activation tests
+├── composite-scoring.test.js       # Composite scoring with retrievability (NEW)
+├── fsrs-scheduler.test.js          # FSRS algorithm unit tests (NEW)
+├── memory-save-integration.test.js # PE gate + save handler integration (NEW)
+├── memory-search-integration.test.js # Testing effect integration (NEW)
+├── modularization.test.js          # Module structure and exports tests
+├── prediction-error-gate.test.js   # PE thresholds and contradiction (NEW)
+├── schema-migration.test.js        # Schema v4 migration tests (NEW)
+├── summary-generator.test.js       # Auto-summary generation tests
+├── test-cognitive-integration.js   # Cognitive system integration tests (NEW)
+├── test-mcp-tools.js               # Comprehensive MCP handler tests
+├── test-memory-handlers.js         # Memory handler tests (NEW)
+├── test-session-learning.js        # Session learning handler tests (NEW)
+├── tier-classifier.test.js         # Importance tier classification tests
+├── verify-cognitive-upgrade.js     # Comprehensive upgrade verification (NEW)
+├── working-memory.test.js          # Session working memory tests
+├── README.md                       # This file
+├── VERIFICATION_REPORT.md          # Phase 3 verification report (NEW)
+└── [scratch/]                      # Temporary test artifacts (gitignored)
 ```
 
 ### Key Files
 
-| File | Purpose | Tests |
-|------|---------|-------|
-| `test-mcp-tools.js` | Main test runner for all MCP handlers and integration tests | ~100 |
-| `test-session-learning.js` | **NEW** - Tests session learning handler (preflight/postflight) | 161 |
-| `test-memory-handlers.js` | **NEW** - Tests all memory MCP handlers (search, triggers, crud, save, index) | 162 |
-| `test-cognitive-integration.js` | **NEW** - Integration tests for cognitive memory subsystem | 96 |
-| `attention-decay.test.js` | Tests time-based forgetting simulation | ~35 |
-| `co-activation.test.js` | Tests related memory boosting and spreading activation | ~30 |
-| `working-memory.test.js` | Tests session-scoped memory capacity and eviction | ~40 |
-| `tier-classifier.test.js` | Tests six-tier importance classification | ~40 |
-| `summary-generator.test.js` | Tests automatic content summarization | ~45 |
-| `modularization.test.js` | Tests module structure, exports, and dependencies | ~30 |
+| File | Purpose | Test IDs |
+|------|---------|----------|
+| `test-mcp-tools.js` | Main test runner for all MCP handlers | ~100 |
+| `test-session-learning.js` | Session learning handler tests | 161 |
+| `test-memory-handlers.js` | Memory MCP handlers (search, triggers, CRUD) | 162 |
+| `test-cognitive-integration.js` | Cognitive memory subsystem integration | T801-T840 |
+| `fsrs-scheduler.test.js` | **NEW** - FSRS algorithm calculations | T016-T050 |
+| `prediction-error-gate.test.js` | **NEW** - PE thresholds and contradiction | T101-T165 |
+| `composite-scoring.test.js` | **NEW** - Weighted scoring system | T401-T445 |
+| `schema-migration.test.js` | **NEW** - Schema v4 migration | T701-T750 |
+| `memory-save-integration.test.js` | **NEW** - PE gate + save handler | T501-T550 |
+| `memory-search-integration.test.js` | **NEW** - Testing effect integration | T601-T650 |
+| `verify-cognitive-upgrade.js` | **NEW** - 9-category upgrade verification | 45+ |
+| `attention-decay.test.js` | Time-based forgetting simulation | ~35 |
+| `co-activation.test.js` | Related memory boosting | ~30 |
+| `working-memory.test.js` | Session-scoped memory capacity | ~40 |
+| `tier-classifier.test.js` | Six-tier importance classification | ~40 |
+| `summary-generator.test.js` | Automatic content summarization | ~45 |
+| `modularization.test.js` | Module structure and exports | ~30 |
 
 ---
 
@@ -382,7 +398,146 @@ node -e "const lib = require('../lib'); console.log(Object.keys(lib))"
 
 ---
 
-## 7. 📚 RELATED DOCUMENTS
+## 7. 🎯 WORKFLOWS-CODE COMPLIANCE
+
+### Code Quality Gate Status
+
+All test files comply with workflows-code P0 requirements:
+
+| Check | Status | Description |
+|-------|--------|-------------|
+| File Headers | PASS | Box-drawing format: `// ───────────...` |
+| Section Headers | PASS | Numbered format: `/* ─── 1. SECTION ─── */` |
+| snake_case Functions | PASS | All function names (e.g., `load_modules`, `test_retrievability`) |
+| UPPER_SNAKE_CASE Constants | PASS | All constants (e.g., `LIB_PATH`, `HANDLER_PATH`) |
+| 'use strict' | PASS | All files begin with `'use strict';` |
+| No Commented Code | PASS | Clean files without dead code blocks |
+
+### Test Naming Conventions
+
+**Function Names:**
+```javascript
+// snake_case for all functions
+function load_modules() { ... }
+function test_retrievability_calculation() { ... }
+function setup_test_database() { ... }
+```
+
+**Constants:**
+```javascript
+// UPPER_SNAKE_CASE for all constants
+const LIB_PATH = path.join(__dirname, '..', 'lib');
+const HANDLER_PATH = path.join(__dirname, '..', 'handlers');
+const DEFAULT_TIMEOUT = 5000;
+```
+
+**Test IDs:**
+```javascript
+// Format: T[category][number]
+// T001-T052  - FSRS Core Algorithm
+// T101-T165  - Prediction Error Gate
+// T201-T280  - 5-State Model
+// T301-T340  - Attention Decay
+// T401-T445  - Composite Scoring
+// T501-T550  - Memory Save Integration
+// T601-T650  - Memory Search Integration
+// T701-T750  - Schema Migration
+// T801-T840  - Cognitive Integration
+```
+
+### File Structure Standards
+
+**Required File Header:**
+```javascript
+// ───────────────────────────────────────────────────────────────
+// TESTS: [MODULE NAME]
+// [Description of what this test file covers]
+// Covers: [Test ID Range, e.g., T101-T165]
+// ───────────────────────────────────────────────────────────────
+
+'use strict';
+
+const path = require('path');
+```
+
+**Required Sections:**
+```javascript
+/* ─────────────────────────────────────────────────────────────
+   1. TEST FRAMEWORK
+──────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────
+   2. MODULE LOADING
+──────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────
+   3. TEST SUITES (numbered per feature)
+──────────────────────────────────────────────────────────────── */
+```
+
+**Standard Test Framework:**
+```javascript
+const results = {
+  passed: 0,
+  failed: 0,
+  skipped: 0,
+  tests: [],
+};
+
+function pass(name, evidence) { ... }
+function fail(name, reason) { ... }
+function skip(name, reason) { ... }
+```
+
+---
+
+## 8. 🔍 RUNNING VERIFICATION
+
+### Full Verification Run
+
+```bash
+# Navigate to tests directory
+cd .opencode/skill/system-spec-kit/mcp_server/tests
+
+# Run all test files
+for f in *.test.js; do echo "=== $f ==="; node "$f"; done
+
+# Run verification script
+node verify-cognitive-upgrade.js
+```
+
+### Individual Test Suites
+
+```bash
+# FSRS Algorithm (T016-T050)
+node fsrs-scheduler.test.js
+
+# Prediction Error Gate (T101-T165)
+node prediction-error-gate.test.js
+
+# Composite Scoring (T401-T445)
+node composite-scoring.test.js
+
+# Schema Migration (T701-T750)
+node schema-migration.test.js
+
+# Integration Tests
+node memory-save-integration.test.js   # T501-T550
+node memory-search-integration.test.js # T601-T650
+node test-cognitive-integration.js      # T801-T840
+```
+
+### Verification Report
+
+See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 verification report including:
+- Code quality gate compliance details
+- Test coverage matrix
+- Test result summary template
+- Verification checklist
+
+---
+
+## 9. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 
@@ -397,10 +552,17 @@ node -e "const lib = require('../lib'); console.log(Object.keys(lib))"
 
 | Module | Test File | Coverage |
 |--------|-----------|----------|
-| Session Learning | `test-session-learning.js` | **NEW** - Preflight, postflight, learning history, learning index |
-| Memory Handlers | `test-memory-handlers.js` | **NEW** - Search, triggers, CRUD, save, index operations |
-| Cognitive Integration | `test-cognitive-integration.js` | **NEW** - Full pipeline, session lifecycle, cross-component |
-| Attention Decay | `attention-decay.test.js` | Decay rates, tier-based behavior, edge cases |
+| FSRS Scheduler | `fsrs-scheduler.test.js` | **NEW** - Retrievability, stability, difficulty calculations |
+| Prediction Error Gate | `prediction-error-gate.test.js` | **NEW** - Thresholds, contradiction detection, action logic |
+| Composite Scoring | `composite-scoring.test.js` | **NEW** - Weight configuration, scoring calculations |
+| Schema Migration | `schema-migration.test.js` | **NEW** - Column existence, defaults, conflicts table |
+| Memory Save Integration | `memory-save-integration.test.js` | **NEW** - PE gate + save handler integration |
+| Memory Search Integration | `memory-search-integration.test.js` | **NEW** - Testing effect, hybrid search |
+| Session Learning | `test-session-learning.js` | Preflight, postflight, learning history |
+| Memory Handlers | `test-memory-handlers.js` | Search, triggers, CRUD, save, index operations |
+| Cognitive Integration | `test-cognitive-integration.js` | Full pipeline, session lifecycle |
+| Cognitive Upgrade | `verify-cognitive-upgrade.js` | 9-category comprehensive verification |
+| Attention Decay | `attention-decay.test.js` | Decay rates, FSRS integration, tier behavior |
 | Co-Activation | `co-activation.test.js` | Related memory boosting, spreading activation |
 | Working Memory | `working-memory.test.js` | Capacity limits, eviction, session management |
 | Tier Classifier | `tier-classifier.test.js` | Six-tier classification, keyword detection |
@@ -418,4 +580,4 @@ node -e "const lib = require('../lib'); console.log(Object.keys(lib))"
 
 ---
 
-*Documentation version: 1.1 | Last updated: 2026-01-24*
+*Documentation version: 1.3 | Last updated: 2026-01-28*

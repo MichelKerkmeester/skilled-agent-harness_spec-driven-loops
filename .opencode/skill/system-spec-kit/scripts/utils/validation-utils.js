@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// UTILS: VALIDATION UTILS
+// ───────────────────────────────────────────────────────────────
+
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -7,7 +11,7 @@
    2. PLACEHOLDER VALIDATION
 ──────────────────────────────────────────────────────────────── */
 
-function validateNoLeakedPlaceholders(content, filename) {
+function validate_no_leaked_placeholders(content, filename) {
   const leaked = content.match(/\{\{[A-Z_]+\}\}/g);
   if (leaked) {
     console.warn(`⚠️  Leaked placeholders detected in ${filename}: ${leaked.join(', ')}`);
@@ -32,13 +36,13 @@ function validateNoLeakedPlaceholders(content, filename) {
    3. ANCHOR VALIDATION
 ──────────────────────────────────────────────────────────────── */
 
-function validateAnchors(content) {
+function validate_anchors(content) {
   const openPattern = /<!-- (?:ANCHOR|anchor):([a-zA-Z0-9_-]+)/g;
   const closePattern = /<!-- \/(?:ANCHOR|anchor):([a-zA-Z0-9_-]+)/g;
-  
+
   const openAnchors = new Set();
   const closeAnchors = new Set();
-  
+
   let match;
   while ((match = openPattern.exec(content)) !== null) {
     openAnchors.add(match[1]);
@@ -46,26 +50,26 @@ function validateAnchors(content) {
   while ((match = closePattern.exec(content)) !== null) {
     closeAnchors.add(match[1]);
   }
-  
+
   const warnings = [];
-  
+
   for (const anchor of openAnchors) {
     if (!closeAnchors.has(anchor)) {
       warnings.push(`Unclosed anchor: ${anchor} (missing <!-- /ANCHOR:${anchor} -->)`);
     }
   }
-  
+
   for (const anchor of closeAnchors) {
     if (!openAnchors.has(anchor)) {
       warnings.push(`Orphaned closing anchor: ${anchor} (no matching opening tag)`);
     }
   }
-  
+
   return warnings;
 }
 
-function logAnchorValidation(content, filename) {
-  const anchorWarnings = validateAnchors(content);
+function log_anchor_validation(content, filename) {
+  const anchorWarnings = validate_anchors(content);
   if (anchorWarnings.length > 0) {
     console.warn(`[generate-context] Anchor validation warnings in ${filename}:`);
     anchorWarnings.forEach(w => console.warn(`  - ${w}`));
@@ -77,7 +81,12 @@ function logAnchorValidation(content, filename) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  validateNoLeakedPlaceholders,
-  validateAnchors,
-  logAnchorValidation,
+  // Primary exports (snake_case)
+  validate_no_leaked_placeholders,
+  validate_anchors,
+  log_anchor_validation,
+  // Backwards compatibility aliases (camelCase)
+  validateNoLeakedPlaceholders: validate_no_leaked_placeholders,
+  validateAnchors: validate_anchors,
+  logAnchorValidation: log_anchor_validation,
 };

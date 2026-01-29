@@ -391,7 +391,7 @@ Filters: tier=<all|tier> | type=<all|type> | decay=<on|off>
 
 ---
 
-## 🏛️ CONSTITUTIONAL MEMORY BEHAVIOR
+## 7. 🏛️ CONSTITUTIONAL MEMORY BEHAVIOR
 
 Constitutional tier memories receive special handling:
 
@@ -400,13 +400,42 @@ Constitutional tier memories receive special handling:
 | **Always surfaces**  | Appears at TOP of every search result         |
 | **Fixed similarity** | Returns `similarity: 100` regardless of query |
 | **Response flag**    | `isConstitutional: true` in results           |
-| **Token budget**     | ~500 tokens max                               |
+| **Token budget**     | ~2000 tokens max                              |
 
 **Parameter:** Use `--include-constitutional:false` to suppress.
 
 ---
 
-## 7. 📄 MEMORY DETAIL VIEW
+## 8. 🧠 COGNITIVE MEMORY FEATURES
+
+### 5-State Memory Model
+
+Memories are classified into states based on retrievability (R), calculated using the FSRS algorithm:
+
+| State       | Retrievability | Behavior                                  |
+| ----------- | -------------- | ----------------------------------------- |
+| **HOT**     | R ≥ 0.80       | Full content returned, max 5 in results   |
+| **WARM**    | 0.25 ≤ R < 0.80| Summary content, max 10 in results        |
+| **COLD**    | 0.05 ≤ R < 0.25| Tracked but not in context window         |
+| **DORMANT** | 0.02 ≤ R < 0.05| Excluded from context, decay continues    |
+| **ARCHIVED**| R < 0.02       | Cold storage, eligible for cleanup        |
+
+**FSRS Formula:** `R(t, S) = (1 + 0.235 × t/S)^(-0.5)`
+- `t` = days since last access
+- `S` = stability (how well-encoded the memory is)
+
+### Testing Effect
+
+**Accessing memories strengthens them.** Each search that returns a memory:
+- Increases its stability (slower future decay)
+- Boost is larger when R is lower ("desirable difficulty")
+- Formula: `stability_multiplier = 1 + 0.05 + max(0, 1 - R) × 0.3`
+
+This means frequently-used memories become more persistent.
+
+---
+
+## 9. 📄 MEMORY DETAIL VIEW
 
 **Trigger:** Select memory from dashboard, search, or direct load
 
@@ -466,7 +495,7 @@ STATUS=OK ID=<id> ANCHOR=<anchor-id>
 
 ---
 
-## 8. 📋 TRIGGERS VIEW (Read-Only)
+## 10. 📋 TRIGGERS VIEW (Read-Only)
 
 **Trigger:** `/memory:search triggers` or dashboard [t]
 
@@ -501,7 +530,7 @@ To edit triggers, use: /memory:database triggers <id>
 
 ---
 
-## 9. 🔧 MCP ENFORCEMENT MATRIX
+## 11. 🔧 MCP ENFORCEMENT MATRIX
 
 **CRITICAL:** Use the correct MCP tools for each mode.
 
@@ -552,7 +581,7 @@ Read({ filePath: "<absolute_path>" })
 | `specFolder`            | string  | -       | Limit search to a specific spec folder (e.g., "011-semantic-memory")                                     |
 | `includeContent`        | boolean | false   | Include full file content in results. Embeds content directly, eliminating separate load calls.          |
 | `includeContiguity`     | boolean | false   | Include adjacent/contiguous memories in results. Useful for finding related context.                     |
-| `includeConstitutional` | boolean | true    | Include constitutional tier memories at top of results (~500 tokens max)                                 |
+| `includeConstitutional` | boolean | true    | Include constitutional tier memories at top of results (~2000 tokens max)                                |
 | `useDecay`              | boolean | true    | Apply temporal decay scoring to results (recent memories rank higher)                                    |
 
 **Usage Notes:**
@@ -564,7 +593,7 @@ Read({ filePath: "<absolute_path>" })
 
 ---
 
-## 10. 📌 QUICK REFERENCE
+## 12. 🔍 QUICK REFERENCE
 
 | Command                              | Result                    |
 | ------------------------------------ | ------------------------- |
@@ -579,7 +608,7 @@ Read({ filePath: "<absolute_path>" })
 
 ---
 
-## 11. ⚠️ ERROR HANDLING
+## 13. ⚠️ ERROR HANDLING
 
 | Condition              | Response                                      |
 | ---------------------- | --------------------------------------------- |
@@ -591,7 +620,7 @@ Read({ filePath: "<absolute_path>" })
 
 ---
 
-## 12. 🔗 RELATED COMMANDS
+## 14. 🔗 RELATED COMMANDS
 
 - `/memory:database` - Database management (cleanup, tier, triggers, delete, scan, health)
 - `/memory:save` - Save current conversation context
@@ -599,7 +628,7 @@ Read({ filePath: "<absolute_path>" })
 
 ---
 
-## 13. 📚 FULL DOCUMENTATION
+## 15. 📚 FULL DOCUMENTATION
 
 For comprehensive memory system documentation:
 `.opencode/skill/system-spec-kit/SKILL.md`

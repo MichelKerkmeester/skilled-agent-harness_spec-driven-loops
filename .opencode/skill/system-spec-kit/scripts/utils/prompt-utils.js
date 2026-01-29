@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// UTILS: PROMPT UTILS
+// ───────────────────────────────────────────────────────────────
+
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -9,7 +13,7 @@ const readline = require('readline');
    2. INTERACTIVE MODE DETECTION
 ──────────────────────────────────────────────────────────────── */
 
-function requireInteractiveMode(operation) {
+function require_interactive_mode(operation) {
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
     console.error('ERROR: This operation requires user input but running in non-interactive mode.');
     console.error(`Operation: ${operation}`);
@@ -27,10 +31,10 @@ function requireInteractiveMode(operation) {
    3. USER PROMPTS
 ──────────────────────────────────────────────────────────────── */
 
-function promptUser(question, defaultValue = '', requireInteractive = true) {
+function prompt_user(question, defaultValue = '', requireInteractive = true) {
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
     if (requireInteractive && defaultValue === '') {
-      requireInteractiveMode('user input required');
+      require_interactive_mode('user input required');
     }
     console.warn('[generate-context] Non-interactive mode: using default value');
     return Promise.resolve(defaultValue);
@@ -46,12 +50,12 @@ function promptUser(question, defaultValue = '', requireInteractive = true) {
       rl.close();
       resolve(answer.trim());
     });
-    
+
     rl.on('error', (err) => {
       rl.close();
       reject(err);
     });
-    
+
     rl.on('SIGINT', () => {
       rl.close();
       reject(new Error('User interrupted input'));
@@ -59,17 +63,17 @@ function promptUser(question, defaultValue = '', requireInteractive = true) {
   });
 }
 
-async function promptUserChoice(question, maxChoice, maxAttempts = 3, requireInteractive = true) {
+async function prompt_user_choice(question, maxChoice, maxAttempts = 3, requireInteractive = true) {
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
     if (requireInteractive) {
-      requireInteractiveMode('spec folder selection');
+      require_interactive_mode('spec folder selection');
     }
     console.warn(`[generate-context] Non-interactive mode: using default choice 1`);
     return 1;
   }
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    const answer = await promptUser(question);
+    const answer = await prompt_user(question);
     const choice = parseInt(answer);
 
     if (!isNaN(choice) && choice >= 1 && choice <= maxChoice) {
@@ -89,7 +93,12 @@ async function promptUserChoice(question, maxChoice, maxAttempts = 3, requireInt
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  requireInteractiveMode,
-  promptUser,
-  promptUserChoice
+  // Primary exports (snake_case)
+  require_interactive_mode,
+  prompt_user,
+  prompt_user_choice,
+  // Backwards compatibility aliases (camelCase)
+  requireInteractiveMode: require_interactive_mode,
+  promptUser: prompt_user,
+  promptUserChoice: prompt_user_choice
 };

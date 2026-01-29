@@ -4,127 +4,138 @@ argument-hint: "<skill-name> [--path output-dir] [:auto|:confirm]"
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task, TodoWrite]
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** This workflow requires 1-2 user interactions.
-
----
-
-## 🔒 PHASE 0: WRITE AGENT VERIFICATION [PRIORITY GATE]
-
-**STATUS: ☐ BLOCKED** (Must pass BEFORE all other phases)
-
-> **⚠️ CRITICAL:** This command REQUIRES the `@write` agent for template enforcement, DQI scoring, and quality gates.
-
-```
-EXECUTE THIS CHECK FIRST:
-
-├─ SELF-CHECK: Are you operating as the @write agent?
-│   │
-│   ├─ INDICATORS that you ARE @write agent:
-│   │   ├─ You were invoked with "@write" prefix
-│   │   ├─ You have template-first workflow capabilities
-│   │   ├─ You load templates BEFORE creating content
-│   │   ├─ You validate template alignment AFTER creating
-│   │
-│   ├─ IF YES (all indicators present):
-│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 1
-│   │
-│   └─ IF NO or UNCERTAIN:
-│       │
-│       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-│       │
-│       ├─ DISPLAY to user:
-│       │   ┌────────────────────────────────────────────────────────────┐
-│       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-│       │   │                                                            │
-│       │   │ This command requires the @write agent for:                │
-│       │   │   • Template-first workflow (loads before creating)          │
-│       │   │   • DQI scoring (target: 90+ Excellent)                    │
-│       │   │   • workflows-documentation skill integration               │
-│       │   │                                                            │
-│       │   │ To proceed, restart with:                                  │
-│       │   │   @write /create:skill [skill-name]                        │
-│       │   │                                                            │
-│       │   │ Reference: .opencode/agent/write.md                        │
-│       │   └────────────────────────────────────────────────────────────┘
-│       │
-│       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
-
-**STOP HERE** - Verify you are operating as @write agent before continuing. If not, instruct user to restart with @write prefix.
-
-⛔ HARD STOP: DO NOT proceed to PHASE 1 until STATUS = ✅ PASSED
-```
-
-**Phase 0 Output:** `write_agent_verified = [yes/no]`
+**Round-trip optimization:** This workflow requires only 1 user interaction.
 
 ---
 
-## 🔒 PHASE 1: INPUT COLLECTION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only:
-│   │
-│   ├─ ASK user:
-│   │   ┌────────────────────────────────────────────────────────────┐
-│   │   │ "What skill would you like to create?"                     │
-│   │   │                                                            │
-│   │   │ Please provide a hyphen-case skill name                    │
-│   │   │ (e.g., pdf-editor, data-transformer, api-client)           │
-│   │   └────────────────────────────────────────────────────────────┘
-│   │
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Store response as: skill_name
-│   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
-│
-└─ IF $ARGUMENTS contains content:
-    │
-    ├─ Extract skill name (first argument)
-    ├─ Extract --path flag if present (optional)
-    ├─ VALIDATE skill name format:
-│   ├─ Must be hyphen-case (lowercase, hyphens, digits only)
-│   ├─ Must match folder name exactly
-│   ├─ No uppercase, underscores, or special characters
-    │   │
-    │   ├─ IF invalid format:
-    │   │   ├─ SHOW: "Invalid skill name format. Expected: hyphen-case-name"
-    │   │   ├─ ASK for corrected name
-    │   │   └─ WAIT for response
-    │   │
-    │   └─ IF valid:
-    │       └─ Store as: skill_name
-    │
-    ├─ Store output path as: skill_path (default: .opencode/skill/)
-    └─ SET STATUS: ✅ PASSED → Proceed to PHASE 2
+1. CHECK Phase 0: @write agent verification (AUTOMATIC - not a question):
+   │
+   ├─ SELF-CHECK: Are you operating as the @write agent?
+   │   │
+   │   ├─ INDICATORS that you ARE @write agent:
+   │   │   ├─ You were invoked with "@write" prefix
+   │   │   ├─ You have template-first workflow capabilities
+   │   │   ├─ You load templates BEFORE creating content
+   │   │   ├─ You validate template alignment AFTER creating
+   │   │
+   │   ├─ IF YES (all indicators present):
+   │   │   └─ write_agent_verified = TRUE → Continue to step 2
+   │   │
+   │   └─ IF NO or UNCERTAIN:
+   │       │
+   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+   │       │
+   │       ├─ DISPLAY to user:
+   │       │   ┌────────────────────────────────────────────────────────────┐
+   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
+   │       │   │                                                            │
+   │       │   │ This command requires the @write agent for:                │
+   │       │   │   • Template-first workflow (loads before creating)          │
+   │       │   │   • DQI scoring (target: 90+ Excellent)                    │
+   │       │   │   • workflows-documentation skill integration               │
+   │       │   │                                                            │
+   │       │   │ To proceed, restart with:                                  │
+   │       │   │   @write /create:skill [skill-name]                        │
+   │       │   │                                                            │
+   │       │   │ Reference: .opencode/agent/write.md                        │
+   │       │   └────────────────────────────────────────────────────────────┘
+   │       │
+   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
 
-**STOP HERE** - Wait for user to provide a valid skill name before continuing.
+2. CHECK for mode suffix in $ARGUMENTS or command invocation:
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
+   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
+3. CHECK if $ARGUMENTS contains a skill name (ignoring flags):
+   ├─ IF $ARGUMENTS has content → skill_name = extracted value, omit Q0
+   │   ├─ Extract --path flag if present (optional)
+   │   ├─ VALIDATE skill name format:
+   │   │   ├─ Must be hyphen-case (lowercase, hyphens, digits only)
+   │   │   ├─ Must match folder name exactly
+   │   │   ├─ No uppercase, underscores, or special characters
+   │   │   └─ IF invalid: include Q0 in prompt with format guidance
+   │   └─ Store output path as: skill_path (default: .opencode/skill/)
+   └─ IF $ARGUMENTS is empty → include Q0 in prompt
+
+4. Search for related spec folders:
+   $ ls -d specs/*/ 2>/dev/null | tail -10
+
+5. Determine if memory loading question is needed:
+   - Will be asked ONLY if user selects A or C for spec folder AND memory/ has files
+   - Include Q3 placeholder with note "(if using existing spec with memory files)"
+
+6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Skill Name** (if not provided in command):               │
+   │    What skill would you like to create?                        │
+   │    Format: hyphen-case (e.g., pdf-editor, api-client)          │
+   │                                                                │
+   │ **Q1. Spec Folder** (required):                                │
+   │    A) Use existing: [suggest if related found]                 │
+   │    B) Create new spec folder (Recommended)                     │
+   │    C) Update related spec: [if partial match found]            │
+   │    D) Skip documentation                                       │
+   │                                                                │
+   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
+   │    A) Interactive - Confirm at each step (Recommended)          │
+   │    B) Autonomous - Execute without prompts                     │
+   │                                                                │
+   │ **Q3. Memory Context** (if using existing spec with memory/):  │
+   │    A) Load most recent memory file                              │
+   │    B) Load all recent files, up to 3                            │
+   │    C) Skip (start fresh)                                       │
+   │                                                                │
+   │ Reply with answers, e.g.: "B, A, C" or "pdf-editor, B, A, C"   │
+   └────────────────────────────────────────────────────────────────┘
+
+7. WAIT for user response (DO NOT PROCEED)
+
+8. Parse response and store ALL results:
+   - skill_name = [from Q0 or $ARGUMENTS]
+   - skill_path = [from --path flag or default: .opencode/skill/]
+   - spec_choice = [A/B/C/D from Q1]
+   - spec_path = [derived path or null if D]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
+   - memory_choice = [A/B/C from Q3, or N/A if not applicable]
+
+9. Execute background operations based on choices:
+   - IF spec_choice == B: Find next number and create: specs/[NNN]-[skill-name]/
+   - IF memory_choice == A: Load most recent memory file
+   - IF memory_choice == B: Load up to 3 recent memory files
+
+10. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
+⛔ NEVER auto-create spec folders without user confirmation
+⛔ NEVER auto-select execution mode without suffix or explicit choice
+⛔ NEVER split these questions into multiple prompts
 ⛔ NEVER infer skill names from context, screenshots, or conversation history
-⛔ NEVER proceed without explicit skill name from user
 ```
 
-**Phase 1 Output:** `skill_name = ________________` | `skill_path = ________________`
-
----
-
-## 🔒 MODE DETECTION
-
-```
-CHECK for mode suffix in $ARGUMENTS or command invocation:
-
-├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
-├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
-└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
-```
-
-**Mode Output:** `execution_mode = ________________`
+**Phase Output:**
+- `write_agent_verified = ________________`
+- `skill_name = ________________`
+- `skill_path = ________________`
+- `spec_choice = ___` | `spec_path = ________________`
+- `execution_mode = ________________`
+- `memory_loaded = ________________`
 
 ---
 
@@ -145,120 +156,25 @@ CHECK for mode suffix in $ARGUMENTS or command invocation:
 
 ---
 
-## 🔒 PHASE 2: SPEC FOLDER SELECTION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
-
-1. Search for related spec folders:
-   $ ls -d specs/*/ 2>/dev/null | tail -10
-
-2. ASK user with these EXACT options:
-   ┌────────────────────────────────────────────────────────────┐
-   │ "Where should this skill creation be documented?"          │
-   │                                                            │
-   │ A) Use existing spec folder: [suggest if related found]    │
-   │ B) Create new spec folder (auto-numbered)                  │
-   │ C) Update related spec: [if partial match found]           │
-   │ D) Skip documentation                                      │
-   └────────────────────────────────────────────────────────────┘
-
-3. WAIT for explicit user choice (A, B, C, or D)
-
-4. Process choice:
-   ├─ IF A (Use existing):
-   │   ├─ Confirm which folder
-   │   └─ Store as: spec_path
-   │
-   ├─ IF B (Create new):
-   │   ├─ Find next number: ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
-   │   ├─ Create: specs/[NNN]-[skill-name]/
-   │   └─ Store as: spec_path
-   │
-   ├─ IF C (Update related):
-   │   ├─ Confirm which folder
-   │   └─ Store as: spec_path
-   │
-   └─ IF D (Skip):
-       └─ spec_path = null
-
-5. SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to select spec folder option (A/B/C/D) before continuing.
-
-⛔ HARD STOP: DO NOT proceed until user explicitly selects A, B, C, or D
-⛔ NEVER auto-create spec folders without user confirmation
-```
-
-**Phase 2 Output:** `spec_choice = ___` | `spec_path = ________________`
-
----
-
-## 🔒 PHASE 3: MEMORY CONTEXT LOADING (Conditional)
-
-**STATUS: ☐ BLOCKED / ☐ N/A**
-
-```
-EXECUTE AFTER PHASE 2 PASSES:
-
-CHECK spec_choice value from Phase 2:
-
-├─ IF spec_choice == D (Skip):
-│   └─ SET STATUS: ⏭️ N/A (no spec folder, no memory)
-│
-├─ IF spec_choice == B (Create new):
-│   └─ SET STATUS: ⏭️ N/A (new folder has no memory)
-│
-└─ IF spec_choice == A or C (Use existing):
-    │
-    ├─ Check: Does spec_path/memory/ exist AND contain files?
-    │
-    ├─ IF memory/ is empty or missing:
-    │   └─ SET STATUS: ⏭️ N/A (no memory to load)
-    │
-    └─ IF memory/ has files:
-        │
-        ├─ ASK user:
-        │   ┌────────────────────────────────────────────────────┐
-        │   │ "Load previous context from this spec folder?"     │
-        │   │                                                    │
-        │   │ A) Load most recent memory file (quick refresh)     │
-        │   │ B) Load all recent files, up to 3 (comprehensive)   │
-        │   │ C) List all files and select specific                │
-        │   │ D) Skip (start fresh, no context)                  │
-        │   └────────────────────────────────────────────────────┘
-        │
-        ├─ WAIT for user response
-        ├─ Execute loading based on choice (use Read tool)
-        ├─ Acknowledge loaded context briefly
-        └─ SET STATUS: ✅ PASSED
-
-⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED or ⏭️ N/A
-```
-
-**Phase 3 Output:** `memory_loaded = [yes/no]` | `context_summary = ________________`
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                | REQUIRED STATUS   | YOUR STATUS | OUTPUT VALUE                           |
-| -------------------- | ----------------- | ----------- | -------------------------------------- |
-| PHASE 0: WRITE AGENT | ✅ PASSED          | ______      | write_agent_verified: ______           |
-| PHASE 1: INPUT       | ✅ PASSED          | ______      | skill_name: ______ / skill_path: _____ |
-| MODE DETECTION       | ✅ SET             | ______      | execution_mode: ______                 |
-| PHASE 2: SPEC FOLDER | ✅ PASSED          | ______      | spec_choice: ___ / spec_path: ______   |
-| PHASE 3: MEMORY      | ✅ PASSED or ⏭️ N/A | ______      | memory_loaded: ______                  |
+| FIELD                | REQUIRED      | YOUR VALUE | SOURCE                 |
+| -------------------- | ------------- | ---------- | ---------------------- |
+| write_agent_verified | ✅ Yes         | ______     | Automatic check        |
+| skill_name           | ✅ Yes         | ______     | Q0 or $ARGUMENTS       |
+| skill_path           | ✅ Yes         | ______     | --path flag or default |
+| spec_choice          | ✅ Yes         | ______     | Q1                     |
+| spec_path            | ○ Conditional | ______     | Derived from Q1        |
+| execution_mode       | ✅ Yes         | ______     | Suffix or Q2           |
+| memory_loaded        | ○ Conditional | ______     | Q3 (if existing spec)  |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED or ⏭️ N/A?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# Skill Creation Workflow" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -268,11 +184,12 @@ VERIFICATION CHECK:
 **YOU ARE IN VIOLATION IF YOU:**
 
 **Phase Violations:**
-- Executed command without @write agent verification (Phase 0)
-- Started reading the workflow section before all phases passed
-- Proceeded without asking user for skill name (Phase 1)
-- Auto-created spec folder without A/B/C/D choice (Phase 2)
-- Skipped memory prompt when using existing folder with memory files (Phase 3)
+- Executed command without @write agent verification
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Proceeded without asking user for skill name when not in $ARGUMENTS
+- Auto-created or assumed a spec folder without user confirmation
+- Auto-selected execution mode without suffix or explicit user choice
 - Inferred skill name from context instead of explicit user input
 
 **Workflow Violations (Steps 1-9):**
@@ -286,10 +203,10 @@ VERIFICATION CHECK:
 ```
 FOR PHASE VIOLATIONS:
 1. STOP immediately - do not continue current action
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly (ask user, wait for response)
-5. RESUME only after all phases pass verification
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 
 FOR WORKFLOW VIOLATIONS:
 1. STOP immediately
@@ -322,6 +239,75 @@ FOR WORKFLOW VIOLATIONS:
 | 7    | Validation       | ☐      | package_skill.py results    | All checks pass                |
 | 8    | Resource Routing | ☐      | references/, assets/ files  | User chose, resources created  |
 | 9    | Save Context     | ☐      | memory/*.md                 | Context preserved              |
+
+---
+
+## 📊 WORKFLOW DIAGRAM
+
+```mermaid
+flowchart TD
+    subgraph phase0["Phase 0: @write Agent Verification"]
+        P0{{"@write Agent?"}}
+    end
+
+    subgraph steps["9-Step Skill Creation Workflow"]
+        S1["Step 1: Analysis<br/>Validate name & path"]
+        S2["Step 2: Spec Setup<br/>Create spec folder"]
+        S3["Step 3: Understanding<br/>Gather use cases & triggers"]
+        S4["Step 4: Planning<br/>Identify resources needed"]
+        S5["Step 5: Initialization<br/>Scaffold SKILL.md & dirs"]
+        S6["Step 6: Content<br/>Populate all sections"]
+        S7["Step 7: Validation<br/>Run package_skill.py"]
+        S8["Step 8: Resource Routing<br/>Create references/assets"]
+        S9["Step 9: Save Context<br/>Preserve to memory/"]
+    end
+
+    subgraph gates["Decision Gates"]
+        G1{{"Name Valid?"}}
+        G2{{"Examples Gathered?"}}
+        G3{{"Validation Pass?"}}
+        G4{{"Resources Needed?"}}
+    end
+
+    P0 -->|Yes| S1
+    P0 -->|No| BLOCK["⛔ HARD BLOCK<br/>Restart with @write"]
+
+    S1 --> G1
+    G1 -->|Yes| S2
+    G1 -->|No| S1
+
+    S2 --> S3
+    S3 --> G2
+    G2 -->|Yes| S4
+    G2 -->|No| S3
+
+    S4 --> S5
+    S5 --> S6
+    S6 --> S7
+
+    S7 --> G3
+    G3 -->|Pass| S8
+    G3 -->|Fail| S6
+
+    S8 --> G4
+    G4 -->|Yes| CREATE["Create Resources"]
+    G4 -->|Skip| S9
+    CREATE --> S9
+
+    S9 --> DONE["✅ Skill Complete"]
+
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef block fill:#7f1d1d,stroke:#ef4444,color:#fff
+    classDef step fill:#1e293b,stroke:#64748b,color:#fff
+
+    class P0 phase
+    class G1,G2,G3,G4 gate
+    class DONE,CREATE verify
+    class BLOCK block
+    class S1,S2,S3,S4,S5,S6,S7,S8,S9 step
+```
 
 ---
 
@@ -517,12 +503,12 @@ This command creates skills that may need additional resources:
 
 After skill creation completes, suggest relevant next steps:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| Skill needs reference docs | `/create:skill_reference [skill-name] workflow` | Add technical workflows |
-| Skill needs templates | `/create:skill_asset [skill-name] template` | Add copy-paste templates |
-| Skill needs examples | `/create:skill_asset [skill-name] example` | Add working code examples |
-| Skill is complete | Test with `/skill:[skill-name]` | Verify skill works |
-| Want to save context | `/memory:save [spec-folder-path]` | Preserve skill creation context |
+| Condition                  | Suggested Command                               | Reason                          |
+| -------------------------- | ----------------------------------------------- | ------------------------------- |
+| Skill needs reference docs | `/create:skill_reference [skill-name] workflow` | Add technical workflows         |
+| Skill needs templates      | `/create:skill_asset [skill-name] template`     | Add copy-paste templates        |
+| Skill needs examples       | `/create:skill_asset [skill-name] example`      | Add working code examples       |
+| Skill is complete          | Test with `/skill:[skill-name]`                 | Verify skill works              |
+| Want to save context       | `/memory:save [spec-folder-path]`               | Preserve skill creation context |
 
 **ALWAYS** end with: "What would you like to do next?"

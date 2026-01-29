@@ -2,7 +2,6 @@
 name: debug
 description: Debugging specialist with fresh perspective and systematic 4-phase methodology for root cause analysis
 mode: subagent
-model: gpt
 temperature: 0.2
 permission:
   read: allow
@@ -39,11 +38,11 @@ This agent defaults to **GPT-5.2-Codex** for maximum debugging precision. GPT-5.
 
 > **Copilot model**: `gpt-5.2-codex` (via model picker or `--model gpt-5.2-codex`)
 
-| Model                       | Use When                  | Task Examples                                           |
-| --------------------------- | ------------------------- | ------------------------------------------------------- |
-| **GPT-5.2-Codex** (default) | All debugging tasks       | Root cause analysis, complex traces, architectural bugs |
-| **Opus**                    | Deep pattern analysis     | Multi-file debugging, architectural investigation       |
-| **Gemini**                  | Alternative preference    | Pro for quality, Flash for speed                        |
+| Model                       | Use When               | Task Examples                                           |
+| --------------------------- | ---------------------- | ------------------------------------------------------- |
+| **GPT-5.2-Codex** (default) | All debugging tasks    | Root cause analysis, complex traces, architectural bugs |
+| **Opus**                    | Deep pattern analysis  | Multi-file debugging, architectural investigation       |
+| **Gemini**                  | Alternative preference | Pro for quality, Flash for speed                        |
 
 ### Dispatch Instructions
 
@@ -235,6 +234,117 @@ Error location known?
        ├─► New error? → New observation cycle (Phase 1)
        └─► Same error? → Try Hypothesis 2
            └─► All hypotheses exhausted? → ESCALATE
+```
+
+---
+
+### Workflow Diagram
+
+```mermaid
+flowchart TB
+    subgraph ENTRY["FRESH PERSPECTIVE ENTRY"]
+        direction TB
+        A[("🔍 Debug Request<br/>3+ failures OR explicit request")]
+        B["Context Handoff<br/>(NOT conversation history)"]
+        C{"Handoff<br/>Complete?"}
+        D["Ask for Missing Info"]
+    end
+
+    subgraph PHASE1["PHASE 1: OBSERVE"]
+        direction TB
+        E["Read Error Messages<br/>(exact text, not paraphrased)"]
+        F["Categorize Error Type"]
+        G["Map Affected Files"]
+        H["Note What is NOT Failing"]
+        I["Observation Report"]
+    end
+
+    subgraph PHASE2["PHASE 2: ANALYZE"]
+        direction TB
+        J{"Error Location<br/>Known?"}
+        K["narsil_get_callers()<br/>Trace call paths"]
+        L["narsil_neural_search()<br/>Find error sources"]
+        M["Understand Data Flow"]
+        N["Check Recent Changes"]
+        O["Analysis Report"]
+    end
+
+    subgraph PHASE3["PHASE 3: HYPOTHESIZE"]
+        direction TB
+        P["Generate 2-3 Hypotheses"]
+        Q["Rank by Confidence"]
+        R["Document Evidence"]
+        S["Define Validation Tests"]
+    end
+
+    subgraph PHASE4["PHASE 4: FIX"]
+        direction TB
+        T["Implement Hypothesis 1"]
+        U{"Tests<br/>Pass?"}
+        V["Document Solution"]
+        W{"New<br/>Error?"}
+        X["Try Next Hypothesis"]
+        Y{"Hypotheses<br/>Exhausted?"}
+    end
+
+    subgraph GATE["VERIFICATION GATE"]
+        direction TB
+        Z["Root cause with evidence?"]
+        AA["Minimal targeted fix?"]
+        AB["Tests pass (actual output)?"]
+        AC["No regression?"]
+    end
+
+    subgraph OUTPUT["RESPONSE OUTPUT"]
+        direction TB
+        AD["✅ Success Response"]
+        AE["⚠️ Blocked Response"]
+        AF["🚨 Escalation Response"]
+    end
+
+    %% Flow connections
+    A --> B
+    B --> C
+    C -->|No| D
+    D --> B
+    C -->|Yes| E
+
+    E --> F --> G --> H --> I
+    I --> J
+
+    J -->|Yes| K
+    J -->|No| L
+    K --> M
+    L --> M
+    M --> N --> O
+
+    O --> P --> Q --> R --> S
+
+    S --> T --> U
+    U -->|Yes| V
+    V --> Z
+    U -->|No| W
+    W -->|Yes| E
+    W -->|No| X
+    X --> Y
+    Y -->|No| T
+    Y -->|Yes| AF
+
+    Z --> AA --> AB --> AC
+    AC --> AD
+
+    %% Styling
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef output fill:#312e81,stroke:#6366f1,color:#fff
+    classDef decision fill:#4a1d6e,stroke:#a855f7,color:#fff
+
+    class A,B,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,V,X core
+    class C,U,W,Y decision
+    class Z,AA,AB,AC gate
+    class AD,AE,AF output
+    class D verify
 ```
 
 ---

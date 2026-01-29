@@ -69,7 +69,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    B) Load constitutional only (foundational rules)            │
    │    C) Skip (start fresh)                                       │
    │                                                                │
-   │ **Q5. Memory Context** (if using existing spec with memory/):  │
+   │ **Q6. Memory Context** (if using existing spec with memory/):  │
    │    A) Load most recent memory file                              │
    │    B) Load all recent files, up to 3                            │
    │    C) Skip (start fresh)                                       │
@@ -274,6 +274,119 @@ Behavior:
 | First time researching unfamiliar area       | `:confirm`       |
 | Re-running research with minor scope changes | `:auto`          |
 | Multi-stakeholder decision requiring review  | `:confirm`       |
+
+### Workflow Diagram
+
+```mermaid
+flowchart TB
+    subgraph SETUP["🔒 UNIFIED SETUP PHASE"]
+        direction TB
+        S1[/"Command Invocation<br>/spec_kit:research [topic]"/]
+        S2{Mode Suffix?}
+        S3[":auto → AUTONOMOUS"]
+        S4[":confirm → INTERACTIVE"]
+        S5["No suffix → ASK user"]
+        S6["Consolidated Prompt<br>(Q0-Q6)"]
+        S7[/"User Response"/]
+
+        S1 --> S2
+        S2 -->|":auto"| S3
+        S2 -->|":confirm"| S4
+        S2 -->|"none"| S5
+        S3 --> S6
+        S4 --> S6
+        S5 --> S6
+        S6 --> S7
+    end
+
+    subgraph MEMORY_PRE["🧠 MEMORY CHECK"]
+        direction TB
+        M1["memory_match_triggers()"]
+        M2["memory_search()<br>anchors: research, findings"]
+        M3{Prior Work<br>Found?}
+        M4["Load Context"]
+        M5["Start Fresh"]
+
+        M1 --> M2 --> M3
+        M3 -->|"Yes (>70%)"| M4
+        M3 -->|"No"| M5
+    end
+
+    subgraph WORKFLOW["📊 9-STEP RESEARCH WORKFLOW"]
+        direction TB
+
+        subgraph SCOPE["Steps 1-2: Scope & Standards"]
+            W1["Step 1: Request Analysis<br>→ research_objectives"]
+            W2["Step 2: Pre-Work Review<br>→ principles_established"]
+        end
+
+        subgraph AGENT["Steps 3-7: @research Agent Dispatch"]
+            W3["Step 3: Codebase Investigation<br>→ current_state_analysis"]
+            W4["Step 4: External Research<br>→ best_practices_summary"]
+            W5["Step 5: Technical Analysis<br>→ technical_specifications"]
+            W6["Step 6: Quality Checklist<br>→ quality_checklist"]
+            W7["Step 7: Solution Design<br>→ solution_architecture"]
+        end
+
+        subgraph COMPILE["Steps 8-9: Documentation"]
+            W8["Step 8: Research Compilation<br>→ research.md (17 sections)"]
+            W9["Step 9: Save Context<br>→ memory/*.md"]
+        end
+
+        W1 --> W2 --> W3
+        W3 --> W4 --> W5 --> W6 --> W7
+        W7 --> W8 --> W9
+    end
+
+    subgraph GATES["✅ QUALITY GATES"]
+        direction LR
+        G1["Pre-exec<br>Gate ≥70"]
+        G2["Mid-exec<br>Gate ≥70"]
+        G3["Post-exec<br>Gate ≥70"]
+    end
+
+    subgraph OUTPUT["📄 OUTPUTS"]
+        direction TB
+        O1["research.md<br>17 Sections"]
+        O2["memory/*.md<br>Indexed Context"]
+        O3["STATUS=OK<br>Ready for /spec_kit:plan"]
+    end
+
+    SETUP --> MEMORY_PRE
+    MEMORY_PRE --> WORKFLOW
+
+    G1 -.->|"Before Step 1"| W1
+    G2 -.->|"After Step 5"| W5
+    G3 -.->|"After Step 9"| W9
+
+    W9 --> OUTPUT
+    O1 --> O3
+    O2 --> O3
+
+    %% Styling
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef memory fill:#4c1d95,stroke:#8b5cf6,color:#fff
+    classDef agent fill:#0f4c75,stroke:#3282b8,color:#fff
+    classDef output fill:#1f2937,stroke:#6b7280,color:#fff
+
+    class S1,S2,S3,S4,S5,S6,S7 core
+    class G1,G2,G3 gate
+    class M1,M2,M3,M4,M5 memory
+    class W1,W2 core
+    class W3,W4,W5,W6,W7 agent
+    class W8,W9 verify
+    class O1,O2,O3 output
+```
+
+**Diagram Legend:**
+- **Blue (core)**: Setup and scope definition steps
+- **Purple (memory)**: Memory integration checkpoints
+- **Teal (agent)**: Steps 3-7 dispatched to @research agent
+- **Green (verify)**: Documentation compilation steps
+- **Orange (gate)**: Quality gate checkpoints (≥70 to pass)
+- **Gray (output)**: Final deliverables
 
 ---
 

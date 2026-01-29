@@ -80,6 +80,27 @@ Current implementation status and what's working
 What needs to happen next
 ```
 
+**6-Tier Importance System** (retrieval priority):
+
+Memory files are automatically scored using a 6-tier importance system that determines retrieval priority:
+
+| Tier | Score | Criteria | Retrieval Priority |
+|------|-------|----------|-------------------|
+| **Constitutional** | 100 | Project-wide rules, hard constraints | ALWAYS retrieved first |
+| **Critical** | 80 | Blockers, critical decisions | High priority |
+| **High** | 60 | Major decisions, key context | Medium-high priority |
+| **Medium** | 40 | Standard session context | Medium priority |
+| **Low** | 20 | Minor notes, references | Low priority |
+| **Archive** | 10 | Historical, rarely needed | Lowest priority |
+
+**How Tiers Work:**
+- Constitutional memories appear FIRST in all search results (safety-critical rules)
+- Critical/High memories surface for active work context
+- Medium memories provide background context
+- Low/Archive memories retrieved only when specifically relevant
+
+**Automatic Scoring:** The `generate-context.js` script analyzes content to assign tier scores based on keywords, section structure, and context markers.
+
 ---
 
 ## 5. 📚 RELATED DOCUMENTS

@@ -416,7 +416,7 @@ STATUS=OK REMOVED=<N> KEPT=<N> CHECKPOINT=<name>
 
 | Tier           | Description                        |
 | -------------- | ---------------------------------- |
-| constitutional | Universal rules (~500 tokens max)  |
+| constitutional | Universal rules (~2000 tokens max) |
 | critical       | Architecture, core patterns        |
 | important      | Key implementations                |
 | normal         | General context                    |
@@ -463,7 +463,7 @@ Memory #<id>: "<title>"
 Current tier: <tier>
 
 Select new tier:
-  [0] constitutional - Universal rules (~500 tokens max)
+  [0] constitutional - Universal rules (~2000 tokens max)
   [1] critical       - Architecture, core patterns
   [2] important      - Key implementations
   [3] normal         - General context
@@ -475,7 +475,41 @@ Select new tier:
 
 ---
 
-## 9. ✏️ TRIGGER EDIT
+## 9. 🧠 COGNITIVE MEMORY MODEL
+
+### 5-State Memory Classification
+
+Memories are automatically classified based on **retrievability (R)**, calculated using the FSRS algorithm:
+
+| State       | Retrievability | Cleanup Behavior                           |
+| ----------- | -------------- | ------------------------------------------ |
+| **HOT**     | R ≥ 0.80       | Protected from cleanup                     |
+| **WARM**    | 0.25 ≤ R < 0.80| Protected from cleanup                     |
+| **COLD**    | 0.05 ≤ R < 0.25| Eligible after 30+ days inactive           |
+| **DORMANT** | 0.02 ≤ R < 0.05| Eligible after 14+ days inactive           |
+| **ARCHIVED**| R < 0.02       | Auto-eligible for cleanup                  |
+
+**FSRS Decay Formula:** `R(t, S) = (1 + 0.235 × t/S)^(-0.5)`
+- `t` = days since last access
+- `S` = stability (how well-encoded the memory is)
+
+### Memory Strengthening
+
+Memories get stronger when accessed (Testing Effect):
+- Each search access increases stability
+- Harder recalls (low R) provide larger boosts
+- Constitutional memories never decay
+
+### Cleanup Impact
+
+The `/memory:database cleanup` command respects the 5-state model:
+- HOT/WARM memories are never cleaned
+- COLD/DORMANT require age thresholds
+- ARCHIVED memories are primary cleanup targets
+
+---
+
+## 10. ✏️ TRIGGER EDIT
 
 **Trigger:** `/memory:database triggers <id>`
 
@@ -531,7 +565,7 @@ STATUS=OK ID=<id> TRIGGERS=<N>
 
 ---
 
-## 10. ✓ VALIDATE MODE
+## 11. ✅ VALIDATE MODE
 
 **Trigger:** `/memory:database validate <id> useful` or `/memory:database validate <id> not`
 
@@ -564,7 +598,7 @@ STATUS=OK ID=<id> USEFUL=<true|false>
 
 ---
 
-## 11. 🗑️ DELETE MODE
+## 12. 🗑️ DELETE MODE
 
 **Trigger:** `/memory:database delete <id>`
 
@@ -627,7 +661,7 @@ STATUS=OK DELETED=<id>
 
 ---
 
-## 12. 🏥 HEALTH CHECK
+## 13. 🏥 HEALTH CHECK
 
 **Trigger:** `/memory:database health`
 
@@ -668,7 +702,7 @@ STATUS=OK HEALTH=<healthy|degraded|error>
 
 ---
 
-## 13. 📌 QUICK REFERENCE
+## 14. 🔍 QUICK REFERENCE
 
 | Command                                | Result                |
 | -------------------------------------- | --------------------- |
@@ -685,7 +719,7 @@ STATUS=OK HEALTH=<healthy|degraded|error>
 
 ---
 
-## 14. ⚠️ ERROR HANDLING
+## 15. ⚠️ ERROR HANDLING
 
 | Condition              | Response                                      |
 | ---------------------- | --------------------------------------------- |
@@ -697,7 +731,7 @@ STATUS=OK HEALTH=<healthy|degraded|error>
 
 ---
 
-## 15. 🔗 RELATED COMMANDS
+## 16. 🔗 RELATED COMMANDS
 
 - `/memory:search` - Browse and search memories (read-only)
 - `/memory:save` - Save current conversation context
@@ -705,7 +739,7 @@ STATUS=OK HEALTH=<healthy|degraded|error>
 
 ---
 
-## 16. 📚 FULL DOCUMENTATION
+## 17. 📚 FULL DOCUMENTATION
 
 For comprehensive memory system documentation:
 `.opencode/skill/system-spec-kit/SKILL.md`

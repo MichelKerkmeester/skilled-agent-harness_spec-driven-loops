@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// EXTRACTORS: DIAGRAM EXTRACTOR
+// ───────────────────────────────────────────────────────────────
+
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────
@@ -32,22 +36,22 @@ const { generateDecisionTree } = require('../lib/decision-tree-generator');
    2. PHASE EXTRACTION
 ──────────────────────────────────────────────────────────────── */
 
-function extractPhasesFromData(collectedData) {
+function extract_phases_from_data(collected_data) {
   // Check parent object exists BEFORE accessing properties
-  if (!collectedData || !collectedData.observations || collectedData.observations.length === 0) {
+  if (!collected_data || !collected_data.observations || collected_data.observations.length === 0) {
     return simFactory.createSimulationPhases();
   }
   
   // Return empty for very short sessions (≤2 messages)
-  // Safe to access now - we verified collectedData.observations exists above
-  const messageCount = collectedData.observations.length;
-  if (messageCount <= 2) {
+  // Safe to access now - we verified collected_data.observations exists above
+  const message_count = collected_data.observations.length;
+  if (message_count <= 2) {
     console.log('   ℹ️  Session too short for meaningful phase detection');
     return [];
   }
 
-  const observations = collectedData.observations;
-  const phaseMap = new Map();
+  const observations = collected_data.observations;
+  const phase_map = new Map();
 
   for (const obs of observations) {
     const tools = obs.facts?.flatMap(f => {
@@ -56,8 +60,8 @@ function extractPhasesFromData(collectedData) {
       const detection = detectToolCall(f);
       if (!detection) return [];
 
-      const toolIndex = f.search(new RegExp(`\\b${detection.tool}\\b`, 'i'));
-      if (toolIndex >= 0 && isProseContext(f, toolIndex)) {
+      const tool_index = f.search(new RegExp(`\\b${detection.tool}\\b`, 'i'));
+      if (tool_index >= 0 && isProseContext(f, tool_index)) {
         return [];
       }
 
@@ -70,34 +74,34 @@ function extractPhasesFromData(collectedData) {
       content
     );
 
-    if (!phaseMap.has(phase)) {
-      phaseMap.set(phase, { count: 0, duration: 0, activities: [] });
+    if (!phase_map.has(phase)) {
+      phase_map.set(phase, { count: 0, duration: 0, activities: [] });
     }
 
-    const phaseData = phaseMap.get(phase);
-    phaseData.count++;
+    const phase_data = phase_map.get(phase);
+    phase_data.count++;
 
     if (content && content.trim().length > 10) {
       let activity = content.substring(0, 50);
-      const lastSpace = activity.lastIndexOf(' ');
-      if (lastSpace > 30) {
-        activity = activity.substring(0, lastSpace);
+      const last_space = activity.lastIndexOf(' ');
+      if (last_space > 30) {
+        activity = activity.substring(0, last_space);
       }
 
       if (activity.length < content.length) {
         activity += '...';
       }
 
-      const meaningfulContent = activity.replace(/[^a-zA-Z0-9]/g, '');
-      if (meaningfulContent.length < 5) continue;
+      const meaningful_content = activity.replace(/[^a-zA-Z0-9]/g, '');
+      if (meaningful_content.length < 5) continue;
 
-      if (!phaseData.activities.includes(activity)) {
-        phaseData.activities.push(activity);
+      if (!phase_data.activities.includes(activity)) {
+        phase_data.activities.push(activity);
       }
     }
   }
 
-  return Array.from(phaseMap.entries()).map(([name, data]) => ({
+  return Array.from(phase_map.entries()).map(([name, data]) => ({
     PHASE_NAME: name,
     DURATION: `${data.count} actions`,
     ACTIVITIES: data.activities.slice(0, 3)
@@ -108,17 +112,17 @@ function extractPhasesFromData(collectedData) {
    3. DIAGRAM EXTRACTION
 ──────────────────────────────────────────────────────────────── */
 
-async function extractDiagrams(collectedData) {
-  if (!collectedData) {
+async function extract_diagrams(collected_data) {
+  if (!collected_data) {
     console.log('   ⚠️  Using simulation data for diagrams');
     return simFactory.createDiagramData();
   }
 
-  const observations = collectedData.observations || [];
-  const decisions = collectedData.observations?.filter(o => o.type === 'decision') || [];
-  const userPrompts = collectedData.user_prompts || [];
+  const observations = collected_data.observations || [];
+  const decisions = collected_data.observations?.filter(o => o.type === 'decision') || [];
+  const user_prompts = collected_data.user_prompts || [];
 
-  const boxChars = /[┌┐└┘├┤┬┴┼─│╭╮╰╯╱╲▼▲►◄]/;
+  const box_chars = /[┌┐└┘├┤┬┴┼─│╭╮╰╯╱╲▼▲►◄]/;
 
   const DIAGRAMS = [];
 
@@ -126,12 +130,12 @@ async function extractDiagrams(collectedData) {
     const narrative = obs.narrative || '';
     const facts = obs.facts || [];
 
-    if (boxChars.test(narrative) || facts.some(f => boxChars.test(f))) {
-      const asciiArt = boxChars.test(narrative)
+    if (box_chars.test(narrative) || facts.some(f => box_chars.test(f))) {
+      const ascii_art = box_chars.test(narrative)
         ? narrative
-        : facts.find(f => boxChars.test(f)) || '';
+        : facts.find(f => box_chars.test(f)) || '';
 
-      const pattern = flowchartGen.classifyDiagramPattern(asciiArt);
+      const pattern = flowchartGen.classifyDiagramPattern(ascii_art);
 
       DIAGRAMS.push({
         TITLE: obs.title || 'Detected Diagram',
@@ -141,7 +145,7 @@ async function extractDiagrams(collectedData) {
         COMPLEXITY: pattern.complexity,
         HAS_DESCRIPTION: !!obs.title,
         DESCRIPTION: obs.title || 'Diagram found in conversation',
-        ASCII_ART: asciiArt.substring(0, 1000),
+        ASCII_ART: ascii_art.substring(0, 1000),
         HAS_NOTES: false,
         NOTES: [],
         HAS_RELATED_FILES: obs.files && obs.files.length > 0,
@@ -150,10 +154,10 @@ async function extractDiagrams(collectedData) {
     }
   }
 
-  const phases = extractPhasesFromData(collectedData);
+  const phases = extract_phases_from_data(collected_data);
   const AUTO_CONVERSATION_FLOWCHART = flowchartGen.generateConversationFlowchart(
     phases,
-    userPrompts[0]?.prompt || 'User request'
+    user_prompts[0]?.prompt || 'User request'
   );
 
   const AUTO_DECISION_TREES = decisions.map((dec, index) => {
@@ -170,21 +174,21 @@ async function extractDiagrams(collectedData) {
     };
   });
 
-  const diagramTypeCounts = new Map();
+  const diagram_type_counts = new Map();
   for (const diagram of DIAGRAMS) {
-    const count = diagramTypeCounts.get(diagram.DIAGRAM_TYPE) || 0;
-    diagramTypeCounts.set(diagram.DIAGRAM_TYPE, count + 1);
+    const count = diagram_type_counts.get(diagram.DIAGRAM_TYPE) || 0;
+    diagram_type_counts.set(diagram.DIAGRAM_TYPE, count + 1);
   }
 
-  const DIAGRAM_TYPES = Array.from(diagramTypeCounts.entries()).map(([TYPE, COUNT]) => ({ TYPE, COUNT }));
+  const DIAGRAM_TYPES = Array.from(diagram_type_counts.entries()).map(([TYPE, COUNT]) => ({ TYPE, COUNT }));
 
-  const patternCounts = new Map();
+  const pattern_counts = new Map();
   for (const diagram of DIAGRAMS) {
-    const count = patternCounts.get(diagram.PATTERN_NAME) || 0;
-    patternCounts.set(diagram.PATTERN_NAME, count + 1);
+    const count = pattern_counts.get(diagram.PATTERN_NAME) || 0;
+    pattern_counts.set(diagram.PATTERN_NAME, count + 1);
   }
 
-  const PATTERN_SUMMARY = Array.from(patternCounts.entries()).map(([PATTERN_NAME, COUNT]) => ({ PATTERN_NAME, COUNT }));
+  const PATTERN_SUMMARY = Array.from(pattern_counts.entries()).map(([PATTERN_NAME, COUNT]) => ({ PATTERN_NAME, COUNT }));
 
   return {
     DIAGRAMS: DIAGRAMS.map(validateDataStructure),
@@ -205,6 +209,10 @@ async function extractDiagrams(collectedData) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  extractPhasesFromData,
-  extractDiagrams
+  // Primary exports (snake_case)
+  extract_phases_from_data,
+  extract_diagrams,
+  // Backward-compatible aliases (camelCase)
+  extractPhasesFromData: extract_phases_from_data,
+  extractDiagrams: extract_diagrams
 };

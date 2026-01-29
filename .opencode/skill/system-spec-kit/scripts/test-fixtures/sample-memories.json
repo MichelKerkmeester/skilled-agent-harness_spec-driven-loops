@@ -1,0 +1,106 @@
+{
+  "memories": [
+    {
+      "id": 1,
+      "content": "Always use FSRS for spaced repetition",
+      "summary": "FSRS preference",
+      "importance": 5,
+      "stability": 1.0,
+      "difficulty": 5.0,
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "content": "Never use exponential decay for memory",
+      "summary": "Avoid exponential",
+      "importance": 5,
+      "stability": 2.0,
+      "difficulty": 4.0,
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "content": "Constitutional rules have importance tier 5 and cannot be modified",
+      "summary": "Constitutional immutability",
+      "importance": 5,
+      "stability": 30.0,
+      "difficulty": 1.0,
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "content": "Use anchor-based retrieval for efficient context loading",
+      "summary": "Anchor retrieval pattern",
+      "importance": 4,
+      "stability": 5.0,
+      "difficulty": 3.0,
+      "created_at": "2026-01-05T00:00:00Z"
+    },
+    {
+      "id": 5,
+      "content": "Prediction error gate threshold is 0.3 for significant updates",
+      "summary": "PE gate threshold",
+      "importance": 4,
+      "stability": 3.0,
+      "difficulty": 4.0,
+      "created_at": "2026-01-10T00:00:00Z"
+    },
+    {
+      "id": 6,
+      "content": "Session context should be saved before major milestones",
+      "summary": "Session save timing",
+      "importance": 3,
+      "stability": 2.0,
+      "difficulty": 3.0,
+      "created_at": "2026-01-12T00:00:00Z"
+    },
+    {
+      "id": 7,
+      "content": "Tier 1 memories are ephemeral and decay within 24 hours",
+      "summary": "Ephemeral tier behavior",
+      "importance": 1,
+      "stability": 0.5,
+      "difficulty": 5.0,
+      "created_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": 8,
+      "content": "Memory consolidation happens during retrieval success",
+      "summary": "Consolidation trigger",
+      "importance": 4,
+      "stability": 4.0,
+      "difficulty": 3.5,
+      "created_at": "2026-01-18T00:00:00Z"
+    },
+    {
+      "id": 9,
+      "content": "Vector embeddings use 384 dimensions for semantic search",
+      "summary": "Embedding dimensions",
+      "importance": 3,
+      "stability": 10.0,
+      "difficulty": 2.0,
+      "created_at": "2026-01-20T00:00:00Z"
+    },
+    {
+      "id": 10,
+      "content": "Spec folder documentation is required for all file modifications",
+      "summary": "Spec folder requirement",
+      "importance": 5,
+      "stability": 15.0,
+      "difficulty": 2.0,
+      "created_at": "2026-01-22T00:00:00Z"
+    }
+  ],
+  "metadata": {
+    "description": "Sample memories for testing cognitive memory upgrade features",
+    "version": "1.0.0",
+    "created": "2026-01-28",
+    "tiers": {
+      "1": "Ephemeral (importance 1)",
+      "2": "Session (importance 2)",
+      "3": "Project (importance 3)",
+      "4": "Workflow (importance 4)",
+      "5": "Constitutional (importance 5)"
+    }
+  }
+}

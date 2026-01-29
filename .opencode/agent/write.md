@@ -2,7 +2,6 @@
 name: write
 description: Documentation generation and maintenance specialist using workflows-documentation skill for DQI-compliant, template-aligned output
 mode: all
-model: sonnet
 temperature: 0.1
 permission:
   read: allow
@@ -30,12 +29,12 @@ Template-first documentation specialist ensuring 100% alignment with workflows-d
 
 This agent defaults to **Sonnet** for balanced quality and efficiency. Sonnet produces high-quality structured documentation with strong reasoning.
 
-| Model              | Use When                 | Task Examples                                    |
-| ------------------ | ------------------------ | ------------------------------------------------ |
+| Model                | Use When                 | Task Examples                                     |
+| -------------------- | ------------------------ | ------------------------------------------------- |
 | **Sonnet** (default) | Standard documentation   | SKILL.md, README, reference files, install guides |
-| **Opus**           | Complex documentation    | Large system docs, architectural documentation   |
-| **Gemini**         | Alternative preference   | Pro for quality, Flash for speed                 |
-| **GPT**            | User explicitly requests | Alternative AI preference                        |
+| **Opus**             | Complex documentation    | Large system docs, architectural documentation    |
+| **Gemini**           | Alternative preference   | Pro for quality, Flash for speed                  |
+| **GPT**              | User explicitly requests | Alternative AI preference                         |
 
 ### Dispatch Instructions
 
@@ -75,6 +74,29 @@ Task(subagent_type: "write", model: "gemini", prompt: "...")
 10. **DELIVER** → Template-aligned, DQI-compliant documentation
 
 **CRITICAL**: Steps 3 (LOAD TEMPLATE), 6 (COPY SKELETON), and 8 (VALIDATE ALIGNMENT) are mandatory. Never skip template verification or reconstruct headers from memory.
+
+```mermaid
+flowchart TD
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef template fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+
+    START([Doc Request]) --> R1[1. RECEIVE]:::core
+    R1 --> R2[2. CLASSIFY]:::core
+    R2 --> R3[3. LOAD TEMPLATE]:::template
+    R3 --> R4[4. INVOKE SKILL]:::core
+    R4 --> R5[5. EXTRACT]:::core
+    R5 --> R6[6. COPY SKELETON]:::template
+    R6 --> R7[7. FILL CONTENT]:::core
+    R7 --> R8[8. VALIDATE ALIGNMENT]:::template
+    R8 --> CHECK{Aligned?}
+    CHECK -->|No| R6
+    CHECK -->|Yes| R9[9. DQI SCORE]:::verify
+    R9 --> BAND{Score >= 75?}
+    BAND -->|No| R7
+    BAND -->|Yes| R10[10. DELIVER]:::verify
+    R10 --> DONE([DQI-Compliant Doc])
+```
 
 ---
 
@@ -601,18 +623,18 @@ For EACH H2 header in your file:
 
 **Common placeholders that indicate incomplete work:**
 
-| Placeholder Text         | Location           | Fix Required                |
-| ------------------------ | ------------------ | --------------------------- |
-| `[INSERT CONTENT]`       | Any section        | Add actual content          |
-| `TODO:`                  | Any location       | Complete the TODO           |
-| `[Coming soon]`          | Any section        | Write content now           |
-| `TBD`                    | Any section        | Determine and document      |
-| `[Your description]`     | YAML frontmatter   | Write actual description    |
-| `example.com`            | RELATED RESOURCES  | Add real links              |
-| Empty OVERVIEW section   | Section 1          | Add overview content        |
-| Empty RELATED RESOURCES  | Last section       | Add related links/resources |
-| `...`                    | Incomplete content | Complete the sentence       |
-| `etc.`                   | List items         | Enumerate all items         |
+| Placeholder Text        | Location           | Fix Required                |
+| ----------------------- | ------------------ | --------------------------- |
+| `[INSERT CONTENT]`      | Any section        | Add actual content          |
+| `TODO:`                 | Any location       | Complete the TODO           |
+| `[Coming soon]`         | Any section        | Write content now           |
+| `TBD`                   | Any section        | Determine and document      |
+| `[Your description]`    | YAML frontmatter   | Write actual description    |
+| `example.com`           | RELATED RESOURCES  | Add real links              |
+| Empty OVERVIEW section  | Section 1          | Add overview content        |
+| Empty RELATED RESOURCES | Last section       | Add related links/resources |
+| `...`                   | Incomplete content | Complete the sentence       |
+| `etc.`                  | List items         | Enumerate all items         |
 
 **Placeholder Scan:**
 ```bash
@@ -646,16 +668,16 @@ Fix verification gaps first
 
 ### Common Verification Failures
 
-| Failure Pattern              | Detection                           | Fix                                     |
-| ---------------------------- | ----------------------------------- | --------------------------------------- |
-| **Phantom Files**            | Reporting file creation without verification | Read file before claiming creation      |
-| **Fabricated DQI Scores**    | Claiming score without script output | Run extract_structure.py                |
-| **Missing Emojis**           | H2 headers without template emojis  | Re-read template, copy headers exactly  |
-| **Placeholder Text**         | TODO, TBD, [INSERT] in output       | Replace all placeholders with content   |
-| **Empty Sections**           | Headers with no content underneath  | Write content or remove header          |
-| **Incomplete Frontmatter**   | Missing required YAML fields        | Complete all required fields            |
-| **Broken Template Alignment** | Sections in wrong order or missing  | Re-read template, fix structure         |
-| **No Resource Verification** | Claiming references/assets exist    | Read each file to verify                |
+| Failure Pattern               | Detection                                    | Fix                                    |
+| ----------------------------- | -------------------------------------------- | -------------------------------------- |
+| **Phantom Files**             | Reporting file creation without verification | Read file before claiming creation     |
+| **Fabricated DQI Scores**     | Claiming score without script output         | Run extract_structure.py               |
+| **Missing Emojis**            | H2 headers without template emojis           | Re-read template, copy headers exactly |
+| **Placeholder Text**          | TODO, TBD, [INSERT] in output                | Replace all placeholders with content  |
+| **Empty Sections**            | Headers with no content underneath           | Write content or remove header         |
+| **Incomplete Frontmatter**    | Missing required YAML fields                 | Complete all required fields           |
+| **Broken Template Alignment** | Sections in wrong order or missing           | Re-read template, fix structure        |
+| **No Resource Verification**  | Claiming references/assets exist             | Read each file to verify               |
 
 ### Verification Tool Usage
 
@@ -711,11 +733,11 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 Add confidence marker to completion report:
 
-| Confidence | Criteria                                | Action                  |
-| ---------- | --------------------------------------- | ----------------------- |
+| Confidence | Criteria                                     | Action                  |
+| ---------- | -------------------------------------------- | ----------------------- |
 | **HIGH**   | All files verified, DQI run, no placeholders | Proceed with completion |
-| **MEDIUM** | Most verified, minor gaps documented    | Fix gaps first          |
-| **LOW**    | Missing key verification steps          | DO NOT complete         |
+| **MEDIUM** | Most verified, minor gaps documented         | Fix gaps first          |
+| **LOW**    | Missing key verification steps               | DO NOT complete         |
 
 **Report Format:**
 ```markdown

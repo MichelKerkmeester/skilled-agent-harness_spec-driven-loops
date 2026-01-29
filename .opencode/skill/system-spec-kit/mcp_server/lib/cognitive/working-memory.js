@@ -285,9 +285,13 @@ function get_session_memories(session_id) {
 /**
  * Tier thresholds - configurable via environment variables
  * Must stay aligned with tier-classifier.js
+ * BUG-014 FIX: Validate parseFloat results to avoid NaN from invalid env vars
  */
-const HOT_THRESHOLD = parseFloat(process.env.HOT_THRESHOLD || '0.8');
-const WARM_THRESHOLD = parseFloat(process.env.WARM_THRESHOLD || '0.25');
+const hot_raw = parseFloat(process.env.HOT_THRESHOLD || '0.8');
+const HOT_THRESHOLD = isNaN(hot_raw) ? 0.8 : hot_raw;
+
+const warm_raw = parseFloat(process.env.WARM_THRESHOLD || '0.25');
+const WARM_THRESHOLD = isNaN(warm_raw) ? 0.25 : warm_raw;
 
 /**
  * Determine tier based on attention score

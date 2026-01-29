@@ -7,6 +7,63 @@ Public Release: https://github.com/MichelKerkmeester/opencode-dev-environment
 
 ---
 
+## [**1.1.0.0**] - 2026-01-29
+
+Major Spec Kit Memory upgrade implementing **cognitive memory** with FSRS algorithm validated on 100M+ users, **30 bug fixes** from comprehensive 10-agent audit, and **20 agent/command files** enhanced with Mermaid diagrams and unified setup patterns.
+
+---
+
+## Highlights
+
+### 🧠 Cognitive Memory System (Spec 079)
+- **FSRS power-law decay** — `R(t,S) = (1 + 0.235 × t/S)^(-0.5)` replaces exponential decay
+- **Prediction Error Gating** — Prevents duplicates (≥0.95), handles contradictions (0.90-0.94), links related (0.70-0.89)
+- **5-state memory model** — HOT/WARM/COLD/DORMANT/ARCHIVED with configurable thresholds
+- **Testing Effect** — Accessing memories strengthens them (desirable difficulty bonus)
+- **Schema v4 migration** — Additive columns (stability, difficulty, last_review, review_count)
+
+### 🔧 Bug Remediation (Spec 080)
+- **30 bugs fixed** — 3 CRITICAL, 8 HIGH, 9 MEDIUM, 10 LOW across 18 files
+- **FSRS integration** — Fixed function signature mismatch (FSRS now executes)
+- **ReDoS eliminated** — Line-by-line parsing replaces vulnerable regex patterns
+- **Threshold fixes** — DORMANT (0.02) and LOW_MATCH (0.50) now differentiated
+- **Transaction safety** — SAVEPOINT/ROLLBACK pattern, cache mutex, atomic migrations
+
+### 📝 Agent System Improvements (Spec 005)
+- **20 Mermaid diagrams** — Visual workflows for all 7 agents, 7 spec_kit commands, 6 create commands
+- **Unified setup pattern** — Create commands refactored from 2-4 interactions to 1 consolidated prompt
+- **OUTPUT VERIFICATION** — Added to orchestrate.md, HARD BLOCK section to research.md
+- **Naming consistency** — `@documentation-writer` → `@write` (6 instances)
+
+---
+
+## Files Changed
+
+**Spec Kit Memory MCP (18 files):**
+- `lib/cognitive/` — fsrs-scheduler.js (NEW), prediction-error-gate.js (NEW), tier-classifier.js, attention-decay.js, co-activation.js, working-memory.js
+- `lib/scoring/composite-scoring.js` — Retrievability weight (0.15)
+- `lib/search/vector-index.js` — Schema v4, LRUCache methods, cache mutex
+- `lib/storage/` — checkpoints.js (SAVEPOINT), history.js (undo check)
+- `lib/parsing/` — memory-parser.js (ReDoS fix), trigger-matcher.js (Unicode)
+- `handlers/` — memory-save.js (PE gating), memory-search.js (testing effect), memory-crud.js
+
+**Agent System (20 files):**
+- `.opencode/agent/` — orchestrate.md, speckit.md, research.md, handover.md, review.md, write.md, debug.md
+- `.opencode/command/spec_kit/` — complete.md, plan.md, implement.md, research.md, debug.md, handover.md, resume.md
+- `.opencode/command/create/` — agent.md, skill.md, folder_readme.md, install_guide.md, skill_asset.md, skill_reference.md
+
+---
+
+## Upgrade
+
+1. **Restart MCP server** — Schema v4 migration runs automatically on first start
+2. **No breaking changes** — Existing memories receive default values (stability=1.0, difficulty=5.0)
+3. **FSRS active** — Memory decay now uses validated power-law formula
+
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-dev-environment/compare/v1.0.9.0...v1.1.0.0
+
+---
+
 ## [**1.0.9.0**] - 2026-01-26
 
 New **workflows-code--full-stack** skill for multi-stack projects supporting **5 technology stacks** (Go, Node.js, React, React Native, Swift). Existing `workflows-code` renamed to `workflows-code--web-dev` for clarity. **AGENTS.md Section 9** updated to document both skill variants.

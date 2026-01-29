@@ -1,0 +1,116 @@
+{
+  "pairs": [
+    {
+      "a": "Always use tabs for indentation",
+      "b": "Never use tabs for indentation",
+      "isContradiction": true,
+      "category": "always-never"
+    },
+    {
+      "a": "Enable caching for all requests",
+      "b": "Disable caching for all requests",
+      "isContradiction": true,
+      "category": "enable-disable"
+    },
+    {
+      "a": "Use FSRS algorithm",
+      "b": "Prefer FSRS algorithm",
+      "isContradiction": false,
+      "category": "semantic-similarity"
+    },
+    {
+      "a": "Must validate all inputs",
+      "b": "Must not validate inputs",
+      "isContradiction": true,
+      "category": "must-must-not"
+    },
+    {
+      "a": "Include error handling in all functions",
+      "b": "Exclude error handling from functions",
+      "isContradiction": true,
+      "category": "include-exclude"
+    },
+    {
+      "a": "Use async/await for all API calls",
+      "b": "Use callbacks for all API calls",
+      "isContradiction": true,
+      "category": "approach-conflict"
+    },
+    {
+      "a": "Constitutional memories are immutable",
+      "b": "All memories can be modified",
+      "isContradiction": true,
+      "category": "scope-conflict"
+    },
+    {
+      "a": "Save context automatically",
+      "b": "Save context manually",
+      "isContradiction": true,
+      "category": "automatic-manual"
+    },
+    {
+      "a": "Use 2-space indentation",
+      "b": "Use 4-space indentation",
+      "isContradiction": true,
+      "category": "value-conflict"
+    },
+    {
+      "a": "Allow null values in database",
+      "b": "Disallow null values in database",
+      "isContradiction": true,
+      "category": "allow-disallow"
+    },
+    {
+      "a": "Prefer semantic search for code",
+      "b": "Use semantic search when available",
+      "isContradiction": false,
+      "category": "preference-agreement"
+    },
+    {
+      "a": "Memory importance ranges from 1 to 5",
+      "b": "Memory importance uses a 1-5 scale",
+      "isContradiction": false,
+      "category": "equivalent-phrasing"
+    },
+    {
+      "a": "Tier 5 memories never decay",
+      "b": "All memories eventually decay",
+      "isContradiction": true,
+      "category": "exception-conflict"
+    },
+    {
+      "a": "Use JSON for configuration",
+      "b": "Use YAML for configuration",
+      "isContradiction": true,
+      "category": "format-conflict"
+    },
+    {
+      "a": "Require authentication for all endpoints",
+      "b": "Public endpoints need no authentication",
+      "isContradiction": true,
+      "category": "scope-exception"
+    }
+  ],
+  "metadata": {
+    "description": "Test cases for contradiction detection between memory statements",
+    "version": "1.0.0",
+    "created": "2026-01-28",
+    "categories": {
+      "always-never": "Direct always/never contradictions",
+      "enable-disable": "Enable vs disable state conflicts",
+      "must-must-not": "Mandatory vs prohibited actions",
+      "include-exclude": "Inclusion vs exclusion conflicts",
+      "approach-conflict": "Different approaches to same problem",
+      "scope-conflict": "All vs some/none scope conflicts",
+      "automatic-manual": "Automation vs manual process conflicts",
+      "value-conflict": "Specific value disagreements",
+      "allow-disallow": "Permission vs prohibition conflicts",
+      "exception-conflict": "Rule vs exception conflicts",
+      "format-conflict": "Different format requirements",
+      "scope-exception": "General rule vs specific exception",
+      "semantic-similarity": "Similar meaning, not contradictory",
+      "preference-agreement": "Different phrasing, same preference",
+      "equivalent-phrasing": "Same meaning, different words"
+    }
+  }
+}

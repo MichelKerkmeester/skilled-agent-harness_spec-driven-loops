@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// EXTRACTORS: FILE EXTRACTOR
+// ───────────────────────────────────────────────────────────────
+
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────
@@ -31,7 +35,7 @@ try {
    2. OBSERVATION TYPE DETECTION
 ──────────────────────────────────────────────────────────────── */
 
-function detectObservationType(obs) {
+function detect_observation_type(obs) {
   if (obs.type && obs.type !== 'observation') return obs.type;
 
   const text = ((obs.title || '') + ' ' + (obs.narrative || '')).toLowerCase();
@@ -52,72 +56,72 @@ function detectObservationType(obs) {
    3. FILE EXTRACTION
 ──────────────────────────────────────────────────────────────── */
 
-function extractFilesFromData(collectedData, observations) {
-  const filesMap = new Map();
-  
-  const addFile = (rawPath, description) => {
-    const normalized = toRelativePath(rawPath, CONFIG.PROJECT_ROOT);
+function extract_files_from_data(collected_data, observations) {
+  const files_map = new Map();
+
+  const add_file = (raw_path, description) => {
+    const normalized = toRelativePath(raw_path, CONFIG.PROJECT_ROOT);
     if (!normalized) return;
-    
-    const existing = filesMap.get(normalized);
+
+    const existing = files_map.get(normalized);
     const cleaned = cleanDescription(description);
-    
+
     if (existing) {
       if (isDescriptionValid(cleaned) && cleaned.length < existing.length) {
-        filesMap.set(normalized, cleaned);
+        files_map.set(normalized, cleaned);
       }
     } else {
-      filesMap.set(normalized, cleaned || 'Modified during session');
+      files_map.set(normalized, cleaned || 'Modified during session');
     }
   };
-  
+
   // Source 1: FILES array (primary input format)
-  if (collectedData.FILES && Array.isArray(collectedData.FILES)) {
-    for (const fileInfo of collectedData.FILES) {
-      const filePath = fileInfo.FILE_PATH || fileInfo.path;
-      const description = fileInfo.DESCRIPTION || fileInfo.description || 'Modified during session';
-      if (filePath) addFile(filePath, description);
+  if (collected_data.FILES && Array.isArray(collected_data.FILES)) {
+    for (const file_info of collected_data.FILES) {
+      const file_path = file_info.FILE_PATH || file_info.path;
+      const description = file_info.DESCRIPTION || file_info.description || 'Modified during session';
+      if (file_path) add_file(file_path, description);
     }
   }
-  
+
   // Source 2: files_modified array (legacy format)
-  if (collectedData.files_modified && Array.isArray(collectedData.files_modified)) {
-    for (const fileInfo of collectedData.files_modified) {
-      addFile(fileInfo.path, fileInfo.changes_summary || 'Modified during session');
+  if (collected_data.files_modified && Array.isArray(collected_data.files_modified)) {
+    for (const file_info of collected_data.files_modified) {
+      add_file(file_info.path, file_info.changes_summary || 'Modified during session');
     }
   }
-  
+
   // Source 3: observations
   for (const obs of observations) {
     if (obs.files) {
       for (const file of obs.files) {
-        addFile(file, 'Modified during session');
+        add_file(file, 'Modified during session');
       }
     }
     if (obs.facts) {
       for (const fact of obs.facts) {
         if (fact.files && Array.isArray(fact.files)) {
           for (const file of fact.files) {
-            addFile(file, 'Modified during session');
+            add_file(file, 'Modified during session');
           }
         }
       }
     }
   }
-  
-  const filesEntries = Array.from(filesMap.entries());
-  const withValidDesc = filesEntries.filter(([_, desc]) => isDescriptionValid(desc));
-  const withFallback = filesEntries.filter(([_, desc]) => !isDescriptionValid(desc));
-  
-  const allFiles = [...withValidDesc, ...withFallback];
-  if (allFiles.length > CONFIG.MAX_FILES_IN_MEMORY) {
-    console.warn(`⚠️  Truncating files list from ${allFiles.length} to ${CONFIG.MAX_FILES_IN_MEMORY}`);
+
+  const files_entries = Array.from(files_map.entries());
+  const with_valid_desc = files_entries.filter(([_, desc]) => isDescriptionValid(desc));
+  const with_fallback = files_entries.filter(([_, desc]) => !isDescriptionValid(desc));
+
+  const all_files = [...with_valid_desc, ...with_fallback];
+  if (all_files.length > CONFIG.MAX_FILES_IN_MEMORY) {
+    console.warn(`⚠️  Truncating files list from ${all_files.length} to ${CONFIG.MAX_FILES_IN_MEMORY}`);
   }
-  
-  return allFiles
+
+  return all_files
     .slice(0, CONFIG.MAX_FILES_IN_MEMORY)
-    .map(([filePath, description]) => ({
-      FILE_PATH: filePath,
+    .map(([file_path, description]) => ({
+      FILE_PATH: file_path,
       DESCRIPTION: description
     }));
 }
@@ -126,14 +130,14 @@ function extractFilesFromData(collectedData, observations) {
    4. SEMANTIC DESCRIPTION ENHANCEMENT
 ──────────────────────────────────────────────────────────────── */
 
-function enhanceFilesWithSemanticDescriptions(files, semanticFileChanges) {
+function enhance_files_with_semantic_descriptions(files, semantic_file_changes) {
   return files.map(file => {
-    const filePath = file.FILE_PATH;
-    const fileBasename = getPathBasename(filePath);
+    const file_path = file.FILE_PATH;
+    const file_basename = getPathBasename(file_path);
 
     // Priority 1: Exact full path match
-    if (semanticFileChanges.has(filePath)) {
-      const info = semanticFileChanges.get(filePath);
+    if (semantic_file_changes.has(file_path)) {
+      const info = semantic_file_changes.get(file_path);
       return {
         FILE_PATH: file.FILE_PATH,
         DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
@@ -142,23 +146,23 @@ function enhanceFilesWithSemanticDescriptions(files, semanticFileChanges) {
     }
 
     // Priority 2: Basename match only if unique
-    let matchCount = 0;
-    let basenameMatch = null;
+    let match_count = 0;
+    let basename_match = null;
 
-    for (const [path, info] of semanticFileChanges) {
-      const pathBasename = getPathBasename(path);
-      if (pathBasename === fileBasename) {
-        matchCount++;
-        basenameMatch = { path, info };
+    for (const [path, info] of semantic_file_changes) {
+      const path_basename = getPathBasename(path);
+      if (path_basename === file_basename) {
+        match_count++;
+        basename_match = { path, info };
       }
     }
 
-    if (matchCount > 1) {
-      console.warn(`   ⚠️  Multiple files with basename '${fileBasename}' - using default description`);
+    if (match_count > 1) {
+      console.warn(`   ⚠️  Multiple files with basename '${file_basename}' - using default description`);
     }
 
-    if (matchCount === 1 && basenameMatch) {
-      const info = basenameMatch.info;
+    if (match_count === 1 && basename_match) {
+      const info = basename_match.info;
       return {
         FILE_PATH: file.FILE_PATH,
         DESCRIPTION: info.description !== 'Modified during session' ? info.description : file.DESCRIPTION,
@@ -174,10 +178,10 @@ function enhanceFilesWithSemanticDescriptions(files, semanticFileChanges) {
    5. OBSERVATION ANCHORING
 ──────────────────────────────────────────────────────────────── */
 
-function buildObservationsWithAnchors(observations, specFolder) {
-  const usedAnchorIds = [];
-  const specNumber = extractSpecNumber(specFolder);
-  
+function build_observations_with_anchors(observations, spec_folder) {
+  const used_anchor_ids = [];
+  const spec_number = extractSpecNumber(spec_folder);
+
   return (observations || [])
     .filter(obs => obs != null)
     .map(obs => {
@@ -185,27 +189,27 @@ function buildObservationsWithAnchors(observations, specFolder) {
         obs.title || 'Observation',
         obs.narrative || ''
       );
-      
-      let anchorId = generateAnchorId(
+
+      let anchor_id = generateAnchorId(
         obs.title || 'Observation',
         category,
-        specNumber
+        spec_number
       );
-      anchorId = validateAnchorUniqueness(anchorId, usedAnchorIds);
-      usedAnchorIds.push(anchorId);
-      
-      const obsType = detectObservationType(obs);
-      
+      anchor_id = validateAnchorUniqueness(anchor_id, used_anchor_ids);
+      used_anchor_ids.push(anchor_id);
+
+      const obs_type = detect_observation_type(obs);
+
       return {
-        TYPE: obsType.toUpperCase(),
+        TYPE: obs_type.toUpperCase(),
         TITLE: obs.title || 'Observation',
         NARRATIVE: obs.narrative || '',
         HAS_FILES: obs.files && obs.files.length > 0,
         FILES_LIST: obs.files ? obs.files.join(', ') : '',
         HAS_FACTS: obs.facts && obs.facts.length > 0,
         FACTS_LIST: obs.facts ? obs.facts.join(' | ') : '',
-        ANCHOR_ID: anchorId,
-        IS_DECISION: obsType === 'decision'
+        ANCHOR_ID: anchor_id,
+        IS_DECISION: obs_type === 'decision'
       };
     });
 }
@@ -215,8 +219,14 @@ function buildObservationsWithAnchors(observations, specFolder) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  detectObservationType,
-  extractFilesFromData,
-  enhanceFilesWithSemanticDescriptions,
-  buildObservationsWithAnchors
+  // Primary exports (snake_case)
+  detect_observation_type,
+  extract_files_from_data,
+  enhance_files_with_semantic_descriptions,
+  build_observations_with_anchors,
+  // Backward-compatible aliases (camelCase)
+  detectObservationType: detect_observation_type,
+  extractFilesFromData: extract_files_from_data,
+  enhanceFilesWithSemanticDescriptions: enhance_files_with_semantic_descriptions,
+  buildObservationsWithAnchors: build_observations_with_anchors
 };

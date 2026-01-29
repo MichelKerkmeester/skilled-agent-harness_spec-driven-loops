@@ -8,24 +8,77 @@ const { calculate_popularity_score } = require('../storage/access-tracker');
 // HIGH-003 FIX: Import unified recency scoring from folder-scoring
 const { compute_recency_score, DECAY_RATE } = require('./folder-scoring');
 
+// COGNITIVE-079: FSRS Scheduler for retrievability calculations
+// Try to import, fallback to inline calculation if not yet available
+let fsrsScheduler = null;
+try {
+  fsrsScheduler = require('../cognitive/fsrs-scheduler');
+} catch (_) {
+  // fsrs-scheduler not yet implemented, use inline calculation
+}
+
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
 ──────────────────────────────────────────────────────────────── */
 
+// COGNITIVE-079: Updated weights to include retrievability factor
+// Weights adjusted to sum to 1.0 with new FSRS-based retrievability
 const DEFAULT_WEIGHTS = {
-  similarity: 0.35,
-  importance: 0.25,
-  recency: 0.20,
-  popularity: 0.10,
-  tier_boost: 0.10,
+  similarity: 0.30,       // Reduced from 0.35 - semantic match still primary
+  importance: 0.25,       // Unchanged - importance tier weight
+  recency: 0.15,          // Reduced from 0.20 - retrievability captures decay better
+  popularity: 0.10,       // Unchanged - access frequency boost
+  tier_boost: 0.05,       // Reduced from 0.10 - less emphasis on tier alone
+  retrievability: 0.15,   // NEW: FSRS-based memory strength factor
 };
 
 // HIGH-003 FIX: Re-export DECAY_RATE for backward compatibility
 const RECENCY_SCALE_DAYS = 1 / DECAY_RATE; // Convert decay rate to equivalent scale (10 days)
 
+// COGNITIVE-079: FSRS Constants for retrievability calculation
+// From FSRS v4 research: R = (1 + FACTOR * t/S)^DECAY
+const FSRS_FACTOR = 19 / 81;  // ~0.2346 - empirically derived from 100M+ reviews
+const FSRS_DECAY = -0.5;      // Power-law decay exponent
+
 /* ─────────────────────────────────────────────────────────────
    2. SCORE CALCULATIONS
 ──────────────────────────────────────────────────────────────── */
+
+/**
+ * COGNITIVE-079: Calculate retrievability score for a memory row
+ * Uses FSRS v4 power-law formula: R = (1 + FACTOR * t/S)^DECAY
+ *
+ * @param {Object} row - Memory row with stability and last_review fields
+ * @returns {number} Retrievability score between 0 and 1
+ */
+function calculate_retrievability_score(row) {
+  // Get stability from row, default to 1.0 for backward compatibility
+  const stability = row.stability || 1.0;
+
+  // Get last review time, fallback to updated_at, then created_at
+  const last_review = row.last_review || row.updated_at || row.created_at;
+
+  // BUG-007 FIX: Return neutral score when no timestamp available (prevents NaN propagation)
+  if (!last_review) {
+    return 0.5;
+  }
+
+  // Calculate elapsed days since last review
+  const elapsed_ms = Date.now() - new Date(last_review).getTime();
+  const elapsed_days = Math.max(0, elapsed_ms / (1000 * 60 * 60 * 24));
+
+  // Use fsrs-scheduler if available, otherwise calculate inline
+  if (fsrsScheduler && typeof fsrsScheduler.calculate_retrievability === 'function') {
+    return fsrsScheduler.calculate_retrievability(stability, elapsed_days);
+  }
+
+  // Inline FSRS calculation (fallback when scheduler not yet available)
+  // R = (1 + FACTOR * t/S)^DECAY where t = elapsed_days, S = stability
+  const retrievability = Math.pow(1 + FSRS_FACTOR * (elapsed_days / stability), FSRS_DECAY);
+
+  // Clamp to [0, 1] range
+  return Math.max(0, Math.min(1, retrievability));
+}
 
 // HIGH-003 FIX: Wrapper around unified compute_recency_score from folder-scoring
 // Maintains backward compatibility with existing callers while using single implementation
@@ -33,16 +86,11 @@ function calculate_recency_score(timestamp, tier = 'normal') {
   return compute_recency_score(timestamp, tier, DECAY_RATE);
 }
 
+// BUG-013 FIX: Use centralized tier values from importance-tiers.js
+// to ensure consistent tier weights across the codebase
 function get_tier_boost(tier) {
-  const boosts = {
-    constitutional: 1.0,
-    critical: 1.0,
-    important: 0.8,
-    normal: 0.5,
-    temporary: 0.3,
-    deprecated: 0.0,
-  };
-  return boosts[tier] || 0.5;
+  const tier_config = get_tier_config(tier);
+  return tier_config.value;
 }
 
 function calculate_composite_score(row, options = {}) {
@@ -56,16 +104,19 @@ function calculate_composite_score(row, options = {}) {
   const recency_score = calculate_recency_score(timestamp, tier);
   const popularity_score = calculate_popularity_score(row.access_count || 0);
   const tier_boost = get_tier_boost(tier);
+  // COGNITIVE-079: Add FSRS-based retrievability score
+  const retrievability_score = calculate_retrievability_score(row);
 
   const composite = (
     similarity * weights.similarity +
     importance * weights.importance +
     recency_score * weights.recency +
     popularity_score * weights.popularity +
-    tier_boost * weights.tier_boost
+    tier_boost * weights.tier_boost +
+    retrievability_score * weights.retrievability  // COGNITIVE-079: NEW
   );
 
-  return Math.min(1, composite);
+  return Math.max(0, Math.min(1, composite));
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -85,6 +136,8 @@ function apply_composite_scoring(results, options = {}) {
         recency: calculate_recency_score(row.updated_at || row.created_at, tier),
         popularity: calculate_popularity_score(row.access_count || 0),
         tier_boost: get_tier_boost(tier),
+        // COGNITIVE-079: Add FSRS-based retrievability to scoring breakdown
+        retrievability: calculate_retrievability_score(row),
       },
     };
   });
@@ -102,6 +155,8 @@ function get_score_breakdown(row, options = {}) {
   const recency_score = calculate_recency_score(row.updated_at || row.created_at, tier);
   const popularity_score = calculate_popularity_score(row.access_count || 0);
   const tier_boost = get_tier_boost(tier);
+  // COGNITIVE-079: Add FSRS-based retrievability
+  const retrievability_score = calculate_retrievability_score(row);
 
   return {
     factors: {
@@ -110,6 +165,8 @@ function get_score_breakdown(row, options = {}) {
       recency: { value: recency_score, weight: weights.recency, contribution: recency_score * weights.recency },
       popularity: { value: popularity_score, weight: weights.popularity, contribution: popularity_score * weights.popularity },
       tier_boost: { value: tier_boost, weight: weights.tier_boost, contribution: tier_boost * weights.tier_boost },
+      // COGNITIVE-079: Add retrievability factor to breakdown
+      retrievability: { value: retrievability_score, weight: weights.retrievability, contribution: retrievability_score * weights.retrievability },
     },
     total: calculate_composite_score(row, options),
   };
@@ -122,8 +179,13 @@ function get_score_breakdown(row, options = {}) {
 module.exports = {
   DEFAULT_WEIGHTS,
   RECENCY_SCALE_DAYS,
+  // COGNITIVE-079: Export FSRS constants for external use
+  FSRS_FACTOR,
+  FSRS_DECAY,
   calculate_recency_score,
   get_tier_boost,
+  // COGNITIVE-079: Export retrievability helper
+  calculate_retrievability_score,
   calculate_composite_score,
   apply_composite_scoring,
   get_score_breakdown,

@@ -282,7 +282,8 @@ function undo_last_change(db, memory_id) {
         const restore_weight = prev_value.importance_weight ?? prev_value.importanceWeight ?? 0.5;
         const restore_tier = prev_value.importance_tier ?? prev_value.importanceTier ?? 'normal';
 
-        db.prepare(`
+        // BUG-018 FIX: Verify the update actually modified a row
+        const restore_result = db.prepare(`
           UPDATE memory_index
           SET importance_tier = COALESCE(?, 'normal'),
               title = ?,
@@ -290,6 +291,10 @@ function undo_last_change(db, memory_id) {
               updated_at = datetime('now')
           WHERE id = ?
         `).run(restore_tier, prev_value.title || null, restore_weight, memory_id);
+
+        if (restore_result.changes === 0) {
+          throw new Error(`Cannot undo DELETE: Memory ${memory_id} no longer exists in database`);
+        }
         break;
 
       default:

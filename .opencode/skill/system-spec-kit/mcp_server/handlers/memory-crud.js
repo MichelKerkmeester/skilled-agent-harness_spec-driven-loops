@@ -30,15 +30,27 @@ function set_embedding_model_ready(ready) { embedding_model_ready = ready; }
  * Creates auto-checkpoint before bulk deletes for safety.
  */
 async function handle_memory_delete(args) {
+  // BUG-005 fix: Await database update check to prevent race conditions
+  await check_database_updated();
+
   const { id, specFolder: spec_folder, confirm } = args;
   if (!id && !spec_folder) throw new Error('Either id or specFolder is required');
   if (spec_folder !== undefined && typeof spec_folder !== 'string') throw new Error('specFolder must be a string');
   if (spec_folder && !id && !confirm) throw new Error('Bulk delete requires confirm: true');
 
+  // BUG-021 FIX: Ensure id is numeric when provided
+  let numeric_id = null;
+  if (id !== undefined && id !== null) {
+    numeric_id = typeof id === 'string' ? parseInt(id, 10) : id;
+    if (isNaN(numeric_id)) {
+      throw new Error('Invalid memory ID: must be a number');
+    }
+  }
+
   let deleted_count = 0, checkpoint_name = null;
 
-  if (id) {
-    deleted_count = vectorIndex.deleteMemory(id) ? 1 : 0;
+  if (numeric_id !== null) {
+    deleted_count = vectorIndex.deleteMemory(numeric_id) ? 1 : 0;
   } else {
     const memories = vectorIndex.getMemoriesByFolder(spec_folder);
     if (memories.length > 0) {
@@ -70,6 +82,9 @@ async function handle_memory_delete(args) {
  * Regenerates embedding when title changes. Uses transaction-based rollback on failure.
  */
 async function handle_memory_update(args) {
+  // BUG-005 fix: Await database update check to prevent race conditions
+  await check_database_updated();
+
   const { id, title, triggerPhrases: trigger_phrases, importanceWeight: importance_weight, importanceTier: importance_tier, allowPartialUpdate: allow_partial_update = false } = args;
   if (!id) throw new MemoryError(ErrorCodes.MISSING_REQUIRED_PARAM, 'id is required', { param: 'id' });
   if (importance_weight !== undefined && (typeof importance_weight !== 'number' || importance_weight < 0 || importance_weight > 1)) {

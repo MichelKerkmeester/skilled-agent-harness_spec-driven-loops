@@ -3,9 +3,9 @@
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
-/* ─────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+   ─────────────────────────────────────────────────────────────── */
 
 const path = require('path');
 const fsSync = require('fs');
@@ -13,11 +13,11 @@ const fsSync = require('fs');
 const CORE_DIR = __dirname;
 const SCRIPTS_DIR = path.resolve(CORE_DIR, '..');
 
-/* ─────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
    2. CONFIG LOADER
-──────────────────────────────────────────────────────────────── */
+   ─────────────────────────────────────────────────────────────── */
 
-function loadConfig() {
+function load_config() {
   const defaultConfig = {
     maxResultPreview: 500,
     maxConversationMessages: 100,
@@ -105,11 +105,11 @@ function loadConfig() {
   return defaultConfig;
 }
 
-/* ─────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
    3. CONFIG OBJECT
-──────────────────────────────────────────────────────────────── */
+   ─────────────────────────────────────────────────────────────── */
 
-const userConfig = loadConfig();
+const userConfig = load_config();
 
 const CONFIG = {
   SKILL_VERSION: '1.7.2',
@@ -136,19 +136,19 @@ const CONFIG = {
   MAX_CONTENT_PREVIEW: 500
 };
 
-/* ─────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
    4. SPECS DIRECTORY UTILITIES
-──────────────────────────────────────────────────────────────── */
+   ─────────────────────────────────────────────────────────────── */
 
-function getSpecsDirectories() {
+function get_specs_directories() {
   return [
     path.join(CONFIG.PROJECT_ROOT, 'specs'),
     path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs')
   ];
 }
 
-function findActiveSpecsDir() {
-  const possibleDirs = getSpecsDirectories();
+function find_active_specs_dir() {
+  const possibleDirs = get_specs_directories();
   for (const dir of possibleDirs) {
     if (fsSync.existsSync(dir)) {
       return dir;
@@ -157,18 +157,27 @@ function findActiveSpecsDir() {
   return null;
 }
 
-function getAllExistingSpecsDirs() {
-  return getSpecsDirectories().filter(dir => fsSync.existsSync(dir));
+function get_all_existing_specs_dirs() {
+  return get_specs_directories().filter(dir => fsSync.existsSync(dir));
 }
 
-/* ─────────────────────────────────────────────────────────────
+/* ───────────────────────────────────────────────────────────────
    5. EXPORTS
-──────────────────────────────────────────────────────────────── */
+   ─────────────────────────────────────────────────────────────── */
 
 module.exports = {
+  // Primary exports
   CONFIG,
-  loadConfig,
-  getSpecsDirectories,
-  findActiveSpecsDir,
-  getAllExistingSpecsDirs
+
+  // Functions (snake_case)
+  load_config,
+  get_specs_directories,
+  find_active_specs_dir,
+  get_all_existing_specs_dirs,
+
+  // Backward compatibility aliases (camelCase)
+  loadConfig: load_config,
+  getSpecsDirectories: get_specs_directories,
+  findActiveSpecsDir: find_active_specs_dir,
+  getAllExistingSpecsDirs: get_all_existing_specs_dirs
 };

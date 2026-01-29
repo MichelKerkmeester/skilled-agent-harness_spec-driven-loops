@@ -67,7 +67,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ **Q4. Worker Model** (if B or C selected above):               │
    │    Default: opus                                               │
    │    To use different model, type: opus, gemini, gpt             │
-   │    for default                                                 │
+   │    or leave blank for default                                  │
    │                                                                │
    │ Reply with answers, e.g.: "A, A, A, " or "A, [error desc], A, B, gemini" │
    └────────────────────────────────────────────────────────────────┘
@@ -239,6 +239,102 @@ $ARGUMENTS
 | 3    | Dispatch Sub-Agent | Send to Task tool with full context | sub_agent_dispatch  |
 | 4    | Receive Findings   | Capture and validate response       | findings_received   |
 | 5    | Integration        | Apply fix or review                 | resolution_complete |
+
+### Workflow Diagram
+
+```mermaid
+flowchart TB
+    subgraph SETUP["🔒 UNIFIED SETUP PHASE"]
+        direction TB
+        A1[Check $ARGUMENTS] --> A2{Spec folder<br/>provided?}
+        A2 -->|Yes| A3[Validate path]
+        A2 -->|No| A4[Auto-detect from<br/>recent memory]
+        A3 --> A5[Scan conversation<br/>for error context]
+        A4 --> A5
+        A5 --> A6["📋 CONSOLIDATED PROMPT<br/>Q0: Spec Folder<br/>Q1: Error Context<br/>Q2: AI Model ⚠️<br/>Q3: Dispatch Mode ⚠️<br/>Q4: Worker Model"]
+        A6 --> A7[/"⏳ WAIT for<br/>user response"/]
+    end
+
+    subgraph WORKFLOW["📊 5-STEP WORKFLOW"]
+        direction TB
+        S1["Step 1: VALIDATE CONTEXT<br/>Confirm spec_path + error_message"]
+        S2["Step 2: GENERATE REPORT<br/>Create debug-delegation.md"]
+        S3["Step 3: DISPATCH SUB-AGENT<br/>Task tool → @debug"]
+        S4["Step 4: RECEIVE FINDINGS<br/>Capture response"]
+        S5["Step 5: INTEGRATION<br/>Apply or review"]
+
+        S1 --> S2 --> S3 --> S4 --> S5
+    end
+
+    subgraph ISOLATION["🔒 ISOLATION PATTERN"]
+        direction TB
+        ISO1[["Main Agent<br/>(orchestrator)"]]
+        ISO2[/"Structured Handoff<br/>debug-delegation.md"/]
+        ISO3[["@debug Agent<br/>(fresh perspective)"]]
+
+        ISO1 -->|"Context via<br/>document ONLY"| ISO2
+        ISO2 -->|"NO conversation<br/>history passed"| ISO3
+    end
+
+    subgraph DEBUG["🔍 @debug 4-PHASE METHODOLOGY"]
+        direction LR
+        D1["1️⃣ OBSERVE<br/>Read error<br/>Categorize<br/>Map scope"]
+        D2["2️⃣ ANALYZE<br/>Trace paths<br/>Understand flow"]
+        D3["3️⃣ HYPOTHESIZE<br/>Form 2-3<br/>ranked theories"]
+        D4["4️⃣ FIX<br/>Minimal change<br/>Verify"]
+
+        D1 --> D2 --> D3 --> D4
+    end
+
+    subgraph RESPONSE["📤 RESPONSE TYPES"]
+        direction TB
+        R1{Response?}
+        R2["✅ SUCCESS<br/>Root cause found<br/>Fix applied"]
+        R3["⚠️ BLOCKED<br/>Missing info<br/>Access issue"]
+        R4["🔴 ESCALATION<br/>3+ hypotheses failed"]
+
+        R1 --> R2
+        R1 --> R3
+        R1 --> R4
+    end
+
+    subgraph INTEGRATE["🔀 INTEGRATION OPTIONS"]
+        direction TB
+        I1["A) Apply the fix"]
+        I2["B) Show full details"]
+        I3["C) Request more investigation"]
+        I4["D) Manual review"]
+    end
+
+    A7 --> S1
+    S3 -.->|"Task tool<br/>subagent_type: debug"| ISO1
+    ISO3 --> D1
+    D4 --> R1
+    R2 --> S4
+    R3 --> S4
+    R4 --> S4
+    S5 --> INTEGRATE
+
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef isolation fill:#4c1d95,stroke:#8b5cf6,color:#fff
+    classDef debug fill:#0f766e,stroke:#14b8a6,color:#fff
+
+    class A1,A2,A3,A4,A5,A6,A7 gate
+    class S1,S2,S3,S4,S5 core
+    class ISO1,ISO2,ISO3 isolation
+    class D1,D2,D3,D4 debug
+    class R1,R2,R3,R4 verify
+    class I1,I2,I3,I4 core
+```
+
+**Diagram Key:**
+- **Orange nodes**: Setup phase (model selection mandatory)
+- **Blue nodes**: Core workflow steps
+- **Purple nodes**: Isolation pattern (context handoff)
+- **Teal nodes**: @debug methodology phases
+- **Green nodes**: Response verification
 
 ---
 

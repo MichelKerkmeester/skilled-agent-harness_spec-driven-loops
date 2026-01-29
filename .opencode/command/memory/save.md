@@ -47,7 +47,7 @@ EXECUTE THIS CHECK FIRST:
 
 ---
 
-## 🔒 PHASE 1B: CONTENT ALIGNMENT CHECK
+## 🔒 PHASE 2: CONTENT ALIGNMENT CHECK
 
 **STATUS: ☐ BLOCKED** (run after Phase 1)
 
@@ -81,7 +81,7 @@ ALIGNMENT VALIDATION:
 ⛔ HARD STOP: DO NOT proceed if alignment not validated
 ```
 
-**Phase 1B Output:** `alignment_validated = ☐ YES | ☐ WARNED_CONFIRMED`
+**Phase 2 Output:** `alignment_validated = ☐ YES | ☐ WARNED_CONFIRMED`
 
 ---
 
@@ -92,16 +92,16 @@ ALIGNMENT VALIDATION:
 | PHASE                   | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE             |
 | ----------------------- | --------------- | ----------- | ------------------------ |
 | PHASE 1: SPEC FOLDER    | ✅ PASSED        | ______      | target_folder: ______    |
-| PHASE 1B: CONTENT ALIGN | ✅ PASSED        | ______      | alignment_validated: ___ |
+| PHASE 2: CONTENT ALIGN  | ✅ PASSED        | ______      | alignment_validated: ___ |
 
 ```
 VERIFICATION CHECK:
 ├─ Phase 1 shows ✅ PASSED?
 │   ├─ YES → Check Phase 1B
 │   └─ NO  → STOP and complete Phase 1
-├─ Phase 1B shows ✅ PASSED?
+├─ Phase 2 shows ✅ PASSED?
 │   ├─ YES → Proceed to "# Memory Save" section below
-│   └─ NO  → STOP and complete Phase 1B (alignment check)
+│   └─ NO  → STOP and complete Phase 2 (alignment check)
 ```
 
 ---
@@ -113,7 +113,7 @@ VERIFICATION CHECK:
 - Started saving context before phase passed
 - Assumed a spec folder without validation
 - **Assumed folder from previous session context without explicit argument**
-- **Skipped Phase 1B alignment check when folder was provided**
+- **Skipped Phase 2 alignment check when folder was provided**
 - Skipped the alignment score check when no marker exists
 - Did not present menu when scores were ambiguous
 - Proceeded without user selection when required
@@ -122,7 +122,7 @@ VERIFICATION CHECK:
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately
-2. STATE: "I violated PHASE 1/1B by [specific action]. Correcting now."
+2. STATE: "I violated PHASE 1/2 by [specific action]. Correcting now."
 3. RETURN to phase validation
 4. COMPLETE the phase properly
 5. RESUME only after phase passes verification
@@ -150,7 +150,7 @@ operating_mode:
 
 ---
 
-## MCP ENFORCEMENT MATRIX
+## 🔧 MCP ENFORCEMENT MATRIX
 
 **CRITICAL:** This command uses local scripts for context generation. Files are automatically indexed when the MCP server starts, or you can use MCP tools for immediate indexing.
 
@@ -186,6 +186,20 @@ spec_kit_memory_memory_save({
 ## 1. 🎯 PURPOSE
 
 Save the current conversation context to a spec folder's memory directory for future retrieval. Automatically detects the most relevant spec folder or prompts user when ambiguous.
+
+### 🧠 Prediction Error Gating
+
+When saving memories, the system checks for similar existing memories using **Prediction Error (PE) gating**:
+
+| Similarity | Action | Description |
+|------------|--------|-------------|
+| ≥ 0.95     | **REINFORCE** | Strengthen existing memory, skip create |
+| 0.90-0.94  | **CHECK** | Check for contradiction, may update |
+| 0.70-0.89  | **LINK** | Create new memory linked to existing |
+| 0.50-0.69  | **CREATE** | Create new memory (low match) |
+| < 0.50     | **CREATE** | Create new memory (no match) |
+
+**Result:** Prevents duplicate memories while strengthening frequently-saved context.
 
 ---
 
@@ -500,7 +514,7 @@ Current triggers:
 
 ---
 
-## 10. 📌 RELATED COMMANDS
+## 10. 🔗 RELATED COMMANDS
 
 - `/memory:search` - Unified memory dashboard (search, browse, cleanup, triggers)
 - `/memory:checkpoint` - Create checkpoint before major changes

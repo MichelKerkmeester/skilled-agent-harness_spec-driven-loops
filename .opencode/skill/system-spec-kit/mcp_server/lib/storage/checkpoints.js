@@ -675,10 +675,9 @@ function restore_checkpoint(name, options = {}) {
           const restore_session_id = target_session_id || snapshot_session_id;
 
           if (restore_session_id) {
-            // BUG-002 FIX: Backup existing working_memory before delete (prevents data loss)
-            const existingWM = database.prepare(
-              'SELECT * FROM working_memory WHERE session_id = ?'
-            ).all(restore_session_id);
+            // BUG-008 FIX: Use SQLite SAVEPOINT instead of manual backup pattern
+            // This is atomic and cannot lose data if restore fails after deletion
+            database.exec('SAVEPOINT restore_working_memory');
 
             // Insert working_memory entries
             const wm_insert_stmt = database.prepare(`
@@ -711,25 +710,12 @@ function restore_checkpoint(name, options = {}) {
                 );
                 workingMemoryRestored++;
               }
+              // BUG-008 FIX: Release savepoint on success
+              database.exec('RELEASE restore_working_memory');
             } catch (wm_err) {
-              // BUG-002 FIX: Rollback by restoring backup on failure
-              console.error(`[checkpoints] Working memory restore failed, rolling back: ${wm_err.message}`);
-              const restore_stmt = database.prepare(`
-                INSERT OR REPLACE INTO working_memory
-                (session_id, memory_id, attention_score, last_mentioned_turn, tier, created_at, updated_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-              `);
-              for (const backup of existingWM) {
-                restore_stmt.run(
-                  backup.session_id,
-                  backup.memory_id,
-                  backup.attention_score,
-                  backup.last_mentioned_turn,
-                  backup.tier,
-                  backup.created_at,
-                  backup.updated_at
-                );
-              }
+              // BUG-008 FIX: Rollback to savepoint on failure (atomic, no data loss)
+              database.exec('ROLLBACK TO restore_working_memory');
+              console.error(`[checkpoints] Working memory restore failed, rolled back: ${wm_err.message}`);
               throw wm_err;
             }
             console.log(`[checkpoints] Restored ${workingMemoryRestored}/${snapshot_working_memory.length} working_memory entries (${skippedWM} skipped - unmapped memories)`);

@@ -16,123 +16,125 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**Round-trip optimization:** This workflow requires 1-2 user interactions.
-
----
-
-## 🔒 PHASE 0: WRITE AGENT VERIFICATION [PRIORITY GATE]
-
-**STATUS: ☐ BLOCKED** (Must pass BEFORE all other phases)
-
-> **⚠️ CRITICAL:** This command REQUIRES the `@write` agent for template enforcement, DQI scoring, and quality gates.
-
-```
-EXECUTE THIS CHECK FIRST:
-
-├─ SELF-CHECK: Are you operating as the @write agent?
-│   │
-│   ├─ INDICATORS that you ARE @write agent:
-│   │   ├─ You were invoked with "@write" prefix
-│   │   ├─ You have template-first workflow capabilities
-│   │   ├─ You load templates BEFORE creating content
-│   │   ├─ You validate template alignment AFTER creating
-│   │
-│   ├─ IF YES (all indicators present):
-│   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE 1
-│   │
-│   └─ IF NO or UNCERTAIN:
-│       │
-│       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-│       │
-│       ├─ DISPLAY to user:
-│       │   ┌────────────────────────────────────────────────────────────┐
-│       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-│       │   │                                                            │
-│       │   │ This command requires the @write agent for:                │
-│       │   │   • Template-first workflow (loads before creating)          │
-│       │   │   • DQI scoring (target: 90+ Excellent)                    │
-│       │   │   • workflows-documentation skill integration               │
-│       │   │                                                            │
-│       │   │ To proceed, restart with:                                  │
-│       │   │   @write /create:install_guide [project-name]              │
-│       │   │                                                            │
-│       │   │ Reference: .opencode/agent/write.md                        │
-│       │   └────────────────────────────────────────────────────────────┘
-│       │
-│       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
-
-⛔ HARD STOP: DO NOT proceed to PHASE 1 until STATUS = ✅ PASSED
-```
-
-**Phase 0 Output:** `write_agent_verified = [yes/no]`
+**Round-trip optimization:** This workflow requires only 1 user interaction.
 
 ---
 
-## 🔒 PHASE 1: INPUT VALIDATION
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED**
 
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only:
-│   │
-│   ├─ ASK user:
-│   │   ┌─────────────────────────────────────────────────────────────┐
-│   │   │ "What project/tool needs an installation guide?"            │
-│   │   │                                                             │
-│   │   │ Please provide:                                             │
-│   │   │ - Project name                                              │
-│   │   │ - Target platforms (optional: macos, linux, windows, docker)│
-│   │   └─────────────────────────────────────────────────────────────┘
-│   │
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Store as: project_name
-│   └─ SET STATUS: ✅ PASSED
-│
-└─ IF $ARGUMENTS contains content:
-    │
-    ├─ Parse first argument as: project_name
-    ├─ Parse --platforms flag if present
-    │
-    ├─ VALIDATE platforms (if specified):
-    │   ├─ Must be comma-separated list of: macos, linux, windows, docker, all
-    │   │
-    │   ├─ IF invalid:
-    │   │   ├─ SHOW: "Invalid platform. Valid: macos, linux, windows, docker, all"
-    │   │   └─ Set default: platforms = "all"
-    │   │
-    │   └─ IF valid or not specified:
-    │       └─ Store as: platforms (default: "all")
-    │
-    └─ SET STATUS: ✅ PASSED
+1. CHECK Phase 0: @write agent verification (automatic)
+   ├─ SELF-CHECK: Are you operating as the @write agent?
+   │   ├─ INDICATORS that you ARE @write agent:
+   │   │   ├─ You were invoked with "@write" prefix
+   │   │   ├─ You have template-first workflow capabilities
+   │   │   ├─ You load templates BEFORE creating content
+   │   │   ├─ You validate template alignment AFTER creating
+   │   │
+   │   ├─ IF YES (all indicators present):
+   │   │   └─ write_agent_verified = TRUE → Continue to step 2
+   │   │
+   │   └─ IF NO or UNCERTAIN:
+   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+   │       ├─ DISPLAY to user:
+   │       │   ┌────────────────────────────────────────────────────────────┐
+   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
+   │       │   │                                                            │
+   │       │   │ This command requires the @write agent for:                │
+   │       │   │   • Template-first workflow (loads before creating)          │
+   │       │   │   • DQI scoring (target: 90+ Excellent)                    │
+   │       │   │   • workflows-documentation skill integration               │
+   │       │   │                                                            │
+   │       │   │ To proceed, restart with:                                  │
+   │       │   │   @write /create:install_guide [project-name]              │
+   │       │   │                                                            │
+   │       │   │ Reference: .opencode/agent/write.md                        │
+   │       │   └────────────────────────────────────────────────────────────┘
+   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
 
-**STOP HERE** - Wait for user to provide project name and platform details before continuing.
+2. CHECK for mode suffix in $ARGUMENTS or command invocation:
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q3)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q3)
+   └─ No suffix → execution_mode = "ASK" (include Q3 in prompt)
 
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
+3. CHECK if $ARGUMENTS contains a project name:
+   ├─ IF $ARGUMENTS has content (ignoring flags/suffixes) → project_name = $ARGUMENTS, omit Q0
+   └─ IF $ARGUMENTS is empty → include Q0 in prompt
+
+4. CHECK for --platforms flag in $ARGUMENTS:
+   ├─ IF --platforms flag present with valid values → platforms = [values], omit Q1
+   └─ IF no --platforms flag → include Q1 in prompt
+
+5. Check for existing installation guides:
+   $ ls -la ./install_guides/*.md ./INSTALL.md ./docs/INSTALL.md 2>/dev/null
+   - Will inform conflict handling in Q2 if files exist
+
+6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Project Name** (if not provided in command):             │
+   │    What project/tool needs an installation guide?              │
+   │                                                                │
+   │ **Q1. Target Platforms** (required):                           │
+   │    A) All platforms (macOS, Linux, Windows, Docker)            │
+   │    B) macOS only                                               │
+   │    C) Linux only                                               │
+   │    D) Custom (specify: macos,linux,windows,docker)             │
+   │                                                                │
+   │ **Q2. Output Location** (required):                            │
+   │    A) install_guides/[Type] - [Name].md (Recommended)          │
+   │    B) INSTALL.md at project root                               │
+   │    C) docs/INSTALL.md                                          │
+   │    D) Custom path (specify)                                    │
+   │    [If existing file found: E) Overwrite | F) Merge | G) Cancel]│
+   │                                                                │
+   │ **Q3. Execution Mode** (if no :auto/:confirm suffix):            │
+   │    A) Interactive - Confirm at each step (Recommended)          │
+   │    B) Autonomous - Execute without prompts                     │
+   │                                                                │
+   │ Reply with answers, e.g.: "A, A, A" or "my-tool, A, A, A"      │
+   └────────────────────────────────────────────────────────────────┘
+
+7. WAIT for user response (DO NOT PROCEED)
+
+8. Parse response and store ALL results:
+   - project_name = [from Q0 or $ARGUMENTS]
+   - platforms = [from Q1 or --platforms flag: all/macos/linux/windows/docker]
+   - output_path = [derived from Q2 choice]
+   - existing_file = [yes/no based on check]
+   - conflict_resolution = [if existing: overwrite/merge/cancel]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q3]
+
+9. IF output location has conflict AND conflict_resolution not set:
+   - Handle inline based on Q2 response (E/F/G options)
+
+10. SET STATUS: ✅ PASSED
+
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
 ⛔ NEVER infer project from context
 ⛔ NEVER assume platforms without confirmation
+⛔ NEVER split these questions into multiple prompts
 ```
 
-**Phase 1 Output:** `project_name = ________________` | `platforms = ________________`
-
----
-
-## 🔒 MODE DETECTION
-
-```
-CHECK for mode suffix in $ARGUMENTS or command invocation:
-
-├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
-├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
-└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
-```
-
-**Mode Output:** `execution_mode = ________________`
+**Phase Output:**
+- `write_agent_verified = ________________`
+- `project_name = ________________`
+- `platforms = ________________`
+- `output_path = ________________`
+- `existing_file = ________________`
+- `execution_mode = ________________`
 
 ---
 
@@ -153,62 +155,24 @@ CHECK for mode suffix in $ARGUMENTS or command invocation:
 
 ---
 
-## 🔒 PHASE 2: OUTPUT LOCATION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
-
-1. Determine output location:
-   ├─ Default: ./install_guides/[Type] - [Project Name].md
-   └─ Alternative: ./INSTALL.md or ./docs/INSTALL.md
-
-2. Check for existing installation guide:
-   $ ls -la ./install_guides/*.md ./INSTALL.md ./docs/INSTALL.md 2>/dev/null
-
-3. Process result:
-   ├─ IF similar guide exists:
-   │   ├─ ASK user:
-   │   │   ┌────────────────────────────────────────────────────────────┐
-   │   │   │ "Found existing guide at [path]."                          │
-   │   │   │                                                            │
-   │   │   │ A) Overwrite existing file                                  │
-   │   │   │ B) Create with different name                              │
-   │   │   │ C) Merge with existing content                             │
-   │   │   │ D) Cancel                                                  │
-   │   │   └────────────────────────────────────────────────────────────┘
-   │   └─ Process based on choice
-   │
-   └─ IF no existing file:
-       ├─ Suggest: install_guides/[Type] - [Project Name].md
-       ├─ ASK for confirmation or alternate name
-       ├─ Store as: output_path
-       └─ SET STATUS: ✅ PASSED
-
-⛔ HARD STOP: DO NOT proceed without confirmed output location
-```
-
-**Phase 2 Output:** `output_path = ________________` | `existing_file = [yes/no]`
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                             |
-| -------------------- | --------------- | ----------- | ---------------------------------------- |
-| PHASE 0: WRITE AGENT | ✅ PASSED        | ______      | write_agent_verified: ______             |
-| PHASE 1: INPUT       | ✅ PASSED        | ______      | project: ______ / platforms: ________    |
-| MODE DETECTION       | ✅ SET           | ______      | execution_mode: ______                   |
-| PHASE 2: OUTPUT      | ✅ PASSED        | ______      | output_path: ______ / existing: ________ |
+| FIELD                | REQUIRED | YOUR VALUE | SOURCE                 |
+| -------------------- | -------- | ---------- | ---------------------- |
+| write_agent_verified | ✅ Yes    | ______     | Automatic check        |
+| project_name         | ✅ Yes    | ______     | Q0 or $ARGUMENTS       |
+| platforms            | ✅ Yes    | ______     | Q1 or --platforms flag |
+| output_path          | ✅ Yes    | ______     | Derived from Q2        |
+| existing_file        | ✅ Yes    | ______     | Automatic check        |
+| execution_mode       | ✅ Yes    | ______     | Suffix or Q3           |
 
 ```
 VERIFICATION CHECK:
-├─ ALL phases show ✅ PASSED?
+├─ ALL required fields have values?
 │   ├─ YES → Proceed to "# Installation Guide Creation Workflow" section below
-│   └─ NO  → STOP and complete the blocked phase
+│   └─ NO  → Re-prompt for missing values only
 ```
 
 ---
@@ -218,11 +182,13 @@ VERIFICATION CHECK:
 **YOU ARE IN VIOLATION IF YOU:**
 
 **Phase Violations:**
-- Executed command without @write agent verification (Phase 0)
-- Started reading the workflow section before all phases passed
-- Proceeded without explicit project name (Phase 1)
-- Assumed platforms without confirmation (Phase 1)
-- Overwrote existing file without confirmation (Phase 2)
+- Executed command without @write agent verification
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Proceeded without explicit project name when not in $ARGUMENTS
+- Inferred project from context instead of explicit user input
+- Assumed platforms without confirmation
+- Overwrote existing file without user choice
 
 **Workflow Violations (Steps 1-5):**
 - Skipped requirements discovery and jumped to generation
@@ -232,11 +198,19 @@ VERIFICATION CHECK:
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
+FOR PHASE VIOLATIONS:
+1. STOP immediately - do not continue current action
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
+
+FOR WORKFLOW VIOLATIONS:
 1. STOP immediately
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly
-5. RESUME only after all phases pass
+2. STATE: "I violated STEP [X] by [specific action]. Correcting now."
+3. RETURN to the violated step
+4. COMPLETE the step properly
+5. RESUME only after step passes
 ```
 
 ---
@@ -256,6 +230,53 @@ VERIFICATION CHECK:
 | 3    | Steps      | ☐      | Step-by-step plan | Installation steps defined  |
 | 4    | Generation | ☐      | Complete guide    | All 11 sections included    |
 | 5    | Validation | ☐      | Validated guide   | Commands verified           |
+
+---
+
+## 📊 WORKFLOW VISUALIZATION
+
+```mermaid
+flowchart TD
+    subgraph SETUP["UNIFIED SETUP PHASE"]
+        S0["1. @write Agent Check"] --> S1a["2. Mode Detection"]
+        S1a --> S2a["3. Parse Args"]
+        S2a --> S3a["4. Check Existing Files"]
+        S3a --> S4a{{"Q0-Q3 Prompt"}}
+    end
+
+    subgraph workflow["5-Step Workflow"]
+        S1["Step 1: Analysis"]
+        S2["Step 2: Discovery"]
+        S3["Step 3: Steps"]
+        S4["Step 4: Generation"]
+        S5["Step 5: Validation"]
+    end
+
+    START(["Command Invoked"]) --> S0
+    S0 -->|"❌ FAIL"| BLOCK1{{"⛔ HARD BLOCK<br/>Restart with @write"}}
+
+    S4a -->|"User Response"| VERIFY{{"All fields set?"}}
+
+    VERIFY -->|"All ✅"| S1
+    VERIFY -->|"Missing"| REPROMPT{{"Re-prompt<br/>missing only"}}
+    REPROMPT --> S4a
+
+    S1 -->|"Scope defined"| S2
+    S2 -->|"Requirements list"| S3
+    S3 -->|"Steps defined"| S4
+    S4 -->|"11 sections"| S5
+    S5 -->|"Commands verified"| DONE(["✅ Guide Complete"])
+
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef step fill:#1e3a5f,stroke:#3b82f6,color:#fff
+
+    class S0,S1a,S2a,S3a,S4a phase
+    class BLOCK1,REPROMPT gate
+    class VERIFY,S5 verify
+    class S1,S2,S3,S4 step
+```
 
 ---
 
@@ -325,15 +346,17 @@ $ARGUMENTS
 
 ## 3. ⚡ INSTRUCTIONS
 
-### Step 4: Verify All Phases Passed
+### Step 4: Verify All Fields Set
 
-Confirm you have these values from the phases:
-- `project_name` from PHASE 1
-- `platforms` from PHASE 1 (default: "all")
-- `output_path` from PHASE 2
-- `existing_file` handling from PHASE 2
+Confirm you have these values from the unified setup phase:
+- `write_agent_verified` from automatic check
+- `project_name` from Q0 or $ARGUMENTS
+- `platforms` from Q1 or --platforms flag (default: "all")
+- `output_path` derived from Q2
+- `existing_file` from automatic check
+- `execution_mode` from suffix or Q3
 
-**If ANY phase is incomplete, STOP and return to the MANDATORY PHASES section.**
+**If ANY field is missing, STOP and return to the UNIFIED SETUP PHASE section.**
 
 ### Step 5: Load & Execute Workflow
 
@@ -425,11 +448,11 @@ This command creates standalone documentation:
 
 After install guide creation completes, suggest relevant next steps:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| Guide created | Test AI-First prompt | Verify installation works |
-| Need README | `/create:folder_readme [path]` | Add project README |
-| Create another guide | `/create:install_guide [project]` | Document related tool |
+| Condition            | Suggested Command                 | Reason                         |
+| -------------------- | --------------------------------- | ------------------------------ |
+| Guide created        | Test AI-First prompt              | Verify installation works      |
+| Need README          | `/create:folder_readme [path]`    | Add project README             |
+| Create another guide | `/create:install_guide [project]` | Document related tool          |
 | Want to save context | `/memory:save [spec-folder-path]` | Preserve documentation context |
 
 **ALWAYS** end with: "What would you like to do next?"

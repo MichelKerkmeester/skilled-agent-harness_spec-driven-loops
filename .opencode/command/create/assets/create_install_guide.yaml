@@ -1,7 +1,6 @@
 # ───────────────────────────────────────────────────────────────────
 # DOCUMENTATION: INSTALLATION GUIDE WORKFLOW
 # ───────────────────────────────────────────────────────────────────
-# Version: 1.9.0 (SpecKit alignment)
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow does NOT support :auto mode. All executions
 #       require user confirmation at checkpoints for content review.
@@ -92,22 +91,22 @@ user_inputs:
   project_name: |
     [PROJECT_NAME]
     Name of project to document.
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
 
   platforms: |
     [PLATFORMS]
     Target platforms: macos | linux | windows | docker | all
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q1).
 
   output_path: |
     [OUTPUT_PATH]
     Where to create the installation guide.
-    FROM PHASE 2 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q2 or default).
 
   existing_file: |
     [EXISTING_FILE]
     Whether an installation guide already exists.
-    FROM PHASE 2 OUTPUT.
+    FROM UNIFIED SETUP PHASE (automatic detection).
 
 # ─────────────────────────────────────────────────────────────────
 # GUIDE TYPE PREFIXES
@@ -236,13 +235,13 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
-    purpose: Determine project, type prefix, and platforms (from phase outputs)
+    purpose: Determine project, type prefix, and platforms (from UNIFIED SETUP PHASE)
     activities:
-    - Confirm project_name from PHASE 1
-    - Confirm platforms from PHASE 1
-    - Confirm output_path from PHASE 2
+    - Confirm project_name from UNIFIED SETUP PHASE
+    - Confirm platforms from UNIFIED SETUP PHASE
+    - Confirm output_path from UNIFIED SETUP PHASE
     - Determine appropriate type prefix (MCP/CLI/PLUGIN/SDK/SERVICE)
-    - Confirm existing_file handling from PHASE 2
+    - Confirm existing_file handling from UNIFIED SETUP PHASE
     type_reference:
       mcp: "MCP - [name].md - Model Context Protocol servers"
       cli: "CLI - [name].md - Command-line interface tools"
@@ -457,7 +456,7 @@ workflow:
       - label: "View summary"
         description: "Show final summary"
 
-    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
     post_save_indexing:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save

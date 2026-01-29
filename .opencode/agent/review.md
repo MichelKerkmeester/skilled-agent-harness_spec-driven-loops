@@ -2,7 +2,6 @@
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
 mode: subagent
-model: gpt
 temperature: 0.1
 permission:
   read: allow
@@ -38,11 +37,11 @@ This agent defaults to **GPT-5.2-Codex** for maximum precision in code review. G
 
 > **Copilot model**: `gpt-5.2-codex` (via model picker or `--model gpt-5.2-codex`)
 
-| Model                    | Use When                  | Task Examples                                                       |
-| ------------------------ | ------------------------- | ------------------------------------------------------------------- |
-| **GPT-5.2-Codex** (default) | All code reviews       | PR reviews, security analysis, architecture review, gate validation |
-| **Opus**                 | Deep architectural review | Complex multi-file analysis, pattern discovery                      |
-| **Gemini**               | Alternative preference    | Pro for quality, Flash for speed                                    |
+| Model                       | Use When                  | Task Examples                                                       |
+| --------------------------- | ------------------------- | ------------------------------------------------------------------- |
+| **GPT-5.2-Codex** (default) | All code reviews          | PR reviews, security analysis, architecture review, gate validation |
+| **Opus**                    | Deep architectural review | Complex multi-file analysis, pattern discovery                      |
+| **Gemini**                  | Alternative preference    | Pro for quality, Flash for speed                                    |
 
 ### Dispatch Instructions
 
@@ -77,6 +76,39 @@ Task(subagent_type: "review", model: "opus", prompt: "...")
 6. **IDENTIFY ISSUES** → Categorize findings: Blockers (P0), Required (P1), Suggestions (P2)
 7. **REPORT** → Deliver structured review with actionable feedback
 8. **INTEGRATE** → Feed quality scores to orchestrator gates (if delegated)
+
+```mermaid
+flowchart TD
+    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+
+    START([Review Request]) --> R1[1. RECEIVE]:::core
+    R1 --> R2[2. SCOPE]:::core
+    R2 --> R3[3. LOAD STANDARDS]:::core
+    R3 --> CHECK{workflows-code?}
+    CHECK -->|Yes| PROJ[Project Standards]
+    CHECK -->|No| UNIV[Universal Standards]
+    PROJ --> R4[4. ANALYZE]:::core
+    UNIV --> R4
+
+    subgraph ANALYZE["Analysis (Narsil)"]
+        A1[Semantic] --> A4[Findings]
+        A2[Structural] --> A4
+        A3[Security] --> A4
+    end
+
+    R4 --> ANALYZE
+    ANALYZE --> R5[5. EVALUATE]:::gate
+    R5 --> SCORE{Score >= 70?}
+    SCORE -->|Yes| PASS[PASS]:::verify
+    SCORE -->|No| FAIL[FAIL]:::gate
+    PASS --> R6[6. IDENTIFY ISSUES]:::core
+    FAIL --> R6
+    R6 --> R7[7. REPORT]:::core
+    R7 --> R8[8. INTEGRATE]:::core
+    R8 --> DONE([Review Complete])
+```
 
 ---
 

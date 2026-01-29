@@ -1,7 +1,6 @@
 # ───────────────────────────────────────────────────────────────────
 # DOCUMENTATION: REFERENCE FILE CREATION WORKFLOW
 # ───────────────────────────────────────────────────────────────────
-# Version: 1.9.0 (SpecKit alignment)
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow does NOT support :auto mode. All executions
 #       require user confirmation at checkpoints. When invoked with
@@ -99,22 +98,22 @@ user_inputs:
   skill_name: |
     [SKILL_NAME]
     Target skill to add reference to.
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
 
   reference_type: |
     [REFERENCE_TYPE]
     Type: workflow | patterns | debugging | tools | quick_ref
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q1).
 
   skill_path: |
     [SKILL_PATH]
     Verified path to the skill.
-    FROM PHASE 2 OUTPUT.
+    FROM UNIFIED SETUP PHASE (automatic resolution).
 
   skill_verified: |
     [SKILL_VERIFIED]
     Whether skill exists and has SKILL.md.
-    FROM PHASE 2 OUTPUT.
+    FROM UNIFIED SETUP PHASE (automatic verification).
 
 # ─────────────────────────────────────────────────────────────────
 # REFERENCE TYPES
@@ -211,12 +210,12 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
-    purpose: Verify phase outputs and confirm reference creation
+    purpose: Verify UNIFIED SETUP PHASE outputs and confirm reference creation
     activities:
-    - Confirm skill_name from PHASE 1
-    - Confirm reference_type from PHASE 1
-    - Confirm skill_path from PHASE 2
-    - Confirm skill_verified from PHASE 2
+    - Confirm skill_name from UNIFIED SETUP PHASE
+    - Confirm reference_type from UNIFIED SETUP PHASE
+    - Confirm skill_path from UNIFIED SETUP PHASE
+    - Confirm skill_verified from UNIFIED SETUP PHASE
     - Validate reference_type is one of: workflow, patterns, debugging, tools, quick_ref
     type_reference:
       workflow: "Multi-phase processes - 500-1500 lines - Phased steps, checkpoints"
@@ -473,7 +472,7 @@ workflow:
       - label: "View summary"
         description: "Show final summary"
 
-    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
+    # ── SEMANTIC MEMORY INTEGRATION ─────────────────────────────────
     post_save_indexing:
       purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save

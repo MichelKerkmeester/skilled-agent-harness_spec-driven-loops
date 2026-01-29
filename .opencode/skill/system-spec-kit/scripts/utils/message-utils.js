@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// UTILS: MESSAGE UTILS
+// ───────────────────────────────────────────────────────────────
+
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -9,12 +13,12 @@ const { CONFIG } = require('../core');
    2. TIMESTAMP FORMATTING
 ──────────────────────────────────────────────────────────────── */
 
-function formatTimestamp(date = new Date(), format = 'iso') {
+function format_timestamp(date = new Date(), format = 'iso') {
   const d = date instanceof Date ? date : new Date(date);
 
   if (isNaN(d.getTime())) {
     console.warn(`Warning: Invalid date: ${date}, using current time`);
-    return formatTimestamp(new Date(), format);
+    return format_timestamp(new Date(), format);
   }
 
   const offsetMs = CONFIG.TIMEZONE_OFFSET_HOURS * 60 * 60 * 1000;
@@ -61,7 +65,7 @@ function formatTimestamp(date = new Date(), format = 'iso') {
    3. OUTPUT TRUNCATION
 ──────────────────────────────────────────────────────────────── */
 
-function truncateToolOutput(output, maxLines = CONFIG.MAX_TOOL_OUTPUT_LINES) {
+function truncate_tool_output(output, maxLines = CONFIG.MAX_TOOL_OUTPUT_LINES) {
   if (!output) return '';
 
   const lines = output.split('\n');
@@ -87,7 +91,7 @@ function truncateToolOutput(output, maxLines = CONFIG.MAX_TOOL_OUTPUT_LINES) {
    4. EXCHANGE SUMMARIZATION
 ──────────────────────────────────────────────────────────────── */
 
-function summarizeExchange(userMessage, assistantResponse, toolCalls = []) {
+function summarize_exchange(userMessage, assistantResponse, toolCalls = []) {
   let userIntent;
   if (userMessage.length <= 200) {
     userIntent = userMessage;
@@ -118,7 +122,7 @@ function summarizeExchange(userMessage, assistantResponse, toolCalls = []) {
    5. ARTIFACT EXTRACTION
 ──────────────────────────────────────────────────────────────── */
 
-function extractKeyArtifacts(messages) {
+function extract_key_artifacts(messages) {
   const artifacts = {
     filesCreated: [],
     filesModified: [],
@@ -168,8 +172,14 @@ function extractKeyArtifacts(messages) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  formatTimestamp,
-  truncateToolOutput,
-  summarizeExchange,
-  extractKeyArtifacts
+  // Primary exports (snake_case)
+  format_timestamp,
+  truncate_tool_output,
+  summarize_exchange,
+  extract_key_artifacts,
+  // Backwards compatibility aliases (camelCase)
+  formatTimestamp: format_timestamp,
+  truncateToolOutput: truncate_tool_output,
+  summarizeExchange: summarize_exchange,
+  extractKeyArtifacts: extract_key_artifacts
 };

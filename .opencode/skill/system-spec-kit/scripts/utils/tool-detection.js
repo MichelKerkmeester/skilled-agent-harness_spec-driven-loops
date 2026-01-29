@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// UTILS: TOOL DETECTION
+// ───────────────────────────────────────────────────────────────
+
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
 ──────────────────────────────────────────────────────────────── */
@@ -7,7 +11,7 @@
    2. TOOL CALL DETECTION
 ──────────────────────────────────────────────────────────────── */
 
-function detectToolCall(text) {
+function detect_tool_call(text) {
   if (!text || typeof text !== 'string') return null;
 
   const explicitMatch = text.match(/\bTool:\s*(\w+)/i);
@@ -37,7 +41,7 @@ function detectToolCall(text) {
    3. PROSE CONTEXT DETECTION
 ──────────────────────────────────────────────────────────────── */
 
-function isProseContext(text, matchStartIndex) {
+function is_prose_context(text, matchStartIndex) {
   if (matchStartIndex < 0) return false;
 
   const before = text.substring(Math.max(0, matchStartIndex - 20), matchStartIndex);
@@ -72,7 +76,7 @@ function isProseContext(text, matchStartIndex) {
    4. CONVERSATION PHASE CLASSIFICATION
 ──────────────────────────────────────────────────────────────── */
 
-function classifyConversationPhase(toolCalls, messageContent) {
+function classify_conversation_phase(toolCalls, messageContent) {
   const tools = toolCalls.map(t => t.tool?.toLowerCase() || '');
   const content = messageContent.toLowerCase();
 
@@ -104,7 +108,12 @@ function classifyConversationPhase(toolCalls, messageContent) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  detectToolCall,
-  isProseContext,
-  classifyConversationPhase
+  // Primary exports (snake_case)
+  detect_tool_call,
+  is_prose_context,
+  classify_conversation_phase,
+  // Backwards compatibility aliases (camelCase)
+  detectToolCall: detect_tool_call,
+  isProseContext: is_prose_context,
+  classifyConversationPhase: classify_conversation_phase
 };

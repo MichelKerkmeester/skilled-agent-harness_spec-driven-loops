@@ -20,8 +20,6 @@ action: Guide agent creation from understanding through validation
 # To invoke correctly: @write /create:agent [agent-name]
 # ─────────────────────────────────────────────────────────────────
 
-version: "1.9.0"
-
 operating_mode:
   workflow: sequential_6_step
   workflow_compliance: MANDATORY
@@ -31,7 +29,7 @@ operating_mode:
   validation: yaml_frontmatter_check
 
 # ─────────────────────────────────────────────────────────────────
-# EXECUTION MODES (v1.9.0)
+# EXECUTION MODES
 # ─────────────────────────────────────────────────────────────────
 execution_modes:
   auto:
@@ -79,22 +77,22 @@ user_inputs:
   agent_name: |
     [AGENT_NAME]
     Name for the agent in lowercase (e.g., review, security-audit).
-    FROM PHASE 1 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q0 or command argument).
 
   agent_mode: |
     [AGENT_MODE]
     Agent type: primary or secondary.
-    FROM PHASE 2 OUTPUT (user choice A/B).
+    FROM UNIFIED SETUP PHASE (Q1 choice A/B).
 
   agent_path: |
     [AGENT_PATH]
     Output file path.
-    FROM PHASE 3 OUTPUT.
+    FROM UNIFIED SETUP PHASE (Q2 or default).
 
   spec_path: |
     [SPEC_PATH]
     Spec folder for tracking this work (optional).
-    FROM PHASE 4 OUTPUT (user choice A/B/C).
+    FROM UNIFIED SETUP PHASE (Q3 choice A/B/C).
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -132,7 +130,7 @@ agent_modes:
     use_case: "Specialized tasks delegated by primary agents"
 
 # ─────────────────────────────────────────────────────────────────
-# PERMISSION REFERENCE (v1.9.0 Unified Format)
+# PERMISSION REFERENCE
 # ─────────────────────────────────────────────────────────────────
 # NOTE: The separate `tools:` object is DEPRECATED.
 # Use unified `permission:` object with allow/deny/ask values.
@@ -213,7 +211,7 @@ workflow:
     goal: "Validate inputs and confirm output location"
     activities:
     - "Validate agent name format (lowercase, hyphenated)"
-    - "Confirm output location from Phase 3"
+    - "Confirm output location from UNIFIED SETUP PHASE"
     - "Verify no conflicts with existing agents"
     outputs:
     - agent_name_validated

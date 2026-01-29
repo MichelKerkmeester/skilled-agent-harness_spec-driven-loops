@@ -54,14 +54,16 @@ function is_enabled() {
 
 /**
  * Boost a score by a given amount, capping at maxScoreCap
+ * BUG-015 FIX: Clamp negative scores to 0 before boosting to prevent negative results
  * @param {number} currentScore - Current attention score (0.0-1.0)
  * @param {number} boostAmount - Amount to boost (default: CONFIG.boostAmount)
- * @returns {number} New score capped at maxScoreCap
+ * @returns {number} New score capped at maxScoreCap (and floored at 0)
  */
 function boost_score(currentScore, boostAmount = CO_ACTIVATION_CONFIG.boostAmount) {
   const score = typeof currentScore === 'number' ? currentScore : 0;
+  const safe_score = Math.max(0, score); // BUG-015 FIX: Clamp negative to 0
   const boost = typeof boostAmount === 'number' ? boostAmount : CO_ACTIVATION_CONFIG.boostAmount;
-  return Math.min(score + boost, CO_ACTIVATION_CONFIG.maxScoreCap);
+  return Math.min(safe_score + boost, CO_ACTIVATION_CONFIG.maxScoreCap);
 }
 
 /* ─────────────────────────────────────────────────────────────

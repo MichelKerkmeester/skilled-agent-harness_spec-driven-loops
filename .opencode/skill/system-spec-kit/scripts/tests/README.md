@@ -117,6 +117,17 @@ tests/
 ├── test-validation-system.js      # JavaScript validation tests (NEW)
 ├── test-validation.sh             # Core validation tests (bash)
 ├── test_dual_threshold.py         # Python dual-threshold tests (NEW)
+├── run-all-tests.js               # Master test runner for cognitive memory tests (NEW)
+├── test-utils.js                  # Shared test utilities for cognitive memory (NEW)
+├── fsrs-scheduler.test.js         # FSRS algorithm tests (NEW)
+├── prediction-error-gate.test.js  # Prediction error gate tests (NEW)
+├── tier-classifier.test.js        # Tier classification tests (NEW)
+├── attention-decay.test.js        # Attention decay function tests (NEW)
+├── composite-scoring.test.js      # Composite scoring tests (NEW)
+├── memory-save-integration.test.js    # Memory save integration tests (NEW)
+├── memory-search-integration.test.js  # Memory search integration tests (NEW)
+├── schema-migration.test.js       # Schema migration tests (NEW)
+├── test-cognitive-integration.js  # End-to-end cognitive memory tests (NEW)
 └── README.md                      # This file
 ```
 
@@ -250,4 +261,76 @@ ls -la .test-workspace/specs/
 
 ---
 
-*Documentation for system-spec-kit test suite v2.1 | Last updated: 2026-01-24*
+---
+
+## 6. 🧠 COGNITIVE MEMORY TEST SUITE
+
+### Overview
+
+Additional test infrastructure for the Cognitive Memory Upgrade including FSRS scheduling, prediction error gating, tier classification, and semantic similarity.
+
+### Running Cognitive Memory Tests
+
+```bash
+# Run all cognitive memory tests
+node run-all-tests.js
+
+# Run with verbose output
+node run-all-tests.js --verbose
+
+# Run specific test category
+node run-all-tests.js --filter=fsrs
+
+# Stop on first failure
+node run-all-tests.js --bail
+```
+
+### Test Files
+
+| File | Purpose |
+|------|---------|
+| `run-all-tests.js` | Master test runner for all cognitive memory tests |
+| `test-utils.js` | Shared utilities (assertions, fixtures, mocks) |
+| `fsrs-scheduler.test.js` | FSRS algorithm (stability, difficulty, intervals) |
+| `prediction-error-gate.test.js` | PE gate threshold validation |
+| `tier-classifier.test.js` | Importance tier classification |
+| `attention-decay.test.js` | Power-law decay function |
+| `composite-scoring.test.js` | Combined scoring algorithm |
+| `memory-save-integration.test.js` | Save workflow integration |
+| `memory-search-integration.test.js` | Search workflow integration |
+| `schema-migration.test.js` | Database migration tests |
+| `test-cognitive-integration.js` | End-to-end cognitive memory tests |
+
+### Test Utilities
+
+The `test-utils.js` module provides:
+
+```javascript
+const {
+  // Assertions
+  assert, assertApproxEqual, assertInRange, assertArrayEqual, assertThrows,
+
+  // Test data creation
+  createTestMemory, mockDatabase, mockEmbedding,
+
+  // Test infrastructure
+  createTestRunner, loadFixture, createTempDir, cleanupTempDir,
+
+  // Utilities
+  sleep, randomString, cosineSimilarity
+} = require('./test-utils');
+```
+
+### Test Fixtures
+
+Located in `../test-fixtures/`:
+
+| Fixture | Purpose |
+|---------|---------|
+| `sample-memories.json` | Sample memory objects for all 5 tiers |
+| `contradiction-pairs.json` | Contradiction detection test cases |
+| `similarity-test-cases.json` | Semantic similarity validation cases |
+
+---
+
+*Documentation for system-spec-kit test suite v2.1 | Last updated: 2026-01-28*

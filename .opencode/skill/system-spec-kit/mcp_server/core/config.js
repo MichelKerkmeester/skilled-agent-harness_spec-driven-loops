@@ -141,24 +141,10 @@ const ALLOWED_BASE_PATHS = [
 const CONSTITUTIONAL_CACHE_TTL = 60000;
 
 /* ─────────────────────────────────────────────────────────────
-   7. MEMORY AWARE TOOLS
+   7. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
-/**
- * Set of tool names that support memory auto-surfacing (SK-004)
- * @type {Set<string>}
- */
-const MEMORY_AWARE_TOOLS = new Set([
-  'memory_search',
-  'memory_match_triggers',
-  'memory_list',
-  'memory_save',
-  'memory_index_scan'
-]);
-
-/* ─────────────────────────────────────────────────────────────
-   8. EXPORTS
-──────────────────────────────────────────────────────────────── */
+// NOTE: MEMORY_AWARE_TOOLS is defined in hooks/memory-surface.js (authoritative source)
 
 module.exports = {
   // Path constants
@@ -186,8 +172,5 @@ module.exports = {
   ALLOWED_BASE_PATHS,
 
   // Cache
-  CONSTITUTIONAL_CACHE_TTL,
-
-  // Tool sets
-  MEMORY_AWARE_TOOLS
+  CONSTITUTIONAL_CACHE_TTL
 };

@@ -165,6 +165,8 @@ core/
 
 Detects when `generate-context.js` writes new memory files and reinitializes the database connection.
 
+**Schema v4 Migration**: Database includes FSRS cognitive memory columns (stability, difficulty, last_review, review_count) and memory_conflicts table for PE gate auditing.
+
 | Function | Purpose | Returns |
 |----------|---------|---------|
 | `check_database_updated()` | Check `.db-updated` file and reinit if needed | `Promise<boolean>` |
@@ -437,4 +439,4 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 
 ---
 
-*Core modules version: 1.7.2 | Last updated: 2026-01-21*
+*Core modules version: 1.8.0 | Last updated: 2026-01-27*

@@ -16,167 +16,154 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 ---
 
-# 🚨 MANDATORY PHASES - BLOCKING ENFORCEMENT
+# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**These phases use CONSOLIDATED PROMPTS to minimize user round-trips. Each phase BLOCKS until complete. You CANNOT proceed to the workflow until ALL phases show ✅ PASSED or ⏭️ N/A.**
+**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
 
-**⚡ CHAINED EXECUTION MODE:** If invoked with `--chained` flag from a parent workflow, Phase 0 and Phases 1-2 are PRE-VERIFIED. Skip directly to the workflow section with provided parameters.
+**Round-trip optimization:** This workflow requires only 1 user interaction (0 if --chained).
+
+**⚡ CHAINED EXECUTION MODE:** If invoked with `--chained` flag, skip to workflow with provided parameters.
 
 ---
 
-## 🔒 PHASE 0: WRITE AGENT VERIFICATION [PRIORITY GATE]
+## 🔒 UNIFIED SETUP PHASE
 
 **STATUS: ☐ BLOCKED / ⏭️ N/A if chained**
 
-> **⚠️ CRITICAL:** This command REQUIRES the `@write` agent unless invoked via `--chained` from a parent workflow.
-
 ```
-EXECUTE THIS CHECK FIRST:
+EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-├─ IF invoked with --chained flag:
-│   └─ SET STATUS: ⏭️ N/A (parent workflow verified @write agent)
-│
-└─ IF NOT chained:
-    │
-    ├─ SELF-CHECK: Are you operating as the @write agent?
-    │   │
-    │   ├─ INDICATORS that you ARE @write agent:
-    │   │   ├─ You were invoked with "@write" prefix
-    │   │   ├─ You have template-first workflow capabilities
-    │   │   ├─ You load templates BEFORE creating content
-    │   │
-    │   ├─ IF YES (all indicators present):
-    │   │   └─ SET STATUS: ✅ PASSED → Proceed to PHASE C
-    │   │
-    │   └─ IF NO or UNCERTAIN:
-    │       │
-    │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-    │       │
-    │       ├─ DISPLAY to user:
-    │       │   ┌────────────────────────────────────────────────────────────┐
-    │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
-    │       │   │                                                            │
-    │       │   │ This command requires the @write agent for:                │
-    │       │   │   • Template-first workflow                                  │
-    │       │   │   • DQI scoring                                            │
-    │       │   │   • workflows-documentation skill integration               │
-    │       │   │                                                            │
-    │       │   │ To proceed, restart with:                                  │
-    │       │   │   @write /create:skill_asset [args]                        │
-    │       │   │                                                            │
-    │       │   │ Reference: .opencode/agent/write.md                        │
-    │       │   └────────────────────────────────────────────────────────────┘
-    │       │
-    │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
+1. CHECK for --chained flag FIRST (before any other checks):
+   ├─ IF invoked with --chained flag OR called from skill.md Step 8:
+   │   │
+   │   ├─ VERIFY parent workflow provided:
+   │   │   ├─ skill_name (from parent)
+   │   │   ├─ skill_path (from parent - already verified)
+   │   │   ├─ asset_type (from parent selection)
+   │   │   ├─ execution_mode (inherited from parent)
+   │   │
+   │   ├─ IF all parameters present:
+   │   │   ├─ SET STATUS: ⏭️ N/A (chained mode - all inputs from parent)
+   │   │   └─ SKIP directly to "# Asset Creation" workflow section
+   │   │
+   │   └─ IF parameters missing:
+   │       └─ FALL THROUGH to step 2 (normal execution)
+   │
+   └─ IF NOT chained:
+       └─ PROCEED to step 2
 
-**STOP HERE** - Verify you are operating as @write agent (or in chained mode) before continuing.
+2. CHECK Phase 0: @write agent verification (automatic):
+   ├─ SELF-CHECK: Are you operating as the @write agent?
+   │   │
+   │   ├─ INDICATORS that you ARE @write agent:
+   │   │   ├─ You were invoked with "@write" prefix
+   │   │   ├─ You have template-first workflow capabilities
+   │   │   ├─ You load templates BEFORE creating content
+   │   │
+   │   ├─ IF YES (all indicators present):
+   │   │   └─ CONTINUE to step 3
+   │   │
+   │   └─ IF NO or UNCERTAIN:
+   │       │
+   │       ├─ ⛔ HARD BLOCK - DO NOT PROCEED
+   │       │
+   │       ├─ DISPLAY to user:
+   │       │   ┌────────────────────────────────────────────────────────────┐
+   │       │   │ ⛔ WRITE AGENT REQUIRED                                    │
+   │       │   │                                                            │
+   │       │   │ This command requires the @write agent for:                │
+   │       │   │   • Template-first workflow                                  │
+   │       │   │   • DQI scoring                                            │
+   │       │   │   • workflows-documentation skill integration               │
+   │       │   │                                                            │
+   │       │   │ To proceed, restart with:                                  │
+   │       │   │   @write /create:skill_asset [args]                        │
+   │       │   │                                                            │
+   │       │   │ Reference: .opencode/agent/write.md                        │
+   │       │   └────────────────────────────────────────────────────────────┘
+   │       │
+   │       └─ RETURN: STATUS=FAIL ERROR="Write agent required"
 
-⛔ HARD STOP: DO NOT proceed to PHASE C until STATUS = ✅ PASSED or ⏭️ N/A
-```
+3. CHECK for mode suffix in $ARGUMENTS or command invocation:
+   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
+   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
+   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-**Phase 0 Output:** `write_agent_verified = [yes/no/skipped-chained]`
+4. CHECK if $ARGUMENTS contains skill name and asset type:
+   ├─ IF $ARGUMENTS has skill_name → omit Q0
+   ├─ IF $ARGUMENTS has valid asset_type (template/lookup/example/guide) → omit Q1
+   └─ IF $ARGUMENTS is empty or incomplete → include applicable questions
 
----
+5. List available skills:
+   $ ls .opencode/skill/*/SKILL.md 2>/dev/null | sed 's|.*/skill/||;s|/SKILL.md||'
 
-## 🔒 PHASE C: CHAINED EXECUTION CHECK (PRIORITY)
+6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
-**STATUS: ☐ CHECK FIRST**
+   ┌────────────────────────────────────────────────────────────────┐
+   │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q0. Skill Name** (if not provided):                          │
+   │    Which existing skill needs an asset?                        │
+   │    Available: [list from step 5]                               │
+   │                                                                │
+   │ **Q1. Asset Type** (required):                                 │
+   │    A) Template - Copy-paste starting points                    │
+   │    B) Lookup - Lookup tables, decisions                        │
+   │    C) Example - Working code examples                          │
+   │    D) Guide - Step-by-step how-tos                             │
+   │                                                                │
+   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
+   │    A) Interactive - Confirm at each step (Recommended)          │
+   │    B) Autonomous - Execute without prompts                     │
+   │                                                                │
+   │ Reply with answers, e.g.: "A, A" or "my-skill, A, A"           │
+   └────────────────────────────────────────────────────────────────┘
 
-```
-EXECUTE THIS CHECK BEFORE PHASE 1:
+7. WAIT for user response (DO NOT PROCEED)
 
-├─ IF invoked with --chained flag OR called from skill.md Step 8:
-│   │
-│   ├─ VERIFY parent workflow provided:
-│   │   ├─ skill_name (from parent)
-│   │   ├─ skill_path (from parent - already verified)
-│   │   ├─ asset_type (from parent selection)
-│   │
-│   ├─ IF all parameters present:
-│   │   ├─ SET PHASE 1: ⏭️ SKIPPED (parent verified)
-│   │   ├─ SET PHASE 2: ⏭️ SKIPPED (parent verified)
-│   │   └─ PROCEED directly to "# Asset Creation" workflow
-│   │
-│   └─ IF parameters missing:
-│       └─ FALL THROUGH to Phase 1 (normal execution)
-│
-└─ IF NOT chained:
-    └─ PROCEED to Phase 1 (normal execution)
+8. Parse response and store ALL results:
+   - skill_name = [from Q0 or $ARGUMENTS]
+   - asset_type = [A=template, B=lookup, C=example, D=guide from Q1 or $ARGUMENTS]
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
 
-⚡ CHAINED MODE: Enables efficient resource creation from parent workflows
-⚡ Parent workflow has already verified skill exists and is valid
-```
+9. Verify skill exists (inline check, not separate phase):
+   ├─ Run: ls -d .opencode/skill/[skill_name] 2>/dev/null
+   │
+   ├─ IF skill found:
+   │   ├─ Store path as: skill_path
+   │   ├─ Verify SKILL.md exists
+   │   └─ CONTINUE to step 10
+   │
+   └─ IF skill NOT found:
+       │
+       ├─ DISPLAY error with options:
+       │   ┌────────────────────────────────────────────────────────────┐
+       │   │ Skill '[skill_name]' not found.                            │
+       │   │                                                            │
+       │   │ A) Provide correct skill name                              │
+       │   │ B) Provide full path to skill                              │
+       │   │ C) Create new skill first (/create:skill)                   │
+       │   └────────────────────────────────────────────────────────────┘
+       │
+       ├─ WAIT for response
+       └─ Process based on choice, then retry step 9
 
----
+10. SET STATUS: ✅ PASSED
 
-## 🔒 PHASE 1: INPUT VALIDATION
+**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE THIS CHECK FIRST:
-
-├─ IF $ARGUMENTS is empty, undefined, or whitespace-only:
-│   │
-│   ├─ ASK user:
-│   │   ┌────────────────────────────────────────────────────────────┐
-│   │   │ "Which skill needs an asset, and what type?"               │
-│   │   │                                                            │
-│   │   │ Format: <skill-name> <asset-type>                          │
-│   │   │                                                            │
-│   │   │ Asset types:                                               │
-│   │   │   - template  (copy-paste starting points)                 │
-│   │   │   - lookup    (lookup tables, decisions)                   │
-│   │   │   - example   (working code examples)                      │
-│   │   │   - guide     (step-by-step how-tos)                       │
-│   │   └────────────────────────────────────────────────────────────┘
-│   │
-│   ├─ WAIT for user response (DO NOT PROCEED)
-│   ├─ Parse response for skill_name and asset_type
-│   └─ SET STATUS: ✅ PASSED
-│
-└─ IF $ARGUMENTS contains content:
-    │
-    ├─ Parse first argument as: skill_name
-    ├─ Parse second argument as: asset_type
-    │
-    ├─ VALIDATE asset_type:
-    │   ├─ Must be one of: template, lookup, example, guide
-    │   │
-    │   ├─ IF invalid:
-    │   │   ├─ SHOW: "Invalid asset type. Valid: template, lookup, example, guide"
-    │   │   ├─ ASK for correct type
-    │   │   └─ WAIT for response
-    │   │
-    │   └─ IF valid:
-    │       └─ Store as: asset_type
-    │
-    └─ SET STATUS: ✅ PASSED
-
-**STOP HERE** - Wait for user to provide skill name and asset type before continuing.
-
-⛔ HARD STOP: DO NOT read past this phase until STATUS = ✅ PASSED
+⛔ HARD STOP: DO NOT proceed until user explicitly answers
+⛔ NEVER split these questions into multiple prompts
 ⛔ NEVER infer skill name from context or conversation history
 ⛔ NEVER assume asset type without explicit input
+⛔ NEVER create assets for non-existent skills
 ```
 
-**Phase 1 Output:** `skill_name = ________________` | `asset_type = ________________`
-
----
-
-## 🔒 MODE DETECTION
-
-```
-CHECK for mode suffix in $ARGUMENTS or command invocation:
-
-├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS"
-├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE"
-└─ No suffix → execution_mode = "INTERACTIVE" (default - safer for creation workflows)
-
-Note: When --chained flag is present, mode inherits from parent workflow.
-```
-
-**Mode Output:** `execution_mode = ________________`
+**Phase Output:**
+- `skill_name = ________________`
+- `asset_type = ________________`
+- `skill_path = ________________`
+- `execution_mode = ________________`
 
 ---
 
@@ -197,70 +184,26 @@ Note: When --chained flag is present, mode inherits from parent workflow.
 
 ---
 
-## 🔒 PHASE 2: SKILL VERIFICATION
-
-**STATUS: ☐ BLOCKED**
-
-```
-EXECUTE AFTER PHASE 1 PASSES:
-
-1. Check if skill exists at expected path:
-   └─ .opencode/skill/[skill-name]/
-
-2. Run verification:
-   $ ls -d .opencode/skill/[skill-name] 2>/dev/null
-
-3. Process result:
-   ├─ IF skill found:
-   │   ├─ Store path as: skill_path
-   │   ├─ Verify SKILL.md exists
-   │   └─ SET STATUS: ✅ PASSED
-   │
-   └─ IF skill NOT found:
-       │
-       ├─ ASK user:
-       │   ┌────────────────────────────────────────────────────────────┐
-       │   │ "Skill '[skill-name]' not found at expected locations."    │
-       │   │                                                            │
-       │   │ A) Provide correct skill name                              │
-       │   │ B) Provide full path to skill                              │
-       │   │ C) Create new skill first                                   │
-       │   └────────────────────────────────────────────────────────────┘
-       │
-       ├─ WAIT for response
-       └─ Process based on choice
-
-**STOP HERE** - Wait for skill verification to complete or user to provide correct skill path before continuing.
-
-⛔ HARD STOP: DO NOT proceed without verified skill path
-⛔ NEVER create assets for non-existent skills
-```
-
-**Phase 2 Output:** `skill_path = ________________` | `skill_verified = [yes/no]`
-
----
-
 ## ✅ PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL phases:**
+**Before continuing to the workflow, verify ALL values are set:**
 
-| PHASE                 | REQUIRED STATUS       | YOUR STATUS | OUTPUT VALUE                           |
-| --------------------- | --------------------- | ----------- | -------------------------------------- |
-| PHASE 0: WRITE AGENT  | ✅ PASSED or ⏭️ N/A     | ______      | write_agent_verified: ______           |
-| PHASE C: CHAINED      | ⏭️ SKIPPED or N/A      | ______      | chained_mode: [yes/no]                 |
-| PHASE 1: INPUT        | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_name: ______ / asset_type: _____ |
-| MODE DETECTION        | ✅ SET                 | ______      | execution_mode: ______                 |
-| PHASE 2: SKILL VERIFY | ✅ PASSED or ⏭️ SKIPPED | ______      | skill_path: ______                     |
+| FIELD          | REQUIRED | YOUR VALUE | SOURCE                  |
+| -------------- | -------- | ---------- | ----------------------- |
+| skill_name     | ✅ Yes    | ______     | Q0 or $ARGUMENTS        |
+| asset_type     | ✅ Yes    | ______     | Q1 or $ARGUMENTS        |
+| skill_path     | ✅ Yes    | ______     | Derived from skill_name |
+| execution_mode | ✅ Yes    | ______     | Suffix or Q2            |
 
 ```
 VERIFICATION CHECK:
-├─ IF chained_mode == yes:
-│   └─ Phases 1-2 show ⏭️ SKIPPED? → Proceed to workflow
+├─ IF chained mode (--chained flag):
+│   └─ All values from parent? → Proceed to workflow
 │
-├─ IF chained_mode == no:
-│   └─ ALL phases show ✅ PASSED? → Proceed to workflow
+├─ IF normal mode:
+│   └─ ALL required fields have values? → Proceed to workflow
 │
-└─ OTHERWISE → STOP and complete the blocked phase
+└─ OTHERWISE → Re-prompt for missing values only
 ```
 
 ---
@@ -269,20 +212,21 @@ VERIFICATION CHECK:
 
 **YOU ARE IN VIOLATION IF YOU:**
 
-- Executed command without @write agent verification (Phase 0) when not chained
-- Started reading the workflow section before all phases passed (unless chained)
-- Proceeded without both skill name AND asset type (Phase 1) when not chained
-- Attempted to create asset for non-existent skill (Phase 2) when not chained
-- Inferred inputs from context instead of explicit user input (when not chained)
+- Executed command without @write agent verification when not chained
+- Started reading the workflow section before all fields are set
+- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
+- Proceeded without both skill name AND asset type
+- Attempted to create asset for non-existent skill
+- Inferred inputs from context instead of explicit user input
 - Claimed chained mode without valid parent workflow parameters
 
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately
-2. STATE: "I violated PHASE [X] by [specific action]. Correcting now."
-3. RETURN to the violated phase
-4. COMPLETE the phase properly
-5. RESUME only after all phases pass
+2. STATE: "I asked questions separately instead of consolidated. Correcting now."
+3. PRESENT the single consolidated prompt with ALL applicable questions
+4. WAIT for user response
+5. RESUME only after all fields are set
 ```
 
 ---
@@ -302,6 +246,67 @@ VERIFICATION CHECK:
 | 3    | Template Load | ☐      | Structure patterns     | Template loaded            |
 | 4    | Content       | ☐      | [asset_name].md        | Asset file created         |
 | 5    | Validation    | ☐      | Updated SKILL.md       | Integration complete       |
+
+---
+
+## 📊 WORKFLOW DIAGRAM
+
+```mermaid
+flowchart TD
+    subgraph phases["Pre-Execution Phases"]
+        P0["Phase 0: @write Agent Verification"]
+        PC["Phase C: Chained Check"]
+        P1["Phase 1: Input Validation"]
+        P2["Phase 2: Skill Verification"]
+    end
+
+    subgraph workflow["5-Step Workflow"]
+        S1["Step 1: Analysis"]
+        S2["Step 2: Planning"]
+        S3["Step 3: Template Load"]
+        S4["Step 4: Content Creation"]
+        S5["Step 5: Validation"]
+    end
+
+    START((Start)) --> CHAINED{--chained flag?}
+
+    CHAINED -->|Yes| PC
+    CHAINED -->|No| P0
+
+    P0 --> P0_GATE{@write agent?}
+    P0_GATE -->|No| BLOCK[/"⛔ HARD BLOCK<br/>Restart with @write"/]
+    P0_GATE -->|Yes| PC
+
+    PC --> PC_GATE{Parent params<br/>provided?}
+    PC_GATE -->|Yes, skip P1-P2| S1
+    PC_GATE -->|No| P1
+
+    P1 --> P1_GATE{skill_name &<br/>asset_type?}
+    P1_GATE -->|Missing| ASK1[/"Ask user for input"/]
+    ASK1 --> P1
+    P1_GATE -->|Valid| P2
+
+    P2 --> P2_GATE{Skill exists?}
+    P2_GATE -->|No| ASK2[/"Ask: A) Correct name<br/>B) Full path<br/>C) Create skill"/]
+    ASK2 --> P2
+    P2_GATE -->|Yes| S1
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> DONE((Complete))
+
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#fff
+    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
+    classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef block fill:#7f1d1d,stroke:#ef4444,color:#fff
+
+    class P0,PC,P1,P2 phase
+    class P0_GATE,PC_GATE,P1_GATE,P2_GATE,CHAINED gate
+    class S1,S2,S3,S4,S5,DONE verify
+    class BLOCK block
+```
 
 ---
 
@@ -371,14 +376,15 @@ $ARGUMENTS
 
 ## 3. ⚡ INSTRUCTIONS
 
-### Step 4: Verify All Phases Passed
+### Step 4: Verify Unified Setup Passed
 
-Confirm you have these values from the phases:
-- `skill_name` from PHASE 1
-- `asset_type` from PHASE 1
-- `skill_path` from PHASE 2
+Confirm you have these values from the unified setup phase:
+- `skill_name` from Q0 or $ARGUMENTS
+- `asset_type` from Q1 or $ARGUMENTS
+- `skill_path` derived from skill_name verification
+- `execution_mode` from suffix or Q2
 
-**If ANY phase is incomplete, STOP and return to the MANDATORY PHASES section.**
+**If ANY field is incomplete, STOP and return to the UNIFIED SETUP PHASE section.**
 
 ### Step 5: Load & Execute Workflow
 
@@ -501,11 +507,11 @@ This command is often used after skill creation:
 
 After asset creation completes, suggest relevant next steps:
 
-| Condition | Suggested Command | Reason |
-|-----------|-------------------|--------|
-| Skill needs more assets | `/create:skill_asset [skill-name] [type]` | Add another asset |
-| Skill needs references | `/create:skill_reference [skill-name] workflow` | Add technical docs |
-| Asset complete | Verify SKILL.md Navigation Guide updated | Confirm routing works |
-| Want to save context | `/memory:save [spec-folder-path]` | Preserve creation context |
+| Condition               | Suggested Command                               | Reason                    |
+| ----------------------- | ----------------------------------------------- | ------------------------- |
+| Skill needs more assets | `/create:skill_asset [skill-name] [type]`       | Add another asset         |
+| Skill needs references  | `/create:skill_reference [skill-name] workflow` | Add technical docs        |
+| Asset complete          | Verify SKILL.md Navigation Guide updated        | Confirm routing works     |
+| Want to save context    | `/memory:save [spec-folder-path]`               | Preserve creation context |
 
 **ALWAYS** end with: "What would you like to do next?"

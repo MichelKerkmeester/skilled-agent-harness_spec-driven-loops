@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────
+// EXTRACTORS: IMPLEMENTATION GUIDE EXTRACTOR
+// ───────────────────────────────────────────────────────────────
+
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────
@@ -10,34 +14,34 @@ const { detectObservationType } = require('./file-extractor');
    2. IMPLEMENTATION DETECTION
 ──────────────────────────────────────────────────────────────── */
 
-function hasImplementationWork(observations, files) {
-  const implTypes = ['implementation', 'feature', 'bugfix', 'refactor'];
-  const hasImplType = observations.some(o => implTypes.includes(o.type));
+function has_implementation_work(observations, files) {
+  const impl_types = ['implementation', 'feature', 'bugfix', 'refactor'];
+  const has_impl_type = observations.some(o => impl_types.includes(o.type));
 
-  const implKeywords = /\b(implemented|built|created|added|fixed|refactored|developed|constructed|established)\b/i;
-  const hasImplKeywords = observations.some(o =>
-    o.narrative && implKeywords.test(o.narrative)
+  const impl_keywords = /\b(implemented|built|created|added|fixed|refactored|developed|constructed|established)\b/i;
+  const has_impl_keywords = observations.some(o =>
+    o.narrative && impl_keywords.test(o.narrative)
   );
 
-  const hasFileChanges = files && files.length > 0;
+  const has_file_changes = files && files.length > 0;
 
   // Require at least 2 of: impl type, impl keywords, file changes
-  const score = (hasImplType ? 1 : 0) + (hasImplKeywords ? 1 : 0) + (hasFileChanges ? 1 : 0);
+  const score = (has_impl_type ? 1 : 0) + (has_impl_keywords ? 1 : 0) + (has_file_changes ? 1 : 0);
   return score >= 2;
 }
 
-function extractMainTopic(observations, specFolder) {
-  if (specFolder) {
-    const folderTopic = specFolder.replace(/^\d+-/, '').replace(/-/g, '-');
-    if (folderTopic.length > 3) return folderTopic;
+function extract_main_topic(observations, spec_folder) {
+  if (spec_folder) {
+    const folder_topic = spec_folder.replace(/^\d+-/, '').replace(/-/g, '-');
+    if (folder_topic.length > 3) return folder_topic;
   }
 
-  const implObs = observations.find(o =>
+  const impl_obs = observations.find(o =>
     o.type === 'implementation' || o.type === 'feature'
   );
 
-  if (implObs && implObs.title) {
-    return implObs.title
+  if (impl_obs && impl_obs.title) {
+    return impl_obs.title
       .toLowerCase()
       .replace(/^(implemented|created|added|built|fixed)\s+/i, '')
       .replace(/[^a-z0-9]+/g, '-')
@@ -52,7 +56,7 @@ function extractMainTopic(observations, specFolder) {
    3. FEATURE EXTRACTION
 ──────────────────────────────────────────────────────────────── */
 
-function extractWhatBuilt(observations) {
+function extract_what_built(observations) {
   const implementations = [];
   const seen = new Set();
 
@@ -60,20 +64,20 @@ function extractWhatBuilt(observations) {
     const type = detectObservationType(obs);
     if (!['feature', 'implementation', 'bugfix', 'refactor'].includes(type)) continue;
 
-    let featureName = obs.title || 'Implementation';
+    let feature_name = obs.title || 'Implementation';
 
-    featureName = featureName
+    feature_name = feature_name
       .replace(/^(implemented|created|added|built|fixed|refactored)\s+/i, '')
       .trim();
 
-    const key = featureName.toLowerCase().substring(0, 30);
+    const key = feature_name.toLowerCase().substring(0, 30);
     if (seen.has(key)) continue;
     seen.add(key);
 
     let description = obs.narrative || '';
-    const firstSentence = description.match(/^[^.!?]+[.!?]/);
-    description = firstSentence
-      ? firstSentence[0].trim()
+    const first_sentence = description.match(/^[^.!?]+[.!?]/);
+    description = first_sentence
+      ? first_sentence[0].trim()
       : description.substring(0, 100).trim();
 
     description = description
@@ -81,9 +85,9 @@ function extractWhatBuilt(observations) {
       .replace(/`([^`]+)`/g, '$1')
       .replace(/^[-*]\s+/, '');
 
-    if (featureName.length > 3) {
+    if (feature_name.length > 3) {
       implementations.push({
-        FEATURE_NAME: featureName.charAt(0).toUpperCase() + featureName.slice(1),
+        FEATURE_NAME: feature_name.charAt(0).toUpperCase() + feature_name.slice(1),
         DESCRIPTION: description || 'Implemented during session'
       });
     }
@@ -96,22 +100,22 @@ function extractWhatBuilt(observations) {
    4. FILE ROLE DETECTION
 ──────────────────────────────────────────────────────────────── */
 
-function extractKeyFilesWithRoles(files, observations) {
-  const keyFiles = [];
+function extract_key_files_with_roles(files, observations) {
+  const key_files = [];
 
-  const fileContextMap = new Map();
+  const file_context_map = new Map();
   for (const obs of observations) {
     if (obs.files && Array.isArray(obs.files)) {
       for (const file of obs.files) {
         const narrative = obs.narrative || '';
-        if (!fileContextMap.has(file) && narrative.length > 10) {
-          fileContextMap.set(file, narrative);
+        if (!file_context_map.has(file) && narrative.length > 10) {
+          file_context_map.set(file, narrative);
         }
       }
     }
   }
 
-  const rolePatterns = [
+  const role_patterns = [
     { pattern: /\.test\.|\.spec\.|__tests__/, role: 'Test file' },
     { pattern: /config\.|\.config\./, role: 'Configuration' },
     { pattern: /index\.(js|ts|jsx|tsx)$/, role: 'Entry point / exports' },
@@ -132,25 +136,25 @@ function extractKeyFilesWithRoles(files, observations) {
   ];
 
   for (const file of files) {
-    const filePath = file.FILE_PATH || file.path || file;
-    const existingDesc = file.DESCRIPTION || '';
+    const file_path = file.FILE_PATH || file.path || file;
+    const existing_desc = file.DESCRIPTION || '';
 
     let role = '';
 
-    for (const { pattern, role: patternRole } of rolePatterns) {
-      if (pattern.test(filePath)) {
-        role = patternRole;
+    for (const { pattern, role: pattern_role } of role_patterns) {
+      if (pattern.test(file_path)) {
+        role = pattern_role;
         break;
       }
     }
 
-    if (!role && existingDesc && existingDesc.length > 10 &&
-        !existingDesc.toLowerCase().includes('modified during session')) {
-      role = existingDesc;
+    if (!role && existing_desc && existing_desc.length > 10 &&
+        !existing_desc.toLowerCase().includes('modified during session')) {
+      role = existing_desc;
     }
 
-    if (!role && fileContextMap.has(filePath)) {
-      const context = fileContextMap.get(filePath);
+    if (!role && file_context_map.has(file_path)) {
+      const context = file_context_map.get(file_path);
       const phrase = context.match(/\b(?:for|handles?|provides?|implements?|contains?)\s+([^.]+)/i);
       if (phrase) {
         role = phrase[1].trim().substring(0, 60);
@@ -159,7 +163,7 @@ function extractKeyFilesWithRoles(files, observations) {
 
     // Fallback: derive from filename (normalize path separators for cross-platform)
     if (!role) {
-      const filename = filePath.replace(/\\/g, '/').split('/').pop().replace(/\.[^.]+$/, '');
+      const filename = file_path.replace(/\\/g, '/').split('/').pop().replace(/\.[^.]+$/, '');
       role = filename
         .replace(/[-_]/g, ' ')
         .replace(/([a-z])([A-Z])/g, '$1 $2')
@@ -167,62 +171,62 @@ function extractKeyFilesWithRoles(files, observations) {
       role = 'Core ' + role;
     }
 
-    keyFiles.push({
-      FILE_PATH: filePath,
+    key_files.push({
+      FILE_PATH: file_path,
       ROLE: role.charAt(0).toUpperCase() + role.slice(1)
     });
   }
 
-  return keyFiles.slice(0, 8);
+  return key_files.slice(0, 8);
 }
 
 /* ─────────────────────────────────────────────────────────────
    5. EXTENSION GUIDE GENERATION
 ──────────────────────────────────────────────────────────────── */
 
-function generateExtensionGuide(observations, files) {
+function generate_extension_guide(observations, files) {
   const guides = [];
-  const seenPatterns = new Set();
+  const seen_patterns = new Set();
 
-  const fileTypes = new Map();
+  const file_types = new Map();
   for (const file of files) {
-    const filePath = file.FILE_PATH || file.path || file;
-    const ext = filePath.split('.').pop();
-    fileTypes.set(ext, (fileTypes.get(ext) || 0) + 1);
+    const file_path = file.FILE_PATH || file.path || file;
+    const ext = file_path.split('.').pop();
+    file_types.set(ext, (file_types.get(ext) || 0) + 1);
   }
 
-  if (fileTypes.get('js') > 0 || fileTypes.get('ts') > 0) {
+  if (file_types.get('js') > 0 || file_types.get('ts') > 0) {
     guides.push({ GUIDE_TEXT: 'Add new modules following the existing file structure patterns' });
-    seenPatterns.add('modules');
+    seen_patterns.add('modules');
   }
 
-  if (fileTypes.get('test.js') > 0 || fileTypes.get('spec.js') > 0 ||
+  if (file_types.get('test.js') > 0 || file_types.get('spec.js') > 0 ||
       files.some(f => (f.FILE_PATH || f).includes('test'))) {
     guides.push({ GUIDE_TEXT: 'Create corresponding test files for new implementations' });
-    seenPatterns.add('tests');
+    seen_patterns.add('tests');
   }
 
   for (const obs of observations) {
     const narrative = (obs.narrative || '').toLowerCase();
 
-    if (narrative.includes('api') && !seenPatterns.has('api')) {
+    if (narrative.includes('api') && !seen_patterns.has('api')) {
       guides.push({ GUIDE_TEXT: 'Follow the established API pattern for new endpoints' });
-      seenPatterns.add('api');
+      seen_patterns.add('api');
     }
 
-    if (narrative.includes('validation') && !seenPatterns.has('validation')) {
+    if (narrative.includes('validation') && !seen_patterns.has('validation')) {
       guides.push({ GUIDE_TEXT: 'Apply validation patterns to new input handling' });
-      seenPatterns.add('validation');
+      seen_patterns.add('validation');
     }
 
-    if (narrative.includes('error') && !seenPatterns.has('error')) {
+    if (narrative.includes('error') && !seen_patterns.has('error')) {
       guides.push({ GUIDE_TEXT: 'Maintain consistent error handling approach' });
-      seenPatterns.add('error');
+      seen_patterns.add('error');
     }
 
-    if ((narrative.includes('template') || narrative.includes('mustache')) && !seenPatterns.has('template')) {
+    if ((narrative.includes('template') || narrative.includes('mustache')) && !seen_patterns.has('template')) {
       guides.push({ GUIDE_TEXT: 'Use established template patterns for new outputs' });
-      seenPatterns.add('template');
+      seen_patterns.add('template');
     }
   }
 
@@ -237,11 +241,11 @@ function generateExtensionGuide(observations, files) {
    6. PATTERN EXTRACTION
 ──────────────────────────────────────────────────────────────── */
 
-function extractCodePatterns(observations, files) {
+function extract_code_patterns(observations, files) {
   const patterns = [];
   const seen = new Set();
 
-  const patternMatchers = [
+  const pattern_matchers = [
     {
       keywords: ['helper', 'util', 'utility'],
       name: 'Helper Functions',
@@ -294,22 +298,22 @@ function extractCodePatterns(observations, files) {
     }
   ];
 
-  const allText = observations
+  const all_text = observations
     .map(o => `${o.title || ''} ${o.narrative || ''}`)
     .join(' ')
     .toLowerCase();
 
-  const fileNames = files
+  const file_names = files
     .map(f => (f.FILE_PATH || f.path || f).toLowerCase())
     .join(' ');
 
-  const combinedText = allText + ' ' + fileNames;
+  const combined_text = all_text + ' ' + file_names;
 
-  for (const matcher of patternMatchers) {
+  for (const matcher of pattern_matchers) {
     if (seen.has(matcher.name)) continue;
 
-    const hasKeyword = matcher.keywords.some(kw => combinedText.includes(kw));
-    if (hasKeyword) {
+    const has_keyword = matcher.keywords.some(kw => combined_text.includes(kw));
+    if (has_keyword) {
       patterns.push({
         PATTERN_NAME: matcher.name,
         USAGE: matcher.usage
@@ -325,10 +329,10 @@ function extractCodePatterns(observations, files) {
    7. IMPLEMENTATION GUIDE BUILDER
 ──────────────────────────────────────────────────────────────── */
 
-function buildImplementationGuideData(observations, files, specFolder) {
-  const hasImpl = hasImplementationWork(observations, files);
+function build_implementation_guide_data(observations, files, spec_folder) {
+  const has_impl = has_implementation_work(observations, files);
 
-  if (!hasImpl) {
+  if (!has_impl) {
     return {
       HAS_IMPLEMENTATION_GUIDE: false,
       TOPIC: '',
@@ -341,11 +345,11 @@ function buildImplementationGuideData(observations, files, specFolder) {
 
   return {
     HAS_IMPLEMENTATION_GUIDE: true,
-    TOPIC: extractMainTopic(observations, specFolder),
-    IMPLEMENTATIONS: extractWhatBuilt(observations),
-    IMPL_KEY_FILES: extractKeyFilesWithRoles(files, observations),
-    EXTENSION_GUIDES: generateExtensionGuide(observations, files),
-    PATTERNS: extractCodePatterns(observations, files)
+    TOPIC: extract_main_topic(observations, spec_folder),
+    IMPLEMENTATIONS: extract_what_built(observations),
+    IMPL_KEY_FILES: extract_key_files_with_roles(files, observations),
+    EXTENSION_GUIDES: generate_extension_guide(observations, files),
+    PATTERNS: extract_code_patterns(observations, files)
   };
 }
 
@@ -354,11 +358,20 @@ function buildImplementationGuideData(observations, files, specFolder) {
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  hasImplementationWork,
-  extractMainTopic,
-  extractWhatBuilt,
-  extractKeyFilesWithRoles,
-  generateExtensionGuide,
-  extractCodePatterns,
-  buildImplementationGuideData
+  // Primary exports (snake_case)
+  has_implementation_work,
+  extract_main_topic,
+  extract_what_built,
+  extract_key_files_with_roles,
+  generate_extension_guide,
+  extract_code_patterns,
+  build_implementation_guide_data,
+  // Backward-compatible aliases (camelCase)
+  hasImplementationWork: has_implementation_work,
+  extractMainTopic: extract_main_topic,
+  extractWhatBuilt: extract_what_built,
+  extractKeyFilesWithRoles: extract_key_files_with_roles,
+  generateExtensionGuide: generate_extension_guide,
+  extractCodePatterns: extract_code_patterns,
+  buildImplementationGuideData: build_implementation_guide_data
 };

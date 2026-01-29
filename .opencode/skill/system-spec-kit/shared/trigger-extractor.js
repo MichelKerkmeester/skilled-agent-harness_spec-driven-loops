@@ -310,12 +310,15 @@ function extract_decision_terms(text) {
   const seen = new Set();
   const lower_text = text.toLowerCase();
 
+  // BUG-010 FIX: Replaced lazy quantifiers {n,m}? with bounded greedy to prevent ReDoS
+  // Original: [a-z0-9\s]{2,25}? causes catastrophic backtracking
+  // Fixed: [a-z0-9][a-z0-9 ]{0,24} - greedy with explicit space, bounded
   const decision_patterns = [
-    /\b(?:chose|selected|picked|decided\s+on|opted\s+for|went\s+with)\s+([a-z][a-z0-9\s]{2,25}?)(?:\s+(?:for|because|since|as|over|instead)|[.,;]|$)/gi,
-    /\b(?:implemented|created|built|developed|added|introduced)\s+(?:a\s+|an\s+|the\s+)?([a-z][a-z0-9\s]{2,25}?)(?:\s+(?:for|to|that|which)|[.,;]|$)/gi,
-    /\b(?:switched|changed|moved|migrated)\s+(?:to|from)\s+([a-z][a-z0-9\s]{2,20}?)(?:\s+(?:for|because|since)|[.,;]|$)/gi,
-    /\busing\s+([a-z][a-z0-9\s]{2,20}?)\s+instead\s+of/gi,
-    /\breplaced\s+([a-z][a-z0-9\s]{2,20}?)\s+with\s+([a-z][a-z0-9\s]{2,20}?)(?:[.,;]|$)/gi,
+    /\b(?:chose|selected|picked|decided\s+on|opted\s+for|went\s+with)\s+([a-z][a-z0-9 ]{1,24})(?:\s+(?:for|because|since|as|over|instead)|[.,;]|$)/gi,
+    /\b(?:implemented|created|built|developed|added|introduced)\s+(?:a\s+|an\s+|the\s+)?([a-z][a-z0-9 ]{1,24})(?:\s+(?:for|to|that|which)|[.,;]|$)/gi,
+    /\b(?:switched|changed|moved|migrated)\s+(?:to|from)\s+([a-z][a-z0-9 ]{1,19})(?:\s+(?:for|because|since)|[.,;]|$)/gi,
+    /\busing\s+([a-z][a-z0-9 ]{1,19})\s+instead\s+of/gi,
+    /\breplaced\s+([a-z][a-z0-9 ]{1,19})\s+with\s+([a-z][a-z0-9 ]{1,19})(?:[.,;]|$)/gi,
   ];
 
   for (const pattern of decision_patterns) {
@@ -392,7 +395,8 @@ function extract_action_terms(text) {
   const seen = new Set();
   const lower_text = text.toLowerCase();
 
-  const action_pattern = /\b(fix|add|update|remove|delete|create|implement|refactor|optimize|debug|test|verify|check|validate|configure|setup|install|deploy|migrate|upgrade|downgrade|revert|rollback|merge|split|extract|inject|wrap|unwrap)\s+(?:the\s+|a\s+|an\s+)?([a-z][a-z0-9\s]{2,20}?)(?:\s+(?:for|to|from|in|on|with|by)|[.,;:!?]|$)/gi;
+  // BUG-010 FIX: Replaced lazy quantifier {2,20}? with bounded greedy to prevent ReDoS
+  const action_pattern = /\b(fix|add|update|remove|delete|create|implement|refactor|optimize|debug|test|verify|check|validate|configure|setup|install|deploy|migrate|upgrade|downgrade|revert|rollback|merge|split|extract|inject|wrap|unwrap)\s+(?:the\s+|a\s+|an\s+)?([a-z][a-z0-9 ]{1,19})(?:\s+(?:for|to|from|in|on|with|by)|[.,;:!?]|$)/gi;
 
   let match;
   while ((match = action_pattern.exec(lower_text)) !== null) {
