@@ -3,8 +3,6 @@
 > AI memory that actually persists without poisoning your context window.
 > Semantic search, FSRS-powered decay, and cognitive features that make context work across sessions, models, and projects.
 
-[![MCP](https://img.shields.io/badge/MCP-compatible-blue.svg)](https://modelcontextprotocol.io)
-
 ---
 
 ## TABLE OF CONTENTS
