@@ -623,11 +623,13 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 
 | Skill                       | Version | Primary Triggers                                                 | Purpose                                               |
 | --------------------------- | ------- | ---------------------------------------------------------------- | ----------------------------------------------------- |
-| `mcp-narsil`                | v1.0.0  | "how does X work", "list functions", "security scan", "semantic" | Semantic + structural analysis, security, call graphs |
+| `mcp-figma`                 | v1.0.0  | "Figma", "design", "component", "style"                          | Figma design tool integration                         |
 | `mcp-code-mode`             | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"                   | MCP orchestration for external tools                  |
+| `mcp-narsil`                | v1.0.0  | "how does X work", "list functions", "security scan", "semantic" | Semantic + structural analysis, security, call graphs |
 | `system-spec-kit`           | v12.4.0 | "save context", "/memory:save", "spec folder", "plan"            | Context preservation and spec workflow                |
 | `workflows-chrome-devtools` | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"                      | Chrome DevTools Protocol debugging                    |
-| `workflows-code`            | v2.0.0  | "implement", "debug", "verify", "refactor"                       | Implementation lifecycle orchestrator                 |
+| `workflows-code--full-stack`| v2.0.0  | "implement", "debug", "verify", "refactor" (full-stack)          | Full-stack implementation lifecycle orchestrator      |
+| `workflows-code--web-dev`   | v2.0.0  | "implement", "debug", "verify", "refactor" (frontend)            | Web development implementation lifecycle              |
 | `workflows-documentation`   | v1.0.0  | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
 | `workflows-git`             | v1.5.0  | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
 
@@ -753,33 +755,29 @@ ls -la .opencode/skill/
 
 ## 7. ⌨️ COMMANDS REFERENCE
 
-### 7.1 All Available Commands (16 total)
+### 7.1 All Available Commands (19 total)
 
 Commands are slash-prefixed shortcuts for common workflows.
 
-#### Create Commands (5)
+#### Create Commands (6)
 
 | Command                   | Description                  | Output                         |
 | ------------------------- | ---------------------------- | ------------------------------ |
+| `/create:agent`           | Create new agent             | Agent file in .opencode/agent/ |
 | `/create:folder_readme`   | Generate README for a folder | README.md in target folder     |
 | `/create:install_guide`   | Create installation guide    | Install guide document         |
 | `/create:skill`           | Scaffold new skill           | Skill folder structure         |
 | `/create:skill_asset`     | Create skill asset file      | Asset in skill/assets/         |
 | `/create:skill_reference` | Create skill reference doc   | Reference in skill/references/ |
 
-#### Memory Commands (3)
+#### Memory Commands (4)
 
-| Command              | Description               | Output                     |
-| -------------------- | ------------------------- | -------------------------- |
-| `/memory:checkpoint` | Create context checkpoint | Checkpoint for restoration |
-| `/memory:save`       | Save current context      | Memory file in spec folder |
-| `/memory:search`     | Search saved memories     | Matching memories list     |
-
-#### Prompt Commands (1)
-
-| Command           | Description            | Output               |
-| ----------------- | ---------------------- | -------------------- |
-| `/prompt:improve` | Enhance prompt quality | Improved prompt text |
+| Command              | Description                | Output                      |
+| -------------------- | -------------------------- | --------------------------- |
+| `/memory:checkpoint` | Create context checkpoint  | Checkpoint for restoration  |
+| `/memory:database`   | Manage memory database     | Database operations         |
+| `/memory:save`       | Save current context       | Memory file in spec folder  |
+| `/memory:search`     | Search saved memories      | Matching memories list      |
 
 #### Search Commands (2)
 
@@ -788,11 +786,13 @@ Commands are slash-prefixed shortcuts for common workflows.
 | `/search:code`  | Semantic code search      | Matching code snippets |
 | `/search:index` | Build/manage search index | Index status/results   |
 
-#### SpecKit Commands (5)
+#### SpecKit Commands (7)
 
 | Command               | Description                           | Output                      |
 | --------------------- | ------------------------------------- | --------------------------- |
 | `/spec_kit:complete`  | Full spec workflow (plan + implement) | Complete implementation     |
+| `/spec_kit:debug`     | Debug mode for troubleshooting        | Debug session               |
+| `/spec_kit:handover`  | Session handover documentation        | Handover document           |
 | `/spec_kit:implement` | Execute pre-planned work              | Implementation from plan    |
 | `/spec_kit:plan`      | Planning phase only                   | Plan without implementation |
 | `/spec_kit:research`  | Technical investigation               | Research findings           |
@@ -1049,12 +1049,12 @@ ls .opencode/commands/
 
 ### Current Installation Summary
 
-| Category        | Count | Items                                                                                                                         |
-| --------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 7     | mcp-narsil, mcp-code-mode, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
-| **MCP Servers** | 4     | sequential-thinking, narsil, spec-kit-memory, code-mode                                                                       |
-| **Commands**    | 16    | /create:* (5), /memory:* (3), /prompt:improve (1), /search:* (2), /spec_kit:* (5)                                             |
-| **Gates**       | 7     | Gate 0-6 (Compaction, Understanding, Routing, Spec, Memory Load, Memory Save, Completion)                                     |
+| Category        | Count | Items                                                                                                                                                     |
+| --------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Skills**      | 9     | mcp-figma, mcp-code-mode, mcp-narsil, system-spec-kit, workflows-chrome-devtools, workflows-code--full-stack, workflows-code--web-dev, workflows-documentation, workflows-git |
+| **MCP Servers** | 4     | sequential-thinking, narsil, spec-kit-memory, code-mode                                                                                                   |
+| **Commands**    | 19    | /create:* (6), /memory:* (4), /search:* (2), /spec_kit:* (7)                                                                                              |
+| **Gates**       | 7     | Gate 0-6 (Compaction, Understanding, Routing, Spec, Memory Load, Memory Save, Completion)                                                                 |
 
 ### Minimal AGENTS.md Structure
 
@@ -1098,4 +1098,4 @@ ls .opencode/commands/
 
 ---
 
-*Last updated: December 2024*
+*Last updated: January 2025*

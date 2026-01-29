@@ -1,6 +1,6 @@
 # Narsil MCP Server Installation Guide (Code Mode Provider)
 
-Complete installation and configuration guide for Narsil MCP as a **Code Mode provider**, providing deep code intelligence through 76 specialized tools. Covers semantic search (neural embeddings for meaning-based queries), structural analysis (AST-based symbol and definition queries), security scanning (OWASP, CWE, taint analysis), and call graph visualization.
+Complete installation and configuration guide for Narsil MCP as a **Code Mode provider**, providing deep code intelligence through 90 specialized tools. Covers semantic search (neural embeddings for meaning-based queries), structural analysis (AST-based symbol and definition queries), security scanning (OWASP, CWE, taint analysis), and call graph visualization.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
 > **Binary**: `narsil-mcp` (installed via brew/npm/scoop/cargo) | **Access**: **Via Code Mode (ONLY)** - not standalone
@@ -66,18 +66,18 @@ This means:
 | Aspect             | What This Means                                                                          |
 | ------------------ | ---------------------------------------------------------------------------------------- |
 | **Configuration**  | Narsil is configured in `.utcp_config.json`, NOT `opencode.json`                         |
-| **Access Method**  | All 76 Narsil tools are accessed via Code Mode's `call_tool_chain()`                     |
+| **Access Method**  | All 90 Narsil tools are accessed via Code Mode's `call_tool_chain()`                     |
 | **Prerequisite**   | Code Mode MCP must be installed first ([MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md)) |
-| **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 76 Narsil tools                       |
+| **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 90 Narsil tools                       |
 | **Naming Pattern** | Tools use pattern: `narsil.narsil_{tool_name}`                                           |
 
-**Why Code Mode?** Narsil's 76 tools would consume ~228k tokens if exposed natively. Code Mode provides on-demand access with 99% context reduction.
+**Why Code Mode?** Narsil's 90 tools would consume ~270k tokens if exposed natively. Code Mode provides on-demand access with 99% context reduction.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  Your AI Client (Claude Code, OpenCode, VS Code)                │
 │  └─► Sees: 4 Code Mode tools (call_tool_chain, search_tools...) │
-│      └─► NOT 76 Narsil tools directly                           │
+│      └─► NOT 90 Narsil tools directly                           │
 └──────────────────────────┬──────────────────────────────────────┘
                            │ call_tool_chain({ code: `narsil.narsil_scan_security(...)` })
                            ▼
@@ -88,7 +88,7 @@ This means:
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  Narsil Provider (configured in .utcp_config.json)                │
-│  └─► 76 tools accessible via narsil.narsil_{tool_name}          │
+│  └─► 90 tools accessible via narsil.narsil_{tool_name}          │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -96,7 +96,7 @@ This means:
 
 ## 1. 📖 OVERVIEW
 
-Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep code intelligence including **structural analysis**, **security scanning**, and **neural semantic search**.
+Narsil is a Rust-powered MCP server providing **90 specialized tools** for deep code intelligence including **structural analysis**, **security scanning**, and **neural semantic search**.
 
 ### Source Repository
 
@@ -107,7 +107,7 @@ Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep 
 | **Binary**      | `narsil-mcp`                                              |
 | **Install**     | Homebrew, Scoop, npm, Cargo, AUR, one-click scripts       |
 | **License**     | MIT                                                       |
-| **Tool Count**  | 76 tools                                                  |
+| **Tool Count**  | 90 tools                                                  |
 | **Config Wizard** | `narsil-mcp config init --neural`                       |
 
 ### Core Principle
@@ -129,7 +129,7 @@ Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep 
 | **Supply Chain Security** | SBOM generation, CVE checking, license compliance    |
 | **Git Integration**       | Blame, history, hotspots, contributors               |
 | **Code Quality**          | Dead code detection, complexity metrics              |
-| **76 Tools**              | Comprehensive coverage for code intelligence         |
+| **90 Tools**              | Comprehensive coverage for code intelligence         |
 | **Via Code Mode**         | Token-efficient access (~700 tokens vs ~6,000-8,000) |
 
 ### Architecture Overview
@@ -159,7 +159,7 @@ Narsil is a Rust-powered MCP server providing **76 specialized tools** for deep 
 ┌─────────────────────────────────────────────────────────────────┐
 │  Narsil MCP Server (Rust)                                       │
 │  ┌───────────────────────────────────────────────────────────┐  │
-│  │                    76 Analysis Tools                      │  │
+│  │                    90 Analysis Tools                      │  │
 │  │  Security | Call Graph | Symbols | Quality | Git | SBOM   │  │
 │  └───────────────────────────────────────────────────────────┘  │
 │  ┌───────────────────────────────────────────────────────────┐  │
@@ -447,7 +447,7 @@ Narsil provides 4 presets to balance tool availability vs. startup time:
 | ------------------- | ----- | ------------------------------------------- |
 | `--preset minimal`  | 26    | Fast startup, lightweight editors           |
 | `--preset balanced` | 51    | General development, daily use              |
-| `--preset full`     | 76    | Comprehensive analysis, Claude Desktop      |
+| `--preset full`     | 90    | Comprehensive analysis, Claude Desktop      |
 | `--preset security-focused` | ~40 | Security-focused workflows, audits   |
 
 **Example with preset:**
@@ -1046,7 +1046,7 @@ call_tool_chain({
 
 ## 8. 🎯 FEATURES
 
-Narsil provides 76 tools organized into categories. This section covers the **39 HIGH priority tools** you'll use most often.
+Narsil provides 90 tools organized into categories. This section covers the **39 HIGH priority tools** you'll use most often.
 
 ### 7.1 Repository & File Management (8 tools)
 
@@ -1719,7 +1719,7 @@ which narsil-mcp
 | ------------------ | ----- | -------------------------------------- |
 | `minimal`          | 26    | Fast startup, lightweight editors      |
 | `balanced`         | 51    | General development                    |
-| `full`             | 76    | Comprehensive analysis, Claude Desktop |
+| `full`             | 90    | Comprehensive analysis, Claude Desktop |
 | `security-focused` | ~40   | Security audits and compliance         |
 
 ### External Resources
@@ -1798,7 +1798,7 @@ narsil-mcp config init --neural
 ┌─────────────────────────────────────────────────────────────┐
 │  Narsil MCP Server                                          │
 │  ┌──────────────────────┬──────────────────────────────────┐│
-│  │ MCP Tools (76)       │ Visualization UI (optional)      ││
+│  │ MCP Tools (90)       │ Visualization UI (optional)      ││
 │  │ via stdio            │ via HTTP :3000                   ││
 │  │                      │                                  ││
 │  │ • narsil_find_symbols│ • Call graph viewer               ││

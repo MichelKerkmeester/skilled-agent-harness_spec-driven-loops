@@ -150,7 +150,7 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 | ----------------------------- | ------------------------------ |
 | `scripts/init_skill.py`       | Initialize new skill structure |
 | `scripts/package_skill.py`    | Validate and package skill     |
-| `assets/skill_md_template.md` | SKILL.md template              |
+| `assets/opencode/skill_md_template.md` | SKILL.md template              |
 
 ### Validation: `phase_1_complete`
 
@@ -933,7 +933,7 @@ head -10 .opencode/skill/my-skill/SKILL.md
 | `.opencode/skill/`                                                    | Skills directory     |
 | `.opencode/skill/workflows-documentation/scripts/init_skill.py`       | Initialize skill     |
 | `.opencode/skill/workflows-documentation/scripts/package_skill.py`    | Validate and package |
-| `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` | SKILL.md template    |
+| `.opencode/skill/workflows-documentation/assets/opencode/skill_md_template.md` | SKILL.md template |
 
 ### Scripts Reference
 

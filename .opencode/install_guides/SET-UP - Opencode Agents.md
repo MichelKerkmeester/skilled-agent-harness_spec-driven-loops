@@ -166,13 +166,13 @@ OpenCode comes with **4 built-in agents** (2 primary + 2 subagents):
 
 ### Key Statistics
 
-| Metric              | Value              | Description                      |
-| ------------------- | ------------------ | -------------------------------- |
-| Built-in Agents     | 4                  | Build, Plan, General, Explore    |
-| Custom Agents       | 2                  | orchestrate, write               |
-| Default Mode        | `all`              | Both primary and subagent        |
-| Default Temperature | 0.1                | Deterministic, consistent output |
-| Location            | `.opencode/agent/` | Agent definition files           |
+| Metric              | Value              | Description                                                      |
+| ------------------- | ------------------ | ---------------------------------------------------------------- |
+| Built-in Agents     | 4                  | Build, Plan, General, Explore                                    |
+| Custom Agents       | 7                  | orchestrate, write, research, review, speckit, handover, debug   |
+| Default Mode        | `all`              | Both primary and subagent                                        |
+| Default Temperature | 0.1                | Deterministic, consistent output                                 |
+| Location            | `.opencode/agent/` | Agent definition files                                           |
 
 ### Key Features
 
@@ -204,7 +204,12 @@ User Request
 │  │                                                          │
 │  CUSTOM AGENTS:                                             │
 │  ├─► @orchestrate: Task decomposition & delegation          │
-│  └─► @write: Documentation with template enforcement        │
+│  ├─► @write: Documentation with template enforcement        │
+│  ├─► @research: Technical investigation & evidence gathering│
+│  ├─► @review: Code quality & security assessment            │
+│  ├─► @speckit: Spec folder documentation (Level 1-3+)       │
+│  ├─► @handover: Session continuation & context preservation │
+│  └─► @debug: Fresh perspective debugging (4-phase method)   │
 └─────────────────────────────────────────────────────────────┘
     │
     ▼
@@ -261,8 +266,12 @@ When subagents create child sessions, navigate between them:
 ls .opencode/agent/
 
 # Expected output:
-# README.md
+# debug.md
+# handover.md
 # orchestrate.md
+# research.md
+# review.md
+# speckit.md
 # write.md
 
 # Built-in agents (Build, Plan, General, Explore) are always available
@@ -276,11 +285,19 @@ ls .opencode/agent/
 
 3. **For codebase exploration**: Type `@explore` to invoke the fast exploration subagent
 
-4. **For research tasks**: Type `@general` to invoke the general-purpose subagent
+4. **For research tasks**: Type `@general` for general purposes, or `@research` for structured 9-step technical investigation
 
 5. **For documentation tasks**: Type `@write` to invoke the custom documentation agent
 
 6. **For complex multi-step tasks**: Type `@orchestrate` to decompose and delegate work
+
+7. **For code reviews**: Type `@review` for quality scoring and security assessment
+
+8. **For spec folder creation**: Type `@speckit` to create Level 1-3+ spec documentation
+
+9. **For session handover**: Type `@handover` or use `/spec_kit:handover` to preserve context
+
+10. **For stuck debugging**: Type `@debug` for fresh perspective with 4-phase methodology
 
 ---
 
@@ -290,8 +307,12 @@ ls .opencode/agent/
 
 ```
 .opencode/agent/
-├── README.md           # This documentation file
+├── debug.md            # Fresh perspective debugging agent
+├── handover.md         # Session continuation agent
 ├── orchestrate.md      # Task decomposition & delegation agent
+├── research.md         # Technical investigation agent
+├── review.md           # Code quality & security assessment agent
+├── speckit.md          # Spec folder documentation agent
 └── write.md            # Documentation creation agent
 ```
 
@@ -405,10 +426,15 @@ These agents come with OpenCode and are always available:
 
 These are project-specific agents defined in `.opencode/agent/`:
 
-| Agent           | Purpose                         | Tools                                                         | Key Capability                        |
-| --------------- | ------------------------------- | ------------------------------------------------------------- | ------------------------------------- |
-| **orchestrate** | Task decomposition & delegation | `task` only                                                   | Parallel delegation to subagents      |
-| **write**       | Documentation creation          | read, write, edit, bash, grep, glob, webfetch, narsil, memory | Template-first, DQI scoring           |
+| Agent           | Purpose                                | Tools                                                         | Key Capability                              |
+| --------------- | -------------------------------------- | ------------------------------------------------------------- | ------------------------------------------- |
+| **orchestrate** | Task decomposition & delegation        | `task` only                                                   | Parallel delegation to subagents            |
+| **write**       | Documentation creation                 | read, write, edit, bash, grep, glob, webfetch, memory         | Template-first, DQI scoring                 |
+| **research**    | Technical investigation                | read, write, edit, bash, grep, glob, webfetch, narsil, memory | 9-step research workflow, evidence-based    |
+| **review**      | Code quality & security assessment     | read, bash, grep, glob, narsil, memory (read-only)            | Quality scoring, 5-dimension rubric         |
+| **speckit**     | Spec folder documentation              | read, write, edit, bash, grep, glob, memory                   | Level 1-3+ templates, validation            |
+| **handover**    | Session continuation                   | read, write, edit, bash, grep, glob, memory                   | Context preservation, attempt tracking      |
+| **debug**       | Fresh perspective debugging            | read, write, edit, bash, grep, glob, narsil, memory           | 4-phase methodology, isolated context       |
 
 ---
 
@@ -443,12 +469,12 @@ These are project-specific agents defined in `.opencode/agent/`:
 
 **The Documentation Writer**
 
-| Attribute   | Value                                                         |
-| ----------- | ------------------------------------------------------------- |
-| Name        | `documentation-writer`                                        |
-| Mode        | `primary`                                                     |
-| Temperature | 0.1                                                           |
-| Tools       | read, write, edit, bash, grep, glob, webfetch, narsil, memory |
+| Attribute   | Value                                                 |
+| ----------- | ----------------------------------------------------- |
+| Name        | `write`                                               |
+| Mode        | `all`                                                 |
+| Temperature | 0.1                                                   |
+| Tools       | read, write, edit, bash, grep, glob, webfetch, memory |
 
 **Authority:**
 - Document creation (READMEs, skills, guides, references)
@@ -464,6 +490,147 @@ These are project-specific agents defined in `.opencode/agent/`:
 - Improving existing documentation quality
 - Creating install guides
 - Generating ASCII flowcharts
+
+---
+
+### research.md (Custom)
+
+**The Researcher: Technical Investigation Specialist**
+
+| Attribute   | Value                                                         |
+| ----------- | ------------------------------------------------------------- |
+| Name        | `research`                                                    |
+| Mode        | `subagent`                                                    |
+| Temperature | 0.1                                                           |
+| Tools       | read, write, edit, bash, grep, glob, webfetch, narsil, memory |
+
+**Authority:**
+- Evidence gathering with citation requirements
+- Pattern analysis and feasibility assessment
+- Multi-option recommendations with trade-offs
+- Context preservation via memory system
+
+**Key Feature:** 9-step research workflow producing research.md with 17 sections. Focuses on INVESTIGATION, not implementation.
+
+**When to Use:**
+- Technical uncertainty requiring investigation
+- Pre-planning feasibility analysis
+- Codebase pattern discovery
+- External documentation research
+
+---
+
+### review.md (Custom)
+
+**The Reviewer: Code Quality Guardian**
+
+| Attribute   | Value                                             |
+| ----------- | ------------------------------------------------- |
+| Name        | `review`                                          |
+| Mode        | `subagent`                                        |
+| Temperature | 0.1                                               |
+| Tools       | read, bash, grep, glob, narsil, memory (READ-ONLY)|
+
+**Authority:**
+- Code review with 5-dimension quality rubric (100 points)
+- Security vulnerability assessment (OWASP/CWE patterns)
+- Pattern validation and standards compliance
+- Quality gate pass/fail determination
+
+**Key Feature:** READ-ONLY file access by design. Scores against explicit rubrics: Correctness (30), Security (25), Patterns (20), Maintainability (15), Performance (10).
+
+**When to Use:**
+- PR/MR reviews
+- Pre-commit validation
+- Quality gate enforcement
+- Security-sensitive code assessment
+
+---
+
+### speckit.md (Custom)
+
+**The Spec Writer: Documentation Specialist**
+
+| Attribute   | Value                                     |
+| ----------- | ----------------------------------------- |
+| Name        | `speckit`                                 |
+| Mode        | `subagent`                                |
+| Temperature | 0.1                                       |
+| Tools       | read, write, edit, bash, grep, glob, memory |
+
+**Authority:**
+- Spec folder creation (Level 1-3+)
+- Template enforcement (CORE + ADDENDUM architecture)
+- Validation and completeness verification
+- Checklist management (P0/P1/P2 priorities)
+
+**Key Feature:** Template-first approach using `scripts/spec/create.sh` and `scripts/spec/validate.sh`. Never creates spec documentation from scratch.
+
+**When to Use:**
+- Creating new spec folders
+- Writing spec.md, plan.md, tasks.md, checklist.md
+- Level assessment and template selection
+- Spec folder validation
+
+---
+
+### handover.md (Custom)
+
+**The Handover Agent: Session Continuation Specialist**
+
+| Attribute   | Value                                     |
+| ----------- | ----------------------------------------- |
+| Name        | `handover`                                |
+| Mode        | `subagent`                                |
+| Temperature | 0.1                                       |
+| Tools       | read, write, edit, bash, grep, glob, memory |
+
+**Authority:**
+- Context gathering from spec folder files
+- Key information extraction (decisions, blockers, actions)
+- Handover document generation with template
+- Attempt counter management for session continuity
+
+**Key Feature:** Creates handover.md files from spec folder context. Tracks attempt numbers for continuation sessions.
+
+**When to Use:**
+- Session ending and need context preservation
+- Creating continuation documents
+- Preparing for session branching
+- Dispatched by `/spec_kit:handover` command
+
+---
+
+### debug.md (Custom)
+
+**The Debugger: Fresh Perspective Specialist**
+
+| Attribute   | Value                                         |
+| ----------- | --------------------------------------------- |
+| Name        | `debug`                                       |
+| Mode        | `subagent`                                    |
+| Temperature | 0.2                                           |
+| Tools       | read, write, edit, bash, grep, glob, narsil, memory |
+
+**Authority:**
+- Systematic debugging with 4-phase methodology
+- Root cause analysis with evidence
+- Hypothesis-driven debugging (2-3 ranked theories)
+- Escalation after 3+ failed hypotheses
+
+**Key Feature:** Receives structured context handoff (NOT conversation history). Isolated by design to avoid inherited assumptions from failed attempts.
+
+**When to Use:**
+- 3+ prior debug attempts have failed
+- User explicitly requests fresh perspective
+- Error persists despite multiple fixes
+- Root cause remains elusive
+
+**4-Phase Methodology:**
+1. OBSERVE - Read error without assumptions
+2. ANALYZE - Trace paths, understand flow
+3. HYPOTHESIZE - Form 2-3 ranked theories
+4. FIX - Minimal change, verify, document
 
 ---
 
@@ -898,10 +1065,15 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 ### Agent Files
 
-| Agent       | Location           | Purpose                         |
-| ----------- | ------------------ | ------------------------------- |
-| orchestrate | `./orchestrate.md` | Task decomposition & delegation |
-| write       | `./write.md`       | Documentation creation          |
+| Agent       | Location           | Purpose                                |
+| ----------- | ------------------ | -------------------------------------- |
+| orchestrate | `./orchestrate.md` | Task decomposition & delegation        |
+| write       | `./write.md`       | Documentation creation                 |
+| research    | `./research.md`    | Technical investigation                |
+| review      | `./review.md`      | Code quality & security assessment     |
+| speckit     | `./speckit.md`     | Spec folder documentation              |
+| handover    | `./handover.md`    | Session continuation                   |
+| debug       | `./debug.md`       | Fresh perspective debugging            |
 
 ### Related Skills
 
@@ -937,10 +1109,15 @@ The agent system provides **specialized AI personas** for different task types:
 
 ### Custom Agents (Project-Specific)
 
-| Agent           | Type    | Purpose                                    | Invocation        |
-| --------------- | ------- | ------------------------------------------ | ----------------- |
-| **orchestrate** | Primary | Task decomposition & delegation            | `@orchestrate`    |
-| **write**       | Primary | Documentation with template enforcement    | `@write`          |
+| Agent           | Type     | Purpose                                    | Invocation        |
+| --------------- | -------- | ------------------------------------------ | ----------------- |
+| **orchestrate** | Primary  | Task decomposition & delegation            | `@orchestrate`    |
+| **write**       | All      | Documentation with template enforcement    | `@write`          |
+| **research**    | Subagent | Technical investigation & evidence         | `@research`       |
+| **review**      | Subagent | Code quality & security assessment         | `@review`         |
+| **speckit**     | Subagent | Spec folder documentation (Level 1-3+)     | `@speckit`        |
+| **handover**    | Subagent | Session continuation & context preservation| `@handover`       |
+| **debug**       | Subagent | Fresh perspective debugging                | `@debug`          |
 
 ### Key Principles
 
@@ -955,4 +1132,4 @@ The agent system provides **specialized AI personas** for different task types:
 
 ---
 
-*Documentation version: 1.2 | Last updated: 2025-01-04 | OpenCode v1.1.1+ compatible*
+*Documentation version: 1.3 | Last updated: 2026-01-29 | OpenCode v1.1.1+ compatible*

@@ -476,6 +476,8 @@ ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 
 Code Mode provides TypeScript execution environment for all external MCP tools.
 
+> **Detailed Guide:** See [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) for comprehensive configuration and provider setup.
+
 **Check:** `npx utcp-mcp --help >/dev/null 2>&1 && echo "Installed"` → If "Installed" shown, skip to config or 7.2
 
 **Install if missing:**
@@ -513,9 +515,9 @@ Code Mode enables access to external MCP tools. Each provider has its own detail
 | **Narsil** | 76 | [MCP - Narsil.md](./MCP%20-%20Narsil.md) - Code intelligence, security scanning |
 | **Figma** | 18 | [MCP - Figma.md](./MCP%20-%20Figma.md) - Design file access, image export |
 | **Chrome DevTools** | 26 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) - Browser debugging (MCP mode) |
-| **Webflow** | 42 | Via Code Mode - CMS management, site operations |
-| **ClickUp** | 21 | Via Code Mode - Task management, project tracking |
-| **GitHub** | 26 | Via Code Mode - Repository operations, issues, PRs |
+| **Webflow** | 42 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - CMS management, site operations |
+| **ClickUp** | 21 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - Task management, project tracking |
+| **GitHub** | 26 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - Repository operations, issues, PRs |
 
 > **Note**: All Code Mode providers are configured in `.utcp_config.json`, NOT `opencode.json`. See each provider's install guide for configuration details.
 
@@ -627,6 +629,8 @@ See [MCP - Narsil.md](./MCP%20-%20Narsil.md) for detailed visualization setup.
 
 Spec Kit Memory provides conversation context preservation with vector search.
 
+> **Detailed Guide:** See [MCP - Spec Kit Memory.md](./MCP%20-%20Spec%20Kit%20Memory.md) for comprehensive configuration and troubleshooting.
+
 **V12.0: Multiple Embedding Providers**
 
 Spec Kit Memory now supports three embedding backends:
@@ -723,6 +727,8 @@ Use the `memory_health` tool after starting OpenCode to see which provider is ac
 ### 7.4 Sequential Thinking (Complex Reasoning)
 
 Sequential Thinking provides structured reasoning chains for complex problems.
+
+> **Detailed Guide:** See [MCP - Sequential Thinking.md](./MCP%20-%20Sequential%20Thinking.md) for comprehensive configuration and usage.
 
 **Configure in `opencode.json`:**
 ```json

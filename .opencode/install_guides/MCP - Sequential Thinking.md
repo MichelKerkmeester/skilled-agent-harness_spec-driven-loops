@@ -121,8 +121,12 @@ Add to `opencode.json` in your project root:
 {
   "mcp": {
     "sequential_thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     }
   }
 }
@@ -585,8 +589,12 @@ Code exploration → Narsil (semantic + structural analysis before changing)
 {
   "mcp": {
     "sequential_thinking": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     }
   }
 }
