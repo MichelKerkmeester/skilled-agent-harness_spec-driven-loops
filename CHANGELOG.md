@@ -7,6 +7,70 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**1.1.0.1**] - 2026-01-31
+
+Critical documentation fix for **Code Mode prefixed environment variables**. Updates **2 MCP skills** (mcp-code-mode, mcp-figma) with correct `{manual_name}_{VAR}` format. Also adds **6 skill-level CHANGELOGs** for better change tracking.
+
+---
+
+## Highlights
+
+### 🔧 Prefixed Environment Variables Documentation
+
+- **Critical discovery** — Code Mode requires prefixed env vars: `figma_FIGMA_API_KEY` not `FIGMA_API_KEY`
+- **Format pattern** — `{manual_name}_{VAR}` where manual_name comes from `.utcp_config.json`
+- **mcp-code-mode updated** — 5 files: env_template.md, config_template.md, configuration.md, SKILL.md, INSTALL_GUIDE.md
+- **mcp-figma updated** — 3 files: INSTALL_GUIDE.md, README.md, SKILL.md
+- **Troubleshooting added** — New section for "Variable not found" errors
+
+### 📝 Skill-Level CHANGELOGs
+
+- **6 CHANGELOGs created** — mcp-code-mode, mcp-figma, mcp-narsil, workflows-chrome-devtools, workflows-documentation, workflows-git
+- **Retroactive history** — Full version history traced from global CHANGELOG
+- **Keep a Changelog format** — Consistent structure across all skills
+
+---
+
+## Files Changed
+
+**mcp-code-mode skill (5 files):**
+- `SKILL.md` — Added "Critical: Prefixed Environment Variables" section
+- `assets/env_template.md` — Added naming convention section, updated all examples
+- `assets/config_template.md` — Added prefixed variable warning
+- `references/configuration.md` — Added troubleshooting section
+- `INSTALL_GUIDE.md` — Moved to skill root, updated env format
+
+**mcp-figma skill (3 files):**
+- `INSTALL_GUIDE.md` — Added Code Mode prefixed variable callout
+- `README.md` — Updated environment variables section
+- `SKILL.md` — Updated Figma Provider Configuration
+
+**New CHANGELOGs (6 files):**
+- `.opencode/skill/mcp-code-mode/CHANGELOG.md`
+- `.opencode/skill/mcp-figma/CHANGELOG.md`
+- `.opencode/skill/mcp-narsil/CHANGELOG.md`
+- `.opencode/skill/workflows-chrome-devtools/CHANGELOG.md`
+- `.opencode/skill/workflows-documentation/CHANGELOG.md`
+- `.opencode/skill/workflows-git/CHANGELOG.md`
+
+---
+
+## Upgrade
+
+No action required. Pull latest to get corrected documentation. If you previously set environment variables without prefixes, update your `.env` file:
+
+```bash
+# Before (incorrect)
+FIGMA_API_KEY=figd_xxx
+
+# After (correct)
+figma_FIGMA_API_KEY=figd_xxx
+```
+
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.1.0.0...v1.1.0.1
+
+---
+
 ## [**1.1.0.0**] - 2026-01-29
 
 Major Spec Kit Memory upgrade implementing **cognitive memory** with FSRS algorithm validated on 100M+ users, **30 bug fixes** from comprehensive 10-agent audit, and **20 agent/command files** enhanced with Mermaid diagrams and unified setup patterns.

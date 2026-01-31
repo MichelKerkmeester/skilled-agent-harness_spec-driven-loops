@@ -295,25 +295,31 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 
 ## 4. 🔐 ENVIRONMENT VARIABLES
 
+### Critical: Prefixed Variable Names
+
+> **⚠️ IMPORTANT**: Code Mode prefixes ALL environment variables with `{manual_name}_` from your `.utcp_config.json`. You MUST use prefixed variable names in your `.env` file.
+
 ### Structure
 
 ```bash
-# ClickUp Configuration
-CLICKUP_API_KEY=pk_your_api_key_here
-CLICKUP_TEAM_ID=90151466006
+# ⚠️ Code Mode requires PREFIXED variable names: {manual_name}_{VAR}
+# The prefix comes from the "name" field in .utcp_config.json
 
-# Figma Configuration
-FIGMA_API_KEY=figd_your_token_here
+# ClickUp Configuration (prefix: clickup)
+clickup_CLICKUP_API_KEY=pk_your_api_key_here
+clickup_CLICKUP_TEAM_ID=90151466006
 
-# Notion Configuration
-NOTION_TOKEN=ntn_your_token_here
+# Figma Configuration (prefix: figma)
+figma_FIGMA_API_KEY=figd_your_token_here
 
-# GitHub Configuration
-GITHUB_TOKEN=ghp_your_token_here
-GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your_token_here  # Alias
+# Notion Configuration (prefix: notion)
+notion_NOTION_TOKEN=ntn_your_token_here
 
-# Webflow (if using direct API, not remote MCP)
-WEBFLOW_API_TOKEN=your_webflow_token_here
+# GitHub Configuration (prefix: github)
+github_GITHUB_TOKEN=ghp_your_token_here
+
+# Webflow (prefix: webflow, if using direct API)
+webflow_WEBFLOW_API_TOKEN=your_webflow_token_here
 
 # Chrome DevTools (usually no auth needed)
 # No environment variables required for Chrome DevTools
@@ -326,34 +332,34 @@ WEBFLOW_API_TOKEN=your_webflow_token_here
    echo ".env" >> .gitignore
    ```
 
-2. **Use descriptive variable names**
+2. **Always use prefixed variable names**
    ```bash
-   # Good
+   # CORRECT (prefixed with manual name)
+   clickup_CLICKUP_API_KEY=pk_123...
+   figma_FIGMA_API_KEY=figd_abc...
+
+   # WRONG (non-prefixed - will cause errors)
    CLICKUP_API_KEY=pk_123...
    FIGMA_API_KEY=figd_abc...
-
-   # Bad
-   KEY=pk_123...
-   TOKEN=figd_abc...
    ```
 
-3. **Group by service**
+3. **Group by service with prefix**
    ```bash
-   # ClickUp
-   CLICKUP_API_KEY=...
-   CLICKUP_TEAM_ID=...
+   # ClickUp (manual name: clickup)
+   clickup_CLICKUP_API_KEY=...
+   clickup_CLICKUP_TEAM_ID=...
 
-   # Figma
-   FIGMA_API_KEY=...
+   # Figma (manual name: figma)
+   figma_FIGMA_API_KEY=...
    ```
 
-4. **Provide example file**
+4. **Provide example file with prefixes**
    ```bash
    # Create .env.example
    cat > .env.example <<EOF
-   CLICKUP_API_KEY=your_api_key_here
-   CLICKUP_TEAM_ID=your_team_id_here
-   FIGMA_API_KEY=your_token_here
+   clickup_CLICKUP_API_KEY=your_api_key_here
+   clickup_CLICKUP_TEAM_ID=your_team_id_here
+   figma_FIGMA_API_KEY=your_token_here
    EOF
    ```
 
@@ -543,6 +549,48 @@ call_tool_chain({
 
 ## 7. 🔍 TROUBLESHOOTING
 
+### Problem: Variable '{manual_name}_{VAR}' Not Found
+
+**Symptoms:**
+```
+Error: Variable 'clickup_CLICKUP_API_KEY' referenced in call template configuration not found
+```
+
+**Cause:** Code Mode prefixes all environment variables with the manual name from your configuration. If your `.env` file uses non-prefixed variable names, Code Mode won't find them.
+
+**Solution:**
+
+In your `.env` file, use the **prefixed format**:
+```bash
+# WRONG (non-prefixed)
+CLICKUP_API_KEY=pk_xxx
+
+# CORRECT (prefixed with manual name)
+clickup_CLICKUP_API_KEY=pk_xxx
+```
+
+The prefix comes from the `"name"` field in your `.utcp_config.json`:
+```json
+{
+  "name": "clickup",  // ← This becomes the prefix
+  ...
+}
+```
+
+**Quick Fix:**
+1. Find your manual name: `grep '"name":' .utcp_config.json`
+2. Update `.env` to use prefixed format: `{manual_name}_{VAR_NAME}=value`
+3. Restart Code Mode MCP server
+
+**Reference Table:**
+
+| Manual Name | Config Reference | Required .env Variable |
+|-------------|-----------------|----------------------|
+| `clickup` | `${CLICKUP_API_KEY}` | `clickup_CLICKUP_API_KEY` |
+| `figma` | `${FIGMA_API_KEY}` | `figma_FIGMA_API_KEY` |
+| `notion` | `${NOTION_TOKEN}` | `notion_NOTION_TOKEN` |
+| `github` | `${GITHUB_TOKEN}` | `github_GITHUB_TOKEN` |
+
 ### Problem: Environment Variables Not Loading
 
 **Symptoms:**
@@ -553,8 +601,9 @@ Error: Environment variable CLICKUP_API_KEY not found
 **Solutions:**
 1. Check `.env` file exists in same directory as `.utcp_config.json`
 2. Verify variable name matches exactly (case-sensitive)
-3. Restart Code Mode MCP server after changing `.env`
-4. Check `load_variables_from` config is correct:
+3. **Use prefixed format**: `{manual_name}_{VAR}` (see above)
+4. Restart Code Mode MCP server after changing `.env`
+5. Check `load_variables_from` config is correct:
    ```json
    "load_variables_from": [
      {

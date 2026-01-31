@@ -350,6 +350,25 @@ const info = await tool_info({
 }
 ```
 
+### Critical: Prefixed Environment Variables
+
+> **⚠️ IMPORTANT**: Code Mode prefixes ALL environment variables with `{manual_name}_` from your configuration.
+
+**Example:**
+- Config has `"name": "clickup"` and env section references `${CLICKUP_API_KEY}`
+- Your `.env` file MUST use: `clickup_CLICKUP_API_KEY=pk_xxx`
+- Using `CLICKUP_API_KEY=pk_xxx` will cause: `Error: Variable 'clickup_CLICKUP_API_KEY' not found`
+
+**Quick Reference:**
+
+| Manual Name | Config Reference | .env Variable |
+|-------------|-----------------|---------------|
+| `clickup` | `${CLICKUP_API_KEY}` | `clickup_CLICKUP_API_KEY` |
+| `figma` | `${FIGMA_API_KEY}` | `figma_FIGMA_API_KEY` |
+| `notion` | `${NOTION_TOKEN}` | `notion_NOTION_TOKEN` |
+
+See [env_template.md](assets/env_template.md) for complete examples.
+
 ### Generic Multi-Tool Workflow Pattern
 
 ```typescript

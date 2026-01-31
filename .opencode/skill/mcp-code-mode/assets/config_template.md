@@ -3,7 +3,7 @@ title: Configuration Template
 description: Complete .utcp_config.json template for Code Mode UTCP setup with multiple MCP servers.
 ---
 
-# Configuration Template - MCP Server Settings
+# Configuration Template
 
 Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured MCP servers.
 
@@ -335,17 +335,21 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 
 **Required .env file**: Create `.env` in project root with:
 
+> **⚠️ CRITICAL**: Code Mode requires **prefixed** variable names in your `.env` file. The prefix is the `name` field from your manual configuration below.
+
 ```bash
-# ClickUp
-CLICKUP_API_KEY=pk_your_api_key_here
-CLICKUP_TEAM_ID=your_team_id_here
+# ClickUp (prefixed with manual name "clickup")
+clickup_CLICKUP_API_KEY=pk_your_api_key_here
+clickup_CLICKUP_TEAM_ID=your_team_id_here
 
-# Figma
-FIGMA_API_KEY=figd_your_token_here
+# Figma (prefixed with manual name "figma")
+figma_FIGMA_API_KEY=figd_your_token_here
 
-# Notion
-NOTION_TOKEN=ntn_your_token_here
+# Notion (prefixed with manual name "notion")
+notion_NOTION_TOKEN=ntn_your_token_here
 ```
+
+**Why Prefixed?** Code Mode automatically prepends `{manual_name}_` to all environment variable references. If your config has `"name": "clickup"` and references `${CLICKUP_API_KEY}`, Code Mode looks for `clickup_CLICKUP_API_KEY` in your `.env` file.
 
 **Security:**
 - Add `.env` to `.gitignore` (never commit credentials)

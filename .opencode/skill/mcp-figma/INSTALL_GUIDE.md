@@ -335,8 +335,11 @@ claude mcp add --transport http figma https://mcp.figma.com/mcp
 
 Then add to your `.env` file:
 ```bash
+# For standalone MCP (NOT via Code Mode)
 FIGMA_API_KEY=figd_your_token_here
 ```
+
+> **⚠️ Code Mode Users**: If using Figma via Code Mode, you must use the **prefixed** variable format. See the Code Mode Integration section below.
 
 #### Windows Users
 
@@ -375,6 +378,18 @@ If using Code Mode, add to `.utcp_config.json`:
   }
 }
 ```
+
+> **⚠️ CRITICAL: Code Mode Prefixed Variables**
+>
+> Code Mode requires **prefixed** environment variable names. The prefix is the `name` field from your config (in this case, "figma").
+>
+> In your `.env` file, use:
+> ```bash
+> # Code Mode requires prefixed variable names: {manual_name}_{VAR}
+> figma_FIGMA_API_KEY=figd_your_token_here
+> ```
+>
+> **NOT** `FIGMA_API_KEY=figd_...` (this will cause "Variable not found" errors)
 
 ---
 
@@ -1345,7 +1360,7 @@ await figma.figma_get_file({ fileKey: "abc" });
 
 ### Environment Variable Not Loading (Option B Only)
 
-**Problem**: `Environment variable FIGMA_API_KEY not found`
+**Problem**: `Environment variable FIGMA_API_KEY not found` or `Variable 'figma_FIGMA_API_KEY' referenced in call template configuration not found`
 
 **Solutions**:
 
@@ -1354,13 +1369,27 @@ await figma.figma_get_file({ fileKey: "abc" });
    ls -la .env
    ```
 
-2. **Check variable is defined**:
+2. **Use prefixed variable names for Code Mode**:
+
+   Code Mode requires prefixed variable names. If using Code Mode (`.utcp_config.json`), your `.env` must use:
    ```bash
-   cat .env | grep FIGMA
-   # Should show: FIGMA_API_KEY=figd_...
+   # WRONG (for Code Mode)
+   FIGMA_API_KEY=figd_...
+
+   # CORRECT (for Code Mode)
+   figma_FIGMA_API_KEY=figd_...
    ```
 
-3. **Check .utcp_config.json references .env** (if using Code Mode):
+   The prefix (`figma_`) comes from the `"name"` field in your `.utcp_config.json`.
+
+3. **Check variable is defined with correct prefix**:
+   ```bash
+   cat .env | grep FIGMA
+   # For Code Mode, should show: figma_FIGMA_API_KEY=figd_...
+   # For standalone MCP, should show: FIGMA_API_KEY=figd_...
+   ```
+
+4. **Check .utcp_config.json references .env** (if using Code Mode):
    ```json
    "load_variables_from": [
      {
@@ -1370,7 +1399,7 @@ await figma.figma_get_file({ fileKey: "abc" });
    ]
    ```
 
-4. **Restart AI client** after changes
+5. **Restart AI client** after changes
 
 ---
 

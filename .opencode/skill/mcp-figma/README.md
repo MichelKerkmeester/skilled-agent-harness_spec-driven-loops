@@ -282,8 +282,13 @@ Add to `.env`:
 ```bash
 # Figma API Key
 # Get from: Figma → Settings → Account → Personal access tokens
-FIGMA_API_KEY=figd_your_token_here
+#
+# ⚠️ CRITICAL: Code Mode requires PREFIXED variable names!
+# The prefix is the "name" field from your .utcp_config.json (e.g., "figma")
+figma_FIGMA_API_KEY=figd_your_token_here
 ```
+
+> **⚠️ Code Mode Naming**: Code Mode prefixes all env vars with `{manual_name}_`. If your config has `"name": "figma"`, use `figma_FIGMA_API_KEY` in your `.env` file, NOT `FIGMA_API_KEY`.
 
 > **Security**: Never commit `.env` to version control. Add it to `.gitignore`.
 
@@ -636,13 +641,20 @@ await figma.figma_get_file({ fileKey: "abc" });
 
 #### Environment Variable Not Found
 
-**Symptom**: `Environment variable FIGMA_API_KEY not found`
+**Symptom**: `Environment variable FIGMA_API_KEY not found` or `Variable 'figma_FIGMA_API_KEY' referenced in call template configuration not found`
 
-**Cause**: Token not in `.env` or `.env` not loaded.
+**Cause**: Token not in `.env`, `.env` not loaded, or wrong variable name format.
 
 **Solution**:
 1. Check `.env` file exists
-2. Verify variable is defined (not commented out)
+2. **Use prefixed variable name for Code Mode**:
+   ```bash
+   # WRONG (non-prefixed)
+   FIGMA_API_KEY=figd_...
+
+   # CORRECT (prefixed with manual name)
+   figma_FIGMA_API_KEY=figd_...
+   ```
 3. Check `.utcp_config.json` references `.env`:
    ```json
    "load_variables_from": [

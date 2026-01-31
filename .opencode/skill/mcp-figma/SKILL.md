@@ -389,7 +389,7 @@ Dependency Chain:
         "command": "npx",
         "args": ["-y", "figma-developer-mcp", "--stdio"],
         "env": {
-          "FIGMA_API_KEY": "figd_your_token_here"
+          "FIGMA_API_KEY": "${FIGMA_API_KEY}"
         }
       }
     }
@@ -397,7 +397,15 @@ Dependency Chain:
 }
 ```
 
-> **Note**: Code Mode does NOT support `${VAR}` env substitution. You must hardcode the API key directly in the config.
+> **⚠️ CRITICAL: Prefixed Environment Variables**
+>
+> Code Mode prefixes all environment variables with `{manual_name}_`. For the config above with `"name": "figma"`, your `.env` file must use:
+> ```bash
+> figma_FIGMA_API_KEY=figd_your_token_here
+> ```
+> **NOT** `FIGMA_API_KEY=figd_...` (this will cause "Variable not found" errors)
+
+> **Alternative**: If you prefer not to use env substitution, you can hardcode the API key directly in the config (not recommended for security).
 
 ### Related Skills
 

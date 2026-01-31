@@ -3,7 +3,7 @@ title: Environment Variables Template
 description: Complete .env file template with placeholders for all MCP server credentials and API tokens.
 ---
 
-# Environment Variables Template - Runtime Configuration
+# Environment Variables Template
 
 Copy-ready `.env` template for Code Mode UTCP authentication with all supported MCP servers.
 
@@ -26,28 +26,38 @@ Copy this template to `.env` in your project root, then replace placeholder valu
 ```bash
 # Code Mode UTCP - Environment Variables Template
 # Copy this to .env and fill in your actual credentials
+#
+# ⚠️ CRITICAL: Code Mode uses PREFIXED variable names!
+# Format: {manual_name}_{VAR} where manual_name is from .utcp_config.json
+# Example: If your config has "name": "clickup", use clickup_CLICKUP_API_KEY
 
 # ClickUp Configuration
-CLICKUP_API_KEY=pk_your_api_key_here
-CLICKUP_TEAM_ID=your_team_id_here
+# (Code Mode prefixes all env vars with the manual name from .utcp_config.json)
+clickup_CLICKUP_API_KEY=pk_your_api_key_here
+clickup_CLICKUP_TEAM_ID=your_team_id_here
 
 # Figma Configuration
-FIGMA_API_KEY=figd_your_token_here
+# (Code Mode prefixes all env vars with the manual name from .utcp_config.json)
+figma_FIGMA_API_KEY=figd_your_token_here
 
 # Notion Configuration
-NOTION_TOKEN=ntn_your_token_here
+# (Code Mode prefixes all env vars with the manual name from .utcp_config.json)
+notion_NOTION_TOKEN=ntn_your_token_here
 
 # GitHub Configuration (Optional - add GitHub MCP to .utcp_config.json if needed)
 # See config_template.md Section 5 for GitHub MCP setup
-GITHUB_TOKEN=ghp_your_token_here
+# (Code Mode prefixes all env vars with the manual name from .utcp_config.json)
+github_GITHUB_TOKEN=ghp_your_token_here
 
 # Webflow Configuration (if using direct API, not remote MCP)
-WEBFLOW_API_TOKEN=your_webflow_token_here
+# (Code Mode prefixes all env vars with the manual name from .utcp_config.json)
+webflow_WEBFLOW_API_TOKEN=your_webflow_token_here
 
 # Chrome DevTools (usually no auth needed)
 # No environment variables required
 
 # Add additional MCP server credentials below as needed
+# Remember: Always prefix with the manual name from your .utcp_config.json!
 ```
 
 ---
@@ -57,8 +67,8 @@ WEBFLOW_API_TOKEN=your_webflow_token_here
 ### ClickUp
 
 **Required Variables:**
-- `CLICKUP_API_KEY` - Personal API key for ClickUp workspace
-- `CLICKUP_TEAM_ID` - ClickUp team/workspace ID
+- `clickup_CLICKUP_API_KEY` - Personal API key for ClickUp workspace (prefixed)
+- `clickup_CLICKUP_TEAM_ID` - ClickUp team/workspace ID (prefixed)
 
 **How to Obtain:**
 1. Log in to ClickUp
@@ -66,10 +76,11 @@ WEBFLOW_API_TOKEN=your_webflow_token_here
 3. Generate new API key
 4. Copy your Team ID from workspace settings
 
-**Format:**
+**Format (Code Mode prefixed):**
 ```bash
-CLICKUP_API_KEY=pk_1234567890_ABCDEFGHIJKLMNOP
-CLICKUP_TEAM_ID=12345678
+# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+clickup_CLICKUP_API_KEY=pk_1234567890_ABCDEFGHIJKLMNOP
+clickup_CLICKUP_TEAM_ID=12345678
 ```
 
 **Permissions**: Ensure API key has necessary scopes for task management
@@ -77,7 +88,7 @@ CLICKUP_TEAM_ID=12345678
 ### Figma
 
 **Required Variables:**
-- `FIGMA_API_KEY` - Personal access token for Figma API
+- `figma_FIGMA_API_KEY` - Personal access token for Figma API (prefixed)
 
 **How to Obtain:**
 1. Log in to Figma
@@ -85,9 +96,10 @@ CLICKUP_TEAM_ID=12345678
 3. Click "Generate new token"
 4. Copy token immediately (shown only once)
 
-**Format:**
+**Format (Code Mode prefixed):**
 ```bash
-FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
+# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+figma_FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
 ```
 
 **Permissions**: Token inherits your Figma account permissions
@@ -95,7 +107,7 @@ FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
 ### Notion
 
 **Required Variables:**
-- `NOTION_TOKEN` - Integration token for Notion API
+- `notion_NOTION_TOKEN` - Integration token for Notion API (prefixed)
 
 **How to Obtain:**
 1. Go to https://www.notion.so/my-integrations
@@ -104,9 +116,10 @@ FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
 4. Copy the "Internal Integration Token"
 5. Share relevant Notion pages/databases with your integration
 
-**Format:**
+**Format (Code Mode prefixed):**
 ```bash
-NOTION_TOKEN=ntn_1234567890abcdefghijklmnopqrstuvwxyz
+# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+notion_NOTION_TOKEN=ntn_1234567890abcdefghijklmnopqrstuvwxyz
 ```
 
 **Important**: Must share pages/databases with integration before accessing via API
@@ -114,7 +127,7 @@ NOTION_TOKEN=ntn_1234567890abcdefghijklmnopqrstuvwxyz
 ### GitHub (Optional)
 
 **Required Variables:**
-- `GITHUB_TOKEN` or `GITHUB_PERSONAL_ACCESS_TOKEN` - Personal access token for GitHub API
+- `github_GITHUB_TOKEN` or `github_GITHUB_PERSONAL_ACCESS_TOKEN` - Personal access token for GitHub API (prefixed)
 
 **How to Obtain:**
 1. Log in to GitHub
@@ -123,9 +136,10 @@ NOTION_TOKEN=ntn_1234567890abcdefghijklmnopqrstuvwxyz
 4. Select scopes (repo, workflow, etc.)
 5. Copy token immediately
 
-**Format:**
+**Format (Code Mode prefixed):**
 ```bash
-GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
+# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+github_GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
 ```
 
 **Scopes**: Select based on needed permissions (read/write repos, issues, PRs, etc.)
@@ -133,7 +147,7 @@ GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
 ### Webflow (Optional - for direct API access)
 
 **Required Variables:**
-- `WEBFLOW_API_TOKEN` - API token for Webflow workspace
+- `webflow_WEBFLOW_API_TOKEN` - API token for Webflow workspace (prefixed)
 
 **How to Obtain:**
 1. Log in to Webflow
@@ -141,9 +155,10 @@ GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
 3. Generate new API token
 4. Copy token
 
-**Format:**
+**Format (Code Mode prefixed):**
 ```bash
-WEBFLOW_API_TOKEN=your_webflow_api_token_here
+# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+webflow_WEBFLOW_API_TOKEN=your_webflow_api_token_here
 ```
 
 **Note**: Webflow remote MCP (`mcp-remote https://mcp.webflow.com/sse`) doesn't require local token
@@ -159,6 +174,56 @@ WEBFLOW_API_TOKEN=your_webflow_api_token_here
 ```
 
 **Note**: Chrome DevTools MCP runs locally and doesn't require API credentials
+
+---
+
+## CRITICAL: Variable Naming Convention
+
+### Code Mode Prefixes All Environment Variables
+
+**⚠️ IMPORTANT**: Code Mode automatically prefixes all environment variables with the `{manual_name}_` from your `.utcp_config.json` configuration.
+
+**The Pattern:**
+```
+{manual_name}_{VARIABLE_NAME}
+```
+
+**Example:**
+- Config has `"name": "clickup"` in `.utcp_config.json`
+- Config references `${CLICKUP_API_KEY}` in the env section
+- Your `.env` file MUST use: `clickup_CLICKUP_API_KEY=pk_xxx`
+
+### Why This Matters
+
+When Code Mode loads environment variables, it prefixes them with the manual name to avoid conflicts between different MCP servers that might use the same variable names.
+
+**Common Error:**
+```
+Error: Variable 'clickup_CLICKUP_API_KEY' referenced in call template configuration not found
+```
+
+This error occurs when your `.env` uses `CLICKUP_API_KEY` (non-prefixed) but Code Mode expects `clickup_CLICKUP_API_KEY` (prefixed).
+
+### Quick Reference Table
+
+| Manual Name (in config) | Config Reference | .env Variable Name |
+|-------------------------|------------------|-------------------|
+| `clickup` | `${CLICKUP_API_KEY}` | `clickup_CLICKUP_API_KEY` |
+| `figma` | `${FIGMA_API_KEY}` | `figma_FIGMA_API_KEY` |
+| `notion` | `${NOTION_TOKEN}` | `notion_NOTION_TOKEN` |
+| `github` | `${GITHUB_TOKEN}` | `github_GITHUB_TOKEN` |
+
+### Validation
+
+Before starting Code Mode, verify your `.env` variables match the expected prefixed format:
+```bash
+# Check what prefix your config uses
+grep '"name":' .utcp_config.json
+
+# Verify your .env has the prefixed variables
+grep '_CLICKUP_API_KEY' .env  # Should show: clickup_CLICKUP_API_KEY=...
+grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
+```
 
 ---
 
