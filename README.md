@@ -13,7 +13,7 @@
 
 ---
 
-## 1. 📖 Overview
+## 1. 📖 OVERVIEW
 
 A development environment for [OpenCode](https://github.com/sst/opencode) featuring two custom-built systems you won't find anywhere else:
 
@@ -21,16 +21,16 @@ A development environment for [OpenCode](https://github.com/sst/opencode) featur
 
 **🎯 Skills** (custom framework): 8 domain-specific skills that auto-load based on your task. Designed for efficiency: fewer, smarter skills replace the typical sprawl of dozens of fragmented prompts.
 
-#### Table of Contents
+#### TABLE OF CONTENTS
 
-1. [📖 Overview](#1--overview)
-2. [📋 Spec Kit Framework](#2--spec-kit-framework)
-3. [🧠 Semantic Memory System](#3--semantic-memory-system)
-4. [🤖 AGENTS.md Framework](#4--agentsmd-framework)
-5. [🧩 Skills Library](#5--skills-library)
-6. [⚡ Commands](#6--commands)
-7. [🚀 Installation & Setup](#7--installation--setup)
-8. [🎯 What's Next?](#8--whats-next)
+1. [📖 OVERVIEW](#1--overview)
+2. [📋 SPEC KIT FRAMEWORK](#2--spec-kit-framework)
+3. [🧠 SEMANTIC MEMORY SYSTEM](#3--semantic-memory-system)
+4. [🤖 AGENTS.MD FRAMEWORK](#4--agentsmd-framework)
+5. [🧩 SKILLS LIBRARY](#5--skills-library)
+6. [⚡ COMMANDS](#6--commands)
+7. [🚀 INSTALLATION & SETUP](#7--installation--setup)
+8. [🎯 WHAT'S NEXT?](#8--whats-next)
 
 ---
 
@@ -79,17 +79,17 @@ A custom MCP server that gives your AI assistant persistent, searchable memory a
 
 **What This System Has**
 
-- Hybrid search (vector + BM25 + RRF fusion + cross-encoder reranking)
-- 6 importance tiers with auto-decay
-- Multiple embedding providers (Voyage recommended, OpenAI, HF Local)
-- ANCHOR format = 93% token savings
-- <50ms proactive surfacing before you ask
-- Checkpoints = undo button with embedding preservation
-- Session Learning = quantified knowledge improvement
-- **Causal memory graph** = trace decision chains with "why" queries
-- **Session deduplication** = 50% token savings on follow-up queries
-- **Crash recovery** = auto-resume from compaction via `/memory:continue`
-- **Intent-aware retrieval** = 5 intent types route to optimized search
+- **Causal memory graph** = trace decision chains with "why" queries (6 relationship types)
+- **Crash recovery** = auto-resume from compaction/timeout via `/memory:continue`
+- **Intent-aware retrieval** = 5 intent types route to optimized search weights
+- **Hybrid search** = vector + BM25 + RRF fusion + cross-encoder reranking
+- **ANCHOR format** = section-level memory extraction for 93% token savings vs full files
+- **Proactive surfacing** = context appears <50ms before you ask via trigger matching
+- **Session deduplication** = hash-based tracking prevents re-sending same content (-50% tokens)
+- **Checkpoints** = undo button for your memory index with embedding preservation
+- **6 importance tiers** = constitutional to deprecated with auto-decay
+- **Session learning** = preflight/postflight captures quantified knowledge improvement
+- **Multiple embedding providers** = Voyage (recommended), OpenAI, HF Local (offline)
 
 ---
 
@@ -113,15 +113,15 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 
 **This System**
 
-- 10 core templates (CORE + ADDENDUM v2.0)
-- 7 slash commands with `:auto`/`:confirm` modes
 - Memory lives IN spec folders (deep integration)
+- 7 slash commands with `:auto`/`:confirm` modes
+- AI detects frustration, auto-suggests sub-agent
+- **Format validation** = `validate_document.py` enforces template compliance
+- Completeness scoring (0-100%)
+- 10 core templates (CORE + ADDENDUM v2.0)
 - 001/002/003 sub-folder versioning
 - 77 scripts handle the boring work (48 JS + 29 shell)
-- AI detects frustration, auto-suggests sub-agent
 - Stateless architecture (no STATE.md)
-- Completeness scoring (0-100%)
-- **Format validation** = `validate_document.py` enforces template compliance (NEW v1.2.0)
 
 ### The Integration Nobody Else Has
 
@@ -136,20 +136,20 @@ These systems aren't just bundled: they're *woven together*:
 
 | Innovation               | Impact                | Description                                     |
 | ------------------------ | --------------------- | ----------------------------------------------- |
-| **ANCHOR retrieval**     | 93% token savings     | Section-level memory extraction, not full files |
-| **Proactive triggers**   | <50ms surfacing       | Context surfaces BEFORE you ask                 |
-| **Stateless state**      | No stale files        | State versioned in memory files, not STATE.md   |
-| **Epistemic vectors**    | Smarter gates         | Dual-threshold: confidence AND uncertainty      |
-| **Constitutional tier**  | Rules never forgotten | Critical rules always surface, never decay      |
-| **Session learning**     | Quantified growth     | Preflight/postflight tracks actual learning     |
-| **Cognitive memory**     | Biologically-inspired | HOT/WARM/COLD with spreading activation         |
-| **Template composition** | Zero duplication      | CORE + ADDENDUM architecture                    |
-| **Debug delegation**     | Model selection       | Fresh perspective with full context handoff     |
-| **Parallel dispatch**    | 5-dimension scoring   | Complexity-based agent orchestration            |
 | **Causal memory graph**  | Decision tracing      | 6 relationship types answer "why" queries       |
-| **Session deduplication**| 50% token savings     | Hash-based duplicate prevention in same session |
 | **Crash recovery**       | Zero lost work        | Auto-resume from compaction/timeout             |
 | **Intent-aware search**  | Smarter retrieval     | 5 intent types route to optimized search        |
+| **Session deduplication**| 50% token savings     | Hash-based duplicate prevention in same session |
+| **ANCHOR retrieval**     | 93% token savings     | Section-level memory extraction, not full files |
+| **Proactive triggers**   | <50ms surfacing       | Context surfaces BEFORE you ask                 |
+| **Constitutional tier**  | Rules never forgotten | Critical rules always surface, never decay      |
+| **Cognitive memory**     | Biologically-inspired | HOT/WARM/COLD with spreading activation         |
+| **Debug delegation**     | Model selection       | Fresh perspective with full context handoff     |
+| **Parallel dispatch**    | 5-dimension scoring   | Complexity-based agent orchestration            |
+| **Epistemic vectors**    | Smarter gates         | Dual-threshold: confidence AND uncertainty      |
+| **Session learning**     | Quantified growth     | Preflight/postflight tracks actual learning     |
+| **Template composition** | Zero duplication      | CORE + ADDENDUM architecture                    |
+| **Stateless state**      | No stale files        | State versioned in memory files, not STATE.md   |
 
 ### How It All Works Together
 
@@ -228,7 +228,7 @@ When you make a request, the system:
 ---
 
 
-## 2. 📋 Spec Kit Framework
+## 2. 📋 SPEC KIT FRAMEWORK
 
 Every feature you build should leave a trail. Not for bureaucracy: for your future self, your team, and the AI that helps you code. Spec Kit enforces one simple rule: *no code without a spec folder*. 
 
@@ -384,7 +384,7 @@ For detailed Spec Kit documentation, see the [README](.opencode/skill/system-spe
 ---
 
 
-## 3. 🧠 Semantic Memory System
+## 3. 🧠 SEMANTIC MEMORY SYSTEM
 
 > **Remember everything. Surface what matters. Keep it private.**
 
@@ -636,7 +636,7 @@ See [`.opencode/skill/system-spec-kit/`](.opencode/skill/system-spec-kit/) for i
 ---
 
 
-## 4. 🤖 AGENTS.md Framework
+## 4. 🤖 AGENTS.MD FRAMEWORK
 
 The [`AGENTS.md`](AGENTS.md) file is the brain of your AI assistant's behavior. It defines mandatory gates that every request passes through, preventing common failures like hallucination, scope creep, and forgotten context.
 
@@ -779,7 +779,7 @@ This enables the AI to automatically adapt its workflow based on your project's 
 ---
 
 
-## 5. 🧩 Skills Library
+## 5. 🧩 SKILLS LIBRARY
 
 Skills are domain expertise on demand. Instead of explaining "how to do git commits properly" every session, the AI loads the workflows-git skill and already knows your conventions.
 
@@ -865,7 +865,7 @@ See [SET-UP - Skill Creation.md](.opencode/install_guides/SET-UP - Skill Creatio
 ---
 
 
-## 6. ⚡ Commands
+## 6. ⚡ COMMANDS
 
 Commands are explicit, user-invoked workflows with structured steps. Unlike skills (which load automatically), commands are triggered with a /slash syntax for repeatable multi-step processes.
 
@@ -921,7 +921,7 @@ Several commands leverage sub-agents for complex tasks:
 ---
 
 
-## 7. 🚀 Installation & Setup
+## 7. 🚀 INSTALLATION & SETUP
 
 > **Master install guide:** [`.opencode/install_guides/README.md`](.opencode/install_guides/README.md)
 
@@ -1074,7 +1074,7 @@ Commands support session-wide behavior flags that affect response verbosity:
 ---
 
 
-## 8. 🎯 What's Next?
+## 8. 🎯 WHAT'S NEXT?
 
 
 ### First Session Checklist

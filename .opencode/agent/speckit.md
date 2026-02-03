@@ -204,13 +204,13 @@ flowchart TB
 
 ### MCP Tool Layers
 
-| Layer | Tools                                       | Purpose              |
-| ----- | ------------------------------------------- | -------------------- |
-| L1    | `memory_search`, `memory_save`              | Core operations      |
-| L2    | `memory_match_triggers`                     | Context surfacing    |
-| L3    | `memory_drift_why`, `memory_drift_context`  | Drift analysis       |
-| L4    | `memory_causal_link`, `memory_causal_unlink`| Causal connections   |
-| L5    | `memory_drift_learn`                        | Learning loops       |
+| Layer | Tools                                        | Purpose            |
+| ----- | -------------------------------------------- | ------------------ |
+| L1    | `memory_search`, `memory_save`               | Core operations    |
+| L2    | `memory_match_triggers`                      | Context surfacing  |
+| L3    | `memory_drift_why`, `memory_drift_context`   | Drift analysis     |
+| L4    | `memory_causal_link`, `memory_causal_unlink` | Causal connections |
+| L5    | `memory_drift_learn`                         | Learning loops     |
 
 ---
 
@@ -409,16 +409,16 @@ specs/###-short-name/
 
 ### Commands
 
-| Command              | Purpose                     | Path                                       |
-| -------------------- | --------------------------- | ------------------------------------------ |
-| `/spec_kit:plan`     | Planning workflow (7 steps) | `.opencode/command/spec_kit/plan.md`       |
-| `/spec_kit:complete` | Full workflow (14+ steps)   | `.opencode/command/spec_kit/complete.md`   |
-| `/spec_kit:resume`   | Resume existing spec        | `.opencode/command/spec_kit/resume.md`     |
-| `/memory:context`    | Unified entry point         | `.opencode/command/memory/context.md`      |
-| `/memory:continue`   | Crash recovery              | `.opencode/command/memory/continue.md`     |
-| `/memory:learn`      | Explicit learning           | `.opencode/command/memory/learn.md`        |
-| `/memory:save`       | Save session context        | `.opencode/command/memory/save.md`         |
-| `/memory:manage`     | Memory management           | `.opencode/command/memory/manage.md`       |
+| Command              | Purpose                     | Path                                     |
+| -------------------- | --------------------------- | ---------------------------------------- |
+| `/spec_kit:plan`     | Planning workflow (7 steps) | `.opencode/command/spec_kit/plan.md`     |
+| `/spec_kit:complete` | Full workflow (14+ steps)   | `.opencode/command/spec_kit/complete.md` |
+| `/spec_kit:resume`   | Resume existing spec        | `.opencode/command/spec_kit/resume.md`   |
+| `/memory:context`    | Unified entry point         | `.opencode/command/memory/context.md`    |
+| `/memory:continue`   | Crash recovery              | `.opencode/command/memory/continue.md`   |
+| `/memory:learn`      | Explicit learning           | `.opencode/command/memory/learn.md`      |
+| `/memory:save`       | Save session context        | `.opencode/command/memory/save.md`       |
+| `/memory:manage`     | Memory management           | `.opencode/command/memory/manage.md`     |
 
 ### Skills
 
@@ -470,7 +470,7 @@ specs/###-short-name/
 
 ---
 
-## 11.5. 📐 TEMPLATE PATTERNS (Spec 082)
+## 12. 📐 TEMPLATE PATTERNS (Spec 082)
 
 ### Workstream Prefixes
 
@@ -515,7 +515,7 @@ Use `[E:filename]` format to reference evidence artifacts:
 
 ---
 
-## 12. 🔍 OUTPUT VERIFICATION
+## 13. 🔍 OUTPUT VERIFICATION
 
 **CRITICAL**: Before reporting completion to orchestrator or user, MUST verify all claims with evidence.
 
