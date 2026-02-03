@@ -7,6 +7,60 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**1.2.0.3**] - 2026-02-03
+
+### Fixed
+
+**System-Spec-Kit Fixes (specs 084, 085)**
+
+Two internal fixes improving memory save reliability and generate-context script stability.
+
+1. **Infrastructure work domain detection** — Memory files now correctly route to infrastructure-related spec folders when working on `.opencode/` files:
+   - New `detect_work_domain()` analyzes file paths from observations
+   - +40 alignment bonus for folders matching infrastructure patterns
+   - `/memory:continue` validates `key_files` vs `spec_folder`
+   - Fixes: spec-kit work going to project folders (e.g., `005-anobel.com` instead of `003-memory-and-spec-kit`)
+
+2. **generate-context.js API mismatch** — Fixed `get_db is not a function` error:
+   - Added snake_case export aliases to `vector-index.js`
+   - Suppressed V2.2 placeholder warnings for unimplemented features
+
+**Files:** `alignment-validator.js`, `continue.md`, `vector-index.js`, `template-renderer.js`
+
+---
+
+## [**1.2.0.2**] - 2026-02-03
+
+### Added
+
+**Documentation Validation: ALL CAPS Section Headers**
+
+New validation rules for `validate_document.py` enforcing uppercase section headers in README and install guide documents.
+
+1. **`h2_not_uppercase` rule** — Validates H2 headers are ALL CAPS
+2. **`toc_not_uppercase` rule** — Validates Table of Contents entries match
+3. **Auto-fixable** — Use `--fix` flag to automatically correct
+4. **Helper functions** — `extract_section_name_text()`, `is_uppercase_section()`
+
+**Files:** `validate_document.py`, `template_rules.json`
+
+---
+
+## [**1.2.0.1**] - 2026-02-03
+
+### Security
+
+**Dependency Updates**
+
+Fixed security vulnerabilities in system-spec-kit dependencies.
+
+1. **hono** — Fixed XSS, arbitrary key read, cache deception, IP spoofing
+2. **tar** — Fixed arbitrary file creation/overwrite via hardlink
+
+**Result:** 0 vulnerabilities remaining.
+
+---
+
 ## [**1.2.0.0**] - 2026-02-03
 
 The largest release in SpecKit history: **6 specs batched** delivering a complete memory system overhaul with **causal memory graph**, **command consolidation** (9→5 commands, 44% reduction), and **86 bug fixes** across P0-P3 priorities. Implemented by **28+ parallel Opus agents** with comprehensive multi-agent audits.
