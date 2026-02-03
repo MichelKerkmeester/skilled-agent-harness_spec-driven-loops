@@ -11,6 +11,24 @@ const fs = require('fs/promises');
 const path = require('path');
 const { CONFIG } = require('../core');
 
+// 084-fix: V2.2 placeholders that are spec'd but not yet implemented
+// Suppress warnings for these to reduce noise until features are built
+const OPTIONAL_PLACEHOLDERS = new Set([
+  // Session Integrity Checks (V2.2)
+  'MEMORY_FILE_EXISTS', 'MEMORY_FILE_PATH', 'INDEX_ENTRY_VALID', 'LAST_INDEXED',
+  'CHECKSUMS_MATCH', 'CHECKSUM_DETAILS', 'NO_DEDUP_CONFLICTS', 'DEDUP_CONFLICT_DETAILS',
+  // Memory Classification (V2.2)
+  'MEMORY_TYPE', 'HALF_LIFE_DAYS', 'BASE_DECAY_RATE', 'ACCESS_BOOST_FACTOR',
+  'RECENCY_WEIGHT', 'IMPORTANCE_MULTIPLIER',
+  // Session Deduplication (V2.2)
+  'MEMORIES_SURFACED_COUNT', 'DEDUP_SAVINGS_TOKENS', 'FINGERPRINT_HASH',
+  // Postflight Learning Delta (V2.2)
+  'PREFLIGHT_KNOW_SCORE', 'POSTFLIGHT_KNOW_SCORE', 'DELTA_KNOW_SCORE', 'DELTA_KNOW_TREND',
+  'PREFLIGHT_UNCERTAINTY_SCORE', 'POSTFLIGHT_UNCERTAINTY_SCORE', 'DELTA_UNCERTAINTY_SCORE', 'DELTA_UNCERTAINTY_TREND',
+  'PREFLIGHT_CONTEXT_SCORE', 'POSTFLIGHT_CONTEXT_SCORE', 'DELTA_CONTEXT_SCORE', 'DELTA_CONTEXT_TREND',
+  'LEARNING_INDEX', 'LEARNING_SUMMARY',
+]);
+
 /* ─────────────────────────────────────────────────────────────────
    2. HELPER FUNCTIONS
 ────────────────────────────────────────────────────────────────────*/
@@ -88,7 +106,10 @@ function render_template(template, data, parentData = {}) {
     const value = mergedData[key];
 
     if (value === undefined || value === null) {
-      console.warn(`⚠️  Missing template data for: {{${key}}}`);
+      // 084-fix: Only warn for non-optional placeholders
+      if (!OPTIONAL_PLACEHOLDERS.has(key)) {
+        console.warn(`⚠️  Missing template data for: {{${key}}}`);
+      }
       return '';
     }
 

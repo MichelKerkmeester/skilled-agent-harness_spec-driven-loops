@@ -6,6 +6,26 @@ All notable changes to the system-spec-kit skill are documented in this file.
 
 ---
 
+## [1.2.3.2] - 2026-02-03
+
+### Fixed
+
+**generate-context.js Script Issues (spec 084)**
+
+1. **API naming mismatch** — Added snake_case export aliases to `vector-index.js` for backward compatibility with `retry-manager.js`:
+   - `initialize_db`, `get_db`, `get_memory`, `get_db_path`
+   - Fixes `vector_index.get_db is not a function` error during retry processing
+
+2. **Template warning suppression** — Added `OPTIONAL_PLACEHOLDERS` set to `template-renderer.js` to suppress warnings for V2.2 spec'd-but-unimplemented placeholders:
+   - Session Integrity Checks (8 placeholders)
+   - Memory Classification (6 placeholders)
+   - Session Deduplication (3 placeholders)
+   - Postflight Learning Delta (9 placeholders)
+
+**Result:** `generate-context.js` runs cleanly without errors or excessive warnings.
+
+---
+
 ## [1.2.3.1] - 2025-02-03
 
 ### Fixed

@@ -3185,5 +3185,12 @@ module.exports = {
   DEFAULT_DB_PATH,
 
   // Protocol Abstractions (T086, REQ-021)
-  SQLiteVectorStore
+  SQLiteVectorStore,
+
+  // Snake_case aliases for backward compatibility (084-fix)
+  // Used by retry-manager.js and other internal scripts
+  initialize_db,
+  get_db,
+  get_memory,
+  get_db_path,
 };
