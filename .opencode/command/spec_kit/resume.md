@@ -46,6 +46,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - IF detected: continuation_detected = TRUE, parse Last/Next values
    - IF not detected: continuation_detected = FALSE
 
+4b. Check for CONTINUE_SESSION.md crash recovery artifact:
+    - Check project root for CONTINUE_SESSION.md
+    - IF exists AND modified within 24h: crash_recovery_available = TRUE
+    - Parse spec folder, Last, Next values from file
+    - Note: This is a fallback for unexpected session termination
+
 5. Validate artifacts in detected/provided spec folder:
    - Check for: spec.md, plan.md, tasks.md
    - Store: artifacts_valid = [yes/partial/no]
@@ -517,10 +523,19 @@ ELSE:
 ### Context Loading Priority
 
 1. handover.md (if exists, <24h old)
-2. Recent memory/*.md files
-3. checklist.md for progress state
+2. CONTINUE_SESSION.md (crash recovery artifact in project root)
+3. Recent memory/*.md files
+4. checklist.md for progress state
 
 **Note:** Stateless architecture - no `.spec-active` marker file used.
+
+### Session Deduplication
+
+When multiple sessions reference the same spec folder:
+- Prefer the most recent handover.md or memory file (by modification time)
+- If both handover.md and CONTINUE_SESSION.md exist, prefer handover.md (more structured)
+- Use `/memory:continue` for explicit crash recovery scenarios
+- Older handover files are superseded but preserved for audit trail
 
 ### Validation on Resume
 
@@ -574,11 +589,13 @@ Parallel dispatch is only used in implementation-heavy workflows (`/spec_kit:com
 
 ## 9. 🔗 RELATED COMMANDS
 
-| Command               | Relationship                                        |
-| --------------------- | --------------------------------------------------- |
-| `/spec_kit:complete`  | Start new feature (resume continues existing)       |
-| `/spec_kit:plan`      | Create planning artifacts (if missing on resume)    |
-| `/spec_kit:implement` | Execute implementation (can be called after resume) |
+| Command               | Relationship                                             |
+| --------------------- | -------------------------------------------------------- |
+| `/spec_kit:complete`  | Start new feature (resume continues existing)            |
+| `/spec_kit:plan`      | Create planning artifacts (if missing on resume)         |
+| `/spec_kit:implement` | Execute implementation (can be called after resume)      |
+| `/spec_kit:handover`  | Create handover document (resume loads these)            |
+| `/memory:continue`    | Crash recovery - loads CONTINUE_SESSION.md if available  |
 
 ---
 

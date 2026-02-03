@@ -1,7 +1,11 @@
 // ───────────────────────────────────────────────────────────────
-// HANDLERS: MEMORY CRUD
+// HANDLER: MEMORY CRUD
 // ───────────────────────────────────────────────────────────────
 'use strict';
+
+/* ─────────────────────────────────────────────────────────────
+   1. DEPENDENCIES
+────────────────────────────────────────────────────────────────*/
 
 const path = require('path');
 const { check_database_updated } = require('../core');
@@ -12,23 +16,29 @@ const triggerMatcher = require('../lib/parsing/trigger-matcher.js');
 const { VALID_TIERS, is_valid_tier } = require('../lib/scoring/importance-tiers.js');
 const { MemoryError, ErrorCodes } = require('../lib/errors.js');
 const folderScoring = require('../lib/scoring/folder-scoring.js');
+const toolCache = require('../lib/cache/tool-cache.js');
+const {
+  createMCPSuccessResponse,
+  createMCPErrorResponse
+} = require('../lib/response/envelope.js');
 
-// Module-level flag for embedding model readiness
+/* ─────────────────────────────────────────────────────────────
+   2. MODULE STATE
+────────────────────────────────────────────────────────────────*/
+
 let embedding_model_ready = false;
 
-/** Safely parse JSON with fallback value */
 function safe_json_parse(str, fallback = []) {
   if (!str) return fallback;
   try { return JSON.parse(str); } catch { return fallback; }
 }
 
-/** Set embedding model ready state (called by server initialization) */
 function set_embedding_model_ready(ready) { embedding_model_ready = ready; }
 
-/**
- * Handle memory_delete - delete by ID or bulk delete by spec folder
- * Creates auto-checkpoint before bulk deletes for safety.
- */
+/* ─────────────────────────────────────────────────────────────
+   3. DELETE HANDLER
+────────────────────────────────────────────────────────────────*/
+
 async function handle_memory_delete(args) {
   // BUG-005 fix: Await database update check to prevent race conditions
   await check_database_updated();
@@ -71,16 +81,43 @@ async function handle_memory_delete(args) {
     for (const memory of memories) { if (vectorIndex.deleteMemory(memory.id)) deleted_count++; }
   }
 
-  if (deleted_count > 0) triggerMatcher.clearCache();
-  const response = { deleted: deleted_count, message: deleted_count > 0 ? `Deleted ${deleted_count} memory(s)` : 'No memories found to delete' };
-  if (checkpoint_name) { response.checkpoint = checkpoint_name; response.restoreCommand = `checkpoint_restore({ name: "${checkpoint_name}" })`; }
-  return { content: [{ type: 'text', text: JSON.stringify(response, null, 2) }] };
+  if (deleted_count > 0) {
+    triggerMatcher.clearCache();
+    // T015: Invalidate tool cache after delete operations
+    toolCache.invalidateOnWrite('delete', { specFolder: spec_folder });
+  }
+
+  // REQ-019: Build response with standardized envelope
+  const summary = deleted_count > 0
+    ? `Deleted ${deleted_count} memory(s)`
+    : 'No memories found to delete';
+
+  const hints = [];
+  if (checkpoint_name) {
+    hints.push(`Restore with: checkpoint_restore({ name: "${checkpoint_name}" })`);
+  }
+  if (deleted_count === 0) {
+    hints.push('Use memory_list() to find existing memories');
+  }
+
+  const data = { deleted: deleted_count };
+  if (checkpoint_name) {
+    data.checkpoint = checkpoint_name;
+    data.restoreCommand = `checkpoint_restore({ name: "${checkpoint_name}" })`;
+  }
+
+  return createMCPSuccessResponse({
+    tool: 'memory_delete',
+    summary,
+    data,
+    hints
+  });
 }
 
-/**
- * Handle memory_update - update existing memory metadata
- * Regenerates embedding when title changes. Uses transaction-based rollback on failure.
- */
+/* ─────────────────────────────────────────────────────────────
+   4. UPDATE HANDLER
+────────────────────────────────────────────────────────────────*/
+
 async function handle_memory_update(args) {
   // BUG-005 fix: Await database update check to prevent race conditions
   await check_database_updated();
@@ -127,12 +164,45 @@ async function handle_memory_update(args) {
 
   vectorIndex.updateMemory(update_params);
   triggerMatcher.clearCache();
-  const response = { updated: id, message: embedding_marked_for_reindex ? 'Memory updated with warning: embedding regeneration failed, memory marked for re-indexing' : 'Memory updated successfully', fields: Object.keys(update_params).filter(k => k !== 'id' && k !== 'embedding'), embeddingRegenerated: embedding_regenerated };
-  if (embedding_marked_for_reindex) { response.warning = 'Embedding regeneration failed, memory marked for re-indexing'; response.embeddingStatus = 'pending'; }
-  return { content: [{ type: 'text', text: JSON.stringify(response, null, 2) }] };
+  // T015: Invalidate tool cache after update operations
+  toolCache.invalidateOnWrite('update', { memoryId: id });
+
+  // REQ-019: Build response with standardized envelope
+  const fields = Object.keys(update_params).filter(k => k !== 'id' && k !== 'embedding');
+  const summary = embedding_marked_for_reindex
+    ? `Memory ${id} updated (embedding pending re-index)`
+    : `Memory ${id} updated successfully`;
+
+  const hints = [];
+  if (embedding_marked_for_reindex) {
+    hints.push('Run memory_index_scan() to regenerate embeddings');
+  }
+  if (embedding_regenerated) {
+    hints.push('Embedding regenerated - search results may differ');
+  }
+
+  const data = {
+    updated: id,
+    fields,
+    embeddingRegenerated: embedding_regenerated
+  };
+  if (embedding_marked_for_reindex) {
+    data.warning = 'Embedding regeneration failed, memory marked for re-indexing';
+    data.embeddingStatus = 'pending';
+  }
+
+  return createMCPSuccessResponse({
+    tool: 'memory_update',
+    summary,
+    data,
+    hints
+  });
 }
 
-/** Handle memory_list - paginated memory browsing */
+/* ─────────────────────────────────────────────────────────────
+   5. LIST HANDLER
+────────────────────────────────────────────────────────────────*/
+
 async function handle_memory_list(args) {
   await check_database_updated();
   const { limit: raw_limit = 20, offset: raw_offset = 0, specFolder: spec_folder, sortBy: sort_by = 'created_at' } = args;
@@ -152,19 +222,35 @@ async function handle_memory_list(args) {
   const rows = database.prepare(sql).all(...params);
 
   const memories = rows.map(row => ({ id: row.id, specFolder: row.spec_folder, title: row.title || '(untitled)', createdAt: row.created_at, updatedAt: row.updated_at, importanceWeight: row.importance_weight, triggerCount: safe_json_parse(row.trigger_phrases, []).length, filePath: row.file_path }));
-  return { content: [{ type: 'text', text: JSON.stringify({ total, offset: safe_offset, limit: safe_limit, count: memories.length, results: memories }, null, 2) }] };
+
+  // REQ-019: Build response with standardized envelope
+  const summary = `Listed ${memories.length} of ${total} memories`;
+  const hints = [];
+  if (safe_offset + memories.length < total) {
+    hints.push(`More results available: use offset: ${safe_offset + safe_limit}`);
+  }
+  if (memories.length === 0 && total > 0) {
+    hints.push('Offset exceeds total count - try offset: 0');
+  }
+
+  return createMCPSuccessResponse({
+    tool: 'memory_list',
+    summary,
+    data: {
+      total,
+      offset: safe_offset,
+      limit: safe_limit,
+      count: memories.length,
+      results: memories
+    },
+    hints
+  });
 }
 
-/**
- * Handle memory_stats - system-wide statistics with optional ranking parameters
- * 
- * @param {Object} args - Configuration options
- * @param {string} [args.folderRanking='count'] - Ranking mode: 'count' | 'recency' | 'importance' | 'composite'
- * @param {string[]} [args.excludePatterns] - Regex patterns to exclude folders
- * @param {boolean} [args.includeScores=false] - Return score breakdown in response
- * @param {boolean} [args.includeArchived=false] - Include archived folders in results
- * @param {number} [args.limit=10] - Maximum folders to return
- */
+/* ─────────────────────────────────────────────────────────────
+   6. STATS HANDLER
+────────────────────────────────────────────────────────────────*/
+
 async function handle_memory_stats(args) {
   await check_database_updated();
   const database = vectorIndex.getDb();
@@ -291,23 +377,40 @@ async function handle_memory_stats(args) {
     }
   }
 
-  const response = {
-    totalMemories: total,
-    byStatus: status_counts,
-    oldestMemory: dates.oldest || null,
-    newestMemory: dates.newest || null,
-    topFolders: top_folders,
-    totalTriggerPhrases: trigger_count,
-    sqliteVecAvailable: vectorIndex.isVectorSearchAvailable(),
-    vectorSearchEnabled: vectorIndex.isVectorSearchAvailable(),
-    folderRanking: folder_ranking
-  };
+  // REQ-019: Build response with standardized envelope
+  const summary = `Memory system: ${total} memories across ${top_folders.length} folders`;
+  const hints = [];
+  if (!vectorIndex.isVectorSearchAvailable()) {
+    hints.push('Vector search unavailable - using BM25 fallback');
+  }
+  if (status_counts.pending > 0) {
+    hints.push(`${status_counts.pending} memories pending re-indexing`);
+  }
 
-  return { content: [{ type: 'text', text: JSON.stringify(response, null, 2) }] };
+  return createMCPSuccessResponse({
+    tool: 'memory_stats',
+    summary,
+    data: {
+      totalMemories: total,
+      byStatus: status_counts,
+      oldestMemory: dates.oldest || null,
+      newestMemory: dates.newest || null,
+      topFolders: top_folders,
+      totalTriggerPhrases: trigger_count,
+      sqliteVecAvailable: vectorIndex.isVectorSearchAvailable(),
+      vectorSearchEnabled: vectorIndex.isVectorSearchAvailable(),
+      folderRanking: folder_ranking
+    },
+    hints
+  });
 }
 
-/** Handle memory_health - check health status of the memory system */
+/* ─────────────────────────────────────────────────────────────
+   7. HEALTH HANDLER
+────────────────────────────────────────────────────────────────*/
+
 async function handle_memory_health(args) {
+  const start_time = Date.now();
   const database = vectorIndex.getDb();
   let memory_count = 0;
   try { memory_count = database.prepare('SELECT COUNT(*) as count FROM memory_index').get().count; }
@@ -315,14 +418,48 @@ async function handle_memory_health(args) {
 
   const provider_metadata = embeddings.getProviderMetadata();
   const profile = embeddings.getEmbeddingProfile();
+  const status = embedding_model_ready && database ? 'healthy' : 'degraded';
 
-  return { content: [{ type: 'text', text: JSON.stringify({
-    status: embedding_model_ready && database ? 'healthy' : 'degraded', embeddingModelReady: embedding_model_ready, databaseConnected: !!database,
-    vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(), memoryCount: memory_count, uptime: process.uptime(), version: '1.7.2',
-    embeddingProvider: { provider: provider_metadata.provider, model: provider_metadata.model, dimension: profile ? profile.dim : 768,
-      healthy: provider_metadata.healthy !== false, databasePath: profile ? profile.get_database_path(path.resolve(__dirname, '../database')) : null }
-  }, null, 2) }] };
+  // REQ-019: Build response with standardized envelope
+  const summary = `Memory system ${status}: ${memory_count} memories indexed`;
+  const hints = [];
+  if (!embedding_model_ready) {
+    hints.push('Embedding model not ready - some operations may fail');
+  }
+  if (!database) {
+    hints.push('Database not connected - restart MCP server');
+  }
+  if (!vectorIndex.isVectorSearchAvailable()) {
+    hints.push('Vector search unavailable - fallback to BM25');
+  }
+
+  return createMCPSuccessResponse({
+    tool: 'memory_health',
+    summary,
+    data: {
+      status,
+      embeddingModelReady: embedding_model_ready,
+      databaseConnected: !!database,
+      vectorSearchAvailable: vectorIndex.isVectorSearchAvailable(),
+      memoryCount: memory_count,
+      uptime: process.uptime(),
+      version: '1.7.2',
+      embeddingProvider: {
+        provider: provider_metadata.provider,
+        model: provider_metadata.model,
+        dimension: profile ? profile.dim : 768,
+        healthy: provider_metadata.healthy !== false,
+        databasePath: profile ? profile.get_database_path(path.resolve(__dirname, '../database')) : null
+      }
+    },
+    hints,
+    startTime: start_time
+  });
 }
+
+/* ─────────────────────────────────────────────────────────────
+   8. EXPORTS
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // snake_case exports

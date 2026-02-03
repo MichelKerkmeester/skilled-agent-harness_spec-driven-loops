@@ -182,17 +182,24 @@ These rules apply automatically without numbered gate structure.
 
 **Priority Note:** If file modification detected, Gate 1 (HARD BLOCK) takes precedence.
 
-### GATE 3: SKILL ROUTING [ADVISORY]
+### GATE 3: SKILL ROUTING [ALWAYS REQUIRED for non-trivial tasks]
 
-**TRIGGER:** After understanding the request
+**TRIGGER:** After understanding the request (applies to ALL non-trivial tasks)
 
-**Action:** 
-- IF task clearly matches a skill domain → invoke skill directly
-- IF uncertain → optionally run `python3 .opencode/scripts/skill_advisor.py`
-- IF confidence > 0.8 from advisor → invoke recommended skill
+**Action:**
+1. Run `python3 .opencode/scripts/skill_advisor.py "[request]" --threshold 0.8`
+2. OR cite user's explicit direction: "User specified: [exact quote]"
 
-**Note:** Task-appropriate skills can be recognized without mandatory script call.
-Script is advisory, not mandatory per request.
+**Enforcement:**
+- Script confidence >= 0.8 → MUST invoke recommended skill
+- Script confidence < 0.8 → Proceed with general approach
+- User explicitly names skill/agent → Cite and proceed
+
+**Output Required:** First response MUST include either:
+- "SKILL ROUTING: [brief script result]" OR
+- "SKILL ROUTING: User directed → [skill/agent name]"
+
+**Skip:** Only for trivial queries (greetings, single-line questions)
 
 ### MEMORY CONTEXT LOADING [SOFT]
 
@@ -275,7 +282,7 @@ Read(result.filePath)  ->  Full content
 | **Continuation**   | "CONTINUATION - Attempt" | Validate against memory     | BEHAVIORAL       |
 | **Completion**     | "done/complete/finished" | Verify checklist.md         | BEHAVIORAL       |
 | **Gate 2**         | New user message         | `memory_match_triggers()`   | SOFT             |
-| **Gate 3**         | After understanding      | Optional `skill_advisor.py` | ADVISORY         |
+| **Gate 3**         | Non-trivial task         | Run `skill_advisor.py` OR cite user | REQUIRED         |
 | **Memory Context** | Option A/C in Gate 1     | Load memory files           | SOFT (pre-exec)  |
 | **Compaction**     | Context lost message     | Display handover protocol   | EDGE CASE        |
 | **Violation**      | About to skip gates      | STOP, state, ask, wait      | EDGE CASE        |

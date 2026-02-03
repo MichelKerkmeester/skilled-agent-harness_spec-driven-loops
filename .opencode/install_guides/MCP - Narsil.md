@@ -1,1 +1,1 @@
-../skill/mcp-narsil/mcp_server/INSTALL_GUIDE.md
+../skill/mcp-narsil/INSTALL_GUIDE.md

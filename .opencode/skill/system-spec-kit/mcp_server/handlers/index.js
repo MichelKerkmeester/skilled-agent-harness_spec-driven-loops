@@ -10,6 +10,9 @@ const memoryCrud = require('./memory-crud');
 const memoryIndex = require('./memory-index');
 const checkpoints = require('./checkpoints');
 const sessionLearning = require('./session-learning');
+const causalGraph = require('./causal-graph');
+// T061: L1 Orchestration - unified entry point
+const memoryContext = require('./memory-context');
 
 // All handler modules now extracted
 module.exports = {
@@ -34,6 +37,12 @@ module.exports = {
   // Session learning handlers
   ...sessionLearning,
 
+  // Causal graph handlers (T043-T047)
+  ...causalGraph,
+
+  // T061: L1 Orchestration handler
+  ...memoryContext,
+
   // Sub-module references for direct access
   memorySearch,
   memoryTriggers,
@@ -41,5 +50,7 @@ module.exports = {
   memoryCrud,
   memoryIndex,
   checkpoints,
-  sessionLearning
+  sessionLearning,
+  causalGraph,
+  memoryContext
 };

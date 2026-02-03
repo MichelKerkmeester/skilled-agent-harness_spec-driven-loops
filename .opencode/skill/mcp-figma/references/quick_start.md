@@ -54,7 +54,7 @@ project/
 // Check Code Mode is working
 search_tools({ task_description: "figma", limit: 5 });
 
-// Expected: List of figma.figma.* tools
+// Expected: List of figma.figma_* tools
 ```
 
 ### Step 2: Check Figma Tools Available

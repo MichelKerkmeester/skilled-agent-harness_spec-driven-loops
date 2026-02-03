@@ -93,9 +93,6 @@ DO NOT use Level 2 if:
 
 ---
 
-
----
-
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -141,7 +138,7 @@ DO NOT use Level 2 if:
 
 ---
 
-## 10. OPEN QUESTIONS
+## 7. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]
 - [Question 2 requiring clarification]

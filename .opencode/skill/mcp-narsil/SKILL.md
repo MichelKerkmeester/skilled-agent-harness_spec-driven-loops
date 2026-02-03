@@ -796,4 +796,4 @@ call_tool_chain({
 
 ### Install Guide
 
-- [MCP - Narsil.md](../../install_guides/MCP/MCP%20-%20Narsil.md) - Installation and configuration
+- [MCP - Narsil.md](../../install_guides/MCP%20-%20Narsil.md) - Installation and configuration

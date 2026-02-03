@@ -7,25 +7,25 @@ const tierClassifier = require('./tier-classifier.js');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const CO_ACTIVATION_CONFIG = {
   enabled: process.env.ENABLE_CO_ACTIVATION !== 'false',
-  boostAmount: 0.35,      // How much to boost related memories
-  maxRelatedMemories: 5,  // Max related memories to boost per activation
-  maxScoreCap: 1.0        // Scores cannot exceed this
+  boostAmount: 0.35,
+  maxRelatedMemories: 5,
+  maxScoreCap: 1.0,
 };
 
 /* ─────────────────────────────────────────────────────────────
    2. STATE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Database reference (initialized via init())
 let db = null;
 
 /* ─────────────────────────────────────────────────────────────
    3. INITIALIZATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Initialize the co-activation module with a database reference
@@ -50,7 +50,7 @@ function is_enabled() {
 
 /* ─────────────────────────────────────────────────────────────
    4. SCORE CALCULATIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Boost a score by a given amount, capping at maxScoreCap
@@ -68,7 +68,7 @@ function boost_score(currentScore, boostAmount = CO_ACTIVATION_CONFIG.boostAmoun
 
 /* ─────────────────────────────────────────────────────────────
    5. RELATED MEMORIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Get related memory IDs for a given memory
@@ -200,7 +200,7 @@ async function populate_related_memories(memoryId, vectorSearch) {
 
 /* ─────────────────────────────────────────────────────────────
    6. SPREADING ACTIVATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Spread activation from a primary memory to its related memories
@@ -339,7 +339,7 @@ function spread_activation(sessionId, primaryMemoryId, turnNumber, boostedThisTu
 
 /* ─────────────────────────────────────────────────────────────
    7. LOGGING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Log co-activation events for debugging
@@ -365,7 +365,7 @@ function log_co_activation_event(operation, details = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    8. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Core functions

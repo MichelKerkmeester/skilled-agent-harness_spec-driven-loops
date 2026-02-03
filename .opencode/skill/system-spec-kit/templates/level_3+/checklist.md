@@ -77,10 +77,6 @@
 
 ---
 
-<!-- Append to Level 2 checklist.md -->
-
----
-
 ## L3+: ARCHITECTURE VERIFICATION
 
 - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md

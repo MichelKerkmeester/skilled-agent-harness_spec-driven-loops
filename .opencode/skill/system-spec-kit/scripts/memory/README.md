@@ -4,6 +4,16 @@
 
 ---
 
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. 🛠️ TROUBLESHOOTING](#4--troubleshooting)
+- [5. 📚 RELATED DOCUMENTS](#5--related-documents)
+
+---
+
 ## 1. 📖 OVERVIEW
 
 ### What are Memory Scripts?
@@ -78,7 +88,7 @@ memory/
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 4. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -149,7 +159,7 @@ node generate-context.js --help
 
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 5. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 
@@ -166,3 +176,7 @@ node generate-context.js --help
 |----------|-------------|
 | [sqlite-vec Documentation](https://github.com/asg017/sqlite-vec) | Vector embedding extension for SQLite |
 | [better-sqlite3 API](https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md) | SQLite driver for Node.js |
+
+---
+
+*Documentation version: 1.0 | Last updated: 2025-01-21*

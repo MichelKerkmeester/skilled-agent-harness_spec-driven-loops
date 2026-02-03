@@ -54,9 +54,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    • What you've already tried (if anything)                   │
    │                                                                │
    │ **Q2. AI Model** (required):                                   │
-   │    A) Codex - OpenAI GPT-5.2-Codex (Recommended)               │
-   │    B) Claude - Anthropic                                       │
-   │    C) Gemini - Google                                          │
+   │    A) OpenAI - GPT-4/o1/o3 models                              │
+   │    B) Anthropic - Claude models (Recommended)                  │
+   │    C) Google - Gemini models                                   │
    │    D) Other - Specify                                          │
    │                                                                │
    │ **Q3. Dispatch Mode** (required):                              │
@@ -591,6 +591,12 @@ After successful resolution:
 - Debug-delegation.md serves as memory for the spec folder
 - Future agents can learn from documented fix attempts
 
+### Learning from Mistakes
+
+- After resolution, use `/memory:learn` to capture the corrected approach
+- Document what was tried, what failed, and what ultimately worked
+- This builds institutional knowledge for future debugging sessions
+
 ---
 
 ## 11. 🔗 COMMAND CHAIN
@@ -611,12 +617,13 @@ This command can be invoked from any workflow:
 
 After debugging completes, suggest relevant next steps:
 
-| Condition                      | Suggested Command                              | Reason                        |
-| ------------------------------ | ---------------------------------------------- | ----------------------------- |
-| Fix applied successfully       | Verify in browser/tests                        | Confirm fix works             |
-| Fix applied, continue work     | Return to original workflow                    | Resume implementation         |
-| Issue needs more analysis      | `/spec_kit:debug` (retry with different model) | Fresh perspective             |
-| Want to save debugging context | `/memory:save [spec-folder-path]`              | Preserve debugging insights   |
-| Debugging session complete     | `/spec_kit:handover [spec-folder-path]`        | Document for future reference |
+| Condition                      | Suggested Command                              | Reason                            |
+| ------------------------------ | ---------------------------------------------- | --------------------------------- |
+| Fix applied successfully       | Verify in browser/tests                        | Confirm fix works                 |
+| Fix applied, continue work     | Return to original workflow                    | Resume implementation             |
+| Issue needs more analysis      | `/spec_kit:debug` (retry with different model) | Fresh perspective                 |
+| Want to save debugging context | `/memory:save [spec-folder-path]`              | Preserve debugging insights       |
+| Debugging session complete     | `/spec_kit:handover [spec-folder-path]`        | Document for future reference     |
+| Record lessons learned         | `/memory:learn [description]`                  | Capture learning from debugging   |
 
 **ALWAYS** end with: "What would you like to do next?"

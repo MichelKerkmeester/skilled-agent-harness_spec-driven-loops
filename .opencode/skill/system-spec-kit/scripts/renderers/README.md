@@ -4,6 +4,16 @@
 
 ---
 
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. 🛠️ TROUBLESHOOTING](#4--troubleshooting)
+- [5. 📚 RELATED DOCUMENTS](#5--related-documents)
+
+---
+
 ## 1. 📖 OVERVIEW
 
 ### What are Template Renderers?
@@ -112,7 +122,7 @@ renderers/
 
 ---
 
-## 7. 🛠️ TROUBLESHOOTING
+## 4. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -198,7 +208,7 @@ const result = renderTemplate('{{MISSING}}', {});
 
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 5. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 

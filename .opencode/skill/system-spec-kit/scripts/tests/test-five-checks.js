@@ -24,7 +24,7 @@ const fs = require('fs');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const ROOT = path.join(__dirname, '..', '..');
 const VALIDATION_DIR = path.join(ROOT, 'references', 'validation');
@@ -90,7 +90,7 @@ const results = {
 
 /* ─────────────────────────────────────────────────────────────
    2. UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function log(msg) {
   console.log(msg);
@@ -196,7 +196,7 @@ function validateFiveChecksEvaluation(checks) {
 
 /* ─────────────────────────────────────────────────────────────
    3. TEST SUITE: FRAMEWORK DOCUMENTATION STRUCTURE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_framework_documentation_structure() {
   log('\n--- TEST SUITE: Framework Documentation Structure ---');
@@ -315,7 +315,7 @@ async function test_framework_documentation_structure() {
 
 /* ─────────────────────────────────────────────────────────────
    4. TEST SUITE: CHECK CRITERIA PARSING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_check_criteria_parsing() {
   log('\n--- TEST SUITE: Check Criteria Parsing ---');
@@ -411,7 +411,7 @@ async function test_check_criteria_parsing() {
 
 /* ─────────────────────────────────────────────────────────────
    5. TEST SUITE: DECISION-RECORD.MD INTEGRATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_decision_record_integration() {
   log('\n--- TEST SUITE: Decision-Record.md Integration ---');
@@ -508,7 +508,7 @@ async function test_decision_record_integration() {
 
 /* ─────────────────────────────────────────────────────────────
    6. TEST SUITE: LEVEL APPLICABILITY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_level_applicability() {
   log('\n--- TEST SUITE: Level Applicability ---');
@@ -601,7 +601,7 @@ async function test_level_applicability() {
 
 /* ─────────────────────────────────────────────────────────────
    7. TEST SUITE: CHECK RESPONSE VALIDATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_check_response_validation() {
   log('\n--- TEST SUITE: Check Response Validation ---');
@@ -739,7 +739,7 @@ async function test_check_response_validation() {
 
 /* ─────────────────────────────────────────────────────────────
    8. TEST SUITE: CROSS-REFERENCE VALIDATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_cross_reference_validation() {
   log('\n--- TEST SUITE: Cross-Reference Validation ---');
@@ -807,7 +807,7 @@ async function test_cross_reference_validation() {
 
 /* ─────────────────────────────────────────────────────────────
    9. TEST SUITE: SPEC FOLDER INTEGRATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_spec_folder_integration() {
   log('\n--- TEST SUITE: Spec Folder Integration ---');
@@ -898,7 +898,7 @@ async function test_spec_folder_integration() {
 
 /* ─────────────────────────────────────────────────────────────
    10. MAIN
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function main() {
   log('==================================================');

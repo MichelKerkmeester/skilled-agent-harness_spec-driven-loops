@@ -1,8 +1,6 @@
 # MCP Server Core Modules
 
-> Central configuration, state management, and module coordination for the Spec Kit Memory MCP server.
-
----
+Central configuration, state management, and module coordination for the Spec Kit Memory MCP server.
 
 ## TABLE OF CONTENTS
 

@@ -5,7 +5,7 @@
 
 /* ─────────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 const fs = require('fs/promises');
 const path = require('path');
@@ -13,7 +13,7 @@ const { CONFIG } = require('../core');
 
 /* ─────────────────────────────────────────────────────────────────
    2. HELPER FUNCTIONS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 function is_falsy(value) {
   // "false" strings and empty arrays treated as falsy for template conditionals
@@ -40,7 +40,7 @@ function strip_template_config_comments(text) {
 
 /* ─────────────────────────────────────────────────────────────────
    3. CORE RENDERING
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 function render_template(template, data, parentData = {}) {
   let result = template;
@@ -119,7 +119,7 @@ function render_template(template, data, parentData = {}) {
 
 /* ─────────────────────────────────────────────────────────────────
    4. PUBLIC API
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 async function populate_template(templateName, data) {
   const templatePath = path.join(CONFIG.TEMPLATE_DIR, `${templateName}_template.md`);
@@ -150,7 +150,7 @@ async function populate_template(templateName, data) {
 
 /* ─────────────────────────────────────────────────────────────────
    5. EXPORTS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)

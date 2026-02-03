@@ -61,7 +61,9 @@ Task(subagent_type: "write", model: "gemini", prompt: "...")
 
 1. **RECEIVE** → Parse documentation request
 2. **CLASSIFY** → Determine document type (SKILL, reference, asset, README, etc.)
-3. **LOAD TEMPLATE** → Read the corresponding template file (see §2 Template Mapping)
+3. **LOAD TEMPLATE** → Read the corresponding template file (see §2 Template Mapping) [HARD GATE]
+   - MUST call Read() on template file before proceeding
+   - HALT if template not loaded
 4. **INVOKE SKILL** → Load workflows-documentation for standards
 5. **EXTRACT** → Run `extract_structure.py` for current state (if editing existing)
 6. **COPY SKELETON** → Copy template's H1/H2 header structure verbatim
@@ -69,29 +71,52 @@ Task(subagent_type: "write", model: "gemini", prompt: "...")
    - NEVER reconstruct headers from memory - copy/paste only
    - Include emojis, numbers, and capitalization exactly
 7. **FILL CONTENT** → Add content under each copied header
-8. **VALIDATE ALIGNMENT** → Compare output against template (see §2 Checklist)
+8. **VALIDATE FORMAT** → Run `validate_document.py` on output [NEW GATE]
+   - BLOCKING errors = fix before proceeding
+   - Exit code 0 = valid, proceed
+   - Exit code 1 = fix errors, re-run validation
 9. **DQI SCORE** → Run `extract_structure.py` to verify quality
-10. **DELIVER** → Template-aligned, DQI-compliant documentation
+10. **DELIVER** → Only if validation passes (exit 0) AND DQI >= 75
 
-**CRITICAL**: Steps 3 (LOAD TEMPLATE), 6 (COPY SKELETON), and 8 (VALIDATE ALIGNMENT) are mandatory. Never skip template verification or reconstruct headers from memory.
+**CRITICAL**: Steps 3 (LOAD TEMPLATE), 6 (COPY SKELETON), and 8 (VALIDATE FORMAT) are mandatory. Never skip template verification or reconstruct headers from memory.
+
+### Validation Script (MANDATORY for README files)
+
+```bash
+# Run before delivery to catch formatting errors
+python .opencode/skill/workflows-documentation/scripts/validate_document.py <file.md>
+
+# Exit 0 = valid, proceed to delivery
+# Exit 1 = fix blocking errors (missing TOC, emojis, etc.)
+```
+
+**What it checks:**
+- TOC exists with proper anchor format (double-dash: `#1--overview`)
+- H2 headers have emojis (for template-based docs)
+- Required sections present
+- Sequential section numbering
 
 ```mermaid
 flowchart TD
     classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
     classDef template fill:#7c2d12,stroke:#ea580c,color:#fff
     classDef verify fill:#065f46,stroke:#10b981,color:#fff
+    classDef gate fill:#7f1d1d,stroke:#ef4444,color:#fff
 
     START([Doc Request]) --> R1[1. RECEIVE]:::core
     R1 --> R2[2. CLASSIFY]:::core
-    R2 --> R3[3. LOAD TEMPLATE]:::template
-    R3 --> R4[4. INVOKE SKILL]:::core
+    R2 --> R3[3. LOAD TEMPLATE]:::gate
+    R3 --> TCHECK{Template Loaded?}
+    TCHECK -->|No| HALT([HALT - Load Required])
+    TCHECK -->|Yes| R4[4. INVOKE SKILL]:::core
     R4 --> R5[5. EXTRACT]:::core
     R5 --> R6[6. COPY SKELETON]:::template
     R6 --> R7[7. FILL CONTENT]:::core
-    R7 --> R8[8. VALIDATE ALIGNMENT]:::template
-    R8 --> CHECK{Aligned?}
-    CHECK -->|No| R6
-    CHECK -->|Yes| R9[9. DQI SCORE]:::verify
+    R7 --> R8[8. VALIDATE FORMAT]:::gate
+    R8 --> VCHECK{validate_document.py exit 0?}
+    VCHECK -->|No| FIX[Fix blocking errors]:::template
+    FIX --> R8
+    VCHECK -->|Yes| R9[9. DQI SCORE]:::verify
     R9 --> BAND{Score >= 75?}
     BAND -->|No| R7
     BAND -->|Yes| R10[10. DELIVER]:::verify
@@ -202,12 +227,13 @@ Content Alignment:
 
 ### Scripts
 
-| Script                 | Purpose                  | When to Use           |
-| ---------------------- | ------------------------ | --------------------- |
-| `extract_structure.py` | Parse document → JSON    | Before ANY evaluation |
-| `init_skill.py`        | Scaffold skill structure | New skill creation    |
-| `package_skill.py`     | Validate + package       | Skill finalization    |
-| `quick_validate.py`    | Fast validation          | Quick checks          |
+| Script                 | Purpose                  | When to Use                           |
+| ---------------------- | ------------------------ | ------------------------------------- |
+| `validate_document.py`   | Format validation        | MANDATORY before delivery (exit 0 required) |
+| `extract_structure.py` | Parse document → JSON    | Before ANY evaluation                 |
+| `init_skill.py`        | Scaffold skill structure | New skill creation                    |
+| `package_skill.py`     | Validate + package       | Skill finalization                    |
+| `quick_validate.py`    | Fast validation          | Quick checks                          |
 
 ### Command Integration
 

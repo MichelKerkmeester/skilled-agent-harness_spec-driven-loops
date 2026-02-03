@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: SKILL ADVISOR
+# ───────────────────────────────────────────────────────────────
+
 """
 Skill Advisor - Analyzes user requests and recommends appropriate skills.
 Used by Gate 2 in AGENTS.md for skill routing.
@@ -16,6 +20,11 @@ import os
 import re
 import glob
 import argparse
+
+
+# ───────────────────────────────────────────────────────────────
+# 1. CONFIGURATION
+# ───────────────────────────────────────────────────────────────
 
 # Path to skill directory (relative to project root)
 # Note: OpenCode native skills use singular "skill" folder
@@ -317,34 +326,13 @@ INTENT_BOOSTERS = {
     "template": ("workflows-documentation", 0.4),
     
     # ─────────────────────────────────────────────────────────────────
-    # WORKFLOWS-CODE: Implementation and verification (frontend)
+    # WORKFLOWS-CODE: Implementation and verification
     # ─────────────────────────────────────────────────────────────────
     "bug": ("workflows-code", 0.5),
     "error": ("workflows-code", 0.4),
     "implement": ("workflows-code", 0.6),
     "refactor": ("workflows-code", 0.5),
     "verification": ("workflows-code", 0.5),
-
-    # ─────────────────────────────────────────────────────────────────
-    # WORKFLOWS-CODE-MULTI-STACK: Multi-stack implementation
-    # (Go, Node.js, Python, Angular, React Native, DevOps)
-    # Note: Higher boost values (2.5+) help pass dual-threshold validation
-    # ─────────────────────────────────────────────────────────────────
-    "golang": ("workflows-code-multi-stack", 2.5),
-    "python": ("workflows-code-multi-stack", 2.0),
-    "pytest": ("workflows-code-multi-stack", 1.5),
-    "nodejs": ("workflows-code-multi-stack", 2.0),
-    "angular": ("workflows-code-multi-stack", 2.0),
-    "devops": ("workflows-code-multi-stack", 1.5),
-    "backend": ("workflows-code-multi-stack", 1.5),
-    "flask": ("workflows-code-multi-stack", 1.5),
-    "express": ("workflows-code-multi-stack", 1.5),
-    "monorepo": ("workflows-code-multi-stack", 1.5),
-    "microservice": ("workflows-code-multi-stack", 1.5),
-    "microservices": ("workflows-code-multi-stack", 1.5),
-    "ruff": ("workflows-code-multi-stack", 1.2),
-    "mypy": ("workflows-code-multi-stack", 1.2),
-    "golangci": ("workflows-code-multi-stack", 1.2),
     
     # ─────────────────────────────────────────────────────────────────
     # MCP-CODE-MODE: External tool integration
@@ -383,6 +371,10 @@ MULTI_SKILL_BOOSTERS = {
     "update": [("mcp-code-mode", 0.3), ("workflows-git", 0.2), ("workflows-code", 0.2)],
 }
 
+
+# ───────────────────────────────────────────────────────────────
+# 2. SKILL LOADING
+# ───────────────────────────────────────────────────────────────
 
 def parse_frontmatter(file_path):
     """Extract name and description from SKILL.md frontmatter."""
@@ -439,6 +431,10 @@ def expand_query(prompt_tokens):
             expanded.update(SYNONYM_MAP[token])
     return list(expanded)
 
+
+# ───────────────────────────────────────────────────────────────
+# 3. SCORING
+# ───────────────────────────────────────────────────────────────
 
 def calculate_confidence(score, has_intent_boost, weight=1.0):
     """
@@ -563,88 +559,72 @@ def passes_dual_threshold(confidence, uncertainty, conf_threshold=0.8, uncert_th
     return confidence >= conf_threshold and uncertainty <= uncert_threshold
 
 
+# ───────────────────────────────────────────────────────────────
+# 4. ANALYSIS
+# ───────────────────────────────────────────────────────────────
+
 def analyze_request(prompt):
     """Analyze user request and return ranked skill recommendations."""
     if not prompt:
         return []
 
     prompt_lower = prompt.lower()
-    
-    # Tokenize: extract words
     all_tokens = re.findall(r'\b\w+\b', prompt_lower)
-    
-    # Pre-calculate intent boosts from ALL original tokens BEFORE stop word filtering
-    # This is critical because question words (how, why, what) and "work/does" are
-    # important signals for semantic search but would be filtered as stop words
+
+    # Intent boosts calculated BEFORE stop word filtering - question words (how, why, what)
+    # are important signals for semantic search but would otherwise be filtered
     skill_boosts = {}
     boost_reasons = {}
     for token in all_tokens:
-        # Single-skill boosters
         if token in INTENT_BOOSTERS:
             skill, boost = INTENT_BOOSTERS[token]
             skill_boosts[skill] = skill_boosts.get(skill, 0) + boost
             if skill not in boost_reasons:
                 boost_reasons[skill] = []
             boost_reasons[skill].append(f"!{token}")
-        
-        # Multi-skill boosters (ambiguous keywords that boost multiple skills)
+
         if token in MULTI_SKILL_BOOSTERS:
             for skill, boost in MULTI_SKILL_BOOSTERS[token]:
                 skill_boosts[skill] = skill_boosts.get(skill, 0) + boost
                 if skill not in boost_reasons:
                     boost_reasons[skill] = []
                 boost_reasons[skill].append(f"!{token}(multi)")
-    
-    # NOW filter stop words and short terms for corpus matching
-    # This prevents "me", "help", "a" etc. from polluting description matches
+
+    # Stop words filtered for corpus matching only
     tokens = [t for t in all_tokens if t not in STOP_WORDS and len(t) > 2]
-    
-    # Handle empty tokens after filtering - but still allow if we have boosts
+
     if not tokens and not skill_boosts:
         return []
-    
-    # Expand query with synonyms (only for non-stop-word tokens)
+
     search_terms = expand_query(tokens) if tokens else []
-    
     recommendations = []
     skills = get_skills()
 
     for name, config in skills.items():
-        # Start with intent boost if any (from pre-calculated boosts)
         score = skill_boosts.get(name, 0)
         matches = boost_reasons.get(name, []).copy()
-        
-        # Prepare skill keywords from name and description
+
         name_parts = name.replace('-', ' ').split()
         desc_parts = re.findall(r'\b\w+\b', config['description'].lower())
-        
-        # Build corpus (description terms only, name checked separately)
         corpus = set(desc_parts)
         corpus = {k for k in corpus if len(k) > 2 and k not in STOP_WORDS}
-        
-        # Also filter name_parts for stop words
         name_parts_filtered = [p for p in name_parts if p not in STOP_WORDS and len(p) > 2]
-        
-        # Score each search term
+
         for term in search_terms:
-            # Priority 1: Term matches skill NAME (highest value)
             if term in name_parts_filtered:
                 score += 1.5
                 matches.append(f"{term}(name)")
-            # Priority 2: Exact match in description corpus
             elif term in corpus:
                 score += 1.0
                 matches.append(term)
-            # Priority 3: Substring match (only for 4+ char terms to avoid false positives)
             elif len(term) >= 4:
                 for corpus_word in corpus:
                     if len(corpus_word) >= 4 and (term in corpus_word or corpus_word in term):
                         score += 0.5
                         matches.append(f"{term}~")
                         break
-        
+
         if score > 0:
-            # Use the documented two-tiered confidence formula
             total_intent_boost = skill_boosts.get(name, 0)
             has_boost = total_intent_boost > 0
             confidence = calculate_confidence(
@@ -653,7 +633,6 @@ def analyze_request(prompt):
                 weight=config['weight']
             )
 
-            # Calculate uncertainty (separate from confidence)
             num_matches = len(matches)
             num_ambiguous = sum(1 for m in matches if '(multi)' in m)
             uncertainty = calculate_uncertainty(
@@ -662,7 +641,6 @@ def analyze_request(prompt):
                 num_ambiguous_matches=num_ambiguous
             )
 
-            # Check dual-threshold validation
             passes = passes_dual_threshold(confidence, uncertainty)
 
             recommendations.append({
@@ -675,6 +653,10 @@ def analyze_request(prompt):
 
     return sorted(recommendations, key=lambda x: x['confidence'], reverse=True)
 
+
+# ───────────────────────────────────────────────────────────────
+# 5. DIAGNOSTICS
+# ───────────────────────────────────────────────────────────────
 
 def load_all_skills():
     """Load all skills for diagnostics."""
@@ -698,6 +680,10 @@ def health_check():
         "skills_dir_exists": os.path.exists(SKILLS_DIR)
     }
 
+
+# ───────────────────────────────────────────────────────────────
+# 6. CLI ENTRY POINT
+# ───────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

@@ -1000,8 +1000,8 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 - [core_standards.md](../../references/core_standards.md) - Document formatting standards
 
 ### Examples
-- [MCP - Narsil.md](../../../../install_guides/MCP/MCP%20-%20Narsil.md) - Excellent MCP server example (1300+ lines)
-- [MCP - Spec Kit Memory.md](../../../../install_guides/MCP/MCP%20-%20Spec%20Kit%20Memory.md) - Plugin example
+- [MCP - Narsil.md](../../../../install_guides/MCP%20-%20Narsil.md) - Excellent MCP server example (1300+ lines)
+- [MCP - Spec Kit Memory.md](../../../../install_guides/MCP%20-%20Spec%20Kit%20Memory.md) - Plugin example
 
 ### Skill Reference
 - [workflows-documentation SKILL.md](../../SKILL.md) - Mode 4: Install Guide Creation

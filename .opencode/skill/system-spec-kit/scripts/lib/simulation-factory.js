@@ -8,7 +8,7 @@ const crypto = require('crypto');
 
 /* ─────────────────────────────────────────────────────────────
    1. UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function secure_random_string(length = 9) {
   return crypto.randomBytes(Math.ceil(length * 0.75))
@@ -59,7 +59,7 @@ function generate_session_id() {
 
 /* ─────────────────────────────────────────────────────────────
    2. SESSION DATA FACTORY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function create_session_data(config = {}) {
   const now = new Date();
@@ -119,7 +119,7 @@ function create_session_data(config = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    3. CONVERSATION DATA FACTORY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function create_conversation_data(config = {}) {
   const user_message = config.userMessage || 'This is a simulated user message.';
@@ -167,7 +167,7 @@ function create_conversation_data(config = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    4. DECISION DATA FACTORY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function create_decision_data(config = {}) {
   const title = config.title || 'Simulated Decision Example';
@@ -241,7 +241,7 @@ function create_decision_data(config = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    5. DIAGRAM DATA FACTORY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function create_diagram_data(config = {}) {
   const title = config.title || 'Example Workflow';
@@ -297,7 +297,7 @@ function create_diagram_data(config = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    6. FLOWCHART AND PHASES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function create_simulation_flowchart(initial_request = 'User Request') {
   const pad = (text, length) => {
@@ -342,7 +342,7 @@ function create_simulation_phases() {
 
 /* ─────────────────────────────────────────────────────────────
    7. FULL SIMULATION AND DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function create_full_simulation(config = {}) {
   return {
@@ -367,7 +367,7 @@ function requires_simulation(collected_data) {
 
 /* ─────────────────────────────────────────────────────────────
    8. SIMULATION WARNING UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function add_simulation_warning(content) {
   const warning = `<!-- WARNING: This is simulated/placeholder content - NOT from a real session -->\n\n`;
@@ -384,7 +384,7 @@ function mark_as_simulated(metadata) {
 
 /* ─────────────────────────────────────────────────────────────
    9. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Snake_case exports (original)

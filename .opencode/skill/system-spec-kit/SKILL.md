@@ -1,8 +1,8 @@
 ---
 name: system-spec-kit
-description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.0), validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore. Mandatory for all file modifications."
+description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore, session deduplication, causal memory graph, intent-aware retrieval. Mandatory for all file modifications."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
-version: 1.9.0
+version: 1.2.3.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, constitutional-tier, checkpoint, importance-tiers -->
@@ -110,12 +110,16 @@ User Request
 | "checkpoint", "save state"                          | Create named checkpoint           | `spec_kit_memory_checkpoint_create()`                                          |
 | "restore checkpoint", "rollback"                    | Restore from checkpoint           | `spec_kit_memory_checkpoint_restore()`                                         |
 | Gate enforcement (any file modification)            | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()`                                      |
+| "continue", "resume", `/memory:continue`            | Session recovery (crash/timeout)  | `spec_kit_memory_memory_search()` + state anchors                              |
+| "context", "get context", `/memory:context`         | Intent-aware context retrieval    | `spec_kit_memory_memory_search()` with intent routing                          |
+| "correct", "correction", `/memory:learn correct`   | Learn from corrections            | `spec_kit_memory_memory_update()` with penalty                                 |
+| "learn", "insight", `/memory:learn`                 | Capture session learnings         | `spec_kit_memory_memory_save()` with learning tier                             |
 
 ### Cognitive Memory Features
 
 The `memory_match_triggers()` tool includes cognitive features for smarter context management: decay scoring, co-activation, and tiered content injection (HOT/WARM/COLD).
 
-**Full documentation:** See [mcp_server/README.md](./mcp_server/README.md#cognitive-memory-v170) and [memory_system.md](./references/memory/memory_system.md).
+**Full documentation:** See [mcp_server/README.md](./mcp_server/README.md#3--cognitive-memory) and [memory_system.md](./references/memory/memory_system.md).
 
 ### Resource Router
 
@@ -135,9 +139,9 @@ The `memory_match_triggers()` tool includes cognitive features for smarter conte
 
 | Sub-folder    | Purpose                         | Files                                                                            |
 | ------------- | ------------------------------- | -------------------------------------------------------------------------------- |
-| `memory/`     | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md, epistemic-vectors.md      |
-| `templates/`  | Template system, level specs    | level_specifications.md, template_guide.md, template_style_guide.md, decision-format.md |
-| `validation/` | Validation rules, checklists    | validation_rules.md, phase_checklists.md, path_scoped_rules.md, five-checks.md   |
+| `memory/`     | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md, epistemic-vectors.md, embedding_resilience.md |
+| `templates/`  | Template system, level specs    | level_specifications.md, template_guide.md, template_style_guide.md, level_selection_guide.md |
+| `validation/` | Validation rules, checklists    | validation_rules.md, phase_checklists.md, path_scoped_rules.md, five-checks.md, decision-format.md |
 | `structure/`  | Folder organization, routing    | folder_structure.md, folder_routing.md, sub_folder_versioning.md    |
 | `workflows/`  | Usage workflows, examples       | quick_reference.md, execution_methods.md, worked_examples.md        |
 | `debugging/`  | Troubleshooting, debugging      | troubleshooting.md, universal_debugging_methodology.md              |
@@ -178,10 +182,10 @@ Runtime configuration for the memory system:
 
 | Folder | Contents | When to Use |
 |--------|----------|-------------|
-| `templates/level_1/` | 4 files (~270 LOC) | **Default for new specs** |
-| `templates/level_2/` | 5 files (~390 LOC) | QA validation needed |
-| `templates/level_3/` | 6 files (~540 LOC) | Architecture decisions |
-| `templates/level_3+/` | 6 files (~640 LOC) | Enterprise governance |
+| `templates/level_1/` | 5 files (~450 LOC) | **Default for new specs** |
+| `templates/level_2/` | 6 files (~890 LOC) | QA validation needed |
+| `templates/level_3/` | 7 files (~890 LOC) | Architecture decisions |
+| `templates/level_3+/` | 7 files (~1080 LOC) | Enterprise governance |
 
 > **IMPORTANT:** Always copy from `templates/level_N/`. The `core/` and `addendum/` folders are source components only.
 
@@ -207,11 +211,11 @@ Runtime configuration for the memory system:
 | `templates/`  | `level_specifications.md`            | Complete Level 1-3 requirements  | Planning                   |
 | `templates/`  | `template_guide.md`                  | Template selection and usage     | Planning, Implementation   |
 | `templates/`  | `template_style_guide.md`            | Template formatting conventions  | Documentation              |
-| `templates/`  | `decision-format.md`                 | Structured gate decision format  | Gate decisions, logging    |
 | `validation/` | `validation_rules.md`                | All validation rules and fixes   | Implementation, Completion |
 | `validation/` | `phase_checklists.md`                | Per-phase validation             | Completion                 |
 | `validation/` | `path_scoped_rules.md`               | Path-scoped validation           | Advanced                   |
 | `validation/` | `five-checks.md`                     | Five Checks evaluation framework | Planning, decisions        |
+| `validation/` | `decision-format.md`                 | Structured gate decision format  | Gate decisions, logging    |
 | `structure/`  | `folder_structure.md`                | Folder naming conventions        | Planning                   |
 | `structure/`  | `folder_routing.md`                  | Folder routing logic             | Planning                   |
 | `structure/`  | `sub_folder_versioning.md`           | Sub-folder workflow              | Reusing spec folders       |
@@ -298,13 +302,13 @@ When user selects **B) New**, AI estimates complexity and recommends a level:
 Higher levels ADD VALUE, not just length. Each level builds on the previous:
 
 ```
-Level 1 (Core):         Essential what/why/how (~270 LOC)
+Level 1 (Core):         Essential what/why/how (~450 LOC)
          ↓ +Verify
-Level 2 (Verification): +Quality gates, NFRs, edge cases (~390 LOC)
+Level 2 (Verification): +Quality gates, NFRs, edge cases (~890 LOC)
          ↓ +Arch
-Level 3 (Full):         +Architecture decisions, ADRs, risk matrix (~540 LOC)
+Level 3 (Full):         +Architecture decisions, ADRs, risk matrix (~890 LOC)
          ↓ +Govern
-Level 3+ (Extended):    +Enterprise governance, AI protocols (~640 LOC)
+Level 3+ (Extended):    +Enterprise governance, AI protocols (~1080 LOC)
 ```
 
 | Level  | LOC Guidance | Required Files                                        | What It ADDS                                |
@@ -447,24 +451,32 @@ specs/007-auth-system/
 
 Context preservation across sessions via vector-based semantic search.
 
-**MCP Tools:**
+**MCP Tools (22 tools across 7 layers):**
 
-| Tool                      | Purpose                                    |
-| ------------------------- | ------------------------------------------ |
-| `memory_search()`         | Semantic search with vector similarity     |
-| `memory_match_triggers()` | Fast keyword matching (<50ms)              |
-| `memory_save()`           | Index a memory file                        |
-| `memory_list()`           | Browse stored memories with pagination     |
-| `memory_delete()`         | Delete memories by ID or spec folder       |
-| `memory_update()`         | Update memory metadata and importance tier |
-| `memory_stats()`          | Get system statistics and counts           |
-| `memory_validate()`       | Record validation feedback for confidence  |
-| `memory_index_scan()`     | Bulk scan and index workspace              |
-| `memory_health()`         | Check system health status                 |
-| `checkpoint_create()`     | Create named checkpoint                    |
-| `checkpoint_list()`       | List all available checkpoints             |
-| `checkpoint_restore()`    | Restore from checkpoint                    |
-| `checkpoint_delete()`     | Delete a checkpoint                        |
+| Tool                          | Layer | Purpose                                            |
+| ----------------------------- | ----- | -------------------------------------------------- |
+| `memory_context()`            | L1    | Unified entry point with intent-aware routing      |
+| `memory_search()`             | L2    | Semantic search with vector similarity             |
+| `memory_match_triggers()`     | L2    | Fast keyword matching (<50ms)                      |
+| `memory_save()`               | L2    | Index a memory file with pre-flight validation     |
+| `memory_list()`               | L3    | Browse stored memories with pagination             |
+| `memory_stats()`              | L3    | Get system statistics and counts                   |
+| `memory_health()`             | L3    | Check system health status                         |
+| `memory_delete()`             | L4    | Delete memories by ID or spec folder               |
+| `memory_update()`             | L4    | Update memory metadata and importance tier         |
+| `memory_validate()`           | L4    | Record validation feedback for confidence          |
+| `checkpoint_create()`         | L5    | Create named checkpoint                            |
+| `checkpoint_list()`           | L5    | List all available checkpoints                     |
+| `checkpoint_restore()`        | L5    | Restore from checkpoint                            |
+| `checkpoint_delete()`         | L5    | Delete a checkpoint                                |
+| `task_preflight()`            | L6    | Capture epistemic baseline before task execution   |
+| `task_postflight()`           | L6    | Capture epistemic state after task, calc learning  |
+| `memory_drift_why()`          | L6    | Trace causal chain for decision lineage            |
+| `memory_causal_link()`        | L6    | Create causal relationship between memories        |
+| `memory_causal_stats()`       | L6    | Get statistics about causal memory graph           |
+| `memory_causal_unlink()`      | L6    | Remove causal relationship by edge ID              |
+| `memory_index_scan()`         | L7    | Bulk scan and index workspace                      |
+| `memory_get_learning_history()` | L7  | Get learning history for spec folder               |
 
 > **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search()`).
 

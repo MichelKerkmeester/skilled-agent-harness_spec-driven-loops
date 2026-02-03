@@ -4,14 +4,14 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 'use strict';
 
 const readline = require('readline');
 
 /* ─────────────────────────────────────────────────────────────
    2. INTERACTIVE MODE DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function require_interactive_mode(operation) {
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
@@ -29,7 +29,7 @@ function require_interactive_mode(operation) {
 
 /* ─────────────────────────────────────────────────────────────
    3. USER PROMPTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function prompt_user(question, defaultValue = '', requireInteractive = true) {
   if (!process.stdout.isTTY || !process.stdin.isTTY) {
@@ -90,7 +90,7 @@ async function prompt_user_choice(question, maxChoice, maxAttempts = 3, requireI
 
 /* ─────────────────────────────────────────────────────────────
    4. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)

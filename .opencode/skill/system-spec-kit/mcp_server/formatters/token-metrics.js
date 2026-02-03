@@ -5,14 +5,8 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. TOKEN ESTIMATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Estimate token count for text content
- * Uses ~4 chars per token approximation for English text
- * @param {string} text - Text to estimate tokens for
- * @returns {number} Estimated token count
- */
 function estimate_tokens(text) {
   if (!text || typeof text !== 'string') return 0;
   // Average ~4 chars per token for English, ~2 for code
@@ -21,29 +15,8 @@ function estimate_tokens(text) {
 
 /* ─────────────────────────────────────────────────────────────
    2. TOKEN METRICS CALCULATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Calculate token savings from tiered content injection
- * Compares hypothetical full content vs actual tiered content
- *
- * Tier behavior:
- * - HOT: Full content returned (no savings)
- * - WARM: Summary returned (~1/3 of full content)
- * - COLD: Excluded entirely (100% savings)
- *
- * @param {Array} all_matches - All matched memories (before tier filtering)
- * @param {Array} returned_results - Tiered results actually returned
- * @returns {Object} Token metrics with savings estimate
- * @returns {number} returns.actualTokens - Total tokens in returned content
- * @returns {number} returns.hotTokens - Tokens from HOT tier results
- * @returns {number} returns.warmTokens - Tokens from WARM tier results
- * @returns {number} returns.hotCount - Number of HOT tier results
- * @returns {number} returns.warmCount - Number of WARM tier results
- * @returns {number} returns.coldExcluded - Number of COLD results excluded
- * @returns {number} returns.estimatedSavingsPercent - Percentage of tokens saved
- * @returns {string} returns.note - Explanation of estimation method
- */
 function calculate_token_metrics(all_matches, returned_results) {
   // Estimate tokens if ALL matches returned full content
   const hypothetical_full_tokens = returned_results.reduce((sum, r) => {
@@ -91,7 +64,7 @@ function calculate_token_metrics(all_matches, returned_results) {
 
 /* ─────────────────────────────────────────────────────────────
    3. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // snake_case exports

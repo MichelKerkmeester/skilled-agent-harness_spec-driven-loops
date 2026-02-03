@@ -216,6 +216,10 @@ class HfLocalProvider {
       return false;
     }
   }
+
+  getProviderName() {
+    return 'HuggingFace Local Embeddings';
+  }
 }
 
 module.exports = { HfLocalProvider, TASK_PREFIX };

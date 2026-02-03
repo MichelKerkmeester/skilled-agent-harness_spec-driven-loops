@@ -369,7 +369,69 @@ If settings are wrong:
 
 ---
 
-## 7. 🔍 EMPTY TRIGGER PHRASES
+## 7. 📋 RECOVERY HINTS CATALOG
+
+Quick reference for common recovery scenarios with symptoms and actions.
+
+| Scenario | Symptoms | Recovery Action |
+|----------|----------|-----------------|
+| **Context Loss** | Agent doesn't remember prior work | Run `/spec_kit:resume [spec-folder]` |
+| **State Mismatch** | Files don't match expected state | Verify with `git status` and `git diff` |
+| **Memory Not Found** | Search returns no results | Check `memory_search({ specFolder: "..." })` |
+| **Stale Context** | Information seems outdated | Check `last_accessed_epoch` vs current time |
+| **Incomplete Handover** | Missing continuation context | Review CONTINUE SESSION section in memory |
+| **Dedup Collision** | Wrong memory surfaced | Check `fingerprint_hash` for conflicts |
+| **Embedding Failure** | Semantic search not working | Check provider health, use fallback FTS5 |
+| **Checkpoint Corrupt** | Can't restore state | Try previous checkpoint, rebuild from memory files |
+
+### Recovery Action Details
+
+**Context Loss Recovery:**
+```javascript
+// Resume from saved context
+// Command: /spec_kit:resume specs/###-feature-name
+// Or via MCP:
+memory_search({
+  query: "session context",
+  specFolder: "###-feature-name",
+  anchors: ["state", "next-steps"]
+})
+```
+
+**State Mismatch Recovery:**
+```bash
+# Verify git state
+git status
+git diff HEAD~3
+
+# Compare against spec folder expectations
+cat specs/###-feature/checklist.md
+```
+
+**Stale Context Detection:**
+```javascript
+// Check memory freshness
+memory_list({ specFolder: "###-feature", sortBy: "last_accessed" })
+
+// Look for last_accessed_epoch in results
+// If > 24 hours old, consider refreshing context
+```
+
+**Checkpoint Recovery:**
+```javascript
+// List available checkpoints
+checkpoint_list()
+
+// Restore from specific checkpoint
+checkpoint_restore({ checkpointId: "checkpoint-###" })
+
+// If corrupt, try previous:
+checkpoint_restore({ checkpointId: "checkpoint-###-prev" })
+```
+
+---
+
+## 8. 🔍 EMPTY TRIGGER PHRASES
 
 **Symptom:** `memory_match_triggers()` returns no results even for relevant queries.
 
@@ -387,7 +449,7 @@ memory_delete({ id: <memory_id> })
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 9. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [README.md](../../README.md) - MCP tools, hybrid search, and importance tier system

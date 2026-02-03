@@ -3,47 +3,48 @@
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
-/**
- * Attention Decay Module
- * Manages memory attention scores using FSRS power-law decay
- */
-
 /* ─────────────────────────────────────────────────────────────
-   0. DEPENDENCIES
-──────────────────────────────────────────────────────────────── */
+   1. DEPENDENCIES
+────────────────────────────────────────────────────────────────*/
 
 const fsrsScheduler = require('./fsrs-scheduler');
+const {
+  calculate_five_factor_score,
+  calculate_temporal_score,
+  calculate_usage_score,
+  calculate_importance_score,
+  calculate_pattern_score,
+  calculate_citation_score,
+  FIVE_FACTOR_WEIGHTS,
+} = require('../scoring/composite-scoring');
 
 /* ─────────────────────────────────────────────────────────────
-   1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+   2. CONFIGURATION
+────────────────────────────────────────────────────────────────*/
 
-// Decay rates aligned with importance-tiers.js (ADR-061 Decision 1)
-// Tiers with decay: false get rate 1.0 (no decay)
-// Tiers with decay: true get reduced rates
+// ADR-061: Decay rates aligned with importance-tiers.js (1.0 = no decay)
 const DECAY_CONFIG = {
   defaultDecayRate: 0.80,
   decayRateByTier: {
-    constitutional: 1.0,  // decay: false - no decay
-    critical: 1.0,        // decay: false - no decay
-    important: 1.0,       // decay: false - no decay
-    normal: 0.80,         // decay: true  - standard decay
-    temporary: 0.60,      // decay: true  - fast decay
-    deprecated: 1.0,      // decay: false - no decay (frozen state)
+    constitutional: 1.0,
+    critical: 1.0,
+    important: 1.0,
+    normal: 0.80,
+    temporary: 0.60,
+    deprecated: 1.0,
   },
-  minScoreThreshold: 0.001, // Scores below this are treated as 0
+  minScoreThreshold: 0.001,
 };
 
 /* ─────────────────────────────────────────────────────────────
-   2. STATE
-──────────────────────────────────────────────────────────────── */
+   3. STATE
+────────────────────────────────────────────────────────────────*/
 
-// Database reference (initialized via init())
 let db = null;
 
 /* ─────────────────────────────────────────────────────────────
-   3. INITIALIZATION
-──────────────────────────────────────────────────────────────── */
+   4. INITIALIZATION
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Initialize the attention decay module with a database reference
@@ -65,8 +66,8 @@ function get_db() {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   4. DECAY RATE FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+   5. DECAY RATE FUNCTIONS
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Get decay rate for a given importance tier
@@ -90,8 +91,8 @@ function get_decay_rate(importanceTier) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   5. SCORE CALCULATION
-──────────────────────────────────────────────────────────────── */
+   6. SCORE CALCULATION
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Calculate decayed score (pure function)
@@ -101,7 +102,6 @@ function get_decay_rate(importanceTier) {
  * @returns {number} New score after decay
  */
 function calculate_decayed_score(currentScore, turnsElapsed, decayRate) {
-  // Validate inputs
   if (typeof currentScore !== 'number' || isNaN(currentScore)) {
     return 0;
   }
@@ -112,15 +112,12 @@ function calculate_decayed_score(currentScore, turnsElapsed, decayRate) {
     decayRate = DECAY_CONFIG.defaultDecayRate;
   }
 
-  // No decay for rate of 1.0 (constitutional memories)
   if (decayRate === 1.0) {
     return currentScore;
   }
 
-  // Apply exponential decay: score * (rate ^ turns)
   const new_score = currentScore * Math.pow(decayRate, turnsElapsed);
 
-  // Clamp to minimum threshold
   if (new_score < DECAY_CONFIG.minScoreThreshold) {
     return 0;
   }
@@ -142,30 +139,23 @@ function calculate_decayed_score(currentScore, turnsElapsed, decayRate) {
  * @returns {number} New attention score based on retrievability
  */
 function calculate_retrievability_decay(memory, elapsed_days) {
-  // Guard: validate memory object
   if (!memory || typeof memory !== 'object') {
     return 0;
   }
 
-  // BUG-024 FIX: Properly handle stability=0 (instant decay)
-  // Using || treats 0 as falsy, but 0 is a valid edge case meaning instant decay
+  // BUG-024 FIX: Handle stability=0 (|| treats 0 as falsy, but 0 means instant decay)
   const stability = (typeof memory.stability === 'number' && memory.stability > 0)
     ? memory.stability
     : 1.0;
 
-  // Calculate elapsed days if not provided
   if (typeof elapsed_days !== 'number' || elapsed_days < 0) {
     elapsed_days = fsrsScheduler.calculate_elapsed_days(memory.last_review);
   }
 
-  // Calculate retrievability using FSRS power-law
   const retrievability = fsrsScheduler.calculate_retrievability(stability, elapsed_days);
-
-  // Apply retrievability to current attention score
   const current_score = memory.attention_score || 1.0;
   const new_score = current_score * retrievability;
 
-  // Clamp to minimum threshold
   if (new_score < DECAY_CONFIG.minScoreThreshold) {
     return 0;
   }
@@ -174,8 +164,8 @@ function calculate_retrievability_decay(memory, elapsed_days) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   6. DECAY APPLICATION
-──────────────────────────────────────────────────────────────── */
+   7. DECAY APPLICATION
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Apply decay to ALL working memories for a session
@@ -218,7 +208,6 @@ function apply_decay(sessionId, turnNumber) {
       return { decayedCount: 0 };
     }
 
-    // Prepare update statement (use composite key)
     const update_stmt = db.prepare(`
       UPDATE working_memory
       SET attention_score = ?,
@@ -228,11 +217,9 @@ function apply_decay(sessionId, turnNumber) {
 
     let decayed_count = 0;
 
-    // Apply decay to each memory
     for (const memory of memories) {
       const turns_elapsed = turnNumber - (memory.last_mentioned_turn || 0);
 
-      // Skip if no turns have elapsed
       if (turns_elapsed <= 0) {
         continue;
       }
@@ -244,8 +231,7 @@ function apply_decay(sessionId, turnNumber) {
         decay_rate
       );
 
-      // BUG-025 FIX: Use tolerance for float comparison
-      // Exact float comparison !== can trigger unnecessary updates due to precision
+      // BUG-025 FIX: Use tolerance for float comparison (avoid precision-triggered updates)
       if (Math.abs(new_score - memory.attention_score) > 0.0001) {
         update_stmt.run(new_score, memory.session_id, memory.memory_id);
         decayed_count++;
@@ -301,7 +287,6 @@ function apply_fsrs_decay(sessionId) {
       return { decayedCount: 0, updated: [] };
     }
 
-    // Prepare update statement
     const update_stmt = db.prepare(`
       UPDATE working_memory
       SET attention_score = ?,
@@ -312,26 +297,20 @@ function apply_fsrs_decay(sessionId) {
     let decayed_count = 0;
     const updated = [];
 
-    // Apply FSRS decay to each memory
     for (const memory of memories) {
-      // Skip constitutional/critical/important tiers (no decay)
       const decay_rate = get_decay_rate(memory.importance_tier);
       if (decay_rate === 1.0) {
         continue;
       }
 
-      // Calculate elapsed days since last review
       const elapsed_days = fsrsScheduler.calculate_elapsed_days(memory.last_review);
 
-      // Skip if no time has elapsed
       if (elapsed_days <= 0) {
         continue;
       }
 
-      // Calculate new score using FSRS power-law decay
       const new_score = calculate_retrievability_decay(memory, elapsed_days);
 
-      // Only update if score actually changed significantly (avoid floating point noise)
       if (Math.abs(new_score - memory.attention_score) > 0.001) {
         update_stmt.run(new_score, memory.session_id, memory.memory_id);
         decayed_count++;
@@ -353,8 +332,8 @@ function apply_fsrs_decay(sessionId) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   7. MEMORY ACTIVATION
-──────────────────────────────────────────────────────────────── */
+   8. MEMORY ACTIVATION
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Activate a memory (set attention score to 1.0 when matched)
@@ -385,14 +364,12 @@ function activate_memory(sessionId, memoryId, turnNumber) {
   }
 
   try {
-    // Check if memory exists in working memory for this session
     const existing = db.prepare(`
       SELECT session_id, memory_id FROM working_memory
       WHERE session_id = ? AND memory_id = ?
     `).get(sessionId, memoryId);
 
     if (existing) {
-      // Update existing entry - reset score to 1.0
       db.prepare(`
         UPDATE working_memory
         SET attention_score = 1.0,
@@ -401,7 +378,6 @@ function activate_memory(sessionId, memoryId, turnNumber) {
         WHERE session_id = ? AND memory_id = ?
       `).run(turnNumber, sessionId, memoryId);
     } else {
-      // Insert new working memory entry
       db.prepare(`
         INSERT INTO working_memory (
           session_id,
@@ -461,7 +437,6 @@ function activate_memory_with_fsrs(sessionId, memoryId, turnNumber, options = {}
   }
 
   try {
-    // Get current FSRS parameters from memory_index
     const memory = db.prepare(`
       SELECT
         id,
@@ -473,7 +448,6 @@ function activate_memory_with_fsrs(sessionId, memoryId, turnNumber, options = {}
       WHERE id = ?
     `).get(memoryId);
 
-    // Standard activation in working memory
     const existing = db.prepare(`
       SELECT session_id, memory_id FROM working_memory
       WHERE session_id = ? AND memory_id = ?
@@ -501,7 +475,6 @@ function activate_memory_with_fsrs(sessionId, memoryId, turnNumber, options = {}
       `).run(sessionId, memoryId, turnNumber);
     }
 
-    // If memory exists and has FSRS data, update stability (testing effect)
     let stability_updated = false;
     let new_stability = null;
 
@@ -509,14 +482,11 @@ function activate_memory_with_fsrs(sessionId, memoryId, turnNumber, options = {}
       const current_stability = memory.stability || fsrsScheduler.DEFAULT_STABILITY;
       const current_difficulty = memory.difficulty || fsrsScheduler.DEFAULT_DIFFICULTY;
 
-      // Calculate current retrievability
       const elapsed_days = fsrsScheduler.calculate_elapsed_days(memory.last_review);
       const retrievability = fsrsScheduler.calculate_retrievability(current_stability, elapsed_days);
 
-      // Determine grade from options or default to GOOD
       let grade = options.grade;
       if (typeof grade !== 'number' || grade < 1 || grade > 4) {
-        // Auto-determine grade from similarity if available
         if (typeof options.similarity === 'number') {
           if (options.similarity >= 0.95) {
             grade = fsrsScheduler.GRADE_EASY;
@@ -528,11 +498,10 @@ function activate_memory_with_fsrs(sessionId, memoryId, turnNumber, options = {}
             grade = fsrsScheduler.GRADE_AGAIN;
           }
         } else {
-          grade = fsrsScheduler.GRADE_GOOD; // Default to GOOD
+          grade = fsrsScheduler.GRADE_GOOD;
         }
       }
 
-      // Calculate new stability (testing effect)
       new_stability = fsrsScheduler.update_stability(
         current_stability,
         current_difficulty,
@@ -540,7 +509,6 @@ function activate_memory_with_fsrs(sessionId, memoryId, turnNumber, options = {}
         grade
       );
 
-      // Update memory_index with new FSRS values
       const check_column = db.prepare(`
         SELECT COUNT(*) as count FROM pragma_table_info('memory_index')
         WHERE name = 'stability'
@@ -570,8 +538,206 @@ function activate_memory_with_fsrs(sessionId, memoryId, turnNumber, options = {}
 }
 
 /* ─────────────────────────────────────────────────────────────
-   8. UTILITY FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+   9. COMPOSITE SCORING INTEGRATION
+────────────────────────────────────────────────────────────────*/
+
+/**
+ * REQ-017: Calculate attention score using 5-factor composite model
+ *
+ * @param {Object} memory - Memory object from database
+ * @param {Object} options - Scoring options
+ * @param {string} options.query - Query for pattern matching
+ * @param {Array} options.anchors - Anchors for pattern matching
+ * @returns {number} Composite attention score between 0 and 1
+ */
+function calculate_composite_attention(memory, options = {}) {
+  if (!memory || typeof memory !== 'object') {
+    return 0;
+  }
+
+  const row = {
+    stability: memory.stability || 1.0,
+    last_review: memory.last_review || memory.updated_at || memory.created_at,
+    updated_at: memory.updated_at,
+    created_at: memory.created_at,
+    access_count: memory.access_count || 0,
+    importance_tier: memory.importance_tier || 'normal',
+    importance_weight: memory.importance_weight || 0.5,
+    similarity: memory.similarity || 0,
+    title: memory.title,
+    anchors: memory.anchors,
+    memory_type: memory.memory_type,
+    last_cited: memory.last_cited || memory.last_accessed,
+  };
+
+  return calculate_five_factor_score(row, options);
+}
+
+/**
+ * Get detailed breakdown of attention factors
+ *
+ * @param {Object} memory - Memory object from database
+ * @param {Object} options - Scoring options
+ * @returns {Object} Factor breakdown with values and contributions
+ */
+function get_attention_breakdown(memory, options = {}) {
+  if (!memory || typeof memory !== 'object') {
+    return {
+      factors: {},
+      total: 0,
+      model: '5-factor',
+    };
+  }
+
+  const tier = memory.importance_tier || 'normal';
+
+  const row = {
+    stability: memory.stability || 1.0,
+    last_review: memory.last_review || memory.updated_at || memory.created_at,
+    updated_at: memory.updated_at,
+    created_at: memory.created_at,
+    access_count: memory.access_count || 0,
+    importance_tier: tier,
+    importance_weight: memory.importance_weight || 0.5,
+    similarity: memory.similarity || 0,
+    title: memory.title,
+    anchors: memory.anchors,
+    memory_type: memory.memory_type,
+    last_cited: memory.last_cited || memory.last_accessed,
+  };
+
+  const weights = { ...FIVE_FACTOR_WEIGHTS, ...options.weights };
+
+  const temporal = calculate_temporal_score(row);
+  const usage = calculate_usage_score(row.access_count);
+  const importance = calculate_importance_score(tier, row.importance_weight);
+  const pattern = calculate_pattern_score(row, options);
+  const citation = calculate_citation_score(row);
+
+  return {
+    factors: {
+      temporal: {
+        value: temporal,
+        weight: weights.temporal,
+        contribution: temporal * weights.temporal,
+        description: 'FSRS retrievability decay',
+      },
+      usage: {
+        value: usage,
+        weight: weights.usage,
+        contribution: usage * weights.usage,
+        description: 'Access frequency boost',
+      },
+      importance: {
+        value: importance,
+        weight: weights.importance,
+        contribution: importance * weights.importance,
+        description: 'Tier-based importance',
+      },
+      pattern: {
+        value: pattern,
+        weight: weights.pattern,
+        contribution: pattern * weights.pattern,
+        description: 'Query pattern alignment',
+      },
+      citation: {
+        value: citation,
+        weight: weights.citation,
+        contribution: citation * weights.citation,
+        description: 'Citation recency',
+      },
+    },
+    total: calculate_five_factor_score(row, options),
+    model: '5-factor',
+  };
+}
+
+/**
+ * Apply composite attention decay using 5-factor model
+ *
+ * @param {string} sessionId - Session identifier
+ * @param {Object} options - Scoring options (query, anchors, etc.)
+ * @returns {{decayedCount: number, updated: Array}} Result with counts
+ */
+function apply_composite_decay(sessionId, options = {}) {
+  if (!db) {
+    console.warn('[attention-decay] Database not initialized');
+    return { decayedCount: 0, updated: [] };
+  }
+
+  if (!sessionId || typeof sessionId !== 'string') {
+    console.warn('[attention-decay] Invalid sessionId');
+    return { decayedCount: 0, updated: [] };
+  }
+
+  try {
+    // Get all working memories with full context for composite scoring
+    const memories = db.prepare(`
+      SELECT
+        wm.session_id,
+        wm.memory_id,
+        wm.attention_score,
+        wm.last_mentioned_turn,
+        mi.importance_tier,
+        mi.importance_weight,
+        mi.stability,
+        mi.difficulty,
+        mi.last_review,
+        mi.access_count,
+        mi.title,
+        mi.memory_type,
+        mi.last_accessed as last_cited
+      FROM working_memory wm
+      LEFT JOIN memory_index mi ON wm.memory_id = mi.id
+      WHERE wm.session_id = ?
+        AND wm.attention_score > 0
+    `).all(sessionId);
+
+    if (memories.length === 0) {
+      return { decayedCount: 0, updated: [] };
+    }
+
+    const update_stmt = db.prepare(`
+      UPDATE working_memory
+      SET attention_score = ?,
+          updated_at = CURRENT_TIMESTAMP
+      WHERE session_id = ? AND memory_id = ?
+    `);
+
+    let decayed_count = 0;
+    const updated = [];
+
+    for (const memory of memories) {
+      const decay_rate = get_decay_rate(memory.importance_tier);
+      if (decay_rate === 1.0) {
+        continue;
+      }
+
+      const new_score = calculate_composite_attention(memory, options);
+
+      if (Math.abs(new_score - memory.attention_score) > 0.001) {
+        update_stmt.run(new_score, memory.session_id, memory.memory_id);
+        decayed_count++;
+        updated.push({
+          memory_id: memory.memory_id,
+          old_score: memory.attention_score,
+          new_score: new_score,
+          tier: memory.importance_tier,
+          model: '5-factor-composite',
+        });
+      }
+    }
+
+    return { decayedCount: decayed_count, updated: updated };
+  } catch (error) {
+    console.error(`[attention-decay] Error applying composite decay: ${error.message}`);
+    return { decayedCount: 0, updated: [] };
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   10. UTILITY FUNCTIONS
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Get all active memories for a session (score > 0)
@@ -637,37 +803,41 @@ function clear_session(sessionId) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   9. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+   11. MODULE EXPORTS
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Initialization
   init,
   getDb: get_db,
 
-  // Core functions (legacy exponential decay - backward compatible)
+  // Core functions (legacy exponential decay)
   applyDecay: apply_decay,
   getDecayRate: get_decay_rate,
   activateMemory: activate_memory,
   calculateDecayedScore: calculate_decayed_score,
 
-  // FSRS functions (new power-law decay)
+  // FSRS functions (power-law decay)
   applyFsrsDecay: apply_fsrs_decay,
   calculateRetrievabilityDecay: calculate_retrievability_decay,
   activateMemoryWithFsrs: activate_memory_with_fsrs,
 
-  // Snake_case aliases for FSRS functions (preferred style)
+  // Snake_case aliases
   apply_fsrs_decay,
   calculate_retrievability_decay,
   activate_memory_with_fsrs,
+
+  // 5-factor composite scoring (REQ-017)
+  calculate_composite_attention,
+  get_attention_breakdown,
+  apply_composite_decay,
 
   // Utilities
   getActiveMemories: get_active_memories,
   clearSession: clear_session,
 
-  // Configuration (exposed for testing)
+  // Configuration
   DECAY_CONFIG,
-
-  // Re-export FSRS scheduler for convenience
   fsrsScheduler,
+  FIVE_FACTOR_WEIGHTS,
 };

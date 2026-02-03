@@ -6,7 +6,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const { validateDataStructure } = require('../utils/data-validator');
 const {
@@ -19,22 +19,20 @@ let flowchartGen, simFactory;
 try {
   flowchartGen = require('../lib/flowchart-generator');
 } catch (err) {
-  console.error('Failed to load flowchart-generator library:', err.message);
-  process.exit(1);
+  throw new Error(`Failed to load flowchart-generator library: ${err.message}`);
 }
 
 try {
   simFactory = require('../lib/simulation-factory');
 } catch (err) {
-  console.error('Failed to load simulation-factory library:', err.message);
-  process.exit(1);
+  throw new Error(`Failed to load simulation-factory library: ${err.message}`);
 }
 
 const { generateDecisionTree } = require('../lib/decision-tree-generator');
 
 /* ─────────────────────────────────────────────────────────────
    2. PHASE EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function extract_phases_from_data(collected_data) {
   // Check parent object exists BEFORE accessing properties
@@ -110,7 +108,7 @@ function extract_phases_from_data(collected_data) {
 
 /* ─────────────────────────────────────────────────────────────
    3. DIAGRAM EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function extract_diagrams(collected_data) {
   if (!collected_data) {
@@ -206,7 +204,7 @@ async function extract_diagrams(collected_data) {
 
 /* ─────────────────────────────────────────────────────────────
    4. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)

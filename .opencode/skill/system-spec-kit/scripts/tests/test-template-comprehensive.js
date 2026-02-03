@@ -23,7 +23,7 @@ const { execSync } = require('child_process');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const ROOT = path.join(__dirname, '..', '..');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
@@ -90,7 +90,7 @@ const results = {
 
 /* ─────────────────────────────────────────────────────────────
    2. UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function log(msg) {
   console.log(msg);
@@ -173,7 +173,7 @@ function extract_sections(content) {
 
 /* ─────────────────────────────────────────────────────────────
    3. TEST SUITE: TEMPLATE RENDERING WITH DATA
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_template_rendering() {
   log('\n--- TEST SUITE: Template Rendering with Data ---');
@@ -257,7 +257,7 @@ async function test_template_rendering() {
 
 /* ─────────────────────────────────────────────────────────────
    4. TEST SUITE: ALL TEMPLATE LEVELS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_all_template_levels() {
   log('\n--- TEST SUITE: All Template Levels ---');
@@ -321,7 +321,7 @@ async function test_all_template_levels() {
 
 /* ─────────────────────────────────────────────────────────────
    5. TEST SUITE: ADDENDUM INTEGRATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_addendum_integration() {
   log('\n--- TEST SUITE: ADDENDUM Integration ---');
@@ -463,7 +463,7 @@ async function test_addendum_integration() {
 
 /* ─────────────────────────────────────────────────────────────
    6. TEST SUITE: COMPOSE.SH FUNCTIONALITY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_compose_functionality() {
   log('\n--- TEST SUITE: compose.sh Functionality ---');
@@ -634,7 +634,7 @@ async function test_compose_functionality() {
 
 /* ─────────────────────────────────────────────────────────────
    7. TEST SUITE: TEMPLATE VARIABLE VALIDATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_template_variable_validation() {
   log('\n--- TEST SUITE: Template Variable Validation ---');
@@ -735,7 +735,7 @@ async function test_template_variable_validation() {
 
 /* ─────────────────────────────────────────────────────────────
    8. TEST SUITE: CROSS-LEVEL CONSISTENCY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_cross_level_consistency() {
   log('\n--- TEST SUITE: Cross-Level Consistency ---');
@@ -843,7 +843,7 @@ async function test_cross_level_consistency() {
 
 /* ─────────────────────────────────────────────────────────────
    9. TEST SUITE: ERROR HANDLING FOR MISSING TEMPLATES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_error_handling() {
   log('\n--- TEST SUITE: Error Handling for Missing Templates ---');
@@ -937,7 +937,7 @@ async function test_error_handling() {
 
 /* ─────────────────────────────────────────────────────────────
    10. TEST SUITE: CONTEXT TEMPLATE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_context_template() {
   log('\n--- TEST SUITE: Context Template ---');
@@ -1017,7 +1017,7 @@ async function test_context_template() {
 
 /* ─────────────────────────────────────────────────────────────
    11. TEST SUITE: EXAMPLE TEMPLATE VALIDATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_example_templates() {
   log('\n--- TEST SUITE: Example Template Validation ---');
@@ -1085,7 +1085,7 @@ async function test_example_templates() {
 
 /* ─────────────────────────────────────────────────────────────
    12. TEST SUITE: VERBOSE TEMPLATE VARIANTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_verbose_variants() {
   log('\n--- TEST SUITE: Verbose Template Variants ---');
@@ -1181,7 +1181,7 @@ async function test_verbose_variants() {
 
 /* ─────────────────────────────────────────────────────────────
    13. MAIN
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function main() {
   log('==================================================');

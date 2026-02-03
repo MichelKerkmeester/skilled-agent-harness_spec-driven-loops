@@ -5,7 +5,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. CONSTANTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const CONTEXT_TYPES = ['research', 'implementation', 'decision', 'discovery', 'general'];
 
@@ -19,7 +19,7 @@ const CONTEXT_PATTERNS = {
 
 /* ─────────────────────────────────────────────────────────────
    2. CONTEXT DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Detect context type from content and title (priority: research > implementation > decision > discovery > general)
 function detect_context_type(content, title = '') {
@@ -92,7 +92,7 @@ function detect_context_type_from_tools(tool_calls) {
 
 /* ─────────────────────────────────────────────────────────────
    3. SESSION MANAGEMENT
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Generate unique session ID (format: 'session-{timestamp}-{random}')
 function generate_session_id() {
@@ -108,7 +108,7 @@ function is_valid_context_type(type) {
 
 /* ─────────────────────────────────────────────────────────────
    4. SCOPE FILTERING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Build SQL WHERE clause for filtering by scope (specFolder, sessionId, contextTypes)
 // When sessionId provided, includes both session-specific AND global (null) memories
@@ -145,7 +145,7 @@ function build_scope_filter(scope) {
 
 /* ─────────────────────────────────────────────────────────────
    5. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Constants

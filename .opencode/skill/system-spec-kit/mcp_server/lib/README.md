@@ -2,6 +2,16 @@
 
 > Core library modules for search, scoring, cognitive memory, and storage.
 
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
+- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+
 ---
 
 ## 1. 📖 OVERVIEW
@@ -14,10 +24,10 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Module Categories | 7 | search, scoring, cognitive, storage, parsing, providers, utils |
-| Cognitive Features | 8 | FSRS scheduler, attention decay, prediction error gating, working memory, tier classification, co-activation, temporal contiguity, summary generation |
-| Search Methods | 4 | Vector similarity, hybrid search, RRF fusion, reranking |
-| Total Modules | 32+ | Organized into domain-specific folders |
+| Module Categories | 15+ | search, scoring, cognitive, storage, parsing, providers, utils, session, errors, learning, architecture, embeddings, response, cache, config, validation, interfaces |
+| Cognitive Features | 12+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, summary generation, archival manager, consolidation, causal graph, corrections |
+| Search Methods | 8 | Vector similarity, hybrid search, RRF fusion, reranking, BM25 index, cross-encoder, intent classification, fuzzy matching |
+| Total Modules | 70+ | Organized into domain-specific folders |
 
 ### Key Features
 
@@ -81,37 +91,46 @@ console.log(`Found ${results.length} relevant memories`);
 
 ```
 lib/
-├── search/                     # Search and retrieval
+├── search/                     # Search and retrieval (8 modules)
 │   ├── vector-index.js         # Vector similarity search with SQLite
 │   ├── hybrid-search.js        # Combined semantic + keyword search
 │   ├── rrf-fusion.js           # Reciprocal Rank Fusion scoring
 │   ├── reranker.js             # Result reranking
+│   ├── bm25-index.js           # BM25 lexical indexing (NEW)
+│   ├── cross-encoder.js        # Cross-encoder reranking (NEW)
+│   ├── intent-classifier.js    # 5 intent types classification (NEW)
+│   ├── fuzzy-match.js          # Query expansion with fuzzy matching (NEW)
 │   └── index.js                # Barrel export
 │
 ├── scoring/                    # Ranking and scoring
 │   ├── scoring.js              # Base scoring utilities
-│   ├── composite-scoring.js    # Multi-factor composite scores
+│   ├── composite-scoring.js    # Multi-factor composite scores (5-factor)
 │   ├── folder-scoring.js       # Spec folder ranking
 │   ├── importance-tiers.js     # Tier-based importance weights
 │   ├── confidence-tracker.js   # Confidence tracking
 │   └── index.js                # Barrel export
 │
-├── cognitive/                  # Cognitive memory features
-│   ├── attention-decay.js      # FSRS-based attention decay
-│   ├── fsrs-scheduler.js       # FSRS algorithm (NEW)
-│   ├── prediction-error-gate.js # PE gating for duplicates (NEW)
+├── cognitive/                  # Cognitive memory features (12 modules)
+│   ├── attention-decay.js      # Multi-factor decay with type-specific half-lives
+│   ├── fsrs-scheduler.js       # FSRS algorithm
+│   ├── prediction-error-gate.js # PE gating for duplicates
 │   ├── working-memory.js       # Session working memory
 │   ├── tier-classifier.js      # 5-state memory classification
 │   ├── co-activation.js        # Related memory activation
 │   ├── temporal-contiguity.js  # Temporal memory linking
 │   ├── summary-generator.js    # Auto-summary generation
+│   ├── archival-manager.js     # 5-state archival model (NEW)
+│   ├── consolidation.js        # Memory consolidation pipeline (NEW)
 │   └── index.js                # Barrel export
 │
-├── storage/                    # Data persistence
+├── storage/                    # Data persistence (7 modules)
 │   ├── access-tracker.js       # Memory access tracking
 │   ├── checkpoints.js          # State checkpointing
 │   ├── history.js              # History management
 │   ├── index-refresh.js        # Index refresh utilities
+│   ├── causal-edges.js         # Causal graph storage (NEW)
+│   ├── incremental-index.js    # Incremental indexing (NEW)
+│   ├── transaction-manager.js  # Transaction management (NEW)
 │   └── index.js                # Barrel export
 │
 ├── parsing/                    # Content parsing
@@ -126,10 +145,36 @@ lib/
 │   ├── retry-manager.js        # API retry logic
 │   └── index.js                # Barrel export
 │
+├── session/                    # Session management (NEW)
+│   ├── session-manager.js      # Session deduplication (~1050 lines)
+│   └── index.js                # Barrel export
+│
+├── errors/                     # Error handling (NEW)
+│   ├── recovery-hints.js       # 49 error codes with recovery hints
+│   └── index.js                # Barrel export
+│
+├── learning/                   # Learning system (NEW)
+│   ├── corrections.js          # Learning from corrections
+│   └── index.js                # Barrel export
+│
+├── architecture/               # Architecture definitions (NEW)
+│   ├── layer-definitions.js    # 7-layer MCP architecture
+│   └── index.js                # Barrel export
+│
+├── embeddings/                 # Embedding providers (NEW)
+│   ├── provider-chain.js       # Embedding provider fallback chain
+│   └── index.js                # Barrel export
+│
+├── response/                   # Response formatting (NEW)
+│   ├── envelope.js             # Standardized response envelope
+│   └── index.js                # Barrel export
+│
 ├── utils/                      # Utilities
 │   ├── validators.js           # Input validation and sanitization
 │   ├── json-helpers.js         # Safe JSON operations
 │   ├── batch-processor.js      # Batch processing with retry
+│   ├── format-helpers.js       # Format utilities
+│   ├── token-budget.js         # Token budget management
 │   └── index.js                # Barrel export
 │
 ├── errors.js                   # Custom error classes
@@ -145,10 +190,19 @@ lib/
 | `index.js` | Root barrel export for all lib modules |
 | `errors.js` | Custom error classes for error handling |
 | `channel.js` | Communication channel for MCP messages |
-| `search/vector-index.js` | Core vector similarity search implementation |
-| `cognitive/attention-decay.js` | FSRS-based attention decay calculation |
+| `search/vector-index.js` | Core vector similarity search with RRF fusion |
+| `search/bm25-index.js` | BM25 lexical search indexing (NEW) |
+| `search/cross-encoder.js` | Cross-encoder semantic reranking (NEW) |
+| `search/intent-classifier.js` | 5 intent types classification (NEW) |
+| `cognitive/attention-decay.js` | Multi-factor decay with type-specific half-lives |
 | `cognitive/fsrs-scheduler.js` | FSRS power-law forgetting curve algorithm |
-| `cognitive/prediction-error-gate.js` | Three-tier similarity gating to prevent duplicates |
+| `cognitive/prediction-error-gate.js` | Four-tier similarity gating to prevent duplicates |
+| `cognitive/archival-manager.js` | 5-state archival model (NEW) |
+| `cognitive/consolidation.js` | Memory consolidation pipeline (NEW) |
+| `session/session-manager.js` | Session deduplication (~1050 lines) (NEW) |
+| `errors/recovery-hints.js` | 49 error codes with recovery hints (NEW) |
+| `storage/causal-edges.js` | Causal graph storage (6 relationships) (NEW) |
+| `learning/corrections.js` | Learning from corrections (NEW) |
 | `scoring/importance-tiers.js` | Six-tier importance classification system |
 | `utils/validators.js` | Input validation and security checks |
 

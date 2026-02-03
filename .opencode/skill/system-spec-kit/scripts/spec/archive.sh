@@ -13,7 +13,16 @@ set -euo pipefail
 # ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../.." && pwd)"
+
+# Use git rev-parse for robust project root detection (preferred over relative paths)
+if git rev-parse --show-toplevel >/dev/null 2>&1; then
+    PROJECT_ROOT="$(git rev-parse --show-toplevel)"
+else
+    # Fallback for non-git repos: relative path from scripts/spec/ to project root
+    # Path: scripts/spec/ -> scripts/ -> system-spec-kit/ -> skill/ -> .opencode/ -> project
+    PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../../../.." && pwd)"
+    echo "Warning: Not in a git repo, using relative path for PROJECT_ROOT" >&2
+fi
 ARCHIVE_DIR="specs/z_archive"
 COMPLETENESS_SCRIPT="$SCRIPT_DIR/calculate-completeness.sh"
 MIN_COMPLETENESS=90

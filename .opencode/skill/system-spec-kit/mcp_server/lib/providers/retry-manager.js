@@ -8,7 +8,7 @@ const { generate_embedding } = require('./embeddings');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Backoff delays in milliseconds (1min, 5min, 15min)
 const BACKOFF_DELAYS = [
@@ -19,9 +19,20 @@ const BACKOFF_DELAYS = [
 
 const MAX_RETRIES = 3;
 
+// T099: Background retry job configuration (REQ-031, CHK-179)
+const BACKGROUND_JOB_CONFIG = {
+  intervalMs: 5 * 60 * 1000,  // Check every 5 minutes
+  batchSize: 5,               // Process up to 5 pending items per run
+  enabled: true,              // Can be disabled via config
+};
+
+// Background job state
+let background_job_interval = null;
+let background_job_running = false;
+
 /* ─────────────────────────────────────────────────────────────
    2. RETRY QUEUE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Get memories eligible for retry based on backoff timing
 function get_retry_queue(limit = 10) {
@@ -122,7 +133,7 @@ function get_retry_stats() {
 
 /* ─────────────────────────────────────────────────────────────
    3. RETRY OPERATIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Retry embedding generation for a specific memory
 async function retry_embedding(id, content) {
@@ -261,7 +272,7 @@ function reset_for_retry(id) {
 
 /* ─────────────────────────────────────────────────────────────
    4. BATCH PROCESSING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Process retry queue opportunistically
 // Called during context save to process a few pending retries
@@ -320,8 +331,115 @@ async function process_retry_queue(limit = 3, content_loader = null) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   5. UTILITIES
-──────────────────────────────────────────────────────────────── */
+   5. BACKGROUND RETRY JOB (T099, REQ-031, CHK-179)
+────────────────────────────────────────────────────────────────*/
+
+/**
+ * Start the background retry job for pending embeddings.
+ * T099: Implements REQ-031 requirement for background retry when provider available.
+ * CHK-179: Background retry job processes pending embeddings.
+ *
+ * @param {Object} [options={}] - Configuration options
+ * @param {number} [options.intervalMs] - Check interval in milliseconds
+ * @param {number} [options.batchSize] - Max items to process per run
+ * @returns {boolean} True if job started successfully
+ */
+function start_background_job(options = {}) {
+  if (background_job_interval) {
+    console.log('[retry-manager] Background job already running');
+    return false;
+  }
+
+  const config = {
+    ...BACKGROUND_JOB_CONFIG,
+    ...options,
+  };
+
+  if (!config.enabled) {
+    console.log('[retry-manager] Background job is disabled');
+    return false;
+  }
+
+  console.log(`[retry-manager] Starting background retry job (interval: ${config.intervalMs}ms, batch: ${config.batchSize})`);
+
+  // Run immediately on start, then at interval
+  run_background_job(config.batchSize);
+
+  background_job_interval = setInterval(() => {
+    run_background_job(config.batchSize);
+  }, config.intervalMs);
+
+  return true;
+}
+
+/**
+ * Stop the background retry job.
+ *
+ * @returns {boolean} True if job was stopped
+ */
+function stop_background_job() {
+  if (!background_job_interval) {
+    return false;
+  }
+
+  clearInterval(background_job_interval);
+  background_job_interval = null;
+  console.log('[retry-manager] Background retry job stopped');
+  return true;
+}
+
+/**
+ * Check if background job is running.
+ *
+ * @returns {boolean} True if job is active
+ */
+function is_background_job_running() {
+  return background_job_interval !== null;
+}
+
+/**
+ * Execute a single background job run.
+ * Processes pending embeddings respecting backoff timing.
+ *
+ * @param {number} batchSize - Max items to process
+ * @returns {Promise<Object>} Processing results
+ */
+async function run_background_job(batchSize = BACKGROUND_JOB_CONFIG.batchSize) {
+  // Prevent concurrent runs
+  if (background_job_running) {
+    return { skipped: true, reason: 'Previous run still in progress' };
+  }
+
+  background_job_running = true;
+
+  try {
+    const stats = get_retry_stats();
+
+    // Skip if no pending work
+    if (stats.queue_size === 0) {
+      return { processed: 0, queue_empty: true };
+    }
+
+    console.log(`[retry-manager] Background job: Processing up to ${batchSize} of ${stats.queue_size} pending embeddings`);
+
+    const result = await process_retry_queue(batchSize);
+
+    if (result.processed > 0) {
+      console.log(`[retry-manager] Background job complete: ${result.succeeded}/${result.processed} succeeded`);
+    }
+
+    return result;
+  } catch (error) {
+    console.error('[retry-manager] Background job error:', error.message);
+    return { error: error.message };
+  } finally {
+    background_job_running = false;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   6. UTILITIES
+────────────────────────────────────────────────────────────────*/
 
 // Parse a database row, converting JSON fields
 function parse_row(row) {
@@ -352,8 +470,8 @@ async function load_content_from_file(file_path) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   6. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+   7. MODULE EXPORTS
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Queue operations
@@ -369,6 +487,12 @@ module.exports = {
   // Batch processing
   process_retry_queue,
 
+  // T099: Background job operations (REQ-031, CHK-179)
+  start_background_job,
+  stop_background_job,
+  is_background_job_running,
+  run_background_job,
+
   // Legacy aliases for backward compatibility
   getRetryQueue: get_retry_queue,
   getFailedEmbeddings: get_failed_embeddings,
@@ -377,6 +501,13 @@ module.exports = {
   markAsFailed: mark_as_failed,
   resetForRetry: reset_for_retry,
   processRetryQueue: process_retry_queue,
+  startBackgroundJob: start_background_job,
+  stopBackgroundJob: stop_background_job,
+  isBackgroundJobRunning: is_background_job_running,
+  runBackgroundJob: run_background_job,
+
+  // Configuration (T099)
+  BACKGROUND_JOB_CONFIG,
 
   // Constants
   BACKOFF_DELAYS,

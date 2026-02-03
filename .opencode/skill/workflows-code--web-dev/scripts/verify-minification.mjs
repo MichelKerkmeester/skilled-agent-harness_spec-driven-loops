@@ -37,23 +37,23 @@ const PATTERNS = {
   // Global init flags (window['__flag'] or window.__flag patterns)
   init_flags: /(?:window\s*\[\s*['"](__[a-zA-Z_]+)['"]|window\.(__[a-zA-Z_]+))/g,
 
-  // Webflow.push pattern
-  webflow_push: /(?:window\.)?Webflow(?:\?)?\.push/g,
+  // Webflow.push pattern (no /g - used with .test() only)
+  webflow_push: /(?:window\.)?Webflow(?:\?)?\.push/,
 
-  // Motion.animate references
-  motion_animate: /(?:window\.)?Motion(?:\?)?\.animate/g,
+  // Motion.animate references (no /g - used with .test() only)
+  motion_animate: /(?:window\.)?Motion(?:\?)?\.animate/,
 
-  // gsap references
-  gsap_ref: /(?:window\.)?gsap\./g,
+  // gsap references (no /g - used with .test() only)
+  gsap_ref: /(?:window\.)?gsap\./,
 
-  // ScrollTrigger references
-  scroll_trigger: /ScrollTrigger/g,
+  // ScrollTrigger references (no /g - used with .test() only)
+  scroll_trigger: /ScrollTrigger/,
 
-  // Swiper references
-  swiper_ref: /(?:new\s+)?Swiper\s*\(/g,
+  // Swiper references (no /g - used with .test() only)
+  swiper_ref: /(?:new\s+)?Swiper\s*\(/,
 
-  // HLS references
-  hls_ref: /(?:new\s+)?Hls\s*\(/g,
+  // HLS references (no /g - used with .test() only)
+  hls_ref: /(?:new\s+)?Hls\s*\(/,
 };
 
 /* ─────────────────────────────────────────────────────────────

@@ -33,6 +33,37 @@ This reference provides deep-dive technical guidance on qualitative assessment, 
 
 ## 2. 📊 SCRIPT-ASSISTED AI EVALUATION
 
+**Two-stage validation pipeline:**
+
+### Stage 1: Format Validation (validate_document.py)
+
+**Pre-delivery format checks with blocking errors:**
+
+```bash
+python scripts/validate_document.py document.md
+# Exit 0 = valid, Exit 1 = blocking errors, Exit 2 = file error
+```
+
+**Checks:**
+| Check | Severity | Auto-Fixable |
+|-------|----------|--------------|
+| Missing TOC section | blocking | No |
+| TOC anchor single-dash (should be `#1--`) | blocking | Yes |
+| TOC entry missing emoji | blocking | No |
+| H2 header missing emoji | blocking | Partial |
+| Missing required section | blocking | No |
+| Non-sequential numbering | warning | No |
+
+**Options:**
+- `--json` - Output results as JSON
+- `--fix` - Apply auto-fixes for safe issues
+- `--fix --dry-run` - Preview fixes without applying
+- `--type readme|skill|reference|asset|agent` - Explicit document type
+
+**MANDATORY**: Run `validate_document.py` before delivery. Exit code 0 required.
+
+### Stage 2: Quality Assessment (extract_structure.py)
+
 **Validation uses `extract_structure.py` to parse documents, then AI evaluates:**
 
 ```

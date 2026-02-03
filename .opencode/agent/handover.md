@@ -48,17 +48,14 @@ This agent defaults to **Sonnet** for balanced quality and efficiency. Handover 
 When dispatching this agent via Task tool:
 
 ```
-# Default (Sonnet) - use for most handover work
-Task(subagent_type: "handover", model: "sonnet", prompt: "...")
+# Standard handover dispatch
+Task(subagent_type: "handover", description: "Create handover document", prompt: "...")
 
-# Opus - for complex handovers requiring deeper analysis
-Task(subagent_type: "handover", model: "opus", prompt: "...")
-
-# Gemini - when user prefers Google models
-Task(subagent_type: "handover", model: "gemini", prompt: "...")
+# With session continuation
+Task(subagent_type: "handover", description: "Continue handover work", session_id: "...", prompt: "...")
 ```
 
-**Rule**: Use Sonnet by default. Opus for complex handovers. Gemini/GPT when user explicitly requests.
+**Note**: The Task tool routes to the appropriate agent based on subagent_type. Model selection is handled by the orchestration layer, not the Task tool itself.
 
 ---
 

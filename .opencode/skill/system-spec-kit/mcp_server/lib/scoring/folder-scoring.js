@@ -8,31 +8,32 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. CONSTANTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Archive detection patterns (Decision D2)
  * Folders matching these are deprioritized in rankings
  */
 const ARCHIVE_PATTERNS = [
-  /z_archive\//i,      // Standard archive folder
-  /\/scratch\//i,      // Temporary work
-  /\/test-/i,          // Test prefixed subfolders
-  /-test\//i,          // Test suffixed folders
-  /\/prototype\//i,    // Prototype folders
+  /z_archive\//i,
+  /\/scratch\//i,
+  /\/test-/i,
+  /-test\//i,
+  /\/prototype\//i,
 ];
 
 /**
  * Importance tier weights (Decision D7)
- * Linear scaling from constitutional (1.0) to deprecated (0.0)
+ * Aligned with importance-tiers.js authoritative values
+ * @see ./importance-tiers.js for canonical tier configuration
  */
 const TIER_WEIGHTS = {
   constitutional: 1.0,
-  critical: 0.8,
-  important: 0.6,
-  normal: 0.4,
-  temporary: 0.2,
-  deprecated: 0.0,
+  critical: 1.0,
+  important: 0.8,
+  normal: 0.5,
+  temporary: 0.3,
+  deprecated: 0.1,
 };
 
 /**
@@ -82,7 +83,7 @@ const ARCHIVE_MULTIPLIERS = [
 
 /* ─────────────────────────────────────────────────────────────
    2. ARCHIVE DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Check if a folder path matches archive patterns
@@ -109,7 +110,7 @@ function get_archive_multiplier(folder_path) {
 
 /* ─────────────────────────────────────────────────────────────
    3. RECENCY SCORING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Compute recency score with inverse decay (Decision D4, D8)
@@ -134,7 +135,7 @@ function compute_recency_score(timestamp, tier = 'normal', decay_rate = DECAY_RA
 
   // Handle invalid timestamps gracefully
   if (isNaN(updated)) {
-    return 0.5; // Fallback to neutral score
+    return 0.5;
   }
 
   const days_since = (now - updated) / (1000 * 60 * 60 * 24);
@@ -149,7 +150,7 @@ function compute_recency_score(timestamp, tier = 'normal', decay_rate = DECAY_RA
 
 /* ─────────────────────────────────────────────────────────────
    4. PATH UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Simplify folder path for display
@@ -169,7 +170,7 @@ function simplify_folder_path(full_path) {
 
 /* ─────────────────────────────────────────────────────────────
    5. FOLDER SCORING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Compute composite score for a single folder (Decision D1)
@@ -265,7 +266,7 @@ function find_last_activity(memories) {
 
 /* ─────────────────────────────────────────────────────────────
    6. MAIN COMPUTATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * @typedef {object} FolderScore
@@ -370,7 +371,7 @@ function compute_folder_scores(memories, options = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    7. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Main function

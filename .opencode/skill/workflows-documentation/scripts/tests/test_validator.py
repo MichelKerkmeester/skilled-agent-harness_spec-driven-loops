@@ -1,0 +1,277 @@
+#!/usr/bin/env python3
+"""
+Automated test runner for validate_document.py
+
+Validates that the documentation validator correctly identifies:
+- Valid documents (exit code 0)
+- Invalid documents with specific error types (exit code 1)
+
+Usage:
+    python test_validator.py
+    python test_validator.py --verbose
+
+Exit Codes:
+    0 - All tests passed
+    1 - One or more tests failed
+"""
+
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+# ───────────────────────────────────────────────────────────────
+# 1. TEST CONFIGURATION
+# ───────────────────────────────────────────────────────────────
+
+TEST_CASES = [
+    {
+        "file": "valid_readme.md",
+        "doc_type": "readme",
+        "expected_exit": 0,
+        "expected_errors": [],
+        "description": "Valid README with TOC, double-dash anchors, and H2 emojis"
+    },
+    {
+        "file": "valid_skill.md",
+        "doc_type": "skill",
+        "expected_exit": 0,
+        "expected_errors": [],
+        "description": "Valid SKILL.md with all required sections and emojis"
+    },
+    {
+        "file": "missing_toc.md",
+        "doc_type": "readme",
+        "expected_exit": 1,
+        "expected_errors": ["missing_toc"],
+        "description": "README missing TABLE OF CONTENTS section"
+    },
+    {
+        "file": "single_dash_anchors.md",
+        "doc_type": "readme",
+        "expected_exit": 1,
+        "expected_errors": ["toc_single_dash_anchor"],
+        "description": "README with single-dash TOC anchors instead of double-dash"
+    },
+    {
+        "file": "missing_emojis.md",
+        "doc_type": "readme",
+        "expected_exit": 1,
+        "expected_errors": ["missing_h2_emoji"],
+        "description": "README with H2 headers missing required emojis"
+    },
+    {
+        "file": "missing_sections.md",
+        "doc_type": "skill",
+        "expected_exit": 1,
+        "expected_errors": ["missing_required_section"],
+        "description": "SKILL.md missing required sections (smart_routing, how_it_works, rules)"
+    }
+]
+
+
+# ───────────────────────────────────────────────────────────────
+# 2. TEST RUNNER
+# ───────────────────────────────────────────────────────────────
+
+class TestResult:
+    """Container for individual test results."""
+    
+    def __init__(self, name: str, passed: bool, message: str, details: dict = None):
+        self.name = name
+        self.passed = passed
+        self.message = message
+        self.details = details or {}
+
+
+def run_validator(test_file: Path, doc_type: str, validator_path: Path) -> tuple:
+    """
+    Run the validator on a test file.
+    
+    Returns:
+        tuple: (exit_code, json_output, error_message)
+    """
+    cmd = [
+        sys.executable,  # Use same Python interpreter
+        str(validator_path),
+        str(test_file),
+        "--type", doc_type,
+        "--json"
+    ]
+    
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=30
+        )
+        
+        # Parse JSON output
+        if result.stdout.strip():
+            try:
+                json_output = json.loads(result.stdout)
+            except json.JSONDecodeError as e:
+                return (result.returncode, None, f"JSON parse error: {e}\nStdout: {result.stdout}")
+        else:
+            json_output = None
+            
+        return (result.returncode, json_output, result.stderr if result.stderr else None)
+        
+    except subprocess.TimeoutExpired:
+        return (-1, None, "Timeout: validator took more than 30 seconds")
+    except Exception as e:
+        return (-1, None, f"Execution error: {e}")
+
+
+def run_test(test_case: dict, tests_dir: Path, validator_path: Path, verbose: bool = False) -> TestResult:
+    """
+    Run a single test case and return the result.
+    """
+    test_file = tests_dir / test_case["file"]
+    doc_type = test_case.get("doc_type", "readme")
+    expected_exit = test_case["expected_exit"]
+    expected_errors = test_case["expected_errors"]
+    description = test_case.get("description", test_case["file"])
+    
+    # Check test file exists
+    if not test_file.exists():
+        return TestResult(
+            name=test_case["file"],
+            passed=False,
+            message=f"Test fixture not found: {test_file}",
+            details={"test_file_missing": True}
+        )
+    
+    # Run validator
+    exit_code, json_output, error_msg = run_validator(test_file, doc_type, validator_path)
+    
+    # Check exit code
+    if exit_code != expected_exit:
+        return TestResult(
+            name=test_case["file"],
+            passed=False,
+            message=f"Exit code mismatch: expected {expected_exit}, got {exit_code}",
+            details={
+                "expected_exit": expected_exit,
+                "actual_exit": exit_code,
+                "json_output": json_output,
+                "stderr": error_msg
+            }
+        )
+    
+    # For invalid documents, verify error types
+    if expected_errors and json_output:
+        blocking_errors = json_output.get("blocking_errors", [])
+        found_error_types = {e.get("type") for e in blocking_errors}
+        
+        missing_errors = []
+        for expected_error in expected_errors:
+            if expected_error not in found_error_types:
+                missing_errors.append(expected_error)
+        
+        if missing_errors:
+            return TestResult(
+                name=test_case["file"],
+                passed=False,
+                message=f"Missing expected error types: {missing_errors}",
+                details={
+                    "expected_errors": expected_errors,
+                    "found_errors": list(found_error_types),
+                    "missing": missing_errors,
+                    "json_output": json_output
+                }
+            )
+    
+    # For valid documents, ensure no blocking errors
+    if expected_exit == 0 and json_output:
+        blocking_errors = json_output.get("blocking_errors", [])
+        if blocking_errors:
+            found_types = [e.get("type") for e in blocking_errors]
+            return TestResult(
+                name=test_case["file"],
+                passed=False,
+                message=f"Valid document has blocking errors: {found_types}",
+                details={
+                    "unexpected_errors": blocking_errors,
+                    "json_output": json_output
+                }
+            )
+    
+    return TestResult(
+        name=test_case["file"],
+        passed=True,
+        message=f"PASS: {description}",
+        details={"json_output": json_output} if verbose else {}
+    )
+
+
+# ───────────────────────────────────────────────────────────────
+# 3. MAIN ENTRY POINT
+# ───────────────────────────────────────────────────────────────
+
+def main():
+    verbose = "--verbose" in sys.argv or "-v" in sys.argv
+    
+    # Determine paths
+    tests_dir = Path(__file__).parent
+    scripts_dir = tests_dir.parent
+    validator_path = scripts_dir / "validate_document.py"
+    
+    # Verify validator exists
+    if not validator_path.exists():
+        print(f"ERROR: Validator not found at {validator_path}")
+        sys.exit(2)
+    
+    print("=" * 60)
+    print("DOCUMENTATION VALIDATOR TEST SUITE")
+    print("=" * 60)
+    print(f"Validator: {validator_path}")
+    print(f"Test files: {tests_dir}")
+    print(f"Test cases: {len(TEST_CASES)}")
+    print("-" * 60)
+    
+    # Run all tests
+    results = []
+    for test_case in TEST_CASES:
+        result = run_test(test_case, tests_dir, validator_path, verbose)
+        results.append(result)
+        
+        # Print result
+        status = "PASS" if result.passed else "FAIL"
+        icon = "✓" if result.passed else "✗"
+        print(f"  [{status}] {icon} {result.name}")
+        
+        if not result.passed:
+            print(f"        {result.message}")
+            if verbose and result.details:
+                for key, value in result.details.items():
+                    if key != "json_output":
+                        print(f"        {key}: {value}")
+    
+    # Summary
+    print("-" * 60)
+    passed = sum(1 for r in results if r.passed)
+    failed = len(results) - passed
+    
+    print(f"SUMMARY: {passed}/{len(results)} tests passed")
+    
+    if failed > 0:
+        print(f"\nFailed tests ({failed}):")
+        for result in results:
+            if not result.passed:
+                print(f"  - {result.name}: {result.message}")
+        print("\n" + "=" * 60)
+        print("TEST SUITE FAILED")
+        print("=" * 60)
+        sys.exit(1)
+    else:
+        print("\n" + "=" * 60)
+        print("ALL TESTS PASSED")
+        print("=" * 60)
+        sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()

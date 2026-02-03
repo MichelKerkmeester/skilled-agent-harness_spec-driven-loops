@@ -4,14 +4,14 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 'use strict';
 
 const { CONFIG } = require('../core');
 
 /* ─────────────────────────────────────────────────────────────
    2. TIMESTAMP FORMATTING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function format_timestamp(date = new Date(), format = 'iso') {
   const d = date instanceof Date ? date : new Date(date);
@@ -63,7 +63,7 @@ function format_timestamp(date = new Date(), format = 'iso') {
 
 /* ─────────────────────────────────────────────────────────────
    3. OUTPUT TRUNCATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function truncate_tool_output(output, maxLines = CONFIG.MAX_TOOL_OUTPUT_LINES) {
   if (!output) return '';
@@ -89,7 +89,7 @@ function truncate_tool_output(output, maxLines = CONFIG.MAX_TOOL_OUTPUT_LINES) {
 
 /* ─────────────────────────────────────────────────────────────
    4. EXCHANGE SUMMARIZATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function summarize_exchange(userMessage, assistantResponse, toolCalls = []) {
   let userIntent;
@@ -120,7 +120,7 @@ function summarize_exchange(userMessage, assistantResponse, toolCalls = []) {
 
 /* ─────────────────────────────────────────────────────────────
    5. ARTIFACT EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function extract_key_artifacts(messages) {
   const artifacts = {
@@ -169,7 +169,7 @@ function extract_key_artifacts(messages) {
 
 /* ─────────────────────────────────────────────────────────────
    6. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)

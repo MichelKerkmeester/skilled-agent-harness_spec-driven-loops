@@ -10,17 +10,22 @@ const os = require('os');
 // Import token metrics utilities
 const { estimate_tokens } = require('./token-metrics');
 
-// Import shared utilities
-const { validate_file_path } = require('../../shared/utils');
+// Import path security utilities (migrated from shared/utils.js)
+const { validate_file_path } = require('../lib/utils/path-security');
 
 // Import memory parser for anchor extraction (SK-005)
 const memory_parser = require('../lib/parsing/memory-parser');
 
+// REQ-019: Standardized Response Structure
+const {
+  createMCPSuccessResponse,
+  createMCPEmptyResponse
+} = require('../lib/response/envelope');
+
 /* ─────────────────────────────────────────────────────────────
    1. PATH VALIDATION CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Default base path - use environment variable or current working directory
 const DEFAULT_BASE_PATH = process.env.MEMORY_BASE_PATH || process.cwd();
 const ALLOWED_BASE_PATHS = [
   path.join(os.homedir(), '.claude'),
@@ -30,13 +35,6 @@ const ALLOWED_BASE_PATHS = [
   .filter(Boolean)
   .map(p => path.resolve(p));
 
-/**
- * Local wrapper for validate_file_path that throws on invalid paths
- * Uses shared utility with ALLOWED_BASE_PATHS from this module
- * @param {string} file_path - Path to validate
- * @returns {string} Normalized path
- * @throws {Error} If path is outside allowed directories
- */
 function validate_file_path_local(file_path) {
   const result = validate_file_path(file_path, ALLOWED_BASE_PATHS);
   if (result === null) {
@@ -51,14 +49,8 @@ function validate_file_path_local(file_path) {
 
 /* ─────────────────────────────────────────────────────────────
    2. HELPER UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Safely parse JSON with fallback
- * @param {string} str - JSON string to parse
- * @param {*} fallback - Fallback value if parsing fails
- * @returns {*} Parsed value or fallback
- */
 function safe_json_parse(str, fallback = []) {
   if (!str) return fallback;
   try {
@@ -70,41 +62,27 @@ function safe_json_parse(str, fallback = []) {
 
 /* ─────────────────────────────────────────────────────────────
    3. SEARCH RESULTS FORMATTING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Format search results for MCP response
- *
- * Features:
- * - Embeds file content when include_content=true
- * - Supports SK-005 anchor extraction for token efficiency
- * - Calculates token metrics for anchor filtering
- * - Validates file paths (SEC-002 defense-in-depth)
- *
- * @param {Array} results - Search results from vector/hybrid search
- * @param {string} search_type - Type of search performed (hybrid, vector, multi-concept)
- * @param {boolean} include_content - If true, include full file content in each result
- * @param {Array<string>} anchors - Optional list of anchor IDs to filter content
- * @param {Object} parser_override - Optional memory parser override (uses module default if null)
- * @returns {Promise<Object>} MCP-formatted response with content array
- */
-async function format_search_results(results, search_type, include_content = false, anchors = null, parser_override = null) {
+async function format_search_results(results, search_type, include_content = false, anchors = null, parser_override = null, start_time = null, extra_data = {}) {
+  const startMs = start_time || Date.now();
+
   if (!results || results.length === 0) {
-    return {
-      content: [
-        {
-          type: 'text',
-          text: JSON.stringify({
-            searchType: search_type,
-            count: 0,
-            constitutionalCount: 0,
-            results: [],
-            message: 'No matching memories found'
-          }, null, 2)
-        }
+    // REQ-019: Use standardized empty response envelope
+    return createMCPEmptyResponse({
+      tool: 'memory_search',
+      summary: 'No matching memories found',
+      data: {
+        searchType: search_type,
+        constitutionalCount: 0
+      },
+      hints: [
+        'Try broadening your search query',
+        'Use memory_list() to browse available memories',
+        'Check if specFolder filter is too restrictive'
       ],
-      isError: false  // BUG-030 FIX: Explicit success flag for MCP consistency
-    };
+      startTime: startMs
+    });
   }
 
   // Count constitutional results
@@ -198,25 +176,45 @@ async function format_search_results(results, search_type, include_content = fal
     return result;
   }));
 
-  return {
-    content: [
-      {
-        type: 'text',
-        text: JSON.stringify({
-          searchType: search_type,
-          count: formatted.length,
-          constitutionalCount: constitutional_count,
-          results: formatted
-        }, null, 2)
-      }
-    ],
-    isError: false  // BUG-030 FIX: Explicit success flag for MCP consistency
+  // REQ-019: Build summary based on result characteristics
+  const summary = constitutional_count > 0
+    ? `Found ${formatted.length} memories (${constitutional_count} constitutional)`
+    : `Found ${formatted.length} memories`;
+
+  // REQ-019: Build hints based on context
+  const hints = [];
+  if (include_content && anchors && anchors.length > 0) {
+    hints.push('Anchor filtering applied for token efficiency');
+  }
+  if (!include_content && formatted.length > 0) {
+    hints.push('Use includeContent: true to embed file contents in results');
+  }
+  if (formatted.some(r => r.contentError)) {
+    hints.push('Some files could not be read - check file paths');
+  }
+
+  // REQ-019: Use standardized success response envelope
+  // T039, T058: Include intent and state stats in data if provided
+  const response_data = {
+    searchType: search_type,
+    count: formatted.length,
+    constitutionalCount: constitutional_count,
+    results: formatted,
+    ...extra_data  // Merge intent, stateStats, and any other extra data
   };
+
+  return createMCPSuccessResponse({
+    tool: 'memory_search',
+    summary,
+    data: response_data,
+    hints,
+    startTime: startMs
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────
    4. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // snake_case exports

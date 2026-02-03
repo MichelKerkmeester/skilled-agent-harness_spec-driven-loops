@@ -11,7 +11,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. FSRS CONSTANTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // COGNITIVE-079: FSRS v4 algorithm constants from memory research
 const FSRS_FACTOR = 19 / 81;  // ~0.235
@@ -39,7 +39,7 @@ const GRADE_EASY = 4;
 
 /* ─────────────────────────────────────────────────────────────
    2. CORE FSRS FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Calculate retrievability using FSRS v4 power-law: R(t, S) = (1 + factor * t/S)^decay */
 function calculate_retrievability(stability, elapsed_days) {
@@ -172,7 +172,7 @@ function update_difficulty(current_difficulty, grade) {
 
 /* ─────────────────────────────────────────────────────────────
    3. HELPER FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Calculate days elapsed since a given date */
 function calculate_elapsed_days(last_review_date) {
@@ -221,7 +221,7 @@ function create_initial_params(options = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    4. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const FSRS_CONSTANTS = {
   FSRS_FACTOR,

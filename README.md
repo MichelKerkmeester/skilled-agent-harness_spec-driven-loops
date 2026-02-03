@@ -79,13 +79,17 @@ A custom MCP server that gives your AI assistant persistent, searchable memory a
 
 **What This System Has**
 
-- Hybrid search (vector + FTS5 + RRF fusion)
+- Hybrid search (vector + BM25 + RRF fusion + cross-encoder reranking)
 - 6 importance tiers with auto-decay
 - Multiple embedding providers (Voyage recommended, OpenAI, HF Local)
 - ANCHOR format = 93% token savings
 - <50ms proactive surfacing before you ask
 - Checkpoints = undo button with embedding preservation
 - Session Learning = quantified knowledge improvement
+- **Causal memory graph** = trace decision chains with "why" queries
+- **Session deduplication** = 50% token savings on follow-up queries
+- **Crash recovery** = auto-resume from compaction via `/memory:continue`
+- **Intent-aware retrieval** = 5 intent types route to optimized search
 
 ---
 
@@ -117,6 +121,7 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 - AI detects frustration, auto-suggests sub-agent
 - Stateless architecture (no STATE.md)
 - Completeness scoring (0-100%)
+- **Format validation** = `validate_document.py` enforces template compliance (NEW v1.2.0)
 
 ### The Integration Nobody Else Has
 
@@ -141,6 +146,10 @@ These systems aren't just bundled: they're *woven together*:
 | **Template composition** | Zero duplication      | CORE + ADDENDUM architecture                    |
 | **Debug delegation**     | Model selection       | Fresh perspective with full context handoff     |
 | **Parallel dispatch**    | 5-dimension scoring   | Complexity-based agent orchestration            |
+| **Causal memory graph**  | Decision tracing      | 6 relationship types answer "why" queries       |
+| **Session deduplication**| 50% token savings     | Hash-based duplicate prevention in same session |
+| **Crash recovery**       | Zero lost work        | Auto-resume from compaction/timeout             |
+| **Intent-aware search**  | Smarter retrieval     | 5 intent types route to optimized search        |
 
 ### How It All Works Together
 
@@ -431,25 +440,24 @@ Memory and Spec Kit are designed to work together:
 | **deprecated**     | 0.0x  | Excluded | Outdated information (preserved but hidden)        |
 
 
-### Memory Commands
+### Memory Commands (5 Consolidated)
 
-| Command                      | Purpose                                                      |
-| ---------------------------- | ------------------------------------------------------------ |
-| `/memory:save [spec-folder]` | Save context via generate-context.js                         |
-| `/memory:search`             | Dashboard with stats, recent memories, and suggested actions |
-| `/memory:search <query>`     | Semantic search with tier/type filters                       |
-| `/memory:search cleanup`     | Interactive cleanup of old memories                          |
-| `/memory:search triggers`    | View and manage trigger phrases                              |
-| `/memory:checkpoint create`  | Snapshot current state                                       |
+| Command                          | Purpose                                                      |
+| -------------------------------- | ------------------------------------------------------------ |
+| `/memory:context [query]`        | Unified retrieval with intent-aware routing (replaces search) |
+| `/memory:save [spec-folder]`     | Save context via generate-context.js                         |
+| `/memory:continue`               | Session recovery from crash/compaction                       |
+| `/memory:learn [topic]`          | Explicit learning capture (`correct` subcommand for mistakes) |
+| `/memory:manage [operation]`     | Database ops: stats, health, cleanup, checkpoint create/restore |
 
 **Example:**
 
 ```
-> /memory:search "authentication flow"
+> /memory:context "authentication flow"
 
 Found 3 memories:
 1. [critical] JWT token refresh implementation (2 days ago) - 94% match
-2. [important] OAuth2 provider setup (5 days ago) - 87% match  
+2. [important] OAuth2 provider setup (5 days ago) - 87% match
 3. [normal] Login form validation (12 days ago) - 72% match
 
 Load: [1] [2] [3] [all] [skip]
@@ -525,26 +533,35 @@ LI = (Knowledge Delta × 0.4) + (Uncertainty Reduction × 0.35) + (Context Impro
 This enables measuring productivity by *learning*, not just output.
 
 
-### The 17 MCP Tools
+### The 22 MCP Tools (7 Layers)
 
-**Search & Retrieval (4 tools)**
+**L1 Orchestration (1 tool)**
+| Tool             | Purpose                                              |
+| ---------------- | ---------------------------------------------------- |
+| `memory_context` | Unified entry with intent-aware routing (NEW v1.2.0) |
+
+**L2 Search & Retrieval (3 tools)**
 | Tool                    | Purpose                                           |
 | ----------------------- | ------------------------------------------------- |
-| `memory_search`         | Semantic search with hybrid vector + FTS5 fusion  |
+| `memory_search`         | Semantic search with hybrid vector + BM25 fusion  |
 | `memory_match_triggers` | Fast keyword matching (<50ms proactive surfacing) |
-| `memory_list`           | Browse stored memories with pagination            |
-| `memory_stats`          | Database statistics with composite ranking        |
+| `memory_save`           | Index memory files                                |
 
-**CRUD Operations (5 tools)**
-| Tool                | Purpose                             |
-| ------------------- | ----------------------------------- |
-| `memory_save`       | Index memory files                  |
-| `memory_index_scan` | Bulk scan and index workspace       |
-| `memory_update`     | Update metadata and importance tier |
-| `memory_delete`     | Delete by ID or spec folder         |
-| `memory_validate`   | Record validation feedback          |
+**L3 Read-Only (3 tools)**
+| Tool           | Purpose                                    |
+| -------------- | ------------------------------------------ |
+| `memory_list`  | Browse stored memories with pagination     |
+| `memory_stats` | Database statistics with composite ranking |
+| `memory_health`| Check memory system health status          |
 
-**Checkpoints (4 tools)**
+**L4 Write Operations (3 tools)**
+| Tool              | Purpose                             |
+| ----------------- | ----------------------------------- |
+| `memory_update`   | Update metadata and importance tier |
+| `memory_delete`   | Delete by ID or spec folder         |
+| `memory_validate` | Record validation feedback          |
+
+**L5 Checkpoints (4 tools)**
 | Tool                 | Purpose                                     |
 | -------------------- | ------------------------------------------- |
 | `checkpoint_create`  | Snapshot current state with embeddings      |
@@ -552,17 +569,21 @@ This enables measuring productivity by *learning*, not just output.
 | `checkpoint_restore` | Restore from checkpoint (soft or hard mode) |
 | `checkpoint_delete`  | Remove checkpoint                           |
 
-**Session Learning (3 tools)**
+**L6 Advanced (6 tools)**
 | Tool                          | Purpose                                           |
 | ----------------------------- | ------------------------------------------------- |
 | `task_preflight`              | Capture epistemic baseline before task            |
 | `task_postflight`             | Capture post-task state, calculate Learning Index |
-| `memory_get_learning_history` | Get learning trends and summaries                 |
+| `memory_drift_why`            | Trace causal chain for "why" queries (NEW v1.2.0) |
+| `memory_causal_link`          | Create causal relationships (NEW v1.2.0)          |
+| `memory_causal_stats`         | Graph statistics and coverage (NEW v1.2.0)        |
+| `memory_causal_unlink`        | Remove causal relationships (NEW v1.2.0)          |
 
-**System (1 tool)**
-| Tool            | Purpose                           |
-| --------------- | --------------------------------- |
-| `memory_health` | Check memory system health status |
+**L7 Maintenance (2 tools)**
+| Tool                          | Purpose                         |
+| ----------------------------- | ------------------------------- |
+| `memory_index_scan`           | Bulk scan and index workspace   |
+| `memory_get_learning_history` | Get learning trends and summaries |
 
 > **Note:** Full MCP names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search`).
 
@@ -871,8 +892,8 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 **spec_kit/** (7 commands)
 `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:debug`, `/spec_kit:handover`
 
-**memory/** (4 commands)
-`/memory:save`, `/memory:search`, `/memory:checkpoint`, `/memory:database`
+**memory/** (5 commands)
+`/memory:context`, `/memory:save`, `/memory:continue`, `/memory:learn`, `/memory:manage`
 
 **create/** (6 commands)
 `/create:agent`, `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`
@@ -978,7 +999,7 @@ MCP servers extend your AI with specialized capabilities. This environment inclu
 - **Sequential Thinking**: Structured multi-step reasoning for complex problems
   [Guide](.opencode/install_guides/MCP - Sequential Thinking.md)
 
-- **Spec Kit Memory**: Local vector-based conversation memory (17 MCP tools)
+- **Spec Kit Memory**: Local vector-based conversation memory (22 MCP tools in 7 layers)
   [Guide](.opencode/install_guides/MCP - Spec Kit Memory.md)
 
 - **Code Mode**: External tool orchestration (Figma, GitHub, ClickUp, Chrome DevTools, Narsil, etc.)
@@ -1061,7 +1082,7 @@ Commands support session-wide behavior flags that affect response verbosity:
 - [ ] Run `opencode` in your project
 - [ ] Try `/spec_kit:complete add-login` to create your first documented feature
 - [ ] Use `/memory:save` at the end of your session
-- [ ] Start a new session and try `/memory:search "login"` to see persistence
+- [ ] Start a new session and try `/memory:context "login"` to see persistence
 
 
 ### Going Deeper

@@ -107,9 +107,6 @@ DO NOT use Level 2 Plan if:
 
 ---
 
-
----
-
 ## L2: PHASE DEPENDENCIES
 
 ```

@@ -4,6 +4,19 @@
 
 ---
 
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🔗 INTEGRATION](#6--integration)
+- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
+- [8. 📚 RELATED DOCUMENTS](#8--related-documents)
+
+---
+
 ## 1. 📖 OVERVIEW
 
 **Purpose**: Handlers are the entry points for all MCP tool calls. They validate arguments, coordinate between modules (vector index, embeddings, parsing), and format responses for the MCP protocol.
@@ -85,7 +98,9 @@ handlers/
 ├── memory-crud.js        # Update, delete, list, stats, health
 ├── memory-index.js       # Index management and re-indexing
 ├── checkpoints.js        # Checkpoint save/restore/list
-└── session-learning.js   # Epistemic tracking (preflight/postflight)
+├── session-learning.js   # Epistemic tracking (preflight/postflight)
+├── memory-context.js     # Unified context entry point (NEW)
+└── causal-graph.js       # Causal relationship operations (NEW)
 ```
 
 ### Handler Modules
@@ -100,6 +115,8 @@ handlers/
 | `memory-index.js` | `handle_memory_index_scan`, `index_single_file`, `find_constitutional_files` | Index scanning, re-indexing, status management |
 | `checkpoints.js` | `handle_checkpoint_create`, `handle_checkpoint_list`, `handle_checkpoint_restore`, `handle_checkpoint_delete` | Database snapshots for recovery and context switching |
 | `session-learning.js` | `handle_task_preflight`, `handle_task_postflight`, `handle_get_learning_history` | Epistemic baseline/delta tracking with Learning Index |
+| `memory-context.js` | `handle_memory_context`, `handle_drift_context` | Unified context entry with intent awareness (NEW) |
+| `causal-graph.js` | `handle_causal_link`, `handle_causal_unlink`, `handle_causal_stats`, `handle_drift_why` | Causal edge CRUD, graph traversal, decision lineage (NEW) |
 
 ---
 

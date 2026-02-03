@@ -6,11 +6,14 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { escape_regex: escapeRegex } = require('../../../shared/utils');
+const { escape_regex: escapeRegex } = require('../utils/path-security');
+
+// T125: Import type inference for memory_type classification
+const { infer_memory_type } = require('../config/type-inference');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const MEMORY_FILE_PATTERN = /specs\/([^/]+)(?:\/[^/]+)*\/memory\/[^/]+\.md$/;
 const CONTEXT_TYPE_MAP = {
@@ -33,7 +36,7 @@ const CONTEXT_TYPE_MAP = {
 
 /* ─────────────────────────────────────────────────────────────
    2. CORE PARSING FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Read file with BOM detection for UTF-16 support
 function read_file_with_encoding(file_path) {
@@ -89,6 +92,18 @@ function parse_memory_file(file_path) {
   const importance_tier = extract_importance_tier(content);
   const content_hash = compute_content_hash(content);
 
+  // T125: Infer memory_type for type-specific half-lives (CHK-230)
+  const type_inference = infer_memory_type({
+    filePath: file_path,
+    content: content,
+    title: title,
+    triggerPhrases: trigger_phrases,
+    importanceTier: importance_tier,
+  });
+
+  // T126: Extract causal_links for relationship tracking (CHK-231)
+  const causal_links = extract_causal_links(content);
+
   return {
     filePath: file_path,
     specFolder: spec_folder,
@@ -100,6 +115,13 @@ function parse_memory_file(file_path) {
     content,
     fileSize: content.length,
     lastModified: fs.statSync(file_path).mtime.toISOString(),
+    // T125: Memory type classification for decay calculation
+    memoryType: type_inference.type,
+    memoryTypeSource: type_inference.source,
+    memoryTypeConfidence: type_inference.confidence,
+    // T126: Causal links for memory graph relationships
+    causalLinks: causal_links,
+    hasCausalLinks: has_causal_links(causal_links),
   };
 }
 
@@ -281,9 +303,117 @@ function compute_content_hash(content) {
   return crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
 }
 
+/**
+ * Extract causal_links from memory content YAML metadata block (T126)
+ *
+ * Expected format in YAML block:
+ * ```yaml
+ * causal_links:
+ *   caused_by:
+ *     - "memory-id-1"
+ *   supersedes:
+ *     - "memory-id-2"
+ *   derived_from:
+ *     - "memory-id-3"
+ *   blocks:
+ *     - "memory-id-4"
+ *   related_to:
+ *     - "memory-id-5"
+ * ```
+ *
+ * Maps to causal_edges relation types:
+ * - caused_by -> 'caused' (reverse direction: target caused source)
+ * - supersedes -> 'supersedes' (source supersedes target)
+ * - derived_from -> 'derived_from' (source derived from target)
+ * - blocks -> 'enabled' (reverse: target was blocked/now enabled by source resolution)
+ * - related_to -> 'supports' (generic relationship)
+ *
+ * @param {string} content - Memory file content
+ * @returns {Object} Causal links with arrays for each relation type
+ */
+function extract_causal_links(content) {
+  const causal_links = {
+    caused_by: [],
+    supersedes: [],
+    derived_from: [],
+    blocks: [],
+    related_to: []
+  };
+
+  // Find the causal_links block in YAML metadata
+  // Pattern: causal_links: followed by indented sub-keys
+  const causal_block_match = content.match(/(?:^|\n)\s*causal_links:\s*\n((?:\s+[a-z_]+:[\s\S]*?)*)(?=\n[a-z_]+:|\n```|\n---|\n\n|\n#|$)/i);
+
+  if (!causal_block_match) {
+    return causal_links;
+  }
+
+  const block = causal_block_match[1];
+  const lines = block.split('\n');
+
+  let current_key = null;
+
+  for (const line of lines) {
+    // Check for sub-key (e.g., "  caused_by:")
+    const key_match = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*$/);
+    if (key_match) {
+      current_key = key_match[1];
+      continue;
+    }
+
+    // Check for inline array format: "  caused_by: []" or "  caused_by: ["id1", "id2"]"
+    const inline_match = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*\[(.*)\]\s*$/);
+    if (inline_match) {
+      current_key = inline_match[1];
+      const array_content = inline_match[2].trim();
+      if (array_content) {
+        // Parse comma-separated quoted values
+        const values = array_content.match(/["']([^"']+)["']/g);
+        if (values) {
+          values.forEach(v => {
+            const cleaned = v.replace(/^["']|["']$/g, '').trim();
+            if (cleaned && !causal_links[current_key].includes(cleaned)) {
+              causal_links[current_key].push(cleaned);
+            }
+          });
+        }
+      }
+      current_key = null;
+      continue;
+    }
+
+    // Check for list item (e.g., "    - "memory-id"")
+    if (current_key) {
+      const item_match = line.match(/^\s+-\s*["']?([^"'\n]+?)["']?\s*$/);
+      if (item_match) {
+        const value = item_match[1].trim();
+        // Skip empty brackets or empty values
+        if (value && value !== '[]' && !causal_links[current_key].includes(value)) {
+          causal_links[current_key].push(value);
+        }
+      } else if (line.trim() && !line.match(/^\s*#/) && !line.match(/^\s+-/)) {
+        // Non-empty, non-comment, non-list line = end of block
+        current_key = null;
+      }
+    }
+  }
+
+  return causal_links;
+}
+
+/**
+ * Check if causal_links has any non-empty arrays
+ * @param {Object} causal_links - Causal links object from extract_causal_links
+ * @returns {boolean} True if any links exist
+ */
+function has_causal_links(causal_links) {
+  if (!causal_links) return false;
+  return Object.values(causal_links).some(arr => Array.isArray(arr) && arr.length > 0);
+}
+
 /* ─────────────────────────────────────────────────────────────
    3. VALIDATION FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Check if a file path is a valid memory file
 function is_memory_file(file_path) {
@@ -419,7 +549,7 @@ function validate_parsed_memory(parsed) {
 
 /* ─────────────────────────────────────────────────────────────
    4. DIRECTORY SCANNING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Find all memory files in a workspace
 function find_memory_files(workspace_path, options = {}) {
@@ -488,7 +618,7 @@ function find_memory_files(workspace_path, options = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    5. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Core parsing
@@ -500,6 +630,13 @@ module.exports = {
   extractContextType: extract_context_type,
   extractImportanceTier: extract_importance_tier,
   computeContentHash: compute_content_hash,
+
+  // T125: Re-export type inference for direct usage
+  inferMemoryType: infer_memory_type,
+
+  // T126: Causal links extraction for memory graph
+  extractCausalLinks: extract_causal_links,
+  hasCausalLinks: has_causal_links,
 
   // Validation
   isMemoryFile: is_memory_file,

@@ -66,11 +66,18 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    for default                                                 │
    │                                                                │
    │ **Q5. Memory Context** (if using existing spec with memory/):  │
+   │    Uses /memory:context with intent-aware retrieval            │
    │    A) Load most recent memory file                              │
    │    B) Load all recent files, up to 3                            │
    │    C) Skip (start fresh)                                       │
    │                                                                │
-   │ Reply with answers, e.g.: "B, A, A, , C" or "Add auth, B, A, gemini, C" │
+   │ **Q6. Research Intent** (required):                            │
+   │    A) add_feature - Adding new functionality                   │
+   │    B) fix_bug - Debugging or fixing issues                       │
+   │    C) refactor - Improving existing code structure             │
+   │    D) understand - Learning how something works                │
+   │                                                                │
+   │ Reply with answers, e.g.: "B, A, A, , C, A" or "Add auth, B, A, gemini, C, A" │
    └────────────────────────────────────────────────────────────────┘
 
 6. WAIT for user response (DO NOT PROCEED)
@@ -83,6 +90,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - dispatch_mode = [single/multi_small/multi_large from Q3]
    - worker_model = [from Q4: opus/gemini/gpt, default opus if blank]
    - memory_choice = [A/B/C from Q5, or N/A if not applicable]
+   - research_intent = [add_feature/fix_bug/refactor/understand from Q6]
 
 8. Execute background operations based on choices:
    - IF memory_choice == A: Load most recent memory file
@@ -106,6 +114,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `dispatch_mode = ________________`
 - `worker_model = ________________` (default: opus)
 - `memory_loaded = ________________`
+- `research_intent = ________________`
 
 ---
 
@@ -122,6 +131,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | dispatch_mode       | ✅ Yes         | ______     | Q3                    |
 | worker_model        | ○ Conditional | ______     | Q4 (default: opus)    |
 | memory_loaded       | ○ Conditional | ______     | Q5 (if existing spec) |
+| research_intent     | ✅ Yes         | ______     | Q6                    |
 
 ```
 VERIFICATION CHECK:
@@ -224,7 +234,7 @@ $ARGUMENTS
 ```mermaid
 flowchart TD
     subgraph SETUP["🔒 UNIFIED SETUP PHASE"]
-        START(["/spec_kit:plan"]) --> PROMPT["Consolidated Prompt<br/>(Q0-Q5)"]
+        START(["/spec_kit:plan"]) --> PROMPT["Consolidated Prompt<br/>(Q0-Q6)"]
         PROMPT --> WAIT{"User<br/>Response?"}
         WAIT -->|"No"| BLOCK[/"⛔ HARD STOP"/]
         WAIT -->|"Yes"| VERIFY["Verify All Fields"]
@@ -392,6 +402,69 @@ After agents return, hypotheses are verified by reading identified files and bui
 - **Parallel**: "use parallel", "dispatch agents", "parallelize"
 - **Auto-decide**: "auto-decide", "auto mode", "decide for me" (1 hour session preference)
 
+### Workstream Prefix Pattern
+
+When dispatching parallel agents, use workstream prefixes for tracking:
+
+| Workstream | Prefix     | Purpose                         |
+| ---------- | ---------- | ------------------------------- |
+| Planning   | `[W:PLAN]` | Track planning workflow outputs |
+
+**Example dispatch with prefix:**
+```
+[W:PLAN] Architecture Explorer: Analyzing project structure...
+[W:PLAN] Feature Explorer: Searching for similar patterns...
+[W:PLAN] Dependency Explorer: Mapping module dependencies...
+[W:PLAN] Test Explorer: Identifying test infrastructure...
+```
+
+---
+
+## 7.5 🧠 MEMORY INTEGRATION
+
+Memory integration ensures planning builds on prior work and preserves context for future sessions.
+
+### Unified Memory Retrieval
+
+Use the unified `/memory:context` command with intent-aware retrieval:
+
+```
+/memory:context --intent=add_feature --query="authentication system"
+```
+
+| Intent        | Retrieval Focus                             | Typical Anchors                     |
+| ------------- | ------------------------------------------- | ----------------------------------- |
+| `add_feature` | Prior implementations, patterns, decisions  | architecture, decisions, patterns   |
+| `fix_bug`     | Error history, debugging sessions, fixes    | errors, debugging, fixes            |
+| `refactor`    | Code structure, dependencies, tech debt     | architecture, dependencies, quality |
+| `understand`  | Explanations, documentation, learning notes | research, findings, explanations    |
+
+### Memory Search Patterns for Planning
+
+| Planning Phase | Memory Query                                            | Purpose                     |
+| -------------- | ------------------------------------------------------- | --------------------------- |
+| Before Step 1  | `/memory:context --intent={intent} --query="topic"`     | Find prior related work     |
+| During Step 3  | `memory_search({ anchors: ['architecture'] })`          | Existing patterns/decisions |
+| During Step 5  | `memory_search({ anchors: ['decisions', 'rationale']})` | Prior planning decisions    |
+| After Step 6   | `generate-context.js [spec-folder]`                     | Preserve current planning   |
+
+### After Completing Planning
+
+```
+1. GENERATE CONTEXT:
+   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder]
+
+2. ANCHOR TAGGING:
+   The script automatically extracts and indexes:
+   - ANCHOR:planning-[feature] → Identifies the planning topic
+   - ANCHOR:decisions → Choices made and rationale
+   - ANCHOR:architecture → Structural decisions
+   - ANCHOR:next-steps → Action items and continuation
+
+3. VERIFY SAVE:
+   Check memory/*.md file created with proper anchors
+```
+
 ---
 
 ## 8. 🤖 AGENT ROUTING
@@ -473,6 +546,20 @@ Quality gates enforce minimum standards at workflow checkpoints.
 - [ ] All planning artifacts exist (spec.md, plan.md)
 - [ ] Memory context saved successfully
 - [ ] Handover check completed
+
+### Five Checks Framework (Pre-execution Validation)
+
+For substantial planning (>100 LOC estimates or architectural decisions), validate against:
+
+| #   | Check                    | Question                 | Pass Criteria                              |
+| --- | ------------------------ | ------------------------ | ------------------------------------------ |
+| 1   | **Necessary?**           | Solving ACTUAL need NOW? | Clear requirement exists, not speculative  |
+| 2   | **Beyond Local Maxima?** | Explored alternatives?   | ≥2 alternatives considered with trade-offs |
+| 3   | **Sufficient?**          | Simplest approach?       | No simpler solution achieves the goal      |
+| 4   | **Fits Goal?**           | On critical path?        | Directly advances stated objective         |
+| 5   | **Open Horizons?**       | Long-term aligned?       | Doesn't create technical debt or lock-in   |
+
+**Integration:** Apply Five Checks at Pre-execution Gate for Level 3/3+ spec folders. Record results in decision-record.md for architectural changes.
 
 ---
 

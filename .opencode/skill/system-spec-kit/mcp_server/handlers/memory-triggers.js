@@ -1,13 +1,13 @@
 // ───────────────────────────────────────────────────────────────
-// HANDLERS: MEMORY TRIGGERS
+// HANDLER: MEMORY TRIGGERS
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. DEPENDENCIES
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Core utilities
 const { check_database_updated } = require('../core');
@@ -23,9 +23,15 @@ const attentionDecay = require(path.join(LIB_DIR, 'cognitive', 'attention-decay.
 const tierClassifier = require(path.join(LIB_DIR, 'cognitive', 'tier-classifier.js'));
 const coActivation = require(path.join(LIB_DIR, 'cognitive', 'co-activation.js'));
 
-/* ───────────────────────────────────────────────────────────────
-   2. HANDLER: memory_match_triggers
-   ─────────────────────────────────────────────────────────────── */
+// REQ-019: Standardized Response Structure
+const {
+  createMCPSuccessResponse,
+  createMCPEmptyResponse
+} = require(path.join(LIB_DIR, 'response', 'envelope.js'));
+
+/* ─────────────────────────────────────────────────────────────
+   2. MATCH TRIGGERS HANDLER
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle memory_match_triggers tool - fast phrase matching with cognitive features
@@ -84,25 +90,25 @@ async function handle_memory_match_triggers(args) {
   const results = triggerMatcher.matchTriggerPhrases(prompt, limit * 2); // Get more for filtering
 
   if (!results || results.length === 0) {
-    return {
-      content: [
-        {
-          type: 'text',
-          text: JSON.stringify({
-            matchType: use_cognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
-            count: 0,
-            results: [],
-            cognitive: use_cognitive ? {
-              enabled: true,
-              sessionId: session_id,
-              turnNumber: turn_number,
-              decayApplied: decay_stats ? decay_stats.decayedCount : 0
-            } : null,
-            message: 'No matching trigger phrases found'
-          }, null, 2)
-        }
-      ]
-    };
+    // REQ-019: Use standardized empty response envelope
+    return createMCPEmptyResponse({
+      tool: 'memory_match_triggers',
+      summary: 'No matching trigger phrases found',
+      data: {
+        matchType: use_cognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
+        cognitive: use_cognitive ? {
+          enabled: true,
+          sessionId: session_id,
+          turnNumber: turn_number,
+          decayApplied: decay_stats ? decay_stats.decayedCount : 0
+        } : null
+      },
+      hints: [
+        'Ensure memories have trigger phrases defined',
+        'Try a different prompt or check memory content'
+      ],
+      startTime: start_time
+    });
   }
 
   // Step 3-6: Apply cognitive features if enabled
@@ -208,25 +214,41 @@ async function handle_memory_match_triggers(args) {
     console.warn(`[memory_match_triggers] Latency ${latency_ms}ms exceeds 100ms target`);
   }
 
-  return {
-    content: [
-      {
-        type: 'text',
-        text: JSON.stringify({
-          matchType: use_cognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
-          count: formatted_results.length,
-          results: formatted_results,
-          cognitive: cognitive_stats,
-          latencyMs: latency_ms
-        }, null, 2)
-      }
-    ]
-  };
+  // REQ-019: Build summary based on results
+  const summary = use_cognitive
+    ? `Matched ${formatted_results.length} memories with cognitive features`
+    : `Matched ${formatted_results.length} memories via trigger phrases`;
+
+  // REQ-019: Build hints based on context
+  const hints = [];
+  if (!use_cognitive && session_id) {
+    hints.push('Enable cognitive features with include_cognitive: true');
+  }
+  if (cognitive_stats?.tierDistribution?.COLD > 0) {
+    hints.push(`${cognitive_stats.tierDistribution.COLD} COLD-tier memories excluded for token efficiency`);
+  }
+
+  // REQ-019: Use standardized success response envelope
+  return createMCPSuccessResponse({
+    tool: 'memory_match_triggers',
+    summary,
+    data: {
+      matchType: use_cognitive ? 'trigger-phrase-cognitive' : 'trigger-phrase',
+      count: formatted_results.length,
+      results: formatted_results,
+      cognitive: cognitive_stats
+    },
+    hints,
+    startTime: start_time,
+    extraMeta: {
+      latencyMs: latency_ms
+    }
+  });
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   3. EXPORTS
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // snake_case export

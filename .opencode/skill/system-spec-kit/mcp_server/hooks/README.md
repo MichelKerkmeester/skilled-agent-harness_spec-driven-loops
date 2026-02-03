@@ -1,6 +1,16 @@
 # Hooks
 
-> Automatic memory surfacing hooks for context injection.
+Automatic memory surfacing hooks for context injection.
+
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
+- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
 
 ---
 

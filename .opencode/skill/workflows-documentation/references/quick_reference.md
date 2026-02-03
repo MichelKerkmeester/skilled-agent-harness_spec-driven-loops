@@ -11,6 +11,13 @@ Commands, quality gates, and patterns at a glance.
 
 ## 1. 📖 OVERVIEW
 
+**README Format Validation** (MANDATORY before delivery):
+```bash
+scripts/validate_document.py document.md
+# Exit 0 = valid, Exit 1 = blocking errors
+# Checks: TOC, H2 emojis, anchors, required sections
+```
+
 **Extract Structure** (for AI analysis):
 ```bash
 scripts/extract_structure.py document.md
@@ -31,6 +38,7 @@ scripts/quick_validate.py .opencode/skill/my-skill --json
 
 **Direct Script Access** (no CLI wrapper required):
 ```bash
+python scripts/validate_document.py document.md     # Format validation (exit 0/1)
 python scripts/extract_structure.py document.md   # Extract structure + DQI score
 python scripts/quick_validate.py skill-path       # Quick validation
 python scripts/init_skill.py skill-name           # Initialize new skill

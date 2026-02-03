@@ -35,7 +35,7 @@ Level 3: Reference files (this document)
 
 This reference file provides Level 3 deep-dive technical guidance on skill creation, validation, and distribution.
 
-**See also**: [SET-UP - Skill Creation.md](../../install_guides/SET-UP%20-%20Skill%20Creation.md) for interactive AI-first creation workflow with detailed time estimates.
+**See also**: [SET-UP - Skill Creation.md](../../../install_guides/SET-UP%20-%20Skill%20Creation.md) for interactive AI-first creation workflow with detailed time estimates.
 
 ### Core Principle
 

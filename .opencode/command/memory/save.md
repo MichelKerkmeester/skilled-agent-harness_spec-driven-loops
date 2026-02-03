@@ -4,9 +4,112 @@ argument-hint: "<spec-folder>"
 allowed-tools: Read, Bash, Task, spec_kit_memory_memory_save, spec_kit_memory_memory_index_scan, spec_kit_memory_memory_stats, spec_kit_memory_memory_update
 ---
 
-# 🚨 MANDATORY PHASE - BLOCKING ENFORCEMENT
+# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+
+> **CRITICAL:** This command has a required `<spec-folder>` argument. You MUST validate the argument before proceeding.
+
+## 4 CRITICAL RULES
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ RULE 1: CHECK $ARGUMENTS FIRST                                              │
+│   → IF empty: STOP and ask user for spec folder                             │
+│   → IF provided: Validate folder exists                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ RULE 2: NEVER ASSUME FROM CONTEXT                                           │
+│   → Do NOT infer folder from previous conversation                          │
+│   → Explicit argument = explicit folder                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ RULE 3: VALIDATE BEFORE PROCEEDING                                          │
+│   → Folder must exist in specs/ directory                                   │
+│   → Memory subdirectory must exist or be creatable                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ RULE 4: BLOCK ON FAILURE                                                    │
+│   → If validation fails: Return STATUS=FAIL ERROR="..."                     │
+│   → Do NOT proceed to save workflow                                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
 
 **This phase MUST be passed before workflow execution. You CANNOT proceed until phase shows ✅ PASSED.**
+
+---
+
+## 🔒 PHASE 0: PRE-FLIGHT VALIDATION
+
+**STATUS: ☐ BLOCKED**
+
+**Execute BEFORE folder validation to prevent data quality issues.**
+
+```
+PRE-FLIGHT CHECKS (ALL MUST PASS):
+
+├─ CHECK 1: ANCHOR FORMAT VALIDATION
+│   ├─ Scan conversation for existing memory file references
+│   ├─ If memory files referenced/read during session:
+│   │   ├─ Verify they contain BOTH opening and closing ANCHOR tags
+│   │   ├─ Pattern: <!-- ANCHOR:id --> ... <!-- /ANCHOR:id -->
+│   │   └─ IF missing closing tags → WARN user before proceeding
+│   ├─ Why: Broken anchors break section-specific retrieval (93% token waste)
+│   └─ SET STATUS: ✅ PASSED (or ⚠️ WARNED)
+│
+├─ CHECK 2: DUPLICATE SESSION DETECTION
+│   ├─ Call: spec_kit_memory_memory_stats({ specFolder: [if known] })
+│   ├─ Check: lastSessionHash vs current conversation fingerprint
+│   ├─ IF duplicate detected (same topic + timeframe < 1h):
+│   │   ├─ WARN: "Recent save detected for this topic"
+│   │   ├─ SHOW: Last save time, topic, file path
+│   │   ├─ ASK: "[O]verwrite | [A]ppend | [N]ew file | [C]ancel"
+│   │   └─ WAIT for explicit response
+│   ├─ IF overwrite selected → Use existing filename, update content
+│   ├─ IF append selected → Merge with existing session (preserve metadata)
+│   ├─ IF new file selected → Generate new timestamp
+│   └─ SET STATUS: ✅ PASSED (after user selection)
+│
+├─ CHECK 3: TOKEN BUDGET VALIDATION
+│   ├─ Estimate conversation size: message_count * avg_tokens_per_message
+│   ├─ IF estimated_tokens > 50,000:
+│   │   ├─ WARN: "Large conversation detected (est. {N} tokens)"
+│   │   ├─ SUGGEST: Split into multiple saves by topic/phase
+│   │   ├─ OPTIONS: "[C]ontinue anyway | [S]plit save | [E]dit scope"
+│   │   └─ WAIT for explicit response
+│   ├─ Why: Prevents MCP timeout, ensures embedding quality
+│   └─ SET STATUS: ✅ PASSED (or user selected option)
+│
+├─ CHECK 4: SPEC FOLDER EXISTENCE
+│   ├─ IF $ARGUMENTS contains folder → Validate exists, SET: pending_folder
+│   ├─ IF $ARGUMENTS empty → Skip (defer to Phase 1)
+│   └─ SET STATUS: ✅ PASSED
+│
+└─ CHECK 5: FILE NAMING CONFLICT
+    ├─ Generate filename: {DD-MM-YY}_{HH-MM}__{topic}.md
+    ├─ Check if file already exists at target path
+    ├─ IF exists AND not duplicate session (Check 2):
+        ├─ WARN: "Filename collision detected"
+        ├─ SUGGEST: Append incrementor (-2, -3, etc.)
+        └─ ASK: "[A]uto-increment | [R]ename | [O]verwrite"
+    └─ SET STATUS: ✅ PASSED
+
+**STOP HERE** - All checks must pass before proceeding to Phase 1.
+
+⛔ HARD STOP: DO NOT proceed if any check fails without user resolution
+```
+
+**Phase 0 Output:**
+```
+anchor_validation: ✅ PASSED | ⚠️ WARNED
+duplicate_check: ✅ PASSED | ⚠️ DUPLICATE_RESOLVED
+token_budget: ✅ PASSED | ⚠️ SPLIT_REQUESTED
+folder_existence: ✅ PASSED
+filename_conflict: ✅ PASSED | 🔄 RENAMED_TO=[new_name]
+```
+
+**Why Phase 0 Matters:**
+- **Prevents broken anchors** that silently break retrieval (93% token waste)
+- **Avoids duplicate saves** that pollute memory database
+- **Prevents MCP timeouts** from oversized conversations
+- **Ensures clean file organization** without naming conflicts
 
 ---
 
@@ -47,7 +150,7 @@ EXECUTE THIS CHECK FIRST:
 
 ---
 
-## 🔒 PHASE 2: CONTENT ALIGNMENT CHECK
+## 🔒 PHASE 1B: CONTENT ALIGNMENT CHECK
 
 **STATUS: ☐ BLOCKED** (run after Phase 1)
 
@@ -81,7 +184,7 @@ ALIGNMENT VALIDATION:
 ⛔ HARD STOP: DO NOT proceed if alignment not validated
 ```
 
-**Phase 2 Output:** `alignment_validated = ☐ YES | ☐ WARNED_CONFIRMED`
+**Phase 1B Output:** `alignment_validated = ☐ YES | ☐ WARNED_CONFIRMED`
 
 ---
 
@@ -91,17 +194,21 @@ ALIGNMENT VALIDATION:
 
 | PHASE                   | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE             |
 | ----------------------- | --------------- | ----------- | ------------------------ |
+| PHASE 0: PRE-FLIGHT     | ✅ PASSED        | ______      | all_checks: ______       |
 | PHASE 1: SPEC FOLDER    | ✅ PASSED        | ______      | target_folder: ______    |
-| PHASE 2: CONTENT ALIGN  | ✅ PASSED        | ______      | alignment_validated: ___ |
+| PHASE 1B: CONTENT ALIGN | ✅ PASSED        | ______      | alignment_validated: ___ |
 
 ```
 VERIFICATION CHECK:
+├─ Phase 0 shows ✅ PASSED?
+│   ├─ YES → Check Phase 1
+│   └─ NO  → STOP and complete Phase 0 (pre-flight)
 ├─ Phase 1 shows ✅ PASSED?
 │   ├─ YES → Check Phase 1B
 │   └─ NO  → STOP and complete Phase 1
-├─ Phase 2 shows ✅ PASSED?
+├─ Phase 1B shows ✅ PASSED?
 │   ├─ YES → Proceed to "# Memory Save" section below
-│   └─ NO  → STOP and complete Phase 2 (alignment check)
+│   └─ NO  → STOP and complete Phase 1B (alignment check)
 ```
 
 ---
@@ -110,10 +217,14 @@ VERIFICATION CHECK:
 
 **YOU ARE IN VIOLATION IF YOU:**
 
-- Started saving context before phase passed
+- **Skipped Phase 0 pre-flight checks**
+- **Proceeded with broken ANCHOR tags without warning user**
+- **Ignored duplicate session detection**
+- **Ignored token budget warnings for large conversations**
+- Started saving context before phases passed
 - Assumed a spec folder without validation
 - **Assumed folder from previous session context without explicit argument**
-- **Skipped Phase 2 alignment check when folder was provided**
+- **Skipped Phase 1B alignment check when folder was provided**
 - Skipped the alignment score check when no marker exists
 - Did not present menu when scores were ambiguous
 - Proceeded without user selection when required
@@ -122,7 +233,7 @@ VERIFICATION CHECK:
 **VIOLATION RECOVERY PROTOCOL:**
 ```
 1. STOP immediately
-2. STATE: "I violated PHASE 1/2 by [specific action]. Correcting now."
+2. STATE: "I violated PHASE 1/1B by [specific action]. Correcting now."
 3. RETURN to phase validation
 4. COMPLETE the phase properly
 5. RESUME only after phase passes verification
@@ -162,7 +273,7 @@ operating_mode:
 ├─────────────────┼─────────────────────────────────────┼──────────┼─────────────────┤
 │ CONTEXT SAVE    │ Bash (node generate-context.js)     │ SINGLE   │ Show error msg  │
 ├─────────────────┼─────────────────────────────────────┼──────────┼─────────────────┤
-│ IMMEDIATE INDEX │ memory_save (optional)              │ SINGLE   │ Auto on restart │
+│ IMMEDIATE INDEX │ spec_kit_memory_memory_save (optional)│ SINGLE   │ Auto on restart │
 └─────────────────┴─────────────────────────────────────┴──────────┴─────────────────┘
 ```
 
@@ -186,20 +297,6 @@ spec_kit_memory_memory_save({
 ## 1. 🎯 PURPOSE
 
 Save the current conversation context to a spec folder's memory directory for future retrieval. Automatically detects the most relevant spec folder or prompts user when ambiguous.
-
-### 🧠 Prediction Error Gating
-
-When saving memories, the system checks for similar existing memories using **Prediction Error (PE) gating**:
-
-| Similarity | Action | Description |
-|------------|--------|-------------|
-| ≥ 0.95     | **REINFORCE** | Strengthen existing memory, skip create |
-| 0.90-0.94  | **CHECK** | Check for contradiction, may update |
-| 0.70-0.89  | **LINK** | Create new memory linked to existing |
-| 0.50-0.69  | **CREATE** | Create new memory (low match) |
-| < 0.50     | **CREATE** | Create new memory (no match) |
-
-**Result:** Prevents duplicate memories while strengthening frequently-saved context.
 
 ---
 
@@ -355,15 +452,20 @@ memory_search({ query: "jwt auth", includeContent: true })
 
 **Two Execution Modes:**
 
-| Mode                                | Command                                                | Use When                                     |
-| ----------------------------------- | ------------------------------------------------------ | -------------------------------------------- |
-| **Mode 1: JSON File** (Recommended) | `node generate-context.js /tmp/save-context-data.json` | Rich context with decisions, files, triggers |
-| **Mode 2: Direct Path**             | `node generate-context.js specs/005-memory`            | Minimal/placeholder content only             |
+| Mode                                | Command                                                           | Use When                                     |
+| ----------------------------------- | ----------------------------------------------------------------- | -------------------------------------------- |
+| **Mode 1: JSON File** (Recommended) | `node generate-context.js ${TMPDIR:-/tmp}/save-context-data.json` | Rich context with decisions, files, triggers |
+| **Mode 2: Direct Path**             | `node generate-context.js specs/005-memory`                       | Minimal/placeholder content only             |
+
+> **Cross-Platform Note:** `${TMPDIR:-/tmp}` uses the system temp directory. On macOS/Linux this resolves to `/tmp` or `$TMPDIR`. On Windows (Git Bash/WSL), use `$TEMP` or `%TEMP%` instead.
 
 **Mode 1 (Recommended) - Write JSON to temp file, then execute:**
 ```bash
+# Cross-platform temp directory: ${TMPDIR:-/tmp} on Unix, $TEMP on Windows
+TEMP_FILE="${TMPDIR:-/tmp}/save-context-data.json"
+
 # 1. Write the JSON data to a temp file (use Write tool or heredoc)
-cat > /tmp/save-context-data.json << 'EOF'
+cat > "$TEMP_FILE" << 'EOF'
 {
   "specFolder": "...",
   "sessionSummary": "...",
@@ -372,10 +474,10 @@ cat > /tmp/save-context-data.json << 'EOF'
 EOF
 
 # 2. Execute the script with the JSON file
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/save-context-data.json
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js "$TEMP_FILE"
 
 # 3. Clean up temp file
-rm /tmp/save-context-data.json
+rm "$TEMP_FILE"
 ```
 
 **Expected Output (Success):**
@@ -450,7 +552,7 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 
 ---
 
-## 8. 🔍 QUICK REFERENCE
+## 8. 📌 QUICK REFERENCE
 
 | Usage                                                  | Behavior                              |
 | ------------------------------------------------------ | ------------------------------------- |
@@ -462,19 +564,84 @@ specs/{spec-folder}/memory/{timestamp}__{topic}.md
 
 ## 9. 📊 COMPLETION REPORT
 
-After successful save, display:
+After successful save, display the structured response envelope.
+
+### Structured Response Envelope
+
+All `/memory:save` completions return a structured JSON envelope for programmatic parsing and human readability:
+
+```json
+{
+  "summary": "Memory saved successfully to specs/011-memory/memory/08-02-26_14-30__semantic-search.md",
+  "data": {
+    "status": "OK",
+    "file_path": "specs/011-memory/memory/08-02-26_14-30__semantic-search.md",
+    "spec_folder": "011-memory",
+    "memory_id": 42,
+    "indexing_status": "indexed",
+    "anchors_created": [
+      "summary-011",
+      "decision-vector-search-011",
+      "files-011"
+    ],
+    "trigger_phrases": [
+      "semantic search",
+      "vector embeddings",
+      "memory retrieval",
+      "anchor tags",
+      "context preservation"
+    ],
+    "file_size_kb": 12.4,
+    "timestamp": "2026-02-01T14:30:00Z"
+  },
+  "hints": [
+    "Use /memory:context to find this memory later",
+    "Anchors enable 93% token savings when loading specific sections",
+    "Memory indexed and searchable immediately"
+  ],
+  "meta": {
+    "command": "/memory:save",
+    "duration_ms": 1247,
+    "mcp_available": true,
+    "deferred_indexing": false
+  }
+}
+```
+
+**Field Definitions:**
+
+| Field                      | Type     | Description                              |
+| -------------------------- | -------- | ---------------------------------------- |
+| **summary**                | string   | Human-readable one-line summary          |
+| **data.status**            | string   | "OK" or "FAIL"                           |
+| **data.file_path**         | string   | Absolute path to saved memory file       |
+| **data.spec_folder**       | string   | Target spec folder (e.g., "011-memory")  |
+| **data.memory_id**         | number   | Database ID (null if deferred indexing)  |
+| **data.indexing_status**   | string   | "indexed", "deferred", or "failed"       |
+| **data.anchors_created**   | string[] | List of anchor IDs in the file           |
+| **data.trigger_phrases**   | string[] | Keywords for semantic search             |
+| **data.file_size_kb**      | number   | Size of created file                     |
+| **data.timestamp**         | string   | ISO 8601 creation timestamp              |
+| **hints**                  | string[] | Contextual suggestions for next steps    |
+| **meta.command**           | string   | Command that generated response          |
+| **meta.duration_ms**       | number   | Execution time in milliseconds           |
+| **meta.mcp_available**     | boolean  | Whether MCP server was reachable         |
+| **meta.deferred_indexing** | boolean  | Whether indexing was deferred to restart |
+
+**Human-Friendly Display:**
 
 ```
 MEMORY SAVED
 ────────────────────────────────────────────────────
-Spec folder: <target_folder>
-File: specs/<folder>/memory/<filename>.md
-Memory ID: #<id>
+Spec folder: <spec_folder>
+File: <file_path>
+Memory ID: #<memory_id>
+Indexing: <indexing_status>
 
 Anchors created:
-  - summary-<spec#>
-  - decision-<topic>-<spec#>
-  - files-<spec#>
+  - <anchor1>
+  - <anchor2>
+  - <anchor3>
 
 Trigger phrases extracted:
   <phrase1>, <phrase2>, <phrase3>, ...
@@ -482,7 +649,7 @@ Trigger phrases extracted:
 ────────────────────────────────────────────────────
 [t]riggers edit | [a]nchors view | [d]one
 
-STATUS=OK PATH=specs/<folder>/memory/<filename>.md ANCHORS=<count>
+STATUS=<status> PATH=<file_path> ANCHORS=<count>
 ```
 
 ### Post-Save Actions
@@ -516,12 +683,12 @@ Current triggers:
 
 ## 10. 🔗 RELATED COMMANDS
 
-- `/memory:search` - Unified memory dashboard (search, browse, cleanup, triggers)
-- `/memory:checkpoint` - Create checkpoint before major changes
+- `/memory:context` - Unified memory dashboard (search, browse, cleanup, triggers)
+- `/memory:manage` - Create checkpoint before major changes
 
 ---
 
-## 11. 🔄 INDEXING OPTIONS
+## 11. 🔧 INDEXING OPTIONS
 
 Memory files can be indexed in multiple ways:
 
@@ -531,6 +698,76 @@ Memory files can be indexed in multiple ways:
 | **generate-context.js**        | Script execution | Standard /memory:save workflow    |
 | **memory_save MCP tool**       | On demand        | Immediate indexing of single file |
 | **memory_index_scan MCP tool** | On demand        | Bulk re-index of folder/all files |
+
+### Deferred Indexing (Graceful Degradation)
+
+When the MCP server is unavailable or embedding fails during save, the system uses **deferred indexing** to ensure the memory file is still created successfully.
+
+**How It Works:**
+
+```
+generate-context.js execution:
+├─ Write memory file to disk (ALWAYS succeeds)
+├─ TRY: Immediate indexing via MCP
+│   ├─ Call memory_save({ filePath })
+│   ├─ SUCCESS → File saved AND indexed
+│   └─ FAILURE → Continue with deferred indexing
+├─ IF MCP unavailable or embedding fails:
+│   ├─ Log: "⚠️ Indexing deferred - file saved, will auto-index on MCP restart"
+│   ├─ File remains on disk (usable via Read tool)
+│   └─ Auto-indexed when MCP server next starts
+└─ Return success status (file_path, deferred: true/false)
+```
+
+**Deferred Indexing Metadata:**
+
+The memory file includes metadata to track indexing status:
+
+```yaml
+indexing_status: deferred  # or "indexed"
+indexing_attempt: 2025-02-01T14:30:00Z
+indexing_error: "MCP server unavailable"
+```
+
+**Retry Logic:**
+
+1. **Automatic Retry** (on MCP restart):
+   - MCP server scans `specs/**/memory/` directories
+   - Detects files with `indexing_status: deferred`
+   - Attempts re-indexing automatically
+
+2. **Manual Retry**:
+   ```bash
+   # Retry single file
+   spec_kit_memory_memory_save({
+     filePath: "specs/011-memory/memory/context.md",
+     force: true
+   })
+
+   # Retry entire folder
+   spec_kit_memory_memory_index_scan({
+     specFolder: "011-memory",
+     force: true
+   })
+   ```
+
+**Manual Recovery:**
+
+If auto-indexing fails repeatedly, manual intervention options:
+
+| Issue                  | Recovery Action                                                                            |
+| ---------------------- | ------------------------------------------------------------------------------------------ |
+| MCP server unreachable | Restart OpenCode/Claude Code to restart MCP server                                         |
+| Embedding timeout      | Use `memory_index_scan` with smaller batch size                                            |
+| Corrupted file         | Read file, verify ANCHOR tags, re-save with corrections                                    |
+| Database locked        | Delete `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`, restart |
+
+**Graceful Degradation Benefits:**
+
+- **Never lose context**: File always saved to disk, even if indexing fails
+- **Usable immediately**: Can read file directly via Read tool
+- **Auto-recovery**: System automatically attempts re-indexing
+- **No workflow blocking**: /memory:save completes successfully regardless of MCP status
 
 ### Full Parameter Reference: memory_save
 
@@ -564,14 +801,14 @@ spec_kit_memory_memory_index_scan({
 
 ---
 
-## 12. 📚 FULL DOCUMENTATION
+## 12. 📖 FULL DOCUMENTATION
 
 For comprehensive documentation:
 `.opencode/skill/system-spec-kit/SKILL.md`
 
 ---
 
-## 13. 🔀 SUB-AGENT DELEGATION
+## 13. 🔧 SUB-AGENT DELEGATION
 
 The memory save workflow delegates execution work to a sub-agent for token efficiency. The main agent handles folder validation and user interaction; the sub-agent handles context analysis and file generation.
 
@@ -633,13 +870,14 @@ DISPATCH SUB-AGENT:
        }
     
     4. WRITE JSON to temp file:
-       Write JSON to /tmp/save-context-data.json
+       Write JSON to ${TMPDIR:-/tmp}/save-context-data.json
+       (On Windows: use $TEMP or %TEMP% directory)
     
     5. EXECUTE SCRIPT:
-       node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/save-context-data.json
+       node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js ${TMPDIR:-/tmp}/save-context-data.json
     
     6. CLEANUP:
-       rm /tmp/save-context-data.json
+       rm ${TMPDIR:-/tmp}/save-context-data.json
     
     RETURN (as your final message):
     ```json
@@ -729,12 +967,12 @@ This command can be used with any workflow:
 ```
 
 **Related commands:**
-- `/memory:search` - Find saved memories
-- `/memory:checkpoint` - Create restore point
+- `/memory:context` - Find saved memories
+- `/memory:manage` - Create restore point
 
 ---
 
-## 15. 📌 NEXT STEPS
+## 15. ➡️ NEXT STEPS
 
 After context is saved, suggest relevant next steps:
 
@@ -742,7 +980,154 @@ After context is saved, suggest relevant next steps:
 | ---------------------------- | ------------------------------------------ | ----------------------------- |
 | Context saved, continue work | Return to previous task                    | Memory preserved, continue    |
 | Ending session               | `/spec_kit:handover [spec-folder-path]`    | Create full handover document |
-| Search saved memories        | `/memory:search [query]`                   | Find related context          |
+| Search saved memories        | `/memory:context [query]`                  | Find related context          |
 | Start new work               | `/spec_kit:complete [feature-description]` | Begin new feature             |
 
 **ALWAYS** end with: "Context saved. What would you like to do next?"
+
+---
+
+## 16. 🔄 SESSION DEDUPLICATION
+
+The memory system includes **session deduplication** to prevent redundant saves of the same conversation content. This prevents memory database pollution and helps maintain data quality.
+
+### Purpose
+
+Session deduplication addresses these problems:
+
+1. **Accidental duplicate saves**: User runs `/memory:save` multiple times in same session
+2. **Session continuation saves**: Resuming work after compaction or handover
+3. **Iterative debugging saves**: Saving context after each debug attempt
+4. **Memory database bloat**: Identical content indexed multiple times wastes storage/search performance
+
+### How It Works
+
+**Duplicate Detection Process:**
+
+```
+Phase 0 Check 2: Duplicate Session Detection
+├─ Generate conversation fingerprint from current session:
+│   ├─ Extract: Topic keywords + timestamp range + file paths
+│   ├─ Hash: SHA-256 of (topic + files + timeframe)
+│   └─ Store as: current_session_hash
+├─ Call: memory_stats({ specFolder })
+│   ├─ Returns: lastSessionHash, lastSessionTime, lastSessionFile
+│   └─ Compare: current_session_hash vs lastSessionHash
+├─ IF hashes match AND time_delta < 1 hour:
+│   ├─ DUPLICATE DETECTED
+│   ├─ Present options to user
+│   └─ Wait for explicit selection
+├─ ELSE:
+│   ├─ Unique session detected
+│   └─ Proceed with new file creation
+```
+
+**Fingerprint Components:**
+
+| Component        | Extraction Method                      | Weight |
+| ---------------- | -------------------------------------- | ------ |
+| **Topic**        | Extract from session summary/title     | 40%    |
+| **Files**        | Files modified during session          | 30%    |
+| **Timeframe**    | Session start/end timestamps (rounded) | 20%    |
+| **Message Hash** | Hash of first + last message content   | 10%    |
+
+**Time Delta Threshold:**
+
+- **< 1 hour**: High likelihood of duplicate (warn user)
+- **1-4 hours**: Medium likelihood (suggest review)
+- **> 4 hours**: Low likelihood (proceed normally)
+
+### Metadata Fields
+
+Memory files include deduplication metadata in the YAML frontmatter:
+
+```yaml
+---
+session_hash: a3d5f9c2e1b4...
+session_timestamp: 2026-02-01T14:30:00Z
+previous_session_id: 41
+dedup_status: original  # or "duplicate_overwrite", "duplicate_append"
+related_sessions: [38, 39, 40]
+---
+```
+
+| Field                 | Type     | Purpose                                |
+| --------------------- | -------- | -------------------------------------- |
+| `session_hash`        | string   | SHA-256 fingerprint of session content |
+| `session_timestamp`   | string   | ISO 8601 timestamp of save operation   |
+| `previous_session_id` | number   | Memory ID of previous related session  |
+| `dedup_status`        | string   | How this file relates to duplicates    |
+| `related_sessions`    | number[] | Memory IDs of related/similar sessions |
+
+**Dedup Status Values:**
+
+| Value                 | Meaning                                       |
+| --------------------- | --------------------------------------------- |
+| `original`            | First/unique save of this session             |
+| `duplicate_overwrite` | User chose to overwrite previous duplicate    |
+| `duplicate_append`    | User chose to append to previous session      |
+| `duplicate_new`       | User chose new file despite duplicate warning |
+
+### User Options When Duplicate Detected
+
+```
+⚠️ DUPLICATE SESSION DETECTED
+
+A recent memory save matches this conversation:
+  File: specs/011-memory/memory/08-02-26_14-15__semantic-search.md
+  Time: 15 minutes ago
+  Topic: Semantic search implementation
+  Hash: a3d5f9c2... (match)
+
+Options:
+  [O]verwrite - Replace existing file with current session content
+  [A]ppend    - Merge current session into existing file (preserve metadata)
+  [N]ew       - Create new file anyway (increment timestamp)
+  [C]ancel    - Abort save operation
+
+Selection: ___
+```
+
+**Option Behaviors:**
+
+| Option        | File Action                         | Metadata Update                         |
+| ------------- | ----------------------------------- | --------------------------------------- |
+| **Overwrite** | Replace file content, keep filename | Set `dedup_status: duplicate_overwrite` |
+| **Append**    | Merge sections, preserve anchors    | Update `related_sessions` array         |
+| **New**       | Create new file with +1 minute      | Set `dedup_status: duplicate_new`       |
+| **Cancel**    | No file created                     | No changes                              |
+
+### Impact on Search & Retrieval
+
+Deduplication metadata improves search quality:
+
+1. **memory_search** can filter duplicate sessions:
+   ```javascript
+   memory_search({
+     query: "semantic search",
+     exclude_duplicates: true  // Only return original sessions
+   })
+   ```
+
+2. **Related session linking** enables traversal:
+   ```javascript
+   // Find session by ID
+   memory_search({ id: 42 })
+   // Load related sessions
+   related_sessions.forEach(id => memory_search({ id }))
+   ```
+
+3. **Temporal clustering** groups related work:
+   - Sessions with same `session_hash` cluster together
+   - Search can prioritize most recent version
+   - Historical versions remain accessible for audit
+
+### Benefits
+
+| Benefit                | Impact                                               |
+| ---------------------- | ---------------------------------------------------- |
+| **Prevents pollution** | Memory database stays clean, search quality improves |
+| **Saves storage**      | Avoid redundant embedding generation (cost savings)  |
+| **Improves search**    | Fewer duplicate results, better relevance scoring    |
+| **Maintains history**  | Option to keep duplicates if intentional             |
+| **User awareness**     | Explicit warning prevents accidental overwrites      |

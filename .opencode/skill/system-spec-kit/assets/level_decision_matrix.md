@@ -29,11 +29,12 @@ This matrix helps determine the appropriate documentation level for any task. Us
 
 ## 2. 📊 DECISION MATRIX TABLE (Progressive Enhancement)
 
-| Level               | LOC Guidance | Required Files                                                      | Adds To Previous        | Use When                             |
-| ------------------- | ------------ | ------------------------------------------------------------------- | ----------------------- | ------------------------------------ |
-| **1: Baseline**     | <100         | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md`    | (foundation)            | All features - minimum documentation |
-| **2: Verification** | 100-499      | Level 1 + `checklist.md`                                            | QA checklist            | Needs systematic validation          |
-| **3: Full**         | ≥500         | Level 2 + `decision-record.md`                                      | ADR + optional research | Complex/architectural changes        |
+| Level               | LOC Guidance     | Required Files                                                      | Adds To Previous                   | Use When                             |
+| ------------------- | ---------------- | ------------------------------------------------------------------- | ---------------------------------- | ------------------------------------ |
+| **1: Baseline**     | <100             | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md`    | (foundation)                       | All features - minimum documentation |
+| **2: Verification** | 100-499          | Level 1 + `checklist.md`                                            | QA checklist                       | Needs systematic validation          |
+| **3: Full**         | ≥500             | Level 2 + `decision-record.md`                                      | ADR + optional research            | Complex/architectural changes        |
+| **3+: Extended**    | Complexity 80+   | Level 3 + AI protocols + extended checklist + sign-offs             | Governance + orchestration         | Multi-agent workflows, enterprise    |
 
 **Progressive Enhancement Model:**
 ```
@@ -42,6 +43,8 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research.md
+                              ↓
+Level 3+ (Extended):    Level 3 + AI protocols + extended checklist + sign-offs
 ```
 
 ---
@@ -213,10 +216,10 @@ The spec validation system (`validate-spec.sh`) checks documentation quality usi
 - Details: Searches for patterns like `[PROJECT_NAME]`, `[DESCRIPTION]`, `{{placeholder}}`, etc.
 
 **ANCHORS_VALID**
-- Purpose: Validates that memory files have balanced ANCHOR_START/ANCHOR_END pairs
+- Purpose: Validates that memory files have balanced ANCHOR open/close pairs
 - Applies to: All levels with `memory/` folders
 - Severity: warning (default)
-- Details: Each `<!-- ANCHOR_START: id -->` must have matching `<!-- ANCHOR_END: id -->`. Unbalanced anchors break semantic memory indexing.
+- Details: Each `<!-- ANCHOR: id -->` must have matching `<!-- /ANCHOR: id -->`. Unbalanced anchors break semantic memory indexing.
 
 **CHECKLIST_HAS_ITEMS**
 - Purpose: Ensures checklist.md contains actual checklist items, not just template structure
@@ -244,10 +247,11 @@ The spec validation system (`validate-spec.sh`) checks documentation quality usi
 
 If scope grows during implementation, escalate by adding the required files:
 
-| From Level | To Level                   | Action                                          | Files to Add |
-| ---------- | -------------------------- | ----------------------------------------------- | ------------ |
-| 1 → 2      | Add verification           | `checklist.md`                                  |
-| 2 → 3      | Add decision documentation | `decision-record.md` (+ optional `research.md`) |
+| From Level | To Level                   | Action                                          | Files to Add                                                    |
+| ---------- | -------------------------- | ----------------------------------------------- | --------------------------------------------------------------- |
+| 1 → 2      | Add verification           | `checklist.md`                                  |                                                                 |
+| 2 → 3      | Add decision documentation | `decision-record.md` (+ optional `research.md`) |                                                                 |
+| 3 → 3+     | Add governance             | AI execution protocol + extended checklist      | Sign-off section in spec.md + multi-agent coordination patterns |
 
 **Changelog example:**
 ```markdown
@@ -300,14 +304,31 @@ Architectural decision? ──YES──→ Level 3 (add decision-record.md)
 
 ---
 
-## 11. 🔗 RELATED RESOURCES
+## 11. 📊 SPEC TRACEABILITY
+
+This decision matrix addresses the following spec requirements:
+
+| Requirement | Section | Description                                     |
+| ----------- | ------- | ----------------------------------------------- |
+| REQ-006     | §2.1    | Level 1 baseline documentation requirements     |
+| REQ-007     | §2.2    | Level 2 verification requirements (checklist)   |
+| REQ-008     | §2.3    | Level 3 full documentation (decision records)   |
+| REQ-009     | §2.4    | Level 3+ extended documentation (governance)    |
+| REQ-010     | §3      | LOC thresholds as soft guidance                 |
+
+**Source**: `.opencode/skill/system-spec-kit/spec.md`
+
+---
+
+## 12. 🔗 RELATED RESOURCES
 
 ### Asset Files
+- [complexity_decision_matrix.md](./complexity_decision_matrix.md) - Complexity-based level selection and scoring
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch
 - [template_mapping.md](./template_mapping.md) - Template routing and task mapping
 
 ### Reference Files
-- [level_specifications.md](../references/templates/level_specifications.md) - Complete Level 1-3 requirements
+- [level_specifications.md](../references/templates/level_specifications.md) - Complete Level 1-3+ requirements
 - [quick_reference.md](../references/workflows/quick_reference.md) - Commands, checklists, and troubleshooting
 - [template_guide.md](../references/template_guide.md) - Template selection and quality standards
 

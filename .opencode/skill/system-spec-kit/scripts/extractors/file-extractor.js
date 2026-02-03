@@ -6,7 +6,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const { CONFIG } = require('../core');
 
@@ -27,13 +27,12 @@ try {
     validateAnchorUniqueness
   } = require('../lib/anchor-generator'));
 } catch (err) {
-  console.error('Failed to load anchor-generator library:', err.message);
-  process.exit(1);
+  throw new Error(`Failed to load anchor-generator library: ${err.message}`);
 }
 
 /* ─────────────────────────────────────────────────────────────
    2. OBSERVATION TYPE DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function detect_observation_type(obs) {
   if (obs.type && obs.type !== 'observation') return obs.type;
@@ -54,10 +53,14 @@ function detect_observation_type(obs) {
 
 /* ─────────────────────────────────────────────────────────────
    3. FILE EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function extract_files_from_data(collected_data, observations) {
   const files_map = new Map();
+
+  // BUG-001 & BUG-002: Defensive null checks
+  if (!collected_data) collected_data = {};
+  if (!observations) observations = [];
 
   const add_file = (raw_path, description) => {
     const normalized = toRelativePath(raw_path, CONFIG.PROJECT_ROOT);
@@ -128,7 +131,7 @@ function extract_files_from_data(collected_data, observations) {
 
 /* ─────────────────────────────────────────────────────────────
    4. SEMANTIC DESCRIPTION ENHANCEMENT
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function enhance_files_with_semantic_descriptions(files, semantic_file_changes) {
   return files.map(file => {
@@ -176,7 +179,7 @@ function enhance_files_with_semantic_descriptions(files, semantic_file_changes) 
 
 /* ─────────────────────────────────────────────────────────────
    5. OBSERVATION ANCHORING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function build_observations_with_anchors(observations, spec_folder) {
   const used_anchor_ids = [];
@@ -216,7 +219,7 @@ function build_observations_with_anchors(observations, spec_folder) {
 
 /* ─────────────────────────────────────────────────────────────
    6. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)

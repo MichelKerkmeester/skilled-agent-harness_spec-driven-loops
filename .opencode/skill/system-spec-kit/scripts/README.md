@@ -29,14 +29,14 @@ All scripts are catalogued in [`scripts-registry.json`](./scripts-registry.json)
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
-- [8. 📚 RELATED DOCUMENTS](#8--related-documents)
+- [1. 📖 OVERVIEW](#1-📖-overview)
+- [2. 🚀 QUICK START](#2-🚀-quick-start)
+- [3. 📁 STRUCTURE](#3-📁-structure)
+- [4. ⚡ FEATURES](#4-⚡-features)
+- [5. ⚙️ CONFIGURATION](#5-⚙️-configuration)
+- [6. 💡 USAGE EXAMPLES](#6-💡-usage-examples)
+- [7. 🛠️ TROUBLESHOOTING](#7-🛠️-troubleshooting)
+- [8. 📚 RELATED DOCUMENTS](#8-📚-related-documents)
 
 ---
 
@@ -66,6 +66,8 @@ The `scripts/` directory contains shell scripts for spec folder management and v
 | **Level-Aware** | Adapts requirements based on documentation level (L1/L2/L3) |
 | **JSON Output** | Machine-readable output for CI/CD integration |
 | **Template-Based** | Creates spec folders from standardized templates |
+
+---
 
 ### Requirements
 

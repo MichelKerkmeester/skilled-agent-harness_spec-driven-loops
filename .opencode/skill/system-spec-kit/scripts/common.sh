@@ -15,8 +15,10 @@ get_repo_root() {
         git rev-parse --show-toplevel
     else
         # Fall back to script location for non-git repos
+        # Path: scripts/ -> system-spec-kit/ -> skill/ -> .opencode/ -> project
         local script_dir
         script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+        echo "Warning: Not in a git repo, using relative path for PROJECT_ROOT" >&2
         (cd "$script_dir/../../../.." && pwd)
     fi
 }

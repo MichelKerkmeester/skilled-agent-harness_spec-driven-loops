@@ -7,6 +7,105 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**1.2.0.0**] - 2026-02-03
+
+The largest release in SpecKit history: **6 specs batched** delivering a complete memory system overhaul with **causal memory graph**, **command consolidation** (9→5 commands, 44% reduction), and **86 bug fixes** across P0-P3 priorities. Implemented by **28+ parallel Opus agents** with comprehensive multi-agent audits.
+
+---
+
+## Highlights
+
+### 🏗️ Memory System Overhaul (Spec 082)
+- **Causal Memory Graph** — 6 relationship types (caused, enabled, supersedes, contradicts, derived_from, supports) with depth-limited traversal
+- **Session Deduplication** — Hash-based duplicate prevention achieving **50% token savings** on follow-up queries
+- **Intent-Aware Retrieval** — 5 intent types (add_feature, fix_bug, refactor, security_audit, understand) with automatic query classification
+- **BM25 Hybrid Search** — Pure JavaScript BM25 implementation for lexical search fallback
+- **Cross-Encoder Reranking** — Voyage/Cohere/local providers with length penalty optimization
+- **Recovery Hints System** — 49 error codes with actionable guidance
+- **Schema Migrations v8-v11** — causal_edges, memory_corrections, session_state tables + archival columns
+
+### 📋 Command Consolidation (Spec 083)
+- **44% reduction** — 9 commands consolidated to 5
+- **`/memory:context`** — Unified entry with intent-aware routing (absorbed search)
+- **`/memory:learn`** — Feedback loop with `correct` subcommand (absorbed correct)
+- **`/memory:manage`** — Administration with checkpoint subcommands (absorbed database + checkpoint)
+- **`/memory:why` removed** — Per user request
+- **7 logic bugs fixed** — MCP tool names, intent detection, cross-platform paths
+
+### 🔧 Bug Remediation (Specs 083-085)
+- **86 bugs fixed total** — 21 P0, 32 P1, 27 P2, 6 P3
+- **30-agent audit** — Spec 084 with 77% false positive filtering (8 confirmed fixes)
+- **10-agent parallel fixes** — Spec 085 with 34 bugs across core infrastructure, scoring, extractors, templates
+- **YAML path standardization** — `.claude/commands/` → `.opencode/command/` across 7 files
+- **Tool prefix corrections** — All commands now use full `spec_kit_memory_` prefix
+- **Template inheritance fixes** — Level 3 properly inherits from Level 2
+
+### 📝 Documentation Quality (Spec 004)
+- **`validate_document.py`** — New Python validation script with auto-fix capability
+- **Template rules** — 5 document types (readme, skill, reference, asset, agent) with severity levels
+- **Test suite** — 6 test fixtures, 53 files validated, 0 invalid in main codebase
+- **Write agent gate** — VALIDATE FORMAT step (step 8) now mandatory
+
+---
+
+## New MCP Tools (8)
+
+| Tool | Layer | Purpose |
+|------|-------|---------|
+| `memory_context` | L1 | Unified entry with intent awareness |
+| `memory_drift_why` | L6 | Trace causal chain for "why" queries |
+| `memory_causal_link` | L6 | Create causal relationships |
+| `memory_causal_stats` | L6 | Graph statistics and coverage |
+| `memory_causal_unlink` | L6 | Remove causal relationships |
+| `task_preflight` | L6 | Epistemic state capture before task |
+| `task_postflight` | L6 | Session learning after task |
+| `memory_get_learning_history` | L7 | Retrieve learning patterns |
+
+**Total MCP tools: 22** (organized in 7 layers L1-L7)
+
+---
+
+## Database Schema Changes
+
+| Version | Table/Column | Purpose |
+|---------|--------------|---------|
+| v8 | `causal_edges` | Causal memory graph (6 relation types) |
+| v9 | `memory_corrections` | Learning from mistakes, stability tracking |
+| v10 | `session_state` | Crash recovery, session persistence |
+| v11 | `is_archived`, `archived_at` | 5-state memory model archival |
+
+---
+
+## Files Changed
+
+**68 files** modified across 6 specs:
+
+- **MCP Server** (14 files) — handlers, lib/cognitive, lib/storage, lib/search
+- **Memory Commands** (5 files) — context.md, save.md, continue.md, learn.md, manage.md
+- **Spec Kit Commands** (7 files) — debug, complete, implement, plan, research, resume, handover
+- **YAML Assets** (10 files) — All spec_kit workflow configs
+- **New Library Modules** (14 files) — session-manager, causal-edges, bm25-index, cross-encoder, corrections, archival-manager, provider-chain, envelope, recovery-hints
+- **Documentation** (12 files) — SKILL.md, README.md, references
+- **Tests** (6 files) — causal-edges, cross-encoder, provider-chain, archival-manager, scoring
+
+**Deleted:** 5 command files (search.md, database.md, checkpoint.md, correct.md, why.md)
+
+---
+
+## Upgrade
+
+1. **Restart Required** — Restart OpenCode to load schema migrations (v8→v11)
+2. **Command Migration** — Update scripts using old commands:
+   - `/memory:search` → `/memory:context`
+   - `/memory:database` → `/memory:manage`
+   - `/memory:checkpoint` → `/memory:manage checkpoint`
+   - `/memory:correct` → `/memory:learn correct`
+3. **No Breaking Changes** — Existing memories preserved, legacy patterns work during transition
+
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.1.0.1...v1.2.0.0
+
+---
+
 ## [**1.1.0.1**] - 2026-01-31
 
 Critical documentation fix for **Code Mode prefixed environment variables**. Updates **2 MCP skills** (mcp-code-mode, mcp-figma) with correct `{manual_name}_{VAR}` format. Also adds **6 skill-level CHANGELOGs** for better change tracking.

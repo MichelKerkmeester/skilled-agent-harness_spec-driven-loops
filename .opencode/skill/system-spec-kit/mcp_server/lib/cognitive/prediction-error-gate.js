@@ -12,14 +12,14 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. STATE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 let db = null;
 
 /* ─────────────────────────────────────────────────────────────
    2. THRESHOLD CONSTANTS
    Based on Vestige research thresholds (ADR-002)
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // COGNITIVE-080: Similarity thresholds for memory decisions
 const THRESHOLD = {
@@ -56,7 +56,7 @@ const CONTRADICTION_PATTERNS = [
 
 /* ─────────────────────────────────────────────────────────────
    3. INITIALIZATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Initialize with database reference */
 function init(database) {
@@ -100,7 +100,7 @@ function ensure_conflicts_table() {
 
 /* ─────────────────────────────────────────────────────────────
    4. CORE EVALUATION FUNCTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Evaluate whether to create, update, or reinforce memory based on similarity */
 function evaluate_memory(candidates, new_content, options = {}) {
@@ -182,9 +182,12 @@ function evaluate_memory(candidates, new_content, options = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    5. CONTRADICTION DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/** Detect contradictions between two texts using pattern matching */
+/** 
+ * Detect contradictions between two texts using pattern matching.
+ * Uses word-boundary matching and context proximity to reduce false positives.
+ */
 function detect_contradiction(existing_content, new_content) {
   if (typeof existing_content !== 'string') {
     existing_content = '';
@@ -196,6 +199,56 @@ function detect_contradiction(existing_content, new_content) {
   const existing_lower = existing_content.toLowerCase();
   const new_lower = new_content.toLowerCase();
 
+  // Helper: Check if term exists as whole word (not substring)
+  const hasWholeWord = (text, term) => {
+    const regex = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+    return regex.test(text);
+  };
+
+  // Helper: Check if opposing terms are in close proximity (within ~100 chars of similar context)
+  // This reduces false positives when texts discuss different topics
+  const areTermsInSameContext = (text1, term1, text2, term2) => {
+    // Extract sentences containing the terms
+    const getSentence = (text, term) => {
+      const termIndex = text.toLowerCase().indexOf(term.toLowerCase());
+      if (termIndex === -1) return '';
+      // Find sentence boundaries (rough approximation)
+      const start = Math.max(0, text.lastIndexOf('.', termIndex) + 1, text.lastIndexOf('\n', termIndex) + 1);
+      const end = Math.min(text.length, 
+        Math.min(
+          text.indexOf('.', termIndex + term.length) !== -1 ? text.indexOf('.', termIndex + term.length) : text.length,
+          text.indexOf('\n', termIndex + term.length) !== -1 ? text.indexOf('\n', termIndex + term.length) : text.length
+        )
+      );
+      return text.substring(start, end).trim().toLowerCase();
+    };
+
+    const sentence1 = getSentence(text1, term1);
+    const sentence2 = getSentence(text2, term2);
+
+    // If sentences are too short, can't reliably determine context
+    if (sentence1.length < 10 || sentence2.length < 10) {
+      return false; // Require more context to claim contradiction
+    }
+
+    // Check for shared subject words (nouns/key terms) to confirm same topic
+    const extractKeyWords = (sentence) => {
+      const stopwords = new Set(['the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 
+        'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might',
+        'must', 'shall', 'can', 'need', 'to', 'of', 'in', 'for', 'on', 'with', 'at', 'by', 'from',
+        'it', 'this', 'that', 'these', 'those', 'and', 'or', 'but', 'if', 'then', 'else', 'when',
+        'always', 'never', 'use', 'not', 'don\'t', 'true', 'false', 'yes', 'no']);
+      return sentence.match(/\b[a-z]{3,}\b/g)?.filter(w => !stopwords.has(w)) || [];
+    };
+
+    const keywords1 = new Set(extractKeyWords(sentence1));
+    const keywords2 = extractKeyWords(sentence2);
+    
+    // Require at least 1 shared keyword to indicate same context
+    const sharedKeywords = keywords2.filter(w => keywords1.has(w));
+    return sharedKeywords.length >= 1;
+  };
+
   for (const { pattern, type, pair } of CONTRADICTION_PATTERNS) {
     const [term_a, term_b] = pair;
 
@@ -203,19 +256,28 @@ function detect_contradiction(existing_content, new_content) {
     const new_matches = new_lower.match(pattern);
 
     if (existing_matches && new_matches) {
-      const existing_has_a = existing_lower.includes(term_a);
-      const existing_has_b = existing_lower.includes(term_b);
-      const new_has_a = new_lower.includes(term_a);
-      const new_has_b = new_lower.includes(term_b);
+      // Use word-boundary matching to avoid substring false positives
+      const existing_has_a = hasWholeWord(existing_lower, term_a);
+      const existing_has_b = hasWholeWord(existing_lower, term_b);
+      const new_has_a = hasWholeWord(new_lower, term_a);
+      const new_has_b = hasWholeWord(new_lower, term_b);
 
+      // Check for opposing terms
       if ((existing_has_a && new_has_b) || (existing_has_b && new_has_a)) {
-        return {
-          found: true,
-          type,
-          pattern: `${term_a} <-> ${term_b}`,
-          existing_term: existing_has_a ? term_a : term_b,
-          new_term: new_has_a ? term_a : term_b,
-        };
+        const existingTerm = existing_has_a ? term_a : term_b;
+        const newTerm = new_has_a ? term_a : term_b;
+        
+        // Additional check: terms must be in similar context to be a true contradiction
+        if (areTermsInSameContext(existing_content, existingTerm, new_content, newTerm)) {
+          return {
+            found: true,
+            type,
+            pattern: `${term_a} <-> ${term_b}`,
+            existing_term: existingTerm,
+            new_term: newTerm,
+          };
+        }
+        // If not in same context, this is likely a false positive - continue checking other patterns
       }
     }
   }
@@ -231,7 +293,7 @@ function detect_contradiction(existing_content, new_content) {
 
 /* ─────────────────────────────────────────────────────────────
    6. CONFLICT LOGGING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Format a conflict record for logging/storage */
 function format_conflict_record(decision, new_content, spec_folder = null) {
@@ -377,7 +439,7 @@ function get_recent_conflicts(limit = 10) {
 
 /* ─────────────────────────────────────────────────────────────
    7. BATCH EVALUATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Evaluate multiple new memories against candidates */
 async function batch_evaluate(new_memories, find_candidates, options = {}) {
@@ -414,7 +476,7 @@ async function batch_evaluate(new_memories, find_candidates, options = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    8. HELPER FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Calculate similarity statistics for a set of candidates */
 function calculate_similarity_stats(candidates) {
@@ -452,7 +514,7 @@ function get_action_priority(action) {
 
 /* ─────────────────────────────────────────────────────────────
    9. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   init,

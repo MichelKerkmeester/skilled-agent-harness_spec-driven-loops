@@ -204,17 +204,8 @@ async function main() {
     }
   }
 
-  // Save updated manifest
-  const manifest_dir = dirname(MANIFEST_FILE);
-  if (!existsSync(manifest_dir)) {
-    mkdirSync(manifest_dir, { recursive: true });
-  }
-
-  const manifest_lines = ['file\thash'];
-  for (const [file, hash] of manifest.entries()) {
-    manifest_lines.push(`${file}\t${hash}`);
-  }
-  writeFileSync(MANIFEST_FILE, manifest_lines.join('\n') + '\n');
+  // Save updated manifest (uses save_manifest function defined above)
+  save_manifest(manifest);
 
   // Summary
   const total_reduction = total_source_size > 0

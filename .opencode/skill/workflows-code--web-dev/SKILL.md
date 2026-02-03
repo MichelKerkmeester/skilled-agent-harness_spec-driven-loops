@@ -1,6 +1,6 @@
 ---
-name: workflows-code--web-dev
-description: "Orchestrator guiding developers through implementation, debugging, and verification phases for web development (Webflow, vanilla JS, CSS)"
+name: workflows-code
+description: "Orchestrator guiding developers through implementation, debugging, and verification phases across specialized code quality skills (project)"
 allowed-tools: [Read, Grep, Glob, Bash]
 version: 2.0.0
 ---

@@ -11,7 +11,7 @@ const { is_transient_error, user_friendly_error } = require(path.join(LIB_DIR, '
 
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION CONSTANTS
-   ─────────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────────*/
 
 /**
  * Default batch size for concurrent processing
@@ -35,7 +35,7 @@ const DEFAULT_RETRY_OPTIONS = {
 
 /* ───────────────────────────────────────────────────────────────
    2. RETRY LOGIC
-   ─────────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────────*/
 
 /**
  * Process a single item with retry logic for transient failures
@@ -75,7 +75,7 @@ async function process_with_retry(item, processor, options = {}) {
 
 /* ───────────────────────────────────────────────────────────────
    3. BATCH PROCESSING
-   ─────────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────────*/
 
 /**
  * Process items in batches with concurrency control and retry logic
@@ -135,7 +135,7 @@ async function process_sequentially(items, processor, retry_options = {}) {
 
 /* ───────────────────────────────────────────────────────────────
    4. EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Constants

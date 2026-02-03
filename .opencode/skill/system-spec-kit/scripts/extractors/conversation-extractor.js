@@ -6,7 +6,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const { CONFIG } = require('../core');
 const { formatTimestamp, truncateToolOutput, summarizeExchange } = require('../utils/message-utils');
@@ -16,7 +16,7 @@ const flowchartGen = require('../lib/flowchart-generator');
 
 /* ─────────────────────────────────────────────────────────────
    2. CONVERSATION EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function extract_conversations(collected_data) {
   if (!collected_data) {
@@ -194,7 +194,7 @@ async function extract_conversations(collected_data) {
 
 /* ─────────────────────────────────────────────────────────────
    3. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary export (snake_case)

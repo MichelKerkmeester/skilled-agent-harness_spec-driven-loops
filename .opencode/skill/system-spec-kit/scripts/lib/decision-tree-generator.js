@@ -2,7 +2,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 let padText, formatDecisionHeader, formatOptionBox, formatChosenBox, formatCaveatsBox, formatFollowUpBox;
 let asciiBoxesAvailable = false;
@@ -30,7 +30,7 @@ try {
 
 /* ─────────────────────────────────────────────────────────────
    2. DECISION TREE GENERATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function generateDecisionTree(decisionData) {
   // Handle legacy format (simple parameters) for backwards compatibility
@@ -158,7 +158,7 @@ function generateDecisionTree(decisionData) {
 
 /* ─────────────────────────────────────────────────────────────
    3. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   generateDecisionTree

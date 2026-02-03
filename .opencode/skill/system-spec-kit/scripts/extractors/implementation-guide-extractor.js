@@ -6,13 +6,13 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const { detectObservationType } = require('./file-extractor');
 
 /* ─────────────────────────────────────────────────────────────
    2. IMPLEMENTATION DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function has_implementation_work(observations, files) {
   const impl_types = ['implementation', 'feature', 'bugfix', 'refactor'];
@@ -54,7 +54,7 @@ function extract_main_topic(observations, spec_folder) {
 
 /* ─────────────────────────────────────────────────────────────
    3. FEATURE EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function extract_what_built(observations) {
   const implementations = [];
@@ -98,7 +98,7 @@ function extract_what_built(observations) {
 
 /* ─────────────────────────────────────────────────────────────
    4. FILE ROLE DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function extract_key_files_with_roles(files, observations) {
   const key_files = [];
@@ -182,7 +182,7 @@ function extract_key_files_with_roles(files, observations) {
 
 /* ─────────────────────────────────────────────────────────────
    5. EXTENSION GUIDE GENERATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function generate_extension_guide(observations, files) {
   const guides = [];
@@ -239,7 +239,7 @@ function generate_extension_guide(observations, files) {
 
 /* ─────────────────────────────────────────────────────────────
    6. PATTERN EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function extract_code_patterns(observations, files) {
   const patterns = [];
@@ -327,7 +327,7 @@ function extract_code_patterns(observations, files) {
 
 /* ─────────────────────────────────────────────────────────────
    7. IMPLEMENTATION GUIDE BUILDER
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function build_implementation_guide_data(observations, files, spec_folder) {
   const has_impl = has_implementation_work(observations, files);
@@ -355,7 +355,7 @@ function build_implementation_guide_data(observations, files, spec_folder) {
 
 /* ─────────────────────────────────────────────────────────────
    8. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)

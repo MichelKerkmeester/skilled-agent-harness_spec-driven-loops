@@ -5,7 +5,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const fs = require('fs/promises');
 const fsSync = require('fs');
@@ -20,7 +20,7 @@ const { shouldAutoSave, collectSessionData } = require('../extractors/collect-se
 
 /* ─────────────────────────────────────────────────────────────
    2. LAZY-LOADED DEPENDENCIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 let flowchartGen, getFilterStats, generateImplementationSummary, formatSummaryAsMarkdown;
 let extractFileChanges, generateEmbedding, EMBEDDING_DIM, MODEL_NAME;
@@ -31,7 +31,7 @@ const DB_UPDATED_FILE = path.join(__dirname, '../../mcp_server/database/.db-upda
 
 /* ─────────────────────────────────────────────────────────────
    3. INITIALIZATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function initializeLibraries() {
   if (flowchartGen) return;
@@ -53,7 +53,7 @@ function initializeDataLoaders() {
 
 /* ─────────────────────────────────────────────────────────────
    4. UTILITY FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function notifyDatabaseUpdated() {
   try {
@@ -118,7 +118,7 @@ async function writeFilesAtomically(contextDir, files) {
 
 /* ─────────────────────────────────────────────────────────────
    5. MEMORY INDEXING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function indexMemory(contextDir, contextFilename, content, specFolderName, collectedData = null) {
   const embeddingStart = Date.now();
@@ -217,7 +217,7 @@ async function updateMetadataWithEmbedding(contextDir, memoryId) {
 
 /* ─────────────────────────────────────────────────────────────
    6. MAIN WORKFLOW
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function runWorkflow(options = {}) {
   const { 
@@ -277,7 +277,11 @@ async function runWorkflow(options = {}) {
   
   const sessionDataFn = collectSessionDataFn || collectSessionData;
   if (!sessionDataFn) {
-    throw new Error('collectSessionDataFn required - collectSessionData not available in data-loader. Pass it via options.');
+    throw new Error(
+      'Missing session data collector function.\n' +
+      '  - If calling runWorkflow() directly, pass { collectSessionDataFn: yourFunction } in options\n' +
+      '  - If using generate-context.js, ensure extractors/collect-session-data.js exports collectSessionData'
+    );
   }
   
   const [sessionData, conversations, decisions, diagrams, workflowData] = await Promise.all([
@@ -523,7 +527,7 @@ async function runWorkflow(options = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    7. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   runWorkflow,

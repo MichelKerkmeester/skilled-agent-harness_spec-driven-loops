@@ -5,6 +5,16 @@
 
 const { EmbeddingProfile } = require('../profile');
 
+// REQ-032: Retry logic with exponential backoff
+let retryModule = null;
+try {
+  // Load retry module if available (from mcp_server)
+  retryModule = require('../../../mcp_server/lib/utils/retry.js');
+} catch {
+  // Fallback: retry module not available, will use direct calls
+  retryModule = null;
+}
+
 /* ───────────────────────────────────────────────────────────────
    1. CONFIGURATION
    ─────────────────────────────────────────────────────────────── */
@@ -40,9 +50,13 @@ class OpenAIProvider {
     }
   }
 
-  async make_request(input) {
+  /**
+   * Execute a single HTTP request (internal, no retry).
+   * @private
+   */
+  async _execute_request(input) {
     const url = `${this.base_url}/embeddings`;
-    
+
     const controller = new AbortController();
     const timeout_id = setTimeout(() => controller.abort(), this.timeout);
 
@@ -64,12 +78,17 @@ class OpenAIProvider {
       clearTimeout(timeout_id);
 
       if (!response.ok) {
-        const error = await response.json().catch(() => ({ error: { message: response.statusText } }));
-        throw new Error(`OpenAI API error: ${error.error?.message || response.statusText}`);
+        const errorBody = await response.json().catch(() => ({ error: { message: response.statusText } }));
+        const error = new Error(
+          `OpenAI API error: ${errorBody.error?.message || response.statusText}`
+        );
+        // Attach status code for retry classification
+        error.status = response.status;
+        throw error;
       }
 
       const data = await response.json();
-      
+
       this.request_count++;
       if (data.usage) {
         this.total_tokens += data.usage.total_tokens;
@@ -79,14 +98,42 @@ class OpenAIProvider {
 
     } catch (error) {
       clearTimeout(timeout_id);
-      
+
       if (error.name === 'AbortError') {
-        throw new Error('OpenAI request timeout');
+        const timeoutError = new Error('OpenAI request timeout');
+        timeoutError.code = 'ETIMEDOUT';
+        throw timeoutError;
       }
-      
+
       this.is_healthy = false;
       throw error;
     }
+  }
+
+  /**
+   * Make request with retry logic for transient errors.
+   * REQ-032: 3 retries with backoff (1s, 2s, 4s), fail fast for 401/403.
+   */
+  async make_request(input) {
+    // If retry module is available, use it
+    if (retryModule && retryModule.retryWithBackoff) {
+      return retryModule.retryWithBackoff(
+        () => this._execute_request(input),
+        {
+          operationName: 'openai-embedding',
+          maxRetries: 3,
+          baseDelayMs: 1000,
+          onRetry: (attempt, error, delay) => {
+            console.warn(
+              `[openai] Retry ${attempt + 1}/3 after ${delay}ms: ${error.message}`
+            );
+          },
+        }
+      );
+    }
+
+    // Fallback: direct call without retry
+    return this._execute_request(input);
   }
 
   async generate_embedding(text) {
@@ -199,6 +246,10 @@ class OpenAIProvider {
       // ~$0.02 per 1M tokens for text-embedding-3-small
       estimated_cost: this.total_tokens * 0.00002,
     };
+  }
+
+  getProviderName() {
+    return 'OpenAI Embeddings';
   }
 }
 

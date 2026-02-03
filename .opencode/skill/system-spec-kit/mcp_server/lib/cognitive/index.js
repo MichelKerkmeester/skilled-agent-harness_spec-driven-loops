@@ -11,6 +11,7 @@ const temporalContiguity = require('./temporal-contiguity.js');
 const summaryGenerator = require('./summary-generator.js');
 const fsrsScheduler = require('./fsrs-scheduler.js');
 const predictionErrorGate = require('./prediction-error-gate.js');
+const archivalManager = require('./archival-manager.js');
 
 module.exports = {
   // ─────────────────────────────────────────────────────────────
@@ -132,6 +133,23 @@ module.exports = {
   CONTRADICTION_PATTERNS: predictionErrorGate.CONTRADICTION_PATTERNS,
 
   // ─────────────────────────────────────────────────────────────
+  // Archival Manager
+  // ─────────────────────────────────────────────────────────────
+  archivalManager_init: archivalManager.init,
+  archivalManager_cleanup: archivalManager.cleanup,
+  getArchivalCandidates: archivalManager.getArchivalCandidates,
+  checkMemoryArchivalStatus: archivalManager.checkMemoryArchivalStatus,
+  archiveMemory: archivalManager.archiveMemory,
+  archiveBatch: archivalManager.archiveBatch,
+  unarchiveMemory: archivalManager.unarchiveMemory,
+  runArchivalScan: archivalManager.runArchivalScan,
+  startArchivalBackgroundJob: archivalManager.startBackgroundJob,
+  stopArchivalBackgroundJob: archivalManager.stopBackgroundJob,
+  isArchivalBackgroundJobRunning: archivalManager.isBackgroundJobRunning,
+  getArchivalStats: archivalManager.getStats,
+  ARCHIVAL_CONFIG: archivalManager.ARCHIVAL_CONFIG,
+
+  // ─────────────────────────────────────────────────────────────
   // Module References (for direct access when needed)
   // ─────────────────────────────────────────────────────────────
   attentionDecay,
@@ -142,4 +160,5 @@ module.exports = {
   summaryGenerator,
   fsrsScheduler,
   predictionErrorGate,
+  archivalManager,
 };

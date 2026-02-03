@@ -424,6 +424,28 @@ quality_gates:
         Actions:
         - A) Fix issues and re-evaluate
         - B) Override gate (requires justification)
+      
+      # Five Checks Framework (Level 3+ specs)
+      five_checks:
+        required_for: "Level 3+"
+        optional_for: "Level 2"
+        checks:
+          1_necessary:
+            question: "Solving ACTUAL need NOW?"
+            pass_criteria: "Clear requirement exists, not speculative"
+          2_beyond_local_maxima:
+            question: "Explored alternatives?"
+            pass_criteria: "≥2 alternatives considered with trade-offs"
+          3_sufficient:
+            question: "Simplest approach?"
+            pass_criteria: "No simpler solution achieves the goal"
+          4_fits_goal:
+            question: "On critical path?"
+            pass_criteria: "Directly advances stated objective"
+          5_open_horizons:
+            question: "Long-term aligned?"
+            pass_criteria: "Doesn't create technical debt or lock-in"
+        on_fail: "Record in decision-record.md for architectural changes"
 
     mid_implementation:
       location: "Step 6.5 checkpoint"
@@ -670,7 +692,46 @@ checkpoint_options:
     description: "Execute test suite first"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (8 STEPS - STANDALONE IMPLEMENTATION)
+# CONTEXT LOADING (START OF WORKFLOW)
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "At workflow START, before Step 1"
+  purpose: "Load prior context from planning phase for informed implementation"
+
+  mcp_integration:
+    tool: memory_search
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters:
+      query: "planning context and decisions for {spec_folder_name}"
+      specFolder: "{spec_folder_path}"
+      anchors: ['summary', 'decisions', 'state', 'implementation']
+    example: |
+      memory_search({
+        query: "planning decisions and implementation context",
+        specFolder: "specs/007-feature-name",
+        anchors: ['summary', 'decisions', 'state', 'implementation']
+      })
+
+  command_reference: "/memory:context"
+  when_to_skip:
+    - "User explicitly says 'skip context' or 'fresh start'"
+
+  behavior:
+    if_context_found: "Present planning context to user for confirmation"
+    if_no_context: "Proceed to Step 1 - rely on spec.md and plan.md artifacts"
+
+  checkpoint:
+    question: "Prior planning context found. Load this context?"
+    options:
+      - label: "Yes - Load context"
+        description: "Use planning decisions and prior state"
+      - label: "No - Use artifacts only"
+        description: "Proceed with spec.md and plan.md only"
+      - label: "Review - Show context first"
+        description: "Display context before deciding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (9 STEPS - STANDALONE IMPLEMENTATION)
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_review_plan_and_spec:
@@ -802,6 +863,50 @@ workflow:
         description: "Show environment status"
       - label: "Hold"
         description: "Wait before proceeding"
+
+  step_5_5_preflight:
+    purpose: Capture epistemic baseline for learning measurement
+    optional: true
+    skip_if:
+      - "Quick fix (<10 LOC)"
+      - "Continuation of prior session with existing PREFLIGHT"
+    activities:
+    - Capture knowledge level before implementation
+    - Record current understanding of the codebase
+    - Document initial uncertainty levels
+    - Establish baseline context quality
+    scores:
+      knowledge: 
+        description: "Knowledge level 0-10 (0=unknown, 10=expert)"
+        default: 5
+      uncertainty:
+        description: "Uncertainty level 0-10 (0=uncertain, 10=very uncertain)"
+        default: 5
+      context:
+        description: "Context quality 0-10 (0=no context, 10=full context)"
+        default: 5
+    output_format: |
+      ## PREFLIGHT Baseline - [timestamp]
+      
+      ### Epistemic State
+      - Knowledge: [0-10] - [brief explanation]
+      - Uncertainty: [0-10] - [what's unclear]
+      - Context: [0-10] - [context quality]
+      
+      ### Focus Areas
+      - [area 1 to explore]
+      - [area 2 to explore]
+    validation: preflight_captured
+    checkpoint:
+      question: "Step 5.5: PREFLIGHT baseline captured. Proceed to development?"
+      use: present_options_to_user
+      options:
+      - label: "Proceed"
+        description: "Start development phase"
+      - label: "Adjust Baseline"
+        description: "Modify PREFLIGHT values"
+      - label: "Skip"
+        description: "Skip PREFLIGHT (not recommended)"
 
   step_6_development:
     purpose: Execute implementation following task plan
@@ -987,6 +1092,61 @@ workflow:
       - label: "Add Details"
         description: "Add more to summary"
 
+  step_7_5_postflight:
+    purpose: Capture learning delta and calculate improvement
+    optional: true
+    skip_if:
+      - "Quick fix (<10 LOC)"
+      - "No PREFLIGHT was captured"
+    activities:
+    - Capture knowledge level after implementation
+    - Record new understanding gained
+    - Document reduced uncertainty levels
+    - Calculate learning index
+    scores:
+      knowledge: 
+        description: "Knowledge level 0-10 (0=unknown, 10=expert)"
+        default: 7
+      uncertainty:
+        description: "Uncertainty level 0-10 (0=certain, 10=very uncertain)"
+        default: 3
+      context:
+        description: "Context quality 0-10 (0=no context, 10=full context)"
+        default: 8
+    learning_index_calculation: |
+      Knowledge Delta = POSTFLIGHT.knowledge - PREFLIGHT.knowledge
+      Uncertainty Reduction = PREFLIGHT.uncertainty - POSTFLIGHT.uncertainty (positive = good)
+      Context Improvement = POSTFLIGHT.context - PREFLIGHT.context
+      Learning Index = (Knowledge Delta + Uncertainty Reduction + Context Improvement) / 3
+    output_format: |
+      ## POSTFLIGHT Delta - [timestamp]
+      
+      ### Epistemic State (Final)
+      - Knowledge: [0-10] - [what was learned]
+      - Uncertainty: [0-10] - [what became clear]
+      - Context: [0-10] - [context improvement]
+      
+      ### Learning Index
+      - Knowledge Δ: +[N] points
+      - Uncertainty Δ: -[N] points (reduced)
+      - Context Δ: +[N] points
+      - **Learning Index: [X.X]/10**
+      
+      ### Key Insights
+      - [insight 1]
+      - [insight 2]
+    validation: postflight_captured
+    checkpoint:
+      question: "Step 7.5: POSTFLIGHT captured. Learning Index calculated. Proceed to save context?"
+      use: present_options_to_user
+      options:
+      - label: "Proceed"
+        description: "Continue to save context"
+      - label: "Review Delta"
+        description: "View learning delta details"
+      - label: "Adjust Values"
+        description: "Modify POSTFLIGHT scores"
+
   step_8_save_context:
     purpose: Save conversation context
     activities:
@@ -1113,7 +1273,7 @@ workflow:
 # ─────────────────────────────────────────────────────────────────
 termination:
   after_step: 9
-  message: "Implementation phase completed successfully. Workflow terminated after step 8 (save context)."
+  message: "Implementation phase completed successfully. Workflow terminated after step 9 (save context)."
   next_steps:
   - Review implementation-summary.md
   - Verify all changes in staging environment

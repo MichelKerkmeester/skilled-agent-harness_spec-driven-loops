@@ -1,6 +1,5 @@
 // ───────────────────────────────────────────────────────────────
 // MAINTENANCE: CLEANUP ORPHANED VECTORS AND HISTORY
-// T105: Enhanced to clean orphaned memory_history entries
 // ───────────────────────────────────────────────────────────────
 
 'use strict';
@@ -11,13 +10,13 @@ const path = require('path');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const db_path = path.join(__dirname, '../../mcp_server/database/context-index.sqlite');
 
 /* ─────────────────────────────────────────────────────────────
    2. MAIN FUNCTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function main() {
   let database;
@@ -42,14 +41,14 @@ async function main() {
 
       if (orphaned_history.length > 0) {
         console.log(`Found ${orphaned_history.length} orphaned history entries`);
-        
+
         const delete_history = database.transaction((ids) => {
           const stmt = database.prepare('DELETE FROM memory_history WHERE memory_id = ?');
           for (const { memory_id } of ids) {
             stmt.run(memory_id);
           }
         });
-        
+
         delete_history(orphaned_history);
         console.log(`Deleted ${orphaned_history.length} orphaned history entries`);
         total_cleaned += orphaned_history.length;
@@ -94,7 +93,7 @@ async function main() {
         delete_batch(chunk);
         console.log(`Deleted ${deleted}/${orphaned_vectors.length} vectors`);
       }
-      
+
       total_cleaned += deleted;
     }
 
@@ -104,7 +103,7 @@ async function main() {
     console.log('\n[Step 3] Verification...');
     const memory_count = database.prepare('SELECT COUNT(*) as count FROM memory_index').get();
     const vector_count = database.prepare('SELECT COUNT(*) as count FROM vec_memories').get();
-    
+
     let history_count = { count: 0 };
     try {
       history_count = database.prepare('SELECT COUNT(*) as count FROM memory_history').get();
@@ -136,6 +135,6 @@ async function main() {
 
 /* ─────────────────────────────────────────────────────────────
    3. INITIALIZE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 main();

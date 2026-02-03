@@ -5,7 +5,7 @@
 
 /* ─────────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 const fs = require('fs/promises');
 const path = require('path');
@@ -21,7 +21,7 @@ const {
 
 /* ─────────────────────────────────────────────────────────────────
    2. HELPER FUNCTIONS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 function filter_archive_folders(folders) {
   return folders.filter(folder => {
@@ -34,7 +34,7 @@ function filter_archive_folders(folders) {
 
 /* ─────────────────────────────────────────────────────────────────
    3. FOLDER DETECTION
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 async function detect_spec_folder(collectedData = null) {
   const cwd = process.cwd();
@@ -62,12 +62,15 @@ async function detect_spec_folder(collectedData = null) {
       await fs.access(specFolderPath);
       console.log(`   Using spec folder from CLI argument: ${path.basename(specFolderPath)}`);
 
+      // CLI argument = explicit user intent - NEVER override
+      // Log alignment info but always respect user's explicit choice
       if (collectedData) {
         const folderName = path.basename(specFolderPath);
         const alignmentResult = await validate_content_alignment(collectedData, folderName, specsDir || defaultSpecsDir);
 
         if (alignmentResult.useAlternative && alignmentResult.selectedFolder) {
-          return path.join(specsDir || defaultSpecsDir, alignmentResult.selectedFolder);
+          // Log suggestion but DO NOT override explicit CLI argument
+          console.log(`   ℹ️  Note: "${alignmentResult.selectedFolder}" may be a better match, but respecting explicit CLI argument`);
         }
       }
 
@@ -222,7 +225,7 @@ async function detect_spec_folder(collectedData = null) {
 
 /* ─────────────────────────────────────────────────────────────────
    4. EXPORTS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   ALIGNMENT_CONFIG,

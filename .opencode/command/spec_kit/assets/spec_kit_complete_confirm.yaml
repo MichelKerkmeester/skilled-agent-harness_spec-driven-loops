@@ -941,7 +941,10 @@ workflow_enforcement:
     step_10_development:
       enforcement: "MUST mark tasks [x] in tasks.md as completed"
       verification: "Count [x] vs [ ] - all must be [x]"
-    step_11_completion:
+    step_11_checklist_verify:
+      enforcement: "MUST verify all P0/P1 checklist items (Level 2+)"
+      verification: "All P0 items [x], P1 either [x] or deferred with approval"
+    step_12_completion:
       enforcement: "MUST create implementation-summary.md"
       verification: "File must exist in spec folder"
 
@@ -960,7 +963,47 @@ checkpoint_options:
     description: "Skip this step (if optional)"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (12 STEPS WITH CHECKPOINTS)
+# CONTEXT LOADING (START OF WORKFLOW)
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "At workflow START, before Step 1"
+  purpose: "Load prior context for informed decision-making"
+
+  mcp_integration:
+    tool: memory_search
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters:
+      query: "context for {spec_folder_name}"
+      specFolder: "{spec_folder_path}"
+      anchors: ['summary', 'decisions', 'state']
+    example: |
+      memory_search({
+        query: "prior context and decisions",
+        specFolder: "specs/007-feature-name",
+        anchors: ['summary', 'decisions', 'state']
+      })
+
+  command_reference: "/memory:context"
+  when_to_skip:
+    - "New spec folder (no prior context exists)"
+    - "User explicitly says 'skip context' or 'fresh start'"
+
+  behavior:
+    if_context_found: "Present context summary to user for confirmation"
+    if_no_context: "Proceed to Step 1 without delay"
+
+  checkpoint:
+    question: "Prior context found. Load this context?"
+    options:
+      - label: "Yes - Load context"
+        description: "Use prior decisions and state"
+      - label: "No - Fresh start"
+        description: "Proceed without prior context"
+      - label: "Review - Show context first"
+        description: "Display context before deciding"
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW (14 STEPS WITH CHECKPOINTS)
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
@@ -1645,7 +1688,46 @@ workflow:
     - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__development_complete.md"
     validation: checkpoint_saved
 
-  step_11_completion:
+  step_11_checklist_verify:
+    purpose: Verify all P0/P1 checklist items are complete before claiming completion
+    blocking: true  # CRITICAL - this step blocks progression for Level 2+
+    level_requirement: "Level 2+"
+    activities:
+    - Load checklist.md from spec folder
+    - Verify ALL P0 items are marked [x] with evidence
+    - Verify ALL P1 items are either:
+      - Marked [x] with evidence, OR
+      - Have documented user approval to defer
+    - P2 items may be deferred without approval
+    - Document verification results with evidence format
+    evidence_format: "- [x] Task description [EVIDENCE: file.js:45-67 - implementation verified]"
+    evidence_log_pattern: "[E:filename]"
+    p0_enforcement:
+      blocking: true
+      on_incomplete: |
+        ⛔ P0 ITEMS INCOMPLETE - Cannot proceed to Step 12
+        
+        Incomplete P0 items:
+        {incomplete_items}
+        
+        WORKFLOW HALTED. Complete all P0 items before proceeding.
+    p1_enforcement:
+      blocking: soft
+      allow_deferral: true
+      on_incomplete: |
+        ⚠️ P1 items incomplete. Options:
+        A) Complete remaining P1 items
+        B) Document deferral reasons and proceed
+    outputs:
+    - checklist_verification_report
+    - evidence_documentation
+    validation: all_p0_complete
+    checkpoint:
+      question: "Step 11 Complete: All P0/P1 checklist items verified. Proceed to completion?"
+      use: present_options_to_user
+      options: checkpoint_options.standard
+
+  step_12_completion:
     purpose: Generate implementation summary
     activities:
     - Verify all tasks completed
@@ -1673,7 +1755,7 @@ workflow:
         - Link to updated checklist.md
     validation: implementation_complete
     checkpoint:
-      question: "Step 11 Complete: Implementation summary generated. Review summary?"
+      question: "Step 12 Complete: Implementation summary generated. Review summary?"
       use: present_options_to_user
       options: checkpoint_options.standard
 
@@ -1681,18 +1763,18 @@ workflow:
     completion_checkpoint:
       enforcement: HARD_BLOCK
       before_marking_complete: |
-        VERIFY before marking Step 11 as complete:
+        VERIFY before marking Step 12 as complete:
         1. Check if implementation-summary.md exists in spec folder
         2. IF file does not exist:
            - DO NOT mark step complete
            - CREATE the file with all required sections
         3. IF file exists:
            - Verify all required_sections are present
-           - Mark Step 11: ✅ COMPLETED
+           - Mark Step 12: ✅ COMPLETED
       required_file: "[SPEC_FOLDER]/implementation-summary.md"
       failure_action: "Create implementation-summary.md before proceeding"
 
-  step_12_save_context:
+  step_13_save_context:
     purpose: Save conversation context
     activities:
     - Invoke system-spec-kit skill
@@ -1724,13 +1806,13 @@ workflow:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__session.md"
     validation: context_saved_successfully
     checkpoint:
-      question: "Step 12 Complete: Context saved. Workflow finished!"
+      question: "Step 13 Complete: Context saved. Proceed to handover check?"
       use: present_options_to_user
       options:
-      - label: "Done"
-        description: "Complete the workflow"
-      - label: "View Summary"
-        description: "Show final summary"
+      - label: "Continue"
+        description: "Proceed to handover check"
+      - label: "Skip Handover"
+        description: "Complete workflow without handover"
 
     # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
     post_save_indexing:
@@ -1788,12 +1870,29 @@ workflow:
         temporary: Short-term notes
         deprecated: Outdated but retained
 
+  step_14_handover_check:
+    purpose: Offer session handover before workflow completion
+    activities:
+    - Check if user needs session continuity documentation
+    - Offer to run /spec_kit:handover for comprehensive handover
+    - Present options for workflow completion
+    checkpoint:
+      question: "Step 14: Would you like to create a handover document for session continuity?"
+      use: present_options_to_user
+      options:
+      - label: "Run Handover"
+        description: "Run /spec_kit:handover for session continuity"
+      - label: "Skip"
+        description: "Complete workflow without handover"
+    note: "Handover is optional but recommended for complex implementations"
+    validation: handover_offered
+
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
-  after_step: 12
-  message: "SpecKit workflow completed successfully. Workflow terminated after step 12 (save context)."
+  after_step: 14
+  message: "SpecKit workflow completed successfully. Workflow terminated after step 14 (handover check)."
 
 # ─────────────────────────────────────────────────────────────────
 # INTERACTIVE EXECUTION GUIDANCE

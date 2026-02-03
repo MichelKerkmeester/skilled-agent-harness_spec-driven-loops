@@ -1,6 +1,16 @@
 # MCP Server Utilities
 
-> Utility modules for input validation, JSON operations, and batch processing.
+Utility modules for input validation, JSON operations, and batch processing.
+
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
+- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
 
 ---
 
@@ -222,17 +232,17 @@ const results = await process_batches(
 
 ```javascript
 const result = await process_with_retry(
-  async () => {
+  item,                    // Item to process
+  async (item) => {        // Processor function
     // Operation that might fail
-    return await apiCall();
+    return await apiCall(item);
   },
   {
-    maxRetries: 3,
-    baseDelayMs: 1000,  // Start with 1s delay
-    maxDelayMs: 10000,  // Cap at 10s
-    factor: 2           // Exponential backoff factor
+    max_retries: 2,        // Maximum retry attempts (default: 2)
+    retry_delay: 1000      // Base delay between retries in ms (default: 1000)
   }
 );
+// Uses exponential backoff: delay = retry_delay * (attempt + 1)
 ```
 
 **Process Sequentially**: Process items one at a time
@@ -244,7 +254,7 @@ const results = await process_sequentially(
     // Process each item
     return await processItem(item);
   },
-  { retryOptions: { maxRetries: 2 } }
+  { max_retries: 2, retry_delay: 1000 }
 );
 ```
 
@@ -336,18 +346,21 @@ const { process_with_retry } = require('./utils');
 
 // Retry API call with exponential backoff
 const embedding = await process_with_retry(
-  async () => {
+  text,                           // Item to process
+  async (text) => {               // Processor function
     return await voyageAI.embed(text);
   },
   {
-    maxRetries: 5,
-    baseDelayMs: 1000,   // Start with 1s
-    maxDelayMs: 30000,   // Cap at 30s
-    factor: 2            // Double delay each retry
+    max_retries: 3,               // Maximum retry attempts
+    retry_delay: 1000             // Base delay (1s)
   }
 );
 
-// Retry sequence: 1s → 2s → 4s → 8s → 16s (capped at 30s)
+// Retry sequence with exponential backoff:
+// Attempt 1: immediate
+// Attempt 2: 1s delay (retry_delay * 1)
+// Attempt 3: 2s delay (retry_delay * 2)
+// Attempt 4: 3s delay (retry_delay * 3)
 ```
 
 ### Common Patterns
@@ -356,7 +369,7 @@ const embedding = await process_with_retry(
 |---------|------|-------------|
 | Validate before use | `const q = validate_query(input);` | All user inputs |
 | Safe parse with default | `safe_json_parse(str, {})` | Untrusted JSON |
-| Batch + retry | `process_batches(items, fn, { retryOptions })` | Large datasets, external APIs |
+| Batch + retry | `process_batches(items, fn, 50, 100, { max_retries: 2 })` | Large datasets, external APIs |
 | Sequential processing | `process_sequentially(items, fn)` | Order-dependent operations |
 
 ---
@@ -391,18 +404,20 @@ const valid = validate_query(truncated);
 
 **Solution**:
 ```javascript
-// Ensure retry options are provided
-await process_batches(items, processFn, {
-  batchSize: 50,
-  retryOptions: {
-    maxRetries: 3,          // Must be > 0 for retries
-    baseDelayMs: 1000,
-    factor: 2
+// Ensure retry options are provided (positional arguments)
+await process_batches(
+  items,
+  processFn,
+  50,                        // batch_size
+  100,                       // delay_ms between batches
+  {
+    max_retries: 3,          // Must be > 0 for retries
+    retry_delay: 1000        // Base delay in ms
   }
-});
+);
 
 // Check logs for retry attempts
-// Should see: "Retry 1/3 after error: ..."
+// Should see: "[batch-retry] Attempt 1/4 failed, retrying in 1000ms: ..."
 ```
 
 #### JSON parse returning default too often
@@ -459,7 +474,7 @@ console.log('Allowed:', allowedPaths);
 | Problem | Quick Fix |
 |---------|-----------|
 | Validation too strict | Check `INPUT_LIMITS` constants, adjust if needed |
-| Batch processing fails | Add `retryOptions` with `maxRetries > 0` |
+| Batch processing fails | Add retry options with `max_retries > 0` |
 | JSON parse issues | Log input, check with `JSON.parse()` directly |
 | Path validation errors | Use absolute paths, check with `get_default_allowed_paths()` |
 

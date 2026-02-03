@@ -116,7 +116,7 @@ Memory files are automatically scored using a 6-tier importance system that dete
 
 ### Commands
 - `/memory:save` - Save current conversation context
-- `/memory:search` - Search across all memory files
+- `/memory:context` - Search and retrieve memory context
 - `/spec_kit:handover` - Create session handover document
 
 ---

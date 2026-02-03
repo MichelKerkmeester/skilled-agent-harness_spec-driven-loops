@@ -12,7 +12,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const DECAY_CONFIG = {
   decay_weight: 0.3,   // Max boost for new memories (30% of similarity scale)
@@ -22,7 +22,7 @@ const DECAY_CONFIG = {
 
 /* ─────────────────────────────────────────────────────────────
    2. UTILITY FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function parse_timestamp(timestamp) {
   if (timestamp instanceof Date) return timestamp;
@@ -42,7 +42,7 @@ function calculate_age_days(created_at) {
 
 /* ─────────────────────────────────────────────────────────────
    3. DECAY CALCULATIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Calculate decay boost: decay_weight * e^(-age_days / scale_days)
 function calculate_decay_boost(created_at, options = {}) {
@@ -90,7 +90,7 @@ function get_half_life(scale_days = DECAY_CONFIG.scale_days) {
 
 /* ─────────────────────────────────────────────────────────────
    4. BATCH OPERATIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function batch_adjust_scores(memories, options = {}) {
   return memories.map(memory => ({
@@ -105,7 +105,7 @@ function batch_adjust_scores(memories, options = {}) {
 
 /* ─────────────────────────────────────────────────────────────
    5. VALIDATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function validate_config(config) {
   const errors = [];
@@ -149,7 +149,7 @@ function validate_config(config) {
 
 /* ─────────────────────────────────────────────────────────────
    6. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   calculate_decay_boost,

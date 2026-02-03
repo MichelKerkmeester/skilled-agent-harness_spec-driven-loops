@@ -33,9 +33,25 @@ user_inputs:
 session_detection:
   priority_order:
     1: "CLI argument (explicit path provided)"
-    2: "Find most recent memory file in specs/*/memory/"
+    2: "Semantic memory search (memory_search with session context)"
+    3: "Trigger phrase matching (memory_match_triggers)"
+    4: "Find most recent memory file by mtime (glob specs/*/memory/*.md)"
   
   note: "Stateless architecture - no .spec-active marker file used"
+  
+  tier_details:
+    tier_1_cli:
+      method: "Parse $ARGUMENTS for spec folder path"
+      priority: "highest"
+    tier_2_semantic:
+      method: "memory_search({ query: 'active session', limit: 1 })"
+      fallback: "tier_3"
+    tier_3_triggers:
+      method: "memory_match_triggers({ prompt: 'resume' })"
+      fallback: "tier_4"
+    tier_4_mtime:
+      method: "glob specs/*/memory/*.md | sort by mtime | head -1"
+      fallback: "report no session"
   
   fallback:
     on_no_memory: "Report no active session, suggest /spec_kit:complete"
@@ -46,9 +62,11 @@ session_detection:
 context_loading_priority:
   order:
     1: "handover.md (if exists, <24h old)"
-    2: "Recent memory/*.md files (contain embedded Project State Snapshot)"
+    2: "CONTINUE_SESSION.md (if exists, previous session state)"
+    3: "checklist.md (progress tracking)"
+    4: "Recent memory/*.md files (contain embedded Project State Snapshot)"
   
-  note: "Use handover.md for fast resume"
+  note: "Use handover.md for fast resume, fall through in priority order"
 
 # ─────────────────────────────────────────────────────────────────
 # MEMORY LOADING (INTERACTIVE - prompt for selection)
@@ -133,7 +151,7 @@ stale_session_detection:
 # ─────────────────────────────────────────────────────────────────
 confidence_checkpoints:
   enabled: true
-  key_steps: [1, 3, 5]  # Steps requiring confidence evaluation
+  key_steps: [1, 2, 4]  # Steps requiring confidence evaluation (session detection, load memory, present resume)
   thresholds:
     high: 80      # ≥80% proceed with evidence
     medium: 40    # 40-79% proceed with caution
@@ -375,6 +393,29 @@ interactive_execution:
     cancel: "Abort resume operation"
 
 # ─────────────────────────────────────────────────────────────────
+# CRASH RECOVERY INTEGRATION
+# ─────────────────────────────────────────────────────────────────
+crash_recovery:
+  command_reference: "/memory:continue"
+  description: |
+    For crash recovery scenarios (context compaction, session interruption),
+    use /memory:continue which provides:
+    - Automatic detection of last session state
+    - Recovery hints from memory system
+    - Continuation prompt generation
+
+  when_to_use:
+    - "Session was interrupted unexpectedly"
+    - "Context compaction message detected"
+    - "Need to recover from crash without handover.md"
+
+  integration_with_resume:
+    relationship: |
+      - /spec_kit:resume: Standard session continuation with context loading
+      - /memory:continue: Crash recovery with automatic state detection
+    recommendation: "Use /memory:continue when session crashed; use /spec_kit:resume for normal continuation"
+
+# ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
@@ -384,10 +425,13 @@ error_recovery:
     action: "Report folder not found, ask user to specify or create"
   memory_search_failed:
     action: "Report error, offer to proceed without context"
+    fallback: "Offer /memory:continue for crash recovery"
   stale_session_detected:
     action: "Present stale session options to user"
   user_cancels:
     action: "Acknowledge cancellation, exit gracefully"
+  crash_detected:
+    action: "Suggest /memory:continue for automatic crash recovery"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES

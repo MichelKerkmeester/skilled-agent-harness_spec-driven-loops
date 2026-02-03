@@ -11,6 +11,7 @@
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. 🛠️ TROUBLESHOOTING](#4--troubleshooting)
 - [5. 📚 RELATED DOCUMENTS](#5--related-documents)
+- [6. 🧠 COGNITIVE MEMORY TEST SUITE](#6--cognitive-memory-test-suite)
 
 ---
 
@@ -323,7 +324,7 @@ const {
 
 ### Test Fixtures
 
-Located in `../test-fixtures/`:
+Located in `../../mcp_server/tests/fixtures/`:
 
 | Fixture | Purpose |
 |---------|---------|

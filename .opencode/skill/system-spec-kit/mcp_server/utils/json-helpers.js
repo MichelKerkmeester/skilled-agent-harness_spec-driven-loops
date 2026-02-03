@@ -3,21 +3,10 @@
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. SAFE JSON PARSING
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Safely parse JSON with fallback value
- * Prevents exceptions from malformed JSON strings.
- * @param {string} str - JSON string to parse
- * @param {*} [fallback=[]] - Fallback value if parsing fails (default: empty array)
- * @returns {*} Parsed value or fallback
- * @example
- * safe_json_parse('{"key": "value"}') // { key: 'value' }
- * safe_json_parse('invalid', {})      // {}
- * safe_json_parse(null)               // []
- */
 function safe_json_parse(str, fallback = []) {
   if (!str) return fallback;
   try {
@@ -27,17 +16,6 @@ function safe_json_parse(str, fallback = []) {
   }
 }
 
-/**
- * Safely stringify JSON with fallback value
- * Prevents exceptions from circular references or invalid values.
- * @param {*} value - Value to stringify
- * @param {string} [fallback='null'] - Fallback string if stringify fails
- * @param {number} [space] - Indentation spaces for pretty printing
- * @returns {string} JSON string or fallback
- * @example
- * safe_json_stringify({ key: 'value' })     // '{"key":"value"}'
- * safe_json_stringify(circularRef, '{}')    // '{}'
- */
 function safe_json_stringify(value, fallback = 'null', space) {
   try {
     return JSON.stringify(value, null, space);
@@ -46,16 +24,6 @@ function safe_json_stringify(value, fallback = 'null', space) {
   }
 }
 
-/**
- * Parse JSON and return typed result with validation
- * @param {string} str - JSON string to parse
- * @param {string} expected_type - Expected type ('object', 'array', 'string', 'number')
- * @param {*} fallback - Fallback value if type mismatch
- * @returns {*} Parsed and validated value or fallback
- * @example
- * safe_json_parse_typed('[1,2,3]', 'array', [])  // [1, 2, 3]
- * safe_json_parse_typed('{}', 'array', [])       // []
- */
 function safe_json_parse_typed(str, expected_type, fallback) {
   const parsed = safe_json_parse(str, fallback);
 
@@ -75,17 +43,16 @@ function safe_json_parse_typed(str, expected_type, fallback) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    2. EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
-  // snake_case exports
   safe_json_parse,
   safe_json_stringify,
   safe_json_parse_typed,
 
-  // Backward compatibility aliases (camelCase → snake_case transition)
+  // Backward compatibility aliases
   safeJsonParse: safe_json_parse,
   safeJsonStringify: safe_json_stringify,
   safeJsonParseTyped: safe_json_parse_typed

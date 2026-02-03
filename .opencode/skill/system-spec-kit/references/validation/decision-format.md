@@ -348,9 +348,11 @@ Before recording a decision:
 - [ ] Evidence cites specific source
 - [ ] BLOCK includes resolution path
 
-### Cross-Reference
+---
 
-- **Gate Definitions:** AGENTS.md Section 2
-- **Confidence Framework:** AGENTS.md Section 4
-- **Five Checks:** `.opencode/skill/system-spec-kit/references/validation/five-checks.md`
-- **Templates:** `.opencode/skill/system-spec-kit/templates/`
+## 8. 🔗 RELATED RESOURCES
+
+- [Five Checks Framework](./five-checks.md) - Evaluation framework for significant decisions
+- [Decision Record Template](../../templates/decision-record.md) - For Level 3/3+ spec folders
+- [SKILL.md - Gates Overview](../../SKILL.md) - Gate system documentation
+- [CLAUDE.md - Section 2](../../../../CLAUDE.md) - Gate definitions and protocols

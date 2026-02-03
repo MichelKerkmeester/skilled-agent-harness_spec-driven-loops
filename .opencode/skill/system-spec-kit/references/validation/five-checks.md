@@ -35,7 +35,7 @@ Every significant decision must earn its existence through five explicit checks:
 
 ---
 
-## 2. 🧠 THE FIVE CHECKS
+## 2. ✅ THE FIVE CHECKS
 
 ### Check 1: Necessary?
 
@@ -308,3 +308,12 @@ FIVE CHECKS QUICK ASSESSMENT:
 
 RESULT: [X/5 PASS] -> [PROCEED/RECONSIDER]
 ```
+
+---
+
+## 7. 🔗 RELATED RESOURCES
+
+- [Structured Gate Decision Format](./decision-format.md) - Standard format for documenting decisions
+- [Checklist Template](../../templates/checklist.md) - Level 2+ validation checklist structure
+- [SKILL.md - Validation Section](../../SKILL.md) - Overview of validation workflows
+- [Decision Record Template](../../templates/decision-record.md) - For documenting Level 3/3+ decisions

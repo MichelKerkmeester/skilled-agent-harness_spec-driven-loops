@@ -3,7 +3,7 @@
   "version": "1.7.2",
   "description": "CLI tools for spec-kit context generation and memory management",
   "type": "commonjs",
-  "main": "generate-context.js",
+  "main": "memory/generate-context.js",
   "dependencies": {
     "@huggingface/transformers": "^3.8.1",
     "better-sqlite3": "^12.5.0",

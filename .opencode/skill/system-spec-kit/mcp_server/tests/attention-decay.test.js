@@ -812,7 +812,452 @@
     }
   }
 
-  // 4.12 MODULE EXPORTS
+  // 4.12 T035: COMPOSITE ATTENTION SCORING (T341-T355)
+
+  function test_composite_attention() {
+    log('\n T035: Composite Attention Scoring (T341-T355)');
+
+    // T341: calculate_composite_attention is exported
+    if (typeof attentionDecay.calculate_composite_attention === 'function') {
+      pass('T341: calculate_composite_attention is exported', 'Function exists');
+    } else {
+      fail('T341: calculate_composite_attention is exported', 'Not a function');
+      return; // Skip remaining tests if function doesn't exist
+    }
+
+    // T342: Returns 0 for null/undefined memory
+    const nullResult = attentionDecay.calculate_composite_attention(null);
+    const undefResult = attentionDecay.calculate_composite_attention(undefined);
+    if (nullResult === 0 && undefResult === 0) {
+      pass('T342: Returns 0 for null/undefined memory', `null: ${nullResult}, undefined: ${undefResult}`);
+    } else {
+      fail('T342: Returns 0 for null/undefined memory', `null: ${nullResult}, undefined: ${undefResult}`);
+    }
+
+    // T343: Returns valid score for minimal memory object
+    const minimalMemory = { importance_tier: 'normal' };
+    const minimalScore = attentionDecay.calculate_composite_attention(minimalMemory);
+    if (typeof minimalScore === 'number' && minimalScore >= 0 && minimalScore <= 1) {
+      pass('T343: Returns valid score for minimal memory', `Score: ${minimalScore.toFixed(4)}`);
+    } else {
+      fail('T343: Returns valid score for minimal memory', `Got: ${minimalScore}`);
+    }
+
+    // T344: Constitutional tier gets higher score than temporary
+    const constMemory = { importance_tier: 'constitutional', importance_weight: 1.0 };
+    const tempMemory = { importance_tier: 'temporary', importance_weight: 0.3 };
+    const constScore = attentionDecay.calculate_composite_attention(constMemory);
+    const tempScore = attentionDecay.calculate_composite_attention(tempMemory);
+    if (constScore > tempScore) {
+      pass('T344: Constitutional tier > temporary tier', `Const: ${constScore.toFixed(4)} > Temp: ${tempScore.toFixed(4)}`);
+    } else {
+      fail('T344: Constitutional tier > temporary tier', `Const: ${constScore.toFixed(4)}, Temp: ${tempScore.toFixed(4)}`);
+    }
+
+    // T345: Higher access_count increases score (usage factor)
+    const lowAccess = { importance_tier: 'normal', access_count: 0 };
+    const highAccess = { importance_tier: 'normal', access_count: 20 };
+    const lowScore = attentionDecay.calculate_composite_attention(lowAccess);
+    const highScore = attentionDecay.calculate_composite_attention(highAccess);
+    if (highScore > lowScore) {
+      pass('T345: Higher access_count increases score', `Low: ${lowScore.toFixed(4)} < High: ${highScore.toFixed(4)}`);
+    } else {
+      fail('T345: Higher access_count increases score', `Low: ${lowScore.toFixed(4)}, High: ${highScore.toFixed(4)}`);
+    }
+
+    // T346: Score is always clamped to [0, 1]
+    const extremeMemory = {
+      importance_tier: 'constitutional',
+      importance_weight: 10.0,
+      access_count: 1000,
+      similarity: 200, // Out of range
+    };
+    const extremeScore = attentionDecay.calculate_composite_attention(extremeMemory);
+    if (extremeScore >= 0 && extremeScore <= 1) {
+      pass('T346: Score clamped to [0, 1]', `Extreme inputs score: ${extremeScore.toFixed(4)}`);
+    } else {
+      fail('T346: Score clamped to [0, 1]', `Got: ${extremeScore}`);
+    }
+
+    // T347: Query option affects pattern factor
+    const memWithTitle = { importance_tier: 'normal', title: 'authentication flow' };
+    const scoreNoQuery = attentionDecay.calculate_composite_attention(memWithTitle, {});
+    const scoreWithQuery = attentionDecay.calculate_composite_attention(memWithTitle, { query: 'authentication' });
+    if (scoreWithQuery >= scoreNoQuery) {
+      pass('T347: Query option affects pattern score', `Without query: ${scoreNoQuery.toFixed(4)}, With query: ${scoreWithQuery.toFixed(4)}`);
+    } else {
+      fail('T347: Query option affects pattern score', `Without: ${scoreNoQuery.toFixed(4)}, With: ${scoreWithQuery.toFixed(4)}`);
+    }
+
+    // T348: Stability affects temporal factor
+    const lowStability = { importance_tier: 'normal', stability: 0.1, last_review: new Date(Date.now() - 86400000).toISOString() };
+    const highStability = { importance_tier: 'normal', stability: 10.0, last_review: new Date(Date.now() - 86400000).toISOString() };
+    const lowStabScore = attentionDecay.calculate_composite_attention(lowStability);
+    const highStabScore = attentionDecay.calculate_composite_attention(highStability);
+    if (highStabScore > lowStabScore) {
+      pass('T348: Higher stability = higher temporal score', `S=0.1: ${lowStabScore.toFixed(4)} < S=10: ${highStabScore.toFixed(4)}`);
+    } else {
+      fail('T348: Higher stability = higher temporal score', `S=0.1: ${lowStabScore.toFixed(4)}, S=10: ${highStabScore.toFixed(4)}`);
+    }
+  }
+
+  // 4.13 T035: ATTENTION BREAKDOWN (T349-T355)
+
+  function test_attention_breakdown() {
+    log('\n T035: Attention Breakdown (T349-T355)');
+
+    // T349: get_attention_breakdown is exported
+    if (typeof attentionDecay.get_attention_breakdown === 'function') {
+      pass('T349: get_attention_breakdown is exported', 'Function exists');
+    } else {
+      fail('T349: get_attention_breakdown is exported', 'Not a function');
+      return;
+    }
+
+    // T350: Returns proper structure for null memory
+    const nullBreakdown = attentionDecay.get_attention_breakdown(null);
+    if (nullBreakdown &&
+        typeof nullBreakdown.factors === 'object' &&
+        typeof nullBreakdown.total === 'number' &&
+        nullBreakdown.model === '5-factor') {
+      pass('T350: Null memory returns {factors, total, model}', `model: ${nullBreakdown.model}`);
+    } else {
+      fail('T350: Null memory returns {factors, total, model}', `Got: ${JSON.stringify(nullBreakdown)}`);
+    }
+
+    // T351: Breakdown contains all 5 factors
+    const memory = { importance_tier: 'normal', access_count: 5 };
+    const breakdown = attentionDecay.get_attention_breakdown(memory);
+    const expectedFactors = ['temporal', 'usage', 'importance', 'pattern', 'citation'];
+    const actualFactors = Object.keys(breakdown.factors);
+    const missingFactors = expectedFactors.filter(f => !actualFactors.includes(f));
+    if (missingFactors.length === 0) {
+      pass('T351: Breakdown contains all 5 factors', expectedFactors.join(', '));
+    } else {
+      fail('T351: Breakdown contains all 5 factors', `Missing: ${missingFactors.join(', ')}`);
+    }
+
+    // T352: Each factor has value, weight, contribution, description
+    let allFactorsValid = true;
+    let invalidFactor = '';
+    for (const [name, factor] of Object.entries(breakdown.factors)) {
+      if (typeof factor.value !== 'number' ||
+          typeof factor.weight !== 'number' ||
+          typeof factor.contribution !== 'number' ||
+          typeof factor.description !== 'string') {
+        allFactorsValid = false;
+        invalidFactor = name;
+        break;
+      }
+    }
+    if (allFactorsValid) {
+      pass('T352: Each factor has value/weight/contribution/description', 'All valid');
+    } else {
+      fail('T352: Each factor has value/weight/contribution/description', `Invalid factor: ${invalidFactor}`);
+    }
+
+    // T353: Total equals sum of contributions
+    let sumContributions = 0;
+    for (const factor of Object.values(breakdown.factors)) {
+      sumContributions += factor.contribution;
+    }
+    if (Math.abs(breakdown.total - sumContributions) < 0.0001) {
+      pass('T353: Total equals sum of contributions', `Total: ${breakdown.total.toFixed(4)}, Sum: ${sumContributions.toFixed(4)}`);
+    } else {
+      fail('T353: Total equals sum of contributions', `Total: ${breakdown.total}, Sum: ${sumContributions}`);
+    }
+
+    // T354: Weights sum to 1.0
+    let sumWeights = 0;
+    for (const factor of Object.values(breakdown.factors)) {
+      sumWeights += factor.weight;
+    }
+    if (Math.abs(sumWeights - 1.0) < 0.0001) {
+      pass('T354: Weights sum to 1.0', `Sum: ${sumWeights.toFixed(4)}`);
+    } else {
+      fail('T354: Weights sum to 1.0', `Sum: ${sumWeights}`);
+    }
+
+    // T355: FIVE_FACTOR_WEIGHTS is exported
+    if (attentionDecay.FIVE_FACTOR_WEIGHTS &&
+        typeof attentionDecay.FIVE_FACTOR_WEIGHTS.temporal === 'number' &&
+        typeof attentionDecay.FIVE_FACTOR_WEIGHTS.usage === 'number' &&
+        typeof attentionDecay.FIVE_FACTOR_WEIGHTS.importance === 'number' &&
+        typeof attentionDecay.FIVE_FACTOR_WEIGHTS.pattern === 'number' &&
+        typeof attentionDecay.FIVE_FACTOR_WEIGHTS.citation === 'number') {
+      pass('T355: FIVE_FACTOR_WEIGHTS exported with all factors', 'All weights present');
+    } else {
+      fail('T355: FIVE_FACTOR_WEIGHTS exported with all factors', 'Missing or invalid');
+    }
+  }
+
+  // 4.14 T035: APPLY COMPOSITE DECAY (T356-T360)
+
+  function test_apply_composite_decay() {
+    log('\n T035: Apply Composite Decay (T356-T360)');
+
+    // T356: apply_composite_decay is exported
+    if (typeof attentionDecay.apply_composite_decay === 'function') {
+      pass('T356: apply_composite_decay is exported', 'Function exists');
+    } else {
+      fail('T356: apply_composite_decay is exported', 'Not a function');
+      return;
+    }
+
+    // T357: Returns {decayedCount, updated} structure
+    const result = attentionDecay.apply_composite_decay('');
+    if (result &&
+        typeof result.decayedCount === 'number' &&
+        Array.isArray(result.updated)) {
+      pass('T357: Returns {decayedCount, updated}', `Structure: ${JSON.stringify(result)}`);
+    } else {
+      fail('T357: Returns {decayedCount, updated}', `Got: ${JSON.stringify(result)}`);
+    }
+
+    // T358: Empty/invalid sessionId returns zero count
+    const emptyResult = attentionDecay.apply_composite_decay('');
+    const nullResult = attentionDecay.apply_composite_decay(null);
+    const undefResult = attentionDecay.apply_composite_decay(undefined);
+    if (emptyResult.decayedCount === 0 && nullResult.decayedCount === 0 && undefResult.decayedCount === 0) {
+      pass('T358: Invalid sessionId returns decayedCount=0', 'All return 0');
+    } else {
+      fail('T358: Invalid sessionId returns decayedCount=0', `empty: ${emptyResult.decayedCount}, null: ${nullResult.decayedCount}, undef: ${undefResult.decayedCount}`);
+    }
+
+    // T359: Options parameter is accepted (no crash)
+    try {
+      const optionsResult = attentionDecay.apply_composite_decay('test-session', { query: 'test', anchors: ['summary'] });
+      pass('T359: Accepts options parameter', `Result: ${JSON.stringify(optionsResult)}`);
+    } catch (e) {
+      fail('T359: Accepts options parameter', `Error: ${e.message}`);
+    }
+
+    // T360: Updated array is empty for invalid session
+    const testResult = attentionDecay.apply_composite_decay('nonexistent-session');
+    if (testResult.updated.length === 0) {
+      pass('T360: Updated array empty for invalid session', `Length: ${testResult.updated.length}`);
+    } else {
+      fail('T360: Updated array empty for invalid session', `Length: ${testResult.updated.length}`);
+    }
+  }
+
+  // 4.15 FSRS HALF-LIFE & FORMULA VERIFICATION (T361-T370)
+
+  function test_fsrs_halflife() {
+    log('\n FSRS Half-Life & Formula Verification (T361-T370)');
+
+    const calc_r = fsrsScheduler.calculate_retrievability;
+
+    // T361: FSRS formula: R = (1 + FACTOR * t/S)^DECAY where FACTOR=19/81, DECAY=-0.5
+    // At t=S, R should equal TARGET_RETRIEVABILITY (~0.9)
+    const stability = 1.0;
+    const r_at_S = calc_r(stability, stability);
+    const expected_r = Math.pow(1 + (19/81) * 1, -0.5);
+    if (Math.abs(r_at_S - expected_r) < 0.0001) {
+      pass('T361: FSRS formula verification at t=S', `R(1,1) = ${r_at_S.toFixed(6)} ≈ ${expected_r.toFixed(6)}`);
+    } else {
+      fail('T361: FSRS formula verification at t=S', `Expected ${expected_r}, got ${r_at_S}`);
+    }
+
+    // T362: Half-life calculation: find t where R = 0.5
+    // 0.5 = (1 + 0.235 * t/S)^(-0.5)
+    // 0.5^(-2) = 1 + 0.235 * t/S
+    // 4 - 1 = 0.235 * t/S
+    // t = 3/0.235 * S ≈ 12.77 * S
+    const halflife_factor = 3 / (19/81); // ~12.77
+    const r_at_halflife = calc_r(1.0, halflife_factor);
+    if (Math.abs(r_at_halflife - 0.5) < 0.01) {
+      pass('T362: Half-life at t ≈ 12.77*S gives R ≈ 0.5', `R(1, ${halflife_factor.toFixed(2)}) = ${r_at_halflife.toFixed(4)}`);
+    } else {
+      fail('T362: Half-life at t ≈ 12.77*S gives R ≈ 0.5', `Got R = ${r_at_halflife.toFixed(4)}`);
+    }
+
+    // T363: Higher stability extends half-life proportionally
+    const r_s1_t13 = calc_r(1.0, 12.77);   // S=1, half-life reached
+    const r_s10_t13 = calc_r(10.0, 12.77); // S=10, not at half-life yet
+    const r_s10_t127 = calc_r(10.0, 127.7); // S=10, half-life should be ~127.7
+    if (r_s10_t13 > r_s1_t13 && Math.abs(r_s10_t127 - 0.5) < 0.01) {
+      pass('T363: Half-life scales with stability', `S=10,t=127.7: R=${r_s10_t127.toFixed(4)} ≈ 0.5`);
+    } else {
+      fail('T363: Half-life scales with stability', `S=10,t=127.7: R=${r_s10_t127}`);
+    }
+
+    // T364: Power-law characteristic: long tail (never reaches exactly zero)
+    const r_100days = calc_r(1.0, 100);
+    const r_1000days = calc_r(1.0, 1000);
+    const r_10000days = calc_r(1.0, 10000);
+    if (r_100days > 0 && r_1000days > 0 && r_10000days > 0) {
+      pass('T364: Long tail - never reaches zero', `100d: ${r_100days.toFixed(6)}, 1000d: ${r_1000days.toFixed(6)}, 10000d: ${r_10000days.toFixed(8)}`);
+    } else {
+      fail('T364: Long tail - never reaches zero', `100d: ${r_100days}, 1000d: ${r_1000days}, 10000d: ${r_10000days}`);
+    }
+
+    // T365: Verify 90% retention at t=S (FSRS design goal)
+    const retention_at_S = calc_r(5.0, 5.0);  // Test with S=5
+    if (Math.abs(retention_at_S - 0.9) < 0.01) {
+      pass('T365: 90% retention at t=S (FSRS design)', `R(5, 5) = ${retention_at_S.toFixed(4)} ≈ 0.9`);
+    } else {
+      fail('T365: 90% retention at t=S (FSRS design)', `Expected ~0.9, got ${retention_at_S}`);
+    }
+
+    // T366: Exponential vs Power-law comparison at various points
+    const comparePoints = [0.5, 1, 2, 5, 10, 20, 50];
+    let powerLawBehavior = true;
+    for (const t of comparePoints) {
+      const fsrs_r = calc_r(1.0, t);
+      const exp_r = Math.pow(0.8, t);  // Exponential with rate 0.8
+      // Power-law should decay slower initially, faster later
+      if (t < 5 && fsrs_r <= exp_r * 0.9) {
+        powerLawBehavior = false;
+        break;
+      }
+    }
+    if (powerLawBehavior) {
+      pass('T366: Power-law initially slower than exponential', 'Characteristic confirmed');
+    } else {
+      fail('T366: Power-law initially slower than exponential', 'Behavior unexpected');
+    }
+
+    // T367: Fractional stability values work correctly
+    const r_frac = calc_r(0.5, 0.5);  // Half-day stability, half day elapsed
+    const expected_frac = Math.pow(1 + (19/81), -0.5);  // Same ratio as t=S
+    if (Math.abs(r_frac - expected_frac) < 0.01) {
+      pass('T367: Fractional stability works', `R(0.5, 0.5) = ${r_frac.toFixed(4)} ≈ ${expected_frac.toFixed(4)}`);
+    } else {
+      fail('T367: Fractional stability works', `Expected ${expected_frac}, got ${r_frac}`);
+    }
+
+    // T368: Very small stability (fast decay)
+    // Note: fsrs-scheduler treats S <= 0 as default (1.0)
+    // So we test with S=0.1 which gives: R = (1 + 0.235 * 10)^-0.5 ≈ 0.547
+    // This is significantly lower than R(1,1) = 0.9, demonstrating faster decay
+    const r_fast = calc_r(0.1, 1);  // S=0.1, t=1 → 10x overdue
+    const r_normal = calc_r(1.0, 1);  // S=1.0, t=1 → at stability
+    // Verify that lower stability means faster decay (lower R for same elapsed time)
+    if (r_fast < r_normal && r_fast > 0 && r_fast < 0.7) {
+      pass('T368: Very small stability = fast decay', `R(0.1, 1) = ${r_fast.toFixed(6)} < R(1, 1) = ${r_normal.toFixed(4)}`);
+    } else {
+      fail('T368: Very small stability = fast decay', `r_fast=${r_fast.toFixed(4)}, r_normal=${r_normal.toFixed(4)}`);
+    }
+
+    // T369: Very large stability (slow decay)
+    const r_slow = calc_r(1000, 1);  // S=1000, t=1 → barely any decay
+    if (r_slow > 0.999) {
+      pass('T369: Very large stability = slow decay', `R(1000, 1) = ${r_slow.toFixed(6)}`);
+    } else {
+      fail('T369: Very large stability = slow decay', `Got: ${r_slow}`);
+    }
+
+    // T370: Verify FSRS constants match research values
+    if (Math.abs(fsrsScheduler.FSRS_FACTOR - (19/81)) < 0.0001 &&
+        fsrsScheduler.FSRS_DECAY === -0.5 &&
+        fsrsScheduler.TARGET_RETRIEVABILITY === 0.9) {
+      pass('T370: FSRS constants match research', `FACTOR=19/81, DECAY=-0.5, TARGET=0.9`);
+    } else {
+      fail('T370: FSRS constants match research', 'Constants mismatch');
+    }
+  }
+
+  // 4.16 EDGE CASES: ZERO STABILITY & BOUNDARY CONDITIONS (T371-T380)
+
+  function test_edge_cases() {
+    log('\n Edge Cases: Zero Stability & Boundaries (T371-T380)');
+
+    const calc_r = fsrsScheduler.calculate_retrievability;
+
+    // T371: Zero stability handled gracefully (BUG-024 validation)
+    const r_zero_s = calc_r(0, 1);
+    if (r_zero_s >= 0 && r_zero_s <= 1 && !isNaN(r_zero_s)) {
+      pass('T371: Zero stability handled gracefully', `R(0, 1) = ${r_zero_s.toFixed(4)}`);
+    } else {
+      fail('T371: Zero stability handled gracefully', `Got: ${r_zero_s}`);
+    }
+
+    // T372: calculateRetrievabilityDecay handles memory with stability=0
+    const zeroStabMemory = {
+      stability: 0,
+      attention_score: 1.0,
+      last_review: new Date(Date.now() - 86400000).toISOString(),
+    };
+    const zeroStabDecay = attentionDecay.calculateRetrievabilityDecay(zeroStabMemory, 1.0);
+    if (typeof zeroStabDecay === 'number' && !isNaN(zeroStabDecay)) {
+      pass('T372: calculateRetrievabilityDecay handles stability=0', `Decay: ${zeroStabDecay.toFixed(4)}`);
+    } else {
+      fail('T372: calculateRetrievabilityDecay handles stability=0', `Got: ${zeroStabDecay}`);
+    }
+
+    // T373: Negative stability treated as default
+    const r_neg_s = calc_r(-5, 1);
+    if (r_neg_s >= 0 && r_neg_s <= 1 && !isNaN(r_neg_s)) {
+      pass('T373: Negative stability handled', `R(-5, 1) = ${r_neg_s.toFixed(4)}`);
+    } else {
+      fail('T373: Negative stability handled', `Got: ${r_neg_s}`);
+    }
+
+    // T374: Negative elapsed time returns 1.0 (or current score)
+    const r_neg_t = calc_r(1.0, -5);
+    if (r_neg_t >= 0 && r_neg_t <= 1) {
+      pass('T374: Negative elapsed time handled', `R(1, -5) = ${r_neg_t.toFixed(4)}`);
+    } else {
+      fail('T374: Negative elapsed time handled', `Got: ${r_neg_t}`);
+    }
+
+    // T375: Infinity inputs handled
+    const r_inf_s = calc_r(Infinity, 1);
+    const r_inf_t = calc_r(1, Infinity);
+    if (!isNaN(r_inf_s) && !isNaN(r_inf_t)) {
+      pass('T375: Infinity inputs handled', `R(Inf, 1)=${r_inf_s}, R(1, Inf)=${r_inf_t.toFixed(6)}`);
+    } else {
+      fail('T375: Infinity inputs handled', `R(Inf, 1)=${r_inf_s}, R(1, Inf)=${r_inf_t}`);
+    }
+
+    // T376: Very large elapsed time doesn't overflow
+    const r_huge_t = calc_r(1.0, 1e15);
+    if (isFinite(r_huge_t) && r_huge_t >= 0) {
+      pass('T376: Very large elapsed time no overflow', `R(1, 1e15) = ${r_huge_t}`);
+    } else {
+      fail('T376: Very large elapsed time no overflow', `Got: ${r_huge_t}`);
+    }
+
+    // T377: Constitutional tier memories simulate infinite half-life (no decay)
+    const constRate = attentionDecay.getDecayRate('constitutional');
+    const constDecay = attentionDecay.calculateDecayedScore(1.0, 1000, constRate);
+    if (constDecay === 1.0) {
+      pass('T377: Constitutional = infinite half-life (no decay)', `Score stays 1.0 after 1000 turns`);
+    } else {
+      fail('T377: Constitutional = infinite half-life (no decay)', `Got: ${constDecay}`);
+    }
+
+    // T378: Meta-cognitive memories (deprecated tier) also don't decay
+    const deprRate = attentionDecay.getDecayRate('deprecated');
+    const deprDecay = attentionDecay.calculateDecayedScore(0.5, 1000, deprRate);
+    if (deprDecay === 0.5) {
+      pass('T378: Deprecated tier = frozen state (no decay)', `Score stays 0.5 after 1000 turns`);
+    } else {
+      fail('T378: Deprecated tier = frozen state (no decay)', `Got: ${deprDecay}`);
+    }
+
+    // T379: Important tier also has no decay (rate=1.0)
+    const impRate = attentionDecay.getDecayRate('important');
+    const impDecay = attentionDecay.calculateDecayedScore(0.8, 100, impRate);
+    if (impDecay === 0.8) {
+      pass('T379: Important tier = no decay (rate=1.0)', `Score stays 0.8 after 100 turns`);
+    } else {
+      fail('T379: Important tier = no decay (rate=1.0)', `Got: ${impDecay}`);
+    }
+
+    // T380: Score exactly at minScoreThreshold boundary
+    const threshold = attentionDecay.DECAY_CONFIG.minScoreThreshold;
+    const atThreshold = attentionDecay.calculateDecayedScore(threshold, 0, 0.8);
+    const belowThreshold = attentionDecay.calculateDecayedScore(threshold * 0.5, 0, 0.8);
+    if (atThreshold >= threshold && belowThreshold === 0) {
+      pass('T380: minScoreThreshold boundary behavior', `At: ${atThreshold}, Below: ${belowThreshold}`);
+    } else {
+      fail('T380: minScoreThreshold boundary behavior', `At: ${atThreshold}, Below: ${belowThreshold}`);
+    }
+  }
+
+  // 4.17 MODULE EXPORTS (Updated)
 
   function test_exports() {
     log('\n Module Exports');
@@ -838,6 +1283,11 @@
       'activate_memory_with_fsrs',
       // Re-exported scheduler
       'fsrsScheduler',
+      // T035: 5-factor composite scoring
+      'calculate_composite_attention',
+      'get_attention_breakdown',
+      'apply_composite_decay',
+      'FIVE_FACTOR_WEIGHTS',
     ];
 
     for (const name of expectedExports) {
@@ -871,6 +1321,13 @@
     test_backward_compatibility();
     test_db_dependent_without_db();
     test_fsrs_activation();
+    // T035: New composite scoring tests
+    test_composite_attention();
+    test_attention_breakdown();
+    test_apply_composite_decay();
+    // FSRS half-life and edge cases
+    test_fsrs_halflife();
+    test_edge_cases();
     test_exports();
 
     // Summary

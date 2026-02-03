@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// HANDLERS: CHECKPOINTS
+// HANDLER: CHECKPOINTS
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -7,16 +7,19 @@ const path = require('path');
 
 /* ─────────────────────────────────────────────────────────────
    1. LIB MODULE IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const LIB_DIR = path.join(__dirname, '..', 'lib');
 const checkpoints = require(path.join(LIB_DIR, 'storage', 'checkpoints.js'));
 const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
 const confidenceTracker = require(path.join(LIB_DIR, 'scoring', 'confidence-tracker.js'));
 
+// REQ-019: Standardized Response Structure
+const { createMCPSuccessResponse } = require(path.join(LIB_DIR, 'response', 'envelope.js'));
+
 /* ─────────────────────────────────────────────────────────────
    2. CHECKPOINT CREATE HANDLER
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle checkpoint_create tool - create a new checkpoint
@@ -40,21 +43,24 @@ async function handle_checkpoint_create(args) {
 
   const result = checkpoints.createCheckpoint(name, { specFolder: spec_folder, metadata });
 
-  return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        success: true,
-        checkpoint: result,
-        message: `Checkpoint "${name}" created successfully`
-      }, null, 2)
-    }]
-  };
+  // REQ-019: Use standardized response envelope
+  return createMCPSuccessResponse({
+    tool: 'checkpoint_create',
+    summary: `Checkpoint "${name}" created successfully`,
+    data: {
+      success: true,
+      checkpoint: result
+    },
+    hints: [
+      `Restore with: checkpoint_restore({ name: "${name}" })`,
+      `Delete with: checkpoint_delete({ name: "${name}" })`
+    ]
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────
    3. CHECKPOINT LIST HANDLER
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle checkpoint_list tool - list all checkpoints
@@ -78,20 +84,27 @@ async function handle_checkpoint_list(args) {
 
   const results = checkpoints.listCheckpoints({ specFolder: spec_folder, limit });
 
-  return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        count: results.length,
-        checkpoints: results
-      }, null, 2)
-    }]
-  };
+  // REQ-019: Use standardized response envelope
+  const summary = results.length > 0
+    ? `Found ${results.length} checkpoint(s)`
+    : 'No checkpoints found';
+
+  return createMCPSuccessResponse({
+    tool: 'checkpoint_list',
+    summary,
+    data: {
+      count: results.length,
+      checkpoints: results
+    },
+    hints: results.length === 0
+      ? ['Create a checkpoint with checkpoint_create({ name: "my-checkpoint" })']
+      : []
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────
    4. CHECKPOINT RESTORE HANDLER
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle checkpoint_restore tool - restore from a checkpoint
@@ -109,21 +122,23 @@ async function handle_checkpoint_restore(args) {
 
   const result = checkpoints.restoreCheckpoint(name, { clearExisting: clear_existing });
 
-  return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        success: true,
-        restored: result,
-        message: `Checkpoint "${name}" restored successfully`
-      }, null, 2)
-    }]
-  };
+  // REQ-019: Use standardized response envelope
+  return createMCPSuccessResponse({
+    tool: 'checkpoint_restore',
+    summary: `Checkpoint "${name}" restored successfully`,
+    data: {
+      success: true,
+      restored: result
+    },
+    hints: clear_existing
+      ? ['Previous data was cleared before restore']
+      : ['Restore merged with existing data - duplicates may exist']
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────
    5. CHECKPOINT DELETE HANDLER
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle checkpoint_delete tool - delete a checkpoint
@@ -140,22 +155,24 @@ async function handle_checkpoint_delete(args) {
 
   const success = checkpoints.deleteCheckpoint(name);
 
-  return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        success,
-        message: success
-          ? `Checkpoint "${name}" deleted successfully`
-          : `Checkpoint "${name}" not found`
-      }, null, 2)
-    }]
-  };
+  // REQ-019: Use standardized response envelope
+  const summary = success
+    ? `Checkpoint "${name}" deleted successfully`
+    : `Checkpoint "${name}" not found`;
+
+  return createMCPSuccessResponse({
+    tool: 'checkpoint_delete',
+    summary,
+    data: { success },
+    hints: success
+      ? []
+      : ['Use checkpoint_list() to see available checkpoints']
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────
    6. MEMORY VALIDATE HANDLER
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle memory_validate tool - record validation feedback for a memory
@@ -178,26 +195,36 @@ async function handle_memory_validate(args) {
   const database = vectorIndex.getDb();
   const result = confidenceTracker.recordValidation(database, id, was_useful);
 
-  return {
-    content: [{
-      type: 'text',
-      text: JSON.stringify({
-        memoryId: id,
-        wasUseful: was_useful,
-        confidence: result.confidence,
-        validationCount: result.validationCount,
-        promotionEligible: result.promotionEligible,
-        message: was_useful
-          ? `Positive validation recorded. Confidence: ${result.confidence.toFixed(2)}`
-          : `Negative validation recorded. Confidence: ${result.confidence.toFixed(2)}`
-      }, null, 2)
-    }]
-  };
+  // REQ-019: Use standardized response envelope
+  const summary = was_useful
+    ? `Positive validation recorded (confidence: ${result.confidence.toFixed(2)})`
+    : `Negative validation recorded (confidence: ${result.confidence.toFixed(2)})`;
+
+  const hints = [];
+  if (result.promotionEligible) {
+    hints.push('Memory eligible for promotion to critical tier');
+  }
+  if (!was_useful && result.validationCount > 3) {
+    hints.push('Consider updating or deleting this memory if consistently unhelpful');
+  }
+
+  return createMCPSuccessResponse({
+    tool: 'memory_validate',
+    summary,
+    data: {
+      memoryId: id,
+      wasUseful: was_useful,
+      confidence: result.confidence,
+      validationCount: result.validationCount,
+      promotionEligible: result.promotionEligible
+    },
+    hints
+  });
 }
 
 /* ─────────────────────────────────────────────────────────────
    7. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // snake_case exports

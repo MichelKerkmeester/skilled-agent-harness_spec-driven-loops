@@ -78,9 +78,6 @@ DO NOT use Level 2 Tasks if:
 
 ---
 
-
----
-
 ## L2: TASK-CHECKLIST MAPPING
 
 | Task ID | Checklist Item | Priority | Status |

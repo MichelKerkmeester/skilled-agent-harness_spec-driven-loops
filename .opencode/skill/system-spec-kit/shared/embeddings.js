@@ -4,7 +4,7 @@
 'use strict';
 
 const crypto = require('crypto');
-const { create_embeddings_provider, get_provider_info } = require('./embeddings/factory');
+const { create_embeddings_provider, get_provider_info, validate_api_key, VALIDATION_TIMEOUT_MS } = require('./embeddings/factory');
 const { semantic_chunk, MAX_TEXT_LENGTH, RESERVED_OVERVIEW, RESERVED_OUTCOME, MIN_SECTION_LENGTH } = require('./chunking');
 
 /* ───────────────────────────────────────────────────────────────
@@ -85,13 +85,54 @@ function get_embedding_cache_stats() {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   2. SINGLETON PROVIDER INSTANCE
+   2. LAZY SINGLETON PROVIDER INSTANCE
    ─────────────────────────────────────────────────────────────── */
+
+/**
+ * LAZY SINGLETON PATTERN (REQ-003, T016-T019)
+ *
+ * The embedding provider is initialized lazily on first use to reduce
+ * MCP startup time from 2-3s to <500ms.
+ *
+ * Initialization Flow:
+ * 1. On first embedding request, get_provider() creates the instance
+ * 2. Provider is created without warmup (warmup: false)
+ * 3. First actual embedding call triggers model loading
+ *
+ * Environment Variables:
+ * - SPECKIT_EAGER_WARMUP=true: Force eager loading at startup (legacy behavior)
+ * - SPECKIT_LAZY_LOADING=false: Alias for SPECKIT_EAGER_WARMUP=true
+ */
 
 let provider_instance = null;
 let provider_init_promise = null;
+let provider_init_start_time = null;
+let provider_init_complete_time = null;
+let first_embedding_time = null;
 
-/** Get or create provider instance (singleton) */
+/**
+ * Check if eager warmup is requested via environment variable.
+ * Default: false (lazy loading enabled)
+ * @returns {boolean} True if eager warmup should be performed
+ */
+function should_eager_warmup() {
+  // SPECKIT_EAGER_WARMUP=true enables eager warmup
+  if (process.env.SPECKIT_EAGER_WARMUP === 'true' || process.env.SPECKIT_EAGER_WARMUP === '1') {
+    return true;
+  }
+  // SPECKIT_LAZY_LOADING=false also enables eager warmup (inverse semantics)
+  if (process.env.SPECKIT_LAZY_LOADING === 'false' || process.env.SPECKIT_LAZY_LOADING === '0') {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Get or create provider instance (lazy singleton).
+ * T016: Provider is created on first call, not at module load time.
+ * T017: Model initialization is deferred until first embedding request.
+ * @returns {Promise<Object>} The embedding provider instance
+ */
 async function get_provider() {
   if (provider_instance) {
     return provider_instance;
@@ -101,14 +142,20 @@ async function get_provider() {
     return provider_init_promise;
   }
 
+  provider_init_start_time = Date.now();
+
   provider_init_promise = (async () => {
     try {
       provider_instance = await create_embeddings_provider({
-        warmup: false,
+        warmup: false, // T017: No warmup at creation; model loads on first embed call
       });
+      provider_init_complete_time = Date.now();
+      const init_time = provider_init_complete_time - provider_init_start_time;
+      console.error(`[embeddings] Provider created lazily (${init_time}ms)`);
       return provider_instance;
     } catch (error) {
       provider_init_promise = null;
+      provider_init_start_time = null;
       throw error;
     }
   })();
@@ -116,11 +163,44 @@ async function get_provider() {
   return provider_init_promise;
 }
 
+/**
+ * Check if the provider is initialized without triggering initialization.
+ * Useful for status checks that shouldn't cause side effects.
+ * @returns {boolean} True if provider is ready
+ */
+function is_provider_initialized() {
+  return provider_instance !== null;
+}
+
+/**
+ * Get lazy loading statistics for diagnostics.
+ * @returns {Object} Timing and state information
+ */
+function get_lazy_loading_stats() {
+  return {
+    is_initialized: provider_instance !== null,
+    is_initializing: provider_init_promise !== null && provider_instance === null,
+    eager_warmup_enabled: should_eager_warmup(),
+    init_start_time: provider_init_start_time,
+    init_complete_time: provider_init_complete_time,
+    init_duration_ms: provider_init_complete_time && provider_init_start_time
+      ? provider_init_complete_time - provider_init_start_time
+      : null,
+    first_embedding_time: first_embedding_time,
+    time_to_first_embedding_ms: first_embedding_time && provider_init_start_time
+      ? first_embedding_time - provider_init_start_time
+      : null,
+  };
+}
+
 /* ───────────────────────────────────────────────────────────────
    3. CORE EMBEDDING GENERATION
    ─────────────────────────────────────────────────────────────── */
 
-/** Generate embedding for text (low-level function) */
+/**
+ * Generate embedding for text (low-level function).
+ * T017: First call triggers lazy model initialization.
+ */
 async function generate_embedding(text) {
   if (!text || typeof text !== 'string') {
     console.warn('[embeddings] Empty or invalid text provided');
@@ -138,8 +218,16 @@ async function generate_embedding(text) {
     return cached;
   }
 
+  // T017: Track first embedding time for lazy loading diagnostics
+  const is_first_embedding = !first_embedding_time && !is_provider_initialized();
+
   const provider = await get_provider();
-  
+
+  // Record first embedding timestamp after provider init
+  if (is_first_embedding && !first_embedding_time) {
+    first_embedding_time = Date.now();
+  }
+
   const max_length = 8000;
   let input_text = trimmed_text;
   if (input_text.length > max_length) {
@@ -147,11 +235,11 @@ async function generate_embedding(text) {
   }
 
   const embedding = await provider.generate_embedding(input_text);
-  
+
   if (embedding) {
     cache_embedding(trimmed_text, embedding);
   }
-  
+
   return embedding;
 }
 
@@ -448,6 +536,13 @@ module.exports = {
   get_provider_metadata,
   clear_embedding_cache,
   get_embedding_cache_stats,
+  // T016-T019: Lazy loading exports
+  is_provider_initialized,
+  should_eager_warmup,
+  get_lazy_loading_stats,
+  // T087-T090: Pre-flight API key validation (REQ-029)
+  validate_api_key,
+  VALIDATION_TIMEOUT_MS,
   EMBEDDING_DIM,
   EMBEDDING_TIMEOUT,
   MAX_TEXT_LENGTH,
@@ -480,4 +575,10 @@ module.exports = {
   getProviderMetadata: get_provider_metadata,
   clearEmbeddingCache: clear_embedding_cache,
   getEmbeddingCacheStats: get_embedding_cache_stats,
+  // T016-T019: Lazy loading aliases (camelCase)
+  isProviderInitialized: is_provider_initialized,
+  shouldEagerWarmup: should_eager_warmup,
+  getLazyLoadingStats: get_lazy_loading_stats,
+  // T087-T090: Pre-flight API key validation aliases (camelCase)
+  validateApiKey: validate_api_key,
 };

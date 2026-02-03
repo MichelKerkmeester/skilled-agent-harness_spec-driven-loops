@@ -6,7 +6,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const { formatTimestamp } = require('../utils/message-utils');
 const { validateDataStructure } = require('../utils/data-validator');
@@ -16,7 +16,7 @@ const simFactory = require('../lib/simulation-factory');
 
 /* ─────────────────────────────────────────────────────────────
    2. DECISION EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function extract_decisions(collected_data) {
   const manual_decisions = collected_data?._manualDecisions || [];
@@ -285,7 +285,7 @@ async function extract_decisions(collected_data) {
 
 /* ─────────────────────────────────────────────────────────────
    3. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary export (snake_case)

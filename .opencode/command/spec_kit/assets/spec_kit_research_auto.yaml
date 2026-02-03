@@ -66,6 +66,27 @@ field_handling:
     rule: "Limit file operations to scope when provided"
 
 # ─────────────────────────────────────────────────────────────────
+# CONTEXT LOADING (At Workflow START)
+# ─────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "At workflow START, before Step 1"
+  purpose: "Load prior research context and related findings"
+  mcp_integration:
+    tool: memory_search
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters:
+      query: "research context for {spec_folder_name}"
+      specFolder: "{spec_folder_path}"
+      anchors: ['summary', 'decisions', 'state', 'research']
+  command_reference: "/memory:context"
+  when_to_skip:
+    - "New spec folder (no prior context exists)"
+    - "User explicitly says 'skip context' or 'fresh start'"
+  behavior:
+    if_context_found: "Surface relevant research findings and decisions before proceeding"
+    if_no_context: "Proceed to Step 1 without delay"
+
+# ─────────────────────────────────────────────────────────────────
 # DOCUMENTATION LEVELS (Progressive Enhancement)
 # ─────────────────────────────────────────────────────────────────
 documentation_levels:

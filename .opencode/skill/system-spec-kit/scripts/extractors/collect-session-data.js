@@ -6,7 +6,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const path = require('path');
 const { CONFIG, findActiveSpecsDir } = require('../core');
@@ -20,7 +20,8 @@ const {
   buildProjectStateSnapshot,
   calculateSessionDuration,
   calculateExpiryEpoch,
-  detectRelatedDocs
+  detectRelatedDocs,
+  extractBlockers
 } = require('./session-extractor');
 
 const {
@@ -35,7 +36,7 @@ const {
 
 /* ─────────────────────────────────────────────────────────────
    1.5. PREFLIGHT/POSTFLIGHT UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Generates assessment text for a given score.
@@ -251,8 +252,294 @@ function generate_learning_summary(delta_know, delta_uncert, delta_context, lear
 }
 
 /* ─────────────────────────────────────────────────────────────
-   2. LAZY-LOADED DEPENDENCIES
-──────────────────────────────────────────────────────────────── */
+   2. CONTINUE SESSION DATA GENERATION (T124)
+────────────────────────────────────────────────────────────────*/
+
+/**
+ * Determines session status based on blockers and completion indicators.
+ * @param {string} blockers - Blockers text from extraction
+ * @param {Object[]} observations - Session observations
+ * @param {number} messageCount - Number of messages in session
+ * @returns {string} Session status: 'IN_PROGRESS' | 'COMPLETED' | 'BLOCKED' | 'PAUSED'
+ */
+function determine_session_status(blockers, observations, message_count) {
+  // Check for explicit completion indicators
+  const completion_keywords = /\b(?:done|complete[d]?|finish(?:ed)?|success(?:ful(?:ly)?)?)\b/i;
+  const last_obs = observations[observations.length - 1];
+
+  if (blockers && blockers !== 'None') {
+    return 'BLOCKED';
+  }
+
+  if (last_obs) {
+    const narrative = last_obs.narrative || '';
+    if (completion_keywords.test(narrative) || completion_keywords.test(last_obs.title || '')) {
+      return 'COMPLETED';
+    }
+  }
+
+  // Check if session has stalled (low message count with no recent activity)
+  if (message_count < 3) {
+    return 'IN_PROGRESS';
+  }
+
+  return 'IN_PROGRESS';
+}
+
+/**
+ * Estimates completion percentage based on session characteristics.
+ * @param {Object[]} observations - Session observations
+ * @param {number} messageCount - Number of messages
+ * @param {Object} toolCounts - Tool usage counts
+ * @param {string} sessionStatus - Current session status
+ * @returns {number} Estimated completion percentage (0-100)
+ */
+function estimate_completion_percent(observations, message_count, tool_counts, session_status) {
+  if (session_status === 'COMPLETED') return 100;
+  if (session_status === 'BLOCKED') return Math.min(90, message_count * 5);
+
+  // Base estimation on activity metrics
+  const total_tools = Object.values(tool_counts).reduce((a, b) => a + b, 0);
+  const write_tools = (tool_counts.Write || 0) + (tool_counts.Edit || 0);
+  const read_tools = (tool_counts.Read || 0) + (tool_counts.Grep || 0) + (tool_counts.Glob || 0);
+
+  // Higher write activity suggests more progress
+  let base_percent = 0;
+
+  // Message-based progress (each message ~5% progress, max 50%)
+  base_percent += Math.min(50, message_count * 5);
+
+  // Write activity bonus (up to 30%)
+  if (total_tools > 0) {
+    base_percent += Math.min(30, (write_tools / total_tools) * 40);
+  }
+
+  // Observation-based progress (up to 20%)
+  base_percent += Math.min(20, observations.length * 3);
+
+  return Math.min(95, Math.round(base_percent)); // Cap at 95% unless explicitly completed
+}
+
+/**
+ * Extracts pending tasks from observations and recent context.
+ * @param {Object[]} observations - Session observations
+ * @param {Object[]} recentContext - Recent context array
+ * @param {string} nextAction - Next action text
+ * @returns {Object[]} Array of pending tasks with TASK_ID, TASK_DESCRIPTION, TASK_PRIORITY
+ */
+function extract_pending_tasks(observations, recent_context, next_action) {
+  const tasks = [];
+  const task_patterns = [
+    /\b(?:todo|task|need(?:s)? to|should|must|next):\s*(.+?)(?:[.!?\n]|$)/gi,
+    /\[\s*\]\s*(.+?)(?:\n|$)/g,  // Unchecked checkboxes
+    /\b(?:remaining|pending|left to do):\s*(.+?)(?:[.!?\n]|$)/gi
+  ];
+
+  let task_id = 1;
+  const seen = new Set();
+
+  // Extract from observations
+  for (const obs of observations) {
+    const text = `${obs.title || ''} ${obs.narrative || ''}`;
+    for (const pattern of task_patterns) {
+      let match;
+      pattern.lastIndex = 0;
+      while ((match = pattern.exec(text)) !== null) {
+        const task_desc = match[1].trim().substring(0, 100);
+        if (task_desc.length > 10 && !seen.has(task_desc.toLowerCase())) {
+          seen.add(task_desc.toLowerCase());
+          tasks.push({
+            TASK_ID: `T${String(task_id++).padStart(3, '0')}`,
+            TASK_DESCRIPTION: task_desc,
+            TASK_PRIORITY: 'P1'
+          });
+        }
+      }
+    }
+
+    // Check facts for tasks
+    if (obs.facts) {
+      for (const fact of obs.facts) {
+        const fact_text = typeof fact === 'string' ? fact : fact.text || '';
+        for (const pattern of task_patterns) {
+          let match;
+          pattern.lastIndex = 0;
+          while ((match = pattern.exec(fact_text)) !== null) {
+            const task_desc = match[1].trim().substring(0, 100);
+            if (task_desc.length > 10 && !seen.has(task_desc.toLowerCase())) {
+              seen.add(task_desc.toLowerCase());
+              tasks.push({
+                TASK_ID: `T${String(task_id++).padStart(3, '0')}`,
+                TASK_DESCRIPTION: task_desc,
+                TASK_PRIORITY: 'P2'
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // If next action is meaningful and not already captured, add as P0
+  if (next_action &&
+      next_action !== 'Continue implementation' &&
+      !seen.has(next_action.toLowerCase())) {
+    tasks.unshift({
+      TASK_ID: 'T000',
+      TASK_DESCRIPTION: next_action,
+      TASK_PRIORITY: 'P0'
+    });
+  }
+
+  return tasks.slice(0, 10); // Limit to 10 tasks
+}
+
+/**
+ * Generates context summary for session continuation.
+ * @param {string} summary - Session summary
+ * @param {Object[]} observations - Session observations
+ * @param {string} projectPhase - Current project phase
+ * @param {number} decisionCount - Number of decisions made
+ * @returns {string} Formatted context summary
+ */
+function generate_context_summary(summary, observations, project_phase, decision_count) {
+  const parts = [];
+
+  // Add phase context
+  parts.push(`**Phase:** ${project_phase}`);
+
+  // Add key activity summary
+  if (observations.length > 0) {
+    const recent_titles = observations
+      .slice(-3)
+      .map(o => o.title)
+      .filter(t => t && t.length > 5)
+      .join(', ');
+    if (recent_titles) {
+      parts.push(`**Recent:** ${recent_titles}`);
+    }
+  }
+
+  // Add decision context
+  if (decision_count > 0) {
+    parts.push(`**Decisions:** ${decision_count} decision${decision_count > 1 ? 's' : ''} recorded`);
+  }
+
+  // Add summary if meaningful
+  if (summary &&
+      summary.length > 30 &&
+      !summary.includes('SIMULATION') &&
+      !summary.includes('[response]')) {
+    const trimmed = summary.substring(0, 200);
+    parts.push(`**Summary:** ${trimmed}${summary.length > 200 ? '...' : ''}`);
+  }
+
+  return parts.join('\n\n');
+}
+
+/**
+ * Generates resume context items for quick review.
+ * @param {Object[]} files - Modified files
+ * @param {Object[]} specFiles - Spec folder files
+ * @param {Object[]} observations - Session observations
+ * @returns {Object[]} Array of context items with CONTEXT_ITEM
+ */
+function generate_resume_context(files, spec_files, observations) {
+  const items = [];
+
+  // Add key files modified
+  if (files.length > 0) {
+    const file_list = files.slice(0, 3).map(f => f.FILE_PATH).join(', ');
+    items.push({ CONTEXT_ITEM: `Files modified: ${file_list}` });
+  }
+
+  // Add relevant spec files
+  const priority_docs = ['tasks.md', 'checklist.md', 'plan.md'];
+  const relevant_docs = spec_files.filter(sf => priority_docs.includes(sf.FILE_NAME));
+  if (relevant_docs.length > 0) {
+    items.push({ CONTEXT_ITEM: `Check: ${relevant_docs.map(d => d.FILE_NAME).join(', ')}` });
+  }
+
+  // Add last significant observation
+  const last_meaningful = observations.find(o => o.narrative && o.narrative.length > 50);
+  if (last_meaningful) {
+    items.push({ CONTEXT_ITEM: `Last: ${(last_meaningful.title || last_meaningful.narrative).substring(0, 80)}` });
+  }
+
+  return items.slice(0, 5);
+}
+
+/**
+ * Builds complete CONTINUE_SESSION data for template rendering.
+ * @param {Object} params - Session parameters
+ * @returns {Object} CONTINUE_SESSION template data
+ */
+function build_continue_session_data({
+  observations,
+  userPrompts,
+  toolCounts,
+  recentContext,
+  FILES,
+  SPEC_FILES,
+  summary,
+  projectPhase,
+  lastAction,
+  nextAction,
+  blockers,
+  duration,
+  decisionCount
+}) {
+  // Determine session status
+  const session_status = determine_session_status(blockers, observations, userPrompts.length);
+
+  // Estimate completion
+  const completion_percent = estimate_completion_percent(
+    observations,
+    userPrompts.length,
+    toolCounts,
+    session_status
+  );
+
+  // Extract pending tasks
+  const pending_tasks = extract_pending_tasks(observations, recentContext, nextAction);
+
+  // Generate context summary
+  const context_summary = generate_context_summary(
+    summary,
+    observations,
+    projectPhase,
+    decisionCount
+  );
+
+  // Generate resume context
+  const resume_context = generate_resume_context(FILES, SPEC_FILES, observations);
+
+  // Get continuation count from recent context or default to 1
+  const continuation_count = recentContext?.[0]?.continuationCount || 1;
+
+  // Format last activity timestamp
+  const last_prompt = userPrompts[userPrompts.length - 1];
+  const last_activity = last_prompt?.timestamp
+    ? new Date(last_prompt.timestamp).toISOString()
+    : new Date().toISOString();
+
+  return {
+    SESSION_STATUS: session_status,
+    COMPLETION_PERCENT: completion_percent,
+    LAST_ACTIVITY_TIMESTAMP: last_activity,
+    SESSION_DURATION: duration,
+    CONTINUATION_COUNT: continuation_count,
+    CONTEXT_SUMMARY: context_summary,
+    PENDING_TASKS: pending_tasks,
+    NEXT_CONTINUATION_COUNT: continuation_count + 1,
+    // LAST_ACTION and NEXT_ACTION come from project state snapshot
+    RESUME_CONTEXT: resume_context
+  };
+}
+
+/* ─────────────────────────────────────────────────────────────
+   2.5. LAZY-LOADED DEPENDENCIES
+────────────────────────────────────────────────────────────────*/
 
 let simFactory;
 function get_sim_factory() {
@@ -265,7 +552,7 @@ const getSimFactory = get_sim_factory;
 
 /* ─────────────────────────────────────────────────────────────
    3. AUTO-SAVE DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function should_auto_save(message_count) {
   return message_count > 0 && message_count % CONFIG.MESSAGE_COUNT_TRIGGER === 0;
@@ -273,7 +560,7 @@ function should_auto_save(message_count) {
 
 /* ─────────────────────────────────────────────────────────────
    4. SESSION DATA COLLECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function collect_session_data(collected_data, spec_folder_name = null) {
   const now = new Date();
@@ -369,6 +656,23 @@ async function collect_session_data(collected_data, spec_folder_name = null) {
   // Extract preflight/postflight data for learning delta tracking
   const preflight_postflight_data = extract_preflight_postflight_data(collected_data);
 
+  // Build CONTINUE_SESSION data for session handover (T124)
+  const continue_session_data = build_continue_session_data({
+    observations,
+    userPrompts: user_prompts,
+    toolCounts,
+    recentContext: collected_data.recent_context,
+    FILES,
+    SPEC_FILES,
+    summary: SUMMARY,
+    projectPhase,
+    lastAction,
+    nextAction,
+    blockers,
+    duration,
+    decisionCount
+  });
+
   return {
     TITLE: folder_name.replace(/^\d{3}-/, '').replace(/-/g, ' '),
     DATE: date_only,
@@ -409,13 +713,15 @@ async function collect_session_data(collected_data, spec_folder_name = null) {
     FILE_PROGRESS: fileProgress,
     HAS_FILE_PROGRESS: fileProgress.length > 0,
     // Preflight/Postflight learning delta data
-    ...preflight_postflight_data
+    ...preflight_postflight_data,
+    // CONTINUE_SESSION data for session handover (T124)
+    ...continue_session_data
   };
 }
 
 /* ─────────────────────────────────────────────────────────────
    5. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)
@@ -426,6 +732,13 @@ module.exports = {
   get_score_assessment,
   get_trend_indicator,
   generate_learning_summary,
+  // CONTINUE_SESSION exports (T124)
+  build_continue_session_data,
+  determine_session_status,
+  estimate_completion_percent,
+  extract_pending_tasks,
+  generate_context_summary,
+  generate_resume_context,
   // Backward-compatible aliases (camelCase)
   collectSessionData: collect_session_data,
   shouldAutoSave: should_auto_save,
@@ -433,5 +746,12 @@ module.exports = {
   calculateLearningIndex: calculate_learning_index,
   getScoreAssessment: get_score_assessment,
   getTrendIndicator: get_trend_indicator,
-  generateLearningSummary: generate_learning_summary
+  generateLearningSummary: generate_learning_summary,
+  // CONTINUE_SESSION aliases (camelCase)
+  buildContinueSessionData: build_continue_session_data,
+  determineSessionStatus: determine_session_status,
+  estimateCompletionPercent: estimate_completion_percent,
+  extractPendingTasks: extract_pending_tasks,
+  generateContextSummary: generate_context_summary,
+  generateResumeContext: generate_resume_context
 };

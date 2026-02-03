@@ -131,8 +131,69 @@ VOYAGE_EMBEDDINGS_MODEL=voyage-3-large VOYAGE_API_KEY=your-key node mcp_server/c
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 8. 🚩 FEATURE FLAGS
+
+Feature flags control experimental and optional functionality. All flags default to production-safe values.
+
+| Flag | Default | Purpose |
+|------|---------|---------|
+| `SPEC_KIT_ENABLE_DEDUP` | `true` | Session deduplication (removes redundant memory entries) |
+| `SPEC_KIT_ENABLE_DECAY` | `true` | Attention decay system (time-weighted memory retrieval) |
+| `SPEC_KIT_ENABLE_EMBEDDING` | `true` | Vector embeddings for semantic search |
+| `SPEC_KIT_ENABLE_CHECKPOINT` | `true` | Incremental checkpointing (save context at intervals) |
+| `SPEC_KIT_ENABLE_CAUSAL` | `false` | Causal memory graph (experimental - maps decision dependencies) |
+| `SPEC_KIT_ENABLE_VALIDATION` | `true` | Auto-validation on memory save |
+| `SPEC_KIT_ENABLE_INDEXING` | `true` | Automatic re-indexing after memory updates |
+| `SPEC_KIT_ENABLE_TRIGGERS` | `true` | Proactive memory surfacing via trigger matching |
+| `SPEC_KIT_VERBOSE_LOGGING` | `false` | Debug logging (detailed diagnostic output) |
+| `SPEC_KIT_OFFLINE_MODE` | `false` | Offline-first operation (no external API calls) |
+| `SPEC_KIT_LAZY_EMBEDDING` | `true` | Lazy embedding model loading (reduces startup time) |
+| `SPEC_KIT_PROVIDER_FALLBACK` | `true` | Auto-switch embedding providers on failure |
+
+### Usage Examples
+
+```bash
+# Disable deduplication for testing
+SPEC_KIT_ENABLE_DEDUP=false node mcp_server/context-server.js
+
+# Enable experimental causal memory graph
+SPEC_KIT_ENABLE_CAUSAL=true node mcp_server/context-server.js
+
+# Verbose logging for debugging
+SPEC_KIT_VERBOSE_LOGGING=true node scripts/memory/generate-context.js specs/001/
+
+# Offline mode (no API calls, local embeddings only)
+SPEC_KIT_OFFLINE_MODE=true EMBEDDINGS_PROVIDER=hf-local node mcp_server/context-server.js
+
+# Disable trigger matching
+SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.js
+```
+
+### Production Recommendations
+
+**Always Enabled:**
+- `SPEC_KIT_ENABLE_DEDUP` - Prevents memory bloat
+- `SPEC_KIT_ENABLE_DECAY` - Prioritizes recent context
+- `SPEC_KIT_ENABLE_EMBEDDING` - Core semantic search
+- `SPEC_KIT_ENABLE_VALIDATION` - Catches errors early
+- `SPEC_KIT_ENABLE_INDEXING` - Keeps search up to date
+- `SPEC_KIT_ENABLE_TRIGGERS` - Proactive context surfacing
+- `SPEC_KIT_PROVIDER_FALLBACK` - Resilience against API failures
+
+**Development/Testing:**
+- `SPEC_KIT_VERBOSE_LOGGING=true` - Detailed diagnostics
+- `SPEC_KIT_ENABLE_CAUSAL=true` - Test experimental features
+
+**Disable Only If:**
+- `SPEC_KIT_ENABLE_CHECKPOINT=false` - Manual checkpoint control needed
+- `SPEC_KIT_OFFLINE_MODE=true` - No network access
+- `SPEC_KIT_LAZY_EMBEDDING=false` - Faster first query (slower startup)
+
+---
+
+## 9. 🔗 RELATED RESOURCES
 
 - [Execution Methods](../workflows/execution_methods.md)
 - [Troubleshooting](../debugging/troubleshooting.md)
 - [Quick Reference](../workflows/quick_reference.md)
+- [Memory System Architecture](../workflows/memory_system.md)

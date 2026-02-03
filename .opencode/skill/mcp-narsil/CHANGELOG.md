@@ -8,6 +8,18 @@ All notable changes to the mcp-narsil skill are documented in this file.
 
 ---
 
+## [**1.0.3.3**] - 2026-02-03
+
+Script comment standardization per workflows-code code_style_guide.md.
+
+---
+
+### Changed
+
+1. **update-narsil.sh** — Added 3-line box-drawing file header (═══ style to match narsil-server.sh, narsil-search.sh)
+
+---
+
 ## [**1.0.3.2**] - 2026-01-05
 
 Embeds MCP server source code and documents prefixed environment variable requirement.

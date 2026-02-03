@@ -83,6 +83,27 @@ model_selection:
       name: "Other - User specified"
 
 # ───────────────────────────────────────────────────────────────────
+# CONTEXT LOADING (At Workflow START)
+# ───────────────────────────────────────────────────────────────────
+context_loading:
+  trigger: "At workflow START, before Step 1"
+  purpose: "Load prior debugging context and related decisions"
+  mcp_integration:
+    tool: memory_search
+    note: "Call MCP tools directly - NEVER through Code Mode"
+    parameters:
+      query: "debug context for {spec_folder_name}"
+      specFolder: "{spec_folder_path}"
+      anchors: ['summary', 'decisions', 'state', 'debug']
+  command_reference: "/memory:context"
+  when_to_skip:
+    - "Ad-hoc debugging (no spec folder context exists)"
+    - "Fresh debugging session with no prior attempts"
+  behavior:
+    if_context_found: "Surface related debugging history and decisions before proceeding"
+    if_no_context: "Proceed to Step 1 without delay"
+
+# ───────────────────────────────────────────────────────────────────
 # AVAILABLE TEMPLATES
 # ───────────────────────────────────────────────────────────────────
 available_templates:
@@ -327,17 +348,6 @@ workflow:
     fallback:
       subagent_type: "general-purpose"  # Claude Code: "general-purpose" | OpenCode: "general"
       fallback_reason: "If @debug agent file unavailable or dispatch fails"
-
-      ### Verification
-      1. [Step 1]
-      2. [Step 2]
-      3. [Step 3]
-      
-      ### Prevention
-      [How to prevent this issue in future]
-      
-      ### Caveats
-      [Any assumptions or uncertainties]
     timeout_ms: 120000
     outputs:
       - sub_agent_dispatched: true

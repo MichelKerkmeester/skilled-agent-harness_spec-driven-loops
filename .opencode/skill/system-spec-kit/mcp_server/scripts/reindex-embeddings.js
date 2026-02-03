@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// REINDEX EMBEDDINGS: Force regenerate all memory embeddings
+// SCRIPTS: REINDEX EMBEDDINGS
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
 const path = require('path');
 
-// Resolve paths relative to script location
+/* ─────────────────────────────────────────────────────────────
+   1. MODULE SETUP
+────────────────────────────────────────────────────────────────*/
+
 const MCP_DIR = path.resolve(__dirname, '..');
 const LIB_DIR = path.join(MCP_DIR, 'lib');
 
-// Module imports (matching context-server.js initialization)
 const vectorIndex = require(path.join(LIB_DIR, 'search', 'vector-index.js'));
 const embeddings = require(path.join(LIB_DIR, 'providers', 'embeddings.js'));
 const checkpointsLib = require(path.join(LIB_DIR, 'storage', 'checkpoints.js'));
@@ -20,21 +22,22 @@ const { init: init_db_state, set_embedding_model_ready } = require(path.join(MCP
 const { handle_memory_index_scan, set_embedding_model_ready: set_handler_embedding_ready } = require(path.join(MCP_DIR, 'handlers'));
 const { DEFAULT_BASE_PATH } = require(path.join(MCP_DIR, 'core', 'config'));
 
+/* ─────────────────────────────────────────────────────────────
+   2. REINDEX FUNCTION
+────────────────────────────────────────────────────────────────*/
+
 async function reindex() {
   console.log('='.repeat(60));
   console.log('MEMORY DATABASE REINDEX');
   console.log('='.repeat(60));
   console.log('');
 
-  // 1. Initialize database
   console.log('[1/5] Initializing database...');
   vectorIndex.initializeDb();
 
-  // 2. Initialize db-state with dependencies
   console.log('[2/5] Initializing db-state module...');
   init_db_state({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch });
 
-  // 3. Warmup embedding model
   console.log('[3/5] Warming up embedding model...');
   try {
     const start = Date.now();
@@ -44,7 +47,6 @@ async function reindex() {
     if (set_handler_embedding_ready) set_handler_embedding_ready(true);
     console.log(`    Embedding model ready (${elapsed}ms)`);
 
-    // Show provider info
     const profile = embeddings.getEmbeddingProfile();
     console.log(`    Provider: ${profile.provider}, Model: ${profile.model}, Dim: ${profile.dim}`);
   } catch (err) {
@@ -52,14 +54,12 @@ async function reindex() {
     process.exit(1);
   }
 
-  // 4. Initialize dependent modules
   console.log('[4/5] Initializing search modules...');
   const database = vectorIndex.getDb();
   checkpointsLib.init(database);
   accessTracker.init(database);
   hybridSearch.init(database, vectorIndex.vectorSearch);
 
-  // 5. Force reindex all memory files
   console.log('[5/5] Force reindexing all memory files...');
   console.log('');
 
@@ -68,7 +68,6 @@ async function reindex() {
     includeConstitutional: true
   });
 
-  // Parse and display result
   if (result.content && result.content[0]) {
     const data = JSON.parse(result.content[0].text);
 
@@ -106,9 +105,12 @@ async function reindex() {
     console.log('STATUS=OK');
   }
 
-  // Cleanup
   vectorIndex.closeDb();
 }
+
+/* ─────────────────────────────────────────────────────────────
+   3. ENTRY POINT
+────────────────────────────────────────────────────────────────*/
 
 reindex().catch(err => {
   console.error('FATAL:', err.message);

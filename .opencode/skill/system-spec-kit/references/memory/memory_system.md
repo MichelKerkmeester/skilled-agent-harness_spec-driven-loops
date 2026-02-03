@@ -382,10 +382,198 @@ Constitutional files are stored in:
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. 🔄 SESSION DEDUPLICATION
+
+The memory system uses fingerprint-based deduplication to prevent redundant memories and reduce token usage.
+
+### Content Hashing
+
+Each memory is fingerprinted using a SHA-256 hash of its normalized content:
+
+```javascript
+function computeFingerprint(content) {
+  const normalized = content
+    .toLowerCase()
+    .replace(/\s+/g, ' ')      // Normalize whitespace
+    .replace(/\d{4}-\d{2}-\d{2}/g, 'DATE')  // Normalize dates
+    .trim();
+
+  return crypto.createHash('sha256')
+    .update(normalized)
+    .digest('hex')
+    .slice(0, 16);  // First 16 chars sufficient for collision resistance
+}
+```
+
+### Deduplication Behavior
+
+| Scenario | Fingerprint Match | Action |
+|----------|-------------------|--------|
+| Identical content | 100% | Skip indexing, return existing ID |
+| Minor edits (whitespace, dates) | 100% | Skip indexing (normalized match) |
+| Substantive changes | No match | Create new memory entry |
+| Same content, different spec folder | No match | Create separate entry (scoped) |
+
+### Token Savings
+
+Deduplication provides significant token savings during search:
+
+| Metric | Without Dedup | With Dedup | Savings |
+|--------|---------------|------------|---------|
+| Avg memories per spec folder | 12 | 6 | 50% |
+| Search result tokens | ~4000 | ~2000 | 50% |
+| Index size (100 specs) | 1200 entries | 600 entries | 50% |
+
+### Similar Memory Detection
+
+Beyond exact deduplication, the system detects semantically similar memories:
+
+```javascript
+async function findSimilarMemories(content, threshold = 0.92) {
+  const embedding = await getEmbedding(content);
+
+  return await db.query(`
+    SELECT id, title, similarity
+    FROM memories
+    WHERE vector_similarity(embedding, ?) > ?
+    ORDER BY similarity DESC
+    LIMIT 5
+  `, [embedding, threshold]);
+}
+```
+
+When similar memories are detected:
+- User is warned before creating potential duplicate
+- Option to merge with existing memory
+- Option to create as distinct memory
+
+---
+
+## 10. 🌡️ 5-STATE MEMORY MODEL
+
+Memories exist in one of five states that determine their visibility and decay behavior.
+
+### State Definitions
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      5-STATE MEMORY MODEL                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌─────────┐    access    ┌─────────┐    time     ┌─────────┐  │
+│  │   HOT   │ ◄─────────── │  WARM   │ ◄───────── │  COLD   │  │
+│  │(active) │              │(recent) │             │(stale)  │  │
+│  └────┬────┘              └────┬────┘             └────┬────┘  │
+│       │                        │                       │       │
+│       │ no access              │ 7+ days               │ 30+   │
+│       ▼                        ▼                       ▼       │
+│  ┌─────────┐              ┌─────────┐             ┌─────────┐  │
+│  │  WARM   │              │  COLD   │             │ DORMANT │  │
+│  └─────────┘              └─────────┘             └────┬────┘  │
+│                                                        │       │
+│                                          90+ days      │       │
+│                                          no access     ▼       │
+│                                                   ┌─────────┐  │
+│                                                   │ARCHIVED │  │
+│                                                   └─────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### State Behaviors
+
+| State | Access Pattern | Decay Rate | Search Inclusion | Description |
+|-------|----------------|------------|------------------|-------------|
+| **HOT** | Active in current session | 1.0 (none) | Always | Currently being used or referenced |
+| **WARM** | Accessed within 7 days | 0.95 (slow) | Always | Recently relevant context |
+| **COLD** | 7-30 days since access | 0.80 (normal) | Relevance-based | Infrequently accessed |
+| **DORMANT** | 30-90 days since access | 0.60 (fast) | High relevance only | Long unused, may be outdated |
+| **ARCHIVED** | 90+ days, no access | 0.0 (frozen) | Explicit only | Preserved but not searched by default |
+
+### State Transitions
+
+```javascript
+function calculateState(memory) {
+  const daysSinceAccess = (Date.now() - memory.lastAccess) / (1000 * 60 * 60 * 24);
+  const isActiveSession = memory.sessionId === currentSessionId;
+
+  if (isActiveSession || memory.accessedThisTurn) {
+    return 'HOT';
+  } else if (daysSinceAccess <= 7) {
+    return 'WARM';
+  } else if (daysSinceAccess <= 30) {
+    return 'COLD';
+  } else if (daysSinceAccess <= 90) {
+    return 'DORMANT';
+  } else {
+    return 'ARCHIVED';
+  }
+}
+```
+
+### Search Behavior by State
+
+```javascript
+async function searchWithStateFiltering(query, options = {}) {
+  const { includeArchived = false, minState = 'COLD' } = options;
+
+  const stateOrder = ['HOT', 'WARM', 'COLD', 'DORMANT', 'ARCHIVED'];
+  const minStateIndex = stateOrder.indexOf(minState);
+
+  let results = await vectorSearch(query);
+
+  // Filter by state
+  results = results.filter(r => {
+    const stateIndex = stateOrder.indexOf(r.state);
+    if (r.state === 'ARCHIVED' && !includeArchived) {
+      return false;
+    }
+    return stateIndex <= minStateIndex;
+  });
+
+  return results;
+}
+```
+
+### Promoting and Demoting States
+
+Memories automatically transition based on access:
+
+| Event | State Change |
+|-------|--------------|
+| Memory accessed in search result | Promote to HOT |
+| Memory included in response | Promote to HOT |
+| User validates memory as useful | Promote to WARM minimum |
+| User marks as outdated | Demote to ARCHIVED |
+| Time passes without access | Natural decay through states |
+
+### Archived Memory Access
+
+Archived memories are preserved but excluded from default searches:
+
+```javascript
+// Default search (excludes ARCHIVED)
+memory_search({ query: "auth decisions" })
+
+// Include archived memories
+memory_search({
+  query: "historical auth decisions",
+  includeArchived: true
+})
+
+// Search ONLY archived memories
+memory_search({
+  query: "legacy implementation",
+  stateFilter: 'ARCHIVED'
+})
+```
+
+---
+
+## 11. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [save_workflow.md](./save_workflow.md) - Memory save workflow documentation
+- [embedding_resilience.md](./embedding_resilience.md) - Provider fallback and offline mode
 - [troubleshooting.md](../debugging/troubleshooting.md) - Common issues and solutions
 - [environment_variables.md](../config/environment_variables.md) - Configuration options
 

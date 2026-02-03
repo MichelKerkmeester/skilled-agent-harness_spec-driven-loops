@@ -1,4 +1,4 @@
-<!-- TEMPLATE: context_template.md v2.1 - DO NOT EDIT GENERATED FILES -->
+<!-- TEMPLATE: context_template.md v2.2 - DO NOT EDIT GENERATED FILES -->
 <!-- Template Configuration Comments (stripped during generation) -->
 
 <!-- Context Type Detection:
@@ -155,6 +155,7 @@
 
 ## Table of Contents
 
+- [Continue Session](#continue-session)
 - [Project State Snapshot](#project-state-snapshot)
 {{#HAS_IMPLEMENTATION_GUIDE}}- [Implementation Guide](#implementation-guide)
 {{/HAS_IMPLEMENTATION_GUIDE}}- [Overview](#overview)
@@ -162,7 +163,65 @@
 {{/HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}- [Workflow Visualization](#workflow-visualization)
 {{/HAS_WORKFLOW_DIAGRAM}}- [Decisions](#decisions)
 - [Conversation](#conversation)
+- [Recovery Hints](#recovery-hints)
 - [Memory Metadata](#memory-metadata)
+
+---
+
+<!-- ANCHOR:continue-session-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<a id="continue-session"></a>
+
+## CONTINUE SESSION
+
+**Quick resume context for session continuation and handover.**
+
+### Session State
+
+| Field | Value |
+|-------|-------|
+| Session Status | {{SESSION_STATUS}} |
+| Completion % | {{COMPLETION_PERCENT}}% |
+| Last Activity | {{LAST_ACTIVITY_TIMESTAMP}} |
+| Time in Session | {{SESSION_DURATION}} |
+| Continuation Count | {{CONTINUATION_COUNT}} |
+
+### Context Summary
+
+{{CONTEXT_SUMMARY}}
+
+### Pending Work
+
+{{#PENDING_TASKS}}
+- [ ] **{{TASK_ID}}**: {{TASK_DESCRIPTION}} (Priority: {{TASK_PRIORITY}})
+{{/PENDING_TASKS}}
+{{^PENDING_TASKS}}
+- No pending tasks - session completed successfully
+{{/PENDING_TASKS}}
+
+### Quick Resume
+
+**To continue this work, use:**
+```
+/spec_kit:resume {{SPEC_FOLDER}}
+```
+
+**Or paste this continuation prompt:**
+```
+CONTINUATION - Attempt {{NEXT_CONTINUATION_COUNT}}
+Spec: {{SPEC_FOLDER}}
+Last: {{LAST_ACTION}}
+Next: {{NEXT_ACTION}}
+```
+
+**Key Context to Review:**
+{{#RESUME_CONTEXT}}
+- {{CONTEXT_ITEM}}
+{{/RESUME_CONTEXT}}
+{{^RESUME_CONTEXT}}
+- Review PROJECT STATE SNAPSHOT for current state
+- Check DECISIONS for recent choices made
+{{/RESUME_CONTEXT}}
+<!-- /ANCHOR:continue-session-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
 
 ---
 
@@ -520,6 +579,68 @@ No conversation messages were captured. This may indicate an issue with data col
 
 ---
 
+<!-- ANCHOR:recovery-hints-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<a id="recovery-hints"></a>
+
+## RECOVERY HINTS
+
+**Diagnostic guidance for common session recovery scenarios.**
+
+### Recovery Scenarios
+
+| Scenario | Symptoms | Recovery Action |
+|----------|----------|-----------------|
+| Context Loss | Agent doesn't remember prior work | Run `/spec_kit:resume {{SPEC_FOLDER}}` |
+| State Mismatch | Files don't match expected state | Verify with `git status` and `git diff` |
+| Memory Not Found | Search returns no results | Check `memory_search({ specFolder: "{{SPEC_FOLDER}}" })` |
+| Stale Context | Information seems outdated | Check `last_accessed_epoch` vs current time |
+| Incomplete Handover | Missing continuation context | Review CONTINUE SESSION section above |
+| Dedup Collision | Wrong memory surfaced | Check `fingerprint_hash` for conflicts |
+
+### Diagnostic Commands
+
+```bash
+# Check memory index health
+node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
+
+# List memories for this spec folder
+memory_search({ specFolder: "{{SPEC_FOLDER}}", limit: 10 })
+
+# Verify memory file integrity
+ls -la {{SPEC_FOLDER}}/memory/
+
+# Check for orphaned memories
+memory_search({ query: "orphaned", anchors: ["state"] })
+
+# Force re-index of this spec folder
+node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js {{SPEC_FOLDER}} --force
+```
+
+### Recovery Priority
+
+{{#RECOVERY_PRIORITY}}
+1. **{{PRIORITY_ITEM}}**
+{{/RECOVERY_PRIORITY}}
+{{^RECOVERY_PRIORITY}}
+1. **Verify spec folder exists** - Check path is correct
+2. **Load memory context** - Use memory_search to surface prior work
+3. **Review last session state** - Check PROJECT STATE SNAPSHOT
+4. **Validate pending tasks** - Review CONTINUE SESSION section
+5. **Resume with handover prompt** - Use continuation template above
+{{/RECOVERY_PRIORITY}}
+
+### Session Integrity Checks
+
+| Check | Status | Details |
+|-------|--------|---------|
+| Memory File Exists | {{MEMORY_FILE_EXISTS}} | {{MEMORY_FILE_PATH}} |
+| Index Entry Valid | {{INDEX_ENTRY_VALID}} | Last indexed: {{LAST_INDEXED}} |
+| Checksums Match | {{CHECKSUMS_MATCH}} | {{CHECKSUM_DETAILS}} |
+| No Dedup Conflicts | {{NO_DEDUP_CONFLICTS}} | {{DEDUP_CONFLICT_DETAILS}} |
+<!-- /ANCHOR:recovery-hints-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+
+---
+
 <!-- ANCHOR:postflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
 <a id="postflight-learning-delta"></a>
 
@@ -585,6 +706,56 @@ channel: "{{CHANNEL}}"
 importance_tier: "{{IMPORTANCE_TIER}}"  # constitutional|critical|important|normal|temporary|deprecated
 context_type: "{{CONTEXT_TYPE}}"        # research|implementation|decision|discovery|general
 
+# Memory Classification (v2.2)
+memory_classification:
+  memory_type: "{{MEMORY_TYPE}}"         # episodic|procedural|semantic|constitutional
+  half_life_days: {{HALF_LIFE_DAYS}}     # decay half-life in days (0 = never decays)
+  decay_factors:
+    base_decay_rate: {{BASE_DECAY_RATE}}           # 0.0-1.0, daily decay multiplier
+    access_boost_factor: {{ACCESS_BOOST_FACTOR}}   # boost per access (default 0.1)
+    recency_weight: {{RECENCY_WEIGHT}}             # weight for recent accesses (default 0.5)
+    importance_multiplier: {{IMPORTANCE_MULTIPLIER}} # tier-based multiplier
+
+# Session Deduplication (v2.2)
+session_dedup:
+  memories_surfaced: {{MEMORIES_SURFACED_COUNT}}   # count of memories shown this session
+  dedup_savings_tokens: {{DEDUP_SAVINGS_TOKENS}}   # tokens saved via deduplication
+  fingerprint_hash: "{{FINGERPRINT_HASH}}"         # content hash for dedup detection
+  similar_memories:
+{{#SIMILAR_MEMORIES}}    - id: "{{MEMORY_ID}}"
+      similarity: {{SIMILARITY_SCORE}}
+{{/SIMILAR_MEMORIES}}
+{{^SIMILAR_MEMORIES}}    []
+{{/SIMILAR_MEMORIES}}
+
+# Causal Links (v2.2)
+causal_links:
+  caused_by:
+{{#CAUSED_BY}}    - "{{.}}"
+{{/CAUSED_BY}}
+{{^CAUSED_BY}}    []
+{{/CAUSED_BY}}
+  supersedes:
+{{#SUPERSEDES}}    - "{{.}}"
+{{/SUPERSEDES}}
+{{^SUPERSEDES}}    []
+{{/SUPERSEDES}}
+  derived_from:
+{{#DERIVED_FROM}}    - "{{.}}"
+{{/DERIVED_FROM}}
+{{^DERIVED_FROM}}    []
+{{/DERIVED_FROM}}
+  blocks:
+{{#BLOCKS}}    - "{{.}}"
+{{/BLOCKS}}
+{{^BLOCKS}}    []
+{{/BLOCKS}}
+  related_to:
+{{#RELATED_TO}}    - "{{.}}"
+{{/RELATED_TO}}
+{{^RELATED_TO}}    []
+{{/RELATED_TO}}
+
 # Timestamps (for decay calculations)
 created_at: "{{DATE}}"
 created_at_epoch: {{CREATED_AT_EPOCH}}
@@ -646,9 +817,17 @@ chunk_count: {{CHUNK_COUNT}}
 *Generated by system-spec-kit skill v{{SKILL_VERSION}}*
 
 <!--
-  SESSION CONTEXT DOCUMENTATION v2.0
+  SESSION CONTEXT DOCUMENTATION v2.2
 
-  IMPROVEMENTS IN THIS VERSION:
+  IMPROVEMENTS IN v2.2:
+  - CONTINUE_SESSION section for quick resume and handover
+  - session_dedup metadata for deduplication tracking
+  - memory_classification with memory_type, half_life_days, decay_factors
+  - causal_links for relationship tracking (caused_by, supersedes, derived_from, blocks, related_to)
+  - RECOVERY HINTS section with diagnostic commands and scenarios
+  - Enhanced session state tracking (continuation_count, session_status, completion_percent)
+
+  IMPROVEMENTS IN v2.1:
   - Session ID for unique identification across branches
   - Channel/branch association for context filtering
   - Importance tiers with decay calculations
@@ -658,6 +837,12 @@ chunk_count: {{CHUNK_COUNT}}
   - Machine-readable YAML metadata block
   - Enhanced anchor naming with session IDs
 
+  MEMORY TYPES (v2.2):
+  - episodic: Session-specific events and conversations (default, decays)
+  - procedural: How-to knowledge and patterns (longer retention)
+  - semantic: Facts and concepts (long-term, minimal decay)
+  - constitutional: Core rules and constraints (never decays, always surfaces)
+
   DECAY CALCULATION:
   - constitutional: never expires, always surfaces first (~2000 token budget)
   - critical: never expires (expires_at_epoch = 0)
@@ -666,13 +851,30 @@ chunk_count: {{CHUNK_COUNT}}
   - temporary: 7 days, no extension
   - deprecated: excluded from search immediately
 
-  ACCESS BOOST FORMULA:
-  relevance_boost = 1.0 + (access_count * 0.1) + (recent_access_bonus)
-  where recent_access_bonus = 0.5 if accessed in last 7 days
+  DECAY FORMULA (v2.2):
+  relevance_score = base_score * (importance_multiplier) *
+                    (1 - base_decay_rate)^days_since_access *
+                    (1 + access_count * access_boost_factor) *
+                    (1 + recency_bonus)
+  where recency_bonus = recency_weight if accessed in last 7 days
+
+  CAUSAL LINK TYPES (v2.2):
+  - caused_by: This memory was created due to these memories/events
+  - supersedes: This memory replaces these older memories
+  - derived_from: This memory builds upon these memories
+  - blocks: This memory blocks progression of these items
+  - related_to: General relationship without causal direction
+
+  DEDUPLICATION (v2.2):
+  - fingerprint_hash: SHA-256 of normalized content for collision detection
+  - similar_memories: List of memories with similarity > 0.85
+  - dedup_savings_tokens: Tokens saved by not re-surfacing duplicates
 
   INDEXING NOTES:
   - Anchors include session_id for cross-session uniqueness
   - YAML metadata block is primary source for indexer
   - Topics extracted from section headers and decision titles
   - Embeddings generated per-section, not whole document
+  - Causal links enable graph-based memory traversal
+  - Recovery hints provide self-healing guidance
 -->

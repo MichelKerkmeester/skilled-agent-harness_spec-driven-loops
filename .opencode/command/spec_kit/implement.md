@@ -54,9 +54,26 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - tasks.md (will create if missing)
    - checklist.md (REQUIRED for Level 2+)
 
-5. Check if memory/ exists and has files for the spec folder
+5. CHECK for prior incomplete sessions (deduplication):
+   - Search memory/ in target spec folder for incomplete session markers
+   - Look for: "STATUS: IN_PROGRESS", unchecked tasks in tasks.md
+   - IF incomplete session detected → Display warning and ask:
+     ┌────────────────────────────────────────────────────────────────┐
+     │ ⚠️ PRIOR INCOMPLETE SESSION DETECTED                           │
+     │                                                                │
+     │ Spec folder: [path]                                            │
+     │ Last activity: [timestamp from memory file]                     │
+     │ Progress: [X/Y tasks complete]                                 │
+     │                                                                │
+     │ Options:                                                       │
+     │ A) Resume - Continue from where previous session left off      │
+     │ B) Restart - Start fresh (archives prior session)              │
+     │ C) Cancel - Review existing work first                          │
+     └────────────────────────────────────────────────────────────────┘
 
-6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+6. Check if memory/ exists and has files for the spec folder
+
+7. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
@@ -98,9 +115,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ Reply with answers, e.g.: "A, A, A, , B" or "specs/007-auth/, A, A, gemini, B" │
    └────────────────────────────────────────────────────────────────┘
 
-7. WAIT for user response (DO NOT PROCEED)
+8. WAIT for user response (DO NOT PROCEED)
 
-8. Parse response and store ALL results:
+9. Parse response and store ALL results:
    - spec_path = [from Q0/Q1 or $ARGUMENTS]
    - confirm_choice = [A/B/C from Q1]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
@@ -108,16 +125,16 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - worker_model = [from Q4: opus/gemini/gpt, default opus if blank]
    - memory_choice = [A/B/C from Q5, or N/A if no memory files]
 
-9. Handle redirects if needed:
+10. Handle redirects if needed:
    - IF confirm_choice == B → Re-prompt with folder selection only
    - IF confirm_choice == C → Redirect to /spec_kit:plan
 
-10. Execute background operations based on choices:
+11. Execute background operations based on choices:
     - IF memory_choice == A: Load most recent memory file
     - IF memory_choice == B: Load up to 3 recent memory files
     - IF dispatch_mode is multi_*: Note parallel dispatch will be used
 
-11. SET STATUS: ✅ PASSED
+12. SET STATUS: ✅ PASSED
 
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
@@ -402,11 +419,26 @@ The implement workflow supports parallel agent dispatch for complex phases. This
 - `"use parallel"` / `"dispatch agents"` → Force parallel dispatch
 - `"auto-decide"` → Enable session auto-mode (1 hour)
 
+### Workstream Prefix Pattern
+
+When tracking parallel dispatches, use `[W:XXXX]` format for workstream identification:
+
+| Format       | Purpose                     | Example                      |
+| ------------ | --------------------------- | ---------------------------- |
+| `[W:IMPL-N]` | Implementation workstream N | `[W:IMPL-1] CSS changes`     |
+| `[W:TEST]`   | Test workstream             | `[W:TEST] Unit test updates` |
+| `[W:DOCS]`   | Documentation workstream    | `[W:DOCS] README updates`    |
+
+Use workstream prefixes in:
+- Task tool dispatch descriptions
+- Progress tracking messages
+- Memory file anchors for parallel work
+
 ---
 
 ## 8. 🤖 AGENT ROUTING
 
-This command routes Step 11 (Checklist Verification) to the specialized `@review` agent when available.
+This command routes Step 7 (Checklist Verification) to the specialized `@review` agent when available.
 
 | Step                             | Agent     | Fallback  | Purpose                                           |
 | -------------------------------- | --------- | --------- | ------------------------------------------------- |
@@ -471,6 +503,20 @@ Quality gates enforce minimum standards at key workflow transitions.
 | Mid-Implementation  | After Step 6.5           | 65        | No (warning only) |
 | Post-Implementation | Before Step 7 completion | 70        | Yes               |
 
+### Five Checks Framework (Level 3+ specs)
+
+For Level 3+ specs, validate against the Five Checks Framework at Pre-Implementation Gate (see AGENTS.md Section 5):
+
+| #   | Check                    | Question                 | Pass Criteria                              |
+| --- | ------------------------ | ------------------------ | ------------------------------------------ |
+| 1   | **Necessary?**           | Solving ACTUAL need NOW? | Clear requirement exists, not speculative  |
+| 2   | **Beyond Local Maxima?** | Explored alternatives?   | ≥2 alternatives considered with trade-offs |
+| 3   | **Sufficient?**          | Simplest approach?       | No simpler solution achieves the goal      |
+| 4   | **Fits Goal?**           | On critical path?        | Directly advances stated objective         |
+| 5   | **Open Horizons?**       | Long-term aligned?       | Doesn't create technical debt or lock-in   |
+
+**Usage:** Required for Level 3/3+ spec folders. Optional for Level 2. Record in decision-record.md for architectural changes.
+
 ### Gate Behavior
 
 **Pre-Implementation Gate (Step 5 → Step 6)**
@@ -511,6 +557,20 @@ The `@review` agent routing (Section 8) provides **additional blocking** beyond 
 - [ ] All P1 items complete or deferred with approval
 - [ ] Tests pass (if applicable)
 - [ ] implementation-summary.md created
+
+### Evidence Log Pattern
+
+Use `[E:filename]` format for evidence artifacts in verification sections:
+
+| Format            | Purpose                     | Example                              |
+| ----------------- | --------------------------- | ------------------------------------ |
+| `[E:filename]`    | Reference evidence artifact | `[E:evidence/test-output.log]`       |
+| `[E:path/file]`   | Nested evidence path        | `[E:scratch/debug-trace.md]`         |
+| `[EVIDENCE: ...]` | Inline evidence citation    | `[EVIDENCE: hero.js:45-67 verified]` |
+
+Evidence artifacts should be stored in:
+- `evidence/` folder - Permanent evidence (test results, screenshots)
+- `scratch/` folder - Temporary evidence (debug logs, traces)
 
 ---
 
@@ -774,5 +834,8 @@ After implementation completes, suggest relevant next steps:
 | Ending session            | `/spec_kit:handover [spec-folder-path]`    | Create continuation document      |
 | Found bugs during testing | `/spec_kit:debug [spec-folder-path]`       | Delegate debugging to fresh agent |
 | Ready for next feature    | `/spec_kit:complete [feature-description]` | Start new workflow                |
+| Need crash recovery       | `/memory:continue`                         | Session recovery                  |
+| Need unified context      | `/memory:context`                          | Intent-aware retrieval            |
+| Want to record learning   | `/memory:learn`                            | Explicit learning                 |
 
 **ALWAYS** end with: "What would you like to do next?"

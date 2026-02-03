@@ -8,8 +8,12 @@ const path = require('path');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
+// NOTE: rerank.py does not exist - this is an unimplemented feature.
+// The local Python reranker was planned but never created.
+// Set ENABLE_RERANKER=false (default) to avoid attempting to use it.
+// The cross-encoder.js provides API-based reranking as an alternative.
 const RERANKER_SCRIPT = path.join(__dirname, '../scripts/rerank.py');
 const RERANKER_ENABLED = process.env.ENABLE_RERANKER === 'true';
 const RERANKER_TIMEOUT = 5000;
@@ -18,7 +22,7 @@ let _python_available = null;
 
 /* ─────────────────────────────────────────────────────────────
    2. AVAILABILITY CHECKS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function is_python_available() {
   if (_python_available !== null) return _python_available;
@@ -44,7 +48,7 @@ function is_reranker_available() {
 
 /* ─────────────────────────────────────────────────────────────
    3. CORE FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function rerank_results(query, results, top_k = 5) {
   if (!RERANKER_ENABLED || results.length <= 1) {
@@ -84,7 +88,7 @@ function rerank_results(query, results, top_k = 5) {
 
 /* ─────────────────────────────────────────────────────────────
    4. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   rerank_results,

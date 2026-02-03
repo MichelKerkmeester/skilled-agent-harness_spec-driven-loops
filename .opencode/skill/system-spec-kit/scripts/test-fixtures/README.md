@@ -13,6 +13,7 @@
 - [5. 💡 USAGE EXAMPLES](#5--usage-examples)
 - [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
 - [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+- [8. 🧠 COGNITIVE MEMORY FIXTURES](#8--cognitive-memory-fixtures)
 
 ---
 
@@ -455,64 +456,14 @@ Additional fixtures for testing the Cognitive Memory Upgrade features including 
 
 ### Cognitive Memory Fixtures
 
-| File | Purpose |
-|------|---------|
-| `sample-memories.json` | Sample memory objects for all 5 importance tiers |
-| `contradiction-pairs.json` | Statement pairs for contradiction detection testing |
-| `similarity-test-cases.json` | Semantic similarity scoring validation cases |
+**Note:** Cognitive memory test fixtures have been moved to `mcp_server/tests/fixtures/`:
 
-### sample-memories.json
-
-Sample memory objects representing different tiers and states.
-
-**Structure:**
-```json
-{
-  "memories": [
-    {
-      "id": 1,
-      "content": "Memory content text",
-      "summary": "Brief summary",
-      "importance": 1-5,
-      "stability": 0.0-30.0,
-      "difficulty": 1.0-10.0,
-      "created_at": "ISO date"
-    }
-  ]
-}
-```
-
-**Coverage:**
-- All 5 importance tiers (1=Ephemeral to 5=Constitutional)
-- Various stability levels (new to well-established)
-- Different difficulty ratings
-
-### contradiction-pairs.json
-
-Pairs of statements for testing contradiction detection.
-
-**Categories:**
-| Category | Description |
-|----------|-------------|
-| `always-never` | Direct always/never conflicts |
-| `enable-disable` | State toggle conflicts |
-| `must-must-not` | Mandatory vs prohibited |
-| `approach-conflict` | Different approaches |
-| `semantic-similarity` | Similar meaning (not contradiction) |
-
-### similarity-test-cases.json
-
-Test cases for semantic similarity scoring validation.
-
-**Threshold Ranges:**
-| Category | Expected Range |
-|----------|---------------|
-| `identical` | [0.95, 1.0] |
-| `semantic-equivalent` | [0.85, 0.95] |
-| `semantic-related` | [0.80, 0.92] |
-| `unrelated` | [0.15, 0.35] |
-| `completely-different` | [0.0, 0.20] |
+| File | Purpose | New Location |
+|------|---------|--------------|
+| `sample-memories.json` | Sample memory objects for all 5 importance tiers | `../../mcp_server/tests/fixtures/` |
+| `contradiction-pairs.json` | Statement pairs for contradiction detection testing | `../../mcp_server/tests/fixtures/` |
+| `similarity-test-cases.json` | Semantic similarity scoring validation cases | `../../mcp_server/tests/fixtures/` |
 
 ---
 
-*Test fixtures for SpecKit v2.0 validation system | Last updated: 2026-01-28*
+*Test fixtures for SpecKit v2.0 validation system | Last updated: 2026-02-02*

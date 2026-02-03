@@ -8,7 +8,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. CONSTANTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Flushes after 5 accesses (0.1 * 5 = 0.5)
 const ACCUMULATOR_THRESHOLD = 0.5;
@@ -16,7 +16,7 @@ const INCREMENT_VALUE = 0.1;
 
 /* ─────────────────────────────────────────────────────────────
    2. STATE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const access_accumulator = new Map();
 let db = null;
@@ -24,7 +24,7 @@ let stmt_cache = { update_access: null, update_access_batch: null };
 
 /* ─────────────────────────────────────────────────────────────
    3. INITIALIZATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function init(database) {
   if (!database) {
@@ -46,7 +46,7 @@ function init(database) {
 
 /* ─────────────────────────────────────────────────────────────
    4. ACCESS TRACKING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function track_access(id) {
   if (!db) {
@@ -76,7 +76,7 @@ function track_multiple_accesses(ids) {
 
 /* ─────────────────────────────────────────────────────────────
    5. FLUSH OPERATIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function flush_access_counts() {
   if (!db || access_accumulator.size === 0) return;
@@ -98,16 +98,32 @@ function flush_access_counts() {
 
 /* ─────────────────────────────────────────────────────────────
    6. UTILITY FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function get_accumulator_state() {
   return Object.fromEntries(access_accumulator);
 }
 
-// Logarithmic scale: log10(count + 1) / 3
-// 1 access = 0.1, 10 = 0.33, 100 = 0.67, 1000+ = 1.0 (capped)
+// T026 (REQ-005): Usage Boost to Decay - Linear formula
+// Frequently-accessed memories get up to +50% relevance boost (capped at 1.5x)
+// Formula: min(1.5, 1.0 + accessCount * 0.05)
+// 0 accesses = 1.0x (baseline), 10 accesses = 1.5x (max), 20+ = 1.5x (capped)
+// Normalized to 0-1 range for composite scoring: (boost - 1.0) / 0.5
 function calculate_popularity_score(access_count) {
-  return Math.min(1, Math.log10((access_count || 0) + 1) / 3);
+  const count = access_count || 0;
+  // Calculate the raw usage boost multiplier (1.0 to 1.5)
+  const usage_boost = Math.min(1.5, 1.0 + count * 0.05);
+  // Normalize to 0-1 range for composite scoring:
+  // 1.0x boost = 0.0 score, 1.5x boost = 1.0 score
+  return (usage_boost - 1.0) / 0.5;
+}
+
+// T026: Calculate raw usage boost multiplier (for direct application to relevance)
+// Returns multiplier in range [1.0, 1.5]
+// +15% relevance improvement for frequently-accessed memories (CHK-035)
+function calculate_usage_boost(access_count) {
+  const count = access_count || 0;
+  return Math.min(1.5, 1.0 + count * 0.05);
 }
 
 function reset() {
@@ -118,7 +134,7 @@ function reset() {
 
 /* ─────────────────────────────────────────────────────────────
    7. PROCESS EXIT HANDLERS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // T121: Store handler references for cleanup
 const exit_handlers = {
@@ -172,7 +188,7 @@ init_exit_handlers();
 
 /* ─────────────────────────────────────────────────────────────
    8. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   init,
@@ -181,6 +197,7 @@ module.exports = {
   flush_access_counts,
   get_accumulator_state,
   calculate_popularity_score,
+  calculate_usage_boost, // T026: Raw usage boost multiplier (1.0-1.5x)
   reset,
   cleanup_exit_handlers, // T121: Export cleanup function
   ACCUMULATOR_THRESHOLD,

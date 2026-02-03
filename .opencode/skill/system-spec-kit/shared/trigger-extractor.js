@@ -445,7 +445,9 @@ function score_ngrams(ngrams, length_bonus, total_tokens) {
    11. DEDUPLICATION
    ─────────────────────────────────────────────────────────────── */
 
-/** Remove phrases that are substrings of higher-scoring phrases */
+/** Remove phrases that are substrings of higher-scoring phrases.
+ *  BUG-001 FIX: Prefer longer, more specific phrases over shorter ones.
+ *  When a longer phrase contains a shorter one, keep the longer phrase. */
 function deduplicate_substrings(candidates) {
   const sorted = [...candidates].sort((a, b) => b.score - a.score);
   const result = [];
@@ -454,19 +456,40 @@ function deduplicate_substrings(candidates) {
   for (const candidate of sorted) {
     const phrase = candidate.phrase;
 
-    let is_substring = false;
-    for (const existing of result) {
-      if (existing.phrase.includes(phrase) || phrase.includes(existing.phrase)) {
-        if (phrase.includes(existing.phrase) && phrase.length > existing.phrase.length) {
-          is_substring = true;
-          break;
-        }
-        is_substring = true;
+    // Skip if we've already seen this exact phrase
+    if (seen.has(phrase)) {
+      continue;
+    }
+
+    let dominated = false;
+    let dominates_indices = [];
+
+    for (let i = 0; i < result.length; i++) {
+      const existing = result[i];
+
+      // Check if candidate is a substring of an existing longer phrase
+      if (existing.phrase.includes(phrase) && existing.phrase.length > phrase.length) {
+        // Existing is longer and contains candidate - candidate is dominated
+        dominated = true;
         break;
+      }
+
+      // Check if candidate is longer and contains an existing shorter phrase
+      if (phrase.includes(existing.phrase) && phrase.length > existing.phrase.length) {
+        // Candidate is longer - it dominates the existing shorter phrase
+        dominates_indices.push(i);
       }
     }
 
-    if (!is_substring && !seen.has(phrase)) {
+    if (!dominated) {
+      // Remove shorter phrases that are dominated by this longer candidate
+      // Remove in reverse order to preserve indices
+      for (let i = dominates_indices.length - 1; i >= 0; i--) {
+        const idx = dominates_indices[i];
+        seen.delete(result[idx].phrase);
+        result.splice(idx, 1);
+      }
+
       result.push(candidate);
       seen.add(phrase);
     }

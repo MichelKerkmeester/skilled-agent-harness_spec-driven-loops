@@ -6,6 +6,19 @@ All notable changes to the mcp-code-mode skill are documented in this file.
 
 ---
 
+## [**1.1.0.2**] - 2026-02-03
+
+Script comment standardization per workflows-code code_style_guide.md.
+
+---
+
+### Changed
+
+1. **update-code-mode.sh** — Added 3-line box-drawing file header
+2. **validate_config.py** — Added 3-line box-drawing file header
+
+---
+
 ## [**1.1.0.1**] - 2026-01-31
 
 Documentation update to reflect **critical finding** that Code Mode requires **prefixed environment variables**.

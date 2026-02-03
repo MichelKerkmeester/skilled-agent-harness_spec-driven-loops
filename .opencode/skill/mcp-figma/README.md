@@ -376,7 +376,7 @@ await figma.figma_get_file({ fileKey: "abc" });
 // Use these to find exact tool names:
 search_tools({ task_description: "figma components" });
 list_tools();  // Filter for 'figma'
-tool_info({ tool_name: "figma.figma.get_file" });
+tool_info({ tool_name: "figma.figma_get_file" });
 ```
 
 ---

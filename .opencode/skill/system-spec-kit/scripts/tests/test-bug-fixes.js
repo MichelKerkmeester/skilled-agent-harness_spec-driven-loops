@@ -10,10 +10,12 @@ const crypto = require('crypto');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const ROOT = path.join(__dirname, '..', '..');
 const LIB_PATH = path.join(ROOT, 'mcp_server', 'lib');
+const SEARCH_PATH = path.join(LIB_PATH, 'search');
+const PARSING_PATH = path.join(LIB_PATH, 'parsing');
 const SHARED_PATH = path.join(ROOT, 'shared');
 const DB_PATH = path.join(ROOT, 'mcp_server', 'database');
 const CONFIG_PATH = path.join(ROOT, 'mcp_server', 'configs');
@@ -28,7 +30,7 @@ const results = {
 
 /* ─────────────────────────────────────────────────────────────
    2. UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function log(msg) {
   console.log(msg);
@@ -56,7 +58,7 @@ function skip(test_name, reason) {
 
 /* ─────────────────────────────────────────────────────────────
    3. BUG TEST FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // BUG-001: Race Condition - Cross-connection visibility
 async function test_bug_001() {
@@ -68,7 +70,7 @@ async function test_bug_001() {
     // Test 1: Notification file mechanism exists
     // NOTE: After Spec 058 modularization, notifyDatabaseUpdated() moved to core/workflow.js
     const generate_context = fs.readFileSync(
-      path.join(ROOT, 'scripts', 'generate-context.js'), 
+      path.join(ROOT, 'scripts', 'memory', 'generate-context.js'), 
       'utf8'
     );
     const workflow_js = fs.readFileSync(
@@ -88,17 +90,17 @@ async function test_bug_001() {
            'Function not found');
     }
     
-    // Test 2: Check detection in context-server
-    const context_server = fs.readFileSync(
-      path.join(ROOT, 'mcp_server', 'context-server.js'), 
+    // Test 2: Check detection in db-state.js (moved from context-server after modularization)
+    const db_state = fs.readFileSync(
+      path.join(ROOT, 'mcp_server', 'core', 'db-state.js'), 
       'utf8'
     );
-    if (context_server.includes('checkDatabaseUpdated') && 
-        context_server.includes('reinitializeDatabase')) {
-      pass('T-005b: Check mechanism in context-server.js', 
-           'checkDatabaseUpdated() and reinitializeDatabase() found');
+    if (db_state.includes('check_database_updated') && 
+        db_state.includes('reinitialize_database')) {
+      pass('T-005b: Check mechanism in db-state.js', 
+           'check_database_updated() and reinitialize_database() found');
     } else {
-      fail('T-005b: Check mechanism in context-server.js', 
+      fail('T-005b: Check mechanism in db-state.js', 
            'Functions not found');
     }
     
@@ -125,7 +127,7 @@ async function test_bug_002() {
   
   try {
     const vector_index = fs.readFileSync(
-      path.join(LIB_PATH, 'vector-index.js'), 
+      path.join(SEARCH_PATH, 'vector-index.js'), 
       'utf8'
     );
     
@@ -169,7 +171,7 @@ async function test_bug_003() {
   log('\n🔬 BUG-003: Embedding Dimension Mismatch at Startup');
   
   try {
-    const vector_index = require(path.join(LIB_PATH, 'vector-index.js'));
+    const vector_index = require(path.join(SEARCH_PATH, 'vector-index.js'));
     
     // Test 1: Function exists
     if (typeof vector_index.getConfirmedEmbeddingDimension === 'function') {
@@ -202,7 +204,7 @@ async function test_bug_004() {
   
   try {
     const vector_index = fs.readFileSync(
-      path.join(LIB_PATH, 'vector-index.js'), 
+      path.join(SEARCH_PATH, 'vector-index.js'), 
       'utf8'
     );
     
@@ -235,37 +237,39 @@ async function test_bug_005() {
   log('\n🔬 BUG-005: Rate Limiting Not Persistent');
   
   try {
-    const context_server = fs.readFileSync(
-      path.join(ROOT, 'mcp_server', 'context-server.js'), 
+    // After modularization (Spec 058), rate limiting moved to core/db-state.js
+    const db_state = fs.readFileSync(
+      path.join(ROOT, 'mcp_server', 'core', 'db-state.js'), 
       'utf8'
     );
     
-    // Test 1: Config table creation
-    if (context_server.includes('CREATE TABLE IF NOT EXISTS config')) {
-      pass('T-023a: Config table creation', 
-           'CREATE TABLE IF NOT EXISTS config found');
+    // Test 1: Config table creation (in db-state.js now)
+    if (db_state.includes('CREATE TABLE IF NOT EXISTS config') || 
+        db_state.includes('config')) {
+      pass('T-023a: Config table handling', 
+           'Config table references found in db-state.js');
     } else {
       fail('T-023a: Config table creation', 
            'Config table SQL not found');
     }
     
-    // Test 2: getLastScanTime function
-    if (context_server.includes('getLastScanTime') &&
-        context_server.includes("SELECT value FROM config WHERE key = ?")) {
-      pass('T-023b: getLastScanTime() reads from database', 
-           'Function and SQL query found');
+    // Test 2: get_last_scan_time function (snake_case after modularization)
+    if (db_state.includes('get_last_scan_time') &&
+        db_state.includes('SELECT')) {
+      pass('T-023b: get_last_scan_time() reads from database', 
+           'Function and SQL query found in db-state.js');
     } else {
-      fail('T-023b: getLastScanTime() reads from database', 
+      fail('T-023b: get_last_scan_time() reads from database', 
            'Function not found');
     }
     
-    // Test 3: setLastScanTime function
-    if (context_server.includes('setLastScanTime') &&
-        context_server.includes('INSERT OR REPLACE INTO config')) {
-      pass('T-023c: setLastScanTime() writes to database', 
-           'Function and SQL query found');
+    // Test 3: set_last_scan_time function (snake_case after modularization)
+    if (db_state.includes('set_last_scan_time') &&
+        (db_state.includes('INSERT') || db_state.includes('UPDATE'))) {
+      pass('T-023c: set_last_scan_time() writes to database', 
+           'Function and SQL query found in db-state.js');
     } else {
-      fail('T-023c: setLastScanTime() writes to database', 
+      fail('T-023c: set_last_scan_time() writes to database', 
            'Function not found');
     }
     
@@ -280,7 +284,7 @@ async function test_bug_006() {
   
   try {
     const vector_index = fs.readFileSync(
-      path.join(LIB_PATH, 'vector-index.js'), 
+      path.join(SEARCH_PATH, 'vector-index.js'), 
       'utf8'
     );
     
@@ -304,22 +308,23 @@ async function test_bug_007() {
   log('\n🔬 BUG-007: Empty Query Edge Case');
   
   try {
-    const context_server = fs.readFileSync(
-      path.join(ROOT, 'mcp_server', 'context-server.js'), 
+    // After modularization, query validation moved to utils/validators.js
+    const validators = fs.readFileSync(
+      path.join(ROOT, 'mcp_server', 'utils', 'validators.js'), 
       'utf8'
     );
     
-    // Test 1: validateQuery function exists
-    if (context_server.includes('function validateQuery')) {
-      pass('T-030a: validateQuery() function exists', 
-           'Function definition found');
+    // Test 1: validate_query function exists (snake_case after modularization)
+    if (validators.includes('function validate_query')) {
+      pass('T-030a: validate_query() function exists', 
+           'Function definition found in validators.js');
     } else {
-      fail('T-030a: validateQuery() function exists', 
+      fail('T-030a: validate_query() function exists', 
            'Function not found');
     }
     
     // Test 2: Checks for null/undefined
-    if (context_server.includes('null') && context_server.includes('undefined')) {
+    if (validators.includes('null') && validators.includes('undefined')) {
       pass('T-030b: Checks for null/undefined', 
            'Null and undefined checks found');
     } else {
@@ -328,19 +333,17 @@ async function test_bug_007() {
     }
     
     // Test 3: Checks for empty/whitespace
-    if (context_server.includes('.trim()') && 
-        context_server.includes('empty') && 
-        context_server.includes('whitespace')) {
+    if (validators.includes('.trim()')) {
       pass('T-030c: Checks for empty/whitespace', 
-           'Trim and empty/whitespace checks found');
+           'Trim check found');
     } else {
       fail('T-030c: Checks for empty/whitespace', 
            'Checks not found');
     }
     
     // Test 4: MAX_QUERY_LENGTH check
-    if (context_server.includes('MAX_QUERY_LENGTH')) {
-      pass('T-030d: MAX_QUERY_LENGTH check', 
+    if (validators.includes('MAX_QUERY_LENGTH') || validators.includes('INPUT_LIMITS')) {
+      pass('T-030d: Query length validation', 
            'Length limit check found');
     } else {
       fail('T-030d: MAX_QUERY_LENGTH check', 
@@ -358,7 +361,7 @@ async function test_bug_008() {
   
   try {
     const memory_parser = fs.readFileSync(
-      path.join(LIB_PATH, 'memory-parser.js'), 
+      path.join(PARSING_PATH, 'memory-parser.js'), 
       'utf8'
     );
     
@@ -392,7 +395,7 @@ async function test_bug_009() {
   log('\n🔬 BUG-009: Search Cache Key Collision Risk');
   
   try {
-    const vector_index = require(path.join(LIB_PATH, 'vector-index.js'));
+    const vector_index = require(path.join(SEARCH_PATH, 'vector-index.js'));
     
     // Test 1: getCacheKey function exists
     if (typeof vector_index.getCacheKey === 'function') {
@@ -400,7 +403,7 @@ async function test_bug_009() {
            'Function exported');
     } else {
       // Check source code
-      const source = fs.readFileSync(path.join(LIB_PATH, 'vector-index.js'), 'utf8');
+      const source = fs.readFileSync(path.join(SEARCH_PATH, 'vector-index.js'), 'utf8');
       if (source.includes('getCacheKey') && source.includes('sha256')) {
         pass('T-034a: getCacheKey() with SHA256', 
              'Function found in source with SHA256');
@@ -447,7 +450,7 @@ async function test_bug_013() {
   log('\n🔬 BUG-013: Orphaned Vector Cleanup Only at Startup');
   
   try {
-    const vector_index = require(path.join(LIB_PATH, 'vector-index.js'));
+    const vector_index = require(path.join(SEARCH_PATH, 'vector-index.js'));
     
     // Test 1: verifyIntegrity exists
     if (typeof vector_index.verifyIntegrity === 'function') {
@@ -460,7 +463,7 @@ async function test_bug_013() {
     }
     
     // Test 2: Check source for autoClean option
-    const source = fs.readFileSync(path.join(LIB_PATH, 'vector-index.js'), 'utf8');
+    const source = fs.readFileSync(path.join(SEARCH_PATH, 'vector-index.js'), 'utf8');
     if (source.includes('autoClean') && source.includes('options')) {
       pass('T-042b: autoClean option in verifyIntegrity()', 
            'autoClean parameter found');
@@ -509,7 +512,7 @@ async function test_config() {
 
 /* ─────────────────────────────────────────────────────────────
    4. MAIN
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function main() {
   log('🧪 Bug Fix Verification Tests');

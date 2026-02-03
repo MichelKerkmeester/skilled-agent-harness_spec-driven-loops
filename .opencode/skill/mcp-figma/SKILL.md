@@ -181,7 +181,7 @@ STEP 3: Process Results
 search_tools({ task_description: "figma design components" });
 
 // Get tool details
-tool_info({ tool_name: "figma.figma.get_file" });
+tool_info({ tool_name: "figma.figma_get_file" });
 
 // Get a Figma file
 call_tool_chain({

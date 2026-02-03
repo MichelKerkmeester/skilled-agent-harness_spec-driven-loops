@@ -4,12 +4,12 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 'use strict';
 
 /* ─────────────────────────────────────────────────────────────
    2. DECISION TRANSFORMATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function transform_key_decision(decisionItem) {
   let decisionText, chosenApproach, rationale, alternatives;
@@ -68,7 +68,7 @@ function transform_key_decision(decisionItem) {
 
 /* ─────────────────────────────────────────────────────────────
    3. OBSERVATION BUILDERS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function build_session_summary_observation(summary, triggerPhrases = []) {
   const summaryTitle = summary.length > 100
@@ -98,7 +98,7 @@ function build_technical_context_observation(techContext) {
 
 /* ─────────────────────────────────────────────────────────────
    4. INPUT NORMALIZATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function normalize_input_data(data) {
   if (data.user_prompts || data.observations || data.recent_context) {
@@ -163,7 +163,7 @@ function normalize_input_data(data) {
 
 /* ─────────────────────────────────────────────────────────────
    5. INPUT VALIDATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function validate_input_data(data, specFolderArg = null) {
   const errors = [];
@@ -225,7 +225,7 @@ function validate_input_data(data, specFolderArg = null) {
 
 /* ─────────────────────────────────────────────────────────────
    6. OPENCODE CAPTURE TRANSFORMATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function transform_opencode_capture(capture) {
   const { exchanges, toolCalls, metadata, sessionTitle } = capture;
@@ -319,7 +319,7 @@ function transform_opencode_capture(capture) {
 
 /* ─────────────────────────────────────────────────────────────
    7. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)

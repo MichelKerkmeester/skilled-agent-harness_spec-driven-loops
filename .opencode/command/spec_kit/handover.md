@@ -255,9 +255,9 @@ flowchart TD
 
 ## 4. ⚡ INSTRUCTIONS
 
-After all phases pass, execute the workflow steps below. This command uses direct execution without YAML asset files due to its single-mode operation (no auto/confirm variants).
+After all phases pass, execute the workflow steps below. This command uses a simplified YAML configuration (see Related Files) and operates in single-mode (no auto/confirm variants).
 
-> **Note:** Unlike other spec_kit commands, handover operates in a single mode and delegates to a sub-agent (see Section 7) rather than loading YAML prompts.
+> **Note:** Unlike other spec_kit commands, handover operates in a single mode and delegates to a sub-agent (see Section 7) rather than switching between auto/confirm YAML prompts.
 
 ### Step 1: Validate Spec
 
@@ -296,12 +296,14 @@ ELSE:
 
 #### Handover Sections
 
-The handover.md should include:
-1. **Handover Summary** - Session ID, phase completed, timestamp
-2. **Context Transfer** - Key decisions, blockers, files modified
-3. **For Next Session** - Starting point, priority tasks, context to load
-4. **Validation Checklist** - Pre-handover verification
-5. **Session Notes** - Free-form notes
+The handover.md should include these 7 sections (aligned with YAML template):
+1. **Session Summary** - Date, duration, objective, progress percentage, key accomplishments
+2. **Current State** - Phase, active file/line, last action, system state
+3. **Completed Work** - Tasks done, files modified, tests passed, docs updated
+4. **Pending Work** - Immediate next action, remaining tasks, effort estimates, dependencies
+5. **Key Decisions** - Decisions made, rationale, alternatives rejected, impact
+6. **Blockers & Risks** - Current blockers, risks identified, mitigation strategies
+7. **Continuation Instructions** - Resume command, files to review, context to load
 
 ### Step 4: Display Result
 
@@ -314,6 +316,8 @@ Show the created file path and continuation instructions.
 **Output Location:** `[spec_folder]/handover.md`
 
 The handover file is created in the spec folder root, NOT in memory/.
+
+> **Crash Recovery Note:** For emergency crash recovery scenarios (unexpected session termination), the same content format can be saved as `CONTINUE_SESSION.md` in the project root. This file is checked by `/spec_kit:resume` and `/memory:continue` for rapid recovery. The handover.md in spec folder is the standard location; CONTINUE_SESSION.md is for edge cases where spec folder context was lost.
 
 > **💡 Tip:** After creating the handover file, consider running:
 > `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`
@@ -395,7 +399,6 @@ Main Agent (reads command):
 DISPATCH SUB-AGENT:
   tool: Task
   subagent_type: handover
-  model: sonnet
   description: "Create handover document"
   prompt: |
     Create a handover document for spec folder: {spec_path}
@@ -470,7 +473,7 @@ WHEN fallback triggers:
 ```
 IF phases passed:
   TRY:
-    result = Task(subagent_type="handover", model="sonnet", prompt=SUB_AGENT_PROMPT)
+    result = Task(subagent_type="handover", description="Create handover document", prompt=SUB_AGENT_PROMPT)
     IF result.status == "OK":
       file_path = result.file_path
       attempt_number = result.attempt_number
@@ -523,11 +526,14 @@ fallback:
 
 ### Commands
 
-| Command              | Relationship                                       |
-| -------------------- | -------------------------------------------------- |
-| `/spec_kit:resume`   | Loads handover document to continue work           |
-| `/spec_kit:complete` | Start new feature (handover captures in-progress)  |
-| `/memory:save`       | Save context to memory (handover is for branching) |
+| Command              | Relationship                                                                              |
+| -------------------- | ----------------------------------------------------------------------------------------- |
+| `/spec_kit:resume`   | Loads handover document to continue work                                                  |
+| `/spec_kit:complete` | Start new feature (handover captures in-progress)                                         |
+| `/memory:save`       | **Recommended companion** - Save semantic context to memory for search/retrieval          |
+| `/memory:continue`   | Crash recovery - loads most recent CONTINUE_SESSION.md or handover context                |
+
+> **Best Practice:** After creating handover.md, also run `/memory:save` to preserve semantic context for future searches. Handover files are for quick continuation; memory files enable semantic retrieval across sessions.
 
 ### Agents
 

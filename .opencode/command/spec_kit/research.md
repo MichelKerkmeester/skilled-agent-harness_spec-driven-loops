@@ -1,7 +1,7 @@
 ---
 description: Research workflow (9 steps) - technical investigation and documentation. Supports :auto and :confirm modes
 argument-hint: "<research-topic> [:auto|:confirm]"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, WebSearch
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, webfetch
 ---
 
 # 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
@@ -502,11 +502,43 @@ The research workflow supports parallel agent dispatch for investigation-heavy p
 - `"use parallel"` / `"dispatch agents"` → Force parallel dispatch
 - `"auto-decide"` → Enable session auto-mode (1 hour)
 
+### Workstream Prefix Pattern
+
+When dispatching parallel agents, use workstream prefixes for tracking:
+
+| Workstream | Prefix       | Purpose                           |
+| ---------- | ------------ | --------------------------------- |
+| Research   | `[W:R-001]`  | Track research workflow outputs   |
+
+**Format:** `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
+
+**Example dispatch with prefix:**
+```
+[W:R-001] Codebase Explorer: Analyzing existing authentication patterns...
+[W:R-002] Documentation Researcher: Gathering OAuth 2.0 best practices...
+[W:R-003] Security Analyst: Evaluating token handling approaches...
+```
+
 ---
 
 ## 8.5 🧠 MEMORY INTEGRATION
 
 Memory integration ensures research builds on prior work and preserves findings for future sessions.
+
+### Unified Memory Retrieval
+
+Use the unified `/memory:context` command with intent-aware retrieval:
+
+```
+/memory:context --intent=understand --query="authentication patterns"
+```
+
+| Intent        | Retrieval Focus                              | Typical Anchors                     |
+| ------------- | -------------------------------------------- | ----------------------------------- |
+| `add_feature` | Prior implementations, patterns, decisions   | architecture, decisions, patterns   |
+| `fix_bug`     | Error history, debugging sessions, fixes     | errors, debugging, fixes            |
+| `refactor`    | Code structure, dependencies, tech debt      | architecture, dependencies, quality |
+| `understand`  | Explanations, documentation, learning notes  | research, findings, explanations    |
 
 ### Before Starting Research
 
@@ -515,15 +547,20 @@ Memory integration ensures research builds on prior work and preserves findings 
    memory_match_triggers(prompt=research_topic)
    → Returns: keywords that match existing memories
 
-2. SEMANTIC SEARCH:
+2. UNIFIED CONTEXT RETRIEVAL (preferred):
+   /memory:context --intent=understand --query="research_topic"
+   → Returns: Intent-aware context with relevance scoring
+
+3. ALTERNATIVE - DIRECT SEMANTIC SEARCH:
    memory_search({
      query: research_topic,
+     intent: 'understand',
      anchors: ['research', 'findings', 'decisions'],
      includeConstitutional: true
    })
    → Returns: Relevant prior research with similarity scores
 
-3. LOAD CONTEXT:
+4. LOAD CONTEXT:
    IF matches found with similarity > 70:
      - Display summary of prior findings
      - Ask user: "Build on this or start fresh?"
@@ -550,12 +587,13 @@ Memory integration ensures research builds on prior work and preserves findings 
 
 ### Memory Search Patterns for Research
 
-| Research Phase | Memory Query                                        | Purpose                        |
-| -------------- | --------------------------------------------------- | ------------------------------ |
-| Before Step 1  | `memory_search({ query: topic })`                   | Find prior related research    |
-| During Step 3  | `memory_search({ anchors: ['architecture'] })`      | Existing patterns/decisions    |
-| During Step 4  | `memory_search({ anchors: ['external-research'] })` | Prior external source findings |
-| After Step 9   | `generate-context.js [spec-folder]`                 | Preserve current research      |
+| Research Phase | Memory Query                                                        | Purpose                        |
+| -------------- | ------------------------------------------------------------------- | ------------------------------ |
+| Before Step 1  | `/memory:context --intent=understand --query="topic"`               | Find prior related research    |
+| During Step 3  | `memory_search({ intent: 'understand', anchors: ['architecture'] })`| Existing patterns/decisions    |
+| During Step 4  | `memory_search({ intent: 'understand', anchors: ['external-research'] })` | Prior external source findings |
+| During Step 5  | `/memory:context "Why did we choose X over Y?"`                     | Prior decision context         |
+| After Step 9   | `generate-context.js [spec-folder]`                                 | Preserve current research      |
 
 ### Memory Integration Example
 
@@ -566,20 +604,23 @@ Research Topic: "WebSocket implementation patterns"
    memory_match_triggers("WebSocket implementation patterns")
    → Matches: ["websocket", "real-time", "connections"]
 
-2. Semantic Search:
-   memory_search({
-     query: "WebSocket implementation patterns",
-     anchors: ["research", "architecture"]
-   })
+2. Unified Context Retrieval:
+   /memory:context --intent=understand --query="WebSocket implementation patterns"
    → Found: "2025-01-15__websocket-evaluation.md" (similarity: 85)
+   → Intent: understand → Prioritizes research, findings, explanations
 
-3. User Prompt:
+3. Prior Decision Context:
+   /memory:context "Why did we consider WebSocket over SSE?"
+   → Returns: Previous evaluation with trade-offs analysis
+   → Intent: understand → Surfaces decision rationale and context
+
+4. User Prompt:
    "Found prior research on WebSocket evaluation from Jan 15.
     A) Build on prior findings
     B) Start fresh (ignore prior work)
     C) Review prior findings first"
 
-4. Post-Research Save:
+5. Post-Research Save:
    node generate-context.js specs/007-websocket-impl/
    → Creates: memory/2025-01-23__websocket-patterns.md
    → Indexed with anchors: research-websocket, findings, recommendations

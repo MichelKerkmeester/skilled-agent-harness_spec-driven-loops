@@ -202,6 +202,16 @@ flowchart TB
 | `templates/level_3+/` | 6 files (~640 LOC) | Enterprise governance           |
 | `templates/verbose/`  | Extended guidance  | New users, complex requirements |
 
+### MCP Tool Layers
+
+| Layer | Tools                                       | Purpose              |
+| ----- | ------------------------------------------- | -------------------- |
+| L1    | `memory_search`, `memory_save`              | Core operations      |
+| L2    | `memory_match_triggers`                     | Context surfacing    |
+| L3    | `memory_drift_why`, `memory_drift_context`  | Drift analysis       |
+| L4    | `memory_causal_link`, `memory_causal_unlink`| Causal connections   |
+| L5    | `memory_drift_learn`                        | Learning loops       |
+
 ---
 
 ## 3. 🗺️ LEVEL SELECTION ROUTING
@@ -297,8 +307,8 @@ specs/###-short-name/
 ├── checklist.md               # Quality gates (Level 2+)
 ├── decision-record.md         # ADRs (Level 3+)
 ├── research.md                # Technical research (optional)
-├── memory/                    # Context preservation
-│   └── DD-MM-YY_HH-MM__topic.md
+├── memory/                    # Context preservation (5-state model, ANCHOR format)
+│   └── DD-MM-YY_HH-MM__topic.md  # Uses ANCHOR tags for structured retrieval
 └── scratch/                   # Temporary files
     └── debug-logs.md
 ```
@@ -399,11 +409,16 @@ specs/###-short-name/
 
 ### Commands
 
-| Command              | Purpose                     | Path                                     |
-| -------------------- | --------------------------- | ---------------------------------------- |
-| `/spec_kit:plan`     | Planning workflow (7 steps) | `.opencode/command/spec_kit/plan.md`     |
-| `/spec_kit:complete` | Full workflow (14+ steps)   | `.opencode/command/spec_kit/complete.md` |
-| `/spec_kit:resume`   | Resume existing spec        | `.opencode/command/spec_kit/resume.md`   |
+| Command              | Purpose                     | Path                                       |
+| -------------------- | --------------------------- | ------------------------------------------ |
+| `/spec_kit:plan`     | Planning workflow (7 steps) | `.opencode/command/spec_kit/plan.md`       |
+| `/spec_kit:complete` | Full workflow (14+ steps)   | `.opencode/command/spec_kit/complete.md`   |
+| `/spec_kit:resume`   | Resume existing spec        | `.opencode/command/spec_kit/resume.md`     |
+| `/memory:context`    | Unified entry point         | `.opencode/command/memory/context.md`      |
+| `/memory:continue`   | Crash recovery              | `.opencode/command/memory/continue.md`     |
+| `/memory:learn`      | Explicit learning           | `.opencode/command/memory/learn.md`        |
+| `/memory:save`       | Save session context        | `.opencode/command/memory/save.md`         |
+| `/memory:manage`     | Memory management           | `.opencode/command/memory/manage.md`       |
 
 ### Skills
 
@@ -455,9 +470,105 @@ specs/###-short-name/
 
 ---
 
+## 11.5. 📐 TEMPLATE PATTERNS (Spec 082)
+
+### Workstream Prefixes
+
+Use `[W:XXXX]` format to tag items by workstream for cross-reference and filtering:
+
+```markdown
+[W:AUTH] Implement login flow
+[W:PERF] Optimize database queries
+[W:DOCS] Update API documentation
+```
+
+### Block-Task References
+
+Use `[B:T###]` format to reference specific tasks within blocks:
+
+```markdown
+[B:T001] Initial setup complete
+[B:T002] Depends on [B:T001]
+[B:T003] Can run parallel to [B:T002]
+```
+
+### Evidence Log Format
+
+Use `[E:filename]` format to reference evidence artifacts:
+
+```markdown
+- [x] Tests pass [E:test-output.log]
+- [x] Performance verified [E:benchmark-results.json]
+- [x] Screenshots captured [E:screenshots/final-state.png]
+```
+
+### Combined Usage Example
+
+```markdown
+## Task: [W:AUTH] Login Implementation
+
+### Checklist
+- [x] [B:T001] Create auth module [E:auth-module-created.log]
+- [x] [B:T002] Add validation [E:validation-tests.log]
+- [ ] [B:T003] Integration testing (blocked by [B:T002])
+```
+
+---
+
 ## 12. 🔍 OUTPUT VERIFICATION
 
 **CRITICAL**: Before reporting completion to orchestrator or user, MUST verify all claims with evidence.
+
+### Pre-Flight Validation Gates
+
+**MANDATORY gates before ANY spec folder operation:**
+
+1. **Gate 1 - Context Check**: Verify spec folder path exists and is valid
+2. **Gate 2 - Level Validation**: Confirm documentation level matches requirements
+3. **Gate 3 - Template Source**: Verify templates are copied from `templates/level_N/`
+4. **Gate 4 - ANCHOR Format**: Memory files must use valid ANCHOR tags
+
+### ANCHOR Format Validation
+
+Memory files MUST follow the ANCHOR format for structured retrieval:
+
+```markdown
+<!-- ANCHOR: summary -->
+Brief overview of the context
+<!-- /ANCHOR: summary -->
+
+<!-- ANCHOR: state -->
+Current implementation state
+<!-- /ANCHOR: state -->
+
+<!-- ANCHOR: decisions -->
+Key decisions made
+<!-- /ANCHOR: decisions -->
+```
+
+**Valid ANCHOR tags:** `summary`, `state`, `decisions`, `context`, `artifacts`, `next-steps`, `blockers`
+
+### Response Envelope Structure
+
+All spec operations should return structured responses:
+
+```markdown
+## Operation Result
+
+### Status
+[SUCCESS | WARNING | ERROR]
+
+### Details
+- **Spec Path:** specs/###-name/
+- **Level:** [1|2|3|3+]
+- **Validation:** [PASS|FAIL]
+
+### Evidence
+[Tool output, file paths, content excerpts]
+
+### Next Steps
+[Actionable items if any]
+```
 
 ### Self-Verification Before Reporting
 
@@ -470,6 +581,8 @@ specs/###-short-name/
 □ File sizes reasonable (not empty, not suspiciously small)
 □ All required files for level present
 □ Checklist items marked with evidence (Level 2+)
+□ ANCHOR format valid in memory files (if present)
+□ Response envelope structure followed
 ```
 
 ### Evidence Requirements

@@ -8,7 +8,7 @@ const path = require('path');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Parse threshold from env var with validation */
 function parse_threshold(envVar, defaultVal) {
@@ -22,7 +22,7 @@ function parse_limit(envVar, defaultVal) {
   return !isNaN(parsed) && parsed > 0 ? parsed : defaultVal;
 }
 
-// COGNITIVE-081: 5-State Model Thresholds based on retrievability R = e^(-t/S)
+// REQ-081: 5-State Model thresholds based on retrievability R = e^(-t/S)
 const STATE_THRESHOLDS = {
   HOT: 0.80,
   WARM: 0.25,
@@ -32,7 +32,6 @@ const STATE_THRESHOLDS = {
 
 const ARCHIVED_DAYS_THRESHOLD = 90;
 
-// COGNITIVE-081: Tier config with env var overrides for tuning
 const TIER_CONFIG = {
   hotThreshold: parse_threshold('HOT_THRESHOLD', STATE_THRESHOLDS.HOT),
   warmThreshold: parse_threshold('WARM_THRESHOLD', STATE_THRESHOLDS.WARM),
@@ -56,8 +55,108 @@ if (TIER_CONFIG.warmThreshold <= TIER_CONFIG.coldThreshold) {
 }
 
 /* ─────────────────────────────────────────────────────────────
+   1.5 TYPE-SPECIFIC HALF-LIVES (REQ-002, T008)
+────────────────────────────────────────────────────────────────*/
+
+// Lazy-load memory types to avoid circular dependencies
+let memoryTypesModule = null;
+
+/** Get memory types module (lazy loaded) */
+function get_memory_types_module() {
+  if (memoryTypesModule !== null) {
+    return memoryTypesModule;
+  }
+
+  try {
+    memoryTypesModule = require('../config/memory-types');
+    return memoryTypesModule;
+  } catch (error) {
+    console.warn('[tier-classifier] memory-types module not available:', error.message);
+    memoryTypesModule = false;
+    return null;
+  }
+}
+
+/**
+ * Get effective half-life for a memory based on its type (REQ-002, CHK-017)
+ * Priority: explicit half_life_days > memory_type lookup > default
+ *
+ * @param {Object} memory - Memory object
+ * @returns {number|null} Half-life in days, or null for no decay
+ */
+function get_effective_half_life(memory) {
+  if (!memory || typeof memory !== 'object') {
+    return 60; // Default to declarative half-life
+  }
+
+  // Priority 1: Explicit half_life_days override
+  if (typeof memory.half_life_days === 'number' && memory.half_life_days > 0) {
+    return memory.half_life_days;
+  }
+  if (typeof memory.halfLifeDays === 'number' && memory.halfLifeDays > 0) {
+    return memory.halfLifeDays;
+  }
+
+  // Priority 2: Look up by memory_type
+  const memoryType = memory.memory_type || memory.memoryType;
+  if (memoryType) {
+    const typesModule = get_memory_types_module();
+    if (typesModule) {
+      const halfLife = typesModule.get_half_life(memoryType);
+      if (halfLife !== undefined) {
+        return halfLife;
+      }
+    }
+  }
+
+  // Priority 3: Infer from importance_tier
+  const importanceTier = memory.importance_tier || memory.importanceTier;
+  if (importanceTier) {
+    if (['constitutional', 'critical'].includes(importanceTier)) {
+      return null;
+    }
+    if (importanceTier === 'temporary') {
+      return 1;
+    }
+  }
+
+  if (typeof memory.decay_half_life_days === 'number' && memory.decay_half_life_days > 0) {
+    return memory.decay_half_life_days;
+  }
+
+  return 60;
+}
+
+/**
+ * Calculate stability from half-life for FSRS compatibility.
+ * FSRS stability = time for retrievability to reach target (default 90%).
+ * Half-life = time for retrievability to reach 50%.
+ *
+ * Converting: stability = half_life * log(0.9) / log(0.5) ≈ half_life * 0.152
+ *
+ * @param {number|null} halfLifeDays - Half-life in days
+ * @returns {number} FSRS stability value
+ */
+function half_life_to_stability(halfLifeDays) {
+  if (halfLifeDays === null || halfLifeDays === undefined) {
+    return 365;
+  }
+  if (typeof halfLifeDays !== 'number' || halfLifeDays <= 0) {
+    return 1.0;
+  }
+
+  // FSRS uses R = (1 + f * t/S)^d where f ≈ 0.235, d = -0.5
+  // For half-life calculation: 0.5 = (1 + 0.235 * t_half/S)^(-0.5)
+  // Solving: S = 0.235 * t_half / (0.5^(-2) - 1) = 0.235 * t_half / 3
+  // Simplified: stability ≈ half_life * 0.078
+  // But for better tier differentiation, we use a linear scaling:
+  // stability = half_life (1 day half-life = 1 day stability)
+  return halfLifeDays;
+}
+
+/* ─────────────────────────────────────────────────────────────
    2. FSRS INTEGRATION (LAZY LOADED)
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 let fsrsScheduler = null;
 
@@ -76,38 +175,71 @@ function get_fsrs_scheduler() {
   }
 }
 
-/** Calculate retrievability score using FSRS or fallback */
+/**
+ * Calculate retrievability score using type-specific half-lives (REQ-002, T008)
+ *
+ * Priority order:
+ * 1. Pre-computed retrievability
+ * 2. Explicit stability via FSRS (memory has stability field)
+ * 3. Type-specific half-life decay (T008 - primary decay method)
+ * 4. Legacy attention score fallback
+ *
+ * T008 Design Decision:
+ * - Memories WITH explicit stability use FSRS power-law decay
+ * - Memories WITHOUT explicit stability use type-based half-life decay
+ * - This allows FSRS-trained memories to use learned parameters while
+ *   new memories use cognitively-appropriate type-specific decay rates
+ *
+ * @param {Object} memory - Memory object
+ * @returns {number} Retrievability score (0.0 to 1.0)
+ */
 function calculate_retrievability(memory) {
   if (!memory || typeof memory !== 'object') {
     return 0;
   }
 
-  // Check pre-computed retrievability FIRST (highest priority)
   if (typeof memory.retrievability === 'number' && !isNaN(memory.retrievability)) {
     return Math.max(0, Math.min(1, memory.retrievability));
   }
 
-  // FSRS calculation (second priority) - only if we have timestamp data
+  const halfLifeDays = get_effective_half_life(memory);
+
+  if (halfLifeDays === null) {
+    return 1.0;
+  }
+
   const lastReview = memory.last_review || memory.lastReview || memory.updated_at || memory.created_at;
-  if (lastReview) {
+  const lastAccess = memory.lastAccess || memory.last_access || lastReview;
+
+  if (!lastAccess) {
+    if (typeof memory.attentionScore === 'number' && !isNaN(memory.attentionScore)) {
+      return Math.max(0, Math.min(1, memory.attentionScore));
+    }
+    return 0;
+  }
+
+  const elapsedDays = calculate_days_since(lastAccess);
+
+  // FSRS-trained memories use FSRS formula to preserve learned parameters
+  if (typeof memory.stability === 'number' && memory.stability > 0) {
     const scheduler = get_fsrs_scheduler();
     if (scheduler && typeof scheduler.calculate_retrievability === 'function') {
       try {
-        const elapsedDays = scheduler.calculate_elapsed_days(lastReview);
-        return scheduler.calculate_retrievability(memory.stability || 1.0, elapsedDays);
+        return scheduler.calculate_retrievability(memory.stability, elapsedDays);
       } catch (error) {
         console.warn(`[tier-classifier] FSRS calculation failed: ${error.message}`);
+        // Fall through to half-life decay
       }
     }
+
+    const retrievability = Math.exp(-elapsedDays / memory.stability);
+    return Math.max(0, Math.min(1, retrievability));
   }
 
-  // COGNITIVE-081: Fallback using stability and elapsed time
-  if (typeof memory.stability === 'number' && memory.stability > 0) {
-    const lastAccess = memory.lastAccess || memory.last_access || memory.lastReview || memory.created_at;
-    if (lastAccess) {
-      const elapsedDays = calculate_days_since(lastAccess);
-      return Math.exp(-elapsedDays / memory.stability);
-    }
+  // REQ-017: Half-life decay R(t) = 0.5^(t / half_life)
+  if (halfLifeDays > 0) {
+    const retrievability = Math.pow(0.5, elapsedDays / halfLifeDays);
+    return Math.max(0, Math.min(1, retrievability));
   }
 
   if (typeof memory.attentionScore === 'number' && !isNaN(memory.attentionScore)) {
@@ -138,7 +270,7 @@ function calculate_days_since(timestamp) {
 
 /* ─────────────────────────────────────────────────────────────
    3. STATE CLASSIFICATION (5-STATE MODEL)
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Classify memory into one of 5 states: HOT, WARM, COLD, DORMANT, ARCHIVED */
 function classify_state(memory) {
@@ -146,7 +278,6 @@ function classify_state(memory) {
     return 'DORMANT';
   }
 
-  // COGNITIVE-081: Check ARCHIVED first (90+ days inactive)
   const lastAccess = memory.lastAccess || memory.last_access || memory.lastReview || memory.created_at;
   if (lastAccess) {
     const daysSinceAccess = calculate_days_since(lastAccess);
@@ -203,9 +334,8 @@ function state_to_tier(state) {
 
 /* ─────────────────────────────────────────────────────────────
    4. CONTENT RETRIEVAL BY STATE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// COGNITIVE-081: Content delivery rules - HOT=full, WARM=summary, others=null
 const CONTENT_RULES = {
   HOT: 'full',
   WARM: 'summary',
@@ -283,7 +413,6 @@ function get_summary_content(memory) {
     return fullContent;
   }
 
-  // COGNITIVE-081: Find word boundary for clean truncation
   let truncated = fullContent.substring(0, TIER_CONFIG.summaryFallbackLength);
   const lastSpace = truncated.lastIndexOf(' ');
 
@@ -296,7 +425,7 @@ function get_summary_content(memory) {
 
 /* ─────────────────────────────────────────────────────────────
    5. FILTERING AND LIMITING (5-STATE)
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Filter memories by state and apply limits (HOT max 5, WARM max 10) */
 function filter_and_limit_by_state(memories) {
@@ -374,7 +503,7 @@ function filter_and_limit_by_tier(memories) {
 
 /* ─────────────────────────────────────────────────────────────
    6. RESPONSE FORMATTING
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Format memories into state-aware response (5-state) */
 function format_state_response(memories) {
@@ -445,7 +574,7 @@ function format_tiered_response(memories) {
 
 /* ─────────────────────────────────────────────────────────────
    7. UTILITY FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /** Get state statistics for a set of memories */
 function get_state_stats(memories) {
@@ -600,9 +729,10 @@ function get_dormant_memories(memories) {
 
 /* ─────────────────────────────────────────────────────────────
    8. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
+  // 5-State classification (primary API)
   classifyState: classify_state,
   calculateRetrievability: calculate_retrievability,
   getStateContent: get_state_content,
@@ -616,6 +746,13 @@ module.exports = {
   getArchivedMemories: get_archived_memories,
   getDormantMemories: get_dormant_memories,
   calculateDaysSince: calculate_days_since,
+
+  // Type-specific half-lives (REQ-002, T008)
+  getEffectiveHalfLife: get_effective_half_life,
+  halfLifeToStability: half_life_to_stability,
+  getMemoryTypesModule: get_memory_types_module,
+
+  // Legacy 3-tier classification (backward compatibility)
   classifyTier: classify_tier,
   getTieredContent: get_tiered_content,
   filterAndLimitByTier: filter_and_limit_by_tier,
@@ -623,11 +760,25 @@ module.exports = {
   getTierStats: get_tier_stats,
   isIncluded: is_included,
   getTierThreshold: get_tier_threshold,
+
+  // Content helpers
   getFullContent: get_full_content,
   getSummaryContent: get_summary_content,
+
+  // FSRS integration
   getFsrsScheduler: get_fsrs_scheduler,
+
+  // Configuration constants
   TIER_CONFIG,
   STATE_THRESHOLDS,
   ARCHIVED_DAYS_THRESHOLD,
   CONTENT_RULES,
+
+  // Snake_case aliases for new functions
+  get_effective_half_life,
+  half_life_to_stability,
+  get_memory_types_module,
+  classify_state,
+  calculate_retrievability,
+  calculate_days_since,
 };

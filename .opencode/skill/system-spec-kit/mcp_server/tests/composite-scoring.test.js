@@ -111,15 +111,15 @@
       fail('T402: Importance weight = 0.25', `Error: ${e.message}`);
     }
 
-    // T403: Recency weight = 0.15
+    // T403: Recency weight = 0.10 (reduced in T026 to make room for higher usage boost)
     try {
-      if (weights.recency === 0.15) {
-        pass('T403: Recency weight = 0.15', `recency: ${weights.recency}`);
+      if (weights.recency === 0.10) {
+        pass('T403: Recency weight = 0.10', `recency: ${weights.recency}`);
       } else {
-        fail('T403: Recency weight = 0.15', `Expected 0.15, got ${weights.recency}`);
+        fail('T403: Recency weight = 0.10', `Expected 0.10, got ${weights.recency}`);
       }
     } catch (e) {
-      fail('T403: Recency weight = 0.15', `Error: ${e.message}`);
+      fail('T403: Recency weight = 0.10', `Error: ${e.message}`);
     }
 
     // T404: Retrievability weight = 0.15 (NEW)
@@ -133,15 +133,15 @@
       fail('T404: Retrievability weight = 0.15 (NEW)', `Error: ${e.message}`);
     }
 
-    // T405: Popularity weight = 0.10
+    // T405: Popularity weight = 0.15 (increased in T026 for usage boost)
     try {
-      if (weights.popularity === 0.10) {
-        pass('T405: Popularity weight = 0.10', `popularity: ${weights.popularity}`);
+      if (weights.popularity === 0.15) {
+        pass('T405: Popularity weight = 0.15 (T026)', `popularity: ${weights.popularity}`);
       } else {
-        fail('T405: Popularity weight = 0.10', `Expected 0.10, got ${weights.popularity}`);
+        fail('T405: Popularity weight = 0.15 (T026)', `Expected 0.15, got ${weights.popularity}`);
       }
     } catch (e) {
-      fail('T405: Popularity weight = 0.10', `Error: ${e.message}`);
+      fail('T405: Popularity weight = 0.15 (T026)', `Error: ${e.message}`);
     }
 
     // T406: Tier boost weight = 0.05
@@ -559,34 +559,36 @@
     }
 
     // T427: Custom weights override defaults
+    // Use varied input values to ensure weights actually matter (not all at max)
     try {
       const row = {
-        similarity: 100,
-        importance_weight: 1.0,
-        importance_tier: 'critical',
-        updated_at: new Date(now).toISOString(),
-        access_count: 100,
-        stability: 10.0,
-        last_review: new Date(now).toISOString(),
+        similarity: 80,                   // 0.8 normalized
+        importance_weight: 0.5,           // Mid-range
+        importance_tier: 'normal',        // 0.5 tier boost
+        updated_at: new Date(now - 1000 * 60 * 60 * 24 * 5).toISOString(), // 5 days ago
+        access_count: 5,                  // Low access
+        stability: 3.0,                   // Mid stability
+        last_review: new Date(now - 1000 * 60 * 60 * 24 * 2).toISOString(), // 2 days ago
       };
 
       const default_score = calc_score(row);
+      // Use very different weights to maximize score difference
       const custom_score = calc_score(row, {
         weights: {
-          similarity: 0.50,
-          importance: 0.20,
-          recency: 0.10,
-          retrievability: 0.10,
-          popularity: 0.05,
-          tier_boost: 0.05,
+          similarity: 0.80,      // Much higher than default 0.30
+          importance: 0.05,      // Much lower than default 0.25
+          recency: 0.05,         // Lower than default 0.10
+          retrievability: 0.05,  // Lower than default 0.15
+          popularity: 0.02,      // Lower than default 0.15
+          tier_boost: 0.03,      // Lower than default 0.05
         }
       });
 
-      if (custom_score !== default_score) {
+      if (Math.abs(custom_score - default_score) > 0.001) {
         pass('T427: Custom weights override defaults',
              `Default: ${default_score.toFixed(4)}, Custom: ${custom_score.toFixed(4)}`);
       } else {
-        fail('T427: Custom weights override defaults', 'Scores are identical');
+        fail('T427: Custom weights override defaults', 'Scores are nearly identical');
       }
     } catch (e) {
       fail('T427: Custom weights override defaults', `Error: ${e.message}`);
@@ -1091,7 +1093,424 @@
     }
   }
 
-  // 4.7 MODULE EXPORTS VERIFICATION
+  // 4.7 FIVE-FACTOR MODEL TESTS (T083-T093)
+
+  function test_five_factor_model() {
+    log('\n[SUITE] Five-Factor Model Tests (T083-T093)');
+
+    if (!compositeScoring || !compositeScoring.FIVE_FACTOR_WEIGHTS) {
+      skip('T083-T093: Five-factor model tests', 'FIVE_FACTOR_WEIGHTS not available');
+      return;
+    }
+
+    const weights = compositeScoring.FIVE_FACTOR_WEIGHTS;
+    const now = Date.now();
+
+    // T083: Test 5-factor composite score calculation
+    try {
+      if (!compositeScoring.calculate_five_factor_score) {
+        skip('T083: 5-factor composite score calculation', 'calculate_five_factor_score not available');
+      } else {
+        const row = {
+          stability: 5.0,
+          last_review: new Date(now - 1000 * 60 * 60 * 24 * 2).toISOString(), // 2 days ago
+          access_count: 10,
+          importance_tier: 'important',
+          importance_weight: 0.7,
+          similarity: 80,
+          title: 'Test memory',
+          last_cited: new Date(now - 1000 * 60 * 60 * 24 * 5).toISOString(), // 5 days ago
+        };
+        const options = { query: 'test' };
+
+        const score = compositeScoring.calculate_five_factor_score(row, options);
+
+        if (typeof score === 'number' && !isNaN(score) && score >= 0 && score <= 1) {
+          pass('T083: 5-factor composite score calculation',
+               `Score: ${score.toFixed(4)} (valid 0-1 range, uses all 5 factors)`);
+        } else {
+          fail('T083: 5-factor composite score calculation', `Invalid score: ${score}`);
+        }
+      }
+    } catch (e) {
+      fail('T083: 5-factor composite score calculation', `Error: ${e.message}`);
+    }
+
+    // T084: Test temporal factor weight = 0.25
+    try {
+      if (weights.temporal === 0.25) {
+        pass('T084: Temporal factor weight = 0.25', `temporal: ${weights.temporal}`);
+      } else {
+        fail('T084: Temporal factor weight = 0.25', `Expected 0.25, got ${weights.temporal}`);
+      }
+    } catch (e) {
+      fail('T084: Temporal factor weight = 0.25', `Error: ${e.message}`);
+    }
+
+    // T085: Test usage factor weight = 0.15
+    try {
+      if (weights.usage === 0.15) {
+        pass('T085: Usage factor weight = 0.15', `usage: ${weights.usage}`);
+      } else {
+        fail('T085: Usage factor weight = 0.15', `Expected 0.15, got ${weights.usage}`);
+      }
+    } catch (e) {
+      fail('T085: Usage factor weight = 0.15', `Error: ${e.message}`);
+    }
+
+    // T086: Test importance factor weight = 0.25
+    try {
+      if (weights.importance === 0.25) {
+        pass('T086: Importance factor weight = 0.25', `importance: ${weights.importance}`);
+      } else {
+        fail('T086: Importance factor weight = 0.25', `Expected 0.25, got ${weights.importance}`);
+      }
+    } catch (e) {
+      fail('T086: Importance factor weight = 0.25', `Error: ${e.message}`);
+    }
+
+    // T087: Test pattern factor weight = 0.20
+    try {
+      if (weights.pattern === 0.20) {
+        pass('T087: Pattern factor weight = 0.20', `pattern: ${weights.pattern}`);
+      } else {
+        fail('T087: Pattern factor weight = 0.20', `Expected 0.20, got ${weights.pattern}`);
+      }
+    } catch (e) {
+      fail('T087: Pattern factor weight = 0.20', `Error: ${e.message}`);
+    }
+
+    // T088: Test citation factor weight = 0.15
+    try {
+      if (weights.citation === 0.15) {
+        pass('T088: Citation factor weight = 0.15', `citation: ${weights.citation}`);
+      } else {
+        fail('T088: Citation factor weight = 0.15', `Expected 0.15, got ${weights.citation}`);
+      }
+    } catch (e) {
+      fail('T088: Citation factor weight = 0.15', `Error: ${e.message}`);
+    }
+
+    // T089: Test FSRS formula: Math.pow(1 + 0.235 * (days/stability), -0.5)
+    try {
+      const FSRS_FACTOR = compositeScoring.FSRS_FACTOR; // ~0.235 (19/81)
+      const FSRS_DECAY = compositeScoring.FSRS_DECAY;   // -0.5
+
+      // Test with known values: days=10, stability=5
+      // Expected: Math.pow(1 + 0.235 * (10/5), -0.5) = Math.pow(1 + 0.47, -0.5) = Math.pow(1.47, -0.5) ≈ 0.825
+      const days = 10;
+      const stability = 5;
+      const expected = Math.pow(1 + FSRS_FACTOR * (days / stability), FSRS_DECAY);
+
+      // Verify via calculate_temporal_score with a row
+      const row = {
+        stability: stability,
+        last_review: new Date(now - days * 24 * 60 * 60 * 1000).toISOString(),
+      };
+      const actual = compositeScoring.calculate_temporal_score(row);
+
+      // Allow for small timing differences (1 ms window)
+      if (approx_equal(actual, expected, 0.01)) {
+        pass('T089: FSRS formula verified',
+             `days=${days}, stability=${stability}: expected ${expected.toFixed(4)}, got ${actual.toFixed(4)}`);
+      } else {
+        fail('T089: FSRS formula verified',
+             `days=${days}, stability=${stability}: expected ${expected.toFixed(4)}, got ${actual.toFixed(4)}`);
+      }
+
+      // Additional edge case: 0 days should give score ~1.0
+      const row_0days = {
+        stability: 5.0,
+        last_review: new Date(now).toISOString(),
+      };
+      const score_0days = compositeScoring.calculate_temporal_score(row_0days);
+      if (approx_equal(score_0days, 1.0, 0.01)) {
+        pass('T089b: FSRS formula at 0 days = 1.0', `Score: ${score_0days.toFixed(4)}`);
+      } else {
+        fail('T089b: FSRS formula at 0 days = 1.0', `Expected ~1.0, got ${score_0days.toFixed(4)}`);
+      }
+    } catch (e) {
+      fail('T089: FSRS formula verified', `Error: ${e.message}`);
+    }
+
+    // T090: Test usage boost formula: min(1.5, 1.0 + count * 0.05)
+    try {
+      const calc_usage = compositeScoring.calculate_usage_score;
+
+      // Test case 1: count=0 -> boost=1.0, normalized=(1.0-1.0)/0.5=0.0
+      const score_0 = calc_usage(0);
+      if (approx_equal(score_0, 0.0, 0.001)) {
+        pass('T090a: Usage score at count=0', `Score: ${score_0.toFixed(4)} (normalized from boost 1.0)`);
+      } else {
+        fail('T090a: Usage score at count=0', `Expected 0.0, got ${score_0.toFixed(4)}`);
+      }
+
+      // Test case 2: count=10 -> boost=1.5, normalized=(1.5-1.0)/0.5=1.0
+      const score_10 = calc_usage(10);
+      if (approx_equal(score_10, 1.0, 0.001)) {
+        pass('T090b: Usage score at count=10', `Score: ${score_10.toFixed(4)} (normalized from boost 1.5)`);
+      } else {
+        fail('T090b: Usage score at count=10', `Expected 1.0, got ${score_10.toFixed(4)}`);
+      }
+
+      // Test case 3: count=5 -> boost=1.25, normalized=(1.25-1.0)/0.5=0.5
+      const score_5 = calc_usage(5);
+      if (approx_equal(score_5, 0.5, 0.001)) {
+        pass('T090c: Usage score at count=5', `Score: ${score_5.toFixed(4)} (normalized from boost 1.25)`);
+      } else {
+        fail('T090c: Usage score at count=5', `Expected 0.5, got ${score_5.toFixed(4)}`);
+      }
+
+      // Test case 4: count=100 -> boost capped at 1.5, normalized=1.0
+      const score_100 = calc_usage(100);
+      if (approx_equal(score_100, 1.0, 0.001)) {
+        pass('T090d: Usage score capped at count=100', `Score: ${score_100.toFixed(4)} (capped at 1.5 boost)`);
+      } else {
+        fail('T090d: Usage score capped at count=100', `Expected 1.0, got ${score_100.toFixed(4)}`);
+      }
+    } catch (e) {
+      fail('T090: Usage boost formula', `Error: ${e.message}`);
+    }
+
+    // T091: Test citation recency formula: 1 / (1 + days * 0.1)
+    try {
+      const calc_citation = compositeScoring.calculate_citation_score;
+      const CITATION_DECAY_RATE = compositeScoring.CITATION_DECAY_RATE; // 0.1
+
+      // Test case 1: 0 days -> 1 / (1 + 0) = 1.0
+      const row_0days = {
+        last_cited: new Date(now).toISOString(),
+      };
+      const score_0 = calc_citation(row_0days);
+      if (approx_equal(score_0, 1.0, 0.01)) {
+        pass('T091a: Citation score at 0 days', `Score: ${score_0.toFixed(4)} (expected ~1.0)`);
+      } else {
+        fail('T091a: Citation score at 0 days', `Expected ~1.0, got ${score_0.toFixed(4)}`);
+      }
+
+      // Test case 2: 10 days -> 1 / (1 + 10 * 0.1) = 1 / 2 = 0.5
+      const row_10days = {
+        last_cited: new Date(now - 10 * 24 * 60 * 60 * 1000).toISOString(),
+      };
+      const score_10 = calc_citation(row_10days);
+      if (approx_equal(score_10, 0.5, 0.01)) {
+        pass('T091b: Citation score at 10 days', `Score: ${score_10.toFixed(4)} (expected ~0.5)`);
+      } else {
+        fail('T091b: Citation score at 10 days', `Expected ~0.5, got ${score_10.toFixed(4)}`);
+      }
+
+      // Test case 3: 30 days -> 1 / (1 + 30 * 0.1) = 1 / 4 = 0.25
+      const row_30days = {
+        last_cited: new Date(now - 30 * 24 * 60 * 60 * 1000).toISOString(),
+      };
+      const score_30 = calc_citation(row_30days);
+      if (approx_equal(score_30, 0.25, 0.01)) {
+        pass('T091c: Citation score at 30 days', `Score: ${score_30.toFixed(4)} (expected ~0.25)`);
+      } else {
+        fail('T091c: Citation score at 30 days', `Expected ~0.25, got ${score_30.toFixed(4)}`);
+      }
+
+      // Test case 4: 90+ days -> score = 0 (CITATION_MAX_DAYS cutoff)
+      const row_90days = {
+        last_cited: new Date(now - 90 * 24 * 60 * 60 * 1000).toISOString(),
+      };
+      const score_90 = calc_citation(row_90days);
+      if (score_90 === 0) {
+        pass('T091d: Citation score at 90 days (max cutoff)', `Score: ${score_90}`);
+      } else {
+        fail('T091d: Citation score at 90 days (max cutoff)', `Expected 0, got ${score_90.toFixed(4)}`);
+      }
+    } catch (e) {
+      fail('T091: Citation recency formula', `Error: ${e.message}`);
+    }
+
+    // T092: Test pattern alignment bonuses (exact=0.3, partial=0.15, anchor=0.25, type=0.2)
+    try {
+      const bonuses = compositeScoring.PATTERN_ALIGNMENT_BONUSES;
+
+      const expected_bonuses = {
+        exact_match: 0.3,
+        partial_match: 0.15,
+        anchor_match: 0.25,
+        type_match: 0.2,
+      };
+
+      let all_pass = true;
+      const results_detail = [];
+
+      for (const [key, expected] of Object.entries(expected_bonuses)) {
+        const actual = bonuses[key];
+        if (actual === expected) {
+          results_detail.push(`${key}=${actual} ✓`);
+        } else {
+          results_detail.push(`${key}: expected ${expected}, got ${actual}`);
+          all_pass = false;
+        }
+      }
+
+      if (all_pass) {
+        pass('T092: Pattern alignment bonuses', results_detail.join(', '));
+      } else {
+        fail('T092: Pattern alignment bonuses', results_detail.join(', '));
+      }
+
+      // Additional test: Verify pattern score calculation with exact match
+      const calc_pattern = compositeScoring.calculate_pattern_score;
+      const row_exact = {
+        similarity: 60,
+        title: 'authentication flow',
+      };
+      const options_exact = { query: 'authentication flow' };
+      const pattern_score = calc_pattern(row_exact, options_exact);
+
+      // Should include exact_match bonus (0.3) + baseline from similarity (0.6 * 0.5 = 0.3)
+      if (pattern_score >= 0.5) {
+        pass('T092b: Pattern score with exact title match',
+             `Score: ${pattern_score.toFixed(4)} (includes exact_match bonus 0.3)`);
+      } else {
+        fail('T092b: Pattern score with exact title match',
+             `Expected >= 0.5 with exact match, got ${pattern_score.toFixed(4)}`);
+      }
+
+      // Test anchor match
+      const row_anchor = {
+        similarity: 50,
+        title: 'Some memory',
+        anchors: ['decision', 'context'],
+      };
+      const options_anchor = { query: 'test', anchors: ['decision'] };
+      const anchor_score = calc_pattern(row_anchor, options_anchor);
+
+      // Should include anchor_match bonus (0.25)
+      if (anchor_score > 0.25) {
+        pass('T092c: Pattern score with anchor match',
+             `Score: ${anchor_score.toFixed(4)} (includes anchor_match bonus 0.25)`);
+      } else {
+        fail('T092c: Pattern score with anchor match',
+             `Expected > 0.25, got ${anchor_score.toFixed(4)}`);
+      }
+
+      // Test type match
+      const row_type = {
+        similarity: 50,
+        title: 'Some decision',
+        memory_type: 'decision',
+      };
+      const options_type = { query: 'why did we decide' };
+      const type_score = calc_pattern(row_type, options_type);
+
+      // Should include type_match bonus (0.2)
+      if (type_score > 0.2) {
+        pass('T092d: Pattern score with type match',
+             `Score: ${type_score.toFixed(4)} (includes type_match bonus 0.2)`);
+      } else {
+        fail('T092d: Pattern score with type match',
+             `Expected > 0.2, got ${type_score.toFixed(4)}`);
+      }
+    } catch (e) {
+      fail('T092: Pattern alignment bonuses', `Error: ${e.message}`);
+    }
+
+    // T093: Test score normalization to 0-1 range
+    try {
+      const calc_five_factor = compositeScoring.calculate_five_factor_score;
+
+      // Test extreme high values (should clamp to 1.0)
+      const row_max = {
+        stability: 1000.0,
+        last_review: new Date(now).toISOString(),
+        access_count: 1000,
+        importance_tier: 'constitutional',
+        importance_weight: 1.0,
+        similarity: 100,
+        title: 'exact match test query',
+        anchors: ['test', 'query'],
+        memory_type: 'decision',
+        last_cited: new Date(now).toISOString(),
+      };
+      const options_max = { query: 'exact match test query', anchors: ['test'] };
+      const score_max = calc_five_factor(row_max, options_max);
+
+      if (score_max <= 1.0 && score_max >= 0) {
+        pass('T093a: Max inputs normalized to 0-1',
+             `Score: ${score_max.toFixed(4)} (clamped to <= 1.0)`);
+      } else {
+        fail('T093a: Max inputs normalized to 0-1',
+             `Score out of range: ${score_max}`);
+      }
+
+      // Test extreme low values (should clamp to >= 0)
+      const row_min = {
+        stability: 0.001,
+        last_review: new Date(0).toISOString(),
+        access_count: 0,
+        importance_tier: 'deprecated',
+        importance_weight: 0,
+        similarity: 0,
+        title: '',
+        last_cited: new Date(0).toISOString(),
+      };
+      const score_min = calc_five_factor(row_min, {});
+
+      if (score_min >= 0 && score_min <= 1.0) {
+        pass('T093b: Min inputs normalized to 0-1',
+             `Score: ${score_min.toFixed(4)} (clamped to >= 0)`);
+      } else {
+        fail('T093b: Min inputs normalized to 0-1',
+             `Score out of range: ${score_min}`);
+      }
+
+      // Test negative inputs (should be handled gracefully)
+      const row_negative = {
+        similarity: -100,
+        access_count: -50,
+        importance_weight: -1.0,
+      };
+      const score_negative = calc_five_factor(row_negative, {});
+
+      if (score_negative >= 0 && score_negative <= 1.0) {
+        pass('T093c: Negative inputs normalized to 0-1',
+             `Score: ${score_negative.toFixed(4)}`);
+      } else {
+        fail('T093c: Negative inputs normalized to 0-1',
+             `Score out of range: ${score_negative}`);
+      }
+
+      // Test mixed inputs stay in range
+      const test_cases = [
+        { similarity: 50, access_count: 5 },
+        { similarity: 100, importance_tier: 'critical' },
+        { stability: 10, last_review: new Date(now - 5 * 24 * 60 * 60 * 1000).toISOString() },
+      ];
+
+      let all_in_range = true;
+      for (const row of test_cases) {
+        const score = calc_five_factor(row, {});
+        if (score < 0 || score > 1 || isNaN(score)) {
+          all_in_range = false;
+          break;
+        }
+      }
+
+      if (all_in_range) {
+        pass('T093d: All test cases normalized to 0-1', 'All scores within valid range');
+      } else {
+        fail('T093d: All test cases normalized to 0-1', 'Some scores out of range');
+      }
+
+      // Verify 5-factor weights sum to 1.0 (important for normalization)
+      const weight_sum = Object.values(weights).reduce((acc, w) => acc + w, 0);
+      if (approx_equal(weight_sum, 1.0, 0.0001)) {
+        pass('T093e: 5-factor weights sum to 1.0', `Sum: ${weight_sum.toFixed(4)}`);
+      } else {
+        fail('T093e: 5-factor weights sum to 1.0', `Expected 1.0, got ${weight_sum}`);
+      }
+    } catch (e) {
+      fail('T093: Score normalization to 0-1 range', `Error: ${e.message}`);
+    }
+  }
+
+  // 4.8 MODULE EXPORTS VERIFICATION
 
   function test_module_exports() {
     log('\n[SUITE] Module Exports Verification');
@@ -1102,10 +1521,26 @@
     }
 
     const expected_exports = [
+      // Configuration
       'DEFAULT_WEIGHTS',
+      'FIVE_FACTOR_WEIGHTS',
       'RECENCY_SCALE_DAYS',
+      'IMPORTANCE_MULTIPLIERS',
+      'CITATION_DECAY_RATE',
+      'CITATION_MAX_DAYS',
+      'PATTERN_ALIGNMENT_BONUSES',
       'FSRS_FACTOR',
       'FSRS_DECAY',
+      // 5-factor scoring functions (REQ-017)
+      'calculate_temporal_score',
+      'calculate_usage_score',
+      'calculate_importance_score',
+      'calculate_pattern_score',
+      'calculate_citation_score',
+      'calculate_five_factor_score',
+      'apply_five_factor_scoring',
+      'get_five_factor_breakdown',
+      // Legacy functions
       'calculate_recency_score',
       'get_tier_boost',
       'calculate_retrievability_score',
@@ -1131,7 +1566,8 @@
   async function runTests() {
     log('================================================');
     log('  COMPOSITE SCORING UNIT TESTS');
-    log('  Covers: T401-T445 (Weight & Retrievability)');
+    log('  Covers: T083-T093 (5-Factor Model)');
+    log('          T401-T445 (Weight & Retrievability)');
     log('================================================');
     log(`Date: ${new Date().toISOString()}\n`);
 
@@ -1139,6 +1575,7 @@
     load_modules();
 
     // Run all test suites
+    test_five_factor_model();          // T083-T093 (NEW)
     test_weight_configuration();       // T401-T410
     test_retrievability_integration(); // T411-T420
     test_score_calculation();          // T421-T430

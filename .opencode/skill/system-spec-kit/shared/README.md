@@ -56,7 +56,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 │    └─────────────┘                 │   shared/') │               │
 │                                    └─────────────┘               │
 │                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────────┘
 ```
 
 ### Key Statistics

@@ -1,0 +1,615 @@
+---
+description: Retrieve context with intent awareness - combines search + load with task-specific weights
+argument-hint: "<query> [--intent:<type>]"
+allowed-tools: Read, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers
+---
+
+# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
+
+**BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
+
+```
+IF $ARGUMENTS is empty, undefined, or contains only whitespace:
+    → STOP IMMEDIATELY
+    → Present the user with this question:
+        question: "What would you like to retrieve context for?"
+        options:
+          - label: "Add feature"
+            description: "Context for implementing a new feature"
+          - label: "Fix bug"
+            description: "Context for debugging and fixing an issue"
+          - label: "Refactor"
+            description: "Context for code restructuring"
+          - label: "Security audit"
+            description: "Context for security review"
+          - label: "Understand"
+            description: "Context for learning existing code"
+    → WAIT for user response
+    → Use their response to determine the intent and query
+    → Only THEN continue with this workflow
+
+IF $ARGUMENTS contains a query:
+    → Continue reading this file
+```
+
+**CRITICAL RULES:**
+- **DO NOT** infer query from conversation context
+- **DO NOT** assume the user's intent without explicit input
+- **DO NOT** proceed past this point without explicit query from user
+- The query and intent MUST come from `$ARGUMENTS` or user's answer above
+
+---
+
+# Memory Context Command
+
+Unified entry point for context retrieval with intent awareness. Automatically detects task intent and applies task-specific weights for optimal context relevance.
+
+---
+
+```yaml
+role: Intent-Aware Context Retrieval Specialist
+purpose: Unified entry point combining search + load with intent-specific optimization
+action: Detect intent, apply task-specific weights, return optimized context
+
+operating_mode:
+  workflow: intent_aware_retrieval
+  workflow_compliance: MANDATORY
+  workflow_execution: single_unified_call
+  approvals: none_required
+  tracking: intent_classification
+```
+
+---
+
+## 1. 🎯 PURPOSE
+
+> **L1 Orchestration Layer**: This command operates at the top layer of the context retrieval architecture. It orchestrates lower-level memory operations (L2: search, load, match) and provides intent-aware optimization. L1 commands combine multiple L2 operations into unified workflows with token budget management.
+
+Provide a unified entry point for context retrieval that:
+- Automatically detects task intent from the query
+- Applies task-specific weights for search optimization
+- Combines search + load in a single operation
+- Returns context with relevance explanation
+- Enforces token budget constraints (2000-4000 tokens)
+- Handles session deduplication for cross-session queries
+
+---
+
+## 2. 📝 CONTRACT
+
+**Inputs:** `$ARGUMENTS` — Query with optional intent override
+**Outputs:** Context with relevance scores and intent explanation
+
+### Argument Patterns
+
+| Pattern                   | Mode        | Example                                           |
+| ------------------------- | ----------- | ------------------------------------------------- |
+| `<query>`                 | Auto-detect | `/memory:context "oauth implementation"`          |
+| `<query> --intent:<type>` | Explicit    | `/memory:context "auth flow" --intent:understand` |
+
+---
+
+## 3. 📊 INTENT TYPES AND WEIGHTS
+
+### Intent Classification
+
+The system detects one of five intent types:
+
+| Intent Type        | Description                    | Weight Adjustments                                       |
+| ------------------ | ------------------------------ | -------------------------------------------------------- |
+| **add_feature**    | Implementing new functionality | implementation: 1.5x, architecture: 1.3x, patterns: 1.2x |
+| **fix_bug**        | Debugging and fixing issues    | decisions: 1.4x, implementation: 1.3x, errors: 1.5x      |
+| **refactor**       | Code restructuring             | architecture: 1.5x, patterns: 1.4x, decisions: 1.2x      |
+| **security_audit** | Security review                | decisions: 1.4x, implementation: 1.3x, security: 1.5x    |
+| **understand**     | Learning existing code         | architecture: 1.4x, decisions: 1.3x, overview: 1.5x      |
+
+### Detection Logic
+
+```javascript
+// Keyword-based intent detection (phrase-based to avoid false positives)
+const INTENT_KEYWORDS = {
+  add_feature: ['implement', 'add feature', 'add new', 'add a', 'create new', 'build new', 'new feature'],
+  fix_bug: ['bug', 'error', 'fix', 'broken', 'issue', 'debug'],
+  refactor: ['refactor', 'restructure', 'improve', 'clean up', 'optimize'],
+  security_audit: ['security', 'vulnerability', 'auth', 'sanitize', 'xss', 'csrf'],
+  understand: ['how', 'why', 'what', 'explain', 'understand', 'learn']
+};
+
+function detectIntent(query) {
+  const lowerQuery = query.toLowerCase();
+
+  for (const [intent, keywords] of Object.entries(INTENT_KEYWORDS)) {
+    if (keywords.some(kw => lowerQuery.includes(kw))) {
+      return intent;
+    }
+  }
+
+  return 'understand'; // Default fallback
+}
+```
+
+---
+
+## 4. ⚡ WORKFLOW
+
+### Step 1: Parse Query and Detect Intent
+
+```
+Input: $ARGUMENTS
+    ↓
+Extract Query + Intent Override (if --intent: flag)
+    ↓
+IF intent override provided:
+    → Use explicit intent
+ELSE:
+    → Auto-detect via keyword matching
+    ↓
+Store: query, intent
+```
+
+### Step 2: Apply Intent-Specific Weights
+
+```
+Based on detected intent:
+    ↓
+Select appropriate anchors:
+    - add_feature: ['implementation', 'architecture', 'patterns']
+    - fix_bug: ['decisions', 'implementation', 'errors', 'debugging']
+    - refactor: ['architecture', 'patterns', 'decisions']
+    - security_audit: ['decisions', 'implementation', 'security']
+    - understand: ['architecture', 'decisions', 'summary', 'overview']
+    ↓
+Adjust search parameters:
+    - Weight boost for relevant context types
+    - Anchor filtering for targeted retrieval
+```
+
+### Step 3: Execute Search with Optimizations
+
+```javascript
+memory_search({
+  query: query,
+  anchors: intentAnchors[intent],
+  limit: 10,
+  includeContent: true,
+  useDecay: true,
+  // Intent-specific filters
+  contextType: intentFilters[intent], // e.g., 'implementation' for add_feature
+});
+```
+
+### Step 4: Return Context with Explanation
+
+```
+Format response:
+    ┌────────────────────────────────────────────────┐
+    │ CONTEXT RETRIEVAL                              │
+    ├────────────────────────────────────────────────┤
+    │ Query: "<query>"                               │
+    │ Intent: <detected-intent> (auto-detected)      │
+    │ Weight Adjustments: <weights-applied>          │
+    │                                                │
+    │ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   │
+    │                                                │
+    │ MEMORY #<id>: <title>                          │
+    │   Score: <score>% (boosted: +<boost>%)         │
+    │   Spec Folder: <folder>                        │
+    │   Type: <context_type>                         │
+    │                                                │
+    │   <content-preview>                            │
+    │                                                │
+    │ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   │
+    │                                                │
+    │ <additional memories...>                       │
+    │                                                │
+    ├────────────────────────────────────────────────┤
+    │ Relevance Explanation:                         │
+    │   Intent '<intent>' prioritized:               │
+    │     - <anchor1> anchors (1.5x weight)          │
+    │     - <anchor2> context (1.3x weight)          │
+    │     - <anchor3> content (1.2x weight)          │
+    │                                                │
+    │ Total Results: <N> memories                    │
+    │ Token Budget: ~<tokens> tokens                 │
+    └────────────────────────────────────────────────┘
+
+STATUS=OK INTENT=<intent> RESULTS=<count>
+```
+
+---
+
+## 5. 📌 INTENT-SPECIFIC ANCHOR SELECTION
+
+### Anchor Mapping by Intent
+
+| Intent             | Primary Anchors                        | Secondary Anchors              | Why These?                                    |
+| ------------------ | -------------------------------------- | ------------------------------ | --------------------------------------------- |
+| **add_feature**    | implementation, architecture, patterns | decisions, code-examples       | Need existing patterns + structure            |
+| **fix_bug**        | decisions, implementation, errors      | debugging, troubleshooting     | Need decision history + error context         |
+| **refactor**       | architecture, patterns, decisions      | technical-specs, code-quality  | Need structure understanding + rationale      |
+| **security_audit** | decisions, implementation, security    | validation, auth, sanitization | Need security decisions + validation patterns |
+| **understand**     | architecture, decisions, summary       | overview, context, background  | Need high-level understanding first           |
+
+### Example: add_feature Intent
+
+```
+Query: "implement oauth token refresh"
+Intent: add_feature (detected)
+
+Anchors Selected:
+  1. implementation (1.5x weight)
+  2. architecture (1.3x weight)
+  3. patterns (1.2x weight)
+
+Reasoning:
+  - Need existing OAuth implementation patterns
+  - Need architecture understanding for integration points
+  - Need code examples for token handling
+```
+
+---
+
+## 6. 🔍 INTENT DETECTION EXAMPLES
+
+### Example 1: Auto-Detect add_feature
+
+```
+/memory:context "implement JWT token validation"
+
+Detection:
+  Keyword: "implement" → add_feature intent
+
+Weights Applied:
+  - implementation: 1.5x
+  - architecture: 1.3x
+  - patterns: 1.2x
+
+Anchors:
+  ['implementation', 'architecture', 'patterns']
+```
+
+### Example 2: Auto-Detect fix_bug
+
+```
+/memory:context "auth redirect broken after login"
+
+Detection:
+  Keywords: "broken", "after" → fix_bug intent
+
+Weights Applied:
+  - decisions: 1.4x
+  - implementation: 1.3x
+  - errors: 1.5x
+
+Anchors:
+  ['decisions', 'implementation', 'errors', 'debugging']
+```
+
+### Example 3: Explicit Intent Override
+
+```
+/memory:context "auth system" --intent:security_audit
+
+Detection:
+  Explicit override: security_audit
+
+Weights Applied:
+  - decisions: 1.4x
+  - implementation: 1.3x
+  - security: 1.5x
+
+Anchors:
+  ['decisions', 'implementation', 'security']
+```
+
+### Example 4: Auto-Detect understand
+
+```
+/memory:context "how does the session management work?"
+
+Detection:
+  Keywords: "how", "does", "work" → understand intent
+
+Weights Applied:
+  - architecture: 1.4x
+  - decisions: 1.3x
+  - overview: 1.5x
+
+Anchors:
+  ['architecture', 'decisions', 'summary', 'overview']
+```
+
+### Example 5: Auto-Detect refactor
+
+```
+/memory:context "clean up auth module structure"
+
+Detection:
+  Keywords: "clean up", "structure" → refactor intent
+
+Weights Applied:
+  - architecture: 1.5x
+  - patterns: 1.4x
+  - decisions: 1.2x
+
+Anchors:
+  ['architecture', 'patterns', 'decisions']
+```
+
+---
+
+## 7. 📌 TOKEN BUDGET ENFORCEMENT
+
+**Token Budget Range:** 2000-4000 tokens (configurable per intent)
+
+### Budget Allocation by Intent
+
+| Intent             | Target Budget | Prioritization Strategy                      |
+| ------------------ | ------------- | -------------------------------------------- |
+| **add_feature**    | 3500 tokens   | Favor implementation examples, code patterns |
+| **fix_bug**        | 3000 tokens   | Favor error context, decision history        |
+| **refactor**       | 3000 tokens   | Favor architecture docs, pattern guides      |
+| **security_audit** | 4000 tokens   | Include all security-relevant context        |
+| **understand**     | 2500 tokens   | Favor summaries, high-level overviews        |
+
+### Truncation Logic
+
+When results exceed token budget:
+
+```javascript
+function enforceTokenBudget(results, budget, intent) {
+  let tokenCount = 0;
+  const prioritized = [];
+
+  // Sort by intent-specific relevance score
+  const sorted = results.sort((a, b) =>
+    getIntentScore(b, intent) - getIntentScore(a, intent)
+  );
+
+  for (const result of sorted) {
+    const resultTokens = estimateTokens(result);
+    if (tokenCount + resultTokens <= budget) {
+      prioritized.push(result);
+      tokenCount += resultTokens;
+    } else if (tokenCount < budget * 0.9) {
+      // Truncate last result to fit remaining budget
+      const remaining = budget - tokenCount;
+      prioritized.push(truncateToTokens(result, remaining));
+      break;
+    }
+  }
+
+  return { results: prioritized, tokensUsed: tokenCount };
+}
+```
+
+### Budget Indicators in Output
+
+```
+Token Budget: ~<tokens> / <budget> tokens (<percentage>% used)
+Truncation: <none|partial|significant>
+```
+
+---
+
+## 8. 📌 SESSION DEDUPLICATION
+
+### Purpose
+
+Prevent duplicate context when the same query spans multiple sessions or when memories from overlapping sessions contain redundant information.
+
+### Deduplication Strategy
+
+```javascript
+function deduplicateContext(results) {
+  const seen = new Map();  // content_hash -> result
+  const deduplicated = [];
+
+  for (const result of results) {
+    const hash = generateContentHash(result.content);
+
+    if (!seen.has(hash)) {
+      seen.set(hash, result);
+      deduplicated.push(result);
+    } else {
+      // Keep the more recent version
+      const existing = seen.get(hash);
+      if (result.updated_at > existing.updated_at) {
+        const idx = deduplicated.indexOf(existing);
+        deduplicated[idx] = result;
+        seen.set(hash, result);
+      }
+      // Mark as deduplicated in metadata
+      result._deduped = true;
+      result._replaced_by = seen.get(hash).id;
+    }
+  }
+
+  return deduplicated;
+}
+```
+
+### Deduplication Metadata
+
+When deduplication occurs, the response includes:
+
+```yaml
+deduplication:
+  enabled: true
+  original_count: <N>
+  deduplicated_count: <M>
+  duplicates_removed: <N - M>
+  session_dedup_applied: true  # Cross-session duplicates handled
+```
+
+### Cross-Session Detection
+
+The system detects cross-session duplicates via:
+- `session_id` metadata on memory files
+- Content hash comparison across session boundaries
+- Timestamp-based recency preference
+
+---
+
+## 9. 🔧 MCP ENFORCEMENT MATRIX
+
+**CRITICAL:** Use the correct MCP tools for each step.
+
+```
+┌─────────────────┬─────────────────────────────────────────────────────────┬──────────┬─────────────────┐
+│ STEP            │ REQUIRED CALLS                                          │ PATTERN  │ ON FAILURE      │
+├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ INTENT DETECT   │ Parse query, match keywords                             │ LOCAL    │ Default to      │
+│                 │                                                         │          │ 'understand'    │
+├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ TRIGGER CHECK   │ spec_kit_memory_memory_match_triggers({ prompt: query })│ SINGLE   │ Continue        │
+│                 │                                                         │          │ without         │
+├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ SEARCH          │ spec_kit_memory_memory_search({ query, anchors,         │ SINGLE   │ Show error msg  │
+│                 │   includeContent: true })                               │          │                 │
+├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ CONTEXT         │ (context retrieval handled by search with anchors)      │ OPTIONAL │ Skip drift      │
+│                 │                                                         │          │ detection       │
+└─────────────────┴─────────────────────────────────────────────────────────┴──────────┴─────────────────┘
+```
+
+### MCP Tool Signature
+
+```javascript
+spec_kit_memory_memory_search({
+  query: "<query>",
+  anchors: ["<anchor1>", "<anchor2>", ...],  // Intent-specific
+  limit: 10,
+  includeContent: true,  // Single call, no separate load
+  useDecay: true,
+  // Optional filters based on intent
+  contextType: "<type>",  // e.g., "implementation", "decision"
+})
+```
+
+---
+
+## 10. 📌 BENEFITS
+
+### Unified Entry Point
+
+- **Before**: `/memory:search "query"` → results → `/memory:search <id>` → load content
+- **After**: `/memory:context "query"` → optimized results with content in one call
+
+### Intent Awareness
+
+- **Before**: Generic search, same weights for all queries
+- **After**: Task-specific weights automatically applied
+
+### Token Efficiency
+
+- **Before**: ~2 MCP calls (search + load)
+- **After**: 1 MCP call with `includeContent: true`
+
+### Better Relevance
+
+- **Before**: Manual anchor selection or none
+- **After**: Automatic anchor selection based on intent
+
+---
+
+## 11. ⚠️ ERROR HANDLING
+
+| Condition      | Response                                  |
+| -------------- | ----------------------------------------- |
+| Query empty    | Ask user for query (see top of file)      |
+| Intent invalid | Default to 'understand' with warning      |
+| No results     | Suggest broader query or different intent |
+| Search fails   | Fall back to unweighted search            |
+
+---
+
+## 12. 📌 QUICK REFERENCE
+
+| Command                                       | Result                                 |
+| --------------------------------------------- | -------------------------------------- |
+| `/memory:context "implement auth"`            | Auto-detect add_feature, apply weights |
+| `/memory:context "auth bug" --intent:fix_bug` | Explicit fix_bug intent                |
+| `/memory:context "how does auth work?"`       | Auto-detect understand intent          |
+| `/memory:context "optimize auth code"`        | Auto-detect refactor intent            |
+| `/memory:context "auth security review"`      | Auto-detect security_audit intent      |
+
+---
+
+## 13. 🔗 RELATED COMMANDS
+
+- `/memory:save` - Save current conversation context
+- `/memory:manage` - Database management operations
+- `/memory:continue` - Resume interrupted session
+- `/memory:learn` - Save explicit correction or preference
+
+---
+
+## 14. 📌 IMPLEMENTATION NOTES
+
+### Weight Application
+
+Weights are applied during search scoring:
+
+```javascript
+// Base score from vector similarity
+let score = vectorSimilarity;
+
+// Apply intent-specific boost
+if (memory.hasAnchor(intentAnchors[intent])) {
+  const boost = INTENT_WEIGHTS[intent][memory.anchorType];
+  score *= boost;
+}
+
+// Normalize to 0-100 range
+score = Math.min(100, score * 100);
+```
+
+### Anchor Priority
+
+When multiple anchors match, use highest weight:
+
+```
+Memory has anchors: ['architecture', 'decisions', 'implementation']
+Intent: add_feature
+Weights: {architecture: 1.3x, implementation: 1.5x}
+
+Applied boost: 1.5x (implementation is highest)
+```
+
+### Fallback Behavior
+
+```
+IF intent detection fails:
+  → Log warning: "Could not detect intent, defaulting to 'understand'"
+  → Use 'understand' weights
+  → Continue execution
+
+IF no results found:
+  → Suggest: "Try broader query or different intent"
+  → Offer: Show available intents and their use cases
+```
+
+---
+
+## 15. 📌 IMPLEMENTATION STATUS
+
+**Task ID**: T119 (from SpecKit Reimagined Phase 5)
+**Priority**: P0 (MUST complete)
+**Dependencies**: None (uses existing memory_search MCP tool)
+**Checklist Items**: CHK-219, CHK-220
+
+---
+
+## 16. 📌 FUTURE ENHANCEMENTS
+
+**P1 (Next Phase)**:
+- Multi-intent detection (e.g., "fix bug in new feature")
+- Learning from user corrections to improve detection
+- Configurable weight profiles per user
+- Intent history tracking for pattern analysis
+
+**P2 (Later)**:
+- Natural language intent specification
+- Intent confidence scoring
+- User feedback loop for weight tuning

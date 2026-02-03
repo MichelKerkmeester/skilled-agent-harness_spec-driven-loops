@@ -4,6 +4,20 @@
 
 ---
 
+## TABLE OF CONTENTS
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
+- [7. 🎯 WORKFLOWS-CODE COMPLIANCE](#7--workflows-code-compliance)
+- [8. 🔍 RUNNING VERIFICATION](#8--running-verification)
+- [9. 🔗 RELATED RESOURCES](#9--related-resources)
+
+---
+
 ## 1. 📖 OVERVIEW
 
 ### What are the MCP Server Tests?
@@ -14,10 +28,11 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Test Files | 17 | Covering cognitive, handlers, memory, and integration |
-| Test Categories | 20+ | Per file, organized by feature domain |
-| Total Tests | 634+ | Across all test files |
+| Test Files | 35+ | Covering cognitive, handlers, memory, causal, and integration |
+| Test Categories | 9 | A-I (Search, Decay, Session, Graph, Performance, UX, Arch, Tools, Resilience) |
+| Total Tests | 1,500+ | Across all test files |
 | Test Modes | 2 | Normal and Quick mode (skips embedding tests) |
+| Coverage Target | 80/70/50 | Unit 80%, Integration 70%, E2E 50% |
 
 ### Key Features
 
@@ -87,27 +102,79 @@ node working-memory.test.js
 
 ```
 tests/
-├── attention-decay.test.js         # Time-based attention decay tests
-├── co-activation.test.js           # Related memory activation tests
-├── composite-scoring.test.js       # Composite scoring with retrievability (NEW)
-├── fsrs-scheduler.test.js          # FSRS algorithm unit tests (NEW)
-├── memory-save-integration.test.js # PE gate + save handler integration (NEW)
-├── memory-search-integration.test.js # Testing effect integration (NEW)
-├── modularization.test.js          # Module structure and exports tests
-├── prediction-error-gate.test.js   # PE thresholds and contradiction (NEW)
-├── schema-migration.test.js        # Schema v4 migration tests (NEW)
-├── summary-generator.test.js       # Auto-summary generation tests
-├── test-cognitive-integration.js   # Cognitive system integration tests (NEW)
+├── # Core Cognitive Tests
+├── attention-decay.test.js         # Multi-factor attention decay (137 tests)
+├── co-activation.test.js           # Related memory activation (38 tests)
+├── tier-classifier.test.js         # 5-state classification (91 tests)
+├── working-memory.test.js          # Session working memory (51 tests)
+├── summary-generator.test.js       # Auto-summary generation (52 tests)
+├── fsrs-scheduler.test.js          # FSRS algorithm unit tests (52 tests)
+├── prediction-error-gate.test.js   # PE thresholds and contradiction (65 tests)
+├── consolidation.test.js           # Memory consolidation pipeline (30 tests) (NEW)
+│
+├── # Search & Scoring Tests
+├── composite-scoring.test.js       # 5-factor scoring with retrievability (101 tests)
+├── five-factor-scoring.test.js     # Five-factor scoring validation (109 tests)
+├── rrf-fusion.test.js              # RRF fusion with k=60 (22 tests) (NEW)
+├── bm25-index.test.js              # BM25 lexical indexing (73 tests) (NEW)
+├── intent-classifier.test.js       # 5 intent types (46 tests) (NEW)
+├── fuzzy-match.test.js             # Query expansion (61 tests) (NEW)
+├── cross-encoder.test.js           # Cross-encoder reranking (50 tests) (NEW)
+├── hybrid-search.test.js           # Hybrid search (66 tests) (NEW)
+│
+├── # Session & Recovery Tests
+├── session-manager.test.js         # Session deduplication (NEW)
+├── continue-session.test.js        # Session continuation (35 tests)
+├── crash-recovery.test.js          # Crash recovery (17 tests)
+├── recovery-hints.test.js          # 49 error codes (NEW)
+│
+├── # Graph & Relations Tests
+├── causal-edges.test.js            # Causal graph edges (89 tests)
+├── corrections.test.js             # Learning from corrections
+│
+├── # Infrastructure Tests
+├── schema-migration.test.js        # Schema v4-v9 migrations (58 tests)
+├── modularization.test.js          # Module structure (78 tests)
+├── provider-chain.test.js          # Embedding fallback chain (77 tests)
+├── preflight.test.js               # Preflight validation (34 tests)
+├── retry.test.js                   # Retry logic (82 tests)
+├── incremental-index.test.js       # Incremental indexing
+├── interfaces.test.js              # Protocol interfaces
+├── layer-definitions.test.js       # 7-layer architecture (105 tests) (NEW)
+├── memory-types.test.js            # 9 memory types (15 tests) (NEW)
+├── tool-cache.test.js              # Tool caching
+├── transaction-manager.test.js     # Transaction management (18 tests)
+│
+├── # Integration Tests
+├── memory-save-integration.test.js # PE gate + save handler
+├── memory-search-integration.test.js # Testing effect integration
+├── memory-context.test.js          # Unified context entry (NEW)
+├── test-cognitive-integration.js   # Cognitive system integration
 ├── test-mcp-tools.js               # Comprehensive MCP handler tests
-├── test-memory-handlers.js         # Memory handler tests (NEW)
-├── test-session-learning.js        # Session learning handler tests (NEW)
-├── tier-classifier.test.js         # Importance tier classification tests
-├── verify-cognitive-upgrade.js     # Comprehensive upgrade verification (NEW)
-├── working-memory.test.js          # Session working memory tests
+├── test-memory-handlers.js         # Memory handler tests
+├── test-session-learning.js        # Session learning handler tests
+├── verify-cognitive-upgrade.js     # Comprehensive upgrade verification
+├── archival-manager.test.js        # Archival system (41 tests) (NEW)
+│
+├── # Documentation
 ├── README.md                       # This file
-├── VERIFICATION_REPORT.md          # Phase 3 verification report (NEW)
+├── VERIFICATION_REPORT.md          # Phase 3 verification report
 └── [scratch/]                      # Temporary test artifacts (gitignored)
 ```
+
+### Test Categories (A-I)
+
+| Category | Description | Test Count |
+|----------|-------------|------------|
+| **A: Search & Retrieval** | Vector, hybrid, BM25, RRF, cross-encoder | ~300 |
+| **B: Memory Decay & Lifecycle** | FSRS, attention, tier classification | ~250 |
+| **C: Session Management** | Deduplication, continuation, crash recovery | ~100 |
+| **D: Graph & Relationships** | Causal edges, corrections | ~100 |
+| **E: Performance & Efficiency** | Caching, incremental indexing | ~80 |
+| **F: User Experience & Recovery** | Error hints, preflight validation | ~80 |
+| **G: Architecture & Organization** | Layer definitions, interfaces, modules | ~200 |
+| **H: Specialized Tools** | Drift tools, context tools | ~100 |
+| **I: Embedding Resilience** | Provider chain, fallback, retry | ~200 |
 
 ### Key Files
 
@@ -537,7 +604,7 @@ See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 
 
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 9. 🔗 RELATED RESOURCES
 
 ### Internal Documentation
 

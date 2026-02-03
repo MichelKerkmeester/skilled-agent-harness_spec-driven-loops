@@ -64,9 +64,6 @@ DO NOT use Level 2 Summary if:
 
 ---
 
-
----
-
 ## L2: CHECKLIST COMPLETION SUMMARY
 
 ### P0 Items (Hard Blockers)

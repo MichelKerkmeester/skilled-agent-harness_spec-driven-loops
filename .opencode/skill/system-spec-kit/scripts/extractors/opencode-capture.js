@@ -11,7 +11,7 @@ const readline = require('readline');
 
 /* ─────────────────────────────────────────────────────────────
    1. STORAGE PATHS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const OPENCODE_STORAGE = path.join(
   process.env.HOME || process.env.USERPROFILE || '',
@@ -25,7 +25,7 @@ const PROMPT_HISTORY = path.join(
 
 /* ─────────────────────────────────────────────────────────────
    2. UTILITY FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function path_exists(file_path) {
   try {
@@ -88,7 +88,7 @@ async function read_jsonl_tail(file_path, limit) {
 
 /* ─────────────────────────────────────────────────────────────
    3. PROMPT HISTORY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function get_recent_prompts(limit = 20) {
   const entries = await read_jsonl_tail(PROMPT_HISTORY, limit);
@@ -103,7 +103,7 @@ async function get_recent_prompts(limit = 20) {
 
 /* ─────────────────────────────────────────────────────────────
    4. SESSION DISCOVERY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // OpenCode uses directory path hash as project ID
 function get_project_id(directory) {
@@ -181,7 +181,7 @@ async function get_current_session(project_id) {
 
 /* ─────────────────────────────────────────────────────────────
    5. MESSAGE RETRIEVAL
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function get_session_messages(session_id) {
   const message_dir = path.join(OPENCODE_STORAGE, 'message', session_id);
@@ -223,7 +223,7 @@ async function get_session_messages(session_id) {
 
 /* ─────────────────────────────────────────────────────────────
    6. PART RETRIEVAL (RESPONSES & TOOL CALLS)
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Parts include: text responses, tool calls, reasoning, step markers
 async function get_message_parts(message_id) {
@@ -322,7 +322,7 @@ function calculate_duration(time) {
 
 /* ─────────────────────────────────────────────────────────────
    7. FULL CONVERSATION CAPTURE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Correlates prompts with responses and tool calls
 async function capture_conversation(max_messages = 10, directory = process.cwd()) {
@@ -409,7 +409,7 @@ function build_exchanges(prompts, messages, responses, limit) {
 
 /* ─────────────────────────────────────────────────────────────
    8. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Snake_case exports (original)

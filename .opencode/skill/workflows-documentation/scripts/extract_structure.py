@@ -27,7 +27,7 @@ from typing import Dict, List, Any, Optional, Tuple
 
 
 # ───────────────────────────────────────────────────────────────
-# FRONTMATTER PARSER
+# 1. FRONTMATTER PARSER
 # ───────────────────────────────────────────────────────────────
 
 def parse_frontmatter(content: str) -> Tuple[Dict[str, Any], List[str], str]:
@@ -114,48 +114,38 @@ def parse_frontmatter(content: str) -> Tuple[Dict[str, Any], List[str], str]:
 
 
 # ───────────────────────────────────────────────────────────────
-# MARKDOWN PARSER
+# 2. MARKDOWN PARSER
 # ───────────────────────────────────────────────────────────────
 
 def extract_headings(content: str) -> List[Dict[str, Any]]:
     """Extract all headings with metadata, skipping headings inside code blocks."""
     headings = []
     lines = content.split('\n')
-    code_block_depth = 0  # Track nested code blocks
-    
+    code_block_depth = 0
+
     for i, line in enumerate(lines, start=1):
         stripped = line.strip()
-        
-        # Track code block state using depth counter
-        # Opening: any ``` when not in a block, or ```language when in a block (nested)
-        # Closing: bare ``` when in a block
+
+        # Depth counter handles nested code blocks in documentation examples
         if stripped.startswith('```'):
             if code_block_depth == 0:
-                # Not in a code block - this opens one
                 code_block_depth = 1
             elif stripped == '```':
-                # In a code block and bare ``` - this closes the top level
                 code_block_depth = max(0, code_block_depth - 1)
             else:
-                # In a code block with language tag - nested example, increase depth
                 code_block_depth += 1
             continue
-        
-        # Skip headings inside code blocks
+
         if code_block_depth > 0:
             continue
-            
+
         match = re.match(r'^(#{1,6})\s+(.+)$', line)
         if match:
             level = len(match.group(1))
             text = match.group(2).strip()
-            
-            # Detect emoji (common emoji ranges)
             has_emoji = bool(re.search(r'[\U0001F300-\U0001F9FF\u2600-\u26FF\u2700-\u27BF]', text))
-            
-            # Detect number prefix (e.g., "1.", "2.")
             has_number = bool(re.match(r'^\d+\.', text))
-            
+
             headings.append({
                 'level': level,
                 'text': text,
@@ -163,7 +153,7 @@ def extract_headings(content: str) -> List[Dict[str, Any]]:
                 'has_emoji': has_emoji,
                 'has_number': has_number
             })
-    
+
     return headings
 
 
@@ -171,31 +161,19 @@ def extract_sections(content: str, headings: List[Dict[str, Any]]) -> List[Dict[
     """Extract sections (content between headings)."""
     sections = []
     lines = content.split('\n')
-    
+
     for i, heading in enumerate(headings):
         start_line = heading['line']
-        
-        # Find end of section (next heading of same or higher level, or EOF)
-        if i + 1 < len(headings):
-            end_line = headings[i + 1]['line'] - 1
-        else:
-            end_line = len(lines)
-        
-        # Extract section content
-        section_lines = lines[start_line:end_line]  # Skip heading line itself
+        end_line = headings[i + 1]['line'] - 1 if i + 1 < len(headings) else len(lines)
+
+        section_lines = lines[start_line:end_line]
         section_content = '\n'.join(section_lines)
-        
-        # Count words
         words = len(re.findall(r'\b\w+\b', section_content))
-        
-        # Check for code blocks
         has_code = '```' in section_content
-        
-        # Create preview (first 500 chars)
         preview = section_content[:500].strip()
         if len(section_content) > 500:
             preview += '...'
-        
+
         sections.append({
             'heading': heading['text'],
             'level': heading['level'],
@@ -205,7 +183,7 @@ def extract_sections(content: str, headings: List[Dict[str, Any]]) -> List[Dict[
             'has_code_blocks': has_code,
             'content_preview': preview
         })
-    
+
     return sections
 
 
@@ -213,71 +191,63 @@ def extract_code_blocks(content: str) -> List[Dict[str, Any]]:
     """Extract all code blocks with metadata, handling nested examples."""
     code_blocks = []
     lines = content.split('\n')
-    
+
     i = 0
-    block_depth = 0  # Track nesting depth
+    block_depth = 0
     current_block = None
-    
+
     while i < len(lines):
         line = lines[i]
         stripped = line.strip()
-        
+
         if stripped.startswith('```'):
             if stripped == '```':
-                # Closing fence
                 if block_depth > 0:
                     block_depth -= 1
                     if block_depth == 0 and current_block is not None:
-                        # Finished collecting top-level block
                         code_blocks.append(current_block)
                         current_block = None
             else:
-                # Opening fence with language
                 language = stripped[3:].strip()
-                
-                # Skip placeholder languages like [language] (nested examples)
+
+                # Placeholder languages like [language] are nested examples, not real blocks
                 if language.startswith('[') and language.endswith(']'):
-                    # This is a placeholder, treat as content not a real block
                     if current_block is not None:
                         current_block['code_lines'].append(line)
                     i += 1
                     continue
-                
+
                 block_depth += 1
-                
                 if block_depth == 1:
-                    # New top-level block
                     current_block = {
                         'language': language or 'unknown',
-                        'line_start': i + 1,  # 1-indexed
+                        'line_start': i + 1,
                         'code_lines': []
                     }
         elif current_block is not None and block_depth == 1:
-            # Collecting content for current top-level block
             current_block['code_lines'].append(line)
-        
+
         i += 1
-    
-    # Finalize blocks
+
     result = []
     for block in code_blocks:
         code_content = '\n'.join(block.get('code_lines', []))
         preview = code_content[:100].strip()
         if len(code_content) > 100:
             preview += '...'
-        
+
         result.append({
             'language': block['language'],
             'line_start': block['line_start'],
             'line_count': len(block.get('code_lines', [])),
             'preview': preview
         })
-    
+
     return result
 
 
 # ───────────────────────────────────────────────────────────────
-# CONTENT QUALITY VALIDATORS
+# 3. CONTENT QUALITY VALIDATORS
 # ───────────────────────────────────────────────────────────────
 
 # Placeholder patterns to detect
@@ -319,11 +289,10 @@ def detect_placeholders(content: str) -> List[Dict[str, Any]]:
     issues = []
     lines = content.split('\n')
     code_block_depth = 0
-    
+
     for i, line in enumerate(lines, start=1):
         stripped = line.strip()
-        
-        # Track code block state (same logic as extract_headings)
+
         if stripped.startswith('```'):
             if code_block_depth == 0:
                 code_block_depth = 1
@@ -332,11 +301,10 @@ def detect_placeholders(content: str) -> List[Dict[str, Any]]:
             else:
                 code_block_depth += 1
             continue
-        
-        # Skip placeholder detection inside code blocks
+
         if code_block_depth > 0:
             continue
-        
+
         for pattern in PLACEHOLDER_PATTERNS:
             matches = re.finditer(pattern, line, re.IGNORECASE)
             for match in matches:
@@ -346,7 +314,7 @@ def detect_placeholders(content: str) -> List[Dict[str, Any]]:
                     'text': match.group(0),
                     'severity': 'error'
                 })
-    
+
     return issues
 
 
@@ -354,19 +322,13 @@ def check_section_dividers(content: str, headings: List[Dict]) -> List[Dict[str,
     """Check for --- dividers between H2 sections."""
     issues = []
     lines = content.split('\n')
-    
-    # Get H2 headings
     h2_headings = [h for h in headings if h['level'] == 2]
-    
-    for i, h2 in enumerate(h2_headings[:-1]):  # Skip last H2
+
+    for i, h2 in enumerate(h2_headings[:-1]):
         next_h2 = h2_headings[i + 1]
-        
-        # Check if there's a --- between this H2 and next H2
         section_content = '\n'.join(lines[h2['line']:next_h2['line']-1])
-        
-        # Look for --- on its own line near the end of the section
         has_divider = bool(re.search(r'\n---\s*\n', section_content)) or section_content.strip().endswith('---')
-        
+
         if not has_divider:
             issues.append({
                 'type': 'missing_divider',
@@ -374,7 +336,7 @@ def check_section_dividers(content: str, headings: List[Dict]) -> List[Dict[str,
                 'text': f"Missing --- divider before '{next_h2['text']}'",
                 'severity': 'warning'
             })
-    
+
     return issues
 
 
@@ -396,28 +358,24 @@ def check_code_block_languages(code_blocks: List[Dict]) -> List[Dict[str, Any]]:
 
 def check_h2_formatting(headings: List[Dict], doc_type: str) -> List[Dict[str, Any]]:
     """Check H2 formatting: number + emoji + ALL CAPS for template-based types.
-    
+
     For EMOJI_REQUIRED_TYPES (skill, readme, asset, reference):
     - Missing emoji returns 'error' severity (BLOCKING)
     - Missing number returns 'warning' severity
     - Wrong case returns 'warning' severity
     """
     issues = []
-    
-    # Determine if this doc type requires emoji enforcement
     requires_emoji = doc_type in EMOJI_REQUIRED_TYPES
-    
-    # Only run strict checks for template-based types
+
     if doc_type not in ['skill', 'asset', 'readme', 'reference']:
         return issues
-    
+
     for h in headings:
         if h['level'] != 2:
             continue
-        
+
         text = h['text']
-        
-        # Check for number prefix
+
         if not h['has_number']:
             issues.append({
                 'type': 'h2_missing_number',
@@ -425,29 +383,23 @@ def check_h2_formatting(headings: List[Dict], doc_type: str) -> List[Dict[str, A
                 'text': f"H2 '{text}' missing number prefix (e.g., '1. ')",
                 'severity': 'warning'
             })
-        
-        # Check for emoji - BLOCKING for required types
+
         if not h['has_emoji']:
-            # Determine severity based on document type
             severity = 'error' if requires_emoji else 'warning'
-            
-            # Extract what character is at the emoji position for better error message
-            # Pattern expected: "N. [emoji] TITLE"
             after_number = re.sub(r'^\d+\.\s*', '', text)
             found_char = after_number[0] if after_number else 'nothing'
-            
+
             issues.append({
                 'type': 'h2_missing_emoji',
                 'line': h['line'],
                 'text': f"H2 '{text}' missing emoji (found: '{found_char}' where emoji expected)",
                 'severity': severity
             })
-        
-        # Check for ALL CAPS (extract text after number and emoji)
-        # Pattern: "1. 🎯 SECTION NAME" -> check "SECTION NAME" is caps
-        section_text = re.sub(r'^\d+\.\s*', '', text)  # Remove number
-        section_text = re.sub(r'^[\U0001F300-\U0001F9FF\u2600-\u26FF\u2700-\u27BF]\s*', '', section_text)  # Remove emoji
-        
+
+        # ALL CAPS check: extract text after number and emoji
+        section_text = re.sub(r'^\d+\.\s*', '', text)
+        section_text = re.sub(r'^[\U0001F300-\U0001F9FF\u2600-\u26FF\u2700-\u27BF]\s*', '', section_text)
+
         if section_text and not section_text.isupper():
             issues.append({
                 'type': 'h2_not_caps',
@@ -455,22 +407,19 @@ def check_h2_formatting(headings: List[Dict], doc_type: str) -> List[Dict[str, A
                 'text': f"H2 section name '{section_text}' should be ALL CAPS",
                 'severity': 'warning'
             })
-    
+
     return issues
 
 
 def check_h3_emoji_usage(headings: List[Dict], content: str) -> List[Dict[str, Any]]:
     """Check H3 emoji usage: only semantic emojis (✅❌⚠️) allowed, and only in RULES sections."""
     issues = []
-    
-    # Find RULES section boundaries
     rules_start = None
     rules_end = None
-    
+
     for i, h in enumerate(headings):
         if h['level'] == 2 and 'RULES' in h['text'].upper():
             rules_start = h['line']
-            # Find next H2 to mark end of RULES section
             for j in range(i + 1, len(headings)):
                 if headings[j]['level'] == 2:
                     rules_end = headings[j]['line']
@@ -478,20 +427,18 @@ def check_h3_emoji_usage(headings: List[Dict], content: str) -> List[Dict[str, A
             if rules_end is None:
                 rules_end = float('inf')
             break
-    
+
     for h in headings:
         if h['level'] != 3 or not h['has_emoji']:
             continue
-        
-        # Check if H3 is in RULES section
+
         in_rules = rules_start is not None and rules_start < h['line'] < rules_end
-        
-        # Extract emoji from heading
         emoji_match = re.search(r'[\U0001F300-\U0001F9FF\u2600-\u26FF\u2700-\u27BF✅❌⚠️✔✗⚡]', h['text'])
+
         if emoji_match:
             emoji = emoji_match.group(0)
             is_semantic = emoji in SEMANTIC_EMOJIS
-            
+
             if in_rules and not is_semantic:
                 issues.append({
                     'type': 'h3_non_semantic_emoji_in_rules',
@@ -506,7 +453,7 @@ def check_h3_emoji_usage(headings: List[Dict], content: str) -> List[Dict[str, A
                     'text': f"H3 '{h['text']}' has emoji outside RULES section (decorative emoji on H3 not allowed)",
                     'severity': 'warning'
                 })
-    
+
     return issues
 
 
@@ -514,33 +461,28 @@ def check_intro_paragraph(content: str, headings: List[Dict], min_words: int = 1
     """Check if there's an introduction paragraph after H1 and before first H2."""
     if not headings:
         return False
-    
+
     h1_headings = [h for h in headings if h['level'] == 1]
     h2_headings = [h for h in headings if h['level'] == 2]
-    
+
     if not h1_headings:
         return False
-    
+
     h1_line = h1_headings[0]['line']
-    
-    # Find first H2 after H1
     first_h2_line = None
     for h in h2_headings:
         if h['line'] > h1_line:
             first_h2_line = h['line']
             break
-    
+
     if first_h2_line is None:
         first_h2_line = len(content.split('\n'))
-    
-    # Get content between H1 and first H2
+
     lines = content.split('\n')
     intro_content = '\n'.join(lines[h1_line:first_h2_line-1])
-    
-    # Check if there's meaningful content (more than just whitespace and dividers)
     intro_text = re.sub(r'---', '', intro_content)
     intro_words = len(re.findall(r'\b\w+\b', intro_text))
-    
+
     return intro_words >= min_words
 
 
@@ -550,17 +492,15 @@ def check_intro_brief(content: str, headings: List[Dict]) -> bool:
 
 
 # ───────────────────────────────────────────────────────────────
-# METRICS CALCULATOR
+# 4. METRICS CALCULATOR
 # ───────────────────────────────────────────────────────────────
 
 def calculate_metrics(content: str, headings: List[Dict], code_blocks: List[Dict]) -> Dict[str, Any]:
     """Calculate document metrics."""
     lines = content.split('\n')
     words = len(re.findall(r'\b\w+\b', content))
-    
     max_depth = max((h['level'] for h in headings), default=0)
-    
-    # Count sections with code
+
     sections_with_code = 0
     for i, heading in enumerate(headings):
         start = heading['line']
@@ -568,7 +508,7 @@ def calculate_metrics(content: str, headings: List[Dict], code_blocks: List[Dict
         section_content = '\n'.join(lines[start:end])
         if '```' in section_content:
             sections_with_code += 1
-    
+
     return {
         'total_words': words,
         'total_lines': len(lines),
@@ -580,28 +520,23 @@ def calculate_metrics(content: str, headings: List[Dict], code_blocks: List[Dict
 
 
 # ───────────────────────────────────────────────────────────────
-# DOCUMENT TYPE DETECTOR
+# 5. DOCUMENT TYPE DETECTOR
 # ───────────────────────────────────────────────────────────────
 
 def detect_document_type(filepath: str) -> Tuple[str, str]:
-    """
-    Detect document type from filepath.
-    
-    Returns:
-        Tuple of (type, detection_method)
-    """
+    """Detect document type from filepath. Returns (type, detection_method)."""
     path = Path(filepath)
     filename = path.name.lower()
     filepath_str = str(path)
-    
-    # Check for template files first (templates are allowed to have placeholders)
+
+    # Templates have different validation rules (placeholders allowed)
     if 'template' in filename:
         return 'template', 'filename'
-    
-    # Check for flowchart files (ASCII diagrams have different structure)
+
+    # Flowcharts use ASCII diagrams with flexible structure
     if '/flowcharts/' in filepath_str or '\\flowcharts\\' in filepath_str:
         return 'flowchart', 'path'
-    
+
     if path.name == 'SKILL.md':
         return 'skill', 'filename'
     elif path.name == 'README.md':
@@ -621,7 +556,7 @@ def detect_document_type(filepath: str) -> Tuple[str, str]:
 
 
 # ───────────────────────────────────────────────────────────────
-# CHECKLIST RUNNER
+# 6. CHECKLIST RUNNER
 # ───────────────────────────────────────────────────────────────
 
 # Type-specific checklists
@@ -768,7 +703,7 @@ def run_checklist(doc_type: str, frontmatter_data: Dict, headings: List[Dict], c
 
 
 # ───────────────────────────────────────────────────────────────
-# QUESTION GENERATOR
+# 7. QUESTION GENERATOR
 # ───────────────────────────────────────────────────────────────
 
 SKILL_QUESTIONS = [
@@ -1090,66 +1025,50 @@ def calculate_dqi(
 
 
 # ───────────────────────────────────────────────────────────────
-# MAIN EXTRACTION FUNCTION
+# 8. MAIN EXTRACTION FUNCTION
 # ───────────────────────────────────────────────────────────────
 
 def extract_structure(filepath: str) -> Dict[str, Any]:
-    """
-    Main extraction function - parses document and returns structured JSON.
-    """
+    """Main extraction function - parses document and returns structured JSON."""
     path = Path(filepath)
-    
+
     if not path.exists():
         return {'error': f"File not found: {filepath}"}
-    
+
     if not path.is_file():
         return {'error': f"Path is not a file: {filepath}"}
-    
+
     try:
         content = path.read_text(encoding='utf-8')
     except Exception as e:
         return {'error': f"Failed to read file: {str(e)}"}
-    
-    # Detect document type
+
     doc_type, detected_from = detect_document_type(filepath)
-    
-    # Parse frontmatter
     parsed_fm, fm_issues, raw_fm = parse_frontmatter(content)
     frontmatter_data = {
         'raw': raw_fm,
         'parsed': parsed_fm,
         'issues': fm_issues
     }
-    
-    # Extract structure
+
     headings = extract_headings(content)
     sections = extract_sections(content, headings)
     code_blocks = extract_code_blocks(content)
-    
-    # Calculate metrics
     metrics = calculate_metrics(content, headings, code_blocks)
-    
-    # Run checklist
     checklist = run_checklist(doc_type, frontmatter_data, headings, content)
-    
-    # Run content quality checks
+
     content_issues = []
     content_issues.extend(detect_placeholders(content))
     content_issues.extend(check_code_block_languages(code_blocks))
-    
-    # Run style checks for template-based document types
-    # EMOJI_REQUIRED_TYPES: skill, readme, asset, reference
+
     style_issues = []
     if doc_type in EMOJI_REQUIRED_TYPES:
         style_issues.extend(check_h2_formatting(headings, doc_type))
         style_issues.extend(check_section_dividers(content, headings))
     if doc_type == 'skill':
         style_issues.extend(check_h3_emoji_usage(headings, content))
-    
-    # Generate questions
+
     questions = generate_questions(doc_type)
-    
-    # Calculate Document Quality Index (DQI)
     dqi = calculate_dqi(
         doc_type=doc_type,
         checklist_pass_rate=checklist['pass_rate'],
@@ -1159,8 +1078,7 @@ def extract_structure(filepath: str) -> Dict[str, Any]:
         style_issues=style_issues,
         content_issues=content_issues
     )
-    
-    # Assemble output
+
     return {
         'file': str(path.absolute()),
         'type': doc_type,
@@ -1181,7 +1099,7 @@ def extract_structure(filepath: str) -> Dict[str, Any]:
 
 
 # ───────────────────────────────────────────────────────────────
-# CLI ENTRY POINT
+# 9. CLI ENTRY POINT
 # ───────────────────────────────────────────────────────────────
 
 def main():

@@ -36,11 +36,28 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 4. Search for related spec folders:
    $ ls -d specs/*/ 2>/dev/null | tail -10
 
-5. Determine if memory loading question is needed:
+5. CHECK for prior incomplete sessions (deduplication):
+   - Search memory/ in target spec folder for incomplete session markers
+   - Look for: "STATUS: IN_PROGRESS", unchecked tasks in tasks.md
+   - IF incomplete session detected → Display warning and ask:
+     ┌────────────────────────────────────────────────────────────────┐
+     │ ⚠️ PRIOR INCOMPLETE SESSION DETECTED                           │
+     │                                                                │
+     │ Spec folder: [path]                                            │
+     │ Last activity: [timestamp from memory file]                     │
+     │ Progress: [X/Y tasks complete]                                 │
+     │                                                                │
+     │ Options:                                                       │
+     │ A) Resume - Continue from where previous session left off      │
+     │ B) Restart - Start fresh (archives prior session)              │
+     │ C) Cancel - Review existing work first                          │
+     └────────────────────────────────────────────────────────────────┘
+
+6. Determine if memory loading question is needed:
    - Will be asked ONLY if user selects A or C for spec folder AND memory/ has files
    - Include Q5 placeholder with note "(if using existing spec with memory files)"
 
-6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+7. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
@@ -80,9 +97,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ Reply with answers, e.g.: "B, A, A, A, , C" or "Add auth, B, A, A, gemini, C" │
    └────────────────────────────────────────────────────────────────┘
 
-7. WAIT for user response (DO NOT PROCEED)
+8. WAIT for user response (DO NOT PROCEED)
 
-8. Parse response and store ALL results:
+9. Parse response and store ALL results:
    - feature_description = [from Q0 or $ARGUMENTS]
    - spec_choice = [A/B/C/D from Q1]
    - spec_path = [derived path or null if D]
@@ -92,12 +109,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - worker_model = [from Q5: opus/gemini/gpt, default opus if blank]
    - memory_choice = [A/B/C from Q6, or N/A if not applicable]
 
-9. Execute background operations based on choices:
+10. Execute background operations based on choices:
    - IF memory_choice == A: Load most recent memory file
    - IF memory_choice == B: Load up to 3 recent memory files
    - IF dispatch_mode is multi_*: Note parallel dispatch will be used
 
-10. SET STATUS: ✅ PASSED
+11. SET STATUS: ✅ PASSED
 
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
@@ -338,6 +355,8 @@ STEP 11 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
 │   └─ Have documented user approval to defer
 ├─ P2 items may be deferred without approval
 ├─ Evidence format: "- [x] Task description [EVIDENCE: file.js:45-67 - implementation verified]"
+├─ Evidence Log pattern: Use `[E:filename]` format for evidence artifacts
+│   └─ Example: `[E:evidence/test-output.log]` or `[E:scratch/debug-trace.md]`
 └─ ⛔ HARD BLOCK: Cannot proceed to Step 12 if any P0 items are unchecked
 
 STEP 12 (Completion) REQUIREMENTS:
@@ -707,6 +726,23 @@ After agents return, hypotheses are verified by reading identified files and bui
 - **Parallel**: "use parallel", "dispatch agents", "parallelize"
 - **Auto-decide**: "auto-decide", "auto mode", "decide for me" (1 hour session preference)
 
+### Workstream Prefix Pattern
+
+When tracking parallel dispatches, use `[W:XXXX]` format for workstream identification:
+
+| Format       | Purpose                     | Example                           |
+| ------------ | --------------------------- | --------------------------------- |
+| `[W:ARCH]`   | Architecture exploration    | `[W:ARCH] Mapping entry points`   |
+| `[W:FEAT]`   | Feature exploration         | `[W:FEAT] Finding similar code`   |
+| `[W:DEPS]`   | Dependency exploration      | `[W:DEPS] Checking imports`       |
+| `[W:TEST]`   | Test exploration            | `[W:TEST] Locating test patterns` |
+| `[W:IMPL-N]` | Implementation workstream N | `[W:IMPL-1] CSS changes`          |
+
+Use workstream prefixes in:
+- Task tool dispatch descriptions
+- Progress tracking messages
+- Memory file anchors for parallel work
+
 ---
 
 ## 9. 🤖 AGENT ROUTING
@@ -802,6 +838,20 @@ Quality gates ensure workflow integrity by validating state at critical transiti
 | **Pre-execution**  | Before Step 1             | Validate inputs and prerequisites  | Score ≥ 60 | Soft     |
 | **Planning Gate**  | Between Step 7 and Step 8 | Verify planning artifacts complete | Score ≥ 70 | **HARD** |
 | **Post-execution** | After Step 12             | Verify all deliverables exist      | Score ≥ 70 | Hard     |
+
+### Five Checks Framework (Level 3+ specs)
+
+For Level 3+ specs, validate against the Five Checks Framework at the Planning Gate (see AGENTS.md Section 5):
+
+| #   | Check                    | Question                 | Pass Criteria                              |
+| --- | ------------------------ | ------------------------ | ------------------------------------------ |
+| 1   | **Necessary?**           | Solving ACTUAL need NOW? | Clear requirement exists, not speculative  |
+| 2   | **Beyond Local Maxima?** | Explored alternatives?   | ≥2 alternatives considered with trade-offs |
+| 3   | **Sufficient?**          | Simplest approach?       | No simpler solution achieves the goal      |
+| 4   | **Fits Goal?**           | On critical path?        | Directly advances stated objective         |
+| 5   | **Open Horizons?**       | Long-term aligned?       | Doesn't create technical debt or lock-in   |
+
+**Usage:** Required for Level 3/3+ spec folders. Optional for Level 2. Record in decision-record.md for architectural changes.
 
 ### Planning Gate (CRITICAL)
 
@@ -1067,5 +1117,8 @@ After the complete workflow finishes, suggest relevant next steps:
 | Found bugs during testing | `/spec_kit:debug [spec-folder-path]`       | Delegate debugging to fresh agent         |
 | Ready for next feature    | `/spec_kit:complete [feature-description]` | Start new workflow                        |
 | Want to clean up          | Review and archive spec folder             | Keep workspace organized                  |
+| Need crash recovery       | `/memory:continue`                         | Session recovery                          |
+| Need unified context      | `/memory:context`                          | Intent-aware retrieval                    |
+| Want to record learning   | `/memory:learn`                            | Explicit learning                         |
 
 **ALWAYS** end with: "What would you like to do next?"

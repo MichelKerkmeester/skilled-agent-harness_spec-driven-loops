@@ -1,7 +1,7 @@
 #!/bin/bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# NARSIL SEARCH CLI
-# ═══════════════════════════════════════════════════════════════════════════════
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: NARSIL SEARCH CLI
+# ───────────────────────────────────────────────────────────────
 # Command-line interface for Narsil search functions via HTTP API.
 # Requires the Narsil HTTP server to be running (use narsil-server.sh start).
 #
@@ -12,17 +12,19 @@
 #   ./narsil-search.sh hybrid "modal system"
 #   ./narsil-search.sh symbols function
 #   ./narsil-search.sh call <tool_name> '{"arg": "value"}'
-# ═══════════════════════════════════════════════════════════════════════════════
 
 set -e
 
-# Configuration
+
+# ───────────────────────────────────────────────────────────────
+# 1. CONFIGURATION
+# ───────────────────────────────────────────────────────────────
+
 HTTP_PORT="${NARSIL_HTTP_PORT:-3001}"
 BASE_URL="http://localhost:$HTTP_PORT"
 REPO="${NARSIL_REPO:-unknown}"
 DEFAULT_LIMIT=10
 
-# Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -34,7 +36,11 @@ log_info() { echo -e "${BLUE}[INFO]${NC} $1" >&2; }
 log_error() { echo -e "${RED}[ERROR]${NC} $1" >&2; }
 log_warn() { echo -e "${YELLOW}[WARN]${NC} $1" >&2; }
 
-# Check if server is running
+
+# ───────────────────────────────────────────────────────────────
+# 2. SEARCH FUNCTIONS
+# ───────────────────────────────────────────────────────────────
+
 check_server() {
     if ! curl -s "$BASE_URL/health" > /dev/null 2>&1; then
         log_error "Narsil HTTP server not running on port $HTTP_PORT"
@@ -43,17 +49,16 @@ check_server() {
     fi
 }
 
-# Call a Narsil tool via HTTP
 call_tool() {
     local tool="$1"
     local args="$2"
-    
+
     local response=$(curl -s -X POST "$BASE_URL/tools/call" \
         -H "Content-Type: application/json" \
         -d "{\"tool\": \"$tool\", \"args\": $args}")
-    
+
     local success=$(echo "$response" | jq -r '.success' 2>/dev/null)
-    
+
     if [ "$success" = "true" ]; then
         echo "$response" | jq -r '.result' 2>/dev/null
     else
@@ -63,73 +68,69 @@ call_tool() {
     fi
 }
 
-# Neural search (semantic understanding via embeddings)
 neural_search() {
     local query="$1"
     local limit="${2:-$DEFAULT_LIMIT}"
-    
+
     log_info "Neural search: \"$query\" (top $limit)"
     call_tool "neural_search" "{\"repo\": \"$REPO\", \"query\": \"$query\", \"top_k\": $limit}"
 }
 
-# Semantic search (BM25 keyword ranking)
 semantic_search() {
     local query="$1"
     local limit="${2:-$DEFAULT_LIMIT}"
-    
+
     log_info "Semantic search (BM25): \"$query\" (limit $limit)"
     call_tool "semantic_search" "{\"repo\": \"$REPO\", \"query\": \"$query\", \"limit\": $limit}"
 }
 
-# Code search (exact keyword matching)
 code_search() {
     local query="$1"
     local limit="${2:-$DEFAULT_LIMIT}"
-    
+
     log_info "Code search: \"$query\" (limit $limit)"
     call_tool "search_code" "{\"repo\": \"$REPO\", \"query\": \"$query\", \"limit\": $limit}"
 }
 
-# Hybrid search (BM25 + TF-IDF + Neural)
 hybrid_search() {
     local query="$1"
     local limit="${2:-$DEFAULT_LIMIT}"
-    
+
     log_info "Hybrid search: \"$query\" (limit $limit)"
     call_tool "hybrid_search" "{\"repo\": \"$REPO\", \"query\": \"$query\", \"limit\": $limit}"
 }
 
-# Find symbols
 find_symbols() {
     local symbol_type="${1:-function}"
     local pattern="${2:-}"
-    
+
     log_info "Finding symbols: type=$symbol_type, pattern=$pattern"
     call_tool "find_symbols" "{\"repo\": \"$REPO\", \"symbol_type\": \"$symbol_type\", \"pattern\": \"$pattern\"}"
 }
 
-# Get index status
 index_status() {
     log_info "Fetching index status..."
     call_tool "get_index_status" "{}"
 }
 
-# List available tools
 list_tools() {
     log_info "Fetching available tools..."
     curl -s "$BASE_URL/tools" | jq '.tools[].name' 2>/dev/null | sort
 }
 
-# Generic tool call
 generic_call() {
     local tool="$1"
     local args="${2:-{}}"
-    
+
     log_info "Calling tool: $tool"
     call_tool "$tool" "$args"
 }
 
-# Show help
+
+# ───────────────────────────────────────────────────────────────
+# 3. HELP
+# ───────────────────────────────────────────────────────────────
+
 show_help() {
     cat << EOF
 Narsil Search CLI - Search your codebase via HTTP API
@@ -167,7 +168,11 @@ ${YELLOW}NOTE:${NC} Requires Narsil HTTP server running. Start with:
 EOF
 }
 
-# Main command handler
+
+# ───────────────────────────────────────────────────────────────
+# 4. MAIN
+# ───────────────────────────────────────────────────────────────
+
 case "${1:-}" in
     neural)
         check_server

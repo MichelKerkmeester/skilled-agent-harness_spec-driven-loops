@@ -8,7 +8,7 @@ const crypto = require('crypto');
 
 /* ─────────────────────────────────────────────────────────────
    1. WORD FILTER SETS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const STOP_WORDS = new Set([
   'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
@@ -33,7 +33,7 @@ const ACTION_VERBS = new Set([
 
 /* ─────────────────────────────────────────────────────────────
    2. SLUG GENERATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Extracts 3-5 meaningful words, filtering stop words and action verbs
 function generate_semantic_slug(title, max_words = 4) {
@@ -57,7 +57,7 @@ function generate_short_hash(content) {
 
 /* ─────────────────────────────────────────────────────────────
    3. ANCHOR ID GENERATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Format: {type}-{semantic-slug}-{8char-hash}
 function generate_anchor_id(section_title, category, spec_number = null, additional_context = '') {
@@ -79,7 +79,7 @@ function generate_anchor_id(section_title, category, spec_number = null, additio
 
 /* ─────────────────────────────────────────────────────────────
    4. SECTION CATEGORIZATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Priority: decision > implementation > guide > architecture > files > discovery > integration
 function categorize_section(section_title, content = '') {
@@ -98,7 +98,7 @@ function categorize_section(section_title, content = '') {
 
 /* ─────────────────────────────────────────────────────────────
    5. ANCHOR VALIDATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Appends -2, -3, etc. on collision
 function validate_anchor_uniqueness(anchor_id, existing_anchors) {
@@ -115,7 +115,7 @@ function validate_anchor_uniqueness(anchor_id, existing_anchors) {
 
 /* ─────────────────────────────────────────────────────────────
    6. KEYWORD EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Extracts nouns, proper nouns, technical terms (filters action verbs, stop words)
 function extract_keywords(text) {
@@ -138,7 +138,7 @@ function slugify(keywords) {
 
 /* ─────────────────────────────────────────────────────────────
    7. UTILITY FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function extract_spec_number(spec_folder) {
   const match = spec_folder.match(/^(\d{3})-/);
@@ -152,7 +152,7 @@ function get_current_date() {
 
 /* ─────────────────────────────────────────────────────────────
    8. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Snake_case exports (original)
@@ -181,7 +181,7 @@ module.exports = {
 
 /* ─────────────────────────────────────────────────────────────
    9. CLI TESTING INTERFACE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 if (require.main === module) {
   console.log('Anchor Generator Test Suite (v2.0)\n');

@@ -1,15 +1,25 @@
 #!/bin/bash
-# Update Narsil MCP to latest version
-#
-# This script updates the embedded Narsil MCP server in the skill folder.
-# It fetches the latest changes from the upstream repo and rebuilds.
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: NARSIL MCP UPDATER
+# ───────────────────────────────────────────────────────────────
+# Update Narsil MCP to latest version from upstream repo.
 
 set -e
 
-# Get script directory and derive paths
+
+# ───────────────────────────────────────────────────────────────
+# 1. CONFIGURATION
+# ───────────────────────────────────────────────────────────────
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILL_DIR="$(dirname "$SCRIPT_DIR")"
 MCP_SERVER_DIR="$SKILL_DIR/mcp_server"
+UPSTREAM_REPO="https://github.com/postrv/narsil-mcp.git"
+
+
+# ───────────────────────────────────────────────────────────────
+# 2. UPDATE
+# ───────────────────────────────────────────────────────────────
 
 if [[ ! -d "$MCP_SERVER_DIR" ]]; then
     echo "Error: Narsil mcp_server directory not found at $MCP_SERVER_DIR" >&2
@@ -21,9 +31,6 @@ echo "Location: $MCP_SERVER_DIR"
 
 cd "$MCP_SERVER_DIR"
 
-# Note: The embedded copy doesn't have .git, so we need to update from upstream
-# Check if we have a reference to upstream
-UPSTREAM_REPO="https://github.com/postrv/narsil-mcp.git"
 TEMP_DIR=$(mktemp -d)
 
 echo "Fetching latest from upstream..."
@@ -40,8 +47,12 @@ rsync -av --delete \
     --exclude='.DS_Store' \
     "$TEMP_DIR/" "$MCP_SERVER_DIR/"
 
-echo "Cleaning up temp directory..."
 rm -rf "$TEMP_DIR"
+
+
+# ───────────────────────────────────────────────────────────────
+# 3. BUILD
+# ───────────────────────────────────────────────────────────────
 
 echo "Building..."
 cargo build --release

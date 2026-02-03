@@ -13,7 +13,7 @@ const crypto = require('crypto');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const ROOT = path.join(__dirname, '..', '..');
 const SCRIPTS_DIR = path.join(ROOT, 'scripts');
@@ -37,7 +37,7 @@ let testSessionId = null;
 
 /* ─────────────────────────────────────────────────────────────
    2. UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function log(msg) {
   console.log(msg);
@@ -79,7 +79,7 @@ function endSuite() {
 
 /* ─────────────────────────────────────────────────────────────
    3. SETUP & TEARDOWN HELPERS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Create isolated test workspace
@@ -266,7 +266,7 @@ async function runNodeScript(script, args = []) {
 
 /* ─────────────────────────────────────────────────────────────
    4. WORKFLOW 1: MEMORY SAVE END-TO-END
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function testMemorySaveWorkflow() {
   startSuite('Workflow 1: Memory Save End-to-End');
@@ -350,7 +350,7 @@ async function testMemorySaveWorkflow() {
 
 /* ─────────────────────────────────────────────────────────────
    5. WORKFLOW 2: VALIDATION PIPELINE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function testValidationPipeline() {
   startSuite('Workflow 2: Validation Pipeline');
@@ -468,7 +468,7 @@ async function testValidationPipeline() {
 
 /* ─────────────────────────────────────────────────────────────
    6. WORKFLOW 3: COGNITIVE MEMORY SESSION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function testCognitiveMemorySession() {
   startSuite('Workflow 3: Cognitive Memory Session');
@@ -589,7 +589,7 @@ async function testCognitiveMemorySession() {
 
 /* ─────────────────────────────────────────────────────────────
    7. WORKFLOW 4: SPEC FOLDER CREATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function testSpecFolderCreation() {
   startSuite('Workflow 4: Spec Folder Creation');
@@ -697,7 +697,7 @@ async function testSpecFolderCreation() {
 
 /* ─────────────────────────────────────────────────────────────
    8. WORKFLOW 5: CHECKPOINT CYCLE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function testCheckpointCycle() {
   startSuite('Workflow 5: Checkpoint Cycle');
@@ -806,7 +806,7 @@ async function testCheckpointCycle() {
 
 /* ─────────────────────────────────────────────────────────────
    9. BONUS: CROSS-CUTTING INTEGRATION TESTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function testCrossCuttingIntegration() {
   startSuite('Cross-Cutting Integration Tests');
@@ -924,7 +924,7 @@ async function testCrossCuttingIntegration() {
 
 /* ─────────────────────────────────────────────────────────────
    10. MAIN ENTRY POINT
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function main() {
   log('');
@@ -1016,7 +1016,7 @@ main().then(success => {
 
 /* ─────────────────────────────────────────────────────────────
    11. EXPORTS (for programmatic use)
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Test utilities

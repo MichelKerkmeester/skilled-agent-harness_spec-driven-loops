@@ -57,13 +57,20 @@ This reference provides deep-dive technical guidance on execution modes, validat
 
 > **Note**: These validation patterns are conceptual workflows describing when and how validation should occur. They are not implemented as automated hooks - apply these checks manually using the available scripts.
 
+**Pre-Delivery Format Validation** (MANDATORY for READMEs):
+- **When**: Before claiming completion on any README
+- **Script**: `python scripts/validate_document.py <file>`
+- **Action**: Check TOC, H2 emojis, anchor format, required sections
+- **Blocking**: Yes - exit code 1 blocks delivery
+- **Auto-fix**: Use `--fix` for safe issues (single-dash anchors)
+
 **Post-Write Validation Pattern** (manual):
 - **When**: After Write/Edit operations on `.md` files
 - **Script**: `python scripts/quick_validate.py <path>`
 - **Action**: Filename corrections (ALL CAPS → lowercase, hyphens → underscores)
 - **Blocking**: No (logs only)
 
-**Pre-Submit Validation Pattern** (manual):
+**Pre-Submit Quality Pattern** (manual):
 - **When**: Before finalizing documentation
 - **Script**: `python scripts/extract_structure.py <file>`
 - **Action**: Structure validation + AI-assisted quality assessment
@@ -72,6 +79,10 @@ This reference provides deep-dive technical guidance on execution modes, validat
 **Manual Validation Workflow**:
 ```
 User saves file
+    ↓
+Run: python scripts/validate_document.py <file>  ← NEW: Format validation
+    ├─ Exit 0 → Continue
+    └─ Exit 1 → Fix blocking errors → Re-run
     ↓
 Run: python scripts/quick_validate.py <path>
     ↓

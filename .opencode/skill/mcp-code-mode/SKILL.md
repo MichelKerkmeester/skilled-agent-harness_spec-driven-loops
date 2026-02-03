@@ -689,4 +689,4 @@ call_tool_chain({
 
 ### Install Guide
 
-- [MCP - Code Mode.md](../../install_guides/MCP/MCP%20-%20Code%20Mode.md) - Installation and configuration
+- [MCP - Code Mode.md](../../install_guides/MCP%20-%20Code%20Mode.md) - Installation and configuration

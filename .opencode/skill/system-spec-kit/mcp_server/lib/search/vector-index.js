@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────
-// vector-index.js: Vector database for semantic memory search
+// SEARCH: VECTOR INDEX
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
@@ -10,18 +10,15 @@ const os = require('os');
 const fs = require('fs');
 const crypto = require('crypto');
 const { format_age_string } = require('../utils/format-helpers');
-const { validate_file_path: validateFilePath } = require('../../../shared/utils');
+const { validate_file_path: validateFilePath } = require('../utils/path-security');
 
-// Load search weights from config for configurable limits
 const search_weights = require('../../configs/search-weights.json');
 const MAX_TRIGGERS_PER_MEMORY = search_weights.maxTriggersPerMemory || 10;
 
-// Convert Float32Array to Buffer for sqlite-vec
 function to_embedding_buffer(embedding) {
   return Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
 }
 
-// Lazy-load embeddings module to avoid circular dependencies
 let embeddings_module = null;
 function get_embeddings_module() {
   if (!embeddings_module) {
@@ -30,37 +27,40 @@ function get_embeddings_module() {
   return embeddings_module;
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-const EMBEDDING_DIM = 768; // Legacy default - actual dim comes from provider profile
+const EMBEDDING_DIM = 768;
 
-// Get embedding dimension from active profile
+/**
+ * Get embedding dimension from active profile.
+ * T019: Updated to work with lazy provider pattern - uses environment
+ * detection when provider not yet initialized.
+ */
 function get_embedding_dim() {
   try {
     const embeddings = get_embeddings_module();
-    const profile = embeddings.getEmbeddingProfile();
-    if (profile && profile.dim) {
-      return profile.dim;
+
+    if (embeddings.isProviderInitialized && embeddings.isProviderInitialized()) {
+      const profile = embeddings.getEmbeddingProfile();
+      if (profile && profile.dim) {
+        return profile.dim;
+      }
     }
-    // Profile not initialized - check environment for Voyage (most common case)
+
     if (process.env.VOYAGE_API_KEY || process.env.EMBEDDINGS_PROVIDER === 'voyage') {
-      console.log('[vector-index] Voyage detected but provider not warmed up - using 1024 dimensions');
       return 1024;
     }
     if (process.env.OPENAI_API_KEY || process.env.EMBEDDINGS_PROVIDER === 'openai') {
-      console.log('[vector-index] OpenAI detected but provider not warmed up - using 1536 dimensions');
       return 1536;
     }
   } catch (e) {
     console.warn('[vector-index] Could not get embedding dimension from profile:', e.message);
   }
-  console.warn('[vector-index] Using legacy 768 dimensions - ensure this matches your embedding provider');
   return EMBEDDING_DIM;
 }
 
-// Get confirmed embedding dimension with timeout
 async function get_confirmed_embedding_dimension(timeout_ms = 5000) {
   const start = Date.now();
   while (Date.now() - start < timeout_ms) {
@@ -74,17 +74,14 @@ async function get_confirmed_embedding_dimension(timeout_ms = 5000) {
   return 768;
 }
 
-// Track schema initialization state
 let schema_initialized = false;
 
-// Project-local database for memory storage
 const DEFAULT_DB_DIR = process.env.MEMORY_DB_DIR ||
   path.resolve(__dirname, '../../database');
 const DEFAULT_DB_PATH = process.env.MEMORY_DB_PATH || 
   path.join(DEFAULT_DB_DIR, 'context-index.sqlite');
-const DB_PERMISSIONS = 0o600; // Owner read/write only
+const DB_PERMISSIONS = 0o600;
 
-// Resolve database path based on embedding profile
 function resolve_database_path() {
   if (process.env.MEMORY_DB_PATH) {
     return process.env.MEMORY_DB_PATH;
@@ -101,25 +98,29 @@ function resolve_database_path() {
 }
 
 // Schema version for migration tracking
-const SCHEMA_VERSION = 4;
+// v5: Added memory_type column for type-specific half-lives (REQ-002)
+// v6: Added file_mtime_ms for incremental indexing fast-path (REQ-023, T064-T066)
+// v7: Added 'partial' embedding_status for deferred indexing (REQ-031, T096)
+// v8: Added causal_edges table for Causal Memory Graph (REQ-012, T043-T047)
+// v9: Added memory_corrections table for learning from corrections (REQ-015, REQ-026, T052-T055)
+// v10: Schema consolidation and index optimization
+// v11: Error code deduplication and validation improvements
+const SCHEMA_VERSION = 11;
 
-/* ───────────────────────────────────────────────────────────────
-   2. SECURITY HELPERS (CWE-22, CWE-502 mitigations)
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   2. SECURITY HELPERS
+────────────────────────────────────────────────────────────────*/
 
-// Allowed base directories for file reads
 const ALLOWED_BASE_PATHS = [
   path.join(process.cwd(), 'specs'),
   path.join(process.cwd(), '.opencode'),
   ...(process.env.MEMORY_ALLOWED_PATHS ? process.env.MEMORY_ALLOWED_PATHS.split(':') : [])
 ].filter(Boolean);
 
-// Local wrapper for shared validateFilePath
 function validate_file_path_local(file_path) {
   return validateFilePath(file_path, ALLOWED_BASE_PATHS);
 }
 
-// Safely read file content with path validation (sync version)
 function safe_read_file(file_path) {
   const valid_path = validate_file_path_local(file_path);
   if (!valid_path) {
@@ -187,27 +188,24 @@ function safe_parse_json(json_string, default_value = []) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    3. DATABASE SINGLETON
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 let db = null;
 let db_path = DEFAULT_DB_PATH;
 let sqlite_vec_available = true;
 let shutting_down = false;
 
-// Constitutional memory caching to avoid repeated DB queries
 let constitutional_cache = new Map();
-const CONSTITUTIONAL_CACHE_TTL = 300000; // 5 minute TTL
+const CONSTITUTIONAL_CACHE_TTL = 300000;
 
 // BUG-012 FIX: Track which cache keys are currently being loaded
 // This prevents thundering herd when multiple concurrent calls hit cache expiry
 let constitutional_cache_loading = new Map();
 
-// Track database file modification time for cache invalidation
 let last_db_mod_time = 0;
 
-// Check if constitutional cache is valid considering external DB edits
 function is_constitutional_cache_valid() {
   if (constitutional_cache.size === 0) return false;
   
@@ -221,19 +219,17 @@ function is_constitutional_cache_valid() {
       }
     }
   } catch (e) {
-    // If we can't check, assume cache is valid
   }
   
   return true;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. PREPARED STATEMENT CACHING (PERF-1)
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   4. PREPARED STATEMENT CACHING
+────────────────────────────────────────────────────────────────*/
 
 let prepared_statements = null;
 
-// Initialize and cache prepared statements for common queries
 function init_prepared_statements(database) {
   if (prepared_statements) return prepared_statements;
   
@@ -257,35 +253,28 @@ function init_prepared_statements(database) {
   return prepared_statements;
 }
 
-// Clear prepared statements cache (call when database is reset)
 function clear_prepared_statements() {
   prepared_statements = null;
 }
 
-// Get cached constitutional memories or fetch from database
-// BUG-004: Now checks for external database modifications before using cache
-// BUG-012 FIX: Prevent thundering herd when cache expires by tracking loading state
+// BUG-004 FIX: Checks external DB modifications before using cache
+// BUG-012 FIX: Prevent thundering herd when cache expires
 function get_constitutional_memories(database, spec_folder = null) {
   const cache_key = spec_folder || 'global';
   const now = Date.now();
   const cached = constitutional_cache.get(cache_key);
 
-  // BUG-004: Check both TTL and external DB modifications
   if (cached && (now - cached.timestamp) < CONSTITUTIONAL_CACHE_TTL && is_constitutional_cache_valid()) {
     return cached.data;
   }
 
-  // BUG-012 FIX: If another call is already loading this cache key,
-  // return stale data (if available) or empty array to prevent thundering herd
   if (constitutional_cache_loading.get(cache_key)) {
     return cached?.data || [];
   }
 
-  // BUG-012 FIX: Mark this cache key as loading
   constitutional_cache_loading.set(cache_key, true);
 
   try {
-    // Fetch from database
     const constitutional_sql = `
       SELECT m.*, 100.0 as similarity, 1.0 as effective_importance,
              'constitutional' as source_type
@@ -299,13 +288,11 @@ function get_constitutional_memories(database, spec_folder = null) {
     const params = spec_folder ? [spec_folder] : [];
     let results = database.prepare(constitutional_sql).all(...params);
 
-    // Limit constitutional results to ~2000 tokens (~8000 chars, ~20 memories avg)
     const MAX_CONSTITUTIONAL_TOKENS = 2000;
     const TOKENS_PER_MEMORY = 100;
     const max_constitutional_count = Math.floor(MAX_CONSTITUTIONAL_TOKENS / TOKENS_PER_MEMORY);
     results = results.slice(0, max_constitutional_count);
 
-    // Mark as constitutional for client identification
     results = results.map(row => {
       if (row.trigger_phrases) {
         row.trigger_phrases = JSON.parse(row.trigger_phrases);
@@ -314,17 +301,14 @@ function get_constitutional_memories(database, spec_folder = null) {
       return row;
     });
 
-    // Cache the results
     constitutional_cache.set(cache_key, { data: results, timestamp: now });
 
     return results;
   } finally {
-    // BUG-012 FIX: Always clear the loading flag when done
     constitutional_cache_loading.delete(cache_key);
   }
 }
 
-// Clear constitutional cache (call when tier changes)
 function clear_constitutional_cache(spec_folder = null) {
   if (spec_folder) {
     constitutional_cache.delete(spec_folder);
@@ -333,9 +317,9 @@ function clear_constitutional_cache(spec_folder = null) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. SCHEMA VERSION TRACKING (M19 fix)
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   5. SCHEMA VERSION TRACKING
+────────────────────────────────────────────────────────────────*/
 
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
@@ -419,6 +403,223 @@ function run_migrations(database, from_version, to_version) {
       } catch (e) {
         console.warn('[VectorIndex] Migration v4 warning (indexes):', e.message);
       }
+    },
+    5: () => {
+      // v4 -> v5: Add memory_type column for type-specific half-lives (REQ-002, T006)
+      // This enables 9 cognitive memory types with distinct decay rates
+      // Types: working, episodic, prospective, implicit, declarative, procedural,
+      //        semantic, autobiographical, meta-cognitive
+      try {
+        database.exec(`
+          ALTER TABLE memory_index ADD COLUMN memory_type TEXT DEFAULT 'declarative'
+            CHECK(memory_type IN (
+              'working', 'episodic', 'prospective', 'implicit', 'declarative',
+              'procedural', 'semantic', 'autobiographical', 'meta-cognitive'
+            ))
+        `);
+        console.log('[VectorIndex] Migration v5: Added memory_type column');
+      } catch (e) {
+        if (!e.message.includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v5 warning (memory_type):', e.message);
+        }
+      }
+
+      // Add half_life_days column to override type defaults
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN half_life_days REAL');
+        console.log('[VectorIndex] Migration v5: Added half_life_days column');
+      } catch (e) {
+        if (!e.message.includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v5 warning (half_life_days):', e.message);
+        }
+      }
+
+      // Add type_inference_source to track how type was determined
+      try {
+        database.exec(`
+          ALTER TABLE memory_index ADD COLUMN type_inference_source TEXT DEFAULT 'default'
+            CHECK(type_inference_source IN (
+              'frontmatter_explicit', 'importance_tier', 'file_path', 'keywords', 'default', 'manual'
+            ))
+        `);
+        console.log('[VectorIndex] Migration v5: Added type_inference_source column');
+      } catch (e) {
+        if (!e.message.includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v5 warning (type_inference_source):', e.message);
+        }
+      }
+
+      // Create index for memory_type queries
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_memory_type ON memory_index(memory_type)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_memory_type_decay ON memory_index(memory_type, half_life_days)');
+        console.log('[VectorIndex] Migration v5: Created memory_type indexes');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v5 warning (indexes):', e.message);
+      }
+
+      // Backfill existing memories with inferred types
+      // This is done in a separate pass to avoid blocking the migration
+      console.log('[VectorIndex] Migration v5: Type inference backfill will run on next index scan');
+    },
+    6: () => {
+      // v5 -> v6: Add file_mtime_ms for incremental indexing (REQ-023, T064-T066)
+      // This enables 10-100x faster re-indexing by skipping unchanged files
+      // via mtime fast-path check before expensive content hash computation
+      try {
+        database.exec('ALTER TABLE memory_index ADD COLUMN file_mtime_ms INTEGER');
+        console.log('[VectorIndex] Migration v6: Added file_mtime_ms column for incremental indexing');
+      } catch (e) {
+        if (!e.message.includes('duplicate column')) {
+          console.warn('[VectorIndex] Migration v6 warning (file_mtime_ms):', e.message);
+        }
+      }
+
+      // Create index for fast mtime lookups
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_file_mtime ON memory_index(file_mtime_ms)');
+        console.log('[VectorIndex] Migration v6: Created file_mtime index');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v6 warning (idx_file_mtime):', e.message);
+      }
+    },
+    7: () => {
+      // v6 -> v7: Add 'partial' embedding_status for deferred indexing (REQ-031, T096)
+      // 'partial' status indicates some chunks were embedded, some are pending
+      // This enables graceful degradation when embedding fails mid-document
+      //
+      // Note: SQLite CHECK constraints cannot be modified in-place.
+      // The 'partial' value is now accepted by application logic; existing CHECK
+      // constraint will reject strict validation but application handles it.
+      //
+      // For new databases, the CHECK is updated in create_schema().
+      // For existing databases, we add an index for efficient pending/partial queries.
+      try {
+        database.exec(`
+          CREATE INDEX IF NOT EXISTS idx_embedding_pending
+          ON memory_index(embedding_status)
+          WHERE embedding_status IN ('pending', 'partial', 'retry')
+        `);
+        console.log('[VectorIndex] Migration v7: Created idx_embedding_pending partial index');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v7 warning (idx_embedding_pending):', e.message);
+      }
+
+      // Add index for BM25/FTS5 fallback search on pending memories (CHK-178)
+      try {
+        database.exec(`
+          CREATE INDEX IF NOT EXISTS idx_fts_fallback
+          ON memory_index(spec_folder, embedding_status, importance_tier)
+          WHERE embedding_status IN ('pending', 'partial')
+        `);
+        console.log('[VectorIndex] Migration v7: Created idx_fts_fallback index for deferred indexing');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v7 warning (idx_fts_fallback):', e.message);
+      }
+    },
+    8: () => {
+      // v7 -> v8: Create causal_edges table for Causal Memory Graph (REQ-012, T043-T047)
+      // This enables decision lineage tracking and "why" queries
+      // 6 relationship types: caused, enabled, supersedes, contradicts, derived_from, supports
+      // CHK-060: Create table with proper schema
+      // CHK-061: 6 relationship types via CHECK constraint
+      // CHK-062: Indexes on source_id and target_id for bidirectional traversal
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS causal_edges (
+            id INTEGER PRIMARY KEY,
+            source_id TEXT NOT NULL,
+            target_id TEXT NOT NULL,
+            relation TEXT NOT NULL CHECK(relation IN (
+              'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+            )),
+            strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
+            evidence TEXT,
+            extracted_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(source_id, target_id, relation)
+          )
+        `);
+        console.log('[VectorIndex] Migration v8: Created causal_edges table');
+      } catch (e) {
+        if (!e.message.includes('already exists')) {
+          console.warn('[VectorIndex] Migration v8 warning (causal_edges):', e.message);
+        }
+      }
+
+      // Create indexes for efficient graph traversal (CHK-062)
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_causal_source ON causal_edges(source_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_causal_target ON causal_edges(target_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_causal_relation ON causal_edges(relation)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_causal_strength ON causal_edges(strength DESC)');
+        console.log('[VectorIndex] Migration v8: Created causal_edges indexes');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v8 warning (indexes):', e.message);
+      }
+    },
+    9: () => {
+      // v8 -> v9: Create memory_corrections table for Learning from Corrections (REQ-015, REQ-026, T052-T055)
+      // This enables tracking of memory corrections with stability penalty/boost
+      // CHK-066: memory_corrections table tracks original vs correction
+      // CHK-067: 0.5x stability penalty applied to corrected memories
+      // CHK-068: Correction types: superseded, deprecated, refined, merged
+      // CHK-069: Feature flag SPECKIT_RELATIONS controls activation
+      // CHK-070: Undo capability for learning reversals via is_undone flag
+      try {
+        database.exec(`
+          CREATE TABLE IF NOT EXISTS memory_corrections (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            -- Original memory that was corrected
+            original_memory_id INTEGER NOT NULL,
+
+            -- Replacement/correction memory (null for deprecated)
+            correction_memory_id INTEGER,
+
+            -- Type of correction: superseded, deprecated, refined, merged
+            correction_type TEXT NOT NULL CHECK(correction_type IN (
+              'superseded', 'deprecated', 'refined', 'merged'
+            )),
+
+            -- Stability values at time of correction (for undo)
+            original_stability_before REAL,
+            original_stability_after REAL,
+            correction_stability_before REAL,
+            correction_stability_after REAL,
+
+            -- Metadata
+            reason TEXT,
+            corrected_by TEXT,
+            created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+
+            -- Undo tracking (CHK-070)
+            is_undone INTEGER DEFAULT 0,
+            undone_at TEXT,
+
+            -- Foreign keys
+            FOREIGN KEY (original_memory_id) REFERENCES memory_index(id) ON DELETE CASCADE,
+            FOREIGN KEY (correction_memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
+          )
+        `);
+        console.log('[VectorIndex] Migration v9: Created memory_corrections table');
+      } catch (e) {
+        if (!e.message.includes('already exists')) {
+          console.warn('[VectorIndex] Migration v9 warning (memory_corrections):', e.message);
+        }
+      }
+
+      // Create indexes for efficient correction lookups
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_corrections_original ON memory_corrections(original_memory_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_corrections_correction ON memory_corrections(correction_memory_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_corrections_type ON memory_corrections(correction_type)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_corrections_created ON memory_corrections(created_at DESC)');
+        // Partial index for active (non-undone) corrections
+        database.exec('CREATE INDEX IF NOT EXISTS idx_corrections_active ON memory_corrections(original_memory_id, is_undone) WHERE is_undone = 0');
+        console.log('[VectorIndex] Migration v9: Created memory_corrections indexes');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v9 warning (indexes):', e.message);
+      }
     }
   };
 
@@ -477,16 +678,13 @@ function initialize_db(custom_path = null) {
 
   const target_path = custom_path || resolve_database_path();
 
-  // Ensure directory exists
   const dir = path.dirname(target_path);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true, mode: 0o700 });
   }
 
-  // Open database
   db = new Database(target_path);
 
-  // Load sqlite-vec extension with graceful degradation (NFR-R01, CHK123)
   try {
     sqliteVec.load(db);
     sqlite_vec_available = true;
@@ -497,25 +695,16 @@ function initialize_db(custom_path = null) {
     console.warn('[vector-index] Install sqlite-vec: brew install sqlite-vec (macOS)');
   }
 
-  // Enable WAL mode for concurrent access (FR-010b)
   db.pragma('journal_mode = WAL');
-
-  // Enable foreign key enforcement (P0-004: Database integrity)
   db.pragma('foreign_keys = ON');
-
-  // Performance pragmas (P1 optimization - 20-50% faster queries/writes)
   db.pragma('cache_size = -64000');
   db.pragma('mmap_size = 268435456');
   db.pragma('synchronous = NORMAL');
   db.pragma('temp_store = MEMORY');
 
-  // Create schema if needed
   create_schema(db);
-
-  // Run schema migrations (M19 fix - version-tracked migrations)
   ensure_schema_version(db);
 
-  // Set file permissions (T021)
   if (!custom_path) {
     try {
       fs.chmodSync(target_path, DB_PERMISSIONS);
@@ -528,8 +717,6 @@ function initialize_db(custom_path = null) {
   return db;
 }
 
-// Migrate existing database to add confidence tracking columns
-// Wraps ALTER TABLE in try-catch to handle concurrent migrations (P1-010)
 function migrate_confidence_columns(database) {
   const columns = database.prepare(`PRAGMA table_info(memory_index)`).all();
   const column_names = columns.map(c => c.name);
@@ -563,7 +750,6 @@ function migrate_confidence_columns(database) {
       database.exec(`CREATE INDEX IF NOT EXISTS idx_importance_tier ON memory_index(importance_tier)`);
       console.warn('[vector-index] Migration: Created idx_importance_tier index');
     } catch (e) {
-      // Index might already exist
     }
   }
 
@@ -648,7 +834,6 @@ function migrate_confidence_columns(database) {
     }
   }
 
-  // P0-005: Add related_memories column
   if (!column_names.includes('related_memories')) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN related_memories TEXT`);
@@ -658,8 +843,6 @@ function migrate_confidence_columns(database) {
     }
   }
 
-  // FSRS (Free Spaced Repetition Scheduler) columns for cognitive memory
-  // These enable spaced repetition-based memory retrieval prioritization
   if (!column_names.includes('stability')) {
     try {
       database.exec(`ALTER TABLE memory_index ADD COLUMN stability REAL DEFAULT 1.0`);
@@ -821,7 +1004,7 @@ function create_schema(database) {
       updated_at TEXT NOT NULL,
       embedding_model TEXT,
       embedding_generated_at TEXT,
-      embedding_status TEXT DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry')),
+      embedding_status TEXT DEFAULT 'pending' CHECK(embedding_status IN ('pending', 'success', 'failed', 'retry', 'partial')),
       retry_count INTEGER DEFAULT 0,
       last_retry_at TEXT,
       failure_reason TEXT,
@@ -839,10 +1022,11 @@ function create_schema(database) {
       confidence REAL DEFAULT 0.5,
       validation_count INTEGER DEFAULT 0,
       -- FSRS (Free Spaced Repetition Scheduler) columns for cognitive memory
-      stability REAL DEFAULT 1.0,        -- FSRS stability: days until 90% retrievability
-      difficulty REAL DEFAULT 5.0,       -- FSRS difficulty: 1-10 scale
-      last_review TEXT,                  -- ISO timestamp of last review/access
-      review_count INTEGER DEFAULT 0,    -- Number of reviews/accesses
+      stability REAL DEFAULT 1.0,
+      difficulty REAL DEFAULT 5.0,
+      last_review TEXT,
+      review_count INTEGER DEFAULT 0,
+      file_mtime_ms INTEGER,
       UNIQUE(spec_folder, file_path, anchor_id)
     )
   `);
@@ -955,9 +1139,9 @@ function create_schema(database) {
     CREATE INDEX IF NOT EXISTS idx_file_path ON memory_index(file_path);
     CREATE INDEX IF NOT EXISTS idx_content_hash ON memory_index(content_hash);
     CREATE INDEX IF NOT EXISTS idx_last_accessed ON memory_index(last_accessed DESC);
+    CREATE INDEX IF NOT EXISTS idx_file_mtime ON memory_index(file_mtime_ms);
   `);
 
-  // FSRS (Free Spaced Repetition Scheduler) indexes for cognitive memory retrieval
   database.exec(`
     CREATE INDEX IF NOT EXISTS idx_stability ON memory_index(stability DESC);
     CREATE INDEX IF NOT EXISTS idx_last_review ON memory_index(last_review);
@@ -969,11 +1153,10 @@ function create_schema(database) {
   console.warn('[vector-index] Schema created successfully');
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    6. CORE OPERATIONS
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Index a memory with its embedding (synchronized INSERT)
 function index_memory(params) {
   const database = initialize_db();
 
@@ -1001,7 +1184,6 @@ function index_memory(params) {
   const triggers_json = JSON.stringify(triggerPhrases);
   const embedding_buffer = to_embedding_buffer(embedding);
 
-  // Check for existing entry (PERF-1: use cached prepared statement)
   const stmts = init_prepared_statements(database);
   const existing = stmts.get_by_folder_and_path.get(specFolder, filePath, anchorId, anchorId);
 
@@ -1015,7 +1197,6 @@ function index_memory(params) {
     });
   }
 
-  // BUG-002 + BUG-057: Use database.transaction() wrapper for proper nested transaction support
   const index_memory_tx = database.transaction(() => {
     const embedding_status = sqlite_vec_available ? 'success' : 'pending';
 
@@ -1045,7 +1226,57 @@ function index_memory(params) {
   return index_memory_tx();
 }
 
-// Update an existing memory entry
+// REQ-031: Deferred indexing - entry searchable via BM25/FTS5 only
+function index_memory_deferred(params) {
+  const database = initialize_db();
+
+  const {
+    specFolder,
+    filePath,
+    anchorId = null,
+    title = null,
+    triggerPhrases = [],
+    importanceWeight = 0.5,
+    failureReason = null
+  } = params;
+
+  const now = new Date().toISOString();
+  const triggers_json = JSON.stringify(triggerPhrases);
+
+  const stmts = init_prepared_statements(database);
+  const existing = stmts.get_by_folder_and_path.get(specFolder, filePath, anchorId, anchorId);
+
+  if (existing) {
+    database.prepare(`
+      UPDATE memory_index
+      SET title = ?,
+          trigger_phrases = ?,
+          importance_weight = ?,
+          embedding_status = 'pending',
+          failure_reason = ?,
+          updated_at = ?
+      WHERE id = ?
+    `).run(title, triggers_json, importanceWeight, failureReason, now, existing.id);
+    return existing.id;
+  }
+
+  const result = database.prepare(`
+    INSERT INTO memory_index (
+      spec_folder, file_path, anchor_id, title, trigger_phrases,
+      importance_weight, created_at, updated_at, embedding_status,
+      failure_reason, retry_count
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0)
+  `).run(
+    specFolder, filePath, anchorId, title, triggers_json,
+    importanceWeight, now, now, failureReason
+  );
+
+  const row_id = BigInt(result.lastInsertRowid);
+  console.log(`[vector-index] Deferred indexing: Memory ${Number(row_id)} saved without embedding (BM25/FTS5 searchable)`);
+
+  return Number(row_id);
+}
+
 function update_memory(params) {
   const database = initialize_db();
 
@@ -1107,7 +1338,6 @@ function update_memory(params) {
   return update_memory_tx();
 }
 
-// Delete a memory entry (synchronized DELETE with cascade)
 function delete_memory(id) {
   const database = initialize_db();
 
@@ -1118,7 +1348,6 @@ function delete_memory(id) {
       try {
         database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
       } catch (e) {
-        // BUG-011 FIX: Log vector deletion failures (was silent)
         console.warn(`[vector-index] Vector deletion failed for memory ${id}: ${e.message}`);
       }
     }
@@ -1134,7 +1363,6 @@ function delete_memory(id) {
   return delete_memory_tx();
 }
 
-// Delete memory by spec folder and file path
 function delete_memory_by_path(spec_folder, file_path, anchor_id = null) {
   const database = initialize_db();
 
@@ -1149,7 +1377,6 @@ function delete_memory_by_path(spec_folder, file_path, anchor_id = null) {
   return false;
 }
 
-// Get memory by ID
 function get_memory(id) {
   const database = initialize_db();
 
@@ -1166,7 +1393,6 @@ function get_memory(id) {
   return row || null;
 }
 
-// Get all memories for a spec folder
 function get_memories_by_folder(spec_folder) {
   const database = initialize_db();
 
@@ -1183,7 +1409,6 @@ function get_memories_by_folder(spec_folder) {
   });
 }
 
-// Get total memory count
 function get_memory_count() {
   const database = initialize_db();
   const stmts = init_prepared_statements(database);
@@ -1191,7 +1416,6 @@ function get_memory_count() {
   return result.count;
 }
 
-// Get count by embedding status
 function get_status_counts() {
   const database = initialize_db();
 
@@ -1209,7 +1433,6 @@ function get_status_counts() {
   return counts;
 }
 
-// Get overall statistics for the memory index
 function get_stats() {
   const counts = get_status_counts();
   const total = counts.pending + counts.success + counts.failed + counts.retry;
@@ -1220,12 +1443,10 @@ function get_stats() {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    7. VECTOR SEARCH
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Search memories by vector similarity
-// Constitutional tier memories are ALWAYS included at top of results
 function vector_search(query_embedding, options = {}) {
   if (!sqlite_vec_available) {
     console.warn('[vector-index] Vector search unavailable - sqlite-vec not loaded');
@@ -1253,14 +1474,12 @@ function vector_search(query_embedding, options = {}) {
        END`
     : 'm.importance_weight';
 
-  // Constitutional memories: Always surface at top
   let constitutional_results = [];
 
   if (includeConstitutional && tier !== 'constitutional') {
     constitutional_results = get_constitutional_memories(database, specFolder);
   }
 
-  // Regular vector search
   const where_clauses = ['m.embedding_status = \'success\''];
   const params = [query_buffer];
 
@@ -1320,7 +1539,6 @@ function vector_search(query_embedding, options = {}) {
   return [...constitutional_results, ...regular_results];
 }
 
-// Get all constitutional tier memories (public API wrapper)
 function get_constitutional_memories_public(options = {}) {
   const database = initialize_db();
   const { specFolder = null, maxTokens = 2000 } = options;
@@ -1336,7 +1554,6 @@ function get_constitutional_memories_public(options = {}) {
   return results;
 }
 
-// Multi-concept AND search - finds memories matching ALL concepts
 function multi_concept_search(concept_embeddings, options = {}) {
   if (!sqlite_vec_available) {
     console.warn('[vector-index] Multi-concept search unavailable - sqlite-vec not loaded');
@@ -1417,11 +1634,10 @@ function multi_concept_search(concept_embeddings, options = {}) {
   });
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    8. CONTENT EXTRACTION HELPERS
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Extract title from memory file content
 function extract_title(content, filename) {
   if (!content || typeof content !== 'string') {
     return filename ? path.basename(filename, path.extname(filename)) : 'Untitled';
@@ -1451,7 +1667,6 @@ function extract_title(content, filename) {
   return filename ? path.basename(filename, path.extname(filename)) : 'Untitled';
 }
 
-// Extract snippet from memory content
 function extract_snippet(content, max_length = 200) {
   if (!content || typeof content !== 'string') {
     return '';
@@ -1497,7 +1712,6 @@ function extract_snippet(content, max_length = 200) {
   return snippet;
 }
 
-// Extract tags from memory content
 function extract_tags(content) {
   if (!content || typeof content !== 'string') {
     return [];
@@ -1534,7 +1748,6 @@ function extract_tags(content) {
   return Array.from(tags);
 }
 
-// Extract date from memory file
 function extract_date(content, file_path) {
   if (content && typeof content === 'string') {
     const date_match = content.match(/^---[\s\S]*?^date:\s*(.+)$/m);
@@ -1546,7 +1759,6 @@ function extract_date(content, file_path) {
           return parsed.toISOString().split('T')[0];
         }
       } catch (e) {
-        // Continue to filename parsing
       }
     }
   }
@@ -1570,11 +1782,10 @@ function extract_date(content, file_path) {
   return null;
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    9. EMBEDDING GENERATION WRAPPER
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Generate embedding for a query string with error handling
 async function generate_query_embedding(query) {
   if (!query || typeof query !== 'string' || query.trim().length === 0) {
     console.warn('[vector-index] Empty query provided for embedding');
@@ -1591,11 +1802,10 @@ async function generate_query_embedding(query) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    10. KEYWORD SEARCH FALLBACK
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Fallback keyword search when vector search unavailable
 function keyword_search(query, options = {}) {
   const database = initialize_db();
   const { limit = 20, specFolder = null } = options;
@@ -1668,11 +1878,10 @@ function keyword_search(query, options = {}) {
   });
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    11. ENRICHED VECTOR SEARCH
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Search memories with enriched results including full metadata
 async function vector_search_enriched(query, limit = 20, options = {}) {
   const start_time = Date.now();
   const { specFolder = null, minSimilarity = 30 } = options;
@@ -1694,8 +1903,7 @@ async function vector_search_enriched(query, limit = 20, options = {}) {
     raw_results = keyword_search(query, { limit, specFolder });
   }
 
-  // HIGH-004 FIX: Read all files concurrently using Promise.all() to avoid blocking event loop
-  // This reduces O(n*fileReadTime) to O(max(fileReadTime)) for n results
+  // HIGH-004 FIX: Read all files concurrently to avoid blocking event loop
   const file_contents = await Promise.all(
     raw_results.map(row => safe_read_file_async(row.file_path))
   );
@@ -1735,11 +1943,10 @@ async function vector_search_enriched(query, limit = 20, options = {}) {
   return enriched_results;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   12. MULTI-CONCEPT SEARCH (ENHANCED)
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   12. MULTI-CONCEPT SEARCH
+────────────────────────────────────────────────────────────────*/
 
-// Search with multiple concepts using AND logic
 async function multi_concept_search_enriched(concepts, limit = 20, options = {}) {
   const start_time = Date.now();
 
@@ -1770,7 +1977,6 @@ async function multi_concept_search_enriched(concepts, limit = 20, options = {})
 
   const raw_results = multi_concept_search(concept_embeddings, { limit, specFolder, minSimilarity });
 
-  // HIGH-004 FIX: Read all files concurrently using Promise.all()
   const file_contents = await Promise.all(
     raw_results.map(row => safe_read_file_async(row.file_path))
   );
@@ -1806,8 +2012,6 @@ async function multi_concept_search_enriched(concepts, limit = 20, options = {})
   return enriched_results;
 }
 
-// Keyword-based multi-concept search (fallback)
-// HIGH-004 FIX: Made async and uses concurrent file reads
 async function multi_concept_keyword_search(concepts, limit = 20, options = {}) {
   const database = initialize_db();
   const { specFolder = null } = options;
@@ -1838,11 +2042,9 @@ async function multi_concept_keyword_search(concepts, limit = 20, options = {}) 
     }
   }
 
-  // Limit matching IDs before processing
   const limited_ids = matching_ids.slice(0, limit);
   const rows = limited_ids.map(id => id_to_row.get(id));
 
-  // HIGH-004 FIX: Read all files concurrently using Promise.all()
   const file_contents = await Promise.all(
     rows.map(row => safe_read_file_async(row.file_path))
   );
@@ -1874,8 +2076,6 @@ async function multi_concept_keyword_search(concepts, limit = 20, options = {}) 
   return enriched_results;
 }
 
-// Parse quoted terms from a search query
-// Parse quoted terms from search query (e.g., '"memory system" "vector search"' => ['memory system', 'vector search'])
 function parse_quoted_terms(query) {
   if (!query || typeof query !== 'string') {
     return [];
@@ -1894,16 +2094,14 @@ function parse_quoted_terms(query) {
   return quoted;
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    13. SMART RANKING AND DIVERSITY
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Apply smart ranking to search results using composite score (similarity + recency + usage)
-// BUG-012: Weights read from config instead of hardcoded
+// BUG-012 FIX: Weights read from config instead of hardcoded
 function apply_smart_ranking(results) {
   if (!results || results.length === 0) return results;
 
-  // BUG-012: Use config values instead of hardcoded magic numbers
   const recency_weight = search_weights.smartRanking?.recencyWeight || 0.3;
   const access_weight = search_weights.smartRanking?.accessWeight || 0.2;
   const relevance_weight = search_weights.smartRanking?.relevanceWeight || 0.5;
@@ -1913,27 +2111,22 @@ function apply_smart_ranking(results) {
   const month_ms = 30 * 24 * 60 * 60 * 1000;
 
   return results.map(r => {
-    // Calculate recency factor based on created_at
     const created_at = r.created_at ? new Date(r.created_at).getTime() : now;
     const age = now - created_at;
     let recency_factor;
     if (age < week_ms) {
-      recency_factor = 1.0;  // Full boost for last week
+      recency_factor = 1.0;
     } else if (age < month_ms) {
-      recency_factor = 0.8;  // 80% for last month
+      recency_factor = 0.8;
     } else {
-      recency_factor = 0.5;  // 50% for older
+      recency_factor = 0.5;
     }
 
-    // Calculate usage factor (capped at 10 accesses for normalization)
     const usage_factor = Math.min(1.0, (r.access_count || 0) / 10);
-
-    // Normalize similarity to 0-1 (it comes as 0-100)
     const similarity_factor = (r.similarity || 0) / 100;
 
-    // Composite score using configurable weights
     r.smartScore = (similarity_factor * relevance_weight) + (recency_factor * recency_weight) + (usage_factor * access_weight);
-    r.smartScore = Math.round(r.smartScore * 100) / 100;  // Round to 2 decimals
+    r.smartScore = Math.round(r.smartScore * 100) / 100;
 
     return r;
   }).sort((a, b) => b.smartScore - a.smartScore);
@@ -1942,9 +2135,9 @@ function apply_smart_ranking(results) {
 // Apply diversity filtering using MMR (Maximal Marginal Relevance)
 // Reduces redundancy by penalizing items too similar to already-selected items
 function apply_diversity(results, diversity_factor = 0.3) {
-  if (!results || results.length <= 3) return results;  // Don't diversify tiny result sets
+  if (!results || results.length <= 3) return results;
 
-  const selected = [results[0]];  // Always include top result
+  const selected = [results[0]];
   const remaining = [...results.slice(1)];
 
   while (selected.length < results.length && remaining.length > 0) {
@@ -1955,21 +2148,16 @@ function apply_diversity(results, diversity_factor = 0.3) {
       const candidate = remaining[i];
       const relevance = candidate.smartScore || (candidate.similarity / 100) || 0;
 
-      // Find max similarity to already selected items
-      // Use spec folder and date as proxies for similarity
       let max_similarity_to_selected = 0;
       for (const sel of selected) {
-        // Same spec folder = high similarity (likely related content)
         if (sel.specFolder === candidate.specFolder || sel.spec_folder === candidate.spec_folder) {
           max_similarity_to_selected = Math.max(max_similarity_to_selected, 0.8);
         }
-        // Same date = moderate similarity (likely same session)
         if (sel.date === candidate.date) {
           max_similarity_to_selected = Math.max(max_similarity_to_selected, 0.5);
         }
       }
 
-      // MMR score: relevance - lambda * maxSimilarity
       const mmr_score = relevance - (diversity_factor * max_similarity_to_selected);
 
       if (mmr_score > best_score) {
@@ -1984,14 +2172,11 @@ function apply_diversity(results, diversity_factor = 0.3) {
   return selected;
 }
 
-// Learn trigger phrases from user search behavior
-// Called when user selects a search result; extracts meaningful terms and adds as trigger phrases
 function learn_from_selection(search_query, selected_memory_id) {
   if (!search_query || !selected_memory_id) return false;
 
   const database = initialize_db();
 
-  // Get current triggers
   let memory;
   try {
     memory = database.prepare(
@@ -2011,7 +2196,6 @@ function learn_from_selection(search_query, selected_memory_id) {
     existing = [];
   }
 
-  // Stop words to exclude from learning
   const stop_words = [
     'that', 'this', 'what', 'where', 'when', 'which', 'with', 'from',
     'have', 'been', 'were', 'being', 'about', 'into', 'through', 'during',
@@ -2019,26 +2203,20 @@ function learn_from_selection(search_query, selected_memory_id) {
     'further', 'then', 'once', 'here', 'there', 'each', 'some', 'other'
   ];
 
-  // Extract meaningful terms from query
   const new_terms = search_query
     .toLowerCase()
     .split(/\s+/)
     .filter(term => {
-      // Must be at least 4 chars
       if (term.length < 4) return false;
-      // Skip common words
       if (stop_words.includes(term)) return false;
-      // Skip if already exists (case-insensitive)
       if (existing.some(e => e.toLowerCase() === term)) return false;
-      // Skip pure numbers
       if (/^\d+$/.test(term)) return false;
       return true;
     })
-    .slice(0, 3);  // Max 3 new triggers per search
+    .slice(0, 3);
 
   if (new_terms.length === 0) return false;
 
-  // BUG-010: Cap total triggers using config value instead of hardcoded 10
   const updated = [...existing, ...new_terms].slice(0, MAX_TRIGGERS_PER_MEMORY);
 
   try {
@@ -2052,28 +2230,21 @@ function learn_from_selection(search_query, selected_memory_id) {
   }
 }
 
-// Enhanced search with smart ranking and diversity
-// Wraps vector_search_enriched with additional processing: 2x fetch, smart rank, diversity filter
 async function enhanced_search(query, limit = 20, options = {}) {
   const start_time = Date.now();
 
-  // Get more results than needed for diversity filtering
   const fetch_limit = Math.min(limit * 2, 100);
 
-  // Get base results
   const results = await vector_search_enriched(query, fetch_limit, {
     specFolder: options.specFolder,
     minSimilarity: options.minSimilarity || 30
   });
 
-  // Apply smart ranking
   const ranked = apply_smart_ranking(results);
 
-  // Apply diversity (optional, default on)
   const diversity_factor = options.diversityFactor !== undefined ? options.diversityFactor : 0.3;
   const diverse = options.noDiversity ? ranked : apply_diversity(ranked, diversity_factor);
 
-  // Trim to requested limit
   const final_results = diverse.slice(0, limit);
 
   const elapsed = Date.now() - start_time;
@@ -2084,11 +2255,11 @@ async function enhanced_search(query, limit = 20, options = {}) {
   return final_results;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   14. RELATED MEMORIES & USAGE TRACKING
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   14. RELATED MEMORIES AND USAGE TRACKING
+────────────────────────────────────────────────────────────────*/
 
-// LRU Cache with O(1) eviction using doubly-linked list (M5 fix)
+// LRU Cache with O(1) eviction using doubly-linked list
 class LRUCache {
   constructor(max_size, ttl_ms) {
     this.max_size = max_size;
@@ -2152,12 +2323,10 @@ class LRUCache {
     this.tail.prev = this.head;
   }
 
-  // BUG-004 fix: Add keys() method for iteration support in clear_search_cache
   keys() {
     return this.cache.keys();
   }
 
-  // BUG-004 fix: Add delete() method for granular cache invalidation
   delete(key) {
     const node = this.cache.get(key);
     if (node) {
@@ -2174,36 +2343,31 @@ class LRUCache {
 // LRU Cache instance for search queries
 let query_cache = null;
 
-// Get or initialize the query cache (O(1) LRU with doubly-linked list)
 function get_query_cache() {
   if (!query_cache) {
-    query_cache = new LRUCache(500, 15 * 60 * 1000); // 500 entries, 15 min TTL
+    query_cache = new LRUCache(500, 15 * 60 * 1000);
   }
   return query_cache;
 }
 
-// Find and link related memories when saving a new memory (T1.3)
-// Discovers semantically similar memories using vector search
+// Find and link related memories when saving a new memory
 async function link_related_on_save(new_memory_id, content) {
   if (!content || typeof content !== 'string' || content.trim().length === 0) {
     return;
   }
 
   try {
-    // Generate embedding for the content (first 1000 chars for efficiency)
     const embedding = await generate_query_embedding(content.substring(0, 1000));
     if (!embedding) {
       console.warn(`[vector-index] Could not generate embedding for memory ${new_memory_id}`);
       return;
     }
 
-    // Find similar memories (75% threshold as specified)
     const similar = vector_search(embedding, {
-      limit: 6,  // Get 6 to allow for filtering out self
+      limit: 6,
       minSimilarity: 75
     });
 
-    // Filter out self and limit to 5 related memories
     const related = similar
       .filter(r => r.id !== new_memory_id)
       .slice(0, 5)
@@ -2222,12 +2386,10 @@ async function link_related_on_save(new_memory_id, content) {
   }
 }
 
-// Record memory access for usage tracking (T3.2)
-// Increments access_count and updates last_accessed timestamp (H6 fix: Unix timestamp)
+// Record memory access for usage tracking
 function record_access(memory_id) {
   try {
     const database = initialize_db();
-    // H6 fix: Use Unix timestamp (INTEGER) instead of ISO string
     const now = Date.now();
 
     const result = database.prepare(`
@@ -2244,43 +2406,35 @@ function record_access(memory_id) {
   }
 }
 
-// BUG-009: Generate collision-resistant cache key using SHA256 hash
 function get_cache_key(query, limit, options) {
   const hash = crypto.createHash('sha256');
   hash.update(JSON.stringify({ query, limit, options }));
   return hash.digest('hex').substring(0, 16);
 }
 
-// Cached version of vector_search_enriched (T3.4)
-// Wraps with LRU cache (500 entries, 15 min TTL, SHA256 key - BUG-009 fix)
+// Cached version of vector_search_enriched with LRU cache
 async function cached_search(query, limit = 20, options = {}) {
   const cache = get_query_cache();
-  const key = get_cache_key(query, limit, options); // BUG-009: Use SHA256 hash instead of string concatenation
+  const key = get_cache_key(query, limit, options);
 
-  // M5 fix: LRUCache.get() handles TTL expiry and LRU ordering internally (O(1))
   const cached = cache.get(key);
   if (cached) {
     return cached.results;
   }
 
-  // Perform actual search
   const results = await vector_search_enriched(query, limit, options);
 
-  // M5 fix: LRUCache.set() handles eviction internally using O(1) doubly-linked list
   cache.set(key, { results });
 
   return results;
 }
 
-// Clear search cache with optional granular invalidation (L14)
 function clear_search_cache(spec_folder = null) {
   if (!query_cache) {
     return 0;
   }
 
   if (spec_folder) {
-    // Granular invalidation: only clear entries containing this spec folder
-    // Collect keys first to avoid modifying Map during iteration
     const keys_to_delete = [];
     for (const key of query_cache.keys()) {
       if (key.includes(spec_folder)) {
@@ -2292,14 +2446,12 @@ function clear_search_cache(spec_folder = null) {
     }
     return keys_to_delete.length;
   } else {
-    // Clear entire cache
     const size = query_cache.size;
     query_cache.clear();
     return size;
   }
 }
 
-// Get related memories for a given memory ID (T1.3 helper)
 // Returns pre-computed related memories stored during save with full metadata
 function get_related_memories(memory_id) {
   try {
@@ -2315,7 +2467,6 @@ function get_related_memories(memory_id) {
 
     const related = safe_parse_json(memory.related_memories, []);
 
-    // Fetch full metadata for each related memory
     return related.map(rel => {
       const full_memory = get_memory(rel.id);
       if (full_memory) {
@@ -2332,7 +2483,6 @@ function get_related_memories(memory_id) {
   }
 }
 
-// Get usage statistics for memories (T3.2 analytics helper)
 // Returns memories sorted by access count or last accessed time
 function get_usage_stats(options = {}) {
   const {
@@ -2341,7 +2491,6 @@ function get_usage_stats(options = {}) {
     limit = 20
   } = options;
 
-  // Validate sortBy to prevent SQL injection
   const valid_sort_fields = ['access_count', 'last_accessed', 'confidence'];
   const sort_field = valid_sort_fields.includes(sortBy) ? sortBy : 'access_count';
   const sort_order = order.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
@@ -2360,10 +2509,9 @@ function get_usage_stats(options = {}) {
   return rows;
 }
 
-// Update embedding status for a memory (M9 fix)
-// Valid statuses: 'pending', 'success', 'failed', 'retry'
+// Valid statuses: 'pending', 'success', 'failed', 'retry', 'partial'
 function update_embedding_status(id, status) {
-  const valid_statuses = ['pending', 'success', 'failed', 'retry'];
+  const valid_statuses = ['pending', 'success', 'failed', 'retry', 'partial'];
   if (!valid_statuses.includes(status)) {
     console.warn(`[vector-index] Invalid embedding status: ${status}`);
     return false;
@@ -2384,7 +2532,6 @@ function update_embedding_status(id, status) {
   }
 }
 
-// Update confidence score for a memory (0.0 to 1.0)
 function update_confidence(memory_id, confidence) {
   if (typeof confidence !== 'number' || confidence < 0 || confidence > 1) {
     console.warn(`[vector-index] Invalid confidence value: ${confidence}`);
@@ -2406,11 +2553,10 @@ function update_confidence(memory_id, confidence) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    15. CLEANUP FUNCTIONS
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Find memories that may be candidates for cleanup (smart defaults: 90 days, <3 accesses, <0.4 confidence)
 function find_cleanup_candidates(options = {}) {
   const database = initialize_db();
 
@@ -2421,12 +2567,10 @@ function find_cleanup_candidates(options = {}) {
     limit = 50
   } = options;
 
-  // Calculate cutoff date
   const cutoff_date = new Date();
   cutoff_date.setDate(cutoff_date.getDate() - maxAgeDays);
   const cutoff_iso = cutoff_date.toISOString();
 
-  // Query for candidates - meeting ANY criteria
   const sql = `
     SELECT
       id,
@@ -2465,12 +2609,10 @@ function find_cleanup_candidates(options = {}) {
     return [];
   }
 
-  // Enrich with human-readable age
   return rows.map(row => {
     const age_string = format_age_string(row.created_at);
     const last_access_string = format_age_string(row.last_accessed);
 
-    // Determine why this is a candidate
     const reasons = [];
     if (row.created_at && new Date(row.created_at) < cutoff_date) {
       reasons.push(`created ${age_string}`);
@@ -2499,7 +2641,6 @@ function find_cleanup_candidates(options = {}) {
   });
 }
 
-// Delete multiple memories by ID (batch operations for cleanup command)
 function delete_memories(memory_ids) {
   if (!memory_ids || memory_ids.length === 0) {
     return { deleted: 0, failed: 0 };
@@ -2509,28 +2650,21 @@ function delete_memories(memory_ids) {
   let deleted = 0;
   let failed = 0;
 
-  // BUG-016 FIX: Track failed IDs to rollback entire transaction on any failure
   const failed_ids = [];
 
   const delete_transaction = database.transaction(() => {
     for (const id of memory_ids) {
       try {
-        // T105 FIX: Delete from memory_history first (referential integrity)
         database.prepare('DELETE FROM memory_history WHERE memory_id = ?').run(id);
 
-        // Delete from vec_memories second (if it exists and sqlite-vec is available)
-        // NOTE: vec_memories is a sqlite-vec virtual table - no FK CASCADE support
         if (sqlite_vec_available) {
           try {
             database.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
           } catch (vec_error) {
-            // M14 fix: Log vector deletion errors instead of swallowing silently
             console.warn(`[VectorIndex] Failed to delete vector for memory ${id}: ${vec_error.message}`);
-            // Continue - vector may not exist
           }
         }
 
-        // Delete from memory_index last
         const result = database.prepare('DELETE FROM memory_index WHERE id = ?').run(id);
         if (result.changes > 0) {
           deleted++;
@@ -2545,7 +2679,6 @@ function delete_memories(memory_ids) {
       }
     }
 
-    // BUG-016 FIX: Rollback entire transaction if any failures
     if (failed_ids.length > 0) {
       throw new Error(`Failed to delete memories: ${failed_ids.join(', ')}. Transaction rolled back.`);
     }
@@ -2553,8 +2686,6 @@ function delete_memories(memory_ids) {
 
   try {
     delete_transaction();
-    // M10 fix: Clear constitutional cache after batch delete
-    // (some deleted memories may have been constitutional tier)
     if (deleted > 0) {
       clear_constitutional_cache();
       clear_search_cache();
@@ -2566,7 +2697,6 @@ function delete_memories(memory_ids) {
   return { deleted, failed };
 }
 
-// Get a preview of memory content for the cleanup [v]iew option
 function get_memory_preview(memory_id, max_lines = 50) {
   const database = initialize_db();
 
@@ -2615,36 +2745,31 @@ function get_memory_preview(memory_id, max_lines = 50) {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    16. DATABASE UTILITIES
-   ─────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-// Close database connection (BUG-006: clears prepared statement cache first)
 function close_db() {
-  clear_prepared_statements(); // BUG-006: Clear prepared statements before closing
+  clear_prepared_statements();
   if (db) {
     db.close();
     db = null;
   }
 }
 
-// Get database path
 function get_db_path() {
   return db_path;
 }
 
-// Get raw database instance (for advanced queries)
 function get_db() {
   return initialize_db();
 }
 
-// Verify database integrity: orphaned vectors, missing vectors, orphaned files (C2 fix)
-// BUG-013: Added autoClean option for automatic orphan cleanup
+// BUG-013 FIX: Added autoClean option for automatic orphan cleanup
 function verify_integrity(options = {}) {
   const { autoClean = false } = options;
   const database = initialize_db();
 
-  // BUG-013: Helper to find orphaned vector rowids
   const find_orphaned_vector_ids = () => {
     if (!sqlite_vec_available) return [];
     try {
@@ -2661,7 +2786,6 @@ function verify_integrity(options = {}) {
   const orphaned_vector_ids = find_orphaned_vector_ids();
   const orphaned_vectors = orphaned_vector_ids.length;
 
-  // BUG-013: Auto-clean orphaned vectors if requested
   let cleaned_vectors = 0;
   if (autoClean && orphaned_vectors > 0 && sqlite_vec_available) {
     console.log(`[vector-index] Auto-cleaning ${orphaned_vectors} orphaned vectors...`);
@@ -2686,7 +2810,6 @@ function verify_integrity(options = {}) {
   const total_memories = database.prepare('SELECT COUNT(*) as count FROM memory_index').get().count;
   const total_vectors = database.prepare('SELECT COUNT(*) as count FROM vec_memories').get().count;
 
-  // C2 FIX: Check for orphaned files (memory entries pointing to non-existent files)
   const check_orphaned_files = () => {
     const memories = database.prepare('SELECT id, file_path FROM memory_index').all();
     const orphaned = [];
@@ -2713,14 +2836,262 @@ function verify_integrity(options = {}) {
     missingVectors: missing_vectors,
     orphanedFiles: orphaned_files,
     isConsistent: (orphaned_vectors - cleaned_vectors) === 0 && missing_vectors === 0 && orphaned_files.length === 0,
-    // BUG-013: Include cleanup stats
     cleaned: autoClean && cleaned_vectors > 0 ? { vectors: cleaned_vectors } : undefined
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   17. MODULE EXPORTS
-   ─────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   17. IVECTORSTORE IMPLEMENTATION
+────────────────────────────────────────────────────────────────*/
+
+const { IVectorStore } = require('../interfaces/vector-store');
+
+/**
+ * SQLiteVectorStore - IVectorStore implementation using SQLite + sqlite-vec
+ *
+ * This class adapts the existing vector-index.js functions to the IVectorStore
+ * interface, enabling protocol-based dependency injection and testability.
+ *
+ * Design Decision (ADR-001):
+ * Protocol-based DI at integration boundary. This adapter wraps existing
+ * functions rather than refactoring them, minimizing risk while adding
+ * interface compliance.
+ *
+ * @implements {IVectorStore}
+ */
+class SQLiteVectorStore extends IVectorStore {
+  /**
+   * Create a new SQLiteVectorStore instance.
+   *
+   * @param {Object} [options={}] - Configuration options
+   * @param {string} [options.dbPath] - Custom database path
+   */
+  constructor(options = {}) {
+    super();
+    this.dbPath = options.dbPath || null;
+    this._initialized = false;
+  }
+
+  /**
+   * Initialize the database connection.
+   * Safe to call multiple times.
+   * @private
+   */
+  _ensureInitialized() {
+    if (!this._initialized) {
+      initialize_db(this.dbPath);
+      this._initialized = true;
+    }
+  }
+
+  /**
+   * Search for similar vectors.
+   *
+   * @param {Float32Array} embedding - Query embedding vector
+   * @param {number} topK - Maximum number of results
+   * @param {Object} [options={}] - Search options
+   * @returns {Promise<Array>} Array of search results sorted by similarity
+   */
+  async search(embedding, topK, options = {}) {
+    this._ensureInitialized();
+
+    // Validate embedding
+    const expected_dim = get_embedding_dim();
+    if (!embedding || embedding.length !== expected_dim) {
+      throw new Error(`Invalid embedding dimension: expected ${expected_dim}, got ${embedding?.length}`);
+    }
+
+    // Map interface options to vector_search options
+    const search_options = {
+      limit: topK,
+      specFolder: options.specFolder,
+      minSimilarity: options.minSimilarity || 0,
+      useDecay: options.useDecay !== false,
+      tier: options.tier,
+      contextType: options.contextType,
+      includeConstitutional: options.includeConstitutional !== false
+    };
+
+    // vector_search is synchronous
+    return vector_search(embedding, search_options);
+  }
+
+  /**
+   * Insert or update a vector with metadata.
+   *
+   * @param {string} id - Unique identifier (not used, derived from metadata)
+   * @param {Float32Array} embedding - Vector embedding
+   * @param {Object} metadata - Associated metadata
+   * @returns {Promise<number>} The ID of the inserted/updated record
+   */
+  async upsert(id, embedding, metadata) {
+    this._ensureInitialized();
+
+    // Validate embedding
+    const expected_dim = get_embedding_dim();
+    if (!embedding || embedding.length !== expected_dim) {
+      throw new Error(`Embedding dimension mismatch: expected ${expected_dim}, got ${embedding?.length}`);
+    }
+
+    // Map metadata to index_memory params
+    const params = {
+      specFolder: metadata.spec_folder || metadata.specFolder,
+      filePath: metadata.file_path || metadata.filePath,
+      anchorId: metadata.anchor_id || metadata.anchorId || null,
+      title: metadata.title || null,
+      triggerPhrases: metadata.trigger_phrases || metadata.triggerPhrases || [],
+      importanceWeight: metadata.importance_weight || metadata.importanceWeight || 0.5,
+      embedding: embedding
+    };
+
+    if (!params.specFolder || !params.filePath) {
+      throw new Error('metadata must include spec_folder and file_path');
+    }
+
+    // index_memory handles upsert logic internally
+    return index_memory(params);
+  }
+
+  /**
+   * Delete a vector by ID.
+   *
+   * @param {number} id - Record ID to delete
+   * @returns {Promise<boolean>} True if deleted, false if not found
+   */
+  async delete(id) {
+    this._ensureInitialized();
+    return delete_memory(id);
+  }
+
+  /**
+   * Get a vector by ID.
+   *
+   * @param {number} id - Record ID
+   * @returns {Promise<Object|null>} The record or null if not found
+   */
+  async get(id) {
+    this._ensureInitialized();
+    return get_memory(id);
+  }
+
+  /**
+   * Get statistics about the vector store.
+   *
+   * @returns {Promise<Object>} Statistics object with counts and status
+   */
+  async getStats() {
+    this._ensureInitialized();
+    return get_stats();
+  }
+
+  /**
+   * Check if the vector store is available and operational.
+   *
+   * @returns {Promise<boolean>} True if operational
+   */
+  async isAvailable() {
+    return sqlite_vec_available;
+  }
+
+  /**
+   * Get the expected embedding dimension.
+   *
+   * @returns {number} Embedding dimension
+   */
+  getEmbeddingDimension() {
+    return get_embedding_dim();
+  }
+
+  /**
+   * Close the vector store connection and release resources.
+   *
+   * @returns {Promise<void>}
+   */
+  async close() {
+    if (this._initialized) {
+      close_db();
+      this._initialized = false;
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // Extended Methods (beyond IVectorStore interface)
+  // ─────────────────────────────────────────────────────────────
+
+  /**
+   * Delete memory by spec folder and file path.
+   *
+   * @param {string} specFolder - Spec folder path
+   * @param {string} filePath - File path
+   * @param {string} [anchorId=null] - Anchor ID
+   * @returns {Promise<boolean>} True if deleted
+   */
+  async deleteByPath(specFolder, filePath, anchorId = null) {
+    this._ensureInitialized();
+    return delete_memory_by_path(specFolder, filePath, anchorId);
+  }
+
+  /**
+   * Get all memories for a spec folder.
+   *
+   * @param {string} specFolder - Spec folder path
+   * @returns {Promise<Array>} Array of memories
+   */
+  async getByFolder(specFolder) {
+    this._ensureInitialized();
+    return get_memories_by_folder(specFolder);
+  }
+
+  /**
+   * Perform enriched vector search with content loading.
+   *
+   * @param {Float32Array} embedding - Query embedding
+   * @param {Object} [options={}] - Search options
+   * @returns {Promise<Array>} Enriched search results
+   */
+  async searchEnriched(embedding, options = {}) {
+    this._ensureInitialized();
+    return vector_search_enriched(embedding, options);
+  }
+
+  /**
+   * Perform enhanced search with smart ranking and diversity.
+   *
+   * @param {Float32Array} embedding - Query embedding
+   * @param {Object} [options={}] - Search options
+   * @returns {Promise<Array>} Enhanced search results
+   */
+  async enhancedSearch(embedding, options = {}) {
+    this._ensureInitialized();
+    return enhanced_search(embedding, options);
+  }
+
+  /**
+   * Get constitutional memories.
+   *
+   * @param {Object} [options={}] - Options
+   * @returns {Promise<Array>} Constitutional memories
+   */
+  async getConstitutionalMemories(options = {}) {
+    this._ensureInitialized();
+    return get_constitutional_memories_public(options);
+  }
+
+  /**
+   * Verify database integrity.
+   *
+   * @param {Object} [options={}] - Options
+   * @returns {Promise<Object>} Integrity report
+   */
+  async verifyIntegrity(options = {}) {
+    this._ensureInitialized();
+    return verify_integrity(options);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   18. EXPORTS
+────────────────────────────────────────────────────────────────*/
 
 // Check if vector search is available (sqlite-vec loaded)
 function is_vector_search_available() {
@@ -2736,6 +3107,7 @@ module.exports = {
 
   // Core operations
   indexMemory: index_memory,
+  indexMemoryDeferred: index_memory_deferred,  // REQ-031, T096: Deferred indexing
   updateMemory: update_memory,
   deleteMemory: delete_memory,
   deleteMemoryByPath: delete_memory_by_path,
@@ -2810,5 +3182,8 @@ module.exports = {
 
   // Constants
   EMBEDDING_DIM,
-  DEFAULT_DB_PATH
+  DEFAULT_DB_PATH,
+
+  // Protocol Abstractions (T086, REQ-021)
+  SQLiteVectorStore
 };

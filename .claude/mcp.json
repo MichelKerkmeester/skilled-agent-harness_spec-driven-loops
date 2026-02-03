@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "sequential_thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "spec_kit_memory": {
+      "command": "node",
+      "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"],
+      "env": {
+        "EMBEDDINGS_PROVIDER": "auto",
+        "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
+        "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
+        "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
+        "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
+        "_NOTE_3_AUTO_DETECTION": "Provider priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local fallback",
+        "_NOTE_4_EMBEDDINGS_PROVIDER": "Set to: 'auto' (default), 'voyage', 'openai', or 'hf-local' to force specific provider",
+        "_NOTE_5_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys (recommended, 8% better than OpenAI)",
+        "_NOTE_6_GET_OPENAI_KEY": "Get OpenAI key: https://platform.openai.com/api-keys",
+        "_NOTE_7_LOCAL_EMBEDDINGS": "For offline/free: set EMBEDDINGS_PROVIDER=hf-local (uses @xenova/transformers, no API needed)"
+      }
+    },
+    "code_mode": {
+      "command": "node",
+      "args": [".opencode/skill/mcp-code-mode/mcp_server/dist/index.js"],
+      "env": {
+        "UTCP_CONFIG_FILE": ".utcp_config.json"
+      }
+    }
+  }
+}

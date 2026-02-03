@@ -202,15 +202,31 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+## 9. 📊 SPEC TRACEABILITY
+
+This decision matrix addresses the following spec requirements:
+
+| Requirement | Section | Description                                       |
+| ----------- | ------- | ------------------------------------------------- |
+| REQ-011     | §4.1    | Complexity scoring algorithm and dimensions       |
+| REQ-012     | §4.2    | Score-to-level mapping (0-25, 26-55, 56-79, 80+)  |
+| REQ-013     | §4.3    | Dimension signals and keyword detection           |
+| REQ-014     | §4.4    | Feature enablement based on complexity            |
+| REQ-015     | §4.5    | Override conditions for manual level selection    |
+
+**Source**: `.opencode/skill/system-spec-kit/spec.md`
+
+---
+
+## 10. 🔗 RELATED RESOURCES
 
 ### Asset Files
+- [level_decision_matrix.md](./level_decision_matrix.md) - LOC-based level selection and progressive enhancement
 - [template_mapping.md](./template_mapping.md) - Template routing with copy commands
-- [level_decision_matrix.md](./level_decision_matrix.md) - Level selection decision matrix
 - [parallel_dispatch_config.md](./parallel_dispatch_config.md) - Complexity scoring and agent dispatch
 
 ### Reference Files
-- [level_specifications.md](../references/templates/level_specifications.md) - Complete Level 1-3 requirements
+- [level_specifications.md](../references/templates/level_specifications.md) - Complete Level 1-3+ requirements
 - [template_guide.md](../references/template_guide.md) - Template selection and quality standards
 
 ### Scripts

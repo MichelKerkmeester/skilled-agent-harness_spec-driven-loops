@@ -6,7 +6,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. PATTERN CONSTANTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const PATTERNS = {
   LINEAR: 'linear',
@@ -32,7 +32,7 @@ const COMPLEXITY = {
 
 /* ─────────────────────────────────────────────────────────────
    2. HELPER FUNCTIONS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function pad(text, length) {
   return text.substring(0, length).padEnd(length);
@@ -40,7 +40,7 @@ function pad(text, length) {
 
 /* ─────────────────────────────────────────────────────────────
    3. PATTERN DETECTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Linear (≤4 phases) or parallel (>4 phases)
 function detect_workflow_pattern(phases = []) {
@@ -50,7 +50,7 @@ function detect_workflow_pattern(phases = []) {
 
 /* ─────────────────────────────────────────────────────────────
    4. FLOWCHART GENERATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function generate_conversation_flowchart(phases = [], initial_request = 'User Request') {
   if (phases.length === 0) {
@@ -224,7 +224,7 @@ SYNCHRONIZATION POINT
 
 /* ─────────────────────────────────────────────────────────────
    5. PHASE DETAILS & FEATURES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function build_phase_details(phases = []) {
   return phases.map((phase, index) => ({
@@ -290,7 +290,7 @@ function get_pattern_use_cases(pattern_type = 'linear') {
 
 /* ─────────────────────────────────────────────────────────────
    6. DIAGRAM CLASSIFICATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // Classifies ASCII art using 7 core patterns from workflows-documentation
 function classify_diagram_pattern(ascii_art) {
@@ -337,7 +337,7 @@ function classify_diagram_pattern(ascii_art) {
 
 /* ─────────────────────────────────────────────────────────────
    7. MODULE EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Snake_case exports (original)

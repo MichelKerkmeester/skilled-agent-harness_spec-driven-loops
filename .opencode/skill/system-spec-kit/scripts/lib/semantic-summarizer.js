@@ -9,7 +9,7 @@ const { extractTriggerPhrases } = require('./trigger-extractor');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONSTANTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const MESSAGE_TYPES = {
   INTENT: 'intent',
@@ -60,7 +60,7 @@ const DESC_MAX_LENGTH = 100;
 
 /* ─────────────────────────────────────────────────────────────
    2. MESSAGE CLASSIFICATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function classify_message(content) {
   if (!content || typeof content !== 'string') {
@@ -101,7 +101,7 @@ function classify_messages(messages) {
 
 /* ─────────────────────────────────────────────────────────────
    3. FILE CHANGE EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function find_file_position(content, file_path, search_from = 0) {
   const search_content = content.substring(search_from);
@@ -222,7 +222,7 @@ function extract_file_changes(messages, observations = []) {
 
 /* ─────────────────────────────────────────────────────────────
    4. DESCRIPTION UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function clean_description(desc) {
   if (!desc) return '';
@@ -345,7 +345,7 @@ function extract_change_description(context, file_path) {
 
 /* ─────────────────────────────────────────────────────────────
    5. DECISION EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function extract_decisions(messages) {
   const decisions = [];
@@ -390,7 +390,7 @@ function extract_decisions(messages) {
 
 /* ─────────────────────────────────────────────────────────────
    6. IMPLEMENTATION SUMMARY GENERATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function generate_implementation_summary(messages, observations = []) {
   const classified = classify_messages(messages);
@@ -570,7 +570,7 @@ function format_summary_as_markdown(summary) {
 
 /* ─────────────────────────────────────────────────────────────
    7. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Snake_case exports (original)

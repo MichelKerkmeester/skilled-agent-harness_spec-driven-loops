@@ -6,19 +6,19 @@
 
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1--overview)
-- [2. QUICK START](#2--quick-start)
-- [3. STRUCTURE](#3--structure)
-- [4. FEATURES](#4--features)
-- [5. USAGE EXAMPLES](#5--usage-examples)
-- [6. EXTRACTOR DETAILS](#6--extractor-details)
-- [7. DATA FLOW](#7--data-flow)
-- [8. TROUBLESHOOTING](#8--troubleshooting)
-- [9. RELATED DOCUMENTS](#9--related-documents)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🗂️ EXTRACTOR DETAILS](#6--extractor-details)
+- [7. 🔄 DATA FLOW](#7--data-flow)
+- [8. 🛠️ TROUBLESHOOTING](#8--troubleshooting)
+- [9. 📚 RELATED DOCUMENTS](#9--related-documents)
 
 ---
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 
 ### What are Extractors?
 
@@ -54,7 +54,7 @@ Extractors are the data processing layer of the system-spec-kit memory system. E
 
 ---
 
-## 2. QUICK START
+## 2. 🚀 QUICK START
 
 ### Basic Usage
 
@@ -96,7 +96,7 @@ const {
 
 ---
 
-## 3. STRUCTURE
+## 3. 📁 STRUCTURE
 
 ```
 extractors/
@@ -128,7 +128,7 @@ extractors/
 
 ---
 
-## 4. FEATURES
+## 4. ⚡ FEATURES
 
 ### PREFLIGHT/POSTFLIGHT Learning Delta (NEW in v1.0.6)
 
@@ -209,7 +209,7 @@ Generates step-by-step guides from session data:
 
 ---
 
-## 5. USAGE EXAMPLES
+## 5. 💡 USAGE EXAMPLES
 
 ### Example 1: Collect Session Data with Learning Metrics
 
@@ -319,7 +319,7 @@ if (shouldAutoSave(messageCount)) {
 
 ---
 
-## 6. EXTRACTOR DETAILS
+## 6. 🗂️ EXTRACTOR DETAILS
 
 ### collect-session-data.js
 
@@ -495,7 +495,7 @@ if (shouldAutoSave(messageCount)) {
 
 ---
 
-## 7. DATA FLOW
+## 7. 🔄 DATA FLOW
 
 ### Extraction Pipeline
 
@@ -541,7 +541,7 @@ Raw Session Data (JSON input)
 
 ---
 
-## 8. TROUBLESHOOTING
+## 8. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -640,7 +640,7 @@ node -e "const { generateSessionId } = require('./.opencode/skill/system-spec-ki
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 9. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 

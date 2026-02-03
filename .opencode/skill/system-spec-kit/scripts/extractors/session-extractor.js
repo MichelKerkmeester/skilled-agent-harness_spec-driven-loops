@@ -6,7 +6,7 @@
 
 /* ─────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const { execSync } = require('child_process');
 const fs = require('fs').promises;
@@ -15,7 +15,7 @@ const { CONFIG } = require('../core');
 
 /* ─────────────────────────────────────────────────────────────
    2. SESSION ID & CHANNEL
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function generate_session_id() {
   return `session-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
@@ -36,7 +36,7 @@ function get_channel() {
 
 /* ─────────────────────────────────────────────────────────────
    3. CONTEXT TYPE & IMPORTANCE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function detect_context_type(tool_counts, decision_count) {
   const total = Object.values(tool_counts).reduce((a, b) => a + b, 0);
@@ -62,7 +62,7 @@ function detect_importance_tier(files_modified, context_type) {
 
 /* ─────────────────────────────────────────────────────────────
    4. PROJECT PHASE & STATE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function detect_project_phase(tool_counts, observations, message_count) {
   const total = Object.values(tool_counts).reduce((a, b) => a + b, 0);
@@ -127,7 +127,7 @@ function build_file_progress(spec_files) {
 
 /* ─────────────────────────────────────────────────────────────
    5. TOOL COUNTING & DURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function count_tools_by_type(observations, user_prompts) {
   const tool_names = ['Read', 'Edit', 'Write', 'Bash', 'Grep', 'Glob', 'Task', 'WebFetch', 'WebSearch', 'Skill'];
@@ -175,7 +175,7 @@ function calculate_expiry_epoch(importance_tier, created_at_epoch) {
 
 /* ─────────────────────────────────────────────────────────────
    6. RELATED DOCS & KEY TOPICS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function detect_related_docs(spec_folder_path) {
   const doc_files = [
@@ -287,7 +287,7 @@ function extract_key_topics(summary, decisions = []) {
 
 /* ─────────────────────────────────────────────────────────────
    7. COMPOSITE HELPERS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function detect_session_characteristics(observations, user_prompts, FILES) {
   const tool_counts = count_tools_by_type(observations, user_prompts);
@@ -312,7 +312,7 @@ function build_project_state_snapshot({ toolCounts, observations, messageCount, 
 
 /* ─────────────────────────────────────────────────────────────
    8. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Primary exports (snake_case)

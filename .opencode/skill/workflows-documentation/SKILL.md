@@ -387,6 +387,7 @@ Standard Flow:      Branch:           Parallel:         Merge:
 6. **ALWAYS apply safe auto-fixes** (H2 case, separators, filenames)
 7. **ALWAYS validate before completion** (structure + content + style)
 8. **ALWAYS provide metrics** (before/after counts from script output)
+9. **ALWAYS run `validate_document.py` before delivery** (exit 0 required for READMEs)
 
 #### ❌ NEVER
 
@@ -664,6 +665,7 @@ Key integrations:
 
 | Script                  | Purpose                   | Usage                                       |
 | ----------------------- | ------------------------- | ------------------------------------------- |
+| `validate_document.py`    | README format validation  | `scripts/validate_document.py doc.md`         |
 | `extract_structure.py`  | Parse document to JSON    | `scripts/extract_structure.py doc.md`       |
 | `init_skill.py`         | Scaffold skill structure  | `scripts/init_skill.py <name> --path <dir>` |
 | `package_skill.py`      | Validate + package to zip | `scripts/package_skill.py <skill-path>`     |

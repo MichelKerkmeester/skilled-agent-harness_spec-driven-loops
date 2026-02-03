@@ -28,6 +28,10 @@ import re
 from pathlib import Path
 
 
+# ───────────────────────────────────────────────────────────────
+# 1. VALIDATION
+# ───────────────────────────────────────────────────────────────
+
 def validate_skill(skill_path):
     """
     Validate a skill directory.
@@ -37,87 +41,73 @@ def validate_skill(skill_path):
     """
     skill_path = Path(skill_path)
     warnings = []
-    
-    # Check SKILL.md exists
+
     skill_md = skill_path / 'SKILL.md'
     if not skill_md.exists():
         return False, "SKILL.md not found", warnings
-    
-    # Read content
+
     try:
         content = skill_md.read_text(encoding='utf-8')
     except Exception as e:
         return False, f"Failed to read SKILL.md: {str(e)}", warnings
-    
-    # Check frontmatter exists
+
     if not content.startswith('---'):
         return False, "No YAML frontmatter found (file should start with ---)", warnings
-    
-    # Extract frontmatter
+
     match = re.match(r'^---\n(.*?)\n---', content, re.DOTALL)
     if not match:
         return False, "Invalid frontmatter format (missing closing ---)", warnings
-    
+
     frontmatter = match.group(1)
-    
-    # Check required fields (name, description are required; allowed-tools is optional)
+
     if 'name:' not in frontmatter:
         return False, "Missing 'name' in frontmatter", warnings
     if 'description:' not in frontmatter:
         return False, "Missing 'description' in frontmatter", warnings
-    
-    # Extract and validate name
+
     name_match = re.search(r'name:\s*(.+)', frontmatter)
     if name_match:
         name = name_match.group(1).strip()
-        # Check naming convention (hyphen-case: lowercase with hyphens)
+        # Hyphen-case: lowercase with hyphens only
         if not re.match(r'^[a-z0-9-]+$', name):
             return False, f"Name '{name}' should be hyphen-case (lowercase letters, digits, and hyphens only)", warnings
         if name.startswith('-') or name.endswith('-'):
             return False, f"Name '{name}' cannot start or end with hyphen", warnings
         if '--' in name:
             return False, f"Name '{name}' cannot contain consecutive hyphens", warnings
-    
-    # Check for multiline description (YAML block format)
-    # Covers:
-    # - description: \n  indented...
-    # - description: |\n  indented...
-    # - description: >\n  indented...
+
+    # Reject YAML multiline block formats (|, >, or newline+indent)
     if re.search(r'description:\s*\n\s+', frontmatter) or re.search(r'^description:\s*[|>]\s*$', frontmatter, flags=re.MULTILINE):
         return False, "Description uses YAML multiline block format (must be single line after colon)", warnings
-    
-    # Extract and validate description
+
     desc_match = re.search(r'description:\s*(.+)', frontmatter)
     if desc_match:
         description = desc_match.group(1).strip()
-        
-        # Check for angle brackets
+
         if '<' in description or '>' in description:
             return False, "Description cannot contain angle brackets (< or >)", warnings
-        
-        # Check for TODO placeholder (warning, not error)
+
         if 'TODO' in description.upper():
             warnings.append("Description contains TODO placeholder - please complete it")
     else:
-        # description: exists but no value on same line - likely multiline
         return False, "Description appears to be empty or multiline (must be single line after colon)", warnings
-    
-    # Check allowed-tools format (optional field - only validate if present)
+
+    # allowed-tools is optional but must use array format if present
     tools_match = re.search(r'allowed-tools:\s*(.+)', frontmatter)
     if tools_match:
         tools_value = tools_match.group(1).strip()
-        # Should start with [ for inline array, or be empty (YAML list follows)
         if tools_value and not tools_value.startswith('['):
-            # Check if it's a comma-separated string without brackets
             if ',' in tools_value:
                 return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings
-    
-    # All checks passed
+
     return True, "Skill is valid!", warnings
 
 
+# ───────────────────────────────────────────────────────────────
+# 2. MAIN
+# ───────────────────────────────────────────────────────────────
+
 def main():
-    # Parse arguments
     json_output = '--json' in sys.argv
     args = [arg for arg in sys.argv[1:] if not arg.startswith('--')]
     
@@ -142,7 +132,6 @@ def main():
         }
         print(json.dumps(result, indent=2))
     else:
-        # Human-readable output
         if valid:
             print(f"✅ {message}")
         else:

@@ -1,14 +1,17 @@
 // ───────────────────────────────────────────────────────────────
-// HANDLERS: SESSION LEARNING
+// HANDLER: SESSION LEARNING
 // ───────────────────────────────────────────────────────────────
 'use strict';
 
 const vectorIndex = require('../lib/search/vector-index.js');
 const { MemoryError, ErrorCodes } = require('../lib/errors.js');
 
-/* ───────────────────────────────────────────────────────────────
+// REQ-019: Standardized Response Structure
+const { createMCPSuccessResponse } = require('../lib/response/envelope.js');
+
+/* ─────────────────────────────────────────────────────────────
    1. SCHEMA MANAGEMENT
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 // SQL schema for session_learning table
 // Updated to support preflight/postflight with delta calculations
@@ -75,9 +78,9 @@ function ensure_schema(database) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. HANDLER: task_preflight
-──────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   2. TASK PREFLIGHT HANDLER
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle task_preflight - capture epistemic baseline before task execution
@@ -181,28 +184,31 @@ async function handle_task_preflight(args) {
     const record_id = result.lastInsertRowid;
     console.log(`[session-learning] Preflight recorded: spec=${spec_folder}, task=${task_id}, id=${record_id}`);
 
-    return {
-      content: [{
-        type: 'text',
-        text: JSON.stringify({
-          success: true,
-          message: 'Preflight baseline captured',
-          record: {
-            id: Number(record_id),
-            specFolder: spec_folder,
-            taskId: task_id,
-            phase: 'preflight',
-            baseline: {
-              knowledge: knowledge_score,
-              uncertainty: uncertainty_score,
-              context: context_score
-            },
-            knowledgeGaps: knowledge_gaps,
-            timestamp: now
-          }
-        }, null, 2)
-      }]
-    };
+    // REQ-019: Use standardized response envelope
+    return createMCPSuccessResponse({
+      tool: 'task_preflight',
+      summary: `Preflight baseline captured for ${task_id}`,
+      data: {
+        success: true,
+        record: {
+          id: Number(record_id),
+          specFolder: spec_folder,
+          taskId: task_id,
+          phase: 'preflight',
+          baseline: {
+            knowledge: knowledge_score,
+            uncertainty: uncertainty_score,
+            context: context_score
+          },
+          knowledgeGaps: knowledge_gaps,
+          timestamp: now
+        }
+      },
+      hints: [
+        `Call task_postflight with taskId: "${task_id}" after completing the task`,
+        'Knowledge gaps can guide your exploration focus'
+      ]
+    });
   } catch (err) {
     console.error('[session-learning] Failed to insert preflight record:', err.message);
     throw new MemoryError(
@@ -213,9 +219,9 @@ async function handle_task_preflight(args) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. HANDLER: task_postflight
-──────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   3. TASK POSTFLIGHT HANDLER
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle task_postflight - capture epistemic state after task execution
@@ -385,44 +391,48 @@ async function handle_task_postflight(args) {
       original_gaps = [];
     }
 
-    return {
-      content: [{
-        type: 'text',
-        text: JSON.stringify({
-          success: true,
-          message: 'Postflight completed - learning measured',
-          record: {
-            id: preflight.id,
-            specFolder: spec_folder,
-            taskId: task_id,
-            baseline: {
-              knowledge: preflight.pre_knowledge_score,
-              uncertainty: preflight.pre_uncertainty_score,
-              context: preflight.pre_context_score
-            },
-            final: {
-              knowledge: knowledge_score,
-              uncertainty: uncertainty_score,
-              context: context_score
-            },
-            deltas: {
-              knowledge: delta_knowledge,
-              uncertainty: delta_uncertainty,
-              context: delta_context
-            },
-            learningIndex: learning_index_rounded,
-            interpretation: interpretation,
-            formula: 'LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)',
-            gaps: {
-              original: original_gaps,
-              closed: gaps_closed,
-              newDiscovered: new_gaps_discovered
-            },
-            timestamp: now
-          }
-        }, null, 2)
-      }]
-    };
+    // REQ-019: Use standardized response envelope
+    return createMCPSuccessResponse({
+      tool: 'task_postflight',
+      summary: `Learning measured: LI=${learning_index_rounded} (${interpretation.split(' - ')[0]})`,
+      data: {
+        success: true,
+        record: {
+          id: preflight.id,
+          specFolder: spec_folder,
+          taskId: task_id,
+          baseline: {
+            knowledge: preflight.pre_knowledge_score,
+            uncertainty: preflight.pre_uncertainty_score,
+            context: preflight.pre_context_score
+          },
+          final: {
+            knowledge: knowledge_score,
+            uncertainty: uncertainty_score,
+            context: context_score
+          },
+          deltas: {
+            knowledge: delta_knowledge,
+            uncertainty: delta_uncertainty,
+            context: delta_context
+          },
+          learningIndex: learning_index_rounded,
+          interpretation: interpretation,
+          formula: 'LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)',
+          gaps: {
+            original: original_gaps,
+            closed: gaps_closed,
+            newDiscovered: new_gaps_discovered
+          },
+          timestamp: now
+        }
+      },
+      hints: [
+        interpretation,
+        gaps_closed.length > 0 ? `${gaps_closed.length} knowledge gaps closed` : null,
+        new_gaps_discovered.length > 0 ? `${new_gaps_discovered.length} new gaps discovered for future sessions` : null
+      ].filter(Boolean)
+    });
   } catch (err) {
     console.error('[session-learning] Failed to update postflight record:', err.message);
     throw new MemoryError(
@@ -433,9 +443,9 @@ async function handle_task_postflight(args) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. HANDLER: get_learning_history (FR-4 AC-4.4)
-──────────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   4. LEARNING HISTORY HANDLER
+────────────────────────────────────────────────────────────────*/
 
 /**
  * Handle memory_get_learning_history - retrieve learning history for a spec folder
@@ -560,13 +570,8 @@ async function handle_get_learning_history(args) {
       return result;
     });
 
-    const response = {
-      specFolder: spec_folder,
-      count: learning_history.length,
-      learningHistory: learning_history
-    };
-
     // Include summary statistics if requested and there are completed records
+    let response_summary = null;
     if (include_summary) {
       const summary_sql = `
         SELECT
@@ -583,7 +588,7 @@ async function handle_get_learning_history(args) {
       `;
       const stats = database.prepare(summary_sql).get(spec_folder);
 
-      response.summary = {
+      response_summary = {
         totalTasks: stats.total_tasks,
         completedTasks: stats.completed_tasks,
         averageLearningIndex: stats.avg_learning_index !== null
@@ -609,25 +614,44 @@ async function handle_get_learning_history(args) {
       // Add interpretation
       if (stats.avg_learning_index !== null) {
         if (stats.avg_learning_index > 15) {
-          response.summary.interpretation = 'Strong learning trend - significant knowledge gains across tasks';
+          response_summary.interpretation = 'Strong learning trend - significant knowledge gains across tasks';
         } else if (stats.avg_learning_index > 7) {
-          response.summary.interpretation = 'Positive learning trend - moderate knowledge improvement';
+          response_summary.interpretation = 'Positive learning trend - moderate knowledge improvement';
         } else if (stats.avg_learning_index > 0) {
-          response.summary.interpretation = 'Slight learning trend - minor improvements detected';
+          response_summary.interpretation = 'Slight learning trend - minor improvements detected';
         } else if (stats.avg_learning_index === 0) {
-          response.summary.interpretation = 'Neutral - no measurable change in knowledge state';
+          response_summary.interpretation = 'Neutral - no measurable change in knowledge state';
         } else {
-          response.summary.interpretation = 'Negative trend - knowledge regression detected across tasks';
+          response_summary.interpretation = 'Negative trend - knowledge regression detected across tasks';
         }
       }
     }
 
-    return {
-      content: [{
-        type: 'text',
-        text: JSON.stringify(response, null, 2)
-      }]
-    };
+    // REQ-019: Build summary text and hints for standardized envelope
+    const completed_count = learning_history.filter(h => h.phase === 'complete').length;
+    const summary_text = completed_count > 0
+      ? `Learning history: ${learning_history.length} records (${completed_count} complete)`
+      : `Learning history: ${learning_history.length} preflight records`;
+
+    const hints = [];
+    if (completed_count === 0 && learning_history.length > 0) {
+      hints.push('Call task_postflight to complete learning measurement');
+    }
+    if (response_summary?.interpretation) {
+      hints.push(response_summary.interpretation);
+    }
+
+    return createMCPSuccessResponse({
+      tool: 'memory_get_learning_history',
+      summary: summary_text,
+      data: {
+        specFolder: spec_folder,
+        count: learning_history.length,
+        learningHistory: learning_history,
+        ...(response_summary && { summary: response_summary })
+      },
+      hints
+    });
   } catch (err) {
     console.error('[session-learning] Failed to get learning history:', err.message);
     throw new MemoryError(
@@ -638,9 +662,9 @@ async function handle_get_learning_history(args) {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    5. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // snake_case exports

@@ -12,12 +12,8 @@ const triggerMatcher = require(path.join(LIB_DIR, 'parsing', 'trigger-matcher.js
 
 /* ─────────────────────────────────────────────────────────────
    1. MEMORY SURFACE HOOK CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Set of tools that trigger automatic memory surfacing
- * @type {Set<string>}
- */
 const MEMORY_AWARE_TOOLS = new Set([
   'memory_search',
   'memory_match_triggers',
@@ -33,13 +29,8 @@ const CONSTITUTIONAL_CACHE_TTL = 60000; // 1 minute
 
 /* ─────────────────────────────────────────────────────────────
    2. CONTEXT EXTRACTION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Extract context hint from tool arguments for memory surfacing
- * @param {Object} args - Tool call arguments
- * @returns {string|null} Context hint or null
- */
 function extract_context_hint(args) {
   if (!args || typeof args !== 'object') return null;
 
@@ -60,14 +51,8 @@ function extract_context_hint(args) {
 
 /* ─────────────────────────────────────────────────────────────
    3. CONSTITUTIONAL MEMORIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Get constitutional memories with caching
- * Constitutional memories are always surfaced regardless of query context.
- * Results are cached for CONSTITUTIONAL_CACHE_TTL milliseconds.
- * @returns {Promise<Array>} Constitutional memories
- */
 async function get_constitutional_memories() {
   const now = Date.now();
 
@@ -104,10 +89,6 @@ async function get_constitutional_memories() {
   }
 }
 
-/**
- * Clear the constitutional memory cache
- * Useful when memories are updated or deleted
- */
 function clear_constitutional_cache() {
   constitutional_cache = null;
   constitutional_cache_time = 0;
@@ -115,19 +96,8 @@ function clear_constitutional_cache() {
 
 /* ─────────────────────────────────────────────────────────────
    4. AUTO-SURFACE MEMORIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
-/**
- * Auto-surface memories based on context hint
- * SK-004: Memory Surface Hook
- *
- * Surfaces two types of memories:
- * 1. Constitutional memories - always surfaced (cached)
- * 2. Triggered memories - matched via fast phrase matching
- *
- * @param {string} context_hint - Context from tool arguments
- * @returns {Promise<Object|null>} Surfaced context or null
- */
 async function auto_surface_memories(context_hint) {
   const start_time = Date.now();
 
@@ -162,18 +132,13 @@ async function auto_surface_memories(context_hint) {
   }
 }
 
-/**
- * Check if a tool is memory-aware (should trigger memory surfacing)
- * @param {string} toolName - Name of the tool
- * @returns {boolean} True if the tool is memory-aware
- */
 function is_memory_aware_tool(toolName) {
   return MEMORY_AWARE_TOOLS.has(toolName);
 }
 
 /* ─────────────────────────────────────────────────────────────
    5. EXPORTS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Constants

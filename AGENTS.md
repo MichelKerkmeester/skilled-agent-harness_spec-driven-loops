@@ -57,7 +57,9 @@
 | **End session**          | /spec_kit:handover → Save context → Provide continuation prompt                                                                            |
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                              |
-| **Documentation**        | workflows-documentation skill → Classify → DQI score → Fix → Verify                                                                        |
+| **Documentation**        | workflows-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                   |
+| **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                                          |
+| **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                                            |
 
 ---
 
@@ -540,6 +542,38 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
    - Webflow, Figma, Github, ClickUp, Chrome DevTools, Narsil, etc.
    - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`, `narsil.narsil_find_symbols({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
+
+### Memory Commands (Consolidated)
+
+After the v1.2.1 consolidation, memory operations use **5 commands** (reduced from 9):
+
+| Command | Purpose | Key Operations |
+|---------|---------|----------------|
+| `/memory:context` | Unified context retrieval | Intent-aware routing, trigger matching, anchor-based search |
+| `/memory:continue` | Session recovery | Resume from crash/compaction, restore session state |
+| `/memory:learn` | Explicit learning capture | Patterns, pitfalls, insights; `correct` subcommand for corrections |
+| `/memory:manage` | Database & maintenance | Stats, health, cleanup, checkpoint create/restore/delete |
+| `/memory:save` | Context preservation | Generate memory files via `generate-context.js` script |
+
+**MCP Tools** (use `spec_kit_memory_` prefix):
+- **L1 Entry**: `memory_context` - Unified entry with intent-aware routing
+- **Search**: `memory_search`, `memory_match_triggers` - Targeted retrieval with anchors
+- **CRUD**: `memory_save`, `memory_update`, `memory_delete`, `memory_list`
+- **Session**: `task_preflight`, `task_postflight` - Epistemic state capture
+- **Causal**: `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`
+- **Checkpoints**: `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`
+
+### Spec Kit Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/spec_kit:plan` | Create spec folder, define requirements |
+| `/spec_kit:research` | Evidence gathering, investigation |
+| `/spec_kit:implement` | Execute implementation tasks |
+| `/spec_kit:debug` | Fresh perspective debugging (3+ failed attempts) |
+| `/spec_kit:complete` | Finalize, verify checklist, close spec |
+| `/spec_kit:handover` | Session continuation, context preservation |
+| `/spec_kit:resume` | Resume from handover or crash recovery |
   
 ---
 

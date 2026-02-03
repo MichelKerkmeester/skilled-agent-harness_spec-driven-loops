@@ -7,8 +7,8 @@ const config = require('./config');
 const dbState = require('./db-state');
 
 /* ─────────────────────────────────────────────────────────────
-   1. RE-EXPORTS
-──────────────────────────────────────────────────────────────── */
+   RE-EXPORTS
+────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   // Config module - all constants

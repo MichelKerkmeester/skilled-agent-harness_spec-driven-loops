@@ -5,7 +5,7 @@
 
 /* ─────────────────────────────────────────────────────────────────
    1. IMPORTS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 const fs = require('fs/promises');
 const path = require('path');
@@ -13,7 +13,7 @@ const { promptUserChoice } = require('../utils/prompt-utils');
 
 /* ─────────────────────────────────────────────────────────────────
    2. CONFIGURATION
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 const ALIGNMENT_CONFIG = {
   THRESHOLD: 70,
@@ -24,7 +24,7 @@ const ALIGNMENT_CONFIG = {
 
 /* ─────────────────────────────────────────────────────────────────
    3. TOPIC EXTRACTION
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 function extract_conversation_topics(collectedData) {
   const topics = new Set();
@@ -82,7 +82,7 @@ function extract_observation_keywords(collectedData) {
 
 /* ─────────────────────────────────────────────────────────────────
    4. SCORE CALCULATION
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 function parse_spec_folder_topic(folderName) {
   const topic = folderName.replace(/^\d+-/, '');
@@ -108,7 +108,7 @@ function calculate_alignment_score(conversationTopics, specFolderName) {
 
 /* ─────────────────────────────────────────────────────────────────
    5. VALIDATION FUNCTIONS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 async function validate_content_alignment(collectedData, specFolderName, specsDir) {
   const conversationTopics = extract_conversation_topics(collectedData);
@@ -265,7 +265,7 @@ async function validate_folder_alignment(collectedData, specFolderName, specsDir
 
 /* ─────────────────────────────────────────────────────────────────
    6. EXPORTS
-──────────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────────*/
 
 module.exports = {
   ALIGNMENT_CONFIG,

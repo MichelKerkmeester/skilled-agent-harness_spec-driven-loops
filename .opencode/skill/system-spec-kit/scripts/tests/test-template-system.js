@@ -18,7 +18,7 @@ const { execSync } = require('child_process');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 const ROOT = path.join(__dirname, '..', '..');
 const TEMPLATES_DIR = path.join(ROOT, 'templates');
@@ -47,7 +47,7 @@ const results = {
 
 /* ─────────────────────────────────────────────────────────────
    2. UTILITIES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 function log(msg) {
   console.log(msg);
@@ -84,7 +84,8 @@ function file_exists(file_path) {
 function count_files_in_dir(dir_path, extension = '.md') {
   if (!dir_exists(dir_path)) return 0;
   const files = fs.readdirSync(dir_path);
-  return files.filter(f => f.endsWith(extension)).length;
+  // Exclude README.md from count (documentation file, not a template)
+  return files.filter(f => f.endsWith(extension) && f !== 'README.md').length;
 }
 
 function read_file(file_path) {
@@ -94,7 +95,7 @@ function read_file(file_path) {
 
 /* ─────────────────────────────────────────────────────────────
    3. TEST SUITE: LEVEL TEMPLATES EXIST
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_level_templates_exist() {
   log('\n--- TEST SUITE: Level Templates Exist ---');
@@ -109,7 +110,7 @@ async function test_level_templates_exist() {
     }
 
     const level1_expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md'];
-    const level1_actual = fs.readdirSync(LEVEL_1_DIR).filter(f => f.endsWith('.md'));
+    const level1_actual = fs.readdirSync(LEVEL_1_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
     if (level1_actual.length === 4) {
       pass('T-001b: level_1/ has 4 files', `Files: ${level1_actual.join(', ')}`);
@@ -138,7 +139,7 @@ async function test_level_templates_exist() {
     }
 
     const level2_expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md'];
-    const level2_actual = fs.readdirSync(LEVEL_2_DIR).filter(f => f.endsWith('.md'));
+    const level2_actual = fs.readdirSync(LEVEL_2_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
     if (level2_actual.length === 5) {
       pass('T-002b: level_2/ has 5 files', `Files: ${level2_actual.join(', ')}`);
@@ -167,7 +168,7 @@ async function test_level_templates_exist() {
     }
 
     const level3_expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md', 'decision-record.md'];
-    const level3_actual = fs.readdirSync(LEVEL_3_DIR).filter(f => f.endsWith('.md'));
+    const level3_actual = fs.readdirSync(LEVEL_3_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
     if (level3_actual.length === 6) {
       pass('T-003b: level_3/ has 6 files', `Files: ${level3_actual.join(', ')}`);
@@ -196,7 +197,7 @@ async function test_level_templates_exist() {
     }
 
     const level3plus_expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md', 'decision-record.md'];
-    const level3plus_actual = fs.readdirSync(LEVEL_3PLUS_DIR).filter(f => f.endsWith('.md'));
+    const level3plus_actual = fs.readdirSync(LEVEL_3PLUS_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
     if (level3plus_actual.length === 6) {
       pass('T-004b: level_3+/ has 6 files', `Files: ${level3plus_actual.join(', ')}`);
@@ -218,7 +219,7 @@ async function test_level_templates_exist() {
 
 /* ─────────────────────────────────────────────────────────────
    4. TEST SUITE: CORE TEMPLATES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_core_templates() {
   log('\n--- TEST SUITE: Core Templates ---');
@@ -232,9 +233,9 @@ async function test_core_templates() {
       return;
     }
 
-    // Test 4 core files exist
+    // Test 4 core files exist (excluding README.md which is documentation)
     const core_expected = ['spec-core.md', 'plan-core.md', 'tasks-core.md', 'impl-summary-core.md'];
-    const core_actual = fs.readdirSync(CORE_DIR).filter(f => f.endsWith('.md'));
+    const core_actual = fs.readdirSync(CORE_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
     if (core_actual.length === 4) {
       pass('T-010b: core/ contains 4 core files', `Files: ${core_actual.join(', ')}`);
@@ -291,7 +292,7 @@ async function test_core_templates() {
 
 /* ─────────────────────────────────────────────────────────────
    5. TEST SUITE: ADDENDUM STRUCTURE
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_addendum_structure() {
   log('\n--- TEST SUITE: Addendum Structure ---');
@@ -363,7 +364,7 @@ async function test_addendum_structure() {
 
 /* ─────────────────────────────────────────────────────────────
    6. TEST SUITE: PLACEHOLDER PATTERNS
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_placeholder_patterns() {
   log('\n--- TEST SUITE: Placeholder Patterns ---');
@@ -454,7 +455,7 @@ async function test_placeholder_patterns() {
 
 /* ─────────────────────────────────────────────────────────────
    7. TEST SUITE: EXAMPLE TEMPLATES
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_example_templates() {
   log('\n--- TEST SUITE: Example Templates ---');
@@ -532,7 +533,7 @@ async function test_example_templates() {
 
 /* ─────────────────────────────────────────────────────────────
    8. TEST SUITE: COMPOSE.SH FUNCTIONALITY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_compose_script() {
   log('\n--- TEST SUITE: compose.sh Functionality ---');
@@ -626,7 +627,7 @@ async function test_compose_script() {
 
 /* ─────────────────────────────────────────────────────────────
    9. TEST SUITE: LEVEL-SPECIFIC CONTENT
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_level_specific_content() {
   log('\n--- TEST SUITE: Level-Specific Content ---');
@@ -709,7 +710,7 @@ async function test_level_specific_content() {
 
 /* ─────────────────────────────────────────────────────────────
    10. TEST SUITE: TEMPLATE CONSISTENCY
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function test_template_consistency() {
   log('\n--- TEST SUITE: Template Consistency ---');
@@ -768,7 +769,7 @@ async function test_template_consistency() {
 
 /* ─────────────────────────────────────────────────────────────
    11. MAIN
-──────────────────────────────────────────────────────────────── */
+────────────────────────────────────────────────────────────────*/
 
 async function main() {
   log('==================================================');
