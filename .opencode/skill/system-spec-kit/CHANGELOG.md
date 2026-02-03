@@ -6,6 +6,44 @@ All notable changes to the system-spec-kit skill are documented in this file.
 
 ---
 
+## [1.2.3.3] - 2026-02-03
+
+### Fixed
+
+**Infrastructure Work Domain Detection (spec 085-alignment-file-paths)**
+
+Root cause fix for memory files being saved to incorrect spec folders when working on shared infrastructure (`.opencode/`).
+
+**alignment-validator.js**
+
+1. **New `detect_work_domain()` function** — Analyzes file paths from observations to detect infrastructure vs project work:
+   - Calculates ratio of `.opencode/` files
+   - Identifies subpath (`skill/system-spec-kit`, `command/memory`, `agent/`, etc.)
+   - Returns domain info with confidence score and matching patterns
+
+2. **New `calculate_alignment_score_with_domain()` function** — Wraps base scoring with infrastructure awareness:
+   - Applies +40 bonus to folders matching infrastructure patterns
+   - Patterns mapped per subpath (e.g., `skill/system-spec-kit` → `['memory', 'spec-kit', 'opencode']`)
+
+3. **Updated `validate_content_alignment()` and `validate_folder_alignment()`** — Now use domain-aware scoring:
+   - Show infrastructure mismatch warning when detected
+   - List better-matching alternatives with boosted scores
+   - Example: `003-memory-and-spec-kit` scores 90% vs `005-anobel.com` at 0% for spec-kit work
+
+**continue.md**
+
+4. **Added Step 3: Validate Content vs Folder Alignment** — Validates `key_files` against `spec_folder` before recovery:
+   - Detects when infrastructure work is filed under project folder
+   - Presents options to correct mismatch
+
+5. **Fixed step numbering** — Removed half-steps (2.5 → 3, renumbered subsequent steps)
+
+6. **Added KEY FILES to recovery summary** — Allows users to verify spec folder makes sense for the work
+
+**Result:** Infrastructure work (files in `.opencode/`) now correctly routes to infrastructure-related spec folders. Mismatches trigger warnings with suggested alternatives.
+
+---
+
 ## [1.2.3.2] - 2026-02-03
 
 ### Fixed

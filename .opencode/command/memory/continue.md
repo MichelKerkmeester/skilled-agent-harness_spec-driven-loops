@@ -290,7 +290,53 @@ spec_kit_memory_memory_list({
 const state = extractAnchor(result, "state")
 ```
 
-### Step 3: Display Recovery Summary
+### Step 3: Validate Content vs Folder Alignment
+
+**CRITICAL**: Before displaying the recovery summary, validate that the memory content matches the spec folder.
+
+```typescript
+// Extract key_files from memory metadata
+const keyFiles = extractFromYaml(memoryContent, "key_files");
+
+// Check for infrastructure mismatch
+const opencodeFiles = keyFiles.filter(f => f.includes('.opencode/'));
+const opencodeRatio = opencodeFiles.length / keyFiles.length;
+
+if (opencodeRatio > 0.5) {
+  // More than 50% of files are in .opencode/ - this is infrastructure work
+  const specFolderLower = state.specFolder.toLowerCase();
+  const infrastructurePatterns = ['memory', 'spec-kit', 'speckit', 'opencode', 'command', 'agent'];
+
+  const matchesInfrastructure = infrastructurePatterns.some(p => specFolderLower.includes(p));
+
+  if (!matchesInfrastructure) {
+    // MISMATCH DETECTED - infrastructure work filed under project folder
+    console.log("⚠️ CONTENT MISMATCH DETECTED");
+    console.log(`   Memory contains infrastructure work (${Math.round(opencodeRatio * 100)}% .opencode/ files)`);
+    console.log(`   But spec_folder is "${state.specFolder}" (project-specific)`);
+    console.log(`   Detected subpath: ${detectSubpath(opencodeFiles)}`);
+
+    // Present options
+    console.log("\n   Options:");
+    console.log("   A) Search for infrastructure-related spec folder");
+    console.log("   B) Continue with stored spec folder anyway");
+    console.log("   C) Select spec folder manually");
+
+    // Wait for user choice before proceeding
+  }
+}
+```
+
+**Mismatch Detection Signals:**
+
+| Signal | Meaning |
+|--------|---------|
+| `key_files` contain `.opencode/skill/` | Skill/infrastructure work |
+| `key_files` contain `.opencode/command/` | Command development work |
+| `key_files` contain `.opencode/agent/` | Agent development work |
+| `spec_folder` doesn't match patterns | Likely saved to wrong folder |
+
+### Step 4: Display Recovery Summary
 
 ```
 ╭─────────────────────────────────────────────────────────────╮
@@ -310,6 +356,11 @@ const state = extractAnchor(result, "state")
 │                                                             │
 │ PROGRESS: 47% (118/250 tasks)                               │
 │ BLOCKERS: None                                              │
+│                                                             │
+│ KEY FILES:                                                  │
+│   • .opencode/skill/system-spec-kit/scripts/...             │
+│   • .opencode/command/memory/continue.md                    │
+│   (showing first 3 of N files)                              │
 ├─────────────────────────────────────────────────────────────┤
 │ ✅ Context restored. Ready to continue.                     │
 ╰─────────────────────────────────────────────────────────────╯
@@ -317,7 +368,9 @@ const state = extractAnchor(result, "state")
 STATUS=OK SCENARIO=crash SESSION=specs/082-speckit-reimagined/
 ```
 
-### Step 4: Auto-Continue
+**IMPORTANT**: Always display key files in the recovery summary. This allows the user to quickly verify that the spec folder makes sense for the work that was done. If `key_files` are in `.opencode/` but `spec_folder` is project-specific (like `005-anobel.com`), this is a mismatch that should be flagged.
+
+### Step 5: Auto-Continue
 
 In auto mode, immediately present continuation options:
 
