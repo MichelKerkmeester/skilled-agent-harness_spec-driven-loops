@@ -134,22 +134,22 @@ These systems aren't just bundled: they're *woven together*:
 
 ### Innovations You Won't Find Elsewhere
 
-| Innovation               | Impact                | Description                                     |
-| ------------------------ | --------------------- | ----------------------------------------------- |
-| **Causal memory graph**  | Decision tracing      | 6 relationship types answer "why" queries       |
-| **Crash recovery**       | Zero lost work        | Auto-resume from compaction/timeout             |
-| **Intent-aware search**  | Smarter retrieval     | 5 intent types route to optimized search        |
-| **Session deduplication**| 50% token savings     | Hash-based duplicate prevention in same session |
-| **ANCHOR retrieval**     | 93% token savings     | Section-level memory extraction, not full files |
-| **Proactive triggers**   | <50ms surfacing       | Context surfaces BEFORE you ask                 |
-| **Constitutional tier**  | Rules never forgotten | Critical rules always surface, never decay      |
-| **Cognitive memory**     | Biologically-inspired | HOT/WARM/COLD with spreading activation         |
-| **Debug delegation**     | Model selection       | Fresh perspective with full context handoff     |
-| **Parallel dispatch**    | 5-dimension scoring   | Complexity-based agent orchestration            |
-| **Epistemic vectors**    | Smarter gates         | Dual-threshold: confidence AND uncertainty      |
-| **Session learning**     | Quantified growth     | Preflight/postflight tracks actual learning     |
-| **Template composition** | Zero duplication      | CORE + ADDENDUM architecture                    |
-| **Stateless state**      | No stale files        | State versioned in memory files, not STATE.md   |
+| Innovation                | Impact                | Description                                     |
+| ------------------------- | --------------------- | ----------------------------------------------- |
+| **Causal memory graph**   | Decision tracing      | 6 relationship types answer "why" queries       |
+| **Crash recovery**        | Zero lost work        | Auto-resume from compaction/timeout             |
+| **Intent-aware search**   | Smarter retrieval     | 5 intent types route to optimized search        |
+| **Session deduplication** | 50% token savings     | Hash-based duplicate prevention in same session |
+| **ANCHOR retrieval**      | 93% token savings     | Section-level memory extraction, not full files |
+| **Proactive triggers**    | <50ms surfacing       | Context surfaces BEFORE you ask                 |
+| **Constitutional tier**   | Rules never forgotten | Critical rules always surface, never decay      |
+| **Cognitive memory**      | Biologically-inspired | HOT/WARM/COLD with spreading activation         |
+| **Debug delegation**      | Model selection       | Fresh perspective with full context handoff     |
+| **Parallel dispatch**     | 5-dimension scoring   | Complexity-based agent orchestration            |
+| **Epistemic vectors**     | Smarter gates         | Dual-threshold: confidence AND uncertainty      |
+| **Session learning**      | Quantified growth     | Preflight/postflight tracks actual learning     |
+| **Template composition**  | Zero duplication      | CORE + ADDENDUM architecture                    |
+| **Stateless state**       | No stale files        | State versioned in memory files, not STATE.md   |
 
 ### How It All Works Together
 
@@ -312,7 +312,7 @@ specs/042-add-user-authentication/
 **Handover Variants:** `:quick` (default) or `:full` (e.g., `/spec_kit:handover:full`)
 
 
-### Templates (CORE + ADDENDUM v2.0)
+### Templates 
 
 Most documentation systems duplicate content across templates. This system uses a **composition model**: core templates are shared, level-specific addendums extend them.
 
@@ -442,13 +442,13 @@ Memory and Spec Kit are designed to work together:
 
 ### Memory Commands (5 Consolidated)
 
-| Command                          | Purpose                                                      |
-| -------------------------------- | ------------------------------------------------------------ |
-| `/memory:context [query]`        | Unified retrieval with intent-aware routing (replaces search) |
-| `/memory:save [spec-folder]`     | Save context via generate-context.js                         |
-| `/memory:continue`               | Session recovery from crash/compaction                       |
-| `/memory:learn [topic]`          | Explicit learning capture (`correct` subcommand for mistakes) |
-| `/memory:manage [operation]`     | Database ops: stats, health, cleanup, checkpoint create/restore |
+| Command                      | Purpose                                                         |
+| ---------------------------- | --------------------------------------------------------------- |
+| `/memory:context [query]`    | Unified retrieval with intent-aware routing (replaces search)   |
+| `/memory:save [spec-folder]` | Save context via generate-context.js                            |
+| `/memory:continue`           | Session recovery from crash/compaction                          |
+| `/memory:learn [topic]`      | Explicit learning capture (`correct` subcommand for mistakes)   |
+| `/memory:manage [operation]` | Database ops: stats, health, cleanup, checkpoint create/restore |
 
 **Example:**
 
@@ -548,11 +548,11 @@ This enables measuring productivity by *learning*, not just output.
 | `memory_save`           | Index memory files                                |
 
 **L3 Read-Only (3 tools)**
-| Tool           | Purpose                                    |
-| -------------- | ------------------------------------------ |
-| `memory_list`  | Browse stored memories with pagination     |
-| `memory_stats` | Database statistics with composite ranking |
-| `memory_health`| Check memory system health status          |
+| Tool            | Purpose                                    |
+| --------------- | ------------------------------------------ |
+| `memory_list`   | Browse stored memories with pagination     |
+| `memory_stats`  | Database statistics with composite ranking |
+| `memory_health` | Check memory system health status          |
 
 **L4 Write Operations (3 tools)**
 | Tool              | Purpose                             |
@@ -570,19 +570,19 @@ This enables measuring productivity by *learning*, not just output.
 | `checkpoint_delete`  | Remove checkpoint                           |
 
 **L6 Advanced (6 tools)**
-| Tool                          | Purpose                                           |
-| ----------------------------- | ------------------------------------------------- |
-| `task_preflight`              | Capture epistemic baseline before task            |
-| `task_postflight`             | Capture post-task state, calculate Learning Index |
-| `memory_drift_why`            | Trace causal chain for "why" queries (NEW v1.2.0) |
-| `memory_causal_link`          | Create causal relationships (NEW v1.2.0)          |
-| `memory_causal_stats`         | Graph statistics and coverage (NEW v1.2.0)        |
-| `memory_causal_unlink`        | Remove causal relationships (NEW v1.2.0)          |
+| Tool                   | Purpose                                           |
+| ---------------------- | ------------------------------------------------- |
+| `task_preflight`       | Capture epistemic baseline before task            |
+| `task_postflight`      | Capture post-task state, calculate Learning Index |
+| `memory_drift_why`     | Trace causal chain for "why" queries (NEW v1.2.0) |
+| `memory_causal_link`   | Create causal relationships (NEW v1.2.0)          |
+| `memory_causal_stats`  | Graph statistics and coverage (NEW v1.2.0)        |
+| `memory_causal_unlink` | Remove causal relationships (NEW v1.2.0)          |
 
 **L7 Maintenance (2 tools)**
-| Tool                          | Purpose                         |
-| ----------------------------- | ------------------------------- |
-| `memory_index_scan`           | Bulk scan and index workspace   |
+| Tool                          | Purpose                           |
+| ----------------------------- | --------------------------------- |
+| `memory_index_scan`           | Bulk scan and index workspace     |
 | `memory_get_learning_history` | Get learning trends and summaries |
 
 > **Note:** Full MCP names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search`).
