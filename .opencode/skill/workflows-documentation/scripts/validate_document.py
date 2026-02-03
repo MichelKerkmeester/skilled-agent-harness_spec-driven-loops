@@ -149,6 +149,57 @@ def normalize_section_name(name):
     return name
 
 
+def extract_section_name_text(text):
+    """
+    Extract the section name text after removing number prefix and emoji.
+
+    Examples:
+        "1. 📖 Overview" -> "Overview"
+        "📖 OVERVIEW" -> "OVERVIEW"
+        "1. Overview" -> "Overview"
+    """
+    # Remove leading number and dot (e.g., "1. ")
+    text = re.sub(r'^\d+\.\s*', '', text)
+    # Remove emoji
+    text = EMOJI_PATTERN.sub('', text)
+    # Clean up whitespace
+    return text.strip()
+
+
+def is_uppercase_section(text):
+    """
+    Check if section name is ALL CAPS.
+
+    Handles special characters like &, ', -, etc.
+    Only checks alphabetic characters for case.
+
+    Examples:
+        "OVERVIEW" -> True
+        "Overview" -> False
+        "INSTALLATION & SETUP" -> True
+        "WHAT'S NEXT?" -> True
+        "MCP TOOLS" -> True
+    """
+    section_name = extract_section_name_text(text)
+    # Check if all alphabetic characters are uppercase
+    alpha_chars = [c for c in section_name if c.isalpha()]
+    if not alpha_chars:
+        return True  # No alphabetic chars, consider valid
+    return all(c.isupper() for c in alpha_chars)
+
+
+def make_uppercase_section(text):
+    """
+    Convert section name to ALL CAPS while preserving structure.
+
+    Examples:
+        "Overview" -> "OVERVIEW"
+        "Quick Start" -> "QUICK START"
+        "What's Next?" -> "WHAT'S NEXT?"
+    """
+    return text.upper()
+
+
 # ───────────────────────────────────────────────────────────────
 # 3. TOC VALIDATION
 # ───────────────────────────────────────────────────────────────
@@ -200,6 +251,8 @@ def validate_toc(content, doc_type_rules, rules):
         entry_match = re.search(r'\[(.+?)\]', line)
         if entry_match:
             entry_text = entry_match.group(1)
+
+            # Check for missing emoji
             if not has_emoji(entry_text):
                 section_name = normalize_section_name(entry_text)
                 section_name = re.sub(r'^\d+_*', '', section_name)
@@ -226,6 +279,29 @@ def validate_toc(content, doc_type_rules, rules):
                     'auto_fixable': expected_emoji is not None,
                     'fix': fixed_line,
                     'fix_hint': f'Add {expected_emoji} emoji after section number' if expected_emoji else 'Add appropriate emoji'
+                })
+
+            # Check for ALL CAPS (only for readme type which requires it)
+            uppercase_required = doc_type_rules.get('toc_uppercase_required', False)
+            if uppercase_required and not is_uppercase_section(entry_text):
+                section_text = extract_section_name_text(entry_text)
+                # Build fixed entry: preserve number and emoji, uppercase the name
+                # Pattern: "N. EMOJI name" -> "N. EMOJI NAME"
+                fixed_entry = re.sub(
+                    r'^(\d+\.\s*)([^\w\s]\s*)?(.+)$',
+                    lambda m: f"{m.group(1)}{m.group(2) or ''}{m.group(3).upper()}",
+                    entry_text
+                )
+                fixed_line = line.replace(f'[{entry_text}]', f'[{fixed_entry}]')
+
+                errors.append({
+                    'type': 'toc_not_uppercase',
+                    'severity': 'blocking',
+                    'message': f'TOC entry not ALL CAPS: "{entry_text}"',
+                    'line': line,
+                    'auto_fixable': True,
+                    'fix': fixed_line,
+                    'fix_hint': f'Change "{section_text}" to "{section_text.upper()}"'
                 })
 
     return errors
@@ -296,6 +372,31 @@ def validate_h2_headers(content, doc_type_rules, rules):
                     'fix': f'## {num}. {expected_emoji} {title}' if expected_emoji else None,
                     'fix_hint': f'Add {expected_emoji} after "{num}."' if expected_emoji else 'Add appropriate emoji after section number'
                 })
+
+        # Check for ALL CAPS (only for document types that require it)
+        uppercase_required = doc_type_rules.get('h2_uppercase_required', False)
+        if uppercase_required and not is_uppercase_section(title):
+            section_text = extract_section_name_text(title)
+            # Extract emoji if present
+            emoji = extract_first_emoji(title)
+
+            if emoji:
+                # Has emoji: "EMOJI name" -> "EMOJI NAME"
+                title_after_emoji = EMOJI_PATTERN.sub('', title).strip()
+                fixed_title = f'{emoji} {title_after_emoji.upper()}'
+            else:
+                # No emoji: just uppercase
+                fixed_title = title.upper()
+
+            errors.append({
+                'type': 'h2_not_uppercase',
+                'severity': 'blocking',
+                'message': f'H2 header not ALL CAPS: "{line}"',
+                'line': line,
+                'auto_fixable': True,
+                'fix': f'## {num}. {fixed_title}',
+                'fix_hint': f'Change "{section_text}" to "{section_text.upper()}"'
+            })
 
     return errors
 

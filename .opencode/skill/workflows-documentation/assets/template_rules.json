@@ -39,7 +39,9 @@
       },
       "toc_required": true,
       "toc_anchor_format": "double_dash",
+      "toc_uppercase_required": true,
       "h2_emoji_required": true,
+      "h2_uppercase_required": true,
       "first_section_name": "overview",
       "last_section_pattern": "related"
     },
@@ -174,7 +176,9 @@
       },
       "toc_required": true,
       "toc_anchor_format": "double_dash",
+      "toc_uppercase_required": true,
       "h2_emoji_required": true,
+      "h2_uppercase_required": true,
       "phase_validation_required": true
     },
     "reference": {
@@ -341,7 +345,10 @@
       "exit_code": 1,
       "errors": [
         "missing_h2_emoji",
+        "h2_not_uppercase",
         "toc_single_dash_anchor",
+        "toc_missing_emoji",
+        "toc_not_uppercase",
         "missing_toc",
         "missing_required_section"
       ]
@@ -380,6 +387,14 @@
       "description": "Add missing emoji to TOC entry if section name matches known mapping",
       "safe": true,
       "requires_mapping": true
+    },
+    "uppercase_h2_section": {
+      "description": "Convert H2 section name to ALL CAPS",
+      "safe": true
+    },
+    "uppercase_toc_entry": {
+      "description": "Convert TOC entry section name to ALL CAPS",
+      "safe": true
     }
   }
 }
