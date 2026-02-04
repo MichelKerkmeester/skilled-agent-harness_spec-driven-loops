@@ -7,6 +7,42 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**1.2.2.1**] - 2026-02-04
+
+### Changed
+
+**AGENTS.md Structure & Efficiency Improvements**
+
+Major restructuring of AGENTS.md for better organization and reduced verbosity while preserving actionable guidance.
+
+1. **Section 2 Restructure** — Embedded VIOLATION RECOVERY box with Self-Check directly in POST-EXECUTION RULES (no longer separate sections)
+2. **New Section 3: OPERATIONAL PROTOCOLS** — Consolidated operational content:
+   - Consolidated Question Protocol (multi-question format with round-trip optimization)
+   - Gate Bypass Phrases
+   - Compliance Checkpoints
+   - Common Failure Patterns
+3. **Section 6 Condensed (~50% shorter)** — REQUEST ANALYSIS & SOLUTION FRAMEWORK streamlined:
+   - Compact 5-line Solution Flow (was 18-line ASCII diagram)
+   - Core Principles as table with Anti-Patterns column
+   - Single 7-item Pre-Change Checklist (was two redundant checklists)
+   - Preserved: CLARITY Triggers, BIAS Reframe Technique, Citation format
+4. **Section Renumbering** — All sections after new §3 renumbered (3→4, 4→5, etc.)
+
+**Consolidated Question Protocol Enhancement:**
+```markdown
+**Before proceeding, please answer:**
+
+1. **Spec Folder** (required): A) Existing | B) New | C) Update | D) Skip
+2. **Execution Mode** (if applicable): A) Autonomous | B) Interactive
+3. **Memory Context** (if existing spec): A) Load recent | B) Load all | C) Skip
+
+Reply with answers, e.g.: "B, A, C"
+```
+
+**Files:** `AGENTS.md` (Public, anobel.com, Barter/coder)
+
+---
+
 ## [**1.2.2.0**] - 2026-02-04
 
 ### Added

@@ -43,24 +43,26 @@
 
 ### Quick Reference: Common Workflows
 
-| Task                     | Flow                                                                                                                                       |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                                 |
-| **Research/exploration** | `memory_match_triggers()` → `memory_search()` → Document findings                                                                          |
-| **Code search**          | `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents                                                        |
-| **Resume prior work**    | `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue                                     |
-| **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
-| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                                |
-| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                                   |
-| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                                |
-| **End session**          | /spec_kit:handover → Save context → Provide continuation prompt                                                                            |
-| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
-| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                              |
-| **Documentation**        | workflows-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                   |
-| **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                                         |
-| **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                                           |
+| Task                     | Flow                                                                                                                          |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                    |
+| **Research/exploration** | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                  |
+| **Code search**          | `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents                                           |
+| **Resume prior work**    | `/memory:continue` OR `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue  |
+| **Save context**         | `/memory:save` OR `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` → Auto-indexed |
+| **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                   |
+| **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                      |
+| **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                   |
+| **End session**          | `/spec_kit:handover` → Save context → Provide continuation prompt                                                             |
+| **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                       |
+| **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                 |
+| **Documentation**        | workflows-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify      |
+| **CDN deployment**       | Minify → Verify → Update HTML versions → Upload to R2 → Browser test                                                          |
+| **JavaScript minify**    | `minify-webflow.mjs` → `verify-minification.mjs` → `test-minified-runtime.mjs` → Browser test                                 |
+| **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                            |
+| **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                              |
 
-### Coding Analysis Lenses
+### Coding Analysis Lenses 
 
 | Lens               | Focus            | Detection Questions                                                                |
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------- |
@@ -92,32 +94,12 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 1: SPEC FOLDER QUESTION [HARD BLOCK] ⭐ FIRST GATE                     │
-│                                                                             │
-│ FILE MODIFICATION TRIGGERS (if ANY match → Q1 REQUIRED):                    │
-│   □ "rename", "move", "delete", "create", "add", "remove"                   │
-│   □ "update", "change", "modify", "edit", "fix", "refactor"                  │
-│   □ "implement", "build", "write", "generate", "configure", "analyze"        │
-│   □ Any task that will result in file changes                                │
-│                                                                             │
-│ Q1: SPEC FOLDER - If file modification triggers detected                      │
-│     Options: A) Existing | B) New | C) Update related | D) Skip             │
-│     ❌ DO NOT use Read/Edit/Write/Bash (except Gate Actions) before asking  │
-│     ✅ ASK FIRST, wait for A/B/C/D response, THEN proceed                   │
-│                                                                             │
-│ BENEFIT: Better planning, reduced rework, consistent documentation          │
-│ SKIP: User can say "skip research" to bypass Research task dispatch         │
-│                                                                             │
-│ Block: HARD - Cannot use tools without answer                               │
-└─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓ PASS
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 2: UNDERSTANDING + CONTEXT SURFACING [SOFT BLOCK]                      │
+│ GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT BLOCK]                      │
 │ Trigger: EACH new user message (re-evaluate even in ongoing conversations)  │
-│ Action:  2a. Call memory_match_triggers(prompt) → Surface relevant context  │
-│          2b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
-│          2c. Parse request → Check confidence AND uncertainty (see §4)       │
-│          2d. DUAL-THRESHOLD VALIDATION (see below)                          │
+│ Action:  1a. Call memory_match_triggers(prompt) → Surface relevant context  │
+│          1b. CLASSIFY INTENT: Identify "Shape" [Research | Implementation]  │
+│          1c. Parse request → Check confidence AND uncertainty (see §4)       │
+│          1d. DUAL-THRESHOLD VALIDATION:                                     │
 │                                                                             │
 │ READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)                   │
 │   - BOTH pass → PROCEED                                                     │
@@ -126,10 +108,13 @@
 │                                                                             │
 │ Simple thresholds (confidence-only, for straightforward queries):            │
 │   If <40%: ASK | 40-69%: PROCEED WITH CAUTION | ≥70%: PASS                  │
+│                                                                             │
+│ ⚠️ PRIORITY NOTE: Gate 1 is SOFT - if file modification detected, Gate 3      │
+│    (HARD BLOCK) takes precedence. Ask spec folder question BEFORE analysis. │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ GATE 3: SKILL ROUTING [ALWAYS REQUIRED for non-trivial tasks]               │
+│ GATE 2: SKILL ROUTING [ALWAYS REQUIRED for non-trivial tasks]               │
 │                                                                             │
 │ Action:  Verify skill routing via ONE of:                                   │
 │   A) Run: python3 .opencode/scripts/skill_advisor.py "[request]" --threshold 0.8│
@@ -147,23 +132,33 @@
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ MEMORY CONTEXT LOADING [SOFT]                                               │
-│ Trigger: User selected A or C in Gate 1 AND memory files exist               │
-│ Action:  memory_search({ query, specFolder, anchors: ['summary', 'state'] })│
-│          → Use anchors for targeted retrieval (~90% token savings)          │
-│          → Common anchors: summary, decisions, state, context, artifacts    │
-│          → Constitutional memories always appear first                       │
-│          → Full content: omit anchors OR use includeContent: true           │
-│ Skip:    User can say "skip context" to proceed immediately                 │
+│ GATE 3: SPEC FOLDER QUESTION [HARD BLOCK] ⭐ PRIORITY GATE                  │
+│                                                                             │
+│ ⚠️ HARD BLOCK OVERRIDES SOFT BLOCKS: If file modification detected,           │
+│    Gate 3 question MUST be asked BEFORE Gates 1-2 analysis/tool calls.      │
+│    Sequence: Detect intent → Ask Gate 3 → Wait for A/B/C/D → Then analyze.  │
+│                                                                             │
+│ FILE MODIFICATION TRIGGERS (if ANY match → Q1 REQUIRED):                    │
+│   □ "rename", "move", "delete", "create", "add", "remove"                   │
+│   □ "update", "change", "modify", "edit", "fix", "refactor"                  │
+│   □ "implement", "build", "write", "generate", "configure", "analyze"        │
+│   □ Any task that will result in file changes                                │
+│                                                                             │
+│ Q1: SPEC FOLDER - If file modification triggers detected                      │
+│     Options: A) Existing | B) New | C) Update related | D) Skip             │
+│     ❌ DO NOT use Read/Edit/Write/Bash (except Gate Actions) before asking  │
+│     ✅ ASK FIRST, wait for A/B/C/D response, THEN proceed                   │
+│                                                                             │
+│ BENEFIT: Better planning, reduced rework, consistent documentation          │
+│ SKIP: User can say "skip research" to bypass Research task dispatch         │
+│                                                                             │
+│ Block: HARD - Cannot use tools without answer                               │
 └─────────────────────────────────────────────────────────────────────────────┘
-                                    ↓ PASS
-                              ✅ EXECUTE TASK
-```
 
 ### First Message Protocol
 
 **RULE**: If the user's FIRST message requests file modifications:
-1. Gate 1 question is your FIRST response
+1. Gate 3 question is your FIRST response
 2. No analysis first ("let me understand the scope")
 3. No tool calls first ("let me check what exists")
 4. Ask immediately:
@@ -171,11 +166,25 @@
    **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
 
 5. Wait for answer, THEN proceed
-6. Verify skill routing (Gate 3) before substantive work:
+6. Verify skill routing (Gate 2) before substantive work:
    - Run `python3 .opencode/scripts/skill_advisor.py "[request]" --threshold 0.8`
    - OR cite user's explicit skill/agent direction if provided
 
 **Why**: Large tasks feel urgent. Urgency bypasses process. Ask first, analyze after.
+
+                                    ↓ PASS
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ MEMORY CONTEXT LOADING [SOFT]                                               │
+│ Trigger: User selected A or C in Gate 3 AND memory files exist               │
+│ Action:  memory_search({ specFolder, includeContent: true })                │
+│          → Results include embedded content (no separate load needed)       │
+│          → Constitutional memories always appear first                       │
+│          → Display relevant context directly from search results            │
+│ Skip:    User can say "skip context" to proceed immediately                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    ↓ PASS
+                              ✅ EXECUTE TASK
+```
 
 ### 🔒 POST-EXECUTION RULES (Behavioral - Not Numbered)
 
@@ -189,11 +198,15 @@
 │   1. If NO folder argument → HARD BLOCK → List folders → Ask user           │
 │   2. If folder provided → Validate alignment with conversation topic        │
 │                                                                             │
-│ EXECUTION:                                                                  │
+│ EXECUTION (script: .opencode/skill/system-spec-kit/scripts/generate-context.js):
 │   Mode 1 (JSON): Write JSON to /tmp/save-context-data.json, pass as arg     │
-│            `node generate-context.js /tmp/save-context-data.json`           │
+│            node [script] /tmp/save-context-data.json                        │
 │   Mode 2 (Direct): Pass spec folder path directly                           │
-│            `node generate-context.js specs/005-memory`                      │
+│            node [script] specs/005-memory                                   │
+│                                                                             │
+│ INDEXING NOTE: Script reports "Indexed as memory #X" but running MCP server │
+│   may not see it immediately (separate DB connection). For immediate MCP    │
+│   visibility: call memory_index_scan({ specFolder }) or memory_save()       │
 │                                                                             │
 │ VIOLATION: Write tool on memory/ path → DELETE & re-run via script          │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -211,118 +224,121 @@
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓
                               ✅ CLAIM COMPLETION
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ VIOLATION RECOVERY [SELF-CORRECTION]                                        │
+│ Trigger: About to skip gates, or realized gates were skipped                │
+│                                                                             │
+│ Action:                                                                     │
+│   1. STOP immediately                                                       │
+│   2. STATE: "Before I proceed, I need to ask about documentation:"          │
+│   3. ASK the applicable Gate 3 question (spec folder A/B/C/D)               │
+│   4. WAIT for response, then continue                                       │
+│                                                                             │
+│ Self-Check (run before ANY tool-using response):                            │
+│   □ File modification detected? Did I ask spec folder question?              │
+│   □ Skill routing verified? Script output OR user direction cited?           │
+│   □ Saving memory/context? Using generate-context.js (not Write tool)?      │
+│   □ Aligned with ORIGINAL request? No scope drift from Turn 1?              │
+│   □ Claiming completion? checklist.md verified?                              │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 🔄 EDGE CASE: Compaction Recovery
+---
 
-When system message contains "Please continue the conversation from where we left it off...":
+## 3. ⚡ OPERATIONAL PROTOCOLS
 
-**Action:** Display branch protocol:
-```
-⚠️ CONTEXT COMPACTION DETECTED
+### Consolidated Question Protocol
 
-To continue efficiently, start a new conversation with this handoff:
+**🚨 ONE USER INTERACTION - Ask ALL questions together, wait ONCE**
 
-CONTINUATION - Attempt [N]
-Spec: [CURRENT_SPEC_PATH]
-Last: [LAST_ACTION]
-Next: [NEXT_ACTION]
+When multiple inputs are needed, consolidate into a SINGLE prompt. Never split questions across multiple messages.
 
-Run /spec_kit:handover to save handover context, then in new session:
-/spec_kit:resume [spec-path]
-```
-
-**Continuation Validation:** When user message contains "CONTINUATION - Attempt" pattern:
-1. Parse handoff message (spec folder, Last Action, Next Action)
-2. Validate against most recent memory file if exists
-3. If mismatch: Report and ask which is correct
-4. If validated: Proceed with "✅ Continuation validated"
-
-### ⚡ Self-Verification (MANDATORY before EVERY tool-using response)
-
-```
-□ File modification detected? Did I ask spec folder question? If NO → Ask NOW.
-□ Skill routing verified? → Script output OR user direction citation required
-□ Am I saving memory/context? → Use generate-context.js script (not Write tool)
-□ Aligned with ORIGINAL request? → Check for scope drift from Turn 1 intent
-□ Claiming completion? → Verify checklist.md items first
-```
-
-### 🔄 Violation Recovery
-
-If you catch yourself about to skip the gates:
-1. **STOP** immediately
-2. **State**: "Before I proceed, I need to ask about documentation:"
-3. **Ask** the applicable Gate 3 questions
-4. **Wait** for response, then continue
-
-#### 🔄 Consolidated Question Protocol
-
-Present all applicable questions in single prompt:
+**Example: Multi-question consolidated prompt**
 ```markdown
 **Before proceeding, please answer:**
 
-1. **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
+1. **Spec Folder** (required):
+   A) Use existing: [suggest if related found]
+   B) Create new: specs/[###]-[feature-slug]/
+   C) Update related: [if partial match]
+   D) Skip documentation
 
-Reply with choice, e.g.: "B" or "skip"
+2. **Execution Mode** (if applicable):
+   A) Autonomous - Execute without approval
+   B) Interactive - Pause at each step
+
+3. **Memory Context** (if using existing spec):
+   A) Load most recent
+   B) Load all recent (up to 3)
+   C) Skip (start fresh)
+
+Reply with answers, e.g.: "B, A, C" or "A, , A" (blank for default)
 ```
 
-**Detection Logic (run BEFORE asking):**
-```
-File modification planned? → Include Q1 (Spec Folder)
-```
+**Principles:**
+- **Round-trip optimization** - Only 1 user interaction needed for setup
+- **No sequential prompts** - NEVER ask one question, wait, ask another
+- **First Message Protocol** - ALL questions asked BEFORE any analysis or tool calls
+- **Include only applicable questions** - Omit questions when answer is pre-determined
+
+**Violation:** If you ask questions in MULTIPLE separate prompts instead of ONE consolidated prompt → STOP, apologize, re-present as single prompt.
 
 **Gate Bypass Phrases** (user can skip specific gates):
 - Memory Context Loading: "skip context", "fresh start", "skip memory", [skip]
 - Completion Verification: Level 1 tasks (no checklist.md required)
 
-#### ⚡ Code Quality Standards Compliance
 
-**MANDATORY:** Compliance checkpoints:
-- Before **proposing solutions**: Verify approach aligns with code quality standards and established patterns
+### Compliance Checkpoints
+
+**MANDATORY:**
+- Before **proposing solutions**: Verify approach aligns with project patterns and conventions
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement
-- Before **initialization code**: Follow initialization patterns from code quality standards
-- Before **animation implementation**: See animation workflow references
-- Before **code discovery**: Use `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents
+- Before **code discovery**: Use Grep for text patterns, Glob for file discovery, Read for file contents
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
-- **If conflict exists**: Code quality standards override general practices
+- Before **code implementation**: Load workflows-code skill for 3-phase development lifecycle (Implementation → Testing → Verification)
+- Before **git operations**: Use workflows-git skill for read-only analysis (enforces Git Operations Policy from §1)
+- **If conflict exists**: Project-specific patterns override general practices
 
-**Violation handling:** If proposed solution contradicts code quality standards, STOP and ask for clarification or revise approach.
+**Violation handling:** If proposed solution contradicts project patterns, STOP and ask for clarification or revise approach.
 
-#### ⚡ Common Failure Patterns
+### Common Failure Patterns
 
 | #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                       |
 | --- | -------------- | ---------------------------- | -------------------------------------------- | ----------------------------------------------------- |
-| 1   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                           |
-| 2   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                             |
-| 3   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                               |
-| 4   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                     |
-| 5   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                        |
-| 6   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                               |
-| 7   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                      |
-| 8   | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
-| 9   | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                  |
-| 10  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
-| 11  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Grep for text patterns, Glob for files                |
-| 12  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
-| 13  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                |
-| 14  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response    |
-| 15  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response        |
-| 16  | Understanding  | Skip Skill Routing           | "obvious which skill", "user specified"      | STOP → Run skill_advisor.py OR cite user direction    |
-| 17  | Any            | Cargo Culting                | "best practice", "always should"             | BIAS lens: Does this pattern fit THIS specific case?  |
-| 18  | Planning       | Gold-Plating                 | "while we're here", "might as well"          | SCOPE lens: Is this in the original scope?            |
-| 19  | Implementation | Wrong Abstraction            | "DRY this up" for 2 similar blocks           | CLARITY lens: Same concept or just similar code?      |
-| 20  | Planning       | Premature Optimization       | "might be slow", "could bottleneck"          | VALUE lens: Has performance been measured?            |
+| 1   | Understanding  | Task Misinterpretation       | N/A                                          | Parse request, confirm scope                          |
+| 2   | Understanding  | Assumptions                  | N/A                                          | Read existing code first                              |
+| 3   | Planning       | Rush to Code                 | "straightforward"                            | Analyze → Verify → Simplest                           |
+| 4   | Planning       | Over-Engineering             | N/A                                          | YAGNI - solve only stated                             |
+| 5   | Planning       | Skip Process                 | "I already know"                             | Follow checklist anyway                               |
+| 6   | Implementation | Clever > Clear               | N/A                                          | Obvious code wins                                     |
+| 7   | Implementation | Fabrication                  | "obvious" w/o verify                         | Output "UNKNOWN", verify first                        |
+| 8   | Implementation | Cascading Breaks             | N/A                                          | Reproduce before fixing                               |
+| 9   | Implementation | Root Folder Pollution        | Creating temp file                           | STOP → Move to scratch/ → Verify                      |
+| 10  | Review         | Skip Verification            | "trivial edit"                               | Run ALL tests, no exceptions                          |
+| 11  | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
+| 12  | Completion     | Skip Stack Verification      | "works", "done"                              | Run stack-appropriate verification first              |
+| 13  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
+| 14  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Grep for text patterns, Glob for files                |
+| 15  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
+| 16  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                |
+| 17  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response    |
+| 18  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response        |
+| 19  | Understanding  | Skip Skill Routing           | "obvious which skill", "user specified"      | STOP → Run skill_advisor.py OR cite user direction    |
+| 20  | Any            | Cargo Culting                | "best practice", "always should"             | BIAS lens: Does this pattern fit THIS specific case?  |
+| 21  | Planning       | Gold-Plating                 | "while we're here", "might as well"          | SCOPE lens: Is this in the original scope?            |
+| 22  | Implementation | Wrong Abstraction            | "DRY this up" for 2 similar blocks           | CLARITY lens: Same concept or just similar code?      |
+| 23  | Planning       | Premature Optimization       | "might be slow", "could bottleneck"          | VALUE lens: Has performance been measured?            |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
 
-**Lens-based Detection (Patterns 17-20):** Apply relevant lens silently. If triggered, surface the concern naturally without referencing the pattern number or lens name.
+**Lens-based Detection (Patterns 20-23):** Apply relevant lens silently. If triggered, surface the concern naturally without referencing the pattern number or lens name.
 
 ---
 
-## 3. 📝 MANDATORY: CONVERSATION DOCUMENTATION
+## 4. 📝 MANDATORY: CONVERSATION DOCUMENTATION
 
 Every conversation that modifies files MUST have a spec folder. **Full details**: system-spec-kit skill
 
@@ -337,7 +353,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 > **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
 
-**Rules:**
+**Rules:** 
 - When in doubt → higher level
 - LOC is soft guidance (risk/complexity can override)
 - Single typo/whitespace fixes (<5 characters in one file) are exempt from spec folder requirements
@@ -375,7 +391,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 ---
 
-## 4. 🧑‍🏫 CONFIDENCE & CLARIFICATION FRAMEWORK
+## 5. 🧑‍🏫 CONFIDENCE & CLARIFICATION FRAMEWORK
 
 **Core Principle:** If not sure or confidence < 80%, pause and ask for clarification. Present a multiple-choice path forward.
 
@@ -404,128 +420,68 @@ Action:
 
 ---
 
-## 5. 🧠 REQUEST ANALYSIS & SOLUTION FRAMEWORK
+## 6. 🧠 REQUEST ANALYSIS & SOLUTION FRAMEWORK
 
-**Before ANY action or file changes, work through these phases:**
-
-### Solution Flow Overview
+### Solution Flow
 ```
-Request Received → [Parse carefully: What is ACTUALLY requested?]
-                    ↓
-         Gather Context → [Read files, check skills folder]
-                    ↓
-      SYSTEMS Lens → [What does this touch? Dependencies? Side effects?]
-                    ↓
-         BIAS Lens → [Is this the right problem? Symptom or root cause?]
-                    ↓
-  Identify Approach → [What's the SIMPLEST solution that works?]
-                    ↓
-    Validate Choice → [Does this follow patterns? Is it maintainable?]
-                    ↓
-     Clarify If Needed → [If ambiguous or <80% confidence: ask (see §4)]
-                    ↓
-       SCOPE Lens → [Does solution complexity match problem size?]
-                    ↓
-           Execute  → [Implement with minimal complexity]
+Request → Parse (what's ACTUALLY asked?) → Read files first
+    ↓
+Analyze → SYSTEMS (what does this touch?) → BIAS (right problem?) → SCOPE (size match?)
+    ↓
+Design → Simplest solution? → Existing patterns? → Evidence-based?
+    ↓
+Validate → Confidence ≥80%? → Sources cited? → Approval received?
+    ↓
+Execute → Implement with minimal complexity
 ```
 
-#### Phases 1-3: Forensic Analysis
-```markdown
-REQUEST ANALYSIS:
-□ Actual request: [Restate in own words]
-□ Desired outcome: [Be specific]
-□ Scope: [Single change | Feature | Investigation]
-□ Doc level: [1: <100 LOC | 2: 100-499 LOC | 3: ≥500 LOC] → /specs/[###-short-name]/
+### Core Principles
 
-FORENSIC CONTEXT (Evidence Levels):
-□ E0 (FACTS): Verified file paths & current code state? [Cite sources]
-□ E1 (LOGIC): Proposed change logically connects A → B?
-□ E2 (CONSTRAINTS): "Mission Frame" boundaries identified? (No drift)
-□ INTENT SHAPE: [Tunnel (Execute) | Tree (Explore) | Filter (Debug)]
+| Principle         | Rule                                                             | Anti-Pattern                                               |
+| ----------------- | ---------------------------------------------------------------- | ---------------------------------------------------------- |
+| **Simplicity**    | Use existing patterns; every abstraction must earn its existence | Creating utilities for <3 uses, interfaces for single impl |
+| **Evidence**      | Cite sources (`file.md:lines`) or state "UNKNOWN"                | Claims without verification                                |
+| **Scope Match**   | Solution size = problem size (1-line bug → 1-line fix)           | Refactoring during bug fix, framework for 3-file feature   |
+| **Right Problem** | Verify root cause, not symptom; measure before optimizing        | Premature optimization, wrong framing                      |
+
+**Citation format:** `[SOURCE: file.md:42-58]` or `[CITATION: NONE]`
+
+**CLARITY Triggers** (require justification before proceeding):
+- Creating utility function for <3 use cases
+- Adding configuration for single-use value
+- Introducing abstraction layer without clear boundary
+- Using design pattern where simple code suffices
+- Adding interface for single implementation
+
+**BIAS Reframe Technique:** Don't argue, redirect:
+> *"Before we add retry logic, let me check if the error handling upstream might be the actual issue."*
+
+### Pre-Change Checklist
 ```
-
-#### Phase 4: Solution Design & Selection
-**Core Principles:**
-
-1. **Simplicity First (KISS)** - Apply CLARITY lens
-   - Use existing patterns; justify new abstractions
-   - Direct solution > clever complexity
-   - Every abstraction must earn its existence
-   - **CLARITY Triggers** (require justification before proceeding):
-     - Creating utility function for <3 use cases
-     - Adding configuration for single-use value
-     - Introducing abstraction layer without clear boundary
-     - Using design pattern where simple code suffices
-     - Adding interface for single implementation
-
-2. **Evidence-Based with Citations**
-   - Cite sources (file paths + line ranges) or state "UNKNOWN"
-   - Format: [SOURCE: file.md:lines] or [CITATION: NONE]
-   - For high-stakes decisions: Require ≥1 primary source or escalate
-
-3. **Effectiveness Over Elegance**
-   - Performant + Maintainable + Concise + Clear
-   - Obviously correct approach > clever tricks
-   - Scope discipline: Solve ONLY stated problem, no gold-plating
-
-4. **BIAS Lens - Wrong Problem Detection**
-   Before accepting user's problem framing, verify:
-   - Is this a symptom or root cause?
-   - Has the actual issue been measured/reproduced?
-   - Is this premature optimization without evidence?
-   - Is user adding complexity to avoid simpler change?
-
-   If framing seems wrong, reframe rather than argue:
-   *"Before we add retry logic, let me check if the error handling upstream might be the actual issue."*
-
-5. **SCOPE Lens - Complexity Matching**
-   Solution size should match problem size:
-   - Single-line bug → Single-line fix (not refactoring opportunity)
-   - Config change → Config change (not architectural discussion)
-   - 3-file feature → 3-file solution (not framework introduction)
-
-### Five Checks Framework (>100 LOC or architectural)
-
-**For substantial changes (>100 LOC or architectural decisions), validate against these five checks:**
-
-| #   | Check                    | Question                 | Pass Criteria                              |
-| --- | ------------------------ | ------------------------ | ------------------------------------------ |
-| 1   | **Necessary?**           | Solving ACTUAL need NOW? | Clear requirement exists, not speculative  |
-| 2   | **Beyond Local Maxima?** | Explored alternatives?   | ≥2 alternatives considered with trade-offs |
-| 3   | **Sufficient?**          | Simplest approach?       | No simpler solution achieves the goal      |
-| 4   | **Fits Goal?**           | On critical path?        | Directly advances stated objective         |
-| 5   | **Open Horizons?**       | Long-term aligned?       | Doesn't create technical debt or lock-in   |
-
-**Usage:** Required for Level 3/3+ spec folders. Optional for Level 2. Record in decision-record.md for architectural changes.
-
-#### Phases 5-6: Validation Checklist (Before Changes)
-```markdown
-PRE-CHANGE VALIDATION:
-□ Simplest solution? (no unneeded abstractions, existing patterns)
-□ Scope discipline? (ONLY stated problem, no feature creep)
-□ Logic chain sound? (facts cited → reasoning valid → conclusion follows)
-□ Spec folder created? (required files for level)
 □ Read files first? (understand before modify)
-□ Clear success criteria?
-□ Confidence ≥80%? (if not: ask clarifying question)
+□ Simplest solution? (no unneeded abstractions)
+□ Scope discipline? (ONLY stated problem, no gold-plating)
+□ Confidence ≥80%? (if not: ask with options)
 □ Sources cited? (or "UNKNOWN")
+□ Spec folder exists?
 □ User approval received?
-□ If Level 2+: checklist.md items verified
-
-LENS VALIDATION (apply silently):
-□ CLARITY: Is this the simplest solution that works?
-□ SYSTEMS: Dependencies analyzed, no unexpected side effects?
-□ BIAS: Solving the stated problem (not a symptom or wrong framing)?
-□ SCOPE: Solution complexity matches problem scope?
-□ VALUE: Change has actual behavioral impact (not just cosmetic)?
 ```
 
-**Verification loop:** Sense → Interpret → Verify → Reflect → Publish (label TRUE/FALSE/UNKNOWN)
-**STOP CONDITIONS:** □ unchecked | no spec folder | no user approval → STOP and address
+### Five Checks (>100 LOC or architectural)
+
+| Check             | Question                   | Pass When                             |
+| ----------------- | -------------------------- | ------------------------------------- |
+| **Necessary?**    | Solving actual need NOW?   | Clear requirement, not speculative    |
+| **Alternatives?** | Explored other approaches? | ≥2 options considered with trade-offs |
+| **Sufficient?**   | Simplest approach?         | No simpler solution achieves goal     |
+| **Fits Goal?**    | On critical path?          | Directly advances stated objective    |
+| **Long-term?**    | Creates tech debt?         | No lock-in, maintainable              |
+
+**STOP CONDITIONS:** □ unchecked | no spec folder | no approval → STOP and address
 
 ---
 
-## 6. 🤖 AGENT ROUTING
+## 7. 🤖 AGENT ROUTING
 
 When using the orchestrate agent or Task tool for complex multi-step workflows, route to specialized agents:
 
@@ -553,7 +509,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 
 ---
 
-## 7. ⚙️  MCP CONFIGURATION
+## 8. ⚙️  MCP CONFIGURATION
 
 **Two systems:**
 
@@ -564,10 +520,10 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
    - Webflow, Figma, Github, ClickUp, Chrome DevTools, etc.
    - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
-
+  
 ---
 
-## 8. 🧩 SKILLS SYSTEM
+## 9. 🧩 SKILLS SYSTEM
 
 Skills are specialized, on-demand capabilities that provide domain expertise. Unlike knowledge files (passive references), skills are explicitly invoked to handle complex, multi-step workflows.
 
@@ -585,10 +541,6 @@ Task Received → Gate 2: Run skill_advisor.py
       Follow Instructions → Complete task using skill guidance
 ```
 
-**Invocation Methods:**
-- **Native**: OpenCode v1.0.190+ auto-discovers skills and exposes them as `skills_*` functions (e.g., `skills_system_spec_kit`)
-- **Direct**: Read `SKILL.md` from `.opencode/skill/<skill-name>/` folder
-
 ### Skill Loading Protocol
 
 1. Gate 2 provides skill recommendation via `skill_advisor.py`
@@ -597,20 +549,17 @@ Task Received → Gate 2: Run skill_advisor.py
 4. Follow skill instructions to completion
 5. Do NOT re-invoke a skill already in context
 
-### Skill Routing (Gate 2)
+### Primary Skill: workflows-code
 
-Gate 2 routes tasks to skills via `skill_advisor.py`. When confidence > 0.8, you MUST invoke the recommended skill.
+For ALL frontend code implementation in anobel.com, `workflows-code` is the primary orchestrator skill.
 
-**How to use skills:**
-- OpenCode v1.0.190+ auto-discovers skills from `.opencode/skill/*/SKILL.md` frontmatter
-- Skills appear as `skills_*` functions in your available tools (e.g., `skills_system_spec_kit`)
-- When a task matches a skill, read the SKILL.md directly: `Read(".opencode/skill/<skill-name>/SKILL.md")`
-- Base directory provided for resolving bundled resources (`references/`, `scripts/`, `assets/`)
+**3-Phase Lifecycle (MANDATORY):**
+1. **Phase 1 - Implementation**: Write code following Webflow patterns, async handling, validation
+2. **Phase 1.5 - Code Quality Gate**: Validate against style standards (P0 items MUST pass)
+3. **Phase 2 - Debugging**: Fix issues systematically using DevTools, trace root cause
+4. **Phase 3 - Verification**: Browser testing at multiple viewports (MANDATORY before "done")
 
-**Usage notes:**
-- Do not invoke a skill that is already loaded in your context
-- Each skill invocation is stateless
-- Skills are auto-indexed from SKILL.md frontmatter - no manual list maintenance required
+**The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
 
 ### Skill Maintenance
 
@@ -621,11 +570,12 @@ When creating or editing skills:
 - Validate skill structure matches template in `workflows-documentation/references/skill_creation.md`
 - Use the templates in `workflows-documentation/assets/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
 - Ensure all bundled resources are referenced with relative paths
+- Test skill invocation before committingth relative paths
 - Test skill invocation before committing
 
 ---
 
-## 9. 💻 WORKFLOWS CODE
+## 10. 💻 WORKFLOWS CODE
 
 The `workflows-code` skills serve as domain orchestrators for code implementation. Two variants exist:
 
