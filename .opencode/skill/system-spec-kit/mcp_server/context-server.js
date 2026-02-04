@@ -60,6 +60,8 @@ const attentionDecay = require(path.join(LIB_DIR, 'cognitive', 'attention-decay.
 const coActivation = require(path.join(LIB_DIR, 'cognitive', 'co-activation.js'));
 // T059: Archival manager for automatic archival of ARCHIVED state memories
 const archivalManager = require(path.join(LIB_DIR, 'cognitive', 'archival-manager.js'));
+// T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
+const retryManager = require(path.join(LIB_DIR, 'providers', 'retry-manager.js'));
 const { ErrorCodes, getRecoveryHint, build_error_response } = require(path.join(LIB_DIR, 'errors.js'));
 // T001-T004: Session deduplication
 const sessionManager = require(path.join(LIB_DIR, 'session', 'session-manager.js'));
@@ -296,6 +298,7 @@ process.on('SIGTERM', () => {
   shutting_down = true;
   console.error('[context-server] Received SIGTERM, shutting down...');
   archivalManager.cleanup(); // T059: Stop archival background job
+  retryManager.stop_background_job(); // T099: Stop retry background job
   accessTracker.flush_access_counts();
   vectorIndex.closeDb();
   process.exit(0);
@@ -306,6 +309,7 @@ process.on('SIGINT', () => {
   shutting_down = true;
   console.error('[context-server] Received SIGINT, shutting down...');
   archivalManager.cleanup(); // T059: Stop archival background job
+  retryManager.stop_background_job(); // T099: Stop retry background job
   accessTracker.flush_access_counts();
   vectorIndex.closeDb();
   process.exit(0);
@@ -313,7 +317,7 @@ process.on('SIGINT', () => {
 
 process.on('uncaughtException', (err) => {
   console.error('[context-server] Uncaught exception:', err);
-  try { archivalManager.cleanup(); accessTracker.flush_access_counts(); vectorIndex.closeDb(); } catch (e) { console.error('[context-server] Cleanup failed:', e); }
+  try { archivalManager.cleanup(); retryManager.stop_background_job(); accessTracker.flush_access_counts(); vectorIndex.closeDb(); } catch (e) { console.error('[context-server] Cleanup failed:', e); }
   process.exit(1);
 });
 
@@ -419,6 +423,16 @@ async function main() {
     console.error(`[context-server] Integrity check: ${report.validCount}/${report.total} valid entries`);
     if (report.orphanedCount > 0) console.error(`[context-server] WARNING: ${report.orphanedCount} orphaned entries detected`);
 
+    // BUG-FIX: Validate embedding dimension matches database
+    const dim_validation = vectorIndex.validateEmbeddingDimension();
+    if (!dim_validation.valid) {
+      console.error(`[context-server] ===== EMBEDDING DIMENSION MISMATCH =====`);
+      console.error(`[context-server] ${dim_validation.warning}`);
+      console.error(`[context-server] =========================================`);
+    } else if (dim_validation.stored) {
+      console.error(`[context-server] Embedding dimension validated: ${dim_validation.stored}`);
+    }
+
     const database = vectorIndex.getDb();
     checkpointsLib.init(database);
     accessTracker.init(database);
@@ -452,6 +466,22 @@ async function main() {
       }
     } catch (archival_err) {
       console.warn('[context-server] Archival manager failed:', archival_err.message);
+    }
+
+    // T099: Background retry job for pending embeddings (REQ-031, CHK-179)
+    // Processes memories with failed embeddings in the background
+    try {
+      const retryJobResult = retryManager.start_background_job({
+        intervalMs: 5 * 60 * 1000,  // Check every 5 minutes
+        batchSize: 5,               // Process up to 5 pending items per run
+      });
+      if (retryJobResult) {
+        console.error('[context-server] Background retry job started (interval: 5min, batch: 5)');
+      } else {
+        console.error('[context-server] Background retry job already running or disabled');
+      }
+    } catch (retry_err) {
+      console.warn('[context-server] Background retry job failed to start:', retry_err.message);
     }
 
     // T001-T004: Session deduplication module

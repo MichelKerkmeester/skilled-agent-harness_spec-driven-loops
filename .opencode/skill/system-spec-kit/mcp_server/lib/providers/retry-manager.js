@@ -4,7 +4,8 @@
 'use strict';
 
 const vector_index = require('../search/vector-index');
-const { generate_embedding } = require('./embeddings');
+// BUG-FIX: Use generate_document_embedding for proper task prefix (Nomic model requires it)
+const { generate_document_embedding } = require('./embeddings');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
@@ -157,8 +158,8 @@ async function retry_embedding(id, content) {
       return { success: false, error: 'Maximum retries exceeded', permanent: true };
     }
 
-    // Generate embedding
-    const embedding = await generate_embedding(content);
+    // Generate embedding (BUG-FIX: Use document embedding for proper task prefix)
+    const embedding = await generate_document_embedding(content);
 
     if (!embedding) {
       // Increment retry count and mark for retry

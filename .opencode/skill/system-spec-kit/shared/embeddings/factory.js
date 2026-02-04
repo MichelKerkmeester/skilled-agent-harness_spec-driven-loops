@@ -111,7 +111,7 @@ async function create_embeddings_provider(options = {}) {
       const success = await provider.warmup();
       if (!success) {
         console.warn(`[factory] Warmup failed for ${provider_name}`);
-        
+
         // Fallback to hf-local for cloud providers when auto-detected (not explicitly set)
         if ((provider_name === 'openai' || provider_name === 'voyage') && !options.provider) {
           console.warn(`[factory] Attempting fallback from ${provider_name} to hf-local...`);
@@ -119,7 +119,13 @@ async function create_embeddings_provider(options = {}) {
             model: options.model,
             dim: options.dim,
           });
-          await provider.warmup();
+          // BUG-FIX: Wrap fallback warmup in try/catch to prevent unhandled errors
+          try {
+            await provider.warmup();
+          } catch (fallback_warmup_error) {
+            console.warn(`[factory] Fallback warmup failed: ${fallback_warmup_error.message}`);
+            // Continue anyway - provider will attempt lazy initialization on first use
+          }
         }
       }
     }
@@ -128,7 +134,7 @@ async function create_embeddings_provider(options = {}) {
 
   } catch (error) {
     console.error(`[factory] Error creating provider ${provider_name}:`, error.message);
-    
+
     // Fallback to hf-local for cloud providers when auto-detected (not explicitly set)
     if ((provider_name === 'openai' || provider_name === 'voyage') && !options.provider) {
       console.warn(`[factory] Fallback to hf-local due to ${provider_name} error`);
@@ -136,14 +142,20 @@ async function create_embeddings_provider(options = {}) {
         model: options.model,
         dim: options.dim,
       });
-      
+
       if (options.warmup) {
-        await provider.warmup();
+        // BUG-FIX: Wrap fallback warmup in try/catch to prevent unhandled errors
+        try {
+          await provider.warmup();
+        } catch (fallback_warmup_error) {
+          console.warn(`[factory] Fallback warmup failed: ${fallback_warmup_error.message}`);
+          // Continue anyway - provider will attempt lazy initialization on first use
+        }
       }
-      
+
       return provider;
     }
-    
+
     throw error;
   }
 }

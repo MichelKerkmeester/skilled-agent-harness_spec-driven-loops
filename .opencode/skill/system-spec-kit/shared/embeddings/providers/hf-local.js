@@ -14,6 +14,8 @@ const DEFAULT_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const EMBEDDING_DIM = 768;
 // MAX_TEXT_LENGTH imported from chunking.js (single source of truth)
 const EMBEDDING_TIMEOUT = 30000;
+// BUG-FIX: Model loading timeout (first download can be slow, but prevent infinite hang)
+const MODEL_LOAD_TIMEOUT = 120000; // 2 minutes (model is ~274MB)
 
 // Task prefixes required by nomic-embed-text-v1.5
 // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
@@ -75,20 +77,36 @@ class HfLocalProvider {
         let target_device = get_optimal_device();
         console.log(`[hf-local] Attempting device: ${target_device}`);
 
-        try {
-          this.extractor = await pipeline('feature-extraction', this.model_name, {
-            dtype: 'fp32',
-            device: target_device,
+        // BUG-FIX: Add timeout to prevent infinite hang on corrupted cache or network stall
+        const load_with_timeout = async (device) => {
+          return new Promise((resolve, reject) => {
+            const timeout_id = setTimeout(() => {
+              reject(new Error(`Model loading timed out after ${MODEL_LOAD_TIMEOUT}ms. ` +
+                'This may indicate a corrupted cache or network issue. ' +
+                'Try clearing: ~/.cache/huggingface/hub/'));
+            }, MODEL_LOAD_TIMEOUT);
+
+            pipeline('feature-extraction', this.model_name, {
+              dtype: 'fp32',
+              device: device,
+            }).then(extractor => {
+              clearTimeout(timeout_id);
+              resolve(extractor);
+            }).catch(err => {
+              clearTimeout(timeout_id);
+              reject(err);
+            });
           });
+        };
+
+        try {
+          this.extractor = await load_with_timeout(target_device);
           current_device = target_device;
         } catch (device_error) {
           // MPS unavailable, fallback to CPU
-          if (target_device !== 'cpu') {
+          if (target_device !== 'cpu' && !device_error.message.includes('timed out')) {
             console.warn(`[hf-local] ${target_device.toUpperCase()} unavailable (${device_error.message}), using CPU`);
-            this.extractor = await pipeline('feature-extraction', this.model_name, {
-              dtype: 'fp32',
-              device: 'cpu',
-            });
+            this.extractor = await load_with_timeout('cpu');
             current_device = 'cpu';
           } else {
             throw device_error;

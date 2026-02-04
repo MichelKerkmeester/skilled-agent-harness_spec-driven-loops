@@ -60,10 +60,9 @@
             ],
             "env": {
               "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
-              "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}",
-              "DOCUMENT_SUPPORT": "true",
-              "NODE_ENV": "production"
-            }
+              "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}"
+            },
+            "_note": "ClickUp MCP server for task management. Get API token from ClickUp Settings > Apps > API Token."
           }
         }
       }

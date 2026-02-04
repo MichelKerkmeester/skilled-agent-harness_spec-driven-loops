@@ -74,6 +74,53 @@ async function get_confirmed_embedding_dimension(timeout_ms = 5000) {
   return 768;
 }
 
+/**
+ * Validate that current embedding dimension matches stored dimension.
+ * BUG-FIX: Detect dimension mismatch that could cause vector search failures.
+ * Returns {valid: boolean, stored: number, current: number, warning?: string}
+ */
+function validate_embedding_dimension() {
+  if (!db || !sqlite_vec_available) {
+    return { valid: true, stored: null, current: null, reason: 'No database or sqlite-vec unavailable' };
+  }
+
+  try {
+    // Check if vec_metadata table exists
+    const meta_table = db.prepare(`
+      SELECT name FROM sqlite_master WHERE type='table' AND name='vec_metadata'
+    `).get();
+
+    if (!meta_table) {
+      // Legacy database without metadata - can't validate
+      return { valid: true, stored: null, current: get_embedding_dim(), reason: 'No metadata table (legacy DB)' };
+    }
+
+    const stored_row = db.prepare(`
+      SELECT value FROM vec_metadata WHERE key = 'embedding_dim'
+    `).get();
+
+    if (!stored_row) {
+      return { valid: true, stored: null, current: get_embedding_dim(), reason: 'No stored dimension' };
+    }
+
+    const stored_dim = parseInt(stored_row.value, 10);
+    const current_dim = get_embedding_dim();
+
+    if (stored_dim !== current_dim) {
+      const warning = `DIMENSION MISMATCH: Database has ${stored_dim}-dim vectors, but provider expects ${current_dim}. ` +
+        `Vector search will fail. Solutions: 1) Delete database and re-index, 2) Set EMBEDDINGS_PROVIDER to match original, ` +
+        `3) Use MEMORY_DB_PATH for provider-specific databases.`;
+      console.error(`[vector-index] WARNING: ${warning}`);
+      return { valid: false, stored: stored_dim, current: current_dim, warning };
+    }
+
+    return { valid: true, stored: stored_dim, current: current_dim };
+  } catch (e) {
+    console.warn('[vector-index] Dimension validation error:', e.message);
+    return { valid: true, stored: null, current: get_embedding_dim(), reason: e.message };
+  }
+}
+
 let schema_initialized = false;
 
 const DEFAULT_DB_DIR = process.env.MEMORY_DB_DIR ||
@@ -1032,6 +1079,7 @@ function create_schema(database) {
   `);
 
   // Create vec_memories virtual table (only if sqlite-vec is available)
+  // BUG-FIX: Store embedding dimension used at creation time for validation
   if (sqlite_vec_available) {
     const embedding_dim = get_embedding_dim();
     database.exec(`
@@ -1039,6 +1087,18 @@ function create_schema(database) {
         embedding FLOAT[${embedding_dim}]
       )
     `);
+    // Store the dimension used to create the table for later validation
+    database.exec(`
+      CREATE TABLE IF NOT EXISTS vec_metadata (
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL,
+        created_at TEXT DEFAULT (datetime('now'))
+      )
+    `);
+    database.prepare(`
+      INSERT OR REPLACE INTO vec_metadata (key, value) VALUES ('embedding_dim', ?)
+    `).run(String(embedding_dim));
+    console.log(`[vector-index] Created vec_memories table with dimension ${embedding_dim}`);
   }
 
   // Create FTS5 virtual table
@@ -3176,6 +3236,7 @@ module.exports = {
   // Embedding Dimension (BUG-003)
   getConfirmedEmbeddingDimension: get_confirmed_embedding_dimension,
   getEmbeddingDim: get_embedding_dim,
+  validateEmbeddingDimension: validate_embedding_dimension,
 
   // Cache Utilities (BUG-009)
   getCacheKey: get_cache_key,
