@@ -73,32 +73,32 @@ flowchart TD
 
 ### Skills (.opencode/skill/) - Complete Reference
 
-| Skill                       | Domain          | Use When                                                                  | Key Commands/Tools                 |
-| --------------------------- | --------------- | ------------------------------------------------------------------------- | ---------------------------------- |
-| `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation                    | `/spec_kit:*`, `/memory:*`         |
-| `workflows-code`            | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification          | -                                  |
-| `workflows-git`             | Version Control | See skill for details                                                     | -                                  |
-| `workflows-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts                      | `/create:*`                        |
-| `workflows-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                            | `bdg` CLI                          |
-| `mcp-narsil`                | Code Intel      | Semantic + structural search, security scans, call graphs (via Code Mode) | `narsil.*` via `call_tool_chain()` |
-| `mcp-code-mode`             | External Tools  | Webflow, Figma, ClickUp, Narsil, Chrome DevTools via MCP                  | `call_tool_chain()`                |
+| Skill                       | Domain          | Use When                                                         | Key Commands/Tools |
+| --------------------------- | --------------- | ---------------------------------------------------------------- | ------------------ |
+| `system-spec-kit`           | Documentation   | Spec folders, memory, validation, context preservation           | `/spec_kit:*`, `/memory:*` |
+| `workflows-code`            | Implementation  | Code changes, debugging, 3-phase lifecycle, browser verification | -                  |
+| `workflows-git`             | Version Control | See skill for details                                            | -                  |
+| `workflows-documentation`   | Markdown        | Doc quality, DQI scoring, skill creation, flowcharts             | `/create:*`        |
+| `workflows-chrome-devtools` | Browser         | DevTools automation, screenshots, console, CDP                   | `bdg` CLI          |
+| `mcp-code-mode`             | External Tools  | Webflow, Figma, ClickUp, Chrome DevTools via MCP                 | `call_tool_chain()` |
 
 ### Core Tools
 
-| Tool                            | Purpose                                | When to Recommend                              |
-| ------------------------------- | -------------------------------------- | ---------------------------------------------- |
-| `narsil.narsil_neural_search`   | Semantic code discovery                | "Find code that handles...", unknown locations |
-| `narsil.narsil_find_symbols`    | Structural code analysis               | Symbol maps, function lists, call graphs       |
-| `spec_kit_memory_memory_search` | Memory vector search                   | Find prior work, decisions                     |
-| `narsil.narsil_*`               | Full Code Intelligence (via Code Mode) | Security scans, call graphs, dead code         |
-| `call_tool_chain()`             | External MCP tools                     | Webflow, Figma, ClickUp, Narsil                |
+| Tool                            | Purpose              | When to Recommend                    |
+| ------------------------------- | -------------------- | ------------------------------------ |
+| `Grep`                          | Pattern search       | Find code patterns, keywords         |
+| `Glob`                          | File discovery       | Locate files by pattern              |
+| `Read`                          | File content         | Examine implementations              |
+| `spec_kit_memory_memory_search` | Memory vector search | Find prior work, decisions           |
+| `call_tool_chain()`             | External MCP tools   | Webflow, Figma, ClickUp              |
 
 ### Tool Access Patterns
 
 | Tool Type     | Access Method       | Example                                    |
 | ------------- | ------------------- | ------------------------------------------ |
 | Native MCP    | Direct call         | `spec_kit_memory_memory_search({ query })` |
-| Code Mode MCP | `call_tool_chain()` | `narsil.narsil_find_symbols({...})`        |
+| Native Tools  | Direct call         | `Grep({...})`, `Glob({...})`, `Read({...})`|
+| Code Mode MCP | `call_tool_chain()` | External tools via MCP                     |
 | CLI tools     | Bash via sub-agent  | `bdg screenshot`                           |
 
 ---
@@ -112,7 +112,7 @@ flowchart TD
 
 ### @research - The Investigation Specialist
 - **Role:** Evidence gathering, pattern analysis, research documentation
-- **Skills:** `mcp-narsil` (if available), `system-spec-kit`
+- **Skills:** `system-spec-kit`
 - **Use When:** Technical uncertainty, feasibility analysis, pre-planning investigation
 - **Note:** Sub-agent (mode: secondary); outputs research.md, not implementation
 
@@ -123,7 +123,7 @@ flowchart TD
 
 ### @review - The Code Quality Guardian
 - **Role:** Code review, pattern validation, quality scoring, security assessment
-- **Skills:** `workflows-code` (if available), `mcp-narsil` (if available)
+- **Skills:** `workflows-code` (if available)
 - **Use When:** Evaluating code changes, reviewing PRs, quality gates, security-sensitive changes
 - **Note:** Codebase-agnostic; loads project patterns dynamically
 
@@ -135,7 +135,7 @@ flowchart TD
 
 ### @debug - The Fresh Perspective Debugger
 - **Role:** Systematic debugging with 4-phase methodology when prior attempts fail
-- **Skills:** `mcp-narsil` (if available), code analysis
+- **Skills:** Code analysis tools (Grep, Glob, Read)
 - **Use When:** 3+ failed debug attempts, stuck errors, need fresh perspective
 - **Note:** Receives structured handoff (NOT conversation history); isolated by design
 
@@ -722,7 +722,7 @@ Cache research results to avoid redundant operations.
 
 | Cache Type         | TTL    | Description             |
 | ------------------ | ------ | ----------------------- |
-| Code Search        | 5 min  | Narsil results          |
+| Code Search        | 5 min  | Grep/Glob results       |
 | Memory Search      | 10 min | Spec Kit Memory queries |
 | File Read          | 2 min  | File content            |
 | Quality Scores     | 15 min | Previous evaluations    |

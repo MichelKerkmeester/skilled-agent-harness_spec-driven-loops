@@ -157,9 +157,6 @@ permission_reference:
   webfetch:
     purpose: "Fetch URLs"
     default: deny
-  narsil:
-    purpose: "Semantic + structural code analysis"
-    default: allow
   memory:
     purpose: "Spec Kit Memory"
     default: allow
@@ -269,7 +266,6 @@ workflow:
 
         Extended tools:
         - webfetch: allow/deny/ask (Fetch URLs)
-        - narsil: allow/deny/ask (Semantic + structural code analysis)
         - memory: allow/deny/ask (Spec Kit Memory)
         - chrome_devtools: allow/deny/ask (Browser debugging)
         - task: allow/deny/ask (Delegate to sub-agents - orchestrators only)
@@ -313,7 +309,6 @@ workflow:
         grep: [allow/deny/ask]
         glob: [allow/deny/ask]
         webfetch: [allow/deny/ask]
-        narsil: [allow/deny/ask]
         memory: [allow/deny/ask]
         chrome_devtools: [allow/deny/ask]
         task: [allow/deny/ask]

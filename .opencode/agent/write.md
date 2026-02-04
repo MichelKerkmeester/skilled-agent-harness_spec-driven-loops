@@ -12,7 +12,6 @@ permission:
   glob: allow
   webfetch: allow
   memory: allow
-  narsil: deny
   chrome_devtools: deny
   external_directory: allow
 ---

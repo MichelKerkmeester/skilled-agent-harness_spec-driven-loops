@@ -1,7 +1,7 @@
 ---
 name: workflows-documentation
 description: "Unified markdown and OpenCode component specialist providing document quality enforcement (structure, style), content optimization for AI assistants, complete component creation workflows (skills, agents, commands with scaffolding, validation, packaging), ASCII flowchart creation for visualizing complex workflows, and install guide creation for MCP servers, plugins, and tools."
-allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
+allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 5.2.0
 ---
 
@@ -141,28 +141,28 @@ TASK CONTEXT
 
 **Mode 1 - Document Quality:**
 
-| Condition              | Resource                          | Purpose                                        |
-| ---------------------- | --------------------------------- | ---------------------------------------------- |
-| Checking structure     | `references/core_standards.md`    | Filename conventions, structural violations    |
-| Optimizing content     | `references/optimization.md`      | Question coverage, AI-friendly transformations |
-| Validating quality     | `references/validation.md`        | DQI scoring, quality gates                     |
-| Workflow guidance      | `references/workflows.md`         | Execution modes, enforcement patterns          |
-| **Creating README**    | `assets/documentation/readme_template.md`       | README structure (13 sections)                 |
-| **Validating frontmatter** | `assets/documentation/frontmatter_templates.md` | Frontmatter validation & templates (11 types) |
+| Condition                  | Resource                                        | Purpose                                        |
+| -------------------------- | ----------------------------------------------- | ---------------------------------------------- |
+| Checking structure         | `references/core_standards.md`                  | Filename conventions, structural violations    |
+| Optimizing content         | `references/optimization.md`                    | Question coverage, AI-friendly transformations |
+| Validating quality         | `references/validation.md`                      | DQI scoring, quality gates                     |
+| Workflow guidance          | `references/workflows.md`                       | Execution modes, enforcement patterns          |
+| **Creating README**        | `assets/documentation/readme_template.md`       | README structure (13 sections)                 |
+| **Validating frontmatter** | `assets/documentation/frontmatter_templates.md` | Frontmatter validation & templates (11 types)  |
 
 **Mode 2 - OpenCode Component Creation:**
 
-| Category | Condition               | Resource                                         | Purpose                                  |
-| -------- | ----------------------- | ------------------------------------------------ | ---------------------------------------- |
-| **Skills** | Creating skill        | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                          |
-|          | SKILL.md template       | `assets/opencode/skill_md_template.md`                    | SKILL.md structure                       |
-|          | Reference template      | `assets/opencode/skill_reference_template.md`             | Reference docs in references/            |
-|          | Asset template          | `assets/opencode/skill_asset_template.md`                 | Bundled assets in assets/                |
-|          | Packaging skill         | `scripts/package_skill.py`                       | Validation + zip                         |
-| **Agents** | Creating agent        | `assets/opencode/agent_template.md`                       | Agent file with frontmatter & permissions |
-| **Commands** | Creating command    | `assets/opencode/command_template.md`                     | Command creation guide (19 sections)     |
-| **Shared** | Component README      | `assets/documentation/readme_template.md`                      | README for skill/agent/command folders   |
-|          | Quick validation        | `scripts/quick_validate.py`                      | Fast validation checks                   |
+| Category     | Condition          | Resource                                         | Purpose                                   |
+| ------------ | ------------------ | ------------------------------------------------ | ----------------------------------------- |
+| **Skills**   | Creating skill     | `references/skill_creation.md` + `init_skill.py` | 6-step workflow                           |
+|              | SKILL.md template  | `assets/opencode/skill_md_template.md`           | SKILL.md structure                        |
+|              | Reference template | `assets/opencode/skill_reference_template.md`    | Reference docs in references/             |
+|              | Asset template     | `assets/opencode/skill_asset_template.md`        | Bundled assets in assets/                 |
+|              | Packaging skill    | `scripts/package_skill.py`                       | Validation + zip                          |
+| **Agents**   | Creating agent     | `assets/opencode/agent_template.md`              | Agent file with frontmatter & permissions |
+| **Commands** | Creating command   | `assets/opencode/command_template.md`            | Command creation guide (19 sections)      |
+| **Shared**   | Component README   | `assets/documentation/readme_template.md`        | README for skill/agent/command folders    |
+|              | Quick validation   | `scripts/quick_validate.py`                      | Fast validation checks                    |
 
 **Mode 3 - Flowcharts:**
 
@@ -177,42 +177,42 @@ TASK CONTEXT
 
 **Mode 4 - Install Guide Creation:**
 
-| Condition              | Resource                                | Purpose              |
-| ---------------------- | --------------------------------------- | -------------------- |
-| Creating install guide | `assets/documentation/install_guide_template.md`      | Phase-based template |
-| Need standards         | `references/install_guide_standards.md` | Best practices       |
-| Validating guide       | `scripts/extract_structure.py`          | Quality check        |
+| Condition              | Resource                                         | Purpose              |
+| ---------------------- | ------------------------------------------------ | -------------------- |
+| Creating install guide | `assets/documentation/install_guide_template.md` | Phase-based template |
+| Need standards         | `references/install_guide_standards.md`          | Best practices       |
+| Validating guide       | `scripts/extract_structure.py`                   | Quality check        |
 
 **General Utilities:**
 
-| Condition           | Resource                           | Purpose                                      |
-| ------------------- | ---------------------------------- | -------------------------------------------- |
+| Condition           | Resource                                         | Purpose                                      |
+| ------------------- | ------------------------------------------------ | -------------------------------------------- |
 | Need frontmatter    | `assets/documentation/frontmatter_templates.md`  | Frontmatter validation & templates (11 secs) |
 | Generating llms.txt | `assets/documentation/llmstxt_templates.md`      | llms.txt creation with decision framework    |
 | Creating install    | `assets/documentation/install_guide_template.md` | 5-phase install guide template (14 sections) |
-| Analyzing docs      | `scripts/extract_structure.py`     | Parse to JSON for AI analysis                |
-| Quick reference     | `references/quick_reference.md`    | One-page cheat sheet                         |
+| Analyzing docs      | `scripts/extract_structure.py`                   | Parse to JSON for AI analysis                |
+| Quick reference     | `references/quick_reference.md`                  | One-page cheat sheet                         |
 
 ### Core References
 
-| Document | Purpose | Key Insight |
-|----------|---------|-------------|
-| [skill_creation.md](references/skill_creation.md) | Complete skill creation workflow | Template structure, validation |
-| [validation.md](references/validation.md) | DQI scoring criteria | Quality gates |
-| [optimization.md](references/optimization.md) | Content optimization | AI context efficiency |
-| [core_standards.md](references/core_standards.md) | Structural standards | Section ordering |
-| [workflows.md](references/workflows.md) | Execution modes | Mode selection |
-| [quick_reference.md](references/quick_reference.md) | Command cheat sheet | Common operations |
+| Document                                            | Purpose                          | Key Insight                    |
+| --------------------------------------------------- | -------------------------------- | ------------------------------ |
+| [skill_creation.md](references/skill_creation.md)   | Complete skill creation workflow | Template structure, validation |
+| [validation.md](references/validation.md)           | DQI scoring criteria             | Quality gates                  |
+| [optimization.md](references/optimization.md)       | Content optimization             | AI context efficiency          |
+| [core_standards.md](references/core_standards.md)   | Structural standards             | Section ordering               |
+| [workflows.md](references/workflows.md)             | Execution modes                  | Mode selection                 |
+| [quick_reference.md](references/quick_reference.md) | Command cheat sheet              | Common operations              |
 
 ### Templates
 
-| Template | Purpose | Usage |
-|----------|---------|-------|
-| [skill_md_template.md](assets/opencode/skill_md_template.md) | SKILL.md template | New skill creation |
-| [skill_reference_template.md](assets/opencode/skill_reference_template.md) | Reference file template | Bundled resources |
-| [readme_template.md](assets/documentation/readme_template.md) | README template | Project documentation |
-| [command_template.md](assets/opencode/command_template.md) | Command template | Slash commands |
-| [agent_template.md](assets/opencode/agent_template.md) | Agent template | Custom agents |
+| Template                                                                   | Purpose                 | Usage                 |
+| -------------------------------------------------------------------------- | ----------------------- | --------------------- |
+| [skill_md_template.md](assets/opencode/skill_md_template.md)               | SKILL.md template       | New skill creation    |
+| [skill_reference_template.md](assets/opencode/skill_reference_template.md) | Reference file template | Bundled resources     |
+| [readme_template.md](assets/documentation/readme_template.md)              | README template         | Project documentation |
+| [command_template.md](assets/opencode/command_template.md)                 | Command template        | Slash commands        |
+| [agent_template.md](assets/opencode/agent_template.md)                     | Agent template          | Custom agents         |
 
 ### Resource Router (Implementation Logic)
 
@@ -545,15 +545,15 @@ Standard Flow:      Branch:           Parallel:         Merge:
 
 ### H2 Emoji Enforcement by Document Type
 
-| Document Type | Emoji Required | Enforcement Level | Missing Emoji Severity |
-|---------------|----------------|-------------------|------------------------|
-| **SKILL.md** | ✅ Yes | Strict | `error` (BLOCKING) |
-| **README.md** | ✅ Yes | Strict | `error` (BLOCKING) |
-| **Asset files** | ✅ Yes | Strict | `error` (BLOCKING) |
-| **Reference files** | ✅ Yes | Strict | `error` (BLOCKING) |
-| **Command files** | ⚠️ Semantic only | Moderate | `warning` |
-| **Spec files** | ❌ No | Loose | N/A |
-| **Generic** | ❌ No | Flexible | N/A |
+| Document Type       | Emoji Required  | Enforcement Level | Missing Emoji Severity |
+| ------------------- | --------------- | ----------------- | ---------------------- |
+| **SKILL.md**        | ✅ Yes           | Strict            | `error` (BLOCKING)     |
+| **README.md**       | ✅ Yes           | Strict            | `error` (BLOCKING)     |
+| **Asset files**     | ✅ Yes           | Strict            | `error` (BLOCKING)     |
+| **Reference files** | ✅ Yes           | Strict            | `error` (BLOCKING)     |
+| **Command files**   | ⚠️ Semantic only | Moderate          | `warning`              |
+| **Spec files**      | ❌ No            | Loose             | N/A                    |
+| **Generic**         | ❌ No            | Flexible          | N/A                    |
 
 **CRITICAL**: For template-based documents (SKILL, README, asset, reference), missing H2 emojis are BLOCKING errors. The `extract_structure.py` script will return `severity: 'error'` for these violations.
 
@@ -665,7 +665,7 @@ Key integrations:
 
 | Script                  | Purpose                   | Usage                                       |
 | ----------------------- | ------------------------- | ------------------------------------------- |
-| `validate_document.py`    | README format validation  | `scripts/validate_document.py doc.md`         |
+| `validate_document.py`  | README format validation  | `scripts/validate_document.py doc.md`       |
 | `extract_structure.py`  | Parse document to JSON    | `scripts/extract_structure.py doc.md`       |
 | `init_skill.py`         | Scaffold skill structure  | `scripts/init_skill.py <name> --path <dir>` |
 | `package_skill.py`      | Validate + package to zip | `scripts/package_skill.py <skill-path>`     |
@@ -685,10 +685,10 @@ Key integrations:
 
 ### Related Skills
 
-| Skill               | Integration                                           |
-| ------------------- | ----------------------------------------------------- |
+| Skill               | Integration                                                                   |
+| ------------------- | ----------------------------------------------------------------------------- |
 | **system-spec-kit** | Context files can be optimized; validates spec folder documentation structure |
-| **workflows-git**   | Uses documentation quality for commit/PR descriptions |
+| **workflows-git**   | Uses documentation quality for commit/PR descriptions                         |
 
 ### Workflow Integration
 

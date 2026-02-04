@@ -1,7 +1,7 @@
 ---
 name: mcp-figma
 description: "Figma design file access via MCP providing 18 tools for file retrieval, image export, component/style extraction, team management, and collaborative commenting. Accessed via Code Mode for token-efficient workflows."
-allowed-tools: [Read, mcp__code_mode__call_tool_chain, mcp__code_mode__search_tools, mcp__code_mode__list_tools, mcp__code_mode__tool_info]
+allowed-tools: [Read, mcp__code_mode__call_tool_chain, mcp__code_mode__list_tools, mcp__code_mode__search_tools, mcp__code_mode__tool_info]
 version: 1.0.0
 ---
 
@@ -412,7 +412,6 @@ Dependency Chain:
 | Skill             | Relationship | Notes                                              |
 | ----------------- | ------------ | -------------------------------------------------- |
 | **mcp-code-mode** | **REQUIRED** | Figma accessed via Code Mode's `call_tool_chain()` |
-| **mcp-narsil**    | Optional     | Can analyze code generated from Figma designs      |
 
 ### Cross-Tool Workflows
 

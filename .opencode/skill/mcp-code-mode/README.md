@@ -88,7 +88,7 @@ Research from [Apple](https://machinelearning.apple.com/research/codeact), [Clou
 | System | Config File | Examples |
 |--------|-------------|----------|
 | **Native MCP** | `opencode.json` | Sequential Thinking, Spec Kit Memory |
-| **Code Mode MCP** | `.utcp_config.json` | Webflow, Figma, ClickUp, Chrome DevTools, Narsil |
+| **Code Mode MCP** | `.utcp_config.json` | Webflow, Figma, ClickUp, Chrome DevTools |
 
 ### Basic Workflow
 
@@ -670,28 +670,35 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 
 | Skill | Purpose | MCP Type |
 |-------|---------|----------|
-| **[mcp-narsil](../mcp-narsil/README.md)** | Semantic + structural code search | Code Mode MCP |
 | **[system-spec-kit](../system-spec-kit/README.md)** | Context preservation | Native MCP |
 
 ### Cross-Skill Workflow
 
 ```typescript
-// All Code Mode - single execution for code search + task creation
+// All Code Mode - single execution for multi-tool workflow
 call_tool_chain({
   code: `
-    // 1. Find relevant code using Narsil semantic search
-    const searchResults = await narsil.narsil_neural_search({
-      query: "authentication",
-      top_k: 5
-    });
-
-    // 2. Create task based on search results
+    // 1. Create task in ClickUp
     const task = await clickup.clickup_create_task({
-      name: "Refactor authentication",
-      description: \`Found in: \${searchResults.results.map(r => r.file).join(', ')}\`
+      name: "Implement feature",
+      description: "Feature implementation task"
     });
 
-    return { searchResults, task };
+    // 2. Update Webflow CMS with task reference
+    const cmsItem = await webflow.webflow_collections_items_create_item_live({
+      collection_id: "tasks-collection-id",
+      request: {
+        items: [{
+          fieldData: {
+            name: task.name,
+            taskUrl: task.url,
+            status: "In Queue"
+          }
+        }]
+      }
+    });
+
+    return { task, cmsItem };
   `
 });
 
@@ -736,4 +743,4 @@ Examples:
 - `clickup.clickup_create_task({})`
 - `figma.figma_get_file({})`
 
-**Remember**: Code Mode is for **external MCP tools** (Webflow, Figma, ClickUp, Narsil, etc.). Native MCP tools like Sequential Thinking and Spec Kit Memory should be called directly, NOT through `call_tool_chain()`.
+**Remember**: Code Mode is for **external MCP tools** (Webflow, Figma, ClickUp, etc.). Native MCP tools like Sequential Thinking and Spec Kit Memory should be called directly, NOT through `call_tool_chain()`.

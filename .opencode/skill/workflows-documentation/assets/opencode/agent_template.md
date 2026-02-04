@@ -52,7 +52,6 @@ permission:                         # REQUIRED: Unified permission object (v1.1.
   grep: allow
   glob: allow
   webfetch: deny
-  narsil: allow
   memory: allow
   chrome_devtools: deny
   task: deny                        # deny for sub-agents, allow for orchestrators
@@ -93,7 +92,6 @@ permission:                         # REQUIRED: Unified permission object (v1.1.
 | `grep`              | Search content                      | allow                |
 | `glob`              | Find files                          | allow                |
 | `webfetch`          | Fetch URLs                          | deny (unless needed) |
-| `narsil`            | Semantic + structural code analysis | allow                |
 | `memory`            | Spec Kit Memory                     | allow                |
 | `chrome_devtools`   | Browser debugging                   | deny (unless needed) |
 | `task`              | Delegate to sub-agents              | deny (subagents)     |
@@ -401,7 +399,6 @@ permission:
   grep: allow
   glob: allow
   webfetch: deny
-  narsil: allow
   memory: allow
   chrome_devtools: deny
   task: deny

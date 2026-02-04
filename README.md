@@ -750,6 +750,7 @@ AGENTS.md includes dedicated guidance for code implementation with two skill var
 | ---------------------------- | -------------------------------------------------------------- | --------------------------------------------- |
 | `workflows-code--web-dev`    | Single-stack web projects (Webflow, vanilla JS)                | `.opencode/skill/workflows-code--web-dev/`    |
 | `workflows-code--full-stack` | Multi-stack projects (Go, Node.js, React, React Native, Swift) | `.opencode/skill/workflows-code--full-stack/` |
+| `workflows-code--opencode`   | OpenCode system code (JavaScript, Python, Shell, JSON/JSONC)   | `.opencode/skill/workflows-code--opencode/`   |
 
 **3-Phase Lifecycle:**
 1. **Phase 1 - Implementation**: Write code following stack-specific patterns
@@ -805,10 +806,6 @@ Your Request → python3 .opencode/scripts/skill_advisor.py analyzes keywords
 Unified documentation enforcement, templates, and context preservation across sessions
 > Example: "Create spec for feature" or "Save this context"
 
-**mcp-narsil**
-Deep code intelligence: semantic search, security scanning, call graphs, structural queries (via Code Mode)
-> Example: "How does auth work?" or "Scan for vulnerabilities" or "List functions in auth.ts"
-
 **mcp-code-mode**
 External tool orchestration (Figma, GitHub, ClickUp, etc.)
 > Example: "Get Figma file" or "Create GitHub issue"
@@ -824,6 +821,10 @@ Single-stack web implementation. Includes 6 performance references (CWV remediat
 **workflows-code--full-stack**
 Multi-stack code implementation for 5 technology stacks (Go, Node.js, React, React Native, Swift). Automatic stack detection via marker files, hierarchical resource structure, 3-phase lifecycle, and stack-specific verification commands.
 > Example: "Implement Go service" or "Add React component" or "Debug Node.js API"
+
+**workflows-code--opencode**
+Multi-language code standards for OpenCode system code (JavaScript, Python, Shell, JSON/JSONC). Language detection routing, universal patterns, commenting standards, and quality checklists for MCP servers, scripts, and configurations.
+> Example: "Write MCP server handler" or "Create Python validator" or "Add shell script"
 
 **workflows-documentation**
 Document quality, skill creation
@@ -1002,13 +1003,8 @@ MCP servers extend your AI with specialized capabilities. This environment inclu
 - **Spec Kit Memory**: Local vector-based conversation memory (22 MCP tools in 7 layers)
   [Guide](.opencode/install_guides/MCP - Spec Kit Memory.md)
 
-- **Code Mode**: External tool orchestration (Figma, GitHub, ClickUp, Chrome DevTools, Narsil, etc.)
+- **Code Mode**: External tool orchestration (Figma, GitHub, ClickUp, Chrome DevTools, etc.)
   [Guide](.opencode/install_guides/MCP - Code Mode.md)
-
-**Via Code Mode:**
-
-- **Narsil**: Deep code intelligence (semantic search, security scanning, call graphs, structural queries)
-  [Guide](.opencode/install_guides/MCP - Narsil.md)
 
 ### MCP Install Scripts
 
@@ -1022,31 +1018,25 @@ Automated installation scripts for MCP servers. Located in `.opencode/install_gu
 ./install-sequential-thinking.sh
 ./install-spec-kit-memory.sh
 ./install-code-mode.sh
-./install-narsil.sh
 ```
 
 Each script handles dependencies, configuration, and validation automatically.
 
 
-### Two Systems (Don't Confuse Them)
+### Spec Kit Memory System
 
-| System              | MCP Name             | Database Location                                               | Purpose                               |
-| ------------------- | -------------------- | --------------------------------------------------------------- | ------------------------------------- |
-| **Narsil**          | `narsil` (Code Mode) | Managed by Narsil                                               | **Code** semantic + structural search |
-| **Spec Kit Memory** | `spec_kit_memory`    | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
-
-**Common Confusion Points:**
-- Narsil handles ALL code intelligence (semantic, structural, security)
-- Spec Kit Memory is for conversation context preservation
-- They are COMPLETELY SEPARATE systems with different purposes
+| System              | MCP Name          | Database Location                                               | Purpose                               |
+| ------------------- | ----------------- | --------------------------------------------------------------- | ------------------------------------- |
+| **Spec Kit Memory** | `spec_kit_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
 
 
 ### Code Search Tools
 
-Use these two tools together:
+Use these native tools:
 
-- **Narsil** (Semantic + Structural + Security): "How does auth work?" or "List functions in auth.ts" or "Scan for vulnerabilities" (via Code Mode)
 - **Grep** (Lexical): "Find 'TODO' comments" returns text pattern matches
+- **Glob** (Files): "Find all .ts files" returns file paths
+- **Read** (Content): Read file contents for detailed analysis
 
 
 ### Native Skills Setup

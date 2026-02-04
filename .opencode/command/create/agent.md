@@ -461,7 +461,6 @@ Based on understanding, determine:
    - grep: allow/deny - Search content
    - glob: allow/deny - Find files
    - webfetch: allow/deny/ask - Fetch URLs
-   - narsil: allow/deny - Semantic + structural code analysis
    - memory: allow/deny - Spec Kit Memory
    - chrome_devtools: allow/deny - Browser debugging
    - external_directory: allow/deny - Access files outside project
@@ -490,7 +489,6 @@ permission:
   grep: [allow/deny]
   glob: [allow/deny]
   webfetch: [allow/deny/ask]
-  narsil: [allow/deny]
   memory: [allow/deny]
   chrome_devtools: [allow/deny]
   external_directory: [allow/deny]
@@ -574,7 +572,6 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec_pa
 | grep            | Search content                      | true    |
 | glob            | Find files                          | true    |
 | webfetch        | Fetch URLs                          | false   |
-| narsil          | Semantic + structural code analysis | true    |
 | memory          | Spec Kit Memory                     | true    |
 | chrome_devtools | Browser debugging                   | false   |
 

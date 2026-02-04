@@ -40,7 +40,6 @@
 
 **MANDATORY TOOLS:**
 - **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
-- **Narsil MCP** for ALL code intelligence (semantic/structural search). Accessed via Code Mode.
 
 ### Quick Reference: Common Workflows
 
@@ -48,7 +47,7 @@
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | **File modification**    | Gate 1 → Gate 2 → Gate 3 (ask spec folder) → Load memory context → Execute                                                                 |
 | **Research/exploration** | `memory_match_triggers()` → `memory_search()` → Document findings                                                                          |
-| **Code search**          | `narsil.narsil_neural_search()` for semantic (meaning), `narsil.narsil_find_symbols()` for structural (via Code Mode), `Grep()` for text   |
+| **Code search**          | `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents                                                        |
 | **Resume prior work**    | `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue                                     |
 | **Save context**         | Execute `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` → Verify ANCHOR format → Auto-indexed |
 | **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                                |
@@ -58,8 +57,30 @@
 | **New spec folder**      | Option B (Gate 3) → Research via Task tool → Evidence-based plan → Approval → Implement                                                    |
 | **Complex multi-step**   | Task tool → Decompose → Delegate → Synthesize                                                                                              |
 | **Documentation**        | workflows-documentation skill → Classify → Load template → Fill → Validate (`validate_document.py`) → DQI score → Verify                   |
-| **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                                          |
-| **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                                            |
+| **Learn from mistakes**  | `/memory:learn correct` → Document what went wrong → Stability penalty applied → Pattern extracted                                         |
+| **Database maintenance** | `/memory:manage` → stats, health, cleanup, checkpoint operations                                                                           |
+
+### Coding Analysis Lenses
+
+| Lens               | Focus            | Detection Questions                                                                |
+| ------------------ | ---------------- | ---------------------------------------------------------------------------------- |
+| **CLARITY**        | Simplicity       | Is this the simplest code that solves the problem? Are abstractions earned?        |
+| **SYSTEMS**        | Dependencies     | What does this change touch? What calls this? What are the side effects?           |
+| **BIAS**           | Wrong problem    | Is user solving a symptom? Is this premature optimization? Is the framing correct? |
+| **SUSTAINABILITY** | Maintainability  | Will future devs understand this? Is it self-documenting? Tech debt implications?  |
+| **VALUE**          | Actual impact    | Does this change behavior or just refactor? Is it cosmetic or functional?          |
+| **SCOPE**          | Complexity match | Does solution complexity match problem size? Single-line fix or new abstraction?   |
+
+### Coding Anti-Patterns (Detect Silently)
+
+| Anti-Pattern           | Trigger Phrases                                 | Response                                                                    |
+| ---------------------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
+| Over-engineering       | "for flexibility", "future-proof", "might need" | Ask: "Is this solving a current problem or a hypothetical one?"             |
+| Premature optimization | "could be slow", "might bottleneck"             | Ask: "Has this been measured? What's the actual performance?"               |
+| Cargo culting          | "best practice", "always should"                | Ask: "Does this pattern fit this specific case?"                            |
+| Gold-plating           | "while we're here", "might as well"             | Flag scope creep: "That's a separate change - shall I note it for later?"   |
+| Wrong abstraction      | "DRY this up" for 2 instances                   | "These look similar but might not be the same concept. Let's verify first." |
+| Scope creep            | "also add", "bonus feature"                     | "That's outside the current scope. Want to track it separately?"            |
 
 ---
 
@@ -103,8 +124,8 @@
 │   - Either fails → INVESTIGATE (max 3 iterations)                           │
 │   - 3 failures → ESCALATE to user with options                              │
 │                                                                             │
-│ Legacy thresholds (confidence-only, still valid for simple queries):         │
-│   If <40%: ASK | 40-79%: PROCEED WITH CAUTION | ≥80%: PASS                  │
+│ Simple thresholds (confidence-only, for straightforward queries):            │
+│   If <40%: ASK | 40-69%: PROCEED WITH CAUTION | ≥70%: PASS                  │
 └─────────────────────────────────────────────────────────────────────────────┘
                                     ↓ PASS
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -258,11 +279,11 @@ File modification planned? → Include Q1 (Spec Folder)
 #### ⚡ Code Quality Standards Compliance
 
 **MANDATORY:** Compliance checkpoints:
-- Before **proposing solutions**: Verify approach aligns with code quality standards and established patterns 
-- Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement 
+- Before **proposing solutions**: Verify approach aligns with code quality standards and established patterns
+- Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement
 - Before **initialization code**: Follow initialization patterns from code quality standards
 - Before **animation implementation**: See animation workflow references
-- Before **code discovery**: Use mcp-narsil for ALL code intelligence (semantic via neural, structural, security) via Code Mode (MANDATORY)
+- Before **code discovery**: Use `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
 - Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
@@ -270,7 +291,7 @@ File modification planned? → Include Q1 (Spec Folder)
 
 **Violation handling:** If proposed solution contradicts code quality standards, STOP and ask for clarification or revise approach.
 
-#### ⚡ Common Failure Patterns 
+#### ⚡ Common Failure Patterns
 
 | #   | Stage          | Pattern                      | Trigger Phrase                               | Response Action                                       |
 | --- | -------------- | ---------------------------- | -------------------------------------------- | ----------------------------------------------------- |
@@ -284,14 +305,20 @@ File modification planned? → Include Q1 (Spec Folder)
 | 8   | Review         | Retain Legacy                | "just in case"                               | Remove unused, ask if unsure                          |
 | 9   | Completion     | No Browser Test              | "works", "done"                              | Browser verify first                                  |
 | 10  | Any            | Internal Contradiction       | Conflicting requirements                     | HALT → State conflict explicitly → Request resolution |
-| 11  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Narsil for meaning + structure, Grep for text         |
+| 11  | Understanding  | Wrong Search Tool            | "find", "search", "list"                     | Grep for text patterns, Glob for files                |
 | 12  | Planning       | Skip Research                | "simple task"                                | Dispatch Research anyway for evidence                 |
 | 13  | Any            | Task Without Context         | Missing dispatch context                     | Use 4-section format with full context                |
 | 14  | Implementation | Skip Debug Delegation        | "tried 3+ times", "same error"               | STOP → Suggest /spec_kit:debug → Wait for response    |
 | 15  | Any            | Skip Handover at Session End | "stopping", "done for now", "continue later" | Suggest /spec_kit:handover → Wait for response        |
 | 16  | Understanding  | Skip Skill Routing           | "obvious which skill", "user specified"      | STOP → Run skill_advisor.py OR cite user direction    |
+| 17  | Any            | Cargo Culting                | "best practice", "always should"             | BIAS lens: Does this pattern fit THIS specific case?  |
+| 18  | Planning       | Gold-Plating                 | "while we're here", "might as well"          | SCOPE lens: Is this in the original scope?            |
+| 19  | Implementation | Wrong Abstraction            | "DRY this up" for 2 similar blocks           | CLARITY lens: Same concept or just similar code?      |
+| 20  | Planning       | Premature Optimization       | "might be slow", "could bottleneck"          | VALUE lens: Has performance been measured?            |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
+
+**Lens-based Detection (Patterns 17-20):** Apply relevant lens silently. If triggered, surface the concern naturally without referencing the pattern number or lens name.
 
 ---
 
@@ -310,7 +337,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details**
 
 > **Note:** `implementation-summary.md` is REQUIRED for all levels but created after implementation completes, not at spec folder creation time.
 
-**Rules:** 
+**Rules:**
 - When in doubt → higher level
 - LOC is soft guidance (risk/complexity can override)
 - Single typo/whitespace fixes (<5 characters in one file) are exempt from spec folder requirements
@@ -387,13 +414,17 @@ Request Received → [Parse carefully: What is ACTUALLY requested?]
                     ↓
          Gather Context → [Read files, check skills folder]
                     ↓
+      SYSTEMS Lens → [What does this touch? Dependencies? Side effects?]
+                    ↓
+         BIAS Lens → [Is this the right problem? Symptom or root cause?]
+                    ↓
   Identify Approach → [What's the SIMPLEST solution that works?]
                     ↓
     Validate Choice → [Does this follow patterns? Is it maintainable?]
                     ↓
      Clarify If Needed → [If ambiguous or <80% confidence: ask (see §4)]
                     ↓
-      Scope Check → [Am I solving ONLY what was asked?]
+       SCOPE Lens → [Does solution complexity match problem size?]
                     ↓
            Execute  → [Implement with minimal complexity]
 ```
@@ -416,10 +447,16 @@ FORENSIC CONTEXT (Evidence Levels):
 #### Phase 4: Solution Design & Selection
 **Core Principles:**
 
-1. **Simplicity First (KISS)**
+1. **Simplicity First (KISS)** - Apply CLARITY lens
    - Use existing patterns; justify new abstractions
    - Direct solution > clever complexity
    - Every abstraction must earn its existence
+   - **CLARITY Triggers** (require justification before proceeding):
+     - Creating utility function for <3 use cases
+     - Adding configuration for single-use value
+     - Introducing abstraction layer without clear boundary
+     - Using design pattern where simple code suffices
+     - Adding interface for single implementation
 
 2. **Evidence-Based with Citations**
    - Cite sources (file paths + line ranges) or state "UNKNOWN"
@@ -430,6 +467,22 @@ FORENSIC CONTEXT (Evidence Levels):
    - Performant + Maintainable + Concise + Clear
    - Obviously correct approach > clever tricks
    - Scope discipline: Solve ONLY stated problem, no gold-plating
+
+4. **BIAS Lens - Wrong Problem Detection**
+   Before accepting user's problem framing, verify:
+   - Is this a symptom or root cause?
+   - Has the actual issue been measured/reproduced?
+   - Is this premature optimization without evidence?
+   - Is user adding complexity to avoid simpler change?
+
+   If framing seems wrong, reframe rather than argue:
+   *"Before we add retry logic, let me check if the error handling upstream might be the actual issue."*
+
+5. **SCOPE Lens - Complexity Matching**
+   Solution size should match problem size:
+   - Single-line bug → Single-line fix (not refactoring opportunity)
+   - Config change → Config change (not architectural discussion)
+   - 3-file feature → 3-file solution (not framework introduction)
 
 ### Five Checks Framework (>100 LOC or architectural)
 
@@ -458,6 +511,13 @@ PRE-CHANGE VALIDATION:
 □ Sources cited? (or "UNKNOWN")
 □ User approval received?
 □ If Level 2+: checklist.md items verified
+
+LENS VALIDATION (apply silently):
+□ CLARITY: Is this the simplest solution that works?
+□ SYSTEMS: Dependencies analyzed, no unexpected side effects?
+□ BIAS: Solving the stated problem (not a symptom or wrong framing)?
+□ SCOPE: Solution complexity matches problem scope?
+□ VALUE: Change has actual behavioral impact (not just cosmetic)?
 ```
 
 **Verification loop:** Sense → Interpret → Verify → Reflect → Publish (label TRUE/FALSE/UNKNOWN)
@@ -493,45 +553,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 
 ---
 
-## 7. ⚙️ TOOL SYSTEM
-
-### Two "Semantic" Systems (DO NOT CONFUSE)
-
-| System              | MCP Name             | Database Location                                                          | Purpose                               |
-| ------------------- | -------------------- | -------------------------------------------------------------------------- | ------------------------------------- |
-| **Narsil**          | `narsil` (Code Mode) | Managed by Narsil (--persist flag)                                         | **Code** semantic + structural search |
-| **Spec Kit Memory** | `spec_kit_memory`    | `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | **Conversation** context preservation |
-
-**Common Confusion Points:**
-- Both use vector embeddings for semantic search
-- Narsil is for code search (semantic + structural), Spec Kit Memory is for conversation context
-- They are COMPLETELY SEPARATE systems with different purposes
-
-**When cleaning/resetting databases:**
-- Code search issues → Use `narsil.narsil_reindex()` or restart MCP
-- Memory issues → Delete `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite`
-- **IMPORTANT**: After deletion, restart OpenCode to clear the MCP server's in-memory cache
-
-### Code Search Tools (COMPLEMENTARY - NOT COMPETING)
-
-| Tool                  | Type                  | Query Example               | Returns                                 |
-| --------------------- | --------------------- | --------------------------- | --------------------------------------- |
-| **Narsil Neural**     | Semantic              | "How does auth work?"       | Code by meaning/intent                  |
-| **Narsil Structural** | Structural + Security | "List functions in auth.ts" | Symbols, call graphs, security findings |
-| **Grep**              | Lexical               | "Find 'TODO' comments"      | Text pattern matches                    |
-
-**Decision Logic:**
-- Need to UNDERSTAND code? → Narsil neural_search
-- Need to MAP code structure? → Narsil (structural, via Code Mode)
-- Need SECURITY scan or CODE ANALYSIS? → Narsil (via Code Mode)
-- Need to FIND text patterns? → Grep (lexical)
-
-**Typical Workflow:**
-1. Narsil → Map structure via Code Mode ("What functions exist?")
-2. Narsil neural_search → Understand purpose ("How does login work?")
-3. Read → Get implementation details
-
-### MCP Configuration
+## 7. ⚙️  MCP CONFIGURATION
 
 **Two systems:**
 
@@ -539,42 +561,10 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
    - Sequential Thinking, Spec Kit Memory, Code Mode server
 
 2. **Code Mode MCP** (`.utcp_config.json`) - External tools via `call_tool_chain()`
-   - Webflow, Figma, Github, ClickUp, Chrome DevTools, Narsil, etc.
-   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`, `narsil.narsil_find_symbols({})`)
+   - Webflow, Figma, Github, ClickUp, Chrome DevTools, etc.
+   - Naming: `{manual_name}.{manual_name}_{tool_name}` (e.g., `webflow.webflow_sites_list({})`)
    - Discovery: `search_tools()`, `list_tools()`, or read `.utcp_config.json`
 
-### Memory Commands (Consolidated)
-
-After the v1.2.1 consolidation, memory operations use **5 commands** (reduced from 9):
-
-| Command | Purpose | Key Operations |
-|---------|---------|----------------|
-| `/memory:context` | Unified context retrieval | Intent-aware routing, trigger matching, anchor-based search |
-| `/memory:continue` | Session recovery | Resume from crash/compaction, restore session state |
-| `/memory:learn` | Explicit learning capture | Patterns, pitfalls, insights; `correct` subcommand for corrections |
-| `/memory:manage` | Database & maintenance | Stats, health, cleanup, checkpoint create/restore/delete |
-| `/memory:save` | Context preservation | Generate memory files via `generate-context.js` script |
-
-**MCP Tools** (use `spec_kit_memory_` prefix):
-- **L1 Entry**: `memory_context` - Unified entry with intent-aware routing
-- **Search**: `memory_search`, `memory_match_triggers` - Targeted retrieval with anchors
-- **CRUD**: `memory_save`, `memory_update`, `memory_delete`, `memory_list`
-- **Session**: `task_preflight`, `task_postflight` - Epistemic state capture
-- **Causal**: `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`
-- **Checkpoints**: `checkpoint_create`, `checkpoint_restore`, `checkpoint_list`
-
-### Spec Kit Commands
-
-| Command | Purpose |
-|---------|---------|
-| `/spec_kit:plan` | Create spec folder, define requirements |
-| `/spec_kit:research` | Evidence gathering, investigation |
-| `/spec_kit:implement` | Execute implementation tasks |
-| `/spec_kit:debug` | Fresh perspective debugging (3+ failed attempts) |
-| `/spec_kit:complete` | Finalize, verify checklist, close spec |
-| `/spec_kit:handover` | Session continuation, context preservation |
-| `/spec_kit:resume` | Resume from handover or crash recovery |
-  
 ---
 
 ## 8. 🧩 SKILLS SYSTEM
@@ -731,5 +721,5 @@ For projects with multiple technology stacks.
 
 #### Customize for your project
 
-1. Add stack-specific patterns to `references/{category}/{stack}/`, `assets/{category}/{stack}/`. 
+1. Add stack-specific patterns to `references/{category}/{stack}/`, `assets/{category}/{stack}/`.
 2. Update and allign the SKILL.md routing and logic.

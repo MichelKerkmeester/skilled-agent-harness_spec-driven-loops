@@ -10,7 +10,6 @@ permission:
   bash: allow
   grep: allow
   glob: allow
-  narsil: allow
   memory: allow
   webfetch: deny
   chrome_devtools: deny
@@ -148,7 +147,7 @@ You receive structured input, not raw conversation:
 
 ### Phase 2: ANALYZE (Understand before fixing)
 
-**Goal:** Use code intelligence to understand context around the error.
+**Goal:** Use code search tools to understand context around the error.
 
 **Actions:**
 1. Trace call paths to error location
@@ -156,16 +155,16 @@ You receive structured input, not raw conversation:
 3. Identify related patterns in codebase
 4. Check for recent changes (if git available)
 
-**Tools:** `narsil.narsil_neural_search()`, `narsil.narsil_find_symbols()`, `narsil.narsil_get_callers()`
+**Tools:** `Grep`, `Glob`, `Read`, `Bash` (for git commands)
 
 **Decision Tree:**
 ```
 Error location known?
     │
-    ├─► YES: narsil_get_callers() → trace what calls error site
-    │        narsil_get_callees() → trace what error site calls
+    ├─► YES: Grep for function name → trace what calls error site
+    │        Read the file → examine what error site calls
     │
-    └─► NO:  narsil_neural_search("error message context")
+    └─► NO:  Grep for error message keywords
              → identify likely error sources
 ```
 
@@ -262,8 +261,8 @@ flowchart TB
     subgraph PHASE2["PHASE 2: ANALYZE"]
         direction TB
         J{"Error Location<br/>Known?"}
-        K["narsil_get_callers()<br/>Trace call paths"]
-        L["narsil_neural_search()<br/>Find error sources"]
+        K["Grep for function<br/>Trace call paths"]
+        L["Grep for keywords<br/>Find error sources"]
         M["Understand Data Flow"]
         N["Check Recent Changes"]
         O["Analysis Report"]
@@ -496,25 +495,25 @@ NEVER:
 
 ## 6. 🛠️ TOOL ROUTING
 
-| Task                     | Primary Tool                    | Fallback            |
-| ------------------------ | ------------------------------- | ------------------- |
-| Understand error context | `narsil.narsil_neural_search()` | Grep + Read         |
-| Map code structure       | `narsil.narsil_find_symbols()`  | Glob + Read         |
-| Trace call paths         | `narsil.narsil_get_callers()`   | Manual trace        |
-| Find similar patterns    | `narsil.narsil_neural_search()` | Grep                |
-| Verify fix               | `Bash` (run tests)              | Manual verification |
-| Check recent changes     | `Bash` (git log/diff)           | Read file history   |
+| Task                     | Primary Tool           | Fallback            |
+| ------------------------ | ---------------------- | ------------------- |
+| Understand error context | `Grep` + `Read`        | Manual search       |
+| Map code structure       | `Glob` + `Read`        | Directory listing   |
+| Trace call paths         | `Grep` for function    | Manual trace        |
+| Find similar patterns    | `Grep`                 | Glob + Read         |
+| Verify fix               | `Bash` (run tests)     | Manual verification |
+| Check recent changes     | `Bash` (git log/diff)  | Read file history   |
 
 ### Tool Selection Flow
 
 ```
 What do you need?
     │
-    ├─► Find error source → narsil_neural_search(error message)
+    ├─► Find error source → Grep(error message keywords)
     │
-    ├─► Understand call flow → narsil_get_callers/callees
+    ├─► Understand call flow → Grep for function name + Read
     │
-    ├─► Find working examples → narsil_neural_search(similar pattern)
+    ├─► Find working examples → Grep(similar pattern)
     │
     ├─► Read specific code → Read(file_path)
     │

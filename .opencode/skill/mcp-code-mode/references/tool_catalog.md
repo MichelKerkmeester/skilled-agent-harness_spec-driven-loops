@@ -1,11 +1,11 @@
 ---
 title: Tool Catalog - Complete List of Available MCP Tools
-description: Reference catalog of 250+ tools across 8 MCP servers.
+description: Reference catalog of 170+ tools across 7 MCP servers.
 ---
 
 # Tool Catalog - Complete List of Available MCP Tools
 
-Reference catalog of 250+ tools across 8 MCP servers, organized by service.
+Reference catalog of 170+ tools across 7 MCP servers, organized by service.
 
 ---
 
@@ -48,10 +48,9 @@ const info = await tool_info({
 5. **ShadCN UI** - Component library access
 6. **Imagician** - Image processing
 7. **Video Audio** - 30+ tools (Video/audio processing)
-8. **Narsil** - 76 tools (Security scanning, call graph analysis, code intelligence)
-9. **GitHub** - 20+ tools (Repository & PR management)
+8. **GitHub** - 20+ tools (Repository & PR management)
 
-**Total:** 250+ tools
+**Total:** 170+ tools
 
 > **Note:** Notion MCP is not currently configured. Add to `.utcp_config.json` if needed.
 
@@ -342,105 +341,7 @@ const info = await tool_info({
 
 ---
 
-## 10. 🛡️ NARSIL (76 TOOLS)
-
-**Manual name:** `narsil`
-**Naming pattern:** `narsil.narsil_{tool_name}`
-
-Deep code intelligence for security scanning, call graph analysis, and structural queries.
-
-### Security Scanning (9 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `narsil_scan_security` | Full security scan | `ruleset` (owasp, cwe) |
-| `narsil_check_owasp_top10` | OWASP Top 10 2021 check | None |
-| `narsil_check_cwe_top25` | CWE Top 25 check | None |
-| `narsil_find_injection_vulnerabilities` | SQL, XSS, command injection | `types[]` |
-| `narsil_trace_taint` | Trace tainted data flow | `source` |
-| `narsil_get_taint_sources` | List input sources | None |
-| `narsil_get_security_summary` | Risk assessment | None |
-| `narsil_explain_vulnerability` | Detailed explanation | `id` |
-| `narsil_suggest_fix` | Remediation suggestions | `finding_id` |
-
-### Structural Analysis (7 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `narsil_find_symbols` | Find functions, classes, structs | `kind` |
-| `narsil_get_symbol_definition` | Get symbol source code | `name` |
-| `narsil_find_references` | Find all references to symbol | `symbol` |
-| `narsil_get_project_structure` | Directory tree with file info | None |
-| `narsil_workspace_symbol_search` | Fuzzy symbol search | `query` |
-| `narsil_find_symbol_usages` | Cross-file usage with imports | `symbol` |
-| `narsil_get_export_map` | Get exported symbols | `file` |
-
-### Call Graph Analysis (6 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `narsil_get_call_graph` | Function call relationships | `function_name`, `depth` |
-| `narsil_get_callers` | Who calls this function? | `function_name` |
-| `narsil_get_callees` | What does this function call? | `function_name` |
-| `narsil_find_call_path` | Path between functions | `from`, `to` |
-| `narsil_get_complexity` | Cyclomatic/cognitive complexity | `function_name` |
-| `narsil_get_function_hotspots` | Highly connected functions | `limit` |
-
-### Code Quality (6 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `narsil_get_control_flow` | CFG with basic blocks | `function_name` |
-| `narsil_get_data_flow` | Variable definitions/uses | `function_name` |
-| `narsil_find_dead_code` | Find unreachable code | None |
-| `narsil_find_dead_stores` | Unused assignments | None |
-| `narsil_find_uninitialized` | Variables used before init | None |
-| `narsil_get_reaching_definitions` | Assignment analysis | None |
-
-### Supply Chain Security (4 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `narsil_generate_sbom` | Generate SBOM | `format` (cyclonedx, spdx) |
-| `narsil_check_dependencies` | CVE checking against OSV | None |
-| `narsil_check_licenses` | License compliance | None |
-| `narsil_find_upgrade_path` | Safe upgrade paths | `package` |
-
-### Repository Management (8 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `narsil_list_repos` | List indexed repositories | None |
-| `narsil_get_file` | Get file contents | `path`, `line_start`, `line_end` |
-| `narsil_get_excerpt` | Extract code around lines | `path`, `line` |
-| `narsil_reindex` | Trigger re-indexing | None |
-| `narsil_discover_repos` | Auto-discover repos | `path` |
-| `narsil_validate_repo` | Check if path is valid repo | `path` |
-| `narsil_get_index_status` | Show index stats | None |
-| `narsil_get_dependencies` | Analyze imports/dependents | `file` |
-
-### Git Integration (6 tools)
-
-| Tool Name | Purpose | Key Parameters |
-|-----------|---------|----------------|
-| `narsil_get_blame` | Git blame for file | `file` |
-| `narsil_get_file_history` | File commit history | `file` |
-| `narsil_get_recent_changes` | Recent commits | `limit` |
-| `narsil_get_hotspots` | High churn + complexity | None |
-| `narsil_get_contributors` | Repo contributors | None |
-| `narsil_get_commit_diff` | Diff for commit | `commit` |
-
-### Other Tools
-
-- `narsil_infer_types` - Infer variable types (Python, JS, TS)
-- `narsil_check_type_errors` - Find type errors without mypy/tsc
-- `narsil_get_import_graph` - Import visualization
-- `narsil_find_circular_imports` - Cycle detection
-- And 30+ more tools for search, chunking, and metrics
-
----
-
-## 11. 🔍 TOOL DISCOVERY EXAMPLES
+## 10. 🔍 TOOL DISCOVERY EXAMPLES
 
 ### Example 1: Search by Task Description
 
@@ -496,9 +397,9 @@ console.log(info.interface);
 
 ---
 
-## 12. 📝 SUMMARY
+## 11. 📝 SUMMARY
 
-**Total Tools:** 250+ across 8 MCP servers
+**Total Tools:** 170+ across 7 MCP servers
 
 **Best practices:**
 1. Use `search_tools()` for dynamic discovery
@@ -510,7 +411,7 @@ console.log(info.interface);
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 12. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [naming_convention.md](./naming_convention.md) - Critical naming patterns for all tools in this catalog

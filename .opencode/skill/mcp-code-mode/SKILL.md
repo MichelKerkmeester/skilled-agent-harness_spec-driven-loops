@@ -1,7 +1,7 @@
 ---
 name: mcp-code-mode
 description: "MCP orchestration via TypeScript execution for efficient multi-tool workflows. Use Code Mode for ALL MCP tool calls (ClickUp, Notion, Figma, Webflow, Chrome DevTools, etc.). Provides 98.7% context reduction, 60% faster execution, and type-safe invocation. Mandatory for external tool integration."
-allowed-tools: [mcp__code_mode__call_tool_chain, mcp__code_mode__search_tools, mcp__code_mode__list_tools, mcp__code_mode__tool_info]
+allowed-tools: [mcp__code_mode__call_tool_chain, mcp__code_mode__list_tools, mcp__code_mode__search_tools, mcp__code_mode__tool_info]
 version: 1.2.0
 ---
 
@@ -38,8 +38,6 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
 - ❌ Text searching (use Grep tool)
 - ❌ File discovery (use Glob tool)
 - ❌ Bash commands (use Bash tool)
-- ✅ Semantic code search via Narsil (use `narsil.narsil_neural_search()` via Code Mode)
-- ✅ Structural code analysis via Narsil (use `narsil.narsil_find_symbols()`, `narsil.narsil_get_project_structure()` via Code Mode)
 - ❌ Conversation memory (use `spec_kit_memory_memory_search()` - **NATIVE MCP**)
 - ❌ Sequential Thinking (call `sequential_thinking_sequentialthinking()` directly - **NATIVE MCP**)
 
@@ -268,9 +266,6 @@ call_tool_chain({
 - **Code Mode server**: The Code Mode tool itself
 - **Note**: Some AI environments have built-in extended thinking capabilities that may supersede Sequential Thinking MCP.
 
-**Code Mode MCP tools** (accessed via `call_tool_chain()`):
-- **Narsil**: `narsil.narsil_find_symbols()`, `narsil.narsil_neural_search()`, `narsil.narsil_get_project_structure()` - Semantic + structural code analysis via Rust-powered AST
-
 **2. Code Mode MCP** (`.utcp_config.json`) - External tools accessed through Code Mode:
 - **MCP Config**: `.utcp_config.json` (project root)
 - **Environment Variables**: `.env` (project root)
@@ -498,29 +493,36 @@ Key integrations:
 
 ### Cross-Skill Collaboration
 
-**Pairs with mcp-narsil**:
-- Use **mcp-narsil** for semantic + structural code search (via Code Mode)
+**External Tool Integration**:
 - Use **mcp-code-mode** for external tool integration (Webflow, Figma, ClickUp, etc.)
-- Example: Search codebase → Create ClickUp task → Update Notion docs
+- Example: Create ClickUp task → Update Notion docs → Post to Webflow CMS
 
 **Workflow**:
 ```typescript
-// All Code Mode - single execution for code search + task creation
+// All Code Mode - single execution for multi-tool workflow
 call_tool_chain({
   code: `
-    // 1. Find relevant code using Narsil semantic search
-    const searchResults = await narsil.narsil_neural_search({
-      query: "authentication implementation",
-      top_k: 5
-    });
-
-    // 2. Create task based on search results
+    // 1. Create task in ClickUp
     const task = await clickup.clickup_create_task({
-      name: "Refactor authentication",
-      description: \`Found in: \${searchResults.results.map(r => r.file).join(', ')}\`
+      name: "Implement authentication",
+      description: "Add OAuth 2.0 authentication"
     });
 
-    return { searchResults, task };
+    // 2. Update Webflow CMS with task reference
+    const cmsItem = await webflow.webflow_collections_items_create_item_live({
+      collection_id: "tasks-collection-id",
+      request: {
+        items: [{
+          fieldData: {
+            name: task.name,
+            taskUrl: task.url,
+            status: "In Queue"
+          }
+        }]
+      }
+    });
+
+    return { task, cmsItem };
   `
 });
 ```
@@ -684,7 +686,6 @@ call_tool_chain({
 
 ### Related Skills
 
-- **[mcp-narsil](../mcp-narsil/SKILL.md)** - Semantic + structural code search (via Code Mode)
 - **[mcp-figma](../mcp-figma/SKILL.md)** - Figma design file access (via Code Mode)
 
 ### Install Guide

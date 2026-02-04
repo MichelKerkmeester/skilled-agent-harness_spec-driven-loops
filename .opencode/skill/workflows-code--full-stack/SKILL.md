@@ -1,7 +1,7 @@
 ---
 name: workflows-code--full-stack
 description: "Stack-agnostic development orchestrator guiding developers through implementation, debugging, and verification phases with automatic stack detection via marker files and bundled stack-specific knowledge."
-allowed-tools: [Read, Grep, Glob, Bash]
+allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.0.0
 ---
 

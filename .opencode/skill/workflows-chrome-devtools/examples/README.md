@@ -374,7 +374,6 @@ bdg stop 2>&1
 
 - **workflows-code** - Development workflow orchestration
 - **workflows-documentation** - Documentation creation and validation
-- **mcp-narsil** - Semantic code search and discovery
 
 ---
 

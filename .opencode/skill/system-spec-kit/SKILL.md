@@ -1,7 +1,7 @@
 ---
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, Spec Kit Memory with vector search, six-tier importance system, constitutional rules, checkpoint save/restore, session deduplication, causal memory graph, intent-aware retrieval. Mandatory for all file modifications."
-allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, Task]
+allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.2.3.0
 ---
 
@@ -112,7 +112,7 @@ User Request
 | Gate enforcement (any file modification)            | Auto-surface constitutional rules | `spec_kit_memory_memory_match_triggers()`                                      |
 | "continue", "resume", `/memory:continue`            | Session recovery (crash/timeout)  | `spec_kit_memory_memory_search()` + state anchors                              |
 | "context", "get context", `/memory:context`         | Intent-aware context retrieval    | `spec_kit_memory_memory_search()` with intent routing                          |
-| "correct", "correction", `/memory:learn correct`   | Learn from corrections            | `spec_kit_memory_memory_update()` with penalty                                 |
+| "correct", "correction", `/memory:learn correct`    | Learn from corrections            | `spec_kit_memory_memory_update()` with penalty                                 |
 | "learn", "insight", `/memory:learn`                 | Capture session learnings         | `spec_kit_memory_memory_save()` with learning tier                             |
 
 ### Cognitive Memory Features
@@ -137,15 +137,15 @@ The `memory_match_triggers()` tool includes cognitive features for smarter conte
 
 ### Reference Sub-folders
 
-| Sub-folder    | Purpose                         | Files                                                                            |
-| ------------- | ------------------------------- | -------------------------------------------------------------------------------- |
+| Sub-folder    | Purpose                         | Files                                                                                                |
+| ------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `memory/`     | Context preservation, MCP tools | memory_system.md, save_workflow.md, trigger_config.md, epistemic-vectors.md, embedding_resilience.md |
-| `templates/`  | Template system, level specs    | level_specifications.md, template_guide.md, template_style_guide.md, level_selection_guide.md |
-| `validation/` | Validation rules, checklists    | validation_rules.md, phase_checklists.md, path_scoped_rules.md, five-checks.md, decision-format.md |
-| `structure/`  | Folder organization, routing    | folder_structure.md, folder_routing.md, sub_folder_versioning.md    |
-| `workflows/`  | Usage workflows, examples       | quick_reference.md, execution_methods.md, worked_examples.md        |
-| `debugging/`  | Troubleshooting, debugging      | troubleshooting.md, universal_debugging_methodology.md              |
-| `config/`     | Configuration                   | environment_variables.md                                            |
+| `templates/`  | Template system, level specs    | level_specifications.md, template_guide.md, template_style_guide.md, level_selection_guide.md        |
+| `validation/` | Validation rules, checklists    | validation_rules.md, phase_checklists.md, path_scoped_rules.md, five-checks.md, decision-format.md   |
+| `structure/`  | Folder organization, routing    | folder_structure.md, folder_routing.md, sub_folder_versioning.md                                     |
+| `workflows/`  | Usage workflows, examples       | quick_reference.md, execution_methods.md, worked_examples.md                                         |
+| `debugging/`  | Troubleshooting, debugging      | troubleshooting.md, universal_debugging_methodology.md                                               |
+| `config/`     | Configuration                   | environment_variables.md                                                                             |
 
 ### Keyword-Based Routing
 
@@ -180,22 +180,22 @@ Runtime configuration for the memory system:
 
 **Template Architecture (CORE + ADDENDUM v2.0):**
 
-| Folder | Contents | When to Use |
-|--------|----------|-------------|
-| `templates/level_1/` | 5 files (~450 LOC) | **Default for new specs** |
-| `templates/level_2/` | 6 files (~890 LOC) | QA validation needed |
-| `templates/level_3/` | 7 files (~890 LOC) | Architecture decisions |
-| `templates/level_3+/` | 7 files (~1080 LOC) | Enterprise governance |
+| Folder                | Contents            | When to Use               |
+| --------------------- | ------------------- | ------------------------- |
+| `templates/level_1/`  | 5 files (~450 LOC)  | **Default for new specs** |
+| `templates/level_2/`  | 6 files (~890 LOC)  | QA validation needed      |
+| `templates/level_3/`  | 7 files (~890 LOC)  | Architecture decisions    |
+| `templates/level_3+/` | 7 files (~1080 LOC) | Enterprise governance     |
 
 > **IMPORTANT:** Always copy from `templates/level_N/`. The `core/` and `addendum/` folders are source components only.
 
 **Key Scripts:**
 
-| Script | Purpose |
-|--------|---------|
-| `generate-context.js` | Generate memory files from conversation |
-| `spec/validate.sh` | Validate spec folder structure |
-| `spec/create.sh` | Create new spec folders with templates |
+| Script                 | Purpose                                       |
+| ---------------------- | --------------------------------------------- |
+| `generate-context.js`  | Generate memory files from conversation       |
+| `spec/validate.sh`     | Validate spec folder structure                |
+| `spec/create.sh`       | Create new spec folders with templates        |
 | `templates/compose.sh` | Compose level templates from core + addendums |
 
 **Full documentation:** See [level_specifications.md](./references/templates/level_specifications.md) and [template_guide.md](./references/templates/template_guide.md)
@@ -279,12 +279,12 @@ When user selects **B) New**, AI estimates complexity and recommends a level:
 
 **Level Guidelines:**
 
-| LOC | Level | Template Folder |
-|-----|-------|-----------------|
-| <100 | 1 | `templates/level_1/` |
-| 100-499 | 2 | `templates/level_2/` |
-| ≥500 | 3 | `templates/level_3/` |
-| Complex | 3+ | `templates/level_3+/` |
+| LOC     | Level | Template Folder       |
+| ------- | ----- | --------------------- |
+| <100    | 1     | `templates/level_1/`  |
+| 100-499 | 2     | `templates/level_2/`  |
+| ≥500    | 3     | `templates/level_3/`  |
+| Complex | 3+    | `templates/level_3+/` |
 
 **See:** [quick_reference.md](./references/workflows/quick_reference.md) for detailed examples.
 
@@ -453,30 +453,30 @@ Context preservation across sessions via vector-based semantic search.
 
 **MCP Tools (22 tools across 7 layers):**
 
-| Tool                          | Layer | Purpose                                            |
-| ----------------------------- | ----- | -------------------------------------------------- |
-| `memory_context()`            | L1    | Unified entry point with intent-aware routing      |
-| `memory_search()`             | L2    | Semantic search with vector similarity             |
-| `memory_match_triggers()`     | L2    | Fast keyword matching (<50ms)                      |
-| `memory_save()`               | L2    | Index a memory file with pre-flight validation     |
-| `memory_list()`               | L3    | Browse stored memories with pagination             |
-| `memory_stats()`              | L3    | Get system statistics and counts                   |
-| `memory_health()`             | L3    | Check system health status                         |
-| `memory_delete()`             | L4    | Delete memories by ID or spec folder               |
-| `memory_update()`             | L4    | Update memory metadata and importance tier         |
-| `memory_validate()`           | L4    | Record validation feedback for confidence          |
-| `checkpoint_create()`         | L5    | Create named checkpoint                            |
-| `checkpoint_list()`           | L5    | List all available checkpoints                     |
-| `checkpoint_restore()`        | L5    | Restore from checkpoint                            |
-| `checkpoint_delete()`         | L5    | Delete a checkpoint                                |
-| `task_preflight()`            | L6    | Capture epistemic baseline before task execution   |
-| `task_postflight()`           | L6    | Capture epistemic state after task, calc learning  |
-| `memory_drift_why()`          | L6    | Trace causal chain for decision lineage            |
-| `memory_causal_link()`        | L6    | Create causal relationship between memories        |
-| `memory_causal_stats()`       | L6    | Get statistics about causal memory graph           |
-| `memory_causal_unlink()`      | L6    | Remove causal relationship by edge ID              |
-| `memory_index_scan()`         | L7    | Bulk scan and index workspace                      |
-| `memory_get_learning_history()` | L7  | Get learning history for spec folder               |
+| Tool                            | Layer | Purpose                                           |
+| ------------------------------- | ----- | ------------------------------------------------- |
+| `memory_context()`              | L1    | Unified entry point with intent-aware routing     |
+| `memory_search()`               | L2    | Semantic search with vector similarity            |
+| `memory_match_triggers()`       | L2    | Fast keyword matching (<50ms)                     |
+| `memory_save()`                 | L2    | Index a memory file with pre-flight validation    |
+| `memory_list()`                 | L3    | Browse stored memories with pagination            |
+| `memory_stats()`                | L3    | Get system statistics and counts                  |
+| `memory_health()`               | L3    | Check system health status                        |
+| `memory_delete()`               | L4    | Delete memories by ID or spec folder              |
+| `memory_update()`               | L4    | Update memory metadata and importance tier        |
+| `memory_validate()`             | L4    | Record validation feedback for confidence         |
+| `checkpoint_create()`           | L5    | Create named checkpoint                           |
+| `checkpoint_list()`             | L5    | List all available checkpoints                    |
+| `checkpoint_restore()`          | L5    | Restore from checkpoint                           |
+| `checkpoint_delete()`           | L5    | Delete a checkpoint                               |
+| `task_preflight()`              | L6    | Capture epistemic baseline before task execution  |
+| `task_postflight()`             | L6    | Capture epistemic state after task, calc learning |
+| `memory_drift_why()`            | L6    | Trace causal chain for decision lineage           |
+| `memory_causal_link()`          | L6    | Create causal relationship between memories       |
+| `memory_causal_stats()`         | L6    | Get statistics about causal memory graph          |
+| `memory_causal_unlink()`        | L6    | Remove causal relationship by edge ID             |
+| `memory_index_scan()`           | L7    | Bulk scan and index workspace                     |
+| `memory_get_learning_history()` | L7    | Get learning history for spec folder              |
 
 > **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search()`).
 
@@ -854,24 +854,24 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 
 ### External Dependencies
 
-| Resource          | Location                                                             | Purpose                           |
-| ----------------- | -------------------------------------------------------------------- | --------------------------------- |
-| Core templates    | `templates/core/` (4 files)                                          | Foundation shared by all levels   |
-| Level 2 addendum  | `templates/addendum/level2-verify/` (3 files)                        | +Verification, NFRs               |
-| Level 3 addendum  | `templates/addendum/level3-arch/` (3 files)                          | +Architecture, ADRs               |
-| Level 3+ addendum | `templates/addendum/level3plus-govern/` (3 files)                    | +Governance, compliance           |
-| Level 1           | `templates/level_1/` (4 files)                                       | Pre-merged core (~270 LOC)        |
-| Level 2           | `templates/level_2/` (5 files)                                       | Core + L2 (~390 LOC)              |
-| Level 3           | `templates/level_3/` (6 files)                                       | Core + L2 + L3 (~540 LOC)         |
-| Level 3+          | `templates/level_3+/` (6 files)                                      | All addendums (~640 LOC)          |
-| Utility templates | `templates/` root                                                    | handover.md, debug-delegation.md  |
-| Compose script    | `scripts/templates/compose.sh`                                       | Template composition from sources |
-| Validation        | `scripts/spec/validate.sh`                                           | Automated validation              |
-| Gates             | `AGENTS.md` Section 2                                                | Gate definitions                  |
-| Memory gen        | `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js` | Memory file creation              |
-| MCP Server        | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`       | Spec Kit Memory MCP               |
+| Resource          | Location                                                                   | Purpose                           |
+| ----------------- | -------------------------------------------------------------------------- | --------------------------------- |
+| Core templates    | `templates/core/` (4 files)                                                | Foundation shared by all levels   |
+| Level 2 addendum  | `templates/addendum/level2-verify/` (3 files)                              | +Verification, NFRs               |
+| Level 3 addendum  | `templates/addendum/level3-arch/` (3 files)                                | +Architecture, ADRs               |
+| Level 3+ addendum | `templates/addendum/level3plus-govern/` (3 files)                          | +Governance, compliance           |
+| Level 1           | `templates/level_1/` (4 files)                                             | Pre-merged core (~270 LOC)        |
+| Level 2           | `templates/level_2/` (5 files)                                             | Core + L2 (~390 LOC)              |
+| Level 3           | `templates/level_3/` (6 files)                                             | Core + L2 + L3 (~540 LOC)         |
+| Level 3+          | `templates/level_3+/` (6 files)                                            | All addendums (~640 LOC)          |
+| Utility templates | `templates/` root                                                          | handover.md, debug-delegation.md  |
+| Compose script    | `scripts/templates/compose.sh`                                             | Template composition from sources |
+| Validation        | `scripts/spec/validate.sh`                                                 | Automated validation              |
+| Gates             | `AGENTS.md` Section 2                                                      | Gate definitions                  |
+| Memory gen        | `.opencode/skill/system-spec-kit/scripts/memory/generate-context.js`       | Memory file creation              |
+| MCP Server        | `.opencode/skill/system-spec-kit/mcp_server/context-server.js`             | Spec Kit Memory MCP               |
 | Database          | `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | Vector search index               |
-| Constitutional    | `.opencode/skill/system-spec-kit/constitutional/`                    | Always-surface rules              |
+| Constitutional    | `.opencode/skill/system-spec-kit/constitutional/`                          | Always-surface rules              |
 
 ---
 

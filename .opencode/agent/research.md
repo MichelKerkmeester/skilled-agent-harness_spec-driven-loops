@@ -11,7 +11,6 @@ permission:
   grep: allow
   glob: allow
   webfetch: allow
-  narsil: allow
   memory: allow
   chrome_devtools: deny
   task: deny
@@ -160,10 +159,9 @@ flowchart TB
 
 ### Skills
 
-| Skill             | Domain        | Use When                            | Key Features                   |
-| ----------------- | ------------- | ----------------------------------- | ------------------------------ |
-| `system-spec-kit` | Documentation | Spec folder creation, memory save   | Templates, validation, context |
-| `mcp-narsil`      | Code Intel    | Semantic code search (if available) | Pattern discovery, call graphs |
+| Skill             | Domain        | Use When                          | Key Features                   |
+| ----------------- | ------------- | --------------------------------- | ------------------------------ |
+| `system-spec-kit` | Documentation | Spec folder creation, memory save | Templates, validation, context |
 
 ### Tools
 
@@ -175,7 +173,6 @@ flowchart TB
 | `WebFetch`  | External documentation  | API docs, library references    |
 | `WebSearch` | Best practices research | Industry patterns, solutions    |
 | `memory_*`  | Context preservation    | Save/retrieve research findings |
-| `narsil_*`  | Semantic code search    | Understand code by meaning      |
 
 ---
 
@@ -185,7 +182,7 @@ flowchart TB
 Research Request
     │
     ├─► Codebase-focused? (patterns, architecture, existing code)
-    │   └─► Steps 2-3: Heavy use of Grep, Glob, Read, Narsil
+    │   └─► Steps 2-3: Heavy use of Grep, Glob, Read
     │
     ├─► External-focused? (APIs, libraries, best practices)
     │   └─► Step 4: Heavy use of WebFetch, WebSearch
@@ -287,18 +284,18 @@ The generated `research.md` includes 17 sections:
 
 ---
 
-## 7. 🔧 CODE INTELLIGENCE TOOL SELECTION
+## 7. 🔧 CODE SEARCH TOOL SELECTION
 
 Select the appropriate tool based on what you need to discover:
 
-| Need                     | Primary Tool                    | Fallback      | Example Query                    |
-| ------------------------ | ------------------------------- | ------------- | -------------------------------- |
-| Understand code purpose  | `narsil.narsil_neural_search()` | Grep + Read   | "How does authentication work?"  |
-| Map code structure       | `narsil.narsil_find_symbols()`  | Glob + Read   | "List all functions in auth.ts"  |
-| Find exact text patterns | `Grep`                          | narsil_neural | "Find TODO comments"             |
-| Discover files by name   | `Glob`                          | Grep          | "Find all *.test.ts files"       |
-| Trace call paths         | `narsil.narsil_get_callers()`   | Manual trace  | "What calls this function?"      |
-| Security analysis        | `narsil.narsil_security_scan()` | Manual review | "Find injection vulnerabilities" |
+| Need                     | Primary Tool | Fallback     | Example Query                    |
+| ------------------------ | ------------ | ------------ | -------------------------------- |
+| Find exact text patterns | `Grep`       | Read + scan  | "Find TODO comments"             |
+| Discover files by name   | `Glob`       | Grep         | "Find all *.test.ts files"       |
+| Understand code purpose  | `Grep + Read`| Glob + Read  | "How does authentication work?"  |
+| Map code structure       | `Glob + Read`| Grep         | "List all functions in auth.ts"  |
+| Trace call paths         | `Grep`       | Manual trace | "What calls this function?"      |
+| Security analysis        | `Grep + Read`| Manual review| "Find injection vulnerabilities" |
 
 ### Decision Tree for Tool Selection
 
@@ -306,11 +303,11 @@ Select the appropriate tool based on what you need to discover:
 What do you need?
     │
     ├─► UNDERSTANDING (meaning, purpose, behavior)
-    │   └─► narsil.narsil_neural_search()
+    │   └─► Grep for keywords + Read for context
     │       "How does X work?", "What handles Y?"
     │
     ├─► STRUCTURE (symbols, functions, classes)
-    │   └─► narsil.narsil_find_symbols()
+    │   └─► Glob to find files + Read to examine
     │       "List functions in...", "What classes exist?"
     │
     ├─► EXACT TEXT (keywords, patterns, literals)
@@ -322,7 +319,7 @@ What do you need?
     │       "Find *.config.js", "Locate test files"
     │
     └─► RELATIONSHIPS (calls, dependencies, flow)
-        └─► narsil.narsil_get_callers() / narsil_get_callees()
+        └─► Grep for function/symbol name
             "What calls this?", "What does this call?"
 ```
 
@@ -330,25 +327,25 @@ What do you need?
 
 For comprehensive research, combine tools in sequence:
 
-1. **Broad → Narrow**: Start with `narsil_neural_search` to understand, then `Grep` for specifics
-2. **Structure → Content**: Use `narsil_find_symbols` to map, then `Read` for implementation
-3. **Pattern → Context**: Find with `Grep`, understand with `narsil_neural_search`
+1. **Broad → Narrow**: Start with `Glob` to find files, then `Grep` for specifics
+2. **Structure → Content**: Use `Glob` to discover files, then `Read` for implementation
+3. **Pattern → Context**: Find with `Grep`, understand with `Read`
 
 ### Example Research Sequence
 
 ```
 Research Topic: "How does user authentication work?"
 
-1. narsil.narsil_neural_search({ query: "user authentication flow" })
+1. Grep({ pattern: "authentication|login|auth" })
    → Identifies relevant files and patterns
 
-2. narsil.narsil_find_symbols({ path: "src/auth/" })
-   → Maps functions, classes, exports
+2. Glob({ pattern: "src/auth/**/*.ts" })
+   → Discovers files in auth directory
 
 3. Read("src/auth/login.ts")
    → Examines actual implementation
 
-4. narsil.narsil_get_callers({ symbol: "authenticate" })
+4. Grep({ pattern: "authenticate\\(" })
    → Traces usage across codebase
 ```
 
@@ -464,7 +461,7 @@ When workers provide conflicting findings:
 
 1. **Identify Conflict** - Note specific claims that contradict
 2. **Compare Evidence** - Grade quality of supporting evidence
-3. **Investigate Further** - Use Narsil/Grep to verify claims
+3. **Investigate Further** - Use Grep/Read to verify claims
 4. **Document Resolution** - Record which finding prevails and why
 5. **Flag Uncertainty** - If unresolvable, mark in research.md
 
@@ -781,7 +778,6 @@ If ANY gate fails → Fix first, THEN claim completion
 | Skill             | Purpose                    |
 | ----------------- | -------------------------- |
 | `system-spec-kit` | Spec folders, memory, docs |
-| `mcp-narsil`      | Code intelligence          |
 
 ### Agents
 

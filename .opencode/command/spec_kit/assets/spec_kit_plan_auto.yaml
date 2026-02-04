@@ -741,9 +741,9 @@ workflow:
 
     # ── CODEBASE EXPLORATION ────────────────────────────────────────
     # Tool selection delegated to AGENTS.md Section 6 - no duplication here
-    # - Semantic search (Narsil neural): "how does X work", intent-based discovery
-    # - Structural search (Narsil): list functions, classes, symbols, call graphs
     # - Lexical search (Grep): exact text patterns
+    # - File discovery (Glob): find files by pattern
+    # - Content reading (Read): examine file contents
 
     # INLINE 4-AGENT PARALLEL EXPLORATION
     # Self-contained exploration - no external skill dependency

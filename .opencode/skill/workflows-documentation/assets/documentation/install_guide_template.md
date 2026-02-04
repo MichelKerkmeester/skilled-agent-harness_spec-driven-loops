@@ -63,7 +63,7 @@ Simple one-liner install? → Just document the command inline
 ### MCP Server Guides
 **Purpose**: Install and configure Model Context Protocol servers for AI assistants
 
-**Examples**: Narsil, spec-kit-memory, browser-debugger, Webflow MCP
+**Examples**: Spec-kit-memory, browser-debugger, Webflow MCP, Figma MCP
 
 **Key Sections**:
 - AI-First prompt for assisted installation
@@ -74,7 +74,7 @@ Simple one-liner install? → Just document the command inline
 ### CLI Tool Guides
 **Purpose**: Install command-line tools that support AI workflows
 
-**Examples**: browser-debugger-cli (bdg), narsil-mcp, uv
+**Examples**: browser-debugger-cli (bdg), uv
 
 **Key Sections**:
 - Binary installation and PATH setup
@@ -354,10 +354,10 @@ Use 3-column format: Error → Cause → Fix
 - Format: `MCP - [Tool Name].md` or `CLI - [Tool Name].md`
 - Use title case for tool names
 - Examples:
-  - ✅ `MCP - Narsil.md`
   - ✅ `MCP - Spec Kit Memory.md`
+  - ✅ `MCP - Figma.md`
   - ✅ `CLI - Browser Debugger.md`
-  - ❌ `narsil-install.md` (wrong format)
+  - ❌ `spec-kit-memory-install.md` (wrong format)
 
 ### Command Block Standards
 
@@ -372,14 +372,14 @@ package --version
 
 **Always include expected output**:
 ```bash
-narsil-mcp --version
-# → narsil 0.1.5
+tool-name --version
+# → tool-name 1.0.0
 ```
 
 **Comment complex commands**:
 ```bash
-# Start Narsil with recommended flags for code analysis
-narsil-mcp --repos /path/to/project --git --call-graph --persist --watch
+# Start server with recommended flags for production use
+tool-mcp --config /path/to/config --persist --watch
 ```
 
 ### H1 Description Standards
@@ -398,15 +398,6 @@ Complete installation and configuration guide for [tool name], [primary purpose]
 [Workflow/approach if relevant]. [Value proposition].
 ```
 
-**Good Example (Narsil)**:
-```
-Complete installation and configuration guide for the Narsil MCP server, providing 
-deep code intelligence through 76 specialized tools. Covers semantic search (neural 
-embeddings for meaning-based queries), structural analysis (AST-based symbol queries), 
-security scanning (OWASP, CWE, taint analysis), and call graph visualization. 
-Accessed via Code Mode for token-efficient multi-tool workflows.
-```
-
 **Good Example (Code Mode)**:
 ```
 Complete installation and configuration guide for the Code Mode MCP server, enabling 
@@ -418,7 +409,7 @@ faster execution compared to individual tool calls.
 
 **Bad Example** (too brief):
 ```
-A guide to installing the Narsil MCP server.
+A guide to installing the MCP server.
 ```
 
 ### Writing Style
@@ -478,13 +469,13 @@ Integration:
 
 ## 10. 💡 PATTERNS FROM EXISTING GUIDES
 
-### Narsil Guide Analysis (1300+ lines)
+### MCP Server Guide Patterns
 
 **What works well**:
 - AI-First prompt is comprehensive and specific
 - Architecture diagram shows data flow clearly
 - Comparison table vs. alternatives
-- Multiple embedding provider options documented
+- Multiple configuration options documented
 - `phase_N_complete` naming is consistent
 - Troubleshooting covers 10+ common errors
 
@@ -1000,8 +991,8 @@ You now have [TOOL_NAME] installed and configured. [BRIEF_USAGE_INSTRUCTION]
 - [core_standards.md](../../references/core_standards.md) - Document formatting standards
 
 ### Examples
-- [MCP - Narsil.md](../../../../install_guides/MCP%20-%20Narsil.md) - Excellent MCP server example (1300+ lines)
-- [MCP - Spec Kit Memory.md](../../../../install_guides/MCP%20-%20Spec%20Kit%20Memory.md) - Plugin example
+- [MCP - Spec Kit Memory.md](../../../../install_guides/MCP%20-%20Spec%20Kit%20Memory.md) - MCP server example
+- [MCP - Code Mode.md](../../../../install_guides/MCP%20-%20Code%20Mode.md) - Code Mode installation
 
 ### Skill Reference
 - [workflows-documentation SKILL.md](../../SKILL.md) - Mode 4: Install Guide Creation

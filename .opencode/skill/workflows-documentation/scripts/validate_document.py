@@ -65,7 +65,7 @@ EXCLUDED_PATH_PATTERNS = [
 
 # Third-party directories that use different README conventions
 THIRD_PARTY_PATTERNS = [
-    'mcp-narsil/mcp_server',  # Narsil MCP server has its own format
+    # Add third-party patterns here if needed
 ]
 
 # Template directories with intentionally minimal placeholder READMEs

@@ -172,90 +172,7 @@ INTENT_BOOSTERS = {
     "restore": ("system-spec-kit", 0.4),
     "session": ("system-spec-kit", 0.4),
     "store": ("system-spec-kit", 0.4),
-    
-    # ─────────────────────────────────────────────────────────────────
-    # MCP-NARSIL: Semantic + structural code search (meaning-based)
-    # ─────────────────────────────────────────────────────────────────
-    "ask": ("mcp-narsil", 0.4),
-    "auth": ("mcp-narsil", 1.8),
-    "authentication": ("mcp-narsil", 1.8),
-    "codebase": ("mcp-narsil", 0.5),
-    "does": ("mcp-narsil", 0.6),
-    "embeddings": ("mcp-narsil", 0.7),
-    "explain": ("mcp-narsil", 3.5),
-    "how": ("mcp-narsil", 1.2),
-    "index": ("mcp-narsil", 0.3),
-    "login": ("mcp-narsil", 0.8),
-    "logout": ("mcp-narsil", 0.6),
-    "meaning": ("mcp-narsil", 0.6),
-    "password": ("mcp-narsil", 0.5),
-    "purpose": ("mcp-narsil", 0.5),
-    "query": ("mcp-narsil", 0.4),
-    "rag": ("mcp-narsil", 0.6),
-    "semantic": ("mcp-narsil", 0.5),
-    "understand": ("mcp-narsil", 1.5),
-    "user": ("mcp-narsil", 0.4),
-    "vector": ("mcp-narsil", 0.6),
-    "what": ("mcp-narsil", 1.0),
-    "why": ("mcp-narsil", 1.5),
-    "work": ("mcp-narsil", 1.0),
-    "works": ("mcp-narsil", 1.0),
-    
-    # ─────────────────────────────────────────────────────────────────
-    # MCP-NARSIL: Structural analysis, security scanning, call graphs
-    # (Additional structural and security keywords)
-    # ─────────────────────────────────────────────────────────────────
-    # Structural analysis (AST-based)
-    "ast": ("mcp-narsil", 0.6),
-    "classes": ("mcp-narsil", 0.4),
-    "definitions": ("mcp-narsil", 0.5),
-    "exports": ("mcp-narsil", 0.4),
-    "functions": ("mcp-narsil", 0.4),
-    "imports": ("mcp-narsil", 0.4),
-    "list": ("mcp-narsil", 0.3),
-    "methods": ("mcp-narsil", 0.4),
-    "navigate": ("mcp-narsil", 0.4),
-    "outline": ("mcp-narsil", 0.6),
-    "structure": ("mcp-narsil", 0.5),
-    "symbols": ("mcp-narsil", 0.5),
-    "tree": ("mcp-narsil", 0.5),
-    "treesitter": ("mcp-narsil", 0.7),
-    
-    # Security scanning
-    "vulnerability": ("mcp-narsil", 0.8),
-    "vulnerabilities": ("mcp-narsil", 0.8),
-    "security": ("mcp-narsil", 0.6),
-    "secure": ("mcp-narsil", 0.5),
-    "scan": ("mcp-narsil", 0.5),
-    "scanning": ("mcp-narsil", 0.5),
-    "owasp": ("mcp-narsil", 0.9),
-    "cwe": ("mcp-narsil", 0.9),
-    "taint": ("mcp-narsil", 0.8),
-    "injection": ("mcp-narsil", 0.7),
-    "xss": ("mcp-narsil", 0.9),
-    "sqli": ("mcp-narsil", 0.9),
-    "csrf": ("mcp-narsil", 0.8),
-    
-    # Code analysis
-    "deadcode": ("mcp-narsil", 0.8),
-    "dead-code": ("mcp-narsil", 0.8),  # kept for documentation (unreachable due to tokenization)
-    "dead": ("mcp-narsil", 0.4),  # partial match for "dead code" queries
-    "complexity": ("mcp-narsil", 0.6),
-    "callgraph": ("mcp-narsil", 0.8),
-    "call-graph": ("mcp-narsil", 0.8),  # kept for documentation (unreachable due to tokenization)
-    "call": ("mcp-narsil", 0.3),  # partial match for "call graph" queries
-    "graph": ("mcp-narsil", 0.3),  # partial match for "call graph" queries
-    "callers": ("mcp-narsil", 0.7),
-    "callees": ("mcp-narsil", 0.7),
-    "cfg": ("mcp-narsil", 0.7),
-    "dfg": ("mcp-narsil", 0.7),
-    
-    # Supply chain
-    "sbom": ("mcp-narsil", 0.8),
-    "license": ("mcp-narsil", 0.5),
-    "dependency": ("mcp-narsil", 0.5),
-    "dependencies": ("mcp-narsil", 0.5),
-    
+
     # ─────────────────────────────────────────────────────────────────
     # SYSTEM-SPEC-KIT: Specification and planning
     # ─────────────────────────────────────────────────────────────────
@@ -326,14 +243,32 @@ INTENT_BOOSTERS = {
     "template": ("workflows-documentation", 0.4),
     
     # ─────────────────────────────────────────────────────────────────
-    # WORKFLOWS-CODE: Implementation and verification
+    # WORKFLOWS-CODE: Implementation and verification (frontend/Webflow)
     # ─────────────────────────────────────────────────────────────────
     "bug": ("workflows-code", 0.5),
     "error": ("workflows-code", 0.4),
     "implement": ("workflows-code", 0.6),
     "refactor": ("workflows-code", 0.5),
     "verification": ("workflows-code", 0.5),
-    
+
+    # ─────────────────────────────────────────────────────────────────
+    # WORKFLOWS-CODE--OPENCODE: OpenCode system code standards
+    # (JavaScript MCP, Python scripts, Shell scripts, JSONC configs)
+    # ─────────────────────────────────────────────────────────────────
+    "opencode": ("workflows-code--opencode", 2.0),
+    "mcp": ("workflows-code--opencode", 1.5),
+    "python": ("workflows-code--opencode", 1.0),
+    "shell": ("workflows-code--opencode", 1.0),
+    "bash": ("workflows-code--opencode", 1.0),
+    "jsonc": ("workflows-code--opencode", 1.5),
+    "shebang": ("workflows-code--opencode", 1.2),
+    "snake_case": ("workflows-code--opencode", 1.0),
+    "docstring": ("workflows-code--opencode", 0.8),
+    "jsdoc": ("workflows-code--opencode", 0.8),
+    "commonjs": ("workflows-code--opencode", 1.0),
+    "require": ("workflows-code--opencode", 0.6),
+    "strict": ("workflows-code--opencode", 0.5),
+
     # ─────────────────────────────────────────────────────────────────
     # MCP-CODE-MODE: External tool integration
     # ─────────────────────────────────────────────────────────────────
@@ -355,18 +290,19 @@ INTENT_BOOSTERS = {
 # Ambiguous keywords that should boost MULTIPLE skills
 # Format: keyword -> list of (skill_name, boost_amount)
 MULTI_SKILL_BOOSTERS = {
-    "api": [("mcp-code-mode", 0.3), ("mcp-narsil", 0.2)],
+    "api": [("mcp-code-mode", 0.3)],
     "changes": [("workflows-git", 0.4), ("system-spec-kit", 0.2)],
-    "code": [("workflows-code", 0.2), ("mcp-narsil", 0.25)],
-    "codebase": [("mcp-narsil", 0.4)],
-    "context": [("system-spec-kit", 0.3), ("mcp-narsil", 0.2)],
-    "find": [("mcp-narsil", 0.4)],
+    "code": [("workflows-code", 0.2), ("workflows-code--opencode", 0.1)],
+    "context": [("system-spec-kit", 0.3)],
     "fix": [("workflows-code", 0.3), ("workflows-git", 0.1)],
-    "mcp": [("mcp-code-mode", 0.3), ("mcp-narsil", 0.4)],
+    "mcp": [("mcp-code-mode", 0.3), ("workflows-code--opencode", 0.4)],
     "plan": [("system-spec-kit", 0.3), ("workflows-code", 0.2)],
     "save": [("system-spec-kit", 0.3), ("workflows-git", 0.2)],
-    "search": [("mcp-narsil", 0.4)],
-    "session": [("system-spec-kit", 0.4), ("mcp-narsil", 0.2)],
+    "script": [("workflows-code--opencode", 0.4)],
+    "server": [("workflows-code--opencode", 0.3), ("mcp-code-mode", 0.2)],
+    "session": [("system-spec-kit", 0.4)],
+    "standards": [("workflows-code--opencode", 0.4), ("workflows-code", 0.2)],
+    "style": [("workflows-code--opencode", 0.3), ("workflows-code", 0.2)],
     "test": [("workflows-code", 0.3), ("workflows-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("workflows-git", 0.2), ("workflows-code", 0.2)],
 }

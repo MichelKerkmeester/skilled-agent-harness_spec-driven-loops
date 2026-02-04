@@ -11,7 +11,6 @@ permission:
   grep: allow
   glob: allow
   webfetch: deny
-  narsil: allow
   memory: allow
   chrome_devtools: deny
   task: deny
@@ -68,10 +67,11 @@ Task(subagent_type: "review", model: "opus", prompt: "...")
 1. **RECEIVE** → Parse review request (PR, file changes, code snippet)
 2. **SCOPE** → Identify files to review, change boundaries, context requirements
 3. **LOAD STANDARDS** → Check for `workflows-code` skill; if available, invoke to load project-specific standards; otherwise, use universal quality standards
-4. **ANALYZE** → Use `mcp-narsil` via Code Mode (if available) for:
-   - Semantic analysis: Understand code intent and purpose
-   - Structural analysis: Symbol mapping, call graphs, dependencies
-   - Security scan: CWE/OWASP patterns, taint analysis
+4. **ANALYZE** → Use available code search tools:
+   - Content search: Use `Grep` to find patterns and keywords
+   - File discovery: Use `Glob` to locate files by pattern
+   - Detailed review: Use `Read` to examine implementations
+   - Manual security review: Check for common vulnerability patterns
 5. **EVALUATE** → Score against explicit rubrics (see Section 4)
 6. **IDENTIFY ISSUES** → Categorize findings: Blockers (P0), Required (P1), Suggestions (P2)
 7. **REPORT** → Deliver structured review with actionable feedback
@@ -92,10 +92,10 @@ flowchart TD
     PROJ --> R4[4. ANALYZE]:::core
     UNIV --> R4
 
-    subgraph ANALYZE["Analysis (Narsil)"]
-        A1[Semantic] --> A4[Findings]
-        A2[Structural] --> A4
-        A3[Security] --> A4
+    subgraph ANALYZE["Analysis Phase"]
+        A1[Content Search] --> A4[Findings]
+        A2[Pattern Analysis] --> A4
+        A3[Security Review] --> A4
     end
 
     R4 --> ANALYZE
@@ -119,29 +119,24 @@ flowchart TD
 | Skill            | Domain         | Use When                           | Key Features                                 |
 | ---------------- | -------------- | ---------------------------------- | -------------------------------------------- |
 | `workflows-code` | Implementation | Loading project-specific standards | Style guide, patterns, validation checklists |
-| `mcp-narsil`     | Code Intel     | ALL code analysis (via Code Mode)  | Semantic search, security scans, call graphs |
 
 **Note**: The `workflows-code` skill may have project-specific configurations. If not available, fall back to universal code quality principles.
 
 ### Tools
 
-| Tool                           | Purpose                          | When to Use                          |
-| ------------------------------ | -------------------------------- | ------------------------------------ |
-| `narsil.narsil_neural_search`  | Semantic code understanding      | "What does this code do?", intent    |
-| `narsil.narsil_find_symbols`   | Structural mapping               | Function lists, dependencies         |
-| `narsil.narsil_security_scan`  | Security vulnerability detection | OWASP/CWE patterns, injection risks  |
-| `narsil.narsil_call_graph`     | Dependency analysis              | Impact assessment, affected code     |
-| `narsil.narsil_find_dead_code` | Dead code detection              | Unused functions, unreachable paths  |
-| `Grep`                         | Lexical pattern search           | Specific strings, TODO/FIXME markers |
-| `Read`                         | File content access              | Detailed line-by-line analysis       |
+| Tool   | Purpose                | When to Use                          |
+| ------ | ---------------------- | ------------------------------------ |
+| `Grep` | Pattern search         | Find code patterns, keywords, TODOs  |
+| `Glob` | File discovery         | Locate files by extension or pattern |
+| `Read` | File content access    | Detailed line-by-line analysis       |
+| `Bash` | CLI commands           | `git diff`, `git log`, `gh pr view`  |
 
 ### Tool Access Patterns
 
-| Tool Type    | Access Method       | Example                              |
-| ------------ | ------------------- | ------------------------------------ |
-| Narsil (MCP) | `call_tool_chain()` | `narsil.narsil_security_scan({...})` |
-| Native Tools | Direct call         | `Read({ file_path })`, `Grep({...})` |
-| CLI          | Bash                | `git diff`, `git log`, `gh pr view`  |
+| Tool Type    | Access Method | Example                              |
+| ------------ | ------------- | ------------------------------------ |
+| Native Tools | Direct call   | `Read({ file_path })`, `Grep({...})` |
+| CLI          | Bash          | `git diff`, `git log`, `gh pr view`  |
 
 ---
 
@@ -528,7 +523,7 @@ When reviewer consistently scores agent output < 50:
 ### ALWAYS
 
 - Check for `workflows-code` skill availability and load project standards if present
-- Use `mcp-narsil` for security scans on security-sensitive code (if available)
+- Perform manual security review on security-sensitive code (auth, input handling, data exposure)
 - Provide file:line references for all issues
 - Explain WHY something is an issue, not just WHAT
 - Include positive observations alongside criticism
@@ -540,7 +535,7 @@ When reviewer consistently scores agent output < 50:
 
 - Modify files (read-only access by design)
 - Approve code with P0 blockers
-- Skip security scan for auth/input handling code
+- Skip security review for auth/input handling code
 - Provide vague feedback ("looks wrong")
 - Ignore project patterns in favor of general best practices (when patterns exist)
 - Gate without explicit rubric justification
@@ -566,7 +561,7 @@ EVIDENCE VALIDATION (MANDATORY):
 □ All file paths mentioned actually exist (use Read to verify)
 □ Quality scores based on actual content (not assumptions)
 □ Issue citations reference real code (file:line verified)
-□ Security findings confirmed by Narsil scan (if available)
+□ Security findings confirmed by manual review
 □ Pattern violations cite actual project patterns
 □ No hallucinated issues (all findings traceable to source)
 □ No false positives (issues reproduced in actual code)
@@ -601,7 +596,7 @@ Read({ file_path: "/path/to/file.js" })
 Quality Score: 85/100 (GOOD)
 Evidence:
 - Correctness (28/30): [cite specific code examples]
-- Security (23/25): [cite Narsil scan results or manual findings]
+- Security (23/25): [cite manual security review findings]
 - Patterns (17/20): [cite project pattern violations with file:line]
 - Maintainability (12/15): [cite complexity metrics, doc gaps]
 - Performance (5/10): [cite specific inefficiencies]
@@ -641,7 +636,7 @@ SELF-CHECK (5 questions):
 1. Did I Read every file I'm reviewing? (YES/NO)
 2. Are all scores traceable to rubric criteria? (YES/NO)
 3. Do all issues cite actual code locations? (YES/NO)
-4. Did I run security scan for sensitive code? (YES/NO)
+4. Did I perform security review for sensitive code? (YES/NO)
 5. Are findings reproducible from evidence? (YES/NO)
 
 If ANY answer is NO → DO NOT SEND REPORT
@@ -655,7 +650,7 @@ Fix verification gaps first
 | **Phantom Files**             | Reviewing files that don't exist    | Read all files before review       |
 | **Ghost Issues**              | Issues without file:line            | Add citations or remove issue      |
 | **Fabricated Scores**         | Score without rubric breakdown      | Recalculate with evidence          |
-| **Missing Security Scan**     | No Narsil results for auth code     | Run scan or document manual review |
+| **Missing Security Review**   | No security check for auth code     | Perform manual review              |
 | **Unverified Pattern Claims** | "Violates pattern X" without source | Cite pattern doc or remove claim   |
 
 ### Verification Tool Usage
@@ -666,11 +661,11 @@ for file in $(list_of_files_to_review); do
   Read({ file_path: "$file" }) || echo "MISSING: $file"
 done
 
-# 2. Run security scan if available
-call_tool_chain({
-  tool: "narsil.narsil_security_scan",
-  params: { path: "/path/to/code" }
-})
+# 2. Manual security review
+# - Check for hardcoded credentials
+# - Verify input validation
+# - Review auth/authz patterns
+# - Check for injection vulnerabilities
 
 # 3. Verify pattern references
 Read({ file_path: ".opencode/skill/workflows-code/references/patterns.md" })
@@ -683,18 +678,18 @@ Read({ file_path: "file.js", offset: 40, limit: 10 })
 
 Add confidence marker to review:
 
-| Confidence | Criteria                                | Action                  |
-| ---------- | --------------------------------------- | ----------------------- |
-| **HIGH**   | All files read, scans run, verified     | Proceed with report     |
-| **MEDIUM** | Most evidence verified, gaps documented | Note gaps in report     |
-| **LOW**    | Missing key verification steps          | DO NOT send until fixed |
+| Confidence | Criteria                                    | Action                  |
+| ---------- | ------------------------------------------- | ----------------------- |
+| **HIGH**   | All files read, security reviewed, verified | Proceed with report     |
+| **MEDIUM** | Most evidence verified, gaps documented     | Note gaps in report     |
+| **LOW**    | Missing key verification steps              | DO NOT send until fixed |
 
 **Report Format:**
 ```markdown
 **Confidence**: HIGH
 **Verification**:
 - [x] All files read and verified
-- [x] Security scan completed (Narsil)
+- [x] Security review completed
 - [x] All scores cited with evidence
 - [x] No hallucinated issues
 ```
@@ -761,7 +756,6 @@ If you catch yourself about to send unverified output:
 | Skill          | Purpose                                      |
 | -------------- | -------------------------------------------- |
 | workflows-code | Project-specific quality standards, patterns |
-| mcp-narsil     | Code intelligence via MCP (if available)     |
 
 **Note**: Skill availability varies by project. Check `.opencode/skill/` for available skills.
 
@@ -783,11 +777,12 @@ When reviewing code, discover project-specific standards by:
 
 ### Tools
 
-| Tool       | Command             | Purpose               |
-| ---------- | ------------------- | --------------------- |
-| GitHub CLI | `gh pr view`        | PR metadata access    |
-| Git        | `git diff`          | Local change analysis |
-| Narsil     | `call_tool_chain()` | Code intelligence     |
+| Tool       | Command      | Purpose               |
+| ---------- | ------------ | --------------------- |
+| GitHub CLI | `gh pr view` | PR metadata access    |
+| Git        | `git diff`   | Local change analysis |
+| Grep       | Direct call  | Pattern search        |
+| Read       | Direct call  | File content access   |
 
 ---
 
@@ -806,7 +801,7 @@ When reviewing code, discover project-specific standards by:
 │  WORKFLOW                                                               │
 │  ├─► 1. Receive review request (PR, files, gate validation)              │
 │  ├─► 2. Load standards (workflows-code if available, else universal)     │
-│  ├─► 3. Analyze with mcp-narsil if available (semantic, structural)     │
+│  ├─► 3. Analyze with Grep/Glob/Read (pattern search, file discovery)    │
 │  ├─► 4. Score against 5-dimension rubric (100 points)                   │
 │  ├─► 5. Categorize issues (P0 blocker, P1 required, P2 suggestion)      │
 │  └─► 6. Deliver structured report with actionable feedback              │

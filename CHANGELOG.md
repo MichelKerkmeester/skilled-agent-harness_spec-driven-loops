@@ -7,6 +7,72 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**1.2.2.0**] - 2026-02-04
+
+### Added
+
+**AGENTS.md Coding Analysis Lenses**
+
+New coding-focused analysis framework integrated into AGENTS.md for improved code quality decisions.
+
+1. **6 Coding Lenses** — CLARITY (simplicity), SYSTEMS (dependencies), BIAS (wrong problem), SUSTAINABILITY (maintainability), VALUE (actual impact), SCOPE (complexity matching)
+2. **6 Anti-Patterns** — Over-engineering, Premature optimization, Cargo culting, Gold-plating, Wrong abstraction, Scope creep with trigger phrases and responses
+3. **Solution Flow Integration** — Added SYSTEMS → BIAS → SCOPE lens steps to request analysis workflow
+4. **Enhanced Simplicity First** — CLARITY lens triggers requiring justification before proceeding
+5. **LENS VALIDATION** — New checklist section in PRE-CHANGE VALIDATION
+6. **Extended Failure Patterns** — Patterns 17-20 with lens-based detection
+
+### Changed
+
+**Threshold Alignment**
+
+- Renamed "Legacy thresholds" to "Simple thresholds" for confidence-only queries
+- Aligned percentages with dual-threshold: 40-69% PROCEED WITH CAUTION, ≥70% PASS
+
+**Files:** `AGENTS.md`, `AGENTS-v2.md`
+
+---
+
+## [**1.2.1.0**] - 2026-02-04
+
+### Added
+
+**New Skill: workflows-code--opencode**
+
+Multi-language code standards for OpenCode system code (JavaScript, Python, Shell, JSON/JSONC).
+
+1. **SKILL.md orchestrator** — 10-section structure with Use Case Router tables, Quick Reference with code examples
+2. **Language-specific style guides** — 4 comprehensive guides:
+   - `references/javascript/style_guide.md` — Node.js/ES modules, JSDoc, async patterns
+   - `references/python/style_guide.md` — PEP 8, docstrings, type hints
+   - `references/shell/style_guide.md` — POSIX compliance, error handling, shebang patterns
+   - `references/jsonc/style_guide.md` — Schema references, comment conventions
+3. **Universal patterns** — `references/shared/universal_patterns.md` for cross-language consistency
+4. **Quality checklist** — `assets/code_quality_checklist.md` for pre-commit validation
+5. **skill_advisor.py integration** — INTENT_BOOSTERS and MULTI_SKILL_BOOSTERS for automatic routing
+
+**Use case:** Writing or modifying `.opencode/` system code, MCP servers, scripts, and configurations.
+
+---
+
+### Removed
+
+**Narsil MCP Complete Removal**
+
+Narsil code intelligence MCP has been completely removed from the OpenCode Dev Environment.
+
+1. **Skill deleted** — `.opencode/skill/mcp-narsil/` directory removed entirely
+2. **Configuration cleaned** — Removed from `.utcp_config.json`, `.env.example`, `.gitignore`
+3. **Documentation updated** — All AGENTS.md, agent files, skill files, and command files updated
+4. **Code search simplified** — Replaced with `Grep()` for text, `Glob()` for files, `Read()` for content
+5. **skill_advisor.py updated** — Removed all mcp-narsil INTENT_BOOSTERS and MULTI_SKILL_BOOSTERS
+
+**Reason:** Simplifying the tool stack by removing unused code intelligence integration.
+
+**Migration:** No action required. Code search now uses standard Grep/Glob/Read tools.
+
+---
+
 ## [**1.2.0.3**] - 2026-02-03
 
 ### Fixed
@@ -178,7 +244,7 @@ Critical documentation fix for **Code Mode prefixed environment variables**. Upd
 
 ### 📝 Skill-Level CHANGELOGs
 
-- **6 CHANGELOGs created** — mcp-code-mode, mcp-figma, mcp-narsil, workflows-chrome-devtools, workflows-documentation, workflows-git
+- **5 CHANGELOGs created** — mcp-code-mode, mcp-figma, workflows-chrome-devtools, workflows-documentation, workflows-git
 - **Retroactive history** — Full version history traced from global CHANGELOG
 - **Keep a Changelog format** — Consistent structure across all skills
 
@@ -198,10 +264,9 @@ Critical documentation fix for **Code Mode prefixed environment variables**. Upd
 - `README.md` — Updated environment variables section
 - `SKILL.md` — Updated Figma Provider Configuration
 
-**New CHANGELOGs (6 files):**
+**New CHANGELOGs (5 files):**
 - `.opencode/skill/mcp-code-mode/CHANGELOG.md`
 - `.opencode/skill/mcp-figma/CHANGELOG.md`
-- `.opencode/skill/mcp-narsil/CHANGELOG.md`
 - `.opencode/skill/workflows-chrome-devtools/CHANGELOG.md`
 - `.opencode/skill/workflows-documentation/CHANGELOG.md`
 - `.opencode/skill/workflows-git/CHANGELOG.md`

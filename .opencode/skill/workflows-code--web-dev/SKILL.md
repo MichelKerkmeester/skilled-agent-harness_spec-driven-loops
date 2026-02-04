@@ -1,7 +1,7 @@
 ---
 name: workflows-code
 description: "Orchestrator guiding developers through implementation, debugging, and verification phases across specialized code quality skills (project)"
-allowed-tools: [Read, Grep, Glob, Bash]
+allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 2.0.0
 ---
 
@@ -49,13 +49,13 @@ Unified workflow guidance across 6 specialized code quality skills for frontend 
 
 This orchestrator operates in four primary phases:
 
-| Phase                       | Purpose                                                     | Trigger                                          |
-| --------------------------- | ----------------------------------------------------------- | ------------------------------------------------ |
-| **Phase 0: Research**       | Systematic analysis before complex implementation           | Performance issues, unfamiliar codebases         |
-| **Phase 1: Implementation** | Writing code with async handling, validation, cache-busting | Starting new code, modifying existing            |
-| **Phase 1.5: Code Quality** | Validate against style standards                            | P0 items pass                                    |
-| **Phase 2: Debugging**      | Fixing issues systematically using DevTools                 | Console errors, unexpected behavior              |
-| **Phase 3: Verification**   | Browser testing before completion claims                    | Before ANY "done" or "works" claim               |
+| Phase                       | Purpose                                                     | Trigger                                  |
+| --------------------------- | ----------------------------------------------------------- | ---------------------------------------- |
+| **Phase 0: Research**       | Systematic analysis before complex implementation           | Performance issues, unfamiliar codebases |
+| **Phase 1: Implementation** | Writing code with async handling, validation, cache-busting | Starting new code, modifying existing    |
+| **Phase 1.5: Code Quality** | Validate against style standards                            | P0 items pass                            |
+| **Phase 2: Debugging**      | Fixing issues systematically using DevTools                 | Console errors, unexpected behavior      |
+| **Phase 3: Verification**   | Browser testing before completion claims                    | Before ANY "done" or "works" claim       |
 
 **The Iron Law**: NO COMPLETION CLAIMS WITHOUT FRESH BROWSER VERIFICATION EVIDENCE
 
@@ -306,18 +306,18 @@ Before implementing performance fixes, conduct systematic analysis:
 
 For complex codebase analysis, dispatch parallel agents:
 
-| Agent | Focus Area |
-|-------|------------|
-| 1 | HTML loading strategy |
-| 2 | JavaScript bundle inventory |
-| 3 | Third-party scripts |
-| 4 | CSS performance |
-| 5 | LCP/Images analysis |
-| 6 | Above-fold resources |
-| 7 | Animation performance |
-| 8 | Initialization patterns |
-| 9 | External libraries |
-| 10 | Network waterfall |
+| Agent | Focus Area                  |
+| ----- | --------------------------- |
+| 1     | HTML loading strategy       |
+| 2     | JavaScript bundle inventory |
+| 3     | Third-party scripts         |
+| 4     | CSS performance             |
+| 5     | LCP/Images analysis         |
+| 6     | Above-fold resources        |
+| 7     | Animation performance       |
+| 8     | Initialization patterns     |
+| 9     | External libraries          |
+| 10    | Network waterfall           |
 
 See: `references/research/multi_agent_patterns.md`
 
@@ -557,20 +557,20 @@ See [error_recovery.md](./references/debugging/error_recovery.md) for CDN upload
 
 ### Phase Completion Checklists
 
-| Phase | Checklist | Key Criteria |
-|-------|-----------|--------------|
+| Phase                   | Checklist                                                                              | Key Criteria                                           |
+| ----------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------ |
 | Phase 1: Implementation | [implementation_workflows.md](./references/implementation/implementation_workflows.md) | No arbitrary setTimeout, inputs validated, CDN updated |
-| Phase 1.5: Code Quality | [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md) | P0 items passing, snake_case, file headers |
-| Phase 2: Debugging | [debugging_workflows.md](./references/debugging/debugging_workflows.md) | Root cause documented, fix at source |
-| Phase 3: Verification | [verification_checklist.md](./assets/checklists/verification_checklist.md) | Browser tested, multi-viewport, console clean |
+| Phase 1.5: Code Quality | [code_quality_checklist.md](./assets/checklists/code_quality_checklist.md)             | P0 items passing, snake_case, file headers             |
+| Phase 2: Debugging      | [debugging_workflows.md](./references/debugging/debugging_workflows.md)                | Root cause documented, fix at source                   |
+| Phase 3: Verification   | [verification_checklist.md](./assets/checklists/verification_checklist.md)             | Browser tested, multi-viewport, console clean          |
 
 ### Performance Targets
 
-| Metric | Target | Tool | Metric | Target | Tool |
-|--------|--------|------|--------|--------|------|
-| FCP | < 1.8s | Lighthouse | CLS | < 0.1 | Lighthouse |
-| LCP | < 2.5s | Lighthouse | FPS | 60fps | DevTools |
-| TTI | < 3.8s | Lighthouse | Errors | 0 | Console |
+| Metric | Target | Tool       | Metric | Target | Tool       |
+| ------ | ------ | ---------- | ------ | ------ | ---------- |
+| FCP    | < 1.8s | Lighthouse | CLS    | < 0.1  | Lighthouse |
+| LCP    | < 2.5s | Lighthouse | FPS    | 60fps  | DevTools   |
+| TTI    | < 3.8s | Lighthouse | Errors | 0      | Console    |
 
 Run Lighthouse 3× in Incognito with mobile emulation, use median scores.
 
@@ -603,11 +603,10 @@ Key integrations:
 
 ### External Tools
 
-| Tool | Purpose |
-|------|---------|
-| **workflows-chrome-devtools** | Browser debugging (CLI-first via bdg, MCP fallback) |
-| **mcp-narsil** | Security scanning (OWASP, CWE, taint analysis) |
-| **Motion.dev** | Animation library (CDN: jsdelivr.net/npm/motion@12.15.0) |
+| Tool                          | Purpose                                                  |
+| ----------------------------- | -------------------------------------------------------- |
+| **workflows-chrome-devtools** | Browser debugging (CLI-first via bdg, MCP fallback)      |
+| **Motion.dev**                | Animation library (CDN: jsdelivr.net/npm/motion@12.15.0) |
 
 ---
 
@@ -641,7 +640,6 @@ Key integrations:
 | **workflows-documentation**   | Documentation quality, skill creation, markdown validation  |
 | **workflows-git**             | Git workflows, commit hygiene, PR creation                  |
 | **system-spec-kit**           | Spec folder management, memory system, context preservation |
-| **mcp-narsil**                | Code intelligence, security scanning, call graphs           |
 | **workflows-chrome-devtools** | Browser debugging, screenshots, console access              |
 
 ### Navigation Guide
@@ -665,13 +663,13 @@ Key integrations:
 
 ## 9. 📍 WHERE AM I? (Phase Detection)
 
-| Phase | You're here if... | Exit criteria |
-|-------|-------------------|---------------|
-| **0: Research** | Complex issue, unfamiliar codebase | Constraints documented, plan ready |
-| **1: Implementation** | Writing/modifying code | Code written, builds |
-| **1.5: Code Quality** | Implementation done, running checklist | All P0 items passing |
-| **2: Debugging** | Code has bugs/failing tests | All tests passing |
-| **3: Verification** | Tests pass, final validation | Verified in browser |
+| Phase                 | You're here if...                      | Exit criteria                      |
+| --------------------- | -------------------------------------- | ---------------------------------- |
+| **0: Research**       | Complex issue, unfamiliar codebase     | Constraints documented, plan ready |
+| **1: Implementation** | Writing/modifying code                 | Code written, builds               |
+| **1.5: Code Quality** | Implementation done, running checklist | All P0 items passing               |
+| **2: Debugging**      | Code has bugs/failing tests            | All tests passing                  |
+| **3: Verification**   | Tests pass, final validation           | Verified in browser                |
 
 **Transitions:** 0→1 (plan ready) | 1→2 (bugs found) | 2→1 (missing code) | 2→3 (fixed) | 3→1/2 (issues found). Always end with Phase 3.
 
@@ -741,11 +739,11 @@ const observer = new IntersectionObserver(
 
 ### Browser Testing Matrix
 
-| Viewport | Width  | Required | Notes                    |
-| -------- | ------ | -------- | ------------------------ |
-| Mobile   | 375px  | ALWAYS   | iPhone SE baseline       |
-| Tablet   | 991px  | Standard | Webflow tablet breakpoint|
-| Desktop  | 1920px | ALWAYS   | Full HD reference        |
+| Viewport | Width  | Required | Notes                     |
+| -------- | ------ | -------- | ------------------------- |
+| Mobile   | 375px  | ALWAYS   | iPhone SE baseline        |
+| Tablet   | 991px  | Standard | Webflow tablet breakpoint |
+| Desktop  | 1920px | ALWAYS   | Full HD reference         |
 
 ### Performance Targets (Summary)
 

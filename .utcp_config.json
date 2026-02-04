@@ -108,36 +108,6 @@
       }
     },
     {
-      "name": "narsil",
-      "call_template_type": "mcp",
-      "config": {
-        "mcpServers": {
-          "narsil": {
-            "transport": "stdio",
-            "command": "/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/mcp-narsil/mcp_server/target/release/narsil-mcp",
-            "args": [
-              "--repos",
-              ".",
-              "--index-path",
-              ".narsil-index",
-              "--git",
-              "--call-graph",
-              "--persist",
-              "--watch",
-              "--neural",
-              "--neural-backend",
-              "api",
-              "--neural-model",
-              "voyage-code-2"
-            ],
-            "env": {
-              "VOYAGE_API_KEY": "${VOYAGE_API_KEY}"
-            }
-          }
-        }
-      }
-    },
-    {
       "name": "webflow",
       "call_template_type": "mcp",
       "config": {

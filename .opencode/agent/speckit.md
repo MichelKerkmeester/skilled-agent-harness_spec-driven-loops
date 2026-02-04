@@ -11,7 +11,6 @@ permission:
   grep: allow
   glob: allow
   webfetch: deny
-  narsil: deny
   memory: allow
   chrome_devtools: deny
   task: deny
@@ -470,7 +469,7 @@ specs/###-short-name/
 
 ---
 
-## 12. 📐 TEMPLATE PATTERNS (Spec 082)
+## 12 📐 TEMPLATE PATTERNS (Spec 082)
 
 ### Workstream Prefixes
 

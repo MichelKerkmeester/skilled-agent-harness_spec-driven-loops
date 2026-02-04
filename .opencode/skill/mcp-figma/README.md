@@ -777,7 +777,6 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 | Skill | Purpose |
 |-------|---------|
 | [mcp-code-mode](../mcp-code-mode/README.md) | Tool orchestration via TypeScript execution |
-| [mcp-narsil](../mcp-narsil/README.md) | Code intelligence and security scanning |
 
 ### Install Guide
 
