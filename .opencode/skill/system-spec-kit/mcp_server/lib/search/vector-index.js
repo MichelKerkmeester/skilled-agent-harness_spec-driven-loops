@@ -76,7 +76,7 @@ async function get_confirmed_embedding_dimension(timeout_ms = 5000) {
 
 /**
  * Validate that current embedding dimension matches stored dimension.
- * BUG-FIX: Detect dimension mismatch that could cause vector search failures.
+ * Detect dimension mismatch that could cause vector search failures.
  * Returns {valid: boolean, stored: number, current: number, warning?: string}
  */
 function validate_embedding_dimension() {
@@ -1079,7 +1079,7 @@ function create_schema(database) {
   `);
 
   // Create vec_memories virtual table (only if sqlite-vec is available)
-  // BUG-FIX: Store embedding dimension used at creation time for validation
+  // Store embedding dimension at creation time for validation
   if (sqlite_vec_available) {
     const embedding_dim = get_embedding_dim();
     database.exec(`

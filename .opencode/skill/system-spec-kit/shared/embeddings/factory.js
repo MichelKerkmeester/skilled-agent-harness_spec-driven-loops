@@ -119,7 +119,6 @@ async function create_embeddings_provider(options = {}) {
             model: options.model,
             dim: options.dim,
           });
-          // BUG-FIX: Wrap fallback warmup in try/catch to prevent unhandled errors
           try {
             await provider.warmup();
           } catch (fallback_warmup_error) {
@@ -144,7 +143,6 @@ async function create_embeddings_provider(options = {}) {
       });
 
       if (options.warmup) {
-        // BUG-FIX: Wrap fallback warmup in try/catch to prevent unhandled errors
         try {
           await provider.warmup();
         } catch (fallback_warmup_error) {

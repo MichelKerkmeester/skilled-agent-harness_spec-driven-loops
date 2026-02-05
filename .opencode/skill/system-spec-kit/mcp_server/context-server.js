@@ -423,7 +423,7 @@ async function main() {
     console.error(`[context-server] Integrity check: ${report.validCount}/${report.total} valid entries`);
     if (report.orphanedCount > 0) console.error(`[context-server] WARNING: ${report.orphanedCount} orphaned entries detected`);
 
-    // BUG-FIX: Validate embedding dimension matches database
+    // Validate embedding dimension matches database
     const dim_validation = vectorIndex.validateEmbeddingDimension();
     if (!dim_validation.valid) {
       console.error(`[context-server] ===== EMBEDDING DIMENSION MISMATCH =====`);

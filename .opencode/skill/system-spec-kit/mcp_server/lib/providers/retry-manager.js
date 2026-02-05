@@ -4,7 +4,6 @@
 'use strict';
 
 const vector_index = require('../search/vector-index');
-// BUG-FIX: Use generate_document_embedding for proper task prefix (Nomic model requires it)
 const { generate_document_embedding } = require('./embeddings');
 
 /* ─────────────────────────────────────────────────────────────
@@ -158,7 +157,7 @@ async function retry_embedding(id, content) {
       return { success: false, error: 'Maximum retries exceeded', permanent: true };
     }
 
-    // Generate embedding (BUG-FIX: Use document embedding for proper task prefix)
+    // Generate embedding with document task prefix
     const embedding = await generate_document_embedding(content);
 
     if (!embedding) {

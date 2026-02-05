@@ -14,7 +14,6 @@ const DEFAULT_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const EMBEDDING_DIM = 768;
 // MAX_TEXT_LENGTH imported from chunking.js (single source of truth)
 const EMBEDDING_TIMEOUT = 30000;
-// BUG-FIX: Model loading timeout (first download can be slow, but prevent infinite hang)
 const MODEL_LOAD_TIMEOUT = 120000; // 2 minutes (model is ~274MB)
 
 // Task prefixes required by nomic-embed-text-v1.5
@@ -77,7 +76,6 @@ class HfLocalProvider {
         let target_device = get_optimal_device();
         console.log(`[hf-local] Attempting device: ${target_device}`);
 
-        // BUG-FIX: Add timeout to prevent infinite hang on corrupted cache or network stall
         const load_with_timeout = async (device) => {
           return new Promise((resolve, reject) => {
             const timeout_id = setTimeout(() => {
