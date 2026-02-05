@@ -7,7 +7,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
-## [**1.3.0.0**] - 2026-02-05
+## [**1.2.3.0**] - 2026-02-05
 
 Ecosystem-wide remediation: **3 critical bugs** fixed, **SQLite schema unified** (migration v12), **gate numbering standardized**, **AGENTS.md naming migration** across 59 files, and **signal handler cleanup**.
 

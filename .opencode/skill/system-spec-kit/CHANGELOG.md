@@ -6,7 +6,7 @@ All notable changes to the system-spec-kit skill are documented in this file.
 
 ---
 
-## [1.3.0.0] - 2026-02-05
+## [1.2.4.0] - 2026-02-05
 
 ### Fixed
 
