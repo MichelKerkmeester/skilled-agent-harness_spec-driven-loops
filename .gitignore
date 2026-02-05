@@ -1,40 +1,69 @@
 # Git Ignore Configuration
 # Specifies intentionally untracked files that Git should ignore
 
-# ===========================================
+# ───────────────────────────────────────────
 # CRITICAL: Override global gitignore
-# ===========================================
+# ───────────────────────────────────────────
 # The global ~/.gitignore_global ignores /.opencode/ for symlinked repos.
 # But THIS repo is the SOURCE of .opencode/ content - it MUST be tracked.
 # The negation pattern below overrides the global ignore.
 !.opencode/
 
-.DS_Store
+# API keys and secrets
+# ───────────────────────────────────────────
+*.key
+*.pem
 
-# Development
+# Archive
+# ───────────────────────────────────────────
+/z — Archive/
+
+# Build output
+# ───────────────────────────────────────────
+dist/
+
+# Database files
+# ───────────────────────────────────────────
+.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite
+.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite-shm
+.opencode/skill/system-spec-kit/mcp_server/database/*.sqlite-wal
+.opencode/skill/system-spec-kit/mcp_server/database/.db-updated
+
+# Dependencies
+# ───────────────────────────────────────────
+**/node_modules
 node_modules/
 
-# Database files (contain personal memory/session data)
-.opencode/skill/system-spec-kit/database/
-
-# MCP server source code (install separately, not distributed)
-.opencode/skill/mcp-narsil/mcp_server/
-.opencode/skill/mcp-code-mode/mcp_server/
-
-# Archive folder (root level only)
-/z — Archive/
-# Narsil index (project-local)
-.narsil-index/
-
 # Environment files
+# ───────────────────────────────────────────
 .env
 .env.*
-.env.local
 .env.*.local
+.env.local
+
+# Local settings
+# ───────────────────────────────────────────
+*.local
+settings.local.json
 
 # Log files
+# ───────────────────────────────────────────
 *.log
 
+# OS generated files
+# ───────────────────────────────────────────
+.DS_Store
+
+# Spec folders (project-specific)
+# ───────────────────────────────────────────
+.opencode/specs/000-opencode-env/
+.opencode/specs/001-system_instructions/
+.opencode/specs/002-commands-and-skills/
+.opencode/specs/003-memory-and-spec-kit/
+.opencode/specs/004-agents/
+.opencode/specs/005-anobel.com/
+
 # Temporary files
-tmp/
+# ───────────────────────────────────────────
 scratch/
+tmp/

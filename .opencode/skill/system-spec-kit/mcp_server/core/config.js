@@ -14,7 +14,9 @@ const SERVER_DIR = path.join(__dirname, '..');
 const NODE_MODULES = path.join(SERVER_DIR, 'node_modules');
 const LIB_DIR = path.join(SERVER_DIR, 'lib');
 const SHARED_DIR = path.join(SERVER_DIR, '..', 'shared');
-const DATABASE_DIR = path.join(SERVER_DIR, 'database');
+const DATABASE_DIR = process.env.SPEC_KIT_DB_DIR
+  ? path.resolve(process.cwd(), process.env.SPEC_KIT_DB_DIR)
+  : path.join(SERVER_DIR, 'database');
 const DATABASE_PATH = path.join(DATABASE_DIR, 'context-index.sqlite');
 const DB_UPDATED_FILE = path.join(DATABASE_DIR, '.db-updated');
 
