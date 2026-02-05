@@ -6,6 +6,55 @@ All notable changes to the system-spec-kit skill are documented in this file.
 
 ---
 
+## [1.3.0.0] - 2026-02-05
+
+### Fixed
+
+**Ecosystem-Wide Deep Analysis & Remediation (specs 087 + 088)**
+
+Comprehensive audit by 6 Opus agents followed by remediation of 3 critical bugs, schema unification, gate numbering standardization, and AGENTS.md naming migration.
+
+**Critical Bugs**
+
+1. **`CREATE_LINKED` SQL constraint** — Added to `memory_conflicts` CHECK constraint in migration v4 schema and `create_schema()` (`vector-index.js`)
+2. **Ghost tools in speckit.md** — Rewrote tool layers from wrong 5-layer to correct 7-layer, 22-tool architecture; removed `memory_drift_context` and `memory_drift_learn` references
+3. **Stale SKILL.md cross-references** — Fixed 5 section references + standardized template file counts
+
+**Schema Unification (Migration v12)**
+
+4. **Three conflicting DDL schemas unified** — `memory_conflicts` had incompatible column names across `vector-index.js`, `create_schema()`, and `prediction-error-gate.js`. Unified to 14-column schema.
+5. **Migration v12** — DROP+CREATE with unified schema; `SCHEMA_VERSION` 11 → 12
+6. **Column renames** — `similarity_score` → `similarity`, `notes` → `reason` in both INSERT paths
+7. **Error swallowing removed** — Silent try/catch in `memory-save.js` and `prediction-error-gate.js` replaced with `console.error()` logging
+8. **`ensure_conflicts_table()` deprecated** — Converted to no-op in `prediction-error-gate.js`
+
+**Gate Numbering**
+
+9. **gate-enforcement.md** — Full renumbering to match AGENTS.md (Gate 1=Understanding, 2=Skill Routing, 3=Spec Folder)
+10. **7 active files** — Removed stale Gate 4/5/6 references
+11. **Legacy install guide** — Rewritten from 7-gate to 3-gate + 3 behavioral rules
+
+**Signal Handlers**
+
+12. **context-server.js** — Added `toolCache.shutdown()` to SIGINT/SIGTERM/uncaughtException
+13. **access-tracker.js** — Removed duplicate SIGINT/SIGTERM handlers
+
+**Documentation**
+
+14. **schema-migration.test.js** — Column names updated for v12 schema
+15. **decision-format.md, epistemic-vectors.md** — Gate number corrections
+16. **search/README.md, core/README.md** — Schema version references updated
+
+### Changed
+
+17. **AGENTS.md naming** — 59 files updated (~218 replacements) to use `AGENTS.md` instead of `CLAUDE.md`
+18. **speckit.md** — Added 4 missing commands + 3 scripts to Capability Scan
+19. **SKILL.md** — Added 3 scripts to Key Scripts table
+20. **skill_advisor.py** — Memory/context intent boost (passes 0.8 threshold); debug disambiguation
+21. **Template counts** — Standardized across speckit.md, SKILL.md, README.md
+
+---
+
 ## [1.2.3.3] - 2026-02-03
 
 ### Fixed

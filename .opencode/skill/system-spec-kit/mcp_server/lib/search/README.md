@@ -157,7 +157,7 @@ score(D, Q) = Σ IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/a
 
 | File                   | LOC  | Purpose                                          |
 | ---------------------- | ---- | ------------------------------------------------ |
-| `vector-index.js`      | ~600 | sqlite-vec integration, schema migrations v1-v11 |
+| `vector-index.js`      | ~600 | sqlite-vec integration, schema migrations v1-v12 |
 | `hybrid-search.js`     | ~400 | Orchestrates vector/BM25/graph fusion            |
 | `rrf-fusion.js`        | ~250 | RRF score calculation with bonuses               |
 | `bm25-index.js`        | ~350 | Pure JS BM25 (REQ-028, v1.2.0)                   |
@@ -237,7 +237,7 @@ const MIN_DOC_LENGTH = 10; // Ignore docs <10 words
 
 ### Vector Index Features
 
-**Schema Versions** (v1-v11):
+**Schema Versions** (v1-v12):
 - v1-v3: Initial FTS5 + vector
 - v4: Content deduplication
 - v5: Title field
@@ -247,6 +247,7 @@ const MIN_DOC_LENGTH = 10; // Ignore docs <10 words
 - v9: Spec folder scoping
 - v10: Trigger metadata
 - v11: Constitutional memories (highest priority)
+- v12: Unified memory_conflicts table (KL-1 Schema Unification)
 
 **Multi-Provider Support**:
 - Voyage AI: 1024-dim (default)
@@ -470,7 +471,7 @@ if (bm25Index.is_bm25_enabled()) {
 ```javascript
 const { ensure_schema } = require('./vector-index');
 
-// Ensure schema is up-to-date (v11)
+// Ensure schema is up-to-date (v12)
 // Automatically detects current version and runs migrations
 await ensure_schema(db);
 

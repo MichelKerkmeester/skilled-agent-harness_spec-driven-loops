@@ -163,7 +163,7 @@ core/
 
 Detects when `generate-context.js` writes new memory files and reinitializes the database connection.
 
-**Schema v4 Migration**: Database includes FSRS cognitive memory columns (stability, difficulty, last_review, review_count) and memory_conflicts table for PE gate auditing.
+**Schema v4+ Migration**: Database includes FSRS cognitive memory columns (stability, difficulty, last_review, review_count) and memory_conflicts table for PE gate auditing (schema unified in v12).
 
 | Function | Purpose | Returns |
 |----------|---------|---------|

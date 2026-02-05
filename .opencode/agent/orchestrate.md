@@ -228,7 +228,7 @@ Sub-orchestrators MUST report at milestones:
 **Action:** MUST delegate to `@explore` first to gather context and patterns.
 **Logic:** Implementation without exploration leads to rework.
 
-### Rule 2: Spec Folder (Gate 4)
+### Rule 2: Spec Folder (Gate 3)
 **Trigger:** Request involves file modification.
 **Action:** Confirm existence of a Spec Folder. If none exists (or user selected Option B), delegate to `@explore` to discover patterns for the new spec.
 

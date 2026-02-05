@@ -120,52 +120,47 @@ Quick reference for the mandatory gates defined in AGENTS.md. Gates are checkpoi
 
 ### Gate Summary Table
 
-| Gate       | Name             | Trigger                               | Action                                             | Block Type |
-| ---------- | ---------------- | ------------------------------------- | -------------------------------------------------- | ---------- |
-| **Gate 0** | Compaction Check | "Please continue the conversation..." | STOP → Await user instruction                      | HARD       |
-| **Gate 1** | Understanding    | Each new user message                 | `memory_match_triggers()` → Classify intent        | SOFT       |
-| **Gate 2** | Skill Routing    | Every task                            | Run `skill_advisor.py` → Route if confidence > 0.8 | MANDATORY  |
-| **Gate 3** | Spec Folder      | File modification detected            | Ask A/B/C/D options before tools                   | HARD       |
-| **Gate 4** | Memory Loading   | User selects A or C in Gate 3         | Display memory options [1][2][3][all][skip]        | SOFT       |
-| **Gate 5** | Memory Save      | "save context", "/memory:save"        | Validate folder → Execute `generate-context.js`    | HARD       |
-| **Gate 6** | Completion       | Claiming "done", "complete"           | Load checklist.md → Verify all items               | HARD       |
+| Gate/Rule                          | Trigger                               | Action                                             | Block Type |
+| ---------------------------------- | ------------------------------------- | -------------------------------------------------- | ---------- |
+| **Gate 1:** Understanding          | Each new user message                 | `memory_match_triggers()` → Classify intent        | SOFT       |
+| **Gate 2:** Skill Routing          | Every task                            | Run `skill_advisor.py` → Route if confidence > 0.8 | REQUIRED   |
+| **Gate 3:** Spec Folder            | File modification detected            | Ask A/B/C/D options before tools                   | HARD BLOCK |
+| **Memory Context Loading** (rule)  | User selects A or C in Gate 3         | Load memory when using existing spec folder        | SOFT       |
+| **Memory Save Rule** (post-exec)   | "save context", "/memory:save"        | Validate folder → Execute `generate-context.js`    | HARD       |
+| **Completion Verification** (post-exec) | Claiming "done", "complete"      | Load checklist.md → Verify all items               | HARD       |
 
 ### Gate Flow Diagram
 
 ```
 User Message
      ↓
-┌─────────────────┐
-│ Gate 0: Compaction │──→ If detected → HARD STOP
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│ Gate 1: Understanding │──→ memory_match_triggers() → Classify intent
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│ Gate 2: Skill Routing │──→ skill_advisor.py → Route if >0.8
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│ Gate 3: Spec Folder │──→ File modification? → Ask A/B/C/D
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│ Gate 4: Memory Load │──→ Display options → Wait for selection
-└────────┬────────┘
-         ↓
-    ✅ EXECUTE TASK
-         ↓
-┌─────────────────┐
-│ Gate 5: Memory Save │──→ generate-context.js required
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│ Gate 6: Completion │──→ Verify checklist.md
-└────────┬────────┘
-         ↓
-    ✅ CLAIM DONE
+┌──────────────────────────┐
+│ Gate 1: Understanding    │──→ memory_match_triggers() → Classify intent
+└────────────┬─────────────┘
+             ↓
+┌──────────────────────────┐
+│ Gate 2: Skill Routing    │──→ skill_advisor.py → Route if >0.8
+└────────────┬─────────────┘
+             ↓
+┌──────────────────────────┐
+│ Gate 3: Spec Folder      │──→ File modification? → Ask A/B/C/D
+└────────────┬─────────────┘
+             ↓
+┌──────────────────────────┐
+│ Memory Context Loading   │──→ Load memory for existing spec folder
+└────────────┬─────────────┘
+             ↓
+        ✅ EXECUTE TASK
+             ↓
+┌──────────────────────────┐
+│ Memory Save Rule         │──→ generate-context.js required
+└────────────┬─────────────┘
+             ↓
+┌──────────────────────────┐
+│ Completion Verification  │──→ Verify checklist.md
+└────────────┬─────────────┘
+             ↓
+        ✅ CLAIM DONE
 ```
 
 ### Block Types Explained
@@ -966,7 +961,7 @@ Use this checklist after customizing AGENTS.md:
 - [ ] File readable by AI agent (test with simple query)
 
 ### Gates Configuration
-- [ ] All 7 gates documented with correct triggers
+- [ ] All 3 gates + behavioral rules documented with correct triggers
 - [ ] Gate flow diagram accurate for project
 - [ ] Block types (HARD/SOFT/MANDATORY) correctly labeled
 
@@ -1041,7 +1036,7 @@ ls .opencode/commands/
 | Memory not surfacing    | Triggers not matching                 | Check memory_match_triggers()    |
 | Gate 2 skipped          | skill_advisor.py missing              | Verify script exists and runs    |
 | Command not recognized  | Command not in .opencode/commands/    | Verify command exists            |
-| Gate flow broken        | Missing gate documentation            | Verify all 7 gates listed        |
+| Gate flow broken        | Missing gate documentation            | Verify all 3 gates + rules listed |
 
 ---
 
@@ -1054,7 +1049,7 @@ ls .opencode/commands/
 | **Skills**      | 9     | mcp-figma, mcp-code-mode, mcp-narsil, system-spec-kit, workflows-chrome-devtools, workflows-code--full-stack, workflows-code--web-dev, workflows-documentation, workflows-git |
 | **MCP Servers** | 4     | sequential-thinking, narsil, spec-kit-memory, code-mode                                                                                                   |
 | **Commands**    | 19    | /create:* (6), /memory:* (4), /search:* (2), /spec_kit:* (7)                                                                                              |
-| **Gates**       | 7     | Gate 0-6 (Compaction, Understanding, Routing, Spec, Memory Load, Memory Save, Completion)                                                                 |
+| **Gates + Rules** | 3 + 3 | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification)               |
 
 ### Minimal AGENTS.md Structure
 

@@ -225,7 +225,7 @@
       { path: '/project/changelog.md', expected: 'autobiographical' },
       { path: '/project/milestone.md', expected: 'autobiographical' },
       { path: '/project/constitutional-rules.md', expected: 'meta-cognitive' },
-      { path: '/project/CLAUDE.md', expected: 'meta-cognitive' },
+      { path: '/project/AGENTS.md', expected: 'meta-cognitive' },
     ];
 
     let pathPassed = 0;

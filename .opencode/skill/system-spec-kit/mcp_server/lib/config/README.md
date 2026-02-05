@@ -88,7 +88,7 @@ The system infers memory type using this precedence:
 | `todo`, `next-steps` | prospective | `memory/next-steps.md` |
 | `guide`, `checklist` | procedural | `docs/install-guide.md` |
 | `architecture`, `adr-\d+` | semantic | `docs/adr-001.md` |
-| `constitutional`, `claude.md` | meta-cognitive | `CLAUDE.md`, `AGENTS.md` |
+| `constitutional`, `claude.md` | meta-cognitive | `AGENTS.md`, `AGENTS.md` |
 
 ---
 

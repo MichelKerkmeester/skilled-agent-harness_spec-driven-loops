@@ -467,7 +467,7 @@ STATUS=FAIL ERROR="[message]"
 - Research document structure
 - Failure recovery procedures
 
-**See also:** AGENTS.md Sections 2-4 for memory loading, confidence framework, and request analysis.
+**See also:** AGENTS.md Sections 2-6 for memory loading, confidence framework, and request analysis.
 
 ---
 

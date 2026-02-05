@@ -544,11 +544,11 @@
         fail('T724: Table has new_memory_hash or matched_memory_id column', 'Neither column found');
       }
 
-      // T725: Table has similarity_score column
-      if (column_names.includes('similarity_score')) {
-        pass('T725: Table has similarity_score column', 'Column found');
+      // T725: Table has similarity column (unified in v12, was similarity_score)
+      if (column_names.includes('similarity')) {
+        pass('T725: Table has similarity column', 'Column found');
       } else {
-        fail('T725: Table has similarity_score column', 'Column not found');
+        fail('T725: Table has similarity column', 'Column not found');
       }
 
       // T726: Table has action column
@@ -558,13 +558,11 @@
         fail('T726: Table has action column', 'Column not found');
       }
 
-      // T727: Table has notes column (for storing conflict notes/reasons)
-      if (column_names.includes('notes')) {
-        pass('T727: Table has notes column', 'Column found');
-      } else if (column_names.includes('reason')) {
+      // T727: Table has reason column (unified in v12, was notes)
+      if (column_names.includes('reason')) {
         pass('T727: Table has reason column', 'Column found');
       } else {
-        fail('T727: Table has notes/reason column', 'Neither column found');
+        fail('T727: Table has reason column', 'Column not found');
       }
 
       // T728: Table has timestamp column with default
@@ -583,7 +581,7 @@
       // T729: Can insert into memory_conflicts table
       try {
         const result = fresh_db.prepare(`
-          INSERT INTO memory_conflicts (new_memory_hash, existing_memory_id, similarity_score, action, notes)
+          INSERT INTO memory_conflicts (new_memory_hash, existing_memory_id, similarity, action, reason)
           VALUES ('hash123', NULL, 0.95, 'REINFORCE', 'Near duplicate detected')
         `).run();
 

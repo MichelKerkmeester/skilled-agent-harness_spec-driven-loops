@@ -152,7 +152,8 @@ function resolve_database_path() {
 // v9: Added memory_corrections table for learning from corrections (REQ-015, REQ-026, T052-T055)
 // v10: Schema consolidation and index optimization
 // v11: Error code deduplication and validation improvements
-const SCHEMA_VERSION = 11;
+// v12: Unified memory_conflicts DDL (KL-1 Schema Unification)
+const SCHEMA_VERSION = 12;
 
 /* ─────────────────────────────────────────────────────────────
    2. SECURITY HELPERS
@@ -428,7 +429,7 @@ function run_migrations(database, from_version, to_version) {
             new_memory_hash TEXT NOT NULL,
             existing_memory_id INTEGER,
             similarity_score REAL,
-            action TEXT CHECK(action IN ('CREATE', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
+            action TEXT CHECK(action IN ('CREATE', 'CREATE_LINKED', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
             contradiction_detected INTEGER DEFAULT 0,
             notes TEXT,
             FOREIGN KEY (existing_memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
@@ -666,6 +667,45 @@ function run_migrations(database, from_version, to_version) {
         console.log('[VectorIndex] Migration v9: Created memory_corrections indexes');
       } catch (e) {
         console.warn('[VectorIndex] Migration v9 warning (indexes):', e.message);
+      }
+    },
+    12: () => {
+      // v11 -> v12: Unify memory_conflicts DDL (KL-1 Schema Unification)
+      // Three conflicting DDL definitions existed; this migration drops and recreates
+      // with the canonical unified schema that all INSERT statements will target.
+      try {
+        database.exec(`
+          DROP TABLE IF EXISTS memory_conflicts;
+          CREATE TABLE IF NOT EXISTS memory_conflicts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
+            action TEXT CHECK(action IN ('CREATE', 'CREATE_LINKED', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
+            new_memory_hash TEXT,
+            new_memory_id INTEGER,
+            existing_memory_id INTEGER,
+            similarity REAL,
+            reason TEXT,
+            new_content_preview TEXT,
+            existing_content_preview TEXT,
+            contradiction_detected INTEGER DEFAULT 0,
+            contradiction_type TEXT,
+            spec_folder TEXT,
+            created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (existing_memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
+          )
+        `);
+        console.log('[VectorIndex] Migration v12: Unified memory_conflicts table (KL-1)');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v12 warning (memory_conflicts):', e.message);
+      }
+
+      // Recreate indexes for the unified table
+      try {
+        database.exec('CREATE INDEX IF NOT EXISTS idx_conflicts_memory ON memory_conflicts(existing_memory_id)');
+        database.exec('CREATE INDEX IF NOT EXISTS idx_conflicts_timestamp ON memory_conflicts(timestamp DESC)');
+        console.log('[VectorIndex] Migration v12: Created memory_conflicts indexes');
+      } catch (e) {
+        console.warn('[VectorIndex] Migration v12 warning (indexes):', e.message);
       }
     }
   };
@@ -1162,16 +1202,23 @@ function create_schema(database) {
   `);
 
   // Create memory_conflicts table for prediction error gating audit (cognitive memory)
+  // KL-1: Unified DDL — matches migration v12 and all INSERT statements
   database.exec(`
     CREATE TABLE IF NOT EXISTS memory_conflicts (
-      id INTEGER PRIMARY KEY,
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
       timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
-      new_memory_hash TEXT NOT NULL,
+      action TEXT CHECK(action IN ('CREATE', 'CREATE_LINKED', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
+      new_memory_hash TEXT,
+      new_memory_id INTEGER,
       existing_memory_id INTEGER,
-      similarity_score REAL,
-      action TEXT CHECK(action IN ('CREATE', 'UPDATE', 'SUPERSEDE', 'REINFORCE')),
+      similarity REAL,
+      reason TEXT,
+      new_content_preview TEXT,
+      existing_content_preview TEXT,
       contradiction_detected INTEGER DEFAULT 0,
-      notes TEXT,
+      contradiction_type TEXT,
+      spec_folder TEXT,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (existing_memory_id) REFERENCES memory_index(id) ON DELETE SET NULL
     )
   `);

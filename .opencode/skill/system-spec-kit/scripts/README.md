@@ -133,7 +133,7 @@ scripts/
 ├── spec/                         # Spec folder operations (6 scripts)
 │   ├── create.sh                 # Create new spec folders
 │   ├── validate.sh               # Validate spec folder contents
-│   ├── check-completion.sh       # Verify checklist completion (Gate 6)
+│   ├── check-completion.sh       # Verify checklist completion (Completion Verification Rule)
 │   ├── calculate-completeness.sh # Calculate checklist completion %
 │   ├── recommend-level.sh        # Recommend documentation level
 │   └── archive.sh                # Archive completed specs
@@ -241,7 +241,7 @@ scripts/
 | `validate-spec.sh` | Main validation orchestrator - invokes all 9 rules |
 | `spec/create.sh` | Create new spec folders with templates |
 | `generate-context.js` | Memory file generation with ANCHOR format |
-| `check-completion.sh` | Gate 6 enforcement - verify checklist completion |
+| `check-completion.sh` | Completion Verification Rule enforcement - verify checklist completion |
 | `setup.sh` | One-command setup for memory system dependencies |
 | `rules/` | Modular validation rules (9 scripts) |
 | `lib/` | Shared libraries (3 shell + 10 JavaScript) |
@@ -322,7 +322,7 @@ scripts/
 
 ### check-completion.sh
 
-**Purpose**: Gate 6 enforcement - verify checklist items are complete before claiming done
+**Purpose**: Completion Verification Rule enforcement - verify checklist items are complete before claiming done
 
 | Aspect | Details |
 |--------|---------|

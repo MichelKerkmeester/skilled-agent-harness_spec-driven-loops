@@ -691,7 +691,7 @@ node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs
 # Auto-indexed with extracted trigger phrases
 ```
 
-**Important:** This is the ONLY sanctioned method for creating memory files (per AGENTS.md Gate 5). Do NOT manually create memory files with the Write tool.
+**Important:** This is the ONLY sanctioned method for creating memory files (per AGENTS.md Memory Save Rule). Do NOT manually create memory files with the Write tool.
 
 #### Setting Importance Tier
 

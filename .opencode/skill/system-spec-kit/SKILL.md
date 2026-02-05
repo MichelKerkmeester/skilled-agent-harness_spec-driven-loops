@@ -196,6 +196,9 @@ Runtime configuration for the memory system:
 | `generate-context.js`  | Generate memory files from conversation       |
 | `spec/validate.sh`     | Validate spec folder structure                |
 | `spec/create.sh`       | Create new spec folders with templates        |
+| `spec/archive.sh`      | Archive completed spec folders to z_archive/  |
+| `spec/check-completion.sh` | Completion Verification Rule enforcement  |
+| `spec/recommend-level.sh`  | Automated spec level recommendation       |
 | `templates/compose.sh` | Compose level templates from core + addendums |
 
 **Full documentation:** See [level_specifications.md](./references/templates/level_specifications.md) and [template_guide.md](./references/templates/template_guide.md)
@@ -860,10 +863,10 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 | Level 2 addendum  | `templates/addendum/level2-verify/` (3 files)                              | +Verification, NFRs               |
 | Level 3 addendum  | `templates/addendum/level3-arch/` (3 files)                                | +Architecture, ADRs               |
 | Level 3+ addendum | `templates/addendum/level3plus-govern/` (3 files)                          | +Governance, compliance           |
-| Level 1           | `templates/level_1/` (4 files)                                             | Pre-merged core (~270 LOC)        |
-| Level 2           | `templates/level_2/` (5 files)                                             | Core + L2 (~390 LOC)              |
-| Level 3           | `templates/level_3/` (6 files)                                             | Core + L2 + L3 (~540 LOC)         |
-| Level 3+          | `templates/level_3+/` (6 files)                                            | All addendums (~640 LOC)          |
+| Level 1           | `templates/level_1/` (5 files)                                             | Pre-merged core (~450 LOC)        |
+| Level 2           | `templates/level_2/` (6 files)                                             | Core + L2 (~890 LOC)              |
+| Level 3           | `templates/level_3/` (7 files)                                             | Core + L2 + L3 (~890 LOC)         |
+| Level 3+          | `templates/level_3+/` (7 files)                                            | All addendums (~1080 LOC)         |
 | Utility templates | `templates/` root                                                          | handover.md, debug-delegation.md  |
 | Compose script    | `scripts/templates/compose.sh`                                             | Template composition from sources |
 | Validation        | `scripts/spec/validate.sh`                                                 | Automated validation              |

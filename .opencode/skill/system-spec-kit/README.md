@@ -477,10 +477,10 @@ If embedding fails, the system degrades gracefully to keyword search.
 ### Template Composition (CORE + ADDENDUM)
 
 ```
-Level 1:  [CORE templates only]        -> 4 files, ~270 LOC
-Level 2:  [CORE] + [L2-VERIFY]         -> 5 files, ~390 LOC
-Level 3:  [CORE] + [L2] + [L3-ARCH]    -> 6 files, ~540 LOC
-Level 3+: [CORE] + [all addendums]     -> 6 files, ~640 LOC
+Level 1:  [CORE templates only]        -> 5 files, ~450 LOC
+Level 2:  [CORE] + [L2-VERIFY]         -> 6 files, ~890 LOC
+Level 3:  [CORE] + [L2] + [L3-ARCH]    -> 7 files, ~890 LOC
+Level 3+: [CORE] + [all addendums]     -> 7 files, ~1080 LOC
 ```
 
 **Why this matters:** Update CORE once -> all levels inherit changes. No content duplication.
@@ -696,7 +696,7 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 | Resource | Purpose |
 |----------|---------|
-| `CLAUDE.md` | Project-level AI behavior framework |
+| `AGENTS.md` | Project-level AI behavior framework |
 | `AGENTS.md` | Gate definitions and enforcement |
 | `specs/` | Directory for all spec folders |
 

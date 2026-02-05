@@ -162,13 +162,13 @@ INTENT_BOOSTERS = {
     # (Memory functionality merged into system-spec-kit)
     # ─────────────────────────────────────────────────────────────────
     "checkpoint": ("system-spec-kit", 0.6),
-    "context": ("system-spec-kit", 0.5),
+    "context": ("system-spec-kit", 0.6),
     "forget": ("system-spec-kit", 0.4),
     "history": ("system-spec-kit", 0.4),
-    "memory": ("system-spec-kit", 0.6),
+    "memory": ("system-spec-kit", 0.8),
     "preserve": ("system-spec-kit", 0.5),
-    "recall": ("system-spec-kit", 0.5),
-    "remember": ("system-spec-kit", 0.5),
+    "recall": ("system-spec-kit", 0.6),
+    "remember": ("system-spec-kit", 0.6),
     "restore": ("system-spec-kit", 0.4),
     "session": ("system-spec-kit", 0.4),
     "store": ("system-spec-kit", 0.4),
@@ -220,7 +220,7 @@ INTENT_BOOSTERS = {
     "chrome": ("workflows-chrome-devtools", 1.0),
     "console": ("workflows-chrome-devtools", 1.0),
     "css": ("workflows-chrome-devtools", 0.4),
-    "debug": ("workflows-chrome-devtools", 1.0),
+    "debug": ("workflows-chrome-devtools", 0.6),
     "debugger": ("workflows-chrome-devtools", 1.0),
     "devtools": ("workflows-chrome-devtools", 1.2),
     "dom": ("workflows-chrome-devtools", 0.5),
@@ -293,14 +293,14 @@ MULTI_SKILL_BOOSTERS = {
     "api": [("mcp-code-mode", 0.3)],
     "changes": [("workflows-git", 0.4), ("system-spec-kit", 0.2)],
     "code": [("workflows-code", 0.2), ("workflows-code--opencode", 0.1)],
-    "context": [("system-spec-kit", 0.3)],
+    "context": [("system-spec-kit", 0.4)],
     "fix": [("workflows-code", 0.3), ("workflows-git", 0.1)],
     "mcp": [("mcp-code-mode", 0.3), ("workflows-code--opencode", 0.4)],
     "plan": [("system-spec-kit", 0.3), ("workflows-code", 0.2)],
-    "save": [("system-spec-kit", 0.3), ("workflows-git", 0.2)],
+    "save": [("system-spec-kit", 0.4), ("workflows-git", 0.2)],
     "script": [("workflows-code--opencode", 0.4)],
     "server": [("workflows-code--opencode", 0.3), ("mcp-code-mode", 0.2)],
-    "session": [("system-spec-kit", 0.4)],
+    "session": [("system-spec-kit", 0.5)],
     "standards": [("workflows-code--opencode", 0.4), ("workflows-code", 0.2)],
     "style": [("workflows-code--opencode", 0.3), ("workflows-code", 0.2)],
     "test": [("workflows-code", 0.3), ("workflows-chrome-devtools", 0.2)],
@@ -479,7 +479,7 @@ def passes_dual_threshold(confidence, uncertainty, conf_threshold=0.8, uncert_th
     READINESS = (confidence >= threshold) AND (uncertainty <= uncert_threshold)
 
     Note on thresholds:
-    - AGENTS.md Section 4 defines READINESS as: (confidence >= 0.70) AND (uncertainty <= 0.35)
+    - AGENTS.md Gate 1 defines READINESS as: (confidence >= 0.70) AND (uncertainty <= 0.35)
     - Gate 3 skill routing uses conf_threshold=0.8 (stricter for routing decisions)
     - The uncertainty threshold of 0.35 matches AGENTS.md exactly
 

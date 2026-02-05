@@ -752,4 +752,4 @@ Before deploying an agent, verify:
 | Document           | Location    | Purpose            |
 | ------------------ | ----------- | ------------------ |
 | AGENTS.md          | `AGENTS.md` | AI behavior config |
-| CLAUDE.md          | `CLAUDE.md` | Project guidelines |
+| AGENTS.md          | `AGENTS.md` | Project guidelines |

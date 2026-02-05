@@ -190,26 +190,31 @@ flowchart TB
 | `scripts/spec/create.sh`                 | Create spec folder    | New spec folder needed     |
 | `scripts/spec/validate.sh`               | Validate completeness | Before claiming completion |
 | `scripts/spec/calculate-completeness.sh` | Check % complete      | Progress tracking          |
+| `scripts/spec/archive.sh`               | Archive spec folders  | Completed specs (>=90%)    |
+| `scripts/spec/check-completion.sh`      | Verify completion     | Completion Rule enforcement |
+| `scripts/spec/recommend-level.sh`       | Recommend doc level   | Level selection (4-dim score) |
 
 ### Templates
 
 | Path                  | Content            | When to Use                     |
 | --------------------- | ------------------ | ------------------------------- |
-| `templates/level_1/`  | 4 files (~270 LOC) | Default for new specs           |
-| `templates/level_2/`  | 5 files (~390 LOC) | QA validation needed            |
-| `templates/level_3/`  | 6 files (~540 LOC) | Architecture decisions          |
-| `templates/level_3+/` | 6 files (~640 LOC) | Enterprise governance           |
+| `templates/level_1/`  | 5 files (~450 LOC) | Default for new specs           |
+| `templates/level_2/`  | 6 files (~890 LOC) | QA validation needed            |
+| `templates/level_3/`  | 7 files (~890 LOC) | Architecture decisions          |
+| `templates/level_3+/` | 7 files (~1080 LOC) | Enterprise governance          |
 | `templates/verbose/`  | Extended guidance  | New users, complex requirements |
 
 ### MCP Tool Layers
 
-| Layer | Tools                                        | Purpose            |
-| ----- | -------------------------------------------- | ------------------ |
-| L1    | `memory_search`, `memory_save`               | Core operations    |
-| L2    | `memory_match_triggers`                      | Context surfacing  |
-| L3    | `memory_drift_why`, `memory_drift_context`   | Drift analysis     |
-| L4    | `memory_causal_link`, `memory_causal_unlink` | Causal connections |
-| L5    | `memory_drift_learn`                         | Learning loops     |
+| Layer | Tools                                                                        | Purpose                  |
+| ----- | ---------------------------------------------------------------------------- | ------------------------ |
+| L1    | `memory_context`                                                             | Unified entry point      |
+| L2    | `memory_search`, `memory_match_triggers`, `memory_save`                      | Core operations          |
+| L3    | `memory_list`, `memory_stats`, `memory_health`                               | Discovery & browse       |
+| L4    | `memory_delete`, `memory_update`, `memory_validate`                          | Mutation                 |
+| L5    | `checkpoint_create/list/restore/delete`                                      | Lifecycle checkpoints    |
+| L6    | `task_preflight/postflight`, `memory_drift_why`, `memory_causal_link/stats/unlink` | Analysis & lineage |
+| L7    | `memory_index_scan`, `memory_get_learning_history`                           | Maintenance              |
 
 ---
 
@@ -408,11 +413,15 @@ specs/###-short-name/
 
 ### Commands
 
-| Command              | Purpose                     | Path                                     |
-| -------------------- | --------------------------- | ---------------------------------------- |
-| `/spec_kit:plan`     | Planning workflow (7 steps) | `.opencode/command/spec_kit/plan.md`     |
-| `/spec_kit:complete` | Full workflow (14+ steps)   | `.opencode/command/spec_kit/complete.md` |
-| `/spec_kit:resume`   | Resume existing spec        | `.opencode/command/spec_kit/resume.md`   |
+| Command                | Purpose                     | Path                                       |
+| ---------------------- | --------------------------- | ------------------------------------------ |
+| `/spec_kit:plan`       | Planning workflow (7 steps) | `.opencode/command/spec_kit/plan.md`       |
+| `/spec_kit:complete`   | Full workflow (14+ steps)   | `.opencode/command/spec_kit/complete.md`   |
+| `/spec_kit:resume`     | Resume existing spec        | `.opencode/command/spec_kit/resume.md`     |
+| `/spec_kit:research`   | Research workflow            | `.opencode/command/spec_kit/research.md`   |
+| `/spec_kit:implement`  | Implementation workflow      | `.opencode/command/spec_kit/implement.md`  |
+| `/spec_kit:debug`      | Debug delegation             | `.opencode/command/spec_kit/debug.md`      |
+| `/spec_kit:handover`   | Session handover             | `.opencode/command/spec_kit/handover.md`   |
 | `/memory:context`    | Unified entry point         | `.opencode/command/memory/context.md`    |
 | `/memory:continue`   | Crash recovery              | `.opencode/command/memory/continue.md`   |
 | `/memory:learn`      | Explicit learning           | `.opencode/command/memory/learn.md`      |
@@ -525,7 +534,7 @@ Use `[E:filename]` format to reference evidence artifacts:
 1. **Gate 1 - Context Check**: Verify spec folder path exists and is valid
 2. **Gate 2 - Level Validation**: Confirm documentation level matches requirements
 3. **Gate 3 - Template Source**: Verify templates are copied from `templates/level_N/`
-4. **Gate 4 - ANCHOR Format**: Memory files must use valid ANCHOR tags
+4. **Validation 4 - ANCHOR Format**: Memory files must use valid ANCHOR tags
 
 ### ANCHOR Format Validation
 

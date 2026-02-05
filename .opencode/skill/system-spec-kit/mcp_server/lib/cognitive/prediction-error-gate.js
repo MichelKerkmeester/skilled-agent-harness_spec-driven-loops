@@ -64,7 +64,6 @@ function init(database) {
     throw new Error('[prediction-error-gate] Database reference is required');
   }
   db = database;
-  ensure_conflicts_table();
 }
 
 /** Get current database reference (for testing) */
@@ -72,30 +71,9 @@ function get_db() {
   return db;
 }
 
-/** Create memory_conflicts table for audit logging */
+/** @deprecated Table created by vector-index.js migration v12 (KL-1 Schema Unification) */
 function ensure_conflicts_table() {
-  if (!db) return;
-
-  try {
-    db.exec(`
-      CREATE TABLE IF NOT EXISTS memory_conflicts (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        timestamp TEXT DEFAULT CURRENT_TIMESTAMP,
-        action TEXT NOT NULL,
-        new_memory_id INTEGER,
-        existing_memory_id INTEGER,
-        similarity REAL,
-        reason TEXT,
-        new_content_preview TEXT,
-        existing_content_preview TEXT,
-        contradiction_detected INTEGER DEFAULT 0,
-        contradiction_type TEXT,
-        spec_folder TEXT
-      )
-    `);
-  } catch (error) {
-    console.error(`[prediction-error-gate] Error creating conflicts table: ${error.message}`);
-  }
+  /* No-op: memory_conflicts table is now created by vector-index.js with unified schema */
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -353,7 +331,7 @@ function log_conflict(decision, new_memory_id = null, new_content = '', existing
     const existing_preview = truncate_content(existing_content, max_preview_length);
 
     stmt.run(
-      decision.action || 'UNKNOWN',
+      decision.action || 'CREATE',
       new_memory_id,
       decision.candidate?.id || null,
       decision.similarity || 0,

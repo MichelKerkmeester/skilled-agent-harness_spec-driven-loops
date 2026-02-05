@@ -51,9 +51,9 @@ GATE: [NAME] | DECISION: [PASS/BLOCK] | CONFIDENCE: [H/M/L] | EVIDENCE: [brief]
 **Purpose:** Identifies which gate is being evaluated
 
 **Valid Values:**
-- `SPEC FOLDER` - Gate 1: Spec folder question
-- `UNDERSTANDING` - Gate 2: Understanding + context surfacing
-- `SKILL ROUTING` - Gate 3: Skill routing verification
+- `UNDERSTANDING` - Gate 1: Understanding + context surfacing
+- `SKILL ROUTING` - Gate 2: Skill routing verification
+- `SPEC FOLDER` - Gate 3: Spec folder question
 - `MEMORY CONTEXT` - Memory context loading
 - `COMPLETION` - Completion verification
 - `MEMORY SAVE` - Memory save rule
@@ -355,4 +355,4 @@ Before recording a decision:
 - [Five Checks Framework](./five-checks.md) - Evaluation framework for significant decisions
 - [Decision Record Template](../../templates/decision-record.md) - For Level 3/3+ spec folders
 - [SKILL.md - Gates Overview](../../SKILL.md) - Gate system documentation
-- [CLAUDE.md - Section 2](../../../../CLAUDE.md) - Gate definitions and protocols
+- [AGENTS.md - Section 2](../../../../AGENTS.md) - Gate definitions and protocols

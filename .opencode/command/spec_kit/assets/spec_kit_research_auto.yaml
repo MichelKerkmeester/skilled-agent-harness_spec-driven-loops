@@ -685,7 +685,7 @@ workflow:
     purpose: Explore existing codebase for patterns and implementations
 
     # ── CODEBASE EXPLORATION ────────────────────────────────────────
-    # Tool selection delegated to AGENTS.md Section 6 - no duplication here
+    # Tool selection delegated to AGENTS.md Section 8 - no duplication here
     # - Lexical search (Grep): exact text patterns
     # - File discovery (Glob): find files by pattern
     # - Content reading (Read): examine file contents

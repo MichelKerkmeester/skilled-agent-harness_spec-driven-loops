@@ -381,7 +381,7 @@ DUAL-THRESHOLD CHECK:
 
 ### AGENTS.md Reference
 - **Section 4**: Confidence & Clarification Framework (includes uncertainty tracking)
-- **Section 2**: Mandatory Gates (dual-threshold validation in Gate 2)
+- **Section 2**: Mandatory Gates (dual-threshold validation in Gate 1)
 
 ### Related Spec
 - `specs/003-memory-and-spec-kit/077-speckit-upgrade-from-research/spec.md` - Source specification

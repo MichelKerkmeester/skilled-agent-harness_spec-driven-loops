@@ -22,7 +22,7 @@ anobel.com (consumer project)
     database/
       context-index.sqlite
   opencode.json                  ← MCP config (sets SPEC_KIT_DB_DIR)
-  CLAUDE.md                      ← Project-specific AI instructions
+  AGENTS.md                      ← Project-specific AI instructions
 ```
 
 ### Key Design Decision: `SPEC_KIT_DB_DIR`
@@ -60,7 +60,7 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 | `.opencode-local/database/` | Project root               | Per-project SQLite databases     |
 | `opencode.json`             | Project root               | MCP config with SPEC_KIT_DB_DIR  |
 | `.utcp_config.json`         | Project root               | Code Mode configuration          |
-| `CLAUDE.md` / `AGENTS.md`  | Project root               | Project-specific AI instructions |
+| `AGENTS.md`               | Project root               | Project-specific AI instructions |
 | `src/`                      | Project root               | Project source code              |
 
 ---

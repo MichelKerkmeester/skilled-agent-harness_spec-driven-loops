@@ -386,7 +386,7 @@ STATUS=FAIL ERROR="[message]"
 - Checklist verification protocol
 - Failure recovery procedures
 
-**See also:** AGENTS.md Sections 2-4 for memory loading, confidence framework, and request analysis.
+**See also:** AGENTS.md Sections 2-6 for memory loading, confidence framework, and request analysis.
 
 ---
 
@@ -505,7 +505,7 @@ Quality gates enforce minimum standards at key workflow transitions.
 
 ### Five Checks Framework (Level 3+ specs)
 
-For Level 3+ specs, validate against the Five Checks Framework at Pre-Implementation Gate (see AGENTS.md Section 5):
+For Level 3+ specs, validate against the Five Checks Framework at Pre-Implementation Gate (see AGENTS.md Section 6):
 
 | #   | Check                    | Question                 | Pass Criteria                              |
 | --- | ------------------------ | ------------------------ | ------------------------------------------ |

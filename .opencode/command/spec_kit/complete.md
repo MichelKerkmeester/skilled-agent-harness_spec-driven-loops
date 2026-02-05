@@ -218,7 +218,7 @@ VERIFICATION CHECK:
 - **Did not create implementation-summary.md in Step 12**
 - **Claimed "complete" or "done" without verifying all 14 steps executed**
 
-**Confidence Violations (AGENTS.md Section 3):**
+**Confidence Violations (AGENTS.md Section 5):**
 - **Proceeded with confidence <40% without asking clarifying question**
 - **Made technical decisions without citing sources**
 - **Claimed certainty without evidence (fabricated or guessed)**
@@ -261,7 +261,7 @@ FOR CONFIDENCE VIOLATIONS:
 
 ## 🧑‍🏫 CONFIDENCE CHECKPOINT PROTOCOL
 
-**Reference:** AGENTS.md Section 3 + `spec_kit_complete_[auto|confirm].yaml` for full scoring details.
+**Reference:** AGENTS.md Section 5 + `spec_kit_complete_[auto|confirm].yaml` for full scoring details.
 
 **Quick Reference:**
 - **≥80%** → Proceed with cited evidence
@@ -652,7 +652,7 @@ STATUS=FAIL ERROR="[message]"
 - Checklist verification protocol
 - Failure recovery procedures
 
-**See also:** AGENTS.md Sections 2-4 for memory loading, confidence framework, and request analysis.
+**See also:** AGENTS.md Sections 2-5 for memory loading, confidence framework, and request analysis.
 
 ---
 
@@ -841,7 +841,7 @@ Quality gates ensure workflow integrity by validating state at critical transiti
 
 ### Five Checks Framework (Level 3+ specs)
 
-For Level 3+ specs, validate against the Five Checks Framework at the Planning Gate (see AGENTS.md Section 5):
+For Level 3+ specs, validate against the Five Checks Framework at the Planning Gate (see AGENTS.md Section 6):
 
 | #   | Check                    | Question                 | Pass Criteria                              |
 | --- | ------------------------ | ------------------------ | ------------------------------------------ |

@@ -17,7 +17,7 @@
         "mode2": "Spec folder path (e.g., specs/007-feature/)"
       },
       "outputs": ["memory/*.md", "metadata.json"],
-      "gate": "Gate 5 (Memory Save)",
+      "gate": "Memory Save Rule",
       "version": "2.0.0",
       "dependencies": ["lib/embeddings.js", "lib/anchor-generator.js", "lib/content-filter.js"]
     },
@@ -42,7 +42,7 @@
       "name": "check-completion",
       "path": "scripts/spec/check-completion.sh",
       "type": "bash",
-      "description": "Gate 6 enforcement - verify checklist items are complete before claiming done",
+      "description": "Completion Verification Rule enforcement - verify checklist items are complete before claiming done",
       "trigger": ["check completion", "verify complete", "claiming done"],
       "calledBy": ["AI Assistant", "Completion Verification Rule"],
       "essential": true,
@@ -51,7 +51,7 @@
         "options": "--json, --strict, --quiet"
       },
       "outputs": ["Pass/fail status", "Incomplete items list"],
-      "gate": "Gate 6 (Completion Verification)",
+      "gate": "Completion Verification Rule",
       "version": "1.0.0",
       "dependencies": []
     },

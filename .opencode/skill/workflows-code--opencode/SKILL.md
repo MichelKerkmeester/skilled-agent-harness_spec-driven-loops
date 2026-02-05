@@ -329,7 +329,7 @@ P2 Items (Can defer):
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in CLAUDE.md.
+This skill operates within the behavioral framework defined in AGENTS.md.
 
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Memory**: Context preserved via Spec Kit Memory MCP

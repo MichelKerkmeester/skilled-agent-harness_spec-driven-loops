@@ -271,13 +271,12 @@ function log_pe_decision(decision, content_hash, spec_folder) {
       INSERT INTO memory_conflicts (
         new_memory_hash,
         existing_memory_id,
-        similarity_score,
+        similarity,
         action,
         contradiction_detected,
-        notes,
-        spec_folder,
-        created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))
+        reason,
+        spec_folder
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
     `).run(
       content_hash,
       decision.candidate?.id || null,
@@ -288,10 +287,8 @@ function log_pe_decision(decision, content_hash, spec_folder) {
       spec_folder
     );
   } catch (err) {
-    // Log but don't fail if conflict logging fails
-    if (!err.message.includes('no such table') && !err.message.includes('no such column')) {
-      console.warn('[PE-Gate] Failed to log conflict:', err.message);
-    }
+    // Non-critical: log error but don't block memory save
+    console.error('[memory-save] Failed to log conflict:', err.message);
   }
 }
 

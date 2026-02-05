@@ -137,10 +137,10 @@ function reset() {
 ────────────────────────────────────────────────────────────────*/
 
 // T121: Store handler references for cleanup
+// KL-4: SIGINT/SIGTERM handlers removed — handled by context-server.js shutdown handlers.
+//       Only the 'exit' handler is kept as a safety net for non-signal exits.
 const exit_handlers = {
   exit: null,
-  sigint: null,
-  sigterm: null,
 };
 
 // T121: Initialize exit handlers
@@ -154,32 +154,15 @@ function init_exit_handlers() {
     }
   };
 
-  exit_handlers.sigint = () => {
-    try { flush_access_counts(); } catch (e) { /* silent */ }
-  };
-
-  exit_handlers.sigterm = () => {
-    try { flush_access_counts(); } catch (e) { /* silent */ }
-  };
-
   process.on('exit', exit_handlers.exit);
-  process.on('SIGINT', exit_handlers.sigint);
-  process.on('SIGTERM', exit_handlers.sigterm);
 }
 
 // T121: Cleanup function to remove event listeners (prevents memory leaks)
+// KL-4: Only 'exit' handler remains; SIGINT/SIGTERM handled by context-server.js
 function cleanup_exit_handlers() {
   if (exit_handlers.exit) {
     process.removeListener('exit', exit_handlers.exit);
     exit_handlers.exit = null;
-  }
-  if (exit_handlers.sigint) {
-    process.removeListener('SIGINT', exit_handlers.sigint);
-    exit_handlers.sigint = null;
-  }
-  if (exit_handlers.sigterm) {
-    process.removeListener('SIGTERM', exit_handlers.sigterm);
-    exit_handlers.sigterm = null;
   }
 }
 

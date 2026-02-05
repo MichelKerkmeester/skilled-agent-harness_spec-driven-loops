@@ -68,6 +68,8 @@ const sessionManager = require(path.join(LIB_DIR, 'session', 'session-manager.js
 
 // T107: Transaction manager for pending file recovery on startup (REQ-033)
 const transactionManager = require(path.join(LIB_DIR, 'storage', 'transaction-manager.js'));
+// KL-4: Tool cache cleanup on shutdown
+const toolCache = require(path.join(LIB_DIR, 'cache', 'tool-cache.js'));
 
 /* ─────────────────────────────────────────────────────────────
    2. SERVER INITIALIZATION
@@ -300,6 +302,7 @@ process.on('SIGTERM', () => {
   archivalManager.cleanup(); // T059: Stop archival background job
   retryManager.stop_background_job(); // T099: Stop retry background job
   accessTracker.flush_access_counts();
+  toolCache.shutdown(); // KL-4: Stop cleanup interval and clear cache
   vectorIndex.closeDb();
   process.exit(0);
 });
@@ -311,13 +314,14 @@ process.on('SIGINT', () => {
   archivalManager.cleanup(); // T059: Stop archival background job
   retryManager.stop_background_job(); // T099: Stop retry background job
   accessTracker.flush_access_counts();
+  toolCache.shutdown(); // KL-4: Stop cleanup interval and clear cache
   vectorIndex.closeDb();
   process.exit(0);
 });
 
 process.on('uncaughtException', (err) => {
   console.error('[context-server] Uncaught exception:', err);
-  try { archivalManager.cleanup(); retryManager.stop_background_job(); accessTracker.flush_access_counts(); vectorIndex.closeDb(); } catch (e) { console.error('[context-server] Cleanup failed:', e); }
+  try { archivalManager.cleanup(); retryManager.stop_background_job(); accessTracker.flush_access_counts(); toolCache.shutdown(); vectorIndex.closeDb(); } catch (e) { console.error('[context-server] Cleanup failed:', e); }
   process.exit(1);
 });
 

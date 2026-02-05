@@ -41,7 +41,7 @@ fi
 
 show_help() {
     cat << EOF
-$SCRIPT_NAME - Gate 6 Enforcement: Verify Checklist Completion
+$SCRIPT_NAME - Completion Verification Rule: Verify Checklist Completion
 
 USAGE:
   ./$SCRIPT_NAME <spec-folder-path> [OPTIONS]

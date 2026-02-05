@@ -13,7 +13,7 @@ triggerPhrases:
   - where we left
   - pick up where
   - attempt
-  # Gate 2 - Understanding
+  # Gate 1 - Understanding
   - research
   - explore
   - understand
@@ -21,7 +21,7 @@ triggerPhrases:
   # Gate 2 - Skill Routing (Advisory)
   - skill
   - workflow
-  # Gate 3 - File Modification (HARD BLOCK)
+  # Gate 3 - Spec Folder (HARD BLOCK)
   - fix
   - implement
   - create
@@ -77,7 +77,7 @@ These rules are HARD BLOCKS. No exceptions. No "I'll do it after."
 
 <!-- ANCHOR:gate-hard-blocks -->
 
-## GATE 1: SPEC FOLDER BEFORE FILE MODIFICATIONS [HARD BLOCK]
+## GATE 3: SPEC FOLDER BEFORE FILE MODIFICATIONS [HARD BLOCK]
 
 **TRIGGER:** Any intent to create, edit, delete, fix, implement, update, rename, move, build, generate, configure, or analyze files.
 
@@ -101,7 +101,7 @@ WAIT for user's answer. THEN proceed.
 **TRIGGER:** User's FIRST message in conversation requests file modifications
 
 **ACTION:**
-1. Gate 1 question is your FIRST response
+1. Gate 3 question is your FIRST response
 2. No analysis first ("let me understand the scope")
 3. No tool calls first ("let me check what exists")
 4. Ask immediately → Wait for answer → THEN proceed
@@ -170,7 +170,7 @@ These rules apply automatically without numbered gate structure.
 
 ## NUMBERED GATES (Pre-Execution)
 
-### GATE 2: UNDERSTANDING + CONTEXT SURFACING [SOFT BLOCK]
+### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT BLOCK]
 
 **TRIGGER:** EACH new user message (re-evaluate even in ongoing conversations)
 
@@ -180,9 +180,9 @@ These rules apply automatically without numbered gate structure.
 3. Parse request and check confidence (see Confidence Framework)
 4. If <40%: ASK | 40-79%: PROCEED WITH CAUTION | >=80%: PASS
 
-**Priority Note:** If file modification detected, Gate 1 (HARD BLOCK) takes precedence.
+**Priority Note:** If file modification detected, Gate 3 (HARD BLOCK) takes precedence.
 
-### GATE 3: SKILL ROUTING [ALWAYS REQUIRED for non-trivial tasks]
+### GATE 2: SKILL ROUTING [ALWAYS REQUIRED for non-trivial tasks]
 
 **TRIGGER:** After understanding the request (applies to ALL non-trivial tasks)
 
@@ -203,7 +203,7 @@ These rules apply automatically without numbered gate structure.
 
 ### MEMORY CONTEXT LOADING [SOFT]
 
-**TRIGGER:** User selected A or C in Gate 1 AND memory files exist
+**TRIGGER:** User selected A or C in Gate 3 AND memory files exist
 
 **Action:**
 ```javascript
@@ -246,7 +246,7 @@ If you catch yourself about to skip gates:
 
 1. **STOP** immediately
 2. **State**: "Before I proceed, I need to ask about documentation:"
-3. **Ask** the applicable Gate 1 question
+3. **Ask** the applicable Gate 3 question
 4. **Wait** for response, then continue
 
 <!-- /ANCHOR:gate-edge-cases -->
@@ -276,14 +276,14 @@ Read(result.filePath)  ->  Full content
 
 | Gate/Rule          | Trigger                  | Action                      | Type             |
 | ------------------ | ------------------------ | --------------------------- | ---------------- |
-| **Gate 1**         | File modification intent | Ask A/B/C/D spec folder     | HARD             |
-| **First Message**  | First msg + file mod     | Gate 1 question FIRST       | HARD             |
+| **Gate 1**         | New user message         | `memory_match_triggers()`   | SOFT             |
+| **Gate 2**         | Non-trivial task         | Run `skill_advisor.py` OR cite user | REQUIRED         |
+| **Gate 3**         | File modification intent | Ask A/B/C/D spec folder     | HARD             |
+| **First Message**  | First msg + file mod     | Gate 3 question FIRST       | HARD             |
 | **Memory Save**    | "save context/memory"    | Use generate-context.js     | HARD (post-exec) |
 | **Continuation**   | "CONTINUATION - Attempt" | Validate against memory     | BEHAVIORAL       |
 | **Completion**     | "done/complete/finished" | Verify checklist.md         | BEHAVIORAL       |
-| **Gate 2**         | New user message         | `memory_match_triggers()`   | SOFT             |
-| **Gate 3**         | Non-trivial task         | Run `skill_advisor.py` OR cite user | REQUIRED         |
-| **Memory Context** | Option A/C in Gate 1     | Load memory files           | SOFT (pre-exec)  |
+| **Memory Context** | Option A/C in Gate 3     | Load memory files           | SOFT (pre-exec)  |
 | **Compaction**     | Context lost message     | Display handover protocol   | EDGE CASE        |
 | **Violation**      | About to skip gates      | STOP, state, ask, wait      | EDGE CASE        |
 
