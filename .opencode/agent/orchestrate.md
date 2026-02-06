@@ -31,6 +31,35 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 ---
 
+## 0. 🤖 MODEL PREFERENCE
+
+### Default Model: Opus 4.6
+
+This agent defaults to **Opus 4.6** for maximum orchestration depth. Opus provides superior reasoning for complex task decomposition, multi-agent coordination, and synthesis of parallel workstream outputs.
+
+| Model              | Use When                 | Task Examples                                                         |
+| ------------------ | ------------------------ | --------------------------------------------------------------------- |
+| **Opus** (default) | All orchestration tasks  | Multi-agent coordination, complex decomposition, quality gate reviews |
+| **Sonnet**         | Simple orchestration     | Small task delegation, 1-2 agent workflows                           |
+| **Gemini**         | Alternative preference   | Pro for quality, Flash for speed                                     |
+| **GPT**            | User explicitly requests | Alternative AI preference                                            |
+
+### Dispatch Instructions
+
+When dispatching this agent via Task tool:
+
+```
+# Default (Opus) - use for orchestration
+Task(subagent_type: "orchestrate", model: "opus", prompt: "...")
+
+# Sonnet - for simple orchestration
+Task(subagent_type: "orchestrate", model: "sonnet", prompt: "...")
+```
+
+**Rule**: Use Opus 4.6 by default. Sonnet for simple 1-2 agent workflows. Gemini/GPT when user explicitly requests.
+
+---
+
 ## 1. 🔄 CORE WORKFLOW
 
 1. **RECEIVE** → Parse intent, scope, constraints
@@ -61,10 +90,10 @@ flowchart TD
     SEQ --> R6
     R6 --> R7[7. EVALUATE]:::core
     R7 --> QUALITY{Score >= 70?}:::gate
-    QUALITY -->|Pass| R8[8. HANDLE FAILURES]:::core
-    QUALITY -->|Fail| RETRY[Retry/Escalate]
+    QUALITY -->|Pass| R9[9. SYNTHESIZE]:::core
+    QUALITY -->|Fail| R8[8. HANDLE FAILURES]:::core
+    R8 --> RETRY[Retry/Escalate]
     RETRY --> R6
-    R8 --> R9[9. SYNTHESIZE]:::core
     R9 --> R10[10. DELIVER]:::core
     R10 --> DONE([Response])
 ```
@@ -116,7 +145,7 @@ flowchart TD
 - **Role:** Evidence gathering, pattern analysis, research documentation
 - **Skills:** `system-spec-kit`
 - **Use When:** Technical uncertainty, feasibility analysis, pre-planning investigation
-- **Note:** Sub-agent (mode: secondary); outputs research.md, not implementation
+- **Note:** Sub-agent (mode: subagent); outputs research.md, not implementation
 
 ### @write - The Quality Publisher
 - **Role:** Documentation, DQI Enforcement, Template Application
@@ -141,6 +170,12 @@ flowchart TD
 - **Use When:** 3+ failed debug attempts, stuck errors, need fresh perspective
 - **Note:** Receives structured handoff (NOT conversation history); isolated by design
 
+### @handover - The Session Continuation Specialist
+- **Role:** Context preservation and handover document generation
+- **Skills:** `system-spec-kit`
+- **Use When:** Session ending, context needs preserving, continuation documents needed
+- **Note:** Sub-agent (mode: subagent); gathers context from spec folders and generates handover.md
+
 ---
 
 ## 4. 🤖 AVAILABLE AGENTS
@@ -163,8 +198,9 @@ flowchart TD
 | @write    | `.opencode/agent/write.md`    | Task with doc requirements         |
 | @review   | `.opencode/agent/review.md`   | Task with review scope             |
 | @debug    | `.opencode/agent/debug.md`    | Task with structured debug handoff |
+| @handover | `.opencode/agent/handover.md` | Task with spec folder path         |
 
-**Note:** All are sub-agents (mode: secondary). Security included in `@review`. Debug is isolated by design (no conversation context).
+**Note:** All are sub-agents (mode: subagent). Security included in `@review`. Debug is isolated by design (no conversation context).
 
 ### Agent Selection Matrix
 
@@ -183,6 +219,8 @@ flowchart TD
 | Browser verification | `@general`  | Via workflows-chrome-devtools            |
 | Debugging (stuck)    | `@debug`    | 4-phase methodology, fresh perspective   |
 | 3+ failed debug      | `@debug`    | Isolated context, no inherited bias      |
+| Session handover     | `@handover` | Context preservation, continuation docs  |
+| Context preservation | `@handover` | Generates handover.md for future sessions|
 
 ---
 
@@ -364,7 +402,7 @@ Retry Instructions:
 
 | Budget Component | Estimated Size | Notes |
 |-----------------|---------------|-------|
-| System overhead | ~25K tokens | System prompt, CLAUDE.md, etc. |
+| System overhead | ~25K tokens | System prompt, AGENTS.md, etc. |
 | Agent definition | ~15K tokens | This orchestrate.md file |
 | Conversation history | ~10K tokens | Grows during session |
 | **Available for results** | **~150K tokens** | **Must be shared across ALL agent returns** |
@@ -1035,7 +1073,7 @@ available_budget = context_window - system_overhead - conversation_history - age
 max_simultaneous_results = available_budget / estimated_result_size
 
 Conservative defaults:
-  system_overhead       ≈ 25K tokens (system prompt, CLAUDE.md, etc.)
+  system_overhead       ≈ 25K tokens (system prompt, AGENTS.md, etc.)
   conversation_history  ≈ 10K tokens (varies)
   agent_definition      ≈ 15K tokens (orchestrate.md)
   available_budget      ≈ 150K tokens (remaining)

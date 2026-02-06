@@ -478,7 +478,7 @@ specs/###-short-name/
 
 ---
 
-## 12 📐 TEMPLATE PATTERNS (Spec 082)
+## 12. 📐 TEMPLATE PATTERNS
 
 ### Workstream Prefixes
 

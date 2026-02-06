@@ -13,6 +13,7 @@ permission:
   webfetch: allow
   memory: allow
   chrome_devtools: deny
+  task: deny
   external_directory: allow
 ---
 
@@ -226,13 +227,13 @@ Content Alignment:
 
 ### Scripts
 
-| Script                 | Purpose                  | When to Use                           |
-| ---------------------- | ------------------------ | ------------------------------------- |
-| `validate_document.py`   | Format validation        | MANDATORY before delivery (exit 0 required) |
-| `extract_structure.py` | Parse document → JSON    | Before ANY evaluation                 |
-| `init_skill.py`        | Scaffold skill structure | New skill creation                    |
-| `package_skill.py`     | Validate + package       | Skill finalization                    |
-| `quick_validate.py`    | Fast validation          | Quick checks                          |
+| Script                 | Purpose                  | When to Use                                 |
+| ---------------------- | ------------------------ | ------------------------------------------- |
+| `validate_document.py` | Format validation        | MANDATORY before delivery (exit 0 required) |
+| `extract_structure.py` | Parse document → JSON    | Before ANY evaluation                       |
+| `init_skill.py`        | Scaffold skill structure | New skill creation                          |
+| `package_skill.py`     | Validate + package       | Skill finalization                          |
+| `quick_validate.py`    | Fast validation          | Quick checks                                |
 
 ### Command Integration
 

@@ -31,9 +31,9 @@ Technical investigation specialist for evidence gathering, pattern analysis, and
 
 ## 0. 🤖 MODEL PREFERENCE
 
-### Default Model: Opus 4.5
+### Default Model: Opus 4.6
 
-This agent defaults to **Opus 4.5** for maximum research depth and analytical capability. Opus provides superior reasoning for complex investigations, pattern discovery across large codebases, and synthesis of findings.
+This agent defaults to **Opus 4.6** for maximum research depth and analytical capability. Opus provides superior reasoning for complex investigations, pattern discovery across large codebases, and synthesis of findings.
 
 | Model              | Use When                 | Task Examples                                                                    |
 | ------------------ | ------------------------ | -------------------------------------------------------------------------------- |
@@ -53,7 +53,7 @@ Task(subagent_type: "research", model: "opus", prompt: "...")
 Task(subagent_type: "research", model: "gemini", prompt: "...")
 ```
 
-**Rule**: Use Opus 4.5 by default for:
+**Rule**: Use Opus 4.6 by default for:
 - Multi-file investigation
 - Architecture analysis
 - Complex pattern discovery

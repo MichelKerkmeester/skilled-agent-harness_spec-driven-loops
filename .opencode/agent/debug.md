@@ -495,14 +495,14 @@ NEVER:
 
 ## 6. 🛠️ TOOL ROUTING
 
-| Task                     | Primary Tool           | Fallback            |
-| ------------------------ | ---------------------- | ------------------- |
-| Understand error context | `Grep` + `Read`        | Manual search       |
-| Map code structure       | `Glob` + `Read`        | Directory listing   |
-| Trace call paths         | `Grep` for function    | Manual trace        |
-| Find similar patterns    | `Grep`                 | Glob + Read         |
-| Verify fix               | `Bash` (run tests)     | Manual verification |
-| Check recent changes     | `Bash` (git log/diff)  | Read file history   |
+| Task                     | Primary Tool          | Fallback            |
+| ------------------------ | --------------------- | ------------------- |
+| Understand error context | `Grep` + `Read`       | Manual search       |
+| Map code structure       | `Glob` + `Read`       | Directory listing   |
+| Trace call paths         | `Grep` for function   | Manual trace        |
+| Find similar patterns    | `Grep`                | Glob + Read         |
+| Verify fix               | `Bash` (run tests)    | Manual verification |
+| Check recent changes     | `Bash` (git log/diff) | Read file history   |
 
 ### Tool Selection Flow
 

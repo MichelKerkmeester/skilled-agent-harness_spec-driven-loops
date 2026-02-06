@@ -287,7 +287,8 @@ ELSE:
 │  ├─► 3. Extract last/next actions, blockers, decisions                  │
 │  ├─► 4. Determine attempt number (check existing handover)              │
 │  ├─► 5. Generate handover.md using template                             │
-│  └─► 6. Return structured JSON result                                   │
+│  ├─► 6. Write file to spec folder                                       │
+│  └─► 7. Return structured JSON result                                   │
 │                                                                         │
 │  LIMITS                                                                 │
 │  ├─► Must read files before generating (never fabricate)                 │
