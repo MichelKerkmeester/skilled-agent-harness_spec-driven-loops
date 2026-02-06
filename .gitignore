@@ -63,6 +63,11 @@ settings.local.json
 .opencode/specs/004-agents/
 .opencode/specs/005-anobel.com/
 
+# Project-specific commands (not part of framework)
+# ───────────────────────────────────────────
+.opencode/command/agent_router.md
+.claude/commands/agent_router.md
+
 # Temporary files
 # ───────────────────────────────────────────
 scratch/

@@ -92,12 +92,6 @@ Adds **Context Window Budget (CWB)** system to the orchestrate agent, preventing
 - Added **Collection Pattern (§28)** column mapping task types to patterns A/B/C
 - Added **Est. Return per Agent** column with token estimates per tier
 
-**New Command: agent_router**
-
-13. **`/agent_router`** — Route requests to AI Systems with full System Prompt identity adoption. Symlinked to `.claude/commands/` for Claude Code auto-discovery.
-
----
-
 ### Fixed
 
 - **AGENTS.md** — Stale "Gate 4 Option B" → "Gate 3 Option B" in agent routing table; removed duplicate line in skill maintenance section
@@ -111,7 +105,7 @@ Adds **Context Window Budget (CWB)** system to the orchestrate agent, preventing
 
 **Validation:** `validate_document.py` PASSED · DQI 95/100 (EXCELLENT) · 20-agent mental simulation PASSES (~3K tokens vs ~160K old approach)
 
-**Files:** `.opencode/agent/orchestrate.md` · `AGENTS.md` · `.opencode/command/agent_router.md` · `opencode.json` · `.opencode/package.json`
+**Files:** `.opencode/agent/orchestrate.md` · `AGENTS.md` · `opencode.json` · `.opencode/package.json`
 
 ---
 
