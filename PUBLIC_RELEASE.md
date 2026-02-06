@@ -175,11 +175,11 @@ EOF
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
-| **Version**        | v1.2.2.2                                                                               |
-| **Release Date**   | 2026-02-04                                                                             |
+| **Version**        | v1.2.4.0                                                                               |
+| **Release Date**   | 2026-02-06                                                                             |
 | **GitHub**         | https://github.com/MichelKerkmeester/opencode-spec-kit-framework                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v1.2.2.2 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v1.2.4.0 |
 
 ---
 
@@ -305,6 +305,8 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `1.2.0.x` | 1.2.0.0-3   | Causal Memory & Command Consolidation    |
 | `1.2.1.x` | 1.2.1.0     | workflows-code--opencode + Narsil removal |
 | `1.2.2.x` | 1.2.2.0-2   | Coding Analysis Lenses + MCP bug fixes   |
+| `1.2.3.x` | 1.2.3.0     | Ecosystem remediation + schema unification |
+| `1.2.4.x` | 1.2.4.0     | Orchestrate agent Context Window Budget  |
 
 ---
 

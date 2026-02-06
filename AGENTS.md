@@ -490,7 +490,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 | `@general`     | Built-in                         | Implementation, complex tasks                    |
 | `@explore`     | Built-in                         | Quick codebase exploration, file discovery       |
 | `@orchestrate` | `.opencode/agent/orchestrate.md` | Multi-agent coordination, complex workflows      |
-| `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 4 Option B    |
+| `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 3 Option B    |
 | `@write`       | `.opencode/agent/write.md`       | Creating READMEs, Skills, Guides                 |
 | `@review`      | `.opencode/agent/review.md`      | Code review, PRs, quality gates (READ-ONLY)      |
 | `@speckit`     | `.opencode/agent/speckit.md`     | Spec folder creation Level 1-3+                  |
@@ -570,7 +570,6 @@ When creating or editing skills:
 - Validate skill structure matches template in `workflows-documentation/references/skill_creation.md`
 - Use the templates in `workflows-documentation/assets/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
 - Ensure all bundled resources are referenced with relative paths
-- Test skill invocation before committingth relative paths
 - Test skill invocation before committing
 
 ---

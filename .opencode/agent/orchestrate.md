@@ -37,11 +37,12 @@ You are the **single point of accountability**. The user receives ONE coherent r
 2. **CHECK GATES** → Enforce Spec Folder & Research-First Requirements
 3. **SCAN** → Identify relevant skills, commands, agents
 4. **DECOMPOSE** → Structure tasks with scope/output/success; identify parallel vs sequential
-5. **DELEGATE** → Assign to `@general`, `@explore`, etc. (up to 20 agents)
-6. **EVALUATE** → Quality gates: accuracy, completeness, consistency
-7. **HANDLE FAILURES** → Retry → Reassign → Escalate to user
-8. **SYNTHESIZE** → Merge into unified voice with inline attribution
-9. **DELIVER** → Present final response; flag ambiguities and exclusions
+5. **CWB CHECK** → Calculate context budget, plan collection waves (see §27)
+6. **DELEGATE** → Dispatch within wave limits; enforce output size constraints (§28)
+7. **EVALUATE** → Quality gates: accuracy, completeness, consistency
+8. **HANDLE FAILURES** → Retry → Reassign → Escalate to user
+9. **SYNTHESIZE** → Merge into unified voice with inline attribution
+10. **DELIVER** → Present final response; flag ambiguities and exclusions
 
 ```mermaid
 flowchart TD
@@ -52,19 +53,20 @@ flowchart TD
     R1 --> R2[2. CHECK GATES]:::gate
     R2 --> R3[3. SCAN]:::core
     R3 --> R4[4. DECOMPOSE]:::core
-    R4 --> PARALLEL{Dependencies?}
+    R4 --> CWB[5. CWB CHECK]:::gate
+    CWB --> PARALLEL{Dependencies?}
     PARALLEL -->|No| PAR[Parallel Dispatch]
     PARALLEL -->|Yes| SEQ[Sequential Dispatch]
-    PAR --> R5[5. DELEGATE]:::core
-    SEQ --> R5
-    R5 --> R6[6. EVALUATE]:::core
-    R6 --> QUALITY{Score >= 70?}:::gate
-    QUALITY -->|Pass| R7[7. HANDLE FAILURES]:::core
+    PAR --> R6[6. DELEGATE]:::core
+    SEQ --> R6
+    R6 --> R7[7. EVALUATE]:::core
+    R7 --> QUALITY{Score >= 70?}:::gate
+    QUALITY -->|Pass| R8[8. HANDLE FAILURES]:::core
     QUALITY -->|Fail| RETRY[Retry/Escalate]
-    RETRY --> R5
-    R7 --> R8[8. SYNTHESIZE]:::core
-    R8 --> R9[9. DELIVER]:::core
-    R9 --> DONE([Response])
+    RETRY --> R6
+    R8 --> R9[9. SYNTHESIZE]:::core
+    R9 --> R10[10. DELIVER]:::core
+    R10 --> DONE([Response])
 ```
 
 ---
@@ -206,6 +208,17 @@ Sub-orchestrators operate within **inherited constraints** - they CANNOT exceed 
 | Agent Pool        | Subset of parent's allocation           |
 | Gate Requirements | Must enforce all parent gates           |
 | Quality Threshold | Same or stricter than parent            |
+| **Context Budget** | **MUST compress results before returning to parent (§27)** |
+
+### Return Size Rule
+
+Sub-orchestrators MUST synthesize their sub-agent results into a **compressed summary** before returning to the parent orchestrator. The parent should never receive raw sub-agent outputs through a sub-orchestrator.
+
+| Sub-Orchestrator Scale | Max Return to Parent |
+|------------------------|---------------------|
+| Managed 1-5 agents    | 2K tokens (key findings + file paths) |
+| Managed 6-10 agents   | 3K tokens (synthesis + critical issues) |
+| Managed 10+ agents    | 4K tokens (executive summary + file index) |
 
 ### Progress Reporting
 
@@ -345,6 +358,19 @@ Retry Instructions:
 | Documentation  | 6K tokens   | 5 min      | Use concise template     |
 | Review         | 5K tokens   | 4 min      | Focus on critical issues |
 
+### Orchestrator Self-Budget
+
+**The orchestrator's own context is a resource that must be budgeted.** See §27 for the full Context Window Budget system.
+
+| Budget Component | Estimated Size | Notes |
+|-----------------|---------------|-------|
+| System overhead | ~25K tokens | System prompt, CLAUDE.md, etc. |
+| Agent definition | ~15K tokens | This orchestrate.md file |
+| Conversation history | ~10K tokens | Grows during session |
+| **Available for results** | **~150K tokens** | **Must be shared across ALL agent returns** |
+
+**Rule**: Before dispatching, calculate `total_expected_results = agent_count × result_size_per_agent`. If this exceeds available budget, use file-based collection (§28).
+
 ### Threshold Actions
 
 | Level  | Status   | Action                                         |
@@ -396,12 +422,18 @@ TASK #N: [Descriptive Title]
 ├─ Agent: @general | @explore | @write | @review
 ├─ Skills: [Specific skills the agent should use]
 ├─ Output Format: [Structured format with example]
+├─ Output Size: [full | summary-only (30 lines) | minimal (3 lines)] ← CWB §27
+├─ Write To: [file path for detailed findings | "none"] ← CWB §28
 ├─ Success: [Measurable criteria with evidence requirements]
 ├─ Depends: [Task numbers that must complete first | "none"]
 ├─ Compensation: [Rollback action if saga-enabled | "none"]
 ├─ Branch: [Optional conditional routing - see Section 12]
 └─ Scale: [1-agent | 2-4 agents | 10+ agents]
 ```
+
+**CWB Fields (MANDATORY for 5+ agent dispatches):**
+- **Output Size**: Controls how much the agent returns directly. See §27 Scale Thresholds.
+- **Write To**: File path where the agent writes detailed findings. Required for Pattern C (§28).
 
 ### Pre-Delegation Reasoning (PDR)
 
@@ -491,12 +523,20 @@ TASK #N: [Title]
 
 ## 13. ⚡ PARALLEL VS SEQUENTIAL ANALYSIS
 
-### PARALLEL-FIRST PRINCIPLE
-**DEFAULT TO PARALLEL.** Only use sequential when there's a TRUE data dependency.
+### PARALLEL-FIRST PRINCIPLE (with CWB Ceiling)
+**DEFAULT TO PARALLEL** within CWB limits. Only use sequential when there's a TRUE data dependency.
 - **NO Dependency:** Run in parallel (e.g., "Research A" and "Research B")
 - **YES Dependency:** Run sequentially (e.g., "Research Pattern" → "Implement Pattern")
 
 **BIAS FOR ACTION**: When uncertain, assume parallel.
+
+**CWB CEILING** (§27): Parallel-first applies **within each wave**, not across all agents. For 10+ agents, dispatch in waves of 5 — each wave runs in parallel, but waves execute sequentially with synthesis between them. This preserves parallelism while preventing context overflow.
+
+| Agent Count | Parallel Behavior |
+|-------------|-------------------|
+| 1-4 | Full parallel, no restrictions |
+| 5-9 | Full parallel, summary-only returns |
+| 10-20 | Parallel within waves of 5, sequential between waves |
 
 ---
 
@@ -662,6 +702,16 @@ Isolate failures to prevent cascading issues across agents.
 | All agents fail                | Open all circuits, escalate "System degraded" |
 | Transient failure in half-open | Return to open, extend timeout 50%            |
 | Success after long open        | Reset count, close circuit, log recovery      |
+| **Context budget exceeded**    | **Stop dispatching, synthesize current results, report to user (§27)** |
+
+### Context Overflow Protection
+
+If the orchestrator detects context pressure during result collection (e.g., compaction warnings, "Context limit reached" on agent returns):
+
+1. **STOP** dispatching new waves immediately
+2. **SYNTHESIZE** whatever results have been collected so far
+3. **REPORT** to user: "Collected N/M agent results before context limit. Here are findings from the completed agents."
+4. **SUGGEST** file-based collection for remaining agents if user wants to continue
 
 ---
 
@@ -787,6 +837,10 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-fo
 | Files modified     | 5+        | Recommend context save    |
 | Sub-agent failures | 2+        | Consider debug delegation |
 | Session duration   | Extended  | Proactive handover prompt |
+| **Agent dispatches** | **5+**  | **Enforce CWB (§27), use collection patterns (§28)** |
+| **Context pressure** | **Any warning** | **Stop dispatching, synthesize current results** |
+
+**Proactive vs Reactive**: Context Preservation should be **proactive** (enforce CWB before dispatching) not reactive (suggest handover after overflow). See §27 for pre-dispatch budget checks.
 
 ---
 
@@ -866,15 +920,18 @@ checkpoint:
 │  ├─► Event-Driven Triggers: OnError, OnTimeout, OnComplete, OnFileChange│
 │  ├─► Incremental Checkpointing: Every 5 tasks or 10 tool calls          │
 │  ├─► Sub-Orchestrator: For workflows > 10 tasks (max 2 levels)           │
-│  └─► Mermaid Visualization: Auto-generated workflow diagrams             │
+│  ├─► Mermaid Visualization: Auto-generated workflow diagrams             │
+│  └─► Context Window Budget: Prevents orchestrator context overflow       │
 │                                                                         │
-│  PARALLEL-FIRST PRINCIPLE                                               │
-│  ├─► Default to PARALLEL unless true data dependency exists             │
+│  PARALLEL-FIRST PRINCIPLE (with CWB Ceiling)                            │
+│  ├─► Default to PARALLEL within wave limits (§27)                        │
+│  ├─► 1-4 agents: full parallel | 5-9: summary-only | 10+: waves of 5    │
 │  └─► Resolve conflicts AFTER rather than sequence unnecessarily          │
 │                                                                         │
 │  LIMITS                                                                 │
 │  ├─► Max 20 agents (parallel or chained)                                │
-│  └─► NO direct execution - must delegate everything                     │
+│  ├─► NO direct execution - must delegate everything                     │
+│  └─► CWB enforced: output size constraints + wave batching for 5+ agents│
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -932,14 +989,16 @@ graph TD
 
 ## 25. 📈 SCALING HEURISTICS
 
-| Task Type                   | Agent Count | Criteria                    |
-| --------------------------- | ----------- | --------------------------- |
-| Simple fact-finding         | 1 agent     | Single source, clear answer |
-| Comparison/analysis         | 2-4 agents  | Multiple perspectives       |
-| Complex research            | 5-10 agents | Multi-domain exploration    |
-| Comprehensive investigation | 10+ agents  | Breadth-first, many sources |
+| Task Type                   | Agent Count | Criteria                    | Collection Pattern (§28) | Est. Return per Agent |
+| --------------------------- | ----------- | --------------------------- | ------------------------ | --------------------- |
+| Simple fact-finding         | 1 agent     | Single source, clear answer | A: Direct               | ~2K tokens (full)     |
+| Comparison/analysis         | 2-4 agents  | Multiple perspectives       | A: Direct               | ~4K tokens (full)     |
+| Complex research            | 5-10 agents | Multi-domain exploration    | B: Summary-only         | ~500 tokens (summary) |
+| Comprehensive investigation | 10+ agents  | Breadth-first, many sources | C: File-based + waves   | ~50 tokens (minimal)  |
 
 **Anti-Pattern:** Early agents spawned 50 subagents for simple queries. Use these heuristics to prevent waste.
+
+**CWB Integration:** Always cross-reference this table with §27 Scale Thresholds when planning dispatches. The Collection Pattern column tells you which result collection approach to use.
 
 ---
 
@@ -958,3 +1017,261 @@ VERIFICATION (MANDATORY):
 
 ### The Iron Law
 > NEVER SYNTHESIZE WITHOUT VERIFICATION
+
+---
+
+## 27. 🛡️ CONTEXT WINDOW BUDGET
+
+### Why This Exists
+
+The orchestrator's **own context window** is a finite resource. When 20 sub-agents each return ~2-8K tokens, the combined ~100K+ of results will exceed the context window, causing irrecoverable "Context limit reached" errors. The orchestrator dies despite all agents completing successfully.
+
+**The CWB prevents this by constraining how results flow back to the orchestrator.**
+
+### Budget Formula
+
+```
+available_budget = context_window - system_overhead - conversation_history - agent_definition
+max_simultaneous_results = available_budget / estimated_result_size
+
+Conservative defaults:
+  system_overhead       ≈ 25K tokens (system prompt, CLAUDE.md, etc.)
+  conversation_history  ≈ 10K tokens (varies)
+  agent_definition      ≈ 15K tokens (orchestrate.md)
+  available_budget      ≈ 150K tokens (remaining)
+  estimated_result_size ≈ 3K tokens (summary-only return)
+  max_simultaneous      ≈ 50 (theoretical) → cap at 20 (practical)
+
+  HOWEVER: if agents return FULL results (not summaries):
+  estimated_result_size ≈ 8K tokens (full analysis)
+  max_simultaneous      ≈ 18 → but context pressure prevents synthesis
+  THEREFORE: enforce summary-only returns for 5+ agents
+```
+
+### Scale Thresholds
+
+| Agent Count | Collection Mode | Output Constraint | Wave Size |
+|-------------|-----------------|-------------------|-----------|
+| **1-4** | Direct | Full results allowed (up to 8K each) | All at once |
+| **5-9** | Summary-only | Max 30 lines / ~500 tokens per agent | All at once |
+| **10-15** | File-based + waves | Agents write to files, return 3-line summary | 5 per wave |
+| **16-20** | File-based + waves | Agents write to files, return 3-line summary | 5 per wave |
+
+### Pre-Dispatch Checklist
+
+Before dispatching agents, the orchestrator MUST:
+
+```
+CWB PRE-DISPATCH (MANDATORY for 5+ agents):
+□ Count total agents to dispatch
+□ Look up collection mode from Scale Thresholds table
+□ If file-based: determine write paths for each agent
+□ If waves: calculate number of waves (agents ÷ 5, round up)
+□ Add output constraints to EVERY dispatch (Section 11 format)
+```
+
+### CWB Enforcement Points
+
+| Step | Check | Action if Violated |
+|------|-------|--------------------|
+| Step 5 (CWB CHECK) | Agent count exceeds 4? | Switch to summary-only or file-based mode |
+| Step 6 (DELEGATE) | Dispatch includes output constraints? | HALT - add constraints before dispatching |
+| Step 9 (SYNTHESIZE) | Context approaching 80%? | Stop collecting, synthesize what we have |
+
+---
+
+## 28. 📥 RESULT COLLECTION PATTERNS
+
+### Pattern A: Direct Collection (1-4 Agents)
+
+Standard parallel dispatch. No special handling required.
+
+```
+TASK #1: Research component A
+├─ Agent: @explore
+├─ Output Size: Full (up to 8K tokens)
+└─ Return: full
+
+TASK #2: Research component B
+├─ Agent: @explore
+├─ Output Size: Full (up to 8K tokens)
+└─ Return: full
+
+→ Dispatch both in parallel
+→ Collect both results directly
+→ Synthesize
+```
+
+### Pattern B: Summary-Only Returns (5-9 Agents)
+
+Agents are instructed to return concise summaries. Detailed findings stay in the agent's internal work but are not returned.
+
+```
+TASK #N: [Title]
+├─ Agent: @explore
+├─ Output Size: MAX 30 lines (~500 tokens)
+├─ Return: summary-only
+└─ Instructions: "Return ONLY: (1) 3 key findings, (2) file paths found,
+                  (3) issues detected. No full file contents."
+
+→ Dispatch all 5-9 agents in parallel
+→ Collect summaries (total: ~2.5-4.5K tokens)
+→ If deeper detail needed: dispatch follow-up agent to investigate specific finding
+```
+
+### Pattern C: File-Based + Wave Batching (10-20 Agents)
+
+Agents write detailed findings to files. Only a 3-line summary returns to the orchestrator. Dispatched in waves of 5.
+
+```
+TASK #N: [Title]
+├─ Agent: @general
+├─ Output Size: MAX 3 lines (50 tokens) returned to orchestrator
+├─ Write To: [spec-folder]/scratch/agent-N-[topic].md
+├─ Return: summary-only
+└─ Instructions: "Write ALL detailed findings to the file at [Write To].
+                  Return to me ONLY: (1) one-line summary, (2) file path written,
+                  (3) critical issues count."
+
+WAVE EXECUTION:
+  Wave 1: Dispatch agents 1-5 in parallel
+      → Collect 5 × 3-line summaries (~250 tokens total)
+      → Quick synthesis of Wave 1 findings
+
+  Wave 2: Dispatch agents 6-10 in parallel
+      → Collect 5 × 3-line summaries
+      → Synthesize Wave 1+2 findings
+
+  Wave 3: Dispatch agents 11-15 in parallel
+      → Collect summaries, synthesize cumulative
+
+  Wave 4: Dispatch agents 16-20 in parallel
+      → Collect summaries, final synthesis
+
+SYNTHESIS:
+  → Read selected files for detail (only files flagged as critical)
+  → Compile unified findings from wave syntheses
+  → Present to user
+```
+
+### Background Agent Variant (Alternative for Pattern C)
+
+When wall-clock parallelism matters more than sequential synthesis:
+
+```
+→ Dispatch all 10-20 agents with run_in_background: true
+→ Each agent writes findings to designated file
+→ Orchestrator continues working while agents run
+→ When ready to synthesize:
+    → Read agent output files one at a time
+    → Never load all files simultaneously
+    → Build synthesis progressively
+```
+
+### Wave Synthesis Protocol
+
+Between waves, compress findings before proceeding:
+
+```
+After Wave N completes:
+  1. Review summaries from Wave N agents
+  2. Extract: key findings, contradictions, gaps
+  3. Compress into running synthesis (~500 tokens)
+  4. Release Wave N summaries from active consideration
+  5. Dispatch Wave N+1 with context from synthesis
+```
+
+### Anti-Pattern: The Context Bomb
+
+```
+⚠️ ANTI-PATTERN: Dispatching 10+ agents without CWB constraints
+
+WHAT HAPPENS:
+  → 10-20 agents complete successfully
+  → All results return simultaneously (~80-160K tokens)
+  → Orchestrator context window exceeded
+  → "Context limit reached" on every result
+  → /compact fails: "Conversation too long"
+  → ALL WORK LOST despite agents completing
+
+PREVENTION:
+  → ALWAYS check Scale Thresholds (§27) before dispatching
+  → ALWAYS include Output Size in dispatch format (§11)
+  → NEVER dispatch 5+ agents with "Return: full"
+```
+
+### Decision Matrix: Which Pattern?
+
+```
+How many agents?
+    │
+    ├─► 1-4 agents
+    │   └─► Pattern A: Direct Collection
+    │       (full results, all at once)
+    │
+    ├─► 5-9 agents
+    │   └─► Pattern B: Summary-Only
+    │       (30-line max, all at once)
+    │
+    └─► 10-20 agents
+        └─► Pattern C: File-Based + Waves
+            (3-line return, write to files, waves of 5)
+```
+
+---
+
+## 29. 🚫 ANTI-PATTERNS
+
+❌ **Never dispatch 5+ agents without CWB check**
+- Unconstrained parallel dispatch floods the orchestrator's context window, causing irrecoverable "Context limit reached" errors. All work is lost despite agents completing successfully. See §27.
+
+❌ **Never accept sub-agent output blindly**
+- Every sub-agent response MUST be verified before synthesis. Unverified output leads to fabricated paths, placeholder content, and quality failures. See §7.
+
+❌ **Never bypass gate requirements for speed**
+- Skipping Gate 3 (Spec Folder) or exploration-first leads to rework and scope drift. Process exists because past failures proved the need.
+
+❌ **Never let sub-orchestrators return raw sub-agent outputs**
+- Sub-orchestrators MUST synthesize and compress before returning to the parent. Raw passthrough multiplies context consumption. See §5.
+
+❌ **Never dispatch implementation without exploration**
+- "Build X" requests without prior exploration lead to rework. Always dispatch `@explore` first when no plan exists. See §6 Rule 1.
+
+❌ **Never ignore circuit breaker states**
+- When a circuit is OPEN, do not force-dispatch to that agent type. Wait for half-open test or reassign. See §17.
+
+---
+
+## 30. 🔗 RELATED RESOURCES
+
+### Commands
+
+| Command | Purpose | Path |
+|---------|---------|------|
+| `/spec_kit:debug` | Debug delegation with model selection | `.opencode/command/spec_kit/debug.md` |
+| `/spec_kit:handover` | Session continuation | `.opencode/command/spec_kit/handover.md` |
+| `/spec_kit:complete` | Verification workflow | `.opencode/command/spec_kit/complete.md` |
+| `/spec_kit:research` | 9-step investigation | `.opencode/command/spec_kit/research.md` |
+| `/memory:save` | Context preservation | `.opencode/command/memory/save.md` |
+
+### Skills
+
+| Skill | Purpose |
+|-------|---------|
+| `system-spec-kit` | Spec folders, memory, validation, context preservation |
+| `workflows-code` | Code implementation, debugging, 3-phase lifecycle |
+| `workflows-git` | Version control workflows |
+| `workflows-documentation` | Doc quality, DQI scoring, skill creation |
+| `workflows-chrome-devtools` | Browser debugging, screenshots, CDP |
+| `mcp-code-mode` | External tool integration via MCP |
+
+### Agents
+
+| Agent | Purpose |
+|-------|---------|
+| @research | Evidence gathering, technical investigation |
+| @speckit | Spec folder documentation, Level 1-3+ templates |
+| @write | DQI-compliant documentation creation |
+| @review | Code quality validation, pattern scoring |
+| @debug | Fresh perspective debugging (isolated context) |
+| @handover | Session continuation, context preservation |
