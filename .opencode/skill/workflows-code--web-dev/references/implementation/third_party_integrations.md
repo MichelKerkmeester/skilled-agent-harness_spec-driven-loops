@@ -30,7 +30,6 @@ Reference guide for integrating external JavaScript libraries in Webflow project
 ### Loading Pattern
 
 ```javascript
-// Standard CDN loading pattern
 const LIBRARY_CDN_URL = 'https://cdn.jsdelivr.net/npm/library@1.0.0';
 
 async function load_library() {
@@ -68,7 +67,6 @@ HTTP Live Streaming library for adaptive video playback in non-Safari browsers.
 ### Feature Detection
 
 ```javascript
-// Check for Safari native HLS support vs HLS.js requirement
 const test_video = document.createElement('video');
 const safari_native = !!test_video.canPlayType('application/vnd.apple.mpegurl');
 const can_use_hls_js = !!(window.Hls && Hls.isSupported()) && !safari_native;
@@ -77,7 +75,6 @@ const can_use_hls_js = !!(window.Hls && Hls.isSupported()) && !safari_native;
 ### Basic Setup
 
 ```javascript
-// Safari uses native HLS, other browsers use HLS.js
 if (safari_native) {
   video.src = hls_source_url;
   video.addEventListener('loadedmetadata', on_ready, { once: true });
@@ -226,7 +223,6 @@ The SDK is loaded lazily on first form submission to avoid blocking page load.
 let botpoison_loader = null;
 
 async function load_botpoison_sdk() {
-  // Return immediately if already loaded
   if (typeof window.Botpoison !== 'undefined') {
     return true;
   }
@@ -287,7 +283,6 @@ async function solve_botpoison_token(form) {
   const client = botpoison_clients.get(public_key);
 
   try {
-    // Race challenge against timeout
     const challenge = client.challenge();
     const timeout = new Promise((_, reject) =>
       setTimeout(() => reject(new Error('Botpoison timeout')), BOTPOISON_TIMEOUT_MS)
@@ -296,7 +291,6 @@ async function solve_botpoison_token(form) {
     const result = await Promise.race([challenge, timeout]);
     if (!result) return null;
 
-    // Handle different response formats
     const token =
       (typeof result.token === 'string' && result.token) ||
       (typeof result.solution === 'string' && result.solution) ||
@@ -309,7 +303,6 @@ async function solve_botpoison_token(form) {
 
     console.error(`[Botpoison] Verification failed (${errorType}):`, errorMessage);
 
-    // Log to analytics if available
     if (window.gtag) {
       window.gtag('event', 'botpoison_error', {
         error_type: errorType,
@@ -337,7 +330,6 @@ async function solve_botpoison_token(form) {
 async function handle_submit(event) {
   const form_data = new FormData(this.form);
 
-  // Check if Botpoison is required
   const botpoison_key = (
     this.form.getAttribute('data-botpoison-public-key') ||
     this.form.getAttribute('data-botpoison-key') ||
@@ -345,7 +337,6 @@ async function handle_submit(event) {
   ).trim();
   const botpoison_required = botpoison_key.length > 0;
 
-  // Solve challenge before submission
   const botpoison_token = botpoison_required
     ? await solve_botpoison_token(this.form)
     : null;
@@ -355,12 +346,10 @@ async function handle_submit(event) {
     throw new Error('Botpoison challenge failed');
   }
 
-  // Attach token to form data
   if (botpoison_token) {
     form_data.set('_botpoison', botpoison_token);
   }
 
-  // Submit to Formspark
   await this.submit_with_retry(form_data);
 }
 ```
@@ -368,7 +357,6 @@ async function handle_submit(event) {
 ### Error Handling Best Practices
 
 ```javascript
-// Pattern: Graceful degradation with analytics
 try {
   const token = await solve_botpoison_token(form);
   if (token) {
@@ -377,7 +365,6 @@ try {
   // Continue with submission even if token is null (graceful degradation)
 } catch (error) {
   console.warn('Botpoison unavailable, continuing without bot protection');
-  // Log to analytics for monitoring
   if (window.gtag) {
     window.gtag('event', 'botpoison_unavailable');
   }
@@ -448,7 +435,6 @@ function has_consent() {
       .map((part) => part.trim())
       .filter((part) => part.length);
 
-    // Check primary consent cookie
     const consentCookie = get_cookie_value(cookies, 'fs-consent');
     if (consentCookie) {
       const parsed = parse_json(consentCookie);
@@ -456,7 +442,6 @@ function has_consent() {
       return true; // Presence alone implies interaction
     }
 
-    // Check status cookie
     const consentStatus = get_cookie_value(cookies, 'fs-consent-status');
     if (consentStatus && consentStatus !== 'pending') {
       return true;
@@ -481,7 +466,6 @@ function has_consent() {
     });
     if (hasNonEssentialGrant) return true;
 
-    // Check localStorage/sessionStorage fallback
     const stored =
       window.localStorage?.getItem('fs-consent_preferences') ||
       window.localStorage?.getItem('fs-consent');
@@ -511,17 +495,14 @@ function bind_consent_status_listener() {
       const update = (reason = 'fs-consent-update') => {
         if (state.consent_resolved) return;
 
-        // Check for 'complete' status
         if (typeof consent.status === 'string' && consent.status === 'complete') {
           handle_consent_action('fs-consent-complete');
           return;
         }
       };
 
-      // Initial check
       update('fs-consent-initial');
 
-      // Listen for changes
       if (typeof consent.on === 'function') {
         consent.on('change', () => update('fs-consent-change'));
         consent.on('save', () => update('fs-consent-save'));
@@ -540,7 +521,6 @@ When using custom select components with Finsweet CMS Sort, a bridge is needed t
 const FS_ATTR = 'fs-list-element';
 const FS_VALUE = 'sort-trigger';
 
-// Create hidden native <select> that mirrors custom select options
 // Finsweet list-sort requires a native select to detect changes
 function create_hidden_select(custom_select_instance) {
   const container = custom_select_instance.container;
@@ -563,7 +543,6 @@ function create_hidden_select(custom_select_instance) {
     pointer-events: none;
   `;
 
-  // Mirror custom options to native select
   options.forEach((custom_opt) => {
     const native_opt = document.createElement('option');
     native_opt.value = custom_opt.dataset.value || '';
@@ -579,7 +558,6 @@ function create_hidden_select(custom_select_instance) {
   return native_select;
 }
 
-// Sync selection and dispatch change event for Finsweet
 function sync_to_native(native_select, value) {
   native_select.value = value;
   native_select.dispatchEvent(new Event('change', { bubbles: true }));
@@ -602,7 +580,6 @@ function sync_to_native(native_select, value) {
 ### CMS Load/Filter Initialization
 
 ```javascript
-// Pattern: Wait for Finsweet to initialize before custom code
 // Source: src/0_html/blog.html:54
 script.setAttribute("fs-list", "");
 
@@ -611,7 +588,6 @@ window.fsAttributes = window.fsAttributes || [];
 window.fsAttributes.push([
   'cmsload',
   (listInstances) => {
-    // CMS Load is ready, listInstances contains all list instances
     listInstances.forEach((instance) => {
       // Custom logic after CMS items load
     });
@@ -710,7 +686,6 @@ function get_labels(wrapper) {
   const labels = { ...DEFAULT_LABELS };
 
   if (config_el) {
-    // Override defaults with data attributes from config element
     Object.keys(DEFAULT_LABELS).forEach(key => {
       const dataset_key = key.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
       if (config_el.dataset[dataset_key]) {
@@ -744,14 +719,12 @@ function create_server_config(upload_endpoint, url_input, wrapper, labels) {
       const xhr = new XMLHttpRequest();
       xhr.open('POST', upload_endpoint);
 
-      // Track upload progress
       xhr.upload.onprogress = (e) => {
         if (e.lengthComputable) {
           progress(true, e.loaded, e.total);
         }
       };
 
-      // Handle response
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
           try {
@@ -762,13 +735,11 @@ function create_server_config(upload_endpoint, url_input, wrapper, labels) {
               return;
             }
 
-            // Store R2 public URL in hidden input
             url_input.value = response.url;
 
             // Signal success to FilePond
             load(response.url);
 
-            // Add success class to wrapper
             wrapper.classList.remove(CSS_CLASSES.error);
             wrapper.classList.add(CSS_CLASSES.success);
 
@@ -795,7 +766,6 @@ function create_server_config(upload_endpoint, url_input, wrapper, labels) {
       };
     },
 
-    // Handle file removal
     revert: (unique_file_id, load, error) => {
       url_input.value = '';
       wrapper.classList.remove(CSS_CLASSES.success, CSS_CLASSES.error);
@@ -813,23 +783,18 @@ function init_single_upload(wrapper) {
   const input = wrapper.querySelector(SELECTORS.input);
   const url_input = wrapper.querySelector(SELECTORS.url);
 
-  // Get configuration from data attributes
   const upload_endpoint = wrapper.dataset.uploadEndpoint || DEFAULTS.upload_endpoint;
   const max_size = wrapper.dataset.maxSize || DEFAULTS.max_size;
   const accepted_types = wrapper.dataset.acceptedTypes || DEFAULTS.accepted_types;
 
-  // Get localized labels
   const labels = get_labels(wrapper);
 
-  // Parse accepted types into array
   const accepted_types_array = accepted_types.split(',').map(t => t.trim());
 
-  // Create FilePond instance
   const pond = FilePond.create(input, {
     // Prevent FilePond from submitting with form (we use hidden url input instead)
     name: '',
 
-    // Compact single-file layout
     maxFiles: 1,
     allowMultiple: false,
     stylePanelLayout: 'compact',
@@ -837,10 +802,8 @@ function init_single_upload(wrapper) {
     credits: false,
     required: false, // Prevent native browser validation
 
-    // Localized labels
     ...to_filepond_labels(labels),
 
-    // Validation
     acceptedFileTypes: accepted_types_array,
     maxFileSize: max_size,
 
@@ -913,7 +876,6 @@ function bind_form_events(wrapper, pond, input, url_input, labels) {
     }
   }, true);
 
-  // Handle form reset
   form.addEventListener('reset', () => {
     setTimeout(() => {
       pond.removeFiles();
@@ -949,7 +911,6 @@ function register_plugins() {
 
 ```javascript
 // Source: src/2_javascript/form/input_upload.js:401-407
-// Get FilePond instance from wrapper
 function get_filepond_instance(wrapper) {
   return wrapper._filePond || null;
 }
@@ -961,13 +922,11 @@ window.get_filepond_instance = get_filepond_instance;
 ### Error Handling Patterns
 
 ```javascript
-// Pattern: Handle upload errors gracefully
 xhr.onerror = () => {
   error(labels.error_network);
   wrapper.classList.add(CSS_CLASSES.error);
 };
 
-// Pattern: Validate server response
 xhr.onload = () => {
   if (xhr.status >= 200 && xhr.status < 300) {
     try {
@@ -976,7 +935,6 @@ xhr.onload = () => {
         error(response.error);
         return;
       }
-      // Success handling...
     } catch (e) {
       error(labels.error_invalid_response);
     }

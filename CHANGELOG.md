@@ -7,6 +7,25 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**1.2.4.1**] - 2026-02-07
+
+**workflows-code--web-dev** skill: inline comment style enforcement across **10 files** (~200 edits), router completeness fixes, dead file removal.
+
+---
+
+### Changed
+
+1. **Inline comment style enforcement** — ~200 WHAT→WHY comment fixes across 5 `.js` assets and 5 `.md` reference docs
+2. **SKILL.md router** — Added `SCHEDULING` and `THIRD_PARTY` keyword groups; added routing for `async_patterns.md` and `third_party_integrations.md`
+
+### Deleted
+
+3. **`bundling_patterns.md`** — Removed (unreferenced, no routing, no keyword triggers)
+
+> See `workflows-code--web-dev/CHANGELOG.md` v1.0.9.2 for full details.
+
+---
+
 ## [**1.2.4.0**] - 2026-02-06
 
 Adds **Context Window Budget (CWB)** system to the orchestrate agent, preventing context overflow when dispatching 5-20 sub-agents in parallel. Four new sections, nine cross-section updates.

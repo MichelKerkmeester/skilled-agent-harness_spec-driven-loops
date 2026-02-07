@@ -6,6 +6,84 @@ All notable changes to the workflows-code--web-dev skill (formerly `workflows-co
 
 ---
 
+## [**1.0.9.2**] - 2026-02-07
+
+Inline comment style enforcement across **10 files** (~200 edits), router completeness fixes, and dead file removal.
+
+---
+
+### Deleted
+
+1. **`bundling_patterns.md`** — Removed entirely (unreferenced in router, no keyword triggers, no cross-references)
+
+---
+
+### Changed
+
+**Inline Comment Style Enforcement (5 `.js` assets):**
+
+1. **`performance_patterns.js`** — File header converted to 3-line `// ───` format; 7 section headers from `// ───` to `/* ── */`; 2 WHAT comments removed
+2. **`lenis_patterns.js`** — 8 section headers JSDoc → `/* ── */`; P0 commented-out export block deleted (16 lines); WHAT comments removed
+3. **`wait_patterns.js`** — 5 WHAT comments removed/reworded to WHY
+4. **`hls_patterns.js`** — 8 WHAT comments removed/reworded to WHY
+5. **`validation_patterns.js`** — 21 WHAT comments removed/reworded to WHY; architecture layer comments kept
+
+**Inline Comment Style Enforcement (5 `.md` references):**
+
+6. **`webflow_patterns.md`** — 44 WHAT comments deleted, 1 reworded
+7. **`third_party_integrations.md`** — 42 WHAT comments deleted, 1 reworded
+8. **`animation_workflows.md`** — 22 WHAT comments deleted, 4 reworded
+9. **`observer_patterns.md`** — 20 WHAT comments deleted (config trailing comments, narrating code)
+10. **`swiper_patterns.md`** — 7 WHAT comments deleted/reworded
+
+**Router Completeness (SKILL.md):**
+
+11. **`TASK_KEYWORDS`** — Added `SCHEDULING` (requestIdleCallback, queueMicrotask, idle callback, postTask) and `THIRD_PARTY` (third-party, external library, finsweet, script loading) keyword groups
+12. **Pseudocode router** — Added `async_patterns.md` condition (`task.has_scheduling_apis`) and `third_party_integrations.md` condition (`task.has_third_party`)
+13. **Use Case table** — Added `async_patterns.md` row (RAF, requestIdleCallback, queueMicrotask, scheduling APIs)
+
+---
+
+### Source
+
+- Style rules: `code_style_guide.md` Section 5 (WHY not WHAT, no commented-out code, section header format)
+- Excluded: `code_style_guide.md` and `code_style_enforcement.md` (contain bad examples as teaching material)
+
+---
+
+## [**1.0.9.1**] - 2026-02-07
+
+Incorporated performance optimization teachings from Spec 031 (`anobel-performance-analysis`) into reference files and pattern assets.
+
+---
+
+### New
+
+1. **SharedObservers consolidation pattern** — New Section 7 in `observer_patterns.md` documenting the `window.SharedObservers` API, single-element and multi-element migration patterns, fallback strategy
+2. **`wait_for_motion()`** — Event-driven Motion.dev waiting using `motion:ready` CustomEvent (replaces 17 polling loops). Added to `wait_patterns.js`
+3. **`wait_for_image_with_timeout()`** — `Promise.race` wrapper for image loading with configurable timeout (default 2s). Added to `wait_patterns.js`
+4. **Timeout hierarchy** — Standardized timeout values documented in `cwv_remediation.md`: 1s Motion.dev, 2s images, 3s desktop safety, 2s mobile safety (ADR-001)
+5. **Mobile safety timeout** — Device-aware safety timeout with 2s mobile / 3s desktop in `cwv_remediation.md`
+
+---
+
+### Changed
+
+1. **`cwv_remediation.md`** — Safety timeout section expanded with `<head>` positioning requirement, timeout hierarchy table, mobile detection code, `Promise.race` image timeout pattern
+2. **`performance_patterns.md`** — will-change section expanded with anti-pattern: static `will-change` in CSS creates permanent compositor layers (9 static + 40+ premature declarations found in Spec 031)
+3. **`SKILL.md`** — Observer patterns upgraded from `ON_DEMAND` to `CONDITIONAL` loading; SharedObservers keywords added to `OBSERVERS` trigger; Phase 1 visibility gates updated to prefer SharedObservers
+4. **`observer_patterns.md`** — Related Resources section renumbered (7→8) to accommodate new SharedObservers section
+
+---
+
+### Source
+
+- Spec: `005-anobel.com/031-anobel-performance-analysis`
+- ADRs: ADR-001 (Timeout Values), ADR-002 (Motion.dev Ready Event)
+- Implementation: SharedObservers migration in `video_player_hls_scroll.js`, `video_background_hls_hover.js`, `table_of_content.js`
+
+---
+
 ## [**1.0.9.0**] - 2026-01-26
 
 Skill renamed from `workflows-code` to `workflows-code--web-dev` to distinguish from the new multi-stack variant `workflows-code--full-stack`.

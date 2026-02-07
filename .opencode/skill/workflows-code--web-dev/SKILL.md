@@ -2,7 +2,7 @@
 name: workflows-code
 description: "Orchestrator guiding developers through implementation, debugging, and verification phases across specialized code quality skills (project)"
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.0.0
+version: 1.0.9.2
 ---
 
 <!-- Keywords: workflows-code, development-orchestrator, frontend-development, browser-verification, debugging-workflow, implementation-patterns, webflow-integration -->
@@ -96,7 +96,9 @@ TASK_KEYWORDS = {
 
     # CONDITIONAL: triggers performance pattern loading
     "PERFORMANCE": ["performance", "optimize", "core web vitals", "lazy load", "cache", "throttle", "debounce", "requestAnimationFrame", "RAF"],
-    "OBSERVERS": ["observer", "mutation", "intersection", "resize observer"]
+    "OBSERVERS": ["observer", "mutation", "intersection", "resize observer", "shared_observers", "sharedobservers", "observer consolidation"],
+    "SCHEDULING": ["requestIdleCallback", "queueMicrotask", "idle callback", "postTask", "scheduling API", "main thread blocking"],
+    "THIRD_PARTY": ["third-party", "third party", "external library", "library integration", "script loading", "finsweet"]
 }
 ```
 
@@ -153,13 +155,21 @@ def route_frontend_resources(task):
         if task.security_concerns:
             return load("references/implementation/security_patterns.md")  # CONDITIONAL: OWASP Top 10
 
+        # CONDITIONAL: Load if third-party library integration detected
+        if task.has_third_party or 'finsweet' in task.keywords:
+            return load("references/implementation/third_party_integrations.md")  # CONDITIONAL: external libraries, CDN loading
+
         # CONDITIONAL: Load if performance keywords detected (throttle, debounce, RAF)
         if task.needs_performance_optimization:
             return load("references/implementation/performance_patterns.md")  # CONDITIONAL: throttle, debounce, RAF
 
-        # ON_DEMAND: Load on explicit request (observer patterns)
+        # CONDITIONAL: Load if observer/SharedObservers keywords detected
         if task.needs_observer_patterns:
-            return load("references/implementation/observer_patterns.md")  # ON_DEMAND: MutationObserver, IO
+            return load("references/implementation/observer_patterns.md")  # CONDITIONAL: MutationObserver, IO, SharedObservers
+
+        # CONDITIONAL: Load if browser scheduling APIs detected
+        if task.has_scheduling_apis or 'requestIdleCallback' in task.keywords:
+            load("references/implementation/async_patterns.md")  # CONDITIONAL: RAF, idle callback, scheduling
 
         # CONDITIONAL: Load if lenis smooth scroll detected
         if task.has_lenis or 'lenis' in task.keywords:
@@ -244,7 +254,8 @@ def route_frontend_resources(task):
 | Animation/video/asset optimization, throttle, debounce    | [performance_patterns.md](./references/implementation/performance_patterns.md)                                                                     | CONDITIONAL |
 | XSS, CSRF, injection prevention                           | [security_patterns.md](./references/implementation/security_patterns.md)                                                                           | CONDITIONAL |
 | Third-party library integration, CDN loading, HLS.js      | [third_party_integrations.md](./references/implementation/third_party_integrations.md)                                                             | CONDITIONAL |
-| MutationObserver, IntersectionObserver, DOM watching      | [observer_patterns.md](./references/implementation/observer_patterns.md)                                                                           | ON_DEMAND   |
+| MutationObserver, IntersectionObserver, SharedObservers   | [observer_patterns.md](./references/implementation/observer_patterns.md)                                                                           | CONDITIONAL |
+| RAF, requestIdleCallback, queueMicrotask, scheduling APIs | [async_patterns.md](./references/implementation/async_patterns.md)                                                                                 | CONDITIONAL |
 
 **Phase 2: Debugging**
 
@@ -350,6 +361,7 @@ See: `references/research/multi_agent_patterns.md`
 4. **Animation Visibility Gates** - Use IntersectionObserver for animation control
    - 0.1 threshold for animation start/stop (10% visibility)
    - Controls video autoplay and Swiper pagination
+   - Prefer SharedObservers (`window.SharedObservers.observe()`) with raw IO fallback
    - See [observer_patterns.md](./references/implementation/observer_patterns.md) for patterns
 
 See [implementation_workflows.md](./references/implementation/implementation_workflows.md) for complete workflows.

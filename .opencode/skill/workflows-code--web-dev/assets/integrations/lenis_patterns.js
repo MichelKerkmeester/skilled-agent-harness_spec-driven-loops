@@ -10,13 +10,11 @@
 // - Form submission: Pause during async operations
 // ───────────────────────────────────────────────────────────────
 
-/**
- * ───────────────────────────────────────────────────────────────
- * 1. SAFE LENIS ACCESS
- * ───────────────────────────────────────────────────────────────
- * Always use safe access patterns - Lenis may not be loaded yet
- * or may be disabled on certain pages.
- */
+/* ─────────────────────────────────────────────────────────────
+   1. SAFE LENIS ACCESS
+──────────────────────────────────────────────────────────────── */
+
+// Lenis may not be loaded yet or may be disabled on certain pages
 
 /**
  * Get the global Lenis instance safely
@@ -49,12 +47,9 @@ function has_lenis_method(method) {
 }
 
 
-/**
- * ───────────────────────────────────────────────────────────────
- * 2. SCROLL TO ELEMENT
- * ───────────────────────────────────────────────────────────────
- * Wrapper for Lenis scrollTo with sensible defaults and fallback.
- */
+/* ─────────────────────────────────────────────────────────────
+   2. SCROLL TO ELEMENT
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Scroll to an element with Lenis or native fallback
@@ -93,7 +88,6 @@ function scroll_to_element(target, options = {}) {
     behavior = 'smooth',
   } = options;
 
-  // Resolve target to element
   const element = typeof target === 'string'
     ? document.querySelector(target)
     : target;
@@ -132,12 +126,9 @@ function scroll_to_element(target, options = {}) {
 }
 
 
-/**
- * ───────────────────────────────────────────────────────────────
- * 3. SCROLL CONTROL (STOP/START)
- * ───────────────────────────────────────────────────────────────
- * Patterns for temporarily disabling scroll during modals, forms, etc.
- */
+/* ─────────────────────────────────────────────────────────────
+   3. SCROLL CONTROL (STOP/START)
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Stop Lenis scrolling (for modals, overlays, etc.)
@@ -198,12 +189,9 @@ async function with_scroll_paused(async_operation) {
 }
 
 
-/**
- * ───────────────────────────────────────────────────────────────
- * 4. SCROLL EVENT LISTENERS
- * ───────────────────────────────────────────────────────────────
- * Lenis provides its own scroll event system for smooth scroll position.
- */
+/* ─────────────────────────────────────────────────────────────
+   4. SCROLL EVENT LISTENERS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Add a scroll listener to Lenis
@@ -241,13 +229,11 @@ function on_scroll(callback) {
 }
 
 
-/**
- * ───────────────────────────────────────────────────────────────
- * 5. INTERSECTION OBSERVER COORDINATION
- * ───────────────────────────────────────────────────────────────
- * Lenis smooth scroll can affect IntersectionObserver timing.
- * These patterns ensure proper coordination.
- */
+/* ─────────────────────────────────────────────────────────────
+   5. INTERSECTION OBSERVER COORDINATION
+──────────────────────────────────────────────────────────────── */
+
+// LENIS: Smooth scroll can affect IntersectionObserver timing
 
 /**
  * Create IntersectionObserver that works well with Lenis
@@ -318,12 +304,9 @@ function handle_anchor_click(event, target, options = {}) {
 }
 
 
-/**
- * ───────────────────────────────────────────────────────────────
- * 6. CLEANUP PATTERNS
- * ───────────────────────────────────────────────────────────────
- * Proper cleanup for SPA navigation and component teardown.
- */
+/* ─────────────────────────────────────────────────────────────
+   6. CLEANUP PATTERNS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Create a managed scroll handler with automatic cleanup
@@ -399,12 +382,9 @@ function cleanup_all(cleanup_functions) {
 }
 
 
-/**
- * ───────────────────────────────────────────────────────────────
- * 7. ACCESSIBILITY PATTERNS
- * ───────────────────────────────────────────────────────────────
- * Ensure smooth scroll respects user preferences.
- */
+/* ─────────────────────────────────────────────────────────────
+   7. ACCESSIBILITY PATTERNS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Check if user prefers reduced motion
@@ -433,25 +413,6 @@ function scroll_to_element_accessible(target, options = {}) {
 }
 
 
-/**
- * ───────────────────────────────────────────────────────────────
- * EXPORTS (for module usage)
- * ───────────────────────────────────────────────────────────────
- */
-
-// If using as ES module, uncomment:
-// export {
-//   get_lenis,
-//   has_lenis_method,
-//   scroll_to_element,
-//   stop_scroll,
-//   start_scroll,
-//   with_scroll_paused,
-//   on_scroll,
-//   create_lenis_aware_observer,
-//   handle_anchor_click,
-//   create_managed_scroll_handler,
-//   cleanup_all,
-//   prefers_reduced_motion,
-//   scroll_to_element_accessible,
-// };
+/* ─────────────────────────────────────────────────────────────
+   EXPORTS
+──────────────────────────────────────────────────────────────── */

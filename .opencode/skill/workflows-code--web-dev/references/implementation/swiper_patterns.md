@@ -131,7 +131,6 @@ From `timeline.js:60-77` - Handle Swiper loading asynchronously:
 
 ```javascript
 function initTimelineSwiper() {
-  // Check if Swiper is available
   // @ts-ignore - Swiper loaded externally
   if (typeof Swiper === "undefined") {
     console.warn("Timeline: Swiper not loaded yet, retrying...");
@@ -148,7 +147,6 @@ function initTimelineSwiper() {
     return;
   }
 
-  // Initialize Swiper
   // @ts-ignore - Swiper loaded externally
   const mainSwiper = new Swiper(contentContainer, config);
 }
@@ -170,10 +168,10 @@ Continuous scrolling marquee configuration from `marquee_brands.js:73-89`:
 
 ```javascript
 const swiper = new Swiper(marqueeTrack, {
-  wrapperClass: "marquee--container",     // Wrapper container class
-  slideClass: "marquee--item",            // Individual slide class
-  spaceBetween: 0,                        // No spacing (handled by CSS)
-  allowTouchMove: false,                  // Disable touch/drag
+  wrapperClass: "marquee--container",
+  slideClass: "marquee--item",
+  spaceBetween: 0,                        // CSS handles spacing, not Swiper
+  allowTouchMove: false,
   // Reason: Disable a11y for purely decorative scrolling content
   a11y: false,
   speed: 8000,                            // Animation duration in ms
@@ -182,8 +180,8 @@ const swiper = new Swiper(marqueeTrack, {
   watchOverflow: false,                   // Keep autoplay running even if slides < viewport
   slidesPerView: "auto",                  // Auto-fit slides
   autoplay: {
-    delay: 0,                             // No transition delay
-    disableOnInteraction: false,          // Keep running after interaction
+    delay: 0,
+    disableOnInteraction: false,          // Continuous motion even when user touches
   },
 });
 ```
@@ -231,7 +229,6 @@ const repeatsNeeded = Math.max(
 const MAX_REPEATS = 40;
 const cappedRepeats = Math.min(repeatsNeeded, MAX_REPEATS);
 
-// Create duplicates
 if (cappedRepeats > 1) {
   const fragment = document.createDocumentFragment();
 

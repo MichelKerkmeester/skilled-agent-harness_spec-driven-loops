@@ -46,23 +46,88 @@ Measure first, optimize with evidence, verify improvement with before/after Page
 
 **Why it matters:** If the hero animation fails or takes too long, users see a blank page indefinitely. The safety timeout guarantees page visibility after a maximum wait time.
 
+#### Timeout Hierarchy
+
+From Spec 031 (ADR-001): Standardize timeouts across all hero scripts to create a layered safety net:
+
+| Component | Timeout | Rationale |
+|-----------|---------|-----------|
+| **Motion.dev library wait** | 1000ms | Library should load in <500ms; 1s is generous fallback |
+| **Image loading wait** | 2000ms | Preloaded images load fast; 2s catches 404s and slow CDN |
+| **Safety timeout (desktop)** | 3000ms | Final guarantee — page always visible within 3s |
+| **Safety timeout (mobile)** | 2000ms | Faster reveal for better perceived performance on mobile |
+
+**The chain:** Each hero script has its own timeout (1s for libraries, 2s for images). The safety timeout is the last-resort guarantee that fires independently of hero scripts.
+
+#### Implementation (with mobile detection)
+
 ```javascript
-// LCP Safety Timeout - Force page visible after 3s if hero animation fails
-setTimeout(function () {
-  var pw = document.querySelector('.page--wrapper, [data-target="page-wrapper"]');
-  if (pw && !pw.classList.contains('page-ready')) {
-    pw.classList.add('page-ready');
-    console.warn('[LCP Safety] Force-revealed page after timeout');
-  }
-}, 3000);
+// LCP Safety Timeout — MUST be inline in <head> (not deferred)
+// Guarantees page visibility regardless of hero script success/failure
+(function () {
+  var is_mobile = /Mobi|Android/i.test(navigator.userAgent)
+    || window.innerWidth < 768;
+  var timeout = is_mobile ? 2000 : 3000;
+
+  setTimeout(function () {
+    var pw = document.querySelector('.page--wrapper, [data-target="page-wrapper"]');
+    if (pw && !pw.classList.contains('page-ready')) {
+      pw.classList.add('page-ready');
+      console.warn('[LCP Safety] Force-revealed page after ' + timeout + 'ms');
+    }
+  }, timeout);
+})();
 ```
 
-**Implementation notes:**
-- Place in `<head>` as inline script (not deferred)
-- 3000ms is the recommended timeout (balances animation completion vs user patience)
-- Selector should match your page wrapper element
-- Only triggers if the animation hasn't already completed
-- Console warning aids debugging without breaking functionality
+#### Critical: `<head>` Positioning
+
+**The safety timeout MUST be an inline `<script>` in `<head>`** (not in `</body>` custom code):
+
+- `<head>` scripts execute **before** deferred scripts parse
+- If placed after `</body>`, deferred hero scripts may already be blocking — the safety timeout runs too late
+- By placing in `<head>`, the timeout starts counting from the earliest possible moment
+
+```
+Timeline (correct — <head> placement):
+  0ms   ─── Safety timeout starts (inline <head>)
+  ~100ms ─── Browser begins parsing body
+  ~500ms ─── Deferred scripts start executing
+  2000ms ─── Safety fires (mobile) if hero not done
+  3000ms ─── Safety fires (desktop) if hero not done
+
+Timeline (wrong — </body> placement):
+  0ms   ─── Browser parsing
+  ~500ms ─── Deferred scripts start executing
+  ~600ms ─── Safety timeout starts (too late!)
+  3600ms ─── Safety fires — 600ms later than expected
+```
+
+#### Image Timeout with Promise.race
+
+Hero scripts should wrap image loading in `Promise.race` to guarantee resolution:
+
+```javascript
+// ✅ GOOD: Image promise with timeout
+promises.push(
+  Promise.race([
+    new Promise((resolve) => {
+      img.addEventListener('load', resolve, { once: true });
+      img.addEventListener('error', resolve, { once: true });
+    }),
+    new Promise((resolve) => setTimeout(resolve, 2000)),  // 2s timeout
+  ])
+);
+
+// ❌ BAD: Image promise without timeout (waits forever on 404/hang)
+promises.push(
+  new Promise((resolve) => {
+    img.addEventListener('load', resolve, { once: true });
+    img.addEventListener('error', resolve, { once: true });
+  })
+);
+```
+
+See `wait_patterns.js` → `wait_for_image_with_timeout()` for a reusable implementation.
 
 ### Solution: LCP Element Preload
 

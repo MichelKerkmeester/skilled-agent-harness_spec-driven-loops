@@ -37,7 +37,6 @@ function load_hls_library(options = {}) {
   const { timeout_ms = 10000 } = options;
 
   return new Promise((resolve) => {
-    // Already loaded
     if (typeof window.Hls !== 'undefined') {
       resolve(true);
       return;
@@ -257,12 +256,10 @@ function setup_hls_events(hls, callbacks = {}) {
     }
   }
 
-  // Attach listeners
   hls.on(Hls.Events.MANIFEST_PARSED, handle_manifest_parsed);
   hls.on(Hls.Events.LEVEL_LOADED, handle_level_loaded);
   hls.on(Hls.Events.ERROR, handle_error);
 
-  // Return cleanup function
   return function cleanup() {
     try { hls.off(Hls.Events.MANIFEST_PARSED, handle_manifest_parsed); } catch (_) { /* ignore */ }
     try { hls.off(Hls.Events.LEVEL_LOADED, handle_level_loaded); } catch (_) { /* ignore */ }
@@ -300,7 +297,6 @@ function setup_hls_events(hls, callbacks = {}) {
 function handle_hls_error(hls, data, state = {}) {
   const { max_retries = 3 } = state;
 
-  // Initialize state tracking
   if (typeof state.media_error_count !== 'number') {
     state.media_error_count = 0;
   }
@@ -382,22 +378,20 @@ function handle_hls_error(hls, data, state = {}) {
 function destroy_hls_player(player_state) {
   const { hls, video, event_cleanup, abort_controller } = player_state;
 
-  // Abort any pending fetches
+  // Cancel in-flight requests to prevent orphaned callbacks
   if (abort_controller) {
     try { abort_controller.abort(); } catch (_) { /* ignore */ }
   }
 
-  // Run event cleanup
   if (typeof event_cleanup === 'function') {
     try { event_cleanup(); } catch (_) { /* ignore */ }
   }
 
-  // Destroy HLS.js instance
   if (hls) {
     try { hls.destroy(); } catch (_) { /* ignore */ }
   }
 
-  // Clean up video element
+  // Reset video element to release media resources
   if (video) {
     try {
       video.pause();
@@ -591,7 +585,6 @@ function create_hls_retry_loader(init_function, options = {}) {
       return;
     }
 
-    // Check if HLS.js is available
     if (typeof Hls === 'undefined') {
       retry_count++;
 
@@ -610,10 +603,8 @@ function create_hls_retry_loader(init_function, options = {}) {
     init_function();
   }
 
-  // Start first attempt
   attempt_init();
 
-  // Return reset function
   return function reset() {
     retry_count = 0;
   };

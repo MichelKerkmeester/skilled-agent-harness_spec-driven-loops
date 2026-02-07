@@ -117,8 +117,23 @@ animate(
 ```
 
 **will-change Management:**
+
+From Spec 031: The codebase had **9 static `will-change` declarations in CSS** and **40+ premature declarations in JavaScript**, creating permanent compositor layers that waste GPU memory on every page load — even when no animation runs.
+
+```css
+/* ❌ BAD: Static will-change in CSS (creates permanent layer) */
+.hero-card {
+  will-change: transform, opacity;  /* Layer exists from page load! */
+}
+
+/* ✅ GOOD: No will-change in CSS — set dynamically via JS only */
+.hero-card {
+  /* No will-change here */
+}
+```
+
 ```javascript
-// ✅ GOOD: Add/remove will-change with Motion.dev
+// ✅ GOOD: Add will-change just before animation, remove after
 element.style.willChange = 'transform, opacity';
 
 animate(
@@ -131,9 +146,16 @@ animate(
   }
 );
 
+// ❌ BAD: Set will-change in init() — never removed
+function init() {
+  element.style.willChange = 'transform';  // Permanent layer from page load
+}
+
 // ❌ BAD: Leave will-change active
 element.style.willChange = 'transform';  // Never removed
 ```
+
+**Rule:** Never use `will-change` in CSS stylesheets. Set dynamically in JS immediately before animation, remove on `onComplete`.
 
 **Low-end Device Testing:**
 ```markdown

@@ -156,19 +156,16 @@ Need animation?
 ```
 
 ```javascript
-// Measure and apply natural height
 function open_dropdown(dropdown) {
   const natural_height = dropdown.scrollHeight;
   dropdown.setAttribute('open', '');
   dropdown.style.height = `${natural_height}px`;
 
-  // After transition completes, remove fixed height
   dropdown.addEventListener('transitionend', () => {
     dropdown.style.height = 'auto';
   }, { once: true });
 }
 
-// Close: Set to pixel value first, then animate to 0
 function close_dropdown(dropdown) {
   const current_height = dropdown.scrollHeight;
   dropdown.style.height = `${current_height}px`;
@@ -176,7 +173,6 @@ function close_dropdown(dropdown) {
   // Force reflow so browser registers the pixel value
   dropdown.offsetHeight;
 
-  // Now animate to 0
   dropdown.style.height = '0';
   dropdown.removeAttribute('open');
 }
@@ -218,13 +214,12 @@ function close_dropdown(dropdown) {
   function init_animation() {
     const { animate, inView } = window.Motion || {};
 
-    // Retry if Motion.dev not loaded yet (CDN delays)
+    // CDN loading is unpredictable — retry until Motion library is available
     if (!animate || !inView) {
       setTimeout(init_animation, 100);
       return;
     }
 
-    // Your animation logic here
     inView('.hero-element', ({ target }) => {
       animate(target,
         { opacity: [0, 1], y: [40, 0] },
@@ -391,7 +386,6 @@ animate(element, { opacity: [0, 1] }, {
 ```
 
 ```javascript
-// JavaScript adds class to trigger animation
 inView('.animated-entrance', ({ target }) => {
   target.classList.add('is-visible');
 });
@@ -406,15 +400,15 @@ inView('.animated-entrance', ({ target }) => {
 ```javascript
 // ❌ BAD: Causes layout thrashing
 elements.forEach(el => {
-  const height = el.scrollHeight;  // Read (forces layout)
-  el.style.height = `${height}px`; // Write
-  el.classList.add('active');       // Write
+  const height = el.scrollHeight;  // Forces synchronous layout calculation
+  el.style.height = `${height}px`;
+  el.classList.add('active');
 });
 // Browser reflows 3 times (read-write-write per iteration)
 
 // ✅ GOOD: Batch reads, then writes
-const heights = elements.map(el => el.scrollHeight);  // All reads
-elements.forEach((el, i) => {                         // All writes
+const heights = elements.map(el => el.scrollHeight);
+elements.forEach((el, i) => {
   el.style.height = `${heights[i]}px`;
   el.classList.add('active');
 });
@@ -426,14 +420,11 @@ elements.forEach((el, i) => {                         // All writes
 **Proper will-change usage:**
 
 ```javascript
-// Set will-change just before animation
 element.style.willChange = 'transform, opacity';
 
-// Run animation
 await animate(element, properties, {
   duration: 0.6,
   onComplete: () => {
-    // Remove will-change after animation
     element.style.willChange = '';
   }
 });
@@ -735,13 +726,10 @@ bdg stop 2>&1
 
 **Solution:**
 ```javascript
-// Measure natural height first
 const natural_height = element.scrollHeight;
 
-// Animate to pixel value
 element.style.height = `${natural_height}px`;
 
-// After transition, set to auto (responsive)
 element.addEventListener('transitionend', () => {
   element.style.height = 'auto';
 }, { once: true });
@@ -770,12 +758,11 @@ animate(element, {
 
 **Additional optimization:**
 ```javascript
-// Add will-change temporarily for complex animations
 element.style.willChange = 'transform, opacity';
 
 animate(element, properties, {
   onComplete: () => {
-    element.style.willChange = '';  // Remove after
+    element.style.willChange = '';
   }
 });
 ```
@@ -791,13 +778,12 @@ animate(element, properties, {
 function init_animation() {
   const { animate, inView } = window.Motion || {};
 
-  // Retry if Motion.dev not loaded yet
+  // CDN loading is unpredictable — retry until Motion library is available
   if (!animate || !inView) {
-    setTimeout(init_animation, 100);  // Retry after 100ms
+    setTimeout(init_animation, 100);
     return;
   }
 
-  // Now safe to use animate/inView
   inView('.hero', ({ target }) => {
     animate(target, { opacity: [0, 1] }, { duration: 0.6 });
   });
@@ -814,11 +800,10 @@ function init_animation() {
 ```css
 /* Set initial state for all animated elements */
 .hero-element {
-  opacity: 0;           /* Start invisible */
-  transform: translateY(40px);  /* Start below final position */
+  opacity: 0;
+  transform: translateY(40px);
 }
 
-/* JavaScript will animate to these values */
 .hero-element.animated {
   opacity: 1;
   transform: translateY(0);
@@ -828,7 +813,7 @@ function init_animation() {
 **Alternative:** Use JavaScript to set state before DOM renders (in `<head>`)
 ```html
 <script>
-  // Runs before body renders
+  // Placed in <head> to execute before paint — prevents FOUC
   document.documentElement.classList.add('js-enabled');
 </script>
 
@@ -959,10 +944,8 @@ inView('.hero-section', (info) => {
 
 // inView with cleanup function (for continuous animations)
 inView('.video-section', ({ target }) => {
-  // Start animation
   const controls = animate(target, { opacity: 1 }, { duration: 0.6 });
-  
-  // Return cleanup function (runs when element leaves viewport)
+
   return () => {
     controls.stop();
     target.style.opacity = '0';

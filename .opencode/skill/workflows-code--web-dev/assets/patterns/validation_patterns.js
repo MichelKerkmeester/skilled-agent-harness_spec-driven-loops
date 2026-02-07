@@ -30,7 +30,6 @@ class ContactForm {
       this.handle_submit();
     });
 
-    // Real-time validation
     const inputs = this.form.querySelectorAll('input, textarea');
     inputs.forEach(input => {
       input.addEventListener('blur', () => this.validate_field(input));
@@ -42,16 +41,13 @@ class ContactForm {
     const value = field.value?.trim();
     const field_name = field.name;
 
-    // Clear previous errors
     this.clear_field_error(field);
 
-    // Required field check
     if (field.hasAttribute('required') && !value) {
       this.show_field_error(field, `${field_name} is required`);
       return false;
     }
 
-    // Type-specific validation
     switch (field.type) {
       case 'email':
         if (value && !this.is_valid_email(value)) {
@@ -108,14 +104,12 @@ class ContactForm {
       message: this.sanitize_text(form_data.get('message'))
     };
 
-    // Final validation
     if (!data.name || !data.email || !data.message) {
       console.error('[ContactForm] Sanitization removed all content');
       this.show_form_error('Please check your input and try again');
       return;
     }
 
-    // Submit
     try {
       const result = await this.submit_to_api(data);
 
@@ -230,7 +224,6 @@ class APIClient {
 
     const url = new URL(`${this.base_url}${endpoint}`);
 
-    // Add query parameters
     if (method === 'GET' && params) {
       Object.entries(params).forEach(([key, value]) => {
         if (value !== null && value !== undefined) {
@@ -318,17 +311,16 @@ class BotpoisonProtection {
    * @returns {Promise<boolean>} - True if SDK loaded successfully
    */
   static async load_sdk() {
-    // Already loaded
+    // Short-circuit if SDK is already present
     if (typeof window.Botpoison !== 'undefined') {
       return true;
     }
 
-    // Loading in progress
+    // Return existing load promise to prevent duplicate script injection
     if (BotpoisonProtection.sdk_loader) {
       return BotpoisonProtection.sdk_loader;
     }
 
-    // Start loading
     BotpoisonProtection.sdk_loader = new Promise((resolve) => {
       const script = document.createElement('script');
       script.src = BotpoisonProtection.SDK_URL;
@@ -516,7 +508,6 @@ class WebflowFormState {
       this.fail_el.style.display = 'block';
       this.fail_el.setAttribute('aria-hidden', 'false');
 
-      // Update message if provided
       if (message) {
         const msg_el = this.fail_el.querySelector('[data-error-message]') ||
                       this.fail_el.querySelector('.w-form-fail-msg') ||
@@ -633,7 +624,7 @@ class WebflowForm {
     this.on_submit = this.handle_submit.bind(this);
     this.bind_events();
 
-    // Mark as enhanced
+    // Prevent double-initialization on re-run
     this.form.dataset.webflowFormEnhanced = 'true';
   }
 
@@ -675,10 +666,8 @@ class WebflowForm {
    * Bind form events
    */
   bind_events() {
-    // Intercept submit
     this.form.addEventListener('submit', this.on_submit, { capture: true });
 
-    // Real-time validation on blur (debounced)
     if (this.config.validate_on_blur) {
       const inputs = this.form.querySelectorAll('input, textarea, select');
       inputs.forEach(input => {
@@ -724,13 +713,11 @@ class WebflowForm {
 
     this.clear_field_error(field);
 
-    // Required check
     if (field.hasAttribute('required') && !value) {
       this.show_field_error(field, 'This field is required');
       return false;
     }
 
-    // Type-specific validation
     if (value) {
       switch (field.type) {
         case 'email':
@@ -764,7 +751,6 @@ class WebflowForm {
       }
     }
 
-    // Custom validation via pattern attribute
     if (field.pattern && value) {
       const regex = new RegExp(field.pattern);
       if (!regex.test(value)) {
@@ -786,7 +772,6 @@ class WebflowForm {
     field.classList.add('error', 'w-input-error');
     field.setAttribute('aria-invalid', 'true');
 
-    // Find or create error element
     const error_id = `${field.id || field.name}-error`;
     let error_el = field.parentElement?.querySelector(`[data-error-for="${field.name}"]`) ||
                   field.parentElement?.querySelector('.field-error-message') ||
@@ -920,7 +905,7 @@ class WebflowForm {
    * @returns {Promise<Response>}
    */
   async submit_with_retry(form_data, attempt = 0) {
-    // Convert FormData to JSON
+    // Build JSON payload (files excluded, multi-value fields become arrays)
     const json = {};
     for (const [key, value] of form_data.entries()) {
       if (value instanceof File) {
@@ -1002,7 +987,6 @@ class WebflowForm {
       detail: { controller: this }
     }));
 
-    // Reset form after delay
     if (this.config.reset_on_success) {
       this.reset_timeout = setTimeout(() => {
         this.reset_form();
@@ -1058,7 +1042,6 @@ class WebflowForm {
     this.state = 'idle';
     this.form.removeAttribute('data-state');
 
-    // Clear all field errors
     const fields = this.form.querySelectorAll('input, textarea, select');
     fields.forEach(field => this.clear_field_error(field));
   }

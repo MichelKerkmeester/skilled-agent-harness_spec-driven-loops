@@ -40,7 +40,6 @@ function wait_for_element(selector, options = {}) {
   const { timeout = 5000, parent = document.body } = options;
 
   return new Promise((resolve, reject) => {
-    // Check if element already exists
     const existing = (parent === document.body ? document : parent).querySelector(selector);
     if (existing) {
       resolve(existing);
@@ -131,7 +130,6 @@ function observe_element(element, callback, options = {}) {
     ...(attributeFilter && { attributeFilter }),
   });
 
-  // Return cleanup function
   return () => observer.disconnect();
 }
 
@@ -182,7 +180,7 @@ function observe_cms_content(container_selector, item_selector, callback, option
     }
   };
 
-  // Process existing items if requested
+  // Fire callback for pre-existing items before observer activates
   if (initial) {
     process_items();
   }
@@ -251,7 +249,6 @@ function observe_visibility(elements, callback, options = {}) {
     batch = true,
   } = options;
 
-  // Normalize elements to array
   const element_list = elements instanceof Element
     ? [elements]
     : Array.from(elements);
@@ -346,6 +343,51 @@ function wait_for_image_load(img) {
     img.addEventListener('load', () => resolve(img), { once: true });
     img.addEventListener('error', () => reject(new Error('Image failed to load')), { once: true });
   });
+}
+
+/**
+ * Wait for image to load with timeout (Promise.race pattern)
+ *
+ * PREFERRED over wait_for_image_load when images may 404 or hang.
+ * Uses Promise.race to guarantee resolution within the timeout period.
+ *
+ * From ADR-001 (Spec 031): Hero image promises could wait forever if an image
+ * failed to load or the error event didn't fire. Wrapping in Promise.race
+ * with a 2s timeout guarantees page reveal.
+ *
+ * @param {HTMLImageElement} img - Image element
+ * @param {Object} options - Configuration options
+ * @param {number} options.timeout - Max wait time in ms (default: 2000)
+ * @returns {Promise<HTMLImageElement>} The image (loaded or timed out)
+ *
+ * @example
+ * // Wrap hero image promises with timeout
+ * const promises = hero_images.map(img =>
+ *   wait_for_image_with_timeout(img, { timeout: 2000 })
+ * );
+ * await Promise.all(promises);
+ * // Page reveals even if some images are slow/failed
+ *
+ * @example
+ * // Use in hero script image collection
+ * promises.push(
+ *   wait_for_image_with_timeout(img).catch(() => {
+ *     console.warn('[Hero] Image timed out:', img.src);
+ *   })
+ * );
+ */
+function wait_for_image_with_timeout(img, options = {}) {
+  const { timeout = 2000 } = options;
+
+  return Promise.race([
+    wait_for_image_load(img),
+    new Promise((resolve) => {
+      setTimeout(() => {
+        console.warn(`[Image] Timeout after ${timeout}ms:`, img.src || img.dataset?.src);
+        resolve(img); // Resolve (not reject) to avoid blocking page reveal
+      }, timeout);
+    }),
+  ]);
 }
 
 /**
@@ -461,7 +503,6 @@ function wait_for_library(global_name, options = {}) {
   const { timeout = 10000, check_interval = 100 } = options;
 
   return new Promise((resolve, reject) => {
-    // Check if already loaded
     if (typeof window[global_name] !== 'undefined') {
       resolve(window[global_name]);
       return;
@@ -486,6 +527,71 @@ function wait_for_library(global_name, options = {}) {
     timeout_id = setTimeout(() => {
       cleanup();
       reject(new Error(`Library ${global_name} not loaded after ${timeout}ms`));
+    }, timeout);
+  });
+}
+
+/**
+ * Wait for Motion.dev library using CustomEvent (event-driven, no polling)
+ *
+ * PREFERRED over wait_for_library('Motion') — uses the `motion:ready` CustomEvent
+ * pattern instead of polling. Requires global.html to dispatch the event after
+ * importing Motion.dev.
+ *
+ * From ADR-002 (Spec 031): Replaces 17 parallel polling loops with a single
+ * event-driven listener, eliminating CPU waste and race conditions.
+ *
+ * @param {Object} options - Configuration options
+ * @param {number} options.timeout - Max wait time in ms (default: 1000)
+ * @returns {Promise<Object>} The window.Motion object
+ * @throws {Error} If Motion.dev not loaded within timeout
+ *
+ * @example
+ * // In each script that needs Motion.dev:
+ * try {
+ *   const Motion = await wait_for_motion();
+ *   Motion.animate('.element', { opacity: [0, 1] });
+ * } catch (e) {
+ *   console.warn('[Hero] Motion.dev not available, using CSS fallback');
+ *   handle_fallback();
+ * }
+ *
+ * @example
+ * // In global.html (dispatches the event after ES module import):
+ * // <script type="module">
+ * //   const { animate, scroll, inView } = await import("...");
+ * //   window.Motion = { animate, scroll, inView };
+ * //   window.dispatchEvent(new CustomEvent('motion:ready'));
+ * // </script>
+ */
+function wait_for_motion(options = {}) {
+  const { timeout = 1000 } = options;
+
+  return new Promise((resolve, reject) => {
+    // Already loaded — resolve immediately
+    if (window.Motion && typeof window.Motion.animate === 'function') {
+      resolve(window.Motion);
+      return;
+    }
+
+    let timeout_id = null;
+
+    const cleanup = (handler) => {
+      if (timeout_id) clearTimeout(timeout_id);
+      window.removeEventListener('motion:ready', handler);
+    };
+
+    const handler = () => {
+      cleanup(handler);
+      resolve(window.Motion);
+    };
+
+    window.addEventListener('motion:ready', handler, { once: true });
+
+    // Timeout fallback (1s default per ADR-001)
+    timeout_id = setTimeout(() => {
+      cleanup(handler);
+      reject(new Error(`Motion.dev not loaded after ${timeout}ms`));
     }, timeout);
   });
 }
@@ -573,6 +679,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
     // Event-based patterns (KEPT)
     wait_for_image_load,
+    wait_for_image_with_timeout,
     wait_for_video_ready,
     wait_for_transition_end,
     wait_for_animation_end,
@@ -581,6 +688,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
     // Library patterns
     wait_for_library,
+    wait_for_motion,
     wait_for_webflow,
 
     // Utilities
@@ -600,6 +708,7 @@ if (typeof window !== 'undefined') {
 
     // Event-based patterns (KEPT)
     wait_for_image_load,
+    wait_for_image_with_timeout,
     wait_for_video_ready,
     wait_for_transition_end,
     wait_for_animation_end,
@@ -608,6 +717,7 @@ if (typeof window !== 'undefined') {
 
     // Library patterns
     wait_for_library,
+    wait_for_motion,
     wait_for_webflow,
 
     // Utilities

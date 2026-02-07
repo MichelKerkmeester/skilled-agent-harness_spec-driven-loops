@@ -50,15 +50,14 @@ function observe_mutations(target, callback, options = {}) {
   const observer = new MutationObserver(callback);
   
   observer.observe(target, {
-    attributes: true,       // Watch attribute changes
-    attributeFilter: [],    // Specific attributes (empty = all)
-    childList: false,       // Watch child additions/removals
-    subtree: false,         // Include descendants
-    characterData: false,   // Watch text content changes
+    attributes: true,
+    attributeFilter: [],    // Empty array = watch all attributes
+    childList: false,
+    subtree: false,
+    characterData: false,
     ...options
   });
   
-  // Return cleanup function
   return () => observer.disconnect();
 }
 ```
@@ -83,7 +82,6 @@ function observeOfficeHours() {
     return;
   }
 
-  // Get initial state
   const getStatus = () => {
     const status = indicator.getAttribute('data-status');
     return (status === 'open' || status === 'closed') ? status : null;
@@ -96,7 +94,6 @@ function observeOfficeHours() {
     if (newStatus !== currentStatus) {
       currentStatus = newStatus;
       console.log(`Status changed: ${newStatus}`);
-      // Trigger UI update
       updateVisibility();
     }
   });
@@ -106,7 +103,6 @@ function observeOfficeHours() {
     attributeFilter: ['data-status'],  // Only watch this specific attribute
   });
 
-  // Store cleanup for later
   state.cleanups.push(() => observer.disconnect());
 }
 ```
@@ -128,14 +124,12 @@ const state = {
 };
 
 function init() {
-  // Setup observer and store cleanup
   const observer = new MutationObserver(handleMutation);
   observer.observe(element, { attributes: true });
   state.cleanups.push(() => observer.disconnect());
 }
 
 function destroy() {
-  // Run all cleanup functions
   state.cleanups.forEach(cleanup => cleanup());
   state.cleanups = [];
 }
@@ -166,8 +160,8 @@ function destroy() {
 function observe_intersections(elements, callback, options = {}) {
   const observer = new IntersectionObserver(callback, {
     root: null,           // null = viewport, or specify scroll container
-    rootMargin: '0px',    // Margin around root (can shrink/expand)
-    threshold: 0,         // 0 = any pixel visible, 1 = fully visible
+    rootMargin: '0px',
+    threshold: 0,
     ...options
   });
 
@@ -186,7 +180,6 @@ function observe_intersections(elements, callback, options = {}) {
  */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    // intersectionRatio gives visibility percentage
     const visibility = Math.round(entry.intersectionRatio * 100);
     entry.target.style.setProperty('--visibility', visibility);
   });
@@ -273,8 +266,8 @@ From `table_of_content.js` - Using rootMargin to create a "detection zone":
  * - Bottom 60% ignored (focus on upper content)
  */
 const DEFAULT_CONFIG = {
-  root_margin_top: "-10%",     // Shrink from top by 10%
-  root_margin_bottom: "-60%",  // Shrink from bottom by 60%
+  root_margin_top: "-10%",
+  root_margin_bottom: "-60%",
 };
 
 function create_observer() {
@@ -426,7 +419,6 @@ Observers that aren't disconnected continue running and can cause:
 - Bugs in SPA navigation (stale callbacks)
 
 ```javascript
-// Pattern: Store all cleanups in array
 const cleanups = [];
 
 function setup() {
@@ -511,10 +503,8 @@ When using both MutationObserver and IntersectionObserver:
 function setup_combined_observers(container) {
   const cleanups = [];
 
-  // Track visible elements
   const intersectionObserver = new IntersectionObserver(handleVisibility);
   
-  // Watch for new elements being added
   const mutationObserver = new MutationObserver((mutations) => {
     mutations.forEach(mutation => {
       mutation.addedNodes.forEach(node => {
@@ -525,12 +515,10 @@ function setup_combined_observers(container) {
     });
   });
 
-  // Initial elements
   container.querySelectorAll('.observable').forEach(el => {
     intersectionObserver.observe(el);
   });
 
-  // Watch for new elements
   mutationObserver.observe(container, { childList: true, subtree: true });
 
   cleanups.push(
@@ -562,10 +550,129 @@ function setup_combined_observers(container) {
 
 ---
 
-## 7. 🔗 RELATED RESOURCES
+## 7. 🔗 SHAREDOBSERVERS CONSOLIDATION PATTERN
+
+### Overview
+
+When a page has many scripts creating individual IntersectionObserver instances with the same options, the browser creates separate observer objects. The **SharedObservers** pattern consolidates these into a shared registry (`window.SharedObservers`) that multiplexes callbacks through fewer observer instances.
+
+**Implemented in:** `shared_observers.js` (global script, loaded on all pages)
+
+### API Surface
+
+```javascript
+// Primary: observe with shared observer (returns unobserve cleanup function)
+const unobserve = window.SharedObservers.observe(element, callback, options);
+
+// One-time observation (auto-unobserves after first intersection)
+const unobserve = window.SharedObservers.observeOnce(element, callback, options);
+
+// Convenience presets with predefined thresholds/margins:
+window.SharedObservers.visibility.observe(element, callback);  // threshold: 0
+window.SharedObservers.lazy.observe(element, callback);        // rootMargin: '200px'
+window.SharedObservers.full.observe(element, callback);        // threshold: 1.0
+```
+
+**Key concept:** Options are serialized to a config key (`JSON.stringify`). All observers with identical options share a single `IntersectionObserver` instance.
+
+### Migration Pattern (Single Element)
+
+When migrating a script from raw `IntersectionObserver` to `SharedObservers`:
+
+```javascript
+// ─── BEFORE: Raw IntersectionObserver ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) handle_visible(entry);
+    else handle_hidden(entry);
+  });
+}, { threshold: [0, 0.1, 0.25], rootMargin: '20% 0px 20% 0px' });
+
+observer.observe(player);
+// Cleanup: observer.disconnect();
+
+// ─── AFTER: SharedObservers with fallback ───
+const viewport_handler = (entry) => {
+  if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
+    handle_visible(entry);
+  } else if (!entry.isIntersecting) {
+    handle_hidden(entry);
+  }
+};
+
+const viewport_options = { threshold: [0, 0.1, 0.25], rootMargin: '20% 0px 20% 0px' };
+
+if (window.SharedObservers) {
+  const unobserve = window.SharedObservers.observe(player, viewport_handler, viewport_options);
+  add_cleanup(unobserve);  // Store for teardown
+} else {
+  // Fallback: raw IntersectionObserver if SharedObservers not loaded
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(viewport_handler),
+    viewport_options,
+  );
+  observer.observe(player);
+  add_cleanup(() => observer.disconnect());
+}
+```
+
+**Key points:**
+- **Always provide fallback** — SharedObservers may not be loaded yet (script order)
+- **Extract callback** — The handler function works with both paths (single entry)
+- **Cleanup function** — `SharedObservers.observe()` returns an unobserve function (same interface as cleanup array pattern)
+
+### Migration Pattern (Multiple Elements)
+
+When observing multiple elements (e.g., TOC sections), collect unobserve functions:
+
+```javascript
+// ─── From table_of_content.js ───
+function create_observer() {
+  const root_margin = `${config.root_margin_top} 0px ${config.root_margin_bottom} 0px`;
+  const observer_options = { root: null, rootMargin: root_margin, threshold: [0] };
+
+  if (window.SharedObservers) {
+    const unobserve_fns = [];
+    sections.forEach((section) => {
+      unobserve_fns.push(
+        window.SharedObservers.observe(section, handle_intersection, observer_options)
+      );
+    });
+    // Wrap cleanup in disconnect-compatible interface
+    observer = { disconnect: () => unobserve_fns.forEach((fn) => fn()) };
+  } else {
+    observer = new IntersectionObserver(handle_intersection, observer_options);
+    sections.forEach((section) => observer.observe(section));
+  }
+}
+```
+
+**Key insight:** Wrap unobserve functions in a `{ disconnect: () => ... }` object to maintain compatibility with existing teardown code that calls `observer.disconnect()`.
+
+### When to Use SharedObservers
+
+| Scenario | Use SharedObservers | Use Raw IO |
+|----------|:-------------------:|:----------:|
+| Multiple scripts observe with same options | Yes | - |
+| Global script loaded on all pages | Yes | - |
+| Single script, unique options | - | Yes |
+| No dependency on global load order | - | Yes |
+| Convenience presets (lazy, visibility) | Yes | - |
+
+### Benefits
+
+- **Fewer observer instances** — Scripts with matching options share one browser observer
+- **Consistent cleanup API** — All paths return an unobserve function
+- **Presets** — `visibility`, `lazy`, `full` presets reduce boilerplate
+- **No breaking change** — Fallback to raw IO preserves behavior when SharedObservers isn't available
+
+---
+
+## 8. 🔗 RELATED RESOURCES
 
 ### Reference Files
 - [implementation_workflows.md](./implementation_workflows.md) - Condition-based waiting patterns using observers
 - [webflow_patterns.md](./webflow_patterns.md) - Collection list patterns that use MutationObserver
 - [animation_workflows.md](./animation_workflows.md) - IntersectionObserver for scroll-triggered animations
 - [performance_patterns.md](./performance_patterns.md) - Lazy loading with IntersectionObserver
+- `shared_observers.js` (global) - SharedObservers registry implementation

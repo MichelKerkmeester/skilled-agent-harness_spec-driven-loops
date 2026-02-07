@@ -91,7 +91,6 @@ Webflow enforces these settings in production - you cannot override them:
 // ❌ WRONG: Returns only first item's button
 const button = document.getElementById('read-more');
 button.addEventListener('click', handleClick);
-// Only first item's button gets listener!
 
 // ✅ CORRECT: Use classes with querySelectorAll
 document.querySelectorAll('.read-more-button').forEach(btn => {
@@ -258,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
 **When to use:** Simple components, fast connections, known load times
 
 ```javascript
-const INIT_DELAY_MS = 500;  // Wait 500ms for items to render
+const INIT_DELAY_MS = 500;
 
 setTimeout(() => {
   const items = document.querySelectorAll('.w-dyn-item');
@@ -276,7 +275,7 @@ setTimeout(() => {
 **When to use:** Production code, variable network speeds, critical functionality
 
 ```javascript
-// Retry up to 10 times with 200ms intervals (2 second total)
+// WEBFLOW: Collection items render asynchronously after DOM ready
 (function retry_init(attempts = 10) {
   const items = document.querySelectorAll('.w-dyn-item');
 
@@ -300,20 +299,18 @@ setTimeout(() => {
 **When to use:** Complex pages, progressive enhancement, dynamic content
 
 ```javascript
-// React to DOM changes
 const observer = new MutationObserver(() => {
   const items = document.querySelectorAll('.w-dyn-item');
 
   if (items.length) {
     init_collection_items(items);
-    observer.disconnect();  // Stop observing after initialization
+    observer.disconnect();
   }
 });
 
-// Watch document body for child additions
 observer.observe(document.body, {
-  childList: true,   // Watch for added/removed nodes
-  subtree: true      // Watch entire subtree
+  childList: true,
+  subtree: true
 });
 
 // Timeout fallback if items never render
@@ -336,7 +333,6 @@ setTimeout(() => {
 
 **Example of problem:**
 ```javascript
-// This only binds to items present at time of execution
 document.querySelectorAll('.w-dyn-item').forEach(item => {
   item.addEventListener('click', handleClick);
 });
@@ -348,13 +344,9 @@ document.querySelectorAll('.w-dyn-item').forEach(item => {
 
 ```javascript
 function setup_collection_events() {
-  // Delegate to document (works for all current and future items)
   document.addEventListener('click', (e) => {
-    // Find closest collection item
     const item = e.target.closest('.w-dyn-item');
-    if (!item) return;  // Click not in collection item
-
-    // Handle specific button clicks
+    if (!item) return;
     if (e.target.matches('.expand-button')) {
       toggle_item_expansion(item);
     }
@@ -403,47 +395,38 @@ function toggle_favorite(item) {
 
 ```javascript
 function progressive_init() {
-  // Initialize items that haven't been initialized yet
   function init_existing_items() {
     const items = document.querySelectorAll('.w-dyn-item:not([data-initialized])');
 
     items.forEach(item => {
-      // Mark as initialized to prevent double-initialization
       item.dataset.initialized = 'true';
 
-      // Add item index for identification
       item.dataset.itemIndex = item.parentNode.children.indexOf(item);
 
-      // Setup item-specific behavior
       setup_item_behavior(item);
     });
 
     console.log(`Initialized ${items.length} new collection items`);
   }
 
-  // Initialize items already on page
   init_existing_items();
 
-  // Watch for new items being added
   const list = document.querySelector('.w-dyn-list');
   if (list) {
     const observer = new MutationObserver(init_existing_items);
     observer.observe(list, {
-      childList: true    // Watch for added items
+      childList: true
     });
   }
 }
 
 function setup_item_behavior(item) {
-  // Extract item data from CMS fields
   const title = item.querySelector('[data-field="title"]')?.textContent;
   const itemId = item.querySelector('[data-field="id"]')?.textContent;
 
-  // Store data for easy access
   item.dataset.itemTitle = title;
   item.dataset.itemId = itemId;
 
-  // Item-specific logic here
   console.log(`Setup item: ${title} (ID: ${itemId})`);
 }
 ```
@@ -465,10 +448,8 @@ function setup_item_behavior(item) {
 ```javascript
 function init_collection_items() {
   document.querySelectorAll('.w-dyn-item').forEach((item, index) => {
-    // Add stable index identifier
     item.dataset.itemIndex = String(index);
 
-    // Extract CMS data into data attributes for easy access
     const itemId = item.querySelector('[data-cms-id]')?.textContent;
     const itemSlug = item.querySelector('[data-cms-slug]')?.textContent;
     const itemCategory = item.querySelector('[data-cms-category]')?.textContent;
@@ -477,7 +458,6 @@ function init_collection_items() {
     item.dataset.itemSlug = itemSlug || '';
     item.dataset.itemCategory = itemCategory || '';
 
-    // Now can target specific items reliably
     item.addEventListener('click', (e) => {
       console.log('Clicked item:', {
         index: item.dataset.itemIndex,
@@ -573,7 +553,6 @@ function init_collection_items() {
 
   console.table(results);
 
-  // Warn about lists approaching limit
   itemCounts.forEach((count, i) => {
     if (count > 80) {
       console.warn(`List ${i + 1} has ${count} items (approaching 100 limit)`);
@@ -611,9 +590,7 @@ function init_collection_items() {
 
 **Optimization strategies:**
 ```javascript
-// Move heavy initialization to after page load
 window.addEventListener('load', () => {
-  // Heavy operations here (after Webflow ready)
   init_heavy_features();
 });
 
@@ -680,9 +657,8 @@ const handlerName = handle_submit.name;  // "handle_submit" in dev, "a" in prod
 ```javascript
 // ✅ Use explicit identifiers
 function handle_submit() { }
-const handlerName = 'handle_submit';  // Reliable in all environments
+const handlerName = 'handle_submit';
 
-// Or use object with explicit keys
 const handlers = {
   submit: function() { },
   reset: function() { }
@@ -834,14 +810,11 @@ const FS_ATTR = 'fs-list-element';
 const FS_VALUE = 'sort-trigger';
 const HIDDEN_CLASS = 'fs-sort-select--hidden';
 
-// Create a hidden native <select> that mirrors the custom select options
-// Finsweet list-sort requires a native select to detect changes
 function create_hidden_select(custom_select_instance) {
   const container = custom_select_instance.container;
   const options = custom_select_instance.options;
   const placeholder = custom_select_instance.placeholder;
 
-  // Create native select
   const native_select = document.createElement('select');
   native_select.className = HIDDEN_CLASS;
   native_select.setAttribute(FS_ATTR, FS_VALUE);
@@ -861,7 +834,6 @@ function create_hidden_select(custom_select_instance) {
     pointer-events: none;
   `;
 
-  // Placeholder option
   const placeholder_opt = document.createElement('option');
   placeholder_opt.value = '';
   placeholder_opt.textContent = placeholder;
@@ -869,7 +841,6 @@ function create_hidden_select(custom_select_instance) {
   placeholder_opt.selected = true;
   native_select.appendChild(placeholder_opt);
 
-  // Mirror custom options
   options.forEach((custom_opt) => {
     const native_opt = document.createElement('option');
     native_opt.value = custom_opt.dataset.value || '';
@@ -877,7 +848,6 @@ function create_hidden_select(custom_select_instance) {
     native_select.appendChild(native_opt);
   });
 
-  // Add to container
   container.appendChild(native_select);
 
   // Remove attribute from wrapper so Finsweet only sees the native select
@@ -900,7 +870,6 @@ Synchronize selection from custom select to hidden native select.
 ```javascript
 // [SOURCE: src/2_javascript/form/input_select_fs_bridge.js:79-83]
 
-// Sync selection to hidden native select and dispatch change event
 function sync_to_native(native_select, value) {
   native_select.value = value;
   native_select.dispatchEvent(new Event('change', { bubbles: true }));
@@ -918,9 +887,7 @@ Connect the bridge after CustomSelect instances are ready.
 
 const INIT_FLAG = '__finsweetSelectBridgeInit';
 
-// Initialize Finsweet bridge for all sort-trigger custom selects
 function init_finsweet_bridge() {
-  // Find all custom selects with fs-list-element="sort-trigger"
   const sort_triggers = document.querySelectorAll(
     `[data-select="wrapper"][${FS_ATTR}="${FS_VALUE}"]`
   );
@@ -934,13 +901,10 @@ function init_finsweet_bridge() {
       return;
     }
 
-    // Create hidden native select
     const native_select = create_hidden_select(instance);
 
-    // Store reference on instance
     instance._fs_native_select = native_select;
 
-    // Listen for changes on the custom select input
     instance.input.addEventListener('change', () => {
       const value = instance.input.dataset.value || '';
       sync_to_native(native_select, value);
@@ -950,7 +914,6 @@ function init_finsweet_bridge() {
   console.log(`FinsweetBridge: Connected ${sort_triggers.length} sort trigger(s)`);
 }
 
-// Initialize after CustomSelect is ready
 const start = () => {
   if (window[INIT_FLAG]) return;
   window[INIT_FLAG] = true;
@@ -1073,10 +1036,8 @@ native_select.dispatchEvent(new Event('change', { bubbles: true }));
 
 **Check if bridge initialized:**
 ```javascript
-// Console: Check initialization flag
-console.log(window.__finsweetSelectBridgeInit);  // true if initialized
+console.log(window.__finsweetSelectBridgeInit);
 
-// Check for hidden selects
 document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
   console.log('Hidden select:', sel.value, sel.options.length);
 });
@@ -1084,7 +1045,6 @@ document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
 
 **Verify sync is working:**
 ```javascript
-// Monitor native select changes
 document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
   sel.addEventListener('change', (e) => {
     console.log('Native select changed:', e.target.value);

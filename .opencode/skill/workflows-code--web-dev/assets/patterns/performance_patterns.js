@@ -1,28 +1,23 @@
-/**
- * ╭─────────────────────────────────────────────────────────────────────────────╮
- * │  PERFORMANCE PATTERNS - Throttle, Debounce & Observer Utilities             │
- * ╰─────────────────────────────────────────────────────────────────────────────╯
- *
- * Production-validated timing patterns for frontend performance optimization.
- * Timing constants derived from production testing (spec 019).
- *
- * KEY TIMING VALUES:
- * - 64ms throttle for pointermove (~15 Hz, perceptually smooth)
- * - 180ms form validation debounce (faster than typing, avoids lag)
- * - 200-250ms resize debounce (avoid flicker, cheaper than IntersectionObserver)
- * - 0.1 IntersectionObserver threshold (early enough for animation preparation)
- *
- * BROWSER INSIGHT:
- * - requestAnimationFrame auto-throttles to 1fps in background tabs
- * - No need for manual visibility management in RAF loops
- *
- * @module performance_patterns
- * @version 1.0.0
- */
+// ───────────────────────────────────────────────────────────────
+// PERFORMANCE PATTERNS - Throttle, Debounce & Observer Utilities
+// ───────────────────────────────────────────────────────────────
+// Production-validated timing patterns for frontend performance optimization.
+// Timing constants derived from production testing (spec 019).
+//
+// KEY TIMING VALUES:
+// - 64ms throttle for pointermove (~15 Hz, perceptually smooth)
+// - 180ms form validation debounce (faster than typing, avoids lag)
+// - 200-250ms resize debounce (avoid flicker, cheaper than IntersectionObserver)
+// - 0.1 IntersectionObserver threshold (early enough for animation preparation)
+//
+// BROWSER INSIGHT:
+// - requestAnimationFrame auto-throttles to 1fps in background tabs
+// - No need for manual visibility management in RAF loops
+// ───────────────────────────────────────────────────────────────
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 1. TIMING CONSTANTS
-// ─────────────────────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   1. TIMING CONSTANTS
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Throttle timing constants (milliseconds)
@@ -63,9 +58,9 @@ const OBSERVER_THRESHOLD = {
   PROGRESSIVE: [0, 0.25, 0.5, 0.75, 1],
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 2. THROTTLE FUNCTION
-// ─────────────────────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   2. THROTTLE FUNCTION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Throttle a function to run at most once per interval
@@ -98,7 +93,6 @@ function throttle(func, wait = THROTTLE_TIMING.POINTER) {
     const remaining = wait - (now - last_exec_time);
 
     if (remaining <= 0 || remaining > wait) {
-      // Enough time has passed, execute immediately
       if (timeout_id) {
         clearTimeout(timeout_id);
         timeout_id = null;
@@ -106,7 +100,6 @@ function throttle(func, wait = THROTTLE_TIMING.POINTER) {
       last_exec_time = now;
       func.apply(this, args);
     } else if (!timeout_id) {
-      // Schedule execution for the remaining time
       timeout_id = setTimeout(() => {
         last_exec_time = Date.now();
         timeout_id = null;
@@ -142,9 +135,9 @@ function throttle(func, wait = THROTTLE_TIMING.POINTER) {
   return throttled;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3. DEBOUNCE FUNCTION
-// ─────────────────────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   3. DEBOUNCE FUNCTION
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Debounce a function to delay execution until after wait period
@@ -289,9 +282,9 @@ function debounce(func, wait = DEBOUNCE_TIMING.VALIDATION, options = {}) {
   return debounced;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4. INTERSECTION OBSERVER UTILITIES
-// ─────────────────────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   4. INTERSECTION OBSERVER UTILITIES
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Create an IntersectionObserver for animation/autoplay visibility control
@@ -394,9 +387,9 @@ function observe_visibility(callback, options = {}) {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. RESIZE OBSERVER UTILITIES
-// ─────────────────────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   5. RESIZE OBSERVER UTILITIES
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Create a ResizeObserver with debounced callback
@@ -433,9 +426,9 @@ function observe_resize(callback, wait = DEBOUNCE_TIMING.RESIZE) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6. RAF UTILITIES
-// ─────────────────────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   6. RAF UTILITIES
+──────────────────────────────────────────────────────────────── */
 
 /**
  * Create a throttled requestAnimationFrame loop
@@ -503,9 +496,9 @@ function create_raf_loop(callback, throttle_ms = 0) {
   };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 7. EXPORTS
-// ─────────────────────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
+   7. EXPORTS
+──────────────────────────────────────────────────────────────── */
 
 // Browser global export
 if (typeof window !== "undefined") {
