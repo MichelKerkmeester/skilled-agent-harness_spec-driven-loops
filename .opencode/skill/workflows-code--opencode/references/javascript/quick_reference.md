@@ -9,7 +9,17 @@ Copy-paste templates, naming cheat sheet, and common patterns for JavaScript dev
 
 ---
 
-## 1. 📋 COMPLETE FILE TEMPLATE
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+Quick-access reference card for JavaScript patterns. For detailed explanations, see:
+- [style_guide.md](./style_guide.md) - Full style documentation
+- [quality_standards.md](./quality_standards.md) - Quality requirements
+
+---
+
+## 2. 📋 COMPLETE FILE TEMPLATE
 
 ```javascript
 // ╔══════════════════════════════════════════════════════════════════════════╗
@@ -36,7 +46,7 @@ const MAX_RETRIES = 3;
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function validate_input(input) {
+function validateInput(input) {
   if (!input || typeof input !== 'string') {
     return { valid: false, error: 'Invalid input' };
   }
@@ -54,8 +64,8 @@ function validate_input(input) {
  * @param {Object} [options] - Configuration options
  * @returns {Promise<Object>} Result object
  */
-async function main_function(input, options = {}) {
-  const validation = validate_input(input);
+async function mainFunction(input, options = {}) {
+  const validation = validateInput(input);
   if (!validation.valid) {
     return { success: false, error: validation.error };
   }
@@ -74,33 +84,34 @@ async function main_function(input, options = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
-  // Primary exports (snake_case)
-  main_function,
-  validate_input,
+  // Primary exports (camelCase)
+  mainFunction,
+  validateInput,
 
-  // Aliases (camelCase)
-  mainFunction: main_function,
-  validateInput: validate_input
+  // Backward-compatible aliases (snake_case) — MCP handlers only
+  main_function: mainFunction,
+  validate_input: validateInput
 };
 ```
 
 ---
 
-## 2. 🏷️ NAMING CHEAT SHEET
+## 3. 🏷️ NAMING CHEAT SHEET
 
 | Element          | Convention         | Example              |
 |------------------|--------------------|----------------------|
-| Functions        | `snake_case`       | `load_config`        |
+| Functions        | `camelCase`        | `loadConfig`         |
 | Constants        | `UPPER_SNAKE_CASE` | `MAX_RETRIES`        |
 | Classes          | `PascalCase`       | `MemoryError`        |
 | Local variables  | `camelCase`        | `searchResults`      |
-| Module variables | `snake_case`       | `db_connection`      |
-| Parameters       | `snake_case`       | `query_text`         |
+| Module variables | `camelCase`        | `dbConnection`       |
+| Parameters       | `camelCase`        | `queryText`          |
+| Booleans         | `is`/`has`/`can`   | `isValid`            |
 | Files            | `kebab-case`       | `memory-search.js`   |
 
 ---
 
-## 3. 📌 SECTION ORDERING
+## 4. 📌 SECTION ORDERING
 
 ```
 1. IMPORTS          (Node built-ins, third-party, local)
@@ -112,7 +123,7 @@ module.exports = {
 
 ---
 
-## 4. 📚 JSDOC TEMPLATE
+## 5. 📚 JSDOC TEMPLATE
 
 ```javascript
 /**
@@ -132,17 +143,17 @@ module.exports = {
 
 ---
 
-## 5. 📋 EXPORT PATTERN TEMPLATE
+## 6. 📋 EXPORT PATTERN TEMPLATE
 
 ```javascript
 module.exports = {
-  // Primary (snake_case)
-  function_one,
-  function_two,
+  // Primary (camelCase)
+  functionOne,
+  functionTwo,
 
-  // Aliases (camelCase)
-  functionOne: function_one,
-  functionTwo: function_two,
+  // Backward-compatible aliases (snake_case) — MCP handlers only
+  function_one: functionOne,
+  function_two: functionTwo,
 
   // Constants
   DEFAULT_VALUE,
@@ -154,7 +165,7 @@ module.exports = {
 
 ---
 
-## 6. 🚨 ERROR HANDLING PATTERNS
+## 7. 🚨 ERROR HANDLING PATTERNS
 
 ### Guard Clause
 
@@ -190,7 +201,7 @@ class CustomError extends Error {
 
 ---
 
-## 7. 📌 COMMON ONE-LINERS
+## 8. 📌 COMMON ONE-LINERS
 
 ```javascript
 // Logging with module prefix
@@ -220,7 +231,7 @@ const resolved = path.resolve(basePath, relativePath);
 
 ---
 
-## 8. 📦 IMPORT ORDER
+## 9. 📦 IMPORT ORDER
 
 ```javascript
 // 1. Node.js built-ins
@@ -231,16 +242,16 @@ const path = require('path');
 const yaml = require('js-yaml');
 
 // 3. Local modules
-const { load_config } = require('./config');
+const { loadConfig } = require('./config');
 ```
 
 ---
 
-## 9. 💡 ASYNC PATTERNS
+## 10. 💡 ASYNC PATTERNS
 
 ```javascript
 // Async function
-async function fetch_data() {
+async function fetchData() {
   const result = await database.query();
   return result;
 }
@@ -249,7 +260,7 @@ async function fetch_data() {
 const [a, b] = await Promise.all([fetchA(), fetchB()]);
 
 // Error handling
-async function safe_fetch() {
+async function safeFetch() {
   try {
     return { success: true, data: await fetch() };
   } catch (e) {
@@ -260,7 +271,7 @@ async function safe_fetch() {
 
 ---
 
-## 10. 🔗 RELATED RESOURCES
+## 11. 🔗 RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Detailed formatting rules
 - [quality_standards.md](./quality_standards.md) - Error handling, JSDoc, security

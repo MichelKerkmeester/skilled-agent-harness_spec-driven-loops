@@ -58,19 +58,19 @@ These items MUST be fixed before any commit.
 ### Function Naming
 
 ```markdown
-[ ] All functions use snake_case naming
+[ ] All functions use camelCase naming
 ```
 
 **Correct**:
 ```javascript
-function validate_input(data) { }
-function process_file(path) { }
-const handle_error = (err) => { };
+function validateInput(data) { }
+function processFile(path) { }
+const handleError = (err) => { };
 ```
 
 **Wrong**:
 ```javascript
-function validateInput(data) { }     // camelCase
+function validate_input(data) { }    // snake_case
 function ProcessFile(path) { }       // PascalCase
 ```
 
@@ -113,8 +113,8 @@ These must be addressed or receive approval to defer.
 
 **Correct**:
 ```javascript
-module.exports = { function_name, CONSTANT };
-module.exports = function_name;
+module.exports = { functionName, CONSTANT };
+module.exports = functionName;
 ```
 
 **Wrong** (for Node.js in this codebase):
@@ -131,9 +131,9 @@ export default function_name;
 
 **Correct**:
 ```javascript
-function process_data(data) {
+function processData(data) {
     if (!data) return null;
-    if (!data.required_field) return null;
+    if (!data.requiredField) return null;
 
     // Main logic here
     return result;
@@ -142,9 +142,9 @@ function process_data(data) {
 
 **Wrong**:
 ```javascript
-function process_data(data) {
+function processData(data) {
     if (data) {
-        if (data.required_field) {
+        if (data.requiredField) {
             // Deeply nested logic
         }
     }
@@ -219,7 +219,7 @@ These improve quality but can be deferred.
  * @param {Object} schema - Validation schema
  * @returns {Object} Validation result with isValid and errors
  */
-function validate_input(data, schema) { }
+function validateInput(data, schema) { }
 ```
 
 ### Consistent String Quotes
@@ -242,7 +242,7 @@ const config = { key: 'value' };
 
 **Preferred**:
 ```javascript
-async function fetch_data() {
+async function fetchData() {
     const response = await fetch(url);
     const data = await response.json();
     return data;
@@ -273,7 +273,7 @@ Copy this for code review:
 ### P0 - HARD BLOCKERS
 - [ ] Box header present
 - [ ] 'use strict' directive
-- [ ] Functions use snake_case
+- [ ] Functions use camelCase
 - [ ] No commented-out code
 - [ ] WHY comments for complex logic
 
@@ -309,7 +309,7 @@ node --check file.js
 npx eslint file.js
 
 # Check for common issues
-grep -n "function [a-z]*[A-Z]" file.js  # Find camelCase functions
+grep -n "function [a-z]*_[a-z]" file.js  # Find snake_case functions
 grep -n "^export " file.js              # Find ES module exports
 ```
 

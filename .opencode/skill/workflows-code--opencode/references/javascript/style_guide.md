@@ -9,7 +9,21 @@ Formatting standards and naming conventions for JavaScript files in the OpenCode
 
 ---
 
-## 1. 📄 FILE HEADER FORMAT
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+Defines consistent styling rules for JavaScript files to ensure readability, maintainability, and alignment across all OpenCode JavaScript code.
+
+### When to Use
+
+- Writing new JavaScript files
+- Reviewing JavaScript code for consistency
+- Resolving style disagreements in code review
+
+---
+
+## 2. 📄 FILE HEADER FORMAT
 
 All JavaScript files MUST begin with a boxed header identifying the module.
 
@@ -27,11 +41,11 @@ All JavaScript files MUST begin with a boxed header identifying the module.
 - Module name: Centered or left-aligned within box
 - Immediately followed by `'use strict';` directive
 
-**Evidence**: `scripts/utils/logger.js:1-3`, `mcp_server/lib/errors/core.js:1-3`
+**Evidence**: `scripts/utils/logger.ts:1-3`, `mcp_server/lib/errors/core.ts:1-3`
 
 ---
 
-## 2. ⚙️ USE STRICT DIRECTIVE
+## 3. ⚙️ USE STRICT DIRECTIVE
 
 Every JavaScript file MUST include the strict mode directive.
 
@@ -41,11 +55,11 @@ Every JavaScript file MUST include the strict mode directive.
 
 **Placement**: Immediately after file header, before any other code.
 
-**Evidence**: `scripts/core/config.js:5`, `mcp_server/context-server.js:5`
+**Evidence**: `scripts/core/config.ts:4`, `mcp_server/context-server.ts:4`
 
 ---
 
-## 3. 📁 SECTION ORGANIZATION
+## 4. 📁 SECTION ORGANIZATION
 
 Large files are organized using numbered section dividers.
 
@@ -67,29 +81,29 @@ Large files are organized using numbered section dividers.
 | 4     | CORE LOGIC       | Main implementation               |
 | 5     | EXPORTS          | Module public interface           |
 
-**Evidence**: `scripts/core/config.js:6-8,16-18,75-77,139-141,167-169`
+**Evidence**: `scripts/core/config.ts:9-11,24-26`
 
 ---
 
-## 4. 🏷️ NAMING CONVENTIONS
+## 5. 🏷️ NAMING CONVENTIONS
 
 ### Function Names
 
-**Style**: `snake_case`
+**Style**: `camelCase`
 
 ```javascript
 // CORRECT
-function load_config(path) { }
-function memory_search(query, options) { }
-function validate_input(data) { }
+function loadConfig(path) { }
+function memorySearch(query, options) { }
+function validateInput(data) { }
 
 // INCORRECT
-function loadConfig(path) { }      // camelCase
+function load_config(path) { }     // snake_case
 function LoadConfig(path) { }      // PascalCase
 function load-config(path) { }     // kebab-case (invalid syntax)
 ```
 
-**Evidence**: `scripts/core/config.js:78-106`, `mcp_server/handlers/memory-search.js:363-400`
+**Evidence**: MDN Web Docs, Airbnb Style Guide, Node.js core APIs
 
 ### Constant Names
 
@@ -106,7 +120,7 @@ const maxRetries = 3;       // camelCase
 const max_retries = 3;      // snake_case (reserved for variables)
 ```
 
-**Evidence**: `mcp_server/lib/database/connection.js:7-10`
+**Evidence**: `mcp_server/core/config.ts:28-30`
 
 ### Class Names
 
@@ -123,32 +137,47 @@ class memoryError { }       // camelCase
 class memory_error { }      // snake_case
 ```
 
-**Evidence**: `mcp_server/lib/errors/core.js:52-63`
+**Evidence**: `mcp_server/lib/errors/core.ts:76-95`
 
 ### Variable Names
 
-| Scope        | Style        | Example                    |
-|--------------|--------------|----------------------------|
-| Local        | `camelCase`  | `const searchResults = []` |
-| Module-level | `snake_case` | `const db_path = '...'`    |
-| Parameters   | `snake_case` | `function search(query, max_results)` |
+| Scope        | Style        | Example                          |
+|--------------|--------------|----------------------------------|
+| Local        | `camelCase`  | `const searchResults = []`       |
+| Module-level | `camelCase`  | `const dbPath = '...'`           |
+| Parameters   | `camelCase`  | `function search(query, maxResults)` |
 
-**Evidence**: `mcp_server/handlers/memory-search.js:55-69`
+### Boolean Names
+
+**Style**: `camelCase` with `is`/`has`/`can`/`should` prefix
+
+```javascript
+// CORRECT
+const isValid = true;
+const hasResults = items.length > 0;
+const canProceed = !isBlocked;
+const shouldRetry = attempts < MAX_RETRIES;
+
+// INCORRECT
+const is_valid = true;       // snake_case
+const valid = true;          // ambiguous
+```
 
 ### Naming Summary Table
 
 | Element          | Convention         | Example                |
 |------------------|--------------------|------------------------|
-| Functions        | `snake_case`       | `load_config`          |
+| Functions        | `camelCase`        | `loadConfig`           |
 | Constants        | `UPPER_SNAKE_CASE` | `MAX_RETRIES`          |
 | Classes          | `PascalCase`       | `MemoryError`          |
 | Local variables  | `camelCase`        | `searchResults`        |
-| Module variables | `snake_case`       | `db_connection`        |
-| Parameters       | `snake_case`       | `query_text`           |
+| Module variables | `camelCase`        | `dbConnection`         |
+| Parameters       | `camelCase`        | `queryText`            |
+| Booleans         | `is`/`has`/`can`   | `isValid`, `hasItems`  |
 
 ---
 
-## 5. 📐 FORMATTING RULES
+## 6. 📐 FORMATTING RULES
 
 ### Indentation
 
@@ -229,7 +258,7 @@ const message = "Hello world";  // Double quotes
 
 ---
 
-## 6. 💬 COMMENTING RULES
+## 7. 💬 COMMENTING RULES
 
 ### Principles
 
@@ -254,7 +283,7 @@ Use task/requirement prefixes for traceability:
 // BUG-107: Pending file recovery on startup
 ```
 
-**Evidence**: `mcp_server/context-server.js:35,42,61,67,204`
+**Evidence**: `mcp_server/context-server.ts:34,42,62,65`
 
 ### Function Purpose Comments
 
@@ -263,11 +292,11 @@ Single line above function describing intent:
 ```javascript
 // Load configuration from YAML file, merging with defaults
 // Returns validated config object or throws on invalid schema
-function load_config(config_path) { }
+function loadConfig(configPath) { }
 
 // Calculate weighted memory score using decay function
 // Higher scores indicate more recent and relevant memories
-function calculate_memory_score(memory, current_time) { }
+function calculateMemoryScore(memory, currentTime) { }
 ```
 
 ### Inline Comments (WHY, Not WHAT)
@@ -288,7 +317,7 @@ const timeout = new Promise((_, reject) =>
 
 // Use try-finally to ensure connection cleanup even on error
 try {
-  await process_batch(items);
+  await processBatch(items);
 } finally {
   db.close();
 }
@@ -357,7 +386,7 @@ Format for tracking incomplete work.
 
 ---
 
-## 7. 📦 IMPORT ORDER
+## 8. 📦 IMPORT ORDER
 
 Organize imports in three groups with blank lines between.
 
@@ -377,15 +406,15 @@ const yaml = require('js-yaml');
 const sqlite = require('better-sqlite3');
 
 // Local modules
-const { load_config } = require('./config');
+const { loadConfig } = require('./config');
 const logger = require('../utils/logger');
 ```
 
-**Evidence**: `mcp_server/context-server.js:7-15`
+**Evidence**: `mcp_server/context-server.ts:5-68`
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 9. 🔗 RELATED RESOURCES
 
 - [quality_standards.md](./quality_standards.md) - Error handling, JSDoc, security patterns
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets

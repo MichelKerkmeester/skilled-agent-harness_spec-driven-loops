@@ -30,8 +30,8 @@ This reference defines how to organize files, structure modules, and order impor
 
 | Pattern | Source File | Line Reference |
 |---------|-------------|----------------|
-| JS module structure | `mcp_server/context-server.js` | Lines 1-70 |
-| JS exports with aliases | `scripts/core/config.js` | Lines 167-183 |
+| JS module structure | `mcp_server/context-server.ts` | Lines 1-70 |
+| JS exports with aliases | `scripts/core/config.ts` | Lines 167-183 |
 | Python imports | `scripts/skill_advisor.py` | Lines 17-24 |
 | Shell structure | `lib/common.sh` | Lines 1-40 |
 
@@ -119,13 +119,15 @@ Each module should have ONE primary purpose:
 ```
 mcp_server/
 ├── handlers/
-│   ├── memory-search.js    # Handles memory search
-│   ├── memory-save.js      # Handles memory save
-│   └── memory-delete.js    # Handles memory delete
+│   ├── memory-search.ts    # Handles memory search
+│   ├── memory-save.ts      # Handles memory save
+│   └── memory-crud.ts      # Handles memory CRUD
 ├── lib/
-│   ├── errors.js           # Error definitions
-│   ├── embeddings.js       # Embedding generation
-│   └── validation.js       # Input validation
+│   ├── errors.ts           # Error definitions
+│   ├── providers/
+│   │   └── embeddings.ts   # Embedding generation
+│   └── validation/
+│       └── preflight.ts    # Input validation
 ```
 
 **Bad** - Mixed responsibilities:
@@ -140,39 +142,36 @@ mcp_server/
 
 ```
 module/
-├── index.js                # Entry point, exports public API
+├── index.ts                # Entry point, exports public API
 ├── core/                   # Core logic (private)
-│   ├── config.js
-│   └── state.js
+│   ├── config.ts
+│   └── db-state.ts
 ├── handlers/               # Request handlers
-│   └── *.js
+│   └── *.ts
 ├── lib/                    # Utilities and helpers
 │   ├── errors/
-│   │   └── core.js
+│   │   └── core.ts
 │   ├── storage/
-│   │   └── *.js
+│   │   └── *.ts
 │   └── utils/
-│       └── *.js
+│       └── *.ts
 └── tests/                  # Test files
-    └── *.test.js
+    └── *.test.ts
 ```
 
-### Barrel Files (index.js)
+### Barrel Files (index.ts)
 
 Use barrel files to expose public API:
 
-```javascript
-// lib/index.js - Barrel file
-module.exports = {
-  // Re-export from submodules
-  ...require('./errors/core.js'),
-  ...require('./storage/memory.js'),
-  ...require('./utils/validation.js'),
-};
+```typescript
+// lib/errors/index.ts - Barrel file
+export { MemoryError, ErrorCodes, buildErrorResponse } from './core';
+export { getRecoveryHint, ERROR_CODES } from './recovery-hints';
+export type { ErrorResponse, ErrorResponseData } from './core';
 ```
 
 Benefits:
-- Single import point: `const { MemoryError } = require('./lib');`
+- Single import point: `import { MemoryError } from './lib/errors';`
 - Clear public API surface
 - Implementation details hidden
 
@@ -188,6 +187,7 @@ All languages follow this import order:
 1. Standard library / Built-in modules
 2. Third-party packages (npm, pip, etc.)
 3. Local modules (project code)
+4. Type-only imports (TypeScript only — separate line, always last)
 ```
 
 With a blank line between each group.
@@ -208,11 +208,35 @@ const winston = require('winston');
 const { LIB_DIR, DEFAULT_BASE_PATH } = require('./core');
 
 // Handler modules
-const { handle_memory_search } = require('./handlers');
+const { handleMemorySearch } = require('./handlers');
 
 // Utility modules
-const { validate_input_lengths } = require('./utils');
+const { validateInputLengths } = require('./utils');
 ```
+
+### TypeScript Import Order
+
+TypeScript follows a four-group ordering. Type-only imports are always last.
+
+```typescript
+// 1. Node.js built-in modules
+import path from 'path';
+import fs from 'fs';
+
+// 2. Third-party packages
+import Database from 'better-sqlite3';
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+
+// 3. Local modules (project code)
+import { loadConfig } from './core/config';
+import { MemoryError, ErrorCode } from './errors/core';
+
+// 4. Type-only imports (separate line, always last)
+import type { SearchOptions, SearchResult } from '../types';
+import type { DatabaseConfig } from './core/config';
+```
+
+**Key rule**: Use `import type` for imports used only in type positions (annotations, generics, return types). This ensures they are erased at compile time.
 
 ### Python Import Order
 
@@ -263,46 +287,61 @@ Use object literal at end of file:
 ──────────────────────────────────────────────────────────────── */
 
 module.exports = {
-  // Primary exports (snake_case)
-  handle_memory_search,
-  handle_memory_save,
-  validate_input,
+  // Primary exports (camelCase)
+  handleMemorySearch,
+  handleMemorySave,
+  validateInput,
 
-  // Backward compatibility aliases (camelCase)
-  // Note: Prefer snake_case for new code
-  handleMemorySearch: handle_memory_search,
-  handleMemorySave: handle_memory_save,
-  validateInput: validate_input,
+  // Backward-compatible aliases (snake_case) — MCP handlers only
+  handle_memory_search: handleMemorySearch,
+  handle_memory_save: handleMemorySave,
+  validate_input: validateInput,
 };
 ```
 
-Evidence: `scripts/core/config.js:167-183`
+Evidence: `scripts/core/config.ts:167-183`
+
+### TypeScript ES Module Exports
+
+TypeScript source uses ES module syntax. The compiler outputs CommonJS.
+
+```typescript
+// Named exports (preferred)
+export function search(query: string): SearchResult[] { }
+export class VectorIndex { }
+export const MAX_RESULTS = 100;
+
+// Type-only exports (erased at compile time)
+export type { SearchResult, SearchOptions };
+
+// Barrel file (index.ts) — re-exports from submodules
+export { MemoryError, ErrorCode } from './errors/core';
+export { VectorIndex } from './search/vector-index';
+export type { SearchResult } from '../types';
+
+// Default export (use sparingly — named exports preferred)
+export default class ContextServer { }
+
+// Re-export everything
+export * from './module';
+export type * from './types';
+```
 
 ### Re-export Wrappers
 
 When wrapping external modules:
 
-```javascript
-// lib/errors.js - Re-export with enhancements
+```typescript
+// lib/errors.ts - Re-export with enhancements
 
 // Import base definitions
-const { ErrorCodes, BaseError } = require('./errors/core.js');
+import { ErrorCodes } from './errors/core';
+import { getRecoveryHint, ERROR_CODES } from './errors/recovery-hints';
 
-// Add custom error class
-class MemoryError extends BaseError {
-  constructor(message, code, details = {}) {
-    super(message);
-    this.code = code;
-    this.details = details;
-  }
-}
-
-// Export both original and enhanced
-module.exports = {
-  ErrorCodes,
-  BaseError,
-  MemoryError,  // Enhancement
-};
+// Re-export everything consumers need
+export { ErrorCodes, getRecoveryHint, ERROR_CODES };
+export { MemoryError, buildErrorResponse } from './errors/core';
+export type { ErrorResponse } from './errors/core';
 ```
 
 ### Python Exports
@@ -337,6 +376,10 @@ __all__ = [
 │   │   ├── style_guide.md
 │   │   ├── quality_standards.md
 │   │   └── quick_reference.md
+│   ├── typescript/             # TS-specific
+│   │   ├── style_guide.md
+│   │   ├── quality_standards.md
+│   │   └── quick_reference.md
 │   ├── python/                 # Python-specific
 │   └── shell/                  # Shell-specific
 ├── assets/                     # Templates, checklists
@@ -351,26 +394,101 @@ __all__ = [
 
 ```
 mcp_server/
-├── context-server.js           # Entry point
+├── context-server.ts           # Entry point
+├── tsconfig.json               # TypeScript config
+├── package.json
+├── run-tests.js                # Test runner
+├── configs/                    # Runtime configuration
+│   └── search-weights.json
 ├── core/                       # Core state and config
-│   └── index.js
+│   ├── index.ts                # Barrel exports
+│   ├── config.ts               # Server configuration
+│   └── db-state.ts             # Database state management
 ├── handlers/                   # Request handlers
-│   ├── index.js                # Barrel exports
-│   ├── memory-search.js
-│   └── memory-save.js
-├── lib/                        # Utilities
-│   ├── errors/
-│   │   └── core.js
-│   ├── storage/
-│   │   ├── checkpoints.js
-│   │   └── transaction-manager.js
-│   └── search/
-│       ├── vector-index.js
-│       └── hybrid-search.js
+│   ├── index.ts                # Barrel exports
+│   ├── memory-search.ts        # Search operations
+│   ├── memory-save.ts          # Save operations
+│   ├── memory-crud.ts          # CRUD operations
+│   ├── memory-context.ts       # Context retrieval
+│   ├── memory-index.ts         # Index management
+│   ├── memory-triggers.ts      # Trigger matching
+│   ├── causal-graph.ts         # Causal graph operations
+│   ├── checkpoints.ts          # Checkpoint management
+│   └── session-learning.ts     # Session learning
+├── formatters/                 # Output formatting
+│   ├── index.ts                # Barrel exports
+│   ├── search-results.ts       # Search result formatting
+│   └── token-metrics.ts        # Token usage metrics
 ├── hooks/                      # Lifecycle hooks
-│   └── index.js
-├── tests/                      # Test files
-│   └── *.test.js
+│   ├── index.ts                # Barrel exports
+│   └── memory-surface.ts       # Memory surfacing hook
+├── lib/                        # Libraries and utilities
+│   ├── errors.ts               # Error re-exports
+│   ├── architecture/           # Architecture definitions
+│   │   └── layer-definitions.ts
+│   ├── cache/                  # Caching layer
+│   │   └── tool-cache.ts
+│   ├── cognitive/              # Cognitive science models
+│   │   ├── archival-manager.ts
+│   │   ├── attention-decay.ts
+│   │   ├── co-activation.ts
+│   │   ├── fsrs-scheduler.ts
+│   │   ├── prediction-error-gate.ts
+│   │   ├── tier-classifier.ts
+│   │   └── working-memory.ts
+│   ├── config/                 # Type and memory config
+│   │   ├── memory-types.ts
+│   │   └── type-inference.ts
+│   ├── embeddings/             # (placeholder)
+│   ├── errors/                 # Error definitions
+│   │   ├── index.ts            # Barrel exports
+│   │   ├── core.ts             # Core error classes
+│   │   └── recovery-hints.ts   # Recovery suggestions
+│   ├── interfaces/             # (placeholder)
+│   ├── learning/               # (placeholder)
+│   ├── parsing/                # Input parsing
+│   │   ├── memory-parser.ts
+│   │   └── trigger-matcher.ts
+│   ├── providers/              # External service providers
+│   │   ├── embeddings.ts       # Embedding generation
+│   │   └── retry-manager.ts    # Retry logic
+│   ├── response/               # Response formatting
+│   │   └── envelope.ts         # Response envelope
+│   ├── scoring/                # Relevance scoring
+│   │   ├── composite-scoring.ts
+│   │   ├── confidence-tracker.ts
+│   │   ├── folder-scoring.ts
+│   │   └── importance-tiers.ts
+│   ├── search/                 # Search engines
+│   │   ├── bm25-index.ts       # BM25 text search
+│   │   ├── cross-encoder.ts    # Re-ranking
+│   │   ├── hybrid-search.ts    # Hybrid search pipeline
+│   │   ├── intent-classifier.ts
+│   │   ├── vector-index.ts     # Vector similarity search
+│   │   └── vector-index-impl.js # Native implementation
+│   ├── session/                # Session management
+│   │   └── session-manager.ts
+│   ├── storage/                # Persistence layer
+│   │   ├── access-tracker.ts
+│   │   ├── causal-edges.ts
+│   │   ├── checkpoints.ts
+│   │   ├── incremental-index.ts
+│   │   └── transaction-manager.ts
+│   ├── utils/                  # General utilities
+│   │   ├── format-helpers.ts
+│   │   └── path-security.ts
+│   └── validation/             # Input validation
+│       └── preflight.ts
+├── scripts/                    # Server-specific scripts
+│   └── reindex-embeddings.ts
+├── utils/                      # Top-level utilities
+│   ├── index.ts                # Barrel exports
+│   ├── batch-processor.ts
+│   ├── json-helpers.ts
+│   └── validators.ts
+├── tests/                      # Test files (*.test.ts, *.test.js)
+│   ├── fixtures/               # Test fixture data
+│   └── *.test.ts / *.test.js
 └── database/                   # SQLite files (gitignored)
 ```
 
@@ -378,19 +496,96 @@ mcp_server/
 
 ```
 scripts/
+├── common.sh                   # Shared shell utilities
+├── registry-loader.sh          # Script registry loader
+├── scripts-registry.json       # Script metadata registry
+├── package.json
+├── tsconfig.json
+├── core/                       # Core script logic
+│   ├── index.ts                # Barrel exports
+│   ├── config.ts               # Script configuration
+│   └── workflow.ts             # Workflow orchestration
+├── extractors/                 # Data extractors
+│   ├── index.ts                # Barrel exports
+│   ├── collect-session-data.ts
+│   ├── conversation-extractor.ts
+│   ├── decision-extractor.ts
+│   ├── diagram-extractor.ts
+│   ├── file-extractor.ts
+│   ├── implementation-guide-extractor.ts
+│   ├── opencode-capture.ts
+│   └── session-extractor.ts
 ├── lib/                        # Shared libraries
-│   ├── common.sh               # Common functions
-│   ├── colors.sh               # Color definitions
-│   └── validation.sh           # Validation helpers
-├── spec/                       # Spec folder scripts
-│   ├── create.sh
-│   └── validate.sh
+│   ├── anchor-generator.ts
+│   ├── ascii-boxes.ts
+│   ├── content-filter.ts
+│   ├── decision-tree-generator.ts
+│   ├── embeddings.ts
+│   ├── flowchart-generator.ts
+│   ├── retry-manager.ts
+│   ├── semantic-summarizer.ts
+│   ├── simulation-factory.ts
+│   └── trigger-extractor.ts
+├── loaders/                    # Data loaders
+│   ├── index.ts
+│   └── data-loader.ts
 ├── memory/                     # Memory management
-│   └── generate-context.js
-├── utils/                      # Utility scripts
-│   └── logger.js
-└── tests/                      # Test utilities
-    └── test_*.py
+│   ├── generate-context.ts
+│   ├── cleanup-orphaned-vectors.ts
+│   └── rank-memories.ts
+├── renderers/                  # Template renderers
+│   ├── index.ts
+│   └── template-renderer.ts
+├── rules/                      # Validation rules (shell)
+│   ├── check-ai-protocols.sh
+│   ├── check-anchors.sh
+│   ├── check-complexity.sh
+│   ├── check-evidence.sh
+│   ├── check-files.sh
+│   ├── check-folder-naming.sh
+│   ├── check-frontmatter.sh
+│   ├── check-level.sh
+│   ├── check-level-match.sh
+│   ├── check-placeholders.sh
+│   ├── check-priority-tags.sh
+│   ├── check-section-counts.sh
+│   └── check-sections.sh
+├── setup/                      # Setup and installation
+│   ├── check-native-modules.sh
+│   ├── check-prerequisites.sh
+│   ├── rebuild-native-modules.sh
+│   └── record-node-version.js
+├── spec/                       # Spec folder operations
+│   ├── archive.sh
+│   ├── calculate-completeness.sh
+│   ├── check-completion.sh
+│   ├── create.sh
+│   ├── recommend-level.sh
+│   └── validate.sh
+├── spec-folder/                # Spec folder utilities (TS)
+│   ├── index.ts
+│   ├── alignment-validator.ts
+│   ├── directory-setup.ts
+│   └── folder-detector.ts
+├── templates/                  # Template composition
+│   └── compose.sh
+├── utils/                      # Utility modules
+│   ├── index.ts
+│   ├── data-validator.ts
+│   ├── file-helpers.ts
+│   ├── input-normalizer.ts
+│   ├── logger.ts
+│   ├── message-utils.ts
+│   ├── path-utils.ts
+│   ├── prompt-utils.ts
+│   ├── tool-detection.ts
+│   └── validation-utils.ts
+├── tests/                      # Test suites
+│   ├── test_dual_threshold.py
+│   ├── test-*.js / test-*.sh
+│   └── ...
+└── test-fixtures/              # Validation test fixtures
+    └── 001-* through 051-*
 ```
 
 ---
@@ -399,11 +594,12 @@ scripts/
 
 ### Test File Naming
 
-| Language | Pattern | Example |
-|----------|---------|---------|
-| JavaScript | `*.test.js` | `memory-search.test.js` |
-| Python | `test_*.py` | `test_dual_threshold.py` |
-| Shell | `test_*.sh` or `*.test.sh` | `test_validation.sh` |
+| Language   | Pattern                   | Example                    |
+|------------|---------------------------|----------------------------|
+| JavaScript | `*.test.js`               | `memory-search.test.js`    |
+| TypeScript | `*.test.ts`               | `memory-search.test.ts`    |
+| Python     | `test_*.py`               | `test_dual_threshold.py`   |
+| Shell      | `test_*.sh` or `*.test.sh`| `test_validation.sh`       |
 
 ### Test File Location
 
@@ -413,17 +609,17 @@ Keep tests close to source:
 Option A: Adjacent tests/
 lib/
 ├── search/
-│   ├── vector-index.js
+│   ├── vector-index.ts
 │   └── tests/
-│       └── vector-index.test.js
+│       └── vector-index.test.ts
 
 Option B: Top-level tests/
 lib/
 ├── search/
-│   └── vector-index.js
+│   └── vector-index.ts
 tests/
 └── search/
-    └── vector-index.test.js
+    └── vector-index.test.ts
 ```
 
 OpenCode uses **Option B** (top-level tests/) for most projects.
@@ -462,6 +658,7 @@ describe('functionToTest', () => {
 ### Language-Specific Organization
 
 - `../javascript/style_guide.md` - JS module patterns, exports
+- `../typescript/style_guide.md` - TS imports, types, ES module syntax
 - `../python/style_guide.md` - Python imports, `__all__`
 - `../shell/style_guide.md` - Shell sourcing, functions
 - `../config/style_guide.md` - JSON/JSONC structure

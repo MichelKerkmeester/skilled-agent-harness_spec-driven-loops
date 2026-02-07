@@ -1,15 +1,15 @@
 ---
 name: workflows-code--opencode
-description: Multi-language code standards for OpenCode system code (JavaScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
+description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.0.0
+version: 1.3.1
 ---
 
-<!-- Keywords: opencode style, script standards, mcp code quality, node code style, python style, py standards, bash style, shell script, json format, jsonc config, code standards opencode -->
+<!-- Keywords: opencode style, script standards, mcp code quality, node code style, typescript style, ts standards, python style, py standards, bash style, shell script, json format, jsonc config, code standards opencode -->
 
 # Code Standards - OpenCode System Code
 
-Multi-language code standards for OpenCode system code across JavaScript, Python, Shell, and JSON/JSONC.
+Multi-language code standards for OpenCode system code across JavaScript, TypeScript, Python, Shell, and JSON/JSONC.
 
 **Core Principle**: Consistency within language + Clarity across languages = maintainable system code.
 
@@ -30,12 +30,13 @@ Multi-language code standards for OpenCode system code across JavaScript, Python
 
 **Keyword triggers:**
 
-| Language   | Keywords                                                             |
-| ---------- | -------------------------------------------------------------------- |
-| JavaScript | `opencode`, `mcp`, `commonjs`, `require`, `module.exports`, `strict` |
-| Python     | `python`, `pytest`, `argparse`, `docstring`, `snake_case`            |
-| Shell      | `bash`, `shell`, `shebang`, `set -e`, `pipefail`                     |
-| Config     | `json`, `jsonc`, `config`, `schema`, `manifest`                      |
+| Language   | Keywords                                                                          |
+| ---------- | --------------------------------------------------------------------------------- |
+| JavaScript | `opencode`, `mcp`, `commonjs`, `require`, `module.exports`, `strict`              |
+| TypeScript | `typescript`, `ts`, `tsx`, `interface`, `type`, `tsconfig`, `tsc`, `strict`       |
+| Python     | `python`, `pytest`, `argparse`, `docstring`, `snake_case`                         |
+| Shell      | `bash`, `shell`, `shebang`, `set -e`, `pipefail`                                  |
+| Config     | `json`, `jsonc`, `config`, `schema`, `manifest`                                   |
 
 ### When NOT to Use
 
@@ -45,17 +46,16 @@ Multi-language code standards for OpenCode system code across JavaScript, Python
 - CSS styling or responsive design
 - CDN deployment or minification workflows
 - Full development lifecycle (research/debug/verify phases)
-- TypeScript (not currently used in OpenCode)
 
 ### Skill Overview
 
-| Aspect        | This Skill (opencode)   | workflows-code        |
-| ------------- | ----------------------- | --------------------- |
-| **Target**    | System/backend code     | Web/frontend code     |
-| **Languages** | JS, Python, Shell, JSON | HTML, CSS, JavaScript |
-| **Phases**    | Standards only          | 4 phases (0-3)        |
-| **Browser**   | Not applicable          | Required verification |
-| **Focus**     | Internal tooling        | User-facing features  |
+| Aspect        | This Skill (opencode)        | workflows-code        |
+| ------------- | ---------------------------- | --------------------- |
+| **Target**    | System/backend code          | Web/frontend code     |
+| **Languages** | JS, TS, Python, Shell, JSON  | HTML, CSS, JavaScript |
+| **Phases**    | Standards only               | 4 phases (0-3)        |
+| **Browser**   | Not applicable               | Required verification |
+| **Focus**     | Internal tooling             | User-facing features  |
 
 **The Standard**: Evidence-based patterns extracted from actual OpenCode codebase files with file:line citations.
 
@@ -76,6 +76,7 @@ Multi-language code standards for OpenCode system code across JavaScript, Python
 ```python
 LANGUAGE_KEYWORDS = {
     "JAVASCRIPT": ["node", "npm", "commonjs", "require", "module.exports", "mcp", "opencode"],
+    "TYPESCRIPT": ["typescript", "ts", "tsx", "interface", "type", "tsconfig", "tsc", "strict"],
     "PYTHON": ["python", "pip", "pytest", "argparse", "docstring", "typing"],
     "SHELL": ["bash", "shell", "shebang", "set -e", "pipefail", "script"],
     "CONFIG": ["json", "jsonc", "config", "schema", "manifest", "package.json"]
@@ -83,6 +84,7 @@ LANGUAGE_KEYWORDS = {
 
 FILE_EXTENSIONS = {
     ".js": "JAVASCRIPT", ".mjs": "JAVASCRIPT", ".cjs": "JAVASCRIPT",
+    ".ts": "TYPESCRIPT", ".tsx": "TYPESCRIPT", ".mts": "TYPESCRIPT", ".d.ts": "TYPESCRIPT",
     ".py": "PYTHON",
     ".sh": "SHELL", ".bash": "SHELL",
     ".json": "CONFIG", ".jsonc": "CONFIG"
@@ -102,8 +104,8 @@ def route_opencode_resources(task):
     language = detect_language(task.context)
 
     # ──────────────────────────────────────────────────────────────────
-    # JAVASCRIPT (206 files in OpenCode)
-    # Key patterns: snake_case functions, box headers, 'use strict'
+    # JAVASCRIPT (~65 files in OpenCode — decreasing as TS migration continues)
+    # Key patterns: camelCase functions, box headers, 'use strict'
     # ──────────────────────────────────────────────────────────────────
     if language == "JAVASCRIPT":
         load("references/javascript/style_guide.md")       # CONDITIONAL
@@ -111,6 +113,17 @@ def route_opencode_resources(task):
         if task.needs_checklist:
             load("assets/checklists/javascript_checklist.md")  # ON_DEMAND
         return load("references/javascript/quick_reference.md")
+
+    # ──────────────────────────────────────────────────────────────────
+    # TYPESCRIPT (~341 files in OpenCode — primary language post-migration)
+    # Key patterns: PascalCase interfaces/types/enums, import type, strict
+    # ──────────────────────────────────────────────────────────────────
+    if language == "TYPESCRIPT":
+        load("references/typescript/style_guide.md")       # CONDITIONAL
+        load("references/typescript/quality_standards.md") # CONDITIONAL
+        if task.needs_checklist:
+            load("assets/checklists/typescript_checklist.md")  # ON_DEMAND
+        return load("references/typescript/quick_reference.md")
 
     # ──────────────────────────────────────────────────────────────────
     # PYTHON (10 files in OpenCode)
@@ -153,11 +166,24 @@ def route_opencode_resources(task):
 
 | Use Case                              | Route To                            | Level       |
 | ------------------------------------- | ----------------------------------- | ----------- |
-| File headers, box-drawing format      | `javascript/style_guide.md#1`       | CONDITIONAL |
-| Function naming, snake_case           | `javascript/style_guide.md#4`       | CONDITIONAL |
+| File headers, box-drawing format      | `javascript/style_guide.md#2`       | CONDITIONAL |
+| Function naming, camelCase            | `javascript/style_guide.md#5`       | CONDITIONAL |
 | CommonJS exports, module organization | `javascript/quality_standards.md#2` | CONDITIONAL |
 | Error handling, try-catch patterns    | `javascript/quality_standards.md#3` | CONDITIONAL |
-| JSDoc documentation format            | `javascript/quality_standards.md#4` | ON_DEMAND   |
+| JSDoc documentation format            | `javascript/quality_standards.md#5` | ON_DEMAND   |
+
+**TypeScript**
+
+| Use Case                                    | Route To                              | Level       |
+| ------------------------------------------- | ------------------------------------- | ----------- |
+| File headers, dash-line format              | `typescript/style_guide.md#2`         | CONDITIONAL |
+| Naming (interfaces, types, enums, generics) | `typescript/style_guide.md#5`         | CONDITIONAL |
+| Interface vs type decision guide            | `typescript/quality_standards.md#2`   | CONDITIONAL |
+| Type safety (unknown, strict null, generics)| `typescript/quality_standards.md#3`   | CONDITIONAL |
+| Discriminated unions, state management      | `typescript/quality_standards.md#4`   | CONDITIONAL |
+| TSDoc documentation format                  | `typescript/quality_standards.md#7`   | ON_DEMAND   |
+| Typed error classes, async patterns         | `typescript/quality_standards.md#8`   | ON_DEMAND   |
+| tsconfig.json configuration                 | `typescript/quality_standards.md#10`  | ON_DEMAND   |
 
 **Python**
 
@@ -165,8 +191,7 @@ def route_opencode_resources(task):
 | ----------------------------------- | ------------------------------- | ----------- |
 | Shebang, file header format         | `python/style_guide.md#2`       | CONDITIONAL |
 | Google-style docstrings             | `python/style_guide.md#5`       | CONDITIONAL |
-| Type hints, Optional/Union patterns | `python/quality_standards.md#2` | CONDITIONAL |
-| CLI argument parsing, argparse      | `python/quality_standards.md#4` | ON_DEMAND   |
+| Type hints, Optional/Union patterns | `python/quality_standards.md#3` | CONDITIONAL |
 
 **Shell**
 
@@ -174,16 +199,16 @@ def route_opencode_resources(task):
 | --------------------------------------- | ------------------------------ | ----------- |
 | Shebang, strict mode setup              | `shell/style_guide.md#2`       | CONDITIONAL |
 | Variable quoting, local declarations    | `shell/style_guide.md#6`       | CONDITIONAL |
-| Color definitions, ANSI codes           | `shell/quality_standards.md#2` | CONDITIONAL |
-| Logging functions (log_info, log_error) | `shell/quality_standards.md#3` | CONDITIONAL |
+| Color definitions, ANSI codes           | `shell/style_guide.md#4`       | CONDITIONAL |
+| Logging functions (log_info, log_error) | `shell/style_guide.md#5`       | CONDITIONAL |
 
 **Config**
 
 | Use Case                    | Route To                  | Level       |
 | --------------------------- | ------------------------- | ----------- |
-| JSON structure, key naming  | `config/style_guide.md#2` | CONDITIONAL |
+| JSON structure, key naming  | `config/style_guide.md#3` | CONDITIONAL |
 | JSONC section comments      | `config/style_guide.md#4` | CONDITIONAL |
-| Schema references ($schema) | `config/style_guide.md#3` | ON_DEMAND   |
+| Schema references ($schema) | `config/style_guide.md#7` | ON_DEMAND   |
 
 ---
 
@@ -214,20 +239,21 @@ STEP 4: Apply Standards
 
 ### Key Pattern Categories
 
-| Category         | What It Covers                                    |
-| ---------------- | ------------------------------------------------- |
-| File Headers     | Box-drawing format, shebang, 'use strict'         |
-| Section Dividers | Numbered sections with consistent divider style   |
-| Naming           | Functions, constants, classes, variables per lang |
-| Commenting       | WHY not WHAT, reference comments (T###, REQ-###)  |
-| Error Handling   | Guard clauses, try-catch, specific exceptions     |
-| Documentation    | JSDoc, Google docstrings, inline comments         |
+| Category         | What It Covers                                              |
+| ---------------- | ----------------------------------------------------------- |
+| File Headers     | Box-drawing format, shebang, 'use strict', strict mode      |
+| Section Dividers | Numbered sections with consistent divider style             |
+| Naming           | Functions, constants, classes, interfaces, types per lang   |
+| Commenting       | WHY not WHAT, reference comments (T###, REQ-###)            |
+| Error Handling   | Guard clauses, try-catch, typed catch, specific exceptions  |
+| Documentation    | JSDoc, TSDoc, Google docstrings, inline comments            |
 
 ### Evidence-Based Patterns
 
 | Language   | Key Evidence Files                                             |
 | ---------- | -------------------------------------------------------------- |
 | JavaScript | `context-server.js`, `config.js`, `memory-search.js`           |
+| TypeScript | ~341 `.ts` files post-migration; patterns from `config.ts`, `memory-search.ts`, `context-server.ts` |
 | Python     | `skill_advisor.py`, `validate_document.py`, `package_skill.py` |
 | Shell      | `lib/common.sh`, `spec/create.sh`, `validate.sh`               |
 | Config     | `config.jsonc`, `opencode.json`, `complexity-config.jsonc`     |
@@ -240,12 +266,14 @@ STEP 4: Apply Standards
 
 1. **Follow file header format for the language**
    - JavaScript: Box-drawing `// ─── MODULE_TYPE: NAME ───` + `'use strict'`
+   - TypeScript: Box-drawing `// --- MODULE: NAME ---` (no `'use strict'`; tsconfig handles it)
    - Python: Shebang `#!/usr/bin/env python3` + box-drawing header
    - Shell: Shebang `#!/usr/bin/env bash` + header + `set -euo pipefail`
    - JSONC: Box comment header (JSON cannot have comments)
 
 2. **Use consistent naming conventions**
-   - JavaScript: `snake_case` functions, `UPPER_SNAKE` constants, `PascalCase` classes
+   - JavaScript: `camelCase` functions, `UPPER_SNAKE` constants, `PascalCase` classes
+   - TypeScript: Same as JS + `PascalCase` interfaces/types/enums, `T`-prefix generics
    - Python: `snake_case` functions/variables, `UPPER_SNAKE` constants, `PascalCase` classes
    - Shell: `lowercase_underscore` functions, `UPPERCASE` globals
    - Config: `camelCase` keys, `$schema` for validation
@@ -340,6 +368,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 | Task Type                 | This Skill | workflows-code |
 | ------------------------- | ---------- | -------------- |
 | MCP server JavaScript     | ✅          | ❌              |
+| MCP server TypeScript     | ✅          | ❌              |
 | Python validation scripts | ✅          | ❌              |
 | Shell automation scripts  | ✅          | ❌              |
 | JSON/JSONC configs        | ✅          | ❌              |
@@ -351,13 +380,15 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ## 7. 📚 EXTERNAL RESOURCES
 
-| Resource     | URL                          | Use For                  |
-| ------------ | ---------------------------- | ------------------------ |
-| MDN Web Docs | developer.mozilla.org        | JavaScript, Node.js APIs |
-| Python Docs  | docs.python.org              | Python standard library  |
-| Bash Manual  | gnu.org/software/bash/manual | Shell scripting          |
-| JSON Schema  | json-schema.org              | JSON/JSONC validation    |
-| ShellCheck   | shellcheck.net               | Shell script validation  |
+| Resource          | URL                              | Use For                     |
+| ----------------- | -------------------------------- | --------------------------- |
+| MDN Web Docs      | developer.mozilla.org            | JavaScript, Node.js APIs    |
+| TypeScript Docs   | typescriptlang.org/docs          | TypeScript language, config |
+| TSDoc Reference   | tsdoc.org                        | TSDoc comment format        |
+| Python Docs       | docs.python.org                  | Python standard library     |
+| Bash Manual       | gnu.org/software/bash/manual     | Shell scripting             |
+| JSON Schema       | json-schema.org                  | JSON/JSONC validation       |
+| ShellCheck        | shellcheck.net                   | Shell script validation     |
 
 ---
 
@@ -369,6 +400,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 | ---------- | -------------------------------------------------------------- |
 | Shared     | `universal_patterns.md`, `code_organization.md`                |
 | JavaScript | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
+| TypeScript | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
 | Python     | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
 | Shell      | `style_guide.md`, `quality_standards.md`, `quick_reference.md` |
 | Config     | `style_guide.md`, `quick_reference.md`                         |
@@ -377,6 +409,7 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 - `assets/checklists/universal_checklist.md` - Cross-language P0 items
 - `assets/checklists/javascript_checklist.md` - JS-specific validation
+- `assets/checklists/typescript_checklist.md` - TS-specific validation
 - `assets/checklists/python_checklist.md` - Python-specific validation
 - `assets/checklists/shell_checklist.md` - Shell-specific validation
 - `assets/checklists/config_checklist.md` - JSON/JSONC validation
@@ -394,13 +427,14 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 ## 9. 📍 WHERE AM I? (Language Detection)
 
-| Language   | You're here if...                          | Load these resources          |
-| ---------- | ------------------------------------------ | ----------------------------- |
-| JavaScript | File is `.js/.mjs/.cjs`, or MCP/Node code  | `javascript/*` + quality      |
-| Python     | File is `.py`, or pytest/argparse keywords | `python/*` + quality          |
-| Shell      | File is `.sh/.bash`, or shebang keywords   | `shell/*` + quality           |
-| Config     | File is `.json/.jsonc`, or schema keywords | `config/*`                    |
-| Unknown    | No extension, no keywords match            | Ask user, use shared patterns |
+| Language   | You're here if...                                   | Load these resources          |
+| ---------- | --------------------------------------------------- | ----------------------------- |
+| JavaScript | File is `.js/.mjs/.cjs`, or MCP/Node code           | `javascript/*` + quality      |
+| TypeScript | File is `.ts/.tsx/.mts/.d.ts`, or interface/type/tsc | `typescript/*` + quality      |
+| Python     | File is `.py`, or pytest/argparse keywords           | `python/*` + quality          |
+| Shell      | File is `.sh/.bash`, or shebang keywords             | `shell/*` + quality           |
+| Config     | File is `.json/.jsonc`, or schema keywords           | `config/*`                    |
+| Unknown    | No extension, no keywords match                      | Ask user, use shared patterns |
 
 ---
 
@@ -452,6 +486,20 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ```
 
+**TypeScript**
+```typescript
+// ---------------------------------------------------------------
+// MODULE: [Module Name]
+// ---------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// 1. IMPORTS
+// ---------------------------------------------------------------------------
+
+import path from 'path';
+import type { SearchOptions } from '../types';
+```
+
 **JSONC**
 ```jsonc
 // ╔══════════════════════════════════════════════════════════════════════════╗
@@ -466,19 +514,25 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 ### Naming Matrix
 
-| Element   | JavaScript    | Python        | Shell         | Config      |
-| --------- | ------------- | ------------- | ------------- | ----------- |
-| Functions | `snake_case`  | `snake_case`  | `snake_case`  | N/A         |
-| Constants | `UPPER_SNAKE` | `UPPER_SNAKE` | `UPPER_SNAKE` | N/A         |
-| Classes   | `PascalCase`  | `PascalCase`  | N/A           | N/A         |
-| Variables | `camelCase`   | `snake_case`  | `lower_snake` | `camelCase` |
-| Private   | `_prefix`     | `_prefix`     | `_prefix`     | N/A         |
+| Element    | JavaScript    | TypeScript    | Python        | Shell         | Config      |
+| ---------- | ------------- | ------------- | ------------- | ------------- | ----------- |
+| Functions  | `camelCase`   | `camelCase`   | `snake_case`  | `snake_case`  | N/A         |
+| Constants  | `UPPER_SNAKE` | `UPPER_SNAKE` | `UPPER_SNAKE` | `UPPER_SNAKE` | N/A         |
+| Classes    | `PascalCase`  | `PascalCase`  | `PascalCase`  | N/A           | N/A         |
+| Interfaces | N/A           | `PascalCase`  | N/A           | N/A           | N/A         |
+| Types      | N/A           | `PascalCase`  | N/A           | N/A           | N/A         |
+| Enums      | N/A           | `PascalCase`  | N/A           | N/A           | N/A         |
+| Generics   | N/A           | `T`-prefix    | N/A           | N/A           | N/A         |
+| Variables  | `camelCase`   | `camelCase`   | `snake_case`  | `lower_snake` | `camelCase` |
+| Params     | `camelCase`   | `camelCase`   | `snake_case`  | `snake_case`  | N/A         |
+| Booleans   | `is`/`has`    | `is`/`has`    | `is_`/`has_`  | `is_`/`has_`  | N/A         |
+| Private    | `_prefix`     | `_prefix`     | `_prefix`     | `_prefix`     | N/A         |
 
 ### Error Handling Patterns
 
 **JavaScript**
 ```javascript
-function process_data(data) {
+function processData(data) {
   if (!data) throw new Error('Data required');
   try {
     return JSON.parse(data);

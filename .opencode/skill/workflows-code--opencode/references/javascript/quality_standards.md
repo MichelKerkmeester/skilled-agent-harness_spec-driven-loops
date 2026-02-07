@@ -9,7 +9,21 @@ Module organization, error handling, documentation, and security patterns for Ja
 
 ---
 
-## 1. 📦 MODULE ORGANIZATION
+## 1. 📖 OVERVIEW
+
+### Purpose
+
+Establishes module organization, error handling, documentation, and security patterns that all JavaScript code must follow.
+
+### When to Use
+
+- Writing new JavaScript modules
+- Reviewing code for quality compliance
+- Setting up error handling and security patterns
+
+---
+
+## 2. 📦 MODULE ORGANIZATION
 
 ### CommonJS Pattern
 
@@ -25,11 +39,11 @@ module.exports = {
 };
 ```
 
-**Evidence**: `scripts/core/config.js:1-183`
+**Evidence**: `scripts/core/config.ts:1-183`
 
 ### Export Pattern
 
-Export functions using `snake_case` names with optional `camelCase` aliases for backward compatibility.
+Export functions using `camelCase` names. For MCP handlers, include `snake_case` aliases for backward compatibility.
 
 ```javascript
 // ─────────────────────────────────────────────────────────────────────────────
@@ -37,19 +51,19 @@ Export functions using `snake_case` names with optional `camelCase` aliases for 
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
-  // Primary exports (snake_case - preferred)
-  load_config,
-  memory_search,
-  validate_input,
+  // Primary exports (camelCase)
+  loadConfig,
+  memorySearch,
+  validateInput,
 
-  // Aliases for backward compatibility (camelCase)
-  loadConfig: load_config,
-  memorySearch: memory_search,
-  validateInput: validate_input
+  // Backward-compatible aliases (snake_case) — MCP handlers only
+  load_config: loadConfig,
+  memory_search: memorySearch,
+  validate_input: validateInput
 };
 ```
 
-**Evidence**: `scripts/core/config.js:167-183`
+**Evidence**: `scripts/core/config.ts:167-183`
 
 ### Barrel Exports
 
@@ -68,14 +82,14 @@ module.exports = {
 
 ---
 
-## 2. 🚨 ERROR HANDLING
+## 3. 🚨 ERROR HANDLING
 
 ### Guard Clause Pattern
 
 Validate inputs at function start. Return early on failure.
 
 ```javascript
-function process_data(input, options) {
+function processData(input, options) {
   // Guard clauses first
   if (!input || typeof input !== 'string') {
     return { success: false, error: 'Invalid input: expected string' };
@@ -91,25 +105,25 @@ function process_data(input, options) {
 }
 ```
 
-**Evidence**: `mcp_server/handlers/memory-search.js:55-69`
+**Evidence**: `mcp_server/handlers/memory-search.ts:377-407`
 
 ### Try-Catch Pattern
 
 Wrap async operations with specific error handling.
 
 ```javascript
-async function fetch_data(query) {
+async function fetchData(query) {
   try {
     const result = await database.query(query);
     return { success: true, data: result };
   } catch (error) {
-    logger.error(`[fetch_data] Query failed: ${error.message}`);
+    logger.error(`[fetchData] Query failed: ${error.message}`);
     return { success: false, error: error.message };
   }
 }
 ```
 
-**Evidence**: `mcp_server/handlers/memory-search.js:363-400`
+**Evidence**: `mcp_server/handlers/memory-search.ts:382-396`
 
 ### Custom Error Classes
 
@@ -138,7 +152,7 @@ class MemoryError extends Error {
 module.exports = { MemoryError };
 ```
 
-**Evidence**: `mcp_server/lib/errors/core.js:52-63`
+**Evidence**: `mcp_server/lib/errors/core.ts:76-95`
 
 ### Error Response Pattern
 
@@ -154,7 +168,7 @@ Consistent error response structure.
 
 ---
 
-## 3. 📝 CONSOLE LOGGING
+## 4. 📝 CONSOLE LOGGING
 
 ### Bracketed Module Prefix
 
@@ -167,7 +181,7 @@ console.error(`[memory-search] Search failed: ${error.message}`);
 console.warn(`[config] Using default value for missing key: ${key}`);
 ```
 
-**Evidence**: `mcp_server/context-server.js:204`
+**Evidence**: `mcp_server/context-server.ts:647`
 
 ### Log Levels
 
@@ -180,7 +194,7 @@ console.warn(`[config] Using default value for missing key: ${key}`);
 
 ---
 
-## 4. 📚 JSDOC DOCUMENTATION
+## 5. 📚 JSDOC DOCUMENTATION
 
 ### Function Documentation
 
@@ -199,17 +213,17 @@ Required for all exported functions.
  * @throws {MemoryError} If database connection fails
  *
  * @example
- * const results = await memory_search('authentication', {
+ * const results = await memorySearch('authentication', {
  *   limit: 5,
  *   specFolder: 'specs/007-auth'
  * });
  */
-async function memory_search(query, options = {}) {
+async function memorySearch(query, options = {}) {
   // implementation
 }
 ```
 
-**Evidence**: `mcp_server/handlers/memory-search.js:333-361`
+**Evidence**: `mcp_server/handlers/memory-search.ts:346-375`
 
 ### Type Annotations
 
@@ -253,7 +267,7 @@ class VectorIndex {
 
 ---
 
-## 5. 🔒 SECURITY PATTERNS
+## 6. 🔒 SECURITY PATTERNS
 
 ### CWE-22: Path Traversal Prevention
 
@@ -268,7 +282,7 @@ const path = require('path');
  * @param {string} userPath - User-provided path
  * @returns {string|null} Resolved path or null if invalid
  */
-function safe_resolve_path(basePath, userPath) {
+function safeResolvePath(basePath, userPath) {
   // Normalize and resolve
   const resolvedBase = path.resolve(basePath);
   const resolvedPath = path.resolve(basePath, userPath);
@@ -291,7 +305,7 @@ Prevent resource exhaustion with input validation.
 const MAX_QUERY_LENGTH = 10000;
 const MAX_RESULTS = 100;
 
-function validate_search_input(query, options) {
+function validateSearchInput(query, options) {
   // Limit query length
   if (query && query.length > MAX_QUERY_LENGTH) {
     return { valid: false, error: `Query exceeds ${MAX_QUERY_LENGTH} characters` };
@@ -315,7 +329,7 @@ function validate_search_input(query, options) {
  * @param {string} input - Raw user input
  * @returns {string} Sanitized string
  */
-function sanitize_string(input) {
+function sanitizeString(input) {
   if (typeof input !== 'string') {
     return '';
   }
@@ -327,7 +341,7 @@ function sanitize_string(input) {
 
 ---
 
-## 6. 🧪 TESTING PATTERNS
+## 7. 🧪 TESTING PATTERNS
 
 ### Using Node.js Assert
 
@@ -335,8 +349,8 @@ function sanitize_string(input) {
 const assert = require('assert');
 
 // Test function
-function test_load_config() {
-  const config = load_config('./test-config.yaml');
+function testLoadConfig() {
+  const config = loadConfig('./test-config.yaml');
 
   assert.ok(config, 'Config should be loaded');
   assert.strictEqual(config.version, '1.0.0', 'Version should match');
@@ -345,7 +359,7 @@ function test_load_config() {
 
 // Run tests
 if (require.main === module) {
-  test_load_config();
+  testLoadConfig();
   console.log('[test] All tests passed');
 }
 ```
@@ -357,17 +371,17 @@ if (require.main === module) {
 'use strict';
 
 const assert = require('assert');
-const { load_config, validate_config } = require('../scripts/core/config');
+const { loadConfig, validateConfig } = require('../scripts/core/config');
 
 describe('Config Module', () => {
-  describe('load_config', () => {
+  describe('loadConfig', () => {
     it('should load valid YAML config', () => {
-      const config = load_config('./fixtures/valid.yaml');
+      const config = loadConfig('./fixtures/valid.yaml');
       assert.ok(config);
     });
 
     it('should return null for missing file', () => {
-      const config = load_config('./nonexistent.yaml');
+      const config = loadConfig('./nonexistent.yaml');
       assert.strictEqual(config, null);
     });
   });
@@ -376,7 +390,7 @@ describe('Config Module', () => {
 
 ---
 
-## 7. 💡 ASYNC PATTERNS
+## 8. 💡 ASYNC PATTERNS
 
 ### Async/Await Style
 
@@ -384,10 +398,10 @@ Prefer async/await over callbacks and raw promises.
 
 ```javascript
 // CORRECT: async/await
-async function fetch_and_process() {
+async function fetchAndProcess() {
   try {
-    const data = await fetch_data();
-    const result = await process_data(data);
+    const data = await fetchData();
+    const result = await processData(data);
     return { success: true, data: result };
   } catch (error) {
     return { success: false, error: error.message };
@@ -395,9 +409,9 @@ async function fetch_and_process() {
 }
 
 // AVOID: Promise chains
-function fetch_and_process() {
-  return fetch_data()
-    .then(data => process_data(data))
+function fetchAndProcess() {
+  return fetchData()
+    .then(data => processData(data))
     .then(result => ({ success: true, data: result }))
     .catch(error => ({ success: false, error: error.message }));
 }
@@ -408,18 +422,67 @@ function fetch_and_process() {
 ```javascript
 // Parallel execution
 const [users, posts] = await Promise.all([
-  fetch_users(),
-  fetch_posts()
+  fetchUsers(),
+  fetchPosts()
 ]);
 
 // Sequential execution (when order matters)
-const user = await fetch_user(id);
-const posts = await fetch_user_posts(user.id);
+const user = await fetchUser(id);
+const posts = await fetchUserPosts(user.id);
 ```
 
 ---
 
-## 8. 🔗 RELATED RESOURCES
+## 9. 🧾 TEST FILE EXEMPTION TIER
+
+CLI-only test runners, setup scripts, and similar utilities are exempt from certain quality standards because they are executed directly (not imported as modules) and serve a different purpose than library code.
+
+### Scope
+
+This exemption applies to:
+- Files in `scripts/tests/`
+- Files in `scripts/setup/`
+- Any file with a test runner shebang (e.g., `#!/usr/bin/env node`)
+
+### Exempted Standards
+
+| Standard                           | Reason for Exemption                                           |
+|------------------------------------|----------------------------------------------------------------|
+| `module.exports` requirement       | Test runners are executed directly, not imported by other code |
+| Guard clause requirement           | Scripts run once at CLI level; input validation is minimal     |
+| `[module-name]` error prefix       | Test output uses its own format (e.g., pass/fail assertions)   |
+
+### What Still Applies
+
+All other quality standards remain in effect for test files, including:
+- `'use strict'` directive
+- JSDoc documentation for non-trivial functions
+- Error handling with try-catch for async operations
+- Security patterns (path traversal, input limits) if handling external input
+
+### Example
+
+```javascript
+#!/usr/bin/env node
+'use strict';
+
+const assert = require('assert');
+const { loadConfig } = require('../core/config');
+
+// No module.exports needed — this file is executed directly
+// No guard clauses needed — CLI-level script
+// No [module-name] prefix needed — test output format
+
+const config = loadConfig('./fixtures/valid.yaml');
+assert.ok(config, 'Config should load successfully');
+assert.strictEqual(config.version, '1.0.0');
+
+console.log('PASS: All config tests passed');
+```
+
+---
+
+## 10. 🔗 RELATED RESOURCES
 
 - [style_guide.md](./style_guide.md) - Formatting and naming conventions
 - [quick_reference.md](./quick_reference.md) - Copy-paste templates and cheat sheets

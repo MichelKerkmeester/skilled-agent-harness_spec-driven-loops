@@ -13,7 +13,7 @@ Language-agnostic quality checks that apply to all code files in the OpenCode de
 
 ### Purpose
 
-Provides baseline quality requirements that apply across all languages (JavaScript, Python, Shell, Config). Use this checklist alongside language-specific checklists.
+Provides baseline quality requirements that apply across all languages (JavaScript, TypeScript, Python, Shell, Config). Use this checklist alongside language-specific checklists.
 
 ### Priority Levels
 
@@ -34,6 +34,7 @@ These items MUST be fixed before any commit.
 ```markdown
 [ ] File has appropriate header comment identifying the component
     - JavaScript: Box header with 'use strict'
+    - TypeScript: Box header (no 'use strict'; tsconfig handles it)
     - Python: Shebang + COMPONENT comment block
     - Shell: Shebang + COMPONENT comment block
     - Config: JSONC comment header
@@ -93,6 +94,7 @@ These must be addressed or receive approval to defer.
 ```markdown
 [ ] Naming follows language conventions
     - JavaScript: camelCase functions, UPPER_SNAKE constants
+    - TypeScript: camelCase functions, PascalCase interfaces/types/enums, UPPER_SNAKE constants
     - Python: snake_case functions, UPPER_SNAKE constants
     - Shell: snake_case functions, UPPER_SNAKE constants
     - Config: camelCase keys
@@ -191,8 +193,9 @@ These improve quality but can be deferred.
 ### Before Committing
 
 ```markdown
-1. Run language-specific linter
+1. Run language-specific linter/type checker
    - JavaScript: ESLint or built-in checks
+   - TypeScript: tsc --noEmit (type check without emitting)
    - Python: Black/flake8/mypy
    - Shell: ShellCheck
 
@@ -202,6 +205,7 @@ These improve quality but can be deferred.
 
 3. Run language-specific checklist
    - javascript_checklist.md
+   - typescript_checklist.md
    - python_checklist.md
    - shell_checklist.md
    - config_checklist.md
@@ -217,6 +221,9 @@ These improve quality but can be deferred.
 ```bash
 # JavaScript (ESLint if available)
 npx eslint src/
+
+# TypeScript (type check without emitting)
+tsc --noEmit
 
 # Python
 python -m flake8 scripts/
@@ -264,12 +271,14 @@ Copy this for code review:
 
 ### Language-Specific Checklists
 - [javascript_checklist.md](./javascript_checklist.md)
+- [typescript_checklist.md](./typescript_checklist.md)
 - [python_checklist.md](./python_checklist.md)
 - [shell_checklist.md](./shell_checklist.md)
 - [config_checklist.md](./config_checklist.md)
 
 ### Style Guides
-- [JavaScript Style Guide](../javascript/style_guide.md)
-- [Python Style Guide](../python/style_guide.md)
-- [Shell Style Guide](../shell/style_guide.md)
-- [Config Style Guide](../config/style_guide.md)
+- [JavaScript Style Guide](../../references/javascript/style_guide.md)
+- [TypeScript Style Guide](../../references/typescript/style_guide.md)
+- [Python Style Guide](../../references/python/style_guide.md)
+- [Shell Style Guide](../../references/shell/style_guide.md)
+- [Config Style Guide](../../references/config/style_guide.md)

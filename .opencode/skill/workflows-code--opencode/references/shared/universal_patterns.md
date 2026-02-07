@@ -13,7 +13,7 @@ Patterns applicable to ALL languages in OpenCode system code.
 
 ### Purpose
 
-This reference defines patterns that apply universally across JavaScript, Python, Shell, and JSON/JSONC in the OpenCode codebase. These principles ensure consistency regardless of language choice.
+This reference defines patterns that apply universally across JavaScript, TypeScript, Python, Shell, and JSON/JSONC in the OpenCode codebase. These principles ensure consistency regardless of language choice.
 
 ### Core Principle
 
@@ -30,9 +30,9 @@ This reference defines patterns that apply universally across JavaScript, Python
 
 | Pattern | Source File | Line Reference |
 |---------|-------------|----------------|
-| Reference comments | `mcp_server/context-server.js` | Lines 35, 42, 61, 67 |
-| Section organization | `scripts/core/config.js` | Lines 6-8, 16-18 |
-| Naming conventions | `mcp_server/handlers/memory-search.js` | Throughout |
+| Reference comments | `mcp_server/context-server.ts` | Lines 34, 42, 62, 65 |
+| Section organization | `scripts/core/config.ts` | Lines 9-11, 24-26 |
+| Naming conventions | `mcp_server/handlers/memory-search.ts` | Throughout |
 | Python docstrings | `scripts/skill_advisor.py` | Lines 6-16, 439-486 |
 
 ---
@@ -43,8 +43,22 @@ This reference defines patterns that apply universally across JavaScript, Python
 
 Names should describe what something IS or DOES without requiring context:
 
-**Good**:
+**Good** (JS/TS use camelCase, Python/Shell use snake_case):
+```javascript
+// JavaScript
+calculateMemoryScore()
+validateInputLengths()
+handleMemorySearch()
 ```
+```typescript
+// TypeScript (same as JS for functions; PascalCase for types)
+calculateMemoryScore()
+validateInputLengths()
+interface SearchResult { }
+type MemoryState = 'active' | 'archived';
+```
+```python
+# Python
 calculate_memory_score()
 validate_input_lengths()
 handle_memory_search()
@@ -76,31 +90,48 @@ Spell out words unless industry-standard:
 
 Same concept = same name across the entire codebase:
 
-```
-// GOOD: Consistent naming
-memory_search()      // in handlers
-handle_memory_search()  // wrapper
-MemorySearchResult   // type
+```javascript
+// GOOD: Consistent naming (JS/TS)
+memorySearch()          // in handlers
+handleMemorySearch()    // wrapper
+MemorySearchResult      // type/interface (PascalCase)
 
 // BAD: Inconsistent naming
-memory_search()      // in handlers
-handleSearch()       // wrapper - different style!
-SearchMemoryResult   // type - different word order!
+memorySearch()          // in handlers
+handle_search()         // wrapper - wrong convention!
+SearchMemoryResult      // type - different word order!
 ```
 
 ### Boolean Naming
 
 Booleans should read as questions:
 
+```javascript
+// JavaScript / TypeScript (camelCase)
+isValid
+hasResults
+canProceed
+shouldRetry
+enableDedup
 ```
-// GOOD
+
+```typescript
+// TypeScript — with type annotation
+const isValid: boolean = true;
+const hasResults: boolean = items.length > 0;
+```
+
+```python
+# Python / Shell (snake_case)
 is_valid
 has_results
 can_proceed
 should_retry
 enable_dedup
+```
 
-// BAD
+```
+// BAD (any language)
 valid      // is it valid? or make it valid?
 results    // what about results?
 proceed    // noun or verb?
@@ -204,19 +235,16 @@ Reference comments create traceability between code and requirements/issues. Ope
 
 ### Evidence from Codebase
 
-```javascript
-// From context-server.js:35,42,61,67
+```typescript
+// From context-server.ts:34,62,65
 // T043-T047: Causal Memory Graph handlers
-handle_memory_drift_why, handle_memory_causal_link, handle_memory_causal_stats,
-
-// T060-T063: Layer architecture
-const layerDefs = require(path.join(LIB_DIR, 'architecture', 'layer-definitions.js'));
+handleMemoryDriftWhy, handleMemoryCausalLink, handleMemoryCausalStats, handleMemoryCausalUnlink,
 
 // T001-T004: Session deduplication
-const sessionManager = require(path.join(LIB_DIR, 'session', 'session-manager.js'));
+import * as sessionManager from './lib/session/session-manager';
 
 // T107: Transaction manager for pending file recovery on startup (REQ-033)
-const transactionManager = require(path.join(LIB_DIR, 'storage', 'transaction-manager.js'));
+import * as transactionManager from './lib/storage/transaction-manager';
 ```
 
 ### When to Use Reference Comments
@@ -333,8 +361,8 @@ Always validate external input:
 
 ```javascript
 // JavaScript
-const { validate_input_lengths } = require('./utils');
-if (!validate_input_lengths(query, MAX_QUERY_LENGTH)) {
+const { validateInputLengths } = require('./utils');
+if (!validateInputLengths(query, MAX_QUERY_LENGTH)) {
   throw new Error('Query exceeds maximum length');
 }
 ```
@@ -385,6 +413,7 @@ const apiKey = "sk-1234567890abcdef";
 ### Language-Specific References
 
 - `../javascript/style_guide.md` - JavaScript naming, formatting, headers
+- `../typescript/style_guide.md` - TypeScript naming, types, interfaces, imports
 - `../python/style_guide.md` - Python naming, docstrings, imports
 - `../shell/style_guide.md` - Shell shebang, quoting, functions
 - `../config/style_guide.md` - JSON/JSONC structure, comments
