@@ -120,7 +120,7 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 - Completeness scoring (0-100%)
 - 10 core templates (CORE + ADDENDUM v2.0)
 - 001/002/003 sub-folder versioning
-- 77 scripts handle the boring work (48 JS + 29 shell)
+- 244 scripts handle the boring work (179 TS + 36 JS + 28 shell + 1 Python)
 - Stateless architecture (no STATE.md)
 
 ### The Integration Nobody Else Has
@@ -652,9 +652,9 @@ Without guardrails, AI assistants:
 **AGENTS.md prevents all of this.**
 
 
-### Specialized Agents (7 Total)
+### Specialized Agents (8 Total)
 
-The system includes 7 specialized agents that handle specific tasks. Five are **sub-agents** integrated into commands, two are **enhanced orchestration agents**.
+The system includes 8 specialized agents that handle specific tasks. Five are **sub-agents** integrated into commands, three are **orchestration and context agents**.
 
 **Sub-Agents** (integrated into commands):
 
@@ -666,14 +666,15 @@ The system includes 7 specialized agents that handle specific tasks. Five are **
 | `@debug`    | 4-phase debugging (Observe → Analyze → Hypothesize → Fix) | `/spec_kit:debug`     |
 | `@handover` | Session continuation and context preservation             | `/spec_kit:handover`  |
 
-**Orchestration Agents**:
+**Orchestration & Context Agents**:
 
-| Agent          | Purpose                                                                      |
-| -------------- | ---------------------------------------------------------------------------- |
-| `@orchestrate` | Senior orchestration with task decomposition, delegation, quality evaluation |
-| `@write`       | Documentation generation and maintenance                                     |
+| Agent              | Purpose                                                                      |
+| ------------------ | ---------------------------------------------------------------------------- |
+| `@orchestrate`     | Senior orchestration with task decomposition, delegation, quality evaluation |
+| `@context_loader`  | Context retrieval and synthesis — the orchestrator's dedicated context scout  |
+| `@write`           | Documentation generation and maintenance                                     |
 
-**Model Defaults:** Opus 4.5 for complex analysis, Sonnet for cost-efficient structured tasks.
+**Model Assignments:** Opus 4.6 for heavy analysis (`@research`, `@review`, `@debug`). Sonnet 4.5 for structured tasks (`@write`, `@speckit`, `@handover`, `@context_loader`). `@orchestrate` has no model (primary mode, delegates only).
 
 
 ### Enterprise Orchestration Patterns
@@ -688,6 +689,9 @@ The `@orchestrate` agent includes enterprise-grade patterns for reliable multi-a
 | **Resource Budgeting**    | 50K token default, 80% warning, 100% halt                      |
 | **Conditional Branching** | IF/THEN/ELSE logic with 3-level nesting                        |
 | **Checkpointing**         | Recovery snapshots every 5 tasks or 10 tool calls              |
+| **Two-Tier Dispatch**     | @context_loader gathers context → orchestrator dispatches with Context Package |
+| **Complexity Signaling**  | Low/medium/high complexity field controls agent ceremony level |
+| **FAST PATH**             | Low-complexity tasks skip mandatory process steps for faster execution |
 
 
 #### Confidence & Dual-Threshold Validation
@@ -750,7 +754,7 @@ AGENTS.md includes dedicated guidance for code implementation with two skill var
 | ---------------------------- | -------------------------------------------------------------- | --------------------------------------------- |
 | `workflows-code--web-dev`    | Single-stack web projects (Webflow, vanilla JS)                | `.opencode/skill/workflows-code--web-dev/`    |
 | `workflows-code--full-stack` | Multi-stack projects (Go, Node.js, React, React Native, Swift) | `.opencode/skill/workflows-code--full-stack/` |
-| `workflows-code--opencode`   | OpenCode system code (JavaScript, Python, Shell, JSON/JSONC)   | `.opencode/skill/workflows-code--opencode/`   |
+| `workflows-code--opencode`   | OpenCode system code (TypeScript, Python, Shell, JSON/JSONC)   | `.opencode/skill/workflows-code--opencode/`   |
 
 **3-Phase Lifecycle:**
 1. **Phase 1 - Implementation**: Write code following stack-specific patterns
@@ -823,7 +827,7 @@ Multi-stack code implementation for 5 technology stacks (Go, Node.js, React, Rea
 > Example: "Implement Go service" or "Add React component" or "Debug Node.js API"
 
 **workflows-code--opencode**
-Multi-language code standards for OpenCode system code (JavaScript, Python, Shell, JSON/JSONC). Language detection routing, universal patterns, commenting standards, and quality checklists for MCP servers, scripts, and configurations.
+Multi-language code standards for OpenCode system code (TypeScript, Python, Shell, JSON/JSONC). Language detection routing, universal patterns, commenting standards, and quality checklists for MCP servers, scripts, and configurations.
 > Example: "Write MCP server handler" or "Create Python validator" or "Add shell script"
 
 **workflows-documentation**

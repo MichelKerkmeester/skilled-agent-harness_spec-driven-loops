@@ -7,6 +7,74 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**1.3.0.0**] - 2026-02-10
+
+**Agent fleet overhaul:** Created `@context_loader` agent, established Two-Tier Dispatch architecture, added FAST PATH to all 6 work agents, removed dead code, standardized models, and compressed all agent prompts by **23.1%** (5,176 → 3,982 lines).
+
+> Spec folder: `004-agents/007-explore-sub-agent` (Level 2)
+
+---
+
+### Added
+
+**@context_loader Agent**
+
+1. **Context retrieval agent** — Created `.opencode/agent/context_loader.md` (716 lines). Specialized context scout with 3 thoroughness levels (quick/medium/thorough), Memory MCP integration, and structured Context Package output
+2. **Two-Tier Dispatch Model** — Phase 1: `@context_loader` gathers context → Phase 2: orchestrator dispatches implementation agents with that Context Package. Eliminates redundant exploration across agents
+3. **@explore prohibition (Rule 4)** — `orchestrate.md` §6 now prohibits direct `@explore` dispatch. Only `@context_loader` can internally dispatch the built-in `@explore` subagent type
+
+**FAST PATH System**
+
+4. **Low-complexity bypass** — Added `§1.1 FAST PATH & CONTEXT PACKAGE` section to all 6 work agents (`research`, `write`, `review`, `debug`, `speckit`, `handover`). Low-complexity tasks skip ceremony; agents pre-loaded with Context Package skip Layer 1 memory checks
+5. **Complexity signaling** — Added `Complexity: [low|medium|high]` field to `orchestrate.md` §11 Task Decomposition Format with estimation heuristic table. Agents use this to decide FAST PATH vs full workflow
+
+### Changed
+
+**orchestrate.md (39.7% reduction: 1,316 → 793 lines)**
+
+1. **Aggressive prompt compression** — Compressed §17 Circuit Breaker, §19 Saga, §20 Caching, §22 Checkpointing, §23 Summary, §24 Mermaid (Phase 1b: −165 lines), then §28, §7, §27, §14, §5, §4, §12, §16, §21, §30 (Phase 1c: −361 lines)
+2. **@context_loader integration** — All `@explore` dispatch references replaced with `@context_loader`. Agent Selection Matrix and Routing Logic updated
+3. **Complexity field in PDR** — Pre-Delegation Reasoning format now includes complexity line
+
+**research.md (42.4% reduction: 793 → 457 lines)**
+
+4. **Prompt trimming + FAST PATH** — Aggressive compression with low-complexity bypass added
+
+**write.md (59.2% reduction: 847 → 346 lines)**
+
+5. **Largest reduction** — Most aggressive trimming of all agents
+
+**review.md (50.6% reduction: 810 → 400 lines)**
+
+6. **Prompt trimming + FAST PATH** — Aggressive compression with low-complexity bypass added
+
+**debug.md (38.0% reduction: 703 → 436 lines)**
+
+7. **Prompt trimming + FAST PATH** — Aggressive compression with low-complexity bypass added
+
+**speckit.md (24.5% reduction: 649 → 490 lines)**
+
+8. **Prompt trimming + FAST PATH** — Moderate compression with low-complexity bypass added
+
+**handover.md (+2.4%: 336 → 344 lines)**
+
+9. **FAST PATH added** — Grew slightly due to new section (already the smallest agent)
+
+**Model standardization**
+
+10. **All agents → `github-copilot/claude-*`** — Heavy agents (research, review, debug) use `claude-opus-4.6`. Lighter agents (write, speckit, handover, context_loader) use `claude-sonnet-4.5`. Orchestrate has no model (primary mode, delegates only)
+
+### Removed
+
+1. **Dead Coordinator Mode** — Removed §9-§10 from `research.md` (coordinator/worker dispatch code). Agent has `task: deny` so this was unreachable dead code
+2. **Dead Worker Mode** — Removed §4-§5 from `debug.md` (coordinator/worker dispatch code). Same reason: `task: deny` makes it unreachable
+
+---
+
+**Files:** `.opencode/agent/context_loader.md` (new) · `.opencode/agent/orchestrate.md` · `.opencode/agent/research.md` · `.opencode/agent/write.md` · `.opencode/agent/review.md` · `.opencode/agent/debug.md` · `.opencode/agent/speckit.md` · `.opencode/agent/handover.md`
+
+---
+
 ## [**1.2.5.0**] - 2026-02-07
 
 **workflows-code--opencode** skill v1.3.0→v1.3.1: Post-TypeScript-migration alignment audit + full remediation across **136 files** (645 violations found), template alignment for **22 skill files**, router correction (**17 section references** fixed).

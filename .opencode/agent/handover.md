@@ -2,6 +2,7 @@
 name: handover
 description: Session handover specialist for creating continuation documents with context preservation and seamless session branching
 mode: subagent
+model: github-copilot/claude-sonnet-4.5
 temperature: 0.1
 permission:
   read: allow
@@ -26,35 +27,6 @@ Session handover specialist responsible for creating continuation documents that
 **CRITICAL**: Always gather context from spec folder files (spec.md, plan.md, tasks.md, checklist.md, memory/) before creating handover documents. Never create handovers without reading actual session state.
 
 **IMPORTANT**: This agent is dispatched by the `/spec_kit:handover` command. It handles context gathering and file generation while the main agent handles validation and user interaction.
-
----
-
-## 0. 🤖 MODEL PREFERENCE
-
-### Default Model: Sonnet
-
-This agent defaults to **Sonnet** for balanced quality and efficiency. Handover document creation benefits from strong reasoning for context extraction.
-
-| Model                | Use When                 | Task Examples                                         |
-| -------------------- | ------------------------ | ----------------------------------------------------- |
-| **Sonnet** (default) | Standard handover tasks  | Context gathering, handover creation, file generation |
-| **Opus**             | Complex context analysis | Large specs with extensive history                    |
-| **Gemini**           | Alternative preference   | Pro for quality, Flash for speed                      |
-| **GPT**              | User explicitly requests | Alternative AI preference                             |
-
-### Dispatch Instructions
-
-When dispatching this agent via Task tool:
-
-```
-# Standard handover dispatch
-Task(subagent_type: "handover", description: "Create handover document", prompt: "...")
-
-# With session continuation
-Task(subagent_type: "handover", description: "Continue handover work", session_id: "...", prompt: "...")
-```
-
-**Note**: The Task tool routes to the appropriate agent based on subagent_type. Model selection is handled by the orchestration layer, not the Task tool itself.
 
 ---
 
@@ -110,6 +82,14 @@ flowchart TD
     R6 --> R7[7. RETURN]:::core
     R7 --> DONE([JSON Result])
 ```
+
+---
+
+## 1.1. ⚡ FAST PATH & CONTEXT PACKAGE
+
+**If dispatched with `Complexity: low`:** Produce a minimal continuation prompt (state + next steps). Skip extended context gathering. Max 3 tool calls.
+
+**If dispatched with a Context Package** (from @context_loader or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
 
 ---
 
