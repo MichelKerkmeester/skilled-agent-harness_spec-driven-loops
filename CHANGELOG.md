@@ -7,6 +7,29 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**2.0.0.2**] - 2026-02-11
+
+**Documentation — Spec Kit Internal READMEs** — Created 4 internal README files documenting Spec Kit Memory subsystems (scoring, utils, types, tools) and updated 1 existing README with project styling conventions.
+
+---
+
+### Added
+
+1. **`shared/scoring/README.md`** — Documents composite folder scoring formula, 8 function exports, 5 constants, design decision references (D1/D2/D4/D7/D8)
+2. **`shared/utils/README.md`** — Documents path-security (CWE-22/59/78 prevention) and retry (exponential backoff with error classification) utilities
+3. **`scripts/types/README.md`** — Documents 16 session type interfaces across 4 sections, type architecture diagram, `SessionData` root type
+4. **`mcp_server/tools/README.md`** — Documents 22-tool dispatch architecture, ASCII flow diagram, 5 domain tables (L1–L7), tool extension guide
+
+### Changed
+
+1. **`mcp_server/tests/README.md`** — Added emoji section headers (37 headers) to match project styling conventions
+
+---
+
+**Files:** 5 files (4 created, 1 updated)
+
+---
+
 ## [**2.0.0.1**] - 2026-02-11
 
 **Pre-Release Security Audit & Public Release Preparation** — Comprehensive 27-agent security sweep across all 9 skills, 18 commands, and 8 agents. Scrubbed sensitive content from **40+ files**, applied **200+ replacements**, fixed version misalignments, dead links, and stale references. Build documentation added for first-time users.

@@ -6,6 +6,23 @@ All notable changes to the system-spec-kit skill are documented in this file.
 
 ---
 
+## [2.2.0.2] - 2026-02-11
+
+### Added
+
+**Internal README Documentation**
+
+- **shared/scoring/README.md** — Composite folder scoring documentation: formula breakdown, weight tables, 8 function exports, 5 constants, archive multiplier rules, design decision references (D1/D2/D4/D7/D8), constitutional exemption notes
+- **shared/utils/README.md** — Shared utility documentation: path-security module (CWE-22/59/78 prevention, 3-step validation pipeline) and retry module (exponential backoff, transient/permanent error classification, HTTP status codes)
+- **scripts/types/README.md** — Session type definitions documentation: 16 interfaces across 4 sections (Decision, Phase/Conversation, Diagram, Session), ASCII type architecture diagram, `SessionData` root type with 35+ fields, P6-05 tech-debt migration notes
+- **mcp_server/tools/README.md** — Tool dispatch layer documentation: 22 MCP tools across 5 domains (L1–L7), dispatcher architecture with ASCII flow diagram, `parseArgs<T>()` utility, tool extension guide
+
+### Changed
+
+- **mcp_server/tests/README.md** — Added emoji prefixes to all 37 section headers (8 H2 + 29 H3/H4) to match project README styling conventions
+
+---
+
 ## [2.2.0.1] - 2026-02-11
 
 ### Fixed
