@@ -1,6 +1,6 @@
 ---
 title: Code Style Guide
-description: Naming conventions, formatting, comments, and visual organization standards for anobel.com frontend development
+description: Naming conventions, formatting, comments, and visual organization standards for frontend development
 ---
 
 # Code Style Guide
@@ -754,9 +754,9 @@ Before committing any code, verify:
 
 ### Production Examples
 
-- `src/2_javascript/video/video_background_hls_hover.js` - Complete example of all conventions
+- `src/javascript/video/video_background_hls_hover.js` - Complete example of all conventions
 - `src/1_css/global/fluid_responsive.css` - CSS custom property naming example
-- `src/2_javascript/form/file_upload.js` - Form component with full structure
+- `src/javascript/form/file_upload.js` - Form component with full structure
 
 ---
 

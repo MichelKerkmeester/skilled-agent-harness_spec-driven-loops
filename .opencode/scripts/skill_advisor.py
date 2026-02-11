@@ -77,6 +77,7 @@ SYNONYM_MAP = {
     "forget": ["memory", "delete", "remove"],
     "checkpoint": ["memory", "save", "restore", "backup"],
     "history": ["memory", "context", "past", "previous"],
+    "memory": ["context", "session", "save", "store", "database", "vector", "embedding", "index"],
     "session": ["memory", "context", "conversation"],
     "preserve": ["memory", "save", "context", "store"],
     "store": ["memory", "save", "context", "persist"],
@@ -163,15 +164,22 @@ INTENT_BOOSTERS = {
     # ─────────────────────────────────────────────────────────────────
     "checkpoint": ("system-spec-kit", 0.6),
     "context": ("system-spec-kit", 0.6),
+    "database": ("system-spec-kit", 0.4),
+    "embedding": ("system-spec-kit", 0.5),
+    "embeddings": ("system-spec-kit", 0.5),
     "forget": ("system-spec-kit", 0.4),
     "history": ("system-spec-kit", 0.4),
+    "index": ("system-spec-kit", 0.4),
     "memory": ("system-spec-kit", 0.8),
     "preserve": ("system-spec-kit", 0.5),
     "recall": ("system-spec-kit", 0.6),
+    "reindex": ("system-spec-kit", 0.6),
     "remember": ("system-spec-kit", 0.6),
     "restore": ("system-spec-kit", 0.4),
     "session": ("system-spec-kit", 0.4),
     "store": ("system-spec-kit", 0.4),
+    "vector": ("system-spec-kit", 0.5),
+    "voyage": ("system-spec-kit", 0.5),
 
     # ─────────────────────────────────────────────────────────────────
     # SYSTEM-SPEC-KIT: Specification and planning
@@ -303,6 +311,7 @@ MULTI_SKILL_BOOSTERS = {
     "session": [("system-spec-kit", 0.5)],
     "standards": [("workflows-code--opencode", 0.4), ("workflows-code", 0.2)],
     "style": [("workflows-code--opencode", 0.3), ("workflows-code", 0.2)],
+    "task": [("system-spec-kit", 0.3)],
     "test": [("workflows-code", 0.3), ("workflows-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("workflows-git", 0.2), ("workflows-code", 0.2)],
 }
@@ -636,8 +645,8 @@ Examples:
                         help='User request to analyze')
     parser.add_argument('--health', action='store_true',
                         help='Run health check diagnostics')
-    parser.add_argument('--threshold', type=float, default=0.0,
-                        help='Confidence threshold for recommendations (default: 0.0, typical: 0.8)')
+    parser.add_argument('--threshold', type=float, default=None,
+                        help='Confidence threshold for recommendations (typical: 0.8). When explicitly set, uses confidence-only filtering (bypasses dual-threshold uncertainty check).')
     parser.add_argument('--uncertainty', type=float, default=1.0,
                         help='Maximum uncertainty threshold for recommendations (default: 1.0, typical: 0.5)')
     parser.add_argument('--show-rejections', action='store_true',
@@ -655,16 +664,21 @@ Examples:
     
     results = analyze_request(args.prompt)
 
-    # Apply threshold filtering if specified
-    if args.threshold > 0:
-        results = [r for r in results if r['confidence'] >= args.threshold]
+    # Determine filtering mode based on whether --threshold was explicitly passed.
+    # When explicit: confidence-only filtering (user override — matches AGENTS.md Gate 2:
+    #   "confidence >= 0.8 → MUST invoke"). The dual-threshold uncertainty check is bypassed.
+    # When implicit (None): use dual-threshold passes_threshold field as the filter.
+    explicit_threshold = args.threshold is not None
 
-    # Apply uncertainty threshold filtering
+    if explicit_threshold:
+        # User explicitly set --threshold: filter by confidence alone
+        results = [r for r in results if r['confidence'] >= args.threshold]
+    elif not args.show_rejections:
+        # No explicit threshold: use dual-threshold (confidence + uncertainty)
+        results = [r for r in results if r.get('passes_threshold', True)]
+
+    # Apply uncertainty threshold filtering (only when explicitly set below 1.0)
     if args.uncertainty < 1.0:
         results = [r for r in results if r['uncertainty'] <= args.uncertainty]
-
-    # Filter out rejections unless --show-rejections is set
-    if not args.show_rejections:
-        results = [r for r in results if r.get('passes_threshold', True)]
 
     print(json.dumps(results, indent=2))

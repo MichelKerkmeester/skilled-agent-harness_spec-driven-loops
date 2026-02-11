@@ -266,8 +266,7 @@ multi_agent_config:
           - "Execute integration and verification steps"
           - "Create implementation-summary.md"
       workers:
-        - model: "{worker_model|opus}"
-          role: "implementation_agent"
+        - role: "implementation_agent"
           focus: "Core Implementation"
           step: 6
           responsibilities:
@@ -275,8 +274,7 @@ multi_agent_config:
             - "Follow TDD approach where applicable"
             - "Implement models, services, endpoints"
             - "Update task checklist progressively"
-        - model: "{worker_model|opus}"
-          role: "test_agent"
+        - role: "test_agent"
           focus: "Test Implementation"
           step: 6
           responsibilities:
@@ -298,8 +296,7 @@ multi_agent_config:
           - "Execute integration and verification steps"
           - "Create implementation-summary.md"
       workers:
-        - model: "{worker_model|opus}"
-          role: "implementation_agent"
+        - role: "implementation_agent"
           focus: "Core Implementation"
           step: 6
           responsibilities:
@@ -307,8 +304,7 @@ multi_agent_config:
             - "Follow TDD approach where applicable"
             - "Implement models, services, endpoints"
             - "Update task checklist progressively"
-        - model: "{worker_model|opus}"
-          role: "test_agent"
+        - role: "test_agent"
           focus: "Test Implementation"
           step: 6
           responsibilities:
@@ -316,8 +312,7 @@ multi_agent_config:
             - "Validate against acceptance criteria"
             - "Execute test suite and report results"
             - "Document test coverage"
-        - model: "{worker_model|opus}"
-          role: "integration_agent"
+        - role: "integration_agent"
           focus: "Integration and Polish"
           step: 6
           responsibilities:
@@ -843,10 +838,8 @@ workflow:
         agents:
           - name: "implementation_agent"
             focus: "Core implementation tasks from tasks.md"
-            model: "{worker_model|opus}"
           - name: "test_agent"
             focus: "Test implementation and validation"
-            model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"

@@ -643,6 +643,46 @@ const result = await safeAsync(
 }
 ```
 
+### Build & Rebuild Workflow
+
+After editing TypeScript source files, the compiled `dist/` output must be rebuilt. The MCP server and CLI scripts run from `dist/`, not from `.ts` source directly.
+
+**Build command** (from skill root, e.g. `.opencode/skill/system-spec-kit/`):
+
+```bash
+# Standard build (type checks + emit)
+npm run build          # runs: tsc --build
+
+# Build with pre-existing type errors (emit without type checking)
+npx tsc --build --noCheck --force
+
+# Smoke test after build
+npm run test:cli       # verifies dist/ output runs correctly
+```
+
+**When to use `--noCheck`**: The `strict: true` config combined with third-party SDK types (e.g., MCP SDK `Record<string, unknown>` vs typed handler args) can produce pre-existing type errors that don't affect runtime. Use `--noCheck --force` to emit JavaScript while bypassing these.
+
+**Workspace build order**: `tsc --build` respects project references and builds in dependency order:
+1. `shared/` (no dependencies)
+2. `mcp_server/` (depends on `shared/`)
+3. `scripts/` (depends on `shared/`)
+
+**Post-build verification**:
+
+| Check | Command | Pass Criteria |
+|-------|---------|---------------|
+| CLI smoke test | `npm run test:cli` | Exit 0 + "CLI smoke test passed" |
+| MCP server start | `npm run start` | Server starts without crash |
+| Embedding test | `npm run test:embeddings` | Embeddings factory loads |
+
+**Common TS4094 error**: If exporting a class with private/protected members from a `.js` file re-exported through `.ts`, TypeScript cannot emit declarations. Fix by adding a type assertion at the re-export site:
+
+```typescript
+// TS4094: Property '_method' of exported anonymous class type may not be private
+// Fix: widen the type to suppress declaration emit error
+const ExportedClass = jsModule.SomeClass as typeof jsModule.SomeClass & { new(...args: unknown[]): unknown };
+```
+
 ### Key Configuration Decisions
 
 | Setting                           | Value       | Rationale                                                |

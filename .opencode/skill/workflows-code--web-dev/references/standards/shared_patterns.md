@@ -234,7 +234,7 @@ PERFORMANCE:
 ```markdown
 1. Navigate to page:
    [Use tool: mcp__chrome_devtools_2__navigate_page]
-   - url: "https://anobel.com"
+   - url: "https://example.com"
 
 2. List console messages:
    [Use tool: mcp__chrome_devtools_2__list_console_messages]
@@ -253,7 +253,7 @@ Expected result: No errors found
 ```markdown
 1. Navigate once:
    [Use tool: mcp__chrome_devtools_2__navigate_page]
-   - url: "https://anobel.com"
+   - url: "https://example.com"
 
 2. Mobile (375px):
    [Use tool: mcp__chrome_devtools_2__resize_page]
@@ -280,7 +280,7 @@ Result: Three screenshots at exact dimensions for visual review
 ```markdown
 1. Navigate to page:
    [Use tool: mcp__chrome_devtools_2__navigate_page]
-   - url: "https://anobel.com"
+   - url: "https://example.com"
 
 2. Start performance trace:
    [Use tool: mcp__chrome_devtools_2__performance_start_trace]
@@ -303,7 +303,7 @@ Result: Objective performance metrics
 ```markdown
 1. Navigate to page:
    [Use tool: mcp__chrome_devtools_2__navigate_page]
-   - url: "https://anobel.com"
+   - url: "https://example.com"
 
 2. List network requests:
    [Use tool: mcp__chrome_devtools_2__list_network_requests]
@@ -323,7 +323,7 @@ Expected result: No failed requests
 ```markdown
 1. Navigate once:
    [Use tool: mcp__chrome_devtools_2__navigate_page]
-   - url: "https://anobel.com"
+   - url: "https://example.com"
 
 2. Check console errors:
    [Use tool: mcp__chrome_devtools_2__list_console_messages]

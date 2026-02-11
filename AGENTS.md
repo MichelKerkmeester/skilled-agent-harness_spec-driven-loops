@@ -557,7 +557,7 @@ Task Received → Gate 2: Run skill_advisor.py
 
 ### Primary Skill: workflows-code
 
-For ALL frontend code implementation in anobel.com, `workflows-code` is the primary orchestrator skill.
+For ALL frontend code implementation, `workflows-code` is the primary orchestrator skill.
 
 **3-Phase Lifecycle (MANDATORY):**
 1. **Phase 1 - Implementation**: Write code following Webflow patterns, async handling, validation

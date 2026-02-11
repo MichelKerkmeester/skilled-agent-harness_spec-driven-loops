@@ -53,7 +53,7 @@ Inline comment style enforcement across **10 files** (~200 edits), router comple
 
 ## [**1.0.9.1**] - 2026-02-07
 
-Incorporated performance optimization teachings from Spec 031 (`anobel-performance-analysis`) into reference files and pattern assets.
+Incorporated performance optimization teachings from Spec 031 (`project-performance-analysis`) into reference files and pattern assets.
 
 ---
 
@@ -78,7 +78,7 @@ Incorporated performance optimization teachings from Spec 031 (`anobel-performan
 
 ### Source
 
-- Spec: `005-anobel.com/031-anobel-performance-analysis`
+- Spec: `005-project-name/031-project-performance-analysis`
 - ADRs: ADR-001 (Timeout Values), ADR-002 (Motion.dev Ready Event)
 - Implementation: SharedObservers migration in `video_player_hls_scroll.js`, `video_background_hls_hover.js`, `table_of_content.js`
 
@@ -159,9 +159,9 @@ Bug fixes restoring **3 missing minification scripts** and updating **25+ broken
 
 ### Fixed
 
-1. **Missing scripts directory** — Created `.opencode/skill/workflows-code/scripts/` with all 3 minification scripts
+1. **Missing scripts directory** — Created `.opencode/skill/workflows-code--web-dev/scripts/` with all 3 minification scripts
 2. **SKILL.md script paths** — Updated Common Commands section to reference correct skill-local paths
-3. **minification_guide.md** — Fixed 10+ broken `scripts/` references to `.opencode/skill/workflows-code/scripts/`
+3. **minification_guide.md** — Fixed 10+ broken `scripts/` references to `.opencode/skill/workflows-code--web-dev/scripts/`
 4. **cdn_deployment.md** — Fixed 6 broken script path references
 5. **Phase 1.5 missing from tables** — Added Code Quality Gate phase to overview tables in SKILL.md
 

@@ -2,12 +2,12 @@
 # Multi-Viewport Testing Script
 # Purpose: Test page rendering and animations across multiple viewports
 # Usage: ./multi-viewport-test.sh [URL] [SELECTOR] [TRIGGER_CLASS]
-# Example: ./multi-viewport-test.sh https://anobel.com ".hero" "animate-in"
+# Example: ./multi-viewport-test.sh https://example.com ".hero" "animate-in"
 
 set -e  # Exit on error
 
 # Configuration
-URL="${1:-https://anobel.com}"
+URL="${1:-https://example.com}"
 SELECTOR="${2:-.animated-element}"
 TRIGGER_CLASS="${3:-animate}"
 OUTPUT_DIR="viewport-tests"

@@ -26,7 +26,7 @@ Validation rules are modular shell scripts that check spec folders for structura
 
 | Category             | Count | Details                                       |
 | -------------------- | ----- | --------------------------------------------- |
-| Rules                | 14    | Modular validation scripts                    |
+| Rules                | 13    | Modular validation scripts                    |
 | Severity Levels      | 3     | error, warn, info                             |
 | Documentation Levels | 4     | L1, L2, L3, L3+ with progressive requirements |
 
@@ -69,7 +69,7 @@ cd specs/003-memory-and-spec-kit/046-post-release-refinement-1/
 # Check that rules are executable
 ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
-# Expected: 14 .sh files with execute permissions
+# Expected: 13 .sh files with execute permissions
 # -rwxr-xr-x check-files.sh
 # -rwxr-xr-x check-priority-tags.sh
 # -rwxr-xr-x check-complexity.sh
@@ -452,7 +452,7 @@ echo "Status: $RULE_STATUS, Message: $RULE_MESSAGE"
 
 | Document                                | Purpose                             |
 | --------------------------------------- | ----------------------------------- |
-| [validate-spec.sh](../validate-spec.sh) | Orchestrator that invokes all rules |
+| [validate-spec.sh](../spec/validate.sh) | Orchestrator that invokes all rules |
 | [SKILL.md](../../SKILL.md)              | Parent skill documentation          |
 | [templates/](../../templates/)          | Spec folder templates               |
 

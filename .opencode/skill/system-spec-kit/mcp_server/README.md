@@ -84,11 +84,11 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | Category | Count |
 |----------|-------|
 | **MCP Tools** | 22 |
-| **Library Modules** | 70+ |
-| **Handler Modules** | 9 |
+| **Library Modules** | 50 |
+| **Handler Modules** | 11 |
 | **Embedding Providers** | 3 |
 | **Cognitive Features** | 12+ |
-| **Test Coverage** | 1,500+ tests |
+| **Test Coverage** | 3,800+ tests across 114 test files (incl. 58/58 MCP integration tests at 100%) |
 
 ### Requirements
 
@@ -182,7 +182,7 @@ The causal graph supports 6 relationship types for decision archaeology:
 | `supports` | A provides evidence or support for B |
 
 **Example:**
-```javascript
+```typescript
 // Why was JWT chosen for authentication?
 memory_drift_why({ memoryId: 'auth-decision-123', maxDepth: 3 })
 // Returns:
@@ -193,6 +193,12 @@ memory_drift_why({ memoryId: 'auth-decision-123', maxDepth: 3 })
 //   supersedes: [{ title: "Session Cookie Approach", relation: "supersedes" }]
 // }
 ```
+
+---
+
+### Token Budget Observability
+
+All handler responses include a `tokenBudget` field in the `meta` object showing the configured token limit for the response. When a response exceeds its budget, a warning is logged via `console.error` and an advisory hint is injected into the response's `hints` array.
 
 ---
 
@@ -237,7 +243,7 @@ This isn't basic memory storage. The system implements biologically-inspired cog
 Memory strength follows the Free Spaced Repetition Scheduler formula, validated on 100M+ Anki users:
 
 ```
-R(t, S) = (1 + 0.235 * t/S)^(-0.5)
+R(t, S) = (1 + (19/81) × t/S)^(-0.5)    where 19/81 ≈ 0.2346; R(S,S) = 0.9
 ```
 
 Where:
@@ -346,7 +352,7 @@ When one memory is retrieved, related memories get a boost:
 
 Track knowledge improvement across task execution:
 
-```javascript
+```typescript
 // 1. Before starting - capture baseline
 task_preflight({
   specFolder: "specs/077-upgrade",
@@ -443,7 +449,7 @@ Query
 
 ### RRF Fusion
 
-```javascript
+```typescript
 RRF_score = sum(weight / (k + rank_i)) * convergence_bonus
 ```
 
@@ -524,12 +530,12 @@ The **constitutional** tier is special--these memories ALWAYS appear at the top 
 
 | Tier | Boost | Decay Rate | Auto-Clean | Use Case |
 |------|-------|------------|------------|----------|
-| **constitutional** | 10.0x | Never | Never | Project rules, always-surface |
-| **critical** | 5.0x | Never | Never | Architecture decisions |
-| **important** | 2.0x | Never | Never | Key implementations |
+| **constitutional** | 3.0x | Never | Never | Project rules, always-surface |
+| **critical** | 2.0x | Never | Never | Architecture decisions |
+| **important** | 1.5x | Never | Never | Key implementations |
 | **normal** | 1.0x | 0.80/turn | 90 days | Standard context (default) |
 | **temporary** | 0.5x | 0.60/turn | 7 days | Debug sessions |
-| **deprecated** | 0.1x | Never | Manual | Outdated info |
+| **deprecated** | 0.0x | Never | Manual | Outdated info |
 
 ### Tier Selection Guide
 
@@ -548,83 +554,157 @@ The **constitutional** tier is special--these memories ALWAYS appear at the top 
 
 ```
 mcp_server/
-|-- context-server.js       # Main MCP server entry point (22 tools)
-|-- package.json            # Dependencies and scripts
-|-- README.md               # This file
-|
-|-- core/                   # Core initialization
-|   |-- index.js            # Core exports
-|   |-- config.js           # Configuration management
-|   |__ db-state.js         # Database connection state
-|
-|-- handlers/               # MCP tool handlers (9 modules)
-|   |-- index.js            # Handler aggregator
-|   |-- memory-search.js    # memory_search + Testing Effect
-|   |-- memory-triggers.js  # memory_match_triggers + cognitive
-|   |-- memory-save.js      # memory_save + PE gating
-|   |-- memory-crud.js      # update/delete/list/stats/health/validate
-|   |-- memory-index.js     # memory_index_scan + constitutional discovery
-|   |-- checkpoints.js      # checkpoint_create/list/restore/delete
-|   |-- session-learning.js # preflight/postflight/learning history
-|   |-- memory-context.js   # memory_context + unified entry
-|   |__ causal-graph.js     # causal_link/unlink/stats + drift_why
-|
-|-- lib/                    # Library modules (70+ total)
-|   |-- cognitive/          # Cognitive memory (12 modules)
-|   |   |-- fsrs-scheduler.js       # FSRS power-law algorithm
-|   |   |-- prediction-error-gate.js # Duplicate detection
-|   |   |-- tier-classifier.js      # 5-state classification
-|   |   |-- attention-decay.js      # Multi-factor decay
-|   |   |-- co-activation.js        # Related memory boosting
-|   |   |-- working-memory.js       # Session-scoped activation
-|   |   |-- consolidation.js        # Memory consolidation pipeline
-|   |   |__ archival-manager.js     # 5-state archival model
-|   |
-|   |-- scoring/            # Scoring algorithms (5 modules)
-|   |   |-- composite-scoring.js    # 5-factor scoring
-|   |   |-- importance-tiers.js     # Tier boost values
-|   |   |__ folder-scoring.js       # Spec folder ranking
-|   |
-|   |-- search/             # Search engines (8 modules)
-|   |   |-- vector-index.js         # sqlite-vec vector search
-|   |   |-- hybrid-search.js        # FTS5 + vector fusion
-|   |   |-- rrf-fusion.js           # RRF algorithm (k=60)
-|   |   |-- bm25-index.js           # BM25 lexical search
-|   |   |-- cross-encoder.js        # Cross-encoder reranking
-|   |   |-- intent-classifier.js    # 5 intent types
-|   |   |__ fuzzy-match.js          # Query expansion
-|   |
-|   |-- session/            # Session management
-|   |   |-- session-manager.js      # Session deduplication
-|   |   |__ session-state.js        # Crash recovery state
-|   |
-|   |-- storage/            # Persistence (7 modules)
-|   |   |-- access-tracker.js       # Access history
-|   |   |-- checkpoints.js          # State snapshots
-|   |   |-- causal-edges.js         # Causal graph storage
-|   |   |-- incremental-index.js    # Incremental indexing
-|   |   |__ transaction-manager.js  # Transaction management
-|   |
-|   |-- errors/             # Error handling
-|   |   |__ recovery-hints.js       # 49 error codes
-|   |
-|   |__ utils/              # Utilities
-|       |-- validators.js           # Input validation
-|       |-- token-budget.js         # Token management
-|       |__ format-helpers.js       # Format utilities
-|
-|-- formatters/             # Output formatting
-|   |-- search-results.js   # Format search results
-|   |__ token-metrics.js    # Token estimation
-|
-|-- tests/                  # Test suite (1,500+ tests)
-|
-|-- database/               # SQLite database storage
-|   |__ context-index.sqlite
-|
-|__ configs/                # Configuration files
-    |__ search-weights.json
+├── context-server.ts       # Main MCP server entry point (22 tools) [source]
+├── package.json            # @spec-kit/mcp-server v1.7.2
+├── tsconfig.json           # TypeScript config (outDir: ./dist)
+├── README.md               # This file
+│
+├── core/                   # Core initialization [TypeScript sources]
+│   ├── index.ts            # Core exports
+│   ├── config.ts           # Path configuration (SERVER_DIR, LIB_DIR, etc.)
+│   └── db-state.ts         # Database connection state
+│
+├── handlers/               # MCP tool handlers (9 functional + 2 infra) [TypeScript sources]
+│   ├── index.ts            # Handler aggregator
+│   ├── types.ts            # Shared handler types
+│   ├── memory-search.ts    # memory_search + Testing Effect
+│   ├── memory-triggers.ts  # memory_match_triggers + cognitive
+│   ├── memory-save.ts      # memory_save + PE gating
+│   ├── memory-crud.ts      # update/delete/list/stats/health/validate
+│   ├── memory-index.ts     # memory_index_scan + constitutional discovery
+│   ├── checkpoints.ts      # checkpoint_create/list/restore/delete
+│   ├── session-learning.ts # preflight/postflight/learning history
+│   ├── memory-context.ts   # memory_context + unified entry
+│   └── causal-graph.ts     # causal_link/unlink/stats + drift_why
+│
+├── lib/                    # Library modules (50) [TypeScript sources]
+│   ├── errors.ts           # Standalone error utilities
+│   │
+│   ├── architecture/       # Layer definitions (1 module)
+│   │   └── layer-definitions.ts    # MCP layer architecture
+│   │
+│   ├── cache/              # Caching (1 module)
+│   │   └── tool-cache.ts           # Tool result caching
+│   │
+│   ├── cognitive/          # Cognitive memory (8 modules)
+│   │   ├── fsrs-scheduler.ts       # FSRS power-law algorithm
+│   │   ├── prediction-error-gate.ts # Duplicate detection
+│   │   ├── tier-classifier.ts      # 5-state classification
+│   │   ├── attention-decay.ts      # Multi-factor decay
+│   │   ├── co-activation.ts        # Related memory boosting
+│   │   ├── working-memory.ts       # Session-scoped activation
+│   │   ├── temporal-contiguity.ts  # Temporal adjacency tracking
+│   │   └── archival-manager.ts     # 5-state archival model
+│   │
+│   ├── config/             # Configuration (2 modules)
+│   │   ├── memory-types.ts         # Memory type definitions
+│   │   └── type-inference.ts       # Type auto-detection
+│   │
+│   ├── errors/             # Error handling (3 modules)
+│   │   ├── core.ts                 # Core error types
+│   │   ├── index.ts                # Error exports
+│   │   └── recovery-hints.ts       # 49 error codes
+│   │
+│   ├── interfaces/         # Interfaces (1 module)
+│   │   └── vector-store.ts         # Vector store interface
+│   │
+│   ├── learning/           # Learning system (2 modules)
+│   │   ├── index.ts                # Learning exports
+│   │   └── corrections.ts          # Learning from corrections
+│   │
+│   ├── parsing/            # Content parsing (3 modules)
+│   │   ├── memory-parser.ts        # Memory file parser
+│   │   ├── trigger-matcher.ts      # Trigger phrase matching
+│   │   └── entity-scope.ts         # Entity scope extraction
+│   │
+│   ├── providers/          # Embedding providers (2 modules)
+│   │   ├── embeddings.ts           # Provider abstraction
+│   │   └── retry-manager.ts        # API retry logic
+│   │
+│   ├── response/           # Response formatting (1 module)
+│   │   └── envelope.ts             # Response envelope
+│   │
+│   ├── scoring/            # Scoring algorithms (4 modules)
+│   │   ├── composite-scoring.ts    # 5-factor scoring
+│   │   ├── confidence-tracker.ts   # Confidence tracking
+│   │   ├── importance-tiers.ts     # Tier boost values
+│   │   └── folder-scoring.ts       # Spec folder ranking
+│   │
+│   ├── search/             # Search engines (8 modules)
+│   │   ├── vector-index.ts         # sqlite-vec vector search (facade)
+│   │   ├── vector-index-impl.ts    # Vector index implementation
+│   │   ├── hybrid-search.ts        # FTS5 + vector fusion with RRF
+│   │   ├── rrf-fusion.ts           # RRF fusion algorithm
+│   │   ├── bm25-index.ts           # BM25 lexical search
+│   │   ├── cross-encoder.ts        # Cross-encoder reranking
+│   │   ├── reranker.ts             # Reranking utilities
+│   │   └── intent-classifier.ts    # 5 intent types
+│   │
+│   ├── session/            # Session management (1 module)
+│   │   └── session-manager.ts      # Session deduplication
+│   │
+│   ├── storage/            # Persistence (7 modules)
+│   │   ├── access-tracker.ts       # Access history
+│   │   ├── checkpoints.ts          # State snapshots
+│   │   ├── causal-edges.ts         # Causal graph storage
+│   │   ├── incremental-index.ts    # Incremental indexing
+│   │   ├── transaction-manager.ts  # Transaction management
+│   │   ├── history.ts              # History tracking
+│   │   └── index-refresh.ts        # Index refresh utilities
+│   │
+│   ├── utils/              # Utilities (4 modules)
+│   │   ├── format-helpers.ts       # Format utilities
+│   │   ├── path-security.ts        # Path validation
+│   │   ├── retry.ts                # Retry utilities
+│   │   └── logger.ts               # Logging utilities
+│   │
+│   └── validation/         # Validation (1 module)
+│       └── preflight.ts            # Pre-flight validation
+│
+├── tools/                  # Tool registration [TypeScript sources]
+│   ├── index.ts            # Tool aggregator
+│   ├── types.ts            # Tool type definitions
+│   ├── memory-tools.ts     # Memory tool registrations
+│   ├── context-tools.ts    # Context tool registrations
+│   ├── lifecycle-tools.ts  # Lifecycle tool registrations
+│   ├── checkpoint-tools.ts # Checkpoint tool registrations
+│   └── causal-tools.ts     # Causal tool registrations
+│
+├── hooks/                  # Lifecycle hooks [TypeScript sources]
+├── utils/                  # Utility modules [TypeScript sources]
+├── formatters/             # Output formatting [TypeScript sources]
+│   ├── search-results.ts   # Format search results
+│   └── token-metrics.ts    # Token estimation
+│
+├── scripts/                # CLI utilities [TypeScript sources]
+│
+├── dist/                   # Compiled JavaScript output (generated)
+│   ├── context-server.js   # Entry point (from context-server.ts)
+│   ├── core/
+│   ├── handlers/
+│   ├── lib/
+│   ├── tools/
+│   ├── formatters/
+│   ├── hooks/
+│   ├── utils/
+│   └── scripts/
+│
+├── startup-checks.ts       # Startup validation
+├── tool-schemas.ts         # Tool schema definitions
+├── vitest.config.ts        # Vitest test configuration
+│
+├── tests/                  # Test suite (3,800+ tests across 114 files; 58/58 MCP integration tests pass)
+│
+├── database/               # SQLite database storage
+│   └── context-index.sqlite
+│
+├── configs/                # Configuration files
+│   └── search-weights.json
+│
+└── node_modules/           # Dependencies
 ```
+
+> **Note:** All source files are TypeScript (`.ts`) in the source directories (root, core, handlers, lib, tools, formatters, hooks, utils, scripts). The TypeScript compiler (`tsc`) compiles them to JavaScript in the `dist/` directory via `outDir: "./dist"` in tsconfig.json. At runtime, `node` executes `dist/context-server.js` (specified in package.json as the entry point). The `__dirname` variable resolves to `dist/core/` at runtime, so path resolution in config.ts uses `SERVER_DIR = path.join(__dirname, '..')` to reach `dist/`, `LIB_DIR = path.join(__dirname, '..', 'lib')` to reach `dist/lib/`, and `SHARED_DIR = path.join(SERVER_DIR, '..', 'shared')` for the workspace-shared directory.
 
 ---
 
@@ -641,8 +721,13 @@ cd .opencode/skill/system-spec-kit/mcp_server
 # 2. Install dependencies
 npm install
 
-# 3. Start server (for testing)
+# 3. Compile TypeScript to JavaScript
+tsc
+# Outputs compiled .js files to dist/
+
+# 4. Start server (for testing)
 npm start
+# Runs: node dist/context-server.js
 ```
 
 ### Verify Installation
@@ -655,9 +740,13 @@ node --version
 # Check dependencies installed
 ls node_modules/@modelcontextprotocol/sdk
 
+# Verify TypeScript compilation
+ls dist/context-server.js
+# Expected: File exists after running tsc
+
 # Run test suite
 npm test
-# Expected: 1,500+ tests passing
+# Expected: 3,800+ tests passing
 ```
 
 ### MCP Configuration
@@ -669,8 +758,9 @@ Add to your MCP client configuration (e.g., `opencode.json`):
   "mcpServers": {
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"],
-      "cwd": "${workspaceFolder}"
+      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
+      "cwd": "${workspaceFolder}",
+      "_note": "Executes compiled JS from dist/; source is context-server.ts"
     }
   }
 }
@@ -768,13 +858,13 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 | Layer | Name | Budget | Tools |
 |-------|------|--------|-------|
-| L1 | Orchestration | 2000-4000 | `memory_context` |
-| L2 | Recovery | 500-1000 | `checkpoint_restore` |
-| L3 | Discovery | 200-500 | `memory_match_triggers`, `memory_stats` |
-| L4 | Exploration | 500-1500 | `memory_search`, `memory_list` |
-| L5 | Surgical | 200-800 | `memory_update`, `memory_delete` |
-| L6 | Persistence | 1000-2000 | `memory_save`, `memory_index_scan` |
-| L7 | Analysis | 2500-5000 | `task_preflight`, `task_postflight` |
+| L1 | Orchestration | 2000 | `memory_context` |
+| L2 | Core | 1500 | `memory_search`, `memory_match_triggers`, `memory_save` |
+| L3 | Discovery | 800 | `memory_list`, `memory_stats`, `memory_health` |
+| L4 | Mutation | 500 | `memory_delete`, `memory_update`, `memory_validate` |
+| L5 | Lifecycle | 600 | `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete` |
+| L6 | Analysis | 1200 | `task_preflight`, `task_postflight`, `memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink` |
+| L7 | Maintenance | 1000 | `memory_index_scan`, `memory_get_learning_history` |
 
 ---
 
@@ -784,7 +874,7 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 |------------|---------|---------|
 | `@modelcontextprotocol/sdk` | ^1.24.3 | MCP protocol |
 | `@huggingface/transformers` | ^3.8.1 | Local embeddings |
-| `better-sqlite3` | ^12.5.0 | SQLite database |
+| `better-sqlite3` | ^12.6.2 | SQLite database |
 | `sqlite-vec` | ^0.1.7-alpha.2 | Vector similarity search |
 
 ---
@@ -793,7 +883,7 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 ### Basic Memory Search
 
-```javascript
+```typescript
 // Simple semantic search
 memory_search({
   query: "how does authentication work",
@@ -804,7 +894,7 @@ memory_search({
 
 ### ANCHOR-Based Retrieval (Token Efficient)
 
-```javascript
+```typescript
 // Only retrieve specific sections (93% token savings)
 memory_search({
   query: "auth decisions",
@@ -815,7 +905,7 @@ memory_search({
 
 ### Intent-Aware Context
 
-```javascript
+```typescript
 // Get context optimized for debugging
 memory_context({
   input: "debugging auth issues",
@@ -827,7 +917,7 @@ memory_context({
 
 ### Trace Decision Lineage
 
-```javascript
+```typescript
 // Why was this decision made?
 memory_drift_why({
   memoryId: 'jwt-auth-decision-123',
@@ -838,7 +928,7 @@ memory_drift_why({
 
 ### Create Causal Link
 
-```javascript
+```typescript
 // Document that decision A supersedes decision B
 memory_causal_link({
   sourceId: 'new-auth-approach-456',
@@ -850,7 +940,7 @@ memory_causal_link({
 
 ### Session Learning Workflow
 
-```javascript
+```typescript
 // 1. Before starting - capture baseline
 task_preflight({
   specFolder: "specs/077-upgrade",
@@ -875,7 +965,7 @@ task_postflight({
 
 ### Checkpoint Recovery
 
-```javascript
+```typescript
 // Before risky operation
 checkpoint_create({
   name: "pre-cleanup",
@@ -911,12 +1001,16 @@ checkpoint_restore({ name: "pre-cleanup" })
 
 #### Model Download Failures
 
-**Symptom:** `Error: Failed to download embedding model`
+**Symptom:** `Error: Failed to download embedding model` or `Failed to parse ONNX model`
 
 **Solution:**
 ```bash
-# Clear HuggingFace cache
+# Clear the in-project HuggingFace model cache (most common)
+rm -rf node_modules/@huggingface/transformers/.cache
+
+# Also clear global HuggingFace cache if needed
 rm -rf ~/.cache/huggingface/
+
 # Server re-downloads on next start
 ```
 
@@ -1017,10 +1111,10 @@ sqlite3 database/context-index.sqlite "SELECT memory_type, COUNT(*) FROM memory_
 cd .opencode/skill/system-spec-kit/mcp_server
 npm test
 
-# Run specific test file
-node tests/fsrs-scheduler.test.js
-node tests/rrf-fusion.test.js
-node tests/causal-edges.test.js
+# Run specific test file (from dist/)
+node dist/tests/fsrs-scheduler.test.js
+node dist/tests/rrf-fusion.test.js
+node dist/tests/causal-edges.test.js
 ```
 
 ---
@@ -1035,23 +1129,22 @@ node tests/causal-edges.test.js
 | SKILL.md | `../SKILL.md` | Workflow instructions for AI agents |
 | Install Guide | `INSTALL_GUIDE.md` | Detailed installation |
 
-### Key Module Files
+### Key Module Files (TypeScript Sources)
 
 | Module | Purpose |
 |--------|---------|
-| `lib/cognitive/fsrs-scheduler.js` | FSRS power-law decay algorithm |
-| `lib/cognitive/tier-classifier.js` | 5-state memory classification |
-| `lib/cognitive/prediction-error-gate.js` | Duplicate detection |
-| `lib/cognitive/consolidation.js` | Memory consolidation pipeline |
-| `lib/scoring/composite-scoring.js` | Multi-factor ranking |
-| `lib/search/hybrid-search.js` | FTS5 + vector fusion with RRF |
-| `lib/search/rrf-fusion.js` | RRF algorithm (k=60) |
-| `lib/search/bm25-index.js` | BM25 lexical search |
-| `lib/search/intent-classifier.js` | 5 intent types |
-| `lib/storage/causal-edges.js` | Causal graph storage |
-| `lib/session/session-manager.js` | Session deduplication |
-| `lib/errors/recovery-hints.js` | 49 error codes |
-| `handlers/causal-graph.js` | Causal link/unlink/stats/why |
+| `lib/cognitive/fsrs-scheduler.ts` | FSRS power-law decay algorithm |
+| `lib/cognitive/tier-classifier.ts` | 5-state memory classification |
+| `lib/cognitive/prediction-error-gate.ts` | Duplicate detection |
+| `lib/scoring/composite-scoring.ts` | Multi-factor ranking |
+| `lib/search/hybrid-search.ts` | FTS5 + vector fusion with RRF |
+| `lib/search/bm25-index.ts` | BM25 lexical search |
+| `lib/search/intent-classifier.ts` | 5 intent types |
+| `lib/storage/causal-edges.ts` | Causal graph storage |
+| `lib/session/session-manager.ts` | Session deduplication |
+| `lib/errors/recovery-hints.ts` | 49 error codes |
+| `lib/providers/retry-manager.ts` | Embedding provider retry logic |
+| `handlers/causal-graph.ts` | Causal link/unlink/stats/why |
 
 ### External Resources
 

@@ -57,13 +57,13 @@ The Template Composer (`compose.sh`) is an automated build system that generates
 ### 30-Second Setup
 
 ```bash
-# 1. Navigate to templates directory
+# 1. Navigate to scripts/templates directory
 cd .opencode/skill/system-spec-kit/scripts/templates
 
 # 2. Make script executable (if needed)
 chmod +x compose.sh
 
-# 3. Compose all templates
+# 3. Compose all templates (operates on ../../templates/ directory)
 ./compose.sh
 ```
 
@@ -91,8 +91,12 @@ chmod +x compose.sh
 ## 3. 📁 STRUCTURE
 
 ```
-templates/
+scripts/templates/
 ├── compose.sh                   # Template composition script (this tool)
+└── README.md                    # This file
+
+Template sources (at ../../templates/):
+templates/
 ├── core/                        # Single-source template components
 │   ├── spec-core.md             # Core spec template
 │   ├── plan-core.md             # Core plan template
@@ -113,12 +117,12 @@ templates/
 
 ### Key Files
 
-| File | Purpose |
-|------|---------|
-| `compose.sh` | Main composition script with merge logic |
-| `core/*.md` | Base templates shared across all levels |
-| `addendum/level*/*.md` | Level-specific template sections |
-| `level_N/*.md` | Composed output templates ready for use |
+| File | Purpose | Location |
+|------|---------|----------|
+| `compose.sh` | Main composition script with merge logic | `scripts/templates/` |
+| `core/*.md` | Base templates shared across all levels | `../../templates/core/` |
+| `addendum/level*/*.md` | Level-specific template sections | `../../templates/addendum/` |
+| `level_N/*.md` | Composed output templates ready for use | `../../templates/level_N/` |
 
 ---
 
@@ -333,11 +337,12 @@ grep -r "SPECKIT_" core/ addendum/
 
 | Component | Location |
 |-----------|----------|
-| Core templates | `./core/` |
-| Level 2 addendum | `./addendum/level2-verify/` |
-| Level 3 addendum | `./addendum/level3-arch/` |
-| Level 3+ addendum | `./addendum/level3plus-govern/` |
+| Core templates | `../../templates/core/` |
+| Level 2 addendum | `../../templates/addendum/level2-verify/` |
+| Level 3 addendum | `../../templates/addendum/level3-arch/` |
+| Level 3+ addendum | `../../templates/addendum/level3plus-govern/` |
+| Composed outputs | `../../templates/level_N/` |
 
 ---
 
-*Documentation for SpecKit v2.0 Template Composer | Last updated: 2026-01-21*
+*Documentation for SpecKit v2.0 Template Composer | Last updated: 2026-02-07 | Path clarifications added*

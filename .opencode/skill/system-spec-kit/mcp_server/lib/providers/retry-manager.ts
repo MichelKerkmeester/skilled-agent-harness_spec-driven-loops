@@ -1,0 +1,498 @@
+// ---------------------------------------------------------------
+// MODULE: Retry Manager
+// ---------------------------------------------------------------
+
+// Node stdlib
+import * as fsPromises from 'fs/promises';
+
+// Internal modules
+import * as vectorIndex from '../search/vector-index';
+import { generateDocumentEmbedding } from './embeddings';
+
+// Type imports
+import type { MemoryDbRow } from '../../../shared/types';
+
+/* ---------------------------------------------------------------
+   1. TYPES
+--------------------------------------------------------------- */
+
+interface BackgroundJobConfig {
+  intervalMs: number;
+  batchSize: number;
+  enabled: boolean;
+}
+
+interface RetryStats {
+  pending: number;
+  retry: number;
+  failed: number;
+  success: number;
+  total: number;
+  queue_size: number;
+}
+
+interface RetryResult {
+  success: boolean;
+  id?: number;
+  dimensions?: number;
+  error?: string;
+  permanent?: boolean;
+}
+
+interface BatchResult {
+  processed: number;
+  succeeded: number;
+  failed: number;
+  details?: RetryDetailEntry[];
+}
+
+interface RetryDetailEntry {
+  id: number;
+  success: boolean;
+  error?: string;
+  dimensions?: number;
+}
+
+interface BackgroundJobResult {
+  processed?: number;
+  succeeded?: number;
+  failed?: number;
+  details?: RetryDetailEntry[];
+  skipped?: boolean;
+  reason?: string;
+  queue_empty?: boolean;
+  error?: string;
+}
+
+/**
+ * Retry-specific memory row with required id and file_path.
+ * Uses MemoryDbRow as the base type with Record<string, unknown>
+ * for camelCase fallback fields (e.g. retryCount, triggerPhrases).
+ */
+type RetryMemoryRow = Partial<MemoryDbRow> & Record<string, unknown> & {
+  id: number;
+  file_path: string;
+};
+
+type ContentLoader = (memory: RetryMemoryRow) => Promise<string | null>;
+
+/* ---------------------------------------------------------------
+   2. CONFIGURATION
+--------------------------------------------------------------- */
+
+// Backoff delays in milliseconds (1min, 5min, 15min)
+const BACKOFF_DELAYS: number[] = [
+  60 * 1000,
+  5 * 60 * 1000,
+  15 * 60 * 1000,
+];
+
+const MAX_RETRIES = 3;
+
+// T099: Background retry job configuration (REQ-031, CHK-179)
+const BACKGROUND_JOB_CONFIG: BackgroundJobConfig = {
+  intervalMs: 5 * 60 * 1000,
+  batchSize: 5,
+  enabled: true,
+};
+
+// Background job state
+let backgroundJobInterval: ReturnType<typeof setInterval> | null = null;
+let backgroundJobRunning = false;
+
+/* ---------------------------------------------------------------
+   3. RETRY QUEUE
+--------------------------------------------------------------- */
+
+function getRetryQueue(limit = 10): RetryMemoryRow[] {
+  vectorIndex.initializeDb();
+  const db = vectorIndex.getDb();
+  if (!db) {
+    console.warn('[retry-manager] Database not initialized. Server may still be starting up.');
+    return [];
+  }
+  const now = Date.now();
+
+  const rows = db.prepare(`
+    SELECT * FROM memory_index
+    WHERE embedding_status IN ('pending', 'retry')
+      AND retry_count < ?
+    ORDER BY
+      CASE WHEN embedding_status = 'pending' THEN 0 ELSE 1 END,
+      retry_count ASC,
+      created_at ASC
+    LIMIT ?
+  `).all(MAX_RETRIES, limit * 2) as RetryMemoryRow[];
+
+  const eligible: RetryMemoryRow[] = [];
+  for (const row of rows) {
+    if (isEligibleForRetry(row, now)) {
+      eligible.push(parseRow(row));
+      if (eligible.length >= limit) break;
+    }
+  }
+
+  return eligible;
+}
+
+function isEligibleForRetry(row: RetryMemoryRow, now: number): boolean {
+  // Note: better-sqlite3 returns snake_case column names from SELECT *
+  if (row.embedding_status === 'pending') return true;
+
+  if (row.embedding_status === 'retry' && row.last_retry_at) {
+    const lastRetry = new Date(row.last_retry_at).getTime();
+    const retryCount = (row.retry_count as number) ?? (row.retryCount as number) ?? 0;
+    // Off-by-one fix: retryCount is already incremented after the failure that triggered
+    // the retry status, so use (retryCount - 1) for the backoff index. First retry (retryCount=1)
+    // should use BACKOFF_DELAYS[0] (1 minute), not BACKOFF_DELAYS[1] (5 minutes).
+    const backoffIndex = Math.max(0, retryCount - 1);
+    const requiredDelay = BACKOFF_DELAYS[Math.min(backoffIndex, BACKOFF_DELAYS.length - 1)];
+    return (now - lastRetry) >= requiredDelay;
+  }
+
+  return row.embedding_status === 'retry';
+}
+
+function getFailedEmbeddings(): RetryMemoryRow[] {
+  const db = vectorIndex.getDb();
+  if (!db) {
+    console.warn('[retry-manager] Database not initialized. Server may still be starting up. Returning empty array.');
+    return [];
+  }
+
+  const rows = db.prepare(`
+    SELECT * FROM memory_index
+    WHERE embedding_status = 'failed'
+    ORDER BY updated_at DESC
+  `).all() as RetryMemoryRow[];
+
+  return rows.map(parseRow);
+}
+
+function getRetryStats(): RetryStats {
+  const db = vectorIndex.getDb();
+  if (!db) {
+    console.warn('[retry-manager] Database not initialized. Server may still be starting up. Returning default stats.');
+    return { pending: 0, retry: 0, failed: 0, success: 0, total: 0, queue_size: 0 };
+  }
+
+  const stats = db.prepare(`
+    SELECT
+      SUM(CASE WHEN embedding_status = 'pending' THEN 1 ELSE 0 END) as pending,
+      SUM(CASE WHEN embedding_status = 'retry' THEN 1 ELSE 0 END) as retry,
+      SUM(CASE WHEN embedding_status = 'failed' THEN 1 ELSE 0 END) as failed,
+      SUM(CASE WHEN embedding_status = 'success' THEN 1 ELSE 0 END) as success,
+      COUNT(*) as total
+    FROM memory_index
+  `).get() as Record<string, number>;
+
+  return {
+    pending: stats.pending || 0,
+    retry: stats.retry || 0,
+    failed: stats.failed || 0,
+    success: stats.success || 0,
+    total: stats.total || 0,
+    queue_size: (stats.pending || 0) + (stats.retry || 0),
+  };
+}
+
+/* ---------------------------------------------------------------
+   4. RETRY OPERATIONS
+--------------------------------------------------------------- */
+
+async function retryEmbedding(id: number, content: string): Promise<RetryResult> {
+  const db = vectorIndex.getDb();
+  if (!db) return { success: false, error: 'Database not initialized. Server may still be starting up.' };
+
+  const now = new Date().toISOString();
+
+  try {
+    const memory = vectorIndex.getMemory(id);
+    if (!memory) return { success: false, error: 'Memory not found' };
+
+    if ((memory.retry_count as number) >= MAX_RETRIES) {
+      markAsFailed(id, 'Maximum retry attempts exceeded');
+      return { success: false, error: 'Maximum retries exceeded', permanent: true };
+    }
+
+    const embedding = await generateDocumentEmbedding(content);
+
+    if (!embedding) {
+      incrementRetryCount(id, 'Embedding generation returned null');
+      return { success: false, error: 'Embedding returned null' };
+    }
+
+    const updateTx = db.transaction(() => {
+      db.prepare(`
+        UPDATE memory_index
+        SET embedding_status = 'success',
+            embedding_generated_at = ?,
+            updated_at = ?,
+            failure_reason = NULL
+        WHERE id = ?
+      `).run(now, now, id);
+
+      try {
+        db.prepare('DELETE FROM vec_memories WHERE rowid = ?').run(BigInt(id));
+      } catch {
+        // Ignore if doesn't exist
+      }
+
+      const embeddingBuffer = Buffer.from(embedding.buffer);
+      db.prepare('INSERT INTO vec_memories (rowid, embedding) VALUES (?, ?)').run(BigInt(id), embeddingBuffer);
+    });
+
+    try {
+      updateTx();
+      return { success: true, id, dimensions: embedding.length };
+    } catch (tx_error: unknown) {
+      const message = tx_error instanceof Error ? tx_error.message : String(tx_error);
+      incrementRetryCount(id, `Transaction failed: ${message}`);
+      return { success: false, error: `Transaction failed: ${message}` };
+    }
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    incrementRetryCount(id, message);
+    return { success: false, error: message };
+  }
+}
+
+function incrementRetryCount(id: number, reason: string): void {
+  const db = vectorIndex.getDb();
+  if (!db) return;
+
+  const now = new Date().toISOString();
+  const memory = vectorIndex.getMemory(id);
+  if (!memory) {
+    console.warn(`[retry-manager] Memory ${id} not found during retry count increment`);
+    return;
+  }
+
+  const newRetryCount = (Number(memory.retry_count) || 0) + 1;
+
+  if (newRetryCount >= MAX_RETRIES) {
+    markAsFailed(id, reason);
+  } else {
+    db.prepare(`
+      UPDATE memory_index
+      SET embedding_status = 'retry',
+          retry_count = ?,
+          last_retry_at = ?,
+          failure_reason = ?,
+          updated_at = ?
+      WHERE id = ?
+    `).run(newRetryCount, now, reason, now, id);
+  }
+}
+
+function markAsFailed(id: number, reason: string): void {
+  const db = vectorIndex.getDb();
+  if (!db) {
+    console.warn('[retry-manager] Database not initialized. Server may still be starting up. Cannot mark as failed.');
+    return;
+  }
+  const now = new Date().toISOString();
+
+  db.prepare(`
+    UPDATE memory_index
+    SET embedding_status = 'failed',
+        failure_reason = ?,
+        updated_at = ?
+    WHERE id = ?
+  `).run(reason, now, id);
+}
+
+function resetForRetry(id: number): boolean {
+  const db = vectorIndex.getDb();
+  if (!db) return false;
+  const now = new Date().toISOString();
+
+  const result = db.prepare(`
+    UPDATE memory_index
+    SET embedding_status = 'retry',
+        retry_count = 0,
+        last_retry_at = NULL,
+        failure_reason = NULL,
+        updated_at = ?
+    WHERE id = ? AND embedding_status = 'failed'
+  `).run(now, id);
+
+  return result.changes > 0;
+}
+
+/* ---------------------------------------------------------------
+   5. BATCH PROCESSING
+--------------------------------------------------------------- */
+
+async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null = null): Promise<BatchResult> {
+  const queue = getRetryQueue(limit);
+
+  if (queue.length === 0) {
+    return { processed: 0, succeeded: 0, failed: 0 };
+  }
+
+  const results: BatchResult = {
+    processed: 0,
+    succeeded: 0,
+    failed: 0,
+    details: [],
+  };
+
+  for (const memory of queue) {
+    let content: string | null = null;
+
+    if (contentLoader) {
+      content = await contentLoader(memory);
+    } else {
+      content = await loadContentFromFile(memory.file_path);
+    }
+
+    if (!content) {
+      // P2-08 FIX: Count content load failure as a retry attempt to prevent infinite retry loops
+      incrementRetryCount(memory.id, 'Content load failed: file unreadable or missing');
+      results.details!.push({ id: memory.id, success: false, error: 'Could not load content (counted as retry)' });
+      results.failed++;
+      results.processed++;
+      continue;
+    }
+
+    const result = await retryEmbedding(memory.id, content);
+    results.processed++;
+
+    if (result.success) {
+      results.succeeded++;
+    } else {
+      results.failed++;
+    }
+
+    results.details!.push({ id: memory.id, ...result } as RetryDetailEntry);
+  }
+
+  return results;
+}
+
+/* ---------------------------------------------------------------
+   6. BACKGROUND RETRY JOB (T099, REQ-031, CHK-179)
+--------------------------------------------------------------- */
+
+function startBackgroundJob(options: Partial<BackgroundJobConfig> = {}): boolean {
+  if (backgroundJobInterval) {
+    console.error('[retry-manager] Background job already running');
+    return false;
+  }
+
+  const config = { ...BACKGROUND_JOB_CONFIG, ...options };
+
+  if (!config.enabled) {
+    console.error('[retry-manager] Background job is disabled');
+    return false;
+  }
+
+  console.error(`[retry-manager] Starting background retry job (interval: ${config.intervalMs}ms, batch: ${config.batchSize})`);
+
+  runBackgroundJob(config.batchSize).catch((err: unknown) => {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('[retry-manager] Initial background job failed:', message);
+  });
+
+  backgroundJobInterval = setInterval(() => {
+    runBackgroundJob(config.batchSize).catch((err: unknown) => {
+      const message = err instanceof Error ? err.message : String(err);
+      console.error('[retry-manager] Background job iteration failed:', message);
+    });
+  }, config.intervalMs);
+  backgroundJobInterval.unref();
+
+  return true;
+}
+
+function stopBackgroundJob(): boolean {
+  if (!backgroundJobInterval) return false;
+
+  clearInterval(backgroundJobInterval);
+  backgroundJobInterval = null;
+  backgroundJobRunning = false;
+  console.error('[retry-manager] Background retry job stopped');
+  return true;
+}
+
+function isBackgroundJobRunning(): boolean {
+  return backgroundJobInterval !== null;
+}
+
+async function runBackgroundJob(batchSize: number = BACKGROUND_JOB_CONFIG.batchSize): Promise<BackgroundJobResult> {
+  if (backgroundJobRunning) {
+    return { skipped: true, reason: 'Previous run still in progress' };
+  }
+
+  backgroundJobRunning = true;
+
+  try {
+    const stats = getRetryStats();
+
+    if (stats.queue_size === 0) {
+      return { processed: 0, queue_empty: true };
+    }
+
+    console.error(`[retry-manager] Background job: Processing up to ${batchSize} of ${stats.queue_size} pending embeddings`);
+
+    const result = await processRetryQueue(batchSize);
+
+    if (result.processed > 0) {
+      console.error(`[retry-manager] Background job complete: ${result.succeeded}/${result.processed} succeeded`);
+    }
+
+    return result;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error('[retry-manager] Background job error:', message);
+    return { error: message };
+  } finally {
+    backgroundJobRunning = false;
+  }
+}
+
+/* ---------------------------------------------------------------
+   7. UTILITIES
+--------------------------------------------------------------- */
+
+function parseRow(row: RetryMemoryRow): RetryMemoryRow {
+  if (row.triggerPhrases && typeof row.triggerPhrases === 'string') {
+    try {
+      return { ...row, triggerPhrases: JSON.parse(row.triggerPhrases) };
+    } catch {
+      return { ...row, triggerPhrases: [] };
+    }
+  }
+  return { ...row };
+}
+
+async function loadContentFromFile(filePath: string): Promise<string | null> {
+  try {
+    return await fsPromises.readFile(filePath, 'utf-8');
+  } catch {
+    return null;
+  }
+}
+
+/* ---------------------------------------------------------------
+   8. EXPORTS
+--------------------------------------------------------------- */
+
+export {
+  getRetryQueue,
+  getFailedEmbeddings,
+  getRetryStats,
+  retryEmbedding,
+  markAsFailed,
+  resetForRetry,
+  processRetryQueue,
+  startBackgroundJob,
+  stopBackgroundJob,
+  isBackgroundJobRunning,
+  runBackgroundJob,
+  BACKGROUND_JOB_CONFIG,
+  BACKOFF_DELAYS,
+  MAX_RETRIES,
+};
+

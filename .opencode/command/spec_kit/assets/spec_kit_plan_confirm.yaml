@@ -268,7 +268,6 @@ multi_agent_config:
           - "Execute specification and planning steps"
           - "Create final documentation artifacts"
       workers:
-        - model: "{worker_model|opus}"
           role: "architecture_explorer"
           focus: "Project Structure Analysis"
           step: 5
@@ -277,7 +276,6 @@ multi_agent_config:
             - "Map component connections and dependencies"
             - "Identify architectural patterns"
             - "Document infrastructure layout"
-        - model: "{worker_model|opus}"
           role: "feature_explorer"
           focus: "Feature Pattern Analysis"
           step: 5
@@ -300,7 +298,6 @@ multi_agent_config:
           - "Execute specification and planning steps"
           - "Create final documentation artifacts"
       workers:
-        - model: "{worker_model|opus}"
           role: "architecture_explorer"
           focus: "Project Structure Analysis"
           step: 5
@@ -309,7 +306,6 @@ multi_agent_config:
             - "Map component connections and dependencies"
             - "Identify architectural patterns"
             - "Document infrastructure layout"
-        - model: "{worker_model|opus}"
           role: "feature_explorer"
           focus: "Feature Pattern Analysis"
           step: 5
@@ -318,7 +314,6 @@ multi_agent_config:
             - "Identify related patterns and implementations"
             - "Map feature interdependencies"
             - "Document reusable components"
-        - model: "{worker_model|opus}"
           role: "dependency_explorer"
           focus: "Dependency and Test Analysis"
           step: 5
@@ -699,10 +694,8 @@ workflow:
         agents:
           - name: "spec_explorer"
             focus: "Existing specifications and patterns in codebase"
-            model: "{worker_model|opus}"
           - name: "requirement_analyzer"
             focus: "Similar features and their requirements"
-            model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 

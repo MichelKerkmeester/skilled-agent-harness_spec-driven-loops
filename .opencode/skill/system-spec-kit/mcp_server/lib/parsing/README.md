@@ -1,28 +1,28 @@
 # Parsing Modules
 
-> Memory file parsing, trigger matching, and entity scope detection for the Spec Kit Memory system.
+> Memory file parsing and trigger matching for the Spec Kit Memory system.
 
 ---
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1-overview)
+- [2. STRUCTURE](#2-structure)
+- [3. FEATURES](#3-features)
+- [4. USAGE EXAMPLES](#4-usage-examples)
+- [5. RELATED RESOURCES](#5-related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
-The parsing module provides core functionality for extracting structured data from memory files. It handles ANCHOR section extraction (enabling ~93% token savings), trigger phrase matching (<50ms for proactive surfacing), and entity scope detection for context filtering.
+The parsing module provides core functionality for extracting structured data from memory files. It handles ANCHOR section extraction (enabling ~93% token savings), trigger phrase matching (<50ms for proactive surfacing), and encoding detection for UTF-8/UTF-16 files.
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 5 | memory-parser, trigger-matcher, trigger-extractor, entity-scope, index |
+| Modules | 3 | memory-parser, trigger-matcher, entity-scope |
 | Supported Encodings | 3 | UTF-8, UTF-16 LE, UTF-16 BE (with BOM detection) |
 | Trigger Match Target | <50ms | NFR-P03 performance requirement |
 
@@ -32,55 +32,71 @@ The parsing module provides core functionality for extracting structured data fr
 |---------|-------------|
 | **ANCHOR Extraction** | Parse `<!-- ANCHOR:id -->` sections for targeted retrieval |
 | **Trigger Matching** | Match user prompts against cached trigger phrases with Unicode support |
-| **Memory Type Inference** | Automatic classification (research, implementation, decision, discovery) |
-| **Causal Link Extraction** | Parse relationship metadata (caused_by, supersedes, derived_from) |
+| **Memory Type Inference** | Automatic classification (research, implementation, decision, discovery) via `inferMemoryType` from config |
+| **Causal Link Extraction** | Parse relationship metadata (caused_by, supersedes, derived_from, blocks, related_to) |
+| **Entity Scope Detection** | Context type detection from content or tool usage, SQL scope filter building, session ID generation |
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 
 ```
 parsing/
-├── memory-parser.js      # Core memory file parsing with ANCHOR extraction
-├── trigger-matcher.js    # Fast trigger phrase matching (<50ms target)
-├── trigger-extractor.js  # TF-IDF + N-gram trigger phrase extraction
-├── entity-scope.js       # Context type detection and scope filtering
-└── index.js              # Barrel export aggregating all modules
+├── entity-scope.ts       # Context type detection, scope filtering, session ID generation
+├── memory-parser.ts      # Core memory file parsing with ANCHOR extraction
+├── trigger-matcher.ts    # Fast trigger phrase matching (<50ms target)
+└── README.md             # This file
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `memory-parser.js` | Parse memory files, extract metadata, titles, trigger phrases, anchors |
-| `trigger-matcher.js` | Match prompts against trigger phrases with LRU regex caching |
-| `trigger-extractor.js` | Extract trigger phrases using TF-IDF + pattern matching |
-| `entity-scope.js` | Detect context types from content and tool usage patterns |
+| `entity-scope.ts` | Detect context types from content/tools, build SQL scope filters, generate session IDs |
+| `memory-parser.ts` | Parse memory files, extract metadata, titles, trigger phrases, anchors, causal links |
+| `trigger-matcher.ts` | Match prompts against trigger phrases with LRU regex caching |
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 
-### Memory Parser
+### Memory Parser (`memory-parser.ts`)
 
 **Purpose**: Extract structured data from markdown memory files
 
 | Aspect | Details |
 |--------|---------|
 | **Encoding Support** | UTF-8, UTF-16 LE/BE with automatic BOM detection |
-| **Metadata Extraction** | Title, spec folder, context type, importance tier |
+| **Metadata Extraction** | Title, spec folder, context type, importance tier, memory type |
 | **ANCHOR Parsing** | Section-level content retrieval via `<!-- ANCHOR:id -->` tags |
-| **Type Inference** | Automatic memory_type classification with confidence scores |
+| **Type Inference** | Automatic `memoryType` classification via `inferMemoryType` from `lib/config/type-inference` |
+| **Causal Links** | Extracts `caused_by`, `supersedes`, `derived_from`, `blocks`, `related_to` from YAML metadata |
 
-```javascript
-const { parseMemoryFile } = require('./parsing');
+**Exported functions:**
 
-const memory = parseMemoryFile('/path/to/memory.md');
-// Returns: { filePath, specFolder, title, triggerPhrases, contextType,
-//            importanceTier, memoryType, causalLinks, anchors, ... }
-```
+| Function | Signature | Purpose |
+|----------|-----------|---------|
+| `parseMemoryFile` | `(filePath: string) => ParsedMemory` | Full memory file parse with all metadata |
+| `readFileWithEncoding` | `(filePath: string) => string` | Read file with BOM detection |
+| `extractSpecFolder` | `(filePath: string) => string` | Extract spec folder name from file path |
+| `extractTitle` | `(content: string) => string \| null` | Extract title from YAML frontmatter or first `#` heading |
+| `extractTriggerPhrases` | `(content: string) => string[]` | Extract trigger phrases from YAML or `## Trigger Phrases` section |
+| `extractContextType` | `(content: string) => ContextType` | Extract context type from metadata |
+| `extractImportanceTier` | `(content: string) => string` | Extract importance tier |
+| `computeContentHash` | `(content: string) => string` | SHA-256 hash of content |
+| `extractCausalLinks` | `(content: string) => CausalLinks` | Extract causal link metadata from YAML |
+| `hasCausalLinks` | `(causalLinks: CausalLinks) => boolean` | Check if any causal links are present |
+| `isMemoryFile` | `(filePath: string) => boolean` | Check if path is a valid memory file |
+| `validateAnchors` | `(content: string) => AnchorValidation` | Validate anchor tag format and closure |
+| `extractAnchors` | `(content: string) => Record<string, string>` | Extract anchor section contents |
+| `validateParsedMemory` | `(parsed: ParsedMemory) => ParsedMemoryValidation` | Validate parsed memory data |
+| `findMemoryFiles` | `(workspacePath: string, options?) => string[]` | Find all memory files in a workspace |
 
-### Trigger Matcher
+**Exported types:** `CausalLinks`, `TypeInferenceResult`, `ParsedMemory`, `AnchorValidation`, `ParsedMemoryValidation`, `ContextType`, `FindMemoryFilesOptions`
+
+**Exported constants:** `MEMORY_FILE_PATTERN`, `CONTEXT_TYPE_MAP`
+
+### Trigger Matcher (`trigger-matcher.ts`)
 
 **Purpose**: Fast trigger phrase matching for proactive memory surfacing
 
@@ -91,45 +107,65 @@ const memory = parseMemoryFile('/path/to/memory.md');
 | **Unicode** | NFC normalization with optional accent stripping |
 | **Word Boundaries** | Unicode-aware matching (Latin characters A-z, accented chars) |
 
-```javascript
-const { matchTriggerPhrases } = require('./parsing');
+**Exported functions:**
 
-const matches = matchTriggerPhrases('How does authentication work?', 3);
-// Returns: [{ memoryId, specFolder, title, matchedPhrases, importanceWeight }]
-```
+| Function | Signature | Purpose |
+|----------|-----------|---------|
+| `matchTriggerPhrases` | `(userPrompt: string, limit?: number) => TriggerMatch[]` | Match prompt against trigger phrases |
+| `matchTriggerPhrasesWithStats` | `(userPrompt: string, limit?: number) => TriggerMatchWithStats` | Match with timing stats |
+| `loadTriggerCache` | `() => TriggerCacheEntry[]` | Load/refresh trigger phrase cache from DB |
+| `clearCache` | `() => void` | Clear trigger cache and regex cache |
+| `getCacheStats` | `() => CacheStats` | Get cache statistics |
+| `getAllPhrases` | `() => string[]` | Get all unique cached trigger phrases |
+| `getMemoriesByPhrase` | `(phrase: string) => MemoryByPhrase[]` | Find memories matching a specific phrase |
+| `refreshTriggerCache` | `() => TriggerCacheEntry[]` | Force cache reload |
+| `normalizeUnicode` | `(str: string, stripAccents?: boolean) => string` | Unicode normalization |
+| `matchPhraseWithBoundary` | `(text: string, phrase: string, precompiledRegex?) => boolean` | Word-boundary phrase match |
+| `logExecutionTime` | `(operation: string, durationMs: number, details?) => ExecutionLogEntry \| undefined` | Performance logging |
+| `getCachedRegex` | `(phrase: string) => RegExp` | Get/create cached regex for phrase |
 
-### Trigger Extractor
+**Exported types:** `TriggerCacheEntry`, `TriggerMatch`, `TriggerMatchWithStats`, `TriggerMatchStats`, `CacheStats`, `MemoryByPhrase`, `ExecutionLogEntry`, `TriggerMatcherConfig`
 
-**Purpose**: Extract meaningful trigger phrases from content using TF-IDF + patterns
+**Exported constant:** `CONFIG`
+
+### Entity Scope (`entity-scope.ts`)
+
+**Purpose**: Context type detection, scope filtering, and session ID generation
 
 | Aspect | Details |
 |--------|---------|
-| **Extraction Types** | Problem terms, technical terms, decisions, actions, compounds |
-| **N-gram Support** | Unigrams through quadgrams with length bonuses |
-| **Performance** | <100ms for typical content (<10KB) |
-| **Output Range** | 8-25 phrases per memory file |
+| **Context Types** | `research`, `implementation`, `decision`, `discovery`, `general` |
+| **Content Detection** | Keyword scanning (explored→research, implemented→implementation, decided→decision, found→discovery) |
+| **Tool Detection** | Infers context from tool usage (AskUserQuestion→decision, Read/Grep/Glob majority→research) |
+| **Scope Filtering** | Builds SQL WHERE clauses from specFolder, sessionId, and contextTypes |
 
-### Entity Scope
+**Exported functions:**
 
-**Purpose**: Detect context types and build scope filters for queries
+| Function | Signature | Purpose |
+|----------|-----------|---------|
+| `detectContextType` | `(content: string) => string` | Detect context type from free-text content via keyword matching |
+| `detectContextTypeFromTools` | `(tools: Array<{tool: string}>) => string` | Detect context type from tool invocation list |
+| `buildScopeFilter` | `(scope: {specFolder?, sessionId?, contextTypes?}) => {clause, params}` | Build SQL WHERE clause from scope object |
+| `isValidContextType` | `(type: string) => boolean` | Check if string is a recognised context type |
+| `generateSessionId` | `() => string` | Generate a unique session-prefixed identifier |
 
-| Aspect | Details |
-|--------|---------|
-| **Context Types** | research, implementation, decision, discovery, general |
-| **Detection Sources** | Content patterns, tool usage ratios |
-| **Scope Filtering** | SQL WHERE clause generation for specFolder, sessionId, contextTypes |
+**Exported constants:** `CONTEXT_TYPES`
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 
 ### Example 1: Parse Memory File with Anchors
 
-```javascript
-const { parseMemoryFile, extractAnchors } = require('./parsing');
+```typescript
+import { parseMemoryFile, extractAnchors } from './memory-parser';
 
 // Parse full memory file
 const memory = parseMemoryFile('specs/007-auth/memory/session-001.md');
+// Returns: { filePath, specFolder, title, triggerPhrases, contextType,
+//            importanceTier, contentHash, content, fileSize, lastModified,
+//            memoryType, memoryTypeSource, memoryTypeConfidence,
+//            causalLinks, hasCausalLinks }
 
 // Extract specific anchor content (~93% token savings)
 const anchors = extractAnchors(memory.content);
@@ -138,28 +174,14 @@ const summary = anchors['summary'];  // Just the summary section
 
 ### Example 2: Match Trigger Phrases
 
-```javascript
-const { matchTriggerPhrasesWithStats } = require('./parsing');
+```typescript
+import { matchTriggerPhrasesWithStats } from './trigger-matcher';
 
 const result = matchTriggerPhrasesWithStats('authentication login flow', 5);
 
 console.log(`Found ${result.matches.length} memories`);
 console.log(`Match time: ${result.stats.matchTimeMs}ms`);
 // Logs: Found 3 memories, Match time: 12ms
-```
-
-### Example 3: Detect Context Type from Tools
-
-```javascript
-const { detect_context_type_from_tools } = require('./parsing');
-
-const toolCalls = [
-  { tool: 'Read' }, { tool: 'Grep' }, { tool: 'Read' },
-  { tool: 'Write' }, { tool: 'Read' }
-];
-
-const contextType = detect_context_type_from_tools(toolCalls);
-// Returns: 'research' (>50% Read/Grep/Glob calls)
 ```
 
 ### Common Patterns
@@ -169,11 +191,11 @@ const contextType = detect_context_type_from_tools(toolCalls);
 | Full parse | `parseMemoryFile(path)` | Index new memories |
 | Anchor-only | `extractAnchors(content)` | Targeted section retrieval |
 | Trigger match | `matchTriggerPhrases(prompt, limit)` | Proactive surfacing |
-| Scope filter | `build_scope_filter({ specFolder, sessionId })` | Query filtering |
+| Find files | `findMemoryFiles(workspace, { specFolder })` | Directory scanning |
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -182,13 +204,9 @@ const contextType = detect_context_type_from_tools(toolCalls);
 | [lib/README.md](../README.md) | Parent library overview |
 | [cognitive/README.md](../cognitive/README.md) | Attention decay, working memory |
 | [search/README.md](../search/README.md) | Vector search, hybrid search |
-
-### External Resources
-
-| Resource | Description |
-|----------|-------------|
-| [MCP Protocol](https://modelcontextprotocol.io/) | Model Context Protocol specification |
+| [config/](../config/) | Type inference used by memory-parser |
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2026-02-02*
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

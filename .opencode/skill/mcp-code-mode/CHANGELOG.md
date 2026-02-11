@@ -6,6 +6,19 @@ All notable changes to the mcp-code-mode skill are documented in this file.
 
 ---
 
+## [**1.1.0.3**] - 2026-02-07
+
+Script alignment with workflows-code--opencode standards (Phase 19).
+
+---
+
+### Changed
+
+1. **update-code-mode.sh** — Shebang changed to `#!/usr/bin/env bash`; strict mode upgraded from `set -e` to `set -euo pipefail`; all variables double-quoted with `${}`; `CODE_MODE_DIR` marked `readonly`; `local` declarations added in functions (`current_version`, `new_version`, `mcp_entry`); `$MCP_ENTRY` inlined in `print_config_reminder` (was referencing variable from different function scope); `REPLY` given default `${REPLY:-}` for `set -u` safety; warning/error messages routed to stderr
+2. **validate_config.py** — Module docstring moved directly after header (no blank line separator); `Tuple` added to imports; `_required_env_vars` type hint corrected to `Set[Tuple[str, str]]`; return type hints added to all methods (`-> bool`, `-> None`); Google-style docstrings added to all 12 methods; bare `except Exception` narrowed to `(OSError, UnicodeDecodeError)`; class-level docstring expanded with `Args:` section; `main()` docstring clarified
+
+---
+
 ## [**1.1.0.2**] - 2026-02-03
 
 Script comment standardization per workflows-code code_style_guide.md.

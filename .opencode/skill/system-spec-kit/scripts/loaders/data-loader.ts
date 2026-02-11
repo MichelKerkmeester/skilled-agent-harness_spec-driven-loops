@@ -1,0 +1,186 @@
+// ---------------------------------------------------------------
+// MODULE: Data Loader
+// Loads session data from file, OpenCode capture, or simulation fallback
+// ---------------------------------------------------------------
+
+// ---------------------------------------------------------------
+// 1. IMPORTS
+// ---------------------------------------------------------------
+
+import fs from 'fs/promises';
+import path from 'path';
+import os from 'os';
+
+import { CONFIG } from '../core';
+import { structuredLog, sanitizePath } from '../utils';
+
+import {
+  validateInputData,
+  normalizeInputData,
+  transformOpencodeCapture,
+} from '../utils/input-normalizer';
+import type { RawInputData, NormalizedData, OpencodeCapture, Observation, UserPrompt, RecentContext, FileEntry } from '../utils/input-normalizer';
+
+// ---------------------------------------------------------------
+// 2. TYPES
+// ---------------------------------------------------------------
+
+/** Data source type indicating where loaded data came from */
+export type DataSource = 'file' | 'opencode-capture' | 'simulation';
+
+/** Loaded data result, which may be normalized data or simulation marker */
+export interface LoadedData {
+  _isSimulation?: boolean;
+  _source?: string;
+  userPrompts?: UserPrompt[];
+  observations?: Observation[];
+  recentContext?: RecentContext[];
+  FILES?: FileEntry[];
+  [key: string]: unknown;
+}
+
+/** OpenCode capture module interface (lazy-loaded) */
+interface OpencodeCaptureMod {
+  captureConversation(maxExchanges: number, projectRoot: string): Promise<OpencodeCapture | null>;
+}
+
+// ---------------------------------------------------------------
+// 3. LAZY-LOADED DEPENDENCIES
+// ---------------------------------------------------------------
+
+// Lazy load via dynamic import() to handle missing dependencies
+let _opencodeCapture: OpencodeCaptureMod | null | undefined;
+
+async function getOpencodeCapture(): Promise<OpencodeCaptureMod | null> {
+  if (_opencodeCapture === undefined) {
+    try {
+      _opencodeCapture = await import('../extractors/opencode-capture') as OpencodeCaptureMod;
+    } catch (err) {
+      structuredLog('warn', 'opencode-capture library not available', {
+        error: (err as Error).message
+      });
+      _opencodeCapture = null;
+    }
+  }
+  return _opencodeCapture;
+}
+
+// ---------------------------------------------------------------
+// 4. LOADER FUNCTIONS
+// ---------------------------------------------------------------
+
+async function loadCollectedData(): Promise<LoadedData> {
+  // Priority 1: Data file provided via command line
+  if (CONFIG.DATA_FILE) {
+    try {
+      // SEC-001: Path traversal mitigation (CWE-22)
+      // Use os.tmpdir() for cross-platform temp directory support
+      // Also include /tmp for macOS where /tmp symlinks to /private/tmp
+      const tmpDir: string = os.tmpdir();
+      const dataFileAllowedBases: string[] = [
+        tmpDir,
+        '/tmp',           // macOS: symlink to /private/tmp
+        '/private/tmp',   // macOS: actual tmp location
+        process.cwd(),
+        path.join(process.cwd(), 'specs'),
+        path.join(process.cwd(), '.opencode')
+      ];
+
+      let validatedDataFilePath: string;
+      try {
+        validatedDataFilePath = sanitizePath(CONFIG.DATA_FILE, dataFileAllowedBases);
+      } catch (pathError) {
+        structuredLog('error', 'Invalid data file path - security validation failed', {
+          filePath: CONFIG.DATA_FILE,
+          error: (pathError as Error).message
+        });
+        throw new Error(`Security: Invalid data file path: ${(pathError as Error).message}`);
+      }
+
+      const dataContent: string = await fs.readFile(validatedDataFilePath, 'utf-8');
+      const rawData: RawInputData = JSON.parse(dataContent) as RawInputData;
+
+      validateInputData(rawData, CONFIG.SPEC_FOLDER_ARG);
+      console.log('   \u2713 Loaded and validated conversation data from file');
+
+      const data: NormalizedData | RawInputData = normalizeInputData(rawData);
+      console.log(`   \u2713 Loaded data from data file`);
+      return data as LoadedData;
+    } catch (error) {
+      const err = error as NodeJS.ErrnoException;
+      if (err.code === 'ENOENT') {
+        structuredLog('warn', 'Data file not found', {
+          filePath: CONFIG.DATA_FILE,
+          error: err.message
+        });
+        console.log(`   \u26A0\uFE0F  Data file not found: ${CONFIG.DATA_FILE}`);
+      } else if (error instanceof SyntaxError) {
+        structuredLog('warn', 'Invalid JSON in data file', {
+          filePath: CONFIG.DATA_FILE,
+          error: error.message,
+          position: error.message.match(/position (\d+)/)?.[1] || 'unknown'
+        });
+        console.log(`   \u26A0\uFE0F  Invalid JSON in data file ${CONFIG.DATA_FILE}: ${error.message}`);
+      } else {
+        structuredLog('warn', 'Failed to load data file', {
+          filePath: CONFIG.DATA_FILE,
+          error: (error as Error).message
+        });
+        console.log(`   \u26A0\uFE0F  Failed to load data file ${CONFIG.DATA_FILE}: ${(error as Error).message}`);
+      }
+    }
+  }
+
+  // Priority 2: OpenCode session capture
+  console.log('   \uD83D\uDD0D Attempting OpenCode session capture...');
+
+  const opencodeCapture = await getOpencodeCapture();
+  if (!opencodeCapture) {
+    structuredLog('debug', 'OpenCode capture not available', {
+      projectRoot: CONFIG.PROJECT_ROOT
+    });
+    console.log('   \u26A0\uFE0F  OpenCode capture not available');
+  } else {
+    try {
+      const conversation: OpencodeCapture | null = await opencodeCapture.captureConversation(
+        20,
+        CONFIG.PROJECT_ROOT
+      );
+
+      if (conversation && conversation.exchanges && conversation.exchanges.length > 0) {
+        console.log(`   \u2713 Captured ${conversation.exchanges.length} exchanges from OpenCode`);
+        console.log(`   \u2713 Session: ${conversation.sessionTitle || 'Unnamed'}`);
+
+        const data = transformOpencodeCapture(conversation);
+        return data as LoadedData;
+      } else {
+        structuredLog('debug', 'OpenCode capture returned empty data', {
+          projectRoot: CONFIG.PROJECT_ROOT
+        });
+        console.log('   \u26A0\uFE0F  OpenCode capture returned empty data');
+      }
+    } catch (captureError) {
+      structuredLog('debug', 'OpenCode capture failed', {
+        projectRoot: CONFIG.PROJECT_ROOT,
+        error: (captureError as Error).message
+      });
+      console.log(`   \u26A0\uFE0F  OpenCode capture unavailable: ${(captureError as Error).message}`);
+    }
+  }
+
+  // Priority 3: Simulation fallback
+  console.log('   \u26A0\uFE0F  Using fallback simulation mode');
+  console.warn('[generate-context] WARNING: Using simulation mode - placeholder data generated');
+  console.log('   \u26A0\uFE0F  OUTPUT WILL CONTAIN PLACEHOLDER DATA - NOT REAL SESSION CONTENT');
+  console.log('   \u2139\uFE0F  To save real context, AI must construct JSON and pass as argument:');
+  console.log('      node generate-context.js /tmp/save-context-data.json');
+  return { _isSimulation: true };
+}
+
+// ---------------------------------------------------------------
+// 5. EXPORTS
+// ---------------------------------------------------------------
+
+export {
+  loadCollectedData,
+};

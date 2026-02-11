@@ -22,6 +22,8 @@
 
 The `database/` folder contains the SQLite database files that store all indexed memory data, vector embeddings, and checkpoint snapshots for the Spec Kit Memory MCP server. This is the persistent storage layer for the semantic memory system.
 
+**Note:** Database files remain as SQLite binaries (not compiled). After the TypeScript migration, the modules that interact with these databases have been migrated from JavaScript to TypeScript. Source files are in `lib/*.ts` and compiled output is in `dist/lib/*.js`.
+
 ### Key Features
 
 | Feature | Description |
@@ -98,13 +100,12 @@ du -h context-index.sqlite*
 
 ```
 database/
-├── context-index.sqlite               # Main database file
-├── context-index.sqlite-shm           # Shared memory for WAL mode (32 KB)
-├── context-index.sqlite-wal           # Write-ahead log (varies)
-├── context-index__voyage__voyage-4__1024.sqlite      # Legacy Voyage embedding DB
-├── context-index__voyage__voyage-4__1024.sqlite-shm  # Legacy WAL shared memory
-├── context-index__voyage__voyage-4__1024.sqlite-wal  # Legacy WAL log
-└── .db-updated                        # External update signal (timestamp)
+├── context-index.sqlite                              # Main database file (6.6 MB)
+├── context-index.sqlite-shm                          # Shared memory for WAL mode (32 KB)
+├── context-index.sqlite-wal                          # Write-ahead log (varies, ~33 KB)
+├── context-index__voyage__voyage-4__1024.sqlite      # Voyage embedding DB (5.0 MB)
+├── .db-updated                                       # External update signal (timestamp)
+└── .gitkeep                                          # Git directory placeholder
 ```
 
 ### Key Files
@@ -115,7 +116,8 @@ database/
 | `context-index.sqlite-wal` | Write-ahead log for uncommitted transactions | ⚠️ Only if DB closed cleanly |
 | `context-index.sqlite-shm` | Shared memory for WAL coordination | ⚠️ Auto-recreated on startup |
 | `.db-updated` | External update signal (BUG-001) | ✅ Yes - auto-recreated |
-| `context-index__voyage__*` | Legacy multi-provider databases | ✅ Yes - if migrated to main |
+| `context-index__voyage__*` | Voyage AI embedding database | ⚠️ Only if not using Voyage embeddings |
+| `.gitkeep` | Git directory placeholder | ✅ Yes - purely for Git |
 
 ### File Lifecycle
 
@@ -452,24 +454,25 @@ sqlite3 context-index.sqlite "SELECT page_count * page_size as size FROM pragma_
 
 | Document | Purpose |
 |----------|---------|
-| [MCP Server README](../README.md) | Complete server documentation with all 14 MCP tools |
-| [Vector Index Module](../lib/search/vector-index.js) | Database operations implementation |
-| [Memory Parser Module](../lib/parsing/memory-parser.js) | Memory file parsing and indexing |
-| [Checkpoint Module](../lib/storage/checkpoints.js) | Checkpoint save/restore logic |
+| [MCP Server README](../README.md) | Complete server documentation with all 22 MCP tools |
+| [Vector Index Module](../lib/search/vector-index.ts) | TypeScript source for database operations |
+| [Memory Parser Module](../lib/parsing/memory-parser.ts) | TypeScript source for memory file parsing and indexing |
+| [Checkpoint Module](../lib/storage/checkpoints.ts) | TypeScript source for checkpoint save/restore logic |
+| [Compiled Modules](../dist/lib/) | JavaScript output from TypeScript compilation |
 
 ### Configuration References
 
 | Document | Purpose |
 |----------|---------|
 | [Environment Variables](../../references/config/environment_variables.md) | Database path and provider configuration |
-| [Core Config Module](../core/config.js) | Database path constants |
+| [Core Config Module](../core/config.ts) | Database path constants |
 
 ### Schema References
 
 | Document | Purpose |
 |----------|---------|
 | [Memory System Reference](../../references/memory/memory_system.md) | Complete schema documentation |
-| [Importance Tiers](../lib/scoring/importance-tiers.js) | Six-tier importance system |
+| [Importance Tiers](../lib/scoring/importance-tiers.ts) | TypeScript source for six-tier importance system |
 
 ### External Resources
 

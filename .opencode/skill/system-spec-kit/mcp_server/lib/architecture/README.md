@@ -6,15 +6,15 @@
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE](#4--usage)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1-overview)
+- [2. STRUCTURE](#2-structure)
+- [3. FEATURES](#3-features)
+- [4. USAGE](#4-usage)
+- [5. RELATED RESOURCES](#5-related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The architecture module defines the 7-layer MCP tool organization (T060) that enables progressive disclosure from high-level orchestration to specialized operations. Each layer has an assigned token budget to manage response sizes and cognitive load.
 
@@ -40,24 +40,23 @@ The architecture module defines the 7-layer MCP tool organization (T060) that en
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 
 ```
 architecture/
-├── index.js              # Module aggregator
-└── layer-definitions.js  # 7-layer hierarchy with token budgets
+├── layer-definitions.ts  # 7-layer hierarchy with token budgets (~8KB)
+└── README.md             # This file
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `layer-definitions.js` | Layer constants, tool-to-layer mapping, token budget helpers |
-| `index.js` | Re-exports layer-definitions for clean imports |
+| `layer-definitions.ts` | Layer constants, tool-to-layer mapping, token budget helpers, documentation generator |
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 
 ### Layer Definitions
 
@@ -67,58 +66,67 @@ Each layer includes:
 - **description**: Purpose and usage guidance
 - **tokenBudget**: Maximum tokens for responses
 - **priority**: Layer order (1 = highest)
+- **useCase**: When to use this layer
 - **tools**: Array of tools belonging to this layer
 
-### Helper Functions
+### Exported Functions
 
-| Function | Purpose |
-|----------|---------|
-| `getLayerPrefix(toolName)` | Get layer prefix string, e.g., `[L2:Core]` |
-| `enhanceDescription(toolName, desc)` | Add layer prefix to tool description |
-| `getTokenBudget(toolName)` | Get token budget for a tool |
-| `getLayerInfo(toolName)` | Get full layer definition for a tool |
-| `getLayersByPriority()` | Get all layers sorted by priority |
-| `getRecommendedLayers(taskType)` | Get recommended layers for task type |
-| `getLayerDocumentation()` | Generate markdown documentation |
+| Function | Signature | Purpose |
+|----------|-----------|---------|
+| `getLayerPrefix` | `(toolName: string) => string` | Get layer prefix string, e.g., `[L2:Core]` |
+| `enhanceDescription` | `(toolName: string, desc: string) => string` | Add layer prefix to tool description |
+| `getTokenBudget` | `(toolName: string) => number` | Get token budget for a tool (default: 1000) |
+| `getLayerInfo` | `(toolName: string) => LayerDefinition \| null` | Get full layer definition for a tool |
+| `getLayersByPriority` | `() => LayerDefinition[]` | Get all layers sorted by priority |
+| `getRecommendedLayers` | `(taskType: TaskType) => LayerId[]` | Get recommended layers for task type |
+| `getLayerDocumentation` | `() => string` | Generate markdown documentation |
+
+### Exported Types
+
+`LayerDefinition`, `LayerId`, `TaskType`
+
+### Exported Constants
+
+`LAYER_DEFINITIONS`, `TOOL_LAYER_MAP`
 
 ---
 
-## 4. 💡 USAGE
+## 4. USAGE
 
 ### Basic Import
 
-```javascript
-const {
+```typescript
+import {
   LAYER_DEFINITIONS,
   getTokenBudget,
   getLayerPrefix
-} = require('./lib/architecture');
+} from './layer-definitions';
 ```
 
 ### Get Token Budget
 
-```javascript
+```typescript
 const budget = getTokenBudget('memory_search');
 // Returns: 1500 (L2: Core layer budget)
 ```
 
 ### Enhance Tool Description
 
-```javascript
+```typescript
 const enhanced = enhanceDescription('memory_search', 'Search memories');
 // Returns: "[L2:Core] Search memories"
 ```
 
 ### Get Recommended Layers
 
-```javascript
+```typescript
 const layers = getRecommendedLayers('search');
 // Returns: ['L1', 'L2'] - Start orchestration, fallback to core
 ```
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -132,5 +140,9 @@ const layers = getRecommendedLayers('search');
 
 | Module | Relationship |
 |--------|--------------|
-| `context-server.js` | Uses layer definitions for tool organization |
-| `lib/utils/token-budget.js` | Consumes token budgets from layers |
+| `context-server.ts` | Uses layer definitions for tool organization |
+
+---
+
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

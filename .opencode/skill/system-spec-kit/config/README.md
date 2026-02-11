@@ -20,7 +20,7 @@ This directory contains the JSON configuration files that control how the Spec K
 | File                       | Purpose                                                              |
 | -------------------------- | -------------------------------------------------------------------- |
 | `config.jsonc`             | Main configuration for memory, search, decay, tiers, and templates  |
-| `complexity-config.jsonc`  | Complexity detection algorithm weights, thresholds, and level rules  |
+| `complexity-config.jsonc`  | **DEPRECATED** — Complexity detection weights/thresholds (not read by any runtime code; retained for reference) |
 | `filters.jsonc`            | Content filtering pipeline for noise removal and quality scoring     |
 
 ---
@@ -49,7 +49,9 @@ This directory contains the JSON configuration files that control how the Spec K
 - `hybridSearch.enabled: true` - Combine FTS and vector search with RRF
 - `templates.path: "templates"` - Path to spec templates
 
-### complexity-config.jsonc
+### complexity-config.jsonc (DEPRECATED)
+
+> **DEPRECATED:** This file is not read by any runtime code. Retained for reference only. Use `--level N` with `scripts/spec/create.sh` to select a level directly. See the deprecation header in the file itself and [level_selection_guide.md](../references/templates/level_selection_guide.md) for current guidance.
 
 **Complexity scoring algorithm** with 5-dimensional analysis:
 
@@ -103,17 +105,19 @@ This directory contains the JSON configuration files that control how the Spec K
 
 ### Loading Configs
 
-Configs are automatically loaded by the core config loader (`scripts/core/config.js`):
+The main config is loaded by `scripts/core/config.ts`:
 
-```javascript
-const { loadConfig, loadComplexityConfig, loadFilterConfig } = require('./core/config');
+```typescript
+import { loadConfig } from './core/config';
 
-const config = loadConfig();              // Loads config.jsonc
-const complexity = loadComplexityConfig(); // Loads complexity-config.jsonc
-const filters = loadFilterConfig();        // Loads filters.jsonc
+const config = loadConfig();  // Loads config.jsonc (Section 1 keys only used at runtime)
 ```
 
 The loader strips JSONC comments and parses JSON safely with fallback to defaults.
+
+> **Note:** `loadComplexityConfig` and `loadFilterConfig` do not exist in `scripts/core/config.ts`.
+> `complexity-config.jsonc` is not read by any runtime code (see deprecation notice in that file).
+> `filters.jsonc` is loaded directly by `scripts/lib/content-filter.ts`, not through the core config loader.
 
 ### Modifying Settings
 
@@ -163,8 +167,8 @@ The loader strips JSONC comments and parses JSON safely with fallback to default
 | [Trigger Config](../references/memory/trigger_config.md) | Automatic memory surfacing |
 | [Template Guide](../references/templates/template_guide.md) | Template style differences |
 | [Level Specifications](../references/templates/level_specifications.md) | Complexity level details |
-| [Config Loader](../scripts/core/config.js) | Implementation of config loading |
-| [Content Filter](../scripts/lib/content-filter.js) | Filter pipeline implementation |
+| [Config Loader](../scripts/core/config.ts) | Implementation of config loading |
+| [Content Filter](../scripts/lib/content-filter.ts) | Filter pipeline implementation |
 
 ---
 

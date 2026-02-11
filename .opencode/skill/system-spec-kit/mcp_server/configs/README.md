@@ -22,6 +22,8 @@
 
 The `configs/` folder contains JSON configuration files that control search behavior and ranking algorithms for the Spec Kit Memory MCP server. These configurations tune how semantic search results are ranked, weighted, and prioritized.
 
+**Note:** Configuration files remain as JSON (not compiled). The TypeScript modules in `lib/` read these configurations at runtime. After the TypeScript migration, module source files are in `lib/*.ts` and compiled output is in `dist/lib/*.js`.
+
 ### Key Features
 
 | Feature | Description |
@@ -260,8 +262,9 @@ node -e "JSON.parse(require('fs').readFileSync('.opencode/skill/system-spec-kit/
 | Document | Purpose |
 |----------|---------|
 | [MCP Server README](../README.md) | Complete MCP server documentation |
-| [Hybrid Search Module](../lib/search/hybrid-search.js) | Implementation of search weight application |
-| [Composite Scoring Module](../lib/scoring/composite-scoring.js) | Score calculation using these weights (includes retrievability) |
+| [Hybrid Search Module](../lib/search/hybrid-search.ts) | TypeScript source for search weight application |
+| [Composite Scoring Module](../lib/scoring/composite-scoring.ts) | TypeScript source for score calculation (includes retrievability) |
+| [Compiled Output](../dist/lib/search/) | JavaScript output from TypeScript compilation |
 
 ### External Resources
 

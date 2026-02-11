@@ -73,7 +73,7 @@ Level 2 requires passing validation script:
 
 ```bash
 # Run validation
-node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-name/
 
 # Exit codes:
 # 0 = Pass
@@ -142,14 +142,14 @@ Automated validation ensures all required sections and formatting standards are 
 
 #### Validation script fails with errors
 
-**Symptom**: `validate-spec.js` exits with code 2 (blocking errors)
+**Symptom**: `validate.sh` exits with code 2 (blocking errors)
 
 **Cause**: Missing required sections or formatting issues
 
 **Solution**:
 ```bash
 # Run validation to see specific errors
-node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-name/
 
 # Fix reported errors and re-run
 ```
@@ -184,7 +184,7 @@ node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-
 
 ```bash
 # Validate spec folder
-node .opencode/skill/system-spec-kit/scripts/validate-spec.js specs/###-feature-name/
+bash .opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/###-feature-name/
 
 # Check which files exist
 ls -la specs/###-feature-name/

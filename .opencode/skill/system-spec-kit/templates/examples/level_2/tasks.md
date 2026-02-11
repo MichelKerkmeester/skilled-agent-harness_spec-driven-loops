@@ -1,7 +1,7 @@
 # Tasks: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 2 task list with more detailed tracking
 including effort estimates and explicit verification tasks for each feature. -->

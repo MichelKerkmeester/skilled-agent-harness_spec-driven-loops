@@ -96,36 +96,36 @@ function log(msg) {
   console.log(msg);
 }
 
-function pass(test_name, evidence) {
+function pass(testName, evidence) {
   results.passed++;
-  results.tests.push({ name: test_name, status: 'PASS', evidence });
-  log(`   [PASS] ${test_name}`);
+  results.tests.push({ name: testName, status: 'PASS', evidence });
+  log(`   [PASS] ${testName}`);
   if (evidence) log(`      Evidence: ${evidence}`);
 }
 
-function fail(test_name, reason) {
+function fail(testName, reason) {
   results.failed++;
-  results.tests.push({ name: test_name, status: 'FAIL', reason });
-  log(`   [FAIL] ${test_name}`);
+  results.tests.push({ name: testName, status: 'FAIL', reason });
+  log(`   [FAIL] ${testName}`);
   log(`      Reason: ${reason}`);
 }
 
-function skip(test_name, reason) {
+function skip(testName, reason) {
   results.skipped++;
-  results.tests.push({ name: test_name, status: 'SKIP', reason });
-  log(`   [SKIP] ${test_name} (skipped: ${reason})`);
+  results.tests.push({ name: testName, status: 'SKIP', reason });
+  log(`   [SKIP] ${testName} (skipped: ${reason})`);
 }
 
-function file_exists(file_path) {
+function fileExists(file_path) {
   return fs.existsSync(file_path) && fs.statSync(file_path).isFile();
 }
 
-function dir_exists(dir_path) {
-  return fs.existsSync(dir_path) && fs.statSync(dir_path).isDirectory();
+function dirExists(dirPath) {
+  return fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory();
 }
 
-function read_file(file_path) {
-  if (!file_exists(file_path)) return null;
+function readFile(file_path) {
+  if (!fileExists(file_path)) return null;
   return fs.readFileSync(file_path, 'utf8');
 }
 
@@ -198,19 +198,19 @@ function validateFiveChecksEvaluation(checks) {
    3. TEST SUITE: FRAMEWORK DOCUMENTATION STRUCTURE
 ────────────────────────────────────────────────────────────────*/
 
-async function test_framework_documentation_structure() {
+async function testFrameworkDocumentationStructure() {
   log('\n--- TEST SUITE: Framework Documentation Structure ---');
 
   try {
     // Test five-checks.md exists
-    if (file_exists(FIVE_CHECKS_DOC)) {
+    if (fileExists(FIVE_CHECKS_DOC)) {
       pass('T-FC-001: five-checks.md exists', FIVE_CHECKS_DOC);
     } else {
       fail('T-FC-001: five-checks.md exists', `File not found: ${FIVE_CHECKS_DOC}`);
       return;
     }
 
-    const content = read_file(FIVE_CHECKS_DOC);
+    const content = readFile(FIVE_CHECKS_DOC);
     if (!content) {
       fail('T-FC-002: five-checks.md is readable', 'Could not read file');
       return;
@@ -317,11 +317,11 @@ async function test_framework_documentation_structure() {
    4. TEST SUITE: CHECK CRITERIA PARSING
 ────────────────────────────────────────────────────────────────*/
 
-async function test_check_criteria_parsing() {
+async function testCheckCriteriaParsing() {
   log('\n--- TEST SUITE: Check Criteria Parsing ---');
 
   try {
-    const content = read_file(FIVE_CHECKS_DOC);
+    const content = readFile(FIVE_CHECKS_DOC);
     if (!content) {
       fail('T-CP-001: Can read five-checks.md for parsing tests', 'File not readable');
       return;
@@ -413,12 +413,12 @@ async function test_check_criteria_parsing() {
    5. TEST SUITE: DECISION-RECORD.MD INTEGRATION
 ────────────────────────────────────────────────────────────────*/
 
-async function test_decision_record_integration() {
+async function testDecisionRecordIntegration() {
   log('\n--- TEST SUITE: Decision-Record.md Integration ---');
 
   try {
     // Test Level 3 decision-record.md has Five Checks section
-    const level3DecisionRecord = read_file(path.join(LEVEL_3_DIR, 'decision-record.md'));
+    const level3DecisionRecord = readFile(path.join(LEVEL_3_DIR, 'decision-record.md'));
     if (level3DecisionRecord) {
       if (level3DecisionRecord.includes('Five Checks Evaluation')) {
         pass('T-DR-001: level_3/decision-record.md has Five Checks section', 'Section found');
@@ -445,7 +445,7 @@ async function test_decision_record_integration() {
     }
 
     // Test Level 3+ decision-record.md has Five Checks section
-    const level3PlusDecisionRecord = read_file(path.join(LEVEL_3PLUS_DIR, 'decision-record.md'));
+    const level3PlusDecisionRecord = readFile(path.join(LEVEL_3PLUS_DIR, 'decision-record.md'));
     if (level3PlusDecisionRecord) {
       if (level3PlusDecisionRecord.includes('Five Checks Evaluation')) {
         pass('T-DR-004: level_3+/decision-record.md has Five Checks section', 'Section found');
@@ -464,7 +464,7 @@ async function test_decision_record_integration() {
     }
 
     // Test Example Level 3 decision-record.md has filled Five Checks
-    const exampleDecisionRecord = read_file(path.join(EXAMPLES_DIR, 'level_3', 'decision-record.md'));
+    const exampleDecisionRecord = readFile(path.join(EXAMPLES_DIR, 'level_3', 'decision-record.md'));
     if (exampleDecisionRecord) {
       // Check that example doesn't have placeholder [PASS/FAIL]
       const hasFilledResults = !exampleDecisionRecord.includes('[PASS/FAIL]') ||
@@ -488,7 +488,7 @@ async function test_decision_record_integration() {
     }
 
     // Test addendum decision-record.md (should be base without Five Checks for composition)
-    const addendumDecisionRecord = read_file(path.join(ADDENDUM_DIR, 'level3-arch', 'decision-record.md'));
+    const addendumDecisionRecord = readFile(path.join(ADDENDUM_DIR, 'level3-arch', 'decision-record.md'));
     if (addendumDecisionRecord) {
       // Addendum is a base template that may or may not include Five Checks
       // The composed level_3 template should have it
@@ -510,11 +510,11 @@ async function test_decision_record_integration() {
    6. TEST SUITE: LEVEL APPLICABILITY
 ────────────────────────────────────────────────────────────────*/
 
-async function test_level_applicability() {
+async function testLevelApplicability() {
   log('\n--- TEST SUITE: Level Applicability ---');
 
   try {
-    const fiveChecksDoc = read_file(FIVE_CHECKS_DOC);
+    const fiveChecksDoc = readFile(FIVE_CHECKS_DOC);
     if (!fiveChecksDoc) {
       fail('T-LA-001: Can read five-checks.md for level applicability tests', 'File not readable');
       return;
@@ -563,7 +563,7 @@ async function test_level_applicability() {
     }
 
     // Verify Level 1 templates do NOT have decision-record.md
-    const level1HasDecisionRecord = file_exists(path.join(LEVEL_1_DIR, 'decision-record.md'));
+    const level1HasDecisionRecord = fileExists(path.join(LEVEL_1_DIR, 'decision-record.md'));
     if (!level1HasDecisionRecord) {
       pass('T-LA-007: Level 1 template has no decision-record.md', 'Correctly excluded');
     } else {
@@ -571,7 +571,7 @@ async function test_level_applicability() {
     }
 
     // Verify Level 2 templates do NOT have decision-record.md
-    const level2HasDecisionRecord = file_exists(path.join(LEVEL_2_DIR, 'decision-record.md'));
+    const level2HasDecisionRecord = fileExists(path.join(LEVEL_2_DIR, 'decision-record.md'));
     if (!level2HasDecisionRecord) {
       pass('T-LA-008: Level 2 template has no decision-record.md', 'Correctly excluded (Five Checks optional)');
     } else {
@@ -579,7 +579,7 @@ async function test_level_applicability() {
     }
 
     // Verify Level 3 templates DO have decision-record.md
-    const level3HasDecisionRecord = file_exists(path.join(LEVEL_3_DIR, 'decision-record.md'));
+    const level3HasDecisionRecord = fileExists(path.join(LEVEL_3_DIR, 'decision-record.md'));
     if (level3HasDecisionRecord) {
       pass('T-LA-009: Level 3 template has decision-record.md', 'Correctly included');
     } else {
@@ -587,7 +587,7 @@ async function test_level_applicability() {
     }
 
     // Verify Level 3+ templates DO have decision-record.md
-    const level3PlusHasDecisionRecord = file_exists(path.join(LEVEL_3PLUS_DIR, 'decision-record.md'));
+    const level3PlusHasDecisionRecord = fileExists(path.join(LEVEL_3PLUS_DIR, 'decision-record.md'));
     if (level3PlusHasDecisionRecord) {
       pass('T-LA-010: Level 3+ template has decision-record.md', 'Correctly included');
     } else {
@@ -603,7 +603,7 @@ async function test_level_applicability() {
    7. TEST SUITE: CHECK RESPONSE VALIDATION
 ────────────────────────────────────────────────────────────────*/
 
-async function test_check_response_validation() {
+async function testCheckResponseValidation() {
   log('\n--- TEST SUITE: Check Response Validation ---');
 
   try {
@@ -710,7 +710,7 @@ async function test_check_response_validation() {
     }
 
     // Test table parsing from actual template content
-    const level3Template = read_file(path.join(LEVEL_3_DIR, 'decision-record.md'));
+    const level3Template = readFile(path.join(LEVEL_3_DIR, 'decision-record.md'));
     if (level3Template) {
       const parsedChecks = parseFiveChecksTable(level3Template);
       if (parsedChecks && parsedChecks.length === 5) {
@@ -741,11 +741,11 @@ async function test_check_response_validation() {
    8. TEST SUITE: CROSS-REFERENCE VALIDATION
 ────────────────────────────────────────────────────────────────*/
 
-async function test_cross_reference_validation() {
+async function testCrossReferenceValidation() {
   log('\n--- TEST SUITE: Cross-Reference Validation ---');
 
   try {
-    const fiveChecksDoc = read_file(FIVE_CHECKS_DOC);
+    const fiveChecksDoc = readFile(FIVE_CHECKS_DOC);
     if (!fiveChecksDoc) {
       fail('T-CR-001: Can read five-checks.md for cross-reference tests', 'File not readable');
       return;
@@ -809,14 +809,14 @@ async function test_cross_reference_validation() {
    9. TEST SUITE: SPEC FOLDER INTEGRATION
 ────────────────────────────────────────────────────────────────*/
 
-async function test_spec_folder_integration() {
+async function testSpecFolderIntegration() {
   log('\n--- TEST SUITE: Spec Folder Integration ---');
 
   const specsDir = path.join(ROOT, '..', '..', '..', 'specs');
 
   try {
     // Check if specs directory exists
-    if (!dir_exists(specsDir)) {
+    if (!dirExists(specsDir)) {
       skip('T-SF-001-006: Spec folder tests', 'No specs directory found (expected at project root)');
       return;
     }
@@ -842,14 +842,14 @@ async function test_spec_folder_integration() {
       const decisionRecordPath = path.join(folderPath, 'decision-record.md');
 
       // Check if this is a Level 3 or 3+ spec
-      const specContent = read_file(specPath);
+      const specContent = readFile(specPath);
       if (specContent && (specContent.includes('SPECKIT_LEVEL: 3') || specContent.includes('SPECKIT_LEVEL: 3+'))) {
         foundLevel3Folder = true;
 
         // Check for decision-record.md
-        if (file_exists(decisionRecordPath)) {
+        if (fileExists(decisionRecordPath)) {
           foundDecisionRecord = true;
-          const drContent = read_file(decisionRecordPath);
+          const drContent = readFile(decisionRecordPath);
 
           // Check for Five Checks in decision record
           if (drContent && drContent.includes('Five Checks')) {
@@ -910,13 +910,13 @@ async function main() {
   log(`Templates: ${TEMPLATES_DIR}\n`);
 
   // Run all test suites
-  await test_framework_documentation_structure();
-  await test_check_criteria_parsing();
-  await test_decision_record_integration();
-  await test_level_applicability();
-  await test_check_response_validation();
-  await test_cross_reference_validation();
-  await test_spec_folder_integration();
+  await testFrameworkDocumentationStructure();
+  await testCheckCriteriaParsing();
+  await testDecisionRecordIntegration();
+  await testLevelApplicability();
+  await testCheckResponseValidation();
+  await testCrossReferenceValidation();
+  await testSpecFolderIntegration();
 
   // Summary
   log('\n==================================================');

@@ -1,7 +1,7 @@
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 3 implementation summary with architecture
 decision summary, comprehensive metrics, and lessons learned sections. -->

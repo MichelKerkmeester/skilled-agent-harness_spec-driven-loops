@@ -3,6 +3,10 @@
 # RULE: CHECK-FOLDER-NAMING
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: FOLDER_NAMING
 # Severity: error
 # Description: Validates spec folder follows ###-short-name convention

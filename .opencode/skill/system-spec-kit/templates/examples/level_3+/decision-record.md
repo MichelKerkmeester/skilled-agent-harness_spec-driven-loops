@@ -1,7 +1,7 @@
 # Decision Record: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 3+ decision record with the same ADRs as
 Level 3, demonstrating that governance-level features are primarily in spec.md,

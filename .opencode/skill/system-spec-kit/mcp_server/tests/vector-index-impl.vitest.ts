@@ -1,0 +1,1276 @@
+// @ts-nocheck
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import path from 'node:path';
+import fs from 'node:fs';
+import os from 'node:os';
+
+// ───────────────────────────────────────────────────────────────
+// TEST: VECTOR INDEX IMPLEMENTATION (vector-index-impl)
+// Core vector search implementation — pure functions, DB ops,
+// keyword search, content extraction, caching, and ranking.
+// DB-dependent (uses better-sqlite3 + sqlite-vec).
+// ───────────────────────────────────────────────────────────────
+
+import type mod from '../lib/search/vector-index-impl';  // DB-dependent
+
+describe('Vector Index Implementation [deferred - requires DB test fixtures]', () => {
+  // Module reference (renamed from `vi` to avoid conflict with Vitest's `vi`)
+  let mod: typeof import('../lib/search/vector-index-impl');
+  let importError: Error | null = null;
+  let sqliteVecAvailable = false;
+
+  // Temp DB for isolation
+  const TMP_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'vec-idx-test-'));
+  const TMP_DB_PATH = path.join(TMP_DIR, 'test-context-index.sqlite');
+
+  // Shared state across tests
+  let deferredId1: number | null = null;
+  let deferredId2: number | null = null;
+
+  beforeAll(async () => {
+    // Point the module at our temp DB before import
+    process.env.MEMORY_DB_PATH = TMP_DB_PATH;
+    // Ensure allowed paths include our temp dir for path validation
+    process.env.MEMORY_ALLOWED_PATHS = TMP_DIR;
+
+    try {
+      mod = await import('../lib/search/vector-index-impl');
+    } catch (e: any) {
+      importError = e as Error;
+    }
+  });
+
+  afterAll(() => {
+    try {
+      if (mod && !importError) {
+        mod.closeDb();
+      }
+    } catch (_: any) { /* ignore */ }
+    try {
+      if (fs.existsSync(TMP_DIR)) {
+        fs.rmSync(TMP_DIR, { recursive: true, force: true });
+      }
+    } catch (_: any) { /* ignore */ }
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 1: Module Import
+  // ─────────────────────────────────────────────────────────────
+  describe('Module Import', () => {
+    it('imports without error', () => {
+      expect(importError).toBeNull();
+      expect(mod).toBeDefined();
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 2: Export Verification
+  // ─────────────────────────────────────────────────────────────
+  describe('Export Verification', () => {
+    it('has all required exports present', () => {
+      const requiredExports = [
+        // Initialization
+        'initializeDb', 'closeDb', 'getDb', 'getDbPath',
+        // Core operations
+        'indexMemory', 'indexMemoryDeferred', 'updateMemory',
+        'deleteMemory', 'deleteMemoryByPath',
+        // Queries
+        'getMemory', 'getMemoriesByFolder', 'getMemoryCount',
+        'getStatusCounts', 'getStats', 'verifyIntegrity',
+        // Search - Basic
+        'vectorSearch', 'getConstitutionalMemories',
+        'clearConstitutionalCache', 'multiConceptSearch',
+        'isVectorSearchAvailable',
+        // Search - Enriched
+        'vectorSearchEnriched', 'multiConceptSearchEnriched',
+        'keywordSearch', 'multiConceptKeywordSearch',
+        // Search - Cached
+        'cachedSearch', 'clearSearchCache',
+        // Smart Ranking & Diversity
+        'applySmartRanking', 'applyDiversity',
+        'learnFromSelection', 'enhancedSearch',
+        // Related & Usage
+        'linkRelatedOnSave', 'getRelatedMemories',
+        'recordAccess', 'getUsageStats', 'updateConfidence',
+        // Embedding Status
+        'updateEmbeddingStatus',
+        // Cleanup
+        'findCleanupCandidates', 'deleteMemories', 'getMemoryPreview',
+        // Content Extraction
+        'extractTitle', 'extractSnippet', 'extractTags', 'extractDate',
+        // Query Utilities
+        'generateQueryEmbedding', 'parseQuotedTerms',
+        // Security
+        'validateFilePath',
+        // Embedding Dimension
+        'getConfirmedEmbeddingDimension', 'getEmbeddingDim',
+        'validateEmbeddingDimension',
+        // Cache Utilities
+        'getCacheKey',
+        // Constants
+        'EMBEDDING_DIM', 'DEFAULT_DB_PATH',
+        // Protocol Abstractions
+        'SQLiteVectorStore',
+        // Snake_case aliases
+        'initialize_db', 'get_db', 'get_memory', 'get_db_path',
+      ];
+
+      const missingExports: string[] = [];
+      for (const name of requiredExports) {
+        if (mod[name] === undefined) {
+          missingExports.push(name);
+        }
+      }
+
+      expect(missingExports).toEqual([]);
+    });
+
+    it('has correct constants EMBEDDING_DIM=768 and DEFAULT_DB_PATH', () => {
+      expect(mod.EMBEDDING_DIM).toBe(768);
+      expect(typeof mod.DEFAULT_DB_PATH).toBe('string');
+      expect(mod.DEFAULT_DB_PATH.length).toBeGreaterThan(0);
+    });
+
+    it('has all exported functions with correct types', () => {
+      expect(typeof mod.extractTitle).toBe('function');
+      expect(typeof mod.extractSnippet).toBe('function');
+      expect(typeof mod.extractTags).toBe('function');
+      expect(typeof mod.extractDate).toBe('function');
+      expect(typeof mod.parseQuotedTerms).toBe('function');
+      expect(typeof mod.getCacheKey).toBe('function');
+      expect(typeof mod.initializeDb).toBe('function');
+      expect(typeof mod.SQLiteVectorStore).toBe('function');
+    });
+
+    it('has snake_case aliases pointing to same functions as camelCase', () => {
+      expect(mod.initialize_db).toBe(mod.initializeDb);
+      expect(mod.get_db).toBe(mod.getDb);
+      expect(mod.get_memory).toBe(mod.getMemory);
+      expect(mod.get_db_path).toBe(mod.getDbPath);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 3: Pure Functions — extractTitle
+  // ─────────────────────────────────────────────────────────────
+  describe('extractTitle', () => {
+    it('extracts H1 heading', () => {
+      const title = mod.extractTitle('# My Great Title\n\nSome content here', 'test.md');
+      expect(title).toBe('My Great Title');
+    });
+
+    it('extracts H2 heading when no H1', () => {
+      const title = mod.extractTitle('## Sub Title\n\nContent', 'test.md');
+      expect(title).toBe('Sub Title');
+    });
+
+    it('extracts YAML frontmatter title', () => {
+      const title = mod.extractTitle('---\ntitle: YAML Title\n---\n\nContent', 'test.md');
+      expect(title).toBe('YAML Title');
+    });
+
+    it('strips quotes from YAML title', () => {
+      const title = mod.extractTitle('---\ntitle: "Quoted Title"\n---\n\nContent', 'test.md');
+      expect(title).toBe('Quoted Title');
+    });
+
+    it('falls back to first non-empty line', () => {
+      const title = mod.extractTitle('Just a plain first line\nSecond line', 'test.md');
+      expect(title).toBe('Just a plain first line');
+    });
+
+    it('falls back to filename without extension', () => {
+      const title = mod.extractTitle('', 'my-document.md');
+      expect(title).toBe('my-document');
+    });
+
+    it('returns "Untitled" for null content and no filename', () => {
+      const title = mod.extractTitle(null as any, undefined as any);
+      expect(title).toBe('Untitled');
+    });
+
+    it('returns filename for undefined content', () => {
+      const title = mod.extractTitle(undefined as any, 'backup.txt');
+      expect(title).toBe('backup');
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 4: Pure Functions — extractSnippet
+  // ─────────────────────────────────────────────────────────────
+  describe('extractSnippet', () => {
+    it('skips heading, returns body text', () => {
+      const snippet = mod.extractSnippet('# Title\n\nThis is the body paragraph.', 200);
+      expect(snippet).toBe('This is the body paragraph.');
+    });
+
+    it('strips YAML frontmatter and headings', () => {
+      const snippet = mod.extractSnippet('---\ntitle: foo\ndate: 2025-01-01\n---\n\n# Heading\n\nBody text here.', 200);
+      expect(snippet).toBe('Body text here.');
+    });
+
+    it('returns empty string for empty content', () => {
+      const snippet = mod.extractSnippet('', 200);
+      expect(snippet).toBe('');
+    });
+
+    it('returns empty string for null content', () => {
+      const snippet = mod.extractSnippet(null as any, 200);
+      expect(snippet).toBe('');
+    });
+
+    it('truncates long content to maxLength', () => {
+      const longText = 'A'.repeat(300);
+      const snippet = mod.extractSnippet(longText, 50);
+      expect(snippet.length).toBeLessThanOrEqual(54); // 50 + "..."
+      expect(snippet.endsWith('...')).toBe(true);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 5: Pure Functions — extractTags
+  // ─────────────────────────────────────────────────────────────
+  describe('extractTags', () => {
+    it('parses YAML inline array tags', () => {
+      const tags = mod.extractTags('---\ntags: [memory, search, "vector"]\n---\n\nContent');
+      expect(tags).toContain('memory');
+      expect(tags).toContain('search');
+      expect(tags).toContain('vector');
+    });
+
+    it('parses YAML list-style tags', () => {
+      const tags = mod.extractTags('---\ntags:\n  - alpha\n  - beta\n---\nContent');
+      expect(tags).toContain('alpha');
+      expect(tags).toContain('beta');
+    });
+
+    it('parses hashtag-style tags from content', () => {
+      const tags = mod.extractTags('Some text with #javascript and #typescript tags');
+      expect(tags).toContain('javascript');
+      expect(tags).toContain('typescript');
+    });
+
+    it('ignores pure numeric hashtags', () => {
+      const tags = mod.extractTags('Heading #123 should be ignored but #valid is ok');
+      expect(tags).not.toContain('123');
+      expect(tags).toContain('valid');
+    });
+
+    it('returns empty array for empty content', () => {
+      const tags = mod.extractTags('');
+      expect(Array.isArray(tags)).toBe(true);
+      expect(tags.length).toBe(0);
+    });
+
+    it('returns empty array for null', () => {
+      const tags = mod.extractTags(null as any);
+      expect(Array.isArray(tags)).toBe(true);
+      expect(tags.length).toBe(0);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 6: Pure Functions — extractDate
+  // ─────────────────────────────────────────────────────────────
+  describe('extractDate', () => {
+    it('extracts ISO date from YAML frontmatter', () => {
+      const date = mod.extractDate('---\ndate: 2025-06-15\n---\nContent', undefined);
+      expect(date).toBe('2025-06-15');
+    });
+
+    it('extracts quoted date from YAML', () => {
+      const date = mod.extractDate('---\ndate: "2024-12-25"\n---\nContent', undefined);
+      expect(date).toBe('2024-12-25');
+    });
+
+    it('extracts ISO date from filename', () => {
+      const date = mod.extractDate('No date here', '/path/to/2025-03-20-notes.md');
+      expect(date).toBe('2025-03-20');
+    });
+
+    it('parses DD-MM-YY format from filename', () => {
+      const date = mod.extractDate('No date here', '/path/to/15-06-25-notes.md');
+      expect(date).toBe('2025-06-15');
+    });
+
+    it('returns null when no date found', () => {
+      const date = mod.extractDate('No date', '/path/to/notes.md');
+      expect(date).toBeNull();
+    });
+
+    it('returns null for null content and no path', () => {
+      const date = mod.extractDate(null as any, undefined);
+      expect(date).toBeNull();
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 7: Pure Functions — parseQuotedTerms
+  // ─────────────────────────────────────────────────────────────
+  describe('parseQuotedTerms', () => {
+    it('extracts multiple quoted terms', () => {
+      const terms = mod.parseQuotedTerms('search for "exact phrase" in "another term" query');
+      expect(terms).toEqual(['exact phrase', 'another term']);
+    });
+
+    it('returns empty array when no quotes', () => {
+      const terms = mod.parseQuotedTerms('no quotes here');
+      expect(terms).toEqual([]);
+    });
+
+    it('returns empty for empty string', () => {
+      const terms = mod.parseQuotedTerms('');
+      expect(terms).toEqual([]);
+    });
+
+    it('returns empty for null', () => {
+      const terms = mod.parseQuotedTerms(null as any);
+      expect(terms).toEqual([]);
+    });
+
+    it('handles single quoted term', () => {
+      const terms = mod.parseQuotedTerms('"single term"');
+      expect(terms).toEqual(['single term']);
+    });
+
+    it('filters empty quoted strings', () => {
+      const terms = mod.parseQuotedTerms('"" empty ""');
+      // Empty quoted strings should be filtered out (trim check)
+      expect(terms.every(t => t.length > 0)).toBe(true);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 8: Pure Functions — getCacheKey
+  // ─────────────────────────────────────────────────────────────
+  describe('getCacheKey', () => {
+    it('is deterministic for same inputs', () => {
+      const key1 = mod.getCacheKey('test query', 10, { specFolder: 'a' });
+      const key2 = mod.getCacheKey('test query', 10, { specFolder: 'a' });
+      expect(key1).toBe(key2);
+      expect(typeof key1).toBe('string');
+      expect(key1.length).toBe(16);
+    });
+
+    it('produces different keys for different queries', () => {
+      const key1 = mod.getCacheKey('query A', 10, {});
+      const key2 = mod.getCacheKey('query B', 10, {});
+      expect(key1).not.toBe(key2);
+    });
+
+    it('produces different keys for different limits', () => {
+      const key1 = mod.getCacheKey('q', 10, {});
+      const key2 = mod.getCacheKey('q', 20, {});
+      expect(key1).not.toBe(key2);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 9: Database Initialization
+  // ─────────────────────────────────────────────────────────────
+  describe('Database Initialization', () => {
+    it('creates database at custom path', () => {
+      const db = mod.initializeDb(TMP_DB_PATH);
+      expect(db).toBeTruthy();
+    });
+
+    it('getDbPath returns correct path', () => {
+      const dbPath = mod.getDbPath();
+      expect(dbPath).toBe(TMP_DB_PATH);
+    });
+
+    it('schema created with memory_index table', () => {
+      const db = mod.getDb();
+      expect(db).toBeTruthy();
+      const tables = db.prepare(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='memory_index'"
+      ).get();
+      expect(tables).toBeTruthy();
+    });
+
+    it('schema version is >= 12', () => {
+      const db = mod.getDb();
+      const versionRow = db!.prepare('SELECT version FROM schema_version WHERE id = 1').get() as any;
+      expect(versionRow).toBeTruthy();
+      expect(versionRow.version).toBeGreaterThanOrEqual(12);
+    });
+
+    it('reports isVectorSearchAvailable status', () => {
+      sqliteVecAvailable = mod.isVectorSearchAvailable();
+      expect(typeof sqliteVecAvailable).toBe('boolean');
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 10: Embedding Dimension
+  // ─────────────────────────────────────────────────────────────
+  describe('Embedding Dimension', () => {
+    it('getEmbeddingDim returns valid dimension', () => {
+      const dim = mod.getEmbeddingDim();
+      expect(typeof dim).toBe('number');
+      expect(dim).toBeGreaterThan(0);
+      expect([768, 1024, 1536]).toContain(dim);
+    });
+
+    it('validateEmbeddingDimension returns validation object', () => {
+      const validation = mod.validateEmbeddingDimension();
+      expect(typeof validation).toBe('object');
+      expect(validation).toHaveProperty('valid');
+      expect(validation).toHaveProperty('stored');
+      expect(validation).toHaveProperty('current');
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 11: Core Operations — Deferred Indexing
+  // ─────────────────────────────────────────────────────────────
+  describe('Deferred Indexing (no embedding required)', () => {
+    it('creates first deferred memory', () => {
+      deferredId1 = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-001',
+        filePath: path.join(TMP_DIR, 'memory-a.md'),
+        title: 'Test Memory Alpha',
+        triggerPhrases: ['alpha', 'first test'],
+        importanceWeight: 0.8,
+      });
+      expect(typeof deferredId1).toBe('number');
+      expect(deferredId1).toBeGreaterThan(0);
+    });
+
+    it('creates second deferred memory with different ID', () => {
+      deferredId2 = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-001',
+        filePath: path.join(TMP_DIR, 'memory-b.md'),
+        title: 'Test Memory Beta',
+        triggerPhrases: ['beta', 'second test'],
+        importanceWeight: 0.6,
+      });
+      expect(typeof deferredId2).toBe('number');
+      expect(deferredId2).toBeGreaterThan(0);
+      expect(deferredId2).not.toBe(deferredId1);
+    });
+
+    it('stores failure reason correctly', () => {
+      const id = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-002',
+        filePath: path.join(TMP_DIR, 'memory-failed.md'),
+        title: 'Failed Embedding',
+        failureReason: 'API key missing',
+      });
+      expect(id).toBeGreaterThan(0);
+      const mem = mod.getMemory(id);
+      expect(mem).toBeTruthy();
+      expect(mem.embedding_status).toBe('pending');
+      expect(mem.failure_reason).toBe('API key missing');
+    });
+
+    it('upserts existing memory (same folder+path)', () => {
+      const updatedId = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-001',
+        filePath: path.join(TMP_DIR, 'memory-a.md'),
+        title: 'Updated Title Alpha',
+        triggerPhrases: ['alpha', 'updated'],
+        importanceWeight: 0.9,
+      });
+      expect(updatedId).toBe(deferredId1);
+      const mem = mod.getMemory(updatedId);
+      expect(mem?.title).toBe('Updated Title Alpha');
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 12: Core Operations — getMemory, getMemoryCount, getStats
+  // ─────────────────────────────────────────────────────────────
+  describe('Query Operations', () => {
+    it('getMemory returns correct memory with parsed trigger_phrases', () => {
+      const mem = mod.getMemory(deferredId1!);
+      expect(mem).toBeTruthy();
+      expect(mem.id).toBe(deferredId1);
+      expect(mem.spec_folder).toBe('specs/test-001');
+      expect(mem.title).toBe('Updated Title Alpha');
+      expect(Array.isArray(mem.trigger_phrases)).toBe(true);
+      expect(mem.trigger_phrases).toContain('alpha');
+    });
+
+    it('getMemory returns null for non-existent ID', () => {
+      const mem = mod.getMemory(999999);
+      expect(mem).toBeNull();
+    });
+
+    it('getMemoryCount returns correct count', () => {
+      const count = mod.getMemoryCount();
+      expect(count).toBeGreaterThanOrEqual(3);
+    });
+
+    it('getStats returns expected fields', () => {
+      const stats = mod.getStats();
+      expect(stats).toHaveProperty('total');
+      expect(stats).toHaveProperty('pending');
+      expect(stats).toHaveProperty('success');
+      expect(stats).toHaveProperty('failed');
+      expect(stats.total).toBeGreaterThanOrEqual(3);
+      expect(stats.pending).toBeGreaterThanOrEqual(3);
+    });
+
+    it('getStatusCounts returns counts object', () => {
+      const counts = mod.getStatusCounts();
+      expect(typeof counts).toBe('object');
+      expect(counts).toHaveProperty('pending');
+      expect(counts).toHaveProperty('success');
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 13: getMemoriesByFolder
+  // ─────────────────────────────────────────────────────────────
+  describe('getMemoriesByFolder', () => {
+    it('returns memories for existing folder', () => {
+      const memories = mod.getMemoriesByFolder('specs/test-001');
+      expect(Array.isArray(memories)).toBe(true);
+      expect(memories.length).toBeGreaterThanOrEqual(2);
+      expect(memories.every(m => m.spec_folder === 'specs/test-001')).toBe(true);
+    });
+
+    it('returns empty for non-existent folder', () => {
+      const memories = mod.getMemoriesByFolder('specs/nonexistent');
+      expect(Array.isArray(memories)).toBe(true);
+      expect(memories.length).toBe(0);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 14: updateEmbeddingStatus
+  // ─────────────────────────────────────────────────────────────
+  describe('updateEmbeddingStatus', () => {
+    it('updates to failed', () => {
+      const result = mod.updateEmbeddingStatus(deferredId1!, 'failed');
+      expect(result).toBe(true);
+      const mem = mod.getMemory(deferredId1!);
+      expect(mem?.embedding_status).toBe('failed');
+    });
+
+    it('updates to retry', () => {
+      const result = mod.updateEmbeddingStatus(deferredId1!, 'retry');
+      expect(result).toBe(true);
+    });
+
+    it('updates to partial', () => {
+      const result = mod.updateEmbeddingStatus(deferredId1!, 'partial');
+      expect(result).toBe(true);
+      // Reset to pending for later tests
+      mod.updateEmbeddingStatus(deferredId1!, 'pending');
+    });
+
+    it('rejects invalid status', () => {
+      const result = mod.updateEmbeddingStatus(deferredId1!, 'invalid_status');
+      expect(result).toBe(false);
+    });
+
+    it('returns false for non-existent memory', () => {
+      const result = mod.updateEmbeddingStatus(999999, 'success');
+      expect(result).toBe(false);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 15: updateConfidence
+  // ─────────────────────────────────────────────────────────────
+  describe('updateConfidence', () => {
+    it('sets confidence to 0.85', () => {
+      const result = mod.updateConfidence(deferredId1!, 0.85);
+      expect(result).toBe(true);
+    });
+
+    it('rejects value > 1', () => {
+      const result = mod.updateConfidence(deferredId1!, 1.5);
+      expect(result).toBe(false);
+    });
+
+    it('rejects value < 0', () => {
+      const result = mod.updateConfidence(deferredId1!, -0.1);
+      expect(result).toBe(false);
+    });
+
+    it('rejects non-numeric input', () => {
+      const result = mod.updateConfidence(deferredId1!, 'not a number' as any);
+      expect(result).toBe(false);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 16: recordAccess
+  // ─────────────────────────────────────────────────────────────
+  describe('recordAccess', () => {
+    it('increments access_count and updates last_accessed', () => {
+      const before = mod.getMemory(deferredId1!);
+      const initialCount = before?.access_count || 0;
+
+      const result = mod.recordAccess(deferredId1!);
+      expect(result).toBe(true);
+
+      const after = mod.getMemory(deferredId1!);
+      expect(after?.access_count).toBe(initialCount + 1);
+      expect(after?.last_accessed).toBeGreaterThan(0);
+    });
+
+    it('returns false for non-existent memory', () => {
+      const result = mod.recordAccess(999999);
+      expect(result).toBe(false);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 17: keywordSearch
+  // ─────────────────────────────────────────────────────────────
+  describe('keywordSearch', () => {
+    it('finds memories matching "alpha"', () => {
+      const results = mod.keywordSearch('alpha', { limit: 10 });
+      expect(Array.isArray(results)).toBe(true);
+      expect(results.length).toBeGreaterThan(0);
+      expect((results[0] as any).keyword_score).toBeGreaterThan(0);
+    });
+
+    it('filters by specFolder', () => {
+      const results = mod.keywordSearch('alpha', { specFolder: 'specs/test-001' });
+      expect(results.every(r => r.spec_folder === 'specs/test-001')).toBe(true);
+    });
+
+    it('returns empty for non-matching query', () => {
+      const results = mod.keywordSearch('xyznonexistent42');
+      expect(results.length).toBe(0);
+    });
+
+    it('returns empty for empty query', () => {
+      const results = mod.keywordSearch('');
+      expect(results.length).toBe(0);
+    });
+
+    it('returns empty for null query', () => {
+      const results = mod.keywordSearch(null as any);
+      expect(results.length).toBe(0);
+    });
+
+    it('filters terms shorter than 2 chars', () => {
+      const results = mod.keywordSearch('a'); // Single char < 2 chars threshold
+      expect(results.length).toBe(0);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 18: applySmartRanking
+  // ─────────────────────────────────────────────────────────────
+  describe('applySmartRanking', () => {
+    it('returns empty for empty input', () => {
+      const ranked = mod.applySmartRanking([]);
+      expect(ranked).toEqual([]);
+    });
+
+    it('applies composite scoring', () => {
+      const now = new Date().toISOString();
+      const oldDate = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString(); // 60 days ago
+
+      const mockResults = [
+        { similarity: 80, created_at: oldDate, access_count: 1, specFolder: 'a' },
+        { similarity: 70, created_at: now, access_count: 10, specFolder: 'b' },
+      ];
+
+      const ranked = mod.applySmartRanking(mockResults as any);
+      expect(ranked.length).toBe(2);
+      expect(ranked[0].smartScore).toBeDefined();
+      expect(ranked[1].smartScore).toBeDefined();
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 19: applyDiversity
+  // ─────────────────────────────────────────────────────────────
+  describe('applyDiversity', () => {
+    it('returns input unchanged for <=3 results', () => {
+      const small = [{ id: 1 }, { id: 2 }];
+      const diverse = mod.applyDiversity(small as any, 0.3);
+      expect(diverse.length).toBe(2);
+    });
+
+    it('handles null input', () => {
+      const diverse = mod.applyDiversity(null as any);
+      expect(!diverse || diverse.length === 0).toBe(true);
+    });
+
+    it('reorders results with MMR-based diversity', () => {
+      const mockResults = [
+        { id: 1, smartScore: 0.9, specFolder: 'a', date: '2025-01-01' },
+        { id: 2, smartScore: 0.85, specFolder: 'a', date: '2025-01-01' },
+        { id: 3, smartScore: 0.80, specFolder: 'b', date: '2025-01-02' },
+        { id: 4, smartScore: 0.75, specFolder: 'c', date: '2025-01-03' },
+      ];
+      const diverse = mod.applyDiversity(mockResults as any, 0.5);
+      expect(diverse.length).toBe(4);
+      expect(diverse[0].id).toBe(1);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 20: Cache Clearing
+  // ─────────────────────────────────────────────────────────────
+  describe('Cache Clearing', () => {
+    it('clearSearchCache clears globally', () => {
+      const cleared = mod.clearSearchCache();
+      expect(typeof cleared).toBe('number');
+    });
+
+    it('clearSearchCache clears by folder', () => {
+      const cleared = mod.clearSearchCache('specs/test-001');
+      expect(typeof cleared).toBe('number');
+    });
+
+    it('clearConstitutionalCache clears without error', () => {
+      expect(() => mod.clearConstitutionalCache()).not.toThrow();
+    });
+
+    it('clearConstitutionalCache clears by folder without error', () => {
+      expect(() => mod.clearConstitutionalCache('specs/test-001')).not.toThrow();
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 21: Delete Operations
+  // ─────────────────────────────────────────────────────────────
+  describe('Delete Operations', () => {
+    it('deleteMemory successfully deletes a memory', () => {
+      const sacrificialId = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-delete',
+        filePath: path.join(TMP_DIR, 'memory-delete.md'),
+        title: 'To Be Deleted',
+      });
+      expect(sacrificialId).toBeGreaterThan(0);
+
+      const result = mod.deleteMemory(sacrificialId);
+      expect(result).toBe(true);
+
+      const mem = mod.getMemory(sacrificialId);
+      expect(mem).toBeNull();
+    });
+
+    it('deleteMemory returns false for non-existent ID', () => {
+      const result = mod.deleteMemory(999999);
+      expect(result).toBe(false);
+    });
+
+    it('deleteMemoryByPath deletes memory by folder+path', () => {
+      const pathDeleteId = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-path-delete',
+        filePath: path.join(TMP_DIR, 'memory-path-del.md'),
+        title: 'Path Delete Test',
+      });
+
+      const result = mod.deleteMemoryByPath(
+        'specs/test-path-delete',
+        path.join(TMP_DIR, 'memory-path-del.md'),
+        null
+      );
+      expect(result).toBe(true);
+    });
+
+    it('deleteMemoryByPath returns false for non-existent', () => {
+      const result = mod.deleteMemoryByPath('specs/nonexistent', '/nonexistent/path.md', null);
+      expect(result).toBe(false);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 22: Batch Delete
+  // ─────────────────────────────────────────────────────────────
+  describe('Batch Delete', () => {
+    it('returns {deleted:0, failed:0} for empty array', () => {
+      const result = mod.deleteMemories([]);
+      expect(result).toEqual({ deleted: 0, failed: 0 });
+    });
+
+    it('handles null input', () => {
+      const result = mod.deleteMemories(null as any);
+      expect(result).toEqual({ deleted: 0, failed: 0 });
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 23: getUsageStats
+  // ─────────────────────────────────────────────────────────────
+  describe('getUsageStats', () => {
+    it('returns entries sorted by access_count', () => {
+      const stats = mod.getUsageStats({ sortBy: 'access_count', order: 'DESC', limit: 10 });
+      expect(Array.isArray(stats)).toBe(true);
+      expect(stats.length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('handles invalid sortBy gracefully', () => {
+      const stats = mod.getUsageStats({ sortBy: 'invalid_field' });
+      expect(Array.isArray(stats)).toBe(true);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 24: getConstitutionalMemories
+  // ─────────────────────────────────────────────────────────────
+  describe('getConstitutionalMemories', () => {
+    it('returns array (expected 0 in test DB)', () => {
+      const constitutional = mod.getConstitutionalMemories({});
+      expect(Array.isArray(constitutional)).toBe(true);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 25: getRelatedMemories
+  // ─────────────────────────────────────────────────────────────
+  describe('getRelatedMemories', () => {
+    it('returns empty for memory without relations', () => {
+      const related = mod.getRelatedMemories(deferredId1!);
+      expect(Array.isArray(related)).toBe(true);
+      expect(related.length).toBe(0);
+    });
+
+    it('returns empty for non-existent ID', () => {
+      const related = mod.getRelatedMemories(999999);
+      expect(Array.isArray(related)).toBe(true);
+      expect(related.length).toBe(0);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 26: findCleanupCandidates
+  // ─────────────────────────────────────────────────────────────
+  describe('findCleanupCandidates', () => {
+    it('returns candidates array with expected fields', () => {
+      const candidates = mod.findCleanupCandidates({
+        maxAgeDays: 0, // Everything is a candidate
+        maxAccessCount: 100,
+        maxConfidence: 1.0,
+        limit: 10,
+      });
+      expect(Array.isArray(candidates)).toBe(true);
+      if (candidates.length > 0) {
+        const c = candidates[0];
+        expect(c).toHaveProperty('id');
+        expect(c).toHaveProperty('specFolder');
+        expect(c).toHaveProperty('filePath');
+        expect(c).toHaveProperty('reasons');
+        expect(Array.isArray(c.reasons)).toBe(true);
+      }
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 27: verifyIntegrity
+  // ─────────────────────────────────────────────────────────────
+  describe('verifyIntegrity', () => {
+    it('returns integrity report with expected fields', () => {
+      const report = mod.verifyIntegrity({ autoClean: false });
+      expect(typeof report).toBe('object');
+      expect(report).toHaveProperty('totalMemories');
+      expect(report).toHaveProperty('totalVectors');
+      expect(report).toHaveProperty('orphanedVectors');
+      expect(report).toHaveProperty('missingVectors');
+      expect(report).toHaveProperty('orphanedFiles');
+      expect(report).toHaveProperty('isConsistent');
+      expect(report.totalMemories).toBeGreaterThanOrEqual(0);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 28: SQLiteVectorStore class
+  // ─────────────────────────────────────────────────────────────
+  describe('SQLiteVectorStore', () => {
+    it('constructor creates instance', () => {
+      expect(typeof mod.SQLiteVectorStore).toBe('function');
+      const store = new mod.SQLiteVectorStore({ dbPath: TMP_DB_PATH });
+      expect(store).toBeTruthy();
+    });
+
+    it('isAvailable returns boolean', async () => {
+      const store = new mod.SQLiteVectorStore({ dbPath: TMP_DB_PATH });
+      const available = await store.isAvailable();
+      expect(typeof available).toBe('boolean');
+    });
+
+    it('getEmbeddingDimension returns positive number', () => {
+      const store = new mod.SQLiteVectorStore({ dbPath: TMP_DB_PATH });
+      const dim = store.getEmbeddingDimension();
+      expect(typeof dim).toBe('number');
+      expect(dim).toBeGreaterThan(0);
+    });
+
+    it('getStats returns stats object', async () => {
+      const store = new mod.SQLiteVectorStore({ dbPath: TMP_DB_PATH });
+      const stats = await store.getStats();
+      expect(typeof stats).toBe('object');
+      expect(stats).toHaveProperty('total');
+    });
+
+    it('get retrieves memory by ID', async () => {
+      const store = new mod.SQLiteVectorStore({ dbPath: TMP_DB_PATH });
+      const mem = await store.get(deferredId1!);
+      expect(mem).toBeTruthy();
+      expect(mem.id).toBe(deferredId1);
+    });
+
+    it('get returns null for non-existent', async () => {
+      const store = new mod.SQLiteVectorStore({ dbPath: TMP_DB_PATH });
+      const mem = await store.get(999999);
+      expect(mem).toBeNull();
+    });
+
+    it('getByFolder returns memories', async () => {
+      const store = new mod.SQLiteVectorStore({ dbPath: TMP_DB_PATH });
+      const memories = await store.getByFolder('specs/test-001');
+      expect(Array.isArray(memories)).toBe(true);
+      expect(memories.length).toBeGreaterThan(0);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 29: Vector Search (sqlite-vec dependent)
+  // ─────────────────────────────────────────────────────────────
+  describe('Vector Search (sqlite-vec dependent)', () => {
+    // Helper to create test embeddings
+    const makeEmbedding = (seed: number) => {
+      const dim = 768; // fallback; overridden if module available
+      const actualDim = (() => { try { return mod?.getEmbeddingDim() || dim; } catch { return dim; } })();
+      const arr = new Float32Array(actualDim);
+      for (let i = 0; i < actualDim; i++) {
+        arr[i] = Math.sin(seed * (i + 1) * 0.01) * 0.5;
+      }
+      // Normalize
+      const norm = Math.sqrt(arr.reduce((s, v) => s + v * v, 0));
+      for (let i = 0; i < actualDim; i++) arr[i] /= norm;
+      return arr;
+    };
+
+    let vecMemId: number | null = null;
+
+    it('indexMemory creates vector memory with embedding', () => {
+      if (!sqliteVecAvailable) return; // skip if not available
+      vecMemId = mod.indexMemory({
+        specFolder: 'specs/test-vec',
+        filePath: path.join(TMP_DIR, 'vec-memory-1.md'),
+        title: 'Vector Memory One',
+        triggerPhrases: ['vector', 'search'],
+        importanceWeight: 0.7,
+        embedding: makeEmbedding(1),
+      });
+      expect(vecMemId).toBeGreaterThan(0);
+      const mem = mod.getMemory(vecMemId);
+      expect(mem?.embedding_status).toBe('success');
+    });
+
+    it('indexMemory creates additional vector memories for search', () => {
+      if (!sqliteVecAvailable) return;
+      mod.indexMemory({
+        specFolder: 'specs/test-vec',
+        filePath: path.join(TMP_DIR, 'vec-memory-2.md'),
+        title: 'Vector Memory Two',
+        triggerPhrases: ['test', 'second'],
+        importanceWeight: 0.5,
+        embedding: makeEmbedding(2),
+      });
+      mod.indexMemory({
+        specFolder: 'specs/test-vec-other',
+        filePath: path.join(TMP_DIR, 'vec-memory-3.md'),
+        title: 'Vector Memory Three (Other)',
+        triggerPhrases: ['other', 'folder'],
+        importanceWeight: 0.6,
+        embedding: makeEmbedding(3),
+      });
+    });
+
+    it('vectorSearch returns results', () => {
+      if (!sqliteVecAvailable) return;
+      const query = makeEmbedding(1);
+      const searchResults = mod.vectorSearch(query, { limit: 5 });
+      expect(Array.isArray(searchResults)).toBe(true);
+      expect(searchResults.length).toBeGreaterThan(0);
+      if (searchResults.length > 0) {
+        expect((searchResults[0] as any).similarity).toBeGreaterThan(0);
+      }
+    });
+
+    it('vectorSearch filters by specFolder', () => {
+      if (!sqliteVecAvailable) return;
+      const query = makeEmbedding(1);
+      const filtered = mod.vectorSearch(query, { limit: 10, specFolder: 'specs/test-vec' });
+      expect(filtered.every(r => r.spec_folder === 'specs/test-vec' || r.isConstitutional)).toBe(true);
+    });
+
+    it('vectorSearch respects minSimilarity', () => {
+      if (!sqliteVecAvailable) return;
+      const query = makeEmbedding(1);
+      const strict = mod.vectorSearch(query, { limit: 10, minSimilarity: 99 });
+      // Very high threshold should reduce results
+      expect(Array.isArray(strict)).toBe(true);
+    });
+
+    it('indexMemory rejects wrong embedding dimension', () => {
+      if (!sqliteVecAvailable) return;
+      const badEmbedding = new Float32Array(10); // Wrong dimension
+      expect(() => {
+        mod.indexMemory({
+          specFolder: 'specs/test-vec',
+          filePath: path.join(TMP_DIR, 'vec-bad.md'),
+          title: 'Bad Dimension',
+          embedding: badEmbedding,
+        });
+      }).toThrow(/dimensions/);
+    });
+
+    it('indexMemory rejects null embedding', () => {
+      if (!sqliteVecAvailable) return;
+      expect(() => {
+        mod.indexMemory({
+          specFolder: 'specs/test-vec',
+          filePath: path.join(TMP_DIR, 'vec-null.md'),
+          title: 'Null Embedding',
+          embedding: null as any,
+        });
+      }).toThrow(/required/);
+    });
+
+    it('multiConceptSearch returns results for 2 concepts', () => {
+      if (!sqliteVecAvailable) return;
+      const emb1 = makeEmbedding(1);
+      const emb2 = makeEmbedding(2);
+      const mcResults = mod.multiConceptSearch([emb1, emb2], { limit: 5 });
+      expect(Array.isArray(mcResults)).toBe(true);
+    });
+
+    it('multiConceptSearch rejects fewer than 2 concepts', () => {
+      if (!sqliteVecAvailable) return;
+      expect(() => {
+        mod.multiConceptSearch([makeEmbedding(1)], { limit: 5 });
+      }).toThrow(/2-5/);
+    });
+
+    it('updateMemory updates title and embedding', () => {
+      if (!sqliteVecAvailable || !vecMemId) return;
+      const newEmbedding = makeEmbedding(99);
+      const updatedId = mod.updateMemory({
+        id: vecMemId!,
+        title: 'Updated Vector Memory',
+        embedding: newEmbedding,
+      });
+      expect(updatedId).toBe(vecMemId);
+      const mem = mod.getMemory(vecMemId!);
+      expect(mem?.title).toBe('Updated Vector Memory');
+      expect(mem?.embedding_status).toBe('success');
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 30: Enriched/Enhanced Search (embedding provider dependent)
+  // ─────────────────────────────────────────────────────────────
+  describe('Enriched/Enhanced Search (embedding provider dependent)', () => {
+    it.skip('vectorSearchEnriched - requires embedding provider API key', () => {});
+    it.skip('enhancedSearch - requires embedding provider API key', () => {});
+    it.skip('cachedSearch - requires embedding provider API key', () => {});
+    it.skip('multiConceptSearchEnriched - requires embedding provider API key', () => {});
+    it.skip('generateQueryEmbedding - requires embedding provider API key', () => {});
+    it.skip('linkRelatedOnSave - requires embedding provider API key', () => {});
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 30b: learnFromSelection
+  // ─────────────────────────────────────────────────────────────
+  describe('learnFromSelection', () => {
+    it('adds new terms from query to trigger_phrases', () => {
+      const result = mod.learnFromSelection('vector search implementation testing', deferredId1!);
+      expect(result).toBe(true);
+      const mem = mod.getMemory(deferredId1!);
+      // "vector", "search", "implementation" should be added (each >= 4 chars, not stop words)
+      expect(mem?.trigger_phrases).toContain('vector');
+      expect(mem?.trigger_phrases).toContain('search');
+      expect(mem?.trigger_phrases).toContain('implementation');
+    });
+
+    it('filters short words (<4 chars)', () => {
+      const result = mod.learnFromSelection('a to by', deferredId1!);
+      expect(result).toBe(false);
+    });
+
+    it('filters stop words', () => {
+      const result = mod.learnFromSelection('through during before after between', deferredId1!);
+      expect(result).toBe(false);
+    });
+
+    it('filters pure numeric terms', () => {
+      const result = mod.learnFromSelection('1234 5678', deferredId1!);
+      expect(result).toBe(false);
+    });
+
+    it('does not re-add existing trigger phrases', () => {
+      const result = mod.learnFromSelection('alpha vector search', deferredId1!);
+      // "alpha", "vector", "search" already exist — no new terms
+      expect(result).toBe(false);
+    });
+
+    it('returns false for empty query', () => {
+      const result = mod.learnFromSelection('', deferredId1!);
+      expect(result).toBe(false);
+    });
+
+    it('returns false for null query', () => {
+      const result = mod.learnFromSelection(null as any, deferredId1!);
+      expect(result).toBe(false);
+    });
+
+    it('returns false for non-existent memory', () => {
+      const result = mod.learnFromSelection('something valid here', 999999);
+      expect(result).toBe(false);
+    });
+
+    it('returns false for null memory ID', () => {
+      const result = mod.learnFromSelection('valid query terms', null as any);
+      expect(result).toBe(false);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 30c: getMemoryPreview
+  // ─────────────────────────────────────────────────────────────
+  describe('getMemoryPreview', () => {
+    const previewFileContent = [
+      '# Preview Test File',
+      '',
+      'This is line 3.',
+      'This is line 4.',
+      'This is line 5.',
+      'This is line 6.',
+      'This is line 7.',
+      'This is line 8.',
+      'This is line 9.',
+      'This is line 10.',
+    ].join('\n');
+
+    it('returns full preview with file content', () => {
+      // Write a real file matching the deferred memory path
+      fs.writeFileSync(path.join(TMP_DIR, 'memory-a.md'), previewFileContent, 'utf-8');
+
+      const preview = mod.getMemoryPreview(deferredId1!);
+      expect(preview).toBeTruthy();
+      expect(preview.id).toBe(deferredId1);
+      expect(preview.specFolder).toBe('specs/test-001');
+      expect(preview.title).toBe('Updated Title Alpha');
+      expect(typeof preview.content).toBe('string');
+      expect((preview.content as string)).toContain('Preview Test File');
+      expect((preview.content as string)).toContain('line 3');
+      expect(typeof preview.ageString).toBe('string');
+      expect(typeof preview.accessCount).toBe('number');
+      expect(typeof preview.confidence).toBe('number');
+    });
+
+    it('respects maxLines truncation', () => {
+      fs.writeFileSync(path.join(TMP_DIR, 'memory-a.md'), previewFileContent, 'utf-8');
+
+      const preview = mod.getMemoryPreview(deferredId1!, 3);
+      expect(preview).toBeTruthy();
+      const contentLines = (preview.content as string).split('\n');
+      // Should have 3 content lines + possible truncation message
+      expect(contentLines.length).toBeLessThanOrEqual(5);
+      expect((preview.content as string)).toContain('more lines');
+    });
+
+    it('returns null for non-existent memory', () => {
+      const preview = mod.getMemoryPreview(999999);
+      expect(preview).toBeNull();
+    });
+
+    it('returns preview with empty content for missing file', () => {
+      const noFileId = mod.indexMemoryDeferred({
+        specFolder: 'specs/test-preview',
+        filePath: path.join(TMP_DIR, 'nonexistent-file.md'),
+        title: 'No File Memory',
+      });
+      const preview = mod.getMemoryPreview(noFileId);
+      expect(preview).toBeTruthy();
+      expect(preview.title).toBe('No File Memory');
+      expect(preview.content).toBe('');
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 30d: multiConceptKeywordSearch
+  // ─────────────────────────────────────────────────────────────
+  describe('multiConceptKeywordSearch', () => {
+    it('returns results for 2 concepts', async () => {
+      const mcResults = await mod.multiConceptKeywordSearch(['alpha', 'test'], 10, {});
+      expect(Array.isArray(mcResults)).toBe(true);
+    });
+
+    it('returns empty for non-matching concepts', async () => {
+      const mcResults = await mod.multiConceptKeywordSearch(['xyznonexistent'], 10, {});
+      expect(Array.isArray(mcResults)).toBe(true);
+      expect(mcResults.length).toBe(0);
+    });
+
+    it('returns empty for empty concepts array', async () => {
+      const mcResults = await mod.multiConceptKeywordSearch([], 10, {});
+      expect(Array.isArray(mcResults)).toBe(true);
+      expect(mcResults.length).toBe(0);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 30e: validateFilePath
+  // ─────────────────────────────────────────────────────────────
+  describe('validateFilePath', () => {
+    it('accepts path within allowed base', () => {
+      const result = mod.validateFilePath(path.join(TMP_DIR, 'test.md'));
+      expect(typeof result).toBe('string');
+      // On macOS /var -> /private/var, so compare using realpathSync for the base
+      const realTmpDir = fs.realpathSync(TMP_DIR);
+      expect(
+        result!.startsWith(TMP_DIR) || result!.startsWith(realTmpDir)
+      ).toBe(true);
+    });
+
+    it('rejects path outside allowed bases', () => {
+      const result = mod.validateFilePath('/etc/passwd');
+      expect(result).toBeNull();
+    });
+
+    it('rejects path traversal (../..)', () => {
+      const result = mod.validateFilePath(path.join(TMP_DIR, '..', '..', 'etc', 'passwd'));
+      expect(result).toBeNull();
+    });
+
+    it('rejects empty string', () => {
+      const result = mod.validateFilePath('');
+      expect(result).toBeNull();
+    });
+
+    it('rejects null', () => {
+      const result = mod.validateFilePath(null as any);
+      expect(result).toBeNull();
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 31: getConfirmedEmbeddingDimension
+  // ─────────────────────────────────────────────────────────────
+  describe('getConfirmedEmbeddingDimension', () => {
+    it('returns dimension within timeout', async () => {
+      // Short timeout since we're in test mode
+      const dim = await mod.getConfirmedEmbeddingDimension(500);
+      expect(typeof dim).toBe('number');
+      expect(dim).toBeGreaterThan(0);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GROUP 32: closeDb and re-init
+  // ─────────────────────────────────────────────────────────────
+  describe('closeDb', () => {
+    it('closes and getDb re-initializes', () => {
+      mod.closeDb();
+      // After close, getDb should re-initialize
+      const db = mod.getDb();
+      expect(db).toBeTruthy();
+    });
+  });
+});

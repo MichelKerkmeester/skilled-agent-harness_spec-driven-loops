@@ -1,7 +1,7 @@
 # Verification Checklist: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 2 checklist demonstrating how to document
 verification evidence. Each item marked [x] includes evidence of completion. -->

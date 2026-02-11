@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────────
-# install-code-mode.sh: Install Code Mode MCP Server
-# ───────────────────────────────────────────────────────────────────
-
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CODE MODE MCP INSTALLER
+# ───────────────────────────────────────────────────────────────
+# Install and configure the Code Mode MCP Server.
 # Code Mode is the primary MCP orchestration tool that enables efficient
 # multi-tool workflows via TypeScript code execution.
 #
@@ -11,23 +11,23 @@
 
 set -euo pipefail
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 readonly MCP_NAME="code_mode"
 readonly MCP_DISPLAY_NAME="Code Mode"
 readonly MCP_PACKAGE="@utcp/code-mode-mcp"
 readonly MIN_NODE_VERSION="18"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 2. SETUP
-# ───────────────────────────────────────────────────────────────────
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# ───────────────────────────────────────────────────────────────
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_utils.sh"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 3. HELP
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 show_help() {
     cat << EOF
 Usage: $(basename "$0") [OPTIONS]
@@ -66,9 +66,9 @@ DOCUMENTATION:
 EOF
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 4. ARGUMENT PARSING
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 VERBOSE=${VERBOSE:-false}
 DRY_RUN=${DRY_RUN:-false}
 SKIP_VERIFY=${SKIP_VERIFY:-false}
@@ -99,21 +99,29 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 5. MAIN FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 check_prerequisites() {
     log_step "1" "Checking prerequisites..."
-    
+
     if ! check_node_version "${MIN_NODE_VERSION}"; then
         return 1
     fi
-    
+
     if ! check_npx; then
         return 1
     fi
-    
+
+    # Log Node.js environment for diagnostics
+    log_info "Node.js version: $(node --version)"
+    log_info "Node.js MODULE_VERSION: $(node -e 'console.log(process.versions.modules)')"
+    log_info "Node.js path: $(which node)"
+
+    # Clear stale npx cache to prevent ERR_DLOPEN_FAILED
+    rm -rf ~/.npm/_npx/* 2>/dev/null || true
+
     log_success "All prerequisites met"
     return 0
 }
@@ -174,9 +182,9 @@ create_env_example() {
     local env_file="${project_root}/.env.example"
     
     # Define the Code Mode section
-    local code_mode_section="# ───────────────────────────────────────────────────────────────────
+    local code_mode_section="# ───────────────────────────────────────────────────────────────
 # CODE MODE MCP - Provider API Keys
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # Code Mode orchestrates multiple MCP tools. Add API keys for providers you use.
 # Copy relevant keys to your .env file.
 
@@ -193,7 +201,7 @@ GITHUB_PAT=
 CLICKUP_API_KEY=
 CLICKUP_TEAM_ID=
 
-# Voyage AI - Neural search for Narsil (optional)
+# Voyage AI - Neural search for Spec Kit Memory (optional)
 # Get your key: https://www.voyageai.com/
 VOYAGE_API_KEY=
 "
@@ -356,9 +364,9 @@ print_summary() {
     echo ""
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 6. MAIN
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 main() {
     echo ""
     echo "───────────────────────────────────────────────────────────────────"

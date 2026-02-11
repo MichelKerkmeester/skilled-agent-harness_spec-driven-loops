@@ -1,6 +1,6 @@
 # Data Loaders
 
-> Data loading utilities for conversation context from multiple sources with validation and normalization.
+> TypeScript data loading utilities for conversation context from multiple sources with validation and normalization.
 
 ---
 
@@ -20,16 +20,17 @@
 
 ### What is the loaders/ Directory?
 
-The `loaders/` directory contains utilities for loading conversation data from multiple sources with validation, normalization, and security checks. It provides a unified interface for importing context from JSON files, OpenCode sessions, or simulation fallbacks.
+The `loaders/` directory contains TypeScript utilities for loading conversation data from multiple sources with validation, normalization, and security checks. It provides a unified interface for importing context from JSON files, OpenCode sessions, or simulation fallbacks. Source files are compiled to `../dist/loaders/` for execution.
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 2 | Data loader, index |
+| TypeScript Modules | 2 | Data loader, index |
 | Data Sources | 3 | JSON file, OpenCode capture, simulation |
 | Security Checks | 6 | Path validation, directory traversal prevention |
 | Supported Platforms | 2 | macOS (with /private/tmp handling), Linux/Unix |
+| Compiled Output | `../dist/loaders/` | JavaScript files for execution |
 
 ### Key Features
 
@@ -54,9 +55,9 @@ The `loaders/` directory contains utilities for loading conversation data from m
 
 ### 30-Second Setup
 
-```javascript
-// Import the loader
-const { loadCollectedData } = require('./loaders');
+```typescript
+// Import the loader from compiled output
+import { loadCollectedData } from '../dist/loaders/index.js';
 
 // Load data (auto-detects source)
 const data = await loadCollectedData();
@@ -68,18 +69,24 @@ console.log(`Loaded ${data.messages?.length || 0} messages`);
 ### Verify Installation
 
 ```bash
-# Check that loader modules exist
+# Check that TypeScript source files exist
 ls .opencode/skill/system-spec-kit/scripts/loaders/
 
 # Expected output:
-# data-loader.js  index.js  README.md
+# data-loader.ts  index.ts  README.md
+
+# Check compiled output exists
+ls .opencode/skill/system-spec-kit/scripts/dist/loaders/
+
+# Expected output:
+# data-loader.js  index.js
 ```
 
 ### First Use
 
-```javascript
-// In generate-context.js or similar script
-const { loadCollectedData } = require('./loaders');
+```typescript
+// In generate-context.ts or similar script
+import { loadCollectedData } from '../dist/loaders/index.js';
 
 // Load with automatic source detection
 const data = await loadCollectedData();
@@ -97,17 +104,22 @@ if (data._isSimulation) {
 
 ```
 loaders/
-├── data-loader.js      # Core loading logic with multi-source support
-├── index.js            # Public API exports
-└── README.md           # This file
+├── data-loader.ts      # Core loading logic with multi-source support
+├── index.ts            # Public API exports
+├── README.md           # This file
+│
+└── Compiled Output: ../dist/loaders/
+    ├── data-loader.js  # Compiled from data-loader.ts
+    └── index.js        # Compiled from index.ts
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `data-loader.js` | Multi-source data loading with validation and security checks |
-| `index.js` | Public exports for loader module |
+| `data-loader.ts` | Multi-source data loading with validation and security checks |
+| `index.ts` | Public exports for loader module |
+| `../dist/loaders/*.js` | Compiled JavaScript output for execution |
 
 ---
 
@@ -165,8 +177,8 @@ The loader attempts sources in priority order until successful:
 
 ### Example 1: Load from JSON File
 
-```javascript
-const { loadCollectedData } = require('./loaders');
+```typescript
+import { loadCollectedData } from '../dist/loaders/index.js';
 
 // Provide data file via CONFIG
 process.env.DATA_FILE = '/tmp/save-context-data.json';
@@ -181,8 +193,8 @@ console.log(`Loaded ${data.messages.length} messages from file`);
 
 ### Example 2: Load from OpenCode Session
 
-```javascript
-const { loadCollectedData } = require('./loaders');
+```typescript
+import { loadCollectedData } from '../dist/loaders/index.js';
 
 // No CONFIG.DATA_FILE set - will try OpenCode capture
 const data = await loadCollectedData();
@@ -199,8 +211,8 @@ if (!data._isSimulation) {
 
 ### Example 3: Simulation Fallback
 
-```javascript
-const { loadCollectedData } = require('./loaders');
+```typescript
+import { loadCollectedData } from '../dist/loaders/index.js';
 
 // No data file, no OpenCode session available
 const data = await loadCollectedData();
@@ -208,7 +220,7 @@ const data = await loadCollectedData();
 if (data._isSimulation) {
   console.warn('WARNING: Using placeholder data');
   console.log('To save real context:');
-  console.log('  node generate-context.js /tmp/save-context-data.json');
+  console.log('  node ../dist/memory/generate-context.js /tmp/save-context-data.json');
 }
 ```
 
@@ -275,7 +287,7 @@ node -e "JSON.parse(require('fs').readFileSync('/tmp/save-context-data.json', 'u
 
 ```bash
 # Option 1: Provide JSON file explicitly
-node generate-context.js /tmp/save-context-data.json
+node ../dist/memory/generate-context.js /tmp/save-context-data.json
 
 # Option 2: Run from within OpenCode conversation
 # OpenCode will auto-detect and capture session
@@ -304,8 +316,8 @@ node -e "console.log('CWD:', process.cwd()); console.log('TMPDIR:', require('os'
 # Validate JSON file
 jq . /tmp/save-context-data.json
 
-# Test loader import
-node -e "require('.opencode/skill/system-spec-kit/scripts/loaders'); console.log('Import OK')"
+# Test loader import (using compiled output)
+node -e "import('.opencode/skill/system-spec-kit/scripts/dist/loaders/index.js').then(() => console.log('Import OK'))"
 
 # Check if in OpenCode project
 ls -la .opencode/
@@ -319,9 +331,8 @@ ls -la .opencode/
 
 | Document | Purpose |
 |----------|---------|
-| [../utils/input-normalizer.js](../utils/input-normalizer.js) | Input validation and normalization logic |
-| [../lib/opencode-capture.js](../lib/opencode-capture.js) | OpenCode session capture implementation |
-| [generate-context.js](../memory/generate-context.js) | Main script using this loader |
+| [../utils/input-normalizer.ts](../utils/input-normalizer.ts) | Input validation and normalization logic |
+| [generate-context.ts](../memory/generate-context.ts) | Main script using this loader |
 | [../../SKILL.md](../../SKILL.md) | Parent skill documentation |
 
 ### External Resources

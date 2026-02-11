@@ -1,9 +1,15 @@
-// ───────────────────────────────────────────────────────────────
-// CONFIG: SPEC KIT SETTINGS
-// ───────────────────────────────────────────────────────────────
+// ╔═══════════════════════════════════════════════════════════════╗
+// ║  CONFIG: SPEC KIT SETTINGS                                   ║
+// ╠═══════════════════════════════════════════════════════════════╣
+// ║  ⚠️  IMPORTANT: Only Section 1 (lines ~12-22) is ACTIVE.      ║
+// ║  All other sections are DOCUMENTATION ONLY — changing them   ║
+// ║  has NO effect. Runtime values are hardcoded in the MCP      ║
+// ║  server modules (see per-section comments for locations).    ║
+// ╚═══════════════════════════════════════════════════════════════╝
 {
   // ─────────────────────────────────────────────────────────────
   // 1. LEGACY SETTINGS
+  // ACTIVE — Read at runtime by scripts/core/config.js → CONFIG object
   // ─────────────────────────────────────────────────────────────
   "maxResultPreview": 500,
   "maxConversationMessages": 100,
@@ -11,10 +17,12 @@
   "messageTimeWindow": 300000,
   "contextPreviewHeadLines": 50,
   "contextPreviewTailLines": 20,
-  "timezoneOffsetHours": 1,
+  "timezoneOffsetHours": 1,         // CET (code fallback: 0/UTC if config fails to load)
 
   // ─────────────────────────────────────────────────────────────
   // 2. SEMANTIC SEARCH
+  // DOCUMENTATION ONLY — Not read at runtime
+  // MCP server uses its own hardcoded values in handlers/memory-crud.js
   // ─────────────────────────────────────────────────────────────
   "semanticSearch": {
     "enabled": true,
@@ -23,12 +31,16 @@
     "embeddingModel": "voyage-4"
   },
 
+  // DOCUMENTATION ONLY — Not read at runtime
+  // MCP server resolves DB path via mcp_server/core/config.js (SPEC_KIT_DB_DIR env var)
   "memoryIndex": {
     "databasePath": ".opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
     "autoRebuildOnSave": true,
     "verifyOnStartup": false
   },
 
+  // DOCUMENTATION ONLY — Not read at runtime
+  // Trigger surfacing behavior is hardcoded in MCP server handlers
   "triggerSurfacing": {
     "enabled": true,
     "minSimilarity": 70,
@@ -38,6 +50,8 @@
 
   // ─────────────────────────────────────────────────────────────
   // 3. MEMORY DECAY
+  // DOCUMENTATION ONLY — Not read at runtime
+  // MCP server uses hardcoded decay logic in its scoring modules
   // ─────────────────────────────────────────────────────────────
   // Half-life ≈ 62 days with scaleDays=90
   "memoryDecay": {
@@ -48,8 +62,9 @@
 
   // ─────────────────────────────────────────────────────────────
   // 4. IMPORTANCE TIERS
+  // DOCUMENTATION ONLY — Not read at runtime
+  // Actual behavior hardcoded in mcp_server/lib/scoring/importance-tiers.js
   // ─────────────────────────────────────────────────────────────
-  // Documentation only - actual behavior in importance-tiers.js
   "importanceTiers": {
     "constitutional": { "searchBoost": 3.0, "decay": false, "autoExpireDays": null, "alwaysSurface": true },
     "critical": { "searchBoost": 2.0, "decay": false, "autoExpireDays": null },
@@ -61,6 +76,8 @@
 
   // ─────────────────────────────────────────────────────────────
   // 5. HYBRID SEARCH
+  // DOCUMENTATION ONLY — Not read at runtime
+  // MCP server uses hardcoded values in mcp_server/lib/search/hybrid-search.js
   // ─────────────────────────────────────────────────────────────
   // Uses RRF (Reciprocal Rank Fusion) to combine FTS + vector results
   // ftsWeight/vectorWeight reserved for future weighted mode
@@ -74,6 +91,8 @@
 
   // ─────────────────────────────────────────────────────────────
   // 6. CONTEXT TYPE DETECTION
+  // DOCUMENTATION ONLY — Not read at runtime
+  // No code references these thresholds or rules
   // ─────────────────────────────────────────────────────────────
   "contextTypeDetection": {
     "enabled": true,
@@ -88,8 +107,9 @@
 
   // ─────────────────────────────────────────────────────────────
   // 7. ACCESS TRACKING
+  // DOCUMENTATION ONLY — Not read at runtime
+  // No code reads these values from config.jsonc
   // ─────────────────────────────────────────────────────────────
-  // Actual values in search-weights.json
   "accessTracking": {
     "enabled": true,
     "boostPerAccess": 0.1,
@@ -99,8 +119,10 @@
 
   // ─────────────────────────────────────────────────────────────
   // 8. CHECKPOINTS
+  // DOCUMENTATION ONLY — Not read at runtime
+  // MCP server uses hardcoded MAX_CHECKPOINTS and CHECKPOINT_TTL_DAYS
+  // in mcp_server/lib/storage/checkpoints.js
   // ─────────────────────────────────────────────────────────────
-  // Behavior in checkpoint.js
   "checkpoints": {
     "enabled": true,
     "maxCheckpoints": 10,
@@ -109,8 +131,10 @@
 
   // ─────────────────────────────────────────────────────────────
   // 9. CONSTITUTIONAL TIER
+  // DOCUMENTATION ONLY — Not read at runtime
+  // MCP server uses hardcoded values in mcp_server/lib/scoring/importance-tiers.js
+  // and mcp_server/lib/search/vector-index.js
   // ─────────────────────────────────────────────────────────────
-  // Always surfaced at session start
   "constitutionalTier": {
     "enabled": true,
     "maxTokens": 2000,
@@ -119,8 +143,9 @@
 
   // ─────────────────────────────────────────────────────────────
   // 10. CONFIDENCE TRACKING
+  // DOCUMENTATION ONLY — Not read at runtime
+  // No code reads these values from config.jsonc
   // ─────────────────────────────────────────────────────────────
-  // Behavior in validation.js
   "confidenceTracking": {
     "enabled": true,
     "promotionThreshold": 0.9,
@@ -129,6 +154,8 @@
 
   // ─────────────────────────────────────────────────────────────
   // 11. TEMPLATES
+  // DOCUMENTATION ONLY — Not read at runtime
+  // scripts/core/config.js hardcodes TEMPLATE_DIR via path.join()
   // ─────────────────────────────────────────────────────────────
   // Controls which template set is used when creating spec folders
   "templates": {

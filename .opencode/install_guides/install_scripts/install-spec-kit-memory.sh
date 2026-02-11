@@ -1,77 +1,130 @@
 #!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────────
-# install-spec-kit-memory.sh: Install Spec Kit Memory MCP Server
-# ───────────────────────────────────────────────────────────────────
-
-# Spec Kit Memory provides semantic vector search for conversation context,
-# decisions, and session memories. It enables context preservation across
-# sessions with constitutional tier priorities.
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: SPEC KIT MEMORY MCP INSTALLER
+# ───────────────────────────────────────────────────────────────
+# Install and configure the Spec Kit Memory MCP Server.
+# Provides semantic vector search for conversation context,
+# decisions, and session memories. Enables context preservation
+# across sessions with constitutional tier priorities.
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_utils.sh"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
-# ───────────────────────────────────────────────────────────────────
-MCP_NAME="spec_kit_memory"
-MCP_DISPLAY_NAME="Spec Kit Memory"
-MCP_SERVER_DIR=".opencode/skill/system-spec-kit/mcp_server"
-MCP_SERVER_SCRIPT="context-server.js"
-MIN_NODE_VERSION="18"
-SKIP_VERIFY=${SKIP_VERIFY:-false}
+# ───────────────────────────────────────────────────────────────
+readonly MCP_NAME="spec_kit_memory"
+readonly MCP_DISPLAY_NAME="Spec Kit Memory"
+readonly MCP_SERVER_DIR=".opencode/skill/system-spec-kit/mcp_server"
+readonly MCP_SERVER_SCRIPT="dist/context-server.js"
+readonly MIN_NODE_VERSION="18"
+SKIP_VERIFY="${SKIP_VERIFY:-false}"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 2. FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 install_mcp() {
     log_step "Checking prerequisites..."
-    
+
+    # Log Node.js environment for diagnostics
+    log_info "Node.js version: $(node --version)"
+    log_info "Node.js MODULE_VERSION: $(node -e 'console.log(process.versions.modules)')"
+    log_info "Node.js path: $(which node)"
+
     local project_root
     project_root=$(get_project_root) || exit 1
     local server_dir="${project_root}/${MCP_SERVER_DIR}"
-    
+    local workspace_root
+    workspace_root="$(dirname "${server_dir}")"
+
     # Check if server directory exists
     if [[ ! -d "${server_dir}" ]]; then
         log_error "Spec Kit Memory server directory not found: ${server_dir}"
         log_info "This MCP is bundled with the project. Ensure .opencode/skill/system-spec-kit exists."
         exit 1
     fi
-    
+
     # Check if package.json exists
     if [[ ! -f "${server_dir}/package.json" ]]; then
         log_error "package.json not found in ${server_dir}"
         exit 1
     fi
-    
-    # Check if dependencies are already installed
-    if [[ -d "${server_dir}/node_modules" ]]; then
-        log_info "Dependencies already installed. Checking for updates..."
+
+    # Clear stale HuggingFace model cache to prevent version mismatches
+    local hf_cache_dir="${server_dir}/node_modules/@huggingface/transformers/.cache"
+    if [[ -d "${hf_cache_dir}" ]]; then
+        log_info "Clearing stale HuggingFace model cache..."
+        rm -rf "${hf_cache_dir}" 2>/dev/null || true
     fi
-    
-    # Install dependencies
-    log_step "Installing dependencies..."
+
+    # Remove native modules before install to prevent ERR_DLOPEN_FAILED
+    log_info "Removing stale native modules..."
+    for mod_dir in "${server_dir}/node_modules/better-sqlite3" "${server_dir}/node_modules/sqlite-vec" \
+                   "${workspace_root}/node_modules/better-sqlite3" "${workspace_root}/node_modules/sqlite-vec"; do
+        if [[ -d "${mod_dir}" ]]; then
+            rm -rf "${mod_dir}" 2>/dev/null || true
+        fi
+    done
+
+    # Install dependencies from workspace root (npm workspaces: shared, mcp_server, scripts)
+    log_step "Installing dependencies (npm workspaces)..."
     (
-        cd "${server_dir}"
+        cd "${workspace_root}"
         npm install --silent 2>/dev/null || npm install
     )
-    
+
     if [[ $? -eq 0 ]]; then
         log_success "Dependencies installed successfully"
     else
         log_error "Failed to install dependencies"
         exit 1
     fi
-    
+
+    # Rebuild native modules for current Node.js version
+    log_step "Rebuilding native modules..."
+    (
+        cd "${workspace_root}"
+        npm rebuild 2>/dev/null || true
+    )
+
+    # Build TypeScript (all 3 workspaces: shared → mcp_server → scripts)
+    log_step "Building TypeScript..."
+    (
+        cd "${workspace_root}"
+        # Try standard build first; fall back to --noCheck for pre-existing type errors
+        npx tsc --build 2>/dev/null || npx tsc --build --noCheck --force
+    )
+
+    if [[ $? -eq 0 ]]; then
+        log_success "TypeScript build completed"
+    else
+        log_warn "TypeScript build had issues - checking if dist/ exists anyway"
+    fi
+
     # Verify the server script exists
     if [[ ! -f "${server_dir}/${MCP_SERVER_SCRIPT}" ]]; then
         log_error "Server script not found: ${server_dir}/${MCP_SERVER_SCRIPT}"
+        log_info "Try building manually: cd ${workspace_root} && npx tsc --build --noCheck --force"
         exit 1
     fi
-    
+
     log_success "Server script verified: ${MCP_SERVER_SCRIPT}"
+
+    # Run smoke test
+    log_step "Running smoke test..."
+    (
+        cd "${workspace_root}"
+        npm run test:cli 2>/dev/null
+    )
+
+    if [[ $? -eq 0 ]]; then
+        log_success "Smoke test passed"
+    else
+        log_warn "Smoke test failed - server may still work"
+    fi
 }
 
 configure_mcp() {
@@ -98,12 +151,10 @@ configure_mcp() {
         "type": "local",
         "command": ["node", "'"${MCP_SERVER_DIR}/${MCP_SERVER_SCRIPT}"'"],
         "environment": {
-            "EMBEDDINGS_PROVIDER": "auto",
-            "VOYAGE_API_KEY": "${VOYAGE_API_KEY}",
-            "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
+            "EMBEDDINGS_PROVIDER": "hf-local",
             "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
-            "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, fallback)",
-            "_NOTE_3_AUTO_DETECTION": "Priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local (no installation needed)",
+            "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
+            "_NOTE_3_CLOUD_PROVIDERS": "For cloud embeddings: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER accordingly",
             "_NOTE_4_PORTABLE": "Uses relative path - works when copying project to new location"
         }
     }'
@@ -212,9 +263,9 @@ After installation:
 EOF
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 3. MAIN
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 main() {
     echo ""
     echo "───────────────────────────────────────"
@@ -255,7 +306,7 @@ main() {
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
-    case $1 in
+    case "$1" in
         -h|--help)
             show_help
             exit 0

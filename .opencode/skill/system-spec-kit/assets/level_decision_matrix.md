@@ -5,7 +5,7 @@ description: Quick reference for selecting the appropriate documentation level u
 
 # Level Decision Matrix - Complexity Scoring Guide
 
-Quick reference for selecting documentation levels (1-3) based on LOC guidance and complexity factors.
+Quick reference for selecting documentation levels (1-3+) based on LOC guidance and complexity factors.
 
 ---
 
@@ -189,7 +189,7 @@ Completed checklist items MUST include verification evidence:
 
 ## 8. ✅ VALIDATION RULES REFERENCE
 
-The spec validation system (`validate-spec.sh`) checks documentation quality using these rules:
+The spec validation system (`validate.sh`) checks documentation quality using these rules:
 
 ### Rules by Applicability
 
@@ -276,7 +276,7 @@ Single typo? ──YES──→ Exempt (no spec needed)
     NO
     ↓
 Start with Level 1 (Baseline)
-Required: spec.md + plan.md + tasks.md
+Required: spec.md + plan.md + tasks.md + implementation-summary.md
     ↓
 Needs QA validation? ──YES──→ Level 2 (add checklist.md)
 (risk, multi-file, testing)
@@ -316,7 +316,7 @@ This decision matrix addresses the following spec requirements:
 | REQ-009     | §2.4    | Level 3+ extended documentation (governance)    |
 | REQ-010     | §3      | LOC thresholds as soft guidance                 |
 
-**Source**: `.opencode/skill/system-spec-kit/spec.md`
+**Source**: `.opencode/skill/system-spec-kit/SKILL.md`
 
 ---
 
@@ -330,7 +330,7 @@ This decision matrix addresses the following spec requirements:
 ### Reference Files
 - [level_specifications.md](../references/templates/level_specifications.md) - Complete Level 1-3+ requirements
 - [quick_reference.md](../references/workflows/quick_reference.md) - Commands, checklists, and troubleshooting
-- [template_guide.md](../references/template_guide.md) - Template selection and quality standards
+- [template_guide.md](../references/templates/template_guide.md) - Template selection and quality standards
 
 ### Scripts
 - [compose.sh](../scripts/templates/compose.sh) - Template composition from core + addendum

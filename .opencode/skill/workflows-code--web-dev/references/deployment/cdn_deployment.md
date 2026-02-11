@@ -76,25 +76,24 @@ hero_video.js?v=1.x.x → hero_video.js?v=2.0.0
 
 ### File Locations
 
-All HTML files are in: `src/0_html/`
+All HTML files are in: `src/html/`
 
 ```
-src/0_html/
+src/html/
 ├── global.html          # Global scripts (nav, footer, cookies)
 ├── home.html            # Homepage
 ├── contact.html         # Contact page
 ├── voorwaarden.html     # Terms page
-├── nobel/               # Nobel section pages
-│   ├── n1_dit_is_nobel.html
-│   ├── n2_isps_kade.html
-│   ├── n3_de_locatie.html
-│   ├── n4_het_team.html
-│   └── n5_brochures.html
+├── about/               # About section pages
+│   ├── about_company.html
+│   ├── about_location.html
+│   ├── about_team.html
+│   └── about_brochures.html
 ├── services/            # Services pages
-│   ├── d1_bunkering.html
-│   ├── d2_filtratie.html
-│   ├── d3_uitrusting.html
-│   └── d4_maatwerk.html
+│   ├── service_one.html
+│   ├── service_two.html
+│   ├── service_three.html
+│   └── service_four.html
 └── cms/                 # CMS template pages
     ├── blog.html
     ├── blog_template.html
@@ -108,10 +107,10 @@ Use grep to find all HTML files that reference a specific script:
 
 ```bash
 # Find all references to hero_video.js
-grep -r "hero_video.js" src/0_html/ --include="*.html"
+grep -r "hero_video.js" src/html/ --include="*.html"
 
 # Find all R2 CDN references
-grep -r "pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev" src/0_html/ --include="*.html"
+grep -r "pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev" src/html/ --include="*.html"
 ```
 
 ### Update Pattern
@@ -139,10 +138,10 @@ For updating a specific script across all files:
 # Use your editor's find/replace or sed:
 
 # Preview changes first:
-grep -r "hero_video.js?v=1.3.12" src/0_html/
+grep -r "hero_video.js?v=1.3.12" src/html/
 
 # Then update each file or use sed:
-# sed -i '' 's/hero_video.js?v=1.3.12/hero_video.js?v=1.3.13/g' src/0_html/**/*.html
+# sed -i '' 's/hero_video.js?v=1.3.12/hero_video.js?v=1.3.13/g' src/html/**/*.html
 ```
 
 ---
@@ -159,7 +158,7 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 
 **Step 2: Upload File**
 1. Click "Upload" button
-2. Select the minified file from `src/2_javascript/z_minified/`
+2. Select the minified file from `src/javascript/z_minified/`
 3. File will be named same as source (e.g., `hero_video.js`)
 4. Click "Upload" to confirm
 
@@ -173,8 +172,8 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 
 | Source File                              | Minified File                        | R2 Upload Name       |
 | ---------------------------------------- | ------------------------------------ | -------------------- |
-| `src/2_javascript/hero/hero_video.js`    | `z_minified/hero/hero_video.js`      | `hero_video.js`      |
-| `src/2_javascript/form/form_validation.js` | `z_minified/form/form_validation.js` | `form_validation.js` |
+| `src/javascript/hero/hero_video.js`    | `z_minified/hero/hero_video.js`      | `hero_video.js`      |
+| `src/javascript/form/form_validation.js` | `z_minified/form/form_validation.js` | `form_validation.js` |
 
 **Note:** R2 bucket uses flat structure - upload files directly without folder paths.
 
@@ -187,8 +186,8 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 ```
 □ JavaScript changes made and tested locally
 □ Minified using terser (see minification_guide.md)
-□ AST verification passed (node .opencode/skill/workflows-code/scripts/verify-minification.mjs)
-□ Runtime test passed (node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs)
+□ AST verification passed (node .opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs)
+□ Runtime test passed (node .opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs)
 □ Browser test passed (no console errors)
 ```
 
@@ -213,10 +212,10 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 ### Quick Workflow Summary
 
 ```
-1. Edit JS      → src/2_javascript/[folder]/[file].js
+1. Edit JS      → src/javascript/[folder]/[file].js
 2. Minify       → npx terser [source] --compress --mangle -o z_minified/[folder]/[file].js
-3. Verify       → node .opencode/skill/workflows-code/scripts/verify-minification.mjs
-4. Test         → node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs
+3. Verify       → node .opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs
+4. Test         → node .opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs
 5. Update HTML  → Increment ?v=X.X.X in all referencing HTML files
 6. Upload       → Cloudflare Dashboard → R2 → Upload minified file
 7. Verify live  → Hard refresh, check console, test functionality
@@ -307,9 +306,9 @@ grep -r "hero_video.js?v=1.3.12" src/0_html/
 
 ### Scripts
 
-- `.opencode/skill/workflows-code/scripts/verify-minification.mjs` - AST verification
-- `.opencode/skill/workflows-code/scripts/test-minified-runtime.mjs` - Runtime testing
-- `.opencode/skill/workflows-code/scripts/minify-webflow.mjs` - Batch minification
+- `.opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs` - AST verification
+- `.opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs` - Runtime testing
+- `.opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs` - Batch minification
 
 ### External
 

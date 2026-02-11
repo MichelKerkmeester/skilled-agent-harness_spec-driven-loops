@@ -81,20 +81,15 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │                                                                │
    │ **Q4. Dispatch Mode** (required):                              │
    │    A) Single Agent - Execute with one agent (Recommended)      │
-   │    B) Multi-Agent (1+2) - 1 orchestrator (opus) + 2 workers (opus) │
-   │    C) Multi-Agent (1+3) - 1 orchestrator (opus) + 3 workers (opus) │
+    │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers          │
+    │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers          │
    │                                                                │
-   │ **Q5. Worker Model** (if B or C selected above):               │
-   │    Default: opus                                               │
-   │    To use different model, type: opus, gemini, gpt             │
-   │    or leave blank for default                                  │
-   │                                                                │
-   │ **Q6. Memory Context** (if using existing spec with memory/):  │
+    │ **Q5. Memory Context** (if using existing spec with memory/): │
    │    A) Load most recent memory file                              │
    │    B) Load all recent files, up to 3                            │
    │    C) Skip (start fresh)                                       │
    │                                                                │
-   │ Reply with answers, e.g.: "B, A, A, A, , C" or "Add auth, B, A, A, gemini, C" │
+    │ Reply with answers, e.g.: "B, A, A, A, C" or "Add auth, B, A, A, C" │
    └────────────────────────────────────────────────────────────────┘
 
 8. WAIT for user response (DO NOT PROCEED)
@@ -106,8 +101,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - research_triggered = [yes/no from :with-research flag or Q3]
    - dispatch_mode = [single/multi_small/multi_large from Q4]
-   - worker_model = [from Q5: opus/gemini/gpt, default opus if blank]
-   - memory_choice = [A/B/C from Q6, or N/A if not applicable]
+    - memory_choice = [A/B/C from Q5, or N/A if not applicable]
 
 10. Execute background operations based on choices:
    - IF memory_choice == A: Load most recent memory file
@@ -130,7 +124,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `execution_mode = ________________`
 - `research_triggered = ________________`
 - `dispatch_mode = ________________`
-- `worker_model = ________________` (default: opus)
 - `memory_loaded = ________________`
 
 ---
@@ -186,8 +179,7 @@ IF research_triggered == FALSE:
 | execution_mode      | ✅ Yes         | ______     | Suffix or Q2              |
 | research_triggered  | ✅ Yes         | ______     | :with-research flag or Q3 |
 | dispatch_mode       | ✅ Yes         | ______     | Q4                        |
-| worker_model        | ○ Conditional | ______     | Q5 (default: opus)        |
-| memory_loaded       | ○ Conditional | ______     | Q6 (if existing spec)     |
+| memory_loaded       | ○ Conditional | ______     | Q5 (if existing spec)     |
 
 ```
 VERIFICATION CHECK:
@@ -990,11 +982,11 @@ Circuit breaker pattern prevents cascading failures when agents fail repeatedly.
 
 ### Configuration
 
-| Parameter          | Value | Description                                        |
-| ------------------ | ----- | -------------------------------------------------- |
-| failure_threshold  | 3     | Consecutive failures before OPEN                   |
-| recovery_timeout_s | 60    | Seconds in OPEN before HALF-OPEN                   |
-| success_to_close   | 1     | Successes needed in HALF-OPEN to close circuit     |
+| Parameter          | Value | Description                                    |
+| ------------------ | ----- | ---------------------------------------------- |
+| failure_threshold  | 3     | Consecutive failures before OPEN               |
+| recovery_timeout_s | 60    | Seconds in OPEN before HALF-OPEN               |
+| success_to_close   | 1     | Successes needed in HALF-OPEN to close circuit |
 
 ### Per-Agent Circuit Tracking
 

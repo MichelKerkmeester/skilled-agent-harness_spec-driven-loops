@@ -1,6 +1,6 @@
 # Memory Scripts
 
-> Context preservation and retrieval utilities for the Spec Kit Memory system.
+> TypeScript context preservation and retrieval utilities for the Spec Kit Memory system.
 
 ---
 
@@ -18,7 +18,7 @@
 
 ### What are Memory Scripts?
 
-Memory scripts manage the Spec Kit Memory system, which preserves conversation context across sessions using semantic search and importance-based ranking. These utilities handle context generation, memory ranking, and database maintenance.
+Memory scripts manage the Spec Kit Memory system, which preserves conversation context across sessions using semantic search and importance-based ranking. These TypeScript utilities handle context generation, memory ranking, and database maintenance. Source files are compiled to `../dist/memory/` for execution.
 
 ### Key Features
 
@@ -35,6 +35,7 @@ Memory scripts manage the Spec Kit Memory system, which preserves conversation c
 | Node.js | 18+ | For script execution |
 | better-sqlite3 | Latest | Database access |
 | sqlite-vec | Latest | Vector embeddings |
+| Compiled Output | `../dist/memory/` | JavaScript files for execution |
 
 ---
 
@@ -44,27 +45,27 @@ Memory scripts manage the Spec Kit Memory system, which preserves conversation c
 
 ```bash
 # From spec folder (direct mode)
-node generate-context.js specs/001-feature/
+node ../dist/memory/generate-context.js specs/001-feature/
 
 # From JSON data (JSON mode)
-node generate-context.js /tmp/context-data.json specs/001-feature/
+node ../dist/memory/generate-context.js /tmp/context-data.json specs/001-feature/
 ```
 
 ### Rank Memories
 
 ```bash
 # From stdin
-cat memories.json | node rank-memories.js --format compact --folder-limit 3
+cat memories.json | node ../dist/memory/rank-memories.js --format compact --folder-limit 3
 
 # From file
-node rank-memories.js /path/to/memories.json --show-archived --memory-limit 5
+node ../dist/memory/rank-memories.js /path/to/memories.json --show-archived --memory-limit 5
 ```
 
 ### Cleanup Database
 
 ```bash
 # Remove orphaned vectors and history entries
-node cleanup-orphaned-vectors.js
+node ../dist/memory/cleanup-orphaned-vectors.js
 ```
 
 ---
@@ -73,18 +74,25 @@ node cleanup-orphaned-vectors.js
 
 ```
 memory/
-├── generate-context.js           # Context generation CLI (executable)
-├── rank-memories.js              # Memory ranking utility (executable)
-└── cleanup-orphaned-vectors.js  # Database maintenance script
+├── generate-context.ts           # Context generation CLI (TypeScript source)
+├── rank-memories.ts              # Memory ranking utility (TypeScript source)
+├── cleanup-orphaned-vectors.ts  # Database maintenance script (TypeScript source)
+├── README.md                     # This file
+│
+└── Compiled Output: ../dist/memory/
+    ├── generate-context.js       # Compiled executable
+    ├── rank-memories.js          # Compiled executable
+    └── cleanup-orphaned-vectors.js # Compiled executable
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `generate-context.js` | Creates memory files with ANCHOR format for indexing |
-| `rank-memories.js` | Computes composite ranking scores using recency, tier, and folder activity |
-| `cleanup-orphaned-vectors.js` | Removes orphaned database entries for maintenance |
+| `generate-context.ts` | Creates memory files with ANCHOR format for indexing |
+| `rank-memories.ts` | Computes composite ranking scores using recency, tier, and folder activity |
+| `cleanup-orphaned-vectors.ts` | Removes orphaned database entries for maintenance |
+| `../dist/memory/*.js` | Compiled JavaScript executables |
 
 ---
 
@@ -129,18 +137,18 @@ rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite-wal
 **Solution**:
 ```bash
 # Provide spec folder path
-node generate-context.js specs/001-feature/
+node ../dist/memory/generate-context.js specs/001-feature/
 
 # Or provide JSON data file
-node generate-context.js /tmp/context-data.json
+node ../dist/memory/generate-context.js /tmp/context-data.json
 ```
 
 ### Quick Fixes
 
 | Problem | Quick Fix |
 |---------|-----------|
-| Orphaned vectors | Run `cleanup-orphaned-vectors.js` |
-| Stale rankings | Re-run `rank-memories.js` with updated data |
+| Orphaned vectors | Run `node ../dist/memory/cleanup-orphaned-vectors.js` |
+| Stale rankings | Re-run `node ../dist/memory/rank-memories.js` with updated data |
 | Invalid folder name | Rename to NNN-short-name format |
 | Database locked | Restart OpenCode or remove .sqlite-wal file |
 
@@ -154,7 +162,7 @@ ls -lh .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 ls -la specs/001-feature/
 
 # Test memory generation (dry run)
-node generate-context.js --help
+node ../dist/memory/generate-context.js --help
 ```
 
 ---
@@ -168,7 +176,7 @@ node generate-context.js --help
 | [Memory System Reference](../../references/memory/memory_system.md) | Complete memory system architecture |
 | [Save Workflow](../../references/memory/save_workflow.md) | Context save protocol and validation |
 | [Trigger Config](../../references/memory/trigger_config.md) | Memory trigger configuration rules |
-| [Folder Scoring](../../mcp_server/lib/scoring/folder-scoring.js) | Composite scoring implementation |
+| [Folder Scoring](../../mcp_server/lib/scoring/folder-scoring.ts) | Composite scoring implementation (TypeScript source) |
 
 ### External Resources
 

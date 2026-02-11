@@ -119,7 +119,7 @@ document.addEventListener('click', (e) => {
 #!/bin/bash
 # Detect duplicate IDs in collection lists
 
-URL="https://anobel.com"
+URL="https://example.com"
 
 echo "🔍 Checking for duplicate IDs..."
 
@@ -148,7 +148,7 @@ echo "✅ ID duplication check complete"
 #!/bin/bash
 # Inspect collection list structure and IDs
 
-URL="https://anobel.com"
+URL="https://example.com"
 
 echo "🔍 Inspecting collection list structure..."
 
@@ -197,7 +197,7 @@ echo "✅ Collection list inspection complete"
 #!/bin/bash
 # Pre-deployment validation: Assert no duplicate IDs
 
-URL="https://anobel.com"
+URL="https://example.com"
 FAIL=0
 
 echo "🔍 Running pre-deployment ID validation..."
@@ -803,7 +803,7 @@ When verifying Webflow implementations:
 Create a visually hidden but accessible native `<select>` that mirrors custom options.
 
 ```javascript
-// [SOURCE: src/2_javascript/form/input_select_fs_bridge.js:26-73]
+// [SOURCE: src/javascript/form/input_select_fs_bridge.js:26-73]
 
 // Configuration
 const FS_ATTR = 'fs-list-element';
@@ -868,7 +868,7 @@ function create_hidden_select(custom_select_instance) {
 Synchronize selection from custom select to hidden native select.
 
 ```javascript
-// [SOURCE: src/2_javascript/form/input_select_fs_bridge.js:79-83]
+// [SOURCE: src/javascript/form/input_select_fs_bridge.js:79-83]
 
 function sync_to_native(native_select, value) {
   native_select.value = value;
@@ -883,7 +883,7 @@ function sync_to_native(native_select, value) {
 Connect the bridge after CustomSelect instances are ready.
 
 ```javascript
-// [SOURCE: src/2_javascript/form/input_select_fs_bridge.js:89-137]
+// [SOURCE: src/javascript/form/input_select_fs_bridge.js:89-137]
 
 const INIT_FLAG = '__finsweetSelectBridgeInit';
 
@@ -1071,8 +1071,8 @@ document.querySelectorAll('.fs-sort-select--hidden').forEach(sel => {
 - [performance_patterns.md](./performance_patterns.md) - Performance optimization for collection lists with many items
 
 ### Source Files (Evidence)
-- `src/2_javascript/form/input_select.js` - Base CustomSelect implementation with ARIA support
-- `src/2_javascript/form/input_select_fs_bridge.js` - Finsweet bridge pattern implementation
+- `src/javascript/form/input_select.js` - Base CustomSelect implementation with ARIA support
+- `src/javascript/form/input_select_fs_bridge.js` - Finsweet bridge pattern implementation
 
 ### Related Skills
 - `workflows-chrome-devtools` - CLI debugging tools for ID duplication detection and collection list inspection

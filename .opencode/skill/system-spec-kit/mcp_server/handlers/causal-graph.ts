@@ -1,0 +1,718 @@
+// ---------------------------------------------------------------
+// MODULE: Causal Graph
+// ---------------------------------------------------------------
+
+/* ---------------------------------------------------------------
+   0. DEPENDENCIES
+--------------------------------------------------------------- */
+
+// Lib modules
+import * as vectorIndex from '../lib/search/vector-index';
+import * as causalEdges from '../lib/storage/causal-edges';
+import type { CausalChainNode, CausalEdge } from '../lib/storage/causal-edges';
+
+// Core utilities
+import { checkDatabaseUpdated } from '../core';
+import { toErrorMessage } from '../utils';
+
+// Error codes and recovery hints
+import { ErrorCodes, getRecoveryHint } from '../lib/errors';
+
+// REQ-019: Standardized Response Structure
+import { createMCPSuccessResponse, createMCPErrorResponse, createMCPEmptyResponse } from '../lib/response/envelope';
+
+// Shared handler types
+import type { Database, MCPResponse } from './types';
+
+/* ---------------------------------------------------------------
+   1. TYPES
+--------------------------------------------------------------- */
+
+/** Flat edge representation for API responses */
+interface FlatEdge {
+  id: number;               // T202: causal_edges.id for unlink workflow
+  from: string;
+  to: string;
+  relation: string;
+  strength: number;
+  depth: number;
+}
+
+/** Flattened chain produced from CausalChainNode tree */
+interface FlattenedChain {
+  all: FlatEdge[];
+  by_cause: FlatEdge[];
+  by_enabled: FlatEdge[];
+  by_supersedes: FlatEdge[];
+  by_contradicts: FlatEdge[];
+  by_derived_from: FlatEdge[];
+  by_supports: FlatEdge[];
+  total_edges: number;
+  max_depth_reached: boolean;
+}
+
+interface DriftWhyArgs {
+  memoryId: string | number;
+  maxDepth?: number;
+  direction?: string;
+  relations?: string[] | null;
+  includeMemoryDetails?: boolean;
+}
+
+interface CausalLinkArgs {
+  sourceId: string | number;
+  targetId: string | number;
+  relation: string;
+  strength?: number;
+  evidence?: string | null;
+}
+
+interface CausalStatsArgs {}
+
+interface CausalUnlinkArgs {
+  edgeId: number;
+}
+
+/* ---------------------------------------------------------------
+   2. TREE-TO-FLAT CONVERTER
+--------------------------------------------------------------- */
+
+/**
+ * Flatten a CausalChainNode tree into flat edge lists grouped by relation.
+ * The tree from getCausalChain() encodes parent→child relationships;
+ * for 'forward' direction: parent=source, child=target.
+ * For 'backward' direction: parent=target, child=source.
+ */
+function flattenCausalTree(
+  root: CausalChainNode,
+  maxDepth: number,
+  direction: 'forward' | 'backward'
+): FlattenedChain {
+  const result: FlattenedChain = {
+    all: [],
+    by_cause: [],
+    by_enabled: [],
+    by_supersedes: [],
+    by_contradicts: [],
+    by_derived_from: [],
+    by_supports: [],
+    total_edges: 0,
+    max_depth_reached: false,
+  };
+
+  function traverse(node: CausalChainNode): void {
+    for (const child of node.children) {
+      const edge: FlatEdge = {
+        id: child.edgeId ?? 0,          // T202: edge ID from storage layer
+        from: direction === 'forward' ? node.id : child.id,
+        to: direction === 'forward' ? child.id : node.id,
+        relation: child.relation,
+        strength: child.strength,
+        depth: child.depth,
+      };
+
+      result.all.push(edge);
+
+      // Group by relation type
+      const bucket = relationBucket(child.relation);
+      if (bucket) {
+        bucket.push(edge);
+      }
+
+      // Check if we hit max depth (any child at maxDepth-1 with children means we capped)
+      if (child.depth >= maxDepth - 1 && child.children.length === 0) {
+        // Could have been capped — we can't distinguish "no more edges" from "depth limit"
+        // Mark as reached if any node is AT the depth limit
+        if (child.depth >= maxDepth - 1) {
+          result.max_depth_reached = true;
+        }
+      }
+
+      traverse(child);
+    }
+  }
+
+  function relationBucket(relation: string): FlatEdge[] | null {
+    switch (relation) {
+      case 'caused': return result.by_cause;
+      case 'enabled': return result.by_enabled;
+      case 'supersedes': return result.by_supersedes;
+      case 'contradicts': return result.by_contradicts;
+      case 'derived_from': return result.by_derived_from;
+      case 'supports': return result.by_supports;
+      default: return null;
+    }
+  }
+
+  traverse(root);
+  result.total_edges = result.all.length;
+  return result;
+}
+
+/**
+ * Merge two flattened chains (used for 'both' direction).
+ * Deduplicates edges by from+to+relation key.
+ */
+function mergeFlattenedChains(a: FlattenedChain, b: FlattenedChain): FlattenedChain {
+  const seen = new Set<string>();
+  const merged: FlattenedChain = {
+    all: [],
+    by_cause: [],
+    by_enabled: [],
+    by_supersedes: [],
+    by_contradicts: [],
+    by_derived_from: [],
+    by_supports: [],
+    total_edges: 0,
+    max_depth_reached: a.max_depth_reached || b.max_depth_reached,
+  };
+
+  function addEdge(edge: FlatEdge): void {
+    const key = `${edge.from}:${edge.to}:${edge.relation}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+
+    merged.all.push(edge);
+    switch (edge.relation) {
+      case 'caused': merged.by_cause.push(edge); break;
+      case 'enabled': merged.by_enabled.push(edge); break;
+      case 'supersedes': merged.by_supersedes.push(edge); break;
+      case 'contradicts': merged.by_contradicts.push(edge); break;
+      case 'derived_from': merged.by_derived_from.push(edge); break;
+      case 'supports': merged.by_supports.push(edge); break;
+    }
+  }
+
+  for (const edge of a.all) addEdge(edge);
+  for (const edge of b.all) addEdge(edge);
+
+  merged.total_edges = merged.all.length;
+  return merged;
+}
+
+/**
+ * Map tool schema direction values to getCausalChain direction values.
+ * Tool schema: 'outgoing' | 'incoming' | 'both'
+ * getCausalChain: 'forward' | 'backward'
+ */
+function mapDirection(direction: string): 'forward' | 'backward' | 'both' {
+  switch (direction) {
+    case 'outgoing': return 'forward';
+    case 'forward': return 'forward';   // backward compat
+    case 'incoming': return 'backward';
+    case 'backward': return 'backward'; // backward compat
+    case 'both': return 'both';
+    default: return 'forward';
+  }
+}
+
+/**
+ * T203: Filter a FlattenedChain to only include edges whose relation
+ * is in the provided set. When relations is null/empty, returns the
+ * chain unchanged.
+ */
+function filterChainByRelations(
+  chain: FlattenedChain,
+  relations: string[] | null | undefined
+): FlattenedChain {
+  if (!relations || relations.length === 0) return chain;
+
+  const allowed = new Set(relations);
+
+  const filtered: FlattenedChain = {
+    all: chain.all.filter(e => allowed.has(e.relation)),
+    by_cause: allowed.has('caused') ? chain.by_cause : [],
+    by_enabled: allowed.has('enabled') ? chain.by_enabled : [],
+    by_supersedes: allowed.has('supersedes') ? chain.by_supersedes : [],
+    by_contradicts: allowed.has('contradicts') ? chain.by_contradicts : [],
+    by_derived_from: allowed.has('derived_from') ? chain.by_derived_from : [],
+    by_supports: allowed.has('supports') ? chain.by_supports : [],
+    total_edges: 0,
+    max_depth_reached: chain.max_depth_reached,
+  };
+  filtered.total_edges = filtered.all.length;
+  return filtered;
+}
+
+/* ---------------------------------------------------------------
+   3. MEMORY DRIFT WHY HANDLER
+--------------------------------------------------------------- */
+
+/** Handle memory_drift_why tool - traces causal relationships for a given memory */
+async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
+  const {
+    memoryId,
+    maxDepth = 3,
+    direction = 'both',
+    relations = null,
+    includeMemoryDetails = true
+  } = args;
+
+  const startTime = Date.now();
+
+  if (memoryId === undefined || memoryId === null) {
+    return createMCPErrorResponse({
+      tool: 'memory_drift_why',
+      error: 'memoryId is required',
+      code: 'E031',
+      details: { param: 'memoryId' },
+      recovery: getRecoveryHint('memory_drift_why', 'E031'),
+      startTime: startTime
+    });
+  }
+
+  try {
+    await checkDatabaseUpdated();
+
+    vectorIndex.initializeDb();
+    const db = vectorIndex.getDb();
+    if (!db) {
+      return createMCPErrorResponse({
+        tool: 'memory_drift_why',
+        error: 'Database not initialized. Server may still be starting up.',
+        code: 'E020',
+        details: {},
+        recovery: getRecoveryHint('memory_drift_why', 'E020'),
+        startTime: startTime
+      });
+    }
+    causalEdges.init(db);
+
+    if (relations && Array.isArray(relations)) {
+      const validRelations: string[] = Object.values(causalEdges.RELATION_TYPES) as string[];
+      const invalid = relations.filter((r: string) => !validRelations.includes(r));
+      if (invalid.length > 0) {
+        return createMCPErrorResponse({
+          tool: 'memory_drift_why',
+          error: `Invalid relation types: ${invalid.join(', ')}`,
+          code: 'E030',
+          details: { invalidRelations: invalid, validRelations: validRelations },
+          recovery: {
+            hint: 'Use valid relation types from the list provided',
+            actions: validRelations.map((r: string) => `Use '${r}' for ${r} relationships`),
+            severity: 'warning'
+          },
+          startTime: startTime
+        });
+      }
+    }
+
+    const mappedDirection = mapDirection(direction);
+
+    let chain: FlattenedChain;
+    if (mappedDirection === 'both') {
+      const forwardTree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'forward');
+      const backwardTree = causalEdges.getCausalChain(String(memoryId), maxDepth, 'backward');
+      const forwardFlat = forwardTree ? flattenCausalTree(forwardTree, maxDepth, 'forward') : null;
+      const backwardFlat = backwardTree ? flattenCausalTree(backwardTree, maxDepth, 'backward') : null;
+      if (forwardFlat && backwardFlat) {
+        chain = mergeFlattenedChains(forwardFlat, backwardFlat);
+      } else {
+        chain = forwardFlat || backwardFlat || { all: [], by_cause: [], by_enabled: [], by_supersedes: [], by_contradicts: [], by_derived_from: [], by_supports: [], total_edges: 0, max_depth_reached: false };
+      }
+    } else {
+      const tree = causalEdges.getCausalChain(String(memoryId), maxDepth, mappedDirection);
+      chain = tree ? flattenCausalTree(tree, maxDepth, mappedDirection) : { all: [], by_cause: [], by_enabled: [], by_supersedes: [], by_contradicts: [], by_derived_from: [], by_supports: [], total_edges: 0, max_depth_reached: false };
+    }
+
+    // T203: Apply relations filter (after traversal, before response)
+    chain = filterChainByRelations(chain, relations);
+
+    let memoryDetails: Record<string, unknown> | null = null;
+    const relatedMemories: Record<string, Record<string, unknown>> = {};
+
+    if (includeMemoryDetails) {
+      const sourceMemory = db.prepare(`
+        SELECT id, title, spec_folder, importance_tier, importance_weight,
+               context_type, created_at, updated_at, file_path
+        FROM memory_index
+        WHERE id = ? OR CAST(id AS TEXT) = ?
+      `).get(memoryId, String(memoryId)) as Record<string, unknown> | undefined;
+
+      if (sourceMemory) {
+        memoryDetails = sourceMemory;
+      }
+
+      const memoryIds = new Set<string>();
+      for (const edge of chain.all) {
+        memoryIds.add(edge.from);
+        memoryIds.add(edge.to);
+      }
+
+      if (memoryIds.size > 0) {
+        const idsArray = Array.from(memoryIds);
+        for (const id of idsArray) {
+          const memory = db.prepare(`
+            SELECT id, title, spec_folder, importance_tier, created_at
+            FROM memory_index
+            WHERE id = ? OR CAST(id AS TEXT) = ?
+          `).get(id, String(id)) as Record<string, unknown> | undefined;
+          if (memory) {
+            relatedMemories[id] = memory;
+          }
+        }
+      }
+    }
+
+    if (chain.total_edges === 0) {
+      return createMCPEmptyResponse({
+        tool: 'memory_drift_why',
+        summary: `No causal relationships found for memory ${memoryId}`,
+        data: {
+          memoryId: String(memoryId),
+          memory: memoryDetails
+        },
+        hints: [
+          'Use memory_causal_link to create relationships',
+          'Consider linking to related decisions or contexts'
+        ],
+        startTime: startTime
+      });
+    }
+
+    const relationSummary: string[] = [];
+    if (chain.by_cause.length > 0) relationSummary.push(`${chain.by_cause.length} caused_by`);
+    if (chain.by_enabled.length > 0) relationSummary.push(`${chain.by_enabled.length} enabled_by`);
+    if (chain.by_supersedes.length > 0) relationSummary.push(`${chain.by_supersedes.length} supersedes`);
+    if (chain.by_contradicts.length > 0) relationSummary.push(`${chain.by_contradicts.length} contradicts`);
+    if (chain.by_derived_from.length > 0) relationSummary.push(`${chain.by_derived_from.length} derived_from`);
+    if (chain.by_supports.length > 0) relationSummary.push(`${chain.by_supports.length} supports`);
+
+    const summary = `Found ${chain.total_edges} causal relationships (${relationSummary.join(', ')})`;
+
+    const hints: string[] = [];
+    if (chain.max_depth_reached) {
+      hints.push(`Max depth (${maxDepth}) reached - more relationships may exist beyond this depth`);
+    }
+    if (chain.by_contradicts.length > 0) {
+      hints.push('Contradicting relationships detected - review for consistency');
+    }
+
+    return createMCPSuccessResponse({
+      tool: 'memory_drift_why',
+      summary,
+      data: {
+        memoryId: String(memoryId),
+        memory: memoryDetails,
+        causedBy: chain.by_cause,
+        enabledBy: chain.by_enabled,
+        supersedes: chain.by_supersedes,
+        contradicts: chain.by_contradicts,
+        derivedFrom: chain.by_derived_from,
+        supports: chain.by_supports,
+        allEdges: chain.all,
+        totalEdges: chain.total_edges,
+        maxDepthReached: chain.max_depth_reached,
+        relatedMemories: Object.keys(relatedMemories).length > 0 ? relatedMemories : null,
+        traversalOptions: { direction: mappedDirection, maxDepth }
+      },
+      hints,
+      startTime: startTime
+    });
+  } catch (error: unknown) {
+    return createMCPErrorResponse({
+      tool: 'memory_drift_why',
+      error: toErrorMessage(error),
+      code: 'E042',
+      details: { memoryId },
+      recovery: getRecoveryHint('memory_drift_why', 'E042'),
+      startTime: startTime
+    });
+  }
+}
+
+/* ---------------------------------------------------------------
+   3. CAUSAL LINK HANDLER
+--------------------------------------------------------------- */
+
+/** Handle memory_causal_link tool - creates a causal edge between two memories */
+async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse> {
+  const {
+    sourceId,
+    targetId,
+    relation,
+    strength = 1.0,
+    evidence = null
+  } = args;
+
+  const startTime = Date.now();
+
+  if ((sourceId === undefined || sourceId === null) || (targetId === undefined || targetId === null) || !relation) {
+    const missing: string[] = [];
+    if (sourceId === undefined || sourceId === null) missing.push('sourceId');
+    if (targetId === undefined || targetId === null) missing.push('targetId');
+    if (!relation) missing.push('relation');
+
+    return createMCPErrorResponse({
+      tool: 'memory_causal_link',
+      error: `Missing required parameters: ${missing.join(', ')}`,
+      code: 'E031',
+      details: {
+        missingParams: missing,
+        validRelations: Object.values(causalEdges.RELATION_TYPES) as string[]
+      },
+      recovery: {
+        hint: 'Provide all required parameters to create a causal link',
+        actions: [
+          'sourceId: Memory ID that is the cause/source',
+          'targetId: Memory ID that is the effect/target',
+          `relation: One of ${Object.values(causalEdges.RELATION_TYPES).join(', ')}`
+        ],
+        severity: 'error'
+      },
+      startTime: startTime
+    });
+  }
+
+  try {
+    await checkDatabaseUpdated();
+
+    vectorIndex.initializeDb();
+    const db = vectorIndex.getDb();
+    if (!db) {
+      return createMCPErrorResponse({
+        tool: 'memory_causal_link',
+        error: 'Database not initialized. Server may still be starting up.',
+        code: 'E020',
+        details: {},
+        recovery: getRecoveryHint('memory_causal_link', 'E020'),
+        startTime: startTime
+      });
+    }
+    causalEdges.init(db);
+
+    const validRelations = Object.values(causalEdges.RELATION_TYPES) as string[];
+    if (!validRelations.includes(relation)) {
+      return createMCPErrorResponse({
+        tool: 'memory_causal_link',
+        error: `Invalid relation type: '${relation}'. Must be one of: ${validRelations.join(', ')}`,
+        code: 'E030',
+        details: { relation, validRelations },
+        recovery: {
+          hint: 'Use a valid relation type',
+          actions: validRelations.map(r => `Use '${r}'`),
+          severity: 'error'
+        },
+        startTime: startTime
+      });
+    }
+    const safeRelation = relation as causalEdges.RelationType;
+    const edge = causalEdges.insertEdge(String(sourceId), String(targetId), safeRelation, strength ?? 1.0, evidence ?? null);
+
+    return createMCPSuccessResponse({
+      tool: 'memory_causal_link',
+      summary: `Created causal link: ${sourceId} --[${relation}]--> ${targetId}`,
+      data: {
+        success: true,
+        edge
+      },
+      hints: [
+        `Use memory_drift_why({ memoryId: "${targetId}" }) to trace this relationship`,
+        'Use memory_causal_stats() to check overall graph coverage'
+      ],
+      startTime: startTime
+    });
+  } catch (error: unknown) {
+    return createMCPErrorResponse({
+      tool: 'memory_causal_link',
+      error: toErrorMessage(error),
+      code: 'E022',
+      details: { sourceId, targetId, relation },
+      recovery: getRecoveryHint('memory_causal_link', 'E022'),
+      startTime: startTime
+    });
+  }
+}
+
+/* ---------------------------------------------------------------
+   4. CAUSAL GRAPH STATS HANDLER
+--------------------------------------------------------------- */
+
+/** Handle memory_causal_stats tool - returns graph coverage and health metrics */
+async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPResponse> {
+  const startTime = Date.now();
+
+  try {
+    await checkDatabaseUpdated();
+
+    vectorIndex.initializeDb();
+    const db = vectorIndex.getDb();
+    if (!db) {
+      return createMCPErrorResponse({
+        tool: 'memory_causal_stats',
+        error: 'Database not initialized. Server may still be starting up.',
+        code: 'E020',
+        details: {},
+        recovery: getRecoveryHint('memory_causal_stats', 'E020'),
+        startTime: startTime
+      });
+    }
+    causalEdges.init(db);
+
+    const stats = causalEdges.getGraphStats();
+    const orphanedEdges: CausalEdge[] = causalEdges.findOrphanedEdges();
+
+    // Compute link coverage: unique memories linked / total memories
+    const totalMemories = (db.prepare('SELECT COUNT(*) as count FROM memory_index') as import('better-sqlite3').Statement).get() as { count: number };
+    const uniqueLinked = new Set<string>();
+
+    // Count unique memory IDs that appear as source or target
+    try {
+      const linkedRows = (db.prepare('SELECT DISTINCT source_id FROM causal_edges UNION SELECT DISTINCT target_id FROM causal_edges') as import('better-sqlite3').Statement).all() as Array<{ source_id: string }>;
+      for (const row of linkedRows) {
+        uniqueLinked.add(row.source_id);
+      }
+    } catch {
+      // causal_edges table may not exist yet — coverage is 0
+    }
+
+    const safeTotalEdges = stats.totalEdges ?? 0;
+    const coveragePercent = totalMemories.count > 0
+      ? Math.round((uniqueLinked.size / totalMemories.count) * 10000) / 100
+      : 0;
+
+    const meetsTarget = coveragePercent >= 60;
+    const health = orphanedEdges.length === 0 ? 'healthy' : 'has_orphans';
+
+    const summary = `Causal graph: ${safeTotalEdges} edges, ${coveragePercent}% coverage (${health})`;
+
+    const hints: string[] = [];
+    if (!meetsTarget) {
+      hints.push(`Coverage ${coveragePercent}% below 60% target - add more causal links`);
+    }
+    if (orphanedEdges.length > 0) {
+      hints.push(`${orphanedEdges.length} orphaned edges detected - consider cleanup`);
+    }
+    if (stats.totalEdges === 0) {
+      hints.push('No causal links exist yet - use memory_causal_link to create relationships');
+    }
+
+    return createMCPSuccessResponse({
+      tool: 'memory_causal_stats',
+      summary,
+      data: {
+        total_edges: safeTotalEdges,
+        by_relation: stats.byRelation,
+        avg_strength: stats.avgStrength,
+        unique_sources: stats.uniqueSources,
+        unique_targets: stats.uniqueTargets,
+        link_coverage_percent: coveragePercent + '%',
+        orphanedEdges: orphanedEdges.length,
+        health,
+        targetCoverage: '60%',
+        currentCoverage: coveragePercent + '%',
+        meetsTarget: meetsTarget
+      },
+      hints,
+      startTime: startTime
+    });
+  } catch (error: unknown) {
+    return createMCPErrorResponse({
+      tool: 'memory_causal_stats',
+      error: toErrorMessage(error),
+      code: 'E042',
+      details: {},
+      recovery: getRecoveryHint('memory_causal_stats', 'E042'),
+      startTime: startTime
+    });
+  }
+}
+
+/* ---------------------------------------------------------------
+   5. CAUSAL UNLINK HANDLER
+--------------------------------------------------------------- */
+
+/** Handle memory_causal_unlink tool - deletes a causal edge by ID */
+async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResponse> {
+  const { edgeId } = args;
+  const startTime = Date.now();
+
+  if (edgeId === undefined || edgeId === null) {
+    return createMCPErrorResponse({
+      tool: 'memory_causal_unlink',
+      error: 'edgeId is required',
+      code: 'E031',
+      details: { param: 'edgeId' },
+      recovery: {
+        hint: 'Provide the edge ID to delete',
+        actions: [
+          'Use memory_drift_why() to find edge IDs',
+          'Use memory_causal_stats() to see graph overview'
+        ],
+        severity: 'error'
+      },
+      startTime: startTime
+    });
+  }
+
+  try {
+    await checkDatabaseUpdated();
+
+    vectorIndex.initializeDb();
+    const db = vectorIndex.getDb();
+    if (!db) {
+      return createMCPErrorResponse({
+        tool: 'memory_causal_unlink',
+        error: 'Database not initialized. Server may still be starting up.',
+        code: 'E020',
+        details: {},
+        recovery: getRecoveryHint('memory_causal_unlink', 'E020'),
+        startTime: startTime
+      });
+    }
+    causalEdges.init(db);
+
+    const result: { deleted: boolean } = { deleted: causalEdges.deleteEdge(edgeId) };
+
+    const summary = result.deleted
+      ? `Deleted causal edge ${edgeId}`
+      : `Edge ${edgeId} not found`;
+
+    const hints: string[] = [];
+    if (!result.deleted) {
+      hints.push('Use memory_drift_why() to find valid edge IDs');
+    }
+
+    return createMCPSuccessResponse({
+      tool: 'memory_causal_unlink',
+      summary,
+      data: result,
+      hints,
+      startTime: startTime
+    });
+  } catch (error: unknown) {
+    return createMCPErrorResponse({
+      tool: 'memory_causal_unlink',
+      error: toErrorMessage(error),
+      code: 'E022',
+      details: { edgeId },
+      recovery: getRecoveryHint('memory_causal_unlink', 'E022'),
+      startTime: startTime
+    });
+  }
+}
+
+/* ---------------------------------------------------------------
+   6. EXPORTS
+--------------------------------------------------------------- */
+
+export {
+  handleMemoryDriftWhy,
+  handleMemoryCausalLink,
+  handleMemoryCausalStats,
+  handleMemoryCausalUnlink,
+};
+
+// Backward-compatible aliases (snake_case)
+const handle_memory_drift_why = handleMemoryDriftWhy;
+const handle_memory_causal_link = handleMemoryCausalLink;
+const handle_memory_causal_stats = handleMemoryCausalStats;
+const handle_memory_causal_unlink = handleMemoryCausalUnlink;
+
+export {
+  handle_memory_drift_why,
+  handle_memory_causal_link,
+  handle_memory_causal_stats,
+  handle_memory_causal_unlink,
+};
+

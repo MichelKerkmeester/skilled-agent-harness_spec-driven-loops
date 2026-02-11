@@ -1,0 +1,575 @@
+// @ts-nocheck
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+
+import * as archivalManager from '../lib/cognitive/archival-manager';
+import Database from 'better-sqlite3';
+
+/* ─────────────────────────────────────────────────────────────
+   TEST SETUP
+──────────────────────────────────────────────────────────────── */
+
+let db: any = null;
+
+function setupTestDb(): any {
+  db = new Database(':memory:');
+
+  db.exec(`
+    CREATE TABLE memory_index (
+      id INTEGER PRIMARY KEY,
+      spec_folder TEXT NOT NULL,
+      file_path TEXT NOT NULL,
+      title TEXT,
+      importance_tier TEXT DEFAULT 'normal',
+      importance_weight REAL DEFAULT 0.5,
+      created_at TEXT NOT NULL,
+      updated_at TEXT DEFAULT (datetime('now')),
+      last_accessed INTEGER DEFAULT 0,
+      access_count INTEGER DEFAULT 0,
+      confidence REAL DEFAULT 0.5,
+      is_archived INTEGER DEFAULT 0,
+      archived_at TEXT,
+      is_pinned INTEGER DEFAULT 0,
+      embedding_status TEXT DEFAULT 'pending',
+      related_memories TEXT,
+      stability REAL DEFAULT 1.0,
+      half_life_days REAL,
+      last_review TEXT
+    )
+  `);
+
+  return db;
+}
+
+function teardownTestDb() {
+  if (db) {
+    db.close();
+    db = null;
+  }
+}
+
+function insertTestMemory(data: Record<string, any>) {
+  const stmt = db.prepare(`
+    INSERT INTO memory_index (spec_folder, file_path, title, importance_tier, created_at, last_accessed, access_count, confidence, is_pinned, stability, half_life_days)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+  return stmt.run(
+    data.spec_folder || 'test-spec',
+    data.file_path || '/test/memory.md',
+    data.title || 'Test Memory',
+    data.importance_tier || 'normal',
+    data.created_at || new Date().toISOString(),
+    data.last_accessed || 0,
+    data.access_count || 0,
+    data.confidence || 0.5,
+    data.is_pinned || 0,
+    data.stability ?? 1.0,
+    data.half_life_days ?? null
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TESTS
+──────────────────────────────────────────────────────────────── */
+
+describe('Archival Manager (T059)', () => {
+  // 1. INITIALIZATION TESTS
+  describe('1. Initialization', () => {
+    afterEach(() => {
+      teardownTestDb();
+    });
+
+    it('T059-001: Init with valid database succeeds', () => {
+      setupTestDb();
+      expect(() => archivalManager.init(db)).not.toThrow();
+    });
+
+    it('T059-002: is_archived column exists', () => {
+      setupTestDb();
+      const columns = db.prepare('PRAGMA table_info(memory_index)').all().map((c: any) => c.name);
+      expect(columns).toContain('is_archived');
+    });
+
+    it('T059-003: ARCHIVAL_CONFIG is exported', () => {
+      expect(archivalManager.ARCHIVAL_CONFIG).toBeDefined();
+      expect(typeof archivalManager.ARCHIVAL_CONFIG.scanIntervalMs).toBe('number');
+    });
+
+    it('T059-004: ARCHIVAL_CONFIG has expected fields', () => {
+      const config = archivalManager.ARCHIVAL_CONFIG;
+      expect(config.maxAgeDays).toBe(90);
+      expect(Array.isArray(config.protectedTiers)).toBe(true);
+    });
+  });
+
+  // 2. ARCHIVAL CANDIDATE DETECTION TESTS
+  describe('2. Archival Candidate Detection', () => {
+    beforeEach(() => {
+      setupTestDb();
+      archivalManager.init(db);
+    });
+
+    afterEach(() => {
+      teardownTestDb();
+    });
+
+    it('T059-005: Recent memory NOT in candidates', () => {
+      insertTestMemory({
+        title: 'Recent Memory',
+        created_at: new Date().toISOString(),
+        access_count: 10,
+        confidence: 0.9,
+      });
+
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 91);
+
+      insertTestMemory({
+        title: 'Old Memory',
+        created_at: oldDate.toISOString(),
+        access_count: 1,
+        confidence: 0.2,
+        stability: 0.001,
+        half_life_days: 0.05,
+      });
+
+      const candidates = archivalManager.getArchivalCandidates(100);
+      const candidateTitles = candidates.map(c => c.title);
+
+      expect(candidateTitles).not.toContain('Recent Memory');
+    });
+
+    it('T059-006: Old memory (91 days) IS in candidates', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 91);
+
+      insertTestMemory({
+        title: 'Old Memory',
+        created_at: oldDate.toISOString(),
+        access_count: 1,
+        confidence: 0.2,
+        stability: 0.001,
+        half_life_days: 0.05,
+      });
+
+      const candidates = archivalManager.getArchivalCandidates(100);
+      const candidateTitles = candidates.map(c => c.title);
+
+      expect(candidateTitles).toContain('Old Memory');
+    });
+
+    it('T059-007: Constitutional memory NOT in candidates (protected tier)', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 91);
+
+      insertTestMemory({
+        title: 'Constitutional Memory',
+        created_at: oldDate.toISOString(),
+        access_count: 0,
+        confidence: 0.1,
+        importance_tier: 'constitutional',
+      });
+
+      const candidates = archivalManager.getArchivalCandidates(100);
+      const candidateTitles = candidates.map(c => c.title);
+
+      expect(candidateTitles).not.toContain('Constitutional Memory');
+    });
+
+    it('T059-008: Critical memory NOT in candidates (protected tier)', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 91);
+
+      insertTestMemory({
+        title: 'Critical Memory',
+        created_at: oldDate.toISOString(),
+        access_count: 0,
+        confidence: 0.1,
+        importance_tier: 'critical',
+      });
+
+      const candidates = archivalManager.getArchivalCandidates(100);
+      const candidateTitles = candidates.map(c => c.title);
+
+      expect(candidateTitles).not.toContain('Critical Memory');
+    });
+  });
+
+  // 3. ARCHIVAL ACTION TESTS
+  describe('3. Archival Actions', () => {
+    beforeEach(() => {
+      setupTestDb();
+      archivalManager.init(db);
+    });
+
+    afterEach(() => {
+      teardownTestDb();
+    });
+
+    it('T059-010: archiveMemory returns true on success', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 100);
+
+      const result = insertTestMemory({
+        title: 'To Archive',
+        created_at: oldDate.toISOString(),
+        importance_tier: 'normal',
+      });
+      const memory_id = result.lastInsertRowid;
+
+      const archiveResult = archivalManager.archiveMemory(memory_id);
+      expect(archiveResult).toBe(true);
+    });
+
+    it('T059-011: is_archived flag set to 1', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 100);
+
+      const result = insertTestMemory({
+        title: 'To Archive',
+        created_at: oldDate.toISOString(),
+        importance_tier: 'normal',
+      });
+      const memory_id = result.lastInsertRowid;
+
+      archivalManager.archiveMemory(memory_id);
+      const row = db.prepare('SELECT is_archived FROM memory_index WHERE id = ?').get(memory_id);
+      expect(row.is_archived).toBe(1);
+    });
+
+    it('T059-012: unarchiveMemory succeeds', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 100);
+
+      const result = insertTestMemory({
+        title: 'To Archive',
+        created_at: oldDate.toISOString(),
+        importance_tier: 'normal',
+      });
+      const memory_id = result.lastInsertRowid;
+
+      archivalManager.archiveMemory(memory_id);
+      const unarchiveResult = archivalManager.unarchiveMemory(memory_id);
+      expect(unarchiveResult).toBe(true);
+
+      const row = db.prepare('SELECT is_archived FROM memory_index WHERE id = ?').get(memory_id);
+      expect(row.is_archived).toBe(0);
+    });
+
+    it('T059-013: Batch archive succeeds', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 100);
+
+      const idsToArchive = [];
+      for (let i = 0; i < 3; i++) {
+        const r = insertTestMemory({
+          title: `Batch Memory ${i}`,
+          created_at: oldDate.toISOString(),
+          importance_tier: 'normal',
+        });
+        idsToArchive.push(r.lastInsertRowid);
+      }
+
+      const batchResult = archivalManager.archiveBatch(idsToArchive);
+      expect(batchResult.archived).toBe(3);
+      expect(batchResult.failed).toBe(0);
+    });
+
+    it('T059-014: archiveMemory on already-archived returns false', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 100);
+
+      const result = insertTestMemory({
+        title: 'To Archive',
+        created_at: oldDate.toISOString(),
+        importance_tier: 'normal',
+      });
+      const memory_id = result.lastInsertRowid;
+
+      archivalManager.archiveMemory(memory_id);
+      const alreadyArchived = archivalManager.archiveMemory(memory_id);
+      expect(alreadyArchived).toBe(false);
+    });
+  });
+
+  // 4. ARCHIVAL SCAN TESTS
+  describe('4. Archival Scan', () => {
+    beforeEach(() => {
+      setupTestDb();
+      archivalManager.init(db);
+      archivalManager.resetStats();
+    });
+
+    afterEach(() => {
+      teardownTestDb();
+    });
+
+    it('T059-015: Archival scan archives candidates', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 91);
+
+      insertTestMemory({
+        title: 'Recent 1',
+        created_at: new Date().toISOString(),
+        access_count: 10,
+        confidence: 0.9,
+      });
+      insertTestMemory({
+        title: 'Recent 2',
+        created_at: new Date().toISOString(),
+        access_count: 10,
+        confidence: 0.9,
+      });
+      insertTestMemory({
+        title: 'Old 1',
+        created_at: oldDate.toISOString(),
+        access_count: 1,
+        confidence: 0.2,
+        stability: 0.001,
+        half_life_days: 0.05,
+      });
+      insertTestMemory({
+        title: 'Old 2',
+        created_at: oldDate.toISOString(),
+        access_count: 0,
+        confidence: 0.1,
+        stability: 0.001,
+        half_life_days: 0.05,
+      });
+
+      const scanResult = archivalManager.runArchivalScan();
+      expect(scanResult.archived).toBeGreaterThanOrEqual(1);
+    });
+
+    it('T059-016: Scan reports scanned count', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 91);
+
+      insertTestMemory({
+        title: 'Old 1',
+        created_at: oldDate.toISOString(),
+        access_count: 1,
+        confidence: 0.2,
+        stability: 0.001,
+        half_life_days: 0.05,
+      });
+
+      const scanResult = archivalManager.runArchivalScan();
+      expect(scanResult.scanned).toBeGreaterThanOrEqual(1);
+    });
+
+    it('T059-017: Second scan finds fewer candidates', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 91);
+
+      insertTestMemory({
+        title: 'Old 1',
+        created_at: oldDate.toISOString(),
+        access_count: 1,
+        confidence: 0.2,
+        stability: 0.001,
+        half_life_days: 0.05,
+      });
+
+      const scanResult = archivalManager.runArchivalScan();
+      const scan2Result = archivalManager.runArchivalScan();
+      expect(scan2Result.archived).toBeLessThanOrEqual(scanResult.archived);
+    });
+  });
+
+  // 5. BACKGROUND JOB TESTS
+  describe('5. Background Job', () => {
+    beforeEach(() => {
+      setupTestDb();
+      archivalManager.init(db);
+    });
+
+    afterEach(() => {
+      archivalManager.stopBackgroundJob();
+      teardownTestDb();
+    });
+
+    it('T059-018: Background job starts without error', () => {
+      expect(() => archivalManager.startBackgroundJob(60000)).not.toThrow();
+    });
+
+    it('T059-019: isBackgroundJobRunning returns true', () => {
+      archivalManager.startBackgroundJob(60000);
+      expect(archivalManager.isBackgroundJobRunning()).toBe(true);
+    });
+
+    it('T059-020: Background job stops without error', () => {
+      archivalManager.startBackgroundJob(60000);
+      expect(() => archivalManager.stopBackgroundJob()).not.toThrow();
+    });
+
+    it('T059-021: Job not running after stop', () => {
+      archivalManager.startBackgroundJob(60000);
+      archivalManager.stopBackgroundJob();
+      expect(archivalManager.isBackgroundJobRunning()).toBe(false);
+    });
+  });
+
+  // 6. STATISTICS TESTS
+  describe('6. Statistics', () => {
+    beforeEach(() => {
+      setupTestDb();
+      archivalManager.init(db);
+      archivalManager.resetStats();
+    });
+
+    afterEach(() => {
+      teardownTestDb();
+    });
+
+    it('T059-022: Stats include totalScanned', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 100);
+
+      for (let i = 0; i < 5; i++) {
+        insertTestMemory({
+          title: `Stats Test ${i}`,
+          created_at: oldDate.toISOString(),
+          access_count: 0,
+          confidence: 0.1,
+          importance_tier: 'normal',
+          stability: 0.001,
+          half_life_days: 0.05,
+        });
+      }
+
+      archivalManager.runArchivalScan();
+      const stats = archivalManager.getStats();
+      expect(stats.totalScanned).toBeGreaterThanOrEqual(1);
+    });
+
+    it('T059-023: Stats include totalArchived', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 100);
+
+      for (let i = 0; i < 5; i++) {
+        insertTestMemory({
+          title: `Stats Test ${i}`,
+          created_at: oldDate.toISOString(),
+          access_count: 0,
+          confidence: 0.1,
+          importance_tier: 'normal',
+          stability: 0.001,
+          half_life_days: 0.05,
+        });
+      }
+
+      archivalManager.runArchivalScan();
+      const stats = archivalManager.getStats();
+      expect(stats.totalArchived).toBeGreaterThanOrEqual(1);
+    });
+
+    it('T059-024: Stats include lastScanTime', () => {
+      const oldDate = new Date();
+      oldDate.setDate(oldDate.getDate() - 100);
+
+      insertTestMemory({
+        title: 'Stats Test',
+        created_at: oldDate.toISOString(),
+        access_count: 0,
+        confidence: 0.1,
+        stability: 0.001,
+        half_life_days: 0.05,
+      });
+
+      archivalManager.runArchivalScan();
+      const stats = archivalManager.getStats();
+      expect(stats.lastScanTime).toBeTruthy();
+    });
+
+    it('T059-025: Stats include errors array', () => {
+      archivalManager.runArchivalScan();
+      const stats = archivalManager.getStats();
+      expect(Array.isArray(stats.errors)).toBe(true);
+    });
+  });
+
+  // 7. CHECK MEMORY STATUS TESTS
+  describe('7. Check Memory Status', () => {
+    beforeEach(() => {
+      setupTestDb();
+      archivalManager.init(db);
+    });
+
+    afterEach(() => {
+      teardownTestDb();
+    });
+
+    it('T059-026: checkMemoryArchivalStatus returns correct shape', () => {
+      const result = insertTestMemory({
+        title: 'Recent Status',
+        created_at: new Date().toISOString(),
+        importance_tier: 'normal',
+      });
+      const recentId = result.lastInsertRowid;
+
+      const recentStatus = archivalManager.checkMemoryArchivalStatus(recentId);
+      expect(typeof recentStatus.isArchived).toBe('boolean');
+      expect(typeof recentStatus.shouldArchive).toBe('boolean');
+    });
+
+    it('T059-027: Recent memory isArchived=false', () => {
+      const result = insertTestMemory({
+        title: 'Recent Status',
+        created_at: new Date().toISOString(),
+        importance_tier: 'normal',
+      });
+      const recentId = result.lastInsertRowid;
+
+      const recentStatus = archivalManager.checkMemoryArchivalStatus(recentId);
+      expect(recentStatus.isArchived).toBe(false);
+    });
+
+    it('T059-028: Non-existent memory returns defaults', () => {
+      const missingStatus = archivalManager.checkMemoryArchivalStatus(99999);
+      expect(missingStatus.isArchived).toBe(false);
+      expect(missingStatus.shouldArchive).toBe(false);
+    });
+  });
+
+  // 8. CLEANUP AND MODULE STATE TESTS
+  describe('8. Cleanup and Module State', () => {
+    afterEach(() => {
+      teardownTestDb();
+    });
+
+    it('T059-029: cleanup stops background job', () => {
+      setupTestDb();
+      archivalManager.init(db);
+      archivalManager.startBackgroundJob(60000);
+      archivalManager.cleanup();
+      expect(archivalManager.isBackgroundJobRunning()).toBe(false);
+    });
+
+    it('T059-030: resetStats clears all stats', () => {
+      setupTestDb();
+      archivalManager.init(db);
+      archivalManager.resetStats();
+      const stats = archivalManager.getStats();
+      expect(stats.totalScanned).toBe(0);
+      expect(stats.totalArchived).toBe(0);
+      expect(stats.lastScanTime).toBeNull();
+    });
+
+    it('T059-031: getArchivalCandidates returns [] without db', () => {
+      setupTestDb();
+      archivalManager.init(db);
+      archivalManager.cleanup();
+      const candidates = archivalManager.getArchivalCandidates();
+      expect(Array.isArray(candidates)).toBe(true);
+      expect(candidates.length).toBe(0);
+    });
+
+    it('T059-032: archiveMemory returns false without db', () => {
+      setupTestDb();
+      archivalManager.init(db);
+      archivalManager.cleanup();
+      const result = archivalManager.archiveMemory(1);
+      expect(result).toBe(false);
+    });
+  });
+});

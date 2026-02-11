@@ -423,7 +423,7 @@ ls test-fixtures/ | grep "priority"
 | [../../references/validation/validation_rules.md](../../references/validation/validation_rules.md) | Complete validation rule reference |
 | [../../references/validation/phase_checklists.md](../../references/validation/phase_checklists.md) | Validation phase definitions |
 | [../../references/templates/template_guide.md](../../references/templates/template_guide.md) | Template usage guide |
-| [../validate-spec.sh](../validate-spec.sh) | Main validation script |
+| [../spec/validate.sh](../spec/validate.sh) | Main validation script |
 
 ### Testing Resources
 
@@ -466,4 +466,4 @@ Additional fixtures for testing the Cognitive Memory Upgrade features including 
 
 ---
 
-*Test fixtures for SpecKit v2.0 validation system | Last updated: 2026-02-02*
+*Test fixtures for SpecKit v2.1 validation system | Last updated: 2026-02-07*

@@ -1,7 +1,7 @@
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: CORE -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
 

@@ -67,15 +67,15 @@ The Embeddings Factory is a multi-provider architecture for generating vector em
 
 ```bash
 # Without configuration: uses HF local (no API key needed)
-node context-server.js
+node context-server.ts
 
 # With Voyage (recommended): auto-detects the key
 export VOYAGE_API_KEY=pa-...
-node context-server.js
+node context-server.ts
 
 # With OpenAI: auto-detects the key
 export OPENAI_API_KEY=sk-...
-node context-server.js
+node context-server.ts
 ```
 
 ### Verify Installation
@@ -104,24 +104,23 @@ console.log(`Dimensions: ${embedding.length}`);
 
 ```
 embeddings/
-├── profile.js              # Defines EmbeddingProfile and slug management
-├── factory.js              # Factory that selects the appropriate provider
-├── index.js                # Public API exports
+├── profile.ts              # Defines EmbeddingProfile and slug management
+├── factory.ts              # Factory that selects the appropriate provider
 └── providers/
-    ├── hf-local.js         # HuggingFace local (fallback)
-    ├── voyage.js           # Voyage AI (recommended)
-    ├── openai.js           # OpenAI embeddings API
-    └── ollama.js           # Ollama (future)
+    ├── hf-local.ts         # HuggingFace local (fallback)
+    ├── voyage.ts           # Voyage AI (recommended)
+    ├── openai.ts           # OpenAI embeddings API
+    └── ollama.ts           # Ollama (future)
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `factory.js` | Provider selection logic and auto-detection |
-| `profile.js` | Database path generation based on provider/model |
-| `providers/voyage.js` | Voyage AI integration (recommended) |
-| `providers/hf-local.js` | Local HuggingFace fallback |
+| `factory.ts` | Provider selection logic and auto-detection |
+| `profile.ts` | Database path generation based on provider/model |
+| `providers/voyage.ts` | Voyage AI integration (recommended) |
+| `providers/hf-local.ts` | Local HuggingFace fallback |
 
 ---
 
@@ -361,7 +360,7 @@ echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 | Document | Purpose |
 |----------|---------|
 | [shared/README.md](../README.md) | Parent shared library documentation |
-| [generate-context.js](../../scripts/memory/generate-context.js) | Main script using embeddings |
+| [generate-context.js](../../scripts/dist/memory/generate-context.js) | Main script using embeddings |
 | [SKILL.md](../../../SKILL.md) | System spec-kit skill documentation |
 
 ### External Resources
@@ -377,9 +376,9 @@ echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 
 To implement the Ollama provider:
 
-1. Create `providers/ollama.js` similar to `openai.js`
+1. Create `providers/ollama.ts` similar to `openai.ts`
 2. HTTP requests to `http://localhost:11434/api/embeddings`
-3. Add `case 'ollama':` in `factory.js`
+3. Add `case 'ollama':` in `factory.ts`
 
 ---
 

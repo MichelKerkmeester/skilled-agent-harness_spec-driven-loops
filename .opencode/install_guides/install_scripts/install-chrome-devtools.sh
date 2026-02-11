@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────────
-# install-chrome-devtools.sh: Install Chrome DevTools MCP (browser-debugger-cli)
-# ───────────────────────────────────────────────────────────────────
-
-# Installs the bdg CLI for browser debugging capabilities.
-# 
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CHROME DEVTOOLS MCP INSTALLER
+# ───────────────────────────────────────────────────────────────
+# Installs the bdg CLI (browser-debugger-cli) for Chrome DevTools
+# MCP integration with browser debugging capabilities.
+#
 # Usage:
 #   ./install-chrome-devtools.sh [OPTIONS]
 #
@@ -17,10 +17,10 @@
 
 set -euo pipefail
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
-# ───────────────────────────────────────────────────────────────────
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# ───────────────────────────────────────────────────────────────
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_utils.sh"
 
 readonly MCP_NAME="Chrome DevTools"
@@ -28,15 +28,15 @@ readonly MCP_PACKAGE="browser-debugger-cli@alpha"
 readonly CLI_COMMAND="bdg"
 readonly MIN_NODE_VERSION="18"
 
-# Script options
+# Script options (mutable, set via CLI flags)
 VERBOSE="${VERBOSE:-false}"
 SKIP_VERIFY="${SKIP_VERIFY:-false}"
 FORCE_INSTALL="${FORCE_INSTALL:-false}"
 ADD_PROFILE="${ADD_PROFILE:-false}"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 2. HELP
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 show_help() {
     cat << EOF
 ${MCP_NAME} Install Script
@@ -79,9 +79,9 @@ EXAMPLES:
 EOF
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 3. CHROME PATH DETECTION
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 # Detect Chrome installation path based on platform
 detect_chrome_path() {
@@ -207,9 +207,9 @@ add_chrome_path_to_profile() {
     return 0
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 4. INSTALLATION FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 # Check if bdg is already installed
 check_existing_installation() {
@@ -258,9 +258,9 @@ verify_installation() {
     fi
     
     # List CDP domains (quick functional test)
-    if $CLI_COMMAND --list &> /dev/null; then
+    if "$CLI_COMMAND" --list &> /dev/null; then
         local domain_count
-        domain_count=$($CLI_COMMAND --list 2>/dev/null | wc -l | tr -d ' ')
+        domain_count=$("$CLI_COMMAND" --list 2>/dev/null | wc -l | tr -d ' ')
         log_success "CDP domains available: ${domain_count}"
     else
         log_warn "Could not list CDP domains (may need Chrome running)"
@@ -269,9 +269,9 @@ verify_installation() {
     return 0
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 5. MAIN
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 main() {
     # Parse arguments

@@ -1,7 +1,7 @@
 # Implementation Plan: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 2 plan demonstrating verification-focused
 planning. Note the addition of Phase Dependencies, Effort Estimation, and Enhanced

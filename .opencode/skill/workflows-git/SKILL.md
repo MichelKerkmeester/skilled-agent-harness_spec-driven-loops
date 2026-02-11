@@ -276,7 +276,7 @@ memory_search({ query: "branch strategy decisions", includeContent: true })
 
 ### Available Tools (Code Mode Access)
 
-**Access Pattern:** `github.github.{tool_name}({...})`
+**Access Pattern:** `github.github_{tool_name}({...})`
 
 | Category          | Tools                                                                                                                                                                                                                                                                                                                                                           | Description                                                                       |
 | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
@@ -294,7 +294,7 @@ memory_search({ query: "branch strategy decisions", includeContent: true })
 ```typescript
 // List open PRs
 call_tool_chain({
-  code: `await github.github.list_pull_requests({
+  code: `await github.github_list_pull_requests({
     owner: 'owner',
     repo: 'repo',
     state: 'open'
@@ -303,7 +303,7 @@ call_tool_chain({
 
 // Create PR with full details
 call_tool_chain({
-  code: `await github.github.create_pull_request({
+  code: `await github.github_create_pull_request({
     owner: 'owner',
     repo: 'repo',
     title: 'feat(auth): add OAuth2 login',
@@ -315,7 +315,7 @@ call_tool_chain({
 
 // Get issue details
 call_tool_chain({
-  code: `await github.github.get_issue({
+  code: `await github.github_get_issue({
     owner: 'owner',
     repo: 'repo',
     issue_number: 123
@@ -324,7 +324,7 @@ call_tool_chain({
 
 // Get files changed in PR
 call_tool_chain({
-  code: `await github.github.get_pull_request_files({
+  code: `await github.github_get_pull_request_files({
     owner: 'owner',
     repo: 'repo',
     pull_number: 42
@@ -333,7 +333,7 @@ call_tool_chain({
 
 // Get PR status checks
 call_tool_chain({
-  code: `await github.github.get_pull_request_status({
+  code: `await github.github_get_pull_request_status({
     owner: 'owner',
     repo: 'repo',
     pull_number: 42
@@ -352,7 +352,7 @@ call_tool_chain({
 call_tool_chain({
   code: `
     try {
-      const result = await github.github.create_pull_request({
+      const result = await github.github_create_pull_request({
         owner: 'owner',
         repo: 'repo',
         title: 'feat: new feature',
@@ -378,7 +378,7 @@ call_tool_chain({
 // Check for merge conflicts before merging
 call_tool_chain({
   code: `
-    const pr = await github.github.get_pull_request({
+    const pr = await github.github_get_pull_request({
       owner: 'owner',
       repo: 'repo',
       pull_number: 42
@@ -387,7 +387,7 @@ call_tool_chain({
     if (pr.mergeable === false) {
       console.log('Merge conflict detected. Resolve before merging.');
       // Option 1: Update branch from base
-      await github.github.update_pull_request_branch({
+      await github.github_update_pull_request_branch({
         owner: 'owner',
         repo: 'repo',
         pull_number: 42

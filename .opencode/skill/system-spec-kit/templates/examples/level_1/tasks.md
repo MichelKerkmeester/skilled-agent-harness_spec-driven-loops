@@ -1,7 +1,7 @@
 # Tasks: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 1 task list showing the minimal task tracking
 needed for a simple authentication feature. Note the straightforward task numbering

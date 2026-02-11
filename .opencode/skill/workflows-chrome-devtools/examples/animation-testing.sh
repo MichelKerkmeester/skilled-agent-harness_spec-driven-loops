@@ -2,12 +2,12 @@
 # Animation Testing Script
 # Purpose: Test animation performance and visual state with assertions
 # Usage: ./animation-testing.sh [URL] [SELECTOR] [TRIGGER_CLASS]
-# Example: ./animation-testing.sh https://anobel.com ".hero" "animate-in"
+# Example: ./animation-testing.sh https://example.com ".hero" "animate-in"
 
 set -e  # Exit on error
 
 # Configuration
-URL="${1:-https://anobel.com}"
+URL="${1:-https://example.com}"
 SELECTOR="${2:-.animated-element}"
 TRIGGER_CLASS="${3:-animate}"
 OUTPUT_DIR="animation-tests"

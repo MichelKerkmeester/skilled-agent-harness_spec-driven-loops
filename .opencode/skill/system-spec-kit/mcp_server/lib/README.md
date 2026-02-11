@@ -25,9 +25,9 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 | Category | Count | Details |
 |----------|-------|---------|
 | Module Categories | 15+ | search, scoring, cognitive, storage, parsing, providers, utils, session, errors, learning, architecture, embeddings, response, cache, config, validation, interfaces |
-| Cognitive Features | 12+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, summary generation, archival manager, consolidation, causal graph, corrections |
-| Search Methods | 8 | Vector similarity, hybrid search, RRF fusion, reranking, BM25 index, cross-encoder, intent classification, fuzzy matching |
-| Total Modules | 70+ | Organized into domain-specific folders |
+| Cognitive Features | 10+ | FSRS scheduler, attention decay, PE gating, working memory, tier classification, co-activation, temporal contiguity, archival manager, causal graph, corrections |
+| Search Methods | 7 | Vector similarity, hybrid search, RRF fusion, reranking, BM25 index, cross-encoder, intent classification |
+| Total Modules | 50+ | Organized into domain-specific folders |
 
 ### Key Features
 
@@ -54,33 +54,34 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 
 ### 30-Second Setup
 
-```javascript
-// 1. Import barrel exports
-const { search, scoring, cognitive } = require('./lib');
+```typescript
+// 1. Import barrel exports from compiled output
+import { search, scoring, cognitive } from '@spec-kit/mcp-server/dist/lib';
 
 // 2. Or import specific modules
-const { VectorIndex } = require('./lib/search/vector-index');
-const { calculate_attention_score } = require('./lib/cognitive/attention-decay');
+import { VectorIndex } from '@spec-kit/mcp-server/dist/lib/search/vector-index';
+import { calculate_attention_score } from '@spec-kit/mcp-server/dist/lib/cognitive/attention-decay';
 
 // 3. Initialize modules with database
-const db = require('better-sqlite3')('context-index.sqlite');
+import Database from 'better-sqlite3';
+const db = new Database('context-index.sqlite');
 cognitive.attentionDecay.init(db);
 ```
 
 ### Verify Installation
 
-```javascript
+```typescript
 // Check that modules are loaded
-const lib = require('./lib');
+import * as lib from '@spec-kit/mcp-server/dist/lib';
 console.log(Object.keys(lib));
 // Expected: ['search', 'scoring', 'cognitive', 'storage', 'parsing', 'providers', 'utils', 'errors', 'channel']
 ```
 
 ### First Use
 
-```javascript
+```typescript
 // Example: Perform semantic search
-const { search } = require('./lib');
+import { search } from '@spec-kit/mcp-server/dist/lib';
 const results = await search.vectorIndex.search_memories('authentication', { limit: 5 });
 console.log(`Found ${results.length} relevant memories`);
 ```
@@ -90,121 +91,143 @@ console.log(`Found ${results.length} relevant memories`);
 ## 3. 📁 STRUCTURE
 
 ```
-lib/
+lib/                            # TypeScript source files
 ├── search/                     # Search and retrieval (8 modules)
-│   ├── vector-index.js         # Vector similarity search with SQLite
-│   ├── hybrid-search.js        # Combined semantic + keyword search
-│   ├── rrf-fusion.js           # Reciprocal Rank Fusion scoring
-│   ├── reranker.js             # Result reranking
-│   ├── bm25-index.js           # BM25 lexical indexing (NEW)
-│   ├── cross-encoder.js        # Cross-encoder reranking (NEW)
-│   ├── intent-classifier.js    # 5 intent types classification (NEW)
-│   ├── fuzzy-match.js          # Query expansion with fuzzy matching (NEW)
-│   └── index.js                # Barrel export
+│   ├── vector-index.ts         # Vector similarity search with SQLite
+│   ├── vector-index-impl.ts    # Core vector index implementation
+│   ├── hybrid-search.ts        # Combined semantic + keyword search
+│   ├── rrf-fusion.ts           # Reciprocal Rank Fusion scoring
+│   ├── reranker.ts             # Result reranking
+│   ├── bm25-index.ts           # BM25 lexical indexing
+│   ├── cross-encoder.ts        # Cross-encoder reranking
+│   ├── intent-classifier.ts    # 5 intent types classification
+│   └── README.md               # Module documentation
 │
-├── scoring/                    # Ranking and scoring
-│   ├── scoring.js              # Base scoring utilities
-│   ├── composite-scoring.js    # Multi-factor composite scores (5-factor)
-│   ├── folder-scoring.js       # Spec folder ranking
-│   ├── importance-tiers.js     # Tier-based importance weights
-│   ├── confidence-tracker.js   # Confidence tracking
-│   └── index.js                # Barrel export
+├── scoring/                    # Ranking and scoring (4 modules)
+│   ├── composite-scoring.ts    # Multi-factor composite scores (5-factor)
+│   ├── folder-scoring.ts       # Spec folder ranking
+│   ├── importance-tiers.ts     # Tier-based importance weights
+│   ├── confidence-tracker.ts   # Confidence tracking
+│   └── README.md               # Module documentation
 │
-├── cognitive/                  # Cognitive memory features (12 modules)
-│   ├── attention-decay.js      # Multi-factor decay with type-specific half-lives
-│   ├── fsrs-scheduler.js       # FSRS algorithm
-│   ├── prediction-error-gate.js # PE gating for duplicates
-│   ├── working-memory.js       # Session working memory
-│   ├── tier-classifier.js      # 5-state memory classification
-│   ├── co-activation.js        # Related memory activation
-│   ├── temporal-contiguity.js  # Temporal memory linking
-│   ├── summary-generator.js    # Auto-summary generation
-│   ├── archival-manager.js     # 5-state archival model (NEW)
-│   ├── consolidation.js        # Memory consolidation pipeline (NEW)
-│   └── index.js                # Barrel export
+├── cognitive/                  # Cognitive memory features (8 modules)
+│   ├── attention-decay.ts      # Multi-factor decay with type-specific half-lives
+│   ├── fsrs-scheduler.ts       # FSRS algorithm
+│   ├── prediction-error-gate.ts # PE gating for duplicates
+│   ├── working-memory.ts       # Session working memory
+│   ├── tier-classifier.ts      # 5-state memory classification
+│   ├── co-activation.ts        # Related memory activation
+│   ├── temporal-contiguity.ts  # Temporal memory linking
+│   ├── archival-manager.ts     # 5-state archival model
+│   └── README.md               # Module documentation
 │
 ├── storage/                    # Data persistence (7 modules)
-│   ├── access-tracker.js       # Memory access tracking
-│   ├── checkpoints.js          # State checkpointing
-│   ├── history.js              # History management
-│   ├── index-refresh.js        # Index refresh utilities
-│   ├── causal-edges.js         # Causal graph storage (NEW)
-│   ├── incremental-index.js    # Incremental indexing (NEW)
-│   ├── transaction-manager.js  # Transaction management (NEW)
-│   └── index.js                # Barrel export
+│   ├── access-tracker.ts       # Memory access tracking
+│   ├── checkpoints.ts          # State checkpointing
+│   ├── history.ts              # History management
+│   ├── index-refresh.ts        # Index refresh utilities
+│   ├── causal-edges.ts         # Causal graph storage
+│   ├── incremental-index.ts    # Incremental indexing
+│   ├── transaction-manager.ts  # Transaction management
+│   └── README.md               # Module documentation
 │
-├── parsing/                    # Content parsing
-│   ├── memory-parser.js        # Memory file parser
-│   ├── trigger-matcher.js      # Trigger phrase matching
-│   ├── trigger-extractor.js    # Extract triggers from content
-│   ├── entity-scope.js         # Entity scope detection
-│   └── index.js                # Barrel export
+├── parsing/                    # Content parsing (3 modules)
+│   ├── memory-parser.ts        # Memory file parser
+│   ├── trigger-matcher.ts      # Trigger phrase matching
+│   ├── entity-scope.ts         # Entity scope detection
+│   └── README.md               # Module documentation
 │
-├── providers/                  # External services
-│   ├── embeddings.js           # Embedding provider (Voyage AI)
-│   ├── retry-manager.js        # API retry logic
-│   └── index.js                # Barrel export
+├── providers/                  # External services (2 modules)
+│   ├── embeddings.ts           # Embedding provider (Voyage AI)
+│   ├── retry-manager.ts        # API retry logic
+│   └── README.md               # Module documentation
 │
-├── session/                    # Session management (NEW)
-│   ├── session-manager.js      # Session deduplication (~1050 lines)
-│   └── index.js                # Barrel export
+├── session/                    # Session management (1 module)
+│   ├── session-manager.ts      # Session deduplication (~1050 lines)
+│   └── README.md               # Module documentation
 │
-├── errors/                     # Error handling (NEW)
-│   ├── recovery-hints.js       # 49 error codes with recovery hints
-│   └── index.js                # Barrel export
+├── errors/                     # Error handling (2 modules + barrel)
+│   ├── recovery-hints.ts       # 49 error codes with recovery hints
+│   ├── core.ts                 # Core error classes
+│   └── index.ts                # Barrel export
 │
-├── learning/                   # Learning system (NEW)
-│   ├── corrections.js          # Learning from corrections
-│   └── index.js                # Barrel export
+├── learning/                   # Learning system (1 module + barrel)
+│   ├── corrections.ts          # Learning from corrections
+│   └── index.ts                # Barrel export
 │
-├── architecture/               # Architecture definitions (NEW)
-│   ├── layer-definitions.js    # 7-layer MCP architecture
-│   └── index.js                # Barrel export
+├── architecture/               # Architecture definitions (1 module)
+│   ├── layer-definitions.ts    # 7-layer MCP architecture
+│   └── README.md               # Module documentation
 │
-├── embeddings/                 # Embedding providers (NEW)
-│   ├── provider-chain.js       # Embedding provider fallback chain
-│   └── index.js                # Barrel export
+├── embeddings/                 # Embedding providers (relocated)
+│   └── README.md               # Module documentation (provider-chain relocated)
 │
-├── response/                   # Response formatting (NEW)
-│   ├── envelope.js             # Standardized response envelope
-│   └── index.js                # Barrel export
+├── response/                   # Response formatting (1 module)
+│   ├── envelope.ts             # Standardized response envelope
+│   └── README.md               # Module documentation
 │
-├── utils/                      # Utilities
-│   ├── validators.js           # Input validation and sanitization
-│   ├── json-helpers.js         # Safe JSON operations
-│   ├── batch-processor.js      # Batch processing with retry
-│   ├── format-helpers.js       # Format utilities
-│   ├── token-budget.js         # Token budget management
-│   └── index.js                # Barrel export
+├── cache/                      # Caching layer (1 module)
+│   ├── tool-cache.ts           # Tool result caching
+│   └── README.md               # Module documentation
 │
-├── errors.js                   # Custom error classes
-├── channel.js                  # Communication channel
-├── index.js                    # Root barrel export
+├── config/                     # Configuration (2 modules)
+│   ├── memory-types.ts         # Memory type definitions
+│   ├── type-inference.ts       # Type inference utilities
+│   └── README.md               # Module documentation
+│
+├── interfaces/                 # TypeScript interfaces (1 module)
+│   ├── vector-store.ts         # Vector store interface
+│   └── README.md               # Module documentation
+│
+├── utils/                      # Utilities (4 modules)
+│   ├── format-helpers.ts       # Format utilities
+│   ├── logger.ts               # Logging utilities
+│   ├── path-security.ts        # Path validation and security
+│   ├── retry.ts                # Retry utilities
+│   └── README.md               # Module documentation
+│
+├── validation/                 # Input validation (1 module)
+│   ├── preflight.ts            # Preflight checks
+│   └── README.md               # Module documentation
+│
+├── errors.ts                   # Custom error classes (legacy)
 └── README.md                   # This file
+
+Compiled output location:
+dist/lib/                       # Compiled JavaScript + type definitions
+├── [same structure as lib/]
+├── *.js                        # Compiled JavaScript
+├── *.d.ts                      # TypeScript declarations
+└── *.js.map                    # Source maps
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `index.js` | Root barrel export for all lib modules |
-| `errors.js` | Custom error classes for error handling |
-| `channel.js` | Communication channel for MCP messages |
-| `search/vector-index.js` | Core vector similarity search with RRF fusion |
-| `search/bm25-index.js` | BM25 lexical search indexing (NEW) |
-| `search/cross-encoder.js` | Cross-encoder semantic reranking (NEW) |
-| `search/intent-classifier.js` | 5 intent types classification (NEW) |
-| `cognitive/attention-decay.js` | Multi-factor decay with type-specific half-lives |
-| `cognitive/fsrs-scheduler.js` | FSRS power-law forgetting curve algorithm |
-| `cognitive/prediction-error-gate.js` | Four-tier similarity gating to prevent duplicates |
-| `cognitive/archival-manager.js` | 5-state archival model (NEW) |
-| `cognitive/consolidation.js` | Memory consolidation pipeline (NEW) |
-| `session/session-manager.js` | Session deduplication (~1050 lines) (NEW) |
-| `errors/recovery-hints.js` | 49 error codes with recovery hints (NEW) |
-| `storage/causal-edges.js` | Causal graph storage (6 relationships) (NEW) |
-| `learning/corrections.js` | Learning from corrections (NEW) |
-| `scoring/importance-tiers.js` | Six-tier importance classification system |
-| `utils/validators.js` | Input validation and security checks |
+| `errors.ts` | Custom error classes for error handling (legacy) |
+| `search/vector-index.ts` | Core vector similarity search with RRF fusion |
+| `search/vector-index-impl.ts` | Core vector index implementation |
+| `search/reranker.ts` | Result reranking |
+| `search/bm25-index.ts` | BM25 lexical search indexing |
+| `search/cross-encoder.ts` | Cross-encoder semantic reranking |
+| `search/intent-classifier.ts` | 5 intent types classification |
+| `cognitive/attention-decay.ts` | Multi-factor decay with type-specific half-lives |
+| `cognitive/fsrs-scheduler.ts` | FSRS power-law forgetting curve algorithm |
+| `cognitive/prediction-error-gate.ts` | Four-tier similarity gating to prevent duplicates |
+| `cognitive/archival-manager.ts` | 5-state archival model |
+| `cognitive/temporal-contiguity.ts` | Temporal memory linking |
+| `session/session-manager.ts` | Session deduplication (~1050 lines) |
+| `errors/recovery-hints.ts` | 49 error codes with recovery hints |
+| `storage/causal-edges.ts` | Causal graph storage (6 relationships) |
+| `storage/history.ts` | History management |
+| `storage/index-refresh.ts` | Index refresh utilities |
+| `learning/corrections.ts` | Learning from corrections |
+| `scoring/importance-tiers.ts` | Six-tier importance classification system |
+| `parsing/entity-scope.ts` | Entity scope detection |
+| `utils/retry.ts` | Retry utilities |
+| `utils/logger.ts` | Logging utilities |
+| `validation/preflight.ts` | Input validation and security checks |
 
 ---
 
@@ -230,11 +253,11 @@ lib/
 
 ### Cognitive Features
 
-**FSRS Power-Law Decay**: Research-backed forgetting curve using formula R(t,S) = (1 + 0.235 × t/S)^(-0.5)
+**FSRS Power-Law Decay**: Research-backed forgetting curve using formula R(t,S) = (1 + (19/81) × t/S)^(-0.5) where 19/81 ≈ 0.2346
 
-```javascript
+```typescript
 // Calculate retrievability using FSRS algorithm
-const { cognitive } = require('./lib');
+import { cognitive } from '@spec-kit/mcp-server/dist/lib';
 
 const retrievability = cognitive.fsrsScheduler.calculate_retrievability(
   lastAccessTimestamp, // When memory was last accessed
@@ -249,7 +272,7 @@ const retrievability = cognitive.fsrsScheduler.calculate_retrievability(
 // ARCHIVED (R < 0.02)  - Effectively forgotten, time-based archival
 ```
 
-**Retrievability Calculation Priority** (tier-classifier.js):
+**Retrievability Calculation Priority** (tier-classifier.ts):
 
 The tier classifier uses this priority order when calculating retrievability:
 
@@ -261,7 +284,7 @@ The tier classifier uses this priority order when calculating retrievability:
 
 **Prediction Error Gating**: Prevents duplicate memories using three-tier similarity thresholds
 
-```javascript
+```typescript
 // Check if new memory is too similar to existing memories
 const isDuplicate = await cognitive.predictionErrorGate.is_duplicate(
   newContent,         // New memory content
@@ -277,7 +300,7 @@ const isDuplicate = await cognitive.predictionErrorGate.is_duplicate(
 
 **Testing Effect**: Accessing memories strengthens them (desirable difficulty)
 
-```javascript
+```typescript
 // Update stability when memory is accessed
 const newStability = cognitive.fsrsScheduler.update_stability(
   currentStability,   // Current memory stability
@@ -307,16 +330,16 @@ const newStability = cognitive.fsrsScheduler.update_stability(
 
 | Tier | Decay | Boost | Description |
 |------|-------|-------|-------------|
-| Constitutional | No | 10.0x | Permanent rules and core principles |
-| Critical | No | 5.0x | Essential information, breaking changes |
-| Important | No | 2.0x | Significant context, architectural decisions |
+| Constitutional | No | 3.0x | Permanent rules and core principles |
+| Critical | No | 2.0x | Essential information, breaking changes |
+| Important | No | 1.5x | Significant context, architectural decisions |
 | Normal | Yes | 1.0x | Standard information |
 | Temporary | Yes (fast) | 0.5x | Session-specific, ephemeral |
-| Deprecated | No | 0.1x | Obsolete but preserved |
+| Deprecated | No | 0.0x | Obsolete but preserved |
 
 **Composite Scoring**: Multi-factor ranking for spec folders
 
-```javascript
+```typescript
 // Combines recency, relevance, importance, and access patterns
 const score = scoring.folderScoring.calculate_folder_score({
   specFolder: 'specs/007-authentication',
@@ -339,7 +362,7 @@ const score = scoring.folderScoring.calculate_folder_score({
 
 **Checkpoints**: Save and restore memory state
 
-```javascript
+```typescript
 // Save current state
 await storage.checkpoints.save_checkpoint('before-refactor');
 
@@ -359,7 +382,7 @@ await storage.checkpoints.restore_checkpoint('before-refactor');
 
 **Trigger Matcher**: Matches user prompts to memory trigger phrases
 
-```javascript
+```typescript
 // Find memories with matching trigger phrases
 const matches = await parsing.triggerMatcher.match_triggers({
   prompt: 'How does authentication work?',
@@ -373,9 +396,9 @@ const matches = await parsing.triggerMatcher.match_triggers({
 
 ### Example 1: Semantic Memory Search
 
-```javascript
+```typescript
 // Search for memories related to a query
-const { search } = require('./lib');
+import { search } from '@spec-kit/mcp-server/dist/lib';
 
 const results = await search.vectorIndex.search_memories('authentication flow', {
   limit: 5,
@@ -393,9 +416,9 @@ results.forEach(r => {
 
 ### Example 2: FSRS-Based Memory State Calculation
 
-```javascript
+```typescript
 // Calculate memory state using FSRS retrievability
-const { cognitive } = require('./lib');
+import { cognitive } from '@spec-kit/mcp-server/dist/lib';
 
 const lastAccessed = new Date('2025-01-15').getTime();
 const stability = 7.0; // Memory stability in days
@@ -409,7 +432,7 @@ const retrievability = cognitive.fsrsScheduler.calculate_retrievability(
 );
 
 // Determine memory state (matches 5-state model)
-let state;
+let state: string;
 if (retrievability >= 0.80) state = 'HOT';
 else if (retrievability >= 0.25) state = 'WARM';
 else if (retrievability >= 0.05) state = 'COLD';
@@ -422,9 +445,9 @@ console.log(`Retrievability: ${retrievability.toFixed(2)}, State: ${state}`);
 
 ### Example 3: Hybrid Search with Fusion
 
-```javascript
+```typescript
 // Combine semantic and keyword search
-const { search } = require('./lib');
+import { search } from '@spec-kit/mcp-server/dist/lib';
 
 const results = await search.hybridSearch.search('TODO authentication', {
   limit: 10,
@@ -440,9 +463,9 @@ results.forEach(r => {
 
 ### Example 4: Batch Processing with Retry
 
-```javascript
+```typescript
 // Process items in batches with automatic retry
-const { utils } = require('./lib');
+import { utils } from '@spec-kit/mcp-server/dist/lib';
 
 const items = [/* ... large array ... */];
 
@@ -464,8 +487,8 @@ const results = await utils.process_batches(
 
 | Pattern | Code | When to Use |
 |---------|------|-------------|
-| Barrel imports | `const { search, cognitive } = require('./lib');` | Cleaner syntax, multiple modules |
-| Direct imports | `const { VectorIndex } = require('./lib/search/vector-index');` | Single module, tree-shaking |
+| Barrel imports | `import { search, cognitive } from '@spec-kit/mcp-server/dist/lib';` | Cleaner syntax, multiple modules |
+| Direct imports | `import { VectorIndex } from '@spec-kit/mcp-server/dist/lib/search/vector-index';` | Single module, tree-shaking |
 | Init modules | `cognitive.attentionDecay.init(db);` | Modules requiring database |
 | Error handling | `try { ... } catch (err) { if (err instanceof errors.ValidationError) ... }` | Specific error types |
 
@@ -477,18 +500,22 @@ const results = await utils.process_batches(
 
 #### Module not found
 
-**Symptom**: `Error: Cannot find module './lib/search'`
+**Symptom**: `Error: Cannot find module '@spec-kit/mcp-server/dist/lib/search'`
 
-**Cause**: Incorrect import path or missing barrel export
+**Cause**: TypeScript not compiled or incorrect import path
 
 **Solution**:
-```javascript
-// Use correct path relative to your file
-const { search } = require('../lib'); // If in parent directory
+```typescript
+// First, ensure TypeScript is compiled:
+// npm run build
+// or
+// tsc --project tsconfig.json
 
-// Or use absolute path
-const path = require('path');
-const lib = require(path.join(__dirname, '..', 'lib'));
+// Then use correct import from dist/
+import { search } from '@spec-kit/mcp-server/dist/lib';
+
+// Or use workspace alias (if configured)
+import { search } from '@spec-kit/mcp-server/dist/lib';
 ```
 
 #### Database not initialized
@@ -498,11 +525,12 @@ const lib = require(path.join(__dirname, '..', 'lib'));
 **Cause**: Cognitive modules require database initialization before use
 
 **Solution**:
-```javascript
-const db = require('better-sqlite3')('context-index.sqlite');
+```typescript
+import Database from 'better-sqlite3';
+const db = new Database('context-index.sqlite');
 
 // Initialize modules that need database
-const { cognitive } = require('./lib');
+import { cognitive } from '@spec-kit/mcp-server/dist/lib';
 cognitive.attentionDecay.init(db);
 cognitive.workingMemory.init(db);
 cognitive.coActivation.init(db);
@@ -520,7 +548,7 @@ cognitive.coActivation.init(db);
 export VOYAGE_API_KEY="your-api-key-here"
 
 # Or check rate limits in retry-manager
-const { providers } = require('./lib');
+import { providers } from '@spec-kit/mcp-server/dist/lib';
 // Adjust retry settings if needed
 ```
 
@@ -528,24 +556,25 @@ const { providers } = require('./lib');
 
 | Problem | Quick Fix |
 |---------|-----------|
-| Import errors | Use barrel exports: `require('./lib')` |
+| Import errors | Ensure TypeScript compiled, use: `import from '@spec-kit/mcp-server/dist/lib'` |
 | Database errors | Initialize modules: `module.init(db)` |
 | API rate limits | Check `VOYAGE_API_KEY` environment variable |
-| Validation errors | Check input against `INPUT_LIMITS` in validators |
+| Validation errors | Check input against `INPUT_LIMITS` in validation/preflight |
 
 ### Diagnostic Commands
 
-```javascript
+```typescript
 // Check module structure
-const lib = require('./lib');
+import * as lib from '@spec-kit/mcp-server/dist/lib';
 console.log('Available modules:', Object.keys(lib));
 
 // Verify database connection
-const db = require('better-sqlite3')('context-index.sqlite');
+import Database from 'better-sqlite3';
+const db = new Database('context-index.sqlite');
 console.log('Tables:', db.prepare('SELECT name FROM sqlite_master WHERE type="table"').all());
 
 // Test embedding provider
-const { providers } = require('./lib');
+import { providers } from '@spec-kit/mcp-server/dist/lib';
 const embedding = await providers.embeddings.get_embedding('test query');
 console.log('Embedding dimensions:', embedding.length);
 ```
@@ -583,4 +612,4 @@ console.log('Embedding dimensions:', embedding.length);
 
 ---
 
-*Documentation version: 1.3 | Last updated: 2026-01-28*
+*Documentation version: 1.4 | Last updated: 2026-02-11*

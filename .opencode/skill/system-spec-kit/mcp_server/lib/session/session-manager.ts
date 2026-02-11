@@ -1,0 +1,1089 @@
+// ---------------------------------------------------------------
+// MODULE: Session Manager
+// ---------------------------------------------------------------
+
+import crypto from 'crypto';
+import fs from 'fs';
+import path from 'path';
+
+import type { DatabaseExtended as Database } from '../../../shared/types';
+// T302: Import working-memory for immediate cleanup on session end (GAP 2)
+import * as workingMemory from '../cognitive/working-memory';
+
+/* ---------------------------------------------------------------
+   1. TYPES
+--------------------------------------------------------------- */
+
+interface SessionConfig {
+  sessionTtlMinutes: number;
+  maxEntriesPerSession: number;
+  enabled: boolean;
+}
+
+interface InitResult {
+  success: boolean;
+  error?: string;
+}
+
+interface MemoryInput {
+  id?: number;
+  file_path?: string;
+  anchorId?: string;
+  anchor_id?: string;
+  content_hash?: string;
+  title?: string;
+}
+
+interface MarkResult {
+  success: boolean;
+  hash?: string;
+  skipped?: boolean;
+  error?: string;
+}
+
+interface MarkBatchResult {
+  success: boolean;
+  markedCount: number;
+  skipped?: boolean;
+  error?: string;
+}
+
+interface SessionStats {
+  totalSent: number;
+  oldestEntry: string | null;
+  newestEntry: string | null;
+}
+
+interface FilterResult {
+  filtered: MemoryInput[];
+  dedupStats: {
+    enabled: boolean;
+    filtered: number;
+    total: number;
+    tokenSavingsEstimate?: string;
+    sessionId?: string;
+  };
+}
+
+interface CleanupResult {
+  success: boolean;
+  deletedCount: number;
+}
+
+interface StaleCleanupResult {
+  success: boolean;
+  workingMemoryDeleted: number;
+  sentMemoriesDeleted: number;
+  sessionStateDeleted: number;
+  errors: string[];
+}
+
+interface SessionState {
+  sessionId: string;
+  status: string;
+  specFolder: string | null;
+  currentTask: string | null;
+  lastAction: string | null;
+  contextSummary: string | null;
+  pendingWork: string | null;
+  data: Record<string, unknown> | null;
+  createdAt: string;
+  updatedAt: string;
+  _recovered: boolean;
+}
+
+interface SessionStateInput {
+  specFolder?: string | null;
+  currentTask?: string | null;
+  lastAction?: string | null;
+  contextSummary?: string | null;
+  pendingWork?: string | null;
+  data?: Record<string, unknown> | null;
+}
+
+interface RecoverResult {
+  success: boolean;
+  state?: SessionState | null;
+  _recovered?: boolean;
+  error?: string;
+}
+
+interface InterruptedSession {
+  sessionId: string;
+  specFolder: string | null;
+  currentTask: string | null;
+  lastAction: string | null;
+  contextSummary: string | null;
+  pendingWork: string | null;
+  updatedAt: string;
+}
+
+interface InterruptedSessionsResult {
+  success: boolean;
+  sessions: InterruptedSession[];
+  error?: string;
+}
+
+interface ResetResult {
+  success: boolean;
+  interruptedCount: number;
+  error?: string;
+}
+
+interface CheckpointResult {
+  success: boolean;
+  filePath?: string;
+  note?: string;
+  error?: string;
+}
+
+interface ContinueSessionInput {
+  sessionId: string;
+  specFolder?: string | null;
+  currentTask?: string | null;
+  lastAction?: string | null;
+  contextSummary?: string | null;
+  pendingWork?: string | null;
+  data?: Record<string, unknown> | null;
+}
+
+/* ---------------------------------------------------------------
+   2. CONFIGURATION
+--------------------------------------------------------------- */
+
+/**
+ * Session configuration with defaults from spec.md (R7 mitigation)
+ * - Session TTL: 30 minutes
+ * - Cap at 100 entries per session
+ */
+const SESSION_CONFIG: SessionConfig = {
+  sessionTtlMinutes: parseInt(process.env.SESSION_TTL_MINUTES as string, 10) || 30,
+  maxEntriesPerSession: parseInt(process.env.SESSION_MAX_ENTRIES as string, 10) || 100,
+  enabled: process.env.DISABLE_SESSION_DEDUP !== 'true',
+};
+
+/* ---------------------------------------------------------------
+   3. DATABASE REFERENCE
+--------------------------------------------------------------- */
+
+let db: Database | null = null;
+// P4-18 FIX: Track periodic cleanup interval for expired sessions
+let cleanupInterval: ReturnType<typeof setInterval> | null = null;
+const CLEANUP_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes
+
+// T302: Track stale session cleanup interval (runs hourly)
+let staleCleanupInterval: ReturnType<typeof setInterval> | null = null;
+const STALE_CLEANUP_INTERVAL_MS = parseInt(process.env.STALE_CLEANUP_INTERVAL_MS as string, 10) || 60 * 60 * 1000; // 1 hour
+const STALE_SESSION_THRESHOLD_MS = parseInt(process.env.STALE_SESSION_THRESHOLD_MS as string, 10) || 24 * 60 * 60 * 1000; // 24 hours
+
+function init(database: Database): InitResult {
+  if (!database) {
+    console.error('[session-manager] WARNING: init() called with null database');
+    return { success: false, error: 'Database reference is required' };
+  }
+  db = database;
+
+  const schemaResult = ensureSchema();
+  if (!schemaResult.success) {
+    return schemaResult;
+  }
+
+  cleanupExpiredSessions();
+
+  // P4-18 FIX: Set up periodic cleanup instead of only running once at init.
+  // Clear any existing interval first (in case of reinitializeDatabase).
+  if (cleanupInterval) {
+    clearInterval(cleanupInterval);
+  }
+  cleanupInterval = setInterval(() => {
+    try {
+      cleanupExpiredSessions();
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.warn(`[session-manager] Periodic cleanup failed: ${message}`);
+    }
+  }, CLEANUP_INTERVAL_MS);
+  // Ensure interval doesn't prevent process exit
+  if (cleanupInterval && typeof cleanupInterval === 'object' && 'unref' in cleanupInterval) {
+    cleanupInterval.unref();
+  }
+
+  // T302: Run stale session cleanup on startup and set up hourly interval
+  try {
+    cleanupStaleSessions();
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.warn(`[session-manager] Initial stale session cleanup failed: ${message}`);
+  }
+
+  if (staleCleanupInterval) {
+    clearInterval(staleCleanupInterval);
+  }
+  staleCleanupInterval = setInterval(() => {
+    try {
+      cleanupStaleSessions();
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.warn(`[session-manager] Periodic stale session cleanup failed: ${message}`);
+    }
+  }, STALE_CLEANUP_INTERVAL_MS);
+  if (staleCleanupInterval && typeof staleCleanupInterval === 'object' && 'unref' in staleCleanupInterval) {
+    staleCleanupInterval.unref();
+  }
+
+  return { success: true };
+}
+
+function getDb(): Database | null {
+  return db;
+}
+
+/* ---------------------------------------------------------------
+   4. SCHEMA MANAGEMENT
+--------------------------------------------------------------- */
+
+const SCHEMA_SQL = `
+  CREATE TABLE IF NOT EXISTS session_sent_memories (
+    session_id TEXT NOT NULL,
+    memory_hash TEXT NOT NULL,
+    memory_id INTEGER,
+    sent_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (session_id, memory_hash)
+  );
+`;
+
+const INDEX_SQL: string[] = [
+  'CREATE INDEX IF NOT EXISTS idx_session_sent_session ON session_sent_memories(session_id);',
+  'CREATE INDEX IF NOT EXISTS idx_session_sent_time ON session_sent_memories(sent_at);',
+];
+
+function ensureSchema(): InitResult {
+  if (!db) {
+    return { success: false, error: 'Database not initialized. Server may still be starting up.' };
+  }
+
+  try {
+    db.exec(SCHEMA_SQL);
+    for (const indexSql of INDEX_SQL) {
+      db.exec(indexSql);
+    }
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] Schema creation failed: ${message}`);
+    return { success: false, error: message };
+  }
+}
+
+/* ---------------------------------------------------------------
+   5. HASH GENERATION
+--------------------------------------------------------------- */
+
+function generateMemoryHash(memory: MemoryInput): string {
+  if (!memory) {
+    throw new Error('Memory object is required for hash generation');
+  }
+
+  let hashInput: string;
+
+  if (memory.content_hash) {
+    hashInput = memory.content_hash;
+  } else if (memory.id !== undefined) {
+    // P4-16 FIX: Use both anchor_id (snake_case) and anchorId (camelCase)
+    // since callers may pass either form.
+    hashInput = `${memory.id}:${memory.anchor_id || memory.anchorId || ''}:${memory.file_path || ''}`;
+  } else {
+    hashInput = JSON.stringify({
+      // P4-16 FIX: Prefer anchor_id, fall back to anchorId
+      anchor: memory.anchor_id || memory.anchorId,
+      path: memory.file_path,
+      title: memory.title,
+    });
+  }
+
+  return crypto.createHash('sha256').update(hashInput).digest('hex').slice(0, 16);
+}
+
+/* ---------------------------------------------------------------
+   6. DEDUPLICATION METHODS
+--------------------------------------------------------------- */
+
+function shouldSendMemory(sessionId: string, memory: MemoryInput | number): boolean {
+  if (!SESSION_CONFIG.enabled) return true;
+  if (!db) {
+    console.warn('[session-manager] Database not initialized. Server may still be starting up. Allowing memory.');
+    return true;
+  }
+  if (!sessionId || typeof sessionId !== 'string') return true;
+
+  try {
+    const memoryObj: MemoryInput = typeof memory === 'number' ? { id: memory } : memory;
+    const hash = generateMemoryHash(memoryObj);
+
+    const stmt = db.prepare(`
+      SELECT 1 FROM session_sent_memories
+      WHERE session_id = ? AND memory_hash = ?
+      LIMIT 1
+    `);
+    const exists = stmt.get(sessionId, hash);
+    return !exists;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[session-manager] shouldSendMemory check failed: ${message}`);
+    return true;
+  }
+}
+
+function shouldSendMemoriesBatch(sessionId: string, memories: MemoryInput[]): Map<number | undefined, boolean> {
+  const result = new Map<number | undefined, boolean>();
+
+  if (!SESSION_CONFIG.enabled || !db || !sessionId || !Array.isArray(memories)) {
+    memories.forEach((m) => result.set(m.id, true));
+    return result;
+  }
+
+  try {
+    const existingStmt = db.prepare(`
+      SELECT memory_hash FROM session_sent_memories WHERE session_id = ?
+    `);
+    const existingRows = existingStmt.all(sessionId) as { memory_hash: string }[];
+    const existingHashes = new Set(existingRows.map((r) => r.memory_hash));
+
+    for (const memory of memories) {
+      const hash = generateMemoryHash(memory);
+      result.set(memory.id, !existingHashes.has(hash));
+    }
+
+    return result;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[session-manager] shouldSendMemoriesBatch failed: ${message}`);
+    memories.forEach((m) => result.set(m.id, true));
+    return result;
+  }
+}
+
+function markMemorySent(sessionId: string, memory: MemoryInput | number): MarkResult {
+  if (!SESSION_CONFIG.enabled) return { success: true, skipped: true };
+  if (!db) return { success: false, error: 'Database not initialized. Server may still be starting up.' };
+  if (!sessionId || typeof sessionId !== 'string') {
+    return { success: false, error: 'Valid sessionId is required' };
+  }
+
+  try {
+    const memoryObj: MemoryInput = typeof memory === 'number' ? { id: memory } : memory;
+    const hash = generateMemoryHash(memoryObj);
+    const memoryId = memoryObj.id || null;
+
+    const stmt = db.prepare(`
+      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+      VALUES (?, ?, ?, ?)
+    `);
+    stmt.run(sessionId, hash, memoryId, new Date().toISOString());
+
+    enforceEntryLimit(sessionId);
+    return { success: true, hash };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] markMemorySent failed: ${message}`);
+    return { success: false, error: message };
+  }
+}
+
+function markMemoriesSentBatch(sessionId: string, memories: MemoryInput[]): MarkBatchResult {
+  if (!SESSION_CONFIG.enabled) return { success: true, markedCount: 0, skipped: true };
+  if (!db) return { success: false, markedCount: 0, error: 'Database not initialized. Server may still be starting up.' };
+  if (!sessionId || !Array.isArray(memories) || memories.length === 0) {
+    return { success: false, markedCount: 0, error: 'Valid sessionId and memories array required' };
+  }
+
+  try {
+    const now = new Date().toISOString();
+    let markedCount = 0;
+
+    const insertStmt = db.prepare(`
+      INSERT OR IGNORE INTO session_sent_memories (session_id, memory_hash, memory_id, sent_at)
+      VALUES (?, ?, ?, ?)
+    `);
+
+    const runBatch = db.transaction(() => {
+      for (const memory of memories) {
+        const hash = generateMemoryHash(memory);
+        const result = insertStmt.run(sessionId, hash, memory.id || null, now);
+        if (result.changes > 0) {
+          markedCount++;
+        }
+      }
+    });
+
+    runBatch();
+    enforceEntryLimit(sessionId);
+
+    return { success: true, markedCount };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] markMemoriesSentBatch failed: ${message}`);
+    return { success: false, markedCount: 0, error: message };
+  }
+}
+
+/* ---------------------------------------------------------------
+   7. SESSION PERSISTENCE
+--------------------------------------------------------------- */
+
+function enforceEntryLimit(sessionId: string): void {
+  if (!db || !sessionId) return;
+
+  try {
+    const countStmt = db.prepare(`
+      SELECT COUNT(*) as count FROM session_sent_memories WHERE session_id = ?
+    `);
+    const row = countStmt.get(sessionId) as { count: number } | undefined;
+    const count = row?.count ?? 0;
+
+    if (count <= SESSION_CONFIG.maxEntriesPerSession) return;
+
+    const excess = count - SESSION_CONFIG.maxEntriesPerSession;
+    const deleteStmt = db.prepare(`
+      DELETE FROM session_sent_memories
+      WHERE session_id = ? AND rowid IN (
+        SELECT rowid FROM session_sent_memories
+        WHERE session_id = ?
+        ORDER BY sent_at ASC
+        LIMIT ?
+      )
+    `);
+    deleteStmt.run(sessionId, sessionId, excess);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[session-manager] enforce_entry_limit failed: ${message}`);
+  }
+}
+
+function cleanupExpiredSessions(): CleanupResult {
+  if (!db) return { success: false, deletedCount: 0 };
+
+  try {
+    const cutoffMs = Date.now() - SESSION_CONFIG.sessionTtlMinutes * 60 * 1000;
+    const cutoffIso = new Date(cutoffMs).toISOString();
+
+    const stmt = db.prepare(`
+      DELETE FROM session_sent_memories WHERE sent_at < ?
+    `);
+    const result = stmt.run(cutoffIso);
+
+    return { success: true, deletedCount: result.changes };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] cleanup_expired_sessions failed: ${message}`);
+    return { success: false, deletedCount: 0 };
+  }
+}
+
+/**
+ * T302: Clean up stale sessions across all session-related tables.
+ * 
+ * Targets:
+ *   - working_memory: entries with last_focused older than threshold
+ *   - session_sent_memories: entries with sent_at older than threshold
+ *   - session_state: completed/interrupted sessions older than threshold
+ * 
+ * Preserves:
+ *   - session_learning records (permanent, never cleaned)
+ *   - Active sessions (session_state with status='active')
+ * 
+ * @param thresholdMs - Inactivity threshold in milliseconds (default: STALE_SESSION_THRESHOLD_MS / 24h)
+ */
+function cleanupStaleSessions(thresholdMs: number = STALE_SESSION_THRESHOLD_MS): StaleCleanupResult {
+  if (!db) {
+    return { success: false, workingMemoryDeleted: 0, sentMemoriesDeleted: 0, sessionStateDeleted: 0, errors: ['Database not initialized'] };
+  }
+
+  const errors: string[] = [];
+  let workingMemoryDeleted = 0;
+  let sentMemoriesDeleted = 0;
+  let sessionStateDeleted = 0;
+  const cutoffIso = new Date(Date.now() - thresholdMs).toISOString();
+
+  // 1. Clean stale working_memory entries
+  try {
+    const wmStmt = db.prepare('DELETE FROM working_memory WHERE last_focused < ?');
+    const wmResult = wmStmt.run(cutoffIso);
+    workingMemoryDeleted = wmResult.changes;
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    // Table may not exist if working-memory module was never initialized
+    if (!msg.includes('no such table')) {
+      errors.push(`working_memory cleanup: ${msg}`);
+    }
+  }
+
+  // 2. Clean stale session_sent_memories entries
+  try {
+    const smStmt = db.prepare('DELETE FROM session_sent_memories WHERE sent_at < ?');
+    const smResult = smStmt.run(cutoffIso);
+    sentMemoriesDeleted = smResult.changes;
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    if (!msg.includes('no such table')) {
+      errors.push(`session_sent_memories cleanup: ${msg}`);
+    }
+  }
+
+  // 3. Clean completed/interrupted session_state entries (NEVER clean active sessions)
+  try {
+    const ssStmt = db.prepare(
+      `DELETE FROM session_state WHERE status IN ('completed', 'interrupted') AND updated_at < ?`
+    );
+    const ssResult = ssStmt.run(cutoffIso);
+    sessionStateDeleted = ssResult.changes;
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    if (!msg.includes('no such table')) {
+      errors.push(`session_state cleanup: ${msg}`);
+    }
+  }
+
+  const totalDeleted = workingMemoryDeleted + sentMemoriesDeleted + sessionStateDeleted;
+  if (totalDeleted > 0) {
+    console.error(
+      `[session-manager] Stale session cleanup: removed ${workingMemoryDeleted} working_memory, ` +
+      `${sentMemoriesDeleted} sent_memories, ${sessionStateDeleted} session_state entries ` +
+      `(threshold: ${Math.round(thresholdMs / 3600000)}h)`
+    );
+  }
+
+  if (errors.length > 0) {
+    console.warn(`[session-manager] Stale cleanup had ${errors.length} error(s): ${errors.join('; ')}`);
+  }
+
+  return {
+    success: errors.length === 0,
+    workingMemoryDeleted,
+    sentMemoriesDeleted,
+    sessionStateDeleted,
+    errors,
+  };
+}
+
+function clearSession(sessionId: string): CleanupResult {
+  if (!db || !sessionId) return { success: false, deletedCount: 0 };
+
+  try {
+    const stmt = db.prepare(`
+      DELETE FROM session_sent_memories WHERE session_id = ?
+    `);
+    const result = stmt.run(sessionId);
+
+    // T302: Immediately clear working memory for cleared session (GAP 2)
+    try {
+      workingMemory.clearSession(sessionId);
+    } catch (wmErr: unknown) {
+      const wmMsg = wmErr instanceof Error ? wmErr.message : String(wmErr);
+      console.warn(`[session-manager] Working memory cleanup for ${sessionId} failed: ${wmMsg}`);
+    }
+
+    return { success: true, deletedCount: result.changes };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] clear_session failed: ${message}`);
+    return { success: false, deletedCount: 0 };
+  }
+}
+
+function getSessionStats(sessionId: string): SessionStats {
+  if (!db || !sessionId) return { totalSent: 0, oldestEntry: null, newestEntry: null };
+
+  try {
+    const stmt = db.prepare(`
+      SELECT
+        COUNT(*) as total_sent,
+        MIN(sent_at) as oldest_entry,
+        MAX(sent_at) as newest_entry
+      FROM session_sent_memories
+      WHERE session_id = ?
+    `);
+    const row = stmt.get(sessionId) as { total_sent: number; oldest_entry: string | null; newest_entry: string | null } | undefined;
+
+    return {
+      totalSent: row?.total_sent || 0,
+      oldestEntry: row?.oldest_entry || null,
+      newestEntry: row?.newest_entry || null,
+    };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[session-manager] get_session_stats failed: ${message}`);
+    return { totalSent: 0, oldestEntry: null, newestEntry: null };
+  }
+}
+
+/* ---------------------------------------------------------------
+   8. INTEGRATION HELPERS
+--------------------------------------------------------------- */
+
+function filterSearchResults(sessionId: string, results: MemoryInput[]): FilterResult {
+  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(results)) {
+    return {
+      filtered: results || [],
+      dedupStats: { enabled: false, filtered: 0, total: results?.length || 0 },
+    };
+  }
+
+  const shouldSendMap = shouldSendMemoriesBatch(sessionId, results);
+
+  const filtered = results.filter((r) => shouldSendMap.get(r.id) !== false);
+  const filteredCount = results.length - filtered.length;
+
+  return {
+    filtered,
+    dedupStats: {
+      enabled: true,
+      filtered: filteredCount,
+      total: results.length,
+      tokenSavingsEstimate: filteredCount > 0 ? `~${filteredCount * 200} tokens` : '0',
+    },
+  };
+}
+
+function markResultsSent(sessionId: string, results: MemoryInput[]): MarkBatchResult {
+  if (!SESSION_CONFIG.enabled || !sessionId || !Array.isArray(results) || results.length === 0) {
+    return { success: true, markedCount: 0 };
+  }
+
+  return markMemoriesSentBatch(sessionId, results);
+}
+
+function isEnabled(): boolean {
+  return SESSION_CONFIG.enabled;
+}
+
+function getConfig(): SessionConfig {
+  return { ...SESSION_CONFIG };
+}
+
+/* ---------------------------------------------------------------
+   9. SESSION STATE MANAGEMENT
+--------------------------------------------------------------- */
+
+const SESSION_STATE_SCHEMA_SQL = `
+  CREATE TABLE IF NOT EXISTS session_state (
+    session_id TEXT PRIMARY KEY,
+    status TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active', 'completed', 'interrupted')),
+    spec_folder TEXT,
+    current_task TEXT,
+    last_action TEXT,
+    context_summary TEXT,
+    pending_work TEXT,
+    state_data TEXT,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+  );
+`;
+
+const SESSION_STATE_INDEX_SQL: string[] = [
+  'CREATE INDEX IF NOT EXISTS idx_session_state_status ON session_state(status);',
+  'CREATE INDEX IF NOT EXISTS idx_session_state_updated ON session_state(updated_at);',
+];
+
+function ensureSessionStateSchema(): InitResult {
+  if (!db) return { success: false, error: 'Database not initialized. Server may still be starting up.' };
+
+  try {
+    db.exec(SESSION_STATE_SCHEMA_SQL);
+    for (const indexSql of SESSION_STATE_INDEX_SQL) {
+      db.exec(indexSql);
+    }
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] Session state schema creation failed: ${message}`);
+    return { success: false, error: message };
+  }
+}
+
+function saveSessionState(sessionId: string, state: SessionStateInput = {}): InitResult {
+  if (!db) return { success: false, error: 'Database not initialized. Server may still be starting up.' };
+  if (!sessionId || typeof sessionId !== 'string') {
+    return { success: false, error: 'Valid sessionId is required' };
+  }
+
+  try {
+    ensureSessionStateSchema();
+    const now = new Date().toISOString();
+    const stateData = state.data ? JSON.stringify(state.data) : null;
+
+    const stmt = db.prepare(`
+      INSERT INTO session_state (
+        session_id, status, spec_folder, current_task, last_action,
+        context_summary, pending_work, state_data, created_at, updated_at
+      )
+      VALUES (?, 'active', ?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(session_id) DO UPDATE SET
+        status = 'active',
+        spec_folder = COALESCE(excluded.spec_folder, session_state.spec_folder),
+        current_task = COALESCE(excluded.current_task, session_state.current_task),
+        last_action = COALESCE(excluded.last_action, session_state.last_action),
+        context_summary = COALESCE(excluded.context_summary, session_state.context_summary),
+        pending_work = COALESCE(excluded.pending_work, session_state.pending_work),
+        state_data = COALESCE(excluded.state_data, session_state.state_data),
+        updated_at = excluded.updated_at
+    `);
+
+    stmt.run(
+      sessionId,
+      state.specFolder || null,
+      state.currentTask || null,
+      state.lastAction || null,
+      state.contextSummary || null,
+      state.pendingWork || null,
+      stateData,
+      now,
+      now
+    );
+
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] save_session_state failed: ${message}`);
+    return { success: false, error: message };
+  }
+}
+
+function completeSession(sessionId: string): InitResult {
+  if (!db || !sessionId) return { success: false, error: 'Database or sessionId not available' };
+
+  try {
+    const stmt = db.prepare(`
+      UPDATE session_state
+      SET status = 'completed', updated_at = ?
+      WHERE session_id = ?
+    `);
+    stmt.run(new Date().toISOString(), sessionId);
+
+    // T302: Immediately clear working memory for completed session (GAP 2)
+    try {
+      workingMemory.clearSession(sessionId);
+    } catch (wmErr: unknown) {
+      const wmMsg = wmErr instanceof Error ? wmErr.message : String(wmErr);
+      console.warn(`[session-manager] Working memory cleanup for ${sessionId} failed: ${wmMsg}`);
+    }
+
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] complete_session failed: ${message}`);
+    return { success: false, error: message };
+  }
+}
+
+function resetInterruptedSessions(): ResetResult {
+  if (!db) return { success: false, interruptedCount: 0, error: 'Database not initialized. Server may still be starting up.' };
+
+  try {
+    ensureSessionStateSchema();
+    const stmt = db.prepare(`
+      UPDATE session_state
+      SET status = 'interrupted', updated_at = ?
+      WHERE status = 'active'
+    `);
+    const result = stmt.run(new Date().toISOString());
+
+    return { success: true, interruptedCount: result.changes };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] reset_interrupted_sessions failed: ${message}`);
+    return { success: false, interruptedCount: 0, error: message };
+  }
+}
+
+function recoverState(sessionId: string): RecoverResult {
+  if (!db) return { success: false, error: 'Database not initialized. Server may still be starting up.' };
+  if (!sessionId || typeof sessionId !== 'string') {
+    return { success: false, error: 'Valid sessionId is required' };
+  }
+
+  try {
+    ensureSessionStateSchema();
+
+    const stmt = db.prepare(`
+      SELECT session_id, status, spec_folder, current_task, last_action,
+             context_summary, pending_work, state_data, created_at, updated_at
+      FROM session_state
+      WHERE session_id = ?
+    `);
+    const row = stmt.get(sessionId) as Record<string, unknown> | undefined;
+
+    if (!row) {
+      return { success: true, state: null, _recovered: false };
+    }
+
+    const state: SessionState = {
+      sessionId: row.session_id as string,
+      status: row.status as string,
+      specFolder: (row.spec_folder as string) || null,
+      currentTask: (row.current_task as string) || null,
+      lastAction: (row.last_action as string) || null,
+      contextSummary: (row.context_summary as string) || null,
+      pendingWork: (row.pending_work as string) || null,
+      data: row.state_data ? JSON.parse(row.state_data as string) : null,
+      createdAt: row.created_at as string,
+      updatedAt: row.updated_at as string,
+      _recovered: row.status === 'interrupted',
+    };
+
+    if (row.status === 'interrupted') {
+      const updateStmt = db.prepare(`
+        UPDATE session_state
+        SET status = 'active', updated_at = ?
+        WHERE session_id = ?
+      `);
+      updateStmt.run(new Date().toISOString(), sessionId);
+    }
+
+    return { success: true, state, _recovered: state._recovered };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] recover_state failed: ${message}`);
+    return { success: false, error: message };
+  }
+}
+
+function getInterruptedSessions(): InterruptedSessionsResult {
+  if (!db) return { success: false, sessions: [], error: 'Database not initialized. Server may still be starting up.' };
+
+  try {
+    ensureSessionStateSchema();
+    const stmt = db.prepare(`
+      SELECT session_id, spec_folder, current_task, last_action,
+             context_summary, pending_work, updated_at
+      FROM session_state
+      WHERE status = 'interrupted'
+      ORDER BY updated_at DESC
+    `);
+    const rows = stmt.all() as Record<string, unknown>[];
+
+    return {
+      success: true,
+      sessions: rows.map((row) => ({
+        sessionId: row.session_id as string,
+        specFolder: (row.spec_folder as string) || null,
+        currentTask: (row.current_task as string) || null,
+        lastAction: (row.last_action as string) || null,
+        contextSummary: (row.context_summary as string) || null,
+        pendingWork: (row.pending_work as string) || null,
+        updatedAt: row.updated_at as string,
+      })),
+    };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] get_interrupted_sessions failed: ${message}`);
+    return { success: false, sessions: [], error: message };
+  }
+}
+
+/* ---------------------------------------------------------------
+   10. CONTINUE SESSION GENERATION
+--------------------------------------------------------------- */
+
+function generateContinueSessionMd(sessionState: ContinueSessionInput): string {
+  const {
+    sessionId,
+    specFolder,
+    currentTask,
+    lastAction,
+    contextSummary,
+    pendingWork,
+    data,
+  } = sessionState;
+
+  const timestamp = new Date().toISOString();
+  const dateStr = new Date().toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+  const resumeCommand = specFolder
+    ? `/spec_kit:resume ${specFolder}`
+    : sessionId
+      ? `memory_search({ sessionId: "${sessionId}" })`
+      : 'memory_search({ query: "last session" })';
+
+  const content = `# CONTINUE SESSION
+
+> **Generated:** ${dateStr}
+> **Purpose:** Enable seamless session recovery after context compaction, crashes, or breaks.
+> **Pattern Source:** Adopted from seu-claude's CONTINUE_SESSION.md approach.
+
+---
+
+## Session State
+
+| Field | Value |
+|-------|-------|
+| **Session ID** | \`${sessionId || 'N/A'}\` |
+| **Spec Folder** | ${specFolder || 'N/A'} |
+| **Current Task** | ${currentTask || 'N/A'} |
+| **Last Action** | ${lastAction || 'N/A'} |
+| **Status** | Active |
+| **Updated** | ${timestamp} |
+
+---
+
+## Context Summary
+
+${contextSummary || '_No context summary available._'}
+
+---
+
+## Pending Work
+
+${pendingWork || '_No pending work recorded._'}
+
+---
+
+## Quick Resume
+
+To continue this session, use:
+
+\`\`\`
+${resumeCommand}
+\`\`\`
+
+${data ? `
+---
+
+## Additional State Data
+
+\`\`\`json
+${JSON.stringify(data, null, 2)}
+\`\`\`
+` : ''}
+---
+
+*This file is auto-generated on session checkpoint. It provides a human-readable recovery mechanism alongside SQLite persistence.*
+`;
+
+  return content;
+}
+
+function writeContinueSessionMd(sessionId: string, specFolderPath: string): CheckpointResult {
+  if (!sessionId || !specFolderPath) {
+    return { success: false, error: 'sessionId and specFolderPath are required' };
+  }
+
+  try {
+    const recoverResult = recoverState(sessionId);
+    if (!recoverResult.success || !recoverResult.state) {
+      const minimalState: ContinueSessionInput = {
+        sessionId,
+        specFolder: specFolderPath,
+      };
+      const content = generateContinueSessionMd(minimalState);
+      const filePath = path.join(specFolderPath, 'CONTINUE_SESSION.md');
+      fs.writeFileSync(filePath, content, 'utf8');
+      return { success: true, filePath };
+    }
+
+    const content = generateContinueSessionMd(recoverResult.state);
+    const filePath = path.join(specFolderPath, 'CONTINUE_SESSION.md');
+    fs.writeFileSync(filePath, content, 'utf8');
+
+    return { success: true, filePath };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[session-manager] write_continue_session_md failed: ${message}`);
+    return { success: false, error: message };
+  }
+}
+
+function checkpointSession(
+  sessionId: string,
+  state: SessionStateInput,
+  specFolderPath: string | null = null
+): CheckpointResult {
+  const saveResult = saveSessionState(sessionId, state);
+  if (!saveResult.success) {
+    return { success: false, error: saveResult.error };
+  }
+
+  const folderPath = specFolderPath || state.specFolder;
+  if (folderPath && fs.existsSync(folderPath)) {
+    return writeContinueSessionMd(sessionId, folderPath);
+  }
+
+  return { success: true, note: 'State saved to SQLite, no spec folder for CONTINUE_SESSION.md' };
+}
+
+/* ---------------------------------------------------------------
+   11. SHUTDOWN
+--------------------------------------------------------------- */
+
+// T302: Clear all background intervals on shutdown (GAP 1)
+function shutdown(): void {
+  if (cleanupInterval) {
+    clearInterval(cleanupInterval);
+    cleanupInterval = null;
+  }
+  if (staleCleanupInterval) {
+    clearInterval(staleCleanupInterval);
+    staleCleanupInterval = null;
+  }
+}
+
+/* ---------------------------------------------------------------
+   12. EXPORTS
+--------------------------------------------------------------- */
+
+export {
+  // Initialization
+  init,
+  ensureSchema,
+  getDb,
+
+  // Hash generation
+  generateMemoryHash,
+
+  // Deduplication methods (T002)
+  shouldSendMemory,
+  shouldSendMemoriesBatch,
+  markMemorySent,
+  markMemoriesSentBatch,
+
+  // Session persistence (T003)
+  cleanupExpiredSessions,
+  cleanupStaleSessions,
+  clearSession,
+  getSessionStats,
+
+  // Integration helpers (T004)
+  filterSearchResults,
+  markResultsSent,
+
+  // Session State Management (T073: Crash Recovery)
+  ensureSessionStateSchema,
+  saveSessionState,
+  completeSession,
+
+  // Crash Recovery (T074-T075)
+  resetInterruptedSessions,
+  recoverState,
+  getInterruptedSessions,
+
+  // CONTINUE_SESSION.md Generation (T071-T072)
+  generateContinueSessionMd,
+  writeContinueSessionMd,
+  checkpointSession,
+
+  // Configuration
+  isEnabled,
+  getConfig,
+  SESSION_CONFIG as CONFIG,
+
+  // T302: Shutdown (GAP 1)
+  shutdown,
+};
+

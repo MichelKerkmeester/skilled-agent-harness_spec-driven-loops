@@ -47,30 +47,30 @@ The following phrases activate memory operations (case-insensitive matching):
 
 ### Detection Logic
 
-```javascript
-const TRIGGER_PHRASES = [
+```typescript
+const TRIGGER_PHRASES: readonly string[] = [
   // Save category
   'save context',
   'save conversation',
   'save session',
   'save this discussion',
-  
+
   // Document category
   'document this',
   'preserve context',
-  
+
   // Remember category
   'remember this',
   'store this',
   'keep this context',
-  
+
   // Checkpoint category
   'checkpoint',
   'save checkpoint',
   'create checkpoint'
-];
+] as const;
 
-function detectTrigger(userMessage) {
+function detectTrigger(userMessage: string): boolean {
   const normalized = userMessage.toLowerCase();
   return TRIGGER_PHRASES.some(phrase => normalized.includes(phrase));
 }
@@ -209,27 +209,32 @@ Create or modify `config.jsonc` in your project root:
 
 ### Custom Trigger Function
 
-```javascript
+```typescript
 // Extended detection with custom triggers
-const CUSTOM_TRIGGERS = [
+interface TriggerResult {
+  matched: boolean;
+  source: 'default' | 'custom' | null;
+}
+
+const CUSTOM_TRIGGERS: readonly string[] = [
   'my custom phrase',
   'another trigger',
   'project-specific term'
-];
+] as const;
 
-function detectCustomTrigger(userMessage, customPhrases = CUSTOM_TRIGGERS) {
+function detectCustomTrigger(userMessage: string, customPhrases: readonly string[] = CUSTOM_TRIGGERS): TriggerResult {
   const normalized = userMessage.toLowerCase();
-  
+
   // Check default triggers first
   if (TRIGGER_PHRASES.some(phrase => normalized.includes(phrase))) {
     return { matched: true, source: 'default' };
   }
-  
+
   // Check custom triggers
   if (customPhrases.some(phrase => normalized.includes(phrase))) {
     return { matched: true, source: 'custom' };
   }
-  
+
   return { matched: false, source: null };
 }
 ```
@@ -262,14 +267,19 @@ Override defaults in your spec folder's memory settings:
 
 ### Optimization Strategies
 
-```javascript
+```typescript
 // Pre-compile regex for frequently-used triggers
-const COMPILED_TRIGGERS = TRIGGER_PHRASES.map(phrase => ({
+interface CompiledTrigger {
+  phrase: string;
+  regex: RegExp;
+}
+
+const COMPILED_TRIGGERS: readonly CompiledTrigger[] = TRIGGER_PHRASES.map(phrase => ({
   phrase,
   regex: new RegExp(phrase.replace(/\s+/g, '\\s+'), 'i')
 }));
 
-function optimizedDetection(userMessage) {
+function optimizedDetection(userMessage: string): CompiledTrigger | undefined {
   // Use pre-compiled regex for faster matching
   return COMPILED_TRIGGERS.find(t => t.regex.test(userMessage));
 }
@@ -338,7 +348,7 @@ Before deploying custom triggers:
 - [SKILL.md](../../SKILL.md) - Main workflow-memory skill documentation
 
 ### Scripts
-- [generate-context.js](../../scripts/memory/generate-context.js) - Context generation script
+- [generate-context.ts](../../scripts/memory/generate-context.ts) - Context generation script
 
 ### Related Skills
 - `spec_kit_memory` - Integrated MCP tools for context preservation

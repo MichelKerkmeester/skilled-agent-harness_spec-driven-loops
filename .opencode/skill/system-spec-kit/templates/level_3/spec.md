@@ -1,7 +1,7 @@
-<!-- SPECKIT_LEVEL: 3 -->
 # Feature Specification: [NAME]
 
-<!-- SPECKIT_TEMPLATE_SOURCE: spec | v2.0 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 
 <!-- WHEN TO USE THIS TEMPLATE:
 Level 3 (+Arch) is appropriate when:

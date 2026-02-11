@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: CREATE SPEC FOLDER
+# COMPONENT: Create Spec Folder
 # ───────────────────────────────────────────────────────────────
 # Creates spec folder with templates based on documentation level.
 #
@@ -21,6 +21,18 @@
 
 set -euo pipefail
 
+# P1-03 FIX: JSON string escape — handles special characters for safe JSON embedding
+_json_escape() {
+    local str="$1"
+    # Order matters: backslash first, then other escapes
+    str="${str//\\/\\\\}"   # Backslash
+    str="${str//\"/\\\"}"   # Double quote
+    str="${str//$'\n'/\\n}" # Newline
+    str="${str//$'\r'/\\r}" # Carriage return
+    str="${str//$'\t'/\\t}" # Tab
+    echo -n "$str"
+}
+
 JSON_MODE=false
 SHORT_NAME=""
 BRANCH_NUMBER=""
@@ -40,14 +52,14 @@ EXPAND_TEMPLATES=false
 
 ARGS=()
 i=1
-while [ $i -le $# ]; do
+while [[ $i -le $# ]]; do
     arg="${!i}"
     case "$arg" in
         --json)
             JSON_MODE=true
             ;;
         --level)
-            if [ $((i + 1)) -gt $# ]; then
+            if [[ $((i + 1)) -gt $# ]]; then
                 echo 'Error: --level requires a value (1, 2, or 3)' >&2
                 exit 1
             fi
@@ -71,7 +83,7 @@ while [ $i -le $# ]; do
             ;;
         --subfolder)
             SUBFOLDER_MODE=true
-            if [ $((i + 1)) -gt $# ]; then
+            if [[ $((i + 1)) -gt $# ]]; then
                 echo 'Error: --subfolder requires a base folder path' >&2
                 exit 1
             fi
@@ -84,7 +96,7 @@ while [ $i -le $# ]; do
             SUBFOLDER_BASE="$next_arg"
             ;;
         --topic)
-            if [ $((i + 1)) -gt $# ]; then
+            if [[ $((i + 1)) -gt $# ]]; then
                 echo 'Error: --topic requires a value' >&2
                 exit 1
             fi
@@ -97,7 +109,7 @@ while [ $i -le $# ]; do
             SUBFOLDER_TOPIC="$next_arg"
             ;;
         --short-name)
-            if [ $((i + 1)) -gt $# ]; then
+            if [[ $((i + 1)) -gt $# ]]; then
                 echo 'Error: --short-name requires a value' >&2
                 exit 1
             fi
@@ -111,7 +123,7 @@ while [ $i -le $# ]; do
             SHORT_NAME="$next_arg"
             ;;
         --number)
-            if [ $((i + 1)) -gt $# ]; then
+            if [[ $((i + 1)) -gt $# ]]; then
                 echo 'Error: --number requires a value' >&2
                 exit 1
             fi
@@ -187,7 +199,7 @@ while [ $i -le $# ]; do
 done
 
 FEATURE_DESCRIPTION="${ARGS[*]:-}"
-if [ -z "$FEATURE_DESCRIPTION" ]; then
+if [[ -z "$FEATURE_DESCRIPTION" ]]; then
     echo "Usage: $0 [--json] [--short-name <name>] [--number N] <feature_description>" >&2
     exit 1
 fi
@@ -198,8 +210,8 @@ fi
 
 find_repo_root() {
     local dir="$1"
-    while [ "$dir" != "/" ]; do
-        if [ -d "$dir/.git" ] || [ -d "$dir/.specify" ]; then
+    while [[ "$dir" != "/" ]]; do
+        if [[ -d "$dir/.git" ]] || [[ -d "$dir/.specify" ]]; then
             echo "$dir"
             return 0
         fi
@@ -211,6 +223,10 @@ find_repo_root() {
 check_existing_branches() {
     local short_name="$1"
 
+    # P1-12 FIX: Escape regex metacharacters in short_name for safe use in grep/sed patterns
+    local escaped_name
+    escaped_name=$(printf '%s' "$short_name" | sed 's/[.[\*^$()+{}?|]/\\&/g')
+
     # Fetch all remotes to get latest branch info
     if ! git fetch --all --prune 2>/dev/null; then
         echo "Warning: Could not fetch from remote (continuing with local branches only)" >&2
@@ -220,19 +236,19 @@ check_existing_branches() {
     # Only check remote if origin exists
     local remote_branches=""
     if git remote | grep -q '^origin$'; then
-        remote_branches=$(git ls-remote --heads origin 2>/dev/null | grep -E "refs/heads/[0-9]+-${short_name}$" | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n)
+        remote_branches=$(git ls-remote --heads origin 2>/dev/null | grep -E "refs/heads/[0-9]+-${escaped_name}$" | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n)
     fi
     
     # Also check local branches
-    local local_branches=$(git branch 2>/dev/null | grep -E "^[* ]*[0-9]+-${short_name}$" | sed 's/^[* ]*//' | sed 's/-.*//' | sort -n)
+    local local_branches=$(git branch 2>/dev/null | grep -E "^[* ]*[0-9]+-${escaped_name}$" | sed 's/^[* ]*//' | sed 's/-.*//' | sort -n)
     
     # Check specs directory as well
     local spec_dirs=""
-    if [ -d "$SPECS_DIR" ]; then
+    if [[ -d "$SPECS_DIR" ]]; then
         # Use while loop instead of xargs for cross-platform compatibility
         # (BSD xargs doesn't support -r flag, GNU xargs needs it for empty input)
         while IFS= read -r dir; do
-            [ -n "$dir" ] && spec_dirs="$spec_dirs $(basename "$dir" | sed 's/-.*//')"
+            [[ -n "$dir" ]] && spec_dirs="$spec_dirs $(basename "$dir" | sed 's/-.*//')"
         done < <(find "$SPECS_DIR" -maxdepth 1 -type d -name "[0-9]*-${short_name}" 2>/dev/null)
         spec_dirs=$(echo "$spec_dirs" | tr ' ' '\n' | grep -v '^$' | sort -n)
     fi
@@ -240,7 +256,7 @@ check_existing_branches() {
     # Combine all sources and get the highest number
     local max_num=0
     for num in $remote_branches $local_branches $spec_dirs; do
-        if [ "$num" -gt "$max_num" ]; then
+        if [[ "$num" -gt "$max_num" ]]; then
             max_num=$num
         fi
     done
@@ -254,7 +270,7 @@ create_versioned_subfolder() {
     local topic="$2"
     
     # Validate base folder exists
-    if [ ! -d "$base_folder" ]; then
+    if [[ ! -d "$base_folder" ]]; then
         echo "Error: Base folder does not exist: $base_folder" >&2
         exit 1
     fi
@@ -314,11 +330,11 @@ generate_branch_name() {
     local meaningful_words=()
     for word in $clean_name; do
         # Skip empty words
-        [ -z "$word" ] && continue
+        [[ -z "$word" ]] && continue
         
         # Keep words that are NOT stop words AND (length >= 3 OR are potential acronyms)
         if ! echo "$word" | grep -qiE "$stop_words"; then
-            if [ ${#word} -ge 3 ]; then
+            if [[ ${#word} -ge 3 ]]; then
                 meaningful_words+=("$word")
             else
                 # Check if word appears as uppercase in original (likely acronym)
@@ -334,15 +350,15 @@ generate_branch_name() {
     done
     
     # If we have meaningful words, use first 3-4 of them
-    if [ ${#meaningful_words[@]} -gt 0 ]; then
+    if [[ ${#meaningful_words[@]} -gt 0 ]]; then
         local max_words=3
-        if [ ${#meaningful_words[@]} -eq 4 ]; then max_words=4; fi
+        if [[ ${#meaningful_words[@]} -eq 4 ]]; then max_words=4; fi
         
         local result=""
         local count=0
         for word in "${meaningful_words[@]}"; do
-            if [ $count -ge $max_words ]; then break; fi
-            if [ -n "$result" ]; then result="$result-"; fi
+            if [[ $count -ge $max_words ]]; then break; fi
+            if [[ -n "$result" ]]; then result="$result-"; fi
             result="$result$word"
             count=$((count + 1))
         done
@@ -364,7 +380,7 @@ if git rev-parse --show-toplevel >/dev/null 2>&1; then
     HAS_GIT=true
 else
     REPO_ROOT="$(find_repo_root "$SCRIPT_DIR")"
-    if [ -z "$REPO_ROOT" ]; then
+    if [[ -z "$REPO_ROOT" ]]; then
         echo "Error: Could not determine repository root. Please run this script from within the repository." >&2
         exit 1
     fi
@@ -380,7 +396,7 @@ mkdir -p "$SPECS_DIR"
 # 3. SUBFOLDER MODE
 # ───────────────────────────────────────────────────────────────
 
-if [ "$SUBFOLDER_MODE" = true ]; then
+if [[ "$SUBFOLDER_MODE" = true ]]; then
     # Resolve base folder path (handle both absolute and relative paths)
     if [[ "$SUBFOLDER_BASE" = /* ]]; then
         RESOLVED_BASE="$SUBFOLDER_BASE"
@@ -389,14 +405,14 @@ if [ "$SUBFOLDER_MODE" = true ]; then
     fi
     
     # Validate base folder exists
-    if [ ! -d "$RESOLVED_BASE" ]; then
+    if [[ ! -d "$RESOLVED_BASE" ]]; then
         echo "Error: Base folder does not exist: $SUBFOLDER_BASE" >&2
         echo "Hint: Provide a valid spec folder path, e.g., specs/005-memory" >&2
         exit 1
     fi
     
     # Determine topic name
-    if [ -n "$SUBFOLDER_TOPIC" ]; then
+    if [[ -n "$SUBFOLDER_TOPIC" ]]; then
         TOPIC_NAME="$SUBFOLDER_TOPIC"
     else
         # Generate from feature description
@@ -420,11 +436,11 @@ if [ "$SUBFOLDER_MODE" = true ]; then
 
         # Try level-specific folder first, then fallback to base templates
         local template_path="$LEVEL_TEMPLATES_DIR/$template_name"
-        if [ ! -f "$template_path" ]; then
+        if [[ ! -f "$template_path" ]]; then
             template_path="$TEMPLATES_BASE/$template_name"
         fi
 
-        if [ -f "$template_path" ]; then
+        if [[ -f "$template_path" ]]; then
             cp "$template_path" "$dest_path"
             CREATED_FILES+=("$dest_name")
         else
@@ -435,7 +451,7 @@ if [ "$SUBFOLDER_MODE" = true ]; then
 
     # Copy all templates from the level folder
     for template_file in "$LEVEL_TEMPLATES_DIR"/*.md; do
-        if [ -f "$template_file" ]; then
+        if [[ -f "$template_file" ]]; then
             template_name=$(basename "$template_file")
             copy_subfolder_template "$template_name"
         fi
@@ -443,8 +459,9 @@ if [ "$SUBFOLDER_MODE" = true ]; then
 
     if $JSON_MODE; then
         files_json=$(printf '"%s",' "${CREATED_FILES[@]}" | sed 's/,$//')
-        printf '{"SUBFOLDER_PATH":"%s","SUBFOLDER_NAME":"%s","BASE_FOLDER":"%s","DOC_LEVEL":%d,"CREATED_FILES":[%s]}\n' \
-            "$SUBFOLDER_PATH" "$SUBFOLDER_NAME" "$RESOLVED_BASE" "$DOC_LEVEL" "$files_json"
+        # P1-03 FIX: Escape JSON values to prevent injection
+        printf '{"SUBFOLDER_PATH":"%s","SUBFOLDER_NAME":"%s","BASE_FOLDER":"%s","DOC_LEVEL":"%s","CREATED_FILES":[%s]}\n' \
+            "$(_json_escape "$SUBFOLDER_PATH")" "$(_json_escape "$SUBFOLDER_NAME")" "$(_json_escape "$RESOLVED_BASE")" "$DOC_LEVEL" "$files_json"
     else
         echo ""
         echo "───────────────────────────────────────────────────────────────────"
@@ -479,26 +496,27 @@ fi
 # 4. BRANCH NAME GENERATION
 # ───────────────────────────────────────────────────────────────
 
-if [ -n "$SHORT_NAME" ]; then
+if [[ -n "$SHORT_NAME" ]]; then
     BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//')
 else
     BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
 fi
 
-if [ -z "$BRANCH_NUMBER" ]; then
-    if [ "$HAS_GIT" = true ]; then
+if [[ -z "$BRANCH_NUMBER" ]]; then
+    if [[ "$HAS_GIT" = true ]]; then
         # Check existing branches on remotes
         BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")
     else
         # Fall back to local directory check
         HIGHEST=0
-        if [ -d "$SPECS_DIR" ]; then
+        if [[ -d "$SPECS_DIR" ]]; then
             for dir in "$SPECS_DIR"/*; do
-                [ -d "$dir" ] || continue
+                [[ -d "$dir" ]] || continue
+                # P1-02 FIX: Removed 'local' keyword — this code runs outside a function body
                 dirname=$(basename "$dir")
                 number=$(echo "$dirname" | grep -o '^[0-9]\+' || echo "0")
                 number=$((10#$number))
-                if [ "$number" -gt "$HIGHEST" ]; then HIGHEST=$number; fi
+                if [[ "$number" -gt "$HIGHEST" ]]; then HIGHEST=$number; fi
             done
         fi
         BRANCH_NUMBER=$((HIGHEST + 1))
@@ -511,7 +529,7 @@ BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
 
 # GitHub enforces 244-byte branch name limit
 MAX_BRANCH_LENGTH=244
-if [ ${#BRANCH_NAME} -gt $MAX_BRANCH_LENGTH ]; then
+if [[ ${#BRANCH_NAME} -gt $MAX_BRANCH_LENGTH ]]; then
     # Account for: feature number (3) + hyphen (1) = 4 chars
     MAX_SUFFIX_LENGTH=$((MAX_BRANCH_LENGTH - 4))
     TRUNCATED_SUFFIX=$(echo "$BRANCH_SUFFIX" | cut -c1-$MAX_SUFFIX_LENGTH | sed 's/-$//')
@@ -524,9 +542,9 @@ if [ ${#BRANCH_NAME} -gt $MAX_BRANCH_LENGTH ]; then
 fi
 
 # Create git branch (unless skipped or no git)
-if [ "$SKIP_BRANCH" = true ]; then
+if [[ "$SKIP_BRANCH" = true ]]; then
     >&2 echo "[speckit] Skipping branch creation (--skip-branch)"
-elif [ "$HAS_GIT" = true ]; then
+elif [[ "$HAS_GIT" = true ]]; then
     git checkout -b "$BRANCH_NAME"
 else
     >&2 echo "[speckit] Warning: Git repository not detected; skipped branch creation for $BRANCH_NAME"
@@ -546,13 +564,13 @@ LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
 CREATED_FILES=()
 
 # Validate templates directory exists
-if [ ! -d "$TEMPLATES_BASE" ]; then
+if [[ ! -d "$TEMPLATES_BASE" ]]; then
     echo "Error: Templates directory not found at $TEMPLATES_BASE" >&2
     exit 1
 fi
 
 # Validate level folder exists (with fallback warning)
-if [ ! -d "$LEVEL_TEMPLATES_DIR" ]; then
+if [[ ! -d "$LEVEL_TEMPLATES_DIR" ]]; then
     >&2 echo "[speckit] Warning: Level folder not found at $LEVEL_TEMPLATES_DIR, using base templates"
     LEVEL_TEMPLATES_DIR="$TEMPLATES_BASE"
 fi
@@ -570,11 +588,11 @@ copy_template() {
 
     # Try level-specific folder first, then fallback to base templates
     local template_path="$LEVEL_TEMPLATES_DIR/$template_name"
-    if [ ! -f "$template_path" ]; then
+    if [[ ! -f "$template_path" ]]; then
         template_path="$TEMPLATES_BASE/$template_name"
     fi
 
-    if [ -f "$template_path" ]; then
+    if [[ -f "$template_path" ]]; then
         cp "$template_path" "$dest_path"
         CREATED_FILES+=("$dest_name")
     else
@@ -585,7 +603,7 @@ copy_template() {
 
 # Copy all templates from the level folder
 for template_file in "$LEVEL_TEMPLATES_DIR"/*.md; do
-    if [ -f "$template_file" ]; then
+    if [[ -f "$template_file" ]]; then
         template_name=$(basename "$template_file")
         copy_template "$template_name"
     fi
@@ -595,7 +613,7 @@ done
 # 7. SHARDED SPEC SECTIONS (Level 3 with --sharded flag)
 # ───────────────────────────────────────────────────────────────
 
-if [ "$SHARDED" = true ] && [ "${DOC_LEVEL/+/}" -ge 3 ]; then
+if [[ "$SHARDED" = true ]] && [[ "${DOC_LEVEL/+/}" -ge 3 ]]; then
     # Create spec-sections directory
     mkdir -p "$FEATURE_DIR/spec-sections"
     CREATED_FILES+=("spec-sections/")
@@ -815,7 +833,7 @@ EOF
 EOF
     CREATED_FILES+=("spec-sections/04-testing.md")
 
-elif [ "$SHARDED" = true ] && [ "${DOC_LEVEL/+/}" -lt 3 ]; then
+elif [[ "$SHARDED" = true ]] && [[ "${DOC_LEVEL/+/}" -lt 3 ]]; then
     echo "Warning: --sharded flag is only supported with --level 3 or 3+. Ignoring --sharded." >&2
 fi
 
@@ -834,21 +852,22 @@ if $JSON_MODE; then
     files_json=$(printf '"%s",' "${CREATED_FILES[@]}" | sed 's/,$//')
 
     # Build complexity info if available
-    if [ -n "$DETECTED_LEVEL" ]; then
+    if [[ -n "$DETECTED_LEVEL" ]]; then
         complexity_json=",\"COMPLEXITY\":{\"detected\":true,\"level\":\"$DETECTED_LEVEL\",\"score\":$DETECTED_SCORE,\"confidence\":$DETECTED_CONF}"
     else
         complexity_json=",\"COMPLEXITY\":{\"detected\":false}"
     fi
 
     # Build expansion info
-    if [ "$EXPAND_TEMPLATES" = true ]; then
+    if [[ "$EXPAND_TEMPLATES" = true ]]; then
         expansion_json=",\"EXPANDED\":true"
     else
         expansion_json=",\"EXPANDED\":false"
     fi
 
+    # P1-03 FIX: Escape JSON values to prevent injection
     printf '{"BRANCH_NAME":"%s","SPEC_FILE":"%s","FEATURE_NUM":"%s","DOC_LEVEL":"%s","SHARDED":%s%s%s,"CREATED_FILES":[%s]}\n' \
-        "$BRANCH_NAME" "$SPEC_FILE" "$FEATURE_NUM" "$DOC_LEVEL" "$SHARDED" "$complexity_json" "$expansion_json" "$files_json"
+        "$(_json_escape "$BRANCH_NAME")" "$(_json_escape "$SPEC_FILE")" "$FEATURE_NUM" "$DOC_LEVEL" "$SHARDED" "$complexity_json" "$expansion_json" "$files_json"
 else
     echo ""
     echo "───────────────────────────────────────────────────────────────────"
@@ -858,10 +877,10 @@ else
     echo "  BRANCH_NAME:  $BRANCH_NAME"
     echo "  FEATURE_NUM:  $FEATURE_NUM"
     echo "  DOC_LEVEL:    Level $DOC_LEVEL"
-    if [ -n "$DETECTED_LEVEL" ]; then
+    if [[ -n "$DETECTED_LEVEL" ]]; then
         echo "  COMPLEXITY:   Level $DETECTED_LEVEL (score: $DETECTED_SCORE/100, confidence: $DETECTED_CONF%)"
     fi
-    if [ "$EXPAND_TEMPLATES" = true ]; then
+    if [[ "$EXPAND_TEMPLATES" = true ]]; then
         echo "  EXPANDED:     Yes (COMPLEXITY_GATE markers processed)"
     fi
     echo "  SPEC_FOLDER:  $FEATURE_DIR"
@@ -886,13 +905,13 @@ else
         3|"3+") echo "    ✓ Core: spec.md + plan.md + tasks.md + implementation-summary.md"
            echo "    ✓ +Verify: checklist.md, NFRs, edge cases"
            echo "    ✓ +Arch: decision-record.md, executive summary, risk matrix"
-           if [ "$DOC_LEVEL" = "3+" ]; then
+           if [[ "$DOC_LEVEL" = "3+" ]]; then
                echo "    ✓ +Govern: approval workflow, compliance, AI protocols"
                echo "      (Full governance - adds ~100 LOC)"
            else
                echo "      (Architecture decisions - adds ~150 LOC)"
            fi
-           if [ "$SHARDED" = true ]; then
+           if [[ "$SHARDED" = true ]]; then
                echo "    ✓ Sharded: spec-sections/ (modular documentation)"
            fi ;;
     esac
@@ -901,8 +920,8 @@ else
     echo "    1. Fill out spec.md with requirements"
     echo "    2. Create implementation plan in plan.md"
     echo "    3. Break down tasks in tasks.md"
-    [ "${DOC_LEVEL/+/}" -ge 2 ] && echo "    4. Add verification items to checklist.md"
-    [ "${DOC_LEVEL/+/}" -ge 3 ] && echo "    5. Document decisions in decision-record.md"
+    [[ "${DOC_LEVEL/+/}" -ge 2 ]] && echo "    4. Add verification items to checklist.md"
+    [[ "${DOC_LEVEL/+/}" -ge 3 ]] && echo "    5. Document decisions in decision-record.md"
     echo ""
     echo "───────────────────────────────────────────────────────────────────"
 fi

@@ -1,29 +1,29 @@
 # Session Layer
 
-> Session management for the Spec Kit Memory MCP server - handles session deduplication, crash recovery, channel routing, and context persistence.
+> Session management for the Spec Kit Memory MCP server - handles session deduplication, crash recovery, and context persistence.
 
 ---
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
-- [6. 🔗 RELATED RESOURCES](#6--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. TROUBLESHOOTING](#5--troubleshooting)
+- [6. RELATED RESOURCES](#6--related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
-The session layer provides all session-related operations for the Spec Kit Memory MCP server. It prevents duplicate context injection (saving ~50% tokens on follow-up queries), enables crash recovery with immediate SQLite persistence, and routes memories by git branch channel.
+The session layer provides all session-related operations for the Spec Kit Memory MCP server. It prevents duplicate context injection (saving ~50% tokens on follow-up queries) and enables crash recovery with immediate SQLite persistence.
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 3 | Session management, channel routing, index |
+| Modules | 1 | `session-manager.ts` |
 | Token Savings | ~50% | On follow-up queries via deduplication |
 | Session TTL | 30 min | Configurable via `SESSION_TTL_MINUTES` |
 | Max Entries | 100 | Per session cap (R7 mitigation) |
@@ -34,19 +34,16 @@ The session layer provides all session-related operations for the Spec Kit Memor
 |---------|-------------|
 | **Session Deduplication** | Tracks sent memories to prevent duplicate context injection |
 | **Crash Recovery** | Immediate SQLite persistence + CONTINUE_SESSION.md generation |
-| **Channel Routing** | Automatic context switching based on git branches |
 | **Token Savings** | ~50% reduction on follow-up queries |
 | **State Persistence** | Zero data loss on crash via immediate saves |
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 
 ```
 session/
-├── index.js            # Module aggregator - exports all session functions
-├── session-manager.js  # Session deduplication and crash recovery (~35KB)
-├── channel.js          # Git branch-based channel routing
+├── session-manager.ts  # Session deduplication, crash recovery, state management (~28KB)
 └── README.md           # This file
 ```
 
@@ -54,13 +51,11 @@ session/
 
 | File | Purpose |
 |------|---------|
-| `session-manager.js` | Core session tracking, deduplication, state persistence, CONTINUE_SESSION.md |
-| `channel.js` | Derives channel from git branch, scopes memory queries by channel |
-| `index.js` | Aggregates and re-exports all session module functions |
+| `session-manager.ts` | Core session tracking, deduplication, state persistence, CONTINUE_SESSION.md |
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 
 ### Session Deduplication (v1.2.0)
 
@@ -88,7 +83,7 @@ Session Query Flow:
 
 | Aspect | Details |
 |--------|---------|
-| **Immediate Persistence** | State saved to SQLite instantly (seu-claude pattern) |
+| **Immediate Persistence** | State saved to SQLite instantly |
 | **Interrupted Detection** | On startup, active sessions marked as interrupted |
 | **State Recovery** | `recoverState()` returns state with `_recovered: true` flag |
 | **CONTINUE_SESSION.md** | Human-readable recovery file in spec folder |
@@ -97,17 +92,6 @@ Session states:
 - `active` - Session in progress
 - `completed` - Session ended normally
 - `interrupted` - Session crashed (detected on restart)
-
-### Channel Routing
-
-**Purpose**: Automatic context switching based on git branches.
-
-| Aspect | Details |
-|--------|---------|
-| **Normalization** | Branch name: lowercase, special chars to hyphens, max 50 chars |
-| **Caching** | 5-second TTL cache to avoid repeated execSync calls |
-| **Default Channel** | Falls back to 'default' when not in git repo |
-| **Include Default** | Branch queries also include 'default' channel memories |
 
 ### CONTINUE_SESSION.md Generation
 
@@ -122,12 +106,12 @@ Generated on checkpoint with:
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 
 ### Example 1: Filter Search Results (Primary Integration)
 
-```javascript
-const { filterSearchResults, markResultsSent } = require('./session');
+```typescript
+import { filterSearchResults, markResultsSent } from './session/session-manager';
 
 // After retrieving search results
 const { filtered, dedupStats } = filterSearchResults(sessionId, results);
@@ -141,8 +125,8 @@ markResultsSent(sessionId, filtered);
 
 ### Example 2: Crash Recovery on Startup
 
-```javascript
-const { init, resetInterruptedSessions, getInterruptedSessions } = require('./session');
+```typescript
+import { init, resetInterruptedSessions, getInterruptedSessions } from './session/session-manager';
 
 // Initialize session manager
 init(database);
@@ -160,8 +144,8 @@ sessions.forEach(s => {
 
 ### Example 3: Save Session State with Checkpoint
 
-```javascript
-const { checkpointSession, saveSessionState } = require('./session');
+```typescript
+import { checkpointSession, saveSessionState } from './session/session-manager';
 
 // Save state immediately (minimal)
 saveSessionState(sessionId, {
@@ -180,35 +164,22 @@ checkpointSession(sessionId, {
 }, '/absolute/path/to/specs/005-feature');
 ```
 
-### Example 4: Channel-Scoped Memory Queries
-
-```javascript
-const { derive_channel_from_git_branch, get_channel_memories } = require('./session');
-
-// Get current channel
-const channel = derive_channel_from_git_branch();
-console.log(`Current channel: ${channel}`);
-
-// Get memories for this channel (includes 'default' channel)
-const memories = get_channel_memories(db, {
-  include_default: true,
-  limit: 50
-});
-```
-
 ### Common Patterns
 
 | Pattern | Code | When to Use |
 |---------|------|-------------|
 | Check if should send | `shouldSendMemory(sessionId, memory)` | Before returning single memory |
 | Batch check | `shouldSendMemoriesBatch(sessionId, memories)` | Before returning multiple memories |
+| Mark single sent | `markMemorySent(sessionId, memory)` | After returning a memory |
+| Mark batch sent | `markMemoriesSentBatch(sessionId, memories)` | After returning multiple memories |
 | Clear session | `clearSession(sessionId)` | On explicit session end |
 | Get session stats | `getSessionStats(sessionId)` | For debugging/logging |
 | Recover state | `recoverState(sessionId)` | On session resume |
+| Complete session | `completeSession(sessionId)` | On normal session end |
 
 ---
 
-## 5. 🛠️ TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -219,7 +190,9 @@ const memories = get_channel_memories(db, {
 **Cause**: Memories already marked as sent in this session.
 
 **Solution**:
-```javascript
+```typescript
+import { getSessionStats, clearSession } from './session/session-manager';
+
 // Check session stats
 const stats = getSessionStats(sessionId);
 console.log(`Total sent: ${stats.totalSent}`);
@@ -235,7 +208,9 @@ clearSession(sessionId);
 **Cause**: Database not initialized or session ID changing.
 
 **Solution**:
-```javascript
+```typescript
+import { getDb } from './session/session-manager';
+
 // Verify initialization
 const db = getDb();
 if (!db) {
@@ -246,54 +221,28 @@ if (!db) {
 console.log(`Using session: ${sessionId}`);
 ```
 
-#### Channel Not Detecting Git Branch
-
-**Symptom**: All queries use 'default' channel.
-
-**Cause**: Not in git repository or git command failing.
-
-**Solution**:
-```javascript
-const { is_git_repo, get_raw_git_branch, clear_cache } = require('./session');
-
-if (!is_git_repo()) {
-  console.log('Not in git repo - using default channel');
-}
-
-// Clear cache if branch changed
-clear_cache();
-const branch = get_raw_git_branch();
-console.log(`Raw branch: ${branch}`);
-```
-
 ### Quick Fixes
 
 | Problem | Quick Fix |
 |---------|-----------|
-| Stale branch cache | `clear_cache()` |
 | Session dedup disabled | Check `DISABLE_SESSION_DEDUP` env var |
 | TTL too short/long | Set `SESSION_TTL_MINUTES` env var |
 | Max entries reached | Oldest entries auto-pruned (FIFO) |
 
 ### Diagnostic Commands
 
-```javascript
+```typescript
+import { isEnabled, getConfig, getSessionStats, getInterruptedSessions } from './session/session-manager';
+
 // Check if deduplication enabled
-const { isEnabled, getConfig } = require('./session');
 console.log('Enabled:', isEnabled());
 console.log('Config:', getConfig());
 
 // Check session stats
-const { getSessionStats } = require('./session');
 console.log(getSessionStats(sessionId));
 
 // Check for interrupted sessions
-const { getInterruptedSessions } = require('./session');
 console.log(getInterruptedSessions());
-
-// Check channel state
-const { derive_channel_from_git_branch } = require('./session');
-console.log('Current channel:', derive_channel_from_git_branch());
 ```
 
 ### Configuration
@@ -306,7 +255,7 @@ console.log('Current channel:', derive_channel_from_git_branch());
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -314,23 +263,14 @@ console.log('Current channel:', derive_channel_from_git_branch());
 |----------|---------|
 | [../README.md](../README.md) | Parent lib directory overview |
 | [../storage/README.md](../storage/README.md) | Storage layer for persistence |
-| [../cognitive/README.md](../cognitive/README.md) | Cognitive processing modules |
 
 ### Related Modules
 
 | Module | Purpose |
 |--------|---------|
-| `context-server.js` | MCP server that uses session layer |
-| `storage/checkpoints.js` | Checkpoint creation uses session state |
-| `handlers/memory-search.js` | Primary consumer of session filtering |
-
-### Design Patterns
-
-| Pattern | Source | Usage |
-|---------|--------|-------|
-| seu-claude | External | Immediate SQLite persistence for crash recovery |
-| CONTINUE_SESSION.md | seu-claude | Human-readable recovery file |
+| `context-server.ts` | MCP server that uses session layer |
+| `storage/checkpoints.ts` | Checkpoint creation uses session state |
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2026-02-02 | Session layer v1.2.0*
+*Documentation version: 1.7.2 | Last updated: 2026-02-08 | Session layer v1.2.0*

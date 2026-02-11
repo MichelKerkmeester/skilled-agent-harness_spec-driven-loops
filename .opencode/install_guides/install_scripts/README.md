@@ -28,7 +28,7 @@ MCP Install Scripts automate the installation and configuration of Model Context
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Install Scripts | 6 | One per MCP server |
+| Install Scripts | 5 | One per MCP server |
 | Shared Utilities | 36 | Functions in `_utils.sh` |
 | Platforms | 3 | macOS, Linux, Windows (WSL) |
 | Install Time | 2-10 min | Per MCP, depending on complexity |
@@ -101,7 +101,6 @@ install_scripts/
 ├── install-code-mode.sh           # Code Mode MCP
 ├── install-chrome-devtools.sh     # Chrome DevTools MCP (bdg CLI)
 ├── install-figma.sh               # Figma MCP (Official or Framelink)
-├── install-narsil.sh              # Narsil MCP (90 code intelligence tools)
 ├── install-all.sh                 # Master installer with --skip/--only flags
 ├── logs/                          # Installation logs
 ├── test/                          # Docker test environment
@@ -131,7 +130,6 @@ install_scripts/
 | `install-code-mode.sh` | Code Mode | MCP orchestration via TypeScript execution | Node.js 18+ |
 | `install-chrome-devtools.sh` | Chrome DevTools | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
 | `install-figma.sh` | Figma | Design file access (Official or Framelink) | Node.js 18+ |
-| `install-narsil.sh` | Narsil | Deep code intelligence (90 tools) | Code Mode |
 
 ### Shared Utilities (_utils.sh)
 
@@ -154,7 +152,7 @@ install_scripts/
 ./install-all.sh
 
 # Skip specific MCPs
-./install-all.sh --skip narsil --skip figma
+./install-all.sh --skip figma
 
 # Install only specific MCPs
 ./install-all.sh --only code-mode --only spec-kit-memory
@@ -174,8 +172,8 @@ install_scripts/
 | File | Purpose | Modified By |
 |------|---------|-------------|
 | `opencode.json` | MCP server definitions | All scripts |
-| `.utcp_config.json` | Code Mode provider configs | Code Mode, Narsil, Figma (Framelink) |
-| `.env` | API keys and secrets | Code Mode, Narsil |
+| `.utcp_config.json` | Code Mode provider configs | Code Mode, Figma (Framelink) |
+| `.env` | API keys and secrets | Code Mode |
 | `.env.example` | API key templates | Code Mode |
 
 ### Common Options
@@ -196,13 +194,6 @@ All scripts support these standard options:
 |--------|-------------|
 | `-a, --official` | Install Official Figma MCP (HTTP, OAuth) |
 | `-b, --framelink` | Install Framelink third-party (API key) |
-
-**install-narsil.sh**:
-| Option | Description |
-|--------|-------------|
-| `-m, --method NUM` | Use installation method (1=npm, 2=brew, 3=one-click, 4=cargo) |
-| `--skip-wizard` | Skip Narsil config wizard |
-| `--voyage-key KEY` | Set VOYAGE_API_KEY for neural search |
 
 **install-chrome-devtools.sh**:
 | Option | Description |
@@ -225,19 +216,7 @@ All scripts support these standard options:
 
 **Result**: Core MCPs configured in `opencode.json`, ready for use.
 
-### Example 2: Install Narsil with npm
-
-```bash
-# Install Narsil using npm (method 1), skip interactive wizard
-./install-narsil.sh -m 1 --skip-wizard
-
-# Or with Voyage API key for neural search
-./install-narsil.sh -m 1 --voyage-key "your-voyage-api-key"
-```
-
-**Result**: Narsil installed globally, configured in `.utcp_config.json`.
-
-### Example 3: Install Figma (Official)
+### Example 2: Install Figma (Official)
 
 ```bash
 # Install Official Figma MCP (HTTP, OAuth - no API key needed)
@@ -246,13 +225,13 @@ All scripts support these standard options:
 
 **Result**: HTTP server config added to `opencode.json`, OAuth login on first use.
 
-### Example 4: CI/CD Installation
+### Example 3: CI/CD Installation
 
 ```bash
 # Dry-run to preview installation
 ./install-all.sh --dry-run
 
-# Install specific MCPs only (Figma and Narsil use non-interactive flags automatically)
+# Install specific MCPs only
 ./install-all.sh --only code-mode --only sequential-thinking
 
 # Verbose mode to see all output
@@ -267,7 +246,6 @@ All scripts support these standard options:
 |---------|---------|-------------|
 | Core setup | `./install-all.sh --only code-mode --only spec-kit-memory --only sequential-thinking` | New project setup |
 | Full setup | `./install-all.sh` | Complete MCP installation |
-| Add Narsil | `./install-narsil.sh -m 1` | After Code Mode is installed |
 | Reinstall | `./install-{name}.sh --force` | Fix broken installation |
 | Debug | `./install-{name}.sh -v` | Troubleshoot issues |
 
@@ -357,9 +335,6 @@ npx -y @modelcontextprotocol/server-sequential-thinking --help
 
 # Check bdg installation
 bdg --version
-
-# Check narsil installation
-narsil-mcp --version
 ```
 
 ---
@@ -370,7 +345,7 @@ narsil-mcp --version
 
 **Q: What order should I install MCPs?**
 
-A: Install Code Mode first if you plan to use Narsil or Framelink (Figma). Otherwise, order doesn't matter. Recommended: Code Mode → Spec Kit Memory → Sequential Thinking → others.
+A: Install Code Mode first if you plan to use Framelink (Figma). Otherwise, order doesn't matter. Recommended: Code Mode → Spec Kit Memory → Sequential Thinking → others.
 
 ---
 
@@ -380,11 +355,11 @@ A: Yes, all scripts are idempotent. They detect existing installations and skip 
 
 ---
 
-**Q: Do I need all 6 MCPs?**
+**Q: Do I need all 5 MCPs?**
 
 A: No. Install based on your needs:
 - **Core**: Code Mode, Spec Kit Memory, Sequential Thinking
-- **Optional**: Narsil (code intelligence), Figma (design), Chrome DevTools (debugging)
+- **Optional**: Figma (design), Chrome DevTools (debugging)
 
 ---
 
@@ -424,7 +399,7 @@ cd test/
 docker build -t mcp-install-test .
 docker run -it mcp-install-test
 ```
-Note: The master installer (`install-all.sh`) automatically uses non-interactive flags for Figma (`-a`) and Narsil (`-m 1 --skip-wizard`) when running.
+Note: The master installer (`install-all.sh`) automatically uses non-interactive flags for Figma (`-a`) when running.
 
 ---
 
@@ -435,7 +410,6 @@ Note: The master installer (`install-all.sh`) automatically uses non-interactive
 | Document | Purpose |
 |----------|---------|
 | [MCP - Code Mode.md](../MCP%20-%20Code%20Mode.md) | Code Mode installation guide |
-| [MCP - Narsil.md](../MCP%20-%20Narsil.md) | Narsil installation guide |
 | [MCP - Figma.md](../MCP%20-%20Figma.md) | Figma installation guide |
 | [MCP - Sequential Thinking.md](../MCP%20-%20Sequential%20Thinking.md) | Sequential Thinking guide |
 | [MCP - Spec Kit Memory.md](../MCP%20-%20Spec%20Kit%20Memory.md) | Spec Kit Memory guide |
@@ -447,7 +421,6 @@ Note: The master installer (`install-all.sh`) automatically uses non-interactive
 |----------|-------------|
 | [Model Context Protocol](https://modelcontextprotocol.io/) | Official MCP documentation |
 | [OpenCode](https://github.com/sst/opencode) | OpenCode CLI documentation |
-| [Narsil MCP](https://github.com/postrv/narsil-mcp) | Narsil code intelligence |
 | [Code Mode](https://github.com/universal-tool-calling-protocol/code-mode) | UTCP Code Mode |
 
 ---

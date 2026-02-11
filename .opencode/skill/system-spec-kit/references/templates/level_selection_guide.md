@@ -120,60 +120,18 @@ Create spec folder with pre-expanded templates from level-specific folders:
 
 **Level Folders:**
 Templates are pre-expanded and ready to use in level-specific folders:
-- `templates/level_1/` - 4 files (spec.md, plan.md, tasks.md, implementation-summary.md)
-- `templates/level_2/` - 5 files (adds checklist.md)
-- `templates/level_3/` - 6 files (adds decision-record.md)
-- `templates/level_3+/` - 6 files (extended versions with AI protocols)
+- `templates/level_1/` - 5 files, ~455 LOC (spec.md, plan.md, tasks.md, implementation-summary.md, README.md)
+- `templates/level_2/` - 6 files, ~875 LOC (adds checklist.md)
+- `templates/level_3/` - 7 files, ~1090 LOC (adds decision-record.md)
+- `templates/level_3+/` - 7 files, ~1075 LOC (extended versions with AI protocols)
+
+> **Source of truth for template LOC counts:** [level_specifications.md](./level_specifications.md)
 
 > **Deprecated:** The `--complexity` and `--expand` flags, along with `detect-complexity.js` and `expand-template.js`, have been removed. Use `--level N` to select the appropriate level directly.
 
 ---
 
-## 5. 📝 COMPLEXITY_GATE MARKERS
-
-> **Note**: COMPLEXITY_GATE markers are deprecated as of Spec 069/071.
-> Templates are now pre-expanded in level folders (`level_1/`, `level_2/`, `level_3/`, `level_3+/`).
-> The marker syntax is retained for backward compatibility only.
-
-Templates use COMPLEXITY_GATE markers to conditionally include content:
-
-### Syntax
-
-```markdown
-<!-- COMPLEXITY_GATE: level>=3, feature=ai-protocol -->
-Content only visible at Level 3+
-<!-- /COMPLEXITY_GATE -->
-```
-
-### Supported Conditions
-
-| Condition | Examples | Meaning |
-|-----------|----------|---------|
-| `level>=N` | `level>=2`, `level>=3` | Minimum level required |
-| `level=N` | `level=2`, `level=3+` | Exact level match |
-| `feature=X` | `feature=ai-protocol` | Feature must be enabled |
-| `specType=X` | `specType=research` | Spec type must match |
-
-### Multiple Conditions
-
-```markdown
-<!-- COMPLEXITY_GATE: level>=3, specType=research -->
-Research-specific content at Level 3+
-<!-- /COMPLEXITY_GATE -->
-```
-
-### Features
-
-| Feature | Auto-enabled | Description |
-|---------|--------------|-------------|
-| `ai-protocol` | Level 3+ | AI execution protocol section |
-| `dep-graph` | Level 2+ | Dependency visualization |
-| `effort-est` | Level 2+ | Effort estimation framework |
-| `ext-checklist` | Level 3+ | Extended checklist items |
-
----
-
-## 6. 📈 DYNAMIC SECTION SCALING
+## 5. 📈 DYNAMIC SECTION SCALING
 
 Sections scale based on detected complexity:
 
@@ -188,7 +146,7 @@ Sections scale based on detected complexity:
 
 ---
 
-## 7. ✅ VALIDATION RULES
+## 6. ✅ VALIDATION RULES
 
 Four validation rules ensure complexity consistency:
 
@@ -235,54 +193,15 @@ Validates level consistency across all spec files:
 
 ---
 
-## 8. ⚙️ CONFIGURATION
+## 7. ⚙️ CONFIGURATION
 
 Configuration file: `config/complexity-config.jsonc`
 
-```jsonc
-{
-  "weights": {
-    "scope": 25,
-    "risk": 25,
-    "research": 20,
-    "multiAgent": 15,
-    "coordination": 15
-  },
-  "levels": {
-    "1": { "min": 0, "max": 25, "name": "Baseline" },
-    "2": { "min": 26, "max": 55, "name": "Verification" },
-    "3": { "min": 56, "max": 79, "name": "Full" },
-    "3+": { "min": 80, "max": 100, "name": "Extended" }
-  },
-  "signals": {
-    "scope": {
-      "keywords": ["comprehensive", "large-scale", "multiple", "systems"],
-      "patterns": ["\\d+\\s*(files|components|modules)"]
-    }
-    // ... more signals
-  }
-}
-```
-
-### Customization
-
-Override weights for project-specific needs:
-
-```bash
-# Use custom config
-node scripts/detect-complexity.js --request "..." --config ./my-config.jsonc
-```
+> **Note:** `complexity-config.jsonc` is deprecated and not read by any runtime code. The level thresholds documented in Section 3 above are the current reference. Use `--level N` with `scripts/spec/create.sh` to select a level directly.
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
-
-### Core Modules
-- `lib/complexity/detector.js` - Main detection orchestrator
-- `lib/complexity/classifier.js` - Score to level mapping
-- `lib/complexity/scorers/` - Dimension scorers
-- `lib/expansion/preprocessor.js` - Template preprocessing
-- `lib/expansion/marker-parser.js` - COMPLEXITY_GATE parser
+## 8. 🔗 RELATED RESOURCES
 
 ### Templates (Level-Based Organization)
 
@@ -301,16 +220,70 @@ Templates are now pre-expanded in level folders, eliminating runtime gate proces
 - `templates/level_3/decision-record.md` - Level 3 ADR template
 - `templates/level_3+/spec.md` - Level 3+ spec with AI protocol sections
 
-### Legacy Conditional Content Blocks (Deprecated)
+### Reference Documentation
+- [level_specifications.md](./level_specifications.md) - Complete level requirements
+- [template_guide.md](./template_guide.md) - Template selection and adaptation
 
-> **Note**: These blocks were used with COMPLEXITY_GATE markers and are now
-> integrated directly into the level-specific templates above.
+---
 
+## Appendix: Deprecated Content
+
+> **DEPRECATED:** The following content is retained for historical reference only.
+> COMPLEXITY_GATE markers have been replaced by the level selection criteria in sections above.
+> Templates are now pre-expanded in level folders (`level_1/`, `level_2/`, `level_3/`, `level_3+/`).
+
+### Deprecated Core Modules (Removed)
+
+These modules were part of the runtime complexity detection system and have been removed:
+- `lib/complexity/detector.js` - Main detection orchestrator
+- `lib/complexity/classifier.js` - Score to level mapping
+- `lib/complexity/scorers/` - Dimension scorers
+- `lib/expansion/preprocessor.js` - Template preprocessing
+- `lib/expansion/marker-parser.js` - COMPLEXITY_GATE parser
+
+### Legacy Conditional Content Blocks (Removed)
+
+These template blocks were used with COMPLEXITY_GATE markers and are now
+integrated directly into the level-specific template folders:
 - `templates/complexity/ai-protocol.md` - Now in `level_3+/` templates
 - `templates/complexity/dependency-graph.md` - Now in `level_2+/` templates
 - `templates/complexity/effort-estimation.md` - Now in `level_2+/` templates
 - `templates/complexity/extended-checklist.md` - Now in `level_3+/` templates
 
-### Reference Documentation
-- [level_specifications.md](./level_specifications.md) - Complete level requirements
-- [template_guide.md](./template_guide.md) - Template selection and adaptation
+### COMPLEXITY_GATE MARKERS
+
+Templates used COMPLEXITY_GATE markers to conditionally include content:
+
+#### Syntax
+
+```markdown
+<!-- COMPLEXITY_GATE: level>=3, feature=ai-protocol -->
+Content only visible at Level 3+
+<!-- /COMPLEXITY_GATE -->
+```
+
+#### Supported Conditions
+
+| Condition | Examples | Meaning |
+|-----------|----------|---------|
+| `level>=N` | `level>=2`, `level>=3` | Minimum level required |
+| `level=N` | `level=2`, `level=3+` | Exact level match |
+| `feature=X` | `feature=ai-protocol` | Feature must be enabled |
+| `specType=X` | `specType=research` | Spec type must match |
+
+#### Multiple Conditions
+
+```markdown
+<!-- COMPLEXITY_GATE: level>=3, specType=research -->
+Research-specific content at Level 3+
+<!-- /COMPLEXITY_GATE -->
+```
+
+#### Features
+
+| Feature | Auto-enabled | Description |
+|---------|--------------|-------------|
+| `ai-protocol` | Level 3+ | AI execution protocol section |
+| `dep-graph` | Level 2+ | Dependency visualization |
+| `effort-est` | Level 2+ | Effort estimation framework |
+| `ext-checklist` | Level 3+ | Extended checklist items |

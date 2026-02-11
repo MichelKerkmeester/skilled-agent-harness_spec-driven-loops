@@ -51,12 +51,13 @@ The `scripts/` directory contains shell scripts for spec folder management and v
 | Category | Count | Details |
 |----------|-------|---------|
 | Shell Scripts | 10 | Core management and validation |
-| JavaScript Entry Points | 2 | generate-context.js, cleanup-orphaned-vectors.js |
-| Test Scripts | 3 | tests/test-bug-fixes.js, tests/test-embeddings-factory.js, tests/test-validation.sh |
-| generate-context Modules | 30 | Modular architecture across 6 directories (core/, extractors/, utils/, renderers/, spec-folder/, loaders/) |
-| Validation Rules | 9 | Modular rule scripts in `rules/` |
-| Library Files | 13 | Shell (3) + JavaScript (10) in `lib/` |
+| TypeScript Entry Points | 3 | generate-context.ts, cleanup-orphaned-vectors.ts, rank-memories.ts |
+| Test Scripts | 17+ | JavaScript (.js), shell (.sh), and Python (.py) test files in tests/ |
+| TypeScript Modules | 40+ | Modular architecture across 6 directories (core/, extractors/, utils/, renderers/, spec-folder/, loaders/) |
+| Validation Rules | 13 | Modular rule scripts in `rules/` |
+| Library Files | 10 | TypeScript (10) in `lib/` |
 | Documentation Levels | 3 | L1, L2, L3 with progressive requirements |
+| Output Directory | dist/ | Compiled JavaScript from TypeScript sources |
 
 ### Key Features
 
@@ -88,7 +89,7 @@ The `scripts/` directory contains shell scripts for spec folder management and v
 cd /path/to/project
 
 # Validate an existing spec folder
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
 
 # Create a new spec folder
 .opencode/skill/system-spec-kit/scripts/spec/create.sh "Add user authentication" --level 2
@@ -101,10 +102,9 @@ cd /path/to/project
 ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 
 # Expected: .sh files with execute permissions
-# -rwxr-xr-x validate-spec.sh
+# -rwxr-xr-x spec/validate.sh
 # -rwxr-xr-x spec/create.sh
-# -rwxr-xr-x setup.sh
-# -rwxr-xr-x check-completion.sh
+# -rwxr-xr-x spec/check-completion.sh
 # ...
 ```
 
@@ -112,7 +112,7 @@ ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 
 ```bash
 # Basic validation with verbose output
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/my-feature/ --verbose
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/my-feature/ --verbose
 
 # Expected output:
 # ✓ FILE_EXISTS: All required files present for Level 2
@@ -128,9 +128,10 @@ ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 scripts/
 ├── Root Files
 │   ├── common.sh                 # Repository & branch utilities
-│   └── package.json              # Node.js dependencies
+│   ├── package.json              # Node.js dependencies
+│   └── tsconfig.json             # TypeScript project configuration
 │
-├── spec/                         # Spec folder operations (6 scripts)
+├── spec/                         # Spec folder operations (6 shell scripts)
 │   ├── create.sh                 # Create new spec folders
 │   ├── validate.sh               # Validate spec folder contents
 │   ├── check-completion.sh       # Verify checklist completion (Completion Verification Rule)
@@ -138,63 +139,65 @@ scripts/
 │   ├── recommend-level.sh        # Recommend documentation level
 │   └── archive.sh                # Archive completed specs
 │
-├── memory/                       # Memory/context operations (3 scripts)
-│   ├── generate-context.js       # CLI entry point - memory file generation
-│   ├── rank-memories.js          # Memory ranking utility
-│   └── cleanup-orphaned-vectors.js # Database cleanup utility
+├── memory/                       # Memory/context operations (3 TypeScript entry points)
+│   ├── generate-context.ts       # CLI entry point - memory file generation
+│   ├── rank-memories.ts          # Memory ranking utility
+│   └── cleanup-orphaned-vectors.ts # Database cleanup utility
 │
-├── setup/                        # Setup & prerequisites (2 scripts)
-│   ├── setup.sh                  # Initial setup script
-│   └── check-prerequisites.sh    # Check required files exist
+├── setup/                        # Setup & prerequisites (3 scripts)
+│   ├── check-prerequisites.sh    # Check required files exist
+│   ├── check-native-modules.sh   # Check native module compatibility
+│   └── rebuild-native-modules.sh # Rebuild native modules
 │
-├── tests/                        # Test scripts (3 files)
+├── tests/                        # Test scripts (17+ files)
 │   ├── test-bug-fixes.js         # Bug fix regression tests
 │   ├── test-embeddings-factory.js # Test embedding providers
-│   └── test-validation.sh        # Test suite for validation
+│   ├── test-validation.sh        # Test suite for validation
+│   └── ...                       # Additional .js, .sh, .py test files
 │
-├── core/                         # Workflow orchestration (3 files)
-│   ├── index.js                  # Module exports
-│   ├── config.js                 # Configuration constants
-│   └── workflow.js               # Main orchestration logic
+├── core/                         # Workflow orchestration (3 TypeScript modules)
+│   ├── index.ts                  # Module exports
+│   ├── config.ts                 # Configuration constants
+│   └── workflow.ts               # Main orchestration logic
 │
-├── extractors/                   # Data extraction modules (9 files)
-│   ├── index.js                  # Module exports
-│   ├── file-extractor.js         # File artifact extraction
-│   ├── diagram-extractor.js      # ASCII diagram generation
-│   ├── decision-tree-generator.js # Decision tree rendering
-│   ├── conversation-extractor.js # Conversation summarization
-│   ├── decision-extractor.js     # Decision/rationale extraction
-│   ├── session-extractor.js      # Session metadata extraction
-│   ├── collect-session-data.js   # Session data aggregation
-│   └── implementation-guide-extractor.js # Implementation guidance
+├── extractors/                   # Data extraction modules (10 TypeScript modules)
+│   ├── index.ts                  # Module exports
+│   ├── file-extractor.ts         # File artifact extraction
+│   ├── diagram-extractor.ts      # ASCII diagram generation
+│   ├── conversation-extractor.ts # Conversation summarization
+│   ├── decision-extractor.ts     # Decision/rationale extraction
+│   ├── session-extractor.ts      # Session metadata extraction
+│   ├── collect-session-data.ts   # Session data aggregation
+│   ├── implementation-guide-extractor.ts # Implementation guidance
+│   └── opencode-capture.ts       # OpenCode session capture logic
 │
-├── utils/                        # Utility functions (10 files)
-│   ├── index.js                  # Module exports
-│   ├── logger.js                 # Structured logging
-│   ├── path-utils.js             # Path resolution
-│   ├── data-validator.js         # Data validation
-│   ├── input-normalizer.js       # Input normalization
-│   ├── prompt-utils.js           # Prompt building
-│   ├── file-helpers.js           # File operations
-│   ├── tool-detection.js         # Tool usage detection
-│   ├── message-utils.js          # Message processing
-│   └── validation-utils.js       # Validation helpers
+├── utils/                        # Utility functions (11 TypeScript modules)
+│   ├── index.ts                  # Module exports
+│   ├── logger.ts                 # Structured logging
+│   ├── path-utils.ts             # Path resolution
+│   ├── data-validator.ts         # Data validation
+│   ├── input-normalizer.ts       # Input normalization
+│   ├── prompt-utils.ts           # Prompt building
+│   ├── file-helpers.ts           # File operations
+│   ├── tool-detection.ts         # Tool usage detection
+│   ├── message-utils.ts          # Message processing
+│   └── validation-utils.ts       # Validation helpers
 │
-├── renderers/                    # Template rendering (2 files)
-│   ├── index.js                  # Module exports
-│   └── template-renderer.js      # Mustache template rendering
+├── renderers/                    # Template rendering (2 TypeScript modules)
+│   ├── index.ts                  # Module exports
+│   └── template-renderer.ts      # Mustache template rendering
 │
-├── spec-folder/                  # Spec folder handling (4 files)
-│   ├── index.js                  # Module exports
-│   ├── folder-detector.js        # Spec folder detection
-│   ├── alignment-validator.js    # Content alignment validation
-│   └── directory-setup.js        # Directory creation
+├── spec-folder/                  # Spec folder handling (4 TypeScript modules)
+│   ├── index.ts                  # Module exports
+│   ├── folder-detector.ts        # Spec folder detection
+│   ├── alignment-validator.ts    # Content alignment validation
+│   └── directory-setup.ts        # Directory creation
 │
-├── loaders/                      # Data loading (2 files)
-│   ├── index.js                  # Module exports
-│   └── data-loader.js            # JSON/fallback data loading
+├── loaders/                      # Data loading (2 TypeScript modules)
+│   ├── index.ts                  # Module exports
+│   └── data-loader.ts            # JSON/fallback data loading
 │
-├── rules/                        # Modular validation rules (9)
+├── rules/                        # Modular validation rules (13 shell scripts)
 │   ├── check-files.sh            # FILE_EXISTS rule
 │   ├── check-folder-naming.sh    # FOLDER_NAMING rule (###-short-name)
 │   ├── check-frontmatter.sh      # FRONTMATTER_VALID rule (YAML)
@@ -204,25 +207,34 @@ scripts/
 │   ├── check-anchors.sh          # ANCHORS_VALID rule
 │   ├── check-sections.sh         # SECTIONS_PRESENT rule
 │   ├── check-level.sh            # LEVEL_DECLARED rule
+│   ├── check-complexity.sh       # COMPLEXITY_SCORE rule
+│   ├── check-section-counts.sh   # SECTION_COUNTS rule
+│   ├── check-ai-protocols.sh     # AI_PROTOCOLS rule
+│   ├── check-level-match.sh      # LEVEL_MATCH rule
 │   └── README.md                 # Rules documentation
 │
-├── lib/                          # Shared libraries (13 files)
-│   ├── Shell (3)
-│   │   ├── common.sh             # Validation utilities
-│   │   ├── config.sh             # Configuration loading
-│   │   └── output.sh             # Formatted output helpers
-│   ├── JavaScript (10)
-│   │   ├── embeddings.js         # Re-exports from ../../shared/embeddings
-│   │   ├── trigger-extractor.js  # Re-exports from ../../shared/trigger-extractor
-│   │   ├── semantic-summarizer.js # Message classification
-│   │   ├── opencode-capture.js   # OpenCode session capture
-│   │   ├── content-filter.js     # Three-stage content filtering
-│   │   ├── anchor-generator.js   # ANCHOR ID generation
-│   │   ├── flowchart-generator.js # ASCII flowcharts
-│   │   ├── ascii-boxes.js        # ASCII box drawing
-│   │   ├── simulation-factory.js # Fallback data generation
-│   │   └── retry-manager.js      # Embedding retry logic
+├── lib/                          # Shared libraries (10 TypeScript files)
+│   │   ├── embeddings.ts         # Re-exports from @spec-kit/shared
+│   │   ├── trigger-extractor.ts  # Re-exports from @spec-kit/shared
+│   │   ├── semantic-summarizer.ts # Message classification
+│   │   ├── content-filter.ts     # Three-stage content filtering
+│   │   ├── anchor-generator.ts   # ANCHOR ID generation
+│   │   ├── flowchart-generator.ts # ASCII flowcharts
+│   │   ├── ascii-boxes.ts        # ASCII box drawing
+│   │   ├── simulation-factory.ts # Fallback data generation
+│   │   ├── retry-manager.ts      # Embedding retry logic
+│   │   └── decision-tree-generator.ts # Decision tree visualization
 │   └── README.md                 # Library documentation
+│
+├── dist/                         # Compiled JavaScript output (auto-generated)
+│   ├── core/                     # Compiled core modules
+│   ├── extractors/               # Compiled extractors
+│   ├── utils/                    # Compiled utilities
+│   ├── renderers/                # Compiled renderers
+│   ├── spec-folder/              # Compiled spec-folder modules
+│   ├── loaders/                  # Compiled loaders
+│   ├── lib/                      # Compiled TypeScript libraries
+│   └── memory/                   # Compiled memory entry points
 │
 ├── test-fixtures/                # Validation test cases (54 dirs)
 │   ├── 003-valid-level2/         # L2 spec structure tests
@@ -238,20 +250,21 @@ scripts/
 
 | File | Purpose |
 |------|---------|
-| `validate-spec.sh` | Main validation orchestrator - invokes all 9 rules |
+| `spec/validate.sh` | Main validation orchestrator - invokes all 13 rules |
 | `spec/create.sh` | Create new spec folders with templates |
-| `generate-context.js` | Memory file generation with ANCHOR format |
-| `check-completion.sh` | Completion Verification Rule enforcement - verify checklist completion |
-| `setup.sh` | One-command setup for memory system dependencies |
-| `rules/` | Modular validation rules (9 scripts) |
-| `lib/` | Shared libraries (3 shell + 10 JavaScript) |
-| `test-fixtures/` | Validation test cases (10 directories, 36 files) |
+| `memory/generate-context.ts` | Memory file generation with ANCHOR format (TypeScript source) |
+| `dist/memory/generate-context.js` | Compiled entry point for memory generation |
+| `spec/check-completion.sh` | Completion Verification Rule enforcement - verify checklist completion |
+| `rules/` | Modular validation rules (13 shell scripts) |
+| `lib/` | Shared TypeScript libraries (10 modules) |
+| `dist/` | Compiled JavaScript output from TypeScript sources |
+| `test-fixtures/` | Validation test cases (54 directories) |
 
 ---
 
 ## 4. ⚡ FEATURES
 
-### validate-spec.sh
+### spec/validate.sh
 
 **Purpose**: Validate spec folder contents against documentation level requirements
 
@@ -259,7 +272,7 @@ scripts/
 |--------|---------|
 | **Input** | Spec folder path |
 | **Output** | Pass/warn/fail status with details |
-| **Rules** | 9 modular validation rules |
+| **Rules** | 13 modular validation rules |
 | **Modes** | Normal, strict, verbose, JSON |
 
 **Arguments**:
@@ -332,18 +345,6 @@ scripts/
 
 ---
 
-### setup.sh
-
-**Purpose**: One-command setup for semantic memory system
-
-| Aspect | Details |
-|--------|---------|
-| **Input** | None |
-| **Output** | Installed dependencies, initialized database |
-| **Actions** | npm install, sqlite-vec setup, database creation |
-
----
-
 ### calculate-completeness.sh
 
 **Purpose**: Calculate checklist completion percentage
@@ -388,46 +389,57 @@ P2: 60% (6/10)
 
 ---
 
-### JavaScript Scripts
+### TypeScript Modules
 
-#### generate-context.js (Modular Architecture)
+#### memory/generate-context.ts (Modular Architecture)
 
 **Purpose**: Generate memory files from conversation data with ANCHOR format for Spec Kit Memory indexing
 
 | Aspect | Details |
 |--------|---------|
+| **Source** | TypeScript entry point at `memory/generate-context.ts` |
+| **Compiled Output** | `dist/memory/generate-context.js` (CommonJS) |
 | **Input** | JSON data file OR spec folder path |
 | **Output** | Memory file in `specs/###-feature/memory/` |
 | **Format** | ANCHOR-tagged sections (implemented v1.7.2, 58-90% token savings) |
-| **Architecture** | 142-line CLI entry point + 30 modules across 6 directories |
+| **Architecture** | 142-line CLI entry point + 40+ modules across 6 directories |
 
 **Modular Structure** (refactored from 4,837-line monolith):
 
-| Directory | Purpose | Modules |
-|-----------|---------|---------|
-| `core/` | Configuration and workflow orchestration | config.js, workflow.js |
-| `extractors/` | Data extraction (files, decisions, sessions) | 9 modules |
-| `utils/` | Utility functions (logging, paths, validation) | 10 modules |
-| `renderers/` | Template rendering (Mustache) | template-renderer.js |
-| `spec-folder/` | Spec folder detection and validation | 4 modules |
-| `loaders/` | Data loading with fallback logic | data-loader.js |
+| Directory | TypeScript Source | Compiled Output | Module Count |
+|-----------|-------------------|-----------------|--------------|
+| `core/` | Configuration and workflow orchestration | `dist/core/` | 3 modules (config.ts, workflow.ts, index.ts) |
+| `extractors/` | Data extraction (files, decisions, sessions) | `dist/extractors/` | 10 modules |
+| `utils/` | Utility functions (logging, paths, validation) | `dist/utils/` | 11 modules |
+| `renderers/` | Template rendering (Mustache) | `dist/renderers/` | 2 modules |
+| `spec-folder/` | Spec folder detection and validation | `dist/spec-folder/` | 4 modules |
+| `loaders/` | Data loading with fallback logic | `dist/loaders/` | 2 modules |
 
-**Usage Modes**:
+**Usage Modes** (executes compiled JavaScript from dist/):
 ```bash
 # Mode 1: JSON data file
-node generate-context.js /tmp/context-data.json specs/007-feature/
+node dist/memory/generate-context.js /tmp/context-data.json specs/007-feature/
 
 # Mode 2: Direct spec folder (auto-captures from OpenCode)
-node generate-context.js specs/007-feature/
+node dist/memory/generate-context.js specs/007-feature/
 
 # Help
-node generate-context.js --help
+node dist/memory/generate-context.js --help
+
+# Compile after making changes
+npm run build
 ```
 
+**Development Workflow**:
+1. Edit TypeScript sources in `core/`, `extractors/`, `utils/`, etc.
+2. Run `npm run build` to compile to `dist/`
+3. Execute compiled output via Node.js
+
 **Extension Points**:
-- Add new extractors: Create module in `extractors/`, export via `extractors/index.js`
-- Add new utilities: Create module in `utils/`, export via `utils/index.js`
-- Modify workflow: Edit `core/workflow.js` (main orchestration)
+- Add new extractors: Create module in `extractors/`, export via `extractors/index.ts`, rebuild
+- Add new utilities: Create module in `utils/`, export via `utils/index.ts`, rebuild
+- Modify workflow: Edit `core/workflow.ts` (main orchestration), rebuild
+- Cross-workspace imports: Use `@spec-kit/shared/*` or `@spec-kit/mcp-server/*` paths
 
 #### tests/test-embeddings-factory.js
 
@@ -435,16 +447,20 @@ node generate-context.js --help
 
 | Aspect | Details |
 |--------|---------|
+| **Source** | `tests/test-embeddings-factory.js` (JavaScript) |
+| **Compiled** | N/A (runs directly) |
 | **Input** | None |
 | **Output** | Provider status and configuration |
 | **Tests** | Module imports, provider creation, API verification |
 
 #### tests/test-bug-fixes.js
 
-**Purpose**: Regression tests for bug fixes in generate-context.js modular architecture
+**Purpose**: Regression tests for bug fixes in generate-context.ts modular architecture
 
 | Aspect | Details |
 |--------|---------|
+| **Source** | `tests/test-bug-fixes.js` (JavaScript) |
+| **Compiled** | N/A (runs directly) |
 | **Input** | None |
 | **Output** | Pass/fail results for 27 test cases |
 | **Tests** | Memory validation, embedding, transactions, error handling |
@@ -455,19 +471,34 @@ node generate-context.js --help
 
 | Aspect | Details |
 |--------|---------|
+| **Type** | Shell script (no compilation) |
 | **Input** | Options: -v (verbose), -t NAME (single test), -c CATEGORY, -l (list) |
 | **Output** | Test pass/fail results, coverage report |
 | **Tests** | Validates all test fixtures against expected outcomes |
 
-#### cleanup-orphaned-vectors.js
+#### memory/cleanup-orphaned-vectors.ts
 
 **Purpose**: Remove orphaned vector entries from the SQLite database
 
 | Aspect | Details |
 |--------|---------|
+| **Source** | `memory/cleanup-orphaned-vectors.ts` (TypeScript) |
+| **Compiled** | `dist/memory/cleanup-orphaned-vectors.js` |
 | **Input** | None (uses default database path) |
 | **Output** | Cleanup report with deleted count |
 | **Action** | Batch deletion of orphaned vectors |
+
+#### memory/rank-memories.ts
+
+**Purpose**: Memory ranking and scoring utility
+
+| Aspect | Details |
+|--------|---------|
+| **Source** | `memory/rank-memories.ts` (TypeScript) |
+| **Compiled** | `dist/memory/rank-memories.js` |
+| **Input** | Memory files from spec folders |
+| **Output** | Ranked memory list with scores |
+| **Action** | Score and rank memories by relevance |
 
 ---
 
@@ -487,18 +518,18 @@ node generate-context.js --help
 
 ```bash
 # Normal mode (default)
-./validate-spec.sh specs/007-feature/
+./spec/validate.sh specs/007-feature/
 
 # Strict mode (warnings become errors)
-./validate-spec.sh specs/007-feature/ --strict
+./spec/validate.sh specs/007-feature/ --strict
 # Or via environment:
-SPECKIT_STRICT=true ./validate-spec.sh specs/007-feature/
+SPECKIT_STRICT=true ./spec/validate.sh specs/007-feature/
 
 # JSON output for CI/tooling
-./validate-spec.sh specs/007-feature/ --json
+./spec/validate.sh specs/007-feature/ --json
 
 # Disable validation entirely
-SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
+SPECKIT_VALIDATION=false ./spec/validate.sh specs/007-feature/
 ```
 
 ---
@@ -509,7 +540,7 @@ SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
 
 ```bash
 # Validate a spec folder
-./validate-spec.sh specs/007-feature/
+./spec/validate.sh specs/007-feature/
 
 # Output:
 # ✓ FILE_EXISTS: All required files present for Level 2
@@ -540,7 +571,7 @@ SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
 
 ```bash
 # Get machine-readable output
-./validate-spec.sh specs/007-feature/ --json
+./spec/validate.sh specs/007-feature/ --json
 
 # Output:
 # {
@@ -559,7 +590,7 @@ SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
 
 ```bash
 # Check checklist progress
-./calculate-completeness.sh specs/007-feature/
+./spec/calculate-completeness.sh specs/007-feature/
 
 # Output:
 # Completeness: 75% (15/20 items)
@@ -574,10 +605,11 @@ SPECKIT_VALIDATION=false ./validate-spec.sh specs/007-feature/
 
 | Pattern | Command | When to Use |
 |---------|---------|-------------|
-| Quick validation | `validate-spec.sh <folder>` | Before committing |
-| Strict validation | `validate-spec.sh <folder> --strict` | CI pipelines |
+| Quick validation | `spec/validate.sh <folder>` | Before committing |
+| Strict validation | `spec/validate.sh <folder> --strict` | CI pipelines |
 | Create L2 spec | `spec/create.sh "desc" --level 2` | Medium features |
-| Check progress | `calculate-completeness.sh <folder>` | During development |
+| Check progress | `spec/calculate-completeness.sh <folder>` | During development |
+| Generate memory | `node dist/memory/generate-context.js <folder>` | Save session context |
 
 ---
 
@@ -645,7 +677,7 @@ chmod +x .opencode/skill/system-spec-kit/scripts/rules/*.sh
 brew install bash
 
 # Use the new Bash explicitly
-/opt/homebrew/bin/bash ./validate-spec.sh specs/007-feature/
+/opt/homebrew/bin/bash ./spec/validate.sh specs/007-feature/
 ```
 
 ---
@@ -674,7 +706,7 @@ which bc
 ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 
 # Test validation syntax
-bash -n .opencode/skill/system-spec-kit/scripts/validate-spec.sh && echo "Syntax OK"
+bash -n .opencode/skill/system-spec-kit/scripts/spec/validate.sh && echo "Syntax OK"
 ```
 
 ---
@@ -699,4 +731,26 @@ bash -n .opencode/skill/system-spec-kit/scripts/validate-spec.sh && echo "Syntax
 
 ---
 
-*Documentation version: 2.0 | Last updated: 2025-12-31*
+---
+
+## TypeScript Migration Notes
+
+**Migration Completed**: 2026-02-07
+
+All JavaScript source files have been migrated to TypeScript with the following changes:
+
+1. **Source Files**: TypeScript sources (`.ts`) are now in their original directories (core/, extractors/, utils/, lib/, etc.)
+2. **Compiled Output**: JavaScript output (`.js`) is generated in `dist/` subdirectories via `npm run build`
+3. **Import Paths**: Cross-workspace imports use `@spec-kit/shared/*` and `@spec-kit/mcp-server/*` instead of relative paths
+4. **Entry Points**: Runtime execution uses compiled JavaScript from `dist/` (e.g., `node dist/memory/generate-context.js`)
+5. **Development Workflow**: Edit `.ts` files → Run `npm run build` → Execute compiled `.js` from `dist/`
+
+**Key Points**:
+- All runtime imports must use compiled output from `dist/` directories
+- TypeScript configuration in `tsconfig.json` uses project references for workspace dependencies
+- Type definitions (`.d.ts`) are auto-generated alongside compiled JavaScript
+- Shell scripts (`.sh`) remain unchanged and do not require compilation
+
+---
+
+*Documentation version: 3.1 | Last updated: 2026-02-07 | TypeScript migration complete*

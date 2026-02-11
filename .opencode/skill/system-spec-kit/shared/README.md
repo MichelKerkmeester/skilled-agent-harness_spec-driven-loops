@@ -1,6 +1,6 @@
 # Shared Library Modules
 
-> Consolidated JavaScript modules shared between CLI scripts and MCP server for embedding generation and trigger extraction.
+> Consolidated TypeScript modules shared between CLI scripts and MCP server for embedding generation and trigger extraction. Source files are `.ts`; compiled CommonJS `.js` output is produced in-place.
 
 ---
 
@@ -22,8 +22,8 @@
 ### What is the shared/ Directory?
 
 The `shared/` directory is the **canonical source** for shared modules used by both:
-- **CLI scripts** (`scripts/`) - `generate-context.js` and other utilities
-- **MCP server** (`mcp_server/`) - `context-server.js` and memory tools
+- **CLI scripts** (`scripts/`) - `generate-context.ts` and other utilities
+- **MCP server** (`mcp_server/`) - `context-server.ts` and memory tools
 
 This consolidation eliminates code duplication and ensures consistent behavior across all entry points.
 
@@ -35,11 +35,11 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 ├──────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │              ┌────────────────────┐                              │
-│              │  shared/           │ ◄── CANONICAL SOURCE         │
-│              │  ├── embeddings.js │                              │
-│              │  ├── chunking.js   │                              │
+│              │  shared/           │ ◄── CANONICAL SOURCE (.ts)   │
+│              │  ├── embeddings.ts │                              │
+│              │  ├── chunking.ts   │                              │
 │              │  ├── trigger-      │                              │
-│              │  │   extractor.js  │                              │
+│              │  │   extractor.ts  │                              │
 │              │  └── embeddings/   │ ◄── Provider implementations │
 │              └────────────────────┘                              │
 │                       ▲                                          │
@@ -49,12 +49,15 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 │    │scripts/lib/ │                 │mcp_server/  │               │
 │    │(RE-EXPORTS) │                 │lib/         │               │
 │    ├─────────────┤                 │(RE-EXPORTS) │               │
-│    │embeddings.js│                 ├─────────────┤               │
-│    │  → require  │                 │embeddings.js│               │
-│    │  ('../../   │                 │  → require  │               │
-│    │   shared/') │                 │  ('../../   │               │
-│    └─────────────┘                 │   shared/') │               │
+│    │embeddings.ts│                 ├─────────────┤               │
+│    │  → import   │                 │embeddings.ts│               │
+│    │  from '../../│                │  → import   │               │
+│    │   shared/'  │                 │  from '../../│              │
+│    └─────────────┘                 │   shared/'  │               │
 │                                    └─────────────┘               │
+│                                                                  │
+│  Note: Source is TypeScript (.ts); compiled output is            │
+│  CommonJS (.js) produced in-place via `npm run build`.          │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -63,7 +66,7 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 
 | Category                 | Count         | Details                                          |
 | ------------------------ | ------------- | ------------------------------------------------ |
-| Core Modules             | 3             | embeddings.js, trigger-extractor.js, chunking.js |
+| Core Modules             | 3             | embeddings.ts, trigger-extractor.ts, chunking.ts |
 | Provider Implementations | 3             | OpenAI, HF Local, Voyage                         |
 | Embedding Dimensions     | 768/1024/1536 | Provider-dependent                               |
 
@@ -89,14 +92,14 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 
 ### 30-Second Setup
 
-```javascript
-// From CLI scripts (scripts/*.js)
-const { generateEmbedding } = require('../shared/embeddings');
-const { extractTriggerPhrases } = require('../shared/trigger-extractor');
+```typescript
+// From CLI scripts (scripts/*.ts)
+import { generateEmbedding } from '../shared/embeddings';
+import { extractTriggerPhrases } from '../shared/trigger-extractor';
 
-// From MCP server (mcp_server/*.js)
-const { generateEmbedding } = require('../shared/embeddings');
-const { extractTriggerPhrases } = require('../shared/trigger-extractor');
+// From MCP server (mcp_server/*.ts)
+import { generateEmbedding } from '../shared/embeddings';
+import { extractTriggerPhrases } from '../shared/trigger-extractor';
 ```
 
 ### Verify Installation
@@ -105,23 +108,24 @@ const { extractTriggerPhrases } = require('../shared/trigger-extractor');
 # Check that all modules exist
 ls .opencode/skill/system-spec-kit/shared/
 
-# Expected files:
-# embeddings.js, chunking.js, trigger-extractor.js
+# Expected source files:
+# embeddings.ts, chunking.ts, trigger-extractor.ts
 # embeddings/ (subfolder with providers)
+# Compiled .js files are also present alongside .ts sources
 ```
 
 ### First Use
 
-```javascript
-const { generateDocumentEmbedding, getProviderMetadata } = require('./shared/embeddings');
+```typescript
+import { generateDocumentEmbedding, getProviderMetadata } from './shared/embeddings';
 
 // Check active provider
-const meta = getProviderMetadata();
+const meta: { provider: string; model: string; dim: number; healthy: boolean } = getProviderMetadata();
 console.log(`Provider: ${meta.provider}, Dimensions: ${meta.dim}`);
 // Example: "Provider: voyage, Dimensions: 1024"
 
 // Generate an embedding
-const embedding = await generateDocumentEmbedding('How does authentication work?');
+const embedding: Float32Array = await generateDocumentEmbedding('How does authentication work?');
 console.log(`Embedding dimensions: ${embedding.length}`);
 ```
 
@@ -132,18 +136,18 @@ console.log(`Embedding dimensions: ${embedding.length}`);
 ```
 shared/
 ├── Core Modules
-│   ├── embeddings.js           # Multi-provider embedding generation
-│   ├── chunking.js    # Semantic chunking utilities
-│   └── trigger-extractor.js    # Trigger phrase extraction (v11)
+│   ├── embeddings.ts           # Multi-provider embedding generation
+│   ├── chunking.ts             # Semantic chunking utilities
+│   └── trigger-extractor.ts    # Trigger phrase extraction (v11)
 │
 ├── embeddings/                 # Provider Implementations
-│   ├── factory.js              # Provider selection and auto-detection
-│   ├── profile.js              # Embedding profiles and DB path generation
+│   ├── factory.ts              # Provider selection and auto-detection
+│   ├── profile.ts              # Embedding profiles and DB path generation
 │   ├── README.md               # Embeddings factory documentation
 │   └── providers/
-│       ├── hf-local.js         # HuggingFace local (fallback)
-│       ├── openai.js           # OpenAI embeddings API
-│       └── voyage.js           # Voyage AI (recommended)
+│       ├── hf-local.ts         # HuggingFace local (fallback)
+│       ├── openai.ts           # OpenAI embeddings API
+│       └── voyage.ts           # Voyage AI (recommended)
 │
 └── README.md                   # This file
 ```
@@ -152,16 +156,16 @@ shared/
 
 | File                    | Purpose                                             |
 | ----------------------- | --------------------------------------------------- |
-| `embeddings.js`         | Unified API for multi-provider embedding generation |
-| `trigger-extractor.js`  | TF-IDF + semantic trigger phrase extraction         |
-| `embeddings/factory.js` | Provider selection with fallback logic              |
-| `embeddings/profile.js` | Per-profile database path generation                |
+| `embeddings.ts`         | Unified API for multi-provider embedding generation |
+| `trigger-extractor.ts`  | TF-IDF + semantic trigger phrase extraction         |
+| `embeddings/factory.ts` | Provider selection with fallback logic              |
+| `embeddings/profile.ts` | Per-profile database path generation                |
 
 ---
 
 ## 4. ⚡ FEATURES
 
-### Multi-Provider Embeddings (embeddings.js)
+### Multi-Provider Embeddings (embeddings.ts)
 
 **Purpose**: Unified embedding generation across multiple providers
 
@@ -186,7 +190,7 @@ shared/
 
 ---
 
-### Trigger Phrase Extraction (trigger-extractor.js)
+### Trigger Phrase Extraction (trigger-extractor.ts)
 
 **Purpose**: Extract trigger phrases for proactive memory surfacing
 
@@ -265,18 +269,18 @@ database/
 
 ### Example 1: CLI Script Usage
 
-```javascript
-// In scripts/memory/generate-context.js or similar
-const { generateDocumentEmbedding, getEmbeddingDimension } = require('../shared/embeddings');
-const { extractTriggerPhrases } = require('../shared/trigger-extractor');
+```typescript
+// In scripts/memory/generate-context.ts or similar
+import { generateDocumentEmbedding, getEmbeddingDimension } from '../shared/embeddings';
+import { extractTriggerPhrases } from '../shared/trigger-extractor';
 
 // Generate embedding for memory content
-const content = 'Decided to use Voyage API for embeddings due to quality';
-const embedding = await generateDocumentEmbedding(content);
+const content: string = 'Decided to use Voyage API for embeddings due to quality';
+const embedding: Float32Array = await generateDocumentEmbedding(content);
 console.log(`Dimensions: ${embedding.length}`);
 
 // Extract trigger phrases
-const triggers = extractTriggerPhrases(content);
+const triggers: string[] = extractTriggerPhrases(content);
 console.log(`Triggers: ${triggers.join(', ')}`);
 // Output: "voyage api, embeddings, quality"
 ```
@@ -285,17 +289,17 @@ console.log(`Triggers: ${triggers.join(', ')}`);
 
 ### Example 2: MCP Server Usage
 
-```javascript
-// In mcp_server/context-server.js
-const { generateQueryEmbedding, preWarmModel } = require('../shared/embeddings');
-const { extractTriggerPhrases } = require('../shared/trigger-extractor');
+```typescript
+// In mcp_server/context-server.ts
+import { generateQueryEmbedding, preWarmModel } from '../shared/embeddings';
+import { extractTriggerPhrases } from '../shared/trigger-extractor';
 
 // Pre-warm on startup
 await preWarmModel();
 
 // Search handler
-async function handleSearch(query) {
-  const queryEmbedding = await generateQueryEmbedding(query);
+async function handleSearch(query: string): Promise<void> {
+  const queryEmbedding: Float32Array = await generateQueryEmbedding(query);
   // Use embedding for vector search...
 }
 ```
@@ -304,8 +308,8 @@ async function handleSearch(query) {
 
 ### Example 3: Get Provider Information
 
-```javascript
-const { getProviderMetadata, getEmbeddingProfile } = require('./shared/embeddings');
+```typescript
+import { getProviderMetadata, getEmbeddingProfile } from './shared/embeddings';
 
 // Check current provider
 const meta = getProviderMetadata();
@@ -314,7 +318,7 @@ console.log(meta);
 
 // Get database path for current profile
 const profile = getEmbeddingProfile();
-const dbPath = profile.getDatabasePath('/base/path');
+const dbPath: string = profile.getDatabasePath('/base/path');
 // '/base/path/context-index__voyage__voyage-code-2__1024.sqlite'
 ```
 
@@ -322,8 +326,8 @@ const dbPath = profile.getDatabasePath('/base/path');
 
 ### Example 4: Trigger Extraction with Stats
 
-```javascript
-const { extractTriggerPhrasesWithStats } = require('./shared/trigger-extractor');
+```typescript
+import { extractTriggerPhrasesWithStats } from './shared/trigger-extractor';
 
 const result = extractTriggerPhrasesWithStats(memoryContent);
 console.log(result);
@@ -365,9 +369,9 @@ console.log(result);
 **Cause**: Provider failed to initialize or model not loaded
 
 **Solution**:
-```javascript
+```typescript
 // Pre-warm on startup
-const { preWarmModel } = require('./shared/embeddings');
+import { preWarmModel } from './shared/embeddings';
 await preWarmModel();
 ```
 
@@ -394,7 +398,7 @@ rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 **Cause**: HF local downloads ~274MB model on first run
 
 **Solution**:
-```javascript
+```typescript
 // Pre-warm at startup to download/load model
 await preWarmModel();
 ```
@@ -418,10 +422,10 @@ echo "VOYAGE_API_KEY: ${VOYAGE_API_KEY:0:10}..."
 echo "OPENAI_API_KEY: ${OPENAI_API_KEY:0:10}..."
 echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 
-# Test embedding generation
+# Test embedding generation (runs compiled .js output)
 node -e "require('./shared/embeddings').generateDocumentEmbedding('test').then(e => console.log('Dims:', e.length))"
 
-# Test trigger extraction
+# Test trigger extraction (runs compiled .js output)
 node -e "console.log(require('./shared/trigger-extractor').extractTriggerPhrases('memory search trigger extraction'))"
 ```
 
@@ -449,4 +453,4 @@ node -e "console.log(require('./shared/trigger-extractor').extractTriggerPhrases
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2024-12-31*
+*Documentation version: 2.0 | Last updated: 2026-02-07 | Migrated to TypeScript*

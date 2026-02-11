@@ -371,7 +371,7 @@ if (opencodeRatio > 0.5) {
 STATUS=OK SCENARIO=crash SESSION=specs/082-speckit-reimagined/
 ```
 
-**IMPORTANT**: Always display key files in the recovery summary. This allows the user to quickly verify that the spec folder makes sense for the work that was done. If `key_files` are in `.opencode/` but `spec_folder` is project-specific (like `005-anobel.com`), this is a mismatch that should be flagged.
+**IMPORTANT**: Always display key files in the recovery summary. This allows the user to quickly verify that the spec folder makes sense for the work that was done. If `key_files` are in `.opencode/` but `spec_folder` is project-specific (like `005-project-name`), this is a mismatch that should be flagged.
 
 ### Step 5: Auto-Continue
 

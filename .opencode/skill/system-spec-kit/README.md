@@ -73,19 +73,20 @@ Spec Kit adds the missing layers: persistent memory, enforced documentation, and
 
 | Category | Count |
 |----------|-------|
-| **MCP Tools** | 23+ (memory, checkpoint, causal, drift, learning) |
+| **MCP Tools** | 22 (memory, checkpoint, causal, drift, learning) |
 | **Templates** | 10 (specs, plans, research, decisions) |
-| **Scripts** | 77 (48 JS + 29 shell) |
+| **Scripts** | 90 (44 TS + 18 JS + 27 shell + 1 Python) |
 | **Commands** | 12 (7 spec_kit + 5 memory) |
 | **Importance Tiers** | 6 (constitutional -> deprecated) |
 | **Memory Types** | 9 (working, episodic, procedural, semantic, etc.) |
-| **Test Coverage** | 1,500+ tests across 35+ test files |
+| **Test Coverage** | 3,872 tests across 114 test files |
 
 ### Requirements
 
 | Requirement | Minimum |
 |-------------|---------|
 | Node.js | 18+ |
+| TypeScript | 5.0+ (compile with `npm run build`) |
 | OpenCode | 1.0.190+ |
 | Bash | 4.0+ |
 
@@ -138,13 +139,13 @@ ls specs/###-user-authentication/
 ### Progressive Enhancement
 
 ```
-Level 1 (Core):         Essential what/why/how (~270 LOC)
+Level 1 (Core):         Essential what/why/how (~455 LOC)
          | +Verify
-Level 2 (Verification): +Quality gates, NFRs, edge cases (~390 LOC)
+Level 2 (Verification): +Quality gates, NFRs, edge cases (~875 LOC)
          | +Arch
-Level 3 (Full):         +Architecture decisions, ADRs (~540 LOC)
+Level 3 (Full):         +Architecture decisions, ADRs (~1090 LOC)
          | +Govern
-Level 3+ (Extended):    +Enterprise governance, AI protocols (~640 LOC)
+Level 3+ (Extended):    +Enterprise governance, AI protocols (~1350 LOC)
 ```
 
 ### When to Use Each Level
@@ -184,10 +185,10 @@ specs/042-user-authentication/
 |---------|-------|---------|
 | `/spec_kit:complete` | 14 | Full end-to-end workflow |
 | `/spec_kit:plan` | 7 | Planning only (no implementation) |
-| `/spec_kit:implement` | 9 | Execute pre-planned work |
+| `/spec_kit:implement` | 11 | Execute pre-planned work (9 main + Steps 5.5/7.5 PREFLIGHT/POSTFLIGHT) |
 | `/spec_kit:research` | 9 | Technical investigation |
 | `/spec_kit:resume` | 4 | Resume previous session |
-| `/spec_kit:handover` | 5 | Create session handover document |
+| `/spec_kit:handover` | 4 | Create session handover document |
 | `/spec_kit:debug` | 5 | Delegate debugging to sub-agent |
 
 ### Memory Commands
@@ -206,6 +207,8 @@ specs/042-user-authentication/
 |--------|----------|
 | `:auto` | Execute without approval gates |
 | `:confirm` | Pause at each step for approval |
+
+> **Note:** Mode suffixes are supported by most commands but not all. `/spec_kit:handover` does not support `:auto`/`:confirm` suffixes — it always runs in interactive mode.
 
 ### Workflow Decision Guide
 
@@ -314,8 +317,8 @@ Answer "why" queries by tracing decision lineage:
 | `supports` | A provides evidence for B |
 
 **Usage:**
-```javascript
-memory_causal_why({ memoryId: 'abc123', maxDepth: 3 })
+```typescript
+memory_drift_why({ memoryId: 'abc123', maxDepth: 3 })
 // Returns: { memory: {...}, causedBy: [...], enabledBy: [...], supersedes: [...] }
 ```
 
@@ -336,7 +339,7 @@ Hash-based Set tracks `sentMemories` per session. State persists to SQLite for c
 
 ---
 
-### MCP Tools (23+)
+### MCP Tools (22)
 
 **Search & Retrieval**
 
@@ -378,7 +381,7 @@ Hash-based Set tracks `sentMemories` per session. State persists to SQLite for c
 
 | Tool | Purpose |
 |------|---------|
-| `memory_causal_why` | Trace causal chain for decision lineage |
+| `memory_drift_why` | Trace causal chain for decision lineage |
 | `memory_causal_link` | Create causal relationships between memories |
 | `memory_causal_stats` | Graph statistics and coverage metrics |
 | `memory_causal_unlink` | Remove causal relationships |
@@ -477,10 +480,10 @@ If embedding fails, the system degrades gracefully to keyword search.
 ### Template Composition (CORE + ADDENDUM)
 
 ```
-Level 1:  [CORE templates only]        -> 5 files, ~450 LOC
-Level 2:  [CORE] + [L2-VERIFY]         -> 6 files, ~890 LOC
-Level 3:  [CORE] + [L2] + [L3-ARCH]    -> 7 files, ~890 LOC
-Level 3+: [CORE] + [all addendums]     -> 7 files, ~1080 LOC
+Level 1:  [CORE templates only]        -> 4 files, ~455 LOC
+Level 2:  [CORE] + [L2-VERIFY]         -> 6 files, ~875 LOC
+Level 3:  [CORE] + [L2] + [L3-ARCH]    -> 7 files, ~1090 LOC
+Level 3+: [CORE] + [all addendums]     -> 7 files, ~1350 LOC
 ```
 
 **Why this matters:** Update CORE once -> all levels inherit changes. No content duplication.
@@ -522,7 +525,7 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 | `spec/calculate-completeness.sh` | Calculate completeness % |
 | `spec/recommend-level.sh` | Recommend documentation level |
 | `spec/archive.sh` | Archive completed spec folders |
-| `memory/generate-context.js` | Memory file generation |
+| `memory/generate-context.ts` | Memory file generation (source) |
 | `templates/compose.sh` | Compose level templates |
 
 ### Validation Rules (13 Total)
@@ -558,11 +561,11 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 ### Memory Generation
 
 ```bash
-# Generate memory file for spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/042-feature/
+# Generate memory file for spec folder (executes compiled JS from dist/)
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/042-feature/
 ```
 
-**IMPORTANT:** Memory files MUST be created via this script, not manually.
+**IMPORTANT:** Memory files MUST be created via this script, not manually. Source is TypeScript (`generate-context.ts`); `node` executes the compiled `.js` output from `dist/`.
 
 ---
 
@@ -629,7 +632,7 @@ memory_index_scan({ specFolder: "###-folder" })
 
 Every error now includes actionable recovery guidance. 49 error codes mapped to specific recovery commands:
 
-```javascript
+```typescript
 // Example error response
 {
   error: 'E041',
@@ -663,19 +666,28 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 |   |-- addendum/              # Level-specific additions
 |   |-- level_1/ - level_3+/   # Composed templates by level
 |   |__ *.md                   # Utility templates
-|-- scripts/                   # Automation scripts
+|-- scripts/                   # Automation scripts [TypeScript source]
 |   |-- spec/                  # Spec folder management
 |   |-- memory/                # Memory system scripts
 |   |-- rules/                 # Validation rules (13)
-|   |__ tests/                 # Test suite (634 tests)
-|-- mcp_server/                # Spec Kit Memory MCP
-|   |-- context-server.js      # MCP server with 23+ tools
+|   |-- tests/                 # Test suite (102 tests)
+|   |__ dist/                  # Compiled JavaScript output
+|-- shared/                    # Shared workspace (@spec-kit/shared)
+|-- mcp_server/                # Spec Kit Memory MCP [TypeScript source]
+|   |-- context-server.ts      # MCP server entry (22 tools)
+|   |-- core/                  # Core initialization
+|   |-- handlers/              # Tool handlers
+|   |-- hooks/                 # Lifecycle hooks
 |   |-- lib/                   # Server libraries
 |   |   |-- cognitive/         # FSRS, PE gating, 5-state model
 |   |   |-- search/            # Vector, BM25, RRF fusion, cross-encoder
 |   |   |-- session/           # Deduplication, crash recovery
 |   |   |-- storage/           # SQLite, causal edges
+|   |   |-- providers/         # Embedding providers
 |   |   |__ errors/            # Recovery hints (49 codes)
+|   |-- utils/                 # Utility modules
+|   |-- formatters/            # Output formatting
+|   |-- dist/                  # Compiled JavaScript output
 |   |__ database/              # SQLite + vector search
 |-- references/                # Documentation (19 files)
 |-- assets/                    # Decision matrices

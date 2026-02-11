@@ -1,66 +1,60 @@
 #!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────────
-# install-all.sh: Master installer for all OpenCode MCP servers
-# ───────────────────────────────────────────────────────────────────
-
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MASTER INSTALLER
+# ───────────────────────────────────────────────────────────────
 # Orchestrates installation of all MCP servers in dependency order:
 #   1. Sequential Thinking (no dependencies)
 #   2. Spec Kit Memory (no dependencies)
-#   3. Code Mode (no dependencies, but needed by Figma/Narsil)
+#   3. Code Mode (no dependencies, but needed by Figma)
 #   4. Chrome DevTools (no dependencies)
 #   5. Figma (requires Code Mode for Option B)
-#   6. Narsil (requires Code Mode)
 
-set -eo pipefail
+set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_utils.sh"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 # MCP definitions using parallel arrays (bash 3.2 compatible)
-# Index: 0=sequential-thinking, 1=spec-kit-memory, 2=code-mode, 3=chrome-devtools, 4=figma, 5=narsil
-MCP_NAMES=(
+# Index: 0=sequential-thinking, 1=spec-kit-memory, 2=code-mode, 3=chrome-devtools, 4=figma
+readonly MCP_NAMES=(
     "sequential-thinking"
     "spec-kit-memory"
     "code-mode"
     "chrome-devtools"
     "figma"
-    "narsil"
 )
 
-MCP_SCRIPTS=(
+readonly MCP_SCRIPTS=(
     "install-sequential-thinking.sh"
     "install-spec-kit-memory.sh"
     "install-code-mode.sh"
     "install-chrome-devtools.sh"
     "install-figma.sh"
-    "install-narsil.sh"
 )
 
-MCP_DISPLAY_NAMES=(
+readonly MCP_DISPLAY_NAMES=(
     "Sequential Thinking"
     "Spec Kit Memory"
     "Code Mode"
     "Chrome DevTools"
     "Figma"
-    "Narsil"
 )
 
 # Dependencies (empty string = no deps, otherwise MCP name)
-MCP_DEPS=(
+readonly MCP_DEPS=(
     ""
     ""
     ""
     ""
-    "code-mode"
     "code-mode"
 )
 
 # Installation order indices
-INSTALL_ORDER=(0 1 2 3 4 5)
+readonly INSTALL_ORDER=(0 1 2 3 4)
 
 # Counters
 INSTALLED=0
@@ -79,9 +73,9 @@ NO_VERIFY=false
 SKIP_LIST=""
 ONLY_LIST=""
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 2. HELPER FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 # Get index for MCP name
 get_mcp_index() {
@@ -125,11 +119,12 @@ get_deps() {
     fi
 }
 
-# Check if string list contains value
+# Check if space-separated string list contains value
 list_contains() {
     local list="$1"
     local val="$2"
-    
+
+    # Word splitting is intentional here to iterate space-separated values
     for item in $list; do
         if [[ "$item" == "$val" ]]; then
             return 0
@@ -195,9 +190,9 @@ check_dependencies() {
     return 0
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 3. DISPLAY FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 show_banner() {
     echo ""
@@ -227,21 +222,19 @@ MCP Names (for --skip/--only):
     code-mode              UTCP orchestration for external MCP tools
     chrome-devtools        Browser debugging via DevTools Protocol
     figma                  Figma design file access
-    narsil                 Deep code intelligence (76 tools)
 
 Installation Order (dependency-based):
     1. Sequential Thinking (no dependencies)
     2. Spec Kit Memory (no dependencies)
-    3. Code Mode (needed by Figma/Narsil)
+    3. Code Mode (needed by Figma)
     4. Chrome DevTools (no dependencies)
     5. Figma (requires Code Mode)
-    6. Narsil (requires Code Mode)
 
 Examples:
     $(basename "$0")                          # Install all MCPs
-    $(basename "$0") --skip narsil            # Install all except Narsil
+    $(basename "$0") --skip figma             # Install all except Figma
     $(basename "$0") --only code-mode         # Install only Code Mode
-    $(basename "$0") --only code-mode --only narsil  # Install Code Mode and Narsil
+    $(basename "$0") --only code-mode --only figma   # Install Code Mode and Figma
     $(basename "$0") --dry-run                # Preview without installing
 
 EOF
@@ -293,16 +286,18 @@ show_summary() {
     if [[ -n "$FAILED_MCPS" ]]; then
         echo ""
         echo -e "${RED}Failed MCPs:${NC}"
+        # Word splitting is intentional to iterate space-separated names
         for mcp in $FAILED_MCPS; do
             local display
             display=$(get_display_name "$mcp")
             echo "  - ${display}"
         done
     fi
-    
+
     if [[ -n "$SKIPPED_MCPS" ]]; then
         echo ""
         echo -e "${YELLOW}Skipped MCPs:${NC}"
+        # Word splitting is intentional to iterate space-separated names
         for mcp in $SKIPPED_MCPS; do
             local display reason=""
             display=$(get_display_name "$mcp")
@@ -321,9 +316,9 @@ show_summary() {
     echo ""
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 4. INSTALLER FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 # Run individual installer
 run_installer() {
@@ -351,9 +346,6 @@ run_installer() {
         figma)
             args="$args -a"  # Use official Figma MCP (non-interactive)
             ;;
-        narsil)
-            args="$args -m 1 --skip-wizard"  # Use npm install (non-interactive)
-            ;;
     esac
     
     # Run the installer
@@ -372,9 +364,9 @@ run_installer() {
     fi
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 5. MAIN
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 main() {
     # Parse arguments

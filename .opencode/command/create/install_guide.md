@@ -391,9 +391,9 @@ Execute all 5 steps in sequence following the workflow definition.
 | Completion Report   | `completion_report_template`    |
 
 **Reference Guides:**
-- `.opencode/install_guides/MCP/MCP - Code Mode.md`
-- `.opencode/install_guides/MCP/MCP - Spec Kit Memory.md`
-- `.opencode/install_guides/MCP/MCP - Chrome Dev Tools.md`
+- `.opencode/install_guides/MCP - Code Mode.md`
+- `.opencode/install_guides/MCP - Spec Kit Memory.md`
+- `.opencode/install_guides/MCP - Chrome Dev Tools.md`
 
 ---
 

@@ -98,13 +98,13 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ```bash
 # Validate a spec folder
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
 
 # JSON output for tooling
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/ --json
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/ --json
 
 # Strict mode (warnings become errors)
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh specs/007-feature/ --strict
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/ --strict
 ```
 
 ### Environment Variables
@@ -133,7 +133,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 The Completion Verification Rule requires running validation before claiming completion:
 
 ```bash
-.opencode/skill/system-spec-kit/scripts/validate-spec.sh <spec-folder>
+.opencode/skill/system-spec-kit/scripts/spec/validate.sh <spec-folder>
 ```
 
 ### /spec_kit:complete Step 11
@@ -158,7 +158,7 @@ Planned but not yet implemented:
 - [Quick Reference](../workflows/quick_reference.md) - Commands and troubleshooting
 
 ### Scripts
-- `../../scripts/validate-spec.sh` - Main validation script
+- `../../scripts/spec/validate.sh` - Main validation script
 - `../../scripts/tests/test-validation.sh` - Test suite for validation
 
 ### Related Skills

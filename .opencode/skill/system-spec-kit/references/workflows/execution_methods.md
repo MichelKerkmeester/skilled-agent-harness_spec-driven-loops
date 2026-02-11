@@ -67,17 +67,17 @@ bash .opencode/skill/system-spec-kit/scripts/spec/check-completion.sh --json spe
 
 ## 4. 💾 CONTEXT SAVING
 
-### generate-context.js
+### generate-context.ts
 
 Generates memory files from conversation context for future session recovery.
 
 **Usage:**
 ```bash
 # Direct mode - pass spec folder path
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/001-feature/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/001-feature/
 
 # JSON mode - pass data file
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/context-data.json
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/context-data.json
 ```
 
 **Environment Variables:**
@@ -194,7 +194,7 @@ bash .opencode/skill/system-spec-kit/scripts/templates/compose.sh 2 3
 
 ## 8. 🔄 MEMORY WORKFLOW (12 Steps)
 
-The `generate-context.js` script orchestrates a 12-step workflow via `workflow.js`:
+The `generate-context.ts` script orchestrates a 12-step workflow via `workflow.ts`:
 
 ### Workflow Steps
 

@@ -650,8 +650,8 @@ If you cannot resolve a violation:
 ### Production Examples
 
 **JavaScript:**
-- `src/2_javascript/video/video_background_hls_hover.js` - Complete compliant example
-- `src/2_javascript/form/file_upload.js` - Form component with full structure
+- `src/javascript/video/video_background_hls_hover.js` - Complete compliant example
+- `src/javascript/form/file_upload.js` - Form component with full structure
 
 **CSS:**
 - `src/1_css/global/fluid_responsive.css` - Custom property naming example

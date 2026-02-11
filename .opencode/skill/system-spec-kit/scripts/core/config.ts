@@ -1,0 +1,239 @@
+// ---------------------------------------------------------------
+// MODULE: Configuration
+// Central configuration loader — reads JSONC config, resolves paths, exports CONFIG object
+// ---------------------------------------------------------------
+
+import * as path from 'path';
+import * as fsSync from 'fs';
+
+/* -----------------------------------------------------------------
+   1. INTERFACES
+------------------------------------------------------------------*/
+
+export interface WorkflowConfig {
+  maxResultPreview: number;
+  maxConversationMessages: number;
+  maxToolOutputLines: number;
+  messageTimeWindow: number;
+  contextPreviewHeadLines: number;
+  contextPreviewTailLines: number;
+  timezoneOffsetHours: number;
+}
+
+export interface SpecKitConfig {
+  SKILL_VERSION: string;
+  MESSAGE_COUNT_TRIGGER: number;
+  MAX_RESULT_PREVIEW: number;
+  MAX_CONVERSATION_MESSAGES: number;
+  MAX_TOOL_OUTPUT_LINES: number;
+  TRUNCATE_FIRST_LINES: number;
+  TRUNCATE_LAST_LINES: number;
+  MESSAGE_TIME_WINDOW: number;
+  TIMEZONE_OFFSET_HOURS: number;
+  TOOL_PREVIEW_LINES: number;
+  TEMPLATE_DIR: string;
+  PROJECT_ROOT: string;
+  DATA_FILE: string | null;
+  SPEC_FOLDER_ARG: string | null;
+  MAX_FILES_IN_MEMORY: number;
+  MAX_OBSERVATIONS: number;
+  MIN_PROMPT_LENGTH: number;
+  MAX_CONTENT_PREVIEW: number;
+}
+
+/* -----------------------------------------------------------------
+   2. PATH CONSTANTS
+------------------------------------------------------------------*/
+
+const CORE_DIR: string = __dirname;
+const SCRIPTS_DIR: string = path.resolve(CORE_DIR, '..', '..');
+
+/* -----------------------------------------------------------------
+   3. CONFIG LOADER
+------------------------------------------------------------------*/
+
+function isEscapedQuoteAt(str: string, index: number): boolean {
+  if (index === 0) return false;
+  let backslashCount = 0;
+  let k = index - 1;
+  while (k >= 0 && str[k] === '\\') {
+    backslashCount++;
+    k--;
+  }
+  return backslashCount % 2 === 1;
+}
+
+function loadConfig(): WorkflowConfig {
+  const defaultConfig: WorkflowConfig = {
+    maxResultPreview: 500,
+    maxConversationMessages: 100,
+    maxToolOutputLines: 100,
+    messageTimeWindow: 300000,
+    contextPreviewHeadLines: 50,
+    contextPreviewTailLines: 20,
+    timezoneOffsetHours: 0
+  };
+
+  const configPath: string = path.join(SCRIPTS_DIR, '..', 'config', 'config.jsonc');
+
+  try {
+    if (fsSync.existsSync(configPath)) {
+      const configContent: string = fsSync.readFileSync(configPath, 'utf-8');
+
+      // Strip block comments (/* ... */) first, handling multi-line
+      let stripped = '';
+      let inBlockComment = false;
+      let inStr = false;
+      for (let i = 0; i < configContent.length; i++) {
+        const ch = configContent[i];
+        const next = configContent[i + 1];
+
+        if (inBlockComment) {
+          if (ch === '*' && next === '/') {
+            inBlockComment = false;
+            i++;
+          }
+          continue;
+        }
+
+        if (ch === '"' && !isEscapedQuoteAt(configContent, i)) {
+          inStr = !inStr;
+        }
+
+        if (!inStr && ch === '/' && next === '*') {
+          inBlockComment = true;
+          i++;
+          continue;
+        }
+
+        stripped += ch;
+      }
+
+      const lines = stripped.split('\n');
+      const jsonLines: string[] = [];
+      let inJsonBlock = false;
+      let braceDepth = 0;
+
+      for (const line of lines) {
+        let cleanLine = line;
+
+        let inString = false;
+        let commentStart = -1;
+        for (let i = 0; i < line.length - 1; i++) {
+          const char = line[i];
+          if (char === '"' && !isEscapedQuoteAt(line, i)) {
+            inString = !inString;
+          }
+          if (!inString && char === '/' && line[i + 1] === '/') {
+            commentStart = i;
+            break;
+          }
+        }
+
+        if (commentStart !== -1) {
+          cleanLine = line.substring(0, commentStart);
+        }
+
+        for (const char of cleanLine) {
+          if (char === '{') {
+            if (!inJsonBlock) inJsonBlock = true;
+            braceDepth++;
+          } else if (char === '}') {
+            braceDepth--;
+          }
+        }
+
+        if (inJsonBlock) {
+          jsonLines.push(cleanLine);
+        }
+
+        if (inJsonBlock && braceDepth === 0) {
+          break;
+        }
+      }
+
+      if (!jsonLines.length || !jsonLines.join('').trim()) {
+        console.warn('Warning: Config file is empty or contains only comments. Using defaults.');
+        return defaultConfig;
+      }
+
+      const jsonContent: string = jsonLines.join('\n').trim();
+      const userConfig = JSON.parse(jsonContent) as Partial<WorkflowConfig>;
+      return { ...defaultConfig, ...userConfig };
+    }
+  } catch (error: unknown) {
+    const errMsg = error instanceof Error ? error.message : String(error);
+    console.warn(`Warning: Failed to load config.jsonc: ${errMsg}`);
+    console.warn('   Using default configuration values');
+  }
+
+  return defaultConfig;
+}
+
+/* -----------------------------------------------------------------
+   4. CONFIG OBJECT
+------------------------------------------------------------------*/
+
+const userConfig: WorkflowConfig = loadConfig();
+
+const CONFIG: SpecKitConfig = {
+  SKILL_VERSION: '1.7.2',
+  MESSAGE_COUNT_TRIGGER: 20,
+  MAX_RESULT_PREVIEW: userConfig.maxResultPreview,
+  MAX_CONVERSATION_MESSAGES: userConfig.maxConversationMessages,
+  MAX_TOOL_OUTPUT_LINES: userConfig.maxToolOutputLines,
+  TRUNCATE_FIRST_LINES: userConfig.contextPreviewHeadLines,
+  TRUNCATE_LAST_LINES: userConfig.contextPreviewTailLines,
+  MESSAGE_TIME_WINDOW: userConfig.messageTimeWindow,
+  TIMEZONE_OFFSET_HOURS: userConfig.timezoneOffsetHours,
+  TOOL_PREVIEW_LINES: 10,
+
+  TEMPLATE_DIR: path.join(SCRIPTS_DIR, '..', 'templates'),
+  PROJECT_ROOT: path.resolve(SCRIPTS_DIR, '..', '..', '..', '..'),
+
+  // Runtime values - set by parseArguments()
+  DATA_FILE: null,
+  SPEC_FOLDER_ARG: null,
+
+  MAX_FILES_IN_MEMORY: 10,
+  MAX_OBSERVATIONS: 3,
+  MIN_PROMPT_LENGTH: 60,
+  MAX_CONTENT_PREVIEW: 500
+};
+
+/* -----------------------------------------------------------------
+   5. SPECS DIRECTORY UTILITIES
+------------------------------------------------------------------*/
+
+function getSpecsDirectories(): string[] {
+  return [
+    path.join(CONFIG.PROJECT_ROOT, 'specs'),
+    path.join(CONFIG.PROJECT_ROOT, '.opencode', 'specs')
+  ];
+}
+
+function findActiveSpecsDir(): string | null {
+  const possibleDirs = getSpecsDirectories();
+  for (const dir of possibleDirs) {
+    if (fsSync.existsSync(dir)) {
+      return dir;
+    }
+  }
+  return null;
+}
+
+function getAllExistingSpecsDirs(): string[] {
+  return getSpecsDirectories().filter((dir) => fsSync.existsSync(dir));
+}
+
+/* -----------------------------------------------------------------
+   6. EXPORTS
+------------------------------------------------------------------*/
+
+export {
+  CONFIG,
+  loadConfig,
+  getSpecsDirectories,
+  findActiveSpecsDir,
+  getAllExistingSpecsDirs,
+};

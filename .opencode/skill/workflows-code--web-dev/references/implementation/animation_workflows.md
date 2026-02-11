@@ -178,7 +178,7 @@ function close_dropdown(dropdown) {
 }
 ```
 
-**Reference implementation:** `src/2_javascript/navigation/language_selector.js` - Complete dropdown with measured height animation
+**Reference implementation:** `src/javascript/navigation/language_selector.js` - Complete dropdown with measured height animation
 
 ---
 
@@ -189,7 +189,7 @@ function close_dropdown(dropdown) {
 **Load Motion.dev once as ES module in global.html:**
 
 ```html
-<!-- src/0_html/global.html -->
+<!-- src/html/global.html -->
 <script type="module">
   const lib = await import('https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm');
   window.Motion = lib; // { animate, inView, scroll, stagger, ... }
@@ -357,8 +357,8 @@ animate(element, { opacity: [0, 1] }, {
 
 | File | Pattern Demonstrated |
 |------|---------------------|
-| `src/2_javascript/hero/hero_general.js` | InView-based multi-phase sequence, easing maps, loader fadeout, will-change cleanup |
-| `src/2_javascript/hero/hero_blog_article.js` | Content-first then overlay, short durations, expoOut easing |
+| `src/javascript/hero/hero_general.js` | InView-based multi-phase sequence, easing maps, loader fadeout, will-change cleanup |
+| `src/javascript/hero/hero_blog_article.js` | Content-first then overlay, short durations, expoOut easing |
 
 ---
 
@@ -547,7 +547,7 @@ if (prefers_reduced_motion) {
 ```markdown
 1. Navigate to page:
    [Use tool: mcp__chrome_devtools_2__navigate_page]
-   - url: "https://anobel.com"
+   - url: "https://example.com"
 
 2. Capture before state:
    [Use tool: mcp__chrome_devtools_2__take_screenshot]
@@ -565,7 +565,7 @@ if (prefers_reduced_motion) {
 **Option 2: workflows-chrome-devtools (Terminal-based)**
 ```bash
 # Visual regression testing workflow
-bdg https://anobel.com 2>&1
+bdg https://example.com 2>&1
 
 # Capture initial state
 bdg screenshot animation-before.png 2>&1
@@ -588,7 +588,7 @@ compare animation-before.png animation-after.png animation-diff.png
 **CLI Performance Profiling:**
 ```bash
 # Navigate to page
-bdg https://anobel.com 2>&1
+bdg https://example.com 2>&1
 
 # Trigger animation and capture metrics immediately after
 bdg js "document.querySelector('.animated-element').classList.add('animate')" 2>&1
@@ -628,7 +628,7 @@ bdg stop 2>&1
 #!/bin/bash
 # Assert animation performance meets targets
 
-bdg https://anobel.com 2>&1
+bdg https://example.com 2>&1
 
 # Trigger animation
 bdg js "document.querySelector('.hero').classList.add('animate-in')" 2>&1
@@ -658,7 +658,7 @@ fi
 # Test animations at all viewports
 
 VIEWPORTS=("1920:1080:desktop" "991:1024:tablet" "375:667:mobile")
-URL="https://anobel.com"
+URL="https://example.com"
 
 for viewport in "${VIEWPORTS[@]}"; do
   IFS=':' read -r width height name <<< "$viewport"
@@ -696,7 +696,7 @@ echo "✅ All viewport tests complete"
 **Automated prefers-reduced-motion verification:**
 ```bash
 # Test with reduced motion preference
-bdg https://anobel.com 2>&1
+bdg https://example.com 2>&1
 
 # Enable reduced motion emulation
 bdg cdp Emulation.setEmulatedMedia '{"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}' 2>&1
@@ -1047,4 +1047,4 @@ animate(element, {
 });
 ```
 
-**Reference implementation:** `src/2_javascript/hero/hero_general.js:302-549`
+**Reference implementation:** `src/javascript/hero/hero_general.js:302-549`

@@ -38,8 +38,8 @@ Tool Invoked → Extract Context → Surface Constitutional + Triggered → Inje
 
 ### Basic Hook Usage
 
-```javascript
-const hooks = require('./hooks');
+```typescript
+import * as hooks from './hooks';
 
 // Extract context from tool arguments
 const contextHint = hooks.extract_context_hint({
@@ -61,7 +61,7 @@ const surfaced = await hooks.auto_surface_memories(contextHint);
 
 ### Check Tool Awareness
 
-```javascript
+```typescript
 // Check if a tool should trigger memory surfacing
 const isAware = hooks.is_memory_aware_tool('memory_search');
 // Returns: true
@@ -76,16 +76,16 @@ const notAware = hooks.is_memory_aware_tool('file_read');
 
 ```
 hooks/
-├── index.js              # Module exports and backward compatibility
-└── memory-surface.js     # Memory surface hook implementation (SK-004)
+├── index.ts              # Module exports and backward compatibility
+└── memory-surface.ts     # Memory surface hook implementation (SK-004)
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `index.js` | Exports all hook functions with camelCase aliases |
-| `memory-surface.js` | Core implementation of memory surfacing logic |
+| `index.ts` | Exports all hook functions with camelCase aliases |
+| `memory-surface.ts` | Core implementation of memory surfacing logic |
 
 ---
 
@@ -101,7 +101,7 @@ hooks/
 | **Triggered Memories** | Matched via fast phrase matching | No cache |
 | **Context Extraction** | From `query`, `prompt`, `specFolder`, `filePath`, `concepts` | N/A |
 
-```javascript
+```typescript
 // Automatic surfacing on tool invocation
 const result = await auto_surface_memories('authentication workflow');
 
@@ -131,7 +131,7 @@ const result = await auto_surface_memories('authentication workflow');
 
 **Purpose**: Automatically extract search hints from tool arguments.
 
-```javascript
+```typescript
 // Extracts from multiple fields
 const hint1 = extract_context_hint({ query: 'authentication' });
 // Returns: 'authentication'
@@ -150,7 +150,7 @@ const hint4 = extract_context_hint({});
 
 **Purpose**: Reduce database queries for frequently surfaced constitutional memories.
 
-```javascript
+```typescript
 // First call: fetches from database
 const constitutional1 = await get_constitutional_memories();
 // Query time: ~5ms
@@ -169,9 +169,11 @@ clear_constitutional_cache();
 
 ### Example 1: Tool Integration Pattern
 
-```javascript
+```typescript
+import * as hooks from './hooks';
+
 // In MCP server tool handler
-async function handle_tool_call(toolName, args) {
+async function handle_tool_call(toolName: string, args: any) {
   let surfaced = null;
 
   // Auto-surface for memory-aware tools
@@ -196,7 +198,9 @@ async function handle_tool_call(toolName, args) {
 
 ### Example 2: Constitutional Memory Loading
 
-```javascript
+```typescript
+import * as hooks from './hooks';
+
 // Load constitutional memories with caching
 const constitutional = await hooks.get_constitutional_memories();
 
@@ -211,7 +215,9 @@ User query: ${userQuery}
 
 ### Example 3: Manual Context Surfacing
 
-```javascript
+```typescript
+import * as hooks from './hooks';
+
 // Surface memories for custom context
 const customContext = 'git commit workflow validation';
 const surfaced = await hooks.auto_surface_memories(customContext);
@@ -245,9 +251,12 @@ if (surfaced) {
 **Cause**: No constitutional memories and no trigger matches
 
 **Solution**:
-```javascript
+```typescript
+import * as hooks from './hooks';
+import { vectorIndex } from '../lib/search/vector-index';
+
 // Check constitutional memories exist
-const constitutional = await get_constitutional_memories();
+const constitutional = await hooks.get_constitutional_memories();
 console.log(`Constitutional count: ${constitutional.length}`);
 
 // Verify trigger phrases in database
@@ -268,7 +277,9 @@ console.log(`Memories with triggers: ${triggerCount.count}`);
 **Cause**: Cache not cleared after database updates
 
 **Solution**:
-```javascript
+```typescript
+import * as hooks from './hooks';
+
 // Clear cache after memory updates
 await handle_memory_update({ id: 'mem_123', importanceTier: 'constitutional' });
 hooks.clear_constitutional_cache();  // Force refresh
@@ -302,11 +313,13 @@ WHERE json_array_length(trigger_phrases) > 5;
 **Cause**: Tool name not in `MEMORY_AWARE_TOOLS` set
 
 **Solution**:
-```javascript
+```typescript
+import * as hooks from './hooks';
+
 // Check if tool is registered
 const isRegistered = hooks.is_memory_aware_tool('my_tool');
 
-// Add to MEMORY_AWARE_TOOLS set in memory-surface.js
+// Add to MEMORY_AWARE_TOOLS set in memory-surface.ts
 const MEMORY_AWARE_TOOLS = new Set([
   'memory_search',
   'memory_match_triggers',
@@ -332,8 +345,8 @@ const MEMORY_AWARE_TOOLS = new Set([
 
 | Document | Purpose |
 |----------|---------|
-| [../handlers/memory-triggers.js](../handlers/memory-triggers.js) | Trigger phrase matching implementation |
-| [../lib/parsing/trigger-matcher.js](../lib/parsing/trigger-matcher.js) | Fast phrase matching algorithm |
+| [../handlers/memory-triggers.ts](../handlers/memory-triggers.ts) | Trigger phrase matching implementation |
+| [../lib/parsing/trigger-matcher.ts](../lib/parsing/trigger-matcher.ts) | Fast phrase matching algorithm |
 | [../../references/memory/memory_system.md](../../references/memory/memory_system.md) | Memory system architecture |
 | [SK-004 Spec](../../specs/SK-004-memory-surface-hook/) | Memory Surface Hook design spec |
 

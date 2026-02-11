@@ -51,31 +51,35 @@ Receive args → Validate → Coordinate modules → Format response → Return 
 
 ### Handler Invocation
 
-```javascript
-const handlers = require('./handlers');
+```typescript
+import {
+  handle_memory_search,
+  handle_memory_update,
+  handle_checkpoint_create,
+  handle_task_preflight
+} from './handlers';
 
-// Search for memories
-const searchResult = await handlers.handle_memory_search({
+// Search for memories (hybrid is the default strategy)
+const searchResult = await handle_memory_search({
   query: 'authentication workflow',
-  searchType: 'hybrid',
   limit: 5
 });
 
 // Update memory metadata
-const updateResult = await handlers.handle_memory_update({
+const updateResult = await handle_memory_update({
   id: 'mem_123',
   title: 'Updated title',
   importanceTier: 'critical'
 });
 
 // Create checkpoint
-const checkpoint = await handlers.handle_checkpoint_create({
+const checkpoint = await handle_checkpoint_create({
   name: 'pre-refactor',
   metadata: { reason: 'safety checkpoint' }
 });
 
 // Track learning (preflight)
-const preflight = await handlers.handle_task_preflight({
+const preflight = await handle_task_preflight({
   specFolder: 'specs/003-memory',
   taskId: 'T1',
   knowledgeScore: 40,
@@ -91,76 +95,106 @@ const preflight = await handlers.handle_task_preflight({
 
 ```
 handlers/
-├── index.js              # Module aggregator and exports
-├── memory-search.js      # Search operations (vector, hybrid, multi-concept)
-├── memory-triggers.js    # Trigger phrase matching and surfacing
-├── memory-save.js        # Memory creation and indexing
-├── memory-crud.js        # Update, delete, list, stats, health
-├── memory-index.js       # Index management and re-indexing
-├── checkpoints.js        # Checkpoint save/restore/list
-├── session-learning.js   # Epistemic tracking (preflight/postflight)
-├── memory-context.js     # Unified context entry point (NEW)
-└── causal-graph.js       # Causal relationship operations (NEW)
+├── index.ts              # Module aggregator and exports (TypeScript barrel export)
+├── types.ts              # Shared interfaces (MCPResponse, Database, EmbeddingProfile, etc.)
+├── memory-search.ts      # Search operations (vector, hybrid, multi-concept)
+├── memory-triggers.ts    # Trigger phrase matching and surfacing
+├── memory-save.ts        # Memory creation and indexing
+├── memory-crud.ts        # Update, delete, list, stats, health
+├── memory-index.ts       # Index management and re-indexing
+├── checkpoints.ts        # Checkpoint save/restore/list
+├── session-learning.ts   # Epistemic tracking (preflight/postflight)
+├── memory-context.ts     # Unified context entry point
+└── causal-graph.ts       # Causal relationship operations
 ```
 
 ### Handler Modules
 
-| File | Handlers | Purpose |
+> **Export Convention**: All handlers export both camelCase (primary) and snake_case (backward-compatible alias) names. For example: `handleMemorySearch` (primary) and `handle_memory_search` (alias). Both are functional and interchangeable.
+
+| File | Barrel Exports (via `index.ts`) | Purpose |
 |------|----------|---------|
-| `index.js` | - | Aggregates all handlers and exposes unified interface |
-| `memory-search.js` | `handle_memory_search` | Vector/hybrid/multi-concept search with relevance ranking + Testing Effect integration |
-| `memory-triggers.js` | `handle_memory_match_triggers` | Fast trigger phrase matching (SK-004 Memory Surface) |
-| `memory-save.js` | `handle_memory_save`, `index_memory_file` | Memory creation with embedding generation + Prediction Error Gating (exports: `find_similar_memories`, `reinforce_existing_memory`, `mark_memory_superseded`, `log_pe_decision`) |
-| `memory-crud.js` | `handle_memory_delete`, `handle_memory_update`, `handle_memory_list`, `handle_memory_stats`, `handle_memory_health`, `handle_memory_validate` | Update, delete, list, stats, health, validation |
-| `memory-index.js` | `handle_memory_index_scan`, `index_single_file`, `find_constitutional_files` | Index scanning, re-indexing, status management |
-| `checkpoints.js` | `handle_checkpoint_create`, `handle_checkpoint_list`, `handle_checkpoint_restore`, `handle_checkpoint_delete` | Database snapshots for recovery and context switching |
-| `session-learning.js` | `handle_task_preflight`, `handle_task_postflight`, `handle_get_learning_history` | Epistemic baseline/delta tracking with Learning Index |
-| `memory-context.js` | `handle_memory_context`, `handle_drift_context` | Unified context entry with intent awareness (NEW) |
-| `causal-graph.js` | `handle_causal_link`, `handle_causal_unlink`, `handle_causal_stats`, `handle_drift_why` | Causal edge CRUD, graph traversal, decision lineage (NEW) |
+| `types.ts` | (imported directly, not re-exported) | Shared interfaces: `MCPResponse`, `Database`, `DatabaseExtended`, `EmbeddingProfile`, `EmbeddingProfileExtended`, `IntentClassification` |
+| `index.ts` | - | Aggregates all handlers and exposes unified interface (TypeScript barrel export) |
+| `memory-search.ts` | `handleMemorySearch` | Vector/hybrid/multi-concept search with relevance ranking + Testing Effect integration |
+| `memory-triggers.ts` | `handleMemoryMatchTriggers` | Fast trigger phrase matching (SK-004 Memory Surface) |
+| `memory-save.ts` | `handleMemorySave`, `indexMemoryFile`, `atomicSaveMemory`, `getAtomicityMetrics` | Memory creation with embedding generation + Prediction Error Gating. Additional direct exports: `findSimilarMemories`, `reinforceExistingMemory`, `markMemorySuperseded`, `updateExistingMemory`, `logPeDecision`, `escapeLikePattern`, `processCausalLinks`, `resolveMemoryReference`, `CAUSAL_LINK_MAPPINGS` |
+| `memory-crud.ts` | `handleMemoryDelete`, `handleMemoryUpdate`, `handleMemoryList`, `handleMemoryStats`, `handleMemoryHealth`, `setEmbeddingModelReady` | Update, delete, list, stats, health operations, embedding model initialization |
+| `memory-index.ts` | `handleMemoryIndexScan`, `indexSingleFile`, `findConstitutionalFiles` | Index scanning (params: `specFolder`, `force`, `includeConstitutional`), re-indexing, status management |
+| `checkpoints.ts` | `handleCheckpointCreate`, `handleCheckpointList`, `handleCheckpointRestore`, `handleCheckpointDelete`, `handleMemoryValidate` | Database snapshots for recovery and context switching |
+| `session-learning.ts` | `handleTaskPreflight`, `handleTaskPostflight`, `handleGetLearningHistory` | Epistemic baseline/delta tracking with Learning Index. Additional direct export: `ensureSchema` |
+| `memory-context.ts` | `handleMemoryContext` | Unified context entry with intent awareness. Additional direct exports: `CONTEXT_MODES`, `INTENT_TO_MODE` |
+| `causal-graph.ts` | `handleMemoryDriftWhy`, `handleMemoryCausalLink`, `handleMemoryCausalStats`, `handleMemoryCausalUnlink` | Causal edge CRUD, graph traversal, decision lineage |
 
 ---
 
 ## 4. ⚡ FEATURES
 
-### Prediction Error Gating (memory-save.js)
+### Prediction Error Gating (memory-save.ts)
 
-**Purpose**: Prevents duplicate memories and handles conflicts intelligently using similarity thresholds.
+**Purpose**: Prevents duplicate memories and handles conflicts intelligently using similarity thresholds. Thresholds are defined in `lib/cognitive/prediction-error-gate.ts`.
 
 | Similarity | Action | Description |
 |------------|--------|-------------|
 | >= 0.95 | REINFORCE | Strengthen existing memory, skip create |
-| 0.90-0.94 | CHECK | Check for contradiction, then UPDATE or SUPERSEDE |
-| 0.70-0.89 | MEDIUM_MATCH | Context-dependent linking |
-| 0.50-0.69 | LOW_MATCH | Create with similarity note |
-| < 0.50 | CREATE | Create new memory |
+| 0.85-0.94 | UPDATE or SUPERSEDE | UPDATE existing if consistent; SUPERSEDE if contradiction detected |
+| 0.70-0.84 | CREATE_LINKED | Create new memory with causal link to existing |
+| < 0.70 | CREATE | Create new memory |
 
-**Exports**: `find_similar_memories`, `reinforce_existing_memory`, `mark_memory_superseded`, `log_pe_decision` for internal coordination with cognitive memory upgrade.
+**Barrel exports** (available via `handlers/index.ts`): `handleMemorySave`/`handle_memory_save`, `indexMemoryFile`/`index_memory_file`, `atomicSaveMemory`/`atomic_save_memory`, `getAtomicityMetrics`/`get_atomicity_metrics`
 
-### Testing Effect (memory-search.js)
+**Additional exports** (available via direct import from `memory-save.ts` only): `findSimilarMemories`, `reinforceExistingMemory`, `markMemorySuperseded`, `updateExistingMemory`, `logPeDecision`, `escapeLikePattern`, `processCausalLinks`, `resolveMemoryReference`, `CAUSAL_LINK_MAPPINGS` (and their snake_case aliases)
+
+### Testing Effect (memory-search.ts)
 
 **Purpose**: Accessing memories strengthens them via "desirable difficulty" principle from cognitive science.
 
 - Lower retrievability at access time = greater stability boost
 - Automatically applied on search results retrieval
 - Implements spacing effect for long-term retention
-- Uses `strengthen_on_access` function from `lib/cognitive/`
+- Uses `strengthenOnAccess` function defined locally within `memory-search.ts`
 
 ### Memory Search
 
-**Multi-Strategy Search**: Supports vector (semantic), hybrid (vector + keyword), multi-concept, and trigger-based search.
+**Multi-Strategy Search**: Supports vector (semantic), hybrid (vector + keyword), multi-concept, and trigger-based search. Hybrid is the default and primary strategy; search strategy is determined automatically based on the arguments provided.
 
-| Strategy | Use When | Example Query |
+| Strategy | Use When | How to Invoke |
 |----------|----------|---------------|
-| **vector** | Semantic understanding needed | "How does authentication work?" |
-| **hybrid** | Best of both worlds (default) | "login process implementation" |
-| **multi-concept** | Multiple independent topics | concepts: ['auth', 'errors'] |
-| **trigger** | Fast phrase matching | "gate 1 question" |
+| **hybrid** (default) | Best of both worlds | `query: "login process"` |
+| **multi-concept** | Multiple independent topics | `concepts: ['auth', 'errors']` |
+| **trigger** | Fast phrase matching | Use `handle_memory_match_triggers` handler instead |
 
-```javascript
-// Hybrid search with anchor filtering
+**SearchArgs Parameters** (defined in `memory-search.ts`):
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `query` | string | - | Natural language search query |
+| `concepts` | string[] | - | Multiple concepts for AND search (2-5 concepts) |
+| `specFolder` | string | - | Limit search to specific spec folder |
+| `limit` | number | 10 | Maximum results to return |
+| `tier` | string | - | Filter by importance tier |
+| `contextType` | string | - | Filter by context type |
+| `useDecay` | boolean | true | Apply temporal decay scoring |
+| `includeContiguity` | boolean | false | Include adjacent/contiguous memories |
+| `includeConstitutional` | boolean | true | Include constitutional tier memories at top |
+| `includeContent` | boolean | false | Include full file content in results |
+| `anchors` | string[] | - | Filter content to specific anchors (requires `includeContent: true`) |
+| `bypassCache` | boolean | false | Bypass tool cache |
+| `sessionId` | string | - | Session ID for deduplication |
+| `enableDedup` | boolean | true | Enable session deduplication |
+| `intent` | string | - | Task intent for weight adjustments (`add_feature`, `fix_bug`, `refactor`, `security_audit`, `understand`) |
+| `autoDetectIntent` | boolean | true | Auto-detect intent from query |
+| `minState` | string | - | Minimum memory state filter (HOT, WARM, COLD, DORMANT, ARCHIVED) |
+| `applyStateLimits` | boolean | false | Apply state-based result limits |
+| `rerank` | boolean | false | Enable cross-encoder reranking |
+| `applyLengthPenalty` | boolean | false | Penalize overly long memories |
+
+```typescript
+import { handle_memory_search } from './handlers';
+
+// Search with anchor filtering (hybrid is the default strategy)
 const result = await handle_memory_search({
   query: 'authentication flow',
-  searchType: 'hybrid',
   limit: 5,
   includeContent: true,
   anchors: ['summary', 'decisions']  // Token optimization
@@ -171,7 +205,9 @@ const result = await handle_memory_search({
 
 **Create, Read, Update, Delete** with automatic embedding management.
 
-```javascript
+```typescript
+import { handle_memory_update, handle_memory_delete } from './handlers';
+
 // Update with automatic embedding regeneration
 const updateResult = await handle_memory_update({
   id: 'mem_123',
@@ -205,7 +241,9 @@ The six-tier importance system controls memory surfacing and retention:
 
 **Scan and re-index** memories with status tracking.
 
-```javascript
+```typescript
+import { handle_memory_index_scan } from './handlers';
+
 // Scan index for health issues
 const scanResult = await handle_memory_index_scan({
   autoFix: true  // Automatically fix orphaned/missing embeddings
@@ -222,7 +260,9 @@ const reindexResult = await handle_memory_index_scan({
 
 **Save and restore** database state for safety and context switching.
 
-```javascript
+```typescript
+import { handle_checkpoint_create, handle_checkpoint_restore } from './handlers';
+
 // Save checkpoint before risky operation
 await handle_checkpoint_create({
   name: 'pre-cleanup',
@@ -242,7 +282,9 @@ await handle_checkpoint_restore({
 
 **Track epistemic state** across task execution with preflight/postflight pattern.
 
-```javascript
+```typescript
+import { handle_task_preflight, handle_task_postflight } from './handlers';
+
 // Before starting work - capture baseline
 await handle_task_preflight({
   specFolder: 'specs/003-memory/077-upgrade',
@@ -277,11 +319,12 @@ LI = (Knowledge Delta x 0.4) + (Uncertainty Reduction x 0.35) + (Context Improve
 
 ### Example 1: Search with Constitutional Priority
 
-```javascript
+```typescript
+import { handle_memory_search } from './handlers';
+
 // Constitutional memories always appear first
 const result = await handle_memory_search({
   query: 'workflow process',
-  searchType: 'hybrid',
   limit: 10
 });
 
@@ -297,7 +340,9 @@ const result = await handle_memory_search({
 
 ### Example 2: Folder-Based Statistics
 
-```javascript
+```typescript
+import { handle_memory_stats } from './handlers';
+
 // Get top folders by activity
 const stats = await handle_memory_stats({
   folderRanking: 'composite',    // composite | recency | importance | count
@@ -321,7 +366,9 @@ const stats = await handle_memory_stats({
 
 ### Example 3: Safe Bulk Operations
 
-```javascript
+```typescript
+import { handle_memory_delete, handle_checkpoint_restore } from './handlers';
+
 // Delete all memories in a folder with auto-checkpoint
 const result = await handle_memory_delete({
   specFolder: 'specs/deprecated-feature',
@@ -343,7 +390,9 @@ await handle_checkpoint_restore({
 
 ### Example 4: Learning History Analysis
 
-```javascript
+```typescript
+import { handle_get_learning_history } from './handlers';
+
 // Get learning history for a spec folder
 const history = await handle_get_learning_history({
   specFolder: 'specs/003-memory/077-upgrade',
@@ -380,31 +429,38 @@ const history = await handle_get_learning_history({
 
 ## 6. 🔗 INTEGRATION
 
-### context-server.js Integration
+### context-server.ts Integration
 
-Handlers are imported and dispatched by `context-server.js`:
+Handlers are imported and dispatched by `context-server.ts`:
 
-```javascript
-// Import from handlers/index.js
-const {
-  handle_memory_search, handle_memory_match_triggers,
-  handle_memory_delete, handle_memory_update, handle_memory_list,
-  handle_memory_stats, handle_memory_health,
-  handle_memory_save, index_memory_file,
-  handle_memory_index_scan, index_single_file, find_constitutional_files,
-  handle_checkpoint_create, handle_checkpoint_list,
-  handle_checkpoint_restore, handle_checkpoint_delete,
-  handle_memory_validate,
-  handle_task_preflight, handle_task_postflight, handle_get_learning_history
-} = require('./handlers');
+```typescript
+// Import from handlers/index.ts (compiled to dist/handlers/index.js at runtime)
+// Both camelCase (primary) and snake_case (alias) exports are available.
+import {
+  handleMemorySearch, handleMemoryMatchTriggers,
+  handleMemoryDelete, handleMemoryUpdate, handleMemoryList,
+  handleMemoryStats, handleMemoryHealth, setEmbeddingModelReady,
+  handleMemorySave, indexMemoryFile,
+  handleMemoryIndexScan, indexSingleFile, findConstitutionalFiles,
+  handleCheckpointCreate, handleCheckpointList,
+  handleCheckpointRestore, handleCheckpointDelete,
+  handleMemoryValidate,
+  handleTaskPreflight, handleTaskPostflight, handleGetLearningHistory,
+  handleMemoryContext,
+  handleMemoryDriftWhy, handleMemoryCausalLink,
+  handleMemoryCausalStats, handleMemoryCausalUnlink,
+  atomicSaveMemory, getAtomicityMetrics,
+} from './handlers';
 ```
 
 **Tool Registration**: Each handler is registered as an MCP tool in `ListToolsRequestSchema`:
 - `memory_search`, `memory_match_triggers`
-- `memory_delete`, `memory_update`, `memory_list`, `memory_stats`
+- `memory_delete`, `memory_update`, `memory_list`, `memory_stats`, `memory_health`
 - `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, `checkpoint_delete`
-- `memory_validate`, `memory_save`, `memory_index_scan`, `memory_health`
+- `memory_validate`, `memory_save`, `memory_index_scan`
 - `task_preflight`, `task_postflight`, `memory_get_learning_history`
+- `memory_context`
+- `memory_drift_why`, `memory_causal_link`, `memory_causal_unlink`, `memory_causal_stats`
 
 **Tool Dispatch**: The `CallToolRequestSchema` handler dispatches to the appropriate handler function based on tool name.
 
@@ -421,7 +477,9 @@ const {
 **Cause**: Embedding provider unavailable or title too long
 
 **Solution**:
-```javascript
+```typescript
+import { handle_memory_update, handle_memory_index_scan } from './handlers';
+
 // Option 1: Allow partial update
 await handle_memory_update({
   id: 'mem_123',
@@ -442,7 +500,9 @@ await handle_memory_index_scan({
 **Cause**: Database issues or disk space
 
 **Solution**:
-```javascript
+```typescript
+import { handle_checkpoint_create, handle_memory_delete } from './handlers';
+
 // Manually create checkpoint first
 await handle_checkpoint_create({ name: 'manual-backup' });
 
@@ -460,7 +520,9 @@ await handle_memory_delete({
 **Cause**: Embedding model not ready, empty database, or query mismatch
 
 **Solution**:
-```javascript
+```typescript
+import { handle_memory_health, handle_memory_stats, handle_memory_match_triggers } from './handlers';
+
 // Check health status
 await handle_memory_health({});
 // Expected: embeddingModelReady: true, vectorSearchAvailable: true
@@ -480,7 +542,9 @@ await handle_memory_match_triggers({ prompt: 'your query' });
 **Cause**: Calling `task_postflight` without prior `task_preflight`
 
 **Solution**:
-```javascript
+```typescript
+import { handle_task_preflight, handle_task_postflight } from './handlers';
+
 // Always call preflight first
 await handle_task_preflight({
   specFolder: 'specs/my-spec',
@@ -506,7 +570,7 @@ await handle_task_postflight({
 |---------|-----------|
 | Embedding failed on update | Use `allowPartialUpdate: true` |
 | Bulk delete without backup | Set `confirm: true` (proceeds without checkpoint) |
-| Search too slow | Use `searchType: 'trigger'` for fast phrase matching |
+| Search too slow | Use `handle_memory_match_triggers` for fast phrase matching |
 | Invalid importance tier | Use valid tiers: `constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated` |
 | Memory not found by ID | Use `memory_list` to verify ID exists |
 | Preflight missing | Call `task_preflight` before `task_postflight` |
@@ -533,4 +597,4 @@ await handle_task_postflight({
 
 ---
 
-*Module version: 1.9.1 | Last updated: 2026-01-28*
+*Module version: 1.7.2 | Last updated: 2026-02-08*

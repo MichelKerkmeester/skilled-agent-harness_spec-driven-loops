@@ -284,7 +284,6 @@ Backend projects emphasize data integrity, security, and API design.
 | Skill            | Purpose                                                      |
 | ---------------- | ------------------------------------------------------------ |
 | `workflows-code` | Implementation, debugging, verification lifecycle            |
-| `mcp-narsil`     | Semantic + structural code search for understanding patterns |
 
 #### Confidence Weight Adjustments
 
@@ -327,7 +326,7 @@ Include all tool types with contextual routing:
 ### Tool Routing by Layer
 - **Frontend work** → Chrome DevTools, Webflow, Figma
 - **Backend work** → Database tools, API testing
-- **Both** → Narsil, Memory
+- **Both** → Grep/Glob, Memory
 ```
 
 #### Balanced Weight Distribution
@@ -356,8 +355,8 @@ Concrete examples showing how to customize from Universal to project-specific.
 
 **Before (Universal Template):**
 - All 9 skills installed
-- All 5 MCP servers configured
-- All 16 commands available
+- All 3 MCP servers configured
+- All 19 commands available
 
 **After (Frontend-Optimized):**
 
@@ -367,8 +366,7 @@ Concrete examples showing how to customize from Universal to project-specific.
 |                       | ✅      | workflows-chrome-devtools | Browser debugging essential     |
 |                       | ✅      | workflows-code            | Implementation workflow         |
 |                       | ✅      | mcp-code-mode             | Webflow/Figma integration       |
-| **Skills - Remove**   | ❌      | mcp-narsil                | Small codebase, grep sufficient |
-|                       | ❌      | workflows-git             | Optional for solo projects      |
+| **Skills - Remove**   | ❌      | workflows-git             | Optional for solo projects      |
 | **MCP - Keep**        | ✅      | spec_kit_memory           | Required for spec-kit skill     |
 |                       | ✅      | code_mode                 | External tool access            |
 | **MCP - Remove**      | ❌      | sequential_thinking       | Overkill for frontend           |
@@ -380,20 +378,18 @@ Concrete examples showing how to customize from Universal to project-specific.
 
 **Before (Universal Template):**
 - All 9 skills installed
-- All 5 MCP servers configured
+- All 3 MCP servers configured
 
 **After (Backend-Optimized):**
 
 | Component           | Status | Items                     | Reason                                   |
 | ------------------- | ------ | ------------------------- | ---------------------------------------- |
-| **Skills - Keep**   | ✅      | mcp-narsil                | Semantic + structural code understanding |
-|                     | ✅      | system-spec-kit           | Research context preservation            |
+| **Skills - Keep**   | ✅      | system-spec-kit           | Research context preservation            |
 |                     | ✅      | workflows-code            | Implementation lifecycle                 |
 |                     | ✅      | workflows-git             | PR/commit workflows                      |
 | **Skills - Remove** | ❌      | workflows-chrome-devtools | No browser UI                            |
 |                     | ❌      | mcp-code-mode             | No Webflow/Figma needed                  |
-| **MCP - Keep**      | ✅      | narsil                    | Semantic + structural search, security   |
-|                     | ✅      | spec_kit_memory           | Context preservation                     |
+| **MCP - Keep**      | ✅      | spec_kit_memory           | Context preservation                     |
 |                     | ✅      | sequential_thinking       | Complex reasoning                        |
 | **MCP - Remove**    | ❌      | code_mode                 | No external design tools                 |
 
@@ -416,9 +412,7 @@ cat opencode.json | jq '.mcp'
 # {
 #   "servers": {
 #     "sequential-thinking": { ... },
-#     "narsil": { ... },
 #     "semantic-memory": { ... },
-#     "narsil": { ... },
 #     "code-mode": { ... }
 #   }
 # }
@@ -437,9 +431,8 @@ cat .utcp_config.json | jq '.manuals'
 ls -la .opencode/skill/
 
 # Example output:
-# mcp-narsil/
 # mcp-code-mode/
-# mcp-narsil/
+# mcp-figma/
 # system-spec-kit/
 # workflows-chrome-devtools/
 # workflows-code/
@@ -450,12 +443,11 @@ ls -la .opencode/skill/
 
 ### 5.2 Native MCP Servers Reference
 
-**Current Installation (5 servers):**
+**Current Installation (3 servers):**
 
 | Server                | Tool Prefix             | Purpose                                                        |
 | --------------------- | ----------------------- | -------------------------------------------------------------- |
 | `sequential-thinking` | `sequential_thinking_*` | Complex multi-step reasoning                                   |
-| `narsil`              | `narsil_*`              | Semantic + structural analysis, security scanning, call graphs |
 | `spec-kit-memory`     | `memory_*`              | Context preservation                                           |
 | `code-mode`           | `call_tool_chain()`     | External tool orchestration                                    |
 
@@ -470,10 +462,7 @@ Remove lines for tools you haven't installed:
 ### Tool Routing Decision Tree
 
 Known file path? → Read()
-Know what code DOES? → narsil.narsil_neural_search() [CODE MODE]
 Research/prior work? → memory_search() [NATIVE MCP]
-Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE]
-Security scan? → narsil.narsil_scan_security() [CODE MODE]
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP]
@@ -492,7 +481,6 @@ Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 
 Known file path? → Read()
 Research/prior work? → memory_search() [NATIVE MCP]
-Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE]
 Text pattern? → Grep()
 File structure? → Glob()
 Browser debugging? → workflows-chrome-devtools skill
@@ -509,10 +497,7 @@ Multi-step workflow? → Read skill SKILL.md [see §7 Skills]
 ### Tool Routing Decision Tree
 
 Known file path? → Read()
-Know what code DOES? → narsil.narsil_neural_search() [CODE MODE]
 Research/prior work? → memory_search() [NATIVE MCP]
-Code structure/symbols? → narsil.narsil_find_symbols() [CODE MODE]
-Security scan? → narsil.narsil_scan_security() [CODE MODE]
 Text pattern? → Grep()
 File structure? → Glob()
 Complex reasoning? → sequential_thinking_sequentialthinking() [NATIVE MCP]
@@ -540,12 +525,6 @@ SEMANTIC MEMORY (context/research):
 
 SEQUENTIAL THINKING (optional):
   sequential_thinking_sequentialthinking()
-
-NARSIL (semantic + structural analysis + security, via Code Mode):
-  narsil.narsil_neural_search()     # Semantic code search by meaning
-  narsil.narsil_find_symbols()      # List functions, classes, definitions
-  narsil.narsil_scan_security()     # Security vulnerability scanning
-  narsil.narsil_call_graph()        # Call graph analysis
 ```
 
 </details>
@@ -616,17 +595,17 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 
 **Current Installation (9 skills):**
 
-| Skill                       | Version | Primary Triggers                                                 | Purpose                                               |
-| --------------------------- | ------- | ---------------------------------------------------------------- | ----------------------------------------------------- |
-| `mcp-figma`                 | v1.0.0  | "Figma", "design", "component", "style"                          | Figma design tool integration                         |
-| `mcp-code-mode`             | v1.2.0  | "ClickUp", "Figma", "Webflow", "external tool"                   | MCP orchestration for external tools                  |
-| `mcp-narsil`                | v1.0.0  | "how does X work", "list functions", "security scan", "semantic" | Semantic + structural analysis, security, call graphs |
-| `system-spec-kit`           | v12.4.0 | "save context", "/memory:save", "spec folder", "plan"            | Context preservation and spec workflow                |
-| `workflows-chrome-devtools` | v2.1.0  | "screenshot", "bdg", "browser debug", "DOM"                      | Chrome DevTools Protocol debugging                    |
-| `workflows-code--full-stack`| v2.0.0  | "implement", "debug", "verify", "refactor" (full-stack)          | Full-stack implementation lifecycle orchestrator      |
-| `workflows-code--web-dev`   | v2.0.0  | "implement", "debug", "verify", "refactor" (frontend)            | Web development implementation lifecycle              |
-| `workflows-documentation`   | v1.0.0  | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
-| `workflows-git`             | v1.5.0  | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
+| Skill                       | Version  | Primary Triggers                                                 | Purpose                                               |
+| --------------------------- | -------- | ---------------------------------------------------------------- | ----------------------------------------------------- |
+| `mcp-figma`                 | v1.0.0   | "Figma", "design", "component", "style"                          | Figma design tool integration                         |
+| `mcp-code-mode`             | v1.2.0   | "ClickUp", "Figma", "Webflow", "external tool"                   | MCP orchestration for external tools                  |
+| `system-spec-kit`           | v2.2.0   | "save context", "/memory:save", "spec folder", "plan"            | Context preservation and spec workflow                |
+| `workflows-chrome-devtools` | v2.1.0   | "screenshot", "bdg", "browser debug", "DOM"                      | Chrome DevTools Protocol debugging                    |
+| `workflows-code--full-stack`| v1.0.0   | "implement", "debug", "verify", "refactor" (full-stack)          | Full-stack implementation lifecycle orchestrator      |
+| `workflows-code--opencode`  | v1.3.2   | "opencode code", "system code", "TypeScript", "Python"           | OpenCode system code standards                        |
+| `workflows-code--web-dev`   | v1.0.9   | "implement", "debug", "verify", "refactor" (frontend)            | Web development implementation lifecycle              |
+| `workflows-documentation`   | v5.2.0   | "skill", "markdown", "flowchart", "documentation"                | Unified markdown and skill management                 |
+| `workflows-git`             | v1.5.0   | "commit", "branch", "PR", "push", "git"                          | Git workflow orchestration                            |
 
 ### 6.2 Skill Routing Table
 
@@ -634,12 +613,6 @@ When Gate 2 runs `skill_advisor.py`, it maps user intent to skills:
 
 | User Says                         | Skill Triggered           | Confidence |
 | --------------------------------- | ------------------------- | ---------- |
-| "list functions in auth.ts"       | mcp-narsil                | 0.95       |
-| "show class structure"            | mcp-narsil                | 0.90       |
-| "what methods are in UserService" | mcp-narsil                | 0.88       |
-| "how does authentication work"    | mcp-narsil                | 0.92       |
-| "find code that handles payments" | mcp-narsil                | 0.88       |
-| "where is error handling done"    | mcp-narsil                | 0.85       |
 | "save this context"               | system-spec-kit           | 0.95       |
 | "/memory:save"                    | system-spec-kit           | 0.98       |
 | "remember this decision"          | system-spec-kit           | 0.85       |
@@ -665,7 +638,7 @@ OpenCode now has **built-in skill discovery** - no manual skills table needed!
 
 **Automatic Discovery:**
 - OpenCode scans `.opencode/skill/*/SKILL.md` on startup
-- Skills are surfaced via `skills_*` functions (e.g., `skills_mcp_narsil`, `skills_workflows_code`)
+- Skills are surfaced via `skills_*` functions (e.g., `skills_workflows_code`, `skills_system_spec_kit`)
 - Frontmatter fields (`name`, `description`, `allowed-tools`) provide metadata
 
 **No Manual List Required:**
@@ -707,7 +680,6 @@ For a front-end project, you would typically have these skills in `.opencode/ski
 | `system-spec-kit`           | Context preservation across sessions                |
 
 **Skills to consider removing:**
-- `mcp-narsil` - Simple file structure doesn't need structural analysis
 - `workflows-git` - Optional for solo/simple projects
 
 **Verify your skills:**
@@ -728,7 +700,6 @@ For a backend/API project, you would typically have these skills in `.opencode/s
 
 | Skill             | Purpose                                                                              |
 | ----------------- | ------------------------------------------------------------------------------------ |
-| `mcp-narsil`      | Semantic + structural code analysis, security scanning, call graphs                  |
 | `workflows-code`  | Implementation lifecycle orchestrator for complex multi-file changes and refactoring |
 | `system-spec-kit` | Context preservation for research tasks and finding prior architectural decisions    |
 | `workflows-git`   | Git workflow for PRs, commits, branches                                              |
@@ -986,7 +957,7 @@ Use this checklist after customizing AGENTS.md:
 - [ ] skill_advisor.py routes correctly (test with sample)
 
 ### Commands Alignment
-- [ ] All 16 commands documented or subset specified
+- [ ] All 19 commands documented or subset specified
 - [ ] Command categories match installed commands
 - [ ] Usage examples work in current environment
 
@@ -1046,9 +1017,9 @@ ls .opencode/commands/
 
 | Category        | Count | Items                                                                                                                                                     |
 | --------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**      | 9     | mcp-figma, mcp-code-mode, mcp-narsil, system-spec-kit, workflows-chrome-devtools, workflows-code--full-stack, workflows-code--web-dev, workflows-documentation, workflows-git |
-| **MCP Servers** | 4     | sequential-thinking, narsil, spec-kit-memory, code-mode                                                                                                   |
-| **Commands**    | 19    | /create:* (6), /memory:* (4), /search:* (2), /spec_kit:* (7)                                                                                              |
+| **Skills**      | 9     | mcp-figma, mcp-code-mode, system-spec-kit, workflows-chrome-devtools, workflows-code--full-stack, workflows-code--opencode, workflows-code--web-dev, workflows-documentation, workflows-git |
+| **MCP Servers** | 3     | sequential-thinking, spec-kit-memory, code-mode                                                                                                           |
+| **Commands**    | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                                                           |
 | **Gates + Rules** | 3 + 3 | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification)               |
 
 ### Minimal AGENTS.md Structure

@@ -13,7 +13,7 @@ Production-tested Swiper.js configurations for carousels and marquees with Inter
 
 ### Purpose
 
-This reference documents the Swiper.js patterns used in the anobel.com codebase, including standard carousel configuration, continuous marquee animations, visibility-based autoplay control, and Webflow class integration.
+This reference documents the Swiper.js patterns used in the example.com codebase, including standard carousel configuration, continuous marquee animations, visibility-based autoplay control, and Webflow class integration.
 
 ### When to Use
 
@@ -33,9 +33,9 @@ Swiper carousels must pause when off-screen to conserve CPU. Use IntersectionObs
 
 | File | Purpose | LOC |
 |------|---------|-----|
-| `/src/2_javascript/swiper/timeline.js` | Carousel with navigation/pagination | 158 |
-| `/src/2_javascript/swiper/marquee_brands.js` | Continuous brand logo marquee | 133 |
-| `/src/2_javascript/swiper/marquee_clients.js` | Continuous client logo marquee | 133 |
+| `/src/javascript/swiper/timeline.js` | Carousel with navigation/pagination | 158 |
+| `/src/javascript/swiper/marquee_brands.js` | Continuous brand logo marquee | 133 |
+| `/src/javascript/swiper/marquee_clients.js` | Continuous client logo marquee | 133 |
 
 ---
 
@@ -685,9 +685,9 @@ clone.setAttribute("aria-hidden", "true");
 - [animation_workflows.md](./animation_workflows.md) - Scroll-triggered animations
 
 ### Source Files
-- `/src/2_javascript/swiper/timeline.js` - Carousel reference implementation
-- `/src/2_javascript/swiper/marquee_brands.js` - Marquee reference implementation
-- `/src/2_javascript/swiper/marquee_clients.js` - Marquee reference implementation
+- `/src/javascript/swiper/timeline.js` - Carousel reference implementation
+- `/src/javascript/swiper/marquee_brands.js` - Marquee reference implementation
+- `/src/javascript/swiper/marquee_clients.js` - Marquee reference implementation
 
 ### External Documentation
 - [Swiper.js API Documentation](https://swiperjs.com/swiper-api)

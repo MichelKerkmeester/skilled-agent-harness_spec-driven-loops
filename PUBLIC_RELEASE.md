@@ -1,6 +1,6 @@
 # OpenCode Dev Environment - Public Release
 
-The **Public repo** is the source of truth for the OpenCode framework. Projects like anobel.com consume it via a `.opencode/` symlink — edits to `.opencode/` affect all linked projects instantly.
+The **Public repo** is the source of truth for the OpenCode framework. Projects like your-project.com consume it via a `.opencode/` symlink — edits to `.opencode/` affect all linked projects instantly.
 
 ---
 
@@ -16,7 +16,7 @@ Public Repo (source of truth)
      specs/                     ← Project specs (subfolders gitignored per-project)
      ...
 
-anobel.com (consumer project)
+your-project.com (consumer project)
   .opencode -> Public/.opencode  ← SYMLINK (entire framework + specs)
   .opencode-local/               ← Project-specific runtime data
     database/
@@ -35,7 +35,7 @@ When `.opencode/` is a symlink, Node.js `__dirname` in CommonJS resolves to the 
 
 | Location                    | Path/URL                                                         |
 | --------------------------- | ---------------------------------------------------------------- |
-| **Public Release (local)**  | `/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/` |
+| **Public Release (local)**  | `~/your-project/` |
 | **Public Release (GitHub)** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework |
 
 ---
@@ -140,7 +140,7 @@ No Release   Full Release
 > ⛔ **HARD STOP:** Do NOT proceed without user approval.
 
 ```bash
-cd "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public"
+cd ~/your-project/
 git status
 git diff --stat
 ```
@@ -148,7 +148,7 @@ git diff --stat
 ### Phase 4: COMMIT
 
 ```bash
-cd "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public"
+cd ~/your-project/
 git add -A
 git commit -m "vX.X.X.X: [Release title]"
 git push origin main
@@ -157,7 +157,7 @@ git push origin main
 ### Phase 5: PUBLISH (Full Release Only)
 
 ```bash
-cd "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public"
+cd ~/your-project/
 git tag -a vX.X.X.X -m "Release description"
 git push origin vX.X.X.X
 
@@ -189,13 +189,13 @@ To connect a new project to the shared OpenCode framework:
 
 ```bash
 # 1. Create symlink to shared framework
-ln -s "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/.opencode" .opencode
+ln -s ~/your-project/.opencode .opencode
 
 # 2. Create project-local directory for database
 mkdir -p .opencode-local/database
 
 # 3. Copy opencode.json (already has SPEC_KIT_DB_DIR set)
-cp "/Users/michelkerkmeester/MEGA/Development/Opencode Env/Public/opencode.json" .
+cp ~/your-project/opencode.json .
 
 # 4. Create specs directory and first spec folder
 mkdir -p .opencode/specs

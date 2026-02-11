@@ -5,7 +5,7 @@
 // Uses MutationObserver and IntersectionObserver instead of polling
 // for efficient, event-driven DOM observation.
 //
-// Patterns extracted from anobel.com production codebase:
+// Patterns extracted from production codebase:
 // - MutationObserver: nav_notifications.js (attribute watching)
 // - IntersectionObserver: table_of_content.js (viewport detection with RAF batching)
 // ───────────────────────────────────────────────────────────────

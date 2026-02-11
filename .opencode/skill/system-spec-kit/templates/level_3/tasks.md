@@ -1,7 +1,7 @@
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify + level3-arch | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify + level3-arch | v2.2 -->
 
 <!-- WHEN TO USE THIS TEMPLATE:
 Level 3 Tasks (+Arch) is appropriate when:

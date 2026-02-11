@@ -1,38 +1,40 @@
 # Cognitive Subsystem
 
-Research-backed memory decay, retrieval, and consolidation engine for the Spec Kit Memory MCP server.
+Research-backed memory decay, retrieval, and classification engine for the Spec Kit Memory MCP server.
 
 ---
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🧠 KEY CONCEPTS](#2--key-concepts)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. ❓ FAQ](#7--faq)
-- [8. 🔗 RELATED RESOURCES](#8--related-resources)
+- [1. OVERVIEW](#1-overview)
+- [2. KEY CONCEPTS](#2-key-concepts)
+- [3. STRUCTURE](#3-structure)
+- [4. FEATURES](#4-features)
+- [5. USAGE EXAMPLES](#5-usage-examples)
+- [6. TROUBLESHOOTING](#6-troubleshooting)
+- [7. FAQ](#7-faq)
+- [8. RELATED RESOURCES](#8-related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
-The cognitive subsystem implements human memory principles to manage conversation context intelligently. It models how memories decay, strengthen through use, and consolidate from short-term episodic experiences into long-term semantic knowledge.
+The cognitive subsystem implements human memory principles to manage conversation context intelligently. It models how memories decay, strengthen through use, and transition between activity states based on research-validated algorithms from cognitive science and spaced repetition systems.
 
 ### What is the Cognitive Subsystem?
 
-The cognitive subsystem is the "brain" of the memory system. It determines which memories stay active, which fade, and which consolidate into permanent knowledge. Unlike simple time-based caching, it uses research-validated algorithms from cognitive science and spaced repetition systems.
+The cognitive subsystem is the "brain" of the memory system. It determines which memories stay active, which fade, and which get archived. Unlike simple time-based caching, it uses FSRS v4 power-law decay validated on 100M+ real human memory data.
 
 ### Key Statistics
 
 | Component      | Modules | Lines  | Purpose                                              |
 | -------------- | ------- | ------ | ---------------------------------------------------- |
-| Decay          | 3       | ~70KB  | Memory forgetting curves (FSRS, attention, archival) |
-| Classification | 2       | ~46KB  | 5-state memory model + duplicate detection           |
-| Consolidation  | 2       | ~48KB  | Long-term memory formation + spreading activation    |
-| Total          | 11      | ~200KB | Complete cognitive memory lifecycle                  |
+| Decay          | 2       | ~650   | Memory forgetting curves (FSRS, attention)           |
+| Classification | 2       | ~960   | 5-state memory model + duplicate detection           |
+| Activation     | 2       | ~700   | Working memory + spreading activation                |
+| Lifecycle      | 1       | ~395   | Archival management                                  |
+| Temporal       | 1       | ~158   | Time-based contiguity boosting and timelines         |
+| **Total**      | **8**   | ~2860  | Complete cognitive memory lifecycle                  |
 
 ### Architecture
 
@@ -51,7 +53,7 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 │       ↓                                                         │
 │  [Time Passes]                                                  │
 │       ↓                                                         │
-│  Attention Decay ───→ R(t,S) = (1 + 0.235×t/S)^(-0.5)           │
+│  Attention Decay ───→ R(t,S) = (1 + (19/81) × t/S)^(-0.5)        │
 │       ↓                                                         │
 │  Tier Classifier ───→ State = WARM → COLD → DORMANT              │
 │       ↓                                                         │
@@ -59,29 +61,24 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 │       ↓                                                         │
 │  [Access Event]                                                 │
 │       ↓                                                         │
-│  Co-Activation ─────→ Spread to Related (+0.35)                 │
+│  Co-Activation ─────→ Spread to Related (+0.15 boost)           │
 │       ↓                                                         │
-│  FSRS Testing ──────→ Update Stability (harder = stronger)      │
-│       ↓                                                         │
-│  [Pattern Detected]                                             │
-│       ↓                                                         │
-│  Consolidation ─────→ Episodic → Semantic (5 phases)            │
+│  FSRS Review ─────→ Update Stability (harder = stronger)        │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Key Features
 
-| Feature                    | Implementation                                                         | Benefit                              |
-| -------------------------- | ---------------------------------------------------------------------- | ------------------------------------ |
-| **Power-Law Decay**        | FSRS v4 formula validated on 100M+ users                               | More accurate than exponential decay |
-| **5-State Model**          | HOT/WARM/COLD/DORMANT/ARCHIVED with thresholds                         | Progressive memory transitions       |
-| **Duplicate Prevention**   | 4-tier similarity detection (95/90/70/50%)                             | Prevents redundant context           |
-| **Spreading Activation**   | Boost related memories (+0.35 on access)                               | Maintains semantic coherence         |
-| **Type-Specific Decay**    | Constitutional (none), Critical (none), Episodic (60d), Temporary (1d) | Memory importance = retention time   |
-| **Consolidation Pipeline** | REPLAY → ABSTRACT → INTEGRATE → PRUNE → STRENGTHEN                     | Episodic → Semantic transformation   |
-| **Testing Effect**         | Low retrievability = greater boost on success                          | Harder recalls strengthen more       |
-| **Automatic Archival**     | 90-day threshold with background job                                   | Lifecycle management                 |
+| Feature                    | Implementation                                                    | Benefit                              |
+| -------------------------- | ----------------------------------------------------------------- | ------------------------------------ |
+| **Power-Law Decay**        | FSRS v4 formula validated on 100M+ users                          | More accurate than exponential decay |
+| **5-State Model**          | HOT/WARM/COLD/DORMANT/ARCHIVED with thresholds                    | Progressive memory transitions       |
+| **Duplicate Prevention**   | 4-tier similarity detection (95/85/70/50%)                        | Prevents redundant context           |
+| **Spreading Activation**   | Boost related memories (+0.15 on access)                          | Maintains semantic coherence         |
+| **Type-Specific Decay**    | Constitutional (none), Critical (none), Normal (0.80/turn)        | Memory importance = retention time   |
+| **Testing Effect**         | Low retrievability = greater boost on success                     | Harder recalls strengthen more       |
+| **Automatic Archival**     | 90-day threshold with background job (2hr interval)               | Lifecycle management                 |
 
 ### Requirements
 
@@ -93,7 +90,7 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 
 ---
 
-## 2. 🧠 KEY CONCEPTS
+## 2. KEY CONCEPTS
 
 ### The FSRS Formula
 
@@ -103,22 +100,22 @@ Traditional exponential decay: `R(t) = e^(-t/τ)`
 - Decays too fast initially, too slow later
 - Not validated on real human memory data
 
-FSRS power-law decay: `R(t,S) = (1 + 0.235 × t/S)^(-0.5)`
+FSRS power-law decay: `R(t,S) = (1 + FACTOR × t/S)^DECAY`
 - `R` = Retrievability (0.0 to 1.0)
 - `t` = Time elapsed (days)
 - `S` = Stability (days until 90% retrievability)
-- `0.235` = FSRS factor (19/81)
-- `-0.5` = FSRS decay exponent
+- `FACTOR` = 19/81 ≈ 0.2346 (FSRS v4 constant)
+- `DECAY` = -0.5 (FSRS decay exponent)
+- **Invariant**: At t = S: R = (1 + 19/81)^(-0.5) = (100/81)^(-0.5) = 0.9 (always 90%)
 
 **Example:**
 ```javascript
 // After 10 days with stability = 5 days:
-R(10, 5) = (1 + 0.235 × 10/5)^(-0.5)
-         = (1 + 0.47)^(-0.5)
-         = 1.47^(-0.5)
+R(10, 5) = (1 + (19/81) × 10/5)^(-0.5)
+         = (1 + 0.2346 × 2)^(-0.5)
+         = (1 + 0.4691)^(-0.5)
+         = 1.4691^(-0.5)
          = 0.825  // 82.5% retrievable
-
-// Exponential would give: e^(-10/5) = 0.135 (13.5%) - too harsh!
 ```
 
 ### The 5-State Memory Model
@@ -127,10 +124,10 @@ Memories transition through states based on retrievability:
 
 | State        | Threshold            | Meaning           | Content       | Typical Age |
 | ------------ | -------------------- | ----------------- | ------------- | ----------- |
-| **HOT**      | R ≥ 0.80             | Recently accessed | Full content  | 0-2 days    |
-| **WARM**     | R ≥ 0.25             | Recently relevant | Summary only  | 3-14 days   |
-| **COLD**     | R ≥ 0.05             | Fading            | Metadata only | 15-60 days  |
-| **DORMANT**  | R ≥ 0.02             | Nearly forgotten  | Metadata only | 60-90 days  |
+| **HOT**      | R >= 0.80            | Recently accessed | Full content  | 0-2 days    |
+| **WARM**     | R >= 0.25            | Recently relevant | Summary only  | 3-14 days   |
+| **COLD**     | R >= 0.05            | Fading            | Metadata only | 15-60 days  |
+| **DORMANT**  | R >= 0.02            | Nearly forgotten  | Metadata only | 60-90 days  |
 | **ARCHIVED** | R < 0.02 OR 90+ days | Long-term storage | Not loaded    | 90+ days    |
 
 **State Transitions:**
@@ -155,13 +152,14 @@ Prevents duplicate memories using similarity thresholds:
 
 | Threshold    | Action                      | Logic                             |
 | ------------ | --------------------------- | --------------------------------- |
-| ≥ 0.95 (95%) | **REINFORCE**               | Exact duplicate - boost existing  |
-| ≥ 0.90 (90%) | **UPDATE** or **SUPERSEDE** | High match - check contradiction  |
-| ≥ 0.70 (70%) | **CREATE_LINKED**           | Medium match - new with relations |
+| >= 0.95 (95%) | **REINFORCE**               | Exact duplicate - boost existing  |
+| >= 0.85 (85%) | **UPDATE** or **SUPERSEDE** | High match - check contradiction  |
+| >= 0.70 (70%) | **CREATE_LINKED**           | Medium match - new with relations |
 | < 0.50 (50%) | **CREATE**                  | Low match - fully new memory      |
 
 **Contradiction Detection:**
-- Patterns: `always ↔ never`, `must ↔ must not`, `enable ↔ disable`
+- Pattern types: negation, replacement, deprecation, correction, clarification, prohibition, obsolescence, explicit
+- Confidence-based scoring: explicit (0.85) > obsolescence (0.80) > deprecation (0.75) > correction (0.70) > prohibition (0.65) > negation (0.60) > replacement (0.55) > clarification (0.45)
 - Triggers: SUPERSEDE action to replace contradictory memory
 - Audit: Logs to `memory_conflicts` table for review
 
@@ -169,18 +167,18 @@ Prevents duplicate memories using similarity thresholds:
 
 Attention score = weighted combination of 5 factors:
 
-| Factor         | Weight | Measures               | Formula                                       |
+| Factor         | Weight | Measures               | Source                                        |
 | -------------- | ------ | ---------------------- | --------------------------------------------- |
-| **Temporal**   | 0.45   | FSRS retrievability    | `R(t,S) = (1 + 0.235×t/S)^(-0.5)`             |
-| **Usage**      | 0.20   | Access frequency       | `min(1, access_count / 50)`                   |
-| **Importance** | 0.20   | Memory tier weight     | Constitutional=1.0, Normal=0.5, Temporary=0.2 |
-| **Pattern**    | 0.10   | Query/anchor alignment | Jaccard similarity with matched phrases       |
-| **Citation**   | 0.05   | Recency of citation    | Days since last citation                      |
+| **Temporal**   | 0.25   | FSRS retrievability    | `composite-scoring.ts` FIVE_FACTOR_WEIGHTS    |
+| **Usage**      | 0.15   | Access frequency       | `min(1, access_count / 50)`                   |
+| **Importance** | 0.25   | Memory tier weight     | Constitutional=1.0, Normal=0.5, Temporary=0.2 |
+| **Pattern**    | 0.20   | Query/anchor alignment | Jaccard similarity with matched phrases       |
+| **Citation**   | 0.15   | Recency of citation    | Days since last citation                      |
 
 **Composite Score:**
 ```javascript
-attention = (0.45 × temporal) + (0.20 × usage) + (0.20 × importance)
-          + (0.10 × pattern) + (0.05 × citation)
+attention = (0.25 × temporal) + (0.15 × usage) + (0.25 × importance)
+          + (0.20 × pattern) + (0.15 × citation)
 ```
 
 **Decay Rates by Tier:**
@@ -211,112 +209,98 @@ Different memory types decay at different rates:
 ```javascript
 // FSRS stability = time for R to reach 90%
 // Half-life = time for R to reach 50%
-// For FSRS: stability ≈ half_life (1:1 scaling)
-
-half_life = 60 days → stability = 60 days
+// With FSRS power law: 0.5 = (1 + FACTOR × t_half/S)^(-0.5)
+// Solving: t_half = 3/FACTOR × S = 3/(19/81) × S = 243/19 × S ≈ 12.789 × S
+// Inverse: S = half_life × 19/243 ≈ half_life / 12.789
+half_life = 60 days → stability ≈ 4.69 days
 ```
-
-### Consolidation Pipeline
-
-Transforms episodic memories into semantic knowledge:
-
-| Phase             | Trigger                | Action                     | Output                     |
-| ----------------- | ---------------------- | -------------------------- | -------------------------- |
-| **1. REPLAY**     | 7+ days old            | Select episodic candidates | Array of episodic memories |
-| **2. ABSTRACT**   | 2+ occurrences         | Extract recurring patterns | Pattern groups             |
-| **3. INTEGRATE**  | Pattern strength ≥ 0.6 | Create semantic memories   | New semantic entries       |
-| **4. PRUNE**      | After integration      | Archive redundant episodes | Marked as deprecated       |
-| **5. STRENGTHEN** | Access count ≥ 5       | Boost high-use memories    | Stability × 1.3            |
-
-**Pattern Detection:**
-```javascript
-// Exact duplicates (hash match)
-content_hash === existing_hash → Exact Duplicate Pattern
-
-// Trigger similarity (Jaccard)
-jaccard(triggers1, triggers2) ≥ 0.75 → Trigger Pattern
-
-// Title similarity (word overlap)
-jaccard(words1, words2) ≥ 0.75 → Title Pattern
-```
-
-**Safety Mechanisms (R14 Mitigation):**
-- Dry-run mode by default (no accidental deletions)
-- Automatic backup before PRUNE phase
-- Preserve at least 1 representative per pattern
 
 ---
 
-## 3. 📁 STRUCTURE
+## 3. STRUCTURE
 
 ```
-cognitive/
-├── fsrs-scheduler.js           # FSRS v4 power-law decay
-├── prediction-error-gate.js    # Duplicate detection (4 thresholds)
-├── tier-classifier.js          # 5-state model classifier
-├── attention-decay.js          # Multi-factor attention decay
-├── co-activation.js            # Spreading activation
-├── working-memory.js           # Session-scoped activation
-├── temporal-contiguity.js      # Time-based memory linking
-├── summary-generator.js        # Auto-summary generation
-├── archival-manager.js         # 90-day archival lifecycle
-├── consolidation.js            # 5-phase consolidation pipeline
-├── index.js                    # Module aggregator
+cognitive/                      # TypeScript source files (8 modules)
+├── fsrs-scheduler.ts           # FSRS v4 power-law decay (240 lines)
+├── prediction-error-gate.ts    # Duplicate detection & conflict logging (510 lines)
+├── tier-classifier.ts          # 5-state model classifier (452 lines)
+├── attention-decay.ts          # Multi-factor attention decay (409 lines)
+├── co-activation.ts            # Spreading activation (296 lines)
+├── working-memory.ts           # Session-scoped activation (410 lines)
+├── archival-manager.ts         # 90-day archival lifecycle (395 lines)
+├── temporal-contiguity.ts      # Time-based contiguity boosting (158 lines)
 └── README.md                   # This file
 ```
 
 ### Key Modules
 
-| Module                     | Purpose                    | Key Functions                                         |
-| -------------------------- | -------------------------- | ----------------------------------------------------- |
-| `fsrs-scheduler.js`        | FSRS v4 implementation     | `calculate_retrievability`, `update_stability`        |
-| `tier-classifier.js`       | State classification       | `classify_state`, `calculate_retrievability`          |
-| `attention-decay.js`       | Multi-factor decay         | `apply_fsrs_decay`, `calculate_composite_attention`   |
-| `prediction-error-gate.js` | Conflict detection         | `evaluate_memory`, `detect_contradiction`             |
-| `consolidation.js`         | Long-term memory formation | `run_consolidation`, `replay_phase`, `abstract_phase` |
-| `archival-manager.js`      | Lifecycle management       | `run_archival_scan`, `archive_memory`                 |
-| `co-activation.js`         | Semantic spreading         | `spread_activation`, `populate_related_memories`      |
+| Module                     | Purpose                    | Key Exports                                                              |
+| -------------------------- | -------------------------- | ------------------------------------------------------------------------ |
+| `fsrs-scheduler.ts`        | FSRS v4 implementation     | `calculateRetrievability`, `updateStability`, `processReview`            |
+| `tier-classifier.ts`       | State classification       | `classifyState`, `classifyTier`, `getStateContent`, `filterAndLimitByState` |
+| `attention-decay.ts`       | Multi-factor decay         | `applyFsrsDecay`, `calculateCompositeAttention`, `getAttentionBreakdown` |
+| `prediction-error-gate.ts` | Conflict detection         | `evaluateMemory`, `detectContradiction`, `logConflict`                   |
+| `co-activation.ts`         | Semantic spreading         | `spreadActivation`, `populateRelatedMemories`, `boostScore`              |
+| `working-memory.ts`        | Session memory management  | `setAttentionScore`, `getWorkingMemory`, `batchUpdateScores`             |
+| `archival-manager.ts`      | Lifecycle management       | `runArchivalScan`, `archiveMemory`, `startBackgroundJob`                 |
+| `temporal-contiguity.ts`   | Time-based linking         | `vectorSearchWithContiguity`, `getTemporalNeighbors`, `buildTimeline`   |
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 ### FSRS Power-Law Decay
 
 **Purpose**: Research-validated memory forgetting curve
 
 **Usage**:
-```javascript
-const fsrs = require('./fsrs-scheduler');
+```typescript
+import {
+  calculateRetrievability,
+  updateStability,
+  calculateOptimalInterval,
+  processReview,
+  createInitialParams,
+  GRADE_GOOD,
+} from './fsrs-scheduler';
 
 // Calculate retrievability
 const stability = 5.0;  // 5 days until 90% retrievable
-const elapsed = 10;     // 10 days passed
-const R = fsrs.calculate_retrievability(stability, elapsed);
-// R ≈ 0.825 (82.5% retrievable)
+const elapsed = 10;      // 10 days passed
+const R = calculateRetrievability(stability, elapsed);
+// R ≈ 0.825
 
-// Update stability after successful recall
-const difficulty = 5.0;
-const grade = fsrs.GRADE_GOOD;  // 3 = successful recall
-const newStability = fsrs.update_stability(stability, difficulty, R, grade);
-// newStability ≈ 7.5 days (increased due to successful testing)
+// Update stability after review
+const newStability = updateStability(
+  stability,    // currentStability
+  5.0,          // difficulty
+  GRADE_GOOD,   // grade (3 = successful recall)
+  R             // retrievability
+);
+
+// Process a full review cycle
+const params = createInitialParams();
+// params = { stability: 1.0, difficulty: 5.0, lastReview: null, reviewCount: 0 }
+
+const result = processReview(params, GRADE_GOOD);
+// result = { stability, difficulty, lastReview, reviewCount, nextReviewDate, retrievability }
 
 // Optimal review interval
-const interval = fsrs.calculate_optimal_interval(newStability, 0.9);
-// interval ≈ 11 days (next review time for 90% target)
+const interval = calculateOptimalInterval(newStability, 0.9);
 ```
 
 **FSRS Grades:**
-- `GRADE_AGAIN (1)`: Failed recall → Stability × 0.5
-- `GRADE_HARD (2)`: Difficult recall → Stability × 0.8
-- `GRADE_GOOD (3)`: Successful recall → Stability × 1.5
-- `GRADE_EASY (4)`: Easy recall → Stability × 2.0
+- `GRADE_AGAIN (1)`: Failed recall → Stability × 0.2
+- `GRADE_HARD (2)`: Difficult recall → gradeFactor 0.8
+- `GRADE_GOOD (3)`: Successful recall → gradeFactor 1.0
+- `GRADE_EASY (4)`: Easy recall → gradeFactor 1.3
 
 **Testing Effect:**
-Lower retrievability = greater boost on success (desirable difficulty)
+Lower retrievability = greater boost on success (desirable difficulty):
 ```javascript
-R = 0.3 (hard) + GRADE_GOOD → Boost factor: 1.85×
-R = 0.8 (easy) + GRADE_GOOD → Boost factor: 1.60×
+// retrievabilityBonus = 1 + (1 - R) * 0.5
+R = 0.3 (hard) → bonus = 1.35
+R = 0.8 (easy) → bonus = 1.10
 ```
 
 ### 5-State Classification
@@ -324,26 +308,37 @@ R = 0.8 (easy) + GRADE_GOOD → Boost factor: 1.60×
 **Purpose**: Progressive memory state transitions
 
 **Usage**:
-```javascript
-const classifier = require('./tier-classifier');
+```typescript
+import {
+  classifyState,
+  classifyTier,
+  getStateContent,
+  filterAndLimitByState,
+  getStateStats,
+} from './tier-classifier';
 
-// Classify memory state
-const memory = {
-  stability: 5.0,
-  last_review: '2025-01-15T10:00:00Z',
-  importance_tier: 'normal'
-};
-const state = classifier.classify_state(memory);
-// state = 'WARM' or 'HOT' or 'COLD' etc.
+// Classify by numeric retrievability
+const state = classifyState(0.65, 5);
+// state = 'WARM' (R >= 0.25 but < 0.80)
 
-// Get content based on state
-const content = classifier.get_state_content(memory, state);
-// HOT: full content, WARM: summary, COLD/DORMANT/ARCHIVED: null
+// Classify from a memory object
+const state2 = classifyState(memory);
+// Extracts R from memory.retrievability or memory.attentionScore
 
-// Filter and limit by state
-const memories = [...]; // Array of memories
-const active = classifier.filter_and_limit_by_state(memories);
-// Returns max 5 HOT + max 10 WARM
+// Full classification with half-life awareness
+const classification = classifyTier(memory);
+// classification = { state: 'WARM', retrievability: 0.65, effectiveHalfLife: 60 }
+
+// Get memories filtered by state
+const hotMemories = getStateContent(allMemories, 'HOT', 5);
+// hotMemories = { state: 'HOT', memories: [...], count: N }
+
+// Filter with tier-specific limits (max 5 HOT + max 10 WARM)
+const active = filterAndLimitByState(allMemories);
+
+// State distribution statistics
+const stats = getStateStats(allMemories);
+// stats = { HOT: 3, WARM: 8, COLD: 12, DORMANT: 4, ARCHIVED: 20, total: 47 }
 ```
 
 **State Thresholds (configurable via env vars):**
@@ -359,38 +354,70 @@ ARCHIVED_DAYS_THRESHOLD=90  # Default: 90 days
 **Purpose**: Prevent duplicate memories with conflict detection
 
 **Usage**:
-```javascript
-const gate = require('./prediction-error-gate');
-gate.init(db);
+```typescript
+import {
+  init,
+  evaluateMemory,
+  detectContradiction,
+  formatConflictRecord,
+  logConflict,
+  getConflictStats,
+  getRecentConflicts,
+  THRESHOLD,
+} from './prediction-error-gate';
+
+// Initialize with database
+init(db);
 
 // Evaluate similarity candidates
-const candidates = [
-  { id: 42, similarity: 0.92, content: 'Use React for UI' },
-  { id: 58, similarity: 0.88, content: 'React is the UI framework' }
-];
-const newContent = 'Always use React for frontend';
+const result = evaluateMemory(
+  'abc123hash',                    // newContentHash
+  'Always use React for frontend', // newContent
+  [                                // candidates array
+    { id: 42, similarity: 92, content: 'Use React for UI' },
+    { id: 58, similarity: 88, content: 'React is the UI framework' }
+  ],
+  { specFolder: 'specs/042' }     // options
+);
 
-const decision = gate.evaluate_memory(candidates, newContent, {
-  check_contradictions: true
-});
-
-// decision = {
-//   action: 'UPDATE',  // or REINFORCE, SUPERSEDE, CREATE, CREATE_LINKED
-//   reason: 'Similarity 92.0% in high-match range (90%-95%)',
-//   candidate: { id: 42, ... },
-//   similarity: 0.92,
-//   contradiction: { found: false, ... }
+// result = {
+//   action: 'UPDATE',
+//   similarity: 92.0,
+//   existingMemoryId: 42,
+//   contradiction: { detected: false, type: null, description: null, confidence: 0 },
+//   reason: 'High match, updating existing (similarity: 92.0%)'
 // }
 
-// Log decision
-gate.log_conflict(decision, newMemoryId, newContent, existingContent, specFolder);
+// Detect contradiction between two texts
+const contradiction = detectContradiction(newContent, existingContent);
+// contradiction = { detected: true, type: 'negation', description: '...', confidence: 0.60 }
+
+// Manual conflict logging
+const record = formatConflictRecord(
+  'UPDATE',           // action
+  'abc123hash',       // newMemoryHash
+  42,                 // existingMemoryId
+  92.0,               // similarity
+  'reason text',      // reason
+  contradiction,      // ContradictionResult
+  'preview of new',   // newContentPreview
+  'preview of old',   // existingContentPreview
+  'specs/042'         // specFolder
+);
+logConflict(record);  // Single ConflictRecord param
+
+// Get statistics
+const stats = getConflictStats();
+// stats = { total, byAction: {...}, contradictions, averageSimilarity }
+
+const recent = getRecentConflicts(20);
 ```
 
 **Actions by Threshold:**
 ```javascript
 similarity >= 0.95 → REINFORCE (boost existing score)
-similarity >= 0.90 → UPDATE or SUPERSEDE (if contradiction)
-similarity >= 0.70 → CREATE_LINKED (new with related_ids)
+similarity >= 0.85 → UPDATE or SUPERSEDE (if contradiction detected)
+similarity >= 0.70 → CREATE_LINKED (new with link to existing)
 similarity <  0.50 → CREATE (fully new)
 ```
 
@@ -399,41 +426,58 @@ similarity <  0.50 → CREATE (fully new)
 **Purpose**: Composite scoring with 5 factors
 
 **Usage**:
-```javascript
-const decay = require('./attention-decay');
-decay.init(db);
+```typescript
+import {
+  init,
+  applyFsrsDecay,
+  applyDecay,
+  calculateCompositeAttention,
+  getAttentionBreakdown,
+  activateMemory,
+  activateMemoryWithFsrs,
+  getActiveMemories,
+  applyCompositeDecay,
+  DECAY_CONFIG,
+} from './attention-decay';
 
-// Apply FSRS-based decay to session
-const result = decay.apply_fsrs_decay(sessionId);
-// result = { decayedCount: 15, updated: [...] }
+// Initialize with database
+init(db);
+
+// Apply FSRS-based decay to a memory
+const decayedScore = applyFsrsDecay(memory, 1.0);
+// Uses memory.stability and memory.last_review to calculate
+
+// Apply tier-based decay
+const decayed = applyDecay(memory, 1.0);
+// Uses memory.importance_tier for decay rate
 
 // Calculate composite attention score
-const memory = {
-  stability: 7.5,
-  last_review: '2025-01-20T10:00:00Z',
-  access_count: 12,
-  importance_tier: 'normal',
-  memory_type: 'semantic'
-};
-const score = decay.calculate_composite_attention(memory, {
-  query: 'React patterns',
-  anchors: ['implementation', 'best-practices']
-});
-// score = 0.68 (composite of 5 factors)
+const score = calculateCompositeAttention(memory);
+// score = weighted 5-factor composite (temporal, usage, importance, pattern, citation)
 
 // Get factor breakdown
-const breakdown = decay.get_attention_breakdown(memory, { query: 'React' });
+const breakdown = getAttentionBreakdown(memory);
 // breakdown = {
-//   factors: {
-//     temporal: { value: 0.75, weight: 0.45, contribution: 0.34 },
-//     usage: { value: 0.24, weight: 0.20, contribution: 0.05 },
-//     importance: { value: 0.50, weight: 0.20, contribution: 0.10 },
-//     pattern: { value: 0.80, weight: 0.10, contribution: 0.08 },
-//     citation: { value: 0.20, weight: 0.05, contribution: 0.01 }
-//   },
-//   total: 0.58,
-//   model: '5-factor'
+//   temporal: 0.75,
+//   usage: 0.24,
+//   importance: 0.50,
+//   pattern: 0.80,
+//   citation: 0.20,
+//   composite: 0.485,
+//   weights: { temporal: 0.25, usage: 0.15, importance: 0.25, pattern: 0.20, citation: 0.15 }
 // }
+
+// Activate memory (increment access_count, update last_accessed)
+activateMemory(memoryId);
+
+// Activate with FSRS review update
+activateMemoryWithFsrs(memoryId, 3);  // memoryId, grade (default: 3 = GOOD)
+
+// Get active memories sorted by composite score
+const active = getActiveMemories(20);
+
+// Batch apply composite decay
+const sorted = applyCompositeDecay(memories);
 ```
 
 ### Spreading Activation
@@ -441,331 +485,340 @@ const breakdown = decay.get_attention_breakdown(memory, { query: 'React' });
 **Purpose**: Boost related memories when primary memory is accessed
 
 **Usage**:
-```javascript
-const coActivation = require('./co-activation');
-coActivation.init(db);
+```typescript
+import {
+  init,
+  spreadActivation,
+  populateRelatedMemories,
+  getRelatedMemories,
+  boostScore,
+  isEnabled,
+  CO_ACTIVATION_CONFIG,
+} from './co-activation';
 
-// Spread activation from primary memory
-const sessionId = 'session-123';
-const primaryMemoryId = 42;
-const turnNumber = 5;
+// Initialize with database
+init(db);
 
-const boosted = coActivation.spread_activation(sessionId, primaryMemoryId, turnNumber);
-// boosted = [
-//   { memoryId: 58, oldScore: 0.20, newScore: 0.55, wasAdded: false },
-//   { memoryId: 71, oldScore: 0, newScore: 0.35, wasAdded: true }
+// Spread activation from seed memories
+const results = spreadActivation(
+  [42, 58],    // seedIds: number[]
+  2,           // maxHops (default: 2)
+  20           // limit (default: 20)
+);
+// results = [
+//   { id: 71, activationScore: 0.425, hop: 1, path: [42, 71] },
+//   { id: 84, activationScore: 0.180, hop: 2, path: [42, 71, 84] }
 // ]
 
-// Populate related memories (using vector search)
-const relatedIds = await coActivation.populate_related_memories(
-  primaryMemoryId,
-  async (query, options) => {
-    // Your vector search implementation
-    return await vectorIndex.search(query, options);
-  }
+// Get related memories for a given memory
+const related = getRelatedMemories(42, 5);
+// related = [{ id: 58, similarity: 85, title: '...', spec_folder: '...' }, ...]
+
+// Populate related memories using vector search
+const count = await populateRelatedMemories(
+  memoryId,
+  vectorSearchFn  // (embedding: Float32Array, options) => Array<{id, similarity}>
 );
-// relatedIds = [58, 71, 84] (top 5 similar memories)
+// count = 5 (number of related memories found)
+
+// Boost a score based on co-activation
+const boosted = boostScore(0.5, 3, 85);
+// boosted = 0.5 + (0.15 * (3/5) * (85/100)) = 0.577
 ```
 
-**Boost Configuration:**
+**Co-Activation Configuration:**
 ```javascript
-ENABLE_CO_ACTIVATION=true  # Default: true
-CO_ACTIVATION_BOOST=0.35   # Default: 0.35
-MAX_RELATED_MEMORIES=5     # Default: 5
+SPECKIT_COACTIVATION=true    // Default: true (env var name)
+// CO_ACTIVATION_CONFIG:
+boostFactor: 0.15            // Boost per related memory (NOT 0.35)
+maxRelated: 5                // Max related memories to store
+minSimilarity: 70            // Minimum similarity for relation
+decayPerHop: 0.5             // Activation decay per graph hop
+maxHops: 2                   // Max traversal depth
+maxSpreadResults: 20         // Max results from spreading
 ```
 
-### Consolidation Pipeline
+### Working Memory (Session Management)
 
-**Purpose**: Transform episodic → semantic memories
+**Purpose**: Session-scoped attention tracking with capacity limits
 
 **Usage**:
-```javascript
-const consolidation = require('./consolidation');
-consolidation.init(db);
+```typescript
+import {
+  init,
+  getOrCreateSession,
+  setAttentionScore,
+  getWorkingMemory,
+  getSessionMemories,
+  batchUpdateScores,
+  clearSession,
+  getSessionStats,
+  isEnabled,
+  WORKING_MEMORY_CONFIG,
+} from './working-memory';
 
-// Run full 5-phase pipeline
-const results = consolidation.run_consolidation({
-  dryRun: false,            // Set true to preview changes
-  createBackup: true,       // Backup before pruning
-  specFolder: 'specs/042'   // Optional: filter by folder
-});
+// Initialize with database
+init(db);
 
-// results = {
-//   success: true,
-//   dryRun: false,
-//   phases: {
-//     replay: { candidateCount: 28, ... },
-//     abstract: { patternCount: 5, ... },
-//     integrate: { integratedCount: 3, ... },
-//     prune: { prunedCount: 12, backupId: '...', ... },
-//     strengthen: { strengthenedCount: 8, ... }
-//   },
-//   summary: {
-//     replayed: 28,
-//     patterns: 5,
-//     integrated: 3,
-//     pruned: 12,
-//     strengthened: 8
-//   },
-//   durationMs: 245
-// }
+// Get or create a session
+const sessionId = getOrCreateSession();
+// sessionId = 'wm-lxyz123-abc456'
 
-// Run individual phases
-const replayResult = consolidation.replay_phase({ minAgeDays: 7 });
-const patterns = consolidation.abstract_phase(replayResult.candidates);
-const integrated = consolidation.integrate_phase(patterns.patterns);
+// Add/update memory in working memory
+setAttentionScore(sessionId, memoryId, 1.0);
+
+// Get working memory entries
+const entries = getWorkingMemory(sessionId);
+// entries = [{ id, session_id, memory_id, attention_score, added_at, last_focused, focus_count }]
+
+// Get full memory details for session
+const memories = getSessionMemories(sessionId);
+
+// Apply decay to all entries in session
+const updated = batchUpdateScores(sessionId);
+// Multiplies scores by attentionDecayRate (0.95), removes below threshold
+
+// Get session statistics
+const stats = getSessionStats(sessionId);
+// stats = { sessionId, totalEntries, avgAttention, maxAttention, minAttention, totalFocusEvents }
+
+// Clear session
+clearSession(sessionId);
 ```
 
-**Phase Configuration:**
+**Working Memory Configuration:**
 ```javascript
-REPLAY_MIN_AGE_DAYS=7           # Default: 7 days
-ABSTRACT_MIN_OCCURRENCES=2      # Default: 2+ occurrences
-INTEGRATE_MIN_STRENGTH=0.6      # Default: 0.6
-STRENGTHEN_MIN_ACCESS_COUNT=5   # Default: 5 accesses
+SPECKIT_WORKING_MEMORY=true   // Default: true (env var name)
+// WORKING_MEMORY_CONFIG:
+maxCapacity: 7                // Miller's Law: 7 +/- 2
+sessionTimeoutMs: 1800000     // 30 minutes
+attentionDecayRate: 0.95      // 95% retention per decay cycle
+minAttentionScore: 0.1        // Below this = evicted
 ```
 
 ### Automatic Archival
 
-**Purpose**: Lifecycle management for 90+ day inactive memories
+**Purpose**: Lifecycle management for inactive memories
 
 **Usage**:
-```javascript
-const archival = require('./archival-manager');
-archival.init(db);
+```typescript
+import {
+  init,
+  startBackgroundJob,
+  stopBackgroundJob,
+  runArchivalScan,
+  archiveMemory,
+  unarchiveMemory,
+  checkMemoryArchivalStatus,
+  getArchivalCandidates,
+  getStats,
+  isBackgroundJobRunning,
+  ARCHIVAL_CONFIG,
+} from './archival-manager';
 
-// Start background job (scans every hour)
-archival.start_background_job();
-// { started: true, interval_ms: 3600000 }
+// Initialize with database
+init(db);
+
+// Start background job (scans every 2 hours)
+startBackgroundJob();
+// Default interval: 7200000ms (2 hours)
 
 // Manual scan
-const scanResult = archival.run_archival_scan();
-// { scanned: 15, archived: 12, failed: 0, duration_ms: 42 }
+const scanResult = runArchivalScan();
+// scanResult = { scanned: 15, archived: 12 }
 
-// Check specific memory
-const status = archival.check_memory_archival_status(memoryId);
-// {
-//   shouldArchive: true,
-//   memory: { id: 42, ... },
-//   reason: 'Inactive for 95 days (threshold: 90)'
-// }
+// Check specific memory status
+const status = checkMemoryArchivalStatus(memoryId);
+// status = { isArchived: boolean, shouldArchive: boolean }
 
-// Unarchive (restore)
-archival.unarchive_memory(memoryId);
+// Archive/unarchive
+archiveMemory(memoryId);
+unarchiveMemory(memoryId);
+
+// Get archival candidates
+const candidates = getArchivalCandidates(50);
+// candidates = [{ id, title, spec_folder, file_path, created_at, importance_tier, access_count, confidence, reason }]
 
 // Get statistics
-const stats = archival.get_stats();
-// {
-//   scans_completed: 42,
-//   total_archived: 156,
-//   current_archived_count: 203,
-//   background_job_active: true,
-//   config: { ... }
-// }
+const stats = getStats();
+// stats = { totalScanned, totalArchived, totalUnarchived, lastScanTime, errors }
+
+// Stop background job
+stopBackgroundJob();
 ```
 
 **Archival Configuration:**
 ```bash
-ARCHIVAL_ENABLED=true               # Default: true
-ARCHIVAL_SCAN_INTERVAL_MS=3600000   # Default: 1 hour
-ARCHIVAL_BATCH_SIZE=50              # Default: 50 per scan
-ARCHIVAL_ACTION=mark                # mark | soft_delete | log_only
-ARCHIVED_DAYS_THRESHOLD=90          # Default: 90 days
+SPECKIT_ARCHIVAL=true                          # Default: true (env var name)
+# ARCHIVAL_CONFIG defaults:
+# scanIntervalMs: 3600000                      # 1 hour scan interval
+# backgroundJobIntervalMs: 7200000             # 2 hours between background runs
+# batchSize: 50                                # Per scan
+# maxAgeDays: 90                               # Days before eligible for archival
+# maxAccessCount: 2                            # Low-access threshold
+# maxConfidence: 0.4                           # Low-confidence threshold
+# protectedTiers: ['constitutional', 'critical']
+```
+
+### Temporal Contiguity
+
+**Purpose**: Boost search results when memories are temporally adjacent, query temporal neighbors, and build spec-folder timelines.
+
+**Usage**:
+```typescript
+import {
+  init,
+  vectorSearchWithContiguity,
+  getTemporalNeighbors,
+  buildTimeline,
+  DEFAULT_WINDOW,
+  MAX_WINDOW,
+} from './temporal-contiguity';
+
+// Initialize with database
+init(db);
+
+// Boost vector search results by temporal proximity
+const results = [
+  { id: 1, similarity: 0.85, created_at: '2026-02-10T10:00:00Z' },
+  { id: 2, similarity: 0.78, created_at: '2026-02-10T10:30:00Z' },
+  { id: 3, similarity: 0.72, created_at: '2026-02-09T10:00:00Z' },
+];
+const boosted = vectorSearchWithContiguity(results, DEFAULT_WINDOW);
+// Results 1 and 2 (30 min apart, within 1h window) get similarity boost
+// Result 3 (1 day apart) is outside the window and unchanged
+
+// Find temporal neighbors of a memory
+const neighbors = getTemporalNeighbors(42, 3600); // within 1 hour
+// neighbors = [{ id, title, time_delta_seconds, ... }]
+
+// Build a timeline for a spec folder
+const timeline = buildTimeline('specs/005-memory', 20);
+// timeline = [{ id, title, created_at, ... }] ordered by created_at DESC
+```
+
+**Configuration:**
+```javascript
+DEFAULT_WINDOW: 3600     // 1 hour in seconds (default temporal window)
+MAX_WINDOW: 86400        // 24 hours in seconds (maximum allowed window)
+BOOST_FACTOR: 0.15       // Maximum similarity boost for temporally adjacent memories
 ```
 
 ---
 
-## 5. 💡 USAGE EXAMPLES
+## 5. USAGE EXAMPLES
 
 ### Example 1: Initialize Cognitive System
 
-```javascript
-const db = require('better-sqlite3')('memory.db');
-const fsrs = require('./cognitive/fsrs-scheduler');
-const classifier = require('./cognitive/tier-classifier');
-const decay = require('./cognitive/attention-decay');
-const gate = require('./cognitive/prediction-error-gate');
-const consolidation = require('./cognitive/consolidation');
-const archival = require('./cognitive/archival-manager');
+```typescript
+import Database from 'better-sqlite3';
+import * as decay from './attention-decay';
+import * as gate from './prediction-error-gate';
+import * as archival from './archival-manager';
+import * as workingMemory from './working-memory';
+import * as coActivation from './co-activation';
 
-// Initialize modules
+const db = new Database('memory.db');
+
+// Initialize modules that need database
 decay.init(db);
 gate.init(db);
-consolidation.init(db);
 archival.init(db);
+workingMemory.init(db);
+coActivation.init(db);
 
-// Start background jobs
-archival.start_background_job();
-consolidation.schedule_consolidation(24 * 60 * 60 * 1000, { dryRun: false });
+// Start background archival
+archival.startBackgroundJob();
 ```
 
-### Example 2: Memory Access with FSRS Testing
+### Example 2: Memory Access with FSRS Review
 
-```javascript
-// Memory was accessed - apply testing effect
-const sessionId = 'session-abc';
-const memoryId = 42;
-const turnNumber = 8;
+```typescript
+import * as decay from './attention-decay';
+import * as coActivation from './co-activation';
 
-// Activate with FSRS testing effect
-const result = decay.activate_memory_with_fsrs(sessionId, memoryId, turnNumber, {
-  similarity: 0.88  // From search result
-});
-
-// result = {
-//   success: true,
-//   stability_updated: true,
-//   new_stability: 8.2  // Increased from 5.0 due to testing effect
-// }
+// Memory was accessed — apply FSRS review update
+decay.activateMemoryWithFsrs(42, 3);  // memoryId=42, grade=GOOD(3)
 
 // Spread activation to related memories
-const coActivation = require('./cognitive/co-activation');
-const boosted = coActivation.spread_activation(sessionId, memoryId, turnNumber);
-// boosted = [{ memoryId: 58, newScore: 0.55, ... }, ...]
+const boosted = coActivation.spreadActivation([42]);
+// boosted = [{ id: 58, activationScore: 0.425, hop: 1, path: [42, 58] }]
 ```
 
 ### Example 3: Detect and Handle Duplicates
 
-```javascript
-const gate = require('./cognitive/prediction-error-gate');
+```typescript
+import * as gate from './prediction-error-gate';
+import * as decay from './attention-decay';
 
 // Before saving new memory, check for duplicates
-const vectorIndex = require('../search/vector-index');
-const candidates = await vectorIndex.search(newMemoryContent, { limit: 5 });
-
-const decision = gate.evaluate_memory(
-  candidates,
+const decision = gate.evaluateMemory(
+  contentHash,
   newMemoryContent,
-  { check_contradictions: true }
+  candidates,        // from vector search
+  { specFolder: 'specs/042' }
 );
 
 switch (decision.action) {
   case 'REINFORCE':
     // Boost existing memory instead of creating new
-    decay.activate_memory(sessionId, decision.candidate.id, turnNumber);
-    console.log(`Reinforced existing memory ${decision.candidate.id}`);
+    decay.activateMemoryWithFsrs(decision.existingMemoryId!, 3);
     break;
 
   case 'SUPERSEDE':
-    // Contradiction detected - mark old as deprecated
+    // Contradiction detected — mark old as deprecated, create new
     db.prepare('UPDATE memory_index SET importance_tier = ? WHERE id = ?')
-      .run('deprecated', decision.candidate.id);
-    // Create new memory with updated information
+      .run('deprecated', decision.existingMemoryId);
     createNewMemory(newMemoryContent);
-    console.log(`Superseded memory ${decision.candidate.id} due to: ${decision.contradiction.pattern}`);
     break;
 
   case 'UPDATE':
-    // High similarity but no contradiction - append
-    appendToMemory(decision.candidate.id, newMemoryContent);
+    // High similarity but no contradiction — update existing
+    appendToMemory(decision.existingMemoryId!, newMemoryContent);
     break;
 
   case 'CREATE_LINKED':
-    // Medium similarity - create with related IDs
-    createNewMemory(newMemoryContent, { related_ids: decision.related_ids });
-    break;
-
   case 'CREATE':
-    // Low similarity - create independent
+    // Medium/low similarity — create new
     createNewMemory(newMemoryContent);
     break;
 }
-
-// Log decision for audit
-gate.log_conflict(decision, newMemoryId, newMemoryContent, existingContent, specFolder);
 ```
 
-### Example 4: Consolidation Workflow
+### Example 4: Composite Attention Scoring
 
-```javascript
-const consolidation = require('./cognitive/consolidation');
+```typescript
+import * as decay from './attention-decay';
 
-// Dry-run first (preview changes)
-const preview = consolidation.run_consolidation({ dryRun: true });
-console.log('Consolidation Preview:');
-console.log(`- Would replay: ${preview.summary.replayed} episodic memories`);
-console.log(`- Would extract: ${preview.summary.patterns} patterns`);
-console.log(`- Would integrate: ${preview.summary.integrated} semantic memories`);
-console.log(`- Would prune: ${preview.summary.pruned} redundant episodes`);
+// Get active memories sorted by composite score
+const activeMemories = decay.getActiveMemories(20);
 
-// Review patterns
-for (const pattern of preview.phases.abstract.patterns) {
-  console.log(`\nPattern: ${pattern.pattern_id}`);
-  console.log(`  Type: ${pattern.type}`);
-  console.log(`  Occurrences: ${pattern.occurrences}`);
-  console.log(`  Strength: ${pattern.strength.toFixed(2)}`);
-  console.log(`  Representative: ${pattern.representative.title}`);
-}
-
-// If satisfied, run for real
-const results = consolidation.run_consolidation({
-  dryRun: false,
-  createBackup: true
-});
-
-if (results.success) {
-  console.log(`Consolidation complete in ${results.durationMs}ms`);
-  console.log(`Created ${results.summary.integrated} semantic memories`);
-  console.log(`Archived ${results.summary.pruned} redundant episodes`);
-  if (results.phases.prune.backupId) {
-    console.log(`Backup checkpoint: ${results.phases.prune.backupId}`);
-  }
-}
-```
-
-### Example 5: Composite Attention Scoring
-
-```javascript
-const decay = require('./cognitive/attention-decay');
-
-// Get all memories with composite scores
-const sessionId = 'session-abc';
-const activeMemories = decay.get_active_memories(sessionId);
-
-// Score each memory with composite model
-const scoredMemories = activeMemories.map(memory => {
-  const score = decay.calculate_composite_attention(memory, {
-    query: 'React best practices',
-    anchors: ['implementation', 'patterns']
-  });
-
-  const breakdown = decay.get_attention_breakdown(memory, {
-    query: 'React best practices'
-  });
-
-  return {
-    ...memory,
-    composite_score: score,
-    factors: breakdown.factors
-  };
-});
-
-// Sort by composite score
-scoredMemories.sort((a, b) => b.composite_score - a.composite_score);
-
-// Top memory analysis
-const top = scoredMemories[0];
-console.log(`\nTop Memory: ${top.title}`);
-console.log(`Composite Score: ${top.composite_score.toFixed(3)}`);
-console.log('Factor Breakdown:');
-for (const [name, factor] of Object.entries(top.factors)) {
-  console.log(`  ${name}: ${factor.value.toFixed(3)} × ${factor.weight} = ${factor.contribution.toFixed(3)}`);
-  console.log(`    ${factor.description}`);
+// Score each memory with detailed breakdown
+for (const memory of activeMemories) {
+  const breakdown = decay.getAttentionBreakdown(memory);
+  console.log(`${memory.title}:`);
+  console.log(`  Composite: ${breakdown.composite}`);
+  console.log(`  Temporal:   ${breakdown.temporal} × ${breakdown.weights.temporal}`);
+  console.log(`  Usage:      ${breakdown.usage} × ${breakdown.weights.usage}`);
+  console.log(`  Importance: ${breakdown.importance} × ${breakdown.weights.importance}`);
+  console.log(`  Pattern:    ${breakdown.pattern} × ${breakdown.weights.pattern}`);
+  console.log(`  Citation:   ${breakdown.citation} × ${breakdown.weights.citation}`);
 }
 ```
 
 ### Common Patterns
 
-| Pattern           | Use Case                             | Key Functions                                    |
-| ----------------- | ------------------------------------ | ------------------------------------------------ |
-| **Memory Save**   | New memory → Check duplicates → Save | `evaluate_memory`, `activate_memory_with_fsrs`   |
-| **Memory Access** | Search hit → Boost + spread          | `activate_memory_with_fsrs`, `spread_activation` |
-| **Session Decay** | Turn end → Apply decay               | `apply_fsrs_decay` or `apply_composite_decay`    |
-| **State Check**   | Context selection → Filter by state  | `classify_state`, `filter_and_limit_by_state`    |
-| **Nightly Jobs**  | Background → Archive + consolidate   | `run_archival_scan`, `run_consolidation`         |
+| Pattern           | Use Case                             | Key Functions                                        |
+| ----------------- | ------------------------------------ | ---------------------------------------------------- |
+| **Memory Save**   | New memory → Check duplicates → Save | `evaluateMemory`, `activateMemoryWithFsrs`           |
+| **Memory Access** | Search hit → Boost + spread          | `activateMemoryWithFsrs`, `spreadActivation`         |
+| **Session Decay** | Turn end → Apply decay               | `applyFsrsDecay`, `batchUpdateScores`                |
+| **State Check**   | Context selection → Filter by state  | `classifyState`, `filterAndLimitByState`             |
+| **Nightly Jobs**  | Background → Archive                 | `runArchivalScan`, `startBackgroundJob`              |
 
 ---
 
-## 6. 🛠️ TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 ### Common Issues
 
@@ -776,10 +829,12 @@ for (const [name, factor] of Object.entries(top.factors)) {
 **Cause**: Decay not being applied at turn boundaries
 
 **Solution**:
-```javascript
-// Apply decay at EVERY turn
-const result = decay.apply_fsrs_decay(sessionId);
-console.log(`Decayed ${result.decayedCount} memories`);
+```typescript
+import * as decay from './attention-decay';
+
+// Apply FSRS decay to individual memory
+const decayed = decay.applyFsrsDecay(memory, 1.0);
+console.log(`Decayed score: ${decayed}`);
 
 // Check decay config
 console.log('Decay rates:', decay.DECAY_CONFIG.decayRateByTier);
@@ -794,19 +849,20 @@ console.log('Decay rates:', decay.DECAY_CONFIG.decayRateByTier);
 **Cause**: Not archiving old memories, or archival job not running
 
 **Solution**:
-```javascript
+```typescript
+import * as archival from './archival-manager';
+
 // Check archival stats
-const stats = archival.get_stats();
-console.log('Archived count:', stats.current_archived_count);
-console.log('Background job:', stats.background_job_active);
+const stats = archival.getStats();
+console.log('Background job:', archival.isBackgroundJobRunning());
 
 // Start background job if not running
-if (!stats.background_job_active) {
-  archival.start_background_job();
+if (!archival.isBackgroundJobRunning()) {
+  archival.startBackgroundJob();
 }
 
 // Manual cleanup
-const scanResult = archival.run_archival_scan();
+const scanResult = archival.runArchivalScan();
 console.log(`Archived ${scanResult.archived} old memories`);
 ```
 
@@ -817,21 +873,21 @@ console.log(`Archived ${scanResult.archived} old memories`);
 **Cause**: Not using prediction error gate before saving
 
 **Solution**:
-```javascript
+```typescript
+import * as gate from './prediction-error-gate';
+
 // ALWAYS check before saving new memory
-const candidates = await vectorSearch(newContent, { limit: 5 });
-const decision = gate.evaluate_memory(candidates, newContent);
+const decision = gate.evaluateMemory(contentHash, newContent, candidates, { specFolder });
 
 if (decision.action === 'REINFORCE') {
-  // Don't create new - boost existing
-  decay.activate_memory(sessionId, decision.candidate.id, turnNumber);
-  console.log('Boosted existing memory instead of creating duplicate');
-  return decision.candidate.id;
+  // Don't create new — boost existing
+  console.log(`Reinforced existing memory ${decision.existingMemoryId}`);
+  return decision.existingMemoryId;
 }
 
 // Check conflict logs
-const conflicts = gate.get_recent_conflicts(20);
-console.log('Recent conflict decisions:', conflicts);
+const recent = gate.getRecentConflicts(20);
+console.log('Recent conflict decisions:', recent);
 ```
 
 #### Incorrect State Classification
@@ -841,113 +897,50 @@ console.log('Recent conflict decisions:', conflicts);
 **Cause**: `last_review` not being updated on access
 
 **Solution**:
-```javascript
-// Use activate_memory_with_fsrs (updates last_review)
-const result = decay.activate_memory_with_fsrs(sessionId, memoryId, turnNumber);
+```typescript
+import * as decay from './attention-decay';
+import { classifyTier } from './tier-classifier';
+
+// Use activateMemoryWithFsrs (updates stability, last_review, access_count)
+decay.activateMemoryWithFsrs(memoryId, 3);
 
 // Verify state after activation
 const memory = db.prepare('SELECT * FROM memory_index WHERE id = ?').get(memoryId);
-const state = classifier.classify_state(memory);
-console.log(`State after activation: ${state}`);  // Should be HOT
-
-// Check retrievability
-const R = classifier.calculate_retrievability(memory);
-console.log(`Retrievability: ${R.toFixed(3)}`);  // Should be ~1.0
-```
-
-#### Consolidation Not Finding Patterns
-
-**Symptom**: ABSTRACT phase returns 0 patterns
-
-**Cause**: Not enough episodic memories, or memories too young
-
-**Solution**:
-```javascript
-// Check episodic memory count
-const episodicCount = db.prepare(`
-  SELECT COUNT(*) as count FROM memory_index
-  WHERE memory_type = 'episodic' AND created_at < datetime('now', '-7 days')
-`).get().count;
-console.log(`Episodic memories older than 7 days: ${episodicCount}`);
-
-// Lower thresholds for testing
-const results = consolidation.run_consolidation({
-  dryRun: true,
-  minAgeDays: 1,           // Lower from 7
-  minOccurrences: 2        // Keep at 2
-});
-console.log('Patterns found:', results.phases.abstract?.patternCount || 0);
-
-// Check pattern types
-if (results.phases.abstract?.patterns) {
-  results.phases.abstract.patterns.forEach(p => {
-    console.log(`Pattern: ${p.type}, Occurrences: ${p.occurrences}, Strength: ${p.strength}`);
-  });
-}
+const classification = classifyTier(memory);
+console.log(`State: ${classification.state}, R: ${classification.retrievability}`);
 ```
 
 ### Quick Fixes
 
-| Problem              | Quick Fix                                                                              |
-| -------------------- | -------------------------------------------------------------------------------------- |
-| Decay not working    | Call `apply_fsrs_decay(sessionId)` at turn end                                         |
-| Memory leak          | Enable archival: `archival.start_background_job()`                                     |
-| Duplicate prevention | Use `gate.evaluate_memory()` before save                                               |
-| State always COLD    | Use `activate_memory_with_fsrs()` not `activate_memory()`                              |
-| No consolidation     | Lower `minAgeDays` or check episodic count                                             |
-| Slow queries         | Create index: `CREATE INDEX idx_memory_state ON memory_index(memory_type, created_at)` |
-
-### Diagnostic Commands
-
-```javascript
-// Check cognitive system status
-const diagnostics = {
-  // Decay status
-  decay: {
-    sessionMemories: decay.get_active_memories(sessionId),
-    config: decay.DECAY_CONFIG
-  },
-
-  // State distribution
-  states: classifier.get_state_stats(allMemories),
-
-  // Archival status
-  archival: archival.get_stats(),
-
-  // Conflict log
-  conflicts: gate.get_conflict_stats(),
-
-  // Consolidation readiness
-  consolidation: {
-    episodic: db.prepare(`SELECT COUNT(*) as c FROM memory_index WHERE memory_type = 'episodic' AND created_at < datetime('now', '-7 days')`).get().c,
-    lastRun: consolidation.is_scheduled() ? 'Scheduled' : 'Manual only'
-  }
-};
-
-console.log(JSON.stringify(diagnostics, null, 2));
-```
+| Problem              | Quick Fix                                                         |
+| -------------------- | ----------------------------------------------------------------- |
+| Decay not working    | Call `applyFsrsDecay(memory, score)` at turn boundaries           |
+| Memory leak          | Enable archival: `archival.startBackgroundJob()`                  |
+| Duplicate prevention | Use `gate.evaluateMemory()` before save                          |
+| State always COLD    | Use `activateMemoryWithFsrs()` (updates last_review)             |
+| Slow queries         | `CREATE INDEX idx_memory_state ON memory_index(memory_type)`      |
 
 ---
 
-## 7. ❓ FAQ
+## 7. FAQ
 
 ### General Questions
 
 **Q: Why use FSRS instead of simple exponential decay?**
 
-A: FSRS is validated on 100M+ real human memory data from Anki. Exponential decay (e^(-t/τ)) decays too fast initially and too slow later. FSRS power-law decay `(1 + 0.235×t/S)^(-0.5)` matches how human memory actually works, with a "desirable difficulty" effect where harder recalls strengthen memories more.
+A: FSRS is validated on 100M+ real human memory data from Anki. Exponential decay (`e^(-t/τ)`) decays too fast initially and too slow later. FSRS power-law decay `(1 + (19/81) × t/S)^(-0.5)` matches how human memory actually works, with a "desirable difficulty" effect where harder recalls strengthen memories more.
 
 ---
 
 **Q: What's the difference between attention score and retrievability?**
 
-A: **Retrievability** (R) is the FSRS-calculated probability of recall (0.0 to 1.0). **Attention score** is the session-specific activation level in working_memory. They're related: attention starts at 1.0 on access, then decays toward current retrievability over turns.
+A: **Retrievability** (R) is the FSRS-calculated probability of recall (0.0 to 1.0), based on stability and elapsed time. **Attention score** is the session-specific activation level in `working_memory`, which starts at 1.0 when a memory enters the session and decays at 0.95 per cycle.
 
 ---
 
 **Q: Why do constitutional memories never decay?**
 
-A: Constitutional memories are permanent rules and principles (like coding standards, architectural decisions). They should ALWAYS be available, so `decay_rate = 1.0` (100% retention = no decay).
+A: Constitutional memories are permanent rules and principles (like coding standards, architectural decisions). They should ALWAYS be available, so `decay_rate = 1.0` (100% retention = no decay). This applies to both `constitutional` and `critical` tiers.
 
 ---
 
@@ -955,80 +948,46 @@ A: Constitutional memories are permanent rules and principles (like coding stand
 
 **Q: How does spreading activation work?**
 
-A: When memory A is accessed:
-1. Get `related_memories` array for A
-2. For each related memory B:
-   - If B is in working_memory: boost by +0.35
-   - If B is not in working_memory: add with score 0.35
-3. This keeps semantically-related memories active together
-
----
-
-**Q: What's the difference between PRUNE and ARCHIVED?**
-
-A: **PRUNE** (consolidation phase 4) marks redundant *episodic* memories as `deprecated` after creating a consolidated semantic memory. **ARCHIVED** (archival-manager) marks *any* memory inactive for 90+ days as `is_archived = 1` for lifecycle management. PRUNE is content-driven, ARCHIVED is time-driven.
+A: When memories are accessed:
+1. Call `spreadActivation(seedIds)` with one or more seed memory IDs
+2. For each seed, get `related_memories` from DB (JSON array of `{id, similarity}`)
+3. Traverse the graph up to `maxHops` (default: 2)
+4. Each hop applies `decayPerHop` (0.5) decay, weighted by similarity
+5. Results sorted by activation score, limited to `maxSpreadResults` (20)
 
 ---
 
 **Q: Can I disable automatic archival?**
 
-A: Yes, set `ARCHIVAL_ENABLED=false` in environment or:
-```javascript
-archival.stop_background_job();
+A: Yes, set `SPECKIT_ARCHIVAL=false` in environment or:
+```typescript
+import * as archival from './archival-manager';
+archival.stopBackgroundJob();
 ```
 But you'll need to manually manage old memories to prevent database growth.
 
 ---
 
-**Q: How do I tune consolidation aggressiveness?**
+**Q: What are the orphaned dist/ files?**
 
-A: Lower thresholds = more consolidation:
-```javascript
-consolidation.run_consolidation({
-  minAgeDays: 3,          // Down from 7
-  minOccurrences: 2,      // Keep at 2 (REQ-022)
-  similarityThreshold: 0.60  // Down from 0.75
-});
-```
-Or increase for less consolidation:
-```javascript
-consolidation.run_consolidation({
-  minAgeDays: 14,         // Up from 7
-  minOccurrences: 3,      // Up from 2
-  similarityThreshold: 0.85  // Up from 0.75
-});
-```
+A: Two compiled `.js` files exist in `dist/lib/cognitive/` without corresponding `.ts` sources:
+- `consolidation.js` — 5-phase consolidation pipeline (source was deleted)
+- `summary-generator.js` — Auto-summary generation (source was deleted)
+
+Note: `temporal-contiguity.js` in dist/ is **not** orphaned — it is compiled from the active `temporal-contiguity.ts` source module. The `index.js` barrel file in dist/ may reference deleted modules and should be rebuilt.
 
 ---
 
-**Q: What happens if I restore from a consolidation backup?**
-
-A: Backups are created before PRUNE phase. To restore:
-```javascript
-const checkpoints = require('../storage/checkpoints');
-checkpoints.init(db);
-
-// List backups
-const backups = checkpoints.list('consolidation-backup-');
-
-// Restore (WARNING: overwrites current state)
-const restored = checkpoints.restore(backupId);
-console.log('Restored from:', restored.name);
-```
-This will undo the pruning and restore redundant episodic memories.
-
----
-
-## 8. 🔗 RELATED RESOURCES
+## 8. RELATED RESOURCES
 
 ### Internal Modules
 
 | Module                                                             | Purpose                                   |
 | ------------------------------------------------------------------ | ----------------------------------------- |
-| [../search/vector-index.js](../search/vector-index.js)             | Semantic search using voyageai embeddings |
-| [../scoring/composite-scoring.js](../scoring/composite-scoring.js) | 5-factor scoring implementation           |
-| [../storage/checkpoints.js](../storage/checkpoints.js)             | Backup/restore for consolidation          |
-| [../config/memory-types.js](../config/memory-types.js)             | Memory type definitions and half-lives    |
+| [../search/vector-index.ts](../search/vector-index.ts)             | Semantic search using voyageai embeddings |
+| [../scoring/composite-scoring.ts](../scoring/composite-scoring.ts) | 5-factor scoring (canonical weights)      |
+| [../storage/checkpoints.ts](../storage/checkpoints.ts)             | Backup/restore                            |
+| [../config/memory-types.ts](../config/memory-types.ts)             | Memory type definitions and half-lives    |
 
 ### External Research
 
@@ -1040,15 +999,14 @@ This will undo the pruning and restore redundant episodic memories.
 
 ### Configuration Reference
 
-| Environment Variable       | Default | Purpose                                   |
-| -------------------------- | ------- | ----------------------------------------- |
-| `HOT_THRESHOLD`            | 0.80    | Retrievability threshold for HOT state    |
-| `WARM_THRESHOLD`           | 0.25    | Retrievability threshold for WARM state   |
-| `COLD_THRESHOLD`           | 0.05    | Retrievability threshold for COLD state   |
-| `ARCHIVED_DAYS_THRESHOLD`  | 90      | Days inactive before archival             |
-| `ENABLE_CO_ACTIVATION`     | true    | Enable spreading activation               |
-| `ARCHIVAL_ENABLED`         | true    | Enable background archival job            |
-| `REPLAY_MIN_AGE_DAYS`      | 7       | Consolidation replay phase threshold      |
-| `ABSTRACT_MIN_OCCURRENCES` | 2       | Pattern extraction occurrence requirement |
+| Environment Variable       | Default   | Purpose                                   |
+| -------------------------- | --------- | ----------------------------------------- |
+| `HOT_THRESHOLD`            | 0.80      | Retrievability threshold for HOT state    |
+| `WARM_THRESHOLD`           | 0.25      | Retrievability threshold for WARM state   |
+| `COLD_THRESHOLD`           | 0.05      | Retrievability threshold for COLD state   |
+| `ARCHIVED_DAYS_THRESHOLD`  | 90        | Days inactive before archival             |
+| `SPECKIT_COACTIVATION`     | true      | Enable spreading activation               |
+| `SPECKIT_ARCHIVAL`         | true      | Enable background archival job            |
+| `SPECKIT_WORKING_MEMORY`   | true      | Enable working memory sessions            |
 
-*Cognitive Subsystem v1.2.0 - Research-Backed Memory Management*
+*Cognitive Subsystem v1.7.2 — Research-Backed Memory Management*

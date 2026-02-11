@@ -1,7 +1,7 @@
 # Tasks: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + all addendums | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + all addendums | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 3+ task list demonstrating full governance
 features including 3-Tier Task Format, AI Execution Protocol, and Workstream

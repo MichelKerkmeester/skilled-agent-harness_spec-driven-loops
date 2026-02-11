@@ -229,7 +229,7 @@ status: [Planning / In Progress / Complete]
 
 ### Automated Checks
 
-The `validate-spec.sh` script enforces these rules:
+The `validate.sh` script enforces these rules:
 
 | Rule | Check | Severity |
 |------|-------|----------|
@@ -263,7 +263,7 @@ The `validate-spec.sh` script enforces these rules:
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/validate-spec.sh` | Spec folder validation |
+| `scripts/spec/validate.sh` | Spec folder validation |
 | `scripts/rules/check-files.sh` | File existence checks |
 | `scripts/rules/check-folder-naming.sh` | Folder naming validation |
 | `scripts/rules/check-frontmatter.sh` | YAML frontmatter validation |

@@ -1,7 +1,7 @@
 # Verification Checklist: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
 ---
 

@@ -21,11 +21,13 @@
 
 The test suite provides comprehensive validation for all system-spec-kit functionality including script modules, integration workflows, template systems, cognitive memory features, and validation rules. Tests ensure reliability across spec folder creation, memory save/restore, checkpoint management, and all utility functions.
 
+**TypeScript Migration Status**: Source code has been migrated to TypeScript (`.ts` files) with compiled output in `dist/` subdirectories. Test files (.js) currently require updates to import from compiled output (`../dist/lib/`, `../dist/utils/`) instead of source directories.
+
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Test Files | 12 | JavaScript, Python, and Bash tests |
+| Test Files | 20 | JavaScript, Python, and Bash tests |
 | Test Types | 6 | Module, integration, template, validation, framework, extractors |
 | Coverage Areas | 15+ | Scripts, loaders, validators, templates, memory system, dual-threshold, Five Checks |
 | Total Tests | 800+ | Across all test files |
@@ -57,22 +59,28 @@ The test suite provides comprehensive validation for all system-spec-kit functio
 ### 30-Second Setup
 
 ```bash
-# 1. Navigate to tests directory
-cd /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/tests
+# 1. Navigate to scripts directory and build TypeScript
+cd .opencode/skill/system-spec-kit/scripts
+npm run build  # or: tsc -b
 
-# 2. No installation needed - tests use existing project dependencies
+# 2. Navigate to tests directory
+cd tests
 
-# 3. Run all tests
-node test-scripts-modules.js && \
-node test-integration.js && \
-node test-template-system.js && \
-node test-template-comprehensive.js && \
-node test-validation-system.js && \
+# 3. Run all tests (requires compiled dist/ output)
+node test-bug-fixes.js && \
+node test-embeddings-factory.js && \
 node test-extractors-loaders.js && \
 node test-five-checks.js && \
+node test-integration.js && \
+node test-scripts-modules.js && \
+node test-template-comprehensive.js && \
+node test-template-system.js && \
+node test-validation-system.js && \
 pytest test_dual_threshold.py -v && \
 ./test-validation.sh
 ```
+
+**IMPORTANT**: After the TypeScript migration, test files must be updated to import from `../dist/` instead of directly from source directories (e.g., `../dist/utils/path-utils` instead of `../utils/path-utils`).
 
 ### Verify Test Environment
 
@@ -89,6 +97,9 @@ ls -la test-fixtures
 ### First Use
 
 ```bash
+# Ensure TypeScript is compiled first
+cd .. && npm run build && cd tests
+
 # Run module tests (fastest)
 node test-scripts-modules.js
 
@@ -106,29 +117,26 @@ node test-integration.js
 ```
 tests/
 ├── test-bug-fixes.js              # Regression tests for fixed bugs
+├── test-bug-regressions.js        # Extended bug regression tests
+├── test-cleanup-orphaned-vectors.js # Orphaned vector cleanup tests
+├── test-embeddings-behavioral.js  # Embeddings behavioral tests
 ├── test-embeddings-factory.js     # Cognitive memory embedding tests
-├── test-extractors-loaders.js     # Extractor and loader module tests (NEW)
-├── test-five-checks.js            # Five Checks Framework validation (NEW)
+├── test-export-contracts.js       # Module export contract tests
+├── test-extractors-loaders.js     # Extractor and loader module tests
+├── test-five-checks.js            # Five Checks Framework validation
 ├── test-fixtures/                 # Symlink to test fixture spec folders
+├── test-folder-detector-functional.js # Folder detector functional tests
 ├── test-integration.js            # End-to-end workflow tests
+├── test-naming-migration.js       # Naming migration tests
+├── test-retry-manager-behavioral.js # Retry manager behavioral tests
 ├── test-scripts-modules.js        # Module-level unit tests
-├── test-template-comprehensive.js # Comprehensive template tests (NEW)
+├── test-template-comprehensive.js # Comprehensive template tests
 ├── test-template-system.js        # Template validation tests
+├── test-utils.js                  # Shared test utilities
 ├── test-validation-extended.sh    # Extended validation test suite
-├── test-validation-system.js      # JavaScript validation tests (NEW)
+├── test-validation-system.js      # JavaScript validation tests
 ├── test-validation.sh             # Core validation tests (bash)
-├── test_dual_threshold.py         # Python dual-threshold tests (NEW)
-├── run-all-tests.js               # Master test runner for cognitive memory tests (NEW)
-├── test-utils.js                  # Shared test utilities for cognitive memory (NEW)
-├── fsrs-scheduler.test.js         # FSRS algorithm tests (NEW)
-├── prediction-error-gate.test.js  # Prediction error gate tests (NEW)
-├── tier-classifier.test.js        # Tier classification tests (NEW)
-├── attention-decay.test.js        # Attention decay function tests (NEW)
-├── composite-scoring.test.js      # Composite scoring tests (NEW)
-├── memory-save-integration.test.js    # Memory save integration tests (NEW)
-├── memory-search-integration.test.js  # Memory search integration tests (NEW)
-├── schema-migration.test.js       # Schema migration tests (NEW)
-├── test-cognitive-integration.js  # End-to-end cognitive memory tests (NEW)
+├── test_dual_threshold.py         # Python dual-threshold tests
 └── README.md                      # This file
 ```
 
@@ -139,15 +147,23 @@ tests/
 | `test-scripts-modules.js` | Tests individual script modules (loaders, validators, utils) in isolation | ~450 |
 | `test-integration.js` | End-to-end tests for memory save, validation, checkpoints, spec creation | ~40 |
 | `test-template-system.js` | Validates template system, level detection, folder structure | ~50 |
-| `test-template-comprehensive.js` | **NEW** - Extended template tests with rendering, addendum, compose.sh | 154 |
+| `test-template-comprehensive.js` | Extended template tests with rendering, addendum, compose.sh | 154 |
 | `test-validation.sh` | Bash-based validation against fixture spec folders | ~55 |
 | `test-validation-extended.sh` | Extended validation suite with additional edge cases | ~65 |
-| `test-validation-system.js` | **NEW** - JavaScript validation tests for all 13 rules | 99 |
+| `test-validation-system.js` | JavaScript validation tests for all 13 rules | 99 |
 | `test-bug-fixes.js` | Regression tests ensuring previously fixed bugs stay fixed | ~35 |
+| `test-bug-regressions.js` | Extended bug regression test suite | - |
 | `test-embeddings-factory.js` | Tests embedding generation and cognitive memory features | ~12 |
-| `test-extractors-loaders.js` | **NEW** - Tests all extractor and loader modules | 279 |
-| `test-five-checks.js` | **NEW** - Five Checks Framework documentation and validation | 65 |
-| `test_dual_threshold.py` | **NEW** - Python pytest for skill_advisor.py dual-threshold | 71 |
+| `test-embeddings-behavioral.js` | Behavioral tests for embeddings system | - |
+| `test-extractors-loaders.js` | Tests all extractor and loader modules | 279 |
+| `test-five-checks.js` | Five Checks Framework documentation and validation | 65 |
+| `test-folder-detector-functional.js` | Functional tests for spec folder detection logic | - |
+| `test-retry-manager-behavioral.js` | Behavioral tests for retry manager | - |
+| `test-cleanup-orphaned-vectors.js` | Tests orphaned vector cleanup functionality | - |
+| `test-naming-migration.js` | Tests naming migration logic | - |
+| `test-export-contracts.js` | Validates module export contracts | - |
+| `test-utils.js` | Shared test utilities (assertions, fixtures, mocks) | - |
+| `test_dual_threshold.py` | Python pytest for skill_advisor.py dual-threshold | 71 |
 | `test-fixtures/` | Symlink to `../test-fixtures` containing sample spec folders | - |
 
 ---
@@ -155,6 +171,22 @@ tests/
 ## 4. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
+
+#### Module not found errors after TypeScript migration
+
+**Symptom**: `Error: Cannot find module '../utils/path-utils'` or `Cannot find module '../lib/anchor-generator'`
+
+**Cause**: Tests still import from TypeScript source directories instead of compiled `dist/` output
+
+**Solution**:
+```bash
+# Option 1: Rebuild TypeScript to ensure dist/ is up to date
+cd .. && npm run build && cd tests
+
+# Option 2: Update test imports to use dist/ paths
+# Change: require('../utils/path-utils')
+# To: require('../dist/utils/path-utils')
+```
 
 #### Test failures due to missing test workspace
 
@@ -219,10 +251,13 @@ brew install bash
 
 | Problem | Quick Fix |
 |---------|-----------|
+| Module not found errors | `cd .. && npm run build && cd tests` (rebuild TypeScript) |
+| Tests import from source not dist/ | Update require paths to `../dist/utils/` or `../dist/lib/` |
 | Permission denied on bash scripts | `chmod +x test-validation.sh test-validation-extended.sh` |
 | Test workspace pollution | `rm -rf .test-workspace && mkdir -p .test-workspace/specs` |
 | Failed test run | `node test-scripts-modules.js 2>&1 | tee test-output.log` |
 | Stale test database | `rm -f .test-workspace/test-*.sqlite` |
+| Stale TypeScript build | `cd .. && rm -rf dist && npm run build` |
 
 ### Diagnostic Commands
 
@@ -268,39 +303,7 @@ ls -la .test-workspace/specs/
 
 ### Overview
 
-Additional test infrastructure for the Cognitive Memory Upgrade including FSRS scheduling, prediction error gating, tier classification, and semantic similarity.
-
-### Running Cognitive Memory Tests
-
-```bash
-# Run all cognitive memory tests
-node run-all-tests.js
-
-# Run with verbose output
-node run-all-tests.js --verbose
-
-# Run specific test category
-node run-all-tests.js --filter=fsrs
-
-# Stop on first failure
-node run-all-tests.js --bail
-```
-
-### Test Files
-
-| File | Purpose |
-|------|---------|
-| `run-all-tests.js` | Master test runner for all cognitive memory tests |
-| `test-utils.js` | Shared utilities (assertions, fixtures, mocks) |
-| `fsrs-scheduler.test.js` | FSRS algorithm (stability, difficulty, intervals) |
-| `prediction-error-gate.test.js` | PE gate threshold validation |
-| `tier-classifier.test.js` | Importance tier classification |
-| `attention-decay.test.js` | Power-law decay function |
-| `composite-scoring.test.js` | Combined scoring algorithm |
-| `memory-save-integration.test.js` | Save workflow integration |
-| `memory-search-integration.test.js` | Search workflow integration |
-| `schema-migration.test.js` | Database migration tests |
-| `test-cognitive-integration.js` | End-to-end cognitive memory tests |
+Test utilities and fixtures for cognitive memory features. The `test-utils.js` module provides shared assertions, fixtures, and mocks used across test files. Cognitive memory test fixtures are located in the MCP server test directory.
 
 ### Test Utilities
 
@@ -334,4 +337,4 @@ Located in `../../mcp_server/tests/fixtures/`:
 
 ---
 
-*Documentation for system-spec-kit test suite v2.1 | Last updated: 2026-01-28*
+*Documentation for system-spec-kit test suite v2.1 | TypeScript Migration | Last updated: 2026-02-07*

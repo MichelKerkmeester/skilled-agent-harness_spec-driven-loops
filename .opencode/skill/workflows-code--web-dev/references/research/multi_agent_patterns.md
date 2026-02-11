@@ -179,7 +179,7 @@ Each agent should return:
 
 ## 6. 📚 EXAMPLE: PERFORMANCE OPTIMIZATION
 
-From anobel.com (024-performance-optimization):
+From example.com (024-performance-optimization):
 
 **Root Cause Identified:** Page hidden until hero JS completes
 **Discovery Agent:** Agent 5 (LCP/Images)

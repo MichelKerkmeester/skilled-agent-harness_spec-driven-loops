@@ -450,18 +450,28 @@ async function safeFetch(id: string): Promise<Result<MemoryRecord>> {
 }
 ```
 
-### Validation Command
+### Build & Rebuild Commands
 
 ```bash
+# Standard build (type check + emit dist/)
+npm run build                        # runs: tsc --build
+
+# Build bypassing pre-existing type errors (emit only)
+npx tsc --build --noCheck --force
+
 # Type check without emitting files
-tsc --noEmit
+npx tsc --noEmit
 
-# Build with project references
-tsc --build
+# Watch mode for incremental builds
+npx tsc --build --watch
 
-# Watch mode
-tsc --build --watch
+# Smoke test after build
+npm run test:cli
 ```
+
+**After editing `.ts` source files**: Always rebuild `dist/` — the MCP server and CLI scripts run from compiled `.js`, not `.ts` source.
+
+**When `tsc --build` fails with pre-existing type errors**: Use `--noCheck --force` to emit JavaScript without type checking. Common with strict mode + third-party SDK type mismatches (e.g., MCP SDK `Record<string, unknown>`).
 
 ---
 

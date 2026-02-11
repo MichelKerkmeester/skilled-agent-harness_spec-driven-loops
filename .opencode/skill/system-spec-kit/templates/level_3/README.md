@@ -69,7 +69,7 @@ Level 3 includes **6 required files**:
 |------|---------|-------------|
 | `research.md` | Comprehensive technical investigation | Complex features requiring deep analysis across 3+ domains |
 
-Copy from: `/Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/templates/research.md`
+Copy from: `.opencode/skill/system-spec-kit/templates/research.md`
 
 ---
 

@@ -1,7 +1,7 @@
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 <!-- WHEN TO USE: Simple 2-3 phase implementation, minimal dependencies, single developer.
      USE LEVEL 2+ IF: Phase dependencies need tracking, effort estimation required, or multiple developers. -->

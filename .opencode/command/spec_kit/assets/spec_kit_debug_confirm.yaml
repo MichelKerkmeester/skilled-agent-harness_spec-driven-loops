@@ -45,11 +45,6 @@ user_inputs:
     source: "Phase 1 of debug.md"
     description: "Previous fix attempts and their outcomes"
 
-  selected_model:
-    source: "Phase 2 of debug.md"
-    description: "AI model selected for debug delegation"
-    values: [claude, gemini, gpt, other]
-    required: true
 
 # ───────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -62,25 +57,7 @@ field_handling:
   validation:
     spec_path_required: true
     error_message_required: true
-    selected_model_required: true
 
-# ───────────────────────────────────────────────────────────────────
-# MODEL SELECTION REFERENCE
-# ───────────────────────────────────────────────────────────────────
-model_selection:
-  note: "Selection happens in Phase 2 of debug.md"
-  options:
-    - id: claude
-      name: "Claude - Anthropic models"
-      strengths: "Code analysis, systematic debugging"
-    - id: gemini
-      name: "Gemini - Google models"
-      strengths: "Alternative perspective, broad knowledge"
-    - id: gpt
-      name: "GPT - OpenAI models"
-      strengths: "Complex reasoning, code generation"
-    - id: other
-      name: "Other - User specified"
 
 # ───────────────────────────────────────────────────────────────────
 # CONTEXT LOADING (At Workflow START)
@@ -145,8 +122,7 @@ multi_agent_config:
           - "Execute FIX phase (minimal change, verify)"
           - "Generate final resolution report"
       workers:
-        - model: "{worker_model|opus}"
-          role: "call_path_tracer"
+        - role: "call_path_tracer"
           focus: "Execution Path Analysis"
           phase: "ANALYZE"
           responsibilities:
@@ -154,8 +130,7 @@ multi_agent_config:
             - "Understand data flow through affected code"
             - "Check for recent changes (git)"
             - "Map execution sequence"
-        - model: "{worker_model|opus}"
-          role: "pattern_searcher"
+        - role: "pattern_searcher"
           focus: "Similar Working Code"
           phase: "ANALYZE"
           responsibilities:
@@ -177,8 +152,7 @@ multi_agent_config:
           - "Execute FIX phase (minimal change, verify)"
           - "Generate final resolution report"
       workers:
-        - model: "{worker_model|opus}"
-          role: "call_path_tracer"
+        - role: "call_path_tracer"
           focus: "Execution Path Analysis"
           phase: "ANALYZE"
           responsibilities:
@@ -186,8 +160,7 @@ multi_agent_config:
             - "Understand data flow through affected code"
             - "Check for recent changes (git)"
             - "Map execution sequence"
-        - model: "{worker_model|opus}"
-          role: "pattern_searcher"
+        - role: "pattern_searcher"
           focus: "Similar Working Code"
           phase: "ANALYZE"
           responsibilities:
@@ -195,8 +168,7 @@ multi_agent_config:
             - "Identify differences between working and broken code"
             - "Search for related implementations"
             - "Document reference patterns"
-        - model: "{worker_model|opus}"
-          role: "edge_case_hunter"
+        - role: "edge_case_hunter"
           focus: "Boundary Conditions"
           phase: "HYPOTHESIZE"
           responsibilities:
@@ -387,7 +359,6 @@ workflow:
       {previous_attempts}
 
       ### Environment
-      - Model: {selected_model}
       - Spec Folder: {spec_path}
 
       ## Instructions

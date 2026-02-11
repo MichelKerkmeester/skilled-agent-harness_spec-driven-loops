@@ -2,13 +2,19 @@
   "name": "@spec-kit/mcp-server",
   "version": "1.7.2",
   "description": "Semantic Memory MCP Server - provides 22 tools for semantic search, memory management, validation, checkpoints, causal graphs, session learning, and auto-indexing",
-  "main": "context-server.js",
+  "main": "dist/context-server.js",
+  "exports": {
+    ".": "./dist/context-server.js",
+    "./*.js": "./dist/*.js",
+    "./*": "./dist/*.js"
+  },
   "bin": {
-    "context-server": "./context-server.js"
+    "context-server": "./dist/context-server.js"
   },
   "scripts": {
-    "start": "node context-server.js",
-    "test": "node -e \"require('./context-server.js')\""
+    "start": "node dist/context-server.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [
     "mcp",
@@ -25,9 +31,10 @@
   "dependencies": {
     "@huggingface/transformers": "^3.8.1",
     "@modelcontextprotocol/sdk": "^1.24.3",
-    "better-sqlite3": "^12.5.0",
-    "chokidar": "^3.6.0",
-    "lru-cache": "^11.2.4",
+    "better-sqlite3": "^12.6.2",
     "sqlite-vec": "^0.1.7-alpha.2"
+  },
+  "devDependencies": {
+    "vitest": "^4.0.18"
   }
 }

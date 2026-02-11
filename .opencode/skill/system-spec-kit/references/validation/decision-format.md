@@ -353,6 +353,6 @@ Before recording a decision:
 ## 8. 🔗 RELATED RESOURCES
 
 - [Five Checks Framework](./five-checks.md) - Evaluation framework for significant decisions
-- [Decision Record Template](../../templates/decision-record.md) - For Level 3/3+ spec folders
+- [Decision Record Template](../../templates/level_3/decision-record.md) - For Level 3/3+ spec folders
 - [SKILL.md - Gates Overview](../../SKILL.md) - Gate system documentation
-- [AGENTS.md - Section 2](../../../../AGENTS.md) - Gate definitions and protocols
+- [AGENTS.md - Section 2](../../../../../AGENTS.md) - Gate definitions and protocols

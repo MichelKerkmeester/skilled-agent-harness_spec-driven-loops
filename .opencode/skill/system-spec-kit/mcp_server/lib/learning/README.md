@@ -39,18 +39,21 @@ The learning module tracks memory corrections over time, applying stability adju
 
 ## 2. 📁 STRUCTURE
 
+> **Note**: Source files remain locally and are also available in `@spec-kit/shared`.
+
 ```
 learning/
-├── corrections.js   # Correction tracking and stability adjustments
-└── index.js         # Module aggregator
+├── corrections.ts   # Memory correction tracking with stability adjustments
+├── index.ts         # Module barrel exports
+└── README.md        # This file
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `corrections.js` | Core correction logic with schema, stability math, queries |
-| `index.js` | Re-exports all correction functions |
+| `corrections.ts` | Correction types, stability adjustments, history tracking |
+| `index.ts` | Unified export of all learning functionality |
 
 ---
 
@@ -97,8 +100,8 @@ learning/
 
 ### Recording a Correction
 
-```javascript
-const { corrections } = require('./learning');
+```typescript
+import { corrections } from './learning';
 
 // Initialize with database
 corrections.init(db);
@@ -121,8 +124,8 @@ console.log(result.stability_changes);
 
 ### Deprecating a Memory
 
-```javascript
-const { deprecate_memory } = require('./learning');
+```typescript
+import { deprecate_memory } from './learning';
 
 // Mark memory as outdated (no replacement)
 const result = deprecate_memory(42, 'Outdated API documentation');
@@ -131,8 +134,8 @@ const result = deprecate_memory(42, 'Outdated API documentation');
 
 ### Merging Multiple Memories
 
-```javascript
-const { merge_memories } = require('./learning');
+```typescript
+import { merge_memories } from './learning';
 
 // Consolidate 3 memories into 1
 const results = merge_memories(
@@ -145,8 +148,8 @@ const results = merge_memories(
 
 ### Undoing a Correction
 
-```javascript
-const { undo_correction } = require('./learning');
+```typescript
+import { undo_correction } from './learning';
 
 // Reverse correction #7
 const result = undo_correction(7);
@@ -157,8 +160,8 @@ console.log(result.stability_restored);
 
 ### Querying Correction History
 
-```javascript
-const { get_corrections_for_memory, get_corrections_stats } = require('./learning');
+```typescript
+import { get_corrections_for_memory, get_corrections_stats } from './learning';
 
 // Get all corrections involving memory 5
 const history = get_corrections_for_memory(5, { include_undone: false });
@@ -193,3 +196,8 @@ The module creates a `memory_corrections` table with:
 - Before/after stability values (for undo)
 - Foreign keys to `memory_index`
 - Indexes for efficient queries
+
+---
+
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

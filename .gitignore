@@ -22,8 +22,14 @@
 # ───────────────────────────────────────────
 dist/
 
+# Certificates
+# ───────────────────────────────────────────
+*.cert
+
 # Database files
 # ───────────────────────────────────────────
+*.db
+*.sqlite3
 .opencode/skill/system-spec-kit/mcp_server/database/*.sqlite
 .opencode/skill/system-spec-kit/mcp_server/database/*.sqlite-shm
 .opencode/skill/system-spec-kit/mcp_server/database/*.sqlite-wal
@@ -53,6 +59,10 @@ settings.local.json
 # OS generated files
 # ───────────────────────────────────────────
 .DS_Store
+
+# Python
+# ───────────────────────────────────────────
+__pycache__/
 
 # Spec folders (project-specific)
 # ───────────────────────────────────────────

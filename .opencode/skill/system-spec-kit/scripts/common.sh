@@ -6,6 +6,8 @@
 # NOTE: lib/common.sh provides LOW-LEVEL utilities (colors, logging).
 #       This file provides HIGH-LEVEL repo/branch/path utilities.
 
+set -euo pipefail
+
 # ───────────────────────────────────────────────────────────────
 # 1. REPOSITORY ROOT DETECTION
 # ───────────────────────────────────────────────────────────────

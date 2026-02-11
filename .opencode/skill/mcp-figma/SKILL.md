@@ -2,7 +2,7 @@
 name: mcp-figma
 description: "Figma design file access via MCP providing 18 tools for file retrieval, image export, component/style extraction, team management, and collaborative commenting. Accessed via Code Mode for token-efficient workflows."
 allowed-tools: [Read, mcp__code_mode__call_tool_chain, mcp__code_mode__list_tools, mcp__code_mode__search_tools, mcp__code_mode__tool_info]
-version: 1.0.0
+version: 1.1.0.1
 ---
 
 <!-- Keywords: figma, mcp-figma, design-files, components, styles, images, export, design-tokens, design-system, collaboration, comments, team-projects -->
@@ -20,7 +20,7 @@ Programmatic access to Figma design files through 18 specialized tools covering 
 | **A** | Official Figma MCP | HTTP (mcp.figma.com) | Simplicity - no install, OAuth login |
 | **B** | Framelink (3rd-party) | stdio (local) | Code Mode integration, API key auth |
 
-**Recommendation:** Start with **Option A** (Official) - zero installation, OAuth login, works immediately. See [Install Guide](../../install_guides/MCP%20-%20Figma.md) for setup details.
+**Recommendation:** Start with **Option A** (Official) - zero installation, OAuth login, works immediately. See [Install Guide](./INSTALL_GUIDE.md) for setup details.
 
 ---
 
@@ -524,4 +524,4 @@ call_tool_chain({
 
 ### Install Guide
 
-- [MCP - Figma.md](../../install_guides/MCP%20-%20Figma.md) - Installation and configuration
+- [Install Guide](./INSTALL_GUIDE.md) - Installation and configuration

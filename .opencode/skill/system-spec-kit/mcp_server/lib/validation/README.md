@@ -6,15 +6,15 @@
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1-overview)
+- [2. STRUCTURE](#2-structure)
+- [3. FEATURES](#3-features)
+- [4. USAGE EXAMPLES](#4-usage-examples)
+- [5. RELATED RESOURCES](#5-related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The validation subsystem provides pre-flight checks that run before expensive operations like embedding generation or database writes. It prevents invalid data from entering the system and provides actionable feedback for resolution.
 
@@ -30,19 +30,18 @@ The validation subsystem provides pre-flight checks that run before expensive op
 
 | Feature | Description |
 |---------|-------------|
-| **Anchor Validation** | Validates `<!-- ANCHOR: id -->` format and closure |
-| **Duplicate Detection** | Exact (hash) and similar (vector) duplicate finding |
+| **Anchor Validation** | Validates `<!-- ANCHOR: id -->` format, closure, and uniqueness |
+| **Duplicate Detection** | Exact (SHA-256 hash) and similar (vector similarity) duplicate finding |
 | **Token Budget** | Estimates tokens and enforces limits before API calls |
-| **Unified Preflight** | Single `run_preflight()` runs all checks |
+| **Unified Preflight** | Single `runPreflight()` runs all checks with dry-run support |
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 
 ```
 validation/
-├── preflight.js  # Pre-flight validation before expensive operations (v1.2.0)
-├── index.js      # Module aggregator
+├── preflight.ts  # Pre-flight validation before expensive operations
 └── README.md     # This file
 ```
 
@@ -50,12 +49,11 @@ validation/
 
 | File | Purpose |
 |------|---------|
-| `preflight.js` | All validation logic: anchors, duplicates, tokens, content size |
-| `index.js` | Re-exports preflight module |
+| `preflight.ts` | All validation logic: anchors, duplicates, tokens, content size, unified preflight |
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 
 ### Anchor Format Validation
 
@@ -102,16 +100,36 @@ Prevents exceeding embedding API limits:
 | PF030 | CONTENT_TOO_LARGE | Exceeds max size |
 | PF031 | CONTENT_TOO_SMALL | Below min size |
 
+### Exported API
+
+**Functions:**
+
+| Function | Signature | Purpose |
+|----------|-----------|---------|
+| `validateAnchorFormat` | `(content: string, options?) => AnchorValidationResult` | Validate anchor tags |
+| `computeContentHash` | `(content: string) => string` | SHA-256 content hash |
+| `checkDuplicate` | `(params: DuplicateCheckParams, options?) => DuplicateCheckResult` | Detect duplicates |
+| `estimateTokens` | `(content: string \| unknown) => number` | Estimate token count |
+| `checkTokenBudget` | `(content: string, options?) => TokenBudgetResult` | Check against token limit |
+| `validateContentSize` | `(content: string, options?) => ContentSizeResult` | Validate content length |
+| `runPreflight` | `(params: PreflightParams, options?) => PreflightResult` | Run all checks |
+
+**Types:** `PreflightConfig`, `PreflightIssue`, `AnchorValidationResult`, `DuplicateCheckResult`, `TokenBudgetResult`, `ContentSizeResult`, `DuplicateCheckParams`, `DuplicateCheckOptions`, `PreflightParams`, `PreflightOptions`, `PreflightDetails`, `PreflightResult`, `PreflightErrorDetails`
+
+**Constants:** `PREFLIGHT_CONFIG`, `PreflightErrorCodes`
+
+**Classes:** `PreflightError`
+
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 
 ### Example 1: Run All Pre-flight Checks
 
-```javascript
-const { run_preflight } = require('./validation');
+```typescript
+import { runPreflight } from './preflight';
 
-const result = run_preflight({
+const result = runPreflight({
   content: memoryFileContent,
   file_path: '/specs/001-feature/memory/context.md',
   spec_folder: 'specs/001-feature',
@@ -130,10 +148,10 @@ if (!result.pass) {
 
 ### Example 2: Validate Anchor Format Only
 
-```javascript
-const { validate_anchor_format } = require('./validation');
+```typescript
+import { validateAnchorFormat } from './preflight';
 
-const result = validate_anchor_format(content, { strict: true });
+const result = validateAnchorFormat(content, { strict: true });
 // result.valid: boolean
 // result.anchors: ['summary', 'decisions', ...]
 // result.errors: [{ code, message, suggestion }]
@@ -141,22 +159,22 @@ const result = validate_anchor_format(content, { strict: true });
 
 ### Example 3: Check Token Budget
 
-```javascript
-const { check_token_budget, estimate_tokens } = require('./validation');
+```typescript
+import { checkTokenBudget, estimateTokens } from './preflight';
 
-const tokens = estimate_tokens(content);
+const tokens = estimateTokens(content);
 console.log(`Estimated: ${tokens} tokens`);
 
-const budget = check_token_budget(content, { max_tokens: 4000 });
+const budget = checkTokenBudget(content, { maxTokens: 4000 });
 if (!budget.within_budget) {
-  console.log(`Over budget: ${budget.estimated_tokens}/${budget.max_tokens}`);
+  console.log(`Over budget: ${budget.estimated_tokens}/${budget.maxTokens}`);
 }
 ```
 
 ### Example 4: Dry Run Mode
 
-```javascript
-const result = run_preflight(
+```typescript
+const result = runPreflight(
   { content, file_path, spec_folder },
   { dry_run: true }
 );
@@ -168,21 +186,21 @@ const result = run_preflight(
 
 | Pattern | Function | When to Use |
 |---------|----------|-------------|
-| Full validation | `run_preflight()` | Before memory_save |
-| Anchor check | `validate_anchor_format()` | Editing memory files |
-| Token estimate | `estimate_tokens()` | Before embedding API |
-| Hash compute | `compute_content_hash()` | Duplicate detection |
+| Full validation | `runPreflight()` | Before memory_save |
+| Anchor check | `validateAnchorFormat()` | Editing memory files |
+| Token estimate | `estimateTokens()` | Before embedding API |
+| Hash compute | `computeContentHash()` | Duplicate detection |
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Internal Documentation
 
 | Document | Purpose |
 |----------|---------|
 | [../errors/](../errors/) | Error codes and recovery hints |
-| [../../context-server.js](../../context-server.js) | MCP server using validation |
+| [../../context-server.ts](../../context-server.ts) | MCP server using validation |
 
 ### Configuration
 
@@ -205,25 +223,7 @@ MCP_DUPLICATE_THRESHOLD=0.95
 MCP_ANCHOR_STRICT=true
 ```
 
-### Exports Reference
-
-```javascript
-// Configuration
-PREFLIGHT_CONFIG, PreflightErrorCodes
-
-// Error class
-PreflightError
-
-// Validators (snake_case)
-validate_anchor_format, check_duplicate, check_token_budget,
-validate_content_size, compute_content_hash, estimate_tokens,
-run_preflight
-
-// Validators (camelCase aliases)
-validateAnchorFormat, checkDuplicate, checkTokenBudget,
-validateContentSize, computeContentHash, estimateTokens, runPreflight
-```
-
 ---
 
-*Module version: 1.2.0 | Pre-flight quality gates for memory operations*
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

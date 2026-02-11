@@ -31,12 +31,16 @@ MIN_COMPLETENESS=90
 # 2. COLORS
 # ───────────────────────────────────────────────────────────────
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
-BOLD='\033[1m'
+if [[ -t 1 ]]; then
+  RED='\033[0;31m'
+  GREEN='\033[0;32m'
+  YELLOW='\033[1;33m'
+  BLUE='\033[0;34m'
+  NC='\033[0m'
+  BOLD='\033[1m'
+else
+  RED='' GREEN='' YELLOW='' BLUE='' NC='' BOLD=''
+fi
 
 # ───────────────────────────────────────────────────────────────
 # 3. HELPER FUNCTIONS
@@ -82,7 +86,7 @@ log_error() { echo -e "${RED}ERROR:${NC} $1" >&2; }
 get_completeness() {
     local spec_folder="$1"
 
-    if [ ! -x "$COMPLETENESS_SCRIPT" ]; then
+    if [[ ! -x "$COMPLETENESS_SCRIPT" ]]; then
         log_warning "Completeness script not found: $COMPLETENESS_SCRIPT"
         echo "0"
         return
@@ -95,7 +99,7 @@ get_completeness() {
     completeness=$(echo "$json_output" | grep -o '"overall_completion": [0-9]*' | grep -o '[0-9]*' || echo "0")
 
     # Default to 100 if calculation fails
-    [ -z "$completeness" ] && completeness=100
+    [[ -z "$completeness" ]] && completeness=100
 
     echo "$completeness"
 }
@@ -106,7 +110,7 @@ archive_spec() {
 
     spec_folder="${spec_folder%/}"
 
-    if [ ! -d "$spec_folder" ]; then
+    if [[ ! -d "$spec_folder" ]]; then
         log_error "Spec folder not found: $spec_folder"
         exit 1
     fi
@@ -116,15 +120,15 @@ archive_spec() {
         exit 1
     fi
 
-    if [ "$force" != "true" ]; then
+    if [[ "$force" != "true" ]]; then
         local completeness
         completeness=$(get_completeness "$spec_folder")
 
-        if [ "$completeness" -lt "$MIN_COMPLETENESS" ]; then
+        if [[ "$completeness" -lt "$MIN_COMPLETENESS" ]]; then
             log_warning "Spec is only ${completeness}% complete (minimum: ${MIN_COMPLETENESS}%)"
             echo -n "Archive anyway? (y/n): "
             read -r response
-            if [ "$response" != "y" ] && [ "$response" != "Y" ]; then
+            if [[ "$response" != "y" ]] && [[ "$response" != "Y" ]]; then
                 log_info "Archive cancelled."
                 exit 0
             fi
@@ -138,7 +142,7 @@ archive_spec() {
     local basename
     basename=$(basename "$spec_folder")
 
-    if [ -d "$ARCHIVE_DIR/$basename" ]; then
+    if [[ -d "$ARCHIVE_DIR/$basename" ]]; then
         log_error "Archive target already exists: $ARCHIVE_DIR/$basename"
         exit 1
     fi
@@ -171,7 +175,7 @@ archive_spec() {
 }
 
 list_archived() {
-    if [ ! -d "$ARCHIVE_DIR" ]; then
+    if [[ ! -d "$ARCHIVE_DIR" ]]; then
         log_info "No archived specs found."
         exit 0
     fi
@@ -179,7 +183,7 @@ list_archived() {
     local count
     count=$(find "$ARCHIVE_DIR" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
 
-    if [ "$count" -eq 0 ]; then
+    if [[ "$count" -eq 0 ]]; then
         log_info "No archived specs found."
         exit 0
     fi
@@ -188,7 +192,7 @@ list_archived() {
     echo "================================"
 
     for dir in "$ARCHIVE_DIR"/*/; do
-        if [ -d "$dir" ]; then
+        if [[ -d "$dir" ]]; then
             local name
             name=$(basename "$dir")
             local date
@@ -206,7 +210,7 @@ restore_spec() {
 
     archived_folder="${archived_folder%/}"
 
-    if [ ! -d "$archived_folder" ]; then
+    if [[ ! -d "$archived_folder" ]]; then
         log_error "Archived folder not found: $archived_folder"
         exit 1
     fi
@@ -222,7 +226,7 @@ restore_spec() {
 
     local destination="specs/$basename"
 
-    if [ -d "$destination" ]; then
+    if [[ -d "$destination" ]]; then
         log_error "Restore target already exists: $destination"
         exit 1
     fi
@@ -255,7 +259,7 @@ main() {
                 exit 1
                 ;;
             *)
-                if [ -z "$action" ]; then
+                if [[ -z "$action" ]]; then
                     action="archive"
                     target="$1"
                 fi
@@ -267,7 +271,7 @@ main() {
     case "$action" in
         list) list_archived ;;
         restore)
-            if [ -z "$target" ]; then
+            if [[ -z "$target" ]]; then
                 log_error "No folder specified for restore"
                 show_help
                 exit 1
@@ -275,7 +279,7 @@ main() {
             restore_spec "$target"
             ;;
         archive)
-            if [ -z "$target" ]; then
+            if [[ -z "$target" ]]; then
                 log_error "No spec folder specified"
                 show_help
                 exit 1

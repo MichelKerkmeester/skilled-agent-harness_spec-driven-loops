@@ -1,7 +1,7 @@
 # Feature Specification: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 2 spec demonstrating verification-focused
 documentation. Note the addition of NFRs and Edge Cases sections compared to Level 1.

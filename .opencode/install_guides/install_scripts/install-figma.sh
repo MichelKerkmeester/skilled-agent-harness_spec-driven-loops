@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────────
-# install-figma.sh: Install Figma MCP Server
-# ───────────────────────────────────────────────────────────────────
-
-# Supports two installation options:
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: FIGMA MCP INSTALLER
+# ───────────────────────────────────────────────────────────────
+# Installs the Figma MCP server with two available options:
 #   A) Official Figma MCP - HTTP remote server with OAuth (RECOMMENDED)
 #   B) Framelink - Third-party local server with API key
 #
@@ -18,27 +17,27 @@
 
 set -euo pipefail
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_utils.sh"
 
-MCP_NAME="Figma"
-MIN_NODE_VERSION="18"
+readonly MCP_NAME="Figma"
+readonly MIN_NODE_VERSION="18"
 
 # Official Figma MCP
-FIGMA_OFFICIAL_URL="https://mcp.figma.com/mcp"
-FIGMA_OFFICIAL_DOCS="https://developers.figma.com/docs/figma-mcp-server/"
+readonly FIGMA_OFFICIAL_URL="https://mcp.figma.com/mcp"
+readonly FIGMA_OFFICIAL_DOCS="https://developers.figma.com/docs/figma-mcp-server/"
 
 # Framelink (third-party)
-FRAMELINK_PACKAGE="figma-developer-mcp"
-FRAMELINK_REPO="https://github.com/GLips/Figma-Context-MCP"
+readonly FRAMELINK_PACKAGE="figma-developer-mcp"
+readonly FRAMELINK_REPO="https://github.com/GLips/Figma-Context-MCP"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 2. HELP
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 show_help() {
     show_header "install-figma.sh" "Install Figma MCP Server for OpenCode"
@@ -79,9 +78,9 @@ EOF
     show_help_footer
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 3. OPTION DISPLAY
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 show_options() {
     echo ""
@@ -99,9 +98,9 @@ show_options() {
     echo ""
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 4. OPTION A: OFFICIAL FIGMA MCP
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 install_official() {
     log_step "1/3" "Configuring Official Figma MCP..."
@@ -193,9 +192,9 @@ EOF
     return 0
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 5. OPTION B: FRAMELINK
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 check_code_mode() {
     local project_root
@@ -453,9 +452,9 @@ EOF
     return 0
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 6. MAIN
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 main() {
     local option=""
@@ -485,7 +484,7 @@ main() {
                 ;;
             *)
                 log_error "Unknown option: $1"
-                echo "Use --help for usage information"
+                echo "Use --help for usage information" >&2
                 exit 1
                 ;;
         esac

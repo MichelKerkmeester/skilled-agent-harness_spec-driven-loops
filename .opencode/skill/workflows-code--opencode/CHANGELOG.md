@@ -6,6 +6,26 @@ All notable changes to the workflows-code--opencode skill (multi-language OpenCo
 
 ---
 
+## [**1.3.2**] - 2026-02-08
+
+### Added — TypeScript Build & Rebuild Workflow Documentation
+
+Added build workflow knowledge to TypeScript references after discovering that editing `.ts` source files requires explicit `dist/` rebuild — the MCP server and CLI scripts run from compiled `.js`, not `.ts` source.
+
+**New content (3 files)**:
+
+| File | Changes |
+|------|---------|
+| `references/typescript/quality_standards.md` | New "Build & Rebuild Workflow" subsection in §10 — covers `npm run build`, `tsc --build --noCheck --force` for pre-existing type errors, workspace build order (shared → mcp_server → scripts), post-build verification table, TS4094 declaration emit fix pattern |
+| `references/typescript/quick_reference.md` | Expanded §10 from 3 validation commands to full "Build & Rebuild Commands" section with 5 commands + guidance on when to use `--noCheck` |
+| `SKILL.md` | New TypeScript routing entry: "Build/rebuild dist after .ts edits" → `quality_standards.md#10` (CONDITIONAL) |
+
+**Context**: During a P0 bug fix session (FSRS swapped args, snake_case/camelCase column mismatches across 4 MCP handler files), the `tsc --build` command failed with ~50 pre-existing type errors (`strict: true` + MCP SDK type mismatches). The `--noCheck --force` flag combination was needed to emit JavaScript. One additional TS4094 error required a type assertion pattern for re-exported classes with private members. This knowledge was captured to prevent future agents from getting stuck on the same issue.
+
+**Version**: 1.3.1 → 1.3.2
+
+---
+
 ## [**1.3.1**] - 2026-02-07
 
 ### Fixed — Template Alignment + Router Correction

@@ -1,7 +1,7 @@
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch + level3plus-govern | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
 
 <!-- WHEN TO USE THIS TEMPLATE:
 Level 3+ Plan (+Govern) is appropriate when:
@@ -108,9 +108,6 @@ DO NOT use Level 3+ Plan if:
 
 ---
 
-
----
-
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -155,9 +152,6 @@ Phase 1.5 (Config) ───┘
 ### Data Reversal
 - **Has data migrations?** [Yes/No]
 - **Reversal procedure**: [Steps or "N/A"]
-
----
-
 
 ---
 
@@ -226,9 +220,6 @@ Phase 1.5 (Config) ───┘
 
 **Alternatives Rejected**:
 - [Option B]: [Why rejected]
-
----
-
 
 ---
 

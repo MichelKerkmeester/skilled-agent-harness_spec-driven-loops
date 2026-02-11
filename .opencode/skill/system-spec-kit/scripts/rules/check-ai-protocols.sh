@@ -3,6 +3,10 @@
 # RULE: CHECK-AI-PROTOCOLS
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: AI_PROTOCOL
 # Severity: warn
 # Description: Validates that AI execution protocols are present for
@@ -138,25 +142,25 @@ run_check() {
     local protocol_score=0
 
     if _ai_has_pre_task_checklist "$folder"; then
-        ((protocol_score++))
+        ((protocol_score++)) || true
     else
         warnings+=("Missing Pre-Task Checklist")
     fi
 
     if _ai_has_execution_rules "$folder"; then
-        ((protocol_score++))
+        ((protocol_score++)) || true
     else
         warnings+=("Missing Execution Rules table")
     fi
 
     if _ai_has_status_format "$folder"; then
-        ((protocol_score++))
+        ((protocol_score++)) || true
     else
         warnings+=("Missing Status Reporting Format")
     fi
 
     if _ai_has_blocked_protocol "$folder"; then
-        ((protocol_score++))
+        ((protocol_score++)) || true
     else
         warnings+=("Missing Blocked Task Protocol")
     fi

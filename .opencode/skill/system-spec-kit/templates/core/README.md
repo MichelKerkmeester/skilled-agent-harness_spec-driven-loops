@@ -14,7 +14,7 @@ The core templates are the BASE building blocks for all SpecKit documentation. T
 - **Clean**: No `[YOUR_VALUE_HERE]` or `[example:]` patterns
 - **Efficient**: ~60-90 lines per template
 
-**Version**: v2.0-core
+**Version**: v2.2-core
 
 ---
 

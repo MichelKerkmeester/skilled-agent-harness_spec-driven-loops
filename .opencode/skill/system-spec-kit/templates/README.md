@@ -1,12 +1,12 @@
 # Templates
 
-> Spec folder templates implementing the CORE + ADDENDUM v2.0 architecture for progressive documentation enhancement.
+> Spec folder templates implementing the CORE + ADDENDUM v2.2 architecture for progressive documentation enhancement.
 
 ---
 
 ## 1. 📖 OVERVIEW
 
-This directory contains all templates used by the system-spec-kit for creating spec folder documentation. Templates follow the CORE + ADDENDUM v2.0 architecture, where core files remain constant across all levels, and addendum sections are progressively added based on documentation level.
+This directory contains all templates used by the system-spec-kit for creating spec folder documentation. Templates follow the CORE + ADDENDUM v2.2 architecture, where core files remain constant across all levels, and addendum sections are progressively added based on documentation level.
 
 **Key Principles:**
 - **Core files** (spec, plan, tasks, implementation-summary) remain structurally identical across all levels
@@ -111,7 +111,7 @@ These templates are used independently, not as part of a spec folder level.
 | **debug-delegation.md** | Debug escalation | After 3+ failed attempts, specialist needed |
 
 **Notes:**
-- `context_template.md` is auto-populated via `generate-context.js` script (MCP integration)
+- `context_template.md` is auto-populated via `generate-context.ts` script (MCP integration; executed as compiled `.js`)
 - `research.md` is comprehensive (16 sections, ~900 lines) for full technical documentation
 - `handover.md` and `debug-delegation.md` are workflow-specific, created on-demand
 
@@ -162,7 +162,7 @@ cp templates/debug-delegation.md specs/042-new-feature/scratch/debug-report.md
 **Correct approach:**
 ```bash
 # Use generate-context.js script
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/042-new-feature/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/042-new-feature/
 
 # Or use /memory:save command
 ```

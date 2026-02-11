@@ -1,5 +1,5 @@
 ---
-name: workflows-code
+name: workflows-code--web-dev
 description: "Orchestrator guiding developers through implementation, debugging, and verification phases across specialized code quality skills (project)"
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 1.0.9.2
@@ -745,7 +745,7 @@ const observer = new IntersectionObserver(
 
 ```bash
 # After JS changes, update version in HTML
-# Pattern: src="https://cdn.anobel.com/js/file.js?v=X.Y.Z"
+# Pattern: src="https://cdn.example.com/js/file.js?v=X.Y.Z"
 # Increment Z for patches, Y for features, X for breaking changes
 ```
 
@@ -769,20 +769,20 @@ const observer = new IntersectionObserver(
 ### Common Commands
 
 ```bash
-# Minification workflow (scripts located in .opencode/skill/workflows-code/scripts/)
-node .opencode/skill/workflows-code/scripts/minify-webflow.mjs          # Batch minify all JS
-node .opencode/skill/workflows-code/scripts/verify-minification.mjs     # AST verification
-node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs   # Runtime testing
+# Minification workflow (scripts located in .opencode/skill/workflows-code--web-dev/scripts/)
+node .opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs          # Batch minify all JS
+node .opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs     # AST verification
+node .opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs   # Runtime testing
 
 # Single file minification
-npx terser src/2_javascript/[folder]/[file].js --compress --mangle \
-  -o src/2_javascript/z_minified/[folder]/[file].js
+npx terser src/javascript/[folder]/[file].js --compress --mangle \
+  -o src/javascript/z_minified/[folder]/[file].js
 
 # CDN deployment (after minification)
-wrangler r2 object put anobel-cdn/js/[file].min.js --file src/2_javascript/z_minified/[file].min.js
+wrangler r2 object put project-cdn/js/[file].min.js --file src/javascript/z_minified/[file].min.js
 
 # Version check
-grep -n "v=" src/0_html/global.html | head -5
+grep -n "v=" src/html/global.html | head -5
 ```
 
 ### Success Criteria Checklist (Quick)

@@ -51,7 +51,7 @@ Guide me through each step with the exact commands and configuration needed.
 - Configure Code Mode for your specific AI platform
 - Add MCP server definitions for your preferred tools
 - Test the four available tools: `call_tool_chain`, `search_tools`, `list_tools`, `tool_info`
-- Show you the **critical naming convention**: `{manual}.{manual_name}_{tool_name}`
+- Show you the **critical naming convention**: `{manual_name}.{manual_name}_{tool_name}`
 - Demonstrate progressive tool discovery
 
 **Expected setup time:** 10-15 minutes
@@ -286,7 +286,6 @@ cat > .env << 'EOF'
 # clickup_CLICKUP_TEAM_ID=your_team_id_here
 # figma_FIGMA_API_KEY=figd_your_token_here
 # github_GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your_token_here
-# narsil_VOYAGE_API_KEY=pa-your_voyage_key_here
 EOF
 ```
 
@@ -462,7 +461,6 @@ When Code Mode loads a manual configuration, it looks for environment variables 
 
 | Manual Name | Config Variable | Required .env Variable |
 |-------------|-----------------|------------------------|
-| `narsil` | `${VOYAGE_API_KEY}` | `narsil_VOYAGE_API_KEY` |
 | `figma` | `${FIGMA_API_KEY}` | `figma_FIGMA_API_KEY` |
 | `github` | `${GITHUB_PERSONAL_ACCESS_TOKEN}` | `github_GITHUB_PERSONAL_ACCESS_TOKEN` |
 | `clickup` | `${CLICKUP_API_KEY}` | `clickup_CLICKUP_API_KEY` |
@@ -470,7 +468,7 @@ When Code Mode loads a manual configuration, it looks for environment variables 
 
 **Error you'll see without prefixed variables:**
 ```
-Error during batch registration for manual 'narsil': Variable 'narsil_VOYAGE_API_KEY' 
+Error during batch registration for manual 'figma': Variable 'figma_FIGMA_API_KEY' 
 referenced in call template configuration not found.
 ```
 
@@ -478,14 +476,12 @@ referenced in call template configuration not found.
 
 ```bash
 # Standard variables (for other tools)
-VOYAGE_API_KEY=pa-your-voyage-key
 FIGMA_API_KEY=figd_your-figma-key
 GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your-github-token
 CLICKUP_API_KEY=pk_your-clickup-key
 CLICKUP_TEAM_ID=your-team-id
 
 # Code Mode prefixed versions (REQUIRED for Code Mode)
-narsil_VOYAGE_API_KEY=pa-your-voyage-key
 figma_FIGMA_API_KEY=figd_your-figma-key
 github_GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your-github-token
 clickup_CLICKUP_API_KEY=pk_your-clickup-key
@@ -772,7 +768,7 @@ echo "Run: list_tools() in OpenCode to verify"
 
 **Pattern:**
 ```
-{manual}.{manual_name}_{tool_name}
+{manual_name}.{manual_name}_{tool_name}
 ```
 
 All tool calls MUST follow this exact pattern with a **dot** after the manual name and an **underscore** before the tool name.
@@ -857,17 +853,17 @@ call_tool_chain({
 call_tool_chain({
   code: `
     // Step 1: Get Figma design
-    const design = await figma.figma.get_file({ fileId: "abc123" });
+    const design = await figma.figma_get_file({ fileId: "abc123" });
 
     // Step 2: Create ClickUp task (design data available)
-    const task = await clickup.clickup.create_task({
+    const task = await clickup.clickup_create_task({
       name: \`Implement: \${design.name}\`,
       listName: "Development Sprint",
       description: \`Design has \${design.document.children.length} components\`
     });
 
     // Step 3: Create GitHub issue (both design and task data available)
-    const issue = await github.github.create_issue({
+    const issue = await github.github_create_issue({
       owner: "myorg",
       repo: "myrepo",
       title: \`Design: \${design.name}\`,
@@ -999,7 +995,7 @@ list_tools();
 **Example**:
 ```typescript
 tool_info({
-  tool_name: "clickup.clickup.create_task"
+  tool_name: "clickup.clickup_create_task"
 });
 ```
 
@@ -1045,7 +1041,7 @@ call_tool_chain({
 call_tool_chain({
   code: `
     // Create GitHub issue
-    const issue = await github.github.create_issue({
+    const issue = await github.github_create_issue({
       owner: "myorg",
       repo: "myrepo",
       title: "Implement User Authentication",
@@ -1070,7 +1066,7 @@ call_tool_chain({
 call_tool_chain({
   code: `
     // Create main task
-    const task = await clickup.clickup.create_task({
+    const task = await clickup.clickup_create_task({
       name: "Implement User Authentication",
       listName: "Development Sprint",
       description: "Implement OAuth2 login flow",
@@ -1097,14 +1093,14 @@ call_tool_chain({
     try {
       // Step 1: Get Figma design
       console.log('Fetching Figma design...');
-      const design = await figma.figma.get_file({
+      const design = await figma.figma_get_file({
         fileId: "YOUR_FIGMA_FILE_ID"
       });
       console.log(\`Design: \${design.name}\`);
 
       // Step 2: Create GitHub issue
       console.log('Creating GitHub issue...');
-      const issue = await github.github.create_issue({
+      const issue = await github.github_create_issue({
         owner: "myorg",
         repo: "myrepo",
         title: \`Implement: \${design.name}\`,
@@ -1153,11 +1149,11 @@ call_tool_chain({
 call_tool_chain({
   code: `
     // Create new browser page
-    const page = await chrome_devtools_1.chrome_devtools_1.new_page({});
+    const page = await chrome_devtools_1.chrome_devtools_1_new_page({});
     console.log(\`Page created: \${page.pageId}\`);
 
     // Navigate to URL
-    await chrome_devtools_1.chrome_devtools_1.navigate_page({
+    await chrome_devtools_1.chrome_devtools_1_navigate_page({
       pageId: page.pageId,
       url: "https://example.com"
     });
@@ -1167,18 +1163,18 @@ call_tool_chain({
     await new Promise(resolve => setTimeout(resolve, 3000));
 
     // Take screenshot
-    const screenshot = await chrome_devtools_1.chrome_devtools_1.take_screenshot({
+    const screenshot = await chrome_devtools_1.chrome_devtools_1_take_screenshot({
       pageId: page.pageId
     });
     console.log('Screenshot captured');
 
     // Get console messages
-    const consoleMessages = await chrome_devtools_1.chrome_devtools_1.get_console_message({
+    const consoleMessages = await chrome_devtools_1.chrome_devtools_1_get_console_message({
       pageId: page.pageId
     });
 
     // Close page
-    await chrome_devtools_1.chrome_devtools_1.close_page({ pageId: page.pageId });
+    await chrome_devtools_1.chrome_devtools_1_close_page({ pageId: page.pageId });
 
     return {
       screenshot: screenshot,
@@ -1257,14 +1253,14 @@ call_tool_chain({
 **Cause**: Code Mode requires environment variables prefixed with the manual name.
 
 **Solution**:
-1. Identify the manual name from the error (e.g., `narsil`, `figma`, `clickup`)
+1. Identify the manual name from the error (e.g., `figma`, `clickup`, `github`)
 2. Add the prefixed variable to `.env`:
    ```bash
-   # For error: Variable 'narsil_VOYAGE_API_KEY' not found
-   narsil_VOYAGE_API_KEY=pa-your-voyage-key
-   
    # For error: Variable 'figma_FIGMA_API_KEY' not found
    figma_FIGMA_API_KEY=figd_your-figma-key
+   
+   # For error: Variable 'github_GITHUB_PERSONAL_ACCESS_TOKEN' not found
+   github_GITHUB_PERSONAL_ACCESS_TOKEN=ghp_your-github-token
    ```
 3. Restart OpenCode/Code Mode after updating `.env`
 
@@ -1277,7 +1273,7 @@ See the [Prefixed Environment Variables](#️-critical-prefixed-environment-vari
 **Cause**: Missing the second manual/server part in the tool name
 
 **Solution**:
-1. Use correct naming pattern: `{manual}.{manual_name}_{tool_name}`
+1. Use correct naming pattern: `{manual_name}.{manual_name}_{tool_name}`
    ```typescript
    // WRONG - Missing second part
    await webflow.sites_list({});
@@ -1388,8 +1384,8 @@ See the [Prefixed Environment Variables](#️-critical-prefixed-environment-vari
 3. Use parallel execution where possible:
    ```typescript
    const [result1, result2] = await Promise.all([
-     tool1.tool1.action(),
-     tool2.tool2.action()
+     tool1.tool1_action(),
+     tool2.tool2_action()
    ]);
    ```
 
@@ -1502,7 +1498,7 @@ env | grep -E "(CLICKUP|FIGMA|GITHUB)"
 ### NAMING PATTERN (Memorize This!)
 
 ```typescript
-// Pattern: {manual}.{manual_name}_{tool_name}
+// Pattern: {manual_name}.{manual_name}_{tool_name}
 //          ───┬───  ─────┬─────  ────┬────
 //             │          │           └── Tool from MCP server
 //             │          └── Server name + underscore + tool
@@ -1561,7 +1557,7 @@ call_tool_chain({
 
 **Before Each Session:**
 ```
-□ Correct naming pattern: {manual}.{manual}_{tool}
+□ Correct naming pattern: {manual_name}.{manual_name}_{tool_name}
 □ Timeout calculated for complexity
 □ Error handling in place
 □ API keys not expired
@@ -1580,7 +1576,7 @@ Use search_tools to find tools for [your task]
 
 **Remember the naming pattern:**
 ```
-{manual}.{manual}_{tool_name}
+{manual_name}.{manual_name}_{tool_name}
 ```
 
 For more information, refer to the MCP Protocol documentation and the skill documentation in `.opencode/skill/mcp-code-mode/`.

@@ -1,0 +1,600 @@
+// ---------------------------------------------------------------
+// MODULE: Context Server
+// ---------------------------------------------------------------
+// T303: Decomposed — tool schemas in tool-schemas.ts, dispatch
+// logic in tools/*.ts. This file retains server init, startup,
+// shutdown, and main orchestration only.
+// ---------------------------------------------------------------
+
+import path from 'path';
+
+/* ---------------------------------------------------------------
+   1. MODULE IMPORTS
+--------------------------------------------------------------- */
+
+// MCP SDK
+import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+
+// Core modules
+import {
+  LIB_DIR, DEFAULT_BASE_PATH,
+  checkDatabaseUpdated, reinitializeDatabase,
+  setEmbeddingModelReady, waitForEmbeddingModel, isEmbeddingModelReady,
+  init as init_db_state
+} from './core';
+
+// T303: Tool schemas and dispatch
+import { TOOL_DEFINITIONS } from './tool-schemas';
+import { dispatchTool } from './tools';
+
+// Handler modules (only indexSingleFile needed directly for startup scan)
+import {
+  indexSingleFile,
+  setEmbeddingModelReady as set_handler_embedding_ready
+} from './handlers';
+
+// Utils
+import { validateInputLengths } from './utils';
+
+// Hooks
+import { MEMORY_AWARE_TOOLS, extractContextHint, autoSurfaceMemories } from './hooks';
+
+// Architecture
+import { getTokenBudget } from './lib/architecture/layer-definitions';
+
+// T303: Startup checks (extracted from this file)
+import { detectNodeVersionMismatch } from './startup-checks';
+
+// Lib modules (for initialization only)
+import * as vectorIndex from './lib/search/vector-index';
+import * as embeddings from './lib/providers/embeddings';
+import * as checkpointsLib from './lib/storage/checkpoints';
+import * as accessTracker from './lib/storage/access-tracker';
+import * as hybridSearch from './lib/search/hybrid-search';
+import * as bm25Index from './lib/search/bm25-index';
+import * as memoryParser from './lib/parsing/memory-parser';
+import * as workingMemory from './lib/cognitive/working-memory';
+import * as attentionDecay from './lib/cognitive/attention-decay';
+import * as coActivation from './lib/cognitive/co-activation';
+// T059: Archival manager for automatic archival of ARCHIVED state memories
+import * as archivalManager from './lib/cognitive/archival-manager';
+// T099: Retry manager for background embedding retry job (REQ-031, CHK-179)
+import * as retryManager from './lib/providers/retry-manager';
+import { ErrorCodes, getRecoveryHint, buildErrorResponse } from './lib/errors';
+// T001-T004: Session deduplication
+import * as sessionManager from './lib/session/session-manager';
+
+// P4-12/P4-19: Incremental index (passed to db-state for stale handle refresh)
+import * as incrementalIndex from './lib/storage/incremental-index';
+// T107: Transaction manager for pending file recovery on startup (REQ-033)
+import * as transactionManager from './lib/storage/transaction-manager';
+// KL-4: Tool cache cleanup on shutdown
+import * as toolCache from './lib/cache/tool-cache';
+
+/* ---------------------------------------------------------------
+   2. TYPES
+--------------------------------------------------------------- */
+
+interface IndexResult { status: string; error?: string; [key: string]: unknown; }
+
+interface PendingRecoveryResult { found: number; processed: number; recovered: number; failed: number; results: unknown[]; }
+
+interface ApiKeyValidation { valid: boolean; provider?: string; error?: string; errorCode?: string; warning?: string; actions?: string[]; }
+
+interface AutoSurfaceResult { constitutional: unknown[]; triggered: unknown[]; }
+
+/* ---------------------------------------------------------------
+   3. SERVER INITIALIZATION
+--------------------------------------------------------------- */
+
+const server = new Server(
+  { name: 'context-server', version: '1.7.2' },
+  { capabilities: { tools: {} } }
+);
+
+/* ---------------------------------------------------------------
+   4. TOOL DEFINITIONS (T303: from tool-schemas.ts)
+--------------------------------------------------------------- */
+
+server.setRequestHandler(ListToolsRequestSchema, async () => ({
+  tools: TOOL_DEFINITIONS
+}));
+
+/* ---------------------------------------------------------------
+   5. TOOL DISPATCH (T303: routed through tools/*.ts)
+--------------------------------------------------------------- */
+
+server.setRequestHandler(CallToolRequestSchema, (async (request: { method: string; params: { name: string; arguments?: Record<string, unknown> } }, _extra: unknown) => {
+  const { name } = request.params;
+  const args: Record<string, unknown> = (request.params.arguments ?? {});
+
+  try {
+    // SEC-003: Validate input lengths before processing (CWE-400 mitigation)
+    validateInputLengths(args);
+
+    // SK-004: Auto-surface memories for memory-aware tools (after validation)
+    let autoSurfacedContext: AutoSurfaceResult | null = null;
+    if (MEMORY_AWARE_TOOLS.has(name)) {
+      const contextHint: string | null = extractContextHint(args);
+      if (contextHint) {
+        try {
+          autoSurfacedContext = await autoSurfaceMemories(contextHint);
+        } catch (surfaceErr: unknown) {
+          const msg = surfaceErr instanceof Error ? surfaceErr.message : String(surfaceErr);
+          console.error(`[context-server] Auto-surface failed (non-fatal): ${msg}`);
+        }
+      }
+    }
+
+    // Ensure database is initialized (safe no-op if already done)
+    // P1-11 FIX: Module-level guard avoids redundant calls on every tool invocation
+    if (!dbInitialized) {
+      vectorIndex.initializeDb();
+      dbInitialized = true;
+    }
+
+    // T303: Dispatch to tool modules
+    const result = await dispatchTool(name, args);
+    if (!result) {
+      throw new Error(`Unknown tool: ${name}`);
+    }
+
+    // Token Budget Hybrid: Inject tokenBudget into response metadata (CHK-072)
+    // T205: Enforce per-layer token budgets with actual truncation
+    if (result && result.content && result.content[0]?.text) {
+      try {
+        const envelope = JSON.parse(result.content[0].text);
+        if (envelope && envelope.meta) {
+          const budget = getTokenBudget(name);
+          envelope.meta.tokenBudget = budget;
+
+          if (envelope.meta.tokenCount > budget) {
+            console.error(`[token-budget] ${name} response (${envelope.meta.tokenCount} tokens) exceeds budget (${budget})`);
+
+            // T205: Attempt to truncate results array to fit within budget
+            const innerResults = envelope?.data?.results;
+            if (Array.isArray(innerResults) && innerResults.length > 1) {
+              const originalCount = innerResults.length;
+              // Results are typically sorted by score (highest first)
+              // Remove from end (lowest-scored) until within budget
+              while (innerResults.length > 1) {
+                const removedItem = innerResults.pop();
+                const removedSize = JSON.stringify(removedItem).length;
+                // Rough estimate: 4 chars ≈ 1 token
+                envelope.meta.tokenCount -= Math.ceil(removedSize / 4);
+                if (envelope.meta.tokenCount <= budget) break;
+              }
+              if (envelope.data.count !== undefined) {
+                envelope.data.count = innerResults.length;
+              }
+              if (Array.isArray(envelope.hints)) {
+                envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
+              }
+              envelope.meta.tokenBudgetTruncated = true;
+              envelope.meta.originalResultCount = originalCount;
+              envelope.meta.returnedResultCount = innerResults.length;
+            } else {
+              // No truncatable results array — add warning hint only
+              if (Array.isArray(envelope.hints)) {
+                envelope.hints.push(`Response exceeds token budget (${envelope.meta.tokenCount}/${budget})`);
+              }
+            }
+          }
+          result.content[0].text = JSON.stringify(envelope, null, 2);
+        }
+      } catch (_) {
+        // Non-JSON response, skip token budget injection
+      }
+    }
+
+    // SK-004: Inject auto-surfaced context into successful responses
+    if (autoSurfacedContext && result && !result.isError) {
+      (result as unknown as Record<string, unknown>).autoSurfacedContext = autoSurfacedContext;
+    }
+
+    return result;
+  } catch (error: unknown) {
+    // REQ-004: Include recovery hints in all error responses
+    const err = error instanceof Error ? error : new Error(String(error));
+    const errorResponse = buildErrorResponse(name, err, args);
+    return {
+      content: [{ type: 'text', text: JSON.stringify(errorResponse, null, 2) }],
+      isError: true
+    };
+  }
+}) as any);
+
+/* ---------------------------------------------------------------
+   6. STARTUP SCAN & PENDING FILE RECOVERY
+--------------------------------------------------------------- */
+
+let startupScanInProgress = false;
+
+/**
+ * T107: Recover pending memory files on MCP startup.
+ * CHK-188: Pending files processed by recovery job on next startup.
+ *
+ * Scans for files with _pending suffix (created when index failed after file write)
+ * and attempts to index them.
+ */
+async function recoverPendingFiles(basePath: string): Promise<PendingRecoveryResult> {
+  console.error('[context-server] Checking for pending memory files...');
+
+  try {
+    const rawResults = transactionManager.recoverAllPendingFiles(basePath);
+
+    // Aggregate per-file results into a summary
+    const found = rawResults.length;
+    const recovered = rawResults.filter(r => r.recovered).length;
+    const failed = found - recovered;
+
+    const recoveryResult: PendingRecoveryResult = {
+      found,
+      processed: found,
+      recovered,
+      failed,
+      results: rawResults,
+    };
+
+    if (recoveryResult.found > 0) {
+      console.error(`[context-server] Pending file recovery: ${recoveryResult.recovered} recovered, ${recoveryResult.failed} failed (${recoveryResult.found} total)`);
+    } else {
+      console.error('[context-server] No pending memory files found');
+    }
+
+    return recoveryResult;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[context-server] Pending file recovery error: ${message}`);
+    return { found: 0, processed: 0, recovered: 0, failed: 0, results: [] };
+  }
+}
+
+async function startupScan(basePath: string): Promise<void> {
+  if (startupScanInProgress) {
+    console.error('[context-server] Startup scan already in progress, skipping');
+    return;
+  }
+
+  startupScanInProgress = true;
+  try {
+    console.error('[context-server] Waiting for embedding model to be ready...');
+    const modelReady: boolean = await waitForEmbeddingModel(30000);
+
+    if (!modelReady) {
+      console.error('[context-server] Startup scan skipped: embedding model not ready');
+      console.error('[context-server] Run memory_index_scan manually after model loads');
+      return;
+    }
+
+    // T107: Recover any pending files from previous failed index operations
+    await recoverPendingFiles(basePath);
+
+    console.error('[context-server] Starting background scan for new memory files...');
+    const files: string[] = memoryParser.findMemoryFiles(basePath);
+    if (files.length === 0) {
+      console.error('[context-server] No memory files found in workspace');
+      return;
+    }
+
+    console.error(`[context-server] Found ${files.length} memory files, checking for changes...`);
+    let indexed = 0, updated = 0, unchanged = 0, failed = 0;
+
+    for (const file_path of files) {
+      try {
+        const result: IndexResult = await indexSingleFile(file_path, false);
+        if (result.status === 'indexed') indexed++;
+        else if (result.status === 'updated') updated++;
+        else unchanged++;
+      } catch (error: unknown) {
+        failed++;
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(`[context-server] Failed to index ${path.basename(file_path)}: ${message}`);
+      }
+    }
+
+    if (indexed > 0 || updated > 0) {
+      console.error(`[context-server] Startup scan: ${indexed} new, ${updated} updated, ${unchanged} unchanged, ${failed} failed`);
+    } else {
+      console.error(`[context-server] Startup scan: all ${unchanged} files up to date`);
+    }
+
+    // Log atomicity metrics for monitoring (CHK-190)
+    const metrics = transactionManager.getMetrics();
+    if (metrics.totalRecoveries > 0 || metrics.totalErrors > 0) {
+      console.error(`[context-server] Atomicity metrics: ${metrics.totalAtomicWrites} successful, ${metrics.totalErrors} failed, ${metrics.totalRecoveries} recovered`);
+    }
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`[context-server] Startup scan error: ${message}`);
+  } finally {
+    startupScanInProgress = false;
+  }
+}
+
+/* ---------------------------------------------------------------
+   7. GRACEFUL SHUTDOWN
+--------------------------------------------------------------- */
+
+let shuttingDown = false;
+// P1-09 FIX: Hoist transport to module scope so shutdown handlers can close it
+let transport: StdioServerTransport | null = null;
+// P1-11 FIX: Module-level guard to avoid redundant initializeDb() calls per tool invocation
+let dbInitialized = false;
+
+process.on('SIGTERM', () => {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.error('[context-server] Received SIGTERM, shutting down...');
+  sessionManager.shutdown(); // T302: Clear session cleanup intervals (GAP 1)
+  archivalManager.cleanup(); // T059: Stop archival background job
+  retryManager.stopBackgroundJob(); // T099: Stop retry background job
+  accessTracker.reset();
+  toolCache.shutdown(); // KL-4: Stop cleanup interval and clear cache
+  vectorIndex.closeDb();
+  // P1-09 FIX: Close MCP transport on shutdown
+  if (transport) { try { transport.close(); } catch { /* ignore */ } }
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.error('[context-server] Received SIGINT, shutting down...');
+  sessionManager.shutdown(); // T302: Clear session cleanup intervals (GAP 1)
+  archivalManager.cleanup(); // T059: Stop archival background job
+  retryManager.stopBackgroundJob(); // T099: Stop retry background job
+  accessTracker.reset();
+  toolCache.shutdown(); // KL-4: Stop cleanup interval and clear cache
+  vectorIndex.closeDb();
+  // P1-09 FIX: Close MCP transport on shutdown
+  if (transport) { try { transport.close(); } catch { /* ignore */ } }
+  process.exit(0);
+});
+
+process.on('uncaughtException', (err: Error) => {
+  console.error('[context-server] Uncaught exception:', err);
+  try { sessionManager.shutdown(); } catch (e: unknown) { console.error('[context-server] sessionManager shutdown failed:', e); }
+  try { archivalManager.cleanup(); } catch (e: unknown) { console.error('[context-server] archivalManager cleanup failed:', e); }
+  try { retryManager.stopBackgroundJob(); } catch (e: unknown) { console.error('[context-server] retryManager cleanup failed:', e); }
+  try { accessTracker.reset(); } catch (e: unknown) { console.error('[context-server] accessTracker cleanup failed:', e); }
+  try { toolCache.shutdown(); } catch (e: unknown) { console.error('[context-server] toolCache cleanup failed:', e); }
+  try { vectorIndex.closeDb(); } catch (e: unknown) { console.error('[context-server] vectorIndex closeDb failed:', e); }
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason: unknown, promise: Promise<unknown>) => {
+  console.error('[context-server] Unhandled rejection at:', promise, 'reason:', reason);
+  // P1-10 FIX: Exit after flush to avoid running in undefined state
+  setTimeout(() => process.exit(1), 100);
+});
+
+/* ---------------------------------------------------------------
+   8. MAIN
+--------------------------------------------------------------- */
+
+async function main(): Promise<void> {
+  // Node version mismatch detection (non-blocking)
+  detectNodeVersionMismatch();
+
+  console.error('[context-server] Initializing database...');
+  vectorIndex.initializeDb();
+  dbInitialized = true;
+  console.error('[context-server] Database initialized');
+
+  // Initialize db-state module with dependencies
+  // P4-12/P4-19 FIX: Pass sessionManager and incrementalIndex so db-state can
+  // refresh their DB handles during reinitializeDatabase(), preventing stale refs.
+  init_db_state({ vectorIndex, checkpoints: checkpointsLib, accessTracker, hybridSearch, sessionManager, incrementalIndex });
+
+  // T087-T090: Pre-Flight API Key Validation (REQ-029)
+  // Validates API key at startup to fail fast with actionable error messages
+  // Skip validation if SPECKIT_SKIP_API_VALIDATION=true (for testing/CI)
+  if (process.env.SPECKIT_SKIP_API_VALIDATION !== 'true') {
+    console.error('[context-server] Validating embedding API key...');
+    try {
+      const validation: ApiKeyValidation = await embeddings.validateApiKey({ timeout: 5000 });
+
+      if (!validation.valid) {
+        console.error('[context-server] ===== API KEY VALIDATION FAILED =====');
+        console.error(`[context-server] Provider: ${validation.provider}`);
+        console.error(`[context-server] Error: ${validation.error}`);
+        console.error(`[context-server] Error Code: ${validation.errorCode || 'E050'}`);
+        if (validation.actions) {
+          console.error('[context-server] Recovery Actions:');
+          validation.actions.forEach((action: string, i: number) => {
+            console.error(`[context-server]   ${i + 1}. ${action}`);
+          });
+        }
+        console.error('[context-server] =====================================');
+        console.error('[context-server] FATAL: Cannot start MCP server with invalid API key');
+        console.error('[context-server] Set SPECKIT_SKIP_API_VALIDATION=true to bypass (not recommended)');
+        process.exit(1);
+      }
+
+      if (validation.warning) {
+        console.warn(`[context-server] API key warning: ${validation.warning}`);
+      }
+
+      console.error(`[context-server] API key validated (provider: ${validation.provider})`);
+    } catch (validation_error: unknown) {
+      const message = validation_error instanceof Error ? validation_error.message : String(validation_error);
+      console.error(`[context-server] API key validation error: ${message}`);
+      console.error('[context-server] Continuing startup - validation will occur on first use');
+    }
+  } else {
+    console.warn('[context-server] API key validation skipped (SPECKIT_SKIP_API_VALIDATION=true)');
+  }
+
+  // T016-T019: Lazy Embedding Model Loading
+  // Default: Skip warmup at startup for <500ms cold start
+  // Set SPECKIT_EAGER_WARMUP=true for legacy eager warmup behavior
+  const eagerWarmup: boolean = embeddings.shouldEagerWarmup();
+
+  if (eagerWarmup) {
+    // Legacy behavior: Warm up embedding model synchronously at startup
+    const WARMUP_TIMEOUT = 60000;
+    let warmupCompleted = false;
+
+    const warmupEmbedding = async (): Promise<boolean> => {
+      try {
+        console.error('[context-server] Warming up embedding model (eager mode)...');
+        const startTime = Date.now();
+        await embeddings.generateEmbedding('warmup test');
+        warmupCompleted = true;
+        setEmbeddingModelReady(true);
+        if (set_handler_embedding_ready) set_handler_embedding_ready(true);
+        console.error(`[context-server] Embedding model ready (${Date.now() - startTime}ms)`);
+        return true;
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : String(err);
+        console.error('[context-server] Embedding warmup failed:', message);
+        warmupCompleted = true;
+        setEmbeddingModelReady(false);
+        return false;
+      }
+    };
+
+    await Promise.race([
+      warmupEmbedding(),
+      new Promise<void>(resolve => setTimeout(() => {
+        if (!warmupCompleted) {
+          console.warn('[context-server] Warmup timeout — marking embedding as ready to avoid undefined state');
+          // P1-08 FIX: Mark embedding ready even on timeout so the system is usable
+          setEmbeddingModelReady(true);
+          if (set_handler_embedding_ready) set_handler_embedding_ready(true);
+        }
+        resolve();
+      }, WARMUP_TIMEOUT))
+    ]);
+  } else {
+    // T016-T019: Lazy loading - skip warmup, model loads on first use
+    console.error('[context-server] Lazy loading enabled - embedding model will initialize on first use');
+    console.error('[context-server] Set SPECKIT_EAGER_WARMUP=true to restore eager warmup');
+    // Mark embedding as "ready" since it will self-initialize on first use
+    setEmbeddingModelReady(true);
+    if (set_handler_embedding_ready) set_handler_embedding_ready(true);
+  }
+
+  // Integrity check and module initialization
+  try {
+    const report = vectorIndex.verifyIntegrity();
+    console.error(`[context-server] Integrity check: ${report.totalMemories}/${report.totalMemories + report.missingVectors} valid entries`);
+    if (report.orphanedVectors > 0) console.error(`[context-server] WARNING: ${report.orphanedVectors} orphaned entries detected`);
+
+    // Validate embedding dimension matches database
+    const dimValidation = vectorIndex.validateEmbeddingDimension();
+    if (!dimValidation.valid) {
+      console.error(`[context-server] ===== EMBEDDING DIMENSION MISMATCH =====`);
+      console.error(`[context-server] ${dimValidation.warning}`);
+      console.error(`[context-server] =========================================`);
+    } else if (dimValidation.stored) {
+      console.error(`[context-server] Embedding dimension validated: ${dimValidation.stored}`);
+    }
+
+    const database = vectorIndex.getDb();
+    if (!database) {
+      throw new Error('Database not initialized after initializeDb(). Cannot start server.');
+    }
+    checkpointsLib.init(database);
+    accessTracker.init(database);
+    hybridSearch.init(database, vectorIndex.vectorSearch);
+    console.error('[context-server] Checkpoints, access tracker, and hybrid search initialized');
+
+    // P3-04: Rebuild BM25 index from database on startup
+    if (bm25Index.isBm25Enabled()) {
+      try {
+        const bm25 = bm25Index.getIndex();
+        const count = bm25.rebuildFromDatabase(database);
+        console.error(`[context-server] BM25 index rebuilt from database: ${count} documents`);
+      } catch (bm25_err: unknown) {
+        const message = bm25_err instanceof Error ? bm25_err.message : String(bm25_err);
+        console.warn('[context-server] BM25 index rebuild failed:', message);
+      }
+    }
+
+    // Cognitive memory modules
+    try {
+      workingMemory.init(database);
+      attentionDecay.init(database);
+      coActivation.init(database);
+      console.error('[context-server] Cognitive memory modules initialized');
+      console.error(`[context-server] Working memory: ${workingMemory.isEnabled()}, Co-activation: ${coActivation.isEnabled()}`);
+    } catch (cognitive_err: unknown) {
+      const message = cognitive_err instanceof Error ? cognitive_err.message : String(cognitive_err);
+      console.warn('[context-server] Cognitive modules partially failed:', message);
+    }
+
+    // T059: Archival Manager for automatic archival of ARCHIVED state memories
+    try {
+      archivalManager.init(database);
+      // Start background archival job (scans every hour by default)
+      archivalManager.startBackgroundJob();
+      if (archivalManager.isBackgroundJobRunning()) {
+        console.error(`[context-server] Archival manager initialized (background job started)`);
+      } else {
+        console.error(`[context-server] Archival manager initialized (background job: not started)`);
+      }
+    } catch (archival_err: unknown) {
+      const message = archival_err instanceof Error ? archival_err.message : String(archival_err);
+      console.warn('[context-server] Archival manager failed:', message);
+    }
+
+    // T099: Background retry job for pending embeddings (REQ-031, CHK-179)
+    // Processes memories with failed embeddings in the background
+    try {
+      const retryJobResult = retryManager.startBackgroundJob({
+        intervalMs: 5 * 60 * 1000,  // Check every 5 minutes
+        batchSize: 5,               // Process up to 5 pending items per run
+      });
+      if (retryJobResult) {
+        console.error('[context-server] Background retry job started (interval: 5min, batch: 5)');
+      } else {
+        console.error('[context-server] Background retry job already running or disabled');
+      }
+    } catch (retry_err: unknown) {
+      const message = retry_err instanceof Error ? retry_err.message : String(retry_err);
+      console.warn('[context-server] Background retry job failed to start:', message);
+    }
+
+    // T001-T004: Session deduplication module
+    try {
+      const sessionResult = sessionManager.init(database);
+      if (sessionResult.success) {
+        console.error(`[context-server] Session manager initialized (enabled: ${sessionManager.isEnabled()})`);
+
+        // T073-T075: Crash Recovery Pattern (REQ-016)
+        // Reset any sessions that were active when server last crashed
+        const recoveryResult = sessionManager.resetInterruptedSessions();
+        if (recoveryResult.interruptedCount > 0) {
+          console.error(`[context-server] Crash recovery: marked ${recoveryResult.interruptedCount} sessions as interrupted`);
+          // Log interrupted sessions for visibility
+          const interrupted = sessionManager.getInterruptedSessions();
+          if (interrupted.sessions && interrupted.sessions.length > 0) {
+            console.error('[context-server] Recoverable sessions:', interrupted.sessions.map((s: { sessionId: string }) => s.sessionId).join(', '));
+          }
+        }
+      } else {
+        console.warn('[context-server] Session manager initialization returned:', sessionResult.error);
+      }
+    } catch (session_err: unknown) {
+      const message = session_err instanceof Error ? session_err.message : String(session_err);
+      console.warn('[context-server] Session manager failed:', message);
+    }
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error('[context-server] Integrity check failed:', message);
+  }
+
+  // P1-09: Assign to module-level transport (not const) so shutdown handlers can close it
+  transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error('[context-server] Context MCP server running on stdio');
+
+  // Background startup scan
+  setImmediate(() => startupScan(DEFAULT_BASE_PATH));
+}
+
+main().catch((err: unknown) => { console.error('[context-server] Fatal error:', err); process.exit(1); });

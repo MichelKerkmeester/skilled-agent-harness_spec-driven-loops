@@ -117,12 +117,12 @@ WAIT for user's answer. THEN proceed.
 ONLY use this command to save context:
 
 ```bash
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
 ```
 
 Or with JSON input for rich context:
 ```bash
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/save-context-data.json
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json
 ```
 
 **VIOLATION = HARD BLOCK**

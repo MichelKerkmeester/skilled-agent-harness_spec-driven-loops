@@ -31,11 +31,13 @@ from typing import Dict, List, Any, Optional, Tuple
 # ───────────────────────────────────────────────────────────────
 
 def parse_frontmatter(content: str) -> Tuple[Dict[str, Any], List[str], str]:
-    """
-    Extract and parse YAML frontmatter from markdown content.
-    
+    """Extract and parse YAML frontmatter from markdown content.
+
+    Args:
+        content: Raw markdown file content.
+
     Returns:
-        Tuple of (parsed_dict, issues_list, raw_frontmatter)
+        Tuple of (parsed_dict, issues_list, raw_frontmatter).
     """
     issues = []
     parsed = {}
@@ -118,7 +120,14 @@ def parse_frontmatter(content: str) -> Tuple[Dict[str, Any], List[str], str]:
 # ───────────────────────────────────────────────────────────────
 
 def extract_headings(content: str) -> List[Dict[str, Any]]:
-    """Extract all headings with metadata, skipping headings inside code blocks."""
+    """Extract all headings with metadata, skipping headings inside code blocks.
+
+    Args:
+        content: Raw markdown file content.
+
+    Returns:
+        List of heading dicts with level, text, line, has_emoji, has_number.
+    """
     headings = []
     lines = content.split('\n')
     code_block_depth = 0
@@ -158,7 +167,15 @@ def extract_headings(content: str) -> List[Dict[str, Any]]:
 
 
 def extract_sections(content: str, headings: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Extract sections (content between headings)."""
+    """Extract sections (content between headings).
+
+    Args:
+        content: Raw markdown file content.
+        headings: List of heading dicts from extract_headings.
+
+    Returns:
+        List of section dicts with heading, level, line range, word count.
+    """
     sections = []
     lines = content.split('\n')
 
@@ -188,7 +205,14 @@ def extract_sections(content: str, headings: List[Dict[str, Any]]) -> List[Dict[
 
 
 def extract_code_blocks(content: str) -> List[Dict[str, Any]]:
-    """Extract all code blocks with metadata, handling nested examples."""
+    """Extract all code blocks with metadata, handling nested examples.
+
+    Args:
+        content: Raw markdown file content.
+
+    Returns:
+        List of code block dicts with language, line_start, line_count, preview.
+    """
     code_blocks = []
     lines = content.split('\n')
 
@@ -285,7 +309,14 @@ EMOJI_REQUIRED_TYPES = {'skill', 'readme', 'asset', 'reference'}
 
 
 def detect_placeholders(content: str) -> List[Dict[str, Any]]:
-    """Detect placeholder markers in content, skipping code blocks."""
+    """Detect placeholder markers in content, skipping code blocks.
+
+    Args:
+        content: Raw markdown file content.
+
+    Returns:
+        List of issue dicts with type, line, text, severity.
+    """
     issues = []
     lines = content.split('\n')
     code_block_depth = 0
@@ -318,8 +349,16 @@ def detect_placeholders(content: str) -> List[Dict[str, Any]]:
     return issues
 
 
-def check_section_dividers(content: str, headings: List[Dict]) -> List[Dict[str, Any]]:
-    """Check for --- dividers between H2 sections."""
+def check_section_dividers(content: str, headings: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Check for --- dividers between H2 sections.
+
+    Args:
+        content: Raw markdown file content.
+        headings: List of heading dicts from extract_headings.
+
+    Returns:
+        List of issue dicts for missing dividers.
+    """
     issues = []
     lines = content.split('\n')
     h2_headings = [h for h in headings if h['level'] == 2]
@@ -340,8 +379,15 @@ def check_section_dividers(content: str, headings: List[Dict]) -> List[Dict[str,
     return issues
 
 
-def check_code_block_languages(code_blocks: List[Dict]) -> List[Dict[str, Any]]:
-    """Check that all code blocks have language tags."""
+def check_code_block_languages(code_blocks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Check that all code blocks have language tags.
+
+    Args:
+        code_blocks: List of code block dicts from extract_code_blocks.
+
+    Returns:
+        List of issue dicts for blocks missing language tags.
+    """
     issues = []
     
     for block in code_blocks:
@@ -356,13 +402,20 @@ def check_code_block_languages(code_blocks: List[Dict]) -> List[Dict[str, Any]]:
     return issues
 
 
-def check_h2_formatting(headings: List[Dict], doc_type: str) -> List[Dict[str, Any]]:
+def check_h2_formatting(headings: List[Dict[str, Any]], doc_type: str) -> List[Dict[str, Any]]:
     """Check H2 formatting: number + emoji + ALL CAPS for template-based types.
 
     For EMOJI_REQUIRED_TYPES (skill, readme, asset, reference):
     - Missing emoji returns 'error' severity (BLOCKING)
     - Missing number returns 'warning' severity
     - Wrong case returns 'warning' severity
+
+    Args:
+        headings: List of heading dicts from extract_headings.
+        doc_type: Document type string (skill, readme, asset, reference, etc.).
+
+    Returns:
+        List of issue dicts for formatting violations.
     """
     issues = []
     requires_emoji = doc_type in EMOJI_REQUIRED_TYPES
@@ -411,8 +464,16 @@ def check_h2_formatting(headings: List[Dict], doc_type: str) -> List[Dict[str, A
     return issues
 
 
-def check_h3_emoji_usage(headings: List[Dict], content: str) -> List[Dict[str, Any]]:
-    """Check H3 emoji usage: only semantic emojis (✅❌⚠️) allowed, and only in RULES sections."""
+def check_h3_emoji_usage(headings: List[Dict[str, Any]], content: str) -> List[Dict[str, Any]]:
+    """Check H3 emoji usage: only semantic emojis allowed, and only in RULES sections.
+
+    Args:
+        headings: List of heading dicts from extract_headings.
+        content: Raw markdown file content.
+
+    Returns:
+        List of issue dicts for emoji violations.
+    """
     issues = []
     rules_start = None
     rules_end = None
@@ -457,8 +518,17 @@ def check_h3_emoji_usage(headings: List[Dict], content: str) -> List[Dict[str, A
     return issues
 
 
-def check_intro_paragraph(content: str, headings: List[Dict], min_words: int = 10) -> bool:
-    """Check if there's an introduction paragraph after H1 and before first H2."""
+def check_intro_paragraph(content: str, headings: List[Dict[str, Any]], min_words: int = 10) -> bool:
+    """Check if there's an introduction paragraph after H1 and before first H2.
+
+    Args:
+        content: Raw markdown file content.
+        headings: List of heading dicts from extract_headings.
+        min_words: Minimum word count for intro to be considered present.
+
+    Returns:
+        True if intro paragraph with sufficient words exists.
+    """
     if not headings:
         return False
 
@@ -486,8 +556,16 @@ def check_intro_paragraph(content: str, headings: List[Dict], min_words: int = 1
     return intro_words >= min_words
 
 
-def check_intro_brief(content: str, headings: List[Dict]) -> bool:
-    """Check for brief introduction (5+ words) - used for flowcharts and examples."""
+def check_intro_brief(content: str, headings: List[Dict[str, Any]]) -> bool:
+    """Check for brief introduction (5+ words) - used for flowcharts and examples.
+
+    Args:
+        content: Raw markdown file content.
+        headings: List of heading dicts from extract_headings.
+
+    Returns:
+        True if brief intro paragraph exists.
+    """
     return check_intro_paragraph(content, headings, min_words=5)
 
 
@@ -495,8 +573,17 @@ def check_intro_brief(content: str, headings: List[Dict]) -> bool:
 # 4. METRICS CALCULATOR
 # ───────────────────────────────────────────────────────────────
 
-def calculate_metrics(content: str, headings: List[Dict], code_blocks: List[Dict]) -> Dict[str, Any]:
-    """Calculate document metrics."""
+def calculate_metrics(content: str, headings: List[Dict[str, Any]], code_blocks: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Calculate document metrics.
+
+    Args:
+        content: Raw markdown file content.
+        headings: List of heading dicts from extract_headings.
+        code_blocks: List of code block dicts from extract_code_blocks.
+
+    Returns:
+        Dict with total_words, total_lines, heading_count, code_block_count, etc.
+    """
     lines = content.split('\n')
     words = len(re.findall(r'\b\w+\b', content))
     max_depth = max((h['level'] for h in headings), default=0)
@@ -524,7 +611,14 @@ def calculate_metrics(content: str, headings: List[Dict], code_blocks: List[Dict
 # ───────────────────────────────────────────────────────────────
 
 def detect_document_type(filepath: str) -> Tuple[str, str]:
-    """Detect document type from filepath. Returns (type, detection_method)."""
+    """Detect document type from filepath.
+
+    Args:
+        filepath: Path to the markdown file.
+
+    Returns:
+        Tuple of (document_type, detection_method).
+    """
     path = Path(filepath)
     filename = path.name.lower()
     filepath_str = str(path)
@@ -643,8 +737,18 @@ FLOWCHART_CHECKLIST = [
 ]
 
 
-def run_checklist(doc_type: str, frontmatter_data: Dict, headings: List[Dict], content: str) -> Dict[str, Any]:
-    """Run type-specific checklist and return results."""
+def run_checklist(doc_type: str, frontmatter_data: Dict[str, Any], headings: List[Dict[str, Any]], content: str) -> Dict[str, Any]:
+    """Run type-specific checklist and return results.
+
+    Args:
+        doc_type: Document type string (skill, readme, asset, etc.).
+        frontmatter_data: Dict with parsed, issues, and raw keys.
+        headings: List of heading dicts from extract_headings.
+        content: Raw markdown file content.
+
+    Returns:
+        Dict with type, results, passed, failed, pass_rate.
+    """
     
     checklist_map = {
         'skill': SKILL_CHECKLIST,
@@ -746,7 +850,14 @@ REFERENCE_QUESTIONS = [
 
 
 def generate_questions(doc_type: str) -> List[Dict[str, Any]]:
-    """Generate evaluation questions based on document type."""
+    """Generate evaluation questions based on document type.
+
+    Args:
+        doc_type: Document type string (skill, readme, asset, etc.).
+
+    Returns:
+        List of question dicts with id, question, target_section, importance.
+    """
     
     questions_map = {
         'skill': SKILL_QUESTIONS,
@@ -773,7 +884,7 @@ def generate_questions(doc_type: str) -> List[Dict[str, Any]]:
 
 
 # ───────────────────────────────────────────────────────────────
-# DOCUMENT QUALITY INDEX (DQI) - 100% DETERMINISTIC SCORING
+# 8. DOCUMENT QUALITY INDEX (DQI)
 # ───────────────────────────────────────────────────────────────
 
 # Type-specific content thresholds
@@ -825,20 +936,26 @@ def calculate_dqi(
     doc_type: str,
     checklist_pass_rate: float,
     metrics: Dict[str, Any],
-    headings: List[Dict],
+    headings: List[Dict[str, Any]],
     content: str,
-    style_issues: List[Dict],
-    content_issues: List[Dict]
+    style_issues: List[Dict[str, Any]],
+    content_issues: List[Dict[str, Any]]
 ) -> Dict[str, Any]:
-    """
-    Calculate Document Quality Index (DQI) - a 100% deterministic score.
-    
-    Components:
-    - Structure Score (40 points): Based on checklist pass rate
-    - Content Score (30 points): Word count, headings, code, tables, links
-    - Style Score (30 points): Formatting compliance
-    
-    Total: 100 points
+    """Calculate Document Quality Index (DQI) - a 100% deterministic score.
+
+    Components: Structure (40pts), Content (30pts), Style (30pts) = 100pts total.
+
+    Args:
+        doc_type: Document type string for threshold lookup.
+        checklist_pass_rate: Percentage of checklist items passed (0-100).
+        metrics: Dict from calculate_metrics.
+        headings: List of heading dicts from extract_headings.
+        content: Raw markdown file content.
+        style_issues: List of style issue dicts.
+        content_issues: List of content issue dicts.
+
+    Returns:
+        Dict with total, band, band_description, components, breakdown.
     """
     # Defensive: ensure inputs are valid
     metrics = metrics or {}
@@ -1025,11 +1142,19 @@ def calculate_dqi(
 
 
 # ───────────────────────────────────────────────────────────────
-# 8. MAIN EXTRACTION FUNCTION
+# 9. MAIN EXTRACTION FUNCTION
 # ───────────────────────────────────────────────────────────────
 
 def extract_structure(filepath: str) -> Dict[str, Any]:
-    """Main extraction function - parses document and returns structured JSON."""
+    """Main extraction function - parses document and returns structured JSON.
+
+    Args:
+        filepath: Path to the markdown file to extract.
+
+    Returns:
+        Dict with file, type, frontmatter, structure, code_blocks, metrics,
+        checklist, content_issues, style_issues, dqi, evaluation_questions.
+    """
     path = Path(filepath)
 
     if not path.exists():
@@ -1099,10 +1224,11 @@ def extract_structure(filepath: str) -> Dict[str, Any]:
 
 
 # ───────────────────────────────────────────────────────────────
-# 9. CLI ENTRY POINT
+# 10. CLI ENTRY POINT
 # ───────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
+    """CLI entry point for document structure extraction."""
     if len(sys.argv) < 2:
         print(json.dumps({
             'error': 'Usage: python extract_structure.py <path-to-markdown-file>'

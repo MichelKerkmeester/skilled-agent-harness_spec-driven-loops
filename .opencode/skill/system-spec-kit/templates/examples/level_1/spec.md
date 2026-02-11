@@ -1,7 +1,7 @@
 # Feature Specification: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 1 spec demonstrating the minimal documentation
 required for a simple authentication feature (~80 LOC). Use this as a reference when

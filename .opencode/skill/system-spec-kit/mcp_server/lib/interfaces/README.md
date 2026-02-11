@@ -40,20 +40,21 @@ The interfaces module provides abstract base classes that define contracts for e
 
 ## 2. 📁 STRUCTURE
 
+> **Note**: Most source files (`embedding-provider.ts`, `index.ts`) were relocated to `@spec-kit/shared` during the shared package migration. `vector-store.ts` remains as a local stub/re-export.
+
 ```
 interfaces/
-├── embedding-provider.js   # IEmbeddingProvider + MockEmbeddingProvider
-├── vector-store.js         # IVectorStore + MockVectorStore
-└── index.js                # Module aggregator
+├── vector-store.ts         # Vector store interface (stub/re-export from @spec-kit/shared)
+└── README.md               # This file
 ```
 
-### Key Files
+### Relocated Files
 
-| File | Purpose |
-|------|---------|
-| `embedding-provider.js` | Defines embedding generation interface with 11 methods |
-| `vector-store.js` | Defines vector storage interface with 8 methods |
-| `index.js` | Re-exports all interfaces and mocks |
+| File | Status |
+|------|--------|
+| `embedding-provider.ts` | Relocated to `@spec-kit/shared` |
+| `vector-store.ts` | **Remains locally** (stub/re-export) |
+| `index.ts` | Relocated to `@spec-kit/shared` |
 
 ---
 
@@ -106,8 +107,8 @@ Defines the contract for vector similarity search and storage.
 
 ### Using MockEmbeddingProvider for Tests
 
-```javascript
-const { MockEmbeddingProvider } = require('./interfaces');
+```typescript
+import { MockEmbeddingProvider } from './interfaces';
 
 // Create mock with custom options
 const provider = new MockEmbeddingProvider({
@@ -124,8 +125,8 @@ console.log(embedding.length); // 1024
 
 ### Using MockVectorStore for Tests
 
-```javascript
-const { MockVectorStore, MockEmbeddingProvider } = require('./interfaces');
+```typescript
+import { MockVectorStore, MockEmbeddingProvider } from './interfaces';
 
 const store = new MockVectorStore({ embeddingDim: 1024 });
 const provider = new MockEmbeddingProvider({ dimension: 1024 });
@@ -141,7 +142,9 @@ console.log(results[0].similarity); // ~100 (self-similarity)
 
 ### Simulating Failures
 
-```javascript
+```typescript
+import { MockEmbeddingProvider } from './interfaces';
+
 const provider = new MockEmbeddingProvider({ failRate: 0.5 });
 provider.setLatency(100); // Add 100ms delay
 
@@ -169,3 +172,8 @@ const result = await provider.embed('test');
 | Interface Segregation | Each interface has single responsibility |
 | Dependency Injection | Consumers accept interface, not concrete class |
 | Strategy Pattern | Swap implementations at runtime |
+
+---
+
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

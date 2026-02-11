@@ -3,6 +3,10 @@
 # RULE: CHECK-PLACEHOLDERS
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: PLACEHOLDER_FILLED
 # Severity: error
 # Description: Detects unfilled placeholders: [YOUR_VALUE_HERE:], [NEEDS CLARIFICATION:], {{mustache}}

@@ -4,7 +4,7 @@
 # ───────────────────────────────────────────────────────────────
 # Queries scripts-registry.json for script information.
 
-set -eo pipefail
+set -euo pipefail
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION

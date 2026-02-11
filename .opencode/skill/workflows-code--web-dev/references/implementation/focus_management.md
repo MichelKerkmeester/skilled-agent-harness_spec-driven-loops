@@ -45,7 +45,7 @@ Apply these patterns when:
 
 The `FOCUSABLE_SELECTOR` constant defines all interactive elements that can receive keyboard focus.
 
-**Source:** `src/2_javascript/modal/modal_cookie_consent.js:707`
+**Source:** `src/javascript/modal/modal_cookie_consent.js:707`
 
 ```javascript
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -64,7 +64,7 @@ const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled
 
 ### Variant with Modal-Specific Elements
 
-**Source:** `src/2_javascript/form/form_submission.js:15`
+**Source:** `src/javascript/form/form_submission.js:15`
 
 ```javascript
 const FOCUSABLE_SELECTOR = 'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"]), [data-modal-close], .modal--close-button';
@@ -76,7 +76,7 @@ const FOCUSABLE_SELECTOR = 'a, button, input, select, textarea, [tabindex]:not([
 
 ### Get Focusable Elements Function
 
-**Source:** `src/2_javascript/modal/modal_cookie_consent.js:709-718`
+**Source:** `src/javascript/modal/modal_cookie_consent.js:709-718`
 
 ```javascript
 function get_focusable(container) {
@@ -107,7 +107,7 @@ Focus traps intercept Tab key navigation to keep focus within a container (modal
 
 ### Basic Focus Trap
 
-**Source:** `src/2_javascript/form/form_submission.js:223-268`
+**Source:** `src/javascript/form/form_submission.js:223-268`
 
 ```javascript
 function create_focus_trap(container) {
@@ -172,7 +172,7 @@ function create_focus_trap(container) {
 
 ### Advanced Focus Trap with State Management
 
-**Source:** `src/2_javascript/modal/modal_cookie_consent.js:720-761`
+**Source:** `src/javascript/modal/modal_cookie_consent.js:720-761`
 
 ```javascript
 function ensure_focus_trap(group, getContainerFn) {
@@ -245,7 +245,7 @@ FOCUS TRAP VALIDATION:
 
 ### Save Focus on Modal Open
 
-**Source:** `src/2_javascript/modal/modal_welcome.js:485`
+**Source:** `src/javascript/modal/modal_welcome.js:485`
 
 ```javascript
 state.last_focus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -258,7 +258,7 @@ state.last_focus = document.activeElement instanceof HTMLElement ? document.acti
 
 ### Restore Focus on Modal Close
 
-**Source:** `src/2_javascript/modal/modal_welcome.js:430-442`
+**Source:** `src/javascript/modal/modal_welcome.js:430-442`
 
 ```javascript
 const restore_focus = () => {
@@ -356,7 +356,7 @@ Detect input method (keyboard, mouse, touch) to apply appropriate focus styling.
 
 ### Keyboard Navigation Detection
 
-**Source:** `src/2_javascript/contact/input_focus_handler.js:1-79`
+**Source:** `src/javascript/contact/input_focus_handler.js:1-79`
 
 ```javascript
 (() => {
@@ -432,7 +432,7 @@ Detect input method (keyboard, mouse, touch) to apply appropriate focus styling.
 
 ### Media Query-Based Detection
 
-**Source:** `src/2_javascript/form/form_submission.js:284-294`
+**Source:** `src/javascript/form/form_submission.js:284-294`
 
 ```javascript
 function has_fine_pointer() {
@@ -447,7 +447,7 @@ function has_fine_pointer() {
 }
 ```
 
-**Source:** `src/2_javascript/molecules/link_grid.js:11-14`
+**Source:** `src/javascript/molecules/link_grid.js:11-14`
 
 ```javascript
 function isDesktopDevice() {
@@ -458,7 +458,7 @@ function isDesktopDevice() {
 
 ### Comprehensive Touch Detection
 
-**Source:** `src/2_javascript/video/video_background_hls_hover.js:27-42`
+**Source:** `src/javascript/video/video_background_hls_hover.js:27-42`
 
 ```javascript
 let _mobile_detection_cached = false;
@@ -613,10 +613,10 @@ FOCUS MANAGEMENT CHECKLIST:
 
 ### Source Files
 
-- `src/2_javascript/modal/modal_cookie_consent.js` - Complete focus trap implementation
-- `src/2_javascript/modal/modal_welcome.js` - Focus save/restore pattern
-- `src/2_javascript/form/form_submission.js` - Form modal focus management
-- `src/2_javascript/contact/input_focus_handler.js` - Touch/keyboard detection
+- `src/javascript/modal/modal_cookie_consent.js` - Complete focus trap implementation
+- `src/javascript/modal/modal_welcome.js` - Focus save/restore pattern
+- `src/javascript/form/form_submission.js` - Form modal focus management
+- `src/javascript/contact/input_focus_handler.js` - Touch/keyboard detection
 
 ### External Resources
 

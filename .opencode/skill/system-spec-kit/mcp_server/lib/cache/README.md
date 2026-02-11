@@ -6,15 +6,15 @@
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE](#4--usage)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1-overview)
+- [2. STRUCTURE](#2-structure)
+- [3. FEATURES](#3-features)
+- [4. USAGE](#4-usage)
+- [5. RELATED RESOURCES](#5-related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The cache module provides in-memory caching for MCP tool outputs to reduce redundant operations and improve response times. It uses SHA-256 hashed keys for deterministic cache lookups and supports automatic TTL-based expiration.
 
@@ -39,24 +39,23 @@ The cache module provides in-memory caching for MCP tool outputs to reduce redun
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 
 ```
 cache/
-├── index.js        # Module aggregator with spread exports
-└── tool-cache.js   # Core caching implementation
+├── tool-cache.ts   # Core caching implementation
+└── README.md       # This file
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `tool-cache.js` | Cache implementation with TTL, LRU eviction, invalidation |
-| `index.js` | Re-exports tool-cache with direct module access |
+| `tool-cache.ts` | Cache implementation with TTL, LRU eviction, invalidation, statistics |
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 
 ### Core Operations
 
@@ -66,6 +65,12 @@ cache/
 | `set(key, value, options)` | Store value with TTL and tool tracking |
 | `has(key)` | Check if key exists and is valid |
 | `del(key)` | Delete specific cache entry |
+
+### Cache Key Generation
+
+| Function | Purpose |
+|----------|---------|
+| `generateCacheKey(toolName, args)` | SHA-256 hash from tool name + canonicalized args |
 
 ### Cache Invalidation
 
@@ -78,12 +83,23 @@ cache/
 
 ### High-Level Wrapper
 
-```javascript
+```typescript
 // Execute with caching - returns cached result or executes function
 await withCache(toolName, args, asyncFn, options);
 ```
 
-### Statistics
+### Statistics & Lifecycle
+
+| Function | Purpose |
+|----------|---------|
+| `getStats()` | Get cache hit/miss/eviction statistics |
+| `resetStats()` | Reset statistics counters |
+| `getConfig()` | Get current cache configuration |
+| `isEnabled()` | Check if caching is enabled |
+| `init()` | Initialize cache and start cleanup interval |
+| `shutdown()` | Stop cleanup, clear cache, reset stats |
+
+### Statistics Metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -93,19 +109,23 @@ await withCache(toolName, args, asyncFn, options);
 | `invalidations` | Entries explicitly invalidated |
 | `hitRate` | Percentage of hits vs total requests |
 
+**Exported constant:** `CONFIG` (aliased from `TOOL_CACHE_CONFIG`)
+
 ---
 
-## 4. 💡 USAGE
+## 4. USAGE
 
 ### Basic Import
 
-```javascript
-const { get, set, withCache, getStats } = require('./lib/cache');
+```typescript
+import { get, set, withCache, getStats } from './tool-cache';
 ```
 
 ### Simple Cache Operations
 
-```javascript
+```typescript
+import { generateCacheKey, set, get } from './tool-cache';
+
 const key = generateCacheKey('memory_search', { query: 'test' });
 
 // Store value
@@ -117,7 +137,9 @@ const cached = get(key);
 
 ### Execute with Caching
 
-```javascript
+```typescript
+import { withCache } from './tool-cache';
+
 const result = await withCache(
   'memory_search',
   { query: 'test' },
@@ -128,7 +150,9 @@ const result = await withCache(
 
 ### Invalidate on Write
 
-```javascript
+```typescript
+import { invalidateOnWrite } from './tool-cache';
+
 // After memory_save operation
 invalidateOnWrite('save', { specFolder: 'specs/001-feature' });
 // Automatically clears memory_search, memory_match_triggers, etc.
@@ -136,14 +160,16 @@ invalidateOnWrite('save', { specFolder: 'specs/001-feature' });
 
 ### Monitor Cache Performance
 
-```javascript
+```typescript
+import { getStats } from './tool-cache';
+
 const stats = getStats();
 // { hits: 42, misses: 8, hitRate: '84.00%', currentSize: 15, ... }
 ```
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -157,5 +183,10 @@ const stats = getStats();
 
 | Module | Relationship |
 |--------|--------------|
-| `context-server.js` | Integrates caching for tool operations |
+| `context-server.ts` | Integrates caching for tool operations |
 | `lib/search/` | Search operations benefit from caching |
+
+---
+
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

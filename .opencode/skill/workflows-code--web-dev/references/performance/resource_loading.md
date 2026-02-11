@@ -62,13 +62,13 @@ Establishes early connection (DNS lookup + TCP handshake + TLS negotiation) to e
 | `cdn.prod.website-files.com` | Webflow assets |
 | `unpkg.com` | npm CDN |
 
-### Implementation Example (anobel.com)
+### Implementation Example (example.com)
 
 From `global.html`:
 
 ```html
 <!-- Preconnect -->
-<link rel="preconnect" href="https://anobel-zn.b-cdn.net" crossorigin>
+<link rel="preconnect" href="https://example-cdn.b-cdn.net" crossorigin>
 <link rel="preconnect" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev" crossorigin>
 <link rel="preconnect" href="https://cdn.prod.website-files.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -212,7 +212,7 @@ This pattern loads CSS without blocking render, with a fallback for no-JS:
 3. `onload="this.rel='stylesheet'"` applies CSS when loaded
 4. `<noscript>` fallback for JavaScript-disabled browsers
 
-### Implementation Example (anobel.com)
+### Implementation Example (example.com)
 
 From `home.html`:
 

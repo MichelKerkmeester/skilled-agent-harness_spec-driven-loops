@@ -123,7 +123,7 @@ get_min_words_for_file() {
 
 validate_word_count() {
   local file="$1"
-  [ ! -f "$file" ] && return 0
+  [[ ! -f "$file" ]] && return 0
 
   local min_words
   min_words=$(get_min_words_for_file "$file")
@@ -131,7 +131,7 @@ validate_word_count() {
   local word_count
   word_count=$(wc -w < "$file" | tr -d ' ')
 
-  if [ "$word_count" -lt "$min_words" ]; then
+  if [[ "$word_count" -lt "$min_words" ]]; then
     local basename
     basename=$(basename "$file")
     add_quality_warning "LOW WORD COUNT: $basename has only $word_count words (minimum: $min_words)"
@@ -143,7 +143,7 @@ validate_word_count() {
 check_required_sections() {
   local file="$1"
   local missing_count=0
-  [ ! -f "$file" ] && return 0
+  [[ ! -f "$file" ]] && return 0
 
   local basename
   basename=$(basename "$file" .md)
@@ -170,7 +170,7 @@ check_required_sections() {
     fi
   done
 
-  [ "$missing_count" -gt 0 ] && return 1
+  [[ "$missing_count" -gt 0 ]] && return 1
   return 0
 }
 
@@ -190,7 +190,7 @@ count_placeholders() {
   local file="$1"
   local count=0
 
-  [ ! -f "$file" ] && { echo "0"; return 0; }
+  [[ ! -f "$file" ]] && { echo "0"; return 0; }
 
   for pattern in "${PLACEHOLDER_PATTERNS[@]}"; do
     local matches
@@ -204,7 +204,7 @@ count_placeholders() {
 
 count_total_lines() {
   local file="$1"
-  [ ! -f "$file" ] && { echo "0"; return 0; }
+  [[ ! -f "$file" ]] && { echo "0"; return 0; }
   grep -v '^[[:space:]]*$' "$file" | grep -v '^[[:space:]]*<!--' | wc -l | tr -d ' '
 }
 
@@ -214,7 +214,7 @@ calculate_file_completeness() {
   basename=$(basename "$file")
   local stats_file="${STATS_DIR}/${basename}.stats"
 
-  if [ ! -f "$file" ]; then
+  if [[ ! -f "$file" ]]; then
     echo "exists=false" > "$stats_file"
     return 0
   fi
@@ -226,15 +226,17 @@ calculate_file_completeness() {
   total_lines=$(count_total_lines "$file")
 
   local percentage=100
-  if [ "$total_lines" -gt 0 ] && [ "$placeholders" -gt 0 ]; then
+  if [[ "$total_lines" -gt 0 ]] && [[ "$placeholders" -gt 0 ]]; then
     percentage=$(echo "scale=2; (1 - $placeholders / $total_lines) * 100" | bc)
     percentage=$(printf "%.0f" "$percentage")
-  elif [ "$placeholders" -gt 0 ]; then
+    # P1-13 FIX: Clamp to 0 when placeholders exceed total lines
+    [[ "$percentage" -lt 0 ]] && percentage=0
+  elif [[ "$placeholders" -gt 0 ]]; then
     percentage=0
   fi
 
   local quality_passed=true
-  if [ "$QUALITY_CHECK" = true ]; then
+  if [[ "$QUALITY_CHECK" = true ]]; then
     run_quality_checks "$file" || quality_passed=false
   fi
 
@@ -250,7 +252,7 @@ EOF
 calculate_spec_completeness() {
   local spec_folder="$1"
 
-  if [ ! -d "$spec_folder" ]; then
+  if [[ ! -d "$spec_folder" ]]; then
     echo "ERROR: Spec folder not found: ${spec_folder}" >&2
     return 1
   fi
@@ -267,9 +269,9 @@ calculate_spec_completeness() {
       basename=$(basename "$file")
       local stats_file="${STATS_DIR}/${basename}.stats"
 
-      if [ -f "$stats_file" ]; then
+      if [[ -f "$stats_file" ]]; then
         source "$stats_file"
-        if [ "$exists" = "true" ]; then
+        if [[ "$exists" = "true" ]]; then
           TOTAL_PLACEHOLDERS=$((TOTAL_PLACEHOLDERS + placeholders))
           TOTAL_LINES=$((TOTAL_LINES + lines))
           FILES_ANALYZED=$((FILES_ANALYZED + 1))
@@ -279,10 +281,12 @@ calculate_spec_completeness() {
   done
 
   OVERALL_PERCENTAGE=100
-  if [ "$TOTAL_LINES" -gt 0 ] && [ "$TOTAL_PLACEHOLDERS" -gt 0 ]; then
+  if [[ "$TOTAL_LINES" -gt 0 ]] && [[ "$TOTAL_PLACEHOLDERS" -gt 0 ]]; then
     OVERALL_PERCENTAGE=$(echo "scale=2; (1 - $TOTAL_PLACEHOLDERS / $TOTAL_LINES) * 100" | bc)
     OVERALL_PERCENTAGE=$(printf "%.0f" "$OVERALL_PERCENTAGE")
-  elif [ "$TOTAL_PLACEHOLDERS" -gt 0 ]; then
+    # P1-13 FIX: Clamp to 0 when placeholders exceed total lines
+    [[ "$OVERALL_PERCENTAGE" -lt 0 ]] && OVERALL_PERCENTAGE=0
+  elif [[ "$TOTAL_PLACEHOLDERS" -gt 0 ]]; then
     OVERALL_PERCENTAGE=0
   fi
 }
@@ -298,12 +302,12 @@ output_text() {
   echo "───────────────────────────────────────────────────────────────────"
   echo ""
 
-  if [ -n "$SINGLE_FILE" ]; then
+  if [[ -n "$SINGLE_FILE" ]]; then
     local basename
     basename=$(basename "$SINGLE_FILE")
     local stats_file="${STATS_DIR}/${basename}.stats"
 
-    if [ ! -f "$stats_file" ]; then
+    if [[ ! -f "$stats_file" ]]; then
       echo "File: ${SINGLE_FILE}"
       echo "Status: NOT FOUND"
       echo ""
@@ -312,7 +316,7 @@ output_text() {
 
     source "$stats_file"
 
-    if [ "$exists" = "false" ]; then
+    if [[ "$exists" = "false" ]]; then
       echo "File: ${SINGLE_FILE}"
       echo "Status: NOT FOUND"
       echo ""
@@ -336,17 +340,17 @@ output_text() {
     echo "Total Content Lines: ${TOTAL_LINES}"
     echo ""
 
-    if [ "$VERBOSE" = true ]; then
+    if [[ "$VERBOSE" = true ]]; then
       echo "───────────────────────────────────────────────────────────────────"
       echo "Per-File Breakdown:"
       echo "───────────────────────────────────────────────────────────────────"
       echo ""
 
       for stats_file in "$STATS_DIR"/*.stats; do
-        [ -f "$stats_file" ] || continue
+        [[ -f "$stats_file" ]] || continue
 
         source "$stats_file"
-        if [ "$exists" = "true" ]; then
+        if [[ "$exists" = "true" ]]; then
           local basename
           basename=$(basename "$stats_file" .stats)
 
@@ -359,11 +363,11 @@ output_text() {
   fi
 
   local percentage
-  if [ -n "$SINGLE_FILE" ]; then
+  if [[ -n "$SINGLE_FILE" ]]; then
     local basename
     basename=$(basename "$SINGLE_FILE")
     local stats_file="${STATS_DIR}/${basename}.stats"
-    if [ -f "$stats_file" ]; then
+    if [[ -f "$stats_file" ]]; then
       source "$stats_file"
     fi
     percentage=${percentage:-0}
@@ -372,13 +376,13 @@ output_text() {
   fi
 
   echo "───────────────────────────────────────────────────────────────────"
-  if [ "$percentage" -ge 90 ]; then
+  if [[ "$percentage" -ge 90 ]]; then
     echo "Status: ✅ Excellent - Nearly complete"
-  elif [ "$percentage" -ge 70 ]; then
+  elif [[ "$percentage" -ge 70 ]]; then
     echo "Status: ✅ Good - Well underway"
-  elif [ "$percentage" -ge 50 ]; then
+  elif [[ "$percentage" -ge 50 ]]; then
     echo "Status: ⚠️  Fair - Half complete"
-  elif [ "$percentage" -ge 30 ]; then
+  elif [[ "$percentage" -ge 30 ]]; then
     echo "Status: ⚠️  Poor - Needs more work"
   else
     echo "Status: ❌ Very Low - Just starting"
@@ -386,7 +390,7 @@ output_text() {
   echo "───────────────────────────────────────────────────────────────────"
   echo ""
 
-  if [ "$QUALITY_CHECK" = true ] && [ "$QUALITY_WARNING_COUNT" -gt 0 ]; then
+  if [[ "$QUALITY_CHECK" = true ]] && [[ "$QUALITY_WARNING_COUNT" -gt 0 ]]; then
     echo "───────────────────────────────────────────────────────────────────"
     echo "Quality Warnings ($QUALITY_WARNING_COUNT):"
     echo "───────────────────────────────────────────────────────────────────"
@@ -399,7 +403,7 @@ output_text() {
     echo "Quality Status: ❌ Issues found - Address warnings above"
     echo "───────────────────────────────────────────────────────────────────"
     echo ""
-  elif [ "$QUALITY_CHECK" = true ]; then
+  elif [[ "$QUALITY_CHECK" = true ]]; then
     echo "───────────────────────────────────────────────────────────────────"
     echo "Quality Status: ✅ All quality checks passed"
     echo "───────────────────────────────────────────────────────────────────"
@@ -408,7 +412,7 @@ output_text() {
 }
 
 output_json() {
-  if [ -n "$SINGLE_FILE" ]; then
+  if [[ -n "$SINGLE_FILE" ]]; then
     local basename
     basename=$(basename "$SINGLE_FILE")
     local stats_file="${STATS_DIR}/${basename}.stats"
@@ -418,21 +422,21 @@ output_json() {
     local lines=0
     local percentage=0
 
-    if [ -f "$stats_file" ]; then
+    if [[ -f "$stats_file" ]]; then
       source "$stats_file"
     fi
 
     local quality_json=""
-    if [ "$QUALITY_CHECK" = true ]; then
+    if [[ "$QUALITY_CHECK" = true ]]; then
       quality_json=",
   \"quality\": {
     \"enabled\": true,
     \"warning_count\": ${QUALITY_WARNING_COUNT},
-    \"passed\": $([ "$QUALITY_WARNING_COUNT" -eq 0 ] && echo "true" || echo "false"),
+    \"passed\": $([[ "$QUALITY_WARNING_COUNT" -eq 0 ]] && echo "true" || echo "false"),
     \"warnings\": ["
       local first_warn=true
       for warning in "${QUALITY_WARNINGS[@]}"; do
-        if [ "$first_warn" = false ]; then
+        if [[ "$first_warn" = false ]]; then
           quality_json+=","
         fi
         first_warn=false
@@ -461,19 +465,19 @@ EOF
     echo "  \"total_placeholders\": ${TOTAL_PLACEHOLDERS},"
     echo "  \"total_lines\": ${TOTAL_LINES},"
 
-    if [ "$VERBOSE" = true ]; then
+    if [[ "$VERBOSE" = true ]]; then
       echo "  \"files\": {"
 
       local first=true
       for stats_file in "$STATS_DIR"/*.stats; do
-        [ -f "$stats_file" ] || continue
+        [[ -f "$stats_file" ]] || continue
 
         source "$stats_file"
-        if [ "$exists" = "true" ]; then
+        if [[ "$exists" = "true" ]]; then
           local basename
           basename=$(basename "$stats_file" .stats)
 
-          if [ "$first" = false ]; then
+          if [[ "$first" = false ]]; then
             echo ","
           fi
           first=false
@@ -492,16 +496,16 @@ EOF
       echo "  \"files\": {},"
     fi
 
-    if [ "$QUALITY_CHECK" = true ]; then
+    if [[ "$QUALITY_CHECK" = true ]]; then
       echo "  \"quality\": {"
       echo "    \"enabled\": true,"
       echo "    \"warning_count\": ${QUALITY_WARNING_COUNT},"
-      echo "    \"passed\": $([ "$QUALITY_WARNING_COUNT" -eq 0 ] && echo "true" || echo "false"),"
+      echo "    \"passed\": $([[ "$QUALITY_WARNING_COUNT" -eq 0 ]] && echo "true" || echo "false"),"
       echo -n "    \"warnings\": ["
 
       local first_warn=true
       for warning in "${QUALITY_WARNINGS[@]}"; do
-        if [ "$first_warn" = false ]; then
+        if [[ "$first_warn" = false ]]; then
           echo -n ","
         fi
         first_warn=false
@@ -534,7 +538,7 @@ while [[ $# -gt 0 ]]; do
     --file|-f) SINGLE_FILE="$2"; shift 2 ;;
     --help|-h) show_help ;;
     *)
-      if [ -z "$SPEC_FOLDER" ] && [ -z "$SINGLE_FILE" ]; then
+      if [[ -z "$SPEC_FOLDER" ]] && [[ -z "$SINGLE_FILE" ]]; then
         SPEC_FOLDER="$1"
       else
         echo "ERROR: Unexpected argument: $1" >&2
@@ -546,7 +550,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [ -z "$SPEC_FOLDER" ] && [ -z "$SINGLE_FILE" ]; then
+if [[ -z "$SPEC_FOLDER" ]] && [[ -z "$SINGLE_FILE" ]]; then
   echo "ERROR: Either spec folder or --file must be specified" >&2
   echo "Use --help for usage information" >&2
   exit 1
@@ -557,13 +561,13 @@ if ! command -v bc &>/dev/null; then
   exit 1
 fi
 
-if [ -n "$SINGLE_FILE" ]; then
+if [[ -n "$SINGLE_FILE" ]]; then
   calculate_file_completeness "$SINGLE_FILE"
 else
   calculate_spec_completeness "$SPEC_FOLDER"
 fi
 
-if [ "$JSON_OUTPUT" = true ]; then
+if [[ "$JSON_OUTPUT" = true ]]; then
   output_json
 else
   output_text

@@ -3,6 +3,10 @@
 # RULE: CHECK-LEVEL-MATCH
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: LEVEL_MATCH
 # Severity: error
 # Description: Validates that the declared level is consistent across all

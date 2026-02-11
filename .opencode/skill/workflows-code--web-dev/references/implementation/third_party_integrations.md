@@ -144,10 +144,10 @@ function cleanup_hls_player(player) {
 
 ### Source Files
 
-- `src/2_javascript/video/video_background_hls_hover.js` - Hover player with lazy loading
-- `src/2_javascript/video/video_background_hls.js` - Background autoplay player
-- `src/2_javascript/video/video_player_hls.js` - Full player with controls
-- `src/2_javascript/video/video_player_hls_scroll.js` - Scroll-triggered player
+- `src/javascript/video/video_background_hls_hover.js` - Hover player with lazy loading
+- `src/javascript/video/video_background_hls.js` - Background autoplay player
+- `src/javascript/video/video_player_hls.js` - Full player with controls
+- `src/javascript/video/video_player_hls_scroll.js` - Scroll-triggered player
 
 ---
 
@@ -197,10 +197,10 @@ function close_modal() {
 
 ### Usage in Codebase
 
-- Table of Contents smooth scrolling: `src/2_javascript/cms/table_of_content.js:363`
-- Cookie consent modal: `src/2_javascript/modal/modal_cookie_consent.js:955`
-- Welcome modal: `src/2_javascript/modal/modal_welcome.js:456`
-- Form submission focus lock: `src/2_javascript/form/form_submission.js:178`
+- Table of Contents smooth scrolling: `src/javascript/cms/table_of_content.js:363`
+- Cookie consent modal: `src/javascript/modal/modal_cookie_consent.js:955`
+- Welcome modal: `src/javascript/modal/modal_welcome.js:456`
+- Form submission focus lock: `src/javascript/form/form_submission.js:178`
 
 ---
 
@@ -219,7 +219,7 @@ const BOTPOISON_SDK_URL = 'https://unpkg.com/@botpoison/browser';
 The SDK is loaded lazily on first form submission to avoid blocking page load.
 
 ```javascript
-// Source: src/2_javascript/form/form_submission.js:47-117
+// Source: src/javascript/form/form_submission.js:47-117
 let botpoison_loader = null;
 
 async function load_botpoison_sdk() {
@@ -255,7 +255,7 @@ async function load_botpoison_sdk() {
 The challenge solving includes timeout protection and client instance caching.
 
 ```javascript
-// Source: src/2_javascript/form/form_submission.js:119-179
+// Source: src/javascript/form/form_submission.js:119-179
 const botpoison_clients = new Map();
 const MAX_BOTPOISON_CLIENTS = 10;
 const BOTPOISON_TIMEOUT_MS = 10000;
@@ -326,7 +326,7 @@ async function solve_botpoison_token(form) {
 ```
 
 ```javascript
-// Source: src/2_javascript/form/form_submission.js:548-567
+// Source: src/javascript/form/form_submission.js:548-567
 async function handle_submit(event) {
   const form_data = new FormData(this.form);
 
@@ -373,10 +373,10 @@ try {
 
 ### Source Files
 
-- `src/2_javascript/form/form_submission.js:18-19` - Configuration constants
-- `src/2_javascript/form/form_submission.js:93-117` - SDK loading
-- `src/2_javascript/form/form_submission.js:119-179` - Token solving with timeout
-- `src/2_javascript/form/form_submission.js:548-567` - Form integration
+- `src/javascript/form/form_submission.js:18-19` - Configuration constants
+- `src/javascript/form/form_submission.js:93-117` - SDK loading
+- `src/javascript/form/form_submission.js:119-179` - Token solving with timeout
+- `src/javascript/form/form_submission.js:548-567` - Form integration
 
 ---
 
@@ -427,7 +427,7 @@ The cookie consent modal integrates with Finsweet Consent Pro for GDPR complianc
 #### Consent Detection Pattern
 
 ```javascript
-// Source: src/2_javascript/modal/modal_cookie_consent.js:800-869
+// Source: src/javascript/modal/modal_cookie_consent.js:800-869
 function has_consent() {
   try {
     const cookies = document.cookie
@@ -481,7 +481,7 @@ function has_consent() {
 #### fsAttributes Queue Pattern
 
 ```javascript
-// Source: src/2_javascript/modal/modal_cookie_consent.js:1233-1291
+// Source: src/javascript/modal/modal_cookie_consent.js:1233-1291
 function bind_consent_status_listener() {
   // Initialize fsAttributes array if needed (works even before Consent Pro loads)
   window.fsAttributes = window.fsAttributes || [];
@@ -517,7 +517,7 @@ function bind_consent_status_listener() {
 When using custom select components with Finsweet CMS Sort, a bridge is needed to sync state.
 
 ```javascript
-// Source: src/2_javascript/form/input_select_fs_bridge.js:1-139
+// Source: src/javascript/form/input_select_fs_bridge.js:1-139
 const FS_ATTR = 'fs-list-element';
 const FS_VALUE = 'sort-trigger';
 
@@ -580,7 +580,7 @@ function sync_to_native(native_select, value) {
 ### CMS Load/Filter Initialization
 
 ```javascript
-// Source: src/0_html/blog.html:54
+// Source: src/html/blog.html:54
 script.setAttribute("fs-list", "");
 
 // Alternative: Hook into fsAttributes queue
@@ -604,9 +604,9 @@ window.fsAttributes.push([
 
 ### Source Files
 
-- `src/2_javascript/modal/modal_cookie_consent.js` - Full Consent Pro integration (1419 lines)
-- `src/2_javascript/form/input_select_fs_bridge.js` - CMS Sort bridge for custom selects
-- `src/0_html/blog.html:54` - CMS List initialization example
+- `src/javascript/modal/modal_cookie_consent.js` - Full Consent Pro integration (1419 lines)
+- `src/javascript/form/input_select_fs_bridge.js` - CMS Sort bridge for custom selects
+- `src/html/blog.html:54` - CMS List initialization example
 
 ---
 
@@ -631,7 +631,7 @@ FilePond is a flexible file upload library with drag-and-drop, image preview, an
 ### Configuration
 
 ```javascript
-// Source: src/2_javascript/form/input_upload.js:11-31
+// Source: src/javascript/form/input_upload.js:11-31
 const SELECTORS = {
   wrapper: '[data-file-upload="wrapper"]',
   input: '[data-file-upload="input"]',
@@ -647,14 +647,14 @@ const CSS_CLASSES = {
 const DEFAULTS = {
   max_size: '5MB',
   accepted_types: 'application/pdf,.doc,.docx',
-  upload_endpoint: 'https://r2-upload-proxy.cloudflare-decorated911.workers.dev',
+  upload_endpoint: 'https://r2-upload-proxy.your-worker.workers.dev',
 };
 ```
 
 ### Label Management (i18n Support)
 
 ```javascript
-// Source: src/2_javascript/form/input_upload.js:33-103
+// Source: src/javascript/form/input_upload.js:33-103
 const DEFAULT_LABELS = {
   // Main labels
   label_idle: 'Drag & drop your file or <span class="filepond--label-action">Browse</span>',
@@ -709,7 +709,7 @@ function get_labels(wrapper) {
 ### R2 Integration via Cloudflare Worker
 
 ```javascript
-// Source: src/2_javascript/form/input_upload.js:153-230
+// Source: src/javascript/form/input_upload.js:153-230
 function create_server_config(upload_endpoint, url_input, wrapper, labels) {
   return {
     process: (field_name, file, metadata, load, error, progress, abort) => {
@@ -778,7 +778,7 @@ function create_server_config(upload_endpoint, url_input, wrapper, labels) {
 ### FilePond Instance Creation
 
 ```javascript
-// Source: src/2_javascript/form/input_upload.js:236-310
+// Source: src/javascript/form/input_upload.js:236-310
 function init_single_upload(wrapper) {
   const input = wrapper.querySelector(SELECTORS.input);
   const url_input = wrapper.querySelector(SELECTORS.url);
@@ -855,7 +855,7 @@ function init_single_upload(wrapper) {
 ### Form Integration
 
 ```javascript
-// Source: src/2_javascript/form/input_upload.js:316-347
+// Source: src/javascript/form/input_upload.js:316-347
 function bind_form_events(wrapper, pond, input, url_input, labels) {
   const form = wrapper.closest('form');
   if (!form) return;
@@ -889,7 +889,7 @@ function bind_form_events(wrapper, pond, input, url_input, labels) {
 ### Plugin Registration
 
 ```javascript
-// Source: src/2_javascript/form/input_upload.js:136-151
+// Source: src/javascript/form/input_upload.js:136-151
 function register_plugins() {
   const plugins = [];
 
@@ -910,7 +910,7 @@ function register_plugins() {
 ### Public API
 
 ```javascript
-// Source: src/2_javascript/form/input_upload.js:401-407
+// Source: src/javascript/form/input_upload.js:401-407
 function get_filepond_instance(wrapper) {
   return wrapper._filePond || null;
 }
@@ -946,7 +946,7 @@ xhr.onload = () => {
 
 ### Source Files
 
-- `src/2_javascript/form/input_upload.js` - Full FilePond implementation (409 lines)
+- `src/javascript/form/input_upload.js` - Full FilePond implementation (409 lines)
 
 ---
 

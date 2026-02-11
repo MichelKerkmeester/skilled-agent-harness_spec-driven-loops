@@ -1,7 +1,7 @@
 # Feature Specification: [NAME]
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 <!-- WHEN TO USE THIS TEMPLATE:
 Level 1 (Core) is appropriate when:

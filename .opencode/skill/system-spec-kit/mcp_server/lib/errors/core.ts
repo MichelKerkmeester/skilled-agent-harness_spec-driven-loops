@@ -1,0 +1,297 @@
+// ---------------------------------------------------------------
+// MODULE: Errors Core
+// Memory error class and utility functions
+// Migrated from lib/errors.js for proper folder organization
+// ---------------------------------------------------------------
+
+import {
+  ERROR_CODES,
+  RECOVERY_HINTS,
+  DEFAULT_HINT,
+  getRecoveryHint,
+  hasSpecificHint,
+  getAvailableHints,
+} from './recovery-hints';
+
+import type { RecoveryHint, Severity } from './recovery-hints';
+
+// ---------------------------------------------------------------
+// 1. TYPES
+// ---------------------------------------------------------------
+
+export interface ErrorResponseData {
+  error: string;
+  code: string;
+  details: Record<string, unknown> | null;
+}
+
+export interface ErrorResponseMeta {
+  tool: string;
+  isError: true;
+  severity: Severity;
+}
+
+export interface ErrorResponse {
+  summary: string;
+  data: ErrorResponseData;
+  hints: string[];
+  meta: ErrorResponseMeta;
+}
+
+// ---------------------------------------------------------------
+// 2. ERROR CODES (Legacy)
+//
+// Re-export from recovery-hints for backward compatibility.
+// New code should use ERROR_CODES from recovery-hints.ts.
+// ---------------------------------------------------------------
+
+export const ErrorCodes = {
+  EMBEDDING_FAILED: 'E001',
+  EMBEDDING_DIMENSION_INVALID: 'E002',
+  FILE_NOT_FOUND: 'E010',
+  FILE_ACCESS_DENIED: 'E011',
+  FILE_ENCODING_ERROR: 'E012',
+  DB_CONNECTION_FAILED: 'E020',
+  DB_QUERY_FAILED: 'E021',
+  DB_TRANSACTION_FAILED: 'E022',
+  DATABASE_ERROR: 'E025',
+  INVALID_PARAMETER: 'E030',
+  MISSING_REQUIRED_PARAM: 'E031',
+  SEARCH_FAILED: 'E040',
+  VECTOR_SEARCH_UNAVAILABLE: 'E041',
+  QUERY_TOO_LONG: 'E042',
+  QUERY_EMPTY: 'E043',
+  API_KEY_INVALID_STARTUP: 'E050',
+  API_KEY_INVALID_RUNTIME: 'E051',
+  LOCAL_MODEL_UNAVAILABLE: 'E052',
+  RATE_LIMITED: 'E429',
+} as const;
+
+export type LegacyErrorCodeKey = keyof typeof ErrorCodes;
+
+// ---------------------------------------------------------------
+// 3. MEMORY ERROR CLASS
+// ---------------------------------------------------------------
+
+export class MemoryError extends Error {
+  public code: string;
+  public details: Record<string, unknown>;
+  public recoveryHint?: RecoveryHint;
+
+  constructor(code: string, message: string, details: Record<string, unknown> = {}) {
+    super(message);
+    // Required for proper instanceof checks when targeting ES5 or with certain TS compilation targets
+    Object.setPrototypeOf(this, MemoryError.prototype);
+    this.code = code;
+    this.details = details;
+    this.name = 'MemoryError';
+  }
+
+  toJSON(): { code: string; message: string; details: Record<string, unknown> } {
+    return { code: this.code, message: this.message, details: this.details };
+  }
+}
+
+// ---------------------------------------------------------------
+// 4. TIMEOUT WRAPPER
+// ---------------------------------------------------------------
+
+// T121: Fixed timer leak - now properly clears timeout on success or rejection
+export function withTimeout<T>(promise: Promise<T>, ms: number, operation: string): Promise<T> {
+  let timeoutId: ReturnType<typeof setTimeout>;
+
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timeoutId = setTimeout(() => reject(new MemoryError(
+      ErrorCodes.SEARCH_FAILED,
+      `${operation} timed out after ${ms}ms`,
+      { timeout: ms, operation }
+    )), ms);
+  });
+
+  return Promise.race([promise, timeoutPromise])
+    .then(result => {
+      clearTimeout(timeoutId);
+      return result;
+    })
+    .catch(error => {
+      clearTimeout(timeoutId);
+      throw error;
+    });
+}
+
+// ---------------------------------------------------------------
+// 5. USER-FRIENDLY ERROR MESSAGES
+// ---------------------------------------------------------------
+
+interface ErrorPattern {
+  pattern: RegExp;
+  message: string;
+}
+
+export function userFriendlyError(error: Error): string {
+  const internalPatterns: ErrorPattern[] = [
+    { pattern: /SQLITE_BUSY/, message: 'Database is temporarily busy. Please retry.' },
+    { pattern: /SQLITE_LOCKED/, message: 'Database is locked. Please wait and retry.' },
+    { pattern: /ENOENT/, message: 'File not found.' },
+    { pattern: /EACCES/, message: 'Permission denied.' },
+    { pattern: /ECONNREFUSED/, message: 'Connection refused. Service may be unavailable.' },
+    { pattern: /ETIMEDOUT/, message: 'Operation timed out. Please retry.' },
+    { pattern: /embedding.*failed/i, message: 'Failed to generate embedding. Search may be unavailable.' },
+  ];
+
+  for (const { pattern, message } of internalPatterns) {
+    if (pattern.test(error.message)) return message;
+  }
+
+  // BUG-029 FIX: Generic fallback instead of raw error
+  console.error('[errors] Unmatched error:', error.message);
+  return `Unexpected error: ${error instanceof Error ? error.message : String(error)}`;
+}
+
+// ---------------------------------------------------------------
+// 6. TRANSIENT ERROR DETECTION
+// REQ-032: Enhanced error classification with retry module
+// ---------------------------------------------------------------
+
+// Try to load retry module for enhanced classification
+interface RetryModule {
+  isTransientError: (error: Error) => boolean;
+  isPermanentError: (error: Error) => boolean;
+}
+
+let retryModule: RetryModule | null = null;
+// NOTE: Using require() for optional runtime-only module loading.
+// The retry module source lives in shared/utils/retry.ts but compiles to
+// dist/lib/utils/retry.js. TypeScript cannot resolve this cross-workspace
+// path at compile time, so dynamic import() would cause TS2307. The require()
+// try/catch pattern is appropriate here since the project is CommonJS.
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  retryModule = require('../utils/retry.js') as RetryModule;
+} catch {
+  /* Retry module not available, use legacy detection */
+}
+
+/**
+ * Check if an error is transient (worth retrying).
+ * REQ-032: Uses retry module for comprehensive classification
+ * when available, falls back to legacy patterns.
+ */
+export function isTransientError(error: Error): boolean {
+  // Use retry module if available (REQ-032)
+  if (retryModule && retryModule.isTransientError) {
+    return retryModule.isTransientError(error);
+  }
+
+  // Legacy fallback patterns
+  const transientPatterns: RegExp[] = [
+    /SQLITE_BUSY/,
+    /SQLITE_LOCKED/,
+    /ECONNRESET/,
+    /ETIMEDOUT/,
+    /ECONNREFUSED/,
+    /temporarily unavailable/i,
+    /rate limit/i,
+  ];
+
+  return transientPatterns.some(pattern => pattern.test(error.message));
+}
+
+/**
+ * Check if an error is permanent (should NOT retry).
+ * REQ-032: Fail-fast for 401, 403, and other permanent errors.
+ */
+export function isPermanentError(error: Error): boolean {
+  // Use retry module if available (REQ-032)
+  if (retryModule && retryModule.isPermanentError) {
+    return retryModule.isPermanentError(error);
+  }
+
+  // Legacy fallback patterns
+  const permanentPatterns: RegExp[] = [
+    /unauthorized/i,
+    /authentication failed/i,
+    /invalid api key/i,
+    /forbidden/i,
+    /access denied/i,
+  ];
+
+  return permanentPatterns.some(pattern => pattern.test(error.message));
+}
+
+// ---------------------------------------------------------------
+// 7. ERROR RESPONSE BUILDER WITH HINTS
+//
+// REQ-004: Build standardized error responses with recovery hints.
+// ---------------------------------------------------------------
+
+/**
+ * Build an error response object with recovery hints.
+ * REQ-019: Uses standardized envelope (summary, data, hints, meta).
+ */
+export function buildErrorResponse(
+  toolName: string,
+  error: Error | MemoryError,
+  context: Record<string, unknown> = {}
+): ErrorResponse {
+  // Extract error code (from MemoryError or fallback)
+  const errorCode = (error as MemoryError).code || ErrorCodes.SEARCH_FAILED;
+
+  // Get recovery hint (zero-cost static lookup)
+  const recoveryHint = getRecoveryHint(toolName, errorCode);
+
+  // REQ-019: Build hints array from recovery hint
+  const hints: string[] = [];
+  if (recoveryHint.hint) hints.push(recoveryHint.hint);
+  if (recoveryHint.actions) hints.push(...recoveryHint.actions);
+  if (recoveryHint.toolTip) hints.push(recoveryHint.toolTip);
+
+  // REQ-019: Build standardized envelope format
+  return {
+    summary: `Error: ${error.message}`,
+    data: {
+      error: error.message,
+      code: errorCode,
+      details: (error as MemoryError).details || context || null
+    },
+    hints,
+    meta: {
+      tool: toolName,
+      isError: true,
+      severity: recoveryHint.severity
+    }
+  };
+}
+
+/**
+ * Create a MemoryError with recovery hint pre-attached.
+ * Convenience function for throwing errors with hints.
+ */
+export function createErrorWithHint(
+  code: string,
+  message: string,
+  details: Record<string, unknown> = {},
+  toolName: string | null = null
+): MemoryError {
+  const error = new MemoryError(code, message, details);
+
+  // Attach recovery hint if tool context provided
+  if (toolName) {
+    error.recoveryHint = getRecoveryHint(toolName, code);
+  }
+
+  return error;
+}
+
+// ---------------------------------------------------------------
+// 8. RE-EXPORTS
+// ---------------------------------------------------------------
+
+export {
+  ERROR_CODES,
+  RECOVERY_HINTS,
+  DEFAULT_HINT,
+  getRecoveryHint,
+  hasSpecificHint,
+  getAvailableHints,
+};

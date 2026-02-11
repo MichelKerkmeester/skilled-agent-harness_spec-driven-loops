@@ -19,11 +19,11 @@ The embedding resilience system ensures semantic search remains functional even 
 
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| Embeddings Factory | `shared/embeddings/factory.js` | Provider selection and fallback |
-| Voyage Provider | `shared/embeddings/providers/voyage.js` | Primary embedding provider |
-| OpenAI Provider | `shared/embeddings/providers/openai.js` | Secondary fallback provider |
-| Retry Manager | `mcp_server/lib/providers/retry-manager.js` | Exponential backoff handling |
-| Vector Index | `mcp_server/lib/search/vector-index.js` | Local embedding cache |
+| Embeddings Factory | `shared/embeddings/factory.ts` | Provider selection and fallback |
+| Voyage Provider | `shared/embeddings/providers/voyage.ts` | Primary embedding provider |
+| OpenAI Provider | `shared/embeddings/providers/openai.ts` | Secondary fallback provider |
+| Retry Manager | `mcp_server/lib/providers/retry-manager.ts` | Exponential backoff handling |
+| Vector Index | `mcp_server/lib/search/vector-index.ts` | Local embedding cache |
 
 ### Core Principle
 
@@ -44,7 +44,7 @@ The system attempts providers in order until one succeeds (REQ-029):
                                     ↓
 ┌───────────────────────────────────────────────────────────────────┐
 │ 1. VOYAGE AI (Primary)                                            │
-│    Model: voyage-3                                                │
+│    Model: voyage-4                                                │
 │    Quality: Highest (optimized for code/technical content)        │
 │    Latency: ~150ms                                                │
 └───────────────────────────────────┬───────────────────────────────┘
@@ -66,13 +66,21 @@ The system attempts providers in order until one succeeds (REQ-029):
 
 ### Provider Configuration
 
-```javascript
-// Embedding provider priority (factory.js)
-const PROVIDER_CHAIN = [
+```typescript
+// Embedding provider priority (factory.ts)
+interface ProviderConfig {
+  name: string;
+  envKey: string;
+  model: string;
+  dimensions: number;
+  priority: number;
+}
+
+const PROVIDER_CHAIN: ProviderConfig[] = [
   {
     name: 'voyage',
     envKey: 'VOYAGE_API_KEY',
-    model: 'voyage-3',
+    model: 'voyage-4',
     dimensions: 1024,
     priority: 1
   },
@@ -117,13 +125,13 @@ When all embedding providers fail, the system degrades to keyword-based search (
 
 When vector search is unavailable:
 
-```javascript
+```typescript
 // Graceful degradation to FTS5 search
-async function searchWithDegradation(query, options) {
+async function searchWithDegradation(query: string, options: SearchOptions): Promise<SearchResult[]> {
   try {
     // Attempt vector search
     return await vectorSearch(query, options);
-  } catch (embeddingError) {
+  } catch (embeddingError: unknown) {
     console.warn('[DEGRADED] Vector search failed, using keyword fallback');
 
     // Fall back to FTS5 full-text search
@@ -159,8 +167,16 @@ Transient failures trigger exponential backoff before provider switching (REQ-03
 
 ### Retry Configuration
 
-```javascript
-const RETRY_CONFIG = {
+```typescript
+interface RetryConfig {
+  maxRetries: number;
+  baseDelayMs: number;
+  maxDelayMs: number;
+  backoffMultiplier: number;
+  jitterFactor: number;
+}
+
+const RETRY_CONFIG: RetryConfig = {
   maxRetries: 3,
   baseDelayMs: 1000,
   maxDelayMs: 10000,
@@ -184,15 +200,15 @@ delay = min(baseDelay * (multiplier ^ attempt) + jitter, maxDelay)
 
 ### Retry Logic
 
-```javascript
-async function withRetry(operation, config = RETRY_CONFIG) {
-  let lastError;
+```typescript
+async function withRetry<T>(operation: () => Promise<T>, config: RetryConfig = RETRY_CONFIG): Promise<T> {
+  let lastError: Error | undefined;
 
   for (let attempt = 1; attempt <= config.maxRetries; attempt++) {
     try {
       return await operation();
-    } catch (error) {
-      lastError = error;
+    } catch (error: unknown) {
+      lastError = error as Error;
 
       // Don't retry on permanent failures
       if (isPermanentError(error)) {
@@ -210,10 +226,11 @@ async function withRetry(operation, config = RETRY_CONFIG) {
   throw lastError;
 }
 
-function isPermanentError(error) {
-  return error.status === 401 || // Invalid API key
-         error.status === 403 || // Forbidden
-         error.code === 'INVALID_MODEL';
+function isPermanentError(error: unknown): boolean {
+  const err = error as { status?: number; code?: string };
+  return err.status === 401 || // Invalid API key
+         err.status === 403 || // Forbidden
+         err.code === 'INVALID_MODEL';
 }
 ```
 
@@ -233,7 +250,7 @@ Cached embeddings enable search without network connectivity (REQ-032):
 │ content_hash  │ TEXT (SHA-256 of source content)                │
 │ embedding     │ BLOB (float32 array)                            │
 │ provider      │ TEXT (voyage/openai)                            │
-│ model         │ TEXT (voyage-3/text-embedding-3-small)          │
+│ model         │ TEXT (voyage-4/text-embedding-3-small)          │
 │ dimensions    │ INTEGER (1024/1536)                             │
 │ created_at    │ DATETIME                                        │
 │ last_used     │ DATETIME                                        │
@@ -251,11 +268,11 @@ Cached embeddings enable search without network connectivity (REQ-032):
 
 ### Offline Detection
 
-```javascript
-async function isOnline() {
+```typescript
+async function isOnline(): Promise<boolean> {
   try {
     await fetch('https://api.voyageai.com/health', {
-      timeout: 5000
+      signal: AbortSignal.timeout(5000)
     });
     return true;
   } catch {
@@ -263,7 +280,11 @@ async function isOnline() {
   }
 }
 
-async function getEmbedding(text, options) {
+interface EmbeddingOptions {
+  forceRefresh?: boolean;
+}
+
+async function getEmbedding(text: string, options: EmbeddingOptions): Promise<Float32Array> {
   const cached = await getFromCache(text);
 
   if (cached && !options.forceRefresh) {
@@ -302,8 +323,16 @@ Track provider reliability and preemptively switch when degraded (REQ-033):
 
 ### Health Metrics
 
-```javascript
-const HEALTH_METRICS = {
+```typescript
+interface HealthMetricsConfig {
+  windowSize: number;
+  latencyThreshold: number;
+  errorThreshold: number;
+  healthyThreshold: number;
+  unhealthyThreshold: number;
+}
+
+const HEALTH_METRICS: HealthMetricsConfig = {
   windowSize: 100,        // Rolling window of requests
   latencyThreshold: 2000, // Max acceptable latency (ms)
   errorThreshold: 0.1,    // Max acceptable error rate (10%)
@@ -314,8 +343,14 @@ const HEALTH_METRICS = {
 
 ### Health Score Calculation
 
-```javascript
-function calculateHealth(metrics) {
+```typescript
+interface ProviderMetrics {
+  successRate: number;
+  avgLatency: number;
+  errorRate: number;
+}
+
+function calculateHealth(metrics: ProviderMetrics): number {
   const { successRate, avgLatency, errorRate } = metrics;
 
   // Weighted health score (0-1)
@@ -339,14 +374,26 @@ function calculateHealth(metrics) {
 
 ### Health Check Implementation
 
-```javascript
-class ProviderHealthMonitor {
-  constructor() {
-    this.metrics = new Map(); // provider -> metrics
-    this.window = 100;
-  }
+```typescript
+interface RequestRecord {
+  success: boolean;
+  latencyMs: number;
+  timestamp: number;
+}
 
-  recordRequest(provider, success, latencyMs) {
+interface ProviderHealthData {
+  requests: RequestRecord[];
+  successRate: number;
+  avgLatency: number;
+  errorRate: number;
+  health: number;
+}
+
+class ProviderHealthMonitor {
+  private metrics: Map<string, ProviderHealthData> = new Map();
+  private window: number = 100;
+
+  recordRequest(provider: string, success: boolean, latencyMs: number): void {
     const m = this.getMetrics(provider);
     m.requests.push({ success, latencyMs, timestamp: Date.now() });
 
@@ -362,7 +409,7 @@ class ProviderHealthMonitor {
     m.health = calculateHealth(m);
   }
 
-  shouldFallback(provider) {
+  shouldFallback(provider: string): boolean {
     const m = this.getMetrics(provider);
     return m.health < HEALTH_METRICS.unhealthyThreshold;
   }
@@ -373,9 +420,9 @@ class ProviderHealthMonitor {
 
 When a provider recovers:
 
-```javascript
+```typescript
 // Health check runs every 5 minutes for unhealthy providers
-async function healthCheckLoop() {
+async function healthCheckLoop(): Promise<void> {
   for (const provider of unhealthyProviders) {
     try {
       await testProvider(provider);
@@ -404,11 +451,11 @@ async function healthCheckLoop() {
 
 ### Source Files
 
-- `shared/embeddings/factory.js` - Provider factory and fallback chain
-- `shared/embeddings/providers/voyage.js` - Voyage AI provider
-- `shared/embeddings/providers/openai.js` - OpenAI provider
-- `mcp_server/lib/providers/retry-manager.js` - Retry and backoff logic
-- `mcp_server/lib/search/vector-index.js` - Embedding cache and vector operations
+- `shared/embeddings/factory.ts` - Provider factory and fallback chain
+- `shared/embeddings/providers/voyage.ts` - Voyage AI provider
+- `shared/embeddings/providers/openai.ts` - OpenAI provider
+- `mcp_server/lib/providers/retry-manager.ts` - Retry and backoff logic
+- `mcp_server/lib/search/vector-index.ts` - Embedding cache and vector operations
 
 ### Requirements Traceability
 

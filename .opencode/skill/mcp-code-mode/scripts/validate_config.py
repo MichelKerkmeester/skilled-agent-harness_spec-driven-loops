@@ -2,9 +2,7 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: CODE MODE UTCP CONFIGURATION VALIDATOR
 # ───────────────────────────────────────────────────────────────
-
-"""
-Code Mode UTCP Configuration Validator
+"""Code Mode UTCP Configuration Validator.
 
 Validates .utcp_config.json files for:
 - Valid JSON structure
@@ -23,7 +21,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Set
+from typing import Dict, List, Set, Tuple
 
 
 # ───────────────────────────────────────────────────────────────
@@ -39,19 +37,33 @@ ENV_VAR_PATTERN = re.compile(r'\$\{([A-Z_][A-Z0-9_]*)\}')
 # ───────────────────────────────────────────────────────────────
 
 class ConfigValidator:
-    """Validates Code Mode UTCP configuration files."""
+    """Validates Code Mode UTCP configuration files.
 
-    def __init__(self, config_path: str, env_path: str = None):
+    Performs structural validation on .utcp_config.json files,
+    checking JSON syntax, manual name conventions, required fields,
+    and optionally validating environment variable references against
+    a .env file.
+
+    Args:
+        config_path: Path to the .utcp_config.json file.
+        env_path: Optional path to a .env file for variable validation.
+    """
+
+    def __init__(self, config_path: str, env_path: str = None) -> None:
         self.config_path = Path(config_path)
         self.env_path = Path(env_path) if env_path else None
         self.errors: List[str] = []
         self.warnings: List[str] = []
         self.config: Dict = {}
         self.env_vars: Set[str] = set()
-        self._required_env_vars: Set[tuple] = set()
+        self._required_env_vars: Set[Tuple[str, str]] = set()
 
     def validate(self) -> bool:
-        """Run all validation checks."""
+        """Run all validation checks.
+
+        Returns:
+            True if validation passed with no errors.
+        """
         print(f"Validating configuration: {self.config_path}\n")
 
         if not self._load_config():
@@ -70,7 +82,11 @@ class ConfigValidator:
         return len(self.errors) == 0
 
     def _load_config(self) -> bool:
-        """Load and parse configuration file."""
+        """Load and parse the JSON configuration file.
+
+        Returns:
+            True if the file was loaded and parsed successfully.
+        """
         if not self.config_path.exists():
             self.errors.append(f"Configuration file not found: {self.config_path}")
             return False
@@ -84,8 +100,11 @@ class ConfigValidator:
             self.errors.append(f"Invalid JSON: {e}")
             return False
 
-    def _load_env(self):
-        """Load environment variables from .env file."""
+    def _load_env(self) -> None:
+        """Load environment variable names from a .env file.
+
+        Parses KEY=value lines, ignoring comments and blank lines.
+        """
         if not self.env_path.exists():
             self.warnings.append(f".env file not found: {self.env_path}")
             return
@@ -98,11 +117,15 @@ class ConfigValidator:
                         key = line.split('=', 1)[0].strip()
                         self.env_vars.add(key)
             print(f"✓ Loaded {len(self.env_vars)} environment variables from .env")
-        except Exception as e:
+        except (OSError, UnicodeDecodeError) as e:
             self.warnings.append(f"Error reading .env file: {e}")
 
-    def _validate_structure(self):
-        """Validate top-level configuration structure."""
+    def _validate_structure(self) -> None:
+        """Validate top-level configuration structure.
+
+        Checks for required fields and correct types for optional
+        configuration sections.
+        """
         required_fields = ['manual_call_templates']
         for field in required_fields:
             if field not in self.config:
@@ -131,8 +154,12 @@ class ConfigValidator:
         if not self.errors:
             print("✓ Valid configuration structure")
 
-    def _validate_manual_templates(self):
-        """Validate manual_call_templates array."""
+    def _validate_manual_templates(self) -> None:
+        """Validate the manual_call_templates array.
+
+        Checks each template for required fields, valid naming,
+        and no duplicate manual names.
+        """
         if 'manual_call_templates' not in self.config:
             return
 
@@ -153,8 +180,16 @@ class ConfigValidator:
 
         print(f"✓ Validated {len(templates)} manual call template(s)")
 
-    def _validate_single_template(self, template: Dict, idx: int, manual_names: Set[str]):
-        """Validate a single manual call template."""
+    def _validate_single_template(
+        self, template: Dict, idx: int, manual_names: Set[str]
+    ) -> None:
+        """Validate a single manual call template entry.
+
+        Args:
+            template: The template dictionary to validate.
+            idx: Index position in the templates array.
+            manual_names: Accumulated set of names for duplicate detection.
+        """
         prefix = f"manual_call_templates[{idx}]"
 
         required_fields = ['name', 'call_template_type', 'config']
@@ -200,8 +235,13 @@ class ConfigValidator:
         if template.get('call_template_type') == 'mcp':
             self._validate_mcp_config(template.get('config', {}), prefix)
 
-    def _validate_mcp_config(self, config: Dict, prefix: str):
-        """Validate MCP server configuration."""
+    def _validate_mcp_config(self, config: Dict, prefix: str) -> None:
+        """Validate MCP server configuration within a template.
+
+        Args:
+            config: The config dictionary from a manual call template.
+            prefix: Context string for error message formatting.
+        """
         if 'mcpServers' not in config:
             self.errors.append(f"{prefix}.config: missing 'mcpServers'")
             return
@@ -234,14 +274,23 @@ class ConfigValidator:
                     if isinstance(env_value, str):
                         self._extract_env_vars(env_value, server_prefix)
 
-    def _extract_env_vars(self, value: str, context: str):
-        """Extract and track environment variable references."""
+    def _extract_env_vars(self, value: str, context: str) -> None:
+        """Extract and track environment variable references.
+
+        Args:
+            value: String value that may contain ${VAR} references.
+            context: Context string for associating variables with their source.
+        """
         for match in ENV_VAR_PATTERN.finditer(value):
             var_name = match.group(1)
             self._required_env_vars.add((var_name, context))
 
-    def _validate_env_vars(self):
-        """Validate that all required environment variables are defined."""
+    def _validate_env_vars(self) -> None:
+        """Validate that all referenced environment variables are defined.
+
+        Compares variables found via ${VAR} references against those
+        loaded from the .env file.
+        """
         if not self._required_env_vars:
             return
 
@@ -258,8 +307,8 @@ class ConfigValidator:
         else:
             print(f"✓ All {len(self._required_env_vars)} required environment variables are defined")
 
-    def _print_results(self):
-        """Print validation results."""
+    def _print_results(self) -> None:
+        """Print validation summary with errors and warnings."""
         print("\n" + "=" * 70)
 
         if self.warnings:
@@ -285,8 +334,8 @@ class ConfigValidator:
 # 3. MAIN
 # ───────────────────────────────────────────────────────────────
 
-def main():
-    """Main entry point."""
+def main() -> None:
+    """Parse CLI arguments and run configuration validation."""
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)

@@ -1,5 +1,5 @@
 ---
-description: Delegate debugging to a specialized sub-agent with full context handoff. Always asks for model selection first.
+description: Delegate debugging to a specialized sub-agent with full context handoff.
 argument-hint: "[spec-folder-path]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
@@ -10,7 +10,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 
 **Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together).
 
-**Key Rule:** Model selection is MANDATORY and included in the consolidated prompt.
+**Key Rule:** Dispatch mode selection is MANDATORY and included in the consolidated prompt.
 
 ---
 
@@ -53,23 +53,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    • Which file(s) are affected                                 │
    │    • What you've already tried (if anything)                   │
    │                                                                │
-   │ **Q2. AI Model** (required):                                   │
-   │    A) OpenAI - GPT-4o/o1/o3 models                              │
-   │    B) Anthropic - Claude Opus/Sonnet (Recommended)             │
-   │    C) Google - Gemini Pro/Flash models                         │
-   │    D) Other - Specify                                          │
-   │                                                                │
-   │ **Q3. Dispatch Mode** (required):                              │
+   │ **Q2. Dispatch Mode** (required):                              │
    │    A) Single Agent - One agent (Recommended)                   │
-   │    B) Multi-Agent (1+2) - 1 orchestrator (opus) + 2 workers (opus) │
-   │    C) Multi-Agent (1+3) - 1 orchestrator (opus) + 3 workers (opus) │
+   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
+   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
    │                                                                │
-   │ **Q4. Worker Model** (if B or C selected above):               │
-   │    Default: opus                                               │
-   │    To use different model, type: opus, gemini, gpt             │
-   │    or leave blank for default                                  │
    │                                                                │
-   │ Reply with answers, e.g.: "A, A, A, " or "A, [error desc], A, B, gemini" │
+   │ Reply with answers, e.g.: "A, A, A" or "A, [error desc], A, B" │
    └────────────────────────────────────────────────────────────────┘
 
 5. WAIT for user response (DO NOT PROCEED)
@@ -80,9 +70,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - error_message = [from Q1 or extracted from conversation]
    - affected_files = [extracted or from Q1]
    - previous_attempts = [extracted or from Q1]
-   - selected_model = [from Q2]
-   - dispatch_mode = [single/multi_small/multi_large from Q3]
-   - worker_model = [from Q4: opus/gemini/gpt, default opus if blank]
+    - dispatch_mode = [single/multi_small/multi_large from Q2]
 
 7. IF dispatch_mode is multi_*:
    - Note: Orchestrator handles OBSERVE + FIX phases
@@ -93,7 +81,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
 ⛔ HARD STOP: DO NOT proceed until user explicitly answers
-⛔ NEVER skip model selection - it is MANDATORY
+⛔ NEVER skip dispatch mode selection - it is MANDATORY
 ⛔ NEVER skip dispatch mode selection - it is MANDATORY
 ⛔ NEVER split these questions into multiple prompts
 ```
@@ -102,9 +90,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `spec_path = ________________` | `detection_method = ________________`
 - `error_message = ________________`
 - `affected_files = ________________`
-- `selected_model = ________________`
 - `dispatch_mode = ________________`
-- `worker_model = ________________` (default: opus)
 
 ---
 
@@ -130,9 +116,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | spec_path        | ○ Conditional | ______     | Q0 or auto-detect or $ARGS |
 | detection_method | ✅ Yes         | ______     | Auto-determined            |
 | error_message    | ✅ Yes         | ______     | Q1 or conversation scan    |
-| selected_model   | ✅ Yes         | ______     | Q2                         |
-| dispatch_mode    | ✅ Yes         | ______     | Q3                         |
-| worker_model     | ○ Conditional | ______     | Q4 (default: opus)         |
+| dispatch_mode    | ✅ Yes         | ______     | Q2                         |
 
 ```
 VERIFICATION CHECK:
@@ -148,8 +132,7 @@ VERIFICATION CHECK:
 **YOU ARE IN VIOLATION IF YOU:**
 - Started reading the workflow section before all fields are set
 - Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
-- Skipped model selection (Q2 is MANDATORY)
-- Skipped dispatch mode selection (Q3 is MANDATORY)
+- Skipped dispatch mode selection (Q2 is MANDATORY)
 - Assumed single-agent mode without explicit user choice
 - Dispatched sub-agent without creating debug-delegation.md first
 - Did not wait for user response on integration options
@@ -185,7 +168,7 @@ VERIFICATION CHECK:
 
 # /spec_kit:debug
 
-Delegate persistent debugging issues to a specialized sub-agent with fresh context. Creates a comprehensive debug report, dispatches a sub-agent with the selected model, and integrates findings back into the main session.
+Delegate persistent debugging issues to a specialized sub-agent with fresh context. Creates a comprehensive debug report, dispatches a sub-agent, and integrates findings back into the main session.
 
 ---
 
@@ -198,7 +181,7 @@ operating_mode:
   workflow: sequential_5_step
   workflow_compliance: MANDATORY
   workflow_execution: sub_agent_delegation
-  approvals: model_selection_required
+  approvals: none
   tracking: debug_report_creation
   validation: sub_agent_response_check
 ```
@@ -207,7 +190,7 @@ operating_mode:
 
 ## 1. 🎯 PURPOSE
 
-Delegate persistent debugging issues to a specialized sub-agent with fresh context. This workflow creates a comprehensive debug report, dispatches a sub-agent with the selected model, and integrates findings back into the main session.
+Delegate persistent debugging issues to a specialized sub-agent with fresh context. This workflow creates a comprehensive debug report, dispatches a sub-agent, and integrates findings back into the main session.
 
 **When to use:**
 - Same error persists after 3+ fix attempts
@@ -251,7 +234,7 @@ flowchart TB
         A2 -->|No| A4[Auto-detect from<br/>recent memory]
         A3 --> A5[Scan conversation<br/>for error context]
         A4 --> A5
-        A5 --> A6["📋 CONSOLIDATED PROMPT<br/>Q0: Spec Folder<br/>Q1: Error Context<br/>Q2: AI Model ⚠️<br/>Q3: Dispatch Mode ⚠️<br/>Q4: Worker Model"]
+        A5 --> A6["📋 CONSOLIDATED PROMPT<br/>Q0: Spec Folder<br/>Q1: Error Context<br/>Q2: Dispatch Mode"]
         A6 --> A7[/"⏳ WAIT for<br/>user response"/]
     end
 
@@ -330,7 +313,7 @@ flowchart TB
 ```
 
 **Diagram Key:**
-- **Orange nodes**: Setup phase (model selection mandatory)
+- **Orange nodes**: Setup phase
 - **Blue nodes**: Core workflow steps
 - **Purple nodes**: Isolation pattern (context handoff)
 - **Teal nodes**: @debug methodology phases
@@ -376,7 +359,6 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 │ ✅ DEBUG DELEGATION COMPLETE                                    │
 ├─────────────────────────────────────────────────────────────────┤
 │ Spec: specs/014-auth-feature/                                   │
-│ Model: Claude                                                   │
 │ Report: specs/014-auth-feature/debug-delegation.md              │
 ├─────────────────────────────────────────────────────────────────┤
 │ Root Cause: [brief summary]                                     │
@@ -409,7 +391,6 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 │ Attempts: 3                                                     │
 ├─────────────────────────────────────────────────────────────────┤
 │ RECOMMENDED:                                                    │
-│   • Try /spec_kit:debug with different model                    │
 │   • Review debug-delegation.md for all attempted fixes           │
 │   • Consider breaking problem into smaller parts                │
 │ Status: ESCALATE                                                │
@@ -458,7 +439,6 @@ This command uses the Task tool to dispatch the specialized `@debug` agent for d
 ```
 Main Agent (reads command):
 ├── PHASE 1: Context Detection (validation)
-├── PHASE 2: Model Selection (mandatory)
 ├── Step 2: Generate debug-delegation.md (context handoff)
 ├── DISPATCH: Task tool with @debug agent
 │   ├── @debug receives structured handoff (NOT conversation history)
@@ -520,10 +500,6 @@ The debug-delegation.md report MUST include:
 | Prior Attempts     | ✓        | What was tried and why it failed |
 | Environment        | ○        | Runtime, versions, config        |
 
-### Model Hint
-
-The selected model (GPT/Claude/Gemini) is passed as context to help route to appropriate capabilities. The Task tool uses the model configured in your OpenCode environment.
-
 ### Timeout & Retry
 
 - **Timeout:** 2 minutes (standard)
@@ -538,13 +514,13 @@ The selected model (GPT/Claude/Gemini) is passed as context to help route to app
 ```
 /spec_kit:debug
 ```
-→ Auto-detects spec folder, gathers error from conversation, asks for model, dispatches
+→ Auto-detects spec folder, gathers error from conversation, dispatches
 
 **Example 2: Specific spec folder**
 ```
-/spec_kit:debug specs/007-anobel.com/004-table-of-content/
+/spec_kit:debug specs/007-feature-name/004-implementation/
 ```
-→ Uses specified folder, gathers error context, asks for model, dispatches
+→ Uses specified folder, gathers error context, dispatches
 
 **Example 3: After multiple failed attempts**
 ```
@@ -582,7 +558,7 @@ The debug command dispatches to the specialized `@debug` agent (`.opencode/agent
 | -------------- | ----------------------------- | ------------------------------------ |
 | **Success**    | Root cause found, fix applied | Verify fix, continue work            |
 | **Blocked**    | Missing info or access issue  | Provide requested info               |
-| **Escalation** | 3+ hypotheses failed          | Try different model or manual review |
+| **Escalation** | 3+ hypotheses failed          | Manual review or retry               |
 
 ### Memory Integration
 
@@ -625,7 +601,7 @@ After debugging completes, suggest relevant next steps:
 | ------------------------------ | ---------------------------------------------- | --------------------------------- |
 | Fix applied successfully       | Verify in browser/tests                        | Confirm fix works                 |
 | Fix applied, continue work     | Return to original workflow                    | Resume implementation             |
-| Issue needs more analysis      | `/spec_kit:debug` (retry with different model) | Fresh perspective                 |
+| Issue needs more analysis      | `/spec_kit:debug` (retry)                      | Fresh perspective                 |
 | Want to save debugging context | `/memory:save [spec-folder-path]`              | Preserve debugging insights       |
 | Debugging session complete     | `/spec_kit:handover [spec-folder-path]`        | Document for future reference     |
 | Record lessons learned         | `/memory:learn [description]`                  | Capture learning from debugging   |

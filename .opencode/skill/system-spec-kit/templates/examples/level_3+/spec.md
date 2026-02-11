@@ -1,7 +1,7 @@
 # Feature Specification: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 3+ spec demonstrating full governance features.
 Note the Complexity Assessment, Approval Workflow, Compliance Checkpoints, Stakeholder

@@ -60,13 +60,18 @@ Initial release of workflows-git skill for Git operations.
    - Scope guidance
    - Breaking change notation
 
-### Documentation
+### Documentation (10 files)
 
 - `SKILL.md` — AI agent instructions with workflow routing
-- `README.md` — User documentation with command reference
-- `references/commit_conventions.md` — Conventional commit guide
-- `references/branch_strategies.md` — Branching patterns
+- `CHANGELOG.md` — Version history
+- `references/commit_workflows.md` — Commit conventions and workflows
+- `references/quick_reference.md` — Quick command reference
+- `references/finish_workflows.md` — Branch integration and PR workflows
+- `references/worktree_workflows.md` — Worktree management patterns
+- `references/shared_patterns.md` — GitHub MCP and shared patterns
 - `assets/pr_template.md` — Pull request template
+- `assets/commit_message_template.md` — Commit message template
+- `assets/worktree_checklist.md` — Worktree setup checklist
 
 ---
 

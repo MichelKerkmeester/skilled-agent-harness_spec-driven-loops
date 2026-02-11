@@ -104,7 +104,7 @@ document.cookie = "session=abc123";  // Vulnerable to CSRF
 **Verify Origin/Referer:**
 ```javascript
 // ✅ GOOD: Verify request origin (server-side)
-const allowed_origins = ['https://anobel.com'];
+const allowed_origins = ['https://example.com'];
 if (!allowed_origins.includes(req.headers.origin)) {
   throw new Error('Invalid origin');
 }
@@ -312,9 +312,9 @@ if (!Object.hasOwn(ALLOWED_VALUES, userInput)) {
 3. `Object.freeze(...)` - Prevents modification after creation (immutable)
 4. `Object.hasOwn(...)` - Checks only own properties, not inherited
 
-**Evidence:** `/src/2_javascript/modal/modal_welcome.js:38-41`
+**Evidence:** `/src/javascript/modal/modal_welcome.js:38-41`
 ```javascript
-const modal_system = (window.anobel_modal_system ??= {
+const modal_system = (window.project_modal_system ??= {
   list: Object.create(null), // SECURITY: Use null prototype to prevent prototype pollution
   open(id, reason) {
     // SECURITY: Use Object.hasOwn for safe property access (CWE-1321)
@@ -330,7 +330,7 @@ const modal_system = (window.anobel_modal_system ??= {
 
 For user-controlled values that map to object keys, validate against an explicit whitelist:
 
-**Evidence:** `/src/2_javascript/modal/modal_welcome.js:57-67`
+**Evidence:** `/src/javascript/modal/modal_welcome.js:57-67`
 ```javascript
 // SECURITY: Validate modal ID to prevent prototype pollution and injection (CWE-1321)
 const ALLOWED_MODAL_IDS = ['welcome', 'cookie', 'newsletter', 'contact'];
@@ -376,7 +376,7 @@ Using `Math.random()` for security-sensitive operations (CWE-330) can lead to pr
 
 When generating unique IDs that need collision resistance:
 
-**Evidence:** `/src/2_javascript/form/form_validation.js:561-571`
+**Evidence:** `/src/javascript/form/form_validation.js:561-571`
 ```javascript
 // SECURITY FIX: Using crypto.getRandomValues() instead of Math.random() for secure randomness (CWE-330)
 // Counter for generating unique IDs with cryptographically secure random seed to prevent collisions
@@ -398,7 +398,7 @@ const id = `err_${++aria_id_counter}_${Date.now()}`;
 
 For randomizing arrays where order prediction could leak information:
 
-**Evidence:** `/src/2_javascript/cms/related_articles.js:76-86`
+**Evidence:** `/src/javascript/cms/related_articles.js:76-86`
 ```javascript
 // SECURITY FIX: Using crypto.getRandomValues() instead of Math.random() for secure randomness (CWE-330)
 // Fisher-Yates shuffle algorithm with cryptographically secure random
@@ -509,7 +509,7 @@ Object.hasOwn(malicious, 'fake');  // false (correct - uses static method)
 
 ### Complete Safe Property Access Pattern
 
-**Evidence:** `/src/2_javascript/modal/modal_welcome.js:40-43`
+**Evidence:** `/src/javascript/modal/modal_welcome.js:40-43`
 ```javascript
 open(id, reason) {
   // SECURITY: Use Object.hasOwn for safe property access (CWE-1321)

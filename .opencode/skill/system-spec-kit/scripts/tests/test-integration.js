@@ -43,24 +43,24 @@ function log(msg) {
   console.log(msg);
 }
 
-function pass(test_name, evidence = null) {
+function pass(testName, evidence = null) {
   results.passed++;
-  results.tests.push({ name: test_name, status: 'PASS', evidence });
-  log(`   ✅ ${test_name}`);
+  results.tests.push({ name: testName, status: 'PASS', evidence });
+  log(`   ✅ ${testName}`);
   if (evidence) log(`      Evidence: ${evidence}`);
 }
 
-function fail(test_name, reason) {
+function fail(testName, reason) {
   results.failed++;
-  results.tests.push({ name: test_name, status: 'FAIL', reason });
-  log(`   ❌ ${test_name}`);
+  results.tests.push({ name: testName, status: 'FAIL', reason });
+  log(`   ❌ ${testName}`);
   log(`      Reason: ${reason}`);
 }
 
-function skip(test_name, reason) {
+function skip(testName, reason) {
   results.skipped++;
-  results.tests.push({ name: test_name, status: 'SKIP', reason });
-  log(`   ⏭️  ${test_name} (skipped: ${reason})`);
+  results.tests.push({ name: testName, status: 'SKIP', reason });
+  log(`   ⏭️  ${testName} (skipped: ${reason})`);
 }
 
 function startSuite(name) {
@@ -203,7 +203,7 @@ function runScript(script, args = []) {
   const scriptPath = path.join(SCRIPTS_DIR, script);
 
   try {
-    const stdout = execSync(`bash "${scriptPath}" ${args.join(' ')}`, {
+    const stdout = execSync(`bash "${scriptPath}" ${args.map(a => `"${a}"`).join(' ')}`, {
       cwd: TEST_WORKSPACE,
       encoding: 'utf-8',
       timeout: 30000,
@@ -283,7 +283,7 @@ async function testMemorySaveWorkflow() {
 
     // Test 1.2: Create JSON input file for generate-context.js
     const jsonInput = {
-      user_prompts: [
+      userPrompts: [
         { prompt: 'Test prompt 1', timestamp: new Date().toISOString() },
         { prompt: 'Test prompt 2', timestamp: new Date().toISOString() },
       ],
@@ -321,7 +321,7 @@ async function testMemorySaveWorkflow() {
     }
 
     // Test 1.5: Verify anchor extraction functionality
-    const { validateAnchors } = require(path.join(SCRIPTS_DIR, 'core', 'workflow.js'));
+    const { validateAnchors } = require(path.join(SCRIPTS_DIR, 'dist', 'core', 'workflow.js'));
     const testContent = `<!-- ANCHOR:test -->content<!-- /ANCHOR:test -->`;
     const warnings = validateAnchors(testContent);
 
@@ -475,7 +475,7 @@ async function testCognitiveMemorySession() {
 
   try {
     // Test 3.1: Check working-memory.js exists and exports correctly
-    const workingMemoryPath = path.join(MCP_SERVER_DIR, 'lib', 'cognitive', 'working-memory.js');
+    const workingMemoryPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'cognitive', 'working-memory.js');
 
     if (!fs.existsSync(workingMemoryPath)) {
       skip('W3-T1: working-memory.js exists', 'Module not found');
@@ -494,7 +494,7 @@ async function testCognitiveMemorySession() {
     }
 
     // Test 3.2: Check attention-decay.js exists and exports correctly
-    const attentionDecayPath = path.join(MCP_SERVER_DIR, 'lib', 'cognitive', 'attention-decay.js');
+    const attentionDecayPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'cognitive', 'attention-decay.js');
 
     if (!fs.existsSync(attentionDecayPath)) {
       skip('W3-T2: attention-decay.js exists', 'Module not found');
@@ -571,7 +571,7 @@ async function testCognitiveMemorySession() {
     }
 
     // Test 3.6: Check co-activation module exists
-    const coActivationPath = path.join(MCP_SERVER_DIR, 'lib', 'cognitive', 'co-activation.js');
+    const coActivationPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'cognitive', 'co-activation.js');
 
     if (fs.existsSync(coActivationPath)) {
       const coActivation = require(coActivationPath);
@@ -704,7 +704,7 @@ async function testCheckpointCycle() {
 
   try {
     // Test 5.1: Check checkpoints.js exists
-    const checkpointsPath = path.join(MCP_SERVER_DIR, 'lib', 'storage', 'checkpoints.js');
+    const checkpointsPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'storage', 'checkpoints.js');
 
     if (!fs.existsSync(checkpointsPath)) {
       skip('W5-T1: checkpoints.js exists', 'Module not found');
@@ -737,14 +737,14 @@ async function testCheckpointCycle() {
     }
 
     // Test 5.2: Check handlers exist
-    const handlersPath = path.join(MCP_SERVER_DIR, 'handlers', 'checkpoints.js');
+    const handlersPath = path.join(MCP_SERVER_DIR, 'dist', 'handlers', 'checkpoints.js');
 
     if (fs.existsSync(handlersPath)) {
       const handlers = require(handlersPath);
 
-      if (typeof handlers.handle_checkpoint_create === 'function' &&
-          typeof handlers.handle_checkpoint_restore === 'function' &&
-          typeof handlers.handle_checkpoint_delete === 'function') {
+      if (typeof handlers.handleCheckpointCreate === 'function' &&
+          typeof handlers.handleCheckpointRestore === 'function' &&
+          typeof handlers.handleCheckpointDelete === 'function') {
         pass('W5-T2: Checkpoint handlers exist', 'All handlers found');
       } else {
         fail('W5-T2: Checkpoint handlers exist', 'Missing handler functions');
@@ -813,7 +813,7 @@ async function testCrossCuttingIntegration() {
 
   try {
     // Test X.1: Verify core module exports
-    const corePath = path.join(SCRIPTS_DIR, 'core', 'index.js');
+    const corePath = path.join(SCRIPTS_DIR, 'dist', 'core', 'index.js');
 
     if (fs.existsSync(corePath)) {
       const core = require(corePath);
@@ -828,7 +828,7 @@ async function testCrossCuttingIntegration() {
     }
 
     // Test X.2: Verify extractors module
-    const extractorsPath = path.join(SCRIPTS_DIR, 'extractors', 'index.js');
+    const extractorsPath = path.join(SCRIPTS_DIR, 'dist', 'extractors', 'index.js');
 
     if (fs.existsSync(extractorsPath)) {
       const extractors = require(extractorsPath);
@@ -849,7 +849,7 @@ async function testCrossCuttingIntegration() {
     }
 
     // Test X.3: Verify spec-folder module
-    const specFolderPath = path.join(SCRIPTS_DIR, 'spec-folder', 'index.js');
+    const specFolderPath = path.join(SCRIPTS_DIR, 'dist', 'spec-folder', 'index.js');
 
     if (fs.existsSync(specFolderPath)) {
       const specFolder = require(specFolderPath);
@@ -865,12 +865,12 @@ async function testCrossCuttingIntegration() {
     }
 
     // Test X.4: Verify MCP server core exports
-    const mcpCorePath = path.join(MCP_SERVER_DIR, 'core', 'index.js');
+    const mcpCorePath = path.join(MCP_SERVER_DIR, 'dist', 'core', 'index.js');
 
     if (fs.existsSync(mcpCorePath)) {
       const mcpCore = require(mcpCorePath);
 
-      if (mcpCore.LIB_DIR && typeof mcpCore.check_database_updated === 'function') {
+      if (mcpCore.LIB_DIR && typeof mcpCore.checkDatabaseUpdated === 'function') {
         pass('X-T4: MCP server core exports correctly', 'LIB_DIR and check_database_updated found');
       } else {
         fail('X-T4: MCP server core exports correctly', 'Missing exports');
@@ -880,7 +880,7 @@ async function testCrossCuttingIntegration() {
     }
 
     // Test X.5: Verify vector-index module structure
-    const vectorIndexPath = path.join(MCP_SERVER_DIR, 'lib', 'search', 'vector-index.js');
+    const vectorIndexPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'search', 'vector-index.js');
 
     if (fs.existsSync(vectorIndexPath)) {
       const vectorIndexSource = fs.readFileSync(vectorIndexPath, 'utf-8');
@@ -901,7 +901,7 @@ async function testCrossCuttingIntegration() {
     }
 
     // Test X.6: Verify error codes module
-    const errorsPath = path.join(MCP_SERVER_DIR, 'lib', 'errors.js');
+    const errorsPath = path.join(MCP_SERVER_DIR, 'dist', 'lib', 'errors.js');
 
     if (fs.existsSync(errorsPath)) {
       const errors = require(errorsPath);

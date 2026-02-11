@@ -601,7 +601,7 @@ No conversation messages were captured. This may indicate an issue with data col
 
 ```bash
 # Check memory index health
-node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.js --status
+node .opencode/skill/system-spec-kit/mcp_server/lib/storage/checkpoints.ts --status
 
 # List memories for this spec folder
 memory_search({ specFolder: "{{SPEC_FOLDER}}", limit: 10 })
@@ -613,7 +613,7 @@ ls -la {{SPEC_FOLDER}}/memory/
 memory_search({ query: "orphaned", anchors: ["state"] })
 
 # Force re-index of this spec folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js {{SPEC_FOLDER}} --force
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js {{SPEC_FOLDER}} --force
 ```
 
 ### Recovery Priority

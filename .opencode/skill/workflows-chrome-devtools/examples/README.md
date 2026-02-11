@@ -64,7 +64,7 @@ command -v bc >/dev/null || echo "Install bc for calculations"
 
 **Usage:**
 ```bash
-# Default URL (https://anobel.com)
+# Default URL (https://example.com)
 ./performance-baseline.sh
 
 # Custom URL
@@ -99,8 +99,8 @@ performance-baselines/
 - Performance monitoring over time
 
 **Workflow integration:**
-- See: `.opencode/skill/workflows-code/references/debugging/debugging_workflows.md` (Section 7)
-- See: `.opencode/skill/workflows-code/references/implementation/performance_patterns.md` (Section 3)
+- See: `.opencode/skill/workflows-code--web-dev/references/debugging/debugging_workflows.md` (Section 7)
+- See: `.opencode/skill/workflows-code--web-dev/references/implementation/performance_patterns.md` (Section 3)
 
 ---
 
@@ -114,7 +114,7 @@ performance-baselines/
 ./animation-testing.sh
 
 # Custom selector and trigger class
-./animation-testing.sh https://anobel.com ".hero" "animate-in"
+./animation-testing.sh https://example.com ".hero" "animate-in"
 
 # Test without triggering animation (visual only)
 ./animation-testing.sh https://example.com ".element" ""
@@ -148,7 +148,7 @@ animation-tests/
 - CI/CD animation checks
 
 **Workflow integration:**
-- See: `.opencode/skill/workflows-code/references/implementation/animation_workflows.md` (Section 6)
+- See: `.opencode/skill/workflows-code--web-dev/references/implementation/animation_workflows.md` (Section 6)
 
 ---
 
@@ -162,7 +162,7 @@ animation-tests/
 ./multi-viewport-test.sh
 
 # With animation testing
-./multi-viewport-test.sh https://anobel.com ".hero" "animate-in"
+./multi-viewport-test.sh https://example.com ".hero" "animate-in"
 
 # Visual testing only (no animation)
 ./multi-viewport-test.sh https://example.com "" "none"
@@ -206,8 +206,8 @@ viewport-tests/20241127-143022/
 - Visual regression across viewports
 
 **Workflow integration:**
-- See: `.opencode/skill/workflows-code/references/verification/verification_workflows.md` (Section 2)
-- See: `.opencode/skill/workflows-code/references/implementation/animation_workflows.md` (Multi-Viewport Testing)
+- See: `.opencode/skill/workflows-code--web-dev/references/verification/verification_workflows.md` (Section 2)
+- See: `.opencode/skill/workflows-code--web-dev/references/implementation/animation_workflows.md` (Multi-Viewport Testing)
 
 ---
 

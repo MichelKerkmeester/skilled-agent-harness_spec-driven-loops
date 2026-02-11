@@ -6,7 +6,7 @@
   "scripts": [
     {
       "name": "generate-context",
-      "path": "scripts/memory/generate-context.js",
+      "path": "scripts/dist/memory/generate-context.js",
       "type": "node",
       "description": "Generate memory files with ANCHOR format for Spec Kit Memory indexing",
       "trigger": ["save context", "save memory", "/memory:save"],
@@ -153,22 +153,6 @@
       "gate": null,
       "version": "1.0.0",
       "dependencies": ["calculate-completeness.sh"]
-    },
-    {
-      "name": "setup",
-      "path": "scripts/setup/setup.sh",
-      "type": "bash",
-      "description": "One-command setup for the semantic memory system",
-      "trigger": ["setup memory", "install memory"],
-      "calledBy": ["Developer", "First-time Setup"],
-      "essential": true,
-      "inputs": {
-        "options": "--force (reinstall)"
-      },
-      "outputs": ["Installed dependencies", "Initialized database"],
-      "gate": null,
-      "version": "1.0.0",
-      "dependencies": []
     },
     {
       "name": "common",
@@ -319,7 +303,7 @@
       "path": "scripts/rules/check-complexity.sh",
       "type": "bash",
       "description": "COMPLEXITY_MATCH rule - validates declared complexity matches actual content metrics",
-      "severity": "warn",
+      "severity": "warning",
       "essential": false,
       "version": "1.0.0"
     },
@@ -328,7 +312,7 @@
       "path": "scripts/rules/check-section-counts.sh",
       "type": "bash",
       "description": "SECTION_COUNTS rule - validates section counts are within expected ranges for level",
-      "severity": "warn",
+      "severity": "warning",
       "essential": false,
       "version": "1.0.0"
     },
@@ -337,7 +321,7 @@
       "path": "scripts/rules/check-ai-protocols.sh",
       "type": "bash",
       "description": "AI_PROTOCOL rule - validates AI execution protocols present for Level 3+",
-      "severity": "warn",
+      "severity": "warning",
       "essential": false,
       "version": "1.0.0"
     },
@@ -423,14 +407,14 @@
     ]
   },
   "metadata": {
-    "totalScripts": 14,
-    "essentialScripts": 8,
+    "totalScripts": 13,
+    "essentialScripts": 7,
     "optionalScripts": 6,
     "totalRules": 13,
     "essentialRules": 3,
     "totalLibraries": 13,
     "categories": {
-      "memory": ["generate-context", "cleanup-orphaned-vectors", "test-embeddings-factory", "setup"],
+      "memory": ["generate-context", "cleanup-orphaned-vectors", "test-embeddings-factory"],
       "validation": ["validate-spec", "check-completion", "check-prerequisites", "test-validation"],
       "lifecycle": ["create-spec-folder", "archive-spec", "recommend-level", "calculate-completeness"],
       "routing": ["skill_advisor"],

@@ -1,1 +1,0 @@
-../skill/mcp-narsil/INSTALL_GUIDE.md

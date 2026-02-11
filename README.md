@@ -19,7 +19,7 @@ A development environment for [OpenCode](https://github.com/sst/opencode) featur
 
 **📋 Spec Kit**: Originally inspired by GitHub's spec-kit, this unified system adds automation, slash commands, integrated semantic memory, and sub-folder versioning. Documentation writes itself and is enforced by design.
 
-**🎯 Skills** (custom framework): 8 domain-specific skills that auto-load based on your task. Designed for efficiency: fewer, smarter skills replace the typical sprawl of dozens of fragmented prompts.
+**🎯 Skills** (custom framework): 9 domain-specific skills that auto-load based on your task. Designed for efficiency: fewer, smarter skills replace the typical sprawl of dozens of fragmented prompts.
 
 #### TABLE OF CONTENTS
 
@@ -120,7 +120,7 @@ Key enhancements: gate enforcement, slash commands for every workflow, deep memo
 - Completeness scoring (0-100%)
 - 10 core templates (CORE + ADDENDUM v2.0)
 - 001/002/003 sub-folder versioning
-- 244 scripts handle the boring work (179 TS + 36 JS + 28 shell + 1 Python)
+- 90 scripts handle the boring work (44 TS + 18 JS + 27 shell + 1 Python)
 - Stateless architecture (no STATE.md)
 
 ### The Integration Nobody Else Has
@@ -892,7 +892,7 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 - Minimal quota cost
 
 
-### Available Commands (19 Total)
+### Available Commands (18 Total)
 
 **spec_kit/** (7 commands)
 `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume`, `/spec_kit:debug`, `/spec_kit:handover`
@@ -902,9 +902,6 @@ Commands are explicit, user-invoked workflows with structured steps. Unlike skil
 
 **create/** (6 commands)
 `/create:agent`, `/create:skill`, `/create:skill_asset`, `/create:skill_reference`, `/create:folder_readme`, `/create:install_guide`
-
-**search/** (2 commands)
-`/search:code`, `/search:index`
 
 
 ### Sub-Agent Delegation
@@ -954,6 +951,25 @@ opencode
 On first launch, OpenCode guides you through provider configuration.
 
 
+### Building from Source
+
+The Spec Kit Memory system uses TypeScript. After cloning, you must compile before first use:
+
+```bash
+cd .opencode/skill/system-spec-kit
+npm install
+npm run build    # Compiles TypeScript → scripts/dist/ and mcp_server/dist/
+```
+
+> **Why?** The compiled `dist/` directories are gitignored. Scripts like `generate-context.js` (used by `/memory:save`) only exist after building. The MCP server also requires compilation before it can start.
+
+**Verify the build:**
+
+```bash
+npm run test:cli    # Should print help for generate-context.js
+```
+
+
 ### Configuration File
 
 Copy this environment to your project:
@@ -999,7 +1015,7 @@ export OPENROUTER_API_KEY="your-api-key"
 
 ### MCP Server Setup
 
-MCP servers extend your AI with specialized capabilities. This environment includes 4 pre-configured servers in `opencode.json`:
+MCP servers extend your AI with specialized capabilities. This environment includes 3 pre-configured servers in `opencode.json`:
 
 - **Sequential Thinking**: Structured multi-step reasoning for complex problems
   [Guide](.opencode/install_guides/MCP - Sequential Thinking.md)
@@ -1031,7 +1047,7 @@ Each script handles dependencies, configuration, and validation automatically.
 
 | System              | MCP Name          | Database Location                                               | Purpose                               |
 | ------------------- | ----------------- | --------------------------------------------------------------- | ------------------------------------- |
-| **Spec Kit Memory** | `spec_kit_memory` | `.opencode/skill/system-spec-kit/database/context-index.sqlite` | **Conversation** context preservation |
+| **Spec Kit Memory** | `spec_kit_memory` | `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | **Conversation** context preservation |
 
 
 ### Code Search Tools

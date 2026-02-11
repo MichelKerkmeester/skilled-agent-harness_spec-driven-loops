@@ -51,18 +51,19 @@ Text-based search only
 
 ## 2. 📁 STRUCTURE
 
+> **Note**: Source files (`provider-chain.ts`, `index.ts`) were relocated to `@spec-kit/shared/embeddings` during the shared package migration. This directory retains the README for architectural reference. The `lib/providers/embeddings.ts` module re-exports from the shared package.
+
 ```
 embeddings/
-├── provider-chain.js    # Three-tier fallback chain implementation
-└── index.js             # Barrel export for provider chain
+└── README.md             # Architectural reference (this file)
 ```
 
-### Key Files
+### Relocated Files
 
-| File | Purpose |
+| Original File | Relocated To |
 |------|---------|
-| `provider-chain.js` | `EmbeddingProviderChain` class with fallback logic |
-| `index.js` | Re-exports provider-chain for easy imports |
+| `provider-chain.ts` | `@spec-kit/shared/embeddings` |
+| `index.ts` | `@spec-kit/shared/embeddings` |
 
 ---
 
@@ -79,15 +80,15 @@ embeddings/
 | **Tertiary Tier** | BM25-only (no embeddings, text search only) |
 | **Timeout** | 100ms fallback timeout to prevent slow degradation |
 
-```javascript
-const { createProviderChain } = require('./embeddings');
+```typescript
+import { createProviderChain } from './embeddings';
 
 const chain = await createProviderChain({
-  enableLocalFallback: true,
-  fallbackTimeoutMs: 100
+  primaryProvider: 'voyage',
+  warmup: true
 });
 
-const embedding = await chain.embed('authentication flow');
+const embedding = await chain.generateEmbedding('authentication flow');
 console.log(`Provider: ${chain.getProviderName()}, Tier: ${chain.getActiveTier()}`);
 ```
 
@@ -99,17 +100,19 @@ console.log(`Provider: ${chain.getProviderName()}, Tier: ${chain.getActiveTier()
 |--------|---------|
 | **Behavior** | Returns `null` for all embedding requests |
 | **Search Impact** | System falls back to FTS5 text search |
-| **Diagnostics** | Tracks activation reason and timestamp |
+| **Diagnostics** | Automatically added as fallback tier in provider chain |
 | **Credentials** | No API keys required |
 
-```javascript
-const { BM25OnlyProvider } = require('./embeddings');
+```typescript
+import { BM25OnlyProvider } from './embeddings';
 
 const bm25 = new BM25OnlyProvider();
-bm25.activate('API rate limit exceeded');
 
-const embedding = await bm25.embed('test');
+const embedding = await bm25.generateEmbedding('test');
 // Returns: null (signals BM25-only mode)
+
+const metadata = bm25.get_metadata();
+// Returns: { provider: 'bm25-only', model: 'none', dim: 0, healthy: true, ... }
 ```
 
 ### Fallback Reasons
@@ -129,16 +132,18 @@ const embedding = await bm25.embed('test');
 
 ### Example 1: Create and Use Provider Chain
 
-```javascript
-const { createProviderChain } = require('./embeddings');
+```typescript
+import { createProviderChain } from './embeddings';
 
-// Create chain with fallback enabled
+// Create chain with primary and secondary providers
 const chain = await createProviderChain({
-  enableLocalFallback: true
+  primaryProvider: 'voyage',
+  secondaryProvider: 'openai',
+  warmup: true
 });
 
 // Generate embedding (automatically uses best available provider)
-const embedding = await chain.embed('authentication workflow');
+const embedding = await chain.generateEmbedding('authentication workflow');
 
 // Check which provider is active
 const status = chain.getStatus();
@@ -148,53 +153,45 @@ console.log(`Active: ${status.activeProvider}, Tier: ${status.activeTier}`);
 
 ### Example 2: Handle Graceful Degradation
 
-```javascript
-const { createProviderChain } = require('./embeddings');
+```typescript
+import { createProviderChain } from './embeddings';
 
-const chain = await createProviderChain();
+const chain = await createProviderChain({
+  primaryProvider: 'voyage'
+});
 
-// Check if running in degraded mode
-if (chain.isBM25Only()) {
-  console.warn('Running in BM25-only mode - semantic search unavailable');
-}
-
-// Embedding returns null in BM25-only mode
-const embedding = await chain.embed('test query');
+// Embedding returns null in BM25-only fallback mode
+const embedding = await chain.generateEmbedding('test query');
 if (embedding === null) {
-  // Fall back to keyword search
-  console.log('Using keyword search fallback');
+  console.warn('Falling back to BM25-only text search');
 }
 ```
 
 ### Example 3: Diagnostics and Monitoring
 
-```javascript
-const { EmbeddingProviderChain } = require('./embeddings');
+```typescript
+import { EmbeddingProviderChain, PROVIDER_TIER } from './embeddings';
+import { createEmbeddingsProvider } from '@spec-kit/shared/embeddings/factory';
 
-const chain = new EmbeddingProviderChain({
-  primaryProvider: voyageProvider,
-  localProvider: hfProvider
+// Create custom chain with manual provider setup
+const chain = new EmbeddingProviderChain();
+
+const primaryProvider = await createEmbeddingsProvider({
+  provider: 'voyage',
+  warmup: true
 });
-
-await chain.initialize();
+chain.addProvider(primaryProvider, PROVIDER_TIER.PRIMARY);
 
 // Get full status
 const status = chain.getStatus();
 console.log(JSON.stringify(status, null, 2));
 // {
-//   initialized: true,
-//   activeTier: 'primary',
 //   activeProvider: 'voyage',
-//   isBM25Only: false,
-//   fallbackCount: 0,
-//   providers: { primary: {...}, local: {...}, bm25: {...} }
+//   activeTier: 'primary',
+//   providers: [ { name: 'voyage', tier: 'primary', enabled: true, ... } ],
+//   fallbackHistory: [],
+//   totalFallbacks: 0
 // }
-
-// Get fallback history
-const log = chain.getFallbackLog();
-log.forEach(event => {
-  console.log(`${event.timestamp}: ${event.provider} -> ${event.reason}`);
-});
 ```
 
 ### Common Patterns
@@ -202,11 +199,12 @@ log.forEach(event => {
 | Pattern | Code | When to Use |
 |---------|------|-------------|
 | Create chain | `createProviderChain()` | Server startup |
-| Single embed | `chain.embed(text)` | Query embedding |
-| Batch embed | `chain.batchEmbed(texts)` | Index multiple docs |
-| Check mode | `chain.isBM25Only()` | Detect degraded state |
+| Generate embedding | `chain.generateEmbedding(text)` | Single embedding |
+| Document embed | `chain.embed_document(text)` | Index document |
+| Query embed | `chain.embed_query(text)` | Search query |
+| Warmup | `chain.warmup()` | Pre-load models |
 | Get status | `chain.getStatus()` | Monitoring/debugging |
-| Cleanup | `chain.close()` | Server shutdown |
+| Get metadata | `chain.get_metadata()` | Provider info |
 
 ---
 
@@ -230,4 +228,5 @@ log.forEach(event => {
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2026-02-02*
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

@@ -99,20 +99,15 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │                                                                │
    │ **Q3. Dispatch Mode** (required):                              │
    │    A) Single Agent - Execute with one agent (Recommended)      │
-   │    B) Multi-Agent (1+2) - 1 orchestrator (opus) + 2 workers (opus) │
-   │    C) Multi-Agent (1+3) - 1 orchestrator (opus) + 3 workers (opus) │
+   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
+   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
    │                                                                │
-   │ **Q4. Worker Model** (if B or C selected above):               │
-   │    Default: opus                                               │
-   │    To use different model, type: opus, gemini, gpt             │
-   │    or leave blank for default                                  │
-   │                                                                │
-   │ **Q5. Memory Context** (if memory/ has files):                  │
+   │ **Q4. Memory Context** (if memory/ has files):                  │
    │    A) Load most recent memory file                              │
    │    B) Load all recent files, up to 3                            │
    │    C) Skip (start fresh)                                       │
    │                                                                │
-   │ Reply with answers, e.g.: "A, A, A, , B" or "specs/007-auth/, A, A, gemini, B" │
+   │ Reply with answers, e.g.: "A, A, A, B" or "specs/007-auth/, A, A, B" │
    └────────────────────────────────────────────────────────────────┘
 
 8. WAIT for user response (DO NOT PROCEED)
@@ -122,8 +117,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - confirm_choice = [A/B/C from Q1]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - dispatch_mode = [single/multi_small/multi_large from Q3]
-   - worker_model = [from Q4: opus/gemini/gpt, default opus if blank]
-   - memory_choice = [A/B/C from Q5, or N/A if no memory files]
+    - memory_choice = [A/B/C from Q4, or N/A if no memory files]
 
 10. Handle redirects if needed:
    - IF confirm_choice == B → Re-prompt with folder selection only
@@ -149,7 +143,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `prerequisites_valid = ________________`
 - `execution_mode = ________________`
 - `dispatch_mode = ________________`
-- `worker_model = ________________` (default: opus)
 - `memory_loaded = ________________`
 
 ---
@@ -164,8 +157,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | prerequisites_valid | ✅ Yes         | ______     | Validation check      |
 | execution_mode      | ✅ Yes         | ______     | Suffix or Q2          |
 | dispatch_mode       | ✅ Yes         | ______     | Q3                    |
-| worker_model        | ○ Conditional | ______     | Q4 (default: opus)    |
-| memory_loaded       | ○ Conditional | ______     | Q5 (if memory exists) |
+| memory_loaded       | ○ Conditional | ______     | Q4 (if memory exists) |
 
 ```
 VERIFICATION CHECK:
@@ -346,7 +338,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [sp
 
 ### Memory Context Loading
 
-For context loading during setup (Q5), use `memory_context()` (L1 unified entry) as the primary retrieval method. It auto-detects intent, applies task-specific weights, and routes to the optimal search strategy. Use `memory_search()` (L2) only as a fallback when you need direct control over search parameters (e.g., specific `specFolder`, `tier`, or `concepts` filtering).
+For context loading during setup (Q4), use `memory_context()` (L1 unified entry) as the primary retrieval method. It auto-detects intent, applies task-specific weights, and routes to the optimal search strategy. Use `memory_search()` (L2) only as a fallback when you need direct control over search parameters (e.g., specific `specFolder`, `tier`, or `concepts` filtering).
 
 > Note: Gate 1 trigger matching is handled at the agent level (AGENTS.md). This command uses memory_context (L1) for unified context retrieval.
 

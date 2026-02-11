@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: EXTENDED VALIDATION TESTS
+# COMPONENT: Extended Validation Tests
 # ───────────────────────────────────────────────────────────────
 # Comprehensive test suite covering all 13 validation rules,
 # 52 test fixtures, exit codes, and JSON output mode.
@@ -23,7 +23,8 @@
 # COMPATIBILITY: bash 3.2+ (macOS default)
 
 # Note: -u disabled to handle empty arrays in bash 3.2
-set -o pipefail
+# DEVIATION: -u omitted for bash 3.2 empty array compatibility
+set -eo pipefail
 
 # ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
@@ -35,14 +36,18 @@ RULES_DIR="$SCRIPT_DIR/../rules"
 FIXTURES="$SCRIPT_DIR/../test-fixtures"
 
 # Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-DIM='\033[2m'
-BOLD='\033[1m'
-NC='\033[0m'
+if [[ -t 1 ]]; then
+    RED='\033[0;31m'
+    GREEN='\033[0;32m'
+    YELLOW='\033[0;33m'
+    BLUE='\033[0;34m'
+    CYAN='\033[0;36m'
+    DIM='\033[2m'
+    BOLD='\033[1m'
+    NC='\033[0m'
+else
+    RED='' GREEN='' YELLOW='' BLUE='' CYAN='' DIM='' BOLD='' NC=''
+fi
 
 # Global counters
 PASSED=0
@@ -104,7 +109,7 @@ EOF
 
 format_time() {
     local ms=$1
-    if [ "$ms" -lt 1000 ]; then
+    if [[ "$ms" -lt 1000 ]]; then
         echo "${ms}ms"
     else
         local seconds=$((ms / 1000))
@@ -140,13 +145,13 @@ contains_ci() {
 }
 
 save_category_summary() {
-    if [ -n "$CURRENT_CATEGORY" ]; then
+    if [[ -n "$CURRENT_CATEGORY" ]]; then
         local total=$((CURRENT_CAT_PASSED + CURRENT_CAT_FAILED + CURRENT_CAT_SKIPPED))
-        if [ "$total" -gt 0 ]; then
+        if [[ "$total" -gt 0 ]]; then
             local time_fmt
             time_fmt=$(format_time "$CURRENT_CAT_TIME")
             local entry="${CURRENT_CATEGORY}|${CURRENT_CAT_PASSED}|${CURRENT_CAT_FAILED}|${CURRENT_CAT_SKIPPED}|${time_fmt}"
-            if [ -n "$CATEGORY_SUMMARIES" ]; then
+            if [[ -n "$CATEGORY_SUMMARIES" ]]; then
                 CATEGORY_SUMMARIES="${CATEGORY_SUMMARIES}
 ${entry}"
             else
@@ -171,14 +176,14 @@ begin_category() {
     CURRENT_CAT_SKIPPED=0
     CURRENT_CAT_TIME=0
 
-    if [ -n "$CATEGORY_LIST" ]; then
+    if [[ -n "$CATEGORY_LIST" ]]; then
         CATEGORY_LIST="${CATEGORY_LIST}
 ${name}"
     else
         CATEGORY_LIST="$name"
     fi
 
-    if [ -n "$SINGLE_CATEGORY" ]; then
+    if [[ -n "$SINGLE_CATEGORY" ]]; then
         if ! contains_ci "$name" "$SINGLE_CATEGORY"; then
             return 1
         fi
@@ -203,25 +208,25 @@ run_test() {
 
     # Register test
     local test_entry="[$CURRENT_CATEGORY] $name"
-    if [ -n "$TEST_LIST" ]; then
+    if [[ -n "$TEST_LIST" ]]; then
         TEST_LIST="${TEST_LIST}
 ${test_entry}"
     else
         TEST_LIST="$test_entry"
     fi
 
-    if [ "$LIST_ONLY" = true ]; then return; fi
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
 
     # Apply filters
-    if [ -n "$SINGLE_TEST" ] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
-    if [ -n "$SINGLE_CATEGORY" ] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
-    if [ -n "$SINGLE_RULE" ] && [ -n "$rule_filter" ] && ! contains_ci "$rule_filter" "$SINGLE_RULE"; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+    if [[ -n "$SINGLE_RULE" ]] && [[ -n "$rule_filter" ]] && ! contains_ci "$rule_filter" "$SINGLE_RULE"; then return; fi
 
     local fixture_path="$FIXTURES/$fixture"
     local start_time
     start_time=$(get_time_ms)
 
-    if [ ! -d "$fixture_path" ]; then
+    if [[ ! -d "$fixture_path" ]]; then
         local end_time elapsed
         end_time=$(get_time_ms)
         elapsed=$((end_time - start_time))
@@ -233,7 +238,7 @@ ${test_entry}"
         return
     fi
 
-    if [ ! -f "$VALIDATOR" ]; then
+    if [[ ! -f "$VALIDATOR" ]]; then
         local end_time elapsed
         end_time=$(get_time_ms)
         elapsed=$((end_time - start_time))
@@ -263,11 +268,11 @@ ${test_entry}"
         *) actual="fail" ;;
     esac
 
-    if [ "$actual" = "$expect" ]; then
+    if [[ "$actual" = "$expect" ]]; then
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
         PASSED=$((PASSED + 1))
         CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
-        if [ "$VERBOSE" = true ] && [ -n "$output" ]; then
+        if [[ "$VERBOSE" = true ]] && [[ -n "$output" ]]; then
             echo -e "${DIM}  Output:${NC}"
             echo "$output" | sed 's/^/    /' | head -15
         fi
@@ -290,18 +295,18 @@ run_test_with_flags() {
     local env_vars="${5:-}"
 
     local test_entry="[$CURRENT_CATEGORY] $name"
-    if [ -n "$TEST_LIST" ]; then TEST_LIST="${TEST_LIST}
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
 ${test_entry}"; else TEST_LIST="$test_entry"; fi
 
-    if [ "$LIST_ONLY" = true ]; then return; fi
-    if [ -n "$SINGLE_TEST" ] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
-    if [ -n "$SINGLE_CATEGORY" ] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
 
     local fixture_path="$FIXTURES/$fixture"
     local start_time
     start_time=$(get_time_ms)
 
-    if [ ! -d "$fixture_path" ] || [ ! -f "$VALIDATOR" ]; then
+    if [[ ! -d "$fixture_path" ]] || [[ ! -f "$VALIDATOR" ]]; then
         local end_time elapsed
         end_time=$(get_time_ms)
         elapsed=$((end_time - start_time))
@@ -313,7 +318,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
 
     local exit_code=0
     local output
-    if [ -n "$env_vars" ]; then
+    if [[ -n "$env_vars" ]]; then
         output=$(env $env_vars "$VALIDATOR" "$fixture_path" $flags 2>&1) || exit_code=$?
     else
         output=$("$VALIDATOR" "$fixture_path" $flags 2>&1) || exit_code=$?
@@ -333,7 +338,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
         *) actual="fail" ;;
     esac
 
-    if [ "$actual" = "$expect" ]; then
+    if [[ "$actual" = "$expect" ]]; then
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
         PASSED=$((PASSED + 1))
         CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
@@ -353,18 +358,18 @@ run_test_json() {
     local expect="$3"
 
     local test_entry="[$CURRENT_CATEGORY] $name"
-    if [ -n "$TEST_LIST" ]; then TEST_LIST="${TEST_LIST}
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
 ${test_entry}"; else TEST_LIST="$test_entry"; fi
 
-    if [ "$LIST_ONLY" = true ]; then return; fi
-    if [ -n "$SINGLE_TEST" ] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
-    if [ -n "$SINGLE_CATEGORY" ] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
 
     local fixture_path="$FIXTURES/$fixture"
     local start_time
     start_time=$(get_time_ms)
 
-    if [ ! -d "$fixture_path" ] || [ ! -f "$VALIDATOR" ]; then
+    if [[ ! -d "$fixture_path" ]] || [[ ! -f "$VALIDATOR" ]]; then
         echo -e "${YELLOW}⊘${NC} $name ${DIM}(not found)${NC}"
         SKIPPED=$((SKIPPED + 1))
         CURRENT_CAT_SKIPPED=$((CURRENT_CAT_SKIPPED + 1))
@@ -394,7 +399,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
     echo "$output" | python3 -m json.tool > /dev/null 2>&1 && json_valid=true
 
     local has_fields="False"
-    if [ "$json_valid" = true ]; then
+    if [[ "$json_valid" = true ]]; then
         has_fields=$(echo "$output" | python3 -c "
 import sys, json
 try:
@@ -405,19 +410,19 @@ except: print('False')
 " 2>/dev/null || echo "False")
     fi
 
-    if [ "$actual" = "$expect" ] && [ "$json_valid" = true ] && [ "$has_fields" = "True" ]; then
+    if [[ "$actual" = "$expect" ]] && [[ "$json_valid" = true ]] && [[ "$has_fields" = "True" ]]; then
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
         PASSED=$((PASSED + 1))
         CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
-        if [ "$VERBOSE" = true ]; then
+        if [[ "$VERBOSE" = true ]]; then
             echo -e "${DIM}  JSON (formatted):${NC}"
             echo "$output" | python3 -m json.tool 2>/dev/null | sed 's/^/    /' | head -10
         fi
     else
         echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
-        [ "$actual" != "$expect" ] && echo -e "  ${RED}Expected:${NC} $expect, ${RED}Got:${NC} $actual"
-        [ "$json_valid" != true ] && echo -e "  ${RED}JSON validation failed${NC}"
-        [ "$has_fields" != "True" ] && echo -e "  ${RED}Missing required JSON fields${NC}"
+        [[ "$actual" != "$expect" ]] && echo -e "  ${RED}Expected:${NC} $expect, ${RED}Got:${NC} $actual"
+        [[ "$json_valid" != true ]] && echo -e "  ${RED}JSON validation failed${NC}"
+        [[ "$has_fields" != "True" ]] && echo -e "  ${RED}Missing required JSON fields${NC}"
         echo "$output" | sed 's/^/    /' | head -15
         FAILED=$((FAILED + 1))
         CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
@@ -431,18 +436,18 @@ run_test_quiet() {
     local expect="$3"
 
     local test_entry="[$CURRENT_CATEGORY] $name"
-    if [ -n "$TEST_LIST" ]; then TEST_LIST="${TEST_LIST}
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
 ${test_entry}"; else TEST_LIST="$test_entry"; fi
 
-    if [ "$LIST_ONLY" = true ]; then return; fi
-    if [ -n "$SINGLE_TEST" ] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
-    if [ -n "$SINGLE_CATEGORY" ] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
 
     local fixture_path="$FIXTURES/$fixture"
     local start_time
     start_time=$(get_time_ms)
 
-    if [ ! -d "$fixture_path" ] || [ ! -f "$VALIDATOR" ]; then
+    if [[ ! -d "$fixture_path" ]] || [[ ! -f "$VALIDATOR" ]]; then
         echo -e "${YELLOW}⊘${NC} $name ${DIM}(not found)${NC}"
         SKIPPED=$((SKIPPED + 1))
         CURRENT_CAT_SKIPPED=$((CURRENT_CAT_SKIPPED + 1))
@@ -471,14 +476,14 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
     line_count=$(echo -n "$output" | wc -l | tr -d ' ')
 
     # Quiet mode should produce minimal output (0-2 lines)
-    if [ "$actual" = "$expect" ] && [ "$line_count" -le 2 ]; then
+    if [[ "$actual" = "$expect" ]] && [[ "$line_count" -le 2 ]]; then
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
         PASSED=$((PASSED + 1))
         CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
     else
         echo -e "${RED}✗${NC} $name ${DIM}[${time_display}]${NC}"
-        [ "$actual" != "$expect" ] && echo -e "  ${RED}Expected:${NC} $expect, ${RED}Got:${NC} $actual"
-        [ "$line_count" -gt 2 ] && echo -e "  ${RED}Too much output (${line_count} lines)${NC}"
+        [[ "$actual" != "$expect" ]] && echo -e "  ${RED}Expected:${NC} $expect, ${RED}Got:${NC} $actual"
+        [[ "$line_count" -gt 2 ]] && echo -e "  ${RED}Too much output (${line_count} lines)${NC}"
         FAILED=$((FAILED + 1))
         CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
     fi
@@ -493,26 +498,26 @@ run_isolated_rule_test() {
     local level="${5:-1}"
 
     local test_entry="[$CURRENT_CATEGORY] $name"
-    if [ -n "$TEST_LIST" ]; then TEST_LIST="${TEST_LIST}
+    if [[ -n "$TEST_LIST" ]]; then TEST_LIST="${TEST_LIST}
 ${test_entry}"; else TEST_LIST="$test_entry"; fi
 
-    if [ "$LIST_ONLY" = true ]; then return; fi
-    if [ -n "$SINGLE_TEST" ] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
-    if [ -n "$SINGLE_CATEGORY" ] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
+    if [[ "$LIST_ONLY" = true ]]; then return; fi
+    if [[ -n "$SINGLE_TEST" ]] && ! contains_ci "$name" "$SINGLE_TEST"; then return; fi
+    if [[ -n "$SINGLE_CATEGORY" ]] && ! contains_ci "$CURRENT_CATEGORY" "$SINGLE_CATEGORY"; then return; fi
 
     local rule_path="$RULES_DIR/$rule_script"
     local fixture_path="$FIXTURES/$fixture"
     local start_time
     start_time=$(get_time_ms)
 
-    if [ ! -f "$rule_path" ]; then
+    if [[ ! -f "$rule_path" ]]; then
         echo -e "${YELLOW}⊘${NC} $name ${DIM}(rule script not found: $rule_script)${NC}"
         SKIPPED=$((SKIPPED + 1))
         CURRENT_CAT_SKIPPED=$((CURRENT_CAT_SKIPPED + 1))
         return
     fi
 
-    if [ ! -d "$fixture_path" ]; then
+    if [[ ! -d "$fixture_path" ]]; then
         echo -e "${YELLOW}⊘${NC} $name ${DIM}(fixture not found: $fixture)${NC}"
         SKIPPED=$((SKIPPED + 1))
         CURRENT_CAT_SKIPPED=$((CURRENT_CAT_SKIPPED + 1))
@@ -542,11 +547,11 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
 
     local actual="${RULE_STATUS:-pass}"
 
-    if [ "$actual" = "$expect" ]; then
+    if [[ "$actual" = "$expect" ]]; then
         echo -e "${GREEN}✓${NC} $name ${DIM}[${time_display}]${NC}"
         PASSED=$((PASSED + 1))
         CURRENT_CAT_PASSED=$((CURRENT_CAT_PASSED + 1))
-        if [ "$VERBOSE" = true ]; then
+        if [[ "$VERBOSE" = true ]]; then
             echo -e "${DIM}  Rule: $RULE_NAME | Status: $RULE_STATUS | Message: $RULE_MESSAGE${NC}"
         fi
     else
@@ -554,7 +559,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
         echo -e "  ${RED}Expected:${NC} $expect, ${RED}Got:${NC} $actual"
         echo -e "  ${DIM}Rule: $RULE_NAME | Message: $RULE_MESSAGE${NC}"
         for d in "${RULE_DETAILS[@]:-}"; do
-            [ -n "$d" ] && echo -e "    - $d"
+            [[ -n "$d" ]] && echo -e "    - $d"
         done
         FAILED=$((FAILED + 1))
         CURRENT_CAT_FAILED=$((CURRENT_CAT_FAILED + 1))
@@ -567,7 +572,7 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
 # 5. PARSE ARGUMENTS
 # ───────────────────────────────────────────────────────────────
 
-while [ $# -gt 0 ]; do
+while [[ $# -gt 0 ]]; do
     case $1 in
         -v|--verbose) VERBOSE=true; shift ;;
         -t|--test) SINGLE_TEST="$2"; shift 2 ;;
@@ -589,21 +594,21 @@ echo -e "${BLUE}═════════════════════�
 echo -e "${BLUE}${BOLD}  SpecKit Extended Validation Test Suite v1.0${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════════${NC}"
 
-if [ "$LIST_ONLY" = true ]; then
+if [[ "$LIST_ONLY" = true ]]; then
     echo -e "${DIM}  Mode: List only${NC}"
-elif [ -n "$SINGLE_TEST" ]; then
+elif [[ -n "$SINGLE_TEST" ]]; then
     echo -e "${DIM}  Filter: test matching \"$SINGLE_TEST\"${NC}"
-elif [ -n "$SINGLE_CATEGORY" ]; then
+elif [[ -n "$SINGLE_CATEGORY" ]]; then
     echo -e "${DIM}  Filter: category matching \"$SINGLE_CATEGORY\"${NC}"
-elif [ -n "$SINGLE_RULE" ]; then
+elif [[ -n "$SINGLE_RULE" ]]; then
     echo -e "${DIM}  Filter: rule matching \"$SINGLE_RULE\"${NC}"
 fi
 
-if [ "$ISOLATED" = true ]; then
+if [[ "$ISOLATED" = true ]]; then
     echo -e "${DIM}  Mode: Isolated rule testing${NC}"
 fi
 
-if [ "$VERBOSE" = true ]; then
+if [[ "$VERBOSE" = true ]]; then
     echo -e "${DIM}  Verbose: enabled${NC}"
 fi
 
@@ -859,19 +864,19 @@ save_category_summary
 # 8. LIST MODE OUTPUT
 # ───────────────────────────────────────────────────────────────
 
-if [ "$LIST_ONLY" = true ]; then
+if [[ "$LIST_ONLY" = true ]]; then
     echo ""
     echo -e "${BLUE}${BOLD}Available Categories:${NC}"
     echo "─────────────────────────────────────────────────────────────────"
     echo "$CATEGORY_LIST" | while IFS= read -r cat; do
-        [ -n "$cat" ] && echo "  - $cat"
+        [[ -n "$cat" ]] && echo "  - $cat"
     done
 
     echo ""
     echo -e "${BLUE}${BOLD}Available Tests:${NC}"
     echo "─────────────────────────────────────────────────────────────────"
     echo "$TEST_LIST" | while IFS= read -r test; do
-        [ -n "$test" ] && echo "  - $test"
+        [[ -n "$test" ]] && echo "  - $test"
     done
 
     cat_count=$(echo "$CATEGORY_LIST" | grep -c . || echo 0)
@@ -897,14 +902,14 @@ echo ""
 echo -e "${BOLD}By Category:${NC}"
 echo "─────────────────────────────────────────────────────────────────"
 
-if [ -n "$CATEGORY_SUMMARIES" ]; then
+if [[ -n "$CATEGORY_SUMMARIES" ]]; then
     echo "$CATEGORY_SUMMARIES" | while IFS='|' read -r cat_name cat_p cat_f cat_s cat_time; do
-        [ -z "$cat_name" ] && continue
+        [[ -z "$cat_name" ]] && continue
         cat_total=$((cat_p + cat_f + cat_s))
 
-        if [ "$cat_f" -gt 0 ]; then
+        if [[ "$cat_f" -gt 0 ]]; then
             echo -e "  ${RED}●${NC} ${cat_name}: ${GREEN}${cat_p}${NC}/${cat_total} passed ${DIM}(${cat_time})${NC}"
-        elif [ "$cat_s" -eq "$cat_total" ]; then
+        elif [[ "$cat_s" -eq "$cat_total" ]]; then
             echo -e "  ${YELLOW}●${NC} ${cat_name}: ${YELLOW}${cat_s}${NC} skipped ${DIM}(${cat_time})${NC}"
         else
             echo -e "  ${GREEN}●${NC} ${cat_name}: ${GREEN}${cat_p}${NC}/${cat_total} passed ${DIM}(${cat_time})${NC}"
@@ -931,16 +936,16 @@ echo ""
 # 10. EXIT
 # ───────────────────────────────────────────────────────────────
 
-if [ $FAILED -gt 0 ]; then
+if [[ $FAILED -gt 0 ]]; then
     echo -e "${RED}${BOLD}RESULT: FAILED${NC}"
     echo ""
     exit 1
-elif [ $SKIPPED -eq $TOTAL ] && [ $TOTAL -gt 0 ]; then
+elif [[ $SKIPPED -eq $TOTAL ]] && [[ $TOTAL -gt 0 ]]; then
     echo -e "${YELLOW}${BOLD}RESULT: SKIPPED${NC}"
     echo "Validator or fixtures not found."
     echo ""
     exit 0
-elif [ $TOTAL -eq 0 ]; then
+elif [[ $TOTAL -eq 0 ]]; then
     echo -e "${YELLOW}${BOLD}RESULT: NO TESTS RUN${NC}"
     echo "No tests matched the filter criteria."
     echo ""

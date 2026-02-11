@@ -53,43 +53,43 @@ function log(msg) {
   console.log(msg);
 }
 
-function pass(test_name, evidence) {
+function pass(testName, evidence) {
   results.passed++;
-  results.tests.push({ name: test_name, status: 'PASS', evidence });
-  log(`   [PASS] ${test_name}`);
+  results.tests.push({ name: testName, status: 'PASS', evidence });
+  log(`   [PASS] ${testName}`);
   if (evidence) log(`      Evidence: ${evidence}`);
 }
 
-function fail(test_name, reason) {
+function fail(testName, reason) {
   results.failed++;
-  results.tests.push({ name: test_name, status: 'FAIL', reason });
-  log(`   [FAIL] ${test_name}`);
+  results.tests.push({ name: testName, status: 'FAIL', reason });
+  log(`   [FAIL] ${testName}`);
   log(`      Reason: ${reason}`);
 }
 
-function skip(test_name, reason) {
+function skip(testName, reason) {
   results.skipped++;
-  results.tests.push({ name: test_name, status: 'SKIP', reason });
-  log(`   [SKIP] ${test_name} (skipped: ${reason})`);
+  results.tests.push({ name: testName, status: 'SKIP', reason });
+  log(`   [SKIP] ${testName} (skipped: ${reason})`);
 }
 
-function dir_exists(dir_path) {
-  return fs.existsSync(dir_path) && fs.statSync(dir_path).isDirectory();
+function dirExists(dirPath) {
+  return fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory();
 }
 
-function file_exists(file_path) {
+function fileExists(file_path) {
   return fs.existsSync(file_path) && fs.statSync(file_path).isFile();
 }
 
-function count_files_in_dir(dir_path, extension = '.md') {
-  if (!dir_exists(dir_path)) return 0;
-  const files = fs.readdirSync(dir_path);
+function countFilesInDir(dirPath, extension = '.md') {
+  if (!dirExists(dirPath)) return 0;
+  const files = fs.readdirSync(dirPath);
   // Exclude README.md from count (documentation file, not a template)
   return files.filter(f => f.endsWith(extension) && f !== 'README.md').length;
 }
 
-function read_file(file_path) {
-  if (!file_exists(file_path)) return null;
+function readFile(file_path) {
+  if (!fileExists(file_path)) return null;
   return fs.readFileSync(file_path, 'utf8');
 }
 
@@ -97,29 +97,29 @@ function read_file(file_path) {
    3. TEST SUITE: LEVEL TEMPLATES EXIST
 ────────────────────────────────────────────────────────────────*/
 
-async function test_level_templates_exist() {
+async function testLevelTemplatesExist() {
   log('\n--- TEST SUITE: Level Templates Exist ---');
 
   // Test Level 1 directory and files (4 files)
   try {
-    if (dir_exists(LEVEL_1_DIR)) {
+    if (dirExists(LEVEL_1_DIR)) {
       pass('T-001a: level_1/ directory exists', LEVEL_1_DIR);
     } else {
       fail('T-001a: level_1/ directory exists', `Directory not found: ${LEVEL_1_DIR}`);
       return;
     }
 
-    const level1_expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md'];
-    const level1_actual = fs.readdirSync(LEVEL_1_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
+    const level1Expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md'];
+    const level1Actual = fs.readdirSync(LEVEL_1_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
-    if (level1_actual.length === 4) {
-      pass('T-001b: level_1/ has 4 files', `Files: ${level1_actual.join(', ')}`);
+    if (level1Actual.length === 4) {
+      pass('T-001b: level_1/ has 4 files', `Files: ${level1Actual.join(', ')}`);
     } else {
-      fail('T-001b: level_1/ has 4 files', `Expected 4, found ${level1_actual.length}: ${level1_actual.join(', ')}`);
+      fail('T-001b: level_1/ has 4 files', `Expected 4, found ${level1Actual.length}: ${level1Actual.join(', ')}`);
     }
 
-    for (const file of level1_expected) {
-      if (file_exists(path.join(LEVEL_1_DIR, file))) {
+    for (const file of level1Expected) {
+      if (fileExists(path.join(LEVEL_1_DIR, file))) {
         pass(`T-001c: level_1/${file} exists`, 'File found');
       } else {
         fail(`T-001c: level_1/${file} exists`, 'File not found');
@@ -131,24 +131,24 @@ async function test_level_templates_exist() {
 
   // Test Level 2 directory and files (5 files: +checklist.md)
   try {
-    if (dir_exists(LEVEL_2_DIR)) {
+    if (dirExists(LEVEL_2_DIR)) {
       pass('T-002a: level_2/ directory exists', LEVEL_2_DIR);
     } else {
       fail('T-002a: level_2/ directory exists', `Directory not found: ${LEVEL_2_DIR}`);
       return;
     }
 
-    const level2_expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md'];
-    const level2_actual = fs.readdirSync(LEVEL_2_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
+    const level2Expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md'];
+    const level2Actual = fs.readdirSync(LEVEL_2_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
-    if (level2_actual.length === 5) {
-      pass('T-002b: level_2/ has 5 files', `Files: ${level2_actual.join(', ')}`);
+    if (level2Actual.length === 5) {
+      pass('T-002b: level_2/ has 5 files', `Files: ${level2Actual.join(', ')}`);
     } else {
-      fail('T-002b: level_2/ has 5 files', `Expected 5, found ${level2_actual.length}: ${level2_actual.join(', ')}`);
+      fail('T-002b: level_2/ has 5 files', `Expected 5, found ${level2Actual.length}: ${level2Actual.join(', ')}`);
     }
 
-    for (const file of level2_expected) {
-      if (file_exists(path.join(LEVEL_2_DIR, file))) {
+    for (const file of level2Expected) {
+      if (fileExists(path.join(LEVEL_2_DIR, file))) {
         pass(`T-002c: level_2/${file} exists`, 'File found');
       } else {
         fail(`T-002c: level_2/${file} exists`, 'File not found');
@@ -160,24 +160,24 @@ async function test_level_templates_exist() {
 
   // Test Level 3 directory and files (6 files: +decision-record.md)
   try {
-    if (dir_exists(LEVEL_3_DIR)) {
+    if (dirExists(LEVEL_3_DIR)) {
       pass('T-003a: level_3/ directory exists', LEVEL_3_DIR);
     } else {
       fail('T-003a: level_3/ directory exists', `Directory not found: ${LEVEL_3_DIR}`);
       return;
     }
 
-    const level3_expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md', 'decision-record.md'];
-    const level3_actual = fs.readdirSync(LEVEL_3_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
+    const level3Expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md', 'decision-record.md'];
+    const level3Actual = fs.readdirSync(LEVEL_3_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
-    if (level3_actual.length === 6) {
-      pass('T-003b: level_3/ has 6 files', `Files: ${level3_actual.join(', ')}`);
+    if (level3Actual.length === 6) {
+      pass('T-003b: level_3/ has 6 files', `Files: ${level3Actual.join(', ')}`);
     } else {
-      fail('T-003b: level_3/ has 6 files', `Expected 6, found ${level3_actual.length}: ${level3_actual.join(', ')}`);
+      fail('T-003b: level_3/ has 6 files', `Expected 6, found ${level3Actual.length}: ${level3Actual.join(', ')}`);
     }
 
-    for (const file of level3_expected) {
-      if (file_exists(path.join(LEVEL_3_DIR, file))) {
+    for (const file of level3Expected) {
+      if (fileExists(path.join(LEVEL_3_DIR, file))) {
         pass(`T-003c: level_3/${file} exists`, 'File found');
       } else {
         fail(`T-003c: level_3/${file} exists`, 'File not found');
@@ -189,24 +189,24 @@ async function test_level_templates_exist() {
 
   // Test Level 3+ directory and files (6 files with extended content)
   try {
-    if (dir_exists(LEVEL_3PLUS_DIR)) {
+    if (dirExists(LEVEL_3PLUS_DIR)) {
       pass('T-004a: level_3+/ directory exists', LEVEL_3PLUS_DIR);
     } else {
       fail('T-004a: level_3+/ directory exists', `Directory not found: ${LEVEL_3PLUS_DIR}`);
       return;
     }
 
-    const level3plus_expected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md', 'decision-record.md'];
-    const level3plus_actual = fs.readdirSync(LEVEL_3PLUS_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
+    const level3plusExpected = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'checklist.md', 'decision-record.md'];
+    const level3plusActual = fs.readdirSync(LEVEL_3PLUS_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
-    if (level3plus_actual.length === 6) {
-      pass('T-004b: level_3+/ has 6 files', `Files: ${level3plus_actual.join(', ')}`);
+    if (level3plusActual.length === 6) {
+      pass('T-004b: level_3+/ has 6 files', `Files: ${level3plusActual.join(', ')}`);
     } else {
-      fail('T-004b: level_3+/ has 6 files', `Expected 6, found ${level3plus_actual.length}: ${level3plus_actual.join(', ')}`);
+      fail('T-004b: level_3+/ has 6 files', `Expected 6, found ${level3plusActual.length}: ${level3plusActual.join(', ')}`);
     }
 
-    for (const file of level3plus_expected) {
-      if (file_exists(path.join(LEVEL_3PLUS_DIR, file))) {
+    for (const file of level3plusExpected) {
+      if (fileExists(path.join(LEVEL_3PLUS_DIR, file))) {
         pass(`T-004c: level_3+/${file} exists`, 'File found');
       } else {
         fail(`T-004c: level_3+/${file} exists`, 'File not found');
@@ -221,12 +221,12 @@ async function test_level_templates_exist() {
    4. TEST SUITE: CORE TEMPLATES
 ────────────────────────────────────────────────────────────────*/
 
-async function test_core_templates() {
+async function testCoreTemplates() {
   log('\n--- TEST SUITE: Core Templates ---');
 
   try {
     // Test core directory exists
-    if (dir_exists(CORE_DIR)) {
+    if (dirExists(CORE_DIR)) {
       pass('T-010a: core/ directory exists', CORE_DIR);
     } else {
       fail('T-010a: core/ directory exists', `Directory not found: ${CORE_DIR}`);
@@ -234,52 +234,52 @@ async function test_core_templates() {
     }
 
     // Test 4 core files exist (excluding README.md which is documentation)
-    const core_expected = ['spec-core.md', 'plan-core.md', 'tasks-core.md', 'impl-summary-core.md'];
-    const core_actual = fs.readdirSync(CORE_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
+    const coreExpected = ['spec-core.md', 'plan-core.md', 'tasks-core.md', 'impl-summary-core.md'];
+    const coreActual = fs.readdirSync(CORE_DIR).filter(f => f.endsWith('.md') && f !== 'README.md');
 
-    if (core_actual.length === 4) {
-      pass('T-010b: core/ contains 4 core files', `Files: ${core_actual.join(', ')}`);
+    if (coreActual.length === 4) {
+      pass('T-010b: core/ contains 4 core files', `Files: ${coreActual.join(', ')}`);
     } else {
-      fail('T-010b: core/ contains 4 core files', `Expected 4, found ${core_actual.length}: ${core_actual.join(', ')}`);
+      fail('T-010b: core/ contains 4 core files', `Expected 4, found ${coreActual.length}: ${coreActual.join(', ')}`);
     }
 
     // Test each core file has required sections
-    const spec_core = read_file(path.join(CORE_DIR, 'spec-core.md'));
-    if (spec_core) {
-      const required_sections = ['METADATA', 'PROBLEM & PURPOSE', 'SCOPE', 'REQUIREMENTS', 'SUCCESS CRITERIA', 'RISKS & DEPENDENCIES'];
-      const missing_sections = required_sections.filter(s => !spec_core.includes(s));
+    const specCore = readFile(path.join(CORE_DIR, 'spec-core.md'));
+    if (specCore) {
+      const requiredSections = ['METADATA', 'PROBLEM & PURPOSE', 'SCOPE', 'REQUIREMENTS', 'SUCCESS CRITERIA', 'RISKS & DEPENDENCIES'];
+      const missingSections = requiredSections.filter(s => !specCore.includes(s));
 
-      if (missing_sections.length === 0) {
-        pass('T-010c: spec-core.md has required sections', `Sections: ${required_sections.join(', ')}`);
+      if (missingSections.length === 0) {
+        pass('T-010c: spec-core.md has required sections', `Sections: ${requiredSections.join(', ')}`);
       } else {
-        fail('T-010c: spec-core.md has required sections', `Missing: ${missing_sections.join(', ')}`);
+        fail('T-010c: spec-core.md has required sections', `Missing: ${missingSections.join(', ')}`);
       }
     } else {
       fail('T-010c: spec-core.md has required sections', 'File not readable');
     }
 
-    const plan_core = read_file(path.join(CORE_DIR, 'plan-core.md'));
-    if (plan_core) {
-      const required_sections = ['SUMMARY', 'QUALITY GATES', 'ARCHITECTURE', 'IMPLEMENTATION PHASES', 'TESTING STRATEGY'];
-      const missing_sections = required_sections.filter(s => !plan_core.includes(s));
+    const planCore = readFile(path.join(CORE_DIR, 'plan-core.md'));
+    if (planCore) {
+      const requiredSections = ['SUMMARY', 'QUALITY GATES', 'ARCHITECTURE', 'IMPLEMENTATION PHASES', 'TESTING STRATEGY'];
+      const missingSections = requiredSections.filter(s => !planCore.includes(s));
 
-      if (missing_sections.length === 0) {
-        pass('T-010d: plan-core.md has required sections', `Sections: ${required_sections.join(', ')}`);
+      if (missingSections.length === 0) {
+        pass('T-010d: plan-core.md has required sections', `Sections: ${requiredSections.join(', ')}`);
       } else {
-        fail('T-010d: plan-core.md has required sections', `Missing: ${missing_sections.join(', ')}`);
+        fail('T-010d: plan-core.md has required sections', `Missing: ${missingSections.join(', ')}`);
       }
     } else {
       fail('T-010d: plan-core.md has required sections', 'File not readable');
     }
 
     // Test SPECKIT markers
-    if (spec_core && spec_core.includes('SPECKIT_LEVEL')) {
+    if (specCore && specCore.includes('SPECKIT_LEVEL')) {
       pass('T-010e: spec-core.md has SPECKIT_LEVEL marker', 'Marker found');
     } else {
       fail('T-010e: spec-core.md has SPECKIT_LEVEL marker', 'Marker not found');
     }
 
-    if (spec_core && spec_core.includes('SPECKIT_TEMPLATE_SOURCE')) {
+    if (specCore && specCore.includes('SPECKIT_TEMPLATE_SOURCE')) {
       pass('T-010f: spec-core.md has SPECKIT_TEMPLATE_SOURCE marker', 'Marker found');
     } else {
       fail('T-010f: spec-core.md has SPECKIT_TEMPLATE_SOURCE marker', 'Marker not found');
@@ -294,12 +294,12 @@ async function test_core_templates() {
    5. TEST SUITE: ADDENDUM STRUCTURE
 ────────────────────────────────────────────────────────────────*/
 
-async function test_addendum_structure() {
+async function testAddendumStructure() {
   log('\n--- TEST SUITE: Addendum Structure ---');
 
   try {
     // Test addendum directory exists
-    if (dir_exists(ADDENDUM_DIR)) {
+    if (dirExists(ADDENDUM_DIR)) {
       pass('T-020a: addendum/ directory exists', ADDENDUM_DIR);
     } else {
       fail('T-020a: addendum/ directory exists', `Directory not found: ${ADDENDUM_DIR}`);
@@ -307,16 +307,16 @@ async function test_addendum_structure() {
     }
 
     // Test level2-verify addendum
-    const level2_verify_dir = path.join(ADDENDUM_DIR, 'level2-verify');
-    if (dir_exists(level2_verify_dir)) {
-      pass('T-020b: addendum/level2-verify/ exists', level2_verify_dir);
+    const level2VerifyDir = path.join(ADDENDUM_DIR, 'level2-verify');
+    if (dirExists(level2VerifyDir)) {
+      pass('T-020b: addendum/level2-verify/ exists', level2VerifyDir);
     } else {
       fail('T-020b: addendum/level2-verify/ exists', 'Directory not found');
     }
 
-    const level2_verify_files = ['spec-level2.md', 'plan-level2.md', 'checklist.md'];
-    for (const file of level2_verify_files) {
-      if (file_exists(path.join(level2_verify_dir, file))) {
+    const level2VerifyFiles = ['spec-level2.md', 'plan-level2.md', 'checklist.md'];
+    for (const file of level2VerifyFiles) {
+      if (fileExists(path.join(level2VerifyDir, file))) {
         pass(`T-020c: addendum/level2-verify/${file} exists`, 'File found');
       } else {
         fail(`T-020c: addendum/level2-verify/${file} exists`, 'File not found');
@@ -324,16 +324,16 @@ async function test_addendum_structure() {
     }
 
     // Test level3-arch addendum
-    const level3_arch_dir = path.join(ADDENDUM_DIR, 'level3-arch');
-    if (dir_exists(level3_arch_dir)) {
-      pass('T-021a: addendum/level3-arch/ exists', level3_arch_dir);
+    const level3ArchDir = path.join(ADDENDUM_DIR, 'level3-arch');
+    if (dirExists(level3ArchDir)) {
+      pass('T-021a: addendum/level3-arch/ exists', level3ArchDir);
     } else {
       fail('T-021a: addendum/level3-arch/ exists', 'Directory not found');
     }
 
-    const level3_arch_files = ['spec-level3.md', 'plan-level3.md', 'decision-record.md'];
-    for (const file of level3_arch_files) {
-      if (file_exists(path.join(level3_arch_dir, file))) {
+    const level3ArchFiles = ['spec-level3.md', 'plan-level3.md', 'decision-record.md'];
+    for (const file of level3ArchFiles) {
+      if (fileExists(path.join(level3ArchDir, file))) {
         pass(`T-021b: addendum/level3-arch/${file} exists`, 'File found');
       } else {
         fail(`T-021b: addendum/level3-arch/${file} exists`, 'File not found');
@@ -341,16 +341,16 @@ async function test_addendum_structure() {
     }
 
     // Test level3plus-govern addendum
-    const level3plus_govern_dir = path.join(ADDENDUM_DIR, 'level3plus-govern');
-    if (dir_exists(level3plus_govern_dir)) {
-      pass('T-022a: addendum/level3plus-govern/ exists', level3plus_govern_dir);
+    const level3plusGovernDir = path.join(ADDENDUM_DIR, 'level3plus-govern');
+    if (dirExists(level3plusGovernDir)) {
+      pass('T-022a: addendum/level3plus-govern/ exists', level3plusGovernDir);
     } else {
       fail('T-022a: addendum/level3plus-govern/ exists', 'Directory not found');
     }
 
-    const level3plus_govern_files = ['spec-level3plus.md', 'plan-level3plus.md', 'checklist-extended.md'];
-    for (const file of level3plus_govern_files) {
-      if (file_exists(path.join(level3plus_govern_dir, file))) {
+    const level3plusGovernFiles = ['spec-level3plus.md', 'plan-level3plus.md', 'checklist-extended.md'];
+    for (const file of level3plusGovernFiles) {
+      if (fileExists(path.join(level3plusGovernDir, file))) {
         pass(`T-022b: addendum/level3plus-govern/${file} exists`, 'File found');
       } else {
         fail(`T-022b: addendum/level3plus-govern/${file} exists`, 'File not found');
@@ -366,16 +366,16 @@ async function test_addendum_structure() {
    6. TEST SUITE: PLACEHOLDER PATTERNS
 ────────────────────────────────────────────────────────────────*/
 
-async function test_placeholder_patterns() {
+async function testPlaceholderPatterns() {
   log('\n--- TEST SUITE: Placeholder Patterns ---');
 
   try {
     // Test that templates contain [PLACEHOLDER] patterns
-    const spec_level1 = read_file(path.join(LEVEL_1_DIR, 'spec.md'));
+    const specLevel1 = readFile(path.join(LEVEL_1_DIR, 'spec.md'));
 
-    if (spec_level1) {
+    if (specLevel1) {
       // Check for common placeholder patterns
-      const placeholder_patterns = [
+      const placeholderPatterns = [
         /\[NAME\]/,
         /\[YYYY-MM-DD\]/,
         /\[P0\/P1\/P2\]/,
@@ -383,66 +383,66 @@ async function test_placeholder_patterns() {
         /\[path\/to\/file\.js\]/
       ];
 
-      let found_count = 0;
-      for (const pattern of placeholder_patterns) {
-        if (pattern.test(spec_level1)) {
-          found_count++;
+      let foundCount = 0;
+      for (const pattern of placeholderPatterns) {
+        if (pattern.test(specLevel1)) {
+          foundCount++;
         }
       }
 
-      if (found_count >= 3) {
-        pass('T-030a: level_1/spec.md contains placeholder patterns', `Found ${found_count}/5 expected patterns`);
+      if (foundCount >= 3) {
+        pass('T-030a: level_1/spec.md contains placeholder patterns', `Found ${foundCount}/5 expected patterns`);
       } else {
-        fail('T-030a: level_1/spec.md contains placeholder patterns', `Only found ${found_count}/5 expected patterns`);
+        fail('T-030a: level_1/spec.md contains placeholder patterns', `Only found ${foundCount}/5 expected patterns`);
       }
 
       // Check for bracket-style placeholders
-      const bracket_placeholder_count = (spec_level1.match(/\[[A-Z][^\]]*\]/g) || []).length;
-      if (bracket_placeholder_count > 5) {
-        pass('T-030b: spec.md has multiple bracket placeholders', `Found ${bracket_placeholder_count} bracket placeholders`);
+      const bracketPlaceholderCount = (specLevel1.match(/\[[A-Z][^\]]*\]/g) || []).length;
+      if (bracketPlaceholderCount > 5) {
+        pass('T-030b: spec.md has multiple bracket placeholders', `Found ${bracketPlaceholderCount} bracket placeholders`);
       } else {
-        fail('T-030b: spec.md has multiple bracket placeholders', `Only found ${bracket_placeholder_count}`);
+        fail('T-030b: spec.md has multiple bracket placeholders', `Only found ${bracketPlaceholderCount}`);
       }
     } else {
       fail('T-030a: level_1/spec.md contains placeholder patterns', 'File not readable');
     }
 
     // Test checklist.md has checkbox patterns
-    const checklist_level2 = read_file(path.join(LEVEL_2_DIR, 'checklist.md'));
-    if (checklist_level2) {
-      const checkbox_count = (checklist_level2.match(/- \[ \]/g) || []).length;
-      if (checkbox_count >= 10) {
-        pass('T-030c: level_2/checklist.md has checkbox patterns', `Found ${checkbox_count} checkboxes`);
+    const checklistLevel2 = readFile(path.join(LEVEL_2_DIR, 'checklist.md'));
+    if (checklistLevel2) {
+      const checkboxCount = (checklistLevel2.match(/- \[ \]/g) || []).length;
+      if (checkboxCount >= 10) {
+        pass('T-030c: level_2/checklist.md has checkbox patterns', `Found ${checkboxCount} checkboxes`);
       } else {
-        fail('T-030c: level_2/checklist.md has checkbox patterns', `Expected >=10, found ${checkbox_count}`);
+        fail('T-030c: level_2/checklist.md has checkbox patterns', `Expected >=10, found ${checkboxCount}`);
       }
 
       // Check for priority tags [P0], [P1], [P2]
-      const has_p0 = checklist_level2.includes('[P0]');
-      const has_p1 = checklist_level2.includes('[P1]');
-      const has_p2 = checklist_level2.includes('[P2]');
+      const hasP0 = checklistLevel2.includes('[P0]');
+      const hasP1 = checklistLevel2.includes('[P1]');
+      const hasP2 = checklistLevel2.includes('[P2]');
 
-      if (has_p0 && has_p1 && has_p2) {
+      if (hasP0 && hasP1 && hasP2) {
         pass('T-030d: checklist.md has priority tags', '[P0], [P1], [P2] found');
       } else {
-        fail('T-030d: checklist.md has priority tags', `P0:${has_p0}, P1:${has_p1}, P2:${has_p2}`);
+        fail('T-030d: checklist.md has priority tags', `P0:${hasP0}, P1:${hasP1}, P2:${hasP2}`);
       }
     } else {
       fail('T-030c: level_2/checklist.md has checkbox patterns', 'File not readable');
     }
 
     // Test that decision-record.md has ADR pattern
-    const decision_level3 = read_file(path.join(LEVEL_3_DIR, 'decision-record.md'));
-    if (decision_level3) {
-      const has_adr = decision_level3.includes('ADR-001');
-      const has_context = decision_level3.includes('Context');
-      const has_decision = decision_level3.includes('Decision');
-      const has_consequences = decision_level3.includes('Consequences');
+    const decisionLevel3 = readFile(path.join(LEVEL_3_DIR, 'decision-record.md'));
+    if (decisionLevel3) {
+      const hasAdr = decisionLevel3.includes('ADR-001');
+      const hasContext = decisionLevel3.includes('Context');
+      const hasDecision = decisionLevel3.includes('Decision');
+      const hasConsequences = decisionLevel3.includes('Consequences');
 
-      if (has_adr && has_context && has_decision && has_consequences) {
+      if (hasAdr && hasContext && hasDecision && hasConsequences) {
         pass('T-030e: decision-record.md has ADR structure', 'ADR-001, Context, Decision, Consequences found');
       } else {
-        fail('T-030e: decision-record.md has ADR structure', `ADR:${has_adr}, Context:${has_context}, Decision:${has_decision}, Consequences:${has_consequences}`);
+        fail('T-030e: decision-record.md has ADR structure', `ADR:${hasAdr}, Context:${hasContext}, Decision:${hasDecision}, Consequences:${hasConsequences}`);
       }
     } else {
       fail('T-030e: decision-record.md has ADR structure', 'File not readable');
@@ -457,12 +457,12 @@ async function test_placeholder_patterns() {
    7. TEST SUITE: EXAMPLE TEMPLATES
 ────────────────────────────────────────────────────────────────*/
 
-async function test_example_templates() {
+async function testExampleTemplates() {
   log('\n--- TEST SUITE: Example Templates ---');
 
   try {
     // Test examples directory exists
-    if (dir_exists(EXAMPLES_DIR)) {
+    if (dirExists(EXAMPLES_DIR)) {
       pass('T-040a: examples/ directory exists', EXAMPLES_DIR);
     } else {
       fail('T-040a: examples/ directory exists', `Directory not found: ${EXAMPLES_DIR}`);
@@ -470,54 +470,54 @@ async function test_example_templates() {
     }
 
     // Test example levels exist
-    const example_level1_dir = path.join(EXAMPLES_DIR, 'level_1');
-    const example_level2_dir = path.join(EXAMPLES_DIR, 'level_2');
-    const example_level3_dir = path.join(EXAMPLES_DIR, 'level_3');
-    const example_level3plus_dir = path.join(EXAMPLES_DIR, 'level_3+');
+    const exampleLevel1Dir = path.join(EXAMPLES_DIR, 'level_1');
+    const exampleLevel2Dir = path.join(EXAMPLES_DIR, 'level_2');
+    const exampleLevel3Dir = path.join(EXAMPLES_DIR, 'level_3');
+    const exampleLevel3plusDir = path.join(EXAMPLES_DIR, 'level_3+');
 
-    if (dir_exists(example_level1_dir)) {
-      pass('T-040b: examples/level_1/ exists', example_level1_dir);
+    if (dirExists(exampleLevel1Dir)) {
+      pass('T-040b: examples/level_1/ exists', exampleLevel1Dir);
     } else {
       fail('T-040b: examples/level_1/ exists', 'Directory not found');
     }
 
-    if (dir_exists(example_level2_dir)) {
-      pass('T-040c: examples/level_2/ exists', example_level2_dir);
+    if (dirExists(exampleLevel2Dir)) {
+      pass('T-040c: examples/level_2/ exists', exampleLevel2Dir);
     } else {
       fail('T-040c: examples/level_2/ exists', 'Directory not found');
     }
 
     // Test example spec.md has filled placeholders (not generic)
-    const example_spec = read_file(path.join(example_level1_dir, 'spec.md'));
-    if (example_spec) {
+    const exampleSpec = readFile(path.join(exampleLevel1Dir, 'spec.md'));
+    if (exampleSpec) {
       // Check that [NAME] is replaced with actual name
-      const has_actual_name = !example_spec.includes('# Feature Specification: [NAME]');
+      const hasActualName = !exampleSpec.includes('# Feature Specification: [NAME]');
 
-      if (has_actual_name) {
+      if (hasActualName) {
         pass('T-040d: examples/level_1/spec.md has filled [NAME]', 'Title is concrete, not placeholder');
       } else {
         fail('T-040d: examples/level_1/spec.md has filled [NAME]', 'Still has [NAME] placeholder');
       }
 
       // Check that date is filled
-      const has_filled_date = !example_spec.includes('[YYYY-MM-DD]') || example_spec.match(/\d{4}-\d{2}-\d{2}/);
-      if (has_filled_date) {
+      const hasFilledDate = !exampleSpec.includes('[YYYY-MM-DD]') || exampleSpec.match(/\d{4}-\d{2}-\d{2}/);
+      if (hasFilledDate) {
         pass('T-040e: examples/level_1/spec.md has concrete date', 'Date format found or placeholder removed');
       } else {
         fail('T-040e: examples/level_1/spec.md has concrete date', 'Still has [YYYY-MM-DD] placeholder');
       }
 
       // Check that priority is set
-      const has_set_priority = example_spec.includes('P0') || example_spec.includes('P1') || example_spec.includes('P2');
-      if (has_set_priority) {
+      const hasSetPriority = exampleSpec.includes('P0') || exampleSpec.includes('P1') || exampleSpec.includes('P2');
+      if (hasSetPriority) {
         pass('T-040f: examples/level_1/spec.md has set priority', 'Priority level found');
       } else {
         fail('T-040f: examples/level_1/spec.md has set priority', 'No priority found');
       }
 
       // Check for EXAMPLE comment indicating it's a filled example
-      const has_example_comment = example_spec.includes('EXAMPLE:') || example_spec.includes('<!-- EXAMPLE');
-      if (has_example_comment) {
+      const hasExampleComment = exampleSpec.includes('EXAMPLE:') || exampleSpec.includes('<!-- EXAMPLE');
+      if (hasExampleComment) {
         pass('T-040g: examples/level_1/spec.md has EXAMPLE marker', 'EXAMPLE comment found');
       } else {
         skip('T-040g: examples/level_1/spec.md has EXAMPLE marker', 'No explicit EXAMPLE comment (may still be valid)');
@@ -535,12 +535,12 @@ async function test_example_templates() {
    8. TEST SUITE: COMPOSE.SH FUNCTIONALITY
 ────────────────────────────────────────────────────────────────*/
 
-async function test_compose_script() {
+async function testComposeScript() {
   log('\n--- TEST SUITE: compose.sh Functionality ---');
 
   try {
     // Test compose.sh exists
-    if (file_exists(COMPOSE_SCRIPT)) {
+    if (fileExists(COMPOSE_SCRIPT)) {
       pass('T-050a: compose.sh script exists', COMPOSE_SCRIPT);
     } else {
       fail('T-050a: compose.sh script exists', `Script not found: ${COMPOSE_SCRIPT}`);
@@ -548,15 +548,15 @@ async function test_compose_script() {
     }
 
     // Test compose.sh is executable (or can be made executable)
-    const compose_content = read_file(COMPOSE_SCRIPT);
-    if (compose_content && compose_content.startsWith('#!/')) {
-      pass('T-050b: compose.sh has shebang', compose_content.split('\n')[0]);
+    const composeContent = readFile(COMPOSE_SCRIPT);
+    if (composeContent && composeContent.startsWith('#!/')) {
+      pass('T-050b: compose.sh has shebang', composeContent.split('\n')[0]);
     } else {
       fail('T-050b: compose.sh has shebang', 'No shebang line found');
     }
 
     // Test compose.sh has required functions
-    const required_functions = [
+    const requiredFunctions = [
       'compose_spec',
       'compose_plan',
       'compose_tasks',
@@ -565,8 +565,8 @@ async function test_compose_script() {
       'compose_level'
     ];
 
-    for (const func of required_functions) {
-      if (compose_content && compose_content.includes(func)) {
+    for (const func of requiredFunctions) {
+      if (composeContent && composeContent.includes(func)) {
         pass(`T-050c: compose.sh has ${func}()`, 'Function found');
       } else {
         fail(`T-050c: compose.sh has ${func}()`, 'Function not found');
@@ -574,7 +574,7 @@ async function test_compose_script() {
     }
 
     // Test compose.sh has composition rules documented
-    if (compose_content && compose_content.includes('Level 1:') && compose_content.includes('Level 2:') && compose_content.includes('Level 3:')) {
+    if (composeContent && composeContent.includes('Level 1:') && composeContent.includes('Level 2:') && composeContent.includes('Level 3:')) {
       pass('T-050d: compose.sh documents composition rules', 'Level 1/2/3 rules found');
     } else {
       fail('T-050d: compose.sh documents composition rules', 'Composition rules not documented');
@@ -582,17 +582,17 @@ async function test_compose_script() {
 
     // Test compose.sh --verify mode
     try {
-      const verify_output = execSync(`bash "${COMPOSE_SCRIPT}" --verify 2>&1`, {
+      const verifyOutput = execSync(`bash "${COMPOSE_SCRIPT}" --verify 2>&1`, {
         cwd: SCRIPTS_DIR,
         timeout: 30000,
         encoding: 'utf8'
       });
 
       // If --verify exits 0, templates are in sync
-      if (verify_output.includes('current') || verify_output.includes('OK')) {
+      if (verifyOutput.includes('current') || verifyOutput.includes('OK')) {
         pass('T-050e: compose.sh --verify runs successfully', 'Templates are in sync with sources');
       } else {
-        pass('T-050e: compose.sh --verify runs successfully', `Output: ${verify_output.slice(0, 100)}`);
+        pass('T-050e: compose.sh --verify runs successfully', `Output: ${verifyOutput.slice(0, 100)}`);
       }
     } catch (verify_error) {
       // Exit code 1 means drift detected (warning, not a test failure - the script works correctly)
@@ -605,16 +605,16 @@ async function test_compose_script() {
 
     // Test compose.sh --dry-run mode
     try {
-      const dryrun_output = execSync(`bash "${COMPOSE_SCRIPT}" --dry-run 2>&1`, {
+      const dryrunOutput = execSync(`bash "${COMPOSE_SCRIPT}" --dry-run 2>&1`, {
         cwd: SCRIPTS_DIR,
         timeout: 30000,
         encoding: 'utf8'
       });
 
-      if (dryrun_output.includes('DRY RUN') || dryrun_output.includes('would be written')) {
+      if (dryrunOutput.includes('DRY RUN') || dryrunOutput.includes('would be written')) {
         pass('T-050f: compose.sh --dry-run works', 'Dry run completed successfully');
       } else {
-        pass('T-050f: compose.sh --dry-run works', `Output: ${dryrun_output.slice(0, 100)}`);
+        pass('T-050f: compose.sh --dry-run works', `Output: ${dryrunOutput.slice(0, 100)}`);
       }
     } catch (dryrun_error) {
       fail('T-050f: compose.sh --dry-run works', `Script error: ${dryrun_error.message}`);
@@ -629,75 +629,75 @@ async function test_compose_script() {
    9. TEST SUITE: LEVEL-SPECIFIC CONTENT
 ────────────────────────────────────────────────────────────────*/
 
-async function test_level_specific_content() {
+async function testLevelSpecificContent() {
   log('\n--- TEST SUITE: Level-Specific Content ---');
 
   try {
     // Test Level 1 spec.md has SPECKIT_LEVEL: 1
-    const spec_l1 = read_file(path.join(LEVEL_1_DIR, 'spec.md'));
-    if (spec_l1 && spec_l1.includes('SPECKIT_LEVEL: 1')) {
+    const specL1 = readFile(path.join(LEVEL_1_DIR, 'spec.md'));
+    if (specL1 && specL1.includes('SPECKIT_LEVEL: 1')) {
       pass('T-060a: level_1/spec.md has SPECKIT_LEVEL: 1', 'Correct level marker');
     } else {
       fail('T-060a: level_1/spec.md has SPECKIT_LEVEL: 1', 'Level marker missing or incorrect');
     }
 
     // Test Level 2 spec.md has SPECKIT_LEVEL: 2
-    const spec_l2 = read_file(path.join(LEVEL_2_DIR, 'spec.md'));
-    if (spec_l2 && spec_l2.includes('SPECKIT_LEVEL: 2')) {
+    const specL2 = readFile(path.join(LEVEL_2_DIR, 'spec.md'));
+    if (specL2 && specL2.includes('SPECKIT_LEVEL: 2')) {
       pass('T-060b: level_2/spec.md has SPECKIT_LEVEL: 2', 'Correct level marker');
     } else {
       fail('T-060b: level_2/spec.md has SPECKIT_LEVEL: 2', 'Level marker missing or incorrect');
     }
 
     // Test Level 3 spec.md has SPECKIT_LEVEL: 3
-    const spec_l3 = read_file(path.join(LEVEL_3_DIR, 'spec.md'));
-    if (spec_l3 && spec_l3.includes('SPECKIT_LEVEL: 3')) {
+    const specL3 = readFile(path.join(LEVEL_3_DIR, 'spec.md'));
+    if (specL3 && specL3.includes('SPECKIT_LEVEL: 3')) {
       pass('T-060c: level_3/spec.md has SPECKIT_LEVEL: 3', 'Correct level marker');
     } else {
       fail('T-060c: level_3/spec.md has SPECKIT_LEVEL: 3', 'Level marker missing or incorrect');
     }
 
     // Test Level 3+ spec.md has SPECKIT_LEVEL: 3+
-    const spec_l3plus = read_file(path.join(LEVEL_3PLUS_DIR, 'spec.md'));
-    if (spec_l3plus && spec_l3plus.includes('SPECKIT_LEVEL: 3+')) {
+    const specL3plus = readFile(path.join(LEVEL_3PLUS_DIR, 'spec.md'));
+    if (specL3plus && specL3plus.includes('SPECKIT_LEVEL: 3+')) {
       pass('T-060d: level_3+/spec.md has SPECKIT_LEVEL: 3+', 'Correct level marker');
     } else {
       fail('T-060d: level_3+/spec.md has SPECKIT_LEVEL: 3+', 'Level marker missing or incorrect');
     }
 
     // Test Level 2 adds NFR section (Non-Functional Requirements)
-    if (spec_l2 && spec_l2.includes('NON-FUNCTIONAL REQUIREMENTS')) {
+    if (specL2 && specL2.includes('NON-FUNCTIONAL REQUIREMENTS')) {
       pass('T-061a: level_2/spec.md includes NFR section', 'NON-FUNCTIONAL REQUIREMENTS found');
     } else {
       skip('T-061a: level_2/spec.md includes NFR section', 'NFR section may be in addendum only');
     }
 
     // Test Level 3 adds Executive Summary
-    if (spec_l3 && spec_l3.includes('EXECUTIVE SUMMARY')) {
+    if (specL3 && specL3.includes('EXECUTIVE SUMMARY')) {
       pass('T-061b: level_3/spec.md includes Executive Summary', 'EXECUTIVE SUMMARY found');
     } else {
       skip('T-061b: level_3/spec.md includes Executive Summary', 'May not be present in all templates');
     }
 
     // Test Level 3+ adds Governance sections
-    if (spec_l3plus && (spec_l3plus.includes('APPROVAL WORKFLOW') || spec_l3plus.includes('COMPLIANCE'))) {
+    if (specL3plus && (specL3plus.includes('APPROVAL WORKFLOW') || specL3plus.includes('COMPLIANCE'))) {
       pass('T-061c: level_3+/spec.md includes governance sections', 'Governance sections found');
     } else {
       skip('T-061c: level_3+/spec.md includes governance sections', 'Governance sections may vary');
     }
 
     // Test Level 3+ checklist is longer than Level 2
-    const checklist_l2 = read_file(path.join(LEVEL_2_DIR, 'checklist.md'));
-    const checklist_l3plus = read_file(path.join(LEVEL_3PLUS_DIR, 'checklist.md'));
+    const checklistL2 = readFile(path.join(LEVEL_2_DIR, 'checklist.md'));
+    const checklistL3plus = readFile(path.join(LEVEL_3PLUS_DIR, 'checklist.md'));
 
-    if (checklist_l2 && checklist_l3plus) {
-      const l2_lines = checklist_l2.split('\n').length;
-      const l3plus_lines = checklist_l3plus.split('\n').length;
+    if (checklistL2 && checklistL3plus) {
+      const l2Lines = checklistL2.split('\n').length;
+      const l3plusLines = checklistL3plus.split('\n').length;
 
-      if (l3plus_lines > l2_lines) {
-        pass('T-062: level_3+ checklist is longer than level_2', `L2: ${l2_lines} lines, L3+: ${l3plus_lines} lines`);
+      if (l3plusLines > l2Lines) {
+        pass('T-062: level_3+ checklist is longer than level_2', `L2: ${l2Lines} lines, L3+: ${l3plusLines} lines`);
       } else {
-        fail('T-062: level_3+ checklist is longer than level_2', `L2: ${l2_lines} lines, L3+: ${l3plus_lines} lines`);
+        fail('T-062: level_3+ checklist is longer than level_2', `L2: ${l2Lines} lines, L3+: ${l3plusLines} lines`);
       }
     } else {
       fail('T-062: level_3+ checklist is longer than level_2', 'Could not read checklist files');
@@ -712,7 +712,7 @@ async function test_level_specific_content() {
    10. TEST SUITE: TEMPLATE CONSISTENCY
 ────────────────────────────────────────────────────────────────*/
 
-async function test_template_consistency() {
+async function testTemplateConsistency() {
   log('\n--- TEST SUITE: Template Consistency ---');
 
   try {
@@ -725,7 +725,7 @@ async function test_template_consistency() {
     ];
 
     for (const level of levels) {
-      const spec = read_file(path.join(level.dir, 'spec.md'));
+      const spec = readFile(path.join(level.dir, 'spec.md'));
       if (spec && spec.includes('METADATA')) {
         pass(`T-070a: ${level.name}/spec.md has METADATA`, 'Section found');
       } else {
@@ -735,7 +735,7 @@ async function test_template_consistency() {
 
     // Test all plan.md files have IMPLEMENTATION PHASES
     for (const level of levels) {
-      const plan = read_file(path.join(level.dir, 'plan.md'));
+      const plan = readFile(path.join(level.dir, 'plan.md'));
       if (plan && plan.includes('IMPLEMENTATION PHASES')) {
         pass(`T-070b: ${level.name}/plan.md has IMPLEMENTATION PHASES`, 'Section found');
       } else {
@@ -745,7 +745,7 @@ async function test_template_consistency() {
 
     // Test all tasks.md files have task structure
     for (const level of levels) {
-      const tasks = read_file(path.join(level.dir, 'tasks.md'));
+      const tasks = readFile(path.join(level.dir, 'tasks.md'));
       if (tasks && (tasks.includes('TASK-') || tasks.includes('## Tasks') || tasks.includes('[ ]'))) {
         pass(`T-070c: ${level.name}/tasks.md has task structure`, 'Task patterns found');
       } else {
@@ -755,7 +755,7 @@ async function test_template_consistency() {
 
     // Test implementation-summary.md exists at all levels
     for (const level of levels) {
-      if (file_exists(path.join(level.dir, 'implementation-summary.md'))) {
+      if (fileExists(path.join(level.dir, 'implementation-summary.md'))) {
         pass(`T-070d: ${level.name}/implementation-summary.md exists`, 'File found');
       } else {
         fail(`T-070d: ${level.name}/implementation-summary.md exists`, 'File missing');
@@ -780,14 +780,14 @@ async function main() {
   log(`Templates: ${TEMPLATES_DIR}\n`);
 
   // Run all test suites
-  await test_level_templates_exist();
-  await test_core_templates();
-  await test_addendum_structure();
-  await test_placeholder_patterns();
-  await test_example_templates();
-  await test_compose_script();
-  await test_level_specific_content();
-  await test_template_consistency();
+  await testLevelTemplatesExist();
+  await testCoreTemplates();
+  await testAddendumStructure();
+  await testPlaceholderPatterns();
+  await testExampleTemplates();
+  await testComposeScript();
+  await testLevelSpecificContent();
+  await testTemplateConsistency();
 
   // Summary
   log('\n==================================================');

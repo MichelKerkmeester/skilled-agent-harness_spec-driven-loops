@@ -106,7 +106,7 @@ memory_search({ query: "test" })
 
 **Connection Recovery Protocol:**
 
-1. Check server status: `ps aux | grep context-server.js`
+1. Check server status: `ps aux | grep context-server`
 2. Verify config: `cat opencode.json | jq '.mcp["spec_kit_memory"]'`
 3. Test basic call: `memory_stats()`
 4. If still failing: restart server and wait 10s
@@ -452,7 +452,7 @@ memory_delete({ id: <memory_id> })
 ## 9. 🔗 RELATED RESOURCES
 
 ### Reference Files
-- [README.md](../../README.md) - MCP tools, hybrid search, and importance tier system
+- [SKILL.md](../../SKILL.md) - MCP tools, hybrid search, and importance tier system
 - [execution_methods.md](../workflows/execution_methods.md) - Memory file detection and execution trigger patterns
 - [folder_routing.md](../structure/folder_routing.md) - Routing logic and alignment scoring
 

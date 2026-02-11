@@ -13,7 +13,7 @@ Comprehensive CSS patterns for Webflow development including state machines, val
 
 ### Purpose
 
-This reference documents CSS patterns used in anobel.com's Webflow implementation. These patterns solve common challenges in Webflow projects: managing hover/focus states declaratively, handling form validation visually, ensuring accessibility compliance, and maintaining consistent design tokens.
+This reference documents CSS patterns used in example.com's Webflow implementation. These patterns solve common challenges in Webflow projects: managing hover/focus states declaratively, handling form validation visually, ensuring accessibility compliance, and maintaining consistent design tokens.
 
 ### Prerequisites
 

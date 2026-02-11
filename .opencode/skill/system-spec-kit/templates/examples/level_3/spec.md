@@ -1,7 +1,7 @@
 # Feature Specification: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 3 spec demonstrating architecture-focused
 documentation. Note the addition of Executive Summary, Risk Matrix, User Stories,

@@ -15,9 +15,10 @@ Examples:
     init_skill.py custom-skill --path /custom/location
 """
 
-import sys
 import re
+import sys
 from pathlib import Path
+from typing import Optional, Tuple
 
 
 # ───────────────────────────────────────────────────────────────
@@ -278,8 +279,15 @@ Note: This is a text placeholder. Actual assets can be any file type.
 # 2. VALIDATION
 # ───────────────────────────────────────────────────────────────
 
-def validate_skill_name(skill_name: str) -> tuple[bool, str]:
-    """Validate skill name format (hyphen-case)."""
+def validate_skill_name(skill_name: str) -> Tuple[bool, str]:
+    """Validate skill name format (hyphen-case).
+
+    Args:
+        skill_name: The skill name to validate.
+
+    Returns:
+        Tuple of (is_valid, error_message). Error message is empty if valid.
+    """
     if not re.match(r'^[a-z][a-z0-9-]*[a-z0-9]$', skill_name):
         return False, (
             f"Skill name '{skill_name}' must be hyphen-case:\n"
@@ -298,8 +306,15 @@ def validate_skill_name(skill_name: str) -> tuple[bool, str]:
     return True, ""
 
 
-def title_case_skill_name(skill_name):
-    """Convert hyphenated skill name to Title Case for display."""
+def title_case_skill_name(skill_name: str) -> str:
+    """Convert hyphenated skill name to Title Case for display.
+
+    Args:
+        skill_name: Hyphen-case skill name (e.g., 'my-skill').
+
+    Returns:
+        Title-cased string (e.g., 'My Skill').
+    """
     return ' '.join(word.capitalize() for word in skill_name.split('-'))
 
 
@@ -307,8 +322,16 @@ def title_case_skill_name(skill_name):
 # 3. SCAFFOLDING
 # ───────────────────────────────────────────────────────────────
 
-def init_skill(skill_name, path):
-    """Initialize a new skill directory with template SKILL.md."""
+def init_skill(skill_name: str, path: str) -> Optional[Path]:
+    """Initialize a new skill directory with template SKILL.md.
+
+    Args:
+        skill_name: Hyphen-case skill name (e.g., 'my-skill').
+        path: Parent directory path where skill folder will be created.
+
+    Returns:
+        Path to created skill directory, or None on failure.
+    """
     is_valid, error_msg = validate_skill_name(skill_name)
     if not is_valid:
         print(f"❌ Error: {error_msg}")
@@ -323,7 +346,7 @@ def init_skill(skill_name, path):
     try:
         skill_dir.mkdir(parents=True, exist_ok=False)
         print(f"✅ Created skill directory: {skill_dir}")
-    except Exception as e:
+    except OSError as e:
         print(f"❌ Error creating directory: {e}")
         return None
 
@@ -337,7 +360,7 @@ def init_skill(skill_name, path):
     try:
         skill_md_path.write_text(skill_content)
         print("✅ Created SKILL.md")
-    except Exception as e:
+    except OSError as e:
         print(f"❌ Error creating SKILL.md: {e}")
         return None
 
@@ -360,7 +383,7 @@ def init_skill(skill_name, path):
         example_asset = assets_dir / 'example_asset.txt'
         example_asset.write_text(EXAMPLE_ASSET)
         print("✅ Created assets/example_asset.txt")
-    except Exception as e:
+    except OSError as e:
         print(f"❌ Error creating resource directories: {e}")
         return None
 
@@ -377,7 +400,8 @@ def init_skill(skill_name, path):
 # 4. MAIN
 # ───────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
+    """CLI entry point for skill initialization."""
     if len(sys.argv) < 4 or sys.argv[2] != '--path':
         print("Usage: init_skill.py <skill-name> --path <path>")
         print("\nSkill name requirements:")

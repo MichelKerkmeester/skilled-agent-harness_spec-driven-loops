@@ -4,6 +4,7 @@
   "private": true,
   "description": "Unified workspace for Semantic Memory MCP server and CLI tools",
   "workspaces": [
+    "shared",
     "mcp_server",
     "scripts"
   ],
@@ -12,9 +13,21 @@
   },
   "scripts": {
     "start": "npm run start --workspace=mcp_server",
+    "build": "tsc --build",
+    "typecheck": "tsc --noEmit",
+    "build:watch": "tsc --build --watch",
     "test": "npm run test:cli && npm run test:embeddings && npm run test:mcp",
     "test:mcp": "npm run test --workspace=mcp_server",
-    "test:cli": "node scripts/memory/generate-context.js --help",
-    "test:embeddings": "node scripts/tests/test-embeddings-factory.js"
+    "test:cli": "node scripts/dist/memory/generate-context.js --help && echo 'CLI smoke test passed'",
+    "test:embeddings": "node scripts/tests/test-embeddings-factory.js",
+    "postinstall": "node scripts/setup/record-node-version.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.6.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.2.1",
+    "typescript": "^5.9.3"
   }
 }

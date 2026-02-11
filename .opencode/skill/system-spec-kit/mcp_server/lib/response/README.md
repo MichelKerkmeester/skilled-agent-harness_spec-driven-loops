@@ -6,15 +6,15 @@
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE](#4--usage)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1-overview)
+- [2. STRUCTURE](#2-structure)
+- [3. FEATURES](#3-features)
+- [4. USAGE](#4-usage)
+- [5. RELATED RESOURCES](#5-related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The response module provides a standardized envelope format for all MCP tool responses. This ensures consistent structure across tools, enables token counting, and provides actionable hints for AI agents.
 
@@ -39,31 +39,30 @@ The response module provides a standardized envelope format for all MCP tool res
 | Benefit | Description |
 |---------|-------------|
 | **Consistency** | All tools return same structure |
-| **Token Awareness** | Auto-calculates response token count |
+| **Token Awareness** | Auto-calculates response token count via `estimateTokens` from `@spec-kit/shared` formatters |
 | **Actionable Hints** | Guides AI agents on next steps |
 | **Performance Tracking** | Latency and cache hit metrics |
 | **Error Handling** | Structured error responses with recovery hints |
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 
 ```
 response/
-├── index.js     # Module aggregator
-└── envelope.js  # Response envelope factory functions
+├── envelope.ts  # Response envelope factory functions
+└── README.md    # This file
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `envelope.js` | Core envelope creation functions and MCP wrappers |
-| `index.js` | Re-exports envelope for clean imports |
+| `envelope.ts` | Core envelope creation functions and MCP wrappers |
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 
 ### Core Envelope Functions
 
@@ -92,24 +91,32 @@ response/
 | **Rate Limited** | "Wait before retrying", "Consider batching" |
 | **Success** | (Empty by default) |
 
+### Exported Types
+
+`ResponseMeta`, `MCPEnvelope`, `CreateResponseOptions`, `CreateEmptyResponseOptions`, `RecoveryInfo`, `CreateErrorResponseOptions`, `MCPResponse`, `DefaultHints`
+
+### Exported Constants
+
+`DEFAULT_HINTS`
+
 ---
 
-## 4. 💡 USAGE
+## 4. USAGE
 
 ### Basic Import
 
-```javascript
-const {
+```typescript
+import {
   createSuccessResponse,
   createEmptyResponse,
   createErrorResponse,
   createMCPResponse
-} = require('./lib/response');
+} from './envelope';
 ```
 
 ### Success Response
 
-```javascript
+```typescript
 const response = createSuccessResponse({
   tool: 'memory_search',
   summary: 'Found 5 matching memories',
@@ -123,7 +130,7 @@ const response = createSuccessResponse({
 
 ### Empty Response
 
-```javascript
+```typescript
 const response = createEmptyResponse({
   tool: 'memory_search',
   summary: 'No memories matched query',
@@ -134,7 +141,7 @@ const response = createEmptyResponse({
 
 ### Error Response
 
-```javascript
+```typescript
 const response = createErrorResponse({
   tool: 'memory_save',
   error: new Error('Validation failed'),
@@ -150,8 +157,7 @@ const response = createErrorResponse({
 
 ### MCP-Wrapped Response
 
-```javascript
-// For direct return from MCP tool handlers
+```typescript
 const mcpResponse = createMCPResponse({
   tool: 'memory_search',
   summary: 'Found 3 results',
@@ -163,7 +169,7 @@ const mcpResponse = createMCPResponse({
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -177,6 +183,11 @@ const mcpResponse = createMCPResponse({
 
 | Module | Relationship |
 |--------|--------------|
-| `context-server.js` | Uses envelope for all tool responses |
-| `formatters/token-metrics.js` | Provides `estimate_tokens()` for meta |
-| `lib/errors.js` | Error types used with createErrorResponse |
+| `context-server.ts` | Uses envelope for all tool responses |
+| `@spec-kit/shared/formatters/token-metrics.ts` | Provides `estimateTokens()` for meta |
+| `lib/errors/` | Error types used with createErrorResponse |
+
+---
+
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

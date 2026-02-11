@@ -1,6 +1,6 @@
 # Scripts Library
 
-> JavaScript and shell script libraries for CLI utilities including content processing, summarization, and validation.
+> TypeScript and shell script libraries for CLI utilities including content processing, summarization, and validation.
 
 ---
 
@@ -20,16 +20,16 @@
 
 ### What is the lib/ Directory?
 
-The `lib/` directory contains JavaScript and shell script libraries used by `generate-context.js` and other spec-kit CLI utilities. These modules handle content processing, semantic summarization, and validation output formatting.
+The `lib/` directory contains TypeScript source files and shell script libraries used by `generate-context.ts` and other spec-kit CLI utilities. These modules handle content processing, semantic summarization, and validation output formatting. Source files are compiled to `../dist/lib/` for execution.
 
 ### Shared Library Architecture
 
-As of 2024-12-31, the following modules are **re-exports** from the shared `lib/` directory:
+The following modules are **re-exports** from the shared package:
 
-| Module | Canonical Source | This Location |
-|--------|------------------|---------------|
-| `embeddings.js` | `../shared/embeddings.js` | Re-export wrapper |
-| `trigger-extractor.js` | `../shared/trigger-extractor.js` | Re-export wrapper |
+| Module                 | Canonical Source                     | This Location     |
+| ---------------------- | ------------------------------------ | ----------------- |
+| `embeddings.ts`        | `@spec-kit/shared/embeddings`        | Re-export wrapper |
+| `trigger-extractor.ts` | `@spec-kit/shared/trigger-extractor` | Re-export wrapper |
 
 This consolidation ensures consistent behavior between CLI scripts and MCP server.
 
@@ -38,45 +38,48 @@ This consolidation ensures consistent behavior between CLI scripts and MCP serve
 │                     SHARED LIB/ ARCHITECTURE                    │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│    scripts/lib/                       lib/ (CANONICAL)          │
+│    scripts/lib/                       @spec-kit/shared          │
 │    ┌─────────────┐                   ┌─────────────┐            │
-│    │embeddings.js│ ──re-export────► │embeddings.js│             │
+│    │embeddings.ts│ ──re-export────► │embeddings   │             │
 │    │trigger-     │                   │trigger-     │            │
-│    │extractor.js │ ──re-export────► │extractor.js │             │
+│    │extractor.ts │ ──re-export────► │extractor    │             │
 │    └─────────────┘                   │embeddings/  │            │
-│                                       └─────────────┘           │
+│        ↓ compile                     └─────────────┘            │
+│    dist/lib/*.js                                                │
+│                                                                 │
 │    Local modules:                                               │
-│    anchor-generator.js, semantic-summarizer.js, etc.            │
+│    anchor-generator.ts, semantic-summarizer.ts, etc.            │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Key Statistics
 
-| Category | Count | Details |
-|----------|-------|---------|
-| Local JavaScript Libraries | 8 | Content processing, summarization, formatting |
-| Re-exported Modules | 2 | embeddings.js, trigger-extractor.js |
-| Shell Libraries | 3 | Configuration, utilities, output helpers |
-| Embedding Providers | 3 | Voyage, OpenAI, HF Local (multi-provider support) |
+| Category                | Count          | Details                                           |
+| ----------------------- | -------------- | ------------------------------------------------- |
+| TypeScript Source Files | 10             | Content processing, summarization, formatting     |
+| Re-exported Modules     | 2              | embeddings.ts, trigger-extractor.ts               |
+| Shell Libraries         | 0              | (none — shell libs are in scripts root and rules/) |
+| Embedding Providers     | 3              | Voyage, OpenAI, HF Local (multi-provider support) |
+| Compiled Output         | `../dist/lib/` | JavaScript files for execution                    |
 
 ### Key Features
 
-| Feature | Description |
-|---------|-------------|
+| Feature                       | Description                                            |
+| ----------------------------- | ------------------------------------------------------ |
 | **Multi-Provider Embeddings** | Voyage, OpenAI, HF local with 768/1024/1536 dimensions |
-| **Semantic Summarization** | Extract key points and decisions from conversations |
-| **Anchor Generation** | Create semantic ANCHOR tags for memory files |
-| **ASCII Formatting** | Generate boxes, tables, and flowcharts |
-| **TF-IDF Triggers** | Advanced trigger phrase extraction (v11) |
+| **Semantic Summarization**    | Extract key points and decisions from conversations    |
+| **Anchor Generation**         | Create semantic ANCHOR tags for memory files           |
+| **ASCII Formatting**          | Generate boxes, tables, and flowcharts                 |
+| **TF-IDF Triggers**           | Advanced trigger phrase extraction (v11)               |
 
 ### Requirements
 
-| Requirement | Minimum | Recommended |
-|-------------|---------|-------------|
-| Node.js | 18+ | 20+ |
-| Bash | 3.2+ | 5.0+ |
-| @xenova/transformers | 2.0+ | Latest |
+| Requirement          | Minimum | Recommended |
+| -------------------- | ------- | ----------- |
+| Node.js              | 18+     | 20+         |
+| Bash                 | 3.2+    | 5.0+        |
+| @xenova/transformers | 2.0+    | Latest      |
 
 ---
 
@@ -84,27 +87,33 @@ This consolidation ensures consistent behavior between CLI scripts and MCP serve
 
 ### 30-Second Setup
 
-```javascript
-// Import libraries in your Node.js script
-const { generateEmbedding, getProviderMetadata } = require('./lib/embeddings');
-const { extractTriggerPhrases } = require('./lib/trigger-extractor');
-const { generateAnchor } = require('./lib/anchor-generator');
-const { summarize } = require('./lib/semantic-summarizer');
+```typescript
+// Import libraries from compiled dist/ output
+import { generateEmbedding, getProviderMetadata } from '../dist/lib/embeddings.js';
+import { extractTriggerPhrases } from '../dist/lib/trigger-extractor.js';
+import { generateAnchor } from '../dist/lib/anchor-generator.js';
+import { summarize } from '../dist/lib/semantic-summarizer.js';
 ```
 
 ### Verify Installation
 
 ```bash
-# Check that all libraries exist
+# Check that TypeScript source files exist
 ls .opencode/skill/system-spec-kit/scripts/lib/
 
-# Expected: 13 files (.js and .sh)
+# Expected: .ts files
+# anchor-generator.ts, embeddings.ts, trigger-extractor.ts, ...
+
+# Check compiled output exists
+ls .opencode/skill/system-spec-kit/scripts/dist/lib/
+
+# Expected: Compiled .js files
 # anchor-generator.js, embeddings.js, trigger-extractor.js, ...
 ```
 
 ### First Use
 
-```javascript
+```typescript
 // Check embedding provider
 const meta = getProviderMetadata();
 console.log(`Provider: ${meta.provider}, Dimensions: ${meta.dim}`);
@@ -122,37 +131,34 @@ console.log(`Embedding dimensions: ${embedding.length}`);
 
 ```
 lib/
-├── Re-exported Modules (from ../shared/)
-│   ├── embeddings.js           # → ../shared/embeddings.js (multi-provider)
-│   └── trigger-extractor.js    # → ../shared/trigger-extractor.js (v11)
+├── Re-exported Modules (from @spec-kit/shared)
+│   ├── embeddings.ts           # → @spec-kit/shared/embeddings (multi-provider)
+│   └── trigger-extractor.ts    # → @spec-kit/shared/trigger-extractor (v11)
 │
-├── Local JavaScript Libraries
-│   ├── anchor-generator.js     # Semantic ANCHOR tag generation
-│   ├── content-filter.js       # Content filtering and cleaning
-│   ├── semantic-summarizer.js  # Conversation summarization
-│   ├── retry-manager.js        # Retry logic for operations
-│   ├── ascii-boxes.js          # ASCII box diagram generation
-│   ├── flowchart-generator.js  # ASCII flowchart generation
-│   ├── opencode-capture.js     # OpenCode session capture
-│   └── simulation-factory.js   # Test data generation
+├── Local TypeScript Modules
+│   ├── anchor-generator.ts       # Semantic ANCHOR tag generation
+│   ├── content-filter.ts         # Content filtering and cleaning
+│   ├── semantic-summarizer.ts    # Conversation summarization
+│   ├── retry-manager.ts          # Retry logic for operations
+│   ├── ascii-boxes.ts            # ASCII box diagram generation
+│   ├── flowchart-generator.ts    # ASCII flowchart generation
+│   ├── decision-tree-generator.ts # Decision tree diagram generation
+│   └── simulation-factory.ts     # Test data generation
 │
-├── Shell Libraries
-│   ├── common.sh               # Validation system utilities
-│   ├── config.sh               # Configuration loading
-│   └── output.sh               # Formatted output helpers
+├── README.md                     # This file
 │
-└── README.md                   # This file
+└── Compiled Output: ../dist/lib/
+    └── *.js                      # JavaScript files compiled from .ts sources
 ```
 
 ### Key Files
 
-| File | Purpose | Source |
-|------|---------|--------|
-| `embeddings.js` | Multi-provider embedding generation | Re-export from `../shared/` |
-| `trigger-extractor.js` | TF-IDF trigger phrase extraction | Re-export from `../shared/` |
-| `anchor-generator.js` | Generate semantic anchors for memory file sections | Local |
-| `semantic-summarizer.js` | Summarize conversations for memory storage | Local |
-| `common.sh` | Shared validation utilities (log_pass, log_warn, log_error) | Local |
+| File                     | Purpose                                                     | Source                            |
+| ------------------------ | ----------------------------------------------------------- | --------------------------------- |
+| `embeddings.ts`          | Multi-provider embedding generation                         | Re-export from `@spec-kit/shared` |
+| `trigger-extractor.ts`   | TF-IDF trigger phrase extraction                            | Re-export from `@spec-kit/shared` |
+| `anchor-generator.ts`    | Generate semantic anchors for memory file sections          | Local                             |
+| `semantic-summarizer.ts` | Summarize conversations for memory storage                  | Local                             |
 
 ---
 
@@ -162,64 +168,56 @@ lib/
 
 These modules are re-exports from the shared `../shared/` directory:
 
-#### embeddings.js (Re-export)
+#### embeddings.ts (Re-export)
 
-| Feature | Details |
-|---------|---------|
-| **Providers** | Voyage AI (recommended), OpenAI, HuggingFace local |
-| **Dimensions** | 768 (HF), 1024 (Voyage), 1536/3072 (OpenAI) |
-| **Auto-Detection** | Selects provider based on API keys |
-| **Task-Specific** | Document, query, clustering embeddings |
+| Feature            | Details                                            |
+| ------------------ | -------------------------------------------------- |
+| **Providers**      | Voyage AI (recommended), OpenAI, HuggingFace local |
+| **Dimensions**     | 768 (HF), 1024 (Voyage), 1536/3072 (OpenAI)        |
+| **Auto-Detection** | Selects provider based on API keys                 |
+| **Task-Specific**  | Document, query, clustering embeddings             |
+| **Source**         | Re-exported from `@spec-kit/shared/embeddings`     |
 
-See [../shared/README.md](../shared/README.md) for full documentation.
+See [../../shared/README.md](../../shared/README.md) for full documentation.
 
-#### trigger-extractor.js (Re-export)
+#### trigger-extractor.ts (Re-export)
 
-| Feature | Details |
-|---------|---------|
-| **Algorithm** | TF-IDF + N-gram hybrid |
-| **Version** | v11.0.0 |
+| Feature                 | Details                                                    |
+| ----------------------- | ---------------------------------------------------------- |
+| **Algorithm**           | TF-IDF + N-gram hybrid                                     |
+| **Version**             | v11.0.0                                                    |
 | **Priority Extraction** | Problem terms (3x), technical terms (2.5x), decisions (2x) |
-| **Performance** | <100ms for typical content (<10KB) |
+| **Performance**         | <100ms for typical content (<10KB)                         |
+| **Source**              | Re-exported from `@spec-kit/shared/trigger-extractor`      |
 
-See [../shared/README.md](../shared/README.md) for full documentation.
+See [../../shared/README.md](../../shared/README.md) for full documentation.
 
 ---
 
-### Local JavaScript Libraries
+### Local TypeScript Libraries
 
 #### Core Processing
 
-| File | Purpose | Key Exports |
-|------|---------|-------------|
-| `anchor-generator.js` | Generate semantic ANCHOR tags | `generateAnchor()`, `validateAnchorFormat()` |
-| `content-filter.js` | Filter and clean content | `filterContent()`, `removeBoilerplate()` |
-| `semantic-summarizer.js` | Generate semantic summaries | `summarize()`, `extractKeyPoints()` |
+| File                     | Purpose                       | Key Exports                                  |
+| ------------------------ | ----------------------------- | -------------------------------------------- |
+| `anchor-generator.ts`    | Generate semantic ANCHOR tags | `generateAnchor()`, `validateAnchorFormat()` |
+| `content-filter.ts`      | Filter and clean content      | `filterContent()`, `removeBoilerplate()`     |
+| `semantic-summarizer.ts` | Generate semantic summaries   | `summarize()`, `extractKeyPoints()`          |
 
 #### Output & Formatting
 
-| File | Purpose | Key Exports |
-|------|---------|-------------|
-| `ascii-boxes.js` | Generate ASCII box diagrams | `createBox()`, `createTable()` |
-| `flowchart-generator.js` | Generate ASCII flowcharts | `generateFlowchart()`, `parseFlowDefinition()` |
+| File                         | Purpose                         | Key Exports                                       |
+| ---------------------------- | ------------------------------- | ------------------------------------------------- |
+| `ascii-boxes.ts`             | Generate ASCII box diagrams     | `createBox()`, `createTable()`                    |
+| `flowchart-generator.ts`     | Generate ASCII flowcharts       | `generateFlowchart()`, `parseFlowDefinition()`    |
+| `decision-tree-generator.ts` | Generate decision tree diagrams | `generateDecisionTree()`, `parseTreeDefinition()` |
 
 #### Integration
 
-| File | Purpose | Key Exports |
-|------|---------|-------------|
-| `opencode-capture.js` | Capture OpenCode session data | `captureSession()`, `parseMessages()` |
-| `simulation-factory.js` | Generate test data | `createSimulation()`, `mockConversation()` |
-| `retry-manager.js` | Manage retry logic | `RetryManager`, `processWithRetry()` |
-
----
-
-### Shell Libraries
-
-| File | Purpose | Key Functions |
-|------|---------|---------------|
-| `common.sh` | Validation system utilities | `log_pass()`, `log_warn()`, `log_error()`, `log_info()`, `log_detail()` |
-| `config.sh` | Configuration loading | Configuration defaults, template paths |
-| `output.sh` | Formatted output helpers | Color definitions, box drawing |
+| File                    | Purpose            | Key Exports                                |
+| ----------------------- | ------------------ | ------------------------------------------ |
+| `simulation-factory.ts` | Generate test data | `createSimulation()`, `mockConversation()` |
+| `retry-manager.ts`      | Manage retry logic | `RetryManager`, `processWithRetry()`       |
 
 ---
 
@@ -227,12 +225,12 @@ See [../shared/README.md](../shared/README.md) for full documentation.
 
 ### Example 1: Generate Embedding (Multi-Provider)
 
-```javascript
-const {
+```typescript
+import {
   generateDocumentEmbedding,
   generateQueryEmbedding,
   getProviderMetadata
-} = require('./lib/embeddings');
+} from '../dist/lib/embeddings.js';
 
 // Check active provider
 const meta = getProviderMetadata();
@@ -251,8 +249,8 @@ const queryEmbedding = await generateQueryEmbedding('How does auth work?');
 
 ### Example 2: Extract Trigger Phrases
 
-```javascript
-const { extractTriggerPhrases, extractTriggerPhrasesWithStats } = require('./lib/trigger-extractor');
+```typescript
+import { extractTriggerPhrases, extractTriggerPhrasesWithStats } from '../dist/lib/trigger-extractor.js';
 
 // Simple extraction
 const triggers = extractTriggerPhrases(memoryContent);
@@ -271,8 +269,8 @@ console.log(result.breakdown.problemTerms);   // Count by type
 
 ### Example 3: Generate Anchor
 
-```javascript
-const { generateAnchor } = require('./lib/anchor-generator');
+```typescript
+import { generateAnchor } from '../dist/lib/anchor-generator.js';
 
 const anchor = generateAnchor({
   type: 'implementation',     // decision, research, implementation, etc.
@@ -287,8 +285,8 @@ const anchor = generateAnchor({
 
 ### Example 4: Summarize Conversation
 
-```javascript
-const { summarize } = require('./lib/semantic-summarizer');
+```typescript
+import { summarize } from '../dist/lib/semantic-summarizer.js';
 
 const summary = summarize({
   messages: conversationMessages,
@@ -299,30 +297,17 @@ const summary = summarize({
 
 ---
 
-### Example 5: Shell Logging
-
-```bash
-# Source the common library
-source "$(dirname "$0")/lib/common.sh"
-
-# Use logging functions
-log_pass "FILE_EXISTS" "All required files present"
-log_warn "SECTIONS_PRESENT" "Missing 2 recommended sections"
-log_error "PLACEHOLDER_FILLED" "Found 3 unfilled placeholders"
-```
-
----
-
 ### Common Patterns
 
-| Pattern | Code | When to Use |
-|---------|------|-------------|
-| Document embedding | `generateDocumentEmbedding(text)` | Indexing content |
-| Query embedding | `generateQueryEmbedding(text)` | Search queries |
-| Check provider | `getProviderMetadata()` | Debugging, logging |
-| Extract triggers | `extractTriggerPhrases(text)` | Memory indexing |
-| Anchor generation | `generateAnchor({ type, content })` | Memory file sections |
-| Validation logging | `log_pass()`, `log_warn()`, `log_error()` | Shell validators |
+| Pattern            | Code                                      | When to Use          |
+| ------------------ | ----------------------------------------- | -------------------- |
+| Document embedding | `generateDocumentEmbedding(text)`         | Indexing content     |
+| Query embedding    | `generateQueryEmbedding(text)`            | Search queries       |
+| Check provider     | `getProviderMetadata()`                   | Debugging, logging   |
+| Extract triggers   | `extractTriggerPhrases(text)`             | Memory indexing      |
+| Anchor generation  | `generateAnchor({ type, content })`       | Memory file sections |
+
+**Note**: All TypeScript imports must use the compiled output from `../dist/lib/` directory.
 
 ---
 
@@ -337,9 +322,9 @@ log_error "PLACEHOLDER_FILLED" "Found 3 unfilled placeholders"
 **Cause**: Provider failed to initialize or API key invalid
 
 **Solution**:
-```javascript
+```typescript
 // Pre-warm the model on startup
-const { preWarmModel, getProviderMetadata } = require('./lib/embeddings');
+import { preWarmModel, getProviderMetadata } from '../dist/lib/embeddings.js';
 await preWarmModel();
 console.log(getProviderMetadata());  // Check which provider loaded
 ```
@@ -366,38 +351,11 @@ rm .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 **Cause**: HF local downloads ~274MB model on first use
 
 **Solution**:
-```javascript
+```typescript
 // Pre-warm the model on startup
-const { preWarmModel } = require('./lib/embeddings');
+import { preWarmModel } from '../dist/lib/embeddings.js';
 await preWarmModel();  // Call once at startup
 ```
-
----
-
-#### Shell Library Not Found
-
-**Symptom**: `source: lib/common.sh: No such file or directory`
-
-**Cause**: Running from wrong directory
-
-**Solution**:
-```bash
-# Use script-relative path
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-source "$SCRIPT_DIR/lib/common.sh"
-```
-
----
-
-### Quick Fixes
-
-| Problem | Quick Fix |
-|---------|-----------|
-| Provider not detected | Check `echo $VOYAGE_API_KEY` or `echo $OPENAI_API_KEY` |
-| Wrong provider | Set `EMBEDDINGS_PROVIDER` explicitly |
-| Slow triggers | Ensure content is <10KB for <100ms |
-| Missing colors | Check terminal supports ANSI |
-| Permission denied | `chmod +x lib/*.sh` |
 
 ---
 
@@ -413,14 +371,11 @@ echo "VOYAGE_API_KEY: ${VOYAGE_API_KEY:0:10}..."
 echo "OPENAI_API_KEY: ${OPENAI_API_KEY:0:10}..."
 echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 
-# Test embedding generation
-node -e "require('./lib/embeddings').generateDocumentEmbedding('test').then(e => console.log('Dims:', e.length))"
+# Test embedding generation (using compiled output)
+node -e "import('../dist/lib/embeddings.js').then(m => m.generateDocumentEmbedding('test')).then(e => console.log('Dims:', e.length))"
 
-# Test trigger extraction
-node -e "console.log(require('./lib/trigger-extractor').extractTriggerPhrases('memory search trigger extraction'))"
-
-# Check shell library syntax
-bash -n lib/common.sh && echo "Syntax OK"
+# Test trigger extraction (using compiled output)
+node -e "import('../dist/lib/trigger-extractor.js').then(m => console.log(m.extractTriggerPhrases('memory search trigger extraction')))"
 ```
 
 ---
@@ -429,19 +384,19 @@ bash -n lib/common.sh && echo "Syntax OK"
 
 ### Internal Documentation
 
-| Document | Purpose |
-|----------|---------|
-| [../shared/README.md](../shared/README.md) | **Shared lib/ documentation** (canonical source for embeddings, triggers) |
-| [../shared/embeddings/README.md](../shared/embeddings/README.md) | Embeddings factory detailed docs |
-| [generate-context.js](../memory/generate-context.js) | Main script using these libraries |
-| [../../SKILL.md](../../SKILL.md) | Parent skill documentation |
-| [../../mcp_server/lib/](../../mcp_server/lib/) | MCP server library modules |
+| Document                                                               | Purpose                                                                      |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [../../shared/README.md](../../shared/README.md)                       | **Shared package documentation** (canonical source for embeddings, triggers) |
+| [../../shared/embeddings/README.md](../../shared/embeddings/README.md) | Embeddings factory detailed docs                                             |
+| [generate-context.ts](../memory/generate-context.ts)                   | Main script using these libraries                                            |
+| [../../SKILL.md](../../SKILL.md)                                       | Parent skill documentation                                                   |
+| [../../mcp_server/lib/](../../mcp_server/lib/)                         | MCP server library modules                                                   |
 
 ### External Resources
 
-| Resource | Description |
-|----------|-------------|
-| [@xenova/transformers](https://github.com/xenova/transformers.js) | JavaScript ML library for HF local |
-| [nomic-embed-text](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) | Default HF embedding model |
-| [Voyage AI](https://www.voyageai.com/) | Recommended embedding provider |
-| [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings) | OpenAI embedding API docs |
+| Resource                                                                  | Description                        |
+| ------------------------------------------------------------------------- | ---------------------------------- |
+| [@xenova/transformers](https://github.com/xenova/transformers.js)         | JavaScript ML library for HF local |
+| [nomic-embed-text](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) | Default HF embedding model         |
+| [Voyage AI](https://www.voyageai.com/)                                    | Recommended embedding provider     |
+| [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)   | OpenAI embedding API docs          |

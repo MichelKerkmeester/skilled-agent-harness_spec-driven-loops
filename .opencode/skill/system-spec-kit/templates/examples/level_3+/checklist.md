@@ -1,7 +1,7 @@
 # Verification Checklist: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: checklist + all addendums | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist + all addendums | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 3+ checklist demonstrating full governance
 features including extended verification (100+ items), compliance checkpoints,

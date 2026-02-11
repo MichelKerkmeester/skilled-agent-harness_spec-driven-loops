@@ -57,15 +57,10 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │                                                                │
    │ **Q3. Dispatch Mode** (required):                              │
    │    A) Single Agent - Execute with one agent (Recommended)      │
-   │    B) Multi-Agent (1+2) - 1 orchestrator (opus) + 2 workers (opus) │
-   │    C) Multi-Agent (1+3) - 1 orchestrator (opus) + 3 workers (opus) │
+   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
+   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
    │                                                                │
-   │ **Q4. Worker Model** (if B or C selected above):               │
-   │    Default: opus                                               │
-   │    To use different model, type: opus, gemini, gpt             │
-   │    for default                                                 │
-   │                                                                │
-   │ **Q5. Prior Work** (if [N] related memories found):            │
+   │ **Q4. Prior Work** (if [N] related memories found):            │
    │    A) Load all matches (comprehensive context)                 │
    │    B) Load constitutional only (foundational rules)            │
    │    C) Skip (start fresh)                                       │
@@ -75,7 +70,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    B) Load all recent files, up to 3                            │
    │    C) Skip (start fresh)                                       │
    │                                                                │
-   │ Reply with answers, e.g.: "B, A, A, , C" or "AI chat, B, A, gemini, C, A" │
+   │ Reply with answers, e.g.: "B, A, A, C" or "AI chat, B, A, C, A" │
    └────────────────────────────────────────────────────────────────┘
 
 6. WAIT for user response (DO NOT PROCEED)
@@ -86,8 +81,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - spec_path = [derived path or null if D]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - dispatch_mode = [single/multi_small/multi_large from Q3]
-   - worker_model = [from Q4: opus/gemini/gpt, default opus if blank]
-   - prior_work_choice = [A/B/C from Q5, or N/A if no matches]
+    - prior_work_choice = [A/B/C from Q4, or N/A if no matches]
    - memory_choice = [A/B/C from Q6, or N/A if not applicable]
 
 8. Execute background operations based on choices:
@@ -112,7 +106,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `spec_choice = ___` | `spec_path = ________________`
 - `execution_mode = ________________`
 - `dispatch_mode = ________________`
-- `worker_model = ________________` (default: opus)
 - `prior_work_loaded = ________________`
 - `memory_loaded = ________________`
 
@@ -129,8 +122,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | spec_path         | ○ Conditional | ______     | Derived from Q1       |
 | execution_mode    | ✅ Yes         | ______     | Suffix or Q2          |
 | dispatch_mode     | ✅ Yes         | ______     | Q3                    |
-| worker_model      | ○ Conditional | ______     | Q4 (default: opus)    |
-| prior_work_loaded | ○ Conditional | ______     | Q5 (if matches found) |
+| prior_work_loaded | ○ Conditional | ______     | Q4 (if matches found) |
 | memory_loaded     | ○ Conditional | ______     | Q6 (if existing spec) |
 
 ```

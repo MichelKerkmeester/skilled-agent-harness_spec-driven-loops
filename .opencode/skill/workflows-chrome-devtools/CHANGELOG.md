@@ -58,7 +58,7 @@ Initial release as enhanced Chrome DevTools orchestrator.
 - `README.md` — User documentation with usage examples
 - `references/session_management.md` — Browser session lifecycle
 - `references/cdp_patterns.md` — Chrome DevTools Protocol patterns
-- `assets/automation_checklist.md` — Verification checklist
+- `assets/checklists/` — Verification checklists
 
 ---
 

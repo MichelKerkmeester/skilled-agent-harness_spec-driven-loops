@@ -3,7 +3,7 @@
 Complete installation and configuration guide for the Spec Kit Memory MCP server, providing semantic memory and context preservation across AI sessions. Features vector-based semantic search with hybrid ranking, fast trigger phrase matching (<50ms), six-tier importance system (constitutional to deprecated), checkpoint save/restore, and automatic memory indexing. Essential for maintaining continuity in long-running projects, recovering context after session breaks, and surfacing relevant prior decisions during implementation.
 
 > **Part of OpenCode Installation** - See [Master Installation Guide](../README.md) for complete setup.
-> **Package**: Bundled | **Dependencies**: Node.js 18+, Ollama (optional)
+> **Package**: Bundled | **Dependencies**: Node.js 18+, @huggingface/transformers (local embeddings)
 
 ---
 
@@ -50,14 +50,15 @@ Not working? Jump to [Troubleshooting](#9--troubleshooting).
 I want to configure the Spec Kit Memory MCP server for conversation memory retrieval.
 
 The server is already bundled in my project at:
-.opencode/skill/system-spec-kit/mcp_server/context-server.js
+.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 
 Please help me:
 1. Check if I have Node.js 18+ installed
-2. Install dependencies in the mcp_server directory
-3. Configure my AI environment (I'm using: [Claude Code / OpenCode])
-4. Initialize the database
-5. Test the installation with a basic memory search
+2. Install dependencies from the skill root (npm workspaces)
+3. Build TypeScript (npm run build from skill root, or npx tsc --build --noCheck --force)
+4. Configure my AI environment (I'm using: [Claude Code / OpenCode])
+5. Initialize the database
+6. Test the installation with a basic memory search
 
 My project path is: [your-project-path]
 
@@ -66,7 +67,8 @@ Guide me through each step with the exact commands and configuration needed.
 
 **What the AI will do:**
 - Verify Node.js 18+ and npm are available
-- Run npm install in the mcp_server directory for dependencies
+- Run npm install from the skill root (workspaces install all dependencies)
+- Build TypeScript via `npm run build` from skill root (compiles all 3 workspaces)
 - Configure MCP settings for your platform
 - Initialize the SQLite database with vector extension
 - Test all tools: `memory_search`, `memory_match_triggers`
@@ -85,7 +87,7 @@ The Spec Kit Memory MCP Server provides AI assistants with conversation memory r
 | --------------- | --------------------------------------------- |
 | **Type**        | Bundled (internal project)                    |
 | **Location**    | `.opencode/skill/system-spec-kit/mcp_server/` |
-| **Entry Point** | `context-server.js`                           |
+| **Entry Point** | `dist/context-server.js` (compiled from `context-server.ts`) |
 | **License**     | Internal                                      |
 
 > **Note**: This MCP server is bundled within the `system-spec-kit` skill folder. No external installation or GitHub repository required - the server code travels with the skill for self-contained deployment.
@@ -169,7 +171,7 @@ User Request
                               │ stdio
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    context-server.js                        │
+│          context-server.ts → dist/context-server.js         │
 │  ┌─────────────────────────────────────────────────────┐    │
 │  │ MCP Protocol Handler (@modelcontextprotocol/sdk)    │    │
 │  │ - ListTools / CallTool handlers                     │    │
@@ -180,8 +182,8 @@ User Request
 │  ▼           ▼               ▼               ▼           │  │
 │ ┌─────┐   ┌─────────┐   ┌─────────┐   ┌──────────────┐   │  │
 │ │embed│   │vector-  │   │trigger- │   │trigger-      │   │  │
-│ │dings│   │index.js │   │matcher  │   │extractor.js  │   │  │
-│ │.js  │   │         │   │.js      │   │(save only)   │   │  │
+│ │dings│   │index.ts │   │matcher  │   │extractor.ts  │   │  │
+│ │.ts  │   │         │   │.ts      │   │(save only)   │   │  │
 │ └──┬──┘   └────┬────┘   └────┬────┘   └──────────────┘   │  │
 │    │           │              │                          │  │
 │    │     ┌─────┴─────┐        │                          │  │
@@ -269,43 +271,66 @@ The Spec Kit Memory MCP server is bundled within the `system-spec-kit` skill fol
 
 ```
 .opencode/skill/system-spec-kit/
-├── database/
-│   └── context-index.sqlite      # Vector database (auto-created)
 ├── mcp_server/
-│   ├── context-server.js         # Main MCP server entry point
-│   ├── package.json              # Dependencies manifest
-│   ├── lib/                      # Server modules
-│   │   ├── embeddings.js         # HuggingFace embedding generation
-│   │   ├── vector-index.js       # SQLite-vec database operations
-│   │   ├── trigger-matcher.js    # Fast phrase matching
-│   │   └── ...                   # Other modules
+│   ├── context-server.ts         # Main MCP server entry point [source]
+│   ├── package.json              # @spec-kit/mcp-server (dependencies)
+│   ├── tsconfig.json             # TypeScript compilation (outDir: ./dist)
+│   ├── dist/                     # Compiled JavaScript output (generated)
+│   │   ├── context-server.js     # Entry point (node runs this)
+│   │   ├── core/
+│   │   ├── handlers/
+│   │   ├── lib/
+│   │   └── ...
+│   ├── core/                     # Core modules [TypeScript sources]
+│   ├── handlers/                 # Tool handlers [TypeScript sources]
+│   ├── hooks/                    # Lifecycle hooks [TypeScript sources]
+│   ├── lib/                      # Library modules [TypeScript sources]
+│   │   ├── cognitive/            # FSRS, PE gating, etc.
+│   │   ├── search/               # Vector, BM25, RRF
+│   │   ├── providers/            # Embedding providers
+│   │   └── ...
+│   ├── utils/                    # Utility modules [TypeScript sources]
+│   ├── formatters/               # Output formatting [TypeScript sources]
 │   └── scripts/                  # CLI utilities
 ├── scripts/
-│   └── generate-context.js       # Memory file generator
-├── SKILL.md                      # AI agent instructions
-└── README.md                     # Skill documentation
+│   └── memory/
+│       └── generate-context.ts   # Memory file generator [source]
+├── shared/                       # Shared workspace (@spec-kit/shared)
+├── SKILL.md
+└── README.md
 ```
 
-### Step 1: Install Dependencies
+### Step 1: Install Dependencies and Build
 
-Navigate to the MCP server directory and install dependencies:
+Navigate to the **skill root** (not mcp_server/) and install dependencies across all workspaces:
 
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+cd .opencode/skill/system-spec-kit
 npm install
+
+# Compile TypeScript to JavaScript (builds all 3 workspaces: shared → mcp_server → scripts)
+npm run build
+
+# If build fails with pre-existing type errors, use:
+npx tsc --build --noCheck --force
+
+# Verify build succeeded
+npm run test:cli
 ```
 
-This installs all required packages including:
+This installs all required packages across the workspace:
 - `@modelcontextprotocol/sdk` - MCP protocol implementation
 - `better-sqlite3` - SQLite database driver
 - `sqlite-vec` - Vector similarity extension
 - `@huggingface/transformers` - Local embedding model
 
+> **Important**: The project uses npm workspaces (`shared/`, `mcp_server/`, `scripts/`). Always run `npm install` and `npm run build` from the skill root, not from individual workspace directories.
+
 ### Step 2: Test Server Startup
 
 ```bash
 # Test that server starts correctly
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js
+node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 # Press Ctrl+C after seeing successful startup message
 ```
 
@@ -318,11 +343,12 @@ See [Section 4: Configuration](#4--configuration) for client-specific setup.
 **Checklist:**
 - [ ] Server file exists at expected path
 - [ ] Dependencies installed (better-sqlite3 present)
+- [ ] TypeScript compiled (dist/ directory exists)
 - [ ] Server can start without errors
 
 **Quick Verification:**
 ```bash
-ls .opencode/skill/system-spec-kit/mcp_server/context-server.js && ls .opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3 && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js && ls .opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3 && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ❌ **STOP if validation fails** - Fix before continuing.
@@ -341,7 +367,7 @@ Add to `.mcp.json` in your project root:
     "spec_kit_memory": {
       "command": "node",
       "args": [
-        "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"
+        "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"
       ],
       "env": {},
       "disabled": false
@@ -351,7 +377,7 @@ Add to `.mcp.json` in your project root:
 ```
 
 **Note:** Replace `${workspaceFolder}` with your absolute project path, e.g.:
-`/Users/yourname/projects/my-project/.opencode/skill/system-spec-kit/mcp_server/context-server.js`
+`/Users/yourname/projects/my-project/.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js`
 
 Enable in `settings.local.json`:
 
@@ -374,17 +400,16 @@ Add to `opencode.json` in your project root:
       "type": "local",
       "command": [
         "node",
-        "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"
+        "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"
       ],
       "environment": {
-        "EMBEDDINGS_PROVIDER": "auto",
-        "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
-        "OPENAI_API_KEY": "YOUR_OPENAI_API_KEY_HERE",
+        "EMBEDDINGS_PROVIDER": "hf-local",
         "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
-        "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, fallback)",
-        "_NOTE_3_AUTO_DETECTION": "Priority: VOYAGE_API_KEY -> OPENAI_API_KEY -> HF Local (no installation needed)",
-        "_NOTE_4_VOYAGE_4": "Defaults to 'voyage-4'. Override with VOYAGE_EMBEDDINGS_MODEL env var.",
-        "_NOTE_5_NEW_PROJECT": "When copying to new project, update command path to match new location"
+        "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
+        "_NOTE_3_EMBEDDINGS_PROVIDER": "Current: 'hf-local' (free, offline). Options: 'auto', 'voyage', 'openai'",
+        "_NOTE_4_CLOUD_PROVIDERS": "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER=auto",
+        "_NOTE_5_GET_VOYAGE_KEY": "Get Voyage key: https://dash.voyageai.com/api-keys (recommended)",
+        "_NOTE_6_GET_OPENAI_KEY": "Get OpenAI key: https://platform.openai.com/api-keys"
       }
     }
   }
@@ -404,9 +429,10 @@ The MCP server and database are bundled **inside the skill folder** for several 
 
 **When copying to a new project:**
 1. Copy the entire `.opencode/skill/system-spec-kit/` folder
-2. Update the path in `opencode.json` to match the new project location
-3. Run `npm install` in the `mcp_server/` directory
-4. The database will be created fresh on first use (or copy `database/` to preserve memories)
+2. Run `npm install` from the skill root (`system-spec-kit/`)
+3. Run `npm run build` from the skill root to compile TypeScript (or `npx tsc --build --noCheck --force` if type errors occur)
+4. Update the path in `opencode.json` to match the new project location
+5. The database will be created fresh on first use (or copy `database/` to preserve memories)
 
 ### Database Path Configuration
 
@@ -435,11 +461,10 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 ```bash
 # Check all required files exist
 ls -la .opencode/skill/system-spec-kit/mcp_server/
-# Should show: context-server.js, lib/, package.json
+# Should show: context-server.ts, dist/, package.json, tsconfig.json
 
-ls -la .opencode/skill/system-spec-kit/mcp_server/lib/
-# Should show: embeddings.js, vector-index.js, trigger-matcher.js,
-#              memory-parser.js, importance-tiers.js, and more
+ls -la .opencode/skill/system-spec-kit/mcp_server/dist/
+# Should show: context-server.js, core/, handlers/, lib/, and more
 ```
 
 ### Check 2: Verify Dependencies Installed
@@ -454,7 +479,7 @@ ls -la .opencode/skill/system-spec-kit/mcp_server/node_modules/better-sqlite3
 
 ```bash
 # Start server manually (will wait for MCP protocol input)
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js
+node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 
 # Expected: No errors, server waits for input
 # Press Ctrl+C to exit
@@ -498,14 +523,15 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 **Checklist:**
 - [ ] Server files exist
 - [ ] Dependencies installed
+- [ ] TypeScript compiled (dist/ exists with compiled output)
 - [ ] Server starts without errors
 - [ ] MCP config is valid JSON
-- [ ] Memory tools appear in AI client (14 tools)
+- [ ] Memory tools appear in AI client (22 tools)
 - [ ] Database tables created (memory_index, vec_memories)
 
 **Quick Verification:**
 ```bash
-ls .opencode/skill/system-spec-kit/mcp_server/context-server.js && python3 -m json.tool < .mcp.json > /dev/null && sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".tables" 2>/dev/null | grep -q "memory_index" && echo "✅ PASS" || echo "❌ FAIL"
+ls .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js && python3 -m json.tool < .mcp.json > /dev/null && sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".tables" 2>/dev/null | grep -q "memory_index" && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 > **Note:** This command checks `.mcp.json` (Claude Code). For OpenCode, verify `opencode.json` instead: `python3 -m json.tool < opencode.json`
@@ -665,10 +691,10 @@ Use the `generate-context.js` script to create properly formatted memory files:
 
 ```bash
 # Standard location (project root)
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/[###-name]/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/[###-name]/
 
 # Alternative location (inside .opencode)
-node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/[###-name]/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/[###-name]/
 ```
 
 The script:
@@ -681,11 +707,11 @@ The script:
 
 ```bash
 # After completing auth implementation work (standard location)
-node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/049-auth-system/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/049-auth-system/
 # Creates: specs/049-auth-system/memory/24-12-25_14-30__auth.md
 
 # Or using alternative location
-node .opencode/skill/system-spec-kit/scripts/generate-context.js .opencode/specs/049-auth-system/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js .opencode/specs/049-auth-system/
 # Creates: .opencode/specs/049-auth-system/memory/24-12-25_14-30__auth.md
 
 # Auto-indexed with extracted trigger phrases
@@ -1160,7 +1186,7 @@ Memories are classified into six importance tiers that affect search ranking, de
 - **Constitutional**: Always included at top of search results, regardless of query relevance. With plugin: shown in dashboard summary (~500-800 tokens total for entire dashboard)
 - **Deprecated**: Excluded from search results entirely, accessible only via direct `memory_list` or `Read(filePath)`
 - **Temporary**: Automatically deleted after 7 days
-- **Decay**: ~62-day half-life for temporal relevance scoring (normal/temporary tiers only)
+- **Decay**: Half-life ≈ 12.8 × S days (where S = memory stability). Uses FSRS v4 power-law: `R(t) = (1 + (19/81) × t/S)^(-0.5)`. Default initial stability S=1.0 gives ~12.8-day half-life; stability grows with positive validations (normal/temporary tiers only)
 
 **Setting Tier**: Use `memory_update` with `importanceTier` parameter:
 ```json
@@ -1184,7 +1210,7 @@ Constitutional memories are special memories that ALWAYS appear at the top of se
 
 2. **Generate memory file:**
    ```bash
-   node .opencode/skill/system-spec-kit/scripts/generate-context.js specs/[folder]/
+   node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/[folder]/
    ```
 
 3. **Index the memory** (if not auto-indexed):
@@ -1225,7 +1251,7 @@ See `specs/005-memory/018-gate3-enforcement/` for a complete example:
 - Constitutional tier promotion via `memory_update()`
 - Validation via `memory_match_triggers()` testing
 
-**Token Budget:** Keep constitutional memories under 500 tokens to ensure they don't overwhelm search results.
+**Token Budget:** Constitutional memories have a ~2000 token budget (per `maxTokens` in importance-tiers.ts). Keep individual memories concise to stay within this budget.
 
 **Limit:** Maximum 3 constitutional memories recommended to maintain focus.
 
@@ -1237,19 +1263,34 @@ See `specs/005-memory/018-gate3-enforcement/` for a complete example:
 
 **Problem**: `Error: Cannot find module`
 
-**What it means**: The server can't find its dependencies. The node_modules are missing or npm install wasn't run.
+**What it means**: The server can't find its dependencies. Either the node_modules are missing, npm install wasn't run, or TypeScript wasn't compiled.
 
 **Fix**:
 ```bash
-cd .opencode/skill/system-spec-kit/mcp_server
+# Install from skill root (npm workspaces)
+cd .opencode/skill/system-spec-kit
 npm install
+
+# Build TypeScript (all 3 workspaces: shared → mcp_server → scripts)
+npm run build
+
+# If build fails with type errors, bypass type checking:
+npx tsc --build --noCheck --force
+
+# Verify build succeeded
+npm run test:cli
 ```
 
 **If that doesn't work**:
 ```bash
-# Check node_modules exists
+# Check node_modules exists (may be hoisted to skill root)
+ls -la .opencode/skill/system-spec-kit/node_modules
 ls -la .opencode/skill/system-spec-kit/mcp_server/node_modules
-# If missing, run npm install again
+# If missing, run npm install from skill root again
+
+# Check dist/ directory exists with compiled output
+ls -la .opencode/skill/system-spec-kit/mcp_server/dist/
+# If missing, run npm run build from skill root
 ```
 
 ### sqlite-vec Not Loading
@@ -1274,6 +1315,40 @@ rm -rf node_modules
 npm install
 ```
 
+### HuggingFace Model Cache Corruption
+
+**Problem**: `Error: Failed to parse ONNX model` or Protobuf parsing failures
+
+**What it means**: The cached ONNX model is corrupted, likely from an interrupted download.
+
+**Fix**:
+```bash
+# Clear the HuggingFace Transformers model cache
+rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache
+
+# Restart MCP server (model will re-download on first use)
+```
+
+### Native Module Version Mismatch
+
+**Problem**: `ERR_DLOPEN_FAILED` when starting server
+
+**What it means**: Native modules (better-sqlite3, sqlite-vec) were compiled for a different Node.js version. This happens after upgrading Node.js.
+
+**Fix**:
+```bash
+cd .opencode/skill/system-spec-kit/mcp_server
+
+# npm rebuild alone may not be sufficient — use full reinstall
+rm -rf node_modules/better-sqlite3 node_modules/sqlite-vec
+npm install
+
+# Verify Node version matches runtime
+node -e "console.log('Node ' + process.version + ' (MODULE_VERSION ' + process.versions.modules + ')')"
+```
+
+**Prevention**: After upgrading Node.js, always reinstall native dependencies.
+
 ### No Search Results
 
 **Problem**: `memory_search` returns empty results
@@ -1296,17 +1371,16 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
   "SELECT embedding_status, COUNT(*) FROM memory_index GROUP BY embedding_status"
 ```
 
-**Rebuild index with MCP tool or batch indexer**:
+**Rebuild index with MCP tool**:
 ```bash
 # Via MCP tool (recommended)
 memory_index_scan({ force: true })
 
-# Or via CLI script from mcp_server directory
-cd .opencode/skill/system-spec-kit/mcp_server/scripts
-node index-cli.js --scan
+# Or re-index specific folder
+memory_index_scan({ specFolder: "049-auth-system", force: true })
 ```
 
-The `--scan` option recursively finds all memory files in nested specs structures like `specs/001-foo/002-bar/memory/` or `.opencode/specs/001-foo/002-bar/memory/`.
+The scan recursively finds all memory files in nested specs structures like `specs/001-foo/002-bar/memory/` or `.opencode/specs/001-foo/002-bar/memory/`.
 
 ### Slow Performance
 
@@ -1432,16 +1506,18 @@ memory_index_scan({ force: true })
 memory_index_scan({ specFolder: "049-auth-system", force: true })
 ```
 
-**Check Ollama (if using local embeddings):**
+**Check HuggingFace Transformers (if using local embeddings):**
 ```bash
-# Verify Ollama is running
-ollama list
+# Verify the model cache exists
+ls .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers
 
-# Check nomic model is available
-ollama show nomic-embed-text
+# If missing, reinstall from skill root
+cd .opencode/skill/system-spec-kit
+npm install
 
-# If missing, pull it
-ollama pull nomic-embed-text
+# If model cache is corrupted (protobuf errors), clear and restart:
+rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache
+# Model will re-download on next MCP server startup
 ```
 
 ### Backup and Restore Issues
@@ -1484,32 +1560,38 @@ The Spec Kit Memory system is organized within the `system-spec-kit` skill folde
 
 ```
 .opencode/skill/system-spec-kit/
-├── database/
-│   └── context-index.sqlite      # Vector database (auto-created)
 ├── mcp_server/
-│   ├── context-server.js         # Main MCP server entry point
-│   ├── package.json              # Dependencies manifest
+│   ├── context-server.ts         # Main MCP server entry point [source]
+│   ├── package.json              # @spec-kit/mcp-server (dependencies)
+│   ├── tsconfig.json             # TypeScript compilation (outDir: ./dist)
 │   ├── INSTALL_GUIDE.md          # This installation guide
 │   ├── LICENSE
+│   ├── dist/                     # Compiled JavaScript output (generated)
+│   │   ├── context-server.js     # Entry point (node runs this)
+│   │   ├── core/
+│   │   ├── handlers/
+│   │   ├── lib/
+│   │   ├── utils/
+│   │   ├── formatters/
+│   │   └── ...
+│   ├── core/                     # Core modules [TypeScript sources]
+│   ├── handlers/                 # Tool handlers [TypeScript sources]
+│   ├── hooks/                    # Lifecycle hooks [TypeScript sources]
+│   ├── lib/                      # Library modules [TypeScript sources]
+│   │   ├── cognitive/            # FSRS, PE gating, etc.
+│   │   ├── search/               # Vector, BM25, RRF
+│   │   ├── providers/            # Embedding providers
+│   │   └── ...
+│   ├── utils/                    # Utility modules [TypeScript sources]
+│   ├── formatters/               # Output formatting [TypeScript sources]
 │   ├── configs/
 │   │   └── search-weights.json   # Search algorithm configuration
-│   ├── lib/
-│   │   ├── embeddings.js         # HuggingFace embedding generation (nomic-embed-text-v1.5)
-│   │   ├── vector-index.js       # SQLite-vec database operations
-│   │   ├── trigger-matcher.js    # Fast phrase matching (<50ms)
-│   │   ├── trigger-extractor.js  # TF-IDF phrase extraction
-│   │   ├── retry-manager.js      # Failed embedding retry logic
-│   │   ├── importance-tiers.js   # Six-tier importance system
-│   │   ├── checkpoints.js        # Checkpoint save/restore operations
-│   │   ├── confidence-tracker.js # Validation and confidence scoring
-│   │   ├── memory-parser.js      # Memory file parsing and metadata extraction
-│   │   ├── token-budget.js       # Token limit management for results
-│   │   ├── access-tracker.js     # Memory access tracking for decay
-│   │   └── ...                   # Additional modules
 │   └── scripts/
-│       └── index-cli.js          # CLI indexing utility
+│       └── reindex-embeddings.ts  # Re-indexing utility
 ├── scripts/
-│   └── generate-context.js       # Memory file generator script
+│   └── memory/
+│       └── generate-context.ts   # Memory file generator [source]
+├── shared/                       # Shared workspace (@spec-kit/shared)
 ├── references/                   # Skill documentation references
 ├── templates/
 │   └── context_template.md       # Memory file template
@@ -1577,10 +1659,10 @@ CREATE TABLE checkpoints (
 
 ```bash
 # Check server version
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js --version 2>&1 | head -1
+node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js --version 2>&1 | head -1
 
 # Test startup (Ctrl+C to exit)
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js
+node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 
 # Check database tables
 sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".tables"
@@ -1601,6 +1683,8 @@ Slow operations are logged automatically:
 [embeddings] generateEmbedding: 520ms (target <500ms) - SLOW
 ```
 
+**Token Budget Observability**: Each tool response includes a `tokenBudget` field in its `meta` object, showing the budget for that layer (e.g., L2: 1500 tokens). If a response exceeds its budget, a warning is logged to stderr (`[token-budget] memory_search response (1823 tokens) exceeds budget (1500)`) and a hint is appended to the response.
+
 ### Related Documentation
 
 | Document     | Location                                      | Purpose                 |
@@ -1611,29 +1695,40 @@ Slow operations are logged automatically:
 
 ---
 
-### Quick Reference: Complete Tool Summary (13 Tools)
+### Quick Reference: Complete Tool Summary (22 Tools)
 
-**Core Search Tools:**
+**L1 - Orchestration:**
 
-| Tool                               | Purpose                  | Speed  | Use When                           |
-| ---------------------------------- | ------------------------ | ------ | ---------------------------------- |
-| `memory_search`                    | Semantic vector search   | ~500ms | Need meaning-based retrieval       |
-| `memory_search` + `includeContent` | Search with full content | ~500ms | Need content without separate read |
-| `memory_match_triggers`            | Fast phrase matching     | <50ms  | Quick keyword lookup first         |
+| Tool                               | Purpose                                    | Speed  | Use When                           |
+| ---------------------------------- | ------------------------------------------ | ------ | ---------------------------------- |
+| `memory_context`                   | Unified entry point with intent-aware routing | varies | START HERE for most operations     |
 
-**Memory Management Tools:**
+**L2 - Core Search & Indexing:**
+
+| Tool                               | Purpose                                    | Speed  | Use When                           |
+| ---------------------------------- | ------------------------------------------ | ------ | ---------------------------------- |
+| `memory_search`                    | Semantic vector search                     | ~500ms | Need meaning-based retrieval       |
+| `memory_search` + `includeContent` | Search with full content                   | ~500ms | Need content without separate read |
+| `memory_match_triggers`            | Fast phrase matching                       | <50ms  | Quick keyword lookup first         |
+| `memory_save`                      | Index single memory file                   | ~1s    | Index new/updated memory file      |
+
+**L3 - Discovery:**
+
+| Tool              | Purpose                          |
+| ----------------- | -------------------------------- |
+| `memory_list`     | Browse memories with pagination  |
+| `memory_stats`    | System statistics and folder ranking |
+| `memory_health`   | Check system health status       |
+
+**L4 - Mutation:**
 
 | Tool                | Purpose                         |
 | ------------------- | ------------------------------- |
-| `memory_save`       | Index single memory file        |
-| `memory_list`       | Browse memories with pagination |
 | `memory_update`     | Update importance/metadata      |
 | `memory_delete`     | Delete by ID or spec folder     |
 | `memory_validate`   | Record validation feedback      |
-| `memory_stats`      | System statistics               |
-| `memory_index_scan` | Bulk scan and index workspace   |
 
-**Checkpoint Tools:**
+**L5 - Lifecycle (Checkpoints):**
 
 | Tool                 | Purpose                    |
 | -------------------- | -------------------------- |
@@ -1641,6 +1736,24 @@ Slow operations are logged automatically:
 | `checkpoint_list`    | List available checkpoints |
 | `checkpoint_restore` | Restore from checkpoint    |
 | `checkpoint_delete`  | Delete checkpoint          |
+
+**L6 - Analysis (Epistemic & Causal):**
+
+| Tool                  | Purpose                                     |
+| --------------------- | ------------------------------------------- |
+| `task_preflight`      | Capture knowledge baseline before task      |
+| `task_postflight`     | Capture knowledge after task, calc learning |
+| `memory_drift_why`    | Trace causal chain for a memory             |
+| `memory_causal_link`  | Create causal relationship between memories |
+| `memory_causal_stats` | Causal graph statistics                     |
+| `memory_causal_unlink`| Remove a causal relationship                |
+
+**L7 - Maintenance:**
+
+| Tool                         | Purpose                              |
+| ---------------------------- | ------------------------------------ |
+| `memory_index_scan`          | Bulk scan and index workspace        |
+| `memory_get_learning_history`| Learning history for a spec folder   |
 
 ### Importance Tiers
 
@@ -1657,11 +1770,11 @@ Slow operations are logged automatically:
 
 ```bash
 # Verify installation
-ls -la .opencode/skill/system-spec-kit/mcp_server/lib/
+ls -la .opencode/skill/system-spec-kit/mcp_server/dist/
 sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite ".tables"
 
 # Test server
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js
+node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 
 # Check database stats
 sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite "SELECT COUNT(*) FROM memory_index"
@@ -1675,7 +1788,7 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
   "mcpServers": {
     "spec_kit_memory": {
       "command": "node",
-      "args": ["${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"],
+      "args": ["${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
       "env": {},
       "disabled": false
     }
@@ -1689,12 +1802,13 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
   "mcp": {
     "spec_kit_memory": {
       "type": "local",
-      "command": ["node", "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/context-server.js"],
+      "command": ["node", "${workspaceFolder}/.opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
       "environment": {
-        "EMBEDDINGS_PROVIDER": "auto",
-        "VOYAGE_API_KEY": "YOUR_VOYAGE_API_KEY_HERE",
+        "EMBEDDINGS_PROVIDER": "hf-local",
         "_NOTE_1_DATABASE": "Stores vectors in: .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite",
-        "_NOTE_2_PROVIDERS": "Voyage (recommended), OpenAI, or HF Local (fallback)"
+        "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims, recommended), OpenAI (1536/3072 dims), HF Local (768 dims, no API needed)",
+        "_NOTE_3_EMBEDDINGS_PROVIDER": "Current: 'hf-local' (free, offline). Options: 'auto', 'voyage', 'openai'",
+        "_NOTE_4_CLOUD_PROVIDERS": "For cloud: add VOYAGE_API_KEY or OPENAI_API_KEY and set EMBEDDINGS_PROVIDER=auto"
       }
     }
   }

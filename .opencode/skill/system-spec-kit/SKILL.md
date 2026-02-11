@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Unified documentation and context preservation: spec folder workflow (levels 1-3+), CORE + ADDENDUM template architecture (v2.2), validation, Spec Kit Memory with hybrid search (vector + BM25 + FTS), FSRS-based decay, six-tier importance system, constitutional rules, checkpoint save/restore with working memory, session deduplication, causal memory graph, intent-aware retrieval, cognitive features (tiered injection, co-activation, attention decay). Mandatory for all file modifications."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.2.4.0
+version: 2.2.0.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, spec-kit-memory, vector-search, hybrid-search, bm25, rrf-fusion, fsrs-decay, constitutional-tier, checkpoint, importance-tiers, cognitive-memory, co-activation, tiered-injection -->

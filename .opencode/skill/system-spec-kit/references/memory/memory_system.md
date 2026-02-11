@@ -17,10 +17,10 @@ The Spec Kit Memory system provides context preservation across sessions through
 
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| MCP Server | `mcp_server/context-server.js` | Spec Kit Memory MCP with vector search |
+| MCP Server | `mcp_server/context-server.ts` | Spec Kit Memory MCP with vector search |
 | Database | `mcp_server/database/context-index.sqlite` | SQLite with FTS5 + vector embeddings |
 | Constitutional | `constitutional/` | Always-surface rules (Gate 3 enforcement) |
-| Scripts | `scripts/memory/generate-context.js` | Memory file generation with ANCHOR format |
+| Scripts | `scripts/memory/generate-context.ts` | Memory file generation with ANCHOR format |
 
 ### Core Capabilities
 
@@ -66,24 +66,32 @@ Six-tier system for prioritizing memory relevance:
 
 > **Note:** MCP tool names use the format `spec_kit_memory_<tool_name>`. In documentation, shorthand names like `memory_search()` refer to the full `spec_kit_memory_memory_search()` tool.
 
-### Tool Reference
+### Tool Reference (22 tools)
 
-| Tool | Purpose | Example Use |
-|------|---------|-------------|
-| `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
-| `memory_match_triggers()` | Fast keyword matching (<50ms) with cognitive features | Gate enforcement |
-| `memory_save()` | Index a memory file. Re-generates embedding when **content hash** changes. Title-only changes do not trigger re-embedding. | After generate-context.js |
-| `memory_list()` | Browse stored memories with pagination | Review session history |
-| `memory_delete()` | Delete memory by ID or bulk delete by spec folder | Remove outdated memories |
-| `memory_update()` | Update memory metadata (title, tier, triggers) | Correct memory properties |
-| `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
-| `memory_stats()` | Get memory system statistics | Check index health |
-| `memory_index_scan()` | Bulk scan and index memory files | After creating multiple files |
-| `memory_health()` | Check health status of memory system | Diagnose issues |
-| `checkpoint_create()` | Save named state snapshot | Before risky changes |
-| `checkpoint_list()` | List available checkpoints | Find restore points |
-| `checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
-| `checkpoint_delete()` | Delete a checkpoint | Clean up old snapshots |
+| Layer | Tool | Purpose | Example Use |
+|-------|------|---------|-------------|
+| L1: Orchestration | `memory_context()` | Unified entry point with intent-aware routing | START HERE for most memory operations |
+| L2: Core | `memory_search()` | Semantic search with vector similarity | Find prior decisions on auth |
+| L2: Core | `memory_match_triggers()` | Fast keyword matching (<50ms) with cognitive features | Gate enforcement |
+| L2: Core | `memory_save()` | Index a memory file. Re-generates embedding when **content hash** changes. Title-only changes do not trigger re-embedding. | After generate-context.js |
+| L3: Discovery | `memory_list()` | Browse stored memories with pagination | Review session history |
+| L3: Discovery | `memory_stats()` | Get memory system statistics with composite scoring | Check index health |
+| L3: Discovery | `memory_health()` | Check health status of memory system | Diagnose issues |
+| L4: Mutation | `memory_delete()` | Delete memory by ID or bulk delete by spec folder | Remove outdated memories |
+| L4: Mutation | `memory_update()` | Update memory metadata (title, tier, triggers) | Correct memory properties |
+| L4: Mutation | `memory_validate()` | Mark memory as useful/not useful | Confidence scoring |
+| L5: Lifecycle | `checkpoint_create()` | Save named state snapshot | Before risky changes |
+| L5: Lifecycle | `checkpoint_list()` | List available checkpoints | Find restore points |
+| L5: Lifecycle | `checkpoint_restore()` | Restore from checkpoint | Rollback if needed |
+| L5: Lifecycle | `checkpoint_delete()` | Delete a checkpoint | Clean up old snapshots |
+| L6: Analysis | `task_preflight()` | Capture epistemic baseline before task execution | Start of implementation work |
+| L6: Analysis | `task_postflight()` | Capture epistemic state after task, calculate Learning Index | After completing implementation |
+| L6: Analysis | `memory_drift_why()` | Trace causal chain for a memory ("why was this decided?") | Understand decision lineage |
+| L6: Analysis | `memory_causal_link()` | Create causal relationship between two memories | Link decision to its cause |
+| L6: Analysis | `memory_causal_stats()` | Get statistics about the causal memory graph | Check causal coverage |
+| L6: Analysis | `memory_causal_unlink()` | Remove a causal relationship by edge ID | Clean up incorrect links |
+| L7: Maintenance | `memory_index_scan()` | Bulk scan and index memory files | After creating multiple files |
+| L7: Maintenance | `memory_get_learning_history()` | Get learning history (preflight/postflight records) | Analyze learning patterns |
 
 ---
 
@@ -267,35 +275,57 @@ For consistent exact matching, use the full spec folder name.
 
 ## 6. ⏱️ DECAY SCORING
 
-Memories decay over conversation turns to prioritize recent context:
+> [VERIFIED: matches source code as of 2026-02-08]
 
-### Tier-Specific Decay Rates (v1.7.1)
+The memory system uses two complementary decay models, both **day-based** (calendar time), not turn-based.
+
+### Model A: Tier-Based Exponential Decay
+
+**Source:** `lib/cognitive/attention-decay.ts:96-106`
+
+**Formula:** `score_decayed = score × decayRate^(elapsedDays / 30)`
+
+Where `elapsedDays` = calendar days since the memory's `updated_at` (or `created_at`). The 30-day normalization means the decay rate applies per 30-day period. Scores below `0.001` are clamped to 0.
+
+#### Tier-Specific Decay Rates
 
 | Tier | Decay Rate | Behavior |
 |------|------------|----------|
-| `constitutional` | 1.0 | Never decays |
-| `critical` | 1.0 | Never decays |
-| `important` | 1.0 | Never decays |
-| `normal` | 0.80 | Standard decay |
-| `temporary` | 0.60 | Fast decay |
-| `deprecated` | 1.0 | Never decays (but excluded from results) |
+| `constitutional` | 1.0 | Never decays (exempt) |
+| `critical` | 1.0 | Never decays (exempt) |
+| `important` | 1.0 | Never decays (exempt) |
+| `normal` | 0.80 | Standard decay (~20% loss per 30 days) |
+| `temporary` | 0.60 | Fast decay (~40% loss per 30 days) |
+| `deprecated` | 1.0 | Never decays (but excluded from search results) |
 
-**Formula (TURN-BASED):** `new_score = current_score × (decay_rate ^ turns_elapsed)`
+**Protected Tiers:** Constitutional, critical, important, and deprecated tiers have rate = 1.0, so `decayRate^(elapsedDays/30)` = 1.0 always.
 
-Where `turns_elapsed` = current conversation turn - last mentioned turn.
+#### Decay Examples (Normal Tier, decay_rate = 0.80)
 
-**Protected Tiers:** Constitutional, critical, important, and deprecated tiers are protected from decay (rate = 1.0). This ensures important context is preserved regardless of conversation length.
+| Days Elapsed | Decay Factor (`0.80^(days/30)`) | Effective Score (base 0.50) |
+|--------------|----------------------------------|----------------------------|
+| 0 | 1.000 | 0.500 |
+| 30 | 0.800 | 0.400 |
+| 60 | 0.640 | 0.320 |
+| 90 | 0.512 | 0.256 |
+| 180 | 0.262 | 0.131 |
 
-### Decay Examples (Normal Tier, decay_rate = 0.80)
+### Model B: FSRS Power-Law Retrievability
 
-| Turns Elapsed | Decay Factor | Effective Score (base 0.50) |
-|---------------|--------------|----------------------------|
-| 0 | 1.00 | 0.50 |
-| 5 | 0.33 | 0.16 |
-| 10 | 0.11 | 0.05 |
-| 15 | 0.04 | 0.02 |
+**Source:** `lib/cognitive/attention-decay.ts:111-118`, `lib/scoring/composite-scoring.ts:123-125,158-181`
 
-**Note:** Decay is per conversation TURN, not calendar time. Each new user message increments the turn counter.
+Used for composite scoring and the 5-state model (Section 10). Based on the FSRS v4 spaced-repetition formula:
+
+**Formula:** `R = (1 + FSRS_FACTOR × t/S)^(-0.5)`
+
+Where:
+- `R` = retrievability (0 to 1)
+- `t` = elapsed days since last review
+- `S` = stability (learned from review history, default 1.0)
+- `FSRS_FACTOR` = `19/81 ≈ 0.235` (in composite-scoring) or `1/19` inline fallback (in attention-decay)
+- Power exponent = `-0.5`
+
+The FSRS model produces a power-law curve (slower initial decay, steeper long-term decay) compared to the exponential Model A. It is used by `calculateRetrievabilityScore()` in composite scoring and by the tier classifier for state transitions.
 
 ### Disabling Decay
 
@@ -384,39 +414,64 @@ Constitutional files are stored in:
 
 ## 9. 🔄 SESSION DEDUPLICATION
 
-The memory system uses fingerprint-based deduplication to prevent redundant memories and reduce token usage.
+> [VERIFIED: matches source code as of 2026-02-08]
+
+The memory system uses content hashing and session-aware deduplication to prevent redundant memories and reduce token usage.
 
 ### Content Hashing
 
-Each memory is fingerprinted using a SHA-256 hash of its normalized content:
+**Source:** `lib/parsing/memory-parser.ts:347-349`
 
-```javascript
-function computeFingerprint(content) {
-  const normalized = content
-    .toLowerCase()
-    .replace(/\s+/g, ' ')      // Normalize whitespace
-    .replace(/\d{4}-\d{2}-\d{2}/g, 'DATE')  // Normalize dates
-    .trim();
+Each memory file is hashed using SHA-256 of its **raw content** (no normalization):
 
-  return crypto.createHash('sha256')
-    .update(normalized)
-    .digest('hex')
-    .slice(0, 16);  // First 16 chars sufficient for collision resistance
+```typescript
+function computeContentHash(content: string): string {
+  return crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
 }
 ```
 
+This hash is stored as `content_hash` in the database and used by `memory_save()` to detect whether a file has changed — if the hash matches, re-embedding is skipped.
+
+### Session Memory Hashing
+
+**Source:** `lib/session/session-manager.ts:230-249`
+
+For session deduplication, a separate hash identifies individual memories within a session:
+
+```typescript
+function generateMemoryHash(memory: MemoryInput): string {
+  let hashInput: string;
+
+  if (memory.content_hash) {
+    hashInput = memory.content_hash;
+  } else if (memory.id !== undefined) {
+    hashInput = `${memory.id}:${memory.anchorId || ''}:${memory.file_path || ''}`;
+  } else {
+    hashInput = JSON.stringify({
+      anchor: memory.anchorId,
+      path: memory.file_path,
+      title: memory.title,
+    });
+  }
+
+  return crypto.createHash('sha256').update(hashInput).digest('hex').slice(0, 16);
+}
+```
+
+The hash priority: `content_hash` > `id:anchorId:file_path` > JSON of `{anchor, path, title}`. Truncated to 16 hex chars for storage efficiency.
+
 ### Deduplication Behavior
 
-| Scenario | Fingerprint Match | Action |
-|----------|-------------------|--------|
-| Identical content | 100% | Skip indexing, return existing ID |
-| Minor edits (whitespace, dates) | 100% | Skip indexing (normalized match) |
-| Substantive changes | No match | Create new memory entry |
-| Same content, different spec folder | No match | Create separate entry (scoped) |
+| Scenario | Hash Match | Action |
+|----------|------------|--------|
+| Identical file content | Full SHA-256 match | Skip re-embedding, return existing ID |
+| Same memory in same session | 16-char hash match | Skip sending (session dedup) |
+| Substantive file changes | No match | Re-index with new embedding |
+| Same content, different spec folder | Separate entries | Each folder gets its own index entry |
 
 ### Token Savings
 
-Deduplication provides significant token savings during search:
+Session deduplication (`enableDedup: true` with `sessionId`) provides significant savings on follow-up queries:
 
 | Metric | Without Dedup | With Dedup | Savings |
 |--------|---------------|------------|---------|
@@ -424,148 +479,96 @@ Deduplication provides significant token savings during search:
 | Search result tokens | ~4000 | ~2000 | 50% |
 | Index size (100 specs) | 1200 entries | 600 entries | 50% |
 
-### Similar Memory Detection
-
-Beyond exact deduplication, the system detects semantically similar memories:
-
-```javascript
-async function findSimilarMemories(content, threshold = 0.92) {
-  const embedding = await getEmbedding(content);
-
-  return await db.query(`
-    SELECT id, title, similarity
-    FROM memories
-    WHERE vector_similarity(embedding, ?) > ?
-    ORDER BY similarity DESC
-    LIMIT 5
-  `, [embedding, threshold]);
-}
-```
-
-When similar memories are detected:
-- User is warned before creating potential duplicate
-- Option to merge with existing memory
-- Option to create as distinct memory
+**Note:** There is no content normalization (lowercasing, whitespace/date normalization) in the hashing pipeline. Hashes are computed on raw content, so even whitespace-only changes will produce a different hash and trigger re-indexing.
 
 ---
 
 ## 10. 🌡️ 5-STATE MEMORY MODEL
 
-Memories exist in one of five states that determine their visibility and decay behavior.
+> [VERIFIED: matches source code as of 2026-02-08]
 
-### State Definitions
+Memories are classified into five states based on their **retrievability score** (R), not calendar-day thresholds.
+
+**Source:** `lib/cognitive/tier-classifier.ts:26-33, 211-256, 261-299`
+
+### Retrievability Thresholds
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      5-STATE MEMORY MODEL                       │
+│                 5-STATE MODEL (Retrievability-Based)             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌─────────┐    access    ┌─────────┐    time     ┌─────────┐  │
-│  │   HOT   │ ◄─────────── │  WARM   │ ◄───────── │  COLD   │  │
-│  │(active) │              │(recent) │             │(stale)  │  │
-│  └────┬────┘              └────┬────┘             └────┬────┘  │
-│       │                        │                       │       │
-│       │ no access              │ 7+ days               │ 30+   │
-│       ▼                        ▼                       ▼       │
-│  ┌─────────┐              ┌─────────┐             ┌─────────┐  │
-│  │  WARM   │              │  COLD   │             │ DORMANT │  │
-│  └─────────┘              └─────────┘             └────┬────┘  │
-│                                                        │       │
-│                                          90+ days      │       │
-│                                          no access     ▼       │
-│                                                   ┌─────────┐  │
-│                                                   │ARCHIVED │  │
-│                                                   └─────────┘  │
+│  R ≥ 0.80    →  HOT       (high recall probability)            │
+│  R ≥ 0.25    →  WARM      (moderate recall)                    │
+│  R ≥ 0.05    →  COLD      (low recall)                         │
+│  R < 0.05    →  DORMANT   (very low recall)                    │
+│  R < 0.02                                                       │
+│  AND days > 90 → ARCHIVED (frozen, excluded by default)         │
+│                                                                 │
+│  Constitutional/Critical tiers → always HOT (R = 1.0)           │
+│  Pinned memories (is_pinned=1) → always HOT (R = 1.0)          │
+│                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
+Thresholds are configurable via environment variables (`HOT_THRESHOLD`, `WARM_THRESHOLD`, `COLD_THRESHOLD`, `ARCHIVED_DAYS_THRESHOLD`) with validation that HOT > WARM > COLD.
+
+### State Classification
+
+The core classifier accepts either a numeric retrievability value or a memory object:
+
+```typescript
+// lib/cognitive/tier-classifier.ts — classifyState()
+function classifyState(
+  retrievabilityOrMemory: number | MemoryRow | Record<string, unknown> | null | undefined,
+  elapsedDays?: number,
+): TierState {
+  // ... resolve r and days from input ...
+
+  if (days > TIER_CONFIG.archivedDaysThreshold && r < STATE_THRESHOLDS.DORMANT) {
+    return 'ARCHIVED';
+  }
+  if (r >= TIER_CONFIG.hotThreshold) return 'HOT';   // default 0.80
+  if (r >= TIER_CONFIG.warmThreshold) return 'WARM';  // default 0.25
+  if (r >= TIER_CONFIG.coldThreshold) return 'COLD';  // default 0.05
+  return 'DORMANT';
+}
+```
+
+The richer `classifyTier()` function wraps this with half-life support, pinned-memory handling, and constitutional/critical exemptions. It computes retrievability using the FSRS formula (see Section 6, Model B) with an effective stability derived from the memory's type-specific half-life.
+
 ### State Behaviors
 
-| State | Access Pattern | Decay Rate | Search Inclusion | Description |
-|-------|----------------|------------|------------------|-------------|
-| **HOT** | Active in current session | 1.0 (none) | Always | Currently being used or referenced |
-| **WARM** | Accessed within 7 days | 0.95 (slow) | Always | Recently relevant context |
-| **COLD** | 7-30 days since access | 0.80 (normal) | Relevance-based | Infrequently accessed |
-| **DORMANT** | 30-90 days since access | 0.60 (fast) | High relevance only | Long unused, may be outdated |
-| **ARCHIVED** | 90+ days, no access | 0.0 (frozen) | Explicit only | Preserved but not searched by default |
+| State | Retrievability | Search Inclusion | Description |
+|-------|---------------|------------------|-------------|
+| **HOT** | R ≥ 0.80 | Always (max 5) | High recall — recently reviewed or important |
+| **WARM** | R ≥ 0.25 | Always (max 10) | Moderate recall — still relevant |
+| **COLD** | R ≥ 0.05 | Relevance-based | Low recall — aging out |
+| **DORMANT** | R < 0.05 | High relevance only | Very low recall — candidate for archival |
+| **ARCHIVED** | R < 0.02 + 90+ days | Explicit only | Frozen — excluded from default searches |
+
+HOT and WARM states have per-query limits (`maxHotMemories: 5`, `maxWarmMemories: 10`) to prevent context flooding.
+
+### Half-Life to Stability Conversion
+
+Each memory type has a configured half-life (in days). This is converted to FSRS stability:
+
+```
+S = half_life / ln(2) ≈ half_life / 0.693
+```
+
+The effective stability is `max(fsrs_stability, type_stability)`, ensuring new memories benefit from their type's baseline while well-reviewed memories keep earned FSRS stability.
 
 ### State Transitions
 
-```javascript
-function calculateState(memory) {
-  const daysSinceAccess = (Date.now() - memory.lastAccess) / (1000 * 60 * 60 * 24);
-  const isActiveSession = memory.sessionId === currentSessionId;
-
-  if (isActiveSession || memory.accessedThisTurn) {
-    return 'HOT';
-  } else if (daysSinceAccess <= 7) {
-    return 'WARM';
-  } else if (daysSinceAccess <= 30) {
-    return 'COLD';
-  } else if (daysSinceAccess <= 90) {
-    return 'DORMANT';
-  } else {
-    return 'ARCHIVED';
-  }
-}
-```
-
-### Search Behavior by State
-
-```javascript
-async function searchWithStateFiltering(query, options = {}) {
-  const { includeArchived = false, minState = 'COLD' } = options;
-
-  const stateOrder = ['HOT', 'WARM', 'COLD', 'DORMANT', 'ARCHIVED'];
-  const minStateIndex = stateOrder.indexOf(minState);
-
-  let results = await vectorSearch(query);
-
-  // Filter by state
-  results = results.filter(r => {
-    const stateIndex = stateOrder.indexOf(r.state);
-    if (r.state === 'ARCHIVED' && !includeArchived) {
-      return false;
-    }
-    return stateIndex <= minStateIndex;
-  });
-
-  return results;
-}
-```
-
-### Promoting and Demoting States
-
-Memories automatically transition based on access:
-
-| Event | State Change |
-|-------|--------------|
-| Memory accessed in search result | Promote to HOT |
-| Memory included in response | Promote to HOT |
-| User validates memory as useful | Promote to WARM minimum |
-| User marks as outdated | Demote to ARCHIVED |
-| Time passes without access | Natural decay through states |
-
-### Archived Memory Access
-
-Archived memories are preserved but excluded from default searches:
-
-```javascript
-// Default search (excludes ARCHIVED)
-memory_search({ query: "auth decisions" })
-
-// Include archived memories
-memory_search({
-  query: "historical auth decisions",
-  includeArchived: true
-})
-
-// Search ONLY archived memories
-memory_search({
-  query: "legacy implementation",
-  stateFilter: 'ARCHIVED'
-})
-```
+| Event | Effect |
+|-------|--------|
+| FSRS review (access) | Increases stability → higher R → may promote state |
+| Time passes without access | R decays via FSRS formula → may demote state |
+| User validates as useful | Increases confidence score (does not directly change state) |
+| Memory marked deprecated | Excluded from search (tier-level exclusion, not state) |
+| Constitutional/critical tier | Always classified as HOT regardless of R |
+| Pinned (`is_pinned=1`) | Always classified as HOT regardless of R |
 
 ---
 
@@ -578,8 +581,8 @@ memory_search({
 - [environment_variables.md](../config/environment_variables.md) - Configuration options
 
 ### Scripts
-- `scripts/memory/generate-context.js` - Memory file generation
-- `mcp_server/context-server.js` - MCP server implementation
+- `scripts/memory/generate-context.ts` - Memory file generation
+- `mcp_server/context-server.ts` - MCP server implementation
 
 ### Related Skills
 - `system-spec-kit` - Parent skill orchestrating spec folder workflow

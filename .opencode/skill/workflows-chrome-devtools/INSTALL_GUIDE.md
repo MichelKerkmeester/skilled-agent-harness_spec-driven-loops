@@ -82,7 +82,7 @@ Chrome DevTools offers **two approaches** - choose based on your needs:
 | ------------------ | ---------------------------------------------------------------------------------------- |
 | **Configuration**  | Chrome DevTools is configured in `.utcp_config.json`, NOT `opencode.json`                |
 | **Access Method**  | Tools accessed via Code Mode's `call_tool_chain()`                                       |
-| **Prerequisite**   | Code Mode MCP must be installed first ([MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md)) |
+| **Prerequisite**   | Code Mode MCP must be installed first (see [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) §4) |
 | **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 26 Chrome DevTools tools              |
 | **Naming Pattern** | `chrome_devtools_1.chrome_devtools_1_{tool_name}`                                        |
 
@@ -332,7 +332,7 @@ source ~/.zshrc
 | ------------------ | ---------------------------------------------------------------------------------------- |
 | **Configuration**  | Chrome DevTools is configured in `.utcp_config.json`, NOT `opencode.json`                |
 | **Access Method**  | Tools accessed via Code Mode's `call_tool_chain()`                                       |
-| **Prerequisite**   | Code Mode MCP must be installed first ([MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md)) |
+| **Prerequisite**   | Code Mode MCP must be installed first (see [INSTALL_GUIDE.md](./INSTALL_GUIDE.md) §4) |
 | **Context Cost**   | AI sees only 4 Code Mode tools (~1.6k tokens), not 26 Chrome DevTools tools              |
 | **Naming Pattern** | `chrome_devtools_1.chrome_devtools_1_{tool_name}`                                        |
 

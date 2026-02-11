@@ -37,10 +37,10 @@ Memory files are created automatically by the `generate-context.js` script:
 
 ```bash
 # Mode 1: JSON input (recommended for complex context)
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/save-context-data.json
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json
 
 # Mode 2: Direct spec folder path
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/005-memory
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/005-memory
 ```
 
 **User Triggers**:
@@ -111,8 +111,8 @@ Memory files are automatically scored using a 6-tier importance system that dete
 - [Trigger Configuration](../../references/memory/trigger_config.md) - Auto-trigger rules
 
 ### Scripts
-- [generate-context.js](../../scripts/memory/generate-context.js) - Memory file generation (MANDATORY)
-- [search-memory.js](../../scripts/memory/search-memory.js) - Search saved context
+- [generate-context.js](../../scripts/dist/memory/generate-context.js) - Memory file generation (MANDATORY)
+- [search-memory.ts](../../scripts/memory/search-memory.ts) - Search saved context (deprecated — use MCP `memory_search` tool)
 
 ### Commands
 - `/memory:save` - Save current conversation context

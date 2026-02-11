@@ -3,6 +3,10 @@
 # RULE: CHECK-SECTIONS
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: SECTIONS_PRESENT
 # Severity: warning
 # Description: Checks for required markdown sections based on documentation level (warning only).
@@ -26,6 +30,8 @@ run_check() {
     RULE_REMEDIATION=""
     
     local -a missing=()
+    # T501 FIX: Strip non-numeric suffix (e.g. "3+" → "3") for arithmetic comparisons
+    local numeric_level="${level//[^0-9]/}"
 
 # ───────────────────────────────────────────────────────────────
 # 2. VALIDATION LOGIC
@@ -36,8 +42,8 @@ run_check() {
         "plan.md:Technical Context,Architecture,Implementation"
     )
     
-    [[ "$level" -ge 2 ]] && file_sections+=("checklist.md:P0,P1")
-    [[ "$level" -ge 3 ]] && file_sections+=("decision-record.md:Context,Decision,Consequences")
+    [[ "$numeric_level" -ge 2 ]] && file_sections+=("checklist.md:P0,P1")
+    [[ "$numeric_level" -ge 3 ]] && file_sections+=("decision-record.md:Context,Decision,Consequences")
     
     for entry in "${file_sections[@]}"; do
         local filename="${entry%%:*}"

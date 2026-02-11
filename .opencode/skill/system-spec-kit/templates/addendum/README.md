@@ -1,12 +1,12 @@
 # Addendum Templates
 
-> Source components for the CORE + ADDENDUM v2.0 composition model extending base templates with level-specific sections.
+> Source components for the CORE + ADDENDUM v2.2 composition model extending base templates with level-specific sections.
 
 ---
 
 ## 1. 📖 OVERVIEW
 
-The addendum templates implement the CORE + ADDENDUM v2.0 architecture where:
+The addendum templates implement the CORE + ADDENDUM v2.2 architecture where:
 - **Core templates** (`../core/`) provide the base structure shared across all levels
 - **Addendum files** (this directory) contain level-specific sections that extend the core
 - **Level templates** (`../level_N/`) are composed by combining core + relevant addendums
@@ -120,7 +120,7 @@ cp .opencode/skill/system-spec-kit/templates/addendum/level2-verify/spec-level2.
 ---
 
 <!--
-ADDENDUM TEMPLATES - CORE + ADDENDUM v2.0
+ADDENDUM TEMPLATES - CORE + ADDENDUM v2.2
 - Source components for template composition
 - Extend core templates with level-specific sections
 - Used by level_N/ templates, not directly by users

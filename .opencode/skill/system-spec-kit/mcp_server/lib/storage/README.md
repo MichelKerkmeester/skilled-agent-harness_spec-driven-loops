@@ -1,57 +1,54 @@
 # Storage Layer
 
-> Persistence layer for the Spec Kit Memory MCP server - handles memory indexing, checkpoints, history tracking, causal graphs, and atomic file operations.
+> Persistence layer for the Spec Kit Memory MCP server - handles memory indexing, checkpoints, causal graphs, and atomic file operations.
 
 ---
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
-- [6. 🔗 RELATED RESOURCES](#6--related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE EXAMPLES](#4--usage-examples)
+- [5. TROUBLESHOOTING](#5--troubleshooting)
+- [6. RELATED RESOURCES](#6--related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
-The storage layer provides all persistence operations for the Spec Kit Memory MCP server. It manages memory state across sessions, tracks access patterns for relevance scoring, maintains modification history with undo support, and enables causal relationship mapping between memories.
+The storage layer provides all persistence operations for the Spec Kit Memory MCP server. It manages memory state across sessions, tracks access patterns for relevance scoring, and enables causal relationship mapping between memories.
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 8 | Core persistence modules |
+| Modules | 7 | Core persistence modules |
 | Relationship Types | 6 | Causal edge types for decision lineage |
-| Performance | 10-100x | Faster re-indexing with incremental updates |
 
 ### Key Features
 
 | Feature | Description |
 |---------|-------------|
-| **Incremental Indexing** | Content hash + mtime diff updates skip unchanged files (10-100x faster) |
+| **Incremental Indexing** | Mtime-based fast path skips unchanged files |
 | **Causal Edges** | 6 relationship types model decision lineage between memories |
-| **Checkpoints** | State snapshots with embedding preservation for rollback |
-| **Atomic Transactions** | File write + index insert wrapped atomically with rollback |
-| **Access Tracking** | Batched updates minimize I/O while tracking usage for relevance boost |
-| **History/Undo** | Full modification history with undo support |
+| **Checkpoints** | Gzip-compressed state snapshots for rollback |
+| **Atomic Transactions** | File write + index insert with pending file recovery |
+| **Access Tracking** | Batched accumulator updates minimize I/O while tracking usage for relevance boost |
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 
 ```
 storage/
-├── index.js               # Module aggregator - exports all storage functions
-├── access-tracker.js      # Track memory access for usage boost scoring
-├── causal-edges.js        # Causal graph storage with 6 relationship types
-├── checkpoints.js         # State snapshots with embedding preservation
-├── history.js             # Modification history with undo support
-├── incremental-index.js   # Content hash + mtime diff updates
-├── index-refresh.js       # Index maintenance and status tracking
-├── transaction-manager.js # Atomic file + index operations
+├── access-tracker.ts      # Track memory access for usage boost scoring
+├── causal-edges.ts        # Causal graph storage with 6 relationship types
+├── checkpoints.ts         # Gzip-compressed state snapshots
+├── history.ts             # Change history tracking (ADD/UPDATE/DELETE events)
+├── incremental-index.ts   # Mtime-based incremental indexing
+├── index-refresh.ts       # Embedding index freshness management
+├── transaction-manager.ts # Atomic file + index operations
 └── README.md              # This file
 ```
 
@@ -59,33 +56,35 @@ storage/
 
 | File | Purpose |
 |------|---------|
-| `access-tracker.js` | Tracks memory access patterns with batched updates for +15% relevance boost |
-| `causal-edges.js` | Stores causal relationships (caused, enabled, supersedes, contradicts, derived_from, supports) |
-| `checkpoints.js` | Creates/restores named checkpoints with compressed snapshots and embeddings |
-| `history.js` | Records ADD/UPDATE/DELETE events with prev/new values for undo |
-| `incremental-index.js` | Determines which files need re-indexing via mtime fast path |
-| `index-refresh.js` | Tracks embedding status (pending/success/failed/retry) |
-| `transaction-manager.js` | Ensures file writes and index inserts are atomic |
+| `access-tracker.ts` | Tracks memory access patterns with batched accumulator for usage boost |
+| `causal-edges.ts` | Stores causal relationships (caused, enabled, supersedes, contradicts, derived_from, supports) |
+| `checkpoints.ts` | Creates/restores gzip-compressed checkpoints with MAX_CHECKPOINTS (10) enforcement |
+| `history.ts` | Tracks change history for memory entries (ADD, UPDATE, DELETE) with actor attribution |
+| `incremental-index.ts` | Determines which files need re-indexing via mtime fast path |
+| `index-refresh.ts` | Manages embedding index freshness — status tracking, retry logic, and unindexed document querying |
+| `transaction-manager.ts` | Atomic file writes (temp+rename) with pending file crash recovery |
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 
 ### Incremental Indexing (v1.2.0)
 
-**Purpose**: Skip unchanged files during re-indexing for 10-100x performance improvement.
+**Purpose**: Skip unchanged files during re-indexing via mtime comparison.
 
 | Aspect | Details |
 |--------|---------|
-| **Fast Path** | If mtime unchanged, skip hash check entirely |
-| **Content Hash** | SHA-256 hash detects actual content changes |
-| **Mtime Update** | Files touched but unchanged get mtime update only |
+| **Fast Path** | If mtime unchanged (within 1s), skip file |
+| **Embedding Check** | Even on mtime match, re-index if embedding status is `pending` or `failed` |
+| **Return Type** | `IndexDecision` string: `'skip'` \| `'reindex'` \| `'new'` \| `'deleted'` \| `'modified'` \| `'unknown'` |
 
-Decision logic:
-1. File not in database -> reindex (new file)
-2. Mtime unchanged -> skip (fast path, no hash check)
-3. Mtime changed but hash same -> update mtime only
-4. Mtime and hash changed -> reindex (content changed)
+Decision logic (`shouldReindex(filePath)`):
+1. File doesn't exist on disk + stored in DB -> `deleted`
+2. File doesn't exist on disk + not stored -> `skip`
+3. No stored metadata (new file) -> `new`
+4. No stored mtime (legacy entry) -> `reindex`
+5. Mtime unchanged (within 1s) -> `skip` (or `reindex` if embedding pending/failed)
+6. Mtime changed -> `modified`
 
 ### Causal Edges (v1.2.0)
 
@@ -100,7 +99,7 @@ Decision logic:
 | `derived_from` | A was derived from B |
 | `supports` | A supports/reinforces B |
 
-Supports depth-limited traversal (max 3 hops) for "why" queries.
+Supports depth-limited traversal (default 3 hops) for causal chain queries.
 
 ### Checkpoints
 
@@ -108,11 +107,11 @@ Supports depth-limited traversal (max 3 hops) for "why" queries.
 
 | Aspect | Details |
 |--------|---------|
-| **Compression** | gzip compression reduces storage |
-| **Embeddings** | Preserves embeddings for instant semantic search after restore |
-| **Working Memory** | Optional backup of working_memory state (v1.7.1) |
-| **TTL** | 30-day retention with last_used_at tracking |
-| **Limit** | Max 10 checkpoints per spec folder |
+| **Compression** | gzip compression of JSON snapshots |
+| **Working Memory** | Optional backup of working_memory table |
+| **Limit** | Max 10 checkpoints (oldest pruned when exceeded) |
+
+Note: Restored checkpoints do **not** include embedding vectors. Run `memory_index_scan` after restore to regenerate embeddings for semantic search.
 
 ### Access Tracking
 
@@ -120,106 +119,163 @@ Supports depth-limited traversal (max 3 hops) for "why" queries.
 
 | Aspect | Details |
 |--------|---------|
-| **Batching** | Accumulates accesses, flushes after threshold (5 accesses) |
-| **Usage Boost** | Frequently-accessed memories get up to +50% relevance boost |
-| **Formula** | `min(1.5, 1.0 + accessCount * 0.05)` |
+| **Accumulator** | Increments by 0.1 per access, flushes to DB at threshold (0.5) |
+| **Usage Boost** | `min(0.2, accessCount * 0.02)` — max +20% base boost |
+| **Recency Multiplier** | 2x if accessed within 1 hour, 1.5x if within 24 hours |
+| **Effective Max** | Up to +40% with recency multiplier |
 
 ### Transaction Manager
 
-**Purpose**: Ensure atomic file write + index insert operations.
+**Purpose**: Atomic file write operations with crash recovery.
 
 | Aspect | Details |
 |--------|---------|
-| **Atomic Write** | Write to temp file, then rename |
-| **Rollback** | Delete file on index failure |
-| **Pending Recovery** | Rename to `*_pending` suffix for later recovery |
-| **Metrics** | Tracks success/failure/rollback counts |
+| **Atomic Write** | Write to temp file (`.tmp`), then rename |
+| **Pending Pattern** | Write to `_pending` path, run DB op, then rename to final |
+| **Rollback** | Delete pending file on DB failure |
+| **Recovery** | `findPendingFiles()` + `recoverPendingFile()` for crash recovery |
+| **Metrics** | Tracks atomicWrites/deletes/recoveries/errors counts |
+
+### History (v1.8.0)
+
+**Purpose**: Track change history for memory entries with actor attribution.
+
+| Aspect | Details |
+|--------|---------|
+| **Events** | `ADD`, `UPDATE`, `DELETE` — tracked per memory entry |
+| **Actors** | `user`, `system`, `hook`, `decay` — identifies who made the change |
+| **Storage** | `memory_history` table with foreign key to `memory_index` |
+| **Diff Support** | Stores `prev_value` and `new_value` for change comparison |
+
+**Exported functions:**
+
+| Function | Purpose |
+|----------|---------|
+| `init(db)` | Initialize module and create `memory_history` table |
+| `recordHistory(memoryId, event, prevValue, newValue, actor)` | Record a change event |
+| `getHistory(memoryId, limit?)` | Retrieve history for a memory (newest first) |
+| `getHistoryStats(specFolder?)` | Get aggregate counts (total, adds, updates, deletes) |
+| `generateUuid()` | Generate a v4 UUID for history entry IDs |
+
+**Exported types:** `HistoryEntry`, `HistoryStats`
+
+### Index Refresh (v1.8.0)
+
+**Purpose**: Manage embedding index freshness on the `memory_index` table.
+
+| Aspect | Details |
+|--------|---------|
+| **Status Tracking** | Tracks `success`, `pending`, `retry`, `failed`, `partial` embedding states |
+| **Retry Logic** | Up to 3 retries before marking as `failed` (configurable via `RETRY_THRESHOLD`) |
+| **Prioritization** | Retry entries processed before pending entries |
+| **Freshness Check** | `needsRefresh()` returns true if any non-success entries exist |
+
+**Exported functions:**
+
+| Function | Purpose |
+|----------|---------|
+| `init(db)` | Initialize module with database reference |
+| `getIndexStats()` | Count rows grouped by `embedding_status` |
+| `needsRefresh()` | Check if any pending/retry/partial entries exist |
+| `getUnindexedDocuments()` | Get documents needing (re-)indexing, prioritized by status |
+| `markIndexed(id, modelName)` | Mark a document as successfully indexed |
+| `markFailed(id, reason)` | Increment retry count or mark as failed |
+| `ensureIndexFresh()` | Return unindexed documents if refresh is needed |
+
+**Exported types:** `IndexStats`, `UnindexedDocument`
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 
 ### Example 1: Check if File Needs Re-indexing
 
-```javascript
-const { should_reindex } = require('./storage/incremental-index');
+```typescript
+import { shouldReindex } from './storage/incremental-index';
 
-const decision = should_reindex(db, '/path/to/file.md');
+const decision = shouldReindex('/path/to/file.md');
 
-if (decision.reindex) {
-  console.log(`Re-index needed: ${decision.reason}`);
-  // Reasons: new_file, content_changed, embedding_pending, force_requested
-} else {
-  console.log(`Skip: ${decision.reason}`);
-  // Reasons: mtime_unchanged (fast path), content_unchanged
+switch (decision) {
+  case 'new':
+    console.log('New file, needs indexing');
+    break;
+  case 'modified':
+    console.log('File modified, needs re-indexing');
+    break;
+  case 'reindex':
+    console.log('Re-index needed (legacy entry or embedding pending)');
+    break;
+  case 'deleted':
+    console.log('File deleted from disk');
+    break;
+  case 'skip':
+    console.log('Unchanged, skip');
+    break;
 }
 ```
 
 ### Example 2: Create and Traverse Causal Edges
 
-```javascript
-const { insert_edge, get_causal_chain, RELATION_TYPES } = require('./storage/causal-edges');
+```typescript
+import { insertEdge, getCausalChain, RELATION_TYPES } from './storage/causal-edges';
 
-// Create edge
-insert_edge(db, {
-  source_id: 'memory-123',
-  target_id: 'memory-456',
-  relation: RELATION_TYPES.CAUSED,
-  strength: 0.9,
-  evidence: 'Decision A led to implementation B'
-});
+// Create edge (returns edge ID or null)
+const edgeId = insertEdge(
+  'memory-123',        // sourceId
+  'memory-456',        // targetId
+  RELATION_TYPES.CAUSED,
+  0.9,                 // strength (0-1)
+  'Decision A led to implementation B'  // evidence
+);
 
-// Traverse chain (max 3 hops)
-const chain = get_causal_chain(db, 'memory-123', {
-  max_depth: 3,
-  direction: 'outgoing'
-});
+// Traverse chain (default max 3 hops, 'forward' direction)
+const chain = getCausalChain('memory-123', 3, 'forward');
 
-console.log(`Found ${chain.total_edges} related edges`);
-console.log(`By cause: ${chain.by_cause.length}`);
+console.log(`Root: ${chain.id}, children: ${chain.children.length}`);
 ```
 
-### Example 3: Create Checkpoint with Embeddings
+### Example 3: Create and Restore Checkpoint
 
-```javascript
-const { create, restore } = require('./storage/checkpoints');
+```typescript
+import { createCheckpoint, restoreCheckpoint } from './storage/checkpoints';
 
 // Create checkpoint
-const checkpointId = create('before-refactor', {
+const checkpoint = createCheckpoint({
+  name: 'before-refactor',
   specFolder: 'specs/005-feature',
   metadata: { reason: 'Pre-refactoring snapshot' }
 });
 
-// Restore checkpoint
-const result = restore('before-refactor', {
-  clearExisting: true,
-  reinsertMemories: true
-});
-
-console.log(`Restored ${result.restored} memories, ${result.embeddingsRestored} embeddings`);
+// Restore checkpoint (note: embeddings are NOT restored)
+const result = restoreCheckpoint('before-refactor');
+console.log(`Restored ${result.restored} memories, ${result.skipped} skipped`);
+// Run memory_index_scan after restore to regenerate embeddings
 ```
 
 ### Common Patterns
 
 | Pattern | Code | When to Use |
 |---------|------|-------------|
-| Batch categorize | `categorize_files_for_indexing(db, paths)` | Pre-filter files before indexing |
-| Track access | `track_access(id)` | After memory is retrieved |
-| Record history | `record_history(db, { memory_id, event: 'UPDATE', ... })` | After modifying memory |
-| Undo change | `undo_last_change(db, memory_id)` | Revert last modification |
-| Atomic save | `execute_atomic_save({ file_path, content, index_fn })` | File + index together |
+| Batch categorize | `categorizeFilesForIndexing(filePaths)` | Pre-filter files before indexing |
+| Track access | `trackAccess(memoryId)` | After memory is retrieved |
+| Atomic save | `executeAtomicSave(filePath, content, dbOperation)` | File + DB operation together |
+| Graph stats | `getGraphStats()` | Check causal graph health |
+| Find orphans | `findOrphanedEdges()` | Detect edges referencing deleted memories |
+| Record change | `recordHistory(memoryId, 'UPDATE', old, new, 'system')` | Audit trail for memory changes |
+| Check index health | `getIndexStats()` | Monitor embedding status distribution |
+| Get metrics | `getMetrics()` | Check transaction success/failure counts |
 
 ---
 
-## 5. 🛠️ TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 ### Common Issues
 
-#### Embeddings Not Restored After Checkpoint Restore
+#### Embeddings Not Working After Checkpoint Restore
 
 **Symptom**: Semantic search returns no results after restoring checkpoint.
 
-**Cause**: Embedding dimension mismatch between checkpoint and current provider.
+**Cause**: `restoreCheckpoint` restores memory metadata but does not restore embedding vectors.
 
 **Solution**:
 ```bash
@@ -227,72 +283,80 @@ console.log(`Restored ${result.restored} memories, ${result.embeddingsRestored} 
 memory_index_scan({ specFolder: "specs/your-folder" })
 ```
 
-#### High Pending Count Warning
+#### Files Not Being Re-indexed
 
-**Symptom**: Log shows "High pending count: N. Consider background indexing."
+**Symptom**: Modified files not picked up during index scan.
 
-**Cause**: Many files queued for embedding generation.
+**Cause**: Mtime within 1-second threshold (`MTIME_FAST_PATH_MS`).
 
 **Solution**:
-```javascript
-// Check status
-const stats = get_index_stats(db);
-console.log(`Pending: ${stats.pending}, Failed: ${stats.failed}`);
+```typescript
+import { shouldReindex, categorizeFilesForIndexing } from './storage/incremental-index';
 
-// Reset failed to retry
-reset_failed(db, { spec_folder: 'specs/your-folder' });
+// Check individual file
+const decision = shouldReindex('/path/to/file.md');
+console.log(`Decision: ${decision}`);
+
+// Batch check
+const categorized = categorizeFilesForIndexing(['/path/to/file1.md', '/path/to/file2.md']);
+console.log(`To index: ${categorized.toIndex.length}, To update: ${categorized.toUpdate.length}`);
 ```
 
 ### Quick Fixes
 
 | Problem | Quick Fix |
 |---------|-----------|
-| Stale mtime cache | Files appear unchanged when modified |
-| Orphaned edges | `find_orphaned_edges(db)` to detect, manual cleanup |
-| Checkpoint too large | Split by spec_folder, max 100MB |
-| Transaction rollback | Check `get_metrics()` for failure reasons |
+| Stale mtime | Touch file to update mtime, or use force re-index |
+| Orphaned edges | `findOrphanedEdges()` to detect, `deleteEdge(id)` to clean up |
+| Transaction errors | Check `getMetrics()` for failure reasons |
+| Pending files after crash | `findPendingFiles(dir)` + `recoverPendingFile(path)` |
 
 ### Diagnostic Commands
 
-```javascript
-// Check index status
-const { get_index_stats } = require('./storage/index-refresh');
-console.log(get_index_stats(db));
-
+```typescript
 // Check causal graph health
-const { get_graph_stats, find_orphaned_edges } = require('./storage/causal-edges');
-console.log(get_graph_stats(db));
-console.log(find_orphaned_edges(db));
+import { getGraphStats, findOrphanedEdges } from './storage/causal-edges';
+console.log(getGraphStats());
+console.log(findOrphanedEdges());
 
 // Check transaction metrics
-const { get_metrics } = require('./storage/transaction-manager');
-console.log(get_metrics());
+import { getMetrics } from './storage/transaction-manager';
+console.log(getMetrics());
 
-// Check history stats
-const { get_history_stats } = require('./storage/history');
-console.log(get_history_stats(db));
+// Check access accumulator
+import { getAccumulatorState, calculateUsageBoost } from './storage/access-tracker';
+console.log(getAccumulatorState(42));
+console.log(calculateUsageBoost(10, Date.now()));
+
+// Check change history
+import { getHistory, getHistoryStats } from './storage/history';
+console.log(getHistory(42, 10));
+console.log(getHistoryStats());
+
+// Check embedding index health
+import { getIndexStats, needsRefresh, getUnindexedDocuments } from './storage/index-refresh';
+console.log(getIndexStats());
+console.log(`Needs refresh: ${needsRefresh()}`);
+console.log(getUnindexedDocuments());
 ```
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Internal Documentation
 
 | Document | Purpose |
 |----------|---------|
 | [../README.md](../README.md) | Parent lib directory overview |
-| [../cognitive/README.md](../cognitive/README.md) | Cognitive processing modules |
 | [../session/README.md](../session/README.md) | Session management modules |
 
 ### Related Modules
 
 | Module | Purpose |
 |--------|---------|
-| `context-server.js` | MCP server that uses storage layer |
-| `shared/embeddings.js` | Embedding generation for checkpoints |
-| `scripts/memory/` | Memory save/generation scripts |
+| `context-server.ts` | MCP server that uses storage layer |
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2026-02-02 | Storage layer v1.2.0*
+*Documentation version: 1.7.2 | Last updated: 2026-02-08 | Storage layer v1.2.0*

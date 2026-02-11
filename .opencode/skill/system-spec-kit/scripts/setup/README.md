@@ -1,6 +1,6 @@
-# Memory System Setup Scripts
+# Setup Scripts
 
-> Installation and prerequisite validation scripts for Spec Kit Memory MCP server and dependencies.
+> Prerequisite validation scripts for spec folder structure and requirements.
 
 ---
 
@@ -20,33 +20,33 @@
 
 ### What are Setup Scripts?
 
-Setup scripts automate the installation and configuration of the Spec Kit Memory system, including MCP server dependencies, Node.js packages, and database initialization. They validate prerequisites and guide users through first-time setup with clear, actionable feedback.
+Setup scripts validate spec folder structure and prerequisites before implementation begins. They ensure required files exist, detect documentation level, and optionally run full validation to confirm the spec folder is ready for implementation work.
 
 ### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Scripts | 2 | Setup + prerequisite validation |
-| Dependencies | 5+ | Node, npm, transformers.js, SQLite packages |
-| Setup Time | <2 min | Automated installation with progress feedback |
+| Scripts | 4 | Prerequisite and environment validation |
+| Validation Modes | 4 | Human-readable, JSON, paths-only, strict |
+| Check Time | <5 sec | Fast prerequisite checks |
 
 ### Key Features
 
 | Feature | Description |
 |---------|-------------|
-| **Prerequisite Validation** | Checks Node.js, npm versions before installation |
-| **Automated Installation** | Installs Node dependencies with progress indicators |
-| **Database Initialization** | Creates SQLite database and verifies structure |
-| **Path Detection** | Auto-detects project structure and validates paths |
-| **Error Recovery** | Provides actionable remediation for common failures |
+| **Spec Folder Validation** | Confirms target folder is a valid spec folder |
+| **File Requirement Checks** | Ensures required files exist for documentation level |
+| **Level Detection** | Auto-detects documentation level (L1/L2/L3) |
+| **Full Validation Integration** | Optionally runs complete validation suite |
+| **Multiple Output Formats** | Human-readable, JSON, or paths-only modes |
 
 ### Requirements
 
 | Requirement | Minimum | Recommended |
 |-------------|---------|-------------|
-| Node.js | v18.0.0 | v20.0.0+ |
-| npm | 9.0.0 | 10.0.0+ |
 | Bash | 3.2+ | 5.0+ |
+| grep | POSIX | GNU grep |
+| jq | 1.6+ | Latest (for JSON output) |
 
 ---
 
@@ -55,34 +55,31 @@ Setup scripts automate the installation and configuration of the Spec Kit Memory
 ### 30-Second Setup
 
 ```bash
-# 1. Navigate to setup scripts directory
-cd .opencode/skill/system-spec-kit/scripts/setup
+# Navigate to spec folder you want to validate
+cd specs/007-my-feature/
 
-# 2. Run setup script
-./setup.sh
-
-# 3. Verify installation
-./check-prerequisites.sh
+# Check prerequisites
+../../.opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh
 ```
 
 ### Verify Installation
 
 ```bash
-# Check that memory system is ready
+# Check that spec folder is ready
 ./check-prerequisites.sh
 
 # Expected output:
-# ✓ Node.js v20.x.x
-# ✓ npm x.x.x
-# ✓ Memory database exists
-# ✓ All dependencies installed
+# ✓ Spec folder: specs/007-my-feature
+# ✓ Level: 2
+# ✓ Required files present: spec.md, plan.md, checklist.md
+# ✓ Ready for implementation
 ```
 
 ### First Use
 
 ```bash
-# Run setup with force reinstall (if needed)
-./setup.sh --force
+# Run with full validation (stricter checks)
+./check-prerequisites.sh --validate-strict
 ```
 
 ---
@@ -91,8 +88,10 @@ cd .opencode/skill/system-spec-kit/scripts/setup
 
 ```
 setup/
-├── check-prerequisites.sh   # Validates spec folder and system requirements
-├── setup.sh                 # Main installation script
+├── check-prerequisites.sh   # Validates spec folder structure and requirements
+├── check-native-modules.sh  # Checks native Node.js module availability
+├── rebuild-native-modules.sh # Rebuilds native modules when needed
+├── record-node-version.js   # Records current Node.js version for compatibility
 └── README.md                # This file
 ```
 
@@ -100,31 +99,14 @@ setup/
 
 | File | Purpose |
 |------|---------|
-| `setup.sh` | Main installation orchestrator - installs dependencies, creates database, validates system |
 | `check-prerequisites.sh` | Spec folder prerequisite validation - ensures required files exist before implementation |
+| `check-native-modules.sh` | Checks native Node.js module availability (e.g., better-sqlite3) |
+| `rebuild-native-modules.sh` | Rebuilds native modules for current Node.js version |
+| `record-node-version.js` | Records Node.js version to detect version changes requiring rebuilds |
 
 ---
 
 ## 4. ⚡ FEATURES
-
-### Setup Script (setup.sh)
-
-**Purpose**: Automated installation and configuration of memory system dependencies
-
-| Phase | Actions |
-|-------|---------|
-| **1. Prerequisites** | Validates Node.js v18+, npm v9+ |
-| **2. Dependencies** | Installs transformers.js, SQLite, vector-db packages |
-| **3. Database** | Creates context-index.sqlite with proper schema |
-| **4. Verification** | Tests memory search, confirms operational status |
-
-**Options**:
-```bash
-./setup.sh           # Standard installation
-./setup.sh --force   # Reinstall dependencies (skip cache)
-```
-
----
 
 ### Prerequisite Checker (check-prerequisites.sh)
 
@@ -173,37 +155,7 @@ setup/
 
 ## 5. 💡 USAGE EXAMPLES
 
-### Example 1: First-Time Setup
-
-```bash
-# Navigate to setup directory
-cd .opencode/skill/system-spec-kit/scripts/setup
-
-# Run setup with all checks
-./setup.sh
-
-# Output:
-# ───────────────────────────────────────────────────────
-#   Memory System Setup
-# ───────────────────────────────────────────────────────
-#
-# 📋 Checking Prerequisites...
-#   ✓ Node.js v20.10.0
-#   ✓ npm 10.2.0
-#
-# 📦 Installing Dependencies...
-#   ✓ @xenova/transformers
-#   ✓ better-sqlite3
-#
-# 🗄️  Initializing Database...
-#   ✓ Created context-index.sqlite
-#
-# ✅ Setup Complete!
-```
-
----
-
-### Example 2: Validate Spec Folder Before Implementation
+### Example 1: Validate Spec Folder Before Implementation
 
 ```bash
 # Check if spec folder is ready for implementation
@@ -218,18 +170,7 @@ cd .opencode/skill/system-spec-kit/scripts/setup
 
 ---
 
-### Example 3: Force Reinstall After Dependency Issues
-
-```bash
-# Clear and reinstall all dependencies
-./setup.sh --force
-
-# Rebuilds node_modules from scratch
-```
-
----
-
-### Example 4: CI/CD Integration
+### Example 2: CI/CD Integration
 
 ```bash
 # Get JSON output for automated workflows
@@ -250,80 +191,16 @@ fi
 
 | Pattern | Command | When to Use |
 |---------|---------|-------------|
-| First install | `./setup.sh` | Initial system setup |
-| Repair install | `./setup.sh --force` | After dependency corruption |
-| Validate spec | `./check-prerequisites.sh` | Before starting implementation |
-| CI validation | `./check-prerequisites.sh --json --validate` | Automated pipelines |
+| Quick check | `./check-prerequisites.sh` | Before starting implementation |
+| Full validation | `./check-prerequisites.sh --validate` | Comprehensive spec folder check |
+| CI validation | `./check-prerequisites.sh --json --validate-strict` | Automated pipelines |
+| Get paths only | `./check-prerequisites.sh --paths-only` | Scripting integration |
 
 ---
 
 ## 6. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
-
-#### Node.js Version Too Old
-
-**Symptom**: `⚠ Node.js v16.x.x (v18+ recommended)`
-
-**Cause**: Node.js version below minimum requirement
-
-**Solution**:
-```bash
-# macOS (Homebrew)
-brew upgrade node
-
-# Or download from nodejs.org
-# https://nodejs.org/
-
-# Verify version
-node --version
-# Expected: v18.0.0 or higher
-```
-
----
-
-#### npm Install Fails
-
-**Symptom**: `npm ERR! code EACCES` or permission errors
-
-**Cause**: Insufficient permissions for global npm installs
-
-**Solution**:
-```bash
-# Fix npm permissions (recommended)
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-
-# Then retry
-./setup.sh
-```
-
----
-
-#### Database Initialization Failed
-
-**Symptom**: `✗ Failed to create database`
-
-**Cause**: Insufficient disk space or permissions
-
-**Solution**:
-```bash
-# Check disk space
-df -h
-
-# Check database directory permissions
-ls -la .opencode/skill/system-spec-kit/mcp_server/database/
-
-# Ensure directory exists
-mkdir -p .opencode/skill/system-spec-kit/mcp_server/database
-
-# Retry setup
-./setup.sh
-```
-
----
 
 #### Prerequisite Check Fails - Missing Files
 
@@ -350,28 +227,28 @@ cp .opencode/skill/system-spec-kit/templates/plan.md specs/my-spec/
 
 | Problem | Quick Fix |
 |---------|-----------|
-| Node version old | `brew upgrade node` (macOS) or download from nodejs.org |
-| Permission errors | Use `./setup.sh` not `sudo ./setup.sh` |
-| Database locked | Close any running OpenCode instances |
-| Missing dependencies | Run `./setup.sh --force` to reinstall |
+| Missing files | Copy from templates: `cp ../../templates/spec.md .` |
+| Wrong directory | Ensure you're in a spec folder (specs/###-name/) |
+| Validation fails | Run with `--validate` to see detailed errors |
+| JSON parse error | Install jq: `brew install jq` (macOS) |
 
 ---
 
 ### Diagnostic Commands
 
 ```bash
-# Check Node.js and npm versions
-node --version
-npm --version
+# Check script exists and is executable
+ls -la check-prerequisites.sh
 
-# Verify setup script exists and is executable
-ls -la setup.sh
+# Test from spec folder
+cd specs/my-spec/
+../../.opencode/skill/system-spec-kit/scripts/setup/check-prerequisites.sh
 
-# Check database exists
-ls -la ../../mcp_server/database/context-index.sqlite
+# Get verbose validation output
+./check-prerequisites.sh --validate
 
-# Test prerequisite validation
-./check-prerequisites.sh --validate-verbose
+# Check which files exist
+ls -la spec.md plan.md checklist.md
 ```
 
 ---
@@ -383,17 +260,16 @@ ls -la ../../mcp_server/database/context-index.sqlite
 | Document | Purpose |
 |----------|---------|
 | [SKILL.md](../../SKILL.md) | Parent skill documentation |
-| [Memory System Guide](../../references/memory/memory_system.md) | Memory architecture and usage |
 | [Validation Rules](../rules/README.md) | Spec folder validation rules |
-| [Environment Variables](../../references/config/environment_variables.md) | Configuration reference |
+| [validate-spec.sh](../spec/validate.sh) | Full validation orchestrator |
+| [templates/](../../templates/) | Spec folder templates |
 
 ### External Resources
 
 | Resource | Description |
 |----------|-------------|
-| [Node.js Downloads](https://nodejs.org/) | Official Node.js installation |
-| [npm Documentation](https://docs.npmjs.com/) | Package manager documentation |
-| [Transformers.js](https://huggingface.co/docs/transformers.js) | Neural embedding library |
+| [Bash Reference](https://www.gnu.org/software/bash/manual/) | Bash scripting documentation |
+| [jq Manual](https://stedolan.github.io/jq/manual/) | JSON processing tool |
 
 ---
 

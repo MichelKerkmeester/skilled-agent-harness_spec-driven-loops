@@ -1,7 +1,7 @@
 # Implementation Plan: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 3 plan demonstrating architecture-focused
 planning. Note the addition of Dependency Graph, Critical Path, Milestones, and

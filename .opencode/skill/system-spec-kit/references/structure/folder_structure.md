@@ -154,11 +154,14 @@ Context preservation for future sessions.
 - Blockers encountered
 - Continuation context
 
-**File Format:**
+**File Naming:** `DD-MM-YY_HH-MM__topic-name.md`
+
+Example: `07-12-25_14-30__feature-name.md`
+
 ```markdown
 ---
 title: Session Summary
-created: YYYY-MM-DD
+created: DD-MM-YY
 type: context
 triggers:
   - keyword1
@@ -214,7 +217,7 @@ specs/016-user-preferences/
 ├── scratch/
 │   └── test-data.json
 └── memory/
-    └── 2024-01-15_session-summary.md
+    └── 15-01-24_10-30__user-preferences.md
 ```
 
 ### Complex Feature (Level 3)
@@ -231,8 +234,8 @@ specs/017-authentication-system/
 │   ├── oauth-flow-test.js
 │   └── token-debug.log
 └── memory/
-    ├── 2024-01-10_initial-research.md
-    └── 2024-01-12_oauth-decision.md
+    ├── 10-01-24_09-15__authentication-system.md
+    └── 12-01-24_14-00__authentication-system.md
 ```
 
 ### Iterative Work (Sub-folders)

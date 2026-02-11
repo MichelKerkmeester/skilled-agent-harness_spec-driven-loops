@@ -1,0 +1,187 @@
+// ---------------------------------------------------------------
+// MODULE: Tool Types
+// ---------------------------------------------------------------
+// Shared types for tool dispatch modules (T303).
+// ---------------------------------------------------------------
+
+// Re-export canonical MCPResponse from shared
+export type { MCPResponse } from '../../shared/types';
+
+// Import for extension
+import type { MCPResponse } from '../../shared/types';
+
+/** Extended MCP response with auto-surfaced context (SK-004) */
+export interface MCPResponseWithContext extends MCPResponse {
+  autoSurfacedContext?: unknown;
+}
+
+/** Narrow pre-validated MCP tool args to a specific handler arg type.
+ *  Centralises the single protocol-boundary cast so call sites stay clean. */
+export function parseArgs<T>(args: Record<string, unknown>): T {
+  return args as unknown as T;
+}
+
+/* ---------------------------------------------------------------
+   Handler Arg Types
+--------------------------------------------------------------- */
+
+export interface ContextArgs {
+  input: string;
+  mode?: string;
+  intent?: string;
+  specFolder?: string;
+  limit?: number;
+  sessionId?: string;
+  enableDedup?: boolean;
+  includeContent?: boolean;
+  anchors?: string[];
+}
+
+export interface SearchArgs {
+  query?: string;
+  concepts?: string[];
+  specFolder?: string;
+  limit?: number;
+  tier?: string;
+  contextType?: string;
+  useDecay?: boolean;
+  includeContiguity?: boolean;
+  includeConstitutional?: boolean;
+  includeContent?: boolean;
+  anchors?: string[];
+  bypassCache?: boolean;
+  sessionId?: string;
+  enableDedup?: boolean;
+  intent?: string;
+  autoDetectIntent?: boolean;
+}
+
+export interface TriggerArgs {
+  prompt: string;
+  limit?: number;
+  session_id?: string;
+  turnNumber?: number;
+  include_cognitive?: boolean;
+}
+
+export interface DeleteArgs {
+  id?: number | string;
+  specFolder?: string;
+  confirm?: boolean;
+}
+
+export interface UpdateArgs {
+  id: number;
+  title?: string;
+  triggerPhrases?: string[];
+  importanceWeight?: number;
+  importanceTier?: string;
+  allowPartialUpdate?: boolean;
+}
+
+export interface ListArgs {
+  limit?: number;
+  offset?: number;
+  specFolder?: string;
+  sortBy?: string;
+}
+
+export interface StatsArgs {
+  folderRanking?: string;
+  excludePatterns?: string[];
+  includeScores?: boolean;
+  includeArchived?: boolean;
+  limit?: number;
+}
+
+export interface HealthArgs {}
+
+export interface MemoryValidateArgs {
+  id: number | string;
+  wasUseful: boolean;
+}
+
+export interface SaveArgs {
+  filePath: string;
+  force?: boolean;
+  dryRun?: boolean;
+  skipPreflight?: boolean;
+  asyncEmbedding?: boolean; // T306: When true, embedding generation is deferred (non-blocking)
+}
+
+export interface ScanArgs {
+  specFolder?: string | null;
+  force?: boolean;
+  includeConstitutional?: boolean;
+  incremental?: boolean;
+}
+
+export interface CheckpointCreateArgs {
+  name: string;
+  specFolder?: string;
+  metadata?: Record<string, unknown>;
+}
+
+export interface CheckpointListArgs {
+  specFolder?: string;
+  limit?: number;
+}
+
+export interface CheckpointRestoreArgs {
+  name: string;
+  clearExisting?: boolean;
+}
+
+export interface CheckpointDeleteArgs {
+  name: string;
+}
+
+export interface PreflightArgs {
+  specFolder: string;
+  taskId: string;
+  knowledgeScore: number;
+  uncertaintyScore: number;
+  contextScore: number;
+  knowledgeGaps?: string[];
+  sessionId?: string | null;
+}
+
+export interface PostflightArgs {
+  specFolder: string;
+  taskId: string;
+  knowledgeScore: number;
+  uncertaintyScore: number;
+  contextScore: number;
+  gapsClosed?: string[];
+  newGapsDiscovered?: string[];
+}
+
+export interface LearningHistoryArgs {
+  specFolder: string;
+  sessionId?: string;
+  limit?: number;
+  onlyComplete?: boolean;
+  includeSummary?: boolean;
+}
+
+export interface DriftWhyArgs {
+  memoryId: string | number;
+  maxDepth?: number;
+  direction?: string;
+  relations?: string[] | null;
+  includeMemoryDetails?: boolean;
+}
+
+export interface CausalLinkArgs {
+  sourceId: string | number;
+  targetId: string | number;
+  relation: string;
+  strength?: number;
+  evidence?: string | null;
+}
+
+export interface CausalStatsArgs {}
+
+export interface CausalUnlinkArgs {
+  edgeId: number;
+}

@@ -3,6 +3,10 @@
 # RULE: CHECK-FILES
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: FILE_EXISTS
 # Severity: error
 # Description: Validates required files exist for documentation level
@@ -26,6 +30,8 @@ run_check() {
     RULE_REMEDIATION=""
     
     local missing=()
+    # T501 FIX: Strip non-numeric suffix (e.g. "3+" → "3") for arithmetic comparisons
+    local numeric_level="${level//[^0-9]/}"
 
 # ───────────────────────────────────────────────────────────────
 # 2. VALIDATION LOGIC
@@ -49,7 +55,7 @@ run_check() {
     fi
     
     # Level 1: check tasks.md for completion if no checklist
-    if [[ "$level" -eq 1 ]] && [[ ! -f "$folder/implementation-summary.md" ]]; then
+    if [[ "$numeric_level" -eq 1 ]] && [[ ! -f "$folder/implementation-summary.md" ]]; then
         if [[ -f "$folder/tasks.md" ]]; then
             if grep -qE '\[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
                 missing+=("implementation-summary.md (required: tasks show completion)")
@@ -58,12 +64,12 @@ run_check() {
     fi
     
     # Level 2 additions
-    if [[ "$level" -ge 2 ]]; then
+    if [[ "$numeric_level" -ge 2 ]]; then
         [[ ! -f "$folder/checklist.md" ]] && missing+=("checklist.md")
     fi
     
     # Level 3 additions
-    if [[ "$level" -ge 3 ]]; then
+    if [[ "$numeric_level" -ge 3 ]]; then
         [[ ! -f "$folder/decision-record.md" ]] && missing+=("decision-record.md")
     fi
 

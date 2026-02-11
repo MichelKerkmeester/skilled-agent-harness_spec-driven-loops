@@ -25,7 +25,7 @@
    * @param {Object} overrides - Properties to override defaults
    * @returns {Object} Memory object
    */
-  function create_test_memory(overrides = {}) {
+  function createTestMemory(overrides = {}) {
     const defaults = {
       id: Date.now(),
       content: 'Test memory content',
@@ -34,8 +34,8 @@
       stability: 1.0,
       difficulty: 5.0,
       retrievability: 1.0,
-      last_review: new Date().toISOString(),
-      next_review: new Date(Date.now() + 86400000).toISOString(),
+      lastReview: new Date().toISOString(),
+      nextReview: new Date(Date.now() + 86400000).toISOString(),
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
       spec_folder: 'test-spec',
@@ -50,9 +50,9 @@
    * Create a mock database for testing
    * @returns {Object} Mock database interface
    */
-  function mock_database() {
+  function mockDatabase() {
     const memories = new Map();
-    let next_id = 1;
+    let nextId = 1;
 
     return {
       memories,
@@ -63,7 +63,7 @@
        * @returns {number} Inserted memory ID
        */
       insert(memory) {
-        const id = memory.id || next_id++;
+        const id = memory.id || nextId++;
         memories.set(id, { ...memory, id });
         return id;
       },
@@ -121,7 +121,7 @@
        */
       clear() {
         memories.clear();
-        next_id = 1;
+        nextId = 1;
       },
 
       /**
@@ -140,7 +140,7 @@
    * @param {string} text - Text to embed
    * @returns {Array} 384-dimensional embedding vector
    */
-  function mock_embedding(text) {
+  function mockEmbedding(text) {
     const DIMENSIONS = 384;
     const embedding = new Array(DIMENSIONS);
 
@@ -185,7 +185,7 @@
    * @param {number} epsilon - Tolerance (default 0.001)
    * @throws {Error} If values differ by more than epsilon
    */
-  function assert_approx_equal(actual, expected, epsilon = 0.001) {
+  function assertApproxEqual(actual, expected, epsilon = 0.001) {
     const diff = Math.abs(actual - expected);
     if (diff > epsilon) {
       throw new Error(
@@ -202,7 +202,7 @@
    * @param {number} max - Maximum expected value
    * @throws {Error} If value is outside range
    */
-  function assert_in_range(value, min, max) {
+  function assertInRange(value, min, max) {
     if (value < min || value > max) {
       throw new Error(
         `Value ${value} is outside expected range [${min}, ${max}]`
@@ -216,7 +216,7 @@
    * @param {Array} expected - Expected array
    * @throws {Error} If arrays differ
    */
-  function assert_array_equal(actual, expected) {
+  function assertArrayEqual(actual, expected) {
     if (actual.length !== expected.length) {
       throw new Error(
         `Array lengths differ: actual=${actual.length}, expected=${expected.length}`
@@ -238,7 +238,7 @@
    * @param {string|RegExp} expected_message - Expected error message pattern
    * @throws {Error} If function doesn't throw or message doesn't match
    */
-  function assert_throws(fn, expected_message = null) {
+  function assertThrows(fn, expectedMessage = null) {
     let threw = false;
     let error = null;
 
@@ -253,14 +253,14 @@
       throw new Error('Expected function to throw, but it did not');
     }
 
-    if (expected_message) {
-      const matches = expected_message instanceof RegExp
-        ? expected_message.test(error.message)
-        : error.message.includes(expected_message);
+    if (expectedMessage) {
+      const matches = expectedMessage instanceof RegExp
+        ? expectedMessage.test(error.message)
+        : error.message.includes(expectedMessage);
 
       if (!matches) {
         throw new Error(
-          `Error message "${error.message}" does not match expected "${expected_message}"`
+          `Error message "${error.message}" does not match expected "${expectedMessage}"`
         );
       }
     }
@@ -275,7 +275,7 @@
    * @param {string} module_name - Name of the module being tested
    * @returns {Object} Test runner interface
    */
-  function create_test_runner(module_name) {
+  function createTestRunner(moduleName) {
     const tests = [];
     let passed = 0;
     let failed = 0;
@@ -294,7 +294,7 @@
        * Run all registered tests
        */
       async run() {
-        console.log(`\n=== Testing: ${module_name} ===\n`);
+        console.log(`\n=== Testing: ${moduleName} ===\n`);
 
         for (const { name, fn } of tests) {
           try {
@@ -308,7 +308,7 @@
           }
         }
 
-        console.log(`\n${module_name}: ${passed} passed, ${failed} failed\n`);
+        console.log(`\n${moduleName}: ${passed} passed, ${failed} failed\n`);
 
         return { passed, failed, total: tests.length };
       }
@@ -320,7 +320,7 @@
    * @param {string} filename - Fixture filename
    * @returns {Object} Parsed fixture data
    */
-  function load_fixture(filename) {
+  function loadFixture(filename) {
     const filepath = path.join(FIXTURES_DIR, filename);
     const content = fs.readFileSync(filepath, 'utf8');
     return JSON.parse(content);
@@ -331,19 +331,19 @@
    * @param {string} prefix - Directory name prefix
    * @returns {string} Path to temporary directory
    */
-  function create_temp_dir(prefix = 'test') {
-    const tmp_dir = path.join(FIXTURES_DIR, `${prefix}-${Date.now()}`);
-    fs.mkdirSync(tmp_dir, { recursive: true });
-    return tmp_dir;
+  function createTempDir(prefix = 'test') {
+    const tmpDir = path.join(FIXTURES_DIR, `${prefix}-${Date.now()}`);
+    fs.mkdirSync(tmpDir, { recursive: true });
+    return tmpDir;
   }
 
   /**
    * Clean up a temporary directory
    * @param {string} dir_path - Directory to remove
    */
-  function cleanup_temp_dir(dir_path) {
-    if (fs.existsSync(dir_path)) {
-      fs.rmSync(dir_path, { recursive: true, force: true });
+  function cleanupTempDir(dirPath) {
+    if (fs.existsSync(dirPath)) {
+      fs.rmSync(dirPath, { recursive: true, force: true });
     }
   }
 
@@ -365,7 +365,7 @@
    * @param {number} length - String length
    * @returns {string} Random string
    */
-  function random_string(length = 8) {
+  function randomString(length = 8) {
     const CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let result = '';
     for (let i = 0; i < length; i++) {
@@ -380,27 +380,27 @@
    * @param {Array} b - Second vector
    * @returns {number} Cosine similarity [-1, 1]
    */
-  function cosine_similarity(a, b) {
+  function cosineSimilarity(a, b) {
     if (a.length !== b.length) {
       throw new Error('Vectors must have same length');
     }
 
-    let dot_product = 0;
-    let magnitude_a = 0;
-    let magnitude_b = 0;
+    let dotProduct = 0;
+    let magnitudeA = 0;
+    let magnitudeB = 0;
 
     for (let i = 0; i < a.length; i++) {
-      dot_product += a[i] * b[i];
-      magnitude_a += a[i] * a[i];
-      magnitude_b += b[i] * b[i];
+      dotProduct += a[i] * b[i];
+      magnitudeA += a[i] * a[i];
+      magnitudeB += b[i] * b[i];
     }
 
-    magnitude_a = Math.sqrt(magnitude_a);
-    magnitude_b = Math.sqrt(magnitude_b);
+    magnitudeA = Math.sqrt(magnitudeA);
+    magnitudeB = Math.sqrt(magnitudeB);
 
-    if (magnitude_a === 0 || magnitude_b === 0) return 0;
+    if (magnitudeA === 0 || magnitudeB === 0) return 0;
 
-    return dot_product / (magnitude_a * magnitude_b);
+    return dotProduct / (magnitudeA * magnitudeB);
   }
 
   /* ─────────────────────────────────────────────────────────────
@@ -414,26 +414,26 @@
     DATABASE_DIR,
 
     // Test data creation
-    create_test_memory,
-    mock_database,
-    mock_embedding,
+    createTestMemory,
+    mockDatabase,
+    mockEmbedding,
 
     // Assertions
     assert,
-    assert_approx_equal,
-    assert_in_range,
-    assert_array_equal,
-    assert_throws,
+    assertApproxEqual,
+    assertInRange,
+    assertArrayEqual,
+    assertThrows,
 
     // Test infrastructure
-    create_test_runner,
-    load_fixture,
-    create_temp_dir,
-    cleanup_temp_dir,
+    createTestRunner,
+    loadFixture,
+    createTempDir,
+    cleanupTempDir,
 
     // Utilities
     sleep,
-    random_string,
-    cosine_similarity
+    randomString,
+    cosineSimilarity
   };
 })();

@@ -84,7 +84,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `DEBUG` | `false` | Enable debug logging in generate-context.js |
+| `DEBUG` | `false` | Enable debug logging in generate-context.ts |
 | `AUTO_SAVE_MODE` | `false` | Skip alignment check in hooks |
 | `SPECKIT_QUIET` | `false` | Suppress non-essential output |
 | `SPECKIT_TEMPLATES_DIR` | Auto-detected | Override templates directory |
@@ -105,28 +105,28 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 ```bash
 # Enable debug logging
-DEBUG=1 node scripts/memory/generate-context.js specs/001-feature/
+DEBUG=1 node scripts/dist/memory/generate-context.js specs/001-feature/
 
 # Use custom database location
-MEMORY_DB_PATH=/tmp/test-db.sqlite node mcp_server/context-server.js
+MEMORY_DB_PATH=/tmp/test-db.sqlite node mcp_server/context-server.ts
 
 # Enable experimental reranker
-ENABLE_RERANKER=true node mcp_server/context-server.js
+ENABLE_RERANKER=true node mcp_server/context-server.ts
 
 # Quiet mode for CI/CD
-SPECKIT_QUIET=true bash scripts/validate-spec.sh specs/001-feature/
+SPECKIT_QUIET=true bash scripts/spec/validate.sh specs/001-feature/
 
 # Use Voyage AI embeddings (high quality, cloud-based)
-VOYAGE_API_KEY=your-key-here node mcp_server/context-server.js
+VOYAGE_API_KEY=your-key-here node mcp_server/context-server.ts
 
 # Use OpenAI embeddings
-OPENAI_API_KEY=your-key-here node mcp_server/context-server.js
+OPENAI_API_KEY=your-key-here node mcp_server/context-server.ts
 
 # Force local embeddings (no API key required)
-EMBEDDINGS_PROVIDER=hf-local node mcp_server/context-server.js
+EMBEDDINGS_PROVIDER=hf-local node mcp_server/context-server.ts
 
 # Use specific embedding model
-VOYAGE_EMBEDDINGS_MODEL=voyage-3-large VOYAGE_API_KEY=your-key node mcp_server/context-server.js
+VOYAGE_EMBEDDINGS_MODEL=voyage-4-large VOYAGE_API_KEY=your-key node mcp_server/context-server.ts
 ```
 
 ---
@@ -154,19 +154,19 @@ Feature flags control experimental and optional functionality. All flags default
 
 ```bash
 # Disable deduplication for testing
-SPEC_KIT_ENABLE_DEDUP=false node mcp_server/context-server.js
+SPEC_KIT_ENABLE_DEDUP=false node mcp_server/context-server.ts
 
 # Enable experimental causal memory graph
-SPEC_KIT_ENABLE_CAUSAL=true node mcp_server/context-server.js
+SPEC_KIT_ENABLE_CAUSAL=true node mcp_server/context-server.ts
 
 # Verbose logging for debugging
-SPEC_KIT_VERBOSE_LOGGING=true node scripts/memory/generate-context.js specs/001/
+SPEC_KIT_VERBOSE_LOGGING=true node scripts/dist/memory/generate-context.js specs/001/
 
 # Offline mode (no API calls, local embeddings only)
-SPEC_KIT_OFFLINE_MODE=true EMBEDDINGS_PROVIDER=hf-local node mcp_server/context-server.js
+SPEC_KIT_OFFLINE_MODE=true EMBEDDINGS_PROVIDER=hf-local node mcp_server/context-server.ts
 
 # Disable trigger matching
-SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.js
+SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.ts
 ```
 
 ### Production Recommendations
@@ -196,4 +196,4 @@ SPEC_KIT_ENABLE_TRIGGERS=false node mcp_server/context-server.js
 - [Execution Methods](../workflows/execution_methods.md)
 - [Troubleshooting](../debugging/troubleshooting.md)
 - [Quick Reference](../workflows/quick_reference.md)
-- [Memory System Architecture](../workflows/memory_system.md)
+- [Memory System Architecture](../memory/memory_system.md)

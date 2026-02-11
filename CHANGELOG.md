@@ -7,6 +7,83 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**2.0.0.1**] - 2026-02-11
+
+**Pre-Release Security Audit & Public Release Preparation** — Comprehensive 27-agent security sweep across all 9 skills, 18 commands, and 8 agents. Scrubbed sensitive content from **40+ files**, applied **200+ replacements**, fixed version misalignments, dead links, and stale references. Build documentation added for first-time users.
+
+---
+
+### Changed
+
+1. **Sensitive Content Scrubbed** — 200+ `anobel.com` domain references replaced with `example.com` across 23 files in `workflows-code--web-dev`. Personal paths, names, and domain references removed from `PUBLIC_RELEASE.md`, `AGENTS.md`, `CHANGELOG.md`, and 2 command files
+2. **Version Alignment** — `mcp-code-mode` SKILL.md version corrected `1.2.0` → `1.1.0.3`. `mcp-figma` SKILL.md version corrected `1.0.0` → `1.1.0.1`
+3. **Root README.md Accuracy** — Skill count `8` → `9`, script count `244` → `90`, removed phantom `/search:*` commands, MCP servers `4` → `3`, database path corrected
+4. **Build Documentation Added** — "Building from Source" section added to root `README.md` explaining `npm install && npm run build` for first-time users (compiled `dist/` directories are gitignored)
+5. **`workflows-code--web-dev` SKILL.md** — Skill name corrected from `workflows-code` → `workflows-code--web-dev`
+6. **`workflows-git`** — 26 dot-vs-underscore naming fixes across 3 files. CHANGELOG stale file list updated to actual 10 files
+7. **`workflows-chrome-devtools`** — 8 broken cross-references fixed, 9 `anobel.com` references replaced across 4 example scripts
+
+### Fixed
+
+8. **`skill_advisor.py` Dual-Threshold Bug** — CLI `--threshold` flag was applying dual-threshold validation (confidence + uncertainty) instead of confidence-only filtering. Fixed to use simple confidence threshold when `--threshold` is explicitly set
+9. **Constitutional Memory References** — 2 broken file paths in `constitutional/README.md` fixed (`save_workflow.md`, `trigger_config.md`). Stale file listing updated to include `speckit-exclusivity.md`
+10. **Dead Install Guide Links** — 3 dead links in `mcp-figma` and 1 in `mcp-code-mode` redirected to local `INSTALL_GUIDE.md`. `mcp-code-mode` INSTALL_GUIDE: 21 dot-vs-underscore naming patterns fixed
+11. **`.gitignore` Hardened** — Added `*.sqlite3`, `*.db`, `*.cert`, `__pycache__/` patterns. 5 `.DS_Store` files deleted from skill directories
+12. **`system-spec-kit` README.md** — Script count `244` → `90`, LOC `~1075` → `~1350`
+13. **`workflows-code--full-stack` CHANGELOG** — Asset count `30` → `42`
+14. **Install Guide Links** — 3 broken `MCP/` path prefixes removed from `create/install_guide.md`. `SET-UP` guide: 13 duplicate lines removed
+
+---
+
+**Files:** `AGENTS.md` · `PUBLIC_RELEASE.md` · `CHANGELOG.md` · `.gitignore` · `README.md` · `.opencode/command/` (2 files) · `.opencode/scripts/skill_advisor.py` · `.opencode/skill/system-spec-kit/` (3 files) · `.opencode/skill/mcp-figma/` (2 files) · `.opencode/skill/mcp-code-mode/` (2 files) · `.opencode/skill/workflows-code--web-dev/` (23 files) · `.opencode/skill/workflows-chrome-devtools/` (4 files) · `.opencode/skill/workflows-git/` (3 files) · `.opencode/skill/workflows-code--full-stack/` (1 file) · `.opencode/install_guides/` (2 files)
+
+---
+
+## [**2.0.0.0**] - 2026-02-11
+
+**Spec Kit Memory: JavaScript → TypeScript migration** — Complete rewrite of the MCP server from JavaScript to TypeScript across **16 spec folders** (092-107), delivering **186+ files converted**, **85+ critical bugs fixed**, **3,872 tests passing**, and **303 documentation fixes**.
+
+> Spec folder: `specs/003-memory-and-spec-kit/` (specs 092-107, Levels 2-3)
+
+---
+
+### Added
+
+1. **TypeScript Infrastructure** — `tsconfig.json` with project references for 3 workspaces (`shared/`, `mcp_server/`, `scripts/`), `shared/types.ts` central type definitions, `sqlite-vec.d.ts` native extension declarations. CommonJS output preserves backward compatibility
+2. **1,589 New Tests** (spec 100) — Achieved 100% module export coverage across 26 test files, including 48 FTS5 SQL injection security tests. Test suite grew from ~700 to **3,872 tests** across 114 test files
+3. **Memory Save Auto-Detect** (spec 097) — 5-priority detection cascade for spec folder resolution: explicit path → Gate 3 context → recent spec → cwd → ask user. Streamlines the memory save workflow
+
+### Changed
+
+4. **186+ Source Files Converted** (spec 092) — All `.js` source files in `shared/`, `mcp_server/`, and `scripts/` converted to TypeScript with full type annotations. 21 migration phases. CommonJS output unchanged — zero runtime behavior changes, all `require()` paths preserved
+5. **Type Safety Hardened** — `@ts-nocheck` removed from 96 test files with ~1,100 type errors resolved (spec 103). Unsafe casts reduced from 48 → 3 (spec 099). 199 `: any` remaining (tracked, non-critical)
+6. **Documentation Accuracy** (specs 106-107) — 20-agent parallel audit identified ~120 critical issues. 303 fixes applied across ~45 files: phantom file references removed, stale counts updated, 39 mcp-narsil references purged, all import extensions corrected
+7. **Code-Documentation Alignment** (specs 101-102) — 36-finding misalignment audit followed by full remediation. Doc-code alignment improved from 67.9% → 95.5%. ADR-008 written
+8. **18 Command Files Updated** (specs 092, 102) — 23 path references fixed across 15 command/asset files for TS migration (spec 092). 6 `spec_kit/` commands enhanced with `memory_context` integration and standardized quality gates (spec 102). 5 obsolete commands removed: `search/{code,index}.md`, `memory/{checkpoint,database,search}.md`
+9. **`workflows-code--opencode` Skill Overhauled** (v1.1.0 → v1.3.2) — 4 new TypeScript reference files added, 645 code standard violations audited across 136 files, template alignment for 22 skill files, 17 broken router references fixed. Established TypeScript coding standards for the entire project
+
+### Fixed
+
+10. **85+ Bugs Fixed** (spec 096) — 8 CRITICAL: FSRS decay formula 18.45x error, macOS SQLite crash, database no-op writes. Plus 27 regression tests added
+11. **12 Non-Functional Features Restored** (spec 098) — 10 P0 + 18 P1 issues resolved across the MCP server. Features that had silently broken during development restored to working state
+12. **Memory Index Reliability** (spec 093) — Indexing success rate improved from 129/244 → 240/245. 2 root-cause bugs fixed. FSRS v4 decay formula corrected
+13. **196 TypeScript Type Errors** (spec 094) — 5 P0 + 14 P1 bugs from 20-agent parallel code review. Zero `tsc` errors achieved
+14. **Database Re-Indexed** (spec 099) — Memory database re-indexed from 85 → 261 memories. 75 new tests. Deprecated types preserved for backward compatibility
+
+### Current State
+
+- **Build:** `tsc --noEmit` PASS (0 errors)
+- **Tests:** 3,872 passing, 71 skipped, 114/118 suites (4 skipped)
+- **Source:** 204 `.ts` files, 0 `.js` source files in MCP server
+- **LOC:** 68,134 source + 40,072 tests = 108,206 total
+- **Type Safety:** 0 `@ts-nocheck`, 199 `: any` remaining
+
+---
+
+**Files:** `.opencode/skill/system-spec-kit/` (entire skill directory — 204+ source files, 118 test files)
+
+---
+
 ## [**1.3.3.0**] - 2026-02-11
 
 **Claude Code integration & orchestrate improvements:** Created **8 Claude Code subagent files** in `.claude/agents/` (converting symlinks to standalone files with YAML frontmatter), added **Tool Call Budget (TCB)** system to orchestrate.md, and reduced orchestrate.md from **892 → 758 lines** through section consolidation.
@@ -407,7 +484,7 @@ Major restructuring of AGENTS.md for better organization and reduced verbosity w
 Reply with answers, e.g.: "B, A, C"
 ```
 
-**Files:** `AGENTS.md` (Public, anobel.com, Barter/coder)
+**Files:** `AGENTS.md` (Public, project-site, project/coder)
 
 ---
 
@@ -489,7 +566,7 @@ Two internal fixes improving memory save reliability and generate-context script
    - New `detect_work_domain()` analyzes file paths from observations
    - +40 alignment bonus for folders matching infrastructure patterns
    - `/memory:continue` validates `key_files` vs `spec_folder`
-   - Fixes: spec-kit work going to project folders (e.g., `005-anobel.com` instead of `003-memory-and-spec-kit`)
+   - Fixes: spec-kit work going to project folders (e.g., `005-project-site` instead of `003-memory-and-spec-kit`)
 
 2. **generate-context.js API mismatch** — Fixed `get_db is not a function` error:
    - Added snake_case export aliases to `vector-index.js`
@@ -2156,7 +2233,7 @@ Addresses critical runtime errors, code quality issues, and documentation misali
 - All 44 JavaScript modules pass syntax check
 - 25 bug fix tests pass, 0 failures
 - Integration test passes (generate-context.js --help)
-- All 3 repos (anobel.com, Public, Barter) verified in sync
+- All 3 repos (project-site, Public, project/coder) verified in sync
 
 **Full Changelog**: [v1.0.2.6...v1.0.2.7](https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v1.0.2.6...v1.0.2.7)
 

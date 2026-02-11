@@ -17,7 +17,7 @@ This asset provides the definitive source for which templates are required at ea
 
 ### Usage
 
-1. Determine your documentation level (1, 2, or 3)
+1. Determine your documentation level (1, 2, 3, or 3+)
 2. Copy the required templates using the provided bash commands
 3. Follow the step-by-step template usage guide for proper folder setup
 4. Verify all placeholders are filled before proceeding
@@ -84,6 +84,8 @@ Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
 Level 2 (Verification): Level 1 + checklist.md
                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research.md
+                              ↓
+Level 3+ (Extended):    Level 3 + AI protocols + extended checklist + sign-offs
 ```
 
 | Level               | Required Files                     | Adds To Previous        | Copy Commands              |
@@ -91,6 +93,7 @@ Level 3 (Full):         Level 2 + decision-record.md + optional research.md
 | **1: Baseline**     | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md` | (foundation)            | See Level 1 commands below |
 | **2: Verification** | Level 1 + `checklist.md`           | QA checklist            | See Level 2 commands below |
 | **3: Full**         | Level 2 + `decision-record.md`     | ADR + optional research | See Level 3 commands below |
+| **3+: Extended**    | Level 3 + AI protocols + extended checklist + sign-offs | Governance + orchestration | See Level 3+ commands below |
 
 **Level 1 Copy Commands (Baseline):**
 ```bash
@@ -121,6 +124,18 @@ cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/##
 cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
 ```
 
+**Level 3+ Copy Commands (complete set):**
+```bash
+cp .opencode/skill/system-spec-kit/templates/level_3+/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/###-name/decision-record-[topic].md
+# Optional:
+cp .opencode/skill/system-spec-kit/templates/research.md specs/###-name/research.md
+```
+
 ---
 
 ## 4. 📦 OPTIONAL TEMPLATES (Level 3 Only)
@@ -146,8 +161,9 @@ specs/043-add-email-validation/
 ├── spec.md                      (REQUIRED - from spec.md)
 ├── plan.md                      (REQUIRED - from plan.md)
 ├── tasks.md                     (REQUIRED - from tasks.md)
+├── implementation-summary.md    (REQUIRED - from implementation-summary.md)
 └── memory/                      (OPTIONAL - context preservation)
-    └── *.md                     (auto-generated via generate-context.js)
+    └── *.md                     (auto-generated via generate-context.ts)
 ```
 
 **Content expectations:**
@@ -166,9 +182,10 @@ specs/044-modal-component/
 ├── spec.md                      (REQUIRED - from Level 1)
 ├── plan.md                      (REQUIRED - from Level 1)
 ├── tasks.md                     (REQUIRED - from Level 1)
+├── implementation-summary.md    (REQUIRED - from Level 1)
 ├── checklist.md                 (REQUIRED - adds QA validation)
 └── memory/                      (OPTIONAL - context preservation)
-    └── *.md                     (auto-generated via generate-context.js)
+    └── *.md                     (auto-generated via generate-context.ts)
 ```
 
 **Additional expectations:**
@@ -185,17 +202,42 @@ specs/045-user-dashboard/
 ├── spec.md                      (REQUIRED - from Level 2)
 ├── plan.md                      (REQUIRED - from Level 2)
 ├── tasks.md                     (REQUIRED - from Level 2)
+├── implementation-summary.md    (REQUIRED - from Level 2)
 ├── checklist.md                 (REQUIRED - from Level 2)
 ├── decision-record-[topic].md   (REQUIRED - architecture decisions)
 ├── research.md                  (OPTIONAL - comprehensive research)
 └── memory/                      (OPTIONAL - context preservation)
-    └── *.md                     (auto-generated via generate-context.js)
+    └── *.md                     (auto-generated via generate-context.ts)
 ```
 
 **Additional expectations:**
 - **decision-record.md**: Context, options considered, decision made, rationale, consequences
 
 **Enforcement:** Hard block if `decision-record.md` missing
+
+---
+
+### Level 3+: Extended Documentation
+
+```
+specs/046-enterprise-migration/
+├── spec.md                      (REQUIRED - from Level 3, +approval workflow, +compliance, +stakeholders)
+├── plan.md                      (REQUIRED - from Level 3, +AI execution framework, +workstream coordination)
+├── tasks.md                     (REQUIRED - from Level 3, +3-tier format, +AI protocol, +workstreams)
+├── implementation-summary.md    (REQUIRED - from Level 3)
+├── checklist.md                 (REQUIRED - from Level 3, +extended items 100-150, +sign-offs, +compliance)
+├── decision-record-[topic].md   (REQUIRED - from Level 3, +decision authority, +review requirements)
+├── research.md                  (OPTIONAL - comprehensive research)
+└── memory/                      (OPTIONAL - context preservation)
+    └── *.md                     (auto-generated via generate-context.ts)
+```
+
+**Additional expectations:**
+- **Extended checklist**: 100-150 items with P0/P1/P2 prioritization and sign-off tracking
+- **AI execution framework**: Pre-task checklists, execution rules, status tracking for multi-agent work
+- **Approval workflow**: Stakeholder matrix with sign-off tracking and compliance checkpoints
+
+**Enforcement:** Hard block if any required file missing. All Level 3+ templates include `SPECKIT_LEVEL: 3+` frontmatter.
 
 ---
 
@@ -264,7 +306,7 @@ Content that will be indexed...
 - `next-steps` - Planned next actions
 - `context` - Background context
 
-**Generation:** Use `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` to auto-generate properly formatted memory files.
+**Generation:** Use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]` to auto-generate properly formatted memory files.
 
 ---
 
@@ -332,7 +374,17 @@ cp .opencode/skill/system-spec-kit/templates/level_3/checklist.md specs/###-name
 cp .opencode/skill/system-spec-kit/templates/level_3/decision-record.md specs/###-name/decision-record-[topic].md
 ```
 
-### Step 5: Copy Optional Templates (Level 3 Only - If Needed)
+**Level 3+ (Extended) - Complete set:**
+```bash
+cp .opencode/skill/system-spec-kit/templates/level_3+/spec.md specs/###-name/spec.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/plan.md specs/###-name/plan.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/tasks.md specs/###-name/tasks.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md specs/###-name/implementation-summary.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/checklist.md specs/###-name/checklist.md
+cp .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md specs/###-name/decision-record-[topic].md
+```
+
+### Step 5: Copy Optional Templates (Level 3/3+ - If Needed)
 
 ```bash
 # Comprehensive Research
@@ -365,7 +417,7 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 - [level_decision_matrix.md](./level_decision_matrix.md) - Level selection decision matrix
 
 ### Reference Files
-- [template_guide.md](../references/template_guide.md) - Template selection, adaptation, and quality standards
+- [template_guide.md](../references/templates/template_guide.md) - Template selection, adaptation, and quality standards
 - [level_specifications.md](../references/templates/level_specifications.md) - Complete Level 1-3 requirements
 - [quick_reference.md](../references/workflows/quick_reference.md) - Commands, checklists, and troubleshooting
 
@@ -394,6 +446,14 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 - [implementation-summary.md](../templates/level_3/implementation-summary.md) - Completion summary template
 - [checklist.md](../templates/level_3/checklist.md) - Full validation checklist template
 - [decision-record.md](../templates/level_3/decision-record.md) - Architecture Decision Records template
+
+**Level 3+ Templates (Extended/Enterprise):**
+- [spec.md](../templates/level_3+/spec.md) - Requirements with approval workflow and compliance checkpoints
+- [plan.md](../templates/level_3+/plan.md) - Implementation plan with AI execution framework and workstream coordination
+- [tasks.md](../templates/level_3+/tasks.md) - Task breakdown with 3-tier format and AI execution protocol
+- [implementation-summary.md](../templates/level_3+/implementation-summary.md) - Completion summary template
+- [checklist.md](../templates/level_3+/checklist.md) - Extended checklist (100-150 items) with sign-offs and compliance
+- [decision-record.md](../templates/level_3+/decision-record.md) - Decision records with authority and review requirements
 
 **Optional Templates:**
 - [research.md](../templates/research.md) - Comprehensive research template (Level 3 only)

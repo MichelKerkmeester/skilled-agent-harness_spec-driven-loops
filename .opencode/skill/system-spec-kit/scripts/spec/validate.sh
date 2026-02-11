@@ -4,6 +4,9 @@
 # ───────────────────────────────────────────────────────────────
 # Spec Folder Validation Orchestrator - Bash 3.2+ compatible
 
+# Note: Using 'set -eo pipefail' instead of 'set -euo pipefail' due to macOS bash 3.2
+# compatibility. The -u flag triggers errors with empty arrays (${RULE_ORDER[@]} and
+# ${RULE_DETAILS[@]}) which are valid patterns in this script.
 set -eo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -21,8 +24,12 @@ RULE_ORDER=()
 # Timing helper - get current time in milliseconds
 get_time_ms() {
     # Try nanoseconds first (Linux), then Python, then seconds only (macOS fallback)
-    if date +%s%N >/dev/null 2>&1; then
-        echo $(( $(date +%s%N) / 1000000 ))
+    # P1-01 FIX: macOS date +%s%N outputs literal "N" (e.g. "1234567890N") instead of erroring.
+    # Must verify the output contains only digits AND is long enough to be nanoseconds.
+    local ns
+    ns=$(date +%s%N 2>/dev/null)
+    if [[ "$ns" =~ ^[0-9]+$ ]] && [[ ${#ns} -gt 10 ]]; then
+        echo $(( ns / 1000000 ))
     elif command -v python3 >/dev/null 2>&1; then
         python3 -c "import time; print(int(time.time() * 1000))" 2>/dev/null || echo $(( $(date +%s) * 1000 ))
     else
@@ -179,25 +186,25 @@ detect_level() {
     
     if [[ -f "$spec_file" ]]; then
         # Pattern 1: Table format with bold (most common)
-        # | **Level** | 2 |
-        level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+        # | **Level** | 2 | or | **Level** | 3+ |
+        level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\+?\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
         
         # Pattern 2: Table format without bold
-        # | Level | 2 |
+        # | Level | 2 | or | Level | 3+ |
         if [[ -z "$level" ]]; then
-            level=$(grep -E '\|\s*Level\s*\|\s*[123]\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+            level=$(grep -E '\|\s*Level\s*\|\s*[123]\+?\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
         fi
         
         # Pattern 3: YAML frontmatter
-        # level: 2
+        # level: 2 or level: 3+
         if [[ -z "$level" ]]; then
-            level=$(grep -E '^level:\s*[123]' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+            level=$(grep -E '^level:\s*[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
         fi
         
         # Pattern 4: Inline "Level: N" or "Level N" (case insensitive)
-        # Level: 2 or Level 2
+        # Level: 2 or Level 3+
         if [[ -z "$level" ]]; then
-            level=$(grep -iE 'level[: ]+[123]' "$spec_file" 2>/dev/null | grep -oE '[123]' | head -1 || true)
+            level=$(grep -iE 'level[: ]+[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
         fi
         
         [[ -n "$level" ]] && { DETECTED_LEVEL="$level"; LEVEL_METHOD="explicit"; return; }
@@ -231,7 +238,14 @@ log_info() {
 }
 log_detail() { ! $JSON_MODE && ! $QUIET_MODE && printf "    - %s\n" "$1"; true; }
 
-get_rule_severity() { local v="RULE_SEVERITY_$1"; eval "echo \"\${$v:-error}\""; }
+get_rule_severity() {
+    case "$1" in
+        FILE_EXISTS|FILES|PLACEHOLDER_FILLED|PLACEHOLDERS|ANCHORS_VALID|ANCHORS) echo "error" ;;
+        SECTIONS_PRESENT|SECTIONS|PRIORITY_TAGS|EVIDENCE_CITED|EVIDENCE|PRIORITY) echo "warn" ;;
+        LEVEL_DECLARED|LEVEL) echo "info" ;;
+        *) echo "error" ;;
+    esac
+}
 should_run_rule() { [[ "$(get_rule_severity "$1")" != "skip" ]]; }
 
 # Map rule name to script filename
@@ -268,11 +282,23 @@ get_rule_scripts() {
 
 run_all_rules() {
     local folder="$1" level="$2"
+    # T501 FIX: Normalize level for numeric comparisons (strip "+" suffix)
+    # Rule scripts receive the numeric value; they read "3+" from spec.md themselves if needed
+    local numeric_level="${level//[^0-9]/}"
+    level="$numeric_level"
     local rule_scripts; rule_scripts=$(get_rule_scripts "$folder")
     
     while IFS= read -r rule_script; do
         [[ -z "$rule_script" ]] && continue
         [[ ! -f "$rule_script" ]] && continue
+        # P1-14 FIX: Validate rule script before sourcing
+        # Ensure it's a regular file with .sh extension within RULES_DIR
+        local real_rule; real_rule=$(realpath "$rule_script" 2>/dev/null || echo "$rule_script")
+        local real_rules_dir; real_rules_dir=$(realpath "$RULES_DIR" 2>/dev/null || echo "$RULES_DIR")
+        if [[ ! "$real_rule" == "$real_rules_dir"/* ]] || [[ "${rule_script##*.}" != "sh" ]]; then
+            echo "Warning: Skipping suspicious rule script: $rule_script" >&2
+            continue
+        fi
         local bn; bn=$(basename "$rule_script" .sh)
         local rule_name; rule_name=$(echo "${bn#check-}" | tr '[:lower:]' '[:upper:]' | tr '-' '_')
         should_run_rule "$rule_name" || continue

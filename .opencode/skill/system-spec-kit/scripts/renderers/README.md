@@ -36,6 +36,7 @@ Template renderers provide a Mustache-like templating system for populating spec
 | Requirement | Minimum | Notes |
 |-------------|---------|-------|
 | Node.js | 18+ | For script execution |
+| TypeScript | 5.0+ | Source files are TypeScript (.ts) |
 | fs/promises | Built-in | File system access |
 
 ---
@@ -44,8 +45,8 @@ Template renderers provide a Mustache-like templating system for populating spec
 
 ### Basic Usage
 
-```javascript
-const { populateTemplate } = require('./renderers');
+```typescript
+import { populateTemplate } from '@spec-kit/shared/renderers';
 
 // Render template with data
 const result = await populateTemplate('template.md', {
@@ -82,7 +83,7 @@ No tests yet.
 
 ### Render Output
 
-```javascript
+```typescript
 const data = {
   PROJECT_NAME: 'MyTool',
   DESCRIPTION: 'Fast automation',
@@ -109,16 +110,18 @@ const data = {
 
 ```
 renderers/
-├── template-renderer.js    # Core template engine
-└── index.js               # Public API exports
+├── template-renderer.ts    # Core template engine (TypeScript source)
+├── index.ts                # Public API exports (TypeScript source)
+└── (compiled output in ../dist/renderers/)
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `template-renderer.js` | Core rendering engine with conditionals, loops, and cleanup |
-| `index.js` | Module entry point, exports all renderer functions |
+| `template-renderer.ts` | Core rendering engine with conditionals, loops, and cleanup |
+| `index.ts` | Module entry point, exports all renderer functions |
+| `../dist/renderers/` | Compiled JavaScript output (generated from TypeScript) |
 
 ---
 
@@ -133,7 +136,7 @@ renderers/
 **Cause**: Template references a variable not present in data object
 
 **Solution**:
-```javascript
+```typescript
 // Ensure all template variables are in data
 const data = {
   PROJECT_NAME: 'MyProject',
@@ -151,7 +154,7 @@ await populateTemplate('template.md', data);
 **Cause**: Data value is not an array or is empty
 
 **Solution**:
-```javascript
+```typescript
 // Check array structure
 const data = {
   features: ['Item 1', 'Item 2']  // Must be array with items
@@ -173,7 +176,7 @@ const data = {
 **Cause**: Falsy value detection not matching expectation
 
 **Solution**:
-```javascript
+```typescript
 // Falsy values: undefined, null, false, 0, '', 'false', []
 const data = {
   hasTests: false,     // ✅ Inverted section will show
@@ -193,9 +196,9 @@ const data = {
 
 ### Diagnostic Commands
 
-```javascript
+```typescript
 // Test template rendering
-const { renderTemplate } = require('./renderers');
+import { renderTemplate } from '@spec-kit/shared/renderers';
 
 const template = '{{#test}}Success{{/test}}';
 const data = { test: true };

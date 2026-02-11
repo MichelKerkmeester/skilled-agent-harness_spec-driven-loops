@@ -1,7 +1,7 @@
 # Tasks: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
 
 <!-- WHEN TO USE THIS TEMPLATE:
 Level 2 Tasks (+Verify) is appropriate when:

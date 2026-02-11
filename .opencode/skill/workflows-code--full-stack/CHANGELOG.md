@@ -57,9 +57,9 @@ Initial release of the multi-stack code implementation skill supporting **5 tech
 - `references/mobile/react-native/` — 7 React Native standards
 - `references/mobile/swift/` — 6 Swift standards
 
-**Assets (30 files):**
+**Assets (42 files):**
 - 15 checklist files (3 per stack: code quality, debugging, verification)
-- 15 pattern files (TypeScript, Go, Swift code examples)
+- 27 pattern files (TypeScript, Go, Swift code examples)
 
 ---
 

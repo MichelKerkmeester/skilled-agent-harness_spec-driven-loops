@@ -41,9 +41,9 @@ The errors subsystem provides standardized error handling for the Spec Kit Memor
 
 ```
 errors/
-├── core.js           # MemoryError class, timeout wrapper, error utilities
-├── recovery-hints.js # 49 error codes with recovery guidance (v1.2.0)
-├── index.js          # Module aggregator
+├── core.ts           # MemoryError class, timeout wrapper, error utilities
+├── recovery-hints.ts # 49 error codes with recovery guidance (v1.2.0)
+├── index.ts          # Module aggregator
 └── README.md         # This file
 ```
 
@@ -51,9 +51,9 @@ errors/
 
 | File | Purpose |
 |------|---------|
-| `core.js` | Custom error classes, timeout wrapper, error response builder |
-| `recovery-hints.js` | Error code catalog with severity levels and recovery actions |
-| `index.js` | Unified export of all error functionality |
+| `core.ts` | Custom error classes, timeout wrapper, error response builder |
+| `recovery-hints.ts` | Error code catalog with severity levels and recovery actions |
+| `index.ts` | Unified export of all error functionality |
 
 ---
 
@@ -101,21 +101,21 @@ Automatic classification for retry logic:
 
 ### Example 1: Build Error Response
 
-```javascript
-const { build_error_response } = require('./errors');
+```typescript
+import { buildErrorResponse } from '@spec-kit/lib/errors';
 
 try {
   // ... operation that may fail
 } catch (error) {
-  return build_error_response('memory_search', error, { query });
+  return buildErrorResponse('memory_search', error, { query });
   // Returns: { summary, data, hints, meta }
 }
 ```
 
 ### Example 2: Get Recovery Hint
 
-```javascript
-const { getRecoveryHint, ERROR_CODES } = require('./errors');
+```typescript
+import { getRecoveryHint, ERROR_CODES } from '@spec-kit/lib/errors';
 
 const hint = getRecoveryHint('memory_search', ERROR_CODES.EMBEDDING_FAILED);
 // Returns tool-specific hint for embedding failure in search context
@@ -126,10 +126,10 @@ console.log(hint.actions);
 
 ### Example 3: Create Error with Hint
 
-```javascript
-const { create_error_with_hint, ErrorCodes } = require('./errors');
+```typescript
+import { createErrorWithHint, ErrorCodes } from '@spec-kit/lib/errors';
 
-const error = create_error_with_hint(
+const error = createErrorWithHint(
   ErrorCodes.FILE_NOT_FOUND,
   'Memory file not found',
   { path: '/specs/memory/context.md' },
@@ -142,10 +142,10 @@ const error = create_error_with_hint(
 
 | Pattern | Code | When to Use |
 |---------|------|-------------|
-| Check transient | `is_transient_error(err)` | Before retry logic |
-| Check permanent | `is_permanent_error(err)` | For fail-fast paths |
-| User-friendly | `user_friendly_error(err)` | For external messages |
-| With timeout | `with_timeout(promise, ms, 'op')` | For async operations |
+| Check transient | `isTransientError(err)` | Before retry logic |
+| Check permanent | `isPermanentError(err)` | For fail-fast paths |
+| User-friendly | `userFriendlyError(err)` | For external messages |
+| With timeout | `withTimeout(promise, ms, 'op')` | For async operations |
 
 ---
 
@@ -156,21 +156,22 @@ const error = create_error_with_hint(
 | Document | Purpose |
 |----------|---------|
 | [../validation/](../validation/) | Pre-flight quality gates |
-| [../../context-server.js](../../context-server.js) | MCP server using error system |
+| [../../context-server.ts](../../context-server.ts) | MCP server using error system |
 
 ### Exports Reference
 
-```javascript
-// From core.js
-ErrorCodes, MemoryError, with_timeout, user_friendly_error,
-is_transient_error, is_permanent_error, build_error_response,
-create_error_with_hint
+```typescript
+// From core.ts
+ErrorCodes, MemoryError, withTimeout, userFriendlyError,
+isTransientError, isPermanentError, buildErrorResponse,
+createErrorWithHint
 
-// From recovery-hints.js
+// From recovery-hints.ts
 ERROR_CODES, RECOVERY_HINTS, TOOL_SPECIFIC_HINTS, DEFAULT_HINT,
 getRecoveryHint, hasSpecificHint, getAvailableHints, getErrorCodes
 ```
 
 ---
 
-*Module version: 1.2.0 | Added recovery-hints.js with 49 error codes*
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

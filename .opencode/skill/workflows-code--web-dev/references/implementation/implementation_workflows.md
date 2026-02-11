@@ -498,11 +498,11 @@ For JavaScript minification and CDN deployment workflows, see dedicated referenc
 
 ```bash
 # 1. Make JS changes
-#    Edit: src/2_javascript/[folder]/[file].js
+#    Edit: src/javascript/[folder]/[file].js
 
 # 2. Minify
-npx terser src/2_javascript/[folder]/[file].js --compress --mangle \
-  -o src/2_javascript/z_minified/[folder]/[file].js
+npx terser src/javascript/[folder]/[file].js --compress --mangle \
+  -o src/javascript/z_minified/[folder]/[file].js
 
 # 3. Verify (AST check)
 node scripts/verify-minification.mjs

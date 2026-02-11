@@ -256,7 +256,6 @@ multi_agent_config:
           - "Execute Steps 6-9 (Quality Checklist through Save Context)"
           - "Create final research.md"
       workers:
-        - model: "{worker_model|opus}"
           role: "codebase_explorer"
           focus: "Codebase Investigation"
           step: 3
@@ -265,7 +264,6 @@ multi_agent_config:
             - "Analyze existing implementations"
             - "Document current architecture"
             - "Map dependencies"
-        - model: "{worker_model|opus}"
           role: "external_researcher"
           focus: "External Research"
           step: 4
@@ -288,7 +286,6 @@ multi_agent_config:
           - "Execute Steps 6-9 (Quality Checklist through Save Context)"
           - "Create final research.md"
       workers:
-        - model: "{worker_model|opus}"
           role: "codebase_explorer"
           focus: "Codebase Investigation"
           step: 3
@@ -297,7 +294,6 @@ multi_agent_config:
             - "Analyze existing implementations"
             - "Document current architecture"
             - "Map dependencies"
-        - model: "{worker_model|opus}"
           role: "external_researcher"
           focus: "External Research"
           step: 4
@@ -306,7 +302,6 @@ multi_agent_config:
             - "Review API references"
             - "Analyze community best practices"
             - "Compare alternative approaches"
-        - model: "{worker_model|opus}"
           role: "technical_analyzer"
           focus: "Technical Analysis"
           step: 5
@@ -765,10 +760,8 @@ workflow:
         agents:
           - name: "pattern_explorer"
             focus: "Search for related code patterns and implementations"
-            model: "{worker_model|opus}"
           - name: "architecture_analyzer"
             focus: "Analyze current architecture and integration points"
-            model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
@@ -837,10 +830,8 @@ workflow:
         agents:
           - name: "documentation_researcher"
             focus: "Search official documentation and API references"
-            model: "{worker_model|opus}"
           - name: "best_practices_explorer"
             focus: "Analyze community best practices and alternatives"
-            model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
@@ -884,10 +875,8 @@ workflow:
         agents:
           - name: "feasibility_analyzer"
             focus: "Evaluate technical feasibility and performance"
-            model: "{worker_model|opus}"
           - name: "risk_assessor"
             focus: "Analyze security, scalability, and risks"
-            model: "{worker_model|opus}"
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 

@@ -1,0 +1,670 @@
+// ---------------------------------------------------------------
+// MODULE: Memory Parser
+// ---------------------------------------------------------------
+
+// Node stdlib
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+
+// Internal modules
+import { escapeRegex } from '../utils/path-security';
+// T125: Import type inference for memory_type classification
+import { inferMemoryType } from '../config/type-inference';
+
+/* ---------------------------------------------------------------
+   1. TYPES
+   --------------------------------------------------------------- */
+
+/** Causal link relationship types between memories */
+export interface CausalLinks {
+  caused_by: string[];
+  supersedes: string[];
+  derived_from: string[];
+  blocks: string[];
+  related_to: string[];
+}
+
+/** Type inference result from inferMemoryType */
+export interface TypeInferenceResult {
+  type: string;
+  source: string;
+  confidence: number;
+}
+
+/** Parsed memory file data */
+export interface ParsedMemory {
+  filePath: string;
+  specFolder: string;
+  title: string | null;
+  triggerPhrases: string[];
+  contextType: string;
+  importanceTier: string;
+  contentHash: string;
+  content: string;
+  fileSize: number;
+  lastModified: string;
+  memoryType: string;
+  memoryTypeSource: string;
+  memoryTypeConfidence: number;
+  causalLinks: CausalLinks;
+  hasCausalLinks: boolean;
+}
+
+/** Anchor validation result */
+export interface AnchorValidation {
+  valid: boolean;
+  warnings: string[];
+  unclosedAnchors: string[];
+}
+
+/** Parsed memory validation result */
+export interface ParsedMemoryValidation {
+  valid: boolean;
+  errors: string[];
+  warnings: string[];
+}
+
+/** Context type string value */
+export type ContextType = 'implementation' | 'research' | 'decision' | 'discovery' | 'general';
+
+/* ---------------------------------------------------------------
+   2. CONFIGURATION
+   --------------------------------------------------------------- */
+
+export const MEMORY_FILE_PATTERN: RegExp = /specs\/([^/]+)(?:\/[^/]+)*\/memory\/[^/]+\.md$/;
+
+export const CONTEXT_TYPE_MAP: Record<string, ContextType> = {
+  'implementation': 'implementation',
+  'research': 'research',
+  'decision': 'decision',
+  'discovery': 'discovery',
+  'general': 'general',
+  'debug': 'implementation',
+  'analysis': 'research',
+  'planning': 'decision',
+  'bug': 'discovery',
+  'fix': 'implementation',
+  'refactor': 'implementation',
+  'feature': 'implementation',
+  'architecture': 'decision',
+  'review': 'research',
+  'test': 'implementation',
+};
+
+/* ---------------------------------------------------------------
+   3. CORE PARSING FUNCTIONS
+   --------------------------------------------------------------- */
+
+/** Read file with BOM detection for UTF-16 support */
+export function readFileWithEncoding(filePath: string): string {
+  const buffer = fs.readFileSync(filePath);
+
+  // Check for BOM (Byte Order Mark)
+  // UTF-8 BOM: EF BB BF (must check first - 3 bytes)
+  if (buffer.length >= 3 &&
+      buffer[0] === 0xEF &&
+      buffer[1] === 0xBB &&
+      buffer[2] === 0xBF) {
+    return buffer.slice(3).toString('utf-8'); // Skip 3-byte BOM
+  }
+
+  // UTF-16 LE BOM: FF FE
+  if (buffer.length >= 2 &&
+      buffer[0] === 0xFF &&
+      buffer[1] === 0xFE) {
+    return buffer.toString('utf16le').slice(1); // UTF-16 LE
+  }
+
+  // UTF-16 BE BOM: FE FF
+  // BUG-020 FIX: Node.js Buffer doesn't support 'utf16be' encoding natively.
+  // Convert UTF-16 BE to LE by swapping bytes, then decode as utf16le.
+  if (buffer.length >= 2 &&
+      buffer[0] === 0xFE &&
+      buffer[1] === 0xFF) {
+    // Skip BOM (2 bytes), then swap remaining bytes for BE->LE conversion
+    const contentBuffer = buffer.slice(2);
+    for (let i = 0; i < contentBuffer.length - 1; i += 2) {
+      const temp = contentBuffer[i];
+      contentBuffer[i] = contentBuffer[i + 1];
+      contentBuffer[i + 1] = temp;
+    }
+    return contentBuffer.toString('utf16le');
+  }
+
+  // No BOM detected, assume UTF-8
+  return buffer.toString('utf-8');
+}
+
+/** Parse a memory file and extract all metadata */
+export function parseMemoryFile(filePath: string): ParsedMemory {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Memory file not found: ${filePath}`);
+  }
+
+  const content = readFileWithEncoding(filePath);
+  const spec_folder = extractSpecFolder(filePath);
+  const title = extractTitle(content);
+  const triggerPhrases = extractTriggerPhrases(content);
+  const contextType = extractContextType(content);
+  const importance_tier = extractImportanceTier(content);
+  const content_hash = computeContentHash(content);
+
+  // T125: Infer memory_type for type-specific half-lives (CHK-230)
+  const typeInference: TypeInferenceResult = inferMemoryType({
+    filePath,
+    content: content,
+    title: title ?? undefined,
+    triggerPhrases: triggerPhrases,
+    importanceTier: importance_tier,
+  });
+
+  // T126: Extract causal_links for relationship tracking (CHK-231)
+  const causalLinks = extractCausalLinks(content);
+
+  return {
+    filePath,
+    specFolder: spec_folder,
+    title,
+    triggerPhrases: triggerPhrases,
+    contextType: contextType,
+    importanceTier: importance_tier,
+    contentHash: content_hash,
+    content,
+    fileSize: content.length,
+    lastModified: fs.statSync(filePath).mtime.toISOString(),
+    // T125: Memory type classification for decay calculation
+    memoryType: typeInference.type,
+    memoryTypeSource: typeInference.source,
+    memoryTypeConfidence: typeInference.confidence,
+    // T126: Causal links for memory graph relationships
+    causalLinks: causalLinks,
+    hasCausalLinks: hasCausalLinks(causalLinks),
+  };
+}
+
+/** Extract spec folder name from file path */
+export function extractSpecFolder(filePath: string): string {
+  // Handle UNC paths (\\server\share or //server/share)
+  let normalizedPath = filePath;
+  if (normalizedPath.startsWith('\\\\') || normalizedPath.startsWith('//')) {
+    // Remove UNC prefix for pattern matching
+    normalizedPath = normalizedPath.replace(/^(\\\\|\/\/)[^/\\]+[/\\][^/\\]+/, '');
+  }
+  // Normalize path separators
+  normalizedPath = normalizedPath.replace(/\\/g, '/');
+
+  // Match specs/XXX-name/.../memory/ pattern
+  const match = normalizedPath.match(/specs\/([^/]+(?:\/[^/]+)*?)\/memory\//);
+
+  if (match) {
+    return match[1];
+  }
+
+  // Fallback: try to extract from path segments
+  const segments = normalizedPath.split('/');
+  const specsIndex = segments.findIndex(s => s === 'specs');
+
+  if (specsIndex >= 0 && specsIndex < segments.length - 2) {
+    const memoryIndex = segments.indexOf('memory', specsIndex);
+    if (memoryIndex > specsIndex + 1) {
+      return segments.slice(specsIndex + 1, memoryIndex).join('/');
+    }
+  }
+
+  // Last resort: use parent directory name
+  const parentDir = path.dirname(path.dirname(filePath));
+  return path.basename(parentDir);
+}
+
+/** Extract title from first # heading */
+export function extractTitle(content: string): string | null {
+  // Check YAML frontmatter first
+  const yamlMatch = content.match(/^---[\s\S]*?title:\s*["']?([^"'\n]+)["']?[\s\S]*?---/m);
+  if (yamlMatch) {
+    return yamlMatch[1].trim();
+  }
+
+  // Fall back to first # heading (skip frontmatter)
+  const withoutFrontmatter = content.replace(/^---[\s\S]*?---\n?/, '');
+  const match = withoutFrontmatter.match(/^#\s+(.+)$/m);
+  return match ? match[1].trim() : null;
+}
+
+/** Extract trigger phrases from ## Trigger Phrases section OR YAML frontmatter */
+export function extractTriggerPhrases(content: string): string[] {
+  const triggers: string[] = [];
+
+  // Method 1a: Check YAML frontmatter inline format
+  const inlineMatch = content.match(/(?:triggerPhrases|trigger_phrases):\s*\[([^\]]+)\]/i);
+  if (inlineMatch) {
+    const arrayContent = inlineMatch[1];
+    const phrases = arrayContent.match(/["']([^"']+)["']/g);
+    if (phrases) {
+      phrases.forEach((p: string) => {
+        const cleaned = p.replace(/^["']|["']$/g, '').trim();
+        if (cleaned.length > 0 && cleaned.length < 100) {
+          triggers.push(cleaned);
+        }
+      });
+    }
+  }
+
+  // Method 1b: Check YAML frontmatter multi-line format
+  if (triggers.length === 0) {
+    const lines = content.split('\n');
+    let inTriggerBlock = false;
+
+    for (const line of lines) {
+      if (/^\s*(?:triggerPhrases|trigger_phrases):\s*$/i.test(line)) {
+        inTriggerBlock = true;
+        continue;
+      }
+
+      if (inTriggerBlock) {
+        if (/^---\s*$/.test(line)) {
+          break;
+        }
+        const itemMatch = line.match(/^\s*-\s*["']?([^"'\n#]+?)["']?\s*(?:#.*)?$/);
+        if (itemMatch) {
+          const phrase = itemMatch[1].trim();
+          if (phrase.length > 0 && phrase.length < 100 && !/^-+$/.test(phrase) && !triggers.includes(phrase)) {
+            triggers.push(phrase);
+          }
+        } else if (!/^\s*$/.test(line) && !/^\s*#/.test(line) && !/^\s+-/.test(line)) {
+          break;
+        }
+      }
+    }
+  }
+
+  // Method 2: Find ## Trigger Phrases section (fallback/additional)
+  const sectionMatch = content.match(/##\s*Trigger\s*Phrases?\s*\n([\s\S]*?)(?=\n##|\n---|\n\n\n|$)/i);
+
+  if (sectionMatch) {
+    const sectionContent = sectionMatch[1];
+    const bullets = sectionContent.match(/^[\s]*[-*]\s+(.+)$/gm);
+
+    if (bullets) {
+      bullets.forEach((line: string) => {
+        const phrase = line.replace(/^[\s]*[-*]\s+/, '').trim();
+        if (phrase.length > 0 && phrase.length < 100 && !triggers.includes(phrase)) {
+          triggers.push(phrase);
+        }
+      });
+    }
+  }
+
+  return triggers;
+}
+
+/** Extract context type from metadata block */
+export function extractContextType(content: string): ContextType {
+  // Look for > Session type: or > Context type:
+  const match = content.match(/>\s*(?:Session|Context)\s*type:\s*(\w+)/i);
+
+  if (match) {
+    const type = match[1].toLowerCase();
+    return CONTEXT_TYPE_MAP[type] || 'general';
+  }
+
+  // Check YAML metadata block
+  const yamlMatch = content.match(/(?:contextType):\s*["']?(\w+)["']?/i);
+  if (yamlMatch) {
+    return CONTEXT_TYPE_MAP[yamlMatch[1].toLowerCase()] || 'general';
+  }
+
+  return 'general';
+}
+
+/** Extract importance tier from content or metadata */
+export function extractImportanceTier(content: string): string {
+  const validTiers: string[] = ['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated'];
+
+  // Check YAML metadata block
+  const yamlMatch = content.match(/(?:importance_tier|importanceTier):\s*["']?(\w+)["']?/i);
+  if (yamlMatch) {
+    const tier = yamlMatch[1].toLowerCase();
+    if (validTiers.includes(tier)) {
+      return tier;
+    }
+  }
+
+  // Check for tier markers in content
+  if (content.includes('[CONSTITUTIONAL]') || content.includes('importance: constitutional')) {
+    return 'constitutional';
+  }
+  if (content.includes('[CRITICAL]') || content.includes('importance: critical')) {
+    return 'critical';
+  }
+  if (content.includes('[IMPORTANT]') || content.includes('importance: important')) {
+    return 'important';
+  }
+
+  return 'normal';
+}
+
+/** Compute SHA-256 hash of content for change detection */
+export function computeContentHash(content: string): string {
+  return crypto.createHash('sha256').update(content, 'utf-8').digest('hex');
+}
+
+/**
+ * Extract causal_links from memory content YAML metadata block (T126)
+ */
+export function extractCausalLinks(content: string): CausalLinks {
+  const causalLinks: CausalLinks = {
+    caused_by: [],
+    supersedes: [],
+    derived_from: [],
+    blocks: [],
+    related_to: []
+  };
+
+  // Find the causal_links block in YAML metadata
+  const causalBlockMatch = content.match(/(?:^|\n)\s*causalLinks:\s*\n((?:\s+[a-z_]+:[\s\S]*?)*)(?=\n[a-z_]+:|\n```|\n---|\n\n|\n#|$)/i);
+
+  if (!causalBlockMatch) {
+    return causalLinks;
+  }
+
+  const block = causalBlockMatch[1];
+  const lines = block.split('\n');
+
+  let currentKey: keyof CausalLinks | null = null;
+  const validKeys: Array<keyof CausalLinks> = ['caused_by', 'supersedes', 'derived_from', 'blocks', 'related_to'];
+
+  for (const line of lines) {
+    // Check for sub-key (e.g., "  caused_by:")
+    const keyMatch = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*$/);
+    if (keyMatch) {
+      currentKey = keyMatch[1] as keyof CausalLinks;
+      continue;
+    }
+
+    // Check for inline array format
+    const inlineMatch = line.match(/^\s{2,}(caused_by|supersedes|derived_from|blocks|related_to):\s*\[(.*)\]\s*$/);
+    if (inlineMatch) {
+      currentKey = inlineMatch[1] as keyof CausalLinks;
+      const arrayContent = inlineMatch[2].trim();
+      if (arrayContent) {
+        const values = arrayContent.match(/["']([^"']+)["']/g);
+        if (values) {
+          values.forEach((v: string) => {
+            const cleaned = v.replace(/^["']|["']$/g, '').trim();
+            if (cleaned && currentKey && !causalLinks[currentKey].includes(cleaned)) {
+              causalLinks[currentKey].push(cleaned);
+            }
+          });
+        }
+      }
+      currentKey = null;
+      continue;
+    }
+
+    // Check for list item
+    if (currentKey) {
+      const itemMatch = line.match(/^\s+-\s*["']?([^"'\n]+?)["']?\s*$/);
+      if (itemMatch) {
+        const value = itemMatch[1].trim();
+        if (value && value !== '[]' && !causalLinks[currentKey].includes(value)) {
+          causalLinks[currentKey].push(value);
+        }
+      } else if (line.trim() && !line.match(/^\s*#/) && !line.match(/^\s+-/)) {
+        currentKey = null;
+      }
+    }
+  }
+
+  return causalLinks;
+}
+
+/**
+ * Check if causalLinks has any non-empty arrays
+ */
+export function hasCausalLinks(causalLinks: CausalLinks | null | undefined): boolean {
+  if (!causalLinks) return false;
+  return Object.values(causalLinks).some((arr: string[]) => Array.isArray(arr) && arr.length > 0);
+}
+
+/* ---------------------------------------------------------------
+   4. VALIDATION FUNCTIONS
+   --------------------------------------------------------------- */
+
+/** Check if a file path is a valid memory file */
+export function isMemoryFile(filePath: string): boolean {
+  const normalizedPath = filePath.replace(/\\/g, '/');
+
+  // Standard memory files in specs
+  const isSpecsMemory = (
+    normalizedPath.endsWith('.md') &&
+    normalizedPath.includes('/memory/') &&
+    normalizedPath.includes('/specs/')
+  );
+
+  // Constitutional memories in skill folder
+  const isConstitutional = (
+    normalizedPath.endsWith('.md') &&
+    normalizedPath.includes('/.opencode/skill/') &&
+    normalizedPath.includes('/constitutional/') &&
+    !normalizedPath.toLowerCase().endsWith('readme.md')
+  );
+
+  return isSpecsMemory || isConstitutional;
+}
+
+/** Validate anchor tags in memory content */
+export function validateAnchors(content: string): AnchorValidation {
+  const warnings: string[] = [];
+  const unclosedAnchors: string[] = [];
+
+  const openingPattern = /<!--\s*(?:ANCHOR|anchor):\s*([^>\s]+)\s*-->/gi;
+  const VALID_ANCHOR_PATTERN = /^[a-zA-Z0-9][a-zA-Z0-9-/]*$/;
+
+  let match: RegExpExecArray | null;
+  while ((match = openingPattern.exec(content)) !== null) {
+    const anchorId = match[1].trim();
+
+    // Validate anchor ID format
+    if (!VALID_ANCHOR_PATTERN.test(anchorId)) {
+      warnings.push(`Invalid anchor ID "${anchorId}" - should contain only alphanumeric and hyphens, start with alphanumeric`);
+    }
+
+    // Check if corresponding closing tag exists
+    const closingPattern = new RegExp(
+      `<!--\\s*/(?:ANCHOR|anchor):\\s*${escapeRegex(anchorId)}\\s*-->`,
+      'i'
+    );
+
+    if (!closingPattern.test(content)) {
+      unclosedAnchors.push(anchorId);
+      warnings.push(`Anchor "${anchorId}" is missing closing tag <!-- /ANCHOR:${anchorId} --> - anchor-based content extraction will fail`);
+    }
+  }
+
+  return {
+    valid: unclosedAnchors.length === 0,
+    warnings,
+    unclosedAnchors: unclosedAnchors,
+  };
+}
+
+/** Extract content from anchors */
+export function extractAnchors(content: string): Record<string, string> {
+  const anchors: Record<string, string> = {};
+
+  const anchorRegex = /<!--\s*(?:ANCHOR|anchor):\s*([a-zA-Z0-9][a-zA-Z0-9-/]*)\s*-->/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = anchorRegex.exec(content)) !== null) {
+    const id = match[1];
+    const startIndex = match.index + match[0].length;
+
+    const closingRegex = new RegExp(`<!--\\s*/(?:ANCHOR|anchor):\\s*${escapeRegex(id)}\\s*-->`, 'i');
+
+    const remainingContent = content.slice(startIndex);
+    const closeMatch = remainingContent.match(closingRegex);
+
+    if (closeMatch && closeMatch.index !== undefined) {
+      const innerContent = remainingContent.slice(0, closeMatch.index);
+      anchors[id] = innerContent.trim();
+    }
+  }
+
+  return anchors;
+}
+
+/** Validate parsed memory data */
+export function validateParsedMemory(parsed: ParsedMemory): ParsedMemoryValidation {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+  const MIN_CONTENT_LENGTH = 5;
+
+  if (!parsed.specFolder) {
+    errors.push('Missing spec folder');
+  }
+
+  if (!parsed.content || parsed.content.length < MIN_CONTENT_LENGTH) {
+    errors.push(`Content too short (min ${MIN_CONTENT_LENGTH} chars)`);
+  }
+
+  if (parsed.content && parsed.content.length > 100000) {
+    errors.push('Content too long (max 100KB)');
+  }
+
+  // Validate anchors (warnings only - don't block indexing)
+  if (parsed.content) {
+    const anchorValidation = validateAnchors(parsed.content);
+    if (!anchorValidation.valid) {
+      warnings.push(...anchorValidation.warnings);
+    }
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
+    warnings,
+  };
+}
+
+/* ---------------------------------------------------------------
+   5. DIRECTORY SCANNING
+   --------------------------------------------------------------- */
+
+/** Options for findMemoryFiles */
+export interface FindMemoryFilesOptions {
+  specFolder?: string | null;
+}
+
+/** Find all memory files in a workspace */
+export function findMemoryFiles(workspacePath: string, options: FindMemoryFilesOptions = {}): string[] {
+  const { specFolder = null } = options;
+  const results: string[] = [];
+
+  // Check both possible specs locations
+  const specsLocations: string[] = [
+    path.join(workspacePath, 'specs'),
+    path.join(workspacePath, '.opencode', 'specs')
+  ];
+
+  // Recursive directory walker
+  // BUG-027 FIX: Skip symbolic links to prevent infinite loops
+  function walkDir(dir: string, depth: number = 0): void {
+    if (depth > 10) {
+      return; // Prevent infinite recursion
+    }
+
+    let entries: fs.Dirent[];
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch {
+      return; // Skip unreadable directories
+    }
+
+    for (const entry of entries) {
+      // BUG-027 FIX: Skip symbolic links to prevent loops and duplicate scanning
+      if (entry.isSymbolicLink()) {
+        continue;
+      }
+
+      const fullPath = path.join(dir, entry.name);
+
+      if (entry.isDirectory()) {
+        // Skip hidden directories and node_modules
+        if (entry.name.startsWith('.') || entry.name === 'node_modules') {
+          continue;
+        }
+        walkDir(fullPath, depth + 1);
+      } else if (entry.isFile() && entry.name.endsWith('.md')) {
+        // Check if it's in a memory folder
+        if (fullPath.includes('/memory/') || fullPath.includes('\\memory\\')) {
+          // Apply spec folder filter if specified
+          if (specFolder) {
+            const extractedFolder = extractSpecFolder(fullPath);
+            if (!extractedFolder.startsWith(specFolder)) {
+              continue;
+            }
+          }
+          results.push(fullPath);
+        }
+      }
+    }
+  }
+
+  // Scan all existing specs locations
+  for (const specs_dir of specsLocations) {
+    if (fs.existsSync(specs_dir)) {
+      walkDir(specs_dir);
+    }
+  }
+
+  return results;
+}
+
+/* ---------------------------------------------------------------
+   6. MODULE EXPORTS (CommonJS compatibility)
+   --------------------------------------------------------------- */
+
+module.exports = {
+  // Core parsing (camelCase primary)
+  parseMemoryFile,
+  readFileWithEncoding,
+  extractSpecFolder,
+  extractTitle,
+  extractTriggerPhrases,
+  extractContextType,
+  extractImportanceTier,
+  computeContentHash,
+
+  // T125: Re-export type inference for direct usage
+  inferMemoryType,
+
+  // T126: Causal links extraction for memory graph
+  extractCausalLinks,
+  hasCausalLinks,
+
+  // Validation
+  isMemoryFile,
+  validateParsedMemory,
+  validateAnchors,
+  extractAnchors,
+
+  // Directory scanning
+  findMemoryFiles,
+
+  // Constants
+  MEMORY_FILE_PATTERN,
+  CONTEXT_TYPE_MAP,
+
+  // Backward-compatible aliases (snake_case)
+  parse_memory_file: parseMemoryFile,
+  read_file_with_encoding: readFileWithEncoding,
+  extract_spec_folder: extractSpecFolder,
+  extract_title: extractTitle,
+  extract_trigger_phrases: extractTriggerPhrases,
+  extract_context_type: extractContextType,
+  extract_importance_tier: extractImportanceTier,
+  compute_content_hash: computeContentHash,
+  infer_memory_type: inferMemoryType,
+  extract_causal_links: extractCausalLinks,
+};

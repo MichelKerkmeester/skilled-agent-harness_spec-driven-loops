@@ -793,20 +793,6 @@ This CLI command will:
 touch .opencode/agent/my-agent.md
 ```
 
-This interactive command will:
-1. Ask where to save the agent (global or project-specific)
-2. Ask for a description of what the agent should do
-3. Generate an appropriate system prompt and identifier
-4. Let you select which tools the agent can access
-5. Create a markdown file with the agent configuration
-
-**Option B: Manual Creation**
-
-```bash
-# Create agent file manually
-touch .opencode/agent/my-agent.md
-```
-
 #### Step 3: Add Frontmatter (v1.1.1+ Format)
 
 ```yaml

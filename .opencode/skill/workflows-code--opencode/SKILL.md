@@ -2,7 +2,7 @@
 name: workflows-code--opencode
 description: Multi-language code standards for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC) with language detection routing, universal patterns, and quality checklists.
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 1.3.1
+version: 1.3.2
 ---
 
 <!-- Keywords: opencode style, script standards, mcp code quality, node code style, typescript style, ts standards, python style, py standards, bash style, shell script, json format, jsonc config, code standards opencode -->
@@ -184,6 +184,7 @@ def route_opencode_resources(task):
 | TSDoc documentation format                  | `typescript/quality_standards.md#7`   | ON_DEMAND   |
 | Typed error classes, async patterns         | `typescript/quality_standards.md#8`   | ON_DEMAND   |
 | tsconfig.json configuration                 | `typescript/quality_standards.md#10`  | ON_DEMAND   |
+| Build/rebuild dist after .ts edits          | `typescript/quality_standards.md#10`  | CONDITIONAL |
 
 **Python**
 
@@ -252,8 +253,8 @@ STEP 4: Apply Standards
 
 | Language   | Key Evidence Files                                             |
 | ---------- | -------------------------------------------------------------- |
-| JavaScript | `context-server.js`, `config.js`, `memory-search.js`           |
-| TypeScript | ~341 `.ts` files post-migration; patterns from `config.ts`, `memory-search.ts`, `context-server.ts` |
+| JavaScript | `validation_patterns.js`, `wait_patterns.js`, `performance_patterns.js` |
+| TypeScript | ~341 `.ts` files post-migration; patterns from `context-server.ts`, `config.ts`, `memory-search.ts` |
 | Python     | `skill_advisor.py`, `validate_document.py`, `package_skill.py` |
 | Shell      | `lib/common.sh`, `spec/create.sh`, `validate.sh`               |
 | Config     | `config.jsonc`, `opencode.json`, `complexity-config.jsonc`     |
@@ -361,7 +362,6 @@ This skill operates within the behavioral framework defined in AGENTS.md.
 
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Memory**: Context preserved via Spec Kit Memory MCP
-- **Narsil**: Code intelligence for pattern verification
 
 ### Skill Differentiation
 

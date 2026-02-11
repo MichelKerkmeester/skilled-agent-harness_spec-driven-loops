@@ -1,0 +1,512 @@
+// ---------------------------------------------------------------
+// MODULE: Opencode Capture
+// Captures and parses OpenCode session data from JSONL conversation logs
+// ---------------------------------------------------------------
+
+import * as fs from 'fs/promises';
+import * as fsSync from 'fs';
+import * as path from 'path';
+import * as readline from 'readline';
+
+/* -----------------------------------------------------------------
+   1. INTERFACES
+------------------------------------------------------------------*/
+
+export interface PromptEntry {
+  input: string;
+  timestamp: string | null;
+  parts: unknown[];
+  mode: string;
+}
+
+export interface SessionInfo {
+  id: string;
+  title: string;
+  created: number;
+  updated: number;
+  summary: Record<string, unknown>;
+  parent_id: string | null;
+}
+
+export interface MessageInfo {
+  id: string;
+  session_id: string;
+  role: string;
+  created: number;
+  completed: number | null;
+  parent_id: string | null;
+  model: string | null;
+  agent: string;
+  summary: Record<string, unknown>;
+}
+
+export interface ResponseInfo {
+  content: string;
+  timestamp: number;
+  messageId: string;
+  agent: string;
+}
+
+export interface ToolExecution {
+  tool: string;
+  call_id: string | null;
+  input: Record<string, unknown>;
+  output: string;
+  status: string;
+  timestamp: number;
+  duration: number | null;
+  title: string | null;
+  messageId: string;
+}
+
+export interface Exchange {
+  userInput: string;
+  assistantResponse: string;
+  timestamp: number;
+  user_message_id: string;
+  assistant_message_id: string | null;
+  mode: string;
+}
+
+export interface ConversationCapture {
+  session_id: string;
+  session_title: string;
+  projectId: string;
+  directory: string;
+  captured_at: string;
+  exchanges: Exchange[];
+  toolCalls: ToolExecution[];
+  metadata: {
+    total_messages: number;
+    total_responses: number;
+    total_tool_calls: number;
+    session_created: number;
+    session_updated: number;
+    file_summary: Record<string, unknown>;
+  };
+}
+
+/* -----------------------------------------------------------------
+   2. STORAGE PATHS
+------------------------------------------------------------------*/
+
+const OPENCODE_STORAGE: string = path.join(
+  process.env.HOME || process.env.USERPROFILE || '',
+  '.local/share/opencode/storage',
+);
+
+const PROMPT_HISTORY: string = path.join(
+  process.env.HOME || process.env.USERPROFILE || '',
+  '.local/state/opencode/prompt-history.jsonl',
+);
+
+/* -----------------------------------------------------------------
+   3. UTILITY FUNCTIONS
+------------------------------------------------------------------*/
+
+async function pathExists(filePath: string): Promise<boolean> {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function readJsonSafe<T = unknown>(filePath: string): Promise<T | null> {
+  try {
+    const content = await fs.readFile(filePath, 'utf-8');
+    return JSON.parse(content) as T;
+  } catch {
+    return null;
+  }
+}
+
+async function readJsonlTail<T = unknown>(filePath: string, limit: number): Promise<T[]> {
+  if (!await pathExists(filePath)) {
+    return [];
+  }
+
+  try {
+    const fileHandle = await fs.open(filePath, 'r');
+    const stream = fileHandle.createReadStream({ encoding: 'utf-8' });
+
+    const rl = readline.createInterface({
+      input: stream,
+      crlfDelay: Infinity,
+    });
+
+    const buffer: T[] = [];
+
+    for await (const line of rl) {
+      if (line.trim()) {
+        try {
+          const parsed = JSON.parse(line) as T;
+          buffer.push(parsed);
+          if (buffer.length > limit * 2) {
+            buffer.splice(0, buffer.length - limit);
+          }
+        } catch {
+          // Skip malformed lines
+        }
+      }
+    }
+
+    await fileHandle.close();
+    return buffer.slice(-limit);
+  } catch (error: unknown) {
+    const errMsg = error instanceof Error ? error.message : String(error);
+    console.warn(`   Warning: Error reading JSONL: ${errMsg}`);
+    return [];
+  }
+}
+
+/* -----------------------------------------------------------------
+   4. PROMPT HISTORY
+------------------------------------------------------------------*/
+
+async function getRecentPrompts(limit: number = 20): Promise<PromptEntry[]> {
+  const entries = await readJsonlTail<Record<string, unknown>>(PROMPT_HISTORY, limit);
+
+  return entries.map((entry) => ({
+    input: (entry.input as string) || '',
+    timestamp: (entry.timestamp as string) || null,
+    parts: (entry.parts as unknown[]) || [],
+    mode: (entry.mode as string) || 'normal',
+  }));
+}
+
+/* -----------------------------------------------------------------
+   5. SESSION DISCOVERY
+------------------------------------------------------------------*/
+
+function getProjectId(directory: string): string | null {
+  const sessionDir = path.join(OPENCODE_STORAGE, 'session');
+
+  if (!fsSync.existsSync(sessionDir)) {
+    return null;
+  }
+
+  try {
+    const projectDirs = fsSync.readdirSync(sessionDir)
+      .filter((name) => !name.startsWith('.') && name !== 'global');
+
+    for (const projectId of projectDirs) {
+      const projectPath = path.join(sessionDir, projectId);
+      const sessions = fsSync.readdirSync(projectPath)
+        .filter((name) => name.startsWith('ses_') && name.endsWith('.json'));
+
+      if (sessions.length > 0) {
+        const sessionFile = path.join(projectPath, sessions[0]);
+        const content = fsSync.readFileSync(sessionFile, 'utf-8');
+        const session = JSON.parse(content) as Record<string, unknown>;
+
+        if (session.directory === directory) {
+          return projectId;
+        }
+      }
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
+async function getRecentSessions(projectId: string, limit: number = 10): Promise<SessionInfo[]> {
+  const sessionDir = path.join(OPENCODE_STORAGE, 'session', projectId);
+
+  if (!await pathExists(sessionDir)) {
+    return [];
+  }
+
+  try {
+    const files = await fs.readdir(sessionDir);
+    const sessionFiles = files
+      .filter((name) => name.startsWith('ses_') && name.endsWith('.json'));
+
+    const sessions: SessionInfo[] = [];
+
+    for (const file of sessionFiles) {
+      const session = await readJsonSafe<Record<string, unknown>>(path.join(sessionDir, file));
+      if (session) {
+        sessions.push({
+          id: session.id as string,
+          title: (session.title as string) || 'Untitled',
+          created: (session.time as Record<string, number>)?.created || 0,
+          updated: (session.time as Record<string, number>)?.updated || 0,
+          summary: (session.summary as Record<string, unknown>) || {},
+          parent_id: (session.parentID as string) || null,
+        });
+      }
+    }
+
+    sessions.sort((a, b) => b.updated - a.updated);
+    return sessions.slice(0, limit);
+  } catch {
+    return [];
+  }
+}
+
+async function getCurrentSession(projectId: string): Promise<SessionInfo | null> {
+  const sessions = await getRecentSessions(projectId, 1);
+  return sessions[0] || null;
+}
+
+/* -----------------------------------------------------------------
+   6. MESSAGE RETRIEVAL
+------------------------------------------------------------------*/
+
+async function getSessionMessages(sessionId: string): Promise<MessageInfo[]> {
+  const messageDir = path.join(OPENCODE_STORAGE, 'message', sessionId);
+
+  if (!await pathExists(messageDir)) {
+    return [];
+  }
+
+  try {
+    const files = await fs.readdir(messageDir);
+    const messageFiles = files
+      .filter((name) => name.startsWith('msg_') && name.endsWith('.json'));
+
+    const messages: MessageInfo[] = [];
+
+    for (const file of messageFiles) {
+      const msg = await readJsonSafe<Record<string, unknown>>(path.join(messageDir, file));
+      if (msg) {
+        messages.push({
+          id: msg.id as string,
+          session_id: msg.sessionID as string,
+          role: msg.role as string,
+          created: (msg.time as Record<string, number>)?.created || 0,
+          completed: (msg.time as Record<string, number>)?.completed || null,
+          parent_id: (msg.parentID as string) || null,
+          model: (msg.modelID as string) || null,
+          agent: (msg.agent as string) || 'general',
+          summary: (msg.summary as Record<string, unknown>) || {},
+        });
+      }
+    }
+
+    messages.sort((a, b) => a.created - b.created);
+    return messages;
+  } catch {
+    return [];
+  }
+}
+
+/* -----------------------------------------------------------------
+   7. PART RETRIEVAL (RESPONSES & TOOL CALLS)
+------------------------------------------------------------------*/
+
+async function getMessageParts(messageId: string): Promise<Record<string, unknown>[]> {
+  const partDir = path.join(OPENCODE_STORAGE, 'part', messageId);
+
+  if (!await pathExists(partDir)) {
+    return [];
+  }
+
+  try {
+    const files = await fs.readdir(partDir);
+    const partFiles = files
+      .filter((name) => name.startsWith('prt_') && name.endsWith('.json'));
+
+    const parts: Record<string, unknown>[] = [];
+
+    for (const file of partFiles) {
+      const part = await readJsonSafe<Record<string, unknown>>(path.join(partDir, file));
+      if (part) {
+        parts.push(part);
+      }
+    }
+
+    parts.sort((a, b) => {
+      const aTime = (a.time as Record<string, number>)?.start || 0;
+      const bTime = (b.time as Record<string, number>)?.start || 0;
+      return aTime - bTime;
+    });
+    return parts;
+  } catch {
+    return [];
+  }
+}
+
+async function getSessionResponses(sessionId: string): Promise<ResponseInfo[]> {
+  const messages = await getSessionMessages(sessionId);
+  const responses: ResponseInfo[] = [];
+
+  for (const msg of messages) {
+    if (msg.role === 'assistant') {
+      const parts = await getMessageParts(msg.id);
+      const textParts = parts.filter((p) => p.type === 'text');
+
+      for (const part of textParts) {
+        const text = part.text as string | undefined;
+        if (text && text.trim()) {
+          responses.push({
+            content: text,
+            timestamp: (part.time as Record<string, number>)?.start || msg.created,
+            messageId: msg.id,
+            agent: msg.agent,
+          });
+        }
+      }
+    }
+  }
+
+  return responses;
+}
+
+async function getToolExecutions(sessionId: string): Promise<ToolExecution[]> {
+  const messages = await getSessionMessages(sessionId);
+  const toolCalls: ToolExecution[] = [];
+
+  for (const msg of messages) {
+    if (msg.role === 'assistant') {
+      const parts = await getMessageParts(msg.id);
+      const toolParts = parts.filter((p) => p.type === 'tool');
+
+      for (const part of toolParts) {
+        const state = part.state as Record<string, unknown> | undefined;
+        toolCalls.push({
+          tool: (part.tool as string) || 'unknown',
+          call_id: (part.callID as string) || null,
+          input: (state?.input as Record<string, unknown>) || {},
+          output: truncateOutput(state?.output as string | undefined),
+          status: (state?.status as string) || 'unknown',
+          timestamp: (state?.time as Record<string, number>)?.start || msg.created,
+          duration: calculateDuration(state?.time as Record<string, number> | undefined),
+          title: (state?.title as string) || null,
+          messageId: msg.id,
+        });
+      }
+    }
+  }
+
+  return toolCalls;
+}
+
+function truncateOutput(output: string | undefined, maxLength: number = 500): string {
+  if (!output || typeof output !== 'string') return '';
+  if (output.length <= maxLength) return output;
+
+  const half = Math.floor(maxLength / 2) - 10;
+  return output.substring(0, half) + '\n... [truncated] ...\n' + output.substring(output.length - half);
+}
+
+function calculateDuration(time: Record<string, number> | undefined): number | null {
+  if (!time || !time.start || !time.end) return null;
+  return time.end - time.start;
+}
+
+/* -----------------------------------------------------------------
+   8. FULL CONVERSATION CAPTURE
+------------------------------------------------------------------*/
+
+async function captureConversation(
+  maxMessages: number = 10,
+  directory: string = process.cwd()
+): Promise<ConversationCapture> {
+  if (!await pathExists(OPENCODE_STORAGE)) {
+    throw new Error('OpenCode storage not found');
+  }
+
+  const projectId = getProjectId(directory);
+  if (!projectId) {
+    throw new Error(`No OpenCode sessions found for: ${directory}`);
+  }
+
+  const session = await getCurrentSession(projectId);
+  if (!session) {
+    throw new Error('No active session found');
+  }
+
+  const prompts = await getRecentPrompts(maxMessages);
+  const messages = await getSessionMessages(session.id);
+  const responses = await getSessionResponses(session.id);
+  const toolCalls = await getToolExecutions(session.id);
+  const exchanges = buildExchanges(prompts, messages, responses, maxMessages);
+
+  return {
+    session_id: session.id,
+    session_title: session.title,
+    projectId: projectId,
+    directory: directory,
+    captured_at: new Date().toISOString(),
+    exchanges: exchanges,
+    toolCalls: toolCalls.slice(-maxMessages * 3),
+    metadata: {
+      total_messages: messages.length,
+      total_responses: responses.length,
+      total_tool_calls: toolCalls.length,
+      session_created: session.created,
+      session_updated: session.updated,
+      file_summary: session.summary,
+    },
+  };
+}
+
+function buildExchanges(
+  prompts: PromptEntry[],
+  messages: MessageInfo[],
+  responses: ResponseInfo[],
+  limit: number
+): Exchange[] {
+  const exchanges: Exchange[] = [];
+  const userMessages = messages.filter((m) => m.role === 'user');
+
+  for (let i = 0; i < Math.min(userMessages.length, limit); i++) {
+    const userMsg = userMessages[userMessages.length - 1 - i];
+
+    const prompt = prompts.find((p) => {
+      if (!p.timestamp && !userMsg.created) return false;
+      const promptTime = new Date(p.timestamp || '').getTime();
+      return Math.abs(promptTime - userMsg.created) < 5000;
+    });
+
+    const response = responses.find((r) => {
+      const responseMsg = messages.find((m) => m.id === r.messageId);
+      return responseMsg?.parent_id === userMsg.id;
+    });
+
+    const userInput: string | null = prompt?.input || (userMsg.summary as Record<string, string>)?.title || null;
+    const assistantResponse: string | null = response?.content?.substring(0, 500) || null;
+
+    if (!userInput && !assistantResponse) {
+      continue;
+    }
+
+    exchanges.unshift({
+      userInput: userInput || 'User initiated conversation',
+      assistantResponse: assistantResponse || 'Assistant processed request',
+      timestamp: userMsg.created,
+      user_message_id: userMsg.id,
+      assistant_message_id: response?.messageId || null,
+      mode: prompt?.mode || 'normal',
+    });
+  }
+
+  return exchanges;
+}
+
+/* -----------------------------------------------------------------
+   9. EXPORTS
+------------------------------------------------------------------*/
+
+export {
+  // Snake_case exports (original)
+  getRecentPrompts,
+  getSessionResponses,
+  getToolExecutions,
+  captureConversation,
+  getProjectId,
+  getRecentSessions,
+  getCurrentSession,
+  getSessionMessages,
+  getMessageParts,
+  pathExists,
+  readJsonSafe,
+  readJsonlTail,
+  OPENCODE_STORAGE,
+  PROMPT_HISTORY,
+};

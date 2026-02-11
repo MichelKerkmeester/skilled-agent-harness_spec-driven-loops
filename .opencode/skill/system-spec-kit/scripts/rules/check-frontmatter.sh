@@ -3,6 +3,10 @@
 # RULE: CHECK-FRONTMATTER
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: FRONTMATTER_VALID
 # Severity: warning
 # Description: Validates YAML frontmatter structure in markdown files (optional check)

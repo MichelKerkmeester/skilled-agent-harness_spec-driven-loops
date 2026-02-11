@@ -24,7 +24,7 @@ The utilities module provides essential support functions for the MCP server, in
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Utility Modules | 3 | validators, json-helpers, batch-processor |
+| Utility Modules | 4 | validators, json-helpers, batch-processor, db-helpers |
 | Validation Functions | 4 | Query, input lengths, file paths, default paths |
 | JSON Helpers | 3 | Safe parse, stringify, typed parse |
 | Batch Functions | 3 | With retry, batches, sequential |
@@ -52,9 +52,9 @@ The utilities module provides essential support functions for the MCP server, in
 
 ### 30-Second Setup
 
-```javascript
+```typescript
 // 1. Import utils barrel export
-const utils = require('./utils');
+import * as utils from './utils';
 
 // 2. Use validators
 utils.validate_query('search term');
@@ -68,18 +68,18 @@ await utils.process_batches(items, processor);
 
 ### Verify Installation
 
-```javascript
+```typescript
 // Check utils are loaded
-const utils = require('./utils');
+import * as utils from './utils';
 console.log(Object.keys(utils));
 // Expected: ['validate_query', 'safe_json_parse', 'process_batches', ...]
 ```
 
 ### First Use
 
-```javascript
+```typescript
 // Example: Validate user input
-const utils = require('./utils');
+import * as utils from './utils';
 
 try {
   const query = utils.validate_query(userInput);
@@ -95,10 +95,11 @@ try {
 
 ```
 utils/
-├── validators.js           # Input validation and security checks
-├── json-helpers.js         # Safe JSON parsing and serialization
-├── batch-processor.js      # Batch processing with retry logic
-├── index.js                # Barrel export with dual naming
+├── validators.ts           # Input validation and security checks
+├── json-helpers.ts         # Safe JSON parsing and serialization
+├── batch-processor.ts      # Batch processing with retry logic
+├── db-helpers.ts           # Database utility functions
+├── index.ts                # Barrel export with dual naming
 └── README.md               # This file
 ```
 
@@ -106,10 +107,11 @@ utils/
 
 | File | Purpose |
 |------|---------|
-| `validators.js` | Input validation, length limits, path security (CWE-400 mitigation) |
-| `json-helpers.js` | Safe JSON operations with error handling and type validation |
-| `batch-processor.js` | Batch processing, retry logic, rate limiting for large datasets |
-| `index.js` | Barrel export providing both snake_case and camelCase naming |
+| `validators.ts` | Input validation, length limits, path security (CWE-400 mitigation) |
+| `json-helpers.ts` | Safe JSON operations with error handling and type validation |
+| `batch-processor.ts` | Batch processing, retry logic, rate limiting for large datasets |
+| `db-helpers.ts` | Database utility functions for common database operations |
+| `index.ts` | Barrel export providing both snake_case and camelCase naming |
 
 ---
 
@@ -127,7 +129,7 @@ utils/
 
 **Input Length Validation**: Enforce limits across all user inputs
 
-```javascript
+```typescript
 const INPUT_LIMITS = {
   query: 10000,       // Search queries
   title: 500,         // Memory titles
@@ -150,7 +152,7 @@ validate_input_lengths({ query: userQuery, title: memoryTitle });
 | **Usage** | `create_file_path_validator(allowedPaths)` |
 | **Security** | Blocks `..`, absolute paths outside allowed directories |
 
-```javascript
+```typescript
 // Create validator for specific allowed paths
 const validatePath = create_file_path_validator([
   '/allowed/path1',
@@ -172,7 +174,7 @@ const safePath = validatePath('/allowed/path1/file.md');
 | **Usage** | `safe_json_parse(jsonString, defaultValue)` |
 | **Returns** | Parsed object or default value on error |
 
-```javascript
+```typescript
 // Parse with fallback
 const data = safe_json_parse(jsonString, { fallback: 'default' });
 
@@ -185,7 +187,7 @@ if (data === null) {
 
 **Safe JSON Stringify**: Serialize with error handling
 
-```javascript
+```typescript
 // Stringify with fallback
 const jsonString = safe_json_stringify(obj, '{}');
 
@@ -195,7 +197,7 @@ const jsonString = safe_json_stringify(obj, null, 2);
 
 **Typed JSON Parse**: Parse with type validation
 
-```javascript
+```typescript
 // Ensure result is an array
 const items = safe_json_parse_typed(jsonString, 'array', []);
 
@@ -213,7 +215,7 @@ const config = safe_json_parse_typed(jsonString, 'object', {});
 | **Usage** | `process_batches(items, processor, options)` |
 | **Options** | `batchSize` (default: 50), `delayMs` (default: 100), `retryOptions` |
 
-```javascript
+```typescript
 const results = await process_batches(
   largeArray,
   async (batch) => {
@@ -230,7 +232,7 @@ const results = await process_batches(
 
 **Process with Retry**: Automatic retry for transient failures
 
-```javascript
+```typescript
 const result = await process_with_retry(
   item,                    // Item to process
   async (item) => {        // Processor function
@@ -247,7 +249,7 @@ const result = await process_with_retry(
 
 **Process Sequentially**: Process items one at a time
 
-```javascript
+```typescript
 const results = await process_sequentially(
   items,
   async (item) => {
@@ -264,8 +266,8 @@ const results = await process_sequentially(
 
 ### Example 1: Validate User Input
 
-```javascript
-const { validate_query, validate_input_lengths } = require('./utils');
+```typescript
+import { validate_query, validate_input_lengths } from './utils';
 
 try {
   // Validate search query
@@ -291,8 +293,8 @@ try {
 
 ### Example 2: Safe JSON Operations
 
-```javascript
-const { safe_json_parse, safe_json_stringify } = require('./utils');
+```typescript
+import { safe_json_parse, safe_json_stringify } from './utils';
 
 // Parse untrusted JSON
 const config = safe_json_parse(userProvidedJSON, {
@@ -312,8 +314,8 @@ res.send(response);
 
 ### Example 3: Batch Process Large Dataset
 
-```javascript
-const { process_batches } = require('./utils');
+```typescript
+import { process_batches } from './utils';
 
 // Process 10,000 memories in batches of 50
 const allMemories = await getAllMemories(); // 10,000 items
@@ -341,8 +343,8 @@ console.log(`Processed ${results.flat().length} memories`);
 
 ### Example 4: Retry Failed Operations
 
-```javascript
-const { process_with_retry } = require('./utils');
+```typescript
+import { process_with_retry } from './utils';
 
 // Retry API call with exponential backoff
 const embedding = await process_with_retry(
@@ -385,12 +387,13 @@ const embedding = await process_with_retry(
 **Cause**: Input limits configured too low for use case
 
 **Solution**:
-```javascript
+```typescript
+import { INPUT_LIMITS, validate_query } from './utils';
+
 // Check current limits
-const { INPUT_LIMITS } = require('./utils');
 console.log('Query limit:', INPUT_LIMITS.query); // 10000
 
-// If needed, increase limits in validators.js
+// If needed, increase limits in validators.ts
 // Or truncate input before validation
 const truncated = input.slice(0, INPUT_LIMITS.query);
 const valid = validate_query(truncated);
@@ -403,7 +406,9 @@ const valid = validate_query(truncated);
 **Cause**: Missing or incorrect retry options
 
 **Solution**:
-```javascript
+```typescript
+import { process_batches } from './utils';
+
 // Ensure retry options are provided (positional arguments)
 await process_batches(
   items,
@@ -427,7 +432,9 @@ await process_batches(
 **Cause**: Input is not valid JSON, or is JSON but malformed
 
 **Solution**:
-```javascript
+```typescript
+import { safe_json_parse } from './utils';
+
 // Add logging to diagnose
 const result = safe_json_parse(jsonString, null);
 if (result === null) {
@@ -452,19 +459,16 @@ try {
 **Cause**: Allowed paths not configured correctly or path format mismatch
 
 **Solution**:
-```bash
-# Check path format (use absolute paths)
-pwd
-# /Users/name/project
+```typescript
+import { create_file_path_validator, get_default_allowed_paths } from './utils';
 
-# Allowed paths must be absolute
+// Allowed paths must be absolute
 const validator = create_file_path_validator([
-  '/Users/name/project/specs',  # ✅ Correct
-  'specs'                        # ❌ Wrong (relative)
+  '/Users/name/project/specs',  // ✅ Correct
+  'specs'                        // ❌ Wrong (relative)
 ]);
 
-# Or use default allowed paths
-const { get_default_allowed_paths } = require('./utils');
+// Or use default allowed paths
 const allowedPaths = get_default_allowed_paths();
 console.log('Allowed:', allowedPaths);
 ```
@@ -480,22 +484,21 @@ console.log('Allowed:', allowedPaths);
 
 ### Diagnostic Commands
 
-```javascript
+```typescript
+import * as utils from './utils';
+import { INPUT_LIMITS, safe_json_parse, process_batches } from './utils';
+
 // Check loaded utilities
-const utils = require('./utils');
 console.log('Available:', Object.keys(utils));
 
 // Test validation limits
-const { INPUT_LIMITS } = require('./utils');
 console.log('Limits:', INPUT_LIMITS);
 
 // Test safe JSON parse
-const { safe_json_parse } = require('./utils');
 console.log('Valid JSON:', safe_json_parse('{"a":1}', null));
 console.log('Invalid JSON:', safe_json_parse('{invalid}', { fallback: true }));
 
 // Test batch processing
-const { process_batches } = require('./utils');
 const items = [1, 2, 3, 4, 5];
 process_batches(items, async (batch) => {
   console.log('Batch:', batch);
@@ -519,9 +522,9 @@ process_batches(items, async (batch) => {
 
 | Module | Purpose |
 |--------|---------|
-| `validators.js` | Input validation, security checks (CWE-400 mitigation) |
-| `json-helpers.js` | Safe JSON operations with error handling |
-| `batch-processor.js` | Batch processing, retry logic, rate limiting |
+| `validators.ts` | Input validation, security checks (CWE-400 mitigation) |
+| `json-helpers.ts` | Safe JSON operations with error handling |
+| `batch-processor.ts` | Batch processing, retry logic, rate limiting |
 
 ### Security References
 
@@ -541,4 +544,4 @@ process_batches(items, async (batch) => {
 
 ---
 
-*Documentation version: 1.1 | Last updated: 2026-01-27*
+*Documentation version: 1.2 | Last updated: 2026-02-11*

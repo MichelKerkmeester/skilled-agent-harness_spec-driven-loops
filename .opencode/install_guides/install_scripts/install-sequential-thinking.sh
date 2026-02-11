@@ -1,28 +1,28 @@
 #!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────────
-# install-sequential-thinking.sh: Install Sequential Thinking MCP Server
-# ───────────────────────────────────────────────────────────────────
-
-# Sequential Thinking provides dynamic, reflective problem-solving through
-# a flexible thinking process that can adapt and evolve.
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: SEQUENTIAL THINKING MCP INSTALLER
+# ───────────────────────────────────────────────────────────────
+# Install and configure the Sequential Thinking MCP Server.
+# Provides dynamic, reflective problem-solving through a flexible
+# thinking process that can adapt and evolve.
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/_utils.sh"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
-# ───────────────────────────────────────────────────────────────────
-MCP_NAME="sequential_thinking"
-MCP_DISPLAY_NAME="Sequential Thinking"
-MCP_PACKAGE="@modelcontextprotocol/server-sequential-thinking"
-MIN_NODE_VERSION="18"
-SKIP_VERIFY=${SKIP_VERIFY:-false}
+# ───────────────────────────────────────────────────────────────
+readonly MCP_NAME="sequential_thinking"
+readonly MCP_DISPLAY_NAME="Sequential Thinking"
+readonly MCP_PACKAGE="@modelcontextprotocol/server-sequential-thinking"
+readonly MIN_NODE_VERSION="18"
+SKIP_VERIFY="${SKIP_VERIFY:-false}"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 2. FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 install_mcp() {
     log_step "Checking prerequisites..."
@@ -140,9 +140,9 @@ After installation:
 EOF
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 3. MAIN
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 main() {
     echo ""
     echo "───────────────────────────────────────"
@@ -182,7 +182,7 @@ main() {
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
-    case $1 in
+    case "$1" in
         -h|--help)
             show_help
             exit 0

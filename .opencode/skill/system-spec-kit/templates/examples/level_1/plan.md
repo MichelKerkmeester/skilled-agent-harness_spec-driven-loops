@@ -1,7 +1,7 @@
 # Implementation Plan: Add User Authentication
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 <!-- EXAMPLE: This is a filled-in Level 1 plan demonstrating the minimal technical
 planning required for a simple authentication feature. Note the straightforward

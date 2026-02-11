@@ -649,7 +649,7 @@ GitHub MCP provides programmatic access to GitHub's remote operations via Code M
 
 ```typescript
 call_tool_chain({
-  code: `await github.github.{tool_name}({...})`
+  code: `await github.github_{tool_name}({...})`
 })
 ```
 
@@ -658,7 +658,7 @@ call_tool_chain({
 ```typescript
 // Create issue
 call_tool_chain({
-  code: `await github.github.create_issue({
+  code: `await github.github_create_issue({
     owner: 'owner',
     repo: 'repo',
     title: 'Bug: Login fails on Safari',
@@ -669,7 +669,7 @@ call_tool_chain({
 
 // Get issue details
 call_tool_chain({
-  code: `await github.github.get_issue({
+  code: `await github.github_get_issue({
     owner: 'owner',
     repo: 'repo',
     issue_number: 123
@@ -678,14 +678,14 @@ call_tool_chain({
 
 // Search issues
 call_tool_chain({
-  code: `await github.github.search_issues({
+  code: `await github.github_search_issues({
     q: 'repo:owner/repo is:issue is:open label:bug'
   })`
 })
 
 // Add comment to issue
 call_tool_chain({
-  code: `await github.github.add_issue_comment({
+  code: `await github.github_add_issue_comment({
     owner: 'owner',
     repo: 'repo',
     issue_number: 123,
@@ -700,7 +700,7 @@ call_tool_chain({
 ```typescript
 // List PRs needing review
 call_tool_chain({
-  code: `await github.github.list_pull_requests({
+  code: `await github.github_list_pull_requests({
     owner: 'owner',
     repo: 'repo',
     state: 'open'
@@ -709,7 +709,7 @@ call_tool_chain({
 
 // Get PR details with diff
 call_tool_chain({
-  code: `await github.github.get_pull_request({
+  code: `await github.github_get_pull_request({
     owner: 'owner',
     repo: 'repo',
     pull_number: 42
@@ -718,7 +718,7 @@ call_tool_chain({
 
 // Create PR review
 call_tool_chain({
-  code: `await github.github.create_pull_request_review({
+  code: `await github.github_create_pull_request_review({
     owner: 'owner',
     repo: 'repo',
     pull_number: 42,
@@ -750,7 +750,7 @@ gh run view 12345 --log
 ```typescript
 // Read file from remote repo (useful for checking configs)
 call_tool_chain({
-  code: `await github.github.get_file_contents({
+  code: `await github.github_get_file_contents({
     owner: 'owner',
     repo: 'repo',
     path: 'package.json',
@@ -760,7 +760,7 @@ call_tool_chain({
 
 // Search repositories
 call_tool_chain({
-  code: `await github.github.search_repositories({
+  code: `await github.github_search_repositories({
     q: 'oauth2 language:javascript stars:>100'
   })`
 })

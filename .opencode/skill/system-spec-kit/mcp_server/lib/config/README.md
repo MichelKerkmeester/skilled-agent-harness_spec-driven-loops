@@ -96,19 +96,19 @@ The system infers memory type using this precedence:
 
 ```
 config/
-├── index.js              # Module aggregator (re-exports all)
-├── memory-types.js       # 9 memory types with half-lives and patterns
-├── type-inference.js     # Auto-detect type from path/content
+├── memory-types.ts       # 9 memory types with half-lives and patterns (~9KB)
+├── type-inference.ts     # Auto-detect type from path/content (~9KB)
 └── README.md             # This file
 ```
+
+**Note:** `index.js` exists only as compiled JS in `dist/lib/config/` (never migrated to TypeScript source). It provides barrel re-exports for both modules.
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `memory-types.js` | Type definitions, half-lives, path/keyword patterns |
-| `type-inference.js` | Multi-source inference with confidence scoring |
-| `index.js` | Unified exports for both modules |
+| `memory-types.ts` | Type definitions, half-lives, path/keyword patterns |
+| `type-inference.ts` | Multi-source inference with confidence scoring |
 
 ---
 
@@ -116,38 +116,38 @@ config/
 
 ### Example 1: Get Type Configuration
 
-```javascript
-const { get_type_config, get_half_life, is_decay_enabled } = require('./config');
+```typescript
+import { getTypeConfig, getHalfLife, isDecayEnabled } from './memory-types';
 
-const config = get_type_config('procedural');
+const config = getTypeConfig('procedural');
 // Returns: { halfLifeDays: 90, autoExpireDays: 365, decayEnabled: true, description: '...' }
 
-const halfLife = get_half_life('working');
+const halfLife = getHalfLife('working');
 // Returns: 1
 
-const decays = is_decay_enabled('meta-cognitive');
+const decays = isDecayEnabled('meta-cognitive');
 // Returns: false
 ```
 
 ### Example 2: Infer Memory Type
 
-```javascript
-const { infer_memory_type } = require('./config');
+```typescript
+import { inferMemoryType } from './type-inference';
 
 // From file path
-const result1 = infer_memory_type({
+const result1 = inferMemoryType({
   filePath: 'specs/012-auth/scratch/debug.md',
 });
 // Returns: { type: 'working', source: 'file_path', confidence: 0.8 }
 
 // From frontmatter
-const result2 = infer_memory_type({
+const result2 = inferMemoryType({
   content: '---\nmemory_type: semantic\n---\n# Architecture Overview',
 });
 // Returns: { type: 'semantic', source: 'frontmatter_explicit', confidence: 1.0 }
 
 // From keywords
-const result3 = infer_memory_type({
+const result3 = inferMemoryType({
   title: 'How to configure authentication',
   triggerPhrases: ['auth guide', 'setup steps'],
 });
@@ -156,35 +156,43 @@ const result3 = infer_memory_type({
 
 ### Example 3: Batch Inference
 
-```javascript
-const { infer_memory_types_batch } = require('./config');
+```typescript
+import { inferMemoryTypesBatch } from './type-inference';
 
 const memories = [
   { file_path: 'memory/session-1.md', title: 'Debug Session' },
   { file_path: 'docs/architecture.md', title: 'System Design' },
 ];
 
-const results = infer_memory_types_batch(memories);
+const results = inferMemoryTypesBatch(memories);
 // Returns: Map { 'memory/session-1.md' => { type: 'episodic', ... }, ... }
 ```
 
 ### Example 4: Validate Inferred Type
 
-```javascript
-const { validate_inferred_type } = require('./config');
+```typescript
+import { validateInferredType } from './type-inference';
 
-const validation = validate_inferred_type('declarative', '/specs/scratch/temp.md');
+const validation = validateInferredType('declarative', '/specs/scratch/temp.md');
 // Returns: { valid: false, warnings: ['Temporary file has slow-decay type'] }
 ```
+
+### halfLife=0 Edge Case
+
+> **Warning:** `validateHalfLifeConfig()` in `memory-types.ts` checks `< 0` but not `=== 0`.
+> A half-life of 0 days would pass validation but cause division-by-zero in FSRS decay
+> calculations where stability (derived from half-life) is used as a denominator.
+> The error message states "must be positive number or null" but zero is accepted.
+> Callers should ensure halfLife values are strictly positive (> 0) or null.
 
 ### Common Patterns
 
 | Pattern | Code | When to Use |
 |---------|------|-------------|
-| List valid types | `get_valid_types()` | Validation, UI dropdowns |
-| Check type valid | `is_valid_type('working')` | Input validation |
-| Get default | `get_default_type()` | Fallback assignment |
-| Reset config | `get_default_half_lives()` | Config recovery |
+| List valid types | `getValidTypes()` | Validation, UI dropdowns |
+| Check type valid | `isValidType('working')` | Input validation |
+| Get default | `getDefaultType()` | Fallback assignment |
+| Reset config | `getDefaultHalfLives()` | Config recovery |
 
 ---
 
@@ -207,4 +215,4 @@ const validation = validate_inferred_type('declarative', '/specs/scratch/temp.md
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2025-01-21*
+*Documentation version: 1.7.2 | Last updated: 2026-02-08*

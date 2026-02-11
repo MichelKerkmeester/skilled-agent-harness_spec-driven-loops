@@ -108,6 +108,7 @@ ls .opencode/skill/system-spec-kit/constitutional/
 # Expected output:
 # gate-enforcement.md
 # README.md
+# speckit-exclusivity.md
 ```
 
 ### First Use
@@ -157,7 +158,7 @@ Constitutional memories are **automatically included** at the top of every `memo
 
 **How it works:**
 
-```javascript
+```typescript
 // When you call:
 memory_search({ query: "authentication flow" })
 
@@ -169,7 +170,7 @@ memory_search({ query: "authentication flow" })
 
 **Control:**
 
-```javascript
+```typescript
 // To disable constitutional surfacing (rare):
 memory_search({ 
   query: "...", 
@@ -369,7 +370,7 @@ memory_save({ filePath: ".opencode/skill/system-spec-kit/constitutional/my-rule.
 
 #### Step 6: Verify
 
-```javascript
+```typescript
 // Search for anything - your rule should appear at top
 memory_search({ query: "test" })
 
@@ -474,7 +475,7 @@ triggerPhrases:
 
 After editing, re-index:
 
-```javascript
+```typescript
 memory_save({ 
   filePath: ".opencode/skill/system-spec-kit/constitutional/gate-enforcement.md",
   force: true 
@@ -536,7 +537,7 @@ triggerPhrases:
 
 For specific searches where you don't want constitutional memories:
 
-```javascript
+```typescript
 memory_search({ 
   query: "specific topic",
   includeConstitutional: false  // Disable for this search only
@@ -708,15 +709,15 @@ memory_match_triggers({ prompt: "fix the bug" })
 | SKILL.md | `../SKILL.md` | Complete skill documentation |
 | README.md | `../README.md` | Skill overview (1800+ lines) |
 | MCP Server README | `../mcp_server/README.md` | MCP tools documentation |
-| Importance Tiers | `../mcp_server/lib/scoring/importance-tiers.js` | Tier configuration |
+| Importance Tiers | `../mcp_server/lib/scoring/importance-tiers.ts` | Tier configuration (source) |
 
 ### Reference Files
 
 | Document | Location | Purpose |
 |----------|----------|---------|
 | Gate Enforcement | `./gate-enforcement.md` | Default constitutional memory |
-| Save Workflow | `../references/save_workflow.md` | Memory save workflows |
-| Trigger Config | `../references/trigger_config.md` | Trigger phrase configuration |
+| Save Workflow | `../references/memory/save_workflow.md` | Memory save workflows |
+| Trigger Config | `../references/memory/trigger_config.md` | Trigger phrase configuration |
 
 ### External Resources
 

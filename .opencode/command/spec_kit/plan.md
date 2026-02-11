@@ -63,15 +63,10 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │                                                                │
    │ **Q3. Dispatch Mode** (required):                              │
    │    A) Single Agent - Execute with one agent (Recommended)      │
-   │    B) Multi-Agent (1+2) - 1 orchestrator (opus) + 2 workers (opus) │
-   │    C) Multi-Agent (1+3) - 1 orchestrator (opus) + 3 workers (opus) │
+    │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers          │
+    │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers          │
    │                                                                │
-   │ **Q4. Worker Model** (if B or C selected above):               │
-   │    Default: opus                                               │
-   │    To use different model, type: opus, gemini, gpt             │
-   │    for default                                                 │
-   │                                                                │
-   │ **Q5. Memory Context** (if using existing spec with memory/):  │
+    │ **Q4. Memory Context** (if using existing spec with memory/): │
    │    Uses /memory:context with intent-aware retrieval            │
    │    A) Load most recent memory file                              │
    │    B) Load all recent files, up to 3                            │
@@ -83,7 +78,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    C) refactor - Improving existing code structure             │
    │    D) understand - Learning how something works                │
    │                                                                │
-   │ Reply with answers, e.g.: "B, A, A, , C, A" or "Add auth, B, A, gemini, C, A" │
+    │ Reply with answers, e.g.: "B, A, A, C, A" or "Add auth, B, A, C, A" │
    └────────────────────────────────────────────────────────────────┘
 
  7. WAIT for user response (DO NOT PROCEED)
@@ -94,8 +89,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - spec_path = [derived path or null if D]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - dispatch_mode = [single/multi_small/multi_large from Q3]
-   - worker_model = [from Q4: opus/gemini/gpt, default opus if blank]
-   - memory_choice = [A/B/C from Q5, or N/A if not applicable]
+    - memory_choice = [A/B/C from Q4, or N/A if not applicable]
    - research_intent = [add_feature/fix_bug/refactor/understand from Q6]
 
  9. Execute background operations based on choices:
@@ -118,7 +112,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `spec_choice = ___` | `spec_path = ________________`
 - `execution_mode = ________________`
 - `dispatch_mode = ________________`
-- `worker_model = ________________` (default: opus)
 - `memory_loaded = ________________`
 - `research_intent = ________________`
 
@@ -135,8 +128,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | spec_path           | ○ Conditional | ______     | Derived from Q1       |
 | execution_mode      | ✅ Yes         | ______     | Suffix or Q2          |
 | dispatch_mode       | ✅ Yes         | ______     | Q3                    |
-| worker_model        | ○ Conditional | ______     | Q4 (default: opus)    |
-| memory_loaded       | ○ Conditional | ______     | Q5 (if existing spec) |
+| memory_loaded       | ○ Conditional | ______     | Q4 (if existing spec) |
 | research_intent     | ✅ Yes         | ______     | Q6                    |
 
 ```
@@ -583,11 +575,11 @@ Circuit breaker pattern prevents cascading failures during workflow execution.
 
 ### Configuration
 
-| Parameter          | Value | Description                                        |
-| ------------------ | ----- | -------------------------------------------------- |
-| failure_threshold  | 3     | Consecutive failures before OPEN state             |
-| recovery_timeout_s | 60    | Seconds before attempting HALF-OPEN                |
-| success_to_close   | 1     | Successes needed in HALF-OPEN to close circuit     |
+| Parameter          | Value | Description                                    |
+| ------------------ | ----- | ---------------------------------------------- |
+| failure_threshold  | 3     | Consecutive failures before OPEN state         |
+| recovery_timeout_s | 60    | Seconds before attempting HALF-OPEN            |
+| success_to_close   | 1     | Successes needed in HALF-OPEN to close circuit |
 
 ### Tracked Errors
 

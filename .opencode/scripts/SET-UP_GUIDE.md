@@ -35,7 +35,7 @@ Please help me:
 2. Check the skill_advisor.py script exists at .opencode/scripts/
 3. Make the script executable
 4. Test the advisor with sample queries
-5. Verify all 9 skills are routing correctly
+5. Verify all 8 skills are routing correctly
 
 My project is at: [your project path]
 
@@ -45,7 +45,7 @@ Guide me through each step.
 **What the AI will do:**
 - Verify Python version
 - Check script location and permissions
-- Test skill routing for all 9 current skills
+- Test skill routing for all 8 current skills
 - Validate confidence thresholds
 
 **Expected setup time:** 5-10 minutes
@@ -122,7 +122,6 @@ chmod +x .opencode/scripts/skill_advisor.py
 ├── skill/                   # Skills to match against
 │   ├── mcp-code-mode/
 │   ├── mcp-figma/
-│   ├── mcp-narsil/
 │   ├── system-spec-kit/
 │   ├── workflows-chrome-devtools/
 │   ├── workflows-code--full-stack/
@@ -159,9 +158,9 @@ python .opencode/scripts/skill_advisor.py "how does authentication work"
 ```json
 [
   {
-    "skill": "mcp-narsil",
-    "confidence": 0.95,
-    "reason": "Matched: !how, !authentication, !does, !work"
+    "skill": "workflows-git",
+    "confidence": 0.92,
+    "reason": "Matched: !commit, git(name)"
   }
 ]
 ```
@@ -171,11 +170,11 @@ python .opencode/scripts/skill_advisor.py "how does authentication work"
 Test that key phrases trigger their expected skills above 0.8 threshold:
 
 ```bash
-# Should return mcp-narsil with confidence > 0.8
-python .opencode/scripts/skill_advisor.py "explain how the login system works"
-
 # Should return workflows-git with confidence > 0.8
 python .opencode/scripts/skill_advisor.py "create a pull request for my changes"
+
+# Should return system-spec-kit with confidence > 0.8
+python .opencode/scripts/skill_advisor.py "save this context to memory"
 ```
 
 ### Validation Checkpoint
@@ -185,7 +184,7 @@ python .opencode/scripts/skill_advisor.py "create a pull request for my changes"
 □ Script is executable (chmod +x applied)
 □ Returns valid JSON array
 □ High-confidence queries return > 0.8 confidence
-□ All 9 skills are discoverable
+□ All 8 skills are discoverable
 ```
 
 ---
@@ -298,20 +297,15 @@ def calculate_confidence(score, has_intent_boost):
 
 Intent boosters are high-confidence keywords that strongly indicate a specific skill. They are checked **before** stop word filtering, allowing question words to contribute.
 
-**Why this matters**: Words like "how", "what", "why", "does", "work" would normally be filtered as stop words, but they are critical signals for semantic search (mcp-narsil).
+**Why this matters**: Words like "how", "what", "why", "does", "work" would normally be filtered as stop words, but they are critical signals for certain skills.
 
 Example boost values:
 
 | Keyword          | Target Skill              | Boost |
 | ---------------- | ------------------------- | ----- |
-| `explain`        | mcp-narsil                | +3.5  |
 | `figma`          | mcp-code-mode             | +2.5  |
 | `webflow`        | mcp-code-mode             | +2.5  |
 | `github`         | workflows-git             | +2.0  |
-| `authentication` | mcp-narsil                | +1.8  |
-| `understand`     | mcp-narsil                | +1.5  |
-| `why`            | mcp-narsil                | +1.5  |
-| `how`            | mcp-narsil                | +1.2  |
 | `worktree`       | workflows-git             | +1.2  |
 | `browser`        | workflows-chrome-devtools | +1.2  |
 
@@ -321,47 +315,17 @@ Some keywords are ambiguous and boost multiple skills:
 
 | Keyword   | Skills Boosted                                |
 | --------- | --------------------------------------------- |
-| `code`    | workflows-code (+0.2), mcp-narsil (+0.25)     |
-| `context` | system-spec-kit (+0.3), mcp-narsil (+0.2)     |
-| `search`  | mcp-narsil (+0.4)                             |
-| `api`     | mcp-code-mode (+0.3), mcp-narsil (+0.2)       |
+| `code`    | workflows-code (+0.2)                         |
+| `context` | system-spec-kit (+0.3)                        |
 | `plan`    | system-spec-kit (+0.3), workflows-code (+0.2) |
 
 ---
 
 ## 5. 🎯 CURRENT SKILLS REFERENCE
 
-The Skill Advisor routes to these 9 skills based on trigger keywords:
+The Skill Advisor routes to these 8 skills based on trigger keywords:
 
-### 5.1 mcp-narsil
-
-**Purpose**: Semantic + structural code queries, security scanning, and call graph analysis via Narsil MCP
-
-**Trigger Keywords** (Intent Boosters):
-```
-# Semantic search (meaning-based)
-ask, auth, authentication, does, embeddings, explain, how, index,
-login, logout, meaning, password, purpose, query, rag, semantic,
-understand, user, vector, what, why, work, works
-
-# Structural analysis (AST-based)
-ast, callers, callees, call-graph, cfg, classes, cwe, definitions, 
-dfg, exports, functions, imports, list, methods, navigate, outline, 
-owasp, sbom, security, structure, symbols, taint, tree, treesitter, 
-vulnerability
-```
-
-**Example Queries**:
-- "how does authentication work" (semantic)
-- "explain the login flow" (semantic)
-- "what does this function do" (semantic)
-- "list all functions in this file" (structural)
-- "show the class structure" (structural)
-- "scan for security vulnerabilities" (security)
-
----
-
-### 5.2 mcp-code-mode
+### 5.1 mcp-code-mode
 
 **Purpose**: External MCP tool integration (ClickUp, Notion, Figma, Webflow)
 
@@ -378,7 +342,7 @@ site, sites, typescript, utcp, webflow
 
 ---
 
-### 5.3 system-spec-kit
+### 5.2 system-spec-kit
 
 **Purpose**: Spec folder management, context preservation and semantic memory search
 
@@ -396,7 +360,7 @@ checkpoint, history, memory, recall, remember, restore, spec, template
 
 ---
 
-### 5.4 workflows-chrome-devtools
+### 5.3 workflows-chrome-devtools
 
 **Purpose**: Browser debugging and Chrome DevTools integration
 
@@ -413,7 +377,7 @@ dom, inspect, network, screenshot
 
 ---
 
-### 5.5 mcp-figma
+### 5.4 mcp-figma
 
 **Purpose**: Figma design integration and component extraction
 
@@ -429,7 +393,7 @@ figma, design, component, export, frame, node
 
 ---
 
-### 5.6 workflows-code--web-dev / workflows-code--full-stack
+### 5.5 workflows-code--web-dev / workflows-code--full-stack
 
 **Purpose**: Implementation, debugging, and verification lifecycle for web development and full-stack projects
 
@@ -445,7 +409,7 @@ bug, implement, refactor, verification, error
 
 ---
 
-### 5.7 workflows-git
+### 5.6 workflows-git
 
 **Purpose**: Git operations, branching, and GitHub integration
 
@@ -462,7 +426,7 @@ pr, pull, push, rebase, repo, review, stash, worktree
 
 ---
 
-### 5.8 workflows-documentation
+### 5.7 workflows-documentation
 
 **Purpose**: Unified markdown and skill management - document quality enforcement, skill creation workflow, flowchart creation, and install guide creation
 
@@ -528,40 +492,40 @@ Modify the threshold in your AGENTS.md Gate 2 (Skill Routing):
 
 ## 7. 🧮 EXAMPLE CALCULATIONS
 
-### Example 1: High-Confidence Match (mcp-narsil)
+### Example 1: High-Confidence Match (workflows-git)
 
-**Request**: `"how does authentication work"`
+**Request**: `"create a pull request for my changes"`
 
 **Step 1: Tokenization**
 ```
-Tokens: ["how", "does", "authentication", "work"]
+Tokens: ["create", "a", "pull", "request", "for", "my", "changes"]
 ```
 
 **Step 2: Intent Boosters (before stop word filter)**
 ```
-"how" → mcp-narsil +1.2
-"does" → mcp-narsil +0.6
-"authentication" → mcp-narsil +1.8
-"work" → mcp-narsil +1.0
+"pull" → workflows-git +0.5
+"changes" → MULTI_SKILL_BOOSTERS:
+  - workflows-git +0.4
+  - system-spec-kit +0.2
 ─────────────────────────────
-Total intent boost: 4.6
+workflows-git total: 0.9
 ```
 
 **Step 3: Stop Word Filter**
 ```
-After filter: ["authentication"]
-(how, does, work are in STOP_WORDS but already counted in boosters)
+After filter: ["create", "pull", "request", "changes"]
+(a, for, my are in STOP_WORDS but already counted in boosters)
 ```
 
 **Step 4: Confidence Calculation**
 ```python
-has_intent_boost = True  # 4.6 > 0
-score = 4.6
-confidence = min(0.50 + 4.6 * 0.15, 0.95)
-confidence = min(1.19, 0.95) = 0.95
+has_intent_boost = True  # 0.9 > 0
+score = 2.4  # including name match for "pull" → +1.5
+confidence = min(0.50 + 2.4 * 0.15, 0.95)
+confidence = min(0.86, 0.95) = 0.86
 ```
 
-**Result**: `mcp-narsil` with **0.95 confidence** ✅ (> 0.8 threshold)
+**Result**: `workflows-git` with **0.86 confidence** ✅ (> 0.8 threshold)
 
 ---
 
@@ -578,7 +542,6 @@ Tokens: ["help", "me", "write", "documentation", "for", "the", "api"]
 ```
 "api" → MULTI_SKILL_BOOSTERS:
   - mcp-code-mode +0.3
-  - mcp-narsil +0.2
 ```
 
 **Step 3: Stop Word Filter**
@@ -614,55 +577,6 @@ confidence = min(0.40, 0.95) = 0.40
 
 **Why?** No intent boosters matched. To improve, add "document" keyword:
 - `"help me document the API"` → "document" triggers +0.5 boost
-
----
-
-### Example 3: Git Workflow Match
-
-**Request**: `"create a pull request for my changes"`
-
-**Step 1: Tokenization**
-```
-Tokens: ["create", "a", "pull", "request", "for", "my", "changes"]
-```
-
-**Step 2: Intent Boosters**
-```
-"pull" → workflows-git +0.5
-"changes" → MULTI_SKILL_BOOSTERS:
-  - workflows-git +0.4
-  - system-spec-kit +0.2
-─────────────────────────────
-workflows-git total: 0.9
-```
-
-**Step 3: Stop Word Filter**
-```
-Filtered: ["create", "pull", "request", "changes"]
-```
-
-**Step 4: Synonym Expansion**
-```
-"create" → ["implement", "build", "generate", "new", "add", "scaffold"]
-```
-
-**Step 5: Skill Matching (for workflows-git)**
-```
-Intent boost: 0.9
-"pull" in name parts: +1.5
-─────────────────────────────
-Total score: 2.4
-```
-
-**Step 6: Confidence Calculation**
-```python
-has_intent_boost = True  # 0.9 > 0
-score = 2.4
-confidence = min(0.50 + 2.4 * 0.15, 0.95)
-confidence = min(0.86, 0.95) = 0.86
-```
-
-**Result**: `workflows-git` with **0.86 confidence** ✅ (> 0.8 threshold)
 
 ---
 
@@ -731,7 +645,7 @@ Boost certain skills based on project type:
 
 **Backend Projects**:
 ```python
-"database": ("mcp-narsil", 0.5),
+"database": ("workflows-code", 0.5),
 "endpoint": ("workflows-code", 0.5),
 "migration": ("workflows-code", 0.6),
 ```
@@ -745,14 +659,6 @@ Boost certain skills based on project type:
 Run these commands to verify each skill routes correctly:
 
 ```bash
-# mcp-narsil (structural) - should return > 0.8
-python .opencode/scripts/skill_advisor.py "list all functions in the file"
-python .opencode/scripts/skill_advisor.py "show the class structure"
-
-# mcp-narsil (semantic) - should return > 0.8
-python .opencode/scripts/skill_advisor.py "how does authentication work"
-python .opencode/scripts/skill_advisor.py "explain the login flow"
-
 # mcp-code-mode - should return > 0.8
 python .opencode/scripts/skill_advisor.py "get my Webflow sites"
 python .opencode/scripts/skill_advisor.py "fetch the Figma design"
@@ -789,8 +695,6 @@ python .opencode/scripts/skill_advisor.py "hello world"
 
 SCRIPT=".opencode/scripts/skill_advisor.py"
 TESTS=(
-    "how does authentication work|mcp-narsil"
-    "list all functions|mcp-narsil"
     "get webflow sites|mcp-code-mode"
     "get the figma design|mcp-figma"
     "save context to memory|system-spec-kit"
@@ -819,7 +723,7 @@ done
 ### Validation Checkpoint
 
 ```
-□ All 9 skills route correctly with known queries
+□ All 8 skills route correctly with known queries
 □ High-confidence keywords reach > 0.8 threshold
 □ Ambiguous queries return reasonable suggestions
 □ Empty/irrelevant queries return low confidence
@@ -843,9 +747,9 @@ python .opencode/scripts/skill_advisor.py "your query here"
 The output shows which patterns matched:
 ```json
 {
-  "skill": "mcp-narsil",
+  "skill": "workflows-code",
   "confidence": 0.65,
-  "reason": "Matched: !how, search(name)"
+  "reason": "Matched: !implement, code(name)"
 }
 ```
 
@@ -878,7 +782,7 @@ grep "'your_word'" .opencode/scripts/skill_advisor.py | head -5
 Check:
 1. "fix" is in `MULTI_SKILL_BOOSTERS` → workflows-code +0.3
 2. "bug" is in `INTENT_BOOSTERS` → workflows-code +0.5
-3. "login" is in `INTENT_BOOSTERS` → mcp-narsil +0.8 (may override)
+3. "login" may boost other skills (may compete)
 4. Total: depends on accumulated boosts per skill
 
 **Solution**: Add more boosters or rephrase query
@@ -954,7 +858,7 @@ ls -la .opencode/scripts/skill_advisor.py
 <summary><strong>Wrong skill recommended</strong></summary>
 
 **Symptoms:**
-- Script recommends `mcp-narsil` when you wanted `workflows-code`
+- Script recommends an unexpected skill when you wanted `workflows-code`
 
 **Solution:**
 1. Check intent booster values for competing skills
@@ -1074,4 +978,3 @@ cat .opencode/skill/your-skill/SKILL.md | head -20
 - [Master Installation Guide](./README.md)
 - [SET-UP - Skill Creation](./SET-UP%20-%20Skill%20Creation.md)
 - [MCP - Code Context](./MCP%20-%20Code%20Context.md)
-- [MCP - Narsil](./MCP%20-%20Narsil.md)

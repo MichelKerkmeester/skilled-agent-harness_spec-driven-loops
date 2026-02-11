@@ -6,16 +6,16 @@ Multi-modal hybrid search architecture combining vector, lexical (BM25/FTS5), an
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 KEY CONCEPTS](#2--key-concepts)
-- [3. 📁 MODULE STRUCTURE](#3--module-structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🔗 RELATED RESOURCES](#6--related-resources)
+- [1. OVERVIEW](#1-overview)
+- [2. KEY CONCEPTS](#2-key-concepts)
+- [3. MODULE STRUCTURE](#3-module-structure)
+- [4. FEATURES](#4-features)
+- [5. USAGE EXAMPLES](#5-usage-examples)
+- [6. RELATED RESOURCES](#6-related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The search subsystem provides production-grade hybrid search capabilities with multiple retrieval methods fused via RRF scoring. It handles query expansion, intent classification, typo tolerance, and optional cross-encoder reranking.
 
@@ -23,35 +23,38 @@ The search subsystem provides production-grade hybrid search capabilities with m
 - **Triple-Hybrid Search**: Vector (semantic) + BM25/FTS5 (lexical) + Graph (relationship-based)
 - **RRF Score Fusion**: Industry-standard k=60 with convergence bonuses
 - **Intent Classification**: 5 intent types route to task-specific retrieval weights
-- **Query Enhancement**: Fuzzy matching (Levenshtein ≤2) + 30+ acronym expansions
+- **Query Enhancement**: Fuzzy matching (Levenshtein) + acronym expansions (via hybrid-search.ts inline logic)
 - **Reranking Pipeline**: Optional cross-encoder with length penalties
-- **Schema Management**: sqlite-vec with 11 migration versions
+- **Schema Management**: sqlite-vec with 10 migration versions (v1-v9, v12; v10-v11 skipped)
 
 **Architecture Pattern:**
 ```
 Query Input
-    ↓
-Intent Classifier → Task-specific weights
-    ↓
+    |
+Intent Classifier -> Task-specific weights
+    |
 Parallel Search
-├─→ Vector (sqlite-vec) → Semantic matches
-├─→ BM25 (Pure JS)      → Keyword matches
-└─→ Graph (Co-activation) → Relationship matches
-    ↓
-RRF Fusion (k=60) → Unified scores
-    ↓
-Cross-Encoder Rerank (optional) → Relevance refinement
-    ↓
+|---> Vector (sqlite-vec) -> Semantic matches
+|---> BM25 (Pure JS)       -> Keyword matches
+|---> Graph (Co-activation) -> Relationship matches
+    |
+RRF Fusion (k=60) -> Unified scores
+    |
+Cross-Encoder Rerank (optional) -> Relevance refinement
+    |
 Final Results
 ```
 
+**Architecture Note:**
+`vector-index.ts` is a typed facade that delegates operations to `vector-index-impl.ts` (the full implementation). Both files are TypeScript. See [Module Structure](#3-module-structure) for details.
+
 ---
 
-## 2. 🚀 KEY CONCEPTS
+## 2. KEY CONCEPTS
 
 ### Reciprocal Rank Fusion (RRF)
 
-**Formula**: `score = Σ 1/(k + rank_i)` where k=60 (industry standard)
+**Formula**: `score = Sum 1/(k + rank_i)` where k=60 (industry standard)
 
 **Why RRF?**
 - Parameter-free fusion (no weight tuning required)
@@ -74,7 +77,7 @@ Final Results
 
 **Formula**:
 ```
-score(D, Q) = Σ IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/avgdl))
+score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/avgdl))
 ```
 
 **Parameters:**
@@ -110,27 +113,6 @@ score(D, Q) = Σ IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/a
 // Boosts: architecture memories, pattern docs, examples
 ```
 
-### Fuzzy Matching & Acronyms
-
-**Levenshtein Distance** (REQ-018): Max edit distance of 2 for typo tolerance.
-
-**ACRONYM_MAP** (30+ entries, REQ-027):
-```javascript
-'RRF' → ['Reciprocal Rank Fusion', 'rank fusion']
-'BM25' → ['Best Matching 25', 'Okapi BM25', 'keyword search']
-'RAG' → ['Retrieval Augmented Generation', 'retrieval augmented']
-'MCP' → ['Model Context Protocol', 'context protocol']
-// ... 26 more acronyms
-```
-
-**Query Expansion**:
-```javascript
-// Input: "RRF serch implementation"
-// Expanded: "RRF search implementation" (typo fixed)
-//         + "Reciprocal Rank Fusion"
-//         + "rank fusion"
-```
-
 ### Cross-Encoder Reranking
 
 **Purpose**: Refine top results using query-document pair scoring.
@@ -151,58 +133,93 @@ score(D, Q) = Σ IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/a
 
 ---
 
-## 3. 📁 MODULE STRUCTURE
+## 3. MODULE STRUCTURE
 
-### Core Modules
+### Migration Status
 
-| File                   | LOC  | Purpose                                          |
-| ---------------------- | ---- | ------------------------------------------------ |
-| `vector-index.js`      | ~600 | sqlite-vec integration, schema migrations v1-v12 |
-| `hybrid-search.js`     | ~400 | Orchestrates vector/BM25/graph fusion            |
-| `rrf-fusion.js`        | ~250 | RRF score calculation with bonuses               |
-| `bm25-index.js`        | ~350 | Pure JS BM25 (REQ-028, v1.2.0)                   |
-| `cross-encoder.js`     | ~400 | Reranking with multiple providers                |
-| `intent-classifier.js` | ~300 | 5 intent types with keyword patterns             |
-| `fuzzy-match.js`       | ~250 | Levenshtein + 30+ acronym expansions             |
-| `reranker.js`          | ~100 | Legacy local reranker (unimplemented)            |
-| `index.js`             | ~50  | Module aggregator                                |
+**TypeScript migration is COMPLETE.** All source files are TypeScript (0 `.js` source files remain).
 
-**Total**: ~2,700 LOC
+| Status               | Files                                                                                        |
+| -------------------- | -------------------------------------------------------------------------------------------- |
+| **TypeScript**       | `hybrid-search.ts`, `cross-encoder.ts`, `intent-classifier.ts`, `bm25-index.ts`             |
+| **TypeScript**       | `vector-index.ts` (typed facade) → `vector-index-impl.ts` (full implementation)             |
+| **TypeScript**       | `reranker.ts` (score-based reranking), `rrf-fusion.ts` (RRF score fusion)                    |
+
+### Facade Pattern: vector-index
+
+```
+Consumers
+    |
+    v
+vector-index.ts          (700 LOC)
+  - TypeScript types & interfaces
+  - Typed function signatures
+  - Thin wrappers that delegate calls to:
+    |
+    v
+vector-index-impl.ts     (3333 LOC)
+  - Full TypeScript implementation
+  - Schema creation & migrations (v1-v12)
+  - All database operations (CRUD, search, caching)
+  - Uses import syntax (ESM)
+  - References SERVER_DIR for config paths
+```
+
+**NOTE**: `vector-index.ts` is a typed facade; modifying it without updating `vector-index-impl.ts` may not have the expected runtime effect, since most logic lives in the impl file.
+
+### Module Listing
+
+| File                     | LOC    | Language   | Purpose                                             |
+| ------------------------ | ------ | ---------- | --------------------------------------------------- |
+| `vector-index.ts`        | ~700   | TypeScript | Typed facade: interfaces, type exports, delegation  |
+| `vector-index-impl.ts`   | ~3333  | TypeScript | Full implementation: schema, CRUD, search, caching  |
+| `hybrid-search.ts`       | ~381   | TypeScript | Orchestrates vector/BM25/graph fusion via RRF       |
+| `cross-encoder.ts`       | ~433   | TypeScript | Reranking with Voyage/Cohere providers              |
+| `intent-classifier.ts`   | ~291   | TypeScript | 5 intent types with keyword patterns                |
+| `bm25-index.ts`          | ~241   | TypeScript | Pure TypeScript BM25 (REQ-028, v1.2.0)              |
+| `reranker.ts`            | —      | TypeScript | Score-based reranking utility (sort + truncate)     |
+| `rrf-fusion.ts`          | —      | TypeScript | Reciprocal Rank Fusion scoring logic                |
+
+**Total**: ~5,379+ LOC across 8 files (all TypeScript)
 
 ### Data Flow
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│ 1. QUERY PREPROCESSING                                      │
-│    fuzzy-match.js → Expand acronyms + fix typos              │
-│    intent-classifier.js → Detect task intent                 │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│ 2. PARALLEL RETRIEVAL                                       │
-│    vector-index.js → Vector search (semantic)               │
-│    bm25-index.js → BM25 search (keyword)                    │
-│    graph (via co-activation.js) → Relationship search       │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│ 3. SCORE FUSION                                             │
-│    rrf-fusion.js → RRF with k=60, convergence bonus         │
-│    hybrid-search.js → Orchestrate multi-source fusion       │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────────────┐
-│ 4. RERANKING (Optional)                                     │
-│    cross-encoder.js → API or local reranker                 │
-│    Apply length penalty for short content                   │
-└─────────────────────────────────────────────────────────────┘
-                          ↓
-                    Final Results
+1. QUERY PREPROCESSING
+   hybrid-search.ts -> Expand acronyms + fix typos (inline)
+   intent-classifier.ts -> Detect task intent
+
+         |
+         v
+
+2. PARALLEL RETRIEVAL
+   vector-index.ts (-> vector-index-impl.ts) -> Vector search (semantic)
+   bm25-index.ts -> BM25 search (keyword)
+   graph (via co-activation.ts) -> Relationship search
+
+         |
+         v
+
+3. SCORE FUSION
+   hybrid-search.ts -> RRF with k=60, convergence bonus
+   hybrid-search.ts -> Orchestrate multi-source fusion
+
+         |
+         v
+
+4. RERANKING (Optional)
+   cross-encoder.ts -> API or local reranker
+   Apply length penalty for short content
+
+         |
+         v
+
+   Final Results
 ```
 
 ---
 
-## 4. ⚡ FEATURES
+## 4. FEATURES
 
 ### Configuration Options
 
@@ -231,23 +248,26 @@ const GRAPH_WEIGHT_BOOST = 1.5;    // 1.5x for graph discoveries
 **BM25 Parameters** (hardcoded, tuned):
 ```javascript
 const DEFAULT_K1 = 1.2;   // Term frequency saturation
-const DEFAULT_B = 0.75;   // Length normalization
-const MIN_DOC_LENGTH = 10; // Ignore docs <10 words
+const DEFAULT_B = 0.75;    // Length normalization
 ```
 
 ### Vector Index Features
 
-**Schema Versions** (v1-v12):
-- v1-v3: Initial FTS5 + vector
-- v4: Content deduplication
-- v5: Title field
-- v6: Tags field
-- v7: Composite scoring weights
-- v8: Access patterns tracking
-- v9: Spec folder scoping
-- v10: Trigger metadata
-- v11: Constitutional memories (highest priority)
-- v12: Unified memory_conflicts table (KL-1 Schema Unification)
+**Schema Versions** (v1-v9, v12; note: v10-v11 are skipped):
+
+| Version | Migration                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| v1      | Initial schema (no-op, base tables created by `create_schema()`)             |
+| v2      | Add `idx_history_timestamp` index on `memory_history`                        |
+| v3      | Add `related_memories` column to `memory_index`                              |
+| v4      | FSRS columns (`stability`, `difficulty`, `last_review`, `review_count`) + `memory_conflicts` table + FSRS indexes |
+| v5      | `memory_type` column (9 cognitive types) + `half_life_days` + `type_inference_source` |
+| v6      | `file_mtime_ms` column for incremental indexing (REQ-023, T064-T066)         |
+| v7      | `partial` embedding_status + `idx_embedding_pending` + `idx_fts_fallback` (REQ-031, T096) |
+| v8      | `causal_edges` table with 6 relationship types (REQ-012, T043-T047)          |
+| v9      | `memory_corrections` table for learning from corrections (REQ-015, REQ-026, T052-T055) |
+| v10-v11 | **Skipped** (no migration functions exist; version jumps from 9 to 12)       |
+| v12     | Unified `memory_conflicts` DDL -- drop & recreate with canonical schema (KL-1) |
 
 **Multi-Provider Support**:
 - Voyage AI: 1024-dim (default)
@@ -256,8 +276,8 @@ const MIN_DOC_LENGTH = 10; // Ignore docs <10 words
 
 **Buffer Handling**:
 ```javascript
-// Float32Array → Buffer conversion for sqlite-vec
-function to_embedding_buffer(embedding) {
+// Float32Array -> Buffer conversion for sqlite-vec
+function toEmbeddingBuffer(embedding) {
   return Buffer.from(embedding.buffer, embedding.byteOffset, embedding.byteLength);
 }
 ```
@@ -273,7 +293,7 @@ function to_embedding_buffer(embedding) {
 **Tokenization**:
 ```javascript
 // Preserves code identifiers (underscores), removes punctuation
-"user_authentication_flow" → ["user", "authent", "flow"]
+"user_authentication_flow" -> ["user", "authent", "flow"]
 ```
 
 **IDF Calculation**:
@@ -286,23 +306,23 @@ IDF = log((N - n(qi) + 0.5) / (n(qi) + 0.5) + 1)
 
 **Triple-Source Fusion**:
 ```javascript
-// unified_search() orchestrates:
+// unifiedSearch() orchestrates:
 // 1. Vector search (semantic similarity)
 // 2. BM25/FTS5 search (keyword matching)
 // 3. Graph search (relationship traversal, 1.5x boost)
-// → RRF fusion → Sorted by combined score
+// -> RRF fusion -> Sorted by combined score
 ```
 
 **Spec Folder Scoping**:
 ```javascript
 // Filter to specific project context
-hybrid_search("authentication", { spec_folder: "specs/007-auth" })
+hybridSearch("authentication", { specFolder: "specs/007-auth" })
 ```
 
 **Graceful Degradation**:
-- If BM25 disabled → Vector + FTS5 only
-- If RRF disabled → Vector-only with basic metadata
-- If no graph → Vector + Lexical fusion
+- If BM25 disabled -> Vector + FTS5 only
+- If RRF disabled -> Vector-only with basic metadata
+- If no graph -> Vector + Lexical fusion
 
 ### Intent Classification Features
 
@@ -317,37 +337,19 @@ hybrid_search("authentication", { spec_folder: "specs/007-auth" })
 ```javascript
 // Query: "fix login crash after update"
 // Matches: "fix" (primary, 2.0) + "crash" (primary, 2.0) + "login" (secondary, 1.0)
-// Total: 5.0 → fix_bug intent
+// Total: 5.0 -> fix_bug intent
 ```
 
 **Fallback**: `understand` intent if no match (score < 3.0).
-
-### Fuzzy Match Features
-
-**Levenshtein Distance** (max 2 edits):
-```javascript
-// "serch" → "search" (distance 1) ✅
-// "searc" → "search" (distance 1) ✅
-// "sersh" → "search" (distance 2) ✅
-// "sarch" → "search" (distance 3) ❌
-```
-
-**Acronym Expansion**:
-```javascript
-// Query: "RRF implementation"
-// Expanded: "RRF implementation Reciprocal Rank Fusion rank fusion"
-```
-
-**Stop Word Filtering**: 70+ common words excluded to prevent false acronyms (e.g., "not" → "HOT").
 
 ### Cross-Encoder Features
 
 **Provider Auto-Detection**:
 ```javascript
 // Checks API keys in order:
-// 1. VOYAGE_API_KEY → Voyage rerank-2
-// 2. COHERE_API_KEY → Cohere v3.5
-// 3. Python available → Local (unimplemented)
+// 1. VOYAGE_API_KEY -> Voyage rerank-2
+// 2. COHERE_API_KEY -> Cohere v3.5
+// 3. Python available -> Local (unimplemented)
 ```
 
 **Caching**:
@@ -365,101 +367,89 @@ hybrid_search("authentication", { spec_folder: "specs/007-auth" })
 
 **Length Penalty** (REQ-008):
 ```javascript
-// content_length < 100 chars → penalty 0.8x - 1.0x
+// content_length < 100 chars -> penalty 0.8x - 1.0x
 // Linear interpolation: penalty = 0.8 + (len/100) * 0.2
 ```
 
 ---
 
-## 5. 💡 USAGE EXAMPLES
+## 5. USAGE EXAMPLES
 
 ### Basic Hybrid Search
 
-```javascript
-const { init, unified_search } = require('./hybrid-search');
-const { init: initVector, vector_search } = require('./vector-index');
+```typescript
+import { initializeDb } from './vector-index';
+import { init, unifiedSearch } from './hybrid-search';
+import { vectorSearch } from './vector-index';
+import Database from 'better-sqlite3';
 
 // Initialize
-const db = new Database('context-index.sqlite');
-initVector(db);
-init(db, vector_search);
+const db = initializeDb();
+init(db, vectorSearch);
 
 // Search with all methods
-const results = await unified_search('authentication flow', {
+const results = await unifiedSearch('authentication flow', {
   limit: 10,
-  spec_folder: 'specs/007-auth',  // Optional: scope to project
-  enable_graph: true,              // Include graph search
+  specFolder: 'specs/007-auth',  // Optional: scope to project
+  enableGraph: true,              // Include graph search
 });
 
 // Results include:
-// - rrf_score: Combined score
+// - rrfScore: Combined score
 // - sources: ['vector', 'bm25', 'graph']
-// - vector_rank, bm25_rank, graph_rank
-// - source_count: How many methods found this result
+// - vectorRank, bm25Rank, graphRank
+// - sourceCount: How many methods found this result
 ```
 
 ### Intent-Aware Search
 
-```javascript
-const { classify_intent } = require('./intent-classifier');
-const { unified_search } = require('./hybrid-search');
+```typescript
+import { classifyIntent } from './intent-classifier';
+import { unifiedSearch } from './hybrid-search';
 
 // Classify query intent
 const query = 'add dark mode feature';
-const intent = classify_intent(query);
-// → { type: 'add_feature', confidence: 0.85 }
+const intent = classifyIntent(query);
+// -> { type: 'add_feature', confidence: 0.85 }
 
 // Adjust retrieval weights based on intent
-const results = await unified_search(query, {
+const results = await unifiedSearch(query, {
   intent: intent.type,  // Boosts relevant memory types
   limit: 10,
 });
 ```
 
-### Fuzzy Query Expansion
-
-```javascript
-const { expand_query } = require('./fuzzy-match');
-
-// Expand with typo tolerance + acronyms
-const expanded = expand_query('RRF serch implementation');
-// → "RRF search implementation Reciprocal Rank Fusion rank fusion"
-
-// Use expanded query
-const results = await unified_search(expanded, { limit: 10 });
-```
-
 ### Cross-Encoder Reranking
 
-```javascript
-const { rerank_results } = require('./cross-encoder');
+```typescript
+import { rerankResults } from './cross-encoder';
 
 // Get initial results
-const initial = await unified_search('user authentication', { limit: 20 });
+const initial = await unifiedSearch('user authentication', { limit: 20 });
 
 // Rerank top 20 with cross-encoder
-const reranked = await rerank_results('user authentication', initial, {
-  top_k: 10,  // Return top 10 after reranking
+const reranked = await rerankResults('user authentication', initial, {
+  topK: 10,  // Return top 10 after reranking
   provider: 'voyage',
 });
 
 // Results include:
-// - cross_encoder_score: Reranker score
-// - length_penalty: Applied penalty (if <100 chars)
-// - final_score: cross_encoder_score * length_penalty
+// - crossEncoderScore: Reranker score
+// - lengthPenalty: Applied penalty (if <100 chars)
+// - finalScore: crossEncoderScore * lengthPenalty
 ```
 
 ### BM25 Direct Access
 
-```javascript
-const bm25Index = require('./bm25-index');
+```typescript
+import * as bm25Index from './bm25-index';
 
 // Check availability
-if (bm25Index.is_bm25_enabled()) {
+if (bm25Index.isBm25Enabled()) {
   // Search directly
-  const results = bm25Index.get_index().search('authentication', {
+  const results = bm25Index.getIndex().search('authentication', {
     limit: 10,
-    spec_folder: 'specs/007-auth',
+    specFolder: 'specs/007-auth',
   });
 
   // Results: [{ id, score, rank }]
@@ -468,44 +458,21 @@ if (bm25Index.is_bm25_enabled()) {
 
 ### Vector Index Schema Migration
 
-```javascript
-const { ensure_schema } = require('./vector-index');
+```typescript
+import { initializeDb, getDb } from './vector-index';
 
-// Ensure schema is up-to-date (v12)
-// Automatically detects current version and runs migrations
-await ensure_schema(db);
+// Initialize DB (auto-runs migrations to v12)
+initializeDb();
 
 // Check current version
-const version = db.prepare('PRAGMA user_version').pluck().get();
+const db = getDb();
+const version = db.prepare('PRAGMA user_version').pluck().get() as number;
 console.log(`Schema version: ${version}`);
-```
-
-### RRF Fusion with Convergence
-
-```javascript
-const { fuse_results_multi, SOURCE_TYPES } = require('./rrf-fusion');
-
-// Manual fusion (typically done by hybrid-search.js)
-const vector_results = [{ id: 1 }, { id: 2 }, { id: 3 }];
-const bm25_results = [{ id: 2 }, { id: 1 }, { id: 4 }];
-const graph_results = [{ id: 3 }, { id: 5 }];
-
-const fused = fuse_results_multi(vector_results, bm25_results, graph_results, {
-  k: 60,                    // RRF parameter
-  enable_graph_boost: true, // 1.5x weight for graph
-});
-
-// Results sorted by rrf_score:
-// id:2 → sources: [vector, bm25], convergence bonus applied
-// id:1 → sources: [vector, bm25], convergence bonus applied
-// id:3 → sources: [vector, graph], convergence bonus + graph boost
-// id:4 → sources: [bm25]
-// id:5 → sources: [graph], graph boost applied
 ```
 
 ---
 
-## 6. 🔗 RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 ### Internal Dependencies
 
@@ -513,9 +480,9 @@ const fused = fuse_results_multi(vector_results, bm25_results, graph_results, {
 | ---------------- | --------------------------------- |
 | `../cognitive/`  | Tier classifier, attention decay  |
 | `../utils/`      | Format helpers, path security     |
-| `../providers/`  | Embeddings provider abstraction   |
+| `@spec-kit/shared/embeddings` | Embeddings provider abstraction   |
 | `../errors/`     | Recovery hints for error handling |
-| `../../configs/` | Search weights configuration      |
+| Search weights configuration | Loaded via SERVER_DIR in vector-index-impl.ts |
 
 ### External Dependencies
 
@@ -528,14 +495,14 @@ const fused = fuse_results_multi(vector_results, bm25_results, graph_results, {
 
 | File                          | Purpose                                  |
 | ----------------------------- | ---------------------------------------- |
-| `configs/search-weights.json` | Max triggers per memory, scoring weights |
+| `configs/search-weights.json` | Max triggers per memory, scoring weights (loaded via SERVER_DIR) |
 
 ### Related Documentation
 
 - `../cognitive/README.md` - Cognitive layer (attention, tier classification)
 - `../storage/README.md` - Storage layer (checkpoints, history, access tracking)
 - `../parsing/README.md` - Parsing layer (memory parser, trigger matcher)
-- `context-server.js` - MCP integration and API endpoints
+- `context-server.ts` - MCP integration and API endpoints
 
 ### Research References
 
@@ -547,17 +514,22 @@ const fused = fuse_results_multi(vector_results, bm25_results, graph_results, {
 
 | REQ     | Feature                          | Files                           |
 | ------- | -------------------------------- | ------------------------------- |
-| REQ-008 | Length penalty for short content | cross-encoder.js                |
-| REQ-011 | RRF fusion enhancement           | rrf-fusion.js                   |
-| REQ-012 | Intent classification            | intent-classifier.js            |
-| REQ-013 | Cross-encoder reranking          | cross-encoder.js                |
-| REQ-014 | BM25 hybrid search               | bm25-index.js, hybrid-search.js |
-| REQ-018 | Query expansion (fuzzy)          | fuzzy-match.js                  |
-| REQ-027 | Fuzzy acronym matching           | fuzzy-match.js                  |
-| REQ-028 | Pure JS BM25                     | bm25-index.js                   |
+| REQ-008 | Length penalty for short content | cross-encoder.ts                |
+| REQ-011 | RRF fusion enhancement           | hybrid-search.ts                |
+| REQ-012 | Intent classification            | intent-classifier.ts            |
+| REQ-013 | Cross-encoder reranking          | cross-encoder.ts                |
+| REQ-014 | BM25 hybrid search               | bm25-index.ts, hybrid-search.ts |
+| REQ-018 | Query expansion (fuzzy)          | hybrid-search.ts                |
+| REQ-027 | Fuzzy acronym matching           | hybrid-search.ts                |
+| REQ-028 | Pure TypeScript BM25             | bm25-index.ts                   |
 
 ---
 
-**Version**: 1.2.0
-**Last Updated**: 2025-01-XX
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08
 **Maintainer**: system-spec-kit MCP server
+
+**Migration Status**:
+- TypeScript migration is **complete** -- all 8 code files are TypeScript (0 `.js` source files)
+- `vector-index.ts` is a typed facade; `vector-index-impl.ts` is the full implementation
+- `reranker.ts` and `rrf-fusion.ts` provide score-based reranking and RRF fusion utilities

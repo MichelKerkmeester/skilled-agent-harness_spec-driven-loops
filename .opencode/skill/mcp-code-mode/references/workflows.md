@@ -89,8 +89,8 @@ call_tool_chain({
   result: {
     site: {
       id: "...",
-      name: "A. Nobel & Zn",
-      domains: ["anobel.com", "www.anobel.com"]
+      name: "Example Corp",
+      domains: ["example.com", "www.example.com"]
     },
     collectionsCount: 21,
     collections: [

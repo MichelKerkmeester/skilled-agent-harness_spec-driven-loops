@@ -25,8 +25,8 @@ const fs = require('fs');
 ────────────────────────────────────────────────────────────────*/
 
 const SCRIPTS_DIR = path.join(__dirname, '..');
-const EXTRACTORS_DIR = path.join(SCRIPTS_DIR, 'extractors');
-const LOADERS_DIR = path.join(SCRIPTS_DIR, 'loaders');
+const EXTRACTORS_DIR = path.join(SCRIPTS_DIR, 'dist', 'extractors');
+const LOADERS_DIR = path.join(SCRIPTS_DIR, 'dist', 'loaders');
 
 // Test results tracking
 const results = {
@@ -44,108 +44,108 @@ function log(msg) {
   console.log(msg);
 }
 
-function pass(test_name, evidence) {
+function pass(testName, evidence) {
   results.passed++;
-  results.tests.push({ name: test_name, status: 'PASS', evidence });
-  log(`   [PASS] ${test_name}`);
+  results.tests.push({ name: testName, status: 'PASS', evidence });
+  log(`   [PASS] ${testName}`);
   if (evidence) log(`      Evidence: ${evidence}`);
 }
 
-function fail(test_name, reason) {
+function fail(testName, reason) {
   results.failed++;
-  results.tests.push({ name: test_name, status: 'FAIL', reason });
-  log(`   [FAIL] ${test_name}`);
+  results.tests.push({ name: testName, status: 'FAIL', reason });
+  log(`   [FAIL] ${testName}`);
   log(`      Reason: ${reason}`);
 }
 
-function skip(test_name, reason) {
+function skip(testName, reason) {
   results.skipped++;
-  results.tests.push({ name: test_name, status: 'SKIP', reason });
-  log(`   [SKIP] ${test_name} (skipped: ${reason})`);
+  results.tests.push({ name: testName, status: 'SKIP', reason });
+  log(`   [SKIP] ${testName} (skipped: ${reason})`);
 }
 
-function assertExists(value, test_name, evidence) {
+function assertExists(value, testName, evidence) {
   if (value !== undefined && value !== null) {
-    pass(test_name, evidence);
+    pass(testName, evidence);
     return true;
   } else {
-    fail(test_name, 'Value is undefined or null');
+    fail(testName, 'Value is undefined or null');
     return false;
   }
 }
 
-function assertEqual(actual, expected, test_name) {
+function assertEqual(actual, expected, testName) {
   if (actual === expected) {
-    pass(test_name, `${actual} === ${expected}`);
+    pass(testName, `${actual} === ${expected}`);
     return true;
   } else {
-    fail(test_name, `Expected ${expected}, got ${actual}`);
+    fail(testName, `Expected ${expected}, got ${actual}`);
     return false;
   }
 }
 
-function assertType(value, expectedType, test_name) {
+function assertType(value, expectedType, testName) {
   const actualType = typeof value;
   if (actualType === expectedType) {
-    pass(test_name, `Type is ${actualType}`);
+    pass(testName, `Type is ${actualType}`);
     return true;
   } else {
-    fail(test_name, `Expected type ${expectedType}, got ${actualType}`);
+    fail(testName, `Expected type ${expectedType}, got ${actualType}`);
     return false;
   }
 }
 
-function assertArray(value, test_name, minLength = 0) {
+function assertArray(value, testName, minLength = 0) {
   if (Array.isArray(value) && value.length >= minLength) {
-    pass(test_name, `Array with ${value.length} items`);
+    pass(testName, `Array with ${value.length} items`);
     return true;
   } else if (!Array.isArray(value)) {
-    fail(test_name, `Expected array, got ${typeof value}`);
+    fail(testName, `Expected array, got ${typeof value}`);
     return false;
   } else {
-    fail(test_name, `Expected array with at least ${minLength} items, got ${value.length}`);
+    fail(testName, `Expected array with at least ${minLength} items, got ${value.length}`);
     return false;
   }
 }
 
-function assertRange(value, min, max, test_name) {
+function assertRange(value, min, max, testName) {
   if (typeof value === 'number' && value >= min && value <= max) {
-    pass(test_name, `${value} in range [${min}, ${max}]`);
+    pass(testName, `${value} in range [${min}, ${max}]`);
     return true;
   } else {
-    fail(test_name, `Expected ${value} to be in range [${min}, ${max}]`);
+    fail(testName, `Expected ${value} to be in range [${min}, ${max}]`);
     return false;
   }
 }
 
-function assertMatch(value, regex, test_name) {
+function assertMatch(value, regex, testName) {
   if (typeof value === 'string' && regex.test(value)) {
-    pass(test_name, `Matches pattern`);
+    pass(testName, `Matches pattern`);
     return true;
   } else {
-    fail(test_name, `Expected to match ${regex}, got: ${value}`);
+    fail(testName, `Expected to match ${regex}, got: ${value}`);
     return false;
   }
 }
 
-function assertThrows(fn, test_name) {
+function assertThrows(fn, testName) {
   try {
     fn();
-    fail(test_name, 'Expected function to throw, but it did not');
+    fail(testName, 'Expected function to throw, but it did not');
     return false;
   } catch (e) {
-    pass(test_name, `Threw: ${e.message.substring(0, 50)}`);
+    pass(testName, `Threw: ${e.message.substring(0, 50)}`);
     return true;
   }
 }
 
-function assertDoesNotThrow(fn, test_name) {
+function assertDoesNotThrow(fn, testName) {
   try {
     fn();
-    pass(test_name, 'Function executed without throwing');
+    pass(testName, 'Function executed without throwing');
     return true;
   } catch (e) {
-    fail(test_name, `Unexpected throw: ${e.message}`);
+    fail(testName, `Unexpected throw: ${e.message}`);
     return false;
   }
 }
@@ -205,15 +205,15 @@ const MOCK_USER_PROMPTS = [
 
 const MOCK_COLLECTED_DATA = {
   observations: MOCK_OBSERVATIONS,
-  user_prompts: MOCK_USER_PROMPTS,
-  recent_context: [{ learning: 'Implemented OAuth with JWT tokens. Next: Add rate limiting.' }],
+  userPrompts: MOCK_USER_PROMPTS,
+  recentContext: [{ learning: 'Implemented OAuth with JWT tokens. Next: Add rate limiting.' }],
   SPEC_FOLDER: '007-test-spec',
   FILES: [
     { FILE_PATH: 'src/auth/oauth.js', DESCRIPTION: 'OAuth 2.0 implementation' },
     { FILE_PATH: 'src/auth/jwt.js', DESCRIPTION: 'JWT token handling' },
     { FILE_PATH: 'src/db/config.js', DESCRIPTION: 'Database configuration' }
   ],
-  files_modified: [
+  filesModified: [
     { path: 'src/utils/helpers.js', changes_summary: 'Added validation helpers' }
   ]
 };
@@ -250,7 +250,7 @@ const MOCK_MANUAL_DECISIONS = {
    4. COLLECT-SESSION-DATA TESTS (P0)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_collect_session_data() {
+async function testCollectSessionData() {
   log('\n=== COLLECT-SESSION-DATA.JS (P0) ===');
 
   try {
@@ -356,7 +356,7 @@ async function test_collect_session_data() {
    5. SESSION-EXTRACTOR TESTS (P1)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_session_extractor() {
+async function testSessionExtractor() {
   log('\n=== SESSION-EXTRACTOR.JS (P1) ===');
 
   try {
@@ -436,7 +436,7 @@ async function test_session_extractor() {
 
     // Test extractNextAction
     const { extractNextAction } = sessionExtractor;
-    const nextAction = extractNextAction(MOCK_OBSERVATIONS, MOCK_COLLECTED_DATA.recent_context);
+    const nextAction = extractNextAction(MOCK_OBSERVATIONS, MOCK_COLLECTED_DATA.recentContext);
     assertType(nextAction, 'string', 'EXT-Session-033: extractNextAction returns string');
 
     // Test extractBlockers
@@ -524,7 +524,7 @@ async function test_session_extractor() {
       FILES: MOCK_COLLECTED_DATA.FILES,
       SPEC_FILES: [],
       specFolderPath: '/specs/007-test',
-      recentContext: MOCK_COLLECTED_DATA.recent_context
+      recentContext: MOCK_COLLECTED_DATA.recentContext
     });
     assertExists(snapshot.projectPhase, 'EXT-Session-054: Snapshot has projectPhase');
     assertExists(snapshot.activeFile, 'EXT-Session-055: Snapshot has activeFile');
@@ -542,7 +542,7 @@ async function test_session_extractor() {
    6. DECISION-EXTRACTOR TESTS (P1)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_decision_extractor() {
+async function testDecisionExtractor() {
   log('\n=== DECISION-EXTRACTOR.JS (P1) ===');
 
   try {
@@ -623,7 +623,7 @@ async function test_decision_extractor() {
    7. FILE-EXTRACTOR TESTS (P1)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_file_extractor() {
+async function testFileExtractor() {
   log('\n=== FILE-EXTRACTOR.JS (P1) ===');
 
   try {
@@ -668,7 +668,7 @@ async function test_file_extractor() {
 
     // Test legacy format support
     const legacyData = {
-      files_modified: [
+      filesModified: [
         { path: 'src/legacy.js', changes_summary: 'Legacy changes' }
       ]
     };
@@ -733,7 +733,7 @@ async function test_file_extractor() {
    8. CONVERSATION-EXTRACTOR TESTS (P1)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_conversation_extractor() {
+async function testConversationExtractor() {
   log('\n=== CONVERSATION-EXTRACTOR.JS (P1) ===');
 
   try {
@@ -781,7 +781,7 @@ async function test_conversation_extractor() {
     assertExists(result.AUTO_GENERATED_FLOW, 'EXT-Conv-016: AUTO_GENERATED_FLOW exists');
 
     // Test empty data handling
-    const emptyResult = await extractConversations({ observations: [], user_prompts: [] });
+    const emptyResult = await extractConversations({ observations: [], userPrompts: [] });
     assertArray(emptyResult.MESSAGES, 'EXT-Conv-017: Empty data returns MESSAGES array');
     assertEqual(emptyResult.MESSAGE_COUNT, 0, 'EXT-Conv-018: Empty data MESSAGE_COUNT is 0');
 
@@ -797,7 +797,7 @@ async function test_conversation_extractor() {
    9. IMPLEMENTATION-GUIDE-EXTRACTOR TESTS (P1)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_implementation_guide_extractor() {
+async function testImplementationGuideExtractor() {
   log('\n=== IMPLEMENTATION-GUIDE-EXTRACTOR.JS (P1) ===');
 
   try {
@@ -913,7 +913,7 @@ async function test_implementation_guide_extractor() {
    10. DIAGRAM-EXTRACTOR TESTS (P1)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_diagram_extractor() {
+async function testDiagramExtractor() {
   log('\n=== DIAGRAM-EXTRACTOR.JS (P1) ===');
 
   try {
@@ -963,7 +963,7 @@ async function test_diagram_extractor() {
         narrative: '```\n+--------+\n| Start  |\n+--------+\n    |\n    v\n+--------+\n|  End   |\n+--------+\n```',
         facts: []
       }],
-      user_prompts: [{ prompt: 'Create flow' }]
+      userPrompts: [{ prompt: 'Create flow' }]
     };
     const asciiResult = await extractDiagrams(asciiObs);
     // May or may not detect depending on exact box chars used
@@ -982,25 +982,25 @@ async function test_diagram_extractor() {
    11. OPENCODE-CAPTURE TESTS (P1)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_opencode_capture() {
+async function testOpencodeCapture() {
   log('\n=== OPENCODE-CAPTURE.JS (P1) ===');
 
   try {
     const opencodeCapture = require(path.join(EXTRACTORS_DIR, 'opencode-capture'));
 
     // Test exports - snake_case
-    assertType(opencodeCapture.get_recent_prompts, 'function', 'EXT-OC-001: get_recent_prompts exported');
-    assertType(opencodeCapture.get_session_responses, 'function', 'EXT-OC-002: get_session_responses exported');
-    assertType(opencodeCapture.get_tool_executions, 'function', 'EXT-OC-003: get_tool_executions exported');
-    assertType(opencodeCapture.capture_conversation, 'function', 'EXT-OC-004: capture_conversation exported');
-    assertType(opencodeCapture.get_project_id, 'function', 'EXT-OC-005: get_project_id exported');
-    assertType(opencodeCapture.get_recent_sessions, 'function', 'EXT-OC-006: get_recent_sessions exported');
-    assertType(opencodeCapture.get_current_session, 'function', 'EXT-OC-007: get_current_session exported');
-    assertType(opencodeCapture.get_session_messages, 'function', 'EXT-OC-008: get_session_messages exported');
-    assertType(opencodeCapture.get_message_parts, 'function', 'EXT-OC-009: get_message_parts exported');
-    assertType(opencodeCapture.path_exists, 'function', 'EXT-OC-010: path_exists exported');
-    assertType(opencodeCapture.read_json_safe, 'function', 'EXT-OC-011: read_json_safe exported');
-    assertType(opencodeCapture.read_jsonl_tail, 'function', 'EXT-OC-012: read_jsonl_tail exported');
+    assertType(opencodeCapture.getRecentPrompts, 'function', 'EXT-OC-001: get_recent_prompts exported');
+    assertType(opencodeCapture.getSessionResponses, 'function', 'EXT-OC-002: get_session_responses exported');
+    assertType(opencodeCapture.getToolExecutions, 'function', 'EXT-OC-003: get_tool_executions exported');
+    assertType(opencodeCapture.captureConversation, 'function', 'EXT-OC-004: capture_conversation exported');
+    assertType(opencodeCapture.getProjectId, 'function', 'EXT-OC-005: get_project_id exported');
+    assertType(opencodeCapture.getRecentSessions, 'function', 'EXT-OC-006: get_recent_sessions exported');
+    assertType(opencodeCapture.getCurrentSession, 'function', 'EXT-OC-007: get_current_session exported');
+    assertType(opencodeCapture.getSessionMessages, 'function', 'EXT-OC-008: get_session_messages exported');
+    assertType(opencodeCapture.getMessageParts, 'function', 'EXT-OC-009: get_message_parts exported');
+    assertType(opencodeCapture.pathExists, 'function', 'EXT-OC-010: path_exists exported');
+    assertType(opencodeCapture.readJsonSafe, 'function', 'EXT-OC-011: read_json_safe exported');
+    assertType(opencodeCapture.readJsonlTail, 'function', 'EXT-OC-012: read_jsonl_tail exported');
 
     // Test exports - camelCase aliases
     assertType(opencodeCapture.getRecentPrompts, 'function', 'EXT-OC-013: getRecentPrompts alias exported');
@@ -1013,44 +1013,44 @@ async function test_opencode_capture() {
     assertExists(opencodeCapture.PROMPT_HISTORY, 'EXT-OC-018: PROMPT_HISTORY constant exported');
 
     // Test path_exists with non-existent path
-    const { path_exists } = opencodeCapture;
-    const nonExistent = await path_exists('/nonexistent/path/that/should/not/exist');
+    const { pathExists } = opencodeCapture;
+    const nonExistent = await pathExists('/nonexistent/path/that/should/not/exist');
     assertEqual(nonExistent, false, 'EXT-OC-019: Non-existent path returns false');
 
     // Test path_exists with existing path
-    const existingPath = await path_exists(__dirname);
+    const existingPath = await pathExists(__dirname);
     assertEqual(existingPath, true, 'EXT-OC-020: Existing path returns true');
 
     // Test read_json_safe with non-existent file
-    const { read_json_safe } = opencodeCapture;
-    const nonExistentJson = await read_json_safe('/nonexistent/file.json');
+    const { readJsonSafe } = opencodeCapture;
+    const nonExistentJson = await readJsonSafe('/nonexistent/file.json');
     assertEqual(nonExistentJson, null, 'EXT-OC-021: Non-existent JSON returns null');
 
     // Test read_jsonl_tail with non-existent file
-    const { read_jsonl_tail } = opencodeCapture;
-    const nonExistentJsonl = await read_jsonl_tail('/nonexistent/file.jsonl', 10);
+    const { readJsonlTail } = opencodeCapture;
+    const nonExistentJsonl = await readJsonlTail('/nonexistent/file.jsonl', 10);
     assertArray(nonExistentJsonl, 'EXT-OC-022: Non-existent JSONL returns empty array');
     assertEqual(nonExistentJsonl.length, 0, 'EXT-OC-023: Empty JSONL result');
 
     // Test get_project_id with non-existent directory
-    const { get_project_id } = opencodeCapture;
-    const projectId = get_project_id('/nonexistent/project/path');
+    const { getProjectId } = opencodeCapture;
+    const projectId = getProjectId('/nonexistent/project/path');
     assertEqual(projectId, null, 'EXT-OC-024: Non-existent project returns null');
 
     // Test get_recent_sessions with invalid project ID
-    const { get_recent_sessions } = opencodeCapture;
-    const sessions = await get_recent_sessions('nonexistent-project-id', 10);
+    const { getRecentSessions } = opencodeCapture;
+    const sessions = await getRecentSessions('nonexistent-project-id', 10);
     assertArray(sessions, 'EXT-OC-025: Invalid project returns empty array');
     assertEqual(sessions.length, 0, 'EXT-OC-026: No sessions for invalid project');
 
     // Test get_session_messages with invalid session ID
-    const { get_session_messages } = opencodeCapture;
-    const messages = await get_session_messages('nonexistent-session-id');
+    const { getSessionMessages } = opencodeCapture;
+    const messages = await getSessionMessages('nonexistent-session-id');
     assertArray(messages, 'EXT-OC-027: Invalid session returns empty array');
 
     // Test get_message_parts with invalid message ID
-    const { get_message_parts } = opencodeCapture;
-    const parts = await get_message_parts('nonexistent-message-id');
+    const { getMessageParts } = opencodeCapture;
+    const parts = await getMessageParts('nonexistent-message-id');
     assertArray(parts, 'EXT-OC-028: Invalid message returns empty array');
 
   } catch (error) {
@@ -1062,7 +1062,7 @@ async function test_opencode_capture() {
    12. DATA-LOADER TESTS (P0)
 ────────────────────────────────────────────────────────────────*/
 
-async function test_data_loader() {
+async function testDataLoader() {
   log('\n=== DATA-LOADER.JS (P0) ===');
 
   try {
@@ -1103,7 +1103,7 @@ async function test_data_loader() {
    13. EXTRACTORS INDEX RE-EXPORTS TEST
 ────────────────────────────────────────────────────────────────*/
 
-async function test_extractors_index() {
+async function testExtractorsIndex() {
   log('\n=== EXTRACTORS/INDEX.JS ===');
 
   try {
@@ -1130,7 +1130,7 @@ async function test_extractors_index() {
    14. ERROR HANDLING TESTS
 ────────────────────────────────────────────────────────────────*/
 
-async function test_error_handling() {
+async function testErrorHandling() {
   log('\n=== ERROR HANDLING ===');
 
   try {
@@ -1196,7 +1196,7 @@ async function test_error_handling() {
    15. INTEGRATION TESTS
 ────────────────────────────────────────────────────────────────*/
 
-async function test_integration() {
+async function testIntegration() {
   log('\n=== INTEGRATION TESTS ===');
 
   try {
@@ -1220,7 +1220,7 @@ async function test_integration() {
     });
     const diagrams = await extractors.extractDiagrams({
       observations: MOCK_OBSERVATIONS,
-      user_prompts: MOCK_USER_PROMPTS
+      userPrompts: MOCK_USER_PROMPTS
     });
 
     if (decisions.DECISIONS && diagrams.DIAGRAMS) {
@@ -1280,18 +1280,18 @@ async function runAllTests() {
   const startTime = Date.now();
 
   // Run all test suites
-  await test_collect_session_data();
-  await test_session_extractor();
-  await test_decision_extractor();
-  await test_file_extractor();
-  await test_conversation_extractor();
-  await test_implementation_guide_extractor();
-  await test_diagram_extractor();
-  await test_opencode_capture();
-  await test_data_loader();
-  await test_extractors_index();
-  await test_error_handling();
-  await test_integration();
+  await testCollectSessionData();
+  await testSessionExtractor();
+  await testDecisionExtractor();
+  await testFileExtractor();
+  await testConversationExtractor();
+  await testImplementationGuideExtractor();
+  await testDiagramExtractor();
+  await testOpencodeCapture();
+  await testDataLoader();
+  await testExtractorsIndex();
+  await testErrorHandling();
+  await testIntegration();
 
   const duration = Date.now() - startTime;
 

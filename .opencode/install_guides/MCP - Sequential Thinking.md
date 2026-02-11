@@ -568,15 +568,14 @@ sequential_thinking_sequentialthinking({
 
 | Server              | Purpose                           |
 | ------------------- | --------------------------------- |
-| **Narsil**          | Semantic + structural code search |
 | **Spec Kit Memory** | Context preservation              |
 
 ### When to Combine Tools
 
 ```
-Complex debugging → Sequential Thinking + Narsil (search for related code)
+Complex debugging → Sequential Thinking + Grep/Glob (search for related code)
 Architecture decisions → Sequential Thinking + Memory (recall past decisions)
-Code exploration → Narsil (semantic + structural analysis before changing)
+Code exploration → Grep/Glob (search codebase before changing)
 ```
 
 ---

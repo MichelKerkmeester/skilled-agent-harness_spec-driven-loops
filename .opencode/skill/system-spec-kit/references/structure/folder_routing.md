@@ -11,7 +11,7 @@ Stateless spec folder routing with alignment scoring for context preservation.
 
 ## 1. 📖 OVERVIEW
 
-The memory system uses a **stateless CLI-first architecture**. The spec folder path is passed directly to `generate-context.js` as an argument, then validated with alignment scoring.
+The memory system uses a **stateless CLI-first architecture**. The spec folder path is passed directly to `generate-context.ts` as an argument, then validated with alignment scoring.
 
 ### Core Principle
 
@@ -93,7 +93,7 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 
 | Step | Action              | Mechanism                                     |
 | ---- | ------------------- | --------------------------------------------- |
-| 1    | Check CLI argument  | `node .opencode/.../scripts/memory/generate-context.js data.json [spec-folder]` |
+| 1    | Check CLI argument  | `node .opencode/.../scripts/dist/memory/generate-context.js data.json [spec-folder]` |
 | 2    | Prompt if missing   | AI agent asks user for folder                 |
 | 3    | Validate path       | Confirm `specs/###-name/` exists              |
 | 4    | Calculate alignment | Score against conversation context            |
@@ -116,8 +116,8 @@ The alignment score uses **topic matching** to compare conversation keywords aga
 
 ### Calculation Logic
 
-```javascript
-function calculateAlignmentScore(conversationTopics, specFolderName) {
+```typescript
+function calculateAlignmentScore(conversationTopics: string[], specFolderName: string): number {
   // Parse folder name: "007-auth-system" → ["auth", "system"]
   const specTopics = specFolderName.replace(/^\d+-/, '').split(/[-_]/);
 
@@ -156,10 +156,15 @@ Stopwords are filtered: `the`, `this`, `that`, `with`, `for`, `and`, `from`, `fi
 
 ### Threshold Configuration
 
-These thresholds are defined in `generate-context.js`:
+These thresholds are defined in `generate-context.ts`:
 
-```javascript
-const ALIGNMENT_CONFIG = {
+```typescript
+interface AlignmentConfig {
+  THRESHOLD: number;
+  WARNING_THRESHOLD: number;
+}
+
+const ALIGNMENT_CONFIG: AlignmentConfig = {
   THRESHOLD: 70,           // Good alignment - proceed automatically
   WARNING_THRESHOLD: 50,   // Below this = interactive prompt with alternatives
 };
@@ -218,10 +223,10 @@ only, own, same, so, than, too, very, just, also
 
 ```bash
 # Explicit spec folder (recommended)
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json "006-opencode/014-stateless-alignment"
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js data.json "006-opencode/014-stateless-alignment"
 
 # With sub-folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json "122-skill-standardization/002-api-refactor"
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js data.json "122-skill-standardization/002-api-refactor"
 ```
 
 ### AI Agent Workflow
@@ -230,7 +235,7 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.jso
 2. AI agent determines spec folder from conversation context
 3. AI agent calls script with explicit path:
    ```bash
-   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js /tmp/context.json "014-stateless-alignment"
+   node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/context.json "014-stateless-alignment"
    ```
 4. Memory file written to `specs/014-stateless-alignment/memory/`
 
@@ -317,14 +322,14 @@ Folders matching these patterns are automatically excluded:
 
 ```bash
 # Skip alignment prompts, use most recent folder
-AUTO_SAVE_MODE=true node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json
+AUTO_SAVE_MODE=true node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js data.json
 ```
 
 ### Explicit Folder Argument
 
 ```bash
 # Bypass scoring, use specified folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json "122-specific-folder"
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js data.json "122-specific-folder"
 ```
 
 ### Session Preferences
@@ -457,7 +462,7 @@ Select option (1-4):
 ERROR: Spec folder not found: specs/999-nonexistent/
 Available folders:
   - 006-opencode
-  - 007-anobel.com
+  - 007-project-name
   - 122-skill-standardization
 ```
 
@@ -482,7 +487,7 @@ Available folders:
 **Example:**
 ```bash
 # Folder 003-new-work doesn't exist yet
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js data.json "122-feature/003-new-work"
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js data.json "122-feature/003-new-work"
 # Creates: specs/122-feature/003-new-work/memory/
 ```
 

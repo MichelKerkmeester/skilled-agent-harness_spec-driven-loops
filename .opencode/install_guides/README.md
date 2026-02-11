@@ -1,6 +1,6 @@
 # OpenCode Dev Environment — Installation Guide
 
-AI-executable guide for the OpenCode dev environment. Installs 4 native MCP servers + Narsil (via Code Mode), 8 native skills, and optional CLI tools. Execute phases sequentially—each includes validation checkpoints.
+AI-executable guide for the OpenCode dev environment. Installs 3 native MCP servers, 9 native skills, and optional CLI tools. Execute phases sequentially—each includes validation checkpoints.
 
 ---
 
@@ -36,7 +36,7 @@ My environment:
 - Platform: [macOS / Linux / Windows WSL]
 - LLM Provider: [Claude / GitHub Copilot / OpenAI / Gemini / Ollama]
 - Install Mode: [Full / Minimal / Missing only / Custom]
-- Components (if custom): [Code Mode, Narsil (via Code Mode), Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
+- Components (if custom): [Code Mode, Spec Kit Memory, Sequential Thinking, Chrome DevTools CLI]
 
 Start with Pre-Flight Check to detect what's already installed, then guide me through each phase.
 ```
@@ -59,7 +59,6 @@ printf "  │ %-23s │ %-29s │\n" "Python 3.10+" "$(python3 -V 2>&1 | grep -q
 printf "  │ %-23s │ %-29s │\n" "uv" "$(command -v uv >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
 printf "  │ %-23s │ %-29s │\n" "Ollama" "$(command -v ollama >/dev/null && echo '✅ Installed' || echo '❌ Missing')"
 printf "  │ %-23s │ %-29s │\n" "nomic-embed-text" "$(ollama list 2>/dev/null | grep -q nomic && echo '✅ Pulled' || echo '❌ Not pulled')"
-printf "  │ %-23s │ %-29s │\n" "Narsil (via Code Mode)" "$(grep -q 'narsil' .utcp_config.json 2>/dev/null && echo '✅ Configured' || echo '⚪ Optional')"
 printf "  │ %-23s │ %-29s │\n" "Chrome DevTools (bdg)" "$(command -v bdg >/dev/null && echo '✅ Installed' || echo '⚪ Optional')"
 echo "    ├─────────────────────────┼───────────────────────────────┤"
 printf "  │ %-23s │ %-29s │\n" "opencode.json" "$(test -f opencode.json && echo '✅ Exists' || echo '❌ Missing')"
@@ -174,7 +173,7 @@ git checkout -- script.sh
 </details>
 
 ### Q4: Component Bundle
-- **Full** → All components (4 native MCP servers + Narsil via Code Mode + CLI tools + plugins)
+- **Full** → All components (3 native MCP servers + CLI tools + plugins)
 - **Minimal** → Code Mode + Spec Kit Memory (Skills are built-in)
 - **Custom** → Select specific components from matrix below
 
@@ -187,7 +186,7 @@ git checkout -- script.sh
 | OpenCode | Node.js | Python | Ollama | Key Components                 |
 | -------- | ------- | ------ | ------ | ------------------------------ |
 | 25.x+    | 18-22   | 3.10+  | 0.3+   | All MCP servers, native skills |
-| 24.x     | 18-20   | 3.10+  | 0.2+   | Most MCP servers (no Narsil)   |
+| 24.x     | 18-20   | 3.10+  | 0.2+   | Most MCP servers               |
 | 23.x     | 18-20   | 3.9+   | 0.1+   | Basic MCP servers only         |
 
 **Notes:**
@@ -200,7 +199,7 @@ git checkout -- script.sh
 | Bundle   | RAM  | Disk | Network  | Components                                |
 | -------- | ---- | ---- | -------- | ----------------------------------------- |
 | Minimal  | 4GB  | 2GB  | Optional | Code Mode + Spec Kit Memory               |
-| Standard | 8GB  | 5GB  | Required | + Narsil + Sequential Thinking            |
+| Standard | 8GB  | 5GB  | Required | + Sequential Thinking                     |
 | Full     | 16GB | 10GB | Required | All + Ollama models + Chrome DevTools CLI |
 
 **Disk breakdown:**
@@ -234,7 +233,6 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 | Component           | Type       | Purpose                                               | Dependencies                            |
 | ------------------- | ---------- | ----------------------------------------------------- | --------------------------------------- |
 | Code Mode           | MCP Server | External tool orchestration (Webflow, Figma, ClickUp) | Node.js 18+                             |
-| Narsil              | MCP Server | Structural analysis, security scanning, call graphs   | Via Code Mode                           |
 | Spec Kit Memory     | MCP Server | Conversation context preservation                     | Node.js 18+, Ollama (optional)          |
 | Sequential Thinking | MCP Server | Complex reasoning chains                              | npx (Node.js 18+)                       |
 | Native Skills       | Built-in   | Skill discovery from .opencode/skill/                 | None (OpenCode v1.0.190+)               |
@@ -263,21 +261,21 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
     │                   (configured in opencode.json)                      │
     └─────────────────────────────────────────────────────────────────────┘
                                        │
-         ┌─────────────────────────────┼───────────────┐
-         ▼                             ▼               ▼
-   ┌───────────┐               ┌───────────┐ ┌───────────┐
-   │   Code    │               │ Semantic  │ │Sequential │
-   │   Mode    │               │  Memory   │ │ Thinking  │
-   └─────┬─────┘               └───────────┘ └───────────┘
+         ┌─────────────────────────────┼──────────────────┐
+         ▼                             ▼                  ▼
+   ┌───────────┐               ┌───────────┐       ┌───────────┐
+   │   Code    │               │ Semantic  │       │Sequential │
+   │   Mode    │               │  Memory   │       │ Thinking  │
+   └─────┬─────┘               └───────────┘       └───────────┘
          │
          ▼
    ┌───────────────────────────────────┐
    │    EXTERNAL TOOLS (via Code Mode)     │
    │      (.utcp_config.json)              │
-   │  Narsil, Webflow, Figma, ClickUp...   │
+   │  Webflow, Figma, ClickUp, GitHub...   │
    └───────────────────────────────────┘
 
-   NATIVE SKILLS: 8 skills auto-discovered from .opencode/skill/*/SKILL.md
+   NATIVE SKILLS: 9 skills auto-discovered from .opencode/skill/*/SKILL.md
    OPTIONAL: Chrome DevTools CLI (bdg), Auth Plugins
 ```
 
@@ -285,8 +283,8 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 **Full Bundle** (all components):
 ```
-Prerequisites → Ollama → Code Mode → Narsil (via Code Mode) → 
-Spec Kit Memory → Sequential Thinking → Chrome DevTools CLI → 
+Prerequisites → Ollama → Code Mode → Spec Kit Memory →
+Sequential Thinking → Chrome DevTools CLI →
 Antigravity Auth → OpenAI Codex Auth
 ```
 
@@ -297,7 +295,6 @@ Prerequisites → Code Mode → Spec Kit Memory
 
 **Custom Bundle** - Select from:
 - [ ] Code Mode (foundation for external tools)
-- [ ] Narsil (structural analysis, security, semantic search via Code Mode)
 - [ ] Spec Kit Memory (context preservation)
 - [ ] Sequential Thinking (complex reasoning)
 - [ ] Chrome DevTools CLI (browser debugging)
@@ -466,9 +463,8 @@ ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 ### Installation Order (Important!)
 
 1. **Code Mode** (foundation - install FIRST)
-2. Narsil (structural analysis, security, semantic search - via Code Mode)
-3. Spec Kit Memory (context preservation - **now supports multiple embedding providers**)
-4. Sequential Thinking (complex reasoning)
+2. Spec Kit Memory (context preservation - **now supports multiple embedding providers**)
+3. Sequential Thinking (complex reasoning)
 
 ---
 
@@ -478,7 +474,7 @@ Code Mode provides TypeScript execution environment for all external MCP tools.
 
 > **Detailed Guide:** See [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) for comprehensive configuration and provider setup.
 
-**Check:** `npx utcp-mcp --help >/dev/null 2>&1 && echo "Installed"` → If "Installed" shown, skip to config or 7.2
+**Check:** `npx utcp-mcp --help >/dev/null 2>&1 && echo "Installed"` → If "Installed" shown, skip to config
 
 **Install if missing:**
 ```bash
@@ -512,7 +508,6 @@ Code Mode enables access to external MCP tools. Each provider has its own detail
 
 | Provider | Tools | Install Guide |
 |----------|-------|---------------|
-| **Narsil** | 76 | [MCP - Narsil.md](./MCP%20-%20Narsil.md) - Code intelligence, security scanning |
 | **Figma** | 18 | [MCP - Figma.md](./MCP%20-%20Figma.md) - Design file access, image export |
 | **Chrome DevTools** | 26 | [MCP - Chrome Dev Tools.md](./MCP%20-%20Chrome%20Dev%20Tools.md) - Browser debugging (MCP mode) |
 | **Webflow** | 42 | [MCP - Code Mode.md](./MCP%20-%20Code%20Mode.md) - CMS management, site operations |
@@ -535,97 +530,7 @@ npx utcp-mcp --help >/dev/null 2>&1 && test -f .utcp_config.json && echo "✅ PA
 
 ---
 
-### 7.2 Narsil (Structural Analysis + Security + Semantic Search)
-
-Narsil provides deep code intelligence with **76 specialized tools** for security scanning, call graph analysis, structural queries, and neural semantic search. It is accessed via Code Mode for token efficiency.
-
-> **Detailed Guide:** See [MCP - Narsil.md](./MCP%20-%20Narsil.md) for comprehensive installation and usage instructions.
-
-**Core Principle:** Narsil = STRUCTURE + SECURITY + SEMANTICS (unified code intelligence)
-
-| Feature             | Tool Count | Examples                                 |
-| ------------------- | ---------- | ---------------------------------------- |
-| Security Scanning   | 9          | OWASP Top 10, CWE Top 25, taint analysis |
-| Call Graph Analysis | 6          | Callers, callees, function hotspots      |
-| Symbol Navigation   | 7          | Find symbols, definitions, references    |
-| Supply Chain        | 4          | SBOM generation, CVE checking, licenses  |
-| Code Quality        | 5          | Dead code, complexity metrics            |
-
-**Prerequisite:** Code Mode must be installed first (see 7.1).
-
-**Configure in `.utcp_config.json`:**
-```json
-{
-  "mcpServers": {
-    "narsil": {
-      "transport": "stdio",
-      "command": "${NARSIL_PATH}/target/release/narsil-mcp",
-      "args": ["--repos", "${workspaceFolder}", "--index-path", ".narsil-index", "--git", "--call-graph", "--persist", "--watch"]
-    }
-  }
-}
-```
-
-**Usage via Code Mode:**
-```typescript
-// Get project structure
-call_tool_chain({
-  code: `return await narsil.narsil_get_project_structure({})`
-});
-
-// Find all functions
-call_tool_chain({
-  code: `return await narsil.narsil_find_symbols({ kind: "function" })`
-});
-
-// Security scan (OWASP)
-call_tool_chain({
-  code: `return await narsil.narsil_scan_security({ ruleset: "owasp" })`,
-  timeout: 120000
-});
-
-// Call graph analysis
-call_tool_chain({
-  code: `return await narsil.narsil_get_call_graph({ function_name: "main" })`
-});
-```
-
-### Validation: `narsil_check`
-
-- [ ] Code Mode is installed and working
-- [ ] Narsil binary exists at configured path
-- [ ] `.utcp_config.json` has valid Narsil configuration
-- [ ] `search_tools()` returns Narsil tools
-
-**Quick Verification:**
-```bash
-# Verify Code Mode works
-npx utcp-mcp --help >/dev/null 2>&1 && echo "Code Mode: PASS" || echo "Code Mode: FAIL"
-
-# Verify Narsil config exists
-grep -q "narsil-mcp" .utcp_config.json 2>/dev/null && echo "Config: PASS" || echo "Config: FAIL"
-```
-
-**AI Verification:**
-Ask your assistant: "Use Code Mode to search for Narsil tools"
-Expected: List of `narsil.narsil_*` tools (76 total)
-
-**Optional: HTTP Visualization**
-Narsil includes an HTTP server with React frontend for interactive graph visualization:
-```bash
-# Backend (port 3000)
-narsil-mcp --repos . --http --http-port 3000
-
-# Frontend (port 5173) - separate terminal
-cd "${NARSIL_PATH}/frontend" && npm install && npm run dev
-```
-See [MCP - Narsil.md](./MCP%20-%20Narsil.md) for detailed visualization setup.
-
-❌ STOP if validation fails - ensure Code Mode is installed and Narsil is configured in `.utcp_config.json`
-
----
-
-### 7.3 Spec Kit Memory (Context Preservation)
+### 7.2 Spec Kit Memory (Context Preservation)
 
 Spec Kit Memory provides conversation context preservation with vector search.
 
@@ -642,11 +547,13 @@ Spec Kit Memory now supports three embedding backends:
 | **HF Local** | No API key, privacy/offline | 768 | Node.js only (default) |
 | **Ollama** | Ollama local preference | 768 | Ollama + nomic model |
 
-**Automatic provider configuration:**
-- If `VOYAGE_API_KEY` exists: uses Voyage (recommended, 8% better retrieval)
-- Else if `OPENAI_API_KEY` exists: uses OpenAI (auto-detected)
-- Else: uses HF Local (fallback, no additional installation)
-- Manual override: `export EMBEDDINGS_PROVIDER=hf-local` (forces local even with keys)
+**Default provider:** HF Local (free, offline, no API key needed)
+
+**Provider selection:**
+- Default: HF Local (768d) — works out of the box, no API key required
+- If `VOYAGE_API_KEY` set + `EMBEDDINGS_PROVIDER=voyage`: uses Voyage (recommended, 8% better retrieval)
+- If `OPENAI_API_KEY` set + `EMBEDDINGS_PROVIDER=openai`: uses OpenAI
+- Manual override: `export EMBEDDINGS_PROVIDER=hf-local|voyage|openai`
 
 **Location:** Bundled in project at `.opencode/skill/system-spec-kit/`
 
@@ -656,10 +563,9 @@ Spec Kit Memory now supports three embedding backends:
   "mcp": {
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"],
+      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"],
       "env": {
-        "EMBEDDINGS_PROVIDER": "auto",
-        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+        "EMBEDDINGS_PROVIDER": "hf-local"
       }
     }
   }
@@ -668,8 +574,8 @@ Spec Kit Memory now supports three embedding backends:
 
 **Optional environment variables:**
 ```bash
-# Provider selection (auto|voyage|openai|hf-local|ollama)
-export EMBEDDINGS_PROVIDER=auto  # Default: auto-detect
+# Provider selection (hf-local|voyage|openai)
+export EMBEDDINGS_PROVIDER=hf-local  # Default: local embeddings (free, offline)
 
 # Voyage config (recommended - best retrieval quality)
 export VOYAGE_API_KEY=pa-...
@@ -704,7 +610,7 @@ ls -la .opencode/skill/system-spec-kit/mcp_server/database/
 
 **Quick Verification:**
 ```bash
-test -f .opencode/skill/system-spec-kit/mcp_server/context-server.js && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+test -f .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js && grep -q '"spec_kit_memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 **Verify active provider:**
@@ -724,7 +630,7 @@ Use the `memory_health` tool after starting OpenCode to see which provider is ac
 
 ---
 
-### 7.4 Sequential Thinking (Complex Reasoning)
+### 7.3 Sequential Thinking (Complex Reasoning)
 
 Sequential Thinking provides structured reasoning chains for complex problems.
 
@@ -757,7 +663,7 @@ grep -q '"sequential_thinking"' opencode.json && echo "✅ PASS" || echo "❌ FA
 
 ---
 
-### 7.5 Chrome DevTools CLI (Optional)
+### 7.4 Chrome DevTools CLI (Optional)
 
 Chrome DevTools provides browser automation and debugging via CLI.
 
@@ -795,7 +701,6 @@ bdg --version >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 ### Phase 3 Complete Validation: `mcp_servers_check`
 
 - [ ] Code Mode: npx utcp-mcp --version responds
-- [ ] Narsil: accessible via Code Mode
 - [ ] Spec Kit Memory: configured in opencode.json
 - [ ] Sequential Thinking: configured in opencode.json
 - [ ] (Optional) Chrome DevTools: bdg --version responds
@@ -820,20 +725,22 @@ Skills are automatically discovered from:
 - `~/.opencode/skill/<name>/SKILL.md` (global)
 - `.claude/skills/<name>/SKILL.md` (Claude-compatible)
 
-**Current Skills (8 total):**
-| Skill                     | Version | Purpose                                              |
-| ------------------------- | ------- | ---------------------------------------------------- |
-| mcp-narsil                | v1.0.x  | Unified code intelligence (semantic + structural + security) |
-| mcp-code-mode             | v1.2.0  | External tool orchestration                          |
-| system-spec-kit           | v2.0.0  | Spec folder + template system + context preservation |
-| workflows-chrome-devtools | v2.1.0  | Browser debugging                                    |
-| workflows-code            | v2.0.0  | Implementation orchestrator                          |
-| workflows-documentation   | v1.0.0  | Unified markdown and skill management                |
-| workflows-git             | v1.5.0  | Git workflow orchestrator                            |
+**Current Skills (9 total):**
+| Skill                      | Version    | Purpose                                              |
+| -------------------------- | ---------- | ---------------------------------------------------- |
+| mcp-code-mode              | v1.2.0     | External tool orchestration                          |
+| mcp-figma                  | v1.0.0     | Figma design file access and integration             |
+| system-spec-kit            | v2.2.0     | Spec folder + template system + context preservation |
+| workflows-chrome-devtools  | v2.1.0     | Browser debugging                                    |
+| workflows-code--full-stack | v1.0.0     | Full-stack implementation orchestrator               |
+| workflows-code--opencode   | v1.3.2     | OpenCode system code standards                       |
+| workflows-code--web-dev    | v1.0.9     | Web development implementation orchestrator          |
+| workflows-documentation    | v5.2.0     | Unified markdown and skill management                |
+| workflows-git              | v1.5.0     | Git workflow orchestrator                            |
 
 **How it works:**
 - OpenCode scans skill folders on startup
-- Skills are surfaced as `skills_*` functions (e.g., `skills_mcp_narsil`)
+- Skills are surfaced as `skills_*` functions (e.g., `skills_mcp_code_mode`)
 - Agents read `SKILL.md` files directly when a task matches
 
 **No configuration needed** - skills in `.opencode/skill/` are automatically available.
@@ -921,7 +828,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
     },
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"]
+      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"]
     },
     "sequential_thinking": {
       "command": "npx",
@@ -960,7 +867,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
     },
     "spec_kit_memory": {
       "command": "node",
-      "args": [".opencode/skill/system-spec-kit/mcp_server/context-server.js"]
+      "args": [".opencode/skill/system-spec-kit/mcp_server/dist/context-server.js"]
     }
   },
   "plugins": []
@@ -983,7 +890,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 - [ ] Prerequisites: Node.js 18+, Python 3.10+, uv
 - [ ] Ollama running with nomic-embed-text model
 - [ ] All 3 native MCP servers configured in opencode.json
-- [ ] Skills directory exists with 7 skills
+- [ ] Skills directory exists with 9 skills
 - [ ] Configuration files exist and are valid JSON
 
 ### Quick Verification
@@ -1053,7 +960,6 @@ BACKUP="$HOME/.opencode-backup-YYYYMMDD-HHMMSS" && cp "$BACKUP/opencode.json" "$
 | **Chrome DevTools CLI**  | `npm uninstall -g browser-debugger-cli`                |                                                      |
 | **Spec Kit Memory**      | `rm .opencode/skill/system-spec-kit/mcp_server/database/*.sqlite` | Database will be recreated                           |
 | **Sequential Thinking**  | Remove from `opencode.json`                            | No files to delete                                   |
-| **Narsil**               | Access via Code Mode - no separate config needed       | Accessed through Code Mode                           |
 | **Skills**               | `rm -rf .opencode/skill/<skill-name>/`                 | Remove specific skill folder                         |
 | **All Skills**           | `rm -rf .opencode/skill/`                              | Removes all skills                                   |
 
@@ -1143,7 +1049,7 @@ The `AGENTS (Universal).md` file is a template for AI agent behavior. Customize 
 | Project Type | Primary Tools                   | Primary Skills                           | Remove/De-emphasize           |
 | ------------ | ------------------------------- | ---------------------------------------- | ----------------------------- |
 | Front-end    | Chrome DevTools, Webflow, Figma | workflows-chrome-devtools, mcp-code-mode | Database tools, API patterns  |
-| Back-end     | API testing, Database tools     | workflows-code, mcp-narsil               | Browser tools, Webflow, Figma |
+| Back-end     | API testing, Database tools     | workflows-code                           | Browser tools, Webflow, Figma |
 | Full-stack   | All tools                       | All skills                               | Nothing                       |
 
 📖 **Detailed Guide**: [SET-UP - AGENTS.md](./SET-UP%20-%20AGENTS.md)
@@ -1179,10 +1085,16 @@ python .opencode/skill/workflows-documentation/scripts/package_skill.py .opencod
 
 The Agent System provides specialized AI personas with defined authorities, tool permissions, and behavioral rules. Unlike skills (knowledge bundles), agents have **authority** to act and **tools** to execute.
 
-**Available Agents:**
+**Available Agents (8 total):**
 | Agent           | Purpose                         | Key Capability                        |
 | --------------- | ------------------------------- | ------------------------------------- |
+| **context**     | Context retrieval & analysis    | Exploration dispatch, memory loading  |
+| **debug**       | Fresh-perspective debugging     | Systematic 4-phase root cause analysis|
+| **handover**    | Session continuation            | Context preservation, handover docs   |
 | **orchestrate** | Task decomposition & delegation | Parallel delegation (up to 20 agents) |
+| **research**    | Evidence gathering & planning   | Technical investigation, Gate 3 Option B |
+| **review**      | Code review & quality gates     | Pattern validation, quality scoring   |
+| **speckit**     | Spec folder creation            | Level 1-3+ documentation, templates  |
 | **write**       | Documentation creation          | Template-first, DQI scoring           |
 
 **Quick Verification:**
@@ -1224,29 +1136,25 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 
 | Workflow                 | Tools/Commands                | Example                                                   |
 | ------------------------ | ----------------------------- | --------------------------------------------------------- |
-| **Code Exploration**     | Narsil                        | `narsil.narsil_neural_search({ query: "authentication" })`|
 | **Context Preservation** | Spec Kit Memory               | `/memory:save`, `memory_search()`                         |
 | **Browser Debugging**    | Chrome DevTools CLI           | `bdg screenshot --url https://example.com`                |
 | **Documentation**        | workflows-documentation skill | Invoke skill for doc structure                            |
 | **Git Operations**       | workflows-git skill           | Commit, PR creation workflows                             |
 | **Implementation**       | workflows-code skill          | 3-phase implementation lifecycle                          |
 
-### 13.3 Available Commands (16 total)
+### 13.3 Available Commands (19 total)
 
 | Category | Commands                                                                                                |
 | -------- | ------------------------------------------------------------------------------------------------------- |
-| Create   | `/create:skill`, `/create:spec`                                                                         |
-| Memory   | `/memory:save`, `/memory:search`                                                                        |
-| Prompt   | `/prompt:improve`                                                                                       |
-| Search   | `/search:code`, `/search:files`                                                                         |
-| SpecKit  | `/spec_kit:complete`, `/spec_kit:plan`, `/spec_kit:implement`, `/spec_kit:research`, `/spec_kit:resume` |
+| Create   | `/create:agent`, `/create:folder_readme`, `/create:install_guide`, `/create:skill`, `/create:skill_asset`, `/create:skill_reference` |
+| Memory   | `/memory:context`, `/memory:continue`, `/memory:learn`, `/memory:manage`, `/memory:save`                |
+| SpecKit  | `/spec_kit:complete`, `/spec_kit:debug`, `/spec_kit:handover`, `/spec_kit:implement`, `/spec_kit:plan`, `/spec_kit:research`, `/spec_kit:resume` |
 
 ### 13.4 Learning Resources
 
 | Resource      | Location                                   | Description                   |
 | ------------- | ------------------------------------------ | ----------------------------- |
 | OpenCode Docs | https://opencode.ai/docs                   | Official documentation        |
-| Narsil Skill  | `.opencode/skill/mcp-narsil/SKILL.md`      | Code intelligence usage       |
 | Memory Skill  | `.opencode/skill/system-spec-kit/SKILL.md` | Context preservation          |
 | Code Skill    | `.opencode/skill/workflows-code/SKILL.md`  | Implementation patterns       |
 | Git Skill     | `.opencode/skill/workflows-git/SKILL.md`   | Git workflows                 |
@@ -1258,7 +1166,6 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 - [ ] Configure external tools in `.utcp_config.json` (Webflow, Figma, ClickUp)
 - [ ] Create project-specific skills for repeated workflows
 - [ ] Set up backup schedule for configurations
-- [ ] Explore Narsil neural search and security scanning features
 - [ ] Practice spec folder workflow for all file modifications
 
 ---
@@ -1286,22 +1193,6 @@ npx utcp-mcp
 </details>
 
 <details>
-<summary><strong>Narsil Issues</strong></summary>
-
-### Tool not accessible
-1. Ensure Code Mode is installed and working
-2. Verify Code Mode can access Narsil tools
-3. Check for error messages in Code Mode output
-
-### Security scan errors
-```bash
-# Verify Code Mode is working
-npx utcp-mcp --list-tools
-```
-
-</details>
-
-<details>
 <summary><strong>Spec Kit Memory Issues</strong></summary>
 
 ### Database not found
@@ -1310,13 +1201,14 @@ npx utcp-mcp --list-tools
 mkdir -p .opencode/skill/system-spec-kit/mcp_server/database
 
 # Database is created on first run
-node .opencode/skill/system-spec-kit/mcp_server/context-server.js
+node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
 ### Embeddings not working
-1. Verify Ollama is running: `ollama list`
-2. Check nomic-embed-text model: `ollama pull nomic-embed-text`
-3. Verify OLLAMA_BASE_URL in config
+1. Default provider is HF Local — no Ollama required
+2. Clear corrupted model cache: `rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
+3. Restart MCP server (model re-downloads on first use)
+4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches
 
 ### Memory search returns empty
 ```bash
@@ -1418,7 +1310,6 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Check prerequisites  | `node -v && python3 -V`                                     |
 | Start Ollama         | `ollama serve`                                              |
 | Pull embedding model | `ollama pull nomic-embed-text`                              |
-| Search code (Narsil) | `narsil.narsil_neural_search({ query: "your query" })`      |
 | List skills          | `ls .opencode/skill/`                                       |
 | Read skill           | `cat .opencode/skill/<skill-name>/SKILL.md`                 |
 | Browser screenshot   | `bdg screenshot --url <url> --output out.png`               |
@@ -1430,8 +1321,8 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | --------------------------- | --------------------------------------------- |
 | `opencode.json`             | OpenCode MCP server config (3 native servers) |
 | `.utcp_config.json`         | Code Mode external tools config               |
-| `.opencode/skill/`          | Skill definitions (7 skills)                  |
-| `.opencode/agent/`          | Agent definitions (orchestrate, write)        |
+| `.opencode/skill/`          | Skill definitions (9 skills)                  |
+| `.opencode/agent/`          | Agent definitions (8 agents)                  |
 | `.opencode/install_guides/` | Installation documentation                    |
 
 | `~/.opencode-backup/`       | Configuration backups                         |
@@ -1442,8 +1333,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Category           | Count | Items                                                                                                                    |
 | ------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------ |
 | Native MCP Servers | 3     | code_mode, spec_kit_memory, sequential_thinking                                                                          |
-| Code Mode Tools    | 1     | narsil (structural analysis, security, semantic search, call graphs)                                                     |
-| Skills             | 7     | mcp-narsil, mcp-code-mode, system-spec-kit, workflows-chrome-devtools, workflows-code, workflows-documentation, workflows-git |
-| Commands           | 16    | /create:*, /memory:*, /prompt:improve, /search:*, /spec_kit:*                                                                            |
+| Skills             | 9     | mcp-code-mode, mcp-figma, system-spec-kit, workflows-chrome-devtools, workflows-code--full-stack, workflows-code--opencode, workflows-code--web-dev, workflows-documentation, workflows-git |
+| Commands           | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                                            |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                                      |

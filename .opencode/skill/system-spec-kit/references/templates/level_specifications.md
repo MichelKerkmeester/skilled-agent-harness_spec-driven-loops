@@ -17,21 +17,21 @@ Templates use a compositional model where core content is shared and addendums a
 
 ```
 templates/
-├── core/                    # Shared foundation (~270 LOC total)
+├── core/                    # Shared foundation (~390 LOC total)
 │   ├── spec-core.md         # Essential what/why/how
 │   ├── plan-core.md         # Technical approach
 │   ├── tasks-core.md        # Task breakdown
 │   └── impl-summary-core.md # Outcomes documentation
 │
 ├── addendum/                # Level-specific VALUE additions
-│   ├── level2-verify/       # +Verification (~120 LOC)
-│   ├── level3-arch/         # +Architecture (~150 LOC)
-│   └── level3plus-govern/   # +Governance (~100 LOC)
+│   ├── level2-verify/       # +Verification (~185 LOC)
+│   ├── level3-arch/         # +Architecture (~220 LOC)
+│   └── level3plus-govern/   # +Governance (~190 LOC)
 │
-├── level_1/                 # Composed Level 1: Core only (~270 LOC)
-├── level_2/                 # Composed Level 2: Core + L2 (~390 LOC)
-├── level_3/                 # Composed Level 3: Core + L2 + L3 (~540 LOC)
-└── level_3+/                # Composed Level 3+: All addendums (~640 LOC)
+├── level_1/                 # Composed Level 1: Core only (~455 LOC)
+├── level_2/                 # Composed Level 2: Core + L2 (~875 LOC)
+├── level_3/                 # Composed Level 3: Core + L2 + L3 (~1090 LOC)
+└── level_3+/                # Composed Level 3+: All addendums (~1075 LOC)
 ```
 
 ### Template Paths - Quick Reference
@@ -47,13 +47,13 @@ templates/
 ### Progressive Enhancement Model (Value-Based)
 
 ```
-Level 1 (Core):         Essential what/why/how (~270 LOC)
+Level 1 (Core):         Essential what/why/how (~455 LOC)
          ↓ +Verify
-Level 2 (Verification): +Quality gates, NFRs, edge cases (~390 LOC)
+Level 2 (Verification): +Quality gates, NFRs, edge cases (~875 LOC)
          ↓ +Arch
-Level 3 (Full):         +Architecture decisions, ADRs, risk matrix (~540 LOC)
+Level 3 (Full):         +Architecture decisions, ADRs, risk matrix (~1090 LOC)
          ↓ +Govern
-Level 3+ (Extended):    +Enterprise governance, AI protocols (~640 LOC)
+Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 ```
 
 ### What Each Level ADDS (Value Scaling)
@@ -478,11 +478,12 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 ### Creating Level 3+ Spec Folder
 
 ```bash
-# Auto-detect (will recommend 3+ if score >= 80)
-./scripts/spec/create.sh "Complex multi-agent migration" --complexity
+# Specify level directly (recommended)
+./scripts/spec/create.sh "Complex migration" --level 3+
 
-# Or specify directly
-./scripts/spec/create.sh "Complex migration" --level 3 --expand
+# DEPRECATED flags (no longer supported):
+# ./scripts/spec/create.sh "..." --complexity    # Removed: use --level N instead
+# ./scripts/spec/create.sh "..." --expand        # Removed: templates are pre-expanded in level folders
 ```
 
 ### Template Adaptation
@@ -695,12 +696,12 @@ Some templates are not level-specific but can be used at any documentation level
 
 | Folder | Purpose | Creation Method |
 |--------|---------|-----------------|
-| `memory/` | Session context preservation | `generate-context.js` script via `/memory:save` |
+| `memory/` | Session context preservation | `generate-context.ts` script via `/memory:save` |
 | `scratch/` | Temporary workspace (disposable) | Manual creation (no template needed) |
 
 **Important:**
 - Memory files are auto-generated and should NOT be created manually
-- Use `/memory:save` or `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder]`
+- Use `/memory:save` or `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder]`
 - Scratch folder contents are temporary and should be cleaned up after work completes
 
 ---
@@ -710,7 +711,7 @@ Some templates are not level-specific but can be used at any documentation level
 ### Reference Files
 - [quick_reference.md](../workflows/quick_reference.md) - Commands, checklists, and troubleshooting
 - [template_guide.md](./template_guide.md) - Template selection, adaptation, and quality standards
-- [complexity_guide.md](./complexity_guide.md) - 5-dimension complexity scoring and auto-detection
+- [level_selection_guide.md](./level_selection_guide.md) - 5-dimension complexity scoring and auto-detection
 - [path_scoped_rules.md](../validation/path_scoped_rules.md) - Path-scoped validation rules reference
 
 ### Templates (CORE + ADDENDUM v2.0)
@@ -721,22 +722,22 @@ Some templates are not level-specific but can be used at any documentation level
 - [tasks-core.md](../../templates/core/tasks-core.md) - Task breakdown (~60 lines)
 - [impl-summary-core.md](../../templates/core/impl-summary-core.md) - Outcomes (~40 lines)
 
-**Composed Level 1 (Core only ~270 LOC):**
+**Composed Level 1 (Core only ~455 LOC):**
 - [spec.md](../../templates/level_1/spec.md) - Requirements and scope
 - [plan.md](../../templates/level_1/plan.md) - Technical plan
 - [tasks.md](../../templates/level_1/tasks.md) - Task breakdown
 - [implementation-summary.md](../../templates/level_1/implementation-summary.md) - Outcomes
 
-**Composed Level 2 (Core + Verify ~390 LOC):**
+**Composed Level 2 (Core + Verify ~875 LOC):**
 - All Level 1 templates + quality gates, NFRs
 - [checklist.md](../../templates/level_2/checklist.md) - Verification checklist
 
-**Composed Level 3 (Core + Verify + Arch ~540 LOC):**
+**Composed Level 3 (Core + Verify + Arch ~1090 LOC):**
 - All Level 2 templates + architecture decisions
 - [decision-record.md](../../templates/level_3/decision-record.md) - ADRs
 - [research.md](../../templates/research.md) - Research (optional)
 
-**Composed Level 3+ (All addendums ~640 LOC):**
+**Composed Level 3+ (All addendums ~1075 LOC):**
 - All Level 3 templates + enterprise governance
 - Extended checklist with sign-off, AI protocols
 
@@ -745,7 +746,7 @@ Some templates are not level-specific but can be used at any documentation level
 - [debug-delegation.md](../../templates/debug-delegation.md) - Debug task delegation
 
 **Non-Template Folders:**
-- `memory/` - Context preservation (auto-generated via generate-context.js)
+- `memory/` - Context preservation (auto-generated via generate-context.ts)
 - `scratch/` - Temporary workspace (create ad-hoc files as needed)
 
 ### Related Skills

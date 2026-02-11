@@ -23,7 +23,7 @@ This folder contains standalone command-line scripts for administrative tasks on
 
 | File                    | Purpose                                              |
 | ----------------------- | ---------------------------------------------------- |
-| `reindex-embeddings.js` | Force regeneration of all embeddings in the database |
+| `reindex-embeddings.ts` | Force regeneration of all embeddings in the database |
 
 ---
 
@@ -32,7 +32,11 @@ This folder contains standalone command-line scripts for administrative tasks on
 ### Force Reindex All Memory Files
 
 ```bash
-node scripts/reindex-embeddings.js
+# TypeScript source (requires compilation first)
+npm run build
+
+# Run compiled version
+node mcp_server/dist/scripts/reindex-embeddings.js
 ```
 
 **When to use:**
@@ -52,5 +56,6 @@ node scripts/reindex-embeddings.js
 ## 4. 🔗 RELATED RESOURCES
 
 - [Parent README](../README.md) - MCP server documentation
-- [Reindex Script](./reindex-embeddings.js) - Full implementation
-- [Vector Index Module](../lib/search/vector-index.js) - Underlying indexing system
+- [Reindex Script](./reindex-embeddings.ts) - Full TypeScript implementation
+- [Vector Index Module](../lib/search/vector-index.ts) - Underlying indexing system
+- [Compiled Output](../dist/scripts/reindex-embeddings.js) - Transpiled JavaScript (outDir)

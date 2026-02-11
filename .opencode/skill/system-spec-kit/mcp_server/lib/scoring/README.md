@@ -34,7 +34,7 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 6 | Core scoring algorithms |
+| Modules | 4 | Core scoring algorithms (.ts source files) |
 | Importance Tiers | 6 | constitutional, critical, important, normal, temporary, deprecated |
 | Scoring Factors | 5 | temporal, usage, importance, pattern, citation |
 | Export Functions | 40+ | Scoring utilities and helpers |
@@ -90,25 +90,23 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 
 ```
 scoring/
-├── index.js                 # Module aggregator (re-exports all)
-├── composite-scoring.js     # 5-factor and 6-factor composite scoring
-├── importance-tiers.js      # 6-tier importance configuration
-├── folder-scoring.js        # Spec folder ranking algorithms
-├── confidence-tracker.js    # User validation and promotion
-├── scoring.js               # Base decay functions
+├── composite-scoring.ts     # 5-factor and 6-factor composite scoring
+├── importance-tiers.ts      # 6-tier importance configuration
+├── folder-scoring.ts        # Re-exports from @spec-kit/shared/scoring/folder-scoring
+├── confidence-tracker.ts    # User validation and promotion
 └── README.md                # This file
 ```
+
+**Note:** `index.js` and `scoring.js` exist only as compiled JS in `dist/lib/scoring/` (never migrated to TypeScript source). They provide barrel re-exports and base decay utilities respectively.
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `composite-scoring.js` | Main scoring engine with 5-factor REQ-017 model |
-| `importance-tiers.js` | Tier definitions, boost functions, SQL helpers |
-| `folder-scoring.js` | Folder ranking for "resume work" use case |
-| `confidence-tracker.js` | Feedback loop: validation -> promotion |
-| `scoring.js` | Exponential decay utilities |
-| `index.js` | Unified exports for all modules |
+| `composite-scoring.ts` | Main scoring engine with 5-factor REQ-017 model |
+| `importance-tiers.ts` | Tier definitions, boost functions, SQL helpers |
+| `folder-scoring.ts` | Re-export from @spec-kit/shared/scoring/folder-scoring |
+| `confidence-tracker.ts` | Feedback loop: validation -> promotion |
 
 ---
 
@@ -116,8 +114,8 @@ scoring/
 
 ### Example 1: Calculate 5-Factor Score
 
-```javascript
-const { calculate_five_factor_score } = require('./scoring');
+```typescript
+import { calculateFiveFactorScore } from './composite-scoring';
 
 const memory = {
   stability: 30,
@@ -129,7 +127,7 @@ const memory = {
   title: 'Authentication Implementation',
 };
 
-const score = calculate_five_factor_score(memory, {
+const score = calculateFiveFactorScore(memory, {
   query: 'auth login',
   anchors: ['implementation'],
 });
@@ -138,21 +136,21 @@ const score = calculate_five_factor_score(memory, {
 
 ### Example 2: Apply Tier Boost
 
-```javascript
-const { apply_tier_boost, get_tier_config } = require('./scoring');
+```typescript
+import { applyTierBoost, getTierConfig } from './importance-tiers';
 
 const baseScore = 0.75;
-const boostedScore = apply_tier_boost(baseScore, 'critical');
+const boostedScore = applyTierBoost(baseScore, 'critical');
 // Returns: 1.5 (0.75 * 2.0x boost)
 
-const config = get_tier_config('constitutional');
+const config = getTierConfig('constitutional');
 // Returns: { value: 1.0, searchBoost: 3.0, decay: false, alwaysSurface: true, ... }
 ```
 
 ### Example 3: Rank Spec Folders
 
-```javascript
-const { compute_folder_scores } = require('./scoring');
+```typescript
+import { computeFolderScores } from './folder-scoring';
 
 const memories = [
   { spec_folder: '012-auth', updated_at: '2025-01-20', importance_tier: 'critical' },
@@ -160,32 +158,40 @@ const memories = [
   { spec_folder: 'z_archive/001-old', updated_at: '2024-06-01', importance_tier: 'deprecated' },
 ];
 
-const ranked = compute_folder_scores(memories, { includeArchived: false });
+const ranked = computeFolderScores(memories, { includeArchived: false });
 // Returns: [{ folder: '012-auth', score: 0.85, recencyScore: 0.95, ... }]
 ```
 
 ### Example 4: Track Confidence and Promote
 
-```javascript
-const { record_validation, get_confidence_info } = require('./scoring');
+```typescript
+import { recordValidation, getConfidenceInfo } from './confidence-tracker';
+import Database from 'better-sqlite3';
+
+const db = new Database('context-index.sqlite');
 
 // Record positive validation
-const result = record_validation(db, memoryId, true);
+const result = recordValidation(db, memoryId, true);
 // Returns: { confidence: 0.6, validationCount: 1, promotionEligible: false }
 
 // After 5+ validations with confidence >= 0.9
-const info = get_confidence_info(db, memoryId);
+const info = getConfidenceInfo(db, memoryId);
 // Returns: { promotionEligible: true, wasPromoted: true, importanceTier: 'critical' }
 ```
+
+> **Note on `validationCount`:** SQLite returns `validation_count` (snake_case column name).
+> The code type-casts to include both `validationCount` and `validation_count` for safety,
+> but the camelCase variant is always `undefined` — the `??` fallback chain ensures
+> `validation_count` is used at runtime. No bug, but the type cast is defensive/misleading.
 
 ### Common Patterns
 
 | Pattern | Code | When to Use |
 |---------|------|-------------|
-| Get tier value | `get_tier_value('critical')` | Numeric importance (0-1) |
-| Check decay | `allows_decay('constitutional')` | Filter decay-exempt tiers |
-| Archive check | `is_archived('/z_archive/old')` | Deprioritize archived folders |
-| Score breakdown | `get_five_factor_breakdown(row)` | Debug/explain scoring |
+| Get tier value | `getTierValue('critical')` | Numeric importance (0-1) |
+| Check decay | `allowsDecay('constitutional')` | Filter decay-exempt tiers |
+| Archive check | `isArchived('/z_archive/old')` | Deprioritize archived folders |
+| Score breakdown | `getFiveFactorBreakdown(row)` | Debug/explain scoring |
 
 ---
 
@@ -208,4 +214,12 @@ const info = get_confidence_info(db, memoryId);
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2025-01-21*
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08
+
+**Migration Notes**:
+- 4 of 6 modules migrated to TypeScript (.ts) as source of truth
+- `index.js` and `scoring.js` remain as compiled JS only in `dist/lib/scoring/` (barrel re-exports and base decay utilities; never had .ts source)
+- Compiled output in `dist/lib/scoring/`
+- `folder-scoring.ts` re-exports from `@spec-kit/shared/scoring/folder-scoring`
+- Import paths use ES modules (`import` instead of `require`)

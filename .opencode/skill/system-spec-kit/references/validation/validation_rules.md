@@ -866,17 +866,17 @@ Either expand content or reduce declared level:
 
 **Run validation on a spec folder:**
 ```bash
-./scripts/validate-spec.sh specs/007-feature/
+./scripts/spec/validate.sh specs/007-feature/
 ```
 
 **Run in strict mode (fail on warnings):**
 ```bash
-SPECKIT_STRICT=true ./scripts/validate-spec.sh specs/007-feature/
+SPECKIT_STRICT=true ./scripts/spec/validate.sh specs/007-feature/
 ```
 
 **Get JSON output for automation:**
 ```bash
-SPECKIT_JSON=true ./scripts/validate-spec.sh specs/007-feature/
+SPECKIT_JSON=true ./scripts/spec/validate.sh specs/007-feature/
 ```
 
 ---

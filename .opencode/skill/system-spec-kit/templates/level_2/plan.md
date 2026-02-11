@@ -1,7 +1,7 @@
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 2 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 <!-- WHEN TO USE THIS TEMPLATE:
 Level 2 Plan (+Verify) is appropriate when:

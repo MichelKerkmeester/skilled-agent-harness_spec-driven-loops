@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────────
-# run-tests.sh: Run MCP install script tests in Docker
-# ───────────────────────────────────────────────────────────────────
-
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: MCP INSTALL SCRIPT TEST RUNNER
+# ───────────────────────────────────────────────────────────────
+# Runs MCP install script tests inside Docker containers to
+# validate installation logic in a clean environment.
+#
 # Usage:
 #   .opencode/install_scripts/test/run-tests.sh [script-name]
 #
@@ -12,30 +14,30 @@
 
 set -euo pipefail
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 1. CONFIGURATION
-# ───────────────────────────────────────────────────────────────────
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
-IMAGE_NAME="mcp-install-test"
+# ───────────────────────────────────────────────────────────────
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+readonly IMAGE_NAME="mcp-install-test"
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 2. COLORS & LOGGING
-# ───────────────────────────────────────────────────────────────────
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-CYAN='\033[0;36m'
-NC='\033[0m'
+# ───────────────────────────────────────────────────────────────
+readonly RED='\033[0;31m'
+readonly GREEN='\033[0;32m'
+readonly YELLOW='\033[1;33m'
+readonly CYAN='\033[0;36m'
+readonly NC='\033[0m'
 
-log_info() { echo -e "${CYAN}[INFO]${NC} $1"; }
-log_success() { echo -e "${GREEN}[OK]${NC} $1"; }
-log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
-log_warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
+log_info() { echo -e "${CYAN}[INFO]${NC} ${1}"; }
+log_success() { echo -e "${GREEN}[OK]${NC} ${1}"; }
+log_error() { echo -e "${RED}[ERROR]${NC} ${1}" >&2; }
+log_warn() { echo -e "${YELLOW}[WARN]${NC} ${1}"; }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 3. DOCKER FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 # Build Docker image if needed
 build_image() {
@@ -47,9 +49,9 @@ build_image() {
     log_success "Docker image built: ${IMAGE_NAME}"
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 4. TEST FUNCTIONS
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 # Run a single script test
 run_test() {
@@ -90,7 +92,6 @@ run_all_tests() {
         # Skip spec-kit-memory - requires bundled files
         # Skip chrome-devtools - requires Chrome
         # Skip figma - interactive
-        # Skip narsil - requires npm install time
     )
     
     echo ""
@@ -115,14 +116,14 @@ run_all_tests() {
     echo -e "${RED}Failed: ${failed}${NC}"
     echo ""
     
-    if [[ $failed -gt 0 ]]; then
+    if [[ "${failed}" -gt 0 ]]; then
         exit 1
     fi
 }
 
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 # 5. MAIN
-# ───────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
 
 main() {
     # Check Docker is available

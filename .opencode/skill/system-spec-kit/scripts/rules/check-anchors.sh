@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# RULE: CHECK-ANCHORS
+# COMPONENT: Check Anchors
 # ───────────────────────────────────────────────────────────────
+
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
 
 # Rule: ANCHORS_VALID
 # Severity: error
@@ -55,7 +59,8 @@ run_check() {
         local tmp_opens tmp_closes
         tmp_opens=$(mktemp)
         tmp_closes=$(mktemp)
-        
+        trap 'rm -f "$tmp_opens" "$tmp_closes"' RETURN
+
         # Extract opening anchors: <!-- ANCHOR:id --> format: "linenum id"
         { grep -n '<!-- ANCHOR:[^/]' "$file" 2>/dev/null || true; } | \
             sed -n 's/^\([0-9]*\):.*ANCHOR:\([^[:space:]>]*\).*/\1 \2/p' > "$tmp_opens"

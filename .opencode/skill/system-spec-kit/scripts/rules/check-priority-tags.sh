@@ -3,6 +3,10 @@
 # RULE: CHECK-PRIORITY-TAGS
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: PRIORITY_TAGS
 # Severity: warning
 # Description: Validates checklist items have priority context (P0/P1/P2 headers or inline tags).
@@ -22,7 +26,9 @@ run_check() {
     RULE_DETAILS=()
     RULE_REMEDIATION=""
     
-    if [[ "$level" -lt 2 ]]; then
+    # T501 FIX: Strip non-numeric suffix (e.g. "3+" → "3") for arithmetic comparisons
+    local numeric_level="${level//[^0-9]/}"
+    if [[ "$numeric_level" -lt 2 ]]; then
         RULE_STATUS="skip"
         RULE_MESSAGE="Skipped (Level 1 - no checklist required)"
         return

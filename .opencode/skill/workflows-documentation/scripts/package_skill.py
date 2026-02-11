@@ -22,12 +22,12 @@ Example:
     python package_skill.py .opencode/skill/my-skill --check
 """
 
-import sys
-import zipfile
 import json
 import re
+import sys
+import zipfile
 from pathlib import Path
-from typing import Tuple, List, Dict, Optional
+from typing import Dict, List, Optional, Tuple
 
 # ───────────────────────────────────────────────────────────────
 # 1. VALIDATION CONSTANTS (aligned with skill_creation.md)
@@ -60,8 +60,6 @@ SECTION_ALIASES = {
     'SMART ROUTING': ['SMART ROUTING', 'SMART ROUTING & REFERENCES'],
 }
 
-
-
 # Recommended sections (warning if missing)
 RECOMMENDED_SECTIONS = [
     'SMART ROUTING',
@@ -84,12 +82,14 @@ MAX_SKILL_MD_LINES = 3000
 # 2. VALIDATION FUNCTIONS
 # ───────────────────────────────────────────────────────────────
 
-def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict]:
-    """
-    Validate SKILL.md frontmatter against skill_md_template.md requirements.
+def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict[str, str]]:
+    """Validate SKILL.md frontmatter against skill_md_template.md requirements.
+
+    Args:
+        content: Raw SKILL.md file content.
 
     Returns:
-        Tuple of (is_valid, error_message, warnings, parsed_frontmatter)
+        Tuple of (is_valid, error_message, warnings, parsed_frontmatter).
     """
     warnings = []
     parsed = {}
@@ -166,11 +166,13 @@ def validate_frontmatter(content: str) -> Tuple[bool, str, List[str], Dict]:
 
 
 def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
-    """
-    Validate SKILL.md has required sections per skill_md_template.md.
+    """Validate SKILL.md has required sections per skill_md_template.md.
+
+    Args:
+        content: Raw SKILL.md file content.
 
     Returns:
-        Tuple of (is_valid, error_message, warnings)
+        Tuple of (is_valid, error_message, warnings).
     """
     warnings = []
     h2_pattern = r'^##\s+(?:\d+\.\s*)?(?:[\U0001F300-\U0001F9FF]\s*)?(.+?)(?:\s*$)'
@@ -202,11 +204,13 @@ def validate_sections(content: str) -> Tuple[bool, str, List[str]]:
 
 
 def validate_rules_section(content: str) -> Tuple[bool, str, List[str]]:
-    """
-    Validate RULES section has required subsections per skill_md_template.md.
+    """Validate RULES section has required subsections per skill_md_template.md.
+
+    Args:
+        content: Raw SKILL.md file content.
 
     Returns:
-        Tuple of (is_valid, error_message, warnings)
+        Tuple of (is_valid, error_message, warnings).
     """
     warnings = []
     rules_match = re.search(r'##\s+(?:\d+\.\s*)?(?:[\U0001F300-\U0001F9FF]\s*)?RULES.*?\n(.*?)(?=\n##\s|\Z)', content, re.DOTALL | re.IGNORECASE)
@@ -231,11 +235,13 @@ def validate_rules_section(content: str) -> Tuple[bool, str, List[str]]:
 
 
 def validate_content_size(content: str) -> Tuple[bool, str, List[str]]:
-    """
-    Validate SKILL.md size constraints per skill_creation.md.
-    
+    """Validate SKILL.md size constraints per skill_creation.md.
+
+    Args:
+        content: Raw SKILL.md file content.
+
     Returns:
-        Tuple of (is_valid, error_message, warnings)
+        Tuple of (is_valid, error_message, warnings).
     """
     warnings = []
     
@@ -254,11 +260,13 @@ def validate_content_size(content: str) -> Tuple[bool, str, List[str]]:
 
 
 def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
-    """
-    Validate optional resource folders per skill_asset_template.md and skill_reference_template.md.
+    """Validate optional resource folders per skill_asset_template.md and skill_reference_template.md.
+
+    Args:
+        skill_path: Path to the skill directory.
 
     Returns:
-        Tuple of (is_valid, error_message, warnings)
+        Tuple of (is_valid, error_message, warnings).
     """
     warnings = []
     scripts_dir = skill_path / 'scripts'
@@ -297,12 +305,15 @@ def validate_resources(skill_path: Path) -> Tuple[bool, str, List[str]]:
     return True, "Resources valid", warnings
 
 
-def validate_name_matches_folder(skill_path: Path, parsed_frontmatter: Dict) -> Tuple[bool, str, List[str]]:
-    """
-    Validate that frontmatter 'name' matches the folder name per skill_md_template.md.
-    
+def validate_name_matches_folder(skill_path: Path, parsed_frontmatter: Dict[str, str]) -> Tuple[bool, str, List[str]]:
+    """Validate that frontmatter 'name' matches the folder name per skill_md_template.md.
+
+    Args:
+        skill_path: Path to the skill directory.
+        parsed_frontmatter: Dict of parsed frontmatter key-value pairs.
+
     Returns:
-        Tuple of (is_valid, error_message, warnings)
+        Tuple of (is_valid, error_message, warnings).
     """
     warnings = []
     
@@ -316,11 +327,13 @@ def validate_name_matches_folder(skill_path: Path, parsed_frontmatter: Dict) -> 
 
 
 def validate_skill(skill_path: Path) -> Tuple[bool, str, List[str]]:
-    """
-    Comprehensive skill validation aligned with all skill creation documentation.
+    """Comprehensive skill validation aligned with all skill creation documentation.
+
+    Args:
+        skill_path: Path to the skill directory.
 
     Returns:
-        Tuple of (is_valid, message, warnings)
+        Tuple of (is_valid, message, warnings).
     """
     skill_path = Path(skill_path)
     all_warnings = []
@@ -372,15 +385,14 @@ def validate_skill(skill_path: Path) -> Tuple[bool, str, List[str]]:
 # ───────────────────────────────────────────────────────────────
 
 def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Optional[Path]:
-    """
-    Package a skill folder into a zip file.
+    """Package a skill folder into a zip file.
 
     Args:
-        skill_path_str: Path to the skill folder
-        output_dir: Optional output directory for the zip file (defaults to current directory)
+        skill_path_str: Path to the skill folder.
+        output_dir: Optional output directory for the zip file (defaults to cwd).
 
     Returns:
-        Path to the created zip file, or None if error
+        Path to the created zip file, or None on error.
     """
     skill_path = Path(skill_path_str).resolve()
 
@@ -441,17 +453,19 @@ def package_skill(skill_path_str: str, output_dir: Optional[str] = None) -> Opti
         print(f"\n✅ Successfully packaged {file_count} files to: {zip_filename}")
         return zip_filename
 
-    except Exception as e:
+    except OSError as e:
         print(f"❌ Error creating zip file: {e}")
         return None
 
 
 def check_only(skill_path_str: str) -> bool:
-    """
-    Validate a skill without packaging.
-    
+    """Validate a skill without packaging.
+
+    Args:
+        skill_path_str: Path to the skill folder.
+
     Returns:
-        True if valid, False otherwise
+        True if valid, False otherwise.
     """
     skill_path = Path(skill_path_str).resolve()
     
@@ -488,7 +502,8 @@ def check_only(skill_path_str: str) -> bool:
 # 4. MAIN
 # ───────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
+    """CLI entry point for skill packaging."""
     if len(sys.argv) < 2:
         print("Usage: python package_skill.py <path/to/skill-folder> [output-directory]")
         print("       python package_skill.py <path/to/skill-folder> --check")

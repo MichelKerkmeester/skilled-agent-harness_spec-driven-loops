@@ -39,11 +39,11 @@
 
 ### Basic Usage
 
-```javascript
-const formatters = require('./formatters');
+```typescript
+import { formatSearchResults, estimateTokens } from './formatters';
 
 // Format search results with content embedding
-const response = await formatters.format_search_results(
+const response = await formatSearchResults(
   results,           // Search results from vector index
   'hybrid',          // Search type
   true,              // Include content
@@ -52,7 +52,7 @@ const response = await formatters.format_search_results(
 );
 
 // Calculate token metrics
-const tokens = formatters.estimate_tokens(text);
+const tokens = estimateTokens(text);
 console.log(`Estimated tokens: ${tokens}`);
 ```
 
@@ -62,18 +62,27 @@ console.log(`Estimated tokens: ${tokens}`);
 
 ```
 formatters/
-├── index.js              # Module exports aggregator
-├── search-results.js     # Search result formatting with anchor support
-└── token-metrics.js      # Token estimation and metrics
+├── index.ts              # Module exports aggregator (TypeScript barrel export)
+├── search-results.ts     # Search result formatting with anchor support
+└── token-metrics.ts      # Token estimation and metrics
+
+dist/formatters/          # Compiled JavaScript output
+├── index.js              # Compiled module aggregator
+├── index.d.ts            # TypeScript declarations
+├── search-results.js     # Compiled search result formatter
+├── search-results.d.ts   # TypeScript declarations
+├── token-metrics.js      # Compiled token metrics
+└── token-metrics.d.ts    # TypeScript declarations
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `index.js` | Aggregates and exports all formatter functions |
-| `search-results.js` | Formats search results, handles anchor extraction, validates paths |
-| `token-metrics.js` | Token estimation using character-based approximation |
+| `index.ts` | Aggregates and exports all formatter functions (TypeScript barrel export) |
+| `search-results.ts` | Formats search results, handles anchor extraction, validates paths |
+| `token-metrics.ts` | Token estimation using character-based approximation |
+| `dist/formatters/*.js` | Compiled JavaScript output for runtime execution |
 
 ---
 
@@ -90,9 +99,11 @@ formatters/
 | **Token Metrics** | Calculates original vs. filtered token counts and savings |
 | **Security** | Validates file paths before reading (SEC-002) |
 
-```javascript
+```typescript
+import { formatSearchResults } from './formatters';
+
 // Format with anchor filtering
-const response = await format_search_results(
+const response = await formatSearchResults(
   searchResults,
   'hybrid',
   true,                    // Include content
@@ -119,14 +130,15 @@ const response = await format_search_results(
 
 **Purpose**: Estimate token counts for content filtering decisions
 
-```javascript
-const { estimate_tokens } = require('./formatters');
+```typescript
+import { estimateTokens } from './formatters';
+import fs from 'fs';
 
 const fullContent = fs.readFileSync('memory.md', 'utf-8');
-const fullTokens = estimate_tokens(fullContent);
+const fullTokens = estimateTokens(fullContent);
 
 const anchorsOnly = extractAnchors(fullContent, ['summary']);
-const anchorTokens = estimate_tokens(anchorsOnly);
+const anchorTokens = estimateTokens(anchorsOnly);
 
 const savings = Math.round((1 - anchorTokens / fullTokens) * 100);
 console.log(`Token savings: ${savings}%`);
@@ -136,9 +148,11 @@ console.log(`Token savings: ${savings}%`);
 
 **Purpose**: Security layer preventing path traversal attacks
 
-```javascript
+```typescript
+import { validateFilePathLocal } from './formatters';
+
 // Validates against allowed base paths
-const safePath = validate_file_path_local('/path/to/memory.md');
+const safePath = validateFilePathLocal('/path/to/memory.md');
 // Throws on invalid paths (outside allowed directories, contains .., etc.)
 ```
 
@@ -148,11 +162,11 @@ const safePath = validate_file_path_local('/path/to/memory.md');
 
 ### Example 1: Basic Search Result Formatting
 
-```javascript
-const formatters = require('./formatters');
+```typescript
+import { formatSearchResults } from './formatters';
 
 // Format results without content embedding
-const response = await formatters.format_search_results(
+const response = await formatSearchResults(
   vectorSearchResults,
   'vector',
   false  // Don't include content
@@ -174,9 +188,11 @@ const response = await formatters.format_search_results(
 
 ### Example 2: Anchor-Based Token Optimization
 
-```javascript
+```typescript
+import { formatSearchResults } from './formatters';
+
 // Only return summary and decisions from search results
-const response = await formatters.format_search_results(
+const response = await formatSearchResults(
   searchResults,
   'hybrid',
   true,
@@ -194,14 +210,16 @@ const response = await formatters.format_search_results(
 
 ### Example 3: Constitutional Memory Highlighting
 
-```javascript
+```typescript
+import { formatSearchResults } from './formatters';
+
 // Search results automatically highlight constitutional memories
 const results = [
   { id: 1, title: 'Core Protocol', isConstitutional: true, ... },
   { id: 2, title: 'Feature Spec', isConstitutional: false, ... }
 ];
 
-const response = await formatters.format_search_results(results, 'hybrid');
+const response = await formatSearchResults(results, 'hybrid');
 
 // Response includes:
 // {
@@ -214,10 +232,10 @@ const response = await formatters.format_search_results(results, 'hybrid');
 
 | Pattern | Usage | When to Use |
 |---------|-------|-------------|
-| `include_content: false` | Metadata-only results | Browsing/filtering before full load |
+| `includeContent: false` | Metadata-only results | Browsing/filtering before full load |
 | `anchors: ['summary']` | Extract specific sections | Token-efficient context loading |
-| `anchors: null` | Full content | Initial investigation or small files |
-| `estimate_tokens()` | Calculate token counts | Pre-flight checks before API calls |
+| `anchors: undefined` | Full content | Initial investigation or small files |
+| `estimateTokens()` | Calculate token counts | Pre-flight checks before API calls |
 
 ---
 
@@ -232,8 +250,8 @@ const response = await formatters.format_search_results(results, 'hybrid');
 **Cause**: File path is outside allowed base paths or contains invalid patterns (`..`)
 
 **Solution**:
-```javascript
-// Check ALLOWED_BASE_PATHS in search-results.js
+```typescript
+// ALLOWED_BASE_PATHS is imported from core/config.ts (single source of truth)
 // Default: process.cwd(), ~/.claude, MEMORY_BASE_PATH env var
 
 // Set environment variable if needed:
@@ -260,17 +278,17 @@ Content here
 **Cause**: `anchors` parameter not provided or `include_content` is false
 
 **Solution**: Both flags required for token metrics:
-```javascript
-format_search_results(results, type, true, ['summary'], parser);
-//                                   ^^^^  ^^^^^^^^^^^
-//                        include_content   anchors
+```typescript
+formatSearchResults(results, type, true, ['summary'], parser);
+//                                 ^^^^  ^^^^^^^^^^^
+//                      includeContent   anchors
 ```
 
 ### Quick Fixes
 
 | Problem | Quick Fix |
 |---------|-----------|
-| `safe_json_parse` returns empty array | Check JSON format in database `trigger_phrases` column |
+| `safeJsonParse` returns empty array | Check JSON format in database `trigger_phrases` column |
 | Large token counts | Use anchor filtering: `anchors: ['summary']` |
 | Constitutional count is 0 | Check database for `importance_tier = 'constitutional'` |
 | Invalid path error | Verify path is absolute and within allowed directories |

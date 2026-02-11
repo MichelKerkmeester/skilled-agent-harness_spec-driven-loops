@@ -379,7 +379,6 @@ workflows-code--full-stack/
 | Tool                          | Purpose                               |
 | ----------------------------- | ------------------------------------- |
 | **workflows-chrome-devtools** | Browser debugging (CLI-first via bdg) |
-| **mcp-narsil**                | Security scanning (OWASP, CWE)        |
 
 ---
 
@@ -404,7 +403,6 @@ workflows-code--full-stack/
 | **workflows-documentation**   | Documentation, skill creation        |
 | **workflows-git**             | Git workflows, commit hygiene        |
 | **system-spec-kit**           | Spec folder management, memory       |
-| **mcp-narsil**                | Code intelligence, security scanning |
 | **workflows-chrome-devtools** | Browser debugging, screenshots       |
 
 ### Navigation Guide

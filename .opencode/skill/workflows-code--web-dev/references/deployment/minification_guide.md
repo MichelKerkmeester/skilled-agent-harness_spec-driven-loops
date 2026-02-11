@@ -82,10 +82,10 @@ npx terser [source] --compress --mangle -o [output]
 
 ```bash
 # Minify single file
-npx terser src/2_javascript/hero/hero_video.js --compress --mangle -o src/2_javascript/z_minified/hero/hero_video.js
+npx terser src/javascript/hero/hero_video.js --compress --mangle -o src/javascript/z_minified/hero/hero_video.js
 
 # Check sizes
-wc -c src/2_javascript/hero/hero_video.js src/2_javascript/z_minified/hero/hero_video.js
+wc -c src/javascript/hero/hero_video.js src/javascript/z_minified/hero/hero_video.js
 # Output: 27187 (original) → 8085 (minified) = 70% reduction
 ```
 
@@ -174,22 +174,22 @@ animate(element, { opacity: [0, 1], y: ['4rem', '0px'] });
 ### Step 1: Minify with Terser
 
 ```bash
-npx terser src/2_javascript/[folder]/[file].js \
+npx terser src/javascript/[folder]/[file].js \
   --compress \
   --mangle \
-  -o src/2_javascript/z_minified/[folder]/[file].js
+  -o src/javascript/z_minified/[folder]/[file].js
 ```
 
 For batch minification of all files:
 
 ```bash
-node .opencode/skill/workflows-code/scripts/minify-webflow.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs
 ```
 
 ### Step 2: AST Verification
 
 ```bash
-node .opencode/skill/workflows-code/scripts/verify-minification.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs
 ```
 
 **What it checks:**
@@ -220,7 +220,7 @@ Failed: 0/39
 ### Step 3: Runtime Testing
 
 ```bash
-node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs
 ```
 
 **What it checks:**
@@ -247,7 +247,7 @@ Failed: 0/39
 
 ```bash
 # Start browser session on staging site
-bdg https://a-nobel-en-zn.webflow.io/en
+bdg https://your-project.webflow.io/
 
 # Check console for errors
 bdg console logs
@@ -268,7 +268,7 @@ bdg stop
 
 ### verify-minification.mjs
 
-**Location:** `.opencode/skill/workflows-code/scripts/verify-minification.mjs`
+**Location:** `.opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs`
 
 **Purpose:** AST-based comparison of original and minified files
 
@@ -280,7 +280,7 @@ bdg stop
 
 **Usage:**
 ```bash
-node .opencode/skill/workflows-code/scripts/verify-minification.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs
 ```
 
 **Interpreting output:**
@@ -290,7 +290,7 @@ node .opencode/skill/workflows-code/scripts/verify-minification.mjs
 
 ### test-minified-runtime.mjs
 
-**Location:** `.opencode/skill/workflows-code/scripts/test-minified-runtime.mjs`
+**Location:** `.opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs`
 
 **Purpose:** Execute minified scripts in mock browser environment
 
@@ -308,7 +308,7 @@ node .opencode/skill/workflows-code/scripts/verify-minification.mjs
 
 **Usage:**
 ```bash
-node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs
 ```
 
 **Interpreting output:**
@@ -317,17 +317,17 @@ node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs
 
 ### minify-webflow.mjs
 
-**Location:** `.opencode/skill/workflows-code/scripts/minify-webflow.mjs`
+**Location:** `.opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs`
 
 **Purpose:** Batch minification of all JavaScript files
 
 **Usage:**
 ```bash
 # Normal run (skips if output exists and unchanged)
-node .opencode/skill/workflows-code/scripts/minify-webflow.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs
 
 # Force re-minification of all files
-node .opencode/skill/workflows-code/scripts/minify-webflow.mjs --force
+node .opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs --force
 ```
 
 **Output:**
@@ -406,10 +406,10 @@ window['initHero'] = function() { ... };  // Bracket notation preserves name
 3. **Compare strings:**
    ```bash
    # Extract strings from original
-   grep -o '"[^"]*"' src/2_javascript/hero/hero_video.js | sort -u > original_strings.txt
+   grep -o '"[^"]*"' src/javascript/hero/hero_video.js | sort -u > original_strings.txt
    
    # Extract strings from minified
-   grep -o '"[^"]*"' src/2_javascript/z_minified/hero/hero_video.js | sort -u > minified_strings.txt
+   grep -o '"[^"]*"' src/javascript/z_minified/hero/hero_video.js | sort -u > minified_strings.txt
    
    # Compare
    diff original_strings.txt minified_strings.txt
@@ -426,7 +426,7 @@ window['initHero'] = function() { ... };  // Bracket notation preserves name
 5. **Check for dynamic access:**
    ```bash
    # Look for bracket notation that might break
-   grep -n '\[.*\]' src/2_javascript/hero/hero_video.js
+   grep -n '\[.*\]' src/javascript/hero/hero_video.js
    ```
 
 ---
@@ -437,16 +437,16 @@ window['initHero'] = function() { ... };  // Bracket notation preserves name
 
 ```bash
 # Step 1: Minify all
-node .opencode/skill/workflows-code/scripts/minify-webflow.mjs --force
+node .opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs --force
 
 # Step 2: Verify all
-node .opencode/skill/workflows-code/scripts/verify-minification.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs
 
 # Step 3: Test all
-node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs
 
 # Step 4: Browser test key pages
-bdg https://a-nobel-en-zn.webflow.io/en
+bdg https://your-project.webflow.io/
 bdg console logs
 bdg stop
 ```
@@ -455,17 +455,17 @@ bdg stop
 
 ```bash
 # Step 1: Minify
-npx terser src/2_javascript/hero/hero_video.js --compress --mangle \
-  -o src/2_javascript/z_minified/hero/hero_video.js
+npx terser src/javascript/hero/hero_video.js --compress --mangle \
+  -o src/javascript/z_minified/hero/hero_video.js
 
 # Step 2: Verify (runs on all, but check specific file in output)
-node .opencode/skill/workflows-code/scripts/verify-minification.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs
 
 # Step 3: Test
-node .opencode/skill/workflows-code/scripts/test-minified-runtime.mjs
+node .opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs
 
 # Step 4: Browser test
-bdg https://a-nobel-en-zn.webflow.io/en
+bdg https://your-project.webflow.io/
 bdg console logs
 bdg stop
 ```
@@ -511,9 +511,9 @@ bdg stop
 
 ### Scripts
 
-- `.opencode/skill/workflows-code/scripts/minify-webflow.mjs` - Batch minification
-- `.opencode/skill/workflows-code/scripts/verify-minification.mjs` - AST verification
-- `.opencode/skill/workflows-code/scripts/test-minified-runtime.mjs` - Runtime testing
+- `.opencode/skill/workflows-code--web-dev/scripts/minify-webflow.mjs` - Batch minification
+- `.opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs` - AST verification
+- `.opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs` - Runtime testing
 
 ### External
 

@@ -6,6 +6,312 @@ All notable changes to the system-spec-kit skill are documented in this file.
 
 ---
 
+## [2.2.0.1] - 2026-02-11
+
+### Fixed
+
+**Pre-Release Audit Fixes**
+
+- `constitutional/README.md`: 2 broken reference paths fixed (`save_workflow.md` → correct path, `trigger_config.md` → correct path)
+- `constitutional/README.md`: Stale file listing updated — added `speckit-exclusivity.md`
+- `README.md`: Script count corrected `244` → `90`, LOC corrected `~1075` → `~1350`
+- `references/structure/folder_routing.md`: Genericized `anobel.com` domain reference
+- `CHANGELOG.md`: Genericized 1 `anobel.com` reference
+
+---
+
+## [2.2.0.0] - 2026-02-11
+
+### Changed
+
+**TypeScript Conversion Completion & Documentation Accuracy (specs 104-107)**
+
+Full completion of the TypeScript migration and comprehensive documentation accuracy campaign across the entire system-spec-kit project.
+
+**Spec 104: TypeScript Conversion Phase 1**
+
+- Continued TypeScript conversion of remaining source files in `mcp_server/`
+- Converted handler files, library modules, and utility code to strict TypeScript
+- Added type annotations across all converted modules
+
+**Spec 105: TypeScript Cleanup**
+
+- Achieved **0 `tsc` errors** across entire codebase
+- **3,872 tests passing** across **114 test files** (71 skipped, 4 test files skipped)
+- **0 JavaScript source files** remaining in `mcp_server/` (all converted to TypeScript)
+- **0 `@ts-nocheck`** directives in source files
+- Total: 204 TypeScript files, 86 source + 118 test files, ~68,000 LOC
+
+**Spec 106: Documentation Accuracy Audit**
+
+- 20-agent parallel documentation audit across all READMEs and reference docs
+- ~120 critical accuracy issues identified (stale counts, wrong file references, outdated descriptions)
+- Comprehensive issue catalog produced for remediation
+
+**Spec 107: Documentation Accuracy Fixes**
+
+- 303 fixes applied across all READMEs and documentation files
+- Removed 39 `mcp-narsil` ghost references from skill documents (`workflows-code--opencode/SKILL.md`, `workflows-code--full-stack/SKILL.md`, `mcp-code-mode/INSTALL_GUIDE.md`)
+- Corrected stale counts in install guides: skills 7 → 9, agents 2 → 8, commands 16 → 19
+- Stale test counts updated (700+ → 3,872)
+- Stale template LOC counts corrected across SKILL.md and README.md
+- Version number updated from 1.2.4.0 → 2.2.0.0
+- Missing CHANGELOG entries added for specs 104-107
+
+### Fixed
+
+- SKILL.md version stuck at 1.2.4.0 (now 2.2.0.0)
+- README.md test count: 700+ → 3,872 tests, 91 → 114 test files
+- README.md template LOC counts: ~50% understated (now aligned with SKILL.md)
+- CHANGELOG.md missing entries for specs 104-107
+
+---
+
+## [2.1.9.0] - 2026-02-10
+
+### Fixed
+
+**Final Audit Post-TypeScript (spec 103)**
+
+- 81 issues found and resolved by ~40 parallel agents
+- `@ts-nocheck` removed from 96 test files (~1,100 type errors fixed)
+- Vitest configuration validated across all test suites
+- Final comprehensive quality audit of the full TypeScript codebase
+
+---
+
+## [2.1.8.0] - 2026-02-10
+
+### Fixed
+
+**MCP Cleanup & Alignment (spec 102)**
+
+- All 36 findings from spec 101 misalignment audit resolved
+- 6 command files updated with `memory_context` integration and standardized quality gates (`spec_kit/{research,plan,resume,implement,complete,handover}.md`)
+- 5 obsolete commands removed: `search/code.md`, `search/index.md`, `memory/{checkpoint,database,search}.md`
+- 2 pre-existing test failures fixed
+- ADR-008 written documenting alignment decisions
+- Code-documentation alignment achieved
+
+---
+
+## [2.1.7.0] - 2026-02-10
+
+### Changed
+
+**Misalignment Audit (spec 101)**
+
+- 36 findings identified across 5 dimensions (read-only audit)
+- Cross-component analysis: SKILL.md vs Commands vs MCP Schemas vs Agent definitions
+- Prioritized fix matrix created for remediation planning
+- Gaps between code and documentation cataloged
+- No code changes — audit and planning only
+
+---
+
+## [2.1.6.0] - 2026-02-10
+
+### Added
+
+**Test Coverage (spec 100)**
+
+- 1,589 new tests across 26 files
+- 100% module export coverage achieved
+- 48 security tests for FTS5 SQL injection prevention
+- Comprehensive test infrastructure established
+
+---
+
+## [2.1.5.0] - 2026-02-10
+
+### Changed
+
+**Memory Cleanup (spec 099)**
+
+- Database re-indexed: 85 → 261 memories
+- Unsafe type casts reduced: 48 → 3
+- 75 new tests added
+- Deprecated types preserved for backward compatibility
+
+---
+
+## [2.1.4.0] - 2026-02-10
+
+### Fixed
+
+**Feature/Bug/Documentation Audit (spec 098)**
+
+- 10 P0 + 18 P1 issues fixed
+- 12 non-functional features restored to working state
+- Documentation-code alignment improved: 67.9% → 95.5%
+- Comprehensive feature audit across entire MCP server
+
+---
+
+## [2.1.3.0] - 2026-02-09
+
+### Added
+
+**Memory Save Auto-Detect (spec 097)**
+
+- Auto-detect spec folder from Gate 3 conversation context
+- 5-priority detection cascade (explicit path → Gate 3 → recent spec → cwd → ask user)
+- Only 2 files modified — minimal, focused change
+- Streamlined the memory save workflow
+
+---
+
+## [2.1.2.1] - 2026-02-09
+
+### Fixed
+
+**Spec Kit Memory Bug Audit (spec 096)**
+
+Most comprehensive bug-fix release in project history — 85+ bugs fixed with 27 new regression tests.
+
+**Critical Severity (8 bugs)**
+
+- **FSRS formula: 18.45x decay rate error corrected** — Memories were decaying at the wrong rate due to incorrect factor calculation
+- **macOS crash bug in SQLite operations** — Platform-specific crash during concurrent database access
+- **Database no-op operations** — Writes that silently did nothing, causing data loss without errors
+
+**Overall**
+
+- 85+ bugs fixed total across all severity levels
+- 27 new tests added for regression coverage
+- All critical paths verified post-fix
+
+---
+
+## [2.1.2.0] - 2026-02-09
+
+### Fixed
+
+**Code Audit Remediation (spec 095)**
+
+- All P0/P1 coding standard violations remediated across 12 task categories
+- `dist/` directory fully rebuilt to match TypeScript source
+
+---
+
+## [2.1.1.0] - 2026-02-09
+
+### Fixed
+
+**20-Agent Parallel Code Review (spec 094)**
+
+- 5 P0 (critical) bugs found and fixed across MCP server
+- 14 P1 (high) bugs found and fixed
+- Weighted code quality score: 68/100
+
+---
+
+## [2.1.0.0] - 2026-02-09
+
+### Added
+
+**Memory Index Deep Audit & Fix — Sessions 7-11 (spec 093)**
+
+- Token budget observability: `tokenBudget` field in response metadata for all handler responses
+- `console.error` logging when token budgets exceeded
+- Hint injection in responses when budget thresholds are hit
+
+### Fixed
+
+**CRITICAL: FSRS formula corrected** — Factor changed from `19.0` to `19/81` (≈0.2346), formula from `R = (1 + t/(FACTOR×S))^(-0.5)` to `R = (1 + FACTOR×t/S)^(-0.5)`. Memories were decaying ~4.5x slower than FSRS v4 standard. Now R(S,S) = 0.9 as specified.
+
+- `clearConstitutionalCache` bug in vector-index.ts — was calling wrong internal method
+- 3 broken delegations in vector-index facade
+- Integration test paths, bug-fix tests, preflight tests
+- `safeParseJson` security alignment across modules
+- 5 test failures: confidence-tracker, handler-memory-search, memory-context, tier-classifier, tool-cache
+
+### Changed
+
+- Test suite: 46/60 → 58/58 (100% pass rate); 2 orphan test files removed
+- vector-index.ts: 705 → 491 lines (214 lines dead code removed)
+- 12+ READMEs rewritten across MCP server subdirectories
+- search-weights.json: cleaned dead parameters and regex patterns
+
+### Removed
+
+- Orphan `dist/core.js` (was shadowing `dist/core/` directory)
+- 9 orphaned files (7 dist `.js` + 2 test files)
+- 3 fabricated sections in `references/memory/memory_system.md` (decay formula, computeFingerprint(), 5-state model)
+
+---
+
+## [2.0.0.0] - 2026-02-07
+
+### Changed
+
+**JavaScript to TypeScript Migration (spec 092)**
+
+Full codebase migration from JavaScript to TypeScript across all source files in `shared/`, `mcp_server/`, and `scripts/`. Compiled CommonJS output preserves backward compatibility — all runtime behavior, file paths, and configurations remain unchanged.
+
+**Migration Summary**
+
+| Phase | Scope | Files |
+|-------|-------|-------|
+| Phase 0 | TypeScript standards + infrastructure (`tsconfig.json`, project references, `shared/types.ts`) | 5 |
+| Phase 1 | `shared/` workspace — types, embeddings, utilities | ~15 |
+| Phase 2 | `mcp_server/core/` — config, database, state management | ~8 |
+| Phase 3 | `mcp_server/lib/` — search, scoring, cognitive, session | ~25 |
+| Phase 4 | `mcp_server/handlers/` — MCP tool handlers | ~12 |
+| Phase 5 | `mcp_server/` root — context-server entry point, tool registration | ~5 |
+| Phase 6 | `scripts/` workspace — memory, spec, template scripts | ~15 |
+| Phase 7 | Test files — all 59 test files converted | ~59 |
+| Phase 8 | Documentation — code examples, file references, changelog | ~16 |
+
+**Architecture Decisions (D1-D8)**
+
+1. **D1: CommonJS output** — `__dirname` works natively; zero changes to path logic or `opencode.json` startup
+2. **D2: In-place compilation** — `.ts` → `.js` in same directory; no `dist/` folder; all `require()` paths unchanged
+3. **D3: Strict mode from start** — `"strict": true` catches null/undefined at compile time
+4. **D4: Circular dependency resolution** — Moved `retry.ts`, `path-security.ts`, `folder-scoring.ts` to `shared/` with re-export stubs
+5. **D5: Interface naming** — Kept `I` prefix on existing `IEmbeddingProvider`/`IVectorStore`; new interfaces omit it
+6. **D6: Standards before migration** — Phase 0 established TypeScript conventions in `workflows-code--opencode` skill
+7. **D7: Central types file** — `shared/types.ts` as single source of truth for cross-workspace types
+8. **D8: Test conversion last** — Tests converted in Phase 7 after all source; can run as `.js` against compiled output
+
+**Infrastructure**
+
+- Added `tsconfig.json` with project references for 3 workspaces (`shared/`, `mcp_server/`, `scripts/`)
+- Added `shared/types.ts` with shared interfaces (`IEmbeddingProvider`, `IVectorStore`, `SearchResult`, `MemoryRecord`, etc.)
+- Added `sqlite-vec.d.ts` type declarations for native SQLite vector extension
+- Added TypeScript standards documentation to `workflows-code--opencode` skill
+- Build pipeline: `tsc --build` for incremental compilation across workspaces
+
+**Source Files**
+
+- All `.js` source files converted to `.ts` with full type annotations
+- 23 path references fixed across 15 command and asset files (`command/spec_kit/`, `command/memory/`, `command/create/`) to reflect `.js` → `.ts` migration
+- TypeScript standards added to `workflows-code--opencode` skill (4 new reference files, v1.1.0 → v1.3.0)
+- All code examples in reference documentation updated from JavaScript to TypeScript
+- File path references in documentation updated: source references use `.ts`, execution commands keep `.js`
+
+### Added
+
+- `shared/types.ts` — Central type definitions for cross-workspace interfaces
+- `sqlite-vec.d.ts` — Type declarations for SQLite vector extension
+- TypeScript standards in `workflows-code--opencode` skill
+- `tsconfig.json` files for each workspace with project references
+
+### Preserved
+
+- Backward-compatible CommonJS exports (compiled `.js` output identical in behavior)
+- All runtime file paths and configurations unchanged
+- `opencode.json` startup commands unchanged (`node context-server.js`)
+- Security patterns (path validation, input sanitization) maintained
+- All 59 test files pass after conversion
+
+### References
+
+- **Decision Record:** `specs/003-memory-and-spec-kit/092-javascript-to-typescript/decision-record.md`
+- **Spec Folder:** `specs/003-memory-and-spec-kit/092-javascript-to-typescript/`
+
+---
+
 ## [1.2.4.0] - 2026-02-05
 
 ### Fixed
@@ -77,7 +383,7 @@ Root cause fix for memory files being saved to incorrect spec folders when worki
 3. **Updated `validate_content_alignment()` and `validate_folder_alignment()`** — Now use domain-aware scoring:
    - Show infrastructure mismatch warning when detected
    - List better-matching alternatives with boosted scores
-   - Example: `003-memory-and-spec-kit` scores 90% vs `005-anobel.com` at 0% for spec-kit work
+   - Example: `003-memory-and-spec-kit` scores 90% vs `005-example.com` at 0% for spec-kit work
 
 **continue.md**
 
@@ -113,7 +419,7 @@ Root cause fix for memory files being saved to incorrect spec folders when worki
 
 ---
 
-## [1.2.3.1] - 2025-02-03
+## [1.2.3.1] - 2026-02-03
 
 ### Fixed
 
@@ -133,7 +439,7 @@ Root cause fix for memory files being saved to incorrect spec folders when worki
 
 ---
 
-## [1.2.3.0] - 2025-02-03
+## [1.2.3.0] - 2026-02-03
 
 ### Fixed
 
@@ -211,7 +517,7 @@ All fixes independently verified:
 
 ---
 
-## [1.2.1.0] - 2025-02-02
+## [1.2.1.0] - 2026-02-02
 
 ### Changed
 - **Memory command consolidation** - Reduced from 9 commands to 5 for simpler mental model
@@ -238,7 +544,7 @@ All fixes independently verified:
 
 ---
 
-## [**1.2.0.0**] - 2025-02-02
+## [**1.2.0.0**] - 2026-02-02
 
 Major release implementing **SpecKit Reimagined** (spec 082) with **33 features**, **107 tasks**, and **5 new memory commands**. Adds session deduplication, causal memory graph, intent-aware retrieval, BM25 hybrid search, and comprehensive crash recovery.
 
@@ -296,12 +602,12 @@ Major release implementing **SpecKit Reimagined** (spec 082) with **33 features*
 31. `lib/search/bm25-index.js` — Pure JS BM25 implementation (~380 lines)
 32. `lib/search/cross-encoder.js` — Reranking with Voyage/Cohere/local (~490 lines)
 33. `lib/search/intent-classifier.js` — Intent detection for 5 types
-34. `lib/search/fuzzy-match.js` — Levenshtein + acronym expansion
-35. `lib/learning/corrections.js` — Memory corrections tracking (~560 lines)
+34. `lib/search/fuzzy-match.js` — Levenshtein + acronym expansion **[NEVER IMPLEMENTED]**
+35. `lib/learning/corrections.js` — Memory corrections tracking (~560 lines) **[NEVER IMPLEMENTED]**
 36. `lib/cognitive/archival-manager.js` — Automatic archival background job (~450 lines)
-37. `lib/cognitive/consolidation.js` — 5-phase consolidation pipeline
+37. `lib/cognitive/consolidation.js` — 5-phase consolidation pipeline **[NEVER IMPLEMENTED]**
 38. `lib/architecture/layer-definitions.js` — 7-layer MCP architecture (~320 lines)
-39. `lib/embeddings/provider-chain.js` — Embedding fallback chain (~340 lines)
+39. `lib/embeddings/provider-chain.js` — Embedding fallback chain (~340 lines) **[NEVER IMPLEMENTED]**
 40. `lib/response/envelope.js` — Standardized response structure (~280 lines)
 41. `lib/storage/causal-edges.js` — Causal edge management (~529 lines)
 42. `handlers/memory-context.js` — L1 Orchestration unified entry (~420 lines)
@@ -321,8 +627,8 @@ Major release implementing **SpecKit Reimagined** (spec 082) with **33 features*
 50. `memory_causal_link` — Create causal relationships between memories
 51. `memory_causal_stats` — Graph statistics and coverage metrics
 52. `memory_causal_unlink` — Remove causal relationships
-53. `memory_drift_context` — Unified context with intent awareness
-54. `memory_drift_learn` — Capture explicit learning
+53. `memory_drift_context` — Unified context with intent awareness **[NEVER IMPLEMENTED — removed from roadmap]**
+54. `memory_drift_learn` — Capture explicit learning **[NEVER IMPLEMENTED — removed from roadmap]**
 
 ---
 
@@ -391,7 +697,7 @@ Major cognitive memory upgrade implementing **FSRS power-law decay** validated o
 
 **Cognitive Memory System**
 
-1. **FSRS power-law algorithm** — `R(t,S) = (1 + 0.235 × t/S)^(-0.5)` replaces arbitrary exponential decay
+1. **FSRS power-law algorithm** — `R(t,S) = (1 + (19/81) × t/S)^(-0.5)` replaces arbitrary exponential decay
 2. **Prediction Error Gating** — 4-tier thresholds (0.95 DUPLICATE, 0.90 HIGH_MATCH, 0.70 MEDIUM_MATCH, 0.50 LOW_MATCH)
 3. **5-state memory model** — HOT (≥0.8), WARM (0.25-0.8), COLD (0.05-0.25), DORMANT (0.02-0.05), ARCHIVED (<0.02)
 4. **Testing Effect** — Accessing memories strengthens stability (desirable difficulty bonus)

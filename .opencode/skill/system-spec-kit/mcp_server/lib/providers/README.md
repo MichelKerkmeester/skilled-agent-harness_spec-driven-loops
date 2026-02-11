@@ -6,15 +6,15 @@
 
 ## TABLE OF CONTENTS
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 📁 STRUCTURE](#2--structure)
-- [3. ⚡ FEATURES](#3--features)
-- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [1. OVERVIEW](#1-overview)
+- [2. STRUCTURE](#2-structure)
+- [3. FEATURES](#3-features)
+- [4. USAGE EXAMPLES](#4-usage-examples)
+- [5. RELATED RESOURCES](#5-related-resources)
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 The providers module handles embedding generation and retry logic for the Spec Kit Memory MCP server. It provides a unified abstraction layer for multiple embedding providers (Voyage AI, OpenAI) with exponential backoff retry management to ensure reliable embedding generation.
 
@@ -22,7 +22,7 @@ The providers module handles embedding generation and retry logic for the Spec K
 
 | Category | Count | Details |
 |----------|-------|---------|
-| Modules | 3 | embeddings, retry-manager, index |
+| Modules | 2 | embeddings, retry-manager |
 | Backoff Delays | 3 | 1min, 5min, 15min exponential |
 | Max Retries | 3 | Before marking as permanently failed |
 
@@ -30,35 +30,38 @@ The providers module handles embedding generation and retry logic for the Spec K
 
 | Feature | Description |
 |---------|-------------|
-| **Provider Abstraction** | Unified interface for Voyage AI, OpenAI, and local models |
-| **Exponential Backoff** | Retry with 1s, 2s, 4s delays plus jitter |
+| **Provider Abstraction** | Unified interface for Voyage AI, OpenAI, and local models (re-exported from `@spec-kit/shared/embeddings`) |
+| **Exponential Backoff** | Retry with 1min, 5min, 15min delays |
 | **Background Retry Job** | Automatic processing of pending embeddings every 5 minutes |
 | **Graceful Degradation** | Falls back to BM25-only mode when all providers fail |
 
 ---
 
-## 2. 📁 STRUCTURE
+## 2. STRUCTURE
 
 ```
 providers/
-├── embeddings.js        # Re-export from shared/ (multi-provider support)
-├── retry-manager.js     # Exponential backoff with background job
-└── index.js             # Barrel export aggregating all modules
+├── embeddings.ts        # Re-export from @spec-kit/shared/embeddings
+├── retry-manager.ts     # Exponential backoff with background job
+└── README.md            # This file
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `embeddings.js` | Provider abstraction layer (re-exports from shared/) |
-| `retry-manager.js` | Retry queue, backoff timing, background job processing |
-| `index.js` | Aggregates and re-exports all provider modules |
+| `embeddings.ts` | Re-exports all embedding utilities from `@spec-kit/shared/embeddings` |
+| `retry-manager.ts` | Retry queue, backoff timing, background job processing |
+
+### Compiled Output
+
+TypeScript source files compile to `mcp_server/dist/lib/providers/` with corresponding `.js` and `.d.ts` files.
 
 ---
 
-## 3. ⚡ FEATURES
+## 3. FEATURES
 
-### Embeddings Provider
+### Embeddings Provider (`embeddings.ts`)
 
 **Purpose**: Unified interface for generating embeddings from multiple providers
 
@@ -67,16 +70,16 @@ providers/
 | **Providers** | Voyage AI (primary), OpenAI, HuggingFace local |
 | **Task Types** | Query embeddings, document embeddings, batch processing |
 | **Dimensions** | Dynamic based on provider/model selection |
-| **Source** | Re-exported from `shared/embeddings.js` |
+| **Source** | Re-exported from `@spec-kit/shared/embeddings` (workspace package) |
 
-```javascript
-const { generate_embedding } = require('./providers');
+```typescript
+import { generateDocumentEmbedding, generateQueryEmbedding } from './embeddings';
 
-const embedding = await generate_embedding('authentication flow');
-// Returns: Float32Array of embedding dimensions
+const docEmbedding = await generateDocumentEmbedding('authentication flow');
+const queryEmbedding = await generateQueryEmbedding('how to authenticate?');
 ```
 
-### Retry Manager
+### Retry Manager (`retry-manager.ts`)
 
 **Purpose**: Handle failed embedding generations with exponential backoff
 
@@ -87,112 +90,79 @@ const embedding = await generate_embedding('authentication flow');
 | **Background Job** | Processes up to 5 pending items every 5 minutes |
 | **Status Tracking** | pending, retry, success, failed states |
 
-```javascript
-const { get_retry_stats, process_retry_queue } = require('./providers');
+**Exported functions:**
 
-// Check retry queue status
-const stats = get_retry_stats();
-// Returns: { pending: 2, retry: 1, failed: 0, success: 150, queue_size: 3 }
+| Function | Signature | Purpose |
+|----------|-----------|---------|
+| `getRetryQueue` | `(limit?: number) => RetryMemoryRow[]` | Get items eligible for retry |
+| `getFailedEmbeddings` | `() => RetryMemoryRow[]` | Get permanently failed items |
+| `getRetryStats` | `() => RetryStats` | Get queue statistics |
+| `retryEmbedding` | `(id: number, content: string) => Promise<RetryResult>` | Retry a single embedding |
+| `markAsFailed` | `(id: number, reason: string) => void` | Mark as permanently failed |
+| `resetForRetry` | `(id: number) => boolean` | Reset a failed item for retry |
+| `processRetryQueue` | `(limit?: number, contentLoader?) => Promise<BatchResult>` | Process batch of retries |
+| `startBackgroundJob` | `(options?) => boolean` | Start background retry job |
+| `stopBackgroundJob` | `() => boolean` | Stop background retry job |
+| `isBackgroundJobRunning` | `() => boolean` | Check if background job is active |
+| `runBackgroundJob` | `(batchSize?: number) => Promise<BackgroundJobResult>` | Run a single background job iteration |
 
-// Process pending retries
-const result = await process_retry_queue(3);
-// Returns: { processed: 3, succeeded: 2, failed: 1 }
-```
-
-### Background Retry Job
-
-**Purpose**: Automatic background processing of failed embeddings
-
-| Aspect | Details |
-|--------|---------|
-| **Interval** | Every 5 minutes (configurable) |
-| **Batch Size** | 5 items per run (configurable) |
-| **Concurrency** | Single job at a time (prevents overlapping) |
-| **Control** | Start, stop, and status check functions |
-
-```javascript
-const {
-  start_background_job,
-  stop_background_job,
-  is_background_job_running
-} = require('./providers');
-
-// Start background processing
-start_background_job({ intervalMs: 300000, batchSize: 5 });
-
-// Check status
-console.log(is_background_job_running()); // true
-
-// Stop when needed
-stop_background_job();
-```
+**Exported constants:** `BACKGROUND_JOB_CONFIG`, `BACKOFF_DELAYS`, `MAX_RETRIES`
 
 ---
 
-## 4. 💡 USAGE EXAMPLES
+## 4. USAGE EXAMPLES
 
 ### Example 1: Generate Embedding
 
-```javascript
-const { generate_embedding } = require('./providers');
+```typescript
+import { generateDocumentEmbedding } from './embeddings';
 
 const text = 'How does the authentication flow work?';
-const embedding = await generate_embedding(text);
+const embedding = await generateDocumentEmbedding(text);
 
-console.log(`Embedding dimensions: ${embedding.length}`);
-// Logs: Embedding dimensions: 1024 (varies by provider)
+if (embedding) {
+  console.log(`Embedding dimensions: ${embedding.length}`);
+}
 ```
 
 ### Example 2: Monitor Retry Queue
 
-```javascript
-const { get_retry_stats, get_retry_queue, get_failed_embeddings } = require('./providers');
+```typescript
+import { getRetryStats, getRetryQueue, getFailedEmbeddings } from './retry-manager';
 
-// Get overall statistics
-const stats = get_retry_stats();
+const stats = getRetryStats();
 console.log(`Queue size: ${stats.queue_size}, Failed: ${stats.failed}`);
 
-// Get items eligible for retry
-const queue = get_retry_queue(10);
+const queue = getRetryQueue(10);
 queue.forEach(item => {
-  console.log(`${item.id}: ${item.retry_count} retries`);
-});
-
-// Get permanently failed items
-const failed = get_failed_embeddings();
-failed.forEach(item => {
-  console.log(`${item.id}: ${item.failure_reason}`);
+  console.log(`${item.id}: ${item.retryCount} retries`);
 });
 ```
 
-### Example 3: Manual Retry with Content Loader
+### Example 3: Background Retry Job
 
-```javascript
-const { process_retry_queue } = require('./providers');
-const fs = require('fs/promises');
+```typescript
+import { startBackgroundJob, stopBackgroundJob, isBackgroundJobRunning } from './retry-manager';
 
-// Custom content loader for retries
-const contentLoader = async (memory) => {
-  return await fs.readFile(memory.file_path, 'utf-8');
-};
-
-const result = await process_retry_queue(5, contentLoader);
-console.log(`Processed: ${result.processed}, Succeeded: ${result.succeeded}`);
+startBackgroundJob({ intervalMs: 300000, batchSize: 5, enabled: true });
+console.log(isBackgroundJobRunning()); // true
+stopBackgroundJob();
 ```
 
 ### Common Patterns
 
 | Pattern | Code | When to Use |
 |---------|------|-------------|
-| Generate embedding | `generate_embedding(text)` | Index new content |
-| Check queue stats | `get_retry_stats()` | Monitor health |
-| Process retries | `process_retry_queue(limit)` | Manual retry trigger |
-| Reset failed | `reset_for_retry(id)` | Re-attempt specific item |
-| Start background | `start_background_job()` | Server startup |
+| Generate doc embedding | `generateDocumentEmbedding(text)` | Index new content |
+| Generate query embedding | `generateQueryEmbedding(text)` | Search queries |
+| Check queue stats | `getRetryStats()` | Monitor health |
+| Process retries | `processRetryQueue(limit)` | Manual retry trigger |
+| Reset failed | `resetForRetry(id)` | Re-attempt specific item |
+| Start background | `startBackgroundJob()` | Server startup |
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -211,4 +181,5 @@ console.log(`Processed: ${result.processed}, Succeeded: ${result.succeeded}`);
 
 ---
 
-*Documentation version: 1.0 | Last updated: 2026-02-02*
+**Version**: 1.7.2
+**Last Updated**: 2026-02-08

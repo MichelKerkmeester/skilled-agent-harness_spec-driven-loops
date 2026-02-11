@@ -38,12 +38,12 @@ Document → Isolate → Verify prerequisites → Retry with verbose → Escalat
 2. Check bucket exists: `wrangler r2 bucket list`
 3. Retry upload with verbose: `wrangler r2 object put [bucket]/[path] --file [local-file] --verbose`
 4. If persistent, check Cloudflare dashboard for rate limits
-5. Verify file accessible: `curl -I https://cdn.anobel.com/[path]`
+5. Verify file accessible: `curl -I https://cdn.example.com/[path]`
 
 **Verification:**
 ```bash
 # Check file is accessible and correct size
-curl -sI https://cdn.anobel.com/js/[filename].js | grep -E "(HTTP|content-length)"
+curl -sI https://cdn.example.com/js/[filename].js | grep -E "(HTTP|content-length)"
 ```
 
 ---
@@ -62,7 +62,7 @@ curl -sI https://cdn.anobel.com/js/[filename].js | grep -E "(HTTP|content-length
 **Verification:**
 ```bash
 # Run full verification pipeline
-node scripts/verify-minification.mjs src/2_javascript/[file].js
+node scripts/verify-minification.mjs src/javascript/[file].js
 node scripts/test-minified-runtime.mjs dist/[file].min.js
 ```
 
@@ -73,8 +73,8 @@ node scripts/test-minified-runtime.mjs dist/[file].min.js
 **Symptoms:** Browser loads old cached version, changes not visible
 
 **Recovery Steps:**
-1. Check current version in HTML: `grep -n "v=" src/0_html/global.html | head -5`
-2. Check CDN file version: `curl -sI https://cdn.anobel.com/js/[file].js?v=[version]`
+1. Check current version in HTML: `grep -n "v=" src/html/global.html | head -5`
+2. Check CDN file version: `curl -sI https://cdn.example.com/js/[file].js?v=[version]`
 3. Increment version in ALL HTML files referencing the JS
 4. Hard refresh browser: Cmd+Shift+R (Mac) / Ctrl+Shift+R (Windows)
 5. Clear CDN cache if needed: Cloudflare dashboard > Caching > Purge
@@ -82,7 +82,7 @@ node scripts/test-minified-runtime.mjs dist/[file].min.js
 **Verification:**
 ```bash
 # Verify version updated in all HTML files
-grep -r "v=[NEW_VERSION]" src/0_html/ | wc -l
+grep -r "v=[NEW_VERSION]" src/html/ | wc -l
 # Should match number of files referencing the JS
 ```
 

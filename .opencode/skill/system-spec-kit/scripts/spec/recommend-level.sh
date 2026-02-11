@@ -157,20 +157,20 @@ calculate_loc_score() {
   local loc=$1
   local score=0
 
-  if [ "$loc" -le "$LOC_THRESHOLD_LOW" ]; then
+  if [[ "$loc" -le "$LOC_THRESHOLD_LOW" ]]; then
     # 0-50 LOC: 0-8 points (linear)
     score=$((loc * 8 / LOC_THRESHOLD_LOW))
-  elif [ "$loc" -le "$LOC_THRESHOLD_MED" ]; then
+  elif [[ "$loc" -le "$LOC_THRESHOLD_MED" ]]; then
     # 51-150 LOC: 8-18 points
     local range=$((LOC_THRESHOLD_MED - LOC_THRESHOLD_LOW))
     local offset=$((loc - LOC_THRESHOLD_LOW))
     score=$((8 + (offset * 10 / range)))
-  elif [ "$loc" -le "$LOC_THRESHOLD_HIGH" ]; then
+  elif [[ "$loc" -le "$LOC_THRESHOLD_HIGH" ]]; then
     # 151-400 LOC: 18-28 points
     local range=$((LOC_THRESHOLD_HIGH - LOC_THRESHOLD_MED))
     local offset=$((loc - LOC_THRESHOLD_MED))
     score=$((18 + (offset * 10 / range)))
-  elif [ "$loc" -le "$LOC_THRESHOLD_MAX" ]; then
+  elif [[ "$loc" -le "$LOC_THRESHOLD_MAX" ]]; then
     # 401-1000 LOC: 28-35 points
     local range=$((LOC_THRESHOLD_MAX - LOC_THRESHOLD_HIGH))
     local offset=$((loc - LOC_THRESHOLD_HIGH))
@@ -181,7 +181,7 @@ calculate_loc_score() {
   fi
 
   # Ensure score doesn't exceed weight
-  if [ "$score" -gt "$WEIGHT_LOC" ]; then
+  if [[ "$score" -gt "$WEIGHT_LOC" ]]; then
     score=$WEIGHT_LOC
   fi
 
@@ -194,20 +194,20 @@ calculate_files_score() {
   local files=$1
   local score=0
 
-  if [ "$files" -le "$FILES_THRESHOLD_LOW" ]; then
+  if [[ "$files" -le "$FILES_THRESHOLD_LOW" ]]; then
     # 1-3 files: 0-5 points
     score=$((files * 5 / FILES_THRESHOLD_LOW))
-  elif [ "$files" -le "$FILES_THRESHOLD_MED" ]; then
+  elif [[ "$files" -le "$FILES_THRESHOLD_MED" ]]; then
     # 4-8 files: 5-10 points
     local range=$((FILES_THRESHOLD_MED - FILES_THRESHOLD_LOW))
     local offset=$((files - FILES_THRESHOLD_LOW))
     score=$((5 + (offset * 5 / range)))
-  elif [ "$files" -le "$FILES_THRESHOLD_HIGH" ]; then
+  elif [[ "$files" -le "$FILES_THRESHOLD_HIGH" ]]; then
     # 9-15 files: 10-16 points
     local range=$((FILES_THRESHOLD_HIGH - FILES_THRESHOLD_MED))
     local offset=$((files - FILES_THRESHOLD_MED))
     score=$((10 + (offset * 6 / range)))
-  elif [ "$files" -le "$FILES_THRESHOLD_MAX" ]; then
+  elif [[ "$files" -le "$FILES_THRESHOLD_MAX" ]]; then
     # 16-30 files: 16-20 points
     local range=$((FILES_THRESHOLD_MAX - FILES_THRESHOLD_HIGH))
     local offset=$((files - FILES_THRESHOLD_HIGH))
@@ -218,7 +218,7 @@ calculate_files_score() {
   fi
 
   # Ensure score doesn't exceed weight
-  if [ "$score" -gt "$WEIGHT_FILES" ]; then
+  if [[ "$score" -gt "$WEIGHT_FILES" ]]; then
     score=$WEIGHT_FILES
   fi
 
@@ -230,20 +230,20 @@ calculate_files_score() {
 calculate_risk_score() {
   local score=0
 
-  if [ "$HAS_AUTH" = true ]; then
+  if [[ "$HAS_AUTH" = true ]]; then
     score=$((score + POINTS_AUTH))
   fi
 
-  if [ "$HAS_API" = true ]; then
+  if [[ "$HAS_API" = true ]]; then
     score=$((score + POINTS_API))
   fi
 
-  if [ "$HAS_DB" = true ]; then
+  if [[ "$HAS_DB" = true ]]; then
     score=$((score + POINTS_DB))
   fi
 
   # Cap at WEIGHT_RISK
-  if [ "$score" -gt "$WEIGHT_RISK" ]; then
+  if [[ "$score" -gt "$WEIGHT_RISK" ]]; then
     score=$WEIGHT_RISK
   fi
 
@@ -255,12 +255,12 @@ calculate_risk_score() {
 calculate_complexity_score() {
   local score=0
 
-  if [ "$HAS_ARCHITECTURAL" = true ]; then
+  if [[ "$HAS_ARCHITECTURAL" = true ]]; then
     score=$((score + POINTS_ARCHITECTURAL))
   fi
 
   # Cap at WEIGHT_COMPLEXITY
-  if [ "$score" -gt "$WEIGHT_COMPLEXITY" ]; then
+  if [[ "$score" -gt "$WEIGHT_COMPLEXITY" ]]; then
     score=$WEIGHT_COMPLEXITY
   fi
 
@@ -272,13 +272,13 @@ calculate_complexity_score() {
 determine_level() {
   local score=$1
 
-  if [ "$score" -le "$LEVEL_0_MAX" ]; then
+  if [[ "$score" -le "$LEVEL_0_MAX" ]]; then
     RECOMMENDED_LEVEL=0
     LEVEL_NAME="Quick"
-  elif [ "$score" -le "$LEVEL_1_MAX" ]; then
+  elif [[ "$score" -le "$LEVEL_1_MAX" ]]; then
     RECOMMENDED_LEVEL=1
     LEVEL_NAME="Baseline"
-  elif [ "$score" -le "$LEVEL_2_MAX" ]; then
+  elif [[ "$score" -le "$LEVEL_2_MAX" ]]; then
     RECOMMENDED_LEVEL=2
     LEVEL_NAME="Verification"
   else
@@ -294,20 +294,20 @@ calculate_confidence() {
   local bonus=0
 
   # More inputs = higher confidence
-  if [ "$LOC" -gt 0 ]; then
+  if [[ "$LOC" -gt 0 ]]; then
     bonus=$((bonus + 15))
   fi
 
-  if [ "$FILES" -gt 0 ]; then
+  if [[ "$FILES" -gt 0 ]]; then
     bonus=$((bonus + 15))
   fi
 
   # Risk factors add confidence when specified
   local risk_factors=0
-  if [ "$HAS_AUTH" = true ]; then risk_factors=$((risk_factors + 1)); fi
-  if [ "$HAS_API" = true ]; then risk_factors=$((risk_factors + 1)); fi
-  if [ "$HAS_DB" = true ]; then risk_factors=$((risk_factors + 1)); fi
-  if [ "$HAS_ARCHITECTURAL" = true ]; then risk_factors=$((risk_factors + 1)); fi
+  if [[ "$HAS_AUTH" = true ]]; then risk_factors=$((risk_factors + 1)); fi
+  if [[ "$HAS_API" = true ]]; then risk_factors=$((risk_factors + 1)); fi
+  if [[ "$HAS_DB" = true ]]; then risk_factors=$((risk_factors + 1)); fi
+  if [[ "$HAS_ARCHITECTURAL" = true ]]; then risk_factors=$((risk_factors + 1)); fi
 
   # Each risk factor adds some confidence (shows thoroughness)
   bonus=$((bonus + risk_factors * 2))
@@ -317,26 +317,26 @@ calculate_confidence() {
   local boundaries=("$LEVEL_0_MAX" "$LEVEL_1_MAX" "$LEVEL_2_MAX")
   for boundary in "${boundaries[@]}"; do
     local diff=$((TOTAL_SCORE - boundary))
-    if [ "$diff" -lt 0 ]; then diff=$((-diff)); fi
-    if [ "$diff" -lt "$distance_to_boundary" ]; then
+    if [[ "$diff" -lt 0 ]]; then diff=$((-diff)); fi
+    if [[ "$diff" -lt "$distance_to_boundary" ]]; then
       distance_to_boundary=$diff
     fi
   done
 
   # Reduce confidence if very close to a boundary (within 5 points)
-  if [ "$distance_to_boundary" -le 5 ]; then
+  if [[ "$distance_to_boundary" -le 5 ]]; then
     bonus=$((bonus - 10))
   fi
 
   CONFIDENCE=$((base_confidence + bonus))
 
   # Cap at 95% (never 100% certain)
-  if [ "$CONFIDENCE" -gt 95 ]; then
+  if [[ "$CONFIDENCE" -gt 95 ]]; then
     CONFIDENCE=95
   fi
 
   # Minimum 50%
-  if [ "$CONFIDENCE" -lt 50 ]; then
+  if [[ "$CONFIDENCE" -lt 50 ]]; then
     CONFIDENCE=50
   fi
 }
@@ -356,25 +356,25 @@ output_text() {
   echo "- LOC (${LOC}): +${SCORE_LOC} points"
   echo "- Files (${FILES}): +${SCORE_FILES} points"
   echo -n "- API changes: "
-  if [ "$HAS_API" = true ]; then
+  if [[ "$HAS_API" = true ]]; then
     echo "+${POINTS_API} points"
   else
     echo "+0 points"
   fi
   echo -n "- Auth changes: "
-  if [ "$HAS_AUTH" = true ]; then
+  if [[ "$HAS_AUTH" = true ]]; then
     echo "+${POINTS_AUTH} points"
   else
     echo "+0 points"
   fi
   echo -n "- DB changes: "
-  if [ "$HAS_DB" = true ]; then
+  if [[ "$HAS_DB" = true ]]; then
     echo "+${POINTS_DB} points"
   else
     echo "+0 points"
   fi
   echo -n "- Architectural: "
-  if [ "$HAS_ARCHITECTURAL" = true ]; then
+  if [[ "$HAS_ARCHITECTURAL" = true ]]; then
     echo "+${POINTS_ARCHITECTURAL} points"
   else
     echo "+0 points"
@@ -390,10 +390,10 @@ output_json() {
   local db_points=0
   local arch_points=0
 
-  if [ "$HAS_AUTH" = true ]; then auth_points=$POINTS_AUTH; fi
-  if [ "$HAS_API" = true ]; then api_points=$POINTS_API; fi
-  if [ "$HAS_DB" = true ]; then db_points=$POINTS_DB; fi
-  if [ "$HAS_ARCHITECTURAL" = true ]; then arch_points=$POINTS_ARCHITECTURAL; fi
+  if [[ "$HAS_AUTH" = true ]]; then auth_points=$POINTS_AUTH; fi
+  if [[ "$HAS_API" = true ]]; then api_points=$POINTS_API; fi
+  if [[ "$HAS_DB" = true ]]; then db_points=$POINTS_DB; fi
+  if [[ "$HAS_ARCHITECTURAL" = true ]]; then arch_points=$POINTS_ARCHITECTURAL; fi
 
   cat << EOF
 {
@@ -497,7 +497,7 @@ if ! [[ "$FILES" =~ ^[0-9]+$ ]]; then
 fi
 
 # Validate required inputs
-if [ "$LOC" -eq 0 ] && [ "$FILES" -eq 0 ]; then
+if [[ "$LOC" -eq 0 ]] && [[ "$FILES" -eq 0 ]]; then
   echo "ERROR: At least --loc or --files must be provided" >&2
   echo "Use --help for usage information" >&2
   exit 1
@@ -524,7 +524,7 @@ calculate_confidence
 # 7. OUTPUT RESULTS
 # ───────────────────────────────────────────────────────────────
 
-if [ "$JSON_OUTPUT" = true ]; then
+if [[ "$JSON_OUTPUT" = true ]]; then
   output_json
 else
   output_text

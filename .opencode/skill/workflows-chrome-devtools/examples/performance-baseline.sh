@@ -2,12 +2,12 @@
 # Performance Baseline Capture Script
 # Purpose: Create comprehensive performance baseline for regression testing
 # Usage: ./performance-baseline.sh [URL] [OUTPUT_DIR]
-# Example: ./performance-baseline.sh https://anobel.com ./baselines
+# Example: ./performance-baseline.sh https://example.com ./baselines
 
 set -e  # Exit on error
 
 # Configuration
-URL="${1:-https://anobel.com}"
+URL="${1:-https://example.com}"
 OUTPUT_DIR="${2:-performance-baselines}"
 DATE_STAMP=$(date +%Y%m%d-%H%M%S)
 

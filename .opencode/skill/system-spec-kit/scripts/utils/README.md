@@ -18,7 +18,9 @@
 
 ### What are System Spec Kit Utilities?
 
-The utilities folder contains reusable JavaScript modules that provide essential functionality for all system-spec-kit scripts. These modules handle data validation, path security, file I/O, structured logging, message formatting, prompt generation, and tool detection. They enforce security standards (CWE-22 path traversal prevention), normalize diverse input formats, and provide consistent error handling across the entire script ecosystem.
+The utilities folder contains reusable TypeScript modules (compiled to JavaScript) that provide essential functionality for all system-spec-kit scripts. These modules handle data validation, path security, file I/O, structured logging, message formatting, prompt generation, and tool detection. They enforce security standards (CWE-22 path traversal prevention), normalize diverse input formats, and provide consistent error handling across the entire script ecosystem.
+
+**Build System**: TypeScript source files (`.ts`) are compiled to `dist/utils/` using the TypeScript compiler. Scripts import from the compiled output at runtime.
 
 ### Key Statistics
 
@@ -26,7 +28,7 @@ The utilities folder contains reusable JavaScript modules that provide essential
 |----------|-------|---------|
 | Utility Modules | 11 | Core functionality for all scripts |
 | Primary Functions | 40+ | Validation, sanitization, normalization, logging |
-| Security Standards | CWE-22, Path Traversal | Enforced in path-utils.js |
+| Security Standards | CWE-22, Path Traversal | Enforced in path-utils.ts |
 
 ### Key Features
 
@@ -55,36 +57,41 @@ The utilities folder contains reusable JavaScript modules that provide essential
 ### 30-Second Setup
 
 ```bash
-# 1. Navigate to utils directory
-cd /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/utils
+# 1. Navigate to scripts directory
+cd .opencode/skill/system-spec-kit/scripts
 
-# 2. No installation needed - utilities are required by scripts
+# 2. Build TypeScript (compiles to dist/)
+npm run build   # or: tsc -b
 
-# 3. Use in your script
-node -e "const { sanitizePath } = require('./path-utils'); console.log(sanitizePath('/specs/001-test'));"
+# 3. Use compiled modules in your script
+node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.log(sanitizePath('/specs/001-test'));"
 ```
 
 ### Verify Utilities
 
 ```bash
-# Check all utilities exist
-ls -la *.js
-# Expected: 11 JavaScript files
+# Check all TypeScript source files exist
+ls -la utils/*.ts
+# Expected: 11 TypeScript files
 
-# Test path sanitization
-node -e "const { sanitizePath } = require('./path-utils'); console.log(sanitizePath('./specs/test'));"
+# Check compiled output exists
+ls -la dist/utils/*.js
+# Expected: Compiled JavaScript files
+
+# Test path sanitization (uses compiled output)
+node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.log(sanitizePath('./specs/test'));"
 # Expected: Absolute path to specs/test
 ```
 
 ### First Use
 
 ```javascript
-// Import utilities in your script
-const { sanitizePath } = require('./utils/path-utils');
-const { readJsonFile } = require('./utils/file-helpers');
-const { structuredLog } = require('./utils/logger');
-const { validateInputData } = require('./utils/data-validator');
-const { normalizeInput } = require('./utils/input-normalizer');
+// Import utilities from compiled output (CommonJS)
+const { sanitizePath } = require('./dist/utils/path-utils');
+const { readJsonFile } = require('./dist/utils/file-helpers');
+const { structuredLog } = require('./dist/utils/logger');
+const { validateInputData } = require('./dist/utils/data-validator');
+const { normalizeInput } = require('./dist/utils/input-normalizer');
 
 // Use path sanitization (prevents CWE-22 attacks)
 const safePath = sanitizePath('/specs/001-feature');
@@ -102,33 +109,47 @@ structuredLog('info', 'Processing spec folder', { path: safePath });
 
 ```
 utils/
-├── data-validator.js          # Data structure validation and flag mappings
-├── file-helpers.js            # Safe file read/write operations
-├── index.js                   # Module exports aggregator
-├── input-normalizer.js        # Input format normalization and transformation
-├── logger.js                  # Structured logging utilities
-├── message-utils.js           # User-facing message formatting
-├── path-utils.js              # Path sanitization and security (CWE-22)
-├── prompt-utils.js            # Prompt generation and formatting
-├── tool-detection.js          # MCP tool capability detection
-├── validation-utils.js        # Path-scoped validation and checklist verification
+├── data-validator.ts          # Data structure validation and flag mappings
+├── file-helpers.ts            # Safe file read/write operations
+├── index.ts                   # Module exports aggregator
+├── input-normalizer.ts        # Input format normalization and transformation
+├── logger.ts                  # Structured logging utilities
+├── message-utils.ts           # User-facing message formatting
+├── path-utils.ts              # Path sanitization and security (CWE-22)
+├── prompt-utils.ts            # Prompt generation and formatting
+├── tool-detection.ts          # MCP tool capability detection
+├── validation-utils.ts        # Path-scoped validation and checklist verification
 └── README.md                  # This file
+
+Compiled output:
+dist/utils/                    # TypeScript compilation output
+├── data-validator.js          # Compiled JavaScript + type definitions
+├── file-helpers.js
+├── index.js
+├── input-normalizer.js
+├── logger.js
+├── message-utils.js
+├── path-utils.js
+├── prompt-utils.js
+├── tool-detection.js
+├── validation-utils.js
+└── *.d.ts, *.js.map           # Type definitions and source maps
 ```
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `data-validator.js` | Validates and transforms spec folder data structures; applies flag mappings for arrays and presence checks |
-| `file-helpers.js` | Provides safe file I/O operations with UTF-8 encoding, existence checks, and error handling |
-| `index.js` | Aggregates exports from all utility modules for convenient importing |
-| `input-normalizer.js` | Normalizes diverse input formats (strings, objects, arrays) into consistent structures; transforms key decisions |
-| `logger.js` | Structured logging with severity levels (info, warn, error) and contextual data |
-| `message-utils.js` | Formats user-facing messages, error reports, and validation feedback |
-| `path-utils.js` | Sanitizes file paths to prevent directory traversal (CWE-22); validates against allowed base directories |
-| `prompt-utils.js` | Generates prompts for CLI interactions and user input collection |
-| `tool-detection.js` | Detects available MCP tools and their capabilities for dynamic feature enablement |
-| `validation-utils.js` | Validates spec folders against path-scoped rules; verifies checklist completeness |
+| `data-validator.ts` | Validates and transforms spec folder data structures; applies flag mappings for arrays and presence checks |
+| `file-helpers.ts` | Provides safe file I/O operations with UTF-8 encoding, existence checks, and error handling |
+| `index.ts` | Aggregates exports from all utility modules for convenient importing |
+| `input-normalizer.ts` | Normalizes diverse input formats (strings, objects, arrays) into consistent structures; transforms key decisions |
+| `logger.ts` | Structured logging with severity levels (info, warn, error) and contextual data |
+| `message-utils.ts` | Formats user-facing messages, error reports, and validation feedback |
+| `path-utils.ts` | Sanitizes file paths to prevent directory traversal (CWE-22); validates against allowed base directories |
+| `prompt-utils.ts` | Generates prompts for CLI interactions and user input collection |
+| `tool-detection.ts` | Detects available MCP tools and their capabilities for dynamic feature enablement |
+| `validation-utils.ts` | Validates spec folders against path-scoped rules; verifies checklist completeness |
 
 ---
 
@@ -179,7 +200,7 @@ if (!data) {
 
 **Solution**:
 ```javascript
-const { normalizeInput } = require('./input-normalizer');
+const { normalizeInput } = require('./dist/utils/input-normalizer');
 
 // Ensure input matches expected shape
 const normalized = normalizeInput({
@@ -199,7 +220,7 @@ console.log(normalized);
 
 **Solution**:
 ```javascript
-const { structuredLog } = require('./logger');
+const { structuredLog } = require('./dist/utils/logger');
 
 // Use correct severity levels
 structuredLog('info', 'Information message', { context: 'data' });
@@ -217,22 +238,26 @@ console.log(process.env.LOG_LEVEL); // Should be 'info', 'warn', or 'error'
 | Path outside allowed dirs | Use relative paths from cwd/specs/.opencode |
 | File not found | Check file existence with `fs.existsSync()` before calling helpers |
 | Invalid JSON | Validate JSON syntax before passing to `readJsonFile()` |
-| Module not found | Ensure you're requiring from correct relative path (`./utils/module`) |
+| Module not found | Ensure you're requiring from `./dist/utils/module` (compiled output) |
+| TypeScript compile errors | Run `tsc -b` from scripts directory to rebuild |
 
 ### Diagnostic Commands
 
 ```bash
-# Check all utilities exist
-ls -la /Users/michelkerkmeester/MEGA/Development/Websites/anobel.com/.opencode/skill/system-spec-kit/scripts/utils/*.js
+# Check TypeScript source files exist
+ls -la utils/*.ts
 
-# Test path sanitization
-node -e "const { sanitizePath } = require('./path-utils'); console.log(sanitizePath('./specs/test'));"
+# Check compiled output exists
+ls -la dist/utils/*.js
+
+# Test path sanitization (from scripts directory)
+node -e "const { sanitizePath } = require('./dist/utils/path-utils'); console.log(sanitizePath('./specs/test'));"
 
 # Verify module exports
-node -e "const utils = require('./index'); console.log(Object.keys(utils));"
+node -e "const utils = require('./dist/utils/index'); console.log(Object.keys(utils));"
 
 # Test data validator
-node -e "const { validateInputData } = require('./data-validator'); console.log(validateInputData({ summary: 'test' }));"
+node -e "const { validateInputData } = require('./dist/utils/data-validator'); console.log(validateInputData({ summary: 'test' }));"
 ```
 
 ---
@@ -244,18 +269,18 @@ node -e "const { validateInputData } = require('./data-validator'); console.log(
 | Document | Purpose |
 |----------|---------|
 | [Scripts README](../README.md) | Overview of all system-spec-kit scripts that use these utilities |
-| [Validation Rules](../../references/validation/validation_rules.md) | Rules enforced by validation-utils.js |
-| [Path-Scoped Rules](../../references/validation/path_scoped_rules.md) | Path validation logic used by validation-utils.js |
+| [Validation Rules](../../references/validation/validation_rules.md) | Rules enforced by validation-utils.ts |
+| [Path-Scoped Rules](../../references/validation/path_scoped_rules.md) | Path validation logic used by validation-utils.ts |
 | [Memory System](../../references/memory/memory_system.md) | Uses input-normalizer for memory save data |
 
 ### External Resources
 
 | Resource | Description |
 |----------|-------------|
-| [CWE-22: Path Traversal](https://cwe.mitre.org/data/definitions/22.html) | Security standard enforced by path-utils.js |
-| [Node.js File System](https://nodejs.org/api/fs.html) | API used by file-helpers.js |
-| [Node.js Path Module](https://nodejs.org/api/path.html) | API used by path-utils.js |
+| [CWE-22: Path Traversal](https://cwe.mitre.org/data/definitions/22.html) | Security standard enforced by path-utils.ts |
+| [Node.js File System](https://nodejs.org/api/fs.html) | API used by file-helpers.ts |
+| [Node.js Path Module](https://nodejs.org/api/path.html) | API used by path-utils.ts |
 
 ---
 
-*Documentation for system-spec-kit utilities v2.0*
+*Documentation for system-spec-kit utilities v2.1 | TypeScript Migration | Last updated: 2026-02-07*

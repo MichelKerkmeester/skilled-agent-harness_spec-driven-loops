@@ -3,6 +3,10 @@
 # RULE: CHECK-COMPLEXITY
 # ───────────────────────────────────────────────────────────────
 
+# T504 FIX: Using 'set -eo pipefail' (not -u) for macOS bash 3.2 compatibility.
+# The -u flag causes failures with empty arrays and when sourced by the orchestrator.
+set -eo pipefail
+
 # Rule: COMPLEXITY_MATCH
 # Severity: warn
 # Description: Validates that declared complexity level matches actual content.
