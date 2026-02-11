@@ -175,11 +175,11 @@ EOF
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
-| **Version**        | v1.3.1.0                                                                               |
-| **Release Date**   | 2026-02-10                                                                             |
+| **Version**        | v1.3.2.0                                                                               |
+| **Release Date**   | 2026-02-11                                                                             |
 | **GitHub**         | https://github.com/MichelKerkmeester/opencode-spec-kit-framework                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v1.3.1.0 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v1.3.2.0 |
 
 ---
 
@@ -308,7 +308,9 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `1.2.3.x` | 1.2.3.0     | Ecosystem remediation + schema unification |
 | `1.2.4.x` | 1.2.4.0-1   | Orchestrate agent Context Window Budget  |
 | `1.2.5.x` | 1.2.5.0     | workflows-code--opencode Phase 17 alignment |
-| `1.3.0.x` | 1.3.0.0-1   | Agent fleet overhaul + @context_loader     |
+| `1.3.0.x` | 1.3.0.0-1   | Agent fleet overhaul + @context            |
+| `1.3.1.x` | 1.3.1.0     |                                            |
+| `1.3.2.x` | 1.3.2.0     |                                            |
 
 ---
 

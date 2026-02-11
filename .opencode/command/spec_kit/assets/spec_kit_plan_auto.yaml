@@ -673,7 +673,7 @@ workflow:
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
     activities:
-    - Run create-spec-folder.sh script
+    - Run create.sh script (scripts/spec/create.sh)
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
       - "Level 2 (Verification): 100-499 LOC - Level 1 + checklist.md"

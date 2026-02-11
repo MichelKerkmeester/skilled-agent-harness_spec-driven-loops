@@ -1,7 +1,7 @@
 ---
 description: Recover session from crash, compaction, or timeout - resume interrupted work
 argument-hint: "[recovery-mode:auto|manual]"
-allowed-tools: Read, Bash, spec_kit_memory_memory_search, spec_kit_memory_memory_list, spec_kit_memory_memory_stats
+allowed-tools: Read, Bash, spec_kit_memory_memory_context, spec_kit_memory_memory_search, spec_kit_memory_memory_list, spec_kit_memory_memory_stats
 ---
 
 # 🚨 MANDATORY PHASE - BLOCKING ENFORCEMENT
@@ -120,9 +120,11 @@ operating_mode:
 ┌─────────────────┬─────────────────────────────────────┬──────────┬─────────────────┐
 │ SCREEN          │ REQUIRED MCP CALLS                  │ MODE     │ ON FAILURE      │
 ├─────────────────┼─────────────────────────────────────┼──────────┼─────────────────┤
-│ DETECTION       │ spec_kit_memory_memory_search(query: "session") │ SINGLE   │ Ask user        │
-├─────────────────┼─────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ STATE LOAD      │ spec_kit_memory_memory_search(includeContent: true) │ SINGLE   │ Use CONTINUE.md │
+│ DETECTION       │ spec_kit_memory_memory_context({ input: "session", │ SINGLE   │ Fall back to    │
+│                 │   mode: "resume", includeContent: false })          │          │ memory_search   │
+├─────────────────┼─────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ STATE LOAD      │ spec_kit_memory_memory_context({ input: "[session   │ SINGLE   │ Use CONTINUE.md │
+│                 │   query]", mode: "resume", includeContent: true })  │          │                 │
 ├─────────────────┼─────────────────────────────────────────────────┼──────────┼─────────────────┤
 │ STATS           │ spec_kit_memory_memory_stats                    │ SINGLE   │ Show error msg  │
 └─────────────────┴─────────────────────────────────────┴──────────┴─────────────────┘
@@ -130,9 +132,10 @@ operating_mode:
 
 **Tool Call Format:**
 ```
+spec_kit_memory_memory_context({ input: "session state", mode: "resume", specFolder: "<folder>", includeContent: true })
 spec_kit_memory_memory_search({ query: "session state", specFolder: "<folder>", includeContent: true })
 spec_kit_memory_memory_list({ limit: 5, sortBy: "updated_at" })
-spec_kit_memory_memory_stats({ includeScores: true })
+spec_kit_memory_memory_stats({ includeScores: true })  // includeScores: includes composite score breakdown per folder in results
 Read({ filePath: "<absolute_path>" })
 ```
 

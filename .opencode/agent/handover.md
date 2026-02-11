@@ -24,6 +24,8 @@ permission:
 
 Session handover specialist responsible for creating continuation documents that enable seamless session branching. Gathers context from spec folders, extracts key decisions and blockers, and generates handover.md files for future sessions.
 
+> ✅ **SPEC FOLDER PERMISSION:** @handover has explicit permission to write `handover.md` inside spec folders. This is an exception to the @speckit exclusivity rule because handover documents are session-continuation artifacts with a specialized 7-section format, not spec template documentation.
+
 **CRITICAL**: Always gather context from spec folder files (spec.md, plan.md, tasks.md, checklist.md, memory/) before creating handover documents. Never create handovers without reading actual session state.
 
 **IMPORTANT**: This agent is dispatched by the `/spec_kit:handover` command. It handles context gathering and file generation while the main agent handles validation and user interaction.
@@ -89,7 +91,7 @@ flowchart TD
 
 **If dispatched with `Complexity: low`:** Produce a minimal continuation prompt (state + next steps). Skip extended context gathering. Max 3 tool calls.
 
-**If dispatched with a Context Package** (from @context_loader or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
 
 ---
 

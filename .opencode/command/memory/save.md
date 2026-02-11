@@ -55,7 +55,7 @@ PRE-FLIGHT CHECKS (ALL MUST PASS):
 │   └─ SET STATUS: ✅ PASSED (or ⚠️ WARNED)
 │
 ├─ CHECK 2: DUPLICATE SESSION DETECTION
-│   ├─ Call: spec_kit_memory_memory_stats({ specFolder: [if known] })
+│   ├─ Call: spec_kit_memory_memory_stats({})
 │   ├─ Check: lastSessionHash vs current conversation fingerprint
 │   ├─ IF duplicate detected (same topic + timeframe < 1h):
 │   │   ├─ WARN: "Recent save detected for this topic"
@@ -279,7 +279,7 @@ operating_mode:
 
 **Script Location:**
 ```
-.opencode/skill/system-spec-kit/scripts/memory/generate-context.js
+.opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js
 ```
 
 > **Tool Restriction (Memory Save Rule - HARD BLOCK):** `Write` and `Edit` tools are intentionally excluded from this command's `allowed-tools`. Memory files MUST be created via the `generate-context.js` script to ensure proper ANCHOR tags (with opening AND closing markers), SESSION SUMMARY table, and MEMORY METADATA YAML block. Direct file creation bypasses these critical formatting features. See AGENTS.md Memory Save Rule for enforcement details.
@@ -421,7 +421,7 @@ memory_search({ query: "jwt auth", includeContent: true })
     "Decision 2: Selected A over B due to performance considerations"
   ],
   "filesModified": [
-    ".opencode/skill/system-spec-kit/scripts/memory/generate-context.js",
+    ".opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js",
     "specs/005-memory/010-feature-name/spec.md"
   ],
   "triggerPhrases": [
@@ -474,7 +474,7 @@ cat > "$TEMP_FILE" << 'EOF'
 EOF
 
 # 2. Execute the script with the JSON file
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js "$TEMP_FILE"
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js "$TEMP_FILE"
 
 # 3. Clean up temp file
 rm "$TEMP_FILE"
@@ -496,10 +496,10 @@ rm "$TEMP_FILE"
 **Mode 2 (Direct Path) - Minimal save:**
 ```bash
 # Pass spec folder path directly (creates placeholder content)
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/005-memory
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/005-memory
 
 # Or with nested folder
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/005-memory/010-feature
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/005-memory/010-feature
 ```
 
 **When to use Mode 2:** Quick saves without rich context, testing, or when Mode 1 JSON construction fails.
@@ -771,10 +771,12 @@ If auto-indexing fails repeatedly, manual intervention options:
 
 ### Full Parameter Reference: memory_save
 
-| Parameter  | Type    | Default    | Description                                                                                                                                 |
-| ---------- | ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filePath` | string  | *required* | Absolute path to the memory file (must be in `specs/**/memory/` or `.opencode/skill/*/constitutional/` directory)                           |
-| `force`    | boolean | false      | Force re-index even if content hash unchanged. Use when you want to regenerate embeddings or update metadata without changing file content. |
+| Parameter        | Type    | Default    | Description                                                                                                                                 |
+| ---------------- | ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filePath`       | string  | *required* | Absolute path to the memory file (must be in `specs/**/memory/` or `.opencode/skill/*/constitutional/` directory)                           |
+| `force`          | boolean | false      | Force re-index even if content hash unchanged. Use when you want to regenerate embeddings or update metadata without changing file content. |
+| `dryRun`         | boolean | false      | Validate only without saving. Returns validation results including anchor format, duplicate check, and token budget estimation.             |
+| `skipPreflight`  | boolean | false      | Skip pre-flight validation checks (not recommended). Bypasses anchor format, duplicate, and token budget validation.                       |
 
 **For manual file creation**, use `memory_save` for immediate indexing:
 ```
@@ -874,7 +876,7 @@ DISPATCH SUB-AGENT:
        (On Windows: use $TEMP or %TEMP% directory)
     
     5. EXECUTE SCRIPT:
-       node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js ${TMPDIR:-/tmp}/save-context-data.json
+       node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js ${TMPDIR:-/tmp}/save-context-data.json
     
     6. CLEANUP:
        rm ${TMPDIR:-/tmp}/save-context-data.json
@@ -1010,9 +1012,9 @@ Phase 0 Check 2: Duplicate Session Detection
 │   ├─ Extract: Topic keywords + timestamp range + file paths
 │   ├─ Hash: SHA-256 of (topic + files + timeframe)
 │   └─ Store as: current_session_hash
-├─ Call: memory_stats({ specFolder })
-│   ├─ Returns: lastSessionHash, lastSessionTime, lastSessionFile
-│   └─ Compare: current_session_hash vs lastSessionHash
+├─ Call: memory_list({ specFolder, sortBy: "created_at", limit: 1 })
+│   ├─ Returns: most recent memory file metadata
+│   └─ Compare: current_session_hash vs existing memory fingerprint
 ├─ IF hashes match AND time_delta < 1 hour:
 │   ├─ DUPLICATE DETECTED
 │   ├─ Present options to user
@@ -1103,18 +1105,20 @@ Deduplication metadata improves search quality:
 
 1. **memory_search** can filter duplicate sessions:
    ```javascript
+   // Use `enableDedup: true` with a `sessionId` for deduplication instead
    memory_search({
      query: "semantic search",
-     exclude_duplicates: true  // Only return original sessions
+     enableDedup: true,
+     sessionId: "current-session-id"
    })
    ```
 
 2. **Related session linking** enables traversal:
    ```javascript
-   // Find session by ID
-   memory_search({ id: 42 })
-   // Load related sessions
-   related_sessions.forEach(id => memory_search({ id }))
+   // Find related memories by query or spec folder
+   memory_search({ query: "session context", specFolder: "003-memory-and-spec-kit" })
+   // Load related sessions via causal links
+   memory_drift_why({ memoryId: "42", direction: "both" })
    ```
 
 3. **Temporal clustering** groups related work:

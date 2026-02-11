@@ -25,7 +25,6 @@ Create an agent when you need:
 - **Behavioral constraints** - Rules that govern how the agent operates
 - **Delegation capability** - Ability to spawn sub-agents (orchestrator pattern)
 - **Specialized persona** - A distinct role with defined authority
-- **Model preference** - Control over which model should be used for dispatch
 
 **Do NOT create an agent when:**
 - You only need knowledge/workflows → Create a skill instead
@@ -112,37 +111,6 @@ permission:                         # REQUIRED: Unified permission object (v1.1.
 ## 3. 🏗️ REQUIRED SECTIONS
 
 Every agent file MUST include these sections in order:
-
-### Section 0: Model Preference (NEW - MANDATORY)
-
-```markdown
-## 0. 🤖 MODEL PREFERENCE
-
-### Default Model: [Sonnet/Opus 4.5]
-
-This agent defaults to **[Model]** for [rationale].
-
-| Model | Use When | Task Examples |
-|-------|----------|---------------|
-| **[Default]** (default) | [Condition] | [Examples] |
-| **[Alternative]** | [Condition] | [Examples] |
-
-### Dispatch Instructions
-
-When dispatching this agent via Task tool:
-
-\`\`\`
-# Default ([Model]) - use for [use case]
-Task(subagent_type: "[agent]", model: "[model]", prompt: "...")
-
-# [Alternative] - for [use case]
-Task(subagent_type: "[agent]", model: "[model]", prompt: "...")
-\`\`\`
-
-**Rule**: Use [Default] by default for:
-- [Criterion 1]
-- [Criterion 2]
-```
 
 ### Section 1: Core Workflow
 
@@ -417,35 +385,6 @@ permission:
 
 ---
 
-## 0. 🤖 MODEL PREFERENCE
-
-### Default Model: Sonnet
-
-This agent defaults to **Sonnet** for [rationale].
-
-| Model | Use When | Task Examples |
-|-------|----------|---------------|
-| **Sonnet** (default) | [Condition] | [Examples] |
-| **Opus** | User explicitly requests | [Complex examples] |
-
-### Dispatch Instructions
-
-When dispatching this agent via Task tool:
-
-\`\`\`
-# Default (Sonnet) - use for most tasks
-Task(subagent_type: "[agent-name]", model: "sonnet", prompt: "...")
-
-# Opus - when user explicitly requests
-Task(subagent_type: "[agent-name]", model: "opus", prompt: "...")
-\`\`\`
-
-**Rule**: Use Opus when:
-- User explicitly says "use opus" or "use the most capable model"
-- [Domain-specific complexity threshold]
-
----
-
 ## 1. 🔄 CORE WORKFLOW
 
 ### [N]-Step [Domain] Process
@@ -647,14 +586,17 @@ Fix verification gaps first
 
 ### Current Production Agents
 
-| Agent       | File          | Type       | Key Patterns                                    |
-| ----------- | ------------- | ---------- | ----------------------------------------------- |
-| @research   | research.md   | Subagent   | 9-step workflow, evidence grading, tool routing |
-| @review     | review.md     | Subagent   | Quality rubric, orchestrator integration        |
-| @debug      | debug.md      | Subagent   | 4-phase methodology, structured handoff         |
-| @speckit    | speckit.md    | Subagent   | Template-first, level-based documentation       |
-| @write      | write.md      | Subagent   | DQI scoring, template alignment                 |
-| orchestrate | orchestrate.md| Primary    | Task decomposition, circuit breaker             |
+| Agent           | File               | Type       | Key Patterns                                                                                |
+| --------------- | ------------------ | ---------- | ------------------------------------------------------------------------------------------- |
+| @context        | context.md         | Subagent   | Context retrieval, active dispatch (@explore + @research), structured Context Package output |
+| @debug          | debug.md           | Subagent   | 4-phase methodology, structured handoff                                                     |
+| @general        | (built-in)         | Agent      | Implementation, complex tasks, full tool access                                             |
+| @handover       | handover.md        | Subagent   | Session continuation, context preservation                                                  |
+| @research       | research.md        | Subagent   | 9-step workflow, evidence grading, tool routing                                             |
+| @review         | review.md          | Subagent   | Quality rubric, orchestrator integration                                                    |
+| @speckit        | speckit.md         | Subagent   | Template-first, level-based documentation                                                   |
+| @write          | write.md           | Subagent   | DQI scoring, template alignment                                                             |
+| orchestrate     | orchestrate.md     | Primary    | Task decomposition, circuit breaker                                                         |
 
 ### Key Patterns by Agent Type
 
@@ -706,7 +648,6 @@ Before deploying an agent, verify:
 **Structure:**
 - [ ] H1 title follows "# The [Role]: [Subtitle]" pattern
 - [ ] Intro has **CRITICAL** and **IMPORTANT** statements
-- [ ] Section 0 is "🤖 MODEL PREFERENCE" (mandatory)
 - [ ] Section 1 is "🔄 CORE WORKFLOW"
 - [ ] Has "🔍 CAPABILITY SCAN" section
 - [ ] Has "✅ OUTPUT VERIFICATION" section (mandatory)
@@ -716,8 +657,6 @@ Before deploying an agent, verify:
 - [ ] All H2 sections have emoji and number
 
 **Content:**
-- [ ] Model preference table has Sonnet and Opus options (no Haiku)
-- [ ] Dispatch instructions show Task tool syntax
 - [ ] Core workflow has numbered steps with verbs
 - [ ] Skills and tools tables are populated
 - [ ] Output verification has domain-specific checks
@@ -738,14 +677,17 @@ Before deploying an agent, verify:
 
 ### Agent Files
 
-| Agent       | Location                         | Purpose                         |
-| ----------- | -------------------------------- | ------------------------------- |
-| research    | `.opencode/agent/research.md`    | Technical investigation         |
-| review      | `.opencode/agent/review.md`      | Code quality validation         |
-| debug       | `.opencode/agent/debug.md`       | Fresh perspective debugging     |
-| speckit     | `.opencode/agent/speckit.md`     | Spec folder documentation       |
-| write       | `.opencode/agent/write.md`       | Documentation creation          |
-| orchestrate | `.opencode/agent/orchestrate.md` | Task decomposition & delegation |
+| Agent          | Location                              | Purpose                                   |
+| -------------- | ------------------------------------- | ----------------------------------------- |
+| context        | `.opencode/agent/context.md`          | Context retrieval & exploration dispatch  |
+| debug          | `.opencode/agent/debug.md`            | Fresh perspective debugging               |
+| general        | (built-in)                            | Implementation, complex tasks             |
+| handover       | `.opencode/agent/handover.md`         | Session continuation & context preservation |
+| orchestrate    | `.opencode/agent/orchestrate.md`      | Task decomposition & delegation           |
+| research       | `.opencode/agent/research.md`         | Technical investigation                   |
+| review         | `.opencode/agent/review.md`           | Code quality validation                   |
+| speckit        | `.opencode/agent/speckit.md`          | Spec folder documentation                 |
+| write          | `.opencode/agent/write.md`            | Documentation creation                    |
 
 ### Documentation
 

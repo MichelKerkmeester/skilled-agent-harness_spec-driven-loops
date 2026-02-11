@@ -319,8 +319,8 @@ The handover file is created in the spec folder root, NOT in memory/.
 
 > **Crash Recovery Note:** For emergency crash recovery scenarios (unexpected session termination), the same content format can be saved as `CONTINUE_SESSION.md` in the project root. This file is checked by `/spec_kit:resume` and `/memory:continue` for rapid recovery. The handover.md in spec folder is the standard location; CONTINUE_SESSION.md is for edge cases where spec folder context was lost.
 
-> **💡 Tip:** After creating the handover file, consider running:
-> `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`
+> **MANDATORY:** After creating the handover file, you **MUST** run:
+> `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
 > to preserve full semantic context for future searches. Handover files are for quick continuation; memory files are for semantic retrieval.
 
 ### Handover Success
@@ -374,7 +374,6 @@ The handover file is created in the spec folder root, NOT in memory/.
 The handover workflow delegates execution work to the dedicated `@handover` agent for token efficiency. The main agent handles validation and user interaction; the sub-agent handles context gathering and file generation.
 
 **Agent File:** `.opencode/agent/handover.md`
-**Symlink:** `.claude/agents/handover.md`
 
 ### Delegation Architecture
 
@@ -423,12 +422,14 @@ DISPATCH SUB-AGENT:
 
     TEMPLATE: .opencode/skill/system-spec-kit/templates/handover.md
 
-    REQUIRED SECTIONS:
-    - Handover Summary (session ID, phase, timestamp)
-    - Context Transfer (key decisions, blockers, files modified)
-    - For Next Session (starting point, priority tasks)
-    - Validation Checklist (pre-handover verification)
-    - Session Notes (observations)
+    REQUIRED SECTIONS (7 sections, aligned with YAML template):
+    1. Session Summary (date, duration, objective, progress percentage, key accomplishments)
+    2. Current State (phase, active file/line, last action, system state)
+    3. Completed Work (tasks done, files modified, tests passed, docs updated)
+    4. Pending Work (immediate next action, remaining tasks, effort estimates, dependencies)
+    5. Key Decisions (decisions made, rationale, alternatives rejected, impact)
+    6. Blockers & Risks (current blockers, risks identified, mitigation strategies)
+    7. Continuation Instructions (resume command, files to review, context to load)
 
     RETURN (as your final message):
     ```json
@@ -585,7 +586,37 @@ Proactive `/spec_kit:handover` suggestion on session-ending keywords:
 
 ---
 
-## 11. 🔗 COMMAND CHAIN
+## 11. 🔌 CIRCUIT BREAKER
+
+The circuit breaker isolates failing operations to prevent cascading failures during handover generation.
+
+### States
+
+| State     | Condition                        | Behavior                                 |
+| --------- | -------------------------------- | ---------------------------------------- |
+| CLOSED    | Normal operation                 | All operations proceed                   |
+| OPEN      | 3+ consecutive failures          | Operations fail-fast, skip affected step |
+| HALF-OPEN | After recovery_timeout_s (60s)   | Single test operation allowed            |
+
+### Configuration
+
+| Parameter          | Value | Description                                        |
+| ------------------ | ----- | -------------------------------------------------- |
+| failure_threshold  | 3     | Consecutive failures before OPEN state             |
+| recovery_timeout_s | 60    | Seconds in OPEN state before trying HALF-OPEN      |
+| success_to_close   | 1     | Successes needed in HALF-OPEN to close circuit     |
+
+### Recovery Protocol
+
+1. **OPEN state triggered**: Handover workflow halts with error summary
+2. **Wait recovery_timeout_s**: System waits 60 seconds
+3. **HALF-OPEN attempt**: Single retry of failed operation
+4. **Success**: Reset to CLOSED, continue workflow
+5. **Failure**: Return to OPEN, escalate to user
+
+---
+
+## 12. 🔗 COMMAND CHAIN
 
 This command is part of the SpecKit workflow:
 
@@ -598,7 +629,7 @@ This command is part of the SpecKit workflow:
 
 ---
 
-## 12. 📌 NEXT STEPS
+## 13. 📌 NEXT STEPS
 
 After handover is created, provide continuation instructions:
 

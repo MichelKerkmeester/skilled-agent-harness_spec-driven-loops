@@ -7,15 +7,37 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**1.3.2.0**] - 2026-02-11
+
+**Governance & routing:** Established @speckit exclusivity rule for spec folder documentation, added orchestrator parallel ceiling, renamed @context_loader → @context, and reduced @context dispatch limits.
+
+---
+
+### Added
+
+1. **@speckit Exclusivity Rule** — New enforcement system ensuring ONLY `@speckit` can create/write documentation (`*.md`) inside spec folders. Constitutional memory #280 created with 29 trigger phrases. Enforcement across 5 layers: constitutional memory, `orchestrate.md`, `AGENTS.md`, individual agent files, and skill documentation. Four exceptions: `memory/` (uses `generate-context.js`), `scratch/` (any agent), `handover.md` (`@handover` only), `research.md` (`@research` only). 10 files modified across agents, skills, and framework docs
+2. **Orchestrator Default Parallel Ceiling** — New default maximum of 3 agents dispatched simultaneously in `orchestrate.md`. Previously unlimited (up to 4). Ranges 4–9 and 10–20 require explicit user override. Updated §13 (parallel table + ceiling paragraph), §23 (summary), §25 (scaling heuristics), §27 (scale thresholds), §28 (collection patterns). Escape clause: "unless user explicitly requests more"
+
+### Changed
+
+3. **@context_loader → @context Rename** — Agent file renamed from `context_loader.md` to `context.md`. Display name changed from "The Context Loader" to "The Context Agent". 78 references updated across 14 files — zero remaining references verified
+4. **@context Dispatch Limits Reduced** — Reduced maximum dispatch limits: `medium` from 2→1, `thorough` from 3→2 (`quick` unchanged at 0). Escape clause added: "User can explicitly request higher limits"
+
+---
+
+**Files:** `.opencode/agent/context.md` · `.opencode/agent/orchestrate.md` · `.opencode/agent/speckit.md` · `.opencode/agent/write.md` · `.opencode/agent/research.md` · `.opencode/agent/handover.md` · `.opencode/agent/review.md` · `.opencode/agent/debug.md` · `AGENTS.md` · `CHANGELOG.md` · `README.md` · `PUBLIC_RELEASE.md` · `.opencode/install_guides/SET-UP - Opencode Agents.md` · `.opencode/skill/workflows-documentation/assets/opencode/agent_template.md` · `.opencode/skill/system-spec-kit/constitutional/speckit-exclusivity.md` · `.opencode/skill/system-spec-kit/SKILL.md` · `.opencode/skill/system-spec-kit/references/workflows/quick_reference.md` · `.opencode/skill/system-spec-kit/references/memory/save_workflow.md`
+
+---
+
 ## [**1.3.1.0**] - 2026-02-10
 
-**Prompt compression:** Compressed `@context_loader` agent from **717 → 434 lines (39.5% reduction)**, completing the fleet-wide optimization started in v1.3.0.0. All 8 agents now compressed.
+**Prompt compression:** Compressed `@context` agent from **717 → 434 lines (39.5% reduction)**, completing the fleet-wide optimization started in v1.3.0.0. All 8 agents now compressed.
 
 ---
 
 ### Changed
 
-**context_loader.md (39.5% reduction: 717 → 434 lines)**
+**context.md (39.5% reduction: 717 → 434 lines)**
 
 1. **Removed 2 Mermaid diagrams** — S1 workflow diagram (~67 lines) and S4 layer diagram (~25 lines). Textual descriptions retained
 2. **Removed ASCII boundary box** — S5 dispatch boundary illustration (~15 lines). Rules preserved in dispatch protocol text
@@ -26,13 +48,13 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
-**Files:** `.opencode/agent/context_loader.md`
+**Files:** `.opencode/agent/context.md`
 
 ---
 
 ## [**1.3.0.0**] - 2026-02-10
 
-**Agent fleet overhaul:** Created `@context_loader` agent, established Two-Tier Dispatch architecture, added FAST PATH to all 6 work agents, removed dead code, standardized models, and compressed all agent prompts by **23.1%** (5,176 → 3,982 lines).
+**Agent fleet overhaul:** Created `@context` agent, established Two-Tier Dispatch architecture, added FAST PATH to all 6 work agents, removed dead code, standardized models, and compressed all agent prompts by **23.1%** (5,176 → 3,982 lines).
 
 > Spec folder: `004-agents/007-explore-sub-agent` (Level 2)
 
@@ -40,11 +62,11 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ### Added
 
-**@context_loader Agent**
+**@context Agent**
 
-1. **Context retrieval agent** — Created `.opencode/agent/context_loader.md` (716 lines). Specialized context scout with 3 thoroughness levels (quick/medium/thorough), Memory MCP integration, and structured Context Package output
-2. **Two-Tier Dispatch Model** — Phase 1: `@context_loader` gathers context → Phase 2: orchestrator dispatches implementation agents with that Context Package. Eliminates redundant exploration across agents
-3. **@explore prohibition (Rule 4)** — `orchestrate.md` §6 now prohibits direct `@explore` dispatch. Only `@context_loader` can internally dispatch the built-in `@explore` subagent type
+1. **Context retrieval agent** — Created `.opencode/agent/context.md` (716 lines). Specialized context scout with 3 thoroughness levels (quick/medium/thorough), Memory MCP integration, and structured Context Package output
+2. **Two-Tier Dispatch Model** — Phase 1: `@context` gathers context → Phase 2: orchestrator dispatches implementation agents with that Context Package. Eliminates redundant exploration across agents
+3. **@explore prohibition (Rule 4)** — `orchestrate.md` §6 now prohibits direct `@explore` dispatch. Only `@context` can internally dispatch the built-in `@explore` subagent type
 
 **FAST PATH System**
 
@@ -56,7 +78,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 **orchestrate.md (39.7% reduction: 1,316 → 793 lines)**
 
 1. **Aggressive prompt compression** — Compressed §17 Circuit Breaker, §19 Saga, §20 Caching, §22 Checkpointing, §23 Summary, §24 Mermaid (Phase 1b: −165 lines), then §28, §7, §27, §14, §5, §4, §12, §16, §21, §30 (Phase 1c: −361 lines)
-2. **@context_loader integration** — All `@explore` dispatch references replaced with `@context_loader`. Agent Selection Matrix and Routing Logic updated
+2. **@context integration** — All `@explore` dispatch references replaced with `@context`. Agent Selection Matrix and Routing Logic updated
 3. **Complexity field in PDR** — Pre-Delegation Reasoning format now includes complexity line
 
 **research.md (42.4% reduction: 793 → 457 lines)**
@@ -85,7 +107,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 **Model standardization**
 
-10. **All agents → `github-copilot/claude-*`** — Heavy agents (research, review, debug) use `claude-opus-4.6`. Lighter agents (write, speckit, handover, context_loader) use `claude-sonnet-4.5`. Orchestrate has no model (primary mode, delegates only)
+10. **All agents → `github-copilot/claude-*`** — Heavy agents (research, review, debug) use `claude-opus-4.6`. Lighter agents (write, speckit, handover, context) use `claude-sonnet-4.5`. Orchestrate has no model (primary mode, delegates only)
 
 ### Removed
 
@@ -94,7 +116,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
-**Files:** `.opencode/agent/context_loader.md` (new) · `.opencode/agent/orchestrate.md` · `.opencode/agent/research.md` · `.opencode/agent/write.md` · `.opencode/agent/review.md` · `.opencode/agent/debug.md` · `.opencode/agent/speckit.md` · `.opencode/agent/handover.md`
+**Files:** `.opencode/agent/context.md` (new) · `.opencode/agent/orchestrate.md` · `.opencode/agent/research.md` · `.opencode/agent/write.md` · `.opencode/agent/review.md` · `.opencode/agent/debug.md` · `.opencode/agent/speckit.md` · `.opencode/agent/handover.md`
 
 ---
 

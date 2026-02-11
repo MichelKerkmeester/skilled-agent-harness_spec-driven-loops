@@ -434,15 +434,19 @@ Violation consequence: <what breaks>
 
 ### Step 3: Execute Save
 
+The `memory_save` MCP tool **indexes an existing file on disk** — it does NOT accept raw content.
+You must first create the memory file, then index it.
+
+```bash
+# 3a. Create the memory file using generate-context.js
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js <target_spec_folder>
+
+# 3b. Index the file into the memory database
+```
 ```javascript
 spec_kit_memory_memory_save({
-  title: "<learning_title>",
-  content: "<structured_content>",
-  specFolder: "<target_spec_folder>",
-  importanceTier: "<critical|important|normal>",
-  contextType: "discovery",
-  triggerPhrases: [...],
-  metadata: {...}
+  filePath: "specs/<target_spec_folder>/memory/<generated_filename>.md",
+  force: false  // Set true to re-index unchanged files
 })
 ```
 
@@ -493,13 +497,10 @@ STATUS=OK LEARNING_TYPE=<type> FOLDER=<target_spec_folder>
 spec_kit_memory_memory_search({ query: "<q>", limit: 3 })
 spec_kit_memory_memory_list({ sortBy: "updated_at", limit: 10 })
 spec_kit_memory_memory_save({
-  title: "<title>",
-  content: "<content>",
-  specFolder: "<folder>",
-  importanceTier: "<tier>",
-  contextType: "discovery",
-  triggerPhrases: [...],
-  metadata: {...}
+  filePath: "specs/<folder>/memory/<filename>.md",
+  force: false,
+  dryRun: false,       // Validate only without saving
+  skipPreflight: false  // Skip pre-flight validation (not recommended)
 })
 ```
 
@@ -758,11 +759,14 @@ When a new learning is saved:
 
 ```javascript
 // Deduplication check before save
-const similar = await memory_search({
+// Note: memory_search has no `threshold` parameter. Use `limit` to constrain results,
+// then filter by similarity score in the returned results. For state-based filtering,
+// use `minState` (e.g., "HOT", "WARM"). For importance filtering, use `tier`.
+const similar = await spec_kit_memory_memory_search({
   query: learning_title,
-  limit: 5,
-  threshold: 0.85
+  limit: 5
 });
+// Filter results client-side: similar.filter(r => r.similarity > 0.85)
 if (similar.length > 0) {
   // Present merge/supersede/keep options to user
 }

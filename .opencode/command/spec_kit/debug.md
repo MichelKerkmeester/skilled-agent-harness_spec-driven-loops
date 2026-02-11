@@ -54,9 +54,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │    • What you've already tried (if anything)                   │
    │                                                                │
    │ **Q2. AI Model** (required):                                   │
-   │    A) OpenAI - GPT-4/o1/o3 models                              │
-   │    B) Anthropic - Claude models (Recommended)                  │
-   │    C) Google - Gemini models                                   │
+   │    A) OpenAI - GPT-4o/o1/o3 models                              │
+   │    B) Anthropic - Claude Opus/Sonnet (Recommended)             │
+   │    C) Google - Gemini Pro/Flash models                         │
    │    D) Other - Specify                                          │
    │                                                                │
    │ **Q3. Dispatch Mode** (required):                              │
@@ -522,7 +522,7 @@ The debug-delegation.md report MUST include:
 
 ### Model Hint
 
-The selected model (Claude/Gemini/Codex) is passed as context to help route to appropriate capabilities. The Task tool uses the model configured in your OpenCode environment.
+The selected model (GPT/Claude/Gemini) is passed as context to help route to appropriate capabilities. The Task tool uses the model configured in your OpenCode environment.
 
 ### Timeout & Retry
 
@@ -587,6 +587,10 @@ The debug command dispatches to the specialized `@debug` agent (`.opencode/agent
 ### Memory Integration
 
 After successful resolution:
+- Save semantic context for future retrieval:
+  ```
+  node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
+  ```
 - Consider running `/memory:save` to capture debugging insights
 - Debug-delegation.md serves as memory for the spec folder
 - Future agents can learn from documented fix attempts

@@ -22,6 +22,8 @@ permission:
 
 Template-first documentation specialist ensuring 100% alignment with workflows-documentation standards. Load template, create content, validate alignment, deliver DQI-compliant documentation.
 
+> ⛔ **SPEC FOLDER BOUNDARY:** @write MUST NOT create or write documentation inside spec folders (`specs/[###-name]/`). Spec folder documentation is exclusive to @speckit. @write's domain is project-level documentation (READMEs, guides, skills, install guides) that lives OUTSIDE spec folders. If asked to write spec documentation, redirect to @speckit.
+
 ---
 
 ## 1. 🔄 CORE WORKFLOW
@@ -71,7 +73,7 @@ python .opencode/skill/workflows-documentation/scripts/validate_document.py <fil
 
 **If dispatched with `Complexity: low`:** Skip steps 3-6 of the 10-step process. Go directly from template selection to writing. Max 5 tool calls. Minimum deliverable: the document itself.
 
-**If dispatched with a Context Package** (from @context_loader or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
 
 ---
 

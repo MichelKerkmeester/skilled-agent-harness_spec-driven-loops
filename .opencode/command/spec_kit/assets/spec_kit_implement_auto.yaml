@@ -450,7 +450,7 @@ quality_gates:
 
     mid_implementation:
       location: "Step 6.5 checkpoint"
-      threshold: 65
+      threshold: 70
       blocking: false  # Warning only
       evaluates:
         - code_quality
@@ -497,7 +497,7 @@ circuit_breaker:
 
   thresholds:
     failure_threshold: 3      # Failures before OPEN state
-    cooldown_seconds: 30      # Time before HALF-OPEN
+    recovery_timeout_s: 60    # Seconds in OPEN before HALF-OPEN
     success_to_close: 1       # Successes in HALF-OPEN to return to CLOSED
 
   states:
@@ -508,7 +508,7 @@ circuit_breaker:
       description: "3+ consecutive failures - operations fail-fast"
       behavior: "Skip affected step, report to user"
     half_open:
-      description: "After cooldown - single test operation allowed"
+      description: "After recovery_timeout_s (60s) - single test operation allowed"
       behavior: "Allow one operation, monitor result"
 
   step_behavior:
@@ -534,7 +534,7 @@ circuit_breaker:
         Last error: {last_error}
 
         Options:
-        - A) Retry after cooldown ({cooldown_seconds}s)
+        - A) Retry after recovery_timeout_s ({recovery_timeout_s}s)
         - B) Skip affected step
         - C) Abort workflow
       autonomous_action: "B"  # Auto-mode skips affected step
@@ -1056,6 +1056,15 @@ workflow:
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__implementation_session.md"
     validation: context_saved_successfully
+
+    memory_creation:
+      enforcement: HARD_BLOCK
+      method: "MUST use generate-context.js script"
+      command: "node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]"
+      forbidden:
+        - "Write tool on memory/ paths"
+        - "Edit tool on memory/ paths"
+      violation_recovery: "DELETE manually created file, re-run via script"
 
     # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
     post_save_indexing:

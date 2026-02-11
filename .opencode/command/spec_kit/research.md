@@ -1,7 +1,7 @@
 ---
 description: Research workflow (9 steps) - technical investigation and documentation. Supports :auto and :confirm modes
 argument-hint: "<research-topic> [:auto|:confirm]"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, webfetch
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, webfetch, memory_context, memory_search
 ---
 
 # 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
@@ -31,10 +31,11 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 3. Search for related spec folders:
    $ ls -d specs/*/ 2>/dev/null | tail -10
 
-4. Search for prior work (background, no user wait):
-   - memory_match_triggers(prompt=research_topic OR "research")
-   - memory_search(query=research_topic OR "research", includeConstitutional=true)
-   - Store: prior_work_found = [yes/no], prior_work_count = [N]
+ 4. Search for prior work (background, no user wait):
+    - memory_context({ input: research_topic OR "research", mode: "deep", includeContent: true })
+    > Note: Gate 1 trigger matching is handled at the agent level (AGENTS.md).
+    > This command uses memory_context (L1) for unified context retrieval.
+    - Store: prior_work_found = [yes/no], prior_work_count = [N]
 
 5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
@@ -301,13 +302,12 @@ flowchart TB
 
     subgraph MEMORY_PRE["🧠 MEMORY CHECK"]
         direction TB
-        M1["memory_match_triggers()"]
-        M2["memory_search()<br>anchors: research, findings"]
+        M1["memory_context()<br>(L1 unified retrieval)"]
         M3{Prior Work<br>Found?}
         M4["Load Context"]
         M5["Start Fresh"]
 
-        M1 --> M2 --> M3
+        M1 --> M3
         M3 -->|"Yes (>70%)"| M4
         M3 -->|"No"| M5
     end
@@ -543,24 +543,23 @@ Use the unified `/memory:context` command with intent-aware retrieval:
 ### Before Starting Research
 
 ```
-1. TRIGGER CHECK:
-   memory_match_triggers(prompt=research_topic)
-   → Returns: keywords that match existing memories
-
-2. UNIFIED CONTEXT RETRIEVAL (preferred):
-   /memory:context --intent=understand --query="research_topic"
+1. UNIFIED CONTEXT RETRIEVAL (primary):
+   memory_context({ input: research_topic, intent: "understand", includeContent: true })
    → Returns: Intent-aware context with relevance scoring
+   > This is the recommended approach. memory_context (L1) auto-detects
+   > intent, applies task-specific weights, and handles anchor selection.
 
-3. ALTERNATIVE - DIRECT SEMANTIC SEARCH:
+2. FALLBACK - DIRECT SEMANTIC SEARCH (advanced/fine-grained):
    memory_search({
      query: research_topic,
      intent: 'understand',
      anchors: ['research', 'findings', 'decisions'],
      includeConstitutional: true
    })
-   → Returns: Relevant prior research with similarity scores
+   → Use only when you need fine-grained control over search parameters
+   (specific anchors, filters, scoring options).
 
-4. LOAD CONTEXT:
+3. LOAD CONTEXT:
    IF matches found with similarity > 70:
      - Display summary of prior findings
      - Ask user: "Build on this or start fresh?"
@@ -572,7 +571,7 @@ Use the unified `/memory:context` command with intent-aware retrieval:
 
 ```
 1. GENERATE CONTEXT:
-   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder]
+   node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder]
 
 2. ANCHOR TAGGING:
    The script automatically extracts and indexes:
@@ -601,7 +600,7 @@ Use the unified `/memory:context` command with intent-aware retrieval:
 Research Topic: "WebSocket implementation patterns"
 
 1. Pre-Research Check:
-   memory_match_triggers("WebSocket implementation patterns")
+   memory_match_triggers({ prompt: "WebSocket implementation patterns" })
    → Matches: ["websocket", "real-time", "connections"]
 
 2. Unified Context Retrieval:
@@ -634,7 +633,7 @@ This command routes Steps 3-7 to the specialized `@research` agent when availabl
 
 | Step                      | Agent       | Fallback  | Purpose                                              |
 | ------------------------- | ----------- | --------- | ---------------------------------------------------- |
-| Steps 3-7 (Investigation) | `@research` | `general` | 9-step research workflow with comprehensive findings |
+| Steps 3-7 (Investigation) | `@research` | `general` | 5-step investigation phase (investigate, research, analyze, checklist, design) |
 
 ### How Agent Routing Works
 
@@ -725,19 +724,19 @@ The circuit breaker prevents cascading failures by isolating problematic operati
 
 ### States
 
-| State     | Behavior                                    | Transition Trigger             |
-| --------- | ------------------------------------------- | ------------------------------ |
-| CLOSED    | Normal operation, all requests processed    | Default state                  |
-| OPEN      | All requests blocked, fast-fail immediately | failure_threshold (3) reached  |
-| HALF-OPEN | Limited requests allowed to test recovery   | recovery_timeout (60s) elapsed |
+| State     | Behavior                                    | Transition Trigger            |
+| --------- | ------------------------------------------- | ----------------------------- |
+| CLOSED    | Normal operation, all requests processed    | Default state                 |
+| OPEN      | All requests blocked, fast-fail immediately | failure_threshold (3) reached |
+| HALF-OPEN | Limited requests allowed to test recovery   | recovery_timeout_s (60s) elapsed |
 
 ### Configuration
 
-| Parameter          | Value | Description                              |
-| ------------------ | ----- | ---------------------------------------- |
-| failure_threshold  | 3     | Consecutive failures before OPEN state   |
-| recovery_timeout   | 60    | Seconds before attempting recovery       |
-| half_open_requests | 1     | Test requests allowed in HALF-OPEN state |
+| Parameter          | Value | Description                                    |
+| ------------------ | ----- | ---------------------------------------------- |
+| failure_threshold  | 3     | Consecutive failures before OPEN state         |
+| recovery_timeout_s | 60    | Seconds in OPEN state before trying HALF-OPEN  |
+| success_to_close   | 1     | Successes needed in HALF-OPEN to close circuit |
 
 ### Tracked Errors
 
@@ -757,14 +756,14 @@ The circuit breaker monitors these error categories:
    - Action: Save current progress to checkpoint
    - Notify: Present recovery options to user
 
-2. After recovery_timeout (60s):
+2. After recovery_timeout_s (60s):
    - Transition to HALF-OPEN
    - Log: "Circuit breaker HALF-OPEN - testing recovery"
-   - Allow 1 test request
+   - Allow 1 test request (success_to_close)
 
 3. Test request result:
    - SUCCESS → Transition to CLOSED, resume workflow
-   - FAILURE → Return to OPEN, reset recovery_timeout
+   - FAILURE → Return to OPEN, reset recovery_timeout_s
 ```
 
 ### User Recovery Options (OPEN State)
@@ -793,8 +792,8 @@ Attempt 3: Read("/docs/cached-api-docs.md") → File not found
            Action: Circuit OPENS, present recovery options
            State: OPEN (failure threshold reached)
 
-Recovery: After 60s → HALF-OPEN
-          Test: WebFetch original URL
+Recovery: After recovery_timeout_s (60s) → HALF-OPEN
+          Test: WebFetch original URL (success_to_close: 1)
           Success → CLOSED, continue research
           Failure → Return to OPEN, extend timeout to 90s
 ```
@@ -811,8 +810,11 @@ Step 4 (External Research):
   Grade: B (Secondary, documentation)
 
 Conflict Detected: Contradictory authentication claims
-  Action: Circuit transitions to HALF-OPEN
-  Behavior: Pause, request user resolution
+  Action: Circuit transitions to OPEN (3 validation failures reached)
+  State: OPEN (all further research steps blocked)
+
+After recovery_timeout_s (60s) → HALF-OPEN:
+  Behavior: Allow 1 test request - pause and request user resolution
 
 User Prompt:
   "Conflicting evidence detected:

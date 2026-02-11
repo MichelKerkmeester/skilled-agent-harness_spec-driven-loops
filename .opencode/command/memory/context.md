@@ -1,7 +1,7 @@
 ---
 description: Retrieve context with intent awareness - combines search + load with task-specific weights
 argument-hint: "<query> [--intent:<type>]"
-allowed-tools: Read, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers
+allowed-tools: Read, spec_kit_memory_memory_context, spec_kit_memory_memory_search, spec_kit_memory_memory_match_triggers
 ---
 
 # 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
@@ -475,7 +475,19 @@ The system detects cross-session duplicates via:
 
 ### MCP Tool Signature
 
+> **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, `limit`, `sessionId`, `enableDedup`, `includeContent`, and `anchors` params. This is the recommended unified approach for context retrieval. The manual orchestration below is available for advanced use cases requiring fine-grained control.
+
 ```javascript
+// Option 1: Dedicated context tool (preferred — single call)
+spec_kit_memory_memory_context({
+  input: "<query>",
+  intent: "<add_feature|fix_bug|refactor|security_audit|understand>",  // Optional, auto-detected if omitted
+  specFolder: "<folder>",  // Optional
+  includeContent: true,
+  anchors: ["<anchor1>", "<anchor2>"],  // Intent-specific
+})
+
+// Option 2: Manual search with anchors (advanced — fine-grained control)
 spec_kit_memory_memory_search({
   query: "<query>",
   anchors: ["<anchor1>", "<anchor2>", ...],  // Intent-specific

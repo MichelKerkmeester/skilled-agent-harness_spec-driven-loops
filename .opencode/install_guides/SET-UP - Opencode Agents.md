@@ -79,7 +79,6 @@ The agent system enables both focused single-agent work and complex multi-agent 
    - grep: Search content
    - glob: Find files
    - webfetch: Fetch URLs
-   - narsil: Semantic + structural code analysis
    - memory: Spec Kit Memory
    - chrome_devtools: Browser debugging
    - task: Delegate to sub-agents (orchestrator only)
@@ -164,12 +163,14 @@ OpenCode comes with **4 built-in agents** (2 primary + 2 subagents):
 | **General** | `subagent` | General-purpose for research and multi-step tasks          |
 | **Explore** | `subagent` | Fast agent for codebase exploration and file searching     |
 
+> **Note:** For exploration tasks, prefer `@context` over raw `@explore`. Context_loader provides memory integration, structured output, and can dispatch @explore internally when needed.
+
 ### Key Statistics
 
 | Metric              | Value              | Description                                                      |
 | ------------------- | ------------------ | ---------------------------------------------------------------- |
 | Built-in Agents     | 4                  | Build, Plan, General, Explore                                    |
-| Custom Agents       | 7                  | orchestrate, write, research, review, speckit, handover, debug   |
+| Custom Agents       | 8                  | context, orchestrate, write, research, review, speckit, handover, debug |
 | Default Mode        | `all`              | Both primary and subagent                                        |
 | Default Temperature | 0.1                | Deterministic, consistent output                                 |
 | Location            | `.opencode/agent/` | Agent definition files                                           |
@@ -200,9 +201,12 @@ User Request
 │  │                                                          │
 │  SUBAGENTS (@ mention or automatic):                        │
 │  ├─► @general: Research, search, multi-step tasks           │
-│  ├─► @explore: Fast codebase exploration                    │
+│  ├─► @explore: Fast codebase exploration (prefer            │
+│  │    @context for structured output)                 │
 │  │                                                          │
 │  CUSTOM AGENTS:                                             │
+│  ├─► @context: Context retrieval, analysis,          │
+│  │    exploration dispatch                                   │
 │  ├─► @orchestrate: Task decomposition & delegation          │
 │  ├─► @write: Documentation with template enforcement        │
 │  ├─► @research: Technical investigation & evidence gathering│
@@ -243,11 +247,11 @@ Subagents are invoked via **@ mention** or automatically by primary agents:
 ```markdown
 # Manual invocation with @ mention
 "@general help me search for this function"
-"@explore find all files matching *.config.ts"
+"@context find all files matching *.config.ts"
 
 # Automatic invocation (primary agent decides based on task)
 "Search the codebase for authentication patterns"
-→ Primary agent may invoke @explore automatically
+→ Primary agent may invoke @context automatically for structured exploration
 ```
 
 ### Session Navigation
@@ -266,6 +270,7 @@ When subagents create child sessions, navigate between them:
 ls .opencode/agent/
 
 # Expected output:
+# context.md
 # debug.md
 # handover.md
 # orchestrate.md
@@ -283,7 +288,7 @@ ls .opencode/agent/
 
 2. **For planning/analysis**: Press **Tab** to switch to **Plan** agent - suggests changes without making them
 
-3. **For codebase exploration**: Type `@explore` to invoke the fast exploration subagent
+3. **For codebase exploration & context retrieval**: Type `@context` for memory-integrated exploration with structured Context Package output (preferred over raw `@explore`)
 
 4. **For research tasks**: Type `@general` for general purposes, or `@research` for structured 9-step technical investigation
 
@@ -307,6 +312,7 @@ ls .opencode/agent/
 
 ```
 .opencode/agent/
+├── context.md   # Context retrieval & exploration dispatch agent
 ├── debug.md            # Fresh perspective debugging agent
 ├── handover.md         # Session continuation agent
 ├── orchestrate.md      # Task decomposition & delegation agent
@@ -346,7 +352,7 @@ These agents come with OpenCode and are always available:
 | **Build**   | `primary`  | Default development agent with all tools enabled     | Full tool access, Tab to select      |
 | **Plan**    | `primary`  | Analysis and planning without making changes         | Read-only, suggests changes          |
 | **General** | `subagent` | Research, search, and multi-step task execution      | @ mention or automatic invocation    |
-| **Explore** | `subagent` | Fast codebase exploration and file pattern matching  | Quick file/code discovery            |
+| **Explore** | `subagent` | Fast codebase exploration and file pattern matching  | Quick file/code discovery (prefer @context) |
 
 ---
 
@@ -420,6 +426,8 @@ These agents come with OpenCode and are always available:
 - Answering questions about codebase structure
 - Fast exploration without deep analysis
 
+> **⚠️ Prefer @context** for all exploration tasks. `@context` wraps `@explore` with memory-first retrieval, structured Context Package output, and active dispatch. Use raw `@explore` only when you need fast file search without memory or structure.
+
 ---
 
 ### Custom Agents Summary
@@ -428,13 +436,14 @@ These are project-specific agents defined in `.opencode/agent/`:
 
 | Agent           | Purpose                                | Tools                                                         | Key Capability                              |
 | --------------- | -------------------------------------- | ------------------------------------------------------------- | ------------------------------------------- |
+| **context** | Context retrieval & exploration dispatch | read, bash, grep, glob, memory                             | Structured Context Package output, active dispatch (@explore + @research) |
 | **orchestrate** | Task decomposition & delegation        | `task` only                                                   | Parallel delegation to subagents            |
 | **write**       | Documentation creation                 | read, write, edit, bash, grep, glob, webfetch, memory         | Template-first, DQI scoring                 |
-| **research**    | Technical investigation                | read, write, edit, bash, grep, glob, webfetch, narsil, memory | 9-step research workflow, evidence-based    |
-| **review**      | Code quality & security assessment     | read, bash, grep, glob, narsil, memory (read-only)            | Quality scoring, 5-dimension rubric         |
+| **research**    | Technical investigation                | read, write, edit, bash, grep, glob, webfetch, memory         | 9-step research workflow, evidence-based    |
+| **review**      | Code quality & security assessment     | read, bash, grep, glob, memory (read-only)                    | Quality scoring, 5-dimension rubric         |
 | **speckit**     | Spec folder documentation              | read, write, edit, bash, grep, glob, memory                   | Level 1-3+ templates, validation            |
 | **handover**    | Session continuation                   | read, write, edit, bash, grep, glob, memory                   | Context preservation, attempt tracking      |
-| **debug**       | Fresh perspective debugging            | read, write, edit, bash, grep, glob, narsil, memory           | 4-phase methodology, isolated context       |
+| **debug**       | Fresh perspective debugging            | read, write, edit, bash, grep, glob, memory                   | 4-phase methodology, isolated context       |
 
 ---
 
@@ -502,7 +511,7 @@ These are project-specific agents defined in `.opencode/agent/`:
 | Name        | `research`                                                    |
 | Mode        | `subagent`                                                    |
 | Temperature | 0.1                                                           |
-| Tools       | read, write, edit, bash, grep, glob, webfetch, narsil, memory |
+| Tools       | read, write, edit, bash, grep, glob, webfetch, memory |
 
 **Authority:**
 - Evidence gathering with citation requirements
@@ -529,7 +538,7 @@ These are project-specific agents defined in `.opencode/agent/`:
 | Name        | `review`                                          |
 | Mode        | `subagent`                                        |
 | Temperature | 0.1                                               |
-| Tools       | read, bash, grep, glob, narsil, memory (READ-ONLY)|
+| Tools       | read, bash, grep, glob, memory (READ-ONLY)        |
 
 **Authority:**
 - Code review with 5-dimension quality rubric (100 points)
@@ -610,7 +619,7 @@ These are project-specific agents defined in `.opencode/agent/`:
 | Name        | `debug`                                       |
 | Mode        | `subagent`                                    |
 | Temperature | 0.2                                           |
-| Tools       | read, write, edit, bash, grep, glob, narsil, memory |
+| Tools       | read, write, edit, bash, grep, glob, memory |
 
 **Authority:**
 - Systematic debugging with 4-phase methodology
@@ -654,7 +663,6 @@ permission:                         # Required: Unified permissions (v1.1.1+)
   grep: allow
   glob: allow
   webfetch: deny
-  narsil: allow
   memory: allow
   chrome_devtools: deny
   external_directory: allow
@@ -694,7 +702,6 @@ permission:                         # Required: Unified permissions (v1.1.1+)
 | `grep`              | Search content                      | allow                 |
 | `glob`              | Find files                          | allow                 |
 | `webfetch`          | Fetch URLs                          | deny (unless needed)  |
-| `narsil`            | Semantic + structural code analysis | allow                 |
 | `memory`            | Spec Kit Memory                     | allow                 |
 | `chrome_devtools`   | Browser debugging                   | deny (unless needed)  |
 | `external_directory`| Access files outside project        | allow                 |
@@ -816,7 +823,6 @@ permission:
   grep: allow
   glob: allow
   webfetch: deny
-  narsil: allow
   memory: allow
   chrome_devtools: deny
   external_directory: allow
@@ -1065,9 +1071,10 @@ python3 -c "import yaml; yaml.safe_load(open('.opencode/agent/write.md').read().
 
 ### Agent Files
 
-| Agent       | Location           | Purpose                                |
-| ----------- | ------------------ | -------------------------------------- |
-| orchestrate | `./orchestrate.md` | Task decomposition & delegation        |
+| Agent          | Location              | Purpose                                |
+| -------------- | --------------------- | -------------------------------------- |
+| context | `./context.md` | Context retrieval & exploration dispatch |
+| orchestrate    | `./orchestrate.md`    | Task decomposition & delegation        |
 | write       | `./write.md`       | Documentation creation                 |
 | research    | `./research.md`    | Technical investigation                |
 | review      | `./review.md`      | Code quality & security assessment     |
@@ -1105,13 +1112,14 @@ The agent system provides **specialized AI personas** for different task types:
 | **Build**   | Primary    | Full development with all tools            | Tab key (default) |
 | **Plan**    | Primary    | Analysis without changes                   | Tab key           |
 | **General** | Subagent   | Research and multi-step tasks              | `@general`        |
-| **Explore** | Subagent   | Fast codebase exploration                  | `@explore`        |
+| **Explore** | Subagent   | Fast codebase exploration (prefer @context) | `@explore`        |
 
 ### Custom Agents (Project-Specific)
 
-| Agent           | Type     | Purpose                                    | Invocation        |
-| --------------- | -------- | ------------------------------------------ | ----------------- |
-| **orchestrate** | Primary  | Task decomposition & delegation            | `@orchestrate`    |
+| Agent              | Type     | Purpose                                    | Invocation           |
+| ------------------ | -------- | ------------------------------------------ | -------------------- |
+| **context** | Subagent | Context retrieval & exploration dispatch    | `@context`    |
+| **orchestrate**    | Primary  | Task decomposition & delegation            | `@orchestrate`       |
 | **write**       | All      | Documentation with template enforcement    | `@write`          |
 | **research**    | Subagent | Technical investigation & evidence         | `@research`       |
 | **review**      | Subagent | Code quality & security assessment         | `@review`         |

@@ -39,7 +39,7 @@
 - [ ] Test/Production boundary is unclear.
 
 **MANDATORY TOOLS:**
-- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
+- **Spec Kit Memory MCP** for research tasks, context recovery, and finding prior work.  **Memory saves MUST use `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`** - NEVER manually create memory files.
 
 ### Quick Reference: Common Workflows
 
@@ -49,7 +49,7 @@
 | **Research/exploration** | `memory_match_triggers()` → `memory_context()` (unified) OR `memory_search()` (targeted) → Document findings                  |
 | **Code search**          | `Grep()` for text patterns, `Glob()` for file discovery, `Read()` for file contents                                           |
 | **Resume prior work**    | `/memory:continue` OR `memory_search({ query, specFolder, anchors: ['state', 'next-steps'] })` → Review checklist → Continue  |
-| **Save context**         | `/memory:save` OR `node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]` → Auto-indexed |
+| **Save context**         | `/memory:save` OR `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]` → Auto-indexed |
 | **Claim completion**     | Validation runs automatically → Load `checklist.md` → Verify ALL items → Mark with evidence                                   |
 | **Debug delegation**     | `/spec_kit:debug` → Model selection → Task tool dispatch                                                                      |
 | **Debug stuck issue**    | 3+ failed attempts → /spec_kit:debug → Model selection → Task tool dispatch                                                   |
@@ -195,10 +195,13 @@
 │ Trigger: "save context", "save memory", /memory:save, memory file creation   │
 │                                                                             │
 │ VALIDATION:                                                                 │
-│   1. If NO folder argument → HARD BLOCK → List folders → Ask user           │
+│   0. If spec folder was established at Gate 3 in this conversation →        │
+│      USE IT as the folder argument (do NOT re-ask the user).                │
+│      Gate 3's answer is the session's active spec folder.                   │
+│   1. If NO folder AND Gate 3 was never answered → HARD BLOCK → Ask user     │
 │   2. If folder provided → Validate alignment with conversation topic        │
 │                                                                             │
-│ EXECUTION (script: .opencode/skill/system-spec-kit/scripts/generate-context.js):
+│ EXECUTION (script: .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js):
 │   Mode 1 (JSON): Write JSON to /tmp/save-context-data.json, pass as arg     │
 │            node [script] /tmp/save-context-data.json                        │
 │   Mode 2 (Direct): Pass spec folder path directly                           │
@@ -296,7 +299,7 @@ Reply with answers, e.g.: "B, A, C" or "A, , A" (blank for default)
 - Before **writing documentation**: Use workflows-documentation skill for structure/style enforcement
 - Before **code discovery**: Use Grep for text patterns, Glob for file discovery, Read for file contents
 - Before **research tasks**: Use Spec Kit Memory MCP to find prior work, saved context, and related memories (MANDATORY)
-- Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization
+- Before **spec folder creation**: Use system-spec-kit skill for template structure and sub-folder organization. ⛔ **HARD RULE: ONLY @speckit may create or substantively write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover agent for session continuation), `research.md` (@research agent for investigation findings). Using @general, @write, or other agents for spec folder documentation is a routing violation.**
 - Before **session end or major milestones**: Use `/memory:save` or "save context" to preserve important context (manual trigger required)
 - Before **code implementation**: Load workflows-code skill for 3-phase development lifecycle (Implementation → Testing → Verification)
 - Before **git operations**: Use workflows-git skill for read-only analysis (enforces Git Operations Policy from §1)
@@ -331,6 +334,7 @@ Reply with answers, e.g.: "B, A, C" or "A, , A" (blank for default)
 | 21  | Planning       | Gold-Plating                 | "while we're here", "might as well"          | SCOPE lens: Is this in the original scope?            |
 | 22  | Implementation | Wrong Abstraction            | "DRY this up" for 2 similar blocks           | CLARITY lens: Same concept or just similar code?      |
 | 23  | Planning       | Premature Optimization       | "might be slow", "could bottleneck"          | VALUE lens: Has performance been measured?            |
+| 24  | Any            | Wrong Agent for Spec Docs  | "write spec.md", "create plan.md"            | STOP → Must use @speckit → Never @general/@write for spec template files |
 
 **Enforcement:** STOP → Acknowledge ("I was about to [pattern]") → Correct → Verify
 
@@ -488,20 +492,22 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 | Agent          | File                             | Use When                                         |
 | -------------- | -------------------------------- | ------------------------------------------------ |
 | `@general`     | Built-in                         | Implementation, complex tasks                    |
-| `@explore`     | Built-in                         | Quick codebase exploration, file discovery       |
+| `@explore`         | Built-in                                | Quick codebase exploration, file discovery               |
+| `@context`  | `.opencode/agent/context.md`     | Context retrieval, analysis, exploration dispatch        |
 | `@orchestrate` | `.opencode/agent/orchestrate.md` | Multi-agent coordination, complex workflows      |
-| `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 3 Option B    |
+| `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders |
 | `@write`       | `.opencode/agent/write.md`       | Creating READMEs, Skills, Guides                 |
 | `@review`      | `.opencode/agent/review.md`      | Code review, PRs, quality gates (READ-ONLY)      |
-| `@speckit`     | `.opencode/agent/speckit.md`     | Spec folder creation Level 1-3+                  |
+| `@speckit`     | `.opencode/agent/speckit.md`     | Spec folder creation Level 1-3+ ⛔ **EXCLUSIVE: Only agent permitted to create/write ANY documentation (*.md) inside spec folders. Exceptions: `memory/` (uses generate-context.js), `scratch/` (temporary, any agent), `handover.md` (@handover only), `research.md` (@research only)** |
 | `@debug`       | `.opencode/agent/debug.md`       | Fresh perspective debugging, root cause analysis |
-| `@handover`    | `.opencode/agent/handover.md`    | Session continuation, context preservation       |
+| `@handover`    | `.opencode/agent/handover.md`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders |
 
 **Agent Selection Quick Reference:**
+- **Context loading / exploration** → `@context`
 - **Code changes needed** → `@general`
 - **Research/planning** → `@research`
 - **Quality evaluation** → `@review`
-- **Spec documentation** → `@speckit`
+- **Spec documentation** → `@speckit` ⛔ EXCLUSIVE (no other agent may create spec template files)
 - **Debugging (3+ failed attempts)** → `@debug`
 - **Documentation creation** → `@write`
 - **Multi-agent orchestration** → `@orchestrate`

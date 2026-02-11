@@ -1,7 +1,7 @@
 ---
 description: Implementation workflow (9 steps) - execute pre-planned work. Requires existing plan.md. Supports :auto and :confirm modes
 argument-hint: "<spec-folder> [:auto|:confirm]"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search
 ---
 
 ## ⛔ GATE 3 COMPLIANCE
@@ -332,6 +332,24 @@ flowchart TD
 - **Green nodes**: Verification/completion steps
 - **Red nodes**: Blocked states (require fixes before proceeding)
 
+### Step 8: Save Context Protocol
+
+**MANDATORY:** Use `generate-context.js` for memory save (per AGENTS.md Memory Save Rule):
+
+```
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
+```
+
+- ❌ DO NOT use Write/Edit tools to create memory files directly
+- ✅ ALWAYS use the script above — it ensures proper ANCHOR tags, SESSION SUMMARY table, and MEMORY METADATA YAML block
+- After script execution, call `memory_save({ filePath })` for immediate MCP search availability
+
+### Memory Context Loading
+
+For context loading during setup (Q5), use `memory_context()` (L1 unified entry) as the primary retrieval method. It auto-detects intent, applies task-specific weights, and routes to the optimal search strategy. Use `memory_search()` (L2) only as a fallback when you need direct control over search parameters (e.g., specific `specFolder`, `tier`, or `concepts` filtering).
+
+> Note: Gate 1 trigger matching is handled at the agent level (AGENTS.md). This command uses memory_context (L1) for unified context retrieval.
+
 ---
 
 ## 4. ⚡ INSTRUCTIONS
@@ -500,7 +518,7 @@ Quality gates enforce minimum standards at key workflow transitions.
 | Gate                | Location                 | Threshold | Blocking          |
 | ------------------- | ------------------------ | --------- | ----------------- |
 | Pre-Implementation  | Before Step 6            | 70        | Yes               |
-| Mid-Implementation  | After Step 6.5           | 65        | No (warning only) |
+| Mid-Implementation  | After Step 6.5           | 70        | No (warning only) |
 | Post-Implementation | Before Step 7 completion | 70        | Yes               |
 
 ### Five Checks Framework (Level 3+ specs)
@@ -526,8 +544,8 @@ For Level 3+ specs, validate against the Five Checks Framework at Pre-Implementa
 
 **Mid-Implementation Gate (Step 6.5)**
 - Evaluates: Code quality, test coverage, task completion rate
-- Score < 65: WARNING - Log concern, continue with caution
-- Score ≥ 65: PASS - Continue normally
+- Score < 70: WARNING - Log concern, continue with caution
+- Score ≥ 70: PASS - Continue normally
 
 **Post-Implementation Gate (Step 7)**
 - Evaluates: All tasks complete, tests pass, checklist verified
@@ -732,15 +750,15 @@ The circuit breaker isolates failing operations to prevent cascading failures.
 | --------- | ----------------------- | ---------------------------------------- |
 | CLOSED    | Normal operation        | All operations proceed                   |
 | OPEN      | 3+ consecutive failures | Operations fail-fast, skip affected step |
-| HALF-OPEN | After cooldown (30s)    | Single test operation allowed            |
+| HALF-OPEN | After recovery_timeout_s (60s) | Single test operation allowed            |
 
 ### Configuration
 
-| Parameter         | Value | Description                                |
-| ----------------- | ----- | ------------------------------------------ |
-| failure_threshold | 3     | Failures before OPEN state                 |
-| cooldown_seconds  | 30    | Time before HALF-OPEN                      |
-| success_to_close  | 1     | Successes in HALF-OPEN to return to CLOSED |
+| Parameter          | Value | Description                                |
+| ------------------ | ----- | ------------------------------------------ |
+| failure_threshold  | 3     | Failures before OPEN state                 |
+| recovery_timeout_s | 60    | Time before HALF-OPEN                      |
+| success_to_close   | 1     | Successes in HALF-OPEN to return to CLOSED |
 
 ### Behavior by Step
 
@@ -755,7 +773,7 @@ When circuit opens:
 1. Log failure pattern and affected step
 2. Skip to next non-dependent step if possible
 3. Report to user with options:
-   - A) Retry after cooldown
+   - A) Retry after recovery_timeout_s
    - B) Skip affected step
    - C) Abort workflow
 

@@ -1,7 +1,7 @@
 ---
 description: Resume work on an existing spec folder - loads context, shows progress, and continues from last state
 argument-hint: "[spec-folder-path] [:auto|:confirm]"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, memory_match_triggers, memory_list, memory_stats, memory_delete, memory_update, memory_validate, memory_index_scan, memory_health, checkpoint_create, checkpoint_list, checkpoint_restore, checkpoint_delete
 ---
 
 > **Argument Format:** `/spec_kit:resume [spec-folder-path] [:auto|:confirm]`
@@ -271,7 +271,7 @@ flowchart TB
 
     subgraph DETECTION["🔍 SESSION DETECTION (Priority Order)"]
         ARGS -->|"Yes"| VALIDATE["Validate path exists"]
-        ARGS -->|"No"| SEMANTIC["1. memory_search()<br/>Semantic + decay scoring"]
+        ARGS -->|"No"| SEMANTIC["1. memory_context()<br/>L1 unified retrieval"]
         VALIDATE --> VALID{"Path valid?"}
         VALID -->|"Yes"| FOUND
         VALID -->|"No"| SEMANTIC
@@ -296,7 +296,7 @@ flowchart TB
         LOADCTX["Load Context Priority:"] --> HANDOVER{"1. handover.md<br/>exists & <24h?"}
         HANDOVER -->|"Yes"| USEHANDOVER["Use handover context"]
         HANDOVER -->|"No"| MEMORY{"2. memory/*.md<br/>files exist?"}
-        MEMORY -->|"Yes"| USEMEMORY["memory_search()<br/>includeContent: true"]
+        MEMORY -->|"Yes"| USEMEMORY["memory_context()<br/>L1 unified retrieval"]
         MEMORY -->|"No"| CHECKLIST["3. checklist.md<br/>for progress state"]
         USEHANDOVER --> PROGRESS
         USEMEMORY --> PROGRESS
@@ -417,7 +417,7 @@ The resume workflow uses semantic memory MCP tools directly for context loading.
 | `memory_match_triggers` | Fast trigger phrase matching (<50ms)       | Quick session detection by keywords                |
 | `memory_list`           | Browse stored memories with pagination     | Discover available memories and find IDs           |
 | `memory_stats`          | Get memory system statistics               | Show resume status and counts                      |
-| `memory_delete`         | Delete a memory by ID or spec folder       | Use `dryRun: true` for safe preview before delete  |
+| `memory_delete`         | Delete a memory by ID or spec folder       | Remove incorrect or outdated memories              |
 | `memory_update`         | Update existing memory metadata            | Modify title, triggers, or importance tier         |
 | `memory_validate`       | Record validation feedback for memories    | Track usefulness to adjust confidence scores       |
 | `memory_index_scan`     | Scan workspace for new/changed files       | Bulk index after creating multiple memory files    |
@@ -434,100 +434,7 @@ The resume workflow uses semantic memory MCP tools directly for context loading.
 
 **Note:** There is no `memory_load` tool. Use `memory_search` with `includeContent: true` to load memory content directly in search results.
 
-### Example Invocations
-
-```typescript
-// Load memories with content embedded in results (CORRECT)
-spec_kit_memory_memory_search({ 
-  specFolder: "014-auth-system", 
-  includeContent: true,
-  limit: 5
-})
-
-// Fast trigger matching for session detection
-spec_kit_memory_memory_match_triggers({ prompt: "auth system work" })
-
-// List available memories in a spec folder
-spec_kit_memory_memory_list({ specFolder: "014-auth-system" })
-
-// Delete with dry run preview first (safe)
-spec_kit_memory_memory_delete({ id: 42, dryRun: true })
-
-// Update memory metadata
-spec_kit_memory_memory_update({ id: 42, importanceTier: "critical" })
-
-// Record validation feedback
-spec_kit_memory_memory_validate({ id: 42, wasUseful: true })
-
-// Scan for new memory files
-spec_kit_memory_memory_index_scan({ specFolder: "014-auth-system" })
-
-// Check system health
-spec_kit_memory_memory_health({})
-
-// Create checkpoint before major changes
-spec_kit_memory_checkpoint_create({ name: "pre-refactor-backup" })
-
-// List available checkpoints
-spec_kit_memory_checkpoint_list({})
-
-// NEVER do this (WRONG)
-call_tool_chain(`memory.memory_search(...)`)  // NO - not through Code Mode
-spec_kit_memory_memory_load(...)              // NO - tool doesn't exist
-```
-
-### Session Detection Priority
-
-**Priority order for spec folder detection:**
-
-1. **CLI argument** (explicit path provided) - Highest priority, user intent is clear
-2. **Semantic memory search** with decay scoring via `memory_search()`:
-   ```typescript
-   spec_kit_memory_memory_search({
-     query: "[user's request context]",
-     limit: 5,
-     includeContent: false  // metadata only for speed
-   })
-   ```
-   - Returns memories ranked by semantic relevance × recency decay
-   - Decay formula: `score = semantic_score × (0.95 ^ days_since_access)`
-3. **Trigger phrase matching** via `memory_match_triggers()`:
-   ```typescript
-   spec_kit_memory_memory_match_triggers({ prompt: "[user request]" })
-   ```
-   - Fast (<50ms) exact phrase matching against indexed triggers
-   - Good for resuming by keywords like "auth system", "speckit upgrade"
-4. **Fallback: Glob by modification time**:
-   ```bash
-   ls -t specs/**/memory/*.md | head -5
-   ```
-   - Used only when semantic search returns no results
-   - Sorted by file modification time, most recent first
-
-**Selection Logic:**
-```
-IF CLI argument provided:
-  validate_path() → use if valid
-ELSE:
-  results = memory_search(query, limit=5)
-  IF results.length > 0 AND results[0].score > 0.6:
-    use results[0].specFolder
-  ELSE:
-    triggers = memory_match_triggers(prompt)
-    IF triggers.length > 0:
-      use triggers[0].specFolder
-    ELSE:
-      fallback to glob by mtime
-```
-
-### Context Loading Priority
-
-1. handover.md (if exists, <24h old)
-2. CONTINUE_SESSION.md (crash recovery artifact in project root)
-3. Recent memory/*.md files
-4. checklist.md for progress state
-
-**Note:** Stateless architecture - no `.spec-active` marker file used.
+> **Usage Examples**: See YAML asset files (`spec_kit_resume_auto.yaml`, `spec_kit_resume_confirm.yaml`) for contextual MCP tool usage with parameters at each workflow step. The Mermaid diagrams above also illustrate the detection and context loading flow.
 
 ### Session Deduplication
 

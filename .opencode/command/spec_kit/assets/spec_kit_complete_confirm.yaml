@@ -581,8 +581,8 @@ quality_gates:
   pre_execution:
     location: "Before Step 1"
     purpose: "Validate inputs and prerequisites"
-    threshold: 60
-    blocking: soft
+    threshold: 70
+    blocking: hard
     checks:
       - id: "feature_description"
         description: "Feature description is not empty"
@@ -597,9 +597,9 @@ quality_gates:
         description: "Memory context loaded (if applicable)"
         points: 20
     on_fail: |
-      ⚠️ Pre-execution gate score below threshold ({score}/100, need 60).
+      ⚠️ Pre-execution gate score below threshold ({score}/100, need 70).
       Missing: {missing_checks}
-      Proceeding with warning (soft block).
+      Blocked: Prerequisites must be met before proceeding (hard block).
 
   planning_gate:
     location: "Between Step 7 and Step 8"
@@ -688,9 +688,8 @@ circuit_breaker:
 
   # Global settings
   failure_threshold: 3          # Consecutive failures before OPEN
-  recovery_timeout_ms: 60000    # Time in OPEN before HALF-OPEN (1 minute)
-  success_threshold: 2          # Successes in HALF-OPEN to CLOSE
-  monitoring_window_ms: 300000  # Window for failure counting (5 minutes)
+  recovery_timeout_s: 60        # Seconds in OPEN before HALF-OPEN
+  success_to_close: 1           # Successes in HALF-OPEN to close circuit
 
   # States: CLOSED (normal), OPEN (failing), HALF_OPEN (testing)
   states:
@@ -736,7 +735,7 @@ circuit_breaker:
   recovery_protocol:
     on_dispatch: |
       IF circuit[agent].state == OPEN:
-        IF time_since_last_failure > recovery_timeout_ms:
+        IF time_since_last_failure > recovery_timeout_s:
           SET circuit[agent].state = HALF_OPEN
           ALLOW single request
         ELSE:
@@ -746,7 +745,7 @@ circuit_breaker:
       IF circuit[agent].state == HALF_OPEN:
         IF request succeeds:
           INCREMENT circuit[agent].success_count
-          IF success_count >= success_threshold:
+          IF success_count >= success_to_close:
             SET circuit[agent].state = CLOSED
             RESET circuit[agent].failures = 0
         ELSE:
@@ -1139,7 +1138,7 @@ workflow:
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
 
     activities:
-    - Run create-spec-folder.sh script
+    - Run create.sh script (scripts/spec/create.sh)
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
       - "Level 2 (Verification): 100-499 LOC - Level 1 + checklist.md"
@@ -1526,6 +1525,18 @@ workflow:
       - label: "Hold"
         description: "Pause before implementation"
 
+  step_9_5_preflight:
+    name: "PREFLIGHT Capture"
+    purpose: "Capture epistemic baseline before implementation"
+    tool: "task_preflight"
+    parameters: "specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore"
+    skip_conditions:
+      - "Less than 10 LOC change"
+      - "User says skip preflight"
+    checkpoint:
+      type: "user_checkpoint"
+      message: "Epistemic scores captured. Continue?"
+
   step_10_development:
     purpose: Execute implementation following task plan
 
@@ -1774,6 +1785,18 @@ workflow:
       required_file: "[SPEC_FOLDER]/implementation-summary.md"
       failure_action: "Create implementation-summary.md before proceeding"
 
+  step_12_5_postflight:
+    name: "POSTFLIGHT Capture"
+    purpose: "Capture learning delta after implementation"
+    tool: "task_postflight"
+    parameters: "specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore"
+    skip_conditions:
+      - "Less than 10 LOC change"
+      - "No PREFLIGHT was captured"
+    checkpoint:
+      type: "user_checkpoint"
+      message: "Epistemic scores captured. Continue?"
+
   step_13_save_context:
     purpose: Save conversation context
     activities:
@@ -1787,7 +1810,7 @@ workflow:
       enforcement: HARD_BLOCK
       method: "MUST use generate-context.js script"
       command: |
-        node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]
+        node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
       forbidden:
         tools: [ Write, Edit ]
         action: "NEVER manually create memory files"

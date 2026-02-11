@@ -48,7 +48,7 @@ user_inputs:
   selected_model:
     source: "Phase 2 of debug.md"
     description: "AI model selected for debug delegation"
-    values: [claude, gemini, codex, other]
+    values: [claude, gemini, gpt, other]
     required: true
 
 # ───────────────────────────────────────────────────────────────────
@@ -76,8 +76,8 @@ model_selection:
     - id: gemini
       name: "Gemini - Google models"
       strengths: "Alternative perspective, broad knowledge"
-    - id: codex
-      name: "Codex - OpenAI models"
+    - id: gpt
+      name: "GPT - OpenAI models"
       strengths: "Complex reasoning, code generation"
     - id: other
       name: "Other - User specified"

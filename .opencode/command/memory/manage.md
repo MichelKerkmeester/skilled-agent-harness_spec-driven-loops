@@ -359,7 +359,7 @@ spec_kit_memory_memory_update({ id: <id>, importanceTier: "<tier>", triggerPhras
 spec_kit_memory_memory_delete({ id: <id> })
 spec_kit_memory_memory_health({})
 spec_kit_memory_checkpoint_create({ name: "<name>", specFolder: "optional", metadata: {...} })
-spec_kit_memory_checkpoint_restore({ name: "<name>", clearExisting: <bool>, generateContinueSession: <bool> })
+spec_kit_memory_checkpoint_restore({ name: "<name>", clearExisting: <bool> })
 spec_kit_memory_checkpoint_list({ limit: 50, specFolder: "optional" })
 spec_kit_memory_checkpoint_delete({ name: "<name>" })
 ```
@@ -864,8 +864,7 @@ spec_kit_memory_checkpoint_create({
 ```javascript
 spec_kit_memory_checkpoint_restore({
   name: "<checkpoint_name>",
-  clearExisting: false,  // Set true to wipe current state first
-  generateContinueSession: true  // Generate CONTINUE_SESSION.md
+  clearExisting: false  // Set true to wipe current state first
 })
 ```
 

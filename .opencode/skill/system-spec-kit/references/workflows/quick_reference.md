@@ -135,7 +135,7 @@ Say: "save context" or "save conversation"
 
 **Required Argument:** Spec folder path is MANDATORY
 ```
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/007-feature/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/007-feature/
 ```
 
 Context saved to `specs/###-folder/memory/` or `memory/` (fallback).
@@ -403,9 +403,9 @@ Before presenting documentation to user:
 
 **Note:** OpenCode does not support automatic interval-based saves (no hooks system).
 
-**MANDATORY:** Use generate-context.js for memory save:
+**MANDATORY:** Use generate-context.ts (source) for memory save:
 ```
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/###-folder/
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/###-folder/
 ```
 
 ❌ DO NOT use Write/Edit tools to create memory files directly.
@@ -449,6 +449,7 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js specs/##
 - **ALWAYS fill ALL placeholders** - No `[PLACEHOLDER]` in final docs
 - **ALWAYS respond to workflow prompts** - Ask user for A/B/C/D choice
 - **ALWAYS get user approval** - Explicit "yes" before file changes
+- **ONLY @speckit creates spec documentation** — Never route spec.md/plan.md/tasks.md/etc. to @general/@write. Exceptions: @handover (handover.md), @research (research.md)
 
 ### Enforcement
 

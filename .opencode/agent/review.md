@@ -1,8 +1,8 @@
 ---
 name: review
 description: Code review specialist with pattern validation, quality scoring, and standards enforcement for PRs and code changes
-model: github-copilot/claude-opus-4.6
 mode: subagent
+model: github-copilot/claude-opus-4.6
 temperature: 0.1
 permission:
   read: allow
@@ -51,7 +51,7 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 **If dispatched with `Complexity: low`:** Skip steps 3-5 of the 8-step process. Go directly from scope identification to reviewing. Max 5 tool calls. Minimum deliverable: pass/fail with key findings.
 
-**If dispatched with a Context Package** (from @context_loader or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
 
 ---
 
@@ -87,12 +87,12 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 ### Mode Selection
 
-| Mode | Trigger | Focus | Output |
-|------|---------|-------|--------|
-| **1: PR Review** | PR/MR review (gh pr, remote) | Full PR analysis, commits, standards compliance, approval recommendation | PR Review Report |
-| **2: Pre-Commit** | Local changes (git diff, uncommitted) | Quick validation, pattern compliance, P0 blocker identification | Commit Readiness Report |
-| **3: Focused File** | Specific files (targeted review) | Deep analysis, full rubric scoring, detailed recommendations | Detailed File Review |
-| **4: Gate Validation** | Orchestrator integration | Pass/fail (threshold: 70), numeric score, circuit breaker state | Gate Validation Result |
+| Mode                   | Trigger                               | Focus                                                                    | Output                  |
+| ---------------------- | ------------------------------------- | ------------------------------------------------------------------------ | ----------------------- |
+| **1: PR Review**       | PR/MR review (gh pr, remote)          | Full PR analysis, commits, standards compliance, approval recommendation | PR Review Report        |
+| **2: Pre-Commit**      | Local changes (git diff, uncommitted) | Quick validation, pattern compliance, P0 blocker identification          | Commit Readiness Report |
+| **3: Focused File**    | Specific files (targeted review)      | Deep analysis, full rubric scoring, detailed recommendations             | Detailed File Review    |
+| **4: Gate Validation** | Orchestrator integration              | Pass/fail (threshold: 70), numeric score, circuit breaker state          | Gate Validation Result  |
 
 ---
 
@@ -127,13 +127,13 @@ Read-only code review specialist providing quality scoring, pattern validation, 
 
 ### Dimension Rubrics
 
-| Dimension | Full (max) | Good | Weak | Critical |
-|-----------|-----------|------|------|----------|
-| **Correctness** (30) | No logic errors, comprehensive edge cases | Minor edge cases missing | Some logic errors, incomplete error handling | Major logic errors, runtime failures |
-| **Security** (25) | No vulnerabilities, follows patterns | Minor exposure, mitigatable | Moderate vulnerabilities | Critical (injection, auth bypass) |
-| **Patterns** (20) | Full compliance with project style | Minor deviations | Multiple violations | Complete disregard |
-| **Maintainability** (15) | Clear, documented, low complexity | Readable, some doc gaps | Confusing, missing context | Incomprehensible |
-| **Performance** (10) | Efficient, no obvious issues | Minor inefficiencies | Noticeable inefficiencies | Critical issues, resource leaks |
+| Dimension                | Full (max)                                | Good                        | Weak                                         | Critical                             |
+| ------------------------ | ----------------------------------------- | --------------------------- | -------------------------------------------- | ------------------------------------ |
+| **Correctness** (30)     | No logic errors, comprehensive edge cases | Minor edge cases missing    | Some logic errors, incomplete error handling | Major logic errors, runtime failures |
+| **Security** (25)        | No vulnerabilities, follows patterns      | Minor exposure, mitigatable | Moderate vulnerabilities                     | Critical (injection, auth bypass)    |
+| **Patterns** (20)        | Full compliance with project style        | Minor deviations            | Multiple violations                          | Complete disregard                   |
+| **Maintainability** (15) | Clear, documented, low complexity         | Readable, some doc gaps     | Confusing, missing context                   | Incomprehensible                     |
+| **Performance** (10)     | Efficient, no obvious issues              | Minor inefficiencies        | Noticeable inefficiencies                    | Critical issues, resource leaks      |
 
 ---
 
@@ -311,11 +311,11 @@ All reports follow structured markdown. Key sections per format:
 
 ### Issue Evidence Requirements
 
-| Severity | Evidence Required |
-|----------|------------------|
-| **P0** | File:line + code snippet + impact analysis |
-| **P1** | File:line + pattern reference |
-| **P2** | File:line + suggestion |
+| Severity | Evidence Required                          |
+| -------- | ------------------------------------------ |
+| **P0**   | File:line + code snippet + impact analysis |
+| **P1**   | File:line + pattern reference              |
+| **P2**   | File:line + suggestion                     |
 
 ### Self-Validation Protocol
 
@@ -330,11 +330,11 @@ If ANY is NO → DO NOT SEND. Fix verification gaps first.
 
 ### Confidence Levels
 
-| Confidence | Criteria | Action |
-|------------|----------|--------|
-| **HIGH** | All files read, security reviewed, verified | Proceed with report |
-| **MEDIUM** | Most evidence verified, gaps documented | Note gaps in report |
-| **LOW** | Missing key verification steps | DO NOT send until fixed |
+| Confidence | Criteria                                    | Action                  |
+| ---------- | ------------------------------------------- | ----------------------- |
+| **HIGH**   | All files read, security reviewed, verified | Proceed with report     |
+| **MEDIUM** | Most evidence verified, gaps documented     | Note gaps in report     |
+| **LOW**    | Missing key verification steps              | DO NOT send until fixed |
 
 ### The Iron Law
 

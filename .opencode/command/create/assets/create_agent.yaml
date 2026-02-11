@@ -383,7 +383,7 @@ workflow:
     - "Run generate-context.js to save context"
     - "Verify memory file created"
     command: |
-      node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec_path]
+      node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec_path]
     outputs:
     - context_saved
     checkpoint:

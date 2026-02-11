@@ -36,7 +36,7 @@ The memory system supports **2 independent execution paths**. Any method can be 
 │   Slash Command                    Direct Script               │
 │   ┌──────────┐                    ┌──────────┐                 │
 │   │ /memory: │                    │  node    │                 │
-│   │  save    │                    │ script.js│                 │
+│   │  save    │                    │ script.ts│                 │
 │   └────┬─────┘                    └────┬─────┘                 │
 │        │                               │                       │
 │        ▼                               ▼                       │
@@ -50,7 +50,7 @@ The memory system supports **2 independent execution paths**. Any method can be 
 │                              ▼                                 │
 │                    ┌─────────────────┐                         │
 │                    │ generate-context│                         │
-│                    │      .js        │                         │
+│                    │      .ts        │                         │
 │                    └────────┬────────┘                         │
 │                             │                                  │
 │                             ▼                                  │
@@ -132,7 +132,7 @@ The memory system supports **2 independent execution paths**. Any method can be 
 
 1. Slash command expands to full prompt
 2. AI agent analyzes conversation history
-3. AI agent creates structured JSON summary
+3. AI agent creates structured JSON summary (any agent can invoke generate-context.js for memory — this is an exception to the @speckit exclusivity rule)
 4. AI agent calls `generate-context.js` with JSON data
 5. Context saved to active spec folder's `memory/` directory
 
@@ -192,7 +192,7 @@ cat > /tmp/test-save-context.json << 'EOF'
 EOF
 
 # Execute script directly
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js \
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js \
   /tmp/test-save-context.json \
   "049-anchor-context-retrieval"
 ```
@@ -211,7 +211,7 @@ node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js \
 | Checkpoint         | Verification                                           | Action on Failure        |
 | ------------------ | ------------------------------------------------------ | ------------------------ |
 | Node.js installed  | `node --version`                                       | Install Node.js          |
-| Script exists      | `test -f .opencode/skill/system-spec-kit/scripts/memory/generate-context.js` | Check skill installation |
+| Script exists      | `test -f .opencode/skill/system-spec-kit/scripts/memory/generate-context.ts` | Check skill installation |
 | JSON valid         | `jq . < input.json`                                    | Fix JSON syntax          |
 | Spec folder exists | `test -d specs/###/`                                   | Create spec folder       |
 
@@ -523,7 +523,7 @@ tree specs/###-name/
 cat input.json | jq .
 
 # Test script execution
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js --help
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js --help
 ```
 
 ---

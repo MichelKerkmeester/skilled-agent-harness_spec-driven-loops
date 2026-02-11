@@ -1,7 +1,7 @@
 ---
 description: Planning workflow (7 steps) - spec through plan only, no implementation. Supports :auto and :confirm modes
 argument-hint: "<feature-description> [:auto|:confirm]"
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search
 ---
 
 # 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
@@ -30,14 +30,20 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ IF $ARGUMENTS has content (ignoring :auto/:confirm) → feature_description = $ARGUMENTS, omit Q0
    └─ IF $ARGUMENTS is empty → include Q0 in prompt
 
-3. Search for related spec folders:
-   $ ls -d specs/*/ 2>/dev/null | tail -10
+ 3. Search for related spec folders:
+    $ ls -d specs/*/ 2>/dev/null | tail -10
 
-4. Determine if memory loading question is needed:
-   - Will be asked ONLY if user selects A or C for spec folder AND memory/ has files
-   - Include Q4 placeholder with note "(if using existing spec with memory files)"
+ 4. Search for prior work (background, no user wait):
+    - memory_context({ input: feature_description OR "planning", mode: "focused", includeContent: true })
+    > Note: Gate 1 trigger matching is handled at the agent level (AGENTS.md).
+    > This command uses memory_context (L1) for unified context retrieval.
+    - Store: prior_work_found = [yes/no], prior_work_count = [N]
 
-5. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+ 5. Determine if memory loading question is needed:
+    - Will be asked ONLY if user selects A or C for spec folder AND memory/ has files
+    - Include Q4 placeholder with note "(if using existing spec with memory files)"
+
+ 6. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
@@ -80,9 +86,9 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │ Reply with answers, e.g.: "B, A, A, , C, A" or "Add auth, B, A, gemini, C, A" │
    └────────────────────────────────────────────────────────────────┘
 
-6. WAIT for user response (DO NOT PROCEED)
+ 7. WAIT for user response (DO NOT PROCEED)
 
-7. Parse response and store ALL results:
+ 8. Parse response and store ALL results:
    - feature_description = [from Q0 or $ARGUMENTS]
    - spec_choice = [A/B/C/D from Q1]
    - spec_path = [derived path or null if D]
@@ -92,12 +98,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - memory_choice = [A/B/C from Q5, or N/A if not applicable]
    - research_intent = [add_feature/fix_bug/refactor/understand from Q6]
 
-8. Execute background operations based on choices:
+ 9. Execute background operations based on choices:
    - IF memory_choice == A: Load most recent memory file
    - IF memory_choice == B: Load up to 3 recent memory files
    - IF dispatch_mode is multi_*: Note parallel dispatch will be used
 
-9. SET STATUS: ✅ PASSED
+10. SET STATUS: ✅ PASSED
 
 **STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
 
@@ -452,7 +458,7 @@ Use the unified `/memory:context` command with intent-aware retrieval:
 
 ```
 1. GENERATE CONTEXT:
-   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder]
+   node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder]
 
 2. ANCHOR TAGGING:
    The script automatically extracts and indexes:
@@ -577,10 +583,11 @@ Circuit breaker pattern prevents cascading failures during workflow execution.
 
 ### Configuration
 
-| Parameter         | Value | Description                            |
-| ----------------- | ----- | -------------------------------------- |
-| failure_threshold | 3     | Consecutive failures before OPEN state |
-| recovery_timeout  | 60    | Seconds before attempting HALF-OPEN    |
+| Parameter          | Value | Description                                        |
+| ------------------ | ----- | -------------------------------------------------- |
+| failure_threshold  | 3     | Consecutive failures before OPEN state             |
+| recovery_timeout_s | 60    | Seconds before attempting HALF-OPEN                |
+| success_to_close   | 1     | Successes needed in HALF-OPEN to close circuit     |
 
 ### Tracked Errors
 
@@ -592,7 +599,7 @@ Circuit breaker pattern prevents cascading failures during workflow execution.
 ### Recovery Protocol
 
 1. **OPEN state triggered**: Workflow halts with error summary
-2. **Wait recovery_timeout**: System waits 60 seconds
+2. **Wait recovery_timeout_s**: System waits 60 seconds
 3. **HALF-OPEN attempt**: Single retry of failed operation
 4. **Success**: Reset to CLOSED, continue workflow
 5. **Failure**: Return to OPEN, escalate to user

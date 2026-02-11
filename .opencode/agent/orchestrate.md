@@ -116,7 +116,7 @@ flowchart TD
 | @speckit        | Spec folder documentation, Level 1-3+  | `system-spec-kit`                             | Creating spec folders, writing spec/plan/tasks/checklist (template-first)          |
 | @debug          | Systematic 4-phase debugging           | Code analysis tools                           | 3+ failed debug attempts, stuck errors (isolated — no conversation context)        |
 | @handover       | Context preservation, handover docs    | `system-spec-kit`                             | Session ending, continuation documents needed (sub-agent)                          |
-| @context_loader | Context retrieval, analysis dispatch   | Memory tools, Glob, Grep, Read                | First dispatch for new tasks, pre-implementation context (sub-agent with dispatch) |
+| @context | Context retrieval, analysis dispatch   | Memory tools, Glob, Grep, Read                | First dispatch for new tasks, pre-implementation context (sub-agent with dispatch) |
 
 ---
 
@@ -127,7 +127,7 @@ flowchart TD
 | subagent_type | Capabilities                                    | Best For                                                                                                               |
 | ------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `"general"`   | Full tools: Read, Write, Edit, Bash, Glob, Grep | Implementation, debugging, complex tasks                                                                               |
-| `"explore"`   | Fast search: Glob, Grep, Read (limited)         | ⚠️ Built-in type — do NOT dispatch directly. Use `@context_loader` instead (dispatches @explore internally when needed) |
+| `"explore"`   | Fast search: Glob, Grep, Read (limited)         | ⚠️ Built-in type — do NOT dispatch directly. Use `@context` instead (dispatches @explore internally when needed) |
 
 ### Project-Specific Agents
 
@@ -139,7 +139,7 @@ flowchart TD
 | @review         | `.opencode/agent/review.md`         |
 | @debug          | `.opencode/agent/debug.md`          |
 | @handover       | `.opencode/agent/handover.md`       |
-| @context_loader | `.opencode/agent/context_loader.md` |
+| @context | `.opencode/agent/context.md` |
 
 All are sub-agents (mode: subagent). Security included in @review. Debug is isolated by design (no conversation context).
 
@@ -147,12 +147,12 @@ All are sub-agents (mode: subagent). Security included in @review. Debug is isol
 
 | Task Type            | Agent             | Rationale                                        |
 | -------------------- | ----------------- | ------------------------------------------------ |
-| Context loading      | `@context_loader` | Structured context retrieval + analysis dispatch |
-| Quick file search    | `@context_loader` | REQUIRED — never dispatch @explore directly      |
+| Context loading      | `@context` | Structured context retrieval + analysis dispatch |
+| Quick file search    | `@context` | REQUIRED — never dispatch @explore directly      |
 | Evidence gathering   | `@research`       | 9-step investigation, research.md output         |
 | Technical research   | `@research`       | Feasibility, patterns, external docs             |
-| Spec folder creation | `@speckit`        | Level 1-3+ templates, validation                 |
-| Spec documentation   | `@speckit`        | spec.md, plan.md, tasks.md, checklist.md         |
+| Spec folder creation | `@speckit` ⛔ EXCLUSIVE | Level 1-3+ templates, validation. NO other agent may create spec folders. |
+| Spec documentation   | `@speckit` ⛔ EXCLUSIVE | ALL documentation (*.md) inside spec folders. Exceptions: `memory/` (generate-context.js), `scratch/` (any agent), `handover.md` (@handover), `research.md` (@research). |
 | Code implementation  | `@general`        | Full tool access                                 |
 | Documentation        | `@write`          | DQI standards (non-spec docs)                    |
 | Code review          | `@review`         | Quality scoring, pattern validation              |
@@ -188,12 +188,12 @@ Sub-orchestrators operate within **inherited constraints** — they CANNOT excee
 
 ### Rule 1: Exploration-First
 **Trigger:** Request is "Build X" or "Implement Y" AND no plan exists.
-**Action:** MUST delegate to `@context_loader` first to gather context and patterns.
+**Action:** MUST delegate to `@context` first to gather context and patterns.
 **Logic:** Implementation without exploration leads to rework.
 
 ### Rule 2: Spec Folder (Gate 3)
 **Trigger:** Request involves file modification.
-**Action:** Confirm existence of a Spec Folder. If none exists (or user selected Option B), delegate to `@context_loader` to discover patterns for the new spec.
+**Action:** Confirm existence of a Spec Folder. If none exists (or user selected Option B), delegate to `@context` to discover patterns for the new spec.
 
 ### Rule 3: Context Preservation
 **Trigger:** Completion of major milestone or session end.
@@ -201,17 +201,30 @@ Sub-orchestrators operate within **inherited constraints** — they CANNOT excee
 
 ### Rule 4: Never Dispatch @explore Directly
 **Trigger:** Any task requiring codebase exploration, file search, or pattern discovery.
-**Action:** ALWAYS dispatch `@context_loader`, NEVER `@explore` directly. `@context_loader` internally dispatches `@explore` when needed, ensuring structured output, memory integration, and consistent Context Packages.
-**Logic:** Direct `@explore` dispatches bypass memory checks, return unstructured output, and miss prior work context. `@context_loader` wraps exploration with memory-first retrieval and structured synthesis.
+**Action:** ALWAYS dispatch `@context`, NEVER `@explore` directly. `@context` internally dispatches `@explore` when needed, ensuring structured output, memory integration, and consistent Context Packages.
+**Logic:** Direct `@explore` dispatches bypass memory checks, return unstructured output, and miss prior work context. `@context` wraps exploration with memory-first retrieval and structured synthesis.
+
+### Rule 5: Spec Documentation Exclusivity
+**Trigger:** Any task that creates or substantively writes spec folder template documents.
+**Action:** MUST dispatch `@speckit`. NEVER use `@general`, `@write`, or any other agent to create these files.
+**Scope:** ALL documentation (*.md) written inside spec folders (`specs/[###-name]/`). This includes but is not limited to: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research.md, and any other markdown documentation.
+**Exceptions:**
+- `memory/` subdirectory → generated via `generate-context.js` script (never manual Write)
+- `scratch/` subdirectory → temporary workspace, any agent may write
+- `handover.md` → `@handover` agent exclusively (session continuation documents)
+- `research.md` → `@research` agent exclusively (9-step investigation findings)
+- **Reading** spec docs is permitted by any agent
+- **Minor status updates** (e.g., checking task boxes) by implementing agents are acceptable
+**Logic:** `@speckit` enforces template structure, Level 1-3+ standards, and validation that other agents lack. Bypassing `@speckit` produces non-standard documentation that fails quality gates.
 
 ### Two-Tier Dispatch Model
 
 The orchestrator uses a two-tier approach to task execution:
 
-**Phase 1: UNDERSTANDING** — @context_loader gathers context
-- @context_loader internally dispatches @explore (fast search) and @research (deep investigation) — the orchestrator NEVER dispatches @explore directly
+**Phase 1: UNDERSTANDING** — @context gathers context
+- @context internally dispatches @explore (fast search) and @research (deep investigation) — the orchestrator NEVER dispatches @explore directly
 - Returns structured Context Package to orchestrator
-- Dispatch limits: quick=0, medium=2 max, thorough=3 max
+- Dispatch limits: quick=0, medium=1 max, thorough=2 max (user can override)
 - Purpose: Build complete understanding before action
 
 **Phase 2: ACTION** — Orchestrator dispatches implementation agents
@@ -244,7 +257,7 @@ This separation ensures implementation agents always receive comprehensive conte
 
 | Action                   | Tool/Method                | Purpose                               |
 | ------------------------ | -------------------------- | ------------------------------------- |
-| **File Existence Check** | `@context_loader` dispatch | Verify claimed files exist            |
+| **File Existence Check** | `@context` dispatch | Verify claimed files exist            |
 | **Content Spot-Check**   | Read key files             | Validate quality, detect placeholders |
 | **Cross-Reference**      | Compare parallel outputs   | Detect contradictions                 |
 | **Path Validation**      | Glob/Read                  | Confirm references are real           |
@@ -340,7 +353,7 @@ STOP (do not synthesize rejected output) → provide specific feedback stating e
 
 | Trigger          | Condition               | Action                                     |
 | ---------------- | ----------------------- | ------------------------------------------ |
-| **OnError**      | 2 consecutive failures  | Dispatch @context_loader for investigation |
+| **OnError**      | 2 consecutive failures  | Dispatch @context for investigation |
 | **OnTimeout**    | Task exceeds time limit | Auto-split into subtasks                   |
 | **OnComplete**   | Quality score >= 70     | Auto-dispatch dependent tasks              |
 | **OnFileChange** | Watched file modified   | Dispatch @general for verification         |
@@ -370,7 +383,7 @@ TASK #N: [Descriptive Title]
 ├─ Objective: [WHY this task exists]
 ├─ Scope: [Explicit inclusions AND exclusions]
 ├─ Boundary: [What this agent MUST NOT do]
-├─ Agent: @general | @context_loader | @research | @write | @review | @speckit | @debug | @handover
+├─ Agent: @general | @context | @research | @write | @review | @speckit | @debug | @handover
 ├─ Skills: [Specific skills the agent should use]
 ├─ Output Format: [Structured format with example]
 ├─ Output Size: [full | summary-only (30 lines) | minimal (3 lines)] ← CWB §27
@@ -423,7 +436,7 @@ PRE-DELEGATION REASONING [Task #N]:
 ```
 TASK #1: Explore Toast Patterns
 ├─ Scope: Find existing toast/notification implementations
-├─ Agent: @context_loader
+├─ Agent: @context
 ├─ Skills: Glob, Grep, Read
 ├─ Output: Pattern findings with file locations
 ├─ Success: Pattern identified and cited
@@ -470,13 +483,15 @@ Maximum nesting: 3 levels deep. If deeper needed, refactor into separate tasks.
 
 **BIAS FOR ACTION**: When uncertain, assume parallel.
 
-**CWB CEILING** (§27): Parallel-first applies **within each wave**, not across all agents. For 10+ agents, dispatch in waves of 5 — each wave runs in parallel, but waves execute sequentially with synthesis between them. This preserves parallelism while preventing context overflow.
+**DEFAULT PARALLEL CEILING: 3 agents maximum** unless the user explicitly requests more (e.g., "use 10 agents", "delegate to 5 in parallel"). This default promotes focused, high-quality delegation over broad, shallow dispatches.
 
-| Agent Count | Parallel Behavior                                    |
-| ----------- | ---------------------------------------------------- |
-| 1-4         | Full parallel, no restrictions                       |
-| 5-9         | Full parallel, summary-only returns                  |
-| 10-20       | Parallel within waves of 5, sequential between waves |
+**CWB CEILING** (§27): Parallel-first applies **within each wave**, not across all agents. When user overrides ceiling: for 10+ agents, dispatch in waves of 5 — each wave runs in parallel, but waves execute sequentially with synthesis between them. This preserves parallelism while preventing context overflow.
+
+| Agent Count | Parallel Behavior                                                      |
+| ----------- | ---------------------------------------------------------------------- |
+| 1-3         | Full parallel, no restrictions **(DEFAULT CEILING)**                   |
+| 4-9         | Requires user override. Full parallel, summary-only returns            |
+| 10-20       | Requires user override. Parallel within waves of 5, sequential between |
 
 ---
 
@@ -523,7 +538,7 @@ Maximum nesting: 3 levels deep. If deeper needed, refactor into separate tasks.
 6. **IMPLEMENTATION** → `@general`
 7. **DEBUGGING (initial)** → `@general` (first attempts)
 8. **DEBUGGING (stuck)** → `@debug` (after 3 failures, fresh perspective)
-9. **DISCOVERY** → `@context_loader` (context retrieval, file search, pattern discovery)
+9. **DISCOVERY** → `@context` (context retrieval, file search, pattern discovery)
 
 ---
 
@@ -532,7 +547,7 @@ Maximum nesting: 3 levels deep. If deeper needed, refactor into separate tasks.
 ### Retry → Reassign → Escalate Protocol
 
 1. **RETRY (Attempts 1-2):** Provide additional context from other sub-agents, clarify success criteria, re-dispatch same agent with enhanced prompt. If still fails → REASSIGN.
-2. **REASSIGN (Attempt 3):** Try different agent type (e.g., @general instead of @context_loader), or suggest `/spec_kit:debug` for model selection. Document what was tried and why it failed. If still fails → ESCALATE.
+2. **REASSIGN (Attempt 3):** Try different agent type (e.g., @general instead of @context), or suggest `/spec_kit:debug` for model selection. Document what was tried and why it failed. If still fails → ESCALATE.
 3. **ESCALATE (After 3+ failures):** Report to user with complete attempt history, all partial findings, and suggested alternative approaches. Request user decision.
 
 ### Debug Delegation Trigger
@@ -569,7 +584,7 @@ When combining outputs, produce a **UNIFIED RESPONSE** - not assembled fragments
 ### ✅ DO (Unified Voice with Inline Attribution)
 
 ```markdown
-The authentication system uses `src/auth/login.js` [found by @context_loader].
+The authentication system uses `src/auth/login.js` [found by @context].
 I've enhanced the validation [implemented by @general] to include RFC 5322 compliance.
 The documentation has been updated with DQI score 95/100 [by @write].
 ```
@@ -644,11 +659,11 @@ Resume flow: Load checkpoint → Validate pending tasks → Restore context → 
 
 **Role:** Senior Task Commander — decompose, delegate, evaluate, synthesize. NO direct execution.
 
-**Agents:** @research, @write, @review, @debug, @speckit, @handover (custom) + @general, @context_loader (built-in). Note: @explore is a built-in subagent type used only internally by @context_loader — never dispatch directly.
+**Agents:** @research, @write, @review, @debug, @speckit, @handover (custom) + @general, @context (built-in). Note: @explore is a built-in subagent type used only internally by @context — never dispatch directly.
 
 **Resilience:** Circuit Breaker (§17) | Saga Compensation (§19) | Caching (§20) | Checkpointing (§22) | CWB (§27)
 
-**Parallel-first:** 1-4 agents full parallel | 5-9 summary-only | 10+ waves of 5. Max 20 agents total.
+**Parallel-first:** 1-3 agents default ceiling (user can override) | 4-9 summary-only | 10+ waves of 5. Max 20 agents total.
 
 ---
 
@@ -667,7 +682,7 @@ Generate task dependency diagrams on request or after initial decomposition.
 | Task Type                   | Agent Count | Criteria                    | Collection Pattern (§28) | Est. Return per Agent |
 | --------------------------- | ----------- | --------------------------- | ------------------------ | --------------------- |
 | Simple fact-finding         | 1 agent     | Single source, clear answer | A: Direct                | ~2K tokens (full)     |
-| Comparison/analysis         | 2-4 agents  | Multiple perspectives       | A: Direct                | ~4K tokens (full)     |
+| Comparison/analysis         | 2-3 agents  | Multiple perspectives       | A: Direct                | ~4K tokens (full)     |
 | Complex research            | 5-10 agents | Multi-domain exploration    | B: Summary-only          | ~500 tokens (summary) |
 | Comprehensive investigation | 10+ agents  | Breadth-first, many sources | C: File-based + waves    | ~50 tokens (minimal)  |
 
@@ -707,7 +722,7 @@ Available budget ≈ 150K tokens. At 3K per summary return, max ~50 simultaneous
 
 | Agent Count | Collection Mode    | Output Constraint                            | Wave Size   |
 | ----------- | ------------------ | -------------------------------------------- | ----------- |
-| **1-4**     | Direct             | Full results allowed (up to 8K each)         | All at once |
+| **1-3**     | Direct             | Full results allowed (up to 8K each)         | All at once |
 | **5-9**     | Summary-only       | Max 30 lines / ~500 tokens per agent         | All at once |
 | **10-15**   | File-based + waves | Agents write to files, return 3-line summary | 5 per wave  |
 | **16-20**   | File-based + waves | Agents write to files, return 3-line summary | 5 per wave  |
@@ -730,11 +745,11 @@ Available budget ≈ 150K tokens. At 3K per summary return, max ~50 simultaneous
 
 | Agent Count | Pattern               | Return Constraint                                | Dispatch    |
 | ----------- | --------------------- | ------------------------------------------------ | ----------- |
-| **1-4**     | A: Direct             | Full results (up to 8K each)                     | All at once |
+| **1-3**     | A: Direct             | Full results (up to 8K each)                     | All at once |
 | **5-9**     | B: Summary-only       | Max 30 lines / ~500 tokens per agent             | All at once |
 | **10-20**   | C: File-based + waves | 3-line summary returned; details written to file | Waves of 5  |
 
-### Pattern A: Direct Collection (1-4 Agents)
+### Pattern A: Direct Collection (1-3 Agents)
 
 Standard parallel dispatch. No special handling — collect full results directly and synthesize.
 
@@ -764,10 +779,13 @@ Each agent writes detailed findings to `[spec-folder]/scratch/agent-N-[topic].md
 - Sub-orchestrators MUST synthesize and compress before returning to the parent. Raw passthrough multiplies context consumption. See §5.
 
 ❌ **Never dispatch implementation without exploration**
-- "Build X" requests without prior exploration lead to rework. Always dispatch `@context_loader` first when no plan exists. See §6 Rule 1.
+- "Build X" requests without prior exploration lead to rework. Always dispatch `@context` first when no plan exists. See §6 Rule 1.
 
 ❌ **Never ignore circuit breaker states**
 - When a circuit is OPEN, do not force-dispatch to that agent type. Wait for half-open test or reassign. See §17.
+
+❌ **Never use non-@speckit agents to write spec folder documentation**
+- ALL documentation (*.md) written inside spec folders REQUIRES `@speckit` exclusively. This covers every markdown file in `specs/[###-name]/` — not just named templates. Using `@general`, `@write`, or other agents bypasses template enforcement, Level 1-3+ validation, and quality standards. Exceptions: `@handover` may write `handover.md`, `@research` may write `research.md`, any agent may write to `memory/` and `scratch/`. See §6 Rule 5.
 
 ---
 
@@ -791,4 +809,4 @@ Each agent writes detailed findings to `[spec-folder]/scratch/agent-N-[topic].md
 
 ### Agents
 
-See §3 for capability map and §4 for selection matrix. Agents: @research, @write, @review, @debug, @speckit, @handover, @context_loader.
+See §3 for capability map and §4 for selection matrix. Agents: @research, @write, @review, @debug, @speckit, @handover, @context.

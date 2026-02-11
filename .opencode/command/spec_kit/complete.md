@@ -324,15 +324,17 @@ WHEN all artifacts verified:
 
 ## PHASE B: IMPLEMENTATION (Steps 8-14)
 
-| STEP | NAME                 | STATUS | REQUIRED OUTPUT                   | VERIFICATION                              |
-| ---- | -------------------- | ------ | --------------------------------- | ----------------------------------------- |
-| 8    | Analysis             | ☐      | consistency_report                | Artifacts cross-checked                   |
-| 9    | Implementation Check | ☐      | prerequisites_verified            | Ready to implement                        |
-| 10   | Development          | ☐      | code changes + tasks marked `[x]` | **ALL tasks in tasks.md marked complete** |
-| 11   | Checklist Verify     | ☐      | All P0/P1 verified                | **Level 2+ ONLY - BLOCKING**              |
-| 12   | Completion           | ☐      | `implementation-summary.md`       | **Summary file created (MANDATORY L2+)**  |
-| 13   | Save Context         | ☐      | `memory/*.md`                     | Context preserved                         |
-| 14   | Handover Check       | ☐      | User prompted                     | Handover offered before completion        |
+| STEP | NAME                   | STATUS | REQUIRED OUTPUT                   | VERIFICATION                              |
+| ---- | ---------------------- | ------ | --------------------------------- | ----------------------------------------- |
+| 8    | Analysis               | ☐      | consistency_report                | Artifacts cross-checked                   |
+| 9    | Implementation Check   | ☐      | prerequisites_verified            | Ready to implement                        |
+| 9.5  | **PREFLIGHT Capture**  | ☐      | preflight_baseline                | Epistemic baseline recorded               |
+| 10   | Development            | ☐      | code changes + tasks marked `[x]` | **ALL tasks in tasks.md marked complete** |
+| 11   | Checklist Verify       | ☐      | All P0/P1 verified                | **Level 2+ ONLY - BLOCKING**              |
+| 11.5 | **POSTFLIGHT Capture** | ☐      | postflight_delta                  | Learning delta calculated                 |
+| 12   | Completion             | ☐      | `implementation-summary.md`       | **Summary file created (MANDATORY L2+)**  |
+| 13   | Save Context           | ☐      | `memory/*.md`                     | Context preserved                         |
+| 14   | Handover Check         | ☐      | User prompted                     | Handover offered before completion        |
 
 ---
 
@@ -345,6 +347,39 @@ STEP 10 (Development) REQUIREMENTS:
 ├─ MUST NOT claim "development complete" until ALL tasks marked [x]
 ├─ MUST test code changes before marking complete
 └─ See "STEP 10 DEBUG INTEGRATION" below for failure handling
+
+STEP 9.5 (PREFLIGHT Capture) REQUIREMENTS:
+├─ **Execute:** After Step 9 (Implementation Check) passes, before Step 10 (Development)
+├─ **Skip if:** Quick fix (<10 LOC) or continuation of prior session with existing PREFLIGHT
+├─ Capture epistemic baseline for learning measurement:
+│   ```
+│   Call task_preflight() with:
+│   - specFolder: [spec-folder-path]
+│   - taskId: "implementation"
+│   - knowledgeScore: [0-100]
+│   - uncertaintyScore: [0-100]
+│   - contextScore: [0-100]
+│   - knowledgeGaps: [optional list of identified gaps]
+│   ```
+├─ Assess: What do I know? What don't I know? How complete is my context?
+└─ User can say "skip preflight" to proceed directly to Step 10
+
+STEP 11.5 (POSTFLIGHT Capture) REQUIREMENTS:
+├─ **Execute:** After Step 11 (Checklist Verify) passes, before Step 12 (Completion)
+├─ **Skip if:** Quick fix (<10 LOC) or no PREFLIGHT was captured at Step 9.5
+├─ Capture learning delta and calculate improvement:
+│   ```
+│   Call task_postflight() with:
+│   - specFolder: [spec-folder-path]
+│   - taskId: "implementation" (must match preflight)
+│   - knowledgeScore: [0-100]
+│   - uncertaintyScore: [0-100]
+│   - contextScore: [0-100]
+│   - gapsClosed: [list of resolved uncertainties]
+│   - newGapsDiscovered: [list of new questions/unknowns]
+│   ```
+├─ Learning Index = (Knowledge Delta × 0.4) + (Uncertainty Reduction × 0.35) + (Context Improvement × 0.25)
+└─ User can say "skip postflight" to proceed directly to Step 12
 
 STEP 11 (Checklist Verification) REQUIREMENTS - LEVEL 2+ ONLY:
 ├─ ⛔ BLOCKING: This step is REQUIRED for Level 2+ before claiming completion
@@ -379,7 +414,7 @@ STEP 13 (Save Context) REQUIREMENTS:
 ├─ MUST include decisions made and implementation details
 ├─ **MANDATORY:** Use generate-context.js for memory save:
 │   ```
-│   node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]
+│   node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
 │   ```
 └─ ❌ DO NOT use Write/Edit tools to create memory files directly
 
@@ -545,22 +580,24 @@ $ARGUMENTS
 
 ## 3. 📊 WORKFLOW OVERVIEW
 
-| Step | Name                 | Purpose                                                                      | Outputs                   |
-| ---- | -------------------- | ---------------------------------------------------------------------------- | ------------------------- |
-| 1    | Request Analysis     | Analyze inputs, define scope                                                 | requirement_summary       |
-| 2    | Pre-Work Review      | Review AGENTS.md, standards                                                  | coding_standards_summary  |
-| 3    | Specification        | Create spec.md                                                               | spec.md, feature branch   |
-| 4    | Clarification        | Resolve ambiguities                                                          | updated spec.md           |
-| 5    | Quality Checklist    | Generate validation checklist (ACTIVELY USED for verification at completion) | checklist.md              |
-| 6    | Planning             | Create technical plan                                                        | plan.md, research.md      |
-| 7    | Task Breakdown       | Break into tasks                                                             | tasks.md                  |
-| 8    | Analysis             | Verify consistency                                                           | consistency_report        |
-| 9    | Implementation Check | Verify prerequisites                                                         | greenlight                |
-| 10   | Development          | Execute implementation                                                       | code changes              |
-| 11   | Checklist Verify     | Verify P0/P1 items (Level 2+)                                                | All P0/P1 verified        |
-| 12   | Completion           | Generate summary (MANDATORY L2+)                                             | implementation-summary.md |
-| 13   | Save Context         | Preserve conversation                                                        | memory/*.md               |
-| 14   | Handover Check       | Offer handover before completion                                             | User prompted             |
+| Step | Name                   | Purpose                                                                      | Outputs                   |
+| ---- | ---------------------- | ---------------------------------------------------------------------------- | ------------------------- |
+| 1    | Request Analysis       | Analyze inputs, define scope                                                 | requirement_summary       |
+| 2    | Pre-Work Review        | Review AGENTS.md, standards                                                  | coding_standards_summary  |
+| 3    | Specification          | Create spec.md                                                               | spec.md, feature branch   |
+| 4    | Clarification          | Resolve ambiguities                                                          | updated spec.md           |
+| 5    | Quality Checklist      | Generate validation checklist (ACTIVELY USED for verification at completion) | checklist.md              |
+| 6    | Planning               | Create technical plan                                                        | plan.md, research.md      |
+| 7    | Task Breakdown         | Break into tasks                                                             | tasks.md                  |
+| 8    | Analysis               | Verify consistency                                                           | consistency_report        |
+| 9    | Implementation Check   | Verify prerequisites                                                         | greenlight                |
+| 9.5  | **PREFLIGHT Capture**  | Capture epistemic baseline for learning measurement                          | preflight_baseline        |
+| 10   | Development            | Execute implementation                                                       | code changes              |
+| 11   | Checklist Verify       | Verify P0/P1 items (Level 2+)                                                | All P0/P1 verified        |
+| 11.5 | **POSTFLIGHT Capture** | Capture learning delta and calculate improvement                             | postflight_delta          |
+| 12   | Completion             | Generate summary (MANDATORY L2+)                                             | implementation-summary.md |
+| 13   | Save Context           | Preserve conversation                                                        | memory/*.md               |
+| 14   | Handover Check         | Offer handover before completion                                             | User prompted             |
 
 ### Workflow Diagram
 
@@ -835,7 +872,7 @@ Quality gates ensure workflow integrity by validating state at critical transiti
 
 | Gate               | Location                  | Purpose                            | Threshold  | Blocking |
 | ------------------ | ------------------------- | ---------------------------------- | ---------- | -------- |
-| **Pre-execution**  | Before Step 1             | Validate inputs and prerequisites  | Score ≥ 60 | Soft     |
+| **Pre-execution**  | Before Step 1             | Validate inputs and prerequisites  | Score ≥ 70 | **HARD** |
 | **Planning Gate**  | Between Step 7 and Step 8 | Verify planning artifacts complete | Score ≥ 70 | **HARD** |
 | **Post-execution** | After Step 12             | Verify all deliverables exist      | Score ≥ 70 | Hard     |
 
@@ -891,7 +928,7 @@ The Planning Gate separates **Phase A (Planning)** from **Phase B (Implementatio
 - Validates feature description is provided
 - Checks spec folder exists or can be created
 - Verifies execution mode is set
-- Soft block: Warns but allows continuation with user acknowledgment
+- Hard block: Blocks workflow until prerequisites met
 
 **Planning Gate (with @review blocking):**
 - Dispatches `@review` agent to verify planning artifacts
@@ -908,7 +945,7 @@ The Planning Gate separates **Phase A (Planning)** from **Phase B (Implementatio
 
 ### Gate Check Lists
 
-**Pre-execution (Score ≥ 60 to pass):**
+**Pre-execution (Score ≥ 70 to pass):**
 ```
 □ feature_description is not empty (30 points)
 □ spec_path is valid or can be created (30 points)
@@ -953,12 +990,11 @@ Circuit breaker pattern prevents cascading failures when agents fail repeatedly.
 
 ### Configuration
 
-| Parameter              | Value  | Description                      |
-| ---------------------- | ------ | -------------------------------- |
-| `failure_threshold`    | 3      | Consecutive failures before OPEN |
-| `recovery_timeout_ms`  | 60000  | Time in OPEN before HALF-OPEN    |
-| `success_threshold`    | 2      | Successes in HALF-OPEN to close  |
-| `monitoring_window_ms` | 300000 | Window for failure counting      |
+| Parameter          | Value | Description                                        |
+| ------------------ | ----- | -------------------------------------------------- |
+| failure_threshold  | 3     | Consecutive failures before OPEN                   |
+| recovery_timeout_s | 60    | Seconds in OPEN before HALF-OPEN                   |
+| success_to_close   | 1     | Successes needed in HALF-OPEN to close circuit     |
 
 ### Per-Agent Circuit Tracking
 
@@ -994,7 +1030,7 @@ Each agent has an **independent** circuit breaker:
 ```
 ON agent dispatch:
   IF circuit[agent].state == OPEN:
-    IF current_time - circuit[agent].last_failure > recovery_timeout_ms:
+    IF current_time - circuit[agent].last_failure > recovery_timeout_s:
       circuit[agent].state = HALF_OPEN
       ALLOW single request
     ELSE:
@@ -1004,7 +1040,7 @@ ON agent dispatch:
   IF circuit[agent].state == HALF_OPEN:
     IF request succeeds:
       circuit[agent].success_count++
-      IF circuit[agent].success_count >= success_threshold:
+      IF circuit[agent].success_count >= success_to_close:
         circuit[agent].state = CLOSED
         circuit[agent].failures = 0
         LOG "Circuit CLOSED for {agent}"

@@ -671,10 +671,10 @@ The system includes 8 specialized agents that handle specific tasks. Five are **
 | Agent              | Purpose                                                                      |
 | ------------------ | ---------------------------------------------------------------------------- |
 | `@orchestrate`     | Senior orchestration with task decomposition, delegation, quality evaluation |
-| `@context_loader`  | Context retrieval and synthesis — the orchestrator's dedicated context scout  |
+| `@context`         | Context retrieval and synthesis — the orchestrator's dedicated context scout  |
 | `@write`           | Documentation generation and maintenance                                     |
 
-**Model Assignments:** Opus 4.6 for heavy analysis (`@research`, `@review`, `@debug`). Sonnet 4.5 for structured tasks (`@write`, `@speckit`, `@handover`, `@context_loader`). `@orchestrate` has no model (primary mode, delegates only).
+**Model Assignments:** Opus 4.6 for heavy analysis (`@research`, `@review`, `@debug`). Sonnet 4.5 for structured tasks (`@write`, `@speckit`, `@handover`, `@context`). `@orchestrate` has no model (primary mode, delegates only).
 
 
 ### Enterprise Orchestration Patterns
@@ -689,7 +689,7 @@ The `@orchestrate` agent includes enterprise-grade patterns for reliable multi-a
 | **Resource Budgeting**    | 50K token default, 80% warning, 100% halt                      |
 | **Conditional Branching** | IF/THEN/ELSE logic with 3-level nesting                        |
 | **Checkpointing**         | Recovery snapshots every 5 tasks or 10 tool calls              |
-| **Two-Tier Dispatch**     | @context_loader gathers context → orchestrator dispatches with Context Package |
+| **Two-Tier Dispatch**     | @context gathers context → orchestrator dispatches with Context Package |
 | **Complexity Signaling**  | Low/medium/high complexity field controls agent ceremony level |
 | **FAST PATH**             | Low-complexity tasks skip mandatory process steps for faster execution |
 

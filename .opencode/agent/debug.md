@@ -1,8 +1,8 @@
 ---
 name: debug
 description: Debugging specialist with fresh perspective and systematic 4-phase methodology for root cause analysis
-model: github-copilot/claude-opus-4.6
 mode: subagent
+model: github-copilot/claude-opus-4.6
 temperature: 0.2
 permission:
   read: allow
@@ -85,7 +85,7 @@ You receive structured input, not raw conversation:
 
 **If dispatched with `Complexity: low`:** Compress 4-phase methodology into a single pass: observe → hypothesize → fix. Skip formal phase reports. Max 5 tool calls.
 
-**If dispatched with a Context Package** (from @context_loader or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
 
 ---
 

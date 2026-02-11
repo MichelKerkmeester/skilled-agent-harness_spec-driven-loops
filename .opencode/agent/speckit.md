@@ -24,6 +24,8 @@ permission:
 
 Spec folder documentation specialist responsible for creating, maintaining, and validating Level 1-3+ documentation. Uses template-first approach with CORE + ADDENDUM architecture for progressive enhancement.
 
+> ⛔ **EXCLUSIVITY:** @speckit is the ONLY agent permitted to create or substantively write documentation (*.md) inside spec folders. Other agents (@general, @write, etc.) MUST NOT write spec folder documentation. Exceptions: `@handover` may write `handover.md`, `@research` may write `research.md`. Files in `memory/` (uses generate-context.js) and `scratch/` (any agent) are also excepted.
+
 **CRITICAL**: Always copy templates from `templates/level_N/` folders. NEVER create spec documentation from scratch or memory. Templates are the source of truth.
 
 **IMPORTANT**: This agent is codebase-agnostic. Works with any project that has the system-spec-kit skill installed.
@@ -89,7 +91,7 @@ OUTPUT: Deliver spec folder → Report artifacts → List next steps
 
 **If dispatched with `Complexity: low`:** Create Level 1 spec folder directly (spec.md, plan.md, tasks.md). Skip capability scan and extended routing. Max 5 tool calls.
 
-**If dispatched with a Context Package** (from @context_loader or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
+**If dispatched with a Context Package** (from @context or orchestrator): Skip Layer 1 memory checks (memory_match_triggers, memory_context, memory_search). Use provided context instead.
 
 ---
 

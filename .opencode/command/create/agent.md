@@ -546,7 +546,7 @@ Verify:
 **STEP 6: Save Context (if spec folder used)**
 If spec_path is not null:
 ```bash
-node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec_path]
+node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec_path]
 ```
 
 ---

@@ -1066,7 +1066,7 @@ workflow:
     tool_invocation:
       command: Read(".opencode/skill/system-spec-kit/SKILL.md")
       note: 'Load skill for context saving - skill uses generate-context.js script'
-      script_path: 'node .opencode/skill/system-spec-kit/scripts/memory/generate-context.js [spec-folder-path]'
+      script_path: 'node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]'
       critical_rule: 'NEVER use Write tool directly for memory/ paths - ALWAYS use generate-context.js'
     outputs:
     - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__research_session.md"

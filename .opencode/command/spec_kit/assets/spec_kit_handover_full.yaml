@@ -243,7 +243,8 @@ quality_gates:
 # ───────────────────────────────────────────────────────────────────
 circuit_breaker:
   failure_threshold: 3
-  timeout_seconds: 60
+  recovery_timeout_s: 60
+  success_to_close: 1
   states:
     - CLOSED: "Normal operation - handover proceeds"
     - OPEN: "Failures detected - fallback to direct execution"
