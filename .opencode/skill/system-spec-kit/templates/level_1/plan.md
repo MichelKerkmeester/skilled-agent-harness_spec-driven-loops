@@ -3,40 +3,58 @@
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
-<!-- WHEN TO USE: Simple 2-3 phase implementation, minimal dependencies, single developer.
-     USE LEVEL 2+ IF: Phase dependencies need tracking, effort estimation required, or multiple developers. -->
-
 ---
 
 ## 1. SUMMARY
+
+### Technical Context
 
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | [e.g., TypeScript, Python 3.11] |
 | **Framework** | [e.g., React, FastAPI] |
 | **Storage** | [e.g., PostgreSQL, None] |
+| **Testing** | [e.g., Jest, pytest] |
 
-**Overview**: [2-3 sentences: what this implements and the technical approach]
+### Overview
+[2-3 sentences: what this implements and the technical approach]
 
 ---
 
 ## 2. QUALITY GATES
 
-**Ready When:**
+### Definition of Ready
 - [ ] Problem statement clear and scope documented
 - [ ] Success criteria measurable
+- [ ] Dependencies identified
 
-**Done When:**
+### Definition of Done
 - [ ] All acceptance criteria met
 - [ ] Tests passing (if applicable)
+- [ ] Docs updated (spec/plan/tasks)
 
 ---
 
-## 3. IMPLEMENTATION PHASES
+## 3. ARCHITECTURE
+
+### Pattern
+[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+
+### Key Components
+- **[Component 1]**: [Purpose]
+- **[Component 2]**: [Purpose]
+
+### Data Flow
+[Brief description of how data moves through the system]
+
+---
+
+## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
 - [ ] Project structure created
 - [ ] Dependencies installed
+- [ ] Development environment ready
 
 ### Phase 2: Core Implementation
 - [ ] [Core feature 1]
@@ -45,19 +63,30 @@
 
 ### Phase 3: Verification
 - [ ] Manual testing complete
+- [ ] Edge cases handled
 - [ ] Documentation updated
 
 ---
 
-## 4. DEPENDENCIES
+## 5. TESTING STRATEGY
 
-| Dependency | Status | Impact if Blocked |
-|------------|--------|-------------------|
-| [System/Library] | [Green/Yellow/Red] | [Impact] |
+| Test Type | Scope | Tools |
+|-----------|-------|-------|
+| Unit | [Components/functions] | [Jest/pytest/etc.] |
+| Integration | [API endpoints/flows] | [Tools] |
+| Manual | [User journeys] | Browser |
 
 ---
 
-## 5. ROLLBACK
+## 6. DEPENDENCIES
+
+| Dependency | Type | Status | Impact if Blocked |
+|------------|------|--------|-------------------|
+| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+
+---
+
+## 7. ROLLBACK PLAN
 
 - **Trigger**: [Conditions requiring rollback]
 - **Procedure**: [How to revert changes]
@@ -65,7 +94,8 @@
 ---
 
 <!--
-CORE TEMPLATE (~60 lines)
-- Essential technical planning for simple features
-- For complex work, use Level 2+ templates
+CORE TEMPLATE (~90 lines)
+- Essential technical planning
+- Simple phase structure
+- Add L2/L3 addendums for complexity
 -->

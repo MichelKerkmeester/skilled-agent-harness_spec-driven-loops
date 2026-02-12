@@ -1,7 +1,7 @@
 # Verification Checklist: [NAME]
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: level2-verify + level3-arch + level3plus-govern | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
 ---
 
@@ -77,19 +77,7 @@
 
 ---
 
-## L3: ARCHITECTURE VERIFICATION
-
-- [ ] CHK-060 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-061 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-062 [P1] Alternatives documented with rejection rationale
-
----
-
-## L3: RISK VERIFICATION
-
-- [ ] CHK-070 [P1] Risk matrix reviewed and mitigations in place
-- [ ] CHK-071 [P1] Critical path dependencies verified
-- [ ] CHK-072 [P2] Milestone completion documented
+<!-- Append to Level 2 checklist.md -->
 
 ---
 
@@ -150,12 +138,7 @@
 ---
 
 <!--
-LEVEL 3+ CHECKLIST (~150 lines)
-- L2 core verification + L3 architecture/risk + L3+ governance
-- Full progressive enhancement: L2 ⊂ L3 ⊂ L3+
-- Architecture and risk verification from L3
-- Performance, deployment, compliance from L3+
-- Sign-off table for governance workflow
+Level 3+ checklist - Full verification + architecture
 Mark [x] with evidence when verified
 P0 must complete, P1 need approval to defer
 -->

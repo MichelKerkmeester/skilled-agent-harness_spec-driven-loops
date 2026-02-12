@@ -55,9 +55,10 @@ async function getOpencodeCapture(): Promise<OpencodeCaptureMod | null> {
   if (_opencodeCapture === undefined) {
     try {
       _opencodeCapture = await import('../extractors/opencode-capture') as OpencodeCaptureMod;
-    } catch (err) {
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
       structuredLog('warn', 'opencode-capture library not available', {
-        error: (err as Error).message
+        error: errMsg
       });
       _opencodeCapture = null;
     }
@@ -89,12 +90,13 @@ async function loadCollectedData(): Promise<LoadedData> {
       let validatedDataFilePath: string;
       try {
         validatedDataFilePath = sanitizePath(CONFIG.DATA_FILE, dataFileAllowedBases);
-      } catch (pathError) {
+      } catch (pathError: unknown) {
+        const pathErrMsg = pathError instanceof Error ? pathError.message : String(pathError);
         structuredLog('error', 'Invalid data file path - security validation failed', {
           filePath: CONFIG.DATA_FILE,
-          error: (pathError as Error).message
+          error: pathErrMsg
         });
-        throw new Error(`Security: Invalid data file path: ${(pathError as Error).message}`);
+        throw new Error(`Security: Invalid data file path: ${pathErrMsg}`);
       }
 
       const dataContent: string = await fs.readFile(validatedDataFilePath, 'utf-8');
@@ -106,12 +108,11 @@ async function loadCollectedData(): Promise<LoadedData> {
       const data: NormalizedData | RawInputData = normalizeInputData(rawData);
       console.log(`   \u2713 Loaded data from data file`);
       return { ...data, _source: 'file' } as LoadedData;
-    } catch (error) {
-      const err = error as NodeJS.ErrnoException;
-      if (err.code === 'ENOENT') {
+    } catch (error: unknown) {
+      if (error instanceof Error && 'code' in error && (error as NodeJS.ErrnoException).code === 'ENOENT') {
         structuredLog('warn', 'Data file not found', {
           filePath: CONFIG.DATA_FILE,
-          error: err.message
+          error: error.message
         });
         console.log(`   \u26A0\uFE0F  Data file not found: ${CONFIG.DATA_FILE}`);
       } else if (error instanceof SyntaxError) {
@@ -122,11 +123,12 @@ async function loadCollectedData(): Promise<LoadedData> {
         });
         console.log(`   \u26A0\uFE0F  Invalid JSON in data file ${CONFIG.DATA_FILE}: ${error.message}`);
       } else {
+        const errMsg = error instanceof Error ? error.message : String(error);
         structuredLog('warn', 'Failed to load data file', {
           filePath: CONFIG.DATA_FILE,
-          error: (error as Error).message
+          error: errMsg
         });
-        console.log(`   \u26A0\uFE0F  Failed to load data file ${CONFIG.DATA_FILE}: ${(error as Error).message}`);
+        console.log(`   \u26A0\uFE0F  Failed to load data file ${CONFIG.DATA_FILE}: ${errMsg}`);
       }
     }
   }
@@ -159,12 +161,13 @@ async function loadCollectedData(): Promise<LoadedData> {
         });
         console.log('   \u26A0\uFE0F  OpenCode capture returned empty data');
       }
-    } catch (captureError) {
+    } catch (captureError: unknown) {
+      const captureErrMsg = captureError instanceof Error ? captureError.message : String(captureError);
       structuredLog('debug', 'OpenCode capture failed', {
         projectRoot: CONFIG.PROJECT_ROOT,
-        error: (captureError as Error).message
+        error: captureErrMsg
       });
-      console.log(`   \u26A0\uFE0F  OpenCode capture unavailable: ${(captureError as Error).message}`);
+      console.log(`   \u26A0\uFE0F  OpenCode capture unavailable: ${captureErrMsg}`);
     }
   }
 

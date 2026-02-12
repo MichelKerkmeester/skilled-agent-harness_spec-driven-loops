@@ -1,22 +1,7 @@
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 3+ -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
-
-<!-- WHEN TO USE THIS TEMPLATE:
-Level 3+ Plan (+Govern) is appropriate when:
-- AI Execution Framework with multi-tier agents
-- Workstream coordination ([W-A], [W-B], [SYNC] notation)
-- Formal communication plan required
-- Phased approval gates
-- Enterprise governance controls
-
-DO NOT use Level 3+ Plan if:
-- Standard complex feature (use Level 3)
-- No parallel workstream coordination needed
-- Informal communication sufficient (use Level 3)
-- Single-agent execution is sufficient
--->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
 
@@ -108,6 +93,9 @@ DO NOT use Level 3+ Plan if:
 
 ---
 
+
+---
+
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -152,6 +140,9 @@ Phase 1.5 (Config) ───┘
 ### Data Reversal
 - **Has data migrations?** [Yes/No]
 - **Reversal procedure**: [Steps or "N/A"]
+
+---
+
 
 ---
 
@@ -220,6 +211,9 @@ Phase 1.5 (Config) ───┘
 
 **Alternatives Rejected**:
 - [Option B]: [Why rejected]
+
+---
+
 
 ---
 

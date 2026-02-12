@@ -4,13 +4,10 @@
 // ---------------------------------------------------------------
 
 // Node stdlib
-import * as fs from 'fs/promises';
-import * as fsSync from 'fs';
 import * as path from 'path';
 
 // Internal modules
 import { CONFIG, findActiveSpecsDir } from './config';
-import { structuredLog } from '../utils';
 import {
   extractConversations,
   extractDecisions,
@@ -20,7 +17,10 @@ import {
 } from '../extractors';
 import { detectSpecFolder, setupContextDirectory } from '../spec-folder';
 import { populateTemplate } from '../renderers';
-import { validateNoLeakedPlaceholders, validateAnchors } from '../utils/validation-utils';
+import { scoreMemoryQuality } from './quality-scorer';
+import { extractKeyTopics } from './topic-extractor';
+import type { DecisionForTopics } from './topic-extractor';
+import { writeFilesAtomically } from './file-writer';
 import { shouldAutoSave, collectSessionData } from '../extractors/collect-session-data';
 import type { SessionData, CollectedDataFull } from '../extractors/collect-session-data';
 import type { FileChange, SemanticFileInfo } from '../extractors/file-extractor';
@@ -34,10 +34,10 @@ import {
   formatSummaryAsMarkdown,
   extractFileChanges,
 } from '../lib/semantic-summarizer';
-import { generateEmbedding, EMBEDDING_DIM, MODEL_NAME } from '../lib/embeddings';
-import * as vectorIndex from '@spec-kit/mcp-server/lib/search/vector-index';
+import { EMBEDDING_DIM, MODEL_NAME } from '../lib/embeddings';
 import * as retryManager from '../lib/retry-manager';
 import { extractTriggerPhrases } from '../lib/trigger-extractor';
+import { indexMemory, updateMetadataWithEmbedding } from './memory-indexer';
 import * as simFactory from '../lib/simulation-factory';
 import { loadCollectedData as loadCollectedDataFromLoader } from '../loaders/data-loader';
 
@@ -82,379 +82,9 @@ export interface WorkflowState {
 }
 
 /* -----------------------------------------------------------------
-   2. CONSTANTS
-------------------------------------------------------------------*/
-
-const DB_UPDATED_FILE: string = path.join(__dirname, '../../../mcp_server/database/.db-updated');
-
-/* -----------------------------------------------------------------
-   3. UTILITY FUNCTIONS
-------------------------------------------------------------------*/
-
-function notifyDatabaseUpdated(): void {
-  try {
-    const dbDir = path.dirname(DB_UPDATED_FILE);
-    if (!fsSync.existsSync(dbDir)) fsSync.mkdirSync(dbDir, { recursive: true });
-    fsSync.writeFileSync(DB_UPDATED_FILE, Date.now().toString());
-  } catch (e: unknown) {
-    const errMsg = e instanceof Error ? e.message : String(e);
-    console.error('[workflow] Database notification error:', errMsg);
-  }
-}
-
-interface DecisionForTopics {
-  TITLE?: string;
-  RATIONALE?: string;
-}
-
-// NOTE: Similar to extractors/session-extractor.ts:extractKeyTopics but differs in:
-// - Uses compound phrase extraction (bigrams) for more meaningful topics
-// - Accepts `string` only (session-extractor accepts `string | undefined`)
-// - Includes spec folder name tokens as high-priority topics
-// - Processes TITLE/RATIONALE from decisions with higher weight
-function extractKeyTopics(
-  summary: string,
-  decisions: DecisionForTopics[] = [],
-  specFolderName?: string
-): string[] {
-  const stopwords = new Set([
-    'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of',
-    'with', 'by', 'from', 'as', 'is', 'was', 'are', 'were', 'file', 'files',
-    'code', 'update', 'response', 'request', 'message', 'using', 'used', 'use',
-    'set', 'get', 'new', 'add', 'added', 'make', 'made', 'based', 'work',
-    'working', 'works', 'need', 'needs', 'needed', 'like', 'also', 'well',
-    'session', 'context', 'data', 'tool', 'tools', 'run', 'running', 'started',
-    'changes', 'changed', 'change', 'check', 'checked', 'checking'
-  ]);
-  const validShortTerms = new Set([
-    'db', 'ui', 'js', 'ts', 'ai', 'ml', 'ci', 'cd', 'io', 'os', 'vm', 'qa',
-    'ux', 'id', 'ip', 'wp', 'go', 'rx', 'mcp', 'api', 'css', 'dom', 'sql'
-  ]);
-
-  // Scored topics: phrase -> weight
-  const topicScores = new Map<string, number>();
-  const addWord = (word: string, weight: number): void => {
-    if (stopwords.has(word)) return;
-    if (word.length >= 3 || validShortTerms.has(word)) {
-      topicScores.set(word, (topicScores.get(word) || 0) + weight);
-    }
-  };
-
-  const addBigrams = (text: string, weight: number): void => {
-    const words = text.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || [];
-    const filtered = words.filter(w => !stopwords.has(w) && (w.length >= 3 || validShortTerms.has(w)));
-    for (let i = 0; i < filtered.length - 1; i++) {
-      const bigram = `${filtered[i]} ${filtered[i + 1]}`;
-      if (bigram.length >= 7) { // meaningful compound phrase
-        topicScores.set(bigram, (topicScores.get(bigram) || 0) + weight * 1.5);
-      }
-    }
-  };
-
-  // Spec folder name gets highest weight (defines the topic)
-  if (specFolderName) {
-    const folderBase = specFolderName.replace(/^\d{1,3}-/, '');
-    const folderWords = folderBase.split(/[-_]/).filter(w => w.length >= 2);
-    folderWords.forEach(w => addWord(w.toLowerCase(), 3.0));
-    // Also add the full folder concept as a compound topic
-    if (folderWords.length >= 2) {
-      const compound = folderWords.join(' ').toLowerCase();
-      topicScores.set(compound, (topicScores.get(compound) || 0) + 4.0);
-    }
-  }
-
-  // Decision titles get high weight
-  decisions.forEach((d) => {
-    const title = d.TITLE || '';
-    const rationale = d.RATIONALE || '';
-    if (title && !title.includes('SIMULATION')) {
-      (title.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || []).forEach(w => addWord(w, 2.0));
-      addBigrams(title, 2.0);
-    }
-    if (rationale && !rationale.includes('SIMULATION')) {
-      (rationale.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || []).forEach(w => addWord(w, 1.0));
-    }
-  });
-
-  // Summary gets standard weight
-  if (summary && summary.length >= 20 && !summary.includes('SIMULATION')) {
-    (summary.toLowerCase().match(/\b[a-z][a-z0-9]+\b/g) || []).forEach(w => addWord(w, 1.0));
-    addBigrams(summary, 1.0);
-  }
-
-  return [...topicScores.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 12)
-    .map(([phrase]) => phrase);
-}
-
-async function writeFilesAtomically(
-  contextDir: string,
-  files: Record<string, string>
-): Promise<string[]> {
-  const written: string[] = [];
-  for (const [filename, content] of Object.entries(files)) {
-    validateNoLeakedPlaceholders(content, filename);
-    const warnings = validateAnchors(content);
-    if (warnings.length) console.warn(`   Warning: ${filename}: ${warnings.join(', ')}`);
-    const filePath = path.join(contextDir, filename);
-    const tempPath = filePath + '.tmp';
-    try {
-      await fs.writeFile(tempPath, content, 'utf-8');
-      const stat = await fs.stat(tempPath);
-      if (stat.size !== Buffer.byteLength(content, 'utf-8')) throw new Error('Size mismatch');
-      await fs.rename(tempPath, filePath);
-      written.push(filename);
-      console.log(`   ${filename} (${content.split('\n').length} lines)`);
-    } catch (e: unknown) {
-      try { await fs.unlink(tempPath); } catch (_) { /* temp file cleanup — failure is non-critical */ }
-      const errMsg = e instanceof Error ? e.message : String(e);
-      throw new Error(`Write failed ${filename}: ${errMsg}`);
-    }
-  }
-  return written;
-}
-
-/* -----------------------------------------------------------------
-   4. QUALITY SCORING
-------------------------------------------------------------------*/
-
-interface QualityScore {
-  score: number;
-  warnings: string[];
-  breakdown: {
-    triggerPhrases: number;
-    keyTopics: number;
-    fileDescriptions: number;
-    contentLength: number;
-    noLeakedTags: number;
-    observationDedup: number;
-  };
-}
-
-/**
- * Score the quality of a generated memory file.
- * Runs after template rendering, before file writing.
- * Score 0-100, with breakdown per criterion.
- */
-function scoreMemoryQuality(
-  content: string,
-  triggerPhrases: string[],
-  keyTopics: string[],
-  files: Array<{ DESCRIPTION?: string }>,
-  observations: Array<{ TITLE?: string; NARRATIVE?: string }>
-): QualityScore {
-  const warnings: string[] = [];
-  const breakdown = {
-    triggerPhrases: 0,
-    keyTopics: 0,
-    fileDescriptions: 0,
-    contentLength: 0,
-    noLeakedTags: 0,
-    observationDedup: 0,
-  };
-
-  // 1. Trigger phrases (0-20 points)
-  if (triggerPhrases.length >= 8) {
-    breakdown.triggerPhrases = 20;
-  } else if (triggerPhrases.length >= 4) {
-    breakdown.triggerPhrases = 15;
-  } else if (triggerPhrases.length > 0) {
-    breakdown.triggerPhrases = 10;
-  } else {
-    warnings.push('No trigger phrases extracted — memory will not surface via trigger matching');
-  }
-
-  // 2. Key topics (0-15 points)
-  if (keyTopics.length >= 5) {
-    breakdown.keyTopics = 15;
-  } else if (keyTopics.length >= 2) {
-    breakdown.keyTopics = 10;
-  } else if (keyTopics.length > 0) {
-    breakdown.keyTopics = 5;
-  } else {
-    warnings.push('No key topics extracted — memory searchability reduced');
-  }
-
-  // 3. File descriptions populated (0-20 points)
-  const filesWithDesc = files.filter(f =>
-    f.DESCRIPTION &&
-    f.DESCRIPTION.length > 5 &&
-    !f.DESCRIPTION.includes('description pending') &&
-    !f.DESCRIPTION.includes('(description pending)')
-  );
-  if (files.length === 0) {
-    breakdown.fileDescriptions = 20; // No files = not applicable, full score
-  } else {
-    const ratio = filesWithDesc.length / files.length;
-    breakdown.fileDescriptions = Math.round(ratio * 20);
-    if (ratio < 0.5) {
-      warnings.push(`${files.length - filesWithDesc.length}/${files.length} files missing descriptions`);
-    }
-  }
-
-  // 4. Content length (0-15 points)
-  const contentLines = content.split('\n').length;
-  if (contentLines >= 100) {
-    breakdown.contentLength = 15;
-  } else if (contentLines >= 50) {
-    breakdown.contentLength = 10;
-  } else if (contentLines >= 20) {
-    breakdown.contentLength = 5;
-  } else {
-    warnings.push(`Very short content (${contentLines} lines) — may lack useful context`);
-  }
-
-  // 5. No leaked HTML tags (0-15 points)
-  const leakedTags = content.match(/<(?:summary|details|div|span|p|br|hr)\b[^>]*>/gi) || [];
-  // Exclude tags inside code blocks
-  const codeBlocks = content.match(/```[\s\S]*?```/g) || [];
-  const codeContent = codeBlocks.join(' ');
-  const tagsInCode = codeContent.match(/<(?:summary|details|div|span|p|br|hr)\b[^>]*>/gi) || [];
-  const realLeakedTags = leakedTags.length - tagsInCode.length;
-  if (realLeakedTags <= 0) {
-    breakdown.noLeakedTags = 15;
-  } else if (realLeakedTags <= 2) {
-    breakdown.noLeakedTags = 10;
-    warnings.push(`${realLeakedTags} HTML tag(s) leaked into content`);
-  } else {
-    breakdown.noLeakedTags = 5;
-    warnings.push(`${realLeakedTags} HTML tags leaked into content — content may have raw HTML`);
-  }
-
-  // 6. Observation deduplication quality (0-15 points)
-  if (observations.length === 0) {
-    breakdown.observationDedup = 15; // No observations = not applicable
-  } else {
-    const titles = observations.map(o => o.TITLE || '').filter(t => t.length > 0);
-    const uniqueTitles = new Set(titles);
-    const dedupRatio = titles.length > 0 ? uniqueTitles.size / titles.length : 1;
-    breakdown.observationDedup = Math.round(dedupRatio * 15);
-    if (dedupRatio < 0.6) {
-      warnings.push(`High observation duplication: ${titles.length - uniqueTitles.size} duplicate titles`);
-    }
-  }
-
-  const score = Object.values(breakdown).reduce((sum, v) => sum + v, 0);
-  return { score, warnings, breakdown };
-}
-
-/* -----------------------------------------------------------------
-   5. MEMORY INDEXING
-------------------------------------------------------------------*/
-
-async function indexMemory(
-  contextDir: string,
-  contextFilename: string,
-  content: string,
-  specFolderName: string,
-  collectedData: CollectedDataFull | null = null,
-  preExtractedTriggers: string[] = []
-): Promise<number | null> {
-  const embeddingStart = Date.now();
-  const embedding = await generateEmbedding(content);
-
-  if (!embedding) {
-    console.warn('   Warning: Embedding generation returned null - skipping indexing');
-    return null;
-  }
-
-  const embeddingTime = Date.now() - embeddingStart;
-
-  const titleMatch = content.match(/^#\s+(.+)$/m);
-  const title: string = titleMatch ? titleMatch[1] : contextFilename.replace('.md', '');
-
-  let triggerPhrases: string[] = [];
-  try {
-    // Start with pre-extracted triggers (from enriched sources), fall back to content extraction
-    if (preExtractedTriggers.length > 0) {
-      triggerPhrases = [...preExtractedTriggers];
-      console.log(`   Using ${triggerPhrases.length} pre-extracted trigger phrases`);
-    } else {
-      triggerPhrases = extractTriggerPhrases(content);
-      console.log(`   Extracted ${triggerPhrases.length} trigger phrases from content`);
-    }
-
-    // Merge manual phrases if available
-    if (collectedData && collectedData._manualTriggerPhrases) {
-      const manualPhrases = collectedData._manualTriggerPhrases;
-      const existingLower = new Set(triggerPhrases.map((p) => p.toLowerCase()));
-      for (const phrase of manualPhrases) {
-        if (!existingLower.has(phrase.toLowerCase())) {
-          triggerPhrases.push(phrase);
-        }
-      }
-      console.log(`   Total: ${triggerPhrases.length} trigger phrases (${manualPhrases.length} manual)`);
-    }
-  } catch (triggerError: unknown) {
-    const errMsg = triggerError instanceof Error ? triggerError.message : String(triggerError);
-    structuredLog('warn', 'Trigger phrase extraction failed', {
-      error: errMsg,
-      contentLength: content.length
-    });
-    console.warn(`   Warning: Trigger extraction failed: ${errMsg}`);
-    if (collectedData && collectedData._manualTriggerPhrases) {
-      triggerPhrases = collectedData._manualTriggerPhrases;
-      console.log(`   Using ${triggerPhrases.length} manual trigger phrases`);
-    }
-  }
-
-  const contentLength = content.length;
-  const anchorCount = (content.match(/<!-- (?:ANCHOR|anchor):/gi) || []).length;
-  const lengthFactor = Math.min(contentLength / 10000, 1) * 0.3;
-  const anchorFactor = Math.min(anchorCount / 10, 1) * 0.3;
-  const recencyFactor = 0.2;
-  const importanceWeight = Math.round((lengthFactor + anchorFactor + recencyFactor + 0.2) * 100) / 100;
-
-  const memoryId: number = vectorIndex.indexMemory({
-    specFolder: specFolderName,
-    filePath: path.join(contextDir, contextFilename),
-    anchorId: null,
-    title: title,
-    triggerPhrases: triggerPhrases,
-    importanceWeight: importanceWeight,
-    embedding: embedding
-  });
-
-  console.log(`   Embedding generated in ${embeddingTime}ms`);
-
-  if (embeddingTime > 500) {
-    console.warn(`   Warning: Embedding took ${embeddingTime}ms (target <500ms)`);
-  }
-
-  notifyDatabaseUpdated();
-
-  return memoryId;
-}
-
-async function updateMetadataWithEmbedding(contextDir: string, memoryId: number): Promise<void> {
-  try {
-    const metadataPath = path.join(contextDir, 'metadata.json');
-    const metadataContent = await fs.readFile(metadataPath, 'utf-8');
-    const metadata = JSON.parse(metadataContent) as Record<string, unknown>;
-
-    metadata.embedding = {
-      status: 'indexed',
-      model: MODEL_NAME,
-      dimensions: EMBEDDING_DIM,
-      memoryId: memoryId,
-      generatedAt: new Date().toISOString()
-    };
-
-    await fs.writeFile(metadataPath, JSON.stringify(metadata, null, 2));
-  } catch (metaError: unknown) {
-    const errMsg = metaError instanceof Error ? metaError.message : String(metaError);
-    structuredLog('warn', 'Failed to update metadata.json', {
-      metadataPath: path.join(contextDir, 'metadata.json'),
-      memoryId,
-      error: errMsg
-    });
-    console.warn(`   Warning: Could not update metadata.json: ${errMsg}`);
-  }
-}
-
-/* -----------------------------------------------------------------
-   6. MAIN WORKFLOW
+   2. MAIN WORKFLOW
+   Orchestrates the full generate-context pipeline: data loading,
+   extraction, template rendering, file writing, and memory indexing.
 ------------------------------------------------------------------*/
 
 async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResult> {
@@ -857,7 +487,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 }
 
 /* -----------------------------------------------------------------
-   7. EXPORTS
+   3. EXPORTS
 ------------------------------------------------------------------*/
 
 export {

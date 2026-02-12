@@ -168,7 +168,7 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
     } finally {
       db.close();
     }
-  } catch (err) {
+  } catch (err: unknown) {
     // DB not available, table missing, or folder doesn't exist — fall through to next priority
     if (process.env.DEBUG) {
       console.debug(`   [Priority 2.5] Session learning lookup skipped: ${err instanceof Error ? err.message : String(err)}`);

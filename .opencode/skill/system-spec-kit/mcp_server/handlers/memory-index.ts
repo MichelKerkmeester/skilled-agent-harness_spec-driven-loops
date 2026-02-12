@@ -80,6 +80,7 @@ interface ScanArgs {
   specFolder?: string | null;
   force?: boolean;
   includeConstitutional?: boolean;
+  includeReadmes?: boolean;
   incremental?: boolean;
 }
 
@@ -131,6 +132,44 @@ function findConstitutionalFiles(workspacePath: string): string[] {
   return results;
 }
 
+/**
+ * Find README.md files in skill directories for indexing.
+ * Discovers READMEs recursively under .opencode/skill/ directories.
+ * Per ADR-003: Separate discovery path from constitutional files.
+ */
+function findSkillReadmes(workspacePath: string): string[] {
+  const results: string[] = [];
+  const skillDir = path.join(workspacePath, '.opencode', 'skill');
+
+  if (!fs.existsSync(skillDir)) {
+    return results;
+  }
+
+  // Recursive function to find README.md files
+  function walkDir(dir: string): void {
+    try {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          // Skip node_modules and hidden directories (except .opencode itself)
+          if (entry.name === 'node_modules' || (entry.name.startsWith('.') && entry.name !== '.opencode')) {
+            continue;
+          }
+          walkDir(fullPath);
+        } else if (entry.isFile() && entry.name.toLowerCase() === 'readme.md') {
+          results.push(fullPath);
+        }
+      }
+    } catch (err) {
+      // Skip directories we can't read
+    }
+  }
+
+  walkDir(skillDir);
+  return results;
+}
+
 /* ---------------------------------------------------------------
    6. MEMORY INDEX SCAN HANDLER
 --------------------------------------------------------------- */
@@ -141,6 +180,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     specFolder: spec_folder = null,
     force = false,
     includeConstitutional: include_constitutional = true,
+    includeReadmes: include_readmes = true,
     incremental = true
   } = args;
 
@@ -180,7 +220,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   const specFiles: string[] = memoryParser.findMemoryFiles(workspacePath, { specFolder: spec_folder });
   const constitutionalFiles: string[] = include_constitutional ? findConstitutionalFiles(workspacePath) : [];
-  const files = [...specFiles, ...constitutionalFiles];
+  const readmeFiles: string[] = include_readmes ? findSkillReadmes(workspacePath) : [];
+  const files = [...specFiles, ...constitutionalFiles, ...readmeFiles];
 
   if (files.length === 0) {
     return createMCPSuccessResponse({

@@ -13,6 +13,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RULES_DIR="$SCRIPT_DIR/../rules"
 VERSION="2.0.0"
 
+# Source shared libraries
+source "${SCRIPT_DIR}/../lib/shell-common.sh"
+
 # State
 FOLDER_PATH="" DETECTED_LEVEL=1 LEVEL_METHOD="inferred" CONFIG_FILE_PATH=""
 JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false
@@ -35,18 +38,6 @@ get_time_ms() {
     else
         echo $(( $(date +%s) * 1000 ))
     fi
-}
-
-# JSON string escape - handles special characters for safe JSON embedding
-_json_escape() {
-    local str="$1"
-    # Order matters: backslash first, then other escapes
-    str="${str//\\/\\\\}"   # Backslash
-    str="${str//\"/\\\"}"   # Double quote
-    str="${str//$'\n'/\\n}" # Newline
-    str="${str//$'\r'/\\r}" # Carriage return
-    str="${str//$'\t'/\\t}" # Tab
-    printf '%s' "$str"
 }
 
 # Colors (disabled for non-TTY)

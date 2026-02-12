@@ -154,6 +154,8 @@ export const PATH_TYPE_PATTERNS: readonly PathTypePattern[] = [
   { pattern: /design[-_]?doc/i, type: 'semantic' },
   { pattern: /decision[-_]?record/i, type: 'semantic' },
   { pattern: /adr[-_]?\d+/i, type: 'semantic' },
+  // README files in skill directories (semantic documentation)
+  { pattern: /(?:^|\/)readme\.md$/i, type: 'semantic' },
 
   // Autobiographical patterns (history)
   { pattern: /changelog/i, type: 'autobiographical' },

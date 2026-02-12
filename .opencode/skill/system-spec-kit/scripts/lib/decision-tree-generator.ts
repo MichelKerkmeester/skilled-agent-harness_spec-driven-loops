@@ -8,6 +8,7 @@
 // ---------------------------------------------------------------
 
 import type { OptionRecord, EvidenceRecord, CaveatRecord, FollowUpRecord } from './ascii-boxes';
+import { structuredLog } from '../utils/logger';
 
 // NOTE: require() is intentionally kept here instead of dynamic import().
 // Reason: generateDecisionTree() is a synchronous function called synchronously by
@@ -35,9 +36,9 @@ try {
     formatFollowUpBox
   } = asciiBoxes);
   asciiBoxesAvailable = true;
-} catch (err) {
-  console.warn('Warning: ascii-boxes library not available:', (err as Error).message);
-  console.warn('Decision tree generation will use fallback formatting.');
+} catch (err: unknown) {
+  const errMsg = err instanceof Error ? err.message : String(err);
+  structuredLog('warn', 'ascii-boxes library not available, using fallback formatting', { error: errMsg });
   // Provide minimal fallback implementations
   padText = (text: string, length: number): string => String(text || '').substring(0, length).padEnd(length);
   formatDecisionHeader = (title: string): string => `[DECISION: ${title}]`;

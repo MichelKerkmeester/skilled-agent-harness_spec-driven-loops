@@ -7,6 +7,94 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**2.0.0.7**] - 2026-02-12
+
+**Spec Kit Script Refactoring — Architectural Improvements** — Implemented 6 deferred architectural items from spec 109: dynamic template composition, POSIX shell portability, code quality hardening, workflow.ts module extraction, JSONC parser consolidation, and create.sh modularization. Total: ~1,200 LOC reduced across shell and TypeScript, 19 code quality fixes, 12 structured logging conversions.
+
+> Spec folder: `anobel.com/.opencode/specs/003-memory-and-spec-kit/110-spec-kit-script-refactoring/` (Level 3)
+
+---
+
+### Changed
+
+1. **`compose.sh` Dynamic Templates** — Replaced all 12 hardcoded L3/L3+ heredoc composition paths with dynamic fragment assembly from `templates/addenda/`. 1030→750 LOC (-27%). Zero heredocs remain. `compose.sh --verify` validates all fragment paths at runtime
+2. **`create.sh` Modularization** — Extracted 3 shell libraries (`shell-common.sh`, `git-branch.sh`, `template-utils.sh`) + 5 externalized sharded templates. 928→566 LOC (-39%). `validate.sh` also wired to shared libs
+3. **`workflow.ts` Module Extraction** — Extracted 4 focused modules: `quality-scorer.ts` (122 LOC), `topic-extractor.ts` (88 LOC), `file-writer.ts` (33 LOC), `memory-indexer.ts` (159 LOC). 865→495 LOC (-43%)
+4. **Structured Logging Migration** — 12 library-internal `console.warn` calls converted to `structuredLog` across 5 files (`config.ts`, `content-filter.ts`, `decision-tree-generator.ts`, `message-utils.ts`, `template-renderer.ts`). CLI/pipeline scripts intentionally kept as `console.*` (correct for user-facing output)
+
+### Added
+
+5. **`shared/utils/jsonc-strip.ts`** — Shared JSONC comment-stripping utility (95 LOC). `config.ts` and `content-filter.ts` now use shared utility instead of inline regex. Fixed latent bug in `content-filter.ts` naive regex that could corrupt strings containing `//`
+6. **Shell Libraries** — `scripts/lib/shell-common.sh` (54 LOC), `scripts/lib/git-branch.sh` (134 LOC), `scripts/lib/template-utils.sh` (80 LOC)
+7. **Template Fragments** — 5 addenda fragments (`level3-arch/` prefix/suffix/guidance, `level3plus-govern/` suffix/guidance) and 5 sharded templates (`spec-index.md`, `01-overview.md`, `02-requirements.md`, `03-architecture.md`, `04-testing.md`)
+
+### Fixed
+
+8. **sed/grep POSIX Portability** — 5 GNU-specific fixes: 3 `sed 's/-\+/-/g'` → `sed 's/--*/-/g'` (BSD treats `\+` as literal), 1 fragile `sed i\` rewrite to printf+sed, 1 `grep -P '\b'` → `grep -w` (POSIX compliant)
+9. **Code Quality Hardening** — 11 untyped `catch (e)` → `catch (e: unknown)` with proper `instanceof Error` guards, 8 non-null assertions (`!`) replaced with explicit null checks across 10 files
+10. **`isMemoryFile` README Bug** — `isSkillReadme` check in `memory-parser.ts` incorrectly matched `README.md` files inside `constitutional/` directories. Added `!normalizedPath.includes('/constitutional/')` guard
+
+---
+
+**Build:** `tsc --build --force` PASS (0 errors) · **Tests:** 3,872 passing, 0 failures · **Shell:** All scripts pass `bash -n` syntax check
+
+**Files:** `scripts/core/workflow.ts` · `scripts/core/quality-scorer.ts` (new) · `scripts/core/topic-extractor.ts` (new) · `scripts/core/file-writer.ts` (new) · `scripts/core/memory-indexer.ts` (new) · `scripts/core/config.ts` · `scripts/templates/compose.sh` · `scripts/spec/create.sh` · `scripts/spec/validate.sh` · `scripts/lib/shell-common.sh` (new) · `scripts/lib/git-branch.sh` (new) · `scripts/lib/template-utils.sh` (new) · `scripts/lib/content-filter.ts` · `scripts/lib/decision-tree-generator.ts` · `scripts/lib/semantic-summarizer.ts` · `scripts/utils/message-utils.ts` · `scripts/utils/input-normalizer.ts` · `scripts/renderers/template-renderer.ts` · `shared/utils/jsonc-strip.ts` (new) · `shared/index.ts` · `mcp_server/lib/parsing/memory-parser.ts` · `templates/addenda/` (5 fragments) · `templates/sharded/` (5 templates) · 10 files with catch/assertion fixes
+
+---
+
+## [**2.0.0.6**] - 2026-02-12
+
+**Spec Kit Script Automation — Dead Code, Bugs, DRY & Docs** — Comprehensive audit of all non-MCP scripts in `system-spec-kit`. Removed 8 dead exports, fixed 4 bugs, consolidated 3 DRY violations, improved 4 automation gaps, and corrected 6 README inaccuracies. Total: ~120 LOC removed, 0 behavioral changes to working features.
+
+> Spec folder: `anobel.com/.opencode/specs/003-memory-and-spec-kit/109-spec-kit-script-automation/` (Level 3+)
+
+---
+
+### Changed
+
+1. **DRY Consolidation** — `workflow.ts` now imports `validateNoLeakedPlaceholders` and `validateAnchors` from `validation-utils.ts` instead of maintaining inline copies. Hardcoded archive regex replaced with `isArchiveFolder()` helper from `folder-detector.ts`. Error messaging extracted to `printNoSpecFolderError()` helper
+2. **`cleanup-orphaned-vectors.ts`** — Added `--dry-run` and `--help` flags for safer operation. Added `require.main` guard to prevent accidental execution on import
+3. **`config.ts`** — Added `validateConfig()` function for runtime configuration validation
+
+### Fixed
+
+4. **Dead Code Removed** — 8 dead exports from `workflow.ts` (`generateContextMemory`, `WorkflowResult`, `ContextMemoryOptions`, `GenerateContextResult`, `processConversation`, `ProcessConversationOptions`, `generateMarkdown`, `GenerateMarkdownOptions`), dead `existingDirs` variable from `directory-setup.ts`, dead `SpecFolderInfo` export from `folder-detector.ts`, dead `loadConfig` from `config.ts` + barrel, vestigial `initializeDataLoaders()` lazy loading pattern, dead exports from `alignment-validator.ts` barrel
+5. **`data-loader.ts` Marker Inconsistency** — `_source` and `_isSimulation` markers were applied inconsistently across loading paths. Standardized to consistent application
+6. **`workflow.ts` Section Numbering** — Heading `## 5. Quality & Relevance Score` collided with existing section 5. Renumbered to `## 6.`
+7. **`rank-memories.ts` Import Path** — Fixed broken import path that prevented standalone execution
+8. **README Inaccuracies** — Corrected 6 README files in `scripts/core/`, `scripts/renderers/`, `scripts/loaders/`, `templates/` with wrong function signatures, missing exports, stale file counts, and incorrect descriptions
+
+---
+
+**Build:** `tsc --build --force` PASS (0 errors) · **Tests:** 3,872 passing, 0 failures
+
+**Files:** `scripts/core/workflow.ts` · `scripts/core/config.ts` · `scripts/core/directory-setup.ts` · `scripts/memory/cleanup-orphaned-vectors.ts` · `scripts/memory/rank-memories.ts` · `scripts/loaders/data-loader.ts` · `scripts/spec-folder/folder-detector.ts` · `scripts/utils/validation-utils.ts` · `shared/index.ts` · `scripts/core/README.md` · `scripts/renderers/README.md` · `scripts/loaders/README.md` · `templates/README.md` · `scripts/alignment/README.md` · `scripts/extractors/README.md`
+
+---
+
+## [**2.0.0.5**] - 2026-02-12
+
+**README Rewrite** — Complete README rewrite blending the engaging personality from v2.0.0.1 with the template-compliant 9-section structure from v2.0.0.3. Restored the provocative voice, added narrative hooks throughout, expanded FAQ, and achieved DQI 90/100 (EXCELLENT) with 0 validation errors.
+
+> Spec folder: `specs/000-opencode-env/010-readme-rewrite/` (existing)
+
+---
+
+### Changed
+
+1. **Personality Restored** — Restored provocative intro: *"99.999% of people won't try this system. Beat the odds?"* + buymeacoffee link. Added punchy section hooks: "Three commands. That's it." (Quick Start), "Real workflows, not toy examples." (Usage Examples), "Something broken? Start here." (Troubleshooting)
+2. **Template-Compliant Structure** — Full 9-section `readme_template.md` structure: Overview, Quick Start, Structure, Features, Configuration, Usage Examples, Troubleshooting, FAQ, Related Documents. All H2 headers with correct emojis. TOC with proper double-dash anchors
+3. **Content Improvements** — Without/With comparison changed from table to bullet-list format. Added "Why Commands Beat Free-Form Prompts" side-by-side comparison. Expanded FAQ with 3 new Q&As. Added enforcement framing to Gate System and Spec Kit Documentation sections
+4. **Memory Engine intro** rewritten with blockquote: *"Remember everything. Surface what matters. Keep it private."*
+
+---
+
+**Quality:** DQI 90/100 (EXCELLENT) — Structure 40/40 (100%), Content 25/30 (83%), Style 25/30 (83%). Checklist 6/6 passed. Validation 0 blocking errors.
+
+**Files:** `README.md` — 579 insertions, 205 deletions (complete rewrite from v2.0.0.4 structure)
+
+---
+
 ## [**2.0.0.4**] - 2026-02-12
 
 **Agent Routing Overhaul — "Promote @context, Demote @explore"** — Rewrote orchestrator agent routing to eliminate the "Pink Elephant Problem" where 5 negative mentions of `@explore` kept it salient in LLM attention. Replaced with structural enforcement through Agent Loading Protocol, dispatch-point constraints, and @context as exclusive exploration entry point.

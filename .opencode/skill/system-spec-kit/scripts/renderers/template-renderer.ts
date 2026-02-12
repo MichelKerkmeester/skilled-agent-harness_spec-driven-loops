@@ -10,6 +10,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { CONFIG } from '../core';
+import { structuredLog } from '../utils/logger';
 
 // ---------------------------------------------------------------
 // 2. TYPES
@@ -122,7 +123,7 @@ function renderTemplate(template: string, data: TemplateContext, parentData: Tem
     if (value === undefined || value === null) {
       // 084-fix: Only warn for non-optional placeholders
       if (!OPTIONAL_PLACEHOLDERS.has(key)) {
-        console.warn(`\u26A0\uFE0F  Missing template data for: {{${key}}}`);
+        structuredLog('warn', `Missing template data for: {{${key}}}`);
       }
       return '';
     }

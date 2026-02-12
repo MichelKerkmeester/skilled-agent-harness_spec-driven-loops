@@ -11,7 +11,7 @@
 |-------|-------|
 | **Spec Folder** | [###-feature-name] |
 | **Completed** | [YYYY-MM-DD] |
-| **Level** | 1 |
+| **Level** | [1/2/3] |
 
 ---
 

@@ -4,6 +4,7 @@
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1-overview)
@@ -11,9 +12,11 @@
 - [3. FEATURES](#3-features)
 - [4. USAGE](#4-usage)
 - [5. RELATED RESOURCES](#5-related-resources)
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 The cache module provides in-memory caching for MCP tool outputs to reduce redundant operations and improve response times. It uses SHA-256 hashed keys for deterministic cache lookups and supports automatic TTL-based expiration.
@@ -36,9 +39,11 @@ The cache module provides in-memory caching for MCP tool outputs to reduce redun
 | `TOOL_CACHE_TTL_MS` | `60000` | TTL in milliseconds |
 | `TOOL_CACHE_MAX_ENTRIES` | `1000` | Maximum cache entries |
 | `TOOL_CACHE_CLEANUP_INTERVAL_MS` | `30000` | Cleanup interval in ms |
+<!-- /ANCHOR:overview -->
 
 ---
 
+<!-- ANCHOR:structure -->
 ## 2. STRUCTURE
 
 ```
@@ -52,9 +57,11 @@ cache/
 | File | Purpose |
 |------|---------|
 | `tool-cache.ts` | Cache implementation with TTL, LRU eviction, invalidation, statistics |
+<!-- /ANCHOR:structure -->
 
 ---
 
+<!-- ANCHOR:features -->
 ## 3. FEATURES
 
 ### Core Operations
@@ -110,9 +117,11 @@ await withCache(toolName, args, asyncFn, options);
 | `hitRate` | Percentage of hits vs total requests |
 
 **Exported constant:** `CONFIG` (aliased from `TOOL_CACHE_CONFIG`)
+<!-- /ANCHOR:features -->
 
 ---
 
+<!-- ANCHOR:examples -->
 ## 4. USAGE
 
 ### Basic Import
@@ -166,9 +175,11 @@ import { getStats } from './tool-cache';
 const stats = getStats();
 // { hits: 42, misses: 8, hitRate: '84.00%', currentSize: 15, ... }
 ```
+<!-- /ANCHOR:examples -->
 
 ---
 
+<!-- ANCHOR:related -->
 ## 5. RELATED RESOURCES
 
 ### Internal Documentation
@@ -185,6 +196,7 @@ const stats = getStats();
 |--------|--------------|
 | `context-server.ts` | Integrates caching for tool operations |
 | `lib/search/` | Search operations benefit from caching |
+<!-- /ANCHOR:related -->
 
 ---
 

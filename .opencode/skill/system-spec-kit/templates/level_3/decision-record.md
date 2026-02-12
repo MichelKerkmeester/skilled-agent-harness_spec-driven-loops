@@ -48,20 +48,6 @@
 
 ---
 
-### Five Checks Evaluation
-
-| # | Check | Result | Evidence |
-|---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an ACTUAL need NOW?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
-
-**Checks Summary**: [X/5 PASS]
-
----
-
 ### Consequences
 
 **Positive**:
@@ -75,6 +61,20 @@
 | Risk | Impact | Mitigation |
 |------|--------|------------|
 | [Risk] | [H/M/L] | [Strategy] |
+
+---
+
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an ACTUAL need NOW?] |
+| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
+| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
+| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
+| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
+
+**Checks Summary**: [X/5 PASS]
 
 ---
 

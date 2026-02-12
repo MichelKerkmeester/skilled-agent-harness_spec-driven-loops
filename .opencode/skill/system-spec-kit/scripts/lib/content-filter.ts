@@ -6,6 +6,8 @@
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
+import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
+import { structuredLog } from '../utils/logger';
 
 // ---------------------------------------------------------------
 // 1. TYPES
@@ -122,8 +124,8 @@ function loadFilterConfig(): FilterConfig {
   try {
     if (fs.existsSync(configPath)) {
       const configContent: string = fs.readFileSync(configPath, 'utf-8');
-      // Strip JSONC comments
-      const jsonContent: string = configContent.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
+      // Strip JSONC comments using the shared string-aware utility
+      const jsonContent: string = stripJsoncComments(configContent);
       const userConfig: Record<string, unknown> = JSON.parse(jsonContent);
       // Deep merge: per-section merge preserves default properties not in user config
       const merged: Record<string, unknown> = { ...defaultConfig };
@@ -157,8 +159,9 @@ function loadFilterConfig(): FilterConfig {
         quality: merged.quality as FilterConfig['quality'],
       };
     }
-  } catch (error) {
-    console.warn(`\u26A0\uFE0F  Failed to load filters.jsonc: ${(error as Error).message}. Using defaults.`);
+  } catch (error: unknown) {
+    const errMsg = error instanceof Error ? error.message : String(error);
+    structuredLog('warn', `Failed to load filters.jsonc: ${errMsg}. Using defaults.`);
   }
 
   return defaultConfig;

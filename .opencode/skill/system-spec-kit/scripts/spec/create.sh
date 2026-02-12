@@ -21,17 +21,11 @@
 
 set -euo pipefail
 
-# P1-03 FIX: JSON string escape — handles special characters for safe JSON embedding
-_json_escape() {
-    local str="$1"
-    # Order matters: backslash first, then other escapes
-    str="${str//\\/\\\\}"   # Backslash
-    str="${str//\"/\\\"}"   # Double quote
-    str="${str//$'\n'/\\n}" # Newline
-    str="${str//$'\r'/\\r}" # Carriage return
-    str="${str//$'\t'/\\t}" # Tab
-    echo -n "$str"
-}
+# Source shared libraries
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/../lib/shell-common.sh"
+source "${SCRIPT_DIR}/../lib/git-branch.sh"
+source "${SCRIPT_DIR}/../lib/template-utils.sh"
 
 JSON_MODE=false
 SHORT_NAME=""
@@ -205,65 +199,8 @@ if [[ -z "$FEATURE_DESCRIPTION" ]]; then
 fi
 
 # ───────────────────────────────────────────────────────────────
-# 1. HELPER FUNCTIONS
+# 1. HELPER FUNCTIONS (shared functions sourced from lib/)
 # ───────────────────────────────────────────────────────────────
-
-find_repo_root() {
-    local dir="$1"
-    while [[ "$dir" != "/" ]]; do
-        if [[ -d "$dir/.git" ]] || [[ -d "$dir/.specify" ]]; then
-            echo "$dir"
-            return 0
-        fi
-        dir="$(dirname "$dir")"
-    done
-    return 1
-}
-
-check_existing_branches() {
-    local short_name="$1"
-
-    # P1-12 FIX: Escape regex metacharacters in short_name for safe use in grep/sed patterns
-    local escaped_name
-    escaped_name=$(printf '%s' "$short_name" | sed 's/[.[\*^$()+{}?|]/\\&/g')
-
-    # Fetch all remotes to get latest branch info
-    if ! git fetch --all --prune 2>/dev/null; then
-        echo "Warning: Could not fetch from remote (continuing with local branches only)" >&2
-    fi
-
-    # Find all branches matching the pattern using git ls-remote (more reliable)
-    # Only check remote if origin exists
-    local remote_branches=""
-    if git remote | grep -q '^origin$'; then
-        remote_branches=$(git ls-remote --heads origin 2>/dev/null | grep -E "refs/heads/[0-9]+-${escaped_name}$" | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n)
-    fi
-    
-    # Also check local branches
-    local local_branches=$(git branch 2>/dev/null | grep -E "^[* ]*[0-9]+-${escaped_name}$" | sed 's/^[* ]*//' | sed 's/-.*//' | sort -n)
-    
-    # Check specs directory as well
-    local spec_dirs=""
-    if [[ -d "$SPECS_DIR" ]]; then
-        # Use while loop instead of xargs for cross-platform compatibility
-        # (BSD xargs doesn't support -r flag, GNU xargs needs it for empty input)
-        while IFS= read -r dir; do
-            [[ -n "$dir" ]] && spec_dirs="$spec_dirs $(basename "$dir" | sed 's/-.*//')"
-        done < <(find "$SPECS_DIR" -maxdepth 1 -type d -name "[0-9]*-${short_name}" 2>/dev/null)
-        spec_dirs=$(echo "$spec_dirs" | tr ' ' '\n' | grep -v '^$' | sort -n)
-    fi
-    
-    # Combine all sources and get the highest number
-    local max_num=0
-    for num in $remote_branches $local_branches $spec_dirs; do
-        if [[ "$num" -gt "$max_num" ]]; then
-            max_num=$num
-        fi
-    done
-    
-    # Return next number
-    echo $((max_num + 1))
-}
 
 create_versioned_subfolder() {
     local base_folder="$1"
@@ -303,77 +240,11 @@ create_versioned_subfolder() {
     echo "$subfolder_path"
 }
 
-# Get level-specific templates directory
-# Maps level to appropriate folder: level_1, level_2, level_3, or level_3+
-get_level_templates_dir() {
-    local level="$1"
-    local base_dir="$2"
-    case "$level" in
-        1) echo "$base_dir/level_1" ;;
-        2) echo "$base_dir/level_2" ;;
-        3) echo "$base_dir/level_3" ;;
-        "3+"|4) echo "$base_dir/level_3+" ;;
-        *) echo "$base_dir/level_1" ;;  # Default fallback
-    esac
-}
-
-generate_branch_name() {
-    local description="$1"
-    
-    # Common stop words to filter out
-    local stop_words="^(i|a|an|the|to|for|of|in|on|at|by|with|from|is|are|was|were|be|been|being|have|has|had|do|does|did|will|would|should|could|can|may|might|must|shall|this|that|these|those|my|your|our|their|want|need|add|get|set)$"
-    
-    # Convert to lowercase and split into words
-    local clean_name=$(echo "$description" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/ /g')
-    
-    # Filter words: remove stop words and words shorter than 3 chars (unless they're uppercase acronyms in original)
-    local meaningful_words=()
-    for word in $clean_name; do
-        # Skip empty words
-        [[ -z "$word" ]] && continue
-        
-        # Keep words that are NOT stop words AND (length >= 3 OR are potential acronyms)
-        if ! echo "$word" | grep -qiE "$stop_words"; then
-            if [[ ${#word} -ge 3 ]]; then
-                meaningful_words+=("$word")
-            else
-                # Check if word appears as uppercase in original (likely acronym)
-                # Use tr for bash 3.2 compatibility (macOS default) instead of ${word^^}
-                local word_upper
-                word_upper=$(echo "$word" | tr '[:lower:]' '[:upper:]')
-                if echo "$description" | grep -q "\b${word_upper}\b"; then
-                    # Keep short words if they appear as uppercase in original (likely acronyms)
-                    meaningful_words+=("$word")
-                fi
-            fi
-        fi
-    done
-    
-    # If we have meaningful words, use first 3-4 of them
-    if [[ ${#meaningful_words[@]} -gt 0 ]]; then
-        local max_words=3
-        if [[ ${#meaningful_words[@]} -eq 4 ]]; then max_words=4; fi
-        
-        local result=""
-        local count=0
-        for word in "${meaningful_words[@]}"; do
-            if [[ $count -ge $max_words ]]; then break; fi
-            if [[ -n "$result" ]]; then result="$result-"; fi
-            result="$result$word"
-            count=$((count + 1))
-        done
-        echo "$result"
-    else
-        # Fallback to original logic if no meaningful words found
-        echo "$description" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//' | tr '-' '\n' | grep -v '^$' | head -3 | tr '\n' '-' | sed 's/-$//'
-    fi
-}
-
 # ───────────────────────────────────────────────────────────────
 # 2. REPOSITORY DETECTION
 # ───────────────────────────────────────────────────────────────
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Note: SCRIPT_DIR already set above during library sourcing
 
 if git rev-parse --show-toplevel >/dev/null 2>&1; then
     REPO_ROOT=$(git rev-parse --show-toplevel)
@@ -416,7 +287,7 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
         TOPIC_NAME="$SUBFOLDER_TOPIC"
     else
         # Generate from feature description
-        TOPIC_NAME=$(echo "$FEATURE_DESCRIPTION" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//')
+        TOPIC_NAME=$(echo "$FEATURE_DESCRIPTION" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
     fi
 
     SUBFOLDER_PATH=$(create_versioned_subfolder "$RESOLVED_BASE" "$TOPIC_NAME")
@@ -429,31 +300,11 @@ if [[ "$SUBFOLDER_MODE" = true ]]; then
     LEVEL_TEMPLATES_DIR=$(get_level_templates_dir "$DOC_LEVEL" "$TEMPLATES_BASE")
     CREATED_FILES=()
 
-    copy_subfolder_template() {
-        local template_name="$1"
-        local dest_name="${2:-$template_name}"
-        local dest_path="$SUBFOLDER_PATH/$dest_name"
-
-        # Try level-specific folder first, then fallback to base templates
-        local template_path="$LEVEL_TEMPLATES_DIR/$template_name"
-        if [[ ! -f "$template_path" ]]; then
-            template_path="$TEMPLATES_BASE/$template_name"
-        fi
-
-        if [[ -f "$template_path" ]]; then
-            cp "$template_path" "$dest_path"
-            CREATED_FILES+=("$dest_name")
-        else
-            touch "$dest_path"
-            CREATED_FILES+=("$dest_name (empty - template not found)")
-        fi
-    }
-
     # Copy all templates from the level folder
     for template_file in "$LEVEL_TEMPLATES_DIR"/*.md; do
         if [[ -f "$template_file" ]]; then
             template_name=$(basename "$template_file")
-            copy_subfolder_template "$template_name"
+            CREATED_FILES+=("$(copy_template "$template_name" "$SUBFOLDER_PATH" "$LEVEL_TEMPLATES_DIR" "$TEMPLATES_BASE")")
         fi
     done
 
@@ -497,7 +348,7 @@ fi
 # ───────────────────────────────────────────────────────────────
 
 if [[ -n "$SHORT_NAME" ]]; then
-    BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//' | sed 's/-$//')
+    BRANCH_SUFFIX=$(echo "$SHORT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
 else
     BRANCH_SUFFIX=$(generate_branch_name "$FEATURE_DESCRIPTION")
 fi
@@ -582,30 +433,11 @@ touch "$FEATURE_DIR/scratch/.gitkeep" "$FEATURE_DIR/memory/.gitkeep"
 # 6. COPY TEMPLATES BASED ON DOCUMENTATION LEVEL
 # ───────────────────────────────────────────────────────────────
 
-copy_template() {
-    local template_name="$1" dest_name="${2:-$template_name}"
-    local dest_path="$FEATURE_DIR/$dest_name"
-
-    # Try level-specific folder first, then fallback to base templates
-    local template_path="$LEVEL_TEMPLATES_DIR/$template_name"
-    if [[ ! -f "$template_path" ]]; then
-        template_path="$TEMPLATES_BASE/$template_name"
-    fi
-
-    if [[ -f "$template_path" ]]; then
-        cp "$template_path" "$dest_path"
-        CREATED_FILES+=("$dest_name")
-    else
-        touch "$dest_path"
-        CREATED_FILES+=("$dest_name (empty - template not found)")
-    fi
-}
-
-# Copy all templates from the level folder
+# Copy all templates from the level folder (using library copy_template)
 for template_file in "$LEVEL_TEMPLATES_DIR"/*.md; do
     if [[ -f "$template_file" ]]; then
         template_name=$(basename "$template_file")
-        copy_template "$template_name"
+        CREATED_FILES+=("$(copy_template "$template_name" "$FEATURE_DIR" "$LEVEL_TEMPLATES_DIR" "$TEMPLATES_BASE")")
     fi
 done
 
@@ -618,220 +450,27 @@ if [[ "$SHARDED" = true ]] && [[ "${DOC_LEVEL/+/}" -ge 3 ]]; then
     mkdir -p "$FEATURE_DIR/spec-sections"
     CREATED_FILES+=("spec-sections/")
 
-    # Create index spec.md (overwrites the standard spec.md)
-    cat > "$FEATURE_DIR/spec.md" << 'EOF'
-# [Feature Name] - Specification Index
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-sharded | v1.0 -->
-
-## Document Structure
-
-This specification uses sharded documents for token efficiency.
-Load only the sections needed for your current task.
-
-| Section | File | Description |
-|---------|------|-------------|
-| Overview | [01-overview.md](spec-sections/01-overview.md) | High-level summary and goals |
-| Requirements | [02-requirements.md](spec-sections/02-requirements.md) | Functional & non-functional requirements |
-| Architecture | [03-architecture.md](spec-sections/03-architecture.md) | Technical design and structure |
-| Testing | [04-testing.md](spec-sections/04-testing.md) | Test strategy and acceptance criteria |
-
-## Quick Summary
-
-<!-- 2-3 sentence overview - load full sections as needed -->
-
-[Brief description of the feature/project]
-
-## Status
-
-- [ ] Overview complete
-- [ ] Requirements defined
-- [ ] Architecture designed
-- [ ] Testing strategy documented
-EOF
-
-    # Create section templates
-    cat > "$FEATURE_DIR/spec-sections/01-overview.md" << 'EOF'
-# Overview
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-section-overview | v1.0 -->
-
-## Purpose
-
-[What problem does this solve?]
-
-## Goals
-
-- [ ] Goal 1
-- [ ] Goal 2
-- [ ] Goal 3
-
-## Scope
-
-### In Scope
-
-- Item 1
-- Item 2
-
-### Out of Scope
-
-- Item 1
-- Item 2
-
-## Success Criteria
-
-- [ ] Criterion 1
-- [ ] Criterion 2
-EOF
-    CREATED_FILES+=("spec-sections/01-overview.md")
-
-    cat > "$FEATURE_DIR/spec-sections/02-requirements.md" << 'EOF'
-# Requirements
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-section-requirements | v1.0 -->
-
-## Functional Requirements
-
-### FR-001: [Requirement Name]
-
-- **Priority:** High | Medium | Low
-- **Description:** [What the system must do]
-- **Acceptance Criteria:**
-  - [ ] Criterion 1
-  - [ ] Criterion 2
-
-### FR-002: [Requirement Name]
-
-- **Priority:** High | Medium | Low
-- **Description:** [What the system must do]
-- **Acceptance Criteria:**
-  - [ ] Criterion 1
-  - [ ] Criterion 2
-
-## Non-Functional Requirements
-
-### NFR-001: Performance
-
-- **Description:** [Performance expectations]
-- **Metrics:** [Measurable targets]
-
-### NFR-002: Security
-
-- **Description:** [Security requirements]
-- **Standards:** [Compliance requirements]
-
-## Constraints
-
-- Constraint 1
-- Constraint 2
-
-## Dependencies
-
-- Dependency 1
-- Dependency 2
-EOF
-    CREATED_FILES+=("spec-sections/02-requirements.md")
-
-    cat > "$FEATURE_DIR/spec-sections/03-architecture.md" << 'EOF'
-# Architecture
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-section-architecture | v1.0 -->
-
-## System Overview
-
-[High-level architecture description]
-
-## Components
-
-### Component 1
-
-- **Purpose:** [What it does]
-- **Responsibilities:**
-  - Responsibility 1
-  - Responsibility 2
-- **Interfaces:** [How it connects to other components]
-
-### Component 2
-
-- **Purpose:** [What it does]
-- **Responsibilities:**
-  - Responsibility 1
-  - Responsibility 2
-- **Interfaces:** [How it connects to other components]
-
-## Data Flow
-
-[Describe how data moves through the system]
-
-## Technology Stack
-
-| Layer | Technology | Rationale |
-|-------|------------|-----------|
-| Frontend | | |
-| Backend | | |
-| Database | | |
-| Infrastructure | | |
-
-## Integration Points
-
-- Integration 1: [Description]
-- Integration 2: [Description]
-
-## Security Architecture
-
-[Security considerations and implementation]
-EOF
-    CREATED_FILES+=("spec-sections/03-architecture.md")
-
-    cat > "$FEATURE_DIR/spec-sections/04-testing.md" << 'EOF'
-# Testing Strategy
-<!-- SPECKIT_TEMPLATE_SOURCE: spec-section-testing | v1.0 -->
-
-## Test Levels
-
-### Unit Tests
-
-- **Coverage Target:** [e.g., 80%]
-- **Focus Areas:**
-  - Area 1
-  - Area 2
-
-### Integration Tests
-
-- **Scope:** [What integrations to test]
-- **Approach:** [How to test them]
-
-### End-to-End Tests
-
-- **Critical Paths:**
-  - Path 1
-  - Path 2
-- **Tools:** [Testing tools/frameworks]
-
-## Acceptance Criteria
-
-| ID | Criterion | Test Method | Status |
-|----|-----------|-------------|--------|
-| AC-001 | [Criterion] | [Method] | [ ] |
-| AC-002 | [Criterion] | [Method] | [ ] |
-
-## Test Environments
-
-| Environment | Purpose | Configuration |
-|-------------|---------|---------------|
-| Development | | |
-| Staging | | |
-| Production | | |
-
-## Performance Testing
-
-- **Load Testing:** [Approach]
-- **Stress Testing:** [Approach]
-- **Benchmarks:** [Target metrics]
-
-## Security Testing
-
-- [ ] Vulnerability scanning
-- [ ] Penetration testing
-- [ ] Code security review
-EOF
-    CREATED_FILES+=("spec-sections/04-testing.md")
+    # Resolve sharded templates directory
+    SHARDED_TEMPLATES_DIR="$TEMPLATES_BASE/sharded"
+
+    # Copy sharded index template (overwrites the standard spec.md)
+    if [[ -f "$SHARDED_TEMPLATES_DIR/spec-index.md" ]]; then
+        cp "$SHARDED_TEMPLATES_DIR/spec-index.md" "$FEATURE_DIR/spec.md"
+    else
+        >&2 echo "[speckit] Warning: Sharded template not found: $SHARDED_TEMPLATES_DIR/spec-index.md"
+    fi
+
+    # Copy section templates
+    for shard in 01-overview.md 02-requirements.md 03-architecture.md 04-testing.md; do
+        if [[ -f "$SHARDED_TEMPLATES_DIR/$shard" ]]; then
+            cp "$SHARDED_TEMPLATES_DIR/$shard" "$FEATURE_DIR/spec-sections/$shard"
+            CREATED_FILES+=("spec-sections/$shard")
+        else
+            >&2 echo "[speckit] Warning: Sharded template not found: $SHARDED_TEMPLATES_DIR/$shard"
+            touch "$FEATURE_DIR/spec-sections/$shard"
+            CREATED_FILES+=("spec-sections/$shard (empty - template not found)")
+        fi
+    done
 
 elif [[ "$SHARDED" = true ]] && [[ "${DOC_LEVEL/+/}" -lt 3 ]]; then
     echo "Warning: --sharded flag is only supported with --level 3 or 3+. Ignoring --sharded." >&2

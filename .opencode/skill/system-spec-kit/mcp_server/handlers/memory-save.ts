@@ -639,12 +639,20 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 
   if (embedding) {
     const indexWithMetadata = database.transaction(() => {
+      // Determine importance weight based on content source
+      // User work memories (specs/*/memory/) get standard weight (0.5)
+      // README documentation gets reduced weight (0.3) — reference material should
+      // never outrank actual user work (decisions, context, blockers)
+      const normalizedPath = filePath.replace(/\\/g, '/');
+      const isReadmeFile = normalizedPath.toLowerCase().endsWith('readme.md');
+      const importanceWeight = isReadmeFile ? 0.3 : 0.5;
+
       const memory_id: number = vectorIndex.indexMemory({
         specFolder: parsed.specFolder,
         filePath,
         title: parsed.title,
         triggerPhrases: parsed.triggerPhrases,
-        importanceWeight: 0.5,
+        importanceWeight,
         embedding: embedding
       });
 
@@ -709,12 +717,20 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     console.error(`[memory-save] Using deferred indexing for ${path.basename(filePath)}`);
 
     const indexDeferred = database.transaction(() => {
+      // Determine importance weight based on content source
+      // User work memories (specs/*/memory/) get standard weight (0.5)
+      // README documentation gets reduced weight (0.3) — reference material should
+      // never outrank actual user work (decisions, context, blockers)
+      const normalizedPath = filePath.replace(/\\/g, '/');
+      const isReadmeFile = normalizedPath.toLowerCase().endsWith('readme.md');
+      const importanceWeight = isReadmeFile ? 0.3 : 0.5;
+
       const memory_id: number = vectorIndex.indexMemoryDeferred({
         specFolder: parsed.specFolder,
         filePath,
         title: parsed.title,
         triggerPhrases: parsed.triggerPhrases,
-        importanceWeight: 0.5,
+        importanceWeight,
         failureReason: embeddingFailureReason
       });
 

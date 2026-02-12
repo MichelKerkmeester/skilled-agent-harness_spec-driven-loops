@@ -397,13 +397,13 @@ function transformOpencodeCapture(capture: OpencodeCapture): TransformedCapture 
       files: []
     };
 
-    if (tool.input) {
+    if (tool.input && toolObs.files) {
       if (tool.input.filePath) {
-        toolObs.files!.push(tool.input.filePath);
+        toolObs.files.push(tool.input.filePath);
       } else if (tool.input.file_path) {
-        toolObs.files!.push(tool.input.file_path);
+        toolObs.files.push(tool.input.file_path);
       } else if (tool.input.path) {
-        toolObs.files!.push(tool.input.path);
+        toolObs.files.push(tool.input.path);
       }
     }
 

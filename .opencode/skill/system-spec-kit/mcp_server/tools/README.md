@@ -1,11 +1,14 @@
 # Tools — Dispatch Layer
 
+<!-- ANCHOR:overview -->
 ## 🔧 Overview
 
 The **tool dispatch layer** routes incoming MCP tool calls to their handler functions. It implements a **dispatcher pattern** where each domain module owns a `TOOL_NAMES` Set and a `handleTool()` switch statement. The central `dispatchTool()` function in `index.ts` iterates all dispatchers until one claims the tool name.
 
 **22 tools** are organized across **5 domain modules**, spanning layers L1–L7 of the Spec Kit Memory architecture.
+<!-- /ANCHOR:overview -->
 
+<!-- ANCHOR:structure -->
 ## 📁 Structure
 
 ```
@@ -18,7 +21,9 @@ tools/
 ├── checkpoint-tools.ts   # L5 Checkpoints (4 tools)
 └── lifecycle-tools.ts    # L6–L7 Lifecycle & Maintenance (4 tools)
 ```
+<!-- /ANCHOR:structure -->
 
+<!-- ANCHOR:architecture -->
 ## 🏗️ Architecture
 
 ```
@@ -52,7 +57,9 @@ tools/
 4. The matching module calls `parseArgs<T>(args)` to cast raw args to a typed interface
 5. The typed args are forwarded to the corresponding handler in `../handlers/`
 6. Returns `MCPResponse` (or `null` if no dispatcher claims the tool)
+<!-- /ANCHOR:architecture -->
 
+<!-- ANCHOR:tool-registry -->
 ## 📋 Tool Registry
 
 ### L1 — Orchestration (`context-tools.ts`)
@@ -101,7 +108,9 @@ tools/
 | `task_preflight` | Capture epistemic baseline before task execution |
 | `task_postflight` | Capture epistemic state after task and calculate learning delta |
 | `memory_get_learning_history` | Get learning history (preflight/postflight records) |
+<!-- /ANCHOR:tool-registry -->
 
+<!-- ANCHOR:types -->
 ## 🔠 Types (`types.ts`)
 
 Provides the type foundation for the dispatch layer:
@@ -110,7 +119,9 @@ Provides the type foundation for the dispatch layer:
 - **`MCPResponseWithContext`** — Extended response with optional `autoSurfacedContext` field (SK-004)
 - **`parseArgs<T>()`** — Centralizes the single protocol-boundary cast from raw `Record<string, unknown>` to typed handler args
 - **22 argument interfaces** — One per tool (e.g., `SearchArgs`, `SaveArgs`, `PreflightArgs`), defining the expected shape of each tool's input
+<!-- /ANCHOR:types -->
 
+<!-- ANCHOR:adding-new-tools -->
 ## ➕ Adding New Tools
 
 1. **Define the argument interface** in `types.ts`
@@ -119,7 +130,9 @@ Provides the type foundation for the dispatch layer:
    - Add a `case` in the `handleTool()` switch that calls `parseArgs<T>()` and forwards to the handler
 3. **Import the handler** from `../handlers/`
 4. If creating a **new dispatch module**, add it to `ALL_DISPATCHERS` in `index.ts`
+<!-- /ANCHOR:adding-new-tools -->
 
+<!-- ANCHOR:related -->
 ## 🔗 Related
 
 | Path | Description |
@@ -127,3 +140,4 @@ Provides the type foundation for the dispatch layer:
 | `../handlers/` | Business logic — the handler functions that tools dispatch to |
 | `../definitions/` | MCP tool definitions (names, descriptions, JSON schemas) |
 | `../../shared/types.ts` | Canonical `MCPResponse` type |
+<!-- /ANCHOR:related -->

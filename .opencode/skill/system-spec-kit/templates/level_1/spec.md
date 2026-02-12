@@ -3,23 +3,6 @@
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-<!-- WHEN TO USE THIS TEMPLATE:
-Level 1 (Core) is appropriate when:
-- Changes affect <100 lines of code
-- Simple feature or bug fix with clear scope
-- Single developer, single session work
-- Low risk, well-understood change
-- No architectural decisions required
-- 1-2 user stories maximum
-
-DO NOT use Level 1 if:
-- Multiple stakeholders need alignment
-- Verification checklist would help QA
-- Complex edge cases exist
-- Architecture decisions are involved (use Level 3)
-- Governance/compliance required (use Level 3+)
--->
-
 ---
 
 ## 1. METADATA
@@ -102,18 +85,8 @@ DO NOT use Level 1 if:
 
 ---
 
-## 8. RELATED DOCUMENTS
-
-| Document | Purpose |
-|----------|---------|
-| [`plan.md`](./plan.md) | Implementation approach and phases |
-| [`tasks.md`](./tasks.md) | Detailed task breakdown |
-| [`implementation-summary.md`](./implementation-summary.md) | Post-implementation record |
-
----
-
 <!--
-CORE TEMPLATE (~95 lines)
+CORE TEMPLATE (~80 lines)
 - Essential what/why/how only
 - No boilerplate sections
 - Add L2/L3 addendums for complexity

@@ -1,23 +1,7 @@
 # Implementation Plan: [NAME]
 
 <!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
-
-<!-- WHEN TO USE THIS TEMPLATE:
-Level 3 Plan (+Arch) is appropriate when:
-- 5-8 implementation phases
-- Dependency graph visualization needed
-- Critical path analysis required
-- Milestone tracking important
-- ADR documentation required
-- Multiple teams coordinating
-
-DO NOT use Level 3 Plan if:
-- Simple feature (use Level 1)
-- Only phase dependencies needed (use Level 2)
-- AI execution framework with workstream coordination (use Level 3+)
-- Formal communication plan required (use Level 3+)
--->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
 
@@ -109,6 +93,9 @@ DO NOT use Level 3 Plan if:
 
 ---
 
+
+---
+
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -153,6 +140,9 @@ Phase 1.5 (Config) ───┘
 ### Data Reversal
 - **Has data migrations?** [Yes/No]
 - **Reversal procedure**: [Steps or "N/A"]
+
+---
+
 
 ---
 

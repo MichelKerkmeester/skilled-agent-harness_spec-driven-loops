@@ -16,6 +16,7 @@
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. 📖 OVERVIEW
 
 **Purpose**: Formatters transform internal data structures into MCP-compliant responses. They handle search result formatting, token efficiency calculations (anchor-based filtering), and path validation.
@@ -32,9 +33,11 @@
 - Calculate and report token savings from anchor filtering
 - Embed file content in search results when requested
 - Validate file paths before reading (security layer)
+<!-- /ANCHOR:overview -->
 
 ---
 
+<!-- ANCHOR:quick-start -->
 ## 2. 🚀 QUICK START
 
 ### Basic Usage
@@ -55,9 +58,11 @@ const response = await formatSearchResults(
 const tokens = estimateTokens(text);
 console.log(`Estimated tokens: ${tokens}`);
 ```
+<!-- /ANCHOR:quick-start -->
 
 ---
 
+<!-- ANCHOR:structure -->
 ## 3. 📁 STRUCTURE
 
 ```
@@ -83,9 +88,11 @@ dist/formatters/          # Compiled JavaScript output
 | `search-results.ts` | Formats search results, handles anchor extraction, validates paths |
 | `token-metrics.ts` | Token estimation using character-based approximation |
 | `dist/formatters/*.js` | Compiled JavaScript output for runtime execution |
+<!-- /ANCHOR:structure -->
 
 ---
 
+<!-- ANCHOR:features -->
 ## 4. ⚡ FEATURES
 
 ### Search Result Formatting
@@ -155,9 +162,11 @@ import { validateFilePathLocal } from './formatters';
 const safePath = validateFilePathLocal('/path/to/memory.md');
 // Throws on invalid paths (outside allowed directories, contains .., etc.)
 ```
+<!-- /ANCHOR:features -->
 
 ---
 
+<!-- ANCHOR:examples -->
 ## 5. 💡 USAGE EXAMPLES
 
 ### Example 1: Basic Search Result Formatting
@@ -236,9 +245,11 @@ const response = await formatSearchResults(results, 'hybrid');
 | `anchors: ['summary']` | Extract specific sections | Token-efficient context loading |
 | `anchors: undefined` | Full content | Initial investigation or small files |
 | `estimateTokens()` | Calculate token counts | Pre-flight checks before API calls |
+<!-- /ANCHOR:examples -->
 
 ---
 
+<!-- ANCHOR:troubleshooting -->
 ## 6. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
@@ -292,9 +303,11 @@ formatSearchResults(results, type, true, ['summary'], parser);
 | Large token counts | Use anchor filtering: `anchors: ['summary']` |
 | Constitutional count is 0 | Check database for `importance_tier = 'constitutional'` |
 | Invalid path error | Verify path is absolute and within allowed directories |
+<!-- /ANCHOR:troubleshooting -->
 
 ---
 
+<!-- ANCHOR:related -->
 ## 7. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
@@ -311,6 +324,7 @@ formatSearchResults(results, type, true, ['summary'], parser);
 |----------|-------------|
 | [MCP Protocol](https://spec.modelcontextprotocol.io/) | Model Context Protocol specification |
 | [CWE-22](https://cwe.mitre.org/data/definitions/22.html) | Path traversal security guidance |
+<!-- /ANCHOR:related -->
 
 ---
 

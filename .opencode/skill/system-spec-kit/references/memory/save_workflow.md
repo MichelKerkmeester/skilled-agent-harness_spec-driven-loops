@@ -318,6 +318,17 @@ Content here...
 | Files Modified | Conditional | When files changed |
 | Session Metadata | Yes | Statistics and timing |
 
+### Other Indexed Content
+
+While this workflow generates memory files in `specs/*/memory/`, the memory system also indexes content from additional sources during `memory_index_scan()`:
+
+| Content Type | Location | Indexed By |
+|-------------|----------|------------|
+| Constitutional rules | `.opencode/skill/*/constitutional/*.md` | `findConstitutionalFiles()` |
+| Skill READMEs | `.opencode/skill/**/README.md` | `findSkillReadmes()` |
+
+> **Tip:** Add `<!-- ANCHOR:name -->` tags to README files to enable section-level memory retrieval.
+
 ---
 
 ## 7. 🗃️ METADATA

@@ -236,175 +236,52 @@ compose_spec() {
 
             # Insert L2 content after Section 6 (Risks & Dependencies)
             # and before Section 7 (Open Questions)
-            output=$(echo "$core_content" | sed '/^## 7\. OPEN QUESTIONS/i\
-'"$(echo "$l2_content" | sed 's/$/\\/')"'
-')
+            # Split core at section boundary, insert L2 content between halves
+            local before_marker after_marker
+            before_marker=$(echo "$core_content" | sed -n '/^## 7\. OPEN QUESTIONS/q;p')
+            after_marker=$(echo "$core_content" | sed -n '/^## 7\. OPEN QUESTIONS/,$p')
+            output="${before_marker}
+${l2_content}
+
+${after_marker}"
             # Renumber Section 7 to Section 10
             output=$(echo "$output" | sed 's/## 7\. OPEN QUESTIONS/## 10. OPEN QUESTIONS/')
             ;;
         3)
-            # Level 3: Core + L2 + L3 addendums
-            # Using pre-composed literal template for reliability
-            output="<!-- SPECKIT_LEVEL: 3 -->
-# Feature Specification: [NAME]
+            # Level 3: Dynamic composition from core + L3 fragments
+            local l3_guidance l3_prefix l3_suffix core_body open_q
+            l3_guidance=$(<"$ADDENDUM_L3/spec-level3-guidance.md")
+            l3_prefix=$(<"$ADDENDUM_L3/spec-level3-prefix.md")
+            l3_suffix=$(<"$ADDENDUM_L3/spec-level3-suffix.md")
 
-<!-- SPECKIT_TEMPLATE_SOURCE: spec | v2.0 -->
+            # Extract core body: sections 1-6 (between first "## 1." and "## 7.")
+            core_body=$(sed -n '/^## 1\. /,/^## 7\. /{ /^## 7\. /d; p; }' "$CORE_DIR/spec-core.md")
 
----
+            # Extract open questions content (section heading + items, without trailing ---)
+            open_q=$(sed -n '/^## 7\. OPEN QUESTIONS/,/^---$/{ /^---$/d; p; }' "$CORE_DIR/spec-core.md")
+            # Renumber to section 12
+            open_q=$(echo "$open_q" | sed 's/^## 7\. OPEN QUESTIONS/## 12. OPEN QUESTIONS/')
 
-## EXECUTIVE SUMMARY
+            output="# Feature Specification: [NAME]
 
-[2-3 sentence high-level overview for stakeholders who need quick context]
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
-
-**Critical Dependencies**: [Blocking dependency]
-
----
-
-## 1. METADATA
-
-| Field | Value |
-|-------|-------|
-| **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
-| **Created** | [YYYY-MM-DD] |
-| **Branch** | \`[###-feature-name]\` |
+${l3_guidance}
 
 ---
 
-## 2. PROBLEM & PURPOSE
-
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
-
-### Purpose
-[One-sentence outcome statement. What does success look like?]
+${l3_prefix}
 
 ---
 
-## 3. SCOPE
+${core_body}
 
-### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
-
-### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+${l3_suffix}
 
 ---
 
-## 4. REQUIREMENTS
-
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
-
----
-
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-
----
-
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-
----
-
-## 7. NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-
-### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-
-### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
-
----
-
-## 8. EDGE CASES
-
-### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-
-### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
-
----
-
-## 9. COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Triggers |
-|-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
-
----
-
-## 10. RISK MATRIX
-
-| Risk ID | Description | Impact | Likelihood | Mitigation |
-|---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
-
----
-
-## 11. USER STORIES
-
-### US-001: [Title] (Priority: P0)
-
-**As a** [user type], **I want** [capability], **so that** [benefit].
-
-**Acceptance Criteria**:
-1. Given [context], When [action], Then [outcome]
-
----
-
-### US-002: [Title] (Priority: P1)
-
-**As a** [user type], **I want** [capability], **so that** [benefit].
-
-**Acceptance Criteria**:
-1. Given [context], When [action], Then [outcome]
-
----
-
-## 12. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+${open_q}
 
 ---
 
@@ -425,196 +302,40 @@ LEVEL 3 SPEC (~165 lines)
 -->"
             ;;
         "3+")
-            # Level 3+: Core + L2 + L3 + L3+ addendums
+            # Level 3+: Dynamic composition from core + L3 prefix + L3+ fragments
+            local l3plus_guidance l3_prefix l3plus_suffix core_body open_q
+            l3plus_guidance=$(<"$ADDENDUM_L3PLUS/spec-level3plus-guidance.md")
+            l3_prefix=$(<"$ADDENDUM_L3/spec-level3-prefix.md")
+            l3plus_suffix=$(<"$ADDENDUM_L3PLUS/spec-level3plus-suffix.md")
+
+            # Extract core body: sections 1-6
+            core_body=$(sed -n '/^## 1\. /,/^## 7\. /{ /^## 7\. /d; p; }' "$CORE_DIR/spec-core.md")
+
+            # Open questions as section 16
+            open_q="## 16. OPEN QUESTIONS
+
+- [Question 1 requiring clarification]"
+
             output="<!-- SPECKIT_LEVEL: 3+ -->
 # Feature Specification: [NAME]
 
-<!-- SPECKIT_TEMPLATE_SOURCE: spec | v2.0 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch + level3plus-govern | v2.2 -->
+
+${l3plus_guidance}
 
 ---
 
-## EXECUTIVE SUMMARY
-
-[2-3 sentence high-level overview for stakeholders who need quick context]
-
-**Key Decisions**: [Major decision 1], [Major decision 2]
-
-**Critical Dependencies**: [Blocking dependency]
+${l3_prefix}
 
 ---
 
-## 1. METADATA
+${core_body}
 
-| Field | Value |
-|-------|-------|
-| **Level** | 3+ |
-| **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
-| **Created** | [YYYY-MM-DD] |
-| **Branch** | \`[###-feature-name]\` |
+${l3plus_suffix}
 
 ---
 
-## 2. PROBLEM & PURPOSE
-
-### Problem Statement
-[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
-
-### Purpose
-[One-sentence outcome statement. What does success look like?]
-
----
-
-## 3. SCOPE
-
-### In Scope
-- [Deliverable 1]
-- [Deliverable 2]
-- [Deliverable 3]
-
-### Out of Scope
-- [Excluded item 1] - [why]
-- [Excluded item 2] - [why]
-
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
-
----
-
-## 4. REQUIREMENTS
-
-### P0 - Blockers (MUST complete)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
-
-### P1 - Required (complete OR user-approved deferral)
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
-
----
-
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: [Primary measurable outcome]
-- **SC-002**: [Secondary measurable outcome]
-
----
-
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
-
----
-
-## 7. NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-- **NFR-P01**: [Response time target]
-
-### Security
-- **NFR-S01**: [Auth requirement]
-
-### Reliability
-- **NFR-R01**: [Uptime target]
-
----
-
-## 8. EDGE CASES
-
-### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-
-### Error Scenarios
-- External service failure: [Fallback behavior]
-
----
-
-## 9. COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Triggers |
-|-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3+** |
-
----
-
-## 10. RISK MATRIX
-
-| Risk ID | Description | Impact | Likelihood | Mitigation |
-|---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
-
----
-
-## 11. USER STORIES
-
-### US-001: [Title] (Priority: P0)
-
-**As a** [user type], **I want** [capability], **so that** [benefit].
-
-**Acceptance Criteria**:
-1. Given [context], When [action], Then [outcome]
-
----
-
-## 12. APPROVAL WORKFLOW
-
-| Checkpoint | Approver | Status | Date |
-|------------|----------|--------|------|
-| Spec Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Design Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Implementation Review | [Role/Name] | [Pending/Approved] | [Date] |
-| Launch Approval | [Role/Name] | [Pending/Approved] | [Date] |
-
----
-
-## 13. COMPLIANCE CHECKPOINTS
-
-### Security Compliance
-- [ ] Security review completed
-- [ ] OWASP Top 10 addressed
-- [ ] Data protection requirements met
-
-### Code Compliance
-- [ ] Coding standards followed
-- [ ] License compliance verified
-
----
-
-## 14. STAKEHOLDER MATRIX
-
-| Stakeholder | Role | Interest | Communication |
-|-------------|------|----------|---------------|
-| [Name] | Product | High | [Weekly sync] |
-| [Name] | Engineering | High | [Daily standup] |
-
----
-
-## 15. CHANGE LOG
-
-### v1.0 ([Date])
-**Initial specification**
-
----
-
-## 16. OPEN QUESTIONS
-
-- [Question 1 requiring clarification]
+${open_q}
 
 ---
 
@@ -972,9 +693,14 @@ required_files=(
     "$ADDENDUM_L2/plan-level2.md"
     "$ADDENDUM_L2/checklist.md"
     "$ADDENDUM_L3/spec-level3.md"
+    "$ADDENDUM_L3/spec-level3-prefix.md"
+    "$ADDENDUM_L3/spec-level3-suffix.md"
+    "$ADDENDUM_L3/spec-level3-guidance.md"
     "$ADDENDUM_L3/plan-level3.md"
     "$ADDENDUM_L3/decision-record.md"
     "$ADDENDUM_L3PLUS/spec-level3plus.md"
+    "$ADDENDUM_L3PLUS/spec-level3plus-suffix.md"
+    "$ADDENDUM_L3PLUS/spec-level3plus-guidance.md"
     "$ADDENDUM_L3PLUS/plan-level3plus.md"
     "$ADDENDUM_L3PLUS/checklist-extended.md"
 )

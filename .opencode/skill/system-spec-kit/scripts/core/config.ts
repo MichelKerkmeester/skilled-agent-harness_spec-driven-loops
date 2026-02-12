@@ -5,6 +5,8 @@
 
 import * as path from 'path';
 import * as fsSync from 'fs';
+import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
+import { structuredLog } from '../utils/logger';
 
 /* -----------------------------------------------------------------
    1. INTERFACES
@@ -70,8 +72,8 @@ function validateConfig(merged: WorkflowConfig, defaults: WorkflowConfig): Workf
   for (const field of positiveFields) {
     const value = validated[field];
     if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
-      console.warn(
-        `Warning: config "${field}" has invalid value (${JSON.stringify(value)}). ` +
+      structuredLog('warn',
+        `Config validation: "${field}" has invalid value (${JSON.stringify(value)}). ` +
         `Must be a positive number. Falling back to default: ${defaults[field]}`
       );
       (validated as Record<string, unknown>)[field] = defaults[field];
@@ -87,8 +89,8 @@ function validateConfig(merged: WorkflowConfig, defaults: WorkflowConfig): Workf
   for (const field of nonNegativeFields) {
     const value = validated[field];
     if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
-      console.warn(
-        `Warning: config "${field}" has invalid value (${JSON.stringify(value)}). ` +
+      structuredLog('warn',
+        `Config validation: "${field}" has invalid value (${JSON.stringify(value)}). ` +
         `Must be a non-negative number. Falling back to default: ${defaults[field]}`
       );
       (validated as Record<string, unknown>)[field] = defaults[field];
@@ -102,8 +104,8 @@ function validateConfig(merged: WorkflowConfig, defaults: WorkflowConfig): Workf
     validated.timezoneOffsetHours < -12 ||
     validated.timezoneOffsetHours > 14
   ) {
-    console.warn(
-      `Warning: config "timezoneOffsetHours" has invalid value (${JSON.stringify(validated.timezoneOffsetHours)}). ` +
+    structuredLog('warn',
+      `Config validation: "timezoneOffsetHours" has invalid value (${JSON.stringify(validated.timezoneOffsetHours)}). ` +
       `Must be between -12 and 14. Falling back to default: ${defaults.timezoneOffsetHours}`
     );
     validated.timezoneOffsetHours = defaults.timezoneOffsetHours;
@@ -115,17 +117,6 @@ function validateConfig(merged: WorkflowConfig, defaults: WorkflowConfig): Workf
 /* -----------------------------------------------------------------
    4. CONFIG LOADER
 ------------------------------------------------------------------*/
-
-function isEscapedQuoteAt(str: string, index: number): boolean {
-  if (index === 0) return false;
-  let backslashCount = 0;
-  let k = index - 1;
-  while (k >= 0 && str[k] === '\\') {
-    backslashCount++;
-    k--;
-  }
-  return backslashCount % 2 === 1;
-}
 
 function loadConfig(): WorkflowConfig {
   const defaultConfig: WorkflowConfig = {
@@ -144,61 +135,17 @@ function loadConfig(): WorkflowConfig {
     if (fsSync.existsSync(configPath)) {
       const configContent: string = fsSync.readFileSync(configPath, 'utf-8');
 
-      // Strip block comments (/* ... */) first, handling multi-line
-      let stripped = '';
-      let inBlockComment = false;
-      let inStr = false;
-      for (let i = 0; i < configContent.length; i++) {
-        const ch = configContent[i];
-        const next = configContent[i + 1];
+      // Strip JSONC comments using the shared string-aware utility
+      const stripped: string = stripJsoncComments(configContent);
 
-        if (inBlockComment) {
-          if (ch === '*' && next === '/') {
-            inBlockComment = false;
-            i++;
-          }
-          continue;
-        }
-
-        if (ch === '"' && !isEscapedQuoteAt(configContent, i)) {
-          inStr = !inStr;
-        }
-
-        if (!inStr && ch === '/' && next === '*') {
-          inBlockComment = true;
-          i++;
-          continue;
-        }
-
-        stripped += ch;
-      }
-
+      // Extract the top-level JSON object using brace-depth tracking
       const lines = stripped.split('\n');
       const jsonLines: string[] = [];
       let inJsonBlock = false;
       let braceDepth = 0;
 
       for (const line of lines) {
-        let cleanLine = line;
-
-        let inString = false;
-        let commentStart = -1;
-        for (let i = 0; i < line.length - 1; i++) {
-          const char = line[i];
-          if (char === '"' && !isEscapedQuoteAt(line, i)) {
-            inString = !inString;
-          }
-          if (!inString && char === '/' && line[i + 1] === '/') {
-            commentStart = i;
-            break;
-          }
-        }
-
-        if (commentStart !== -1) {
-          cleanLine = line.substring(0, commentStart);
-        }
-
-        for (const char of cleanLine) {
+        for (const char of line) {
           if (char === '{') {
             if (!inJsonBlock) inJsonBlock = true;
             braceDepth++;
@@ -208,7 +155,7 @@ function loadConfig(): WorkflowConfig {
         }
 
         if (inJsonBlock) {
-          jsonLines.push(cleanLine);
+          jsonLines.push(line);
         }
 
         if (inJsonBlock && braceDepth === 0) {
@@ -217,7 +164,7 @@ function loadConfig(): WorkflowConfig {
       }
 
       if (!jsonLines.length || !jsonLines.join('').trim()) {
-        console.warn('Warning: Config file is empty or contains only comments. Using defaults.');
+        structuredLog('warn', 'Config file is empty or contains only comments. Using defaults.');
         return defaultConfig;
       }
 
@@ -228,8 +175,7 @@ function loadConfig(): WorkflowConfig {
     }
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
-    console.warn(`Warning: Failed to load config.jsonc: ${errMsg}`);
-    console.warn('   Using default configuration values');
+    structuredLog('warn', `Failed to load config.jsonc: ${errMsg}. Using default configuration values`);
   }
 
   return defaultConfig;

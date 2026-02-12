@@ -163,6 +163,11 @@ export {
   escapeRegex,
 } from './utils/path-security';
 
+// JSONC utilities
+export {
+  stripJsoncComments,
+} from './utils/jsonc-strip';
+
 // Retry utilities
 export {
   retryWithBackoff,

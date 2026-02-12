@@ -3,21 +3,6 @@
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
-<!-- WHEN TO USE THIS TEMPLATE:
-Level 2 (+Verify) is appropriate when:
-- Changes affect 100-499 lines of code
-- QA validation checklist would be helpful
-- Non-functional requirements (NFRs) matter
-- Edge cases need explicit documentation
-- 2-4 user stories
-
-DO NOT use Level 2 if:
-- Simple feature <100 LOC (use Level 1)
-- Architecture Decision Records needed (use Level 3)
-- Risk matrix required (use Level 3)
-- Governance/compliance checkpoints needed (use Level 3+)
--->
-
 ---
 
 ## 1. METADATA
@@ -93,6 +78,8 @@ DO NOT use Level 2 if:
 
 ---
 
+---
+
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -138,7 +125,7 @@ DO NOT use Level 2 if:
 
 ---
 
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - [Question 1 requiring clarification]
 - [Question 2 requiring clarification]

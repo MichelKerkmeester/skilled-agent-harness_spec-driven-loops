@@ -30,6 +30,31 @@ The Spec Kit Memory system provides context preservation across sessions through
 - **Checkpoints** - Save/restore memory state snapshots
 - **Constitutional tier** - Critical rules that always surface
 
+### Indexable Content Sources
+
+The memory system indexes content from three distinct sources:
+
+| Source | Location Pattern | Memory Type | Default Tier | Discovery |
+|--------|-----------------|-------------|--------------|-----------|
+| **Memory Files** | `specs/*/memory/*.md` | Varies (episodic, procedural, etc.) | `normal` | `findMemoryFiles()` |
+| **Constitutional Rules** | `.opencode/skill/*/constitutional/*.md` | `meta-cognitive` | `constitutional` | `findConstitutionalFiles()` |
+| **Skill READMEs** | `.opencode/skill/**/README.md` | `semantic` | `normal` | `findSkillReadmes()` |
+
+**Content Source Behavior:**
+
+- **Memory Files** — Session-specific context generated via `generate-context.js`. Subject to temporal decay.
+- **Constitutional Rules** — Always-surface critical rules. Injected at top of every search result. No decay.
+- **Skill READMEs** — Project documentation with `<!-- ANCHOR:name -->` tags for section-level retrieval. Classified as `semantic` type with `normal` tier and reduced importance weight (0.3 vs default 0.5). This ensures README documentation never outranks user work memories (decisions, context, blockers) in search results. READMEs surface only when highly relevant to the query. Grouped under `skill:SKILL-NAME` identifier.
+
+**README Indexing Pipeline:**
+1. `findSkillReadmes()` recursively discovers `README.md` files under `.opencode/skill/`
+2. `isMemoryFile()` validates each README as an indexable file
+3. `extractSpecFolder()` returns `skill:SKILL-NAME` as the folder identifier
+4. `PATH_TYPE_PATTERNS` classifies as `semantic` memory type
+5. Content is embedded and indexed alongside memory and constitutional files
+
+> **Note:** READMEs in `node_modules/` and hidden directories are automatically excluded from discovery.
+
 ---
 
 ## 2. 🏷️ IMPORTANCE TIERS

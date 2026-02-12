@@ -188,7 +188,8 @@ function processMemories(rawMemories: RawMemory[], options: ProcessingOptions = 
     if (!folderMap.has(folder)) {
       folderMap.set(folder, []);
     }
-    folderMap.get(folder)!.push(memory);
+    const folderList = folderMap.get(folder);
+    if (folderList) folderList.push(memory);
   }
 
   const folderScores: FolderScoreEntry[] = [];

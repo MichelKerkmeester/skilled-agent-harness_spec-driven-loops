@@ -92,7 +92,8 @@ async function main(): Promise<void> {
           totalCleaned += orphanedHistory.length;
         } else {
           const deleteHistory = database.transaction((ids: OrphanedEntry[]) => {
-            const stmt = database!.prepare('DELETE FROM memory_history WHERE memory_id = ?');
+            if (!database) throw new Error('Database connection lost');
+            const stmt = database.prepare('DELETE FROM memory_history WHERE memory_id = ?');
             for (const { memory_id } of ids) {
               stmt.run(memory_id);
             }
@@ -160,7 +161,7 @@ async function main(): Promise<void> {
     let historyCount: CountResult = { count: 0 };
     try {
       historyCount = database.prepare('SELECT COUNT(*) as count FROM memory_history').get() as CountResult;
-    } catch (e) {
+    } catch (_e: unknown) {
       // Table may not exist
     }
 
@@ -179,7 +180,7 @@ async function main(): Promise<void> {
     if (database) {
       try {
         database.close();
-      } catch (closeErr) {
+      } catch (_closeErr: unknown) {
         // Ignore close errors
       }
     }

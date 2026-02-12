@@ -194,6 +194,12 @@ export function extractSpecFolder(filePath: string): string {
   // Normalize path separators
   normalizedPath = normalizedPath.replace(/\\/g, '/');
 
+  // README files in skill directories → skill:SKILL-NAME
+  const skillReadmeMatch = normalizedPath.match(/\.opencode\/skill\/([^/]+)(?:\/.*)?\/readme\.md$/i);
+  if (skillReadmeMatch) {
+    return `skill:${skillReadmeMatch[1]}`;
+  }
+
   // Match specs/XXX-name/.../memory/ pattern
   const match = normalizedPath.match(/specs\/([^/]+(?:\/[^/]+)*?)\/memory\//);
 
@@ -450,7 +456,14 @@ export function isMemoryFile(filePath: string): boolean {
     !normalizedPath.toLowerCase().endsWith('readme.md')
   );
 
-  return isSpecsMemory || isConstitutional;
+  // README files in skill directories (indexed as semantic documentation)
+  const isSkillReadme = (
+    normalizedPath.toLowerCase().endsWith('readme.md') &&
+    normalizedPath.includes('/.opencode/skill/') &&
+    !normalizedPath.includes('/constitutional/')
+  );
+
+  return isSpecsMemory || isConstitutional || isSkillReadme;
 }
 
 /** Validate anchor tags in memory content */

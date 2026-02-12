@@ -4,6 +4,7 @@
 
 ---
 
+<!-- ANCHOR:toc -->
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
@@ -11,9 +12,11 @@
 - [3. ⚡ FEATURES](#3--features)
 - [4. 💡 USAGE EXAMPLES](#4--usage-examples)
 - [5. 🔗 RELATED RESOURCES](#5--related-resources)
+<!-- /ANCHOR:toc -->
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. 📖 OVERVIEW
 
 The errors subsystem provides standardized error handling for the Spec Kit Memory MCP server. Every error includes a code, message, and actionable recovery guidance to help agents self-diagnose and resolve issues.
@@ -34,9 +37,11 @@ The errors subsystem provides standardized error handling for the Spec Kit Memor
 | **Tool Context** | Tool-specific hints provide contextual guidance |
 | **User-Friendly Messages** | Internal errors translated to clear messages |
 | **Transient Detection** | Automatic classification of retryable vs permanent errors |
+<!-- /ANCHOR:overview -->
 
 ---
 
+<!-- ANCHOR:structure -->
 ## 2. 📁 STRUCTURE
 
 ```
@@ -54,9 +59,11 @@ errors/
 | `core.ts` | Custom error classes, timeout wrapper, error response builder |
 | `recovery-hints.ts` | Error code catalog with severity levels and recovery actions |
 | `index.ts` | Unified export of all error functionality |
+<!-- /ANCHOR:structure -->
 
 ---
 
+<!-- ANCHOR:features -->
 ## 3. ⚡ FEATURES
 
 ### Error Classification
@@ -94,9 +101,11 @@ Automatic classification for retry logic:
 |-----------|----------|
 | Transient (retry) | SQLITE_BUSY, ECONNRESET, ETIMEDOUT, rate limit |
 | Permanent (fail-fast) | unauthorized, authentication failed, invalid api key |
+<!-- /ANCHOR:features -->
 
 ---
 
+<!-- ANCHOR:examples -->
 ## 4. 💡 USAGE EXAMPLES
 
 ### Example 1: Build Error Response
@@ -146,9 +155,11 @@ const error = createErrorWithHint(
 | Check permanent | `isPermanentError(err)` | For fail-fast paths |
 | User-friendly | `userFriendlyError(err)` | For external messages |
 | With timeout | `withTimeout(promise, ms, 'op')` | For async operations |
+<!-- /ANCHOR:examples -->
 
 ---
 
+<!-- ANCHOR:related -->
 ## 5. 🔗 RELATED RESOURCES
 
 ### Internal Documentation
@@ -170,6 +181,7 @@ createErrorWithHint
 ERROR_CODES, RECOVERY_HINTS, TOOL_SPECIFIC_HINTS, DEFAULT_HINT,
 getRecoveryHint, hasSpecificHint, getAvailableHints, getErrorCodes
 ```
+<!-- /ANCHOR:related -->
 
 ---
 

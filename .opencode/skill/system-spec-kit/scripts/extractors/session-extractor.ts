@@ -176,7 +176,8 @@ function detectProjectPhase(
 
 function extractActiveFile(observations: Observation[], files: FileEntry[] | undefined): string {
   for (let i = observations.length - 1; i >= 0; i--) {
-    if (observations[i].files && observations[i].files!.length > 0) return observations[i].files![0];
+    const obsFiles = observations[i].files;
+    if (obsFiles && obsFiles.length > 0) return obsFiles[0];
   }
   return files?.[0]?.FILE_PATH || 'N/A';
 }

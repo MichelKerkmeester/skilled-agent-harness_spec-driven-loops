@@ -1,6 +1,6 @@
 # Decision Record: [NAME]
 
-<!-- SPECKIT_LEVEL: 3+ -->
+<!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 
 ---
@@ -48,20 +48,6 @@
 
 ---
 
-### Five Checks Evaluation
-
-| # | Check | Result | Evidence |
-|---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an ACTUAL need NOW?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
-
-**Checks Summary**: [X/5 PASS]
-
----
-
 ### Consequences
 
 **Positive**:
@@ -78,6 +64,20 @@
 
 ---
 
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an ACTUAL need NOW?] |
+| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
+| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
+| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
+| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
+
+**Checks Summary**: [X/5 PASS]
+
+---
+
 ### Implementation
 
 **Affected Systems**:
@@ -88,26 +88,8 @@
 
 ---
 
-## Session Decision Log
-
-> **Purpose**: Track all gate decisions made during this session for audit trail and learning.
-
-| Timestamp | Gate | Decision | Confidence | Uncertainty | Evidence |
-|-----------|------|----------|------------|-------------|----------|
-| [HH:MM] | [Gate Name] | [PASS/BLOCK] | [HIGH/MED/LOW] | [0.XX] | [Brief justification] |
-| | | | | | |
-| | | | | | |
-
-**Log Instructions**:
-- Record each gate decision as it occurs during the session
-- Include both PASS and BLOCK decisions for completeness
-- Link to relevant ADR if decision resulted in new architecture record
-
----
-
 <!--
-Level 3+ Decision Record
+Level 3 Decision Record
 Document significant technical decisions
 One ADR per major decision
-Includes Session Decision Log for audit trail
 -->

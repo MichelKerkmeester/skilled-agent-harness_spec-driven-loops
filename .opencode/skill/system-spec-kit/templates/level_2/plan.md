@@ -3,20 +3,6 @@
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
-<!-- WHEN TO USE THIS TEMPLATE:
-Level 2 Plan (+Verify) is appropriate when:
-- 3-5 implementation phases
-- Phase dependencies need tracking
-- Effort estimation is valuable
-- Enhanced rollback procedures needed
-
-DO NOT use Level 2 Plan if:
-- Simple feature (use Level 1)
-- Dependency graphs and critical path needed (use Level 3)
-- Milestone tracking required (use Level 3)
-- Workstream coordination with multiple agents (use Level 3+)
--->
-
 ---
 
 ## 1. SUMMARY
@@ -104,6 +90,9 @@ DO NOT use Level 2 Plan if:
 
 - **Trigger**: [Conditions requiring rollback]
 - **Procedure**: [How to revert changes]
+
+---
+
 
 ---
 

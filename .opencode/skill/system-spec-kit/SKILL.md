@@ -148,6 +148,31 @@ The `memory_match_triggers()` tool includes cognitive features for smarter conte
 
 **Full documentation:** See [mcp_server/README.md](./mcp_server/README.md#3--cognitive-memory) and [memory_system.md](./references/memory/memory_system.md).
 
+### README Content Discovery
+
+The memory system automatically discovers and indexes README files from skill directories:
+
+**Indexed Sources:**
+
+| Source | Pattern | Type | Spec Folder ID |
+|--------|---------|------|----------------|
+| Skill READMEs | `.opencode/skill/**/README.md` | `semantic` | `skill:SKILL-NAME` |
+
+**How READMEs are indexed:**
+- Discovered by `findSkillReadmes()` during `memory_index_scan()`
+- Require `<!-- ANCHOR:name -->` tags for section-level retrieval
+- Classified as `semantic` memory type with `normal` tier and reduced weight (0.3)
+- READMEs are reference-grade documentation that surfaces when relevant but never outranks user work memories
+- Searchable via all standard memory tools (`memory_search`, `memory_context`, etc.)
+
+**Standard README Anchors:** `overview`, `quick-start`, `structure`, `features`, `configuration`, `examples`, `troubleshooting`, `faq`, `related`
+
+**Example Retrieval:**
+```
+memory_search({ query: "how does the cognitive memory system work" })
+→ May return anchored sections from .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md
+```
+
 ### Resource Router
 
 **Phase-Based Loading:**

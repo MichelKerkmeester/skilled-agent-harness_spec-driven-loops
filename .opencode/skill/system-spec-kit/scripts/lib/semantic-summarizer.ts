@@ -170,7 +170,8 @@ function classifyMessages(messages: SemanticMessage[]): Map<MessageType, Semanti
   for (const msg of messages) {
     const content: string = msg.prompt || msg.content || msg.CONTENT || '';
     const type: MessageType = classifyMessage(content);
-    classified.get(type)!.push({
+    const bucket = classified.get(type);
+    if (bucket) bucket.push({
       ...msg,
       _semanticType: type,
     });
@@ -266,13 +267,15 @@ function extractFileChanges(messages: SemanticMessage[], observations: SemanticO
             mentions: 1,
           });
         } else {
-          const existing: FileChangeInfo = fileChanges.get(filePath)!;
-          existing.mentions++;
-          if (description.length > existing.description.length) {
-            existing.description = description;
-          }
-          if (action === 'created' && existing.action !== 'created') {
-            existing.action = action;
+          const existing = fileChanges.get(filePath);
+          if (existing) {
+            existing.mentions++;
+            if (description.length > existing.description.length) {
+              existing.description = description;
+            }
+            if (action === 'created' && existing.action !== 'created') {
+              existing.action = action;
+            }
           }
         }
       }
@@ -462,8 +465,8 @@ function generateImplementationSummary(messages: SemanticMessage[], observations
   const fileChanges: Map<string, FileChangeInfo> = extractFileChanges(messages, observations);
   const decisions: ExtractedDecision[] = extractDecisions(messages);
 
-  const intentMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.INTENT)!;
-  const questionMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.QUESTION)!;
+  const intentMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.INTENT) ?? [];
+  const questionMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.QUESTION) ?? [];
 
   let task: string = 'Development session';
 
@@ -492,9 +495,9 @@ function generateImplementationSummary(messages: SemanticMessage[], observations
     }
   }
 
-  const planMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.PLAN)!;
-  const implMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.IMPLEMENTATION)!;
-  const resultMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.RESULT)!;
+  const planMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.PLAN) ?? [];
+  const implMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.IMPLEMENTATION) ?? [];
+  const resultMessages: SemanticMessage[] = classified.get(MESSAGE_TYPES.RESULT) ?? [];
 
   let solution: string = 'Implementation and updates';
   const allPlanImpl: SemanticMessage[] = [...planMessages, ...implMessages, ...resultMessages];

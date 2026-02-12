@@ -8,6 +8,7 @@
 // ---------------------------------------------------------------
 
 import { CONFIG } from '../core';
+import { structuredLog } from './logger';
 
 // ---------------------------------------------------------------
 // 2. TYPES
@@ -75,13 +76,13 @@ export interface KeyArtifacts {
 
 // NOTE: Similar to lib/simulation-factory.ts:formatTimestamp but differs in:
 // - Applies CONFIG.TIMEZONE_OFFSET_HOURS adjustment (simulation-factory uses raw UTC)
-// - Logs console.warn for invalid dates (simulation-factory silently falls back)
-// - Logs console.warn for unknown format (simulation-factory returns raw ISO string)
+// - Logs structuredLog warn for invalid dates (simulation-factory silently falls back)
+// - Logs structuredLog warn for unknown format (simulation-factory returns raw ISO string)
 function formatTimestamp(date: Date | string | number = new Date(), format: TimestampFormat = 'iso'): string {
   const d: Date = date instanceof Date ? date : new Date(date);
 
   if (isNaN(d.getTime())) {
-    console.warn(`Warning: Invalid date: ${date}, using current time`);
+    structuredLog('warn', `Invalid date: ${date}, using current time`);
     return formatTimestamp(new Date(), format);
   }
 
@@ -120,7 +121,7 @@ function formatTimestamp(date: Date | string | number = new Date(), format: Time
       return `${datePart}_${timeWithoutMs.replace(/:/g, '-')}`;
 
     default:
-      console.warn(`Warning: Unknown format "${format}", using ISO`);
+      structuredLog('warn', `Unknown timestamp format "${format}", using ISO`);
       return isoString;
   }
 }

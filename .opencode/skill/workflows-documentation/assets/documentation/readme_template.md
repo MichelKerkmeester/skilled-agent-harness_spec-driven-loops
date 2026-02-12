@@ -915,7 +915,56 @@ If deprecating a project/component:
 
 ---
 
-## 12. 📋 COMPLETE TEMPLATE
+## 12. 📌 MEMORY ANCHORS
+
+README files under `.opencode/skill/` are automatically indexed by the Spec Kit Memory system, making their content searchable and retrievable during AI-assisted development. Adding anchor tags to key sections enables fine-grained retrieval.
+
+### Adding Anchors
+
+Wrap key sections with anchor tags to make them individually retrievable:
+
+```markdown
+<!-- ANCHOR:overview -->
+## Overview
+Your section content here...
+<!-- /ANCHOR:overview -->
+```
+
+### Standard Anchor Names
+
+Use these conventional anchor names for consistency across all READMEs:
+
+| Anchor ID | Section Purpose | Example Content |
+|-----------|----------------|-----------------|
+| `overview` | Project/component summary | What this is, why it exists |
+| `quick-start` | Getting started steps | Installation, first run |
+| `structure` | File/folder layout | Directory tree, key files |
+| `features` | Capabilities list | What it does, key features |
+| `configuration` | Settings & options | Config files, env vars |
+| `examples` | Usage examples | Code snippets, common patterns |
+| `troubleshooting` | Common issues & fixes | Error messages, solutions |
+| `faq` | Frequently asked questions | Common questions & answers |
+| `related` | Related resources & links | Other docs, external refs |
+
+### Anchor Rules
+
+- **Format:** `<!-- ANCHOR:name -->` to open, `<!-- /ANCHOR:name -->` to close
+- **IDs:** Lowercase, alphanumeric with hyphens only (e.g., `quick-start`, not `Quick Start`)
+- **No nesting:** Anchors should not be nested inside each other
+- **No session IDs:** Unlike memory files, README anchors use simple IDs (no timestamps or spec folder suffixes)
+- **Minimum:** Every README should have at least an `overview` anchor
+
+### How It Works
+
+READMEs with anchors are discovered by `findSkillReadmes()` during `memory_index_scan()`. They are:
+- Classified as `semantic` memory type (documentation that describes concepts)
+- Assigned `normal` tier with reduced importance weight (0.3) — reference documentation that surfaces when relevant but never outranks user work memories
+- Searchable via `memory_search({ query: "..." })` alongside memory files and constitutional rules
+- Grouped under `skill:SKILL-NAME` spec folder identifier
+
+---
+
+## 13. 📋 COMPLETE TEMPLATE
 
 Copy and customize this template. Replace all `[PLACEHOLDER]` markers with actual content. Remove sections that don't apply (keep minimum: Overview, Quick Start, Troubleshooting).
 
@@ -1197,7 +1246,7 @@ A: [Answer with code if applicable.]
 
 ---
 
-## 13. 🔗 RELATED RESOURCES
+## 14. 🔗 RELATED RESOURCES
 
 ### Templates
 - [skill_asset_template.md](../opencode/skill_asset_template.md) - Pattern reference for this document

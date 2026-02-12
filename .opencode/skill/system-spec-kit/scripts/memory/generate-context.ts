@@ -198,8 +198,9 @@ function validateArguments(): void {
           allSpecs.forEach((f) => console.error(`  - ${f}`));
         }
       }
-    } catch (e) {
-      console.error('[generate-context] Failed to list spec folders:', (e as Error).message);
+    } catch (e: unknown) {
+      const errMsg = e instanceof Error ? e.message : String(e);
+      console.error('[generate-context] Failed to list spec folders:', errMsg);
     }
   }
   console.error('\nUsage: node generate-context.js <data-file> [spec-folder-name]\n');
