@@ -492,8 +492,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 | Agent          | File                             | Use When                                         |
 | -------------- | -------------------------------- | ------------------------------------------------ |
 | `@general`     | Built-in                         | Implementation, complex tasks                    |
-| `@explore`         | Built-in                                | Quick codebase exploration, file discovery               |
-| `@context`  | `.opencode/agent/context.md`     | Context retrieval, analysis, exploration dispatch        |
+| `@context`  | `.opencode/agent/context.md`     | ALL codebase exploration, file search, pattern discovery, context loading. Internally dispatches sub-agents for fast search and deep investigation. |
 | `@orchestrate` | `.opencode/agent/orchestrate.md` | Multi-agent coordination, complex workflows      |
 | `@research`    | `.opencode/agent/research.md`    | Evidence gathering, planning, Gate 3 Option B. ✅ Exception: may write `research.md` inside spec folders |
 | `@write`       | `.opencode/agent/write.md`       | Creating READMEs, Skills, Guides                 |
@@ -503,7 +502,7 @@ When using the orchestrate agent or Task tool for complex multi-step workflows, 
 | `@handover`    | `.opencode/agent/handover.md`    | Session continuation, context preservation. ✅ Exception: may write `handover.md` inside spec folders |
 
 **Agent Selection Quick Reference:**
-- **Context loading / exploration** → `@context`
+- **ALL codebase exploration / file search / context loading** → `@context`
 - **Code changes needed** → `@general`
 - **Research/planning** → `@research`
 - **Quality evaluation** → `@review`

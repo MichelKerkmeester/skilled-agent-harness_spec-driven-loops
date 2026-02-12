@@ -7,6 +7,32 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**2.0.0.4**] - 2026-02-12
+
+**Agent Routing Overhaul — "Promote @context, Demote @explore"** — Rewrote orchestrator agent routing to eliminate the "Pink Elephant Problem" where 5 negative mentions of `@explore` kept it salient in LLM attention. Replaced with structural enforcement through Agent Loading Protocol, dispatch-point constraints, and @context as exclusive exploration entry point.
+
+> Spec folder: `anobel.com/.opencode/specs/004-agents/010-explore-routing-fix/` (Level 2)
+
+---
+
+### Changed
+
+1. **`orchestrate.md`** — 12 edits across 4 phases:
+   - Phase 1: §3 Agent Routing table rewritten (comprehensive @context description), §3 Agent Files cleaned, §5 Rule 4 reframed from "Never @explore" → "Route ALL Exploration Through @context", §5 Two-Tier Model @explore name removed
+   - Phase 2: §21 Summary @explore reference removed
+   - Phase 3: §24 Anti-Patterns reframed around @context routing, §10 Task Decomposition added Subagent Type constraint
+   - Phase 4: §3 Agent Loading Protocol added (mandatory 3-step: READ → INCLUDE → SET), §10 Agent Definition field + PDR Agent Def check added, §5 Rule 5 @speckit Dispatch Protocol added, §24 new anti-pattern for agent improvisation
+2. **`context.md`** — Updated self-description from "first dispatch" to "exclusive entry point for ALL exploration tasks"
+3. **`AGENTS.md`** — Removed @explore row from §7 routing table, strengthened @context description, updated Agent Selection Quick Reference
+
+---
+
+**Why:** The orchestrator was dispatching @explore agents directly despite Rule 4 ("Never Dispatch @explore Directly"). Root cause: the "Pink Elephant Problem" — 5 negative mentions of @explore kept it salient in the LLM's attention. Fix reduces @explore mentions to 0 and adds structural enforcement (Agent Loading Protocol, dispatch-point constraints).
+
+**Files:** `.opencode/agent/orchestrate.md` · `.opencode/agent/context.md` · `AGENTS.md`
+
+---
+
 ## [**2.0.0.3**] - 2026-02-12
 
 **Frontmatter Audit** — Verified all 9 skill YAML frontmatter blocks against Claude Code spec. Trimmed verbose descriptions on 2 skills and added `argument-hint` to 1 skill.
