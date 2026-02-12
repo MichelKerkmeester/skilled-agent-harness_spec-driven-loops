@@ -6,6 +6,16 @@ All notable changes to the workflows-git skill are documented in this file.
 
 ---
 
+## [**1.5.1**] - 2026-02-12
+
+### Added
+
+**Frontmatter Audit**
+
+- Added `argument-hint: "[worktree|commit|finish]"` to SKILL.md frontmatter for improved user discoverability
+
+---
+
 ## [**1.5.0**] - 2026-01-14
 
 Full Git workflow orchestrator for complete development lifecycle.

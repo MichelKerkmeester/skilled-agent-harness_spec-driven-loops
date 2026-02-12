@@ -4,6 +4,16 @@ All notable changes to this skill are documented in this file.
 
 ---
 
+## [5.2.1] - 2026-02-12
+
+### Changed
+
+**Frontmatter Audit**
+
+- Trimmed `description` in SKILL.md from ~290 chars to ~200 chars to reduce system prompt token consumption during auto-discovery
+
+---
+
 ## [5.2.0] - 2026-02-03
 
 ### Added

@@ -7,6 +7,27 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**2.0.0.3**] - 2026-02-12
+
+**Frontmatter Audit** — Verified all 9 skill YAML frontmatter blocks against Claude Code spec. Trimmed verbose descriptions on 2 skills and added `argument-hint` to 1 skill.
+
+---
+
+### Changed
+
+1. **`system-spec-kit` SKILL.md** — Trimmed `description` from ~430 to ~220 chars to reduce system prompt token usage
+2. **`workflows-documentation` SKILL.md** — Trimmed `description` from ~290 to ~200 chars for the same reason
+
+### Added
+
+1. **`workflows-git` SKILL.md** — Added `argument-hint: "[worktree|commit|finish]"` for improved user discoverability
+
+---
+
+**Files:** 3 SKILL.md files updated, 3 skill CHANGELOGs updated
+
+---
+
 ## [**2.0.0.2**] - 2026-02-11
 
 **Documentation — Spec Kit Internal READMEs** — Created 4 internal README files documenting Spec Kit Memory subsystems (scoring, utils, types, tools) and updated 1 existing README with project styling conventions.

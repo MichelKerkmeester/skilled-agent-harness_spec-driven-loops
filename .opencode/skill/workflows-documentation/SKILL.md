@@ -1,6 +1,6 @@
 ---
 name: workflows-documentation
-description: "Unified markdown and OpenCode component specialist providing document quality enforcement (structure, style), content optimization for AI assistants, complete component creation workflows (skills, agents, commands with scaffolding, validation, packaging), ASCII flowchart creation for visualizing complex workflows, and install guide creation for MCP servers, plugins, and tools."
+description: "Unified markdown and OpenCode component specialist providing document quality enforcement, content optimization, component creation workflows (skills, agents, commands), ASCII flowcharts, and install guides."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 5.2.0
 ---

@@ -6,6 +6,16 @@ All notable changes to the system-spec-kit skill are documented in this file.
 
 ---
 
+## [2.2.0.3] - 2026-02-12
+
+### Changed
+
+**Frontmatter Audit**
+
+- Trimmed `description` in SKILL.md from ~430 chars to ~220 chars to reduce system prompt token consumption during auto-discovery
+
+---
+
 ## [2.2.0.2] - 2026-02-11
 
 ### Added
