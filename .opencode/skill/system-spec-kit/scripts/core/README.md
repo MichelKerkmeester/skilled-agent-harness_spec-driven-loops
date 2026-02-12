@@ -40,7 +40,7 @@ The `core/` directory contains the foundational modules that orchestrate the ent
 | **Configuration Management** | Loads and validates project-wide settings with JSONC comment support |
 | **Atomic File Operations** | Ensures file writes are validated for placeholders and anchors before committing |
 | **Database Integration** | Manages vector database updates and notification mechanisms |
-| **Lazy Loading** | Defers heavy dependencies until needed for faster startup times |
+| **Static Imports** | All dependencies imported statically at module load time after TypeScript migration |
 
 ### Requirements
 
@@ -155,15 +155,15 @@ All file writes go through validation:
 - **Anchor Validation**: Checks for unclosed or orphaned anchor tags
 - **Atomic Writes**: Ensures all files succeed or none are written
 
-### Lazy Loading
+### Static Imports
 
-Heavy dependencies are loaded only when needed:
+All dependencies are imported statically at module load time:
 ```javascript
-// Libraries loaded on-demand:
-- flowchart-generator (when diagrams detected)
-- semantic-summarizer (when file changes present)
-- embeddings (when vector operations needed)
-- vector-index (when database updates required)
+// Libraries imported at startup:
+- flowchart-generator (diagram generation)
+- semantic-summarizer (file change summaries)
+- embeddings (vector operations)
+- vector-index (database updates)
 ```
 
 ---
@@ -190,11 +190,11 @@ const { runWorkflow } = require('./dist/core/workflow');
 async function generateContext(specFolder) {
   try {
     const result = await runWorkflow({
-      specFolder,
-      sessionData: collectedData,
-      options: { skipValidation: false }
+      specFolderArg: specFolder,
+      collectedData: collectedData,
+      silent: false
     });
-    console.log('Context generated:', result.files);
+    console.log('Context generated:', result.writtenFiles);
   } catch (error) {
     console.error('Workflow failed:', error.message);
   }
@@ -306,7 +306,7 @@ Content here
 
 **Cause**: `config.jsonc` has syntax errors or invalid JSON
 
-**Solution**: Validate JSONC syntax (comments must use `//` not `/* */`)
+**Solution**: Validate JSONC syntax (both `//` and `/* */` comment styles are supported)
 
 ```bash
 # Check for syntax errors
@@ -355,8 +355,6 @@ cd .opencode/skill/system-spec-kit/scripts && npm run build
 | `renderers/` | Template population using extracted data |
 | `lib/` | Support libraries for embeddings, summarization |
 | `mcp_server/` | Vector database and search functionality |
-
----
 
 ---
 

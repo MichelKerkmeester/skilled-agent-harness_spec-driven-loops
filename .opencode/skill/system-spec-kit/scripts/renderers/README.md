@@ -46,10 +46,10 @@ Template renderers provide a Mustache-like templating system for populating spec
 ### Basic Usage
 
 ```typescript
-import { populateTemplate } from '@spec-kit/shared/renderers';
+import { populateTemplate } from '../renderers';
 
-// Render template with data
-const result = await populateTemplate('template.md', {
+// Render template with data (name only - '_template.md' is appended internally)
+const result = await populateTemplate('template', {
   PROJECT_NAME: 'MyProject',
   DESCRIPTION: 'A great project',
   features: ['Fast', 'Simple', 'Reliable']
@@ -144,7 +144,7 @@ const data = {
   features: []
 };
 
-await populateTemplate('template.md', data);
+await populateTemplate('template', data);
 ```
 
 #### Array Not Rendering
@@ -198,7 +198,7 @@ const data = {
 
 ```typescript
 // Test template rendering
-import { renderTemplate } from '@spec-kit/shared/renderers';
+import { renderTemplate } from '../renderers';
 
 const template = '{{#test}}Success{{/test}}';
 const data = { test: true };

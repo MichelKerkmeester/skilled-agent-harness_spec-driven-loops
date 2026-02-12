@@ -39,24 +39,24 @@ templates/
 │   ├── spec.md                        # Core + L2 addenda
 │   ├── plan.md                        # Core + L2 addenda
 │   ├── tasks.md                       # Core only
-│   ├── implementation-summary.md      # Core + L2 addenda
+│   ├── implementation-summary.md      # Core only (no addenda)
 │   └── checklist.md                   # L2 verification checklist
 │
 ├── level_3/                           # Level 3 complete templates (6 files)
-│   ├── spec.md                        # Core + L2 + L3 addenda
+│   ├── spec.md                        # Hardcoded (core + L2 + L3 content)
 │   ├── plan.md                        # Core + L2 + L3 addenda
 │   ├── tasks.md                       # Core only
-│   ├── implementation-summary.md      # Core + L2 + L3 addenda
-│   ├── checklist.md                   # L2 + L3 verification
+│   ├── implementation-summary.md      # Core only (no addenda)
+│   ├── checklist.md                   # L2 base + extended verification
 │   └── decision-record.md             # L3 architecture decision record
 │
 ├── level_3+/                          # Level 3+ complete templates (6 files)
-│   ├── spec.md                        # Core + L2 + L3 + L3+ addenda
+│   ├── spec.md                        # Hardcoded (core + L2 + L3 + L3+ content)
 │   ├── plan.md                        # Core + L2 + L3 + L3+ addenda
 │   ├── tasks.md                       # Core only
-│   ├── implementation-summary.md      # Core + L2 + L3 + L3+ addenda
-│   ├── checklist.md                   # L2 + L3 + L3+ verification
-│   └── decision-record.md             # L3 ADR + governance notes
+│   ├── implementation-summary.md      # Core only (no addenda)
+│   ├── checklist.md                   # L2 base + extended verification
+│   └── decision-record.md             # L3 architecture decision record
 │
 ├── examples/                          # Filled examples for reference
 │   ├── level_1/                       # L1 example spec folder

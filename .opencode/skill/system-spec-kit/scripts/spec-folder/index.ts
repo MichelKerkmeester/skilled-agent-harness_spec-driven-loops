@@ -7,8 +7,6 @@ import { detectSpecFolder, filterArchiveFolders } from './folder-detector';
 import {
   ALIGNMENT_CONFIG,
   extractConversationTopics,
-  extractObservationKeywords,
-  parseSpecFolderTopic,
   calculateAlignmentScore,
   validateContentAlignment,
   validateFolderAlignment,
@@ -25,8 +23,6 @@ export {
   filterArchiveFolders,
   setupContextDirectory,
   extractConversationTopics,
-  extractObservationKeywords,
-  parseSpecFolderTopic,
   calculateAlignmentScore,
   validateContentAlignment,
   validateFolderAlignment,

@@ -12,6 +12,7 @@ import { promptUser, promptUserChoice } from '../utils/prompt-utils';
 import { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs } from '../core';
 import {
   ALIGNMENT_CONFIG,
+  isArchiveFolder,
   extractConversationTopics,
   calculateAlignmentScore,
   validateContentAlignment,
@@ -23,7 +24,7 @@ import type { CollectedDataForAlignment } from './alignment-validator';
    1. INTERFACES
 ------------------------------------------------------------------*/
 
-export interface SpecFolderInfo {
+interface SpecFolderInfo {
   path: string;
   name: string;
   score?: number;
@@ -34,12 +35,18 @@ export interface SpecFolderInfo {
 ------------------------------------------------------------------*/
 
 function filterArchiveFolders(folders: string[]): string[] {
-  return folders.filter((folder) => {
-    const lowerFolder = folder.toLowerCase();
-    return !ALIGNMENT_CONFIG.ARCHIVE_PATTERNS.some((pattern) =>
-      lowerFolder.includes(pattern)
-    );
-  });
+  return folders.filter((folder) => !isArchiveFolder(folder));
+}
+
+/** Print the standard "no spec folder found" error message. */
+function printNoSpecFolderError(commandName: string = 'memory'): void {
+  console.error('\n Cannot save context: No spec folder found\n');
+  console.error(`${commandName} requires a spec folder to save memory documentation.`);
+  console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
+  console.error('Please create a spec folder first:');
+  console.error('  mkdir -p specs/###-feature-name/');
+  console.error('  OR: mkdir -p .opencode/specs/###-feature-name/\n');
+  console.error(`Then re-run ${commandName}.\n`);
 }
 
 /* -----------------------------------------------------------------
@@ -92,7 +99,7 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
         const entries = await fs.readdir(searchDir);
         const available = entries
           .filter((name) => /^\d{3}-/.test(name))
-          .filter((name) => !name.match(/^(z_|.*archive.*|.*old.*|.*\.archived.*)/i))
+          .filter((name) => !isArchiveFolder(name))
           .sort()
           .reverse();
 
@@ -178,13 +185,7 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
 
   // Priority 4: Auto-detect from specs directory
   if (!specsDir) {
-    console.error('\n Cannot save context: No spec folder found\n');
-    console.error('memory requires a spec folder to save memory documentation.');
-    console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
-    console.error('Please create a spec folder first:');
-    console.error('  mkdir -p specs/###-feature-name/');
-    console.error('  OR: mkdir -p .opencode/specs/###-feature-name/\n');
-    console.error('Then re-run memory.\n');
+    printNoSpecFolderError();
     throw new Error('No specs/ directory found');
   }
 
@@ -198,13 +199,7 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
     specFolders = filterArchiveFolders(specFolders);
 
     if (specFolders.length === 0) {
-      console.error('\n Cannot save context: No spec folder found\n');
-      console.error('memory requires a spec folder to save memory documentation.');
-      console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
-      console.error('Please create a spec folder first:');
-      console.error('  mkdir -p specs/###-feature-name/');
-      console.error('  OR: mkdir -p .opencode/specs/###-feature-name/\n');
-      console.error('Then re-run memory.\n');
+      printNoSpecFolderError();
       throw new Error('No spec folders found in specs/ directory');
     }
 
@@ -260,13 +255,7 @@ async function detectSpecFolder(collectedData: CollectedDataForAlignment | null 
         errMsg.includes('No specs/ directory found')) {
       throw error;
     }
-    console.error('\n Cannot save context: No spec folder found\n');
-    console.error('save-context requires a spec folder to save memory documentation.');
-    console.error('Every conversation with file changes must have a spec folder per conversation-documentation rules.\n');
-    console.error('Please create a spec folder first:');
-    console.error('  mkdir -p specs/###-feature-name/');
-    console.error('  OR: mkdir -p .opencode/specs/###-feature-name/\n');
-    console.error('Then re-run save-context.\n');
+    printNoSpecFolderError('save-context');
     throw new Error('specs/ directory not found');
   }
 }

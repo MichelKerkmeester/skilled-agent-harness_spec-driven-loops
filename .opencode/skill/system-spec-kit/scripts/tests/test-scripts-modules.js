@@ -161,8 +161,6 @@ async function testCoreWorkflow() {
 
     // Test 1: Module exports expected functions
     assertType(workflow.runWorkflow, 'function', 'T-002a: runWorkflow exported');
-    assertType(workflow.initializeDataLoaders, 'function', 'T-002b: initializeDataLoaders exported');
-    assertType(workflow.initializeDataLoaders, 'function', 'T-002c: initializeDataLoaders exported');
     assertType(workflow.validateNoLeakedPlaceholders, 'function', 'T-002d: validateNoLeakedPlaceholders exported');
     assertType(workflow.validateAnchors, 'function', 'T-002e: validateAnchors exported');
     assertType(workflow.extractKeyTopics, 'function', 'T-002f: extractKeyTopics exported');

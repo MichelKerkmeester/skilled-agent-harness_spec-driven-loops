@@ -19,19 +19,19 @@ import {
   normalizeInputData,
   transformOpencodeCapture,
 } from '../utils/input-normalizer';
-import type { RawInputData, NormalizedData, OpencodeCapture, Observation, UserPrompt, RecentContext, FileEntry } from '../utils/input-normalizer';
+import type { RawInputData, NormalizedData, OpencodeCapture, Observation, UserPrompt, RecentContext, FileEntry, DataSource } from '../utils/input-normalizer';
 
 // ---------------------------------------------------------------
 // 2. TYPES
 // ---------------------------------------------------------------
 
-/** Data source type indicating where loaded data came from */
-export type DataSource = 'file' | 'opencode-capture' | 'simulation';
+// Re-export DataSource from input-normalizer for consumers importing from loaders
+export type { DataSource };
 
 /** Loaded data result, which may be normalized data or simulation marker */
 export interface LoadedData {
   _isSimulation?: boolean;
-  _source?: string;
+  _source?: DataSource;
   userPrompts?: UserPrompt[];
   observations?: Observation[];
   recentContext?: RecentContext[];
@@ -105,7 +105,7 @@ async function loadCollectedData(): Promise<LoadedData> {
 
       const data: NormalizedData | RawInputData = normalizeInputData(rawData);
       console.log(`   \u2713 Loaded data from data file`);
-      return data as LoadedData;
+      return { ...data, _source: 'file' } as LoadedData;
     } catch (error) {
       const err = error as NodeJS.ErrnoException;
       if (err.code === 'ENOENT') {
@@ -174,7 +174,7 @@ async function loadCollectedData(): Promise<LoadedData> {
   console.log('   \u26A0\uFE0F  OUTPUT WILL CONTAIN PLACEHOLDER DATA - NOT REAL SESSION CONTENT');
   console.log('   \u2139\uFE0F  To save real context, AI must construct JSON and pass as argument:');
   console.log('      node generate-context.js /tmp/save-context-data.json');
-  return { _isSimulation: true };
+  return { _isSimulation: true, _source: 'simulation' };
 }
 
 // ---------------------------------------------------------------

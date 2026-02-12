@@ -8,7 +8,6 @@
 
 export {
   CONFIG,
-  loadConfig,
   getSpecsDirectories,
   findActiveSpecsDir,
   getAllExistingSpecsDirs,

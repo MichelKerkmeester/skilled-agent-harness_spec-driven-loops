@@ -72,6 +72,16 @@ const ALIGNMENT_CONFIG: AlignmentConfig = {
 };
 
 /* -----------------------------------------------------------------
+   2.5 ARCHIVE FILTERING
+------------------------------------------------------------------*/
+
+/** Check whether a folder name matches any archive pattern from config. */
+function isArchiveFolder(name: string): boolean {
+  const lowerName = name.toLowerCase();
+  return ALIGNMENT_CONFIG.ARCHIVE_PATTERNS.some((pattern) => lowerName.includes(pattern));
+}
+
+/* -----------------------------------------------------------------
    3. TOPIC EXTRACTION
 ------------------------------------------------------------------*/
 
@@ -291,7 +301,7 @@ async function validateContentAlignment(
     const entries = await fs.readdir(specsDir);
     const specFolders = entries
       .filter((name) => /^\d{3}-/.test(name))
-      .filter((name) => !name.match(/^(z_|.*archive.*|.*old.*|.*\.archived.*)/i))
+      .filter((name) => !isArchiveFolder(name))
       .sort()
       .reverse();
 
@@ -385,7 +395,7 @@ async function validateFolderAlignment(
     const entries = await fs.readdir(specsDir);
     const specFolders = entries
       .filter((name) => /^\d{3}-/.test(name))
-      .filter((name) => !name.match(/^(z_|.*archive.*|.*old.*|.*\.archived.*)/i))
+      .filter((name) => !isArchiveFolder(name))
       .sort()
       .reverse();
 
@@ -440,12 +450,11 @@ async function validateFolderAlignment(
 
 export {
   ALIGNMENT_CONFIG,
+  isArchiveFolder,
   extractConversationTopics,
   extractObservationKeywords,
-  detectWorkDomain,
   parseSpecFolderTopic,
   calculateAlignmentScore,
-  calculateAlignmentScoreWithDomain,
   validateContentAlignment,
   validateFolderAlignment,
 };

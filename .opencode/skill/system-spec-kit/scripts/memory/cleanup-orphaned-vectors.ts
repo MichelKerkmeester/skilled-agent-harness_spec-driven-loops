@@ -33,12 +33,39 @@ interface OrphanedVector {
 const dbPath: string = path.join(__dirname, '../../../mcp_server/database/context-index.sqlite');
 
 /* -----------------------------------------------------------------
+   2.1 HELP TEXT
+------------------------------------------------------------------*/
+
+const HELP_TEXT = `
+cleanup-orphaned-vectors — Remove orphaned vector embeddings and history entries
+
+Usage: node cleanup-orphaned-vectors.js [options]
+
+Options:
+  --dry-run           Preview what would be deleted without making changes
+  --help, -h          Show this help message
+
+Examples:
+  node cleanup-orphaned-vectors.js                # Run cleanup
+  node cleanup-orphaned-vectors.js --dry-run      # Preview only
+`;
+
+if (process.argv.includes('--help') || process.argv.includes('-h')) {
+  console.log(HELP_TEXT);
+  process.exit(0);
+}
+
+/* -----------------------------------------------------------------
    3. MAIN FUNCTION
 ------------------------------------------------------------------*/
 
 async function main(): Promise<void> {
+  const dryRun: boolean = process.argv.includes('--dry-run');
   let database: InstanceType<typeof Database> | null = null;
   try {
+    if (dryRun) {
+      console.log('=== DRY-RUN MODE — no changes will be made ===\n');
+    }
     console.log('Opening database:', dbPath);
     database = new Database(dbPath);
     loadSqliteVec(database);
@@ -60,16 +87,21 @@ async function main(): Promise<void> {
       if (orphanedHistory.length > 0) {
         console.log(`Found ${orphanedHistory.length} orphaned history entries`);
 
-        const deleteHistory = database.transaction((ids: OrphanedEntry[]) => {
-          const stmt = database!.prepare('DELETE FROM memory_history WHERE memory_id = ?');
-          for (const { memory_id } of ids) {
-            stmt.run(memory_id);
-          }
-        });
+        if (dryRun) {
+          console.log(`[DRY-RUN] Would delete ${orphanedHistory.length} orphaned history entries`);
+          totalCleaned += orphanedHistory.length;
+        } else {
+          const deleteHistory = database.transaction((ids: OrphanedEntry[]) => {
+            const stmt = database!.prepare('DELETE FROM memory_history WHERE memory_id = ?');
+            for (const { memory_id } of ids) {
+              stmt.run(memory_id);
+            }
+          });
 
-        deleteHistory(orphanedHistory);
-        console.log(`Deleted ${orphanedHistory.length} orphaned history entries`);
-        totalCleaned += orphanedHistory.length;
+          deleteHistory(orphanedHistory);
+          console.log(`Deleted ${orphanedHistory.length} orphaned history entries`);
+          totalCleaned += orphanedHistory.length;
+        }
       } else {
         console.log('No orphaned history entries found');
       }
@@ -94,23 +126,28 @@ async function main(): Promise<void> {
     console.log(`Found ${orphanedVectors.length} orphaned vectors`);
 
     if (orphanedVectors.length > 0) {
-      let deleted = 0;
-      const deleteStmt = database.prepare('DELETE FROM vec_memories WHERE rowid = ?');
-      const deleteBatch = database.transaction((rows: OrphanedVector[]) => {
-        for (const row of rows) {
-          deleteStmt.run(BigInt(row.rowid));
-          deleted++;
+      if (dryRun) {
+        console.log(`[DRY-RUN] Would delete ${orphanedVectors.length} orphaned vectors`);
+        totalCleaned += orphanedVectors.length;
+      } else {
+        let deleted = 0;
+        const deleteStmt = database.prepare('DELETE FROM vec_memories WHERE rowid = ?');
+        const deleteBatch = database.transaction((rows: OrphanedVector[]) => {
+          for (const row of rows) {
+            deleteStmt.run(BigInt(row.rowid));
+            deleted++;
+          }
+        });
+
+        const chunkSize = 100;
+        for (let i = 0; i < orphanedVectors.length; i += chunkSize) {
+          const chunk = orphanedVectors.slice(i, i + chunkSize);
+          deleteBatch(chunk);
+          console.log(`Deleted ${deleted}/${orphanedVectors.length} vectors`);
         }
-      });
 
-      const chunkSize = 100;
-      for (let i = 0; i < orphanedVectors.length; i += chunkSize) {
-        const chunk = orphanedVectors.slice(i, i + chunkSize);
-        deleteBatch(chunk);
-        console.log(`Deleted ${deleted}/${orphanedVectors.length} vectors`);
+        totalCleaned += deleted;
       }
-
-      totalCleaned += deleted;
     }
 
     // ---------------------------------------------------------
@@ -131,10 +168,10 @@ async function main(): Promise<void> {
     console.log(`  Memories: ${memoryCount.count}`);
     console.log(`  Vectors:  ${vectorCount.count}`);
     console.log(`  History:  ${historyCount.count}`);
-    console.log(`\nTotal cleaned: ${totalCleaned}`);
+    console.log(`\nTotal cleaned: ${totalCleaned}${dryRun ? ' (dry-run, nothing actually deleted)' : ''}`);
 
     database.close();
-    console.log('\nCleanup completed successfully');
+    console.log(`\nCleanup ${dryRun ? 'preview' : 'completed'} successfully`);
     process.exit(0);
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
@@ -154,7 +191,9 @@ async function main(): Promise<void> {
    4. INITIALIZE
 ------------------------------------------------------------------*/
 
-main();
+if (require.main === module) {
+  main();
+}
 
 /* -----------------------------------------------------------------
    5. EXPORTS

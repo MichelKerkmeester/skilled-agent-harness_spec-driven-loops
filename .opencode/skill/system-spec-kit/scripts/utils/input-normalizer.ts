@@ -7,6 +7,9 @@
 // 1. TYPES
 // ---------------------------------------------------------------
 
+/** Data source type indicating where loaded data came from */
+export type DataSource = 'file' | 'opencode-capture' | 'simulation';
+
 /** A single observation record produced by transformation */
 export interface Observation {
   type: string;
@@ -117,7 +120,7 @@ export interface TransformedCapture {
   observations: Observation[];
   recentContext: RecentContext[];
   FILES: FileEntry[];
-  _source: string;
+  _source: DataSource;
   _sessionId?: string;
   _capturedAt?: string;
 }

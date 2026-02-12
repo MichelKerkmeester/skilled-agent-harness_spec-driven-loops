@@ -63,7 +63,7 @@ import { loadCollectedData } from '../dist/loaders/index.js';
 const data = await loadCollectedData();
 
 // Data is ready to use
-console.log(`Loaded ${data.messages?.length || 0} messages`);
+console.log(`Loaded ${data.userPrompts?.length || 0} user prompts`);
 ```
 
 ### Verify Installation

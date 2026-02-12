@@ -9,7 +9,7 @@ import * as path from 'path';
 
 // Internal modules
 import { structuredLog, sanitizePath } from '../utils';
-import { CONFIG, findActiveSpecsDir, getAllExistingSpecsDirs, getSpecsDirectories } from '../core';
+import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from '../core';
 
 /* -----------------------------------------------------------------
    1. DIRECTORY SETUP
@@ -51,7 +51,6 @@ async function setupContextDirectory(specFolder: string): Promise<string> {
         // specs/ doesn't exist or can't be read
       }
 
-      const existingDirs = getAllExistingSpecsDirs();
       let errorMsg = `Spec folder does not exist: ${sanitizedPath}`;
       errorMsg += '\nPlease create the spec folder first or check the path.';
       errorMsg += `\nSearched in: ${getSpecsDirectories().join(', ')}`;

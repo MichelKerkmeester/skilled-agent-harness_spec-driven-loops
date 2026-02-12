@@ -49,7 +49,71 @@ const CORE_DIR: string = __dirname;
 const SCRIPTS_DIR: string = path.resolve(CORE_DIR, '..', '..');
 
 /* -----------------------------------------------------------------
-   3. CONFIG LOADER
+   3. CONFIG VALIDATION
+------------------------------------------------------------------*/
+
+/**
+ * Validates merged config values and falls back to defaults for invalid entries.
+ * Never throws — logs warnings and returns a safe config.
+ */
+function validateConfig(merged: WorkflowConfig, defaults: WorkflowConfig): WorkflowConfig {
+  const validated = { ...merged };
+
+  // Positive integer fields (must be > 0)
+  const positiveFields: (keyof WorkflowConfig)[] = [
+    'maxResultPreview',
+    'maxConversationMessages',
+    'maxToolOutputLines',
+    'messageTimeWindow',
+  ];
+
+  for (const field of positiveFields) {
+    const value = validated[field];
+    if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) {
+      console.warn(
+        `Warning: config "${field}" has invalid value (${JSON.stringify(value)}). ` +
+        `Must be a positive number. Falling back to default: ${defaults[field]}`
+      );
+      (validated as Record<string, unknown>)[field] = defaults[field];
+    }
+  }
+
+  // Non-negative integer fields (must be >= 0)
+  const nonNegativeFields: (keyof WorkflowConfig)[] = [
+    'contextPreviewHeadLines',
+    'contextPreviewTailLines',
+  ];
+
+  for (const field of nonNegativeFields) {
+    const value = validated[field];
+    if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
+      console.warn(
+        `Warning: config "${field}" has invalid value (${JSON.stringify(value)}). ` +
+        `Must be a non-negative number. Falling back to default: ${defaults[field]}`
+      );
+      (validated as Record<string, unknown>)[field] = defaults[field];
+    }
+  }
+
+  // Timezone offset: valid range is -12 to +14
+  if (
+    typeof validated.timezoneOffsetHours !== 'number' ||
+    !Number.isFinite(validated.timezoneOffsetHours) ||
+    validated.timezoneOffsetHours < -12 ||
+    validated.timezoneOffsetHours > 14
+  ) {
+    console.warn(
+      `Warning: config "timezoneOffsetHours" has invalid value (${JSON.stringify(validated.timezoneOffsetHours)}). ` +
+      `Must be between -12 and 14. Falling back to default: ${defaults.timezoneOffsetHours}`
+    );
+    validated.timezoneOffsetHours = defaults.timezoneOffsetHours;
+  }
+
+  return validated;
+}
+
+/* -----------------------------------------------------------------
+   4. CONFIG LOADER
 ------------------------------------------------------------------*/
 
 function isEscapedQuoteAt(str: string, index: number): boolean {
@@ -159,7 +223,8 @@ function loadConfig(): WorkflowConfig {
 
       const jsonContent: string = jsonLines.join('\n').trim();
       const userConfig = JSON.parse(jsonContent) as Partial<WorkflowConfig>;
-      return { ...defaultConfig, ...userConfig };
+      const merged = { ...defaultConfig, ...userConfig };
+      return validateConfig(merged, defaultConfig);
     }
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
@@ -171,7 +236,7 @@ function loadConfig(): WorkflowConfig {
 }
 
 /* -----------------------------------------------------------------
-   4. CONFIG OBJECT
+   5. CONFIG OBJECT
 ------------------------------------------------------------------*/
 
 const userConfig: WorkflowConfig = loadConfig();
@@ -202,7 +267,7 @@ const CONFIG: SpecKitConfig = {
 };
 
 /* -----------------------------------------------------------------
-   5. SPECS DIRECTORY UTILITIES
+   6. SPECS DIRECTORY UTILITIES
 ------------------------------------------------------------------*/
 
 function getSpecsDirectories(): string[] {
@@ -227,12 +292,11 @@ function getAllExistingSpecsDirs(): string[] {
 }
 
 /* -----------------------------------------------------------------
-   6. EXPORTS
+   7. EXPORTS
 ------------------------------------------------------------------*/
 
 export {
   CONFIG,
-  loadConfig,
   getSpecsDirectories,
   findActiveSpecsDir,
   getAllExistingSpecsDirs,

@@ -23,8 +23,8 @@ import {
   SCORE_WEIGHTS,
   DECAY_RATE,
   TIER_ORDER,
-} from '@spec-kit/mcp-server/lib/scoring/folder-scoring';
-import type { FolderMemoryInput } from '@spec-kit/mcp-server/lib/scoring/folder-scoring';
+} from '@spec-kit/shared/scoring/folder-scoring';
+import type { FolderMemoryInput } from '@spec-kit/shared/scoring/folder-scoring';
 
 /* -----------------------------------------------------------------
    2. INTERFACES

@@ -20,6 +20,7 @@ import {
 } from '../extractors';
 import { detectSpecFolder, setupContextDirectory } from '../spec-folder';
 import { populateTemplate } from '../renderers';
+import { validateNoLeakedPlaceholders, validateAnchors } from '../utils/validation-utils';
 import { shouldAutoSave, collectSessionData } from '../extractors/collect-session-data';
 import type { SessionData, CollectedDataFull } from '../extractors/collect-session-data';
 import type { FileChange, SemanticFileInfo } from '../extractors/file-extractor';
@@ -87,18 +88,7 @@ export interface WorkflowState {
 const DB_UPDATED_FILE: string = path.join(__dirname, '../../../mcp_server/database/.db-updated');
 
 /* -----------------------------------------------------------------
-   3. LAZY-LOADED DATA LOADER
-------------------------------------------------------------------*/
-
-let loadCollectedDataRef: typeof loadCollectedDataFromLoader | null = null;
-
-function initializeDataLoaders(): void {
-  if (loadCollectedDataRef) return;
-  loadCollectedDataRef = loadCollectedDataFromLoader;
-}
-
-/* -----------------------------------------------------------------
-   4. UTILITY FUNCTIONS
+   3. UTILITY FUNCTIONS
 ------------------------------------------------------------------*/
 
 function notifyDatabaseUpdated(): void {
@@ -110,25 +100,6 @@ function notifyDatabaseUpdated(): void {
     const errMsg = e instanceof Error ? e.message : String(e);
     console.error('[workflow] Database notification error:', errMsg);
   }
-}
-
-function validateNoLeakedPlaceholders(content: string, filename: string): void {
-  const leaked = content.match(/\{\{[A-Z_]+\}\}/g);
-  if (leaked) throw new Error(`Leaked placeholders in ${filename}: ${leaked.join(', ')}`);
-}
-
-function validateAnchors(content: string): string[] {
-  const open = new Set<string>();
-  const close = new Set<string>();
-  let m: RegExpExecArray | null;
-  const op = /<!-- (?:ANCHOR|anchor):([a-zA-Z0-9_-]+)/g;
-  const cp = /<!-- \/(?:ANCHOR|anchor):([a-zA-Z0-9_-]+)/g;
-  while ((m = op.exec(content))) open.add(m[1]);
-  while ((m = cp.exec(content))) close.add(m[1]);
-  const warnings: string[] = [];
-  for (const a of open) if (!close.has(a)) warnings.push(`Unclosed: ${a}`);
-  for (const a of close) if (!open.has(a)) warnings.push(`Orphaned: ${a}`);
-  return warnings;
 }
 
 interface DecisionForTopics {
@@ -245,7 +216,7 @@ async function writeFilesAtomically(
 }
 
 /* -----------------------------------------------------------------
-   5. QUALITY SCORING
+   4. QUALITY SCORING
 ------------------------------------------------------------------*/
 
 interface QualityScore {
@@ -369,7 +340,7 @@ function scoreMemoryQuality(
 }
 
 /* -----------------------------------------------------------------
-   6. MEMORY INDEXING
+   5. MEMORY INDEXING
 ------------------------------------------------------------------*/
 
 async function indexMemory(
@@ -496,7 +467,6 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     silent = false
   } = options;
 
-  initializeDataLoaders();
 
   const log = silent ? (): void => {} : console.log.bind(console);
   const warn = silent ? (): void => {} : console.warn.bind(console);
@@ -517,7 +487,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     if (dataFile) CONFIG.DATA_FILE = dataFile;
     if (specFolderArg) CONFIG.SPEC_FOLDER_ARG = specFolderArg;
 
-    collectedData = loadCollectedDataRef ? await loadCollectedDataRef() : null;
+    collectedData = await loadCollectedDataFromLoader();
     log(`   Loaded from ${collectedData?._isSimulation ? 'simulation' : 'data source'}`);
   }
 
@@ -892,13 +862,4 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 
 export {
   runWorkflow,
-  initializeDataLoaders,
-  validateNoLeakedPlaceholders,
-  validateAnchors,
-  extractKeyTopics,
-  scoreMemoryQuality,
-  writeFilesAtomically,
-  indexMemory,
-  updateMetadataWithEmbedding,
-  notifyDatabaseUpdated,
 };
