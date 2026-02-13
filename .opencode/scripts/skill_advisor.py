@@ -251,13 +251,13 @@ INTENT_BOOSTERS = {
     "template": ("workflows-documentation", 0.4),
     
     # ─────────────────────────────────────────────────────────────────
-    # WORKFLOWS-CODE: Implementation and verification (frontend/Webflow)
+    # WORKFLOWS-CODE--WEB-DEV: Implementation and verification (frontend/Webflow)
     # ─────────────────────────────────────────────────────────────────
-    "bug": ("workflows-code", 0.5),
-    "error": ("workflows-code", 0.4),
-    "implement": ("workflows-code", 0.6),
-    "refactor": ("workflows-code", 0.5),
-    "verification": ("workflows-code", 0.5),
+    "bug": ("workflows-code--web-dev", 0.5),
+    "error": ("workflows-code--web-dev", 0.4),
+    "implement": ("workflows-code--web-dev", 0.6),
+    "refactor": ("workflows-code--web-dev", 0.5),
+    "verification": ("workflows-code--web-dev", 0.5),
 
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-CODE--OPENCODE: OpenCode system code standards
@@ -300,20 +300,20 @@ INTENT_BOOSTERS = {
 MULTI_SKILL_BOOSTERS = {
     "api": [("mcp-code-mode", 0.3)],
     "changes": [("workflows-git", 0.4), ("system-spec-kit", 0.2)],
-    "code": [("workflows-code", 0.2), ("workflows-code--opencode", 0.1)],
+    "code": [("workflows-code--web-dev", 0.2), ("workflows-code--full-stack", 0.2), ("workflows-code--opencode", 0.1)],
     "context": [("system-spec-kit", 0.4)],
-    "fix": [("workflows-code", 0.3), ("workflows-git", 0.1)],
+    "fix": [("workflows-code--web-dev", 0.3), ("workflows-code--full-stack", 0.3), ("workflows-git", 0.1)],
     "mcp": [("mcp-code-mode", 0.3), ("workflows-code--opencode", 0.4)],
-    "plan": [("system-spec-kit", 0.3), ("workflows-code", 0.2)],
+    "plan": [("system-spec-kit", 0.3), ("workflows-code--web-dev", 0.2), ("workflows-code--full-stack", 0.2)],
     "save": [("system-spec-kit", 0.4), ("workflows-git", 0.2)],
     "script": [("workflows-code--opencode", 0.4)],
     "server": [("workflows-code--opencode", 0.3), ("mcp-code-mode", 0.2)],
     "session": [("system-spec-kit", 0.5)],
-    "standards": [("workflows-code--opencode", 0.4), ("workflows-code", 0.2)],
-    "style": [("workflows-code--opencode", 0.3), ("workflows-code", 0.2)],
+    "standards": [("workflows-code--opencode", 0.4), ("workflows-code--web-dev", 0.2), ("workflows-code--full-stack", 0.2)],
+    "style": [("workflows-code--opencode", 0.3), ("workflows-code--web-dev", 0.2), ("workflows-code--full-stack", 0.2)],
     "task": [("system-spec-kit", 0.3)],
-    "test": [("workflows-code", 0.3), ("workflows-chrome-devtools", 0.2)],
-    "update": [("mcp-code-mode", 0.3), ("workflows-git", 0.2), ("workflows-code", 0.2)],
+    "test": [("workflows-code--web-dev", 0.3), ("workflows-code--full-stack", 0.3), ("workflows-chrome-devtools", 0.2)],
+    "update": [("mcp-code-mode", 0.3), ("workflows-git", 0.2), ("workflows-code--web-dev", 0.2), ("workflows-code--full-stack", 0.2)],
 }
 
 
