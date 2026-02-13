@@ -4,90 +4,34 @@ argument-hint: "[recovery-mode:auto|manual]"
 allowed-tools: Read, Bash, spec_kit_memory_memory_context, spec_kit_memory_memory_search, spec_kit_memory_memory_list, spec_kit_memory_memory_stats
 ---
 
-# 🚨 MANDATORY PHASE - BLOCKING ENFORCEMENT
+# 🚨 MANDATORY FIRST ACTION - DO NOT SKIP
 
-**This phase MUST be passed before workflow execution. You CANNOT proceed until phase shows ✅ PASSED.**
-
----
-
-## 🔒 PHASE 1: RECOVERY MODE DETECTION
-
-**STATUS: ☐ BLOCKED**
+**BEFORE READING ANYTHING ELSE IN THIS FILE, CHECK `$ARGUMENTS`:**
 
 ```
-EXECUTE THIS CHECK FIRST:
+IF $ARGUMENTS contains ":auto":
+    → Store as: recovery_mode = "auto"
+    → Route to AUTO workflow (Section 6)
 
-├─ IF $ARGUMENTS contains ":auto":
-│   ├─ Store as: recovery_mode = "auto"
-│   └─ SET STATUS: ✅ PASSED → Route to AUTO workflow
-│
-├─ IF $ARGUMENTS contains ":manual":
-│   ├─ Store as: recovery_mode = "manual"
-│   └─ SET STATUS: ✅ PASSED → Route to MANUAL workflow
-│
-├─ IF $ARGUMENTS is empty or invalid:
-│   ├─ Detect recovery scenario from system state
-│   ├─ CHECK for CONTINUE_SESSION.md in recent spec folders
-│   ├─ CHECK for recent memory files with state anchor
-│   ├─ CHECK for context compaction in system messages
-│   ├─ Determine scenario: crash | compaction | timeout
-│   ├─ Store as: recovery_mode = "auto", scenario = "<detected>"
-│   └─ SET STATUS: ✅ PASSED
-│
-└─ IF detection fails:
-    ├─ ASK user: "What caused the interruption?"
-    │   Options:
-    │     A) MCP server crash/restart
-    │     B) Context compaction (conversation too long)
-    │     C) Session timeout (returned after break)
-    │     D) Manual recovery (specify reason)
-    ├─ WAIT for response
-    ├─ Store scenario and recovery_mode
-    └─ SET STATUS: ✅ PASSED
+IF $ARGUMENTS contains ":manual":
+    → Store as: recovery_mode = "manual"
+    → Route to MANUAL workflow (Section 7)
 
-**STOP HERE** - Wait for detection to complete or user to provide scenario.
+IF $ARGUMENTS is empty or invalid:
+    → Detect recovery scenario from system state
+    → CHECK for CONTINUE_SESSION.md in recent spec folders
+    → CHECK for recent memory files with state anchor
+    → CHECK for context compaction in system messages
+    → Determine scenario: crash | compaction | timeout
+    → Store as: recovery_mode = "auto", scenario = "<detected>"
 
-⛔ HARD STOP: DO NOT proceed until STATUS = ✅ PASSED
-```
-
-**Phase 1 Output:** `recovery_mode = ______` | `scenario = ______`
-
----
-
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
-
-**Before continuing to the workflow, verify phase status:**
-
-| PHASE                  | REQUIRED STATUS | YOUR STATUS | OUTPUT VALUE                    |
-| ---------------------- | --------------- | ----------- | ------------------------------- |
-| PHASE 1: RECOVERY MODE | ✅ PASSED        | ______      | mode: ______ / scenario: ______ |
-
-```
-VERIFICATION CHECK:
-├─ Phase shows ✅ PASSED?
-│   ├─ YES → Proceed to corresponding workflow section
-│   └─ NO  → STOP and complete the blocked phase
-```
-
----
-
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
-
-**YOU ARE IN VIOLATION IF YOU:**
-
-- Started recovery workflow before phase passed
-- Assumed recovery scenario without detection
-- Skipped CONTINUE_SESSION.md check
-- Did not show recovery options to user
-- Proceeded without loading session state
-
-**VIOLATION RECOVERY PROTOCOL:**
-```
-1. STOP immediately
-2. STATE: "I violated PHASE 1 by [specific action]. Correcting now."
-3. RETURN to phase validation
-4. COMPLETE the phase properly
-5. RESUME only after phase passes verification
+IF detection fails:
+    → ASK user: "What caused the interruption?"
+        A) MCP server crash/restart
+        B) Context compaction (conversation too long)
+        C) Session timeout (returned after break)
+        D) Manual recovery (specify reason)
+    → WAIT for response, store scenario and recovery_mode
 ```
 
 ---
@@ -117,17 +61,17 @@ operating_mode:
 **CRITICAL:** This command uses MCP tools directly. Native MCP only - NEVER Code Mode.
 
 ```
-┌─────────────────┬─────────────────────────────────────┬──────────┬─────────────────┐
-│ SCREEN          │ REQUIRED MCP CALLS                  │ MODE     │ ON FAILURE      │
-├─────────────────┼─────────────────────────────────────┼──────────┼─────────────────┤
-│ DETECTION       │ spec_kit_memory_memory_context({ input: "session", │ SINGLE   │ Fall back to    │
-│                 │   mode: "resume", includeContent: false })          │          │ memory_search   │
-├─────────────────┼─────────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ STATE LOAD      │ spec_kit_memory_memory_context({ input: "[session   │ SINGLE   │ Use CONTINUE.md │
-│                 │   query]", mode: "resume", includeContent: true })  │          │                 │
-├─────────────────┼─────────────────────────────────────────────────┼──────────┼─────────────────┤
-│ STATS           │ spec_kit_memory_memory_stats                    │ SINGLE   │ Show error msg  │
-└─────────────────┴─────────────────────────────────────┴──────────┴─────────────────┘
+┌─────────────────┬─────────────────────────────────────────────────────────┬──────────┬─────────────────┐
+│ SCREEN          │ REQUIRED MCP CALLS                                      │ MODE     │ ON FAILURE      │
+├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ DETECTION       │ spec_kit_memory_memory_context({ input: "session",      │ SINGLE   │ Fall back to    │
+│                 │   mode: "resume", includeContent: false })              │          │ memory_search   │
+├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ STATE LOAD      │ spec_kit_memory_memory_context({ input: "[session       │ SINGLE   │ Use CONTINUE.md │
+│                 │   query]", mode: "resume", includeContent: true })      │          │                 │
+├─────────────────┼─────────────────────────────────────────────────────────┼──────────┼─────────────────┤
+│ STATS           │ spec_kit_memory_memory_stats                            │ SINGLE   │ Show error msg  │
+└─────────────────┴─────────────────────────────────────────────────────────┴──────────┴─────────────────┘
 ```
 
 **Tool Call Format:**
@@ -135,7 +79,7 @@ operating_mode:
 spec_kit_memory_memory_context({ input: "session state", mode: "resume", specFolder: "<folder>", includeContent: true })
 spec_kit_memory_memory_search({ query: "session state", specFolder: "<folder>", includeContent: true })
 spec_kit_memory_memory_list({ limit: 5, sortBy: "updated_at" })
-spec_kit_memory_memory_stats({ includeScores: true })  // includeScores: includes composite score breakdown per folder in results
+spec_kit_memory_memory_stats({ includeScores: true })
 Read({ filePath: "<absolute_path>" })
 ```
 
@@ -153,30 +97,9 @@ This command restores the most recent session state, loads relevant context, and
 
 ---
 
-## 3. 🔧 SQLITE CRASH RECOVERY
+## 3. 🔄 CRASH RECOVERY PERSISTENCE
 
-### Immediate Persistence Pattern
-
-All session state is immediately persisted to SQLite to ensure recoverability after crashes:
-
-```javascript
-// Write-ahead logging (WAL) for crash safety
-const db = new Database(dbPath, { wal: true });
-
-// Immediate persistence on state changes
-function updateSessionState(sessionId, state) {
-  const tx = db.transaction(() => {
-    db.prepare(`
-      INSERT OR REPLACE INTO session_state
-      (session_id, state_json, updated_at)
-      VALUES (?, ?, datetime('now'))
-    `).run(sessionId, JSON.stringify(state));
-  });
-
-  tx.immediate();  // Force immediate write
-  return tx;
-}
-```
+All session state is immediately persisted to SQLite with write-ahead logging (WAL) for crash safety. State changes use IMMEDIATE transactions to survive process crashes.
 
 ### Transaction Safety
 
@@ -192,30 +115,7 @@ function updateSessionState(sessionId, state) {
 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 ```
 
-### Recovery from SQLite State
-
-```javascript
-function recoverFromSQLite(sessionId) {
-  const state = db.prepare(`
-    SELECT state_json, updated_at
-    FROM session_state
-    WHERE session_id = ?
-    ORDER BY updated_at DESC
-    LIMIT 1
-  `).get(sessionId);
-
-  if (state) {
-    return {
-      ...JSON.parse(state.state_json),
-      _recovered: true,
-      _recovered_at: new Date().toISOString(),
-      _source: 'sqlite'
-    };
-  }
-
-  return null;
-}
-```
+Recovery from SQLite returns the most recent `session_state` record for the given session ID, with `_recovered: true`, `_recovered_at` timestamp, and `_source: 'sqlite'` metadata.
 
 ---
 
@@ -245,11 +145,8 @@ Auto mode attempts automatic recovery without user confirmation.
 **Priority order:**
 
 1. **Check for CONTINUE_SESSION.md**:
-   ```bash
-   # Find most recent CONTINUE_SESSION.md
-   find specs -name "CONTINUE_SESSION.md" -type f -mtime -1 | head -1
-   ```
-   - If found and <24h old: `scenario = "crash"`, load this file
+   - Find most recent `CONTINUE_SESSION.md` in specs (modified within last 24h)
+   - If found: `scenario = "crash"`, load this file
 
 2. **Check for compaction signal**:
    - Scan system messages for "continue from where we left off"
@@ -266,69 +163,24 @@ Auto mode attempts automatic recovery without user confirmation.
 
 **For Crash (CONTINUE_SESSION.md exists):**
 
-```typescript
-// Read CONTINUE_SESSION.md
-const continueFile = Read({ filePath: "<detected_path>" })
-
-// Parse session state table
-const state = {
-  specFolder: extractFromTable("Spec Folder"),
-  lastAction: extractFromTable("Last Action"),
-  nextSteps: extractFromTable("Next Steps"),
-  progress: extractFromTable("Progress"),
-  blockers: extractFromTable("Blockers")
-}
-```
+Read the file and parse the session state table to extract:
+- `specFolder`, `lastAction`, `nextSteps`, `progress`, `blockers`
 
 **For Compaction/Timeout (use memory files):**
 
-```typescript
-// Find most recent memory with state anchor
-spec_kit_memory_memory_list({
-  limit: 1,
-  sortBy: "updated_at"
-})
-
-// Extract state from ANCHOR:state section
-const state = extractAnchor(result, "state")
 ```
+spec_kit_memory_memory_list({ limit: 1, sortBy: "updated_at" })
+```
+
+Extract state from the `ANCHOR:state` section of the most recent memory.
 
 ### Step 3: Validate Content vs Folder Alignment
 
-**CRITICAL**: Before displaying the recovery summary, validate that the memory content matches the spec folder.
+**CRITICAL**: Before displaying the recovery summary, validate that memory content matches the spec folder.
 
-```typescript
-// Extract key_files from memory metadata
-const keyFiles = extractFromYaml(memoryContent, "key_files");
-
-// Check for infrastructure mismatch
-const opencodeFiles = keyFiles.filter(f => f.includes('.opencode/'));
-const opencodeRatio = opencodeFiles.length / keyFiles.length;
-
-if (opencodeRatio > 0.5) {
-  // More than 50% of files are in .opencode/ - this is infrastructure work
-  const specFolderLower = state.specFolder.toLowerCase();
-  const infrastructurePatterns = ['memory', 'spec-kit', 'speckit', 'opencode', 'command', 'agent'];
-
-  const matchesInfrastructure = infrastructurePatterns.some(p => specFolderLower.includes(p));
-
-  if (!matchesInfrastructure) {
-    // MISMATCH DETECTED - infrastructure work filed under project folder
-    console.log("⚠️ CONTENT MISMATCH DETECTED");
-    console.log(`   Memory contains infrastructure work (${Math.round(opencodeRatio * 100)}% .opencode/ files)`);
-    console.log(`   But spec_folder is "${state.specFolder}" (project-specific)`);
-    console.log(`   Detected subpath: ${detectSubpath(opencodeFiles)}`);
-
-    // Present options
-    console.log("\n   Options:");
-    console.log("   A) Search for infrastructure-related spec folder");
-    console.log("   B) Continue with stored spec folder anyway");
-    console.log("   C) Select spec folder manually");
-
-    // Wait for user choice before proceeding
-  }
-}
-```
+Check `key_files` from memory metadata against the spec folder:
+- If >50% of key_files are in `.opencode/` but spec_folder is project-specific → **mismatch detected**
+- Infrastructure patterns to detect: `memory`, `spec-kit`, `speckit`, `opencode`, `command`, `agent`
 
 **Mismatch Detection Signals:**
 
@@ -338,6 +190,11 @@ if (opencodeRatio > 0.5) {
 | `key_files` contain `.opencode/command/` | Command development work |
 | `key_files` contain `.opencode/agent/` | Agent development work |
 | `spec_folder` doesn't match patterns | Likely saved to wrong folder |
+
+**On mismatch, present options:**
+- A) Search for infrastructure-related spec folder
+- B) Continue with stored spec folder anyway
+- C) Select spec folder manually
 
 ### Step 4: Display Recovery Summary
 
@@ -371,7 +228,7 @@ if (opencodeRatio > 0.5) {
 STATUS=OK SCENARIO=crash SESSION=specs/082-speckit-reimagined/
 ```
 
-**IMPORTANT**: Always display key files in the recovery summary. This allows the user to quickly verify that the spec folder makes sense for the work that was done. If `key_files` are in `.opencode/` but `spec_folder` is project-specific (like `005-project-name`), this is a mismatch that should be flagged.
+**IMPORTANT**: Always display key files in the recovery summary so the user can verify that the spec folder makes sense for the work that was done.
 
 ### Step 5: Auto-Continue
 
@@ -427,7 +284,7 @@ Reply with A/B/C
 
 ### Step 3: Load and Confirm State
 
-(Same as Auto Mode Step 2, but wait for confirmation before proceeding)
+Same as Auto Mode Step 2, but wait for confirmation before proceeding:
 
 ```
 Loaded session state. Confirm context is accurate?
@@ -445,11 +302,11 @@ Reply with A/B/C
 
 ### Step 4: Present Continuation Options
 
-(Same as Auto Mode Step 4)
+Same as Auto Mode Step 5.
 
 ---
 
-## 8. 📌 SESSION STATE STRUCTURE
+## 8. 🔄 SESSION STATE STRUCTURE
 
 ### CONTINUE_SESSION.md Format
 
@@ -482,12 +339,7 @@ Implemented Phase 1 detection logic, auto/manual workflows, and recovery from th
 
 ## Quick Resume
 
-**To continue this session:**
-
-```
-/memory:continue
-```
-
+To continue this session: `/memory:continue`
 Context will be automatically restored. Next action: Verify command structure.
 ```
 
@@ -514,7 +366,7 @@ Context will be automatically restored. Next action: Verify command structure.
 
 ---
 
-## 9. 🔧 FAILURE RECOVERY
+## 9. ⚠️ FAILURE RECOVERY
 
 | Failure Type                     | Recovery Action                        |
 | -------------------------------- | -------------------------------------- |
@@ -526,108 +378,7 @@ Context will be automatically restored. Next action: Verify command structure.
 
 ---
 
-## 10. 🔧 SESSION STATE MANAGER API
-
-### SessionStateManager Class Interface
-
-The `SessionStateManager` class provides programmatic access to session recovery operations:
-
-```typescript
-interface SessionStateManager {
-  /**
-   * Reset all sessions marked as interrupted (status = 'interrupted')
-   * Called on MCP server startup to clean up stale sessions
-   * @returns Number of sessions reset
-   */
-  resetInterruptedSessions(): number;
-
-  /**
-   * Recover state for a specific session
-   * Attempts recovery from multiple sources in priority order:
-   * 1. CONTINUE_SESSION.md
-   * 2. SQLite session_state table
-   * 3. Memory files with state anchor
-   *
-   * @param sessionId - The session ID to recover
-   * @returns Recovered state with _recovered: true flag, or null if not found
-   */
-  recoverState(sessionId: string): RecoveredState | null;
-
-  /**
-   * Get list of recoverable sessions
-   * @param options - Filter options (maxAge, status, specFolder)
-   * @returns Array of session summaries
-   */
-  listRecoverableSessions(options?: RecoveryOptions): SessionSummary[];
-
-  /**
-   * Mark session as recovered (prevents duplicate recovery)
-   * @param sessionId - The session ID to mark
-   */
-  markRecovered(sessionId: string): void;
-}
-```
-
-### RecoveredState Interface
-
-```typescript
-interface RecoveredState {
-  sessionId: string;
-  specFolder: string;
-  activeTask: string | null;      // Task ID if available
-  lastAction: string;
-  nextSteps: string[];
-  progress: string;               // e.g., "47% (118/250 tasks)"
-  blockers: string[];
-  timestamp: string;              // ISO timestamp
-
-  // Recovery metadata
-  _recovered: true;               // Always true for recovered state
-  _recovered_at: string;          // ISO timestamp of recovery
-  _source: 'continue_session' | 'sqlite' | 'memory_anchor';
-}
-```
-
-### Usage Example
-
-```javascript
-const manager = new SessionStateManager(dbPath);
-
-// On server startup
-const resetCount = manager.resetInterruptedSessions();
-console.log(`Reset ${resetCount} interrupted sessions`);
-
-// Recover a specific session
-const state = manager.recoverState('session-20260201-152030');
-if (state) {
-  console.log(`Recovered session from ${state._source}`);
-  console.log(`Active task: ${state.activeTask}`);
-  console.log(`Last action: ${state.lastAction}`);
-
-  // Mark as recovered to prevent re-recovery
-  manager.markRecovered(state.sessionId);
-}
-```
-
-### resetInterruptedSessions() Implementation
-
-```javascript
-resetInterruptedSessions() {
-  const result = this.db.prepare(`
-    UPDATE session_state
-    SET status = 'reset',
-        reset_at = datetime('now')
-    WHERE status = 'interrupted'
-      AND updated_at < datetime('now', '-5 minutes')
-  `).run();
-
-  return result.changes;
-}
-```
-
----
-
-## 11. 📌 ERROR HANDLING
+## 10. ⚠️ ERROR HANDLING
 
 | Condition                   | Action                                        |
 | --------------------------- | --------------------------------------------- |
@@ -639,7 +390,7 @@ resetInterruptedSessions() {
 
 ---
 
-## 12. 📌 QUICK REFERENCE
+## 11. 🔍 QUICK REFERENCE
 
 | Command                    | Result                            |
 | -------------------------- | --------------------------------- |
@@ -649,7 +400,7 @@ resetInterruptedSessions() {
 
 ---
 
-## 13. 🔍 USE CASES
+## 12. 🔍 USE CASES
 
 ### Use Case 1: Crash Recovery
 
@@ -702,7 +453,7 @@ AI: 🔄 SESSION RECOVERY
 
 ---
 
-## 14. 🔗 RELATED COMMANDS
+## 13. 🔗 RELATED COMMANDS
 
 - `/spec_kit:resume` - Resume work on spec folder (broader scope, includes planning)
 - `/spec_kit:handover` - Create handover for session continuity
@@ -711,9 +462,7 @@ AI: 🔄 SESSION RECOVERY
 
 ---
 
-## 15. 📌 NEXT STEPS
-
-After recovery completes:
+## 14. ➡️ NEXT STEPS AFTER RECOVERY
 
 | Condition                 | Suggested Action                       |
 | ------------------------- | -------------------------------------- |
@@ -726,55 +475,21 @@ After recovery completes:
 
 ---
 
-## 16. 🔧 CONFIGURATION
-
-Recovery behavior can be customized via session state:
-
-| Setting                 | Default    | Description                          |
-| ----------------------- | ---------- | ------------------------------------ |
-| `auto_recovery_enabled` | true       | Enable automatic recovery detection  |
-| `stale_session_days`    | 7          | Warn if session older than N days    |
-| `compaction_signal`     | "continue" | Text pattern to detect compaction    |
-| `state_anchor_required` | false      | Require state anchor in memory files |
-
----
-
-## 17. 📚 FULL DOCUMENTATION
-
-For comprehensive session management documentation:
-`.opencode/skill/system-spec-kit/SKILL.md`
-
----
-
-## 18. 📌 RECOVERY PRIORITIES
+## 15. 📌 RECOVERY PRIORITIES
 
 **Priority order for context sources:**
 
-1. **CONTINUE_SESSION.md** (if <24h old) - Highest fidelity
-2. **Memory file with state anchor** - Targeted state extraction
-3. **Most recent memory file (full)** - Complete context
+1. **CONTINUE_SESSION.md** (if <24h old) - Highest fidelity (~200-300 tokens)
+2. **Memory file with state anchor** - Targeted state extraction (~150-200 tokens)
+3. **Most recent memory file (full)** - Complete context (~500-1000 tokens)
 4. **checklist.md progress** - Minimal state reconstruction
 5. **User input** - Fallback when automated recovery fails
 
-**Token Efficiency:**
-- CONTINUE_SESSION.md: ~200-300 tokens
-- State anchor: ~150-200 tokens
-- Full memory file: ~500-1000 tokens
-- User input: Variable
-
 ---
 
-## 19. 📌 SESSION ISOLATION
+## 16. 🔄 SESSION ISOLATION
 
-**Security Considerations:**
-
-- Each recovery session is isolated
-- Session IDs prevent cross-session data leakage
+- Each recovery session is isolated; session IDs prevent cross-session data leakage
 - CONTINUE_SESSION.md contains no secrets
 - Memory files filtered by spec folder scope
-
-**Validation:**
-- Verify spec folder exists before loading
-- Validate session ID format
-- Check file timestamps for staleness
-- Confirm user owns spec folder (multi-user systems)
+- Verify spec folder exists before loading; validate session ID format; check timestamps for staleness

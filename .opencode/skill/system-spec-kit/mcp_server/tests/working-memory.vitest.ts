@@ -4,7 +4,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { describe, it, expect } from 'vitest';
-import * as workingMemory from '../lib/cognitive/working-memory';
+import * as workingMemory from '../lib/cache/cognitive/working-memory';
 
 describe('Working Memory Module', () => {
 

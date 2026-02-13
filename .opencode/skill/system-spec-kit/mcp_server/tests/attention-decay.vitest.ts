@@ -5,8 +5,8 @@
 // ───────────────────────────────────────────────────────────────
 
 import { describe, it, expect } from 'vitest';
-import * as attentionDecay from '../lib/cognitive/attention-decay';
-import * as fsrsScheduler from '../lib/cognitive/fsrs-scheduler';
+import * as attentionDecay from '../lib/cache/cognitive/attention-decay';
+import * as fsrsScheduler from '../lib/cache/cognitive/fsrs-scheduler';
 
 /* ─────────────────────────────────────────────────────────────
    DECAY_CONFIG
@@ -55,7 +55,7 @@ describe('Attention Decay Module', () => {
     });
 
     it('init(validDb) stores reference', () => {
-      const mockDb = { prepare: () => {}, exec: () => {} };
+      const mockDb = { prepare: () => { }, exec: () => { } };
       attentionDecay.init(mockDb as any);
       const db = attentionDecay.getDb();
       // @ts-ignore: test mock comparison

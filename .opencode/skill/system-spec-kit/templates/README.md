@@ -1,10 +1,35 @@
+---
+title: "Templates"
+description: "Spec folder templates implementing the CORE + ADDENDUM v2.2 architecture for progressive documentation enhancement."
+trigger_phrases:
+  - "templates"
+  - "spec folder templates"
+  - "template architecture"
+importance_tier: "normal"
+---
+
 # Templates
 
 > Spec folder templates implementing the CORE + ADDENDUM v2.2 architecture for progressive documentation enhancement.
 
 ---
 
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. 💡 LEVEL SELECTION GUIDE](#3--level-selection-guide)
+- [4. 📦 STANDALONE TEMPLATES](#4--standalone-templates)
+- [5. 💡 USAGE GUIDE](#5--usage-guide)
+- [6. 📚 RELATED DOCUMENTS](#6--related-documents)
+
+<!-- /ANCHOR:table-of-contents -->
+
+---
+
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 This directory contains all templates used by the system-spec-kit for creating spec folder documentation. Templates follow the CORE + ADDENDUM v2.2 architecture, where core files remain constant across all levels, and addendum sections are progressively added based on documentation level.
 
@@ -14,7 +39,12 @@ This directory contains all templates used by the system-spec-kit for creating s
 - **Level selection** is driven by LOC count, complexity, and governance requirements
 - **Standalone templates** exist for special-purpose documentation (research, handover, debug-delegation)
 
+<!-- /ANCHOR:overview -->
+
+---
+
 ## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 templates/
@@ -76,9 +106,12 @@ templates/
 └── debug-delegation.md                # Standalone: Debug escalation template
 ```
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-## 3. 🎯 LEVEL SELECTION GUIDE
+## 3. 💡 LEVEL SELECTION GUIDE
+<!-- ANCHOR:level-selection-guide -->
 
 Choose the documentation level based on **LOC (Lines of Code)**, **complexity**, and **governance requirements**.
 
@@ -97,9 +130,12 @@ Choose the documentation level based on **LOC (Lines of Code)**, **complexity**,
 
 **When in doubt:** Choose the higher level for better documentation coverage.
 
+<!-- /ANCHOR:level-selection-guide -->
+
 ---
 
-## 4. 📝 STANDALONE TEMPLATES
+## 4. 📦 STANDALONE TEMPLATES
+<!-- ANCHOR:standalone-templates -->
 
 These templates are used independently, not as part of a spec folder level.
 
@@ -115,9 +151,12 @@ These templates are used independently, not as part of a spec folder level.
 - `research.md` is comprehensive (16 sections, ~900 lines) for full technical documentation
 - `handover.md` and `debug-delegation.md` are workflow-specific, created on-demand
 
+<!-- /ANCHOR:standalone-templates -->
+
 ---
 
 ## 5. 💡 USAGE GUIDE
+<!-- ANCHOR:examples -->
 
 ### For Templates
 
@@ -167,12 +206,16 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 # Or use /memory:save command
 ```
 
+<!-- /ANCHOR:examples -->
+
 ---
 
 ## 6. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 - **Template Mapping**: See `references/templates/template_guide.md` for selection logic
 - **Template Style Guide**: See `references/templates/template_style_guide.md` for formatting rules
 - **Level Specifications**: See `references/templates/level_specifications.md` for level requirements
 - **Validation Rules**: See `references/validation/validation_rules.md` for quality checks
 - **Example Spec Folders**: See `examples/` for filled-in reference implementations
+<!-- /ANCHOR:related -->

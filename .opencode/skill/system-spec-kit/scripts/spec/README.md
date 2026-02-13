@@ -1,3 +1,14 @@
+---
+title: "Spec Scripts"
+description: "Bash scripts for creating, validating, and managing spec folders in the SpecKit workflow"
+trigger_phrases:
+  - "spec scripts"
+  - "create spec folder"
+  - "validate spec folder"
+  - "spec folder management"
+importance_tier: "normal"
+---
+
 # Spec Scripts
 
 > Bash scripts for creating, validating, and managing spec folders in the SpecKit workflow.
@@ -5,6 +16,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -14,7 +26,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Spec Scripts?
 
@@ -39,7 +53,9 @@ The `scripts/spec/` directory contains Bash scripts that automate spec folder li
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Create a New Spec Folder
 
@@ -79,7 +95,9 @@ The `scripts/spec/` directory contains Bash scripts that automate spec folder li
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 scripts/spec/
@@ -104,7 +122,9 @@ scripts/spec/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -168,7 +188,9 @@ ls -la .opencode/skill/system-spec-kit/templates/
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -189,3 +211,4 @@ ls -la .opencode/skill/system-spec-kit/templates/
 ---
 
 *Documentation version: 1.0 | Last updated: 2026-01-21*
+<!-- /ANCHOR:related -->

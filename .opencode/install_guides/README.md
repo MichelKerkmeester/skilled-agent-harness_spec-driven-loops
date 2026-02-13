@@ -1,12 +1,13 @@
 # OpenCode Dev Environment — Installation Guide
 
-AI-executable guide for the OpenCode dev environment. Installs 3 native MCP servers, 9 native skills, and optional CLI tools. Execute phases sequentially—each includes validation checkpoints.
+> AI-executable guide for the OpenCode dev environment. Installs 3 native MCP servers, 9 native skills, and optional CLI tools. Execute phases sequentially—each includes validation checkpoints.
 
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-0. [🤖 AI-FIRST INSTALL GUIDE](#-ai-first-install-guide)
+0. [🤖 AI-FIRST INSTALL GUIDE](#0--ai-first-install-guide)
 1. [🔎 PRE-FLIGHT CHECK](#1--pre-flight-check)
 2. [🔍 ENVIRONMENT DETECTION](#2--environment-detection)
 3. [📋 VERSION COMPATIBILITY & RESOURCES](#3--version-compatibility--resources)
@@ -25,7 +26,9 @@ AI-executable guide for the OpenCode dev environment. Installs 3 native MCP serv
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 0. 🤖 AI-FIRST INSTALL GUIDE
+<!-- ANCHOR:ai-first-install-guide -->
 
 Copy this prompt to your AI assistant:
 
@@ -43,7 +46,9 @@ Start with Pre-Flight Check to detect what's already installed, then guide me th
 
 ---
 
+<!-- /ANCHOR:ai-first-install-guide -->
 ## 1. 🔎 PRE-FLIGHT CHECK
+<!-- ANCHOR:pre-flight-check -->
 
 Run this command to detect what's already installed:
 
@@ -84,7 +89,9 @@ echo ""
 
 ---
 
+<!-- /ANCHOR:pre-flight-check -->
 ## 2. 🔍 ENVIRONMENT DETECTION
+<!-- ANCHOR:environment-detection -->
 
 Answer these questions to configure your installation:
 
@@ -179,7 +186,9 @@ git checkout -- script.sh
 
 ---
 
+<!-- /ANCHOR:environment-detection -->
 ## 3. 📋 VERSION COMPATIBILITY & RESOURCES
+<!-- ANCHOR:version-compatibility--resources -->
 
 ### 3.1 Version Compatibility Matrix
 
@@ -226,7 +235,9 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 ---
 
+<!-- /ANCHOR:version-compatibility--resources -->
 ## 4. 🧩 COMPONENT MATRIX
+<!-- ANCHOR:component-matrix -->
 
 ### 4.1 Component Overview
 
@@ -305,7 +316,9 @@ Prerequisites → Code Mode → Spec Kit Memory
 
 ---
 
+<!-- /ANCHOR:component-matrix -->
 ## 5. 📥 PHASE 1: PREREQUISITES
+<!-- ANCHOR:phase-1-prerequisites -->
 
 > **Skip Check:** Run `node -v && python3 -V` — if both return versions, skip to Phase 2.
 
@@ -388,7 +401,9 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 
 ---
 
+<!-- /ANCHOR:phase-1-prerequisites -->
 ## 6. 🤖 PHASE 2: OLLAMA & MODELS (OPTIONAL)
+<!-- ANCHOR:phase-2-ollama--models -->
 
 Ollama provides local LLM inference and embeddings. **No longer required** for Spec Kit Memory.
 
@@ -456,7 +471,9 @@ ollama list | grep -q "nomic-embed-text" && echo "✅ PASS" || echo "❌ FAIL"
 
 ---
 
+<!-- /ANCHOR:phase-2-ollama--models -->
 ## 7. ⚙️ PHASE 3: MCP SERVERS
+<!-- ANCHOR:phase-3-mcp-servers -->
 
 > **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json && echo "✅ All configured"` — if all configured, skip to Phase 4.
 
@@ -714,7 +731,9 @@ grep -q '"code_mode"' opencode.json && grep -q '"spec_kit_memory"' opencode.json
 
 ---
 
+<!-- /ANCHOR:phase-3-mcp-servers -->
 ## 8. 🔌 PHASE 4: PLUGINS
+<!-- ANCHOR:phase-4-plugins -->
 
 ### 8.1 Native Skills (Built-in)
 
@@ -813,7 +832,9 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 
 ---
 
+<!-- /ANCHOR:phase-4-plugins -->
 ## 9. 📝 CONFIGURATION TEMPLATES
+<!-- ANCHOR:configuration-templates -->
 
 ### 9.1 Complete `opencode.json` (Full Bundle)
 
@@ -883,7 +904,9 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 
 ---
 
+<!-- /ANCHOR:configuration-templates -->
 ## 10. ✅ FINAL VERIFICATION
+<!-- ANCHOR:final-verification -->
 
 ### Checklist
 
@@ -917,7 +940,9 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers
 
 ---
 
+<!-- /ANCHOR:final-verification -->
 ## 11. 🚨 DISASTER RECOVERY
+<!-- ANCHOR:disaster-recovery -->
 
 Emergency procedures for backup, recovery, and clean uninstallation of OpenCode components. Use this section when things go wrong or when performing maintenance.
 
@@ -1031,7 +1056,9 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 ---
 
+<!-- /ANCHOR:disaster-recovery -->
 ## 12. ⚙️ POST-INSTALLATION CONFIGURATION
+<!-- ANCHOR:post-installation-configuration -->
 
 After installing OpenCode components, customize the AI agent configuration for your project.
 
@@ -1119,7 +1146,9 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 ---
 
+<!-- /ANCHOR:post-installation-configuration -->
 ## 13. 🚀 WHAT'S NEXT?
+<!-- ANCHOR:whats-next -->
 
 Congratulations on completing the installation! Here's your roadmap for getting started.
 
@@ -1170,7 +1199,9 @@ Congratulations on completing the installation! Here's your roadmap for getting 
 
 ---
 
+<!-- /ANCHOR:whats-next -->
 ## 14. 🔧 TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 <details>
 <summary><strong>Code Mode Issues</strong></summary>
@@ -1301,7 +1332,9 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 15. 📖 QUICK REFERENCE
+<!-- ANCHOR:quick-reference -->
 
 ### Essential Commands
 
@@ -1337,3 +1370,5 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 | Commands           | 19    | /create:* (6), /memory:* (5), /spec_kit:* (7), agent_router (1)                                                                            |
 | CLI Tools          | 1     | Chrome DevTools (bdg)                                                                                                                    |
 | Plugins            | 2     | Antigravity Auth, OpenAI Codex Auth                                                                                                      |
+
+<!-- /ANCHOR:quick-reference -->

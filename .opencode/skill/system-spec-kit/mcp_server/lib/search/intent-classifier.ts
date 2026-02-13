@@ -263,7 +263,7 @@ function applyIntentWeights(
   return results.map(r => ({
     ...r,
     intentAdjustedScore:
-      ((r.similarity as number) || 0) * weights.similarity +
+      (((r.similarity as number) || 0) / 100) * weights.similarity +
       ((r.importance_weight as number) || 0.5) * weights.importance,
   })).sort((a, b) =>
     ((b.intentAdjustedScore as number) || 0) - ((a.intentAdjustedScore as number) || 0)

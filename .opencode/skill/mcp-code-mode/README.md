@@ -1,6 +1,16 @@
+---
+title: "Code Mode MCP - TypeScript Tool Execution"
+description: "MCP orchestration via TypeScript execution for efficient multi-tool workflows with 98.7% context reduction and 60% faster execution."
+trigger_phrases:
+  - "code mode"
+  - "call_tool_chain"
+  - "utcp"
+importance_tier: "normal"
+---
+
 # Code Mode MCP - TypeScript Tool Execution
 
-MCP orchestration via TypeScript execution for efficient multi-tool workflows. Provides **98.7% context reduction** and **60% faster execution** through progressive tool discovery and code-based tool chaining.
+> MCP orchestration via TypeScript execution for efficient multi-tool workflows. Provides **98.7% context reduction** and **60% faster execution** through progressive tool discovery and code-based tool chaining.
 
 > **Navigation**:
 > - New to Code Mode? Start with [Quick Start](#2--quick-start)
@@ -13,23 +23,26 @@ MCP orchestration via TypeScript execution for efficient multi-tool workflows. P
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
-- [3. 🎯 TOOL SELECTION GUIDE](#3--tool-selection-guide)
-- [4. 🔧 MCP TOOLS (7 TOTAL)](#4--mcp-tools-7-total)
-- [5. 📛 NAMING CONVENTION](#5--naming-convention)
+- [3. 💡 TOOL SELECTION GUIDE](#3--tool-selection-guide)
+- [4. 🔌 MCP TOOLS (7 TOTAL)](#4--mcp-tools-7-total)
+- [5. 🔧 NAMING CONVENTION](#5--naming-convention)
 - [6. ⚙️ CONFIGURATION](#6--configuration)
 - [7. 🏗️ ARCHITECTURE](#7--architecture)
 - [8. 📊 PERFORMANCE](#8--performance)
 - [9. 💡 USAGE PATTERNS](#9--usage-patterns)
 - [10. 🛠️ TROUBLESHOOTING](#10--troubleshooting)
 - [11. 📚 RESOURCES](#11--resources)
-- [12. 📋 QUICK REFERENCE CARD](#12--quick-reference-card)
+- [12. 📊 QUICK REFERENCE CARD](#12--quick-reference-card)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What It Does
 
@@ -71,7 +84,9 @@ Research from [Apple](https://machinelearning.apple.com/research/codeact), [Clou
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Prerequisites
 
@@ -111,7 +126,9 @@ call_tool_chain({
 
 ---
 
-## 3. 🎯 TOOL SELECTION GUIDE
+<!-- /ANCHOR:quick-start -->
+## 3. 💡 TOOL SELECTION GUIDE
+<!-- ANCHOR:tool-selection-guide -->
 
 ### Tools at a Glance
 
@@ -165,7 +182,9 @@ search_tools  call_tool_   list_tools  register_   deregister_
 
 ---
 
-## 4. 🔧 MCP TOOLS (7 TOTAL)
+<!-- /ANCHOR:tool-selection-guide -->
+## 4. 🔌 MCP TOOLS (7 TOTAL)
+<!-- ANCHOR:mcp-tools-7-total -->
 
 ### 4.1 call_tool_chain
 
@@ -311,7 +330,9 @@ register_manual({
 
 ---
 
-## 5. 📛 NAMING CONVENTION
+<!-- /ANCHOR:mcp-tools-7-total -->
+## 5. 🔧 NAMING CONVENTION
+<!-- ANCHOR:naming-convention -->
 
 ### Critical Pattern
 
@@ -359,7 +380,9 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 
 ---
 
+<!-- /ANCHOR:naming-convention -->
 ## 6. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Configuration Files
 
@@ -431,7 +454,9 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 
 ---
 
+<!-- /ANCHOR:configuration -->
 ## 7. 🏗️ ARCHITECTURE
+<!-- ANCHOR:architecture -->
 
 ### System Overview
 
@@ -477,7 +502,9 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 
 ---
 
+<!-- /ANCHOR:architecture -->
 ## 8. 📊 PERFORMANCE
+<!-- ANCHOR:performance -->
 
 ### Benchmark Results
 
@@ -508,7 +535,9 @@ Independent [Python benchmark study](https://github.com/imran31415/codemode_pyth
 
 ---
 
+<!-- /ANCHOR:performance -->
 ## 9. 💡 USAGE PATTERNS
+<!-- ANCHOR:examples -->
 
 ### Pattern 1: Single Tool Call
 
@@ -583,7 +612,9 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 10. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Errors
 
@@ -642,7 +673,9 @@ tool_info({ tool_name: "webflow.webflow_sites_list" });
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 11. 📚 RESOURCES
+<!-- ANCHOR:related -->
 
 ### Bundled Files
 
@@ -708,7 +741,9 @@ call_tool_chain({
 
 ---
 
-## 12. 📋 QUICK REFERENCE CARD
+<!-- /ANCHOR:related -->
+## 12. 📊 QUICK REFERENCE CARD
+<!-- ANCHOR:quick-reference-card -->
 
 ### Essential Commands
 
@@ -744,3 +779,4 @@ Examples:
 - `figma.figma_get_file({})`
 
 **Remember**: Code Mode is for **external MCP tools** (Webflow, Figma, ClickUp, etc.). Native MCP tools like Sequential Thinking and Spec Kit Memory should be called directly, NOT through `call_tool_chain()`.
+<!-- /ANCHOR:quick-reference-card -->

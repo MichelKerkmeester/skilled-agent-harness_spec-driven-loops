@@ -175,11 +175,47 @@ EOF
 
 | Field              | Value                                                                                  |
 | ------------------ | -------------------------------------------------------------------------------------- |
-| **Version**        | v1.3.3.0                                                                               |
-| **Release Date**   | 2026-02-11                                                                             |
+| **Version**        | v2.0.1.0                                                                               |
+| **Release Date**   | 2026-02-13                                                                             |
 | **GitHub**         | https://github.com/MichelKerkmeester/opencode-spec-kit-framework                       |
 | **Latest Release** | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/latest       |
-| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v1.3.3.0 |
+| **Release Notes**  | https://github.com/MichelKerkmeester/opencode-spec-kit-framework/releases/tag/v2.0.1.0 |
+
+### Release Notes
+
+**7 specs (111-117)** delivering documentation alignment, memory system integration, and prompt optimization across **130+ files** with **10,000+ lines reduced** and **4,037 tests passing**.
+
+#### Highlights
+
+##### 🏗️ Memory System Integration (Spec 111)
+- **README Anchor Schema**: 4-source indexing pipeline with anchor prefix matching
+- **Memory-README bridge**: 49 new tests, `includeReadmes` parameter, tiered importance weights
+- **Coverage**: ~40 files modified
+
+##### 📝 Documentation Alignment (Specs 112-115)
+- **Anchor coverage**: ~473 anchor tags embedded across 74 READMEs
+- **README template**: `readme_template.md` reduced 1589→1058 lines (-33%), 16→14 sections
+- **Root README**: Restructured 7→9 sections (756→1118 lines), enriched with MCP tools, cognitive features, search architecture, usage examples
+- **Style enforcement**: 7 rules applied across 75 READMEs, 5 memory command READMEs aligned
+- **Commands**: 12 command files restored, agent routing fixed
+
+##### 📋 Command & Prompt Optimization (Specs 116-117)
+- **YAML reduction**: 13 YAML files 13,333→5,378 lines (-59.7%)
+- **Prompt reduction**: 7 `.md` files 3,746→2,239 lines (-40.2%)
+- **/create:folder_readme**: YAML 765→611 lines (-20%), fixed 10 alignment gaps
+- **Combined savings**: 9,462 lines removed (55.4%)
+
+##### 🧪 Testing
+- **Test suite**: 4,037 tests across 120 test files
+- **Memory integration**: 49 new tests for anchor schema
+
+#### Files Changed
+~130+ files across skills, commands, templates, READMEs, and tests
+
+#### Upgrade
+No action required. Pull latest to get documentation improvements, memory integration, and prompt optimization.
+
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v2.0.0.7...v2.0.1.0
 
 ---
 
@@ -312,6 +348,8 @@ Releases use a 4-part versioning scheme: `MAJOR.MINOR.SERIES.PATCH`
 | `1.3.1.x` | 1.3.1.0     | @context prompt compression                |
 | `1.3.2.x` | 1.3.2.0     | @speckit exclusivity + governance rules    |
 | `1.3.3.x` | 1.3.3.0     | Claude Code subagents + orchestrate.md improvements |
+| `2.0.0.x` | 2.0.0.0-7   | JS→TS migration, Spec Kit script automation, architectural refactoring |
+| `2.0.1.x` | 2.0.1.0     | Documentation alignment & optimization (specs 111-117) |
 
 ---
 

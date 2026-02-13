@@ -177,15 +177,29 @@ export async function formatSearchResults(
           let foundCount = 0;
 
           for (const anchorId of anchors) {
-            if (extracted[anchorId]) {
-              filteredParts.push(`<!-- ANCHOR:${anchorId} -->\n${extracted[anchorId]}\n<!-- /ANCHOR:${anchorId} -->`);
+            // SK-005 Prefix matching: try exact match first, then fall back to
+            // prefix match for composite anchor IDs (e.g. 'summary' matches
+            // 'summary-session-1770903150838-...'). Prefers shortest match to
+            // select the most specific key when multiple keys share a prefix.
+            const matchingKey = extracted[anchorId] !== undefined
+              ? anchorId
+              : Object.keys(extracted)
+                  .filter(key => key.startsWith(anchorId + '-'))
+                  .sort((a, b) => a.length - b.length)[0] ?? undefined;
+
+            if (matchingKey !== undefined) {
+              filteredParts.push(`<!-- ANCHOR:${matchingKey} -->\n${extracted[matchingKey]}\n<!-- /ANCHOR:${matchingKey} -->`);
               foundCount++;
             }
           }
 
           if (filteredParts.length > 0) {
             // SK-005 Fix: Warn about missing anchors in partial match
-            const missingAnchors = anchors.filter(a => !extracted[a]);
+            // Use same prefix-matching logic for consistency
+            const missingAnchors = anchors.filter(a => {
+              if (extracted[a] !== undefined) return false;
+              return !Object.keys(extracted).some(key => key.startsWith(a + '-'));
+            });
             if (missingAnchors.length > 0) {
               filteredParts.push(`<!-- WARNING: Requested anchors not found: ${missingAnchors.join(', ')} -->`);
             }

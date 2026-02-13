@@ -1,3 +1,13 @@
+---
+title: "Storage Layer"
+description: "Persistence layer for the Spec Kit Memory MCP server - handles memory indexing, checkpoints, causal graphs, and atomic file operations."
+trigger_phrases:
+  - "storage layer"
+  - "memory indexing"
+  - "checkpoints"
+importance_tier: "normal"
+---
+
 # Storage Layer
 
 > Persistence layer for the Spec Kit Memory MCP server - handles memory indexing, checkpoints, causal graphs, and atomic file operations.
@@ -5,17 +15,20 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. FEATURES](#3--features)
-- [4. USAGE EXAMPLES](#4--usage-examples)
-- [5. TROUBLESHOOTING](#5--troubleshooting)
-- [6. RELATED RESOURCES](#6--related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. ⚡ FEATURES](#3--features)
+- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
+- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
+- [6. 📚 RELATED RESOURCES](#6--related-resources)
 
 ---
 
-## 1. OVERVIEW
+<!-- /ANCHOR:table-of-contents -->
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The storage layer provides all persistence operations for the Spec Kit Memory MCP server. It manages memory state across sessions, tracks access patterns for relevance scoring, and enables causal relationship mapping between memories.
 
@@ -38,7 +51,9 @@ The storage layer provides all persistence operations for the Spec Kit Memory MC
 
 ---
 
-## 2. STRUCTURE
+<!-- /ANCHOR:overview -->
+## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 storage/
@@ -66,7 +81,9 @@ storage/
 
 ---
 
-## 3. FEATURES
+<!-- /ANCHOR:structure -->
+## 3. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Incremental Indexing (v1.2.0)
 
@@ -186,7 +203,9 @@ Note: Restored checkpoints do **not** include embedding vectors. Run `memory_ind
 
 ---
 
-## 4. USAGE EXAMPLES
+<!-- /ANCHOR:features -->
+## 4. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Check if File Needs Re-indexing
 
@@ -267,7 +286,9 @@ console.log(`Restored ${result.restored} memories, ${result.skipped} skipped`);
 
 ---
 
-## 5. TROUBLESHOOTING
+<!-- /ANCHOR:examples -->
+## 5. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -342,7 +363,9 @@ console.log(getUnindexedDocuments());
 
 ---
 
-## 6. RELATED RESOURCES
+<!-- /ANCHOR:troubleshooting -->
+## 6. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -360,3 +383,4 @@ console.log(getUnindexedDocuments());
 ---
 
 *Documentation version: 1.7.2 | Last updated: 2026-02-08 | Storage layer v1.2.0*
+<!-- /ANCHOR:related -->

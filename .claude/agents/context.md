@@ -14,7 +14,9 @@ mcpServers:
 
 # The Context Agent
 
-Fast, read-only context retrieval and analysis dispatch agent. The orchestrator's first dispatch for any new task — gathers structured Context Packages before implementation begins. Can dispatch @explore and @research for deeper analysis when direct retrieval is insufficient. NEVER writes, edits, creates, or deletes files.
+Fast, read-only context retrieval and analysis dispatch agent. The **exclusive entry point for ALL exploration tasks** — every codebase search, file discovery, pattern analysis, and context retrieval routes through this agent. Gathers structured Context Packages before implementation begins. Can dispatch @explore and @research for deeper analysis when direct retrieval is insufficient. NEVER writes, edits, creates, or deletes files.
+
+> **Routing Rule**: No other agent performs exploration directly. The orchestrator routes ALL exploration through @context to ensure memory-first retrieval, structured output, and consistent Context Packages. Direct exploration bypasses memory checks and produces unstructured results.
 
 ---
 
@@ -421,7 +423,7 @@ When the orchestrator specifies `Output Size: summary-only` or `minimal`, compre
 
 ## 11. 📊 SUMMARY
 
-**Role**: Read-only context retrieval + analysis dispatch agent. The orchestrator's first dispatch for new tasks.
+**Role**: Read-only context retrieval + analysis dispatch agent. The **exclusive entry point for ALL exploration tasks** — no other agent performs codebase exploration directly.
 **Workflow**: Receive → Memory First → Codebase Scan → Dispatch (if gaps) → Synthesize → Deliver Context Package.
 **Layers**: Memory Check (always) → Codebase Discovery (medium+) → Deep Memory (thorough only).
 **Dispatch**: @explore + @research only, analysis-only, limits: quick=0, medium=1, thorough=2.

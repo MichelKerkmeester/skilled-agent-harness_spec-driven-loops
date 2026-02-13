@@ -1,7 +1,20 @@
+---
+title: "MCP Server Core Modules"
+description: "Central configuration, state management, and module coordination for the Spec Kit Memory MCP server."
+trigger_phrases:
+  - "core modules"
+  - "mcp config"
+  - "database state"
+importance_tier: "normal"
+---
+
 # MCP Server Core Modules
 
-Central configuration, state management, and module coordination for the Spec Kit Memory MCP server.
+> Central configuration, state management, and module coordination for the Spec Kit Memory MCP server.
 
+---
+
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. OVERVIEW](#1--overview)
@@ -11,10 +24,12 @@ Central configuration, state management, and module coordination for the Spec Ki
 - [5. USAGE EXAMPLES](#5--usage-examples)
 - [6. TROUBLESHOOTING](#6--troubleshooting)
 - [7. RELATED DOCUMENTS](#7--related-documents)
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. OVERVIEW
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 ### What is this folder?
 
@@ -36,10 +51,12 @@ The `core/` folder contains essential infrastructure modules that provide config
 |-------------|---------|---------|
 | Node.js | 18+ | Runtime environment |
 | better-sqlite3 | 9.0.0+ | Database operations |
+<!-- /ANCHOR:overview -->
 
 ---
 
-## 2. QUICK START
+<!-- ANCHOR:quick-start -->
+## 2. 🚀 QUICK START
 
 ### Using Core Modules in Your Code
 
@@ -102,10 +119,12 @@ if (!ready) {
   throw new Error('Embedding model warmup timeout');
 }
 ```
+<!-- /ANCHOR:quick-start -->
 
 ---
 
-## 3. STRUCTURE
+<!-- ANCHOR:structure -->
+## 3. 📁 STRUCTURE
 
 ```
 core/
@@ -130,10 +149,12 @@ dist/core/
 | `index.ts` | Aggregates all core modules for convenient import | All config + db-state exports |
 | `config.ts` | Defines paths, limits, and system constants | 8 categories of constants |
 | `db-state.ts` | Manages database connection state and external updates | 12 state management functions |
+<!-- /ANCHOR:structure -->
 
 ---
 
-## 4. FEATURES
+<!-- ANCHOR:features -->
+## 4. ⚡ FEATURES
 
 ### config.ts Features
 
@@ -254,10 +275,12 @@ Caches constitutional memories for 60 seconds to reduce database load.
 | `setConstitutionalCache(cache)` | Update cache with timestamp |
 | `getConstitutionalCacheTime()` | Get cache creation timestamp |
 | `clearConstitutionalCache()` | Invalidate cache |
+<!-- /ANCHOR:features -->
 
 ---
 
-## 5. USAGE EXAMPLES
+<!-- ANCHOR:examples -->
+## 5. 💡 USAGE EXAMPLES
 
 ### Example 1: External Update Detection
 
@@ -347,10 +370,12 @@ async function handleSearch(query: string) {
 | Validate input | `if (query.length > MAX_QUERY_LENGTH)` | User-provided strings |
 | Rate limit check | `await getLastScanTime()` | Resource-intensive operations |
 | Wait for model | `await waitForEmbeddingModel()` | Startup or first search |
+<!-- /ANCHOR:examples -->
 
 ---
 
-## 6. TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
+## 6. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
 
@@ -437,10 +462,12 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite \
   "SELECT COUNT(*) FROM memory_index;"
 ```
+<!-- /ANCHOR:troubleshooting -->
 
 ---
 
-## 7. RELATED DOCUMENTS
+<!-- ANCHOR:related -->
+## 7. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
 
@@ -473,6 +500,7 @@ sqlite3 .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 |----------|-------------|
 | [Spec Kit Memory Skill](../../SKILL.md) | Parent skill documentation |
 | [Database Schema](../../references/memory/memory_system.md) | Memory database structure |
+<!-- /ANCHOR:related -->
 
 ---
 

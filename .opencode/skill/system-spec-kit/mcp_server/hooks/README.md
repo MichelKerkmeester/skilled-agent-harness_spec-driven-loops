@@ -1,8 +1,21 @@
+---
+title: "Hooks"
+description: "Automatic memory surfacing hooks for context injection."
+trigger_phrases:
+  - "hooks"
+  - "memory surfacing"
+  - "context injection"
+importance_tier: "normal"
+---
+
 # Hooks
 
-Automatic memory surfacing hooks for context injection.
+> Automatic memory surfacing hooks for context injection.
+
+---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -12,9 +25,12 @@ Automatic memory surfacing hooks for context injection.
 - [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
 - [7. 📚 RELATED DOCUMENTS](#7--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 **Purpose**: Hooks provide automatic memory surfacing for memory-aware tools. They inject constitutional and triggered memories into tool responses before execution, improving context awareness without explicit search calls.
 
@@ -32,9 +48,12 @@ Automatic memory surfacing hooks for context injection.
 Tool Invoked → Extract Context → Surface Constitutional + Triggered → Inject into Response
 ```
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Basic Hook Usage
 
@@ -70,9 +89,12 @@ const notAware = hooks.is_memory_aware_tool('file_read');
 // Returns: false
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 hooks/
@@ -87,9 +109,12 @@ hooks/
 | `index.ts` | Exports all hook functions with camelCase aliases |
 | `memory-surface.ts` | Core implementation of memory surfacing logic |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Automatic Memory Surfacing
 
@@ -163,9 +188,12 @@ const constitutional2 = await get_constitutional_memories();
 clear_constitutional_cache();
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Tool Integration Pattern
 
@@ -238,9 +266,12 @@ if (surfaced) {
 | `auto_surface_memories()` | Surface all relevant | Main hook entry point |
 | `clear_constitutional_cache()` | Reset cache | After memory updates/deletes |
 
+<!-- /ANCHOR:examples -->
+
 ---
 
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -337,9 +368,12 @@ const MEMORY_AWARE_TOOLS = new Set([
 | High latency | Check database indexes, reduce trigger phrase count |
 | Tool not triggering | Add to `MEMORY_AWARE_TOOLS` set |
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -360,3 +394,5 @@ const MEMORY_AWARE_TOOLS = new Set([
 ---
 
 *Module version: 1.8.0 | Last updated: 2026-01-27*
+
+<!-- /ANCHOR:related -->

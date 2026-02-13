@@ -1,3 +1,13 @@
+---
+title: "Memory Type Configuration"
+description: "9-type cognitive memory system with differentiated half-lives and automatic type inference from file paths, frontmatter, and keywords."
+trigger_phrases:
+  - "memory types"
+  - "half-life configuration"
+  - "type inference"
+importance_tier: "normal"
+---
+
 # Memory Type Configuration
 
 > 9-type cognitive memory system with differentiated half-lives and automatic type inference from file paths, frontmatter, and keywords.
@@ -5,16 +15,19 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
-- [2. 📊 KEY CONCEPTS](#2--key-concepts)
+- [2. 📖 KEY CONCEPTS](#2--key-concepts)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. 💡 USAGE](#4--usage)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the Config Module?
 
@@ -40,7 +53,9 @@ The config module defines the 9 cognitive memory types used in the Spec Kit Memo
 
 ---
 
-## 2. 📊 KEY CONCEPTS
+<!-- /ANCHOR:overview -->
+## 2. 📖 KEY CONCEPTS
+<!-- ANCHOR:key-concepts -->
 
 ### Memory Types and Half-Lives
 
@@ -92,7 +107,9 @@ The system infers memory type using this precedence:
 
 ---
 
+<!-- /ANCHOR:key-concepts -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 config/
@@ -112,7 +129,9 @@ config/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. 💡 USAGE
+<!-- ANCHOR:examples -->
 
 ### Example 1: Get Type Configuration
 
@@ -196,7 +215,9 @@ const validation = validateInferredType('declarative', '/specs/scratch/temp.md')
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+<!-- /ANCHOR:examples -->
+## 5. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -216,3 +237,4 @@ const validation = validateInferredType('declarative', '/specs/scratch/temp.md')
 ---
 
 *Documentation version: 1.7.2 | Last updated: 2026-02-08*
+<!-- /ANCHOR:related -->

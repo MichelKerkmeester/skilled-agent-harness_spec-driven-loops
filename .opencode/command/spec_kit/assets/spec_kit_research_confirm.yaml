@@ -1,10 +1,13 @@
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 # SMART SPECKIT: RESEARCH WORKFLOW (INTERACTIVE MODE)
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 role: Expert Developer using Smart SpecKit for interactive research
 purpose: Spec-driven comprehensive technical investigation with user approval
 action: Run SpecKit research workflow with user checkpoints
 
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential
   workflow_compliance: MANDATORY
@@ -13,38 +16,24 @@ operating_mode:
   tracking: progressive_research_documentation
   validation: checkpoint_based
 
+# ─────────────────────────────────────────────────────────────────
+# RESEARCH PHILOSOPHY
+# ─────────────────────────────────────────────────────────────────
 research_philosophy:
   principle: "Thoroughness first, documentation second"
   approach: "Systematic investigation with user validation at checkpoints"
   mandate: "Research deeply, validate with user, document comprehensively"
 
-# ───────────────────────────────────────────────────────────────────
-# USER INPUTS (Transformed from raw text)
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
 user_inputs:
-  spec_folder: |
-    [SPEC_FOLDER]
-    Spec folder path. Leave empty to auto-create next available.
-
-  context: |
-    [CONTEXT]
-    Background information, technical stack, or investigating context.
-
-  issues: |
-    [ISSUES]
-    Known issues, questions, problems, or unknowns to investigate.
-
-  request: |
-    [REQUEST]
-    Research topic or technical question to investigate. REQUIRED.
-
-  environment: |
-    [STAGING LINK]
-    Staging URL for browser-based analysis.
-
-  scope: |
-    [FILES]
-    Files or folders to focus investigation on.
+  spec_folder: "[SPEC_FOLDER] - Spec folder path. Leave empty to auto-create next available."
+  context: "[CONTEXT] - Background information, technical stack, or investigating context. Leave empty to infer."
+  issues: "[ISSUES] - Known issues, questions, or unknowns to investigate. Leave empty to discover."
+  request: "[REQUEST] - Research topic or technical question to investigate. REQUIRED."
+  environment: "[STAGING LINK] - Staging URL for browser-based analysis. Leave empty to skip."
+  scope: "[FILES] - Files or folders to focus investigation on. Leave empty for default scope."
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -53,20 +42,11 @@ field_handling:
   spec_id:
     derive_from: "spec_folder path using pattern specs/{NNN} or specs/{NNN-name}"
     fallback: "Extract numeric portion or use timestamp if extraction fails"
-
-  defaults:
-    spec_folder_empty: "Auto-create specs/{NNN} from highest +001"
-    context_empty: "Infer from [REQUEST] and codebase exploration"
-    issues_empty: "Investigate and discover during workflow"
-    environment_empty: "Skip browser analysis steps"
-    scope_empty: "Use scope_policy.default"
-
-  scope_policy:
-    default: "specs/**"
-    rule: "Limit file operations to scope when provided"
+  defaults: { spec_folder_empty: "Auto-create specs/{NNN} from highest +001", context_empty: "Infer from [REQUEST] and codebase", issues_empty: "Discover during workflow", environment_empty: "Skip browser steps", scope_empty: "specs/**" }
+  scope_policy: { default: "specs/**", rule: "Limit file operations to scope when provided" }
 
 # ─────────────────────────────────────────────────────────────────
-# CONTEXT LOADING (At Workflow START)
+# CONTEXT LOADING
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "At workflow START, before Step 1"
@@ -74,92 +54,57 @@ context_loading:
   mcp_integration:
     tool: memory_search
     note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters:
-      query: "research context for {spec_folder_name}"
-      specFolder: "{spec_folder_path}"
-      anchors: ['summary', 'decisions', 'state', 'research']
+    parameters: { query: "research context for {spec_folder_name}", specFolder: "{spec_folder_path}", anchors: ['summary', 'decisions', 'state', 'research'] }
   command_reference: "/memory:context"
-  when_to_skip:
-    - "New spec folder (no prior context exists)"
-    - "User explicitly says 'skip context' or 'fresh start'"
-  behavior:
-    if_context_found: "Surface relevant research findings and decisions before proceeding"
-    if_no_context: "Proceed to Step 1 without delay"
+  when_to_skip: ["New spec folder (no prior context)", "User says 'skip context' or 'fresh start'"]
+  behavior: { if_context_found: "Surface relevant findings before proceeding", if_no_context: "Proceed to Step 1 without delay" }
   checkpoint:
     question: "Prior research context found. Load it?"
     options:
-      - label: "A) Load context"
-        description: "Review prior research findings and decisions"
-      - label: "B) Skip"
-        description: "Start fresh without prior context"
+      - { label: "A) Load context", description: "Review prior research findings and decisions" }
+      - { label: "B) Skip", description: "Start fresh without prior context" }
 
 # ─────────────────────────────────────────────────────────────────
-# DOCUMENTATION LEVELS (Progressive Enhancement)
+# DOCUMENTATION LEVELS
 # ─────────────────────────────────────────────────────────────────
 documentation_levels:
   level_1_baseline:
     name: "Level 1 (Baseline)"
-    required_files:
-    - spec.md
-    - plan.md
-    - tasks.md
+    required_files: [spec.md, plan.md, tasks.md]
     loc_guidance: "<100 LOC"
-    use_case: "Simple changes, bug fixes, minor features"
-
+    use_case: "Simple changes, bug fixes"
   level_2_verification:
     name: "Level 2 (Verification)"
-    required_files:
-    - spec.md
-    - plan.md
-    - tasks.md
-    - checklist.md
+    required_files: [spec.md, plan.md, tasks.md, checklist.md]
     loc_guidance: "100-499 LOC"
-    use_case: "Medium features, refactoring, multi-file changes"
-
+    use_case: "Medium features, refactoring"
   level_3_full:
     name: "Level 3 (Full)"
-    required_files:
-    - spec.md
-    - plan.md
-    - tasks.md
-    - checklist.md
-    - decision-record.md
+    required_files: [spec.md, plan.md, tasks.md, checklist.md, decision-record.md]
     loc_guidance: ">=500 LOC"
-    use_case: "Complex features, architecture changes, high-risk modifications"
-
+    use_case: "Complex features, architecture changes"
   level_selection:
     note: "LOC thresholds are SOFT GUIDANCE - choose level based on complexity and risk"
-    default: "Research workflow typically supports Level 2+ or Level 3 features"
+    default: "Research typically supports Level 2+ or Level 3"
 
 # ─────────────────────────────────────────────────────────────────
-# AVAILABLE TEMPLATES (Level-Specific)
+# AVAILABLE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 available_templates:
-  # Default level when not explicitly specified
   default_level: level_2
-
-  # Level 1 - Baseline (<100 LOC)
   level_1:
     spec: .opencode/skill/system-spec-kit/templates/level_1/spec.md
-
-  # Level 2 - Verification (100-499 LOC)
   level_2:
     spec: .opencode/skill/system-spec-kit/templates/level_2/spec.md
     checklist: .opencode/skill/system-spec-kit/templates/level_2/checklist.md
-
-  # Level 3 - Full (>=500 LOC)
   level_3:
     spec: .opencode/skill/system-spec-kit/templates/level_3/spec.md
     checklist: .opencode/skill/system-spec-kit/templates/level_3/checklist.md
     decision_record: .opencode/skill/system-spec-kit/templates/level_3/decision-record.md
-
-  # Level 3+ - Extended (Complex/Enterprise)
   level_3_plus:
     spec: .opencode/skill/system-spec-kit/templates/level_3+/spec.md
     checklist: .opencode/skill/system-spec-kit/templates/level_3+/checklist.md
     decision_record: .opencode/skill/system-spec-kit/templates/level_3+/decision-record.md
-
-  # Shared templates (available at any level)
   shared:
     research: .opencode/skill/system-spec-kit/templates/research.md
     handover: .opencode/skill/system-spec-kit/templates/handover.md
@@ -170,184 +115,38 @@ available_templates:
 # ─────────────────────────────────────────────────────────────────
 parallel_dispatch_config:
   enabled: true
-
-  complexity_scoring:
-    domain_count:
-      weight: 0.35
-      domains: [code, analysis, docs, git, testing, devops]
-      scoring: "1=0.0, 2=0.5, 3+=1.0"
-    file_count:
-      weight: 0.25
-      scoring: "1-2=0.0, 3-5=0.5, 6+=1.0"
-    loc_estimate:
-      weight: 0.15
-      scoring: "<50=0.0, 50-200=0.5, >200=1.0"
-    parallel_opportunity:
-      weight: 0.20
-      scoring: "sequential=0.0, some=0.5, high=1.0"
-    task_type:
-      weight: 0.05
-      scoring: "trivial=0.0, moderate=0.5, complex=1.0"
-
-  # Decision thresholds (no auto-dispatch)
-  thresholds:
-    direct_max: 20
-    ask_min: 20
-    min_domains_for_ask: 2
-    # NOTE: No auto-dispatch - always ask before parallel dispatch
-    # Always ask user before parallel dispatch
-
-  session_preference:
-    persist_duration_seconds: 3600
-
+  scoring: { domain_count: 0.35, file_count: 0.25, loc_estimate: 0.15, parallel_opportunity: 0.20, task_type: 0.05 }
+  thresholds: { direct_max: 20, ask_min: 20, min_domains: 2 }
+  session_preference_s: 3600
   override_phrases:
-    direct: ["proceed directly", "handle directly", "skip parallel", "skip agents"]
-    parallel: ["use parallel", "dispatch agents", "parallelize", "use agents"]
-    auto: ["auto-decide", "auto mode", "decide for me"]
-
-  question_template:
-    method: present_options_to_user
-    header: "Parallel Dispatch"
-    format: |
-      **Phase: {phase_name}**
-      Complexity: {complexity_score}% | Domains: {domain_count} ({domains_list})
-
-      This phase may benefit from parallel sub-agents for faster execution.
-    options:
-      - id: A
-        label: "Handle directly"
-        description: "Execute phase sequentially without parallel agents"
-      - id: B
-        label: "Use parallel agents"
-        description: "Dispatch specialized agents for faster parallel execution"
-      - id: C
-        label: "Auto-decide for session"
-        description: "Let system decide based on complexity thresholds (1 hour)"
-
-  eligible_phases:
-    - step_3_codebase_investigation
-    - step_4_external_research
-    - step_5_technical_analysis
+    direct: [ "proceed directly", "handle directly", "skip parallel", "skip agents" ]
+    parallel: [ "use parallel", "dispatch agents", "parallelize", "use agents" ]
+    auto: [ "auto-decide", "auto mode", "decide for me" ]
+  eligible_phases: [step_3_codebase_investigation, step_4_external_research, step_5_technical_analysis]
 
 # ─────────────────────────────────────────────────────────────────
 # MULTI-AGENT DISPATCH CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
 multi_agent_config:
   enabled: true
-
   dispatch_modes:
-    single:
-      id: A
-      label: "Single Agent"
-      description: "Execute with one primary agent (default)"
-      agent_count: 1
-      model: "opus"
-
+    single: { id: A, label: "Single Agent", agents: 1, model: opus }
     multi_small:
       id: B
       label: "Multi-Agent (1+2)"
-      description: "1 orchestrator + 2 parallel workers"
-      orchestrator:
-        model: "opus"
-        role: "coordinator"
-        responsibilities:
-          - "Coordinate worker dispatch"
-          - "Synthesize worker outputs"
-          - "Execute Steps 6-9 (Quality Checklist through Save Context)"
-          - "Create final research.md"
+      orchestrator: { model: opus, role: coordinator }
       workers:
-          role: "codebase_explorer"
-          focus: "Codebase Investigation"
-          step: 3
-          responsibilities:
-            - "Search for related code patterns"
-            - "Analyze existing implementations"
-            - "Document current architecture"
-            - "Map dependencies"
-          role: "external_researcher"
-          focus: "External Research"
-          step: 4
-          responsibilities:
-            - "Search official documentation"
-            - "Review API references"
-            - "Analyze community best practices"
-            - "Compare alternative approaches"
-
+        - { role: codebase_explorer, focus: "Codebase Investigation", step: 3 }
+        - { role: external_researcher, focus: "External Research", step: 4 }
     multi_large:
       id: C
       label: "Multi-Agent (1+3)"
-      description: "1 orchestrator + 3 parallel workers"
-      orchestrator:
-        model: "opus"
-        role: "coordinator"
-        responsibilities:
-          - "Coordinate worker dispatch"
-          - "Synthesize worker outputs"
-          - "Execute Steps 6-9 (Quality Checklist through Save Context)"
-          - "Create final research.md"
+      orchestrator: { model: opus, role: coordinator }
       workers:
-          role: "codebase_explorer"
-          focus: "Codebase Investigation"
-          step: 3
-          responsibilities:
-            - "Search for related code patterns"
-            - "Analyze existing implementations"
-            - "Document current architecture"
-            - "Map dependencies"
-          role: "external_researcher"
-          focus: "External Research"
-          step: 4
-          responsibilities:
-            - "Search official documentation"
-            - "Review API references"
-            - "Analyze community best practices"
-            - "Compare alternative approaches"
-          role: "technical_analyzer"
-          focus: "Technical Analysis"
-          step: 5
-          responsibilities:
-            - "Evaluate technical feasibility"
-            - "Assess performance implications"
-            - "Analyze security considerations"
-            - "Identify risks and mitigations"
-
-  user_prompt:
-    question: "How would you like to execute this workflow?"
-    header: "Dispatch Mode"
-    options:
-      - id: A
-        label: "Single Agent"
-        description: "Execute with one agent (default)"
-      - id: B
-        label: "Multi-Agent (1+2)"
-        description: "1 orchestrator + 2 workers"
-      - id: C
-        label: "Multi-Agent (1+3)"
-        description: "1 orchestrator + 3 workers"
-
-  worker_output_format:
-    structure: json
-    required_fields:
-      - step_number
-      - findings
-      - evidence
-      - confidence
-      - recommendations
-    example: |
-      {
-        "step_number": 3,
-        "findings": [
-          { "finding": "Pattern X identified", "evidence": "file.ts:45-67" }
-        ],
-        "confidence": "high",
-        "recommendations": ["Use existing pattern", "Extend with Y"]
-      }
-
-  fallback_behavior:
-    worker_timeout_seconds: 60
-    on_worker_timeout: "Continue with available outputs"
-    on_all_workers_fail: "Fall back to single-agent mode"
-    on_orchestrator_fail: "Save partial results to scratch/"
+        - { role: codebase_explorer, focus: "Codebase Investigation", step: 3 }
+        - { role: external_researcher, focus: "External Research", step: 4 }
+        - { role: technical_analyzer, focus: "Technical Analysis", step: 5 }
+  fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
 
 # ─────────────────────────────────────────────────────────────────
 # AGENT ROUTING CONFIGURATION
@@ -357,374 +156,132 @@ agent_routing:
     steps: [3, 4, 5, 6, 7]
     agent: "@research"
     agent_file: ".opencode/agent/research.md"
-    dispatch_method: |
-      Task tool with prompt:
-      ---
-      You are the @research agent. Execute your 9-step research workflow.
-      
-      Topic: {research_topic}
-      Spec Folder: {spec_path}
-      
-      Execute Steps 3-7 of your workflow:
-      - Step 3: Codebase Investigation
-      - Step 4: External Research
-      - Step 5: Technical Analysis
-      - Step 6: Quality Checklist
-      - Step 7: Solution Design
-      
-      Return structured findings for research.md compilation.
-      ---
-    fallback: "general"
-    fallback_reason: "If @research agent file unavailable or dispatch fails"
-    on_fallback: |
-      Warning: Research agent unavailable, using general dispatch.
-      Workflow will continue with standard Task execution.
+    dispatch: "Task tool → @research 9-step workflow for {research_topic}"
+    fallback: general
 
 # ─────────────────────────────────────────────────────────────────
 # QUALITY GATES
 # ─────────────────────────────────────────────────────────────────
 quality_gates:
   enabled: true
-  threshold: 70
-
   pre_execution:
     location: "Before Step 1"
+    threshold: 70
+    blocking: hard
     checks:
-      - "Research topic clearly defined and scoped"
-      - "Spec folder path valid or auto-creation confirmed"
-      - "No blocking dependencies or missing prerequisites"
-      - "Execution mode (auto/confirm) established"
-    action_on_fail: "BLOCK - Cannot proceed until all pre-execution checks pass"
-
-  mid_execution:
-    location: "After Step 5"
-    checks:
-      - "Steps 1-5 completed with documented outputs"
-      - "Technical analysis has verifiable findings"
-      - "No unresolved critical blockers"
-      - "Research direction validated (confidence ≥40%)"
-    action_on_fail: "BLOCK - Return to incomplete step and remediate"
-
+      - { id: research_topic_defined, points: 30 }
+      - { id: spec_path_valid, points: 30 }
+      - { id: no_blocking_deps, points: 20 }
+      - { id: execution_mode_set, points: 20 }
+    on_fail: "Pre-execution gate below threshold. Missing: {missing_checks}."
   post_execution:
     location: "After Step 9"
+    threshold: 70
+    blocking: hard
     checks:
-      - "research.md exists with all 17 sections populated"
-      - "Key questions from Step 1 are answered"
-      - "Quality checklist items verified (Level 2+)"
-      - "Context saved to memory/ folder"
-    action_on_fail: "BLOCK - Cannot claim completion until all checks pass"
-
-  scoring:
-    pass_threshold: 70
-    behavior:
-      pass: "Score ≥70 - Proceed to next phase"
-      fail: "Score <70 - Block progression, require remediation"
+      - { id: research_md_exists, points: 30 }
+      - { id: key_questions_answered, points: 25 }
+      - { id: checklist_verified, points: 25 }
+      - { id: context_saved, points: 20 }
+    on_fail: "Post-execution gate below threshold. Missing: {missing_checks}."
 
 # ─────────────────────────────────────────────────────────────────
 # CIRCUIT BREAKER
 # ─────────────────────────────────────────────────────────────────
 circuit_breaker:
   enabled: true
-  failure_threshold: 3
-  recovery_timeout: 60
-  half_open_requests: 1
-
-  states:
-    closed:
-      behavior: "Normal operation, all requests processed"
-      transition: "Default state"
-    open:
-      behavior: "All requests blocked, fast-fail immediately"
-      transition: "failure_threshold (3) reached"
-    half_open:
-      behavior: "Limited requests allowed to test recovery"
-      transition: "recovery_timeout (60s) elapsed"
-
-  tracked_errors:
-    - tool_timeout
-    - tool_error
-    - validation_failure
-    - agent_dispatch_failure
-    - memory_operation_failure
-
-  on_open: |
-    Circuit breaker OPEN - research workflow paused.
-    Saving current progress to checkpoint.
-    Recovery options:
-    A) Retry - Reset circuit breaker and retry failed operation
-    B) Skip - Skip failed step and continue (if non-critical)
-    C) Abort - Save context and terminate workflow gracefully
-    D) Debug - Invoke /spec_kit:debug for detailed analysis
-
-  on_half_open: |
-    Circuit breaker HALF-OPEN - testing recovery.
-    Allowing 1 test request to verify stability.
-
-  on_close: |
-    Circuit breaker CLOSED - normal operation resumed.
-    Workflow continuing from last checkpoint.
+  thresholds: { failures: 3, recovery_s: 60, success_to_close: 1 }
+  states: { CLOSED: normal_operation, OPEN: use_fallback, HALF_OPEN: test_single }
+  tracked_errors: [tool_timeout, tool_error, validation_failure, agent_dispatch_failure]
 
 # ─────────────────────────────────────────────────────────────────
-# CONFIDENCE CHECKPOINTS (Quick Reference)
-# ─────────────────────────────────────────────────────────────────
-confidence_checkpoints:
-  enabled: true
-  key_steps: [1, 3, 5, 8]  # Steps requiring confidence evaluation
-  thresholds:
-    high: 80      # ≥80% proceed with evidence
-    medium: 40    # 40-79% proceed with caution
-    low: 0        # <40% ask clarifying question
-  protocol: |
-    At each key step, evaluate confidence:
-    - ≥80%: Proceed with cited evidence
-    - 40-79%: Proceed with caution, document assumptions
-    - <40%: STOP and ask clarifying question (A/B/C format)
-
-# ─────────────────────────────────────────────────────────────────
-# CONFIDENCE FRAMEWORK
+# CONFIDENCE & CLARIFICATION FRAMEWORK
 # ─────────────────────────────────────────────────────────────────
 confidence_framework:
-  purpose: "Ensure research findings are validated and uncertainties are communicated"
-  
+  mode_note: "Interactive mode integrates confidence checks with user approval"
   thresholds:
-    high:
-      range: "80-100%"
-      action: "Proceed with documented evidence and sources"
-      requirement: "At least one citable source per major finding"
-    medium:
-      range: "40-79%"
-      action: "Proceed with caution - document assumptions and alternative interpretations"
-      requirement: "Note uncertainties and conflicting sources"
-    low:
-      range: "0-39%"
-      action: "STOP - Ask clarifying question with A/B/C options or mark 'UNKNOWN'"
-      requirement: "Do not present uncertain findings as facts"
-  
-  research_scoring:
-    note: "Research workflow uses evidence-focused scoring"
-    factors:
-      evidence_quality:
-        weight: 0.30
-        description: "Quality and reliability of sources found"
-      source_reliability:
-        weight: 0.25
-        description: "Are sources official documentation, community, or speculation?"
-      completeness:
-        weight: 0.20
-        description: "Are all research objectives addressed?"
-      consistency:
-        weight: 0.15
-        description: "Do findings from different sources align?"
-      recency:
-        weight: 0.10
-        description: "How current is the information?"
-  
-  reply_format: |
-    When evaluating research confidence, output:
-    **Confidence:** NN%
-    **Evidence strength:**
-    - [source type]: [assessment]
-    - [source type]: [assessment]
-    **Next action:** proceed | proceed with caution | ask for clarification
-    **Sources:** [URLs, docs, file.md:lines] or [CITATION: NONE]
-  
-  clarification_format: |
-    "I need clarity on this research area (confidence: [NN%]). Which direction:
-    - A) [option with brief rationale]
-    - B) [option with brief rationale]
-    - C) [option with brief rationale]"
-  
-  escalation:
-    timebox_minutes: 10
-    max_failed_attempts: 2
-    action: "If research cannot yield confident findings within timebox, document limitations and ask user for direction"
-  
-  key_checkpoints:
-    - step: 1
-      check: "Research scope and objectives clear?"
-    - step: 3
-      check: "Codebase patterns understood with evidence?"
-    - step: 4
-      check: "External sources reliable and current?"
-    - step: 5
-      check: "Technical analysis based on verified information?"
-    - step: 8
-      check: "All findings in research.md properly sourced?"
+    high: { range: "80-100%", action: "Document finding with sources" }
+    medium: { range: "40-79%", action: "Document with caveats, mark uncertainty" }
+    low: { range: "0-39%", action: "STOP - Ask A/B/C or mark UNKNOWN" }
+  scoring_weights: { evidence_quality: 0.35, source_reliability: 0.25, completeness: 0.25, contradiction_resolution: 0.15 }
+  reply_format: ["Confidence: NN%", "Evidence strength: 2-3 bullets", "Next action"]
+  escalation: { timebox_minutes: 10, failed_threshold: 2, action: "Document limitations, ask user for direction" }
+  interactive_integration: "Confidence checks surfaced at user checkpoints"
 
 # ─────────────────────────────────────────────────────────────────
 # REQUEST ANALYSIS FRAMEWORK
 # ─────────────────────────────────────────────────────────────────
 request_analysis_framework:
-  purpose: "Systematic research request analysis before investigation"
-  
-  research_analysis_checklist:
-    request_analysis:
-      - "Actual research topic: [Restate in own words]"
-      - "Desired outcome: [What should research.md contain?]"
-      - "Scope: [Focused investigation | Broad exploration | Feasibility study]"
-      - "Key questions: [What must be answered?]"
-    context:
-      - "What existing code/patterns are relevant?"
-      - "What external resources should be consulted?"
-      - "What is the MINIMUM needed to answer the research questions?"
-  
+  research_validation: [research_question_clear, sources_identified, scope_bounded, success_criteria_defined, user_approved_direction]
   research_principles:
-    thoroughness_first:
-      description: "Investigate comprehensively before documenting"
-      guidance: "Don't rush to conclusions - gather sufficient evidence"
-    evidence_based:
-      description: "All findings must cite sources"
-      format: "[SOURCE: url/file:lines] or [CITATION: NONE]"
-    acknowledge_uncertainty:
-      description: "Mark uncertain findings explicitly"
-      format: "Use 'UNKNOWN' or confidence qualifiers"
-  
-  pre_research_validation:
-    checklist:
-      - "Research objectives clearly defined?"
-      - "Scope appropriate for the question?"
-      - "Know where to look for information?"
-      - "Success criteria established?"
-      - "Confidence ≥80% on approach? (if not: ask)"
-    stop_conditions:
-      - "Research scope undefined or too broad"
-      - "No clear success criteria"
-      - "User has not approved research direction"
+    - "Thoroughness: Investigate comprehensively before documenting"
+    - "Evidence-Based: Cite sources [SOURCE: file:lines] or [CITATION: NONE]"
+    - "Acknowledge uncertainty: Mark uncertain findings with UNKNOWN"
+  citation_requirement: "ALL findings must cite sources: [SOURCE: file:lines] for code, [CITATION: URL] for external, [UNKNOWN] when unavailable"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW ENFORCEMENT (CRITICAL)
+# WORKFLOW ENFORCEMENT
 # ─────────────────────────────────────────────────────────────────
 workflow_enforcement:
   mode: strict
   step_order: sequential_mandatory
   skip_allowed: false
-  
   research_gate:
     location: "After Step 8"
-    purpose: "Verify research documentation complete before context save"
-    requirements:
-      - "research.md exists with all 17 sections populated"
-      - "Key questions from Step 1 are answered"
+    requirements: ["research.md exists with all 17 sections", "Key questions from Step 1 answered"]
     action_if_failed: "STOP and return to incomplete step"
-  
-  step_completion_rule: |
-    FOR EACH STEP:
-    1. Execute ALL activities listed
-    2. Verify ALL outputs exist
-    3. Present checkpoint to user for approval
-    4. Mark step ✅ in tracking after approval
-    5. ONLY THEN proceed to next step
-    
-    ⛔ NEVER skip a step
-    ⛔ NEVER proceed without user approval at checkpoint
-    ⛔ NEVER submit incomplete research
-
+  step_completion_rule: "Execute ALL activities -> Verify ALL outputs -> Present checkpoint for approval -> Mark complete after approval -> THEN proceed. NEVER skip steps, proceed without approval, or submit incomplete research."
   critical_steps:
-    step_5_technical_analysis:
-      enforcement: "MUST complete feasibility and risk assessment"
-      verification: "All analysis outputs documented"
-    step_8_research_compilation:
-      enforcement: "MUST create research.md with all 17 sections"
-      verification: "File exists and all sections populated"
+    step_5: { enforcement: "MUST complete feasibility and risk assessment", verification: "All analysis outputs documented" }
+    step_8: { enforcement: "MUST create research.md with all 17 sections", verification: "File exists, all sections populated" }
 
-# ─────────────────────────────────────────────────────────────────
-# CHECKPOINT OPTIONS
-# ─────────────────────────────────────────────────────────────────
 checkpoint_options:
   standard:
-  - label: "Approve"
-    description: "Approve this step and proceed to next"
-  - label: "Review Details"
-    description: "Show more details about what was done"
-  - label: "Modify"
-    description: "Request changes before proceeding"
-  - label: "Skip"
-    description: "Skip this step (if optional)"
-
+    - { label: "Approve", description: "Approve and proceed" }
+    - { label: "Review Details", description: "Show more details" }
+    - { label: "Modify", description: "Request changes" }
+    - { label: "Skip", description: "Skip (if optional)" }
   research_direction:
-  - label: "Continue"
-    description: "Research direction is good, proceed"
-  - label: "Go Deeper"
-    description: "Investigate this area more thoroughly"
-  - label: "Redirect"
-    description: "Change research focus"
-  - label: "Skip Area"
-    description: "This area is not relevant"
+    - { label: "Continue", description: "Direction is good, proceed" }
+    - { label: "Go Deeper", description: "Investigate more thoroughly" }
+    - { label: "Redirect", description: "Change research focus" }
+    - { label: "Skip Area", description: "Not relevant" }
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (9 STEPS WITH CHECKPOINTS)
+# WORKFLOW
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
     purpose: Analyze research request and define investigation scope
-    activities:
-    - Analyze all user inputs thoroughly
-    - Define research scope and objectives
-    - Verify or create spec folder structure
-    - Check for existing research artifacts
-    - Establish investigation boundaries
-    - Identify key questions to answer
+    activities: [Analyze user inputs, Define research scope/objectives, Verify/create spec folder, Check existing artifacts, Establish boundaries, Identify key questions]
     deep_analysis:
       focus: comprehensive_research_scoping
-      outputs:
-      - feature_summary
-      - research_objectives
-      - investigation_priorities
-      - key_questions
-      - success_criteria
+      outputs: [feature_summary, research_objectives, investigation_priorities, key_questions, success_criteria]
     validation: understanding_confirmed
-    
-    # CONFIDENCE CHECKPOINT
     confidence_checkpoint:
       evaluate_at: "After analyzing research request"
       scoring_factors:
-        - factor: "Research scope clarity"
-          weight: 0.40
-          assess: "Is the research question specific and answerable?"
-        - factor: "Source availability"
-          weight: 0.30
-          assess: "Are sources (code, docs, external) identifiable?"
-        - factor: "Success criteria"
-          weight: 0.30
-          assess: "Is it clear what constitutes a complete answer?"
+        - { factor: "Research scope clarity", weight: 0.40, assess: "Is the question specific and answerable?" }
+        - { factor: "Source availability", weight: 0.30, assess: "Are sources identifiable?" }
+        - { factor: "Success criteria", weight: 0.30, assess: "Is complete answer defined?" }
       thresholds:
-        high_80_plus:
-          action: "Proceed to Step 2"
-          log: "Confidence: [NN%] - Research scope clear, proceeding"
-        medium_40_79:
-          action: "Proceed with documented assumptions"
-          log: "Confidence: [NN%] - Proceeding with noted uncertainties"
+        high_80_plus: { action: "Proceed to Step 2", log: "Confidence: [NN%] - Scope clear" }
+        medium_40_79: { action: "Proceed with documented assumptions", log: "Confidence: [NN%] - Noted uncertainties" }
         low_below_40:
           action: "STOP - Clarify research scope"
-          format: |
-            "Research scope unclear (confidence: [NN%]). Please clarify:
-            - A) [first interpretation with rationale]
-            - B) [second interpretation with rationale]
-            - C) [third interpretation with rationale]"
-    
+          format: "Research scope unclear ([NN%]). A) [interpretation] B) [interpretation] C) [interpretation]"
     checkpoint:
       question: "Step 1 Complete: Research scope defined. How would you like to proceed?"
       use: present_options_to_user
       options:
-      - label: "Approve Scope"
-        description: "Research scope is clear, proceed"
-      - label: "Narrow Focus"
-        description: "Make research scope more specific"
-      - label: "Expand Scope"
-        description: "Broaden research areas"
+        - { label: "Approve Scope", description: "Research scope is clear, proceed" }
+        - { label: "Narrow Focus", description: "Make scope more specific" }
+        - { label: "Expand Scope", description: "Broaden research areas" }
 
   step_2_pre_work_review:
     purpose: Review skills folder and project standards
-    activities:
-    - Read and review AGENTS.md
-    - Check skills folder (.opencode/skill/) for relevant coding standards
-    - Extract relevant coding standards
-    - Identify architectural patterns
-    - Document project conventions
-    - Note constraints relevant to research
-    required_documents:
-    - AGENTS.md
-    - Skills folder (if available)
+    activities: [Review AGENTS.md, Check .opencode/skill/ for standards, Extract coding standards, Identify architectural patterns, Document conventions, Note research-relevant constraints]
+    required_documents: [AGENTS.md, "Skills folder (if available)"]
     verification: MUST_REVIEW
     validation: principles_established
     checkpoint:
@@ -734,75 +291,28 @@ workflow:
 
   step_3_codebase_investigation:
     purpose: Explore existing codebase for patterns and implementations
-
-    # ── CODEBASE EXPLORATION ────────────────────────────────────────
-    # Tool selection delegated to AGENTS.md Section 8 - no duplication here
-    # - Lexical search (Grep): exact text patterns
-    # - File discovery (Glob): find files by pattern
-    # - Content reading (Read): examine file contents
-
-    # PRE-PHASE: Smart parallel dispatch check
     pre_phase_parallel_check:
       enabled: true
       phase_domains: [code, analysis]
       complexity_boost: 10
-      decision_logic: |
-        BEFORE starting this phase, evaluate parallel dispatch:
-        1. Check for override phrases in user request
-        2. Check for session preference (from previous "Auto-decide" selection)
-        3. Check for sequential dependencies (skip if detected)
-        4. Calculate phase complexity using parallel_dispatch_config
-        5. Apply thresholds:
-           - <20% → proceed directly (no parallel agents)
-           - ≥20% + 2 domains → ALWAYS ask user
-           NOTE: No auto-dispatch - always ask before parallel dispatch
       on_parallel_dispatch:
         agents:
-          - name: "pattern_explorer"
-            focus: "Search for related code patterns and implementations"
-          - name: "architecture_analyzer"
-            focus: "Analyze current architecture and integration points"
-        dispatch_note: "Spawn agents in SINGLE message for parallel execution"
-      fallback: "Proceed with activities below if dispatch fails or user chooses direct"
-
-    activities:
-    - Search for related code patterns
-    - Analyze existing implementations
-    - Document current architecture
-    - Identify integration points
-    - Map dependencies
-    - Note technical debt or limitations
-    outputs:
-    - current_state_analysis
-    - existing_patterns
-    - integration_points
-    - dependency_map
+          - { name: "pattern_explorer", focus: "Search related code patterns and implementations" }
+          - { name: "architecture_analyzer", focus: "Analyze architecture and integration points" }
+      fallback: "Proceed with activities if dispatch fails or user chooses direct"
+    activities: [Search related code patterns, Analyze existing implementations, Document current architecture, Identify integration points, Map dependencies, Note technical debt]
+    outputs: [current_state_analysis, existing_patterns, integration_points, dependency_map]
     validation: codebase_understood
-    
-    # CONFIDENCE CHECKPOINT
     confidence_checkpoint:
       evaluate_at: "After codebase investigation"
       scoring_factors:
-        - factor: "Pattern clarity"
-          weight: 0.40
-          assess: "Are existing patterns clearly identified with evidence?"
-        - factor: "Coverage completeness"
-          weight: 0.35
-          assess: "Were all relevant areas of codebase explored?"
-        - factor: "Integration understanding"
-          weight: 0.25
-          assess: "Are integration points and dependencies mapped?"
+        - { factor: "Pattern clarity", weight: 0.40, assess: "Patterns identified with evidence?" }
+        - { factor: "Coverage completeness", weight: 0.35, assess: "All relevant areas explored?" }
+        - { factor: "Integration understanding", weight: 0.25, assess: "Integration points mapped?" }
       thresholds:
-        high_80_plus:
-          action: "Proceed to external research"
-          log: "Confidence: [NN%] - Codebase understood"
-        medium_40_79:
-          action: "Proceed but flag areas needing more investigation"
-          log: "Confidence: [NN%] - Some areas need deeper investigation"
-        low_below_40:
-          action: "Expand investigation before proceeding"
-          format: "Need more codebase exploration in: [specific areas]"
-    
+        high_80_plus: { action: "Proceed to external research", log: "Confidence: [NN%] - Codebase understood" }
+        medium_40_79: { action: "Proceed, flag areas needing investigation", log: "Confidence: [NN%] - Some areas need depth" }
+        low_below_40: { action: "Expand investigation", format: "Need more exploration in: [areas]" }
     checkpoint:
       question: "Step 3 Complete: Codebase investigated. How would you like to proceed?"
       use: present_options_to_user
@@ -810,43 +320,17 @@ workflow:
 
   step_4_external_research:
     purpose: Research external documentation and best practices
-
-    # PRE-PHASE: Smart parallel dispatch check
     pre_phase_parallel_check:
       enabled: true
       phase_domains: [docs, analysis]
       complexity_boost: 5
-      decision_logic: |
-        BEFORE starting this phase, evaluate parallel dispatch:
-        1. Check for override phrases in user request
-        2. Check for session preference (from previous "Auto-decide" selection)
-        3. Check for sequential dependencies (skip if detected)
-        4. Calculate phase complexity using parallel_dispatch_config
-        5. Apply thresholds:
-           - <20% → proceed directly (no parallel agents)
-           - ≥20% + 2 domains → ALWAYS ask user
-           NOTE: No auto-dispatch - always ask before parallel dispatch
       on_parallel_dispatch:
         agents:
-          - name: "documentation_researcher"
-            focus: "Search official documentation and API references"
-          - name: "best_practices_explorer"
-            focus: "Analyze community best practices and alternatives"
-        dispatch_note: "Spawn agents in SINGLE message for parallel execution"
-      fallback: "Proceed with activities below if dispatch fails or user chooses direct"
-
-    activities:
-    - Search official documentation
-    - Review API references
-    - Analyze community best practices
-    - Identify relevant libraries/tools
-    - Document limitations and constraints
-    - Compare alternative approaches
-    outputs:
-    - best_practices_summary
-    - api_documentation
-    - library_comparison
-    - constraint_documentation
+          - { name: "documentation_researcher", focus: "Search official docs and API references" }
+          - { name: "best_practices_explorer", focus: "Analyze community best practices and alternatives" }
+      fallback: "Proceed with activities if dispatch fails or user chooses direct"
+    activities: [Search official documentation, Review API references, Analyze community best practices, Identify relevant libraries/tools, Document limitations, Compare alternatives]
+    outputs: [best_practices_summary, api_documentation, library_comparison, constraint_documentation]
     validation: external_research_complete
     checkpoint:
       question: "Step 4 Complete: External research done. How would you like to proceed?"
@@ -855,109 +339,52 @@ workflow:
 
   step_5_technical_analysis:
     purpose: Perform feasibility assessment and technical analysis
-
-    # PRE-PHASE: Smart parallel dispatch check
     pre_phase_parallel_check:
       enabled: true
       phase_domains: [code, analysis, testing]
       complexity_boost: 15
-      decision_logic: |
-        BEFORE starting this phase, evaluate parallel dispatch:
-        1. Check for override phrases in user request
-        2. Check for session preference (from previous "Auto-decide" selection)
-        3. Check for sequential dependencies (skip if detected)
-        4. Calculate phase complexity using parallel_dispatch_config
-        5. Apply thresholds:
-           - <20% → proceed directly (no parallel agents)
-           - ≥20% + 2 domains → ALWAYS ask user
-           NOTE: No auto-dispatch - always ask before parallel dispatch
       on_parallel_dispatch:
         agents:
-          - name: "feasibility_analyzer"
-            focus: "Evaluate technical feasibility and performance"
-          - name: "risk_assessor"
-            focus: "Analyze security, scalability, and risks"
-        dispatch_note: "Spawn agents in SINGLE message for parallel execution"
-      fallback: "Proceed with activities below if dispatch fails or user chooses direct"
-
-    activities:
-    - Evaluate technical feasibility
-    - Assess performance implications
-    - Analyze security considerations
-    - Review scalability requirements
-    - Document trade-offs
-    - Identify risks and mitigations
-    outputs:
-    - technical_specifications
-    - feasibility_assessment
-    - performance_analysis
-    - security_review
-    - risk_assessment
+          - { name: "feasibility_analyzer", focus: "Evaluate technical feasibility and performance" }
+          - { name: "risk_assessor", focus: "Analyze security, scalability, and risks" }
+      fallback: "Proceed with activities if dispatch fails or user chooses direct"
+    activities: [Evaluate technical feasibility, Assess performance implications, Analyze security, Review scalability, Document trade-offs, Identify risks and mitigations]
+    outputs: [technical_specifications, feasibility_assessment, performance_analysis, security_review, risk_assessment]
     validation: technical_analysis_complete
     checkpoint:
       question: "Step 5 Complete: Technical analysis done. Review findings?"
       use: present_options_to_user
       options:
-      - label: "Approve Analysis"
-        description: "Analysis is comprehensive, proceed"
-      - label: "Review Findings"
-        description: "Show detailed technical findings"
-      - label: "Investigate More"
-        description: "Dig deeper into specific areas"
+        - { label: "Approve Analysis", description: "Comprehensive, proceed" }
+        - { label: "Review Findings", description: "Show detailed findings" }
+        - { label: "Investigate More", description: "Dig deeper" }
 
   step_5_5_checkpoint_analysis:
     purpose: Save context checkpoint after technical analysis complete
     checkpoint: true
     memory_action: save
-    activities:
-    - Save context checkpoint using system-spec-kit skill
-    - Record progress up to technical analysis milestone for session recovery
-    - Preserve research findings, feasibility assessment, and technical specifications
-    tool_invocation:
-      command: Read(".opencode/skill/system-spec-kit/SKILL.md")
-      note: "Intermediate checkpoint - technical analysis complete"
-    outputs:
-    - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__analysis_complete.md"
+    activities: [Save checkpoint via system-spec-kit skill, Record progress to analysis milestone, Preserve findings and specifications]
+    tool_invocation: { command: 'Read(".opencode/skill/system-spec-kit/SKILL.md")', note: "Intermediate checkpoint - analysis complete" }
+    outputs: [{ checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__analysis_complete.md" }]
     validation: checkpoint_saved
 
   step_6_quality_checklist:
-    purpose: Generate validation checklist for research quality (Level 2+ requirement)
-    level_requirement: "Level 2+ (Verification and Full)"
-    activities:
-    - Check documentation level - skip for Level 1, required for Level 2+
-    - Load checklist.md template
-    - Generate research-specific validation items
-    - Include completeness checks
-    - Include accuracy verification items
-    - Include documentation quality checks
-    outputs:
-    - quality_checklist: generated
-    template: .opencode/skill/system-spec-kit/templates/level_2/checklist.md  # Use level from available_templates based on complexity
+    purpose: Generate validation checklist for research quality (Level 2+)
+    level_requirement: "Level 2+"
+    activities: [Check doc level (skip L1, required L2+), Load checklist.md template, Generate research-specific validation items, Include completeness/accuracy/quality checks]
+    outputs: [{ quality_checklist: generated }]
+    template: .opencode/skill/system-spec-kit/templates/level_2/checklist.md
     validation: checklist_generated
-    
-    # CONFIDENCE CHECKPOINT
     confidence_checkpoint:
       evaluate_at: "After quality checklist generation"
       scoring_factors:
-        - factor: "Coverage completeness"
-          weight: 0.40
-          assess: "Does checklist cover all research objectives?"
-        - factor: "Validation quality"
-          weight: 0.35
-          assess: "Are validation items specific and verifiable?"
-        - factor: "Priority accuracy"
-          weight: 0.25
-          assess: "Are P0/P1/P2 priorities correctly assigned?"
+        - { factor: "Coverage completeness", weight: 0.40, assess: "Covers all research objectives?" }
+        - { factor: "Validation quality", weight: 0.35, assess: "Items specific and verifiable?" }
+        - { factor: "Priority accuracy", weight: 0.25, assess: "P0/P1/P2 correctly assigned?" }
       thresholds:
-        high_80_plus:
-          action: "Proceed to solution design"
-          log: "Confidence: [NN%] - Checklist comprehensive"
-        medium_40_79:
-          action: "Proceed with checklist, note gaps"
-          log: "Confidence: [NN%] - Checklist has noted gaps"
-        low_below_40:
-          action: "Expand checklist before proceeding"
-    
+        high_80_plus: { action: "Proceed to solution design", log: "Confidence: [NN%] - Checklist comprehensive" }
+        medium_40_79: { action: "Proceed, note gaps", log: "Confidence: [NN%] - Checklist has gaps" }
+        low_below_40: { action: "Expand checklist before proceeding" }
     checkpoint:
       question: "Step 6 Complete: Quality checklist generated. How would you like to proceed?"
       use: present_options_to_user
@@ -965,217 +392,97 @@ workflow:
 
   step_7_solution_design:
     purpose: Design solution architecture based on research findings
-    activities:
-    - Synthesize research findings
-    - Design recommended architecture
-    - Define implementation patterns
-    - Create integration approach
-    - Document decision rationale
-    - Outline implementation strategy
-    outputs:
-    - solution_architecture
-    - implementation_patterns
-    - integration_approach
-    - decision_rationale
-    level_3_documents:
-    - decision-record-[name].md: "For significant architecture decisions (Level 3 requirement)"
-    template: .opencode/skill/system-spec-kit/templates/level_3/decision-record.md  # Level 3+ only
+    activities: [Synthesize findings, Design recommended architecture, Define implementation patterns, Create integration approach, Document decision rationale, Outline implementation strategy]
+    outputs: [solution_architecture, implementation_patterns, integration_approach, decision_rationale]
+    level_3_documents: ["decision-record-[name].md — Level 3 requirement"]
+    template: .opencode/skill/system-spec-kit/templates/level_3/decision-record.md
     validation: solution_designed
     checkpoint:
       question: "Step 7 Complete: Solution designed. Review architecture?"
       use: present_options_to_user
       options:
-      - label: "Approve Design"
-        description: "Architecture looks good"
-      - label: "Review Architecture"
-        description: "Show detailed architecture design"
-      - label: "Alternative Approach"
-        description: "Explore different architecture"
+        - { label: "Approve Design", description: "Architecture looks good" }
+        - { label: "Review Architecture", description: "Show detailed design" }
+        - { label: "Alternative Approach", description: "Explore different architecture" }
 
   step_8_research_compilation:
     purpose: Compile all research into comprehensive documentation
-    activities:
-    - Load research.md
-    - Fill all 17 sections systematically
-    - Include executive overview
-    - Document core architecture
-    - Add technical specifications
-    - Include constraints and limitations
-    - Document integration patterns
-    - Provide implementation guide
-    - Add code examples
-    - Include testing strategies
-    - Document performance considerations
-    - Add security section
-    - Include troubleshooting guide
-    - Add API reference
-    - Include acknowledgements
-    - Add appendix and changelog
-    outputs:
-    - research.md: comprehensive_technical_documentation
+    activities: [Load research.md, Fill all 17 sections systematically]
+    outputs: [{ research.md: comprehensive_technical_documentation }]
     template: .opencode/skill/system-spec-kit/templates/research.md
-    research_sections:
-    - metadata
-    - investigation_report
-    - executive_overview
-    - core_architecture
-    - technical_specifications
-    - constraints_limitations
-    - integration_patterns
-    - implementation_guide
-    - code_examples
-    - testing_debugging
-    - performance
-    - security
-    - maintenance
-    - api_reference
-    - troubleshooting
-    - acknowledgements
-    - appendix_changelog
+    research_sections: [metadata, investigation_report, executive_overview, core_architecture, technical_specifications, constraints_limitations, integration_patterns, implementation_guide, code_examples, testing_debugging, performance, security, maintenance, api_reference, troubleshooting, acknowledgements, appendix_changelog]
     validation: research_documented
     checkpoint:
       question: "Step 8 Complete: Research compiled. Review research.md?"
       use: present_options_to_user
       options:
-      - label: "Approve Research"
-        description: "Research documentation is complete"
-      - label: "Review Document"
-        description: "Show research.md for detailed review"
-      - label: "Add Content"
-        description: "Add more to research documentation"
+        - { label: "Approve Research", description: "Documentation complete" }
+        - { label: "Review Document", description: "Show for detailed review" }
+        - { label: "Add Content", description: "Add more to documentation" }
 
   step_9_save_context:
     purpose: Save conversation context for documentation
-    activities:
-    - Invoke system-spec-kit skill
-    - Preserve research decisions and rationale
-    - Preserve technical findings
-    - Preserve code analysis results
-    - Index memory file for immediate search availability
+    activities: [Invoke system-spec-kit skill, Preserve decisions/rationale/findings/analysis, Index memory file]
     tool_invocation:
-      command: Read(".opencode/skill/system-spec-kit/SKILL.md")
-      note: 'Load skill for context saving - skill uses generate-context.js script'
+      command: 'Read(".opencode/skill/system-spec-kit/SKILL.md")'
+      note: 'Load skill for context saving - uses generate-context.js'
       script_path: 'node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]'
       critical_rule: 'NEVER use Write tool directly for memory/ paths - ALWAYS use generate-context.js'
-    outputs:
-    - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__research_session.md"
+    outputs: [{ context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__research_session.md" }]
     validation: context_saved_successfully
     checkpoint:
       question: "Step 9 Complete: Research workflow finished!"
       use: present_options_to_user
       options:
-      - label: "Done"
-        description: "Complete the research workflow"
-      - label: "View Summary"
-        description: "Show research summary"
-
-    # ── SEMANTIC MEMORY INTEGRATION (v1.9.0) ───────────────────────
+        - { label: "Done", description: "Complete the workflow" }
+        - { label: "View Summary", description: "Show research summary" }
     post_save_indexing:
-      purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save
-      invocation: |
-        spec_kit_memory_memory_save({
-          filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__research_session.md"
-        })
+      invocation: 'spec_kit_memory_memory_save({ filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__research_session.md" })'
       critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
-      when: "Immediately after memory file is written to disk"
-
+      when: "Immediately after memory file written to disk"
     anchor_requirements:
       enforcement: MANDATORY
       minimum_anchors: 2
       pattern: "[context-type]-[keywords]-[spec-number]"
       format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
-      case: "UPPERCASE recommended for visibility"
       required_sections:
-        - context_type: "general"
-          section: "Research summary with key findings"
-          example_id: "GENERAL-RESEARCH-SUMMARY-{spec#}"
-          example: |
-            <!-- ANCHOR:GENERAL-RESEARCH-SUMMARY-{spec#} -->
-            ## Research Summary
-            Investigated X, found Y...
-            <!-- /ANCHOR:GENERAL-RESEARCH-SUMMARY-{spec#} -->
-        - context_type: "decision"
-          section: "Key decisions and recommendations"
-          example_id: "DECISION-{topic}-{spec#}"
-          example: |
-            <!-- ANCHOR:DECISION-{topic}-{spec#} -->
-            ## Key Decisions
-            - Recommend approach A because...
-            <!-- /ANCHOR:DECISION-{topic}-{spec#} -->
+        - { context_type: "general", section: "Research summary with key findings", example_id: "GENERAL-RESEARCH-SUMMARY-{spec#}" }
+        - { context_type: "decision", section: "Key decisions and recommendations", example_id: "DECISION-{topic}-{spec#}" }
       optional_sections:
-        - context_type: "research"
-          section: "Detailed research findings"
-          example_id: "RESEARCH-{topic}-{spec#}"
-        - context_type: "discovery"
-          section: "Unexpected discoveries or insights"
-          example_id: "DISCOVERY-{topic}-{spec#}"
+        - { context_type: "research", example_id: "RESEARCH-{topic}-{spec#}" }
+        - { context_type: "discovery", example_id: "DISCOVERY-{topic}-{spec#}" }
       benefit: "93% token savings on anchor-based retrieval"
-      reference: "See /memory:save Step 3 for full anchor documentation"
-
     importance_tier:
       assign: important
-      rationale: "Research findings often inform multiple future decisions and implementations"
-      promotion_note: "Use memory_update() to promote to 'critical' if this becomes foundational reference"
-      tier_reference: |
-        constitutional: Core project rules (auto-surface always)
-        critical: Foundational decisions (high priority in search)
-        important: Significant work like research findings (this workflow)
-        normal: Standard context (default)
-        temporary: Short-term notes
-        deprecated: Outdated but retained
+      rationale: "Research findings inform multiple future decisions"
+      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
   after_step: 9
-  message: "Research phase completed successfully. Workflow terminated after step 9 (save context)."
-  next_steps:
-  - Review research.md findings
-  - Validate technical recommendations
-  - Run /spec_kit:plan or /spec_kit:complete to proceed with development
+  message: "Research phase completed. Workflow terminated after step 9."
+  next_steps: [Review research.md, Validate recommendations, "Run /spec_kit:plan or /spec_kit:complete"]
 
 # ─────────────────────────────────────────────────────────────────
 # INTERACTIVE EXECUTION GUIDANCE
 # ─────────────────────────────────────────────────────────────────
 interactive_execution:
-  principle: "Execute research workflow with user approval and direction at each checkpoint"
-
-  checkpoint_behavior:
-  - Complete step activities
-  - Present findings summary
-  - Present options to user for approval
-  - Wait for user response
-  - Process user feedback
-  - Proceed, redirect, or go deeper as directed
-
-  research_direction_handling:
-    continue: "Proceed to next research step"
-    go_deeper: "Expand investigation in current area"
-    redirect: "Change research focus based on user guidance"
-    skip_area: "Skip this area and proceed"
-
-  user_feedback_handling:
-    approve: "Proceed to next step"
-    review: "Show detailed output of current step"
-    modify: "Accept changes and re-execute step"
-    skip: "Skip optional step and proceed"
+  principle: "Execute research workflow with user approval at each checkpoint"
+  checkpoint_behavior: "Complete step → Present findings → Present options → Wait for response → Proceed or redirect"
+  user_feedback_handling: { approve: "Proceed", review: "Show details", modify: "Accept changes, re-execute", skip: "Skip optional step" }
 
 # ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
-  research_scope_unclear:
-    action: "Ask clarifying questions, narrow focus"
-  user_redirects_focus:
-    action: "Acknowledge redirection, adjust research scope, document change"
-  external_sources_unavailable:
-    action: "Document limitation, continue with available info"
-  conflicting_findings:
-    action: "Document both perspectives with analysis, present options to user"
-  technical_dead_end:
-    action: "Document findings, present alternatives, let user decide direction"
+  research_scope_unclear: "Ask clarifying questions, narrow focus"
+  user_redirects_focus: "Acknowledge, adjust scope, document change"
+  external_sources_unavailable: "Document limitation, continue with available info"
+  conflicting_findings: "Document both perspectives, present options to user"
+  technical_dead_end: "Document findings, present alternatives, let user decide"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES
@@ -1193,7 +500,6 @@ rules:
   - mark_checklist_items_with_evidence
   - complete_all_p0_items_before_done
   - get_user_approval_for_p1_deferrals
-
   NEVER:
   - skip_workflow_steps
   - make_unsupported_claims

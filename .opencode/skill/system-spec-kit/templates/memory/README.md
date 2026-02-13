@@ -1,10 +1,31 @@
+---
+title: "Memory"
+description: "Context preservation folder for future sessions - generated automatically via generate-context.js"
+trigger_phrases:
+  - "memory templates"
+  - "context preservation folder"
+  - "memory file generation"
+importance_tier: "normal"
+---
+
 # Memory
 
 > Context preservation folder for future sessions - **NEVER created manually**.
 
 ---
 
+## TABLE OF CONTENTS
+
+- [1. Overview](#1--overview)
+- [2. Important Warning](#2--important-warning)
+- [3. How Memory Files Are Created](#3--how-memory-files-are-created)
+- [4. What Goes Here](#4--what-goes-here)
+- [5. Related Documents](#5--related-documents)
+
+---
+
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The `memory/` folder stores session context, decisions, blockers, and summaries for future AI sessions. It enables:
 
@@ -13,9 +34,11 @@ The `memory/` folder stores session context, decisions, blockers, and summaries 
 3. **Blocker Documentation** - Record unresolved issues for future resolution
 4. **Session Handoffs** - Transfer context between sessions or team members
 
+<!-- /ANCHOR:overview -->
 ---
 
 ## 2. ⚠️ IMPORTANT WARNING
+<!-- ANCHOR:important-warning -->
 
 **CRITICAL**: NEVER create memory files manually using the Write tool.
 
@@ -29,9 +52,11 @@ Memory files MUST be generated using the `generate-context.js` script to ensure:
 1. DELETE the manually created file
 2. Re-run via `generate-context.js` script
 
+<!-- /ANCHOR:important-warning -->
 ---
 
 ## 3. 🚀 HOW MEMORY FILES ARE CREATED
+<!-- ANCHOR:quick-start -->
 
 Memory files are created automatically by the `generate-context.js` script:
 
@@ -50,9 +75,11 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 **Output Location**: `specs/[###-name]/memory/YYYYMMDD_HHMMSS_[title].md`
 
+<!-- /ANCHOR:quick-start -->
 ---
 
 ## 4. 📁 WHAT GOES HERE
+<!-- ANCHOR:structure -->
 
 This `templates/memory/` folder is **empty by design**. It demonstrates the structure of where memory files would be saved in an active spec folder, but contains no actual saved context.
 
@@ -101,9 +128,11 @@ Memory files are automatically scored using a 6-tier importance system that dete
 
 **Automatic Scoring:** The `generate-context.js` script analyzes content to assign tier scores based on keywords, section structure, and context markers.
 
+<!-- /ANCHOR:structure -->
 ---
 
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Documentation
 - [Memory System Overview](../../references/memory/memory_system.md) - Architecture and indexing
@@ -119,6 +148,7 @@ Memory files are automatically scored using a 6-tier importance system that dete
 - `/memory:context` - Search and retrieve memory context
 - `/spec_kit:handover` - Create session handover document
 
+<!-- /ANCHOR:related -->
 ---
 
 <!--

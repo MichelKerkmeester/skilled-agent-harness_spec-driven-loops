@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports (commented out - requires better-sqlite3 / dist modules)
 import * as memorySaveHandler from '../handlers/memory-save.js';
-import * as predictionErrorGate from '../lib/cognitive/prediction-error-gate.js';
-import * as fsrsScheduler from '../lib/cognitive/fsrs-scheduler.js';
+import * as predictionErrorGate from '../lib/cache/cognitive/prediction-error-gate.js';
+import * as fsrsScheduler from '../lib/cache/cognitive/fsrs-scheduler.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 
 describe('Memory Save Integration (T501-T550) [deferred - requires DB test fixtures]', () => {

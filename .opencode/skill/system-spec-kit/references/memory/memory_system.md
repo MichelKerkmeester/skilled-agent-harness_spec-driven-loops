@@ -32,26 +32,34 @@ The Spec Kit Memory system provides context preservation across sessions through
 
 ### Indexable Content Sources
 
-The memory system indexes content from three distinct sources:
+The memory system indexes content from four distinct sources:
 
 | Source | Location Pattern | Memory Type | Default Tier | Discovery |
 |--------|-----------------|-------------|--------------|-----------|
 | **Memory Files** | `specs/*/memory/*.md` | Varies (episodic, procedural, etc.) | `normal` | `findMemoryFiles()` |
 | **Constitutional Rules** | `.opencode/skill/*/constitutional/*.md` | `meta-cognitive` | `constitutional` | `findConstitutionalFiles()` |
 | **Skill READMEs** | `.opencode/skill/**/README.md` | `semantic` | `normal` | `findSkillReadmes()` |
+| **Project READMEs** | `README.md`, `*/README.md` | `semantic` | `normal` | `findProjectReadmes()` |
 
 **Content Source Behavior:**
 
 - **Memory Files** — Session-specific context generated via `generate-context.js`. Subject to temporal decay.
 - **Constitutional Rules** — Always-surface critical rules. Injected at top of every search result. No decay.
-- **Skill READMEs** — Project documentation with `<!-- ANCHOR:name -->` tags for section-level retrieval. Classified as `semantic` type with `normal` tier and reduced importance weight (0.3 vs default 0.5). This ensures README documentation never outranks user work memories (decisions, context, blockers) in search results. READMEs surface only when highly relevant to the query. Grouped under `skill:SKILL-NAME` identifier.
+- **Skill READMEs** — Skill documentation with `<!-- ANCHOR:name -->` tags for section-level retrieval. Classified as `semantic` type with `normal` tier and reduced importance weight (0.3 vs default 0.5). This ensures README documentation never outranks user work memories (decisions, context, blockers) in search results. READMEs surface only when highly relevant to the query. Grouped under `skill:SKILL-NAME` identifier.
+- **Project READMEs** — Discovered via `findProjectReadmes()`, indexed at weight 0.4. Includes root `README.md` and key directory READMEs (e.g., `src/README.md`, `docs/README.md`). Provides project-level context such as setup instructions, architecture overviews, and contribution guidelines. Weight 0.4 ranks them above skill READMEs (0.3) but below user work memories (0.5). Controlled by `includeReadmes` parameter on `memory_index_scan()`. See [readme_indexing.md](./readme_indexing.md) for full pipeline details.
 
-**README Indexing Pipeline:**
+**Skill README Indexing Pipeline:**
 1. `findSkillReadmes()` recursively discovers `README.md` files under `.opencode/skill/`
 2. `isMemoryFile()` validates each README as an indexable file
 3. `extractSpecFolder()` returns `skill:SKILL-NAME` as the folder identifier
 4. `PATH_TYPE_PATTERNS` classifies as `semantic` memory type
 5. Content is embedded and indexed alongside memory and constitutional files
+
+**Project README Indexing Pipeline:**
+1. `findProjectReadmes()` discovers `README.md` files in the project root and key directories
+2. Files are indexed at importance weight 0.4 with `semantic` memory type
+3. Controlled by `includeReadmes` parameter (default: `true`) on `memory_index_scan()`
+4. See [readme_indexing.md](./readme_indexing.md) for discovery rules, filtering, and anchor extraction
 
 > **Note:** READMEs in `node_modules/` and hidden directories are automatically excluded from discovery.
 
@@ -116,6 +124,17 @@ Six-tier system for prioritizing memory relevance:
 | L6: Analysis | `memory_causal_stats()` | Get statistics about the causal memory graph | Check causal coverage |
 | L6: Analysis | `memory_causal_unlink()` | Remove a causal relationship by edge ID | Clean up incorrect links |
 | L7: Maintenance | `memory_index_scan()` | Bulk scan and index memory files | After creating multiple files |
+
+### memory_index_scan() Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `specFolder` | string | - | Limit scan to specific spec folder |
+| `force` | boolean | false | Force re-index all files (ignore content hash) |
+| `includeConstitutional` | boolean | true | Scan `.opencode/skill/*/constitutional/` directories |
+| `includeReadmes` | boolean | true | Scan for README.md files (skill READMEs and project READMEs). When true, discovers and indexes READMEs with reduced importance (0.3 for skill, 0.4 for project) to ensure they never outrank user work memories. |
+| `incremental` | boolean | true | Skip files whose mtime and content hash are unchanged since last index |
+
 | L7: Maintenance | `memory_get_learning_history()` | Get learning history (preflight/postflight records) | Analyze learning patterns |
 
 ---
@@ -602,6 +621,7 @@ The effective stability is `max(fsrs_stability, type_stability)`, ensuring new m
 ### Reference Files
 - [save_workflow.md](./save_workflow.md) - Memory save workflow documentation
 - [embedding_resilience.md](./embedding_resilience.md) - Provider fallback and offline mode
+- [readme_indexing.md](./readme_indexing.md) - README discovery, filtering, and indexing pipeline
 - [troubleshooting.md](../debugging/troubleshooting.md) - Common issues and solutions
 - [environment_variables.md](../config/environment_variables.md) - Configuration options
 

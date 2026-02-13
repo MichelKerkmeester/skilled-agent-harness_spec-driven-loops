@@ -1,3 +1,13 @@
+---
+title: "Embeddings Modules"
+description: "Embedding provider fallback chain with graceful degradation for the Spec Kit Memory system."
+trigger_phrases:
+  - "embedding provider"
+  - "fallback chain"
+  - "BM25 fallback"
+importance_tier: "normal"
+---
+
 # Embeddings Modules
 
 > Embedding provider fallback chain with graceful degradation for the Spec Kit Memory system.
@@ -5,16 +15,19 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 STRUCTURE](#2--structure)
 - [3. ⚡ FEATURES](#3--features)
 - [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The embeddings module implements a three-tier provider fallback chain ensuring reliable embedding generation with graceful degradation. When the primary API provider fails, it automatically falls back to local models, and ultimately to BM25-only text search mode.
 
@@ -49,7 +62,9 @@ Text-based search only
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 > **Note**: Source files (`provider-chain.ts`, `index.ts`) were relocated to `@spec-kit/shared/embeddings` during the shared package migration. This directory retains the README for architectural reference. The `lib/providers/embeddings.ts` module re-exports from the shared package.
 
@@ -67,7 +82,9 @@ embeddings/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 3. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Provider Chain
 
@@ -128,7 +145,9 @@ const metadata = bm25.get_metadata();
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 4. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Create and Use Provider Chain
 
@@ -208,7 +227,9 @@ console.log(JSON.stringify(status, null, 2));
 
 ---
 
-## 5. 🔗 RELATED RESOURCES
+<!-- /ANCHOR:examples -->
+## 5. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -230,3 +251,4 @@ console.log(JSON.stringify(status, null, 2));
 
 **Version**: 1.7.2
 **Last Updated**: 2026-02-08
+<!-- /ANCHOR:related -->

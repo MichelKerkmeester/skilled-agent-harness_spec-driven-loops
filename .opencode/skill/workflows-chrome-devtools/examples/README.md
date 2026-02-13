@@ -1,23 +1,37 @@
+---
+title: "CLI Chrome DevTools - Example Scripts"
+description: "Production-ready bash scripts for browser debugging, testing, and automation using browser-debugger-cli (bdg)"
+trigger_phrases:
+  - "chrome devtools examples"
+  - "bdg example scripts"
+  - "browser automation scripts"
+importance_tier: "normal"
+---
+
 # CLI Chrome DevTools - Example Scripts
 
-Production-ready bash scripts for browser debugging, testing, and automation using `browser-debugger-cli` (bdg).
+> Production-ready bash scripts for browser debugging, testing, and automation using `browser-debugger-cli` (bdg).
 
-#### 📋 TABLE OF CONTENTS
+---
+
+#### TABLE OF CONTENTS
 
 1. [📖 OVERVIEW](#1--overview)
-2. [⚙️ PREREQUISITES](#2-️-prerequisites)
+2. [⚙️ PREREQUISITES](#2--prerequisites)
 3. [📜 AVAILABLE SCRIPTS](#3--available-scripts)
    - 3.1 [performance-baseline.sh](#31-performance-baselinesh)
    - 3.2 [animation-testing.sh](#32-animation-testingsh)
    - 3.3 [multi-viewport-test.sh](#33-multi-viewport-testsh)
 4. [🔗 COMMON PATTERNS](#4--common-patterns)
-5. [⚙️ CUSTOMIZATION TIPS](#5-️-customization-tips)
+5. [⚙️ CUSTOMIZATION TIPS](#5--customization-tips)
 6. [🔧 TROUBLESHOOTING](#6--troubleshooting)
 7. [📖 SEE ALSO](#7--see-also)
+8. [💡 CONTRIBUTING](#8--contributing)
 
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 This directory contains production-ready bash scripts demonstrating practical browser automation, performance testing, and visual regression workflows using the browser-debugger-cli (bdg) tool.
 
@@ -40,7 +54,9 @@ This directory contains production-ready bash scripts demonstrating practical br
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. ⚙️ PREREQUISITES
+<!-- ANCHOR:prerequisites -->
 
 ```bash
 # Install browser-debugger-cli
@@ -56,7 +72,9 @@ command -v bc >/dev/null || echo "Install bc for calculations"
 
 ---
 
+<!-- /ANCHOR:prerequisites -->
 ## 3. 📜 AVAILABLE SCRIPTS
+<!-- ANCHOR:available-scripts -->
 
 ### 3.1 performance-baseline.sh
 
@@ -211,7 +229,9 @@ viewport-tests/20241127-143022/
 
 ---
 
+<!-- /ANCHOR:available-scripts -->
 ## 4. 🔗 COMMON PATTERNS
+<!-- ANCHOR:common-patterns -->
 
 ### Chaining Scripts in CI/CD
 
@@ -266,7 +286,9 @@ compare baseline-desktop.png current-desktop.png diff.png
 
 ---
 
+<!-- /ANCHOR:common-patterns -->
 ## 5. ⚙️ CUSTOMIZATION TIPS
+<!-- ANCHOR:customization-tips -->
 
 ### Adjusting Performance Thresholds
 
@@ -307,7 +329,9 @@ sleep 2
 
 ---
 
+<!-- /ANCHOR:customization-tips -->
 ## 6. 🔧 TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Script fails immediately
 
@@ -353,7 +377,9 @@ bdg stop 2>&1
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 7. 📖 SEE ALSO
+<!-- ANCHOR:related -->
 
 ### Skill Documentation
 
@@ -377,7 +403,9 @@ bdg stop 2>&1
 
 ---
 
-## 💡 CONTRIBUTING
+<!-- /ANCHOR:related -->
+## 8. 💡 CONTRIBUTING
+<!-- ANCHOR:contributing -->
 
 To add new example scripts:
 
@@ -392,3 +420,4 @@ To add new example scripts:
 **Directory Version**: 1.0.0
 **Last Updated**: 2025-01-27
 **Maintained By**: AI Documentation
+<!-- /ANCHOR:contributing -->

@@ -1,20 +1,33 @@
+---
+title: "Parsing Modules"
+description: "Memory file parsing and trigger matching for the Spec Kit Memory system."
+trigger_phrases:
+  - "memory parser"
+  - "trigger matcher"
+  - "anchor extraction"
+importance_tier: "normal"
+---
+
 # Parsing Modules
 
 > Memory file parsing and trigger matching for the Spec Kit Memory system.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. FEATURES](#3-features)
-- [4. USAGE EXAMPLES](#4-usage-examples)
-- [5. RELATED RESOURCES](#5-related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. ⚡ FEATURES](#3--features)
+- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
 
+<!-- /ANCHOR:table-of-contents -->
 ---
 
-## 1. OVERVIEW
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 The parsing module provides core functionality for extracting structured data from memory files. It handles ANCHOR section extraction (enabling ~93% token savings), trigger phrase matching (<50ms for proactive surfacing), and encoding detection for UTF-8/UTF-16 files.
 
@@ -36,9 +49,11 @@ The parsing module provides core functionality for extracting structured data fr
 | **Causal Link Extraction** | Parse relationship metadata (caused_by, supersedes, derived_from, blocks, related_to) |
 | **Entity Scope Detection** | Context type detection from content or tool usage, SQL scope filter building, session ID generation |
 
+<!-- /ANCHOR:overview -->
 ---
 
-## 2. STRUCTURE
+<!-- ANCHOR:structure -->
+## 2. 📁 STRUCTURE
 
 ```
 parsing/
@@ -56,9 +71,11 @@ parsing/
 | `memory-parser.ts` | Parse memory files, extract metadata, titles, trigger phrases, anchors, causal links |
 | `trigger-matcher.ts` | Match prompts against trigger phrases with LRU regex caching |
 
+<!-- /ANCHOR:structure -->
 ---
 
-## 3. FEATURES
+<!-- ANCHOR:features -->
+## 3. ⚡ FEATURES
 
 ### Memory Parser (`memory-parser.ts`)
 
@@ -151,9 +168,11 @@ parsing/
 
 **Exported constants:** `CONTEXT_TYPES`
 
+<!-- /ANCHOR:features -->
 ---
 
-## 4. USAGE EXAMPLES
+<!-- ANCHOR:examples -->
+## 4. 💡 USAGE EXAMPLES
 
 ### Example 1: Parse Memory File with Anchors
 
@@ -193,9 +212,11 @@ console.log(`Match time: ${result.stats.matchTimeMs}ms`);
 | Trigger match | `matchTriggerPhrases(prompt, limit)` | Proactive surfacing |
 | Find files | `findMemoryFiles(workspace, { specFolder })` | Directory scanning |
 
+<!-- /ANCHOR:examples -->
 ---
 
-## 5. RELATED RESOURCES
+<!-- ANCHOR:related -->
+## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -206,6 +227,7 @@ console.log(`Match time: ${result.stats.matchTimeMs}ms`);
 | [search/README.md](../search/README.md) | Vector search, hybrid search |
 | [config/](../config/) | Type inference used by memory-parser |
 
+<!-- /ANCHOR:related -->
 ---
 
 **Version**: 1.7.2

@@ -1,20 +1,34 @@
+---
+title: "Providers Modules"
+description: "Embedding provider abstraction and retry management for the Spec Kit Memory system."
+trigger_phrases:
+  - "embedding providers"
+  - "retry manager"
+  - "backoff retry"
+importance_tier: "normal"
+---
+
 # Providers Modules
 
 > Embedding provider abstraction and retry management for the Spec Kit Memory system.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. FEATURES](#3-features)
-- [4. USAGE EXAMPLES](#4-usage-examples)
-- [5. RELATED RESOURCES](#5-related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. ⚡ FEATURES](#3--features)
+- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. OVERVIEW
+<!-- ANCHOR:overview -->
+## 1. 📖 OVERVIEW
 
 The providers module handles embedding generation and retry logic for the Spec Kit Memory MCP server. It provides a unified abstraction layer for multiple embedding providers (Voyage AI, OpenAI) with exponential backoff retry management to ensure reliable embedding generation.
 
@@ -35,9 +49,12 @@ The providers module handles embedding generation and retry logic for the Spec K
 | **Background Retry Job** | Automatic processing of pending embeddings every 5 minutes |
 | **Graceful Degradation** | Falls back to BM25-only mode when all providers fail |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-## 2. STRUCTURE
+<!-- ANCHOR:structure -->
+## 2. 📁 STRUCTURE
 
 ```
 providers/
@@ -57,9 +74,12 @@ providers/
 
 TypeScript source files compile to `mcp_server/dist/lib/providers/` with corresponding `.js` and `.d.ts` files.
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-## 3. FEATURES
+<!-- ANCHOR:features -->
+## 3. ⚡ FEATURES
 
 ### Embeddings Provider (`embeddings.ts`)
 
@@ -108,9 +128,12 @@ const queryEmbedding = await generateQueryEmbedding('how to authenticate?');
 
 **Exported constants:** `BACKGROUND_JOB_CONFIG`, `BACKOFF_DELAYS`, `MAX_RETRIES`
 
+<!-- /ANCHOR:features -->
+
 ---
 
-## 4. USAGE EXAMPLES
+<!-- ANCHOR:examples -->
+## 4. 💡 USAGE EXAMPLES
 
 ### Example 1: Generate Embedding
 
@@ -160,9 +183,12 @@ stopBackgroundJob();
 | Reset failed | `resetForRetry(id)` | Re-attempt specific item |
 | Start background | `startBackgroundJob()` | Server startup |
 
+<!-- /ANCHOR:examples -->
+
 ---
 
-## 5. RELATED RESOURCES
+<!-- ANCHOR:related -->
+## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -178,6 +204,8 @@ stopBackgroundJob();
 |----------|-------------|
 | [Voyage AI Docs](https://docs.voyageai.com/) | Primary embedding provider |
 | [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings) | Alternative provider |
+
+<!-- /ANCHOR:related -->
 
 ---
 

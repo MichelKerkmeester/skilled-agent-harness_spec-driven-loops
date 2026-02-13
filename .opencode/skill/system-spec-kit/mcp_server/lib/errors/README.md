@@ -1,3 +1,13 @@
+---
+title: "Errors"
+description: "Error handling subsystem with custom error classes, 49 error codes, and actionable recovery hints."
+trigger_phrases:
+  - "error handling"
+  - "recovery hints"
+  - "error codes"
+importance_tier: "normal"
+---
+
 # Errors
 
 > Error handling subsystem with custom error classes, 49 error codes, and actionable recovery hints.
@@ -11,7 +21,7 @@
 - [2. 📁 STRUCTURE](#2--structure)
 - [3. ⚡ FEATURES](#3--features)
 - [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
 <!-- /ANCHOR:toc -->
 
 ---
@@ -160,7 +170,7 @@ const error = createErrorWithHint(
 ---
 
 <!-- ANCHOR:related -->
-## 5. 🔗 RELATED RESOURCES
+## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 

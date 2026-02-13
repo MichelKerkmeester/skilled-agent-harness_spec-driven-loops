@@ -1,3 +1,13 @@
+---
+title: "Scoring Algorithms"
+description: "Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking, and confidence tracking."
+trigger_phrases:
+  - "scoring algorithms"
+  - "importance tiers"
+  - "composite scoring"
+importance_tier: "normal"
+---
+
 # Scoring Algorithms
 
 > Multi-factor scoring system for memory retrieval with composite weighting, importance tiers, folder ranking, and confidence tracking.
@@ -5,16 +15,20 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📊 KEY CONCEPTS](#2--key-concepts)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. 💡 USAGE](#4--usage)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the Scoring Module?
 
@@ -39,9 +53,12 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 | Scoring Factors | 5 | temporal, usage, importance, pattern, citation |
 | Export Functions | 40+ | Scoring utilities and helpers |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 📊 KEY CONCEPTS
+<!-- ANCHOR:key-concepts -->
 
 ### 5-Factor Composite Weights (REQ-017)
 
@@ -84,9 +101,12 @@ The scoring module provides multi-factor algorithms for ranking memories in the 
 | **Activity** | 0.20 | Memory count (capped at 5 for max) |
 | **Validation** | 0.10 | User feedback score (placeholder) |
 
+<!-- /ANCHOR:key-concepts -->
+
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 scoring/
@@ -108,9 +128,12 @@ scoring/
 | `folder-scoring.ts` | Re-export from @spec-kit/shared/scoring/folder-scoring |
 | `confidence-tracker.ts` | Feedback loop: validation -> promotion |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
 ## 4. 💡 USAGE
+<!-- ANCHOR:examples -->
 
 ### Example 1: Calculate 5-Factor Score
 
@@ -193,9 +216,12 @@ const info = getConfidenceInfo(db, memoryId);
 | Archive check | `isArchived('/z_archive/old')` | Deprioritize archived folders |
 | Score breakdown | `getFiveFactorBreakdown(row)` | Debug/explain scoring |
 
+<!-- /ANCHOR:examples -->
+
 ---
 
-## 5. 🔗 RELATED RESOURCES
+## 5. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -211,6 +237,8 @@ const info = getConfidenceInfo(db, memoryId);
 |----------|-------------|
 | [../../README.md](../../README.md) | MCP server overview |
 | [../../../SKILL.md](../../../SKILL.md) | System Spec Kit skill documentation |
+
+<!-- /ANCHOR:related -->
 
 ---
 

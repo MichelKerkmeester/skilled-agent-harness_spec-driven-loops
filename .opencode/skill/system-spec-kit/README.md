@@ -1,3 +1,13 @@
+---
+title: "Spec Kit Framework"
+description: "Unified documentation and memory system that makes AI-assisted development sustainable with enforced documentation and persistent context."
+trigger_phrases:
+  - "spec kit"
+  - "spec folder"
+  - "memory system"
+importance_tier: "normal"
+---
+
 # Spec Kit Framework
 
 > Your AI assistant forgets everything between sessions. Not anymore.
@@ -7,20 +17,25 @@ Spec Kit is a unified documentation and memory system that makes AI-assisted dev
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
 - [3. 📊 DOCUMENTATION LEVELS](#3--documentation-levels)
 - [4. ⚡ COMMANDS](#4--commands)
-- [5. 🧠 MEMORY SYSTEM](#5--memory-system)
-- [6. 📝 TEMPLATES](#6--templates)
+- [5. 💾 MEMORY SYSTEM](#5--memory-system)
+- [6. 📁 TEMPLATES](#6--templates)
 - [7. 🔧 SCRIPTS](#7--scripts)
 - [8. 🛠️ TROUBLESHOOTING](#8--troubleshooting)
-- [9. 🔗 RELATED RESOURCES](#9--related-resources)
+- [9. 📚 RELATED RESOURCES](#9--related-resources)
+- [10. 📋 RECENT CHANGES](#10--recent-changes)
+- [11. 📊 THE BOTTOM LINE](#11--the-bottom-line)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### The Problem Nobody Talks About
 
@@ -76,10 +91,12 @@ Spec Kit adds the missing layers: persistent memory, enforced documentation, and
 | **MCP Tools** | 22 (memory, checkpoint, causal, drift, learning) |
 | **Templates** | 10 (specs, plans, research, decisions) |
 | **Scripts** | 90 (44 TS + 18 JS + 27 shell + 1 Python) |
-| **Commands** | 12 (7 spec_kit + 5 memory) |
+| **Commands** | 12 (7 spec_kit + 5 memory), all ≤600 lines, full agent routing (19/19) |
 | **Importance Tiers** | 6 (constitutional -> deprecated) |
 | **Memory Types** | 9 (working, episodic, procedural, semantic, etc.) |
-| **Test Coverage** | 3,872 tests across 114 test files |
+| **ANCHOR Coverage** | ~473 anchors across 74 READMEs for precise memory retrieval |
+| **README Compliance** | 75 READMEs styled per readme_template.md (7 rules) |
+| **Test Coverage** | 3,988 tests across 118 test files |
 
 ### Requirements
 
@@ -92,7 +109,9 @@ Spec Kit adds the missing layers: persistent memory, enforced documentation, and
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -134,7 +153,9 @@ ls specs/###-user-authentication/
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📊 DOCUMENTATION LEVELS
+<!-- ANCHOR:documentation-levels -->
 
 ### Progressive Enhancement
 
@@ -177,7 +198,9 @@ specs/042-user-authentication/
 
 ---
 
+<!-- /ANCHOR:documentation-levels -->
 ## 4. ⚡ COMMANDS
+<!-- ANCHOR:commands -->
 
 ### Spec Kit Commands
 
@@ -237,7 +260,9 @@ The `/spec_kit:debug` command prompts for model selection, then dispatches to th
 
 ---
 
-## 5. 🧠 MEMORY SYSTEM
+<!-- /ANCHOR:commands -->
+## 5. 💾 MEMORY SYSTEM
+<!-- ANCHOR:memory-system -->
 
 ### The Memory Revolution
 
@@ -355,7 +380,7 @@ Hash-based Set tracks `sentMemories` per session. State persists to SQLite for c
 | Tool | Purpose |
 |------|---------|
 | `memory_save` | Index a memory file |
-| `memory_index_scan` | Bulk scan and index workspace |
+| `memory_index_scan` | Bulk scan and index workspace (`includeReadmes`: boolean, default `true`) |
 | `memory_update` | Update memory metadata and tier |
 | `memory_delete` | Delete memories by ID or folder |
 | `memory_validate` | Record validation feedback |
@@ -393,7 +418,7 @@ Hash-based Set tracks `sentMemories` per session. State persists to SQLite for c
 
 ### ANCHOR Format (93% Token Savings)
 
-Memory files use ANCHOR markers for section-level retrieval:
+Memory files use ANCHOR markers for section-level retrieval. As of spec 111, **~473 anchor tags** span **74 READMEs** across the skill system, enabling precise section-level memory retrieval without loading full files.
 
 ```markdown
 <!-- ANCHOR: decision-auth-flow -->
@@ -460,7 +485,38 @@ If embedding fails, the system degrades gracefully to keyword search.
 
 ---
 
-## 6. 📝 TEMPLATES
+### 4-Source Indexing Pipeline
+
+The `memory_index_scan` tool indexes content from four distinct sources:
+
+| # | Source | Location Pattern | Weight |
+|---|--------|------------------|--------|
+| 1 | **Spec Memories** | `specs/*/memory/*.md` | `0.5` |
+| 2 | **Constitutional Rules** | `.opencode/skill/*/constitutional/*.md` | — |
+| 3 | **Skill READMEs** | `.opencode/skill/*/README.md` | `0.3` |
+| 4 | **Project READMEs** | `**/README.md` (project root) | `0.4` |
+
+Sources 3 and 4 are controlled by the `includeReadmes` parameter (default: `true`). Set to `false` to skip README discovery and only index spec memories and constitutional rules.
+
+#### Tiered Importance Weights
+
+README sources receive reduced importance to ensure user work memories always outrank documentation in search results:
+
+| Source | `importance_weight` | Score Multiplier | Effect |
+|--------|--------------------:|:----------------:|--------|
+| User work (spec memories) | `0.5` | `1.0x` | Full score |
+| Project READMEs | `0.4` | `0.9x` | -10% |
+| Skill READMEs | `0.3` | `0.8x` | -20% |
+
+The formula: `score *= (0.5 + importance_weight)`. At equal semantic relevance, user work always ranks higher.
+
+> **Deep dive:** See [references/memory/readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, YAML frontmatter options, and known limitations.
+
+---
+
+<!-- /ANCHOR:memory-system -->
+## 6. 📁 TEMPLATES
+<!-- ANCHOR:templates -->
 
 ### Template Overview
 
@@ -514,7 +570,9 @@ cp .opencode/skill/system-spec-kit/templates/handover.md specs/###-name/
 
 ---
 
+<!-- /ANCHOR:templates -->
 ## 7. 🔧 SCRIPTS
+<!-- ANCHOR:scripts -->
 
 ### Script Overview
 
@@ -569,7 +627,9 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js spe
 
 ---
 
+<!-- /ANCHOR:scripts -->
 ## 8. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -643,15 +703,18 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 ---
 
-## 9. 🔗 RELATED RESOURCES
+<!-- /ANCHOR:troubleshooting -->
+## 9. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
 | Document | Purpose |
 |----------|---------|
-| [SKILL.md](./SKILL.md) | Complete workflow documentation and AI instructions |
+| [SKILL.md](./SKILL.md) | AI workflow instructions (701 lines, streamlined from 1,055) |
 | [mcp_server/README.md](./mcp_server/README.md) | Memory MCP installation and configuration |
 | [references/memory/memory_system.md](./references/memory/memory_system.md) | Memory system deep dive |
+| [references/memory/readme_indexing.md](./references/memory/readme_indexing.md) | 4-source indexing pipeline, README weights, discovery |
 | [references/validation/validation_rules.md](./references/validation/validation_rules.md) | All validation rules and fixes |
 | [references/validation/five-checks.md](./references/validation/five-checks.md) | Five Checks evaluation framework |
 
@@ -659,7 +722,7 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 ```
 .opencode/skill/system-spec-kit/
-|-- SKILL.md                   # AI workflow instructions
+|-- SKILL.md                   # AI workflow instructions (701 lines)
 |-- README.md                  # This file
 |-- templates/                 # Template system (CORE + ADDENDUM)
 |   |-- core/                  # Foundation templates (4 files)
@@ -670,7 +733,7 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 |   |-- spec/                  # Spec folder management
 |   |-- memory/                # Memory system scripts
 |   |-- rules/                 # Validation rules (13)
-|   |-- tests/                 # Test suite (102 tests)
+|   |-- tests/                 # Test suite (122 test files)
 |   |__ dist/                  # Compiled JavaScript output
 |-- shared/                    # Shared workspace (@spec-kit/shared)
 |-- mcp_server/                # Spec Kit Memory MCP [TypeScript source]
@@ -702,7 +765,7 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 | **Scripts** | `.opencode/skill/system-spec-kit/scripts/` |
 | **Memory MCP** | `.opencode/skill/system-spec-kit/mcp_server/` |
 | **References** | `.opencode/skill/system-spec-kit/references/` |
-| **Commands** | `.opencode/command/spec_kit/` |
+| **Commands** | `.opencode/command/spec_kit/` and `.opencode/command/memory/` (12 files, all ≤600 lines) |
 
 ### External Dependencies
 
@@ -714,7 +777,28 @@ Every error now includes actionable recovery guidance. 49 error codes mapped to 
 
 ---
 
-## The Bottom Line
+<!-- /ANCHOR:related -->
+## 10. 📋 RECENT CHANGES
+<!-- ANCHOR:recent-changes -->
+
+### Specs 111-117: Documentation, Template & Command Overhaul
+
+| Spec | Focus | Key Outcome |
+|------|-------|-------------|
+| **111** | Anchor tag rollout | ~473 anchor tags across 74 READMEs for precise memory retrieval |
+| **112** | Memory command READMEs | 5 memory command READMEs aligned with command_template.md |
+| **113** | README styling | 75 READMEs styled per readme_template.md (7 rules) |
+| **114** | SKILL.md + command cleanup | SKILL.md reduced 1,055 to 701 lines; 12 command files at ≤600 lines; full agent routing compliance (19/19 commands) |
+| **115** | README template alignment | readme_template.md restructured (1589→1058 lines, 16→14 sections); canonical 9-section scaffold in §13; root README.md restructured (756→971 lines, 7→9 sections); 5 evolved patterns added (anchors, TOC format, badges, architecture diagrams, Before/After patterns) |
+| **117** | /create:folder_readme alignment | create_folder_readme.yaml aligned with canonical 9-section structure (765→611 lines, -20%); embedded templates replaced with reference stubs; emoji/naming inconsistencies fixed; folder_readme.md references corrected |
+
+**Impact:** Reduced token overhead for memory retrieval, consistent documentation across the entire skill system, streamlined AI instruction surface, and unified template architecture with a canonical 9-section scaffold.
+
+---
+
+<!-- /ANCHOR:recent-changes -->
+## 11. 📊 THE BOTTOM LINE
+<!-- ANCHOR:the-bottom-line -->
 
 Six months from now, you'll know exactly why you made that architectural decision. Your AI assistant will pick up where you left off. And context that used to vanish between sessions? It's searchable forever.
 
@@ -722,3 +806,4 @@ Six months from now, you'll know exactly why you made that architectural decisio
 ```bash
 /spec_kit:complete "your first documented feature" :auto
 ```
+<!-- /ANCHOR:the-bottom-line -->

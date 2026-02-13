@@ -1,3 +1,13 @@
+---
+title: "Embeddings Factory"
+description: "Flexible embeddings system supporting multiple backends with robust fallback and per-profile databases."
+trigger_phrases:
+  - "embeddings factory"
+  - "embedding provider selection"
+  - "multi-provider embeddings fallback"
+importance_tier: "normal"
+---
+
 # Embeddings Factory
 
 > Flexible embeddings system supporting multiple backends with robust fallback and per-profile databases.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -17,7 +28,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the Embeddings Factory?
 
@@ -61,7 +74,9 @@ The Embeddings Factory is a multi-provider architecture for generating vector em
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -100,7 +115,9 @@ console.log(`Dimensions: ${embedding.length}`);
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 embeddings/
@@ -124,7 +141,9 @@ embeddings/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Per-Profile Databases
 
@@ -166,7 +185,9 @@ const { generateDocumentEmbedding, getEmbeddingDimension } = require('./embeddin
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Environment Variables
 
@@ -202,7 +223,9 @@ export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5
 
 ---
 
+<!-- /ANCHOR:configuration -->
 ## 6. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Generate Embeddings
 
@@ -279,7 +302,9 @@ OPENAI_API_KEY=sk-... node scripts/tests/test-embeddings-factory.js
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -353,7 +378,9 @@ echo "EMBEDDINGS_PROVIDER: $EMBEDDINGS_PROVIDER"
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 8. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -383,3 +410,4 @@ To implement the Ollama provider:
 ---
 
 *Documentation version: 2.0 | Last updated: 2025-12-31*
+<!-- /ANCHOR:related -->

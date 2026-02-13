@@ -1,3 +1,13 @@
+---
+title: "Spec Kit Memory MCP Server"
+description: "Cognitive memory system for AI assistants featuring hybrid search, FSRS-powered decay, causal graphs, and session deduplication."
+trigger_phrases:
+  - "MCP server"
+  - "spec kit memory"
+  - "cognitive memory"
+importance_tier: "normal"
+---
+
 # Spec Kit Memory MCP Server
 
 > AI memory that actually persists without poisoning your context window.
@@ -7,6 +17,7 @@ A cognitive memory system for AI assistants featuring hybrid search, FSRS-powere
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🔧 MCP TOOLS](#2--mcp-tools)
@@ -22,7 +33,12 @@ A cognitive memory system for AI assistants featuring hybrid search, FSRS-powere
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
+
+---
+
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### The Problem
 
@@ -54,7 +70,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | **"Why" queries** | Impossible | Causal graph traversal (6 relationship types) |
 | **Recovery** | Hope | Crash recovery with zero data loss |
 | **Sessions** | None | Deduplication with -50% tokens on follow-up |
-| **Context** | Full documents | ANCHOR-based section retrieval (93% token savings) |
+| **Context** | Full documents | ANCHOR-based section retrieval (~473 anchors, 93% token savings) |
 | **Search** | Vector only | Hybrid FTS5 + vector + BM25 with RRF fusion |
 | **State** | Stateless | 5-state cognitive model (HOT/WARM/COLD/DORMANT/ARCHIVED) |
 | **Tiers** | None | 6-tier importance with configurable boosts |
@@ -70,10 +86,11 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 |------------|--------|-------------|
 | **Causal Memory Graph** | Answer "why" | 6 relationship types (caused, supersedes, etc.) |
 | **Session Deduplication** | -50% tokens | Hash-based tracking prevents re-sending same content |
-| **ANCHOR Retrieval** | 93% token savings | Section-level extraction, not full files |
+| **ANCHOR Retrieval** | 93% token savings | ~473 anchors across 74 READMEs for section-level extraction |
 | **RRF Search Fusion** | +40-50% relevance | Combines vector + BM25 + graph with k=60, 10% convergence bonus |
 | **Type-Specific Half-Lives** | Smarter decay | 9 memory types decay at different rates |
 | **Incremental Indexing** | 10-100x faster | Content hash + mtime diff updates |
+| **4-Source Pipeline** | Broader knowledge | Indexes spec files, constitutional, skill READMEs, project READMEs |
 | **Recovery Hints** | Self-service errors | 49 error codes with actionable guidance |
 | **Lazy Model Loading** | <500ms startup | Defer embedding init until first use |
 
@@ -99,7 +116,12 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 
 ---
 
+<!-- /ANCHOR:overview -->
+
+---
+
 ## 2. 🔧 MCP TOOLS
+<!-- ANCHOR:mcp-tools -->
 
 ### Tool Categories
 
@@ -126,7 +148,7 @@ This MCP server gives your AI assistant persistent memory with intelligence buil
 | Tool | Purpose | Latency |
 |------|---------|---------|
 | `memory_save` | Index a single memory file | ~1s |
-| `memory_index_scan` | Bulk scan and index workspace (incremental) | varies |
+| `memory_index_scan` | Bulk scan and index workspace (4-source pipeline, incremental) | varies |
 | `memory_update` | Update metadata/tier/triggers | <50ms* |
 | `memory_delete` | Delete by ID or spec folder | <50ms |
 | `memory_validate` | Record validation feedback | <50ms |
@@ -209,16 +231,25 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `query` | string | - | Natural language search query |
-| `concepts` | string[] | - | Multi-concept AND search (2-5 concepts) |
+| `concepts` | string[] | - | Multi-concept AND search (2-5 concepts, results must match ALL) |
 | `specFolder` | string | - | Limit search to specific spec folder |
-| `limit` | number | 10 | Maximum results (1-20) |
-| `includeConstitutional` | boolean | **true** | Include constitutional tier at top |
-| `includeContent` | boolean | false | Embed file content in results |
-| `anchors` | string[] | - | Specific anchor IDs to extract |
-| `searchType` | string | "hybrid" | "vector", "hybrid", or "multi-concept" |
-| `intent` | string | - | Task intent for weighted retrieval |
-| `includeGraph` | boolean | false | Include causal graph results (1.5x weight) |
-| `compression` | string | "standard" | "minimal", "compact", "standard", "full" |
+| `limit` | number | 10 | Maximum number of results to return |
+| `sessionId` | string | - | Session identifier for working memory and session deduplication (~50% token savings on follow-up queries) |
+| `enableDedup` | boolean | true | Enable session deduplication (requires `sessionId`) |
+| `tier` | string | - | Filter by importance tier (constitutional, critical, important, normal, temporary, deprecated) |
+| `contextType` | string | - | Filter by context type (decision, implementation, research, etc.) |
+| `useDecay` | boolean | true | Apply temporal decay scoring to results |
+| `includeContiguity` | boolean | false | Include adjacent/contiguous memories in results |
+| `includeConstitutional` | boolean | **true** | Include constitutional tier memories at top of results |
+| `includeContent` | boolean | false | Include full file content in results (embeds load logic directly in search) |
+| `anchors` | string[] | - | Specific anchor IDs to extract from content (requires `includeContent: true`) |
+| `bypassCache` | boolean | false | Skip tool cache and force a fresh search |
+| `rerank` | boolean | false | Enable cross-encoder reranking of results (improves relevance, adds computation) |
+| `applyLengthPenalty` | boolean | true | Apply length-based penalty during reranking (only effective when `rerank` is true) |
+| `applyStateLimits` | boolean | false | Apply per-tier quantity limits to balance result diversity |
+| `minState` | string | "WARM" | Minimum memory state filter (HOT > WARM > COLD > DORMANT > ARCHIVED) |
+| `intent` | enum | - | Task intent for weight adjustments (add_feature, fix_bug, refactor, security_audit, understand) |
+| `autoDetectIntent` | boolean | true | Auto-detect intent from query if not explicitly specified |
 
 #### memory_context
 
@@ -231,10 +262,38 @@ All handler responses include a `tokenBudget` field in the `meta` object showing
 | `limit` | number | 10 | Maximum results |
 | `sessionId` | string | - | Session ID for deduplication |
 | `enableDedup` | boolean | true | Enable session deduplication |
+| `includeContent` | boolean | false | Include full file content in results |
+| `anchors` | string[] | - | Filter content to specific anchors (e.g., ["state", "next-steps"] for resume mode) |
+
+#### memory_index_scan
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `specFolder` | string | - | Limit scan to specific spec folder |
+| `force` | boolean | false | Force re-index all files (ignore content hash) |
+| `incremental` | boolean | true | Skip unchanged files (mtime + hash check) |
+| `includeConstitutional` | boolean | true | Scan `.opencode/skill/*/constitutional/` directories |
+| `includeReadmes` | boolean | **true** | Include README files from skill and project directories |
+
+**4-Source Pipeline:** When `memory_index_scan` runs, it categorizes discovered files into four sources:
+
+| Source | Path Pattern | Importance Weight | Description |
+|--------|-------------|-------------------|-------------|
+| `specFiles` | `specs/**/memory/*.md` | Per-file metadata | Memory files from spec folders |
+| `constitutionalFiles` | `.opencode/skill/*/constitutional/*.md` | Per-file metadata | Constitutional tier files |
+| `skillReadmes` | `.opencode/skill/*/README.md` | 0.3 | Skill documentation (lower weight to never outrank user work) |
+| `projectReadmes` | `**/README.md` (excl. node_modules, .git, etc.) | 0.4 | Project documentation providing codebase context |
+
+README sources are indexed with reduced importance weights so they provide useful background context during search without outranking user-authored memories. All 75 indexed READMEs follow consistent formatting and anchor conventions (specs 111/113), which improves embedding quality and anchor-based retrieval accuracy. Set `includeReadmes: false` for backward-compatible behavior that excludes README sources.
+
+---
+
+<!-- /ANCHOR:mcp-tools -->
 
 ---
 
 ## 3. 🧠 COGNITIVE MEMORY
+<!-- ANCHOR:cognitive-memory -->
 
 This isn't basic memory storage. The system implements biologically-inspired cognitive features that mirror how human memory actually works.
 
@@ -400,7 +459,12 @@ LI = (KnowledgeDelta * 0.4) + (UncertaintyReduction * 0.35) + (ContextImprovemen
 
 ---
 
+<!-- /ANCHOR:cognitive-memory -->
+
+---
+
 ## 4. 🔍 SEARCH SYSTEM
+<!-- ANCHOR:search-system -->
 
 ### Hybrid Search Architecture
 
@@ -492,6 +556,8 @@ We chose JWT with refresh tokens because:
 
 **Common Anchors:** `summary`, `decisions`, `context`, `state`, `artifacts`, `blockers`, `next-steps`, `metadata`
 
+**Coverage:** ~473 anchor tags deployed across 74 READMEs (specs 111/113), providing fine-grained section-level retrieval targets for the `anchors` parameter on `memory_search` and `memory_context`.
+
 **Token Savings:**
 - Full document: ~3000 tokens
 - Summary anchor only: ~200 tokens
@@ -524,7 +590,12 @@ The **constitutional** tier is special--these memories ALWAYS appear at the top 
 
 ---
 
+<!-- /ANCHOR:search-system -->
+
+---
+
 ## 5. 📊 IMPORTANCE TIERS
+<!-- ANCHOR:importance-tiers -->
 
 ### The Six-Tier System
 
@@ -548,9 +619,25 @@ The **constitutional** tier is special--these memories ALWAYS appear at the top 
 | Debug logs, experiments | `temporary` |
 | Replaced/outdated docs | `deprecated` |
 
+### Source-Type Importance Weighting
+
+In addition to tiers, the indexing pipeline assigns importance weights based on file source. This ensures auto-indexed content (like READMEs) never outranks user-authored memories:
+
+| Source Type | Weight | Rationale |
+|-------------|--------|-----------|
+| User memory files | Per-file metadata | Full importance from frontmatter |
+| Constitutional files | Per-file metadata | Highest priority (tier boost 3.0x) |
+| Skill READMEs | 0.3 | Background reference, not user work |
+| Project READMEs | 0.4 | Codebase context, slightly higher than skill docs |
+
+---
+
+<!-- /ANCHOR:importance-tiers -->
+
 ---
 
 ## 6. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 mcp_server/
@@ -571,7 +658,7 @@ mcp_server/
 │   ├── memory-triggers.ts  # memory_match_triggers + cognitive
 │   ├── memory-save.ts      # memory_save + PE gating
 │   ├── memory-crud.ts      # update/delete/list/stats/health/validate
-│   ├── memory-index.ts     # memory_index_scan + constitutional discovery
+│   ├── memory-index.ts     # memory_index_scan + 4-source pipeline + README indexing
 │   ├── checkpoints.ts      # checkpoint_create/list/restore/delete
 │   ├── session-learning.ts # preflight/postflight/learning history
 │   ├── memory-context.ts   # memory_context + unified entry
@@ -708,7 +795,12 @@ mcp_server/
 
 ---
 
+<!-- /ANCHOR:structure -->
+
+---
+
 ## 7. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -768,7 +860,12 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 ---
 
+<!-- /ANCHOR:quick-start -->
+
+---
+
 ## 8. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Environment Variables
 
@@ -879,7 +976,12 @@ Add to your MCP client configuration (e.g., `opencode.json`):
 
 ---
 
+<!-- /ANCHOR:configuration -->
+
+---
+
 ## 9. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Basic Memory Search
 
@@ -995,7 +1097,12 @@ checkpoint_restore({ name: "pre-cleanup" })
 
 ---
 
+<!-- /ANCHOR:examples -->
+
+---
+
 ## 10. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -1119,7 +1226,12 @@ node dist/tests/causal-edges.test.js
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
+
+---
+
 ## 11. 🔗 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Parent Documentation
 
@@ -1156,3 +1268,4 @@ node dist/tests/causal-edges.test.js
 | Voyage AI | https://www.voyageai.com/ |
 | FTS5 Docs | https://www.sqlite.org/fts5.html |
 | RRF Paper | https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf |
+<!-- /ANCHOR:related -->

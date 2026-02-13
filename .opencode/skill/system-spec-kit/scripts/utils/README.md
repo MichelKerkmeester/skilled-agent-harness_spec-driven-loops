@@ -1,3 +1,13 @@
+---
+title: "System Spec Kit Utilities"
+description: "Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging, and input normalization across all system-spec-kit scripts."
+trigger_phrases:
+  - "spec kit utilities"
+  - "data validator path utils"
+  - "script utility modules"
+importance_tier: "normal"
+---
+
 # System Spec Kit Utilities
 
 > Shared utility modules providing core functionality for data validation, path sanitization, file operations, logging, and input normalization across all system-spec-kit scripts.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -14,7 +25,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are System Spec Kit Utilities?
 
@@ -52,7 +65,9 @@ The utilities folder contains reusable TypeScript modules (compiled to JavaScrip
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -105,7 +120,9 @@ structuredLog('info', 'Processing spec folder', { path: safePath });
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 utils/
@@ -153,7 +170,9 @@ dist/utils/                    # TypeScript compilation output
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -262,7 +281,9 @@ node -e "const { validateInputData } = require('./dist/utils/data-validator'); c
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -284,3 +305,4 @@ node -e "const { validateInputData } = require('./dist/utils/data-validator'); c
 ---
 
 *Documentation for system-spec-kit utilities v2.1 | TypeScript Migration | Last updated: 2026-02-07*
+<!-- /ANCHOR:related -->

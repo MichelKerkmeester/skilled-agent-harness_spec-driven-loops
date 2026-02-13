@@ -1,20 +1,36 @@
+---
+title: "MCP Server Library"
+description: "Core library modules for search, scoring, cognitive memory, and storage."
+trigger_phrases:
+  - "mcp library"
+  - "lib modules"
+  - "cognitive memory"
+importance_tier: "normal"
+---
+
 # MCP Server Library
 
 > Core library modules for search, scoring, cognitive memory, and storage.
 
-## TABLE OF CONTENTS
+---
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 📁 STRUCTURE](#3--structure)
-- [4. ⚡ FEATURES](#4--features)
-- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
-- [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. OVERVIEW](#1--overview)
+- [2. QUICK START](#2--quick-start)
+- [3. STRUCTURE](#3--structure)
+- [4. FEATURES](#4--features)
+- [5. USAGE EXAMPLES](#5--usage-examples)
+- [6. TROUBLESHOOTING](#6--troubleshooting)
+- [7. RELATED DOCUMENTS](#7--related-documents)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the MCP Server Library?
 
@@ -48,9 +64,12 @@ The MCP Server Library provides the core functionality for the Spec Kit Memory M
 | better-sqlite3 | 9+ | Latest |
 | Voyage AI API | Required | For embeddings |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -86,9 +105,12 @@ const results = await search.vectorIndex.search_memories('authentication', { lim
 console.log(`Found ${results.length} relevant memories`);
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 lib/                            # TypeScript source files
@@ -229,9 +251,12 @@ dist/lib/                       # Compiled JavaScript + type definitions
 | `utils/logger.ts` | Logging utilities |
 | `validation/preflight.ts` | Input validation and security checks |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Search & Retrieval
 
@@ -253,7 +278,7 @@ dist/lib/                       # Compiled JavaScript + type definitions
 
 ### Cognitive Features
 
-**FSRS Power-Law Decay**: Research-backed forgetting curve using formula R(t,S) = (1 + (19/81) × t/S)^(-0.5) where 19/81 ≈ 0.2346
+**FSRS Power-Law Decay**: Research-backed forgetting curve using formula R(t,S) = (1 + (19/81) x t/S)^(-0.5) where 19/81 ~ 0.2346
 
 ```typescript
 // Calculate retrievability using FSRS algorithm
@@ -265,10 +290,10 @@ const retrievability = cognitive.fsrsScheduler.calculate_retrievability(
 );
 
 // Memory states based on retrievability:
-// HOT (R ≥ 0.80)      - Active working memory, full content
-// WARM (0.25 ≤ R < 0.80) - Accessible background, summary only
-// COLD (0.05 ≤ R < 0.25) - Inactive but retrievable
-// DORMANT (0.02 ≤ R < 0.05) - Very weak, needs revival
+// HOT (R >= 0.80)      - Active working memory, full content
+// WARM (0.25 <= R < 0.80) - Accessible background, summary only
+// COLD (0.05 <= R < 0.25) - Inactive but retrievable
+// DORMANT (0.02 <= R < 0.05) - Very weak, needs revival
 // ARCHIVED (R < 0.02)  - Effectively forgotten, time-based archival
 ```
 
@@ -390,9 +415,12 @@ const matches = await parsing.triggerMatcher.match_triggers({
 });
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Semantic Memory Search
 
@@ -492,9 +520,12 @@ const results = await utils.process_batches(
 | Init modules | `cognitive.attentionDecay.init(db);` | Modules requiring database |
 | Error handling | `try { ... } catch (err) { if (err instanceof errors.ValidationError) ... }` | Specific error types |
 
+<!-- /ANCHOR:examples -->
+
 ---
 
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -579,9 +610,12 @@ const embedding = await providers.embeddings.get_embedding('test query');
 console.log('Embedding dimensions:', embedding.length);
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -609,6 +643,8 @@ console.log('Embedding dimensions:', embedding.length);
 | [Voyage AI Docs](https://docs.voyageai.com/) | Embedding API documentation |
 | [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) | SQLite Node.js library |
 | [MCP Protocol](https://modelcontextprotocol.io/) | Model Context Protocol specification |
+
+<!-- /ANCHOR:related -->
 
 ---
 

@@ -1,3 +1,13 @@
+---
+title: "Validation Rules"
+description: "Modular shell scripts that validate spec folder structure, content quality, and documentation completeness"
+trigger_phrases:
+  - "validation rules"
+  - "check spec folder"
+  - "spec validation scripts"
+importance_tier: "normal"
+---
+
 # Validation Rules
 
 > Modular shell scripts that validate spec folder structure, content quality, and documentation completeness.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -16,7 +27,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Validation Rules?
 
@@ -49,7 +62,9 @@ Validation rules are modular shell scripts that check spec folders for structura
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -85,7 +100,9 @@ ls -la .opencode/skill/system-spec-kit/scripts/rules/
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 rules/
@@ -121,7 +138,9 @@ rules/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Rule Interface
 
@@ -339,7 +358,9 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Basic Validation
 
@@ -382,7 +403,9 @@ L3+: 10+ major sections, detailed acceptance scenarios
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -446,7 +469,9 @@ echo "Status: $RULE_STATUS, Message: $RULE_MESSAGE"
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -466,3 +491,4 @@ echo "Status: $RULE_STATUS, Message: $RULE_MESSAGE"
 ---
 
 *Documentation version: 1.0 | Last updated: 2025-12-26*
+<!-- /ANCHOR:related -->

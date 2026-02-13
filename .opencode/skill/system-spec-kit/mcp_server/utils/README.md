@@ -1,8 +1,21 @@
+---
+title: "MCP Server Utilities"
+description: "Utility modules for input validation, JSON operations, and batch processing."
+trigger_phrases:
+  - "MCP utilities"
+  - "input validation"
+  - "batch processing"
+importance_tier: "normal"
+---
+
 # MCP Server Utilities
 
-Utility modules for input validation, JSON operations, and batch processing.
+> Utility modules for input validation, JSON operations, and batch processing.
+
+---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -12,11 +25,12 @@ Utility modules for input validation, JSON operations, and batch processing.
 - [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
 - [7. 📚 RELATED DOCUMENTS](#7--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
 ## 1. 📖 OVERVIEW
-
-### What are the MCP Server Utilities?
+<!-- ANCHOR:overview -->
 
 The utilities module provides essential support functions for the MCP server, including input validation (with security hardening against CWE-400 resource exhaustion), safe JSON parsing/serialization, and batch processing with automatic retry logic. These utilities ensure robustness, security, and reliability across all MCP operations.
 
@@ -46,9 +60,12 @@ The utilities module provides essential support functions for the MCP server, in
 |-------------|---------|-------------|
 | Node.js | 18+ | 20+ |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -89,9 +106,12 @@ try {
 }
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 utils/
@@ -113,9 +133,12 @@ utils/
 | `db-helpers.ts` | Database utility functions for common database operations |
 | `index.ts` | Barrel export providing both snake_case and camelCase naming |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Input Validation
 
@@ -260,9 +283,12 @@ const results = await process_sequentially(
 );
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Validate User Input
 
@@ -374,9 +400,12 @@ const embedding = await process_with_retry(
 | Batch + retry | `process_batches(items, fn, 50, 100, { max_retries: 2 })` | Large datasets, external APIs |
 | Sequential processing | `process_sequentially(items, fn)` | Order-dependent operations |
 
+<!-- /ANCHOR:examples -->
+
 ---
 
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -506,9 +535,12 @@ process_batches(items, async (batch) => {
 }).then(results => console.log('Results:', results.flat()));
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -545,3 +577,5 @@ process_batches(items, async (batch) => {
 ---
 
 *Documentation version: 1.2 | Last updated: 2026-02-11*
+
+<!-- /ANCHOR:related -->

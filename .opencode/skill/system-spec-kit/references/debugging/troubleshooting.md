@@ -13,7 +13,7 @@ Systematic diagnosis and resolution for semantic memory issues, context retrieva
 
 **Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
 
-This reference provides structured troubleshooting for the semantic memory system v1.7.1, covering:
+This reference provides structured troubleshooting for the semantic memory system v1.7.2, covering:
 
 - **Context retrieval failures** - Memory search returning no/wrong results
 - **Vector index issues** - Embedding generation and search problems
@@ -128,10 +128,10 @@ memory_search({ query: "test" })
 |-------|------------|------------|
 | Old memories ranked too high | Decay not enabled | Set `useDecay: true` in search params |
 | Recent memories not prioritized | Decay rate too high | Check tier-specific rates (normal=0.80, temporary=0.60) |
-| Score calculations seem wrong | Missing turn tracking | Verify `last_mentioned_turn` field populated |
+| Score calculations seem wrong | Missing FSRS fields | Verify `stability` and `last_review` fields populated |
 | Decay too aggressive | Low decay rate | Adjust tier or use protected tier (constitutional/critical/important) |
 
-**Note (v1.7.1):** The following tiers are protected from decay (rate = 1.0):
+**Note (v1.7.2):** The following tiers are protected from decay (rate = 1.0):
 - constitutional
 - critical
 - important
@@ -139,22 +139,30 @@ memory_search({ query: "test" })
 
 Only `normal` (0.80) and `temporary` (0.60) tiers experience decay.
 
-**Decay Formula Reference (TURN-BASED):**
+**Decay Models (v1.7.2 has TWO distinct decay systems):**
+
+**1. Long-term memory decay (FSRS day-based):** Used by `memory_search()` for ranking stored memories. Uses FSRS v4 spaced-repetition algorithm based on elapsed calendar days since last review.
 ```
-new_score = current_score × (decay_rate ^ turns_elapsed)
+retrievability = (1 + FSRS_FACTOR × (elapsed_days / stability)) ^ FSRS_DECAY
 
 Where:
-- turns_elapsed = current_turn - last_mentioned_turn
-- decay_rate varies by tier (see table above)
-
-Example: Normal tier memory, 5 turns since last mention, score 0.85
-→ 0.85 × (0.80 ^ 5) = 0.85 × 0.328 = 0.28
-
-Example: Constitutional tier, 5 turns elapsed, score 0.85
-→ 0.85 × (1.0 ^ 5) = 0.85 (no decay - protected tier)
+- elapsed_days = calendar days since last review/access
+- stability = FSRS stability parameter (grows with successful reviews)
+- Memories accessed more often gain higher stability → slower decay
 ```
 
-**Important:** Decay is calculated per conversation TURN, not calendar time. Each new user message increments the turn counter.
+**2. Trigger matching decay (turn-based):** Used by `memory_match_triggers()` within a single conversation session. Applies per-turn attention decay so earlier matches lose weight as the conversation progresses.
+```
+turn_decay_factor = TURN_DECAY_RATE ^ (turnNumber - 1)
+
+Where:
+- TURN_DECAY_RATE = 0.98
+- turnNumber=1 → factor=1.0 (no decay)
+- turnNumber=50 → factor≈0.364
+- turnNumber=100 → factor≈0.133
+```
+
+**Important:** Long-term decay uses calendar days (FSRS). Trigger matching uses conversation turns. The `useDecay` parameter in `memory_search()` controls the FSRS day-based decay.
 
 ### Hybrid Search Fallback Scenarios
 

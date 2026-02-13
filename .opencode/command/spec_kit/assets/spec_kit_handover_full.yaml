@@ -1,155 +1,98 @@
-# ───────────────────────────────────────────────────────────────────
-# SPECKIT: HANDOVER FULL - SONNET AGENT
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# SMART SPECKIT: HANDOVER WORKFLOW
+# ─────────────────────────────────────────────────────────────────
 role: Session Handover Specialist
 purpose: Generate comprehensive handover documentation for session continuation
 action: Analyze session context and create detailed handover.md
 
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: utility
   execution: autonomous
-  output: handover.md file in spec folder
+  output: "handover.md file in spec folder"
 
-# ───────────────────────────────────────────────────────────────────
-# INPUTS
-# ───────────────────────────────────────────────────────────────────
-inputs:
-  spec_folder:
-    description: "Path to spec folder (e.g., specs/007-auth-feature)"
-    required: true
-  
-  session_context:
-    description: "Current session context including recent actions, decisions, blockers"
-    required: true
+user_inputs:
+  spec_folder: "[SPEC_FOLDER] - Path to spec folder (e.g., specs/007-auth-feature). REQUIRED."
+  session_context: "[SESSION_CONTEXT] - Current session context. Auto-gathered from conversation."
 
-# ───────────────────────────────────────────────────────────────────
-# HANDOVER DOCUMENT STRUCTURE
-# ───────────────────────────────────────────────────────────────────
 output_structure:
   file: handover.md
   location: "[spec_folder]/handover.md"
   target_length: "100-150 lines"
-  
   sections:
-    1_session_summary:
-      title: "Session Summary"
-      content:
-        - Session date and duration estimate
-        - Primary objective of the session
-        - Overall progress percentage
-        - Key accomplishments (3-5 bullets)
-    
-    2_current_state:
-      title: "Current State"
-      content:
-        - Phase (RESEARCH/PLANNING/IMPLEMENTATION/REVIEW)
-        - Active file and line (if applicable)
-        - Last action taken
-        - System state (any running processes, open issues)
-    
-    3_completed_work:
-      title: "Completed Work"
-      content:
-        - List of completed tasks with brief descriptions
-        - Files created or modified
-        - Tests passed (if applicable)
-        - Documentation updated
-    
-    4_pending_work:
-      title: "Pending Work"
-      content:
-        - Immediate next action (be specific)
-        - Remaining tasks in priority order
-        - Estimated effort for each
-        - Dependencies between tasks
-    
-    5_key_decisions:
-      title: "Key Decisions"
-      content:
-        - Decisions made during session
-        - Rationale for each decision
-        - Alternatives considered and rejected
-        - Impact on future work
-    
-    6_blockers_risks:
-      title: "Blockers & Risks"
-      content:
-        - Current blockers (or "None")
-        - Potential risks identified
-        - Mitigation strategies
-        - Questions needing answers
-    
-    7_continuation:
-      title: "Continuation Instructions"
-      content:
-        - Exact command to resume
-        - Files to review first
-        - Context to load
-        - Quick-start checklist
+    1_session_summary: { title: "Session Summary", content: [Session date/duration, Primary objective, Progress percentage, Key accomplishments (3-5 bullets)] }
+    2_current_state: { title: "Current State", content: [Phase (RESEARCH/PLANNING/IMPLEMENTATION/REVIEW), Active file/line, Last action, System state] }
+    3_completed_work: { title: "Completed Work", content: [Completed tasks with descriptions, Files created/modified, Tests passed, Documentation updated] }
+    4_pending_work: { title: "Pending Work", content: [Immediate next action (specific), Remaining tasks in priority order, Estimated effort, Dependencies] }
+    5_key_decisions: { title: "Key Decisions", content: [Decisions made, Rationale, Alternatives rejected, Impact on future work] }
+    6_blockers_risks: { title: "Blockers & Risks", content: [Current blockers (or "None"), Potential risks, Mitigation strategies, Questions needing answers] }
+    7_continuation: { title: "Continuation Instructions", content: [Exact resume command, Files to review first, Context to load, Quick-start checklist] }
 
-# ───────────────────────────────────────────────────────────────────
-# TEMPLATE
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# HANDOVER TEMPLATE
+# ─────────────────────────────────────────────────────────────────
 template: |
   # Session Handover: {{FEATURE_NAME}}
-  
+
   **Spec Folder**: {{SPEC_FOLDER}}
   **Created**: {{TIMESTAMP}}
   **Session Duration**: {{DURATION_ESTIMATE}}
-  
+
   ---
-  
+
   ## 1. Session Summary
-  
+
   **Objective**: {{PRIMARY_OBJECTIVE}}
   **Progress**: {{PROGRESS_PERCENTAGE}}%
-  
+
   ### Key Accomplishments
   {{#ACCOMPLISHMENTS}}
   - {{.}}
   {{/ACCOMPLISHMENTS}}
-  
+
   ---
-  
+
   ## 2. Current State
-  
+
   | Field | Value |
   |-------|-------|
   | Phase | {{PHASE}} |
   | Active File | {{ACTIVE_FILE}} |
   | Last Action | {{LAST_ACTION}} |
   | System State | {{SYSTEM_STATE}} |
-  
+
   ---
-  
+
   ## 3. Completed Work
-  
+
   ### Tasks Completed
   {{#COMPLETED_TASKS}}
   - [x] {{TASK}} - {{DESCRIPTION}}
   {{/COMPLETED_TASKS}}
-  
+
   ### Files Modified
   {{#FILES_MODIFIED}}
   - `{{FILE_PATH}}` - {{CHANGE_DESCRIPTION}}
   {{/FILES_MODIFIED}}
-  
+
   ---
-  
+
   ## 4. Pending Work
-  
+
   ### Immediate Next Action
   > {{NEXT_ACTION}}
-  
+
   ### Remaining Tasks
   {{#PENDING_TASKS}}
   - [ ] {{TASK}} ({{EFFORT}}) {{#HAS_DEPENDENCY}}← depends on {{DEPENDENCY}}{{/HAS_DEPENDENCY}}
   {{/PENDING_TASKS}}
-  
+
   ---
-  
+
   ## 5. Key Decisions
-  
+
   {{#DECISIONS}}
   ### {{DECISION_TITLE}}
   - **Choice**: {{CHOSEN_OPTION}}
@@ -159,11 +102,11 @@ template: |
   {{^DECISIONS}}
   No significant decisions made this session.
   {{/DECISIONS}}
-  
+
   ---
-  
+
   ## 6. Blockers & Risks
-  
+
   ### Current Blockers
   {{#BLOCKERS}}
   - **{{BLOCKER_TITLE}}**: {{DESCRIPTION}}
@@ -171,7 +114,7 @@ template: |
   {{^BLOCKERS}}
   None
   {{/BLOCKERS}}
-  
+
   ### Risks
   {{#RISKS}}
   - {{RISK}} → Mitigation: {{MITIGATION}}
@@ -179,103 +122,90 @@ template: |
   {{^RISKS}}
   No significant risks identified.
   {{/RISKS}}
-  
+
   ---
-  
+
   ## 7. Continuation Instructions
-  
+
   ### To Resume
   ```
   /spec_kit:resume {{SPEC_FOLDER}}
   ```
-  
+
   ### Files to Review First
   {{#REVIEW_FILES}}
   1. `{{FILE_PATH}}` - {{REASON}}
   {{/REVIEW_FILES}}
-  
+
   ### Quick-Start Checklist
   - [ ] Load this handover document
   - [ ] Review pending tasks above
   - [ ] Check {{ACTIVE_FILE}} for current state
   - [ ] Execute: {{NEXT_ACTION}}
-  
+
   ---
-  
+
   *Generated by /spec_kit:handover:full*
 
-# ───────────────────────────────────────────────────────────────────
-# AGENT ROUTING
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# AGENT ROUTING CONFIGURATION
+# ─────────────────────────────────────────────────────────────────
 agent_routing:
-  primary_agent: handover
-  model_preference: sonnet
-  dispatch_point: "After Phase 2 validation passes"
+  handover_phase:
+    agent: "@handover"
+    agent_file: ".opencode/agent/handover.md"
+    model: sonnet
+    dispatch: "Task tool → @handover gather context, generate handover.md, write to spec folder"
+    fallback: general
 
-  delegation:
-    handover_agent:
-      agent: "@handover"
-      tasks:
-        - context_gathering
-        - handover_generation
-        - file_writing
-      model: sonnet
-
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 # QUALITY GATES
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 quality_gates:
+  enabled: true
   pre_execution:
+    location: "Before handover generation"
     threshold: 70
-    criteria:
-      - spec_path_validated
-      - validation_passed_or_bypassed
-
+    blocking: hard
+    checks:
+      - { id: spec_path_validated, points: 50 }
+      - { id: validation_passed_or_bypassed, points: 50 }
+    on_fail: "Pre-execution gate below threshold. Missing: {missing_checks}. Hard block."
   post_execution:
+    location: "After handover generation"
     threshold: 70
-    criteria:
-      - handover_file_created
-      - no_placeholder_text
-      - json_response_valid
+    blocking: hard
+    checks:
+      - { id: handover_file_created, points: 40 }
+      - { id: no_placeholder_text, points: 30 }
+      - { id: json_response_valid, points: 30 }
+    on_fail: "Post-execution gate below threshold. Missing: {missing_checks}. Complete before done."
 
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 # CIRCUIT BREAKER
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 circuit_breaker:
-  failure_threshold: 3
-  recovery_timeout_s: 60
-  success_to_close: 1
-  states:
-    - CLOSED: "Normal operation - handover proceeds"
-    - OPEN: "Failures detected - fallback to direct execution"
-    - HALF_OPEN: "Testing recovery - single handover attempt"
+  enabled: true
+  thresholds: { failures: 3, recovery_s: 60, success_to_close: 1 }
+  states: { CLOSED: normal_operation, OPEN: use_fallback, HALF_OPEN: test_single }
 
-# ───────────────────────────────────────────────────────────────────
-# EXECUTION
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
 execution:
-  steps:
-    1: "Analyze current session context"
-    2: "Extract completed work from tool calls and file changes"
-    3: "Identify pending tasks from conversation and todo list"
-    4: "Document any decisions made"
-    5: "Note blockers and risks mentioned"
-    6: "Generate handover.md using template"
-    7: "Write file to spec folder"
-    8: "Return file path and summary"
+  steps: ["Analyze current session context", "Extract completed work from tool calls and file changes", "Identify pending tasks from conversation and todo list", "Document decisions made", "Note blockers and risks", "Generate handover.md using template", "Write file to spec folder", "Return file path and summary"]
 
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 # RULES
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
-    - Be specific in "Next Action" (include file names, line numbers)
-    - List files in order of importance
-    - Include command to resume
-    - Keep total length 100-150 lines
-  
+  - Be specific in Next Action (file names, line numbers)
+  - List files in order of importance
+  - Include command to resume
+  - Keep total length 100-150 lines
   NEVER:
-    - Leave "Next Action" vague
-    - Omit blockers (say "None" if none)
-    - Exceed 200 lines
-    - Include sensitive information
+  - Leave Next Action vague
+  - Omit blockers (say None if none)
+  - Exceed 200 lines
+  - Include sensitive information

@@ -1,3 +1,13 @@
+---
+title: "Spec Folder Utilities"
+description: "TypeScript modules for spec folder detection, alignment validation, and directory setup."
+trigger_phrases:
+  - "spec folder detection"
+  - "alignment validation"
+  - "folder utilities"
+importance_tier: "normal"
+---
+
 # Spec Folder Utilities
 
 > TypeScript modules for spec folder detection, alignment validation, and directory setup.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -14,7 +25,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Spec Folder Utilities?
 
@@ -40,7 +53,9 @@ The `scripts/spec-folder/` directory contains TypeScript modules that handle int
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Using in Memory Save Workflow
 
@@ -99,7 +114,9 @@ const topics = extractConversationTopics({
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 scripts/spec-folder/
@@ -132,7 +149,9 @@ scripts/dist/spec-folder/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -205,7 +224,9 @@ node scripts/dist/memory/generate-context.js --help
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -227,3 +248,4 @@ node scripts/dist/memory/generate-context.js --help
 ---
 
 *Documentation version: 1.1 | Last updated: 2026-02-07 | Migrated to TypeScript with dist/ output*
+<!-- /ANCHOR:related -->

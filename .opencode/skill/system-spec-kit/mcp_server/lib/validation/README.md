@@ -1,3 +1,13 @@
+---
+title: "Validation"
+description: "Pre-flight quality gates for memory operations: anchor validation, duplicate detection, and token budget verification."
+trigger_phrases:
+  - "validation"
+  - "preflight"
+  - "anchor format"
+importance_tier: "normal"
+---
+
 # Validation
 
 > Pre-flight quality gates for memory operations: anchor validation, duplicate detection, and token budget verification.
@@ -5,16 +15,19 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. FEATURES](#3-features)
-- [4. USAGE EXAMPLES](#4-usage-examples)
-- [5. RELATED RESOURCES](#5-related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. ⚡ FEATURES](#3--features)
+- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
 
 ---
 
-## 1. OVERVIEW
+<!-- /ANCHOR:table-of-contents -->
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The validation subsystem provides pre-flight checks that run before expensive operations like embedding generation or database writes. It prevents invalid data from entering the system and provides actionable feedback for resolution.
 
@@ -37,7 +50,9 @@ The validation subsystem provides pre-flight checks that run before expensive op
 
 ---
 
-## 2. STRUCTURE
+<!-- /ANCHOR:overview -->
+## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 validation/
@@ -53,7 +68,9 @@ validation/
 
 ---
 
-## 3. FEATURES
+<!-- /ANCHOR:structure -->
+## 3. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Anchor Format Validation
 
@@ -122,7 +139,9 @@ Prevents exceeding embedding API limits:
 
 ---
 
-## 4. USAGE EXAMPLES
+<!-- /ANCHOR:features -->
+## 4. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Run All Pre-flight Checks
 
@@ -193,7 +212,9 @@ const result = runPreflight(
 
 ---
 
-## 5. RELATED RESOURCES
+<!-- /ANCHOR:examples -->
+## 5. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -227,3 +248,4 @@ MCP_ANCHOR_STRICT=true
 
 **Version**: 1.7.2
 **Last Updated**: 2026-02-08
+<!-- /ANCHOR:related -->

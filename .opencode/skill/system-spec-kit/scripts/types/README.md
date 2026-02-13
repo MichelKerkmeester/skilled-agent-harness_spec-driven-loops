@@ -1,10 +1,43 @@
+---
+title: "Types"
+description: "Shared session type definitions used across the Spec Kit scripts pipeline."
+trigger_phrases:
+  - "session types"
+  - "type definitions"
+  - "session data interface"
+importance_tier: "normal"
+---
+
 # Types
 
-## 📋 Overview
+> Shared session type definitions used across the Spec Kit scripts pipeline.
+
+---
+
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. 🏗️ TYPE ARCHITECTURE](#3--type-architecture)
+- [4. 💾 INTERFACES](#4--interfaces)
+- [5. 🔧 ROOT TYPE: SESSIONDATA](#5--root-type-sessiondata)
+- [6. 📊 MIGRATION NOTES](#6--migration-notes)
+- [7. 📚 RELATED](#7--related)
+
+---
+
+<!-- /ANCHOR:table-of-contents -->
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 **Shared session type definitions** used across the Spec Kit scripts pipeline. This module is the **canonical source of truth** for all session-related types, eliminating parallel type hierarchies that previously existed between `simulation-factory` and the extractors (resolves **TECH-DEBT P6-05**).
 
-## 📁 Structure
+---
+
+<!-- /ANCHOR:overview -->
+## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 types/
@@ -15,7 +48,11 @@ types/
 - `../extractors/file-extractor` — `FileChange`, `ObservationDetailed`
 - `../extractors/session-extractor` — `ToolCounts`, `SpecFileEntry`
 
-## 🏗️ Type Architecture
+---
+
+<!-- /ANCHOR:structure -->
+## 3. 🏗️ TYPE ARCHITECTURE
+<!-- ANCHOR:type-architecture -->
 
 ```
 SessionData (root)
@@ -42,7 +79,11 @@ DiagramData
 └── PatternSummaryEntry[]
 ```
 
-## 📐 Interfaces
+---
+
+<!-- /ANCHOR:type-architecture -->
+## 4. 💾 INTERFACES
+<!-- ANCHOR:interfaces -->
 
 ### Section 1 — Decision Types
 
@@ -79,7 +120,11 @@ DiagramData
 | `OutcomeEntry` | `OUTCOME`, `TYPE?` | Single session outcome |
 | `SessionData` | 35+ fields | **Root type** — complete AI coding session context |
 
-## 🌳 Root Type: `SessionData`
+---
+
+<!-- /ANCHOR:interfaces -->
+## 5. 🔧 ROOT TYPE: SESSIONDATA
+<!-- ANCHOR:root-type-sessiondata -->
 
 `SessionData` is the top-level type representing a complete session. Key field groups:
 
@@ -92,14 +137,22 @@ DiagramData
 | **Memory** | `IMPORTANCE_TIER`, `CONTEXT_TYPE`, `RELEVANCE_BOOST`, `LAST_SEARCH_QUERY` |
 | **State** | `PROJECT_PHASE`, `ACTIVE_FILE`, `LAST_ACTION`, `NEXT_ACTION`, `BLOCKERS`, `FILE_PROGRESS` |
 
-## 🔄 Migration Notes
+---
+
+<!-- /ANCHOR:root-type-sessiondata -->
+## 6. 📊 MIGRATION NOTES
+<!-- ANCHOR:migration-notes -->
 
 This module was created to resolve **TECH-DEBT P6-05** — parallel type hierarchies where `simulation-factory` and the extractors each maintained their own copies of the same interfaces. All consumers now import from this single canonical source.
 
 **Before:** Types duplicated in `simulation-factory.ts` and extractor modules.
 **After:** Single source in `types/session-types.ts`, imported by all consumers.
 
-## 🔗 Related
+---
+
+<!-- /ANCHOR:migration-notes -->
+## 7. 📚 RELATED
+<!-- ANCHOR:related -->
 
 | Resource | Path |
 |----------|------|
@@ -107,3 +160,4 @@ This module was created to resolve **TECH-DEBT P6-05** — parallel type hierarc
 | Session extractor (provides `ToolCounts`, `SpecFileEntry`) | `../extractors/session-extractor.ts` |
 | Simulation factory (primary consumer) | `../simulation-factory.ts` |
 | Scripts README | `../README.md` |
+<!-- /ANCHOR:related -->

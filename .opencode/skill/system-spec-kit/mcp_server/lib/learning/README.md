@@ -1,19 +1,32 @@
+---
+title: "Learning"
+description: "Memory correction tracking system that learns from superseded, deprecated, refined, and merged memories."
+trigger_phrases:
+  - "learning corrections"
+  - "memory stability"
+  - "correction tracking"
+importance_tier: "normal"
+---
+
 # Learning
 
 > Memory correction tracking system that learns from superseded, deprecated, refined, and merged memories.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 STRUCTURE](#2--structure)
 - [3. ⚡ FEATURES](#3--features)
 - [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
 
+<!-- /ANCHOR:table-of-contents -->
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. 📖 OVERVIEW
 
 The learning module tracks memory corrections over time, applying stability adjustments that help the system learn which memories are most reliable. When memories are corrected, the original loses stability while the replacement gains it, naturally surfacing better information in search results.
@@ -27,16 +40,10 @@ The learning module tracks memory corrections over time, applying stability adju
 | **Confidence signals** | Stability scores reflect memory reliability |
 | **Atomic operations** | Database transactions ensure consistency |
 
-### Module Statistics
-
-| Metric | Value |
-|--------|-------|
-| Correction types | 4 |
-| Core functions | 12 |
-| Added in | v1.2.0 |
-
+<!-- /ANCHOR:overview -->
 ---
 
+<!-- ANCHOR:structure -->
 ## 2. 📁 STRUCTURE
 
 > **Note**: Source files remain locally and are also available in `@spec-kit/shared`.
@@ -55,8 +62,10 @@ learning/
 | `corrections.ts` | Correction types, stability adjustments, history tracking |
 | `index.ts` | Unified export of all learning functionality |
 
+<!-- /ANCHOR:structure -->
 ---
 
+<!-- ANCHOR:features -->
 ## 3. ⚡ FEATURES
 
 ### Correction Types
@@ -94,8 +103,10 @@ learning/
 | `refine_memory(original_id, refined_id, reason)` | Link to improved version |
 | `merge_memories(source_ids, merged_id, reason)` | Consolidate multiple memories |
 
+<!-- /ANCHOR:features -->
 ---
 
+<!-- ANCHOR:examples -->
 ## 4. 💡 USAGE EXAMPLES
 
 ### Recording a Correction
@@ -171,9 +182,11 @@ const stats = get_corrections_stats();
 // { total: 42, by_type: { superseded: 30, deprecated: 8, ... }, undone: 3 }
 ```
 
+<!-- /ANCHOR:examples -->
 ---
 
-## 5. 🔗 RELATED RESOURCES
+<!-- ANCHOR:related -->
+## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -197,6 +210,7 @@ The module creates a `memory_corrections` table with:
 - Foreign keys to `memory_index`
 - Indexes for efficient queries
 
+<!-- /ANCHOR:related -->
 ---
 
 **Version**: 1.7.2

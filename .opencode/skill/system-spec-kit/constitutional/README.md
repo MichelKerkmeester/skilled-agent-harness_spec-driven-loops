@@ -1,3 +1,13 @@
+---
+title: "Constitutional Memory System"
+description: "Always-surface rules and critical context that MUST be visible to AI agents on every interaction."
+trigger_phrases:
+  - "constitutional memory"
+  - "always-surface rules"
+  - "constitutional tier"
+importance_tier: "normal"
+---
+
 # Constitutional Memory System
 
 > Always-surface rules and critical context that MUST be visible to AI agents on every interaction.
@@ -7,21 +17,25 @@ The constitutional tier is the highest importance level in the Spec Kit Memory s
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. ⚡ FEATURES](#4--features)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 📝 CREATING CONSTITUTIONAL MEMORIES](#6--creating-constitutional-memories)
-- [7. 🎯 CUSTOMIZATION](#7--customization)
+- [6. 🔧 CREATING CONSTITUTIONAL MEMORIES](#6--creating-constitutional-memories)
+- [7. ⚙️ CUSTOMIZATION](#7--customization)
 - [8. 💡 USAGE EXAMPLES](#8--usage-examples)
 - [9. 🛠️ TROUBLESHOOTING](#9--troubleshooting)
 - [10. 📚 RELATED DOCUMENTS](#10--related-documents)
+- [11. 📊 SUMMARY](#11--summary)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the constitutional/ Directory?
 
@@ -64,7 +78,9 @@ Think of constitutional memories as the "system prompt" for your memory system: 
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -121,7 +137,9 @@ After creating a constitutional memory:
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ### Directory Layout
 
@@ -150,7 +168,9 @@ constitutional/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### 4.1 Always-Surface Behavior
 
@@ -238,7 +258,9 @@ Constitutional memories are limited to **~2000 tokens total** per search to prev
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### 5.1 YAML Frontmatter Requirements
 
@@ -301,7 +323,9 @@ triggerPhrases:
 
 ---
 
-## 6. 📝 CREATING CONSTITUTIONAL MEMORIES
+<!-- /ANCHOR:configuration -->
+## 6. 🔧 CREATING CONSTITUTIONAL MEMORIES
+<!-- ANCHOR:creating-constitutional-memories -->
 
 ### Step-by-Step Guide
 
@@ -456,7 +480,9 @@ These rules are HARD BLOCKS. No exceptions.
 
 ---
 
-## 7. 🎯 CUSTOMIZATION
+<!-- /ANCHOR:creating-constitutional-memories -->
+## 7. ⚙️ CUSTOMIZATION
+<!-- ANCHOR:customization -->
 
 ### 7.1 Adding New Trigger Phrases
 
@@ -548,7 +574,9 @@ memory_search({
 
 ---
 
+<!-- /ANCHOR:customization -->
 ## 8. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Gate Enforcement (Default)
 
@@ -634,7 +662,9 @@ triggerPhrases:
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 9. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -700,7 +730,9 @@ memory_match_triggers({ prompt: "fix the bug" })
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 10. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -728,7 +760,9 @@ memory_match_triggers({ prompt: "fix the bug" })
 
 ---
 
-## Summary
+<!-- /ANCHOR:related -->
+## 11. 📊 SUMMARY
+<!-- ANCHOR:summary -->
 
 Constitutional memories are the **highest priority** context in the Spec Kit Memory system:
 
@@ -748,4 +782,5 @@ Use constitutional tier for:
 
 ---
 
+<!-- /ANCHOR:summary -->
 *Documentation version: 1.0 | Last updated: 2025-12-27*

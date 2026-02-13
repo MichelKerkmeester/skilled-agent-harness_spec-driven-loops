@@ -374,6 +374,7 @@ workflow:
     anchor_requirements:
       enforcement: MANDATORY
       minimum_anchors: 2
+      # Note: Anchor IDs support prefix matching — 'summary' matches 'summary-049', etc.
       pattern: "[context-type]-[keywords]-[spec-number]"
       format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
       case: "UPPERCASE recommended for visibility"

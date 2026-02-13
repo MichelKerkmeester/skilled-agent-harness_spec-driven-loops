@@ -1,15 +1,46 @@
+---
+title: "Tools — Dispatch Layer"
+description: "Tool dispatch layer routing incoming MCP tool calls to handler functions across 5 domain modules."
+trigger_phrases:
+  - "tool dispatch"
+  - "MCP tools"
+  - "dispatch layer"
+importance_tier: "normal"
+---
+
 # Tools — Dispatch Layer
 
+> Tool dispatch layer routing incoming MCP tool calls to handler functions across 5 domain modules.
+
+---
+
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. 🏗️ ARCHITECTURE](#3--architecture)
+- [4. 🔌 TOOL REGISTRY](#4--tool-registry)
+- [5. 💾 TYPES](#5--types)
+- [6. 🔧 ADDING NEW TOOLS](#6--adding-new-tools)
+- [7. 📚 RELATED](#7--related)
+
+<!-- /ANCHOR:table-of-contents -->
+
+---
+
 <!-- ANCHOR:overview -->
-## 🔧 Overview
+## 1. 📖 OVERVIEW
 
 The **tool dispatch layer** routes incoming MCP tool calls to their handler functions. It implements a **dispatcher pattern** where each domain module owns a `TOOL_NAMES` Set and a `handleTool()` switch statement. The central `dispatchTool()` function in `index.ts` iterates all dispatchers until one claims the tool name.
 
 **22 tools** are organized across **5 domain modules**, spanning layers L1–L7 of the Spec Kit Memory architecture.
 <!-- /ANCHOR:overview -->
 
+---
+
 <!-- ANCHOR:structure -->
-## 📁 Structure
+## 2. 📁 STRUCTURE
 
 ```
 tools/
@@ -23,8 +54,10 @@ tools/
 ```
 <!-- /ANCHOR:structure -->
 
+---
+
 <!-- ANCHOR:architecture -->
-## 🏗️ Architecture
+## 3. 🏗️ ARCHITECTURE
 
 ```
                     MCP Protocol
@@ -59,8 +92,10 @@ tools/
 6. Returns `MCPResponse` (or `null` if no dispatcher claims the tool)
 <!-- /ANCHOR:architecture -->
 
+---
+
 <!-- ANCHOR:tool-registry -->
-## 📋 Tool Registry
+## 4. 🔌 TOOL REGISTRY
 
 ### L1 — Orchestration (`context-tools.ts`)
 
@@ -110,8 +145,10 @@ tools/
 | `memory_get_learning_history` | Get learning history (preflight/postflight records) |
 <!-- /ANCHOR:tool-registry -->
 
+---
+
 <!-- ANCHOR:types -->
-## 🔠 Types (`types.ts`)
+## 5. 💾 TYPES (`types.ts`)
 
 Provides the type foundation for the dispatch layer:
 
@@ -121,8 +158,10 @@ Provides the type foundation for the dispatch layer:
 - **22 argument interfaces** — One per tool (e.g., `SearchArgs`, `SaveArgs`, `PreflightArgs`), defining the expected shape of each tool's input
 <!-- /ANCHOR:types -->
 
+---
+
 <!-- ANCHOR:adding-new-tools -->
-## ➕ Adding New Tools
+## 6. 🔧 ADDING NEW TOOLS
 
 1. **Define the argument interface** in `types.ts`
 2. **Create or update a dispatch module** (e.g., `memory-tools.ts`):
@@ -132,8 +171,10 @@ Provides the type foundation for the dispatch layer:
 4. If creating a **new dispatch module**, add it to `ALL_DISPATCHERS` in `index.ts`
 <!-- /ANCHOR:adding-new-tools -->
 
+---
+
 <!-- ANCHOR:related -->
-## 🔗 Related
+## 7. 📚 RELATED
 
 | Path | Description |
 |------|-------------|

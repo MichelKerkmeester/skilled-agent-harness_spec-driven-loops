@@ -1,10 +1,33 @@
+---
+title: "Core Templates"
+description: "Minimal base templates for spec folder documents - the building blocks for all SpecKit documentation."
+trigger_phrases:
+  - "core templates"
+  - "base templates"
+  - "template building blocks"
+importance_tier: "normal"
+---
+
 # Core Templates
 
 > Minimal base templates for spec folder documents (~270 LOC total) - the building blocks for all SpecKit documentation.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
+## Table of Contents
+
+- [1. Overview](#1--overview)
+- [2. Contents](#2--contents)
+- [3. Troubleshooting](#3--troubleshooting)
+- [4. Architecture](#4--architecture)
+- [5. Related Documents](#5--related-documents)
+<!-- /ANCHOR:table-of-contents -->
+
+---
+
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The core templates are the BASE building blocks for all SpecKit documentation. They provide the essential structure with minimal scaffolding - no guidance, no examples, no verbose placeholders.
 
@@ -16,9 +39,12 @@ The core templates are the BASE building blocks for all SpecKit documentation. T
 
 **Version**: v2.2-core
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 📦 CONTENTS
+<!-- ANCHOR:contents -->
 
 | File | Lines | Purpose |
 |------|-------|---------|
@@ -29,9 +55,12 @@ The core templates are the BASE building blocks for all SpecKit documentation. T
 
 **Total**: ~322 lines across 4 templates
 
+<!-- /ANCHOR:contents -->
+
 ---
 
-## 3. ⚠️ IMPORTANT WARNING
+## 3. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:important-warning -->
 
 **DO NOT copy directly from `core/` templates for new spec folders.**
 
@@ -46,9 +75,12 @@ These are BASE templates used to construct level-specific templates. For actual 
 
 The `level_N/` folders contain **pre-composed templates** with the correct sections for that level (CORE + level-specific ADDENDUM sections).
 
+<!-- /ANCHOR:important-warning -->
+
 ---
 
-## 4. 🏗️ TEMPLATE ARCHITECTURE
+## 4. 🏗️ ARCHITECTURE
+<!-- ANCHOR:template-architecture -->
 
 Core templates follow the **CORE + ADDENDUM** pattern (see `template_mapping.md`):
 
@@ -64,10 +96,14 @@ This modular approach allows:
 - **Scalability**: Higher levels add sections without duplicating CORE
 - **Maintainability**: Update CORE once, all levels inherit changes
 
+<!-- /ANCHOR:template-architecture -->
+
 ---
 
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 - **Level-specific templates**: `../level_1/`, `../level_2/`, `../level_3/`, `../level_3+/`
 - **Template mapping**: `../../assets/template_mapping.md` - Full composition rules
 - **Style guide**: `../../references/templates/template_style_guide.md` - Formatting standards
+<!-- /ANCHOR:related -->

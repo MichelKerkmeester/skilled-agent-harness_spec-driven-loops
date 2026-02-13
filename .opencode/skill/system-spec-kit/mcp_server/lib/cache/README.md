@@ -1,23 +1,33 @@
+---
+title: "Cache Module"
+description: "Tool output caching with 60s TTL, LRU eviction, and write-through invalidation."
+trigger_phrases:
+  - "tool cache"
+  - "cache TTL"
+  - "LRU eviction"
+importance_tier: "normal"
+---
+
 # Cache Module
 
 > Tool output caching with 60s TTL, LRU eviction, and write-through invalidation.
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. FEATURES](#3-features)
-- [4. USAGE](#4-usage)
-- [5. RELATED RESOURCES](#5-related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. ⚡ FEATURES](#3--features)
+- [4. 💡 USAGE](#4--usage)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
+## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
-## 1. OVERVIEW
 
 The cache module provides in-memory caching for MCP tool outputs to reduce redundant operations and improve response times. It uses SHA-256 hashed keys for deterministic cache lookups and supports automatic TTL-based expiration.
 
@@ -43,8 +53,8 @@ The cache module provides in-memory caching for MCP tool outputs to reduce redun
 
 ---
 
+## 2. 📁 STRUCTURE
 <!-- ANCHOR:structure -->
-## 2. STRUCTURE
 
 ```
 cache/
@@ -61,8 +71,8 @@ cache/
 
 ---
 
+## 3. ⚡ FEATURES
 <!-- ANCHOR:features -->
-## 3. FEATURES
 
 ### Core Operations
 
@@ -121,8 +131,8 @@ await withCache(toolName, args, asyncFn, options);
 
 ---
 
+## 4. 💡 USAGE
 <!-- ANCHOR:examples -->
-## 4. USAGE
 
 ### Basic Import
 
@@ -179,8 +189,8 @@ const stats = getStats();
 
 ---
 
+## 5. 📚 RELATED RESOURCES
 <!-- ANCHOR:related -->
-## 5. RELATED RESOURCES
 
 ### Internal Documentation
 

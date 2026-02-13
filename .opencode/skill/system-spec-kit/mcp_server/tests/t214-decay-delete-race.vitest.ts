@@ -3,7 +3,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import * as path from 'path';
 import * as os from 'os';
 import * as fs from 'fs';
-import * as wm from '../lib/cognitive/working-memory';
+import * as wm from '../lib/cache/cognitive/working-memory';
 import BetterSqlite3 from 'better-sqlite3';
 
 describe('T214: Decay/Delete Race Condition', () => {
@@ -70,8 +70,8 @@ describe('T214: Decay/Delete Race Condition', () => {
   });
 
   afterAll(() => {
-    if (testDb) { try { testDb.close(); } catch {} }
-    if (tmpDbPath && fs.existsSync(tmpDbPath)) { try { fs.unlinkSync(tmpDbPath); } catch {} }
+    if (testDb) { try { testDb.close(); } catch { } }
+    if (tmpDbPath && fs.existsSync(tmpDbPath)) { try { fs.unlinkSync(tmpDbPath); } catch { } }
   });
 
   describe('Decay floor clamping', () => {

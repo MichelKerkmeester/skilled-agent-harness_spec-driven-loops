@@ -1,12 +1,43 @@
+---
+title: "Shared Utilities"
+description: "Low-level utility functions providing security-hardened path validation and resilient retry logic shared across system-spec-kit."
+trigger_phrases:
+  - "shared utilities"
+  - "path security validation"
+  - "retry with backoff"
+importance_tier: "normal"
+---
+
 # Shared Utilities
 
-## 🔧 Overview
+> Low-level utility functions shared across `system-spec-kit`, providing security-hardened path validation and resilient retry logic with intelligent error classification.
+
+---
+
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. 🔧 PATH SECURITY](#3--path-security)
+- [4. 🔧 RETRY](#4--retry)
+- [5. 📚 RELATED](#5--related)
+
+---
+
+<!-- /ANCHOR:table-of-contents -->
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 Low-level utility functions shared across `system-spec-kit`. These modules provide **security-hardened path validation** and **resilient retry logic** with intelligent error classification.
 
 Both modules were migrated from `mcp_server/lib/utils/` to enable reuse by scripts and other consumers outside the MCP server.
 
-## 📁 Structure
+---
+
+<!-- /ANCHOR:overview -->
+## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 | File                 | Lines | Purpose                                              |
 | -------------------- | ----- | ---------------------------------------------------- |
@@ -15,7 +46,9 @@ Both modules were migrated from `mcp_server/lib/utils/` to enable reuse by scrip
 
 ---
 
-## 🛡️ Path Security
+<!-- /ANCHOR:structure -->
+## 3. 🔧 PATH SECURITY
+<!-- ANCHOR:path-security -->
 
 **File:** `path-security.ts`
 
@@ -58,7 +91,9 @@ const blocked = validateFilePath('/project/../etc/passwd', ['/project/specs']);
 
 ---
 
-## 🔄 Retry
+<!-- /ANCHOR:path-security -->
+## 4. 🔧 RETRY
+<!-- ANCHOR:retry -->
 
 **File:** `retry.ts`
 
@@ -154,7 +189,13 @@ Imported from `shared/types`:
 
 ---
 
-## 🔗 Related
+<!-- /ANCHOR:retry -->
+## 5. 📚 RELATED
+<!-- ANCHOR:related -->
 
 - **Types:** `shared/types.ts` — `RetryConfig`, `ErrorClassification`, `RetryOptions`, `RetryAttemptLogEntry`
 - **Origin:** Both modules migrated from `mcp_server/lib/utils/` for cross-consumer reuse
+
+---
+
+<!-- /ANCHOR:related -->

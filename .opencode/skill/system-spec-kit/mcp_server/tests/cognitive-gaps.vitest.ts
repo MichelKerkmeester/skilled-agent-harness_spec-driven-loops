@@ -1,9 +1,9 @@
 // @ts-nocheck
 import { describe, it, expect, beforeEach } from 'vitest';
 import Database from 'better-sqlite3';
-import * as fsrs from '../lib/cognitive/fsrs-scheduler';
-import * as archival from '../lib/cognitive/archival-manager';
-import * as wm from '../lib/cognitive/working-memory';
+import * as fsrs from '../lib/cache/cognitive/fsrs-scheduler';
+import * as archival from '../lib/cache/cognitive/archival-manager';
+import * as wm from '../lib/cache/cognitive/working-memory';
 
 /* ─────────────────────────────────────────────────────────────
    DB HELPERS

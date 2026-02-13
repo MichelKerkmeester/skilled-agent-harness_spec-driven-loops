@@ -1,6 +1,16 @@
+---
+title: "Figma MCP"
+description: "Programmatic access to Figma design files through 18 specialized tools via Code Mode for token-efficient workflows."
+trigger_phrases:
+  - "figma"
+  - "design files"
+  - "figma mcp"
+importance_tier: "normal"
+---
+
 # Figma MCP
 
-Programmatic access to Figma design files through **18 specialized tools**. Get files, export images, extract components and styles, manage team projects, and handle collaborative comments. Accessed via **Code Mode** for token-efficient workflows.
+> Programmatic access to Figma design files through **18 specialized tools**. Get files, export images, extract components and styles, manage team projects, and handle collaborative comments. Accessed via **Code Mode** for token-efficient workflows.
 
 > **Navigation**:
 > - New to Figma MCP? Start with [Quick Start](#2--quick-start)
@@ -15,22 +25,25 @@ Programmatic access to Figma design files through **18 specialized tools**. Get 
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. ⚡ FEATURES](#4--features)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
-- [6. 📛 NAMING CONVENTION](#6--naming-convention)
+- [6. 🔧 NAMING CONVENTION](#6--naming-convention)
 - [7. 💡 USAGE EXAMPLES](#7--usage-examples)
-- [8. 🔧 MCP TOOLS (18 TOTAL)](#8--mcp-tools-18-total)
+- [8. 🔌 MCP TOOLS (18 TOTAL)](#8--mcp-tools-18-total)
 - [9. 🛠️ TROUBLESHOOTING](#9--troubleshooting)
 - [10. ❓ FAQ](#10--faq)
 - [11. 📚 RELATED DOCUMENTS](#11--related-documents)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is Figma MCP?
 
@@ -86,7 +99,9 @@ Figma MCP is an MCP server that provides AI assistants with programmatic access 
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Prerequisites
 
@@ -140,7 +155,9 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 .opencode/skill/mcp-figma/
@@ -164,7 +181,9 @@ https://www.figma.com/file/ABC123xyz/My-Design-File
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### File Management
 
@@ -244,7 +263,9 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Code Mode Configuration
 
@@ -335,7 +356,9 @@ figma_FIGMA_API_KEY=figd_your_token_here
 
 ---
 
-## 6. 📛 NAMING CONVENTION
+<!-- /ANCHOR:configuration -->
+## 6. 🔧 NAMING CONVENTION
+<!-- ANCHOR:naming-convention -->
 
 ### Critical Pattern
 
@@ -381,7 +404,9 @@ tool_info({ tool_name: "figma.figma_get_file" });
 
 ---
 
+<!-- /ANCHOR:naming-convention -->
 ## 7. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Get Design File Structure
 
@@ -530,7 +555,9 @@ call_tool_chain({
 
 ---
 
-## 8. 🔧 MCP TOOLS (18 TOTAL)
+<!-- /ANCHOR:examples -->
+## 8. 🔌 MCP TOOLS (18 TOTAL)
+<!-- ANCHOR:mcp-tools-18-total -->
 
 ### Tool Priority Classification
 
@@ -577,7 +604,9 @@ See [references/tool_reference.md](./references/tool_reference.md) for complete 
 
 ---
 
+<!-- /ANCHOR:mcp-tools-18-total -->
 ## 9. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -700,7 +729,9 @@ call_tool_chain({
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 10. ❓ FAQ
+<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -753,7 +784,9 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 
 ---
 
+<!-- /ANCHOR:faq -->
 ## 11. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -783,3 +816,4 @@ A: Figma's API has rate limits that vary by endpoint. If you hit limits, wait 60
 | Guide | Purpose |
 |-------|---------|
 | [Install Guide](./INSTALL_GUIDE.md) | Complete installation instructions |
+<!-- /ANCHOR:related -->

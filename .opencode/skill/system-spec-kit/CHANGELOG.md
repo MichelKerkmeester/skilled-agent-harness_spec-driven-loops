@@ -6,6 +6,125 @@ All notable changes to the system-spec-kit skill are documented in this file.
 
 ---
 
+## [2.2.2.3] - 2026-02-13
+
+### Spec 116: YAML & .md Prompt Reduction
+
+#### Changed
+- **13 YAML prompt assets** in `command/spec_kit/assets/`: Compressed from 13,333 → 5,378 lines (59.7% reduction)
+  - Compact YAML flow notation (`{key: value}`, `[a, b]`)
+  - Removed Mermaid diagrams (never rendered in CLI), decorative separators, verbose description fields
+- **7 .md command files** in `command/spec_kit/`: Compressed from 3,746 → 2,239 lines (40.2% reduction)
+  - All routing logic, workflow steps, and config keys preserved
+- **Combined**: 9,462 lines removed (55.4% total) across 20 files
+- **Validation**: 13/13 YAML files parse valid, all step counts preserved, all asset paths intact
+
+---
+
+## [2.2.2.2] - 2026-02-13
+
+### Spec 117: /create:folder_readme YAML & Command Alignment
+
+#### Changed
+- **`create_folder_readme.yaml`**: Aligned 4 README types with canonical 9-section structure from `readme_template.md` §13, replaced embedded templates with reference stubs, fixed emoji inconsistencies, added `template_references` cross-references, updated workflow to `sequential_6_step` (765→611 lines, -20% reduction)
+- **`folder_readme.md`**: Fixed broken YAML key references in §4 REFERENCE table, aligned DQI target to 75+ (Good), standardized command name to `/create:folder_readme`, added step numbering explanation in §3
+
+---
+
+## [2.2.2.1] - 2026-02-13
+
+### Spec 115: README Template Alignment
+- Updated readme_template.md with 5 evolved patterns: badges, architecture diagrams, Before/After, anchor rules, complete template
+- Root README restructured: 7 → 9 sections, 756 → 971 lines, 10 valid anchor pairs
+- Added 9 new feature subsections covering CWB, multi-stack, Code Mode, DevTools, Git, Extensibility
+- Reduced readme_template.md: 1589 → 1058 lines (33.4%) via 10 deduplication strategies, 16 → 14 sections
+
+---
+
+## [2.2.2.0] - 2026-02-13
+
+### Added
+
+**README Anchor Schema & Documentation Alignment (specs 111-114)**
+
+Comprehensive documentation quality campaign: anchor schema deployment, memory command alignment, style standardization across 75 READMEs, and SKILL.md/command optimization with agent routing fixes.
+
+**Spec 111: README Anchor Schema**
+
+- **~473 anchor tags** added across **74 README.md files** using `<!-- anchor:tag-name -->` format
+- Enables precise memory retrieval via anchor-based content filtering
+- Covers all `.opencode/` skill, command, agent, and infrastructure READMEs
+
+**Spec 112: Memory Command README Alignment**
+
+- Aligned **5 memory command READMEs** (`save`, `learn`, `manage`, `continue`, `context`) with documentation standards
+- Consistent structure, section ordering, and content quality across all memory commands
+
+**Spec 113: README Style Alignment**
+
+- Applied **7 style rules** from `readme_template.md` to **75 active README.md files**
+- Standardized: H1 format, badge placement, section ordering, table formatting, link style, frontmatter, dividers
+
+### Changed
+
+**Spec 114: Documentation Reduction & Optimization**
+
+- **SKILL.md**: Reduced from 1,055 to 701 lines (**34% reduction**) — all features preserved
+- **12 command files**: Restored to ≤600 lines from over-reduced state (64-114 lines)
+- **Style alignment**: Applied `command_template.md` style to all 12 command files (~160 H2 headings)
+
+### Fixed
+
+**Spec 114: Agent Routing Compliance**
+
+- **4 YAML assets**: `subagent_type: explore` → `subagent_type: context` (per AGENTS.md §7)
+- **5 .md command files**: Added @context and @speckit routing references
+- **2 YAML assets**: Added @speckit routing for `debug-delegation.md`
+- **Full compliance**: 19/19 commands properly route per AGENTS.md agent table
+
+---
+
+## [2.2.1.0] - 2026-02-12
+
+### Added
+- **4-source indexing pipeline**: Memory system now indexes from spec files, constitutional files, skill READMEs, AND project READMEs (previously only 3 sources)
+- **`findProjectReadmes()`**: New discovery function for project-level README.md files with importance weight 0.4
+- **`includeReadmes` parameter**: Controls README scanning in `memory_index_scan` (default: true)
+- **Tiered importance weights**: User work (0.5/1.0x), Project READMEs (0.4/0.9x), Skill READMEs (0.3/0.8x) with scoring formula `score *= (0.5 + importance_weight)`
+- **Anchor prefix matching**: `anchors: ['summary']` now matches composite IDs like `summary-session-...` with exact-match priority and shortest-prefix fallback
+- **README anchor schema**: 74 READMEs anchored with ~473 anchor tags across the project
+- **YAML frontmatter support**: READMEs can include frontmatter with title, description, trigger_phrases, importance_tier
+- **`.opencode/README.md`**: New directory structure documentation (245 lines, 9 sections)
+- **`readme_indexing.md`**: Comprehensive reference doc for README indexing pipeline (291 lines)
+- **165 new tests** across 8 test files covering README parsing, discovery, integration, regression, prefix matching, and anchor ID validation
+
+### Changed
+- **`context_template.md`**: Simplified all 24 anchor IDs — removed `{{SESSION_ID}}-{{SPEC_FOLDER}}` suffixes for clean semantic names
+- **`findSkillReadmes()`**: Now handles symlinked READMEs (`entry.isSymbolicLink()`)
+- **`search-results.ts`**: Anchor filtering supports prefix matching with hyphen-boundary enforcement
+- **`memory_system.md`**: Updated from "three sources" to "four sources"
+- **`save_workflow.md`**: Added project READMEs to indexed content documentation
+- **`SKILL.md`**: Expanded README Content Discovery section with `findProjectReadmes()` and weight tiers
+- **`mcp_server/README.md`**: Fixed 17 parameter documentation mismatches (3 phantom removed, 14 undocumented added)
+- **`troubleshooting.md`**: Fixed version v1.7.1→v1.7.2, documented dual decay model (FSRS day-based + turn-based)
+- **Test statistics**: Updated from 3,872→4,037 tests, 114→120 test files
+
+### Fixed
+- **Anchor lookup failure**: `anchors: ['summary']` returned empty when keys were composite IDs — now uses prefix fallback
+- **Anchor ID validation**: Template-generated IDs (80-120 chars with underscores) violated `VALID_ANCHOR_PATTERN` — simplified to short semantic names
+- **Symlink README discovery**: `findSkillReadmes()` missed symlinked READMEs — added `isSymbolicLink()` check
+- **Resume detection bugs** (5 root causes): Wrong base path in glob patterns, insufficient glob depth, wrong semantic query in tier 2, too-generic trigger in tier 3, tier skipping
+- **`mcp-code-mode/README.md`**: Anchor name mismatch (`structure`→`architecture`)
+- **False bug report corrected**: check-anchors.sh awk was incorrectly reported as having a `/` parsing bug — B5 audit confirmed no bug exists
+
+### Documentation
+- 7 ADRs documented (ADR-001 through ADR-007)
+- 85 tasks tracked (T001-T085)
+- 192 checklist items (CHK-001-192)
+- README indexing audit: 96 READMEs on disk, 93→94 indexed (100% coverage after symlink fix)
+
+---
+
 ## [2.2.0.3] - 2026-02-12
 
 ### Changed

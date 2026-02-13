@@ -5,7 +5,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { describe, it, expect } from 'vitest';
-import * as peGate from '../lib/cognitive/prediction-error-gate';
+import * as peGate from '../lib/cache/cognitive/prediction-error-gate';
 
 describe('Prediction Error Gate Module', () => {
   /* ─────────────────────────────────────────────────────────────

@@ -1,3 +1,13 @@
+---
+title: "Setup Scripts"
+description: "Prerequisite validation scripts for spec folder structure and requirements"
+trigger_phrases:
+  - "setup scripts"
+  - "check prerequisites"
+  - "spec folder setup"
+importance_tier: "normal"
+---
+
 # Setup Scripts
 
 > Prerequisite validation scripts for spec folder structure and requirements.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -16,7 +27,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Setup Scripts?
 
@@ -50,7 +63,9 @@ Setup scripts validate spec folder structure and prerequisites before implementa
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -84,7 +99,9 @@ cd specs/007-my-feature/
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 setup/
@@ -106,7 +123,9 @@ setup/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Prerequisite Checker (check-prerequisites.sh)
 
@@ -153,7 +172,9 @@ setup/
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Validate Spec Folder Before Implementation
 
@@ -198,7 +219,9 @@ fi
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -253,7 +276,9 @@ ls -la spec.md plan.md checklist.md
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -274,3 +299,4 @@ ls -la spec.md plan.md checklist.md
 ---
 
 *Documentation version: 1.0 | Last updated: 2025-01-21*
+<!-- /ANCHOR:related -->

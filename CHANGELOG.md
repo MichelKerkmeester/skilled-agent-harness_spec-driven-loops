@@ -7,6 +7,56 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**2.0.1.0**] - 2026-02-13
+
+**Documentation Alignment & Optimization (Specs 111-117)** — **7 specs** delivering memory system integration, README standardization, command enhancement, and prompt optimization across **130+ files** with **10,000+ lines reduced** and **4,037 tests passing**.
+
+> Spec folders: `.opencode/specs/003-system-spec-kit/111-readme-anchor-schema/` through `117-create-folder-readme-alignment/` (Levels 2-3+)
+
+---
+
+### Memory System Integration (Spec 111)
+
+- **4-source indexing pipeline**: Memory system now indexes from specFiles, constitutionalFiles, skillReadmes, and projectReadmes (was 2-source)
+- **README content discovery**: `findProjectReadmes()` and `findSkillReadmes()` auto-discover READMEs with `README_EXCLUDE_PATTERNS` exclusion
+- **Anchor prefix matching**: Search anchor `summary` matches `summary-049`, `summary-111` etc. with exact-match priority and shortest-prefix fallback
+- **Tiered importance weights**: User work (0.5), Project READMEs (0.4), Skill READMEs (0.3) with `score *= (0.5 + weight)`
+- **`includeReadmes` parameter**: New parameter on `memory_index_scan` (default: true) for README discovery control
+- **YAML frontmatter extraction**: READMEs with YAML frontmatter (`title`, `description`, `trigger_phrases`) get metadata-aware indexing
+- **49 new tests**: `anchor-prefix-matching.vitest.ts` (28) + `anchor-id-simplification.vitest.ts` (21)
+- **7 Architecture Decision Records**: ADR-001 through ADR-007 documenting schema design, weights, exclusions, prefix matching, anchor simplification, symlink handling, and 4-source pipeline
+
+### Documentation Alignment (Specs 112-115)
+
+- **~473 anchor tags**: Embedded across 74 READMEs in `.opencode/` for precise memory retrieval via Spec Kit Memory MCP
+- **README template**: `readme_template.md` reduced 1589→1058 lines (-33%), 16→14 sections, added 5 evolved patterns (badge shields, ASCII diagrams, innovation tables, before/after comparisons, anchor placement rules)
+- **Root README**: Restructured 7→9 sections (756→1118 lines), enriched with MCP tools, cognitive features, search architecture, usage examples. Embedded substantive content from MCP server and system-spec-kit READMEs (+148 lines)
+- **Style enforcement**: 7 style rules from `readme_template.md` applied to 75 READMEs (90% compliance, 63/70 spot-checked)
+- **Memory command READMEs**: 5 aligned (`save.md`, `learn.md`, `manage.md`, `continue.md`, `context.md`)
+- **system-spec-kit SKILL.md**: Reduced 1,055→701 lines (-34%) through consolidation
+- **Command file restoration**: 12 command files restored to ≤600 lines (from over-reduced 64-114 lines), `command_template.md` style applied
+
+### Command & Prompt Optimization (Specs 116-117)
+
+- **YAML reduction**: 13 YAML prompt assets 13,333→5,378 lines (-59.7%) using compact flow notation, removed Mermaid diagrams and decorative separators
+- **Prompt reduction**: 7 `.md` command files 3,746→2,239 lines (-40.2%) preserving all routing logic and workflow steps
+- **/create:folder_readme**: YAML 765→611 lines (-20%), aligned 4 README types with canonical 9-section structure, fixed 10 alignment gaps, standardized emoji vocabulary
+- **Agent routing fixes**: Proper routing added to 4 YAML files (`explore`→`context`), 5 `.md` files (@context/@speckit), full @speckit compliance (19/19 command files)
+
+### Testing
+
+- **Test suite**: 4,037 tests across 120 test files (71 skipped = external API/embedding tests)
+- **Memory integration**: 49 new tests for anchor schema (prefix matching + ID simplification)
+- **Validation**: 13/13 YAML files parse valid, all step counts preserved, all asset path references intact
+
+---
+
+**Files:** ~130+ files across `.opencode/command/`, `.opencode/skill/`, README.md files, YAML assets, and tests
+
+**Full Changelog**: https://github.com/MichelKerkmeester/opencode-spec-kit-framework/compare/v2.0.0.7...v2.0.1.0
+
+---
+
 ## [**2.0.0.7**] - 2026-02-12
 
 **Spec Kit Script Refactoring — Architectural Improvements** — Implemented 6 deferred architectural items from spec 109: dynamic template composition, POSIX shell portability, code quality hardening, workflow.ts module extraction, JSONC parser consolidation, and create.sh modularization. Total: ~1,200 LOC reduced across shell and TypeScript, 19 code quality fixes, 12 structured logging conversions.
@@ -28,7 +78,7 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 6. **Shell Libraries** — `scripts/lib/shell-common.sh` (54 LOC), `scripts/lib/git-branch.sh` (134 LOC), `scripts/lib/template-utils.sh` (80 LOC)
 7. **Template Fragments** — 5 addenda fragments (`level3-arch/` prefix/suffix/guidance, `level3plus-govern/` suffix/guidance) and 5 sharded templates (`spec-index.md`, `01-overview.md`, `02-requirements.md`, `03-architecture.md`, `04-testing.md`)
 
-### Fixed
+### FixedThere
 
 8. **sed/grep POSIX Portability** — 5 GNU-specific fixes: 3 `sed 's/-\+/-/g'` → `sed 's/--*/-/g'` (BSD treats `\+` as literal), 1 fragile `sed i\` rewrite to printf+sed, 1 `grep -P '\b'` → `grep -w` (POSIX compliant)
 9. **Code Quality Hardening** — 11 untyped `catch (e)` → `catch (e: unknown)` with proper `instanceof Error` guards, 8 non-null assertions (`!`) replaced with explicit null checks across 10 files
@@ -809,16 +859,16 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 
 ## New MCP Tools (8)
 
-| Tool | Layer | Purpose |
-|------|-------|---------|
-| `memory_context` | L1 | Unified entry with intent awareness |
-| `memory_drift_why` | L6 | Trace causal chain for "why" queries |
-| `memory_causal_link` | L6 | Create causal relationships |
-| `memory_causal_stats` | L6 | Graph statistics and coverage |
-| `memory_causal_unlink` | L6 | Remove causal relationships |
-| `task_preflight` | L6 | Epistemic state capture before task |
-| `task_postflight` | L6 | Session learning after task |
-| `memory_get_learning_history` | L7 | Retrieve learning patterns |
+| Tool                          | Layer | Purpose                              |
+| ----------------------------- | ----- | ------------------------------------ |
+| `memory_context`              | L1    | Unified entry with intent awareness  |
+| `memory_drift_why`            | L6    | Trace causal chain for "why" queries |
+| `memory_causal_link`          | L6    | Create causal relationships          |
+| `memory_causal_stats`         | L6    | Graph statistics and coverage        |
+| `memory_causal_unlink`        | L6    | Remove causal relationships          |
+| `task_preflight`              | L6    | Epistemic state capture before task  |
+| `task_postflight`             | L6    | Session learning after task          |
+| `memory_get_learning_history` | L7    | Retrieve learning patterns           |
 
 **Total MCP tools: 22** (organized in 7 layers L1-L7)
 
@@ -826,12 +876,12 @@ The largest release in SpecKit history: **6 specs batched** delivering a complet
 
 ## Database Schema Changes
 
-| Version | Table/Column | Purpose |
-|---------|--------------|---------|
-| v8 | `causal_edges` | Causal memory graph (6 relation types) |
-| v9 | `memory_corrections` | Learning from mistakes, stability tracking |
-| v10 | `session_state` | Crash recovery, session persistence |
-| v11 | `is_archived`, `archived_at` | 5-state memory model archival |
+| Version | Table/Column                 | Purpose                                    |
+| ------- | ---------------------------- | ------------------------------------------ |
+| v8      | `causal_edges`               | Causal memory graph (6 relation types)     |
+| v9      | `memory_corrections`         | Learning from mistakes, stability tracking |
+| v10     | `session_state`              | Crash recovery, session persistence        |
+| v11     | `is_archived`, `archived_at` | 5-state memory model archival              |
 
 ---
 

@@ -3,8 +3,8 @@ import { describe, it, expect, beforeAll } from 'vitest';
 
 import * as triggerHandler from '../handlers/memory-triggers';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
-import * as attentionDecay from '../lib/cognitive/attention-decay';
-import * as coActivation from '../lib/cognitive/co-activation';
+import * as attentionDecay from '../lib/cache/cognitive/attention-decay';
+import * as coActivation from '../lib/cache/cognitive/co-activation';
 
 describe('Integration Trigger Pipeline (T527) [deferred - requires DB test fixtures]', () => {
 

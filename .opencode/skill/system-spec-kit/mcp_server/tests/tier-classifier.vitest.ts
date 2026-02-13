@@ -4,7 +4,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { describe, it, expect } from 'vitest';
-import * as tierClassifier from '../lib/cognitive/tier-classifier';
+import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
 
 describe('Tier Classifier (5-State Model)', () => {
 

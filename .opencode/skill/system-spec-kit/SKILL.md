@@ -131,47 +131,15 @@ User Request
 
 ### Cognitive Memory Features
 
-The `memory_match_triggers()` tool includes cognitive features for smarter context management:
-
-- **Attention Decay (FSRS-preferred):** Memories decay based on FSRS v4 retrievability: `R(t) = (1 + 19/81 * t/S)^(-0.5)`. A deprecated legacy exponential fallback (`score * decayRate^(days/30)`) exists but FSRS is the primary model. Session-scoped linear decay (`score * 0.95` per tick) operates independently on working memory.
-- **Tiered Content Injection:** Memories classified into 5 states based on FSRS retrievability thresholds:
-  - **HOT** (R ≥ 0.80): Full file content injected
-  - **WARM** (R ≥ 0.25): 150-character summary injected
-  - **COLD** (R ≥ 0.05): Empty string (metadata only)
-  - **DORMANT** (R ≥ 0.02): Empty string (metadata only)
-  - **ARCHIVED** (R < 0.02 or >90 days): Empty string (metadata only)
-  - Per-tier quantity limits: HOT=5, WARM=10, COLD=3, DORMANT=2, ARCHIVED=1 (configurable via env vars)
-- **Co-activation:** Spreading activation via stored `related_memories` JSON — BFS traversal with `decayPerHop: 0.5`, max 2 hops, greedy best-first ordering. Config: `boostFactor: 0.15`, `maxRelated: 5`, `minSimilarity: 70`
-- **Working Memory:** Session-scoped SQLite table with Miller's Law capacity limit (7 items), linear decay per tick, floor threshold 0.05 (delete threshold 0.01)
-
-> ⚠️ **Parameter Naming Warning:** This tool uses snake_case parameters (`session_id`, `include_cognitive`) unlike all other tools which use camelCase (`sessionId`). Be careful with parameter naming when calling this tool.
+The `memory_match_triggers()` tool includes cognitive features: **FSRS v4 attention decay** (power-law retrievability model), **tiered content injection** (HOT=full content, WARM=summary, COLD/DORMANT/ARCHIVED=metadata only), **co-activation** (BFS spreading activation across related memories), and **working memory** (session-scoped, 7-item capacity). Uses snake_case parameters (`session_id`, `include_cognitive`) unlike other tools.
 
 **Full documentation:** See [mcp_server/README.md](./mcp_server/README.md#3--cognitive-memory) and [memory_system.md](./references/memory/memory_system.md).
 
 ### README Content Discovery
 
-The memory system automatically discovers and indexes README files from skill directories:
+The memory system auto-discovers and indexes READMEs from 4 sources during `memory_index_scan()`: spec memories (0.5 weight), constitutional rules (per-file tier), skill READMEs (0.3), and project READMEs (0.4). READMEs require `<!-- ANCHOR:name -->` tags for section-level retrieval. Control with `includeReadmes` parameter (default: `true`).
 
-**Indexed Sources:**
-
-| Source | Pattern | Type | Spec Folder ID |
-|--------|---------|------|----------------|
-| Skill READMEs | `.opencode/skill/**/README.md` | `semantic` | `skill:SKILL-NAME` |
-
-**How READMEs are indexed:**
-- Discovered by `findSkillReadmes()` during `memory_index_scan()`
-- Require `<!-- ANCHOR:name -->` tags for section-level retrieval
-- Classified as `semantic` memory type with `normal` tier and reduced weight (0.3)
-- READMEs are reference-grade documentation that surfaces when relevant but never outranks user work memories
-- Searchable via all standard memory tools (`memory_search`, `memory_context`, etc.)
-
-**Standard README Anchors:** `overview`, `quick-start`, `structure`, `features`, `configuration`, `examples`, `troubleshooting`, `faq`, `related`
-
-**Example Retrieval:**
-```
-memory_search({ query: "how does the cognitive memory system work" })
-→ May return anchored sections from .opencode/skill/system-spec-kit/mcp_server/lib/cognitive/README.md
-```
+**See:** [readme_indexing.md](./references/memory/readme_indexing.md) for discovery functions, exclude patterns, and weight rationale.
 
 ### Resource Router
 
@@ -225,10 +193,8 @@ Canonical TypeScript modules shared between CLI scripts and MCP server (`@spec-k
 ### Configuration (`config/`)
 
 Runtime configuration for the memory system:
-- `config.jsonc` — Legacy settings (only Section 1 is active — read by scripts; MCP server uses hardcoded values)
+- `config.jsonc` — Legacy settings (only Section 1 active; MCP server uses hardcoded values)
 - `filters.jsonc` — Content filtering pipeline
-
-> **Note:** The MCP server also has `mcp_server/configs/search-weights.json` for search weight tuning, but most values in that file are dead config (annotated with `_note` fields). Only `maxTriggersPerMemory: 10` is actively consumed by code. Other weights (vector, BM25, FTS, decay, tier boosts) are hardcoded in `composite-scoring.ts` and `importance-tiers.ts`.
 
 **Full documentation:** See [environment_variables.md](./references/config/environment_variables.md)
 
@@ -261,51 +227,7 @@ Runtime configuration for the memory system:
 
 **Full documentation:** See [level_specifications.md](./references/templates/level_specifications.md) and [template_guide.md](./references/templates/template_guide.md)
 
-**References (`references/`):**
-
-| Sub-folder    | File                                 | Purpose                          | When to Load               |
-| ------------- | ------------------------------------ | -------------------------------- | -------------------------- |
-| `memory/`     | `memory_system.md`                   | MCP tool behavior and config     | Memory operations          |
-| `memory/`     | `save_workflow.md`                   | Memory save workflow docs        | Context preservation       |
-| `memory/`     | `trigger_config.md`                  | Trigger phrase configuration     | Setup                      |
-| `memory/`     | `epistemic-vectors.md`               | Uncertainty tracking framework   | Gate decisions, planning   |
-| `templates/`  | `level_specifications.md`            | Complete Level 1-3+ requirements | Planning                   |
-| `templates/`  | `template_guide.md`                  | Template selection and usage     | Planning, Implementation   |
-| `templates/`  | `template_style_guide.md`            | Template formatting conventions  | Documentation              |
-| `validation/` | `validation_rules.md`                | All validation rules and fixes   | Implementation, Completion |
-| `validation/` | `phase_checklists.md`                | Per-phase validation             | Completion                 |
-| `validation/` | `path_scoped_rules.md`               | Path-scoped validation           | Advanced                   |
-| `validation/` | `five-checks.md`                     | Five Checks evaluation framework | Planning, decisions        |
-| `validation/` | `decision-format.md`                 | Structured gate decision format  | Gate decisions, logging    |
-| `structure/`  | `folder_structure.md`                | Folder naming conventions        | Planning                   |
-| `structure/`  | `folder_routing.md`                  | Folder routing logic             | Planning                   |
-| `structure/`  | `sub_folder_versioning.md`           | Sub-folder workflow              | Reusing spec folders       |
-| `workflows/`  | `quick_reference.md`                 | Commands and checklists          | Any phase                  |
-| `workflows/`  | `execution_methods.md`               | Script execution patterns        | Operations                 |
-| `workflows/`  | `worked_examples.md`                 | Real-world examples              | Learning                   |
-| `debugging/`  | `troubleshooting.md`                 | Common issues and solutions      | Debugging                  |
-| `debugging/`  | `universal_debugging_methodology.md` | Stack-agnostic 4-phase debugging | Debugging                  |
-| `config/`     | `environment_variables.md`           | Env var configuration            | Setup                      |
-
-**Assets (`assets/`):**
-
-| File                          | Purpose                               |
-| ----------------------------- | ------------------------------------- |
-| `level_decision_matrix.md`    | LOC thresholds and complexity factors |
-| `template_mapping.md`         | Template-to-level mapping rules       |
-| `parallel_dispatch_config.md` | Agent dispatch configuration          |
-| `complexity_decision_matrix.md` | Complexity-based level selection and scoring |
-
-**generate-context.ts Input Modes** (executed as `node generate-context.js`):
-
-| Mode       | Usage                                             | Description                                 |
-| ---------- | ------------------------------------------------- | ------------------------------------------- |
-| **Direct** | `node generate-context.js specs/007-feature/`     | Auto-captures context from OpenCode session |
-| **JSON**   | `node generate-context.js /tmp/context-data.json` | Manual context injection via JSON file      |
-
-**Architecture:** The script uses a modular TypeScript architecture (CLI entry point at `scripts/memory/generate-context.ts` + modules across directories: `core/`, `extractors/`, `lib/`, `loaders/`, `memory/`, `renderers/`, `rules/`, `spec/`, `spec-folder/`, `templates/`, `utils/`). Source is `.ts`; compiled to CommonJS `.js` in `scripts/dist/` for execution. See [scripts/README.md](./scripts/README.md) for module details and extension points.
-
-**JSON mode documentation:** See [save_workflow.md](./references/memory/save_workflow.md) for full schema and examples.
+> **generate-context.ts** accepts two input modes: a spec folder path (direct) or a JSON file path (manual injection). Source `.ts` compiled to `scripts/dist/`. See [scripts/README.md](./scripts/README.md) for architecture and [save_workflow.md](./references/memory/save_workflow.md) for JSON schema.
 
 ---
 
@@ -515,207 +437,46 @@ Context preservation across sessions via hybrid search (vector similarity + BM25
 
 **Server:** `@spec-kit/mcp-server` v1.7.2 — `context-server.ts` (~903 lines) with 11 handler files, 17 lib subdirectories, and 22 MCP tools across 7 layers.
 
-**MCP Tools (22 tools across 7 layers):**
+**MCP Tools (8 most-used of 22 total — see [memory_system.md](./references/memory/memory_system.md) for full reference):**
 
 | Tool                            | Layer | Purpose                                           |
 | ------------------------------- | ----- | ------------------------------------------------- |
-| `memory_context()`              | L1    | Unified entry point with intent-aware routing     |
-
-**memory_context() — Mode Configuration:**
-
-| Mode | Strategy | Token Budget | Description |
-| --- | --- | --- | --- |
-| `auto` | adaptive | (none — delegates to sub-strategy) | Auto-detect intent and route to optimal mode |
-| `quick` | triggers | 800 | Fast trigger matching for real-time context |
-| `deep` | search | 2000 | Semantic search with full context retrieval |
-| `focused` | intent-search | 1500 | Intent-aware search with task-specific optimization |
-| `resume` | resume | 1200 | Resume previous work with state/next-steps anchors |
-
-**Intent-to-Mode Routing** (when `mode=auto`):
-
-| Intent | Routes To |
-| --- | --- |
-| `add_feature` | deep |
-| `fix_bug` | focused |
-| `refactor` | deep |
-| `security_audit` | deep |
-| `understand` | focused |
+| `memory_context()`              | L1    | Unified entry point — modes: auto, quick, deep, focused, resume |
 | `memory_search()`               | L2    | Hybrid search (vector + FTS + BM25 with RRF fusion) |
 | `memory_match_triggers()`       | L2    | Trigger matching + cognitive (decay, tiers, co-activation) |
-| `memory_save()`                 | L2    | Index a memory file with pre-flight validation (PF001-PF031 error codes) |
-
-> **Preflight validation defaults:** `charsPerToken=3.5`, `max_tokens=8000` (env: `MCP_MAX_MEMORY_TOKENS`), `warning_threshold=0.8`, `min_content=10 chars`, `max_content=100000 chars`, `similar_duplicate_threshold=0.95`.
+| `memory_save()`                 | L2    | Index a memory file with pre-flight validation    |
 | `memory_list()`                 | L3    | Browse stored memories with pagination            |
-| `memory_stats()`                | L3    | Get system statistics and counts                  |
-| `memory_health()`               | L3    | Check system health status                        |
 | `memory_delete()`               | L4    | Delete memories by ID or spec folder              |
-| `memory_update()`               | L4    | Update memory metadata and importance tier        |
-| `memory_validate()`             | L4    | Record validation feedback for confidence         |
-| `checkpoint_create()`           | L5    | Create gzip-compressed checkpoint (memory_index + working_memory) |
-| `checkpoint_list()`             | L5    | List all available checkpoints (default limit: 50, max: 100; max 10 stored) |
-| `checkpoint_restore()`          | L5    | Transaction-wrapped restore with rollback on failure + working memory |
-| `checkpoint_delete()`           | L5    | Delete a checkpoint                               |
-| `task_preflight()`              | L6    | Capture epistemic baseline before task execution  |
-| `task_postflight()`             | L6    | Capture epistemic state after task, calc learning |
+| `checkpoint_create()`           | L5    | Create gzip-compressed checkpoint snapshot        |
+| `checkpoint_restore()`          | L5    | Transaction-wrapped restore with rollback         |
 
-#### Epistemic Learning Workflow (PREFLIGHT/POSTFLIGHT)
+> Other tools: `memory_stats()` (L3), `memory_health()` (L3), `memory_update()` (L4), `memory_validate()` (L4), `checkpoint_list/delete()` (L5), `task_preflight/postflight()` (L6), `memory_drift_why/causal_link/causal_stats/causal_unlink()` (L6), `memory_index_scan()` (L7), `memory_get_learning_history()` (L7). Full tool names use `spec_kit_memory_` prefix.
 
-The learning system measures knowledge improvement across tasks:
+**memory_context() — Mode Routing:**
 
-1. **PREFLIGHT** (Step 5.5 in `/spec_kit:implement`): Before implementation, capture baseline scores:
-   - `task_preflight({ specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore })`
-2. **POSTFLIGHT** (Step 7.5 in `/spec_kit:implement`): After implementation, capture final scores:
-   - `task_postflight({ specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore })`
-3. **Learning Index**: Calculated as `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`
-
-Use `memory_get_learning_history({ specFolder })` to review learning trends across tasks.
-
-**Learning Index (LI) Interpretation:**
-
-The `task_postflight()` tool calculates `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`:
-
-| LI Range | Interpretation |
-| --- | --- |
-| ≥ 40 | Significant learning session — substantial knowledge gains |
-| 15–39 | Moderate learning session — meaningful progress |
-| 5–14 | Incremental learning — some progress made |
-| 0–4 | Execution-focused session — minimal new learning |
-| < 0 | Knowledge regression — scope expansion or new complexities discovered |
-| `memory_drift_why()`            | L6    | Trace causal chain for decision lineage (defaults: maxDepth=3, direction='both', includeMemoryDetails=true) |
-| `memory_causal_link()`          | L6    | Create causal relationship between memories (default strength: 1.0) |
-| `memory_causal_stats()`         | L6    | Get statistics about causal memory graph          |
-| `memory_causal_unlink()`        | L6    | Remove causal relationship by edge ID             |
-
-> **Note:** The L6 causal graph tools (`memory_drift_why`, `memory_causal_link`, `memory_causal_stats`, `memory_causal_unlink`) are **advanced/manual-use tools**. No command currently integrates them into automated workflows. They are available for manual invocation via `/memory:manage` or direct MCP calls when tracing decision lineage or building causal relationships between memories.
-
-**Auto-Created Causal Links (via `memory_save`):**
-
-When a memory file includes YAML frontmatter with causal metadata, `memory_save()` automatically creates causal edges in the graph. The 5 supported metadata fields and their causal relation mappings:
-
-| Frontmatter Field | Causal Relation | Edge Direction |
+| Mode | Token Budget | When `mode=auto`: Intent Routing |
 | --- | --- | --- |
-| `caused_by: [ref]` | `caused` | reverse (ref → this memory) |
-| `supersedes: [ref]` | `supersedes` | forward (this memory → ref) |
-| `derived_from: [ref]` | `derived_from` | forward (this memory → ref) |
-| `blocks: [ref]` | `enabled` | reverse (ref → this memory) |
-| `related_to: [ref]` | `supports` | forward (this memory → ref) |
+| `quick` | 800 | — |
+| `deep` | 2000 | `add_feature`, `refactor`, `security_audit` |
+| `focused` | 1500 | `fix_bug`, `understand` |
+| `resume` | 1200 | — |
 
-References can be memory IDs, file paths, or titles. See `handlers/memory-save.ts` lines 367-372.
-| `memory_index_scan()`           | L7    | Bulk scan and index workspace (see notes below)   |
-| `memory_get_learning_history()` | L7    | Get learning history for spec folder              |
+**memory_search() — Key Rules:**
+- **REQUIRED:** `query` (string) OR `concepts` (2-5 strings). `specFolder` alone causes E040 error.
+- Use `anchors` with `includeContent: true` for token-efficient section retrieval (~90% savings).
+- Intent weights auto-adjust scoring: `fix_bug` boosts recency, `security_audit` boosts importance, `refactor`/`understand` boost similarity.
+- **Full parameter reference:** See [memory_system.md](./references/memory/memory_system.md)
 
-> **Note:** Full tool names use `spec_kit_memory_` prefix (e.g., `spec_kit_memory_memory_search()`).
-
-> **Token Budget Enforcement:** Per-layer token budgets (L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000) are enforced after handler execution. The server estimates token count using a `chars/4` approximation and truncates results by removing lowest-scored items when the budget is exceeded. This is approximate enforcement — not exact token counting — but does actively limit output size. The only per-file hard limit is `memory_save`'s validation against `MCP_MAX_MEMORY_TOKENS` (default 8000).
-
-**memory_search() — Full Parameter Reference:**
-
-> **IMPORTANT:** `query` (string) OR `concepts` (array of 2-5 strings) is REQUIRED. `specFolder` alone is NOT sufficient and will cause E040 error.
-
-| Parameter | Type | Default | Description |
-| --- | --- | --- | --- |
-| `query` | string | — | Natural language search query (required if no `concepts`) |
-| `concepts` | string[] | — | 2-5 concepts for AND search; results must match ALL (required if no `query`) |
-| `specFolder` | string | — | Limit search to a specific spec folder (e.g., `"011-spec-kit-memory-upgrade"`) |
-| `limit` | number | 10 | Maximum number of results to return |
-| `sessionId` | string | — | Session identifier for deduplication. With `enableDedup=true`, prevents duplicate memories in same session (~50% token savings on follow-ups) |
-| `enableDedup` | boolean | true | Enable session deduplication (REQ-001). Requires `sessionId` |
-| `tier` | string | — | Filter by importance tier: `constitutional`, `critical`, `important`, `normal`, `temporary`, `deprecated` |
-| `contextType` | string | — | Filter by context type: `decision`, `implementation`, `research`, etc. |
-| `useDecay` | boolean | true | Apply FSRS temporal decay scoring (power-law retrievability model) |
-| `includeContiguity` | boolean | false | Include adjacent/contiguous memories in results |
-| `includeConstitutional` | boolean | true | Include constitutional tier memories in results (receive 3.0x search boost, typically appear near top) |
-| `includeContent` | boolean | false | Include full file content in results. Each result gets a `content` field. **Required for `anchors` to work.** |
-| `anchors` | string[] | — | Filter content to specific anchor sections. **Requires `includeContent: true`** |
-| `intent` | enum | — | Task intent for scoring weight adjustments: `add_feature`, `fix_bug`, `refactor`, `security_audit`, `understand` |
-| `autoDetectIntent` | boolean | true | Auto-detect intent from query when `intent` not set |
-
-> **Intent weight values** (from `intent-classifier.ts`): `add_feature` {recency:0.3, importance:0.4, similarity:0.3}, `fix_bug` {0.5, 0.2, 0.3}, `refactor` {0.2, 0.3, 0.5}, `security_audit` {0.1, 0.5, 0.4}, `understand` {0.2, 0.3, 0.5}. Only the `memory-search.ts` `applyIntentWeightsToResults` version (P3-14 fix, includes recency) is active at runtime; the `intent-classifier.ts` `applyIntentWeights` function is stale.
-
-> **Advanced search params** (in inputSchema but intended for internal tuning): `bypassCache` (default: false — skip cache), `minState` (default: 'WARM' — filter by memory state: HOT/WARM/COLD/DORMANT/ARCHIVED), `applyStateLimits` (default: false — enforce per-tier quantity limits: HOT=5, WARM=10, COLD=3, DORMANT=2, ARCHIVED=1), `rerank` (default: false — enable neural reranking; requires `VOYAGE_API_KEY`, `COHERE_API_KEY`, or `RERANKER_LOCAL=true` for an HTTP server at `localhost:8765`; without a configured provider, results keep their original ranking), `applyLengthPenalty` (default: true — penalize very short/long documents during reranking), `trackAccess` (default: false — opt-in access tracking), `includeArchived` (default: false — include archived memories in results).
-
-```typescript
-// Correct usage
-memory_search({ query: "session context", specFolder: "007-auth" })
-memory_search({ concepts: ["auth", "session"], specFolder: "007-auth" })
-
-// Multi-concept AND search (results must match ALL concepts, 2-5 required)
-memory_search({ concepts: ["circuit breaker", "error handling", "recovery"], limit: 5 })
-
-// WRONG: Will cause E040 error
-// memory_search({ specFolder: "007-auth" })
-```
-
-**Anchor-Based Retrieval (Token-Efficient):**
-
-Use the `anchors` parameter with `includeContent: true` to retrieve only specific sections from memory files, reducing token usage by ~90%:
-
-```typescript
-// Get only summary and decisions (~300 tokens vs ~2000 full file)
-memory_search({
-  query: "auth implementation",
-  includeContent: true,
-  anchors: ['summary', 'decisions']
-})
-
-// Resume work - get state and next steps
-memory_search({
-  query: "session context",
-  specFolder: "007-auth",
-  includeContent: true,
-  anchors: ['state', 'next-steps', 'blockers']
-})
-```
-
-**Common Anchors:** `summary`, `decisions`, `metadata`, `state`, `context`, `artifacts`, `blockers`, `next-steps`
-
-**Full documentation:** See [memory_system.md](./references/memory/memory_system.md#anchor-based-retrieval-token-efficient)
-
-**memory_update() Notes:**
-
-> **Optional param:** `allowPartialUpdate` (default false) controls whether updates succeed even if embedding regeneration fails. When true, metadata changes are applied and the embedding is marked for re-index. When false, the entire update is rolled back on embedding failure.
-
-**memory_index_scan() Notes:**
-
-> **Optional param:** `incremental` (default true) controls whether only changed files are indexed vs full re-evaluation. When true, skips files whose mtime and content hash are unchanged. Use `force: true` to bypass all caching and re-index everything.
-
-**Search Architecture:**
-
-The search pipeline combines three retrieval methods fused via Reciprocal Rank Fusion (RRF):
-1. **Vector similarity** — Cosine similarity against pre-computed embeddings (full table scan; no sqlite-vec index)
-2. **BM25 scoring** — Term frequency-inverse document frequency on indexed content
-3. **FTS5 full-text search** — SQLite FTS5 for exact phrase and keyword matching
-
-**Reranking (optional):** When `rerank=true`, results are re-scored by one of:
-- **Voyage AI** — Requires `VOYAGE_API_KEY` env var
-- **Cohere** — Requires `COHERE_API_KEY` env var
-- **Local model** — Requires `RERANKER_LOCAL=true` (expects HTTP server at `localhost:8765`)
-- **Fallback** — Without any configured provider, results keep their original ranking (no reranking applied)
-
-**Checkpoint Architecture:**
-
-Checkpoints are gzip-compressed JSON snapshots of both `memory_index` and `working_memory` SQLite tables. Key behaviors:
-- **Create:** Captures memory_index rows + working_memory state; max 10 checkpoints enforced
-- **Restore:** Transaction-wrapped with rollback on failure; validates checkpoint JSON against schema before mutations; refreshes BM25, trigger cache, and vector indexes after restore
-- **Working memory:** Saved during checkpoint create and restored during checkpoint restore (session-scoped attention state is preserved)
+**Epistemic Learning:** Use `task_preflight()` before and `task_postflight()` after implementation to measure knowledge gains. Learning Index: `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`. Review trends via `memory_get_learning_history()`. See [epistemic-vectors.md](./references/memory/epistemic-vectors.md).
 
 **Key Concepts:**
-- **Constitutional tier** - Critical rules that receive a 3.0x search boost (via `importance-tiers.ts`) and a 2.0x importance multiplier (via `composite-scoring.ts`), causing them to typically appear near the top of search results. They are merged into the normal scoring pipeline, not force-injected at position 0
-- **Decay scoring** - FSRS v4 power-law model preferred: `R(t) = (1 + 19/81 * t/S)^(-0.5)`. Deprecated legacy exponential fallback (`score * decayRate^(days/30)`) retained for backward compatibility. Recent memories rank higher
-- **Real-time sync** - Use `memory_save` or `memory_index_scan` after creating files
-- **Session cleanup** - Three automatic mechanisms:
-  - **Expired sessions:** Runs on startup + every 30 min (clears `session_sent_memories` past TTL; default `SESSION_TTL_MINUTES=30`, `SESSION_MAX_ENTRIES=100` per session)
-  - **Stale sessions:** Runs on startup + every 1 hour (clears `working_memory`, `sent_memories`, `session_state` older than 24 hours)
-  - **Crash recovery:** Runs on startup only (marks active sessions as interrupted)
+- **Constitutional tier** — 3.0x search boost + 2.0x importance multiplier; merged into normal scoring pipeline
+- **Decay scoring** — FSRS v4 power-law model; recent memories rank higher
+- **Real-time sync** — Use `memory_save` or `memory_index_scan` after creating files
+- **Checkpoints** — Gzip-compressed JSON snapshots of memory_index + working_memory; max 10 stored; transaction-wrapped restore
+- **Indexing persistence** — After `generate-context.js`, call `memory_index_scan()` or `memory_save()` for immediate MCP visibility
 
-**Indexing Persistence Note:**
-When `generate-context.js` creates a memory file, it performs internal indexing and reports "Indexed as memory #X". However, the running MCP server maintains its own database connection and may not immediately see the new index entry.
-
-For immediate MCP visibility, call one of:
-- `memory_index_scan({ specFolder: "your-folder" })` - Re-scan and index
-- `memory_save({ filePath: "path/to/memory.md" })` - Index specific file
-
-This is typically only needed if you want to search the memory immediately after creation in the same session.
+> **Token budgets per layer:** L1:2000, L2:1500, L3:800, L4:500, L5:600, L6:1200, L7:1000 (enforced via `chars/4` approximation).
 
 **Full documentation:** See [memory_system.md](./references/memory/memory_system.md) for tool behavior, importance tiers, and configuration.
 
@@ -733,69 +494,17 @@ Commands consolidate all questions into ONE user prompt to minimize round-trips.
 
 ### Prior Work Search (Research Workflow Phase 3)
 
-When executing `/spec_kit:research`, Phase 3 automatically searches for related prior work before proceeding:
+During `/spec_kit:research`, Phase 3 automatically searches for related prior work via `memory_match_triggers()` (keyword) and `memory_search()` (semantic). If matches are found, the user is asked to load all matches, constitutional only, or skip. Constitutional tier memories receive a 3.0x search boost. This phase runs between Spec Folder Setup (Phase 2) and Memory Context Loading (Phase 4) and is skipped if no prior work exists.
 
-```
-PHASE 3: PRIOR WORK SEARCH (Auto-execute after Phase 2)
-
-1. Call memory_match_triggers(prompt=research_topic) for fast keyword match
-2. Call memory_search(query=research_topic, includeConstitutional=true) for semantic search
-3. IF matches found:
-   ├─ Display: "Found [N] related memories from prior research"
-   ├─ ASK user:
-   │   ┌────────────────────────────────────────────────────┐
-   │   │ "Load related prior work?"                         │
-   │   │                                                    │
-   │   │ A) Load all matches (comprehensive context)        │
-   │   │ B) Load constitutional only (foundational rules)   │
-   │   │ C) Skip (start fresh)                              │
-   │   └────────────────────────────────────────────────────┘
-   └─ SET STATUS: ✅ PASSED
-4. IF no matches found:
-   └─ SET STATUS: ⏭️ N/A (no prior work)
-```
-
-**Key Behaviors:**
-- Constitutional tier memories receive a 3.0x search boost and typically appear near the top of results when `includeConstitutional=true` (default)
-- This phase is conditional - skipped if no prior work exists
-- Runs between Spec Folder Setup (Phase 2) and Memory Context Loading (Phase 4)
-
-**See also:** `/spec_kit:research` command for full 9-step research workflow.
+**See:** `/spec_kit:research` command for the full 9-step research workflow.
 
 ### Debug Delegation Workflow
 
-**When to Trigger:**
-- Manual: `/spec_kit:debug` or "delegate this to a debug agent"
-- Auto-suggest when detecting:
-  - Same error 3+ times after fix attempts
-  - Frustration keywords: "stuck", "can't fix", "tried everything"
-  - Extended debugging: >15 minutes with 3+ fix attempts
+**Trigger:** `/spec_kit:debug`, frustration keywords ("stuck", "can't fix"), or same error 3+ times. **MANDATORY:** After 3 failed attempts on the same error, suggest `/spec_kit:debug` before continuing.
 
-**⚠️ MANDATORY: After 3 failed attempts on the same error, you MUST suggest `/spec_kit:debug`. Do not continue attempting fixes without offering debug delegation first.**
+**Flow:** Ask model selection (Claude/Gemini/OpenAI/Other) → Generate `debug-delegation.md` → Dispatch sub-agent via Task tool → Present findings → Update with resolution. The `:auto-debug` flag on `/spec_kit:complete` can auto-dispatch without manual invocation.
 
-**Model Selection (MANDATORY - never skip):**
-
-| Model      | Best For                         | Characteristics                    |
-| ---------- | -------------------------------- | ---------------------------------- |
-| **Claude** | General debugging, code analysis | Anthropic models (Opus/Sonnet)     |
-| **Gemini** | Multi-modal, large context       | Google models (Pro/Flash)          |
-| **OpenAI** | Code generation, reasoning       | OpenAI models (GPT-4o/o1/o3)      |
-| **Other**  | User-specified model             | Custom selection                   |
-
-**Workflow:**
-1. Ask which model to use
-2. Generate `debug-delegation.md` with: error category, message, files, attempts, hypothesis
-3. Dispatch sub-agent via Task tool
-4. Present findings: Apply fix / Iterate / Manual review
-5. Update debug-delegation.md with resolution
-
-**Auto-debug via `/spec_kit:complete`:** The `:auto-debug` flag on `/spec_kit:complete` can automatically dispatch a debug agent when implementation failures are detected, without requiring manual `/spec_kit:debug` invocation. See complete.md for details.
-
-**Auto-suggestion display:**
-```
-Debug Delegation Suggested - You've been working on this issue for a while.
-Run: /spec_kit:debug
-```
+**Full details:** See `.opencode/agent/debug.md` and `templates/debug-delegation.md`.
 
 ### Command Pattern Protocol
 
@@ -946,67 +655,21 @@ Automated validation of spec folder contents via `validate.sh`.
 
 ### Cross-Skill Workflows
 
-**Spec Folder → Implementation:**
-```
-system-spec-kit (creates spec folder)
-    → workflows-code (implements from spec + plan)
-    → workflows-git (commits with spec reference)
-    → Spec Kit Memory (preserves conversation to spec/memory/ via MCP)
-```
-
-**Documentation Quality:**
-```
-system-spec-kit (creates spec documentation)
-    → workflows-documentation (validates structure, scores quality)
-    → Feedback loop: Iterate if scores <90
-```
-
-**Validation Workflow:**
-```
-Implementation complete
-    → validate.sh (automated checks)
-    → Fix ERROR-level issues
-    → Address WARNING-level issues
-    → Claim completion with confidence
-```
-
-### Common Failure Patterns
-
-| Pattern                       | Trigger                                 | Prevention                                |
-| ----------------------------- | --------------------------------------- | ----------------------------------------- |
-| Skip Gate 3 on exciting tasks | "comprehensive", "fix all", "15 agents" | STOP → Ask spec folder → Wait for A/B/C/D |
-| Rush to code                  | "straightforward", "simple fix"         | Analyze → Verify → Simplest solution      |
-| Create docs from scratch      | Time pressure                           | Always copy from templates/level_N/       |
-| Skip checklist verification   | "trivial edit"                          | Load checklist.md, verify ALL items       |
-| Manual memory file creation   | "quick save"                            | MUST use generate-context.js script       |
-| Autonomous update vs create   | "obvious choice"                        | Always ask user for A/B/C/D               |
+| Workflow | Flow |
+| --- | --- |
+| **Spec → Implementation** | system-spec-kit → workflows-code → workflows-git → Spec Kit Memory |
+| **Documentation Quality** | system-spec-kit → workflows-documentation (validate, score) → Iterate if <90 |
+| **Validation** | Implementation complete → validate.sh → Fix errors → Address warnings → Claim completion |
 
 ### Quick Reference Commands
 
-**Create new spec folder:**
-```bash
-./scripts/spec/create.sh "Add feature description" --short-name feature-name --level 2
-```
-
-**Validate spec folder:**
-```bash
-.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
-```
-
-**Save context:**
-```bash
-node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/007-feature/
-```
-
-**Find next spec number:**
-```bash
-ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
-```
-
-**Calculate documentation completeness:**
-```bash
-.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/
-```
+| Command | Usage |
+| --- | --- |
+| Create spec folder | `./scripts/spec/create.sh "Description" --short-name name --level 2` |
+| Validate | `.opencode/skill/system-spec-kit/scripts/spec/validate.sh specs/007-feature/` |
+| Save context | `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js specs/007-feature/` |
+| Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
+| Completeness | `.opencode/skill/system-spec-kit/scripts/spec/calculate-completeness.sh specs/007-feature/` |
 
 ---
 
@@ -1026,22 +689,13 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 
 | Resource          | Location                                                                   | Purpose                           |
 | ----------------- | -------------------------------------------------------------------------- | --------------------------------- |
-| Core templates    | `templates/core/` (4 files)                                                | Foundation shared by all levels   |
-| Level 2 addendum  | `templates/addendum/level2-verify/` (3 files)                              | +Verification, NFRs               |
-| Level 3 addendum  | `templates/addendum/level3-arch/` (3 files)                                | +Architecture, ADRs               |
-| Level 3+ addendum | `templates/addendum/level3plus-govern/` (3 files)                          | +Governance, compliance           |
-| Level 1           | `templates/level_1/` (5 files)                                             | Pre-merged core (~455 LOC)        |
-| Level 2           | `templates/level_2/` (6 files)                                             | Core + L2 (~875 LOC)              |
-| Level 3           | `templates/level_3/` (7 files)                                             | Core + L2 + L3 (~1090 LOC)        |
-| Level 3+          | `templates/level_3+/` (7 files)                                            | All addendums (~1075 LOC)         |
-| Utility templates | `templates/` root                                                          | handover.md, debug-delegation.md  |
-| Compose script    | `scripts/templates/compose.sh`                                             | Template composition from sources |
+| Templates         | `templates/level_1/` through `level_3+/` (see Resource Inventory above)    | Pre-merged level templates        |
 | Validation        | `scripts/spec/validate.sh`                                                 | Automated validation              |
 | Gates             | `AGENTS.md` Section 2                                                      | Gate definitions                  |
-| Memory gen        | `.opencode/skill/system-spec-kit/scripts/memory/generate-context.ts`       | Memory file creation (source)     |
-| MCP Server        | `.opencode/skill/system-spec-kit/mcp_server/context-server.ts`             | Spec Kit Memory MCP (source, ~903 lines) |
-| Database          | `.opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite` | Vector search index               |
-| Constitutional    | `.opencode/skill/system-spec-kit/constitutional/`                          | Always-surface rules              |
+| Memory gen        | `scripts/memory/generate-context.ts` → `scripts/dist/`                     | Memory file creation              |
+| MCP Server        | `mcp_server/context-server.ts`                                             | Spec Kit Memory MCP (~903 lines)  |
+| Database          | `mcp_server/database/context-index.sqlite`                                 | Vector search index               |
+| Constitutional    | `constitutional/`                                                          | Always-surface rules              |
 
 ---
 

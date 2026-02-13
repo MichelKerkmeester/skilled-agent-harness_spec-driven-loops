@@ -6,7 +6,7 @@
 
 // T301: Import FSRS constants from canonical source (fsrs-scheduler.ts)
 import { FSRS_FACTOR, FSRS_DECAY, FSRS_HALF_LIFE_FACTOR } from './fsrs-scheduler';
-import type { MemoryDbRow } from '../../../shared/types';
+import type { MemoryDbRow } from '../../../../shared/types';
 
 /**
  * Loose input type for tier classification functions.

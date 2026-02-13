@@ -1,3 +1,14 @@
+---
+title: "Memory Scripts"
+description: "TypeScript context preservation and retrieval utilities for the Spec Kit Memory system"
+trigger_phrases:
+  - "memory scripts"
+  - "generate context memory"
+  - "rank memories"
+  - "cleanup orphaned vectors"
+importance_tier: "normal"
+---
+
 # Memory Scripts
 
 > TypeScript context preservation and retrieval utilities for the Spec Kit Memory system.
@@ -5,6 +16,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -14,7 +26,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Memory Scripts?
 
@@ -39,7 +53,9 @@ Memory scripts manage the Spec Kit Memory system, which preserves conversation c
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Generate Memory Context
 
@@ -70,7 +86,9 @@ node ../dist/memory/cleanup-orphaned-vectors.js
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 memory/
@@ -96,7 +114,9 @@ memory/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -167,7 +187,9 @@ node ../dist/memory/generate-context.js --help
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -188,3 +210,4 @@ node ../dist/memory/generate-context.js --help
 ---
 
 *Documentation version: 1.0 | Last updated: 2025-01-21*
+<!-- /ANCHOR:related -->

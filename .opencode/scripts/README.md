@@ -5,20 +5,23 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
-- [3. 🏗️ ARCHITECTURE](#3-️-architecture)
+- [3. 🏗️ ARCHITECTURE](#3--architecture)
 - [4. ⚡ FEATURES](#4--features)
-- [5. ⚙️ CONFIGURATION](#5-️-configuration)
+- [5. ⚙️ CONFIGURATION](#5--configuration)
 - [6. 💡 USAGE EXAMPLES](#6--usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7-️-troubleshooting)
+- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
 - [8. ❓ FAQ](#8--faq)
 - [9. 📚 RELATED DOCUMENTS](#9--related-documents)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is Skill Advisor?
 
@@ -78,7 +81,9 @@ Skill Advisor is a Python script that analyzes user requests and recommends the 
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Prerequisites
 
@@ -138,7 +143,9 @@ fi
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 🏗️ ARCHITECTURE
+<!-- ANCHOR:structure -->
 
 ### Component Overview
 
@@ -286,7 +293,9 @@ User Input: "help me fix the authentication bug"
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Dynamic Skill Discovery
 
@@ -385,7 +394,9 @@ Slash commands exposed as pseudo-skills for routing:
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Customization Points
 
@@ -446,7 +457,9 @@ skills["command-deploy"] = {
 
 ---
 
+<!-- /ANCHOR:configuration -->
 ## 6. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Git Operations
 
@@ -539,7 +552,9 @@ python skill_advisor.py "call figma api"
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### No Skills Found
 
@@ -618,7 +633,9 @@ python .opencode/scripts/skill_advisor.py "test"
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 8. ❓ FAQ
+<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -669,3 +686,5 @@ print(f"DEBUG: tokens={tokens}, expanded={search_terms}", file=sys.stderr)
 **Q: Can I use regex in queries?**
 
 A: No, the script uses simple word tokenization. Regex patterns will be treated as literal text.
+
+<!-- /ANCHOR:faq -->

@@ -1,3 +1,13 @@
+---
+title: "System Spec Kit Test Suite"
+description: "Comprehensive test suite for validating system-spec-kit scripts, modules, templates, and end-to-end workflows."
+trigger_phrases:
+  - "spec kit tests"
+  - "test suite"
+  - "validation tests"
+importance_tier: "normal"
+---
+
 # System Spec Kit Test Suite
 
 > Comprehensive test suite for validating system-spec-kit scripts, modules, templates, and end-to-end workflows.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -15,7 +26,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the System Spec Kit Test Suite?
 
@@ -54,7 +67,9 @@ The test suite provides comprehensive validation for all system-spec-kit functio
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -112,7 +127,9 @@ node test-integration.js
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 tests/
@@ -168,7 +185,9 @@ tests/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -277,7 +296,9 @@ ls -la .test-workspace/specs/
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -297,9 +318,9 @@ ls -la .test-workspace/specs/
 
 ---
 
----
-
+<!-- /ANCHOR:related -->
 ## 6. 🧠 COGNITIVE MEMORY TEST SUITE
+<!-- ANCHOR:cognitive-memory-test-suite -->
 
 ### Overview
 
@@ -338,3 +359,4 @@ Located in `../../mcp_server/tests/fixtures/`:
 ---
 
 *Documentation for system-spec-kit test suite v2.1 | TypeScript Migration | Last updated: 2026-02-07*
+<!-- /ANCHOR:cognitive-memory-test-suite -->

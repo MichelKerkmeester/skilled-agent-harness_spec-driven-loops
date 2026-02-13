@@ -1,10 +1,33 @@
+---
+title: "Addendum Templates"
+description: "Source components for the CORE + ADDENDUM v2.2 composition model extending base templates with level-specific sections."
+trigger_phrases:
+  - "addendum templates"
+  - "template composition"
+  - "level-specific sections"
+importance_tier: "normal"
+---
+
 # Addendum Templates
 
 > Source components for the CORE + ADDENDUM v2.2 composition model extending base templates with level-specific sections.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
+## Table of Contents
+
+- [1. Overview](#1--overview)
+- [2. Composition Model](#2--composition-model)
+- [3. Contents](#3--contents)
+- [4. Troubleshooting](#4--troubleshooting)
+- [5. Related Documents](#5--related-documents)
+<!-- /ANCHOR:table-of-contents -->
+
+---
+
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The addendum templates implement the CORE + ADDENDUM v2.2 architecture where:
 - **Core templates** (`../core/`) provide the base structure shared across all levels
@@ -13,9 +36,12 @@ The addendum templates implement the CORE + ADDENDUM v2.2 architecture where:
 
 This composition model eliminates duplication while maintaining flexibility. Each level inherits the core structure and adds incremental governance, verification, and architectural guidance.
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🏗️ COMPOSITION MODEL
+<!-- ANCHOR:composition-model -->
 
 The templates compose like building blocks:
 
@@ -35,9 +61,12 @@ The templates compose like building blocks:
 
 Each addendum file contains comment markers indicating where to insert sections into the core template.
 
+<!-- /ANCHOR:composition-model -->
+
 ---
 
 ## 3. 📁 CONTENTS
+<!-- ANCHOR:contents -->
 
 ### level2-verify/
 
@@ -75,9 +104,12 @@ Level 3+ enterprise governance sections:
 
 **Target**: Complex multi-agent features requiring formal governance.
 
+<!-- /ANCHOR:contents -->
+
 ---
 
-## 4. ⚠️ IMPORTANT WARNING
+## 4. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:important-warning -->
 
 **DO NOT copy files from `addendum/` directly into your spec folder.**
 
@@ -100,9 +132,12 @@ cp .opencode/skill/system-spec-kit/templates/level_2/checklist.md specs/001-feat
 cp .opencode/skill/system-spec-kit/templates/addendum/level2-verify/spec-level2.md specs/001-feature/
 ```
 
+<!-- /ANCHOR:important-warning -->
+
 ---
 
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 **Template Directories:**
 - `../core/` - Base templates shared across all levels
@@ -126,3 +161,4 @@ ADDENDUM TEMPLATES - CORE + ADDENDUM v2.2
 - Used by level_N/ templates, not directly by users
 - Eliminates duplication while maintaining flexibility
 -->
+<!-- /ANCHOR:related -->

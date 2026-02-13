@@ -1,19 +1,32 @@
+---
+title: "Interfaces"
+description: "Protocol abstractions enabling testable, swappable backends for embedding providers and vector stores."
+trigger_phrases:
+  - "interfaces"
+  - "embedding provider interface"
+  - "vector store interface"
+importance_tier: "normal"
+---
+
 # Interfaces
 
 > Protocol abstractions enabling testable, swappable backends for embedding providers and vector stores.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 📁 STRUCTURE](#2--structure)
 - [3. ⚡ FEATURES](#3--features)
 - [4. 💡 USAGE EXAMPLES](#4--usage-examples)
-- [5. 🔗 RELATED RESOURCES](#5--related-resources)
+- [5. 📚 RELATED RESOURCES](#5--related-resources)
 
+<!-- /ANCHOR:table-of-contents -->
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. 📖 OVERVIEW
 
 The interfaces module provides abstract base classes that define contracts for embedding providers and vector stores. These interfaces enable dependency injection, making the system testable with mock implementations and allowing swappable backends without code changes.
@@ -27,17 +40,10 @@ The interfaces module provides abstract base classes that define contracts for e
 | **Future-proofing** | Migrate to new systems (e.g., LadybugDB) without interface changes |
 | **Decoupling** | Core logic depends on interfaces, not concrete implementations |
 
-### Module Statistics
-
-| Metric | Value |
-|--------|-------|
-| Interfaces | 2 |
-| Mock implementations | 2 |
-| Total files | 3 |
-| Added in | v1.2.0 |
-
+<!-- /ANCHOR:overview -->
 ---
 
+<!-- ANCHOR:structure -->
 ## 2. 📁 STRUCTURE
 
 > **Note**: Most source files (`embedding-provider.ts`, `index.ts`) were relocated to `@spec-kit/shared` during the shared package migration. `vector-store.ts` remains as a local stub/re-export.
@@ -56,8 +62,10 @@ interfaces/
 | `vector-store.ts` | **Remains locally** (stub/re-export) |
 | `index.ts` | Relocated to `@spec-kit/shared` |
 
+<!-- /ANCHOR:structure -->
 ---
 
+<!-- ANCHOR:features -->
 ## 3. ⚡ FEATURES
 
 ### IEmbeddingProvider Interface
@@ -101,8 +109,10 @@ Defines the contract for vector similarity search and storage.
 | `MockEmbeddingProvider` | Deterministic embeddings, configurable latency/failure rate |
 | `MockVectorStore` | In-memory storage, cosine similarity search |
 
+<!-- /ANCHOR:features -->
 ---
 
+<!-- ANCHOR:examples -->
 ## 4. 💡 USAGE EXAMPLES
 
 ### Using MockEmbeddingProvider for Tests
@@ -153,9 +163,11 @@ const result = await provider.embed('test');
 // result is null or Float32Array
 ```
 
+<!-- /ANCHOR:examples -->
 ---
 
-## 5. 🔗 RELATED RESOURCES
+<!-- ANCHOR:related -->
+## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 
@@ -173,6 +185,7 @@ const result = await provider.embed('test');
 | Dependency Injection | Consumers accept interface, not concrete class |
 | Strategy Pattern | Swap implementations at runtime |
 
+<!-- /ANCHOR:related -->
 ---
 
 **Version**: 1.7.2

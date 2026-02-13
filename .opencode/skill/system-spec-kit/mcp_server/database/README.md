@@ -1,9 +1,20 @@
+---
+title: "MCP Server Database Storage"
+description: "SQLite database storage for semantic memory with vector embeddings, full-text search, and checkpoint state management."
+trigger_phrases:
+  - "database"
+  - "sqlite"
+  - "vector embeddings"
+importance_tier: "normal"
+---
+
 # MCP Server Database Storage
 
 > SQLite database storage for semantic memory with vector embeddings, full-text search, and checkpoint state management.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
@@ -13,9 +24,11 @@
 - [5. 💡 USAGE EXAMPLES](#5--usage-examples)
 - [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
 - [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
+<!-- ANCHOR:overview -->
 ## 1. 📖 OVERVIEW
 
 ### What is this folder?
@@ -51,9 +64,11 @@ The `database/` folder contains the SQLite database files that store all indexed
 | better-sqlite3 | 9.0.0+ | SQLite driver with WAL support |
 | sqlite-vec | Latest | Vector similarity extension |
 | Disk Space | 10 MB+ | Per 100-200 memories |
+<!-- /ANCHOR:overview -->
 
 ---
 
+<!-- ANCHOR:quick-start -->
 ## 2. 🚀 QUICK START
 
 ### Accessing the Database
@@ -93,9 +108,11 @@ sqlite3 context-index.sqlite \
 # View database size
 du -h context-index.sqlite*
 ```
+<!-- /ANCHOR:quick-start -->
 
 ---
 
+<!-- ANCHOR:structure -->
 ## 3. 📁 STRUCTURE
 
 ```
@@ -112,31 +129,33 @@ database/
 
 | File | Purpose | Can Delete? |
 |------|---------|-------------|
-| `context-index.sqlite` | Main database with memory index, vectors, FTS5 | ❌ No - data loss |
-| `context-index.sqlite-wal` | Write-ahead log for uncommitted transactions | ⚠️ Only if DB closed cleanly |
-| `context-index.sqlite-shm` | Shared memory for WAL coordination | ⚠️ Auto-recreated on startup |
-| `.db-updated` | External update signal (BUG-001) | ✅ Yes - auto-recreated |
-| `context-index__voyage__*` | Voyage AI embedding database | ⚠️ Only if not using Voyage embeddings |
-| `.gitkeep` | Git directory placeholder | ✅ Yes - purely for Git |
+| `context-index.sqlite` | Main database with memory index, vectors, FTS5 | No - data loss |
+| `context-index.sqlite-wal` | Write-ahead log for uncommitted transactions | Only if DB closed cleanly |
+| `context-index.sqlite-shm` | Shared memory for WAL coordination | Auto-recreated on startup |
+| `.db-updated` | External update signal (BUG-001) | Yes - auto-recreated |
+| `context-index__voyage__*` | Voyage AI embedding database | Only if not using Voyage embeddings |
+| `.gitkeep` | Git directory placeholder | Yes - purely for Git |
 
 ### File Lifecycle
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│ 1. Server Startup   │ Opens context-index.sqlite in WAL mode   │
-├─────────────────────┼──────────────────────────────────────────┤
-│ 2. Write Operations │ Changes append to .sqlite-wal            │
-├─────────────────────┼──────────────────────────────────────────┤
-│ 3. Checkpoint       │ WAL merged into main .sqlite file        │
-├─────────────────────┼──────────────────────────────────────────┤
-│ 4. External Update  │ generate-context.js writes .db-updated   │
-├─────────────────────┼──────────────────────────────────────────┤
-│ 5. Reload Detection │ Server reads .db-updated, reinitializes  │
-└─────────────────────────────────────────────────────────────────┘
++-----------------------------------------------------------------+
+| 1. Server Startup   | Opens context-index.sqlite in WAL mode   |
++---------------------+------------------------------------------+
+| 2. Write Operations | Changes append to .sqlite-wal            |
++---------------------+------------------------------------------+
+| 3. Checkpoint       | WAL merged into main .sqlite file        |
++---------------------+------------------------------------------+
+| 4. External Update  | generate-context.js writes .db-updated   |
++---------------------+------------------------------------------+
+| 5. Reload Detection | Server reads .db-updated, reinitializes  |
++-----------------------------------------------------------------+
 ```
+<!-- /ANCHOR:structure -->
 
 ---
 
+<!-- ANCHOR:features -->
 ## 4. ⚡ FEATURES
 
 ### Database Schema
@@ -205,19 +224,19 @@ The database auto-detects embedding provider and dimension from environment:
 The `.db-updated` file enables coordination between the MCP server and external scripts:
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│ PROCESS 1: generate-context.js (External)                       │
-│   1. Parses memory files                                        │
-│   2. Writes to context-index.sqlite                             │
-│   3. Writes timestamp to .db-updated                            │
-└─────────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────────┐
-│ PROCESS 2: MCP Server (context-server.js)                       │
-│   1. Before each search, checks .db-updated                     │
-│   2. If timestamp > last_check, reinitializes DB connection     │
-│   3. Search now sees new data                                   │
-└─────────────────────────────────────────────────────────────────┘
++-----------------------------------------------------------------+
+| PROCESS 1: generate-context.js (External)                       |
+|   1. Parses memory files                                        |
+|   2. Writes to context-index.sqlite                             |
+|   3. Writes timestamp to .db-updated                            |
++-----------------------------------------------------------------+
+                              |
++-----------------------------------------------------------------+
+| PROCESS 2: MCP Server (context-server.js)                       |
+|   1. Before each search, checks .db-updated                     |
+|   2. If timestamp > last_check, reinitializes DB connection     |
+|   3. Search now sees new data                                   |
++-----------------------------------------------------------------+
 ```
 
 **Signal File Format:**
@@ -226,9 +245,11 @@ The `.db-updated` file enables coordination between the MCP server and external 
 cat .db-updated
 # 1737375600000
 ```
+<!-- /ANCHOR:features -->
 
 ---
 
+<!-- ANCHOR:examples -->
 ## 5. 💡 USAGE EXAMPLES
 
 ### Example 1: Query Memory Index
@@ -306,9 +327,11 @@ sqlite3 context-index.sqlite "ANALYZE;"
 | Check health | `PRAGMA integrity_check` | After crashes or errors |
 | Count vectors | `SELECT COUNT(*) FROM vec_memories` | Verify indexing completeness |
 | Checkpoint WAL | `PRAGMA wal_checkpoint(FULL)` | Before backup or shutdown |
+<!-- /ANCHOR:examples -->
 
 ---
 
+<!-- ANCHOR:troubleshooting -->
 ## 6. 🛠️ TROUBLESHOOTING
 
 ### Common Issues
@@ -445,9 +468,11 @@ sqlite3 context-index.sqlite ".schema vec_memories"
 # Check database size breakdown
 sqlite3 context-index.sqlite "SELECT page_count * page_size as size FROM pragma_page_count(), pragma_page_size();"
 ```
+<!-- /ANCHOR:troubleshooting -->
 
 ---
 
+<!-- ANCHOR:related -->
 ## 7. 📚 RELATED DOCUMENTS
 
 ### Internal Documentation
@@ -481,6 +506,7 @@ sqlite3 context-index.sqlite "SELECT page_count * page_size as size FROM pragma_
 | [sqlite-vec GitHub](https://github.com/asg017/sqlite-vec) | Vector search extension documentation |
 | [SQLite WAL Mode](https://www.sqlite.org/wal.html) | Write-ahead logging documentation |
 | [better-sqlite3 Docs](https://github.com/WiseLibs/better-sqlite3) | Node.js SQLite driver |
+<!-- /ANCHOR:related -->
 
 ---
 

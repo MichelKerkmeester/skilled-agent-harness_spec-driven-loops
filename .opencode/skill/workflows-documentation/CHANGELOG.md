@@ -4,6 +4,34 @@ All notable changes to this skill are documented in this file.
 
 ---
 
+## [5.3.1] - 2026-02-13
+
+### Spec 117: /create:folder_readme Command Alignment
+
+#### Changed
+- `../../command/create/assets/create_folder_readme.yaml`: Aligned with canonical 9-section structure from readme_template.md §13 — replaced 4 custom section structures with canonical names, removed ~140 lines of embedded templates (replaced with reference stubs), fixed emoji inconsistencies, added `template_references` cross-references (765→611 lines, -20%)
+- `../../command/create/folder_readme.md`: Fixed broken YAML key references (`notes.*` → actual keys), aligned DQI target to 75+ (Good), standardized command name to `/create:folder_readme`, added step numbering explanation (463→465 lines)
+
+#### Fixed
+- `create_folder_readme.yaml`: `sequential_5_step` → `sequential_6_step` (YAML defines 6 steps, not 5)
+- `create_folder_readme.yaml`: Internal emoji_conventions inconsistency (🔧 vs 🛠️ for troubleshooting)
+- `folder_readme.md`: Non-existent YAML key references (`notes.readme_type_selection` → `readme_types`)
+
+---
+
+## [5.3.0] - 2026-02-13
+
+### Spec 115: README Template Alignment
+
+#### Changed
+- `assets/documentation/readme_template.md`: Major restructuring — added 5 evolved patterns (anchor schema, TOC double-dash format, badge shields, architecture diagrams, Before/After patterns), then reduced from 1589→1058 lines (-33%) through content consolidation and section merges (16→14 sections)
+- §13 (Complete Template) now defines the canonical 9-section README scaffold used as the single source of truth for all README generation
+- §12 (Anchor Templates) expanded with mandatory open/close anchor pairs and ID naming conventions
+- §6 (Writing Patterns) enhanced with Before/After comparison patterns
+- §7 (Style Reference) consolidated with redundant content removed
+
+---
+
 ## [5.2.1] - 2026-02-12
 
 ### Changed

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 // DB-dependent imports (commented out - requires better-sqlite3 / dist modules)
 import * as memorySearchHandler from '../handlers/memory-search.js';
-import * as fsrsScheduler from '../lib/cognitive/fsrs-scheduler.js';
+import * as fsrsScheduler from '../lib/cache/cognitive/fsrs-scheduler.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import * as hybridSearch from '../lib/search/hybrid-search.js';
 import * as rrfFusion from '../lib/search/rrf-fusion.js';

@@ -1,14 +1,17 @@
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 # SMART SPECKIT: RESUME WORKFLOW (INTERACTIVE MODE)
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 role: Expert Developer using Smart SpecKit for interactive session resume
 purpose: Resume previous work session with user confirmation at each step
 action: Detect session, confirm selection, load context, and present options
 
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: utility
-  workflow_compliance: OPTIONAL
-  workflow_execution: interactive
+  compliance: OPTIONAL
+  execution: interactive
   approvals: step_by_step
   tracking: session_state_detection
   validation: checkpoint_based
@@ -16,422 +19,196 @@ operating_mode:
 resume_philosophy:
   principle: "Context continuity with user control"
   approach: "Detect, confirm, load, proceed"
-  mandate: "Restore context with user validation"
-
-# ───────────────────────────────────────────────────────────────────
-# USER INPUTS
-# ───────────────────────────────────────────────────────────────────
-user_inputs:
-  spec_folder: |
-    [SPEC_FOLDER]
-    Optional spec folder path. If empty, auto-detect from:
-    1. Most recent memory file in specs/*/memory/
 
 # ─────────────────────────────────────────────────────────────────
-# SESSION DETECTION (Stateless - no .spec-active marker)
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  spec_folder: "[SPEC_FOLDER] - Spec folder path. Leave empty to auto-detect from most recent memory."
+
+# ─────────────────────────────────────────────────────────────────
+# SESSION DETECTION
 # ─────────────────────────────────────────────────────────────────
 session_detection:
-  priority_order:
-    1: "CLI argument (explicit path provided)"
-    2: "Semantic memory search (memory_search with session context)"
-    3: "Trigger phrase matching (memory_match_triggers)"
-    4: "Find most recent memory file by mtime (glob specs/*/memory/*.md)"
-  
+  priority_order: ["CLI argument", "Semantic memory search", "Trigger phrase matching", "Most recent memory file by mtime"]
   note: "Stateless architecture - no .spec-active marker file used"
-  
   tier_details:
     tier_1_cli:
       method: "Parse $ARGUMENTS for spec folder path"
       priority: "highest"
     tier_2_semantic:
-      method: "memory_search({ query: 'active session', limit: 1 })"
+      method: "memory_list({ limit: 3, sortBy: 'updated_at' })"
       fallback: "tier_3"
     tier_3_triggers:
-      method: "memory_match_triggers({ prompt: 'resume' })"
+      method: "memory_match_triggers({ prompt: 'resume work session context' })"
       fallback: "tier_4"
     tier_4_mtime:
-      method: "glob specs/*/memory/*.md | sort by mtime | head -1"
+      method: "glob {.opencode/,}specs/**/memory/*.md | sort by mtime | head -1"
       fallback: "report no session"
-  
-  fallback:
-    on_no_memory: "Report no active session, suggest /spec_kit:complete"
+  fallback: { on_no_memory: "Report no active session, suggest /spec_kit:complete" }
 
 # ─────────────────────────────────────────────────────────────────
-# CONTEXT LOADING PRIORITY (V14.0 - Simplified)
+# CONTEXT LOADING
 # ─────────────────────────────────────────────────────────────────
 context_loading_priority:
-  order:
-    1: "handover.md (if exists, <24h old)"
-    2: "CONTINUE_SESSION.md (if exists, previous session state)"
-    3: "checklist.md (progress tracking)"
-    4: "Recent memory/*.md files (contain embedded Project State Snapshot)"
-  
+  order: ["handover.md (<24h old)", "CONTINUE_SESSION.md", "checklist.md", "Recent memory/*.md (embedded Project State Snapshot)"]
   note: "Use handover.md for fast resume, fall through in priority order"
 
-# ─────────────────────────────────────────────────────────────────
-# MEMORY LOADING (INTERACTIVE - prompt for selection)
-# ─────────────────────────────────────────────────────────────────
 memory_loading:
   mode: interactive
-  behavior: |
-    In interactive mode, first check for handover.md (<24h old).
-    If present, load it first and show contents to user.
-    Then prompt the user to select additional memory files
-    for context recovery if needed.
-  
+  behavior: "Check handover.md (<24h) first, then prompt user to select additional memory files"
   options:
-    - id: A
-      label: "Load most recent memory file"
-      description: "Quick context refresh from latest session"
-    - id: B
-      label: "Load all recent files (up to 3)"
-      description: "Comprehensive context from recent sessions"
-    - id: C
-      label: "List all files and select specific"
-      description: "Choose specific memory files to load"
-    - id: D
-      label: "Skip"
-      description: "Start fresh without prior context"
-  
+    - { id: A, label: "Load most recent memory file", description: "Quick context refresh" }
+    - { id: B, label: "Load all recent files (up to 3)", description: "Comprehensive context" }
+    - { id: C, label: "List all files and select specific", description: "Choose specific memories" }
+    - { id: D, label: "Skip", description: "Start fresh without prior context" }
   mcp_integration:
     tool: memory_search
     note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters:
-      query: "resume context for {spec_folder_name}"
-      specFolder: "{spec_folder_path}"
-      anchors: ['summary', 'state', 'next-steps']
-    example: |
-      memory_search({
-        query: "resume context",
-        specFolder: "specs/007-feature-name",
-        anchors: ['summary', 'state', 'next-steps']
-      })
+    parameters: { query: "resume context for {spec_folder_name}", specFolder: "{spec_folder_path}", anchors: ['summary', 'state', 'next-steps'] }
 
-# ─────────────────────────────────────────────────────────────────
-# CHECKPOINT OPTIONS
-# ─────────────────────────────────────────────────────────────────
 checkpoint_options:
   session_selection:
-  - label: "Confirm"
-    description: "This is the correct spec folder"
-  - label: "Select Different"
-    description: "Choose a different spec folder"
-  - label: "Cancel"
-    description: "Cancel resume operation"
-
+    - { label: "Confirm", description: "This is the correct spec folder" }
+    - { label: "Select Different", description: "Choose a different spec folder" }
+    - { label: "Cancel", description: "Cancel resume operation" }
   continuation:
-  - label: "Continue from pending work"
-    description: "Pick up where you left off"
-  - label: "Run /spec_kit:implement"
-    description: "Execute remaining tasks"
-  - label: "Just chat"
-    description: "Work on it manually"
+    - { label: "Continue from pending work", description: "Pick up where you left off" }
+    - { label: "Run /spec_kit:implement", description: "Execute remaining tasks" }
+    - { label: "Just chat", description: "Work on it manually" }
 
-# ─────────────────────────────────────────────────────────────────
-# STALE SESSION DETECTION (Part of Checkpoint Options)
-# ─────────────────────────────────────────────────────────────────
 stale_session_detection:
   check: "last_modified > 7 days"
-  action: "Present warning and options to user"
-  
   interactive_behavior:
-    action: "Present options for handling stale session"
     options:
-    - label: "Resume anyway"
-      description: "Load context and continue"
-    - label: "Fresh start"
-      description: "Keep artifacts, restart workflow"
-    - label: "Review first"
-      description: "Show what changed in codebase"
-    - label: "Cancel"
-      description: "Do not resume"
+      - { label: "Resume anyway", description: "Load context and continue" }
+      - { label: "Fresh start", description: "Keep artifacts, restart workflow" }
+      - { label: "Review first", description: "Show what changed in codebase" }
+      - { label: "Cancel", description: "Do not resume" }
 
 # ─────────────────────────────────────────────────────────────────
-# CONFIDENCE CHECKPOINTS (Quick Reference)
-# ─────────────────────────────────────────────────────────────────
-confidence_checkpoints:
-  enabled: true
-  key_steps: [1, 2, 4]  # Steps requiring confidence evaluation (session detection, load memory, present resume)
-  thresholds:
-    high: 80      # ≥80% proceed with evidence
-    medium: 40    # 40-79% proceed with caution
-    low: 0        # <40% ask clarifying question
-  protocol: |
-    At each key step, evaluate confidence:
-    - ≥80%: Proceed with cited evidence
-    - 40-79%: Proceed with caution, document assumptions
-    - <40%: STOP and ask clarifying question (A/B/C format)
-
-# ─────────────────────────────────────────────────────────────────
-# CONFIDENCE FRAMEWORK - Simplified for Resume
+# CONFIDENCE & CLARIFICATION FRAMEWORK
 # ─────────────────────────────────────────────────────────────────
 confidence_framework:
-  purpose: "Ensure session context is valid before resuming work"
-  note: "Resume workflow uses simplified confidence checks focused on context validity"
-  
   thresholds:
-    high:
-      range: "80-100%"
-      action: "Proceed with context loading and resume"
-    medium:
-      range: "40-79%"
-      action: "Proceed with caution - present stale session options to user"
-    low:
-      range: "0-39%"
-      action: "STOP - Ask user about context reliability before proceeding"
-  
-  context_validation_scoring:
-    factors:
-      session_recency:
-        weight: 0.40
-        description: "How recent is the last session? (<7 days = high, >7 days = low)"
-      artifact_completeness:
-        weight: 0.30
-        description: "Are required artifacts present and valid?"
-      memory_availability:
-        weight: 0.20
-        description: "Are memory files available for context loading?"
-      codebase_changes:
-        weight: 0.10
-        description: "Have relevant files changed since last session?"
-  
-  clarification_format: |
-    "Context confidence is low ([NN%]). How would you like to proceed?
-    - A) Resume anyway - Load available context
-    - B) Fresh start - Keep artifacts but restart workflow
-    - C) Review first - Show what changed since last session
-    - D) Cancel - Do not resume"
-  
-  key_checkpoints:
-    - step: 1
-      check: "Spec folder path valid and accessible?"
-      checkpoint: true
-    - step: 2
-      check: "User selected memory loading preference?"
-      checkpoint: true
-    - step: 3
-      check: "Memory file loadable and not corrupted?"
-    - step: 4
-      check: "Progress calculation accurate?"
-    - step: 5
-      check: "User confirmed continuation approach?"
-      checkpoint: true
+    high: { range: "80-100%", action: "Proceed with context loading and resume" }
+    medium: { range: "40-79%", action: "Proceed with caution - present stale session options" }
+    low: { range: "0-39%", action: "STOP - Ask user about context reliability" }
+  scoring_weights: { session_recency: 0.40, artifact_completeness: 0.30, memory_availability: 0.20, codebase_changes: 0.10 }
+  reply_format: ["Confidence: NN%", "Context source: handover|memory", "Next action"]
+  escalation: { timebox_minutes: 5, failed_threshold: 2, action: "Present options to user with current findings" }
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (UTILITY - 5 STEPS WITH CHECKPOINTS)
+# WORKFLOW
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_session_detection:
     purpose: Detect active session from CLI argument or memory files
-    activities:
-    - Check if spec folder provided via CLI argument
-    - If no argument, find most recent memory file
-    - Validate spec folder exists
-    outputs:
-    - spec_folder: detected_path
-    - detection_method: argument_or_memory
+    activities: [Check CLI argument for spec folder, Find most recent memory file if no argument, Validate spec folder exists]
+    outputs: { spec_folder: detected_path, detection_method: argument_or_memory }
     validation: session_detected
     checkpoint:
       question: "Found session. Is this the correct spec folder?"
-      use: present_options_to_user
       options:
-      - label: "Confirm"
-        description: "This is the correct spec folder"
-      - label: "Select Different"
-        description: "Choose a different spec folder"
-      - label: "Cancel"
-        description: "Cancel resume operation"
+        - { label: "Confirm", description: "This is the correct spec folder" }
+        - { label: "Select Different", description: "Choose a different spec folder" }
+        - { label: "Cancel", description: "Cancel resume operation" }
 
   step_2_memory_selection:
     purpose: Check for handover.md first, then present memory options
     activities:
-    - Check for handover.md in spec_folder (<24h old)
-    - If exists, load and display "⚡ Loaded from handover.md"
-    - Extract Last Completed, Next Action, Blockers from handover.md
-    - Then list memory files in spec_folder/memory/
-    - Sort by modification time (most recent first)
-    - Memory files contain embedded Project State Snapshot (Phase, Active File, etc.)
-    - Present numbered options to user for additional context
-    - Wait for user selection
-    context_priority:
-      1: handover.md
-      2: memory/*.md (contains Project State Snapshot)
-    outputs:
-    - handover_loaded: true|false
-    - selected_memory: user_choice
-    - load_count: number_of_files
+      - Check for handover.md in spec_folder (<24h old)
+      - If exists, load and display contents
+      - Extract Last Completed, Next Action, Blockers from handover.md
+      - List memory files sorted by mtime (contain embedded Project State Snapshot)
+      - Present numbered options to user, wait for selection
+    context_priority: ["handover.md", "memory/*.md (contains Project State Snapshot)"]
+    outputs: { handover_loaded: "true|false", selected_memory: user_choice, load_count: number }
     checkpoint:
       question: "Load additional context?"
-      note: "If handover.md was loaded, user may skip additional memory loading"
-      use: present_options_to_user
+      note: "If handover.md loaded, user may skip additional memory"
       options:
-      - label: "A) Load most recent memory file"
-        description: "Quick context refresh"
-      - label: "B) Load all recent files (up to 3)"
-        description: "Comprehensive context"
-      - label: "C) List all files and select specific"
-        description: "Choose specific memories"
-      - label: "D) Skip"
-        description: "Continue with current context only"
+        - { label: "A) Load most recent memory file", description: "Quick context refresh" }
+        - { label: "B) Load all recent files (up to 3)", description: "Comprehensive context" }
+        - { label: "C) List all files and select specific", description: "Choose specific memories" }
+        - { label: "D) Skip", description: "Continue with current context only" }
 
   step_3_load_memory:
     purpose: Load selected memory files (in addition to handover.md if loaded)
     activities:
-    - Read selected memory file(s) from step 2
-    - Merge with handover.md context if already loaded
-    - Extract Project State Snapshot (Phase, Active File, Last/Next Action, Blockers)
-    - Extract key context (decisions, pending work, next actions)
-    - Parse and summarize combined context
+      - Read selected memory file(s) from step 2
+      - Merge with handover.md context if already loaded
+      - Extract Project State Snapshot (Phase, Active File, Last/Next Action, Blockers)
+      - Parse and summarize combined context
     mcp_tool:
       name: memory_search
       note: "Call directly - NEVER through Code Mode. Use anchors for targeted retrieval (~90% token savings)."
-      parameters:
-        query: "resume context"
-        specFolder: "{detected_spec_folder}"
-        anchors: ['summary', 'state', 'next-steps']
-        includeContent: true
-      example: |
-        memory_search({
-          query: "resume context",
-          specFolder: "specs/007-feature-name",
-          anchors: ['summary', 'state', 'next-steps'],
-          includeContent: true
-        })
-    outputs:
-    - memory_loaded: true
-    - context_source: handover|memory|combined
-    - context_summary: extracted_context
+      parameters: { query: "resume context", specFolder: "{detected_spec_folder}", anchors: ['summary', 'state', 'next-steps'], includeContent: true }
+    outputs: { memory_loaded: true, context_source: "handover|memory|combined", context_summary: extracted_context }
     validation: context_loaded
 
   step_4_calculate_progress:
     purpose: Calculate task and checklist progress
-    activities:
-    - Parse tasks.md for completion status
-    - Parse checklist.md for verification status
-    - Calculate percentages
-    - Identify pending items
-    outputs:
-    - tasks_progress: percentage
-    - checklist_progress: percentage
-    - pending_items: list
+    activities: [Parse tasks.md for completion status, Parse checklist.md for verification status, Calculate percentages, Identify pending items]
+    outputs: { tasks_progress: percentage, checklist_progress: percentage, pending_items: list }
     validation: progress_calculated
 
   step_5_present_resume:
     purpose: Display resume summary and offer continuation options
-    activities:
-    - Display spec folder and last activity
-    - Show progress bars for tasks and checklist
-    - List artifacts status
-    - Show pending work summary
-    - Show next actions
-    - Present continuation options
-    outputs:
-    - resume_summary: displayed
+    activities: [Display spec folder and last activity, Show progress bars, List artifacts status, Show pending work and next actions, Present continuation options]
+    outputs: { resume_summary: displayed }
     validation: resume_complete
     checkpoint:
       question: "Ready to continue. What would you like to do?"
-      use: present_options_to_user
       options:
-      - label: "Continue from pending work"
-        description: "Pick up where you left off"
-      - label: "Run /spec_kit:implement"
-        description: "Execute remaining implementation tasks"
-      - label: "Just chat"
-        description: "Work on it manually"
+        - { label: "Continue from pending work", description: "Pick up where you left off" }
+        - { label: "Run /spec_kit:implement", description: "Execute remaining tasks" }
+        - { label: "Just chat", description: "Work on it manually" }
 
-# ─────────────────────────────────────────────────────────────────
-# STALE SESSION HANDLING
-# ─────────────────────────────────────────────────────────────────
 stale_session:
   threshold_days: 7
-  
-  detection:
-    check: "last_modified > 7 days"
-    action: "Present warning and options to user"
-  
+  detection: { check: "last_modified > 7 days", action: "Present warning and options" }
   interactive_behavior:
-    action: "Present options for handling stale session"
     options:
-    - label: "Resume anyway"
-      description: "Load context and continue"
-    - label: "Fresh start"
-      description: "Keep artifacts, restart workflow"
-    - label: "Review first"
-      description: "Show what changed in codebase"
-    - label: "Cancel"
-      description: "Do not resume"
+      - { label: "Resume anyway", description: "Load context and continue" }
+      - { label: "Fresh start", description: "Keep artifacts, restart workflow" }
+      - { label: "Review first", description: "Show what changed" }
+      - { label: "Cancel", description: "Do not resume" }
 
 # ─────────────────────────────────────────────────────────────────
-# TERMINATION
+# WORKFLOW TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
   after_step: 5
   message: "Session resume complete. Ready to continue work."
-  next_steps:
-  - Continue from pending work
-  - Review implementation summary
-  - Run /spec_kit:implement if tasks remain
+  next_steps: [Continue from pending work, Review implementation summary, Run /spec_kit:implement if tasks remain]
 
 # ─────────────────────────────────────────────────────────────────
 # INTERACTIVE EXECUTION GUIDANCE
 # ─────────────────────────────────────────────────────────────────
 interactive_execution:
   principle: "Execute resume with user approval at each checkpoint"
+  checkpoint_behavior: [Complete step activities, Present results summary, Present options for selection, Wait for response, Process feedback, Proceed or redirect as directed]
+  user_feedback_handling: { confirm: "Proceed to next step", select_different: "Show folder selection options", skip: "Proceed without loading memory", cancel: "Abort resume operation" }
 
-  checkpoint_behavior:
-  - Complete step activities
-  - Present results summary
-  - Present options to user for selection
-  - Wait for user response
-  - Process user feedback
-  - Proceed or redirect as directed
-
-  user_feedback_handling:
-    confirm: "Proceed to next step"
-    select_different: "Show folder selection options"
-    skip: "Proceed without loading memory"
-    cancel: "Abort resume operation"
-
-# ─────────────────────────────────────────────────────────────────
-# CRASH RECOVERY INTEGRATION
-# ─────────────────────────────────────────────────────────────────
 crash_recovery:
   command_reference: "/memory:continue"
-  description: |
-    For crash recovery scenarios (context compaction, session interruption),
-    use /memory:continue which provides:
-    - Automatic detection of last session state
-    - Recovery hints from memory system
-    - Continuation prompt generation
-
-  when_to_use:
-    - "Session was interrupted unexpectedly"
-    - "Context compaction message detected"
-    - "Need to recover from crash without handover.md"
-
+  description: "For crash recovery (context compaction, session interruption) — provides automatic state detection, recovery hints, continuation prompt generation"
+  when_to_use: ["Session interrupted unexpectedly", "Context compaction detected", "Need to recover without handover.md"]
   integration_with_resume:
-    relationship: |
-      - /spec_kit:resume: Standard session continuation with context loading
-      - /memory:continue: Crash recovery with automatic state detection
-    recommendation: "Use /memory:continue when session crashed; use /spec_kit:resume for normal continuation"
+    relationship: "/spec_kit:resume = standard continuation | /memory:continue = crash recovery"
+    recommendation: "Use /memory:continue when session crashed; /spec_kit:resume for normal continuation"
 
 # ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
-  no_active_session:
-    action: "Report no session found, suggest /spec_kit:complete to start"
-  spec_folder_missing:
-    action: "Report folder not found, ask user to specify or create"
-  memory_search_failed:
-    action: "Report error, offer to proceed without context"
-    fallback: "Offer /memory:continue for crash recovery"
-  stale_session_detected:
-    action: "Present stale session options to user"
-  user_cancels:
-    action: "Acknowledge cancellation, exit gracefully"
-  crash_detected:
-    action: "Suggest /memory:continue for automatic crash recovery"
+  no_active_session: "Report no session, suggest /spec_kit:complete"
+  spec_folder_missing: "Report not found, ask user to specify or create"
+  memory_search_failed: { action: "Report error, offer to proceed without context", fallback: "Offer /memory:continue" }
+  stale_session_detected: "Present stale session options to user"
+  user_cancels: "Acknowledge cancellation, exit gracefully"
+  crash_detected: "Suggest /memory:continue for automatic crash recovery"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES
@@ -445,7 +222,6 @@ rules:
   - display_clear_summary
   - use_mcp_tools_directly
   - respect_user_selections
-
   NEVER:
   - auto_load_without_confirmation
   - proceed_without_user_approval

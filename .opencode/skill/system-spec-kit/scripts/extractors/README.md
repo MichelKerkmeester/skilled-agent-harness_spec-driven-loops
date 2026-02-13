@@ -1,3 +1,14 @@
+---
+title: "Data Extractors"
+description: "Specialized modules that extract structured data from conversations, code changes, and spec folders for memory generation."
+trigger_phrases:
+  - "data extractors"
+  - "conversation extraction"
+  - "decision extraction"
+  - "session data collection"
+importance_tier: "normal"
+---
+
 # Data Extractors
 
 > Specialized modules that extract structured data from conversations, code changes, and spec folders for memory generation, including PREFLIGHT/POSTFLIGHT learning delta tracking.
@@ -5,20 +16,24 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. ⚡ FEATURES](#4--features)
 - [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🗂️ EXTRACTOR DETAILS](#6--extractor-details)
-- [7. 🔄 DATA FLOW](#7--data-flow)
+- [6. 🔧 EXTRACTOR DETAILS](#6--extractor-details)
+- [7. 🏗️ DATA FLOW](#7--data-flow)
 - [8. 🛠️ TROUBLESHOOTING](#8--troubleshooting)
 - [9. 📚 RELATED DOCUMENTS](#9--related-documents)
+- [10. 📊 TYPESCRIPT MIGRATION NOTES](#10--typescript-migration-notes)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Extractors?
 
@@ -55,7 +70,9 @@ Extractors are the data processing layer of the system-spec-kit memory system. E
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Basic Usage
 
@@ -98,7 +115,9 @@ const {
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 extractors/                            # TypeScript source files
@@ -146,7 +165,9 @@ dist/extractors/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### PREFLIGHT/POSTFLIGHT Learning Delta (NEW in v1.0.6)
 
@@ -223,11 +244,13 @@ Generates step-by-step guides from session data:
 - Feature extraction with descriptions
 - Key file role detection
 - Extension guide generation
-- Code pattern extraction (helper functions, validation, templates, etc.)
+- Code pattern extraction (helper functions, validation, templates, caching, etc.)
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Collect Session Data with Learning Metrics
 
@@ -341,7 +364,9 @@ if (shouldAutoSave(messageCount)) {
 
 ---
 
-## 6. 🗂️ EXTRACTOR DETAILS
+<!-- /ANCHOR:examples -->
+## 6. 🔧 EXTRACTOR DETAILS
+<!-- ANCHOR:extractor-details -->
 
 ### collect-session-data.ts
 
@@ -517,7 +542,9 @@ if (shouldAutoSave(messageCount)) {
 
 ---
 
-## 7. 🔄 DATA FLOW
+<!-- /ANCHOR:extractor-details -->
+## 7. 🏗️ DATA FLOW
+<!-- ANCHOR:data-flow -->
 
 ### Extraction Pipeline
 
@@ -565,7 +592,9 @@ Raw Session Data (JSON input)
 
 ---
 
+<!-- /ANCHOR:data-flow -->
 ## 8. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -667,7 +696,9 @@ cd .opencode/skill/system-spec-kit/scripts && npm run build
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 9. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -700,9 +731,12 @@ cd .opencode/skill/system-spec-kit/scripts && npm run build
 
 ---
 
+<!-- /ANCHOR:related -->
+
 ---
 
-## TypeScript Migration Notes
+## 10. 📊 TYPESCRIPT MIGRATION NOTES
+<!-- ANCHOR:typescript-migration-notes -->
 
 **Migration Completed**: 2026-02-07
 
@@ -728,3 +762,4 @@ const { collectSessionData } = require('./dist/extractors');
 ---
 
 *Part of the system-spec-kit conversation memory and context preservation system. Last updated: 2026-02-07*
+<!-- /ANCHOR:typescript-migration-notes -->

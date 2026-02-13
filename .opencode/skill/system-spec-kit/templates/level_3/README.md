@@ -1,10 +1,30 @@
+---
+title: "Level 3 Templates"
+description: "Core templates for large features (500+ LOC) requiring architecture decisions, risk assessment, and executive oversight"
+trigger_phrases:
+  - "level 3 templates"
+  - "large feature templates"
+  - "architecture decision templates"
+importance_tier: "normal"
+---
+
 # Level 3 Templates
 
 > Core templates for large features (500+ LOC) requiring architecture decisions, risk assessment, and executive oversight.
 
 ---
 
+## TABLE OF CONTENTS
+
+- [1. Overview](#1--overview)
+- [2. Structure](#2--structure)
+- [3. Quick Start](#3--quick-start)
+- [4. Related Documents](#4--related-documents)
+
+---
+
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 Level 3 templates support large features (500+ LOC) requiring formal architecture decisions, risk management, and stakeholder communication. These templates build on Level 2 by adding executive summaries, risk matrices, dependency graphs, and architecture decision records.
 
@@ -50,7 +70,9 @@ Level 3 builds on Level 2 by adding:
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 Level 3 includes **6 required files**:
 
@@ -73,7 +95,9 @@ Copy from: `.opencode/skill/system-spec-kit/templates/research.md`
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 3. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 1. Copy Templates to New Spec Folder
 
@@ -113,7 +137,9 @@ cp .opencode/skill/system-spec-kit/templates/research.md specs/###-feature-name/
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 4. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Template Variants
 - [Level 2 Templates](../level_2/) - Medium features (100-499 LOC)
@@ -139,3 +165,4 @@ LEVEL 3 TEMPLATES - Architecture & Risk Management
 - Architecture Decision Records
 - Enhanced verification (arch review, performance, deployment)
 -->
+<!-- /ANCHOR:related -->

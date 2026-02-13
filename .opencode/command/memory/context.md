@@ -105,28 +105,17 @@ The system detects one of five intent types:
 
 ### Detection Logic
 
-```javascript
-// Keyword-based intent detection (phrase-based to avoid false positives)
-const INTENT_KEYWORDS = {
-  add_feature: ['implement', 'add feature', 'add new', 'add a', 'create new', 'build new', 'new feature'],
-  fix_bug: ['bug', 'error', 'fix', 'broken', 'issue', 'debug'],
-  refactor: ['refactor', 'restructure', 'improve', 'clean up', 'optimize'],
-  security_audit: ['security', 'vulnerability', 'auth', 'sanitize', 'xss', 'csrf'],
-  understand: ['how', 'why', 'what', 'explain', 'understand', 'learn']
-};
+Intent is detected via keyword matching against the query. Keywords are phrase-based to avoid false positives:
 
-function detectIntent(query) {
-  const lowerQuery = query.toLowerCase();
+| Intent           | Keywords                                                                      |
+| ---------------- | ----------------------------------------------------------------------------- |
+| `add_feature`    | 'implement', 'add feature', 'add new', 'add a', 'create new', 'build new'    |
+| `fix_bug`        | 'bug', 'error', 'fix', 'broken', 'issue', 'debug'                            |
+| `refactor`       | 'refactor', 'restructure', 'improve', 'clean up', 'optimize'                 |
+| `security_audit` | 'security', 'vulnerability', 'auth', 'sanitize', 'xss', 'csrf'              |
+| `understand`     | 'how', 'why', 'what', 'explain', 'understand', 'learn'                       |
 
-  for (const [intent, keywords] of Object.entries(INTENT_KEYWORDS)) {
-    if (keywords.some(kw => lowerQuery.includes(kw))) {
-      return intent;
-    }
-  }
-
-  return 'understand'; // Default fallback
-}
-```
+**Default fallback:** If no keywords match, defaults to `understand`.
 
 ---
 
@@ -173,7 +162,6 @@ memory_search({
   limit: 10,
   includeContent: true,
   useDecay: true,
-  // Intent-specific filters
   contextType: intentFilters[intent], // e.g., 'implementation' for add_feature
 });
 ```
@@ -268,24 +256,7 @@ Anchors:
   ['implementation', 'architecture', 'patterns']
 ```
 
-### Example 2: Auto-Detect fix_bug
-
-```
-/memory:context "auth redirect broken after login"
-
-Detection:
-  Keywords: "broken", "after" → fix_bug intent
-
-Weights Applied:
-  - decisions: 1.4x
-  - implementation: 1.3x
-  - errors: 1.5x
-
-Anchors:
-  ['decisions', 'implementation', 'errors', 'debugging']
-```
-
-### Example 3: Explicit Intent Override
+### Example 2: Explicit Intent Override
 
 ```
 /memory:context "auth system" --intent:security_audit
@@ -300,40 +271,6 @@ Weights Applied:
 
 Anchors:
   ['decisions', 'implementation', 'security']
-```
-
-### Example 4: Auto-Detect understand
-
-```
-/memory:context "how does the session management work?"
-
-Detection:
-  Keywords: "how", "does", "work" → understand intent
-
-Weights Applied:
-  - architecture: 1.4x
-  - decisions: 1.3x
-  - overview: 1.5x
-
-Anchors:
-  ['architecture', 'decisions', 'summary', 'overview']
-```
-
-### Example 5: Auto-Detect refactor
-
-```
-/memory:context "clean up auth module structure"
-
-Detection:
-  Keywords: "clean up", "structure" → refactor intent
-
-Weights Applied:
-  - architecture: 1.5x
-  - patterns: 1.4x
-  - decisions: 1.2x
-
-Anchors:
-  ['architecture', 'patterns', 'decisions']
 ```
 
 ---
@@ -355,79 +292,24 @@ Anchors:
 ### Truncation Logic
 
 When results exceed token budget:
-
-```javascript
-function enforceTokenBudget(results, budget, intent) {
-  let tokenCount = 0;
-  const prioritized = [];
-
-  // Sort by intent-specific relevance score
-  const sorted = results.sort((a, b) =>
-    getIntentScore(b, intent) - getIntentScore(a, intent)
-  );
-
-  for (const result of sorted) {
-    const resultTokens = estimateTokens(result);
-    if (tokenCount + resultTokens <= budget) {
-      prioritized.push(result);
-      tokenCount += resultTokens;
-    } else if (tokenCount < budget * 0.9) {
-      // Truncate last result to fit remaining budget
-      const remaining = budget - tokenCount;
-      prioritized.push(truncateToTokens(result, remaining));
-      break;
-    }
-  }
-
-  return { results: prioritized, tokensUsed: tokenCount };
-}
-```
-
-### Budget Indicators in Output
-
-```
-Token Budget: ~<tokens> / <budget> tokens (<percentage>% used)
-Truncation: <none|partial|significant>
-```
+1. Sort results by intent-specific relevance score
+2. Include results until budget reached
+3. If last result causes overage but >90% budget used, truncate to fit remaining budget
+4. Output includes: `Token Budget: ~<tokens> / <budget> tokens (<percentage>% used)` and `Truncation: <none|partial|significant>`
 
 ---
 
-## 8. 📌 SESSION DEDUPLICATION
+## 8. 🔄 SESSION DEDUPLICATION
 
 ### Purpose
 
-Prevent duplicate context when the same query spans multiple sessions or when memories from overlapping sessions contain redundant information.
+Prevent duplicate context when the same query spans multiple sessions or when overlapping sessions contain redundant information.
 
-### Deduplication Strategy
+### Strategy
 
-```javascript
-function deduplicateContext(results) {
-  const seen = new Map();  // content_hash -> result
-  const deduplicated = [];
-
-  for (const result of results) {
-    const hash = generateContentHash(result.content);
-
-    if (!seen.has(hash)) {
-      seen.set(hash, result);
-      deduplicated.push(result);
-    } else {
-      // Keep the more recent version
-      const existing = seen.get(hash);
-      if (result.updated_at > existing.updated_at) {
-        const idx = deduplicated.indexOf(existing);
-        deduplicated[idx] = result;
-        seen.set(hash, result);
-      }
-      // Mark as deduplicated in metadata
-      result._deduped = true;
-      result._replaced_by = seen.get(hash).id;
-    }
-  }
-
-  return deduplicated;
-}
-```
+- Content hashing: Each result is hashed; duplicates with same hash are merged (keeping most recent version)
+- Cross-session detection via `session_id` metadata and content hash comparison
+- Timestamp-based recency preference when duplicates found
 
 ### Deduplication Metadata
 
@@ -439,15 +321,8 @@ deduplication:
   original_count: <N>
   deduplicated_count: <M>
   duplicates_removed: <N - M>
-  session_dedup_applied: true  # Cross-session duplicates handled
+  session_dedup_applied: true
 ```
-
-### Cross-Session Detection
-
-The system detects cross-session duplicates via:
-- `session_id` metadata on memory files
-- Content hash comparison across session boundaries
-- Timestamp-based recency preference
 
 ---
 
@@ -475,7 +350,7 @@ The system detects cross-session duplicates via:
 
 ### MCP Tool Signature
 
-> **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, `limit`, `sessionId`, `enableDedup`, `includeContent`, and `anchors` params. This is the recommended unified approach for context retrieval. The manual orchestration below is available for advanced use cases requiring fine-grained control.
+> **Note:** The dedicated `spec_kit_memory_memory_context()` tool provides unified intent-aware retrieval server-side. It accepts `input`, `mode`, `intent`, `specFolder`, `limit`, `sessionId`, `enableDedup`, `includeContent`, and `anchors` params. This is the recommended unified approach. The manual orchestration below is for advanced use cases requiring fine-grained control.
 
 ```javascript
 // Option 1: Dedicated context tool (preferred — single call)
@@ -494,38 +369,13 @@ spec_kit_memory_memory_search({
   limit: 10,
   includeContent: true,  // Single call, no separate load
   useDecay: true,
-  // Optional filters based on intent
   contextType: "<type>",  // e.g., "implementation", "decision"
 })
 ```
 
 ---
 
-## 10. 📌 BENEFITS
-
-### Unified Entry Point
-
-- **Before**: `/memory:search "query"` → results → `/memory:search <id>` → load content
-- **After**: `/memory:context "query"` → optimized results with content in one call
-
-### Intent Awareness
-
-- **Before**: Generic search, same weights for all queries
-- **After**: Task-specific weights automatically applied
-
-### Token Efficiency
-
-- **Before**: ~2 MCP calls (search + load)
-- **After**: 1 MCP call with `includeContent: true`
-
-### Better Relevance
-
-- **Before**: Manual anchor selection or none
-- **After**: Automatic anchor selection based on intent
-
----
-
-## 11. ⚠️ ERROR HANDLING
+## 10. ⚠️ ERROR HANDLING
 
 | Condition      | Response                                  |
 | -------------- | ----------------------------------------- |
@@ -536,7 +386,7 @@ spec_kit_memory_memory_search({
 
 ---
 
-## 12. 📌 QUICK REFERENCE
+## 11. 🔍 QUICK REFERENCE
 
 | Command                                       | Result                                 |
 | --------------------------------------------- | -------------------------------------- |
@@ -548,80 +398,9 @@ spec_kit_memory_memory_search({
 
 ---
 
-## 13. 🔗 RELATED COMMANDS
+## 12. 🔗 RELATED COMMANDS
 
 - `/memory:save` - Save current conversation context
 - `/memory:manage` - Database management operations
 - `/memory:continue` - Resume interrupted session
 - `/memory:learn` - Save explicit correction or preference
-
----
-
-## 14. 📌 IMPLEMENTATION NOTES
-
-### Weight Application
-
-Weights are applied during search scoring:
-
-```javascript
-// Base score from vector similarity
-let score = vectorSimilarity;
-
-// Apply intent-specific boost
-if (memory.hasAnchor(intentAnchors[intent])) {
-  const boost = INTENT_WEIGHTS[intent][memory.anchorType];
-  score *= boost;
-}
-
-// Normalize to 0-100 range
-score = Math.min(100, score * 100);
-```
-
-### Anchor Priority
-
-When multiple anchors match, use highest weight:
-
-```
-Memory has anchors: ['architecture', 'decisions', 'implementation']
-Intent: add_feature
-Weights: {architecture: 1.3x, implementation: 1.5x}
-
-Applied boost: 1.5x (implementation is highest)
-```
-
-### Fallback Behavior
-
-```
-IF intent detection fails:
-  → Log warning: "Could not detect intent, defaulting to 'understand'"
-  → Use 'understand' weights
-  → Continue execution
-
-IF no results found:
-  → Suggest: "Try broader query or different intent"
-  → Offer: Show available intents and their use cases
-```
-
----
-
-## 15. 📌 IMPLEMENTATION STATUS
-
-**Task ID**: T119 (from SpecKit Reimagined Phase 5)
-**Priority**: P0 (MUST complete)
-**Dependencies**: None (uses existing memory_search MCP tool)
-**Checklist Items**: CHK-219, CHK-220
-
----
-
-## 16. 📌 FUTURE ENHANCEMENTS
-
-**P1 (Next Phase)**:
-- Multi-intent detection (e.g., "fix bug in new feature")
-- Learning from user corrections to improve detection
-- Configurable weight profiles per user
-- Intent history tracking for pattern analysis
-
-**P2 (Later)**:
-- Natural language intent specification
-- Intent confidence scoring
-- User feedback loop for weight tuning

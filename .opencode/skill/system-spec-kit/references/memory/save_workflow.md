@@ -322,10 +322,13 @@ Content here...
 
 While this workflow generates memory files in `specs/*/memory/`, the memory system also indexes content from additional sources during `memory_index_scan()`:
 
-| Content Type | Location | Indexed By |
-|-------------|----------|------------|
-| Constitutional rules | `.opencode/skill/*/constitutional/*.md` | `findConstitutionalFiles()` |
-| Skill READMEs | `.opencode/skill/**/README.md` | `findSkillReadmes()` |
+| Content Type | Location | Weight | Indexed By |
+|-------------|----------|--------|------------|
+| Constitutional rules | `.opencode/skill/*/constitutional/*.md` | 1.0 | `findConstitutionalFiles()` |
+| Skill READMEs | `.opencode/skill/**/README.md` | 0.3 | `findSkillReadmes()` |
+| Project READMEs | Root `README.md` + key directory READMEs | 0.4 | `findProjectReadmes()` |
+
+All README types are controlled by the `includeReadmes` parameter in `memory_index_scan()`.
 
 > **Tip:** Add `<!-- ANCHOR:name -->` tags to README files to enable section-level memory retrieval.
 

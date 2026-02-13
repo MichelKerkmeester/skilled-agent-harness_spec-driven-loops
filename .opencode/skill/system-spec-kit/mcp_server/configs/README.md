@@ -1,3 +1,13 @@
+---
+title: "MCP Server Configuration Files"
+description: "Search weight configuration and system parameters for the Spec Kit Memory MCP server."
+trigger_phrases:
+  - "search weights"
+  - "mcp config"
+  - "ranking configuration"
+importance_tier: "normal"
+---
+
 # MCP Server Configuration Files
 
 > Search weight configuration and system parameters for the Spec Kit Memory MCP server.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -14,11 +25,12 @@
 - [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
 - [7. 📚 RELATED DOCUMENTS](#7--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
 ## 1. 📖 OVERVIEW
-
-### What is this folder?
+<!-- ANCHOR:overview -->
 
 The `configs/` folder contains JSON configuration files that control search behavior and ranking algorithms for the Spec Kit Memory MCP server. These configurations tune how semantic search results are ranked, weighted, and prioritized.
 
@@ -39,9 +51,12 @@ The `configs/` folder contains JSON configuration files that control search beha
 | Node.js | 18+ | Runtime for MCP server |
 | JSON | - | Configuration format |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Viewing Current Configuration
 
@@ -67,9 +82,12 @@ nano .opencode/skill/system-spec-kit/mcp_server/configs/search-weights.json
 # The tool will reflect updated weights in search results
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 configs/
@@ -82,9 +100,12 @@ configs/
 |------|---------|
 | `search-weights.json` | Controls smart ranking algorithm weights and trigger limits |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
 ## 4. ⚙️ CONFIGURATION OPTIONS
+<!-- ANCHOR:configuration -->
 
 ### Configuration File
 
@@ -126,9 +147,12 @@ configs/
 | **Balanced (default)** | `recencyWeight: 0.35`, `accessWeight: 0.25`, `retrievabilityWeight: 0.15`, `relevanceWeight: 0.25` |
 | **Quality-focused** | `recencyWeight: 0.2`, `accessWeight: 0.2`, `retrievabilityWeight: 0.4`, `relevanceWeight: 0.2` |
 
+<!-- /ANCHOR:configuration -->
+
 ---
 
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Increase Relevance Weight
 
@@ -194,9 +218,12 @@ configs/
 | Popular First | `0.15, 0.6, 0.1, 0.15` | Frequently referenced docs |
 | Quality Focus | `0.2, 0.2, 0.4, 0.2` | Well-structured memories |
 
+<!-- /ANCHOR:examples -->
+
 ---
 
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -253,9 +280,12 @@ node -e "JSON.parse(require('fs').readFileSync('.opencode/skill/system-spec-kit/
 # Server logs: "Loaded search weights: {recencyWeight: 0.5, ...}"
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -276,3 +306,5 @@ node -e "JSON.parse(require('fs').readFileSync('.opencode/skill/system-spec-kit/
 ---
 
 *Configuration version: 1.8.0 | Last updated: 2026-01-27*
+
+<!-- /ANCHOR:related -->

@@ -4,188 +4,91 @@ argument-hint: "<spec-folder> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search
 ---
 
-## ⛔ GATE 3 COMPLIANCE
+# SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-This command involves FILE MODIFICATIONS. Per AGENTS.md Section 2, Gate 3 MUST be satisfied before implementation.
-
-**First Message Protocol:** If this command is invoked as the user's FIRST message requesting file modifications, the consolidated setup prompt is your FIRST response. No analysis first, no tool calls first.
-
-**Failure Pattern #5 Warning (Skip Process):**
-> "I already know this" - Triggers: "straightforward", "comprehensive", "fix all", "15 agents"
-> Even exciting implementation requests MUST complete the unified setup phase.
-
-**Self-Verification:** Before proceeding to workflow:
-> □ STOP. File modification detected? Did I ask the consolidated setup prompt? If NO → Ask NOW.
+This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.
 
 ---
 
-# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
+## 0. UNIFIED SETUP PHASE
 
-**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
-
-**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together).
-
----
-
-## 🔒 UNIFIED SETUP PHASE
-
-**STATUS: ☐ BLOCKED**
+**STATUS: BLOCKED**
 
 ```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-1. CHECK for mode suffix in command invocation:
-   ├─ ":auto" suffix detected → execution_mode = "AUTONOMOUS" (pre-set, omit Q2)
-   ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
-   └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
+1. CHECK for mode suffix:
+   - ":auto" -> execution_mode = "AUTONOMOUS" (omit Q2)
+   - ":confirm" -> execution_mode = "INTERACTIVE" (omit Q2)
+   - No suffix -> execution_mode = "ASK" (include Q2)
 
-2. CHECK if $ARGUMENTS contains a spec folder path:
-   ├─ IF $ARGUMENTS has a path → spec_folder_input = $ARGUMENTS
-   └─ IF $ARGUMENTS is empty → include Q0 with available folders
+2. CHECK $ARGUMENTS for spec folder path:
+   - IF has path -> spec_folder_input = $ARGUMENTS
+   - IF empty -> include Q0 with available folders
 
 3. Search for available spec folders with plan.md:
    $ ls -d specs/*/ 2>/dev/null | tail -10
    Check each for: spec.md, plan.md (required), checklist.md (optional)
 
 4. IF spec_folder_input provided, validate prerequisites:
-   $ ls -la [spec_folder_input]/
-   - spec.md (REQUIRED)
-   - plan.md (REQUIRED)
-   - tasks.md (will create if missing)
-   - checklist.md (REQUIRED for Level 2+)
+   - spec.md (REQUIRED), plan.md (REQUIRED)
+   - tasks.md (create if missing), checklist.md (REQUIRED Level 2+)
 
-5. CHECK for prior incomplete sessions (deduplication):
-   - Search memory/ in target spec folder for incomplete session markers
-   - Look for: "STATUS: IN_PROGRESS", unchecked tasks in tasks.md
-   - IF incomplete session detected → Display warning and ask:
-     ┌────────────────────────────────────────────────────────────────┐
-     │ ⚠️ PRIOR INCOMPLETE SESSION DETECTED                           │
-     │                                                                │
-     │ Spec folder: [path]                                            │
-     │ Last activity: [timestamp from memory file]                     │
-     │ Progress: [X/Y tasks complete]                                 │
-     │                                                                │
-     │ Options:                                                       │
-     │ A) Resume - Continue from where previous session left off      │
-     │ B) Restart - Start fresh (archives prior session)              │
-     │ C) Cancel - Review existing work first                          │
-     └────────────────────────────────────────────────────────────────┘
+5. CHECK for prior incomplete sessions:
+   - Search memory/ for incomplete markers, unchecked tasks in tasks.md
+   - IF found -> Show warning with options:
+     A) Resume from where left off  B) Restart (archives prior)  C) Cancel
 
-6. Check if memory/ exists and has files for the spec folder
+6. Check if memory/ exists with files for spec folder
 
-7. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+7. ASK user (include only applicable questions):
 
-   ┌────────────────────────────────────────────────────────────────┐
-   │ **Before proceeding, please answer:**                          │
-   │                                                                │
-   │ **Q0. Spec Folder** (if not provided in command):              │
-   │    Available folders with plan.md:                             │
-   │    [list folders with status indicators]                       │
-   │    Enter folder path or number:                                │
-   │                                                                │
-   │ **Q1. Confirm Spec Folder** (if path provided):                 │
-   │    Folder: [spec_folder_input]                                 │
-   │    ├─ spec.md [✓/✗]                                            │
-   │    ├─ plan.md [✓/✗]                                            │
-   │    └─ checklist.md [✓/✗/optional]                              │
-   │                                                                │
-   │    A) Yes, implement this spec folder                          │
-   │    B) No, select a different spec folder                       │
-   │    C) Cancel - I need to plan first                             │
-   │                                                                │
-   │ **Q2. Execution Mode** (if no :auto/:confirm suffix):            │
-   │    A) Autonomous - Execute all 9 steps without approval        │
-   │    B) Interactive - Pause at each step for approval            │
-   │                                                                │
-   │ **Q3. Dispatch Mode** (required):                              │
-   │    A) Single Agent - Execute with one agent (Recommended)      │
-   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
-   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
-   │                                                                │
-   │ **Q4. Memory Context** (if memory/ has files):                  │
-   │    A) Load most recent memory file                              │
-   │    B) Load all recent files, up to 3                            │
-   │    C) Skip (start fresh)                                       │
-   │                                                                │
-   │ Reply with answers, e.g.: "A, A, A, B" or "specs/007-auth/, A, A, B" │
-   └────────────────────────────────────────────────────────────────┘
+   Q0. Spec Folder (if not provided):
+      Available folders with plan.md: [list with status]
+      Enter folder path or number
+
+   Q1. Confirm Spec Folder (if path provided):
+      Folder: [path] | spec.md [Y/N] | plan.md [Y/N] | checklist.md [Y/N/optional]
+      A) Yes, implement  B) Different folder  C) Cancel (plan first)
+
+   Q2. Execution Mode (if no suffix):
+      A) Autonomous - all 9 steps without approval
+      B) Interactive - pause at each step
+
+   Q3. Dispatch Mode (required):
+      A) Single Agent (Recommended)
+      B) Multi-Agent (1+2)
+      C) Multi-Agent (1+3)
+
+   Q4. Memory Context (if memory/ has files):
+      A) Load most recent  B) Load up to 3 recent  C) Skip (fresh start)
+
+   Reply with answers, e.g.: "A, A, A, B" or "specs/007-auth/, A, A, B"
 
 8. WAIT for user response (DO NOT PROCEED)
 
-9. Parse response and store ALL results:
-   - spec_path = [from Q0/Q1 or $ARGUMENTS]
-   - confirm_choice = [A/B/C from Q1]
-   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
-   - dispatch_mode = [single/multi_small/multi_large from Q3]
-    - memory_choice = [A/B/C from Q4, or N/A if no memory files]
+9. Parse and store:
+   - spec_path, confirm_choice, execution_mode, dispatch_mode, memory_choice
 
-10. Handle redirects if needed:
-   - IF confirm_choice == B → Re-prompt with folder selection only
-   - IF confirm_choice == C → Redirect to /spec_kit:plan
+10. Handle redirects:
+    - confirm_choice == B -> Re-prompt folder selection
+    - confirm_choice == C -> Redirect to /spec_kit:plan
 
-11. Execute background operations based on choices:
-    - IF memory_choice == A: Load most recent memory file
-    - IF memory_choice == B: Load up to 3 recent memory files
-    - IF dispatch_mode is multi_*: Note parallel dispatch will be used
+11. Execute background operations:
+    - memory_choice A: load most recent | B: load up to 3 | multi_*: note parallel dispatch
 
-12. SET STATUS: ✅ PASSED
+12. SET STATUS: PASSED
 
-**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
-
-⛔ HARD STOP: DO NOT proceed until user explicitly answers
-⛔ NEVER assume spec folder is correct without user confirmation
-⛔ NEVER auto-select execution mode without suffix or explicit choice
-⛔ NEVER split these questions into multiple prompts
+HARD STOP: DO NOT proceed until user answers
+NEVER assume spec folder without confirmation
+NEVER auto-select execution mode without suffix or explicit choice
+NEVER split into multiple prompts
 ```
 
 **Phase Output:**
-- `spec_path = ________________`
-- `prerequisites_valid = ________________`
-- `execution_mode = ________________`
-- `dispatch_mode = ________________`
-- `memory_loaded = ________________`
+- `spec_path` | `prerequisites_valid` | `execution_mode` | `dispatch_mode` | `memory_loaded`
 
----
-
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
-
-**Before continuing to the workflow, verify ALL values are set:**
-
-| FIELD               | REQUIRED      | YOUR VALUE | SOURCE                |
-| ------------------- | ------------- | ---------- | --------------------- |
-| spec_path           | ✅ Yes         | ______     | Q0/Q1 or $ARGUMENTS   |
-| prerequisites_valid | ✅ Yes         | ______     | Validation check      |
-| execution_mode      | ✅ Yes         | ______     | Suffix or Q2          |
-| dispatch_mode       | ✅ Yes         | ______     | Q3                    |
-| memory_loaded       | ○ Conditional | ______     | Q4 (if memory exists) |
-
-```
-VERIFICATION CHECK:
-├─ ALL required fields have values?
-│   ├─ YES → Proceed to "# SpecKit Implement" section below
-│   └─ NO  → Re-prompt for missing values only
-```
-
----
-
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
-
-**YOU ARE IN VIOLATION IF YOU:**
-- Started reading the workflow section before all fields are set
-- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
-- Started implementation without validating spec folder has required files
-- Auto-selected dispatch mode without explicit user choice
-- Inferred spec folder from .spec-active or context instead of explicit user input
-- Auto-selected execution mode without suffix or explicit user choice
-
-**VIOLATION RECOVERY PROTOCOL:**
-```
-1. STOP immediately - do not continue current action
-2. STATE: "I asked questions separately instead of consolidated. Correcting now."
-3. PRESENT the single consolidated prompt with ALL applicable questions
-4. WAIT for user response
-5. RESUME only after all fields are set
-```
+> **Cross-reference**: Implements AGENTS.md Section 2 "Gate 3: Spec Folder Question" and "First Message Protocol".
 
 ---
 
@@ -193,10 +96,7 @@ VERIFICATION CHECK:
 
 Execute implementation of a pre-planned feature. Requires existing spec.md and plan.md from a prior `/spec_kit:plan` workflow.
 
-> **Note**: This is a standalone workflow (9 steps) that assumes spec.md and plan.md already exist.
-> Run `/spec_kit:plan` first if you need to create planning artifacts.
-
----
+> Standalone workflow (9 steps) that assumes spec.md and plan.md exist. Run `/spec_kit:plan` first if needed.
 
 ```yaml
 role: Expert Developer using Smart SpecKit for Implementation Phase
@@ -214,137 +114,59 @@ operating_mode:
 
 ---
 
-## 1. 🎯 PURPOSE
+## 1. PURPOSE
 
-Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and handover check. Picks up where `/spec_kit:plan` left off to execute the actual code changes.
+Run the 9-step implementation workflow: plan review, task breakdown, quality validation, development, completion summary, and handover check. Picks up where `/spec_kit:plan` left off.
 
 ---
 
-## 2. 📝 CONTRACT
+## 2. CONTRACT
 
-**Inputs:** `$ARGUMENTS` — Spec folder path (REQUIRED) with optional parameters (environment, constraints)
+**Inputs:** `$ARGUMENTS` -- Spec folder path (REQUIRED) with optional parameters
 **Outputs:** Completed implementation + implementation-summary.md + optional handover.md + `STATUS=<OK|FAIL|CANCELLED>`
-
-### User Input
-
-```text
-$ARGUMENTS
-```
 
 ### Prerequisites
 
-**REQUIRED** (Level 1 baseline - all levels):
-- `spec.md` - Feature specification
-- `plan.md` - Technical plan
-- `tasks.md` - Task breakdown (will be created if missing)
+**REQUIRED (all levels):** spec.md, plan.md, tasks.md (created if missing)
+**REQUIRED Level 2+:** checklist.md
 
-**REQUIRED for Level 2+:**
-- `checklist.md` - Validation checklist (MANDATORY for verification before completion claims)
-
-If prerequisites are missing, guide user to run `/spec_kit:plan` first.
+Missing prerequisites -> guide user to `/spec_kit:plan` first.
 
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW
+## 3. WORKFLOW OVERVIEW
 
-| Step | Name                   | Purpose                                                            | Outputs                   |
-| ---- | ---------------------- | ------------------------------------------------------------------ | ------------------------- |
-| 1    | Review Plan & Spec     | Understand requirements                                            | requirements_summary      |
-| 2    | Task Breakdown         | Create/validate tasks.md                                           | tasks.md                  |
-| 3    | Analysis               | Verify consistency                                                 | consistency_report        |
-| 4    | Quality Checklist      | Validate checklists (ACTIVELY USED for verification at completion) | checklist_status          |
-| 5    | Implementation Check   | Verify prerequisites                                               | greenlight                |
-| 5.5  | **PREFLIGHT Capture**  | Capture epistemic baseline for learning measurement                | preflight_baseline        |
-| 6    | Development            | Execute implementation                                             | code changes              |
-| 7    | Completion             | Generate summary (MANDATORY for Level 2+)                          | implementation-summary.md |
-| 7.5  | **POSTFLIGHT Capture** | Capture learning delta and calculate improvement                   | postflight_delta          |
-| 8    | Save Context           | Preserve conversation                                              | memory/*.md               |
-| 9    | Session Handover Check | Prompt for handover document                                       | handover.md (optional)    |
+| Step | Name                   | Purpose                                       | Outputs                   |
+| ---- | ---------------------- | --------------------------------------------- | ------------------------- |
+| 1    | Review Plan & Spec     | Understand requirements                       | requirements_summary      |
+| 2    | Task Breakdown         | Create/validate tasks.md (via @speckit)        | tasks.md                  |
+| 3    | Analysis               | Verify consistency                            | consistency_report        |
+| 4    | Quality Checklist      | Validate checklists (used at completion)      | checklist_status          |
+| 5    | Implementation Check   | Verify prerequisites                          | greenlight                |
+| 5.5  | PREFLIGHT Capture      | Epistemic baseline for learning measurement   | preflight_baseline        |
+| 6    | Development            | Execute implementation                        | code changes              |
+| 7    | Completion             | Generate summary (via @speckit)               | implementation-summary.md |
+| 7.5  | POSTFLIGHT Capture     | Learning delta and improvement calculation    | postflight_delta          |
+| 8    | Save Context           | Preserve conversation                         | memory/*.md               |
+| 9    | Session Handover Check | Prompt for handover document                  | handover.md (optional)    |
 
-### Workflow Diagram
-
-```mermaid
-flowchart TD
-    subgraph SETUP["Setup Phase"]
-        A[Start: /spec_kit:implement] --> B{Prerequisites<br/>Valid?}
-        B -->|No| B1[Redirect to<br/>/spec_kit:plan]
-        B -->|Yes| C[Load Memory<br/>Context]
-    end
-
-    subgraph PREP["Preparation Phase"]
-        C --> S1[Step 1: Review<br/>Plan & Spec]
-        S1 --> S2[Step 2: Task<br/>Breakdown]
-        S2 --> S3[Step 3: Analysis<br/>Verify Consistency]
-        S3 --> S4[Step 4: Quality<br/>Checklist]
-        S4 --> S5[Step 5: Implementation<br/>Check]
-    end
-
-    subgraph GATE1["Pre-Implementation Gate"]
-        S5 --> G1{Score >= 70?}
-        G1 -->|No| G1F[BLOCKED:<br/>Cannot Start]
-        G1F --> S4
-        G1 -->|Yes| S55[Step 5.5: PREFLIGHT<br/>Baseline Capture]
-    end
-
-    subgraph DEV["Development Phase"]
-        S55 --> S6[Step 6: Development<br/>Execute Implementation]
-    end
-
-    subgraph VERIFY["Verification Phase"]
-        S6 --> S7[Step 7: Completion<br/>Generate Summary]
-        S7 --> RG{@review Agent<br/>Gate}
-        RG -->|P0 FAIL| RGF[BLOCKED:<br/>Fix P0 Items]
-        RGF --> S6
-        RG -->|P0 PASS| G2{Post-Impl<br/>Score >= 70?}
-        G2 -->|No| G2F[BLOCKED:<br/>Quality Issues]
-        G2F --> S6
-        G2 -->|Yes| S75[Step 7.5: POSTFLIGHT<br/>Learning Delta]
-    end
-
-    subgraph COMPLETE["Completion Phase"]
-        S75 --> S8[Step 8: Save<br/>Context]
-        S8 --> S9[Step 9: Session<br/>Handover Check]
-        S9 --> END[STATUS=OK<br/>Implementation Complete]
-    end
-
-    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
-    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
-    classDef verify fill:#065f46,stroke:#10b981,color:#fff
-    classDef blocked fill:#7f1d1d,stroke:#dc2626,color:#fff
-
-    class A,S1,S2,S3,S4,S5,S55,S6,S75,S8,S9 core
-    class G1,G2,RG gate
-    class S7,END verify
-    class B1,G1F,RGF,G2F blocked
-```
-
-**Diagram Legend:**
-- **Blue nodes**: Core workflow steps
-- **Orange borders**: Quality gates (score thresholds)
-- **Green nodes**: Verification/completion steps
-- **Red nodes**: Blocked states (require fixes before proceeding)
+**Execute steps IN ORDER. Mark each ONLY after completing ALL activities. DO NOT SKIP.**
 
 ### Step 8: Save Context Protocol
 
-**MANDATORY:** Use `generate-context.js` for memory save (per AGENTS.md Memory Save Rule):
-
+**MANDATORY** via generate-context.js (per AGENTS.md Memory Save Rule):
 ```
 node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
 ```
-
-- ❌ DO NOT use Write/Edit tools to create memory files directly
-- ✅ ALWAYS use the script above — it ensures proper ANCHOR tags, SESSION SUMMARY table, and MEMORY METADATA YAML block
-- After script execution, call `memory_save({ filePath })` for immediate MCP search availability
+DO NOT use Write/Edit for memory files directly. After script, call `memory_save({ filePath })` for MCP availability.
 
 ### Memory Context Loading
 
-For context loading during setup (Q4), use `memory_context()` (L1 unified entry) as the primary retrieval method. It auto-detects intent, applies task-specific weights, and routes to the optimal search strategy. Use `memory_search()` (L2) only as a fallback when you need direct control over search parameters (e.g., specific `specFolder`, `tier`, or `concepts` filtering).
-
-> Note: Gate 1 trigger matching is handled at the agent level (AGENTS.md). This command uses memory_context (L1) for unified context retrieval.
+Use `memory_context()` (L1 unified entry) as primary retrieval. Use `memory_search()` (L2) only as fallback for direct parameter control.
 
 ---
 
-## 4. ⚡ INSTRUCTIONS
+## 4. INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
@@ -355,497 +177,183 @@ The YAML contains detailed step-by-step workflow, field extraction rules, comple
 
 ---
 
-## 5. 📊 OUTPUT FORMATS
+## 5. OUTPUT FORMATS
 
-### Success Output
+### Success
 ```
-✅ SpecKit Implementation Complete
-
-All 9 implementation steps executed successfully.
-
-Artifacts Created:
-- tasks.md (task breakdown with all items marked [x])
-- implementation-summary.md (completion summary)
-- memory/*.md (session context)
-
+SpecKit Implementation Complete - All 9 steps executed.
+Artifacts: tasks.md, implementation-summary.md, memory/*.md
 STATUS=OK PATH=[spec-folder-path]
 ```
 
-### Failure Output
+### Failure
 ```
-❌ SpecKit Implementation Failed
-
-Error: [error description]
-Step: [step number where failure occurred]
-
+SpecKit Implementation Failed
+Error: [description] | Step: [number]
 STATUS=FAIL ERROR="[message]"
 ```
 
 ---
 
-## 6. 📌 REFERENCE
+## 6. REFERENCE
 
-**Full details in YAML prompts:**
-- Workflow steps and activities
-- Field extraction rules
-- Documentation levels (1/2/3)
-- Templates used
-- Completion report format
-- Mode behaviors (auto/confirm)
-- Parallel dispatch configuration
-- Checklist verification protocol
-- Failure recovery procedures
+**Full details in YAML prompts:** Workflow steps, field extraction, doc levels (1/2/3), templates, completion report, mode behaviors, parallel dispatch, checklist verification, failure recovery.
 
-**See also:** AGENTS.md Sections 2-6 for memory loading, confidence framework, and request analysis.
+**See also:** AGENTS.md Sections 2-6 for memory loading, confidence framework, request analysis.
 
 ---
 
-## 7. 🔀 PARALLEL DISPATCH
+## 7. PARALLEL DISPATCH
 
-The implement workflow supports parallel agent dispatch for complex phases. This is configured in the YAML prompts.
+Supports parallel agent dispatch for complex phases (configured in YAML prompts).
 
-### Complexity Scoring Algorithm (5 dimensions)
+### Complexity Scoring (5 dimensions)
 
-| Dimension            | Weight | Scoring                                |
-| -------------------- | ------ | -------------------------------------- |
-| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0                   |
-| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0               |
-| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0          |
-| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0     |
-| Task Type            | 5%     | trivial=0.0, moderate=0.5, complex=1.0 |
+| Dimension            | Weight | Scoring                              |
+| -------------------- | ------ | ------------------------------------ |
+| Domain Count         | 35%    | 1=0.0, 2=0.5, 3+=1.0                |
+| File Count           | 25%    | 1-2=0.0, 3-5=0.5, 6+=1.0           |
+| LOC Estimate         | 15%    | <50=0.0, 50-200=0.5, >200=1.0       |
+| Parallel Opportunity | 20%    | sequential=0.0, some=0.5, high=1.0  |
+| Task Type            | 5%     | trivial=0.0, moderate=0.5, complex=1.0|
 
-### Decision Thresholds
+### Thresholds
 
-- **<20%**: Proceed directly (no parallel agents)
-- **≥20% + 2 domains**: ALWAYS ask user before dispatch
+- **<20%**: Proceed directly | **>=20% + 2 domains**: ALWAYS ask user
+- Eligible phase: `step_6_development`
+- Override: `"proceed directly"` / `"use parallel"` / `"auto-decide"` (1hr session mode)
 
-### Eligible Phases
+### Workstream Prefixes
 
-- `step_6_development` - Main implementation phase
-
-### User Override Phrases
-
-- `"proceed directly"` / `"handle directly"` → Skip parallel dispatch
-- `"use parallel"` / `"dispatch agents"` → Force parallel dispatch
-- `"auto-decide"` → Enable session auto-mode (1 hour)
-
-### Workstream Prefix Pattern
-
-When tracking parallel dispatches, use `[W:XXXX]` format for workstream identification:
-
-| Format       | Purpose                     | Example                      |
-| ------------ | --------------------------- | ---------------------------- |
-| `[W:IMPL-N]` | Implementation workstream N | `[W:IMPL-1] CSS changes`     |
-| `[W:TEST]`   | Test workstream             | `[W:TEST] Unit test updates` |
-| `[W:DOCS]`   | Documentation workstream    | `[W:DOCS] README updates`    |
-
-Use workstream prefixes in:
-- Task tool dispatch descriptions
-- Progress tracking messages
-- Memory file anchors for parallel work
+`[W:IMPL-N]` implementation | `[W:TEST]` tests | `[W:DOCS]` documentation
 
 ---
 
-## 8. 🤖 AGENT ROUTING
+## 8. AGENT ROUTING
 
-This command routes Step 7 (Checklist Verification) to the specialized `@review` agent when available.
+| Step                                         | Agent      | Fallback  | Purpose                                       |
+| -------------------------------------------- | ---------- | --------- | --------------------------------------------- |
+| Step 7 (Verification)                        | `@review`  | `general` | P0/P1 checklist verification + quality scoring|
+| Step 7 (implementation-summary.md)           | `@speckit` | `general` | Spec folder doc creation (AGENTS.md exclusive)|
+| Step 2/6 (substantive tasks.md)              | `@speckit` | `general` | New task content in spec folder               |
 
-| Step                             | Agent     | Fallback  | Purpose                                           |
-| -------------------------------- | --------- | --------- | ------------------------------------------------- |
-| Step 7 (Completion/Verification) | `@review` | `general` | P0/P1 checklist verification with quality scoring |
+> Minor status updates (checkbox toggles) may use `@general`. Only substantive creation requires `@speckit`.
 
-### How Agent Routing Works
-
-1. **Detection**: When Step 7 (Completion) is reached, the system checks if `@review` agent is available
-2. **Dispatch**: If available, dispatches to `@review` agent with spec path and checklist
-3. **Fallback**: If agent unavailable, falls back to `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode) with warning
-4. **Output**: Agent returns structured verification result with P0/P1 status and quality score
-
-### Agent Dispatch Template
-
+### @review Dispatch Template
 ```
-Task tool with prompt:
----
 You are the @review agent. Verify implementation completeness.
+Spec Folder: {spec_path} | Checklist: {spec_path}/checklist.md
+Execute: Load checklist -> Verify P0 [x] with evidence -> Verify P1 -> Score (100-point)
+Return: P0 status, P1 status, Quality score, Blocking issues
+```
 
-Spec Folder: {spec_path}
-Checklist: {spec_path}/checklist.md
-
-Execute:
-1. Load checklist.md
-2. Verify ALL P0 items are [x] with evidence
-3. Verify ALL P1 items are [x] or have deferral approval
-4. Score against quality rubric (100-point scale)
-
-Return:
-- P0 status: [PASS/FAIL]
-- P1 status: [PASS/PARTIAL/FAIL]
-- Quality score: [0-100]
-- Blocking issues: [list]
----
+### @speckit Dispatch Template
+```
+You are the @speckit agent. Create implementation-summary.md.
+Spec Folder: {spec_path} | Level: {documentation_level} | Tasks: {spec_path}/tasks.md
+Create using template-first approach. Return: file confirmation + validation status.
 ```
 
 ### Blocking Behavior
 
-**IMPORTANT**: The `@review` agent routing uses `blocking: true`:
-- If P0 status is FAIL, workflow **CANNOT** proceed to completion claims
-- Clear message shows which P0 items are incomplete
-- User must address P0 items before claiming "done"
+`@review` uses `blocking: true`: P0 FAIL -> workflow CANNOT proceed to completion claims.
 
-### Fallback Behavior
+### Fallback
 
-When `@review` agent is unavailable:
-- Warning message: "Review agent unavailable, using general dispatch"
-- Workflow continues with `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode)
-- Same verification executed, may have less rigorous scoring
+When `@speckit` unavailable: Warning logged, continues with `subagent_type: "general"`, less template validation.
 
 ---
 
-## 9. ✅ QUALITY GATES
+## 9. QUALITY GATES
 
-Quality gates enforce minimum standards at key workflow transitions.
+| Gate                | Location        | Threshold | Blocking          |
+| ------------------- | --------------- | --------- | ----------------- |
+| Pre-Implementation  | Before Step 6   | 70        | Yes               |
+| Mid-Implementation  | After Step 6.5  | 70        | No (warning only) |
+| Post-Implementation | Before Step 7   | 70        | Yes               |
 
-### Gate Configuration
-
-| Gate                | Location                 | Threshold | Blocking          |
-| ------------------- | ------------------------ | --------- | ----------------- |
-| Pre-Implementation  | Before Step 6            | 70        | Yes               |
-| Mid-Implementation  | After Step 6.5           | 70        | No (warning only) |
-| Post-Implementation | Before Step 7 completion | 70        | Yes               |
-
-### Five Checks Framework (Level 3+ specs)
-
-For Level 3+ specs, validate against the Five Checks Framework at Pre-Implementation Gate (see AGENTS.md Section 6):
-
-| #   | Check                    | Question                 | Pass Criteria                              |
-| --- | ------------------------ | ------------------------ | ------------------------------------------ |
-| 1   | **Necessary?**           | Solving ACTUAL need NOW? | Clear requirement exists, not speculative  |
-| 2   | **Beyond Local Maxima?** | Explored alternatives?   | ≥2 alternatives considered with trade-offs |
-| 3   | **Sufficient?**          | Simplest approach?       | No simpler solution achieves the goal      |
-| 4   | **Fits Goal?**           | On critical path?        | Directly advances stated objective         |
-| 5   | **Open Horizons?**       | Long-term aligned?       | Doesn't create technical debt or lock-in   |
-
-**Usage:** Required for Level 3/3+ spec folders. Optional for Level 2. Record in decision-record.md for architectural changes.
-
-### Gate Behavior
-
-**Pre-Implementation Gate (Step 5 → Step 6)**
-- Evaluates: Prerequisites complete, plan clarity, task breakdown quality
-- Score < 70: BLOCK - Cannot start development
-- Score ≥ 70: PASS - Proceed to development
-
-**Mid-Implementation Gate (Step 6.5)**
-- Evaluates: Code quality, test coverage, task completion rate
-- Score < 70: WARNING - Log concern, continue with caution
-- Score ≥ 70: PASS - Continue normally
-
-**Post-Implementation Gate (Step 7)**
-- Evaluates: All tasks complete, tests pass, checklist verified
-- Score < 70: BLOCK - Cannot claim completion
-- Score ≥ 70: PASS - Generate implementation-summary.md
-
-**IMPORTANT: @review Agent Blocking**
-
-The `@review` agent routing (Section 8) provides **additional blocking** beyond quality gates:
-- Quality gates check score thresholds (numeric)
-- `@review` agent checks P0/P1 checklist items (categorical)
-- BOTH must pass for completion claims
-- `@review` blocking is separate from circuit breaker behavior
-
-### Gate Check Lists
-
-**Pre-Implementation Checklist:**
-- [ ] spec.md exists and is complete
-- [ ] plan.md exists with clear technical approach
-- [ ] tasks.md exists with actionable items
-- [ ] checklist.md exists (Level 2+)
-- [ ] No unresolved P0 blockers
-
-**Post-Implementation Checklist:**
-- [ ] All tasks marked [x] in tasks.md
-- [ ] All P0 checklist items verified with evidence
-- [ ] All P1 items complete or deferred with approval
-- [ ] Tests pass (if applicable)
-- [ ] implementation-summary.md created
+**Pre-Implementation:** spec.md complete, plan.md clear, tasks.md actionable, checklist.md exists (L2+), no P0 blockers.
+**Post-Implementation:** All tasks [x], all P0 verified with evidence, P1 complete/deferred, tests pass, summary created.
 
 ### Evidence Log Pattern
 
-Use `[E:filename]` format for evidence artifacts in verification sections:
-
-| Format            | Purpose                     | Example                              |
-| ----------------- | --------------------------- | ------------------------------------ |
-| `[E:filename]`    | Reference evidence artifact | `[E:evidence/test-output.log]`       |
-| `[E:path/file]`   | Nested evidence path        | `[E:scratch/debug-trace.md]`         |
-| `[EVIDENCE: ...]` | Inline evidence citation    | `[EVIDENCE: hero.js:45-67 verified]` |
-
-Evidence artifacts should be stored in:
-- `evidence/` folder - Permanent evidence (test results, screenshots)
-- `scratch/` folder - Temporary evidence (debug logs, traces)
+`[E:filename]` for artifacts in `evidence/` (permanent) or `scratch/` (temporary).
+Example: `[E:evidence/test-output.log]` or `[EVIDENCE: hero.js:45-67 verified]`
 
 ---
 
-## 10. 🚀 PREFLIGHT BASELINE CAPTURE (Step 5.5)
+## 10. PREFLIGHT BASELINE (Step 5.5)
 
-**Purpose:** Capture epistemic baseline for learning measurement before implementation begins.
+Capture epistemic baseline before implementation. Execute after Step 5, before Step 6. Skip for quick fixes (<10 LOC) or continuation with existing PREFLIGHT.
 
-### When to Execute
-
-- **Execute:** After Step 5 (Implementation Check) passes, before Step 6 (Development) begins
-- **Skip if:** Quick fix (<10 LOC) or continuation of prior session with existing PREFLIGHT
-
-### PREFLIGHT Action Protocol
-
-1. **Assess Knowledge Level (0-100):**
-   - What do I already know about this task?
-   - Which files/code am I already familiar with?
-   - Have I worked on similar implementations before?
-
-2. **Assess Uncertainty Level (0-100):**
-   - What don't I know that I need to know?
-   - Are there architectural unknowns?
-   - Are there external dependencies I'm unsure about?
-
-3. **Assess Context Completeness (0-100):**
-   - Is the spec.md clear and complete?
-   - Do I have all dependencies identified?
-   - Is the plan.md actionable?
-
-### Recording PREFLIGHT
-
-**Option A - MCP Tool (Recommended):**
 ```
-Call task_preflight() with:
-- specFolder: [spec-folder-path]
-- taskId: [task-identifier, e.g., "T1" or "implementation"]
-- knowledgeScore: [0-100]
-- uncertaintyScore: [0-100]
-- contextScore: [0-100]
-- knowledgeGaps: [optional list of identified gaps]
+task_preflight(): specFolder, taskId, knowledgeScore[0-100], uncertaintyScore[0-100],
+                  contextScore[0-100], knowledgeGaps[optional]
 ```
 
-**Option B - Implementation Log:**
-If MCP tool unavailable, record in implementation log or scratch/:
-```markdown
-## PREFLIGHT Baseline - [timestamp]
-- Knowledge: [score]/100 - [brief rationale]
-- Uncertainty: [score]/100 - [brief rationale]
-- Context: [score]/100 - [brief rationale]
-```
-
-### Skip Conditions
-
-User can say:
-- `"skip preflight"` → Proceed directly to Step 6
-- `"quick fix"` → Auto-skip if LOC < 10
-- `"continuation"` → Auto-skip if prior session PREFLIGHT exists
+Skip: `"skip preflight"`, `"quick fix"` (auto if LOC<10), `"continuation"` (auto if prior exists)
 
 ---
 
-## 11. 📊 POSTFLIGHT LEARNING DELTA (Step 7.5)
+## 11. POSTFLIGHT LEARNING (Step 7.5)
 
-**Purpose:** Capture learning measurement and calculate improvement after implementation completes.
-
-### When to Execute
-
-- **Execute:** After Step 7 (Completion) verification passes, before Step 8 (Save Context)
-- **Skip if:** Quick fix (<10 LOC) or no PREFLIGHT was captured
-
-### POSTFLIGHT Action Protocol
-
-1. **Re-assess Knowledge Level (0-100):**
-   - What did I learn during implementation?
-   - Which files/patterns do I now understand better?
-   - What insights emerged from the work?
-
-2. **Re-assess Uncertainty Level (0-100):**
-   - What uncertainties were resolved?
-   - What new uncertainties emerged?
-   - Are there follow-up questions?
-
-3. **Re-assess Context Completeness (0-100):**
-   - How did my understanding evolve?
-   - Were there gaps in the spec/plan?
-   - What context would help future sessions?
-
-4. **List Learning Artifacts:**
-   - Gaps closed during implementation
-   - New gaps discovered
-   - Patterns learned
-   - Decisions made and rationale
-
-### Recording POSTFLIGHT
-
-**Option A - MCP Tool (Recommended):**
-```
-Call task_postflight() with:
-- specFolder: [spec-folder-path]
-- taskId: [task-identifier, must match preflight]
-- knowledgeScore: [0-100]
-- uncertaintyScore: [0-100]
-- contextScore: [0-100]
-- gapsClosed: [list of resolved uncertainties]
-- newGapsDiscovered: [list of new questions/unknowns]
-```
-
-**Option B - Implementation Log:**
-If MCP tool unavailable, record in implementation log or memory/:
-```markdown
-## POSTFLIGHT Delta - [timestamp]
-- Knowledge: [score]/100 (delta: +/-[change])
-- Uncertainty: [score]/100 (delta: +/-[change])
-- Context: [score]/100 (delta: +/-[change])
-- Gaps Closed: [list]
-- Gaps Discovered: [list]
-```
-
-### Learning Index Calculation
-
-The Learning Index is calculated automatically when both PREFLIGHT and POSTFLIGHT are captured:
+Capture learning delta after implementation. Execute after Step 7, before Step 8. Skip if no PREFLIGHT captured.
 
 ```
-Learning Index = (Knowledge Delta × 0.4) + (Uncertainty Reduction × 0.35) + (Context Improvement × 0.25)
-
-Where (all scores on 0-100 scale):
-- Knowledge Delta = POSTFLIGHT.knowledge - PREFLIGHT.knowledge
-- Uncertainty Reduction = PREFLIGHT.uncertainty - POSTFLIGHT.uncertainty (positive = good)
-- Context Improvement = POSTFLIGHT.context - PREFLIGHT.context
+task_postflight(): specFolder, taskId (must match), knowledgeScore[0-100],
+                   uncertaintyScore[0-100], contextScore[0-100],
+                   gapsClosed[list], newGapsDiscovered[list]
 ```
 
-**Interpretation (0-100 scale):**
-- **40+**: Significant learning session
-- **15-40**: Moderate learning
-- **5-15**: Incremental learning
-- **<5**: Execution-focused (low learning, not necessarily bad)
-- **Negative**: Knowledge regression detected (may indicate scope expansion)
+**Learning Index** = (Knowledge Delta x 0.4) + (Uncertainty Reduction x 0.35) + (Context Improvement x 0.25)
+Interpretation: 40+ significant, 15-40 moderate, 5-15 incremental, <5 execution-focused, negative = regression.
 
-### Skip Conditions
-
-User can say:
-- `"skip postflight"` → Proceed directly to Step 8
-- `"quick fix"` → Auto-skip if LOC < 10
-
-### Reference Documents
-
-For detailed epistemic measurement theory, see:
-- `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md` - Full epistemic measurement framework
-- `.opencode/skill/system-spec-kit/references/validation/five-checks.md` - Five validation checks including learning measurement
+Reference: `.opencode/skill/system-spec-kit/references/memory/epistemic-vectors.md`
 
 ---
 
-## 12. 🔌 CIRCUIT BREAKER
+## 12. KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
 
-The circuit breaker isolates failing operations to prevent cascading failures.
-
-### States
-
-| State     | Condition               | Behavior                                 |
-| --------- | ----------------------- | ---------------------------------------- |
-| CLOSED    | Normal operation        | All operations proceed                   |
-| OPEN      | 3+ consecutive failures | Operations fail-fast, skip affected step |
-| HALF-OPEN | After recovery_timeout_s (60s) | Single test operation allowed            |
-
-### Configuration
-
-| Parameter          | Value | Description                                |
-| ------------------ | ----- | ------------------------------------------ |
-| failure_threshold  | 3     | Failures before OPEN state                 |
-| recovery_timeout_s | 60    | Time before HALF-OPEN                      |
-| success_to_close   | 1     | Successes in HALF-OPEN to return to CLOSED |
-
-### Behavior by Step
-
-- **Steps 1-5**: Circuit breaker active - failures trigger state changes
-- **Step 6**: Per-task circuit breaker - isolates failing tasks
-- **Step 7**: Critical step - circuit breaker disabled (must complete or fail explicitly)
-- **Steps 8-9**: Circuit breaker active - non-critical, can skip on OPEN
-
-### Recovery Actions
-
-When circuit opens:
-1. Log failure pattern and affected step
-2. Skip to next non-dependent step if possible
-3. Report to user with options:
-   - A) Retry after recovery_timeout_s
-   - B) Skip affected step
-   - C) Abort workflow
-
-**NOTE: @review Agent Blocking vs Circuit Breaker**
-
-These are SEPARATE mechanisms:
-- **Circuit breaker**: Handles operational failures (errors, timeouts, crashes)
-- **@review blocking**: Handles quality failures (incomplete P0 items)
-
-A workflow can have:
-- Circuit CLOSED + @review BLOCKED = Quality issue, not operational issue
-- Circuit OPEN + @review PASS = Operational issue, quality was fine
-- Both mechanisms must be satisfied for successful completion
+- Requires existing plan (won't create spec.md/plan.md)
+- Starts at implementation (skips specification/planning)
+- Use case: separated planning/implementation, team handoffs, phased delivery
 
 ---
 
-## 13. 🔀 KEY DIFFERENCES FROM /SPEC_KIT:COMPLETE
+## 13. VALIDATION DURING IMPLEMENTATION
 
-- **Requires existing plan** - Won't create spec.md or plan.md
-- **Starts at implementation** - Skips specification and planning phases
-- **Use case** - Separated planning/implementation, team handoffs, phased delivery
+Runs automatically: **PLACEHOLDER_FILLED** (replace `[PLACEHOLDER]`), **PRIORITY_TAGS** (P0/P1/P2), **EVIDENCE_CITED** (`[SOURCE:]` citations).
 
 ---
 
-## 14. ✅ VALIDATION DURING IMPLEMENTATION
+## 14. EXAMPLES
 
-Validation runs automatically to catch issues early.
-
-Key rules for implementation phase:
-- **PLACEHOLDER_FILLED** - Replace all `[PLACEHOLDER]` markers
-- **PRIORITY_TAGS** - Add P0/P1/P2 to checklist items
-- **EVIDENCE_CITED** - Add `[SOURCE:]` citations for claims
-
----
-
-## 15. 🔍 EXAMPLES
-
-**Example 1: Execute Existing Plan (autonomous)**
 ```
-/spec_kit:implement:auto specs/042-user-auth/
-```
-
-**Example 2: With Review (interactive)**
-```
-/spec_kit:implement:confirm specs/042-user-auth/
-```
-
-**Example 3: With Staging Environment**
-```
-/spec_kit:implement "specs/042-user-auth/" staging: https://staging.example.com
+/spec_kit:implement:auto specs/042-user-auth/       # Autonomous mode
+/spec_kit:implement:confirm specs/042-user-auth/    # Interactive mode
 ```
 
 ---
 
-## 16. 🔗 COMMAND CHAIN
-
-This command is part of the SpecKit workflow:
+## 15. COMMAND CHAIN
 
 ```
-[/spec_kit:plan] → /spec_kit:implement → [/spec_kit:handover]
+[/spec_kit:plan] -> /spec_kit:implement -> [/spec_kit:handover]
 ```
 
-**Prerequisite:**
-← `/spec_kit:plan [feature-description]` (creates spec.md, plan.md)
+Prerequisite: `/spec_kit:plan [feature-description]` (creates spec.md, plan.md)
 
 ---
 
-## 17. 📌 NEXT STEPS
+## 16. NEXT STEPS
 
-After implementation completes, suggest relevant next steps:
-
-| Condition                 | Suggested Command                          | Reason                            |
-| ------------------------- | ------------------------------------------ | --------------------------------- |
-| Implementation complete   | Verify in browser                          | Test functionality works          |
-| Need to save progress     | `/memory:save [spec-folder-path]`          | Preserve implementation context   |
-| Ending session            | `/spec_kit:handover [spec-folder-path]`    | Create continuation document      |
-| Found bugs during testing | `/spec_kit:debug [spec-folder-path]`       | Delegate debugging to fresh agent |
-| Ready for next feature    | `/spec_kit:complete [feature-description]` | Start new workflow                |
-| Need crash recovery       | `/memory:continue`                         | Session recovery                  |
-| Need unified context      | `/memory:context`                          | Intent-aware retrieval            |
-| Want to record learning   | `/memory:learn`                            | Explicit learning                 |
+| Condition                 | Suggested Command                          | Reason                          |
+| ------------------------- | ------------------------------------------ | ------------------------------- |
+| Implementation complete   | Verify in browser                          | Test functionality              |
+| Need to save progress     | `/memory:save [spec-folder-path]`          | Preserve context                |
+| Ending session            | `/spec_kit:handover [spec-folder-path]`    | Create continuation document    |
+| Found bugs during testing | `/spec_kit:debug [spec-folder-path]`       | Delegate to fresh agent         |
+| Ready for next feature    | `/spec_kit:complete [feature-description]` | Start new workflow              |
+| Need crash recovery       | `/memory:continue`                         | Session recovery                |
 
 **ALWAYS** end with: "What would you like to do next?"

@@ -113,6 +113,7 @@ export interface ScanArgs {
   specFolder?: string | null;
   force?: boolean;
   includeConstitutional?: boolean;
+  includeReadmes?: boolean;
   incremental?: boolean;
 }
 

@@ -1,10 +1,21 @@
+---
+title: "System-Spec-Kit Scripts"
+description: "Shell scripts for spec folder creation, validation, and lifecycle management with modular rule-based validation."
+trigger_phrases:
+  - "spec kit scripts"
+  - "validation scripts"
+  - "spec folder management"
+  - "create spec folder"
+importance_tier: "normal"
+---
+
 # System-Spec-Kit Scripts
 
 > Shell scripts for spec folder creation, validation, and lifecycle management with modular rule-based validation.
 
 ---
 
-## Script Registry
+### Script Registry
 
 All scripts are catalogued in [`scripts-registry.json`](./scripts-registry.json) for dynamic discovery. Use the registry loader to query scripts:
 
@@ -28,19 +39,24 @@ All scripts are catalogued in [`scripts-registry.json`](./scripts-registry.json)
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1-📖-overview)
-- [2. 🚀 QUICK START](#2-🚀-quick-start)
-- [3. 📁 STRUCTURE](#3-📁-structure)
-- [4. ⚡ FEATURES](#4-⚡-features)
-- [5. ⚙️ CONFIGURATION](#5-⚙️-configuration)
-- [6. 💡 USAGE EXAMPLES](#6-💡-usage-examples)
-- [7. 🛠️ TROUBLESHOOTING](#7-🛠️-troubleshooting)
-- [8. 📚 RELATED DOCUMENTS](#8-📚-related-documents)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. ⚙️ CONFIGURATION](#5--configuration)
+- [6. 💡 USAGE EXAMPLES](#6--usage-examples)
+- [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
+- [8. 📚 RELATED DOCUMENTS](#8--related-documents)
+- [9. 📊 TYPESCRIPT MIGRATION NOTES](#9--typescript-migration-notes)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the scripts/ Directory?
 
@@ -78,9 +94,11 @@ The `scripts/` directory contains shell scripts for spec folder management and v
 | bc | Any | Latest |
 | git | 2.0+ | Latest |
 
+<!-- /ANCHOR:overview -->
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -120,9 +138,11 @@ ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 # ✓ PLACEHOLDER_FILLED: No unfilled placeholders found
 ```
 
+<!-- /ANCHOR:quick-start -->
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 scripts/
@@ -260,9 +280,11 @@ scripts/
 | `dist/` | Compiled JavaScript output from TypeScript sources |
 | `test-fixtures/` | Validation test cases (54 directories) |
 
+<!-- /ANCHOR:structure -->
 ---
 
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### spec/validate.sh
 
@@ -500,9 +522,11 @@ npm run build
 | **Output** | Ranked memory list with scores |
 | **Action** | Score and rank memories by relevance |
 
+<!-- /ANCHOR:features -->
 ---
 
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Environment Variables
 
@@ -532,9 +556,11 @@ SPECKIT_STRICT=true ./spec/validate.sh specs/007-feature/
 SPECKIT_VALIDATION=false ./spec/validate.sh specs/007-feature/
 ```
 
+<!-- /ANCHOR:configuration -->
 ---
 
 ## 6. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Basic Validation
 
@@ -611,9 +637,11 @@ SPECKIT_VALIDATION=false ./spec/validate.sh specs/007-feature/
 | Check progress | `spec/calculate-completeness.sh <folder>` | During development |
 | Generate memory | `node dist/memory/generate-context.js <folder>` | Save session context |
 
+<!-- /ANCHOR:examples -->
 ---
 
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -709,9 +737,11 @@ ls -la .opencode/skill/system-spec-kit/scripts/*.sh
 bash -n .opencode/skill/system-spec-kit/scripts/spec/validate.sh && echo "Syntax OK"
 ```
 
+<!-- /ANCHOR:troubleshooting -->
 ---
 
 ## 8. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -729,11 +759,11 @@ bash -n .opencode/skill/system-spec-kit/scripts/spec/validate.sh && echo "Syntax
 | [Bash Reference](https://www.gnu.org/software/bash/manual/) | Bash scripting documentation |
 | [ShellCheck](https://www.shellcheck.net/) | Shell script linting tool |
 
+<!-- /ANCHOR:related -->
 ---
 
----
-
-## TypeScript Migration Notes
+## 9. 📊 TYPESCRIPT MIGRATION NOTES
+<!-- ANCHOR:typescript-migration-notes -->
 
 **Migration Completed**: 2026-02-07
 
@@ -751,6 +781,7 @@ All JavaScript source files have been migrated to TypeScript with the following 
 - Type definitions (`.d.ts`) are auto-generated alongside compiled JavaScript
 - Shell scripts (`.sh`) remain unchanged and do not require compilation
 
+<!-- /ANCHOR:typescript-migration-notes -->
 ---
 
 *Documentation version: 3.1 | Last updated: 2026-02-07 | TypeScript migration complete*

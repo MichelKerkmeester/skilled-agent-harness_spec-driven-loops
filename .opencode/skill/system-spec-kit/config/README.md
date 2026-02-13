@@ -1,3 +1,13 @@
+---
+title: "Config"
+description: "Configuration files for Spec Kit's memory system, complexity detection, search, and content filtering"
+trigger_phrases:
+  - "spec kit config"
+  - "memory system configuration"
+  - "config jsonc settings"
+importance_tier: "normal"
+---
+
 # Config
 
 > Configuration files for Spec Kit's memory system, complexity detection, search, and content filtering.
@@ -5,15 +15,18 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. 📖 OVERVIEW](#1--overview)
-- [2. ⚙️ CONFIGURATION OPTIONS](#2--configuration-options)
-- [3. 🚀 USAGE](#3--usage)
-- [4. 📚 RELATED DOCUMENTS](#4--related-documents)
+- [1. Overview](#1--overview)
+- [2. Configuration Options](#2--configuration-options)
+- [3. Usage](#3--usage)
+- [4. Related Documents](#4--related-documents)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 This directory contains the JSON configuration files that control how the Spec Kit system operates. All files use JSONC format (JSON with comments) for maintainability. These configs are loaded by various scripts throughout the system to determine behavior for memory indexing, search ranking, complexity scoring, and content quality control.
 
@@ -25,7 +38,9 @@ This directory contains the JSON configuration files that control how the Spec K
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. ⚙️ CONFIGURATION OPTIONS
+<!-- ANCHOR:configuration -->
 
 ### config.jsonc
 
@@ -101,7 +116,9 @@ This directory contains the JSON configuration files that control how the Spec K
 
 ---
 
-## 3. 🚀 USAGE
+<!-- /ANCHOR:configuration -->
+## 3. 💡 USAGE
+<!-- ANCHOR:examples -->
 
 ### Loading Configs
 
@@ -159,7 +176,9 @@ The loader strips JSONC comments and parses JSON safely with fallback to default
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 4. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 | Document | Purpose |
 |----------|---------|
@@ -172,4 +191,5 @@ The loader strips JSONC comments and parses JSON safely with fallback to default
 
 ---
 
+<!-- /ANCHOR:related -->
 *Part of the system-spec-kit conversation memory and context preservation system.*

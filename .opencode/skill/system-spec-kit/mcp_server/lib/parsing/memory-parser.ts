@@ -200,6 +200,11 @@ export function extractSpecFolder(filePath: string): string {
     return `skill:${skillReadmeMatch[1]}`;
   }
 
+  // Project/code-folder READMEs
+  if (isProjectReadme(filePath)) {
+    return 'project-readmes';
+  }
+
   // Match specs/XXX-name/.../memory/ pattern
   const match = normalizedPath.match(/specs\/([^/]+(?:\/[^/]+)*?)\/memory\//);
 
@@ -437,6 +442,32 @@ export function hasCausalLinks(causalLinks: CausalLinks | null | undefined): boo
    4. VALIDATION FUNCTIONS
    --------------------------------------------------------------- */
 
+/** Exclusion patterns for project README discovery */
+const README_EXCLUDE_PATTERNS = [
+  'node_modules',
+  '.git/',
+  '.opencode/skill/',
+  'dist/',
+  'build/',
+  '.next/',
+  'coverage/',
+  'vendor/',
+  '__pycache__',
+  '.pytest_cache',
+];
+
+/** Check if a file is a project/code-folder README (not a skill README) */
+export function isProjectReadme(filePath: string): boolean {
+  const normalized = filePath.replace(/\\/g, '/');
+  const basename = path.basename(normalized).toLowerCase();
+
+  if (basename !== 'readme.md') return false;
+
+  return !README_EXCLUDE_PATTERNS.some(pattern =>
+    normalized.toLowerCase().includes(pattern.toLowerCase())
+  );
+}
+
 /** Check if a file path is a valid memory file */
 export function isMemoryFile(filePath: string): boolean {
   const normalizedPath = filePath.replace(/\\/g, '/');
@@ -463,7 +494,10 @@ export function isMemoryFile(filePath: string): boolean {
     !normalizedPath.includes('/constitutional/')
   );
 
-  return isSpecsMemory || isConstitutional || isSkillReadme;
+  // Project/code-folder READMEs (must check after skill README to avoid overlap)
+  const isProjectRm = isProjectReadme(filePath);
+
+  return isSpecsMemory || isConstitutional || isSkillReadme || isProjectRm;
 }
 
 /** Validate anchor tags in memory content */

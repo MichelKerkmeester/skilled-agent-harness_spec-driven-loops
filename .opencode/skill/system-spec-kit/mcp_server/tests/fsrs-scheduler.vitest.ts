@@ -11,12 +11,12 @@ let predictionErrorGate: any = null;
 
 beforeAll(async () => {
   try {
-    fsrsScheduler = await import('../lib/cognitive/fsrs-scheduler');
+    fsrsScheduler = await import('../lib/cache/cognitive/fsrs-scheduler');
   } catch {
     fsrsScheduler = null;
   }
   try {
-    predictionErrorGate = await import('../lib/cognitive/prediction-error-gate');
+    predictionErrorGate = await import('../lib/cache/cognitive/prediction-error-gate');
   } catch {
     predictionErrorGate = null;
   }

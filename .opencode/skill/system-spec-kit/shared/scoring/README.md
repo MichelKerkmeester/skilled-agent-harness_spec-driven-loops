@@ -1,10 +1,42 @@
+---
+title: "Folder Scoring"
+description: "Computes composite relevance scores for spec folders based on their memories, used for ranking and resume-recent-work workflows."
+trigger_phrases:
+  - "folder scoring"
+  - "composite relevance score"
+  - "memory folder ranking"
+importance_tier: "normal"
+---
+
 # Folder Scoring
 
-## 📊 Overview
+> Computes composite relevance scores for spec folders based on their memories. Used by `memory_stats` and `memory_list` to rank folders by relevance to the current session.
+
+---
+
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
+
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. 🔧 SCORING FORMULA](#3--scoring-formula)
+- [4. 🔌 KEY EXPORTS](#4--key-exports)
+- [5. 📊 DESIGN DECISIONS](#5--design-decisions)
+- [6. 📚 RELATED](#6--related)
+
+---
+
+<!-- /ANCHOR:table-of-contents -->
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 Computes **composite relevance scores** for spec folders based on their memories. Used by `memory_stats` and `memory_list` to rank folders by how relevant they are to the current session. The primary use case is **"resume recent work"**, which is why recency carries the highest weight.
 
-## 📁 Structure
+---
+
+<!-- /ANCHOR:overview -->
+## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 scoring/
@@ -12,7 +44,11 @@ scoring/
 └── folder-scoring.ts      # All scoring logic, constants, and utilities
 ```
 
-## 📐 Scoring Formula
+---
+
+<!-- /ANCHOR:structure -->
+## 3. 🔧 SCORING FORMULA
+<!-- ANCHOR:scoring-formula -->
 
 ```
 score = (recency * 0.40 + importance * 0.30 + activity * 0.20 + validation * 0.10) * archiveMultiplier
@@ -46,7 +82,11 @@ score = (recency * 0.40 + importance * 0.30 + activity * 0.20 + validation * 0.1
 
 Constitutional-tier memories are **exempt from decay** (always 1.0).
 
-## 🔧 Key Exports
+---
+
+<!-- /ANCHOR:scoring-formula -->
+## 4. 🔌 KEY EXPORTS
+<!-- ANCHOR:key-exports -->
 
 ### Functions
 
@@ -77,7 +117,11 @@ Constitutional-tier memories are **exempt from decay** (always 1.0).
 | ------------------ | ---------------------------------------------- | ---------------------------------------- |
 | `FolderMemoryInput`| `Partial<Memory> & Record<string, unknown>`    | Accepts camelCase and snake_case fields   |
 
-## 📋 Design Decisions
+---
+
+<!-- /ANCHOR:key-exports -->
+## 5. 📊 DESIGN DECISIONS
+<!-- ANCHOR:design-decisions -->
 
 | ID  | Decision                    | Rationale                                            |
 | --- | --------------------------- | ---------------------------------------------------- |
@@ -87,7 +131,15 @@ Constitutional-tier memories are **exempt from decay** (always 1.0).
 | D7  | Tier weights                | Aligned with `importance-tiers.js` authoritative values |
 | D8  | Constitutional exemption    | Constitutional memories always score max recency      |
 
-## 🔗 Related
+---
+
+<!-- /ANCHOR:design-decisions -->
+## 6. 📚 RELATED
+<!-- ANCHOR:related -->
 
 - **Types**: `../types` — `ArchivePattern`, `FolderScore`, `FolderScoreOptions`, `Memory`, `ScoreWeights`, `TierWeights`
 - **Consumers**: `memory_stats` endpoint, `memory_list` with composite ranking
+
+---
+
+<!-- /ANCHOR:related -->

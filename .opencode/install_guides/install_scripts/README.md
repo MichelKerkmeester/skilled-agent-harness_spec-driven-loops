@@ -5,6 +5,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -18,7 +19,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are MCP Install Scripts?
 
@@ -53,7 +56,9 @@ MCP Install Scripts automate the installation and configuration of Model Context
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -91,7 +96,9 @@ opencode
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 install_scripts/
@@ -119,7 +126,9 @@ install_scripts/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Available Scripts
 
@@ -163,7 +172,9 @@ install_scripts/
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Configuration Files
 
@@ -203,7 +214,9 @@ All scripts support these standard options:
 
 ---
 
+<!-- /ANCHOR:configuration -->
 ## 6. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Install Core MCPs
 
@@ -251,7 +264,9 @@ All scripts support these standard options:
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -339,7 +354,9 @@ bdg --version
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 8. ❓ FAQ
+<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -403,7 +420,9 @@ Note: The master installer (`install-all.sh`) automatically uses non-interactive
 
 ---
 
+<!-- /ANCHOR:faq -->
 ## 9. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -426,3 +445,4 @@ Note: The master installer (`install-all.sh`) automatically uses non-interactive
 ---
 
 *Part of the [OpenCode Development Environment](https://github.com/MichelKerkmeester/opencode-dev-environment)*
+<!-- /ANCHOR:related -->

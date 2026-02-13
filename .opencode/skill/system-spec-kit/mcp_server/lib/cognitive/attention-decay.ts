@@ -32,8 +32,8 @@ import {
   calculatePatternScore,
   calculateCitationScore,
   FIVE_FACTOR_WEIGHTS,
-} from '../scoring/composite-scoring';
-import type { FiveFactorWeights } from '../scoring/composite-scoring';
+} from '../../scoring/composite-scoring';
+import type { FiveFactorWeights } from '../../scoring/composite-scoring';
 
 /* -------------------------------------------------------------
    2. CONFIGURATION
@@ -264,9 +264,9 @@ function getAttentionBreakdown(memory: Record<string, unknown>): AttentionBreakd
     : 0.5;
   const importance = typeof calculateImportanceScore === 'function'
     ? calculateImportanceScore(
-        String(memory.importance_tier || memory.importanceTier || 'normal'),
-        memory.importance_weight as number | undefined
-      ) as number
+      String(memory.importance_tier || memory.importanceTier || 'normal'),
+      memory.importance_weight as number | undefined
+    ) as number
     : 0.5;
   const pattern = typeof calculatePatternScore === 'function'
     ? calculatePatternScore(memory) as number

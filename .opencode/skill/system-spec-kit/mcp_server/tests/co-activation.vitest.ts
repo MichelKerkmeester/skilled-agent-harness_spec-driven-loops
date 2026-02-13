@@ -5,7 +5,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { describe, it, expect } from 'vitest';
-import * as coActivation from '../lib/cognitive/co-activation';
+import * as coActivation from '../lib/cache/cognitive/co-activation';
 
 describe('Co-Activation Module', () => {
   /* ─────────────────────────────────────────────────────────────

@@ -1,23 +1,36 @@
+---
+title: "Cognitive Subsystem"
+description: "Research-backed memory decay, retrieval, and classification engine for the Spec Kit Memory MCP server."
+trigger_phrases:
+  - "cognitive memory"
+  - "FSRS decay"
+  - "memory classification"
+importance_tier: "normal"
+---
+
 # Cognitive Subsystem
 
-Research-backed memory decay, retrieval, and classification engine for the Spec Kit Memory MCP server.
+> Research-backed memory decay, retrieval, and classification engine for the Spec Kit Memory MCP server.
 
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1-overview)
-- [2. KEY CONCEPTS](#2-key-concepts)
-- [3. STRUCTURE](#3-structure)
-- [4. FEATURES](#4-features)
-- [5. USAGE EXAMPLES](#5-usage-examples)
-- [6. TROUBLESHOOTING](#6-troubleshooting)
-- [7. FAQ](#7-faq)
-- [8. RELATED RESOURCES](#8-related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📖 KEY CONCEPTS](#2--key-concepts)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
+- [7. ❓ FAQ](#7--faq)
+- [8. 📚 RELATED RESOURCES](#8--related-resources)
 
 ---
 
-## 1. OVERVIEW
+<!-- /ANCHOR:table-of-contents -->
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The cognitive subsystem implements human memory principles to manage conversation context intelligently. It models how memories decay, strengthen through use, and transition between activity states based on research-validated algorithms from cognitive science and spaced repetition systems.
 
@@ -90,7 +103,9 @@ The cognitive subsystem is the "brain" of the memory system. It determines which
 
 ---
 
-## 2. KEY CONCEPTS
+<!-- /ANCHOR:overview -->
+## 2. 📖 KEY CONCEPTS
+<!-- ANCHOR:key-concepts -->
 
 ### The FSRS Formula
 
@@ -217,7 +232,9 @@ half_life = 60 days → stability ≈ 4.69 days
 
 ---
 
-## 3. STRUCTURE
+<!-- /ANCHOR:key-concepts -->
+## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 cognitive/                      # TypeScript source files (8 modules)
@@ -247,7 +264,9 @@ cognitive/                      # TypeScript source files (8 modules)
 
 ---
 
-## 4. FEATURES
+<!-- /ANCHOR:structure -->
+## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### FSRS Power-Law Decay
 
@@ -706,7 +725,9 @@ BOOST_FACTOR: 0.15       // Maximum similarity boost for temporally adjacent mem
 
 ---
 
-## 5. USAGE EXAMPLES
+<!-- /ANCHOR:features -->
+## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Initialize Cognitive System
 
@@ -818,7 +839,9 @@ for (const memory of activeMemories) {
 
 ---
 
-## 6. TROUBLESHOOTING
+<!-- /ANCHOR:examples -->
+## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -922,7 +945,9 @@ console.log(`State: ${classification.state}, R: ${classification.retrievability}
 
 ---
 
-## 7. FAQ
+<!-- /ANCHOR:troubleshooting -->
+## 7. ❓ FAQ
+<!-- ANCHOR:faq -->
 
 ### General Questions
 
@@ -978,7 +1003,9 @@ Note: `temporal-contiguity.js` in dist/ is **not** orphaned — it is compiled f
 
 ---
 
-## 8. RELATED RESOURCES
+<!-- /ANCHOR:faq -->
+## 8. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Modules
 
@@ -1010,3 +1037,4 @@ Note: `temporal-contiguity.js` in dist/ is **not** orphaned — it is compiled f
 | `SPECKIT_WORKING_MEMORY`   | true      | Enable working memory sessions            |
 
 *Cognitive Subsystem v1.7.2 — Research-Backed Memory Management*
+<!-- /ANCHOR:related -->

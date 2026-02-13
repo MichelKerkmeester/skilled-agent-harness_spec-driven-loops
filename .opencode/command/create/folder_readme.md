@@ -53,7 +53,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    │       │   │                                                            │
    │       │   │ This command requires the @write agent for:                │
    │       │   │   • Template-first workflow (loads before creating)          │
-   │       │   │   • DQI scoring (target: 90+ Excellent)                    │
+   │       │   │   • DQI scoring (target: 75+ Good)                         │
    │       │   │   • workflows-documentation skill integration               │
    │       │   │                                                            │
    │       │   │ To proceed, restart with:                                  │
@@ -324,7 +324,7 @@ purpose: Create comprehensive README files with proper structure and AI-optimiza
 action: Generate scannable, well-organized README with table of contents
 
 operating_mode:
-  workflow: sequential_5_step
+  workflow: sequential_6_step
   workflow_compliance: MANDATORY
   workflow_execution: interactive
   approvals: step_by_step
@@ -352,6 +352,8 @@ $ARGUMENTS
 ---
 
 ## 3. ⚡ INSTRUCTIONS
+
+> **Note:** Steps 1-3 (intent parsing, skill loading, asset loading) are handled automatically by the command framework. This section covers the agent execution steps.
 
 ### Step 4: Verify Unified Setup Phase Passed
 
@@ -388,13 +390,13 @@ Execute all 5 steps in sequence following the workflow definition.
 
 ## 4. 📌 REFERENCE (See YAML for Details)
 
-| Section           | Location in YAML              |
-| ----------------- | ----------------------------- |
-| README Types      | `notes.readme_type_selection` |
-| Key Patterns      | `notes.key_patterns`          |
-| Section Templates | `templates.[type]`            |
-| Failure Recovery  | `failure_recovery`            |
-| Completion Report | `completion_report_template`  |
+| Section           | Location in YAML                                   |
+| ----------------- | -------------------------------------------------- |
+| README Types      | `readme_types`                                     |
+| Key Patterns      | `template_references`                              |
+| Section Templates | `templates`                                        |
+| Failure Recovery  | `error_recovery`                                   |
+| Completion Report | `completion_report`                                |
 
 **Reference READMEs:**
 - `.opencode/skill/system-spec-kit/README.md` (SpecKit + Memory pattern)
@@ -405,19 +407,19 @@ Execute all 5 steps in sequence following the workflow definition.
 
 **Example 1: Project README**
 ```
-/documentation:create_readme ./ --type project
+/create:folder_readme ./ --type project
 ```
 → Creates comprehensive project README at root
 
 **Example 2: Skill README**
 ```
-/documentation:create_readme .opencode/skill/my-skill --type skill
+/create:folder_readme .opencode/skill/my-skill --type skill
 ```
 → Creates skill documentation with triggers, commands, MCP tools
 
 **Example 3: Component README**
 ```
-/documentation:create_readme ./src/auth --type component
+/create:folder_readme ./src/auth --type component
 ```
 → Creates component README with API, usage, integration
 

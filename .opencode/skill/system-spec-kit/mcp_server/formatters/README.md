@@ -1,9 +1,20 @@
+---
+title: "MCP Server Formatters"
+description: "Output formatters for search results, token metrics, and MCP response formatting."
+trigger_phrases:
+  - "formatters"
+  - "search results"
+  - "token metrics"
+importance_tier: "normal"
+---
+
 # MCP Server Formatters
 
 > Output formatters for search results, token metrics, and MCP response formatting.
 
 ---
 
+<!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
 - [1. 📖 OVERVIEW](#1--overview)
@@ -13,6 +24,8 @@
 - [5. 💡 USAGE EXAMPLES](#5--usage-examples)
 - [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
 - [7. 📚 RELATED DOCUMENTS](#7--related-documents)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 

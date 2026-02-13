@@ -1,21 +1,35 @@
+---
+title: "Search Subsystem"
+description: "Multi-modal hybrid search architecture combining vector, lexical (BM25/FTS5), and graph-based retrieval with Reciprocal Rank Fusion (RRF)."
+trigger_phrases:
+  - "search subsystem"
+  - "hybrid search"
+  - "vector search"
+importance_tier: "normal"
+---
+
 # Search Subsystem
 
-Multi-modal hybrid search architecture combining vector, lexical (BM25/FTS5), and graph-based retrieval with Reciprocal Rank Fusion (RRF).
+> Multi-modal hybrid search architecture combining vector, lexical (BM25/FTS5), and graph-based retrieval with Reciprocal Rank Fusion (RRF).
 
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1-overview)
-- [2. KEY CONCEPTS](#2-key-concepts)
-- [3. MODULE STRUCTURE](#3-module-structure)
-- [4. FEATURES](#4-features)
-- [5. USAGE EXAMPLES](#5-usage-examples)
-- [6. RELATED RESOURCES](#6-related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📊 KEY CONCEPTS](#2--key-concepts)
+- [3. 📁 MODULE STRUCTURE](#3--module-structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 📚 RELATED RESOURCES](#6--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The search subsystem provides production-grade hybrid search capabilities with multiple retrieval methods fused via RRF scoring. It handles query expansion, intent classification, typo tolerance, and optional cross-encoder reranking.
 
@@ -48,9 +62,12 @@ Final Results
 **Architecture Note:**
 `vector-index.ts` is a typed facade that delegates operations to `vector-index-impl.ts` (the full implementation). Both files are TypeScript. See [Module Structure](#3-module-structure) for details.
 
+<!-- /ANCHOR:overview -->
+
 ---
 
-## 2. KEY CONCEPTS
+## 2. 📊 KEY CONCEPTS
+<!-- ANCHOR:key-concepts -->
 
 ### Reciprocal Rank Fusion (RRF)
 
@@ -131,9 +148,12 @@ score(D, Q) = Sum IDF(qi) * (tf(qi,D) * (k1+1)) / (tf(qi,D) + k1 * (1-b + b*|D|/
 
 **Trade-off**: Adds 200-500ms latency but improves precision by 15-25%.
 
+<!-- /ANCHOR:key-concepts -->
+
 ---
 
-## 3. MODULE STRUCTURE
+## 3. 📁 MODULE STRUCTURE
+<!-- ANCHOR:structure -->
 
 ### Migration Status
 
@@ -217,9 +237,12 @@ vector-index-impl.ts     (3333 LOC)
    Final Results
 ```
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-## 4. FEATURES
+## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Configuration Options
 
@@ -371,9 +394,12 @@ hybridSearch("authentication", { specFolder: "specs/007-auth" })
 // Linear interpolation: penalty = 0.8 + (len/100) * 0.2
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
-## 5. USAGE EXAMPLES
+## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Basic Hybrid Search
 
@@ -470,9 +496,12 @@ const version = db.prepare('PRAGMA user_version').pluck().get() as number;
 console.log(`Schema version: ${version}`);
 ```
 
+<!-- /ANCHOR:examples -->
+
 ---
 
-## 6. RELATED RESOURCES
+## 6. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Dependencies
 
@@ -522,6 +551,8 @@ console.log(`Schema version: ${version}`);
 | REQ-018 | Query expansion (fuzzy)          | hybrid-search.ts                |
 | REQ-027 | Fuzzy acronym matching           | hybrid-search.ts                |
 | REQ-028 | Pure TypeScript BM25             | bm25-index.ts                   |
+
+<!-- /ANCHOR:related -->
 
 ---
 

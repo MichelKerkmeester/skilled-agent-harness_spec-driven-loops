@@ -1,3 +1,14 @@
+---
+title: "Scripts Library"
+description: "TypeScript and shell script libraries for CLI utilities including content processing, summarization, and validation."
+trigger_phrases:
+  - "scripts library"
+  - "embeddings library"
+  - "anchor generator"
+  - "semantic summarizer"
+importance_tier: "normal"
+---
+
 # Scripts Library
 
 > TypeScript and shell script libraries for CLI utilities including content processing, summarization, and validation.
@@ -5,6 +16,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -16,7 +28,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the lib/ Directory?
 
@@ -83,7 +97,9 @@ This consolidation ensures consistent behavior between CLI scripts and MCP serve
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -127,7 +143,9 @@ console.log(`Embedding dimensions: ${embedding.length}`);
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 lib/
@@ -162,7 +180,9 @@ lib/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Re-exported Modules
 
@@ -221,7 +241,9 @@ See [../../shared/README.md](../../shared/README.md) for full documentation.
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Generate Embedding (Multi-Provider)
 
@@ -311,7 +333,9 @@ const summary = summarize({
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -380,7 +404,9 @@ node -e "import('../dist/lib/trigger-extractor.js').then(m => console.log(m.extr
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -400,3 +426,4 @@ node -e "import('../dist/lib/trigger-extractor.js').then(m => console.log(m.extr
 | [nomic-embed-text](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) | Default HF embedding model         |
 | [Voyage AI](https://www.voyageai.com/)                                    | Recommended embedding provider     |
 | [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)   | OpenAI embedding API docs          |
+<!-- /ANCHOR:related -->

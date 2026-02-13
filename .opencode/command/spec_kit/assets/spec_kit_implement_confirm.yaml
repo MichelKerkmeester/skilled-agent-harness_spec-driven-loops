@@ -1,32 +1,32 @@
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 # SMART SPECKIT: IMPLEMENT WORKFLOW (INTERACTIVE MODE)
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
 role: Expert Developer using Smart SpecKit for interactive implementation
 purpose: Spec-driven implementation with step-by-step user approval
 action: Execute from task breakdown to completion with user checkpoints
 
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential
-  workflow_compliance: MANDATORY
-  workflow_execution: interactive
+  compliance: MANDATORY
+  execution: interactive
   approvals: step_by_step
   tracking: progressive_task_checklists
   validation: checkpoint_based
 
 # ─────────────────────────────────────────────────────────────────
-# GATE 3 COMPLIANCE (AGENTS.md Section 2)
+# GATE 3 COMPLIANCE
 # ─────────────────────────────────────────────────────────────────
 gate_3_compliance:
   status: ENFORCED_VIA_PHASES
   mechanism: "Phase 1-3 blocking gates in implement.md"
   standard_question: "Spec Folder (required): A) Existing | B) New | C) Update related | D) Skip"
   first_message_protocol: "If FIRST message requests implementation, ask spec folder FIRST"
-  
   failure_pattern_19:
-    name: "Skip Gate 3 on exciting tasks"
     triggers: ["comprehensive", "fix all", "15 agents", "implement everything"]
     action: "STOP → Ask spec folder question → Wait for A/B/C/D"
-  
   self_verification: |
     □ File modification detected? Did I ask spec folder question?
     □ Did I wait for user's A/B/C/D response before using project tools?
@@ -36,52 +36,26 @@ implementation_philosophy:
   approach: "Systematic execution with user validation at checkpoints"
   mandate: "Build incrementally, review with user, deliver confidently"
 
-# ───────────────────────────────────────────────────────────────────
-# USER INPUTS (Transformed from raw text)
-# ───────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
 user_inputs:
-  spec_folder: |
-    [SPEC_FOLDER]
-    Spec folder path. REQUIRED - must contain spec.md and plan.md.
-
-  context: |
-    [CONTEXT]
-    Additional context or constraints for implementation.
-
-  issues: |
-    [ISSUES]
-    Known issues from planning phase.
-
-  request: |
-    [REQUEST]
-    Additional implementation instructions. Default: "Conduct comprehensive review and implement"
-
-  environment: |
-    [STAGING LINK]
-    Staging URL for browser testing.
-
-  scope: |
-    [FILES]
-    Files or folders to work with.
+  spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED for implement workflow."
+  context: "[CONTEXT] - Background info, constraints, existing docs."
+  issues: "[ISSUES] - Known issues or concerns."
+  request: "[REQUEST] - Implementation scope. Default: comprehensive review."
+  environment: "[STAGING LINK] - Staging/production URL for browser testing."
+  scope: "[FILES] - Files/folders to work with."
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   spec_id:
-    derive_from: "spec_folder path using pattern specs/{NNN} or specs/{NNN-name}"
-    fallback: "Extract numeric portion or use timestamp if extraction fails"
-
-  defaults:
-    spec_folder_empty: "REQUIRED - must be provided"
-    context_empty: "Infer from [REQUEST] and codebase exploration"
-    issues_empty: "Use issues from planning phase"
-    environment_empty: "Skip browser testing steps"
-    scope_empty: "Use scope_policy.default"
-
-  scope_policy:
-    default: "specs/**"
-    rule: "Limit file operations to scope when provided"
+    derive_from: "specs/{NNN} or specs/{NNN-name}"
+    fallback: "numeric portion or timestamp"
+  defaults: { spec_folder_empty: "REQUIRED", context_empty: "Infer from REQUEST + codebase", issues_empty: "Use planning phase issues", environment_empty: "Skip browser testing", scope_empty: "specs/**" }
+  scope_policy: { default: "specs/**", rule: "Limit file operations to scope when provided" }
 
 # ─────────────────────────────────────────────────────────────────
 # REQUEST HANDLING
@@ -91,87 +65,59 @@ request_handling:
   override: "Use [REQUEST] if provided, else use default above"
 
 # ─────────────────────────────────────────────────────────────────
-# DOCUMENTATION LEVELS (Progressive Enhancement)
+# DOCUMENTATION LEVELS
 # ─────────────────────────────────────────────────────────────────
 documentation_levels:
   level_1_baseline:
     name: "Level 1 (Baseline)"
-    required_files:
-    - spec.md
-    - plan.md
-    - tasks.md
-    loc_guidance: "<100 LOC"
-
+    required_files: [spec.md, plan.md, tasks.md]
+    loc_guidance: "<100"
+    use_case: "Simple changes, bug fixes"
   level_2_verification:
     name: "Level 2 (Verification)"
-    required_files:
-    - spec.md
-    - plan.md
-    - tasks.md
-    - checklist.md
-    loc_guidance: "100-499 LOC"
-
+    required_files: [spec.md, plan.md, tasks.md, checklist.md]
+    loc_guidance: "100-499"
+    use_case: "Medium features, refactoring"
   level_3_full:
     name: "Level 3 (Full)"
-    required_files:
-    - spec.md
-    - plan.md
-    - tasks.md
-    - checklist.md
-    - decision-record.md
-    loc_guidance: ">=500 LOC"
-
+    required_files: [spec.md, plan.md, tasks.md, checklist.md, decision-record.md]
+    loc_guidance: ">=500"
+    use_case: "Complex features, architecture changes"
   level_selection:
     note: "LOC thresholds are SOFT GUIDANCE - choose level based on complexity and risk"
+    default: "Level 1 for simple tasks, escalate based on analysis"
 
 # ─────────────────────────────────────────────────────────────────
 # PREREQUISITES
 # ─────────────────────────────────────────────────────────────────
 prerequisites:
-  level_1_required:
-  - "[SPEC_FOLDER]/spec.md"
-  - "[SPEC_FOLDER]/plan.md"
-  - "[SPEC_FOLDER]/tasks.md"  # Will be created if missing
-  level_2_required:
-  - "[SPEC_FOLDER]/checklist.md"
-  level_3_required:
-  - "[SPEC_FOLDER]/decision-record.md"
-  optional_artifacts:
-  - "[SPEC_FOLDER]/research.md"
+  level_1_required: ["[SPEC_FOLDER]/spec.md", "[SPEC_FOLDER]/plan.md", "[SPEC_FOLDER]/tasks.md"]
+  level_2_required: ["[SPEC_FOLDER]/checklist.md"]
+  level_3_required: ["[SPEC_FOLDER]/decision-record.md"]
+  optional_artifacts: ["[SPEC_FOLDER]/research.md"]
   verification: MUST EXIST BEFORE PROCEEDING
   note: This workflow assumes planning completed via /spec_kit:plan
 
 # ─────────────────────────────────────────────────────────────────
-# AVAILABLE TEMPLATES (Level-Specific)
+# AVAILABLE TEMPLATES
 # ─────────────────────────────────────────────────────────────────
 available_templates:
-  # Default level when not explicitly specified
   default_level: level_2
-
-  # Level 1 - Baseline (<100 LOC)
   level_1:
     tasks: .opencode/skill/system-spec-kit/templates/level_1/tasks.md
     implementation_summary: .opencode/skill/system-spec-kit/templates/level_1/implementation-summary.md
-
-  # Level 2 - Verification (100-499 LOC)
   level_2:
     tasks: .opencode/skill/system-spec-kit/templates/level_2/tasks.md
     checklist: .opencode/skill/system-spec-kit/templates/level_2/checklist.md
     implementation_summary: .opencode/skill/system-spec-kit/templates/level_2/implementation-summary.md
-
-  # Level 3 - Full (>=500 LOC)
   level_3:
     tasks: .opencode/skill/system-spec-kit/templates/level_3/tasks.md
     checklist: .opencode/skill/system-spec-kit/templates/level_3/checklist.md
     implementation_summary: .opencode/skill/system-spec-kit/templates/level_3/implementation-summary.md
-
-  # Level 3+ - Extended (Complex/Enterprise)
   level_3_plus:
     tasks: .opencode/skill/system-spec-kit/templates/level_3+/tasks.md
     checklist: .opencode/skill/system-spec-kit/templates/level_3+/checklist.md
     implementation_summary: .opencode/skill/system-spec-kit/templates/level_3+/implementation-summary.md
-
-  # Shared templates (available at any level)
   shared:
     handover: .opencode/skill/system-spec-kit/templates/handover.md
     debug_delegation: .opencode/skill/system-spec-kit/templates/debug-delegation.md
@@ -181,552 +127,159 @@ available_templates:
 # ─────────────────────────────────────────────────────────────────
 parallel_dispatch_config:
   enabled: true
-
-  complexity_scoring:
-    domain_count:
-      weight: 0.35
-      domains: [code, analysis, docs, git, testing, devops]
-      scoring: "1=0.0, 2=0.5, 3+=1.0"
-    file_count:
-      weight: 0.25
-      scoring: "1-2=0.0, 3-5=0.5, 6+=1.0"
-    loc_estimate:
-      weight: 0.15
-      scoring: "<50=0.0, 50-200=0.5, >200=1.0"
-    parallel_opportunity:
-      weight: 0.20
-      scoring: "sequential=0.0, some=0.5, high=1.0"
-    task_type:
-      weight: 0.05
-      scoring: "trivial=0.0, moderate=0.5, complex=1.0"
-
-  # Decision thresholds (no auto-dispatch)
-  thresholds:
-    direct_max: 20
-    ask_min: 20
-    min_domains_for_ask: 2
-    # NOTE: No auto-dispatch - always ask before parallel dispatch
-    # Always ask user before parallel dispatch
-
-  session_preference:
-    persist_duration_seconds: 3600
-
+  scoring: { domain_count: 0.35, file_count: 0.25, loc_estimate: 0.15, parallel_opportunity: 0.20, task_type: 0.05 }
+  thresholds: { direct_max: 20, ask_min: 20, min_domains: 2 }
+  session_preference_s: 3600
   override_phrases:
-    direct: ["proceed directly", "handle directly", "skip parallel", "skip agents"]
-    parallel: ["use parallel", "dispatch agents", "parallelize", "use agents"]
-    auto: ["auto-decide", "auto mode", "decide for me"]
-
-  question_template:
-    method: present_options_to_user
-    header: "Parallel Dispatch"
-    format: |
-      **Phase: {phase_name}**
-      Complexity: {complexity_score}% | Domains: {domain_count} ({domains_list})
-
-      This phase may benefit from parallel sub-agents for faster execution.
-    options:
-      - id: A
-        label: "Handle directly"
-        description: "Execute phase sequentially without parallel agents"
-      - id: B
-        label: "Use parallel agents"
-        description: "Dispatch specialized agents for faster parallel execution"
-      - id: C
-        label: "Auto-decide for session"
-        description: "Let system decide based on complexity thresholds (1 hour)"
-
-  eligible_phases:
-    - step_6_development
+    direct: [ "proceed directly", "handle directly", "skip parallel", "skip agents" ]
+    parallel: [ "use parallel", "dispatch agents", "parallelize", "use agents" ]
+    auto: [ "auto-decide", "auto mode", "decide for me" ]
+  eligible_phases: [step_6_development]
 
 # ─────────────────────────────────────────────────────────────────
 # MULTI-AGENT DISPATCH CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
 multi_agent_config:
   enabled: true
-
   dispatch_modes:
-    single:
-      id: A
-      label: "Single Agent"
-      description: "Execute with one primary agent (default)"
-      agent_count: 1
-      model: "opus"
-
+    single: { id: A, label: "Single Agent", agents: 1, model: opus }
     multi_small:
       id: B
       label: "Multi-Agent (1+2)"
-      description: "1 orchestrator + 2 parallel workers"
-      orchestrator:
-        model: "opus"
-        role: "coordinator"
-        responsibilities:
-          - "Coordinate worker dispatch for implementation tasks"
-          - "Synthesize worker outputs"
-          - "Execute integration and verification steps"
-          - "Create implementation-summary.md"
+      orchestrator: { model: opus, role: coordinator }
       workers:
-        - role: "implementation_agent"
-          focus: "Core Implementation"
-          step: 6
-          responsibilities:
-            - "Execute core implementation tasks from tasks.md"
-            - "Follow TDD approach where applicable"
-            - "Implement models, services, endpoints"
-            - "Update task checklist progressively"
-        - role: "test_agent"
-          focus: "Test Implementation"
-          step: 6
-          responsibilities:
-            - "Write unit tests for implemented features"
-            - "Validate against acceptance criteria"
-            - "Execute test suite and report results"
-            - "Document test coverage"
-
+        - { role: implementation_agent, focus: "Core Implementation", step: 6 }
+        - { role: test_agent, focus: "Test Implementation", step: 6 }
     multi_large:
       id: C
       label: "Multi-Agent (1+3)"
-      description: "1 orchestrator + 3 parallel workers"
-      orchestrator:
-        model: "opus"
-        role: "coordinator"
-        responsibilities:
-          - "Coordinate worker dispatch for implementation tasks"
-          - "Synthesize worker outputs"
-          - "Execute integration and verification steps"
-          - "Create implementation-summary.md"
+      orchestrator: { model: opus, role: coordinator }
       workers:
-        - role: "implementation_agent"
-          focus: "Core Implementation"
-          step: 6
-          responsibilities:
-            - "Execute core implementation tasks from tasks.md"
-            - "Follow TDD approach where applicable"
-            - "Implement models, services, endpoints"
-            - "Update task checklist progressively"
-        - role: "test_agent"
-          focus: "Test Implementation"
-          step: 6
-          responsibilities:
-            - "Write unit tests for implemented features"
-            - "Validate against acceptance criteria"
-            - "Execute test suite and report results"
-            - "Document test coverage"
-        - role: "integration_agent"
-          focus: "Integration and Polish"
-          step: 6
-          responsibilities:
-            - "Handle database and middleware integration"
-            - "Implement logging and error handling"
-            - "Optimize performance-critical paths"
-            - "Document integration points"
-
-  worker_output_format:
-    structure:
-      role: "string - worker role identifier"
-      focus: "string - assigned focus area"
-      tasks_completed: "array - completed task IDs"
-      files_modified: "array - file paths modified"
-      tests_status: "object - test results summary"
-      blockers: "array - any blocking issues"
-      confidence: "number - 0-100 confidence score"
-    example: |
-      {
-        "role": "implementation_agent",
-        "focus": "Core Implementation",
-        "tasks_completed": ["TASK-001", "TASK-002"],
-        "files_modified": [
-          "src/components/Feature.ts",
-          "src/utils/helpers.ts"
-        ],
-        "tests_status": {
-          "passed": 5,
-          "failed": 0,
-          "skipped": 1
-        },
-        "blockers": [],
-        "confidence": 90
-      }
-
-  fallback_behavior:
-    on_worker_timeout: "Continue with available outputs, note incomplete tasks"
-    on_all_workers_fail: "Fall back to single-agent mode"
-    on_orchestrator_fail: "Save partial results to scratch/"
-    worker_timeout_seconds: 60
+        - { role: implementation_agent, focus: "Core Implementation", step: 6 }
+        - { role: test_agent, focus: "Test Implementation", step: 6 }
+        - { role: integration_agent, focus: "Integration and Polish", step: 6 }
+  fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
 
 # ─────────────────────────────────────────────────────────────────
 # AGENT ROUTING CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
 agent_routing:
   verification_phase:
-    step: 7  # Completion/Verification step
+    step: 7
     agent: "@review"
     agent_file: ".opencode/agent/review.md"
-    dispatch_method: |
-      Task tool with prompt:
-      ---
-      You are the @review agent. Verify implementation completeness.
-      
-      Spec Folder: {spec_path}
-      Checklist: {spec_path}/checklist.md
-      
-      Execute:
-      1. Load checklist.md
-      2. Verify ALL P0 items are [x] with evidence
-      3. Verify ALL P1 items are [x] or have deferral approval
-      4. Score against quality rubric (100-point scale)
-      
-      Return:
-      - P0 status: [PASS/FAIL]
-      - P1 status: [PASS/PARTIAL/FAIL]
-      - Quality score: [0-100]
-      - Blocking issues: [list]
-      ---
-    fallback: "general"
-    fallback_reason: "If @review agent file unavailable or dispatch fails"
+    dispatch: "Task tool → @review verify P0/P1 checklist items for {spec_path}"
+    fallback: general
     blocking: true
-    on_block: |
-      ⛔ BLOCKED: P0 checklist items incomplete.
-      Review agent found the following blocking issues:
-      {blocking_issues}
-      
-      Address these P0 items before claiming completion.
-    on_fallback: |
-      Warning: Review agent unavailable, using general dispatch.
-      Verification will continue with standard Task execution.
+    on_block: "P0 items incomplete. Address before completion."
 
 # ─────────────────────────────────────────────────────────────────
-# QUALITY GATES CONFIGURATION
+# QUALITY GATES
 # ─────────────────────────────────────────────────────────────────
 quality_gates:
   enabled: true
-
-  gates:
-    pre_implementation:
-      location: "Step 5 → Step 6 transition"
-      threshold: 70
-      blocking: true
-      evaluates:
-        - prerequisites_complete
-        - plan_clarity
-        - task_breakdown_quality
-      on_fail: |
-        ⛔ PRE-IMPLEMENTATION GATE FAILED (Score: {score}/100)
-        Cannot start development until score >= 70.
-
-        Issues:
-        {issues_list}
-
-        Actions:
-        - A) Fix issues and re-evaluate
-        - B) Override gate (requires justification)
-      
-      # Five Checks Framework (Level 3+ specs)
-      five_checks:
-        required_for: "Level 3+"
-        optional_for: "Level 2"
-        checks:
-          1_necessary:
-            question: "Solving ACTUAL need NOW?"
-            pass_criteria: "Clear requirement exists, not speculative"
-          2_beyond_local_maxima:
-            question: "Explored alternatives?"
-            pass_criteria: "≥2 alternatives considered with trade-offs"
-          3_sufficient:
-            question: "Simplest approach?"
-            pass_criteria: "No simpler solution achieves the goal"
-          4_fits_goal:
-            question: "On critical path?"
-            pass_criteria: "Directly advances stated objective"
-          5_open_horizons:
-            question: "Long-term aligned?"
-            pass_criteria: "Doesn't create technical debt or lock-in"
-        on_fail: "Record in decision-record.md for architectural changes"
-
-    mid_implementation:
-      location: "Step 6.5 checkpoint"
-      threshold: 70
-      blocking: false  # Warning only
-      evaluates:
-        - code_quality
-        - test_coverage
-        - task_completion_rate
-      on_fail: |
-        ⚠️ MID-IMPLEMENTATION GATE WARNING (Score: {score}/100)
-        Threshold: 65. Continuing with caution.
-
-        Concerns:
-        {issues_list}
-
-    post_implementation:
-      location: "Before Step 7 completion"
-      threshold: 70
-      blocking: true
-      evaluates:
-        - all_tasks_complete
-        - tests_pass
-        - checklist_verified
-      on_fail: |
-        ⛔ POST-IMPLEMENTATION GATE FAILED (Score: {score}/100)
-        Cannot claim completion until score >= 70.
-
-        Blocking issues:
-        {issues_list}
-
-  special_handling:
-    review_agent_blocking:
-      note: "@review agent blocking (Section 8) is SEPARATE from quality gates"
-      relationship: |
-        - Quality gates: Check numeric score thresholds
-        - @review agent: Checks categorical P0/P1 items
-        - BOTH must pass for completion claims
-      example: |
-        Quality gate PASS (score: 75) + @review BLOCKED (P0 incomplete)
-        = Cannot complete (must fix P0 items)
+  pre_implementation:
+    location: "Before Step 6"
+    threshold: 70
+    blocking: hard
+    checks:
+      - { id: prerequisites_complete, points: 30 }
+      - { id: plan_clarity, points: 25 }
+      - { id: task_breakdown_quality, points: 25 }
+      - { id: checklist_verified, points: 20 }
+    on_fail: "PRE-IMPLEMENTATION GATE FAILED ({score}/100). Fix issues before coding."
+  post_implementation:
+    location: "After Step 7"
+    threshold: 70
+    blocking: hard
+    checks:
+      - { id: all_tasks_complete, points: 30 }
+      - { id: tests_pass, points: 25 }
+      - { id: summary_exists, points: 25 }
+      - { id: checklist_verified, points: 20 }
+    on_fail: "POST-IMPLEMENTATION GATE FAILED ({score}/100). Fix blocking issues."
 
 # ─────────────────────────────────────────────────────────────────
-# CIRCUIT BREAKER CONFIGURATION
+# CIRCUIT BREAKER
 # ─────────────────────────────────────────────────────────────────
 circuit_breaker:
   enabled: true
-
-  thresholds:
-    failure_threshold: 3      # Failures before OPEN state
-    recovery_timeout_s: 60    # Seconds in OPEN before HALF-OPEN
-    success_to_close: 1       # Successes in HALF-OPEN to return to CLOSED
-
-  states:
-    closed:
-      description: "Normal operation - all operations proceed"
-      behavior: "Execute operations normally"
-    open:
-      description: "3+ consecutive failures - operations fail-fast"
-      behavior: "Skip affected step, report to user"
-    half_open:
-      description: "After recovery_timeout_s (60s) - single test operation allowed"
-      behavior: "Allow one operation, monitor result"
-
-  step_behavior:
-    steps_1_to_5:
-      circuit_active: true
-      on_open: "Skip to next non-dependent step"
-    step_6_development:
-      circuit_active: true
-      granularity: "per_task"
-      on_open: "Isolate failing task, continue with others"
-    step_7_completion:
-      circuit_active: false
-      reason: "Critical step - must complete or fail explicitly"
-    steps_8_to_9:
-      circuit_active: true
-      on_open: "Skip step, log warning"
-
-  recovery_options:
-    on_circuit_open:
-      prompt: |
-        🔌 Circuit breaker OPEN for {step_name}
-        Consecutive failures: {failure_count}
-        Last error: {last_error}
-
-        Options:
-        - A) Retry after recovery_timeout_s ({recovery_timeout_s}s)
-        - B) Skip affected step
-        - C) Abort workflow
-      interactive_action: "present_options"  # Interactive mode asks user
-
-  special_handling:
-    review_agent_distinction:
-      note: "Circuit breaker and @review blocking are SEPARATE mechanisms"
-      circuit_breaker: "Handles operational failures (errors, timeouts, crashes)"
-      review_blocking: "Handles quality failures (incomplete P0 items)"
-      both_required: "Both must be satisfied for successful completion"
-
-# ─────────────────────────────────────────────────────────────────
-# CONFIDENCE CHECKPOINTS (Quick Reference)
-# ─────────────────────────────────────────────────────────────────
-confidence_checkpoints:
-  enabled: true
-  key_steps: [1, 3, 6, 9]  # Steps requiring confidence evaluation
-  thresholds:
-    high: 80      # ≥80% proceed with evidence
-    medium: 40    # 40-79% proceed with caution
-    low: 0        # <40% ask clarifying question
-  protocol: |
-    At each key step, evaluate confidence:
-    - ≥80%: Proceed with cited evidence
-    - 40-79%: Proceed with caution, document assumptions
-    - <40%: STOP and ask clarifying question (A/B/C format)
+  thresholds: { failures: 3, recovery_s: 60, success_to_close: 1 }
+  states: { CLOSED: normal_operation, OPEN: skip_affected_step, HALF_OPEN: test_single }
+  step_overrides: { step_7: "critical - must complete or fail explicitly" }
 
 # ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK
 # ─────────────────────────────────────────────────────────────────
 confidence_framework:
-  mode_note: "Interactive mode integrates confidence checks with user approval"
-  
   thresholds:
-    high: { range: "80-100%", action: "Proceed with citable source" }
+    high: { range: "80-100%", action: "Proceed with cited evidence" }
     medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
-    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
-  
-  # Implementation-specific scoring (focus on code confidence)
-  scoring_weights:
-    pattern_alignment: 0.30
-    side_effect_awareness: 0.25
-    implementation_clarity: 0.25
-    test_coverage: 0.20
-  
-  per_task_checkpoint:
-    evaluate_at: "Before each code change"
-    high_action: "Implement task, mark [x] when complete"
-    medium_action: "Implement with extra validation, add comments"
-    low_action: "STOP - Do not implement uncertain code"
-  
-  clarification_format: |
-    "Implementation confidence low for task [T###] ([NN%]):
-    - A) Research: [investigate specific technical question]
-    - B) Simplify: [reduce scope to well-understood approach]
-    - C) Skip: [defer task with documented reason]"
-  
-  # Standard reply format for confidence checkpoints
-  reply_format:
-    required_fields:
-      - "Confidence: NN%"
-      - "Top factors: 2-3 bullets"
-      - "Next action: proceed | proceed with caution | ask for clarification"
-    conditional_fields:
-      if_asking: "Include one multiple-choice question with A/B/C options"
-      uncertainty: "Brief note of unknowns (or 'UNKNOWN' if data is missing)"
-      sources: "Files/lines or URLs used (name evidence when relied upon)"
-  
-  escalation:
-    timebox_minutes: 10
-    failed_attempts_threshold: 2
-    action: "Present options to user with current findings"
-  
-  interactive_integration:
-    note: "Confidence checks are surfaced at user checkpoints"
-    behavior: "Include confidence assessment before each code review"
+    low: { range: "0-39%", action: "STOP - Ask A/B/C clarification" }
+  scoring_weights: { pattern_alignment: 0.30, side_effect_awareness: 0.25, implementation_clarity: 0.25, test_coverage: 0.20 }
+  reply_format: ["Confidence: NN%", "Top factors: 2-3 bullets", "Next action"]
+  escalation: { timebox_minutes: 10, failed_threshold: 2 }
+  interactive_integration: "Confidence checks surfaced at user checkpoints"
 
 # ─────────────────────────────────────────────────────────────────
 # REQUEST ANALYSIS FRAMEWORK
 # ─────────────────────────────────────────────────────────────────
 request_analysis_framework:
-  pre_implementation_validation:
-    items:
-      - "Plan understood? (read plan.md thoroughly)"
-      - "Tasks clear? (each task has defined outcome)"
-      - "Patterns identified? (follow existing codebase)"
-      - "Confidence >=80%? (if not: ask)"
-      - "Scope bounded? (ONLY tasks in tasks.md)"
-    stop_conditions: ["Any item unchecked", "Prerequisites missing"]
-    stop_action: "STOP and address before coding"
-  
-  citation_requirement: |
-    Code changes must be traceable:
-    - Reference task ID in commit messages
-    - Cite pattern sources in comments for non-obvious approaches
-    - Use [DEVIATION: reason] for plan departures
+  pre_implementation_validation: [plan_understood, tasks_clear, patterns_identified, confidence_80_plus, scope_bounded]
+  citation_requirement: "Reference task ID in commits, cite pattern sources, use [DEVIATION: reason] for plan departures"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW ENFORCEMENT (CRITICAL)
+# WORKFLOW ENFORCEMENT
 # ─────────────────────────────────────────────────────────────────
 workflow_enforcement:
   mode: strict
   step_order: sequential_mandatory
   skip_allowed: false
-  
   prerequisites_gate:
     location: "Before Step 1"
-    purpose: "Verify planning artifacts exist before implementation"
-    requirements:
-      - "spec.md exists in SPEC_FOLDER"
-      - "plan.md exists in SPEC_FOLDER"
+    requirements: ["spec.md exists in SPEC_FOLDER", "plan.md exists in SPEC_FOLDER"]
     action_if_failed: "STOP - run /spec_kit:plan first"
-  
-  step_completion_rule: |
-    FOR EACH STEP:
-    1. Execute ALL activities listed
-    2. Verify ALL outputs exist
-    3. Present checkpoint to user for approval
-    4. Mark step ✅ in tracking after approval
-    5. ONLY THEN proceed to next step
-    
-    ⛔ NEVER skip a step
-    ⛔ NEVER proceed without user approval at checkpoint
-    ⛔ NEVER jump to coding before Step 5 (implementation check)
-
+  step_completion_rule: "Execute ALL activities → Verify ALL outputs → Present checkpoint for approval → Mark step complete after approval → THEN proceed. NEVER skip steps, NEVER proceed without user approval, NEVER jump to coding before Step 5."
   critical_steps:
-    step_6_development:
-      enforcement: "MUST mark tasks [x] in tasks.md as completed"
-      verification: "Count [x] vs [ ] - all must be [x]"
-    step_7_completion:
-      enforcement: "MUST create implementation-summary.md"
-      verification: "File must exist in spec folder"
+    step_6: { enforcement: "MUST mark tasks [x] in tasks.md", verification: "Count [x] vs [ ] — all must be [x]" }
+    step_7: { enforcement: "MUST create implementation-summary.md", verification: "File must exist in spec folder" }
 
-# ─────────────────────────────────────────────────────────────────
-# CHECKPOINT OPTIONS
-# ─────────────────────────────────────────────────────────────────
 checkpoint_options:
   standard:
-  - label: "Approve"
-    description: "Approve this step and proceed to next"
-  - label: "Review Details"
-    description: "Show more details about what was done"
-  - label: "Modify"
-    description: "Request changes before proceeding"
-  - label: "Skip"
-    description: "Skip this step (if optional)"
-
+    - { label: "Approve", description: "Approve and proceed to next step" }
+    - { label: "Review Details", description: "Show more details" }
+    - { label: "Modify", description: "Request changes before proceeding" }
+    - { label: "Skip", description: "Skip this step (if optional)" }
   code_review:
-  - label: "Approve Code"
-    description: "Code looks good, proceed"
-  - label: "Show Diff"
-    description: "Show code changes in detail"
-  - label: "Request Changes"
-    description: "Request modifications to code"
-  - label: "Run Tests"
-    description: "Execute test suite first"
+    - { label: "Approve Code", description: "Code looks good, proceed" }
+    - { label: "Show Diff", description: "Show code changes in detail" }
+    - { label: "Request Changes", description: "Request modifications" }
+    - { label: "Run Tests", description: "Execute test suite first" }
 
 # ─────────────────────────────────────────────────────────────────
-# CONTEXT LOADING (START OF WORKFLOW)
+# CONTEXT LOADING
 # ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "At workflow START, before Step 1"
-  purpose: "Load prior context from planning phase for informed implementation"
-
+  purpose: "Load prior context from planning phase"
   mcp_integration:
     tool: memory_search
     note: "Call MCP tools directly - NEVER through Code Mode"
-    parameters:
-      query: "planning context and decisions for {spec_folder_name}"
-      specFolder: "{spec_folder_path}"
-      anchors: ['summary', 'decisions', 'state', 'implementation']
-    example: |
-      memory_search({
-        query: "planning decisions and implementation context",
-        specFolder: "specs/007-feature-name",
-        anchors: ['summary', 'decisions', 'state', 'implementation']
-      })
-
+    parameters: { query: "planning context for {spec_folder_name}", specFolder: "{spec_folder_path}", anchors: [summary, decisions, state, implementation] }
   command_reference: "/memory:context"
-  when_to_skip:
-    - "User explicitly says 'skip context' or 'fresh start'"
-
+  when_to_skip: ["User says 'skip context' or 'fresh start'"]
   behavior:
     if_context_found: "Present planning context to user for confirmation"
-    if_no_context: "Proceed to Step 1 - rely on spec.md and plan.md artifacts"
-
+    if_no_context: "Proceed to Step 1 — rely on spec.md and plan.md"
   checkpoint:
     question: "Prior planning context found. Load this context?"
     options:
-      - label: "Yes - Load context"
-        description: "Use planning decisions and prior state"
-      - label: "No - Use artifacts only"
-        description: "Proceed with spec.md and plan.md only"
-      - label: "Review - Show context first"
-        description: "Display context before deciding"
+      - { label: "Yes - Load context", description: "Use planning decisions and prior state" }
+      - { label: "No - Use artifacts only", description: "Proceed with spec.md and plan.md only" }
+      - { label: "Review - Show context first", description: "Display context before deciding" }
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (9 STEPS - STANDALONE IMPLEMENTATION)
+# WORKFLOW
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_review_plan_and_spec:
@@ -735,592 +288,294 @@ workflow:
     - Run check-prerequisites.sh --json --require-tasks
     - Verify spec.md and plan.md exist
     - Load and review all planning artifacts
-    - Understand feature requirements
-    - Analyze technical approach
-    - Identify dependencies
-    - Note implementation constraints
-    required_documents:
-    - "[SPEC_FOLDER]/spec.md"
-    - "[SPEC_FOLDER]/plan.md"
-    optional_documents:
-    - research.md
-    - decision-record-*.md
+    - Understand requirements, analyze approach, identify dependencies, note constraints
+    required_documents: ["[SPEC_FOLDER]/spec.md", "[SPEC_FOLDER]/plan.md"]
+    optional_documents: [research.md, "decision-record-*.md"]
     validation: planning_artifacts_understood
     checkpoint:
       question: "Step 1 Complete: Plan and spec reviewed. How would you like to proceed?"
-      use: present_options_to_user
       options:
-      - label: "Proceed"
-        description: "Plan is clear, proceed to task breakdown"
-      - label: "Review Plan"
-        description: "Show plan.md for detailed review"
-      - label: "Review Spec"
-        description: "Show spec.md for reference"
+        - { label: "Proceed", description: "Plan is clear, proceed to task breakdown" }
+        - { label: "Review Plan", description: "Show plan.md for detailed review" }
+        - { label: "Review Spec", description: "Show spec.md for reference" }
 
   step_2_task_breakdown:
     purpose: Create or validate tasks.md (Level 1+ requirement)
-    level_requirement: "Level 1+ (Baseline - required at all levels)"
     activities:
     - Load plan.md for tech stack and architecture
     - Load spec.md for user stories and priorities
-    - Generate tasks organized by user story
-    - Create dependency graph
-    - Mark parallel-executable tasks with [P]
-    - Define task phases
-    - Generate time estimates
-    - Create/validate tasks.md (required at all levels)
-    outputs:
-    - tasks.md: implementation_breakdown
-    template: .opencode/skill/system-spec-kit/templates/level_2/tasks.md  # Use level from available_templates based on complexity
+    - Generate tasks organized by user story with dependency graph
+    - Mark parallel-executable tasks with [P], define phases, generate estimates
+    - Create/validate tasks.md
+    outputs: [tasks.md]
+    template: .opencode/skill/system-spec-kit/templates/level_2/tasks.md
     validation: tasks_documented
     checkpoint:
       question: "Step 2 Complete: Tasks defined. Review tasks.md?"
-      use: present_options_to_user
       options:
-      - label: "Approve Tasks"
-        description: "Task breakdown looks good"
-      - label: "Review Tasks"
-        description: "Show tasks.md for review"
-      - label: "Modify Tasks"
-        description: "Request changes to task breakdown"
+        - { label: "Approve Tasks", description: "Task breakdown looks good" }
+        - { label: "Review Tasks", description: "Show tasks.md for review" }
+        - { label: "Modify Tasks", description: "Request changes to task breakdown" }
 
   step_3_analysis:
     purpose: Verify consistency across all artifacts
-    activities:
-    - Build requirements inventory
-    - Build task coverage mapping
-    - Run consistency checks
-    - Generate gap analysis
-    outputs:
-    - consistency_report
-    - coverage_verification
+    activities: [Build requirements inventory, Build task coverage mapping, Run consistency checks, Generate gap analysis]
+    outputs: [consistency_report, coverage_verification]
     validation: consistency_verified
     checkpoint:
       question: "Step 3 Complete: Consistency verified. How would you like to proceed?"
-      use: present_options_to_user
       options: checkpoint_options.standard
 
   step_4_quality_checklist:
-    purpose: Validate checklists AND USE THEM FOR VERIFICATION (Level 2+ requirement)
-    level_requirement: "Level 2+ (Verification and Full)"
+    purpose: Validate checklists AND USE THEM FOR VERIFICATION (Level 2+)
     activities:
-    - Check documentation level - skip for Level 1, MANDATORY for Level 2+
-    - Load checklist.md file
-    - Parse all checklist items with priorities (P0/P1/P2)
-    - FOR EACH ITEM:
-      - Verify condition is met
-      - Mark as [x] with evidence link
-      - If not met: document blocker (P0/P1) or deferral reason (P2)
-    - Ensure ALL P0 items are complete (HARD BLOCKER)
-    - Ensure ALL P1 items are complete or user-approved deferral
-    - Document P2 deferrals with reasons
-    - Update checklist.md file with verification marks
-    verification_protocol:
-      p0_handling: "BLOCKER - Cannot proceed without completion"
-      p1_handling: "Required - Complete or get user approval to defer"
-      p2_handling: "Optional - Can defer with documented reason"
-    outputs:
-    - checklist_status: pass_or_fail
-    - verified_items_count: "X/Y items verified"
-    - p0_status: "all_complete or blocked"
-    - deferred_items: list_of_deferred_p2_items
+    - Skip for Level 1, MANDATORY for Level 2+
+    - Load and parse checklist.md items with priorities (P0/P1/P2)
+    - "FOR EACH ITEM: verify condition, mark [x] with evidence, document blockers/deferrals"
+    - Ensure ALL P0 complete (HARD BLOCKER), ALL P1 complete or approved deferral
+    - Update checklist.md with verification marks
+    verification_protocol: { p0: "BLOCKER", p1: "Required or user-approved deferral", p2: "Optional, can defer with reason" }
+    outputs: { checklist_status: pass_or_fail, p0_status: "all_complete or blocked" }
     validation: checklist_verified_and_marked
     checkpoint:
       question: "Step 4 Complete: Checklists verified. Ready to implement?"
-      use: present_options_to_user
       options:
-      - label: "Start Implementation"
-        description: "Begin development phase"
-      - label: "Review Verification"
-        description: "Show checklist verification details"
-      - label: "Address Blockers"
-        description: "Fix P0/P1 blockers first"
+        - { label: "Start Implementation", description: "Begin development phase" }
+        - { label: "Review Verification", description: "Show checklist verification details" }
+        - { label: "Address Blockers", description: "Fix P0/P1 blockers first" }
 
   step_5_implementation_check:
     purpose: Verify all prerequisites for implementation
-    activities:
-    - Verify environment ready
-    - Check API endpoints accessible
-    - Verify dependencies loaded
-    - Confirm no blockers
-    checks:
-      prerequisites: verified
-      blockers: none
-      environment: ready
+    activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers]
+    checks: { prerequisites: verified, blockers: none, environment: ready }
     validation: prerequisites_verified
     checkpoint:
       question: "Step 5 Complete: Environment ready. Proceed with development?"
-      use: present_options_to_user
       options:
-      - label: "Start Coding"
-        description: "Begin implementation"
-      - label: "Check Environment"
-        description: "Show environment status"
-      - label: "Hold"
-        description: "Wait before proceeding"
+        - { label: "Start Coding", description: "Begin implementation" }
+        - { label: "Check Environment", description: "Show environment status" }
+        - { label: "Hold", description: "Wait before proceeding" }
 
   step_5_5_preflight:
     purpose: Capture epistemic baseline for learning measurement
     optional: true
-    skip_if:
-      - "Quick fix (<10 LOC)"
-      - "Continuation of prior session with existing PREFLIGHT"
-    activities:
-    - Capture knowledge level before implementation
-    - Record current understanding of the codebase
-    - Document initial uncertainty levels
-    - Establish baseline context quality
+    skip_if: ["Quick fix (<10 LOC)", "Continuation with existing PREFLIGHT"]
+    activities: [Capture knowledge level, Record codebase understanding, Document uncertainty, Establish context quality baseline]
     scores:
-      knowledge: 
-        description: "Knowledge level 0-10 (0=unknown, 10=expert)"
-        default: 5
-      uncertainty:
-        description: "Uncertainty level 0-10 (0=uncertain, 10=very uncertain)"
-        default: 5
-      context:
-        description: "Context quality 0-10 (0=no context, 10=full context)"
-        default: 5
+      knowledge: { range: "0-10", default: 5 }
+      uncertainty: { range: "0-10", default: 5 }
+      context: { range: "0-10", default: 5 }
     output_format: |
       ## PREFLIGHT Baseline - [timestamp]
-      
       ### Epistemic State
-      - Knowledge: [0-10] - [brief explanation]
+      - Knowledge: [0-10] - [explanation]
       - Uncertainty: [0-10] - [what's unclear]
       - Context: [0-10] - [context quality]
-      
       ### Focus Areas
-      - [area 1 to explore]
-      - [area 2 to explore]
+      - [area 1] / [area 2]
     validation: preflight_captured
     checkpoint:
       question: "Step 5.5: PREFLIGHT baseline captured. Proceed to development?"
-      use: present_options_to_user
       options:
-      - label: "Proceed"
-        description: "Start development phase"
-      - label: "Adjust Baseline"
-        description: "Modify PREFLIGHT values"
-      - label: "Skip"
-        description: "Skip PREFLIGHT (not recommended)"
+        - { label: "Proceed", description: "Start development phase" }
+        - { label: "Adjust Baseline", description: "Modify PREFLIGHT values" }
+        - { label: "Skip", description: "Skip PREFLIGHT (not recommended)" }
 
   step_6_development:
     purpose: Execute implementation following task plan
-
-    # PRE-PHASE: Smart parallel dispatch check
     pre_phase_parallel_check:
       enabled: true
       phase_domains: [code, testing]
       complexity_boost: 15
-      decision_logic: |
-        BEFORE starting this phase, evaluate parallel dispatch:
-        1. Check for override phrases in user request
-        2. Check for session preference (from previous "Auto-decide" selection)
-        3. Check for sequential dependencies (skip if detected)
-        4. Calculate phase complexity using parallel_dispatch_config
-        5. Apply thresholds:
-           - <20% → proceed directly (no parallel agents)
-           - ≥20% + 2 domains → ALWAYS ask user
-           NOTE: No auto-dispatch - always ask before parallel dispatch
+      decision_logic: "Check override phrases → session preference → sequential deps → calculate complexity → <20% direct, >=20%+2 domains → ask user"
       on_parallel_dispatch:
         agents:
-          - name: "implementation_agent"
-            focus: "Core implementation tasks from tasks.md"
-          - name: "test_agent"
-            focus: "Test implementation and validation"
+          - { name: "implementation_agent", focus: "Core implementation tasks from tasks.md" }
+          - { name: "test_agent", focus: "Test implementation and validation" }
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below if dispatch fails or user chooses direct"
-
     activities:
-    - Parse tasks.md structure
-    - Execute phase by phase
+    - Parse tasks.md, execute phase by phase
     - Setup first (structure, dependencies, config)
-    - Follow TDD approach where applicable
+    - Follow TDD where applicable
     - Core development (models, services, endpoints)
-    - Integration work (database, middleware, logging)
+    - Integration (database, middleware, logging)
     - Update task checklist progressively (mark [X])
     - Log progress after each task
-    
-    # ⛔ DEBUG DELEGATION REMINDER
     debug_delegation:
-      trigger: "Same error encountered 3+ times after fix attempts"
+      trigger: "Same error 3+ times after fix attempts"
       enforcement: MANDATORY
-      action: |
-        If you encounter the same error 3+ times after fix attempts:
-        1. STOP attempting more fixes
-        2. Suggest to user: "Would you like me to delegate this to a debug specialist? Run: /spec_kit:debug"
-        3. This delegation is MANDATORY after 3 failed attempts
-        4. Do not continue debugging without user decision
-      rationale: "Fresh perspective often solves stuck issues faster than repeated attempts"
-    
+      action: "STOP → suggest /spec_kit:debug → wait for user decision"
     approach: incremental_implementation_with_reviews
-    requirements:
-    - follow: Check skills folder for coding standards
-    - update: task_checklist_progressively
-    - test: before_commit
-    - validate: continuously
-    
-    # CONFIDENCE CHECKPOINT
-    # Applied per-task during implementation
+    requirements: { follow: "Check skills folder for coding standards", update: task_checklist_progressively, test: before_commit, validate: continuously }
     confidence_checkpoint:
       evaluate_at: "Before each significant code change"
       per_task_assessment:
         scoring_factors:
-          - factor: "Implementation clarity"
-            weight: 0.35
-            assess: "Is the approach for this task clear?"
-          - factor: "Pattern alignment"
-            weight: 0.30
-            assess: "Does this follow existing codebase patterns?"
-          - factor: "Risk awareness"
-            weight: 0.35
-            assess: "Are side effects and edge cases understood?"
+          - { factor: "Implementation clarity", weight: 0.35 }
+          - { factor: "Pattern alignment", weight: 0.30 }
+          - { factor: "Risk awareness", weight: 0.35 }
         thresholds:
-          high_80_plus:
-            action: "Implement task, mark [x] when complete"
-            log: "Task [T###]: Confidence [NN%] - proceeding"
-          medium_40_79:
-            action: "Implement with extra validation"
-            log: "Task [T###]: Confidence [NN%] - implementing with caution"
-            requirement: "Add inline comments explaining approach for review"
-          low_below_40:
-            action: "STOP - Do not implement uncertain code"
-            format: |
-              "Implementation confidence low for task [T###] ([NN%]):
-              - A) Research: [investigate specific technical question]
-              - B) Simplify: [reduce scope to well-understood approach]
-              - C) Skip: [defer task with documented reason]"
-            wait_for: "Resolution before implementing task"
-      citation_requirement: |
-        Code changes must be traceable:
-        - Reference task ID in commit messages
-        - Cite pattern sources in comments for non-obvious approaches
-        - Use [DEVIATION: reason] for plan departures
-    
+          high_80_plus: "Implement task, mark [x]"
+          medium_40_79: "Implement with extra validation, add comments"
+          low_below_40: "STOP — A) Research B) Simplify C) Skip"
+      citation_requirement: "Reference task ID in commits, cite pattern sources, use [DEVIATION: reason]"
     validation: development_complete
     checkpoint:
       question: "Step 6 Complete: Development finished. Review implementation?"
-      use: present_options_to_user
       options: checkpoint_options.code_review
 
   step_6_5_checkpoint_development:
-    purpose: Save context checkpoint after development phase complete
+    purpose: Save context checkpoint after development phase
     checkpoint: true
     memory_action: save
-    activities:
-    - Save context checkpoint using system-spec-kit skill
-    - Record progress up to development milestone for session recovery
-    - Preserve implementation decisions, code changes, and debugging insights
+    activities: [Save checkpoint via system-spec-kit skill, Record development milestone, Preserve decisions/changes/insights]
     tool_invocation:
       command: Read(".opencode/skill/system-spec-kit/SKILL.md")
       note: "Intermediate checkpoint - development phase complete"
-    outputs:
-    - checkpoint_file: "[SPEC_FOLDER]/memory/checkpoint__development_complete.md"
+    outputs: ["[SPEC_FOLDER]/memory/checkpoint__development_complete.md"]
     validation: checkpoint_saved
 
   step_7_completion:
     purpose: Generate implementation summary
-    level_requirement: "Level 2+ (MANDATORY - do not skip this step)"
-    enforcement_note: |
-      ⛔ This step is MANDATORY for Level 2+ specs.
-      ⛔ Do not skip this step - implementation-summary.md is a required file.
-      ⛔ Even for Level 1 specs, this step is strongly recommended.
-    activities:
-    - Run validation on spec folder first
-    - Verify all tasks completed
-    - Validate tests pass
-    - Confirm implementation follows plan
-    - Generate implementation-summary.md
-    - Update all task status
+    level_requirement: "Level 2+ (MANDATORY - do not skip)"
+    enforcement_note: "MANDATORY for Level 2+. implementation-summary.md is a required file. Strongly recommended for Level 1."
+    activities: [Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Update all task status]
     pre_completion_validation:
       enforcement: MANDATORY
-      behavior: "Validation runs automatically"
-      outcomes:
-        pass: "continue"
-        warnings: "continue with caution"
-        errors: "STOP and fix before proceeding"
+      outcomes: { pass: "continue", warnings: "continue with caution", errors: "STOP and fix" }
     summary_document:
       location: "[SPEC_FOLDER]/implementation-summary.md"
-      required_sections:
-      - files_modified_created
-      - verification_steps_taken
-      - deviations_from_plan
-      - skill_updates
-      - recommended_next_steps
-      - browser_testing_results
+      required_sections: [files_modified_created, verification_steps_taken, deviations_from_plan, skill_updates, recommended_next_steps, browser_testing_results]
     verification_summary:
       checklist_verification:
-        required: true  # for Level 2+
-        must_include:
-        - Total items verified count
-        - P0 items status (all must be complete)
-        - P1 items status (all complete or deferred with approval)
-        - Deferred P2 items with reasons
-        - Link to updated checklist.md
+        required: true
+        must_include: [Total items verified, P0 status (all complete), P1 status (complete or deferred), Deferred P2 with reasons, Link to checklist.md]
     validation: implementation_complete
-    
-    # ⛔ COMPLETION CHECKPOINT (CRITICAL)
     completion_checkpoint:
       enforcement: HARD_BLOCK
-      before_marking_complete: |
-        VERIFY before marking Step 7 as complete:
-        1. Check if implementation-summary.md exists in spec folder
-        2. IF file does not exist:
-           - DO NOT mark step complete
-           - CREATE the file with all required sections
-        3. IF file exists:
-           - Verify all required_sections are present
-           - Mark Step 7: ✅ COMPLETED
+      before_marking_complete: "Verify implementation-summary.md exists with all required sections. If missing, CREATE before proceeding."
       required_file: "[SPEC_FOLDER]/implementation-summary.md"
-      failure_action: "Create implementation-summary.md before proceeding"
-    
     checkpoint:
       question: "Step 7 Complete: Implementation summary generated. Review?"
-      use: present_options_to_user
       options:
-      - label: "Approve Summary"
-        description: "Summary is complete"
-      - label: "View Summary"
-        description: "Show implementation-summary.md"
-      - label: "Add Details"
-        description: "Add more to summary"
+        - { label: "Approve Summary", description: "Summary is complete" }
+        - { label: "View Summary", description: "Show implementation-summary.md" }
+        - { label: "Add Details", description: "Add more to summary" }
 
   step_7_5_postflight:
     purpose: Capture learning delta and calculate improvement
     optional: true
-    skip_if:
-      - "Quick fix (<10 LOC)"
-      - "No PREFLIGHT was captured"
-    activities:
-    - Capture knowledge level after implementation
-    - Record new understanding gained
-    - Document reduced uncertainty levels
-    - Calculate learning index
+    skip_if: ["Quick fix (<10 LOC)", "No PREFLIGHT captured"]
+    activities: [Capture post-implementation knowledge, Record new understanding, Document reduced uncertainty, Calculate learning index]
     scores:
-      knowledge: 
-        description: "Knowledge level 0-10 (0=unknown, 10=expert)"
-        default: 7
-      uncertainty:
-        description: "Uncertainty level 0-10 (0=certain, 10=very uncertain)"
-        default: 3
-      context:
-        description: "Context quality 0-10 (0=no context, 10=full context)"
-        default: 8
-    learning_index_calculation: |
-      Knowledge Delta = POSTFLIGHT.knowledge - PREFLIGHT.knowledge
-      Uncertainty Reduction = PREFLIGHT.uncertainty - POSTFLIGHT.uncertainty (positive = good)
-      Context Improvement = POSTFLIGHT.context - PREFLIGHT.context
-      Learning Index = (Knowledge Delta + Uncertainty Reduction + Context Improvement) / 3
+      knowledge: { range: "0-10", default: 7 }
+      uncertainty: { range: "0-10", default: 3 }
+      context: { range: "0-10", default: 8 }
+    learning_index_calculation: "Knowledge Delta + Uncertainty Reduction + Context Improvement / 3"
     output_format: |
       ## POSTFLIGHT Delta - [timestamp]
-      
       ### Epistemic State (Final)
-      - Knowledge: [0-10] - [what was learned]
-      - Uncertainty: [0-10] - [what became clear]
-      - Context: [0-10] - [context improvement]
-      
+      - Knowledge: [0-10] - [learned]
+      - Uncertainty: [0-10] - [clarified]
+      - Context: [0-10] - [improved]
       ### Learning Index
-      - Knowledge Δ: +[N] points
-      - Uncertainty Δ: -[N] points (reduced)
-      - Context Δ: +[N] points
-      - **Learning Index: [X.X]/10**
-      
+      - Knowledge/Uncertainty/Context Deltas → **Learning Index: [X.X]/10**
       ### Key Insights
-      - [insight 1]
-      - [insight 2]
+      - [insight 1] / [insight 2]
     validation: postflight_captured
     checkpoint:
       question: "Step 7.5: POSTFLIGHT captured. Learning Index calculated. Proceed to save context?"
-      use: present_options_to_user
       options:
-      - label: "Proceed"
-        description: "Continue to save context"
-      - label: "Review Delta"
-        description: "View learning delta details"
-      - label: "Adjust Values"
-        description: "Modify POSTFLIGHT scores"
+        - { label: "Proceed", description: "Continue to save context" }
+        - { label: "Review Delta", description: "View learning delta details" }
+        - { label: "Adjust Values", description: "Modify POSTFLIGHT scores" }
 
   step_8_save_context:
     purpose: Save conversation context
-    activities:
-    - Invoke system-spec-kit skill
-    - Preserve development decisions
-    - Preserve debugging insights
-    - Preserve code changes
-    - Index memory file for immediate search availability
+    activities: [Invoke system-spec-kit skill, Preserve decisions/insights/changes, Index memory file for search]
     tool_invocation:
       command: Read(".opencode/skill/system-spec-kit/SKILL.md")
-      note: 'Use command: Read(".opencode/skill/system-spec-kit/SKILL.md") to activate context saving'
-    outputs:
-    - context_file: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__implementation_session.md"
+      note: "Activate context saving"
+    outputs: ["[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__implementation_session.md"]
     validation: context_saved_successfully
     checkpoint:
       question: "Step 8 Complete: Implementation workflow finished!"
-      use: present_options_to_user
       options:
-      - label: "Done"
-        description: "Complete the workflow"
-      - label: "View Final Summary"
-        description: "Show complete implementation summary"
-
+        - { label: "Done", description: "Complete the workflow" }
+        - { label: "View Final Summary", description: "Show complete implementation summary" }
     memory_creation:
       enforcement: HARD_BLOCK
       method: "MUST use generate-context.js script"
       command: "node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]"
-      forbidden:
-        - "Write tool on memory/ paths"
-        - "Edit tool on memory/ paths"
+      forbidden: ["Write tool on memory/ paths", "Edit tool on memory/ paths"]
       violation_recovery: "DELETE manually created file, re-run via script"
-
-    # ── SEMANTIC MEMORY INTEGRATION (v12.1.0) ──────────────────────
     post_save_indexing:
-      purpose: "Index memory file immediately for search availability"
       mcp_tool: memory_save
-      invocation: |
-        spec_kit_memory_memory_save({
-          filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__implementation_session.md"
-        })
+      invocation: 'spec_kit_memory_memory_save({ filePath: "[SPEC_FOLDER]/memory/[DD-MM-YY_HH-MM]__implementation_session.md" })'
       critical_note: "Call semantic memory MCP DIRECTLY - NEVER through Code Mode"
-      when: "Immediately after memory file is written to disk"
-
+      when: "Immediately after memory file written to disk"
     anchor_requirements:
       enforcement: MANDATORY
       minimum_anchors: 2
       pattern: "[context-type]-[keywords]-[spec-number]"
       format: "<!-- ANCHOR:ID --> content <!-- /ANCHOR:ID -->"
-      case: "UPPERCASE recommended for visibility"
       required_sections:
-        - context_type: "general"
-          section: "Session summary with key outcomes"
-          example_id: "GENERAL-SESSION-SUMMARY-{spec#}"
-          example: |
-            <!-- ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
-            ## Session Summary
-            Implemented X, resolved Y...
-            <!-- /ANCHOR:GENERAL-SESSION-SUMMARY-{spec#} -->
-        - context_type: "decision"
-          section: "Key decisions made during session"
-          example_id: "DECISION-{topic}-{spec#}"
-          example: |
-            <!-- ANCHOR:DECISION-{topic}-{spec#} -->
-            ## Key Decisions
-            - Chose approach A because...
-            <!-- /ANCHOR:DECISION-{topic}-{spec#} -->
+        - { type: "general", section: "Session summary", id: "GENERAL-SESSION-SUMMARY-{spec#}" }
+        - { type: "decision", section: "Key decisions", id: "DECISION-{topic}-{spec#}" }
       optional_sections:
-        - context_type: "implementation"
-          section: "Code patterns or solutions implemented"
-          example_id: "IMPLEMENTATION-{feature}-{spec#}"
-        - context_type: "files"
-          section: "Files modified during session"
-          example_id: "FILES-{spec#}"
+        - { type: "implementation", id: "IMPLEMENTATION-{feature}-{spec#}" }
+        - { type: "files", id: "FILES-{spec#}" }
       benefit: "93% token savings on anchor-based retrieval"
-      reference: "See /memory:save Step 3 for full anchor documentation"
-
     importance_tier:
       assign: important
-      rationale: "Implementation sessions contain significant code decisions and changes"
-      promotion_note: "Use memory_update() to promote to 'critical' if this becomes foundational reference"
-      tier_reference: |
-        constitutional: Core project rules (auto-surface always)
-        critical: Foundational decisions (high priority in search)
-        important: Significant work like implementations (this workflow)
-        normal: Standard context (default)
-        temporary: Short-term notes
-        deprecated: Outdated but retained
+      rationale: "Implementation sessions contain significant code decisions"
+      tier_reference: "constitutional > critical > important > normal > temporary > deprecated"
 
   step_9_session_handover_check:
     purpose: Prompt user for session handover before completing
     enforcement: MANDATORY_CHECK
-    activities:
-    - Display handover prompt to user
-    - Wait for user response
-    - If user accepts, run /spec_kit:handover
-    - If user declines, proceed to termination
-    
+    activities: [Display handover prompt, Wait for response, "If accepted: run /spec_kit:handover", "If declined: proceed to termination"]
     handover_prompt:
-      display: |
-        📋 Implementation complete. Before ending:
-
-        Would you like to create a handover document for future sessions?
-        - Run: /spec_kit:handover
-
-        This is recommended if:
-        - You may continue this work later
-        - Another AI/developer may pick this up
-        - The implementation has nuances worth documenting
-      
+      display: "Implementation complete. Create a handover document? Run: /spec_kit:handover. Recommended if continuing later, another dev picks up, or nuances worth documenting."
       options:
-        - label: "Create Handover"
-          action: "Run /spec_kit:handover workflow"
-        - label: "Skip"
-          action: "Proceed to workflow termination"
-    
-    behavior:
-      user_accepts: "Execute /spec_kit:handover command"
-      user_declines: "Proceed to termination without handover"
-    
+        - { label: "Create Handover", action: "Run /spec_kit:handover" }
+        - { label: "Skip", action: "Proceed to termination" }
+    behavior: { user_accepts: "Execute /spec_kit:handover", user_declines: "Proceed to termination" }
     validation: handover_check_complete
-    
     checkpoint:
       question: "Would you like to create a handover document?"
-      use: present_options_to_user
       options:
-      - label: "Create Handover"
-        description: "Run /spec_kit:handover for session continuity"
-      - label: "Skip"
-        description: "Complete workflow without handover"
+        - { label: "Create Handover", description: "Run /spec_kit:handover for session continuity" }
+        - { label: "Skip", description: "Complete workflow without handover" }
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
   after_step: 9
-  message: "Implementation phase completed successfully. Workflow terminated after step 9 (save context)."
-  next_steps:
-  - Review implementation-summary.md
-  - Verify all changes in staging environment
-  - Prepare for code review and PR submission
+  message: "Implementation phase completed. Workflow terminated after step 9."
+  next_steps: [Review implementation-summary.md, Verify changes in staging, Prepare for code review and PR]
 
 # ─────────────────────────────────────────────────────────────────
 # INTERACTIVE EXECUTION GUIDANCE
 # ─────────────────────────────────────────────────────────────────
 interactive_execution:
-  principle: "Execute implementation with user approval at each checkpoint"
-
-  checkpoint_behavior:
-  - Complete step activities
-  - Present results summary
-  - Present options to user for approval
-  - Wait for user response
-  - Process user feedback
-  - Proceed or modify as directed
-
-  code_review_behavior:
-  - Show summary of changes
-  - Offer diff view on request
-  - Run tests when requested
-  - Accept modification requests
-
-  user_feedback_handling:
-    approve: "Proceed to next step"
-    review: "Show detailed output of current step"
-    modify: "Accept changes and re-execute step"
-    skip: "Skip optional step and proceed"
+  principle: "Execute with user approval at each checkpoint"
+  checkpoint_behavior: [Complete activities, Present results summary, Present options for approval, Wait for response, Process feedback, Proceed or modify]
+  code_review_behavior: [Show change summary, Offer diff view, Run tests on request, Accept modifications]
+  user_feedback_handling: { approve: "Proceed to next step", review: "Show detailed output", modify: "Accept changes and re-execute", skip: "Skip optional step" }
 
 # ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
-  step_validation_fails:
-    action: "Review requirements, ask clarifying questions, retry step"
-  user_rejects_approach:
-    action: "Present alternatives, modify code, document decision"
-  tests_fail:
-    action: "Debug, fix, re-run before marking complete"
-  prerequisites_insufficient:
-    action: "Return to /spec_kit:plan workflow or ask user for guidance"
-  environment_unavailable:
-    action: "Skip browser testing, document limitation"
+  step_validation_fails: "Review requirements, ask clarifying questions, retry"
+  user_rejects_approach: "Present alternatives, modify code, document decision"
+  tests_fail: "Debug, fix, re-run before marking complete"
+  prerequisites_insufficient: "Return to /spec_kit:plan or ask user"
+  environment_unavailable: "Skip browser testing, document limitation"
 
 # ─────────────────────────────────────────────────────────────────
 # RULES
@@ -1338,7 +593,6 @@ rules:
   - mark_checklist_items_with_evidence
   - complete_all_p0_items_before_done
   - get_user_approval_for_p1_deferrals
-
   NEVER:
   - skip_workflow_steps
   - ignore_blockers

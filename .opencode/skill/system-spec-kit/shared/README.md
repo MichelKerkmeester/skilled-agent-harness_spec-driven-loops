@@ -1,3 +1,13 @@
+---
+title: "Shared Library Modules"
+description: "Consolidated TypeScript modules shared between CLI scripts and MCP server for embedding generation and trigger extraction."
+trigger_phrases:
+  - "shared library modules"
+  - "embeddings trigger extractor shared"
+  - "shared TypeScript modules"
+importance_tier: "normal"
+---
+
 # Shared Library Modules
 
 > Consolidated TypeScript modules shared between CLI scripts and MCP server for embedding generation and trigger extraction. Source files are `.ts`; compiled CommonJS `.js` output is produced in-place.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -17,7 +28,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the shared/ Directory?
 
@@ -88,7 +101,9 @@ This consolidation eliminates code duplication and ensures consistent behavior a
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -131,7 +146,9 @@ console.log(`Embedding dimensions: ${embedding.length}`);
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 shared/
@@ -163,7 +180,9 @@ shared/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Multi-Provider Embeddings (embeddings.ts)
 
@@ -232,7 +251,9 @@ shared/
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. ⚙️ CONFIGURATION
+<!-- ANCHOR:configuration -->
 
 ### Environment Variables
 
@@ -265,7 +286,9 @@ database/
 
 ---
 
+<!-- /ANCHOR:configuration -->
 ## 6. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: CLI Script Usage
 
@@ -358,7 +381,9 @@ console.log(result);
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -431,7 +456,9 @@ node -e "console.log(require('./shared/trigger-extractor').extractTriggerPhrases
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 8. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -453,4 +480,5 @@ node -e "console.log(require('./shared/trigger-extractor').extractTriggerPhrases
 
 ---
 
+<!-- /ANCHOR:related -->
 *Documentation version: 2.0 | Last updated: 2026-02-07 | Migrated to TypeScript*

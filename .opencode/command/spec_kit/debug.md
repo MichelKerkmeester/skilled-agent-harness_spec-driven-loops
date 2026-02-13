@@ -4,173 +4,123 @@ argument-hint: "[spec-folder-path]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
-# 🚨 SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
+# SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
-**This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.**
-
-**Round-trip optimization:** This workflow requires only 1 user interaction (all questions asked together).
-
-**Key Rule:** Dispatch mode selection is MANDATORY and included in the consolidated prompt.
+This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction. Dispatch mode selection is MANDATORY.
 
 ---
 
-## 🔒 UNIFIED SETUP PHASE
+## 1. UNIFIED SETUP PHASE
 
-**STATUS: ☐ BLOCKED**
+**STATUS: BLOCKED**
 
 ```
 EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
-1. CHECK for spec folder in $ARGUMENTS:
-   ├─ IF $ARGUMENTS contains a spec folder path → validate and store
-   └─ IF $ARGUMENTS is empty → auto-detect from recent memory files
+1. CHECK mode suffix:
+   ├─ ":auto"    → execution_mode = "AUTONOMOUS" (omit Q_exec)
+   ├─ ":confirm" → execution_mode = "INTERACTIVE" (omit Q_exec)
+   └─ No suffix  → execution_mode = "ASK" (include Q_exec)
 
-2. Auto-detect spec folder if needed:
-   - Glob("specs/**/memory/*.md") → Sort by modification time, take first
-   - IF found: spec_path = extracted path, detection_method = "recent"
-   - IF not found: detection_method = "none" (include Q0 in prompt)
+2. CHECK for spec folder in $ARGUMENTS:
+   - IF has path -> validate and store
+   - IF empty -> auto-detect: Glob("specs/**/memory/*.md"), sort by mtime, take first
 
-3. GATHER ERROR CONTEXT from conversation (background scan):
+3. Auto-detect result:
+   - Found: spec_path = extracted, detection_method = "recent"
+   - Not found: detection_method = "none" (include Q0)
+
+4. GATHER ERROR CONTEXT from conversation (background scan):
    - Scan for: error messages, stack traces, affected files, previous attempts
-   - IF found: Store as error_message, affected_files, previous_attempts
-   - IF not found: Include Q1 in prompt
+   - Found: store as error_message, affected_files, previous_attempts
+   - Not found: include Q1 in prompt
 
-4. ASK user with SINGLE CONSOLIDATED prompt (include only applicable questions):
+5. ASK user (include only applicable questions):
 
-   ┌────────────────────────────────────────────────────────────────┐
-   │ **Before proceeding, please answer:**                          │
-   │                                                                │
-   │ **Q0. Spec Folder** (if not detected/provided):                │
-   │    Available spec folders: [list if found]                     │
-   │    A) Use: [most recent if detected]                           │
-   │    B) Select different folder (specify path)                   │
-   │    C) Debug without spec folder (ad-hoc mode)                  │
-   │    D) Cancel                                                   │
-   │                                                                │
-   │ **Q1. Error Context** (if not found in conversation):          │
-   │    What error are you debugging? Please provide:               │
-   │    • The error message or unexpected behavior                  │
-   │    • Which file(s) are affected                                 │
-   │    • What you've already tried (if anything)                   │
-   │                                                                │
-   │ **Q2. Dispatch Mode** (required):                              │
-   │    A) Single Agent - One agent (Recommended)                   │
-   │    B) Multi-Agent (1+2) - 1 orchestrator + 2 workers           │
-   │    C) Multi-Agent (1+3) - 1 orchestrator + 3 workers           │
-   │                                                                │
-   │                                                                │
-   │ Reply with answers, e.g.: "A, A, A" or "A, [error desc], A, B" │
-   └────────────────────────────────────────────────────────────────┘
+   Q0. Spec Folder (if not detected/provided):
+      Available: [list if found]
+      A) Use: [most recent]  B) Different folder  C) Ad-hoc mode  D) Cancel
 
-5. WAIT for user response (DO NOT PROCEED)
+   Q1. Error Context (if not found in conversation):
+      Provide: error message/behavior, affected file(s), what you tried
 
-6. Parse response and store ALL results:
-   - spec_path = [from Q0 or auto-detected or $ARGUMENTS]
-   - detection_method = [provided/recent/ad-hoc]
-   - error_message = [from Q1 or extracted from conversation]
-   - affected_files = [extracted or from Q1]
-   - previous_attempts = [extracted or from Q1]
-    - dispatch_mode = [single/multi_small/multi_large from Q2]
+   Q2. Execution Mode (if no suffix):
+      A) Autonomous - all steps without approval
+      B) Interactive - pause at each step
 
-7. IF dispatch_mode is multi_*:
-   - Note: Orchestrator handles OBSERVE + FIX phases
-   - Note: Workers handle parallel hypothesis generation in ANALYZE phase
+   Q3. Dispatch Mode (required):
+      A) Single Agent (Recommended)
+      B) Multi-Agent (1+2)
+      C) Multi-Agent (1+3)
 
-8. SET STATUS: ✅ PASSED
+   Reply with answers, e.g.: "A, A, A, A" or "A, [error desc], A, B"
 
-**STOP HERE** - Wait for user to answer ALL applicable questions before continuing.
+6. WAIT for user response (DO NOT PROCEED)
 
-⛔ HARD STOP: DO NOT proceed until user explicitly answers
-⛔ NEVER skip dispatch mode selection - it is MANDATORY
-⛔ NEVER skip dispatch mode selection - it is MANDATORY
-⛔ NEVER split these questions into multiple prompts
+7. Parse and store:
+   - spec_path, detection_method, error_message, affected_files, previous_attempts
+   - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
+   - dispatch_mode = [single/multi_small/multi_large from Q3]
+
+8. IF dispatch_mode is multi_*:
+   - Orchestrator handles OBSERVE + FIX phases
+   - Workers handle parallel hypothesis generation in ANALYZE phase
+
+9. SET STATUS: PASSED
+
+HARD STOP: DO NOT proceed until user answers
+NEVER skip dispatch mode - MANDATORY
+NEVER split into multiple prompts
 ```
 
 **Phase Output:**
-- `spec_path = ________________` | `detection_method = ________________`
-- `error_message = ________________`
-- `affected_files = ________________`
-- `dispatch_mode = ________________`
+- `spec_path` | `detection_method` | `error_message` | `affected_files`
+- `execution_mode` | `dispatch_mode`
 
 ---
 
-## ⚡ GATE 3 CLARIFICATION
+## 2. GATE 3 CLARIFICATION
 
-**When Gate 3 applies:** When debugging leads to file modifications (Step 5, Option A "Apply the fix").
-
-- If a spec folder was established in unified setup → Gate 3 is satisfied
-- If ad-hoc mode was selected → Gate 3 MUST be asked before applying fixes:
-  > **Spec Folder** (required): A) Existing | B) New | C) Update related | D) Skip
+When debugging leads to file modifications (Step 5, Option A "Apply the fix"):
+- Spec folder established in setup -> Gate 3 satisfied
+- Ad-hoc mode -> Ask before applying: Spec Folder: A) Existing | B) New | C) Update related | D) Skip
 
 **Self-Verification:** Before applying any fix:
-> □ STOP. File modification detected? Did I ask spec folder question? If NO → Ask NOW.
+> STOP. File modification detected? Did I ask spec folder question? If NO -> Ask NOW.
 
 ---
 
-## ✅ PHASE STATUS VERIFICATION (BLOCKING)
+## 3. PHASE STATUS VERIFICATION (BLOCKING)
 
-**Before continuing to the workflow, verify ALL values are set:**
+| FIELD            | REQUIRED      | SOURCE                     |
+| ---------------- | ------------- | -------------------------- |
+| spec_path        | Conditional   | Q0 or auto-detect or $ARGS |
+| detection_method | Yes           | Auto-determined            |
+| error_message    | Yes           | Q1 or conversation scan    |
+| execution_mode   | Yes           | Suffix or Q2               |
+| dispatch_mode    | Yes           | Q3                         |
 
-| FIELD            | REQUIRED      | YOUR VALUE | SOURCE                     |
-| ---------------- | ------------- | ---------- | -------------------------- |
-| spec_path        | ○ Conditional | ______     | Q0 or auto-detect or $ARGS |
-| detection_method | ✅ Yes         | ______     | Auto-determined            |
-| error_message    | ✅ Yes         | ______     | Q1 or conversation scan    |
-| dispatch_mode    | ✅ Yes         | ______     | Q2                         |
-
-```
-VERIFICATION CHECK:
-├─ ALL required fields have values?
-│   ├─ YES → Proceed to "# /spec_kit:debug" section below
-│   └─ NO  → Re-prompt for missing values only
-```
+All required fields set? YES -> Proceed to workflow. NO -> Re-prompt for missing values.
 
 ---
 
-## ⚠️ VIOLATION SELF-DETECTION (BLOCKING)
+## 4. WORKFLOW STEPS (5 STEPS)
 
-**YOU ARE IN VIOLATION IF YOU:**
-- Started reading the workflow section before all fields are set
-- Asked questions in MULTIPLE separate prompts instead of ONE consolidated prompt
-- Skipped dispatch mode selection (Q2 is MANDATORY)
-- Assumed single-agent mode without explicit user choice
-- Dispatched sub-agent without creating debug-delegation.md first
-- Did not wait for user response on integration options
-
-**VIOLATION RECOVERY PROTOCOL:**
-```
-1. STOP immediately - do not continue current action
-2. STATE: "I asked questions separately instead of consolidated. Correcting now."
-3. PRESENT the single consolidated prompt with ALL applicable questions
-4. WAIT for user response
-5. RESUME only after all fields are set
-```
-
----
-
-# 📊 WORKFLOW EXECUTION (5 STEPS) - MANDATORY TRACKING
-
-**⛔ ENFORCEMENT RULE:** Execute steps IN ORDER. Mark each step ✅ ONLY after completing ALL its activities and verifying outputs. DO NOT SKIP STEPS.
-
----
-
-## Workflow Steps (5 steps)
+**Execute steps IN ORDER. Mark each ONLY after completing ALL activities. DO NOT SKIP.**
 
 | STEP | NAME               | STATUS | REQUIRED OUTPUT      | VERIFICATION                    |
 | ---- | ------------------ | ------ | -------------------- | ------------------------------- |
-| 1    | Validate Context   | ☐      | context_confirmed    | Spec path + error context valid |
-| 2    | Generate Report    | ☐      | debug-delegation.md  | File created in spec folder     |
-| 3    | Dispatch Sub-Agent | ☐      | sub_agent_dispatched | Task tool invoked               |
-| 4    | Receive Findings   | ☐      | findings_received    | Sub-agent response captured     |
-| 5    | Integration        | ☐      | resolution_complete  | User chose action, applied      |
+| 1    | Validate Context   |        | context_confirmed    | Spec path + error context valid |
+| 2    | Generate Report    |        | debug-delegation.md  | File created in spec folder     |
+| 3    | Dispatch Sub-Agent |        | sub_agent_dispatched | Task tool invoked               |
+| 4    | Receive Findings   |        | findings_received    | Sub-agent response captured     |
+| 5    | Integration        |        | resolution_complete  | User chose action, applied      |
 
 ---
 
 # /spec_kit:debug
 
 Delegate persistent debugging issues to a specialized sub-agent with fresh context. Creates a comprehensive debug report, dispatches a sub-agent, and integrates findings back into the main session.
-
----
 
 ```yaml
 role: Expert Developer using Debug Delegation for Persistent Issues
@@ -186,34 +136,18 @@ operating_mode:
   validation: sub_agent_response_check
 ```
 
----
-
-## 1. 🎯 PURPOSE
-
-Delegate persistent debugging issues to a specialized sub-agent with fresh context. This workflow creates a comprehensive debug report, dispatches a sub-agent, and integrates findings back into the main session.
-
-**When to use:**
-- Same error persists after 3+ fix attempts
-- Need fresh perspective on complex issue
-- Want to preserve debugging context for handoff
-- Primary agent is stuck in a debugging loop
+**When to use:** Same error persists after 3+ attempts, need fresh perspective, want to preserve debugging context, primary agent stuck in loop.
 
 ---
 
-## 2. 📝 CONTRACT
+## 5. CONTRACT
 
-**Inputs:** `$ARGUMENTS` — Optional spec folder path
+**Inputs:** `$ARGUMENTS` -- Optional spec folder path
 **Outputs:** Debug resolution + `STATUS=<RESOLVED|NEEDS_REVIEW|ESCALATE>`
 
-### User Input
-
-```text
-$ARGUMENTS
-```
-
 ---
 
-## 3. 📊 WORKFLOW OVERVIEW
+## 6. WORKFLOW OVERVIEW
 
 | Step | Name               | Purpose                             | Outputs             |
 | ---- | ------------------ | ----------------------------------- | ------------------- |
@@ -223,105 +157,19 @@ $ARGUMENTS
 | 4    | Receive Findings   | Capture and validate response       | findings_received   |
 | 5    | Integration        | Apply fix or review                 | resolution_complete |
 
-### Workflow Diagram
+### Agent Routing
 
-```mermaid
-flowchart TB
-    subgraph SETUP["🔒 UNIFIED SETUP PHASE"]
-        direction TB
-        A1[Check $ARGUMENTS] --> A2{Spec folder<br/>provided?}
-        A2 -->|Yes| A3[Validate path]
-        A2 -->|No| A4[Auto-detect from<br/>recent memory]
-        A3 --> A5[Scan conversation<br/>for error context]
-        A4 --> A5
-        A5 --> A6["📋 CONSOLIDATED PROMPT<br/>Q0: Spec Folder<br/>Q1: Error Context<br/>Q2: Dispatch Mode"]
-        A6 --> A7[/"⏳ WAIT for<br/>user response"/]
-    end
+| Agent     | Scope                              | When                                       |
+| --------- | ---------------------------------- | ------------------------------------------ |
+| @speckit  | `debug-delegation.md` creation     | Step 2: Generate Report (spec folder docs) |
+| @debug    | 4-phase debugging methodology      | Step 3: Dispatch Sub-Agent                 |
+| @handover | Session handover (if needed)       | Post-resolution                            |
 
-    subgraph WORKFLOW["📊 5-STEP WORKFLOW"]
-        direction TB
-        S1["Step 1: VALIDATE CONTEXT<br/>Confirm spec_path + error_message"]
-        S2["Step 2: GENERATE REPORT<br/>Create debug-delegation.md"]
-        S3["Step 3: DISPATCH SUB-AGENT<br/>Task tool → @debug"]
-        S4["Step 4: RECEIVE FINDINGS<br/>Capture response"]
-        S5["Step 5: INTEGRATION<br/>Apply or review"]
-
-        S1 --> S2 --> S3 --> S4 --> S5
-    end
-
-    subgraph ISOLATION["🔒 ISOLATION PATTERN"]
-        direction TB
-        ISO1[["Main Agent<br/>(orchestrator)"]]
-        ISO2[/"Structured Handoff<br/>debug-delegation.md"/]
-        ISO3[["@debug Agent<br/>(fresh perspective)"]]
-
-        ISO1 -->|"Context via<br/>document ONLY"| ISO2
-        ISO2 -->|"NO conversation<br/>history passed"| ISO3
-    end
-
-    subgraph DEBUG["🔍 @debug 4-PHASE METHODOLOGY"]
-        direction LR
-        D1["1️⃣ OBSERVE<br/>Read error<br/>Categorize<br/>Map scope"]
-        D2["2️⃣ ANALYZE<br/>Trace paths<br/>Understand flow"]
-        D3["3️⃣ HYPOTHESIZE<br/>Form 2-3<br/>ranked theories"]
-        D4["4️⃣ FIX<br/>Minimal change<br/>Verify"]
-
-        D1 --> D2 --> D3 --> D4
-    end
-
-    subgraph RESPONSE["📤 RESPONSE TYPES"]
-        direction TB
-        R1{Response?}
-        R2["✅ SUCCESS<br/>Root cause found<br/>Fix applied"]
-        R3["⚠️ BLOCKED<br/>Missing info<br/>Access issue"]
-        R4["🔴 ESCALATION<br/>3+ hypotheses failed"]
-
-        R1 --> R2
-        R1 --> R3
-        R1 --> R4
-    end
-
-    subgraph INTEGRATE["🔀 INTEGRATION OPTIONS"]
-        direction TB
-        I1["A) Apply the fix"]
-        I2["B) Show full details"]
-        I3["C) Request more investigation"]
-        I4["D) Manual review"]
-    end
-
-    A7 --> S1
-    S3 -.->|"Task tool<br/>subagent_type: debug"| ISO1
-    ISO3 --> D1
-    D4 --> R1
-    R2 --> S4
-    R3 --> S4
-    R4 --> S4
-    S5 --> INTEGRATE
-
-    classDef core fill:#1e3a5f,stroke:#3b82f6,color:#fff
-    classDef gate fill:#7c2d12,stroke:#ea580c,color:#fff
-    classDef verify fill:#065f46,stroke:#10b981,color:#fff
-    classDef isolation fill:#4c1d95,stroke:#8b5cf6,color:#fff
-    classDef debug fill:#0f766e,stroke:#14b8a6,color:#fff
-
-    class A1,A2,A3,A4,A5,A6,A7 gate
-    class S1,S2,S3,S4,S5 core
-    class ISO1,ISO2,ISO3 isolation
-    class D1,D2,D3,D4 debug
-    class R1,R2,R3,R4 verify
-    class I1,I2,I3,I4 core
-```
-
-**Diagram Key:**
-- **Orange nodes**: Setup phase
-- **Blue nodes**: Core workflow steps
-- **Purple nodes**: Isolation pattern (context handoff)
-- **Teal nodes**: @debug methodology phases
-- **Green nodes**: Response verification
+> Per AGENTS.md, @speckit is the exclusive agent for creating documentation inside spec folders.
 
 ---
 
-## 4. ⚡ INSTRUCTIONS
+## 7. INSTRUCTIONS
 
 After all phases pass, load and execute the appropriate YAML prompt:
 
@@ -335,71 +183,47 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 **Step 2 - Generate Report:**
 - Template: `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
 - Save to: `[spec_path]/debug-delegation.md` (or `scratch/` if ad-hoc)
+- Agent: Dispatch to @speckit (exclusive per AGENTS.md)
 
 **Step 3 - Dispatch Sub-Agent:**
-- Tool: Task
-- subagent_type: "debug" (routes to `@debug` agent)
-- Agent file: `.opencode/agent/debug.md`
-- Timeout: 2 minutes (standard)
+- Tool: Task | subagent_type: "debug" | Agent: `.opencode/agent/debug.md` | Timeout: 2 min
 
-**Step 5 - Integration Options:**
-- A) Apply the fix
-- B) Show full details
-- C) Request more investigation
-- D) Manual review
+**Step 5 - Integration Options:** A) Apply fix | B) Show details | C) More investigation | D) Manual review
 
 ---
 
-## 5. 📊 OUTPUT FORMATS
+## 8. OUTPUT FORMATS
 
 ### Debug Delegation Success
-
 ```text
-╭─────────────────────────────────────────────────────────────────╮
-│ ✅ DEBUG DELEGATION COMPLETE                                    │
-├─────────────────────────────────────────────────────────────────┤
-│ Spec: specs/014-auth-feature/                                   │
-│ Report: specs/014-auth-feature/debug-delegation.md              │
-├─────────────────────────────────────────────────────────────────┤
-│ Root Cause: [brief summary]                                     │
-│ Fix Applied: [yes/no]                                           │
-│ Status: RESOLVED                                                │
-╰─────────────────────────────────────────────────────────────────╯
+ DEBUG DELEGATION COMPLETE
+ Spec: specs/014-auth-feature/
+ Report: specs/014-auth-feature/debug-delegation.md
+ Root Cause: [brief summary]
+ Fix Applied: [yes/no]
+ Status: RESOLVED
 ```
 
 ### Debug Needs Review
-
 ```text
-╭─────────────────────────────────────────────────────────────────╮
-│ ⚠️  DEBUG REQUIRES REVIEW                                       │
-├─────────────────────────────────────────────────────────────────┤
-│ Spec: specs/014-auth-feature/                                   │
-│ Report: specs/014-auth-feature/debug-delegation.md              │
-├─────────────────────────────────────────────────────────────────┤
-│ Findings documented. User chose manual review.                  │
-│ Status: NEEDS_REVIEW                                            │
-╰─────────────────────────────────────────────────────────────────╯
+ DEBUG REQUIRES REVIEW
+ Spec: specs/014-auth-feature/
+ Report: specs/014-auth-feature/debug-delegation.md
+ Findings documented. User chose manual review.
+ Status: NEEDS_REVIEW
 ```
 
 ### Debug Escalation
-
 ```text
-╭─────────────────────────────────────────────────────────────────╮
-│ 🔴 DEBUG ESCALATION                                             │
-├─────────────────────────────────────────────────────────────────┤
-│ Sub-agent could not resolve the issue.                          │
-│ Attempts: 3                                                     │
-├─────────────────────────────────────────────────────────────────┤
-│ RECOMMENDED:                                                    │
-│   • Review debug-delegation.md for all attempted fixes           │
-│   • Consider breaking problem into smaller parts                │
-│ Status: ESCALATE                                                │
-╰─────────────────────────────────────────────────────────────────╯
+ DEBUG ESCALATION
+ Sub-agent could not resolve the issue. Attempts: 3
+ RECOMMENDED: Review debug-delegation.md, break problem into smaller parts
+ Status: ESCALATE
 ```
 
 ---
 
-## 6. 📌 REFERENCE
+## 9. REFERENCE
 
 ### Error Categories
 
@@ -422,117 +246,82 @@ The YAML contains detailed step-by-step workflow, sub-agent prompt template, err
 
 ### Validation Integration
 
-Before or during debugging, validation runs automatically to catch common issues:
-- Missing required files (FILE_EXISTS)
-- Unfilled placeholders (PLACEHOLDER_FILLED)
-- Missing priority tags in checklist (PRIORITY_TAGS)
-- Broken memory anchors (ANCHORS_VALID)
+Before/during debugging, validation runs automatically: FILE_EXISTS, PLACEHOLDER_FILLED, PRIORITY_TAGS, ANCHORS_VALID.
 
 ---
 
-## 7. 🔀 SUB-AGENT DELEGATION
+## 10. SUB-AGENT DELEGATION
 
-This command uses the Task tool to dispatch the specialized `@debug` agent for debugging. The sub-agent runs independently with fresh perspective and returns structured findings.
+Uses Task tool to dispatch `@debug` agent. Sub-agent runs independently with fresh perspective, returns structured findings.
 
 ### Delegation Architecture
 
 ```
 Main Agent (reads command):
-├── PHASE 1: Context Detection (validation)
-├── Step 2: Generate debug-delegation.md (context handoff)
-├── DISPATCH: Task tool with @debug agent
-│   ├── @debug receives structured handoff (NOT conversation history)
-│   ├── @debug executes 4-phase methodology
-│   │   ├── Phase 1: OBSERVE (read error, categorize, map scope)
-│   │   ├── Phase 2: ANALYZE (trace paths, understand flow)
-│   │   ├── Phase 3: HYPOTHESIZE (form 2-3 ranked theories)
-│   │   └── Phase 4: FIX (minimal change, verify)
-│   └── @debug returns structured response (Success/Blocked/Escalation)
-└── Step 5: Integration (always main agent)
++-- Step 1: Context Detection (validation)
++-- Step 2: Generate debug-delegation.md (dispatch to @speckit)
++-- DISPATCH: Task tool with @debug agent
+|   +-- @debug receives structured handoff (NOT conversation history)
+|   +-- @debug executes: OBSERVE -> ANALYZE -> HYPOTHESIZE -> FIX
+|   +-- @debug returns: Success/Blocked/Escalation
++-- Step 5: Integration (always main agent)
 ```
 
 ### @debug Agent Dispatch Template
 
 ```
-Task tool with prompt:
----
+Task tool prompt:
 You are the @debug agent. Follow your 4-phase debugging methodology.
 
 ## Debug Context Handoff
-
 ### Error Description
 {error_message}
-
 ### Files Involved
 {affected_files}
-
 ### Reproduction Steps
 {reproduction_steps}
-
-### Prior Attempts (What Was Tried)
+### Prior Attempts
 {previous_attempts}
-
 ### Environment
 {environment_context}
 
-Execute your OBSERVE → ANALYZE → HYPOTHESIZE → FIX methodology.
-Return your findings in structured format (Success/Blocked/Escalation).
----
+Execute OBSERVE -> ANALYZE -> HYPOTHESIZE -> FIX.
+Return findings in structured format (Success/Blocked/Escalation).
 subagent_type: "debug"
 ```
 
 ### Sub-Agent Isolation (By Design)
 
-The `@debug` agent does NOT have access to conversation history. This is intentional:
-- **Prevents inherited assumptions** from failed attempts
-- **Fresh perspective** may see what others missed
-- **All context** must be passed via structured handoff format
+The `@debug` agent does NOT have conversation history access. Intentional: prevents inherited assumptions, provides fresh perspective. All context via structured handoff only.
 
-### Context Handoff Format
-
-The debug-delegation.md report MUST include:
+### Context Handoff Format (debug-delegation.md)
 
 | Section            | Required | Purpose                          |
 | ------------------ | -------- | -------------------------------- |
-| Error Description  | ✓        | Exact error message, symptoms    |
-| Files Involved     | ✓        | Affected files with roles        |
-| Reproduction Steps | ✓        | How to trigger the error         |
-| Prior Attempts     | ✓        | What was tried and why it failed |
-| Environment        | ○        | Runtime, versions, config        |
+| Error Description  | Yes      | Exact error message, symptoms    |
+| Files Involved     | Yes      | Affected files with roles        |
+| Reproduction Steps | Yes      | How to trigger the error         |
+| Prior Attempts     | Yes      | What was tried and why it failed |
+| Environment        | Optional | Runtime, versions, config        |
 
 ### Timeout & Retry
 
-- **Timeout:** 2 minutes (standard)
-- **Retry Limit:** Maximum 3 re-dispatch attempts before forcing escalation
-- **Escalation:** After 3 failed hypotheses, @debug returns ESCALATION response
+Timeout: 2 min | Retry: max 3 re-dispatches | After 3 failed hypotheses -> ESCALATION response
 
 ---
 
-## 8. 🔍 EXAMPLES
+## 11. EXAMPLES
 
-**Example 1: Auto-detect with recent error**
 ```
-/spec_kit:debug
+/spec_kit:debug                                          # Auto-detect + conversation error
+/spec_kit:debug specs/007-feature-name/004-implementation/  # Specific spec folder
 ```
-→ Auto-detects spec folder, gathers error from conversation, dispatches
 
-**Example 2: Specific spec folder**
-```
-/spec_kit:debug specs/007-feature-name/004-implementation/
-```
-→ Uses specified folder, gathers error context, dispatches
-
-**Example 3: After multiple failed attempts**
-```
-User: This TypeScript error keeps coming back after 3 fix attempts
-Agent: Let me delegate this to a fresh debugging agent...
-/spec_kit:debug
-```
-→ Creates comprehensive delegation report with all 3 attempts documented
+After multiple failed attempts: Creates comprehensive delegation report with all attempts documented.
 
 ---
 
-## 9. 🔗 RELATED COMMANDS
+## 12. RELATED COMMANDS
 
 | Command              | Relationship                                    |
 | -------------------- | ----------------------------------------------- |
@@ -542,68 +331,51 @@ Agent: Let me delegate this to a fresh debugging agent...
 
 ---
 
-## 10. 📌 INTEGRATION
+## 13. INTEGRATION
 
-### @debug Agent Integration
+### @debug Agent
 
-The debug command dispatches to the specialized `@debug` agent (`.opencode/agent/debug.md`):
-- **4-phase methodology:** Observe → Analyze → Hypothesize → Fix
-- **Codebase-agnostic:** Works with any technology stack
-- **Isolation by design:** No conversation history, only structured handoff
-- **Structured responses:** Success, Blocked, or Escalation format
+Agent file: `.opencode/agent/debug.md`
+- 4-phase methodology: Observe -> Analyze -> Hypothesize -> Fix
+- Codebase-agnostic, isolation by design, structured responses
 
-### @debug Agent Response Types
+### Response Types
 
-| Response       | Meaning                       | Next Action                          |
-| -------------- | ----------------------------- | ------------------------------------ |
-| **Success**    | Root cause found, fix applied | Verify fix, continue work            |
-| **Blocked**    | Missing info or access issue  | Provide requested info               |
-| **Escalation** | 3+ hypotheses failed          | Manual review or retry               |
+| Response       | Meaning                       | Next Action                |
+| -------------- | ----------------------------- | -------------------------- |
+| **Success**    | Root cause found, fix applied | Verify fix, continue work  |
+| **Blocked**    | Missing info or access issue  | Provide requested info     |
+| **Escalation** | 3+ hypotheses failed          | Manual review or retry     |
 
 ### Memory Integration
 
-After successful resolution:
-- Save semantic context for future retrieval:
-  ```
-  node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]
-  ```
-- Consider running `/memory:save` to capture debugging insights
-- Debug-delegation.md serves as memory for the spec folder
-- Future agents can learn from documented fix attempts
-
-### Learning from Mistakes
-
-- After resolution, use `/memory:learn` to capture the corrected approach
-- Document what was tried, what failed, and what ultimately worked
-- This builds institutional knowledge for future debugging sessions
+After resolution:
+- Run: `node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js [spec-folder-path]`
+- Consider `/memory:save` and `/memory:learn` to capture debugging insights
+- debug-delegation.md serves as memory for the spec folder
 
 ---
 
-## 11. 🔗 COMMAND CHAIN
-
-This command can be invoked from any workflow:
+## 14. COMMAND CHAIN
 
 ```
-[/spec_kit:implement] → /spec_kit:debug → [Return to original workflow]
-[/spec_kit:complete] → /spec_kit:debug → [Return to original workflow]
+[/spec_kit:implement] -> /spec_kit:debug -> [Return to original workflow]
+[/spec_kit:complete]  -> /spec_kit:debug -> [Return to original workflow]
 ```
 
-**After resolution:**
-→ Return to the original workflow step that triggered debugging
+After resolution: Return to the original workflow step that triggered debugging.
 
 ---
 
-## 12. 📌 NEXT STEPS
+## 15. NEXT STEPS
 
-After debugging completes, suggest relevant next steps:
-
-| Condition                      | Suggested Command                              | Reason                            |
-| ------------------------------ | ---------------------------------------------- | --------------------------------- |
-| Fix applied successfully       | Verify in browser/tests                        | Confirm fix works                 |
-| Fix applied, continue work     | Return to original workflow                    | Resume implementation             |
-| Issue needs more analysis      | `/spec_kit:debug` (retry)                      | Fresh perspective                 |
-| Want to save debugging context | `/memory:save [spec-folder-path]`              | Preserve debugging insights       |
-| Debugging session complete     | `/spec_kit:handover [spec-folder-path]`        | Document for future reference     |
-| Record lessons learned         | `/memory:learn [description]`                  | Capture learning from debugging   |
+| Condition                      | Suggested Command                       | Reason                          |
+| ------------------------------ | --------------------------------------- | ------------------------------- |
+| Fix applied successfully       | Verify in browser/tests                 | Confirm fix works               |
+| Fix applied, continue work     | Return to original workflow             | Resume implementation           |
+| Issue needs more analysis      | `/spec_kit:debug` (retry)              | Fresh perspective               |
+| Want to save debugging context | `/memory:save [spec-folder-path]`      | Preserve debugging insights     |
+| Debugging session complete     | `/spec_kit:handover [spec-folder-path]`| Document for future reference   |
+| Record lessons learned         | `/memory:learn [description]`          | Capture learning from debugging |
 
 **ALWAYS** end with: "What would you like to do next?"

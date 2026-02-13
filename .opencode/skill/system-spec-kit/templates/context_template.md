@@ -125,7 +125,7 @@
 
 ---
 
-<!-- ANCHOR:preflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:preflight -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -149,7 +149,7 @@
 - Confidence: {{PREFLIGHT_CONFIDENCE}}%
 - Uncertainty: {{PREFLIGHT_UNCERTAINTY_RAW}}
 - Readiness: {{PREFLIGHT_READINESS}}
-<!-- /ANCHOR:preflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:preflight -->
 
 ---
 
@@ -168,7 +168,7 @@
 
 ---
 
-<!-- ANCHOR:continue-session-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:continue-session -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -221,7 +221,7 @@ Next: {{NEXT_ACTION}}
 - Review PROJECT STATE SNAPSHOT for current state
 - Check DECISIONS for recent choices made
 {{/RESUME_CONTEXT}}
-<!-- /ANCHOR:continue-session-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:continue-session -->
 
 ---
 
@@ -260,7 +260,7 @@ Next: {{NEXT_ACTION}}
 ---
 
 {{#HAS_IMPLEMENTATION_GUIDE}}
-<!-- ANCHOR:task-guide-{{TOPIC}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:task-guide -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -296,12 +296,12 @@ Next: {{NEXT_ACTION}}
 {{^PATTERNS}}
 - No patterns identified
 {{/PATTERNS}}
-<!-- /ANCHOR:task-guide-{{TOPIC}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:task-guide -->
 
 ---
 {{/HAS_IMPLEMENTATION_GUIDE}}
 
-<!-- ANCHOR:summary-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:summary -->
 <a id="overview"></a>
 
 ## {{#HAS_IMPLEMENTATION_GUIDE}}2{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}1{{/HAS_IMPLEMENTATION_GUIDE}}. OVERVIEW
@@ -323,30 +323,30 @@ Next: {{NEXT_ACTION}}
 {{#FILES}}| `{{FILE_PATH}}` | {{DESCRIPTION}} |
 {{/FILES}}
 {{/HAS_FILES}}
-<!-- /ANCHOR:summary-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:summary -->
 
 ---
 {{#HAS_OBSERVATIONS}}
 
-<!-- ANCHOR:detailed-changes-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:detailed-changes -->
 <a id="detailed-changes"></a>
 
 ## {{#HAS_IMPLEMENTATION_GUIDE}}3{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}2{{/HAS_IMPLEMENTATION_GUIDE}}. DETAILED CHANGES
 
 {{#OBSERVATIONS}}
 {{^IS_DECISION}}
-<!-- ANCHOR:{{ANCHOR_ID}}-{{SESSION_ID}} -->
+<!-- ANCHOR:{{ANCHOR_ID}} -->
 ### {{TYPE}}: {{TITLE}}
 
 {{NARRATIVE}}
 
 {{#HAS_FILES}}**Files:** {{FILES_LIST}}{{/HAS_FILES}}
 {{#HAS_FACTS}}**Details:** {{FACTS_LIST}}{{/HAS_FACTS}}
-<!-- /ANCHOR:{{ANCHOR_ID}}-{{SESSION_ID}} -->
+<!-- /ANCHOR:{{ANCHOR_ID}} -->
 
 {{/IS_DECISION}}
 {{/OBSERVATIONS}}
-<!-- /ANCHOR:detailed-changes-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:detailed-changes -->
 
 ---
 {{/HAS_OBSERVATIONS}}
@@ -420,7 +420,7 @@ Next: {{NEXT_ACTION}}
 ---
 {{/HAS_WORKFLOW_DIAGRAM}}
 
-<!-- ANCHOR:decisions-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:decisions -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -445,7 +445,7 @@ Next: {{NEXT_ACTION}}
 ## {{#HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}5{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}{{^HAS_IMPLEMENTATION_GUIDE}}{{#HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}4{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{^HAS_OBSERVATIONS}}{{#HAS_WORKFLOW_DIAGRAM}}3{{/HAS_WORKFLOW_DIAGRAM}}{{^HAS_WORKFLOW_DIAGRAM}}2{{/HAS_WORKFLOW_DIAGRAM}}{{/HAS_OBSERVATIONS}}{{/HAS_IMPLEMENTATION_GUIDE}}. DECISIONS
 {{#DECISIONS}}
 
-<!-- ANCHOR:{{DECISION_ANCHOR_ID}}-{{SESSION_ID}} -->
+<!-- ANCHOR:{{DECISION_ANCHOR_ID}} -->
 ### Decision {{INDEX}}: {{TITLE}}
 
 **Context**: {{CONTEXT}}
@@ -509,7 +509,7 @@ Next: {{NEXT_ACTION}}
 {{/HAS_FOLLOWUP}}
 
 **Confidence**: {{CONFIDENCE}}%
-<!-- /ANCHOR:{{DECISION_ANCHOR_ID}}-{{SESSION_ID}} -->
+<!-- /ANCHOR:{{DECISION_ANCHOR_ID}} -->
 
 ---
 {{/DECISIONS}}
@@ -519,9 +519,9 @@ This session did not involve significant architectural or technical decisions. T
 
 ---
 {{/DECISIONS}}
-<!-- /ANCHOR:decisions-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:decisions -->
 
-<!-- ANCHOR:session-history-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:session-history -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -575,11 +575,11 @@ No conversation messages were captured. This may indicate an issue with data col
 
 ---
 {{/MESSAGES}}
-<!-- /ANCHOR:session-history-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:session-history -->
 
 ---
 
-<!-- ANCHOR:recovery-hints-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:recovery-hints -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -637,11 +637,11 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js {{S
 | Index Entry Valid | {{INDEX_ENTRY_VALID}} | Last indexed: {{LAST_INDEXED}} |
 | Checksums Match | {{CHECKSUMS_MATCH}} | {{CHECKSUM_DETAILS}} |
 | No Dedup Conflicts | {{NO_DEDUP_CONFLICTS}} | {{DEDUP_CONFLICT_DETAILS}} |
-<!-- /ANCHOR:recovery-hints-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:recovery-hints -->
 
 ---
 
-<!-- ANCHOR:postflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:postflight -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -684,7 +684,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js {{S
 
 **Session Learning Summary:**
 {{LEARNING_SUMMARY}}
-<!-- /ANCHOR:postflight-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:postflight -->
 
 ---
 
@@ -692,7 +692,7 @@ node .opencode/skill/system-spec-kit/scripts/dist/memory/generate-context.js {{S
 
 ## MEMORY METADATA
 
-<!-- ANCHOR:metadata-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- ANCHOR:metadata -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -810,7 +810,7 @@ embedding_version: "{{EMBEDDING_VERSION}}"
 chunk_count: {{CHUNK_COUNT}}
 ```
 
-<!-- /ANCHOR:metadata-{{SESSION_ID}}-{{SPEC_FOLDER}} -->
+<!-- /ANCHOR:metadata -->
 
 ---
 
@@ -835,7 +835,7 @@ chunk_count: {{CHUNK_COUNT}}
   - Epoch timestamps for programmatic access
   - Access tracking for relevance boosting
   - Machine-readable YAML metadata block
-  - Enhanced anchor naming with session IDs
+  - Simple anchor naming (semantic names only, no session/spec suffixes)
 
   MEMORY TYPES (v2.2):
   - episodic: Session-specific events and conversations (default, decays)
@@ -871,7 +871,7 @@ chunk_count: {{CHUNK_COUNT}}
   - dedup_savings_tokens: Tokens saved by not re-surfacing duplicates
 
   INDEXING NOTES:
-  - Anchors include session_id for cross-session uniqueness
+  - Anchors use simple semantic names (per-file uniqueness only)
   - YAML metadata block is primary source for indexer
   - Topics extracted from section headers and decision titles
   - Embeddings generated per-section, not whole document

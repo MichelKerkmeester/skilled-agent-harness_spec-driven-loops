@@ -1,3 +1,13 @@
+---
+title: "SpecKit Template Composer"
+description: "Automated composition system for SpecKit documentation templates across all documentation levels."
+trigger_phrases:
+  - "template composer"
+  - "compose templates"
+  - "template composition"
+importance_tier: "normal"
+---
+
 # SpecKit Template Composer
 
 > Automated composition system for SpecKit documentation templates across all documentation levels.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -16,7 +27,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is Template Composer?
 
@@ -52,7 +65,9 @@ The Template Composer (`compose.sh`) is an automated build system that generates
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -88,7 +103,9 @@ chmod +x compose.sh
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 scripts/templates/
@@ -126,7 +143,9 @@ templates/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Automated Template Composition
 
@@ -192,7 +211,9 @@ Special HTML comments control composition behavior:
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Compose All Templates
 
@@ -249,7 +270,9 @@ cd .opencode/skill/system-spec-kit/scripts/templates
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -322,7 +345,9 @@ grep -r "SPECKIT_" core/ addendum/
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -346,3 +371,4 @@ grep -r "SPECKIT_" core/ addendum/
 ---
 
 *Documentation for SpecKit v2.0 Template Composer | Last updated: 2026-02-07 | Path clarifications added*
+<!-- /ANCHOR:related -->

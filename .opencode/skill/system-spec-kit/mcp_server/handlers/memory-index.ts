@@ -157,7 +157,7 @@ function findSkillReadmes(workspacePath: string): string[] {
             continue;
           }
           walkDir(fullPath);
-        } else if (entry.isFile() && entry.name.toLowerCase() === 'readme.md') {
+        } else if ((entry.isFile() || entry.isSymbolicLink()) && entry.name.toLowerCase() === 'readme.md') {
           results.push(fullPath);
         }
       }
@@ -168,6 +168,43 @@ function findSkillReadmes(workspacePath: string): string[] {
 
   walkDir(skillDir);
   return results;
+}
+
+/**
+ * Find project/code-folder README files (not under .opencode/skill/).
+ * Uses catch-all discovery with exclusion patterns.
+ */
+async function findProjectReadmes(workspaceRoot: string): Promise<string[]> {
+  const readmes: string[] = [];
+
+  async function walk(dir: string): Promise<void> {
+    try {
+      const entries = await fs.promises.readdir(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        const relativePath = path.relative(workspaceRoot, fullPath).replace(/\\/g, '/');
+
+        // Skip excluded directories
+        if (entry.isDirectory()) {
+          const skipDirs = ['node_modules', '.git', 'dist', 'build', '.next', 'coverage', 'vendor', '__pycache__', '.pytest_cache'];
+          if (skipDirs.includes(entry.name)) continue;
+          // Skip .opencode/skill/ — those are handled by findSkillReadmes()
+          if (relativePath === '.opencode/skill' || relativePath.startsWith('.opencode/skill/')) continue;
+          await walk(fullPath);
+          continue;
+        }
+
+        if (entry.name.toLowerCase() === 'readme.md') {
+          readmes.push(fullPath);
+        }
+      }
+    } catch {
+      // Silently skip directories we can't read (permissions, etc.)
+    }
+  }
+
+  await walk(workspaceRoot);
+  return readmes;
 }
 
 /* ---------------------------------------------------------------
@@ -221,7 +258,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   const specFiles: string[] = memoryParser.findMemoryFiles(workspacePath, { specFolder: spec_folder });
   const constitutionalFiles: string[] = include_constitutional ? findConstitutionalFiles(workspacePath) : [];
   const readmeFiles: string[] = include_readmes ? findSkillReadmes(workspacePath) : [];
-  const files = [...specFiles, ...constitutionalFiles, ...readmeFiles];
+  const projectReadmeFiles: string[] = include_readmes ? await findProjectReadmes(workspacePath) : [];
+  const files = [...specFiles, ...constitutionalFiles, ...readmeFiles, ...projectReadmeFiles];
 
   if (files.length === 0) {
     return createMCPSuccessResponse({
@@ -241,8 +279,6 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       ]
     });
   }
-
-  console.error(`[memory-index-scan] Processing ${files.length} files in batches of ${BATCH_SIZE}`);
 
   const constitutionalSet = new Set(constitutionalFiles);
 
@@ -388,7 +424,17 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     data: {
       status: 'complete',
       batchSize: BATCH_SIZE,
-      ...results
+      ...results,
+      // DEBUG: file source breakdown (remove after verification)
+      _debug_fileCounts: {
+        specFiles: specFiles.length,
+        constitutionalFiles: constitutionalFiles.length,
+        skillReadmes: readmeFiles.length,
+        projectReadmes: projectReadmeFiles.length,
+        totalFiles: files.length,
+        includeReadmes: include_readmes,
+        workspacePath
+      }
     },
     hints
   });
@@ -402,16 +448,22 @@ export {
   handleMemoryIndexScan,
   indexSingleFile,
   findConstitutionalFiles,
+  findSkillReadmes,
+  findProjectReadmes,
 };
 
 // Backward-compatible aliases (snake_case)
 const handle_memory_index_scan = handleMemoryIndexScan;
 const index_single_file = indexSingleFile;
 const find_constitutional_files = findConstitutionalFiles;
+const find_skill_readmes = findSkillReadmes;
+const find_project_readmes = findProjectReadmes;
 
 export {
   handle_memory_index_scan,
   index_single_file,
   find_constitutional_files,
+  find_skill_readmes,
+  find_project_readmes,
 };
 

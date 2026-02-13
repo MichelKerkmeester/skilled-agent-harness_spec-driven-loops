@@ -5,7 +5,7 @@ import * as os from 'os';
 
 import * as saveHandler from '../handlers/memory-save';
 import * as memoryParser from '../lib/parsing/memory-parser';
-import * as peGate from '../lib/cognitive/prediction-error-gate';
+import * as peGate from '../lib/cache/cognitive/prediction-error-gate';
 import * as errorsModule from '../lib/errors';
 
 describe('Integration Save Pipeline (T526) [deferred - requires DB test fixtures]', () => {

@@ -1,3 +1,13 @@
+---
+title: "Handlers"
+description: "Request handlers for all MCP memory operations including CRUD, search, checkpoints, and learning."
+trigger_phrases:
+  - "MCP handlers"
+  - "memory handlers"
+  - "request handlers"
+importance_tier: "normal"
+---
+
 # Handlers
 
 > Request handlers for all MCP memory operations.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -15,9 +26,12 @@
 - [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
 - [8. 📚 RELATED DOCUMENTS](#8--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 **Purpose**: Handlers are the entry points for all MCP tool calls. They validate arguments, coordinate between modules (vector index, embeddings, parsing), and format responses for the MCP protocol.
 
@@ -45,9 +59,12 @@ Receive args → Validate → Coordinate modules → Format response → Return 
 | `session_learning` | session-learning | Epistemic tracking |
 | `memory_conflicts` | memory-save | PE gate audit logging |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Handler Invocation
 
@@ -89,9 +106,12 @@ const preflight = await handle_task_preflight({
 });
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 handlers/
@@ -126,9 +146,12 @@ handlers/
 | `memory-context.ts` | `handleMemoryContext` | Unified context entry with intent awareness. Additional direct exports: `CONTEXT_MODES`, `INTENT_TO_MODE` |
 | `causal-graph.ts` | `handleMemoryDriftWhy`, `handleMemoryCausalLink`, `handleMemoryCausalStats`, `handleMemoryCausalUnlink` | Causal edge CRUD, graph traversal, decision lineage |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Prediction Error Gating (memory-save.ts)
 
@@ -313,9 +336,12 @@ await handle_task_postflight({
 LI = (Knowledge Delta x 0.4) + (Uncertainty Reduction x 0.35) + (Context Improvement x 0.25)
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Search with Constitutional Priority
 
@@ -425,9 +451,12 @@ const history = await handle_get_learning_history({
 | Health check | `memory_health` | Monitor system status |
 | Learning tracking | `task_preflight` then `task_postflight` | Measure epistemic progress |
 
+<!-- /ANCHOR:examples -->
+
 ---
 
 ## 6. 🔗 INTEGRATION
+<!-- ANCHOR:integration -->
 
 ### context-server.ts Integration
 
@@ -464,9 +493,12 @@ import {
 
 **Tool Dispatch**: The `CallToolRequestSchema` handler dispatches to the appropriate handler function based on tool name.
 
+<!-- /ANCHOR:integration -->
+
 ---
 
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -575,9 +607,12 @@ await handle_task_postflight({
 | Memory not found by ID | Use `memory_list` to verify ID exists |
 | Preflight missing | Call `task_preflight` before `task_postflight` |
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
 ## 8. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -598,3 +633,5 @@ await handle_task_postflight({
 ---
 
 *Module version: 1.7.2 | Last updated: 2026-02-08*
+
+<!-- /ANCHOR:related -->

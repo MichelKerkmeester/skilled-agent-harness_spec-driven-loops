@@ -21,8 +21,8 @@ import * as memoryParser from '../lib/parsing/memory-parser';
 import type { CausalLinks } from '../lib/parsing/memory-parser';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher';
 import * as bm25Index from '../lib/search/bm25-index';
-import * as predictionErrorGate from '../lib/cognitive/prediction-error-gate';
-import * as fsrsScheduler from '../lib/cognitive/fsrs-scheduler';
+import * as predictionErrorGate from '../lib/cache/cognitive/prediction-error-gate';
+import * as fsrsScheduler from '../lib/cache/cognitive/fsrs-scheduler';
 import * as transactionManager from '../lib/storage/transaction-manager';
 import * as incrementalIndex from '../lib/storage/incremental-index';
 import * as preflight from '../lib/validation/preflight';
@@ -164,6 +164,19 @@ function escapeLikePattern(str: string): string {
    4. PE GATING HELPER FUNCTIONS
 --------------------------------------------------------------- */
 
+/**
+ * Calculate importance weight based on file path.
+ * User work memories get standard weight (0.5).
+ * Skill README documentation gets reduced weight (0.3) - reference material.
+ * Project/code-folder READMEs get weight (0.4) - between user work and skill docs.
+ */
+function calculateReadmeWeight(filePath: string): number {
+  const normalizedPath = filePath.replace(/\\/g, '/');
+  const isReadme = normalizedPath.toLowerCase().endsWith('readme.md');
+  const isSkillRm = normalizedPath.toLowerCase().includes('.opencode/skill/') && isReadme;
+  return isSkillRm ? 0.3 : (isReadme ? 0.4 : 0.5);
+}
+
 /** Find memories with similar embeddings for PE gating deduplication */
 function findSimilarMemories(embedding: Float32Array | null, options: { limit?: number; specFolder?: string | null } = {}): SimilarMemory[] {
   const { limit = 5, specFolder = null } = options;
@@ -222,15 +235,19 @@ function reinforceExistingMemory(memoryId: number, parsed: ParsedMemory): IndexR
       retrievability
     );
 
+    // Calculate importance weight so READMEs get correct weight on reinforcement
+    const importanceWeight = calculateReadmeWeight(parsed.filePath);
+
     // P4-05 FIX: Check result.changes to detect no-op updates (e.g., deleted memory)
     const updateResult = database.prepare(`
       UPDATE memory_index
       SET stability = ?,
+          importance_weight = ?,
           last_review = datetime('now'),
           review_count = COALESCE(review_count, 0) + 1,
           updated_at = datetime('now')
       WHERE id = ?
-    `).run(newStability, memoryId);
+    `).run(newStability, importanceWeight, memoryId);
 
     if ((updateResult as { changes: number }).changes === 0) {
       console.warn(`[memory-save] PE reinforcement UPDATE matched 0 rows for memory ${memoryId}`);
@@ -277,10 +294,14 @@ function markMemorySuperseded(memoryId: number): boolean {
 function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding: Float32Array): IndexResult {
   const database = requireDb();
 
+  // Calculate importance weight so READMEs get correct weight on update
+  const importanceWeight = calculateReadmeWeight(parsed.filePath);
+
   vectorIndex.updateMemory({
     id: memoryId,
     title: parsed.title ?? undefined,
     triggerPhrases: parsed.triggerPhrases,
+    importanceWeight,
     embedding: embedding
   });
 
@@ -292,12 +313,13 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
     SET content_hash = ?,
         context_type = ?,
         importance_tier = ?,
+        importance_weight = ?,
         last_review = datetime('now'),
         review_count = COALESCE(review_count, 0) + 1,
         updated_at = datetime('now'),
         file_mtime_ms = ?
     WHERE id = ?
-  `).run(parsed.contentHash, parsed.contextType, parsed.importanceTier, fileMtimeMs, memoryId);
+  `).run(parsed.contentHash, parsed.contextType, parsed.importanceTier, importanceWeight, fileMtimeMs, memoryId);
 
   return {
     status: 'updated',
@@ -571,8 +593,8 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
     // Guard: PE actions that reference an existing memory require existingMemoryId
     if (
       (peDecision.action === predictionErrorGate.ACTION.REINFORCE ||
-       peDecision.action === predictionErrorGate.ACTION.SUPERSEDE ||
-       peDecision.action === predictionErrorGate.ACTION.UPDATE) &&
+        peDecision.action === predictionErrorGate.ACTION.SUPERSEDE ||
+        peDecision.action === predictionErrorGate.ACTION.UPDATE) &&
       peDecision.existingMemoryId == null
     ) {
       console.warn(`[Memory Save] PE decision returned ${peDecision.action} without existingMemoryId, falling through to CREATE`);
@@ -640,12 +662,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
   if (embedding) {
     const indexWithMetadata = database.transaction(() => {
       // Determine importance weight based on content source
-      // User work memories (specs/*/memory/) get standard weight (0.5)
-      // README documentation gets reduced weight (0.3) — reference material should
-      // never outrank actual user work (decisions, context, blockers)
-      const normalizedPath = filePath.replace(/\\/g, '/');
-      const isReadmeFile = normalizedPath.toLowerCase().endsWith('readme.md');
-      const importanceWeight = isReadmeFile ? 0.3 : 0.5;
+      const importanceWeight = calculateReadmeWeight(filePath);
 
       const memory_id: number = vectorIndex.indexMemory({
         specFolder: parsed.specFolder,
@@ -718,12 +735,7 @@ async function indexMemoryFile(filePath: string, { force = false, parsedOverride
 
     const indexDeferred = database.transaction(() => {
       // Determine importance weight based on content source
-      // User work memories (specs/*/memory/) get standard weight (0.5)
-      // README documentation gets reduced weight (0.3) — reference material should
-      // never outrank actual user work (decisions, context, blockers)
-      const normalizedPath = filePath.replace(/\\/g, '/');
-      const isReadmeFile = normalizedPath.toLowerCase().endsWith('readme.md');
-      const importanceWeight = isReadmeFile ? 0.3 : 0.5;
+      const importanceWeight = calculateReadmeWeight(filePath);
 
       const memory_id: number = vectorIndex.indexMemoryDeferred({
         specFolder: parsed.specFolder,
@@ -1156,6 +1168,7 @@ export {
   getAtomicityMetrics,
 
   // PE gating helper functions
+  calculateReadmeWeight,
   findSimilarMemories,
   reinforceExistingMemory,
   markMemorySuperseded,
@@ -1176,6 +1189,7 @@ const index_memory_file = indexMemoryFile;
 const handle_memory_save = handleMemorySave;
 const atomic_save_memory = atomicSaveMemory;
 const get_atomicity_metrics = getAtomicityMetrics;
+const calculate_readme_weight = calculateReadmeWeight;
 const find_similar_memories = findSimilarMemories;
 const reinforce_existing_memory = reinforceExistingMemory;
 const mark_memory_superseded = markMemorySuperseded;
@@ -1189,6 +1203,7 @@ export {
   handle_memory_save,
   atomic_save_memory,
   get_atomicity_metrics,
+  calculate_readme_weight,
   find_similar_memories,
   reinforce_existing_memory,
   mark_memory_superseded,

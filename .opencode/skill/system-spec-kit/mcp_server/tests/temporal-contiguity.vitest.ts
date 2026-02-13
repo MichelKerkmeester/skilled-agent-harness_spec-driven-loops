@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as os from 'os';
 import * as fs from 'fs';
 
-import * as mod from '../lib/cognitive/temporal-contiguity';
+import * as mod from '../lib/cache/cognitive/temporal-contiguity';
 import BetterSqlite3 from 'better-sqlite3';
 
 describe('Temporal Contiguity Tests (T502)', () => {
@@ -51,8 +51,8 @@ describe('Temporal Contiguity Tests (T502)', () => {
   });
 
   afterAll(() => {
-    if (testDb) { try { testDb.close(); } catch {} }
-    if (tmpDbPath && fs.existsSync(tmpDbPath)) { try { fs.unlinkSync(tmpDbPath); } catch {} }
+    if (testDb) { try { testDb.close(); } catch { } }
+    if (tmpDbPath && fs.existsSync(tmpDbPath)) { try { fs.unlinkSync(tmpDbPath); } catch { } }
   });
 
   describe('Vector Search with Contiguity (T502-01 to T502-04)', () => {

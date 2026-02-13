@@ -1,31 +1,45 @@
+---
+title: "MCP Server Test Suite"
+description: "Comprehensive Vitest-based test suite for cognitive memory and MCP handlers."
+trigger_phrases:
+  - "test suite"
+  - "vitest"
+  - "mcp tests"
+importance_tier: "normal"
+---
+
 # MCP Server Test Suite
 
 > Comprehensive Vitest-based test suite for cognitive memory and MCP handlers.
 
 ---
 
-## 📑 TABLE OF CONTENTS
+## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1-overview)
-- [2. QUICK START](#2-quick-start)
-- [3. STRUCTURE](#3-structure)
-- [4. FEATURES](#4-features)
-- [5. USAGE EXAMPLES](#5-usage-examples)
-- [6. TROUBLESHOOTING](#6-troubleshooting)
-- [7. RUNNING VERIFICATION](#7-running-verification)
-- [8. RELATED RESOURCES](#8-related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 🚀 QUICK START](#2--quick-start)
+- [3. 📁 STRUCTURE](#3--structure)
+- [4. ⚡ FEATURES](#4--features)
+- [5. 💡 USAGE EXAMPLES](#5--usage-examples)
+- [6. 🛠️ TROUBLESHOOTING](#6--troubleshooting)
+- [7. 🧪 RUNNING VERIFICATION](#7--running-verification)
+- [8. 📚 RELATED RESOURCES](#8--related-resources)
+
+<!-- /ANCHOR:table-of-contents -->
 
 ---
 
-## 1. 📋 OVERVIEW
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
-### 🔍 What are the MCP Server Tests?
+### What are the MCP Server Tests?
 
 The test suite validates all critical functionality of the Spec Kit Memory MCP server. Tests cover cognitive memory features (attention decay, working memory, co-activation), tier classification, summary generation, search pipelines, MCP tool handlers, and integration scenarios. All tests use **Vitest** as the test framework with `.vitest.ts` file extensions.
 
 **TypeScript Migration:** The full JS-to-TS migration is complete (Spec 092). All test files are TypeScript (`.vitest.ts`). There are zero `.test.js`, `.test.ts`, or standalone `.js` test files remaining.
 
-### 📊 Key Statistics
+### Key Statistics
 
 | Category | Count | Details |
 |----------|-------|---------|
@@ -34,7 +48,7 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 | Test Framework | Vitest | TypeScript-native, no compilation step needed |
 | Coverage Target | 80/70/50 | Unit 80%, Integration 70%, E2E 50% |
 
-### ✨ Key Features
+### Key Features
 
 | Feature | Description |
 |---------|-------------|
@@ -43,7 +57,7 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 | **Category Organization** | Tests grouped by functional domain (cognitive, search, handlers, integration, unit) |
 | **Type Safety** | Full TypeScript — type checking at test level |
 
-### 📋 Requirements
+### Requirements
 
 | Requirement | Minimum | Recommended |
 |-------------|---------|-------------|
@@ -51,11 +65,14 @@ The test suite validates all critical functionality of the Spec Kit Memory MCP s
 | Vitest | Configured in project | Latest |
 | better-sqlite3 | 9+ | Latest |
 
+<!-- /ANCHOR:overview -->
+
 ---
 
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
-### ⚡ 30-Second Setup
+### 30-Second Setup
 
 ```bash
 # 1. Navigate to the mcp_server directory
@@ -71,7 +88,7 @@ npx vitest run tests/attention-decay.vitest.ts
 npx vitest
 ```
 
-### ✅ Verify Installation
+### Verify Installation
 
 ```bash
 # Check that vitest is available
@@ -81,7 +98,7 @@ npx vitest --version
 npx vitest run tests/memory-types.vitest.ts
 ```
 
-### 🎯 First Use
+### First Use
 
 ```bash
 # Run a single feature test
@@ -96,9 +113,12 @@ npx vitest run tests/working-memory.vitest.ts
 #  Tests: 51 passed
 ```
 
+<!-- /ANCHOR:quick-start -->
+
 ---
 
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 tests/
@@ -252,7 +272,7 @@ tests/
 └── VERIFICATION_REPORT.md                 # Phase 3 verification report
 ```
 
-### 📌 Key Files
+### Key Files
 
 | File | Purpose |
 |------|---------|
@@ -269,11 +289,14 @@ tests/
 | `memory-save-integration.vitest.ts` | PE gate + save handler integration |
 | `memory-search-integration.vitest.ts` | Testing effect integration |
 
+<!-- /ANCHOR:structure -->
+
 ---
 
-## 4. ✨ FEATURES
+## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
-### 🧪 Test Framework
+### Test Framework
 
 **Vitest**: Modern TypeScript-native test runner
 
@@ -304,7 +327,7 @@ describe('Attention Decay', () => {
 });
 ```
 
-### 📂 Test Organization
+### Test Organization
 
 **Category-Based Grouping**: Tests organized by functional domain
 
@@ -317,7 +340,7 @@ describe('Attention Decay', () => {
 | Infrastructure | Schema migration, retry, incremental indexing, transactions |
 | Unit | Focused type/logic validation for specific modules |
 
-### ▶️ Running Tests
+### Running Tests
 
 **Run all tests:**
 ```bash
@@ -339,11 +362,14 @@ npx vitest run --reporter=verbose tests/handler-*.vitest.ts
 npx vitest
 ```
 
+<!-- /ANCHOR:features -->
+
 ---
 
-## 5. 💻 USAGE EXAMPLES
+## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
-### 🔹 Example 1: Run All Tests
+### Example 1: Run All Tests
 
 ```bash
 npx vitest run
@@ -357,7 +383,7 @@ npx vitest run
 #  Tests       3872 passed
 ```
 
-### 🔹 Example 2: Run Specific Feature Test
+### Example 2: Run Specific Feature Test
 
 ```bash
 # Test attention decay module
@@ -371,7 +397,7 @@ npx vitest run tests/attention-decay.vitest.ts
 #     > applies fast decay for temporary tier
 ```
 
-### 🔹 Example 3: Run Tests with Verbose Output
+### Example 3: Run Tests with Verbose Output
 
 ```bash
 npx vitest run --reporter=verbose tests/composite-scoring.vitest.ts
@@ -379,7 +405,7 @@ npx vitest run --reporter=verbose tests/composite-scoring.vitest.ts
 # Shows each individual test case with pass/fail status
 ```
 
-### 🔹 Example 4: Run Tests by Category
+### Example 4: Run Tests by Category
 
 ```bash
 # All handler tests
@@ -392,7 +418,7 @@ npx vitest run tests/integration-*.vitest.ts
 npx vitest run tests/unit-*.vitest.ts
 ```
 
-### 📋 Common Patterns
+### Common Patterns
 
 | Pattern | Command | When to Use |
 |---------|---------|-------------|
@@ -402,13 +428,16 @@ npx vitest run tests/unit-*.vitest.ts
 | Pattern match | `npx vitest run tests/handler-*.vitest.ts` | Test a category |
 | Verbose | `npx vitest run --reporter=verbose` | Debug failures |
 
+<!-- /ANCHOR:examples -->
+
 ---
 
-## 6. 🔧 TROUBLESHOOTING
+## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
-### ❗ Common Issues
+### Common Issues
 
-#### 🔸 Module not found errors
+#### Module not found errors
 
 **Symptom**: `Error: Cannot find module '../lib/cognitive/attention-decay'`
 
@@ -423,7 +452,7 @@ npm run build
 # Vitest uses ts-node/esbuild for TypeScript — check vitest.config.ts
 ```
 
-#### 🔸 Database connection errors
+#### Database connection errors
 
 **Symptom**: `Error: unable to open database file`
 
@@ -437,7 +466,7 @@ ls -la .opencode/skill/system-spec-kit/mcp_server/database/context-index.sqlite
 # Create database if missing (auto-created on first MCP server run)
 ```
 
-#### 🔸 Embedding API errors in tests
+#### Embedding API errors in tests
 
 **Symptom**: Tests fail with embedding-related errors
 
@@ -448,7 +477,7 @@ export VOYAGE_API_KEY="your-key-here"
 npx vitest run
 ```
 
-### ⚡ Quick Fixes
+### Quick Fixes
 
 | Problem | Quick Fix |
 |---------|-----------|
@@ -457,7 +486,7 @@ npx vitest run
 | Import errors | Run `npm run build`, check vitest config |
 | Timeout errors | Increase timeout in vitest config or individual test |
 
-### 🔍 Diagnostic Commands
+### Diagnostic Commands
 
 ```bash
 # Verify vitest is available
@@ -471,11 +500,14 @@ ls tests/*.vitest.ts | wc -l
 npx vitest run --reporter=verbose 2>&1 | head -50
 ```
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-## 7. ✅ RUNNING VERIFICATION
+## 7. 🧪 RUNNING VERIFICATION
+<!-- ANCHOR:running-verification -->
 
-### 🏃 Full Verification Run
+### Full Verification Run
 
 ```bash
 # Navigate to mcp_server directory
@@ -488,7 +520,7 @@ npx vitest run
 npx vitest run --coverage
 ```
 
-### 🏷️ Category-Specific Runs
+### Category-Specific Runs
 
 ```bash
 # Cognitive tests
@@ -504,7 +536,7 @@ npx vitest run tests/integration-*.vitest.ts
 npx vitest run tests/composite-scoring.vitest.ts tests/five-factor-scoring.vitest.ts tests/bm25-index.vitest.ts tests/rrf-fusion.vitest.ts
 ```
 
-### 📄 Verification Report
+### Verification Report
 
 See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 verification report including:
 - Code quality gate compliance details
@@ -512,11 +544,14 @@ See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 
 - Test result summary template
 - Verification checklist
 
+<!-- /ANCHOR:running-verification -->
+
 ---
 
 ## 8. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
-### 📖 Internal Documentation
+### Internal Documentation
 
 | Document | Purpose |
 |----------|---------|
@@ -525,7 +560,7 @@ See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 
 | [Handlers README](../handlers/README.md) | MCP handler implementation details |
 | [Utils README](../utils/README.md) | Utility functions used in tests |
 
-### 📊 Test Coverage
+### Test Coverage
 
 | Module | Test File | Coverage Area |
 |--------|-----------|---------------|
@@ -543,13 +578,15 @@ See [VERIFICATION_REPORT.md](./VERIFICATION_REPORT.md) for the complete Phase 3 
 | Tier Classifier | `tier-classifier.vitest.ts` | Six-tier classification, keyword detection |
 | Archival Manager | `archival-manager.vitest.ts` | Archival system lifecycle |
 
-### 🔗 External Resources
+### External Resources
 
 | Resource | Description |
 |----------|-------------|
 | [Vitest Documentation](https://vitest.dev/) | Vitest test framework reference |
 | [better-sqlite3 Testing](https://github.com/WiseLibs/better-sqlite3/wiki/Testing) | Database testing patterns |
 | [MCP Testing Guide](https://modelcontextprotocol.io/testing) | MCP protocol testing best practices |
+
+<!-- /ANCHOR:related -->
 
 ---
 

@@ -1,10 +1,30 @@
+---
+title: "Level 3+ Templates"
+description: "Extended templates for enterprise-scale changes requiring formal governance, multi-agent coordination, and compliance tracking"
+trigger_phrases:
+  - "level 3+ templates"
+  - "enterprise governance templates"
+  - "multi-agent coordination templates"
+importance_tier: "normal"
+---
+
 # Level 3+ Templates
 
 > Extended templates for enterprise-scale changes requiring formal governance, multi-agent coordination, and compliance tracking.
 
 ---
 
+## TABLE OF CONTENTS
+
+- [1. Overview](#1--overview)
+- [2. Structure](#2--structure)
+- [3. Quick Start](#3--quick-start)
+- [4. Related Documents](#4--related-documents)
+
+---
+
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 Level 3+ templates support enterprise-scale changes requiring formal approval workflows, compliance tracking, multi-agent coordination, and comprehensive governance. These templates build on Level 3 by adding AI execution frameworks, extended checklists, workstream coordination, and compliance checkpoints.
 
@@ -44,9 +64,11 @@ Level 3+ = Core + Level 2 Verify + Level 3 Arch + Level 3+ Govern
          = ~640 LOC of structured documentation
 ```
 
+<!-- /ANCHOR:overview -->
 ---
 
 ## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 Level 3+ includes 6 template files:
 
@@ -61,9 +83,11 @@ Level 3+ includes 6 template files:
 
 All files include `SPECKIT_LEVEL: 3+` frontmatter.
 
+<!-- /ANCHOR:structure -->
 ---
 
 ## 3. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 1. Copy Templates to Spec Folder
 
@@ -96,9 +120,11 @@ Before claiming completion, ensure:
 - Extended checklist items verified (100-150 items)
 - AI execution protocols followed for multi-agent work
 
+<!-- /ANCHOR:quick-start -->
 ---
 
 ## 4. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Level Documentation
 - [Level 3 Templates](../level_3/) - Standard complex features without governance
@@ -107,6 +133,7 @@ Before claiming completion, ensure:
 ### Addendum Components
 - [Level 3+ Governance Addendum](../addendum/level3plus-govern/) - Source components for L3+ additions
 
+<!-- /ANCHOR:related -->
 ---
 
 <!--

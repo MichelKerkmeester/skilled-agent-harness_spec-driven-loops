@@ -4,6 +4,10 @@
 # Mode: confirm-only (interactive step-by-step approval)
 # Note: This workflow does NOT support :auto mode. All executions
 #       require user confirmation at checkpoints for content review.
+#
+# Note: README files created in .opencode/skill/*/ or project directories are
+# auto-indexed by memory_index_scan with importance_weight 0.3 (skill) or 0.4 (project).
+# Add YAML frontmatter (title, description, trigger_phrases) for enhanced memory indexing.
 # ───────────────────────────────────────────────────────────────────
 role: Expert README Creator using workflows-documentation skill
 purpose: Create comprehensive README files with proper structure and AI-optimization
@@ -25,7 +29,7 @@ action: Generate scannable, well-organized README with table of contents
 # ─────────────────────────────────────────────────────────────────
 
 operating_mode:
-  workflow: sequential_5_step
+  workflow: sequential_6_step
   workflow_compliance: MANDATORY
   workflow_execution: interactive
   approvals: step_by_step
@@ -115,14 +119,15 @@ readme_types:
   project:
     scope: "Entire project"
     sections:
-    - "🚀 GETTING STARTED"
-    - "🔌 INSTALLATION"
+    # Canonical sections from readme_template.md §13 (omits FAQ for project scope)
+    - "📖 OVERVIEW"
+    - "🚀 QUICK START"
+    - "⚡ FEATURES"
+    - "📁 STRUCTURE"
     - "⚙️ CONFIGURATION"
-    - "📁 DIRECTORY STRUCTURE"
-    - "🎯 KEY FEATURES"
-    - "⚡ COMMANDS"
-    - "🔧 TROUBLESHOOTING"
-    - "🏎️ QUICK REFERENCE"
+    - "💡 USAGE EXAMPLES"
+    - "🛠️ TROUBLESHOOTING"
+    - "📚 RELATED DOCUMENTS"
     key_questions:
     - "What is this?"
     - "How do I install it?"
@@ -132,12 +137,13 @@ readme_types:
   component:
     scope: "Module or package"
     sections:
+    # Full canonical 9-section set from readme_template.md §13
     - "📖 OVERVIEW"
     - "🚀 QUICK START"
-    - "⚡ COMMANDS / API"
-    - "🏗️ ARCHITECTURE"
+    - "⚡ FEATURES"
+    - "📁 STRUCTURE"
     - "⚙️ CONFIGURATION"
-    - "🧪 TESTING"
+    - "💡 USAGE EXAMPLES"
     - "🛠️ TROUBLESHOOTING"
     - "❓ FAQ"
     - "📚 RELATED DOCUMENTS"
@@ -149,10 +155,12 @@ readme_types:
   feature:
     scope: "Specific feature"
     sections:
+    # Canonical subset from readme_template.md §13 (omits STRUCTURE, FAQ, RELATED DOCUMENTS)
     - "📖 OVERVIEW"
     - "🚀 QUICK START"
+    - "⚡ FEATURES"
     - "⚙️ CONFIGURATION"
-    - "💡 EXAMPLES"
+    - "💡 USAGE EXAMPLES"
     - "🛠️ TROUBLESHOOTING"
     key_questions:
     - "What does this feature do?"
@@ -162,16 +170,13 @@ readme_types:
   skill:
     scope: "OpenCode skill"
     sections:
+    # Full canonical 9-section set from readme_template.md §13
     - "📖 OVERVIEW"
     - "🚀 QUICK START"
-    - "🎯 TRIGGER PHRASES"
-    - "⚡ COMMANDS / API"
-    - "🔧 MCP TOOLS"
-    - "🏗️ ARCHITECTURE"
-    - "💾 DATA STRUCTURE"
-    - "📊 PERFORMANCE"
+    - "⚡ FEATURES"
+    - "📁 STRUCTURE"
     - "⚙️ CONFIGURATION"
-    - "🧪 TESTING"
+    - "💡 USAGE EXAMPLES"
     - "🛠️ TROUBLESHOOTING"
     - "❓ FAQ"
     - "📚 RELATED DOCUMENTS"
@@ -217,6 +222,21 @@ reference_templates:
   core_standards: .opencode/skill/workflows-documentation/references/core_standards.md
 
 # ─────────────────────────────────────────────────────────────────
+# TEMPLATE EVOLUTION REFERENCES
+# ─────────────────────────────────────────────────────────────────
+# Points to readme_template.md sections for patterns not embedded here.
+# The canonical template is the single source of truth for all README structure.
+template_references:
+  canonical_structure: "readme_template.md §13 (Complete Template)"
+  anchor_rules: "readme_template.md §12 (Anchor Templates)"
+  writing_patterns: "readme_template.md §6 (Writing Patterns)"
+  style_guide: "readme_template.md §7 (Style Reference)"
+  toc_format: "readme_template.md §5.1 (Table of Contents)"
+  badge_shields: "readme_template.md §8 (Badge Shields)"
+  before_after_patterns: "readme_template.md §6.4 (Before/After)"
+  architecture_diagrams: "readme_template.md §6.5 (Architecture Diagrams)"
+
+# ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
 # ─────────────────────────────────────────────────────────────────
 checkpoint_options:
@@ -229,7 +249,7 @@ checkpoint_options:
     description: "Make changes before proceeding"
 
 # ─────────────────────────────────────────────────────────────────
-# WORKFLOW (5 STEPS WITH CHECKPOINTS)
+# WORKFLOW (6 STEPS WITH CHECKPOINTS)
 # ─────────────────────────────────────────────────────────────────
 workflow:
   step_1_request_analysis:
@@ -321,22 +341,16 @@ workflow:
       - "Code blocks with language tags"
       - "Horizontal rules between major sections"
     emoji_conventions:
+      # Canonical 9-section emojis from readme_template.md §13
       overview: "📖"
-      getting_started: "🚀"
-      features: "🎯"
-      commands: "⚡"
-      tools: "🔧"
-      architecture: "🏗️"
-      data: "💾"
-      performance: "📊"
+      quick_start: "🚀"
+      structure: "📁"
+      features: "⚡"
       configuration: "⚙️"
-      testing: "🧪"
+      usage_examples: "💡"
       troubleshooting: "🛠️"
       faq: "❓"
-      resources: "📚"
-      quick_reference: "🏎️"
-      installation: "🔌"
-      directory: "📁"
+      related_documents: "📚"
     outputs:
     - template_selected
     - sections_planned
@@ -359,7 +373,7 @@ workflow:
     quality_requirements:
       title: "Clear, concise value proposition"
       toc: "Numbered, linked to actual sections"
-      sections: "Emoji prefixes (📖 🚀 🎯 ⚡ 🔧 🏗️ 💾 📊 ⚙️ 🧪 🛠️ ❓ 📚)"
+      sections: "Emoji prefixes from canonical 9-section set (📖 🚀 📁 ⚡ ⚙️ 💡 🛠️ ❓ 📚)"
       tables: "For structured data (features, commands, config)"
       code_blocks: "Always specify language"
       diagrams: "ASCII for architecture/flow"
@@ -506,192 +520,28 @@ workflow:
         deprecated: Outdated but retained
 
 # ─────────────────────────────────────────────────────────────────
-# PROJECT README TEMPLATE
+# README TEMPLATE REFERENCES
 # ─────────────────────────────────────────────────────────────────
 templates:
+  # ── CANONICAL TEMPLATE REFERENCES ──────────────────────────────
+  # Full README scaffolds are NOT embedded here to avoid dual sources of truth.
+  # All types use the canonical 9-section template as their base.
   project_readme: |
-    # [Project Name]
-    
-    > [One-line tagline capturing the value proposition]
-    
-    [2-3 sentences explaining what this is, why it matters, and who it's for]
-    
-    For detailed documentation on [component 1] and [component 2]:
-    - [Component 1]: [`path/to/docs`](path/to/docs)
-    - [Component 2]: [`path/to/docs`](path/to/docs)
-    
-    ---
-    
-    ## TABLE OF CONTENTS
-    
-    - [1. 🚀 GETTING STARTED](#1--getting-started)
-    - [2. 🔌 INSTALLATION](#2--installation)
-    - [3. ⚙️ CONFIGURATION](#3-️-configuration)
-    - [4. 📁 DIRECTORY STRUCTURE](#4--directory-structure)
-    - [5. 🎯 KEY FEATURES](#5--key-features)
-    - [6. ⚡ COMMANDS](#6--commands)
-    - [7. 🔧 TROUBLESHOOTING](#7--troubleshooting)
-    - [8. 🏎️ QUICK REFERENCE](#8-️-quick-reference)
-    
-    ---
-    
-    ## 1. 🚀 GETTING STARTED
-    
-    ### What is [Project Name]?
-    
-    [Detailed explanation of what this project does]
-    
-    ### Why You Need This
-    
-    [Problem statement and how this solves it]
-    
-    ---
-    
-    ## 2. 🔌 INSTALLATION
-    
-    ### Prerequisites
-    
-    | Requirement | Minimum | Recommended |
-    |-------------|---------|-------------|
-    | [Runtime]   | [ver]   | [ver]       |
-    
-    ### Quick Install
-    
-    ```bash
-    # Step 1
-    [command]
-    
-    # Step 2
-    [command]
-    ```
-    
-    ---
-    
-    ## 3. ⚙️ CONFIGURATION
-    
-    ### Configuration File
-    
-    ```json
-    {
-      "key": "value"
-    }
-    ```
-    
-    ### Environment Variables
-    
-    | Variable | Default | Description |
-    |----------|---------|-------------|
-    | `VAR_1`  | [value] | [purpose]   |
-    
-    ---
-    
-    ## 4. 📁 DIRECTORY STRUCTURE
-    
-    ```
-    project/
-    ├── folder1/          # Description
-    │   └── subfolder/
-    ├── folder2/          # Description
-    └── config.json       # Description
-    ```
-    
-    ---
-    
-    ## 5. 🎯 KEY FEATURES
-    
-    ### Feature 1
-    
-    [Description with table if applicable]
-    
-    | Capability | Description |
-    |------------|-------------|
-    | [Cap 1]    | [Desc]      |
-    
-    ---
-    
-    ## 6. ⚡ COMMANDS
-    
-    | Command | What It Does | Example |
-    |---------|--------------|---------|
-    | `cmd1`  | [action]     | `cmd1 arg` |
-    
-    ---
-    
-    ## 7. 🔧 TROUBLESHOOTING
-    
-    ### Common Issues
-    
-    #### Issue: [Problem]
-    
-    **Symptom**: [What you see]
-    
-    **Solution**:
-    ```bash
-    [fix command]
-    ```
-    
-    ---
-    
-    ## 8. 🏎️ QUICK REFERENCE
-    
-    | Resource | Location |
-    |----------|----------|
-    | [Res 1]  | [`path`](path) |
-
+    # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Adapt sections per readme_types.project.sections above.
+    # Template path: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
   component_readme: |
-    # [Component/Skill Name]
-    
-    [One-liner description of what this provides]
-    
-    ---
-    
-    ## TABLE OF CONTENTS
-    
-    - [1. 📖 OVERVIEW](#1--overview)
-    - [2. 🚀 QUICK START](#2--quick-start)
-    - [3. 🎯 TRIGGER PHRASES](#3--trigger-phrases)
-    - [4. ⚡ COMMANDS / API](#4--commands--api)
-    - [5. 🔧 MCP TOOLS](#5--mcp-tools)
-    - [6. 🏗️ ARCHITECTURE](#6-️-architecture)
-    - [7. 💾 DATA STRUCTURE](#7--data-structure)
-    - [8. 📊 PERFORMANCE](#8--performance)
-    - [9. ⚙️ CONFIGURATION](#9-️-configuration)
-    - [10. 🧪 TESTING](#10--testing)
-    - [11. 🛠️ TROUBLESHOOTING](#11-️-troubleshooting)
-    - [12. ❓ FAQ](#12--faq)
-    - [13. 📚 RELATED DOCUMENTS](#13--related-documents)
-    
-    ---
-    
-    ## 1. 📖 OVERVIEW
-    
-    ### Key Capabilities
-    
-    | Feature | Description |
-    |---------|-------------|
-    | **[Feature 1]** | [Description] |
-    
-    ### What Is [Component Name]?
-    
-    [2-3 paragraphs explaining the component]
-    
-    ---
-    
-    ## 2. 🚀 QUICK START
-    
-    ```bash
-    # 1. [First step]
-    [command]
-    
-    # 2. [Second step]
-    [command]
-    ```
-    
-    That's it! [Brief explanation of what's now working]
-    
-    ---
-    
-    [Continue with remaining sections...]
+    # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Adapt sections per readme_types.component.sections above.
+    # Template path: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
+  feature_readme: |
+    # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Adapt sections per readme_types.feature.sections above (subset of 9 sections).
+    # Template path: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
+  skill_readme: |
+    # Reference: See readme_template.md §13 (Complete Template) for the canonical 9-section scaffold.
+    # Adapt sections per readme_types.skill.sections above.
+    # Template path: .opencode/skill/workflows-documentation/assets/documentation/readme_template.md
 
 # ─────────────────────────────────────────────────────────────────
 # COMPLETION REPORT TEMPLATE

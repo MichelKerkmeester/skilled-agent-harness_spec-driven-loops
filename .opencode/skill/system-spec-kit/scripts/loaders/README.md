@@ -1,3 +1,14 @@
+---
+title: "Data Loaders"
+description: "TypeScript data loading utilities for conversation context from multiple sources with validation and normalization."
+trigger_phrases:
+  - "data loaders"
+  - "load conversation data"
+  - "context loading"
+  - "multi-source loader"
+importance_tier: "normal"
+---
+
 # Data Loaders
 
 > TypeScript data loading utilities for conversation context from multiple sources with validation and normalization.
@@ -5,6 +16,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -16,7 +28,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is the loaders/ Directory?
 
@@ -51,7 +65,9 @@ The `loaders/` directory contains TypeScript utilities for loading conversation 
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -100,7 +116,9 @@ if (data._isSimulation) {
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 loaders/
@@ -123,7 +141,9 @@ loaders/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Multi-Source Loading
 
@@ -173,7 +193,9 @@ The loader attempts sources in priority order until successful:
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Load from JSON File
 
@@ -239,7 +261,9 @@ if (data._isSimulation) {
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -325,7 +349,9 @@ ls -la .opencode/
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -342,3 +368,4 @@ ls -la .opencode/
 | [CWE-22](https://cwe.mitre.org/data/definitions/22.html) | Path Traversal vulnerability reference |
 | [Node.js fs/promises](https://nodejs.org/api/fs.html#promises-api) | File system API documentation |
 | [JSON Schema](https://json-schema.org/) | Validation schema standard |
+<!-- /ANCHOR:related -->

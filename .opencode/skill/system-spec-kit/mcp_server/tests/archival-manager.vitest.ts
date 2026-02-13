@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 
-import * as archivalManager from '../lib/cognitive/archival-manager';
+import * as archivalManager from '../lib/cache/cognitive/archival-manager';
 import Database from 'better-sqlite3';
 
 /* ─────────────────────────────────────────────────────────────

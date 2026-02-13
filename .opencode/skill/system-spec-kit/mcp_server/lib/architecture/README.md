@@ -1,3 +1,13 @@
+---
+title: "Architecture Module"
+description: "7-layer MCP architecture with token budgets for progressive disclosure and cognitive load management."
+trigger_phrases:
+  - "architecture"
+  - "layer definitions"
+  - "token budgets"
+importance_tier: "normal"
+---
+
 # Architecture Module
 
 > 7-layer MCP architecture with token budgets for progressive disclosure and cognitive load management.
@@ -7,17 +17,17 @@
 <!-- ANCHOR:table-of-contents -->
 ## TABLE OF CONTENTS
 
-- [1. OVERVIEW](#1-overview)
-- [2. STRUCTURE](#2-structure)
-- [3. FEATURES](#3-features)
-- [4. USAGE](#4-usage)
-- [5. RELATED RESOURCES](#5-related-resources)
+- [1. OVERVIEW](#1--overview)
+- [2. STRUCTURE](#2--structure)
+- [3. FEATURES](#3--features)
+- [4. USAGE](#4--usage)
+- [5. RELATED RESOURCES](#5--related-resources)
 <!-- /ANCHOR:table-of-contents -->
 
 ---
 
 <!-- ANCHOR:overview -->
-## 1. OVERVIEW
+## 1. 📖 OVERVIEW
 
 The architecture module defines the 7-layer MCP tool organization (T060) that enables progressive disclosure from high-level orchestration to specialized operations. Each layer has an assigned token budget to manage response sizes and cognitive load.
 
@@ -45,7 +55,7 @@ The architecture module defines the 7-layer MCP tool organization (T060) that en
 ---
 
 <!-- ANCHOR:structure -->
-## 2. STRUCTURE
+## 2. 📁 STRUCTURE
 
 ```
 architecture/
@@ -63,7 +73,7 @@ architecture/
 ---
 
 <!-- ANCHOR:features -->
-## 3. FEATURES
+## 3. ⚡ FEATURES
 
 ### Layer Definitions
 
@@ -100,7 +110,7 @@ Each layer includes:
 ---
 
 <!-- ANCHOR:examples -->
-## 4. USAGE
+## 4. 💡 USAGE
 
 ### Basic Import
 
@@ -137,7 +147,7 @@ const layers = getRecommendedLayers('search');
 ---
 
 <!-- ANCHOR:related -->
-## 5. RELATED RESOURCES
+## 5. 📚 RELATED RESOURCES
 
 ### Internal Documentation
 

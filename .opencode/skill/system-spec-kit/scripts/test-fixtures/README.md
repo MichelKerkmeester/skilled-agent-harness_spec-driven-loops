@@ -1,3 +1,13 @@
+---
+title: "SpecKit Validation Test Fixtures"
+description: "Comprehensive test scenarios for validating SpecKit spec folder structure, content rules, and validation logic."
+trigger_phrases:
+  - "test fixtures"
+  - "validation fixtures"
+  - "spec folder test scenarios"
+importance_tier: "normal"
+---
+
 # SpecKit Validation Test Fixtures
 
 > Comprehensive test scenarios for validating SpecKit spec folder structure, content rules, and validation logic.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -17,7 +28,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Test Fixtures?
 
@@ -54,7 +67,9 @@ Test fixtures are pre-built spec folder examples that cover all validation scena
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### 30-Second Setup
 
@@ -91,7 +106,9 @@ cd .opencode/skill/system-spec-kit/scripts
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 test-fixtures/
@@ -179,7 +196,9 @@ test-fixtures/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Validation Rule Coverage
 
@@ -237,7 +256,9 @@ test-fixtures/004-valid-level3/
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Validate Single Fixture
 
@@ -307,7 +328,9 @@ cd .opencode/skill/system-spec-kit/scripts
 
 ---
 
+<!-- /ANCHOR:examples -->
 ## 6. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -413,7 +436,9 @@ ls test-fixtures/ | grep "priority"
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 7. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -446,9 +471,9 @@ ls test-fixtures/ | grep "priority"
 
 ---
 
----
-
+<!-- /ANCHOR:related -->
 ## 8. 🧠 COGNITIVE MEMORY FIXTURES
+<!-- ANCHOR:cognitive-memory-fixtures -->
 
 ### Overview
 
@@ -467,3 +492,4 @@ Additional fixtures for testing the Cognitive Memory Upgrade features including 
 ---
 
 *Test fixtures for SpecKit v2.1 validation system | Last updated: 2026-02-07*
+<!-- /ANCHOR:cognitive-memory-fixtures -->

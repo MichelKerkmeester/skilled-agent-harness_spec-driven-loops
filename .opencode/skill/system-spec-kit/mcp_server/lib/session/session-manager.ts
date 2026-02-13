@@ -8,7 +8,7 @@ import path from 'path';
 
 import type { DatabaseExtended as Database } from '../../../shared/types';
 // T302: Import working-memory for immediate cleanup on session end (GAP 2)
-import * as workingMemory from '../cognitive/working-memory';
+import * as workingMemory from '../cache/cognitive/working-memory';
 
 /* ---------------------------------------------------------------
    1. TYPES

@@ -86,7 +86,7 @@ flowchart TD
 
 | Priority | Task Type                     | Agent                        | Skills                                        | subagent_type |
 | -------- | ----------------------------- | ---------------------------- | --------------------------------------------- | ------------- |
-| 1        | Context loading / file search | `@context`                   | Memory tools, Glob, Grep, Read                | `"general"`   |
+| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`                   | Memory tools, Glob, Grep, Read                | `"general"`   |
 | 2        | Evidence / investigation      | `@research`                  | `system-spec-kit`                             | `"general"`   |
 | 3        | Spec folder docs              | `@speckit` ⛔ EXCLUSIVE      | `system-spec-kit`                             | `"general"`   |
 | 4        | Code review / security        | `@review`                    | `workflows-code` (if available)               | `"general"`   |
@@ -95,11 +95,22 @@ flowchart TD
 | 7        | Debugging (stuck, 3+ fails)   | `@debug`                     | Code analysis tools                           | `"general"`   |
 | 8        | Session handover              | `@handover`                  | `system-spec-kit`                             | `"general"`   |
 
+### Agent Loading Protocol (MANDATORY)
+
+**BEFORE dispatching any custom agent via the Task tool, you MUST:**
+1. **READ** the agent's definition file (see File column below)
+2. **INCLUDE** the agent file's content in the Task prompt (or a focused summary for large files)
+3. **SET** `subagent_type: "general"` (all custom agents use the general subagent type)
+
+**Why:** Agent definition files contain specialized instructions, templates, enforcement rules, and quality standards that differentiate them from generic agents. Telling a general agent "you are @speckit" is NOT equivalent to loading `speckit.md` — it loses template enforcement, validation workflows, and Level 1-3+ standards.
+
+**Exception:** If the agent file was already loaded in a prior dispatch within the same session AND no context compaction has occurred, you may reference it rather than re-reading it.
+
 ### Agent Files
 
 | Agent           | File                             | Notes                                                                             |
 | --------------- | -------------------------------- | --------------------------------------------------------------------------------- |
-| @context        | `.opencode/agent/context.md`     | Sub-agent with dispatch. REQUIRED — never dispatch @explore directly              |
+| @context        | `.opencode/agent/context.md`     | Sub-agent with dispatch. Routes ALL exploration tasks                      |
 | @research       | `.opencode/agent/research.md`    | Sub-agent; outputs research.md                                                    |
 | @speckit        | `.opencode/agent/speckit.md`     | ⛔ ALL spec folder docs (*.md). Exceptions: memory/, scratch/, handover.md, research.md |
 | @review         | `.opencode/agent/review.md`     | Codebase-agnostic quality scoring                                                  |
@@ -107,7 +118,7 @@ flowchart TD
 | @debug          | `.opencode/agent/debug.md`       | Isolated by design (no conversation context)                                       |
 | @handover       | `.opencode/agent/handover.md`    | Sub-agent; context preservation                                                    |
 
-> **Note**: `@explore` is a built-in subagent type (`"explore"`) used only internally by @context — never dispatch directly.
+> **Note**: ALL exploration tasks route through `@context` exclusively. @context internally manages fast search and deep investigation sub-agents.
 
 ---
 
@@ -146,10 +157,10 @@ Sub-orchestrators operate within **inherited constraints** — they CANNOT excee
 **Trigger:** Completion of major milestone or session end.
 **Action:** Mandate sub-agents to run `/memory:save` or `save context`.
 
-### Rule 4: Never Dispatch @explore Directly
+### Rule 4: Route ALL Exploration Through @context
 **Trigger:** Any task requiring codebase exploration, file search, or pattern discovery.
-**Action:** ALWAYS dispatch `@context`, NEVER `@explore` directly. `@context` internally dispatches `@explore` when needed, ensuring structured output, memory integration, and consistent Context Packages.
-**Logic:** Direct `@explore` dispatches bypass memory checks, return unstructured output, and miss prior work context. `@context` wraps exploration with memory-first retrieval and structured synthesis.
+**Action:** ALWAYS dispatch `@context` (subagent_type: `"general"`). @context internally manages specialized sub-agents for fast search and deep investigation, ensuring structured output, memory integration, and consistent Context Packages.
+**Logic:** Direct exploration dispatches bypass memory checks, return unstructured output, and miss prior work context. @context wraps exploration with memory-first retrieval and structured synthesis.
 
 ### Rule 5: Spec Documentation Exclusivity
 **Trigger:** Any task that creates or substantively writes spec folder template documents.
@@ -163,13 +174,14 @@ Sub-orchestrators operate within **inherited constraints** — they CANNOT excee
 - **Reading** spec docs is permitted by any agent
 - **Minor status updates** (e.g., checking task boxes) by implementing agents are acceptable
 **Logic:** `@speckit` enforces template structure, Level 1-3+ standards, and validation that other agents lack. Bypassing `@speckit` produces non-standard documentation that fails quality gates.
+**Dispatch Protocol:** When dispatching @speckit, READ `.opencode/agent/speckit.md` and include its content in the Task prompt. This ensures template structure, Level 1-3+ standards, and validation workflows are enforced. Simply instructing a general agent to "act as @speckit" bypasses all enforcement.
 
 ### Two-Tier Dispatch Model
 
 The orchestrator uses a two-tier approach to task execution:
 
 **Phase 1: UNDERSTANDING** — @context gathers context
-- @context internally dispatches @explore (fast search) and @research (deep investigation) — the orchestrator NEVER dispatches @explore directly
+- @context internally dispatches specialized sub-agents for fast search and deep investigation — the orchestrator routes ALL exploration through @context
 - Returns structured Context Package to orchestrator
 - Dispatch limits: quick=0, medium=1 max, thorough=2 max (user can override)
 - Purpose: Build complete understanding before action
@@ -317,6 +329,8 @@ TASK #N: [Descriptive Title]
 ├─ Scope: [Explicit inclusions AND exclusions]
 ├─ Boundary: [What this agent MUST NOT do]
 ├─ Agent: @general | @context | @research | @write | @review | @speckit | @debug | @handover
+├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
+├─ Agent Definition: [.opencode/agent/<name>.md — MUST be read and included in prompt | "built-in" for @general]
 ├─ Skills: [Specific skills the agent should use]
 ├─ Output Format: [Structured format with example]
 ├─ Output Size: [full | summary-only (30 lines) | minimal (3 lines)] ← CWB §23
@@ -354,6 +368,7 @@ PRE-DELEGATION REASONING [Task #N]:
 ├─ Intent: [What does this task accomplish?]
 ├─ Complexity: [low/medium/high] → Because: [cite criteria from §10]
 ├─ Agent: @[agent] → Because: [cite §3 (Agent Routing)]
+├─ Agent Def: [loaded | built-in | prior-session] → [.opencode/agent/<name>.md]
 ├─ Parallel: [Yes/No] → Because: [data dependency]
 ├─ Risk: [Low/Medium/High] → [If High: fallback agent]
 └─ TCB: [N] tool calls → [Single agent | Split: M × ~K calls] (mandatory for file I/O tasks)
@@ -590,7 +605,7 @@ Resume flow: Load checkpoint → Validate pending tasks → Restore context → 
 
 **Role:** Senior Task Commander — decompose, delegate, evaluate, synthesize. NO direct execution.
 
-**Agents:** @research, @write, @review, @debug, @speckit, @handover (custom) + @general, @context (built-in). Note: @explore is a built-in subagent type used only internally by @context — never dispatch directly.
+**Agents:** @research, @write, @review, @debug, @speckit, @handover (custom) + @general, @context (built-in). @context handles ALL exploration tasks exclusively.
 
 **Resilience:** Circuit Breaker (§15) | Saga Compensation (§17) | Caching (§18) | Checkpointing (§20) | CWB (§23) | TCB (§26)
 
@@ -668,6 +683,12 @@ The orchestrator's context window is finite (~150K available tokens). When many 
 
 ❌ **Never dispatch a single agent for 13+ estimated tool calls**
 - Single agents with too many sequential operations (reads, writes, edits, bash) exceed system execution limits, returning "Tool execution aborted" and losing all progress. Always estimate tool calls before dispatch and split at 12+. See §26 for the Tool Call Budget system.
+
+❌ **Never bypass @context for exploration tasks**
+- ALL codebase exploration, file search, and pattern discovery MUST route through @context (subagent_type: `"general"`). @context provides memory integration, structured output, and Context Packages that direct exploration sub-agents lack. Bypassing @context wastes tokens and produces unstructured results.
+
+❌ **Never improvise custom agent instructions instead of loading their definition file**
+- Every custom agent (@context, @research, @speckit, @review, @write, @debug, @handover) has a definition file in `.opencode/agent/`. These files contain specialized templates, enforcement rules, and quality standards. Dispatching a generic agent with "you are @speckit" in the prompt produces documentation without template enforcement, validation, or Level 1-3+ compliance. ALWAYS read and include the actual agent definition file. See §3 Agent Loading Protocol.
 
 ---
 

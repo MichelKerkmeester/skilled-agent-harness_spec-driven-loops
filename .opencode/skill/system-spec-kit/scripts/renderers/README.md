@@ -1,3 +1,13 @@
+---
+title: "Template Renderers"
+description: "Lightweight template engine for populating spec folder templates with dynamic data"
+trigger_phrases:
+  - "template renderer"
+  - "populate template"
+  - "mustache template spec kit"
+importance_tier: "normal"
+---
+
 # Template Renderers
 
 > Lightweight template engine for populating spec folder templates with dynamic data.
@@ -5,6 +15,7 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
@@ -14,7 +25,9 @@
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What are Template Renderers?
 
@@ -41,7 +54,9 @@ Template renderers provide a Mustache-like templating system for populating spec
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Basic Usage
 
@@ -106,7 +121,9 @@ const data = {
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 renderers/
@@ -125,7 +142,9 @@ renderers/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -211,7 +230,9 @@ const result = renderTemplate('{{MISSING}}', {});
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 5. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -228,3 +249,4 @@ const result = renderTemplate('{{MISSING}}', {});
 |----------|-------------|
 | [Mustache Documentation](https://mustache.github.io/) | Similar template syntax (reference) |
 | [Handlebars Guide](https://handlebarsjs.com/guide/) | Extended template patterns (reference) |
+<!-- /ANCHOR:related -->

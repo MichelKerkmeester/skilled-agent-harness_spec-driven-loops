@@ -1,3 +1,14 @@
+---
+title: "Core System Scripts"
+description: "Core workflow orchestration and configuration modules for the system-spec-kit memory and context generation system."
+trigger_phrases:
+  - "core workflow"
+  - "workflow orchestration"
+  - "spec kit config"
+  - "generate context workflow"
+importance_tier: "normal"
+---
+
 # Core System Scripts
 
 > Core workflow orchestration and configuration modules for the system-spec-kit memory and context generation system.
@@ -5,19 +16,23 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
 - [2. 🚀 QUICK START](#2--quick-start)
 - [3. 📁 STRUCTURE](#3--structure)
 - [4. ⚡ FEATURES](#4--features)
 - [5. 💡 USAGE EXAMPLES](#5--usage-examples)
-- [6. 🔧 ARCHITECTURE](#6--architecture)
+- [6. 🏗️ ARCHITECTURE](#6--architecture)
 - [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
 - [8. 📚 RELATED DOCUMENTS](#8--related-documents)
+- [9. 📊 TYPESCRIPT MIGRATION NOTES](#9--typescript-migration-notes)
 
 ---
 
+<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 ### What is Core?
 
@@ -51,7 +66,9 @@ The `core/` directory contains the foundational modules that orchestrate the ent
 
 ---
 
+<!-- /ANCHOR:overview -->
 ## 2. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
 
 ### Running the Core Workflow
 
@@ -89,7 +106,9 @@ Configuration is loaded from `.opencode/skill/system-spec-kit/config/config.json
 
 ---
 
+<!-- /ANCHOR:quick-start -->
 ## 3. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 core/
@@ -120,7 +139,9 @@ dist/core/
 
 ---
 
+<!-- /ANCHOR:structure -->
 ## 4. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Workflow Orchestration
 
@@ -129,7 +150,7 @@ The `workflow.js` module coordinates the entire context generation pipeline:
 | Phase | Operations | Output |
 |-------|------------|--------|
 | **1. Setup** | Detect spec folder, setup context directory, load config | Context directory structure |
-| **2. Extraction** | Extract conversations, decisions, diagrams, files, sessions | Structured data objects |
+| **2. Extraction** | Extract conversations, decisions, diagrams, files | Structured data objects |
 | **3. Enhancement** | Generate semantic descriptions, implementation summaries | Enhanced data with embeddings |
 | **4. Rendering** | Populate templates with extracted data | Markdown content |
 | **5. Validation** | Check for leaked placeholders, validate anchors | Validation warnings |
@@ -168,7 +189,9 @@ All dependencies are imported statically at module load time:
 
 ---
 
+<!-- /ANCHOR:features -->
 ## 5. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Importing Configuration
 
@@ -234,7 +257,9 @@ export async function runWorkflow(params: WorkflowParams) {
 
 ---
 
-## 6. 🔧 ARCHITECTURE
+<!-- /ANCHOR:examples -->
+## 6. 🏗️ ARCHITECTURE
+<!-- ANCHOR:architecture -->
 
 ### Dependency Flow
 
@@ -270,7 +295,9 @@ workflow.ts (source) → dist/core/workflow.js (compiled)
 
 ---
 
+<!-- /ANCHOR:architecture -->
 ## 7. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -339,7 +366,9 @@ cd .opencode/skill/system-spec-kit/scripts && npm run build
 
 ---
 
+<!-- /ANCHOR:troubleshooting -->
 ## 8. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
 
 | Document | Purpose |
 |----------|---------|
@@ -358,7 +387,12 @@ cd .opencode/skill/system-spec-kit/scripts && npm run build
 
 ---
 
-## TypeScript Migration Notes
+<!-- /ANCHOR:related -->
+
+---
+
+## 9. 📊 TYPESCRIPT MIGRATION NOTES
+<!-- ANCHOR:typescript-migration-notes -->
 
 **Migration Completed**: 2026-02-07
 
@@ -378,3 +412,4 @@ const { runWorkflow } = require('./dist/core/workflow');
 ---
 
 *Part of the system-spec-kit conversation memory and context preservation system.*
+<!-- /ANCHOR:typescript-migration-notes -->

@@ -1,3 +1,13 @@
+---
+title: "Session Layer"
+description: "Session management for the Spec Kit Memory MCP server - handles session deduplication, crash recovery, and context persistence."
+trigger_phrases:
+  - "session management"
+  - "session deduplication"
+  - "crash recovery"
+importance_tier: "normal"
+---
+
 # Session Layer
 
 > Session management for the Spec Kit Memory MCP server - handles session deduplication, crash recovery, and context persistence.
@@ -5,17 +15,20 @@
 ---
 
 ## TABLE OF CONTENTS
+<!-- ANCHOR:table-of-contents -->
 
-- [1. OVERVIEW](#1--overview)
-- [2. STRUCTURE](#2--structure)
-- [3. FEATURES](#3--features)
-- [4. USAGE EXAMPLES](#4--usage-examples)
-- [5. TROUBLESHOOTING](#5--troubleshooting)
-- [6. RELATED RESOURCES](#6--related-resources)
+- [1. 📖 OVERVIEW](#1--overview)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. ⚡ FEATURES](#3--features)
+- [4. 💡 USAGE EXAMPLES](#4--usage-examples)
+- [5. 🛠️ TROUBLESHOOTING](#5--troubleshooting)
+- [6. 📚 RELATED RESOURCES](#6--related-resources)
 
 ---
 
-## 1. OVERVIEW
+<!-- /ANCHOR:table-of-contents -->
+## 1. 📖 OVERVIEW
+<!-- ANCHOR:overview -->
 
 The session layer provides all session-related operations for the Spec Kit Memory MCP server. It prevents duplicate context injection (saving ~50% tokens on follow-up queries) and enables crash recovery with immediate SQLite persistence.
 
@@ -39,7 +52,9 @@ The session layer provides all session-related operations for the Spec Kit Memor
 
 ---
 
-## 2. STRUCTURE
+<!-- /ANCHOR:overview -->
+## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
 
 ```
 session/
@@ -55,7 +70,9 @@ session/
 
 ---
 
-## 3. FEATURES
+<!-- /ANCHOR:structure -->
+## 3. ⚡ FEATURES
+<!-- ANCHOR:features -->
 
 ### Session Deduplication (v1.2.0)
 
@@ -106,7 +123,9 @@ Generated on checkpoint with:
 
 ---
 
-## 4. USAGE EXAMPLES
+<!-- /ANCHOR:features -->
+## 4. 💡 USAGE EXAMPLES
+<!-- ANCHOR:examples -->
 
 ### Example 1: Filter Search Results (Primary Integration)
 
@@ -179,7 +198,9 @@ checkpointSession(sessionId, {
 
 ---
 
-## 5. TROUBLESHOOTING
+<!-- /ANCHOR:examples -->
+## 5. 🛠️ TROUBLESHOOTING
+<!-- ANCHOR:troubleshooting -->
 
 ### Common Issues
 
@@ -255,7 +276,9 @@ console.log(getInterruptedSessions());
 
 ---
 
-## 6. RELATED RESOURCES
+<!-- /ANCHOR:troubleshooting -->
+## 6. 📚 RELATED RESOURCES
+<!-- ANCHOR:related -->
 
 ### Internal Documentation
 
@@ -274,3 +297,4 @@ console.log(getInterruptedSessions());
 ---
 
 *Documentation version: 1.7.2 | Last updated: 2026-02-08 | Session layer v1.2.0*
+<!-- /ANCHOR:related -->

@@ -10,11 +10,11 @@
 import * as vectorIndex from '../lib/search/vector-index';
 import * as embeddings from '../lib/providers/embeddings';
 import * as hybridSearch from '../lib/search/hybrid-search';
-import * as fsrsScheduler from '../lib/cognitive/fsrs-scheduler';
+import * as fsrsScheduler from '../lib/cache/cognitive/fsrs-scheduler';
 import * as toolCache from '../lib/cache/tool-cache';
 import * as sessionManager from '../lib/session/session-manager';
 import * as intentClassifier from '../lib/search/intent-classifier';
-import * as tierClassifier from '../lib/cognitive/tier-classifier';
+import * as tierClassifier from '../lib/cache/cognitive/tier-classifier';
 import * as crossEncoder from '../lib/search/cross-encoder';
 
 // Core utilities
@@ -128,8 +128,8 @@ function strengthenOnAccess(db: Database | null, memoryId: number, currentRetrie
   }
 
   if (typeof currentRetrievability !== 'number' ||
-      currentRetrievability < 0 ||
-      currentRetrievability > 1) {
+    currentRetrievability < 0 ||
+    currentRetrievability > 1) {
     currentRetrievability = 0.9;
   }
 
@@ -394,13 +394,17 @@ function applyIntentWeightsToResults(
   const tsRange = maxTs - minTs;
 
   return results.map((r, i) => {
-    const similarity = (r.similarity as number) || (r.score as number) || 0;
+    const similarityRaw = (r.similarity as number) || (r.score as number) || 0;
+    // Normalize similarity to 0-1 scale to match importance (0-1) and recency (0-1).
+    // Raw similarity is 0-100 from cosine distance; without normalization,
+    // importance_weight contributes <0.4% to the score (scale mismatch bug).
+    const similarity = similarityRaw / 100;
     const importance = (r.importance_weight as number) || 0.5;
     const recencyRaw = timestamps[i] > 0 && tsRange > 0
       ? (timestamps[i] - minTs) / tsRange
       : 0.5; // default mid-range if no timestamp
 
-    // Weighted combination using intent weights
+    // Weighted combination using intent weights (all factors now 0-1 scale)
     const intentScore =
       similarity * weights.similarity +
       importance * weights.importance +
