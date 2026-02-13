@@ -1,6 +1,17 @@
-# Skill Advisor
+---
+title: "Scripts"
+description: "Shell and Python automation scripts for the OpenCode framework, including the skill routing engine used by Gate 2 in AGENTS.md."
+trigger_phrases:
+  - "scripts"
+  - "automation"
+  - "skill advisor"
+  - "skill routing"
+  - "gate 2"
+---
 
-> Analyzes user requests and recommends appropriate skills with confidence scores. Used by Gate 3 in AGENTS.md for mandatory skill routing.
+# Scripts
+
+> Automation scripts for the OpenCode framework — skill routing, build tooling, and developer utilities.
 
 ---
 
@@ -8,49 +19,156 @@
 <!-- ANCHOR:table-of-contents -->
 
 - [1. 📖 OVERVIEW](#1--overview)
-- [2. 🚀 QUICK START](#2--quick-start)
-- [3. 🏗️ ARCHITECTURE](#3--architecture)
-- [4. ⚡ FEATURES](#4--features)
+- [2. 📁 STRUCTURE](#2--structure)
+- [3. 🚀 QUICK START](#3--quick-start)
+- [4. ⚡ SKILL ADVISOR](#4--skill-advisor)
 - [5. ⚙️ CONFIGURATION](#5--configuration)
 - [6. 💡 USAGE EXAMPLES](#6--usage-examples)
 - [7. 🛠️ TROUBLESHOOTING](#7--troubleshooting)
 - [8. ❓ FAQ](#8--faq)
 - [9. 📚 RELATED DOCUMENTS](#9--related-documents)
 
+<!-- /ANCHOR:table-of-contents -->
+
 ---
 
-<!-- /ANCHOR:table-of-contents -->
 ## 1. 📖 OVERVIEW
 <!-- ANCHOR:overview -->
 
-### What is Skill Advisor?
+### What is this directory?
 
-Skill Advisor is a Python script that analyzes user requests and recommends the most appropriate skills based on keyword matching, synonym expansion, and intent detection. It serves as the routing engine for Gate 3 in the AGENTS.md workflow, determining which specialized skill should handle a given task.
+`.opencode/scripts/` contains automation scripts used by the OpenCode framework. The primary script is `skill_advisor.py`, the routing engine that powers Gate 2 in AGENTS.md — analyzing user requests and recommending the most appropriate skill with a confidence score.
+
+### Scripts Inventory
+
+| Script | Language | Purpose |
+|--------|----------|---------|
+| `skill_advisor.py` | Python 3.6+ | Analyzes user requests, recommends skills via keyword matching, synonym expansion, and intent detection. Powers Gate 2. |
+
+### Supporting Files
+
+| File | Purpose |
+|------|---------|
+| `SET-UP_GUIDE.md` | Customization guide for adapting `skill_advisor.py` to your project |
+| `CHANGELOG.md` | Version history and changes log |
+| `README.md` | This documentation |
 
 ### Key Statistics
 
-| Component        | Count | Description                                |
-| ---------------- | ----- | ------------------------------------------ |
-| Stop Words       | ~60   | Filtered from queries for cleaner matching |
-| Synonym Mappings | ~25   | Expand user intent to technical terms      |
-| Intent Boosters  | ~80   | Direct keyword-to-skill mappings           |
-| Command Bridges  | 2     | Slash commands exposed as pseudo-skills    |
+| Component | Count | Description |
+|-----------|-------|-------------|
+| Stop Words | ~60 | Filtered from queries for cleaner matching |
+| Synonym Mappings | ~25 | Expand user intent to technical terms |
+| Intent Boosters | ~80 | Direct keyword-to-skill mappings |
+| Command Bridges | 2 | Slash commands exposed as pseudo-skills |
 
-### Key Features
+### Requirements
 
-| Feature                     | Description                                                 |
-| --------------------------- | ----------------------------------------------------------- |
-| **Dynamic Skill Discovery** | Automatically scans `.opencode/skill/` for available skills |
-| **Synonym Expansion**       | Maps user language to technical terms                       |
-| **Intent Boosting**         | High-confidence keywords directly map to specific skills    |
-| **Confidence Scoring**      | Returns 0-0.95 confidence score for each recommendation     |
-| **JSON Output**             | Machine-readable output for automation                      |
+| Requirement | Minimum | Recommended |
+|-------------|---------|-------------|
+| Python | 3.6+ | 3.10+ |
+| `.opencode/skill/` | At least 1 SKILL.md | All project skills installed |
+
+<!-- /ANCHOR:overview -->
+
+---
+
+## 2. 📁 STRUCTURE
+<!-- ANCHOR:structure -->
+
+```
+.opencode/scripts/
+├── skill_advisor.py     # Skill routing engine (Gate 2)
+├── SET-UP_GUIDE.md      # Customization guide
+├── CHANGELOG.md         # Version history
+└── README.md            # This file
+```
+
+### How It Fits in the Framework
+
+```
+.opencode/
+├── scripts/
+│   └── skill_advisor.py     ← This directory
+└── skill/
+    ├── workflows-git/
+    │   └── SKILL.md         # Parsed for name/description
+    ├── workflows-code--web-dev/
+    │   └── SKILL.md
+    ├── system-spec-kit/
+    │   └── SKILL.md
+    └── ...
+```
+
+<!-- /ANCHOR:structure -->
+
+---
+
+## 3. 🚀 QUICK START
+<!-- ANCHOR:quick-start -->
+
+### 30-Second Setup
+
+```bash
+# 1. Verify Python is installed
+python3 --version
+# Expected: Python 3.6+
+
+# 2. Test skill advisor from project root
+python3 .opencode/scripts/skill_advisor.py "test"
+# Expected: JSON array (may be empty for generic queries)
+
+# 3. Analyze a real request
+python3 .opencode/scripts/skill_advisor.py "help me commit my changes"
+# Expected: JSON with workflows-git at ~0.92 confidence
+```
+
+### Verify Installation
+
+```bash
+# Check that skill discovery works
+python3 .opencode/scripts/skill_advisor.py "help me commit my changes"
+
+# Expected output:
+# [
+#   {
+#     "skill": "workflows-git",
+#     "confidence": 0.92,
+#     "reason": "Matched: !commit, git(name)"
+#   }
+# ]
+```
+
+### Integration with AI Agents
+
+In your AI agent workflow (e.g., AGENTS.md Gate 2):
+
+```bash
+# Run skill advisor and capture output
+RESULT=$(python .opencode/scripts/skill_advisor.py "$USER_REQUEST")
+
+# Parse first recommendation
+SKILL=$(echo $RESULT | python -c "import sys,json; r=json.load(sys.stdin); print(r[0]['skill'] if r else '')")
+CONFIDENCE=$(echo $RESULT | python -c "import sys,json; r=json.load(sys.stdin); print(r[0]['confidence'] if r else 0)")
+
+# Route based on confidence
+if (( $(echo "$CONFIDENCE > 0.8" | bc -l) )); then
+    echo "Invoking skill: $SKILL"
+fi
+```
+
+<!-- /ANCHOR:quick-start -->
+
+---
+
+## 4. ⚡ SKILL ADVISOR
+<!-- ANCHOR:skill-advisor -->
 
 ### How It Integrates with AGENTS.md
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│                         GATE 3                                   │
+│                         GATE 2                                   │
 │               Skill Routing (MANDATORY)                          │
 ├──────────────────────────────────────────────────────────────────┤
 │                                                                  │
@@ -79,75 +197,7 @@ Skill Advisor is a Python script that analyzes user requests and recommends the 
 └──────────────────────────────────────────────────────────────────┘
 ```
 
----
-
-<!-- /ANCHOR:overview -->
-## 2. 🚀 QUICK START
-<!-- ANCHOR:quick-start -->
-
-### Prerequisites
-
-- Python 3.6+
-- Project with `.opencode/skill/` directory containing SKILL.md files
-
-### Basic Usage
-
-```bash
-# Analyze a user request
-python .opencode/scripts/skill_advisor.py "help me commit my changes"
-
-# Output (JSON array):
-# [
-#   {
-#     "skill": "workflows-git",
-#     "confidence": 0.92,
-#     "reason": "Matched: !commit, git(name)"
-#   },
-#   {
-#     "skill": "system-spec-kit",
-#     "confidence": 0.45,
-#     "reason": "Matched: changes~"
-#   }
-# ]
-```
-
-### Verify Installation
-
-```bash
-# Check Python version
-python3 --version
-# Expected: Python 3.6+
-
-# Test skill advisor
-python3 .opencode/scripts/skill_advisor.py "test"
-# Expected: JSON array (may be empty for generic queries)
-```
-
-### Integration with AI Agents
-
-In your AI agent workflow (e.g., AGENTS.md Gate 3):
-
-```bash
-# Run skill advisor and capture output
-RESULT=$(python .opencode/scripts/skill_advisor.py "$USER_REQUEST")
-
-# Parse first recommendation
-SKILL=$(echo $RESULT | python -c "import sys,json; r=json.load(sys.stdin); print(r[0]['skill'] if r else '')")
-CONFIDENCE=$(echo $RESULT | python -c "import sys,json; r=json.load(sys.stdin); print(r[0]['confidence'] if r else 0)")
-
-# Route based on confidence
-if (( $(echo "$CONFIDENCE > 0.8" | bc -l) )); then
-    echo "Invoking skill: $SKILL"
-fi
-```
-
----
-
-<!-- /ANCHOR:quick-start -->
-## 3. 🏗️ ARCHITECTURE
-<!-- ANCHOR:structure -->
-
-### Component Overview
+### Architecture
 
 ```
 ┌───────────────────────────────────────────────────────────────────┐
@@ -273,29 +323,17 @@ User Input: "help me fix the authentication bug"
 └─────────────────────────────────────┘
 ```
 
-### File Structure
+### Key Features
 
-```
-.opencode/
-├── scripts/
-│   ├── skill_advisor.py     # This script
-│   ├── README.md            # This documentation
-│   └── SET-UP_GUIDE.md      # Customization guide
-└── skill/
-    ├── workflows-git/
-    │   └── SKILL.md         # Parsed for name/description
-    ├── workflows-code/
-    │   └── SKILL.md
-    ├── system-spec-kit/
-    │   └── SKILL.md
-    └── ...
-```
-
----
-
-<!-- /ANCHOR:structure -->
-## 4. ⚡ FEATURES
-<!-- ANCHOR:features -->
+| Feature | Description |
+|---------|-------------|
+| **Dynamic Skill Discovery** | Automatically scans `.opencode/skill/` for available skills |
+| **Synonym Expansion** | Maps user language to technical terms |
+| **Intent Boosting** | High-confidence keywords directly map to specific skills |
+| **Multi-Skill Boosters** | Ambiguous keywords boost multiple skills simultaneously |
+| **Confidence Scoring** | Returns 0-0.95 confidence score for each recommendation |
+| **Command Bridges** | Slash commands exposed as pseudo-skills for routing |
+| **JSON Output** | Machine-readable output for automation |
 
 ### Dynamic Skill Discovery
 
@@ -323,29 +361,29 @@ description: Git workflow orchestrator guiding developers through workspace setu
 
 Maps user-friendly terms to technical vocabulary:
 
-| User Says      | Expands To                                     |
-| -------------- | ---------------------------------------------- |
-| "fix"          | debug, correct, resolve, code, implementation  |
-| "create"       | implement, build, generate, new, add, scaffold |
-| "doc" / "docs" | documentation, explain, describe, markdown     |
-| "commit"       | git, version, push, branch, changes            |
-| "search"       | find, locate, explore, query, lookup           |
+| User Says | Expands To |
+|-----------|------------|
+| "fix" | debug, correct, resolve, code, implementation |
+| "create" | implement, build, generate, new, add, scaffold |
+| "doc" / "docs" | documentation, explain, describe, markdown |
+| "commit" | git, version, push, branch, changes |
+| "search" | find, locate, explore, query, lookup |
 
 ### Intent Boosters
 
 High-confidence keywords that directly map to specific skills:
 
-| Keyword      | Skill                     | Boost |
-| ------------ | ------------------------- | ----- |
-| `worktree`   | workflows-git             | +1.2  |
-| `devtools`   | workflows-chrome-devtools | +1.0  |
-| `rebase`     | workflows-git             | +0.8  |
-| `flowchart`  | workflows-documentation   | +0.7  |
-| `checkpoint` | system-spec-kit           | +0.6  |
+| Keyword | Skill | Boost |
+|---------|-------|-------|
+| `worktree` | workflows-git | +1.2 |
+| `devtools` | workflows-chrome-devtools | +1.0 |
+| `rebase` | workflows-git | +0.8 |
+| `flowchart` | workflows-documentation | +0.7 |
+| `checkpoint` | system-spec-kit | +0.6 |
 
-### MULTI_SKILL_BOOSTERS
+### Multi-Skill Boosters
 
-For ambiguous keywords that could apply to multiple skills, use `MULTI_SKILL_BOOSTERS`:
+For ambiguous keywords that could apply to multiple skills:
 
 ```python
 MULTI_SKILL_BOOSTERS = {
@@ -361,40 +399,41 @@ These boost multiple skills simultaneously when the keyword is detected. The `(m
 
 The script uses a **two-tiered confidence formula** based on whether intent boosters matched:
 
-| Condition              | Formula                          | Purpose                                |
-| ---------------------- | -------------------------------- | -------------------------------------- |
+| Condition | Formula | Purpose |
+|-----------|---------|---------|
 | Intent booster matched | `min(0.50 + score * 0.15, 0.95)` | Higher confidence for explicit signals |
-| No intent booster      | `min(0.25 + score * 0.15, 0.95)` | Conservative for corpus-only matches   |
+| No intent booster | `min(0.25 + score * 0.15, 0.95)` | Conservative for corpus-only matches |
 
-**Score → Confidence mapping (with intent boost):**
+**Score to confidence mapping (with intent boost):**
 
-| Score | Confidence | Meaning                    |
-| ----- | ---------- | -------------------------- |
-| 1.0   | 0.65       | Single keyword match       |
-| 2.0   | 0.80       | Threshold for auto-invoke  |
-| 3.0   | 0.95       | Strong multi-keyword match |
+| Score | Confidence | Meaning |
+|-------|------------|---------|
+| 1.0 | 0.65 | Single keyword match |
+| 2.0 | 0.80 | Threshold for auto-invoke |
+| 3.0 | 0.95 | Strong multi-keyword match |
 
 **Confidence thresholds:**
 
-| Score Range | Meaning           | Action                               |
-| ----------- | ----------------- | ------------------------------------ |
-| 0.80 - 0.95 | High confidence   | MUST invoke skill                    |
+| Score Range | Meaning | Action |
+|-------------|---------|--------|
+| 0.80 - 0.95 | High confidence | MUST invoke skill |
 | 0.50 - 0.79 | Medium confidence | Consider skill, may proceed manually |
-| 0.25 - 0.49 | Low confidence    | Skill might be relevant              |
-| < 0.25      | No match          | No recommendation                    |
+| 0.25 - 0.49 | Low confidence | Skill might be relevant |
+| < 0.25 | No match | No recommendation |
 
 ### Command Bridges
 
 Slash commands exposed as pseudo-skills for routing:
 
-| Command Bridge        | Description                                           |
-| --------------------- | ----------------------------------------------------- |
-| `command-spec-kit`    | Create specifications using `/spec_kit` slash command |
-| `command-memory-save` | Save conversation context using `/memory:save`        |
+| Command Bridge | Description |
+|----------------|-------------|
+| `command-spec-kit` | Create specifications using `/spec_kit` slash command |
+| `command-memory-save` | Save conversation context using `/memory:save` |
+
+<!-- /ANCHOR:skill-advisor -->
 
 ---
 
-<!-- /ANCHOR:features -->
 ## 5. ⚙️ CONFIGURATION
 <!-- ANCHOR:configuration -->
 
@@ -402,16 +441,16 @@ Slash commands exposed as pseudo-skills for routing:
 
 The script requires customization for each project. See [SET-UP_GUIDE.md](./SET-UP_GUIDE.md) for detailed instructions.
 
-| Component              | Location      | Purpose                         |
-| ---------------------- | ------------- | ------------------------------- |
-| `SKILLS_DIR`           | Line 17       | Path to skills directory        |
-| `STOP_WORDS`           | Lines 21-47   | Words filtered from queries     |
-| `SYNONYM_MAP`          | Lines 50-100  | User intent → technical terms   |
-| `INTENT_BOOSTERS`      | Lines 108-252 | Keyword → skill direct mappings |
-| `MULTI_SKILL_BOOSTERS` | Lines 255-270 | Ambiguous keyword → multi-skill |
-| `parse_frontmatter`    | Line 273      | YAML frontmatter parser         |
-| `get_skills`           | Line 292      | Skill discovery function        |
-| `analyze_request`      | Line 328      | Main analysis function          |
+| Component | Location | Purpose |
+|-----------|----------|---------|
+| `SKILLS_DIR` | Line 17 | Path to skills directory |
+| `STOP_WORDS` | Lines 21-47 | Words filtered from queries |
+| `SYNONYM_MAP` | Lines 50-100 | User intent to technical terms |
+| `INTENT_BOOSTERS` | Lines 108-252 | Keyword to skill direct mappings |
+| `MULTI_SKILL_BOOSTERS` | Lines 255-270 | Ambiguous keyword to multi-skill |
+| `parse_frontmatter` | Line 273 | YAML frontmatter parser |
+| `get_skills` | Line 292 | Skill discovery function |
+| `analyze_request` | Line 328 | Main analysis function |
 
 ### SKILLS_DIR Configuration
 
@@ -455,9 +494,10 @@ skills["command-deploy"] = {
 }
 ```
 
+<!-- /ANCHOR:configuration -->
+
 ---
 
-<!-- /ANCHOR:configuration -->
 ## 6. 💡 USAGE EXAMPLES
 <!-- ANCHOR:examples -->
 
@@ -530,29 +570,32 @@ $ python skill_advisor.py "hello"
 []
 ```
 
-### Common Patterns
+### Example 6: External MCP Tools
 
-| User Intent        | Expected Skill            | Key Terms                                                |
-| ------------------ | ------------------------- | -------------------------------------------------------- |
-| Git operations     | workflows-git             | commit, push, branch, merge, worktree, github, pr, issue |
-| Browser debugging  | workflows-chrome-devtools | devtools, chrome, browser, debug, console                |
-| Documentation      | workflows-documentation   | markdown, flowchart, diagram, readme                     |
-| Code implementation| workflows-code            | implement, fix, bug, refactor, verification              |
-| Memory/context     | system-spec-kit           | remember, save, context, checkpoint                      |
-| Specifications     | system-spec-kit           | spec, checklist, plan, specification                     |
-
-**External MCP Tools:**
 ```bash
-python skill_advisor.py "use webflow to update site"
+$ python skill_advisor.py "use webflow to update site"
 # → mcp-code-mode (0.95) - !webflow + !site + !update(multi) boost
 
-python skill_advisor.py "call figma api"
+$ python skill_advisor.py "call figma api"
 # → mcp-code-mode (0.95) - !figma + api(multi) boost
 ```
 
----
+### Common Patterns
+
+| User Intent | Expected Skill | Key Terms |
+|-------------|----------------|-----------|
+| Git operations | workflows-git | commit, push, branch, merge, worktree, github, pr, issue |
+| Browser debugging | workflows-chrome-devtools | devtools, chrome, browser, debug, console |
+| Documentation | workflows-documentation | markdown, flowchart, diagram, readme |
+| Code implementation | workflows-code | implement, fix, bug, refactor, verification |
+| Memory/context | system-spec-kit | remember, save, context, checkpoint |
+| Specifications | system-spec-kit | spec, checklist, plan, specification |
+| External MCP tools | mcp-code-mode | webflow, figma, clickup, notion |
 
 <!-- /ANCHOR:examples -->
+
+---
+
 ## 7. 🛠️ TROUBLESHOOTING
 <!-- ANCHOR:troubleshooting -->
 
@@ -561,11 +604,11 @@ python skill_advisor.py "call figma api"
 **Symptom:** Empty array returned for all queries
 
 **Causes:**
-1. SKILLS_DIR path is incorrect
+1. `SKILLS_DIR` path is incorrect
 2. No SKILL.md files in skills directory
 3. SKILL.md files missing frontmatter
 
-**Solutions:**
+**Solution:**
 ```bash
 # Check SKILLS_DIR exists
 ls -la .opencode/skill/
@@ -591,8 +634,8 @@ head -10 .opencode/skill/workflows-git/SKILL.md
 2. Missing intent booster for key terms
 3. Skill description doesn't contain relevant keywords
 
-**Solutions:**
-1. Add synonyms to SYNONYM_MAP
+**Solution:**
+1. Add synonyms to `SYNONYM_MAP`
 2. Add intent boosters for domain-specific terms
 3. Update skill descriptions in SKILL.md files
 
@@ -605,7 +648,7 @@ head -10 .opencode/skill/workflows-git/SKILL.md
 2. Intent booster boost value too high
 3. Multiple skills with overlapping descriptions
 
-**Solutions:**
+**Solution:**
 1. Make synonyms more specific
 2. Adjust boost values (0.3-0.5 for moderate, 0.6-1.0 for strong)
 3. Differentiate skill descriptions
@@ -631,9 +674,10 @@ python .opencode/scripts/skill_advisor.py "test"
 
 **Solution:** Ensure only JSON is printed to stdout. Errors should go to stderr.
 
+<!-- /ANCHOR:troubleshooting -->
+
 ---
 
-<!-- /ANCHOR:troubleshooting -->
 ## 8. ❓ FAQ
 <!-- ANCHOR:faq -->
 
@@ -667,7 +711,7 @@ A: To maintain uncertainty and prevent over-confidence. Even the best matches sh
 
 **Q: What's the difference between synonyms and intent boosters?**
 
-A: 
+A:
 - **Synonyms** expand the query vocabulary (bidirectional, used in matching)
 - **Intent boosters** directly increase a skill's score when specific keywords appear (unidirectional, bypass matching)
 
@@ -688,3 +732,26 @@ print(f"DEBUG: tokens={tokens}, expanded={search_terms}", file=sys.stderr)
 A: No, the script uses simple word tokenization. Regex patterns will be treated as literal text.
 
 <!-- /ANCHOR:faq -->
+
+---
+
+## 9. 📚 RELATED DOCUMENTS
+<!-- ANCHOR:related -->
+
+### Internal Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [SET-UP_GUIDE.md](./SET-UP_GUIDE.md) | Step-by-step customization guide for `skill_advisor.py` |
+| [CHANGELOG.md](./CHANGELOG.md) | Version history and changes |
+| [AGENTS.md](../../AGENTS.md) | Framework rules including Gate 2 skill routing |
+
+### Skill System
+
+| Resource | Purpose |
+|----------|---------|
+| `.opencode/skill/*/SKILL.md` | Individual skill definitions parsed by the advisor |
+| [system-spec-kit README](../skill/system-spec-kit/README.md) | Documentation and memory framework |
+| [workflows-documentation SKILL.md](../skill/workflows-documentation/SKILL.md) | Documentation standards and templates |
+
+<!-- /ANCHOR:related -->

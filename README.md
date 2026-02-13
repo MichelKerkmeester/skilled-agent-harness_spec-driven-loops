@@ -44,14 +44,14 @@ Two custom-built systems fix this: a **cognitive memory MCP server** and a **spe
 | Category         | Count | Details                                        |
 | ---------------- | ----- | ---------------------------------------------- |
 | MCP Tools        | 22    | Across 7 architectural layers (L1-L7)          |
-| Agents           | 10    | 8 custom + 2 built-in (`@general`, `@explore`) |
-| Skills           | 9     | Domain expertise, auto-loaded by task keywords |
-| Commands         | 19    | 7 spec_kit + 5 memory + 6 create + 1 utility   |
+| Test Files       | 118   | 3,988 tests, 0 TypeScript errors               |
 | Scripts          | 78+   | 29 Shell, 49 TypeScript                        |
 | Templates        | 70+   | CORE + ADDENDUM composition model (v2.2)       |
+| Commands         | 19    | 7 spec_kit + 5 memory + 6 create + 1 utility   |
+| Agents           | 10    | 8 custom + 2 built-in (`@general`, `@explore`) |
+| Skills           | 9     | Domain expertise, auto-loaded by task keywords |
 | Validation Rules | 13    | Pluggable, automated spec folder checks        |
 | YAML Assets      | 13    | Command execution specifications               |
-| Test Files       | 118   | 3,988 tests, 0 TypeScript errors               |
 
 ### How It All Connects
 
@@ -128,20 +128,20 @@ Your code never leaves your machine. The Memory Engine runs entirely on your loc
 
 | Innovation                | Impact                | Description                                                 |
 | ------------------------- | --------------------- | ----------------------------------------------------------- |
-| **Causal memory graph**   | Decision tracing      | 6 relationship types answer "why" queries                   |
-| **Crash recovery**        | Zero lost work        | Auto-resume from compaction/timeout via `/memory:continue`  |
-| **Intent-aware search**   | Smarter retrieval     | 5 intent types route to optimized search weights            |
-| **Session deduplication** | 50% token savings     | Hash-based duplicate prevention in same session             |
-| **ANCHOR retrieval**      | 93% token savings     | Section-level memory extraction, not full files             |
-| **Proactive triggers**    | <50ms surfacing       | Context surfaces BEFORE you ask                             |
-| **Constitutional tier**   | Rules never forgotten | Critical rules always surface, never decay                  |
 | **Cognitive memory**      | Biologically-inspired | HOT/WARM/COLD with attention decay and spreading activation |
-| **Debug delegation**      | Fresh perspective     | Model selection + 4-phase methodology                       |
+| **Causal memory graph**   | Decision tracing      | 6 relationship types answer "why" queries                   |
+| **Constitutional tier**   | Rules never forgotten | Critical rules always surface, never decay                  |
+| **ANCHOR retrieval**      | 93% token savings     | Section-level memory extraction, not full files             |
+| **Session deduplication** | 50% token savings     | Hash-based duplicate prevention in same session             |
+| **Proactive triggers**    | <50ms surfacing       | Context surfaces BEFORE you ask                             |
+| **Intent-aware search**   | Smarter retrieval     | 5 intent types route to optimized search weights            |
+| **Crash recovery**        | Zero lost work        | Auto-resume from compaction/timeout via `/memory:continue`  |
+| **README indexing**       | Docs become memory    | Skill + project READMEs auto-indexed with tiered importance |
 | **Parallel dispatch**     | 5-dimension scoring   | Complexity-based agent orchestration                        |
+| **Debug delegation**      | Fresh perspective     | Model selection + 4-phase methodology                       |
 | **Epistemic vectors**     | Smarter gates         | Dual-threshold: confidence AND uncertainty                  |
 | **Session learning**      | Quantified growth     | Preflight/postflight tracks actual learning                 |
 | **Template composition**  | Zero duplication      | CORE + ADDENDUM architecture                                |
-| **README indexing**       | Docs become memory    | Skill + project READMEs auto-indexed with tiered importance |
 | **Stateless state**       | No stale files        | State versioned in memory files, not STATE.md               |
 
 ### Requirements
@@ -157,9 +157,9 @@ Your code never leaves your machine. The Memory Engine runs entirely on your loc
 | Area                    | Change                                                                    |
 | ----------------------- | ------------------------------------------------------------------------- |
 | **Anchor Coverage**     | ~473 anchor tags across 74 READMEs for precise section-level retrieval    |
-| **README Standards**    | 75 READMEs aligned to `readme_template.md` (7 style rules)                |
-| **Command Quality**     | 19 commands + 13 YAML assets optimized for ≤600 lines, full agent routing |
 | **SKILL.md Efficiency** | Core skill file reduced 34% through structural optimization               |
+| **Command Quality**     | 19 commands + 13 YAML assets optimized for ≤600 lines, full agent routing |
+| **README Standards**    | 75 READMEs aligned to `readme_template.md` (7 style rules)                |
 | **Memory Commands**     | 5 memory command READMEs standardized for consistent documentation        |
 
 ---
@@ -311,8 +311,8 @@ Finding the right memory isn't about keywords alone. Three search engines fuse t
 | Engine         | Method                    | Strength                                |
 | -------------- | ------------------------- | --------------------------------------- |
 | **Vector**     | Semantic similarity (embeddings) | Conceptual matching, paraphrase detection |
-| **Trigger**    | Exact phrase matching     | Precise recall for known patterns       |
 | **Keyword**    | BM25 term frequency       | Technical terms, code identifiers       |
+| **Trigger**    | Exact phrase matching     | Precise recall for known patterns       |
 
 Additional search capabilities layered on top:
 
@@ -324,11 +324,11 @@ Additional search capabilities layered on top:
 
 | Task Intent      | Weight Adjustment                                     |
 | ---------------- | ----------------------------------------------------- |
-| `add_feature`    | Boosts implementation patterns, existing architecture |
 | `fix_bug`        | Boosts error history, debugging context               |
+| `add_feature`    | Boosts implementation patterns, existing architecture |
+| `understand`     | Balanced weights across all memory types              |
 | `refactor`       | Boosts code structure, dependency information         |
 | `security_audit` | Boosts security decisions, vulnerability context      |
-| `understand`     | Balanced weights across all memory types              |
 
 #### Importance Tiers
 
@@ -366,11 +366,11 @@ Every decision has a lineage. Six months from now, you won't be guessing why you
 | Relationship   | Direction | Example                                                           |
 | -------------- | --------- | ----------------------------------------------------------------- |
 | `caused`       | A -> B    | "JWT decision" -> caused -> "token refresh implementation"        |
-| `enabled`      | A -> B    | "OAuth2 setup" -> enabled -> "social login feature"               |
-| `supersedes`   | A -> B    | "v2 auth flow" -> supersedes -> "v1 auth flow"                    |
-| `contradicts`  | A <-> B   | "stateless approach" -> contradicts -> "session storage proposal" |
 | `derived_from` | A <- B    | "rate limiter config" -> derived from -> "load testing results"   |
 | `supports`     | A -> B    | "performance benchmarks" -> supports -> "caching decision"        |
+| `supersedes`   | A -> B    | "v2 auth flow" -> supersedes -> "v1 auth flow"                    |
+| `enabled`      | A -> B    | "OAuth2 setup" -> enabled -> "social login feature"               |
+| `contradicts`  | A <-> B   | "stateless approach" -> contradicts -> "session storage proposal" |
 
 Use `memory_drift_why` to trace the causal chain up to N hops, grouping results by relationship type. `memory_causal_stats` reports coverage percentage (target: 60% of memories linked) and breakdown by relationship type.
 
@@ -397,10 +397,10 @@ Documentation isn't separate from memory — it *is* memory. 75 READMEs follow a
 
 | Source                   | Discovery Method             | Importance Weight  | Example                                 |
 | ------------------------ | ---------------------------- | ------------------ | --------------------------------------- |
-| **Spec memory files**    | `specs/**/memory/*.md`       | 0.5                | Session context, decisions, blockers    |
 | **Constitutional files** | `skill/*/constitutional/`    | 1.0 (never decays) | Critical rules, mandatory behaviors     |
-| **Skill READMEs**        | `skill/*/README.md` + nested | 0.3                | Skill documentation, reference guides   |
+| **Spec memory files**    | `specs/**/memory/*.md`       | 0.5                | Session context, decisions, blockers    |
 | **Project READMEs**      | Root + directory READMEs     | 0.4                | Project overviews, directory navigation |
+| **Skill READMEs**        | `skill/*/README.md` + nested | 0.3                | Skill documentation, reference guides   |
 
 Tiered importance weights ensure user work (0.5) always outranks project documentation (0.4) and skill documentation (0.3) in search results. Constitutional content (1.0) always surfaces first and never decays.
 
@@ -419,27 +419,27 @@ Ten specialized agents fix this. Two are built into OpenCode; eight are custom a
 | Agent          | Type     | Role                                                               |
 | -------------- | -------- | ------------------------------------------------------------------ |
 | `@general`     | Built-in | Implementation, complex coding tasks                               |
-| `@explore`     | Built-in | Quick codebase exploration, file discovery                         |
 | `@orchestrate` | Custom   | Multi-agent coordination with enterprise patterns                  |
 | `@context`     | Custom   | Context retrieval and synthesis for other agents                   |
-| `@research`    | Custom   | Evidence gathering, technical investigation                        |
 | `@speckit`     | Custom   | Spec folder creation (exclusive: only agent that writes spec docs) |
-| `@write`       | Custom   | Documentation generation (READMEs, skills, guides)                 |
-| `@review`      | Custom   | Code review with pattern validation (READ-ONLY)                    |
 | `@debug`       | Custom   | Fresh-perspective debugging, root cause analysis                   |
+| `@research`    | Custom   | Evidence gathering, technical investigation                        |
+| `@review`      | Custom   | Code review with pattern validation (READ-ONLY)                    |
+| `@write`       | Custom   | Documentation generation (READMEs, skills, guides)                 |
+| `@explore`     | Built-in | Quick codebase exploration, file discovery                         |
 | `@handover`    | Custom   | Session continuation, context preservation                         |
 
 #### Enterprise Orchestration
 
 The `@orchestrate` agent implements patterns borrowed from distributed systems — the kind you'd expect in production infrastructure, not an AI coding assistant:
 
+- **Context Window Budget (CWB)** — Tracks cumulative context consumption across delegated tasks with three collection patterns: Direct (full agent files), Summary (condensed agent cards), and File-based (path references only). Wave-based dispatching enables 10+ parallel agents without context overflow. Automatic context pressure detection switches collection modes when thresholds are reached.
 - **Circuit Breaker** — Isolates failing agents (3 failures -> OPEN state, 60s cooldown)
 - **Saga Compensation** — Reverse-order rollback when multi-task workflows fail
 - **Quality Gates** — Pre/mid/post execution scoring with 70-point threshold
 - **Resource Budgeting** — Token budget management (50K default, 80% warning, 100% halt)
-- **Conditional Branching** — IF/THEN/ELSE logic with 3-level nesting
 - **Checkpointing** — Recovery snapshots every 5 tasks or 10 tool calls
-- **Context Window Budget (CWB)** — Tracks cumulative context consumption across delegated tasks with three collection patterns: Direct (full agent files), Summary (condensed agent cards), and File-based (path references only). Wave-based dispatching enables 10+ parallel agents without context overflow. Automatic context pressure detection switches collection modes when thresholds are reached.
+- **Conditional Branching** — IF/THEN/ELSE logic with 3-level nesting
 - **Sub-Orchestrator Pattern** — Delegates complex sub-workflows to nested orchestrators
 
 #### How Agents Get Chosen
@@ -480,12 +480,12 @@ Six lenses the AI applies silently to catch problems before they happen:
 
 | Lens               | Catches                                    |
 | ------------------ | ------------------------------------------ |
-| **CLARITY**        | Over-abstraction, unearned complexity      |
 | **SYSTEMS**        | Missed dependencies, side effects          |
 | **BIAS**           | Solving symptoms instead of root causes    |
-| **SUSTAINABILITY** | Future maintenance nightmares              |
-| **VALUE**          | Cosmetic changes disguised as improvements |
 | **SCOPE**          | Solution complexity exceeding problem size |
+| **CLARITY**        | Over-abstraction, unearned complexity      |
+| **VALUE**          | Cosmetic changes disguised as improvements |
+| **SUSTAINABILITY** | Future maintenance nightmares              |
 
 #### Auto-Detected Anti-Patterns
 
@@ -495,12 +495,12 @@ The complete anti-pattern catalog is documented in `AGENTS.md` under Common Fail
 
 | Pattern                | Trigger                          | Response                                                   |
 | ---------------------- | -------------------------------- | ---------------------------------------------------------- |
+| Scope creep            | "also add", "bonus feature"      | "That's a separate change."                                |
 | Over-engineering       | "future-proof", "might need"     | "Is this solving a current problem or a hypothetical one?" |
+| Gold-plating           | "while we're here"               | "That's outside current scope. Track separately?"          |
 | Premature optimization | "could be slow"                  | "Has this been measured?"                                  |
 | Cargo culting          | "best practice", "always should" | "Does this pattern fit this specific case?"                |
-| Gold-plating           | "while we're here"               | "That's outside current scope. Track separately?"          |
 | Wrong abstraction      | "DRY this up" (2 instances)      | "Similar code isn't always the same concept."              |
-| Scope creep            | "also add", "bonus feature"      | "That's a separate change."                                |
 
 ---
 
@@ -551,8 +551,8 @@ Key templates and their roles:
 | ---------------------- | ---------------------------------------------------------- |
 | **Memory generation**  | Context preservation via `generate-context.js`             |
 | **Document validation** | 13 pluggable rules via `validate.sh` (anchors, placeholders, frontmatter) |
-| **Structure extraction** | Complexity scoring, folder analysis, template rendering   |
 | **Skill packaging**    | Bundling, dependency resolution, template scaffolding      |
+| **Structure extraction** | Complexity scoring, folder analysis, template rendering   |
 
 Validation runs before any spec folder can be marked complete. Exit code 0 = pass. Exit code 2 = must fix.
 
@@ -586,13 +586,13 @@ Skills are domain expertise on demand. Instead of explaining "how to do git comm
 | Skill                        | Domain        | Purpose                                                                  |
 | ---------------------------- | ------------- | ------------------------------------------------------------------------ |
 | `system-spec-kit`            | Documentation | Spec folders, templates, memory integration, context preservation        |
-| `workflows-code--web-dev`    | Web Dev       | Webflow, vanilla JS — implementation, debugging, verification            |
 | `workflows-code--full-stack` | Multi-Stack   | Go, Node.js, React, React Native, Swift — auto-detected via marker files |
+| `workflows-code--web-dev`    | Web Dev       | Webflow, vanilla JS — implementation, debugging, verification            |
+| `workflows-git`              | Git           | Commits, branches, PRs, worktrees                                        |
 | `workflows-code--opencode`   | System Code   | TypeScript, Python, Shell for MCP servers and scripts                    |
 | `workflows-documentation`    | Docs          | Document quality scoring, skill creation, install guides                 |
-| `workflows-git`              | Git           | Commits, branches, PRs, worktrees                                        |
-| `workflows-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                              |
 | `mcp-code-mode`              | Integrations  | External tools via Code Mode (Figma, GitHub, ClickUp)                    |
+| `workflows-chrome-devtools`  | Browser       | DevTools automation, screenshots, debugging                              |
 | `mcp-figma`                  | Design        | Figma file access, components, styles, comments                          |
 
 #### Auto-Detection
@@ -645,20 +645,20 @@ All `spec_kit` commands support `:auto` (execute without pausing) and `:confirm`
 | Command               | Purpose                                                |
 | --------------------- | ------------------------------------------------------ |
 | `/spec_kit:complete`  | Full workflow: spec -> plan -> implement -> verify     |
+| `/spec_kit:resume`    | Continue a previous session (auto-loads memory)        |
+| `/spec_kit:debug`     | Delegate debugging to a fresh-perspective sub-agent    |
 | `/spec_kit:plan`      | Planning only, no implementation                       |
 | `/spec_kit:implement` | Execute an existing plan                               |
 | `/spec_kit:research`  | Technical investigation with evidence gathering        |
-| `/spec_kit:resume`    | Continue a previous session (auto-loads memory)        |
-| `/spec_kit:debug`     | Delegate debugging to a fresh-perspective sub-agent    |
 | `/spec_kit:handover`  | Create session handover (`:quick` or `:full` variants) |
 
 #### memory/ (5 commands)
 
 | Command            | Purpose                                                       |
 | ------------------ | ------------------------------------------------------------- |
-| `/memory:context`  | Unified retrieval with intent-aware routing                   |
 | `/memory:save`     | Save context via `generate-context.js`                        |
 | `/memory:continue` | Session recovery from crash or compaction                     |
+| `/memory:context`  | Unified retrieval with intent-aware routing                   |
 | `/memory:learn`    | Explicit learning capture (`correct` subcommand for mistakes) |
 | `/memory:manage`   | Database ops: stats, health, cleanup, checkpoints             |
 
@@ -666,12 +666,12 @@ All `spec_kit` commands support `:auto` (execute without pausing) and `:confirm`
 
 | Command                   | Purpose                                      |
 | ------------------------- | -------------------------------------------- |
-| `/create:agent`           | Scaffold a new agent definition              |
 | `/create:skill`           | Scaffold a new skill with structure          |
+| `/create:agent`           | Scaffold a new agent definition              |
+| `/create:folder_readme`   | AI-optimized README.md with proper structure |
 | `/create:skill_asset`     | Create a skill asset file                    |
 | `/create:skill_reference` | Create a skill reference file                |
 | `/create:install_guide`   | Generate a 5-phase install guide             |
-| `/create:folder_readme`   | AI-optimized README.md with proper structure |
 
 #### Utility (1 command)
 
@@ -696,9 +696,9 @@ External tool integration via TypeScript execution. Instead of calling MCP tools
 - **Type-safe invocation** — Full TypeScript support with autocomplete and error checking
 
 **Supported Integrations**:
-- **Webflow**: Sites, collections, CMS management
-- **Figma**: Design file access, component extraction, team collaboration
 - **GitHub**: Issues, PRs, commits, repository operations
+- **Figma**: Design file access, component extraction, team collaboration
+- **Webflow**: Sites, collections, CMS management
 - **ClickUp**: Task management, lists, workspaces
 - **Chrome DevTools**: Live browser automation, screenshots, console logs, network inspection (via MCP fallback)
 
@@ -844,9 +844,9 @@ export EMBEDDINGS_PROVIDER=hf-local
 
 | Server                  | Purpose                                                               |
 | ----------------------- | --------------------------------------------------------------------- |
-| **Sequential Thinking** | Structured multi-step reasoning for complex problems                  |
 | **Spec Kit Memory**     | 22-tool cognitive memory system (the memory engine)                   |
 | **Code Mode**           | External tool orchestration (Figma, GitHub, ClickUp, Chrome DevTools) |
+| **Sequential Thinking** | Structured multi-step reasoning for complex problems                  |
 
 See individual install guides in [`.opencode/install_guides/`](.opencode/install_guides/) for setup details and install scripts.
 
@@ -862,12 +862,12 @@ Real workflows, not toy examples.
 
 | Task                       | Command / Action                  | What Happens                                                  |
 | -------------------------- | --------------------------------- | ------------------------------------------------------------- |
-| Start a documented feature | `/spec_kit:complete "add auth"`   | Creates spec folder, templates, implements, verifies          |
-| Plan without implementing  | `/spec_kit:plan "refactor API"`   | Creates spec + plan, stops before code changes                |
 | Resume previous work       | `/spec_kit:resume`                | Loads memory context, shows where you left off                |
 | Save session context       | `/memory:save`                    | Extracts context via `generate-context.js`, indexes it        |
+| Start a documented feature | `/spec_kit:complete "add auth"`   | Creates spec folder, templates, implements, verifies          |
 | Search past decisions      | `/memory:context "auth approach"` | Semantic search across all saved memories                     |
 | Debug a stuck issue        | `/spec_kit:debug`                 | Spawns fresh-perspective sub-agent with model selection       |
+| Plan without implementing  | `/spec_kit:plan "refactor API"`   | Creates spec + plan, stops before code changes                |
 | Hand off to next session   | `/spec_kit:handover`              | Creates continuation doc (`:quick` = 15 lines, `:full` = 150) |
 | Create a new skill         | `/create:skill my-skill`          | Scaffolds complete skill structure with templates             |
 
@@ -999,10 +999,10 @@ opencode --version
 | Problem                      | Quick Fix                                                      |
 | ---------------------------- | -------------------------------------------------------------- |
 | MCP server won't start       | `cd .opencode/skill/system-spec-kit && npm run build`          |
+| Context window full          | `/memory:continue` for session recovery                        |
 | Stale memory results         | `/memory:manage cleanup`                                       |
 | Spec folder validation fails | Check exit code: 0=pass, 1=warning, 2=error                    |
 | Embedding dimension mismatch | Each provider uses its own SQLite DB — switch providers safely |
-| Context window full          | `/memory:continue` for session recovery                        |
 
 ### Diagnostic Commands
 
@@ -1098,9 +1098,9 @@ A: Minimal. SQLite databases are compact. A project with 100+ memories typically
 
 | Document                                                                             | Purpose                                                           |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| [Spec Kit README](.opencode/skill/system-spec-kit/README.md)                         | Full memory system and documentation framework reference          |
 | [AGENTS.md](AGENTS.md)                                                               | Complete gate system, confidence framework, operational protocols |
 | [Install Guides](.opencode/install_guides/README.md)                                 | MCP servers, skill creation, agent configuration                  |
-| [Spec Kit README](.opencode/skill/system-spec-kit/README.md)                         | Full memory system and documentation framework reference          |
 | [SET-UP - AGENTS.md](.opencode/install_guides/SET-UP%20-%20AGENTS.md)                | Detailed AGENTS.md configuration guide                            |
 | [SET-UP - Skill Creation](.opencode/install_guides/SET-UP%20-%20Skill%20Creation.md) | Custom skill creation walkthrough                                 |
 
