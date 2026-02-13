@@ -554,6 +554,20 @@ Task Received → Gate 2: Run skill_advisor.py
 4. Follow skill instructions to completion
 5. Do NOT re-invoke a skill already in context
 
+### Available Skills
+
+| Skill                          | Description                                                                                       | Path                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| `system-spec-kit`              | Spec folder documentation, template architecture, validation, and Spec Kit Memory                 | `.opencode/skill/system-spec-kit/`                 |
+| `workflows-code--web-dev`      | Single-stack web code orchestrator (Webflow, vanilla JS) with 3-phase lifecycle                   | `.opencode/skill/workflows-code--web-dev/`         |
+| `workflows-code--full-stack`   | Multi-stack code orchestrator (Go, Node.js, React, React Native, Swift) with auto-detection       | `.opencode/skill/workflows-code--full-stack/`      |
+| `workflows-code--opencode`     | Multi-language code standards for OpenCode system code (JS, TS, Python, Shell, JSON/JSONC)        | `.opencode/skill/workflows-code--opencode/`        |
+| `workflows-documentation`      | Markdown and OpenCode component specialist (document quality, content optimization, install guides)| `.opencode/skill/workflows-documentation/`         |
+| `workflows-git`                | Git workflow orchestrator (workspace setup, clean commits, work completion)                        | `.opencode/skill/workflows-git/`                   |
+| `workflows-chrome-devtools`    | Chrome DevTools automation via CLI (bdg) and MCP with intelligent routing                         | `.opencode/skill/workflows-chrome-devtools/`       |
+| `mcp-code-mode`                | MCP orchestration via TypeScript execution for external tools (Webflow, Figma, ClickUp, etc.)     | `.opencode/skill/mcp-code-mode/`                   |
+| `mcp-figma`                    | Figma design file access via MCP (18 tools for file retrieval, export, components, styles)        | `.opencode/skill/mcp-figma/`                       |
+
 ### Primary Skill: workflows-code
 
 For ALL frontend code implementation, `workflows-code` is the primary orchestrator skill.
@@ -573,7 +587,7 @@ Skills are located in `.opencode/skill/`.
 When creating or editing skills:
 - Create or edit skills based on the workflow logic defined in `.opencode/agent/write.md`
 - Validate skill structure matches template in `workflows-documentation/references/skill_creation.md`
-- Use the templates in `workflows-documentation/assets/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
+- Use the templates in `workflows-documentation/assets/opencode/` (`skill_md_template.md`, `skill_reference_template.md`, `skill_asset_template.md`)
 - Ensure all bundled resources are referenced with relative paths
 - Test skill invocation before committing
 
