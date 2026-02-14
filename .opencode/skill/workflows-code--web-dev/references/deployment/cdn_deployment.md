@@ -76,10 +76,10 @@ script.js?v=X.Y.Z → script.js?v=(X+1).0.0
 
 ### File Locations
 
-All HTML files are in: `src/html/`
+All HTML files are in: `src/0_html/`
 
 ```
-src/html/
+src/0_html/
 ├── global.html          # Global scripts (nav, footer, cookies)
 ├── home.html            # Homepage
 ├── contact.html         # Contact page
@@ -107,10 +107,10 @@ Use grep to find all HTML files that reference a specific script:
 
 ```bash
 # Find all references to hero_video.js
-grep -r "hero_video.js" src/html/ --include="*.html"
+grep -r "hero_video.js" src/0_html/ --include="*.html"
 
 # Find all R2 CDN references
-grep -r "pub-53729c3289024c618f90a09ec4c63bf9.r2.dev" src/html/ --include="*.html"
+grep -r "pub-53729c3289024c618f90a09ec4c63bf9.r2.dev" src/0_html/ --include="*.html"
 ```
 
 ### Update Pattern
@@ -138,10 +138,10 @@ For updating a specific script across all files:
 # Use your editor's find/replace or sed:
 
 # Preview changes first:
-grep -r "script_name.js?v=" src/html/
+grep -r "script_name.js?v=" src/0_html/
 
 # Then update each file or use sed:
-# sed -i '' 's/script_name.js?v=OLD/script_name.js?v=NEW/g' src/html/**/*.html
+# sed -i '' 's/script_name.js?v=OLD/script_name.js?v=NEW/g' src/0_html/**/*.html
 ```
 
 ---
@@ -158,7 +158,7 @@ grep -r "script_name.js?v=" src/html/
 
 **Step 2: Upload File**
 1. Click "Upload" button
-2. Select the minified file from `src/javascript/z_minified/`
+2. Select the minified file from `src/2_javascript/z_minified/`
 3. File will be named same as source (e.g., `hero_video.js`)
 4. Click "Upload" to confirm
 
@@ -172,8 +172,8 @@ grep -r "script_name.js?v=" src/html/
 
 | Source File                              | Minified File                        | R2 Upload Name       |
 | ---------------------------------------- | ------------------------------------ | -------------------- |
-| `src/javascript/hero/hero_video.js`    | `z_minified/hero/hero_video.js`      | `hero_video.js`      |
-| `src/javascript/form/form_validation.js` | `z_minified/form/form_validation.js` | `form_validation.js` |
+| `src/2_javascript/hero/hero_video.js`    | `z_minified/hero/hero_video.js`      | `hero_video.js`      |
+| `src/2_javascript/form/form_validation.js` | `z_minified/form/form_validation.js` | `form_validation.js` |
 
 **Note:** R2 bucket uses flat structure - upload files directly without folder paths.
 
@@ -212,7 +212,7 @@ grep -r "script_name.js?v=" src/html/
 ### Quick Workflow Summary
 
 ```
-1. Edit JS      → src/javascript/[folder]/[file].js
+1. Edit JS      → src/2_javascript/[folder]/[file].js
 2. Minify       → npx terser [source] --compress --mangle -o z_minified/[folder]/[file].js
 3. Verify       → node .opencode/skill/workflows-code--web-dev/scripts/verify-minification.mjs
 4. Test         → node .opencode/skill/workflows-code--web-dev/scripts/test-minified-runtime.mjs

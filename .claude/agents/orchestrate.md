@@ -183,7 +183,7 @@ The orchestrator uses a two-tier approach to task execution:
 **Phase 1: UNDERSTANDING** — @context gathers context
 - @context internally dispatches specialized sub-agents for fast search and deep investigation — the orchestrator routes ALL exploration through @context
 - Returns structured Context Package to orchestrator
-- Dispatch limits: quick=0, medium=1 max, thorough=2 max (user can override)
+- Dispatch limit: 2 max (user can override)
 - Purpose: Build complete understanding before action
 
 **Phase 2: ACTION** — Orchestrator dispatches implementation agents
@@ -192,6 +192,18 @@ The orchestrator uses a two-tier approach to task execution:
 - Purpose: Execute with full context
 
 This separation ensures implementation agents always receive comprehensive context, reducing rework and improving first-pass quality.
+
+### Context Agent Quality Notes (Haiku)
+
+The @context agent runs on Haiku for speed (~2x faster than Sonnet). Based on spec 012 testing, be aware of these Haiku-specific patterns when evaluating Context Package returns:
+
+| Pattern | Detection | Action |
+|---------|-----------|--------|
+| **Missing sections** | Context Package has < 6 sections (especially Dispatched Analyses, Memory Context) | Retry with: "Return ALL 6 Context Package sections" |
+| **CSS discovery gap** | Query spans JS+CSS+HTML but findings only cover JS | Note gap in synthesis; consider separate CSS-focused follow-up |
+| **Tool call overrun** | N/A (not detectable by orchestrator) | No action needed — @context self-governs |
+
+> These are tendencies, not guarantees. Haiku scores 4.0+/5 on average quality. Only the missing-sections pattern warrants automatic retry.
 
 ---
 
@@ -210,6 +222,7 @@ This separation ensures implementation agents always receive comprehensive conte
 □ Quality score ≥ 70 (see §13 for scoring dimensions)
 □ Success criteria met (from task decomposition)
 □ Pre-Delegation Reasoning documented for each task dispatch
+□ Context Package includes all 6 sections (if from @context — see §5 Haiku Notes)
 ```
 
 ### Verification Actions (Execute BEFORE accepting output)
