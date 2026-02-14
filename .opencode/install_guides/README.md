@@ -1304,7 +1304,7 @@ node .opencode/skill/system-spec-kit/mcp_server/dist/context-server.js
 
 ### Embeddings not working
 1. Default provider is HF Local — no Ollama required
-2. Clear corrupted model cache: `rm -rf .opencode/skill/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
+2. Clear corrupted model cache: `rm -rf .opencode/skill/system-spec-kit/node_modules/@huggingface/transformers/.cache`
 3. Restart MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches
 
