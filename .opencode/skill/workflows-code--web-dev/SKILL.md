@@ -624,7 +624,7 @@ Key integrations:
 | Tool                          | Purpose                                                  |
 | ----------------------------- | -------------------------------------------------------- |
 | **workflows-chrome-devtools** | Browser debugging (CLI-first via bdg, MCP fallback)      |
-| **Motion.dev**                | Animation library (CDN: jsdelivr.net/npm/motion@12.15.0) |
+| **Motion.dev**                | Animation library (CDN: jsdelivr.net/npm/motion) |
 
 ---
 

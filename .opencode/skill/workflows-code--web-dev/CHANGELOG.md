@@ -6,6 +6,46 @@ All notable changes to the workflows-code--web-dev skill (formerly `workflows-co
 
 ---
 
+## [**1.0.9.3**] - 2026-02-14
+
+New **form upload reference document** (633 lines, DQI 97/100), SKILL.md routing for upload-related tasks, and CDN version number cleanup across **7 files** (~35 instances → `{version}` placeholders).
+
+---
+
+### New
+
+1. **`form_upload_workflows.md`** — Complete architecture reference for the FilePond-to-R2 file upload pipeline (11 sections: Overview, Architecture, Webflow Integration, FilePond Configuration, State Machine, Cloudflare Worker Proxy, Form Integration, MIME Type Reference, Troubleshooting, Pages & Deployment, Related Resources)
+
+---
+
+### Changed
+
+**SKILL.md Routing:**
+
+2. **`TASK_KEYWORDS`** — Added `FORM_UPLOAD` keyword group (upload, filepond, file upload, drag drop, mime type, r2 upload, file type, dropzone)
+3. **Pseudocode router** — Added `form_upload_workflows.md` condition (`task.has_file_upload` or filepond/upload keywords)
+4. **Use Case table** — Added row for file upload, FilePond, drag-drop, MIME types, R2 upload
+
+**CDN Version Number Cleanup (7 files):**
+
+5. **`form_upload_workflows.md`** — FilePond `@4.30.4` → `@{version}`; removed "Current Version" column from dependencies table
+6. **`third_party_integrations.md`** — HLS.js `@1.6.11` → `@{version}` (7 occurrences); library examples `@1.0.0`/`@1.2.3` → `@{version}`; version pinning `@1.0` → `@{major.minor}`
+7. **`animation_workflows.md`** — Motion.dev `@12.15.0` → `@{version}`; added note to check `global.html` for current pinned version
+8. **`cdn_deployment.md`** — Version bump examples from specific (`1.3.12 → 1.3.13`) to generic (`X.Y.Z → X.Y.(Z+1)`); HTML update patterns → `{version}` placeholders
+9. **`resource_loading.md`** — Lenis/Motion CDN URLs → `@{version}`; R2 script URLs `?v=1.2.31` → `?v={version}`
+10. **`SKILL.md`** — Motion.dev version `@12.15.0` removed from Common Commands
+11. **`hls_patterns.js`** — `@version 1.6.11` comment → "Check HTML source files for current pinned version"; `HLS_CDN_URL` const → `hls.js@{version}`
+
+---
+
+### Source
+
+- Plan: `keen-jingling-graham.md` (Form Upload Reference Document plan)
+- Source files: `input_upload.js`, `input_upload.css`, `form_submission.js`, `form_validation.js`, `form_persistence.js`, `werken_bij.html`, `vacature.html`
+- Validation: `validate_document.py` exit 0, `extract_structure.py` DQI 97/100
+
+---
+
 ## [**1.0.9.2**] - 2026-02-07
 
 Inline comment style enforcement across **10 files** (~200 edits), router completeness fixes, and dead file removal.

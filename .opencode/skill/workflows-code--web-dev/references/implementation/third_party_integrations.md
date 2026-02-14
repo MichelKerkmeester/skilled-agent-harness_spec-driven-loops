@@ -30,7 +30,7 @@ Reference guide for integrating external JavaScript libraries in Webflow project
 ### Loading Pattern
 
 ```javascript
-const LIBRARY_CDN_URL = 'https://cdn.jsdelivr.net/npm/library@1.0.0';
+const LIBRARY_CDN_URL = 'https://cdn.jsdelivr.net/npm/library@{version}';
 
 async function load_library() {
   if (typeof window.Library !== 'undefined') {
@@ -58,10 +58,10 @@ HTTP Live Streaming library for adaptive video playback in non-Safari browsers.
 
 ```html
 <!-- Preload for critical video pages -->
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/hls.js@1.6.11" as="script">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/hls.js@{version}" as="script">
 
 <!-- Load with defer -->
-<script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.11" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@{version}" defer></script>
 ```
 
 ### Feature Detection
@@ -956,7 +956,7 @@ xhr.onload = () => {
 
 ```javascript
 // ✅ Good: Version pinned, async, error handled
-const CDN_URL = 'https://cdn.jsdelivr.net/npm/library@1.2.3';
+const CDN_URL = 'https://cdn.jsdelivr.net/npm/library@{version}';
 
 async function load_with_timeout(url, timeout_ms = 10000) {
   return new Promise((resolve) => {
@@ -978,11 +978,11 @@ document.write('<script src="https://cdn.example.com/lib.js"></script>');
 ### Version Pinning
 
 ```javascript
-// ✅ Pinned to specific version
-'https://cdn.jsdelivr.net/npm/hls.js@1.6.11'
+// ✅ Pinned to specific version (check HTML source for current versions)
+'https://cdn.jsdelivr.net/npm/hls.js@{major.minor.patch}'
 
 // ✅ Pinned to specific minor version
-'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0'
+'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@{major.minor}'
 
 // ❌ Avoid: Latest tag can break unexpectedly
 'https://cdn.jsdelivr.net/npm/library@latest'
@@ -1038,10 +1038,10 @@ safe_library_call(() => {
 
 ```html
 <!-- In <head> for critical path libraries -->
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/hls.js@1.6.11" as="script">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/hls.js@{version}" as="script">
 
 <!-- Then load with defer in body -->
-<script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.11" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@{version}" defer></script>
 ```
 
 ### Cleanup on Destroy

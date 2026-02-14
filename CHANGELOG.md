@@ -7,6 +7,37 @@ Public Release: https://github.com/MichelKerkmeester/opencode-spec-kit-framework
 
 ---
 
+## [**2.0.1.3**] - 2026-02-14
+
+> workflows-code--web-dev: Form Upload reference document + CDN version cleanup
+
+### 🔍 What changed
+
+Added a comprehensive **form upload reference document** (`form_upload_workflows.md`, 633 lines, DQI 97/100) documenting the full FilePond-to-R2 upload pipeline: architecture, Webflow data attributes, FilePond configuration, state machine, Cloudflare Worker proxy, form integration, and MIME type reference. Updated SKILL.md routing with `FORM_UPLOAD` keyword group and conditional loading.
+
+Separately, removed all hardcoded CDN version numbers across **7 skill files** (~35 instances) to reduce documentation maintenance overhead. Replaced with `{version}` placeholders that point developers to source HTML files for current pinned versions.
+
+### 📁 Files Changed
+
+**New:**
+- `.opencode/skill/workflows-code--web-dev/references/implementation/form_upload_workflows.md` — 11-section upload pipeline reference
+
+**Changed (routing):**
+- `.opencode/skill/workflows-code--web-dev/SKILL.md` — `FORM_UPLOAD` keywords + conditional loading + use case table
+
+**Changed (version cleanup):**
+- `.opencode/skill/workflows-code--web-dev/references/implementation/third_party_integrations.md`
+- `.opencode/skill/workflows-code--web-dev/references/implementation/animation_workflows.md`
+- `.opencode/skill/workflows-code--web-dev/references/deployment/cdn_deployment.md`
+- `.opencode/skill/workflows-code--web-dev/references/performance/resource_loading.md`
+- `.opencode/skill/workflows-code--web-dev/assets/integrations/hls_patterns.js`
+
+### 🚀 Upgrade
+
+Drop-in replacement. Copy `.opencode/skill/workflows-code--web-dev/` to your project.
+
+---
+
 ## [**2.0.1.2**] - 2026-02-14
 
 > Create command dispatch security fix + defensive hardening — continuation of v2.0.1.1 (Spec 118 → Spec 008)

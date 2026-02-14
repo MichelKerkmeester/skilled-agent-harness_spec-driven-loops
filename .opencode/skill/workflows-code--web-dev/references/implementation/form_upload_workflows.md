@@ -31,7 +31,7 @@ Single source of truth for understanding, maintaining, and extending the file up
 
 - **[implementation_workflows.md](./implementation_workflows.md)**: Condition-based waiting, validation patterns
 - **[code_quality_standards.md](../standards/code_quality_standards.md)**: Naming conventions, initialization patterns
-- **FilePond CDN**: `unpkg.com/filepond@4.30.4` (CSS + JS + plugins)
+- **FilePond CDN**: `unpkg.com/filepond` (CSS + JS + plugins — check HTML source for current version)
 - **Cloudflare Worker**: `r2-upload-proxy.cloudflare-decorated911.workers.dev`
 
 ---
@@ -196,23 +196,25 @@ if (plugins.length > 0) {
 
 ```html
 <!-- 1. Plugins FIRST -->
-<script src="https://unpkg.com/filepond-plugin-file-validate-type@1.2.8/dist/filepond-plugin-file-validate-type.min.js" defer></script>
-<script src="https://unpkg.com/filepond-plugin-file-validate-size@2.2.8/dist/filepond-plugin-file-validate-size.min.js" defer></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-type@{version}/dist/filepond-plugin-file-validate-type.min.js" defer></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-size@{version}/dist/filepond-plugin-file-validate-size.min.js" defer></script>
 
 <!-- 2. FilePond core SECOND -->
-<script src="https://unpkg.com/filepond@4.30.4/dist/filepond.min.js" defer></script>
+<script src="https://unpkg.com/filepond@{version}/dist/filepond.min.js" defer></script>
 
 <!-- 3. Custom connector THIRD -->
-<script src="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/input_upload.min.js?v=1.2.5" defer></script>
+<script src="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/input_upload.min.js?v={version}" defer></script>
 ```
+
+> **Note**: Check `werken_bij.html` or `vacature.html` for current pinned versions.
 
 FilePond CSS is loaded asynchronously in the `<head>`:
 
 ```html
-<link rel="preload" href="https://unpkg.com/filepond@4.30.4/dist/filepond.min.css" as="style"
+<link rel="preload" href="https://unpkg.com/filepond@{version}/dist/filepond.min.css" as="style"
      onload="this.rel='stylesheet'">
 <noscript>
-     <link rel="stylesheet" href="https://unpkg.com/filepond@4.30.4/dist/filepond.min.css">
+     <link rel="stylesheet" href="https://unpkg.com/filepond@{version}/dist/filepond.min.css">
 </noscript>
 ```
 
@@ -583,14 +585,16 @@ Both pages load identical FilePond dependencies and the same version of `input_u
 
 ### Version Management
 
-Scripts use the `?v=` query parameter pattern for cache busting:
+Scripts use the `?v=` query parameter pattern for cache busting (semver format: `major.minor.patch`):
 
-| Script | Current Version | CDN Path |
-|--------|----------------|----------|
-| `input_upload.min.js` | `v=1.2.5` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/input_upload.min.js` |
-| `form_validation.min.js` | `v=1.2.36` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_validation.min.js` |
-| `form_submission.min.js` | `v=1.2.35` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_submission.min.js` |
-| `form_persistence.min.js` | `v=1.0.1` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_persistence.min.js` |
+| Script | CDN Path |
+|--------|----------|
+| `input_upload.min.js` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/input_upload.min.js?v={version}` |
+| `form_validation.min.js` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_validation.min.js?v={version}` |
+| `form_submission.min.js` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_submission.min.js?v={version}` |
+| `form_persistence.min.js` | `pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/form_persistence.min.js?v={version}` |
+
+> **Note**: Check `werken_bij.html` and `vacature.html` for current version numbers. See [cdn_deployment.md](../deployment/cdn_deployment.md) for versioning rules.
 
 ### CDN Workflow
 

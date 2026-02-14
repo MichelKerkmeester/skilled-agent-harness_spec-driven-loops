@@ -191,15 +191,17 @@ function close_dropdown(dropdown) {
 ```html
 <!-- src/html/global.html -->
 <script type="module">
-  const lib = await import('https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm');
+  const lib = await import('https://cdn.jsdelivr.net/npm/motion@{version}/+esm');
   window.Motion = lib; // { animate, inView, scroll, stagger, ... }
 </script>
 ```
 
+> **Note**: Check `global.html` for the current pinned version.
+
 **Why this approach:**
 - Single CDN request for all components
 - Global availability prevents import duplication
-- Version-locked for stability (`@12.15.0`)
+- Version-locked for stability
 - All Motion.dev functions available via `window.Motion`
 
 ### Component Initialization Pattern with Retry Logic

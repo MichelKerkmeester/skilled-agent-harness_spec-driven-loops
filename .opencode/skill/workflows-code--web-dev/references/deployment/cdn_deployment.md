@@ -44,30 +44,30 @@ Version parameters are your cache-busting mechanism - increment on EVERY change,
 Version parameters use the format `?v=major.minor.patch`:
 
 ```
-https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/hero_video.js?v=1.3.13
-                                                                    └─┬─┘
-                                                              major.minor.patch
+https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/script_name.js?v=X.Y.Z
+                                                                      └─┬─┘
+                                                                major.minor.patch
 ```
 
 ### When to Increment
 
-| Change Type | Version Part | Example           | Use When                                         |
-| ----------- | ------------ | ----------------- | ------------------------------------------------ |
-| **Patch**   | `x.x.X`      | 1.3.12 → 1.3.13   | Bug fixes, timing adjustments, minor tweaks      |
-| **Minor**   | `x.X.0`      | 1.3.x → 1.4.0     | New features, new functionality, non-breaking    |
-| **Major**   | `X.0.0`      | 1.x.x → 2.0.0     | Breaking changes, API changes, major refactors   |
+| Change Type | Version Part | Pattern             | Use When                                         |
+| ----------- | ------------ | ------------------- | ------------------------------------------------ |
+| **Patch**   | `x.x.X`      | X.Y.Z → X.Y.(Z+1)  | Bug fixes, timing adjustments, minor tweaks      |
+| **Minor**   | `x.X.0`      | X.Y.Z → X.(Y+1).0  | New features, new functionality, non-breaking    |
+| **Major**   | `X.0.0`      | X.Y.Z → (X+1).0.0  | Breaking changes, API changes, major refactors   |
 
 ### Examples
 
 ```html
 <!-- Patch: Fixed animation timing -->
-hero_video.js?v=1.3.12 → hero_video.js?v=1.3.13
+script.js?v=X.Y.Z → script.js?v=X.Y.(Z+1)
 
-<!-- Minor: Added new header animation feature -->
-hero_video.js?v=1.3.x → hero_video.js?v=1.4.0
+<!-- Minor: Added new feature -->
+script.js?v=X.Y.Z → script.js?v=X.(Y+1).0
 
-<!-- Major: Rewrote animation system -->
-hero_video.js?v=1.x.x → hero_video.js?v=2.0.0
+<!-- Major: Rewrote system -->
+script.js?v=X.Y.Z → script.js?v=(X+1).0.0
 ```
 
 ---
@@ -119,12 +119,12 @@ Each script typically has TWO references per HTML file:
 
 1. **Preload link** (in `<head>`)
 ```html
-<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/hero_video.js?v=1.3.13" as="script">
+<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/script_name.js?v={version}" as="script">
 ```
 
 2. **Script tag** (in footer)
 ```html
-<script src="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/hero_video.js?v=1.3.13" defer></script>
+<script src="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/script_name.js?v={version}" defer></script>
 ```
 
 **IMPORTANT:** Both must be updated to the same version!
@@ -134,14 +134,14 @@ Each script typically has TWO references per HTML file:
 For updating a specific script across all files:
 
 ```bash
-# Find and replace version (example: hero_video.js 1.3.12 → 1.3.13)
+# Find and replace version
 # Use your editor's find/replace or sed:
 
 # Preview changes first:
-grep -r "hero_video.js?v=1.3.12" src/html/
+grep -r "script_name.js?v=" src/html/
 
 # Then update each file or use sed:
-# sed -i '' 's/hero_video.js?v=1.3.12/hero_video.js?v=1.3.13/g' src/html/**/*.html
+# sed -i '' 's/script_name.js?v=OLD/script_name.js?v=NEW/g' src/html/**/*.html
 ```
 
 ---

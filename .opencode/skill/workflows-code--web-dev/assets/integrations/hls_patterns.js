@@ -4,7 +4,7 @@
 // Reference implementation patterns for HLS.js video streaming in Webflow.
 // Extracted from production code: src/2_javascript/video/video_background_hls_hover.js
 // @see https://github.com/video-dev/hls.js
-// @version 1.6.11 (current CDN version)
+// Check HTML source files for current pinned version
 // ───────────────────────────────────────────────────────────────
 
 /* ─────────────────────────────────────────────────────────────
@@ -12,12 +12,13 @@
 ──────────────────────────────────────────────────────────────── */
 
 /**
- * HLS.js CDN URL - pinned to specific version for stability
+ * HLS.js CDN URL pattern - pin to specific version for stability
+ * Check HTML source files (e.g., home.html) for current version
  * Use with preload link for critical video pages:
  *   <link rel="preload" href="..." as="script">
  *   <script src="..." defer></script>
  */
-const HLS_CDN_URL = 'https://cdn.jsdelivr.net/npm/hls.js@1.6.11';
+const HLS_CDN_URL = 'https://cdn.jsdelivr.net/npm/hls.js@{version}';
 
 /**
  * Load HLS.js library dynamically via CDN script injection.

@@ -149,14 +149,14 @@ Downloads high-priority resources for the current page with elevated priority. B
 
 **Third-party Libraries:**
 ```html
-<link rel="preload" href="https://unpkg.com/lenis@1.2.3/dist/lenis.css" as="style">
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/motion@12.15.0/+esm" as="script" crossorigin>
+<link rel="preload" href="https://unpkg.com/lenis@{version}/dist/lenis.css" as="style">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/motion@{version}/+esm" as="script" crossorigin>
 ```
 
 **Custom Scripts:**
 ```html
-<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/dropdown.js?v=1.2.31" as="script">
-<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/mobile_menu.js?v=1.2.31" as="script">
+<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/dropdown.js?v={version}" as="script">
+<link rel="preload" href="https://pub-85443b585f1e4411ab5cc976c4fb08ca.r2.dev/mobile_menu.js?v={version}" as="script">
 ```
 
 ---
