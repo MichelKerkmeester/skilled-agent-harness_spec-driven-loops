@@ -4,6 +4,19 @@ argument-hint: "<research-topic> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, webfetch, memory_context, memory_search
 ---
 
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+>
+> **YOUR FIRST ACTION:**
+> 1. Determine execution mode from user input (`:auto` or `:confirm`)
+> 2. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `spec_kit_research_auto.yaml`
+>    - Confirm mode → `spec_kit_research_confirm.yaml`
+> 3. Execute the YAML workflow step by step
+>
+> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
@@ -226,11 +239,15 @@ Format: `[W:R-{sequence}]` where sequence is a 3-digit number (001, 002, etc.)
 
 ### Agent Dispatch
 
+<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
 Task tool -> `@research` agent. Input: topic={research_topic}, spec_folder={spec_path}. Execute Steps 3-7: Codebase Investigation (dispatch via @context, subagent_type: "context"), External Research, Technical Analysis, Quality Checklist, Solution Design. Return structured findings for research.md compilation.
+<!-- END REFERENCE -->
 
 ### Fallback Behavior
 
+<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
 When `@research` unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). Same steps executed, potentially less specialized output.
+<!-- END REFERENCE -->
 
 ## 10. QUALITY GATES
 

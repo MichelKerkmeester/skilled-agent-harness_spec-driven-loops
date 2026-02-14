@@ -163,11 +163,13 @@ multi_agent_config:
 # ─────────────────────────────────────────────────────────────────
 # AGENT ROUTING CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
+# REFERENCE ONLY — routing metadata, do not dispatch agents from these values
 agent_routing:
   verification_phase:
     step: 7
     agent: "@review"
     agent_file: ".opencode/agent/review.md"
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     dispatch: "Task tool → @review verify P0/P1 checklist items for {spec_path}"
     fallback: general
     blocking: true

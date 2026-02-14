@@ -4,6 +4,19 @@ argument-hint: "<feature-description> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search
 ---
 
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+>
+> **YOUR FIRST ACTION:**
+> 1. Determine execution mode from user input (`:auto` or `:confirm`)
+> 2. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `spec_kit_plan_auto.yaml`
+>    - Confirm mode → `spec_kit_plan_confirm.yaml`
+> 3. Execute the YAML workflow step by step
+>
+> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow gathers ALL inputs in ONE prompt. Round-trip: 1 user interaction.
@@ -188,6 +201,7 @@ Supports smart parallel sub-agent dispatch using 5-dimension complexity scoring.
 
 ### Planning Step: 4-Agent Parallel Exploration (Automatic)
 
+<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
 Step 5 dispatches 4 `@context` agents via Task tool (`subagent_type: "context"`):
 1. **Architecture Explorer** — structure, entry points, connections
 2. **Feature Explorer** — similar features, related patterns
@@ -195,6 +209,7 @@ Step 5 dispatches 4 `@context` agents via Task tool (`subagent_type: "context"`)
 4. **Test Explorer** — test patterns, testing infrastructure
 
 After agents return, verify hypotheses by reading identified files.
+<!-- END REFERENCE -->
 
 **Eligible Phases:** Step 3 (Specification), Step 5 (Planning with 4-agent exploration)
 
@@ -240,6 +255,7 @@ Use `/memory:context` with intent-aware retrieval:
 | Step 3 (Specification)        | `@speckit` | `general` | Template-first spec folder creation with validation  |
 | Step 5 (Codebase Exploration) | `@context` | `general-purpose` | Exclusive agent for file search, pattern discovery   |
 
+<!-- REFERENCE ONLY — Do not dispatch agents from this template -->
 **Dispatch flow:** Check agent availability → dispatch if available → fallback to `subagent_type: "general-purpose"` (Claude Code) or `"general"` (OpenCode) with warning → agent returns file confirmation with validation status.
 
 **@speckit dispatch template:**
@@ -248,6 +264,7 @@ You are the @speckit agent. Create spec folder documentation.
 Feature: {feature_description} | Level: {documentation_level} | Folder: {spec_path}
 Create spec.md using template-first approach. Validate structure. Return file confirmation.
 ```
+<!-- END REFERENCE -->
 
 ## 9. QUALITY GATES
 

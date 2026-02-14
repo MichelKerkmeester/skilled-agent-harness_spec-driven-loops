@@ -4,6 +4,19 @@ argument-hint: "<spec-folder> [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search
 ---
 
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+>
+> **YOUR FIRST ACTION:**
+> 1. Determine execution mode from user input (`:auto` or `:confirm`)
+> 2. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `spec_kit_implement_auto.yaml`
+>    - Confirm mode → `spec_kit_implement_confirm.yaml`
+> 3. Execute the YAML workflow step by step
+>
+> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.

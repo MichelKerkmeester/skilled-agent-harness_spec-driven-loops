@@ -8,6 +8,7 @@
 # But THIS repo is the SOURCE of .opencode/ content - it MUST be tracked.
 # The negation pattern below overrides the global ignore.
 !.opencode/
+specs/
 
 # API keys and secrets
 # ───────────────────────────────────────────
@@ -17,6 +18,7 @@
 # Archive
 # ───────────────────────────────────────────
 /z — Archive/
+
 
 # Build output
 # ───────────────────────────────────────────
@@ -64,14 +66,9 @@ settings.local.json
 # ───────────────────────────────────────────
 __pycache__/
 
-# Spec folders (project-specific)
+# Spec folders (project-specific, never publish)
 # ───────────────────────────────────────────
-.opencode/specs/000-opencode-env/
-.opencode/specs/001-system_instructions/
-.opencode/specs/002-commands-and-skills/
-.opencode/specs/003-memory-and-spec-kit/
-.opencode/specs/004-agents/
-.opencode/specs/005-anobel.com/
+.opencode/specs/
 
 # Project-specific commands (not part of framework)
 # ───────────────────────────────────────────

@@ -206,11 +206,13 @@ multi_agent_config:
 # ─────────────────────────────────────────────────────────────────
 # AGENT ROUTING CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
+# REFERENCE ONLY — routing metadata, do not dispatch agents from these values
 agent_routing:
   research_phase:
     condition: ":with-research OR confidence < 60%"
     agent: "@research"
     agent_file: ".opencode/agent/research.md"
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     dispatch: "Task tool → @research 9-step workflow for {feature_description}"
     fallback: general
   specification_phase:
@@ -218,12 +220,14 @@ agent_routing:
     agent: "@speckit"
     agent_file: ".opencode/agent/speckit.md"
     model: opus
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     dispatch: "Task tool → @speckit create spec.md for {feature_description}"
     fallback: general
   verification_phase:
     step: 11
     agent: "@review"
     agent_file: ".opencode/agent/review.md"
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     dispatch: "Task tool → @review verify P0/P1 checklist items"
     fallback: general
     blocking: true

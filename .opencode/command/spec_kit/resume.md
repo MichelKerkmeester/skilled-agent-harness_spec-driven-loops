@@ -4,6 +4,19 @@ argument-hint: "[spec-folder-path] [:auto|:confirm]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, memory_match_triggers, memory_list, memory_stats, memory_delete, memory_update, memory_validate, memory_index_scan, memory_health, checkpoint_create, checkpoint_list, checkpoint_restore, checkpoint_delete
 ---
 
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+>
+> **YOUR FIRST ACTION:**
+> 1. Determine execution mode from user input (`:auto` or `:confirm`)
+> 2. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `spec_kit_resume_auto.yaml`
+>    - Confirm mode → `spec_kit_resume_confirm.yaml`
+> 3. Execute the YAML workflow step by step
+>
+> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+
 > **Format:** `/spec_kit:resume [spec-folder-path] [:auto|:confirm]`
 > Examples: `/spec_kit:resume specs/007-feature/` | `/spec_kit:resume:auto specs/007-feature/`
 

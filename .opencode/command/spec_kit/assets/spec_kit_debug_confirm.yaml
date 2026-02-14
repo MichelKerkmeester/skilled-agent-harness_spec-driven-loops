@@ -102,12 +102,14 @@ checkpoint_options:
 # ─────────────────────────────────────────────────────────────────
 # AGENT ROUTING CONFIGURATION
 # ─────────────────────────────────────────────────────────────────
+# REFERENCE ONLY — routing metadata, do not dispatch agents from these values
 agent_routing:
   report_generation_phase:
     step: 2
     agent: "@speckit"
     agent_file: ".opencode/agent/speckit.md"
     purpose: "debug-delegation.md is spec folder documentation — @speckit exclusive"
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     dispatch: "Task tool → @speckit create debug-delegation.md in {spec_path} using template with {task_id}, {error_message}, {error_category}, {affected_files}, {previous_attempts}"
     fallback: "general"
 
@@ -170,6 +172,7 @@ workflow:
     agent: "@debug"
     agent_file: ".opencode/agent/debug.md"
     task_parameters: { description: "Debug: [brief error summary - max 50 chars]", subagent_type: "debug", prompt: "[sub_agent_prompt_template]" }
+    # REFERENCE ONLY — routing metadata, do not dispatch agents from these values
     sub_agent_prompt_template: |
       # Debug Agent Dispatch
 

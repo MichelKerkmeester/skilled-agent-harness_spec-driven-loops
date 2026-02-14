@@ -4,6 +4,16 @@ argument-hint: "[spec-folder-path]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+>
+> **YOUR FIRST ACTION:**
+> 1. Load the YAML workflow: `assets/spec_kit_handover_full.yaml`
+> 2. Execute the YAML workflow step by step
+>
+> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction.

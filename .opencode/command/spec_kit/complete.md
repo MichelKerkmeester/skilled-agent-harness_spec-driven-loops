@@ -4,6 +4,19 @@ argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:auto-d
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+>
+> **YOUR FIRST ACTION:**
+> 1. Determine execution mode from user input (`:auto`, `:confirm`, `:with-research`, `:auto-debug`)
+> 2. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `spec_kit_complete_auto.yaml`
+>    - Confirm mode → `spec_kit_complete_confirm.yaml`
+> 3. Execute the YAML workflow step by step
+>
+> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+
 # SpecKit Complete
 
 Execute the complete SpecKit lifecycle from specification through implementation with context preservation.
@@ -60,7 +73,7 @@ $ARGUMENTS
 | `:auto` | `/spec_kit:complete :auto "feature"` | Execute all steps without approval gates |
 | `:confirm` | `/spec_kit:complete :confirm "feature"` | Pause at each step for approval |
 | `:with-research` | `/spec_kit:complete :with-research "feature"` | Insert 9-step research phase at Step 6 |
-| `:auto-debug` | `/spec_kit:complete :auto-debug "feature"` | Auto-delegate to @debug on 3+ failures |
+| `:auto-debug` | `/spec_kit:complete :auto-debug "feature"` | Auto-delegate to debug agent on 3+ failures |
 | (combined) | `/spec_kit:complete :auto :with-research :auto-debug` | All options combined |
 | (default) | `/spec_kit:complete "feature"` | Ask user to choose mode during setup |
 
@@ -83,7 +96,7 @@ All planning artifacts must exist before implementation begins. Score >= 70 to p
 - plan.md exists with technical approach defined (25 pts)
 - tasks.md exists with all tasks listed as T### IDs (25 pts)
 - checklist.md verified - Level 2+ (15 pts)
-- @review agent approval (10 pts)
+- the review agent's approval (10 pts)
 
 IF any artifact missing -> STOP -> Return to appropriate step -> Complete -> Re-attempt gate
 
@@ -133,7 +146,7 @@ IF failure_count >= 3:
 - IF `:auto-debug` flag -> AUTO dispatch debug sub-agent
 - ELSE -> Suggest: A) Dispatch debug agent B) Continue manually (reset count) C) Skip task D) Pause workflow
 
-IF debug triggered: Store current_task_id, execute debug workflow (5 steps) via Task tool, display checkpoint (root cause, fix status, progress). User responds: Y (retry) / n (pause) / review (debug findings).
+IF debug triggered: Store current_task_id, execute debug workflow (5 steps) via Task tool, display checkpoint (root cause, fix status, progress). User responds: Y (retry) / n (pause) / review (debug findings). <!-- REFERENCE: Activated by YAML workflow step, not directly -->
 
 ## 7. INSTRUCTIONS
 
@@ -189,7 +202,7 @@ Validation runs automatically on the spec folder before marking complete.
 
 ### Step 6: 4-Agent Parallel Exploration (Automatic)
 
-Dispatches 4 `@context` agents (`subagent_type: "context"`) via Task tool. Per AGENTS.md, `@context` is the **exclusive** agent for all codebase exploration.
+Dispatches 4 `@context` agents (`subagent_type: "context"`) via Task tool. Per AGENTS.md, `@context` is the **exclusive** agent for all codebase exploration. <!-- REFERENCE: Activated by YAML workflow step, not directly -->
 
 1. **Architecture Explorer** - Structure, entry points, component connections
 2. **Feature Explorer** - Similar features, related patterns
@@ -223,26 +236,28 @@ Steps 3 (Specification), 6 (Planning + auto 4-agent), 8 (Analysis), 10 (Developm
 
 ### Dispatch Details
 
-- **Step 6**: 4 parallel `@context` agents (`subagent_type: "context"`) -- architecture, features, dependencies, tests
-- **Phase 3**: When `:with-research` OR confidence < 60%, dispatch `@research`
-- **Step 3**: Dispatch `@speckit` for template-first spec creation
-- **Step 11**: Dispatch `@review` with `blocking: true` -- P0 failures halt workflow
+- **Step 6**: 4 parallel `@context` agents (`subagent_type: "context"`) -- architecture, features, dependencies, tests <!-- REFERENCE: Activated by YAML workflow step, not directly -->
+- **Phase 3**: When `:with-research` OR confidence < 60%, dispatch `@research` <!-- REFERENCE: Activated by YAML workflow step, not directly -->
+- **Step 3**: Dispatch `@speckit` for template-first spec creation <!-- REFERENCE: Activated by YAML workflow step, not directly -->
+- **Step 11**: Dispatch `@review` with `blocking: true` -- P0 failures halt workflow <!-- REFERENCE: Activated by YAML workflow step, not directly -->
+
+> **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
 
 ### Agent Dispatch Templates
 
-**Research** (Phase 3): Task tool -> `@research` agent, 9-step workflow. Input: topic={feature_description}, spec_folder={spec_path}. Return structured findings for research.md.
+**Research** (Phase 3): Task tool -> the research agent, 9-step workflow. Input: topic={feature_description}, spec_folder={spec_path}. Return structured findings for research.md.
 
-**Speckit** (Step 3): Task tool -> `@speckit` agent. Input: feature={feature_description}, level={documentation_level}, folder={spec_path}. Create spec.md via template-first approach.
+**Speckit** (Step 3): Task tool -> the speckit agent. Input: feature={feature_description}, level={documentation_level}, folder={spec_path}. Create spec.md via template-first approach.
 
-**Review** (Step 11): Task tool -> `@review` agent. Input: spec_folder={spec_path}, checklist={spec_path}/checklist.md. Return: P0 status [PASS/FAIL], P1 status [PASS/PARTIAL/FAIL], quality score [0-100], blocking issues.
+**Review** (Step 11): Task tool -> the review agent. Input: spec_folder={spec_path}, checklist={spec_path}/checklist.md. Return: P0 status [PASS/FAIL], P1 status [PASS/PARTIAL/FAIL], quality score [0-100], blocking issues.
 
 ### Blocking Behavior (Step 11)
 
-`@review` uses `blocking: true`: P0 FAIL = workflow CANNOT proceed to Step 12. User must address P0 items.
+The review agent uses `blocking: true`: P0 FAIL = workflow CANNOT proceed to Step 12. User must address P0 items.
 
 ### Fallback Behavior
 
-When specialized agent unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). For `@review` fallback: blocking behavior PRESERVED.
+When specialized agent unavailable: warning displayed, workflow continues with `subagent_type: "general"` (OpenCode) or `"general-purpose"` (Claude Code). For the review agent fallback: blocking behavior PRESERVED.
 
 ## 12. QUALITY GATES
 
@@ -268,7 +283,7 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 
 **Pre-execution (>= 70):** feature_description not empty (30), spec_path valid (30), execution_mode set (20), memory context loaded (20)
 
-**Planning Gate (>= 70):** spec.md no [NEEDS CLARIFICATION] (25), plan.md with approach (25), tasks.md with T### IDs (25), checklist.md verified L2+ (15), @review approval (10)
+**Planning Gate (>= 70):** spec.md no [NEEDS CLARIFICATION] (25), plan.md with approach (25), tasks.md with T### IDs (25), checklist.md verified L2+ (15), the review agent's approval (10)
 
 **Post-execution (>= 70):** All tasks marked [x] (30), implementation-summary.md exists (40), memory/*.md saved (20), validation passed (10)
 
@@ -278,8 +293,8 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 |-------|--------|
 | Missing feature description | Re-prompt user |
 | Planning gate fails (<70) | Return to incomplete step, complete it |
-| 3+ implementation failures | :auto-debug -> @debug; else suggest to user |
-| @review P0 FAIL | BLOCK completion; user must fix |
+| 3+ implementation failures | :auto-debug -> debug agent; else suggest to user |
+| Review agent P0 FAIL | BLOCK completion; user must fix |
 | Agent unavailable | Fall back to `general` with warning |
 | Validation errors (exit 2) | Fix before proceeding |
 | Incomplete session detected | Offer: Resume / Restart / Cancel |

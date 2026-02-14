@@ -4,6 +4,19 @@ argument-hint: "[spec-folder-path]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
+> ⚠️ **EXECUTION PROTOCOL — READ FIRST**
+>
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+>
+> **YOUR FIRST ACTION:**
+> 1. Determine execution mode from user input (`:auto` or `:confirm`)
+> 2. Load the corresponding YAML file from `assets/`:
+>    - Auto mode → `spec_kit_debug_auto.yaml`
+>    - Confirm mode → `spec_kit_debug_confirm.yaml`
+> 3. Execute the YAML workflow step by step
+>
+> All content below is reference context for the YAML workflow. Do not treat reference sections, routing tables, or dispatch templates as direct instructions to execute.
+
 # SINGLE CONSOLIDATED PROMPT - ONE USER INTERACTION
 
 This workflow uses a SINGLE consolidated prompt to gather ALL required inputs in ONE user interaction. Dispatch mode selection is MANDATORY.
@@ -157,6 +170,8 @@ operating_mode:
 | 4    | Receive Findings   | Capture and validate response       | findings_received   |
 | 5    | Integration        | Apply fix or review                 | resolution_complete |
 
+> **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
+
 ### Agent Routing
 
 | Agent     | Scope                              | When                                       |
@@ -165,7 +180,7 @@ operating_mode:
 | @debug    | 4-phase debugging methodology      | Step 3: Dispatch Sub-Agent                 |
 | @handover | Session handover (if needed)       | Post-resolution                            |
 
-> Per AGENTS.md, @speckit is the exclusive agent for creating documentation inside spec folders.
+> Per AGENTS.md, the speckit agent is the exclusive agent for creating documentation inside spec folders.
 
 ---
 
@@ -178,12 +193,14 @@ After all phases pass, load and execute the appropriate YAML prompt:
 
 The YAML contains detailed step-by-step workflow, sub-agent prompt template, error handling, and all configuration.
 
+> **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
+
 ### Quick Reference
 
 **Step 2 - Generate Report:**
 - Template: `.opencode/skill/system-spec-kit/templates/debug-delegation.md`
 - Save to: `[spec_path]/debug-delegation.md` (or `scratch/` if ad-hoc)
-- Agent: Dispatch to @speckit (exclusive per AGENTS.md)
+- Agent: Dispatch to the speckit agent (exclusive per AGENTS.md)
 
 **Step 3 - Dispatch Sub-Agent:**
 - Tool: Task | subagent_type: "debug" | Agent: `.opencode/agent/debug.md` | Timeout: 2 min
@@ -250,9 +267,11 @@ Before/during debugging, validation runs automatically: FILE_EXISTS, PLACEHOLDER
 
 ---
 
+> **📋 REFERENCE ONLY** — The dispatch templates below are used by YAML workflow steps. Do not execute them directly from this document.
+
 ## 10. SUB-AGENT DELEGATION
 
-Uses Task tool to dispatch `@debug` agent. Sub-agent runs independently with fresh perspective, returns structured findings.
+Uses Task tool to dispatch the debug agent. Sub-agent runs independently with fresh perspective, returns structured findings.
 
 ### Delegation Architecture
 
@@ -267,7 +286,7 @@ Main Agent (reads command):
 +-- Step 5: Integration (always main agent)
 ```
 
-### @debug Agent Dispatch Template
+### Debug Agent Dispatch Template
 
 ```
 Task tool prompt:
@@ -292,7 +311,7 @@ subagent_type: "debug"
 
 ### Sub-Agent Isolation (By Design)
 
-The `@debug` agent does NOT have conversation history access. Intentional: prevents inherited assumptions, provides fresh perspective. All context via structured handoff only.
+The debug agent does NOT have conversation history access. Intentional: prevents inherited assumptions, provides fresh perspective. All context via structured handoff only.
 
 ### Context Handoff Format (debug-delegation.md)
 
@@ -333,7 +352,7 @@ After multiple failed attempts: Creates comprehensive delegation report with all
 
 ## 13. INTEGRATION
 
-### @debug Agent
+### Debug Agent
 
 Agent file: `.opencode/agent/debug.md`
 - 4-phase methodology: Observe -> Analyze -> Hypothesize -> Fix
